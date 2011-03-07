@@ -1,0 +1,39 @@
+<?xml version="1.0" ?>
+<openerp>
+	<data>
+		<record id="ir_actions_act_window_exceptions0" model="ir.actions.act_window">
+			<field eval="[(6,0,[])]" name="groups_id"/>
+			<field name="context">{}</field>
+			<field eval="1" name="auto_search"/>
+			<field name="res_model">sale.exception</field>
+			<field name="view_type">form</field>
+			<field eval="0" name="filter"/>
+			<field name="view_mode">tree,form</field>
+			<field eval="80" name="limit"/>
+			<field name="target">current</field>
+			<field eval="0" name="multi"/>
+			<field name="type">ir.actions.act_window</field>
+			<field name="name">Exceptions</field>
+		</record>
+		
+        <menuitem action="ir_actions_act_window_exceptions0" id="ir_ui_menu_exceptions0"
+            parent="base.menu_sale_config_sales" />
+
+
+		<record id="ir_ui_view_saleorderinherit0" model="ir.ui.view">
+			<field name="inherit_id" ref="sale.view_order_form"/>
+			<field name="name">sale.order.68956.inherit</field>
+			<field name="arch" type="xml">
+				<field name="note" position="replace">
+                    <group  colspan="6" col="6">
+                        <field name="exceptions_ids" colspan="2"/>
+                        <field name="note" colspan="4"/>			
+                    </group>
+                </field>
+			</field>
+			<field name="model">sale.order</field>
+			<field name="type">form</field>
+		</record>
+
+    </data>
+</openerp>

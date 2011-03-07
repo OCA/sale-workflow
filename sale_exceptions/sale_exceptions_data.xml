@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+        <record id="excep_product" model="sale.exception">
+            <field name="name">Error: Product Not Found</field>
+        </record>
+
+        <record id="excep_invalid_location" model="sale.exception">
+            <field name="name">Error: Invalid Destination</field>
+        </record>
+
+        <record id="excep_no_zip" model="sale.exception">
+            <field name="name">Error: No Destination zip</field>
+        </record>
+
+        <record id="excep_wrong_line" model="sale.exception">
+            <field name="name">Error: Wrong Order Line Format</field>
+        </record>
+
+        <record id="excep_no_stock" model="sale.exception">
+            <field name="name">Error: Not enough virtual Stock</field>
+        </record>
+	
+	<record id="excep_no_component_stock" model="sale.exception">
+	    <field name="name">Error: Not enough virtual stock of components</field>
+	</record>
+    </data>
+</openerp>
