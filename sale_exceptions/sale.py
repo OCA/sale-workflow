@@ -80,7 +80,7 @@ class sale_order(osv.osv):
             self.__add_exception(cr, uid, exceptions, 'excep_product')
 
     def detect_not_enough_virtual_stock(self, cr, uid, order_line, exceptions):
-        if order_line.product_id and order_line.product_id.virtual_available < order_line.product_uom_qty:
+        if order_line.product_id and order_line.product_id.type == 'product' and order_line.product_id.virtual_available < order_line.product_uom_qty:
             self.__add_exception(cr, uid, exceptions, 'excep_no_stock')
 
 sale_order()
