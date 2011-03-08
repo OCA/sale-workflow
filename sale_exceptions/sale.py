@@ -76,7 +76,7 @@ class sale_order(osv.osv):
             self.__add_exception(cr, uid, exceptions, 'excep_no_zip')
 
     def detect_wrong_product(self, cr, uid, order_line, exceptions):
-        if order_line.product_id and 'unknown' in order_line.product_id.name or not order_line.product_id:
+        if order_line.product_id and 'unknown' in order_line.product_id.name.lower() or not order_line.product_id:
             self.__add_exception(cr, uid, exceptions, 'excep_product')
 
     def detect_not_enough_virtual_stock(self, cr, uid, order_line, exceptions):
