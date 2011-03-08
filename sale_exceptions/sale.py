@@ -50,13 +50,13 @@ class sale_order(osv.osv):
             exceptions_list.append(except_id)
 
     def test_exceptions(self, cr, uid, ids, *args):
-        for order in self.browse(cr, uid, ids, args):
+        for order in self.browse(cr, uid, ids):
             new_exceptions = []
             self.add_custom_order_exception(cr, uid, ids, order, new_exceptions, *args)
             self.write(cr, uid, [order.id], {'exceptions_ids': [(6, 0, new_exceptions)]})
             cr.commit()
         if len(new_exceptions) != 0:
-            raise osv.except_osv(_('Order has errors!'), "\n".join(ex.name for ex in self.pool.get('sale.exception').browse(cr, uid, new_exceptions, *args)))
+            raise osv.except_osv(_('Order has errors!'), "\n".join(ex.name for ex in self.pool.get('sale.exception').browse(cr, uid, new_exceptions)))
         return True
 
     def add_custom_order_exception(self, cr, uid, ids, order, exceptions, *args):
@@ -68,7 +68,9 @@ class sale_order(osv.osv):
         return exceptions
 
     def detect_invalid_destination(self, cr, uid, order, exceptions):
-        if len(self.pool.get('delivery.grid').search(cr, uid, [('country_ids', 'ilike', "%%%s%%" % (order.partner_shipping_id.country_id.name,))])) > 0: #TODO may be add an extra condition on grid type/name
+        if order.partner_shipping_id.country_id and len(self.pool.get('delivery.grid').search(cr, uid, [('country_ids', 'ilike', "%%%s%%" % (order.partner_shipping_id.country_id.name,))])) > 0: #TODO may be add an extra condition on grid type/name
+            self.__add_exception(cr, uid, exceptions, 'excep_invalid_location')
+        elif order.partner_shipping_id.state_id and len(self.pool.get('delivery.grid').search(cr, uid, [('state_ids', 'ilike', "%%%s%%" % (order.partner_shipping_id.state_id.name,))])) > 0: #TODO may be add an extra condition on grid type/name
             self.__add_exception(cr, uid, exceptions, 'excep_invalid_location')
 
     def detect_no_zip(self, cr, uid, order, exceptions):
