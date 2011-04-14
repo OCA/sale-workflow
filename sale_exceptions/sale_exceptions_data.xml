@@ -21,8 +21,25 @@
             <field name="name">Error: Not enough virtual Stock</field>
         </record>
 	
-	<record id="excep_no_component_stock" model="sale.exception">
-	    <field name="name">Error: Not enough virtual stock of components</field>
-	</record>
+		<record id="excep_no_component_stock" model="sale.exception">
+		    <field name="name">Error: Not enough virtual stock of components</field>
+		</record>
+		
+        <record id="no_delivery_partner" model="res.partner">
+            <field name="name">No Delivery</field>
+        </record>
+        
+        <record id="no_delivery_product" model="product.product">
+            <field name="name">No Delivery</field>
+            <field name="type">service</field>
+            <field model="product.category" name="categ_id" search="[]"/>
+        </record>
+		
+        <record id="no_delivery_carrier" model="delivery.carrier">
+            <field name="name">No Delivery</field>
+            <field name="partner_id" ref="no_delivery_partner"/>
+            <field name="product_id" ref="no_delivery_product"/>
+        </record>
+	
     </data>
 </openerp>
