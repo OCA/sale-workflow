@@ -1,0 +1,45 @@
+<openerp>
+    <data>
+        
+        <record id="view_order_tree" model="ir.ui.view">
+            <field name="name">sale.order.tree</field>
+            <field name="model">sale.order</field>
+            <field name="type">tree</field>
+            <field name="inherit_id" ref="sale.view_order_tree" />
+            <field name="arch" type="xml">
+                <xpath expr="/tree/field[@name='user_id']" position="after">
+                    <field name="department_id" />
+                </xpath>
+            </field>
+        </record>
+        
+        <record id="view_order_form" model="ir.ui.view">
+            <field name="name">sale.order.form</field>
+            <field name="model">sale.order</field>
+            <field name="type">form</field>
+            <field name="inherit_id" ref="sale.view_order_form" />
+            <field name="arch" type="xml">
+                <xpath expr="/form/notebook/page[@string='Other Information']/group/field[@name='user_id']" position="after">
+                    <field name="department_id" widget="selection"/>
+                </xpath>
+            </field>
+        </record>
+        
+        <record id="view_sales_order_filter" model="ir.ui.view">
+            <field name="name">sale.order.list.select</field>
+            <field name="model">sale.order</field>
+            <field name="type">search</field>
+            <field name="inherit_id" ref="sale.view_sales_order_filter" />
+            <field name="arch" type="xml">
+                <xpath expr="/search/group/filter[@string='Salesman']" position="after">
+                    <filter string="Department" icon="terp-folder-orange" domain="[]" context="{'group_by':'department_id'}"/>
+                </xpath>
+                <xpath expr="/search/field[@name='partner_id']" position="after">
+                    <field name="department_id" select="1" widget="selection"/>
+                </xpath>
+            </field>
+        </record>
+        
+
+    </data>
+</openerp>
