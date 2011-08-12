@@ -1,0 +1,60 @@
+<openerp>
+    <data>
+        <record id="invoice_tree" model="ir.ui.view">
+            <field name="name">account.invoice.tree</field>
+            <field name="model">account.invoice</field>
+            <field name="inherit_id" ref="account.invoice_tree" />
+            <field name="type">tree</field>
+            <field name="arch" type="xml">
+                <xpath expr="/tree/field[@name='company_id']" position="before">
+                    <field name="department_id" />
+                </xpath>
+            </field>
+        </record>
+    
+        <record id="invoice_form" model="ir.ui.view">
+            <field name="name">account.invoice.form</field>
+            <field name="model">account.invoice</field>
+            <field name="inherit_id" ref="account.invoice_form" />
+            <field name="type">form</field>
+            <field name="arch" type="xml">
+                <xpath expr="/form/notebook/page[@string='Other Info']/field[@name='company_id']" position="before">
+                    <field name="department_id" widget="selection"/>
+                </xpath>
+            </field>
+        </record>
+        
+        <record id="view_account_invoice_filter" model="ir.ui.view">
+            <field name="name">account.invoice.select</field>
+            <field name="model">account.invoice</field>
+            <field name="inherit_id" ref="account.view_account_invoice_filter" />
+            <field name="type">search</field>
+            <field name="arch" type="xml">
+                <xpath expr="/search/group[2]" position="replace">
+                    <group col="10" colspan="4">
+                        <field name="journal_id" widget="selection" select='1'/>
+                        <field name="department_id" select="1" widget="selection"/>
+                        <field name="period_id" select='1' string="Period"/>
+                    </group>
+                </xpath>
+                <xpath expr="/search/group/filter[@string='Partner']" position="after">
+                        <filter string="Department" icon="terp-folder-orange" domain="[]"  context="{'group_by':'department_id'}"/>
+                </xpath>
+            </field>
+        </record>
+
+        <record id="invoice_supplier_form" model="ir.ui.view">
+            <field name="name">account.invoice.supplier.form</field>
+            <field name="model">account.invoice</field>
+            <field name="inherit_id" ref="account.invoice_supplier_form" />
+            <field name="type">form</field>
+            <field name="priority">2</field>
+            <field name="arch" type="xml">
+                <xpath expr="/form/notebook/page[@string='Other Info']/field[@name='company_id']" position="before">
+                    <field name="department_id" widget="selection"/>
+                </xpath>
+            </field>
+        </record>
+
+    </data>
+</openerp>
