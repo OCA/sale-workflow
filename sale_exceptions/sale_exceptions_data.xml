@@ -40,6 +40,19 @@
             <field name="partner_id" ref="no_delivery_partner"/>
             <field name="product_id" ref="no_delivery_product"/>
         </record>
+
+        <record forcecreate="True" id="ir_cron_test_orders" model="ir.cron">
+            <field name="name">Test Draft Orders</field>
+            <field eval="False" name="active"/>
+            <field name="user_id" ref="base.user_root"/>
+            <field name="interval_number">20</field>
+            <field name="interval_type">minutes</field>
+            <field name="numbercall">-1</field>
+            <field eval="False" name="doall"/>
+            <field eval="'sale.order'" name="model"/>
+            <field eval="'test_all_draft_orders'" name="function"/>
+            <field eval="'()'" name="args"/>
+        </record>
 	
     </data>
 </openerp>

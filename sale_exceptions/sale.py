@@ -49,6 +49,15 @@ class sale_order(osv.osv):
         if except_id not in exceptions_list:
             exceptions_list.append(except_id)
 
+    def test_all_draft_orders(self, cr, uid, context=None):
+        ids = self.search(cr, uid, [('state', '=', 'draft')])
+        for id in ids:
+            try:
+                self.test_exceptions(cr, uid, [id])
+            except Exception:
+                pass
+        return True
+
     def test_exceptions(self, cr, uid, ids, *args):
         for order in self.browse(cr, uid, ids):
             new_exceptions = []
