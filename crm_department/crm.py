@@ -1,10 +1,11 @@
 # -*- coding: utf-8 -*-
 ##############################################################################
 #
-# Copyright (c) 2010 Camptocamp SA (http://www.camptocamp.com) 
+# Copyright (c) 2011 Camptocamp SA (http://www.camptocamp.com) 
 # All Right Reserved
 #
 # Author : Joel Grand-guillaume (Camptocamp)
+# Contribution : Yannick Vaucher (Camptocamp)
 #
 # WARNING: This program as such is intended to be used by professional
 # programmers who take the whole responsability of assessing all potential
@@ -46,10 +47,22 @@ crm_sales_team()
 
 class crm_lead(osv.osv):
     _inherit = "crm.lead"
-
+    
+    def onchange_section_id(self, cr, uid, ids, section_id=False, context=None):
+        """ Updates res dictionary with the department corresponding to the section
+        """
+        res = {}
+        if section_id:
+            section = self.pool.get('crm.case.section').browse(cr, uid, section_id, context=context)
+            if section.department_id.id:
+                res.update({'department_id': section.department_id.id})
+        return {
+            'value':res
+        }
+    
+    
     _columns = {
-        'department_id': fields.related('section_id', 'department_id', type='many2one', relation='hr.department', \
-            string='Department', store=True, readonly=True)
+        'department_id': fields.many2one('hr.department', 'Department'),
     }
 
 crm_lead()

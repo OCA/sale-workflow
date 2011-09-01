@@ -76,6 +76,9 @@
             <field name="type">form</field>
             <field name="inherit_id" ref="crm.crm_case_form_view_oppor" />
             <field name="arch" type="xml">
+	        <xpath expr="/form/notebook/page/group/field[@name='section_id']" position="attributes">
+		    <attribute name="on_change">onchange_section_id(section_id)</attribute>
+                </xpath>
                 <xpath expr="/form/notebook/page/group/field[@name='section_id']" position="after">
                     <field name="department_id" widget="selection"/>
                 </xpath>

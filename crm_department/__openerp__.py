@@ -4,7 +4,8 @@
 # Copyright (c) 2011 Camptocamp SA (http://www.camptocamp.com) 
 # All Right Reserved
 #
-# Author : Joel Grand-guillaume (Camptocamp)
+# Author : Joël Grand-guillaume (Camptocamp)
+# Contribution : Yannick Vaucher (Camptocamp)
 #
 # WARNING: This program as such is intended to be used by professional
 # programmers who take the whole responsability of assessing all potential
@@ -34,21 +35,23 @@
     "version" : "1.0",
     "author" : "Camptocamp",
     "category" : "Generic Modules/CRM & SRM",
-    "description":
-"""
-    Add the department on Sales Team (with related field on Lead & Opportunities) as well as the related filter and button in the search form.
+    "description": """
+    
+Add the department on Sales Team (with related field on Lead & Opportunities)
+as well as the related filter and button in the search form.
+
     
 """,
     "website": "http://camptocamp.com",
     "depends" : [
-        "crm",
-        "hr"
+            "crm",
+            "hr"
                 ],
     "init_xml" : [],
     "demo_xml" : [],
     "update_xml" : [
-        "crm_view.xml",
-    ],
+           "crm_view.xml",
+                   ],
     "active": False,
     "installable": True
 }
