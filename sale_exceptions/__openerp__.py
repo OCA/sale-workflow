@@ -33,7 +33,10 @@ This is escpecially useful in an order importation scenario such as with the bas
     'website': 'http://www.akretion.com',
     'depends': ['sale'],
     'init_xml': [],
-    'update_xml': ['sale_workflow.xml', 'sale_view.xml', 'sale_exceptions_data.xml'],
+    'update_xml': ['sale_workflow.xml',
+                   'sale_view.xml',
+                   'sale_exceptions_data.xml',
+                   'security/ir.model.access.csv'],
     'demo_xml': [],
     'installable': True,
 }
