@@ -31,7 +31,7 @@ class sale_exception(osv.osv):
     _name = "sale.exception"
     _description = "Sale Exceptions"
     _columns = {
-        'name': fields.char('Exception Name', size=64, required=True),
+        'name': fields.char('Exception Name', size=64, required=True, translate=True),
         'sale_order_ids': fields.many2many('sale.order', 'sale_order_exception_rel', 'exception_id', 'sale_order_id', 'Sale Orders'),
     }
 
