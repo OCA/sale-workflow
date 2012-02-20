@@ -20,13 +20,12 @@
             <field name="inherit_id" ref="account.invoice_form"/>
             <field name="arch" type="xml">
                 
-                <field name="payment_term" position="after">    
-                    <separator string="" colspan="4"/>
+                <field name="name" position="after"> 
+                    <newline/>   
                     <field name="text_condition1"
                         domain="[('type','=','header')]" on_change="set_condition(text_condition1, 'note1', partner_id)"/>
                     <field name="text_condition2" 
                         domain="[('type','=','footer')]"  on_change="set_condition(text_condition2, 'note2', partner_id)"/>
-                    <separator string="" colspan="4"/>
                 </field>
             </field>
         </record>
