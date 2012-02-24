@@ -1,39 +1,103 @@
 <?xml version="1.0" ?>
 <openerp>
 	<data>
-		<record id="ir_actions_act_window_exceptions0" model="ir.actions.act_window">
-			<field eval="[(6,0,[])]" name="groups_id"/>
-			<field name="context">{}</field>
-			<field eval="1" name="auto_search"/>
-			<field name="res_model">sale.exception</field>
-			<field name="view_type">form</field>
-			<field eval="0" name="filter"/>
-			<field name="view_mode">tree,form</field>
-			<field eval="80" name="limit"/>
-			<field name="target">current</field>
-			<field eval="0" name="multi"/>
-			<field name="type">ir.actions.act_window</field>
-			<field name="name">Exceptions</field>
-		</record>
-		
-        <menuitem action="ir_actions_act_window_exceptions0" id="ir_ui_menu_exceptions0"
-            parent="base.menu_sale_config_sales" />
 
-
-		<record id="ir_ui_view_saleorderinherit0" model="ir.ui.view">
-			<field name="inherit_id" ref="sale.view_order_form"/>
-			<field name="name">sale.order.68956.inherit</field>
-			<field name="arch" type="xml">
-				<field name="note" position="replace">
-                    <group  colspan="6" col="6">
-                        <field name="exceptions_ids" colspan="2"/>
-                        <field name="note" colspan="4"/>			
+        <record id="view_sale_exception_search" model="ir.ui.view">
+            <field name="name">sale.exception.view.search</field>
+            <field name="model">sale.exception</field>
+            <field name="type">search</field>
+            <field name="arch" type="xml">
+                <search string="Search Sale Exceptions">
+                   <group>
+                        <filter name="all" icon="gtk-fullscreen" string="See All" domain="['|', ('active','=', False), ('active','=', True)]" help="See all rule active or unactive"/>
                     </group>
-                </field>
-			</field>
-			<field name="model">sale.order</field>
-			<field name="type">form</field>
-		</record>
+                    <newline/>
+                    <group>
+                        <field name="name"/>
+                    </group>
+               </search>
+            </field>
+        </record>
+
+        <record id="view_sale_exception_tree" model="ir.ui.view">
+            <field name="name">sale.exception.tree</field>
+            <field name="model">sale.exception</field>
+            <field name="type">tree</field>
+            <field name="arch" type="xml">
+                <tree string="Sale Exception">
+                    <field name="name"/>
+                    <field name="description"/>
+                    <field name="model"/>
+                    <field name="sequence"/>
+                </tree>
+            </field>
+        </record>
+
+        <record id="view_sale_exception_form" model="ir.ui.view">
+            <field name="name">sale.exception.form</field>
+            <field name="model">sale.exception</field>
+            <field name="type">form</field>
+            <field name="arch" type="xml">
+                <form string="Sale Exception Setup">
+                    <group colspan="4" col="2">
+                        <field name="name"/>
+                        <field name="description"/>
+                    </group>
+                    <group col="4" colspan="4" groups="base.group_sale_manager">
+                        <field name="active"/>
+                        <field name="sequence"/>
+                        <group colspan="4" col="2" groups="base.group_system">
+                            <field name="model"/>
+                            <field name="code"/>
+                        </group>
+                    </group>
+                    <group colspan="4" col="2">
+                        <separator string="Affected Sales Orders"/>
+                        <newline/>
+                        <field name="sale_order_ids" nolabel="1" domain="[('state', '=', 'draft')]"/>
+                    </group>
+                </form>
+            </field>
+        </record>
+
+        <record id="action_sale_test_tree" model="ir.actions.act_window">
+                  <field name="name">Exception Rules</field>
+                  <field name="res_model">sale.exception</field>
+                  <field name="view_type">form</field>
+                  <field name="view_mode">tree,form</field>
+                  <field name="view_id" ref="view_sale_exception_tree"/>
+                  <field name="search_view_id" ref="view_sale_exception_search"/>
+      		</record>
+
+        <menuitem action="action_sale_test_tree" id="menu_sale_test" parent="base.menu_sale_config_sales" />
+
+
+        <record id="view_order_form" model="ir.ui.view">
+            <field name="name">sale_exceptions.view_order_form</field>
+            <field name="model">sale.order</field>
+            <field name="type">form</field>
+            <field name="inherit_id" ref="sale.view_order_form"/>
+            <field name="arch" type="xml">
+                <data>
+                    <xpath expr="/form/notebook/page[@string='Sales Order']/group/field[@name='state']"
+                           position="after">
+                        <field name="main_exception_id" nolabel="1"
+                               attrs="{'invisible':[('main_exception_id','=', False)]}"/>
+                    </xpath>
+                    <xpath expr="/form/notebook/page[@string='Other Information']/separator[@string='Notes']"
+                           position="before">
+                        <group name="exception" colspan="2" col="2">
+                            <separator string="Exception" colspan="2"/>
+                            <field name="exceptions_ids" colspan="2" nolabel="1"/>
+                        </group>
+                    </xpath>
+                    <button name="order_confirm" position="attributes">
+                        <attribute name="name">button_order_confirm</attribute>
+                        <attribute name="type">object</attribute>
+                    </button>
+                </data>
+            </field>
+        </record>
 
     </data>
 </openerp>

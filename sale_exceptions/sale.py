@@ -3,6 +3,8 @@
 #
 #    OpenERP, Open Source Management Solution
 #    Copyright (C) 2011 Akretion LTDA.
+#    Copyright (C) 2010-2012 Akretion Sébastien BEAU <sebastien.beau@akretion.com>
+#    Copyright (C) 2012 Camptocamp SA (Guewen Baconnier)
 #
 #    This program is free software: you can redistribute it and/or modify
 #    it under the terms of the GNU Affero General Public License as
@@ -19,80 +21,170 @@
 #
 ##############################################################################
 
-from datetime import datetime, timedelta
-from dateutil.relativedelta import relativedelta
 import time
+import netsvc
 
 from osv import fields, osv
+from tools.safe_eval import safe_eval as eval
 from tools.translate import _
-import netsvc
 
 class sale_exception(osv.osv):
     _name = "sale.exception"
     _description = "Sale Exceptions"
     _columns = {
         'name': fields.char('Exception Name', size=64, required=True, translate=True),
-        'sale_order_ids': fields.many2many('sale.order', 'sale_order_exception_rel', 'exception_id', 'sale_order_id', 'Sale Orders'),
+        'description': fields.text('Description', translate=True),
+        'sequence': fields.integer('Sequence', help="Gives the sequence order when applying the test"),
+        'model': fields.selection([('sale.order', 'Sale Order'),
+                                   ('sale.order.line', 'Sale Order Line')],
+                                  string='Apply on', required=True),
+        'active': fields.boolean('Active'),
+        'code': fields.text('Python Code',
+                    help="Python code executed to check if the exception apply or not. " \
+                         "The code must apply block = True to apply the exception."),
+        'sale_order_ids': fields.many2many('sale.order', 'sale_order_exception_rel',
+                                           'exception_id', 'sale_order_id',
+                                           string='Sale Orders', readonly=True),
+    }
+
+    _defaults = {
+        'code': """# Python code. Use failed = True to block the sale order.
+# You can use the following variables :
+#  - self: ORM model of the record which is checked
+#  - order or line: browse_record of the sale order or sale order line
+#  - object: same as order or line, browse_record of the sale order or sale order line
+#  - pool: ORM model pool (i.e. self.pool)
+#  - time: Python time module
+#  - cr: database cursor
+#  - uid: current user id
+#  - context: current context
+"""
     }
 
 sale_exception()
 
 class sale_order(osv.osv):
     _inherit = "sale.order"
-    _columns = {
-        'exceptions_ids': fields.many2many('sale.exception', 'sale_order_exception_rel', 'sale_order_id', 'exception_id', 'Exceptions'),
-    }
 
-    def __add_exception(self, cr, uid, exceptions_list, exception_name):
-        ir_model_data_id = self.pool.get('ir.model.data').search(cr, uid, [('name', '=', exception_name)])[0]
-        except_id = self.pool.get('ir.model.data').read(cr, uid, ir_model_data_id, ['res_id'])['res_id']
-        if except_id not in exceptions_list:
-            exceptions_list.append(except_id)
+    def _get_main_error(self, cr, uid, ids, name, args, context=None):
+        res = {}
+        for sale_order in self.browse(cr, uid, ids, context=context):
+            res[sale_order.id] = sale_order.exceptions_ids and sale_order.exceptions_ids[0].id or False
+        return res
+
+    _columns = {
+        'main_exception_id': fields.function(_get_main_error, type='many2one',
+                                             relation="sale.exception",
+                                             string='Main Exception'),
+        'exceptions_ids': fields.many2many('sale.exception', 'sale_order_exception_rel',
+                                           'sale_order_id', 'exception_id',
+                                           string='Exceptions'),
+        'ignore_exceptions': fields.boolean('Ignore Exceptions'),
+    }
 
     def test_all_draft_orders(self, cr, uid, context=None):
         ids = self.search(cr, uid, [('state', '=', 'draft')])
-        for id in ids:
-            try:
-                self.test_exceptions(cr, uid, [id])
-            except Exception:
-                pass
+        self.test_exceptions(cr, uid, ids)
         return True
 
-    def test_exceptions(self, cr, uid, ids, *args):
+    def button_order_confirm(self, cr, uid, ids, context=None):
+        exception_ids = self.detect_exceptions(cr, uid, ids, context=context)
+        if exception_ids:
+            model_data_obj = self.pool.get('ir.model.data')
+            action = {
+                'type': 'ir.actions.act_window',
+                'view_type': 'form',
+                'view_mode': 'form',
+                'res_model': 'sale.exception.confirm',
+                'view_id': model_data_obj.get_object_reference(cr, uid, 'sale_exceptions', 'view_sale_exception_confirm')[1],
+                'target': 'new',
+                'context': context,
+            }
+            return action
+        else:
+            wf_service = netsvc.LocalService("workflow")
+            wf_service.trg_validate(uid, 'sale.order', ids[0], 'order_confirm', cr)
+        return True
+
+    def test_exceptions(self, cr, uid, ids, context=None):
+        """
+        Condition method for the workflow from draft to confirm
+        """
+        exception_ids = self.detect_exceptions(cr, uid, ids, context=context)
+        if exception_ids:
+            return False
+        return True
+
+    def detect_exceptions(self, cr, uid, ids, context=None):
+        exception_obj = self.pool.get('sale.exception')
+        order_exception_ids = exception_obj.search(cr, uid,
+            [('model', '=', 'sale.order')], context=context)
+        line_exception_ids = exception_obj.search(cr, uid,
+            [('model', '=', 'sale.order.line')], context=context)
+
+        order_exceptions = exception_obj.browse(cr, uid, order_exception_ids, context=context)
+        line_exceptions = exception_obj.browse(cr, uid, line_exception_ids, context=context)
+
+        exception_ids = False
         for order in self.browse(cr, uid, ids):
-            new_exceptions = []
-            self.add_custom_order_exception(cr, uid, ids, order, new_exceptions, *args)
-            self.write(cr, uid, [order.id], {'exceptions_ids': [(6, 0, new_exceptions)]})
-            cr.commit()
-        if len(new_exceptions) != 0:
-            raise osv.except_osv(_('Order has errors!'), "\n".join(ex.name for ex in self.pool.get('sale.exception').browse(cr, uid, new_exceptions)))
-        return True
+            if order.ignore_exceptions:
+                continue
+            exception_ids = self._detect_exceptions(cr, uid, order,
+                order_exceptions, line_exceptions, context=context)
 
-    def add_custom_order_exception(self, cr, uid, ids, order, exceptions, *args):
-        self.detect_invalid_destination(cr, uid, order, exceptions)
-        self.detect_no_zip(cr, uid, order, exceptions)
+            self.write(cr, uid, [order.id], {'exceptions_ids': [(6, 0, exception_ids)]})
+        return exception_ids
+
+    def _exception_rule_eval_context(self, cr, uid, obj_name, obj, context=None):
+        if context is None:
+            context = {}
+
+        return {obj_name: obj,
+                'self': self.pool.get(obj._name),
+                'object': obj,
+                'obj': obj,
+                'pool': self.pool,
+                'cr': cr,
+                'uid': uid,
+                'user': self.pool.get('res.users').browse(cr, uid, uid),
+                'time': time,
+                # copy context to prevent side-effects of eval
+                'context': dict(context),}
+
+    def _rule_eval(self, cr, uid, rule, obj_name, obj, context):
+        expr = rule.code
+        space = self._exception_rule_eval_context(cr, uid, obj_name, obj,
+                                                  context=context)
+        try:
+            eval(expr, space,
+                 mode='exec', nocopy=True) # nocopy allows to return 'result'
+        except Exception, e:
+            raise osv.except_osv(_('Error'), _('Error when evaluating the sale exception rule :\n %s \n(%s)') %
+                                 (rule.name, e))
+        return space.get('failed', False)
+
+    def _detect_exceptions(self, cr, uid, order, order_exceptions, line_exceptions, context=None):
+        exception_ids = []
+        for rule in order_exceptions:
+            if self._rule_eval(cr, uid, rule, 'order', order, context):
+                exception_ids.append(rule.id)
+
         for order_line in order.order_line:
-            self.detect_wrong_product(cr, uid, order_line, exceptions)
-            self.detect_not_enough_virtual_stock(cr, uid, order_line, exceptions)
-        return exceptions
+            for rule in line_exceptions:
+                if rule.id in exception_ids:
+                    continue  # we do not matter if the exception as already been
+                    # found for an order line of this order
+                if self._rule_eval(cr, uid, rule, 'line', order_line, context):
+                    exception_ids.append(rule.id)
 
-    def detect_invalid_destination(self, cr, uid, order, exceptions):
-        no_delivery_carrier = self.pool.get('delivery.carrier').search(cr, uid, [('name', '=', 'No Delivery')])
-        if no_delivery_carrier:
-            no_delivery_carrier_grid = self.pool.get('delivery.carrier').grid_get(cr, uid, no_delivery_carrier, order.partner_shipping_id.id)
-            if no_delivery_carrier_grid:
-                self.__add_exception(cr, uid, exceptions, 'excep_invalid_location')
+        return exception_ids
 
-    def detect_no_zip(self, cr, uid, order, exceptions):
-        if not order.partner_shipping_id.zip:
-            self.__add_exception(cr, uid, exceptions, 'excep_no_zip')
-
-    def detect_wrong_product(self, cr, uid, order_line, exceptions):
-        if order_line.product_id and 'unknown' in order_line.product_id.name.lower() or not order_line.product_id:
-            self.__add_exception(cr, uid, exceptions, 'excep_product')
-
-    def detect_not_enough_virtual_stock(self, cr, uid, order_line, exceptions):
-        if order_line.product_id and order_line.product_id.type == 'product' and order_line.product_id.virtual_available < order_line.product_uom_qty:
-            self.__add_exception(cr, uid, exceptions, 'excep_no_stock')
+    def copy(self, cr, uid, id, default=None, context=None):
+        if default is None:
+            default = {}
+        default.update({
+            'ignore_exceptions': False,
+        })
+        return super(sale_order, self).copy(cr, uid, id, default=default, context=context)
 
 sale_order()
