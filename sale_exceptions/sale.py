@@ -87,20 +87,31 @@ class sale_order(osv.osv):
         self.test_exceptions(cr, uid, ids)
         return True
 
+    def _popup_exceptions(self, cr, uid, order_id, context=None):
+        model_data_obj = self.pool.get('ir.model.data')
+        list_obj = self.pool.get('sale.exception.confirm')
+        ctx = context.copy()
+        ctx.update({'active_id': order_id,
+                    'active_ids': [order_id]})
+        list_id = list_obj.create(cr, uid, {}, context=ctx)
+        view_id = model_data_obj.get_object_reference(
+            cr, uid, 'sale_exceptions', 'view_sale_exception_confirm')[1]
+        action = {
+            'type': 'ir.actions.act_window',
+            'view_type': 'form',
+            'view_mode': 'form',
+            'res_model': 'sale.exception.confirm',
+            'view_id': [view_id],
+            'target': 'new',
+            'nodestroy': True,
+            'res_id': list_id,
+        }
+        return action
+
     def button_order_confirm(self, cr, uid, ids, context=None):
         exception_ids = self.detect_exceptions(cr, uid, ids, context=context)
         if exception_ids:
-            model_data_obj = self.pool.get('ir.model.data')
-            action = {
-                'type': 'ir.actions.act_window',
-                'view_type': 'form',
-                'view_mode': 'form',
-                'res_model': 'sale.exception.confirm',
-                'view_id': model_data_obj.get_object_reference(cr, uid, 'sale_exceptions', 'view_sale_exception_confirm')[1],
-                'target': 'new',
-                'context': context,
-            }
-            return action
+            return self._popup_exceptions(cr, uid, ids[0],  context=context)
         else:
             wf_service = netsvc.LocalService("workflow")
             wf_service.trg_validate(uid, 'sale.order', ids[0], 'order_confirm', cr)
