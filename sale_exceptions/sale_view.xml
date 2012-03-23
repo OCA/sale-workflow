@@ -90,7 +90,13 @@
                             <separator string="Exception" colspan="2"/>
                             <field name="exceptions_ids" colspan="2" nolabel="1"/>
                         </group>
+                        <group name="notes" colspan="2" col="2">
+                            <separator colspan="2" string="Notes"/>
+                            <field colspan="2" name="note" nolabel="1"/>
+                        </group>
                     </xpath>
+                    <xpath expr="/form/notebook/page[@string='Other Information']/separator[@string='Notes']" position="replace"/>
+                    <xpath expr="/form/notebook/page[@string='Other Information']/field[@name='note']" position="replace"/>
                     <button name="order_confirm" position="attributes">
                         <attribute name="name">button_order_confirm</attribute>
                         <attribute name="type">object</attribute>
