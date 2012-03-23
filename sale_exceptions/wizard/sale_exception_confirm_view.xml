@@ -9,7 +9,7 @@
             <field name="arch" type="xml">
                 <form string="Sale Exceptions">
                     <separator colspan="4" string="Exceptions on the sale order" />
-                    <field name="exception_ids" colspan="4">
+                    <field name="exception_ids" nolabel="1" colspan="4">
                         <form string="Sale Exception">
                            <field name="name" colspan="4"/>
                            <field name="description" colspan="4"/>
