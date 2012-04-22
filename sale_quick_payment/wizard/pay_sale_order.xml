@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+        <record model="ir.ui.view" id="pay_sale_order_view">
+            <field name="name">pay.sale.order.view</field>
+            <field name="model">pay.sale.order</field>
+            <field name="type">form</field>
+            <field name="arch" type="xml">
+                <form string="Pay Sale Order">
+                    <field name="journal_id" colspan="4"/>
+                    <field name="amount" colspan="4"/>
+                    <field name="date" colspan="4"/>
+                    <group colspan="4">
+                        <button icon="gtk-cancel" special="cancel" string="Cancel"/>
+                        <button icon="gtk-ok" name="pay_sale_order" string="Pay" type="object"/>
+                    </group>
+                </form>
+            </field>
+        </record>
+
+        <record id="open_pay_sale_order" model="ir.actions.act_window">
+            <field name="name">Pay Sale Order</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">pay.sale.order</field>
+            <field name="view_type">form</field>
+            <field name="target">new</field>
+            <field name="view_id" ref="pay_sale_order_view"/>
+        </record>
+
+        <record id="ir_action_open_pay_sale_order" model="ir.values">
+            <field name="key2">client_action_multi</field>
+            <field name="model">sale.order</field>
+            <field name="name">Sale.Order</field>
+            <field eval="'ir.actions.act_window,%d'%open_pay_sale_order" name="value"/>
+            <field eval="True" name="object"/>
+        </record>
+    </data>
+</openerp>

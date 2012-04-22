@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  sale_quick_payment for OpenERP
+  Copyright (C) 2011 Akretion Sébastien BEAU <sebastien.beau@akretion.com>
+  The licence is in the file __openerp__.py
+-->
+
+<openerp>
+    <data>
+
+        <!-- VIEW FOR THE OBJECT : payment_method -->
+        <record id="payment_method_view_form" model="ir.ui.view">
+            <field name="name">sale_quick_payment.payment_method.view_form</field>
+            <field name="model">payment.method</field>
+            <field eval="16" name="priority"/>
+            <field name="type">form</field>
+            <field name="arch" type="xml">
+                <form string="payment_method">
+                    <field name="name" />
+                    <field name="journal_id" />
+                    <field name="payment_term_id" />
+                </form>
+            </field>
+        </record>
+
+        <record id="payment_method_view_tree" model="ir.ui.view">
+            <field name="name">sale_quick_payment.payment_method.view_tree</field>
+            <field name="model">payment.method</field>
+            <field eval="16" name="priority"/>
+            <field name="type">tree</field>
+            <field name="arch" type="xml">
+                <tree string="payment_method">
+                    <field name="name" />
+                    <field name="journal_id" />
+                    <field name="payment_term_id" />
+                </tree>
+            </field>
+        </record>
+
+
+        <record id="act_payment_method_form" model="ir.actions.act_window">
+            <field name="name">Customer Payment Method</field>
+            <field name="res_model">payment.method</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+
+        <menuitem action="act_payment_method_form" id="menu_action_paymetn_method_form" parent="base.menu_sale_config_sales" sequence="20"/>
+
+    </data>
+</openerp>
