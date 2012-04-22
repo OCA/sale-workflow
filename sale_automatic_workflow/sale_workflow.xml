@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+
+        <record id="trans_wait_invoice_invoice" model="workflow.transition">
+            <field name="act_from" ref="sale.act_wait_invoice"/>
+            <field name="act_to" ref="sale.act_invoice"/>
+            <field name="condition">(order_policy=='manual' and workflow_process_id.create_invoice)</field>
+        </record>
+
+    </data>
+</openerp>
