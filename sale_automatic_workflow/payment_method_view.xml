@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  sale_quick_payment for OpenERP
+  Copyright (C) 2011 Akretion Sébastien BEAU <sebastien.beau@akretion.com>
+  The licence is in the file __openerp__.py
+-->
+
+<openerp>
+    <data>
+
+        <!-- VIEW FOR THE OBJECT : payment_method -->
+        <record id="payment_method_view_form" model="ir.ui.view">
+            <field name="name">sale_automatic_workflow.payment_method.view_form</field>
+            <field name="model">payment.method</field>
+            <field name="inherit_id" ref="sale_quick_payment.payment_method_view_form" />
+            <field eval="16" name="priority"/>
+            <field name="type">form</field>
+            <field name="arch" type="xml">
+                <field name="payment_term_id" position="after">
+                    <field name="workflow_process_id" />
+                </field>
+            </field>
+        </record>
+
+        <record id="payment_method_view_tree" model="ir.ui.view">
+            <field name="name">sale_automatic_workflow.payment_method.view_tree</field>
+            <field name="model">payment.method</field>
+            <field name="inherit_id" ref="sale_quick_payment.payment_method_view_tree" />
+            <field eval="16" name="priority"/>
+            <field name="type">tree</field>
+            <field name="arch" type="xml">
+                <field name="payment_term_id" position="after">
+                    <field name="workflow_process_id" />
+                </field>
+            </field>
+        </record>
+
+    </data>
+</openerp>
