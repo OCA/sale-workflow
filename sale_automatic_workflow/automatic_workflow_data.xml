@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  sale_quick_payment for OpenERP
+  Copyright (C) 2011 Akretion Sébastien BEAU <sebastien.beau@akretion.com>
+  The licence is in the file __openerp__.py
+-->
+
+<openerp>
+    <data>
+
+        <!-- VIEW FOR THE OBJECT : payment_method -->
+        <record id="automatic_validation" model="sale.workflow.process">
+            <field name="name">Automatic Validation</field>
+            <field name="picking_policy">one</field>
+            <field name="order_policy">postpaid</field>
+            <field name="invoice_quantity">order</field>
+            <field name="validate_order">if_paid</field>
+            <field name="create_invoice" eval="1" />
+            <field name="validate_invoice" eval="1" />
+            <field name="invoice_date_is_order_date" eval="0" />
+            <field name="validate_picking" eval="0" />
+            <field name="validate_manufactoring_order" eval="0" />
+            <field name="days_before_order_cancel">5</field>
+        </record>
+
+    </data>
+</openerp>
