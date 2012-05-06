@@ -37,7 +37,6 @@ class sale_workflow_process(osv.osv):
             ('picking', 'Invoice from the Packing'),
         ], 'Shipping Policy'),
         'invoice_quantity': fields.selection([('order', 'Ordered Quantities'), ('procurement', 'Shipped Quantities')], 'Invoice on'),
-        'is_auto_reconcile': fields.boolean('Auto-reconcile', help="If checked, will try to reconcile the Customer Payment (voucher) and the open invoice by matching the origin."),
         'validate_order': fields.selection([('always', 'Always'), ('if_paid', 'Only If Paid'), ('never', 'Never')], 'Validate Order'),
         'create_invoice': fields.boolean('Create Invoice'),
         'validate_invoice': fields.boolean('Validate Invoice'),
@@ -51,7 +50,6 @@ class sale_workflow_process(osv.osv):
         'picking_policy': lambda *a: 'direct',
         'order_policy': lambda *a: 'manual',
         'invoice_quantity': lambda *a: 'order',
-        'is_auto_reconcile': lambda *a: False,
         'validate_invoice': lambda *a: False,
         'days_before_order_cancel': lambda *a: 30,
     }
