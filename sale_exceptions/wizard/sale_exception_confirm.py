@@ -51,8 +51,6 @@ class SaleExceptionConfirm(osv.osv_memory):
         if form.ignore:
             self.pool.get('sale.order').write(cr, uid, form.sale_id.id,
                     {'ignore_exceptions': True}, context=context)
-            wf_service = netsvc.LocalService("workflow")
-            wf_service.trg_validate(uid, 'sale.order', form.sale_id.id, 'order_confirm', cr)
         return {'type': 'ir.actions.act_window_close'}
 
 SaleExceptionConfirm()
