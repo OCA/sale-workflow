@@ -19,10 +19,16 @@
 #                                                                               #
 #################################################################################
 
+from osv import fields, osv
+from tools.translate import _
 
-import sale
-import payment_method
-import wizard
-import company
+class res_company(osv.osv):
+    """Override company to add payment configuration"""
+    _inherit = "res.company"
+    _columns = {        
+        'sale_order_must_be_paid':fields.boolean('Sale Order Must Be Paid', 
+                        help='If this option is check an order can not be validaded without payment'
+                    ),
+    }
 
-
+res_company()

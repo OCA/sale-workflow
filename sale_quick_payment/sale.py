@@ -22,7 +22,7 @@
 from osv import osv, fields
 import netsvc
 from collections import Iterable
-
+from tools.translate import _
 
 class sale_order(osv.osv):
     _inherit = "sale.order"
@@ -115,3 +115,12 @@ class sale_order(osv.osv):
             uid, 'account.voucher', voucher_id, 'proforma_voucher', cr)
         sale.write({'payment_id': voucher_id}, context=context)
         return True
+
+    def button_order_confirm(self, cr, uid, ids, context=None):
+        for order in self.browse(cr, uid, ids, context=context):
+            if order.company_id.sale_order_must_be_paid and not order.payment_id:
+                raise osv.except_osv(_('User Error !'),
+                    _('The sale Order %s Must be paid before validation') % (order.name))
+        return super(sale_order, self).button_order_confirm(cr, uid, ids, context=context)
+
+

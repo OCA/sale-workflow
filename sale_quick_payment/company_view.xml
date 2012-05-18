@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  sale_quick_payment for OpenERP
+  Copyright (C) 2012 Akretion Sébastien BEAU <sebastien.beau@akretion.com>
+  The licence is in the file __openerp__.py
+-->
+
+
+<openerp>
+    <data>
+        <record model="ir.ui.view" id="view_company_form">
+            <field name="name">sale_quick_payment.view_company_form</field>
+            <field name="model">res.company</field>
+            <field name="inherit_id" ref="base.view_company_form"/>
+            <field name="type">form</field>
+            <field name="arch" type="xml">
+                <page string="Configuration" position="inside">
+                    <separator string="Sale Configuration" colspan="4"/>
+                    <field name="sale_order_must_be_paid"/>
+                </page>
+            </field>
+        </record>
+    </data>
+</openerp>
+

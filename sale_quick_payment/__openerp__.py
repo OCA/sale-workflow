@@ -34,6 +34,7 @@
             'sale_view.xml',
             'payment_method_view.xml',
             'wizard/pay_sale_order.xml',
+            'company_view.xml',
     ],
     'demo_xml': [],
     'installable': True,
