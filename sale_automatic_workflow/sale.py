@@ -47,7 +47,7 @@ class stock_picking(osv.osv):
     def _prepare_invoice(self, cr, uid, picking, partner, inv_type, journal_id, context=None):
         invoice_vals = super(stock_picking, self)._prepare_invoice(cr, uid, picking, partner, \
                                                             inv_type, journal_id, context=context)
-        invoice_vals['workflow_process_id'] = picking.workflow_process_id
+        invoice_vals['workflow_process_id'] = picking.workflow_process_id.id
         return invoice_vals
 
     def validate_picking(self, cr, uid, ids, context=None):
