@@ -105,5 +105,17 @@
             </field>
         </record>
 
+        <record id="view_order_tree" model="ir.ui.view">
+            <field name="name">sale_exceptions.view_order_tree</field>
+            <field name="model">sale.order</field>
+            <field name="type">tree</field>
+            <field name="inherit_id" ref="sale.view_order_tree"/>
+            <field name="arch" type="xml">
+                <field name="state" position="after">
+                    <field name="main_exception_id"/>
+                </field>
+            </field>
+        </record>
+
     </data>
 </openerp>
