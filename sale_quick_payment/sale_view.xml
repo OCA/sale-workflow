@@ -17,13 +17,15 @@
             <field eval="16" name="priority"/>
             <field name="type">form</field>
             <field name="arch" type="xml">
-                <field name="note" position="after">
-                    <group name="Payment Information" colspan="2" col="2">
-                        <separator string="Payment Information" colspan="2"/>
-                        <field name="payment_method_id" />
-                        <field name="payment_id" colspan="2"/>
-                    </group>
-                </field>
+                <page string="Other Information" position="after">
+                    <page name="automation_information" string="Automation Information">
+                        <group name="payment_information" colspan="4">
+                            <separator string="Payment Information" colspan="4"/>
+                            <field name="payment_method_id" />
+                            <field name="payment_id" />
+                        </group>
+                    </page>
+                </page>
             </field>
         </record>
 
