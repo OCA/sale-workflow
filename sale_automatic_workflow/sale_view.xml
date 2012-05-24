@@ -13,16 +13,16 @@
         <record id="sale_order_view_form" model="ir.ui.view">
             <field name="name">sale_automatic_workflow.sale_order.view_form</field>
             <field name="model">sale.order</field>
-            <field name="inherit_id" ref="sale.view_order_form" />
+            <field name="inherit_id" ref="sale_quick_payment.sale_order_view_form" />
             <field eval="16" name="priority"/>
             <field name="type">form</field>
             <field name="arch" type="xml">
-                <field name="note" position="after">
-                    <group name="Automatic Workflow" colspan="2" col="2">
-                        <separator string="Automatic Workflow" colspan="2"/>
+                <group name="payment_information" position="after">
+                    <group name="automatic_workflow" colspan="4">
+                        <separator string="Automatic Workflow" colspan="4"/>
                         <field name="workflow_process_id" />
                     </group>
-                </field>
+                </group>
             </field>
         </record>
 
