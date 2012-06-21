@@ -21,6 +21,7 @@
 
 from osv import fields,osv
 import decimal_precision as dp
+from datetime import datetime
 
 class pay_sale_order(osv.osv_memory):
     _name = 'pay.sale.order'
@@ -43,16 +44,10 @@ class pay_sale_order(osv.osv_memory):
             return args['amount_total']
         return False
 
-    def _get_date(self, cr, uid, args):
-        if args.get('date_order'):
-            return args['date_order']
-        return False
-
-
     _defaults = {
         'journal_id': _get_journal_id,
         'amount': _get_amount,
-        'date': _get_date,
+        'date': fields.datetime.now,
     }
 
     def pay_sale_order(self, cr, uid, ids, context=None):
