@@ -38,6 +38,7 @@
             'sale_workflow_process_view.xml',
             'payment_method_view.xml',
             'automatic_workflow_data.xml',
+            'security/ir.model.access.csv',
     ],
     'demo_xml': [],
     'installable': True,
