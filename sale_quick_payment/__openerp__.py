@@ -35,6 +35,7 @@
             'payment_method_view.xml',
             'wizard/pay_sale_order.xml',
             'company_view.xml',
+            'security/ir.model.access.csv',
     ],
     'demo_xml': [],
     'installable': True,
