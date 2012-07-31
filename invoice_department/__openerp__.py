@@ -35,10 +35,9 @@
     "author" : "Camptocamp",
     "category" : "Generic Modules/Sales & Purchases",
     "description":
-"""
-    Add the department on Invoices as well as the related filter and button in the search form.
-    
-""",
+"""Add the department on Invoices.
+
+The views are adapted to use the information in the search form.""",
     "website": "http://camptocamp.com",
     "depends" : [
         "account",
