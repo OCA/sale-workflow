@@ -109,9 +109,3 @@ class account_invoice(osv.osv):
             if line_ids and not round(balance, precision):
                 obj_move_line.reconcile(cr, uid, line_ids, context=context)
         return True
-
-
-    def test_paid(self, cr, uid, ids, context=None):
-        self.reconcile_invoice(cr, uid, ids, context=context)
-        return super(account_invoice, self).test_paid(cr, uid, ids, context)
-
