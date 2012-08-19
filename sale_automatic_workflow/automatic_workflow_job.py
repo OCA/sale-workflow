@@ -56,11 +56,14 @@ class automatic_workflow_job(osv.osv):
         logger = logging.getLogger(__name__)
         wf_service = netsvc.LocalService("workflow")
         invoice_obj = self.pool.get('account.invoice')
+        open_invoice_ids = invoice_obj.search(cr, uid, [('state', 'in', ['open'])], context=context)
+        invoice_obj.reconcile_invoice(cr, uid, open_invoice_ids, context=context)
         invoice_ids = invoice_obj.search(cr, uid, [('state', 'in', ['draft']), ('workflow_process_id.validate_invoice', '=',True)], context=context)
         if invoice_ids:
             logger.debug(_('start to validate invoice : %s') %invoice_ids)
         for invoice_id in invoice_ids:
             wf_service.trg_validate(uid, 'account.invoice', invoice_id, 'invoice_open', cr)
+            invoice_obj.reconcile_invoice(cr, uid, [invoice_id], context=context)
         picking_obj = self.pool.get('stock.picking')
         picking_ids = picking_obj.search(cr, uid, [('state', 'in', ['draft', 'confirmed', 'assigned']), ('workflow_process_id.validate_picking', '=',True)], context=context)
         if picking_ids:
