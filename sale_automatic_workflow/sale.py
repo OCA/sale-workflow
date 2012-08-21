@@ -18,10 +18,10 @@
 #    along with this program.  If not, see <http://www.gnu.org/licenses/>.      #
 #                                                                               #
 #################################################################################
-from osv import osv, fields
-import netsvc
+from openerp.osv.orm import Model
+from openerp.osv import fields
 
-class sale_order(osv.osv):
+class sale_order(Model):
     _inherit = "sale.order"
     _columns = {
         'workflow_process_id':fields.related('payment_method_id', 'workflow_process_id', \
@@ -40,7 +40,7 @@ class sale_order(osv.osv):
         picking_vals['workflow_process_id'] = order.workflow_process_id.id
         return picking_vals
 
-class stock_picking(osv.osv):
+class stock_picking(Model):
     _inherit = "stock.picking"
     _columns = {
         'workflow_process_id':fields.many2one('sale.workflow.process', 'Sale Workflow Process'),
@@ -82,7 +82,7 @@ class stock_picking(osv.osv):
 #        return True
 #        
 
-class account_invoice(osv.osv):
+class account_invoice(Model):
     _inherit = "account.invoice"
     _columns = {
         'workflow_process_id':fields.many2one('sale.workflow.process', 'Sale Workflow Process'),
