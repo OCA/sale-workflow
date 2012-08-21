@@ -24,11 +24,13 @@
 import time
 import netsvc
 
-from osv import fields, osv
+from openerp.osv.orm import Model
+from openerp.osv import fields
+from openerp.osv.osv import except_osv
 from tools.safe_eval import safe_eval as eval
 from tools.translate import _
 
-class sale_exception(osv.osv):
+class sale_exception(Model):
     _name = "sale.exception"
     _description = "Sale Exceptions"
     _columns = {
@@ -61,9 +63,7 @@ class sale_exception(osv.osv):
 """
     }
 
-sale_exception()
-
-class sale_order(osv.osv):
+class sale_order(Model):
     _inherit = "sale.order"
 
     def _get_main_error(self, cr, uid, ids, name, args, context=None):
@@ -170,7 +170,7 @@ class sale_order(osv.osv):
             eval(expr, space,
                  mode='exec', nocopy=True) # nocopy allows to return 'result'
         except Exception, e:
-            raise osv.except_osv(_('Error'), _('Error when evaluating the sale exception rule :\n %s \n(%s)') %
+            raise except_osv(_('Error'), _('Error when evaluating the sale exception rule :\n %s \n(%s)') %
                                  (rule.name, e))
         return space.get('failed', False)
 
@@ -197,5 +197,3 @@ class sale_order(osv.osv):
             'ignore_exceptions': False,
         })
         return super(sale_order, self).copy(cr, uid, id, default=default, context=context)
-
-sale_order()
