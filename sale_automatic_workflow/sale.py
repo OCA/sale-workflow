@@ -1,4 +1,4 @@
-# -*- encoding: utf-8 -*-
+    # -*- encoding: utf-8 -*-
 #################################################################################
 #                                                                               #
 #    sale_automatic_workflow for OpenERP                                        #
@@ -31,6 +31,8 @@ class sale_order(osv.osv):
     def _prepare_invoice(self, cr, uid, order, lines, context=None):
         invoice_vals = super(sale_order, self)._prepare_invoice(cr, uid, order, lines, context=context)
         invoice_vals['workflow_process_id'] = order.workflow_process_id.id
+        if order.workflow_process_id.invoice_date_is_order_date:
+            invoice_vals['date_invoice'] = order.date_order
         return invoice_vals
 
     def _prepare_order_picking(self, cr, uid, order, context=None):
@@ -48,6 +50,8 @@ class stock_picking(osv.osv):
         invoice_vals = super(stock_picking, self)._prepare_invoice(cr, uid, picking, partner, \
                                                             inv_type, journal_id, context=context)
         invoice_vals['workflow_process_id'] = picking.workflow_process_id.id
+        if picking.workflow_process_id.invoice_date_is_order_date:
+            invoice_vals['date_invoice'] = picking.sale_id.date_order
         return invoice_vals
 
     def validate_picking(self, cr, uid, ids, context=None):
