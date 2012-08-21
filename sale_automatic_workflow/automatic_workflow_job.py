@@ -20,7 +20,7 @@
 #################################################################################
 
 
-from osv import osv
+from openerp.osv.orm import Model
 import netsvc
 import logging
 from tools.translate import _
@@ -46,7 +46,7 @@ from tools.translate import _
 #If my explication is not clear contact me by email and I will imporve it: sebastien.beau@akretion.com
 
 
-class automatic_workflow_job(osv.osv):
+class automatic_workflow_job(Model):
     """
     Scheduler that will play automatically the validation on invoice, picking...
     """
