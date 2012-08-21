@@ -19,11 +19,12 @@
 #                                                                               #
 #################################################################################
 
-from osv import osv, fields
+from openerp.osv.orm import Model
+from openerp.osv import fields
 import netsvc
 
 
-class sale_workflow_process(osv.osv):
+class sale_workflow_process(Model):
     _name = "sale.workflow.process"
     _description = "sale workflow process"
 
