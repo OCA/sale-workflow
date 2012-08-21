@@ -19,11 +19,13 @@
 #                                                                               #
 #################################################################################
 
-from osv import fields,osv
+
+from openerp.osv.orm import TransientModel
+from openerp.osv import fields
 import decimal_precision as dp
 from datetime import datetime
 
-class pay_sale_order(osv.osv_memory):
+class pay_sale_order(TransientModel):
     _name = 'pay.sale.order'
     _description = 'Wizard to generate a payment from the sale order'
 

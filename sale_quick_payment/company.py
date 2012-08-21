@@ -19,10 +19,11 @@
 #                                                                               #
 #################################################################################
 
-from osv import fields, osv
+from openerp.osv.orm import Model
+from openerp.osv import fields
 from tools.translate import _
 
-class res_company(osv.osv):
+class res_company(Model):
     """Override company to add payment configuration"""
     _inherit = "res.company"
     _columns = {        
@@ -30,5 +31,3 @@ class res_company(osv.osv):
                         help='If this option is check an order can not be validaded without payment'
                     ),
     }
-
-res_company()

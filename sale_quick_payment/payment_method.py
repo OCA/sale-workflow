@@ -19,11 +19,12 @@
 #                                                                             #
 ###############################################################################
 
-from osv import osv, fields
+from openerp.osv.orm import Model
+from openerp.osv import fields
 import netsvc
 
 
-class payment_method(osv.osv):
+class payment_method(Model):
     
     _name = "payment.method"
     _description = "payment method"
@@ -33,6 +34,5 @@ class payment_method(osv.osv):
         'name': fields.char('Name', size=64),
         'journal_id': fields.many2one('account.journal', 'Journal'),
         'payment_term_id': fields.many2one('account.payment.term', 'Payment Term'),
-
     }
 
