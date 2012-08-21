@@ -20,11 +20,11 @@
 #################################################################################
 
 
-from osv import osv, fields
-import netsvc
+from openerp.osv.orm import Model
+from openerp.osv import fields
 
 
-class payment_method(osv.osv):
+class payment_method(Model):
     _inherit = "payment.method"
     
 
