@@ -14,6 +14,6 @@
             <field eval="'test_all_draft_orders'" name="function"/>
             <field eval="'()'" name="args"/>
         </record>
-    
+	
     </data>
 </openerp>

@@ -33,7 +33,6 @@ from tools.translate import _
 class sale_exception(Model):
     _name = "sale.exception"
     _description = "Sale Exceptions"
-    _order="active desc, sequence asc"
     _columns = {
         'name': fields.char('Exception Name', size=64, required=True, translate=True),
         'description': fields.text('Description', translate=True),
@@ -67,25 +66,16 @@ class sale_exception(Model):
 class sale_order(Model):
     _inherit = "sale.order"
 
-    _order = 'main_exception_id asc, date_order desc, name desc'
-
     def _get_main_error(self, cr, uid, ids, name, args, context=None):
         res = {}
         for sale_order in self.browse(cr, uid, ids, context=context):
-            if sale_order.state == 'draft' and sale_order.exceptions_ids:
-                res[sale_order.id] = sale_order.exceptions_ids[0].id
-            else:
-                res[sale_order.id] = False
+            res[sale_order.id] = sale_order.exceptions_ids and sale_order.exceptions_ids[0].id or False
         return res
 
     _columns = {
-        'main_exception_id': fields.function(_get_main_error,
-                        type='many2one',
-                        relation="sale.exception",
-                        string='Main Exception',
-                        store={
-                            'sale.order': (lambda self, cr, uid, ids, c={}: ids, ['exceptions_ids', 'state'], 10),
-                        }),
+        'main_exception_id': fields.function(_get_main_error, type='many2one',
+                                             relation="sale.exception",
+                                             string='Main Exception'),
         'exceptions_ids': fields.many2many('sale.exception', 'sale_order_exception_rel',
                                            'sale_order_id', 'exception_id',
                                            string='Exceptions'),
@@ -107,7 +97,6 @@ class sale_order(Model):
         view_id = model_data_obj.get_object_reference(
             cr, uid, 'sale_exceptions', 'view_sale_exception_confirm')[1]
         action = {
-            'name': _("Exceptions On Sale Order"),
             'type': 'ir.actions.act_window',
             'view_type': 'form',
             'view_mode': 'form',
@@ -119,12 +108,14 @@ class sale_order(Model):
         }
         return action
 
-    def action_button_confirm(self, cr, uid, ids, context=None):
+    def button_order_confirm(self, cr, uid, ids, context=None):
         exception_ids = self.detect_exceptions(cr, uid, ids, context=context)
         if exception_ids:
             return self._popup_exceptions(cr, uid, ids[0],  context=context)
         else:
-            return super(sale_order, self).action_button_confirm(cr, uid, ids, context=context)
+            wf_service = netsvc.LocalService("workflow")
+            wf_service.trg_validate(uid, 'sale.order', ids[0], 'order_confirm', cr)
+        return True
 
     def test_exceptions(self, cr, uid, ids, context=None):
         """
