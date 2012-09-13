@@ -1,6 +1,6 @@
 <?xml version="1.0" ?>
 <openerp>
-	<data>
+    <data>
 
         <record id="view_sale_exception_search" model="ir.ui.view">
             <field name="name">sale.exception.view.search</field>
@@ -67,7 +67,7 @@
                   <field name="view_mode">tree,form</field>
                   <field name="view_id" ref="view_sale_exception_tree"/>
                   <field name="search_view_id" ref="view_sale_exception_search"/>
-      		</record>
+              </record>
 
         <menuitem action="action_sale_test_tree" id="menu_sale_test" parent="base.menu_sale_config_sales" />
 
