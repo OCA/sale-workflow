@@ -69,6 +69,8 @@ class sale_order(Model):
 
         voucher_vals = {'reference': sale.name,
                         'journal_id': journal_id,
+                        'period_id': self.pool.get('account.period').find(cr, uid, dt=date,
+                                                                          context=context)[0],
                         'amount': amount,
                         'date': date,
                         'partner_id': sale.partner_id.id,
