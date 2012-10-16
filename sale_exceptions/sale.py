@@ -66,6 +66,8 @@ class sale_exception(Model):
 class sale_order(Model):
     _inherit = "sale.order"
 
+    _order = 'main_exception_id asc, date_order desc, name desc'
+
     def _get_main_error(self, cr, uid, ids, name, args, context=None):
         res = {}
         for sale_order in self.browse(cr, uid, ids, context=context):
@@ -73,9 +75,13 @@ class sale_order(Model):
         return res
 
     _columns = {
-        'main_exception_id': fields.function(_get_main_error, type='many2one',
-                                             relation="sale.exception",
-                                             string='Main Exception'),
+        'main_exception_id': fields.function(_get_main_error,
+                        type='many2one',
+                        relation="sale.exception",
+                        string='Main Exception',
+                        store={
+                            'sale.order': (lambda self, cr, uid, ids, c={}: ids, ['exceptions_ids'], 10),
+                        }),
         'exceptions_ids': fields.many2many('sale.exception', 'sale_order_exception_rel',
                                            'sale_order_id', 'exception_id',
                                            string='Exceptions'),

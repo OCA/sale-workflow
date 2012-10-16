@@ -117,5 +117,18 @@
             </field>
         </record>
 
+        <record id="view_sales_order_filter" model="ir.ui.view">
+            <field name="name">sale_exceptions.view_sales_order_filter</field>
+            <field name="model">sale.order</field>
+            <field name="inherit_id" ref="sale.view_sales_order_filter" />
+            <field name="type">search</field>
+            <field eval="32" name="priority"/>
+            <field name="arch" type="xml">
+                <filter icon="terp-check" string="Sales" position="after">
+                    <separator orientation="vertical"/>
+                    <filter icon="terp-emblem-important" name="tofix" string="TO FIX" domain="[('main_exception_id','!=',False)]"/>
+                </filter>
+            </field>
+        </record>
     </data>
 </openerp>
