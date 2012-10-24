@@ -42,7 +42,6 @@ class sale_order(Model):
         })
         return super(sale_order, self).copy(cr, uid, id, default, context=context)
 
-
     def pay_sale_order(self, cr, uid, sale_id, journal_id, amount, date, context=None):
         """
         Generate a voucher for the payment
@@ -78,6 +77,22 @@ class sale_order(Model):
                         'currency_id': journal.company_id.currency_id.id,
                         'company_id': journal.company_id.id,
                         'type': 'receipt', }
+
+        # Set the payment rate if currency are different
+        if journal.company_id.currency_id.id != journal.currency.id:
+            currency_id = journal.company_id.currency_id.id
+            payment_rate_currency_id = journal.currency.id
+
+            currency_obj = self.pool.get('res.currency')
+            ctx= context.copy()
+            ctx.update({'date': date})
+            tmp = currency_obj.browse(cr, uid, payment_rate_currency_id, context=ctx).rate
+            payment_rate = tmp / currency_obj.browse(cr, uid, currency_id, context=ctx).rate
+            voucher_vals.update({
+                'payment_rate_currency_id': payment_rate_currency_id,
+                'payment_rate': payment_rate,
+            })
+
         voucher_id = voucher_obj.create(cr, uid, voucher_vals, context=context)
 
         # call on change to search the invoice lines
