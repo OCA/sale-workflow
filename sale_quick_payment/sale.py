@@ -79,7 +79,7 @@ class sale_order(Model):
                         'type': 'receipt', }
 
         # Set the payment rate if currency are different
-        if journal.company_id.currency_id.id != journal.currency.id:
+        if journal.currency.id and journal.company_id.currency_id.id != journal.currency.id:
             currency_id = journal.company_id.currency_id.id
             payment_rate_currency_id = journal.currency.id
 
