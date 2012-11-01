@@ -90,6 +90,7 @@ class automatic_workflow_job(Model):
         for invoice_id in invoice_ids:
             with commit_now(cr, logger) as cr:
                 wf_service.trg_validate(uid, 'account.invoice', invoice_id, 'invoice_open', cr)
+            with commit_now(cr, logger) as cr:
                 invoice_obj.reconcile_invoice(cr, uid, [invoice_id], context=context)
 
         picking_obj = self.pool.get('stock.picking')
