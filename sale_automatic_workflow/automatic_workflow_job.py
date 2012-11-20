@@ -24,7 +24,7 @@ from openerp.osv.orm import Model
 import netsvc
 import logging
 from tools.translate import _
-from contextlib import contextmanager
+from framework_helpers.context_managers import commit_now
 
 #Some comment about the implementation
 #In order to validate the invoice the picking we have to use schedule action
@@ -45,28 +45,6 @@ from contextlib import contextmanager
 #it the same with the picking workflow_method
 
 #If my explication is not clear contact me by email and I will imporve it: sebastien.beau@akretion.com
-
-
-@contextmanager
-def commit_now(cr, logger, raise_error=False):
-    """
-    Context Manager to use in order to commit into a cursor
-    correctly with a try/except method and a rollback if necessary
-    :param cr cursor: cursor to commit
-    :param logger logger: logger use for loging message
-    :param raise_error boolean: Set to true only if you want
-             to stop the process if an error occure
-    """
-    try:
-        yield cr
-    except Exception, e:
-        cr.rollback()
-        logger.exception(e)
-        if raise_error:
-            raise
-    else:
-        cr.commit()
-
 
 class automatic_workflow_job(Model):
     """
