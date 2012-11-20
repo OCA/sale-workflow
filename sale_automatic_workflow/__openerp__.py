@@ -28,7 +28,7 @@
     'description': """empty""",
     'author': 'Akretion',
     'website': 'http://www.akretion.com/',
-    'depends': ['sale_quick_payment'], 
+    'depends': ['sale_quick_payment', 'framework_helpers'], 
     'init_xml': [],
     'update_xml': [ 
             'sale_view.xml',
