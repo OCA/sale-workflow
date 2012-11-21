@@ -24,7 +24,7 @@ from openerp.osv.orm import Model
 import netsvc
 import logging
 from tools.translate import _
-from framework_helpers.context_managers import commit_now
+from framework_helpers.context_managers import new_cursor, commit_now
 
 #Some comment about the implementation
 #In order to validate the invoice the picking we have to use schedule action
@@ -56,25 +56,26 @@ class automatic_workflow_job(Model):
         logger = logging.getLogger(__name__)
         wf_service = netsvc.LocalService("workflow")
         invoice_obj = self.pool.get('account.invoice')
-        open_invoice_ids = invoice_obj.search(cr, uid, [('state', 'in', ['open'])], context=context)
 
-        for open_invoice_id in open_invoice_ids:
-            with commit_now(cr, logger) as cr:
-                invoice_obj.reconcile_invoice(cr, uid, [open_invoice_id], context=context)
+        with new_cursor(cr, logger) as cr:
+            open_invoice_ids = invoice_obj.search(cr, uid, [('state', 'in', ['open'])], context=context)
+            for open_invoice_id in open_invoice_ids:
+                with commit_now(cr, logger) as cr:
+                    invoice_obj.reconcile_invoice(cr, uid, [open_invoice_id], context=context)
 
-        invoice_ids = invoice_obj.search(cr, uid, [('state', 'in', ['draft']), ('workflow_process_id.validate_invoice', '=',True)], context=context)
-        if invoice_ids:
-            logger.debug(_('start to validate invoice : %s') %invoice_ids)
-        for invoice_id in invoice_ids:
-            with commit_now(cr, logger) as cr:
-                wf_service.trg_validate(uid, 'account.invoice', invoice_id, 'invoice_open', cr)
-            with commit_now(cr, logger) as cr:
-                invoice_obj.reconcile_invoice(cr, uid, [invoice_id], context=context)
+            invoice_ids = invoice_obj.search(cr, uid, [('state', 'in', ['draft']), ('workflow_process_id.validate_invoice', '=',True)], context=context)
+            if invoice_ids:
+                logger.debug(_('start to validate invoice : %s') %invoice_ids)
+            for invoice_id in invoice_ids:
+                with commit_now(cr, logger) as cr:
+                    wf_service.trg_validate(uid, 'account.invoice', invoice_id, 'invoice_open', cr)
+                with commit_now(cr, logger) as cr:
+                    invoice_obj.reconcile_invoice(cr, uid, [invoice_id], context=context)
 
-        picking_obj = self.pool.get('stock.picking')
-        picking_ids = picking_obj.search(cr, uid, [('state', 'in', ['draft', 'confirmed', 'assigned']), ('workflow_process_id.validate_picking', '=',True)], context=context)
-        if picking_ids:
-            logger.debug(_('start to validate pickings : %s') %picking_ids)
-            with commit_now(cr, logger) as cr:
-                picking_obj.validate_picking(cr, uid, picking_ids, context=context)
+            picking_obj = self.pool.get('stock.picking')
+            picking_ids = picking_obj.search(cr, uid, [('state', 'in', ['draft', 'confirmed', 'assigned']), ('workflow_process_id.validate_picking', '=',True)], context=context)
+            if picking_ids:
+                logger.debug(_('start to validate pickings : %s') %picking_ids)
+                with commit_now(cr, logger) as cr:
+                    picking_obj.validate_picking(cr, uid, picking_ids, context=context)
         return True
