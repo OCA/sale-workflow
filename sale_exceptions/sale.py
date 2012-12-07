@@ -71,7 +71,10 @@ class sale_order(Model):
     def _get_main_error(self, cr, uid, ids, name, args, context=None):
         res = {}
         for sale_order in self.browse(cr, uid, ids, context=context):
-            res[sale_order.id] = sale_order.exceptions_ids and sale_order.exceptions_ids[0].id or False
+            if sale_order.state == 'draft' and sale_order.exceptions_ids:
+                res[sale_order.id] = sale_order.exceptions_ids[0].id
+            else:
+                res[sale_order.id] = False
         return res
 
     _columns = {
@@ -80,7 +83,7 @@ class sale_order(Model):
                         relation="sale.exception",
                         string='Main Exception',
                         store={
-                            'sale.order': (lambda self, cr, uid, ids, c={}: ids, ['exceptions_ids'], 10),
+                            'sale.order': (lambda self, cr, uid, ids, c={}: ids, ['exceptions_ids', 'state'], 10),
                         }),
         'exceptions_ids': fields.many2many('sale.exception', 'sale_order_exception_rel',
                                            'sale_order_id', 'exception_id',
