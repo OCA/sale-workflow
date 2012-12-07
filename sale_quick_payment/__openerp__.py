@@ -25,10 +25,20 @@
     'version': '6.1.0',
     'category': 'Generic Modules/Others',
     'license': 'AGPL-3',
-    'description': """empty""",
+    'description': """
+    Sale Quick Payment give the posibility to paid an sale order.
+    The payment will be linked to the sale order
+    If you install the module Sale Automatic Workflow you can forbid the validation
+    of an unpaid order and also the Invoice will be automatically reconciled with
+    the payment.
+    This module was design for e-commerce sector.
+    """,
     'author': 'Akretion',
     'website': 'http://www.akretion.com/',
-    'depends': ['sale', 'account_voucher'], 
+    'depends': [
+        'sale',
+        'account_voucher',
+        ], 
     'init_xml': [],
     'update_xml': [ 
             'sale_view.xml',

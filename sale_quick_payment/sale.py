@@ -138,7 +138,7 @@ class sale_order(Model):
     def button_order_confirm(self, cr, uid, ids, context=None):
         for order in self.browse(cr, uid, ids, context=context):
             if order.company_id.sale_order_must_be_paid and not order.payment_id:
-                raise except_osv(_('User Error !'),
+                raise except_osv(_('User Error!'),
                     _('The sale Order %s Must be paid before validation') % (order.name))
         return super(sale_order, self).button_order_confirm(cr, uid, ids, context=context)
 
