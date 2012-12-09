@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  sale_tax_inc_exc for OpenERP
+  Copyright (C) 2011 Akretion Sébastien BEAU <sebastien.beau@akretion.com>
+  The licence is in the file __openerp__.py
+-->
+
+<openerp>
+    <data>
+        <!-- INHERITED VIEW FOR THE OBJECT : account_invoice -->
+
+
+        <record id="invoice_form" model="ir.ui.view">
+            <field name="name">product_price_tax_inc_exc.invoice_form</field>
+            <field name="model">account.invoice</field>
+            <field name="inherit_id" ref="account.invoice_form" />
+            <field eval="100" name="priority"/>
+            <field name="type">form</field>
+            <field name="arch" type="xml">
+                <field name="fiscal_position" position="replace">
+                    <field name="fiscal_position" on_change="fiscal_position_id_change(fiscal_position, tax_inc, invoice_line, context)"/>
+                    <group colspan="1" col="2">
+                        <field name="tax_inc" on_change="tax_inc_change(fiscal_position, tax_inc, invoice_line)"/>
+                    </group>
+                </field>
+
+                <field name="invoice_line" position="attributes">
+                    <attribute name="context">{'tax_inc': tax_inc}</attribute>
+                </field>
+            </field>
+        </record>
+
+    </data>
+</openerp>
