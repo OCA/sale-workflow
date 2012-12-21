@@ -1,0 +1,27 @@
+<?xml version="1.0" ?>
+<openerp>
+    <data>
+
+        <record id="view_sale_order" model="ir.ui.view">
+	    <field name="name">sale.order.form.mail_quotation</field>
+	    <field name="model">sale.order</field>
+	    <field name="inherit_id" ref="sale.view_order_form"/>
+	    <field name="type">form</field>
+	    <field name="arch" type="xml">
+	        <data>
+
+                    <xpath expr="//button[@string='Print Quotation']"
+	  	           position="after">
+	                <button name="%(ir_actions_server_edi_quotation)d" 
+		                string="Send Quotation" 
+		                type="action" 
+		                icon="terp-mail-message-new"
+		                states="draft"/>
+	            </xpath>
+
+                </data>
+            </field>
+        </record>
+
+    </data>
+</openerp>
