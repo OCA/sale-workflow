@@ -1,4 +1,4 @@
-    # -*- encoding: utf-8 -*-
+# -*- encoding: utf-8 -*-
 #################################################################################
 #                                                                               #
 #    sale_automatic_workflow for OpenERP                                        #
@@ -90,26 +90,79 @@ class account_invoice(Model):
         'sale_ids': fields.many2many('sale.order', 'sale_order_invoice_rel', 'invoice_id', 'order_id', 'Sale Orders')
     }
 
+    def _can_be_reconciled(self, cr, uid, invoice, context=None):
+        if not (invoice.sale_ids and invoice.sale_ids[0].payment_id and invoice.move_id):
+            return False
+        #Check currency
+        for move in invoice.sale_ids[0].payment_id.move_ids:
+            if (move.currency_id.id or invoice.company_id.currency_id.id) != invoice.currency_id.id:
+                return False
+        return True
+
+    def _get_sum_invoice_move_line(self, cr, uid, move_lines, context=None):
+        return self._get_sum_move_line(cr, uid, move_lines, 'debit', context=None)
+
+    def _get_sum_payment_move_line(self, cr, uid, move_lines, context=None):
+        return self._get_sum_move_line(cr, uid, move_lines, 'credit', context=None)
+
+    def _get_sum_move_line(self, cr, uid, move_lines, line_type, context=None):
+        res = {
+            'max_date': False,
+            'line_ids': [],
+            'total_amount': 0,
+            'total_amount_currency': 0,
+        }
+        for move_line in move_lines:
+            if move_line[line_type] > 0:
+                if move_line.date > res['max_date']:
+                    res['max_date'] = move_line.date
+                res['line_ids'].append(move_line.id)
+                res['total_amount'] += move_line[line_type]
+                res['total_amount_currency'] += move_line.amount_currency
+        return res
+
+    def _prepare_write_off(self, cr, uid, invoice, res_invoice, res_payment, context=None):
+        if not context:
+            context = {}
+        ctx = context.copy()
+        if res_invoice['total_amount'] - res_payment['total_amount'] > 0:
+            writeoff_type = 'expense'
+        else:
+            writeoff_type = 'income'
+        account_id, journal_id = invoice.company_id.\
+            get_write_off_information('exchange', writeoff_type, context=context)
+        max_date = max(res_invoice['max_date'], res_payment['max_date'])
+        ctx['p_date'] = max_date
+        period_id = self.pool.get('account.period').find(cr, uid, max_date, context=context)[0]
+        return {
+            'type': 'auto',
+            'writeoff_acc_id': account_id,
+            'writeoff_period_id': period_id,
+            'writeoff_journal_id': journal_id,
+            'context': ctx,
+        }
+
     def reconcile_invoice(self, cr, uid, ids, context=None):
         """
         Simple method to reconcile the invoice with the payment generated on the sale order
         """
+        if not context:
+            context={}
+        precision = self.pool.get('decimal.precision').precision_get(cr, uid, 'Account')
         obj_move_line = self.pool.get('account.move.line')
         for invoice in self.browse(cr, uid, ids, context=context):
-            line_ids = []
-            payment_amount = 0
-            invoice_amount = 0
-            if invoice.sale_ids and invoice.sale_ids[0].payment_id and invoice.move_id:
-                for move in invoice.sale_ids[0].payment_id.move_ids:
-                    if move.credit > 0 and not move.reconcile_id:
-                        line_ids.append(move.id)
-                        payment_amount += move.credit
-                for move in invoice.move_id.line_id:
-                    if move.debit > 0 and not move.reconcile_id:
-                        line_ids.append(move.id)
-                        invoice_amount += move.debit
-            balance = abs(payment_amount-invoice_amount)
-            precision = self.pool.get('decimal.precision').precision_get(cr, uid, 'Account')
-            if line_ids and not round(balance, precision):
-                obj_move_line.reconcile(cr, uid, line_ids, context=context)
+            use_currency = invoice.currency_id.id != invoice.company_id.currency_id.id
+            if self._can_be_reconciled(cr, uid, invoice, context=context):
+                res_payment = self._get_sum_payment_move_line(cr, uid, invoice.sale_ids[0].payment_id.move_ids, context=context)
+                res_invoice = self._get_sum_invoice_move_line(cr, uid, invoice.move_id.line_id, context=context)
+                line_ids = res_invoice['line_ids'] + res_payment['line_ids']
+                if not use_currency:
+                    balance = abs(res_invoice['total_amount']-res_payment['total_amount'])
+                    if line_ids and not round(balance, precision):
+                        obj_move_line.reconcile(cr, uid, line_ids, context=context)
+                else:
+                    balance = abs(res_invoice['total_amount_currency']-res_payment['total_amount_currency'])
+                    if line_ids and not round(balance, precision):
+                        kwargs = self._prepare_write_off(cr, uid, invoice, res_invoice, res_payment, context=context)
+                        obj_move_line.reconcile(cr, uid, line_ids, **kwargs)
         return True
