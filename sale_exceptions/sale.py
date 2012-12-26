@@ -106,6 +106,7 @@ class sale_order(Model):
         view_id = model_data_obj.get_object_reference(
             cr, uid, 'sale_exceptions', 'view_sale_exception_confirm')[1]
         action = {
+            'name': _("Exceptions On Sale Order"),
             'type': 'ir.actions.act_window',
             'view_type': 'form',
             'view_mode': 'form',
@@ -117,14 +118,12 @@ class sale_order(Model):
         }
         return action
 
-    def button_order_confirm(self, cr, uid, ids, context=None):
+    def action_button_confirm(self, cr, uid, ids, context=None):
         exception_ids = self.detect_exceptions(cr, uid, ids, context=context)
         if exception_ids:
             return self._popup_exceptions(cr, uid, ids[0],  context=context)
         else:
-            wf_service = netsvc.LocalService("workflow")
-            wf_service.trg_validate(uid, 'sale.order', ids[0], 'order_confirm', cr)
-        return True
+            return super(sale_order, self).action_button_confirm(cr, uid, ids, context=context)
 
     def test_exceptions(self, cr, uid, ids, context=None):
         """

@@ -79,28 +79,17 @@
             <field name="priority">100</field>
             <field name="inherit_id" ref="sale.view_order_form"/>
             <field name="arch" type="xml">
-                <xpath expr="/form/notebook/page[@string='Sales Order']/group/field[@name='state']"
-                       position="after">
+                <field name="name" position="after">
                     <field name="main_exception_id" nolabel="1"
                            attrs="{'invisible':[('main_exception_id','=', False)]}"/>
-                </xpath>
-                <xpath expr="/form/notebook/page[@string='Other Information']/separator[@string='Notes']"
-                        position="before">
+                </field>
+                <xpath expr="//page[@string='Other Information']/group"
+                        position="inside">
                     <group name="exception" colspan="2" col="2">
                         <separator string="Exception" colspan="2"/>
                         <field name="exceptions_ids" colspan="2" nolabel="1"/>
                     </group>
-                    <group name="notes" colspan="2" col="2">
-                        <separator colspan="2" string="Notes"/>
-                        <field colspan="2" name="note" nolabel="1"/>
-                    </group>
                 </xpath>
-                <xpath expr="/form/notebook/page[@string='Other Information']/separator[@string='Notes']" position="replace"/>
-                <xpath expr="/form/notebook/page[@string='Other Information']/field[@name='note']" position="replace"/>
-                <button name="order_confirm" position="attributes">
-                    <attribute name="name">button_order_confirm</attribute>
-                    <attribute name="type">object</attribute>
-                </button>
             </field>
         </record>
 
