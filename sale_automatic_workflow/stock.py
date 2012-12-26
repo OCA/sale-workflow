@@ -22,14 +22,14 @@
 from openerp.osv.orm import Model
 from openerp.osv import fields
 
-class stock_picking(Model):
-    _inherit = "stock.picking"
+class stock_picking_out(Model):
+    _inherit = "stock.picking.out"
     _columns = {
         'workflow_process_id':fields.many2one('sale.workflow.process', 'Sale Workflow Process'),
     }
 
     def _prepare_invoice(self, cr, uid, picking, partner, inv_type, journal_id, context=None):
-        invoice_vals = super(stock_picking, self)._prepare_invoice(cr, uid, picking, partner, \
+        invoice_vals = super(stock_picking_out, self)._prepare_invoice(cr, uid, picking, partner, \
                                                             inv_type, journal_id, context=context)
         invoice_vals['workflow_process_id'] = picking.workflow_process_id.id
         if picking.workflow_process_id.invoice_date_is_order_date:
