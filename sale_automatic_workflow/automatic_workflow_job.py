@@ -72,7 +72,7 @@ class automatic_workflow_job(Model):
                 with commit_now(cr, logger) as cr:
                     invoice_obj.reconcile_invoice(cr, uid, [invoice_id], context=context)
 
-            picking_obj = self.pool.get('stock.picking')
+            picking_obj = self.pool.get('stock.picking.out')
             picking_ids = picking_obj.search(cr, uid, [('state', 'in', ['draft', 'confirmed', 'assigned']), ('workflow_process_id.validate_picking', '=',True)], context=context)
             if picking_ids:
                 logger.debug(_('start to validate pickings : %s') %picking_ids)
