@@ -24,7 +24,8 @@ import sale
 import sale_workflow_process
 import payment_method
 import automatic_workflow_job
-
+import invoice
+import stock
 
 
 
