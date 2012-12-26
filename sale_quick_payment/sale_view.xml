@@ -32,7 +32,7 @@
                     </page>
                 </page>
                 <field name="amount_total" position="after">
-                    <field name="residual"/>
+                    <field name="residual" invisible="1"/>
                 </field>
             </field>
         </record>

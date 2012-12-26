@@ -22,7 +22,7 @@
 
 {
     'name': 'sale_quick_payment',
-    'version': '6.1.0',
+    'version': '0.1',
     'category': 'Generic Modules/Others',
     'license': 'AGPL-3',
     'description': """
@@ -44,7 +44,6 @@
             'sale_view.xml',
             'payment_method_view.xml',
             'wizard/pay_sale_order.xml',
-            'company_view.xml',
             'security/ir.model.access.csv',
             'settings/sale.exception.csv',
     ],
