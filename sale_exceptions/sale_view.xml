@@ -51,7 +51,6 @@
                   <field name="view_mode">tree,form</field>
                   <field name="view_id" ref="view_sale_exception_tree"/>
                   <field name="context">{'active_test': False}</field>
-                  <field name="search_view_id" ref="view_sale_exception_search"/>
               </record>
 
         <menuitem action="action_sale_test_tree" id="menu_sale_test" parent="base.menu_sale_config_sales" />
