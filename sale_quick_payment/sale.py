@@ -25,20 +25,48 @@ from openerp.osv.osv import except_osv
 import netsvc
 from collections import Iterable
 from openerp.tools.translate import _
+import decimal_precision as dp
 
 class sale_order(Model):
     _inherit = "sale.order"
 
+    def _get_order_from_voucher(self, cr, uid, ids, context=None):
+        result = []
+        for voucher in self.pool.get('account.voucher').browse(cr, uid, ids, context=context):
+            for order in voucher.order_ids:
+                result.append(order.id)
+        return list(set(result))
+
+    def _get_order_from_line(self, cr, uid, ids, context=None):
+        return self.pool.get('sale.order')._get_order(cr, uid, ids, context=context)
+
+    def _amount_residual(self, cr, uid, ids, field_name, args, context=None):
+        res = {}
+        #TODO add here the support of multi-currency payment if need
+        for order in self.browse(cr, uid, ids, context=context):
+            res[order.id] = order.amount_total
+            for payment in order.payment_ids:
+                if payment.state == 'posted':
+                    res[order.id] -= payment.amount
+        return res
+
     _columns = {
-        'payment_id': fields.many2one('account.voucher', 'Payment'),
+        'payment_ids': fields.many2many('account.voucher', string='Payments'),
         'payment_method_id': fields.many2one('payment.method', 'Payment Method'),
+        'residual': fields.function(_amount_residual, digits_compute=dp.get_precision('Account'), string='Balance',
+            store = {
+                'sale.order': (lambda self, cr, uid, ids, c={}: ids, ['order_line', 'payment_ids'], 10),
+                'sale.order.line': (_get_order_from_line, ['price_unit', 'tax_id', 'discount', 'product_uom_qty'], 20),
+                'account.voucher': (_get_order_from_voucher, ['amount'], 30),
+            },
+            ),
     }
 
     def copy(self, cr, uid, id, default=None, context=None):
         if not default:
             default = {}
         default.update({
-            'payment_id': False,
+            'payment_ids': False,
         })
         return super(sale_order, self).copy(cr, uid, id, default, context=context)
 
@@ -132,14 +160,6 @@ class sale_order(Model):
         wf_service = netsvc.LocalService("workflow")
         wf_service.trg_validate(
             uid, 'account.voucher', voucher_id, 'proforma_voucher', cr)
-        sale.write({'payment_id': voucher_id}, context=context)
+        sale.write({'payment_ids': [(4,voucher_id)]}, context=context)
         return True
-
-    def button_order_confirm(self, cr, uid, ids, context=None):
-        for order in self.browse(cr, uid, ids, context=context):
-            if order.company_id.sale_order_must_be_paid and not order.payment_id:
-                raise except_osv(_('User Error!'),
-                    _('The sale Order %s Must be paid before validation') % (order.name))
-        return super(sale_order, self).button_order_confirm(cr, uid, ids, context=context)
-
 

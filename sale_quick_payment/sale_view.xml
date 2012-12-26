@@ -17,15 +17,23 @@
             <field eval="16" name="priority"/>
             <field name="type">form</field>
             <field name="arch" type="xml">
+                <button name="print_quotation" position="after">
+                    <button name="%(open_pay_sale_order)d" string="Register Payments" type="action" states="draft,sent"/>
+                </button>
                 <page string="Other Information" position="after">
                     <page name="automation_information" string="Automation Information">
                         <group name="payment_information" colspan="4">
-                            <separator string="Payment Information" colspan="4"/>
                             <field name="payment_method_id" />
-                            <field name="payment_id" />
+                            <group name="payments" colspan="4">
+                                <separator string="Payments" colspan="4"/>
+                                <field name="payment_ids" nolabel="1" />
+                            </group>
                         </group>
                     </page>
                 </page>
+                <field name="amount_total" position="after">
+                    <field name="residual"/>
+                </field>
             </field>
         </record>
 

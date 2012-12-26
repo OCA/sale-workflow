@@ -23,6 +23,5 @@
 import sale
 import payment_method
 import wizard
+import account_voucher
 import company
-
-
