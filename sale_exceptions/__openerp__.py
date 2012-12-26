@@ -25,7 +25,7 @@
 
 {
     'name': 'Sale Exceptions',
-    'version': '6.1.0',
+    'version': '0.1',
     'category': 'Generic Modules/Sale',
     'description': """
 This module allows you attach several customizable exceptions to your sale order in a way that you can filter orders by exceptions type and fix them.

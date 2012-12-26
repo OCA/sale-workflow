@@ -2,29 +2,13 @@
 <openerp>
     <data>
 
-        <record id="view_sale_exception_search" model="ir.ui.view">
-            <field name="name">sale.exception.view.search</field>
-            <field name="model">sale.exception</field>
-            <field name="type">search</field>
-            <field name="arch" type="xml">
-                <search string="Search Sale Exceptions">
-                   <group>
-                        <filter name="all" icon="gtk-fullscreen" string="See All" domain="['|', ('active','=', False), ('active','=', True)]" help="See all rule active or unactive"/>
-                    </group>
-                    <newline/>
-                    <group>
-                        <field name="name"/>
-                    </group>
-               </search>
-            </field>
-        </record>
-
         <record id="view_sale_exception_tree" model="ir.ui.view">
             <field name="name">sale.exception.tree</field>
             <field name="model">sale.exception</field>
             <field name="type">tree</field>
             <field name="arch" type="xml">
                 <tree string="Sale Exception">
+                    <field name="active"/>
                     <field name="name"/>
                     <field name="description"/>
                     <field name="model"/>
@@ -66,6 +50,7 @@
                   <field name="view_type">form</field>
                   <field name="view_mode">tree,form</field>
                   <field name="view_id" ref="view_sale_exception_tree"/>
+                  <field name="context">{'active_test': False}</field>
                   <field name="search_view_id" ref="view_sale_exception_search"/>
               </record>
 

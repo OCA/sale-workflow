@@ -33,6 +33,7 @@ from tools.translate import _
 class sale_exception(Model):
     _name = "sale.exception"
     _description = "Sale Exceptions"
+    _order="active desc, sequence asc"
     _columns = {
         'name': fields.char('Exception Name', size=64, required=True, translate=True),
         'description': fields.text('Description', translate=True),
