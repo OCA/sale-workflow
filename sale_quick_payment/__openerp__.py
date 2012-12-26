@@ -40,10 +40,10 @@
         'account_voucher',
         ], 
     'init_xml': [],
-    'update_xml': [ 
+    'update_xml': [
+            'wizard/pay_sale_order.xml',
             'sale_view.xml',
             'payment_method_view.xml',
-            'wizard/pay_sale_order.xml',
             'security/ir.model.access.csv',
             'settings/sale.exception.csv',
     ],
