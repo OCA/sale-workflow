@@ -22,13 +22,17 @@
 
 {
     'name': 'sale_automatic_workflow',
-    'version': '6.1.1',
+    'version': '0.1',
     'category': 'Generic Modules/Others',
     'license': 'AGPL-3',
     'description': """empty""",
     'author': 'Akretion',
     'website': 'http://www.akretion.com/',
-    'depends': ['sale_quick_payment', 'framework_helpers'], 
+    'depends': [
+        'sale_quick_payment',
+        'framework_helpers',
+        'stock',
+    ], 
     'init_xml': [],
     'update_xml': [ 
             'sale_view.xml',

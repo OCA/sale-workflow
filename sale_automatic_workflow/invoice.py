@@ -31,12 +31,13 @@ class account_invoice(Model):
     }
 
     def _can_be_reconciled(self, cr, uid, invoice, context=None):
-        if not (invoice.sale_ids and invoice.sale_ids[0].payment_id and invoice.move_id):
+        if not (invoice.sale_ids and invoice.sale_ids[0].payment_ids and invoice.move_id):
             return False
         #Check currency
-        for move in invoice.sale_ids[0].payment_id.move_ids:
-            if (move.currency_id.id or invoice.company_id.currency_id.id) != invoice.currency_id.id:
-                return False
+        for payment in invoice.sale_ids[0].payment_ids:
+            for move in payment.move_ids:
+                if (move.currency_id.id or invoice.company_id.currency_id.id) != invoice.currency_id.id:
+                    return False
         return True
 
     def _get_sum_invoice_move_line(self, cr, uid, move_lines, context=None):
