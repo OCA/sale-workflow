@@ -49,5 +49,5 @@ The views are adapted to use the information in the search form.""",
         "invoice_view.xml",
     ],
     "active": False,
-    "installable": True
+    'installable': False
 }

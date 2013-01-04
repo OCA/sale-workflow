@@ -43,5 +43,5 @@ as well as the related filter and button in the search form.
            "crm_view.xml",
                    ],
     "active": False,
-    "installable": True
+    'installable': False
 }
