@@ -32,3 +32,7 @@ class account_invoice(InvoiceSale):
     _columns = {
         'tax_inc' : fields.boolean('Tax Inc', help="Tic the box if you want to use unit price in taxe include"),
     }
+
+class account_invoice_line(InvoiceSaleLine):
+    _inherit = "account.invoice.line"
+

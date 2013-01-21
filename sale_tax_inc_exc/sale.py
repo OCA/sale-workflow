@@ -36,3 +36,7 @@ class sale_order(InvoiceSale):
         result = super(sale_order, self)._prepare_invoice(cr, uid, order, lines, context=context)
         result['tax_inc'] = order.tax_inc
         return result
+
+class sale_order_line(InvoiceSaleLine):
+    _inherit = "sale.order.line"
+

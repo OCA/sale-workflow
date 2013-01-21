@@ -31,7 +31,6 @@
     'init_xml': [],
     'update_xml': [ 
             'sale_view.xml',
-            'pricelist_view.xml',
             'account_view.xml',
             'invoice_view.xml',
     ],

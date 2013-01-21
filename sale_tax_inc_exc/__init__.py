@@ -20,7 +20,6 @@
 ###############################################################################
 
 import sale
-import pricelist
 import account
 import invoice
 import product
