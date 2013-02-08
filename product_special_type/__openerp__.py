@@ -44,5 +44,5 @@ These fields can be used on reports to display the amounts for discounts / advan
      "demo_xml" : [],
      "update_xml" : ['product_view.xml'],
      "active": False,
-     "installable": True
+     'installable': False
 }
