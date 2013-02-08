@@ -38,6 +38,6 @@ send quotation by email.
         "quotation_action_data.xml",
         "sale_order_view.xml",
     ],
-    "installable": True,
+    'installable': False,
     "complexity": "easy",
 }

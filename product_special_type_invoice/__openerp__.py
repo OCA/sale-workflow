@@ -36,5 +36,5 @@ According to the products special types (discount, advance, delivery), compute t
      "demo_xml" : [],
      "update_xml" : [],
      "active": False,
-     "installable": True
+     'installable': False
 }

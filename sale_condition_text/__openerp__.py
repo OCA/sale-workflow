@@ -16,5 +16,5 @@
                  "sale_order_view.xml",
                  "condition_view.xml"],
  "category": "Sale",
- "installable" : True,
+ "installable": False,
  "active" : False,}

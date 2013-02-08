@@ -75,5 +75,5 @@ Product A in company B: The cost price is 70 * currency rate
         "security/pricelist_security.xml",
      ],
      "active": False,
-     "installable": True
+     'installable': False
 }
