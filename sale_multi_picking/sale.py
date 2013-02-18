@@ -53,12 +53,11 @@ class sale_order(orm.Model):
                 lines_by_group.setdefault(group_id, []).append(line)
             for group in lines_by_group:
                 if not group:
-                    super(sale_order, self)._create_pickings_and_procurements(
-                        cr, uid, order, lines_by_group[group], None, context=context)
+                    picking_id = None
                 else:
                     picking_vals = super(sale_order, self)._prepare_order_picking(cr, uid, order, context=context)
                     picking_id = picking_pool.create(cr, uid, picking_vals, context=context)
-                    super(sale_order, self)._create_pickings_and_procurements(
-                        cr, uid, order, lines_by_group[group], picking_id, context=context)
+                super(sale_order, self)._create_pickings_and_procurements(
+                    cr, uid, order, lines_by_group[group], picking_id, context=context)
         return True
         
