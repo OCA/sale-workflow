@@ -23,7 +23,7 @@ from openerp.osv import fields, osv
 from openerp.tools.translate import _
 import openerp.addons.decimal_precision as dp
 
-class sale_delivery_term(osv.osv):
+class sale_delivery_term(orm.Model):
     _name = 'sale.delivery.term'
     _columns = {
         'name': fields.char('Name', size=64, required=True),
@@ -42,10 +42,8 @@ class sale_delivery_term(osv.osv):
             if total != 1 :
                 return False
         return True
-    
-sale_delivery_term()
 
-class sale_delivery_term_line(osv.osv):
+class sale_delivery_term_line(orm.Model):
 
     _name = 'sale.delivery.term.line'
     _rec_name = 'term_id'
@@ -56,7 +54,7 @@ class sale_delivery_term_line(osv.osv):
             help="Number of days between the order confirmation and the shipping of the products to the customer"),
         }
 
-class sale_order_line_master(osv.osv):
+class sale_order_line_master(orm.Model):
     
     def product_id_change(self, cr, uid, ids, pricelist, product, qty=0,
             uom=False, qty_uos=0, uos=False, name='', partner_id=False,
@@ -179,9 +177,8 @@ class sale_order_line_master(osv.osv):
             })
         return super(sale_order_line_master, self).copy_data(cr, uid, id, default, context=context)
         
-sale_order_line_master()
 
-class sale_order_line(osv.osv):
+class sale_order_line(orm.Model):
     _inherit = 'sale.order.line'
     _columns = {
         'master_line_id': fields.many2one('sale.order.line.master', 'Master Line'),
@@ -192,9 +189,9 @@ class sale_order_line(osv.osv):
             default = {}
         default.update({'master_line_id': False})
         return super(sale_order_line, self).copy_data(cr, uid, id, default, context=context)
-sale_order_line()
 
-class sale_order(osv.osv):
+
+class sale_order(orm.Model):
     _inherit = 'sale.order'
     _columns = {
         'master_order_line': fields.one2many('sale.order.line.master', 'order_id', 'Master Order Lines', readonly=True, states={'draft': [('readonly', False)]}),
@@ -214,4 +211,3 @@ class sale_order(osv.osv):
                 master_line.generate_detailed_lines()
         return True
         
-sale_order()

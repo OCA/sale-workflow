@@ -21,7 +21,7 @@
 
 from openerp.osv import fields, osv
 
-class sale_order_line_group(osv.osv):
+class sale_order_line_group(orm.Model):
     _name = 'sale.order.line.group'
     _columns = {
         'name': fields.char('Group', size=64, required=True),
@@ -30,16 +30,16 @@ class sale_order_line_group(osv.osv):
     _defaults = {
         'company_id': lambda self,cr,uid,c: self.pool.get('res.company')._company_default_get(cr, uid, 'sale.order.line.group', context=c),
     }
-sale_order_line_group()
 
-class sale_order_line(osv.osv):
+
+class sale_order_line(orm.Model):
     _inherit = 'sale.order.line'
     _columns = {
         'picking_group_id': fields.many2one('sale.order.line.group', 'Group', help='This is used by \'multi-picking\' to group order lines in one picking'),
         }
-sale_order_line()
 
-class sale_order(osv.osv):
+
+class sale_order(orm.Model):
     _inherit = 'sale.order'
 
     def action_ship_create(self, cr, uid, ids, context=None):
@@ -66,4 +66,3 @@ class sale_order(osv.osv):
                         cr, uid, order, lines_by_group[group], picking_id, context=context)
         return True
         
-sale_order()
