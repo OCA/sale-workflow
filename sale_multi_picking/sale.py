@@ -19,7 +19,7 @@
 #
 ##############################################################################
 
-from openerp.osv import fields, osv
+from openerp.osv import fields, orm
 
 class sale_order_line_group(orm.Model):
     _name = 'sale.order.line.group'
@@ -28,14 +28,16 @@ class sale_order_line_group(orm.Model):
         'company_id': fields.many2one('res.company','Company',required=True,select=1),
         }
     _defaults = {
-        'company_id': lambda self,cr,uid,c: self.pool.get('res.company')._company_default_get(cr, uid, 'sale.order.line.group', context=c),
+        'company_id': lambda self,cr,uid,c: self.pool.get(
+            'res.company')._company_default_get(cr, uid, 'sale.order.line.group', context=c),
     }
 
 
 class sale_order_line(orm.Model):
     _inherit = 'sale.order.line'
     _columns = {
-        'picking_group_id': fields.many2one('sale.order.line.group', 'Group', help='This is used by \'multi-picking\' to group order lines in one picking'),
+        'picking_group_id': fields.many2one('sale.order.line.group', 'Group',
+            help='This is used by \'multi-picking\' to group order lines in one picking'),
         }
 
 

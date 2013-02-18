@@ -19,7 +19,7 @@
 #
 ##############################################################################
 
-from openerp.osv import fields, osv
+from openerp.osv import fields, orm
 from openerp.tools.translate import _
 import openerp.addons.decimal_precision as dp
 
@@ -31,7 +31,8 @@ class sale_delivery_term(orm.Model):
         'company_id': fields.many2one('res.company','Company',required=True,select=1),
         }
     _defaults = {
-        'company_id': lambda self,cr,uid,c: self.pool.get('res.company')._company_default_get(cr, uid, 'sale.delivery.term', context=c),
+        'company_id': lambda self,cr,uid,c: self.pool.get(
+            'res.company')._company_default_get(cr, uid, 'sale.delivery.term', context=c),
     }
     
     def is_total_percentage_correct(self, cr, uid, term_ids, context=None):
@@ -57,11 +58,13 @@ class sale_delivery_term_line(orm.Model):
 class sale_order_line_master(orm.Model):
     
     def product_id_change(self, cr, uid, ids, pricelist, product, qty=0,
-            uom=False, qty_uos=0, uos=False, name='', partner_id=False,
-            lang=False, update_tax=True, date_order=False, packaging=False, fiscal_position=False, flag=False, context=None):
+        uom=False, qty_uos=0, uos=False, name='', partner_id=False,
+        lang=False, update_tax=True, date_order=False, packaging=False,
+        fiscal_position=False, flag=False, context=None):
         return self.pool.get('sale.order.line').product_id_change(cr, uid, ids, pricelist, product, qty=qty,
             uom=uom, qty_uos=qty_uos, uos=uos, name=name, partner_id=partner_id,
-            lang=lang, update_tax=update_tax, date_order=date_order, packaging=packaging, fiscal_position=fiscal_position, flag=flag, context=context)
+            lang=lang, update_tax=update_tax, date_order=date_order,
+            packaging=packaging, fiscal_position=fiscal_position, flag=flag, context=context)
         
     def product_uom_change(self, cursor, user, ids, pricelist, product, qty=0,
             uom=False, qty_uos=0, uos=False, name='', partner_id=False,
@@ -72,7 +75,9 @@ class sale_order_line_master(orm.Model):
     
     def product_packaging_change(self, cr, uid, ids, pricelist, product, qty=0, uom=False,
                                    partner_id=False, packaging=False, flag=False, context=None):
-        return self.pool.get('sale.order.line').product_packaging_change(cr, uid, ids, pricelist, product, qty=qty, uom=uom, partner_id=partner_id, packaging=packaging, flag=flag, context=context)
+        return self.pool.get('sale.order.line').product_packaging_change(
+            cr, uid, ids, pricelist, product, qty=qty, uom=uom,
+            partner_id=partner_id, packaging=packaging, flag=flag, context=context)
 
     def _amount_line(self, cr, uid, ids, field_name, arg, context=None):
         tax_obj = self.pool.get('account.tax')
@@ -82,7 +87,9 @@ class sale_order_line_master(orm.Model):
             context = {}
         for line in self.browse(cr, uid, ids, context=context):
             price = line.price_unit * (1 - (line.discount or 0.0) / 100.0)
-            taxes = tax_obj.compute_all(cr, uid, line.tax_ids, price, line.product_uom_qty, line.order_id.partner_invoice_id.id, line.product_id, line.order_id.partner_id)
+            taxes = tax_obj.compute_all(cr, uid, line.tax_ids, price,
+                line.product_uom_qty, line.order_id.partner_invoice_id.id,
+                line.product_id, line.order_id.partner_id)
             cur = line.order_id.pricelist_id.currency_id
             res[line.id] = cur_obj.round(cr, uid, cur, taxes['total'])
         return res
@@ -125,8 +132,10 @@ class sale_order_line_master(orm.Model):
         order_line_vals = {}
         on_change_res = order_line_pool.product_id_change(cr, uid, [], master_line.order_id.pricelist_id.id,
             master_line.product_id.id, qty=product_uom_qty,
-            uom=master_line.product_uom.id, qty_uos=product_uos_qty, uos=master_line.product_uos.id, name=master_line.name, partner_id=master_line.order_id.partner_id.id,
-            lang=False, update_tax=True, date_order=master_line.order_id.date_order, packaging=master_line.product_packaging.id, fiscal_position=master_line.order_id.fiscal_position.id,
+            uom=master_line.product_uom.id, qty_uos=product_uos_qty,
+            uos=master_line.product_uos.id, name=master_line.name, partner_id=master_line.order_id.partner_id.id,
+            lang=False, update_tax=True, date_order=master_line.order_id.date_order,
+            packaging=master_line.product_packaging.id, fiscal_position=master_line.order_id.fiscal_position.id,
             flag=False, context=context)
         order_line_vals.update(on_change_res['value'])
         order_line_vals.update({
@@ -164,7 +173,8 @@ class sale_order_line_master(orm.Model):
                     _("Total percentage of delivery term %s is not equal to 1") % master_line.delivery_term_id.name)
             group_index  = 0
             for term_line in master_line.delivery_term_id.line_ids:
-                order_line_vals = self._prepare_order_line(cr, uid, term_line, master_line, group_index=group_index, context=context)
+                order_line_vals = self._prepare_order_line(
+                    cr, uid, term_line, master_line, group_index=group_index, context=context)
                 group_index += 1
                 order_line_pool.create(cr, uid, order_line_vals, context=context)
         return True
