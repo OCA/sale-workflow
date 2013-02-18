@@ -166,8 +166,8 @@ class sale_order_line_master(orm.Model):
                     _("Detailed lines generated yet (for master line '%s'). Remove them first") % master_line.name)
             if len(master_line.delivery_term_id.line_ids) > len(group_ids):
                 raise osv.except_osv(_('Error'),
-                    _("Delivery term lines are %s. Order line groups are %s. Please create more groups")
-                    % (str(len(master_line.delivery_term_id.line_ids)), str(len(group_ids))))
+                    _("Delivery term lines are %d. Order line groups are %d. Please create more groups")
+                    % (len(master_line.delivery_term_id.line_ids), len(group_ids)))
             if not master_line.delivery_term_id.is_total_percentage_correct():
                 raise osv.except_osv(_('Error'),
                     _("Total percentage of delivery term %s is not equal to 1") % master_line.delivery_term_id.name)
