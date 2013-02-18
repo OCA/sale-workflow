@@ -49,14 +49,8 @@ class sale_order(orm.Model):
         for order in self.browse(cr, uid, ids, context=context):
             lines_by_group = {}
             for line in order.order_line:
-                if line.picking_group_id:
-                    if not lines_by_group.get(line.picking_group_id.id, False):
-                        lines_by_group[line.picking_group_id.id] = []
-                    lines_by_group[line.picking_group_id.id].append(line)
-                else:
-                    if not lines_by_group.get(0, False):
-                        lines_by_group[0] = []
-                    lines_by_group[0].append(line)
+                group_id = line.picking_group_id.id if line.picking_group_id else 0
+                lines_by_group.setdefault(group_id, []).append(line)
             for group in lines_by_group:
                 if not group:
                     super(sale_order, self)._create_pickings_and_procurements(
