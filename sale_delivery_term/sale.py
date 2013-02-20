@@ -171,11 +171,9 @@ class sale_order_line_master(orm.Model):
             if not master_line.delivery_term_id.is_total_percentage_correct():
                 raise osv.except_osv(_('Error'),
                     _("Total percentage of delivery term %s is not equal to 1") % master_line.delivery_term_id.name)
-            group_index  = 0
-            for term_line in master_line.delivery_term_id.line_ids:
+            for group_index, term_line in enumerate(master_line.delivery_term_id.line_ids):
                 order_line_vals = self._prepare_order_line(
                     cr, uid, term_line, master_line, group_index=group_index, context=context)
-                group_index += 1
                 order_line_pool.create(cr, uid, order_line_vals, context=context)
         return True
         
