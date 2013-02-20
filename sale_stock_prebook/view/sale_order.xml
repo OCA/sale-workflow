@@ -1,0 +1,22 @@
+<?xml version="1.0"?>
+<openerp>
+<data>
+
+    <record id="view_order_form_prebook" model="ir.ui.view">
+        <field name="name">sale.order.form.prebook</field>
+        <field name="model">sale.order</field>
+        <field name="type">form</field>
+        <field name="inherit_id" ref="sale_validity.view_order_form_validity"/>
+        <field name="arch" type="xml">
+            <button name="action_quotation_send" position="before">
+                <button name="%(action_sale_stock_prebook)d" type="action" states="draft,sent" string="Pre-book stock" help="Pre-book products from stock" context="{'default_date':date_validity}"/>
+            </button>
+
+            <xpath expr="//field[@name='order_line']//field[@name='state']" position="before">
+                <button name="%(action_sale_stock_prebook)d" type="action" states="draft" string="Pre-book stock" context="{'default_date':parent.date_validity}" attrs="{'invisible':[('type','!=','make_to_order')]}" />
+            </xpath>
+        </field>
+    </record>
+
+</data>
+</openerp>

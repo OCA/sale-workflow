@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+<data>
+    <record id="view_sale_stock_prebook_form" model="ir.ui.view">
+        <field name="name">sale.stock.prebook.form</field>
+        <field name="model">sale.stock.prebook</field>
+        <field name="arch" type="xml">
+            <form string="Pre-book stock" version="7.0">
+                <group colspan="4">
+                    <field name="date"/>
+                </group>
+                <footer>
+                    <button icon="gtk-execute" string="Confirm" name="button_confirm" type="object" class="oe_highlight" />
+                    or
+                    <button icon="gtk-cancel" special="cancel" string="Cancel"/>
+                </footer>
+            </form>
+        </field>
+    </record>
+    <record id="action_sale_stock_prebook" model="ir.actions.act_window">
+        <field name="name">Pre-book products from stock</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">sale.stock.prebook</field>
+        <field name="view_type">form</field>
+        <field name="view_mode">form</field>
+        <field name="target">new</field>
+    </record>
+
+</data>
+</openerp>
