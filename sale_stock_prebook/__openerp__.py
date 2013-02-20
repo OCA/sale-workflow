@@ -2,7 +2,7 @@
 {
     "name": "Sales Quotation Pre-booking of stock",
     "version": "7.0.0",
-    "depends": ["sale_validity"],
+    "depends": ["sale_validity","sale_stock"],
     "author": "Jacques-Etienne Baudoux",
     "category": "Sales",
     "description": "Allow to reserve stock (virtual quantity) during quotation",
