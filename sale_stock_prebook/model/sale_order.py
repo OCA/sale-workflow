@@ -33,7 +33,7 @@ class sale_order(osv.osv):
         res={}
         for order_id in ids:
             res[order_id]={'is_prebookable':False,'is_prebooked':False}
-        line_ids=map(sum,[x['order_line'] for x in self.read(cr,uid,ids,['order_line'],context=context)])
+        line_ids=reduce(lambda x,y:x+y,[x['order_line'] for x in self.read(cr,uid,ids,['order_line'],context=context)],[])
         for line in self.pool.get('sale.order.line').read(cr,uid,line_ids,['type','move_ids','order_id'],context=context,load='_classic_write'):
             if line['type']!='make_to_order':
                 if line['move_ids']:
@@ -49,7 +49,7 @@ class sale_order(osv.osv):
                 #we don't expect this method to be called outside quotation confirmation
                 assert move._model._is_prebooked(move), _("Internal Error")
                 unlink_ids.append(move.id)
-        self._prebook_cancel(cr,uid,unlink_ids,context)
+        unlink_ids and self.pool.get('sale.order.line')._prebook_cancel(cr,uid,unlink_ids,context)
         return super(sale_order,self)._create_pickings_and_procurements(cr, uid, order, order_lines, picking_id=picking_id, context=context)
 
     def button_prebook(self, cr, uid, ids, context):
@@ -65,8 +65,8 @@ class sale_order(osv.osv):
             'target': 'new',
         }
     def button_prebook_cancel(self, cr, uid, ids, context):
-        line_ids=map(sum,[x['order_line'] for x in self.read(cr,SUPERUSER_ID,ids,['order_line'],context=context)])
-        self.pool.get('sale.order.line')._prebook_cancel(cr,uid,line_ids,context=context)
+        line_ids=reduce(lambda x,y:x+y,[x['order_line'] for x in self.read(cr,SUPERUSER_ID,ids,['order_line'],context=context)],[])
+        line_ids and self.pool.get('sale.order.line')._prebook_cancel(cr,uid,line_ids,context=context)
 
 class sale_order_line(osv.osv):
     _inherit = "sale.order.line"
