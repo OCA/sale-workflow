@@ -43,3 +43,8 @@
    !python {model: sale.order}: |
      for line in self.browse(cr, uid, ref('sale_order_test2')).master_order_line:
        line.generate_detailed_lines()
+
+-
+  I confirm the Quotation
+-
+  !workflow {model: sale.order, action: order_confirm, ref: sale_order_test2}
