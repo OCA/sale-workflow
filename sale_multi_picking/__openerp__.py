@@ -34,7 +34,9 @@ You just have to indicate which order lines have to be grouped in the same picki
         'sale_view.xml',
         'security/ir.model.access.csv',
         ],
-    "demo" : [],
+    "demo" : [
+        'sale_demo.xml',
+        ],
     "active": False,
     "installable": True
 }

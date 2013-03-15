@@ -175,14 +175,14 @@ class sale_order_line_master(orm.Model):
         group_ids = group_pool.search(cr, uid, [])
         for master_line in self.browse(cr, uid, ids):
             if master_line.order_line_ids:
-                raise osv.except_osv(_('Error'),
+                raise orm.except_orm(_('Error'),
                     _("Detailed lines generated yet (for master line '%s'). Remove them first") % master_line.name)
             if len(master_line.delivery_term_id.line_ids) > len(group_ids):
-                raise osv.except_osv(_('Error'),
+                raise orm.except_orm(_('Error'),
                     _("Delivery term lines are %d. Order line groups are %d. Please create more groups")
                     % (len(master_line.delivery_term_id.line_ids), len(group_ids)))
             if not master_line.delivery_term_id.is_total_percentage_correct():
-                raise osv.except_osv(_('Error'),
+                raise orm.except_orm(_('Error'),
                     _("Total percentage of delivery term %s is not equal to 1") % master_line.delivery_term_id.name)
             for group_index, term_line in enumerate(master_line.delivery_term_id.line_ids):
                 order_line_vals = self._prepare_order_line(
