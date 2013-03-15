@@ -57,21 +57,34 @@ class sale_delivery_term_line(orm.Model):
 
 class sale_order_line_master(orm.Model):
     
+    def _clean_on_change_dict(self, res_dict):
+        if res_dict['value'].has_key('delay'):
+            del res_dict['value']['delay']
+        if res_dict['value'].has_key('th_weight'):
+            del res_dict['value']['th_weight']
+        if res_dict['value'].has_key('type'):
+            del res_dict['value']['type']
+        if res_dict['value'].has_key('tax_id'):
+            del res_dict['value']['tax_id']
+        return res_dict
+    
     def product_id_change(self, cr, uid, ids, pricelist, product, qty=0,
         uom=False, qty_uos=0, uos=False, name='', partner_id=False,
         lang=False, update_tax=True, date_order=False, packaging=False,
         fiscal_position=False, flag=False, context=None):
-        return self.pool.get('sale.order.line').product_id_change(cr, uid, ids, pricelist, product, qty=qty,
+        res = self.pool.get('sale.order.line').product_id_change(cr, uid, ids, pricelist, product, qty=qty,
             uom=uom, qty_uos=qty_uos, uos=uos, name=name, partner_id=partner_id,
             lang=lang, update_tax=update_tax, date_order=date_order,
             packaging=packaging, fiscal_position=fiscal_position, flag=flag, context=context)
+        return self._clean_on_change_dict(res)
         
     def product_uom_change(self, cursor, user, ids, pricelist, product, qty=0,
             uom=False, qty_uos=0, uos=False, name='', partner_id=False,
             lang=False, update_tax=True, date_order=False, context=None):
-        return self.pool.get('sale.order.line').product_uom_change(cursor, user, ids, pricelist, product, qty=qty,
+        res = self.pool.get('sale.order.line').product_uom_change(cursor, user, ids, pricelist, product, qty=qty,
             uom=uom, qty_uos=qty_uos, uos=uos, name=name, partner_id=partner_id,
             lang=lang, update_tax=update_tax, date_order=date_order, context=context)
+        return self._clean_on_change_dict(res)
     
     def product_packaging_change(self, cr, uid, ids, pricelist, product, qty=0, uom=False,
                                    partner_id=False, packaging=False, flag=False, context=None):

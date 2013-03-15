@@ -35,7 +35,10 @@ You can then associate the term to the 'main' order line and generate the 'detai
         'sale_view.xml',
         'security/ir.model.access.csv',
         ],
-    "demo" : [],
+    'test': [
+        'test/sale_order_demo.yml',
+        ],
+    "demo" : ['sale_demo.xml'],
     "active": False,
     "installable": True
 }
