@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data noupdate="1">
+
+        <record id="sale_delivery_term_1" model="sale.delivery.term">
+            <field name="name">15 - 30</field>
+            <field name="line_ids" eval="[(0, 0,  {'quantity_perc': 0.5, 'delay': 15}),(0, 0,  {'quantity_perc': 0.5, 'delay': 30})]"/>
+        </record>
+        
+    </data>
+</openerp>

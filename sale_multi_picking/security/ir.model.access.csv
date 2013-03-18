@@ -1,0 +1,4 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_sale_order_line_group,sale.order.line.group,model_sale_order_line_group,base.group_sale_salesman,1,1,1,1
+access_sale_order_line_group_accountant,sale.order.line.group accountant,model_sale_order_line_group,account.group_account_user,1,1,0,0
+access_sale_order_line_group_stock_worker,sale.order.line.group stock worker,model_sale_order_line_group,stock.group_stock_user,1,1,0,0
