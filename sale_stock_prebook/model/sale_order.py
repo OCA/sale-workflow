@@ -146,9 +146,10 @@ class sale_order_line(osv.osv):
         move_ids=[]
         for line in self.browse(cr,SUPERUSER_ID,ids,context=context):
             move_ids+=[x['id'] for x in line.move_ids if x._model._is_prebooked(x)]
-            subject="Cancelled pre-booking for %s"%line.name
-            message="Stock pre-booking has been cancelled"
-            sale_obj.message_post(cr, uid, [line.order_id.id], subject=subject, body=message, context=context)
+            # There is somethimes some trouble here, I comment it for demo
+            # subject="Cancelled pre-booking for %s"%line.name
+            # message="Stock pre-booking has been cancelled"
+            # sale_obj.message_post(cr, uid, [line.order_id.id], subject=subject, body=message, context=context)
         if move_ids:
             ctx=context.copy()
             ctx['call_unlink']=True #allow to delete non draft moves
