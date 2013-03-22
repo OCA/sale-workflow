@@ -52,7 +52,9 @@ class sale_order(Model):
 
     _columns = {
         'payment_ids': fields.many2many('account.voucher', string='Payments'),
-        'payment_method_id': fields.many2one('payment.method', 'Payment Method'),
+        'payment_method_id': fields.many2one('payment.method',
+                                             'Payment Method',
+                                             ondelete='restrict'),
         'residual': fields.function(_amount_residual, digits_compute=dp.get_precision('Account'), string='Balance',
             store = {
                 'sale.order': (lambda self, cr, uid, ids, c={}: ids, ['order_line', 'payment_ids'], 10),
