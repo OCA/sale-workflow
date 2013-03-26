@@ -5,6 +5,8 @@
 #   Copyright (C) 2011-TODAY Akretion <http://www.akretion.com>.
 #     All Rights Reserved
 #     @author Sébastien BEAU <sebastien.beau@akretion.com>
+#   Copyright Camptocamp SA 2013 (Guewen Baconnier)
+#
 #   This program is free software: you can redistribute it and/or modify
 #   it under the terms of the GNU Affero General Public License as
 #   published by the Free Software Foundation, either version 3 of the
@@ -19,24 +21,31 @@
 #   along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
 ###############################################################################
-from openerp.osv.orm import Model
-from openerp.osv import fields
+from openerp.osv import fields, orm
 
-class account_invoice(Model):
+
+class account_invoice(orm.Model):
     _inherit = "account.invoice"
+
     _columns = {
-        'workflow_process_id':fields.many2one('sale.workflow.process', 'Sale Workflow Process'),
+        'workflow_process_id': fields.many2one('sale.workflow.process',
+                                               string='Sale Workflow Process'),
         #TODO propose a merge to add this field by default in acount module
-        'sale_ids': fields.many2many('sale.order', 'sale_order_invoice_rel', 'invoice_id', 'order_id', 'Sale Orders')
+        'sale_ids': fields.many2many('sale.order', 'sale_order_invoice_rel',
+                                     'invoice_id', 'order_id',
+                                     string='Sale Orders')
     }
 
     def _can_be_reconciled(self, cr, uid, invoice, context=None):
-        if not (invoice.sale_ids and invoice.sale_ids[0].payment_ids and invoice.move_id):
+        if not (invoice.sale_ids and
+                invoice.sale_ids[0].payment_ids and invoice.move_id):
             return False
-        #Check currency
+        # Check currency
+        company_currency_id = invoice.company_id.currency_id.id
         for payment in invoice.sale_ids[0].payment_ids:
-            for move in payment.move_ids:
-                if (move.currency_id.id or invoice.company_id.currency_id.id) != invoice.currency_id.id:
+            for move in payment.line_id:
+                currency_id = move.currency_id.id or company_currency_id
+                if currency_id != invoice.currency_id.id:
                     return False
         return True
 
@@ -63,7 +72,7 @@ class account_invoice(Model):
         return res
 
     def _prepare_write_off(self, cr, uid, invoice, res_invoice, res_payment, context=None):
-        if not context:
+        if context is None:
             context = {}
         ctx = context.copy()
         if res_invoice['total_amount'] - res_payment['total_amount'] > 0:
@@ -74,7 +83,8 @@ class account_invoice(Model):
             get_write_off_information('exchange', writeoff_type, context=context)
         max_date = max(res_invoice['max_date'], res_payment['max_date'])
         ctx['p_date'] = max_date
-        period_id = self.pool.get('account.period').find(cr, uid, max_date, context=context)[0]
+        period_obj = self.pool.get('account.period')
+        period_id = period_obj.find(cr, uid, max_date, context=context)[0]
         return {
             'type': 'auto',
             'writeoff_acc_id': account_id,
@@ -83,30 +93,43 @@ class account_invoice(Model):
             'context': ctx,
         }
 
+    def _reconcile_invoice(self, cr, uid, invoice, context=None):
+        move_line_obj = self.pool.get('account.move.line')
+        currency_obj = self.pool.get('res.currency')
+        is_zero = currency_obj.is_zero
+        company_currency_id = invoice.company_id.currency_id.id
+        currency = invoice.currency_id
+        use_currency = currency.id != company_currency_id
+        if self._can_be_reconciled(cr, uid, invoice, context=context):
+            payment_move_lines = []
+            for payment in invoice.sale_ids[0].payment_ids:
+                payment_move_lines += payment.line_id
+            res_payment = self._get_sum_payment_move_line(
+                cr, uid, payment_move_lines, context=context)
+            res_invoice = self._get_sum_invoice_move_line(
+                cr, uid, invoice.move_id.line_id, context=context)
+            line_ids = res_invoice['line_ids'] + res_payment['line_ids']
+            if not use_currency:
+                balance = abs(res_invoice['total_amount'] -
+                              res_payment['total_amount'])
+                if line_ids and is_zero(cr, uid, currency, balance):
+                    move_line_obj.reconcile(cr, uid, line_ids, context=context)
+            else:
+                balance = abs(res_invoice['total_amount_currency'] -
+                              res_payment['total_amount_currency'])
+                if line_ids and is_zero(cr, uid, currency, balance):
+                    kwargs = self._prepare_write_off(cr, uid,
+                                                     invoice,
+                                                     res_invoice,
+                                                     res_payment,
+                                                     context=context)
+                    move_line_obj.reconcile(cr, uid, line_ids, **kwargs)
+
     def reconcile_invoice(self, cr, uid, ids, context=None):
-        """
-        Simple method to reconcile the invoice with the payment generated on the sale order
-        """
-        if not context:
-            context={}
-        precision = self.pool.get('decimal.precision').precision_get(cr, uid, 'Account')
-        obj_move_line = self.pool.get('account.move.line')
+        """ Simple method to reconcile the invoice with the payment
+        generated on the sale order """
+        if not hasattr(ids, '__iter__'):
+            ids = [ids]
         for invoice in self.browse(cr, uid, ids, context=context):
-            use_currency = invoice.currency_id.id != invoice.company_id.currency_id.id
-            if self._can_be_reconciled(cr, uid, invoice, context=context):
-                payment_move_line = []
-                for payment in invoice.sale_ids[0].payment_ids:
-                    payment_move_line += payment.move_ids
-                res_payment = self._get_sum_payment_move_line(cr, uid, payment_move_line, context=context)
-                res_invoice = self._get_sum_invoice_move_line(cr, uid, invoice.move_id.line_id, context=context)
-                line_ids = res_invoice['line_ids'] + res_payment['line_ids']
-                if not use_currency:
-                    balance = abs(res_invoice['total_amount']-res_payment['total_amount'])
-                    if line_ids and not round(balance, precision):
-                        obj_move_line.reconcile(cr, uid, line_ids, context=context)
-                else:
-                    balance = abs(res_invoice['total_amount_currency']-res_payment['total_amount_currency'])
-                    if line_ids and not round(balance, precision):
-                        kwargs = self._prepare_write_off(cr, uid, invoice, res_invoice, res_payment, context=context)
-                        obj_move_line.reconcile(cr, uid, line_ids, **kwargs)
+            self._reconcile_invoice(cr, uid, invoice, context=context)
         return True
