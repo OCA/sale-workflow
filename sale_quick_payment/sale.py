@@ -70,19 +70,56 @@ class sale_order(orm.Model):
         return super(sale_order, self).copy(cr, uid, id,
                                             default, context=context)
 
-    def pay_sale_order(self, cr, uid, sale_id, journal_id,
-                       amount, date, context=None):
-        """ Generate move lines entries to pay the sale order. """
-        if isinstance(sale_id, Iterable):
-            assert len(sale_id) == 1, "one sale order at a time can be paid"
-            sale_id = sale_id[0]
+    def add_payment_with_terms(self, cr, uid, ids, journal_id, amount=None,
+                               date=None, context=None):
+        """ Create the payment entries to pay a sale order, respecting
+        the payment terms.
+        If no amount is defined, it will pay the residual amount of the sale
+        order. """
+        if isinstance(ids, Iterable):
+            assert len(ids) == 1, "one sale order at a time can be paid"
+            ids = ids[0]
+        sale = self.browse(cr, uid, ids, context=context)
+        if date is None:
+            date = sale.date_order
+        if amount is None:
+            amount = sale.residual
+        if sale.payment_term:
+            term_obj = self.pool.get('account.payment.term')
+            amounts = term_obj.compute(cr, uid, sale.payment_term.id,
+                                       amount, date_ref=date,
+                                       context=context)
+        else:
+            amounts = [(date, amount)]
 
-        move_obj = self.pool.get('account.move')
         journal_obj = self.pool.get('account.journal')
-        period_obj = self.pool.get('account.period')
-
-        sale = self.browse(cr, uid, sale_id, context=context)
         journal = journal_obj.browse(cr, uid, journal_id, context=context)
+        # reversed is cosmetic, compute returns terms in the 'wrong' order
+        for date, amount in reversed(amounts):
+            self._add_payment(cr, uid, sale, journal,
+                              amount, date, context=context)
+        return True
+
+    def add_payment(self, cr, uid, ids, journal_id, amount,
+                    date=None, context=None):
+        """ Generate payment move lines of a certain amount linked
+        with the sale order. """
+        if isinstance(ids, Iterable):
+            assert len(ids) == 1, "one sale order at a time can be paid"
+            ids = ids[0]
+        journal_obj = self.pool.get('account.journal')
+
+        sale = self.browse(cr, uid, ids, context=context)
+        if date is None:
+            date = sale.date_order
+        journal = journal_obj.browse(cr, uid, journal_id, context=context)
+        self._add_payment(cr, uid, sale, journal, amount, date, context=context)
+        return True
+
+    def _add_payment(self, cr, uid, sale, journal, amount, date, context=None):
+        """ Generate move lines entries to pay the sale order. """
+        move_obj = self.pool.get('account.move')
+        period_obj = self.pool.get('account.period')
         period_id = period_obj.find(cr, uid, dt=date, context=context)[0]
         period = period_obj.browse(cr, uid, period_id, context=context)
         move_name = self._get_payment_move_name(cr, uid, journal,
@@ -96,9 +133,10 @@ class sale_order(orm.Model):
 
         move_vals['line_id'] = [(0, 0, line) for line in move_lines]
         move_obj.create(cr, uid, move_vals, context=context)
-        return True
 
     def _get_payment_move_name(self, cr, uid, journal, period, context=None):
+        if context is None:
+            context = {}
         seq_obj = self.pool.get('ir.sequence')
         sequence = journal.sequence_id
 

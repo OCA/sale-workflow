@@ -1,4 +1,4 @@
-# -*- encoding: utf-8 -*-
+# -*- coding: utf-8 -*-
 #################################################################################
 #                                                                               #
 #    Magentoerpconnect for OpenERP                                              #
@@ -23,9 +23,7 @@
 from openerp.osv.orm import TransientModel
 from openerp.osv import fields
 import decimal_precision as dp
-from datetime import datetime
 
-#TODO add button on sale_form header instead of more button
 
 class pay_sale_order(TransientModel):
     _name = 'pay.sale.order'
@@ -33,15 +31,18 @@ class pay_sale_order(TransientModel):
 
     _columns = {
         'journal_id': fields.many2one('account.journal', 'Journal'),
-        'amount': fields.float('Amount', digits_compute=dp.get_precision('Sale Price')),
+        'amount': fields.float('Amount',
+                               digits_compute=dp.get_precision('Sale Price')),
         'date': fields.datetime('Payment Date'),
-        }
+    }
 
     def _get_journal_id(self, cr, uid, context=None):
         if context is None:
             context = {}
         if context.get('active_id'):
-            order = self.pool.get('sale.order').browse(cr, uid, context['active_id'], context=context)
+            sale_obj = self.pool.get('sale.order')
+            order = sale_obj.browse(cr, uid, context['active_id'],
+                                    context=context)
             if order.payment_method_id:
                 return order.payment_method_id.journal_id.id
         return False
@@ -50,7 +51,9 @@ class pay_sale_order(TransientModel):
         if context is None:
             context = {}
         if context.get('active_id'):
-            order = self.pool.get('sale.order').browse(cr, uid, context['active_id'], context=context)
+            sale_obj = self.pool.get('sale.order')
+            order = sale_obj.browse(cr, uid, context['active_id'],
+                                    context=context)
             return order.residual
         return False
 
@@ -61,25 +64,21 @@ class pay_sale_order(TransientModel):
     }
 
     def pay_sale_order(self, cr, uid, ids, context=None):
-        """
-        Pay the sale order
-        @param cr: the current row, from the database cursor,
-        @param uid: the current user’s ID for security checks,
-        @param ids: List of account chart’s IDs
-        @return: dictionary of Product list window for a given attributs set
-        """
+        """ Pay the sale order """
         wizard = self.browse(cr, uid, ids[0], context=context)
-        self.pool.get('sale.order').pay_sale_order(cr, uid, context['active_id'], wizard.journal_id.id, wizard.amount, wizard.date, context=context)
+        sale_obj = self.pool.get('sale.order')
+        sale_obj.add_payment(cr, uid,
+                             context['active_id'],
+                             wizard.journal_id.id,
+                             wizard.amount,
+                             wizard.date,
+                             context=context)
         return {'type': 'ir.actions.act_window_close'}
 
     def pay_sale_order_and_confirm(self, cr, uid, ids, context=None):
-        """
-        Pay the sale order
-        @param cr: the current row, from the database cursor,
-        @param uid: the current user’s ID for security checks,
-        @param ids: List of account chart’s IDs
-        @return: dictionary of Product list window for a given attributs set
-        """
+        """ Pay the sale order """
         self.pay_sale_order(cr, uid, ids, context=context)
-        return self.pool.get('sale.order').action_button_confirm(cr, uid, [context['active_id']], context=context)
-    
+        sale_obj = self.pool.get('sale.order')
+        return sale_obj.action_button_confirm(cr, uid,
+                                              [context['active_id']],
+                                              context=context)
