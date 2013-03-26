@@ -1,7 +1,7 @@
-# -*- encoding: utf-8 -*-
+# -*- coding: utf-8 -*-
 ###############################################################################
 #                                                                             #
-#   sale_quick_payment for OpenERP                                            #
+#   sale_payment_method for OpenERP                                            #
 #   Copyright (C) 2011 Akretion Sébastien BEAU <sebastien.beau@akretion.com>  #
 #                                                                             #
 #   This program is free software: you can redistribute it and/or modify      #
@@ -22,7 +22,7 @@
 
 {
     'name': 'Sale Quick Payment',
-    'version': '0.1',
+    'version': '0.2',
     'category': 'Generic Modules/Others',
     'license': 'AGPL-3',
     'description': """
@@ -35,27 +35,19 @@ sale order itself.
 The payment will be linked to the sale order.
 
 If you install the module Sale Automatic Workflow, you can forbid the
-validation of an unpaid order.
-
-The Invoice will be automatically reconciled with the payment.
+validation of an unpaid order and the invoice will be automatically
+reconciled with the payment.
 
 This module was originally designed for the e-commerce sector, but it
 does not preclude to use it in other sectors.
     """,
     'author': 'Akretion',
     'website': 'http://www.akretion.com/',
-    'depends': [
-        'sale_exceptions',
-        ],
-    'init_xml': [],
-    'update_xml': [
-            'wizard/pay_sale_order.xml',
-            'sale_view.xml',
-            'payment_method_view.xml',
-            'security/ir.model.access.csv',
-            'settings/sale.exception.csv',
-    ],
-    'demo_xml': [],
+    'depends': ['sale_payment_method',
+                ],
+    'data': ['wizard/pay_sale_order.xml',
+             'sale_view.xml',
+             ],
+    'demo': [],
     'installable': True,
-    'active': False,
 }

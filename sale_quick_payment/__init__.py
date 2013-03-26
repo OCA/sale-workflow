@@ -1,4 +1,4 @@
-# -*- encoding: utf-8 -*-
+# -*- coding: utf-8 -*-
 #################################################################################
 #                                                                               #
 #    sale_quick_payment for OpenERP                                             #
@@ -19,11 +19,4 @@
 #                                                                               #
 #################################################################################
 
-
-import sale
-import payment_method
-import account_move
-
-# TODO: move the wizard to a module sale_quick_payment and rename this
-# one as sale_payment_method
 import wizard
