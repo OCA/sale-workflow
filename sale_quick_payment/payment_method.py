@@ -1,4 +1,4 @@
-# -*- encoding: utf-8 -*-
+# -*- coding: utf-8 -*-
 ###############################################################################
 #                                                                             #
 #   sale_quick_payment for OpenERP                                  #
@@ -19,20 +19,16 @@
 #                                                                             #
 ###############################################################################
 
-from openerp.osv.orm import Model
-from openerp.osv import fields
-import netsvc
+from openerp.osv import fields, orm
 
 
-class payment_method(Model):
-    
+class payment_method(orm.Model):
     _name = "payment.method"
-    _description = "payment method"
-    
+    _description = "Payment Method"
 
     _columns = {
         'name': fields.char('Name', size=64),
         'journal_id': fields.many2one('account.journal', 'Journal'),
-        'payment_term_id': fields.many2one('account.payment.term', 'Payment Term'),
+        'payment_term_id': fields.many2one('account.payment.term',
+                                           'Payment Term'),
     }
-

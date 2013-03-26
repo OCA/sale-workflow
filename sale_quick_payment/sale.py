@@ -1,167 +1,178 @@
-# -*- encoding: utf-8 -*-
-###############################################################################
-#                                                                             #
-#   sale_quick_payment for OpenERP                                  #
-#   Copyright (C) 2011 Akretion Sébastien BEAU <sebastien.beau@akretion.com>   #
-#                                                                             #
-#   This program is free software: you can redistribute it and/or modify      #
-#   it under the terms of the GNU Affero General Public License as            #
-#   published by the Free Software Foundation, either version 3 of the        #
-#   License, or (at your option) any later version.                           #
-#                                                                             #
-#   This program is distributed in the hope that it will be useful,           #
-#   but WITHOUT ANY WARRANTY; without even the implied warranty of            #
-#   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the             #
-#   GNU Affero General Public License for more details.                       #
-#                                                                             #
-#   You should have received a copy of the GNU Affero General Public License  #
-#   along with this program.  If not, see <http://www.gnu.org/licenses/>.     #
-#                                                                             #
-###############################################################################
+# -*- coding: utf-8 -*-
+##############################################################################
+#
+#    Author: Guewen Baconnier
+#    Copyright (C) 2011 Akretion Sébastien BEAU <sebastien.beau@akretion.com>
+#    Copyright 2013 Camptocamp SA (Guewen Baconnier)
+#
+#    This program is free software: you can redistribute it and/or modify
+#    it under the terms of the GNU Affero General Public License as
+#    published by the Free Software Foundation, either version 3 of the
+#    License, or (at your option) any later version.
+#
+#    This program is distributed in the hope that it will be useful,
+#    but WITHOUT ANY WARRANTY; without even the implied warranty of
+#    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+#    GNU Affero General Public License for more details.
+#
+#    You should have received a copy of the GNU Affero General Public License
+#    along with this program.  If not, see <http://www.gnu.org/licenses/>.
+#
+##############################################################################
 
-from openerp.osv.orm import Model
-from openerp.osv import fields
-from openerp.osv.osv import except_osv
-import netsvc
-from collections import Iterable
+from openerp.osv import orm, fields, osv
 from openerp.tools.translate import _
+from collections import Iterable
 import decimal_precision as dp
 
-class sale_order(Model):
-    _inherit = "sale.order"
 
-    def _get_order_from_voucher(self, cr, uid, ids, context=None):
-        result = []
-        for voucher in self.pool.get('account.voucher').browse(cr, uid, ids, context=context):
-            for order in voucher.order_ids:
-                result.append(order.id)
-        return list(set(result))
+class sale_order(orm.Model):
+    _inherit = 'sale.order'
+
+    def _get_order_from_move(self, cr, uid, ids, context=None):
+        result = set()
+        move_obj = self.pool.get('account.move')
+        for move in move_obj.browse(cr, uid, ids, context=context):
+            for order in move.order_ids:
+                result.add(order.id)
+        return list(result)
 
     def _get_order_from_line(self, cr, uid, ids, context=None):
-        return self.pool.get('sale.order')._get_order(cr, uid, ids, context=context)
+        so_obj = self.pool.get('sale.order')
+        return so_obj._get_order(cr, uid, ids, context=context)
 
     def _amount_residual(self, cr, uid, ids, field_name, args, context=None):
         res = {}
-        #TODO add here the support of multi-currency payment if need
         for order in self.browse(cr, uid, ids, context=context):
-            res[order.id] = order.amount_total
-            for payment in order.payment_ids:
-                if payment.state == 'posted':
-                    res[order.id] -= payment.amount
+            amount = order.amount_total
+            for move in order.payment_ids:
+                amount -= move.amount
+            res[order.id] = amount
         return res
 
     _columns = {
-        'payment_ids': fields.many2many('account.voucher', string='Payments'),
+        'payment_ids': fields.many2many('account.move',
+                                        string='Payments Entries'),
         'payment_method_id': fields.many2one('payment.method',
                                              'Payment Method',
                                              ondelete='restrict'),
-        'residual': fields.function(_amount_residual, digits_compute=dp.get_precision('Account'), string='Balance',
-            store = {
-                'sale.order': (lambda self, cr, uid, ids, c={}: ids, ['order_line', 'payment_ids'], 10),
-                'sale.order.line': (_get_order_from_line, ['price_unit', 'tax_id', 'discount', 'product_uom_qty'], 20),
-                'account.voucher': (_get_order_from_voucher, ['amount'], 30),
-            },
-            ),
+        'residual': fields.function(
+            _amount_residual,
+            digits_compute=dp.get_precision('Account'),
+            string='Balance',
+            store=False),
     }
 
     def copy(self, cr, uid, id, default=None, context=None):
-        if not default:
+        if default is None:
             default = {}
-        default.update({
-            'payment_ids': False,
-        })
-        return super(sale_order, self).copy(cr, uid, id, default, context=context)
+        default['payment_ids'] = False
+        return super(sale_order, self).copy(cr, uid, id,
+                                            default, context=context)
 
-    def pay_sale_order(self, cr, uid, sale_id, journal_id, amount, date, context=None):
-        """
-        Generate a voucher for the payment
-
-        It will try to match with the invoice of the order by
-        matching the payment ref and the invoice origin.
-
-        The invoice does not necessarily exists at this point, so if yes,
-        it will be matched in the voucher, otherwise, the voucher won't
-        have any invoice lines and the payment lines will be reconciled
-        later with "auto-reconcile" if the option is used.
-
-        """
+    def pay_sale_order(self, cr, uid, sale_id, journal_id,
+                       amount, date, context=None):
+        """ Generate move lines entries to pay the sale order. """
         if isinstance(sale_id, Iterable):
+            assert len(sale_id) == 1, "one sale order at a time can be paid"
             sale_id = sale_id[0]
 
-        voucher_obj = self.pool.get('account.voucher')
-        voucher_line_obj = self.pool.get('account.voucher.line')
-        move_line_obj = self.pool.get('account.move.line')
+        move_obj = self.pool.get('account.move')
+        journal_obj = self.pool.get('account.journal')
+        period_obj = self.pool.get('account.period')
+
         sale = self.browse(cr, uid, sale_id, context=context)
+        journal = journal_obj.browse(cr, uid, journal_id, context=context)
+        period_id = period_obj.find(cr, uid, dt=date, context=context)[0]
+        period = period_obj.browse(cr, uid, period_id, context=context)
+        move_name = self._get_payment_move_name(cr, uid, journal,
+                                                period, context=context)
+        move_vals = self._prepare_payment_move(cr, uid, move_name, sale,
+                                               journal, period, date,
+                                               context=context)
+        move_lines = self._prepare_payment_move_line(cr, uid, move_name, sale,
+                                                     journal, period, amount,
+                                                     date, context=context)
 
-        journal = self.pool.get('account.journal').browse(
-            cr, uid, journal_id, context=context)
-
-        voucher_vals = {'reference': sale.name,
-                        'journal_id': journal_id,
-                        'period_id': self.pool.get('account.period').find(cr, uid, dt=date,
-                                                                          context=context)[0],
-                        'amount': amount,
-                        'date': date,
-                        'partner_id': sale.partner_id.id,
-                        'account_id': journal.default_credit_account_id.id,
-                        'currency_id': journal.company_id.currency_id.id,
-                        'company_id': journal.company_id.id,
-                        'type': 'receipt', }
-
-        # Set the payment rate if currency are different
-        if journal.currency.id and journal.company_id.currency_id.id != journal.currency.id:
-            currency_id = journal.company_id.currency_id.id
-            payment_rate_currency_id = journal.currency.id
-
-            currency_obj = self.pool.get('res.currency')
-            ctx= context.copy()
-            ctx.update({'date': date})
-            tmp = currency_obj.browse(cr, uid, payment_rate_currency_id, context=ctx).rate
-            payment_rate = tmp / currency_obj.browse(cr, uid, currency_id, context=ctx).rate
-            voucher_vals.update({
-                'payment_rate_currency_id': payment_rate_currency_id,
-                'payment_rate': payment_rate,
-            })
-
-        voucher_id = voucher_obj.create(cr, uid, voucher_vals, context=context)
-
-        # call on change to search the invoice lines
-        onchange_voucher = voucher_obj.onchange_partner_id(
-            cr, uid, [],
-            partner_id=sale.partner_id.id,
-            journal_id=journal.id,
-            amount=amount,
-            currency_id=journal.company_id.currency_id.id,
-            ttype='receipt',
-            date=date,
-            context=context)['value']
-
-        # keep in the voucher only the move line of the
-        # invoice (eventually) created for this order
-        matching_line = {}
-        if onchange_voucher.get('line_cr_ids'):
-            voucher_lines = onchange_voucher['line_cr_ids']
-            line_ids = [line['move_line_id'] for line in voucher_lines]
-            matching_ids = [line.id for line
-                            in move_line_obj.browse(
-                                cr, uid, line_ids, context=context)
-                            if line.ref == sale.name]
-            matching_lines = [line for line
-                              in voucher_lines
-                              if line['move_line_id'] in matching_ids]
-            if matching_lines:
-                matching_line = matching_lines[0]
-                matching_line.update({
-                    'amount': amount,
-                    'voucher_id': voucher_id,
-                })
-
-        if matching_line:
-            voucher_line_obj.create(cr, uid, matching_line, context=context)
-
-        wf_service = netsvc.LocalService("workflow")
-        wf_service.trg_validate(
-            uid, 'account.voucher', voucher_id, 'proforma_voucher', cr)
-        sale.write({'payment_ids': [(4,voucher_id)]}, context=context)
+        move_vals['line_id'] = [(0, 0, line) for line in move_lines]
+        move_obj.create(cr, uid, move_vals, context=context)
         return True
 
+    def _get_payment_move_name(self, cr, uid, journal, period, context=None):
+        seq_obj = self.pool.get('ir.sequence')
+        sequence = journal.sequence_id
+
+        if not sequence:
+            raise osv.except_osv(
+                _('Configuration Error'),
+                _('Please define a sequence on the journal %s.') %
+                journal.name)
+        if not sequence.active:
+            raise osv.except_osv(
+                _('Configuration Error'),
+                _('Please activate the sequence of the journal %s.') %
+                journal.name)
+
+        ctx = context.copy()
+        ctx['fiscalyear_id'] = period.fiscalyear_id.id
+        name = seq_obj.next_by_id(cr, uid, sequence.id, context=ctx)
+        return name
+
+    def _prepare_payment_move(self, cr, uid, move_name, sale, journal,
+                              period, date, context=None):
+        return {'name': move_name,
+                'journal_id': journal.id,
+                'date': date,
+                'ref': sale.name,
+                'period_id': period.id,
+                'order_ids': [(4, sale.id)],
+                }
+
+    def _prepare_payment_move_line(self, cr, uid, move_name, sale, journal,
+                                   period, amount, date, context=None):
+        """ """
+        partner_obj = self.pool.get('res.partner')
+        currency_obj = self.pool.get('res.currency')
+        partner = partner_obj._find_accounting_partner(sale.partner_id)
+
+        company = journal.company_id
+
+        currency_id = False
+        amount_currency = 0.0
+        if journal.currency and journal.currency.id != company.currency_id.id:
+            currency_id = journal.currency.id
+            amount_currency, amount = (amount,
+                                       currency_obj.compute(cr, uid,
+                                                            currency_id,
+                                                            company.currency_id.id,
+                                                            amount,
+                                                            context=context))
+
+        # payment line (bank / cash)
+        debit_line = {
+            'name': move_name,
+            'debit': amount,
+            'credit': 0.0,
+            'account_id': journal.default_credit_account_id.id,
+            'journal_id': journal.id,
+            'period_id': period.id,
+            'partner_id': partner.id,
+            'date': date,
+            'amount_currency': amount_currency,
+            'currency_id': currency_id,
+        }
+
+        # payment line (receivable)
+        credit_line = {
+            'name': move_name,
+            'debit': 0.0,
+            'credit': amount,
+            'account_id': partner.property_account_receivable.id,
+            'journal_id': journal.id,
+            'period_id': period.id,
+            'partner_id': partner.id,
+            'date': date,
+            'amount_currency': -amount_currency,
+            'currency_id': currency_id,
+        }
+        return debit_line, credit_line

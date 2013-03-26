@@ -22,5 +22,8 @@
 
 import sale
 import payment_method
+import account_move
+
+# TODO: move the wizard to a module sale_quick_payment and rename this
+# one as sale_payment_method
 import wizard
-import account_voucher

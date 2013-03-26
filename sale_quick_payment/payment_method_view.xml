@@ -8,15 +8,14 @@
 <openerp>
     <data>
 
-        <!-- VIEW FOR THE OBJECT : payment_method -->
         <record id="payment_method_view_form" model="ir.ui.view">
             <field name="name">sale_quick_payment.payment_method.view_form</field>
             <field name="model">payment.method</field>
-            <field eval="16" name="priority"/>
-            <field name="type">form</field>
             <field name="arch" type="xml">
-                <form string="payment_method">
-                    <field name="name" />
+                <form string="E-Commerce Payment Methods" version="7.0">
+                    <h1>
+                        <field name="name" class="oe_inline"/>
+                    </h1>
                     <field name="journal_id" />
                     <field name="payment_term_id" />
                 </form>
@@ -26,10 +25,8 @@
         <record id="payment_method_view_tree" model="ir.ui.view">
             <field name="name">sale_quick_payment.payment_method.view_tree</field>
             <field name="model">payment.method</field>
-            <field eval="16" name="priority"/>
-            <field name="type">tree</field>
             <field name="arch" type="xml">
-                <tree string="payment_method">
+                <tree string="E-Commerce Payment Methods">
                     <field name="name" />
                     <field name="journal_id" />
                     <field name="payment_term_id" />
@@ -39,7 +36,7 @@
 
 
         <record id="act_payment_method_form" model="ir.actions.act_window">
-            <field name="name">Customer Payment Method</field>
+            <field name="name">E-Commerce Payment Methods</field>
             <field name="res_model">payment.method</field>
             <field name="view_type">form</field>
             <field name="view_mode">tree,form</field>
