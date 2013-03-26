@@ -29,7 +29,7 @@
     'author': 'Akretion',
     'website': 'http://www.akretion.com/',
     'depends': [
-        'sale_quick_payment',
+        'sale_payment_method',
         'framework_helpers',
         'stock',
     ], 
