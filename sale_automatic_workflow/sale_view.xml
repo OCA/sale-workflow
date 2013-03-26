@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!--
-  sale_automic_workflow for OpenERP
+  sale_automatic_workflow for OpenERP
   Copyright (C) 2011 Akretion Sébastien BEAU <sebastien.beau@akretion.com>
   The licence is in the file __openerp__.py
 -->
@@ -13,7 +13,7 @@
         <record id="sale_order_view_form" model="ir.ui.view">
             <field name="name">sale_automatic_workflow.sale_order.view_form</field>
             <field name="model">sale.order</field>
-            <field name="inherit_id" ref="sale_quick_payment.sale_order_view_form" />
+            <field name="inherit_id" ref="sale_payment_method.sale_order_view_form" />
             <field eval="16" name="priority"/>
             <field name="type">form</field>
             <field name="arch" type="xml">
