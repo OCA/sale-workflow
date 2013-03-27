@@ -26,7 +26,8 @@ class sale_order(orm.Model):
     _inherit = "sale.order"
     _columns = {
         'workflow_process_id': fields.many2one('sale.workflow.process',
-                                               string='Workflow Process'),
+                                               string='Workflow Process',
+                                               ondelete='restrict'),
     }
 
     def _prepare_invoice(self, cr, uid, order, lines, context=None):
