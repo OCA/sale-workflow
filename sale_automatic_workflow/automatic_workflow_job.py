@@ -75,6 +75,20 @@ class automatic_workflow_job(orm.Model):
     invoices, pickings...  """
     _name = 'automatic.workflow.job'
 
+    def _validate_sale_orders(self, cr, uid, context=None):
+        wf_service = netsvc.LocalService("workflow")
+        sale_obj = self.pool.get('sale.order')
+        sale_ids = sale_obj.search(
+            cr, uid,
+            [('state', '=', 'draft'),
+             ('workflow_process_id.validate_order', '=', True)],
+            context=context)
+        _logger.debug('Sale Orders to validate: %s', sale_ids)
+        for sale_id in sale_ids:
+            with commit(cr):
+                wf_service.trg_validate(uid, 'sale.order',
+                                        sale_id, 'order_confirm', cr)
+
     def _reconcile_invoices(self, cr, uid, ids=None, context=None):
         invoice_obj = self.pool.get('account.invoice')
         if ids is None:
@@ -126,6 +140,7 @@ class automatic_workflow_job(orm.Model):
     def run(self, cr, uid, ids=None, context=None):
         """ Must be called from ir.cron """
 
+        self._validate_sale_orders(cr, uid, context=context)
         self._validate_invoices(cr, uid, context=context)
         self._reconcile_invoices(cr, uid, context=context)
         self._validate_pickings(cr, uid, context=context)
