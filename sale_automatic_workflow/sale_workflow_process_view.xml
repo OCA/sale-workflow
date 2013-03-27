@@ -12,8 +12,6 @@
         <record id="sale_workflow_process_view_form" model="ir.ui.view">
             <field name="name">sale_automic_workflow.sale_workflow_process.view_form</field>
             <field name="model">sale.workflow.process</field>
-            <field eval="16" name="priority"/>
-            <field name="type">form</field>
             <field name="arch" type="xml">
                 <form string="sale_workflow_process">
                     <field name="name"/>
@@ -21,10 +19,10 @@
                     <field name="picking_policy"/>
                     <field name="order_policy"/>
                     <field name="invoice_quantity"/>
-                    <separator string="Worflow Option" colspan="4" />
+                    <separator string="Workflow Options" colspan="4" />
                     <field name="validate_order"/>
                     <field name="validate_picking"/>
-                    <field name="validate_manufactoring_order"/>
+                    <!-- <field name="validate_manufactoring_order"/> -->
                     <field name="create_invoice" />
                     <field name="validate_invoice"/>
                     <field name="invoice_date_is_order_date"/>
@@ -37,8 +35,6 @@
         <record id="sale_workflow_process_view_tree" model="ir.ui.view">
             <field name="name">sale_automic_workflow.sale_workflow_process.view_tree</field>
             <field name="model">sale.workflow.process</field>
-            <field eval="16" name="priority"/>
-            <field name="type">tree</field>
             <field name="arch" type="xml">
                 <tree string="sale_workflow_process">
                     <field name="name"/>
@@ -47,7 +43,7 @@
                     <field name="invoice_quantity"/>
                     <field name="validate_order"/>
                     <field name="validate_picking"/>
-                    <field name="validate_manufactoring_order"/>
+                    <!-- <field name="validate_manufactoring_order"/> -->
                     <field name="create_invoice" />
                     <field name="validate_invoice"/>
                     <field name="invoice_date_is_order_date"/>
