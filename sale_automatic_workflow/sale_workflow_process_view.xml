@@ -26,7 +26,6 @@
                     <field name="create_invoice" />
                     <field name="validate_invoice"/>
                     <field name="invoice_date_is_order_date"/>
-                    <field name="days_before_order_cancel"/>
 
                 </form>
             </field>
@@ -47,7 +46,6 @@
                     <field name="create_invoice" />
                     <field name="validate_invoice"/>
                     <field name="invoice_date_is_order_date"/>
-                    <field name="days_before_order_cancel"/>
                 </tree>
             </field>
         </record>
