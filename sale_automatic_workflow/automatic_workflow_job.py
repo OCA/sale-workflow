@@ -95,26 +95,33 @@ class automatic_workflow_job(orm.Model):
             [('state', 'in', ['draft']),
              ('workflow_process_id.validate_invoice', '=', True)],
             context=context)
-        if invoice_ids:
-            _logger.debug('Start to validate invoices: %s', invoice_ids)
+        _logger.debug('Invoices to validate: %s', invoice_ids)
         for invoice_id in invoice_ids:
             with commit(cr):
                 wf_service.trg_validate(uid, 'account.invoice',
                                         invoice_id, 'invoice_open', cr)
 
     def _validate_pickings(self, cr, uid, context=None):
-        picking_obj = self.pool.get('stock.picking.out')
+        picking_obj = self.pool.get('stock.picking')
+        picking_out_obj = self.pool.get('stock.picking.out')
+        # We search on stock.picking (using the type) rather than
+        # stock.picking.out because the ORM seems bugged and can't
+        # search on stock_picking_out.workflow_process_id.
+        # Later, we'll call `validate_picking` on stock.picking.out
+        # because anyway they have the same ID and the call will be at
+        # the correct object level.
         picking_ids = picking_obj.search(
             cr, uid,
             [('state', 'in', ['draft', 'confirmed', 'assigned']),
-             ('workflow_process_id.validate_picking', '=', True)],
+             ('workflow_process_id.validate_picking', '=', True),
+             ('type', '=', 'out')],
             context=context)
+        _logger.debug('Pickings to validate: %s', picking_ids)
         if picking_ids:
-            _logger.debug('Start to validate pickings: %s', picking_ids)
             with commit(cr):
-                picking_obj.validate_picking(cr, uid,
-                                             picking_ids,
-                                             context=context)
+                picking_out_obj.validate_picking(cr, uid,
+                                                 picking_ids,
+                                                 context=context)
 
     def run(self, cr, uid, ids=None, context=None):
         """ Must be called from ir.cron """
