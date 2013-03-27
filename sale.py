@@ -214,3 +214,13 @@ class sale_order(orm.Model):
             'currency_id': currency_id,
         }
         return debit_line, credit_line
+
+    def onchange_payment_method_id(self, cr, uid, ids, payment_method_id, context=None):
+        if not payment_method_id:
+            return {}
+        result = {}
+        method_obj = self.pool.get('payment.method')
+        method = method_obj.browse(cr, uid, payment_method_id, context=context)
+        if method.payment_term_id:
+            result['payment_term'] = method.payment_term_id.id
+        return {'value': result}

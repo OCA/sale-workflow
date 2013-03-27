@@ -16,8 +16,10 @@
                     <h1>
                         <field name="name" class="oe_inline"/>
                     </h1>
-                    <field name="journal_id" />
-                    <field name="payment_term_id" />
+                    <group>
+                        <field name="journal_id" />
+                        <field name="payment_term_id" />
+                    </group>
                 </form>
             </field>
         </record>

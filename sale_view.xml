@@ -18,7 +18,8 @@
                 <page string="Other Information" position="after">
                     <page name="automation_information" string="Automation Information">
                         <group name="payment_information" colspan="4">
-                            <field name="payment_method_id" />
+                            <field name="payment_method_id"
+                              on_change="onchange_payment_method_id(payment_method_id)"/>
                             <group name="payments" string="Generated Payments" colspan="4">
                                 <field name="payment_ids" nolabel="1" />
                             </group>
