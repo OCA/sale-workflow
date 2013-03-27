@@ -26,10 +26,9 @@ from openerp.osv import fields
 
 class payment_method(Model):
     _inherit = "payment.method"
-    
 
     _columns = {
-        'workflow_process_id': fields.many2one('sale.workflow.process', 'Workflow Process'),
-
+        'workflow_process_id': fields.many2one('sale.workflow.process',
+                                               'Workflow Process'),
     }
 
