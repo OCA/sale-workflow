@@ -32,10 +32,11 @@ class sale_workflow_process(orm.Model):
                                             ('one', 'Complete Delivery')],
                                            string='Packing Policy'),
         'order_policy': fields.selection([
-            ('prepaid', 'Payment Before Delivery'),
-            ('manual', 'Shipping & Manual Invoice'),
-            ('postpaid', 'Invoice on Order After Delivery'),
-            ('picking', 'Invoice from the Packing'),
+            ('prepaid', 'Before Delivery'),
+            ('manual', 'On Demand'),
+            # https://bugs.launchpad.net/openobject-addons/+bug/1160835
+            # ('postpaid', 'Invoice on Order After Delivery'),
+            ('picking', 'On Delivery Order'),
         ], 'Shipping Policy'),
         'invoice_quantity': fields.selection([('order', 'Ordered Quantities'),
                                               ('procurement', 'Shipped Quantities')],
