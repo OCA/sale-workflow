@@ -41,7 +41,7 @@ class sale_order(orm.Model):
         picking_vals['workflow_process_id'] = order.workflow_process_id.id
         return picking_vals
 
-    def onchange_workflow_process(self, cr, uid, ids, workflow_process_id, context=None):
+    def onchange_workflow_process_id(self, cr, uid, ids, workflow_process_id, context=None):
         if not workflow_process_id:
             return {}
         result = {}
