@@ -50,10 +50,6 @@ class sale_workflow_process(orm.Model):
         'validate_picking': fields.boolean('Validate Picking'),
         # TODO not implemented actually
         # 'validate_manufactoring_order': fields.boolean('Validate Manufactoring Order'),
-        'days_before_order_cancel': fields.integer(  # XXX part of the workflow?
-            'Days Delay before Cancel',
-            help='number of days before an unpaid order will be cancelled '
-                 'at next status update from Magento'),
         'invoice_date_is_order_date': fields.boolean(
             'Force Invoice Date',
             help="When checked, the invoice date will be "
@@ -65,5 +61,4 @@ class sale_workflow_process(orm.Model):
         'order_policy': 'manual',
         'invoice_quantity': 'order',
         'validate_invoice': False,
-        'days_before_order_cancel': 30,
     }
