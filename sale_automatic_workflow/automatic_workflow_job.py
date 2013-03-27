@@ -21,12 +21,10 @@
 
 
 import logging
-from contextlib import closing
+from contextlib import contextmanager
 from openerp.osv import orm
 from openerp import pooler
 from openerp import netsvc
-from openerp.tools.translate import _
-from framework_helpers.context_managers import new_cursor, commit_now
 
 """
 Some comments about the implementation
@@ -55,49 +53,73 @@ it: sebastien.beau@akretion.com
 _logger = logging.getLogger(__name__)
 
 
+@contextmanager
+def commit(cr):
+    """
+    Commit the cursor after the ``yield``, or rollback it if an
+    exception occurs.
+
+    Warning: using this method, the exceptions are logged then discarded.
+    """
+    try:
+        yield
+    except Exception, e:
+        cr.rollback()
+        _logger.exception('Error during an automatic workflow action.')
+    else:
+        cr.commit()
+
+
 class automatic_workflow_job(orm.Model):
     """ Scheduler that will play automatically the validation of
     invoices, pickings...  """
     _name = 'automatic.workflow.job'
 
-    def run(self, cr, uid, ids=None, context=None):
-        """ Must be called from ir.cron """
+    def _reconcile_invoices(self, cr, uid, ids=None, context=None):
+        invoice_obj = self.pool.get('account.invoice')
+        if ids is None:
+            ids = invoice_obj.search(cr, uid,
+                                     [('state', 'in', ['open'])],
+                                     context=context)
+        for invoice_id in ids:
+            with commit(cr):
+                invoice_obj.reconcile_invoice(cr, uid,
+                                              [invoice_id],
+                                              context=context)
+
+    def _validate_invoices(self, cr, uid, context=None):
         wf_service = netsvc.LocalService("workflow")
         invoice_obj = self.pool.get('account.invoice')
-        picking_obj = self.pool.get('stock.picking.out')
-
-        open_invoice_ids = invoice_obj.search(cr, uid,
-                                                [('state', 'in', ['open'])],
-                                                context=context)
-        for invoice_id in open_invoice_ids:
-            with commit_now(cr, _logger) as cr:
-                invoice_obj.reconcile_invoice(cr, uid,
-                                                [invoice_id],
-                                                context=context)
-
         invoice_ids = invoice_obj.search(
             cr, uid,
             [('state', 'in', ['draft']),
-                ('workflow_process_id.validate_invoice', '=', True)],
+             ('workflow_process_id.validate_invoice', '=', True)],
             context=context)
         if invoice_ids:
             _logger.debug('Start to validate invoices: %s', invoice_ids)
         for invoice_id in invoice_ids:
-            with commit_now(cr, _logger) as cr:
+            with commit(cr):
                 wf_service.trg_validate(uid, 'account.invoice',
                                         invoice_id, 'invoice_open', cr)
-            with commit_now(cr, _logger) as cr:
-                invoice_obj.reconcile_invoice(cr, uid, [invoice_id],
-                                                context=context)
 
+    def _validate_pickings(self, cr, uid, context=None):
+        picking_obj = self.pool.get('stock.picking.out')
         picking_ids = picking_obj.search(
             cr, uid,
             [('state', 'in', ['draft', 'confirmed', 'assigned']),
-                ('workflow_process_id.validate_picking', '=', True)],
+             ('workflow_process_id.validate_picking', '=', True)],
             context=context)
         if picking_ids:
             _logger.debug('Start to validate pickings: %s', picking_ids)
-            with commit_now(cr, _logger) as cr:
-                picking_obj.validate_picking(cr, uid, picking_ids,
-                                                context=context)
+            with commit(cr):
+                picking_obj.validate_picking(cr, uid,
+                                             picking_ids,
+                                             context=context)
+
+    def run(self, cr, uid, ids=None, context=None):
+        """ Must be called from ir.cron """
+
+        self._validate_invoices(cr, uid, context=context)
+        self._reconcile_invoices(cr, uid, context=context)
+        self._validate_pickings(cr, uid, context=context)
         return True

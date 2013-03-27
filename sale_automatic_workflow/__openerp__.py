@@ -45,20 +45,19 @@ A workflow can:
   * Create an invoice
   * Validate the invoice
   * Confirm the picking
-  * Validate the manufacturing order
 
-This module is perfectly suited for E-Commerce.
+This module is used by Magentoerpconnect and Prestashoperpconnect.
+It is well suited for other E-Commerce connectors as well.
+Note: a part of the workflows like the default values must be
+implemented in the connectors modules.
 """,
     'author': 'Akretion',
     'website': 'http://www.akretion.com/',
     'depends': ['sale_payment_method',
-                'framework_helpers',
                 'stock',
                 ],
     'data': ['sale_view.xml',
              'sale_workflow.xml',
-#             'invoice_workflow.xml',
-#             'stock_workflow.xml',
              'sale_workflow_process_view.xml',
              'payment_method_view.xml',
              'automatic_workflow_data.xml',
