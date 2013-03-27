@@ -19,40 +19,49 @@
 #                                                                               #
 #################################################################################
 
-from openerp.osv.orm import Model
-from openerp.osv import fields
-import netsvc
+from openerp.osv import orm, fields
 
 
-class sale_workflow_process(Model):
+class sale_workflow_process(orm.Model):
     _name = "sale.workflow.process"
     _description = "sale workflow process"
 
     _columns = {
         'name': fields.char('Name', size=64),
-        'picking_policy': fields.selection([('direct', 'Partial Delivery'), ('one', 'Complete Delivery')], 'Packing Policy'),
+        'picking_policy': fields.selection([('direct', 'Partial Delivery'),
+                                            ('one', 'Complete Delivery')],
+                                           string='Packing Policy'),
         'order_policy': fields.selection([
             ('prepaid', 'Payment Before Delivery'),
             ('manual', 'Shipping & Manual Invoice'),
             ('postpaid', 'Invoice on Order After Delivery'),
             ('picking', 'Invoice from the Packing'),
         ], 'Shipping Policy'),
-        'invoice_quantity': fields.selection([('order', 'Ordered Quantities'), ('procurement', 'Shipped Quantities')], 'Invoice on'),
-        'validate_order': fields.selection([('always', 'Always'), ('if_paid', 'Only If Paid'), ('never', 'Never')], 'Validate Order'),
+        'invoice_quantity': fields.selection([('order', 'Ordered Quantities'),
+                                              ('procurement', 'Shipped Quantities')],
+                                             string='Invoice on'),
+        'validate_order': fields.selection([('always', 'Always'),
+                                            ('if_paid', 'Only If Paid'),
+                                            ('never', 'Never')],
+                                           'Validate Order'),
         'create_invoice': fields.boolean('Create Invoice'),
         'validate_invoice': fields.boolean('Validate Invoice'),
         'validate_picking': fields.boolean('Validate Picking'),
         'validate_manufactoring_order': fields.boolean('Validate Manufactoring Order'),
-        'days_before_order_cancel': fields.integer('Days Delay before Cancel', help='number of days before an unpaid order will be cancelled at next status update from Magento'),
-        'invoice_date_is_order_date' : fields.boolean('Force Invoice Date', help="If it's check the invoice date will be the same as the order date"),
+        'days_before_order_cancel': fields.integer(  # XXX part of the workflow?
+            'Days Delay before Cancel',
+            help='number of days before an unpaid order will be cancelled '
+                 'at next status update from Magento'),
+        'invoice_date_is_order_date': fields.boolean(
+            'Force Invoice Date',
+            help="When checked, the invoice date will be "
+                 "the same than the order's date"),
     }
 
     _defaults = {
-        'picking_policy': lambda *a: 'direct',
-        'order_policy': lambda *a: 'manual',
-        'invoice_quantity': lambda *a: 'order',
-        'validate_invoice': lambda *a: False,
-        'days_before_order_cancel': lambda *a: 30,
+        'picking_policy': 'direct',
+        'order_policy': 'manual',
+        'invoice_quantity': 'order',
+        'validate_invoice': False,
+        'days_before_order_cancel': 30,
     }
-
-
