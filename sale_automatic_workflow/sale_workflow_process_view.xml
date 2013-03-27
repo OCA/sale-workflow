@@ -66,19 +66,4 @@
         <menuitem action="act_sale_workflow_process_form" id="menu_act_sale_workflow_process_form" parent="base.menu_sale_config_sales" sequence="20"/>
 
     </data>
-    <data noupdate="1">
-
-        <record forcecreate="True" id="ir_cron_automatic_workflow_job" model="ir.cron">
-            <field name="name">Automatic Workflow Job</field>
-            <field eval="True" name="active"/>
-            <field name="user_id" ref="base.user_root"/>
-            <field name="interval_number">1</field>
-            <field name="interval_type">minutes</field>
-            <field name="numbercall">-1</field>
-            <field eval="False" name="doall"/>
-            <field eval="'automatic.workflow.job'" name="model"/>
-            <field eval="'run'" name="function"/>
-            <field eval="'()'" name="args"/>
-        </record>
-    </data>
 </openerp>
