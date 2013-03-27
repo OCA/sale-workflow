@@ -48,8 +48,6 @@ A workflow can:
 
 This module is used by Magentoerpconnect and Prestashoperpconnect.
 It is well suited for other E-Commerce connectors as well.
-Note: a part of the workflows like the default values must be
-implemented in the connectors modules.
 """,
     'author': 'Akretion',
     'website': 'http://www.akretion.com/',
