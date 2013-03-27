@@ -41,6 +41,19 @@ class sale_order(orm.Model):
         picking_vals['workflow_process_id'] = order.workflow_process_id.id
         return picking_vals
 
+    def onchange_payment_method_id(self, cr, uid, ids, payment_method_id, context=None):
+        values = super(sale_order, self).onchange_payment_method_id(
+            cr, uid, ids, payment_method_id, context=context)
+        if not payment_method_id:
+            return values
+        method_obj = self.pool.get('payment.method')
+        method = method_obj.browse(cr, uid, payment_method_id, context=context)
+        workflow = method.workflow_process_id
+        if workflow:
+            values.setdefault('value', {})
+            values['value']['workflow_process_id'] = workflow.id
+        return values
+
     def onchange_workflow_process_id(self, cr, uid, ids, workflow_process_id, context=None):
         if not workflow_process_id:
             return {}
