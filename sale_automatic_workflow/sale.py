@@ -3,6 +3,7 @@
 #                                                                               #
 #    sale_automatic_workflow for OpenERP                                        #
 #    Copyright (C) 2011 Akretion Sébastien BEAU <sebastien.beau@akretion.com>   #
+#    Copyright 2013 Camptocamp SA (Guewen Baconnier)
 #                                                                               #
 #    This program is free software: you can redistribute it and/or modify       #
 #    it under the terms of the GNU Affero General Public License as             #
@@ -24,12 +25,8 @@ from openerp.osv import orm, fields
 class sale_order(orm.Model):
     _inherit = "sale.order"
     _columns = {
-        'workflow_process_id':fields.related('payment_method_id',
-                                             'workflow_process_id',
-                                             type='many2one',
-                                             relation='sale.workflow.process',
-                                             string='Workflow Process',
-                                             readonly=True),
+        'workflow_process_id': fields.many2one('sale.workflow.process',
+                                               string='Workflow Process'),
     }
 
     def _prepare_invoice(self, cr, uid, order, lines, context=None):
@@ -43,3 +40,17 @@ class sale_order(orm.Model):
         picking_vals = super(sale_order, self)._prepare_order_picking(cr, uid, order, context=context)
         picking_vals['workflow_process_id'] = order.workflow_process_id.id
         return picking_vals
+
+    def onchange_workflow_process(self, cr, uid, ids, workflow_process_id, context=None):
+        if not workflow_process_id:
+            return {}
+        result = {}
+        workflow_obj = self.pool.get('sale.workflow.process')
+        workflow = workflow_obj.browse(cr, uid, workflow_process_id, context=context)
+        if workflow.picking_policy:
+            result['picking_policy'] = workflow.picking_policy
+        if workflow.order_policy:
+            result['order_policy'] = workflow.order_policy
+        if workflow.invoice_quantity:
+            result['invoice_quantity'] = workflow.invoice_quantity
+        return {'value': result}
