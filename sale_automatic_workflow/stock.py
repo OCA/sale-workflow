@@ -22,13 +22,18 @@
 from openerp.osv import orm, fields
 
 
-class stock_picking_out(orm.Model):
-    _inherit = "stock.picking.out"
+class stock_picking(orm.Model):
+    _inherit = "stock.picking"
 
     _columns = {
+        # if we add the column in stock.picking.out, we can't write it
         'workflow_process_id': fields.many2one('sale.workflow.process',
                                                'Sale Workflow Process'),
     }
+
+
+class stock_picking_out(orm.Model):
+    _inherit = "stock.picking.out"
 
     def _prepare_invoice(self, cr, uid, picking, partner, inv_type, journal_id, context=None):
         invoice_vals = super(stock_picking_out, self)._prepare_invoice(
