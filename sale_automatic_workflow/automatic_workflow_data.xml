@@ -6,7 +6,7 @@
 -->
 
 <openerp>
-    <data>
+    <data noupdate="1">
 
         <!-- VIEW FOR THE OBJECT : payment_method -->
         <record id="automatic_validation" model="sale.workflow.process">
@@ -21,10 +21,6 @@
             <field name="validate_picking" eval="0" />
             <field name="validate_manufactoring_order" eval="0" />
         </record>
-
-    </data>
-
-    <data noupdate="1">
 
         <record forcecreate="True" id="ir_cron_automatic_workflow_job" model="ir.cron">
             <field name="name">Automatic Workflow Job</field>
