@@ -1,4 +1,4 @@
-# -*- encoding: utf-8 -*-
+# -*- coding: utf-8 -*-
 #################################################################################
 #                                                                               #
 #    sale_automatic_workflow for OpenERP                                        #
@@ -18,14 +18,18 @@
 #    along with this program.  If not, see <http://www.gnu.org/licenses/>.      #
 #                                                                               #
 #################################################################################
-from openerp.osv.orm import Model
-from openerp.osv import fields
+from openerp.osv import orm, fields
 
-class sale_order(Model):
+
+class sale_order(orm.Model):
     _inherit = "sale.order"
     _columns = {
-        'workflow_process_id':fields.related('payment_method_id', 'workflow_process_id', \
-            type='many2one',relation='sale.workflow.process', string='Workflow Process', readonly=True),
+        'workflow_process_id':fields.related('payment_method_id',
+                                             'workflow_process_id',
+                                             type='many2one',
+                                             relation='sale.workflow.process',
+                                             string='Workflow Process',
+                                             readonly=True),
     }
 
     def _prepare_invoice(self, cr, uid, order, lines, context=None):
