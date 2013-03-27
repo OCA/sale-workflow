@@ -14,7 +14,7 @@
             <field name="picking_policy">one</field>
             <field name="order_policy">picking</field>
             <field name="invoice_quantity">order</field>
-            <field name="validate_order">if_paid</field>
+            <field name="validate_order" eval="0"/>
             <field name="create_invoice" eval="1" />
             <field name="validate_invoice" eval="1" />
             <field name="invoice_date_is_order_date" eval="0" />
