@@ -47,7 +47,8 @@ class sale_workflow_process(orm.Model):
         'create_invoice': fields.boolean('Create Invoice'),
         'validate_invoice': fields.boolean('Validate Invoice'),
         'validate_picking': fields.boolean('Validate Picking'),
-        'validate_manufactoring_order': fields.boolean('Validate Manufactoring Order'),
+        # TODO not implemented actually
+        # 'validate_manufactoring_order': fields.boolean('Validate Manufactoring Order'),
         'days_before_order_cancel': fields.integer(  # XXX part of the workflow?
             'Days Delay before Cancel',
             help='number of days before an unpaid order will be cancelled '
