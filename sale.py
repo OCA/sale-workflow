@@ -70,8 +70,7 @@ class sale_order(orm.Model):
         return super(sale_order, self).copy(cr, uid, id,
                                             default, context=context)
 
-    def add_payment_with_terms(self, cr, uid, ids, journal_id, amount=None,
-                               date=None, context=None):
+    def automatic_payment(self, cr, uid, ids, amount=None, context=None):
         """ Create the payment entries to pay a sale order, respecting
         the payment terms.
         If no amount is defined, it will pay the residual amount of the sale
@@ -80,8 +79,22 @@ class sale_order(orm.Model):
             assert len(ids) == 1, "one sale order at a time can be paid"
             ids = ids[0]
         sale = self.browse(cr, uid, ids, context=context)
-        if date is None:
-            date = sale.date_order
+        method = sale.payment_method_id
+        if not method:
+            raise osv.except_osv(
+                _('Configuration Error'),
+                _("An automatic payment can not be created for the sale "
+                  "order %s because it has no payment method.") % sale.name)
+
+        if not method.journal_id:
+            raise osv.except_osv(
+                _('Configuration Error'),
+                _("An automatic payment should be created for the sale order %s "
+                  "but the payment method '%s' has no journal defined.") %
+                (sale.name, method.name))
+
+        journal = method.journal_id
+        date = sale.date_order
         if amount is None:
             amount = sale.residual
         if sale.payment_term:
@@ -92,8 +105,6 @@ class sale_order(orm.Model):
         else:
             amounts = [(date, amount)]
 
-        journal_obj = self.pool.get('account.journal')
-        journal = journal_obj.browse(cr, uid, journal_id, context=context)
         # reversed is cosmetic, compute returns terms in the 'wrong' order
         for date, amount in reversed(amounts):
             self._add_payment(cr, uid, sale, journal,
