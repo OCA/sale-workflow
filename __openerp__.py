@@ -28,7 +28,7 @@
 Sale Payment Method
 ===================
 
-This module adds low-levels features used for instance by modules:
+This module adds low-level features used for instance by modules:
 
 - Sale Automatic Workflow
 - Sale Quick Payment
