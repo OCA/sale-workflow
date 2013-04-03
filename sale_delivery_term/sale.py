@@ -65,6 +65,7 @@ class sale_order_line_master(orm.Model):
         if res_dict['value'].has_key('type'):
             del res_dict['value']['type']
         if res_dict['value'].has_key('tax_id'):
+            res_dict['value']['tax_ids'] = res_dict['value']['tax_id']
             del res_dict['value']['tax_id']
         return res_dict
     
