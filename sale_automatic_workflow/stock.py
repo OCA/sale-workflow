@@ -31,17 +31,17 @@ class stock_picking(orm.Model):
                                                'Sale Workflow Process'),
     }
 
-
-class stock_picking_out(orm.Model):
-    _inherit = "stock.picking.out"
-
     def _prepare_invoice(self, cr, uid, picking, partner, inv_type, journal_id, context=None):
-        invoice_vals = super(stock_picking_out, self)._prepare_invoice(
+        invoice_vals = super(stock_picking, self)._prepare_invoice(
             cr, uid, picking, partner, inv_type, journal_id, context=context)
         invoice_vals['workflow_process_id'] = picking.workflow_process_id.id
         if picking.workflow_process_id.invoice_date_is_order_date:
             invoice_vals['date_invoice'] = picking.sale_id.date_order
         return invoice_vals
+
+
+class stock_picking_out(orm.Model):
+    _inherit = "stock.picking.out"
 
     def validate_picking(self, cr, uid, ids, context=None):
         for picking in self.browse(cr, uid, ids, context=context):
