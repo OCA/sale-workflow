@@ -16,8 +16,22 @@
                     <h1>
                         <field name="name" class="oe_inline"/>
                     </h1>
-                    <group>
-                        <field name="journal_id" />
+                    <group name="general">
+                        <group name="config">
+                            <field name="journal_id" string="Journal for payment"/>
+                        </group>
+                        <group name="payment_help" class="oe_grey" col="1">
+                            <p attrs="{'invisible': [('journal_id', '=', False)]}">
+                                When the E-commerce backend will receive a payment for a sale order,
+                                payment entries will be generated in the selected journal.
+                            </p>
+                            <p attrs="{'invisible': [('journal_id', '!=', False)]}">
+                                Even if the E-commerce backend receives a payment for a sale order,
+                                no payment entries will be generated.
+                            </p>
+                        </group>
+                    </group>
+                    <group string="Default Values">
                         <field name="payment_term_id" />
                     </group>
                 </form>

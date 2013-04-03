@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 ##############################################################################
 #
-#    Author: Guewen Baconnier
+#    Author: Guewen Baconnier, Sébastien Beau
 #    Copyright (C) 2011 Akretion Sébastien BEAU <sebastien.beau@akretion.com>
 #    Copyright 2013 Camptocamp SA (Guewen Baconnier)
 #

@@ -3,6 +3,7 @@
 #                                                                             #
 #   sale_quick_payment for OpenERP                                  #
 #   Copyright (C) 2011 Akretion Sébastien BEAU <sebastien.beau@akretion.com>   #
+#   Copyright 2013 Camptocamp SA (Guewen Baconnier)
 #                                                                             #
 #   This program is free software: you can redistribute it and/or modify      #
 #   it under the terms of the GNU Affero General Public License as            #
@@ -27,8 +28,16 @@ class payment_method(orm.Model):
     _description = "Payment Method"
 
     _columns = {
-        'name': fields.char('Name', size=64),
-        'journal_id': fields.many2one('account.journal', 'Journal'),
-        'payment_term_id': fields.many2one('account.payment.term',
-                                           'Payment Term'),
+        'name': fields.char('Name',
+                            help="The name of the method on the backend"),
+        'journal_id': fields.many2one(
+            'account.journal',
+            'Journal',
+            help="If a journal a selected, when a payment is recorded "
+                 "on a backend, payment entries will be created in this "
+                 "journal. "),
+        'payment_term_id': fields.many2one(
+            'account.payment.term',
+            'Payment Term',
+             help="Default payment term of a sale order using this method."),
     }
