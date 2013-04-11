@@ -13,7 +13,7 @@
             <field name="name">sale_automic_workflow.sale_workflow_process.view_form</field>
             <field name="model">sale.workflow.process</field>
             <field name="arch" type="xml">
-                <form string="sale_workflow_process">
+                <form string="Automatic Workflow">
                     <field name="name"/>
                     <separator string="Order Configuration" colspan="4" />
                     <field name="picking_policy"/>
@@ -35,7 +35,7 @@
             <field name="name">sale_automic_workflow.sale_workflow_process.view_tree</field>
             <field name="model">sale.workflow.process</field>
             <field name="arch" type="xml">
-                <tree string="sale_workflow_process">
+                <tree string="Automatic Workflow">
                     <field name="name"/>
                     <field name="picking_policy"/>
                     <field name="order_policy"/>
@@ -51,7 +51,7 @@
         </record>
 
         <record id="act_sale_workflow_process_form" model="ir.actions.act_window">
-            <field name="name">Sale Workflow Method</field>
+            <field name="name">Automatic Workflow</field>
             <field name="res_model">sale.workflow.process</field>
             <field name="view_type">form</field>
             <field name="view_mode">tree,form</field>
