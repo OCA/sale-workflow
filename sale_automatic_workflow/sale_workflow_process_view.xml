@@ -23,7 +23,7 @@
                     <field name="validate_order"/>
                     <field name="validate_picking"/>
                     <!-- <field name="validate_manufactoring_order"/> -->
-                    <field name="create_invoice" />
+                    <field name="create_invoice_on" attrs="{'readonly': [('order_policy', '!=', 'manual')]}" />
                     <field name="validate_invoice"/>
                     <field name="invoice_date_is_order_date"/>
 
@@ -43,7 +43,7 @@
                     <field name="validate_order"/>
                     <field name="validate_picking"/>
                     <!-- <field name="validate_manufactoring_order"/> -->
-                    <field name="create_invoice" />
+                    <field name="create_invoice_on" />
                     <field name="validate_invoice"/>
                     <field name="invoice_date_is_order_date"/>
                 </tree>
