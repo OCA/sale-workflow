@@ -72,3 +72,19 @@ class sale_order(orm.Model):
         if workflow.invoice_quantity:
             result['invoice_quantity'] = workflow.invoice_quantity
         return {'value': result}
+
+    def test_create_invoice(self, cr, uid, ids):
+        """ Workflow condition: test if an invoice should be created,
+        based on the automatic workflow rules """
+        if isinstance(ids, (list, tuple)):
+            assert len(ids) == 1
+            ids = ids[0]
+        order = self.browse(cr, uid, ids)
+        if order.order_policy != 'manual' or not order.workflow_process_id:
+            return False
+        invoice_on = order.workflow_process_id.create_invoice_on
+        if invoice_on == 'on_order_confirm':
+            return True
+        elif invoice_on == 'on_picking_done' and order.shipped:
+            return True
+        return False
