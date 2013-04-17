@@ -38,21 +38,25 @@ class sale_workflow_process(orm.Model):
 
     _columns = {
         'name': fields.char('Name', size=64),
-        'picking_policy': fields.selection([('direct', 'Deliver each product when available'),
-                                            ('one', 'Deliver all products at once')],
-                                           string='Shipping Policy'),
-        'order_policy': fields.selection([
-            ('prepaid', 'Before Delivery'),
-            ('manual', 'On Demand'),
-            # https://bugs.launchpad.net/openobject-addons/+bug/1160835
-            # ('postpaid', 'Invoice on Order After Delivery'),
-            ('picking', 'On Delivery Order'),
-        ], 'Invoice Policy'),
-        'invoice_quantity': fields.selection([('order', 'Ordered Quantities'),
-                                              ('procurement', 'Shipped Quantities')],
-                                             string='Invoice on'),
+        'picking_policy': fields.selection(
+            [('direct', 'Deliver each product when available'),
+             ('one', 'Deliver all products at once')],
+            string='Shipping Policy'),
+        'order_policy': fields.selection([('prepaid', 'Before Delivery'),
+                                          ('manual', 'On Demand'),
+                                          ('picking', 'On Delivery Order')],
+                                         string='Invoice Policy'),
+        'invoice_quantity': fields.selection(
+            [('order', 'Ordered Quantities'),
+             ('procurement', 'Shipped Quantities')],
+            string='Invoice on'),
         'validate_order': fields.boolean('Validate Order'),
-        'create_invoice': fields.boolean('Create Invoice'),
+        'create_invoice_on': fields.selection(
+            [('manual', 'No automatic invoice'),
+             ('on_order_confirm', 'On confirmation of Sale Order'),
+             ('on_picking_done', 'After Delivery')],
+            required=True,
+            string='Create Invoice'),
         'validate_invoice': fields.boolean('Validate Invoice'),
         'validate_picking': fields.boolean('Confirm and Close Picking'),
         # TODO not implemented actually
@@ -66,6 +70,7 @@ class sale_workflow_process(orm.Model):
     _defaults = {
         'picking_policy': 'direct',
         'order_policy': 'manual',
+        'create_invoice_on': 'manual',
         'invoice_quantity': 'order',
         'validate_invoice': False,
     }
