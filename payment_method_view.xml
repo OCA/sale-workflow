@@ -12,7 +12,7 @@
             <field name="name">sale_quick_payment.payment_method.view_form</field>
             <field name="model">payment.method</field>
             <field name="arch" type="xml">
-                <form string="E-Commerce Payment Methods" version="7.0">
+                <form string="Payment Methods" version="7.0">
                     <h1>
                         <field name="name" class="oe_inline"/>
                     </h1>
@@ -42,7 +42,7 @@
             <field name="name">sale_quick_payment.payment_method.view_tree</field>
             <field name="model">payment.method</field>
             <field name="arch" type="xml">
-                <tree string="E-Commerce Payment Methods">
+                <tree string="Payment Methods">
                     <field name="name" />
                     <field name="journal_id" />
                     <field name="payment_term_id" />
@@ -50,9 +50,8 @@
             </field>
         </record>
 
-
         <record id="act_payment_method_form" model="ir.actions.act_window">
-            <field name="name">E-Commerce Payment Methods</field>
+            <field name="name">Payment Methods </field>
             <field name="res_model">payment.method</field>
             <field name="view_type">form</field>
             <field name="view_mode">tree,form</field>
