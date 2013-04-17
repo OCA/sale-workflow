@@ -16,7 +16,7 @@
             <field name="validate_order" eval="1"/>
             <field name="create_invoice_on">on_picking_done</field>
             <field name="validate_invoice" eval="1" />
-            <field name="invoice_date_is_order_date" eval="1" />
+            <field name="invoice_date_is_order_date" eval="0" />
             <field name="validate_picking" eval="0" />
         </record>
 
@@ -28,7 +28,7 @@
             <field name="validate_order" eval="0"/>
             <field name="create_invoice_on">manual</field>
             <field name="validate_invoice" eval="0" />
-            <field name="invoice_date_is_order_date" eval="1" />
+            <field name="invoice_date_is_order_date" eval="0" />
             <field name="validate_picking" eval="0" />
         </record>
 
