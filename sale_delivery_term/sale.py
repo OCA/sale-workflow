@@ -118,7 +118,7 @@ class sale_order_line_master(orm.Model):
         'product_id': fields.many2one('product.product', 'Product', domain=[('sale_ok', '=', True)]),
         'price_unit': fields.float('Unit Price', required=True, digits_compute= dp.get_precision('Product Price')),
         'price_subtotal': fields.function(_amount_line, string='Subtotal',
-            digits_compute= dp.get_precision('Sale Price')),
+            digits_compute= dp.get_precision('Product Price')),
         'product_uom_qty': fields.float('Quantity (UoM)', digits_compute= dp.get_precision('Product UoS'), required=True),
         'product_uom': fields.many2one('product.uom', 'Unit of Measure ', required=True),
         'product_uos_qty': fields.float('Quantity (UoS)' ,digits_compute= dp.get_precision('Product UoS')),
