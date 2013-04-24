@@ -56,7 +56,7 @@ class sale_order(osv.osv):
 
     _columns = {
         'extra_discount_amount': fields.function(_special_lines, method=True,
-                                                 digits_compute=dp.get_precision('Sale Price'),
+                                                 digits_compute=dp.get_precision('Product Price'),
                                                  string='Extra-Discount',
                                                  help="The amount of extra-discount",
                                                  multi='special_lines',
@@ -65,7 +65,7 @@ class sale_order(osv.osv):
                 'sale.order.line': (_get_order, ['price_unit', 'tax_id', 'discount', 'product_uom_qty', 'product_id'], 10),
             }),
         'advance_amount': fields.function(_special_lines, method=True,
-                                          digits_compute=dp.get_precision('Sale Price'),
+                                          digits_compute=dp.get_precision('Product Price'),
                                           string='Advance',
                                           help="The amount of advances",
                                           multi='special_lines',
@@ -74,7 +74,7 @@ class sale_order(osv.osv):
                 'sale.order.line': (_get_order, ['price_unit', 'tax_id', 'discount', 'product_uom_qty', 'product_id'], 10),
             }),
         'delivery_amount': fields.function(_special_lines, method=True,
-                                           digits_compute=dp.get_precision('Sale Price'),
+                                           digits_compute=dp.get_precision('Product Price'),
                                            string='Delivery Costs',
                                            help="The amount of delivery costs",
                                            multi='special_lines',
