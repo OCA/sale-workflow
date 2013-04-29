@@ -49,7 +49,7 @@ class sale_delivery_term_line(orm.Model):
     _name = 'sale.delivery.term.line'
     _rec_name = 'term_id'
     _columns = {
-        'term_id': fields.many2one('sale.delivery.term', 'Term'),
+        'term_id': fields.many2one('sale.delivery.term', 'Term', ondelete='cascade'),
         'quantity_perc': fields.float('Quantity percentage', required=True, help="For 20% set '0.2'"),
         'delay': fields.float('Delivery Lead Time', required=True,
             help="Number of days between the order confirmation and the shipping of the products to the customer"),
@@ -65,6 +65,7 @@ class sale_order_line_master(orm.Model):
         if res_dict['value'].has_key('type'):
             del res_dict['value']['type']
         if res_dict['value'].has_key('tax_id'):
+            res_dict['value']['tax_ids'] = res_dict['value']['tax_id']
             del res_dict['value']['tax_id']
         return res_dict
     
@@ -113,7 +114,8 @@ class sale_order_line_master(orm.Model):
     _name = 'sale.order.line.master'
     _columns = {
         'order_id': fields.many2one('sale.order', 'Order Reference', required=True, ondelete='cascade'),
-        'delivery_term_id': fields.many2one('sale.delivery.term', 'Delivery term', required=True),
+        'delivery_term_id': fields.many2one('sale.delivery.term', 'Delivery term',
+            required=True, ondelete='restrict'),
         'name': fields.char('Description', size=256, required=True),
         'product_id': fields.many2one('product.product', 'Product', domain=[('sale_ok', '=', True)]),
         'price_unit': fields.float('Unit Price', required=True, digits_compute= dp.get_precision('Sale Price')),
