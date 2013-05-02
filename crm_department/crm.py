@@ -30,14 +30,13 @@
 #
 ##############################################################################
 
-from osv import osv
-from osv import fields
+from openerp.osv import orm, fields
 
-class crm_sales_team(osv.osv):
+class CrmSalesTeam(orm.Model):
     _inherit = "crm.case.section"
     _columns = {
         'department_id': fields.many2one('hr.department', 'Department'),
-    }
+        }
 
     def _get_department(self, cr, uid, ids, context=None):
         employee_obj = self.pool.get('hr.employee')
@@ -49,11 +48,10 @@ class crm_sales_team(osv.osv):
 
     _defaults = {
         'department_id': _get_department,
-    }
+        }
 
-crm_sales_team()
 
-class crm_lead(osv.osv):
+class CrmLead(orm.Model):
     _inherit = "crm.lead"
 
     def onchange_section_id(self, cr, uid, ids, section_id=False, context=None):
@@ -71,8 +69,7 @@ class crm_lead(osv.osv):
 
     _columns = {
         'department_id': fields.many2one('hr.department', 'Department'),
-    }
+        }
 
-crm_lead()
 
 # vim:expandtab:smartindent:tabstop=4:softtabstop=4:shiftwidth=4:
