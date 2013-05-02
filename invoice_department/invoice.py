@@ -29,14 +29,13 @@
 #
 ##############################################################################
 
-from osv import osv
-from osv import fields
+from openerp.osv import orm, fields
 
-class account_invoice(osv.osv):
+class AccountInvoice(orm.Model):
     _inherit = "account.invoice"
     _columns = {
         'department_id': fields.many2one('hr.department', 'Department'),
-    }
+        }
 
     def _get_department(self, cr, uid, ids, context=None):
         employee_obj = self.pool.get('hr.employee')
@@ -48,8 +47,6 @@ class account_invoice(osv.osv):
 
     _defaults = {
         'department_id': _get_department,
-    }
-
-account_invoice()
+        }
 
 # vim:expandtab:smartindent:tabstop=4:softtabstop=4:shiftwidth=4:
