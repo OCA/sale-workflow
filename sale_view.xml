@@ -26,6 +26,15 @@
                 <field name="amount_total" position="after">
                     <field name="residual" invisible="1"/>
                 </field>
+
+                <button string="Create Invoice" position="after">
+                    <field name="payment_exists" invisible="1"/>
+                    <button name="action_view_payments"
+                        string="View Automatic Payment"
+                        type="object" class="oe_highlight"
+                        attrs="{'invisible': [('payment_exists', '=', False)]}"
+                        groups="base.group_user"/>
+                </button>
             </field>
         </record>
 

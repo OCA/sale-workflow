@@ -50,6 +50,12 @@ class sale_order(orm.Model):
             res[order.id] = amount
         return res
 
+    def _payment_exists(self, cursor, user, ids, name, arg, context=None):
+        res = {}
+        for sale in self.browse(cursor, user, ids, context=context):
+            res[sale.id] = bool(sale.payment_ids)
+        return res
+
     _columns = {
         'payment_ids': fields.many2many('account.move',
                                         string='Payments Entries'),
@@ -61,6 +67,11 @@ class sale_order(orm.Model):
             digits_compute=dp.get_precision('Account'),
             string='Balance',
             store=False),
+        'payment_exists': fields.function(
+            _payment_exists,
+            string='Has automatic payment',
+            type='boolean',
+            help="It indicates that sales order has at least one payment."),
     }
 
     def copy(self, cr, uid, id, default=None, context=None):
@@ -235,3 +246,40 @@ class sale_order(orm.Model):
         if method.payment_term_id:
             result['payment_term'] = method.payment_term_id.id
         return {'value': result}
+
+    def action_view_payments(self, cr, uid, ids, context=None):
+        """ Return an action to display the payment linked
+        with the sale order """
+
+        mod_obj = self.pool.get('ir.model.data')
+        act_obj = self.pool.get('ir.actions.act_window')
+
+        payment_ids = []
+        for so in self.browse(cr, uid, ids, context=context):
+            payment_ids += [move.id for move in so.payment_ids]
+
+        ref = mod_obj.get_object_reference(cr, uid, 'account',
+                                           'action_move_journal_line')
+        action_id = False
+        if ref:
+            __, action_id = ref
+        action = act_obj.read(cr, uid, [action_id], context=context)[0]
+
+        # choose the view_mode accordingly
+        if len(payment_ids) > 1:
+            action['domain'] = str([('id', 'in', payment_ids)])
+        else:
+            ref = mod_obj.get_object_reference(cr, uid, 'account',
+                                               'view_move_form')
+            action['views'] = [(ref[1] if ref else False, 'form')]
+            action['res_id'] = payment_ids[0] if payment_ids else False
+        return action
+
+    def action_cancel(self, cr, uid, ids, context=None):
+        for sale in self.browse(cr, uid, ids, context=context):
+            if sale.payment_ids:
+                raise osv.except_osv(
+                    _('Cannot cancel this sales order!'),
+                    _('Automatic payment entries are linked '
+                      'with the sale order.'))
+        return super(sale_order, self).action_cancel(cr, uid, ids, context=context)
