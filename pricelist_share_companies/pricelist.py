@@ -30,12 +30,10 @@
 from osv import fields
 from osv import osv
 
-
 class PriceType(osv.osv):
-    _inherit = "product.price.type"
-    
+    _inherit = 'product.price.type'
     _columns = {
-        "company_id" : fields.many2one('res.company', "Company"),
+        'company_id' : fields.many2one('res.company', 'Company'),
     }
 
     def _check_unicity_per_company(self, cr, uid, ids, context=None):
@@ -80,5 +78,6 @@ class PriceType(osv.osv):
 
         return super(PriceType, self).search(cr, uid, args1, offset, limit, order, context=context, count=count)
 
-
 PriceType()
+
+# vim:expandtab:smartindent:tabstop=4:softtabstop=4:shiftwidth=4:

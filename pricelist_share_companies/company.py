@@ -29,12 +29,13 @@
 
 from osv import fields, osv
 
-
 class ResCompany(osv.osv):
-    """Override company to add the fields to use for the prices"""
+    '''Override company to add the fields to use for the prices'''
     _inherit = 'res.company'
 
     def _price_field_get(self, cr, uid, context=None):
+        if context is None:
+            context = {}
         mf = self.pool.get('ir.model.fields')
         ids = mf.search(cr, uid,
                         [('model','in', (('product.product'),('product.template'))),
@@ -53,3 +54,5 @@ class ResCompany(osv.osv):
     }
 
 ResCompany()
+
+# vim:expandtab:smartindent:tabstop=4:softtabstop=4:shiftwidth=4:
