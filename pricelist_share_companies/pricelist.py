@@ -26,15 +26,13 @@
 # Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 #
 ##############################################################################
+from openerp.osv import orm, fields
 
-from osv import fields
-from osv import osv
-
-class PriceType(osv.osv):
+class PriceType(orm.Model):
     _inherit = 'product.price.type'
     _columns = {
         'company_id' : fields.many2one('res.company', 'Company'),
-    }
+        }
 
     def _check_unicity_per_company(self, cr, uid, ids, context=None):
         for price_type in self.browse(cr, uid, ids, context=context):
@@ -77,7 +75,5 @@ class PriceType(osv.osv):
             args1 = replace_args(args1, 'standard_price', company)
 
         return super(PriceType, self).search(cr, uid, args1, offset, limit, order, context=context, count=count)
-
-PriceType()
 
 # vim:expandtab:smartindent:tabstop=4:softtabstop=4:shiftwidth=4:

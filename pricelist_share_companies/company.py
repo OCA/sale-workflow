@@ -26,10 +26,9 @@
 # Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 #
 ##############################################################################
+from openerp.osv import orm, fields
 
-from osv import fields, osv
-
-class ResCompany(osv.osv):
+class ResCompany(orm.Model):
     '''Override company to add the fields to use for the prices'''
     _inherit = 'res.company'
 
@@ -52,7 +51,5 @@ class ResCompany(osv.osv):
             help="If a field is selected, it will be used instead of the \"standard_price\" field"
                  "on the search of a Cost Price's Price Type.")
     }
-
-ResCompany()
 
 # vim:expandtab:smartindent:tabstop=4:softtabstop=4:shiftwidth=4:
