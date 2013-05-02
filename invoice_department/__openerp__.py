@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 ##############################################################################
 #
-# Copyright (c) 2011 Camptocamp SA (http://www.camptocamp.com) 
+# Copyright (c) 2011 Camptocamp SA (http://www.camptocamp.com)
 # All Right Reserved
 #
 # Author : Joel Grand-guillaume (Camptocamp)
@@ -30,24 +30,23 @@
 ##############################################################################
 
 {
-    "name" : "Invoices with Department Categorization",
-    "version" : "1.0",
-    "author" : "Camptocamp",
-    "category" : "Generic Modules/Sales & Purchases",
-    "description":
-"""Add the department on Invoices.
+    'name' : 'Invoices with Department Categorization',
+    'version' : '1.0',
+    'category' : 'Generic Modules/Sales & Purchases',
+    'description':
+'''
+    Add the department on Invoices as well as the related filter and button in the search form.
 
-The views are adapted to use the information in the search form.""",
-    "website": "http://camptocamp.com",
-    "depends" : [
-        "account",
-        "hr"
-                ],
-    "init_xml" : [],
-    "demo_xml" : [],
-    "update_xml" : [
-        "invoice_view.xml",
-    ],
-    "active": False,
-    'installable': False
+''',
+    'author' : 'Camptocamp',
+    'website': 'http://camptocamp.com',
+    'depends' : ['account', 'hr'],
+    'data' : ['invoice_view.xml',],
+    'demo' : [],
+    'test': [],
+    'installable': True,
+    'auto_install': False,
+    'application': False
 }
+
+# vim:expandtab:smartindent:tabstop=4:softtabstop=4:shiftwidth=4:

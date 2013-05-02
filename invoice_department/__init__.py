@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 ##############################################################################
 #
-# Copyright (c) 2011 Camptocamp SA (http://www.camptocamp.com) 
+# Copyright (c) 2011 Camptocamp SA (http://www.camptocamp.com)
 # All Right Reserved
 #
 # Author : Joel Grand-guillaume (Camptocamp)
@@ -29,3 +29,5 @@
 #
 ##############################################################################
 import invoice
+
+# vim:expandtab:smartindent:tabstop=4:softtabstop=4:shiftwidth=4:
