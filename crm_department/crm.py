@@ -54,7 +54,7 @@ class CrmLead(orm.Model):
             if section.department_id.id:
                 res.update({'department_id': section.department_id.id})
 
-        return {'value':res}
+        return {'value': res}
 
     _columns = {
         'department_id': fields.many2one('hr.department', 'Department'),
