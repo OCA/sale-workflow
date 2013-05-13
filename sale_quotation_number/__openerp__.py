@@ -23,20 +23,19 @@
 
 {
     'name': 'Sale Order Approvement',
-    'version': '1.0',
-    'category': 'Sales & Purchases',
+    'version': '1.1',
+    'category': 'Sales Management',
     'description': """
         Add a sale quotation sequence, when confirm it, generate a new sale order sequence.
         quotation name as source document.
     """,
-    'author': 'Elico Corp',
+    'author': ['Elico Corp', 'Agile Business Group'],
     'website': 'http://www.openerp.net.cn',
     'depends': ['sale'],
-    'init_xml': [],
-    'update_xml': [
+    'data': [
         'sale_quotation_view.xml',
     ],
-    'demo_xml': [], 
+    'demo': [], 
     'test': [],
     'installable': True,
     'active': False,
