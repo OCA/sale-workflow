@@ -19,10 +19,9 @@
 #
 ##############################################################################
 
-import decimal_precision as dp
-from osv import fields, osv
+from openerp.osv import fields, orm
 
-class sale_order(osv.osv):
+class sale_order(orm.Model):
     _inherit = "sale.order"
 
     def copy(self, cr, uid, id, default=None, context=None):
@@ -41,5 +40,3 @@ class sale_order(osv.osv):
                 quo = sale.name
                 self.write(cr, uid, [sale.id], {'origin': quo, 'name': self.pool.get('ir.sequence').get(cr, uid, 'sale.order')})
         return True
-
-sale_order()
