@@ -29,10 +29,11 @@ class sale_order(orm.Model):
             default = {}
         default['name'] = self.pool.get('ir.sequence').get(cr, uid, 'sale.quotation'),
         return super(sale_order, self).copy(cr, uid, id, default, context)
-    
-    _defaults = {
-        'name': lambda obj, cr, uid, context: obj.pool.get('ir.sequence').get(cr, uid, 'sale.quotation'),
-    }
+
+    def create(self, cr, uid, vals, context=None):
+        if vals.get('name','/')=='/':
+            vals['name'] = self.pool.get('ir.sequence').get(cr, uid, 'sale.quotation') or '/'
+        return super(sale_order, self).create(cr, uid, vals, context=context)
     
     def action_wait(self, cr, uid, ids, *args):
         if super(sale_order, self).action_wait(cr, uid, ids, *args):
