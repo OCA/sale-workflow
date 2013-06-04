@@ -50,7 +50,8 @@ class sale_delivery_term_line(orm.Model):
     _rec_name = 'term_id'
     _columns = {
         'term_id': fields.many2one('sale.delivery.term', 'Term', ondelete='cascade'),
-        'quantity_perc': fields.float('Quantity percentage', required=True, help="For 20% set '0.2'"),
+        'quantity_perc': fields.float('Quantity percentage', required=True,
+            help="For 20% set '0.2'", digits_compute=dp.get_precision('Payment Term')),
         'delay': fields.float('Delivery Lead Time', required=True,
             help="Number of days between the order confirmation and the shipping of the products to the customer"),
         }
