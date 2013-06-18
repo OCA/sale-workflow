@@ -200,6 +200,19 @@ class sale_order_line_master(orm.Model):
             })
         return super(sale_order_line_master, self).copy_data(cr, uid, id, default, context=context)
         
+    def check_master_line_total(self, cr, uid, ids, context=None):
+        for master_line in self.browse(cr, uid, ids, context):
+            master_uom_qty = master_line.product_uom_qty
+            master_uos_qty = master_line.product_uos_qty
+            total_uom_qty = 0.0
+            total_uos_qty = 0.0
+            for order_line in master_line.order_line_ids:
+                total_uom_qty += order_line.product_uom_qty
+                total_uos_qty += order_line.product_uos_qty
+            if master_uom_qty != total_uom_qty:
+                raise orm.except_orm(_('Error'), _('Order lines total quantity %s is different from master line quantity %s') % (total_uom_qty, master_uom_qty))
+            if master_uos_qty != total_uos_qty:
+                raise orm.except_orm(_('Error'), _('Order lines total quantity %s is different from master line quantity %s') % (total_uos_qty, master_uos_qty))
 
 class sale_order_line(orm.Model):
     _inherit = 'sale.order.line'
@@ -234,3 +247,8 @@ class sale_order(orm.Model):
                 master_line.generate_detailed_lines()
         return True
         
+    def action_wait(self, cr, uid, ids, context=None):
+        for order in self.browse(cr, uid, ids, context):
+            for master_line in order.master_order_line:
+                master_line.check_master_line_total()
+        return super(sale_order,self).action_wait(cr, uid, ids, context=context)
