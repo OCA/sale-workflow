@@ -27,8 +27,7 @@ class sale_order(orm.Model):
     def copy(self, cr, uid, id, default=None, context=None):
         if default is None:
             default = {}
-        default['name'] = self.pool.get('ir.sequence').next_by_code(
-            cr, uid, 'sale.quotation')
+        default['name'] = '/'
         return super(sale_order, self).copy(cr, uid, id, default, context)
 
     def create(self, cr, uid, vals, context=None):
