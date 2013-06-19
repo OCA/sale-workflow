@@ -4,6 +4,7 @@
 #    Copyright (c) 2010-2012 Elico Corp. All Rights Reserved.
 #    Author:            Andy Lu <andy.lu@elico-corp.com>
 #    Copyright (C) 2013 Agile Business Group sagl (<http://www.agilebg.com>)
+#    Author:            Lorenzo Battistini <lorenzo.battistini@agilebg.com>
 #
 #    This program is free software: you can redistribute it and/or modify
 #    it under the terms of the GNU Affero General Public License as published
