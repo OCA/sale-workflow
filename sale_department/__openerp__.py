@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 ##############################################################################
 #
-# Copyright (c) 2011 Camptocamp SA (http://www.camptocamp.com) 
+# Copyright (c) 2011 Camptocamp SA (http://www.camptocamp.com)
 # All Right Reserved
 #
 # Author : Joel Grand-guillaume (Camptocamp)
@@ -30,26 +30,24 @@
 ##############################################################################
 
 {
-    "name" : "Sales Order with Department Categorization",
-    "version" : "1.0",
-    "author" : "Camptocamp",
-    "category" : "Generic Modules/Sales & Purchases",
-    "description":
-"""
+    'name' : 'Sales Order with Department Categorization',
+    'version' : '1.0',
+    'category' : 'Generic Modules/Sales & Purchases',
+    'description':
+'''
     Add the department on Sales Order and Customer Invoices as well as the related filter and button in the search form.
-    
-""",
-    "website": "http://camptocamp.com",
-    "depends" : [
-        "sale",
-        "invoice_department",
-        "hr"
-                ],
-    "init_xml" : [],
-    "demo_xml" : [],
-    "update_xml" : [
-        "sale_view.xml",
+
+''',
+    'author' : 'Camptocamp',
+    'website': 'http://camptocamp.com',
+    'depends' : ['sale', 'invoice_department', 'hr'],
+    'data' : [
+        'sale_view.xml',
     ],
-    "active": False,
-    'installable': False
+    'demo' : [],
+    'installable': True,
+    'auto_install': False,
+    'application': False,
 }
+
+# vim:expandtab:smartindent:tabstop=4:softtabstop=4:shiftwidth=4:

@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 ##############################################################################
 #
-# Copyright (c) 2010 Camptocamp SA (http://www.camptocamp.com) 
+# Copyright (c) 2010 Camptocamp SA (http://www.camptocamp.com)
 # All Right Reserved
 #
 # Author : Joel Grand-guillaume (Camptocamp)
@@ -29,23 +29,31 @@
 #
 ##############################################################################
 
-from osv import osv
-from osv import fields
+from osv import osv, fields
 
 class sale_order(osv.osv):
-    _inherit = "sale.order"
-
+    _inherit = 'sale.order'
     _columns = {
         'department_id': fields.many2one('hr.department', 'Department'),
     }
+
+    def _get_department(self, cr, uid, ids, context=None):
+        employee_obj = self.pool.get('hr.employee')
+        department_id = False
+        employee_ids = employee_obj.search(cr, uid, [('user_id','=', uid)])
+        if employee_ids:
+            department_id = employee_obj.browse(cr, uid, employee_ids[0], context=context).department_id.id
+        return department_id
+
     _defaults = {
-        'department_id': lambda s,cr,uid,c: s.pool.get('res.users').browse(cr,uid,uid).context_department_id.id,
+        'department_id': _get_department,
     }
-    
+
     def _make_invoice(self, cr, uid, order, lines, context=None):
-        res = super(sale_order,self)._make_invoice(cr,uid,order,lines,context)
-        self.pool.get('account.invoice').write(cr,uid,res,{'department_id':order.department_id.id},context)
+        res = super(sale_order, self)._make_invoice(cr, uid, order, lines, context=context)
+        self.pool.get('account.invoice').write(cr, uid, res, {'department_id': order.department_id.id}, context=context)
         return res
-        
 
 sale_order()
+
+# vim:expandtab:smartindent:tabstop=4:softtabstop=4:shiftwidth=4:
