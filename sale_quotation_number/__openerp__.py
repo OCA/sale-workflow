@@ -22,12 +22,13 @@
 
 
 {
-    'name': 'Sale Order Approvement',
+    'name': 'Sale Quotation Numeration',
     'version': '1.1',
     'category': 'Sales Management',
     'description': """
-        Add a sale quotation sequence, when confirm it, generate a new sale order sequence.
-        quotation name as source document.
+This module adds a sale quotation sequence.
+When you create e quotation, it is numbered using the 'sale.quotation' sequence.
+When you confirm a quotation, its orginal number is saved in the 'origin' field and the sale order gets a new number, retrieving it from 'sale.order' sequence.
     """,
     'author': ['Elico Corp', 'Agile Business Group'],
     'website': 'http://www.openerp.net.cn',
