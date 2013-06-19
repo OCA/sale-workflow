@@ -29,9 +29,9 @@
 #
 ##############################################################################
 
-from osv import osv, fields
+from openerp.osv import orm, fields
 
-class sale_order(osv.osv):
+class SaleOrder(orm.Model):
     _inherit = 'sale.order'
     _columns = {
         'department_id': fields.many2one('hr.department', 'Department'),
@@ -50,10 +50,8 @@ class sale_order(osv.osv):
     }
 
     def _make_invoice(self, cr, uid, order, lines, context=None):
-        res = super(sale_order, self)._make_invoice(cr, uid, order, lines, context=context)
+        res = super(SaleOrder, self)._make_invoice(cr, uid, order, lines, context=context)
         self.pool.get('account.invoice').write(cr, uid, res, {'department_id': order.department_id.id}, context=context)
         return res
-
-sale_order()
 
 # vim:expandtab:smartindent:tabstop=4:softtabstop=4:shiftwidth=4:
