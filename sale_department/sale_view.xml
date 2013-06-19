@@ -7,9 +7,9 @@
       <field name="model">sale.order</field>
       <field name="inherit_id" ref="sale.view_quotation_tree" />
       <field name="arch" type="xml">
-        <xpath expr="/tree/field[@name='user_id']" position="after">
+        <field name="user_id" position="after">
           <field name="department_id" />
-        </xpath>
+        </field>
       </field>
     </record>
 
@@ -18,9 +18,9 @@
       <field name="model">sale.order</field>
       <field name="inherit_id" ref="sale.view_order_tree" />
       <field name="arch" type="xml">
-        <xpath expr="/tree/field[@name='user_id']" position="after">
+        <field name="user_id" position="after">
           <field name="department_id" />
-        </xpath>
+        </field>
       </field>
     </record>
 
@@ -40,12 +40,12 @@
       <field name="model">sale.order</field>
       <field name="inherit_id" ref="sale.view_sales_order_filter" />
       <field name="arch" type="xml">
-        <xpath expr="/search/group/filter[@string='Salesperson']" position="after">
+        <xpath expr="//filter[@string='Salesperson']" position="after">
           <filter string="Department" icon="terp-folder-orange" domain="[]" context="{'group_by':'department_id'}"/>
         </xpath>
-        <xpath expr="/search/field[@name='partner_id']" position="after">
+        <field name="partner_id" position="after">
           <field name="department_id"  widget="selection"/>
-        </xpath>
+        </field>
       </field>
     </record>
 
