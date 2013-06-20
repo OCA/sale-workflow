@@ -21,6 +21,7 @@
 
 from openerp.osv import fields, orm
 
+
 class sale_order(orm.Model):
     _inherit = "sale.order"
 
@@ -31,18 +32,18 @@ class sale_order(orm.Model):
         return super(sale_order, self).copy(cr, uid, id, default, context)
 
     def create(self, cr, uid, vals, context=None):
-        if vals.get('name','/')=='/':
+        if vals.get('name', '/') == '/':
             vals['name'] = self.pool.get('ir.sequence').next_by_code(
                 cr, uid, 'sale.quotation') or '/'
         return super(sale_order, self).create(cr, uid, vals, context=context)
-    
+
     def action_wait(self, cr, uid, ids, context=None):
         if super(sale_order, self).action_wait(cr, uid, ids, context=context):
             for sale in self.browse(cr, uid, ids, context=None):
                 quo = sale.name
                 self.write(cr, uid, [sale.id], {
-                    'origin': quo, 
+                    'origin': quo,
                     'name': self.pool.get('ir.sequence').next_by_code(
                         cr, uid, 'sale.order')
-                    })
+                })
         return True
