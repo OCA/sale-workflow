@@ -1,10 +1,9 @@
 # -*- coding: utf-8 -*-
 ##############################################################################
 #
-#    Author: Joël Grand-guillaume (Camptocamp) 
+#    Author: Joël Grand-guillaume (Camptocamp)
 #    Contributor: Yannick Vaucher (Camptocamp)
 #    Copyright 2011 Camptocamp SA
-#    Donors:
 #
 #    This program is free software: you can redistribute it and/or modify
 #    it under the terms of the GNU Affero General Public License as
@@ -21,27 +20,23 @@
 #
 ##############################################################################
 {
-    "name" : "CRM with Department Categorization",
-    "version" : "1.0",
-    "author" : "Camptocamp",
-    "category" : "Generic Modules/CRM & SRM",
-    "description": """
-    
+    'name' : 'CRM with Department Categorization',
+    'version' : '1.0',
+    'category' : 'Generic Modules/CRM & SRM',
+    'description': '''
+
 Add the department on Sales Team (with related field on Lead & Opportunities)
 as well as the related filter and button in the search form.
 
-    
-""",
-    "website": "http://camptocamp.com",
-    "depends" : [
-            "crm",
-            "hr"
-                ],
-    "init_xml" : [],
-    "demo_xml" : [],
-    "update_xml" : [
-           "crm_view.xml",
-                   ],
-    "active": False,
-    'installable': False
+''',
+    'author' : 'Camptocamp',
+    'website': 'http://camptocamp.com',
+    'depends' : ['crm', 'hr'],
+    'data' : ['crm_view.xml'],
+    'demo_xml' : [],
+    'installable': True,
+    'auto_install': False,
+    'application': True,
 }
+
+# vim:expandtab:smartindent:tabstop=4:softtabstop=4:shiftwidth=4:
