@@ -18,9 +18,9 @@
       <field name="model">account.invoice</field>
       <field name="inherit_id" ref="account.invoice_form" />
       <field name="arch" type="xml">
-        <field name="company_id" position="before">
+        <xpath expr="//page[@string='Other Info']//field[@name='company_id']" position="before">
           <field name="department_id" widget="selection"/>
-        </field>
+        </xpath>
       </field>
     </record>
 
@@ -46,9 +46,9 @@
       <field name="inherit_id" ref="account.invoice_supplier_form" />
       <field name="priority">2</field>
       <field name="arch" type="xml">
-        <field name="company_id" position="before">
+        <xpath expr="//page[@string='Other Info']//field[@name='company_id']" position="before">
           <field name="department_id" widget="selection"/>
-        </field>
+        </xpath>
       </field>
     </record>
 
