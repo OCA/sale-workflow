@@ -26,13 +26,5 @@ class res_partner(orm.Model):
     _inherit = 'res.partner'
 
     _columns = {
-        'use_prepayment': fields.boolean(
-            'Use prepayment',
-            help="When prepayment is activated, the sales order policy "
-                 "will be automatically defined to pay before delivery."),
+        'use_prepayment': fields.boolean('Use prepayment'),
     }
-
-    def _commercial_fields(self, cr, uid, context=None):
-        fields =  super(res_partner, self)._commercial_fields(cr, uid, context=context)
-        fields.append('use_prepayment')
-        return fields
