@@ -8,7 +8,7 @@
             <field name="arch" type="xml">
                 <field name="user_id" position="after">
                     <field name="use_prepayment"
-                        attrs="{'invisible': [('customer', '!=', True)]}"/>
+                        attrs="{'invisible': ['|', ('customer', '!=', True), ('is_company', '=', False), ('parent_id', '!=', False)]}"/>
                 </field>
             </field>
         </record>
