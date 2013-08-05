@@ -1,0 +1,8 @@
+<openerp>
+    <data noupdate="1">
+        <record forcecreate="True" id="sale_delivery_term_precision" model="decimal.precision">
+            <field name="name">Sale Delivery Term</field>
+            <field name="digits">6</field>
+        </record>
+    </data>
+</openerp>
