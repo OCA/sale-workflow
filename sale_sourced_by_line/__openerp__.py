@@ -19,4 +19,30 @@
 #
 ##############################################################################
 
-from . import stock
+{'name': 'Sale Sourced by Line',
+ 'version': '0.1',
+ 'author': 'Camptocamp',
+ 'category': 'Warehouse',
+ 'license': 'AGPL-3',
+ 'complexity': 'advanced',
+ 'images': [],
+ 'website': "http://www.camptocamp.com",
+ 'description': """
+Sale Sourced by Line
+====================
+
+Adds the possibility to source a line of sale order from a specific
+location instead of using the location of the warehouse of the selected
+shop
+""",
+ 'depends': ['sale_stock',
+             ],
+ 'demo': [],
+ 'data': ['view/sale_view.xml',
+          ],
+ 'test': ['test/sale_order_source.yml',
+          'test/sale_order_not_sourced.yml',
+          ],
+ 'auto_install': False,
+ 'installable': True,
+ }
