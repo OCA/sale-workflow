@@ -24,7 +24,7 @@
  'author': 'Camptocamp',
  'category': 'Warehouse',
  'license': 'AGPL-3',
- 'complexity': 'advanced',
+ 'complexity': 'expert',
  'images': [],
  'website': "http://www.camptocamp.com",
  'description': """
