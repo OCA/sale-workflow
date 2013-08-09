@@ -36,7 +36,7 @@ it is choosed from a configured list.
 
 """,
  'depends': ['sale',
-             ],
+             'sale_stock'],
  'demo': [],
  'data': ['wizard/cancel_reason_view.xml',
           'view/sale_view.xml',
