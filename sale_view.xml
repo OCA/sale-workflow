@@ -49,5 +49,30 @@
             </field>
         </record>
 
+        <record id="view_quotation_tree" model="ir.ui.view">
+            <field name="name">sale.order.view.tree</field>
+            <field name="model">sale.order</field>
+            <field name="inherit_id" ref="sale.view_quotation_tree" />
+            <field name="arch" type="xml">
+                <field name="amount_total" position="after">
+                    <field name="amount_paid"/>
+                    <field name="payment_method_id"/>
+                </field>
+            </field>
+        </record>
+
+
+        <record id="view_sales_order_filter" model="ir.ui.view">
+            <field name="model">sale.order</field>
+            <field name="inherit_id" ref="sale.view_sales_order_filter"/>
+            <field name="arch" type="xml">
+                <filter name="my_sale_orders_filter" position="before">
+                    <filter string="With Payment" domain="[('payment_ids','!=',False)]" help="Order With Payment"  name="with_payment"/>
+                    <separator/>
+                </filter>
+            </field>
+        </record>
+
+
     </data>
 </openerp>

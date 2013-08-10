@@ -22,9 +22,9 @@
 from openerp.osv import orm, fields
 
 
-class account_move(orm.Model):
-    _inherit = 'account.move'
+class account_move_line(orm.Model):
+    _inherit = 'account.move.line'
 
     _columns = {
-        'order_ids': fields.many2many('sale.order', string='Sales Orders'),
+        'sale_ids': fields.many2many('sale.order', string='Sales Orders'),
     }

@@ -41,13 +41,17 @@ class sale_order(orm.Model):
         so_obj = self.pool.get('sale.order')
         return so_obj._get_order(cr, uid, ids, context=context)
 
-    def _amount_residual(self, cr, uid, ids, field_name, args, context=None):
+    def _get_amount(self, cr, uid, ids, fields, args, context=None):
         res = {}
         for order in self.browse(cr, uid, ids, context=context):
-            amount = order.amount_total
-            for move in order.payment_ids:
-                amount -= move.amount
-            res[order.id] = amount
+            #TODO add support when payment is linked to many order
+            paid_amount = 0
+            for line in order.payment_ids:    
+                paid_amount = line.debit - line.credit
+            res[order.id] = {
+                    'amount_paid': paid_amount, 
+                    'residual': order.amount_total - paid_amount,
+                    }
         return res
 
     def _payment_exists(self, cursor, user, ids, name, arg, context=None):
@@ -57,16 +61,23 @@ class sale_order(orm.Model):
         return res
 
     _columns = {
-        'payment_ids': fields.many2many('account.move',
+        'payment_ids': fields.many2many('account.move.line',
                                         string='Payments Entries'),
         'payment_method_id': fields.many2one('payment.method',
                                              'Payment Method',
                                              ondelete='restrict'),
         'residual': fields.function(
-            _amount_residual,
+            _get_amount,
             digits_compute=dp.get_precision('Account'),
             string='Balance',
-            store=False),
+            store=False,
+            multi='payment'),
+        'amount_paid': fields.function(
+            _get_amount,
+            digits_compute=dp.get_precision('Account'),
+            string='Amount Paid',
+            store=False,
+            multi='payment'),
         'payment_exists': fields.function(
             _payment_exists,
             string='Has automatic payment',
