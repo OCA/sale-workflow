@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data noupdate="1">
+        <record id="cancel_reason_only_quotation" model="sale.order.cancel.reason">
+            <field name="name">Just for Quotation</field>
+        </record>
+        <record id="cancel_reason_no_service_needed" model="sale.order.cancel.reason">
+            <field name="name">No service needed anymore</field>
+        </record>
+        <record id="cancel_reason_other_provider" model="sale.order.cancel.reason">
+            <field name="name">Other Service Provider selected</field>
+        </record>
+    </data>
+</openerp>
