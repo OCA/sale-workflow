@@ -81,10 +81,10 @@ class sale_order(osv.osv):
         wf_service = netsvc.LocalService("workflow")
         res = {}
         normal_lines = []
-        for line in order.order_line:
+        for line in order_lines:
             if line.sale_flow in ['direct_delivery', 'direct_invoice_and_delivery']:
                 date_planned = self._get_date_planned(cr, uid, order, line, order.date_order, context=context)
-                
+
                 proc_id = self.pool.get('procurement.order').create(cr, uid, self._prepare_order_line_procurement(cr, uid, order, line, False, date_planned, context=context))
                 line.write({'procurement_id': proc_id})
                 wf_service.trg_validate(uid, 'procurement.order', proc_id, 'button_confirm', cr)
