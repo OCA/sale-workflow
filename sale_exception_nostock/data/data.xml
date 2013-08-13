@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+  <data noupdate="1">
+    <record id="no_stock_at_date" model="sale.exception">
+      <field name="name">Not enough stock at delivery date</field>
+      <field name="description">Not enough stock at delivery date for this SO line
+to be delivered using MTS procument method</field>
+      <field name="sequence">20</field>
+      <field name="model">sale.order.line</field>
+      <field name="code">if not object.can_command_at_delivery_date():
+    failed = True</field>
+      <field name="active" eval="True"/>
+    </record>
+
+    <record id="no_stock_in_future" model="sale.exception">
+      <field name="name">Not enough stock to satisfy existing placed orders planned in the future</field>
+      <field name="description">This order contains one or more lines procured on MTS that will prevent later order to be delivered on the estimated delivery date.
+      You shoud review and reschedule the deliveries or replennish the stock.
+      </field>
+      <field name="sequence">40</field>
+      <field name="model">sale.order.line</field>
+      <field name="code">if object.future_orders_are_affected():
+    failed = True</field>
+      <field name="active" eval="True"/>
+    </record>
+  </data>
+</openerp>
