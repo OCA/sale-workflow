@@ -31,16 +31,34 @@
 Sale Ownership
 ==============
 
-If there is an ownership defined on the stock locations, considering that
-each sale order line can have a different source location, the workflow
-of a sale will behave as follows (for MTS lines):
+As of today, this addon does nothing more than installing its
+dependencies. Its final goal is to handle the use case of having goods
+owned by a supplier in our stock.
 
-1. If the sales order's customer is different than the stock location owner,
-   a purchase order is generated for the line and linked with the picking.
-2. If the sales order's customer is the same than the stock location owner,
-   then the prices of the lines should be 0. This happens when a supplier
-   stores its own material in warehouse, and he want to get it back. Some fees
-   can still be added manually.
+Let's say we are a restaurant. We ask 10'000 bottles of wine to a supplier.
+We receive the 10'000 bottles and store them in a stock location, but we
+will not pay them directly. Instead, when we need bottles, we will take
+them from the stock location and create an invoice that we have to pay to
+our supplier.
+
+Technically, we have more than one way to accomplish this and that's why
+this addon does not do it actually, however, thanks to its dependencies,
+it gathers the necessary pieces:
+
+stock_location_ownership
+  Adds an ownership on the location, meaning that we are able to store
+  the bottles in a location and specify that the location is owned by our
+  supplier.
+
+sale_sourced_by_line
+  A different source location can be choosed on each sales order line.
+  So for one sale order line of 10 bottles, we can say that they will be
+  taken from the location owned by our supplier.
+
+sale_dropshipping
+  Allows to use dropshipping for the bottles, that is, they are directly
+  delivered from our supplier, as in some sense they have a stock
+  location in our stock.
 """,
  'depends': ['stock_location_ownership',
              'sale_sourced_by_line',
