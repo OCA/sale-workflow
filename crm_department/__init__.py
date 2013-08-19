@@ -1,10 +1,9 @@
 # -*- coding: utf-8 -*-
 ##############################################################################
 #
-#    Author: Joël Grand-guillaume (Camptocamp) 
+#    Author: Joël Grand-guillaume (Camptocamp)
 #    Contributor: Yannick Vaucher (Camptocamp)
 #    Copyright 2011 Camptocamp SA
-#    Donors:
 #
 #    This program is free software: you can redistribute it and/or modify
 #    it under the terms of the GNU Affero General Public License as
@@ -21,3 +20,5 @@
 #
 ##############################################################################
 import crm
+
+# vim:expandtab:smartindent:tabstop=4:softtabstop=4:shiftwidth=4:
