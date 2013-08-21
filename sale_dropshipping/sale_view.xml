@@ -18,11 +18,11 @@
         <field name="model">sale.order</field>
         <field name="inherit_id" ref="sale.view_order_form" />
         <field name="arch" type="xml">
-            <xpath expr="/form/sheet/notebook/page/field/tree/field[@name='name']" position="before">
+            <xpath expr="/form/sheet//field[@name='order_line']/tree/field[@name='name']" position="before">
                 <field name="sale_flow" />
             </xpath>
-            <xpath expr="/form/sheet/notebook/page/field/form/field[@name='type']" position="after">
-                <group attrs="{'invisible': [('type', '=', 'make_to_stock')]}">
+            <xpath expr="/form/sheet//field[@name='order_line']/form//field[@name='type']" position="after">
+                <group attrs="{'invisible': [('type', '=', 'make_to_stock')]}" colspan="2" cols="2">
                     <field name="sale_flow"/>
                     <field name="purchase_order_line_id"/>
                     <field name="purchase_order_id" readonly="1"/>
