@@ -63,20 +63,33 @@ class purchase_order(osv.osv):
         else:
             return {}                
 
-    def action_picking_create(self,cr, uid, ids, *args):
-        res = super(purchase_order, self).action_picking_create(cr, uid, ids, *args)
-        for purchase in self.browse(cr, uid, ids):
+    def action_picking_create(self,cr, uid, ids, context=None):
+        res = super(purchase_order, self).action_picking_create(cr, uid, ids, context=context)
+        picking_obj = self.pool.get('stock.picking')
+        for purchase in self.browse(cr, uid, ids, context=context):
             if res: #TODO bad code inherited from OpenERP, see bug https://bugs.launchpad.net/openobject-addons/+bug/788789
                 if purchase.sale_flow == 'direct_delivery':
                     if purchase.sale_id and purchase.sale_id.order_policy == 'picking':
                         invoice_control = '2binvoiced'
                     else:
                         invoice_control = 'none'
-                    self.pool.get('stock.picking').write(cr, uid, res, {'type': 'out', 'invoice_state': invoice_control, 'sale_id': purchase.sale_id and purchase.sale_id.id})
+                    picking_obj.write(
+                        cr, uid, res,
+                        {'type': 'out',
+                         'invoice_state': invoice_control,
+                         'sale_id': purchase.sale_id and purchase.sale_id.id},
+                        context=context)
                 elif purchase.sale_flow == 'direct_invoice':
-                    self.pool.get('stock.picking').write(cr, uid, res, {'invoice_state': 'none'})
+                    picking_obj.write(cr, uid, res,
+                                      {'invoice_state': 'none'},
+                                      context=context)
                 elif purchase.sale_flow == 'direct_invoice_and_delivery':
-                    self.pool.get('stock.picking').write(cr, uid, res, {'type': 'out', 'invoice_state': 'none', 'sale_id': purchase.sale_id and purchase.sale_id.id})
+                    picking_obj.write(
+                        cr, uid, res,
+                        {'type': 'out',
+                         'invoice_state': 'none',
+                         'sale_id': purchase.sale_id and purchase.sale_id.id},
+                        context=context)
         return res
 
 
