@@ -13,30 +13,22 @@
 			</field>
 		</record -->
 
-		<record model="ir.ui.view" id="view_sale_order_line_form_direct_delivery">
-			<field name="name">sale.order.line.form.direct_delivery</field>
-			<field name="model">sale.order</field>
-			<field name="inherit_id" ref="sale.view_order_form" />
-			<field name="type">form</field>
-			<field name="arch" type="xml">
-				<field name="type" position="after">
-					<field name="sale_flow" attrs="{'invisible':[('type','=','make_to_stock')]}"/>
-                    <field name="purchase_order_line_id" attrs="{'invisible':[('type','=','make_to_stock')]}"/>
-					<field name="purchase_order_id" readonly="1" attrs="{'invisible':[('type','=','make_to_stock')]}" />
-					<field name="purchase_order_state" readonly="1" attrs="{'invisible':[('type','=','make_to_stock')]}" />
-				</field>
-			</field>
-		</record>
-
-    <record model="ir.ui.view" id="view_project_quotation_order_tree">
-        <field name="name">view_project_quotation_order_tree</field>
+    <record model="ir.ui.view" id="view_order_form_sale_flow">
+        <field name="name">view_order_form_sale_flow</field>
         <field name="model">sale.order</field>
         <field name="inherit_id" ref="sale.view_order_form" />
-        <field name="type">form</field>
         <field name="arch" type="xml">
-        <xpath expr="/form/sheet/notebook/page/field/tree/field[@name='name']" position="before">
-            <field name="sale_flow" />
-        </xpath>
+            <xpath expr="/form/sheet/notebook/page/field/tree/field[@name='name']" position="before">
+                <field name="sale_flow" />
+            </xpath>
+            <xpath expr="/form/sheet/notebook/page/field/form/field[@name='type']" position="after">
+                <group attrs="{'invisible': [('type', '=', 'make_to_stock')]}">
+                    <field name="sale_flow"/>
+                    <field name="purchase_order_line_id"/>
+                    <field name="purchase_order_id" readonly="1"/>
+                    <field name="purchase_order_state" readonly="1"/>
+                </group>
+            </xpath>
         </field>
     </record>
 
