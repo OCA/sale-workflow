@@ -76,21 +76,38 @@ class sale_order(osv.osv):
             res['location_id'] = order.partner_id.property_stock_supplier.id
         return res
 
-    #NOTE: the following code depends on a refactoring by Akretion that has been merged in OpenERP 6.1 (won't work un-pached on 6.0)
-    def _create_pickings_and_procurements(self, cr, uid, order, order_lines, picking_id=False, context=None):
+    def _create_procurements_direct_mto(self, cr, uid, order, order_lines,
+                                        context=None):
+        """ For make to order lines delivery as dropshipping, do not generate
+        moves but only create a procurement order. """
         wf_service = netsvc.LocalService("workflow")
+        proc_obj = self.pool.get('procurement.order')
+        for line in order_lines:
+            date_planned = self._get_date_planned(cr, uid, order,
+                                                  line, order.date_order,
+                                                  context=context)
+            vals = self._prepare_order_line_procurement(
+                cr, uid, order, line, False, date_planned, context=context)
+            proc_id = proc_obj.create(cr, uid, vals, context=context)
+            line.write({'procurement_id': proc_id})
+            wf_service.trg_validate(uid, 'procurement.order',
+                                    proc_id, 'button_confirm', cr)
+
+    def _create_pickings_and_procurements(self, cr, uid, order, order_lines, picking_id=False, context=None):
         res = {}
         normal_lines = []
+        dropship_lines = []
+        dropship_flows = ('direct_delivery', 'direct_invoice_and_delivery')
         for line in order_lines:
-            if line.sale_flow in ['direct_delivery', 'direct_invoice_and_delivery']:
-                date_planned = self._get_date_planned(cr, uid, order, line, order.date_order, context=context)
-
-                proc_id = self.pool.get('procurement.order').create(cr, uid, self._prepare_order_line_procurement(cr, uid, order, line, False, date_planned, context=context))
-                line.write({'procurement_id': proc_id})
-                wf_service.trg_validate(uid, 'procurement.order', proc_id, 'button_confirm', cr)
+            if (line.type == 'make_to_order' and
+                    line.sale_flow in dropship_flows):
+                dropship_lines.append(line)
             else:
                 normal_lines.append(line)
-        res =  super(sale_order, self)._create_pickings_and_procurements(cr, uid, order, normal_lines, None, context)
+        self._create_procurements_direct_mto(cr, uid, order, dropship_lines,
+                                             context=context)
+        res = super(sale_order, self)._create_pickings_and_procurements(
+            cr, uid, order, normal_lines, None, context)
         return res
 
 sale_order()
