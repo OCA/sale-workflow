@@ -26,6 +26,7 @@
     'name': 'Sale Quotation Numeration',
     'version': '1.1',
     'category': 'Sales Management',
+    'summary': "Different sequence for sale quotations",
     'description': """
 This module adds a sale quotation sequence.
 ===========================================
