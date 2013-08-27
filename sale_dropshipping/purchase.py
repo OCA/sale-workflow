@@ -47,21 +47,37 @@ class purchase_order(osv.osv):
         'sale_flow': 'normal',
     }
 
-    def sale_flow_change(self, cr, uid, ids, sale_flow, sale_id, warehouse_id):
+    def sale_flow_change(self, cr, uid, ids, sale_flow, sale_id,
+                         warehouse_id, context=None):
         if sale_id:
-            partner_id = self.pool.get('sale.order').browse(cr, uid, sale_id).partner_id.id
-            if sale_flow == 'direct_delivery': #TODO manual? in the 2 cases of direct invoice?
-                return {'value': {'invoice_method': 'order', 'location_id': self.pool.get('res.partner').browse(cr, uid, partner_id).property_stock_customer.id, 'dest_address_id': self.pool.get('res.partner').address_get(cr, uid, [partner_id], ['delivery'])['delivery']}}
-            elif sale_flow == 'direct_invoice':
-                warehouse = self.pool.get('stock.warehouse').browse(cr, uid, warehouse_id)
-                return {'value': {'invoice_method': 'picking', 'location_id': warehouse.lot_input_id.id, 'dest_address_id': self.pool.get('res.partner').address_get(cr, uid, [warehouse.company_id.partner_id.id], ['delivery'])['delivery']}}
-            elif sale_flow == 'direct_invoice_and_delivery':
-                return {'value': {'invoice_method': 'picking', 'location_id': self.pool.get('res.partner').browse(cr, uid, partner_id).property_stock_customer.id, 'dest_address_id': self.pool.get('res.partner').address_get(cr, uid, [partner_id], ['delivery'])['delivery']}}
+            sale_obj = self.pool.get('sale.order')
+            partner_obj = self.pool.get('sale.order')
+            warehouse_obj = self.pool.get('stock.warehouse')
+            sale = sale_obj.browse(cr, uid, sale_id, context=context)
+            partner_id = sale.partner_id.id
+            if sale_flow in ('direct_delivery', 'direct_invoice_and_delivery'):
+                partner = partner_obj.browse(cr, uid, partner_id,
+                                             context=context)
+                address = partner.address_get(['delivery'])['delivery']
+                vals = {'location_id': partner.property_stock_customer.id,
+                        'dest_address_id': address}
+                if sale_flow == 'direct_delivery':
+                    vals['invoice_method'] = 'order'
+                else:
+                    vals['invoice_method'] = 'picking'
+                return {'value': vals}
             else:
-                warehouse = self.pool.get('stock.warehouse').browse(cr, uid, warehouse_id)
-                return {'value': {'location_id': warehouse.lot_input_id.id, 'dest_address_id': self.pool.get('res.partner').address_get(cr, uid, [warehouse.company_id.partner_id.id], ['delivery'])['delivery']}}
-        else:
-            return {}                
+                warehouse = warehouse_obj.browse(cr, uid,
+                                                 warehouse_id, context=context)
+                company_partner = warehouse.company_id.partner_id
+                address = company_partner.address_get(['delivery'])['delivery']
+                vals = {'invoice_method': 'picking',
+                        'location_id': warehouse.lot_input_id.id,
+                        'dest_address_id': address}
+                if sale_flow == 'direct_invoice':
+                    vals['invoice_method'] = 'picking'
+                return {'value': vals}
+        return {}
 
     def action_picking_create(self,cr, uid, ids, context=None):
         res = super(purchase_order, self).action_picking_create(cr, uid, ids, context=context)

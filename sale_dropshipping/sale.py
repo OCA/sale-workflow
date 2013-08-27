@@ -123,7 +123,11 @@ class procurement_order(osv.osv):
         if procurement.sale_order_line_id:
             warehouse_id = procurement.sale_order_line_id.order_id.shop_id.warehouse_id
             sale_flow = procurement.sale_order_line_id.sale_flow
-            vals = self.pool.get('purchase.order').sale_flow_change(cr, uid, [], sale_flow, procurement.sale_order_line_id.order_id.id, warehouse_id.id)
+            purchase_obj = self.pool.get('purchase.order')
+            vals = purchase_obj.sale_flow_change(
+                cr, uid, [], sale_flow,
+                procurement.sale_order_line_id.order_id.id,
+                warehouse_id.id, context=context)
             po_vals.update(vals.get('value', {}))
             po_vals.update({'sale_flow': sale_flow, 'sale_id': procurement.sale_order_line_id.order_id.id})
             line_vals.update({'sale_order_line_id': procurement.sale_order_line_id and procurement.sale_order_line_id.id or False})
