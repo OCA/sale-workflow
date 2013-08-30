@@ -19,9 +19,10 @@
 #
 ##############################################################################
 {
-    'name': "Multi Pickings from Sale Orders",
+    'name': "Sale multi pickings",
     'version': '0.1',
     'category': 'Sales Management',
+    'summary': "Multi Pickings from Sale Orders",
     'description': """
 This module allows to generate several pickings from the same sale order.
 You just have to indicate which order lines have to be grouped in the same picking. When confirming the order, for each group a picking is generated.

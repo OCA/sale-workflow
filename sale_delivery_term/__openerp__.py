@@ -22,6 +22,7 @@
     'name': "Sale delivery terms",
     'version': '0.1',
     'category': 'Sales Management',
+    'summary': "Delivery term for sale orders",
     'description': """
 Delivery term for sale orders.
 You can configure delivery terms specifying the quantity percentage and the delay for every term line.
