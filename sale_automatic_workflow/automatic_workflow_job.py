@@ -81,7 +81,8 @@ class automatic_workflow_job(orm.Model):
         sale_ids = sale_obj.search(
             cr, uid,
             [('state', '=', 'draft'),
-             ('workflow_process_id.validate_order', '=', True)],
+             ('workflow_process_id.validate_order', '=', True),
+             ('exceptions_ids', '=', False)],
             context=context)
         _logger.debug('Sale Orders to validate: %s', sale_ids)
         for sale_id in sale_ids:
