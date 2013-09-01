@@ -47,7 +47,7 @@ class sale_order(orm.Model):
             #TODO add support when payment is linked to many order
             paid_amount = 0
             for line in order.payment_ids:    
-                paid_amount = line.debit - line.credit
+                paid_amount += line.credit - line.debit
             res[order.id] = {
                     'amount_paid': paid_amount, 
                     'residual': order.amount_total - paid_amount,
@@ -196,7 +196,6 @@ class sale_order(orm.Model):
                 'date': date,
                 'ref': sale.name,
                 'period_id': period.id,
-                'order_ids': [(4, sale.id)],
                 }
 
     def _prepare_payment_move_line(self, cr, uid, move_name, sale, journal,
@@ -245,6 +244,7 @@ class sale_order(orm.Model):
             'date': date,
             'amount_currency': -amount_currency,
             'currency_id': currency_id,
+            'sale_ids': [(4, sale.id)],
         }
         return debit_line, credit_line
 
