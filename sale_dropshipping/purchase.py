@@ -51,7 +51,7 @@ class purchase_order(osv.osv):
                          warehouse_id, context=None):
         if sale_id:
             sale_obj = self.pool.get('sale.order')
-            partner_obj = self.pool.get('sale.order')
+            partner_obj = self.pool.get('res.partner')
             warehouse_obj = self.pool.get('stock.warehouse')
             sale = sale_obj.browse(cr, uid, sale_id, context=context)
             partner_id = sale.partner_id.id
