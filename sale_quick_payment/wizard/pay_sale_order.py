@@ -32,6 +32,7 @@ class pay_sale_order(orm.TransientModel):
         'amount': fields.float('Amount',
                                digits_compute=dp.get_precision('Sale Price')),
         'date': fields.datetime('Payment Date'),
+        'description': fields.char('Description', size=64),
     }
 
     def _get_journal_id(self, cr, uid, context=None):
@@ -70,6 +71,7 @@ class pay_sale_order(orm.TransientModel):
                              wizard.journal_id.id,
                              wizard.amount,
                              wizard.date,
+                             description=wizard.description,
                              context=context)
         return {'type': 'ir.actions.act_window_close'}
 
