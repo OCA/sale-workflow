@@ -123,7 +123,7 @@ class sale_order(orm.Model):
         return True
 
     def add_payment(self, cr, uid, ids, journal_id, amount,
-                    date=None, context=None):
+                    date=None, description=None, context=None):
         """ Generate payment move lines of a certain amount linked
         with the sale order. """
         if isinstance(ids, Iterable):
@@ -135,16 +135,16 @@ class sale_order(orm.Model):
         if date is None:
             date = sale.date_order
         journal = journal_obj.browse(cr, uid, journal_id, context=context)
-        self._add_payment(cr, uid, sale, journal, amount, date, context=context)
+        self._add_payment(cr, uid, sale, journal, amount, date, description, context=context)
         return True
 
-    def _add_payment(self, cr, uid, sale, journal, amount, date, context=None):
+    def _add_payment(self, cr, uid, sale, journal, amount, date, description, context=None):
         """ Generate move lines entries to pay the sale order. """
         move_obj = self.pool.get('account.move')
         period_obj = self.pool.get('account.period')
         period_id = period_obj.find(cr, uid, dt=date, context=context)[0]
         period = period_obj.browse(cr, uid, period_id, context=context)
-        move_name = self._get_payment_move_name(cr, uid, journal,
+        move_name = description or self._get_payment_move_name(cr, uid, journal,
                                                 period, context=context)
         move_vals = self._prepare_payment_move(cr, uid, move_name, sale,
                                                journal, period, date,
