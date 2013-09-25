@@ -3,6 +3,7 @@
 #                                                                               #
 #    sale_automatic_workflow for OpenERP                                        #
 #    Copyright (C) 2011 Akretion Sébastien BEAU <sebastien.beau@akretion.com>   #
+#    Copyright 2013 Camptocamp SA (Guewen Baconnier)                            #
 #                                                                               #
 #    This program is free software: you can redistribute it and/or modify       #
 #    it under the terms of the GNU Affero General Public License as             #
