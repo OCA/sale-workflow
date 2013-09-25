@@ -63,7 +63,7 @@ def commit(cr):
     """
     try:
         yield
-    except Exception, e:
+    except Exception:
         cr.rollback()
         _logger.exception('Error during an automatic workflow action.')
     else:
