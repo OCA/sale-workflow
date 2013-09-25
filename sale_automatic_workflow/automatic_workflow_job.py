@@ -24,7 +24,6 @@
 import logging
 from contextlib import contextmanager
 from openerp.osv import orm
-from openerp import pooler
 from openerp import netsvc
 
 """
