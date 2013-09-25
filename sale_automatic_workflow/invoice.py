@@ -128,7 +128,7 @@ class account_invoice(orm.Model):
     def reconcile_invoice(self, cr, uid, ids, context=None):
         """ Simple method to reconcile the invoice with the payment
         generated on the sale order """
-        if not hasattr(ids, '__iter__'):
+        if not isinstance(ids, (list, tuple)):
             ids = [ids]
         for invoice in self.browse(cr, uid, ids, context=context):
             self._reconcile_invoice(cr, uid, invoice, context=context)
