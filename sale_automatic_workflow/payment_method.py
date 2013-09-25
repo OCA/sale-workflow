@@ -20,11 +20,10 @@
 #################################################################################
 
 
-from openerp.osv.orm import Model
-from openerp.osv import fields
+from openerp.osv import orm, fields
 
 
-class payment_method(Model):
+class payment_method(orm.Model):
     _inherit = "payment.method"
 
     _columns = {
