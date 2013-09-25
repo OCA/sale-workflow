@@ -23,8 +23,18 @@ from openerp.osv import orm, fields
 
 
 class sale_workflow_process(orm.Model):
+    """
+    A workflow process is the setup of the automation of a sales order.
+
+    Each sales order can be linked to a workflow process.
+    Then, the options of the workflow will change how the sales order
+    behave, and how it is automatized.
+
+    A workflow process may be linked with a Sales payment method, so
+    each time a payment method is used, the workflow will be applied.
+    """
     _name = "sale.workflow.process"
-    _description = "sale workflow process"
+    _description = "Sale Workflow Process"
 
     _columns = {
         'name': fields.char('Name', size=64),
