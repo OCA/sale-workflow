@@ -1,1 +1,1 @@
-import pay_sale_order
+from . import pay_sale_order
