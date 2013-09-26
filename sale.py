@@ -23,7 +23,7 @@
 from openerp.osv import orm, fields, osv
 from openerp.tools.translate import _
 from collections import Iterable
-import decimal_precision as dp
+import openerp.addons.decimal_precision as dp
 
 
 class sale_order(orm.Model):
