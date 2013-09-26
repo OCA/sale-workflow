@@ -19,6 +19,6 @@
 #
 ##############################################################################
 
-import sale
-import payment_method
-import account_move
+from . import sale
+from . import payment_method
+from . import account_move
