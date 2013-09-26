@@ -1,5 +1,5 @@
 # -*- encoding: utf-8 -*-
-###############################################################################
+##############################################################################
 #
 #   sale_quick_payment for OpenERP
 #   Copyright (C) 2012-TODAY Akretion <http://www.akretion.com>.
@@ -18,7 +18,7 @@
 #   You should have received a copy of the GNU Affero General Public License
 #   along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
-###############################################################################
+##############################################################################
 
 """ r0.1: Migration 6.1 => 7.0.0.1
     migrate the field payment_id from one2many to payment_ids many2many
