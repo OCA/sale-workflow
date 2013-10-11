@@ -21,13 +21,13 @@
 
 import logging
 
-from openerp.osv import fields, orm
+from openerp.osv import fields, osv
 from openerp.tools.translate import _
 
 _logger = logging.getLogger(__name__)
 
 
-class sale_configuration(orm.Model):
+class sale_configuration(osv.TransientModel):
     _inherit = 'sale.config.settings'
 
     _columns = {
