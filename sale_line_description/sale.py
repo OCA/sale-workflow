@@ -31,33 +31,32 @@ class sale_order_line(orm.Model):
         lang=False, update_tax=True, date_order=False, packaging=False,
         fiscal_position=False, flag=False, context=None
     ):
+        res = super(sale_order_line, self).product_id_change(
+            cr, uid, ids, pricelist, product_id, qty=qty, uom=uom,
+            qty_uos=qty_uos, uos=uos, name='', partner_id=partner_id,
+            lang=lang, update_tax=update_tax, date_order=date_order,
+            packaging=packaging, fiscal_position=fiscal_position,
+            flag=flag, context=context
+        )
         if product_id:
-            res = super(sale_order_line, self).product_id_change(
-                cr, uid, ids, pricelist, product_id, qty=qty, uom=uom,
-                qty_uos=qty_uos, uos=uos, name='', partner_id=partner_id,
-                lang=lang, update_tax=update_tax, date_order=date_order,
-                packaging=packaging, fiscal_position=fiscal_position,
-                flag=flag, context=context
+            user = self.pool.get('res.users').browse(
+                cr, uid, uid, context=context)
+            user_groups = [g.id for g in user.groups_id]
+            ref = self.pool.get('ir.model.data').get_object_reference(
+                cr, uid, 'sale_line_description',
+                'group_use_product_description_per_so_line'
             )
-            try:
-                user = self.pool.get('res.users').browse(
-                    cr, uid, uid, context=context)
-                user_groups = [g.id for g in user.groups_id]
-                group_id = self.pool.get('ir.model.data').get_object_reference(
-                    cr, uid, 'sale_line_description',
-                    'group_use_product_description_per_so_line'
-                )[1]
-            except:
-                return False
-            if group_id in user_groups:
-                product_obj = self.pool.get('product.product')
-                product = product_obj.browse(
-                    cr, uid, product_id, context=context)
-                if (
-                    product
-                    and product.description
-                    and res['value']
-                    and res['value'].get('name', False)
-                ):
-                    res['value']['name'] = product.description
+            if ref and len(ref) > 1 and ref[1]:
+                group_id = ref[1]
+                if group_id in user_groups:
+                    product_obj = self.pool.get('product.product')
+                    product = product_obj.browse(
+                        cr, uid, product_id, context=context)
+                    if (
+                        product
+                        and product.description
+                        and res['value']
+                        and res['value'].get('name', False)
+                    ):
+                        res['value']['name'] = product.description
         return res
