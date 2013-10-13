@@ -113,18 +113,24 @@ class account_invoice(Model):
         obj_move_line = self.pool.get('account.move.line')
         for invoice in self.browse(cr, uid, ids, context=context):
             use_currency = invoice.currency_id.id != invoice.company_id.currency_id.id
+            reconcile = False
+            payment_move_lines = self._get_payment(cr, uid, invoice, context=context)
+            res_payment = self._get_sum_payment_move_line(cr, uid, payment_move_line, invoice.type, context=context)
+            res_invoice = self._get_sum_invoice_move_line(cr, uid, invoice.move_id.line_id, invoice.type, context=context)
+            line_ids = res_invoice['line_ids'] + res_payment['line_ids']
             if self._can_be_reconciled(cr, uid, invoice, context=context):
-                payment_move_lines = self._get_payment(cr, uid, invoice, context=context)
-                res_payment = self._get_sum_payment_move_line(cr, uid, payment_move_line, invoice.type, context=context)
-                res_invoice = self._get_sum_invoice_move_line(cr, uid, invoice.move_id.line_id, invoice.type, context=context)
-                line_ids = res_invoice['line_ids'] + res_payment['line_ids']
                 if not use_currency:
                     balance = abs(res_invoice['total_amount']-res_payment['total_amount'])
                     if line_ids and not round(balance, precision):
                         obj_move_line.reconcile(cr, uid, line_ids, context=context)
+                        reconcile=True
                 else:
                     balance = abs(res_invoice['total_amount_currency']-res_payment['total_amount_currency'])
                     if line_ids and not round(balance, precision):
                         kwargs = self._prepare_write_off(cr, uid, invoice, res_invoice, res_payment, context=context)
                         obj_move_line.reconcile(cr, uid, line_ids, **kwargs)
+                        reconcile = True
+            unreconciled_payment = [line for line in payment_move_lines if not line.reconcile_partial_id] 
+            if not reconcile and unreconciled_payment:
+                move_line_obj.reconcile_partial(cr, uid, line_ids, context=context)
         return True
