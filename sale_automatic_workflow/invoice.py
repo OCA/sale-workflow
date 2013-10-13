@@ -30,21 +30,41 @@ class account_invoice(Model):
         'sale_ids': fields.many2many('sale.order', 'sale_order_invoice_rel', 'invoice_id', 'order_id', 'Sale Orders')
     }
 
+    def _get_payment(self, cr, uid, invoice, context=None):
+        if invoice.type == "out_invoice" and invoice.sale_ids:
+            return invoice.sale_ids[0].payment_ids
+        return []
+
     def _can_be_reconciled(self, cr, uid, invoice, context=None):
-        if not (invoice.sale_ids and invoice.sale_ids[0].payment_ids and invoice.move_id):
+        payments = self._get_payment(cr, uid, invoice, context=context)
+        if not (payments and invoice.move_id):
             return False
-        #Check currency
-        for payment in invoice.sale_ids[0].payment_ids:
-            for move in payment.move_ids:
-                if (move.currency_id.id or invoice.company_id.currency_id.id) != invoice.currency_id.id:
-                    return False
+        # Check currency
+        company_currency_id = invoice.company_id.currency_id.id
+        for payment in payments:
+            currency_id = payment.currency_id.id or company_currency_id
+            if currency_id != invoice.currency_id.id:
+                return False
         return True
 
-    def _get_sum_invoice_move_line(self, cr, uid, move_lines, context=None):
-        return self._get_sum_move_line(cr, uid, move_lines, 'debit', context=None)
+    def _get_sum_invoice_move_line(self, cr, uid, move_lines,\
+                                  invoice_type, context=None):
+        if invoice_type in ['in_refund', 'out_invoice']:
+            line_type = 'debit'
+        else:
+            line_type = 'credit'
+        return self._get_sum_move_line(cr, uid, move_lines,\
+                                       line_type, context=None)
 
-    def _get_sum_payment_move_line(self, cr, uid, move_lines, context=None):
-        return self._get_sum_move_line(cr, uid, move_lines, 'credit', context=None)
+    def _get_sum_payment_move_line(self, cr, uid, move_lines,\
+                                   invoice_type, context=None):
+        if invoice_type in ['in_refund', 'out_invoice']:
+            line_type = 'credit'
+        else:
+            line_type = 'debit'
+        return self._get_sum_move_line(cr, uid, move_lines,\
+                                       line_type, context=None)
+
 
     def _get_sum_move_line(self, cr, uid, move_lines, line_type, context=None):
         res = {
@@ -94,11 +114,9 @@ class account_invoice(Model):
         for invoice in self.browse(cr, uid, ids, context=context):
             use_currency = invoice.currency_id.id != invoice.company_id.currency_id.id
             if self._can_be_reconciled(cr, uid, invoice, context=context):
-                payment_move_line = []
-                for payment in invoice.sale_ids[0].payment_ids:
-                    payment_move_line += payment.move_ids
-                res_payment = self._get_sum_payment_move_line(cr, uid, payment_move_line, context=context)
-                res_invoice = self._get_sum_invoice_move_line(cr, uid, invoice.move_id.line_id, context=context)
+                payment_move_lines = self._get_payment(cr, uid, invoice, context=context)
+                res_payment = self._get_sum_payment_move_line(cr, uid, payment_move_line, invoice.type, context=context)
+                res_invoice = self._get_sum_invoice_move_line(cr, uid, invoice.move_id.line_id, invoice.type, context=context)
                 line_ids = res_invoice['line_ids'] + res_payment['line_ids']
                 if not use_currency:
                     balance = abs(res_invoice['total_amount']-res_payment['total_amount'])
