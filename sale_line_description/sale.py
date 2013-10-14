@@ -55,8 +55,7 @@ class sale_order_line(orm.Model):
                     if (
                         product
                         and product.description
-                        and res['value']
-                        and res['value'].get('name', False)
+                        and 'value' in res
                     ):
                         res['value']['name'] = product.description
         return res
