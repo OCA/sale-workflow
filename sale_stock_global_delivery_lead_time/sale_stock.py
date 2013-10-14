@@ -33,7 +33,7 @@ class sale_order(orm.Model):
         if not ids:
             return res
         order_line_obj = self.pool.get('sale.order.line')
-        sale_infos = self.read(cr, uid, ids, ['delay', 'date_order'], context=context, load='_classic_write')
+        sale_infos = self.read(cr, uid, ids, ['delay', 'date_order'], context=context, load='_classic_write')        
         line_ids = order_line_obj.search(cr, uid, [('order_id', 'in', ids)], context=context)
         line_delays = order_line_obj.read(cr, uid, line_ids, ['order_id', 'delay'], context=context, load='_classic_write')
         order_line_delays = {} # dict order_id: [line delays]
@@ -44,9 +44,9 @@ class sale_order(orm.Model):
             res[sale_id] = {}
             start_date =  datetime.strptime(self.date_to_datetime(cr, uid, sale_info['date_order'], context),
                                             DEFAULT_SERVER_DATETIME_FORMAT)
-            print start_date, sale_info['delay'], order_line_delays[sale_id]
-            min_delay = sale_info['delay'] + min(order_line_delays[sale_id])
-            max_delay = sale_info['delay'] + max(order_line_delays[sale_id])
+            print start_date, sale_info['delay'], order_line_delays.get(sale_id, [0])
+            min_delay = sale_info['delay'] + min(order_line_delays.get(sale_id, [0]))
+            max_delay = sale_info['delay'] + max(order_line_delays.get(sale_id, [0]))
             min_date = start_date + relativedelta(days=min_delay)
             max_date = start_date + relativedelta(days=max_delay)
             print min_date, max_date
