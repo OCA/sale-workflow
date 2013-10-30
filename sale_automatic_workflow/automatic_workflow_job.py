@@ -75,15 +75,15 @@ class automatic_workflow_job(orm.Model):
     invoices, pickings...  """
     _name = 'automatic.workflow.job'
 
+    def _get_domain_for_sale_validation(self, cr, uid, context=None):
+        return [('state', '=', 'draft'),
+                ('workflow_process_id.validate_order', '=', True)]
+ 
     def _validate_sale_orders(self, cr, uid, context=None):
         wf_service = netsvc.LocalService("workflow")
         sale_obj = self.pool.get('sale.order')
-        sale_ids = sale_obj.search(
-            cr, uid,
-            [('state', '=', 'draft'),
-             ('workflow_process_id.validate_order', '=', True),
-             ('exceptions_ids', '=', False)],
-            context=context)
+        domain = self._get_domain_for_sale_validation(cr, uid, context=context)
+        sale_ids = sale_obj.search(cr, uid, domain, context=context)
         _logger.debug('Sale Orders to validate: %s', sale_ids)
         for sale_id in sale_ids:
             with commit(cr):
