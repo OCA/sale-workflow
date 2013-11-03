@@ -35,6 +35,7 @@ You can then associate the term to the 'main' order line and generate the 'detai
     "data" : [
         'sale_view.xml',
         'security/ir.model.access.csv',
+        'sale_data.xml',
         ],
     'test': [
         'test/sale_order_demo.yml',
