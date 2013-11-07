@@ -19,5 +19,5 @@
 #
 ##############################################################################
 
-import res_partner
-import sale
+from . import res_partner
+from . import sale
