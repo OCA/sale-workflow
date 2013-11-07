@@ -33,6 +33,6 @@ class res_partner(orm.Model):
     }
 
     def _commercial_fields(self, cr, uid, context=None):
-        fields =  super(res_partner, self)._commercial_fields(cr, uid, context=context)
+        fields = super(res_partner, self)._commercial_fields(cr, uid, context=context)
         fields.append('use_prepayment')
         return fields
