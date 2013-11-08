@@ -20,8 +20,6 @@
 #
 ##############################################################################
 
-import purchase
-import sale
-import product
-
-# vim:expandtab:smartindent:tabstop=4:softtabstop=4:shiftwidth=4:
+from . import purchase
+from . import sale
+from . import product
