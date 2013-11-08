@@ -19,17 +19,21 @@
 #
 ##############################################################################
 
-{
-    "name": "Sales Quotation Validity Date",
-    "version": "7.0.0",
-    "depends": ["sale"],
-    "author": "Camptocamp",
-    "category": "Sales",
-    "website": "http://www.camptocamp.com",
-    "description": "Add a validity date on the sales quotation defining until when the quotation is valid",
-    'data': [
-        "view/sale_order.xml",
-        ],
-    'installable': True,
-    'active': False,
-}
+{"name": "Sales Quotation Validity Date",
+ "version": "7.0.0",
+ "depends": ["sale"],
+ "author": "Camptocamp",
+ "category": "Sales",
+ "website": "http://www.camptocamp.com",
+ "description": """
+Sale order validity date
+========================
+
+Add a validity date on the sales quotation defining
+until when the quotation is valid
+
+""",
+ 'data': ["view/sale_order.xml"],
+ 'installable': True,
+ 'active': False,
+ }
