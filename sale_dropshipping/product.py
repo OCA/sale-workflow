@@ -52,17 +52,18 @@ class product_product(orm.Model):
             return False
 
         for product in self.browse(cr, uid, ids):
-            if context.has_key('qty'):
-                if product.virtual_available < context['qty']: #TODO deal with partial availability?
+            if 'qty' in context:
+                # TODO deal with partial availability?
+                if product.virtual_available < context['qty']:
                     res[product.id] = is_direct_delivery_from_suppliers(product)
-                else: #available in stock
+                else:  # Available in stock
                     res[product.id] = False
-            else: #no quantity mentioned so we answer for 'any' quantity
+            else:  # No quantity mentioned so we answer for 'any' quantity
                 res[product.id] = is_direct_delivery_from_suppliers(product)
         return res
 
-    _columns = {
-        'is_direct_delivery_from_product': fields.function(_is_direct_delivery_from_product, method=True, type='boolean', string="Is Supplier Direct Delivery Automatic?"),
+    _columns = {'is_direct_delivery_from_product': fields.function(_is_direct_delivery_from_product,
+                                                                   method=True,
+                                                                   type='boolean',
+                                                                   string="Is Supplier Direct Delivery Automatic?")
     }
-
-product_product()
