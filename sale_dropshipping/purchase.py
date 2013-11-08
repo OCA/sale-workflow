@@ -19,28 +19,30 @@
 #    along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
 ##############################################################################
+from openerp.osv import fields, orm
 
-from tools.translate import _
-from osv import fields, osv
-import netsvc
-from datetime import datetime
 
-class purchase_order_line(osv.osv):
+class purchase_order_line(orm.Model):
     _inherit = "purchase.order.line"
 
     _columns = {
         'sale_order_line_id': fields.many2one('sale.order.line', 'Sale Order Line'),
     }
 
-purchase_order_line()
 
-class purchase_order(osv.osv):
+class purchase_order(orm.Model):
     _inherit = "purchase.order"
 
     _columns = {
         'analytic_account_id': fields.many2one('account.analytic.account', 'Analytic Account'),
         'sale_id': fields.many2one('sale.order', 'Related Sale Order'),
-        'sale_flow': fields.selection([('normal', 'Normal'), ('direct_delivery', 'Drop Shipping'), ('direct_invoice', 'Direct Invoice/Indirect Delivery'), ('direct_invoice_and_delivery', 'Direct Invoice')], 'Sale Flow', help="Is this order tied to a sale order? How will it be delivered and invoiced then?"),
+        'sale_flow': fields.selection([('normal', 'Normal'),
+                                       ('direct_delivery', 'Drop Shipping'),
+                                       ('direct_invoice', 'Direct Invoice/Indirect Delivery'),
+                                       ('direct_invoice_and_delivery', 'Direct Invoice')],
+                                      'Sale Flow',
+                                      help="Is this order tied to a sale order?"
+                                           " How will it be delivered and invoiced then?"),
     }
 
     _defaults = {
@@ -79,11 +81,12 @@ class purchase_order(osv.osv):
                 return {'value': vals}
         return {}
 
-    def action_picking_create(self,cr, uid, ids, context=None):
+    def action_picking_create(self, cr, uid, ids, context=None):
         res = super(purchase_order, self).action_picking_create(cr, uid, ids, context=context)
         picking_obj = self.pool.get('stock.picking')
         for purchase in self.browse(cr, uid, ids, context=context):
-            if res: #TODO bad code inherited from OpenERP, see bug https://bugs.launchpad.net/openobject-addons/+bug/788789
+            # TODO bad code inherited from OpenERP, see bug https://bugs.launchpad.net/openobject-addons/+bug/788789
+            if res:
                 if purchase.sale_flow == 'direct_delivery':
                     if purchase.sale_id and purchase.sale_id.order_policy == 'picking':
                         invoice_control = '2binvoiced'
@@ -107,7 +110,3 @@ class purchase_order(osv.osv):
                          'sale_id': purchase.sale_id and purchase.sale_id.id},
                         context=context)
         return res
-
-
-purchase_order()
-
