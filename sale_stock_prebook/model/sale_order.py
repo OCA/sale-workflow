@@ -62,39 +62,48 @@ class sale_order(osv.osv):
                         self.read(cr, uid, ids, ['order_line'], context=context)]
         line_ids = list(itertools.chain.from_iterable(line_ids))
 
-        for line in self.pool.get('sale.order.line').read(cr,uid,line_ids,['type','move_ids','order_id'],context=context,load='_classic_write'):
-            if line['type']!='make_to_order':
+        for line in self.pool.get('sale.order.line').read(cr, uid, line_ids,
+                                                          ['type', 'move_ids', 'order_id'],
+                                                          context=context,
+                                                          load='_classic_write'):
+            if line['type'] != 'make_to_order':
                 if line['move_ids']:
-                    res[line['order_id']]['is_prebooked']=True
+                    res[line['order_id']]['is_prebooked'] = True
                 else:
-                    res[line['order_id']]['is_prebookable']=True
+                    res[line['order_id']]['is_prebookable'] = True
         return res
 
-    def _create_pickings_and_procurements(self, cr, uid, order, order_lines, picking_id=False, context=None):
+    def _create_pickings_and_procurements(self, cr, uid, order, order_lines,
+                                          picking_id=False, context=None):
         """ Delete prebookings """
-        unlink_ids=[]
+        unlink_ids = []
         for line in order_lines:
             for move in line.move_ids:
                 #we don't expect this method to be called outside quotation confirmation
                 assert move._model._is_prebooked(move), _("Internal Error")
                 unlink_ids.append(move.id)
-        unlink_ids and self.pool.get('sale.order.line')._prebook_cancel(cr,uid,unlink_ids,context)
-        return super(sale_order,self)._create_pickings_and_procurements(cr, uid, order, order_lines, picking_id=picking_id, context=context)
+        unlink_ids and self.pool.get('sale.order.line')._prebook_cancel(cr, uid, unlink_ids, context)
+        return super(sale_order, self)._create_pickings_and_procurements(cr, uid, order,
+                                                                         order_lines,
+                                                                         picking_id=picking_id,
+                                                                         context=context)
 
     def button_prebook(self, cr, uid, ids, context):
-        orders=self.read(cr,uid,ids,['is_prebookable'],context=context)
-        if not reduce(lambda x,y:x or y,[x['is_prebookable'] for x in orders],False):
-            raise osv.except_osv(_('Warning!'), _('All products are already pre-booked in stock.'))
+        orders = self.read(cr, uid, ids, ['is_prebookable'], context=context)
+        if not any((x['is_prebookable'] for x in orders)):
+            raise osv.except_osv(_('Warning!'),
+                                 _('All products are already pre-booked in stock.'))
         return {
-            'name' : _('Pre-book products from stock'),
+            'name': _('Pre-book products from stock'),
             'type': 'ir.actions.act_window',
             'res_model': 'sale.stock.prebook',
             'view_type': 'form',
             'view_mode': 'form',
             'target': 'new',
         }
+
     def button_prebook_cancel(self, cr, uid, ids, context):
-        line_ids=reduce(lambda x,y:x+y,[x['order_line'] for x in self.read(cr,SUPERUSER_ID,ids,['order_line'],context=context)],[])
+        line_ids=reduce(lambda x, y: x + y,[x['order_line'] for x in self.read(cr, SUPERUSER_ID, ids, ['order_line'], context=context)], [])
         line_ids and self.pool.get('sale.order.line')._prebook_cancel(cr,uid,line_ids,context=context)
 
 class sale_order_line(osv.osv):
