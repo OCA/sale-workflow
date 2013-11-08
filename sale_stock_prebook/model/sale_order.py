@@ -1,39 +1,67 @@
 # -*- coding: utf-8 -*-
+##############################################################################
+#
+#    Copyright 2013 Camptocamp SA
+#
+#    This program is free software: you can redistribute it and/or modify
+#    it under the terms of the GNU Affero General Public License as
+#    published by the Free Software Foundation, either version 3 of the
+#    License, or (at your option) any later version.
+#
+#    This program is distributed in the hope that it will be useful,
+#    but WITHOUT ANY WARRANTY; without even the implied warranty of
+#    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+#    GNU Affero General Public License for more details.
+#
+#    You should have received a copy of the GNU Affero General Public License
+#    along with this program.  If not, see <http://www.gnu.org/licenses/>.
+#
+##############################################################################
+"""
+Pre-book stock while sale order is not yet confirmed.
 
+Create a stock move (without picking and procurement) to decrease virtual stock.
+That reservation gets updated with the sale order line.
+If a reservation is existing at order confirmation, use it in the generated picking.
+
+"""
+import itertools
 from osv import fields, osv
 from tools.translate import _
 from openerp import SUPERUSER_ID
 
-"""
-* Pre-book stock while sale order is not yet confirmed.
-    Create a stock move (without picking and procurement) to decrease virtual stock. That reservation gets updated with the sale order line.
-    If a reservation is existing at order confirmation, use it in the generated picking.
-"""
 
 class sale_order(osv.osv):
     _inherit = "sale.order"
+
     _columns = {
-       'is_prebookable': fields.function(lambda self,*args,**kwargs:self._get_is_prebooked(*args,**kwargs), multi='prebooked',
-                                         type='boolean', readonly=True,
-                                         string='Stock Pre-bookable', help="Are there products pre-bookable?",
-                                        ),
-       'is_prebooked': fields.function(lambda self,*args,**kwargs:self._get_is_prebooked(*args,**kwargs), multi='prebooked',
-                                       type='boolean', readonly=True,
-                                       string='Stock Pre-booked', help="Are all products pre-booked in stock?",
-                                       invisible=True,
-                                       states={
-                                        'draft':[('invisible',False)],
-                                        'sent':[('invisible',False)],
-                                       },
-                                      ),
+        'is_prebookable': fields.function(lambda self, *args, **kwargs: self._get_is_prebooked(*args, **kwargs),
+                                          multi='prebooked',
+                                          type='boolean',
+                                          readonly=True,
+                                          string='Stock Pre-bookable',
+                                          help="Are there products pre-bookable?"),
+
+        'is_prebooked': fields.function(lambda self, *args, **kwargs: self._get_is_prebooked(*args, **kwargs),
+                                        multi='prebooked',
+                                        type='boolean', readonly=True,
+                                        string='Stock Pre-booked', help="Are all products pre-booked in stock?",
+                                        invisible=True,
+                                        states={
+                                            'draft': [('invisible', False)],
+                                            'sent': [('invisible', False)],
+                                        })
     }
 
     def _get_is_prebooked(self, cr, uid, ids, fields, args, context=None):
-        """ Is pre-booked if foreach order lines it's mto or there is a stock move"""
-        res={}
+        """ Is pre-booked tells if order lines are mto or if there is a stock move"""
+        res = {}
         for order_id in ids:
-            res[order_id]={'is_prebookable':False,'is_prebooked':False}
-        line_ids=reduce(lambda x,y:x+y,[x['order_line'] for x in self.read(cr,uid,ids,['order_line'],context=context)],[])
+            res[order_id] = {'is_prebookable': False, 'is_prebooked': False}
+        line_ids = [x['order_line'] for x in
+                        self.read(cr, uid, ids, ['order_line'], context=context)]
+        line_ids = list(itertools.chain.from_iterable(line_ids))
+
         for line in self.pool.get('sale.order.line').read(cr,uid,line_ids,['type','move_ids','order_id'],context=context,load='_classic_write'):
             if line['type']!='make_to_order':
                 if line['move_ids']:
@@ -41,6 +69,7 @@ class sale_order(osv.osv):
                 else:
                     res[line['order_id']]['is_prebookable']=True
         return res
+
     def _create_pickings_and_procurements(self, cr, uid, order, order_lines, picking_id=False, context=None):
         """ Delete prebookings """
         unlink_ids=[]
@@ -189,4 +218,3 @@ class sale_order_line(osv.osv):
         }
     def button_prebook_cancel(self, cr, uid, ids, context):
         self._prebook_cancel(cr,uid,ids,context=context)
-
