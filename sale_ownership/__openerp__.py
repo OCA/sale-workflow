@@ -67,6 +67,6 @@ sale_dropshipping
  'demo': [],
  'data': [],
  'test': [],
- 'auto_install': False,
+ 'auto_install': True,
  'installable': True,
  }
