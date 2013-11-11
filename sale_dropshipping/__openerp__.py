@@ -59,7 +59,6 @@ This would enable moves to properly generate accounting moves
  "update_xml": ["purchase_view.xml", "sale_view.xml", "product_view.xml", "stock_view.xml"],
  'images': ['images/purchase_to_sale.png'],
  'installable': True,
- 'active': False,
  'certificate': None,
  }
 # vim:expandtab:smartindent:tabstop=4:softtabstop=4:shiftwidth=4:
