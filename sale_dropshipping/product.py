@@ -45,7 +45,7 @@ class product_product(orm.Model):
                             INNER JOIN res_partner ON product_supplierinfo.name = res_partner.id
                           WHERE product_id=%s
                             AND active=true ORDER BY sequence ASC LIMIT 1;""",
-                       (product.product_tmpl_id,))
+                       (product.product_tmpl_id.id,))
             result = cr.fetchone()
             if result and result[0]:
                 return True
