@@ -89,6 +89,8 @@ class product_product(orm.Model):
         return create_id
 
     def write(self, cr, uid, ids, vals, context=None):
+        if context is None:
+            context = {}
         super(product_product, self).write(cr, uid, ids, vals, context=context)
         if not context.get('update_price'):
             self._update_price(cr, uid, ids, context=context)
