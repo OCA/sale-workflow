@@ -11,11 +11,9 @@
 
 
         <record id="invoice_form" model="ir.ui.view">
-            <field name="name">product_price_tax_inc_exc.invoice_form</field>
             <field name="model">account.invoice</field>
             <field name="inherit_id" ref="account.invoice_form" />
             <field eval="100" name="priority"/>
-            <field name="type">form</field>
             <field name="arch" type="xml">
                 <field name="fiscal_position" position="replace">
                     <field name="fiscal_position" on_change="fiscal_position_id_change(fiscal_position, tax_inc, invoice_line, context)"/>

@@ -10,13 +10,10 @@
         <!-- INHERITED VIEW FOR THE OBJECT : sale_order -->
 
         <record id="product_price_tax_inc_exc_sale_order_view_form" model="ir.ui.view">
-            <field name="name">product_price_tax_inc_exc.sale_order.view_form</field>
             <field name="model">sale.order</field>
             <field name="inherit_id" ref="sale.view_order_form" />
             <field eval="16" name="priority"/>
-            <field name="type">form</field>
             <field name="arch" type="xml">
-
                 <field name="fiscal_position" position="replace">
                 </field>
 
@@ -28,7 +25,6 @@
                 <field name="order_line" position="attributes">
                     <attribute name="context">{'tax_inc': tax_inc}</attribute>
                 </field>
-
             </field>
         </record>
 

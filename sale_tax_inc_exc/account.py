@@ -1,10 +1,10 @@
-    # -*- encoding: utf-8 -*-
+# -*- coding: utf-8 -*-
 ###############################################################################
 #
-#   sale_tax_inc_exc for OpenERP
-#   Copyright (C) 2011-TODAY Akretion <http://www.akretion.com>.
-#               All Rights Reserved
-#     @author Sébastien BEAU <sebastien.beau@akretion.com>
+#   Module for OpenERP 
+#   Copyright (C) 2011-2013 Akretion (http://www.akretion.com).
+#   @author Sébastien BEAU <sebastien.beau@akretion.com>
+#
 #   This program is free software: you can redistribute it and/or modify
 #   it under the terms of the GNU Affero General Public License as
 #   published by the Free Software Foundation, either version 3 of the
@@ -19,6 +19,8 @@
 #   along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
 ###############################################################################
+
+
 
 from openerp.osv import fields
 from openerp.osv.orm import Model
@@ -38,3 +40,12 @@ class account_fiscal_position(Model):
     _defaults = {
         'price_compatibility': 'tax-exc',
     }
+
+class account_tax(Model):
+    _inherit = 'account.tax'
+    _columns = {
+        'related_inc_tax_id': fields.many2one('account.tax',
+            'Related Included Tax',
+            domain=[('price_include','=', True)]),
+    }
+

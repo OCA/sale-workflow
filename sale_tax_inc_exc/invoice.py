@@ -1,9 +1,10 @@
-# -*- encoding: utf-8 -*-
+# -*- coding: utf-8 -*-
 ###############################################################################
 #
-#   sale_tax_inc_exc for OpenERP
-#   Copyright (C) 2011-TODAY Akretion <http://www.akretion.com>. All Rights Reserved
-#     @author Sébastien BEAU <sebastien.beau@akretion.com>
+#   Module for OpenERP 
+#   Copyright (C) 2011-2013 Akretion (http://www.akretion.com).
+#   @author Sébastien BEAU <sebastien.beau@akretion.com>
+#
 #   This program is free software: you can redistribute it and/or modify
 #   it under the terms of the GNU Affero General Public License as
 #   published by the Free Software Foundation, either version 3 of the
@@ -19,12 +20,8 @@
 #
 ###############################################################################
 
-from openerp.osv import fields
-from openerp.osv.orm import Model
-import decimal_precision as dp
-from tools.translate import _
 from invoice_sale import InvoiceSale, InvoiceSaleLine
-
+from openerp.osv import fields, orm
 
 class account_invoice(InvoiceSale):
     _inherit = "account.invoice"
@@ -35,4 +32,22 @@ class account_invoice(InvoiceSale):
 
 class account_invoice_line(InvoiceSaleLine):
     _inherit = "account.invoice.line"
+
+    #Try to use args and kwargs in order to have a module that do not break
+    #time you inherit the onchange, code is not perfect because data can be
+    #in args or kwargs depending of the other module installed
+    #onchange = headache
+    def product_id_change(self, cr, uid, ids, product_id, uom_id, *args, **kwargs):
+        res = super(account_invoice_line, self).product_id_change(cr, uid, ids, product_id, uom_id, *args, **kwargs)
+        if product_id: 
+            if len(args) >= 3:
+                invoice_type = args[2]
+            else:
+                invoice_type = kwargs.get('type', 'out_invoice')
+
+            context = self._get_context_from_args_kwargs(args, kwargs)
+            product = self.pool.get('product.product').browse(cr, uid, product_id, context=context)
+            if context.get('tax_inc') and invoice_type in ('out_invoice', 'out_refund'):
+                res['value'].update({'price_unit': product.list_price_tax_inc})
+        return res
 

@@ -20,21 +20,27 @@
 ###############################################################################
 
 {
-    'name': 'product_price_tax_inc_exc',
-    'version': '6.1.0',
+    'name': 'sale_tax_inc_exc',
+    'version': '0.0.1',
     'category': 'Generic Modules/Others',
     'license': 'AGPL-3',
-    'description': """empty""",
+    'description': """
+    This module give the posibility to sale product with a price
+    base on a tax inc or a tax exc.
+    This module is experiental and may not work in your case
+    (works perfectly for French case). You need accounting skill
+    to configure it correctly
+    """,
     'author': 'Akretion',
     'website': 'http://www.akretion.com/',
-    'depends': ['product_multi_price'], 
-    'init_xml': [],
-    'update_xml': [ 
-            'sale_view.xml',
-            'account_view.xml',
-            'invoice_view.xml',
+    'depends': ['sale'], 
+    'data': [ 
+        'sale_view.xml',
+        'account_view.xml',
+        'invoice_view.xml',
+        'product_view.xml',
     ],
-    'demo_xml': [],
+    'demo': [],
     'installable': True,
     'active': False,
 }

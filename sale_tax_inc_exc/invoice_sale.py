@@ -1,9 +1,10 @@
-# -*- encoding: utf-8 -*-
+# -*- coding: utf-8 -*-
 ###############################################################################
 #
-#   sale_tax_inc_exc for OpenERP
-#   Copyright (C) 2011-TODAY Akretion <http://www.akretion.com>. All Rights Reserved
-#     @author Sébastien BEAU <sebastien.beau@akretion.com>
+#   Module for OpenERP 
+#   Copyright (C) 2013 Akretion (http://www.akretion.com).
+#   @author Sébastien BEAU <sebastien.beau@akretion.com>
+#
 #   This program is free software: you can redistribute it and/or modify
 #   it under the terms of the GNU Affero General Public License as
 #   published by the Free Software Foundation, either version 3 of the
@@ -75,10 +76,8 @@ class InvoiceSale(Model):
 class InvoiceSaleLine(Model):
     _register = False
 
-    def product_id_change(self, cr, uid, ids, *args, **kwargs):
-        res = super(InvoiceSaleLine, self).product_id_change(cr, uid, ids, *args, **kwargs)
-
-        # UGLY OpenERP API :'(, context can be in the **kwargs or *args
+    # UGLY OpenERP API :'(, context can be in the **kwargs or *args
+    def _get_context_from_args_kwargs(self, args, kwargs):
         if 'context' in kwargs:
             context = kwargs['context']
         else:
@@ -87,6 +86,18 @@ class InvoiceSaleLine(Model):
                 if isinstance(arg, dict) and 'lang' in arg:
                     context = arg
                     break
+        return context 
+
+
+    #Try to use args and kwargs in order to have a module that do not break
+    #time you inherit the onchange, code is not perfect because data can be
+    #in args or kwargs depending of the other module installed
+    #onchange = headache
+    def product_id_change(self, cr, uid, ids, *args, **kwargs):
+        res = super(InvoiceSaleLine, self).product_id_change(cr, uid, ids, *args, **kwargs)
+        
+        context = self._get_context_from_args_kwargs(args, kwargs)
+
         tax_keys = {
             'account.invoice.line': 'invoice_line_tax_id',
             'sale.order.line': 'tax_id',
