@@ -9,7 +9,7 @@
     <data>
         <!-- INHERITED VIEW FOR THE OBJECT : sale_order -->
 
-        <record id="product_price_tax_inc_exc_sale_order_view_form" model="ir.ui.view">
+        <record id="view_order_form" model="ir.ui.view">
             <field name="model">sale.order</field>
             <field name="inherit_id" ref="sale.view_order_form" />
             <field eval="16" name="priority"/>
@@ -26,6 +26,16 @@
                     <attribute name="context">{'tax_inc': tax_inc}</attribute>
                 </field>
             </field>
+        </record>
+
+        <record id="view_shop_form" model="ir.ui.view">
+            <field name="model">sale.shop</field>
+            <field name="inherit_id" ref="sale.view_shop_form"/>
+            <field name="arch" type="xml">
+                <field name="pricelist_id" position="after">
+                    <field name="tax_inc"/>
+                </field>
+           </field>
         </record>
 
     </data>

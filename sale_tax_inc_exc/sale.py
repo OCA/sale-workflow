@@ -37,6 +37,28 @@ class sale_order(InvoiceSale):
         result['tax_inc'] = order.tax_inc
         return result
 
+    def onchange_shop_id(self, cr, uid, ids, *args, **kwargs):
+        res = super(sale_order, self).onchange_shop_id(cr, uid, ids, *args, **kwargs)
+        if len(args) >=1:
+            shop_id = args[0]
+        else:
+            shop_id = kwargs.get('shop_id')
+        if shop_id:
+            shop = self.pool.get('sale.shop').browse(cr, uid, shop_id)
+            res['value']['tax_inc'] = shop.tax_inc
+        return res
+
+
 class sale_order_line(InvoiceSaleLine):
     _inherit = "sale.order.line"
+
+
+class sale_shop(orm.Model):
+    _inherit = 'sale.shop'
+    
+    _columns = {
+        'tax_inc' : fields.boolean('Tax Inc',
+            help=("Tic the box if you want to use unit price in taxe include "
+            "by default for this shop")),
+    }
 
