@@ -49,7 +49,6 @@ class SaleExceptionConfirm(orm.TransientModel):
         form = self.browse(cr, uid, ids[0], context=context)
         if form.ignore:
             self.pool.get('sale.order').write(cr, uid, form.sale_id.id,
-                    {'ignore_exceptions': True}, context=context)
+                                              {'ignore_exceptions': True},
+                                              context=context)
         return {'type': 'ir.actions.act_window_close'}
-
-SaleExceptionConfirm()
