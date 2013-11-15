@@ -25,13 +25,16 @@ from openerp.tools import (DEFAULT_SERVER_DATE_FORMAT,
 
 
 class sale_order_line(orm.Model):
-    """Adds two exception functions to be call by sale_exception addon.
+    """Adds two exception functions to be call by sale_exceptions module.
+
     The first one will ensure that an order line can be delivered on the
     delivery date, if the related product is in MTS. Validation is done by
     using the shop related to the sales order line location and using the line
     delay.
     The second one will raise a sales exception if the current SO will break a
-    order already placed in future"""
+    order already placed in future
+
+    """
 
     _inherit = "sale.order.line"
 
@@ -46,9 +49,14 @@ class sale_order_line(orm.Model):
         return line_br.order_id.shop_id.warehouse_id.lot_stock_id.id
 
     def can_command_at_delivery_date(self, cr, uid, l_id, context=None):
-        """This checks if SO line (l_id) can be delivered at delivery date.
+        """Predicate that Checks if SO line can be delivered at delivery date.
+
         Delivery date is computed using date of the order + line delay.
-        Location is taken from the shop linked to the line"""
+        Location is taken from the shop linked to the line
+
+        :returns: True if line can be delivered on time
+
+        """
         if context is None:
             context = {}
         prod_obj = self.pool['product.product']
@@ -56,7 +64,7 @@ class sale_order_line(orm.Model):
             assert len(l_id) == 1, "Only one id supported"
             l_id = l_id[0]
         line = self.browse(cr, uid, l_id, context=context)
-        if not line.product_id or not line.type == 'make_to_stock':
+        if not line.product_id or line.type != 'make_to_stock':
             return True
         delivery_date = self._compute_line_delivery_date(line, context=context)
         ctx = context.copy()
@@ -74,9 +82,17 @@ class sale_order_line(orm.Model):
 
     def _get_affected_dates(self, cr, location_id, product_id, delivery_date, context=None):
         """Determine future dates where virtual stock has to be checked.
-        It will only look for stock move that pass by this location_id.
+
+        It will only look for stock move that pass by location_id.
         If your stock location have children or you have configured automated stock action
-        they must pass by the location related to SO line, else the will be ignored"""
+        they must pass by the location related to SO line, else the will be ignored
+
+        :param location_id: location id to be checked
+        :param product_id: product id te be checked
+
+        :returns: list of dates to be checked
+
+        """
         sql = ("SELECT date FROM stock_move"
                "  WHERE state IN %s"
                "   AND date > %s"
@@ -89,9 +105,14 @@ class sale_order_line(orm.Model):
         return (row[0] for row in cr.fetchall())
 
     def future_orders_are_affected(self, cr, uid, l_id, context=None):
-        """This function is a naive workaround for the lack of stock reservation
-        management in OpenERP. This can be a performance killer, you should not use it
-        if you have constantly a lot of running Orders"""
+        """Predicate function that is a naive workaround for the lack of stock reservation.
+
+        This can be a performance killer, you should not use it
+        if you have constantly a lot of running Orders
+
+        :returns: True if future order are affected by current command line
+
+        """
         if context is None:
             context = {}
         prod_obj = self.pool['product.product']
