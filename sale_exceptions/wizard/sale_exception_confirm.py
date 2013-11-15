@@ -18,19 +18,18 @@
 #    along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
 ##############################################################################
-
-import netsvc
-
-from osv import osv, fields
+from openerp.osv import orm, fields
 
 
-class SaleExceptionConfirm(osv.osv_memory):
+class SaleExceptionConfirm(orm.TransientModel):
 
     _name = 'sale.exception.confirm'
 
     _columns = {
         'sale_id': fields.many2one('sale.order', 'Sale'),
-        'exception_ids': fields.many2many('sale.exception', string='Exceptions to resolve', readonly=True),
+        'exception_ids': fields.many2many('sale.exception',
+                                          string='Exceptions to resolve',
+                                          readonly=True),
         'ignore': fields.boolean('Ignore Exceptions'),
     }
 

@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 ##############################################################################
-#    
+#
 #    OpenERP, Open Source Management Solution
 #    Copyright (C) 2011 Akretion LTDA.
 #    authors: Raphaël Valyi, Renato Lima
@@ -18,31 +18,29 @@
 #    GNU Affero General Public License for more details.
 #
 #    You should have received a copy of the GNU Affero General Public License
-#    along with this program.  If not, see <http://www.gnu.org/licenses/>.     
+#    along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
 ##############################################################################
+{'name': 'Sale Exceptions',
+ 'version': '0.1',
+ 'category': 'Generic Modules/Sale',
+ 'description': """
+This module allows you attach several customizable exceptions to your sale order
+ in a way that you can filter orders by exceptions type and fix them.
 
-
-{
-    'name': 'Sale Exceptions',
-    'version': '0.1',
-    'category': 'Generic Modules/Sale',
-    'description': """
-This module allows you attach several customizable exceptions to your sale order in a way that you can filter orders by exceptions type and fix them.
-This is especially useful in an order importation scenario such as with the base_sale_multi_channels module, because it's likely a few orders have errors when you import them (like product not found in OpenERP, wrong line format etc...)
+This is especially useful in an order importation scenario such as with
+the base_sale_multi_channels module, because it's likely a few orders have errors
+when you import them (like product not found in OpenERP, wrong line format etc...)
 """,
-    'author': 'Akretion',
-    'website': 'http://www.akretion.com',
-    'depends': ['sale'],
-    'init_xml': [
-                   'settings/sale.exception.csv',
-                ],
-    'update_xml': ['sale_workflow.xml',
-                   'sale_view.xml',
-                   'sale_exceptions_data.xml',
-                   'wizard/sale_exception_confirm_view.xml',
-                   'security/ir.model.access.csv'],
-    'demo_xml': [],
-    'installable': True,
-}
-# vim:expandtab:smartindent:tabstop=4:softtabstop=4:shiftwidth=4:
+ 'author': 'Akretion',
+ 'website': 'http://www.akretion.com',
+ 'depends': ['sale'],
+ 'init_xml': ['settings/sale.exception.csv'],
+ 'update_xml': ['sale_workflow.xml',
+                'sale_view.xml',
+                'sale_exceptions_data.xml',
+                'wizard/sale_exception_confirm_view.xml',
+                'security/ir.model.access.csv'],
+ 'demo_xml': [],
+ 'installable': True,
+ }

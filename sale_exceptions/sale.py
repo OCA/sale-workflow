@@ -20,20 +20,18 @@
 #    along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
 ##############################################################################
-
 import time
-import netsvc
 
-from openerp.osv.orm import Model
-from openerp.osv import fields
+from openerp.osv import orm, fields
 from openerp.osv.osv import except_osv
 from tools.safe_eval import safe_eval as eval
 from tools.translate import _
 
-class sale_exception(Model):
+
+class sale_exception(orm.Model):
     _name = "sale.exception"
     _description = "Sale Exceptions"
-    _order="active desc, sequence asc"
+    _order = "active desc, sequence asc"
     _columns = {
         'name': fields.char('Exception Name', size=64, required=True, translate=True),
         'description': fields.text('Description', translate=True),
@@ -64,7 +62,8 @@ class sale_exception(Model):
 """
     }
 
-class sale_order(Model):
+
+class sale_order(orm.Model):
     _inherit = "sale.order"
 
     _order = 'main_exception_id asc, date_order desc, name desc'
@@ -79,13 +78,15 @@ class sale_order(Model):
         return res
 
     _columns = {
-        'main_exception_id': fields.function(_get_main_error,
+        'main_exception_id': fields.function(
+                        _get_main_error,
                         type='many2one',
                         relation="sale.exception",
                         string='Main Exception',
                         store={
                             'sale.order': (lambda self, cr, uid, ids, c={}: ids, ['exceptions_ids', 'state'], 10),
-                        }),
+                        }
+        ),
         'exceptions_ids': fields.many2many('sale.exception', 'sale_order_exception_rel',
                                            'sale_order_id', 'exception_id',
                                            string='Exceptions'),
@@ -150,7 +151,9 @@ class sale_order(Model):
             if order.ignore_exceptions:
                 continue
             exception_ids = self._detect_exceptions(cr, uid, order,
-                order_exceptions, line_exceptions, context=context)
+                                                    order_exceptions,
+                                                    line_exceptions,
+                                                    context=context)
 
             self.write(cr, uid, [order.id], {'exceptions_ids': [(6, 0, exception_ids)]})
         return exception_ids
@@ -169,7 +172,7 @@ class sale_order(Model):
                 'user': self.pool.get('res.users').browse(cr, uid, uid),
                 'time': time,
                 # copy context to prevent side-effects of eval
-                'context': dict(context),}
+                'context': dict(context)}
 
     def _rule_eval(self, cr, uid, rule, obj_name, obj, context):
         expr = rule.code
@@ -177,10 +180,11 @@ class sale_order(Model):
                                                   context=context)
         try:
             eval(expr, space,
-                 mode='exec', nocopy=True) # nocopy allows to return 'result'
+                 mode='exec', nocopy=True)  # Nocopy allows to return 'result'
         except Exception, e:
-            raise except_osv(_('Error'), _('Error when evaluating the sale exception rule :\n %s \n(%s)') %
-                                 (rule.name, e))
+            raise except_osv(_('Error'),
+                             _('Error when evaluating the sale exception rule :\n %s \n(%s)') %
+                             (rule.name, e))
         return space.get('failed', False)
 
     def _detect_exceptions(self, cr, uid, order, order_exceptions, line_exceptions, context=None):
