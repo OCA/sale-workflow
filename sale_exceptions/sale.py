@@ -35,14 +35,15 @@ class sale_exception(orm.Model):
     _columns = {
         'name': fields.char('Exception Name', size=64, required=True, translate=True),
         'description': fields.text('Description', translate=True),
-        'sequence': fields.integer('Sequence', help="Gives the sequence order when applying the test"),
+        'sequence': fields.integer('Sequence',
+                                   help="Gives the sequence order when applying the test"),
         'model': fields.selection([('sale.order', 'Sale Order'),
                                    ('sale.order.line', 'Sale Order Line')],
                                   string='Apply on', required=True),
         'active': fields.boolean('Active'),
         'code': fields.text('Python Code',
-                    help="Python code executed to check if the exception apply or not. " \
-                         "The code must apply block = True to apply the exception."),
+                            help="Python code executed to check if the exception apply or not. "
+                                 "The code must apply block = True to apply the exception."),
         'sale_order_ids': fields.many2many('sale.order', 'sale_order_exception_rel',
                                            'exception_id', 'sale_order_id',
                                            string='Sale Orders', readonly=True),
