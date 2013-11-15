@@ -5,15 +5,10 @@
         <record id="view_sale_exception_confirm" model="ir.ui.view">
             <field name="name">Sale Exceptions</field>
             <field name="model">sale.exception.confirm</field>
-            <field name="type">form</field>
             <field name="arch" type="xml">
-                <form string="Sale Exceptions On Sale Order" version="7.0">
+                <form string="Blocked in draft due to exceptions" version="7.0">
                     <group>
                         <field name="exception_ids" nolabel="1" colspan="4">
-                            <form string="Sale Exception">
-                               <field name="name" colspan="4"/>
-                               <field name="description" colspan="4"/>
-                            </form>
                             <tree string="Sale Exceptions">
                                 <field name="name"/>
                                 <field name="description"/>
@@ -23,7 +18,7 @@
                         <field name="ignore" groups='base.group_sale_manager'/>
                     </group>
                     <footer>
-                        <button name="action_confirm" string="_Ok"
+                        <button name="action_confirm" string="_Close"
                             colspan="1" type="object" icon="gtk-ok" />
                     </footer>
                 </form>
@@ -31,7 +26,7 @@
         </record>
 
         <record id="action_sale_exception_confirm" model="ir.actions.act_window">
-            <field name="name">Sale Exceptions</field>
+            <field name="name">Blocked in draft due to exceptions</field>
             <field name="type">ir.actions.act_window</field>
             <field name="res_model">sale.exception.confirm</field>
             <field name="view_type">form</field>

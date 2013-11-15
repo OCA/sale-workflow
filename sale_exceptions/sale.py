@@ -20,12 +20,12 @@
 #    along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
 ##############################################################################
+
 import time
 
 from openerp.osv import orm, fields
-from openerp.osv.osv import except_osv
-from tools.safe_eval import safe_eval as eval
-from tools.translate import _
+from openerp.tools.safe_eval import safe_eval
+from openerp.tools.translate import _
 
 
 class sale_exception(orm.Model):
@@ -33,20 +33,24 @@ class sale_exception(orm.Model):
     _description = "Sale Exceptions"
     _order = "active desc, sequence asc"
     _columns = {
-        'name': fields.char('Exception Name', size=64, required=True, translate=True),
+        'name': fields.char('Exception Name', required=True, translate=True),
         'description': fields.text('Description', translate=True),
-        'sequence': fields.integer('Sequence',
-                                   help="Gives the sequence order when applying the test"),
+        'sequence': fields.integer(
+            'Sequence',
+            help="Gives the sequence order when applying the test"),
         'model': fields.selection([('sale.order', 'Sale Order'),
                                    ('sale.order.line', 'Sale Order Line')],
                                   string='Apply on', required=True),
         'active': fields.boolean('Active'),
-        'code': fields.text('Python Code',
-                            help="Python code executed to check if the exception apply or not. "
-                                 "The code must apply block = True to apply the exception."),
-        'sale_order_ids': fields.many2many('sale.order', 'sale_order_exception_rel',
-                                           'exception_id', 'sale_order_id',
-                                           string='Sale Orders', readonly=True),
+        'code': fields.text(
+            'Python Code',
+            help="Python code executed to check if the exception apply or not. "
+                 "The code must apply block = True to apply the exception."),
+        'sale_order_ids': fields.many2many(
+            'sale.order',
+            'sale_order_exception_rel', 'exception_id', 'sale_order_id',
+            string='Sale Orders',
+            readonly=True),
     }
 
     _defaults = {
@@ -80,26 +84,29 @@ class sale_order(orm.Model):
 
     _columns = {
         'main_exception_id': fields.function(
-                        _get_main_error,
-                        type='many2one',
-                        relation="sale.exception",
-                        string='Main Exception',
-                        store={
-                            'sale.order': (lambda self, cr, uid, ids, c={}: ids, ['exceptions_ids', 'state'], 10),
-                        }
-        ),
-        'exceptions_ids': fields.many2many('sale.exception', 'sale_order_exception_rel',
-                                           'sale_order_id', 'exception_id',
-                                           string='Exceptions'),
+            _get_main_error,
+            type='many2one',
+            relation="sale.exception",
+            string='Main Exception',
+            store={
+                'sale.order': (lambda self, cr, uid, ids, c=None: ids,
+                               ['exceptions_ids', 'state'], 10),
+            }),
+        'exceptions_ids': fields.many2many(
+            'sale.exception',
+            'sale_order_exception_rel', 'sale_order_id', 'exception_id',
+            string='Exceptions'),
         'ignore_exceptions': fields.boolean('Ignore Exceptions'),
     }
 
     def test_all_draft_orders(self, cr, uid, context=None):
-        ids = self.search(cr, uid, [('state', '=', 'draft')])
-        self.test_exceptions(cr, uid, ids)
+        ids = self.search(cr, uid, [('state', '=', 'draft')], context=context)
+        self.test_exceptions(cr, uid, ids, context=context)
         return True
 
     def _popup_exceptions(self, cr, uid, order_id, context=None):
+        if context is None:
+            context = {}
         model_data_obj = self.pool.get('ir.model.data')
         list_obj = self.pool.get('sale.exception.confirm')
         ctx = context.copy()
@@ -109,7 +116,7 @@ class sale_order(orm.Model):
         view_id = model_data_obj.get_object_reference(
             cr, uid, 'sale_exceptions', 'view_sale_exception_confirm')[1]
         action = {
-            'name': _("Exceptions On Sale Order"),
+            'name': _("Blocked in draft due to exceptions"),
             'type': 'ir.actions.act_window',
             'view_type': 'form',
             'view_mode': 'form',
@@ -126,7 +133,8 @@ class sale_order(orm.Model):
         if exception_ids:
             return self._popup_exceptions(cr, uid, ids[0],  context=context)
         else:
-            return super(sale_order, self).action_button_confirm(cr, uid, ids, context=context)
+            return super(sale_order, self).action_button_confirm(cr, uid, ids,
+                                                                 context=context)
 
     def test_exceptions(self, cr, uid, ids, context=None):
         """
@@ -139,30 +147,40 @@ class sale_order(orm.Model):
 
     def detect_exceptions(self, cr, uid, ids, context=None):
         exception_obj = self.pool.get('sale.exception')
-        order_exception_ids = exception_obj.search(cr, uid,
-            [('model', '=', 'sale.order')], context=context)
-        line_exception_ids = exception_obj.search(cr, uid,
-            [('model', '=', 'sale.order.line')], context=context)
+        order_exception_ids = exception_obj.search(
+            cr, uid,
+            [('model', '=', 'sale.order')],
+            context=context)
+        line_exception_ids = exception_obj.search(
+            cr, uid,
+            [('model', '=', 'sale.order.line')],
+            context=context)
 
-        order_exceptions = exception_obj.browse(cr, uid, order_exception_ids, context=context)
-        line_exceptions = exception_obj.browse(cr, uid, line_exception_ids, context=context)
+        order_exceptions = exception_obj.browse(cr, uid, order_exception_ids,
+                                                context=context)
+        line_exceptions = exception_obj.browse(cr, uid, line_exception_ids,
+                                               context=context)
 
         exception_ids = False
-        for order in self.browse(cr, uid, ids):
+        for order in self.browse(cr, uid, ids, context=context):
             if order.ignore_exceptions:
                 continue
-            exception_ids = self._detect_exceptions(cr, uid, order,
+            exception_ids = self._detect_exceptions(cr, uid,
+                                                    order,
                                                     order_exceptions,
                                                     line_exceptions,
                                                     context=context)
 
-            self.write(cr, uid, [order.id], {'exceptions_ids': [(6, 0, exception_ids)]})
+            self.write(cr, uid, [order.id],
+                       {'exceptions_ids': [(6, 0, exception_ids)]},
+                       context=context)
         return exception_ids
 
     def _exception_rule_eval_context(self, cr, uid, obj_name, obj, context=None):
         if context is None:
             context = {}
 
+        user = self.pool.get('res.users').browse(cr, uid, uid, context=context)
         return {obj_name: obj,
                 'self': self.pool.get(obj._name),
                 'object': obj,
@@ -170,25 +188,29 @@ class sale_order(orm.Model):
                 'pool': self.pool,
                 'cr': cr,
                 'uid': uid,
-                'user': self.pool.get('res.users').browse(cr, uid, uid),
+                'user': user,
                 'time': time,
                 # copy context to prevent side-effects of eval
-                'context': dict(context)}
+                'context': context.copy()}
 
     def _rule_eval(self, cr, uid, rule, obj_name, obj, context):
         expr = rule.code
         space = self._exception_rule_eval_context(cr, uid, obj_name, obj,
                                                   context=context)
         try:
-            eval(expr, space,
-                 mode='exec', nocopy=True)  # Nocopy allows to return 'result'
+            safe_eval(expr,
+                      space,
+                      mode='exec',
+                      nocopy=True)  # nocopy allows to return 'result'
         except Exception, e:
-            raise except_osv(_('Error'),
-                             _('Error when evaluating the sale exception rule :\n %s \n(%s)') %
-                             (rule.name, e))
+            raise orm.except_orm(
+                _('Error'),
+                _('Error when evaluating the sale exception '
+                  'rule:\n %s \n(%s)') % (rule.name, e))
         return space.get('failed', False)
 
-    def _detect_exceptions(self, cr, uid, order, order_exceptions, line_exceptions, context=None):
+    def _detect_exceptions(self, cr, uid, order, order_exceptions,
+                           line_exceptions, context=None):
         exception_ids = []
         for rule in order_exceptions:
             if self._rule_eval(cr, uid, rule, 'order', order, context):
@@ -197,8 +219,9 @@ class sale_order(orm.Model):
         for order_line in order.order_line:
             for rule in line_exceptions:
                 if rule.id in exception_ids:
-                    continue  # we do not matter if the exception as already been
+                    # we do not matter if the exception as already been
                     # found for an order line of this order
+                    continue
                 if self._rule_eval(cr, uid, rule, 'line', order_line, context):
                     exception_ids.append(rule.id)
 
