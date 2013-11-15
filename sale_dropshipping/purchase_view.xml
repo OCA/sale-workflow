@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+	<data>
+		<record id="ir_ui_view_purchase_to_sale" model="ir.ui.view">
+                        <field name="model">purchase.order</field>
+			<field name="inherit_id" ref="purchase.purchase_order_form"/>
+			<field name="name">ir_ui_view_purchase_to_sale</field>
+			<field name="arch" type="xml">
+                                <field name="invoice_method" position="after">                    
+                                        <field name="sale_flow" on_change="sale_flow_change(sale_flow, sale_id, warehouse_id)"/>
+                                        <field name="sale_id" on_change="sale_flow_change(sale_flow, sale_id, warehouse_id)" attrs="{'invisible':[('sale_flow','in',['normal', 'direct_invoice'])]}"/>
+                                        <field name="analytic_account_id" groups="analytic.group_analytic_accounting"/>
+                                </field>
+			</field>
+		</record>
+
+        <record id="ir_ui_view_purchase_to_sale_purchase" model="ir.ui.view">
+            <field name="model">purchase.order</field>
+            <field name="inherit_id" ref="purchase.view_purchase_order_filter"/>
+            <field name="name">ir_ui_view_purchase_to_sale_purchase</field>
+            <field name="type">search</field>
+            <field name="arch" type="xml">
+                <field name="partner_id" position="before">
+                    <field name="sale_flow"/>
+                </field>
+            </field>
+        </record>
+
+	</data>
+</openerp>
