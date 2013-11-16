@@ -83,8 +83,8 @@ class product_product(orm.Model):
             ctx['update_price'] = True
             self.write(cr, uid, [product.id], {'list_price': price_exc}, context=ctx)
 
-    def create(self, cr, uid, ids, vals, context=None):
-        create_id = super(product_product, self).create(cr, uid, ids, vals, context=context) 
+    def create(self, cr, uid, vals, context=None):
+        create_id = super(product_product, self).create(cr, uid, vals, context=context) 
         self._update_price(cr, uid, [create_id], context=context)
         return create_id
 
