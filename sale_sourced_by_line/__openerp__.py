@@ -44,5 +44,5 @@ shop
           'test/sale_order_not_sourced.yml',
           ],
  'auto_install': False,
- 'installable': True,
+ 'installable': False,
  }
