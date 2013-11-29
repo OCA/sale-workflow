@@ -32,7 +32,7 @@ Sale Cancel Reason
 ==================
 
 When a sale order is canceled, a reason must be given,
-it is choosed from a configured list.
+it is chosen from a configured list.
 
 """,
  'depends': ['sale',
