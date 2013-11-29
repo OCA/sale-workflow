@@ -25,13 +25,13 @@ from openerp.tools import (DEFAULT_SERVER_DATE_FORMAT,
 
 
 class sale_order_line(orm.Model):
-    """Adds two exception functions to be call by sale_exceptions module.
+    """Adds two exception functions to be called by the sale_exceptions module.
 
     The first one will ensure that an order line can be delivered on the
     delivery date, if the related product is in MTS. Validation is done by
     using the shop related to the sales order line location and using the line
     delay.
-    The second one will raise a sales exception if the current SO will break a
+    The second one will raise a sales exception if the current SO will break an
     order already placed in future
 
     """
@@ -49,12 +49,12 @@ class sale_order_line(orm.Model):
         return line_br.order_id.shop_id.warehouse_id.lot_stock_id.id
 
     def can_command_at_delivery_date(self, cr, uid, l_id, context=None):
-        """Predicate that Checks if SO line can be delivered at delivery date.
+        """Predicate that checks whether a SO line can be delivered at delivery date.
 
         Delivery date is computed using date of the order + line delay.
         Location is taken from the shop linked to the line
 
-        :returns: True if line can be delivered on time
+        :return: True if line can be delivered on time
 
         """
         if context is None:
@@ -90,7 +90,7 @@ class sale_order_line(orm.Model):
         :param location_id: location id to be checked
         :param product_id: product id te be checked
 
-        :returns: list of dates to be checked
+        :return: list of dates to be checked
 
         """
         sql = ("SELECT date FROM stock_move"
@@ -110,8 +110,7 @@ class sale_order_line(orm.Model):
         This can be a performance killer, you should not use it
         if you have constantly a lot of running Orders
 
-        :returns: True if future order are affected by current command line
-
+        :return: True if future order are affected by current command line
         """
         if context is None:
             context = {}
