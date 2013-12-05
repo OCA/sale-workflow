@@ -43,6 +43,7 @@ payments entries on sales orders.
     'data': ['sale_view.xml',
              'payment_method_view.xml',
              'security/ir.model.access.csv',
+             'security/rules.xml',
              ],
     'demo': [],
     'installable': True,

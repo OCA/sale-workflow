@@ -40,4 +40,17 @@ class payment_method(orm.Model):
             'account.payment.term',
             'Payment Term',
              help="Default payment term of a sale order using this method."),
+        'company_id': fields.many2one(
+            'res.company',
+            'Company',
+        ),
+    }
+
+    def _default_company_id(self, cr, uid, context):
+        company_model = self.pool.get('res.company')
+        return company_model._company_default_get(cr, uid, 'payment.method',
+                                                  context=context)
+
+    _defaults = {
+         'company_id': _default_company_id,
     }

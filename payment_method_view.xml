@@ -18,6 +18,7 @@
                     </h1>
                     <group name="general">
                         <group name="config">
+                            <field name="company_id" string="Company" />
                             <field name="journal_id" string="Journal for payment"/>
                         </group>
                         <group name="payment_help" class="oe_grey" col="1">
