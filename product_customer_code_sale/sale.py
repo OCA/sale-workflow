@@ -20,11 +20,13 @@
 ##############################################################################
 from openerp.osv import fields, orm
 
+
 class sale_order_line(orm.Model):
     _inherit = 'sale.order.line'
-    
-    def _get_product_customer_code(self, cr, uid, ids,
-                                  name, args, context=None):
+
+    def _get_product_customer_code(
+            self, cr, uid, ids,
+            name, args, context=None):
         if context is None:
             context = {}
         res = {}
@@ -39,12 +41,14 @@ class sale_order_line(orm.Model):
                     ('partner_id', '=', partner.id),
                     ], limit=1, context=context)
                 if code_ids:
-                    code = product_customer_code_obj.browse(cr, uid,
+                    code = product_customer_code_obj.browse(
+                        cr, uid,
                         code_ids[0], context=context).product_code or ''
                     res[line.id] = code
         return res
-    
+
     _columns = {
-        'product_customer_code': fields.function(_get_product_customer_code,
+        'product_customer_code': fields.function(
+            _get_product_customer_code,
             string='Product Customer Code', type='char', size=64),
     }
