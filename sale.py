@@ -149,7 +149,7 @@ class sale_order(orm.Model):
         self._add_payment(cr, uid, sale, journal, amount, date, description, context=context)
         return True
 
-    def _add_payment(self, cr, uid, sale, journal, amount, date, description, context=None):
+    def _add_payment(self, cr, uid, sale, journal, amount, date, description=None, context=None):
         """ Generate move lines entries to pay the sale order. """
         move_obj = self.pool.get('account.move')
         period_obj = self.pool.get('account.period')
