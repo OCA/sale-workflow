@@ -265,9 +265,12 @@ class sale_order(orm.Model):
         mod_obj = self.pool.get('ir.model.data')
         act_obj = self.pool.get('ir.actions.act_window')
 
-        payment_ids = []
+        move_ids = set()
         for so in self.browse(cr, uid, ids, context=context):
-            payment_ids += [move.id for move in so.payment_ids]
+            # payment_ids are move lines, we want to display the moves
+            move_ids |= set([move_line.move_id.id for move_line
+                             in so.payment_ids])
+        move_ids = list(move_ids)
 
         ref = mod_obj.get_object_reference(cr, uid, 'account',
                                            'action_move_journal_line')
@@ -277,13 +280,13 @@ class sale_order(orm.Model):
         action = act_obj.read(cr, uid, [action_id], context=context)[0]
 
         # choose the view_mode accordingly
-        if len(payment_ids) > 1:
-            action['domain'] = str([('id', 'in', payment_ids)])
+        if len(move_ids) > 1:
+            action['domain'] = str([('id', 'in', move_ids)])
         else:
             ref = mod_obj.get_object_reference(cr, uid, 'account',
                                                'view_move_form')
             action['views'] = [(ref[1] if ref else False, 'form')]
-            action['res_id'] = payment_ids[0] if payment_ids else False
+            action['res_id'] = move_ids[0] if move_ids else False
         return action
 
     def action_cancel(self, cr, uid, ids, context=None):
