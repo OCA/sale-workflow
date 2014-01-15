@@ -21,7 +21,7 @@
 {
     "name" : "Product Customer code on sale",
     "version" : "1.0",
-    "author" : "Nicola Malcontenti - AgileBG",
+    "author" : "Agile Business Group",
     "website" : "http://www.agilebg.com",
     "category" : "Sales Management",
     "depends" : [
@@ -30,7 +30,11 @@
         'sale',
         'product_customer_code'
     ],
-    "description": "",
+    "description": """
+    Based on product_customer_code,
+    this module loads in every sale order line
+    the customer code defined in the product,
+    """,
     "demo" : [],
     "data" : [
         'sale_view.xml',
