@@ -31,6 +31,12 @@ Sale Fiscal Position Update
 ===========================
 
 With this module, when a user changes the fiscal position of a sale order, the taxes on all the sale order lines which have a product are automatically updated. The sale order lines without a product are not updated and a warning is displayed to the user in this case.
+
+Contributors :
+
+* Mathieu Vatel <mathieu _at_ julius.fr>
+
+* Alexis de Lattre <alexis.delattre@akretion.com>
 """,
     'author': 'Julius Network Solutions, Akretion',
     'depends': ['sale'],
