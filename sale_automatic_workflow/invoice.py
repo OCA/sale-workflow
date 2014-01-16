@@ -119,7 +119,8 @@ class account_invoice(orm.Model):
         use_currency = currency.id != company_currency_id
         if self._can_be_reconciled(cr, uid, invoice, context=context):
             payment_move_lines = []
-            payment_move_lines = invoice.sale_ids[0].payment_ids
+            payment_move_lines = self._get_payment(cr, uid, invoice,
+                                                   context=context)
             res_payment = self._get_sum_payment_move_line(
                 cr, uid, payment_move_lines, invoice.type, context=context)
             res_invoice = self._get_sum_invoice_move_line(
