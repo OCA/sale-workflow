@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<!--
+    Copyright (C) 2014 Akretion (http://www.akretion.com/)
+    @author Alexis de Lattre <alexis.delattre@akretion.com>
+    The licence is in the file __openerp__.py
+-->
+
+<openerp>
+<data>
+
+
+<record id="sale_rental_form" model="ir.ui.view">
+    <field name="name">sale.rental.form</field>
+    <field name="model">sale.rental</field>
+    <field name="arch" type="xml">
+        <form string="Rental" version="7.0">
+            <group name="main">
+                <field name="partner_id" />
+                <field name="rental_product_id" />
+                <field name="rented_product_id" />
+                <field name="start_date" />
+                <field name="end_date" />
+                <field name="start_order_line_id" />
+                <field name="start_order_id" />
+                <field name="company_id" groups="base.group_multi_company" />
+            </group>
+            <group name="extensions" string="Rental Extensions">
+                <field name="extension_order_line_ids" nolabel="1">
+                    <tree>
+                        <field name="order_id"/>
+                        <field name="order_partner_id"/>
+                        <field name="name"/>
+                        <field name="start_date"/>
+                        <field name="end_date"/>
+                        <field name="product_uom_qty"/>
+                        <field name="product_uom" string="Unit of Measure" groups="product.group_uom"/>
+                        <field name="price_subtotal" sum="Total"/>
+                        <field name="state"/>
+                        <field name="invoiced"/>
+                    </tree>
+                </field>
+            </group>
+            <group name="stock-out" string="Delivery">
+                <field name="out_move_id" />
+                <field name="out_state" />
+                <field name="out_picking_id" />
+                <field name="prodlot_id" />
+            </group>
+            <group name="stock-in" string="Return">
+                <field name="in_move_id" />
+                <field name="in_state" />
+                <field name="in_picking_id" />
+            </group>
+            <group name="sell" string="Sell Rented Product">
+                <field name="sell_order_line_ids" nolabel="1"/>
+            </group>
+        </form>
+    </field>
+</record>
+
+<record id="sale_rental_tree" model="ir.ui.view">
+    <field name="name">sale.rental.tree</field>
+    <field name="model">sale.rental</field>
+    <field name="arch" type="xml">
+        <tree string="Rentals">
+            <field name="partner_id"/>
+            <field name="rented_product_id"/>
+            <field name="start_date"/>
+            <field name="out_state" string="Delivery"/>
+            <field name="end_date" string="End Date"/>
+            <field name="in_state" string="Return"/>
+        </tree>
+    </field>
+</record>
+
+<record id="sale_rental_action" model="ir.actions.act_window">
+    <field name="name">Rentals</field>
+    <field name="res_model">sale.rental</field>
+    <field name="view_type">form</field>
+    <field name="view_mode">tree,form</field>
+</record>
+
+<menuitem id="sale_rental_menu" parent="base.menu_sales"
+    action="sale_rental_action" sequence="90"/>
+
+</data>
+</openerp>

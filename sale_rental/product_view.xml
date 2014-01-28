@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<!--
+    Copyright (C) 2014 Akretion (http://www.akretion.com/)
+    @author Alexis de Lattre <alexis.delattre@akretion.com>
+    The licence is in the file __openerp__.py
+-->
+
+<openerp>
+<data>
+
+<record id="product_normal_form_view" model="ir.ui.view">
+    <field name="name">rental.product.product.form</field>
+    <field name="model">product.product</field>
+    <field name="inherit_id" ref="product.product_normal_form_view" />
+    <field name="arch" type="xml">
+        <notebook position="inside">
+            <page name="rental" string="Rental">
+                <group name="rental-service"
+                    attrs="{'invisible': [('type', '!=', 'service')]}">
+                    <field name="rented_product_id"/>
+                </group>
+                <group name="rental-product"
+                    attrs="{'invisible': [('type', '=', 'service')]}"
+                    string="Related Rental Services" col="1">
+                    <field name="rental_service_ids" nolabel="1"/>
+                    <button type="action"
+                        name="%(create_rental_product_action)d"
+                        string="Create Rental Service" />
+                </group>
+            </page>
+        </notebook>
+    </field>
+</record>
+
+
+</data>
+</openerp>

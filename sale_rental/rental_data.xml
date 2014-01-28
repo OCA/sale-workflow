@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<!--
+    Copyright (C) 2014 Akretion (http://www.akretion.com/)
+    @author Alexis de Lattre <alexis.delattre@akretion.com>
+    The licence is in the file __openerp__.py
+-->
+
+<openerp>
+<data noupdate="1">
+
+
+<record id="rental_in_stock_location" model="stock.location">
+    <field name="name">Rental In</field>
+    <field name="location_id" ref="stock.stock_location_company"/>
+</record>
+
+<record id="rental_out_stock_location" model="stock.location">
+    <field name="name">Rental Out</field>
+    <field name="location_id" ref="stock.stock_location_company"/>
+</record>
+
+<record id="stock.warehouse0" model="stock.warehouse">
+    <field name="rental_in_location_id" ref="rental_in_stock_location"/>
+    <field name="rental_out_location_id" ref="rental_out_stock_location"/>
+</record>
+
+
+</data>
+</openerp>
