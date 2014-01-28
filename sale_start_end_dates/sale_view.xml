@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<!--
+    Copyright (C) 2014 Akretion (http://www.akretion.com/)
+    @author Alexis de Lattre <alexis.delattre@akretion.com>
+    The licence is in the file __openerp__.py
+-->
+
+<openerp>
+<data>
+
+
+<record id="view_order_form" model="ir.ui.view">
+    <field name="name">start.end.dates.view_order_form</field>
+    <field name="model">sale.order</field>
+    <field name="inherit_id" ref="sale.view_order_form" />
+    <field name="arch" type="xml">
+        <xpath expr="//field[@name='order_line']/form/group/group/field[@name='product_id']" position="after">
+            <field name="start_date"
+                on_change="start_end_dates_change(start_date, end_date, product_id, product_uom_qty, context)"
+                attrs="{'invisible': [('must_have_dates', '=', False)], 'required': [('must_have_dates', '=', True)]}"/>
+            <field name="end_date"
+                on_change="start_end_dates_change(start_date, end_date, product_id, product_uom_qty, context)"
+                attrs="{'invisible': [('must_have_dates', '=', False)], 'required': [('must_have_dates', '=', True)]}"/>
+            <field name="must_have_dates" invisible="1"/>
+        </xpath>
+    </field>
+</record>
+
+
+</data>
+</openerp>
