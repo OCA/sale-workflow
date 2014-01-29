@@ -163,6 +163,22 @@ class sale_order(orm.Model):
             'out_move_id': out_move_id,
             }
 
+    def _get_date_planned(
+            self, cr, uid, order, line, start_date, context=None):
+        '''We inherit this function because we want to have the
+        date_planned of the regular products that are on the same SO
+        as the rentals = the start date of the rentals,
+        because we suppose that these products are "accessories"
+        of the rental.'''
+        if context is None:
+            context = {}
+        rental_start_date_planned = context.get('rental_start_date_planned')
+        if rental_start_date_planned:
+            return rental_start_date_planned
+        else:
+            return super(sale_order, self)._get_date_planned(
+                cr, uid, order, line, start_date, context=context)
+
     def _create_pickings_and_procurements(
             self, cr, uid, order, order_lines, picking_id=False, context=None):
         picking_obj = self.pool['stock.picking']
@@ -204,21 +220,7 @@ class sale_order(orm.Model):
                             'date': line.end_date,
                         }, context=context)
                 elif line.rental_type == 'new_rental':
-                    start_datetime = self.date_to_datetime(
-                        cr, uid, line.start_date, context)
-                    date_planned = datetime.strptime(
-                        start_datetime, DEFAULT_SERVER_DATETIME_FORMAT)
-                    date_planned = (
-                        date_planned - timedelta(
-                            days=order.company_id.security_lead)).strftime(
-                        DEFAULT_SERVER_DATETIME_FORMAT)
-
-                    if not picking_out_id:
-                        picking_out_id = picking_obj.create(
-                            cr, uid, self._prepare_order_picking(
-                                cr, uid, order, context=rent_out_ctx),
-                            context=context)
-                        # No pb to keep the native code, unless for date
+                       # No pb to keep the native code, unless for date
                         # but if we have both in the same...
 
                     # Create return picking
@@ -242,16 +244,35 @@ class sale_order(orm.Model):
                         context=context)
 
                     # Create outgoing picking
+                    # TODO : make start_date_planned inheritable
+                    start_datetime_str = self.date_to_datetime(
+                        cr, uid, line.start_date, context)
+                    start_datetime = datetime.strptime(
+                        start_datetime_str, DEFAULT_SERVER_DATETIME_FORMAT)
+                    start_date_planned = (
+                        start_datetime - timedelta(
+                            days=order.company_id.security_lead)).strftime(
+                        DEFAULT_SERVER_DATETIME_FORMAT)
+                    context['rental_start_date_planned'] = start_date_planned
+
+                    if not picking_out_id:
+                        picking_out_id = picking_obj.create(
+                            cr, uid, self._prepare_order_picking(
+                                cr, uid, order, context=rent_out_ctx),
+                            context=context)
+
                     rent_out_ctx['in_move_id'] = in_move_id
                     out_move_id = move_obj.create(
                         cr, uid, self._prepare_order_line_move(
                             cr, uid, order, line, picking_out_id,
-                            date_planned, context=rent_out_ctx),
+                            start_date_planned, context=rent_out_ctx),
                         context=context)
+
+                    # Create outgoing procurement
                     proc_id = proc_obj.create(
                         cr, uid, self._prepare_order_line_procurement(
                             cr, uid, order, line, out_move_id,
-                            date_planned, context=rent_out_ctx),
+                            start_date_planned, context=rent_out_ctx),
                         context=context)
                     proc_ids.append(proc_id)
                     line.write({'procurement_id': proc_id})
