@@ -59,16 +59,29 @@ class product_product(orm.Model):
                     _("The rental product '%s' must have the option "
                         "''Must Have Start and End Dates' checked.")
                     % product.name)
-            (model, time_uom_categ_id) = self.pool['ir.model.data'].\
-                get_object_reference(cr, uid, 'product', 'uom_categ_wtime')
-            assert model == 'product.uom.categ', 'Must be a product uom categ'
+            # In the future, we would like to support all time UoMs
+            # but it is more complex and requires additionnal developments
+            #(model, time_uom_categ_id) = self.pool['ir.model.data'].\
+            #    get_object_reference(cr, uid, 'product', 'uom_categ_wtime')
+            #assert model == 'product.uom.categ', 'Must be a product uom categ'
+            #if (
+            #        product.rented_product_id and
+            #        product.uom_id.category_id.id != time_uom_categ_id):
+            #    raise orm.except_orm(
+            #        _("Error:"),
+            #        _("The rental product '%s' must have a unit of measure "
+            #            "that belong to the 'Time' category.")
+            #        % product.name)
+            (model, day_uom_id) = self.pool['ir.model.data'].\
+                get_object_reference(cr, uid, 'product', 'product_uom_day')
+            assert model == 'product.uom', 'Must be a product uom'
             if (
                     product.rented_product_id and
-                    product.uom_id.category_id.id != time_uom_categ_id):
+                    product.uom_id.id != day_uom_id):
                 raise orm.except_orm(
                     _("Error:"),
-                    _("The rental product '%s' must have a unit of measure "
-                        "that belong to the 'Time' category.")
+                    _("The unit of measure of the rental product '%s' must "
+                        "be 'Day'.")
                     % product.name)
         return True
 

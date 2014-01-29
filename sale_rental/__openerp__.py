@@ -41,6 +41,13 @@ In a sale order line, if you select a rental service, you can :
 
 In a sale order line, if you select a product that has a corresponding rental service, you can decide to sell the rented product that the customer already has. If the sale order is confirmed, the incoming shipment will be cancelled and a new delivery order will be created with a stock move from *Rental Out* to *Customers*.
 
+
+Known limitations of the current implementation:
+
+* the unit of measure of the rental services must be *Day* (we don't support the rental per hours / per week / per month...)
+
+* when you sell a rental service, you must have as many sale order lines as rented equipements i.e. you can't rent multiple units of an equipment in one sale order line (it is possible to develop that, but it requires additionnal work).
+
 Please contact Alexis de Lattre from Akretion <alexis.delattre@akretion.com> for any help or question about this module.
     """,
     'author': 'Akretion',
