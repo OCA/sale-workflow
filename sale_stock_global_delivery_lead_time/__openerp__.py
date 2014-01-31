@@ -19,21 +19,21 @@
 #
 ##############################################################################
 {
-    'name' : 'Sale global delivery lead time',
-    'version' : '0.1',
-    'category' : 'Sales Management',
+    'name': 'Sale global delivery lead time',
+    'version': '0.1',
+    'category': 'Sales Management',
     'description': '''
     Provides a way of setting a delivery lead time for all lines of a sale order
     ''',
-    'author' : 'Camptocamp',
-    'website' : 'http://www.camptocamp.com',
-    'depends' : ['sale_stock'],
-    'data' : ['sale_stock_view.xml'],
-    'demo' : [],
-    'test' : [],
+    'author': 'Camptocamp',
+    'website': 'http://www.camptocamp.com',
+    'depends': ['sale_stock'],
+    'data': ['sale_stock_view.xml'],
+    'demo': [],
+    'test': [],
     'installable': True,
-    'auto_install' : False,
-    'application' : False,
+    'auto_install': False,
+    'application': False,
 }
 
 # vim:expandtab:smartindent:tabstop=4:softtabstop=4:shiftwidth=4:
