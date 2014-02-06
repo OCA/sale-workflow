@@ -22,8 +22,10 @@
     'name': 'Sale global delivery lead time',
     'version': '0.1',
     'category': 'Sales Management',
-    'description': '''
-    Provides a way of setting a delivery lead time for all lines of a sale order
+    'description': '''This module adds a global delivery lead time on sale.orders.
+
+    The resulting pickings are scheduled taking the global lead
+    time in addition to the individual lead times on each sale.order.line.
     ''',
     'author': 'Camptocamp',
     'website': 'http://www.camptocamp.com',
