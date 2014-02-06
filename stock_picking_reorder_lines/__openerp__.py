@@ -19,21 +19,19 @@
 #
 ##############################################################################
 {
-    'name' : 'Stock picking lines with sequence number',
-    'version' : '0.1',
-    'category' : 'Warehouse Management',
+    'name': 'Stock picking lines with sequence number',
+    'version': '0.1',
+    'category': 'Warehouse Management',
     'description': '''
 Provide a new field on stock moves, allowing to manage the orders of moves in a picking.
     ''',
-    'author' : 'Camptocamp',
-    'website' : 'http://www.camptocamp.com',
-    'depends' : ['stock', 'sale', 'sale_stock'],
-    'data' : ['stock_view.xml'],
-    'demo' : [],
-    'test' : [],
+    'author': 'Camptocamp',
+    'website': 'http://www.camptocamp.com',
+    'depends': ['stock', 'sale', 'sale_stock'],
+    'data': ['stock_view.xml'],
+    'demo': [],
+    'test': [],
     'installable': True,
-    'auto_install' : False,
-    'application' : False,
+    'auto_install': False,
+    'application': False,
 }
-
-# vim:expandtab:smartindent:tabstop=4:softtabstop=4:shiftwidth=4:

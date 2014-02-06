@@ -19,21 +19,19 @@
 #
 ##############################################################################
 {
-    'name' : 'Purchase order lines with sequence number',
-    'version' : '0.1',
-    'category' : 'Purchase Management',
+    'name': 'Purchase order lines with sequence number',
+    'version': '0.1',
+    'category': 'Purchase Management',
     'description': '''
 Provide a new field on the purchase order form, allowing to manage the lines order.
     ''',
-    'author' : 'Camptocamp',
-    'website' : 'http://www.camptocamp.com',
-    'depends' : ['purchase', 'stock_picking_reorder_lines', 'account_invoice_reorder_lines'],
-    'data' : ['purchase_view.xml'],
-    'demo' : [],
-    'test' : [],
+    'author': 'Camptocamp',
+    'website': 'http://www.camptocamp.com',
+    'depends': ['purchase', 'stock_picking_reorder_lines', 'account_invoice_reorder_lines'],
+    'data': ['purchase_view.xml'],
+    'demo': [],
+    'test': [],
     'installable': True,
-    'auto_install' : False,
-    'application' : False,
+    'auto_install': False,
+    'application': False,
 }
-
-# vim:expandtab:smartindent:tabstop=4:softtabstop=4:shiftwidth=4:
