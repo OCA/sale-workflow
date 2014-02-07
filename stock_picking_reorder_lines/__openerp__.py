@@ -34,4 +34,5 @@ Provide a new field on stock moves, allowing to manage the orders of moves in a 
     'installable': True,
     'auto_install': False,
     'application': False,
+    'license': "AGPL-3",
 }

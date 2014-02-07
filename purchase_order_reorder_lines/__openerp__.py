@@ -34,4 +34,5 @@ Provide a new field on the purchase order form, allowing to manage the lines ord
     'installable': True,
     'auto_install': False,
     'application': False,
+    'license': "AGPL-3",
 }

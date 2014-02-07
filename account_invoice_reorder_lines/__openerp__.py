@@ -3,6 +3,7 @@
 #
 #    OpenERP, Open Source Management Solution
 #    Copyright (C) 2004-2009 Tiny SPRL (<http://tiny.be>).
+#    Copyright (C) 2013-2014 Camptocamp (<http://www.camptocamp.com>)
 #
 #    This program is free software: you can redistribute it and/or modify
 #    it under the terms of the GNU Affero General Public License as
@@ -19,21 +20,20 @@
 #
 ##############################################################################
 {
-    'name' : 'Invoice lines with sequence number',
-    'version' : '0.1',
-    'category' : 'Generic Modules/Accounting',
+    'name': 'Invoice lines with sequence number',
+    'version': '0.1',
+    'category': 'Generic Modules/Accounting',
     'description': '''
 Provide a new field on the invoice line form, allowing to manage the lines order.
     ''',
-    'author' : 'Tiny',
-    'website' : 'http://www.openerp.com',
-    'depends' : ['account', 'base'],
-    'data' : ['invoice_view.xml'],
-    'demo' : [],
-    'test' : [],
+    'author': 'Tiny',
+    'website': 'http://www.openerp.com',
+    'depends': ['account', 'base'],
+    'data': ['invoice_view.xml'],
+    'demo': [],
+    'test': [],
     'installable': True,
-    'auto_install' : False,
-    'application' : False,
+    'auto_install': False,
+    'application': False,
+    'license': "AGPL-3",
 }
-
-# vim:expandtab:smartindent:tabstop=4:softtabstop=4:shiftwidth=4:
