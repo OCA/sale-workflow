@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+        <record id="product_normal_form_view_procurement_type" model="ir.ui.view">
+            <field name="name">product.product.procurement_type</field>
+            <field name="model">product.product</field>
+            <field name="inherit_id" ref="procurement.product_form_view_procurement_button"/>
+            <field name="arch" type="xml">
+                <data>
+                    <field name="procure_method" position="before">
+                        <field name="procurement_type" on_change="onchange_procurement_type(type, procurement_type)" attrs="{'invisible':[('type','=','service')]}"/>
+                    </field>
+                    <field name="supply_method" position="attributes">
+                     <attribute name="attrs">{'invisible':[('type','!=','service')]}</attribute>
+                    </field>
+                    <field name="procure_method" position="attributes">
+                     <attribute name="attrs">{'invisible':[('type','!=','service')]}</attribute>
+                    </field>
+                </data>
+            </field>
+        </record>
+        
+        <record model="ir.ui.view" id="product_template_form_view_procurement_type">
+            <field name="name">product.template.procurement_type</field>
+            <field name="model">product.template</field>
+            <field name="inherit_id" ref="procurement.product_template_form_view_procurement"/>
+            <field name="arch" type="xml">
+                <data>
+                    <field name="procure_method" position="before">
+                        <field name="procurement_type" on_change="onchange_procurement_type(type, procurement_type)" attrs="{'invisible':[('type','=','service')]}"/>
+                    </field>
+                    <field name="procure_method" position="attributes">
+                     <attribute name="invisible">{'invisible':[('type','!=','service')]}</attribute>
+                    </field>
+                    <field name="supply_method" position="attributes">
+                     <attribute name="invisible">{'invisible':[('type','!=','service')]}</attribute>
+                    </field>
+                </data>
+            </field>
+        </record>        
+    </data>
+</openerp>
