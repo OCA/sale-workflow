@@ -1,0 +1,52 @@
+-
+  Testing change of procurement type on product
+-
+  I create a product "Jalousie"
+-
+  !record {model: product.product, id: product3}:
+    name: Jalousie
+    type: product
+-
+  I define the product with dropshipping
+  but it fails because the product has no suppliers defined.
+-
+  !python {model: product.product}: |
+    from openerp.osv import orm
+    product3_id = ref("product3")
+    try:
+        self.write(cr, uid, [product3_id], {'procurement_type': 'direct_delivery'})
+    except orm.except_orm as err:
+        assert 'Error Expected'
+-
+  I create a supplier "Dupont"
+-
+  !record {model: res.partner, id: partner1}:
+    name: Dupont
+    supplier: True
+-
+  I set this supplier on the product "Jalousie"
+-
+  !record {model: product.supplierinfo, id: psupinfo1}:
+    name: partner1
+    product_id: product3
+    min_qty: 1.0
+-
+  I define dropshipping on the product.
+-
+  !python {model: product.product}: |
+    product3_id = ref("product3")
+    try:
+        values = self.onchange_procurement_type(cr, uid, [product3_id], 'product', 'direct_delivery')
+        self.write(cr, uid, [product3_id], values['value'])
+    except:
+        raise AssertionError('Expected no error')
+-
+  I check if the product is now made to order
+-
+  !assert {model: product.product, id: product3}:
+    - procure_method == 'make_to_order'
+-
+  I check if supplier is checked as doing dropshipping
+-
+  !assert {model: product.supplierinfo, id: psupinfo1}:
+    - direct_delivery_flag == 1

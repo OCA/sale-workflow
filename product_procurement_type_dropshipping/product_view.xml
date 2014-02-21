@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+        <record id="view_product_supplier_context_dropshipping" model="ir.ui.view">
+            <field name="name">product.supplier.context.dropshipping</field>
+            <field name="model">product.product</field>
+            <field name="inherit_id" ref="purchase.view_product_supplier_inherit"/>
+            <field name="arch" type="xml">
+                <data>
+                    <field name="seller_ids" position="attributes">
+                     <attribute name="context">{'uom_id': uom_id, 'default_direct_delivery_flag': procurement_type == 'direct_delivery'}</attribute>
+                    </field>
+                </data>
+            </field>
+        </record>
+    </data>
+</openerp>
