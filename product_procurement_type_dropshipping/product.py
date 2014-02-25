@@ -37,11 +37,12 @@ class product_template(orm.Model):
         return res
 
     def _compute_procurement_vals(self, vals):
-        vals = super(product_template, self)._compute_procurement_vals(vals)
         if vals['procurement_type'] == 'direct_delivery':
             vals.update({'procure_method': 'make_to_order',
                          'supply_method': 'buy',
                          })
+        else:
+            vals = super(product_template, self)._compute_procurement_vals(vals)
         return vals
 
     def _check_sellers(self, cr, uid, ids, procurement_type, context=None):
@@ -64,9 +65,13 @@ class product_template(orm.Model):
             get_procurement_type_selection,
             'Procurement Type',
             required=True,
-            help='Standard: Procurement Method: Make to Stock, '
+            help='On stock, buy: Procurement Method: Make to Stock, '
                  'Supply Method: Buy.\n'
-                 'Bill of Materials: Procurement Method: Make to Order, '
+                 'On stock, produce: Procurement Method: Make to Stock, '
+                 'Supply Method: Produce.\n'
+                 'On order, buy: Procurement Method: Make to Order, '
+                 'Supply Method: Buy.\n'
+                 'On order, produce: Procurement Method: Make to Order, '
                  'Supply Method: Produce.\n'
                  'DropShipping: Procurement Method: Make to Order, '
                  'Supply Method: Buy.'),
@@ -74,7 +79,7 @@ class product_template(orm.Model):
 
     def onchange_procurement_type(self, cr, uid, ids, type,
                                   procurement_type, context=None):
-        res = super(product_template, self). \
+        res = super(product_template, self).\
             onchange_procurement_type(cr,
                                       uid,
                                       ids,
