@@ -62,10 +62,15 @@ class product_template(orm.Model):
             get_procurement_type_selection,
             'Procurement Type',
             required=True,
-            help='Standard: Procurement Method: Make to Stock, '
+            help='On stock, buy: Procurement Method: Make to Stock, '
                  'Supply Method: Buy.\n'
-                 'Bill of Materials: Procurement Method: Make to Order, '
-                 'Supply Method: Produce.\n'),
+                 'On stock, produce: Procurement Method: Make to Stock, '
+                 'Supply Method: Produce.\n'
+                 'On order, buy: Procurement Method: Make to Order, '
+                 'Supply Method: Buy.\n'
+                 'On order, produce: Procurement Method: Make to Order, '
+                 'Supply Method: Produce.\n'
+            ),
     }
 
     _defaults = {
