@@ -37,7 +37,7 @@ Please contact Alexis de Lattre from Akretion <alexis.delattre@akretion.com> for
     """,
     'author': 'Akretion',
     'website': 'http://www.akretion.com',
-    'depends': ['account_cutoff_prepaid'],
+    'depends': ['account_cutoff_prepaid', 'sale'],
     'data': [
         'sale_view.xml',
     ],
