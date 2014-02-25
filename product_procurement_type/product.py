@@ -30,8 +30,11 @@ class product_template(orm.Model):
         """
         Has to be inherited to add procurement type
         """
-        return [('standard', 'Standard'),
-                ('bom', 'Bill of Materials')]
+        return [('buy_stock', 'On stock, buy'),
+                ('buy_demand', 'On demand, buy'),
+                ('produce_demand', 'On demand, produce'),
+                ('produce_stock', 'On stock, produce'),
+                ]
 
     def _compute_procurement_vals(self, vals):
         if vals['procurement_type'] == 'standard':
@@ -42,6 +45,16 @@ class product_template(orm.Model):
             vals.update({'procure_method': 'make_to_order',
                          'supply_method': 'produce',
                          })
+        elif vals['procurement_type'] == 'on_demand':
+            vals.update({'procure_method': 'make_to_order',
+                         'supply_method': 'buy',
+                         })
+        elif vals['procurement_type'] == 'bom_stock':
+            vals.update({'procure_method': 'make_to_stock',
+                         'supply_method': 'produce',
+                         })
+        else:
+            raise ValueError(vals['procurement_type'])
         return vals
 
     _columns = {
