@@ -57,7 +57,7 @@ class product_template(orm.Model):
         else:
             if dd_flag:
                 raise orm.except_orm(
-                    _('Warning!'),
+                    _('Warning'),
                     _('No suppliers defined'))
 
     _columns = {
@@ -74,7 +74,7 @@ class product_template(orm.Model):
                  'On order, produce: Procurement Method: Make to Order, '
                  'Supply Method: Produce.\n'
                  'DropShipping: Procurement Method: Make to Order, '
-                 'Supply Method: Buy.'),
+                 'Supply Method: Buy + supplier does drop shipping'),
     }
 
     def onchange_procurement_type(self, cr, uid, ids, type,

@@ -37,19 +37,19 @@ class product_template(orm.Model):
                 ]
 
     def _compute_procurement_vals(self, vals):
-        if vals['procurement_type'] == 'standard':
+        if vals['procurement_type'] == 'buy_stock':
             vals.update({'procure_method': 'make_to_stock',
                          'supply_method': 'buy',
                          })
-        elif vals['procurement_type'] == 'bom':
+        elif vals['procurement_type'] == 'produce_demand':
             vals.update({'procure_method': 'make_to_order',
                          'supply_method': 'produce',
                          })
-        elif vals['procurement_type'] == 'on_demand':
+        elif vals['procurement_type'] == 'buy_demand':
             vals.update({'procure_method': 'make_to_order',
                          'supply_method': 'buy',
                          })
-        elif vals['procurement_type'] == 'bom_stock':
+        elif vals['procurement_type'] == 'produce_stock':
             vals.update({'procure_method': 'make_to_stock',
                          'supply_method': 'produce',
                          })

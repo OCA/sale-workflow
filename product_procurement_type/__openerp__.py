@@ -21,7 +21,7 @@
 
 {
     "name": "Product Procurement Types",
-    "version": "1.0",
+    "version": "0.1",
     "author": "Camptocamp",
     "license": "AGPL-3",
     "category": "Sales",
