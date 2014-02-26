@@ -74,7 +74,7 @@ class product_template(orm.Model):
     }
 
     _defaults = {
-        'procurement_type': 'standard',
+        'procurement_type': 'buy_stock',
     }
 
     def onchange_procurement_type(self, cr, uid, ids, type, procurement_type,

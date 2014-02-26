@@ -11,7 +11,8 @@
   I check if the product is MTS + buy
 -
   !assert {model: product.product, id: product1}:
-    - procure_method == 'make_to_stock' and supply_method == 'buy' 
+    - procure_method == 'make_to_stock' 
+    - supply_method == 'buy' 
 -
   I create a product "Curtain" with type produce_demand
 -
@@ -23,7 +24,8 @@
   I check if the product is MTO + produce
 -
   !assert {model: product.product, id: product2}:
-    - procure_method == 'make_to_order' and supply_method == 'produce'
+    - procure_method == 'make_to_order'
+    - supply_method == 'produce'
 
 -
   I create a product "Curtain2" with type produce_stock
@@ -36,7 +38,8 @@
   I check if the product is MTS + produce
 -
   !assert {model: product.product, id: product3}:
-    - procure_method == 'make_to_order' and supply_method == 'produce'
+    - procure_method == 'make_to_stock' 
+    - supply_method == 'produce'
 
 -
   I create a product "Store2" with type buy_demand
@@ -49,4 +52,5 @@
   I check if the product is MTO + buy
 -
   !assert {model: product.product, id: product4}:
-    - procure_method == 'make_to_order' and supply_method == 'buy' 
+    - procure_method == 'make_to_order' 
+    - supply_method == 'buy' 
