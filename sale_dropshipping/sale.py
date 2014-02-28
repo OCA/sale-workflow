@@ -20,6 +20,7 @@
 #
 ##############################################################################
 from openerp.osv import orm, fields
+from openerp.tools.translate import _
 import netsvc
 
 
@@ -137,6 +138,21 @@ class sale_order(orm.Model):
         res = super(sale_order, self)._create_pickings_and_procurements(
             cr, uid, order, normal_lines, None, context)
         return res
+
+    def action_button_confirm(self, cr, uid, ids, context=None):
+        for sale in self.browse(cr, uid, ids, context=context):
+            for line in sale.order_line:
+                if (line.type == 'make_to_order' and
+                    line.sale_flow in
+                        ('direct_delivery', 'direct_invoice_and_delivery') and
+                        not line.product_id.seller_ids):
+                    raise orm.except_orm(_('Warning!'),
+                                         _('Please set at least one supplier '
+                                           'on the product: "%s" (code: %s)') %
+                                          (line.product_id.name,
+                                           line.product_id.default_code,))
+        return super(sale_order, self).action_button_confirm(cr, uid, ids,
+                                                             context=context)
 
 
 class procurement_order(orm.Model):
