@@ -20,7 +20,6 @@
 #
 ##############################################################################
 
-
 {
     'name': 'Sale Service Just In Time',
     'version': '1.0',
@@ -29,14 +28,14 @@
 Sale Service Just In Time
 =========================
 
-When you make a SO with product and services, the workflow of the SO will not reach 
+When you make a SO with product and services, the workflow of the SO will not reach
 the state done unless you deliver all the products and the procurements linked to
 services product are done.
 
 Usualy, the when the mrp run, it mark the procurement of services line as done. But,
 you  may want to mark them as done like if you were using the mrp_jit module.
 
-This module provide that feature: It bring the behavior of the mrp_jit module 
+This module provide that feature: It bring the behavior of the mrp_jit module
 but only on services products.
 
  Contributors:
@@ -46,10 +45,9 @@ but only on services products.
 
 """,
     'author': 'Camptocamp',
-    'depends': ['sale_stock' ],
+    'depends': ['sale_stock'],
     'website': 'http://www.camptocamp.com',
-    'data': [
-            ],
+    'data': [],
     'test': [
         'test/sale_service_jit_test.yml',
     ],
@@ -57,4 +55,3 @@ but only on services products.
     'installable': True,
     'active': False,
 }
-# vim:expandtab:smartindent:tabstop=4:softtabstop=4:shiftwidth=4:
