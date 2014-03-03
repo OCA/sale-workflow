@@ -21,6 +21,12 @@
 
 from openerp.osv import orm, fields
 
+def get_procurement_type_selection():
+        return [('buy_stock', 'On stock, buy'),
+                ('buy_demand', 'On demand, buy'),
+                ('produce_demand', 'On demand, produce'),
+                ('produce_stock', 'On stock, produce'),
+                ]
 
 class product_template(orm.Model):
 
@@ -30,11 +36,7 @@ class product_template(orm.Model):
         """
         Has to be inherited to add procurement type
         """
-        return [('buy_stock', 'On stock, buy'),
-                ('buy_demand', 'On demand, buy'),
-                ('produce_demand', 'On demand, produce'),
-                ('produce_stock', 'On stock, produce'),
-                ]
+        return get_procurement_type_selection()
 
     def _compute_procurement_vals(self, vals):
         if vals['procurement_type'] == 'buy_stock':

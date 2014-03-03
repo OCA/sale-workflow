@@ -21,7 +21,12 @@
 
 from openerp.osv import orm, fields
 from openerp.tools.translate import _
+from openerp.addons.product_procurement_type.product import get_procurement_type_selection
 
+def get_procurement_type_selection_with_dropshipping():
+    selections = get_procurement_type_selection()
+    selections.append(('direct_delivery', 'Drop Shipping'))
+    return selections
 
 class product_template(orm.Model):
 
@@ -31,11 +36,8 @@ class product_template(orm.Model):
         """
         Adds type dropshipping in procurement_type selection
         """
-        res = super(product_template, self).get_procurement_type_selection(
-            cr, uid, context=context)
-        res.append(('direct_delivery', 'Drop Shipping'))
-        return res
-
+        return get_procurement_type_selection_with_dropshipping()
+    
     def _compute_procurement_vals(self, vals):
         if vals['procurement_type'] == 'direct_delivery':
             vals.update({'procure_method': 'make_to_order',
