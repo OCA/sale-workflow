@@ -52,9 +52,11 @@ class product_product(orm.Model):
             return False
 
         for product in self.browse(cr, uid, ids):
-            if 'qty' in context:
+            if product.procure_method == 'make_to_order':
+                res[product.id] = is_direct_delivery_from_suppliers(product)
+            elif 'qty' in context:
                 # TODO deal with partial availability?
-                if product.virtual_available < context['qty']:
+                if  product.virtual_available < context['qty']:
                     res[product.id] = is_direct_delivery_from_suppliers(product)
                 else:  # Available in stock
                     res[product.id] = False

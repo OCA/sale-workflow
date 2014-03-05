@@ -96,16 +96,16 @@
 -
   !assert {model: sale.order, id: so_mts3, string: wrong so line sale_flow state}:
     - order_line[0].sale_flow == 'direct_delivery'
-# -
-#   I create SO for 3xMT0 Product
-# -
-#   !record {model: sale.order, id: so_mto2}:
-#     partner_id: base.res_partner_2
-#     order_line:
-#       - product_id: prod_mto
-#         product_uom_qty: 3
-# -
-#   The so line should have sale_flow set to dropshipping
-# -
-#   !assert {model: sale.order, id: so_mto2, string: wrong so line sale_flow state}:
-#     - order_line[0].sale_flow == 'direct_delivery'
+-
+  I create SO for 3xMT0 Product
+-
+  !record {model: sale.order, id: so_mto2}:
+    partner_id: base.res_partner_2
+    order_line:
+      - product_id: prod_mto
+        product_uom_qty: 3
+-
+  The so line should have sale_flow set to dropshipping
+-
+  !assert {model: sale.order, id: so_mto2, string: wrong so line sale_flow state}:
+    - order_line[0].sale_flow == 'direct_delivery'
