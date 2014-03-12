@@ -37,7 +37,7 @@ class sale_order(orm.Model):
         :param list(browse_record) order_lines: sales order line records to procure
         :param int picking_id: optional ID of a stock picking to which
                                the created stock moves will be added.
-                               A new picking will be created if ommitted.
+                               A new picking will be created if omitted.
         :return: True
 
         """
