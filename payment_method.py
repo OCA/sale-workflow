@@ -29,7 +29,8 @@ class payment_method(orm.Model):
 
     _columns = {
         'name': fields.char('Name',
-                            help="The name of the method on the backend"),
+                            help="The name of the method on the backend",
+                            required=True),
         'journal_id': fields.many2one(
             'account.journal',
             'Journal',
