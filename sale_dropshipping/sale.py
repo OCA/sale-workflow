@@ -41,7 +41,8 @@ class sale_order_line(orm.Model):
         if product:
             context2 = {'lang': lang,
                         'partner_id': partner_id,
-                        'qty': qty}
+                        'qty': qty,
+                        }
             product_obj = self.pool.get('product.product').browse(cr, uid, product,
                                                                   context=context2)
             if product_obj.is_direct_delivery_from_product:

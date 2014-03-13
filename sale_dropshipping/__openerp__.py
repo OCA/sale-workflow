@@ -20,7 +20,7 @@
 #
 ##############################################################################
 {"name": "Sale Dropshipping",
- "version": "1.0",
+ "version": "1.1",
  "author": "Akretion",
  "website": "http://www.openerp.com",
  "category": "Generic Modules/Purchase",
@@ -55,7 +55,8 @@ This would enable moves to properly generate accounting moves
     """,
  "init_xml": [],
  "demo_xml": [],
- "test": [],
+ "test": ['test/test_sale_policy_procurement.yml',
+          ],
  "update_xml": ["purchase_view.xml", "sale_view.xml", "product_view.xml", "stock_view.xml"],
  'images': ['images/purchase_to_sale.png'],
  'installable': True,
