@@ -21,7 +21,7 @@
 
 {
     'name': 'Sale Payment Method',
-    'version': '0.2',
+    'version': '0.2.1',
     'category': 'Generic Modules/Others',
     'license': 'AGPL-3',
     'description': """
