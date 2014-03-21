@@ -20,7 +20,7 @@
 #
 ##############################################################################
 {"name": "Sale Dropshipping",
- "version": "1.1",
+ "version": "1.1.1",
  "author": "Akretion",
  "website": "http://www.openerp.com",
  "category": "Generic Modules/Purchase",

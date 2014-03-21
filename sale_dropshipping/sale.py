@@ -137,7 +137,7 @@ class sale_order(orm.Model):
         self._create_procurements_direct_mto(cr, uid, order, dropship_lines,
                                              context=context)
         res = super(sale_order, self)._create_pickings_and_procurements(
-            cr, uid, order, normal_lines, None, context)
+            cr, uid, order, normal_lines, picking_id, context)
         return res
 
     def action_button_confirm(self, cr, uid, ids, context=None):
