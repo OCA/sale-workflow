@@ -56,6 +56,22 @@ class CrmLead(orm.Model):
 
         return {'value': res}
 
+    def on_change_user(self, cr, uid, ids, user_id, context=None):
+        print "on_change_user"
+        """ Updates res dictionary with the department corresponding to the section """
+        if context is None:
+            context = {}
+        res = {}
+        if user_id:
+            section_ids = self.pool.get('crm.case.section').search(cr, uid, ['|', ('user_id', '=', user_id), ('member_ids', '=', user_id)], context=context)
+            for section_id in section_ids:
+                res.update({'section_id': section_id})
+                section = self.pool.get('crm.case.section').browse(cr, uid, section_id, context=context)
+                if section.department_id.id:
+                    res.update({'department_id': section.department_id.id})
+
+        return {'value': res}
+    
     _columns = {
         'department_id': fields.many2one('hr.department', 'Department'),
         }
