@@ -3,6 +3,7 @@
 #
 #    Author: Joël Grand-guillaume (Camptocamp)
 #    Contributor: Yannick Vaucher (Camptocamp)
+#    Contributor: Eficent
 #    Copyright 2011 Camptocamp SA
 #
 #    This program is free software: you can redistribute it and/or modify
@@ -69,7 +70,13 @@ class CrmLead(orm.Model):
                 section = self.pool.get('crm.case.section').browse(cr, uid, section_id, context=context)
                 if section.department_id.id:
                     res.update({'department_id': section.department_id.id})
-
+                else:
+                    employee_ids = self.pool.get('hr.employee').search(cr, uid, [('user_id','=',user_id)], context=context)
+                    for employee_id in employee_ids:
+                        employee = self.pool.get('hr.employee').browse(cr, uid, employee_id, context=context)
+                        if employee.department_id.id:
+                            res.update({'department_id': employee.department_id.id})                            
+                
         return {'value': res}
     
     _columns = {
