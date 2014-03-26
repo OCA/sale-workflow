@@ -83,9 +83,8 @@ class CrmLead(orm.Model):
                     employee_ids = employee_obj.search(cr, uid, 
                                                        [('user_id','=',user_id)],
                                                         context=context)
-                    for employee_id in employee_ids:
-                        employee = employee_obj.browse(cr, uid, 
-                                                       employee_id, context=context)
+                    for employee in employee_obj.browse(cr, uid, 
+                                                       employee_ids, context=context):
                         if employee.department_id.id:
                             res['department_id'] = employee.department_id.id                                                        
                 
