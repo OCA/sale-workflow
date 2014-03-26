@@ -33,7 +33,9 @@ class CrmSalesTeam(orm.Model):
         department_id = False
         employee_ids = employee_obj.search(cr, uid, [('user_id','=', uid)])
         if employee_ids:
-            department_id = employee_obj.browse(cr, uid, employee_ids[0], context=context).department_id.id
+            department_id = employee_obj.browse(cr, uid, 
+                                                employee_ids[0], 
+                                                context=context).department_id.id
         return department_id
 
     _defaults = {
@@ -45,37 +47,47 @@ class CrmLead(orm.Model):
     _inherit = "crm.lead"
 
     def onchange_section_id(self, cr, uid, ids, section_id=False, context=None):
-        print "onchange_section_id"
         """ Updates res dictionary with the department corresponding to the section """
         if context is None:
             context = {}
         res = {}
         if section_id:
-            section = self.pool.get('crm.case.section').browse(cr, uid, section_id, context=context)
+            section = self.pool.get('crm.case.section').browse(cr, uid, 
+                                                               section_id, 
+                                                               context=context)
             if section.department_id.id:
                 res.update({'department_id': section.department_id.id})
 
         return {'value': res}
 
     def on_change_user(self, cr, uid, ids, user_id, context=None):
-        print "on_change_user"
-        """ Updates res dictionary with the department corresponding to the section """
-        if context is None:
-            context = {}
+        """ Updates res dictionary with the sales team and department 
+        corresponding to the section """
+        employee_obj = self.pool.get('hr.employee')
+        section_obj = self.pool.get('crm.case.section')
+        
         res = {}
         if user_id:
-            section_ids = self.pool.get('crm.case.section').search(cr, uid, ['|', ('user_id', '=', user_id), ('member_ids', '=', user_id)], context=context)
+            section_ids =  section_obj.search(cr, uid, 
+                                              ['|', ('user_id', '=', user_id),
+                                                ('member_ids', '=', user_id)],
+                                                context=context)
+            
             for section_id in section_ids:
-                res.update({'section_id': section_id})
-                section = self.pool.get('crm.case.section').browse(cr, uid, section_id, context=context)
+                res['section_id'] = section_id                
+                section =  section_obj.browse(cr, uid, section_id, 
+                                              context=context)
                 if section.department_id.id:
-                    res.update({'department_id': section.department_id.id})
+                    res['department_id'] = section.department_id.id                    
                 else:
-                    employee_ids = self.pool.get('hr.employee').search(cr, uid, [('user_id','=',user_id)], context=context)
+                    employee_ids = employee_obj.search(cr, uid, 
+                                                       [('user_id','=',user_id)],
+                                                        context=context)
                     for employee_id in employee_ids:
-                        employee = self.pool.get('hr.employee').browse(cr, uid, employee_id, context=context)
+                        employee = employee_obj.browse(cr, uid, 
+                                                       employee_id, context=context)
                         if employee.department_id.id:
-                            res.update({'department_id': employee.department_id.id})                            
+                            res['department_id'] = employee.department_id.id                                                        
                 
         return {'value': res}
     
