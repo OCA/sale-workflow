@@ -39,8 +39,8 @@ mrp_jit module.
 This module provide that feature: It bring the behavior of the mrp_jit module
 but only on services products.
 
- Contributors:
- -------------
+Contributors
+------------
 
   * Joël Grand-Guillaume <joel.grand-guillaume@camptocamp.com>
 
