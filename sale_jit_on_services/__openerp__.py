@@ -28,12 +28,12 @@
 Sale Service Just In Time
 =========================
 
-When you make a SO with product and services, the workflow of the SO will not
-reach the state done unless you deliver all the products and the procurements
-linked to services product are done.
+When you make a SO with products and services, the workflow of the SO will not
+reach the state done unless you deliver all products and procurements
+linked to service products are done.
 
-Usually, the when the mrp run, it mark the procurement of services line as
-done. But, you  may want to mark them as done like if you were using the
+Usually, when the mrp runs, it marks procurements of services' lines as
+done. But, you may want to mark them as done like if you were using the
 mrp_jit module.
 
 This module provide that feature: It bring the behavior of the mrp_jit module
