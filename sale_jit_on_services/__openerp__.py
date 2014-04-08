@@ -32,7 +32,7 @@ When you make a SO with products and services, the workflow of the SO will not
 reach the state done unless you deliver all products and procurements
 linked to service products are done.
 
-Usually, when the mrp runs, it marks procurements of services' lines as
+Usually, when the MRP runs, it marks procurements of services' lines as
 done. But, you may want to mark them as done like if you were using the
 mrp_jit module.
 
