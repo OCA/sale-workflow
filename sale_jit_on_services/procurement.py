@@ -18,5 +18,19 @@
 #    along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
 ##############################################################################
+from openerp.osv import orm
 
-from . import procurement
+class ProcurementOrder(orm.Model):
+    """
+    Procurement Orders
+    """
+    _inherit = 'procurement.order'
+
+    def is_service(self, cr, uid, ids):
+        """ condition on the transition to go from 'confirm' activity to
+        'confirm_wait' activity """
+        for procurement in self.browse(cr, uid, ids):
+            product = procurement.product_id
+            if product.type == 'service':
+                return True
+        return False

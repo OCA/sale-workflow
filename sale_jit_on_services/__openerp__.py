@@ -1,9 +1,8 @@
 # -*- coding: utf-8 -*-
 ##############################################################################
 #
-#    OpenERP, Open Source Management Solution
-#    Copyright (C) 2013 Camptocamp (<http://www.camptocamp.com>)
-#    Authors: Joel Grand-Guillaume
+#    Author: Joël Grand-Guillaume, Yannick Vaucher
+#    Copyright 2013 Camptocamp SA
 #
 #    This program is free software: you can redistribute it and/or modify
 #    it under the terms of the GNU Affero General Public License as
@@ -43,12 +42,15 @@ Contributors
 ------------
 
   * Joël Grand-Guillaume <joel.grand-guillaume@camptocamp.com>
+  * Yannick Vaucher <yannick.vaucher@camptocamp.com>
 
 """,
     'author': 'Camptocamp',
-    'depends': ['sale_stock'],
+    'depends': ['procurement'],
     'website': 'http://www.camptocamp.com',
-    'data': [],
+    'data': [
+        'procurement_workflow.xml'
+    ],
     'test': [
         'test/sale_service_jit_test.yml',
     ],
