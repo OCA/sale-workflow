@@ -20,24 +20,22 @@
 #
 ###############################################################################
 
-{
-    'name': 'sale_multi_journal',
-    'version': '0.1',
-    'category': 'Generic Modules/Others',
-    'license': 'AGPL-3',
-    'description': """This module will add the field journal id
+{'name': 'sale_multi_journal',
+ 'version': '0.0.1',
+ 'author': 'Akretion',
+ 'website': 'www.akretion.com',
+ 'license': 'AGPL-3',
+ 'category': 'Generic Modules',
+ 'description': """This module will add the field journal id
     in order to link the sale shop with a sale journal.
     With this option you will be able to manage correctly the
     sale journal of each shop.
-    """,
-    'author': 'Akretion',
-    'website': 'http://www.akretion.com/',
-    'depends': ['sale'], 
-    'init_xml': [],
-    'update_xml': [ 
-           'sale_view.xml',
-    ],
-    'demo_xml': [],
-    'installable': True,
-    'active': False,
+ """,
+ 'depends': [
+     'sale',
+ ],
+ 'data': [
+ ],
+ 'installable': True,
+ 'application': True,
 }

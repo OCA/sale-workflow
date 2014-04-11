@@ -22,14 +22,19 @@
 
 from openerp.osv import fields, orm
 
-class sale_shop(orm.Model):
+
+class SaleShop(orm.Model):
     _inherit = "sale.shop"
 
     _columns = {
-        'journal_id': fields.many2one('account.journal', 'Sale Journal', domain=[('type', '=', 'sale')]),
+        'journal_id': fields.many2one(
+            'account.journal',
+            'Sale Journal',
+            domain=[('type', '=', 'sale')]),
     }
 
-class sale_order(orm.Model):
+
+class SaleOrder(orm.Model):
     _inherit = "sale.order"
 
     def _prepare_invoice(self, cr, uid, order, lines, context=None):
@@ -43,8 +48,8 @@ class sale_order(orm.Model):
                                   attached to the invoice
            :return: dict of value to create() the invoice
         """
-        vals = super(sale_order, self)._prepare_invoice(cr, uid, order, lines, context=context)
+        vals = super(SaleOrder, self)._prepare_invoice(
+            cr, uid, order, lines, context=context)
         if order.shop_id.journal_id:
             vals['journal_id'] = order.shop_id.journal_id.id
         return vals
-
