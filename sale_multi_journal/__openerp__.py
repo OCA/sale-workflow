@@ -35,6 +35,7 @@
      'sale',
  ],
  'data': [
+     'sale_view.xml',
  ],
  'installable': True,
  'application': True,
