@@ -22,6 +22,7 @@
 
 from openerp.osv import fields, orm
 import openerp.addons.decimal_precision as dp
+from openerp.tools.translate import _
 
 class price_type(orm.Model):
     _inherit = 'product.price.type'
@@ -49,12 +50,18 @@ class product_product(orm.Model):
             price_type_id = price_type_obj.search(cr, uid, ['|', 
                                         ['field_price_inc', '=', ptype],
                                         ['field', '=', ptype],
-                                        ], context=context)[0]
-            price_type = price_type_obj.browse(cr, uid, price_type_id, context=context)
+                                        ], context=context)
+            price_type = price_type_obj.browse(cr, uid, price_type_id[0], context=context)
             if context['tax_inc']:
                 ptype = price_type.field_price_inc
             else:
                 ptype = price_type.field
+        if not ptype:
+            raise orm.except_orm(('USER ERROR'),
+                _('The Pricelist type are not correctly configured,'
+                  ' please check if "Product Field Tax Inc" is fill'
+                  ' on every product type. Menu > Sale > Configuration'
+                  ' > Pricelists > Price Types'))
         res = super(product_product, self).price_get(cr, uid, ids, ptype=ptype, context=context)
         return res
 
@@ -74,6 +81,8 @@ class product_product(orm.Model):
 
     def _update_price(self, cr, uid, ids, context=None):
         tax_obj = self.pool['account.tax']
+        if not isinstance(ids, (list, tuple)):
+            ids = [ids]
         for product in self.browse(cr, uid, ids, context=context):
             price = product.list_price_tax_inc
             taxes =  [tax.related_inc_tax_id for tax in product.taxes_id if tax.related_inc_tax_id]
