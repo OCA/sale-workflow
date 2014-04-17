@@ -47,6 +47,8 @@ class account_invoice_line(InvoiceSaleLine):
 
             context = self._get_context_from_args_kwargs(args, kwargs)
             product = self.pool.get('product.product').browse(cr, uid, product_id, context=context)
+            if context is None:
+                context = {}
             if context.get('tax_inc') and invoice_type in ('out_invoice', 'out_refund'):
                 res['value'].update({'price_unit': product.list_price_tax_inc})
         return res
