@@ -36,7 +36,7 @@ class InvoiceSale(Model):
         else:
             return {}
 
-    def fiscal_position_id_change(self, cr, uid, ids, fiscal_position_id, tax_inc, lines, context=None):
+    def fiscal_position_id_change(self, cr, uid, ids, fiscal_position_id, shop_id, lines, context=None):
         res={}
         if fiscal_position_id:
             fiscal_obj = self.pool.get('account.fiscal.position')
@@ -46,10 +46,6 @@ class InvoiceSale(Model):
                 res.update({'value': {'tax_inc' : False}})
             elif fiscal.price_compatibility == 'tax-inc':
                 res.update({'value': {'tax_inc' : True}})
-        else:
-            res.update({'value':{
-                'tax_inc': self.default_get(cr, uid, ['tax_inc'], context=context).get('tax_inc', False)
-                }})
         return res
 
     def tax_inc_change(self, cr, uid, ids, fiscal_position_id, tax_inc, lines, context=None):
