@@ -28,5 +28,5 @@ class sale_order_line(orm.Model):
 
     _columns = {
         'line_parent_id': fields.many2one('sale.order.line', 'Parent Line'),
-        'line_child_id': fields.one2many('sale.order.line', 'line_parent_id', 'Children Line'),
+        'line_child_ids': fields.one2many('sale.order.line', 'line_parent_id', 'Children Line'),
         }

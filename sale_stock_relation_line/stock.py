@@ -32,7 +32,7 @@ class stock_move(orm.Model):
 
 
     _columns = {
-        'sale_parent_line_ids': fields.related(
+        'sale_parent_line_id': fields.related(
             'sale_line_id',
             'line_parent_id',
             type='many2one',
@@ -49,4 +49,4 @@ class stock_move(orm.Model):
             )
         }
 
-    _order = 'sale_parent_line_ids desc'
+    _order = 'sale_parent_line_id desc'
