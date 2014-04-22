@@ -115,3 +115,9 @@ class purchase_order(orm.Model):
         """Do not merge orders that have different destination addresses."""
         field_list = super(purchase_order, self)._key_fields_for_grouping()
         return field_list + ['dest_address_id']
+
+    def _initial_merged_order_data(self, order):
+        """Populate the destination address in the merged order."""
+        res = super(purchase_order, self)._initial_merged_order_data(order)
+        res['dest_address_id'] = order.dest_address_id
+        return res
