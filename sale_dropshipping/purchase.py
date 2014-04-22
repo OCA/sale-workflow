@@ -110,3 +110,8 @@ class purchase_order(orm.Model):
                          'sale_id': purchase.sale_id and purchase.sale_id.id},
                         context=context)
         return res
+
+    def _key_fields_for_grouping(self):
+        """Do not merge orders that have different destination addresses."""
+        field_list = super(purchase_order, self)._key_fields_for_grouping()
+        return field_list + ['dest_address_id']
