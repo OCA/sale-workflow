@@ -37,7 +37,7 @@ class account_invoice_line(orm.Model):
             ondelete='set null',
             select=True,
             readonly=True),
-        'sale_parent_line_ids': fields.related(
+        'sale_parent_line_id': fields.related(
             'sale_line_id',
             'line_parent_id',
             type='many2one',
@@ -54,5 +54,4 @@ class account_invoice_line(orm.Model):
             )
         }
 
-    _order = 'sale_parent_line_ids, name desc'
-
+    _order = 'sale_parent_line_id, name desc'

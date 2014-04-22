@@ -30,9 +30,9 @@
     "website" : 'http://wwww.akretion.com/',
     'depends': ['sale_stock_relation_line',
                 'account'],
-    'init_xml': [],
-    'update_xml': [],
-    'demo_xml': [],
+    'data': [
+        'account_invoice_view.xml',
+        ],
     'installable': True,
     'auto_install': False,
 }
