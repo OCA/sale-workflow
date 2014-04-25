@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 ###############################################################################
 #
-#   Module for OpenERP 
+#   Module for OpenERP
 #   Copyright (C) 2013 Akretion (http://www.akretion.com).
 #   @author Sébastien BEAU <sebastien.beau@akretion.com>
 #
@@ -21,35 +21,41 @@
 ###############################################################################
 
 from tools.translate import _
-from openerp.osv.orm import Model, AbstractModel
+from openerp.osv import orm
 
-class InvoiceSale(Model):
+
+class InvoiceSale(orm.Model):
     _register = False
 
     def _need_to_update_line(self, cr, uid, change_done, lines, context=None):
         if lines:
-            return {'warning': {
-                        'title': _('Warning !'),
-                        'message' :  _("The %s have change please update the"
-                        "order line manually"%change_done)
+            return {
+                'warning': {
+                    'title': _('Warning !'),
+                    'message':  _("The %s have change please update the"
+                                  "order line manually" % change_done)
                     }}
         else:
             return {}
 
-    def fiscal_position_id_change(self, cr, uid, ids, fiscal_position_id, shop_id, lines, context=None):
-        res={}
+    def fiscal_position_id_change(self, cr, uid, ids, fiscal_position_id,
+                                  shop_id, lines, context=None):
+        res = {}
         if fiscal_position_id:
             fiscal_obj = self.pool.get('account.fiscal.position')
             fiscal = fiscal_obj.browse(cr, uid, fiscal_position_id)
-            res = self._need_to_update_line(cr, uid, 'fiscal position', lines, context=context)
+            res = self._need_to_update_line(
+                cr, uid, 'fiscal position', lines, context=context)
             if fiscal.price_compatibility == 'tax-exc':
-                res.update({'value': {'tax_inc' : False}})
+                res.update({'value': {'tax_inc': False}})
             elif fiscal.price_compatibility == 'tax-inc':
-                res.update({'value': {'tax_inc' : True}})
+                res.update({'value': {'tax_inc': True}})
         return res
 
-    def tax_inc_change(self, cr, uid, ids, fiscal_position_id, tax_inc, lines, context=None):
-        res = self._need_to_update_line(cr, uid, 'tax included', lines, context=context)
+    def tax_inc_change(self, cr, uid, ids, fiscal_position_id, tax_inc,
+                       lines, context=None):
+        res = self._need_to_update_line(
+            cr, uid, 'tax included', lines, context=context)
         if fiscal_position_id:
             fiscal_obj = self.pool.get('account.fiscal.position')
             fiscal = fiscal_obj.browse(cr, uid, fiscal_position_id)
@@ -60,16 +66,18 @@ class InvoiceSale(Model):
                 warning_mode = "exclude"
             if warning_mode:
                 res = {
-                    'value' : {'tax_inc': not tax_inc},
+                    'value': {'tax_inc': not tax_inc},
                     'warning': {
                         'title': _('User Error !'),
-                        'message' :  _("The fiscal position selected "
-                            "is incompatible with the mode tax %s"%warning_mode)
+                        'message':  _("The fiscal position selected"
+                                      "is incompatible with the mode"
+                                      "tax %s" % warning_mode)
                     }
                 }
         return res
 
-class InvoiceSaleLine(Model):
+
+class InvoiceSaleLine(orm.Model):
     _register = False
 
     # UGLY OpenERP API :'(, context can be in the **kwargs or *args
@@ -77,21 +85,22 @@ class InvoiceSaleLine(Model):
         if 'context' in kwargs:
             context = kwargs['context']
         else:
-            context=None
-            for arg in args: #search the context :S
+            context = None
+            for arg in args:  # search the context :S
                 if isinstance(arg, dict) and 'lang' in arg:
                     context = arg
                     break
-        return context 
-
+        return context
 
     #Try to use args and kwargs in order to have a module that do not break
     #time you inherit the onchange, code is not perfect because data can be
     #in args or kwargs depending of the other module installed
     #onchange = headache
     def product_id_change(self, cr, uid, ids, *args, **kwargs):
-        res = super(InvoiceSaleLine, self).product_id_change(cr, uid, ids, *args, **kwargs)
-        
+        account_tax_obj = self.pool.get('account.tax')
+        res = super(InvoiceSaleLine, self).product_id_change(
+            cr, uid, ids, *args, **kwargs)
+
         context = self._get_context_from_args_kwargs(args, kwargs)
 
         tax_keys = {
@@ -101,8 +110,7 @@ class InvoiceSaleLine(Model):
         tax_ids = res.get('value', {}).get(tax_keys[self._name])
         if context and context.get('tax_inc') and tax_ids:
             new_tax_ids = []
-            for tax in self.pool.get('account.tax').browse(cr, uid, tax_ids, context=context):
+            for tax in account_tax_obj.browse(cr, uid, tax_ids, context=context):
                 new_tax_ids.append(tax.related_inc_tax_id.id or tax.id)
             res['value'][tax_keys[self._name]] = new_tax_ids
         return res
-

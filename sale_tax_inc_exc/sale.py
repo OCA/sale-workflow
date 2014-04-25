@@ -25,15 +25,19 @@ import decimal_precision as dp
 from tools.translate import _
 from invoice_sale import InvoiceSale, InvoiceSaleLine
 
-class sale_order(InvoiceSale):
+
+class SaleOrder(InvoiceSale):
     _inherit = "sale.order"
 
     _columns = {
-        'tax_inc' : fields.boolean('Tax Inc', help="Tic the box if you want to use unit price in taxe include"),
+        'tax_inc' : fields.boolean(
+            'Tax Inc',
+            help="Tic the box if you want to use unit price in taxe include"),
     }
 
     def _prepare_invoice(self, cr, uid, order, lines, context=None):
-        result = super(sale_order, self)._prepare_invoice(cr, uid, order, lines, context=context)
+        result = super(SaleOrder, self)._prepare_invoice(
+            cr, uid, order, lines, context=context)
         result['tax_inc'] = order.tax_inc
         return result
 
@@ -49,11 +53,11 @@ class sale_order(InvoiceSale):
         return res
 
 
-class sale_order_line(InvoiceSaleLine):
+class SaleOrderLine(InvoiceSaleLine):
     _inherit = "sale.order.line"
 
 
-class sale_shop(orm.Model):
+class SaleShop(orm.Model):
     _inherit = 'sale.shop'
     
     _columns = {
@@ -61,4 +65,3 @@ class sale_shop(orm.Model):
             help=("Tic the box if you want to use unit price in taxe include "
             "by default for this shop")),
     }
-

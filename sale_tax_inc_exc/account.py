@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 ###############################################################################
 #
-#   Module for OpenERP 
+#   Module for OpenERP
 #   Copyright (C) 2011-2013 Akretion (http://www.akretion.com).
 #   @author Sébastien BEAU <sebastien.beau@akretion.com>
 #
@@ -20,32 +20,31 @@
 #
 ###############################################################################
 
+from openerp.osv import fields, orm
 
 
-from openerp.osv import fields
-from openerp.osv.orm import Model
-
-class account_fiscal_position(Model):
+class AccountFiscalPosition(orm.Model):
     _inherit = 'account.fiscal.position'
     _columns = {
         'price_compatibility': fields.selection([
-                    ('tax-inc', 'Tax Inc'),
-                    ('tax-exc', 'Tax Exc'),
-                    ('both', 'Both'),
-                    ], 'Pricelist Compatibility',
-                    help=("Choose the kind of pricelist compatible "
-                    "with the fiscal position")),
+            ('tax-inc', 'Tax Inc'),
+            ('tax-exc', 'Tax Exc'),
+            ('both', 'Both'),
+            ], 'Pricelist Compatibility',
+            help=("Choose the kind of pricelist compatible "
+                  "with the fiscal position")),
     }
 
     _defaults = {
         'price_compatibility': 'tax-exc',
     }
 
-class account_tax(Model):
+
+class AccountTax(orm.Model):
     _inherit = 'account.tax'
     _columns = {
-        'related_inc_tax_id': fields.many2one('account.tax',
+        'related_inc_tax_id': fields.many2one(
+            'account.tax',
             'Related Included Tax',
-            domain=[('price_include','=', True)]),
+            domain=[('price_include', '=', True)]),
     }
-
