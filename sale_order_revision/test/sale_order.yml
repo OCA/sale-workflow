@@ -15,6 +15,6 @@
   I create a new revision
 -
    !python {model: sale.order}: |
-     action = self.new_revision(cr, uid, [ref('sale_order_1')])
+     action = self.copy_quotation(cr, uid, [ref('sale_order_1')])
      new_so = self.browse(cr, uid, ref('sale_order_1'))
      assert new_so.old_revision_ids, "Old revisions not set"
