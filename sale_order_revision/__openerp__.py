@@ -42,7 +42,7 @@ sale orders.
         ],
     "demo": [],
     "test": [
-#        'test/sale_order.yml',
+        'test/sale_order.yml',
         ],
     "active": False,
     "installable": True
