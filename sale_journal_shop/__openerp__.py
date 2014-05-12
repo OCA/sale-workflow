@@ -1,8 +1,7 @@
 # -*- coding: utf-8 -*-
 ###############################################################################
 #
-#   sale_multi_journal for OpenERP
-#   Copyright (C) 2013-TODAY Akretion <http://www.akretion.com>.
+#   Copyright (C) 2014-TODAY Akretion <http://www.akretion.com>.
 #   @author Sébastien BEAU <sebastien.beau@akretion.com>
 #
 #   This program is free software: you can redistribute it and/or modify
@@ -20,12 +19,12 @@
 #
 ###############################################################################
 
-{'name': 'sale_multi_journal',
+{'name': 'Sale Journal Shop',
  'version': '0.0.1',
  'author': 'Akretion',
  'website': 'www.akretion.com',
  'license': 'AGPL-3',
- 'category': 'Generic Modules',
+ 'category': 'Sales',
  'description': """This module will add the field journal id
     in order to link the sale shop with a sale journal.
     With this option you will be able to manage correctly the
