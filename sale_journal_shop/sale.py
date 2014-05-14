@@ -1,7 +1,6 @@
 # -*- coding: utf-8 -*-
 ###############################################################################
 #
-#   sale_multi_journal for OpenERP
 #   Copyright (C) 2013-TODAY Akretion <http://www.akretion.com>.
 #   @author Sébastien BEAU <sebastien.beau@akretion.com>
 #
