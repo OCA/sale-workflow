@@ -21,7 +21,7 @@
 ##############################################################################
 {
     'name' : 'CRM with Department Categorization',
-    'version' : '1.0',
+    'version' : '1.0.1',
     'category' : 'Generic Modules/CRM & SRM',
     'description': '''
 
