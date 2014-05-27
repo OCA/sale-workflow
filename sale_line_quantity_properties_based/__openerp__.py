@@ -22,7 +22,7 @@
 {
     'name': "Sale line quantity properties based",
     'version': '0.1',
-    'category': '',
+    'category': 'Sales Management',
     'description': """
     """,
     'author': 'Agile Business Group',
