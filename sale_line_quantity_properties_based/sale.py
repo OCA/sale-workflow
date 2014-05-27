@@ -22,6 +22,7 @@
 
 from openerp.osv import orm, fields
 from openerp.tools.translate import _
+import traceback
 
 
 class sale_order_line(orm.Model):
@@ -32,40 +33,60 @@ class sale_order_line(orm.Model):
     ):
         res = {}
         properties = {}
-        warning = {}
-        warning_msgs = False
-        if formula_id:
+        warning_msg = ''
+        warning = {'title': _('Formula Error!')}
+        if formula_id and property_ids:
             formula = self.pool.get('sale.order.line.quantity.formula').browse(
                 cr, uid, formula_id, context=context)
             formula_text = formula.formula_text
-            if property_ids:
-                mrp_property_obj = self.pool.get('mrp.property')
-                for mrp_property_id in property_ids[0][2]:
-                    mrp_property = mrp_property_obj.browse(
-                        cr, uid, mrp_property_id, context=context)
-                    if mrp_property.group_id.name in properties:
-                        warning_msgs = _("This formula cannot work")
-                    try:
-                        properties[mrp_property.group_id.name] = float(
-                            mrp_property.description)
-                    except ValueError:
-                        warning_msgs = _(
-                            u"%s is not a valid value for the "
-                            u"property %s, it must be a number") % (
+            mrp_property_obj = self.pool.get('mrp.property')
+            for mrp_property_id in property_ids[0][2]:
+                mrp_property = mrp_property_obj.browse(
+                    cr, uid, mrp_property_id, context=context)
+                if not mrp_property.description:
+                    warning_msg = _(
+                        u"The property %s has the field description "
+                        u"not filled" % mrp_property.name
+                    )
+                    break
+                if mrp_property.group_id.name in properties:
+                    warning_msg = _(
+                        u"The formula %s cannot work since "
+                        u"there are more than one property belong "
+                        u"to the same group" % formula_text
+                    )
+                    break
+                try:
+                    properties[mrp_property.group_id.name] = float(
+                        mrp_property.description)
+                except ValueError:
+                    warning_msg = _(
+                        u"%s is not a valid value for the "
+                        u"property %s, it must be a number"
+                        % (
                             mrp_property.description,
-                            mrp_property.group_id.name)
+                            mrp_property.group_id.name
+                        )
+                    )
+                    break
+            if warning_msg:
+                warning.update({'message': warning_msg})
+                return {'warning': warning}
             try:
                 res['product_uom_qty'] = eval(formula_text.replace(
                     'P', 'properties'))
             except Exception, e:
-                warning_msgs = _(u"%s is not a valid formula") % (
-                    formula_text)
-        if warning_msgs:
-            warning = {
-                'title': _('Formula Error!'),
-                'message': warning_msgs
-            }
-        return {'value': res, 'warning': warning}
+                formatted_lines = traceback.format_exc().splitlines()
+                warning_msg = _(
+                    u"%s is not a valid formula. Reason: %s"
+                    % (
+                        formula_text,
+                        formatted_lines[-1]
+                    )
+                )
+                warning.update({'message': warning_msg})
+                return {'warning': warning}
+        return {'value': res}
 
     _columns = {
         'formula_id': fields.many2one(
