@@ -50,14 +50,15 @@ class sale_order_line(orm.Model):
                             mrp_property.description)
                     except ValueError:
                         warning_msgs = _(
-                            "%s is not a valid value for the property %s") % (
+                            u"%s is not a valid value for the "
+                            u"property %s, it must be a number") % (
                             mrp_property.description,
                             mrp_property.group_id.name)
             try:
                 res['product_uom_qty'] = eval(formula_text.replace(
                     'P', 'properties'))
             except Exception, e:
-                warning_msgs = _("%s is not a valid formula") % (
+                warning_msgs = _(u"%s is not a valid formula") % (
                     formula_text)
         if warning_msgs:
             warning = {
