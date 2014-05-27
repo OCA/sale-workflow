@@ -29,10 +29,11 @@
     'website': 'http://www.agilebg.com',
     'license': 'AGPL-3',
     'depends': [
-        'sale_stock',
+        'sale_mrp',
     ],
     'data': [
         'sale_view.xml',
+        'mrp_view.xml',
     ],
     'test': [
     ],
