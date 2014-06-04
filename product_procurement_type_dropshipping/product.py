@@ -37,7 +37,7 @@ class product_template(orm.Model):
         Adds type dropshipping in procurement_type selection
         """
         return get_procurement_type_selection_with_dropshipping()
-    
+
     def _compute_procurement_vals(self, vals):
         if vals['procurement_type'] == 'direct_delivery':
             vals.update({'procure_method': 'make_to_order',
@@ -96,20 +96,3 @@ class product_template(orm.Model):
                                 context=context)
         return res
 
-    def write(self, cr, uid, ids, vals, context=None):
-        for product in self.read(cr, uid, ids, ['type'], context=context):
-            if product['type'] != 'service' and \
-                    vals.get('procurement_type'):
-                vals = self._compute_procurement_vals(vals)
-                self._check_sellers(cr, uid, ids,
-                                    vals['procurement_type'],
-                                    context=context)
-        res = super(product_template, self).write(cr, uid, ids,
-                                                  vals, context=context)
-        return res
-
-    def create(self, cr, uid, vals, context=None):
-        if vals['type'] != 'service' and vals.get('procurement_type'):
-            vals = self._compute_procurement_vals(vals)
-        return super(product_template, self).create(cr, uid, vals,
-                                                    context=context)
