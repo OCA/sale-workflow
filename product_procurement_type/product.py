@@ -18,19 +18,43 @@
 #    along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
 ##############################################################################
+import logging
 
 from openerp.osv import orm, fields
 
+_logger = logging.getLogger('openerp.upgrade')
+
 def get_procurement_type_selection():
-        return [('buy_stock', 'On stock, buy'),
-                ('buy_demand', 'On demand, buy'),
-                ('produce_demand', 'On demand, produce'),
-                ('produce_stock', 'On stock, produce'),
-                ]
+    return [('buy_stock', 'On stock, buy'),
+            ('buy_demand', 'On demand, buy'),
+            ('produce_demand', 'On demand, produce'),
+            ('produce_stock', 'On stock, produce'),
+            ]
 
 class product_template(orm.Model):
 
     _inherit = 'product.template'
+
+    def init(self, cr):
+        _logger.info('Migrating product_procurement_type')
+        query = ("UPDATE product_template pt "
+                 "SET procurement_type=%(procurement_type)s "
+                 "WHERE procure_method=%(procure_method)s and supply_method=%(supply_method)s")
+        fixes = [{'procurement_type': 'buy_stock',
+                  'procure_method': 'make_to_stock',
+                  'supply_method': 'buy'},
+                 {'procurement_type': 'buy_demand',
+                  'procure_method': 'make_to_order',
+                  'supply_method': 'buy'},
+                 {'procurement_type': 'produce_stock',
+                  'procure_method': 'make_to_stock',
+                  'supply_method': 'produce'},
+                 {'procurement_type': 'produce_demand',
+                  'procure_method': 'make_to_order',
+                  'supply_method': 'produce'},
+                 ]
+        for fix in fixes:
+            cr.execute(query, fix)
 
     def get_procurement_type_selection(self, cr, uid, context=None):
         """
