@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+<data>
+
+	<!-- Product view modification -->
+	<record model="ir.ui.view" id="nan_product_pack_form">
+		<field name="name">product.product.pack.form</field>
+		<field name="model">product.product</field>
+		<field name="type">form</field>
+		<field name="inherit_id" ref="product.product_normal_form_view" />
+		<field name="arch" type="xml">
+			<notebook position="inside">
+				<page string="Pack">
+					<label string="If you add products in the 'Pack Products' field, all those products will be added automatically when a new quotation or order is created." colspan="4"/>
+					<group col="4">
+						<field name="stock_depends"/>
+						<field name="pack_fixed_price"/>
+					</group>
+					<separator string="Pack Products" colspan="4"/>
+					<field name="pack_line_ids" colspan="4" nolabel="1"/>
+				</page>
+			</notebook>
+		</field>
+	</record>
+
+	<!-- product.pack.line -->
+	<record model="ir.ui.view" id="product_pack_line_form">
+		<field name="name">product.pack.line.form</field>
+		<field name="model">product.pack.line</field>
+		<field name="type">form</field>
+		<field name="arch" type="xml">
+			<form string="Pack Product Line">
+				<field name="quantity"/>
+				<field name="product_id"/>
+			</form>
+		</field>
+	</record>
+	<record model="ir.ui.view" id="product_pack_line_tree">
+		<field name="name">product.pack.line.tree</field>
+		<field name="model">product.pack.line</field>
+		<field name="type">tree</field>
+		<field name="arch" type="xml">
+			<tree string="Pack Product Lines">
+				<field name="quantity"/>
+				<field name="product_id"/>
+			</tree>
+		</field>
+	</record>
+</data>
+</openerp>
+

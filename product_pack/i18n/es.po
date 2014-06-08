@@ -1,0 +1,164 @@
+# Translation of OpenERP Server.
+# This file contains the translation of the following modules:
+# 	* nan_product_pack
+#
+# Albert Cervera i Areny <albert@nan-tic.com>, 2009.
+msgid ""
+msgstr ""
+"Project-Id-Version: OpenERP Server 5.0.6\n"
+"Report-Msgid-Bugs-To: support@openerp.com\n"
+"POT-Creation-Date: 2011-01-15 11:45+0000\n"
+"PO-Revision-Date: 2011-02-15 14:19+0000\n"
+"Last-Translator: Jordi Esteve (Zikzakmedia) <jesteve@zikzakmedia.com>\n"
+"Language-Team: Catalan <kde-i18n-ca@kde.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Launchpad-Export-Date: 2013-04-20 05:29+0000\n"
+"X-Generator: Launchpad (build 16567)\n"
+
+#. module: nan_product_pack
+#: constraint:ir.model:0
+msgid ""
+"The Object name must start with x_ and not contain any special character !"
+msgstr ""
+"¡El nombre del objeto debe empezar con x_ y no contener ningún carácter "
+"especial!"
+
+#. module: nan_product_pack
+#: help:product.product,stock_depends:0
+msgid "Mark if pack stock is calcualted from component stock"
+msgstr ""
+"Marque este campo si el stock del pack se calcula a partir del stock de los "
+"componentes."
+
+#. module: nan_product_pack
+#: field:sale.order.line,pack_child_line_ids:0
+msgid "Lines in pack"
+msgstr "Líneas en el pack"
+
+#. module: nan_product_pack
+#: help:sale.order.line,pack_depth:0
+msgid "Depth of the product if it is part of a pack."
+msgstr "Profundidad del producto si forma parte de un pack."
+
+#. module: nan_product_pack
+#: field:product.pack.line,product_id:0
+msgid "Product"
+msgstr "Producto"
+
+#. module: nan_product_pack
+#: view:product.pack.line:0
+msgid "Pack Product Lines"
+msgstr "Líneas del pack de productos"
+
+#. module: nan_product_pack
+#: view:product.product:0
+msgid ""
+"If you add products in the 'Pack Products' field, all those products will be "
+"added automatically when a new quotation or order is created."
+msgstr ""
+"Si añade productos en el campo \"Pack de productos\", todos los productos se "
+"añadirán automáticamente cuando cree un nuevo presupuesto o pedido."
+
+#. module: nan_product_pack
+#: model:ir.module.module,description:nan_product_pack.module_meta_information
+msgid ""
+"\n"
+"Allows configuring products as a collection of other products. If such a "
+"product is added in a sale order, all the products of the pack will be added "
+"automatically (when storing the order) as children of the pack product.\n"
+"\n"
+"The module has been made compatible with nan_external_prices and containts "
+"code to specifically handle when the module is available but they're still "
+"independent and there are no dependencies between them.\n"
+"        "
+msgstr ""
+"\n"
+"Permite configurar los productos como colecciones de otros productos. Si se "
+"añade un producto de este tipo en un pedido de venta, todos los productos "
+"del pack se añadirán automáticamente (cuando se guarde el pedido) como hijos "
+"del producto principal.\n"
+"\n"
+"Este módulo es compatible con nan_external_prices y contiene código para "
+"funcionar cuando está instalado aunque ambos son todavía independientes y no "
+"hay dependencias entre ellos.\n"
+"        "
+
+#. module: nan_product_pack
+#: view:product.product:0
+#: field:sale.order.line,pack_parent_line_id:0
+msgid "Pack"
+msgstr "Pack"
+
+#. module: nan_product_pack
+#: model:ir.model,name:nan_product_pack.model_product_pack_line
+msgid "product.pack.line"
+msgstr "producto.pack.línea"
+
+#. module: nan_product_pack
+#: constraint:ir.ui.view:0
+msgid "Invalid XML for View Architecture!"
+msgstr "¡XML no válido para la definición de la vista!"
+
+#. module: nan_product_pack
+#: model:ir.module.module,shortdesc:nan_product_pack.module_meta_information
+msgid "Product Pack"
+msgstr "Pack de productos"
+
+#. module: nan_product_pack
+#: field:product.product,stock_depends:0
+msgid "Stock depends of components"
+msgstr "Stock depende de los componentes"
+
+#. module: nan_product_pack
+#: help:sale.order.line,pack_parent_line_id:0
+msgid "The pack that contains this product."
+msgstr "El pack que contiene este producto."
+
+#. module: nan_product_pack
+#: field:sale.order.line,pack_depth:0
+msgid "Depth"
+msgstr "Profundidad"
+
+#. module: nan_product_pack
+#: help:product.product,pack_fixed_price:0
+msgid ""
+"Mark this field if the public price of the pack should be fixed. Do not mark "
+"it if the price should be calculated from the sum of the prices of the "
+"products in the pack."
+msgstr ""
+"Marque este campo si el precio de venta del pack tiene que ser fijo. No lo "
+"marque si el precio se tiene que calcular a partir de la suma de los precios "
+"de los productos del pack."
+
+#. module: nan_product_pack
+#: field:product.pack.line,quantity:0
+msgid "Quantity"
+msgstr "Cantidad"
+
+#. module: nan_product_pack
+#: view:product.product:0
+#: field:product.product,pack_line_ids:0
+msgid "Pack Products"
+msgstr "Productos del pack"
+
+#. module: nan_product_pack
+#: field:product.pack.line,parent_product_id:0
+msgid "Parent Product"
+msgstr "Producto padre"
+
+#. module: nan_product_pack
+#: field:product.product,pack_fixed_price:0
+msgid "Pack has fixed price"
+msgstr "El pack tiene un precio fijo"
+
+#. module: nan_product_pack
+#: view:product.pack.line:0
+msgid "Pack Product Line"
+msgstr "Línea de pack de productos"
+
+#. module: nan_product_pack
+#: help:product.product,pack_line_ids:0
+msgid "List of products that are part of this pack."
+msgstr "Lista de productos que forman parte del pack."
