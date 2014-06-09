@@ -36,6 +36,7 @@
         'mrp_view.xml',
     ],
     'test': [
+        'test/sale_line_quantity_properties_based.yml',
     ],
     'installable': True
 }
