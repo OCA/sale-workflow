@@ -32,9 +32,9 @@
      - Standard
      - Bill of Materials
 
-    Choose "Standard" changes automatically
+    Choose "On stock, buy" changes automatically
     procurement method as "make to stock" and supply method as "buy".
-    Choose "Bill of Materials" changes automatically
+    Choose "On demand, produce" changes automatically
     procurement method as "make to order" and supply method as "produce".
 
     """,
