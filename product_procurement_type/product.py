@@ -80,7 +80,7 @@ class product_template(orm.Model):
                          'supply_method': 'produce',
                          })
         else:
-            raise ValueError(vals['procurement_type'])
+            vals['procurement_type'] = False
         return vals
 
     _columns = {
