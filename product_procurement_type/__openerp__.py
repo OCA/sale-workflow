@@ -29,8 +29,10 @@
     """
     Add a procurement type selection on products.
     Let create products as :
-     - Standard
-     - Bill of Materials
+     - On stock, buy
+     - On stock, produce
+     - On order, buy
+     - On order, produce
 
     Choose "On stock, buy" changes automatically
     procurement method as "make to stock" and supply method as "buy".
