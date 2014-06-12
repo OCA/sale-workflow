@@ -81,6 +81,7 @@ the desired properties (in this example the ‘lenght 4’ and ‘width 2’).
     'data': [
         'sale_view.xml',
         'mrp_view.xml',
+        'security/ir.model.access.csv',
     ],
     'test': [
         'test/sale_line_quantity_properties_based.yml',
