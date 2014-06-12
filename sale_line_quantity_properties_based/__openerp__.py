@@ -24,7 +24,54 @@
     'version': '0.1',
     'category': 'Sales Management',
     'description': """
-    """,
+Sale line quantity properties based
+=====================================
+
+*This module allows the calculation of the product quantity on the basis of a
+formula that considers the properties specified by the user on the SO line.*
+
+Example
+--------
+
+The sale of steps, that may be x meter long and y meter large,
+the formula enables the calculation of the total area sold expressed in square
+meters:
+    10 (4 m x 0.5 m) steps = 10 2 m² steps
+
+In order to have this function working, it is necessary to have the user
+proceeding as follows:
+
+before starting, the user shall create properties such as
+‘length 4’, ‘width 0.5’.
+
+Properties must respond the following criteria:
+
+    * Name: ‘length 1’, ‘length 4’, ‘width 0.5’
+    * Property Group : either ‘length’ or ‘width’
+    * Description : the corresponding quantity (1, 4, 0.5...)
+
+Property 'length 4' 
+    * Name: ‘length 4’, ‘width 0,5’
+    * Property Group : ‘length’
+    * Description : 4
+
+Property 'width 0.5' 
+    * Name: ‘width 0.5’
+    * Property Group : ‘width’
+    * Description : 0.5
+
+After this, the proper formula must be created:
+
+**P['length'] * P['width']**
+whereas P is a mandatory element and 'length' and 'width' must be provided
+in square brackets **[ ]**
+
+This is possible by using the menu :
+**Manufacturing -->Configuration--> Formulas**
+
+Upon the registering of the order, the user will apply in the properties field
+the desired properties (in this example the ‘lenght 4’ and ‘width 2’).
+""",
     'author': 'Agile Business Group',
     'website': 'http://www.agilebg.com',
     'license': 'AGPL-3',
