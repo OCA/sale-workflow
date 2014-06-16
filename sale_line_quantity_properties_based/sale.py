@@ -29,7 +29,8 @@ class sale_order_line(orm.Model):
     _inherit = 'sale.order.line'
 
     def onchange_formula(
-            self, cr, uid, ids, formula_id, property_ids, context=None
+            self, cr, uid, ids,
+            formula_id, property_ids, product_uos_qty, context=None
     ):
         res = {}
         properties = {}
@@ -74,7 +75,7 @@ class sale_order_line(orm.Model):
                 return {'warning': warning}
             try:
                 res['product_uom_qty'] = eval(formula_text.replace(
-                    'P', 'properties'))
+                    'P', 'properties')) * product_uos_qty
             except Exception, e:
                 formatted_lines = traceback.format_exc().splitlines()
                 warning_msg = _(
@@ -92,6 +93,24 @@ class sale_order_line(orm.Model):
         'formula_id': fields.many2one(
             'sale.order.line.quantity.formula', 'Formula',),
     }
+
+
+    def product_id_change(
+            self, cr, uid, ids, pricelist, product, qty=0,
+            uom=False, qty_uos=0, uos=False, name='', partner_id=False,
+            lang=False, update_tax=True, date_order=False, packaging=False,
+            fiscal_position=False, flag=False, context=None
+    ):
+        res = super(sale_order_line, self).product_id_change(
+            cr, uid, ids, pricelist, product, qty=qty,
+            uom=uom, qty_uos=qty_uos, uos=uos, name=name, partner_id=partner_id,
+            lang=lang, update_tax=update_tax, date_order=date_order,
+            packaging=packaging, fiscal_position=fiscal_position, flag=flag,
+            context=context
+        )
+        if 'value' in res and 'product_uos_qty' in res['value']:
+            del res['value']['product_uos_qty']
+        return res
 
 
 class sale_order_line_quantity_formula(orm.Model):
