@@ -9,7 +9,7 @@
             <field name="arch" type="xml">
                 <xpath expr="//field[@name='property_ids']" position="replace"/>
                 <xpath expr="//page[@string='Order Lines']/field[@name='order_line']/form[@string='Sales Order Lines']/group/group/field[@name='product_id']" position="after">
-                    <field name="property_ids" on_change="onchange_formula(formula_id, property_ids)" widget="many2many_tags"/>                    
+                    <field name="property_ids" on_change="onchange_formula(formula_id, property_ids, product_uos_qty)" widget="many2many_tags"/>                    
                 </xpath>
             </field>
         </record>
@@ -19,8 +19,11 @@
             <field name="model">sale.order</field>
             <field name="inherit_id" ref="sale.view_order_form"/>
             <field name="arch" type="xml">
+                <xpath expr="//page[@string='Order Lines']/field[@name='order_line']/form[@string='Sales Order Lines']/group/group/div/field[@name='product_uos_qty']" position="replace">
+                </xpath>
                 <xpath expr="//page[@string='Order Lines']/field[@name='order_line']/form[@string='Sales Order Lines']/group/group/field[@name='product_id']" position="after">
-                    <field name="formula_id" on_change="onchange_formula(formula_id, property_ids)"/>
+                    <field name="formula_id" on_change="onchange_formula(formula_id, property_ids, product_uos_qty)"/>
+                    <field name="product_uos_qty" on_change="onchange_formula(formula_id, property_ids, product_uos_qty)"/>
                 </xpath>
             </field>
         </record>
