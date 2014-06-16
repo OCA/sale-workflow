@@ -24,25 +24,26 @@
     'version': '0.1',
     'category': 'Sales Management',
     'description': """
-Sale line quantity properties based
-=====================================
+Sale line quantity based on line properties
+===========================================
 
-*This module allows the calculation of the product quantity on the basis of a
-formula that considers the properties specified by the user on the SO line.*
+*This module allows the calculation of the line quantity on the basis of a
+formula that considers the properties specified by the user on the sale order
+line.*
 
 Example
 --------
 
-The sale of steps, that may be x meter long and y meter large,
+The sale of shelves, that may be ’x’ meter long and ’y’ meter large,
 the formula enables the calculation of the total area sold expressed in square
 meters:
-    10 (4 m x 0.5 m) steps = 10 2 m² steps
+    10 (4 m x 0.5 m) shelves = 10 2 m² steps
 
 In order to have this function working, it is necessary to have the user
 proceeding as follows:
 
 before starting, the user shall create properties such as
-‘length 4’, ‘width 0.5’.
+‘length 4’, ‘width 0.5’. 
 
 Properties must respond the following criteria:
 
@@ -51,7 +52,7 @@ Properties must respond the following criteria:
     * Description : the corresponding quantity (1, 4, 0.5...)
 
 Property 'length 4' 
-    * Name: ‘length 4’, ‘width 0,5’
+    * Name: ‘length 4’
     * Property Group : ‘length’
     * Description : 4
 
