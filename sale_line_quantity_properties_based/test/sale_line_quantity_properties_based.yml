@@ -60,8 +60,9 @@
                 - mrp_property_length_4
                 - mrp_property_length_width_05
             formula_id: sale_order_line_quantity_formula_surface
+            product_uos_qty: 6
 -
   I verify that the quantity product has been correctly calculated using the formula
 -
   !assert {model: sale.order, id: sale_order_formula, string: The formula was not correctly calculated}:
-    - order_line[0].product_uom_qty == 4 * 0.5
+    - order_line[0].product_uom_qty == 4 * 0.5 * 6
