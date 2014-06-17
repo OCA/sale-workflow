@@ -23,10 +23,42 @@ from openerp.osv import orm
 from openerp.osv import fields
 
 
-class sale_order_line(orm.Model):
+class SaleOrderLine(orm.Model):
     _inherit = 'sale.order.line'
 
     _columns = {
         'line_parent_id': fields.many2one('sale.order.line', 'Parent Line'),
         'line_child_ids': fields.one2many('sale.order.line', 'line_parent_id', 'Children Line'),
         }
+
+
+class SaleOrder(orm.Model):
+    _inherit = 'sale.order'
+
+    def copy(self, cr, uid, id, default=None, context=None):
+        if default is None:
+            default = {}
+        default = {'order_line': False}
+        new_order_id = super(SaleOrder, self).copy(cr, uid, id,
+                                                 default=default,
+                                                 context=context)
+        order_line_model = self.pool.get('sale.order.line')
+        order = self.browse(cr, uid, id, context=context)
+        for origin_order_line in order.order_line:
+            if not origin_order_line.line_parent_id:
+                default = {
+                    'order_id': new_order_id,
+                    'line_child_ids': False,
+                }
+                new_order_line_id = order_line_model.copy(
+                    cr, uid, origin_order_line.id,
+                    default=default, context=context)
+            for child_line in origin_order_line.line_child_ids:
+                default = {
+                    'line_parent_id': new_order_line_id,
+                    'order_id': new_order_id,
+                    }
+                order_line_model.copy(
+                    cr, uid, child_line.id,
+                    default=default, context=context)
+        return new_order_id

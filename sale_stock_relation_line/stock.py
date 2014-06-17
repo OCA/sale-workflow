@@ -22,7 +22,7 @@
 from openerp.osv import orm, fields
 
 
-class stock_move(orm.Model):
+class StockMove(orm.Model):
     _inherit = 'stock.move'
 
     def _get_move_from_order_line(self, cr, uid, ids, context=None):
