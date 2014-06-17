@@ -72,7 +72,11 @@ This is possible by using the menu:
 
 Upon the registering of the order, the user will apply in the properties field
 the desired properties (in this example the ‘lenght 4’ and ‘width 2’)
-and in addiction the quantity (UoS). 
+and in addiction the quantity (UoS).
+
+Contributors
+------------
+Lorenzo Battistini <lorenzo.battistini@agilebg.com> 
 """,
     'author': 'Agile Business Group',
     'website': 'http://www.agilebg.com',
