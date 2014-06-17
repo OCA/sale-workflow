@@ -29,15 +29,15 @@ Sale line quantity based on line properties
 
 *This module allows the calculation of the line quantity on the basis of a
 formula that considers the properties specified by the user on the sale order
-line.*
+line and on the quantity (UoS).*
 
 Example
 --------
 
-The sale of shelves, that may be ’x’ meter long and ’y’ meter large,
-the formula enables the calculation of the total area sold expressed in square
-meters:
-    10 (4 m x 0.5 m) shelves = 10 2 m² steps
+Provided the sale of a given number of pieces (shelves), that may be
+’x’ meter long and ’y’ meter large, the formula enables the calculation of the
+total area sold expressed in square meters:
+    10 [pcs of] (4 m x 0.5 m) shelves = 20 m² of wood
 
 In order to have this function working, it is necessary to have the user
 proceeding as follows:
@@ -71,7 +71,8 @@ This is possible by using the menu :
 **Manufacturing -->Configuration--> Formulas**
 
 Upon the registering of the order, the user will apply in the properties field
-the desired properties (in this example the ‘lenght 4’ and ‘width 2’).
+the desired properties (in this example the ‘lenght 4’ and ‘width 2’)
+and in addiction the quantity (UoS). 
 """,
     'author': 'Agile Business Group',
     'website': 'http://www.agilebg.com',
