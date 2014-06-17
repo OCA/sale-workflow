@@ -64,5 +64,5 @@
 -
   I verify that the quantity product has been correctly calculated using the formula
 -
-  !assert {model: sale.order, id: sale_order_formula, string: The formula was not correctly calculated}:
-    - order_line[0].product_uom_qty == 4 * 0.5 * 6
+    !assert {model: sale.order, id: sale_order_formula, string: The formula was not correctly calculated}:
+        - order_line[0].product_uom_qty == 4 * 0.5 * 6
