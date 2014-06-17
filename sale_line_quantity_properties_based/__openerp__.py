@@ -67,7 +67,7 @@ After this, the proper formula must be created:
 whereas P is a mandatory element and 'length' and 'width' must be provided
 in square brackets **[ ]**
 
-This is possible by using the menu :
+This is possible by using the menu:
 **Manufacturing -->Configuration--> Formulas**
 
 Upon the registering of the order, the user will apply in the properties field
