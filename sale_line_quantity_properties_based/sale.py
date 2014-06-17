@@ -76,7 +76,7 @@ class sale_order_line(orm.Model):
             try:
                 res['product_uom_qty'] = eval(formula_text.replace(
                     'P', 'properties')) * product_uos_qty
-            except Exception, e:
+            except Exception:
                 formatted_lines = traceback.format_exc().splitlines()
                 warning_msg = _(
                     u"%s is not a valid formula. Reason: %s"
@@ -93,7 +93,6 @@ class sale_order_line(orm.Model):
         'formula_id': fields.many2one(
             'sale.order.line.quantity.formula', 'Formula',),
     }
-
 
     def product_id_change(
             self, cr, uid, ids, pricelist, product, qty=0,
