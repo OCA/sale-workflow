@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: OpenERP Server 7.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-05-27 15:59+0000\n"
-"PO-Revision-Date: 2014-05-27 18:05+0100\n"
+"POT-Creation-Date: 2014-06-18 12:36+0000\n"
+"PO-Revision-Date: 2014-06-18 14:40+0100\n"
 "Last-Translator: Alex Comba <alex.comba@agilebg.com>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -23,7 +23,7 @@ msgid "Formulas"
 msgstr "Formule"
 
 #. module: sale_line_quantity_properties_based
-#: code:addons/sale_line_quantity_properties_based/sale.py:47
+#: code:addons/sale_line_quantity_properties_based/sale.py:48
 #, python-format
 msgid "The property %s has the field description not filled"
 msgstr "La proprietà %s ha il campo descrizione non compilato"
@@ -34,10 +34,32 @@ msgid "Name"
 msgstr "Nome"
 
 #. module: sale_line_quantity_properties_based
-#: code:addons/sale_line_quantity_properties_based/sale.py:37
+#: code:addons/sale_line_quantity_properties_based/sale.py:38
 #, python-format
 msgid "Formula Error!"
 msgstr "Errore Formula!"
+
+#. module: sale_line_quantity_properties_based
+#: model:ir.actions.act_window,help:sale_line_quantity_properties_based.mrp_formula_action
+msgid ""
+"<p class=\"oe_view_nocontent_create\">\n"
+"                Click to create a new formula.\n"
+"              </p><p>\n"
+"                The formulas are used to automatically compute the product "
+"quantity on the basis of the properties specified by the user\n"
+"                on the sale order line and on the quantity (UoS)\n"
+"              </p>\n"
+"            "
+msgstr ""
+"<p class=\"oe_view_nocontent_create\">\n"
+"                Clicca per creare una nuova formula.\n"
+"              </p><p>\n"
+"                Le formule vengono usate per calcolare in modo automatico la "
+"quantità del prodotto in base alle proprietà specificate dall'utente\n"
+"                sulla riga dell'ordine di vendita e in base alla quantità "
+"(Unità di Vendita)\n"
+"              </p>\n"
+"            "
 
 #. module: sale_line_quantity_properties_based
 #: model:ir.model,name:sale_line_quantity_properties_based.model_sale_order_line_quantity_formula
@@ -45,7 +67,7 @@ msgid "sale.order.line.quantity.formula"
 msgstr "sale.order.line.quantity.formula"
 
 #. module: sale_line_quantity_properties_based
-#: code:addons/sale_line_quantity_properties_based/sale.py:53
+#: code:addons/sale_line_quantity_properties_based/sale.py:54
 #, python-format
 msgid ""
 "The formula %s cannot work since there are more than one property belong to "
@@ -61,13 +83,13 @@ msgid "Formula"
 msgstr "Formula"
 
 #. module: sale_line_quantity_properties_based
-#: code:addons/sale_line_quantity_properties_based/sale.py:82
+#: code:addons/sale_line_quantity_properties_based/sale.py:83
 #, python-format
 msgid "%s is not a valid formula. Reason: %s"
 msgstr "%s non è valida. Motivo: %s"
 
 #. module: sale_line_quantity_properties_based
-#: code:addons/sale_line_quantity_properties_based/sale.py:66
+#: code:addons/sale_line_quantity_properties_based/sale.py:67
 #, python-format
 msgid "%s is not a valid value for the property %s, it must be a number"
 msgstr "%s non è un valore valido per la proprietà %s, deve essere un numero"
@@ -76,22 +98,3 @@ msgstr "%s non è un valore valido per la proprietà %s, deve essere un numero"
 #: model:ir.model,name:sale_line_quantity_properties_based.model_sale_order_line
 msgid "Sales Order Line"
 msgstr "Linea d'ordine di vendita"
-
-#. module: sale_line_quantity_properties_based
-#: model:ir.actions.act_window,help:sale_line_quantity_properties_based.mrp_formula_action
-msgid ""
-"<p class=\"oe_view_nocontent_create\">\n"
-"                Click to create a new formula.\n"
-"              </p><p>\n"
-"                The formulas in OpenERP are used to automatically compute\n"
-"                the quantity of manufactured product.\n"
-"              </p>\n"
-"            "
-msgstr ""
-"<p class=\"oe_view_nocontent_create\">\n"
-"                Clicca per creare una nuova formula.\n"
-"              </p><p>\n"
-"                The formulas in OpenERP are used to automatically compute\n"
-"                the quantity of manufactured product.\n"
-"              </p>\n"
-"            "

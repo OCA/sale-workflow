@@ -12,8 +12,8 @@
               <p class="oe_view_nocontent_create">
                 Click to create a new formula.
               </p><p>
-                The formulas in OpenERP are used to automatically compute
-                the quantity of manufactured product.
+                The formulas are used to automatically compute the product quantity on the basis of the properties specified by the user
+                on the sale order line and on the quantity (UoS)
               </p>
             </field>
         </record>
