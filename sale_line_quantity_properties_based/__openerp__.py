@@ -42,8 +42,11 @@ total area sold expressed in square meters:
 In order to have this function working, it is necessary to have the user
 proceeding as follows:
 
-before starting, the user shall create properties such as
-‘length 4’, ‘width 0.5’. 
+before starting, s/he has to belong to **sale.group_mrp_properties** by
+selecting the option "Invoice products in a different unit of measure than the
+sales order" in the following menu: **Settings --> Configration --> Warehouse** 
+
+Then s/he shall create properties such as ‘length 4’, ‘width 0.5’. 
 
 Properties must respond the following criteria:
 
@@ -61,23 +64,23 @@ Property 'width 0.5'
     * Property Group : ‘width’
     * Description : 0.5
 
-After this, the proper formula must be created:
+After this, the formula 'surface' must be created:
 
 **P['length'] * P['width']**
 whereas P is a mandatory element and 'length' and 'width' must be provided
 in square brackets **[ ]**
 
 This is possible by using the menu:
-**Manufacturing -->Configuration--> Formulas**
+**Manufacturing --> Configuration--> Formulas**
 
 Upon the registering of the order, the user will apply in the properties field
-the desired properties (in this example the ‘lenght 4’ and ‘width 2’)
-and in addiction the quantity (UoS).
+the desired properties (in this example the ‘lenght 4’ and ‘width 2’), the 
+needed formula (in this example 'surface') and last the quantity (UoS).
 
 Contributors
 ------------
-Alex Comba <alex.comba@agilebg.com>
-Lorenzo Battistini <lorenzo.battistini@agilebg.com> 
+* Alex Comba <alex.comba@agilebg.com>
+* Lorenzo Battistini <lorenzo.battistini@agilebg.com> 
 """,
     'author': 'Agile Business Group',
     'website': 'http://www.agilebg.com',
