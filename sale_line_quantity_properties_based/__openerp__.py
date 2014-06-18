@@ -27,7 +27,7 @@
 Sale line quantity based on line properties
 ===========================================
 
-*This module allows the calculation of the line quantity on the basis of a
+*This module allows the calculation of the product quantity on the basis of a
 formula that considers the properties specified by the user on the sale order
 line and on the quantity (UoS).*
 
