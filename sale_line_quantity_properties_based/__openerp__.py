@@ -76,6 +76,7 @@ and in addiction the quantity (UoS).
 
 Contributors
 ------------
+Alex Comba <alex.comba@agilebg.com>
 Lorenzo Battistini <lorenzo.battistini@agilebg.com> 
 """,
     'author': 'Agile Business Group',
