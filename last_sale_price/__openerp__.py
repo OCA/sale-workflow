@@ -37,8 +37,8 @@ Only Sale Orders' lines in state Confirmed and Done are considered to
 compute those fields.
 
 If multiple Sale Order lines for the same partner where made on the same
-date for the same product, the sum of all qty and the average price will be
-displayed.
+date for the same product, the sum of all quantity and the average price
+will be displayed.
 """,
  'author': 'Camptocamp',
  'maintainer': 'Camptocamp',
