@@ -26,14 +26,17 @@
 Last Sale Price
 ===============
 
-Add price and date of a product of the last time it was sold to a partner.
+Add price, quantity and date of a product of the last time it was sold to
+a partner.
 
-Those information will be shown next to the price in sale order Form.
+In order to let the sellerman know if a customer already ordrered a product
+to give him hint of what price he should propose, those information will be
+shown next to the price in sale order line Form.
 
-Only confirmed and done sale orders are considered.
+Only confirmed and done sale orders line are considered.
 
 If multiple sale order lines for the same partner where made on the same
-date, the mean will be displayed.
+date, the sum of all qty and the mean of price will be displayed.
 """,
  'author': 'Camptocamp',
  'maintainer': 'Camptocamp',
