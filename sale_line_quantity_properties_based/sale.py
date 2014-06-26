@@ -100,6 +100,12 @@ class sale_order_line(orm.Model):
             lang=False, update_tax=True, date_order=False, packaging=False,
             fiscal_position=False, flag=False, context=None
     ):
+        """
+        Removing product_uos_qty is needed because it is now used to compute
+        the real quantity.
+        Otherwise it would be recomputed after the quantity changed.
+        See the automated test for the use case.
+        """
         res = super(sale_order_line, self).product_id_change(
             cr, uid, ids, pricelist, product, qty=qty,
             uom=uom, qty_uos=qty_uos, uos=uos, name=name,
