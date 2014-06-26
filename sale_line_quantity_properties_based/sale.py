@@ -119,3 +119,26 @@ class sale_order_line_quantity_formula(orm.Model):
         'name': fields.char('Name', size=32),
         'formula_text': fields.text('Formula'),
     }
+
+
+class mrp_property(orm.Model):
+    _inherit = 'mrp.property'
+
+    def name_create(self, cr, uid, name, context=None):
+        """
+        This allows the user to digit 'width 0.5' and the system will
+        automatically create a property of group 'width' with value '0.5'
+        """
+        splitted_name = name.split(' ')
+        if len(splitted_name) == 2:
+            group_ids = self.pool['mrp.property.group'].search(
+                cr, uid, [('name', '=', splitted_name[0])], context=context)
+            if group_ids and len(group_ids) == 1:
+                rec_id = self.create(cr, uid, {
+                    'name': name,
+                    'group_id': group_ids[0],
+                    'description': splitted_name[1]
+                    }, context=context)
+                return self.name_get(cr, uid, [rec_id], context)[0]
+        return super(mrp_property, self).name_create(
+            cr, uid, name, context=context)
