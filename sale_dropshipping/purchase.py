@@ -119,5 +119,5 @@ class purchase_order(orm.Model):
     def _initial_merged_order_data(self, order):
         """Populate the destination address in the merged order."""
         res = super(purchase_order, self)._initial_merged_order_data(order)
-        res['dest_address_id'] = order.dest_address_id
+        res['dest_address_id'] = order.dest_address_id and order.dest_address_id.id or False
         return res
