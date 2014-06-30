@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+  <data>
+
+    <record id="crm_case_section_view_form" model="ir.ui.view">
+      <field name="name">crm.case.section.form</field>
+      <field name="model">crm.case.section</field>
+      <field name="inherit_id" ref="crm.crm_case_section_view_form" />
+      <field name="arch" type="xml">
+        <xpath expr="/form/group//group[2]/field[@name='active']" position="after">
+          <field name="department_id" widget="selection"/>
+        </xpath>
+      </field>
+    </record>
+
+    <record id="crm_case_section_view_tree" model="ir.ui.view">
+      <field name="name">crm.case.section.tree</field>
+      <field name="model">crm.case.section</field>
+      <field name="inherit_id" ref="crm.crm_case_section_view_tree" />
+      <field name="arch" type="xml">
+        <xpath expr="/tree/field[@name='user_id']" position="after">
+          <field name="department_id"/>
+        </xpath>
+      </field>
+    </record>
+
+
+    <!-- CRM Lead Form View  -->
+    <record model="ir.ui.view" id="crm_case_form_view_leads">
+      <field name="name">CRM - Leads Form</field>
+      <field name="model">crm.lead</field>
+      <field name="inherit_id" ref="crm.crm_case_form_view_leads" />
+      <field name="arch" type="xml">
+        <xpath expr="/form/sheet/group/group[3]/field[@name='type']" position="after">
+          <field name="department_id" widget="selection"/>
+        </xpath>
+      </field>
+    </record>
+
+    <!-- CRM Lead Tree View -->
+
+    <record model="ir.ui.view" id="crm_case_tree_view_leads">
+      <field name="name">Leads</field>
+      <field name="model">crm.lead</field>
+      <field name="inherit_id" ref="crm.crm_case_tree_view_leads" />
+      <field name="arch" type="xml">
+        <xpath expr="/tree/field[@name='user_id']" position="after">
+          <field name="department_id" />
+        </xpath>
+      </field>
+    </record>
+
+    <record id="view_crm_case_leads_filter" model="ir.ui.view">
+      <field name="name">CRM - Leads Search</field>
+      <field name="model">crm.lead</field>
+      <field name="inherit_id" ref="crm.view_crm_case_leads_filter" />
+      <field name="arch" type="xml">
+        <xpath expr="/search/field[@name='section_id']" position="before">
+          <field name="department_id" widget="selection"/>
+        </xpath>
+        <xpath expr="/search/group/filter[@string='Salesperson']" position="after">
+          <filter string="Department" domain="[]" context="{'group_by':'department_id'}"/>
+        </xpath>
+      </field>
+    </record>
+
+    <!-- Opportunities Form View -->
+    <record model="ir.ui.view" id="crm_case_form_view_oppor">
+      <field name="name">Opportunities</field>
+      <field name="model">crm.lead</field>
+      <field name="inherit_id" ref="crm.crm_case_form_view_oppor" />
+      <field name="arch" type="xml">
+        <xpath expr="/form/sheet/group/group[3]/div/field[@name='section_id']" position="attributes">
+          <attribute name="on_change">onchange_section_id(section_id)</attribute>
+        </xpath>
+        <xpath expr="/form/sheet/group/group[3]/div" position="after">
+          <field name="department_id" widget="selection"/>
+        </xpath>
+      </field>
+    </record>
+
+    <!-- Opportunities Tree View -->
+
+    <record model="ir.ui.view" id="crm_case_tree_view_oppor">
+      <field name="name">Opportunities Tree</field>
+      <field name="model">crm.lead</field>
+      <field name="inherit_id" ref="crm.crm_case_tree_view_oppor" />
+      <field name="arch" type="xml">
+        <xpath expr="/tree/field[@name='user_id']" position="after">
+          <field name="department_id" />
+        </xpath>
+      </field>
+    </record>
+
+    <!-- Opportunities Search View -->
+
+    <record id="view_crm_case_opportunities_filter" model="ir.ui.view">
+      <field name="name">CRM - Opportunities Search</field>
+      <field name="model">crm.lead</field>
+      <field name="inherit_id" ref="crm.view_crm_case_opportunities_filter" />
+      <field name="arch" type="xml">
+        <xpath expr="/search/field[@name='section_id']" position="before">
+          <field name="department_id" widget="selection"/>
+        </xpath>
+        <xpath expr="/search/group/filter[@string='Salesperson']" position="after">
+          <filter string="Department" domain="[]" context="{'group_by':'department_id'}"/>
+        </xpath>
+      </field>
+    </record>
+
+  </data>
+</openerp>
