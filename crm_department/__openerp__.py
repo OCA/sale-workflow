@@ -34,7 +34,7 @@ as well as the related filter and button in the search form.
     'depends' : ['crm', 'hr'],
     'data' : ['crm_view.xml'],
     'demo_xml' : [],
-    'installable': True,
+    'installable': False,
     'auto_install': False,
     'application': True,
 }

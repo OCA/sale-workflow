@@ -13,4 +13,5 @@ search and form  views.
     "depends": ["hr_timesheet", "analytic_department"],
     "data": ["hr_timesheet_view.xml"],
     "auto_install": True,
+    "installable": False,
 }
