@@ -44,7 +44,8 @@ proceeding as follows:
 
 before starting, s/he has to belong to **sale.group_mrp_properties** by
 selecting the option "Invoice products in a different unit of measure than the
-sales order" in the following menu: **Settings --> Configration --> Warehouse**
+sales order" in the following menu:
+**Settings --> Configuration --> Warehouse**
 
 Then s/he shall create properties such as ‘length 4’, ‘width 0.5’.
 
