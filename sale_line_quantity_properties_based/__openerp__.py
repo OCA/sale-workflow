@@ -44,9 +44,9 @@ proceeding as follows:
 
 before starting, s/he has to belong to **sale.group_mrp_properties** by
 selecting the option "Invoice products in a different unit of measure than the
-sales order" in the following menu: **Settings --> Configration --> Warehouse** 
+sales order" in the following menu: **Settings --> Configration --> Warehouse**
 
-Then s/he shall create properties such as ‘length 4’, ‘width 0.5’. 
+Then s/he shall create properties such as ‘length 4’, ‘width 0.5’.
 
 Properties must respond the following criteria:
 
@@ -54,12 +54,12 @@ Properties must respond the following criteria:
     * Property Group : either ‘length’ or ‘width’
     * Description : the corresponding quantity (1, 4, 0.5...)
 
-Property 'length 4' 
+Property 'length 4'
     * Name: ‘length 4’
     * Property Group : ‘length’
     * Description : 4
 
-Property 'width 0.5' 
+Property 'width 0.5'
     * Name: ‘width 0.5’
     * Property Group : ‘width’
     * Description : 0.5
@@ -74,13 +74,13 @@ This is possible by using the menu:
 **Manufacturing --> Configuration--> Formulas**
 
 Upon the registering of the order, the user will apply in the properties field
-the desired properties (in this example the ‘lenght 4’ and ‘width 2’), the 
+the desired properties (in this example the ‘lenght 4’ and ‘width 2’), the
 needed formula (in this example 'surface') and last the quantity (UoS).
 
 Contributors
 ------------
 * Alex Comba <alex.comba@agilebg.com>
-* Lorenzo Battistini <lorenzo.battistini@agilebg.com> 
+* Lorenzo Battistini <lorenzo.battistini@agilebg.com>
 """,
     'author': 'Agile Business Group',
     'website': 'http://www.agilebg.com',
