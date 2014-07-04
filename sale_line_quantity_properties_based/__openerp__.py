@@ -65,6 +65,12 @@ Property 'width 0.5'
     * Property Group : ‘width’
     * Description : 0.5
 
+**Note**: provided the existence of the group 'width', the properties inherent
+that group, can be created while registering the order by simply digiting the
+word 'width' followed by a space and then by the desired quantity, example:
+'width 6'. In this way the system will automatically generate a property of
+group 'width' with value '6'.
+
 After this, the formula 'surface' must be created:
 
 **P['length'] * P['width']**
