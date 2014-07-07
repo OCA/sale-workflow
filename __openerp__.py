@@ -46,5 +46,5 @@ payments entries on sales orders.
              'security/rules.xml',
              ],
     'demo': [],
-    'installable': True,
+    'installable': False,
 }
