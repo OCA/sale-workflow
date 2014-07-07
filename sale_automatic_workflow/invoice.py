@@ -30,7 +30,7 @@ class account_invoice(orm.Model):
     _columns = {
         'workflow_process_id': fields.many2one('sale.workflow.process',
                                                string='Sale Workflow Process'),
-        #TODO propose a merge to add this field by default in acount module
+        # TODO propose a merge to add this field by default in acount module
         'sale_ids': fields.many2many('sale.order', 'sale_order_invoice_rel',
                                      'invoice_id', 'order_id',
                                      string='Sale Orders')
@@ -53,24 +53,23 @@ class account_invoice(orm.Model):
                 return False
         return True
 
-    def _get_sum_invoice_move_line(self, cr, uid, move_lines,\
-                                  invoice_type, context=None):
+    def _get_sum_invoice_move_line(self, cr, uid, move_lines,
+                                   invoice_type, context=None):
         if invoice_type in ['in_refund', 'out_invoice']:
             line_type = 'debit'
         else:
             line_type = 'credit'
-        return self._get_sum_move_line(cr, uid, move_lines,\
+        return self._get_sum_move_line(cr, uid, move_lines,
                                        line_type, context=None)
 
-    def _get_sum_payment_move_line(self, cr, uid, move_lines,\
+    def _get_sum_payment_move_line(self, cr, uid, move_lines,
                                    invoice_type, context=None):
         if invoice_type in ['in_refund', 'out_invoice']:
             line_type = 'credit'
         else:
             line_type = 'debit'
-        return self._get_sum_move_line(cr, uid, move_lines,\
+        return self._get_sum_move_line(cr, uid, move_lines,
                                        line_type, context=None)
-
 
     def _get_sum_move_line(self, cr, uid, move_lines, line_type, context=None):
         res = {

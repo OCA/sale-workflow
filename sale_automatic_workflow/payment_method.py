@@ -30,4 +30,3 @@ class payment_method(orm.Model):
         'workflow_process_id': fields.many2one('sale.workflow.process',
                                                'Workflow Process'),
     }
-

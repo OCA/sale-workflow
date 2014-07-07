@@ -78,7 +78,7 @@ class automatic_workflow_job(orm.Model):
     def _get_domain_for_sale_validation(self, cr, uid, context=None):
         return [('state', '=', 'draft'),
                 ('workflow_process_id.validate_order', '=', True)]
- 
+
     def _validate_sale_orders(self, cr, uid, context=None):
         wf_service = netsvc.LocalService("workflow")
         sale_obj = self.pool.get('sale.order')

@@ -31,7 +31,8 @@ class sale_order(orm.Model):
     }
 
     def _prepare_invoice(self, cr, uid, order, lines, context=None):
-        invoice_vals = super(sale_order, self)._prepare_invoice(cr, uid, order, lines, context=context)
+        invoice_vals = super(sale_order, self)._prepare_invoice(
+            cr, uid, order, lines, context=context)
         workflow = order.workflow_process_id
         if not workflow:
             return invoice_vals
@@ -41,7 +42,8 @@ class sale_order(orm.Model):
         return invoice_vals
 
     def _prepare_order_picking(self, cr, uid, order, context=None):
-        picking_vals = super(sale_order, self)._prepare_order_picking(cr, uid, order, context=context)
+        picking_vals = super(sale_order, self)._prepare_order_picking(
+            cr, uid, order, context=context)
         if order.workflow_process_id:
             picking_vals['workflow_process_id'] = order.workflow_process_id.id
         return picking_vals
