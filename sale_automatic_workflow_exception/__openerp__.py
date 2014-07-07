@@ -41,4 +41,4 @@ in order to retest some time the order with an exception.
  'installable': True,
  'application': False,
  'auto_install': True,
-}
+ }
