@@ -1,3 +1,0 @@
-id,name,description,sequence,model,code
-must_be_paid,Sale order must be paid before validation,The sale order must be paid before the validation. Please fix it,50,sale.order,"if order.residual > 0:
-    failed = True"
