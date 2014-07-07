@@ -44,14 +44,14 @@ class sale_order(orm.Model):
     def _get_amount(self, cr, uid, ids, fields, args, context=None):
         res = {}
         for order in self.browse(cr, uid, ids, context=context):
-            #TODO add support when payment is linked to many order
+            # TODO add support when payment is linked to many order
             paid_amount = 0
-            for line in order.payment_ids:    
+            for line in order.payment_ids:
                 paid_amount += line.credit - line.debit
             res[order.id] = {
-                    'amount_paid': paid_amount, 
-                    'residual': order.amount_total - paid_amount,
-                    }
+                'amount_paid': paid_amount,
+                'residual': order.amount_total - paid_amount,
+            }
         return res
 
     def _payment_exists(self, cursor, user, ids, name, arg, context=None):
@@ -155,8 +155,9 @@ class sale_order(orm.Model):
         period_obj = self.pool.get('account.period')
         period_id = period_obj.find(cr, uid, dt=date, context=context)[0]
         period = period_obj.browse(cr, uid, period_id, context=context)
-        move_name = description or self._get_payment_move_name(cr, uid, journal,
-                                                period, context=context)
+        move_name = description or self._get_payment_move_name(
+            cr, uid, journal,
+            period, context=context)
         move_vals = self._prepare_payment_move(cr, uid, move_name, sale,
                                                journal, period, date,
                                                context=context)

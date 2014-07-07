@@ -40,7 +40,7 @@ class payment_method(orm.Model):
         'payment_term_id': fields.many2one(
             'account.payment.term',
             'Payment Term',
-             help="Default payment term of a sale order using this method."),
+            help="Default payment term of a sale order using this method."),
         'company_id': fields.many2one(
             'res.company',
             'Company',
@@ -53,5 +53,5 @@ class payment_method(orm.Model):
                                                   context=context)
 
     _defaults = {
-         'company_id': _default_company_id,
+        'company_id': _default_company_id,
     }

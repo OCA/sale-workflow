@@ -26,6 +26,7 @@
 __name__ = ("sale.order:: V7 change/rename the field payment_id into a"
             "many2many with the name payment_ids")
 
+
 def migrate(cr, version):
     if version:
         cr.execute("INSERT INTO account_voucher_sale_order_rel"
@@ -33,4 +34,3 @@ def migrate(cr, version):
                    "(SELECT id, payment_id FROM "
                    " sale_order "
                    "WHERE payment_id IS NOT NULL )")
-
