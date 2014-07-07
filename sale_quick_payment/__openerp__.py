@@ -51,5 +51,5 @@ does not preclude to use it in other sectors.
              'settings/sale.exception.csv',
              ],
     'demo': [],
-    'installable': True,
+    'installable': False,
 }
