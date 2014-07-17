@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+  <data>
+
+    <record id="view_order_form" model="ir.ui.view">
+      <field name="name">sale.order.form</field>
+      <field name="model">sale.order</field>
+      <field name="inherit_id" ref="sale.view_order_form"/>
+      <field 
+        name="groups_id"
+        eval="[(6, 0, [ref('sale.group_discount_per_so_line')])]"/>
+      <field name="arch" type="xml">
+
+        <group name="sales_person" position="after">
+          <group>
+            <field 
+              name="discount" 
+              groups="sale.group_discount_per_so_line"/>
+          </group>
+        </group>
+
+        <field name="order_line" position="attributes">
+          <!-- that means: the default for the field "discount" on the line
+               comes from the field "discount" on the order -->
+          <attribute name="context">
+            {'default_discount': discount}
+          </attribute>
+        </field>
+
+      </field>
+    </record>
+
+  </data>
+</openerp>
