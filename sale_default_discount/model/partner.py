@@ -27,8 +27,8 @@ class Partner(orm.Model):
     _inherit = 'res.partner'
 
     _columns = {
-        'discount': fields.float(
-            'Default discount (%)',
+        'sale_default_discount': fields.float(
+            'Default sale discount (%)',
             digits_compute=dp.get_precision('discount'),
         ),
     }

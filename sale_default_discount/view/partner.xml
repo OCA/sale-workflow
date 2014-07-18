@@ -11,7 +11,7 @@
         eval="[(6, 0, [ref('sale.group_discount_per_so_line')])]"/>
       <field name="arch" type="xml">
         <field name="user_id" position="after">
-          <field name="discount"/>
+          <field name="sale_default_discount"/>
         </field>
       </field>
     </record>

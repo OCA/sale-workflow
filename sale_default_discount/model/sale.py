@@ -41,7 +41,7 @@ class SaleOrder(orm.Model):
         if partner_id:
             partner = self.pool['res.partner'].browse(
                 cr, uid, partner_id, context=context)
-            if partner.discount:
-                result['value']['discount'] = partner.discount
+            if partner.sale_default_discount:
+                result['value']['discount'] = partner.sale_default_discount
 
         return result
