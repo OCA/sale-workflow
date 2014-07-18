@@ -47,6 +47,8 @@ Contributors
         'view/sale.xml',
     ],
     'test': [
+        'test/no_default_discount.yml',
+        'test/partner_default_discount.yml',
     ],
     'demo': [],
     'installable': True,
