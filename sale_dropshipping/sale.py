@@ -68,7 +68,8 @@ class sale_order_line(orm.Model):
             if sale_flow == 'direct_delivery':
                 vals['type'] = 'make_to_order'
             else:
-                vals['type'] = self.pool.get('product.product').browse(cr,uid,product_id).procure_method
+                product = self.pool['product.product'].browse(cr, uid, product_id, context=context)
+                vals['type'] = product.procure_method
         return {'value': vals}
 
 
