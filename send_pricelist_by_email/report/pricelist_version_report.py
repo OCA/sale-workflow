@@ -96,6 +96,7 @@ class ProductPricelist(report_sxw.rml_parse):
                 else:
                     prod_qty_map[i[0]] = i[1]
                     arg.append((i[0], i[1], None))
+                    seen.add(i[0])
 
             products_by_qty = leftover
 

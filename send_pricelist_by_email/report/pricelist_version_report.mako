@@ -7,14 +7,21 @@
             text-align: right;
         }
 
+        table.cell_extended {
+            border-collapse: collapse;
+        }
+
         .cell_extended td {
             border: 1px solid gray;
-            border-collapse: collapse;
             margin: 0px;
         }
 
         .under_line {
             border-bottom: 1px solid black;
+        }
+
+        .product_line td {
+            border-bottom: 1px dotted lightgray;
         }
     </style>
     <title>Price List.pdf</title>
@@ -89,7 +96,7 @@
                     <td class="under_line" width="60%" ><br/>
                      <b>${ category }</b>
                     </td> 
-                     <td width="40%" />
+                     <td width="40%" colspan="2" />
                 </tr>
             %for p in products:
                 <tr class="product_line">
