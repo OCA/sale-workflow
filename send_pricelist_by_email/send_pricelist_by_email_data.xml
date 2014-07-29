@@ -1,0 +1,85 @@
+<?xml version="1.0" ?>
+<openerp>
+     <!-- EDI related Email Templates menu
+     <data>
+         <record model="ir.actions.act_window" id="action_email_templates">
+            <field name="name">Email Templates</field>
+            <field name="res_model">email.template</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">form,tree</field>
+            <field name="view_id" ref="email_template.email_template_tree" />
+            <field name="search_view_id" ref="email_template.view_email_template_search"/>
+            <field name="context" eval="{'search_default_model_id': ref('product.model_product_pricelist_version')}"/>
+        </record>
+    </data>
+-->
+    <!-- Mail template is done in a NOUPDATE block
+         so users can freely customize/delete them -->
+    <data noupdate="1">
+
+        <!--Email template -->
+        <record id="email_template_pricelist" model="email.template">
+            <field name="name">Pricelist - Send by Email</field>
+            <field name="email_from">${(user.email or '')|safe}</field>
+            <field name="subject">Your current pricelist</field>
+            <field name="email_recipients">${''|safe}</field>
+            <field name="model_id" ref="product.model_product_pricelist_version"/>
+            <field name="auto_delete" eval="True"/>
+            <field name="report_template" ref="pricelist_version_report"/>
+            <field name="report_name">${(object.name or '').replace('/','_')}</field>
+            <!--<field name="lang">${object.partner_id.lang}</field>-->
+            <field name="body_html"><![CDATA[
+<div style="font-family: 'Lucica Grande', Ubuntu, Arial, Verdana, sans-serif; font-size: 12px; color: rgb(34, 34, 34); background-color: #FFF; ">
+
+    <p>Hello ,</p>
+
+    <p>Here is your current valid Pricelist from ${user.company_id.name}: </p>
+
+    <p style="border-left: 1px solid #8e0000; margin-left: 30px;">
+       &nbsp;&nbsp;<strong>REFERENCES</strong><br />
+       &nbsp;&nbsp;Pricelist: <strong>${object.name}</strong><br />
+       &nbsp;&nbsp;Valid from: ${object.date_start or 'Always'}<br />
+       &nbsp;&nbsp;Valid to: ${object.date_end or 'Always'}<br />
+    </p>
+
+    <br/>
+    <p>If you have any question, do not hesitate to contact us.</p>
+    <p>Thank you for choosing ${user.company_id.name or 'us'}!</p>
+    <br/>
+    <br/>
+    <div style="width: 375px; margin: 0px; padding: 0px; background-color: #8E0000; border-top-left-radius: 5px 5px; border-top-right-radius: 5px 5px; background-repeat: repeat no-repeat;">
+        <h3 style="margin: 0px; padding: 2px 14px; font-size: 12px; color: #DDD;">
+            <strong style="text-transform:uppercase;">${user.company_id.name}</strong></h3>
+    </div>
+    <div style="width: 347px; margin: 0px; padding: 5px 14px; line-height: 16px; background-color: #F2F2F2;">
+        <span style="color: #222; margin-bottom: 5px; display: block; ">
+        % if user.company_id.street:
+            ${user.company_id.street}<br/>
+        % endif
+        % if user.company_id.street2:
+            ${user.company_id.street2}<br/>
+        % endif
+        % if user.company_id.city or user.company_id.zip:
+            ${user.company_id.zip} ${user.company_id.city}<br/>
+        % endif
+        % if user.company_id.country_id:
+            ${user.company_id.state_id and ('%s, ' % user.company_id.state_id.name) or ''} ${user.company_id.country_id.name or ''}<br/>
+        % endif
+        </span>
+        % if user.company_id.phone:
+            <div style="margin-top: 0px; margin-right: 0px; margin-bottom: 0px; margin-left: 0px; padding-top: 0px; padding-right: 0px; padding-bottom: 0px; padding-left: 0px; ">
+                Phone:&nbsp; ${user.company_id.phone}
+            </div>
+        % endif
+        % if user.company_id.website:
+            <div>
+                Web :&nbsp;<a href="${user.company_id.website}">${user.company_id.website}</a>
+            </div>
+        %endif
+        <p></p>
+    </div>
+</div>
+            ]]></field>
+        </record>
+    </data>
+</openerp>
