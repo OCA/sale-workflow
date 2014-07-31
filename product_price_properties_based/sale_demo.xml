@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data noupdate="1">
+        <record id="length_group" model="mrp.property.group">
+            <field name="name">Length</field>
+        </record>
+        <record id="length_5" model="mrp.property">
+            <field name="name">Length 5</field>
+            <field name="group_id" ref="length_group"></field>
+            <field name="value">5</field>
+        </record>
+    </data>
+</openerp>
