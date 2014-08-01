@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <openerp>
     <data noupdate="1">
+        <!-- properties -->
         <record id="length_group" model="mrp.property.group">
             <field name="name">Length</field>
         </record>
@@ -12,7 +13,7 @@
         <record id="width_group" model="mrp.property.group">
             <field name="name">Width</field>
         </record>
-        <record id="width_5" model="mrp.property">
+        <record id="width_1" model="mrp.property">
             <field name="name">Width 1</field>
             <field name="group_id" ref="width_group"></field>
             <field name="value">1</field>
@@ -24,6 +25,17 @@
             <field name="name">Painting</field>
             <field name="group_id" ref="painting_group"></field>
             <field name="value">True</field>
+        </record>
+        
+        <!-- formula -->
+        <record model="mrp.property.formula" id="area_formula">
+            <field name="name">Formula based on area and painting</field>
+            <field name="formula_text">
+area = float(properties['Width']) * float(properties['Length'])
+result = area / 2.0
+if 'Painting' in properties:
+    result = result + 5
+</field>
         </record>
     </data>
 </openerp>

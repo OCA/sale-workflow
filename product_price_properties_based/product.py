@@ -22,8 +22,18 @@
 from openerp.osv import orm, fields
 
 
-class product_product(orm.Model):
+class ProductProduct(orm.Model):
     _inherit = "product.product"
 
+    _columns = {
+        'price_formula_id': fields.many2one(
+            'mrp.property.formula', 'Price formula'),
+        }
+
     def price_get(self, cr, uid, ids, ptype='list_price', context=None):
-        import pdb; pdb.set_trace()
+        if 'properties' in context:
+            
+        else:
+            res = super(ProductProduct,self).price_get(
+                cr, uid, ids, ptype=ptype, context=context)
+        return res
