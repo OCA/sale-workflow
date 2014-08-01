@@ -1,0 +1,11 @@
+-
+  I create the property width 0.5
+-
+  !python {model: mrp.property}: |
+    self.name_create(cr, uid, 'Width 0.5', context=context)
+    prop_ids = self.search(cr, uid, [
+      ('group_id', '=', ref('width_group')),
+      ('name', '=', 'Width 0.5'),
+      ('value', '=', '0.5')
+      ], context=context)
+    assert len(prop_ids) == 1, "There must be 1 property Width 0.5, %s found" % len(prop_ids)

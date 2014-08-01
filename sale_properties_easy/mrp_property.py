@@ -19,11 +19,14 @@
 #
 ##############################################################################
 
-from openerp.osv import orm
+from openerp.osv import orm, fields
 
 
 class MrpProperty(orm.Model):
     _inherit = 'mrp.property'
+    _columns = {
+        'value': fields.char('Value', size=64),
+        }
 
     def name_create(self, cr, uid, name, context=None):
         """
@@ -38,8 +41,16 @@ class MrpProperty(orm.Model):
                 rec_id = self.create(cr, uid, {
                     'name': name,
                     'group_id': group_ids[0],
-                    'description': splitted_name[1]
+                    'value': splitted_name[1]
                     }, context=context)
                 return self.name_get(cr, uid, [rec_id], context)[0]
         return super(mrp_property, self).name_create(
             cr, uid, name, context=context)
+
+
+class MrpPropertyFormula(orm.Model):
+    _name = 'mrp.property.formula'
+    _columns = {
+        'name': fields.char('Name', size=32),
+        'formula_text': fields.text('Formula'),
+        }
