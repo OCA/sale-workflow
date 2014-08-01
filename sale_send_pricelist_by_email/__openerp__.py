@@ -21,7 +21,7 @@
 ###############################################################################
 
 {
-    'name': 'Send pricelist version by email',
+    'name': 'Send pricelist by email',
     "version": "1.0",
     'author': 'Savoir-faire Linux',
     'website': 'http://www.savoirfairelinux.com',
@@ -33,15 +33,16 @@
     ],
     'category': 'Sales Management',
     'description': """
-Send pricelist version by email
-===============================
+Send pricelist by email
+=======================
 
-This module allow to send a pricelist version by email.
+This module allow to send a pricelist by email.
 
 It adds in the system :
-* a new mail template
-* a button "Send by email" in the pricelist version form view
-* the abitlity to print the pricelist version.
+ * a new mail template;
+ * the abitlity to print the pricelist;
+ * a button "Send by email" in the pricelist form view which load the template
+ and attache the pricelist to the email.
 
 So far the module does not drill down through pricelist items that are
 based on another pricelist or based on purchase pricelists.

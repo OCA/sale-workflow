@@ -29,12 +29,12 @@
    <body>
 %for plist in objects:
     <%
-    active_version = get_active_version(plist)
+    active_version = plist.active_version_id
     %>
         <table  width="100%">
             <tr>
                 <td style="text-align:center;"><br/><br/><br/>
-                    <h2><b> Price List</b></h2>
+                    <h2><b> ${ _('Price List') }</b></h2>
                 </td>
             </tr>
         </table>

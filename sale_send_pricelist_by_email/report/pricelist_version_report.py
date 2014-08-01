@@ -1,8 +1,6 @@
-# -*- coding: utf-8 -*-
-##############################################################################
-#
-#    OpenERP, Open Source Management Solution
-#    Copyright (C) 2011-2013 Serpent Consulting Services (<http://www.serpentcs.com>)
+# -*- encoding: utf-8 -*-
+
+###############################################################################
 #
 #    This program is free software: you can redistribute it and/or modify
 #    it under the terms of the GNU Affero General Public License as
@@ -17,7 +15,7 @@
 #    You should have received a copy of the GNU Affero General Public License
 #    along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
-############################################################################
+###############################################################################
 
 
 import time
@@ -36,25 +34,7 @@ class ProductPricelist(report_sxw.rml_parse):
         self.localcontext.update({
             'time': time,
             'get_price_lines': self._get_price_lines,
-            'get_active_version': self._get_active_version,
         })
-
-    def _get_active_version(self, pricelist):
-        date = self.localcontext.get('date') or time.strftime('%Y-%m-%d')
-        versions = [
-            version for version in pricelist.version_id
-            if all((
-                version.date_start is False or version.date_start <= date,
-                version.date_end is False or version.date_end >= date,
-            ))
-        ]
-
-        if not versions:
-            raise orm.except_orm(
-                _("Warning!"),
-                _("At least one pricelist has no active version!"),
-            )
-        return versions[0]
 
     def _get_price_lines(self, pricelist, pricelist_version):
         """ Returns a list of (category_name, products) for a pricelist from a
@@ -138,9 +118,10 @@ class ProductPricelist(report_sxw.rml_parse):
         return itertools.groupby(prices, operator.itemgetter("category"))
 
 
-report_sxw.report_sxw('report.webkit.pricelist_version_report',
-                      'product.pricelist.version',
-                      'addons/send_pricelist_by_email/report/pricelist_version_report.mako',
-                      parser=ProductPricelist)
+report_sxw.report_sxw(
+    'report.webkit.pricelist_version_report',
+    'product.pricelist.version',
+    'addons/sale_send_pricelist_by_email/report/pricelist_version_report.mako',
+    parser=ProductPricelist)
 
 # vim:expandtab:smartindent:tabstop=4:softtabstop=4:shiftwidth=4:
