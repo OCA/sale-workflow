@@ -31,7 +31,6 @@ class SaleOrder_line(orm.Model):
         lang=False, update_tax=True, date_order=False, packaging=False,
         fiscal_position=False, flag=False, context=None, properties=False
     ):
-        import pdb; pdb.set_trace()
         res = self.product_id_change(
             cr, uid, ids, pricelist, product, qty=qty,
             uom=uom, qty_uos=qty_uos, uos=uos,
@@ -40,11 +39,24 @@ class SaleOrder_line(orm.Model):
             date_order=date_order, packaging=packaging,
             fiscal_position=fiscal_position, flag=flag, context=context)
         if properties:
+            prop_dict = {}
+            prop_pool = self.pool['mrp.property']
+            for m2m_tup in properties:
+                for prop in prop_pool.browse(
+                    cr, uid, m2m_tup[2], context=context
+                ):
+                    if prop.group_id.name in prop_dict:
+                        raise orm.except_orm(
+                            _('Error'),
+                            _('Property of group %s already present')
+                            % prop.group_id.name)
+                    prop_dict[prop.group_id.name] = prop.value
             price = self.pool.get('product.pricelist').price_get(
                 cr, uid, [pricelist],
                 product, qty or 1.0, partner_id, {
                     'uom': uom or res.get('product_uom'),
                     'date': date_order,
-                    'properties': properties,
+                    'properties': prop_dict,
                     })[pricelist]
+            res['value']['price_unit'] = price
         return res
