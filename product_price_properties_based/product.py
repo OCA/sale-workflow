@@ -20,6 +20,7 @@
 ##############################################################################
 
 from openerp.osv import orm, fields
+from openerp import SUPERUSER_ID
 
 
 class ProductProduct(orm.Model):
@@ -32,7 +33,19 @@ class ProductProduct(orm.Model):
 
     def price_get(self, cr, uid, ids, ptype='list_price', context=None):
         if 'properties' in context:
-            
+            res = {}
+            for product in self.browse(cr, SUPERUSER_ID, ids, context=context):
+                localdict = {
+                    'self': self,
+                    'cr': cr,
+                    'uid': uid,
+                    'ptype': ptype,
+                    'properties': context['properties'],
+                }
+                exec product.price_formula_id.formula_text in localdict
+                amount = localdict['result']
+                res[product.id] = amount
+            return res
         else:
             res = super(ProductProduct,self).price_get(
                 cr, uid, ids, ptype=ptype, context=context)
