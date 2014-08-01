@@ -19,4 +19,4 @@
 #
 ##############################################################################
 from . import product
-from . import mrp_property
+from . import sale

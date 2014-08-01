@@ -37,12 +37,16 @@ Contributors
     'website': 'http://www.agilebg.com',
     'license': 'AGPL-3',
     "depends": [
-        'sale',
+        'sale_properties_easy',
     ],
     "data": [
+        'sale_view.xml',
     ],
     "demo": [
         'sale_demo.xml',
+        ],
+    "test": [
+        'test/sale_order.yml',
         ],
     "active": False,
     "installable": True

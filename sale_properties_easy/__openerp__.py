@@ -39,8 +39,7 @@ Used by modules like 'product_price_properties_based'
     'website': 'http://www.agilebg.com',
     'license': 'AGPL-3',
     "depends": [
-        'sale',
-        'procurement',
+        'sale_stock',
     ],
     "data": [
         'security/ir.model.access.csv',
