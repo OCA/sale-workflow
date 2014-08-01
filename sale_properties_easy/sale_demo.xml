@@ -17,5 +17,13 @@
             <field name="group_id" ref="width_group"></field>
             <field name="value">1</field>
         </record>
+        <record id="painting_group" model="mrp.property.group">
+            <field name="name">Painting</field>
+        </record>
+        <record id="painting" model="mrp.property">
+            <field name="name">Painting</field>
+            <field name="group_id" ref="painting_group"></field>
+            <field name="value">True</field>
+        </record>
     </data>
 </openerp>
