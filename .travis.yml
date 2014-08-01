@@ -13,11 +13,11 @@ virtualenv:
 install:
   - git clone https://github.com/OCA/maintainer-quality-tools.git ${HOME}/maintainer-quality-tools
   - export PATH=${HOME}/maintainer-quality-tools/travis:${PATH}
-  - travis_install_nightly ${VERSION}
+  - travis_install_nightly
 
 script:
   - travis_run_flake8
-  - travis_run_tests ${VERSION}
+  - travis_run_tests
 
 after_success:
   coveralls
