@@ -5,6 +5,7 @@
         <record id="mrp_property_form_view_value" model="ir.ui.view">
             <field name="name">mrp_property_form_view_value</field>
             <field name="model">mrp.property</field>
+            <field name="inherit_id" ref="mrp.mrp_property_form_view"></field>
             <field name="arch" type="xml">
                 <field name="composition" position="after">
                     <field name="value"></field>
@@ -56,6 +57,6 @@
             action="mrp_property_formula_action"
             id="menu_mrp_property_formula_action"
             groups="product.group_mrp_properties"
-            parent="product.prod_config_main"/>
+            parent="mrp.menu_mrp_configuration"/>
     </data>
 </openerp>

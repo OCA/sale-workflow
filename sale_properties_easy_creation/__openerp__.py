@@ -40,6 +40,7 @@ Used by modules like 'product_price_properties_based'
     'license': 'AGPL-3',
     "depends": [
         'sale_stock',
+        'mrp',
     ],
     "data": [
         'security/ir.model.access.csv',

@@ -3,8 +3,6 @@
 #
 #    Copyright (C) 2014 Agile Business Group sagl
 #    (<http://www.agilebg.com>)
-#    @author Lorenzo Battistini <lorenzo.battistini@agilebg.com>
-#    @author Alex Comba <alex.comba@agilebg.com>
 #
 #    This program is free software: you can redistribute it and/or modify
 #    it under the terms of the GNU Affero General Public License as published
@@ -20,35 +18,24 @@
 #    along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
 ##############################################################################
-{
-    'name': "Product price properties based",
-    'version': '0.1',
-    'category': '',
-    'description': """
 
-Contributors
-------------
+from openerp.osv import orm
 
- - Lorenzo Battistini <lorenzo.battistini@agilebg.com>
- - Alex Comba <alex.comba@agilebg.com>
 
-    """,
-    'author': 'Agile Business Group',
-    'website': 'http://www.agilebg.com',
-    'license': 'AGPL-3',
-    "depends": [
-        'sale_properties_easy_creation',
-    ],
-    "data": [
-        'sale_view.xml',
-        'product_view.xml',
-    ],
-    "demo": [
-        'sale_demo.xml',
-        ],
-    "test": [
-        'test/sale_order.yml',
-        ],
-    "active": False,
-    "installable": True
-}
+class SaleOrderLine(orm.Model):
+    _inherit = 'sale.order.line'
+
+    def fields_view_get(
+        self, cr, uid, view_id=None, view_type='form', context=None,
+        toolbar=False, submenu=False
+    ):
+        res = super(SaleOrderLine,self).fields_view_get(
+            cr, uid, view_id=view_id, view_type=view_type, context=context,
+            toolbar=toolbar, submenu=submenu)
+        property_pool = self.pool['mrp.property']
+        prop_to_draw_ids = property_pool.search(cr, uid, [
+            ('draw_dynamically', '=', True),
+            ], context=context)
+        if prop_to_draw_ids:
+            import pdb; pdb.set_trace()
+        return res
