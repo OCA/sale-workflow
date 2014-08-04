@@ -21,6 +21,7 @@
 
 from openerp.osv import orm, fields
 from openerp import SUPERUSER_ID
+from openerp.tools.translate import _
 
 
 class ProductProduct(orm.Model):
@@ -35,6 +36,9 @@ class ProductProduct(orm.Model):
         if 'properties' in context:
             res = {}
             for product in self.browse(cr, SUPERUSER_ID, ids, context=context):
+                res[product.id] = super(ProductProduct,self).price_get(
+                    cr, uid, [product.id], ptype=ptype, context=context
+                    )[product.id]
                 if product.price_formula_id:
                     localdict = {
                         'self': self,
@@ -43,14 +47,17 @@ class ProductProduct(orm.Model):
                         'ptype': ptype,
                         'properties': context['properties'],
                     }
-                    exec product.price_formula_id.formula_text in localdict
-                    amount = localdict['result']
+                    try:
+                        exec product.price_formula_id.formula_text in localdict
+                    except KeyError:
+                        continue
+                    try:
+                        amount = localdict['result']
+                    except KeyError:
+                        raise orm.except_orm(
+                            _('Error'),
+                            _('Formula must contain \'result\' variable'))
                     res[product.id] = amount
-                else:
-                    res[product.id] = super(ProductProduct,self).price_get(
-                        cr, uid, [product.id], ptype=ptype, context=context
-                        )[product.id]
-            return res
         else:
             res = super(ProductProduct,self).price_get(
                 cr, uid, ids, ptype=ptype, context=context)
