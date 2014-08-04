@@ -43,6 +43,7 @@ Used by modules like 'product_price_properties_based'
     ],
     "data": [
         'security/ir.model.access.csv',
+        'mrp_property_view.xml',
     ],
     "demo": [
         'sale_demo.xml',
