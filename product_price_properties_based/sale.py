@@ -19,10 +19,11 @@
 #
 ##############################################################################
 
-from openerp.osv import orm, fields
+from openerp.osv import orm
+from openerp.tools.translate import _
 
 
-class SaleOrder_line(orm.Model):
+class SaleOrderLine(orm.Model):
     _inherit = 'sale.order.line'
 
     def product_id_change_with_properties(
@@ -38,7 +39,7 @@ class SaleOrder_line(orm.Model):
             lang=lang, update_tax=update_tax,
             date_order=date_order, packaging=packaging,
             fiscal_position=fiscal_position, flag=flag, context=context)
-        if properties:
+        if properties and product:
             prop_dict = {}
             prop_pool = self.pool['mrp.property']
             for m2m_tup in properties:
