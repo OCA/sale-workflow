@@ -30,7 +30,7 @@ class TestSearchProduct(TransactionCase):
             self.cr, self.uid,
             model.create(self.cr, self.uid, values))
 
-    def setUp(self):  # noqa : PEP8 requires 'setup' but TransactionCase defined 'setUp'
+    def setUp(self):
         super(TestSearchProduct, self).setUp()
 
         self.m_category = self.registry("product.category")
