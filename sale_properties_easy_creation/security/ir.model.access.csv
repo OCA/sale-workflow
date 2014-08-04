@@ -1,0 +1,3 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_mrp_property_formula_user,mrp_property_formula.user,model_mrp_property_formula,base.group_sale_salesman,1,0,0,0
+access_mrp_property_formula_manager,mrp_property_formula.formula salemanager,model_mrp_property_formula,base.group_sale_manager,1,1,1,1
