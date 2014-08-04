@@ -41,6 +41,7 @@ Contributors
     ],
     "data": [
         'sale_view.xml',
+        'product_view.xml',
     ],
     "demo": [
         'sale_demo.xml',
