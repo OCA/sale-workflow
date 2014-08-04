@@ -4,7 +4,6 @@
 #    Copyright (C) 2014 Agile Business Group sagl
 #    (<http://www.agilebg.com>)
 #    @author Lorenzo Battistini <lorenzo.battistini@agilebg.com>
-#    @author Alex Comba <alex.comba@agilebg.com>
 #
 #    This program is free software: you can redistribute it and/or modify
 #    it under the terms of the GNU Affero General Public License as published
@@ -21,18 +20,11 @@
 #
 ##############################################################################
 {
-    'name': "Product price properties based",
+    'name': "Dynamic fields for sale order line properties",
     'version': '0.1',
     'category': '',
     'description': """
-
-Contributors
-------------
-
- - Lorenzo Battistini <lorenzo.battistini@agilebg.com>
- - Alex Comba <alex.comba@agilebg.com>
-
-    """,
+""",
     'author': 'Agile Business Group',
     'website': 'http://www.agilebg.com',
     'license': 'AGPL-3',
@@ -40,14 +32,11 @@ Contributors
         'sale_properties_easy_creation',
     ],
     "data": [
-        'sale_view.xml',
-        'product_view.xml',
+        'mrp_property_view.xml',
     ],
     "demo": [
-        'sale_demo.xml',
         ],
     "test": [
-        'test/sale_order.yml',
         ],
     "active": False,
     "installable": True

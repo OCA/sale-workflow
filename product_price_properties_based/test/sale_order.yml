@@ -7,8 +7,8 @@
       - product_id: product.product_product_7
         product_uom_qty: 8
         property_ids:
-          - sale_properties_easy.length_5
-          - sale_properties_easy.width_1
+          - sale_properties_easy_creation.length_5
+          - sale_properties_easy_creation.width_1
 -
   I check the order price
 -

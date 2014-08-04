@@ -2,7 +2,7 @@
 <openerp>
     <data>
         <record model="product.product" id="product.product_product_7">
-            <field name="price_formula_id" ref="sale_properties_easy.area_formula"></field>
+            <field name="price_formula_id" ref="sale_properties_easy_creation.area_formula"></field>
         </record>
     </data>
 </openerp>
