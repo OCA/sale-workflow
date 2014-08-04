@@ -35,16 +35,21 @@ class ProductProduct(orm.Model):
         if 'properties' in context:
             res = {}
             for product in self.browse(cr, SUPERUSER_ID, ids, context=context):
-                localdict = {
-                    'self': self,
-                    'cr': cr,
-                    'uid': uid,
-                    'ptype': ptype,
-                    'properties': context['properties'],
-                }
-                exec product.price_formula_id.formula_text in localdict
-                amount = localdict['result']
-                res[product.id] = amount
+                if product.price_formula_id:
+                    localdict = {
+                        'self': self,
+                        'cr': cr,
+                        'uid': uid,
+                        'ptype': ptype,
+                        'properties': context['properties'],
+                    }
+                    exec product.price_formula_id.formula_text in localdict
+                    amount = localdict['result']
+                    res[product.id] = amount
+                else:
+                    res[product.id] = super(ProductProduct,self).price_get(
+                        cr, uid, [product.id], ptype=ptype, context=context
+                        )[product.id]
             return res
         else:
             res = super(ProductProduct,self).price_get(

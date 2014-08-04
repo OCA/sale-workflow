@@ -56,17 +56,99 @@ class SaleOrder(orm.Model):
                                     'string': group.name,
                                     'type': 'char',
                                     'size': 64,
+                                    'context': {}
                                 }
                             }
                     )
                     eview = etree.fromstring(
                         res['fields']['order_line']['views']['form']['arch'])
                     group_field = etree.Element(
-                        'field', name=field_name)
+                        'field', name=field_name,
+                        on_change="dynamic_property_changed(property_ids, %s, "
+                                  "context)"
+                        % (field_name),
+                        context="{\'field_name\': \'%s\'}" % field_name
+                        )
                     prop_m2m_field = eview.xpath(
                         "//field[@name='property_ids']")[0]
-                    prop_m2m_field.addnext(group_field)
+                    prop_m2m_field.addprevious(group_field)
                     res['fields']['order_line']['views']['form'][
                         'arch'
                         ] = etree.tostring(eview, pretty_print=True)
+        return res
+
+
+class SaleOrderLine(orm.Model):
+    _inherit = 'sale.order.line'
+
+    def build_prop_m2m_from_dict(self, cr, uid, prop_dict, context=None):
+        res = [(6, 0, [])]
+        for prop_tuple in prop_dict.values():
+            if prop_tuple[0] not in res[0][2]:
+                res[0][2].append(prop_tuple[0])
+        return res
+
+    def dynamic_property_changed(
+        self, cr, uid, ids, property_ids, dynamic_property, context=None
+    ):
+        res = {}
+        prop_dict = {}  # properties already present on line
+        if dynamic_property and context.get('field_name'):
+            if property_ids:
+                prop_pool = self.pool['mrp.property']
+                for m2m_tup in property_ids:
+                    for prop in prop_pool.browse(
+                        cr, uid, m2m_tup[2], context=context
+                    ):
+                        if prop.group_id.name in prop_dict:
+                            raise orm.except_orm(
+                                _('Error'),
+                                _('Property of group %s already present')
+                                % prop.group_id.name)
+                        prop_dict[prop.group_id.name] = (prop.id, prop.value)
+            field_pool = self.pool['ir.model.fields']
+            group_pool = self.pool['mrp.property.group']
+            prop_pool = self.pool['mrp.property']
+            field_ids = field_pool.search(cr, uid, [
+                ('name', '=', context['field_name']),
+                ('model', '=', 'sale.order.line'),
+                ], context=context)
+            if len(field_ids) != 1:
+                return {
+                    'warning':
+                    "There must be 1 and only 1 %s" % context['field_name']
+                    }
+            group_ids = group_pool.search(cr, uid, [
+                ('field_id', '=', field_ids[0]),
+                ], context=context)
+            if len(group_ids) != 1:
+                return {
+                    'warning':
+                    "There must be 1 and only 1 group for %s"
+                    % context['field_name']
+                    }
+            group = group_pool.browse(cr, uid, group_ids[0], context=context)
+            if group.name in prop_dict:
+                del prop_dict[group.name]
+            prop_ids = prop_pool.search(cr, uid, [
+                ('group_id', '=', group.id),
+                ('value', '=', dynamic_property),
+                ], context=context)
+            if prop_ids:
+                prop = prop_pool.browse(cr, uid, prop_ids[0], context=context)
+                prop_dict[group.name] = (prop.id, prop.value)
+            else:
+                prop_id = prop_pool.create(cr, uid, {
+                    'name': '%s %s' % (group.name, dynamic_property),
+                    'value': dynamic_property,
+                    'group_id': group.id,
+                    }, context=context)
+                prop_dict[group.name] = (prop_id, dynamic_property)
+            res = {
+                'value':
+                    {
+                        'property_ids': self.build_prop_m2m_from_dict(
+                            cr, uid, prop_dict, context=context)
+                    }
+                }
         return res
