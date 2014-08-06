@@ -29,7 +29,14 @@ class ProductProduct(orm.Model):
 
     _columns = {
         'price_formula_id': fields.many2one(
-            'mrp.property.formula', 'Price formula'),
+            'mrp.property.formula', 'Price formula',
+            help="You can use the variables"
+                 " - self"
+                 " - cr"
+                 " - uid"
+                 " - ptype"
+                 " - properties (dictionary of properties)"
+                 "You have to put the result in the 'result' variable"),
         }
 
     def price_get(self, cr, uid, ids, ptype='list_price', context=None):

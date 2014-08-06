@@ -25,6 +25,21 @@
     'version': '0.1',
     'category': '',
     'description': """
+This module allows to use python formaulas to compute the sale order line
+price.
+
+You can configure the 'Price formula' on the product form using python code.
+
+Formula example:
+```
+area = float(properties['Width']) * float(properties['Length'])
+result = area / 2.0
+if 'Painting' in properties:
+    result = result + 5
+```
+
+When changing properties on sale order line, the system will automatically
+compute the line price unit.
 
 Contributors
 ------------
@@ -32,7 +47,7 @@ Contributors
  - Lorenzo Battistini <lorenzo.battistini@agilebg.com>
  - Alex Comba <alex.comba@agilebg.com>
 
-    """,
+""",
     'author': 'Agile Business Group',
     'website': 'http://www.agilebg.com',
     'license': 'AGPL-3',
