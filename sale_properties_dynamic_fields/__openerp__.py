@@ -37,6 +37,7 @@
     "demo": [
         ],
     "test": [
+        'test/properties.yml',
         ],
     "active": False,
     "installable": True
