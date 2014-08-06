@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<openerp>
+    <data>
+        <record model="ir.ui.view" id="account_invoice_comments_form">
+            <field name="name">account.invoice.comments.form</field>
+            <field name="model">account.invoice</field>
+            <field name="inherit_id" ref="account.invoice_form" />
+            <field name="arch" type="xml">
+                <notebook position="inside">
+                    <page string="Customer observations">
+                        <group colspan="2" col="2">
+                            <label for="sale_comment" string="Comments" />
+                            <field name="sale_comment" nolabel="1"
+                                placeholder="Internal customer notes, see in partner..." />
+                        </group>
+                    </page>
+                </notebook>
+            </field>
+        </record>
+
+    </data>
+</openerp>
