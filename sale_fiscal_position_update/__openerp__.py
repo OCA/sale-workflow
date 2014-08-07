@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-##############################################################################
+#
 #
 #    Sale Fiscal Position Update module for OpenERP
 #    Copyright (C) 2011-2014 Julius Network Solutions SARL <contact@julius.fr>
@@ -18,19 +18,23 @@
 #    You should have received a copy of the GNU Affero General Public License
 #    along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
-##############################################################################
+#
 
 {
     'name': 'Sale Fiscal Position Update',
     'version': '1.0',
     'category': 'Sales Management',
     'license': 'AGPL-3',
-    'summary': 'Changing the fiscal position of a sale order will auto-update sale order lines',
+    'summary': 'Changing the fiscal position of a sale order will auto-update '
+               'sale order lines',
     'description': """
 Sale Fiscal Position Update
 ===========================
 
-With this module, when a user changes the fiscal position of a sale order, the taxes on all the sale order lines which have a product are automatically updated. The sale order lines without a product are not updated and a warning is displayed to the user in this case.
+With this module, when a user changes the fiscal position of a sale order, the
+taxes on all the sale order lines which have a product are automatically
+updated. The sale order lines without a product are not updated and a warning
+is displayed to the user in this case.
 
 Contributors :
 
