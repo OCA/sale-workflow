@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-##############################################################################
+#
 #
 #    Author: Guewen Baconnier
 #    Copyright 2013 Camptocamp SA
@@ -17,7 +17,7 @@
 #    You should have received a copy of the GNU Affero General Public License
 #    along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
-##############################################################################
+#
 
 from openerp.osv import orm, fields
 
@@ -33,6 +33,7 @@ class res_partner(orm.Model):
     }
 
     def _commercial_fields(self, cr, uid, context=None):
-        fields = super(res_partner, self)._commercial_fields(cr, uid, context=context)
+        fields = super(res_partner, self)._commercial_fields(
+            cr, uid, context=context)
         fields.append('use_prepayment')
         return fields

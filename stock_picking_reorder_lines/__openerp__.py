@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-##############################################################################
+#
 #
 #    Author: Alexandre Fayolle
 #    Copyright 2013 Camptocamp SA
@@ -17,13 +17,14 @@
 #    You should have received a copy of the GNU Affero General Public License
 #    along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
-##############################################################################
+#
 {
     'name': 'Stock picking lines with sequence number',
     'version': '0.1',
     'category': 'Warehouse Management',
     'description': '''
-Provide a new field on stock moves, allowing to manage the orders of moves in a picking.
+Provide a new field on stock moves, allowing to manage the orders of moves
+in a picking.
     ''',
     'author': 'Camptocamp',
     'website': 'http://www.camptocamp.com',

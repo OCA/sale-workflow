@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
-##############################################################################
-#    
+#
+#
 #    OpenERP, Open Source Management Solution
 #    Copyright (C) 2012 Savoir-faire Linux (<http://www.savoirfairelinux.com>).
 #
@@ -15,26 +15,26 @@
 #    GNU Affero General Public License for more details.
 #
 #    You should have received a copy of the GNU Affero General Public License
-#    along with this program.  If not, see <http://www.gnu.org/licenses/>.     
+#    along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
-##############################################################################
+#
 
 {
-    "name" : "Mail quotation",
-    "version" : "0.1",
-    "author" : "Savoir-faire Linux",
-    "website" : "http://www.savoirfairelinux.com",
-    "license" : "AGPL-3",
-    "category" : "Mail",
-    "description" : """
-This module adds a server action, an email template and a button on the sales order form to 
-send quotation by email.
+    "name": "Mail quotation",
+    "version": "0.1",
+    "author": "Savoir-faire Linux",
+    "website": "http://www.savoirfairelinux.com",
+    "license": "AGPL-3",
+    "category": "Mail",
+    "description": """
+This module adds a server action, an email template and a button on the
+sales order form to send quotation by email.
     """,
-    "images" : [],
-    "depends" : ["sale"],
-    "demo" : [],
-    "test" : [],
-    "data" : [
+    "images": [],
+    "depends": ["sale"],
+    "demo": [],
+    "test": [],
+    "data": [
         "quotation_action_data.xml",
         "sale_order_view.xml",
     ],

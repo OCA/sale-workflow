@@ -1,9 +1,10 @@
 # -*- coding: utf-8 -*-
-##############################################################################
+#
 #
 #    OpenERP, Open Source Management Solution
 #    Copyright (C) 2011 Akretion LTDA.
-#    Copyright (C) 2010-2012 Akretion Sébastien BEAU <sebastien.beau@akretion.com>
+#    Copyright (C) 2010-2012 Akretion Sébastien BEAU
+#    <sebastien.beau@akretion.com>
 #    Copyright (C) 2012 Camptocamp SA (Guewen Baconnier)
 #
 #    This program is free software: you can redistribute it and/or modify
@@ -19,7 +20,7 @@
 #    You should have received a copy of the GNU Affero General Public License
 #    along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
-##############################################################################
+#
 
 import time
 
@@ -44,8 +45,9 @@ class sale_exception(orm.Model):
         'active': fields.boolean('Active'),
         'code': fields.text(
             'Python Code',
-            help="Python code executed to check if the exception apply or not. "
-                 "The code must apply block = True to apply the exception."),
+            help="Python code executed to check if the exception apply or "
+                 "not. The code must apply block = True to apply the "
+                 "exception."),
         'sale_order_ids': fields.many2many(
             'sale.order',
             'sale_order_exception_rel', 'exception_id', 'sale_order_id',
@@ -58,7 +60,8 @@ class sale_exception(orm.Model):
 # You can use the following variables :
 #  - self: ORM model of the record which is checked
 #  - order or line: browse_record of the sale order or sale order line
-#  - object: same as order or line, browse_record of the sale order or sale order line
+#  - object: same as order or line, browse_record of the sale order or
+#    sale order line
 #  - pool: ORM model pool (i.e. self.pool)
 #  - time: Python time module
 #  - cr: database cursor
@@ -133,8 +136,8 @@ class sale_order(orm.Model):
         if exception_ids:
             return self._popup_exceptions(cr, uid, ids[0],  context=context)
         else:
-            return super(sale_order, self).action_button_confirm(cr, uid, ids,
-                                                                 context=context)
+            return super(sale_order, self).action_button_confirm(
+                cr, uid, ids, context=context)
 
     def test_exceptions(self, cr, uid, ids, context=None):
         """
@@ -176,7 +179,9 @@ class sale_order(orm.Model):
                        context=context)
         return exception_ids
 
-    def _exception_rule_eval_context(self, cr, uid, obj_name, obj, context=None):
+    def _exception_rule_eval_context(
+        self, cr, uid, obj_name, obj, context=None
+    ):
         if context is None:
             context = {}
 
@@ -233,4 +238,5 @@ class sale_order(orm.Model):
         default.update({
             'ignore_exceptions': False,
         })
-        return super(sale_order, self).copy(cr, uid, id, default=default, context=context)
+        return super(sale_order, self).copy(
+            cr, uid, id, default=default, context=context)

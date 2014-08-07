@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-##############################################################################
+#
 #
 #    Author: Joel Grand-Guillaume
 #    Copyright 2013 Camptocamp SA
@@ -17,7 +17,7 @@
 #    You should have received a copy of the GNU Affero General Public License
 #    along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
-##############################################################################
+#
 
 {'name': 'Sale No stock by line',
  'version': '0.1',
@@ -31,18 +31,19 @@
 Sale No stock by line
 =====================
 
-This module depends on both sale_exception_nostock and sale_sourced_by_line and make the 
-exception occure based on the location of each line.
+This module depends on both sale_exception_nostock and sale_sourced_by_line and
+make the exception occure based on the location of each line.
 
-The principle of the no-stock exception is to raise a warning when no enough stock are
-gound in the location of the SO shop. This module make the warning occure for every line
-location instead of looking at the shop location for all line.
+The principle of the no-stock exception is to raise a warning when no enough
+stock are gound in the location of the SO shop. This module make the warning
+occure for every line location instead of looking at the shop location for all
+line.
 
 """,
  'depends': [
-    'sale_exception_nostock',
-    'sale_sourced_by_line',
-             ],
+     'sale_exception_nostock',
+     'sale_sourced_by_line',
+ ],
  'demo': [],
  'data': [],
  'test': [],

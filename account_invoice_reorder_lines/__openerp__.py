@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-##############################################################################
+#
 #
 #    OpenERP, Open Source Management Solution
 #    Copyright (C) 2004-2009 Tiny SPRL (<http://tiny.be>).
@@ -18,13 +18,14 @@
 #    You should have received a copy of the GNU Affero General Public License
 #    along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
-##############################################################################
+#
 {
     'name': 'Invoice lines with sequence number',
     'version': '0.1',
     'category': 'Generic Modules/Accounting',
     'description': '''
-Provide a new field on the invoice line form, allowing to manage the lines order.
+Provide a new field on the invoice line form, allowing to manage the lines
+order.
     ''',
     'author': 'Tiny',
     'website': 'http://www.openerp.com',

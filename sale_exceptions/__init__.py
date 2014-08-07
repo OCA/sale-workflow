@@ -1,10 +1,11 @@
 # -*- coding: utf-8 -*-
-##############################################################################
+#
 #
 #    OpenERP, Open Source Management Solution
 #    Copyright (C) 2011 Akretion LTDA.
 #    authors: Raphaël Valyi, Renato Lima
-#    Copyright (C) 2010-2012 Akretion Sébastien BEAU <sebastien.beau@akretion.com>
+#    Copyright (C) 2010-2012 Akretion Sébastien BEAU
+#    <sebastien.beau@akretion.com>
 #    Copyright (C) 2012 Camptocamp SA (Guewen Baconnier)
 #
 #    This program is free software: you can redistribute it and/or modify
@@ -20,7 +21,7 @@
 #    You should have received a copy of the GNU Affero General Public License
 #    along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
-##############################################################################
+#
 
 from . import sale
 from . import wizard

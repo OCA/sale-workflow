@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-##############################################################################
+#
 #
 #    Author: Alexandre Fayolle
 #    Copyright 2013 Camptocamp SA
@@ -17,17 +17,22 @@
 #    You should have received a copy of the GNU Affero General Public License
 #    along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
-##############################################################################
+#
 {
     'name': 'Purchase order lines with sequence number',
     'version': '0.1',
     'category': 'Purchase Management',
     'description': '''
-Provide a new field on the purchase order form, allowing to manage the lines order.
+Provide a new field on the purchase order form, allowing to manage the lines
+order.
     ''',
     'author': 'Camptocamp',
     'website': 'http://www.camptocamp.com',
-    'depends': ['purchase', 'stock_picking_reorder_lines', 'account_invoice_reorder_lines'],
+    'depends': [
+        'purchase',
+        'stock_picking_reorder_lines',
+        'account_invoice_reorder_lines'
+    ],
     'data': ['purchase_view.xml'],
     'demo': [],
     'test': [],

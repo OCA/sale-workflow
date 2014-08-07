@@ -10,6 +10,9 @@ env:
 virtualenv:
   system_site_packages: true
 
+before_install:
+  - git clone https://github.com/OCA/product-attribute $HOME/product-attribute -b 7.0
+
 install:
   - git clone https://github.com/OCA/maintainer-quality-tools.git ${HOME}/maintainer-quality-tools
   - export PATH=${HOME}/maintainer-quality-tools/travis:${PATH}

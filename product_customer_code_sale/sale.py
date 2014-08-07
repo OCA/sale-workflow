@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-##############################################################################
+#
 #
 #    Copyright (C) 2013 Agile Business Group sagl (<http://www.agilebg.com>)
 #    Author: Nicola Malcontenti <nicola.malcontenti@agilebg.com>
@@ -17,7 +17,7 @@
 #    You should have received a copy of the GNU Affero General Public License
 #    along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
-##############################################################################
+#
 from openerp.osv import fields, orm
 
 
@@ -39,7 +39,7 @@ class sale_order_line(orm.Model):
                 code_ids = product_customer_code_obj.search(cr, uid, [
                     ('product_id', '=', product.id),
                     ('partner_id', '=', partner.id),
-                    ], limit=1, context=context)
+                ], limit=1, context=context)
                 if code_ids:
                     code = product_customer_code_obj.browse(
                         cr, uid,
