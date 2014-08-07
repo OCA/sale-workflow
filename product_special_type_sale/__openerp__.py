@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-##############################################################################
+#
 #
 #    Author: Guewen Baconnier
 #    Copyright 2012 Camptocamp SA
@@ -17,24 +17,25 @@
 #    You should have received a copy of the GNU Affero General Public License
 #    along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
-##############################################################################
+#
 
 {
-     "name" : "Product Special Type on Sale",
-     "version" : "1.0",
-     "author" : "Camptocamp",
-     "license": "AGPL-3",
-     "category" : "Hidden/Links",
-     "description":
-"""
-According to the products special types (discount, advance, delivery), compute totals on sales.
+    "name": "Product Special Type on Sale",
+    "version": "1.0",
+    "author": "Camptocamp",
+    "license": "AGPL-3",
+    "category": "Hidden/Links",
+    "description":
+    """
+According to the products special types (discount, advance, delivery), compute
+totals on sales.
 """,
-     "website": "http://camptocamp.com",
-     "depends" : ['sale',
-                  'product_special_type',],
-     "init_xml" : [],
-     "demo_xml" : [],
-     "update_xml" : [],
-     "active": False,
-     'installable': False
+    "website": "http://camptocamp.com",
+    "depends": ['sale',
+                'product_special_type', ],
+    "init_xml": [],
+    "demo_xml": [],
+    "update_xml": [],
+    "active": False,
+    'installable': False
 }
