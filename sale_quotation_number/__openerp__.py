@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-##############################################################################
+#
 #
 #    Copyright (c) 2010-2012 Elico Corp. All Rights Reserved.
 #    Author:            Andy Lu <andy.lu@elico-corp.com>
@@ -19,7 +19,7 @@
 #    You should have received a copy of the GNU Affero General Public License
 #    along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
-##############################################################################
+#
 
 
 {
@@ -35,8 +35,8 @@ Defining.
 
 *Sale Quotation:* Sale process in draft stage just informing prices and element
 of communication.
-*Sale Order:* Sale process confirmed, the customer already have a compromise with
-us in terms of pay an invoice and receive our product or service.
+*Sale Order:* Sale process confirmed, the customer already have a compromise
+with us in terms of pay an invoice and receive our product or service.
 
 Originally OpenERP manage only 1 sequence for this 2 documents, then the sales
 order won and lost manage the same sequence losting almost all lost quotations
