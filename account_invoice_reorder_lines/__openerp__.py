@@ -24,7 +24,8 @@
     'version': '0.1',
     'category': 'Generic Modules/Accounting',
     'description': '''
-Provide a new field on the invoice line form, allowing to manage the lines order.
+Provide a new field on the invoice line form, allowing to manage the lines
+order.
     ''',
     'author': 'Tiny',
     'website': 'http://www.openerp.com',
