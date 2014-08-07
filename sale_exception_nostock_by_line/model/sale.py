@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-##############################################################################
+#
 #
 #    Author: Joel Grand-Guillaume
 #    Copyright 2013 Camptocamp SA
@@ -17,11 +17,12 @@
 #    You should have received a copy of the GNU Affero General Public License
 #    along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
-##############################################################################
+#
 from openerp.osv import orm
 
 
 class sale_order_line(orm.Model):
+
     """Override the _get_line_location method to look at the right
     one for every line instead of taking the shop location for all."""
 
@@ -29,4 +30,3 @@ class sale_order_line(orm.Model):
 
     def _get_line_location(self, line_br, context=None):
         return line_br.location_id.id
-
