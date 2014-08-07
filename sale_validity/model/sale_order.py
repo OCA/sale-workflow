@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-##############################################################################
+#
 #
 #    Copyright 2013 Camptocamp SA
 #
@@ -16,7 +16,7 @@
 #    You should have received a copy of the GNU Affero General Public License
 #    along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
-##############################################################################
+#
 
 from openerp.osv import fields, orm
 from openerp.tools import DEFAULT_SERVER_DATE_FORMAT
@@ -37,7 +37,7 @@ class sale_order(orm.Model):
                 'sent': [('readonly', True)],
             },
             track_visibility='onchange'),
-        }
+    }
 
     def _default_date_validity(self, cr, uid, context=None):
         date_validity_str = False
@@ -57,7 +57,7 @@ class sale_order(orm.Model):
 
     _defaults = {
         'date_validity': _default_date_validity,
-        }
+    }
 
     def date_order_change(
             self, cr, uid, ids, date_order, date_validity, company_id,
