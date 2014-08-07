@@ -95,8 +95,8 @@ class purchase_order(orm.Model):
                 if purchase.sale_flow == 'direct_delivery':
                     if (
                         purchase.sale_id
-                        and purchase.sale_id.order_policy == 'picking')
-                    :
+                        and purchase.sale_id.order_policy == 'picking'
+                    ):
                         invoice_control = '2binvoiced'
                     else:
                         invoice_control = 'none'

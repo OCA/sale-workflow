@@ -5,7 +5,6 @@
 #
 #
 from osv import osv, fields
-import pooler
 
 
 class AccountConditionText(osv.osv):
