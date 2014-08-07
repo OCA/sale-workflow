@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-#############################################################################
+#
 #
 #    Sale Fiscal Position Update module for OpenERP
 #    Copyright (C) 2011-2014 Julius Network Solutions SARL <contact@julius.fr>
@@ -20,7 +20,7 @@
 #    You should have received a copy of the GNU Affero General Public License
 #    along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
-##############################################################################
+#
 
 from openerp.osv import orm
 from openerp.tools.translate import _
@@ -80,5 +80,5 @@ class sale_order(orm.Model):
                     "to the new Fiscal Position because they don't have a "
                     "Product:\n %s\nYou should update the "
                     "Taxes of these Sale Order Lines manually."
-                    ) % display_line_names,
+                ) % display_line_names,
         return res

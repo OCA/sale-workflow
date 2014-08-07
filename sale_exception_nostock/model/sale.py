@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-##############################################################################
+#
 #
 #    Author: Nicolas Bessi
 #    Copyright 2013 Camptocamp SA
@@ -17,7 +17,7 @@
 #    You should have received a copy of the GNU Affero General Public License
 #    along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
-##############################################################################
+#
 import datetime
 from openerp.osv import orm
 from openerp.tools import (DEFAULT_SERVER_DATE_FORMAT,
@@ -25,6 +25,7 @@ from openerp.tools import (DEFAULT_SERVER_DATE_FORMAT,
 
 
 class sale_order_line(orm.Model):
+
     """Adds two exception functions to be called by the sale_exceptions module.
 
     The first one will ensure that an order line can be delivered on the
@@ -70,9 +71,11 @@ class sale_order_line(orm.Model):
         ctx = context.copy()
         ctx['to_date'] = delivery_date.strftime(DEFAULT_SERVER_DATETIME_FORMAT)
         ctx['location'] = self._get_line_location(line, context=context)
-        ctx['compute_child'] = True  # Virtual qty is made on all childs of chosen location
+        ctx['compute_child'] = True
+        # Virtual qty is made on all childs of chosen location
         prod_for_virtual_qty = prod_obj.read(cr, uid, line.product_id.id,
-                                             ['virtual_available'], context=ctx)
+                                             ['virtual_available'],
+                                             context=ctx)
         if prod_for_virtual_qty['virtual_available'] < line.product_uom_qty:
             return False
         return True
@@ -80,12 +83,16 @@ class sale_order_line(orm.Model):
     def _get_states(self):
         return ('waiting', 'confirmed', 'assigned')
 
-    def _get_affected_dates(self, cr, location_id, product_id, delivery_date, context=None):
+    def _get_affected_dates(
+        self, cr, location_id, product_id, delivery_date, context=None
+    ):
         """Determine future dates where virtual stock has to be checked.
 
         It will only look for stock move that pass by location_id.
-        If your stock location have children or you have configured automated stock action
-        they must pass by the location related to SO line, else the will be ignored
+        If your stock location have children or you have configured automated
+        stock action
+        they must pass by the location related to SO line, else the will be
+        ignored
 
         :param location_id: location id to be checked
         :param product_id: product id te be checked
@@ -105,7 +112,8 @@ class sale_order_line(orm.Model):
         return (row[0] for row in cr.fetchall())
 
     def future_orders_are_affected(self, cr, uid, l_id, context=None):
-        """Predicate function that is a naive workaround for the lack of stock reservation.
+        """Predicate function that is a naive workaround for the lack of stock
+        reservation.
 
         This can be a performance killer, you should not use it
         if you have constantly a lot of running Orders
@@ -125,13 +133,17 @@ class sale_order_line(orm.Model):
         ctx = context.copy()
         location_id = self._get_line_location(line, context=context)
         ctx['location'] = location_id
-        ctx['compute_child'] = True  # Virtual qty is made on all childs of chosen location
+        ctx['compute_child'] = True
+        # Virtual qty is made on all childs of chosen location
         dates = self._get_affected_dates(cr, location_id, line.product_id.id,
                                          delivery_date, context=context)
         for aff_date in dates:
             ctx['to_date'] = aff_date
             prod_for_virtual_qty = prod_obj.read(cr, uid, line.product_id.id,
-                                                 ['virtual_available'], context=ctx)
-            if prod_for_virtual_qty['virtual_available'] < line.product_uom_qty:
+                                                 ['virtual_available'],
+                                                 context=ctx)
+            if prod_for_virtual_qty[
+                'virtual_available'
+            ] < line.product_uom_qty:
                 return True
         return False

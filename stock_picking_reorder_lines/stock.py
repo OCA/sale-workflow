@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-##############################################################################
+#
 #
 #    Author: Alexandre Fayolle
 #    Copyright 2013 Camptocamp SA
@@ -17,7 +17,7 @@
 #    You should have received a copy of the GNU Affero General Public License
 #    along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
-##############################################################################
+#
 
 from openerp.osv import orm, fields
 
@@ -28,7 +28,7 @@ class stock_move(orm.Model):
         'sequence': fields.integer('Sequence',
                                    help="Gives the sequence of this line when "
                                         "displaying the picking."),
-        }
+    }
     _order = 'date_expected desc, sequence, id'
     _defaults = {'sequence': 10,
                  }
@@ -37,8 +37,10 @@ class stock_move(orm.Model):
 class stock_picking(orm.Model):
     _inherit = 'stock.picking'
 
-    def _prepare_invoice_line(self, cr, uid, group, picking, move_line, invoice_id,
-                              invoice_vals, context=None):
+    def _prepare_invoice_line(
+        self, cr, uid, group, picking, move_line, invoice_id,
+        invoice_vals, context=None
+    ):
         res = super(stock_picking, self)._prepare_invoice_line(cr, uid,
                                                                group,
                                                                picking,
@@ -53,7 +55,9 @@ class stock_picking(orm.Model):
 class sale_order(orm.Model):
     _inherit = 'sale.order'
 
-    def _prepare_order_line_move(self, cr, uid, order, line, picking_id, date_planned, context=None):
+    def _prepare_order_line_move(
+        self, cr, uid, order, line, picking_id, date_planned, context=None
+    ):
         res = super(sale_order, self)._prepare_order_line_move(cr, uid,
                                                                order,
                                                                line,

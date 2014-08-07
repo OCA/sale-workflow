@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-##############################################################################
+#
 #
 #    Author: Guewen Baconnier
 #    Copyright 2011 Camptocamp SA
@@ -17,10 +17,12 @@
 #    You should have received a copy of the GNU Affero General Public License
 #    along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
-##############################################################################
+#
 from openerp.osv import orm, fields
 
+
 class ResCompany(orm.Model):
+
     '''Override company to add the fields to use for the prices'''
     _inherit = 'res.company'
 
@@ -29,8 +31,11 @@ class ResCompany(orm.Model):
             context = {}
         mf = self.pool.get('ir.model.fields')
         ids = mf.search(cr, uid,
-                        [('model','in', (('product.product'),('product.template'))),
-                         ('ttype','=','float')],
+                        [
+                            ('model', 'in', (
+                                ('product.product'), ('product.template')
+                            )),
+                            ('ttype', '=', 'float')],
                         context=context)
         res = [(False, '')]
         for field in mf.browse(cr, uid, ids, context=context):
@@ -38,9 +43,11 @@ class ResCompany(orm.Model):
         return res
 
     _columns = {
-        'standard_price_field': fields.selection(_price_field_get, 'Field for Cost Price', size=32,
+        'standard_price_field': fields.selection(
+            _price_field_get, 'Field for Cost Price', size=32,
             required=True,
-            help="If a field is selected, it will be used instead of the \"standard_price\" field"
+            help="If a field is selected, it will be used instead of the "
+                 "\"standard_price\" field"
                  "on the search of a Cost Price's Price Type.")
     }
 

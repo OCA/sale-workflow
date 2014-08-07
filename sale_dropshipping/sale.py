@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-##############################################################################
+#
 #
 #    OpenERP, Open Source Management Solution
 #    Copyright (C) 2011 Akretion LDTA (<http://www.akretion.com>).
@@ -18,7 +18,7 @@
 #    You should have received a copy of the GNU Affero General Public License
 #    along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
-##############################################################################
+#
 from openerp.osv import orm, fields
 from openerp.tools.translate import _
 import netsvc
@@ -28,61 +28,76 @@ class sale_order_line(orm.Model):
     _inherit = "sale.order.line"
 
     def product_id_change(self, cr, uid, ids, pricelist, product, qty=0,
-                          uom=False, qty_uos=0, uos=False, name='', partner_id=False,
-                          lang=False, update_tax=True, date_order=False, packaging=False,
+                          uom=False, qty_uos=0, uos=False, name='',
+                          partner_id=False,
+                          lang=False, update_tax=True, date_order=False,
+                          packaging=False,
                           fiscal_position=False, flag=False, context=None):
 
-        result = super(sale_order_line, self).product_id_change(cr, uid, ids, pricelist,
-                                                                product, qty,
-                                                                uom, qty_uos, uos, name, partner_id, lang,
-                                                                update_tax, date_order, packaging,
-                                                                fiscal_position, flag, context)
+        result = super(
+            sale_order_line, self).product_id_change(
+                cr, uid, ids, pricelist,
+                product, qty,
+                uom, qty_uos, uos, name, partner_id, lang,
+                update_tax, date_order, packaging,
+                fiscal_position, flag, context)
 
         if product:
             context2 = {'lang': lang,
                         'partner_id': partner_id,
                         'qty': qty,
                         }
-            product_obj = self.pool.get('product.product').browse(cr, uid, product,
-                                                                  context=context2)
+            product_obj = self.pool.get(
+                'product.product').browse(cr, uid, product,
+                                          context=context2)
             if product_obj.is_direct_delivery_from_product:
                 result['value'].update({'type': 'make_to_order',
                                         'sale_flow': 'direct_delivery'})
         return result
 
-    def _purchase_order_line_id(self, cr, uid, ids, field_name, arg, context=None):
+    def _purchase_order_line_id(
+        self, cr, uid, ids, field_name, arg, context=None
+    ):
         result = {}
         po_line_class = self.pool.get('purchase.order.line')
         for order_line in self.browse(cr, uid, ids, context=context):
-            po_line_ids = po_line_class.search(cr, uid,
-                                               [('sale_order_line_id', '=', order_line.id),
-                                                ('order_id.state', '!=', 'cancel')])
+            po_line_ids = po_line_class.search(
+                cr, uid,
+                [
+                    ('sale_order_line_id', '=', order_line.id),
+                    ('order_id.state', '!=', 'cancel')
+                ])
             result[order_line.id] = po_line_ids and po_line_ids[0] or False
         return result
 
     _columns = {
-        'sale_flow': fields.selection([('normal', 'Normal'),
-                                       ('direct_delivery', 'Drop Shipping'),
-                                       ('direct_invoice', 'Direct Invoice/Indirect Delivery'),
-                                       ('direct_invoice_and_delivery', 'Direct Invoice')],
-                                      'Sale Flow',
-                                      help="Is this order tied to a sale order?"
-                                           " How will it be delivered and invoiced then?"),
+        'sale_flow': fields.selection([
+            ('normal', 'Normal'),
+            ('direct_delivery', 'Drop Shipping'),
+            ('direct_invoice', 'Direct Invoice/Indirect Delivery'),
+            ('direct_invoice_and_delivery', 'Direct Invoice')],
+            'Sale Flow',
+            help="Is this order tied to a sale order?"
+                 " How will it be delivered and invoiced then?"),
 
-        'purchase_order_line_id': fields.function(_purchase_order_line_id,
-                                                  type='many2one',
-                                                  relation='purchase.order.line',
-                                                  string='Purchase Order Line'),
+        'purchase_order_line_id': fields.function(
+            _purchase_order_line_id,
+            type='many2one',
+            relation='purchase.order.line',
+            string='Purchase Order Line'),
 
-        'purchase_order_id': fields.related('purchase_order_line_id', 'order_id',
-                                            type='many2one',
-                                            relation='purchase.order',
-                                            string='Purchase Order'),
+        'purchase_order_id': fields.related(
+            'purchase_order_line_id',
+            'order_id',
+            type='many2one',
+            relation='purchase.order',
+            string='Purchase Order'),
 
-        'purchase_order_state': fields.related('purchase_order_id', 'state',
-                                               type='char',
-                                               size=64,
-                                               string='Purchase Order State'),
+        'purchase_order_state': fields.related(
+            'purchase_order_id', 'state',
+            type='char',
+            size=64,
+            string='Purchase Order State'),
     }
 
     _defaults = {
@@ -97,11 +112,15 @@ class sale_order(orm.Model):
 
     def _prepare_order_line_procurement(self, cr, uid, order, line, move_id,
                                         date_planned, context=None):
-        res = super(sale_order, self)._prepare_order_line_procurement(cr, uid, order, line,
-                                                                      move_id, date_planned,
-                                                                      context)
+        res = super(
+            sale_order, self)._prepare_order_line_procurement(
+                cr, uid, order, line,
+                move_id, date_planned,
+                context)
         res['sale_order_line_id'] = line.id
-        if line.sale_flow in ['direct_delivery', 'direct_invoice_and_delivery']:
+        if line.sale_flow in [
+            'direct_delivery', 'direct_invoice_and_delivery'
+        ]:
             res['location_id'] = order.partner_id.property_stock_supplier.id
         return res
 
@@ -160,13 +179,17 @@ class procurement_order(orm.Model):
     _inherit = 'procurement.order'
 
     _columns = {
-        'sale_order_line_id': fields.many2one('sale.order.line', 'Sale Order Line'),
+        'sale_order_line_id': fields.many2one(
+            'sale.order.line', 'Sale Order Line'),
     }
 
-    def create_procurement_purchase_order(self, cr, uid, procurement, po_vals, line_vals,
-                                          context=None):
+    def create_procurement_purchase_order(
+        self, cr, uid, procurement, po_vals, line_vals,
+        context=None
+    ):
         if procurement.sale_order_line_id:
-            warehouse_id = procurement.sale_order_line_id.order_id.shop_id.warehouse_id
+            warehouse_id = (
+                procurement.sale_order_line_id.order_id.shop_id.warehouse_id)
             sale_flow = procurement.sale_order_line_id.sale_flow
             purchase_obj = self.pool.get('purchase.order')
             vals = purchase_obj.sale_flow_change(
@@ -175,9 +198,15 @@ class procurement_order(orm.Model):
                 warehouse_id.id, context=context)
             po_vals.update(vals.get('value', {}))
 
-            po_vals.update({'sale_flow': sale_flow,
-                            'sale_id': procurement.sale_order_line_id.order_id.id})
-            l_id = procurement.sale_order_line_id.id if procurement.sale_order_line_id else False
+            po_vals.update({
+                'sale_flow': sale_flow,
+                'sale_id': procurement.sale_order_line_id.order_id.id})
+            l_id = (
+                procurement.sale_order_line_id.id
+                if procurement.sale_order_line_id else False
+                )
             line_vals.update({'sale_order_line_id': l_id})
-        return super(procurement_order, self).create_procurement_purchase_order(cr, uid, procurement,
-                                                                                po_vals, line_vals, context)
+        return super(
+            procurement_order, self).create_procurement_purchase_order(
+                cr, uid, procurement,
+                po_vals, line_vals, context)

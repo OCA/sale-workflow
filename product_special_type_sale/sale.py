@@ -46,7 +46,7 @@ class sale_order(osv.osv):
                         line.price_subtotal for line in order.order_line
                         if line.product_id
                         and line.product_id.special_type == special_type
-                        ], 0.0)
+                    ], 0.0)
 
         return res
 
@@ -72,11 +72,11 @@ class sale_order(osv.osv):
             store={
                 'sale.order': (
                     lambda self, cr, uid, ids, c=None: ids, ['order_line'], 10
-                    ),
+                ),
                 'sale.order.line': (_get_order, [
                     'price_unit', 'tax_id', 'discount',
                     'product_uom_qty', 'product_id'
-                    ], 10),
+                ], 10),
             }),
         'advance_amount': fields.function(
             _special_lines, method=True,
@@ -88,11 +88,11 @@ class sale_order(osv.osv):
             store={
                 'sale.order': (
                     lambda self, cr, uid, ids, c=None: ids, ['order_line'], 10
-                    ),
+                ),
                 'sale.order.line': (_get_order, [
                     'price_unit', 'tax_id', 'discount',
                     'product_uom_qty', 'product_id'
-                    ], 10),
+                ], 10),
             }),
         'delivery_amount': fields.function(
             _special_lines, method=True,
@@ -104,11 +104,11 @@ class sale_order(osv.osv):
             store={
                 'sale.order': (
                     lambda self, cr, uid, ids, c=None: ids, ['order_line'], 10
-                    ),
+                ),
                 'sale.order.line': (_get_order, [
                     'price_unit', 'tax_id', 'discount',
                     'product_uom_qty', 'product_id'
-                    ], 10),
+                ], 10),
             }),
     }
 

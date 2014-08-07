@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
-##############################################################################
-#    
+#
+#
 #    Copyright (C) 2012 Agile Business Group sagl (<http://www.agilebg.com>)
 #    Copyright (C) 2012 Domsense srl (<http://www.domsense.com>)
 #
@@ -17,7 +17,7 @@
 #    You should have received a copy of the GNU Affero General Public License
 #    along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
-##############################################################################
+#
 {
     'name': "Sale multi pickings",
     'version': '0.1',
@@ -25,19 +25,20 @@
     'summary': "Multi Pickings from Sale Orders",
     'description': """
 This module allows to generate several pickings from the same sale order.
-You just have to indicate which order lines have to be grouped in the same picking. When confirming the order, for each group a picking is generated.
+You just have to indicate which order lines have to be grouped in the same
+picking. When confirming the order, for each group a picking is generated.
 """,
     'author': 'Agile Business Group',
     'website': 'http://www.agilebg.com',
     'license': 'AGPL-3',
-    "depends" : ['sale_stock'],
-    "data" : [
+    "depends": ['sale_stock'],
+    "data": [
         'sale_view.xml',
         'security/ir.model.access.csv',
-        ],
-    "demo" : [
+    ],
+    "demo": [
         'sale_demo.xml',
-        ],
+    ],
     "active": False,
     "installable": True
 }

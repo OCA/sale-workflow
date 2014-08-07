@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
-##############################################################################
-#    
+#
+#
 #    Copyright (C) 2013 Agile Business Group sagl
 #    (<http://www.agilebg.com>)
 #
@@ -17,23 +17,25 @@
 #    You should have received a copy of the GNU Affero General Public License
 #    along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
-##############################################################################
+#
 
 {
     'name': "Sale orders - Force number",
     'version': '0.1',
     'category': 'Sales Management',
     'summary': "Force sale orders numeration",
-    'description': """This simple module allows to specify the number to use when creating sale orders.
-If user does not change the default value ('/'), the standard sequence is used.""",
+    'description': """This simple module allows to specify the number to use
+when creating sale orders.
+If user does not change the default value ('/'), the standard sequence is used.
+""",
     'author': 'Agile Business Group',
     'website': 'http://www.agilebg.com',
     'license': 'AGPL-3',
-    "depends" : ['purchase'],
-    "data" : [
+    "depends": ['purchase'],
+    "data": [
         'sale_view.xml',
-        ],
-    "demo" : [],
+    ],
+    "demo": [],
     "active": False,
     "installable": True
 }

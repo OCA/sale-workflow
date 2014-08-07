@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-##############################################################################
+#
 #
 #    Author: Nicolas Bessi
 #    Copyright 2013 Camptocamp SA
@@ -17,7 +17,7 @@
 #    You should have received a copy of the GNU Affero General Public License
 #    along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
-##############################################################################
+#
 {'name': 'Sale stock exception',
  'version': '0.1',
  'author': 'Camptocamp',
@@ -29,7 +29,8 @@
 Sale stock exception
 --------------------
 
-This addon adds two new sales exceptions to be used by the `sale_exception` addon:
+This addon adds two new sales exceptions to be used by the `sale_exception`
+addon:
 
 * The first one ensures that an order line can be delivered on the delivery
   date if it is in MTS. Validation is done by using the order line location via

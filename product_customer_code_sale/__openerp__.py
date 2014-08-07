@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-##############################################################################
+#
 #
 #    Copyright (C) 2013 Agile Business Group sagl (<http://www.agilebg.com>)
 #    Author: Nicola Malcontenti <nicola.malcontenti@agilebg.com>
@@ -17,14 +17,14 @@
 #    You should have received a copy of the GNU Affero General Public License
 #    along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
-##############################################################################
+#
 {
-    "name" : "Product Customer code on sale",
-    "version" : "1.0",
-    "author" : "Agile Business Group",
-    "website" : "http://www.agilebg.com",
-    "category" : "Sales Management",
-    "depends" : [
+    "name": "Product Customer code on sale",
+    "version": "1.0",
+    "author": "Agile Business Group",
+    "website": "http://www.agilebg.com",
+    "category": "Sales Management",
+    "depends": [
         'base',
         'product',
         'sale',
@@ -35,10 +35,10 @@
     this module loads in every sale order line
     the customer code defined in the product,
     """,
-    "demo" : [],
-    "data" : [
+    "demo": [],
+    "data": [
         'sale_view.xml',
     ],
-    'installable' : True,
-    'active' : False,
+    'installable': True,
+    'active': False,
 }
