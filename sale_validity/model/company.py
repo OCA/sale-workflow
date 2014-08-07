@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-##############################################################################
+#
 #
 #    Copyright (C) 2014 Akretion (http://www.akretion.com)
 #    @author Alexis de Lattre <alexis.delattre@akretion.com>
@@ -17,7 +17,7 @@
 #    You should have received a copy of the GNU Affero General Public License
 #    along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
-##############################################################################
+#
 
 from openerp.osv import fields, orm
 
@@ -32,7 +32,7 @@ class res_company(orm.Model):
             "the date of the sale order plus the number of days defined "
             "in this field. If the value of this field is 0, the sale orders "
             "will not have a validity date by default."),
-        }
+    }
 
     _sql_constraints = [
         ('sale_order_validity_days_positive',
