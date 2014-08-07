@@ -20,7 +20,7 @@ install:
 
 script:
   - travis_run_flake8
-  - travis_run_tests $HOME/product-attribute
+  - travis_run_tests
 
 after_success:
   coveralls
