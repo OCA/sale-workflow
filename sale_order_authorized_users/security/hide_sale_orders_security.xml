@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+	<data noupdate="0">
+
+		<record model="ir.rule" id="rule_hidden_orders">
+			<field name="name">Hidden orders</field>
+			<field name="model_id" ref="model_sale_order" />
+			<field name="global" eval="True" />
+			<field name="domain_force">['|',('allowed_users_ids','in',user.id),('allowed_users_ids','=',False)]</field>
+		</record>
+
+	</data>
+</openerp>
