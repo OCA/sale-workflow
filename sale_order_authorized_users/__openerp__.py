@@ -29,9 +29,9 @@
 Sale Order Authorized Users
 ======================================
 
-Let Admin (or any user in the base.group_erp_manager) choose, for each sale order,
-which users will be able to access and see it. Any other user won't be able
-to see it.
+Let Admin (or any user in the base.group_erp_manager) choose,
+for each sale order,w hich users will be able to access and see it.
+Any other user won't be able to see it.
 If no users are set, the sale order has normal permissions.
 The field to set allowed users will be visibile only to admin, which makes it
 possible to make the users unaware of this feature.

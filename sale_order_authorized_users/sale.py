@@ -19,6 +19,7 @@
 ##############################################################################
 from openerp.osv import orm, fields
 
+
 class sale_order(orm.Model):
     _inherit = 'sale.order'
 
