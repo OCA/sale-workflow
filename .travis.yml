@@ -10,8 +10,9 @@ env:
 virtualenv:
   system_site_packages: true
 
-before_install:
-  - git clone https://github.com/OCA/product-attribute $HOME/product-attribute -b ${VERSION}
+# Commented until product-attribute branch will be ready
+#before_install:
+#  - git clone https://github.com/OCA/product-attribute $HOME/product-attribute -b ${VERSION}
 
 install:
   - git clone https://github.com/OCA/maintainer-quality-tools.git ${HOME}/maintainer-quality-tools
