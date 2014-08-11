@@ -37,6 +37,8 @@ class SaleOrderLine(orm.Model):
             for line in last_lines:
                 sum_qty += line.product_uom_qty
                 sum_price += line.price_unit * line.product_uom_qty
+            if sum_qty == 0:
+                return 0
             return sum_price / float(sum_qty), sum_qty
 
     def _get_last_sale(self, cr, uid, ids, field_name, arg, context=None):
