@@ -48,5 +48,5 @@ will be displayed.
  'test': ['test/last_sale_price.yml'],
  'installable': True,
  'auto_install': False,
- 'application': True,
+ 'application': False,
  }
