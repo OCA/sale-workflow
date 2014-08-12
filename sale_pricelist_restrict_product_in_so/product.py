@@ -45,7 +45,7 @@ def get_pricelist_allowed_items(self, cr, uid, pricelist_id, context=None):
     date = (context.get('date') or
             datetime.utcnow().strftime(DEFAULT_SERVER_DATETIME_FORMAT))
 
-    pool_plversion = self.pool.['product.pricelist.version']
+    pool_plversion = self.pool['product.pricelist.version']
     pricelist_version_ids = pool_plversion.search(
         cr, uid, [
             ('pricelist_id', '=', pricelist_id),
