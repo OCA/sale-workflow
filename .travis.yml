@@ -4,14 +4,15 @@ python:
   - "2.7"
 
 env:
-  - VERSION="7.0" ODOO_REPO="odoo/odoo"
-  - VERSION="7.0" ODOO_REPO="OCA/OCB"
+  - VERSION="8.0" ODOO_REPO="odoo/odoo"
+  - VERSION="8.0" ODOO_REPO="OCA/OCB"
 
 virtualenv:
   system_site_packages: true
 
-before_install:
-  - git clone https://github.com/OCA/product-attribute $HOME/product-attribute -b 7.0
+# Commented until product-attribute branch will be ready
+#before_install:
+#  - git clone https://github.com/OCA/product-attribute $HOME/product-attribute -b ${VERSION}
 
 install:
   - git clone https://github.com/OCA/maintainer-quality-tools.git ${HOME}/maintainer-quality-tools
