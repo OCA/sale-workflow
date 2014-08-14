@@ -28,8 +28,8 @@
     'website': 'http://www.savoirfairelinux.com',
     'license': 'AGPL-3',
     'category': 'Others',
-    'summary': ('Restrict product selection in sales order'
-               'according to price list'),
+    'summary': ('Restrict product selection in sales order '
+                'according to price list'),
     'description': """
 Price List Restrict Product in Sales
 ====================================
