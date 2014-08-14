@@ -29,68 +29,9 @@ from datetime import datetime
 from openerp.tools import DEFAULT_SERVER_DATETIME_FORMAT
 from openerp.osv import orm
 
-
-def get_pricelist_allowed_items(self, cr, uid, pricelist_id, context=None):
-    """ Get the allowed categories or items for a pricelist
-    Params:
-    (self, cr, uid) -> common OE params
-    pricelist_id    -> id of pricelist
-    context         -> context dict
-
-    Returns a list of (allowed_categories, allowed_products) where each is
-    either a list of allowed item ids, or None for any"""
-    if context is None:
-        context = {}
-
-    date = (context.get('date') or
-            datetime.utcnow().strftime(DEFAULT_SERVER_DATETIME_FORMAT))
-
-    pool_plversion = self.pool['product.pricelist.version']
-    pricelist_version_ids = pool_plversion.search(
-        cr, uid, [
-            ('pricelist_id', '=', pricelist_id),
-            '|',
-            ('date_start', '=', False),
-            ('date_start', '<=', date),
-            '|',
-            ('date_end', '=', False),
-            ('date_end', '>=', date),
-        ],
-        context=context)
-
-    pricelist_items_ids = [
-        item_id
-        for plversion in pool_plversion.read(
-            cr, uid, pricelist_version_ids,
-            fields=["items_id"], context=context
-        )
-        for item_id in plversion.get("items_id") or ()
-    ]
-    pool_plitem = self.pool['product.pricelist.item']
-    res = []
-    products = set()
-    categories = set()
-    for item in pool_plitem.read(cr, uid, pricelist_items_ids,
-                                 fields=["base", "categ_id", "product_id"],
-                                 context=context):
-        # TODO check base == -1 for "Other pricelist",
-        # for now we will assume that people.
-        # this requires checking minimally for recursion
-        if item["categ_id"] and item["product_id"]:
-            res.append(([item["categ_id"][0]], [item["product_id"][0]]))
-        elif item["categ_id"]:
-            categories.add(item["categ_id"][0])
-        elif item["product_id"]:
-            products.add(item["product_id"][0])
-        else:
-            res.append((None, None))
-
-    if products:
-        res.append((None, list(products)))
-    if categories:
-        res.append((list(categories), None))
-
-    return res
+# Sentinel value to avoid passing the list of all existing products around
+# when querying possible product ids for a pricelist.
+ANY_PRODUCT = object()
 
 
 def build_q_tuple(cats, prods):
@@ -104,23 +45,96 @@ def build_q_tuple(cats, prods):
         return []
 
 
-def build_search_query(list_of_allowed):
-    # no point in making a complex query if a pricelist allows everything
-    if not list_of_allowed or (None, None) in list_of_allowed:
-        return []
+def query_for_item(browse_item):
+    return build_q_tuple(
+        browse_item.categ_id and [browse_item.categ_id.id] or None,
+        browse_item.product_id and [browse_item.product_id.id] or None,
+    )
 
+
+def or_queries(queries):
     res = []
-    # we want to build a series of checks ('|', foo, '|', bar, baz) to
-    # get the equivalent of (foo OR bar OR baz), so we add '|' before
-    # each element, except the last one
-    for cats, prods in list_of_allowed[:-1]:
-        query = build_q_tuple(cats, prods)
-        if query:
-            res.append('|')
-            res.extend(query)
-
-    res.extend(build_q_tuple(*list_of_allowed[-1]))
+    for q in queries[:-1]:
+        res.append('|')
+        res.extend(q)
+    res.extend(queries[-1])
     return res
+
+
+class PriceList(orm.Model):
+    _name = 'product.pricelist'
+    _inherit = 'product.pricelist'
+
+    def _get_allowed_product_ids(self, cr, uid, pricelist_id, context=None):
+        plitems_obj = self.pool["product.pricelist.item"]
+
+        if context is None:
+            context = {}
+
+        date = (context.get('date') or
+                datetime.utcnow().strftime(DEFAULT_SERVER_DATETIME_FORMAT))
+
+        pool_plversion = self.pool['product.pricelist.version']
+        pricelist_version_ids = pool_plversion.search(
+            cr, uid, [
+                ('pricelist_id', '=', pricelist_id),
+                '|',
+                ('date_start', '=', False),
+                ('date_start', '<=', date),
+                '|',
+                ('date_end', '=', False),
+                ('date_end', '>=', date),
+            ],
+            context=context)
+
+        if not pricelist_version_ids:
+            return []
+
+        items = plitems_obj.search(cr, uid, [
+            ('price_version_id', 'in', pricelist_version_ids),
+        ])
+
+        return plitems_obj._get_allowed_product_ids(cr, uid, items, context=context)
+
+
+class PriceListItem(orm.Model):
+    _name = 'product.pricelist.item'
+    _inherit = 'product.pricelist.item'
+
+    def _get_allowed_product_ids(self, cr, uid, ids, context=None):
+        pricelist_obj = self.pool["product.pricelist"]
+        product_obj = self.pool["product.product"]
+        res = set()
+        qs = []
+        for item in self.browse(cr, uid, ids, context=context):
+            if item.base == -1:
+                pricelist = item.base_pricelist_id.id
+                ids = pricelist_obj._get_allowed_product_ids(
+                    cr, uid, pricelist, context=context)
+                if item.categ_id or item.product_id:
+                    subset = product_obj.search(
+                        cr, uid,
+                        query_for_item(item),
+                        context=context)
+                    if ids is ANY_PRODUCT:
+                        res.update(subset)
+                    res.update(set(subset) & set(ids))
+                elif ids is ANY_PRODUCT:
+                    return ANY_PRODUCT
+                else:
+                    res.update(ids)
+            else:
+                if item.categ_id or item.product_id:
+                    qs.append(query_for_item(item))
+                else:
+                    return ANY_PRODUCT
+
+        # Process pending, grouped searches
+        if qs:
+            query = or_queries(qs)
+            res.update(product_obj.search(cr, uid, query, context=context))
+
+        return res
 
 
 class ProductProduct(orm.Model):
@@ -132,12 +146,20 @@ class ProductProduct(orm.Model):
         if context is None:
             context = {}
         if context and "pricelist" in context:
-            pl_args = build_search_query(
-                get_pricelist_allowed_items(
-                    self, cr, uid, context["pricelist"])
-            )
-            args.extend(pl_args)
-            logger.debug("Adding search arguments for pricelist: %r", pl_args)
+            pl_obj = self.pool["product.pricelist"]
+            ctx = context.copy()
+            pl_id = ctx.pop("pricelist")
+            products = pl_obj._get_allowed_product_ids(cr, uid, pl_id,
+                                                       context=ctx)
+            if products is not ANY_PRODUCT:
+                products = list(products)
+                pl_len = len(products)
+                args.append(("id", "in", products))
+                logger.debug(
+                    "Limiting product search by pricelist to %d items %r",
+                    pl_len,
+                    products[:10] + ["..."] if pl_len > 10 else products,
+                )
 
         return super(ProductProduct, self).search(
             cr, uid, args, offset=offset, limit=limit, order=order,
