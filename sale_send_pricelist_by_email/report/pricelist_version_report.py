@@ -23,9 +23,7 @@ import operator
 import itertools
 
 from openerp import pooler
-from openerp.osv import orm
 from openerp.report import report_sxw
-from openerp.tools.translate import _
 
 
 class ProductPricelist(report_sxw.rml_parse):
