@@ -94,7 +94,8 @@ class PriceList(orm.Model):
             ('price_version_id', 'in', pricelist_version_ids),
         ])
 
-        return plitems_obj._get_allowed_product_ids(cr, uid, items, context=context)
+        return plitems_obj._get_allowed_product_ids(cr, uid, items,
+                                                    context=context)
 
 
 class PriceListItem(orm.Model):
