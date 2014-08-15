@@ -6,11 +6,11 @@
             <field name="model">sale.order</field>
             <field name="inherit_id" ref="sale.view_order_form"/>
             <field name="arch" type="xml">
-                <xpath expr="/form/header/button[@name='action_cancel']" position="attributes">
+                <xpath expr="//button[@name='action_cancel']" position="attributes">
                     <attribute name="type">action</attribute>
                     <attribute name="name">%(action_sale_order_cancel)d</attribute>
                 </xpath>
-                <xpath expr="/form/header/button[@name='cancel']" position="attributes">
+                <xpath expr="//button[@name='cancel']" position="attributes">
                     <attribute name="type">action</attribute>
                     <attribute name="name">%(action_sale_order_cancel)d</attribute>
                 </xpath>
