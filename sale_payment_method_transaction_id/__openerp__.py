@@ -19,13 +19,13 @@
 #
 ##############################################################################
 
-{'name' : 'Sale Payment Method - Transaction ID Compatibility',
- 'version' : '1.0',
- 'author' : 'Camptocamp',
+{'name': 'Sale Payment Method - Transaction ID Compatibility',
+ 'version': '1.0',
+ 'author': 'Camptocamp',
  'maintainer': 'Camptocamp',
  'license': 'AGPL-3',
  'category': 'Hidden',
- 'depends' : ['sale_payment_method',
+ 'depends': ['sale_payment_method',
               # base_transaction_id is in
               # https://github.com/OCA/bank-statement-reconcile/tree/7.0
               'base_transaction_id',
@@ -47,4 +47,4 @@ move lines are created with the transaction id.
  'tests': [],
  'installable': True,
  'auto_install': True,
-}
+ }
