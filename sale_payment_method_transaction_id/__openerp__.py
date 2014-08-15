@@ -26,7 +26,9 @@
  'license': 'AGPL-3',
  'category': 'Hidden',
  'depends' : ['sale_payment_method',
-              'base_transaction_id',  # in lp:banking-addons/bank-statement-reconcile-7.0 
+              # base_transaction_id is in
+              # https://github.com/OCA/bank-statement-reconcile/tree/7.0
+              'base_transaction_id',
               ],
  'description': """
 Sale Payment Method - Transaction ID Compatibility
