@@ -1,0 +1,229 @@
+# Translation of OpenERP Server.
+# This file contains the translation of the following modules:
+# 	* sale_send_pricelist_by_email
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: OpenERP Server 7.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2014-08-16 03:31+0000\n"
+"PO-Revision-Date: 2014-08-15 23:46-0500\n"
+"Last-Translator: Marc Cassuto <marc.cassuto@savoirfairelinux.com>\n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Poedit 1.5.4\n"
+"Language: fr\n"
+
+#. module: sale_send_pricelist_by_email
+#: model:email.template,report_name:sale_send_pricelist_by_email.email_template_pricelist
+msgid "${(object.name or '').replace('/','_')}"
+msgstr "${(object.name or '').replace('/','_')}" 
+
+#. module: sale_send_pricelist_by_email
+#: model:email.template,body_html:sale_send_pricelist_by_email.email_template_pricelist
+msgid ""
+"\n"
+"<div style=\"font-family: 'Lucica Grande', Ubuntu, Arial, Verdana, sans-"
+"serif; font-size: 12px; color: rgb(34, 34, 34); background-color: #FFF; \">\n"
+"\n"
+"    <p>Hello ,</p>\n"
+"\n"
+"    <p>Here is your current valid Pricelist from ${user.company_id.name}: </"
+"p>\n"
+"\n"
+"    <p style=\"border-left: 1px solid #8e0000; margin-left: 30px;\">\n"
+"       &nbsp;&nbsp;<strong>REFERENCES</strong><br />\n"
+"       &nbsp;&nbsp;Pricelist: <strong>${object.name}</strong><br />\n"
+"       &nbsp;&nbsp;Current version: ${object.active_version_id.name}<br />\n"
+"       &nbsp;&nbsp;Valid from: ${object.active_version_id.date_start or "
+"'Always'}<br />\n"
+"       &nbsp;&nbsp;Valid to: ${object.active_version_id.date_end or 'Always'}"
+"<br />\n"
+"    </p>\n"
+"\n"
+"    <br/>\n"
+"    <p>If you have any question, do not hesitate to contact us.</p>\n"
+"    <p>Thank you for choosing ${user.company_id.name or 'us'}!</p>\n"
+"    <br/>\n"
+"    <br/>\n"
+"    <div style=\"width: 375px; margin: 0px; padding: 0px; background-color: "
+"#8E0000; border-top-left-radius: 5px 5px; border-top-right-radius: 5px 5px; "
+"background-repeat: repeat no-repeat;\">\n"
+"        <h3 style=\"margin: 0px; padding: 2px 14px; font-size: 12px; color: "
+"#DDD;\">\n"
+"            <strong style=\"text-transform:uppercase;\">${user.company_id."
+"name}</strong></h3>\n"
+"    </div>\n"
+"    <div style=\"width: 347px; margin: 0px; padding: 5px 14px; line-height: "
+"16px; background-color: #F2F2F2;\">\n"
+"        <span style=\"color: #222; margin-bottom: 5px; display: block; \">\n"
+"        % if user.company_id.street:\n"
+"            ${user.company_id.street}<br/>\n"
+"        % endif\n"
+"        % if user.company_id.street2:\n"
+"            ${user.company_id.street2}<br/>\n"
+"        % endif\n"
+"        % if user.company_id.city or user.company_id.zip:\n"
+"            ${user.company_id.zip} ${user.company_id.city}<br/>\n"
+"        % endif\n"
+"        % if user.company_id.country_id:\n"
+"            ${user.company_id.state_id and ('%s, ' % user.company_id."
+"state_id.name) or ''} ${user.company_id.country_id.name or ''}<br/>\n"
+"        % endif\n"
+"        </span>\n"
+"        % if user.company_id.phone:\n"
+"            <div style=\"margin-top: 0px; margin-right: 0px; margin-bottom: "
+"0px; margin-left: 0px; padding-top: 0px; padding-right: 0px; padding-bottom: "
+"0px; padding-left: 0px; \">\n"
+"                Phone:&nbsp; ${user.company_id.phone}\n"
+"            </div>\n"
+"        % endif\n"
+"        % if user.company_id.website:\n"
+"            <div>\n"
+"                Web :&nbsp;<a href=\"${user.company_id.website}\">${user."
+"company_id.website}</a>\n"
+"            </div>\n"
+"        %endif\n"
+"        <p></p>\n"
+"    </div>\n"
+"</div>\n"
+"            "
+msgstr ""
+"\n"
+"<div style=\"font-family: 'Lucica Grande', Ubuntu, Arial, Verdana, sans-"
+"serif; font-size: 12px; color: rgb(34, 34, 34); background-color: #FFF; \">\n"
+"\n"
+"    <p>Bonjour,</p>\n"
+"\n"
+"    <p>Veuillez trouver ci-joint la liste de prix en cours de validité de "
+"${user.company_id.name}: </p>\n"
+"\n"
+"    <p style=\"border-left: 1px solid #8e0000; margin-left: 30px;\">\n"
+"       &nbsp;&nbsp;<strong>RÉFÉRENCES</strong><br />\n"
+"       &nbsp;&nbsp;Liste de prix: <strong>${object.name}</strong><br />\n"
+"       &nbsp;&nbsp;Version en cours de validité: ${object.active_version_id."
+"name}<br />\n"
+"       &nbsp;&nbsp;Valide à partir de: ${object.active_version_id.date_start "
+"or 'Always'}<br />\n"
+"       &nbsp;&nbsp;Valide jusqu'au: ${object.active_version_id.date_end or "
+"'Always'}<br />\n"
+"    </p>\n"
+"\n"
+"    <br/>\n"
+"    <p>Si vous avez des questions, n'hésitez pas à nous contacter.</p>\n"
+"    <p>Merci d'avoir choisi ${user.company_id.name or 'us'}!</p>\n"
+"    <br/>\n"
+"    <br/>\n"
+"    <div style=\"width: 375px; margin: 0px; padding: 0px; background-color: "
+"#8E0000; border-top-left-radius: 5px 5px; border-top-right-radius: 5px 5px; "
+"background-repeat: repeat no-repeat;\">\n"
+"        <h3 style=\"margin: 0px; padding: 2px 14px; font-size: 12px; color: "
+"#DDD;\">\n"
+"            <strong style=\"text-transform:uppercase;\">${user.company_id."
+"name}</strong></h3>\n"
+"    </div>\n"
+"    <div style=\"width: 347px; margin: 0px; padding: 5px 14px; line-height: "
+"16px; background-color: #F2F2F2;\">\n"
+"        <span style=\"color: #222; margin-bottom: 5px; display: block; \">\n"
+"        % if user.company_id.street:\n"
+"            ${user.company_id.street}<br/>\n"
+"        % endif\n"
+"        % if user.company_id.street2:\n"
+"            ${user.company_id.street2}<br/>\n"
+"        % endif\n"
+"        % if user.company_id.city or user.company_id.zip:\n"
+"            ${user.company_id.zip} ${user.company_id.city}<br/>\n"
+"        % endif\n"
+"        % if user.company_id.country_id:\n"
+"            ${user.company_id.state_id and ('%s, ' % user.company_id."
+"state_id.name) or ''} ${user.company_id.country_id.name or ''}<br/>\n"
+"        % endif\n"
+"        </span>\n"
+"        % if user.company_id.phone:\n"
+"            <div style=\"margin-top: 0px; margin-right: 0px; margin-bottom: "
+"0px; margin-left: 0px; padding-top: 0px; padding-right: 0px; padding-bottom: "
+"0px; padding-left: 0px; \">\n"
+"                Tél:&nbsp; ${user.company_id.phone}\n"
+"            </div>\n"
+"        % endif\n"
+"        % if user.company_id.website:\n"
+"            <div>\n"
+"                Web :&nbsp;<a href=\"${user.company_id.website}\">${user."
+"company_id.website}</a>\n"
+"            </div>\n"
+"        %endif\n"
+"        <p></p>\n"
+"    </div>\n"
+"</div>\n"
+"            "
+
+#. module: sale_send_pricelist_by_email
+#: field:product.pricelist,active_version_id:0
+msgid "Active version"
+msgstr "Version en cours de validité"
+
+#. module: sale_send_pricelist_by_email
+#: field:product.pricelist,message_follower_ids:0
+msgid "Followers"
+msgstr "Abonnés"
+
+#. module: sale_send_pricelist_by_email
+#: help:product.pricelist,message_summary:0
+msgid ""
+"Holds the Chatter summary (number of messages, ...). This summary is "
+"directly in html format in order to be inserted in kanban views."
+msgstr ""
+"Contient le résumé du fil de discussion (nombre de messages...). Ce résumé "
+"est au format HTML afin de pouvoir l'insérer directement dans les vues "
+"Kanban."
+
+#. module: sale_send_pricelist_by_email
+#: help:product.pricelist,message_unread:0
+msgid "If checked new messages require your attention."
+msgstr "Si coché, les nouveaux messages nécessiteront votre attention."
+
+#. module: sale_send_pricelist_by_email
+#: field:product.pricelist,message_is_follower:0
+msgid "Is a Follower"
+msgstr "Est un abonné"
+
+#. module: sale_send_pricelist_by_email
+#: field:product.pricelist,message_ids:0
+msgid "Messages"
+msgstr "Messages"
+
+#. module: sale_send_pricelist_by_email
+#: help:product.pricelist,message_ids:0
+msgid "Messages and communication history"
+msgstr "Historiques des messages et communications"
+
+#. module: sale_send_pricelist_by_email
+#: code:_description:0
+#: model:ir.actions.report.xml,name:sale_send_pricelist_by_email.pricelist_version_report
+#: model:ir.model,name:sale_send_pricelist_by_email.model_product_pricelist
+#: model:ir.model,name:sale_send_pricelist_by_email.model_product_pricelist2
+#, python-format
+msgid "Pricelist"
+msgstr "Liste de prix"
+
+#. module: sale_send_pricelist_by_email
+#: view:product.pricelist:0
+msgid "Send by Email"
+msgstr "Envoyer par courriel"
+
+#. module: sale_send_pricelist_by_email
+#: field:product.pricelist,message_summary:0
+msgid "Summary"
+msgstr "Résumé"
+
+#. module: sale_send_pricelist_by_email
+#: field:product.pricelist,message_unread:0
+msgid "Unread Messages"
+msgstr "Messages non-lus"
+
+#. module: sale_send_pricelist_by_email
+#: model:email.template,subject:sale_send_pricelist_by_email.email_template_pricelist
+msgid "Your current pricelist"
+msgstr "Votre liste de prix en cous de validité"

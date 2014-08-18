@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+  <data>
+
+    <record id="product_pricelist_add_button_view" model="ir.ui.view">
+      <field name="inherit_id" ref="product.product_pricelist_view"/>
+      <field name="model">product.pricelist</field>
+      <field name="arch" type="xml">
+        <xpath expr="//form/*[1]" position="before">
+                <header>
+                    <button
+                            name="action_pricelist_sent"
+                            type="object" string="Send by Email"
+                            class="oe_highlight"/>
+                </header>
+        </xpath>
+      </field>
+    </record>
+
+  </data>
+</openerp>
