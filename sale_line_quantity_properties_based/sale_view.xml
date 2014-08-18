@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+
+        <record id="view_order_form_inherit" model="ir.ui.view">
+            <field name="name">sale.order.form.sale.stock</field>
+            <field name="model">sale.order</field>
+            <field name="inherit_id" ref="sale_stock.view_order_form_inherit"/>
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='property_ids']" position="replace"/>
+                <xpath expr="//page[@string='Order Lines']/field[@name='order_line']/form[@string='Sales Order Lines']/group/group/field[@name='product_id']" position="after">
+                    <field name="property_ids" on_change="onchange_formula(formula_id, property_ids, product_uos_qty)" widget="many2many_tags"/>                    
+                </xpath>
+            </field>
+        </record>
+
+        <record id="view_order_form" model="ir.ui.view">
+            <field name="name">sale.order.form</field>
+            <field name="model">sale.order</field>
+            <field name="inherit_id" ref="sale.view_order_form"/>
+            <field name="arch" type="xml">
+                <xpath expr="//page[@string='Order Lines']/field[@name='order_line']/form[@string='Sales Order Lines']/group/group/label[@for='product_uos_qty']" position="replace">
+                </xpath>
+                <xpath expr="//page[@string='Order Lines']/field[@name='order_line']/form[@string='Sales Order Lines']/group/group/div[@groups='product.group_uos']" position="replace">
+                </xpath>
+                <xpath expr="//page[@string='Order Lines']/field[@name='order_line']/form[@string='Sales Order Lines']/group/group/field[@name='price_unit']" position="replace">
+                </xpath>
+                <xpath expr="//page[@string='Order Lines']/field[@name='order_line']/form[@string='Sales Order Lines']/group/group/field[@name='product_id']" position="after">
+                    <field name="formula_id" on_change="onchange_formula(formula_id, property_ids, product_uos_qty)"/>
+                    <label for="product_uos_qty"/>
+                    <div>
+                        <field name="product_uos_qty" on_change="onchange_formula(formula_id, property_ids, product_uos_qty)" class="oe_inline"/>
+                        <field name="product_uos" class="oe_inline"/>
+                    </div>
+                </xpath>
+                <xpath expr="//page[@string='Order Lines']/field[@name='order_line']/form[@string='Sales Order Lines']/group/group/field[@name='address_allotment_id']" position="after">
+                    <field name="price_unit"/>
+                </xpath>
+            </field>
+        </record>
+
+    </data>
+</openerp>

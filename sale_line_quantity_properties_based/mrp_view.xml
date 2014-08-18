@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+
+        <record id="mrp_formula_action" model="ir.actions.act_window">
+            <field name="name">Formulas</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">sale.order.line.quantity.formula</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form</field>
+            <field name="help" type="html">
+              <p class="oe_view_nocontent_create">
+                Click to create a new formula.
+              </p><p>
+                The formulas are used to automatically compute the product quantity on the basis of the properties specified by the user
+                on the sale order line and on the quantity (UoS)
+              </p>
+            </field>
+        </record>
+        
+        <menuitem
+            action="mrp_formula_action"
+            parent="mrp.menu_mrp_configuration"
+            groups="base.group_no_one,product.group_mrp_properties"
+            id="menu_mrp_formula_group_action"
+            sequence="40"/>
+
+    </data>
+</openerp>
