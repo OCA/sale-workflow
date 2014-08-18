@@ -37,12 +37,23 @@ for name, column in crm_lead._columns.items():
         column.track_visibility = "onchange"
 
 
+def track_anything(self, cr, uid, obj, ctx=None):
+    return True
+
+
+def merge_track_dict(field, model, new):
+    res = {}
+    res.update(model._track.get(field, {}))
+    res.update(new)
+    return res
+
+
 class CRMLead(orm.Model):
     _name = 'crm.lead'
     _inherit = 'crm.lead'
 
     _track = dict(
-        (field, {
-            'crm_track_all_fields.mt_field_updated': lambda self, cr, uid, obj, ctx=None: True,
-        }) for field in new_tracked_fields
+        (field, merge_track_dict(field, crm_lead, {
+            'crm_track_all_fields.mt_field_updated': track_anything,
+        })) for field in new_tracked_fields
     )
