@@ -5,7 +5,6 @@
         <!-- sale.delivery.term -->
         <record id="sale_delivery_term_1" model="sale.delivery.term">
             <field name="name">15 - 30</field>
-            <field name="line_ids" eval="[]"/>
         </record>
         
         <!-- sale.delivery.term.line -->
