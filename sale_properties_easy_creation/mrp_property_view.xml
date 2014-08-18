@@ -52,6 +52,13 @@
             <field name="res_model">mrp.property.formula</field>
             <field name="view_type">form</field>
             <field name="view_mode">tree,form</field>
+            <field name="help" type="html">
+              <p class="oe_view_nocontent_create">
+                Click to create a new formula.
+              </p><p>
+                The formulas are used to automatically compute sale line data (like price or quantity) on the basis of the properties specified by the user on the sale order
+              </p>
+            </field>
         </record>
         <menuitem
             action="mrp_property_formula_action"
