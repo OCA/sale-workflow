@@ -1,9 +1,10 @@
 # -*- coding: utf-8 -*-
 ##############################################################################
 #
-#    Author: Alex Comba <alex.comba@agilebg.com>
 #    Copyright (C) 2014 Agile Business Group sagl
 #    (<http://www.agilebg.com>)
+#    Authors: Alex Comba <alex.comba@agilebg.com>
+#             Lorenzo Battistini <lorenzo.battistini@agilebg.com>
 #
 #    This program is free software: you can redistribute it and/or modify
 #    it under the terms of the GNU Affero General Public License as published
@@ -42,12 +43,9 @@ total area sold expressed in square meters:
 In order to have this function working, it is necessary to have the user
 proceeding as follows:
 
-before starting, s/he has to belong to **sale.group_mrp_properties** by
-selecting the option "Invoice products in a different unit of measure than the
-sales order" in the following menu:
-**Settings --> Configuration --> Warehouse**
-
 Then s/he shall create properties such as ‘length 4’, ‘width 0.5’.
+(Note: this can be more easily achieved by using the modules
+sale_properties_easy_creation and/or sale_properties_dynamic_fields)
 
 Properties must respond the following criteria:
 
@@ -65,17 +63,9 @@ Property 'width 0.5'
     * Property Group : ‘width’
     * Description : 0.5
 
-**Note**: provided the existence of the group 'width', the properties inherent
-that group, can be created while registering the order by simply digiting the
-word 'width' followed by a space and then by the desired quantity, example:
-'width 6'. In this way the system will automatically generate a property of
-group 'width' with value '6'.
-
 After this, the formula 'surface' must be created:
 
-**P['length'] * P['width']**
-whereas P is a mandatory element and 'length' and 'width' must be provided
-in square brackets **[ ]**
+**result = float(properties['length']) * float(properties['width'])**
 
 This is possible by using the menu:
 **Manufacturing --> Configuration--> Formulas**
@@ -94,10 +84,11 @@ Contributors
     'license': 'AGPL-3',
     'depends': [
         'sale_mrp',
+        'sale_properties_easy_creation',
+        'web_context_tunnel',
     ],
     'data': [
         'sale_view.xml',
-        'mrp_view.xml',
         'security/ir.model.access.csv',
     ],
     'test': [

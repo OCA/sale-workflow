@@ -28,6 +28,28 @@ import traceback
 class sale_order_line(orm.Model):
     _inherit = 'sale.order.line'
 
+    def product_id_change(
+        self, cr, uid, ids, pricelist, product, qty=0,
+        uom=False, qty_uos=0, uos=False, name='', partner_id=False,
+        lang=False, update_tax=True, date_order=False, packaging=False,
+        fiscal_position=False, flag=False, context=None
+    ):
+        res = super(SaleOrderLine, self).product_id_change(
+            cr, uid, ids, pricelist, product, qty=qty,
+            uom=uom, qty_uos=qty_uos, uos=uos,
+            name=name, partner_id=partner_id,
+            lang=lang, update_tax=update_tax,
+            date_order=date_order, packaging=packaging,
+            fiscal_position=fiscal_position, flag=flag, context=context)
+        if context is None:
+            context = {}
+        property_ids = context.get('property_ids')
+        formula_id = context.get('formula_id')
+        if formula_id and property_ids:
+            formula = self.pool['mrp.property.formula'].browse(
+                cr, uid, formula_id, context=context)
+        return res
+
     def onchange_formula(
             self, cr, uid, ids,
             formula_id, property_ids, product_uos_qty, context=None
@@ -37,7 +59,7 @@ class sale_order_line(orm.Model):
         warning_msg = ''
         warning = {'title': _('Formula Error!')}
         if formula_id and property_ids:
-            formula = self.pool.get('sale.order.line.quantity.formula').browse(
+            formula = self.pool['sale.order.line.quantity.formula'].browse(
                 cr, uid, formula_id, context=context)
             formula_text = formula.formula_text
             mrp_property_obj = self.pool.get('mrp.property')
@@ -91,7 +113,7 @@ class sale_order_line(orm.Model):
 
     _columns = {
         'formula_id': fields.many2one(
-            'sale.order.line.quantity.formula', 'Formula',),
+            'mrp.property.formula', 'Formula',),
     }
 
     def product_id_change(
@@ -116,35 +138,3 @@ class sale_order_line(orm.Model):
         if 'value' in res and 'product_uos_qty' in res['value']:
             del res['value']['product_uos_qty']
         return res
-
-
-class sale_order_line_quantity_formula(orm.Model):
-    _name = "sale.order.line.quantity.formula"
-
-    _columns = {
-        'name': fields.char('Name', size=32),
-        'formula_text': fields.text('Formula'),
-    }
-
-
-class mrp_property(orm.Model):
-    _inherit = 'mrp.property'
-
-    def name_create(self, cr, uid, name, context=None):
-        """
-        This allows the user to digit 'width 0.5' and the system will
-        automatically create a property of group 'width' with value '0.5'
-        """
-        splitted_name = name.split(' ')
-        if len(splitted_name) == 2:
-            group_ids = self.pool['mrp.property.group'].search(
-                cr, uid, [('name', '=', splitted_name[0])], context=context)
-            if group_ids and len(group_ids) == 1:
-                rec_id = self.create(cr, uid, {
-                    'name': name,
-                    'group_id': group_ids[0],
-                    'description': splitted_name[1]
-                    }, context=context)
-                return self.name_get(cr, uid, [rec_id], context)[0]
-        return super(mrp_property, self).name_create(
-            cr, uid, name, context=context)
