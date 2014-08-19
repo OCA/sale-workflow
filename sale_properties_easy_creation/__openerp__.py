@@ -33,7 +33,8 @@ digit 'width 0.5' and the system will automatically create a property of group
 
 It also adds the model 'mrp.property.formula', to be used by computations based
 on properties.
-Used by modules like 'product_price_properties_based'
+Used by modules like 'product_price_properties_based' and
+'sale_line_quantity_properties_based'
 """,
     'author': 'Agile Business Group',
     'website': 'http://www.agilebg.com',

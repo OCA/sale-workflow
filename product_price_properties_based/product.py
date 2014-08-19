@@ -22,6 +22,9 @@
 from openerp.osv import orm, fields
 from openerp import SUPERUSER_ID
 from openerp.tools.translate import _
+import logging
+
+_logger = logging.getLogger(__name__)
 
 
 class ProductProduct(orm.Model):
@@ -30,12 +33,12 @@ class ProductProduct(orm.Model):
     _columns = {
         'price_formula_id': fields.many2one(
             'mrp.property.formula', 'Price formula',
-            help="You can use the variables"
-                 " - self"
-                 " - cr"
-                 " - uid"
-                 " - ptype"
-                 " - properties (dictionary of properties)"
+            help="You can use the variables\n"
+                 " - self\n"
+                 " - cr\n"
+                 " - uid\n"
+                 " - ptype\n"
+                 " - properties (dictionary of properties)\n"
                  "You have to put the result in the 'result' variable"),
         }
 
@@ -43,7 +46,7 @@ class ProductProduct(orm.Model):
         if 'properties' in context:
             res = {}
             for product in self.browse(cr, SUPERUSER_ID, ids, context=context):
-                res[product.id] = super(ProductProduct,self).price_get(
+                res[product.id] = super(ProductProduct, self).price_get(
                     cr, uid, [product.id], ptype=ptype, context=context
                     )[product.id]
                 if product.price_formula_id:
@@ -57,15 +60,19 @@ class ProductProduct(orm.Model):
                     try:
                         exec product.price_formula_id.formula_text in localdict
                     except KeyError:
+                        _logger.warning(
+                            "KeyError for formula '%s' and prop_dict '%s'"
+                            % (product.price_formula_id.formula_text,
+                                context['properties']))
                         continue
                     try:
                         amount = localdict['result']
                     except KeyError:
                         raise orm.except_orm(
                             _('Error'),
-                            _('Formula must contain \'result\' variable'))
+                            _("Formula must contain 'result' variable"))
                     res[product.id] = amount
         else:
-            res = super(ProductProduct,self).price_get(
+            res = super(ProductProduct, self).price_get(
                 cr, uid, ids, ptype=ptype, context=context)
         return res
