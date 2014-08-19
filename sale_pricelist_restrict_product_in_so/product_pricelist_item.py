@@ -25,10 +25,7 @@ import logging
 logger = logging.getLogger(__name__)
 
 from openerp.osv import orm
-
-# Sentinel value to avoid passing the list of all existing products around
-# when querying possible product ids for a pricelist.
-ANY_PRODUCT = object()
+from .product import ANY_PRODUCT
 
 
 def build_q_tuple(cats, prods):
