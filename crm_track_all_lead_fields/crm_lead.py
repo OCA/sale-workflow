@@ -24,11 +24,13 @@ from openerp.osv import orm
 
 from openerp.addons.crm.crm_lead import crm_lead
 
-
+IGNORED_FIELDS = (
+    'date_action_last',
+    'write_date',
+)
 new_tracked_fields = []
 for name, column in crm_lead._columns.items():
-    if name == 'date_action_last':
-        # This one causes double track updates
+    if name in IGNORED_FIELDS:
         continue
 
     track = getattr(column, "track_visibility", False)
@@ -54,6 +56,6 @@ class CRMLead(orm.Model):
 
     _track = dict(
         (field, merge_track_dict(field, crm_lead, {
-            'crm_track_all_fields.mt_field_updated': track_anything,
+            'crm_track_all_lead_fields.mt_field_updated': track_anything,
         })) for field in new_tracked_fields
     )
