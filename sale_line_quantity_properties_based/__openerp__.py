@@ -45,23 +45,22 @@ proceeding as follows:
 
 Then s/he shall create properties such as ‘length 4’, ‘width 0.5’.
 (Note: this can be more easily achieved by using the modules
-sale_properties_easy_creation and/or sale_properties_dynamic_fields)
+'sale_properties_easy_creation' and/or 'sale_properties_dynamic_fields')
 
 Properties must respond the following criteria:
-
     * Name: ‘length 1’, ‘length 4’, ‘width 0.5’
     * Property Group : either ‘length’ or ‘width’
-    * Description : the corresponding quantity (1, 4, 0.5...)
+    * Value : the corresponding quantity (1, 4, 0.5...)
 
 Property 'length 4'
     * Name: ‘length 4’
     * Property Group : ‘length’
-    * Description : 4
+    * Value : 4
 
 Property 'width 0.5'
     * Name: ‘width 0.5’
     * Property Group : ‘width’
-    * Description : 0.5
+    * Value : 0.5
 
 After this, the formula 'surface' must be created and associated
 to the product:
