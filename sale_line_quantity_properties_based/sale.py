@@ -20,22 +20,21 @@
 #
 ##############################################################################
 
-from openerp.osv import orm, fields
+from openerp.osv import orm
 from openerp.tools.translate import _
-import traceback
 
 
-class sale_order_line(orm.Model):
+class SaleOrderLine(orm.Model):
     _inherit = 'sale.order.line'
 
     def product_id_change(
-        self, cr, uid, ids, pricelist, product, qty=0,
+        self, cr, uid, ids, pricelist, product_id, qty=0,
         uom=False, qty_uos=0, uos=False, name='', partner_id=False,
         lang=False, update_tax=True, date_order=False, packaging=False,
         fiscal_position=False, flag=False, context=None
     ):
         res = super(SaleOrderLine, self).product_id_change(
-            cr, uid, ids, pricelist, product, qty=qty,
+            cr, uid, ids, pricelist, product_id, qty=qty,
             uom=uom, qty_uos=qty_uos, uos=uos,
             name=name, partner_id=partner_id,
             lang=lang, update_tax=update_tax,
@@ -44,97 +43,51 @@ class sale_order_line(orm.Model):
         if context is None:
             context = {}
         property_ids = context.get('property_ids')
-        formula_id = context.get('formula_id')
-        if formula_id and property_ids:
-            formula = self.pool['mrp.property.formula'].browse(
-                cr, uid, formula_id, context=context)
-        return res
+        if product_id and property_ids and qty_uos:
+            product = self.pool['product.product'].browse(
+                cr, uid, product_id, context=context)
+            if product.quantity_formula_id:
+                prop_dict = {}
+                prop_pool = self.pool['mrp.property']
+                for m2m_tup in property_ids:
+                    for prop in prop_pool.browse(
+                        cr, uid, m2m_tup[2], context=context
+                    ):
+                        if prop.group_id.name in prop_dict:
+                            raise orm.except_orm(
+                                _('Error'),
+                                _('Property of group %s already present')
+                                % prop.group_id.name)
+                        prop_dict[prop.group_id.name] = prop.value
 
-    def onchange_formula(
-            self, cr, uid, ids,
-            formula_id, property_ids, product_uos_qty, context=None
-    ):
-        res = {}
-        properties = {}
-        warning_msg = ''
-        warning = {'title': _('Formula Error!')}
-        if formula_id and property_ids:
-            formula = self.pool['sale.order.line.quantity.formula'].browse(
-                cr, uid, formula_id, context=context)
-            formula_text = formula.formula_text
-            mrp_property_obj = self.pool.get('mrp.property')
-            for mrp_property_id in property_ids[0][2]:
-                mrp_property = mrp_property_obj.browse(
-                    cr, uid, mrp_property_id, context=context)
-                if not mrp_property.description:
-                    warning_msg = _(
-                        u"The property %s has the field description "
-                        u"not filled" % mrp_property.name
-                    )
-                    break
-                if mrp_property.group_id.name in properties:
-                    warning_msg = _(
-                        u"The formula %s cannot work since "
-                        u"there are more than one property belong "
-                        u"to the same group" % formula_text
-                    )
-                    break
+                localdict = {
+                    'self': self,
+                    'cr': cr,
+                    'uid': uid,
+                    'properties': prop_dict,
+                    'qty_uos': qty_uos,
+                }
                 try:
-                    properties[mrp_property.group_id.name] = float(
-                        mrp_property.description)
-                except ValueError:
-                    warning_msg = _(
-                        u"%s is not a valid value for the "
-                        u"property %s, it must be a number"
-                        % (
-                            mrp_property.description,
-                            mrp_property.group_id.name
-                        )
-                    )
-                    break
-            if warning_msg:
-                warning.update({'message': warning_msg})
-                return {'warning': warning}
-            try:
-                res['product_uom_qty'] = eval(formula_text.replace(
-                    'P', 'properties')) * product_uos_qty
-            except Exception:
-                formatted_lines = traceback.format_exc().splitlines()
-                warning_msg = _(
-                    u"%s is not a valid formula. Reason: %s"
-                    % (
-                        formula_text,
-                        formatted_lines[-1]
-                    )
-                )
-                warning.update({'message': warning_msg})
-                return {'warning': warning}
-        return {'value': res}
-
-    _columns = {
-        'formula_id': fields.many2one(
-            'mrp.property.formula', 'Formula',),
-    }
-
-    def product_id_change(
-            self, cr, uid, ids, pricelist, product, qty=0,
-            uom=False, qty_uos=0, uos=False, name='', partner_id=False,
-            lang=False, update_tax=True, date_order=False, packaging=False,
-            fiscal_position=False, flag=False, context=None
-    ):
+                    exec product.quantity_formula_id.formula_text in localdict
+                except KeyError:
+                    raise orm.except_orm(
+                        _('Error'),
+                        _("KeyError for formula '%s' and localdict '%s'"
+                            % (product.price_formula_id.formula_text,
+                                localdict)))
+                try:
+                    amount = localdict['result']
+                except KeyError:
+                    raise orm.except_orm(
+                        _('Error'),
+                        _("Formula must contain 'result' variable"))
+                res['value']['product_uom_qty'] = amount
         """
-        Removing product_uos_qty is needed because it is now used to compute
-        the real quantity.
+        Removing product_uos_qty is needed because it can now be used to
+        compute the real quantity.
         Otherwise it would be recomputed after the quantity changed.
         See the automated test for the use case.
         """
-        res = super(sale_order_line, self).product_id_change(
-            cr, uid, ids, pricelist, product, qty=qty,
-            uom=uom, qty_uos=qty_uos, uos=uos, name=name,
-            partner_id=partner_id, lang=lang, update_tax=update_tax,
-            date_order=date_order, packaging=packaging,
-            fiscal_position=fiscal_position, flag=flag, context=context
-        )
         if 'value' in res and 'product_uos_qty' in res['value']:
             del res['value']['product_uos_qty']
         return res

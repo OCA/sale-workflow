@@ -11,6 +11,12 @@
         name: m²
         category_id: product_uom_categ_area
 -
+    I create the formula surface
+-
+    !record {model: mrp.property.formula, id:  sale_order_line_quantity_formula_surface}:
+        name: surface
+        formula_text: result = float(properties['length']) * float(properties['width']) * qty_uos
+-
     I create a product 'shelf'
 -
     !record {model: product.product, id:  product_product_shelf}:
@@ -19,6 +25,7 @@
         type: product
         uom_id: product_uom_m2
         list_price: 1.0
+        quantity_formula_id: sale_order_line_quantity_formula_surface
 -
     I create a property group 'length'
 -
@@ -35,34 +42,24 @@
     !record {model: mrp.property, id:  mrp_property_length_4}:
         name: length 4
         group_id: mrp_property_group_length
-        description: 4
+        value: 4
 -
     I create a property 'width 0.5'
 -
     !record {model: mrp.property, id:  mrp_property_length_width_05}:
         name: width 0.5
         group_id: mrp_property_group_width
-        description: 0.5
+        value: 0.5
 -
-    I create the formula surface
+  I check the on_change
 -
-    !record {model: sale.order.line.quantity.formula, id:  sale_order_line_quantity_formula_surface}:
-        name: surface
-        formula_text: P['width'] * P['length']
--
-    Now i create a sale order with an order line that uses properties and formula previously created
--
-    !record {model: sale.order, id: sale_order_formula}:
-        partner_id: base.res_partner_1
-        order_line:
-          - product_id: product_product_shelf
-            property_ids: 
-                - mrp_property_length_4
-                - mrp_property_length_width_05
-            formula_id: sale_order_line_quantity_formula_surface
-            product_uos_qty: 6
--
-  I verify that the quantity product has been correctly calculated using the formula
--
-    !assert {model: sale.order, id: sale_order_formula, string: The formula was not correctly calculated}:
-        - order_line[0].product_uom_qty == 4 * 0.5 * 6
+  !python {model: sale.order.line}: |
+    if context is None:
+        context = {}
+    context['property_ids'] = [(6, False, [
+        ref('mrp_property_length_4'),
+        ref('mrp_property_length_width_05'),
+        ])]
+    res = self.product_id_change(cr, uid, [], ref('product.list0'), ref('product_product_shelf'), qty_uos=6,
+        partner_id=ref('base.res_partner_1'), context=context)
+    assert res['value']['product_uom_qty'] == 4 * 0.5 * 6, "Quantity must be 12, %s found" % res['value']['product_uom_qty']
