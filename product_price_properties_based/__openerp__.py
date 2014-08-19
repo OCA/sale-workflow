@@ -41,6 +41,7 @@ if 'Painting' in properties:
 When changing properties on sale order line, the system will automatically
 compute the line price unit.
 
+
 Contributors
 ------------
 
