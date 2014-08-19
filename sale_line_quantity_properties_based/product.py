@@ -30,10 +30,10 @@ class ProductProduct(orm.Model):
     _columns = {
         'quantity_formula_id': fields.many2one(
             'mrp.property.formula', 'Quantity formula',
-            help="You can use the variables"
-                 " - self"
-                 " - cr"
-                 " - uid"
-                 " - properties (dictionary of properties)"
+            help="You can use the variables\n"
+                 " - self\n"
+                 " - cr\n"
+                 " - uid\n"
+                 " - properties (dictionary of properties)\n"
                  "You have to put the result in the 'result' variable"),
         }
