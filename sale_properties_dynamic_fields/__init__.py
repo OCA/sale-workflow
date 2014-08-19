@@ -19,6 +19,6 @@
 #
 ##############################################################################
 
-from . import sale_oder
-from . import sale_oder_line
+from . import sale_order
+from . import sale_order_line
 from . import mrp_property_group
