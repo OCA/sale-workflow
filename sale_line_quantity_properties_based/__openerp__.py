@@ -66,14 +66,18 @@ Property 'width 0.5'
 After this, the formula 'surface' must be created and associated
 to the product:
 
-**result = float(properties['length']) * float(properties['width']) * qty_uos**
+```
+result = float(properties['length']) * float(properties['width']) * qty_uos
+```
 
 Upon the registering of the order, the user will apply in the properties field
 the desired properties (in this example the ‘lenght 4’ and ‘width 2’), the
 needed formula (in this example 'surface') and last the quantity (UoS).
 
+
 Contributors
 ------------
+
 * Alex Comba <alex.comba@agilebg.com>
 * Lorenzo Battistini <lorenzo.battistini@agilebg.com>
 """,
