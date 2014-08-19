@@ -62,7 +62,8 @@ class MrpPropertyGroup(orm.Model):
         return True
 
     def create(self, cr, uid, vals, context=None):
-        res = super(MrpPropertyGroup, self).create(cr, uid, vals, context=context)
+        res = super(MrpPropertyGroup, self).create(
+            cr, uid, vals, context=context)
         group = self.browse(cr, uid, res, context=context)
         if group.draw_dynamically:
             field_pool = self.pool['ir.model.fields']
@@ -101,5 +102,6 @@ class MrpPropertyGroup(orm.Model):
             if group.field_id:
                 context['_force_unlink'] = True
                 group.field_id.unlink(context=context)
-        res = super(MrpPropertyGroup, self).unlink(cr, uid, ids, context=context)
+        res = super(MrpPropertyGroup, self).unlink(
+            cr, uid, ids, context=context)
         return res

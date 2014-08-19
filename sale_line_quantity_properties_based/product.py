@@ -20,8 +20,6 @@
 ##############################################################################
 
 from openerp.osv import orm, fields
-from openerp import SUPERUSER_ID
-from openerp.tools.translate import _
 
 
 class ProductProduct(orm.Model):

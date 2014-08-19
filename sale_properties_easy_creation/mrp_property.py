@@ -44,7 +44,7 @@ class MrpProperty(orm.Model):
                     'value': splitted_name[1]
                     }, context=context)
                 return self.name_get(cr, uid, [rec_id], context)[0]
-        return super(mrp_property, self).name_create(
+        return super(MrpProperty, self).name_create(
             cr, uid, name, context=context)
 
 
