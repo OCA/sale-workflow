@@ -1,7 +1,6 @@
 # -*- coding: utf-8 -*-
 ##############################################################################
 #
-#    Author: Alex Comba <alex.comba@agilebg.com>
 #    Copyright (C) 2014 Agile Business Group sagl
 #    (<http://www.agilebg.com>)
 #

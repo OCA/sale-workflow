@@ -1,7 +1,6 @@
 # -*- coding: utf-8 -*-
 ##############################################################################
 #
-#    Author: Alex Comba <alex.comba@agilebg.com>
 #    Copyright (C) 2014 Agile Business Group sagl
 #    (<http://www.agilebg.com>)
 #
@@ -22,6 +21,9 @@
 
 from openerp.osv import orm
 from openerp.tools.translate import _
+import logging
+
+_logger = logging.getLogger(__name__)
 
 
 class SaleOrderLine(orm.Model):
@@ -69,19 +71,18 @@ class SaleOrderLine(orm.Model):
                 }
                 try:
                     exec product.quantity_formula_id.formula_text in localdict
+                    try:
+                        amount = localdict['result']
+                    except KeyError:
+                        raise orm.except_orm(
+                            _('Error'),
+                            _("Formula must contain 'result' variable"))
+                    res['value']['product_uom_qty'] = amount
                 except KeyError:
-                    raise orm.except_orm(
-                        _('Error'),
-                        _("KeyError for formula '%s' and localdict '%s'"
-                            % (product.price_formula_id.formula_text,
-                                localdict)))
-                try:
-                    amount = localdict['result']
-                except KeyError:
-                    raise orm.except_orm(
-                        _('Error'),
-                        _("Formula must contain 'result' variable"))
-                res['value']['product_uom_qty'] = amount
+                    _logger.warning(
+                        "KeyError for formula '%s' and prop_dict '%s'"
+                        % (product.quantity_formula_id.formula_text,
+                            prop_dict))
         """
         Removing product_uos_qty is needed because it can now be used to
         compute the real quantity.
