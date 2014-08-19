@@ -60,11 +60,11 @@ class ProductProduct(orm.Model):
                     try:
                         exec product.price_formula_id.formula_text in localdict
                     except KeyError:
-                        raise orm.except_orm(
-                            _('Error'),
-                            _("KeyError for formula '%s' and localdict '%s'"
-                                % (product.price_formula_id.formula_text,
-                                    localdict)))
+                        _logger.warning(
+                            "KeyError for formula '%s' and prop_dict '%s'"
+                            % (product.quantity_formula_id.formula_text,
+                                prop_dict))
+                        continue
                     try:
                         amount = localdict['result']
                     except KeyError:
