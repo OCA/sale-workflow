@@ -1,7 +1,6 @@
 # -*- coding: utf-8 -*-
 ##############################################################################
 #
-#    Author: Alex Comba <alex.comba@agilebg.com>
 #    Copyright (C) 2014 Agile Business Group sagl
 #    (<http://www.agilebg.com>)
 #
@@ -19,5 +18,22 @@
 #    along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
 ##############################################################################
-from . import sale
-from . import product
+
+from openerp.osv import orm, fields
+from openerp import SUPERUSER_ID
+from openerp.tools.translate import _
+
+
+class ProductProduct(orm.Model):
+    _inherit = "product.product"
+
+    _columns = {
+        'quantity_formula_id': fields.many2one(
+            'mrp.property.formula', 'Quantity formula',
+            help="You can use the variables"
+                 " - self"
+                 " - cr"
+                 " - uid"
+                 " - properties (dictionary of properties)"
+                 "You have to put the result in the 'result' variable"),
+        }

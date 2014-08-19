@@ -63,12 +63,10 @@ Property 'width 0.5'
     * Property Group : ‘width’
     * Description : 0.5
 
-After this, the formula 'surface' must be created:
+After this, the formula 'surface' must be created and associated
+to the product:
 
-**result = float(properties['length']) * float(properties['width'])**
-
-This is possible by using the menu:
-**Manufacturing --> Configuration--> Formulas**
+**result = float(properties['length']) * float(properties['width']) * qty_uos**
 
 Upon the registering of the order, the user will apply in the properties field
 the desired properties (in this example the ‘lenght 4’ and ‘width 2’), the
@@ -89,7 +87,7 @@ Contributors
     ],
     'data': [
         'sale_view.xml',
-        'security/ir.model.access.csv',
+        'product_view.xml',
     ],
     'test': [
         'test/sale_line_quantity_properties_based.yml',
