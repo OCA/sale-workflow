@@ -46,9 +46,12 @@ Used by modules like 'product_price_properties_based' and
     "data": [
         'security/ir.model.access.csv',
         'mrp_property_view.xml',
+        'mrp_property_formula_view.xml',
     ],
     "demo": [
-        'sale_demo.xml',
+        'mrp_property_group_demo.xml',
+        'mrp_property_demo.xml',
+        'mrp_property_formula_demo.xml',
         ],
     "test": [
         'test/properties.yml',

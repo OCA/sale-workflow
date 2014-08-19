@@ -89,7 +89,7 @@ Contributors
         'web_context_tunnel',
     ],
     'data': [
-        'sale_view.xml',
+        'sale_order_view.xml',
         'product_view.xml',
     ],
     'test': [

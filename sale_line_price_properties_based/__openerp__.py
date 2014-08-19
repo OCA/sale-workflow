@@ -57,11 +57,11 @@ Contributors
         'web_context_tunnel',
     ],
     "data": [
-        'sale_view.xml',
+        'sale_order_view.xml',
         'product_view.xml',
     ],
     "demo": [
-        'sale_demo.xml',
+        'product_demo.xml',
         ],
     "test": [
         'test/sale_order.yml',

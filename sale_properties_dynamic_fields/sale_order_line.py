@@ -20,62 +20,7 @@
 ##############################################################################
 
 from openerp.osv import orm
-from lxml import etree
 from openerp.tools.translate import _
-
-
-class SaleOrder(orm.Model):
-    _inherit = 'sale.order'
-
-    def fields_view_get(
-        self, cr, uid, view_id=None, view_type='form', context=None,
-        toolbar=False, submenu=False
-    ):
-        res = super(SaleOrder, self).fields_view_get(
-            cr, uid, view_id=view_id, view_type=view_type, context=context,
-            toolbar=toolbar, submenu=submenu)
-        if res['name'] == u'sale.order.form':
-            property_group_pool = self.pool['mrp.property.group']
-            group_to_draw_ids = property_group_pool.search(cr, uid, [
-                ('draw_dynamically', '=', True),
-                ], context=context)
-            if group_to_draw_ids:
-                for group in property_group_pool.browse(
-                    cr, uid, group_to_draw_ids, context=context
-                ):
-                    if group.name.lower() in res['fields']:
-                        raise orm.except_orm(
-                            _('Error'),
-                            _('Field %s already present') % group.name)
-                    field_name = 'x_%s' % group.name.lower()
-                    res['fields']['order_line']['views']['form'][
-                        'fields'
-                        ].update(
-                            {
-                                field_name: {
-                                    'string': group.name,
-                                    'type': 'char',
-                                    'size': 64,
-                                    'context': {}
-                                }
-                            }
-                    )
-                    eview = etree.fromstring(
-                        res['fields']['order_line']['views']['form']['arch'])
-                    group_field = etree.Element(
-                        'field', name=field_name,
-                        on_change="dynamic_property_changed(property_ids, %s, "
-                                  "context)"
-                        % (field_name),
-                        context="{\'field_name\': \'%s\'}" % field_name
-                        )
-                    prop_m2m_field = eview.xpath(
-                        "//field[@name='property_ids']")[0]
-                    prop_m2m_field.addprevious(group_field)
-                    res['fields']['order_line']['views']['form'][
-                        'arch'
-                        ] = etree.tostring(eview, pretty_print=True)
-        return res
 
 
 class SaleOrderLine(orm.Model):

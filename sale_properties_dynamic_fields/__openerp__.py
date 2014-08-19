@@ -40,7 +40,7 @@ creating new properties or selecting existing properties.
         'sale_properties_easy_creation',
     ],
     "data": [
-        'mrp_property_view.xml',
+        'mrp_property_group_view.xml',
     ],
     "demo": [
         ],

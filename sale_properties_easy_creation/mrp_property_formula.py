@@ -19,5 +19,12 @@
 #
 ##############################################################################
 
-from . import mrp_property
-from . import mrp_property_formula
+from openerp.osv import orm, fields
+
+
+class MrpPropertyFormula(orm.Model):
+    _name = 'mrp.property.formula'
+    _columns = {
+        'name': fields.char('Name', size=128),
+        'formula_text': fields.text('Formula'),
+        }

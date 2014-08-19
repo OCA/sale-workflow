@@ -46,11 +46,3 @@ class MrpProperty(orm.Model):
                 return self.name_get(cr, uid, [rec_id], context)[0]
         return super(MrpProperty, self).name_create(
             cr, uid, name, context=context)
-
-
-class MrpPropertyFormula(orm.Model):
-    _name = 'mrp.property.formula'
-    _columns = {
-        'name': fields.char('Name', size=128),
-        'formula_text': fields.text('Formula'),
-        }
