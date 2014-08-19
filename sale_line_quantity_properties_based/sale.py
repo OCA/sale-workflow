@@ -68,6 +68,7 @@ class SaleOrderLine(orm.Model):
                     'uid': uid,
                     'properties': prop_dict,
                     'qty_uos': qty_uos,
+                    'product_id': product_id,
                 }
                 try:
                     exec product.quantity_formula_id.formula_text in localdict

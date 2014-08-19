@@ -34,6 +34,7 @@ class ProductProduct(orm.Model):
                  " - self\n"
                  " - cr\n"
                  " - uid\n"
+                 " - product_id\n"
                  " - properties (dictionary of properties)\n"
                  "You have to put the result in the 'result' variable"),
         }

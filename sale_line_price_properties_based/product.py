@@ -38,6 +38,7 @@ class ProductProduct(orm.Model):
                  " - cr\n"
                  " - uid\n"
                  " - ptype\n"
+                 " - product_id\n"
                  " - properties (dictionary of properties)\n"
                  "You have to put the result in the 'result' variable"),
         }
@@ -55,6 +56,7 @@ class ProductProduct(orm.Model):
                         'cr': cr,
                         'uid': uid,
                         'ptype': ptype,
+                        'product_id': product.id,
                         'properties': context['properties'],
                     }
                     try:
