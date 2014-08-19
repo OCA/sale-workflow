@@ -62,8 +62,8 @@ class ProductProduct(orm.Model):
                     except KeyError:
                         _logger.warning(
                             "KeyError for formula '%s' and prop_dict '%s'"
-                            % (product.quantity_formula_id.formula_text,
-                                prop_dict))
+                            % (product.price_formula_id.formula_text,
+                                context['properties']))
                         continue
                     try:
                         amount = localdict['result']
