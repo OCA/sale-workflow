@@ -111,8 +111,8 @@ class sale_order(orm.Model):
         if not method.journal_id:
             raise osv.except_osv(
                 _('Configuration Error'),
-                _("An automatic payment should be created for the sale order %s "
-                  "but the payment method '%s' has no journal defined.") %
+                _("An automatic payment should be created for the sale order"
+                  " %s but the payment method '%s' has no journal defined.") %
                 (sale.name, method.name))
 
         journal = method.journal_id
@@ -146,10 +146,12 @@ class sale_order(orm.Model):
         if date is None:
             date = sale.date_order
         journal = journal_obj.browse(cr, uid, journal_id, context=context)
-        self._add_payment(cr, uid, sale, journal, amount, date, description, context=context)
+        self._add_payment(cr, uid, sale, journal, amount, date, description,
+                          context=context)
         return True
 
-    def _add_payment(self, cr, uid, sale, journal, amount, date, description=None, context=None):
+    def _add_payment(self, cr, uid, sale, journal, amount, date,
+                     description=None, context=None):
         """ Generate move lines entries to pay the sale order. """
         move_obj = self.pool.get('account.move')
         period_obj = self.pool.get('account.period')
@@ -212,12 +214,12 @@ class sale_order(orm.Model):
         amount_currency = 0.0
         if journal.currency and journal.currency.id != company.currency_id.id:
             currency_id = journal.currency.id
-            amount_currency, amount = (amount,
-                                       currency_obj.compute(cr, uid,
-                                                            currency_id,
-                                                            company.currency_id.id,
-                                                            amount,
-                                                            context=context))
+            company_amount = currency_obj.compute(cr, uid,
+                                                  currency_id,
+                                                  company.currency_id.id,
+                                                  amount,
+                                                  context=context)
+            amount_currency, amount = amount, company_amount
 
         # payment line (bank / cash)
         debit_line = {
@@ -249,7 +251,8 @@ class sale_order(orm.Model):
         }
         return debit_line, credit_line
 
-    def onchange_payment_method_id(self, cr, uid, ids, payment_method_id, context=None):
+    def onchange_payment_method_id(self, cr, uid, ids, payment_method_id,
+                                   context=None):
         if not payment_method_id:
             return {}
         result = {}
@@ -297,4 +300,5 @@ class sale_order(orm.Model):
                     _('Cannot cancel this sales order!'),
                     _('Automatic payment entries are linked '
                       'with the sale order.'))
-        return super(sale_order, self).action_cancel(cr, uid, ids, context=context)
+        return super(sale_order, self).action_cancel(cr, uid, ids,
+                                                     context=context)
