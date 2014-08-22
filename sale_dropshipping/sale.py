@@ -70,7 +70,8 @@ class sale_order_line(orm.Model):
             result[order_line.id] = po_line_ids and po_line_ids[0] or False
         return result
 
-    def onchange_sale_flow(self, cr, uid, ids, sale_flow, product_id, context=None):
+    def onchange_sale_flow(self, cr, uid, ids, sale_flow, product_id,
+                           context=None):
         """ Change type to make_to_order when sale_flow is direct_delivery """
 
         vals = {}
@@ -78,10 +79,11 @@ class sale_order_line(orm.Model):
             if sale_flow == 'direct_delivery':
                 vals['type'] = 'make_to_order'
             else:
-                product = self.pool['product.product'].browse(cr, uid, product_id, context=context)
+                product = self.pool['product.product'].browse(cr, uid,
+                                                              product_id,
+                                                              context=context)
                 vals['type'] = product.procure_method
         return {'value': vals}
-
 
     _columns = {
         'sale_flow': fields.selection([
