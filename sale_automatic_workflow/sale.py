@@ -1,24 +1,24 @@
 # -*- coding: utf-8 -*-
-#################################################################################
-#                                                                               #
-#    sale_automatic_workflow for OpenERP                                        #
-#    Copyright (C) 2011 Akretion Sébastien BEAU <sebastien.beau@akretion.com>   #
+###############################################################################
+#
+#    sale_automatic_workflow for OpenERP
+#    Copyright (C) 2011 Akretion Sébastien BEAU <sebastien.beau@akretion.com>
 #    Copyright 2013 Camptocamp SA (Guewen Baconnier)
-#                                                                               #
-#    This program is free software: you can redistribute it and/or modify       #
-#    it under the terms of the GNU Affero General Public License as             #
-#    published by the Free Software Foundation, either version 3 of the         #
-#    License, or (at your option) any later version.                            #
-#                                                                               #
-#    This program is distributed in the hope that it will be useful,            #
-#    but WITHOUT ANY WARRANTY; without even the implied warranty of             #
-#    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the              #
-#    GNU Affero General Public License for more details.                        #
-#                                                                               #
-#    You should have received a copy of the GNU Affero General Public License   #
-#    along with this program.  If not, see <http://www.gnu.org/licenses/>.      #
-#                                                                               #
-#################################################################################
+#
+#    This program is free software: you can redistribute it and/or modify
+#    it under the terms of the GNU Affero General Public License as
+#    published by the Free Software Foundation, either version 3 of the
+#    License, or (at your option) any later version.
+#
+#    This program is distributed in the hope that it will be useful,
+#    but WITHOUT ANY WARRANTY; without even the implied warranty of
+#    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+#    GNU Affero General Public License for more details.
+#
+#    You should have received a copy of the GNU Affero General Public License
+#    along with this program.  If not, see <http://www.gnu.org/licenses/>.
+#
+###############################################################################
 from openerp.osv import orm, fields
 
 
@@ -48,7 +48,8 @@ class sale_order(orm.Model):
             picking_vals['workflow_process_id'] = order.workflow_process_id.id
         return picking_vals
 
-    def onchange_payment_method_id(self, cr, uid, ids, payment_method_id, context=None):
+    def onchange_payment_method_id(self, cr, uid, ids, payment_method_id,
+                                   context=None):
         values = super(sale_order, self).onchange_payment_method_id(
             cr, uid, ids, payment_method_id, context=context)
         if not payment_method_id:
@@ -61,12 +62,14 @@ class sale_order(orm.Model):
             values['value']['workflow_process_id'] = workflow.id
         return values
 
-    def onchange_workflow_process_id(self, cr, uid, ids, workflow_process_id, context=None):
+    def onchange_workflow_process_id(self, cr, uid, ids, workflow_process_id,
+                                     context=None):
         if not workflow_process_id:
             return {}
         result = {}
         workflow_obj = self.pool.get('sale.workflow.process')
-        workflow = workflow_obj.browse(cr, uid, workflow_process_id, context=context)
+        workflow = workflow_obj.browse(cr, uid, workflow_process_id,
+                                       context=context)
         if workflow.picking_policy:
             result['picking_policy'] = workflow.picking_policy
         if workflow.order_policy:

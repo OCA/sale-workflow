@@ -87,7 +87,8 @@ class account_invoice(orm.Model):
                 res['total_amount_currency'] += move_line.amount_currency
         return res
 
-    def _prepare_write_off(self, cr, uid, invoice, res_invoice, res_payment, context=None):
+    def _prepare_write_off(self, cr, uid, invoice, res_invoice, res_payment,
+                           context=None):
         if context is None:
             context = {}
         ctx = context.copy()
@@ -96,7 +97,8 @@ class account_invoice(orm.Model):
         else:
             writeoff_type = 'income'
         account_id, journal_id = invoice.company_id.\
-            get_write_off_information('exchange', writeoff_type, context=context)
+            get_write_off_information('exchange', writeoff_type,
+                                      context=context)
         max_date = max(res_invoice['max_date'], res_payment['max_date'])
         ctx['p_date'] = max_date
         period_obj = self.pool.get('account.period')

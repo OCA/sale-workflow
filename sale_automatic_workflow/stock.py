@@ -31,7 +31,8 @@ class stock_picking(orm.Model):
                                                'Sale Workflow Process'),
     }
 
-    def _prepare_invoice(self, cr, uid, picking, partner, inv_type, journal_id, context=None):
+    def _prepare_invoice(self, cr, uid, picking, partner, inv_type, journal_id,
+                         context=None):
         invoice_vals = super(stock_picking, self)._prepare_invoice(
             cr, uid, picking, partner, inv_type, journal_id, context=context)
         invoice_vals['workflow_process_id'] = picking.workflow_process_id.id
@@ -54,29 +55,3 @@ class stock_picking_out(orm.Model):
                 }
             self.do_partial(cr, uid, [picking.id], partial_data)
         return True
-
-# TODO reimplement me
-#    def validate_manufactoring_order(self, cr, uid, origin, context=None):
-# we do not create class mrp.production to avoid dependence with the module mrp
-#        if context is None:
-#            context = {}
-#        wf_service = netsvc.LocalService("workflow")
-#        mrp_prod_obj = self.pool.get('mrp.production')
-#        mrp_product_produce_obj = self.pool.get('mrp.product.produce')
-#        production_ids = mrp_prod_obj.search(cr, uid,
-#                                             [('origin', 'ilike', origin)])
-#        for production in mrp_prod_obj.browse(cr, uid, production_ids):
-#            mrp_prod_obj.force_production(cr, uid, [production.id])
-#            wf_service.trg_validate(uid, 'mrp.production', production.id,
-#                                    'button_produce', cr)
-#            context.update({'active_model': 'mrp.production',
-#                            'active_ids': [production.id],
-#                            'search_default_ready': 1,
-#                            'active_id': production.id})
-#            produce = mrp_product_produce_obj.create(
-#                cr, uid,
-#                {'mode': 'consume_produce',
-#                 'product_qty': production.product_qty}, context)
-#            mrp_product_produce_obj.do_produce(cr, uid, [produce], context)
-#            self.validate_manufactoring_order(cr, uid, production.name, context)
-#        return True
