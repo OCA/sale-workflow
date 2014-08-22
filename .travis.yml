@@ -15,6 +15,7 @@ virtualenv:
 #  - git clone https://github.com/OCA/product-attribute $HOME/product-attribute -b ${VERSION}
 
 install:
+  - git clone https://github.com/OCA/purchase-workflow ${HOME}/purchase-workflow -b 7.0
   - git clone https://github.com/OCA/maintainer-quality-tools.git ${HOME}/maintainer-quality-tools
   - export PATH=${HOME}/maintainer-quality-tools/travis:${PATH}
   - travis_install_nightly
