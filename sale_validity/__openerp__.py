@@ -40,5 +40,4 @@ A default validity duration (in days) can be configured on the company.
      "view/company_view.xml",
  ],
  'installable': True,
- 'active': False,
  }
