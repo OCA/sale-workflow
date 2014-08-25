@@ -10,9 +10,6 @@
             <field name="date_order" position="after">
                 <field name="date_validity"/>
             </field>
-            <field name="date_order" position="attributes">
-                <attribute name="on_change">date_order_change(date_order, date_validity, company_id, context)</attribute>
-            </field>
         </field>
     </record>
 

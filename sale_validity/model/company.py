@@ -19,20 +19,18 @@
 #
 #
 
-from openerp.osv import fields, orm
+from openerp import models, fields
 
 
-class res_company(orm.Model):
+class ResCompany(models.Model):
     _inherit = "res.company"
 
-    _columns = {
-        'default_sale_order_validity_days': fields.integer(
-            "Default Validity of Sale Orders (in days)",
-            help="By default, the validity date of sale orders will be "
-            "the date of the sale order plus the number of days defined "
-            "in this field. If the value of this field is 0, the sale orders "
-            "will not have a validity date by default."),
-    }
+    default_sale_order_validity_days = fields.Integer(
+        string="Default Validity of Sale Orders (in days)",
+        help="By default, the validity date of sale orders will be "
+             "the date of the sale order plus the number of days defined "
+             "in this field. If the value of this field is 0, the sale orders "
+             "will not have a validity date by default.")
 
     _sql_constraints = [
         ('sale_order_validity_days_positive',
