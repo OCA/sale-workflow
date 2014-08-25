@@ -27,7 +27,7 @@ class MrpPropertyGroup(orm.Model):
     _inherit = 'mrp.property.group'
     _columns = {
         'draw_dynamically': fields.boolean(
-            'Draw dynamically', help="In nsale order line, draw this property "
+            'Draw dynamically', help="In sale order line, draw this property "
                                      "dynamically, as text field"),
         'field_id': fields.many2one('ir.model.fields', 'Field', readonly=True),
         }
