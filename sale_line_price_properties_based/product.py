@@ -44,6 +44,8 @@ class ProductProduct(orm.Model):
         }
 
     def price_get(self, cr, uid, ids, ptype='list_price', context=None):
+        if context is None:
+            context = {}
         if 'properties' in context:
             res = {}
             for product in self.browse(cr, SUPERUSER_ID, ids, context=context):
