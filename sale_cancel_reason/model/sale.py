@@ -19,25 +19,21 @@
 #
 #
 
-from openerp.osv import orm, fields
+from openerp import models, fields
 
 
-class sale_order(orm.Model):
+class SaleOrder(models.Model):
     _inherit = 'sale.order'
 
-    _columns = {
-        'cancel_reason_id': fields.many2one(
-            'sale.order.cancel.reason',
-            string="Reason for cancellation",
-            readonly=True,
-            ondelete="restrict"
-        ),
-    }
+    cancel_reason_id = fields.Many2one(
+        'sale.order.cancel.reason',
+        string="Reason for cancellation",
+        readonly=True,
+        ondelete="restrict")
 
 
-class sale_order_cancel_reason(orm.Model):
+class SaleOrderCancelReason(models.Model):
     _name = 'sale.order.cancel.reason'
     _description = 'Sale Order Cancel Reason'
-    _columns = {
-        'name': fields.char('Reason', required=True, translate=True),
-    }
+
+    name = fields.Char('Reason', required=True, translate=True)
