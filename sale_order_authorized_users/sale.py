@@ -26,10 +26,7 @@ class sale_order(orm.Model):
     _columns = {
         'allowed_users_ids': fields.many2many(
             'res.users',
-            'sale_order_res_users_rel',
-            'sale_order_id',
-            'user_id',
-            'Allowed Users',
+            string='Allowed Users',
             groups='base.group_erp_manager',
         ),
     }
