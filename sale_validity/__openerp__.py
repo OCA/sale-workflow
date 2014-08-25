@@ -39,5 +39,8 @@ A default validity duration (in days) can be configured on the company.
      "view/sale_order.xml",
      "view/company_view.xml",
  ],
+ 'test': [
+     'test/sale_validity.yml',
+ ],
  'installable': True,
  }
