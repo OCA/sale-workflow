@@ -19,47 +19,35 @@
 #
 #
 
-from openerp.osv import orm, fields
-from openerp import netsvc
+from openerp import models, fields, api
+
+QUOTATION_STATES = ['draft', 'sent']
 
 
-class logistic_requisition_cancel(orm.TransientModel):
+class LogisticRequisitionCancel(models.TransientModel):
 
     """ Ask a reason for the sale order cancellation."""
     _name = 'sale.order.cancel'
     _description = __doc__
 
-    quotation_states = ['draft', 'sent']
+    reason_id = fields.Many2one(
+        'sale.order.cancel.reason',
+        string='Reason',
+        required=True)
 
-    _columns = {
-        'reason_id': fields.many2one('sale.order.cancel.reason',
-                                     string='Reason',
-                                     required=True),
-    }
-
-    def confirm_cancel(self, cr, uid, ids, context=None):
-        if context is None:
-            context = {}
-        if isinstance(ids, (list, tuple)):
-            assert len(ids) == 1, "1 ID expected"
-            ids = ids[0]
+    @api.one
+    def confirm_cancel(self):
         act_close = {'type': 'ir.actions.act_window_close'}
-        sale_ids = context.get('active_ids')
+        sale_ids = self._context.get('active_ids')
         if sale_ids is None:
             return act_close
         assert len(sale_ids) == 1, "Only 1 sale ID expected"
-        form = self.browse(cr, uid, ids, context=context)
-        sale_obj = self.pool.get('sale.order')
-        sale_obj.write(cr, uid, sale_ids,
-                       {'cancel_reason_id': form.reason_id.id},
-                       context=context)
-        sale = sale_obj.browse(cr, uid, sale_ids[0], context=context)
+        sale = self.env['sale.order'].browse(sale_ids)
+        sale.cancel_reason_id = self.reason_id.id
         # in the official addons, they call the signal on quotations
         # but directly call action_cancel on sales orders
-        if sale.state in self.quotation_states:
-            wf_service = netsvc.LocalService("workflow")
-            wf_service.trg_validate(uid, 'sale.order',
-                                    sale_ids[0], 'cancel', cr)
+        if sale.state in QUOTATION_STATES:
+            sale.signal_workflow('cancel')
         else:
-            sale_obj.action_cancel(cr, uid, sale_ids, context=context)
+            sale.action_cancel()
         return act_close
