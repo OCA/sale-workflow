@@ -15,8 +15,8 @@ virtualenv:
   system_site_packages: true
 
 before_install:
-  - git clone https://github.com/OCA/product-attribute $HOME/product-attribute -b 7.0
-  - git clone https://github.com/OCA/purchase-workflow $HOME/purchase-workflow -b 7.0
+  - git clone https://github.com/OCA/product-attribute $HOME/product-attribute -b ${VERSION}
+  - git clone https://github.com/OCA/purchase-workflow $HOME/purchase-workflow -b ${VERSION}
 
 install:
   - git clone https://github.com/OCA/maintainer-quality-tools.git ${HOME}/maintainer-quality-tools
