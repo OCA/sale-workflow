@@ -22,7 +22,7 @@ import logging
 
 _logger = logging.getLogger(__name__)
 logging.basicConfig()
-_logger.setLevel(logging.DEBUG)
+# _logger.setLevel(logging.DEBUG)
 
 from openerp.osv import fields, orm
 from openerp.tools.translate import _
@@ -38,6 +38,9 @@ class sale_order_revision(orm.Model):
         # This could have been a test like bool(record.revision), but I prefered to
         # store the value in the database, it will be faster and not so footprint heavy
         'revised': fields.boolean('status', readonly=True),
+        # 'revision_ids': fields.one2many('sale.order', 'List of revisions'),
+        'revision_original': fields.many2one('sale.order', 'Original Sale Order'),
+        'number_revisions': fields.integer('Number of Revisions')
     }
 
     def create_revision(self, cr, uid, id_, default=None, context=None):
@@ -51,6 +54,12 @@ class sale_order_revision(orm.Model):
 
         records = self.pool.get(self._inherit)
         current_record = records.browse(cr, uid, id_)
+        revisions = track_revisions(
+            cr, uid,
+            current_record,
+            records,
+            []
+        )
 
         # Regular copy
         new_record_id = self.copy(cr, uid, id_, default=default, context=context)
@@ -61,6 +70,8 @@ class sale_order_revision(orm.Model):
             'revision_of': current_record.id,
             'revision': None,
             'revised': False,
+            'revision_original': revisions[0],
+            'number_revisions': len(revisions),
         })
 
         # Adding the revision of the record to the new record.
@@ -69,6 +80,7 @@ class sale_order_revision(orm.Model):
             'revised': True,
             'revised_by': new_record_id
         })
+
 
         # redisplay the record as a sales order
         # code extracted from sale/sale.py (action_button_confirm method)
@@ -87,3 +99,22 @@ class sale_order_revision(orm.Model):
             'target': 'current',
             }
 
+def track_revisions(cr, uid, record, registry, revisions):
+    """ recursively track previous revisions of a given record.
+    :param record: record to find from.
+    :param registry: registry to look in.
+    :param revisions: list of revisions.
+    :return: list of revisions
+    """
+    previous_record = record.revision_of
+    _logger.debug('previous_record: {}'.format(previous_record))
+    _logger.debug('previous_record.id: {}'.format(previous_record.id))
+
+    # Testing if the record has a revision of itself
+    # to know if we need to keep on tracking.
+    if previous_record.revision_of:
+        track_revisions(cr, uid, previous_record, registry, revisions)
+
+    revisions.append(previous_record)
+
+    return revisions

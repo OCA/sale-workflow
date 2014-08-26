@@ -28,6 +28,12 @@
                         </group>
                     </group>
                 </xpath>
+                <field name="currency_id" position="after">
+                    <group>
+                        <field name="number_revisions"/>
+                        <field name="revision_original"/>
+                    </group>
+                </field>
             </field>
         </record>
     </data>
