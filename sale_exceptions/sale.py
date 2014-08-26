@@ -66,6 +66,11 @@ class SaleException(models.Model):
         'sale_order_exception_rel', 'exception_id', 'sale_order_id',
         string='Sale Orders',
         readonly=True)
+    company_id = fields.Many2one(
+        'res.company',
+        'Company',
+        default=lambda self: self.env['res.company']._company_default_get())
+
 
 
 class SaleOrder(models.Model):

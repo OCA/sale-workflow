@@ -53,6 +53,7 @@ Contributors
           'sale_exceptions_data.xml',
           'wizard/sale_exception_confirm_view.xml',
           'security/ir.model.access.csv',
+          'security/ir_rule.xml',
           'settings/sale.exception.csv'],
  'installable': True,
  }
