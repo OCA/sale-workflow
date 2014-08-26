@@ -8,13 +8,27 @@
             <field name="inherit_id" ref="sale.view_order_form"/>
             <field name="type">form</field>
             <field name="arch" type="xml">
-                <field name="currency_id" position="after">
+                <xpath expr="//button[@name='cancel']" position="before">
+                    <button name="create_revision"
+                            type="object"
+                            attrs="{'invisible': [('revised', '=', True)]}"
+                            groups="base.group_user"
+                            states=""
+                            string="Review"/>
+                </xpath>
+                <xpath expr="//sheet/group" position="after">
                     <group>
-                        <field name="revision"/>
+                        <group>
+                            <field name="revision_of"/>
+                        </group>
+                        <group>
+                            <field name="revised_by"/>
+                            <!--Required for the condition on the button-->
+                            <field name="revised" invisible="1"/>
+                        </group>
                     </group>
-                </field>
+                </xpath>
             </field>
         </record>
-
     </data>
 </openerp>

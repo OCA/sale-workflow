@@ -25,6 +25,7 @@ logging.basicConfig()
 _logger.setLevel(logging.DEBUG)
 
 from openerp.osv import fields, orm
+from openerp.tools.translate import _
 
 
 class sale_order_revision(orm.Model):
@@ -32,31 +33,57 @@ class sale_order_revision(orm.Model):
     _inherit = 'sale.order'
 
     _columns = {
-        'revision': fields.many2one('sale.order', 'Revision', readonly=True),
+        'revision_of': fields.many2one('sale.order', 'Revision of', readonly=True),
+        'revised_by': fields.many2one('sale.order', 'Revised by', readonly=True),
         # This could have been a test like bool(record.revision), but I prefered to
         # store the value in the database, it will be faster and not so footprint heavy
         'revised': fields.boolean('status', readonly=True),
     }
 
-    def copy(self, cr, uid, id, default=None, context=None):
-        """ Override of the copy method to add a link between the
-        copied record and the copy.
+    def create_revision(self, cr, uid, id_, default=None, context=None):
+        """ Create a copy of the current record and add data to link the two records.
 
-        :return: record id
+        :return: View descriptor
         """
+        # We need the id as int here.
+        if isinstance(id_, list):
+            id_ = id_[0]
+
         records = self.pool.get(self._inherit)
-        current_record = records.browse(cr, uid, id)
+        current_record = records.browse(cr, uid, id_)
 
         # Regular copy
-        new_record_id = super(sale_order_revision, self).copy(cr, uid, id, default=default, context=context)
+        new_record_id = self.copy(cr, uid, id_, default=default, context=context)
         new_record = records.browse(cr, uid, new_record_id)
 
         # creating a new record with the revision to the current record.
-        new_record.write({'revision': current_record.id})
+        new_record.write({
+            'revision_of': current_record.id,
+            'revision': None,
+            'revised': False,
+        })
 
         # Adding the revision of the record to the new record.
         # Also updating revised to indicate the record is revised.
-        current_record.write({'revised': True, 'revision': new_record_id})
+        current_record.write({
+            'revised': True,
+            'revised_by': new_record_id
+        })
 
-        # The standard copy() method returns the id of the copy.
-        return new_record_id
+        # redisplay the record as a sales order
+        # code extracted from sale/sale.py (action_button_confirm method)
+        view_ref = self.pool.get('ir.model.data').get_object_reference(cr, uid, 'sale', 'view_order_form')
+        view_id = view_ref and view_ref[1] or False,
+
+        return {
+            'type': 'ir.actions.act_window',
+            'name': _('Sales Order Revision'),
+            'res_model': 'sale.order',
+            'view_type': 'form',
+            'view_mode': 'form',
+            'view_id': view_id,
+            'nodestroy': True,
+            'res_id': new_record_id,
+            'target': 'current',
+            }
+
