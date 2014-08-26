@@ -54,6 +54,8 @@ More informations
     'external_dependencies': {
         'python': [],
     },
-    'data': ['casa_data.xml'],
+    'data': [
+        'sale_order_revision_view.xml',
+    ],
     'installable': True,
 }

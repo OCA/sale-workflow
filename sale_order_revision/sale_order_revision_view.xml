@@ -1,0 +1,20 @@
+<?xml version="1.0" ?>
+<openerp>
+    <data>
+
+        <record id="sale_order_revision_form_view" model="ir.ui.view">
+            <field name="name">sale.order.revision.form.view</field>
+            <field name="model">sale.order</field>
+            <field name="inherit_id" ref="sale.view_order_form"/>
+            <field name="type">form</field>
+            <field name="arch" type="xml">
+                <field name="currency_id" position="after">
+                    <group>
+                        <field name="revision"/>
+                    </group>
+                </field>
+            </field>
+        </record>
+
+    </data>
+</openerp>
