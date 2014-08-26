@@ -65,7 +65,7 @@ class sale_exception(orm.Model):
         )
     }
 
-    def _default_company(self, cr, uid, ids, context=None):
+    def _default_company(self, cr, uid, context=None):
         return self.pool['res.company']._company_default_get(
             cr,
             uid,
