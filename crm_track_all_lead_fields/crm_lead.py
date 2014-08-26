@@ -20,6 +20,9 @@
 #
 ##############################################################################
 
+import logging
+_logger = logging.getLogger(__name__)
+
 from openerp.osv import orm
 
 from openerp.addons.crm.crm_lead import crm_lead
@@ -39,7 +42,19 @@ for name, column in crm_lead._columns.items():
         column.track_visibility = "onchange"
 
 
-def track_anything(self, cr, uid, obj, ctx=None):
+def track_anything_once(self, cr, uid, obj, ctx):
+    if ctx is None:
+        # We need the context to track mails being sent. It currently is
+        # passed for both write() and create() and should not be None unless
+        # someone played in mail thread. Issue a warning and disallow track.
+        _logger.warn("Missing context, disallowing track_anything_once")
+        return False
+
+    track_ctx = ctx.setdefault("__track_once_context__", {})
+    obj_id = obj.get("id", None)
+    if obj_id in track_ctx:
+        return False
+    track_ctx[obj_id] = True
     return True
 
 
@@ -56,6 +71,6 @@ class CRMLead(orm.Model):
 
     _track = dict(
         (field, merge_track_dict(field, crm_lead, {
-            'crm_track_all_lead_fields.mt_field_updated': track_anything,
+            'crm_track_all_lead_fields.mt_field_updated': track_anything_once,
         })) for field in new_tracked_fields
     )
