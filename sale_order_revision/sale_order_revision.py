@@ -22,7 +22,7 @@ import logging
 
 _logger = logging.getLogger(__name__)
 logging.basicConfig()
-_logger.setLevel(logging.DEBUG)
+# _logger.setLevel(logging.DEBUG)
 
 from openerp.osv import fields, orm
 from openerp.tools.translate import _
