@@ -42,7 +42,7 @@ class SaleOrder(InvoiceSale):
         return result
 
     def onchange_shop_id(self, cr, uid, ids, *args, **kwargs):
-        res = super(sale_order, self).onchange_shop_id(cr, uid, ids, *args, **kwargs)
+        res = super(SaleOrder, self).onchange_shop_id(cr, uid, ids, *args, **kwargs)
         if len(args) >=1:
             shop_id = args[0]
         else:
