@@ -70,7 +70,7 @@
                         position="inside">
                     <group name="exception" colspan="2" col="2">
                         <separator string="Exception" colspan="2"/>
-                        <field name="exceptions_ids" colspan="2" nolabel="1"/>
+                        <field name="exception_ids" colspan="2" nolabel="1"/>
                     </group>
                 </xpath>
             </field>

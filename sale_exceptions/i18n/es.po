@@ -114,7 +114,7 @@ msgid "Exception Name"
 msgstr "Nombre Excepción"
 
 #. module: sale_exceptions
-#: field:sale.order,exceptions_ids:0
+#: field:sale.order,exception_ids:0
 msgid "Exceptions"
 msgstr "Excepciones"
 
