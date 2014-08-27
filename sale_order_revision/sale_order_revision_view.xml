@@ -28,12 +28,12 @@
                         </group>
                     </group>
                 </xpath>
-                <field name="currency_id" position="after">
+                <xpath expr="//page[@string='Other Information']/group" position="after">
                     <group>
                         <field name="number_revisions"/>
-                        <field name="revision_original"/>
+                        <field name="revision_original_id"/>
                     </group>
-                </field>
+                </xpath>
             </field>
         </record>
     </data>

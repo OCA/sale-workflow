@@ -22,7 +22,7 @@ import logging
 
 _logger = logging.getLogger(__name__)
 logging.basicConfig()
-# _logger.setLevel(logging.DEBUG)
+_logger.setLevel(logging.DEBUG)
 
 from openerp.osv import fields, orm
 from openerp.tools.translate import _
@@ -33,14 +33,13 @@ class sale_order_revision(orm.Model):
     _inherit = 'sale.order'
 
     _columns = {
-        'revision_of': fields.many2one('sale.order', 'Revision of', readonly=True),
-        'revised_by': fields.many2one('sale.order', 'Revised by', readonly=True),
+        'revision_of': fields.many2one(_inherit, 'Revision of', readonly=True),
+        'revised_by': fields.many2one(_inherit, 'Revised by', readonly=True),
         # This could have been a test like bool(record.revision), but I prefered to
         # store the value in the database, it will be faster and not so footprint heavy
         'revised': fields.boolean('status', readonly=True),
-        # 'revision_ids': fields.one2many('sale.order', 'List of revisions'),
-        'revision_original': fields.many2one('sale.order', 'Original Sale Order'),
-        'number_revisions': fields.integer('Number of Revisions')
+        'revision_original_id': fields.many2one(_inherit, 'Original Sale Order', readonly=True),
+        'number_revisions': fields.integer('Number of Revisions', readonly=True)
     }
 
     def create_revision(self, cr, uid, id_, default=None, context=None):
@@ -54,23 +53,26 @@ class sale_order_revision(orm.Model):
 
         records = self.pool.get(self._inherit)
         current_record = records.browse(cr, uid, id_)
-        revisions = track_revisions(
-            cr, uid,
-            current_record,
-            records,
-            []
-        )
 
         # Regular copy
         new_record_id = self.copy(cr, uid, id_, default=default, context=context)
         new_record = records.browse(cr, uid, new_record_id)
-
-        # creating a new record with the revision to the current record.
         new_record.write({
             'revision_of': current_record.id,
-            'revision': None,
+            'revised_by': None,
             'revised': False,
-            'revision_original': revisions[0],
+            })
+
+        revisions = track_revisions(
+            cr, uid,
+            new_record,
+            records,
+            []
+        )
+        _logger.debug('Revisions: {}'.format(revisions))
+        # creating a new record with the revision to the current record.
+        new_record.write({
+            'revision_original_id': revisions[0].id,
             'number_revisions': len(revisions),
         })
 
