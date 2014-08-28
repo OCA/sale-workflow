@@ -67,11 +67,10 @@ class SaleOrderLine(orm.Model):
                 ('field_id', '=', field_ids[0]),
                 ], context=context)
             if len(group_ids) != 1:
-                return {
-                    'warning':
-                    "There must be 1 and only 1 group for %s"
-                    % context['field_name']
-                    }
+                raise orm.except_orm(
+                    _('Error'),
+                    _('There must be 1 and only 1 %s')
+                    % context['field_name'])
             group = group_pool.browse(cr, uid, group_ids[0], context=context)
             if group.name in prop_dict:
                 del prop_dict[group.name]
