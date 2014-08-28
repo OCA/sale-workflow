@@ -59,10 +59,10 @@ class SaleOrderLine(orm.Model):
                 ('model', '=', 'sale.order.line'),
                 ], context=context)
             if len(field_ids) != 1:
-                return {
-                    'warning':
-                    "There must be 1 and only 1 %s" % context['field_name']
-                    }
+                raise orm.except_orm(
+                    _('Error'),
+                    _('There must be 1 and only 1 %s')
+                    % context['field_name'])
             group_ids = group_pool.search(cr, uid, [
                 ('field_id', '=', field_ids[0]),
                 ], context=context)
