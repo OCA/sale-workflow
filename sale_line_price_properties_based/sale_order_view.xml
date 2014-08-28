@@ -2,15 +2,15 @@
 <openerp>
     <data>
 
-        <record id="view_order_form" model="ir.ui.view">
+        <record id="view_order_form_inherit" model="ir.ui.view">
             <field name="name">sale.order.form</field>
             <field name="model">sale.order</field>
             <field name="inherit_id" ref="sale_stock.view_order_form_inherit"/>
             <field name="arch" type="xml">
-                <xpath expr="//page[@string='Order Lines']/field[@name='order_line']/form[@string='Sales Order Lines']/group/group/field[@name='product_id']" position="attributes">
+                <xpath expr="//field[@name='order_line']/form[@string='Sales Order Lines']/group/group/field[@name='product_id']" position="attributes">
                     <attribute name="context_properties">{'property_ids': property_ids}</attribute>
                 </xpath>
-                <xpath expr="//page[@string='Order Lines']/field[@name='order_line']/form[@string='Sales Order Lines']/group/group/div/field[@name='product_uom_qty']" position="attributes">
+                <xpath expr="//field[@name='order_line']/form[@string='Sales Order Lines']/group/group/div/field[@name='product_uom_qty']" position="attributes">
                     <attribute name="context_properties">{'property_ids': property_ids}</attribute>
                 </xpath>
                 <field name="property_ids" position="attributes">
