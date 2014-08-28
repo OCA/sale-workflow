@@ -20,5 +20,16 @@
             </field>
         </record>
 
+        <record id="view_order_form" model="ir.ui.view">
+            <field name="name">sale.order.form</field>
+            <field name="model">sale.order</field>
+            <field name="inherit_id" ref="sale.view_order_form"/>
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='order_line']/form/group/group/div/field[@name='product_uom']" position="attributes">
+                    <attribute name="context_properties">{'property_ids': property_ids}</attribute>
+                </xpath>
+            </field>
+        </record>
+
     </data>
 </openerp>
