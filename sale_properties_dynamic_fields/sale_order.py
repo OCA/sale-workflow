@@ -43,11 +43,22 @@ class SaleOrder(orm.Model):
                 for group in property_group_pool.browse(
                     cr, uid, group_to_draw_ids, context=context
                 ):
-                    if group.name.lower() in res['fields']:
+                    if not group.field_id:
+                        raise orm.except_orm(
+                            _('Error'),
+                            _(
+                                'The group %s has draw_dynamically set but '
+                                'there is no linked field '
+                            ) % group.name
+                        )
+                    if (
+                        group.field_id.name in res['fields']['order_line'][
+                                               'views']['form']['fields']
+                    ):
                         raise orm.except_orm(
                             _('Error'),
                             _('Field %s already present') % group.name)
-                    field_name = 'x_%s' % group.name.lower()
+                    field_name = group.field_id.name
                     res['fields']['order_line']['views']['form'][
                         'fields'
                         ].update(
