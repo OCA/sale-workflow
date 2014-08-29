@@ -1,0 +1,16 @@
+#
+# This list is used by git-shortlog to fix a few botched name translations
+# in the git archive, either because the author's full name was messed up
+# and/or not always written the same way, making contributions from the
+# same person appearing not to be so.
+#
+
+Alexandre Fayolle <alexandre.fayolle@camptocamp.com>
+Alexandre Fayolle <alexandre.fayolle@camptocamp.com> <afayolle.ml@free.fr>
+Alex Comba <alex.comba@agilebg.com>
+Jacques-Etienne Baudoux <je@bcim.be>
+Joël Grand-Guillaume <joel.grandguillaume@camptocamp.com>
+Lorenzo Battistini <lorenzo.battistini@agilebg.com>
+Nicolas Bessi <nicolas.bessi@camptocamp.com>
+Romain Deheele <romain.deheele@camptocamp.com>
+Sébastien Beau <sebastien.beau@akretion.com>
