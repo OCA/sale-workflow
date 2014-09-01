@@ -53,7 +53,7 @@ class SaleOrder(orm.Model):
                         )
                     if (
                         group.field_id.name in res['fields']['order_line'][
-                                               'views']['form']['fields']
+                            'views']['form']['fields']
                     ):
                         raise orm.except_orm(
                             _('Error'),
