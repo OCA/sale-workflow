@@ -39,7 +39,7 @@ class SaleOrder(orm.Model):
         return res
 
     def _amount_to_invoice_search(self, cr, uid, obj, name, args, context=None):
-        """Account root filter"""
+        """Amount to invoice filter"""
 
         if context is None:
             context = {}

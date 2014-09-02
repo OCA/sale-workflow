@@ -58,7 +58,7 @@
         <data>
           <filter string="Done" position="after">
             <filter icon="terp-dolar_ok!"
-                    string="Amount to invoice <> 0"
+                    string="Amount to invoice &gt; 0"
                     domain="[('amount_to_invoice','>', 0)]"/>
           </filter>
         </data>
