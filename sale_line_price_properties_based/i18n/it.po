@@ -1,6 +1,6 @@
 # Translation of OpenERP Server.
 # This file contains the translation of the following modules:
-#	* product_price_properties_based
+#	* sale_line_price_properties_based
 #
 msgid ""
 msgstr ""
@@ -15,26 +15,26 @@ msgstr ""
 "Content-Transfer-Encoding: \n"
 "Plural-Forms: \n"
 
-#. module: product_price_properties_based
+#. module: sale_line_price_properties_based
 #: field:product.product,price_formula_id:0
 msgid "Price formula"
 msgstr "Formula prezzo"
 
-#. module: product_price_properties_based
+#. module: sale_line_price_properties_based
 #: code:_description:0
-#: model:ir.model,name:product_price_properties_based.model_product_product
+#: model:ir.model,name:sale_line_price_properties_based.model_product_product
 #, python-format
 msgid "Product"
 msgstr "Prodotto"
 
-#. module: product_price_properties_based
+#. module: sale_line_price_properties_based
 #: code:_description:0
-#: model:ir.model,name:product_price_properties_based.model_sale_order_line
+#: model:ir.model,name:sale_line_price_properties_based.model_sale_order_line
 #, python-format
 msgid "Sales Order Line"
 msgstr "Linea d'ordine di vendita"
 
-#. module: product_price_properties_based
+#. module: sale_line_price_properties_based
 #: help:product.product,price_formula_id:0
 msgid "You can use the variables\n"
 " - self\n"
@@ -51,12 +51,12 @@ msgstr "E' possibile usare le variabili\n"
 " - properties (dizionario di proprietà)\n"
 "Bisogna mettere il risultato nella variabile 'result'"
 
-#. module: product_price_properties_based
+#. module: sale_line_price_properties_based
 #: view:sale.order:0
 msgid "product_id_change(parent.pricelist_id,product_id,product_uom_qty,product_uom,False,False,False,parent.partner_id, False, False, parent.date_order, False, False, False, context)"
 msgstr "product_id_change(parent.pricelist_id,product_id,product_uom_qty,product_uom,False,False,False,parent.partner_id, False, False, parent.date_order, False, False, False, context)"
 
-#. module: product_price_properties_based
+#. module: sale_line_price_properties_based
 #: view:sale.order:0
 msgid "{'property_ids': property_ids}"
 msgstr "{'property_ids': property_ids}"
