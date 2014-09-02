@@ -33,11 +33,39 @@ class SaleOrder(orm.Model):
             invoiced_amount = sum(
                 invoice.amount_total
                 for invoice in sale.invoice_ids
-                if invoice.state != 'draft'
+                if invoice.state in ('open', 'done')
             )
             res[sale.id] = max(0.0, sale.amount_total - invoiced_amount)
         return res
 
+    def _amount_to_invoice_search(self, cr, uid, obj, name, args, context=None):
+        """Account root filter"""
+
+        if context is None:
+            context = {}
+
+        amount_to_invoice = None
+
+        for arg in args:
+            if arg[0] == 'amount_to_invoice':
+                amount_to_invoice = arg[2]
+                break
+
+        if amount_to_invoice is not None:
+            super_search = super(SaleOrder, self).search
+            all_ids = super_search(cr, uid, [],
+                                   context=context)
+            search_ids = []
+
+            for sale in self.browse(cr, uid, all_ids, context=context):
+                if sale.amount_to_invoice != 0.00:
+                    search_ids.append(sale.id)
+            return [('id', 'in', search_ids)]
+
+        return []
+
     _columns = {
-        'amount_to_invoice': fields.function(_amount_to_invoice, string='Amount to Invoice', type='float'),
+        'amount_to_invoice': fields.function(
+            _amount_to_invoice, fnct_search=_amount_to_invoice_search,
+            string='Amount to Invoice', type='float'),
     }

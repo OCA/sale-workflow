@@ -41,6 +41,7 @@ Contributors
 ------------
 * Vincent Vinet (vincent.vinet@savoirfairelinux.com)
 * Marc Cassuto (marc.cassuto@savoirfairelinux.com)
+* El Hadji Dem (elhadji.dem@savoirfairelinux.com)
 """,
     'depends': [
         'sale',

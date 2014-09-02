@@ -21,7 +21,7 @@
         <xpath expr="//page[@string='Other Information']" position="after">
           <page string="Invoices" groups="base.group_user">
             <field name="invoice_ids">
-              <tree string="Invoices" version="7.0" editable="bottom" >
+              <tree string="Invoices" version="7.0">
                 <field name="date_invoice"/>
                 <field name="reference" invisible="1"/>
                 <field name="number"/>
@@ -36,12 +36,32 @@
               </tree>
             </field>
             <div class="oe_clear" />
-            <group class="oe_subtotal_footer oe_right" colspan="2" name="invoice_total">
-              <field name="amount_to_invoice" string="Amount to Invoice" widget="monetary" />
+            <group class="oe_subtotal_footer oe_right"
+                   colspan="2"
+                   name="invoice_total">
+                <field name="amount_to_invoice"
+                       string="Amount to Invoice"
+                       widget="monetary" />
             </group>
             <div class="oe_clear"/>
           </page>
         </xpath>
+      </field>
+    </record>
+
+    <!--Add filter for amount_to_invoice-->
+    <record id="view_sales_order_filter_amount_to_invoice" model="ir.ui.view">
+      <field name="name">view.sales.order.filter.amount.invoice</field>
+      <field name="inherit_id" ref="sale.view_sales_order_filter" />
+      <field name="model">sale.order</field>
+      <field name="arch" type="xml">
+        <data>
+          <filter string="Done" position="after">
+            <filter icon="terp-dolar_ok!"
+                    string="Amount to invoice <> 0"
+                    domain="[('amount_to_invoice','>', 0)]"/>
+          </filter>
+        </data>
       </field>
     </record>
 
