@@ -21,6 +21,7 @@
 
 from openerp.osv import orm
 from openerp.tools.translate import _
+from openerp.tools import float_round
 import logging
 
 _logger = logging.getLogger(__name__)
@@ -54,6 +55,9 @@ class SaleOrderLine(orm.Model):
             if product.quantity_formula_id:
                 prop_dict = {}
                 prop_pool = self.pool['mrp.property']
+                precision_pool = self.pool['decimal.precision']
+                uom_precision = precision_pool.precision_get(
+                    cr, uid, 'Product UoS')
                 for m2m_tup in property_ids:
                     for prop in prop_pool.browse(
                         cr, uid, m2m_tup[2], context=prop_ctx
@@ -81,7 +85,11 @@ class SaleOrderLine(orm.Model):
                         raise orm.except_orm(
                             _('Error'),
                             _("Formula must contain 'result' variable"))
-                    res['value']['product_uom_qty'] = amount
+                    # rounding because decimal values, different from what
+                    # displayed on interface, could generate infinite
+                    # on_change loop
+                    res['value']['product_uom_qty'] = float_round(
+                        amount, precision_digits=uom_precision)
                 except KeyError:
                     _logger.warning(
                         "KeyError for formula '%s' and prop_dict '%s'"
