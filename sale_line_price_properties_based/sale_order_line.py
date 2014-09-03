@@ -42,12 +42,15 @@ class SaleOrderLine(orm.Model):
         if context is None:
             context = {}
         properties = context.get('property_ids')
+        prop_ctx = context.copy()
+        if 'lang' in prop_ctx:
+            del prop_ctx['lang']
         if properties and product:
             prop_dict = {}
             prop_pool = self.pool['mrp.property']
             for m2m_tup in properties:
                 for prop in prop_pool.browse(
-                    cr, uid, m2m_tup[2], context=context
+                    cr, uid, m2m_tup[2], context=prop_ctx
                 ):
                     if prop.group_id.name in prop_dict:
                         raise orm.except_orm(
