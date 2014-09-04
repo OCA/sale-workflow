@@ -46,7 +46,7 @@ class sale_order_line(orm.Model):
                 cr, uid, 'sale_line_description',
                 'group_use_product_description_per_so_line'
             )
-            if ref and len(ref) > 1 and ref[1] and if not flag:
+            if ref and len(ref) > 1 and ref[1] and not flag:
                 group_id = ref[1]
                 if group_id in user_groups:
                     product_obj = self.pool.get('product.product')
