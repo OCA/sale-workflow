@@ -21,12 +21,13 @@
 #
 {
     'name': "Sale line description",
-    'version': '0.1',
+    'version': '1.0',
     'category': 'Sales Management',
     'description': """
-This module allows to use only the product description on the sale order lines.
-To do so, the user has to belong to group_use_product_description_per_so_line.
-This is possible by selecting the related option in the following menu:
+This module allows to use only the product sale description on the sale order
+lines. To do so, the user has to belong to
+group_use_product_description_per_so_line. This is possible by selecting the
+related option in the following menu:
 
 Settings --> Configuration --> Sale --> Sale Features
     """,
