@@ -57,5 +57,5 @@ class sale_order_line(orm.Model):
                         and product.description
                         and 'value' in res
                     ):
-                        res['value']['name'] = product.description
+                        res['value']['name'] = product.description_sale
         return res
