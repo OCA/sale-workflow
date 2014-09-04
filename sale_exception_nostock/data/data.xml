@@ -7,7 +7,7 @@
 to be delivered using MTS procument method</field>
       <field name="sequence">20</field>
       <field name="model">sale.order.line</field>
-      <field name="code">if not object.can_command_at_delivery_date():
+      <field name="code">if not object.can_command_at_delivery_date()[0]:
     failed = True</field>
       <field name="active" eval="True"/>
     </record>
@@ -19,7 +19,7 @@ to be delivered using MTS procument method</field>
       </field>
       <field name="sequence">40</field>
       <field name="model">sale.order.line</field>
-      <field name="code">if object.future_orders_are_affected():
+      <field name="code">if object.future_orders_are_affected()[0]:
     failed = True</field>
       <field name="active" eval="True"/>
     </record>

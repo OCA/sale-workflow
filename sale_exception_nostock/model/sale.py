@@ -19,12 +19,10 @@
 #
 #
 import datetime
-from openerp.osv import orm
-from openerp.tools import (DEFAULT_SERVER_DATE_FORMAT,
-                           DEFAULT_SERVER_DATETIME_FORMAT)
+from openerp import models, fields, api
 
 
-class sale_order_line(orm.Model):
+class SaleOrderLine(models.Model):
 
     """Adds two exception functions to be called by the sale_exceptions module.
 
@@ -39,18 +37,21 @@ class sale_order_line(orm.Model):
 
     _inherit = "sale.order.line"
 
-    def _compute_line_delivery_date(self, line_br, context=None):
-        date_order = line_br.order_id.date_order
-        date_order = datetime.datetime.strptime(date_order,
-                                                DEFAULT_SERVER_DATE_FORMAT)
+    @api.one
+    def _compute_line_delivery_date(self):
+        date_order = self.order_id.date_order
+        date_order = fields.Date.from_string(date_order)
         # delay is a float, that is perfectly supported by timedelta
-        return date_order + datetime.timedelta(days=line_br.delay)
+        return date_order + datetime.timedelta(days=self.delay)
 
-    def _get_line_location(self, line_br, context=None):
-        return line_br.order_id.shop_id.warehouse_id.lot_stock_id.id
+    @api.multi
+    def _get_line_location(self):
+        return self.order_id.shop_id.warehouse_id.lot_stock_id.id
 
-    def can_command_at_delivery_date(self, cr, uid, l_id, context=None):
-        """Predicate that checks whether a SO line can be delivered at delivery date.
+    @api.one
+    def can_command_at_delivery_date(self):
+        """Predicate that checks whether a SO line can be delivered at delivery
+        date.
 
         Delivery date is computed using date of the order + line delay.
         Location is taken from the shop linked to the line
@@ -58,34 +59,29 @@ class sale_order_line(orm.Model):
         :return: True if line can be delivered on time
 
         """
-        if context is None:
-            context = {}
-        prod_obj = self.pool['product.product']
-        if isinstance(l_id, (tuple, list)):
-            assert len(l_id) == 1, "Only one id supported"
-            l_id = l_id[0]
-        line = self.browse(cr, uid, l_id, context=context)
-        if not line.product_id or line.type != 'make_to_stock':
+        if not self.product_id or self.type != 'make_to_stock':
             return True
-        delivery_date = self._compute_line_delivery_date(line, context=context)
-        ctx = context.copy()
-        ctx['to_date'] = delivery_date.strftime(DEFAULT_SERVER_DATETIME_FORMAT)
-        ctx['location'] = self._get_line_location(line, context=context)
-        ctx['compute_child'] = True
+        delivery_date = self._compute_line_delivery_date()[0]
+        delivery_date = fields.Datetime.to_string(delivery_date)
+        ctx = {
+            'to_date': delivery_date,
+            'location': self._get_line_location(),
+            'compute_child': True,
+            }
         # Virtual qty is made on all childs of chosen location
-        prod_for_virtual_qty = prod_obj.read(cr, uid, line.product_id.id,
-                                             ['virtual_available'],
-                                             context=ctx)
-        if prod_for_virtual_qty['virtual_available'] < line.product_uom_qty:
+        prod_for_virtual_qty = (self.product_id
+                                .with_context(ctx)
+                                .virtual_available)
+        if prod_for_virtual_qty < self.product_uom_qty:
             return False
         return True
 
+    @api.model
     def _get_states(self):
         return ('waiting', 'confirmed', 'assigned')
 
-    def _get_affected_dates(
-        self, cr, location_id, product_id, delivery_date, context=None
-    ):
+    @api.model
+    def _get_affected_dates(self, location_id, product_id, delivery_date):
         """Determine future dates where virtual stock has to be checked.
 
         It will only look for stock move that pass by location_id.
@@ -100,6 +96,7 @@ class sale_order_line(orm.Model):
         :return: list of dates to be checked
 
         """
+        cr = self._cr
         sql = ("SELECT date FROM stock_move"
                "  WHERE state IN %s"
                "   AND date > %s"
@@ -111,7 +108,8 @@ class sale_order_line(orm.Model):
                          location_id))
         return (row[0] for row in cr.fetchall())
 
-    def future_orders_are_affected(self, cr, uid, l_id, context=None):
+    @api.one
+    def future_orders_are_affected(self):
         """Predicate function that is a naive workaround for the lack of stock
         reservation.
 
@@ -120,30 +118,23 @@ class sale_order_line(orm.Model):
 
         :return: True if future order are affected by current command line
         """
-        if context is None:
-            context = {}
-        prod_obj = self.pool['product.product']
-        if isinstance(l_id, (tuple, list)):
-            assert len(l_id) == 1, "Only one id supported"
-            l_id = l_id[0]
-        line = self.browse(cr, uid, l_id, context=context)
-        if not line.product_id or not line.type == 'make_to_stock':
+        if not self.product_id or not self.type == 'make_to_stock':
             return False
-        delivery_date = self._compute_line_delivery_date(line, context=context)
-        ctx = context.copy()
-        location_id = self._get_line_location(line, context=context)
-        ctx['location'] = location_id
-        ctx['compute_child'] = True
+        delivery_date = self._compute_line_delivery_date()[0]
+        delivery_date = fields.Datetime.to_string(delivery_date)
+        location_id = self._get_line_location()
+        ctx = {
+            'location': location_id,
+            'compute_child': True,
+            }
         # Virtual qty is made on all childs of chosen location
-        dates = self._get_affected_dates(cr, location_id, line.product_id.id,
-                                         delivery_date, context=context)
+        dates = self._get_affected_dates(location_id, self.product_id.id,
+                                         delivery_date)
         for aff_date in dates:
             ctx['to_date'] = aff_date
-            prod_for_virtual_qty = prod_obj.read(cr, uid, line.product_id.id,
-                                                 ['virtual_available'],
-                                                 context=ctx)
-            if prod_for_virtual_qty[
-                'virtual_available'
-            ] < line.product_uom_qty:
+            prod_for_virtual_qty = (self.product_id
+                                    .with_context(ctx)
+                                    .virtual_available)
+            if prod_for_virtual_qty < self.product_uom_qty:
                 return True
         return False
