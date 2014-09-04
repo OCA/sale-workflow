@@ -18,8 +18,6 @@
   !record {model: product.product, id: product_firesteel}:
     categ_id: product.product_category_1
     name: Firesteel
-    procure_method: make_to_stock
-    supply_method: buy
     type: product
     uom_id: product.product_uom_unit
     uom_po_id: product.product_uom_unit
@@ -32,7 +30,6 @@
   !record {model: sale.order, id: so_0}:
     client_order_ref: ref firesteel 0
     date_order: !eval time.strftime('%Y-03-30')
-    invoice_quantity: order
     name: 30th of March
     order_line:
       - name: Firesteel
@@ -43,14 +40,12 @@
         delay: 7.0
         product_id: product_firesteel
         product_uos_qty: 10000
-        type: make_to_stock
     order_policy: manual
     partner_id: base.res_partner_4
     partner_invoice_id: base.res_partner_address_7
     partner_shipping_id: base.res_partner_address_7
     picking_policy: direct
     pricelist_id: product.list0
-    shop_id: sale.sale_shop_1
 -
   Then I confirm the the 30th of March firesteel order
 -
@@ -112,7 +107,7 @@
  I force move PO 1 for the 25 of march assignation
 -
   !python {model: stock.move}: |
-    self.write(cr, uid, [ref('sm_1')], {'state': 'done'})
+    self.action_done(cr, uid, [ref('sm_1')])
 -
   Then I confirm the the 30th of March firesteel order
 -
@@ -129,7 +124,6 @@
   !record {model: sale.order, id: so_1}:
     client_order_ref: ref firesteel 1
     date_order: !eval time.strftime('%Y-03-26')
-    invoice_quantity: order
     name: 26th of March
     order_line:
       - name: Firesteel
@@ -140,14 +134,12 @@
         delay: 1.2
         product_id: product_firesteel
         product_uos_qty: 10000
-        type: make_to_stock
     order_policy: manual
     partner_id: base.res_partner_4
     partner_invoice_id: base.res_partner_address_7
     partner_shipping_id: base.res_partner_address_7
     picking_policy: direct
     pricelist_id: product.list0
-    shop_id: sale.sale_shop_1
 -
   Then I confirm the the 26th of March firesteel order
 -
@@ -177,7 +169,7 @@
  I force move PO 1 for the 27 of march assignation
 -
   !python {model: stock.move}: |
-    self.write(cr, uid, [ref('sm_3')], {'state': 'done'})
+    self.action_done(cr, uid, [ref('sm_3')])
 -
   Then I confirm the the 26th of March firesteel order
 -
