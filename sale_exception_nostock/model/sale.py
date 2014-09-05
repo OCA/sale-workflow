@@ -20,6 +20,7 @@
 #
 import datetime
 from openerp import models, fields, api
+from openerp.tools.translate import _
 
 
 class SaleOrderLine(models.Model):
@@ -46,7 +47,32 @@ class SaleOrderLine(models.Model):
 
     @api.multi
     def _get_line_location(self):
-        return self.order_id.shop_id.warehouse_id.lot_stock_id.id
+        """ Get location from applicable rule for this product
+
+        Reproduce get suitable rule from procurement
+        to predict source location """
+        ProcurementRule = self.env['procurement.rule']
+        product = self.product_id
+        product_route_ids = [x.id for x in product.route_ids +
+                             product.categ_id.total_route_ids]
+        rules = ProcurementRule.search([('route_id', 'in', product_route_ids)],
+                                       order='route_sequence, sequence',
+                                       limit=1)
+
+        if not rules:
+            warehouse = self.order_id.warehouse_id
+            wh_routes = warehouse.route_ids
+            wh_route_ids = [route.id for route in wh_routes]
+            domain = ['|', ('warehouse_id', '=', warehouse.id),
+                      ('warehouse_id', '=', False),
+                      ('route_id', 'in', wh_route_ids)]
+
+            rules = ProcurementRule.search(domain,
+                                           order='route_sequence, sequence')
+
+        if rules:
+            return rules[0].location_src_id.id
+        return False
 
     @api.one
     def can_command_at_delivery_date(self):
@@ -63,10 +89,13 @@ class SaleOrderLine(models.Model):
             return True
         delivery_date = self._compute_line_delivery_date()[0]
         delivery_date = fields.Datetime.to_string(delivery_date)
+        location_id = self._get_line_location()
+        assert location_id, _("No rules specifies a location"
+                              " for this sale order line")
         ctx = {
             'to_date': delivery_date,
-            'location': self._get_line_location(),
             'compute_child': True,
+            'location': location_id,
             }
         # Virtual qty is made on all childs of chosen location
         prod_for_virtual_qty = (self.product_id
@@ -123,9 +152,11 @@ class SaleOrderLine(models.Model):
         delivery_date = self._compute_line_delivery_date()[0]
         delivery_date = fields.Datetime.to_string(delivery_date)
         location_id = self._get_line_location()
+        assert location_id, _("No rules specifies a location"
+                              " for this sale order line")
         ctx = {
-            'location': location_id,
             'compute_child': True,
+            'location_id': location_id,
             }
         # Virtual qty is made on all childs of chosen location
         dates = self._get_affected_dates(location_id, self.product_id.id,
