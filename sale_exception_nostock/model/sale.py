@@ -59,7 +59,7 @@ class SaleOrderLine(models.Model):
         :return: True if line can be delivered on time
 
         """
-        if not self.product_id or self.type != 'make_to_stock':
+        if not self.product_id and self.procure_method != 'make_to_stock':
             return True
         delivery_date = self._compute_line_delivery_date()[0]
         delivery_date = fields.Datetime.to_string(delivery_date)
@@ -118,7 +118,7 @@ class SaleOrderLine(models.Model):
 
         :return: True if future order are affected by current command line
         """
-        if not self.product_id or not self.type == 'make_to_stock':
+        if not self.product_id and self.procure_method != 'make_to_stock':
             return False
         delivery_date = self._compute_line_delivery_date()[0]
         delivery_date = fields.Datetime.to_string(delivery_date)
