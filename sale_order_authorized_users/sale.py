@@ -28,5 +28,8 @@ class sale_order(orm.Model):
             'res.users',
             string='Allowed Users',
             groups='base.group_erp_manager',
+            help=('Users that can see this order. If left empty, normal rules'
+                  ' apply. If you want to make it invisible to everyone, add'
+                  ' only yourself as allowed.'),
         ),
     }
