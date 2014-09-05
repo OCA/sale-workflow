@@ -23,8 +23,8 @@
 def check_state_and_exceptions(sale_order, state, exc_id):
     assert sale_order.state == state, (
         "Incorrect state %s instead of %s" % (sale_order.state, state))
-    assert exc_id in [x.id for x in sale_order.exceptions_ids],\
+    assert exc_id in [x.id for x in sale_order.exception_ids],\
         "No exception for %s" % sale_order.name
 
-    assert not [x for x in sale_order.exceptions_ids if x.id != exc_id],\
+    assert not [x for x in sale_order.exception_ids if x.id != exc_id],\
         "Wrong sale exception detected for %s" % sale_order.name
