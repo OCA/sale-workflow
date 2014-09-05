@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+  <data>
+
+    <record id="view_amount_shipped_order_tree" model="ir.ui.view">
+      <field name="name">sale.order.amount.shipped.tree</field>
+      <field name="model">sale.order</field>
+      <field name="inherit_id" ref="sale_order_amount_to_invoice.view_order_tree" />
+      <field name="arch" type="xml">
+        <field name="amount_to_invoice" position="after">
+          <field name="amount_shipped" />
+        </field>
+      </field>
+    </record>
+
+
+
+    <!--Add filter for amount_shipped-->
+    <record id="view_sales_order_filter_amount_shipped" model="ir.ui.view">
+      <field name="name">view.sales.order.filter.amount.shipped</field>
+      <field name="inherit_id" ref="sale_order_amount_to_invoice.view_sales_order_filter_amount_to_invoice" />
+      <field name="model">sale.order</field>
+      <field name="arch" type="xml">
+        <data>
+          <filter string="Amount to invoice &gt; 0" position="after">
+            <filter icon="terp-dolar_ok!"
+                    string="Amount shipped &gt; 0"
+                    domain="[('amount_shipped','>', 0)]"/>
+          </filter>
+        </data>
+      </field>
+    </record>
+
+  </data>
+</openerp>
