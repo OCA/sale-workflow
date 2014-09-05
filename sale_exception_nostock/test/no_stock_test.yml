@@ -74,7 +74,7 @@
     location_id: stock.location_inventory
     name: 'PO 1 for the 5th of April'
     product_id: product_firesteel
-    product_qty: 10500
+    product_uom_qty: 10500
     product_uom: product.product_uom_unit
     product_uos_qty: 10500
 -
@@ -105,7 +105,7 @@
     location_id: stock.location_inventory
     name: 'PO 1 for the 25th of March'
     product_id: product_firesteel
-    product_qty: 10500
+    product_uom_qty: 10500
     product_uom: product.product_uom_unit
     product_uos_qty: 10500
 -
@@ -170,7 +170,7 @@
     location_id: stock.location_inventory
     name: 'PO 1 for the 27th of March'
     product_id: product_firesteel
-    product_qty: 10500
+    product_uom_qty: 10500
     product_uom: product.product_uom_unit
     product_uos_qty: 10500
 -
