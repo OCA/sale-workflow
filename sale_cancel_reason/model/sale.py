@@ -19,32 +19,21 @@
 #
 #
 
-{'name': 'Sale Cancel Reason',
- 'version': '1.0',
- 'author': 'Camptocamp',
- 'category': 'Sale',
- 'license': 'AGPL-3',
- 'complexity': 'normal',
- 'images': [],
- 'website': "http://www.camptocamp.com",
- 'description': """
-Sale Cancel Reason
-==================
+from openerp import models, fields
 
-When a sale order is canceled, a reason must be given,
-it is chosen from a configured list.
 
-""",
- 'depends': ['sale',
-             ],
- 'demo': [],
- 'data': ['wizard/cancel_reason_view.xml',
-          'view/sale_view.xml',
-          'security/ir.model.access.csv',
-          'data/sale_order_cancel_reason.xml',
-          ],
- 'auto_install': False,
- 'test': ['test/sale_order_cancel.yml',
-          ],
- 'installable': False,
- }
+class SaleOrder(models.Model):
+    _inherit = 'sale.order'
+
+    cancel_reason_id = fields.Many2one(
+        'sale.order.cancel.reason',
+        string="Reason for cancellation",
+        readonly=True,
+        ondelete="restrict")
+
+
+class SaleOrderCancelReason(models.Model):
+    _name = 'sale.order.cancel.reason'
+    _description = 'Sale Order Cancel Reason'
+
+    name = fields.Char('Reason', required=True, translate=True)
