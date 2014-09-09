@@ -39,8 +39,8 @@ is set to 'Before Delivery'.
  'demo': [],
  'data': ['view/partner_view.xml',
           ],
- 'auto_install': False,
  'test': ['test/sale_order_prepaid.yml',
           ],
- 'installable': False,
+ 'installable': True,
+ 'auto_install': False,
  }
