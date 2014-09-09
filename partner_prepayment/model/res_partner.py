@@ -19,21 +19,19 @@
 #
 #
 
-from openerp.osv import orm, fields
+from openerp import models, fields, api
 
 
-class res_partner(orm.Model):
+class ResPartner(models.Model):
     _inherit = 'res.partner'
 
-    _columns = {
-        'use_prepayment': fields.boolean(
-            'Use prepayment',
-            help="When prepayment is activated, the sales order policy "
-                 "will be automatically defined to pay before delivery."),
-    }
+    use_prepayment = fields.Boolean(
+        'Use prepayment',
+        help="When prepayment is activated, the sales order policy "
+             "will be automatically defined to pay before delivery.")
 
-    def _commercial_fields(self, cr, uid, context=None):
-        fields = super(res_partner, self)._commercial_fields(
-            cr, uid, context=context)
+    @api.model
+    def _commercial_fields(self):
+        fields = super(ResPartner, self)._commercial_fields()
         fields.append('use_prepayment')
         return fields
