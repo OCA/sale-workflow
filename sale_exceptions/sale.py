@@ -140,18 +140,26 @@ class SaleOrder(models.Model):
 
     @api.multi
     def detect_exceptions(self):
+        """returns the list of exception_ids for all the considered sale orders
+
+        as a side effect, the sale order's exception_ids column is updated with
+        the list of exceptions related to the SO
+        """
         exception_obj = self.env['sale.exception']
         order_exceptions = exception_obj.search(
             [('model', '=', 'sale.order')])
         line_exceptions = exception_obj.search(
             [('model', '=', 'sale.order.line')])
 
+        all_exception_ids = []
         for order in self:
             if order.ignore_exceptions:
                 continue
-            order._detect_exceptions(order_exceptions,
-                                     line_exceptions)
-        return self.exception_ids
+            exception_ids = order._detect_exceptions(order_exceptions,
+                                                     line_exceptions)
+            order.exception_ids = [(6, 0, exception_ids)]
+            all_exception_ids += exception_ids
+        return all_exception_ids
 
     @api.model
     def _exception_rule_eval_context(self, obj_name, rec):
@@ -200,8 +208,8 @@ class SaleOrder(models.Model):
                     continue
                 if self._rule_eval(rule, 'line', order_line):
                     exception_ids.append(rule.id)
+        return exception_ids
 
-        self.exception_ids = [(6, 0, exception_ids)]
 
     @api.one
     def copy(self, default=None):
