@@ -19,6 +19,7 @@
 #
 
 {'name': 'Partner Prepayment',
+ 'summary': 'Option on partner to set prepayment policy',
  'version': '1.0',
  'author': 'Camptocamp',
  'category': 'Sales',
