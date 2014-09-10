@@ -9,5 +9,12 @@
       <field name="domain_force">['|',('allowed_users_ids','in',user.id),('allowed_users_ids','=',False)]</field>
     </record>
 
+    <record model="ir.rule" id="rule_hidden_order_lines">
+      <field name="name">Hidden order lines</field>
+      <field name="model_id" ref="sale.model_sale_order_line" />
+      <field name="global" eval="True" />
+      <field name="domain_force">['|',('order_id.allowed_users_ids','in',user.id),('order_id.allowed_users_ids','=',False)]</field>
+    </record>
+
   </data>
 </openerp>
