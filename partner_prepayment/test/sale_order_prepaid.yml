@@ -1,11 +1,8 @@
 -
   Given I activate the 'Use prepayment' on a customer
-  Cannot set use_prepayment using
-  # FIXME
-  #record {model: res.partner, id: base.res_partner_4}:
-  #  use_prepayment: True
 -
   !python {model: res.partner}: |
+    # for some reason, this is not updated in a !record block
     partner = self.browse(cr, uid, ref("base.res_partner_4"))
     partner.write({'use_prepayment': True})
 -
