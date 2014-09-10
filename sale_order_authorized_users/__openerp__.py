@@ -37,10 +37,14 @@ The field to set allowed users will be visibile only to admin, which makes it
 possible to make the users unaware of this feature.
 """,
     'author': 'Creativi Quadrati',
+    'website': 'http://www.creativiquadrati.it',
     'depends': ['sale'],
     'data': [
         'sale_view.xml',
         'security/hide_sale_orders_security.xml',
+    ],
+    'test': [
+        'test/sale_order.yml',
     ],
     'installable': True,
     'auto_install': False,
