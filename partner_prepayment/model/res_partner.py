@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
 #
 #
+#    Author: Guewen Baconnier
 #    Copyright 2013 Camptocamp SA
 #
 #    This program is free software: you can redistribute it and/or modify
@@ -18,29 +19,19 @@
 #
 #
 
-{'name': 'Partner Prepayment',
- 'version': '1.0',
- 'author': 'Camptocamp',
- 'category': 'Sales',
- 'license': 'AGPL-3',
- 'complexity': 'easy',
- 'images': [],
- 'description': """
-Partner Prepayment
-==================
+from openerp import models, fields, api
 
-Add a checkbox 'Use prepayment' on customers.
-When it is activated, the invoicing policy on Sales Orders
-is set to 'Before Delivery'.
 
-""",
- 'depends': ['sale_stock',
-             ],
- 'demo': [],
- 'data': ['view/partner_view.xml',
-          ],
- 'auto_install': False,
- 'test': ['test/sale_order_prepaid.yml',
-          ],
- 'installable': False,
- }
+class ResPartner(models.Model):
+    _inherit = 'res.partner'
+
+    use_prepayment = fields.Boolean(
+        'Use prepayment',
+        help="When prepayment is activated, the sales order policy "
+             "will be automatically defined to pay before delivery.")
+
+    @api.model
+    def _commercial_fields(self):
+        fields = super(ResPartner, self)._commercial_fields()
+        fields.append('use_prepayment')
+        return fields
