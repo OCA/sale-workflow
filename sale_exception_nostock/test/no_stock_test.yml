@@ -13,6 +13,27 @@
     data['active'] = False
     self.write(cr, uid, ids_to_silent, data)
 -
+  I define a helper function to tweak the system date
+-
+  !python {model: sale.order}: |
+    import datetime
+    class _datetime(datetime.datetime):
+        @classmethod
+        def now(cls):
+            return cls._now
+    def set_today(today_string='%Y-%m-%d %H:%M:%S'):
+        import datetime, time
+        if len(today_string) == 8:
+            format = '%Y-%m-%d'
+        else:
+            format = '%Y-%m-%d %H:%M:%S'
+        now = datetime.datetime.strptime(time.strftime(today_string), format)
+        datetime.datetime._now = now
+    datetime._datetime = datetime.datetime
+    datetime.datetime = _datetime
+    set_today()
+    datetime.set_today = set_today
+-
   I create a new firesteel product for my test
 -
   !record {model: product.product, id: product_firesteel}:
@@ -54,10 +75,17 @@
 -
   Then I confirm the the 30th of March firesteel order
 -
-  !workflow {model: sale.order, action: order_confirm, ref: so_0}
-
+  !python {model: sale.order}: |
+    import datetime
+    datetime.set_today('%Y-03-30')
 -
- I check that the sale order is not confirmed and his linked to no_stock_at_date exception
+  !workflow {model: sale.order, action: order_confirm, ref: so_0}
+-
+  !python {model: sale.order}: |
+    import datetime
+    datetime.set_today()
+-
+ I check that the sale order is not confirmed and is linked to no_stock_at_date exception
 -
   !python {model: sale.order}: |
     sale_order = self.browse(cr, uid, ref("so_0"))
@@ -85,8 +113,15 @@
 -
   Then I confirm the firesteel order
 -
+  !python {model: sale.order}: |
+    import datetime
+    datetime.set_today('%Y-03-30')
+-
   !workflow {model: sale.order, action: order_confirm, ref: so_0}
-
+-
+  !python {model: sale.order}: |
+    import datetime
+    datetime.set_today()
 -
  I check that the sale order is not confirmed and is only linked to no_stock_at_date exception
 -
@@ -116,7 +151,15 @@
 -
   Then I confirm the the 30th of March firesteel order
 -
+  !python {model: sale.order}: |
+    import datetime
+    datetime.set_today('%Y-03-30')
+-
   !workflow {model: sale.order, action: order_confirm, ref: so_0}
+-
+  !python {model: sale.order}: |
+    import datetime
+    datetime.set_today()
 -
  I check that the sale order is confirmed
 -
@@ -151,7 +194,15 @@
 -
   Then I confirm the the 26th of March firesteel order
 -
+  !python {model: sale.order}: |
+    import datetime
+    datetime.set_today('%Y-03-26')
+-
   !workflow {model: sale.order, action: order_confirm, ref: so_1}
+-
+  !python {model: sale.order}: |
+    import datetime
+    datetime.set_today()
 -
  Then my sale order should be in draft state and only related to no_stock_in_future exception
 -
@@ -181,7 +232,15 @@
 -
   Then I confirm the the 26th of March firesteel order
 -
+  !python {model: sale.order}: |
+    import datetime
+    datetime.set_today('%Y-03-26')
+-
   !workflow {model: sale.order, action: order_confirm, ref: so_1}
+-
+  !python {model: sale.order}: |
+    import datetime
+    datetime.set_today()
 -
  I check that the sale order is confirmed
 -
