@@ -210,7 +210,6 @@ class SaleOrder(models.Model):
                     exception_ids.append(rule.id)
         return exception_ids
 
-
     @api.one
     def copy(self, default=None):
         if default is None:
