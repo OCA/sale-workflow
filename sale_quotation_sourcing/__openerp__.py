@@ -28,7 +28,7 @@
     turn may generate PO, we invert the process: in order to generate a quote
     for a customer, it can be necessary to ask our suppliers from some
     quotes. Once the quote is accepted by the customer and the user confirms
-    the SO, a wizard is presented which enables choosing the differente PO to
+    the SO, a wizard is presented which enables choosing the different PO to
     use to source the SO lines. """,
 
     'author': "Camptocamp",
@@ -40,10 +40,10 @@
     'depends': ['sale_stock', 'purchase'],
 
     # always loaded
-    'data': [
-        # 'security/ir.model.access.csv',
-    ],
-    'test': [
-
-        ]
+    'data': ['views/sale_order_sourcing.xml',
+             'views/sale_order.xml',
+             # 'security/ir.model.access.csv',
+            ],
+    'test': ['tests/sourcing.yml',
+            ]
 }

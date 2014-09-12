@@ -18,4 +18,4 @@
 #
 #
 
-from . import sale_orders
+from . import sale_order

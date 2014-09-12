@@ -1,0 +1,57 @@
+-
+  I create a SO Quote with 1 manually sourced line
+-
+  !record {model: sale.order, id: sale_order_1}:
+    partner_id: base.res_partner_2
+    note: Invoice after delivery
+    payment_term: account.account_payment_term
+    order_line:
+      - product_id: product.product_product_7
+        product_uom_qty: 8
+        manually_sourced: 1
+-
+  I create a RFQ to source the quote, and I fill it with the price provided by my supplier
+-
+  !record {model: purchase.order, id: purchase_order_1}:
+    partner_id: base.res_partner_1
+    invoice_method: order
+    order_line:
+      - product_id: product.product_product_7
+        product_qty: 8
+        price_unit: 10
+-
+  I confirm the sale order by clicking the button and I set the PO line for sourcing. I do not feel anything. Closing the wizard restarts it
+-
+  !python {model: sale.order}: |
+    retval = self.action_button_confirm(cr, uid, ref('sale_order_1'), context=context)
+    assert retval['type'] == 'ir.actions.act_window'
+    assert retval['res_model'] == 'sale.order.sourcing'
+    wizard = self.pool[retval['res_model']].browse(cr, uid, retval['res_id'])
+    assert wizard.sale_id.id == ref('sale_order_1')
+    assert len(wizard.line_ids) == 1
+    assert not wizard.line_ids[0].po_line_id
+    retval = wizard.action_done()
+    assert retval['type'] == 'ir.actions.act_window'
+    assert retval['res_model'] == 'sale.order.sourcing'
+    wizard = self.pool[retval['res_model']].browse(cr, uid, retval['res_id'])
+    assert wizard.sale_id.id == ref('sale_order_1')
+    assert len(wizard.line_ids) == 1
+
+-
+  I confirm the sale order again and this time I fill in the wizard
+-
+  !python {model: sale.order}: |
+    retval = self.action_button_confirm(cr, uid, ref('sale_order_1'), context=context)
+    wizard = self.pool[retval['res_model']].browse(cr, uid, retval['res_id'])
+    po_obj = self.pool['purchase.order']
+    po = po_obj.browse(cr, uid, ref('purchase_order_1'))
+    wizard.line_ids[0].write({'po_line_id': po.order_line[0].id})
+    retval = wizard.action_done()
+    assert retval is True, 'retval: %r' % retval
+    so_obj = self.pool['sale.order']
+    so = so_obj.browse(cr, uid, ref('sale_order_1'))
+    assert so.state != 'draft'
+    line = so.order_line[0]
+    proc = line.procurement_ids
+    assert proc
+    assert proc.rule_id.action == "buy"
