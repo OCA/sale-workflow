@@ -19,7 +19,7 @@
 #
 import logging
 
-from openerp import models, fields, api
+from openerp import models, fields, api, _
 from openerp.exceptions import except_orm
 
 _logger = logging.getLogger(__name__)
@@ -79,6 +79,27 @@ class SaleOrder(models.Model):
             proc_data['rule_id'] = rule_ids[0]
         print proc_data
         return proc_data
+
+
+class ProcurementOrder(models.Model):
+    _inherit = 'procurement.order'
+
+    @api.multi
+    def make_po(self):
+        """only call the base implementation for procurement of SO lines not manually sourced
+        otherwise, just link to the existing PO and PO line"""
+        res = {}
+        to_propagate = self.browse()
+        for procurement in self:
+            if procurement.sale_line_id.manually_sourced:
+                po_line = procurement.sale_line_id.sourced_by
+                res[procurement.id] = po_line.id
+                procurement.purchase_line_id = po_line
+                procurement.message_post(body=_('Manually sourced'))
+            else:
+                to_propagate |= procurement
+        res.update(super(ProcurementOrder, to_propagate).make_po())
+        return res
 
 
 class SaleOrderLine(models.Model):

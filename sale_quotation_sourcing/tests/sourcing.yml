@@ -55,3 +55,4 @@
     proc = line.procurement_ids
     assert proc
     assert proc.rule_id.action == "buy"
+    assert proc.purchase_line_id.id == po.order_line[0].id
