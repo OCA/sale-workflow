@@ -122,8 +122,9 @@ class SaleOrder(models.Model):
         }
         return action
 
-    @api.one
+    @api.multi
     def action_button_confirm(self):
+        self.ensure_one()
         if self.detect_exceptions():
             return self._popup_exceptions()
         else:
@@ -192,9 +193,10 @@ class SaleOrder(models.Model):
                   'rule:\n %s \n(%s)') % (rule.name, e))
         return space.get('failed', False)
 
-    @api.one
+    @api.multi
     def _detect_exceptions(self, order_exceptions,
                            line_exceptions):
+        self.ensure_one()
         exception_ids = []
         for rule in order_exceptions:
             if self._rule_eval(rule, 'order', self):
