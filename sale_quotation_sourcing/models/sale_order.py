@@ -81,27 +81,6 @@ class SaleOrder(models.Model):
         return proc_data
 
 
-class ProcurementOrder(models.Model):
-    _inherit = 'procurement.order'
-
-    @api.multi
-    def make_po(self):
-        """only call the base implementation for procurement of SO lines not manually sourced
-        otherwise, just link to the existing PO and PO line"""
-        res = {}
-        to_propagate = self.browse()
-        for procurement in self:
-            if procurement.sale_line_id.manually_sourced:
-                po_line = procurement.sale_line_id.sourced_by
-                res[procurement.id] = po_line.id
-                procurement.purchase_line_id = po_line
-                procurement.message_post(body=_('Manually sourced'))
-            else:
-                to_propagate |= procurement
-        res.update(super(ProcurementOrder, to_propagate).make_po())
-        return res
-
-
 class SaleOrderLine(models.Model):
     _inherit = 'sale.order.line'
     manually_sourced = fields.Boolean('Manually Sourced')
@@ -111,43 +90,3 @@ class SaleOrderLine(models.Model):
     def needs_sourcing(self):
         return any(line.manually_sourced and not line.sourced_by
                    for line in self)
-
-
-class QuotationSourcingWizard(models.TransientModel):
-    _name = 'sale.order.sourcing'
-    sale_id = fields.Many2one('sale.order', string='Sale Order')
-    line_ids = fields.One2many('sale.order.line.sourcing', 'wizard_id',
-                               string='Lines')
-    _rec_name = 'sale_id'
-
-    @api.multi
-    def action_done(self):
-        self.ensure_one()
-        for line in self.line_ids:
-            line.so_line_id.sourced_by =  line.po_line_id
-        return self[0].sale_id.action_button_confirm()
-
-
-class QuotationLineSource(models.TransientModel):
-    _name = 'sale.order.line.sourcing'
-    wizard_id = fields.Many2one('sale.order.sourcing', string='Wizard')
-    so_line_id = fields.Many2one('sale.order.line', string='Sale Order Line')
-    product_id = fields.Many2one('product.product', string='Product', related=('so_line_id', 'product_id'))
-    po_id = fields.Many2one('purchase.order', string='Purchase Order')
-    po_line_id = fields.Many2one('purchase.order.line', string='Sourced By')
-
-    @api.onchange('po_id')
-    def onchange_po(self):
-        if self.po_id:
-            return {'domain': {'po_line_id': [('order_id', '=', self.po_id.id),
-                                              ('product_id', '=', self.product_id.id),
-                                              ('state', 'not in', ('done', 'cancel')),
-                                              ]
-                                    }
-                        }
-        else:
-            return {'domain': {'po_line_id': [('product_id', '=', self.product_id.id),
-                                              ('state', 'not in', ('done', 'cancel')),
-                                            ]
-                            }
-                }

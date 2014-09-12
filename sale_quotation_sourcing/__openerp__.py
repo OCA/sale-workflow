@@ -22,7 +22,8 @@
 
     'summary': "manual sourcing of sale quotations",
     'description': """
-    This module implements manual sourcing of sale order lines from purchase order lines.
+    This module implements manual sourcing of sale order lines from purchase
+    order lines.
 
     Instead of having a the confirmation of a SO generate procurements which in
     turn may generate PO, we invert the process: in order to generate a quote
@@ -43,7 +44,7 @@
     'data': ['views/sale_order_sourcing.xml',
              'views/sale_order.xml',
              # 'security/ir.model.access.csv',
-            ],
+             ],
     'test': ['tests/sourcing.yml',
-            ]
+             ]
 }
