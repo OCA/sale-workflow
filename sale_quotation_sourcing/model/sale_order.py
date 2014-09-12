@@ -24,6 +24,7 @@ from openerp.exceptions import except_orm
 
 _logger = logging.getLogger(__name__)
 
+
 class SaleOrder(models.Model):
     _inherit = 'sale.order'
 
@@ -51,6 +52,7 @@ class SaleOrder(models.Model):
         else:
             return super(SaleOrder, self).action_button_confirm()
 
+    @api.model
     def _create_sourcing_wizard(self, lines_to_source):
         line_values = []
         for line in lines_to_source:
@@ -60,24 +62,23 @@ class SaleOrder(models.Model):
                   }
         return self.env['sale.order.sourcing'].create(values)
 
-
-    def _prepare_order_line_procurement(self, cr, uid, order, line, group_id, context=None):
-        proc_data = super(SaleOrder, self)._prepare_order_line_procurement(cr, uid, order, line, group_id, context)
-        procurement_rule_obj = self.pool['procurement.rule']
-        rule_ids = procurement_rule_obj.search(cr, uid,
-                                            [('warehouse_id', '=', proc_data['warehouse_id']),
-                                             ('action', '=', 'buy'),
-                                             # ('procurement_method', '=', 'make_to_order'),
-                                            ],
-                                            limit=1,
-                                            order='route_sequence',
-                                            context=context)
-        if not rule_ids:
-            raise except_orm(_('configuration problem'),
-                             _('no buy rule configured for warehouse %d') % proc_data['warehouse_id'])
+    @api.model
+    def _prepare_order_line_procurement(self, order, line, group_id):
+        proc_data = super(SaleOrder, self)._prepare_order_line_procurement(
+            order, line, group_id)
         if line.manually_sourced:
-            proc_data['rule_id'] = rule_ids[0]
-        print proc_data
+            procurement_rule_obj = self.env['procurement.rule']
+            domain = [('warehouse_id', '=', proc_data['warehouse_id']),
+                      ('action', '=', 'buy'),
+                      ]
+            rules = procurement_rule_obj.search(domain,
+                                                limit=1,
+                                                order='route_sequence')
+            if not rules:
+                msg = _('no buy rule configured for warehouse %d')
+                raise except_orm(_('configuration problem'),
+                                 msg % proc_data['warehouse_id'])
+            proc_data['rule_id'] = rules[0].id
         return proc_data
 
 
