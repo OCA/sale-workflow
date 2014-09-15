@@ -18,7 +18,7 @@
 #
 #
 {
-    'name': "sale_quotation_sourcing",
+    'name': "Sale Quotation Sourcing",
 
     'summary': "manual sourcing of sale quotations",
     'description': """
