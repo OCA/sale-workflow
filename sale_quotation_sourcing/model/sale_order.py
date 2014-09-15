@@ -85,7 +85,7 @@ class SaleOrder(models.Model):
 class SaleOrderLine(models.Model):
     _inherit = 'sale.order.line'
     manually_sourced = fields.Boolean('Manually Sourced')
-    sourced_by = fields.Many2one('purchase.order.line')
+    sourced_by = fields.Many2one('purchase.order.line', copy=False)
 
     @api.multi
     def needs_sourcing(self):
