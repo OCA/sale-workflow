@@ -44,6 +44,7 @@
     'data': ['views/sale_order_sourcing.xml',
              'views/sale_order.xml',
              # 'security/ir.model.access.csv',
+             'security/group.xml',
              ],
     'test': ['tests/sourcing.yml',
              ]
