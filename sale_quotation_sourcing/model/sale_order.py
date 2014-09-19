@@ -69,7 +69,7 @@ class SaleOrder(models.Model):
         if line.manually_sourced:
             procurement_rule_obj = self.env['procurement.rule']
             domain = [('warehouse_id', '=', proc_data['warehouse_id']),
-                      ('action', '=', 'buy'),
+                      ('action', '=', 'move'),
                       ]
             rules = procurement_rule_obj.search(domain,
                                                 limit=1,
