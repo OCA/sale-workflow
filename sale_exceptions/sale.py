@@ -187,15 +187,16 @@ class sale_order(orm.Model):
         for order in self.browse(cr, uid, ids, context=context):
             if order.ignore_exceptions:
                 continue
+            current_exception_ids = set(exc.id for exc in order.exceptions_ids)
             exception_ids = self._detect_exceptions(cr, uid,
                                                     order,
                                                     order_exceptions,
                                                     line_exceptions,
                                                     context=context)
-
-            self.write(cr, uid, [order.id],
-                       {'exceptions_ids': [(6, 0, exception_ids)]},
-                       context=context)
+            if set(exception_ids) != current_exception_ids:
+                self.write(cr, uid, [order.id],
+                           {'exceptions_ids': [(6, 0, exception_ids)]},
+                           context=context)
         return exception_ids
 
     def _exception_rule_eval_context(
