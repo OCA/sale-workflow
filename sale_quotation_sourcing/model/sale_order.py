@@ -19,8 +19,7 @@
 #
 import logging
 
-from openerp import models, fields, api, _
-from openerp.exceptions import except_orm
+from openerp import models, fields, api
 
 _logger = logging.getLogger(__name__)
 
@@ -61,25 +60,6 @@ class SaleOrder(models.Model):
                   'line_ids': line_values,
                   }
         return self.env['sale.order.sourcing'].create(values)
-
-    @api.model
-    def _prepare_order_line_procurement(self, order, line, group_id):
-        proc_data = super(SaleOrder, self)._prepare_order_line_procurement(
-            order, line, group_id)
-        if line.manually_sourced:
-            procurement_rule_obj = self.env['procurement.rule']
-            domain = [('warehouse_id', '=', proc_data['warehouse_id']),
-                      ('action', '=', 'move'),
-                      ]
-            rules = procurement_rule_obj.search(domain,
-                                                limit=1,
-                                                order='route_sequence')
-            if not rules:
-                msg = _('no buy rule configured for warehouse %d')
-                raise except_orm(_('configuration problem'),
-                                 msg % proc_data['warehouse_id'])
-            proc_data['rule_id'] = rules[0].id
-        return proc_data
 
 
 class SaleOrderLine(models.Model):

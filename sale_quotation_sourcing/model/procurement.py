@@ -33,8 +33,15 @@ class ProcurementOrder(models.Model):
         res = {}
         to_propagate = self.browse()
         for procurement in self:
-            if procurement.sale_line_id.manually_sourced:
-                po_line = procurement.sale_line_id.sourced_by
+
+            sale_line = (
+                procurement.sale_line_id or
+                procurement.move_dest_id.procurement_id.sale_line_id or
+                False
+            )
+
+            if sale_line and sale_line.manually_sourced:
+                po_line = sale_line.sourced_by
                 res[procurement.id] = po_line.id
                 procurement.purchase_line_id = po_line
                 procurement.message_post(body=_('Manually sourced'))
