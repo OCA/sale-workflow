@@ -47,5 +47,6 @@
              'security/group.xml',
              ],
     'test': ['tests/sourcing.yml',
-             ]
+             ],
+    'external_dependencies': {'python': ['nose']},
 }

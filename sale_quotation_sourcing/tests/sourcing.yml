@@ -41,18 +41,20 @@
   I confirm the sale order again and this time I fill in the wizard
 -
   !python {model: sale.order}: |
+    from nose.tools import *
+
     retval = self.action_button_confirm(cr, uid, ref('sale_order_1'), context=context)
     wizard = self.pool[retval['res_model']].browse(cr, uid, retval['res_id'])
     po_obj = self.pool['purchase.order']
     po = po_obj.browse(cr, uid, ref('purchase_order_1'))
     wizard.line_ids[0].write({'po_line_id': po.order_line[0].id})
     retval = wizard.action_done()
-    assert retval is True, 'retval: %r' % retval
+    assert_is(retval, True)
     so_obj = self.pool['sale.order']
     so = so_obj.browse(cr, uid, ref('sale_order_1'))
-    assert so.state != 'draft'
+    assert_not_equals(so.state, 'draft')
     line = so.order_line[0]
     proc = line.procurement_ids
-    assert proc
-    assert proc.rule_id.action == "buy"
-    assert proc.purchase_line_id.id == po.order_line[0].id
+    assert_true(proc)
+    assert_equal(proc.rule_id.action, "buy")
+    assert_equal(proc.purchase_line_id.id, po.order_line[0].id)
