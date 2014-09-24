@@ -80,7 +80,7 @@ class SaleOrderLine(models.Model):
                 in [rule.procure_method
                     for rule in self.product_id.route_ids.pull_ids])
 
-    @api.one
+    @api.multi
     def can_command_at_delivery_date(self):
         """Predicate that checks whether a SO line can be delivered at delivery
         date.
@@ -91,6 +91,7 @@ class SaleOrderLine(models.Model):
         :return: True if line can be delivered on time
 
         """
+        self.ensure_one()
         if not self.product_id and not self._is_make_to_stock():
             return True
         delivery_date = self._compute_line_delivery_date()[0]
@@ -143,7 +144,7 @@ class SaleOrderLine(models.Model):
                          location_id))
         return (row[0] for row in cr.fetchall())
 
-    @api.one
+    @api.multi
     def future_orders_are_affected(self):
         """Predicate function that is a naive workaround for the lack of stock
         reservation.
@@ -153,6 +154,7 @@ class SaleOrderLine(models.Model):
 
         :return: True if future order are affected by current command line
         """
+        self.ensure_one()
         if not self.product_id and not self._is_make_to_stock():
             return False
         delivery_date = self._compute_line_delivery_date()[0]
