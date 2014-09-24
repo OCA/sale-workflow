@@ -46,7 +46,10 @@
              # 'security/ir.model.access.csv',
              'security/group.xml',
              ],
-    'test': ['test/sourcing.yml',
-             ],
+    'test': [
+        'test/setup_user.yml',
+        'test/setup_product.yml',
+        'test/test_standard_mto_sourcing.yml',
+    ],
     'external_dependencies': {'python': ['nose']},
 }
