@@ -4,7 +4,8 @@
   !context
   uid: 'res_users_fiona'
 -
-  I create a quotation that is not manually sourced
+  I create a quotation that is not manually sourced. This is the reference,
+  standard case that we will want to compare to the manually sourced case.
 -
   !record {model: sale.order, id: so_1}:
     partner_id: base.res_partner_2
@@ -13,7 +14,8 @@
       - product_id: product.product_product_7
         product_uom_qty: 8
 -
-  I confirm the sale order
+  I confirm the sale order, run the scheduler, check that I have two
+  procurements, and the second one is attached to a purchase order.
 -
   !python {model: sale.order}: |
     from nose.tools import *
@@ -27,9 +29,10 @@
     self.pool['procurement.order'].run_scheduler(cr, uid)
 
     line_procurements = so.order_line[0].procurement_ids
-
     assert_equals(len(line_procurements), 1)
 
     proc1 = line_procurements[0]
-
     assert_false(proc1.purchase_line_id)
+
+    proc2 = proc1.group_id.procurement_ids - proc1
+    assert_true(proc2.purchase_line_id)
