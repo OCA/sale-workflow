@@ -50,6 +50,7 @@
         'test/setup_user.yml',
         'test/setup_product.yml',
         'test/test_standard_mto_sourcing.yml',
+        'test/test_manual_mto_sourcing.yml',
     ],
     'external_dependencies': {'python': ['nose']},
 }

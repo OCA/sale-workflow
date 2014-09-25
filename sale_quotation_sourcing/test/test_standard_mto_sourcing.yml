@@ -29,10 +29,12 @@
     self.pool['procurement.order'].run_scheduler(cr, uid)
 
     line_procurements = so.order_line[0].procurement_ids
-    assert_equals(len(line_procurements), 1)
+    assert_equal(len(line_procurements), 1)
 
     proc1 = line_procurements[0]
+    assert_equal(proc1.rule_id.action, "move")
     assert_false(proc1.purchase_line_id)
 
     proc2 = proc1.group_id.procurement_ids - proc1
+    assert_equal(proc2.rule_id.action, "buy")
     assert_true(proc2.purchase_line_id)
