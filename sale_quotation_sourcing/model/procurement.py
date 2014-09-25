@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 #
-#    Author: Alexandre Fayolle
+#    Author: Alexandre Fayolle, Leonardo Pistone
 #    Copyright 2014 Camptocamp SA
 #
 #    This program is free software: you can redistribute it and/or modify
