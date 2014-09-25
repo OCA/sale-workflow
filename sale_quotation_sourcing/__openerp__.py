@@ -30,7 +30,14 @@
     for a customer, it can be necessary to ask our suppliers from some
     quotes. Once the quote is accepted by the customer and the user confirms
     the SO, a wizard is presented which enables choosing the different PO to
-    use to source the SO lines. """,
+    use to source the SO lines.
+
+    The process should mimic closely the way that Odoo handles a MTO, buy
+    order. The only difference is that the PO is chosen manually and not
+    automatically generated. The end result should be the same.
+
+    To show that, two test cases are provided that show the standard process
+    and the manually sourced one.""",
 
     'author': "Camptocamp",
     'website': "http://www.camptocamp.com",
