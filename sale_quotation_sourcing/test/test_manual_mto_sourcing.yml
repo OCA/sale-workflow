@@ -39,7 +39,7 @@
 
     wizard = self.pool[retval['res_model']].browse(cr, uid, retval['res_id'])
     assert_equal(wizard.sale_id.id, ref('so_2'))
-    assert(len(wizard.line_ids), 1)
+    assert_equal(len(wizard.line_ids), 1)
     assert_false(wizard.line_ids[0].po_line_id)
 
     retval = wizard.action_done()
@@ -48,7 +48,7 @@
 
     wizard = self.pool[retval['res_model']].browse(cr, uid, retval['res_id'])
     assert_equal(wizard.sale_id.id, ref('so_2'))
-    assert(len(wizard.line_ids), 1)
+    assert_equal(len(wizard.line_ids), 1)
 -
   I confirm the sale order again and this time I fill in the wizard
 -
