@@ -33,8 +33,17 @@
 
     proc1 = line_procurements[0]
     assert_equal(proc1.rule_id.action, "move")
+    assert_equal(proc1.state, "running")
     assert_false(proc1.purchase_line_id)
 
     proc2 = proc1.group_id.procurement_ids - proc1
     assert_equal(proc2.rule_id.action, "buy")
+    assert_equal(proc2.state, "running")
     assert_true(proc2.purchase_line_id)
+
+    pickings = so.picking_ids
+
+    assert_equal(len(pickings), 1)
+
+    pick1 = pickings[0]
+    assert_equal(pick1.picking_type_code, u'outgoing')
