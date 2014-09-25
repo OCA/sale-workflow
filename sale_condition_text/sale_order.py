@@ -27,7 +27,7 @@ class SaleOrder(osv.osv):
 
     def action_invoice_create(
         self, cursor, user, order_id, grouped=False,
-        states=['confirmed', 'done', 'exception'], date_inv=False, context=None
+        states=None, date_inv=False, context=None
     ):
         # function is design to return only one id
         invoice_obj = self.pool.get('account.invoice')
