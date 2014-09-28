@@ -43,9 +43,9 @@ class StockPicking(orm.Model):
         origin = values.get('origin', False)
         if partner_id:
             partner_obj = self.pool['res.partner']
-            if not 'sale_comment' in values:
+            if 'sale_comment' not in values:
                 values['sale_comment'] = ''
-            if not 'sale_propagated_comment' in values:
+            if 'sale_propagated_comment' not in values:
                 values['sale_propagated_comment'] = ''
             if origin:
                 sale_obj = self.pool['sale.order']
@@ -58,11 +58,13 @@ class StockPicking(orm.Model):
                         values['sale_propagated_comment'] += (
                             sale.propagated_comment)
             partner = partner_obj.browse(cr, uid, partner_id, context=context)
-            if partner.picking_comment and values['sale_comment'] != partner.picking_comment:
+            if (partner.picking_comment and
+                    values['sale_comment'] != partner.picking_comment):
                 values['sale_comment'] = (partner.picking_comment + '\n' +
                                           values['sale_comment'])
-            if partner.picking_propagated_comment and (values['sale_propagated_comment'] !=
-                    partner.picking_propagated_comment):
+            if (partner.picking_propagated_comment and
+                    (values['sale_propagated_comment'] !=
+                     partner.picking_propagated_comment)):
                 values['sale_propagated_comment'] = (
                     partner.picking_propagated_comment + '\n' +
                     values['sale_propagated_comment'])

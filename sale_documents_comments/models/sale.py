@@ -30,7 +30,7 @@ class SaleOrder(orm.Model):
     def _prepare_invoice(self, cr, uid, order, lines, context=None):
         res = super(SaleOrder, self)._prepare_invoice(cr, uid, order, lines,
                                                       context=context)
-        if not 'sale_comment' in res:
+        if 'sale_comment' not in res:
             res['sale_comment'] = order.propagated_comment
         else:
             res['sale_comment'] += ' ' + order.propagated_comment
