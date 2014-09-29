@@ -37,7 +37,12 @@
     automatically generated. The end result should be the same.
 
     To show that, two test cases are provided that show the standard process
-    and the manually sourced one.""",
+    and the manually sourced one.
+
+    Note: the package nose is required to run the tests. It is not noted in the
+    external dependencies since it is not required in production.
+
+    """,
 
     'author': "Camptocamp",
     'website': "http://www.camptocamp.com",
