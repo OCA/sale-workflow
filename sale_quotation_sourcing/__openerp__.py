@@ -25,12 +25,12 @@
     This module implements manual sourcing of sale order lines from purchase
     order lines.
 
-    Instead of having a the confirmation of a SO generate procurements which in
-    turn may generate PO, we invert the process: in order to generate a quote
-    for a customer, it can be necessary to ask our suppliers from some
-    quotes. Once the quote is accepted by the customer and the user confirms
-    the SO, a wizard is presented which enables choosing the different PO to
-    use to source the SO lines.
+    Instead of having the confirmation of a SO generate procurements which in
+    turn may generate a PO, we invert the process: in order to generate a quote
+    for a customer, we ask quotes to different suppliers.
+
+    Once the sale quotation is accepted by the customer and the user confirms
+    it, a wizard is presented to choose which PO to use to source the SO lines.
 
     The process should mimic closely the way that Odoo handles a MTO, buy
     order. The only difference is that the PO is chosen manually and not
