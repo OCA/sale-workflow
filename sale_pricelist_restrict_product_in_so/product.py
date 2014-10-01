@@ -39,8 +39,8 @@ class ProductProduct(orm.Model):
                order=None, context=None, count=False):
         if context is None:
             context = {}
-        if context and "pricelist" in context:
-            pl_obj = self.pool['product.pricelist']
+        if context.get("pricelist"):
+            pl_obj = self.pool["product.pricelist"]
             ctx = context.copy()
             pl_id = ctx.pop("pricelist")
             products = pl_obj._get_allowed_product_ids(cr, uid, pl_id,
