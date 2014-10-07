@@ -42,25 +42,4 @@ class QuotationLineSource(models.TransientModel):
     product_id = fields.Many2one('product.product',
                                  string='Product',
                                  related=('so_line_id', 'product_id'))
-    po_id = fields.Many2one('purchase.order', string='Purchase Order')
     po_line_id = fields.Many2one('purchase.order.line', string='Sourced By')
-
-    @api.onchange('po_id')
-    def onchange_po(self):
-        if self.po_id:
-            return {
-                'domain': {
-                    'po_line_id': [('order_id', '=', self.po_id.id),
-                                   ('product_id', '=', self.product_id.id),
-                                   ('state', 'not in', ('done', 'cancel')),
-                                   ]
-                    }
-                }
-        else:
-            return {
-                'domain': {
-                    'po_line_id': [('product_id', '=', self.product_id.id),
-                                   ('state', 'not in', ('done', 'cancel')),
-                                   ]
-                    }
-                }

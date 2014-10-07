@@ -13,7 +13,6 @@
               <tree create='false' editable='bottom'>
                 <field name='so_line_id' readonly='1'/>
                 <field name='product_id' readonly='1'/>
-                <field name='po_id' />
                 <field name='po_line_id' domain="[('product_id', '=', product_id), ('state', 'not in', ('done', 'cancel'))]" />
               </tree>
             </field>
