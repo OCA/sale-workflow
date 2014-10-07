@@ -1,5 +1,5 @@
 -
-  I add the routes "Buy" and "MTO" to my product
+  I add the routes "Buy" and "MTO" to my product Apple In-Ear Headphones
 -
   !python {model: product.template, id: product.product_product_7_product_template}: |
     self.route_ids = [
