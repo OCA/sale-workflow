@@ -17,18 +17,17 @@
   I confirm the sale order, run the scheduler, check that I have two
   procurements, and the second one is attached to a purchase order.
 -
-  !python {model: sale.order}: |
+  !python {model: sale.order, id: so_1}: |
     from nose.tools import *
 
-    retval = self.action_button_confirm(cr, uid, ref('so_1'), context=context)
+    retval = self.action_button_confirm()
     assert_is(retval, True)
     
-    so = model.browse(cr, uid, ref('so_1'))
-    assert_not_equal(so.state, u'draft')
+    assert_not_equal(self.state, u'draft')
 
-    self.pool['procurement.order'].run_scheduler(cr, uid)
+    self.env['procurement.order'].run_scheduler()
 
-    line_procurements = so.order_line[0].procurement_ids
+    line_procurements = self.order_line[0].procurement_ids
     assert_equal(len(line_procurements), 1)
 
     proc1 = line_procurements[0]
@@ -41,7 +40,7 @@
     assert_equal(proc2.state, "running")
     assert_true(proc2.purchase_line_id)
 
-    pickings = so.picking_ids
+    pickings = self.picking_ids
 
     assert_equal(len(pickings), 1)
 

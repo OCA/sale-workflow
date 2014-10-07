@@ -29,14 +29,14 @@
   I confirm the sale order by clicking the button and I set the PO line for 
   sourcing. I do not feel anything. Closing the wizard restarts it
 -
-  !python {model: sale.order}: |
+  !python {model: sale.order, id: so_2}: |
     from nose.tools import *
 
-    retval = self.action_button_confirm(cr, uid, ref('so_2'), context=context)
+    retval = self.action_button_confirm()
     assert_equal(retval['type'], 'ir.actions.act_window')
     assert_equal(retval['res_model'], 'sale.order.sourcing')
 
-    wizard = self.pool[retval['res_model']].browse(cr, uid, retval['res_id'])
+    wizard = self.env[retval['res_model']].browse(retval['res_id'])
     assert_equal(wizard.sale_id.id, ref('so_2'))
     assert_equal(len(wizard.line_ids), 1)
     assert_false(wizard.line_ids[0].po_line_id)
@@ -45,29 +45,27 @@
     assert_equal(retval['type'], 'ir.actions.act_window')
     assert_equal(retval['res_model'], 'sale.order.sourcing')
 
-    wizard = self.pool[retval['res_model']].browse(cr, uid, retval['res_id'])
+    wizard = self.env[retval['res_model']].browse(retval['res_id'])
     assert_equal(wizard.sale_id.id, ref('so_2'))
     assert_equal(len(wizard.line_ids), 1)
 -
   I confirm the sale order again and this time I fill in the wizard
 -
-  !python {model: sale.order}: |
+  !python {model: sale.order, id: so_2}: |
     from nose.tools import *
 
-    retval = self.action_button_confirm(cr, uid, ref('so_2'), context=context)
+    retval = self.action_button_confirm()
     wizard = self.pool[retval['res_model']].browse(cr, uid, retval['res_id'])
-    po_obj = self.pool['purchase.order']
-    po = po_obj.browse(cr, uid, ref('po_2'))
-    wizard.line_ids[0].write({'po_line_id': po.order_line[0].id})
+    po = self.env['purchase.order'].browse(ref('po_2'))
+    wizard.line_ids[0].po_line_id = po.order_line[0].id
     retval = wizard.action_done()
     assert_is(retval, True)
 
-    so = model.browse(cr, uid, ref('so_2'))
-    assert_not_equal(so.state, 'draft')
+    assert_not_equal(self.state, 'draft')
 
-    self.pool['procurement.order'].run_scheduler(cr, uid)
+    self.env['procurement.order'].run_scheduler()
 
-    line_procurements = so.order_line[0].procurement_ids
+    line_procurements = self.order_line[0].procurement_ids
     assert_equal(len(line_procurements), 1)
 
     proc1 = line_procurements[0]
@@ -81,7 +79,7 @@
     assert_true(proc2.purchase_line_id)
     assert_equal(proc2.purchase_line_id.id, po.order_line[0].id)
 
-    pickings = so.picking_ids
+    pickings = self.picking_ids
 
     assert_equal(len(pickings), 1)
 
