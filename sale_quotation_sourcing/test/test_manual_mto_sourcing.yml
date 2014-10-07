@@ -9,7 +9,6 @@
 -
   !record {model: sale.order, id: so_2}:
     partner_id: base.res_partner_3
-    note: Invoice after delivery
     payment_term: account.account_payment_term
     order_line:
       - product_id: product.product_product_7
