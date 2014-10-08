@@ -19,7 +19,7 @@
 #
 import logging
 
-from openerp import models, fields, api
+from openerp import models, api
 
 _logger = logging.getLogger(__name__)
 
@@ -32,17 +32,21 @@ class PurchaseOrderLine(models.Model):
         """ Add the PO number in the name"""
         res = []
         for line in self:
-            name = "%s - %s (%s %s)" % (line.order_id.name, 
-                                     line.name,
-                                     line.product_qty,
-                                     line.product_uom.name)
-            res.append((line.id,name))
+            name = "%s - %s (%s %s)" % (
+                line.order_id.name,
+                line.name,
+                line.product_qty,
+                line.product_uom.name)
+            res.append((line.id, name))
         return res
 
     @api.model
     def name_search(self, name, args=None, operator='ilike', limit=100):
-        results = super(PurchaseOrderLine, self).name_search(name, 
-             args=args, operator=operator, limit=limit)
+        results = super(PurchaseOrderLine, self).name_search(
+            name,
+            args=args,
+            operator=operator,
+            limit=limit)
         if not results:
             po_obj = self.env['purchase.order']
             po_line_ids = []
