@@ -39,6 +39,13 @@
     To show that, two test cases are provided that show the standard process
     and the manually sourced one.
 
+    The drop shipping case is handled as well, with a warning to check if the
+    destination locations of the procurement and the sourced PO are
+    consistent. Since the stock_dropshipping module contains little more than
+    preconfigured Routes, Rules, and Picking Types, we do not depend
+    on it but we are fully compatible. The Routes and Rules are recreated in
+    the tests in order to avoid requiring stock_dropshipping in production.
+
     Note: the package nose is required to run the tests. It is not noted in the
     external dependencies since it is not required in production.
 
@@ -58,8 +65,10 @@
     'test': [
         'test/setup_user.yml',
         'test/setup_product.yml',
+        'test/setup_dropshipping.xml',
         'test/test_standard_mto_sourcing.yml',
         'test/test_standard_dropshipping.yml',
         'test/test_manual_mto_sourcing.yml',
+        'test/test_manual_sourcing_dropshipping.yml',
     ],
 }

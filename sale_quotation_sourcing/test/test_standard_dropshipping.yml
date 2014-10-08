@@ -11,7 +11,7 @@
     order_line:
       - product_id: product.product_product_7
         product_uom_qty: 8
-        route_id: stock_dropshipping.route_drop_shipping
+        route_id: route_drop_shipping
 -
   I confirm the sale order.
 -
