@@ -55,7 +55,7 @@ class SaleOrder(models.Model):
     def _create_sourcing_wizard(self, lines_to_source):
         line_values = []
         for line in lines_to_source:
-            line_values.append((0, 0, {'so_line_id': line.id, 'po_id': False}))
+            line_values.append((0, 0, {'so_line_id': line.id}))
         values = {'sale_id': self[0].id,
                   'line_ids': line_values,
                   }
