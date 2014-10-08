@@ -1,0 +1,38 @@
+-
+  I select for this file a user that is not admin
+-
+  !context
+  uid: 'res_users_fiona'
+-
+  I create a RFQ. I do not configure the destination location, so it will be 
+  Stock.
+-
+  !record {model: purchase.order, id: po_5}:
+    partner_id: base.res_partner_6
+    order_line:
+      - product_id: product.product_product_7
+        product_qty: 8
+-
+  I create a quotation with a manually sourced dropshipping line.
+-
+  !record {model: sale.order, id: so_5}:
+    partner_id: base.res_partner_3
+    order_line:
+      - product_id: product.product_product_7
+        product_uom_qty: 8
+        manually_sourced: 1
+        route_id: route_drop_shipping
+-
+  I source it directly in the sale order line.
+-
+  !python {model: sale.order, id: so_5}: |
+    po = self.env['purchase.order'].browse(ref('po_5'))
+    self.order_line[0].sourced_by = po.order_line[0]
+-
+  I confirm the sale order and I should be blocked.
+-
+  !python {model: sale.order, id: so_5}: |
+    from nose.tools import *
+    from openerp.exceptions import Warning
+    with assert_raises(Warning):
+        self.action_button_confirm()

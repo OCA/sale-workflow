@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+  <data>
+    <record id='sale_order_form_view' model='ir.ui.view'>
+      <field name='model'>sale.order</field>
+      <field name='inherit_id' ref='sale.view_order_form'/>
+      <field name='arch' type='xml'>
+        <xpath expr='//notebook/page[@string="Order Lines"]/field/form//field[@name="name"]' position='after'>
+          <group>
+            <field name='manually_sourced'/>
+            <field name='sourced_by' options="{'no_create': True}" attrs="{'invisible': [('manually_sourced', '=', 1)]}"/>
+          </group>
+        </xpath>
+        <xpath expr='//notebook/page[@string="Order Lines"]/field/tree//field[@name="name"]' position='after'>
+          <field name='manually_sourced'/>
+        </xpath>
+      </field>
+    </record>
+  </data>
+</openerp>

@@ -1,0 +1,87 @@
+-
+  I select for this file a user that is not admin
+-
+  !context
+  uid: 'res_users_fiona'
+-
+  I create a quotation with a manually sourced line. We will compare the final
+  result with the one obtained on the standard automatic case.
+-
+  !record {model: sale.order, id: so_2}:
+    partner_id: base.res_partner_3
+    payment_term: account.account_payment_term
+    order_line:
+      - product_id: product.product_product_7
+        product_uom_qty: 8
+        manually_sourced: 1
+-
+  I create a RFQ to source the quote, and I fill it with the price provided 
+  by my supplier.
+-
+  !record {model: purchase.order, id: po_2}:
+    partner_id: base.res_partner_6
+    invoice_method: order
+    order_line:
+      - product_id: product.product_product_7
+        product_qty: 8
+        price_unit: 10
+-
+  I confirm the sale order by clicking the button and I set the PO line for 
+  sourcing. I do not feel anything. Closing the wizard restarts it
+-
+  !python {model: sale.order, id: so_2}: |
+    from nose.tools import *
+
+    retval = self.action_button_confirm()
+    assert_equal(retval['type'], 'ir.actions.act_window')
+    assert_equal(retval['res_model'], 'sale.order.sourcing')
+
+    wizard = self.env[retval['res_model']].browse(retval['res_id'])
+    assert_equal(wizard.sale_id.id, ref('so_2'))
+    assert_equal(len(wizard.line_ids), 1)
+    assert_false(wizard.line_ids[0].po_line_id)
+
+    retval = wizard.action_done()
+    assert_equal(retval['type'], 'ir.actions.act_window')
+    assert_equal(retval['res_model'], 'sale.order.sourcing')
+
+    wizard = self.env[retval['res_model']].browse(retval['res_id'])
+    assert_equal(wizard.sale_id.id, ref('so_2'))
+    assert_equal(len(wizard.line_ids), 1)
+-
+  I confirm the sale order again and this time I fill in the wizard
+-
+  !python {model: sale.order, id: so_2}: |
+    from nose.tools import *
+
+    retval = self.action_button_confirm()
+    wizard = self.pool[retval['res_model']].browse(cr, uid, retval['res_id'])
+    po = self.env['purchase.order'].browse(ref('po_2'))
+    wizard.line_ids[0].po_line_id = po.order_line[0].id
+    retval = wizard.action_done()
+    assert_is(retval, True)
+
+    assert_not_equal(self.state, 'draft')
+
+    self.env['procurement.order'].run_scheduler()
+
+    line_procurements = self.order_line[0].procurement_ids
+    assert_equal(len(line_procurements), 1)
+
+    proc1 = line_procurements[0]
+    assert_equal(proc1.rule_id.action, "move")
+    assert_equal(proc1.state, "running")
+    assert_false(proc1.purchase_line_id)
+
+    proc2 = proc1.group_id.procurement_ids - proc1
+    assert_equal(proc2.rule_id.action, "buy")
+    assert_equal(proc2.state, "running")
+    assert_true(proc2.purchase_line_id)
+    assert_equal(proc2.purchase_line_id.id, po.order_line[0].id)
+
+    pickings = self.picking_ids
+
+    assert_equal(len(pickings), 1)
+
+    pick1 = pickings[0]
+    assert_equal(pick1.picking_type_code, u'outgoing')
