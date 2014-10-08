@@ -8,7 +8,7 @@
         <xpath expr='//notebook/page[@string="Order Lines"]/field/form//field[@name="name"]' position='after'>
           <group>
             <field name='manually_sourced'/>
-            <field name='sourced_by' attrs="{'invisible': [('manually_sourced', '=', 1)]}"/>
+            <field name='sourced_by' options="{'no_create': True}" attrs="{'invisible': [('manually_sourced', '=', 1)]}"/>
           </group>
         </xpath>
         <xpath expr='//notebook/page[@string="Order Lines"]/field/tree//field[@name="name"]' position='after'>
