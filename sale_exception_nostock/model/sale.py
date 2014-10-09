@@ -1,8 +1,8 @@
 # -*- coding: utf-8 -*-
 #
 #
-#    Author: Nicolas Bessi
-#    Copyright 2013 Camptocamp SA
+#    Author: Nicolas Bessi, Leonardo Pistone
+#    Copyright 2013, 2014 Camptocamp SA
 #
 #    This program is free software: you can redistribute it and/or modify
 #    it under the terms of the GNU Affero General Public License as
@@ -45,48 +45,90 @@ class SaleOrderLine(models.Model):
         # delay is a float, that is perfectly supported by timedelta
         return date_order + datetime.timedelta(days=self.delay)
 
+    def _find_parent_locations(self):
+        location = self.order_id.partner_shipping_id.property_stock_customer
+
+        res = [location.id]
+        while location.location_id:
+            location = location.location_id
+            res.append(location.id)
+        return res
+
+    @api.multi
+    def _predict_rules(self):
+        """Choose a rule without a procurement.
+
+        This imitates what will be done when the order is validated, with the
+        difference that here we do not have a procurement yet.
+
+        """
+        Rule = self.env['procurement.rule']
+        order = self.order_id
+
+        domain = [('location_id', 'in', self._find_parent_locations())]
+        warehouse_route_ids = []
+        if order.warehouse_id:
+            domain += [
+                '|',
+                ('warehouse_id', '=', order.warehouse_id.id),
+                ('warehouse_id', '=', False)
+            ]
+            warehouse_route_ids = [x.id for x in order.warehouse_id.route_ids]
+
+        product_route_ids = [
+            x.id
+            for x in self.product_id.route_ids +
+            self.product_id.categ_id.total_route_ids]
+        procurement_route_ids = [x.id for x in self.route_id]
+        res = Rule.search(
+            domain + [('route_id', 'in', procurement_route_ids)],
+            order='route_sequence, sequence'
+        )
+
+        if not res:
+            res = Rule.search(
+                domain + [('route_id', 'in', product_route_ids)],
+                order='route_sequence, sequence'
+            )
+            if not res:
+                res = warehouse_route_ids and Rule.search(
+                    domain + [('route_id', 'in', warehouse_route_ids)],
+                    order='route_sequence, sequence'
+                ) or []
+                if not res:
+                    res = Rule.search(domain + [('route_id', '=', False)],
+                                      order='sequence')
+        return res
+
     @api.multi
     def _get_line_location(self):
-        """ Get location from applicable rule for this product
+        """ Get the source location from the predicted rule"""
 
-        Reproduce get suitable rule from procurement
-        to predict source location """
-        ProcurementRule = self.env['procurement.rule']
-        product = self.product_id
-        product_route_ids = [x.id for x in product.route_ids +
-                             product.categ_id.total_route_ids]
-        rules = ProcurementRule.search([('route_id', 'in', product_route_ids)],
-                                       order='route_sequence, sequence',
-                                       limit=1)
-
-        if not rules:
-            warehouse = self.order_id.warehouse_id
-            wh_routes = warehouse.route_ids
-            wh_route_ids = [route.id for route in wh_routes]
-            domain = ['|', ('warehouse_id', '=', warehouse.id),
-                      ('warehouse_id', '=', False),
-                      ('route_id', 'in', wh_route_ids)]
-
-            rules = ProcurementRule.search(domain,
-                                           order='route_sequence, sequence')
+        rules = self._predict_rules()
 
         if rules:
-            return rules[0].location_src_id.id
+            return rules[0].location_src_id
         return False
 
     @api.multi
     def _is_make_to_stock(self):
-        return ('make_to_stock'
-                in [rule.procure_method
-                    for rule in self.product_id.route_ids.pull_ids])
+        """Predict whether a make to stock rule will be chosen"""
+        return self._predict_procure_method == 'make_to_stock'
+
+    @api.multi
+    def _predict_procure_method(self):
+        """Predict the procurement method that will be chosen"""
+        rules = self._predict_rules()
+        return rules[0].procure_method
 
     @api.multi
     def can_command_at_delivery_date(self):
         """Predicate that checks whether a SO line can be delivered at delivery
         date.
 
-        Delivery date is computed using date of the order + line delay.
-        Location is taken from the shop linked to the line
+        The delivery date is computed using date of the order + line delay.
+        The source location is predicted with a logic similar to the one that
+        will be used for real.
 
         :return: True if line can be delivered on time
 
@@ -96,13 +138,13 @@ class SaleOrderLine(models.Model):
             return True
         delivery_date = self._compute_line_delivery_date()[0]
         delivery_date = fields.Datetime.to_string(delivery_date)
-        location_id = self._get_line_location()
-        assert location_id, _("No rules specifies a location"
-                              " for this sale order line")
+        location = self._get_line_location()
+        assert location, _("No rules specifies a location"
+                           " for this sale order line")
         ctx = {
             'to_date': delivery_date,
             'compute_child': True,
-            'location': location_id,
+            'location': location.id,
             }
         # Virtual qty is made on all childs of chosen location
         prod_for_virtual_qty = (self.product_id
@@ -159,15 +201,15 @@ class SaleOrderLine(models.Model):
             return False
         delivery_date = self._compute_line_delivery_date()[0]
         delivery_date = fields.Datetime.to_string(delivery_date)
-        location_id = self._get_line_location()
-        assert location_id, _("No rules specifies a location"
-                              " for this sale order line")
+        location = self._get_line_location()
+        assert location, _("No rules specifies a location"
+                           " for this sale order line")
         ctx = {
             'compute_child': True,
-            'location_id': location_id,
+            'location_id': location.id,
             }
         # Virtual qty is made on all childs of chosen location
-        dates = self._get_affected_dates(location_id, self.product_id.id,
+        dates = self._get_affected_dates(location.id, self.product_id.id,
                                          delivery_date)
         for aff_date in dates:
             ctx['to_date'] = aff_date
