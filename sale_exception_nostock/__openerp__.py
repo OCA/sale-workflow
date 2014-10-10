@@ -1,8 +1,8 @@
 # -*- coding: utf-8 -*-
 #
 #
-#    Author: Nicolas Bessi
-#    Copyright 2013 Camptocamp SA
+#    Author: Nicolas Bessi, Yannick Vaucher, Leonardo Pistone
+#    Copyright 2014 Camptocamp SA
 #
 #    This program is free software: you can redistribute it and/or modify
 #    it under the terms of the GNU Affero General Public License as
@@ -19,7 +19,7 @@
 #
 #
 {'name': 'Sale stock exception',
- 'version': '0.1',
+ 'version': '1.0',
  'author': 'Camptocamp',
  'maintainer': 'Camptocamp',
  'category': 'sale',
