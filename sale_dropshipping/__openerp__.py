@@ -25,6 +25,7 @@
  "website": "http://www.openerp.com",
  "category": "Generic Modules/Purchase",
  "depends": ["purchase",
+             "purchase_group_hooks",
              "sale_stock"],
  "description": """
 Makes it better to deal with purchases with known sale schemes, specially the
