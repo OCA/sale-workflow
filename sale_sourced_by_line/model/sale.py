@@ -169,7 +169,9 @@ class sale_order_line(orm.Model):
             'stock.warehouse',
             'Source Warehouse',
             help="If a source warehouse is selected, "
-                 "it will be used to define the route. "),
+                 "it will be used to define the route. "
+                 "Otherwise, it will get the warehouse of "
+                 "the sale order"),
         'procurement_group_id': fields.many2one(
             'procurement.group',
             'Procurement group',
