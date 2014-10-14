@@ -21,6 +21,9 @@
                   position="before">
                     <field name="warehouse_id"/>
                 </xpath>
+                <xpath expr="//field[@name='order_line']" position="attributes">
+                    <attribute name="context">{'default_warehouse_id': warehouse_id}</attribute>
+                </xpath>
             </field>
         </record>
     </data>
