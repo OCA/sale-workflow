@@ -139,6 +139,11 @@ class SaleOrderLine(models.Model):
         delivery_date = self._compute_line_delivery_date()[0]
         delivery_date = fields.Datetime.to_string(delivery_date)
         location = self._get_line_location()
+
+        if location.usage != 'internal':
+            # for example, in the case of drop shipping, we skip the check
+            return True
+
         assert location, _("No rules specifies a location"
                            " for this sale order line")
         ctx = {
@@ -204,6 +209,11 @@ class SaleOrderLine(models.Model):
         location = self._get_line_location()
         assert location, _("No rules specifies a location"
                            " for this sale order line")
+
+        if location.usage != 'internal':
+            # for example, in the case of drop shipping, we skip the check
+            return True
+
         ctx = {
             'compute_child': True,
             'location_id': location.id,
