@@ -572,6 +572,8 @@ class stock_picking(orm.Model):
     # Beware of this: https://bugs.launchpad.net/openobject-addons/+bug/1167330
     # It will work if your code of the addons/7.0 is after 2013-12-26
     def _invoice_line_hook(self, cr, uid, move_line, invoice_line_id):
+        res = super(stock_picking, self)._invoice_line_hook(
+            cr, uid, move_line, invoice_line_id)
         if move_line.sale_line_id.rental:
             self.pool['account.invoice.line'].unlink(cr, uid, invoice_line_id)
-        return
+        return res
