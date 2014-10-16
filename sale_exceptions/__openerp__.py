@@ -42,7 +42,8 @@ format etc...)
                 'sale_view.xml',
                 'sale_exceptions_data.xml',
                 'wizard/sale_exception_confirm_view.xml',
-                'security/ir.model.access.csv'],
+                'security/ir.model.access.csv',
+                'security/ir_rule.xml'],
  'demo_xml': [],
  'installable': True,
  }

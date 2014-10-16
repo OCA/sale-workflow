@@ -1,8 +1,8 @@
 # -*- coding: utf-8 -*-
+##############################################################################
 #
-#
-#    Author: Jacques-Etienne Baudoux
-#    Copyright 2013 Camptocamp SA
+#    Author: Yannick Vaucher
+#    Copyright 2014 Camptocamp SA
 #
 #    This program is free software: you can redistribute it and/or modify
 #    it under the terms of the GNU Affero General Public License as
@@ -17,31 +17,5 @@
 #    You should have received a copy of the GNU Affero General Public License
 #    along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
-#
-
-{"name": "Sales Quotation Validity Date",
- "version": "7.0.0",
- "depends": ["sale"],
- "author": "Camptocamp",
- "category": "Sales",
- "website": "http://www.camptocamp.com",
- "description": """
-Sale order validity date
-========================
-
-Add a validity date on the sales quotation defining
-until when the quotation is valid.
-
-A default validity duration (in days) can be configured on the company.
-
-""",
- 'data': [
-     "view/sale_order.xml",
-     "view/company_view.xml",
- ],
- 'test': [
-     'test/sale_validity.yml',
- ],
- 'installable': True,
- 'active': False,
- }
+##############################################################################
+from . import sale

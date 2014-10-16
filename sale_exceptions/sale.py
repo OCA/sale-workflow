@@ -39,21 +39,39 @@ class sale_exception(orm.Model):
         'sequence': fields.integer(
             'Sequence',
             help="Gives the sequence order when applying the test"),
-        'model': fields.selection([('sale.order', 'Sale Order'),
-                                   ('sale.order.line', 'Sale Order Line')],
-                                  string='Apply on', required=True),
+        'model': fields.selection(
+            [('sale.order', 'Sale Order'),
+             ('sale.order.line', 'Sale Order Line')],
+            string='Apply on', required=True
+        ),
         'active': fields.boolean('Active'),
         'code': fields.text(
             'Python Code',
             help="Python code executed to check if the exception apply or "
                  "not. The code must apply block = True to apply the "
-                 "exception."),
+                 "exception."
+        ),
+
         'sale_order_ids': fields.many2many(
             'sale.order',
             'sale_order_exception_rel', 'exception_id', 'sale_order_id',
             string='Sale Orders',
-            readonly=True),
+            readonly=True
+        ),
+
+        'company_id': fields.many2one(
+            'res.company',
+            'Company',
+        )
     }
+
+    def _default_company(self, cr, uid, context=None):
+        return self.pool['res.company']._company_default_get(
+            cr,
+            uid,
+            'sale.exception',
+            context=context
+        )
 
     _defaults = {
         'code': """# Python code. Use failed = True to block the sale order.
@@ -67,7 +85,8 @@ class sale_exception(orm.Model):
 #  - cr: database cursor
 #  - uid: current user id
 #  - context: current context
-"""
+""",
+        'company_id': _default_company,
     }
 
 
@@ -168,15 +187,16 @@ class sale_order(orm.Model):
         for order in self.browse(cr, uid, ids, context=context):
             if order.ignore_exceptions:
                 continue
+            current_exception_ids = set(exc.id for exc in order.exceptions_ids)
             exception_ids = self._detect_exceptions(cr, uid,
                                                     order,
                                                     order_exceptions,
                                                     line_exceptions,
                                                     context=context)
-
-            self.write(cr, uid, [order.id],
-                       {'exceptions_ids': [(6, 0, exception_ids)]},
-                       context=context)
+            if set(exception_ids) != current_exception_ids:
+                self.write(cr, uid, [order.id],
+                           {'exceptions_ids': [(6, 0, exception_ids)]},
+                           context=context)
         return exception_ids
 
     def _exception_rule_eval_context(
