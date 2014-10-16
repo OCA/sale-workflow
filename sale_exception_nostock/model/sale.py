@@ -63,17 +63,24 @@ class SaleOrderLine(models.Model):
 
         """
         Rule = self.env['procurement.rule']
+        Warehouse = self.env['stock.warehouse']
+
         order = self.order_id
+        procurement_data = order._prepare_order_line_procurement(order, self)
+        # normally this is the order's warehouse, but modules like
+        # sale_sourced_by_line change this behaviour
+
+        warehouse = Warehouse.browse(procurement_data['warehouse_id'])
 
         domain = [('location_id', 'in', self._find_parent_locations())]
         warehouse_route_ids = []
-        if order.warehouse_id:
+        if warehouse:
             domain += [
                 '|',
-                ('warehouse_id', '=', order.warehouse_id.id),
+                ('warehouse_id', '=', warehouse.id),
                 ('warehouse_id', '=', False)
             ]
-            warehouse_route_ids = [x.id for x in order.warehouse_id.route_ids]
+            warehouse_route_ids = [x.id for x in warehouse.route_ids]
 
         product_route_ids = [
             x.id
