@@ -17,5 +17,5 @@ Texts are passed in the invoice when sale order is transformed into invoice""",
                 "sale_order_view.xml",
                 "condition_view.xml"],
  "category": "Sale",
- "installable": False,
+ "installable": True,
  "active": False, }
