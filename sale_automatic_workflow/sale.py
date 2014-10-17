@@ -20,6 +20,7 @@
 #
 ###############################################################################
 from openerp.osv import orm, fields
+from openerp.tools.translate import _
 
 
 class sale_order(orm.Model):
@@ -76,6 +77,12 @@ class sale_order(orm.Model):
             result['order_policy'] = workflow.order_policy
         if workflow.invoice_quantity:
             result['invoice_quantity'] = workflow.invoice_quantity
+        if workflow.warning:
+            warning = {
+                'title': _('Workflow Warning'),
+                'message': (workflow.warning),
+            }
+            return {'value': result, 'warning': warning}
         return {'value': result}
 
     def test_create_invoice(self, cr, uid, ids):

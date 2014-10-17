@@ -63,6 +63,9 @@ class sale_workflow_process(orm.Model):
             'Force Invoice Date',
             help="When checked, the invoice date will be "
                  "the same than the order's date"),
+        'warning': fields.text('Warning Message', translate=True,
+                               help='displayed if filled when the process'
+                               'is changed on sale order'),
     }
 
     _defaults = {

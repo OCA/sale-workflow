@@ -18,6 +18,7 @@
             <field name="validate_invoice" eval="1" />
             <field name="invoice_date_is_order_date" eval="0" />
             <field name="validate_picking" eval="0" />
+            <field name="warning">Be careful, if you save the order with this setting, it could be auto-confirmed, even if you are editing it.</field>
         </record>
 
         <record id="manual_validation" model="sale.workflow.process">
