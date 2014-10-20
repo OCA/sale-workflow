@@ -6,5 +6,4 @@
 #
 #
 from . import account_invoice
-from . import condition
 from . import sale_order

@@ -18,24 +18,29 @@
 #    along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
 #
-{"name": "Sale/invoice condition",
- "summary": "Condition texts templates on Sale/invoice documents",
- "version": "1.4",
- "depends": ["sale", "account", "base_condition_template"],
+{"name": "Base condition template",
+ "summary": "Condition texts templates on documents",
+ "version": "1.0",
+ "depends": ["base"],
  "description": """
-Sale/invoive condition
-======================
+Base condition template
+=======================
 
-Adds template condition text on sale order and invoice.
+Add a new model to define templates of condition text to print on
+documents.
+
 
 Templates are categorized by their position on the document.
 
 Two positions are available:
 
-- before sale order/invoice lines
-- after sale order/invoice lines
+- before document lines
+- after document lines
 
-Texts are copied on the invoice when you will create invoice from sale order.
+This module is the base module for following modules:
+
+* sale_condition_template
+* purchase_condition_template
 
 Contributors
 ------------
@@ -44,9 +49,7 @@ Contributors
 * Yannick Vaucher <yannick.vaucher@camptocamp.com>
 """,
  "author": "Camptocamp",
- "data": ["account_invoice_view.xml",
-          "sale_order_view.xml",
- ],
+ "data": ["condition_view.xml"],
  "category": "Sale",
  "installable": True,
  "active": False, }
