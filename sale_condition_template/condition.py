@@ -18,34 +18,28 @@
 #    along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
 #
-from osv import osv, fields
+from openerp import models, fields, api
 
 
-class AccountConditionText(osv.osv):
+class BaseConditionTemplate(models.Model):
 
     """add info condition in the invoice"""
-    _name = "account.condition_text"
-    _description = "Invoice condition text"
+    _name = "base.condition_template"
+    _description = "Base condition template text"
 
-    _columns = {'name': fields.char('Condition', required=True, size=128),
-                'type': fields.selection([('header', 'Header'),
-                                          ('footer', 'Footer')],
-                                         'type',
-                                         required=True),
-                'text': fields.text('text', translate=True, required=True)}
+    name = fields.Char('Condition summary', required=True, size=128)
+    position = fields.Selection([('before_lines', 'Before lines'),
+                                 ('after_lines', 'After lines')],
+                                'Postition',
+                                required=True,
+                                help="Position on document")
+    text = fields.Html('Condition', translate=True, required=True)
 
-    def get_value(self, cursor, uid, cond_id, field_name, partner_id=False):
-        if not cond_id:
-            return {}
-        part_obj = self.pool.get('res.partner')
-        text = ''
+    @api.multi
+    def get_value(self, partner_id=False):
+        self.ensure_one()
         try:
-            lang = part_obj.browse(cursor, uid, partner_id).lang
+            lang = self.env['res.partner'].browse(partner_id).lang
         except:
             lang = 'en_US'
-        cond = self.browse(cursor, uid, cond_id, {'lang': lang})
-        text = cond.text
-        return {'value': {field_name: text}}
-
-
-AccountConditionText()
+        return self.with_context({'lang': lang}).text

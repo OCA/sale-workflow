@@ -1,32 +1,38 @@
 <openerp>
     <data>
-        <record model="ir.ui.view" id="invoice_form_add_notes">
-            <field name="name">account.invoice.form.date_sent</field>
-            <field name="model">account.invoice</field>
-            <field name="type">form</field>
-            <field name="inherit_id" ref="account.invoice_form"/>
-            <field name="arch" type="xml">
-                <field name="comment" colspan="4" nolabel="1" position="replace">
-                    <field name="comment" colspan="4"/>
-                    <field name="note1" colspan="4" />
-                    <field name="note2" colspan="4"/>
-                </field>
-            </field>
-        </record>
         <record model="ir.ui.view" id="invoice_form_add_condition">
             <field name="name">account.invoice.form.condition</field>
             <field name="model">account.invoice</field>
-            <field name="type">form</field>
             <field name="inherit_id" ref="account.invoice_form"/>
             <field name="arch" type="xml">
-                
-                <field name="name" position="after"> 
-                    <newline/>   
-                    <field name="text_condition1"
-                        domain="[('type','=','header')]" on_change="set_condition(text_condition1, 'note1', partner_id)"/>
-                    <field name="text_condition2" 
-                        domain="[('type','=','footer')]"  on_change="set_condition(text_condition2, 'note2', partner_id)"/>
-                </field>
+
+                <xpath expr="//field[@name='invoice_line']" position="before">
+                    <label for="note1"/>
+                    <field name="note1" colspan="4"/>
+                    <group>
+                        <div>Use template
+                            <field name="condition_template1_id"
+                                nolabel="1"
+                                class='oe_inline'
+                                domain="[('position','=','before_lines')]" on_change="set_note1(condition_template1_id, partner_id)"/>
+                        </div>
+                    </group>
+                </xpath>
+
+                <xpath expr="//field[@name='comment']" position="replace">
+                    <field name="comment" colspan="4"/>
+                    <label for="note2"/>
+                    <field name="note2" colspan="4"/>
+                    <group>
+                        <div>Use template
+                            <field name="condition_template2_id"
+                                nolabel="1"
+                                class='oe_inline'
+                                domain="[('position','=','after_lines')]" on_change="set_note2(condition_template2_id, partner_id)"/>
+                        </div>
+                    </group>
+                </xpath>
+
             </field>
         </record>
     </data>

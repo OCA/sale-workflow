@@ -18,24 +18,32 @@
 #    along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
 #
-from osv import osv, fields
+from openerp.osv import orm, fields
 
 
-class AccountInvoice(osv.osv):
+class AccountInvoice(orm.Model):
 
     """Add text condition"""
 
     _inherit = "account.invoice"
     _columns = {
-        'text_condition1': fields.many2one('account.condition_text', 'Header'),
-        'text_condition2': fields.many2one('account.condition_text', 'Footer'),
-        'note1': fields.text('Header'),
-        'note2': fields.text('Footer')}
+        'condition_template1_id': fields.many2one('base.condition_template',
+                                                  'Top conditions'),
+        'condition_template2_id': fields.many2one('base.condition_template',
+                                                  'Bottom conditions'),
+        'note1': fields.html('Top conditions'),
+        'note2': fields.html('Bottom conditions'),
+    }
 
-    def set_condition(
-        self, cursor, uid, inv_id, cond_id, field_name, partner_id
-    ):
-        cond_obj = self.pool.get('account.condition_text')
-        return cond_obj.get_value(cursor, uid, cond_id, field_name, partner_id)
+    def set_condition(self, cr, uid, cond_id, field_name, partner_id):
+        if not cond_id:
+            return {'value': {field_name: ''}}
+        cond_obj = self.pool['base.condition_template']
+        text = cond_obj.get_value(cr, uid, cond_id, partner_id)
+        return {'value': {field_name: text}}
 
-AccountInvoice()
+    def set_note1(self, cr, uid, inv_id, cond_id, partner_id):
+        return self.set_condition(cr, uid, cond_id, 'note1', partner_id)
+
+    def set_note2(self, cr, uid, inv_id, cond_id, partner_id):
+        return self.set_condition(cr, uid, cond_id, 'note2', partner_id)
