@@ -25,10 +25,9 @@
      invoice.
 Texts are passed in the invoice when sale order is transformed into invoice""",
  "author": "Camptocamp",
- "init_xml": [],
- "update_xml": ["account_invoice_view.xml",
-                "sale_order_view.xml",
-                "condition_view.xml"],
+ "data": ["account_invoice_view.xml",
+          "sale_order_view.xml",
+          "condition_view.xml"],
  "category": "Sale",
  "installable": True,
  "active": False, }
