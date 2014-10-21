@@ -3,9 +3,9 @@
     'name': 'Sales Order with Department Categorization',
     'version': '1.0',
     'category': 'Generic Modules/Sales & Purchases',
-    'description': """\
-Add the department on Sales Order and Customer Invoices \
-as well as the related filter and button in the search form.""",
+    'description': """
+Add the department on Sales Order and Customer Invoices
+ as well as the related filter and button in the search form.""",
     'author': 'Camptocamp',
     "license": "AGPL-3",
     'website': 'http://camptocamp.com',
