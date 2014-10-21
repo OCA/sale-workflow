@@ -46,7 +46,7 @@ Contributors
  "author": "Camptocamp",
  "data": ["account_invoice_view.xml",
           "sale_order_view.xml",
- ],
+          ],
  "category": "Sale",
  "installable": True,
  "active": False, }
