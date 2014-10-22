@@ -49,21 +49,25 @@ class SaleOrder(orm.Model):
     def set_note2(self, cr, uid, so_id, cond_id, partner_id):
         return self.set_condition(cr, uid, cond_id, 'note2', partner_id)
 
-    def action_invoice_create(self, cr, user, order_id,
+    def action_invoice_create(self, cr, uid, ids,
                               grouped=False,
                               states=['confirmed', 'done', 'exception'],
-                              date_inv=False, context=None):
+                              date_invoice=False, context=None):
         # function is design to return only one id
         invoice_obj = self.pool['account.invoice']
-        inv_id = super(SaleOrder, self).action_invoice_create(
-            cr, user, order_id, grouped, states, date_inv, context=context)
+        _super = super(SaleOrder, self)
+        inv_id = _super.action_invoice_create(cr, uid, ids,
+                                              grouped=grouped,
+                                              states=states,
+                                              date_invoice=date_invoice,
+                                              context=context)
 
-        invoice = invoice_obj.browse(cr, user, inv_id, context=context)
-        if isinstance(order_id, (tuple, list)):
-            assert len(order_id) == 1, "1 ID expected, got: %s" % (order_id, )
-            order_id = order_id[0]
+        invoice = invoice_obj.browse(cr, uid, inv_id, context=context)
+        if isinstance(ids, (tuple, list)):
+            assert len(ids) == 1, "1 ID expected, got: %s" % (ids, )
+            ids = ids[0]
 
-        order = self.browse(cr, user, order_id, context=context)
+        order = self.browse(cr, uid, ids, context=context)
         inv_data = {'condition_template1_id': order.condition_template1_id.id,
                     'condition_template2_id': order.condition_template2_id.id,
                     'note1': order.note1,
