@@ -29,10 +29,10 @@ class SaleOrder(orm.Model):
     _inherit = "sale.order"
     _columns = {
         'condition_template1_id': fields.many2one(
-            'base.condition_template',
+            'base.condition.template',
             'Template Top conditions'),
         'condition_template2_id': fields.many2one(
-            'base.condition_template',
+            'base.condition.template',
             'Template Bottom conditions'),
         'note1': fields.html('Top conditions'),
         'note2': fields.html('Bottom conditions'),
@@ -41,7 +41,7 @@ class SaleOrder(orm.Model):
     def set_condition(self, cr, uid, cond_id, field_name, partner_id):
         if not cond_id:
             return {'value': {field_name: ''}}
-        cond_obj = self.pool['base.condition_template']
+        cond_obj = self.pool['base.condition.template']
         text = cond_obj.get_value(cr, uid, cond_id, partner_id)
         return {'value': {field_name: text}}
 

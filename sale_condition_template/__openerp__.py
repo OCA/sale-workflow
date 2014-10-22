@@ -22,7 +22,6 @@
  "summary": "Condition texts templates on Sale documents",
  "version": "1.4",
  "depends": ["sale",
-             "account",
              "invoice_condition_template",
              ],
  "description": """
