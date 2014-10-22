@@ -26,6 +26,7 @@
              ],
  "author": "Camptocamp",
  "data": ["sale_order_view.xml",
+          'base_condition_template_view.xml',
           ],
  "category": "Sale",
  "installable": True,
