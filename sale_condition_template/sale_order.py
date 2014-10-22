@@ -19,7 +19,6 @@
 #
 #
 from openerp.osv import orm, fields
-from openerp.tools.translate import _
 
 
 class SaleOrder(orm.Model):
@@ -61,13 +60,10 @@ class SaleOrder(orm.Model):
             cr, user, order_id, grouped, states, date_inv, context=context)
 
         invoice = invoice_obj.browse(cr, user, inv_id, context=context)
-        if isinstance(order_id, list):
-            if len(order_id) > 1:
-                raise orm.except_osv(
-                    _('action_invoice_create can only receive one id'),
-                    _('action_invoice_create can only receive one id'))
-
+        if isinstance(order_id, (tuple, list)):
+            assert len(order_id) == 1, "1 ID expected, got: %s" % (order_id, )
             order_id = order_id[0]
+
         order = self.browse(cr, user, order_id, context=context)
         inv_data = {'condition_template1_id': order.condition_template1_id.id,
                     'condition_template2_id': order.condition_template2_id.id,
