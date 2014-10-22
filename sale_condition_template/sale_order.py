@@ -69,5 +69,5 @@ class SaleOrder(orm.Model):
                     'condition_template2_id': order.condition_template2_id.id,
                     'note1': order.note1,
                     'note2': order.note2}
-        invoice.write(inv_data, context=context)
+        invoice.write(inv_data)
         return inv_id
