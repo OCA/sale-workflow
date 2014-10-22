@@ -18,15 +18,18 @@
 #    along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
 #
-{"name": "Sale/invoice condition",
- "summary": "Condition texts templates on Sale/invoice documents",
+{"name": "Sale Conditions",
+ "summary": "Condition texts templates on Sale documents",
  "version": "1.4",
- "depends": ["sale", "account", "base_condition_template"],
+ "depends": ["sale",
+             "account",
+             "invoice_condition_template",
+             ],
  "description": """
-Sale/invoive condition
-======================
+Sale Conditions
+===============
 
-Adds template condition text on sale order and invoice.
+Adds template condition texts on sales orders and invoices.
 
 Templates are categorized by their position on the document.
 
@@ -36,6 +39,14 @@ Two positions are available:
 - after sale order/invoice lines
 
 Texts are copied on the invoice when you will create invoice from sale order.
+
+Dependencies
+------------
+
+The modules `invoice_condition_template` and `base_condition_template` are
+required. They live in the OCA project `account-invoice-reporting`_.
+
+.. _`account-invoice-reporting`: https://github.com/OCA/account-invoice-reporting
 
 Contributors
 ------------
