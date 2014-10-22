@@ -55,8 +55,7 @@ Contributors
 * Yannick Vaucher <yannick.vaucher@camptocamp.com>
 """,
  "author": "Camptocamp",
- "data": ["account_invoice_view.xml",
-          "sale_order_view.xml",
+ "data": ["sale_order_view.xml",
           ],
  "category": "Sale",
  "installable": True,
