@@ -22,7 +22,6 @@ from openerp.osv import orm, fields
 
 
 class SaleOrder(orm.Model):
-
     """Add text condition"""
 
     _inherit = "sale.order"
