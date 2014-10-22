@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+  <data noupdate="0">
+    <menuitem name="Document Conditions"
+      id="menu_base_condition_template_sale"
+      action="base_condition_template.action_base_condition_template"
+      parent="base.menu_base_config"/>
+  </data>
+</openerp>
+

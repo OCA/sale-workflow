@@ -1,0 +1,38 @@
+<openerp>
+    <data>
+        <record model="ir.ui.view" id="sale_order_form_add_condition">
+            <field name="name">condition_template.sale.order.form</field>
+            <field name="model">sale.order</field>
+            <field name="inherit_id" ref="sale.view_order_form"/>
+            <field name="arch" type="xml">
+
+                <xpath expr="//field[@name='order_line']" position="before">
+                    <label for="note1"/>
+                    <field name="note1" colspan="4" />
+                    <group>
+                        <div>Use template
+                            <field name="condition_template1_id"
+                                nolabel="1"
+                                class='oe_inline'
+                                domain="[('position','=','before_lines')]" on_change="set_note1(condition_template1_id, partner_id)"/>
+                        </div>
+                    </group>
+                </xpath>
+                <xpath expr="//field[@name='note']" position="replace">
+                    <label for="note"/>
+                    <field name="note" colspan="4"/>
+                    <label for="note2"/>
+                    <field name="note2" colspan="4"/>
+                    <group>
+                        <div>Use template
+                            <field name="condition_template2_id"
+                                nolabel="1"
+                                class='oe_inline'
+                                domain="[('position','=','after_lines')]" on_change="set_note2(condition_template2_id, partner_id)"/>
+                        </div>
+                    </group>
+                </xpath>
+            </field>
+        </record>
+    </data>
+</openerp>
