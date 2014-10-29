@@ -27,7 +27,7 @@ class sale_order(orm.Model):
         'allowed_users_ids': fields.many2many(
             'res.users',
             string='Allowed Users',
-            groups='base.group_erp_manager',
+            groups='base.group_sale_secret_orders',
             help=('Users that can see this order. If left empty, normal rules'
                   ' apply. If you want to make it invisible to everyone, add'
                   ' only yourself as allowed.'),
