@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+
+        <record id="sorp_view_order_form" model="ir.ui.view">
+            <field name="name">sale.order.form</field>
+            <field name="model">sale.order</field>
+            <field name="inherit_id" ref="sale.view_order_form"/>
+            <field name="arch" type="xml">
+                <field name="pricelist_id" position="after">
+                    <button name="recalculate_prices" string="(Recalculate prices)" type="object" colspan="4" class="oe_link"/>
+                </field>
+            </field>
+        </record>
+
+    </data>
+</openerp>
