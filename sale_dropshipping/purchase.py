@@ -63,9 +63,8 @@ class purchase_order(orm.Model):
             if sale_flow in ('direct_delivery', 'direct_invoice_and_delivery'):
                 partner = partner_obj.browse(cr, uid, partner_id,
                                              context=context)
-                address = partner.address_get(['delivery'])['delivery']
                 vals = {'location_id': partner.property_stock_customer.id,
-                        'dest_address_id': address}
+                        'dest_address_id': sale.partner_shipping_id.id}
                 if sale_flow == 'direct_delivery':
                     vals['invoice_method'] = 'order'
                 else:
