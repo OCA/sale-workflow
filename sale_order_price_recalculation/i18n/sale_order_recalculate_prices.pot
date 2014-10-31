@@ -1,0 +1,21 @@
+# Translation of OpenERP Server.
+# This file contains the translation of the following modules:
+#	* sale_order_price_recalculation
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: OpenERP Server 7.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2014-08-05 13:14+0000\n"
+"PO-Revision-Date: 2014-08-05 13:14+0000\n"
+"Last-Translator: Carlos Sánchez Cifuentes <csanchez@grupovermon.com>\n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: \n"
+
+#. module: sale_order_price_recalculation
+#: view:sale.order:0
+msgid "(Recalculate prices)"
+msgstr ""
