@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+
+        <record id="view_order_form_inherit" model="ir.ui.view">
+            <field name="name">sale.order.form.sale.stock</field>
+            <field name="model">sale.order</field>
+            <field name="inherit_id" ref="sale_stock.view_order_form_inherit"/>
+            <field name="arch" type="xml">
+                <field name="property_ids" position="attributes">
+                    <attribute name="on_change">product_id_change(parent.pricelist_id,product_id,product_uom_qty,product_uom,product_uos_qty,False,False,parent.partner_id, False, False, parent.date_order, False, False, True, context)</attribute>
+                    <attribute name="context_properties">{'property_ids': property_ids}</attribute>
+                </field>
+            </field>
+        </record>
+
+        <record id="view_order_form" model="ir.ui.view">
+            <field name="name">sale.order.form</field>
+            <field name="model">sale.order</field>
+            <field name="inherit_id" ref="sale.view_order_form"/>
+            <field name="arch" type="xml">
+                <xpath expr="//page[@string='Order Lines']/field[@name='order_line']/form[@string='Sales Order Lines']/group/group/label[@for='product_uos_qty']" position="replace">
+                </xpath>
+                <xpath expr="//page[@string='Order Lines']/field[@name='order_line']/form[@string='Sales Order Lines']/group/group/div[@groups='product.group_uos']" position="replace">
+                </xpath>
+                <xpath expr="//page[@string='Order Lines']/field[@name='order_line']/form[@string='Sales Order Lines']/group/group/field[@name='product_id']" position="after">
+                    <label for="product_uos_qty"/>
+                    <div>
+                        <field name="product_uos_qty" on_change="product_id_change(parent.pricelist_id,product_id,product_uom_qty,product_uom,product_uos_qty,False,False,parent.partner_id, False, False, parent.date_order, False, False, True, context)" context_properties="{'property_ids': property_ids}" class="oe_inline"/>
+                        <field name="product_uos" class="oe_inline" options='{"no_open": True}'/>
+                    </div>
+                </xpath>
+            </field>
+        </record>
+
+    </data>
+</openerp>

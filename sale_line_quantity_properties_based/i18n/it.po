@@ -1,0 +1,61 @@
+# Translation of OpenERP Server.
+# This file contains the translation of the following modules:
+#	* sale_line_quantity_properties_based
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: OpenERP Server 7.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2014-08-19 09:43+0000\n"
+"PO-Revision-Date: 2014-08-19 09:43+0000\n"
+"Last-Translator: <>\n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: sale_line_quantity_properties_based
+#: code:_description:0
+#: model:ir.model,name:sale_line_quantity_properties_based.model_product_product
+#, python-format
+msgid "Product"
+msgstr "Prodotto"
+
+#. module: sale_line_quantity_properties_based
+#: field:product.product,quantity_formula_id:0
+msgid "Quantity formula"
+msgstr "Formula quantità"
+
+#. module: sale_line_quantity_properties_based
+#: code:_description:0
+#: model:ir.model,name:sale_line_quantity_properties_based.model_sale_order_line
+#, python-format
+msgid "Sales Order Line"
+msgstr "Linea d'ordine di vendita"
+
+#. module: sale_line_quantity_properties_based
+#: help:product.product,quantity_formula_id:0
+msgid "You can use the variables\n"
+" - self\n"
+" - cr\n"
+" - uid\n"
+" - properties (dictionary of properties)\n"
+"You have to put the result in the 'result' variable"
+msgstr "E' possibile usare le variabili\n"
+" - self\n"
+" - cr\n"
+" - uid\n"
+" - properties (dizionario di proprietà)\n"
+"Bisogna mettere il risultato nella variabile 'result'"
+
+#. module: sale_line_quantity_properties_based
+#: view:sale.order:0
+msgid "product_id_change(parent.pricelist_id,product_id,product_uom_qty,product_uom,product_uos_qty,False,False,parent.partner_id, False, False, parent.date_order, False, False, False, context)"
+msgstr "product_id_change(parent.pricelist_id,product_id,product_uom_qty,product_uom,product_uos_qty,False,False,parent.partner_id, False, False, parent.date_order, False, False, False, context)"
+
+#. module: sale_line_quantity_properties_based
+#: view:sale.order:0
+msgid "{'property_ids': property_ids}"
+msgstr "{'property_ids': property_ids}"
+

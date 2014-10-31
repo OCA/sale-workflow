@@ -1,0 +1,13 @@
+-
+  I check the on_change
+-
+  !python {model: sale.order.line}: |
+    if context is None:
+        context = {}
+    context['property_ids'] = [(6, False, [
+        ref('sale_properties_easy_creation.length_5'),
+        ref('sale_properties_easy_creation.width_1'),
+        ])]
+    res = self.product_id_change(cr, uid, [], ref('product.list0'), ref('product.product_product_7'), qty=8,
+        partner_id=ref('base.res_partner_2'), context=context)
+    assert res['value']['price_unit'] == 2.5, "Price unit must be 2.5, %s found" % res['value']['price_unit']
