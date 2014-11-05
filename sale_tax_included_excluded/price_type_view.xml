@@ -20,5 +20,18 @@
     </field>
 </record>
 
+<record id="product_price_type_tree" model="ir.ui.view">
+    <field name="name">tax.included.excluded.price.type.tree</field>
+    <field name="model">product.price.type</field>
+    <field name="arch" type="xml">
+        <tree string="Price Types">
+            <field name="name"/>
+            <field name="field"/>
+            <field name="currency_id" groups="base.group_multi_currency"/>
+            <field name="price_include_taxes"/>
+        </tree>
+    </field>
+</record>
+
 </data>
 </openerp>

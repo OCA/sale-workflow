@@ -34,7 +34,8 @@ B2B with prices displayed *taxes excluded* and B2C with prices displayed
 with a proper presentation of sale orders and invoices. With this module
 and a proper configuration, it becomes possible.
 
-This module is NOT compatiable with *product_visible_discount* for the moment.
+This modules requires a patch on the sale module and on the product_visible_discount
+module (if it is installed).
 
 This module has been written by Alexis de Lattre from Akretion
 <alexis.delattre@akretion.com>.

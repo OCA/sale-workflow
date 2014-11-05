@@ -21,6 +21,7 @@
 ##############################################################################
 
 from openerp.osv import orm, fields
+from openerp.tools.translate import _
 
 
 class price_type(orm.Model):
@@ -29,6 +30,33 @@ class price_type(orm.Model):
     _columns = {
         'price_include_taxes': fields.boolean('Price Include Taxes'),
         }
+
+    def _check_price_type(self, cr, uid, ids):
+        for pricet in self.browse(cr, uid, ids):
+            same_field_ids = self.search(
+                cr, uid, [('field', '=', pricet.field)])
+            for samepricet in self.browse(cr, uid, same_field_ids):
+                if (
+                        samepricet.price_include_taxes
+                        != pricet.price_include_taxes):
+                    raise orm.except_orm(
+                        _('Configuration Error:'),
+                        _("A price type based on a particular field should "
+                            "have the same value for the option "
+                            "'Price Include Taxes' than other price types "
+                            "using the same field. But, for the price type "
+                            "'%s', it doesn't have the same value for the "
+                            "option 'Price Include Taxes' than the price "
+                            "type '%s'.")
+                        % (pricet.name, samepricet.name)
+                        )
+        return True
+
+    _constraints = [(
+        _check_price_type,
+        "Wrong configuration of the price type",
+        ['price_include_taxes', 'field']
+        )]
 
 
 class product_template(orm.Model):
