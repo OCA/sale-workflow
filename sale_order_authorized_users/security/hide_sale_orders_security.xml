@@ -5,6 +5,7 @@
     <record id="base.group_sale_secret_orders" model="res.groups">
         <field name="name">Secret orders</field>
         <field name="category_id" ref="base.module_category_sales_management"/>
+        <field name="implied_ids" eval="[(4, ref('base.group_sale_manager'))]"/>
         <field name="comment">the user will be able to hide sale orders to all users except the one explicitely allowed.</field>
     </record>
 
