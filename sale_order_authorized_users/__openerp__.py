@@ -42,8 +42,8 @@ that it's not his, even if he's selected as allowed.
 On the other hand, by setting some users as allowed, all other
 users, even if they are "See all leads", won't be able to see the order.
 
-*When you add allowed users to a sale order you should include yourself, or you
-won't be able to access it anymore!*
+*When you add allowed users to a sale order, unless you're connected as admin,
+you must include yourself, or you won't be able make the change!*
 
 If no users are set (the default), all users are considered as allowed,
 so the sale order follows the "normal" access rules with no additional
