@@ -57,7 +57,7 @@
     'category': 'Sales',
     'version': '0.1',
 
-    'depends': ['sale_stock', 'purchase'],
+    'depends': ['sale_stock', 'purchase', 'stock_dropshipping'],
     'data': ['views/sale_order_sourcing.xml',
              'views/sale_order.xml',
              'security/group.xml',
