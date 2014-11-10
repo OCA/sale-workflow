@@ -2,7 +2,6 @@
 <openerp>
   <data>
 
-    <!-- Partners inherited form -->
     <record id="view_order_form_allowed_users" model="ir.ui.view">
       <field name="name">sale.order.form.allowed.users</field>
       <field name="model">sale.order</field>
