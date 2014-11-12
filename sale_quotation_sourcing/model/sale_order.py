@@ -92,7 +92,15 @@ class SaleOrderLine(models.Model):
         """Return the routes to assing on SO lines
         based on a location usage.
 
-        If nothing no match return None
+        If no match return None.
+
+        At the moment this method returns the standard dropshipping and MTO
+        routes. This method will work in many cases, but we could improve it to
+        find dropshipping-like and MTO-like routes that have been configured
+        afterwards.
+
+        See onchange_dest_address_in in the module purchase_delivery_address
+        for a similar situation.
 
         :param usage: stock.location Model usage
         :type usage: str
