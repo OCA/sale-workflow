@@ -17,7 +17,7 @@
         manually_sourced: 1
         route_id: route_drop_shipping
 -
-  But I source it with a purchase with destination Stock
+  When I source it with a purchase with destination Stock
 -
   !record {model: purchase.order, id: po_5}:
     partner_id: base.res_partner_6
@@ -29,11 +29,8 @@
     po = self.env['purchase.order'].browse(ref('po_5'))
     self.order_line[0].sourced_by = po.order_line[0]
 -
-  When I confirm the sale
-  Then I should be blocked
+  Then the sale should have a route with origin Stock
 -
   !python {model: sale.order, id: so_5}: |
     from nose.tools import *
-    from openerp.exceptions import Warning
-    with assert_raises(Warning):
-        self.action_button_confirm()
+    assert_equal('internal', self.order_line[0].route_id.pull_ids[0].location_src_id.usage)
