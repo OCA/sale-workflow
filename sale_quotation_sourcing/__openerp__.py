@@ -40,11 +40,16 @@
     and the manually sourced one.
 
     The drop shipping case is handled as well, with a warning to check if the
-    destination locations of the procurement and the sourced PO are
-    consistent. Since the stock_dropshipping module contains little more than
-    preconfigured Routes, Rules, and Picking Types, we do not depend
-    on it but we are fully compatible. The Routes and Rules are recreated in
-    the tests in order to avoid requiring stock_dropshipping in production.
+    destination locations of the procurement and the sourced PO are consistent.
+    In addition to that, when the user sources a sale line with a purchase
+    line, the system tries to choose automatically an appropriate route (MTO or
+    drophipping).
+
+    This on_change method is the only place where the module stock_dropshipping
+    is used, otherwise it contains little more than preconfigured Routes,
+    Rules, and Picking Types. All other code and the tests do not use it.  That
+    dependency can be easily removed later if it is needed to manually
+    configure dropshipping and MTO routes.
 
     Note: the package nose is required to run the tests. It is not noted in the
     external dependencies since it is not required in production.
@@ -55,9 +60,9 @@
     'website': "http://www.camptocamp.com",
 
     'category': 'Sales',
-    'version': '0.1',
+    'version': '0.2',
 
-    'depends': ['sale_stock', 'purchase'],
+    'depends': ['sale_stock', 'purchase', 'stock_dropshipping'],
     'data': ['views/sale_order_sourcing.xml',
              'views/sale_order.xml',
              'security/group.xml',
