@@ -28,7 +28,7 @@ class SaleOrder(models.Model):
         self.ensure_one()
         result = super(SaleOrder, self).onchange_requested_date(
             requested_date, commitment_date)
-        if not 'warning' in result:
+        if 'warning' not in result:
             lines = []
             for line in self.order_line:
                 lines.append((1, line.id, {'requested_date': requested_date}))
