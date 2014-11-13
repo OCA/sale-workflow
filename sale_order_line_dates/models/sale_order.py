@@ -22,7 +22,18 @@ from openerp import models, fields, api
 class SaleOrder(models.Model):
     _inherit = 'sale.order'
 
-    
+    @api.multi
+    def onchange_requested_date(self, requested_date, commitment_date):
+        """Warn if the requested dates is sooner than the commitment date"""
+        self.ensure_one()
+        result = super(SaleOrder, self).onchange_requested_date(
+            requested_date, commitment_date)
+        if not 'warning' in result:
+            lines = []
+            for line in self.order_line:
+                lines.append((1, line.id, {'requested_date': requested_date}))
+            result['value'] = {'order_line': lines}
+        return result
 
 
 class SaleOrderLine(models.Model):
