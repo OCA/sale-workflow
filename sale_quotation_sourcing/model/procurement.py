@@ -19,7 +19,7 @@
 #
 from openerp import models, api, _
 
-from openerp.exceptions import Warning
+from openerp import exceptions
 
 
 class ProcurementOrder(models.Model):
@@ -46,7 +46,7 @@ class ProcurementOrder(models.Model):
                 po_line = sale_line.sourced_by
 
                 if po_line.order_id.location_id != procurement.location_id:
-                    raise Warning(_(
+                    raise exceptions.Warning(_(
                         'The manually sourced Purchase Order has Destination '
                         'location {}, while the Procurement was generated '
                         'with destination {}. To solve the problem, please '
