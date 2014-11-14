@@ -219,7 +219,7 @@ class SaleOrderLine(models.Model):
 
         if location.usage != 'internal':
             # for example, in the case of drop shipping, we skip the check
-            return True
+            return False
 
         ctx = {
             'compute_child': True,
