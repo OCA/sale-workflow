@@ -106,7 +106,7 @@ class SaleOrder(models.Model):
         list_id = (list_obj
                    .with_context(active_id=self.ids[0],
                                  active_ids=self.ids)
-                   .create({}))
+                   .create({}).id)
         view_id = model_data_obj.get_object_reference(
             'sale_exceptions', 'view_sale_exception_confirm')[1]
         action = {
