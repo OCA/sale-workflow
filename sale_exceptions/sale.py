@@ -99,7 +99,7 @@ class SaleOrder(models.Model):
         order_set.test_exceptions()
         return True
 
-    @api.one
+    @api.multi
     def _popup_exceptions(self):
         model_data_obj = self.env['ir.model.data']
         list_obj = self.env['sale.exception.confirm']
