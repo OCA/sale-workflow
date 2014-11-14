@@ -32,6 +32,6 @@ class ResPartner(models.Model):
 
     @api.model
     def _commercial_fields(self):
-        fields = super(ResPartner, self)._commercial_fields()
-        fields.append('use_prepayment')
-        return fields
+        commercial_fields = super(ResPartner, self)._commercial_fields()
+        commercial_fields.append('use_prepayment')
+        return commercial_fields
