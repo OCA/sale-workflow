@@ -52,10 +52,10 @@ Used by modules like 'sale_line_price_properties_based' and
         'mrp_property_group_demo.xml',
         'mrp_property_demo.xml',
         'mrp_property_formula_demo.xml',
-        ],
+    ],
     "test": [
         'test/properties.yml',
-        ],
+    ],
     "active": False,
     "installable": True
 }
