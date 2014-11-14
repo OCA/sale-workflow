@@ -57,7 +57,7 @@ class SaleOrderLine(orm.Model):
             field_ids = field_pool.search(cr, uid, [
                 ('name', '=', context['field_name']),
                 ('model', '=', 'sale.order.line'),
-                ], context=context)
+            ], context=context)
             if len(field_ids) != 1:
                 raise orm.except_orm(
                     _('Error'),
@@ -65,7 +65,7 @@ class SaleOrderLine(orm.Model):
                     % context['field_name'])
             group_ids = group_pool.search(cr, uid, [
                 ('field_id', '=', field_ids[0]),
-                ], context=context)
+            ], context=context)
             if len(group_ids) != 1:
                 raise orm.except_orm(
                     _('Error'),
@@ -77,7 +77,7 @@ class SaleOrderLine(orm.Model):
             prop_ids = prop_pool.search(cr, uid, [
                 ('group_id', '=', group.id),
                 ('value', '=', dynamic_property),
-                ], context=context)
+            ], context=context)
             if prop_ids:
                 prop = prop_pool.browse(cr, uid, prop_ids[0], context=context)
                 prop_dict[group.name] = (prop.id, prop.value)
@@ -86,7 +86,7 @@ class SaleOrderLine(orm.Model):
                     'name': '%s %s' % (group.name, dynamic_property),
                     'value': dynamic_property,
                     'group_id': group.id,
-                    }, context=context)
+                }, context=context)
                 prop_dict[group.name] = (prop_id, dynamic_property)
             res = {
                 'value':
@@ -94,5 +94,5 @@ class SaleOrderLine(orm.Model):
                         'property_ids': self.build_prop_m2m_from_dict(
                             cr, uid, prop_dict, context=context)
                     }
-                }
+            }
         return res

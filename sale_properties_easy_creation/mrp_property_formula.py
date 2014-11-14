@@ -27,4 +27,4 @@ class MrpPropertyFormula(orm.Model):
     _columns = {
         'name': fields.char('Name', size=128),
         'formula_text': fields.text('Formula'),
-        }
+    }

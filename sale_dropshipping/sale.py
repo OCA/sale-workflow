@@ -219,7 +219,7 @@ class procurement_order(orm.Model):
             l_id = (
                 procurement.sale_order_line_id.id
                 if procurement.sale_order_line_id else False
-                )
+            )
             line_vals.update({'sale_order_line_id': l_id})
         return super(
             procurement_order, self).create_procurement_purchase_order(

@@ -30,7 +30,7 @@ class MrpPropertyGroup(orm.Model):
             'Draw dynamically', help="In sale order line, draw this property "
                                      "dynamically, as text field"),
         'field_id': fields.many2one('ir.model.fields', 'Field', readonly=True),
-        }
+    }
 
     def build_field_vals(self, cr, uid, group, context=None):
         model_pool = self.pool['ir.model']
@@ -44,7 +44,7 @@ class MrpPropertyGroup(orm.Model):
             'field_description': group.name,
             'ttype': 'char',
             'size': 64,
-            }
+        }
 
     def check_duplicate_field(self, cr, uid, field_id, context=None):
         field_pool = self.pool['ir.model.fields']
@@ -52,7 +52,7 @@ class MrpPropertyGroup(orm.Model):
         field_ids = field_pool.search(cr, uid, [
             ('name', '=', field.name),
             ('model', '=', 'sale.order.line'),
-            ],
+        ],
             context=context)
         if len(field_ids) > 1:
             raise orm.except_orm(
@@ -72,7 +72,7 @@ class MrpPropertyGroup(orm.Model):
             self.check_duplicate_field(cr, uid, field_id, context=context)
             self.write(cr, uid, [res], {
                 'field_id': field_id,
-                }, context=context)
+            }, context=context)
         return res
 
     def write(self, cr, uid, ids, vals, context=None):
@@ -89,7 +89,7 @@ class MrpPropertyGroup(orm.Model):
                 self.check_duplicate_field(cr, uid, field_id, context=context)
                 self.write(cr, uid, [group.id], {
                     'field_id': field_id,
-                    }, context=context)
+                }, context=context)
             if not group.draw_dynamically and group.field_id:
                 context['_force_unlink'] = True
                 group.field_id.unlink(context=context)
