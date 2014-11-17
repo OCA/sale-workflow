@@ -101,13 +101,13 @@ class SaleOrder(models.Model):
 
     @api.multi
     def _popup_exceptions(self):
-        ModelData = self.env['ir.model.data']
-        Wizard = self.env['sale.exception.confirm']
+        model_data_model = self.env['ir.model.data']
+        wizard_model = self.env['sale.exception.confirm']
 
         new_context = {'active_id': self.ids[0], 'active_ids': self.ids}
-        wizard = Wizard.with_context(new_context).create({})
+        wizard = wizard_model.with_context(new_context).create({})
 
-        view_id = ModelData.get_object_reference(
+        view_id = model_data_model.get_object_reference(
             'sale_exceptions', 'view_sale_exception_confirm')[1]
 
         action = {
