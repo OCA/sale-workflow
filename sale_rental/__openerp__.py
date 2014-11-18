@@ -33,7 +33,7 @@ Rental
 
 This module will allows you to rent products with OpenERP. On the form view of a stockable product or consumable, there is a wizard to generate the corresponding rental service. On the warehouse, you have two additionnal stock locations: *Rental In* (stock of products to rent) and *Rental Out* (products currently rented).
 
-In a sale order line, if you select a rental service, you can :
+In a sale order line (form view, not tree view), if you select a rental service, you can :
 
 * create a new rental with a start date and an end date: when the sale order is confirmed, it will generate a delivery order and an incoming shipment.
 
@@ -41,6 +41,11 @@ In a sale order line, if you select a rental service, you can :
 
 In a sale order line, if you select a product that has a corresponding rental service, you can decide to sell the rented product that the customer already has. If the sale order is confirmed, the incoming shipment will be cancelled and a new delivery order will be created with a stock move from *Rental Out* to *Customers*.
 
+To use the module, you need to have access to the form view of sale order lines. For that, you must add your user to one of these groups:
+
+* Manage Product Packaging
+
+* Properties on lines
 
 Known limitations of the current implementation:
 
@@ -62,5 +67,6 @@ Please contact Alexis de Lattre from Akretion <alexis.delattre@akretion.com> for
         'product_view.xml',
         'security/ir.model.access.csv',
     ],
+    'demo': ['rental_demo.xml'],
     'installable': True,
 }
