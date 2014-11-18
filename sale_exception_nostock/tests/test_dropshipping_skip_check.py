@@ -23,3 +23,10 @@ class TestDropshippingSkipCheck(TransactionCase):
         order_line._get_line_location = lambda: source_loc
 
         self.assertIs(True, order_line.can_command_at_delivery_date())
+
+    def test_dropshipping_sale_does_not_affect_future_orders(self):
+        source_loc = self.env['stock.location'].new({'usage': 'supplier'})
+        order_line = self.env['sale.order.line'].new()
+        order_line._get_line_location = lambda: source_loc
+
+        self.assertIs(False, order_line.future_orders_are_affected())
