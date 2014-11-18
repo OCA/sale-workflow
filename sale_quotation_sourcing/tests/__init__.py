@@ -1,8 +1,8 @@
 # -*- coding: utf-8 -*-
+##############################################################################
 #
-#
-#    Author: Guewen Baconnier
-#    Copyright 2013 Camptocamp SA
+#    Author: Nicolas Bessi
+#    Copyright 2014 Camptocamp SA
 #
 #    This program is free software: you can redistribute it and/or modify
 #    it under the terms of the GNU Affero General Public License as
@@ -17,21 +17,5 @@
 #    You should have received a copy of the GNU Affero General Public License
 #    along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
-#
-
-from openerp import models, fields, api
-
-
-class ResPartner(models.Model):
-    _inherit = 'res.partner'
-
-    use_prepayment = fields.Boolean(
-        'Use prepayment',
-        help="When prepayment is activated, the sales order policy "
-             "will be automatically defined to pay before delivery.")
-
-    @api.model
-    def _commercial_fields(self):
-        commercial_fields = super(ResPartner, self)._commercial_fields()
-        commercial_fields.append('use_prepayment')
-        return commercial_fields
+##############################################################################
+from . import test_sourced_by

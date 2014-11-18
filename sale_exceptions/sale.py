@@ -99,16 +99,17 @@ class SaleOrder(models.Model):
         order_set.test_exceptions()
         return True
 
-    @api.one
+    @api.multi
     def _popup_exceptions(self):
-        model_data_obj = self.env['ir.model.data']
-        list_obj = self.env['sale.exception.confirm']
-        list_id = (list_obj
-                   .with_context(active_id=self.ids[0],
-                                 active_ids=self.ids)
-                   .create({}))
-        view_id = model_data_obj.get_object_reference(
+        model_data_model = self.env['ir.model.data']
+        wizard_model = self.env['sale.exception.confirm']
+
+        new_context = {'active_id': self.ids[0], 'active_ids': self.ids}
+        wizard = wizard_model.with_context(new_context).create({})
+
+        view_id = model_data_model.get_object_reference(
             'sale_exceptions', 'view_sale_exception_confirm')[1]
+
         action = {
             'name': _("Blocked in draft due to exceptions"),
             'type': 'ir.actions.act_window',
@@ -118,7 +119,7 @@ class SaleOrder(models.Model):
             'view_id': [view_id],
             'target': 'new',
             'nodestroy': True,
-            'res_id': list_id,
+            'res_id': wizard.id,
         }
         return action
 

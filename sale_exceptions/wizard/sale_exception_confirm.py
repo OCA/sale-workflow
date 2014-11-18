@@ -32,8 +32,8 @@ class SaleExceptionConfirm(models.TransientModel):
     ignore = fields.Boolean('Ignore Exceptions')
 
     @api.model
-    def default_get(self, fields):
-        res = super(SaleExceptionConfirm, self).default_get(fields)
+    def default_get(self, field_list):
+        res = super(SaleExceptionConfirm, self).default_get(field_list)
         order_obj = self.env['sale.order']
         sale_id = self._context.get('active_ids')
         assert len(sale_id) == 1, "Only 1 ID accepted, got %r" % sale_id
