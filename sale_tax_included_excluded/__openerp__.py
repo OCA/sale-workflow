@@ -34,8 +34,11 @@ B2B with prices displayed *taxes excluded* and B2C with prices displayed
 with a proper presentation of sale orders and invoices. With this module
 and a proper configuration, it becomes possible.
 
-This modules requires a patch on the sale module and on the product_visible_discount
-module (if it is installed).
+This modules requires a patch on the *sale* module and on the
+*product_visible_discount* module (if it is installed).
+In the future, if the pull request https://github.com/odoo/odoo/pull/3717
+is merged in Odoo v8, we will be able to adapt this module and we will
+not have to patch the official addons anymore.
 
 This module has been written by Alexis de Lattre from Akretion
 <alexis.delattre@akretion.com>.
