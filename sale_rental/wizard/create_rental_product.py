@@ -22,6 +22,7 @@
 
 from openerp.osv import orm, fields
 import openerp.addons.decimal_precision as dp
+from openerp.tools.translate import _
 
 
 class create_rental_product(orm.TransientModel):
@@ -42,11 +43,23 @@ class create_rental_product(orm.TransientModel):
             'product.category', 'Product Category', required=True),
         }
 
-    _defaults = {
-        'sale_price_per_day': 1.0,
-        'default_code_prefix': 'RENT-',
-        'name_prefix': 'Rental of one ',
-    }
+    def default_get(self, cr, uid, fields_list, context=None):
+        res = super(create_rental_product, self).default_get(
+            cr, uid, fields_list, context=context)
+        if not res:
+            res = {}
+        if context is None:
+            context = {}
+        assert context.get('active_model') == 'product.product',\
+            'Wrong underlying model, should be product.product'
+        hw_product = self.pool['product.product'].browse(
+            cr, uid, context['active_id'], context=context)
+        res.update({
+            'sale_price_per_day': 1.0,
+            'default_code_prefix': _('RENT-%s') % hw_product.default_code,
+            'name_prefix': _('Rental of one %s') % hw_product.name,
+        })
+        return res
 
     def create_rental_product(self, cr, uid, ids, context=None):
         assert len(ids) == 1, 'Only 1 ID'
