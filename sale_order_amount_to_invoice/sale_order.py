@@ -33,7 +33,7 @@ class SaleOrder(orm.Model):
             invoiced_amount = sum(
                 invoice.amount_total
                 for invoice in sale.invoice_ids
-                if invoice.state in ('open', 'done')
+                if invoice.state in ('open', 'paid')
             )
             res[sale.id] = max(0.0, sale.amount_total - invoiced_amount)
         return res
