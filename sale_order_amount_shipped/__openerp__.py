@@ -36,7 +36,7 @@ Sale Order Amount Shipped
 This module adds a field "amount_shipped" on sale orders and displays
 it in the tree view. The field is calculated as
    to ship = (total - sum(total_amount for each invoice_id))
-based on 'draft', 'proformat', 'open' and 'done' invoices.
+based on 'draft', 'proformat', 'open' and 'paid' invoices.
 
 Contributors
 ------------
