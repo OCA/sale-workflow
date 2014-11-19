@@ -38,7 +38,8 @@ class SaleOrder(orm.Model):
             res[sale.id] = max(0.0, sale.amount_total - invoiced_amount)
         return res
 
-    def _amount_to_invoice_search(self, cr, uid, obj, name, args, context=None):
+    def _amount_to_invoice_search(self, cr, uid, obj, name, args,
+                                  context=None):
         """Amount to invoice filter"""
 
         if context is None:
