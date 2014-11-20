@@ -51,7 +51,7 @@ class TestAutomaticWorkflow(common.TransactionCase):
             'validate_order': True,
             'validate_picking': True,
             'validate_invoice': True,
-            'create_invoice_on': 'on_picking_done',
+            'create_invoice_on': 'on_order_confirm',
             'invoice_date_is_order_date': True,
         })
 
@@ -64,8 +64,11 @@ class TestAutomaticWorkflow(common.TransactionCase):
         self.assertEqual(sale.state, 'draft')
         self.assertEqual(sale.workflow_process_id, workflow)
         self.progress()
-        self.assertEqual(sale.state, 'manual')
+        self.assertEqual(sale.state, 'progress')
         self.assertTrue(sale.picking_ids)
+        self.assertTrue(sale.invoice_ids)
+        invoice = sale.invoice_ids
+        self.assertEqual(invoice.state, 'open')
         picking = sale.picking_ids
         self.progress()
         self.assertEqual(picking.state, 'done')
