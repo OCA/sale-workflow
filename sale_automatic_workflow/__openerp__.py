@@ -61,5 +61,5 @@ It is well suited for other E-Commerce connectors as well.
              'automatic_workflow_data.xml',
              'security/ir.model.access.csv',
              ],
-    'installable': False,
+    'installable': True,
 }
