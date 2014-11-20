@@ -105,15 +105,33 @@ class sale_order(orm.Model):
     # OVERRIDE to use sale.order.line's procurement_group_id from lines
     ###
     def _get_shipped(self, cr, uid, ids, name, args, context=None):
+        """ As procurement is per sale line basis, we check each line
+
+            If at least a line has no procurement group defined, it means it
+            isn't shipped yet.
+
+            Only when all procurement are done or cancelled, we consider
+            the sale order as being shipped.
+
+            And if there is no line, we have nothing to ship, thus it isn't
+            shipped.
+
+        """
         res = {}
         for sale in self.browse(cr, uid, ids, context=context):
+            if not sale.order_line:
+                res[sale.id] = False
+                continue
+
             groups = set([line.procurement_group_id
                           for line in sale.order_line])
-            is_shipped = False
+            is_shipped = True
             for group in groups:
-                if group:
-                    is_shipped &= all([proc.state in ['cancel', 'done']
-                                       for proc in group.procurement_ids])
+                if not group:
+                    is_shipped = False
+                    break
+                is_shipped &= all([proc.state in ['cancel', 'done']
+                                   for proc in group.procurement_ids])
             res[sale.id] = is_shipped
         return res
 
