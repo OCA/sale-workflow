@@ -48,8 +48,24 @@ class TestAutomaticWorkflow(common.TransactionCase):
             'picking_policy': 'one',
             'order_policy': 'manual',
             'invoice_quantity': 'order',
+            'validate_order': True,
+            'validate_picking': True,
+            'validate_invoice': True,
+            'create_invoice_on': 'on_picking_done',
+            'invoice_date_is_order_date': True,
         })
+
+    def progress(self):
+        self.env['automatic.workflow.job'].run()
 
     def test_full_automatic(self):
         workflow = self._create_full_automatic()
         sale = self._create_sale_order(workflow)
+        self.assertEqual(sale.state, 'draft')
+        self.assertEqual(sale.workflow_process_id, workflow)
+        self.progress()
+        self.assertEqual(sale.state, 'manual')
+        self.assertTrue(sale.picking_ids)
+        picking = sale.picking_ids
+        self.progress()
+        self.assertEqual(picking.state, 'done')
