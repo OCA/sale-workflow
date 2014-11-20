@@ -108,8 +108,7 @@ class automatic_workflow_job(orm.Model):
         picking_ids = picking_obj.search(
             cr, uid,
             [('state', 'in', ['draft', 'confirmed', 'assigned']),
-             ('workflow_process_id.validate_picking', '=', True),
-             ('type', '=', 'out')],
+             ('workflow_process_id.validate_picking', '=', True)],
             context=context)
         _logger.debug('Pickings to validate: %s', picking_ids)
         if picking_ids:
