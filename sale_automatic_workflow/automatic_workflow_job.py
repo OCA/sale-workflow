@@ -105,7 +105,6 @@ class automatic_workflow_job(orm.Model):
 
     def _validate_pickings(self, cr, uid, context=None):
         picking_obj = self.pool.get('stock.picking')
-        picking_out_obj = self.pool.get('stock.picking.out')
         # We search on stock.picking (using the type) rather than
         # stock.picking.out because the ORM seems bugged and can't
         # search on stock_picking_out.workflow_process_id.
@@ -121,9 +120,9 @@ class automatic_workflow_job(orm.Model):
         _logger.debug('Pickings to validate: %s', picking_ids)
         if picking_ids:
             with commit(cr):
-                picking_out_obj.validate_picking(cr, uid,
-                                                 picking_ids,
-                                                 context=context)
+                picking_obj.validate_picking(cr, uid,
+                                             picking_ids,
+                                             context=context)
 
     def run(self, cr, uid, ids=None, context=None):
         """ Must be called from ir.cron """
