@@ -21,17 +21,17 @@
 #   along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
 ###############################################################################
-from openerp.osv import fields, orm
+from openerp import models, fields
 
 
-class account_invoice(orm.Model):
+class AccountInvoice(models.Model):
     _inherit = "account.invoice"
 
-    _columns = {
-        'workflow_process_id': fields.many2one('sale.workflow.process',
-                                               string='Sale Workflow Process'),
-        # TODO propose a merge to add this field by default in acount module
-        'sale_ids': fields.many2many('sale.order', 'sale_order_invoice_rel',
-                                     'invoice_id', 'order_id',
-                                     string='Sale Orders')
-    }
+    workflow_process_id = fields.Many2one(comodel_name='sale.workflow.process',
+                                          string='Sale Workflow Process')
+    # TODO propose a merge to add this field by default in acount module
+    sale_ids = fields.Many2many(comodel_name='sale.order',
+                                relation='sale_order_invoice_rel',
+                                column1='invoice_id',
+                                column2='order_id',
+                                string='Sale Orders')
