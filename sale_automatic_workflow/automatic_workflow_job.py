@@ -20,12 +20,6 @@
 #
 ###############################################################################
 
-
-import logging
-from contextlib import contextmanager
-from openerp.osv import orm
-from openerp import netsvc
-
 """
 Some comments about the implementation
 
@@ -49,6 +43,11 @@ steps of the workflow in the same transaction.
 If my explanation is not clear, contact me by email and I will improve
 it: sebastien.beau@akretion.com
 """
+
+import logging
+from contextlib import contextmanager
+from openerp.osv import orm
+from openerp import netsvc
 
 _logger = logging.getLogger(__name__)
 
