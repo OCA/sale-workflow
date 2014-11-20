@@ -105,12 +105,6 @@ class automatic_workflow_job(orm.Model):
 
     def _validate_pickings(self, cr, uid, context=None):
         picking_obj = self.pool.get('stock.picking')
-        # We search on stock.picking (using the type) rather than
-        # stock.picking.out because the ORM seems bugged and can't
-        # search on stock_picking_out.workflow_process_id.
-        # Later, we'll call `validate_picking` on stock.picking.out
-        # because anyway they have the same ID and the call will be at
-        # the correct object level.
         picking_ids = picking_obj.search(
             cr, uid,
             [('state', 'in', ['draft', 'confirmed', 'assigned']),
