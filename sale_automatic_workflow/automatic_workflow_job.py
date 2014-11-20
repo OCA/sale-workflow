@@ -89,18 +89,6 @@ class automatic_workflow_job(orm.Model):
                 wf_service.trg_validate(uid, 'sale.order',
                                         sale_id, 'order_confirm', cr)
 
-    def _reconcile_invoices(self, cr, uid, ids=None, context=None):
-        invoice_obj = self.pool.get('account.invoice')
-        if ids is None:
-            ids = invoice_obj.search(cr, uid,
-                                     [('state', 'in', ['open'])],
-                                     context=context)
-        for invoice_id in ids:
-            with commit(cr):
-                invoice_obj.reconcile_invoice(cr, uid,
-                                              [invoice_id],
-                                              context=context)
-
     def _validate_invoices(self, cr, uid, context=None):
         wf_service = netsvc.LocalService("workflow")
         invoice_obj = self.pool.get('account.invoice')
@@ -142,6 +130,5 @@ class automatic_workflow_job(orm.Model):
 
         self._validate_sale_orders(cr, uid, context=context)
         self._validate_invoices(cr, uid, context=context)
-        self._reconcile_invoices(cr, uid, context=context)
         self._validate_pickings(cr, uid, context=context)
         return True
