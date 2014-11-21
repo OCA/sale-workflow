@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+
+        <act_window
+            context="{'search_default_sale_order_id': [active_id]}"
+            id="act_sale_order_manufacturing_open"
+            name="Manufacturing Orders"
+            view_id="mrp.mrp_production_tree_view"
+            res_model="mrp.production"
+            src_model="sale.order"/>
+
+    </data>
+</openerp>
