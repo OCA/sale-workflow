@@ -41,9 +41,9 @@ class TestAutomaticWorkflow(common.TransactionCase):
 
         })
 
-    def _create_full_automatic(self):
+    def _create_full_automatic(self, override=None):
         workflow_obj = self.env['sale.workflow.process']
-        return workflow_obj.create({
+        values = workflow_obj.create({
             'name': 'Full Automatic',
             'picking_policy': 'one',
             'order_policy': 'manual',
@@ -54,6 +54,9 @@ class TestAutomaticWorkflow(common.TransactionCase):
             'create_invoice_on': 'on_order_confirm',
             'invoice_date_is_order_date': True,
         })
+        if override:
+            values.update(override)
+        return values
 
     def progress(self):
         self.env['automatic.workflow.job'].run()
@@ -61,6 +64,7 @@ class TestAutomaticWorkflow(common.TransactionCase):
     def test_full_automatic(self):
         workflow = self._create_full_automatic()
         sale = self._create_sale_order(workflow)
+        sale.onchange_workflow_process_id()
         self.assertEqual(sale.state, 'draft')
         self.assertEqual(sale.workflow_process_id, workflow)
         self.progress()
@@ -72,3 +76,22 @@ class TestAutomaticWorkflow(common.TransactionCase):
         picking = sale.picking_ids
         self.progress()
         self.assertEqual(picking.state, 'done')
+
+    def test_onchange(self):
+        workflow = self._create_full_automatic()
+        sale = self._create_sale_order(workflow)
+        sale.onchange_workflow_process_id()
+        self.assertEqual(sale.picking_policy, 'one')
+        self.assertEqual(sale.order_policy, 'manual')
+        self.assertEqual(sale.invoice_quantity, 'order')
+        workflow2 = self._create_full_automatic(
+            override={
+                'picking_policy': 'direct',
+                'order_policy': 'prepaid',
+                'invoice_quantity': 'procurement',
+        })
+        sale.workflow_process_id = workflow2.id
+        sale.onchange_workflow_process_id()
+        self.assertEqual(sale.picking_policy, 'direct')
+        self.assertEqual(sale.order_policy, 'prepaid')
+        self.assertEqual(sale.invoice_quantity, 'procurement')
