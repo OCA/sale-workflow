@@ -19,16 +19,14 @@
 #   along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
 ###############################################################################
-from openerp.osv import orm, fields
+from openerp import models, fields, api
 
 
-class stock_picking(orm.Model):
+class StockPicking(models.Model):
     _inherit = "stock.picking"
 
-    _columns = {
-        'workflow_process_id': fields.many2one('sale.workflow.process',
-                                               'Sale Workflow Process'),
-    }
+    workflow_process_id = fields.Many2one(comodel_name='sale.workflow.process',
+                                          string='Sale Workflow Process')
 
     def _create_invoice_from_picking(self, cr, uid, picking, vals,
                                      context=None):
@@ -39,8 +37,8 @@ class stock_picking(orm.Model):
         _super = super(stock_picking, self)
         return _super._prepare_invoice(cr, uid, picking, vals, context=context)
 
-    def validate_picking(self, cr, uid, ids, context=None):
-        for picking in self.browse(cr, uid, ids, context=context):
-            self.force_assign(cr, uid, [picking.id], context=context)
-            self.do_transfer(cr, uid, [picking.id], context=context)
+    @api.multi
+    def validate_picking(self):
+        self.force_assign()
+        self.do_transfer()
         return True
