@@ -19,17 +19,15 @@
 #    along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
 ###############################################################################
-from openerp.osv import orm, fields
-from openerp.tools.translate import _
+from openerp import models, fields, api, exceptions, _
 
 
-class sale_order(orm.Model):
+class sale_order(models.Model):
     _inherit = "sale.order"
-    _columns = {
-        'workflow_process_id': fields.many2one('sale.workflow.process',
-                                               string='Workflow Process',
-                                               ondelete='restrict'),
-    }
+
+    workflow_process_id = fields.Many2one(comodel_name='sale.workflow.process',
+                                          string='Automatic Workflow',
+                                          ondelete='restrict')
 
     def _prepare_invoice(self, cr, uid, order, lines, context=None):
         invoice_vals = super(sale_order, self)._prepare_invoice(
@@ -49,54 +47,32 @@ class sale_order(orm.Model):
             picking_vals['workflow_process_id'] = order.workflow_process_id.id
         return picking_vals
 
-    def onchange_payment_method_id(self, cr, uid, ids, payment_method_id,
-                                   context=None):
-        values = super(sale_order, self).onchange_payment_method_id(
-            cr, uid, ids, payment_method_id, context=context)
-        if not payment_method_id:
-            return values
-        method_obj = self.pool.get('payment.method')
-        method = method_obj.browse(cr, uid, payment_method_id, context=context)
-        workflow = method.workflow_process_id
-        if workflow:
-            values.setdefault('value', {})
-            values['value']['workflow_process_id'] = workflow.id
-        return values
-
-    def onchange_workflow_process_id(self, cr, uid, ids, workflow_process_id,
-                                     context=None):
-        if not workflow_process_id:
-            return {}
-        result = {}
-        workflow_obj = self.pool.get('sale.workflow.process')
-        workflow = workflow_obj.browse(cr, uid, workflow_process_id,
-                                       context=context)
+    @api.onchange('workflow_process_id')
+    def onchange_workflow_process_id(self):
+        if not self.workflow_process_id:
+            return
+        workflow = self.workflow_process_id
         if workflow.picking_policy:
-            result['picking_policy'] = workflow.picking_policy
+            self.picking_policy = workflow.picking_policy
         if workflow.order_policy:
-            result['order_policy'] = workflow.order_policy
+            self.order_policy = workflow.order_policy
         if workflow.invoice_quantity:
-            result['invoice_quantity'] = workflow.invoice_quantity
+            self.invoice_quantity = workflow.invoice_quantity
         if workflow.warning:
-            warning = {
-                'title': _('Workflow Warning'),
-                'message': (workflow.warning),
-            }
-            return {'value': result, 'warning': warning}
-        return {'value': result}
+            warning = {'title': _('Workflow Warning'),
+                       'message': workflow.warning}
+            return {'warning': warning}
 
-    def test_create_invoice(self, cr, uid, ids):
+    @api.multi
+    def test_create_invoice(self):
         """ Workflow condition: test if an invoice should be created,
         based on the automatic workflow rules """
-        if isinstance(ids, (list, tuple)):
-            assert len(ids) == 1
-            ids = ids[0]
-        order = self.browse(cr, uid, ids)
-        if order.order_policy != 'manual' or not order.workflow_process_id:
+        self.ensure_one()
+        if self.order_policy != 'manual' or not self.workflow_process_id:
             return False
-        invoice_on = order.workflow_process_id.create_invoice_on
+        invoice_on = self.workflow_process_id.create_invoice_on
         if invoice_on == 'on_order_confirm':
             return True
-        elif invoice_on == 'on_picking_done' and order.shipped:
+        elif invoice_on == 'on_picking_done' and self.shipped:
             return True
         return False
