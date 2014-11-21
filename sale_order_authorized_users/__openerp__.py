@@ -36,8 +36,8 @@ selected users.
 Details
 -------
 This acts as an **additional restriction**, access rules are still considered:
-for example, an user in the "Own leads only" group won't be able to see an order
-that it's not his, even if he's selected as allowed.
+for example, an user in the "Own leads only" group won't be able to see
+an order that it's not his, even if he's selected as allowed.
 
 On the other hand, by setting some users as allowed, all other
 users, even if they are "See all leads", won't be able to see the order.
