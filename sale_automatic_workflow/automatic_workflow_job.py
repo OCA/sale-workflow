@@ -46,8 +46,7 @@ it: sebastien.beau@akretion.com
 
 import logging
 from contextlib import contextmanager
-from openerp.osv import orm
-from openerp import netsvc
+from openerp import models, api
 
 _logger = logging.getLogger(__name__)
 
@@ -69,58 +68,55 @@ def commit(cr):
         cr.commit()
 
 
-class automatic_workflow_job(orm.Model):
+class AutomaticWorkflowJob(models.Model):
     """ Scheduler that will play automatically the validation of
     invoices, pickings...  """
+
     _name = 'automatic.workflow.job'
 
-    def _get_domain_for_sale_validation(self, cr, uid, context=None):
+    @api.model
+    def _get_domain_for_sale_validation(self):
         return [('state', '=', 'draft'),
                 ('workflow_process_id.validate_order', '=', True)]
 
-    def _validate_sale_orders(self, cr, uid, context=None):
-        wf_service = netsvc.LocalService("workflow")
-        sale_obj = self.pool.get('sale.order')
-        domain = self._get_domain_for_sale_validation(cr, uid, context=context)
-        sale_ids = sale_obj.search(cr, uid, domain, context=context)
-        _logger.debug('Sale Orders to validate: %s', sale_ids)
-        for sale_id in sale_ids:
-            with commit(cr):
-                wf_service.trg_validate(uid, 'sale.order',
-                                        sale_id, 'order_confirm', cr)
+    @api.model
+    def _validate_sale_orders(self):
+        sale_obj = self.env['sale.order']
+        sales = sale_obj.search(self._get_domain_for_sale_validation())
+        _logger.debug('Sale Orders to validate: %s', sales)
+        for sale in sales:
+            with commit(self.env.cr):
+                sale.signal_workflow('order_confirm')
 
-    def _validate_invoices(self, cr, uid, context=None):
-        wf_service = netsvc.LocalService("workflow")
-        invoice_obj = self.pool.get('account.invoice')
-        invoice_ids = invoice_obj.search(
-            cr, uid,
+    @api.model
+    def _validate_invoices(self):
+        invoice_obj = self.env['account.invoice']
+        invoices = invoice_obj.search(
             [('state', 'in', ['draft']),
              ('workflow_process_id.validate_invoice', '=', True)],
-            context=context)
-        _logger.debug('Invoices to validate: %s', invoice_ids)
-        for invoice_id in invoice_ids:
-            with commit(cr):
-                wf_service.trg_validate(uid, 'account.invoice',
-                                        invoice_id, 'invoice_open', cr)
+        )
+        _logger.debug('Invoices to validate: %s', invoices)
+        for invoice in invoices:
+            with commit(self.env.cr):
+                invoice.signal_workflow('invoice_open')
 
-    def _validate_pickings(self, cr, uid, context=None):
-        picking_obj = self.pool.get('stock.picking')
-        picking_ids = picking_obj.search(
-            cr, uid,
+    @api.model
+    def _validate_pickings(self):
+        picking_obj = self.env['stock.picking']
+        pickings = picking_obj.search(
             [('state', 'in', ['draft', 'confirmed', 'assigned']),
              ('workflow_process_id.validate_picking', '=', True)],
-            context=context)
-        _logger.debug('Pickings to validate: %s', picking_ids)
-        if picking_ids:
-            with commit(cr):
-                picking_obj.validate_picking(cr, uid,
-                                             picking_ids,
-                                             context=context)
+        )
+        _logger.debug('Pickings to validate: %s', pickings)
+        if pickings:
+            with commit(self.env.cr):
+                pickings.validate_picking()
 
-    def run(self, cr, uid, ids=None, context=None):
+    @api.model
+    def run(self):
         """ Must be called from ir.cron """
 
-        self._validate_sale_orders(cr, uid, context=context)
-        self._validate_invoices(cr, uid, context=context)
-        self._validate_pickings(cr, uid, context=context)
+        self._validate_sale_orders()
+        self._validate_invoices()
+        self._validate_pickings()
         return True
