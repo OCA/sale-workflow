@@ -95,12 +95,9 @@ class SaleOrderLine(orm.Model):
                         "KeyError for formula '%s' and prop_dict '%s'"
                         % (product.quantity_formula_id.formula_text,
                             prop_dict))
-        """
-        Removing product_uos_qty is needed because it can now be used to
-        compute the real quantity.
-        Otherwise it would be recomputed after the quantity changed.
-        See the automated test for the use case.
-        """
+        # Removing product_uos_qty is needed because it can now be used to
+        # compute the real quantity. Otherwise, it would be recomputed after
+        # the quantity changed. See the automated test for the use case.
         if 'value' in res and 'product_uos_qty' in res['value']:
             del res['value']['product_uos_qty']
         return res
