@@ -38,7 +38,7 @@ class SaleOrder(orm.Model):
             property_group_pool = self.pool['mrp.property.group']
             group_to_draw_ids = property_group_pool.search(cr, uid, [
                 ('draw_dynamically', '=', True),
-                ], context=context)
+            ], context=context)
             if group_to_draw_ids:
                 for group in property_group_pool.browse(
                     cr, uid, group_to_draw_ids, context=context
@@ -61,15 +61,15 @@ class SaleOrder(orm.Model):
                     field_name = group.field_id.name
                     res['fields']['order_line']['views']['form'][
                         'fields'
-                        ].update(
-                            {
-                                field_name: {
-                                    'string': group.name,
-                                    'type': 'char',
-                                    'size': 64,
-                                    'context': {}
-                                }
+                    ].update(
+                        {
+                            field_name: {
+                                'string': group.name,
+                                'type': 'char',
+                                'size': 64,
+                                'context': {}
                             }
+                        }
                     )
                     eview = etree.fromstring(
                         res['fields']['order_line']['views']['form']['arch'])
@@ -79,11 +79,11 @@ class SaleOrder(orm.Model):
                                   "context)"
                         % (field_name),
                         context="{\'field_name\': \'%s\'}" % field_name
-                        )
+                    )
                     prop_m2m_field = eview.xpath(
                         "//field[@name='property_ids']")[0]
                     prop_m2m_field.addprevious(group_field)
                     res['fields']['order_line']['views']['form'][
                         'arch'
-                        ] = etree.tostring(eview, pretty_print=True)
+                    ] = etree.tostring(eview, pretty_print=True)
         return res

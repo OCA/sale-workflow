@@ -43,10 +43,10 @@ creating new properties or selecting existing properties.
         'mrp_property_group_view.xml',
     ],
     "demo": [
-        ],
+    ],
     "test": [
         'test/properties.yml',
-        ],
+    ],
     "active": False,
     "installable": True
 }

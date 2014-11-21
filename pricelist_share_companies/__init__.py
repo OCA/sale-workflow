@@ -18,5 +18,5 @@
 #    along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
 #
-import pricelist
-import company
+from . import pricelist
+from . import company

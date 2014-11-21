@@ -26,7 +26,7 @@ class MrpProperty(orm.Model):
     _inherit = 'mrp.property'
     _columns = {
         'value': fields.char('Value', size=64),
-        }
+    }
 
     def name_create(self, cr, uid, name, context=None):
         """
@@ -42,7 +42,7 @@ class MrpProperty(orm.Model):
                     'name': name,
                     'group_id': group_ids[0],
                     'value': splitted_name[1]
-                    }, context=context)
+                }, context=context)
                 return self.name_get(cr, uid, [rec_id], context)[0]
         return super(MrpProperty, self).name_create(
             cr, uid, name, context=context)

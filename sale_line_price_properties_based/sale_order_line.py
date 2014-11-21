@@ -64,6 +64,6 @@ class SaleOrderLine(orm.Model):
                     'uom': uom or res.get('product_uom'),
                     'date': date_order,
                     'properties': prop_dict,
-                    })[pricelist]
+                })[pricelist]
             res['value']['price_unit'] = price
         return res

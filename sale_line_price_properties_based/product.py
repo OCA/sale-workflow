@@ -41,7 +41,7 @@ class ProductProduct(orm.Model):
                  " - product_id\n"
                  " - properties (dictionary of properties)\n"
                  "You have to put the result in the 'result' variable"),
-        }
+    }
 
     def price_get(self, cr, uid, ids, ptype='list_price', context=None):
         if context is None:
@@ -51,7 +51,7 @@ class ProductProduct(orm.Model):
             for product in self.browse(cr, SUPERUSER_ID, ids, context=context):
                 res[product.id] = super(ProductProduct, self).price_get(
                     cr, uid, [product.id], ptype=ptype, context=context
-                    )[product.id]
+                )[product.id]
                 if product.price_formula_id:
                     localdict = {
                         'self': self,

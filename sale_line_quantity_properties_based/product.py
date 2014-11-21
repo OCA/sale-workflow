@@ -35,4 +35,4 @@ class ProductProduct(orm.Model):
                  " - product_id\n"
                  " - properties (dictionary of properties)\n"
                  "You have to put the result in the 'result' variable"),
-        }
+    }
