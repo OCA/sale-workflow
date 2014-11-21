@@ -16,8 +16,7 @@
         <page string="Other Information" position="after">
           <page name="automation_information" string="Automation Information">
             <group>
-              <field name="workflow_process_id" string="Automatic Workflow"
-                on_change="onchange_workflow_process_id(workflow_process_id)" />
+              <field name="workflow_process_id"/>
             </group>
           </page>
         </page>
