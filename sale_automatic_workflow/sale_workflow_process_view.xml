@@ -22,7 +22,6 @@
                     <separator string="Workflow Options" colspan="4" />
                     <field name="validate_order"/>
                     <field name="validate_picking"/>
-                    <!-- <field name="validate_manufactoring_order"/> -->
                     <field name="create_invoice_on" attrs="{'readonly': [('order_policy', '!=', 'manual')]}" />
                     <field name="validate_invoice"/>
                     <field name="invoice_date_is_order_date"/>
@@ -42,7 +41,6 @@
                     <field name="invoice_quantity"/>
                     <field name="validate_order"/>
                     <field name="validate_picking"/>
-                    <!-- <field name="validate_manufactoring_order"/> -->
                     <field name="create_invoice_on" />
                     <field name="validate_invoice"/>
                     <field name="invoice_date_is_order_date"/>
