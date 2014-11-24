@@ -26,7 +26,7 @@
  'website': 'www.akretion.com',
  'license': 'AGPL-3',
  'category': 'Generic Modules',
- 'description': """This module add the field "Sub total tax inc"
+ 'description': """This module adds the fields "Sub total tax inc"
  and "Sub total tax" on sale order line and invoice line
  """,
  'depends': [
@@ -37,5 +37,5 @@
      'invoice_view.xml',
  ],
  'installable': True,
- 'application': True,
+ 'application': False,
  }
