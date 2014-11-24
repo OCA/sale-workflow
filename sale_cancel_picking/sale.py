@@ -15,14 +15,8 @@ class SaleOrder(orm.Model):
     _inherit = 'sale.order'
 
     def action_cancel(self, cr, uid, ids, context=None):
-        picking_obj = self.pool.get('stock.picking')
         for order in self.browse(cr, uid, ids, context=context):
-            picking_ids = picking_obj.search(
-                cr, uid, [('sale_id', '=', order.id)], context=context
-            )
-            pickings = picking_obj.browse(
-                cr, uid, picking_ids, context=context
-            )
+            pickings = order.picking_ids
             for picking in pickings:
                 if picking.state in ['assigned', 'confirmed', 'draft']:
                     picking.action_cancel()
