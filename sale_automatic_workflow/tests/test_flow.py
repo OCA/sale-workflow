@@ -19,13 +19,15 @@
 #
 ##############################################################################
 
+from datetime import datetime, timedelta
 
+from openerp import fields
 from openerp.tests import common
 
 
 class TestAutomaticWorkflow(common.TransactionCase):
 
-    def _create_sale_order(self, workflow):
+    def _create_sale_order(self, workflow, override=None):
         sale_obj = self.env['sale.order']
         partner_values = {'name': 'Imperator Caius Julius Caesar Divus'}
         partner = self.env['res.partner'].create(partner_values)
@@ -33,13 +35,15 @@ class TestAutomaticWorkflow(common.TransactionCase):
                           'list_price': 5,
                           'type': 'product'}
         product = self.env['product.product'].create(product_values)
-        return sale_obj.create({
+        values = {
             'partner_id': partner.id,
             'order_line': [(0, 0, {'product_id': product.id,
                                    'product_uom_qty': 1})],
             'workflow_process_id': workflow.id,
-
-        })
+        }
+        if override:
+            values.update(override)
+        return sale_obj.create(values)
 
     def _create_full_automatic(self, override=None):
         workflow_obj = self.env['sale.workflow.process']
@@ -85,13 +89,67 @@ class TestAutomaticWorkflow(common.TransactionCase):
         self.assertEqual(sale.order_policy, 'manual')
         self.assertEqual(sale.invoice_quantity, 'order')
         workflow2 = self._create_full_automatic(
-            override={
-                'picking_policy': 'direct',
-                'order_policy': 'prepaid',
-                'invoice_quantity': 'procurement',
-        })
+            override={'picking_policy': 'direct',
+                      'order_policy': 'prepaid',
+                      'invoice_quantity': 'procurement',
+                      }
+        )
         sale.workflow_process_id = workflow2.id
         sale.onchange_workflow_process_id()
         self.assertEqual(sale.picking_policy, 'direct')
         self.assertEqual(sale.order_policy, 'prepaid')
         self.assertEqual(sale.invoice_quantity, 'procurement')
+
+    def test_date_invoice_from_sale_order(self):
+        workflow = self._create_full_automatic(
+            override={'order_policy': 'prepaid',
+                      'invoice_quantity': 'order',
+                      },
+        )
+        # date_order on sale.order is date + time
+        # date_invoice on account.invoice is date only
+        last_week_time = datetime.now() - timedelta(days=7)
+        last_week_time = fields.Datetime.to_string(last_week_time)
+        last_week_date = last_week_time[:10]
+        override = {
+            'date_order': last_week_time,
+        }
+        sale = self._create_sale_order(workflow, override=override)
+        sale.onchange_workflow_process_id()
+        self.assertEqual(sale.date_order, last_week_time)
+        self.progress()
+        self.assertTrue(sale.invoice_ids)
+        invoice = sale.invoice_ids
+        self.assertEqual(invoice.date_invoice, last_week_date)
+        self.assertEqual(invoice.workflow_process_id, sale.workflow_process_id)
+
+    def test_date_invoice_from_picking(self):
+        workflow = self._create_full_automatic(
+            override={'order_policy': 'picking',
+                      'invoice_quantity': 'procurement',
+                      },
+        )
+        # date_order on sale.order is date + time
+        # date_invoice on account.invoice is date only
+        last_week_time = datetime.now() - timedelta(days=7)
+        last_week_time = fields.Datetime.to_string(last_week_time)
+        last_week_date = last_week_time[:10]
+        override = {
+            'date_order': last_week_time,
+        }
+        sale = self._create_sale_order(workflow, override=override)
+        sale.onchange_workflow_process_id()
+        self.assertEqual(sale.date_order, last_week_time)
+        self.progress()
+        self.assertTrue(sale.picking_ids)
+        picking = sale.picking_ids
+        self.assertEqual(picking.workflow_process_id, sale.workflow_process_id)
+        # invoice is not created automatically from pickings, create
+        # them
+        wizard_obj = self.env['stock.invoice.onshipping']
+        wizard_obj = wizard_obj.with_context(active_ids=picking.ids)
+        wizard_obj.create({}).create_invoice()
+        self.assertTrue(sale.invoice_ids)
+        invoice = sale.invoice_ids
+        self.assertEqual(invoice.date_invoice, last_week_date)
+        self.assertEqual(invoice.workflow_process_id, sale.workflow_process_id)

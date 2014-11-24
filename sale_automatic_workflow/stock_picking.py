@@ -34,8 +34,9 @@ class StockPicking(models.Model):
         if picking.workflow_process_id.invoice_date_is_order_date:
             vals['date_invoice'] = picking.sale_id.date_order
 
-        _super = super(stock_picking, self)
-        return _super._prepare_invoice(cr, uid, picking, vals, context=context)
+        _super = super(StockPicking, self)
+        return _super._create_invoice_from_picking(cr, uid, picking, vals,
+                                                   context=context)
 
     @api.multi
     def validate_picking(self):
