@@ -21,7 +21,8 @@ class MrpProd(orm.Model):
             move = move_obj.browse(
                 cr, uid, vals['move_prod_id'], context=context
             )
-            vals['sale_order_id'] = move.picking_id.sale_id.id
+            if move.picking_id.sale_id:
+                vals['sale_order_id'] = move.picking_id.sale_id.id
         return super(MrpProd, self).create(
             cr, uid, vals, context=context
         )
