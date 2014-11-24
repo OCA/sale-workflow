@@ -10,30 +10,42 @@
 
 from osv import orm, fields
 
+
 class SaleOrder(orm.Model):
     _inherit = 'sale.order'
 
     def action_cancel(self, cr, uid, ids, context=None):
         picking_obj = self.pool.get('stock.picking')
-        for order_id in ids:
-            order_name = self.read(cr, uid, [order_id], fields=['name'])[0]
-            cancel_logs = self.read(cr, uid, [order_id], fields=['cancel_logs'])[0]
+        for order in self.browse(cr, uid, ids, context=context):
             picking_ids = picking_obj.search(
-                cr, uid, [('origin','=',order_name['name'])], context=context
+                cr, uid, [('sale_id', '=', order.id)], context=context
             )
-            picking_obj.action_cancel(cr, uid, picking_ids, context=context)
-            for picking in picking_obj.browse(cr, uid, picking_ids,
-                                                context=context):
-                print cancel_logs
-                self.write(
-                    cr, uid, [order_id],
-                    {'cancel_logs': cancel_logs['cancel_logs'] + "<p>Canceled picking out: %s</p>" % picking.name},
-                    context=context
-                )
-                print self.browse(cr, uid, order_id, context=context).cancel_logs
+            pickings = picking_obj.browse(
+                cr, uid, picking_ids, context=context
+            )
+            for picking in pickings:
+                if picking.state in ['assigned', 'confirmed', 'draft']:
+                    picking_obj.action_cancel(
+                        cr, uid, [picking.id], context=context)
+                    log = "<p>Canceled picking out: %s</p" % picking.name
+                else:
+                    log = "<p>Can't cancel picking out: %s</p>" % \
+                        picking.name
+                order.add_logs(log)
         return super(SaleOrder, self).action_cancel(
             cr, uid, ids, context=context
         )
+
+    def add_logs(self, cr, uid, ids, log_message, context=None):
+        for order in self.browse(cr, uid, ids, context=context):
+            if order.cancel_logs:
+                logs = order.cancel_logs
+            else:
+                logs = ""
+            logs += '%s\n' % log_message
+            self.write(
+                cr, uid, [order.id], {'cancel_logs': logs}, context=context
+            )
 
     _columns = {
         'cancel_logs': fields.html("Cancellation Logs"),
