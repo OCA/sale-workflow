@@ -24,11 +24,11 @@ class SaleOrder(orm.Model):
             for po_line in po_line_obj.browse(cr, uid, po_line_ids,
                                               context=context):
                 if po_line.state in ['draft']:
-                    po_line_obj.unlink(cr, uid, po_line.id, context=context)
+                    po_line_obj.unlink(cr, uid, [po_line.id], context=context)
                     log_line = "<p>Number of deleted lines in Purchase \
                         Orders: %d</p>" % len(po_line_ids)
                     picking_ids = picking_obj.search(
-                        cr, uid, [('purchase_id', '=', po_line.order_id)],
+                        cr, uid, [('purchase_id', '=', po_line.order_id.id)],
                         context=context
                     )
                     for picking in picking_obj.browse(cr, uid, picking_ids,
