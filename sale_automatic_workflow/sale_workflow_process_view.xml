@@ -14,18 +14,22 @@
             <field name="model">sale.workflow.process</field>
             <field name="arch" type="xml">
                 <form string="Automatic Workflow">
-                    <field name="name"/>
-                    <separator string="Order Configuration" colspan="4" />
-                    <field name="picking_policy"/>
-                    <field name="order_policy"/>
-                    <field name="invoice_quantity"/>
-                    <separator string="Workflow Options" colspan="4" />
-                    <field name="validate_order"/>
-                    <field name="validate_picking"/>
-                    <field name="create_invoice_on" attrs="{'readonly': [('order_policy', '!=', 'manual')]}" />
-                    <field name="validate_invoice"/>
-                    <field name="invoice_date_is_order_date"/>
-                    <field name="warning"/>
+                    <group>
+                        <field name="name"/>
+                    </group>
+                    <group string="Order Configuration">
+                        <field name="picking_policy"/>
+                        <field name="order_policy"/>
+                        <field name="invoice_quantity"/>
+                    </group>
+                    <group string="Workflow Options">
+                        <field name="validate_order"/>
+                        <field name="validate_picking"/>
+                        <field name="create_invoice_on" attrs="{'readonly': [('order_policy', '!=', 'manual')]}" />
+                        <field name="validate_invoice"/>
+                        <field name="invoice_date_is_order_date"/>
+                        <field name="warning"/>
+                    </group>
                 </form>
             </field>
         </record>
