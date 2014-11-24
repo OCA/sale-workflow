@@ -42,4 +42,8 @@ class QuotationLineSource(models.TransientModel):
     product_id = fields.Many2one('product.product',
                                  string='Product',
                                  related=('so_line_id', 'product_id'))
-    po_line_id = fields.Many2one('purchase.order.line', string='Sourced By')
+    po_line_id = fields.Many2one(
+        'purchase.order.line',
+        string='Sourced By',
+        domain="[('product_id', '=', product_id),"
+               " ('order_id.state', 'in', ['draft', 'confirmed'])]")
