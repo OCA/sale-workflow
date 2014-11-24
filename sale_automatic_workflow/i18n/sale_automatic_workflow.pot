@@ -1,13 +1,13 @@
-# Translation of OpenERP Server.
+# Translation of Odoo Server.
 # This file contains the translation of the following modules:
 #	* sale_automatic_workflow
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: OpenERP Server 7.0\n"
+"Project-Id-Version: Odoo Server 8.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2013-05-02 07:15+0000\n"
-"PO-Revision-Date: 2013-05-02 07:15+0000\n"
+"POT-Creation-Date: 2014-11-24 14:16+0000\n"
+"PO-Revision-Date: 2014-11-24 14:16+0000\n"
 "Last-Translator: <>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -16,24 +16,32 @@ msgstr ""
 "Plural-Forms: \n"
 
 #. module: sale_automatic_workflow
-#: field:sale.workflow.process,validate_order:0
-msgid "Validate Order"
+#: selection:sale.workflow.process,create_invoice_on:0
+msgid "After Delivery"
 msgstr ""
 
 #. module: sale_automatic_workflow
-#: view:sale.workflow.process:0
-msgid "Workflow Options"
-msgstr ""
-
-#. module: sale_automatic_workflow
-#: field:payment.method,workflow_process_id:0
+#: model:ir.actions.act_window,name:sale_automatic_workflow.act_sale_workflow_process_form
+#: model:ir.ui.menu,name:sale_automatic_workflow.menu_act_sale_workflow_process_form
 #: field:sale.order,workflow_process_id:0
-msgid "Workflow Process"
+#: view:sale.workflow.process:sale_automatic_workflow.sale_workflow_process_view_form
+#: view:sale.workflow.process:sale_automatic_workflow.sale_workflow_process_view_tree
+msgid "Automatic Workflow"
 msgstr ""
 
 #. module: sale_automatic_workflow
-#: selection:sale.workflow.process,invoice_quantity:0
-msgid "Shipped Quantities"
+#: view:sale.order:sale_automatic_workflow.sale_order_view_form
+msgid "Automation Information"
+msgstr ""
+
+#. module: sale_automatic_workflow
+#: selection:sale.workflow.process,order_policy:0
+msgid "Before Delivery"
+msgstr ""
+
+#. module: sale_automatic_workflow
+#: field:sale.workflow.process,validate_picking:0
+msgid "Confirm and Close Picking"
 msgstr ""
 
 #. module: sale_automatic_workflow
@@ -42,43 +50,15 @@ msgid "Create Invoice"
 msgstr ""
 
 #. module: sale_automatic_workflow
-#: model:ir.model,name:sale_automatic_workflow.model_stock_picking
-msgid "Picking List"
+#: field:automatic.workflow.job,create_uid:0
+#: field:sale.workflow.process,create_uid:0
+msgid "Created by"
 msgstr ""
 
 #. module: sale_automatic_workflow
-#: field:sale.workflow.process,validate_invoice:0
-msgid "Validate Invoice"
-msgstr ""
-
-#. module: sale_automatic_workflow
-#: view:sale.workflow.process:0
-msgid "Order Configuration"
-msgstr ""
-
-#. module: sale_automatic_workflow
-#: selection:sale.workflow.process,order_policy:0
-msgid "On Demand"
-msgstr ""
-
-#. module: sale_automatic_workflow
-#: model:ir.model,name:sale_automatic_workflow.model_payment_method
-msgid "Payment Method"
-msgstr ""
-
-#. module: sale_automatic_workflow
-#: help:sale.workflow.process,invoice_date_is_order_date:0
-msgid "When checked, the invoice date will be the same than the order's date"
-msgstr ""
-
-#. module: sale_automatic_workflow
-#: selection:sale.workflow.process,invoice_quantity:0
-msgid "Ordered Quantities"
-msgstr ""
-
-#. module: sale_automatic_workflow
-#: field:sale.workflow.process,invoice_date_is_order_date:0
-msgid "Force Invoice Date"
+#: field:automatic.workflow.job,create_date:0
+#: field:sale.workflow.process,create_date:0
+msgid "Created on"
 msgstr ""
 
 #. module: sale_automatic_workflow
@@ -87,13 +67,29 @@ msgid "Deliver all products at once"
 msgstr ""
 
 #. module: sale_automatic_workflow
-#: selection:sale.workflow.process,create_invoice_on:0
-msgid "No automatic invoice"
+#: selection:sale.workflow.process,picking_policy:0
+msgid "Deliver each product when available"
 msgstr ""
 
 #. module: sale_automatic_workflow
-#: field:sale.workflow.process,name:0
-msgid "Name"
+#: field:sale.workflow.process,invoice_date_is_order_date:0
+msgid "Force Invoice Date"
+msgstr ""
+
+#. module: sale_automatic_workflow
+#: field:automatic.workflow.job,id:0
+#: field:sale.workflow.process,id:0
+msgid "ID"
+msgstr ""
+
+#. module: sale_automatic_workflow
+#: model:ir.model,name:sale_automatic_workflow.model_account_invoice
+msgid "Invoice"
+msgstr ""
+
+#. module: sale_automatic_workflow
+#: field:sale.workflow.process,order_policy:0
+msgid "Invoice Policy"
 msgstr ""
 
 #. module: sale_automatic_workflow
@@ -102,8 +98,25 @@ msgid "Invoice on"
 msgstr ""
 
 #. module: sale_automatic_workflow
+#: field:automatic.workflow.job,write_uid:0
+#: field:sale.workflow.process,write_uid:0
+msgid "Last Updated by"
+msgstr ""
+
+#. module: sale_automatic_workflow
+#: field:automatic.workflow.job,write_date:0
+#: field:sale.workflow.process,write_date:0
+msgid "Last Updated on"
+msgstr ""
+
+#. module: sale_automatic_workflow
+#: field:sale.workflow.process,name:0
+msgid "Name"
+msgstr ""
+
+#. module: sale_automatic_workflow
 #: selection:sale.workflow.process,create_invoice_on:0
-msgid "On confirmation of Sale Order"
+msgid "No automatic invoice"
 msgstr ""
 
 #. module: sale_automatic_workflow
@@ -113,60 +126,32 @@ msgstr ""
 
 #. module: sale_automatic_workflow
 #: selection:sale.workflow.process,order_policy:0
-msgid "Before Delivery"
-msgstr ""
-
-#. module: sale_automatic_workflow
-#: model:ir.model,name:sale_automatic_workflow.model_automatic_workflow_job
-msgid "automatic.workflow.job"
+msgid "On Demand"
 msgstr ""
 
 #. module: sale_automatic_workflow
 #: selection:sale.workflow.process,create_invoice_on:0
-msgid "After Delivery"
+msgid "On confirmation of Sale Order"
 msgstr ""
 
 #. module: sale_automatic_workflow
-#: field:sale.workflow.process,picking_policy:0
-msgid "Shipping Policy"
+#: view:sale.workflow.process:sale_automatic_workflow.sale_workflow_process_view_form
+msgid "Order Configuration"
 msgstr ""
 
 #. module: sale_automatic_workflow
-#: model:ir.model,name:sale_automatic_workflow.model_sale_workflow_process
-msgid "sale workflow process"
+#: selection:sale.workflow.process,invoice_quantity:0
+msgid "Ordered Quantities"
 msgstr ""
 
 #. module: sale_automatic_workflow
-#: model:ir.actions.act_window,name:sale_automatic_workflow.act_sale_workflow_process_form
-#: model:ir.ui.menu,name:sale_automatic_workflow.menu_act_sale_workflow_process_form
-#: view:sale.order:0
-#: view:sale.workflow.process:0
-msgid "Automatic Workflow"
+#: view:sale.order:sale_automatic_workflow.sale_order_view_form
+msgid "Other Information"
 msgstr ""
 
 #. module: sale_automatic_workflow
-#: model:ir.model,name:sale_automatic_workflow.model_sale_order
-msgid "Sales Order"
-msgstr ""
-
-#. module: sale_automatic_workflow
-#: field:sale.workflow.process,validate_picking:0
-msgid "Confirm and Close Picking"
-msgstr ""
-
-#. module: sale_automatic_workflow
-#: field:sale.workflow.process,order_policy:0
-msgid "Invoice Policy"
-msgstr ""
-
-#. module: sale_automatic_workflow
-#: model:ir.model,name:sale_automatic_workflow.model_account_invoice
-msgid "Invoice"
-msgstr ""
-
-#. module: sale_automatic_workflow
-#: selection:sale.workflow.process,picking_policy:0
-msgid "Deliver each product when available"
+#: model:ir.model,name:sale_automatic_workflow.model_stock_picking
+msgid "Picking List"
 msgstr ""
 
 #. module: sale_automatic_workflow
@@ -175,13 +160,64 @@ msgid "Sale Orders"
 msgstr ""
 
 #. module: sale_automatic_workflow
-#: model:ir.model,name:sale_automatic_workflow.model_stock_picking_out
-msgid "Delivery Orders"
-msgstr ""
-
-#. module: sale_automatic_workflow
 #: field:account.invoice,workflow_process_id:0
+#: model:ir.model,name:sale_automatic_workflow.model_sale_workflow_process
 #: field:stock.picking,workflow_process_id:0
 msgid "Sale Workflow Process"
 msgstr ""
 
+#. module: sale_automatic_workflow
+#: model:ir.model,name:sale_automatic_workflow.model_sale_order
+msgid "Sales Order"
+msgstr ""
+
+#. module: sale_automatic_workflow
+#: selection:sale.workflow.process,invoice_quantity:0
+msgid "Shipped Quantities"
+msgstr ""
+
+#. module: sale_automatic_workflow
+#: field:sale.workflow.process,picking_policy:0
+msgid "Shipping Policy"
+msgstr ""
+
+#. module: sale_automatic_workflow
+#: model:ir.model,name:sale_automatic_workflow.model_stock_move
+msgid "Stock Move"
+msgstr ""
+
+#. module: sale_automatic_workflow
+#: field:sale.workflow.process,validate_invoice:0
+msgid "Validate Invoice"
+msgstr ""
+
+#. module: sale_automatic_workflow
+#: field:sale.workflow.process,validate_order:0
+msgid "Validate Order"
+msgstr ""
+
+#. module: sale_automatic_workflow
+#: field:sale.workflow.process,warning:0
+msgid "Warning Message"
+msgstr ""
+
+#. module: sale_automatic_workflow
+#: help:sale.workflow.process,invoice_date_is_order_date:0
+msgid "When checked, the invoice date will be the same than the order's date"
+msgstr ""
+
+#. module: sale_automatic_workflow
+#: view:sale.workflow.process:sale_automatic_workflow.sale_workflow_process_view_form
+msgid "Workflow Options"
+msgstr ""
+
+#. module: sale_automatic_workflow
+#: code:addons/sale_automatic_workflow/sale.py:62
+#, python-format
+msgid "Workflow Warning"
+msgstr ""
+
+#. module: sale_automatic_workflow
+#: help:sale.workflow.process,warning:0
+msgid "if set, display the message when a user selects the process on a sale order"
+msgstr ""
