@@ -23,7 +23,7 @@ class SaleOrder(orm.Model):
         for order in self.browse(cr, uid, ids, context=context):
             for mo in mrp_prod_obj.browse(cr, uid, mo_ids, context=context):
                 if mo.picking_id.state in ['assigned', 'confirmed', 'draft'] \
-                        and mo.state in ['draft', 'ready']:
+                        and mo.state in ['draft', 'confirmed']:
                     picking = picking_obj.browse(
                         cr, uid, mo.picking_id.id, context=context
                     )
