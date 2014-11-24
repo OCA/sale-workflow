@@ -10,6 +10,7 @@
 
 from osv import orm
 
+
 class SaleOrder(orm.Model):
     _inherit = 'sale.order'
 
@@ -17,16 +18,24 @@ class SaleOrder(orm.Model):
         mrp_prod_obj = self.pool.get('mrp.production')
         picking_obj = self.pool.get('stock.picking')
         mo_ids = mrp_prod_obj.search(
-            cr, uid, [('sale_order_id','in',ids)], context=context
+            cr, uid, [('sale_order_id', 'in', ids)], context=context
         )
-        picking_ids = False
-        for mo in mrp_prod_obj.browse(cr, uid, mo_ids, context=context):
-            self.write(
-                cr, uid, mo.sale_order_id.id,
-                {'cancel_logs': mo.sale_order_id.cancel_logs + "<p>Cancel picking on %s</p>" % mo.name},
-                context=context
-            )
-            picking_obj.action_cancel(cr, uid, [mo.picking_id.id], context=context)
-            mrp_prod_obj.action_cancel(cr, uid, [mo.id], context=context)
-        return super(SaleOrder, self).action_cancel(cr, uid, ids, context=context)
-
+        for order in self.browse(cr, uid, ids, context=context):
+            for mo in mrp_prod_obj.browse(cr, uid, mo_ids, context=context):
+                if mo.picking_id.state in ['assigned', 'confirmed', 'draft'] \
+                        and mo.state in ['draft', 'ready']:
+                    picking = picking_obj.browse(
+                        cr, uid, mo.picking_id.id, context=context
+                    )
+                    picking.action_cancel()
+                    log = "<p>Canceled internal picking on MO %s: %s</p>" % \
+                        (mo.name, picking.name)
+                else:
+                    log = "<p>Can't cancel MO %s or internal picking %s on MO \
+                        </p>" % (mo.name, picking.name)
+                order.add_logs(log)
+                mo.action_cancel()
+                order.add_logs("<p>MO %s canceled</p>" % mo.name)
+        return super(SaleOrder, self).action_cancel(
+            cr, uid, ids, context=context
+        )
