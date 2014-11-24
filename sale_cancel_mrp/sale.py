@@ -22,17 +22,19 @@ class SaleOrder(orm.Model):
         )
         for order in self.browse(cr, uid, ids, context=context):
             for mo in mrp_prod_obj.browse(cr, uid, mo_ids, context=context):
-                if mo.picking_id.state in ['assigned', 'confirmed', 'draft'] \
-                        and mo.state in ['draft', 'confirmed']:
+                if mo.picking_id.state in ['assigned', 'confirmed', 'draft']:
                     mo.picking_id.action_cancel()
                     log = "<p>Canceled internal picking on MO %s: %s</p>" % \
                         (mo.name, mo.picking_id.name)
                 else:
-                    log = "<p>Can't cancel MO %s or internal picking %s on MO \
-                        </p>" % (mo.name, mo.picking_id.name)
+                    log = "<p>Can't cancel internal picking on MO %s: %s</p>"\
+                        % (mo.name, mo.picking_id.name)
                 order.add_logs(log)
-                mo.action_cancel()
-                order.add_logs("<p>MO %s canceled</p>" % mo.name)
+                if mo.state in ['draft', 'confirmed', 'ready']:
+                    mo.action_cancel()
+                    order.add_logs("<p>MO %s canceled</p>" % mo.name)
+                else:
+                    order.add_logs("<p> Can't cancel MO : %s" % mo.name)
         return super(SaleOrder, self).action_cancel(
             cr, uid, ids, context=context
         )
