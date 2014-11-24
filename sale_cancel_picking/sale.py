@@ -25,9 +25,8 @@ class SaleOrder(orm.Model):
             )
             for picking in pickings:
                 if picking.state in ['assigned', 'confirmed', 'draft']:
-                    picking_obj.action_cancel(
-                        cr, uid, [picking.id], context=context)
-                    log = "<p>Canceled picking out: %s</p" % picking.name
+                    picking.action_cancel()
+                    log = "<p>Canceled picking out: %s</p>" % picking.name
                 else:
                     log = "<p>Can't cancel picking out: %s</p>" % \
                         picking.name
