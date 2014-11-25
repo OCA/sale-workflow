@@ -10,5 +10,14 @@
             res_model="purchase.order.line"
             src_model="sale.order"/>
 
+        <record id="view_order_form" model="ir.ui.view">
+            <field name="model">sale.order</field>
+            <field name="inherit_id" ref="sale.view_order_form"/>
+            <field name="arch" type="xml">
+                <xpath expr="//button[@name='action_cancel']" position="after">
+                    <button name="action_view_purchase_order" string="View Purchase Orders" type="object" groups="base.group_user"/>
+                </xpath>
+            </field>
+        </record>
     </data>
 </openerp>
