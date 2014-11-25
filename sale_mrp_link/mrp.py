@@ -10,6 +10,7 @@
 
 from osv import orm, fields
 
+
 class MrpProd(orm.Model):
     _inherit = 'mrp.production'
 
