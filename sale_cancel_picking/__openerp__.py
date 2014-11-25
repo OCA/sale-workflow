@@ -35,6 +35,9 @@
     'data': [
         'sale_view.xml',
         ],
+    'test': [
+        'test/picking_cancel_test.yml',
+    ]
     'installable': True,
     'auto_install': False,
     'application': False,
