@@ -1,0 +1,55 @@
+-
+  I will test that the sale order id is correctly set in Manufacturing Order
+  attribute, sale_order_id.
+  I start by creating a product that will be manufactured.
+-
+  !record {model: product.product, id: product_product_1}:
+    name: Manufactured Product
+    sale_ok: True
+    purchase_ok: True
+    type: product
+    procure_method: make_to_order
+    supply_method: produce
+    list_price: 50.0
+-
+  I create his Build of Material for this product
+-
+  !record {model: mrp.bom, id: bom_product_1}:
+    product_id: product_product_1
+-
+  I create sale order with one line from previous created product
+-
+  !record {model: sale.order, id: sale_order_1}:
+    partner_id: base.res_partner_2
+    note: Invoice after delivery
+    payment_term: account.account_payment_term
+    order_line: 
+      - product_id: product_product_1
+        product_uom: 1
+        product_uom_qty: 8
+        price_unit: 100.0
+-
+  I confirm the sale order
+-
+  !function {model: sale.order, name: action_button_confirm}:
+      - eval: "[obj(ref('sale_order_1')).id]"
+        model: sale.order
+-
+  Then, I cancel it
+-
+  !function {model: sale.order, name: action_cancel}:
+      - eval: "[obj(ref('sale_order_1')).id]"
+        model: sale.order
+-
+  I check that the pickings are canceled
+-
+  !python {model: sale.order}: |
+    order = self.browse(cr, uid, ref('sale_order_1'), context=context)
+    for picking in order.picking_ids:
+      assert picking.state == 'cancel', "Picking state is not cancel"
+-
+  I check that the sale order id is set
+-
+  !python {model: mrp.production}: |
+    mos = self.search(cr, uid, [('sale_order_id','=',ref('sale_order_1'))], context=context)
+    assert len(mos) > 0, "No Manufacturing Order found when searching on sale_order_id"
