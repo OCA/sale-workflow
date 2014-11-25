@@ -31,3 +31,23 @@ class MrpProd(orm.Model):
     _columns = {
         'sale_order_id': fields.many2one('sale.order', 'Source Sale Order'),
     }
+
+class SaleOrder(orm.Model):
+    _inherit = 'sale.order'
+
+    def action_view_manufacturing_order(self, cr, uid, ids, context=None):
+        mod_obj = self.pool.get('ir.model.data')
+        act_obj = self.pool.get('ir.actions.act_window')
+        mrp_prod_obj = self.pool.get('mrp.production')
+
+        result = mod_obj.get_object_reference(
+            cr, uid, 'mrp', 'mrp_production_action'
+        )
+        id = result and result[1] or False
+        result = act_obj.read(cr, uid, [id], context=context)[0]
+        mo_ids = mrp_prod_obj.search(
+            cr, uid, [('sale_order_id', 'in', ids)], context=context
+        )
+        result['domain'] = "[('id', 'in', [" + \
+            ','.join(map(str, mo_ids)) + "])]"
+        return result
