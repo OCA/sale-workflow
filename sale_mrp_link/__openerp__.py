@@ -37,7 +37,7 @@
         ],
     'test': [
         'test/sale_mrp_link_test.yml',
-    ]
+    ],
     'installable': True,
     'auto_install': False,
     'application': False,
