@@ -16,7 +16,6 @@ class SaleOrder(orm.Model):
 
     def action_cancel(self, cr, uid, ids, context=None):
         mrp_prod_obj = self.pool.get('mrp.production')
-        picking_obj = self.pool.get('stock.picking')
         mo_ids = mrp_prod_obj.search(
             cr, uid, [('sale_order_id', 'in', ids)], context=context
         )

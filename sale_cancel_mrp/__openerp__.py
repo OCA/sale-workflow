@@ -25,7 +25,8 @@
     'version': '1.0',
     'category': 'Generic Modules',
     'description': """
-        Allows Sale Order cancellation and Manufacturing Order cancellation in the same time.
+        Allows Sale Order cancellation and Manufacturing Order cancellation in
+        the same time.
     """,
     'author': 'Akretion',
     'website': 'http://akretion.com',
