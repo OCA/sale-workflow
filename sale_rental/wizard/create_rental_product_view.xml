@@ -15,13 +15,14 @@
     <field name="arch" type="xml">
         <form string="Create Rental Service" version="7.0">
             <group>
-                <field name="name_prefix"/>
-                <field name="default_code_prefix"/>
+                <field name="name"/>
+                <field name="default_code"/>
                 <field name="categ_id"/>
                 <field name="sale_price_per_day"/>
             </group>
             <footer>
-                <button name="create_rental_product" string="Create" type="object" class="oe_highlight"/>
+                <button name="create_rental_product" string="Create"
+                    type="object" class="oe_highlight"/>
                 <button special="cancel" string="Cancel" class="oe_link"/>
             </footer>
         </form>
