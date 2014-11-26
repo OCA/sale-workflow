@@ -65,9 +65,10 @@ class SaleOrder(models.Model):
 class SaleOrderLine(models.Model):
     _inherit = 'sale.order.line'
     manually_sourced = fields.Boolean('Manually Sourced')
-    sourced_by = fields.Many2one('purchase.order.line', copy=False,
-                                 domain="[('product_id', '=', product_id),"
-                                 "('state', 'in', ['draft', 'confirmed'])]")
+    sourced_by = fields.Many2one(
+        'purchase.order.line', copy=False,
+        domain="[('product_id', '=', product_id),"
+               " ('order_id.state', 'in', ['draft', 'confirmed'])]")
 
     @api.multi
     def needs_sourcing(self):
