@@ -25,7 +25,8 @@
     'version': '1.0',
     'category': 'Generic Modules',
     'description': """
-        Implements a link between a Sale Order and its generated Manufacturing Orders.
+        Implements a link between a Sale Order and its generated Manufacturing
+        Orders.
     """,
     'author': 'Akretion',
     'website': 'http://akretion.com',
