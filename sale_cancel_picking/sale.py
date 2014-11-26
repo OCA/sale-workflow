@@ -16,7 +16,7 @@ class SaleOrder(orm.Model):
 
     def action_cancel(self, cr, uid, ids, context=None):
         for order in self.browse(cr, uid, ids, context=context):
-            for picking in order.pickings:
+            for picking in order.picking_ids:
                 if picking.state in ['assigned', 'confirmed', 'draft']:
                     picking.action_cancel()
                     log = "<p>Canceled picking out: %s</p>" % picking.name
