@@ -35,10 +35,10 @@ class create_rental_product(orm.TransientModel):
             digits_compute=dp.get_precision('Product Price')),
         # I would like to translate the field 'name_prefix', but
         # it doesn't seem to work in a wizard
-        'name_prefix': fields.char(
-            'Product Name Prefix', size=64, required=True),
-        'default_code_prefix': fields.char(
-            'Prefix for Default Code', size=16, required=True),
+        'name': fields.char(
+            'Product Name', size=64, required=True),
+        'default_code': fields.char(
+            'Default Code', size=16, required=True),
         'categ_id': fields.many2one(
             'product.category', 'Product Category', required=True),
         }
@@ -56,8 +56,8 @@ class create_rental_product(orm.TransientModel):
             cr, uid, context['active_id'], context=context)
         res.update({
             'sale_price_per_day': 1.0,
-            'default_code_prefix': _('RENT-%s') % hw_product.default_code,
-            'name_prefix': _('Rental of one %s') % hw_product.name,
+            'default_code': _('RENT-%s') % hw_product.default_code,
+            'name': _('Rental of one %s') % hw_product.name,
         })
         return res
 
@@ -82,12 +82,8 @@ class create_rental_product(orm.TransientModel):
             'uom_id': day_uom_id,
             'uom_po_id': day_uom_id,
             'list_price': wiz.sale_price_per_day,
-            'name': '%s%s' % (
-                wiz.name_prefix and wiz.name_prefix + ' ' or '',
-                hw_product.name),
-            'default_code': '%s%s' % (
-                wiz.default_code_prefix or '',
-                hw_product.default_code),
+            'name': wiz.name,
+            'default_code': wiz.default_code,
             'rented_product_id': hw_product_id,
             'must_have_dates': True,
             'categ_id': wiz.categ_id.id,
