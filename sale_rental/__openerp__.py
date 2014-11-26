@@ -47,13 +47,15 @@ To use the module, you need to have access to the form view of sale order lines.
 
 * Properties on lines
 
+A screencast that explains how to install, configure and use this module is available on Akretion's Youtube channel: https://www.youtube.com/watch?v=9o0QrGryBn8
+
 Known limitations of the current implementation:
 
 * the unit of measure of the rental services must be *Day* (we don't support the rental per hours / per week / per month...)
 
 * when you sell a rental service, you must have as many sale order lines as rented equipements i.e. you can't rent multiple units of an equipment in one sale order line (it is possible to develop that, but it requires additionnal work).
 
-Please contact Alexis de Lattre from Akretion <alexis.delattre@akretion.com> for any help or question about this module.
+This module has been developped by Alexis de Lattre from Akretion <alexis.delattre@akretion.com>.
     """,
     'author': 'Akretion',
     'website': 'http://www.akretion.com',
