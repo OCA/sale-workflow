@@ -32,6 +32,7 @@ class MrpProd(orm.Model):
         'sale_order_id': fields.many2one('sale.order', 'Source Sale Order'),
     }
 
+
 class SaleOrder(orm.Model):
     _inherit = 'sale.order'
 
