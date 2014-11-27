@@ -124,6 +124,7 @@ class sale_order(models.Model):
             self.shipped = False
             return
 
+        # keep empty groups
         groups = set([line.procurement_group_id
                       for line in self.order_line])
         is_shipped = True
