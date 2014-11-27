@@ -22,15 +22,31 @@ class TestConsistentRoute(TransactionCase):
         self.po.location_id.usage = 'customer'
         self.assertIs(True, self.sale_line.has_consistent_route())
 
+    def test_dropshipping_route_purchase_to_internal_fails(self):
+        self.sale_line.route_id = self.dropship
+        self.po.location_id.usage = 'internal'
+        self.assertIs(False, self.sale_line.has_consistent_route())
+
+    def test_mto_route_purchase_to_customer_fails(self):
+        self.sale_line.route_id = self.mto
+        self.po.location_id.usage = 'customer'
+        self.assertIs(False, self.sale_line.has_consistent_route())
+
+    def test_mto_route_purchase_to_internal_passes(self):
+        self.sale_line.route_id = self.mto
+        self.po.location_id.usage = 'internal'
+        self.assertIs(True, self.sale_line.has_consistent_route())
 
     def setUp(self):
         super(TestConsistentRoute, self).setUp()
         self.dropship = self.env.ref('stock_dropshipping.route_drop_shipping')
         self.mto = self.env.ref('stock.route_warehouse0_mto')
         self.po = self.env['purchase.order'].new({
-            'order_line': self.env['purchase.order.line'].new(),
             'location_id': self.env['stock.location'].new(),
         })
+        self.purchase_line = self.env['purchase.order.line'].new({
+            'order_id': self.po,
+        })
         self.sale_line = self.env['sale.order.line'].new({
-            'sourced_by': self.po.order_line,
+            'sourced_by': self.purchase_line,
         })
