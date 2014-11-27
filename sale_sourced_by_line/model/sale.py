@@ -19,10 +19,11 @@
 #
 #
 
-from openerp.osv import orm, fields
+from openerp import models, api, fields, osv
+from openerp.osv import orm
 
 
-class sale_order(orm.Model):
+class sale_order(models.Model):
     _inherit = 'sale.order'
 
     def _prepare_order_line_procurement(self, cr, uid, order, line,
@@ -104,7 +105,9 @@ class sale_order(orm.Model):
     ###
     # OVERRIDE to use sale.order.line's procurement_group_id from lines
     ###
-    def _get_shipped(self, cr, uid, ids, name, args, context=None):
+    @api.one
+    @api.depends('order_line.procurement_group_id.procurement_ids.state')
+    def _get_shipped(self):
         """ As procurement is per sale line basis, we check each line
 
             If at least a line has no procurement group defined, it means it
@@ -117,32 +120,20 @@ class sale_order(orm.Model):
             shipped.
 
         """
-        res = {}
-        for sale in self.browse(cr, uid, ids, context=context):
-            if not sale.order_line:
-                res[sale.id] = False
-                continue
+        if not self.order_line:
+            self.shipped = False
+            return
 
-            groups = set([line.procurement_group_id
-                          for line in sale.order_line])
-            is_shipped = True
-            for group in groups:
-                if not group:
-                    is_shipped = False
-                    break
-                is_shipped &= all([proc.state in ['cancel', 'done']
-                                   for proc in group.procurement_ids])
-            res[sale.id] = is_shipped
-        return res
-
-    def _get_orders_procurements(self, cr, uid, ids, context=None):
-        res = set()
-        proc_orders = self.pool['procurement.order'].browse(
-            cr, uid, ids, context=context)
-        for proc in proc_orders:
-            if proc.state == 'done' and proc.sale_line_id:
-                res.add(proc.sale_line_id.order_id.id)
-        return list(res)
+        groups = set([line.procurement_group_id
+                      for line in self.order_line])
+        is_shipped = True
+        for group in groups:
+            if not group or not group.procurement_ids:
+                is_shipped = False
+                break
+            is_shipped &= all([proc.state in ['cancel', 'done']
+                               for proc in group.procurement_ids])
+        self.shipped = is_shipped
 
     ###
     # OVERRIDE to find sale.order.line's picking
@@ -171,36 +162,36 @@ class sale_order(orm.Model):
     }
 
     _columns = {
-        'warehouse_id': fields.many2one(
+        'warehouse_id': osv.fields.many2one(
             'stock.warehouse',
             'Default Warehouse',
             states=SO_STATES,
             help="If no source warehouse is selected on line, "
                  "this warehouse is used as default. "),
-        'shipped': fields.function(
-            _get_shipped, string='Delivered', type='boolean',
-            store={
-                'procurement.order': (_get_orders_procurements, ['state'], 10)
-            }),
-        'picking_ids': fields.function(
+        'picking_ids': osv.fields.function(
             _get_picking_ids, method=True, type='one2many',
             relation='stock.picking',
             string='Picking associated to this sale'),
     }
+
+    shipped = fields.Boolean(
+        compute='_get_shipped',
+        string='Delivered',
+        store=True)
 
 
 class sale_order_line(orm.Model):
     _inherit = 'sale.order.line'
 
     _columns = {
-        'warehouse_id': fields.many2one(
+        'warehouse_id': osv.fields.many2one(
             'stock.warehouse',
             'Source Warehouse',
             help="If a source warehouse is selected, "
                  "it will be used to define the route. "
                  "Otherwise, it will get the warehouse of "
                  "the sale order"),
-        'procurement_group_id': fields.many2one(
+        'procurement_group_id': osv.fields.many2one(
             'procurement.group',
             'Procurement group',
             copy=False),
