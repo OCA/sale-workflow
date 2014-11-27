@@ -60,12 +60,16 @@
     'website': "http://www.camptocamp.com",
 
     'category': 'Sales',
-    'version': '0.2',
+    'version': '0.3',
 
-    'depends': ['sale_stock', 'purchase', 'stock_dropshipping'],
+    'depends': ['sale_stock',
+                'purchase',
+                'stock_dropshipping',
+                'sale_exceptions'],
     'data': ['views/sale_order_sourcing.xml',
              'views/sale_order.xml',
              'security/group.xml',
+             'data/exceptions.xml',
              ],
     'test': [
         'test/setup_user.yml',

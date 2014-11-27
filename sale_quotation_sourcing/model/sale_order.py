@@ -61,6 +61,11 @@ class SaleOrder(models.Model):
                   }
         return self.env['sale.order.sourcing'].create(values)
 
+    @api.multi
+    def has_consistent_routes(self):
+        self.ensure_one()
+        return all((line.has_consistent_route() for line in self.order_line))
+
 
 class SaleOrderLine(models.Model):
     _inherit = 'sale.order.line'
@@ -69,6 +74,14 @@ class SaleOrderLine(models.Model):
         'purchase.order.line', copy=False,
         domain="[('product_id', '=', product_id),"
                " ('order_id.state', 'in', ['draft', 'confirmed'])]")
+
+    @api.multi
+    def has_consistent_route(self):
+        self.ensure_one()
+        if self.route_id and self.sourced_by:
+            selected_route = self.route_id
+            self.set_route_form_so()
+            return selected_route == self.route_id
 
     @api.multi
     def needs_sourcing(self):
