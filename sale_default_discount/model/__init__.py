@@ -19,5 +19,5 @@
 #
 ##############################################################################
 
-from . import partner  # noqa
-from . import sale  # noqa
+from . import partner
+from . import sale
