@@ -161,10 +161,20 @@ class sale_order(orm.Model):
                 context=context)
         return res
 
+    SO_STATES = {
+        'cancel': [('readonly', True)],
+        'progress': [('readonly', True)],
+        'manual': [('readonly', True)],
+        'shipping_except': [('readonly', True)],
+        'invoice_except': [('readonly', True)],
+        'done': [('readonly', True)],
+    }
+
     _columns = {
         'warehouse_id': fields.many2one(
             'stock.warehouse',
             'Default Warehouse',
+            states=SO_STATES,
             help="If no source warehouse is selected on line, "
                  "this warehouse is used as default. "),
         'shipped': fields.function(
