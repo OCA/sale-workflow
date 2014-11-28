@@ -32,7 +32,7 @@
     'author': 'Akretion',
     'website': 'http://akretion.com',
     'depends': ['purchase', 'sale_cancel_picking'],
-    'test': ['test/purchase_cancel_test.yml',],
+    'test': ['test/purchase_cancel_test.yml'],
     'installable': True,
     'auto_install': False,
     'application': False,
