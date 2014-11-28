@@ -8,24 +8,30 @@
 #
 ##############################################################################
 
-from osv import orm, fields
+from openerp.osv import orm, fields
+from openerp.tools.translate import _
 
 
 class SaleOrder(orm.Model):
     _inherit = 'sale.order'
 
     def action_cancel(self, cr, uid, ids, context=None):
+        cancel_ids = []
         for order in self.browse(cr, uid, ids, context=context):
+            cancel = True
             for picking in order.picking_ids:
                 if picking.state in ['assigned', 'confirmed', 'draft']:
                     picking.action_cancel()
-                    log = "<p>Canceled picking out: %s</p>" % picking.name
+                    log = _("<p>Canceled picking out: %s</p>")
                 else:
-                    log = "<p>Can't cancel picking out: %s</p>" % \
-                        picking.name
+                    cancel = False
+                    log = _("<p>Can't cancel picking out: %s</p>")
+                log %= picking.name
                 order.add_logs(log)
+            if cancel:
+                cancel_ids.append(order.id)
         return super(SaleOrder, self).action_cancel(
-            cr, uid, ids, context=context
+            cr, uid, cancel_ids, context=context
         )
 
     def add_logs(self, cr, uid, ids, log_message, context=None):
@@ -35,9 +41,7 @@ class SaleOrder(orm.Model):
             else:
                 logs = ""
             logs += '%s\n' % log_message
-            self.write(
-                cr, uid, [order.id], {'cancel_logs': logs}, context=context
-            )
+            order.write({'cancel_logs': logs})
 
     _columns = {
         'cancel_logs': fields.html("Cancellation Logs"),
