@@ -12,7 +12,7 @@
     supply_method: produce
     list_price: 50.0
 -
-  I create his Build of Material for this product
+  I create his Bill of Materials for this product
 -
   !record {model: mrp.bom, id: bom_product_1}:
     product_id: product_product_1
