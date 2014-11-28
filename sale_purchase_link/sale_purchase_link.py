@@ -8,7 +8,7 @@
 #
 ##############################################################################
 
-from osv import orm, fields
+from openerp.osv import orm, fields
 
 
 class ProcurementOrder(orm.Model):
@@ -53,6 +53,5 @@ class SaleOrder(orm.Model):
         po_ids = []
         for line in po_line_obj.browse(cr, uid, line_ids, context=context):
             po_ids.append(line.order_id.id)
-        result['domain'] = "[('id', 'in', [" + \
-            ','.join(map(str, po_ids)) + "])]"
+        result['domain'] = "[('id', 'in', %s)]" % po_ids
         return result
