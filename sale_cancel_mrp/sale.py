@@ -8,7 +8,8 @@
 #
 ##############################################################################
 
-from osv import orm
+from openerp.osv import orm
+from openerp.tools.translate import _
 
 
 class SaleOrder(orm.Model):
@@ -19,21 +20,27 @@ class SaleOrder(orm.Model):
         mo_ids = mrp_prod_obj.search(
             cr, uid, [('sale_order_id', 'in', ids)], context=context
         )
+        cancel_ids = []
         for order in self.browse(cr, uid, ids, context=context):
+            cancel = True
             for mo in mrp_prod_obj.browse(cr, uid, mo_ids, context=context):
                 if mo.picking_id.state in ['assigned', 'confirmed', 'draft']:
                     mo.picking_id.action_cancel()
-                    log = "<p>Canceled internal picking on MO %s: %s</p>" % \
-                        (mo.name, mo.picking_id.name)
+                    log = _("<p>Canceled int picking on MO %s: %s</p>")
                 else:
-                    log = "<p>Can't cancel internal picking on MO %s: %s</p>"\
-                        % (mo.name, mo.picking_id.name)
+                    cancel = False
+                    log = _("<p>Can't cancel int picking on MO %s: %s</p>")
+                log %= (mo.name, mo.picking_id.name)
                 order.add_logs(log)
                 if mo.state in ['draft', 'confirmed', 'ready']:
                     mo.action_cancel()
-                    order.add_logs("<p>MO %s canceled</p>" % mo.name)
+                    log = _("<p>MO %s canceled</p>")
                 else:
-                    order.add_logs("<p> Can't cancel MO : %s" % mo.name)
+                    cancel = False
+                    log = _("<p>Can't cancel MO: %s")
+                log %= mo.name
+            if cancel:
+                cancel_ids.append(order.id)
         return super(SaleOrder, self).action_cancel(
-            cr, uid, ids, context=context
+            cr, uid, cancel_ids, context=context
         )
