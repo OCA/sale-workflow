@@ -1,0 +1,48 @@
+# Translation of OpenERP Server.
+# This file contains the translation of the following modules:
+#	* sale_cancel_purchase
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: OpenERP Server 7.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2014-11-27 16:24+0000\n"
+"PO-Revision-Date: 2014-11-27 16:24+0000\n"
+"Last-Translator: <>\n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: sale_cancel_purchase
+#: code:addons/sale_cancel_purchase/sale.py:42
+#, python-format
+msgid "<p>Can't cancel picking in: %s</p>"
+msgstr "<p>Impossible d'annuler la réception: %s</p>"
+
+#. module: sale_cancel_purchase
+#: code:addons/sale_cancel_purchase/sale.py:39
+#, python-format
+msgid "<p>Canceled picking in: %s</p>"
+msgstr "<p>Réception annulée: %s</p>"
+
+#. module: sale_cancel_purchase
+#: code:addons/sale_cancel_purchase/sale.py:48
+#, python-format
+msgid "<p>Impossible to cancel Purchase Order Line for product %s because Line's state is in %s</p>"
+msgstr "<p>Impossible d'annuler la ligne de commande d'achat pour le produit %s car l'état de la ligne est en %s</p>"
+
+#. module: sale_cancel_purchase
+#: code:addons/sale_cancel_purchase/sale.py:30
+#, python-format
+msgid "<p>Number of deleted lines in Purchase Order: %s</p>"
+msgstr "<p>Nombre de lignes supprimées dans la commande d'achat: %s</p>"
+
+#. module: sale_cancel_purchase
+#: code:_description:0
+#: model:ir.model,name:sale_cancel_purchase.model_sale_order
+#, python-format
+msgid "Sales Order"
+msgstr "Bon de commande"
+
