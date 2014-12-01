@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+  <data noupdate="0">
+
+    <record id="inconsistent_sourcing" model="sale.exception">
+      <field name="name">The chosen route is inconsistent with the purchase</field>
+      <field name="description">The chosen route is inconsistent with the destination of the purchase line that has been chosen. Please change the route or choose a different purchase.</field>
+      <field name="sequence">40</field>
+      <field name="model">sale.order</field>
+      <field name="code">if not object.has_consistent_routes(): failed = True</field>
+      <field name="active" eval="True"/>
+    </record>
+
+  </data>
+</openerp>
