@@ -129,6 +129,20 @@ class SaleOrderLine(models.Model):
         return rules[0].procure_method
 
     @api.multi
+    def _should_skip_stock_checks(self):
+        self.ensure_one()
+
+        if (
+            self.product_id
+            and self._is_make_to_stock()
+            and self._get_line_location()
+            and self._get_line_location().usage == 'internal'
+        ):
+            return False
+        else:
+            return True
+
+    @api.multi
     def can_command_at_delivery_date(self):
         """Predicate that checks whether a SO line can be delivered at delivery
         date.
@@ -141,15 +155,11 @@ class SaleOrderLine(models.Model):
 
         """
         self.ensure_one()
-        if not self.product_id and not self._is_make_to_stock():
+        if self._should_skip_stock_checks():
             return True
         delivery_date = self._compute_line_delivery_date()[0]
         delivery_date = fields.Datetime.to_string(delivery_date)
         location = self._get_line_location()
-
-        if location.usage != 'internal':
-            # for example, in the case of drop shipping, we skip the check
-            return True
 
         assert location, _("No rules specifies a location"
                            " for this sale order line")
@@ -209,17 +219,13 @@ class SaleOrderLine(models.Model):
         :return: True if future order are affected by current command line
         """
         self.ensure_one()
-        if not self.product_id and not self._is_make_to_stock():
+        if self._should_skip_stock_checks():
             return False
         delivery_date = self._compute_line_delivery_date()[0]
         delivery_date = fields.Datetime.to_string(delivery_date)
         location = self._get_line_location()
         assert location, _("No rules specifies a location"
                            " for this sale order line")
-
-        if location.usage != 'internal':
-            # for example, in the case of drop shipping, we skip the check
-            return False
 
         ctx = {
             'compute_child': True,
