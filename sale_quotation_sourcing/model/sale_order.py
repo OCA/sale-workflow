@@ -83,7 +83,7 @@ class SaleOrderLine(models.Model):
             self.set_route_form_so()
             return selected_route == self.route_id
         else:
-            return False
+            return True
 
     @api.multi
     def needs_sourcing(self):
