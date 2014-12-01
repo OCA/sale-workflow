@@ -26,19 +26,20 @@ class SaleOrder(orm.Model):
             for mo in mrp_prod_obj.browse(cr, uid, mo_ids, context=context):
                 if mo.picking_id.state in ['assigned', 'confirmed', 'draft']:
                     mo.picking_id.action_cancel()
-                    log = _("<p>Canceled int picking on MO %s: %s</p>")
+                    log = _("Canceled int picking on MO %s: %s")
                 else:
                     cancel = False
-                    log = _("<p>Can't cancel int picking on MO %s: %s</p>")
+                    log = _("Can't cancel int picking on MO %s: %s")
                 log %= (mo.name, mo.picking_id.name)
-                order.add_logs(log)
+                order.add_logs(log, cancel)
                 if mo.state in ['draft', 'confirmed', 'ready']:
                     mo.action_cancel()
-                    log = _("<p>MO %s canceled</p>")
+                    log = _("MO %s canceled")
                 else:
                     cancel = False
-                    log = _("<p>Can't cancel MO: %s")
+                    log = _("Can't cancel MO: %s")
                 log %= mo.name
+                order.add_logs(log, cancel)
             if cancel:
                 cancel_ids.append(order.id)
         return super(SaleOrder, self).action_cancel(

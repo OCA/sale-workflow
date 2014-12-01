@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: OpenERP Server 7.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-11-28 13:58+0000\n"
-"PO-Revision-Date: 2014-11-28 13:58+0000\n"
+"POT-Creation-Date: 2014-12-01 15:07+0000\n"
+"PO-Revision-Date: 2014-12-01 15:07+0000\n"
 "Last-Translator: <>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -18,26 +18,26 @@ msgstr ""
 #. module: sale_cancel_mrp
 #: code:addons/sale_cancel_mrp/sale.py:40
 #, python-format
-msgid "<p>Can't cancel MO: %s"
-msgstr "<p>Impossible d'annuler l'OF: %s"
+msgid "Can't cancel MO: %s"
+msgstr "Impossible d'annuler l'OF: %s"
 
 #. module: sale_cancel_mrp
 #: code:addons/sale_cancel_mrp/sale.py:32
 #, python-format
-msgid "<p>Can't cancel int picking on MO %s: %s</p>"
-msgstr "<p>Impossible d'annuler le mouvement interne sur l'OF %s: %s</p>"
+msgid "Can't cancel int picking on MO %s: %s"
+msgstr "Impossible d'annuler le mouvement interne sur l'OF %s: %s"
 
 #. module: sale_cancel_mrp
 #: code:addons/sale_cancel_mrp/sale.py:29
 #, python-format
-msgid "<p>Canceled int picking on MO %s: %s</p>"
-msgstr "<p>Mouvement interne annulé sur l'OF %s: %s</p>"
+msgid "Canceled int picking on MO %s: %s"
+msgstr "Mouvement interne annulé sur l'OF %s: %s"
 
 #. module: sale_cancel_mrp
 #: code:addons/sale_cancel_mrp/sale.py:37
 #, python-format
-msgid "<p>MO %s canceled</p>"
-msgstr "<p>OF %s annulé</p>"
+msgid "MO %s canceled"
+msgstr "OF %s annulé"
 
 #. module: sale_cancel_mrp
 #: code:_description:0
