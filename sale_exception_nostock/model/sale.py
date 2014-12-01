@@ -120,7 +120,7 @@ class SaleOrderLine(models.Model):
     @api.multi
     def _is_make_to_stock(self):
         """Predict whether a make to stock rule will be chosen"""
-        return self._predict_procure_method == 'make_to_stock'
+        return self._predict_procure_method() == 'make_to_stock'
 
     @api.multi
     def _predict_procure_method(self):
