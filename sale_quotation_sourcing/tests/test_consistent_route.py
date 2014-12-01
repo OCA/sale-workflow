@@ -37,6 +37,9 @@ class TestConsistentRoute(TransactionCase):
         self.po.location_id.usage = 'internal'
         self.assertIs(True, self.sale_line.has_consistent_route())
 
+    def test_no_route_passes(self):
+        self.assertIs(True, self.sale_line.has_consistent_route())
+
     def setUp(self):
         super(TestConsistentRoute, self).setUp()
         self.dropship = self.env.ref('stock_dropshipping.route_drop_shipping')
