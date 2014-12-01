@@ -6,8 +6,13 @@
             <field name="model">sale.order</field>
             <field name="inherit_id" ref="sale.view_order_form"/>
             <field name="arch" type="xml">
-                <xpath expr="//field[@name='company_id']" position="after">
-                    <field name="cancel_logs"/>
+                <xpath expr="//h1" position="after">
+                    <h2>
+                        <group attrs="{'invisible': [('cancel_logs', '=', False)]}">
+                            <separator string="Cancellation Logs" colspan="4"/>
+                            <field name="cancel_logs" readonly="1" nolabel="1"/>
+                        </group>
+                    </h2>
                 </xpath>
             </field>
         </record>

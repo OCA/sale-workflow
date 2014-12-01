@@ -19,24 +19,24 @@ msgstr ""
 #: code:addons/sale_cancel_picking/sale.py:28
 #, python-format
 msgid "Can't cancel picking out: %s"
-msgstr "Impossible d'annuler le bon de livraison: %s"
+msgstr ""
 
 #. module: sale_cancel_picking
 #: code:addons/sale_cancel_picking/sale.py:25
 #, python-format
 msgid "Canceled picking out: %s"
-msgstr "Bon de livraison annulé: %s"
+msgstr ""
 
 #. module: sale_cancel_picking
 #: view:sale.order:0
 #: field:sale.order,cancel_logs:0
 msgid "Cancellation Logs"
-msgstr "Journal d'annulation"
+msgstr ""
 
 #. module: sale_cancel_picking
 #: code:_description:0
 #: model:ir.model,name:sale_cancel_picking.model_sale_order
 #, python-format
 msgid "Sales Order"
-msgstr "Bon de commande"
+msgstr ""
 
