@@ -15,37 +15,61 @@ from openerp.tools.translate import _
 class SaleOrder(orm.Model):
     _inherit = 'sale.order'
 
+    def _can_cancel_picking_out(self, cr, uid, picking, context=None):
+        """
+        Method that return if it's possible or not to cancel the picking_out
+        By default we raise an error if the picking id done.
+        You can override this behaviours if needed in your custom module
+
+        :param order: Picking
+        :type items: browse_record
+        :return: tuple that contain the following value
+            (able_to_cancel, message, important)
+        """
+        able_to_cancel = False
+        important = False
+        message = ""
+
+        if picking.state == 'cancel':
+            pass
+        elif picking.state == 'done':
+            raise orm.except_orm(
+                _('User Error'),
+                _('The Sale Order %s can not be cancelled as the picking'
+                  ' %s is in the done state') \
+                    % (picking.sale_id.name, picking.name))
+        else:
+            picking.action_cancel()
+            message = _("Canceled picking out: %s" % picking.name)
+        return able_to_cancel, message, important
+
+    def _cancel_linked_record(self, cr, uid, order, context=None):
+        for picking in order.picking_ids:
+            able_to_cancel, message, important = \
+                self._can_cancel_picking_out(cr, uid, picking, context=context)
+            if able_to_cancel:
+                picking.action_cancel()
+            order.add_cancel_log(message, important=important)
+
     def action_cancel(self, cr, uid, ids, context=None):
         cancel_ids = []
         for order in self.browse(cr, uid, ids, context=context):
-            cancel = True
-            for picking in order.picking_ids:
-                if picking.state in ['assigned', 'confirmed', 'draft']:
-                    picking.action_cancel()
-                    log = _("Canceled picking out: %s")
-                else:
-                    cancel = False
-                    log = _("Can't cancel picking out: %s")
-                log %= picking.name
-                order.add_logs(log, cancel)
-            if cancel:
-                cancel_ids.append(order.id)
+            self._cancel_linked_record(cr, uid, order, context=None)
         return super(SaleOrder, self).action_cancel(
-            cr, uid, cancel_ids, context=context
-        )
+            cr, uid, cancel_ids, context=context)
 
-    def add_logs(self, cr, uid, ids, log_message, success, context=None):
+    def add_cancel_log(self, cr, uid, ids, message, important=False, context=None):
+        if not message:
+            return True
         for order in self.browse(cr, uid, ids, context=context):
-            if order.cancel_logs:
-                logs = order.cancel_logs
+            log = order.cancel_log or ""
+            if important:
+                log += '<p style="color: red">%s</p>'
             else:
-                logs = ""
-            if success:
-                logs += '<p>%s</p>'
-            else:
-                logs += '<p style="color: red">%s</p>'
-            order.write({'cancel_logs': logs % log_message})
+                log += '<p>%s</p>'
+            order.write({'cancel_log': log % message})
+        return True
 
     _columns = {
-        'cancel_logs': fields.html("Cancellation Logs"),
+        'cancel_log': fields.html("Cancellation Logs"),
     }

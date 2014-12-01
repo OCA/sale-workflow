@@ -8,9 +8,9 @@
             <field name="arch" type="xml">
                 <xpath expr="//h1" position="after">
                     <h2>
-                        <group attrs="{'invisible': [('cancel_logs', '=', False)]}">
+                        <group attrs="{'invisible': [('cancel_log', '=', False)]}">
                             <separator string="Cancellation Logs" colspan="4"/>
-                            <field name="cancel_logs" readonly="1" nolabel="1"/>
+                            <field name="cancel_log" readonly="1" nolabel="1" colspan="4"/>
                         </group>
                     </h2>
                 </xpath>
