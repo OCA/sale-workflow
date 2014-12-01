@@ -15,6 +15,10 @@ from openerp.tools.translate import _
 class SaleOrder(orm.Model):
     _inherit = 'sale.order'
 
+    _columns = {
+        'cancel_log': fields.html("Cancellation Logs"),
+    }
+
     def _can_cancel_picking_out(self, cr, uid, picking, context=None):
         """
         Method that return if it's possible or not to cancel the picking_out
@@ -52,11 +56,10 @@ class SaleOrder(orm.Model):
             order.add_cancel_log(message, important=important)
 
     def action_cancel(self, cr, uid, ids, context=None):
-        cancel_ids = []
         for order in self.browse(cr, uid, ids, context=context):
             self._cancel_linked_record(cr, uid, order, context=None)
         return super(SaleOrder, self).action_cancel(
-            cr, uid, cancel_ids, context=context)
+            cr, uid, ids, context=context)
 
     def add_cancel_log(self, cr, uid, ids, message, important=False, context=None):
         if not message:
@@ -70,6 +73,9 @@ class SaleOrder(orm.Model):
             order.write({'cancel_log': log % message})
         return True
 
-    _columns = {
-        'cancel_log': fields.html("Cancellation Logs"),
-    }
+    def copy_data(self, cr, uid, id, default=None, context=None):
+        if default is None:
+            default = {}
+        default['cancel_log'] = False
+        return super(SaleOrder, self).copy_data(
+            cr, uid, id, default, context=context)
