@@ -30,8 +30,8 @@ msgstr "Réception annulée: %s"
 #. module: sale_cancel_purchase
 #: code:addons/sale_cancel_purchase/sale.py:47
 #, python-format
-msgid "Impossible to cancel Purchase Order Line for product %s because Line's state is in %s"
-msgstr "Impossible d'annuler la ligne de commande d'achat pour le produit %s car l'état de la ligne est en %s"
+msgid "Impossible to cancel Purchase Order Line in %s for product %s because Line's state is in %s"
+msgstr "Impossible d'annuler la ligne de commande d'achat dans %s pour le produit %s car l'état de la ligne est en %s"
 
 #. module: sale_cancel_purchase
 #: code:addons/sale_cancel_purchase/sale.py:53

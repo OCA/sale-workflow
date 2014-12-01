@@ -44,9 +44,10 @@ class SaleOrder(orm.Model):
                         log %= picking.name
                         order.add_logs(log, cancel)
                 else:
-                    log = _("Impossible to cancel Purchase Order Line for"
-                            " product %s because Line's state is in %s")
-                    log %= (po_line.product_id.name, po_line.state)
+                    log = _("Impossible to cancel Purchase Order Line in %s "
+                            "for product %s because Line's state is in %s")
+                    log %= (po_line.order_id.name, po_line.product_id.name,
+                            po_line.state)
                     order.add_logs(log, False)
             if line_to_cancel:
                 po_line_obj.unlink(cr, uid, line_to_cancel, context=context)
