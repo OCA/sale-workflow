@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: OpenERP Server 7.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-11-27 16:25+0000\n"
-"PO-Revision-Date: 2014-11-27 16:25+0000\n"
+"POT-Creation-Date: 2014-12-01 15:03+0000\n"
+"PO-Revision-Date: 2014-12-01 15:03+0000\n"
 "Last-Translator: <>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -16,27 +16,27 @@ msgstr ""
 "Plural-Forms: \n"
 
 #. module: sale_cancel_purchase
-#: code:addons/sale_cancel_purchase/sale.py:42
+#: code:addons/sale_cancel_purchase/sale.py:43
 #, python-format
-msgid "<p>Can't cancel picking in: %s</p>"
+msgid "Can't cancel picking in: %s"
 msgstr ""
 
 #. module: sale_cancel_purchase
-#: code:addons/sale_cancel_purchase/sale.py:39
+#: code:addons/sale_cancel_purchase/sale.py:40
 #, python-format
-msgid "<p>Canceled picking in: %s</p>"
+msgid "Canceled picking in: %s"
 msgstr ""
 
 #. module: sale_cancel_purchase
-#: code:addons/sale_cancel_purchase/sale.py:48
+#: code:addons/sale_cancel_purchase/sale.py:47
 #, python-format
-msgid "<p>Impossible to cancel Purchase Order Line for product %s because Line's state is in %s"
+msgid "Impossible to cancel Purchase Order Line for product %s because Line's state is in %s"
 msgstr ""
 
 #. module: sale_cancel_purchase
-#: code:addons/sale_cancel_purchase/sale.py:30
+#: code:addons/sale_cancel_purchase/sale.py:53
 #, python-format
-msgid "<p>Number of deleted lines in Purchase Orders: %d</p>"
+msgid "Number of deleted lines in Purchase Order: %s"
 msgstr ""
 
 #. module: sale_cancel_purchase

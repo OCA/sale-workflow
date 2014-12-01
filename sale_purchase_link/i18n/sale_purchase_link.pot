@@ -48,6 +48,6 @@ msgstr ""
 
 #. module: sale_purchase_link
 #: view:sale.order:0
-msgid "View Purchase Orders"
+msgid "See Purchase Orders"
 msgstr ""
 

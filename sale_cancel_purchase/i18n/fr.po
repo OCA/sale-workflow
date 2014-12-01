@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: OpenERP Server 7.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-11-27 16:24+0000\n"
-"PO-Revision-Date: 2014-11-27 16:24+0000\n"
+"POT-Creation-Date: 2014-12-01 15:03+0000\n"
+"PO-Revision-Date: 2014-12-01 15:03+0000\n"
 "Last-Translator: <>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -16,28 +16,28 @@ msgstr ""
 "Plural-Forms: \n"
 
 #. module: sale_cancel_purchase
-#: code:addons/sale_cancel_purchase/sale.py:42
+#: code:addons/sale_cancel_purchase/sale.py:43
 #, python-format
-msgid "<p>Can't cancel picking in: %s</p>"
-msgstr "<p>Impossible d'annuler la réception: %s</p>"
+msgid "Can't cancel picking in: %s"
+msgstr "Impossible d'annuler la réception: %s"
 
 #. module: sale_cancel_purchase
-#: code:addons/sale_cancel_purchase/sale.py:39
+#: code:addons/sale_cancel_purchase/sale.py:40
 #, python-format
-msgid "<p>Canceled picking in: %s</p>"
-msgstr "<p>Réception annulée: %s</p>"
+msgid "Canceled picking in: %s"
+msgstr "Réception annulée: %s"
 
 #. module: sale_cancel_purchase
-#: code:addons/sale_cancel_purchase/sale.py:48
+#: code:addons/sale_cancel_purchase/sale.py:47
 #, python-format
-msgid "<p>Impossible to cancel Purchase Order Line for product %s because Line's state is in %s</p>"
-msgstr "<p>Impossible d'annuler la ligne de commande d'achat pour le produit %s car l'état de la ligne est en %s</p>"
+msgid "Impossible to cancel Purchase Order Line for product %s because Line's state is in %s"
+msgstr "Impossible d'annuler la ligne de commande d'achat pour le produit %s car l'état de la ligne est en %s"
 
 #. module: sale_cancel_purchase
-#: code:addons/sale_cancel_purchase/sale.py:30
+#: code:addons/sale_cancel_purchase/sale.py:53
 #, python-format
-msgid "<p>Number of deleted lines in Purchase Order: %s</p>"
-msgstr "<p>Nombre de lignes supprimées dans la commande d'achat: %s</p>"
+msgid "Number of deleted lines in Purchase Order: %s"
+msgstr "Nombre de lignes supprimées dans la commande d'achat: %s"
 
 #. module: sale_cancel_purchase
 #: code:_description:0
