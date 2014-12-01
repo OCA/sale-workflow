@@ -29,20 +29,6 @@ class SaleOrder(orm.Model):
                                               context=context):
                 if po_line.state in ['draft']:
                     line_to_cancel.append(po_line.id)
-                    picking_ids = picking_obj.search(
-                        cr, uid, [('purchase_id', '=', po_line.order_id.id)],
-                        context=context
-                    )
-                    for picking in picking_obj.browse(cr, uid, picking_ids,
-                                                      context=context):
-                        if picking.state in ['assigned', 'confirmed', 'draft']:
-                            picking.action_cancel()
-                            log = _("Canceled picking in: %s")
-                        else:
-                            cancel = False
-                            log = _("Can't cancel picking in: %s")
-                        log %= picking.name
-                        order.add_logs(log, cancel)
                 else:
                     log = _("Impossible to cancel Purchase Order Line in %s "
                             "for product %s because Line's state is in %s")
