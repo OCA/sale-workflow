@@ -15,33 +15,50 @@ from openerp.tools.translate import _
 class SaleOrder(orm.Model):
     _inherit = 'sale.order'
 
-    def action_cancel(self, cr, uid, ids, context=None):
-        picking_obj = self.pool.get('stock.picking')
-        po_line_obj = self.pool.get('purchase.order.line')
-        cancel_ids = []
-        for order in self.browse(cr, uid, ids, context=context):
-            po_line_ids = po_line_obj.search(
-                cr, uid, [('sale_order_id', '=', order.id)], context=context
-            )
-            cancel = True
-            line_to_cancel = []
-            for po_line in po_line_obj.browse(cr, uid, po_line_ids,
-                                              context=context):
-                if po_line.state in ['draft']:
-                    line_to_cancel.append(po_line.id)
-                else:
-                    log = _("Impossible to cancel Purchase Order Line in %s "
-                            "for product %s because Line's state is in %s")
-                    log %= (po_line.order_id.name, po_line.product_id.name,
-                            po_line.state)
-                    order.add_logs(log, False)
-            if line_to_cancel:
+    def _can_unlink_purchase_line(self, cr, uid, order, context=None):
+        """
+        Method that return if it's possible or not to unlink the purchase line
+
+        :param order: Sale Order
+        :type items: browse_record
+        :return: tuple that contain the following value
+            (able_to_cancel, message, important)
+        """
+        able_to_cancel = False
+        important = False
+        message = ""
+
+        if po_line.state == 'cancel':
+            pass
+        if po_line.state == 'draft':
+            able_to_cancel = True
+        else:
+            able_to_cancel = False
+            important = True
+            message = _("Fail to cancel the line with the product %s "
+                        " in the purchase order %s as the state is %s") \
+                      % (po_line.product_id.name, po_line.order_id.name,
+                      po_line.state)
+        return able_to_cancel, message, important
+
+    def _cancel_linked_record(self, cr, uid, order, context=None):
+        po_line_obj = self.pool['purchase.order.line']
+        po_line_ids = po_line_obj.search(cr, uid, [
+            ('sale_order_id', '=', order.id),
+            ], context=context)
+        count = 0
+        for po_line in po_line_obj.browse(cr, uid, po_line_ids,
+                                          context=context):
+            able_to_cancel, message, important = \
+                self._can_unlink_purchase_line(
+                    cr, uid, po_line, context=context)
+            if able_to_unlink:
+                count += 1
                 po_line_obj.unlink(cr, uid, line_to_cancel, context=context)
-                log = _("Number of deleted lines in Purchase Order: "
-                        "%s") % len(po_line_ids)
-                order.add_logs(log, True)
-            if cancel:
-                cancel_ids.append(order.id)
-        return super(SaleOrder, self).action_cancel(
-            cr, uid, cancel_ids, context=context
-        )
+
+            order.add_cancel_log(message, important)
+        if count:
+            order.add_cancel_log(
+                _("Number of purchase order lines deleted: %s")% count)
+        return super(SaleOrder, self)._cancel_linked_record(
+            cr, uid, order, context=context)
