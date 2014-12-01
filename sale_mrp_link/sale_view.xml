@@ -15,7 +15,7 @@
             <field name="inherit_id" ref="sale.view_order_form"/>
             <field name="arch" type="xml">
                 <xpath expr="//button[@name='action_cancel']" position="after">
-                    <button name="action_view_manufacturing_order" string="View Manufacturing Orders" type="object" groups="base.group_user"/>
+                    <button name="action_view_manufacturing_order" string="See Manufacturing Orders" type="object" groups="base.group_user"/>
                 </xpath>
             </field>
         </record>
