@@ -6,8 +6,10 @@ python:
 env:
   - VERSION="8.0" ODOO_REPO="odoo/odoo" EXCLUDE="sale_quotation_sourcing,sale_sourced_by_line"
   - VERSION="8.0" ODOO_REPO="OCA/OCB" EXCLUDE="sale_quotation_sourcing,sale_sourced_by_line"
-  - VERSION="8.0" ODOO_REPO="odoo/odoo" INCLUDE="sale_quotation_sourcing,sale_sourced_by_line"
-  - VERSION="8.0" ODOO_REPO="OCA/OCB" INCLUDE="sale_quotation_sourcing,sale_sourced_by_line"
+  - VERSION="8.0" ODOO_REPO="odoo/odoo" INCLUDE="sale_sourced_by_line"
+  - VERSION="8.0" ODOO_REPO="OCA/OCB" INCLUDE="sale_sourced_by_line"
+  - VERSION="8.0" ODOO_REPO="odoo/odoo" INCLUDE="sale_quotation_sourcing"
+  - VERSION="8.0" ODOO_REPO="OCA/OCB" INCLUDE="sale_quotation_sourcing"
 
 virtualenv:
   system_site_packages: true
