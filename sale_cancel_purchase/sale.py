@@ -37,8 +37,8 @@ class SaleOrder(orm.Model):
             important = True
             message = _("Fail to cancel the line with the product %s "
                         " in the purchase order %s as the state is %s") \
-                      % (po_line.product_id.name, po_line.order_id.name,
-                      po_line.state)
+                % (po_line.product_id.name, po_line.order_id.name,
+                   po_line.state)
         return able_to_unlink, message, important
 
     def _cancel_linked_record(self, cr, uid, order, context=None):
@@ -59,6 +59,6 @@ class SaleOrder(orm.Model):
             order.add_cancel_log(message, important)
         if count:
             order.add_cancel_log(
-                _("Number of purchase order lines deleted: %s")% count)
+                _("Number of purchase order lines deleted: %s") % count)
         return super(SaleOrder, self)._cancel_linked_record(
             cr, uid, order, context=context)
