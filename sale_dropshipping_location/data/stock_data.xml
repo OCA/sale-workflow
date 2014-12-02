@@ -17,5 +17,23 @@
               ('name','=','property_stock_drop_ship')]"/>
             <field eval="'stock.location,'+str(stock_location_drop_ship)" name="value"/>
         </record>
+
+        <record id="stock_location_drop_ship_return" model="stock.location">
+            <field name="name">Drop shipment returns</field>
+            <field name="location_id" ref="stock.stock_location_locations_virtual"/>
+            <field name="usage">internal</field>
+            <field name="chained_location_type">fixed</field>
+            <field name="chained_location_id" ref="stock.stock_location_suppliers"/>
+            <field name="chained_auto_packing">auto</field>
+            <field name="chained_picking_type">in</field>
+        </record>
+
+        <record model="ir.property" id="property_stock_drop_ship_return">
+            <field name="name">property_stock_drop_ship_return</field>
+            <field name="fields_id" search="[('model','=','stock.warehouse'),
+              ('name','=','property_stock_drop_ship_return')]"/>
+            <field eval="'stock.location,'+str(stock_location_drop_ship_return)" name="value"/>
+        </record>
+
     </data>
 </openerp>

@@ -8,6 +8,7 @@
             <field name="arch" type="xml">
                 <xpath expr="//field[@name='lot_output_id']" position="after">
                     <field name="property_stock_drop_ship"/>
+                    <field name="property_stock_drop_ship_return"/>
                 </xpath>
             </field>
         </record>

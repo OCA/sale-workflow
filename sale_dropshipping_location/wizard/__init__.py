@@ -18,7 +18,5 @@
 #    along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
 ##############################################################################
-import stock_warehouse
-import purchase
-import sale
+import stock_return_picking
 

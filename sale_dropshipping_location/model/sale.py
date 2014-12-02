@@ -18,7 +18,23 @@
 #    along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
 ##############################################################################
-import stock_warehouse
-import purchase
-import sale
 
+from openerp.osv import fields, orm
+
+
+class sale_order(orm.Model):
+    _inherit = "sale.order"
+
+    def _prepare_order_line_procurement(self, cr, uid, order, line, move_id,
+                                        date_planned, context=None):
+        res = super(
+            sale_order, self)._prepare_order_line_procurement(
+                cr, uid, order, line,
+                move_id, date_planned,
+                context)
+
+        if line.sale_flow in [
+            'direct_delivery', 'direct_invoice_and_delivery'
+        ]:
+            res['location_id'] = order.shop_id.warehouse_id.lot_stock_id.id
+        return res

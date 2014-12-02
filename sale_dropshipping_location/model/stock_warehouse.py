@@ -35,5 +35,16 @@ class stock_warehouse(osv.osv):
                  "as the destination location for stock moves "
                  "related to direct shipments from vendor "
                  "to the customer."),
+
+        'property_stock_drop_ship_return': fields.property(
+            'stock.location',
+            type='many2one',
+            relation='stock.location',
+            string="Drop Ship Returns Location",
+            view_load=True,
+            help="This stock location will be used, "
+                 "as the destination location for stock moves "
+                 "related to return direct shipments from customer "
+                 "to the vendor."),
     }
 
