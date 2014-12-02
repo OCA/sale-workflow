@@ -22,7 +22,7 @@ class SaleOrder(orm.Model):
     def _can_cancel_picking_out(self, cr, uid, picking, context=None):
         """
         Method that return if it's possible or not to cancel the picking_out
-        By default we raise an error if the picking id done.
+        By default we raise an error if the picking is done.
         You can override this behaviours if needed in your custom module
 
         :param order: Picking
@@ -40,10 +40,10 @@ class SaleOrder(orm.Model):
             raise orm.except_orm(
                 _('User Error'),
                 _('The Sale Order %s can not be cancelled as the picking'
-                  ' %s is in the done state') \
-                    % (picking.sale_id.name, picking.name))
+                  ' %s is in the done state')
+                % (picking.sale_id.name, picking.name))
         else:
-            picking.action_cancel()
+            able_to_cancel = True
             message = _("Canceled picking out: %s" % picking.name)
         return able_to_cancel, message, important
 
@@ -61,7 +61,8 @@ class SaleOrder(orm.Model):
         return super(SaleOrder, self).action_cancel(
             cr, uid, ids, context=context)
 
-    def add_cancel_log(self, cr, uid, ids, message, important=False, context=None):
+    def add_cancel_log(self, cr, uid, ids, message, important=False,
+                       context=None):
         if not message:
             return True
         for order in self.browse(cr, uid, ids, context=context):
