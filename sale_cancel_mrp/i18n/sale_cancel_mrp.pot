@@ -16,33 +16,27 @@ msgstr ""
 "Plural-Forms: \n"
 
 #. module: sale_cancel_mrp
+#: code:addons/sale_cancel_mrp/sale.py:36
+#, python-format
+msgid "Canceled the internal move %s for the MO %s"
+msgstr "Annulation du mouvement interne %s pour l'OF %s"
+
+#. module: sale_cancel_mrp
 #: code:addons/sale_cancel_mrp/sale.py:40
 #, python-format
-msgid "Can't cancel MO: %s"
-msgstr ""
+msgid "Fail to cancel the internal move %s for the MO %s as it's in the done state"
+msgstr "Echec lors de l'annulation du mouvement interne %s pour l'OF %s car il est dans l'état terminé"
 
 #. module: sale_cancel_mrp
-#: code:addons/sale_cancel_mrp/sale.py:32
+#: code:addons/sale_cancel_mrp/sale.py:66
 #, python-format
-msgid "Can't cancel int picking on MO %s: %s"
-msgstr ""
-
-#. module: sale_cancel_mrp
-#: code:addons/sale_cancel_mrp/sale.py:29
-#, python-format
-msgid "Canceled int picking on MO %s: %s"
-msgstr ""
-
-#. module: sale_cancel_mrp
-#: code:addons/sale_cancel_mrp/sale.py:37
-#, python-format
-msgid "MO %s canceled"
-msgstr ""
+msgid "Fail to cancel the Manufacturing Order %s as it's already done"
+msgstr "Echec lors de l'annulation de l'ordre de fabrication %s car il est déjà terminé"
 
 #. module: sale_cancel_mrp
 #: code:_description:0
 #: model:ir.model,name:sale_cancel_mrp.model_sale_order
 #, python-format
 msgid "Sales Order"
-msgstr ""
+msgstr "Bon de commande"
 
