@@ -16,28 +16,16 @@ msgstr ""
 "Plural-Forms: \n"
 
 #. module: sale_cancel_purchase
-#: code:addons/sale_cancel_purchase/sale.py:43
+#: code:addons/sale_cancel_purchase/sale.py:62
 #, python-format
-msgid "Can't cancel picking in: %s"
-msgstr "Impossible d'annuler la réception: %s"
+msgid "Number of purchase order lines deleted: %s"
+msgstr "Nombre de lignes de commandes d'achat supprimé: %s"
 
 #. module: sale_cancel_purchase
-#: code:addons/sale_cancel_purchase/sale.py:40
+#: code:addons/sale_cancel_purchase/sale.py:38
 #, python-format
-msgid "Canceled picking in: %s"
-msgstr "Réception annulée: %s"
-
-#. module: sale_cancel_purchase
-#: code:addons/sale_cancel_purchase/sale.py:47
-#, python-format
-msgid "Impossible to cancel Purchase Order Line in %s for product %s because Line's state is in %s"
-msgstr "Impossible d'annuler la ligne de commande d'achat dans %s pour le produit %s car l'état de la ligne est en %s"
-
-#. module: sale_cancel_purchase
-#: code:addons/sale_cancel_purchase/sale.py:53
-#, python-format
-msgid "Number of deleted lines in Purchase Order: %s"
-msgstr "Nombre de lignes supprimées dans la commande d'achat: %s"
+msgid "Fail to cancel the line with the product %s in the purchase order %s as the state is %s"
+msgstr "Echec lors de l'annulation de la ligne avec le produit %s dans la commande d'achat %s comme l'état est %s"
 
 #. module: sale_cancel_purchase
 #: code:_description:0
