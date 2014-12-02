@@ -16,13 +16,19 @@ msgstr ""
 "Plural-Forms: \n"
 
 #. module: sale_cancel_picking
-#: code:addons/sale_cancel_picking/sale.py:28
+#: code:addons/sale_cancel_picking/sale.py:41
 #, python-format
-msgid "Can't cancel picking out: %s"
-msgstr "Impossible d'annuler le bon de livraison: %s"
+msgid "User Error"
+msgstr "Erreur Utilisateur"
 
 #. module: sale_cancel_picking
-#: code:addons/sale_cancel_picking/sale.py:25
+#: code:addons/sale_cancel_picking/sale.py:42
+#, python-format
+msgid "The Sale Order %s can not be cancelled as the picking %s is in the done state"
+msgstr "Le bon de commande %s ne peut pas être annulé car la livraison %s est dans l'état reçu"
+
+#. module: sale_cancel_picking
+#: code:addons/sale_cancel_picking/sale.py:47
 #, python-format
 msgid "Canceled picking out: %s"
 msgstr "Bon de livraison annulé: %s"
