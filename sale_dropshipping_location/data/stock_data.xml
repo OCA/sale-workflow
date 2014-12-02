@@ -9,7 +9,6 @@
             <field name="chained_location_type">customer</field>
             <field name="chained_auto_packing">auto</field>
             <field name="chained_picking_type">out</field>
-            <field name="company_id"></field>
         </record>
 
         <record model="ir.property" id="property_stock_drop_ship">
