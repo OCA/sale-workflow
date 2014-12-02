@@ -34,12 +34,12 @@ class SaleOrder(orm.Model):
         elif mo.picking_id.state != 'done':
             able_to_cancel = True
             message = _("Canceled the internal move %s for the MO %s") \
-                      % (mo.picking_id.name, mo.name)
+                % (mo.picking_id.name, mo.name)
         else:
             important = True
             message = _("Fail to cancel the internal move %s for the "
                         "MO %s as it's in the done state") \
-                      % (mo.picking_id.name, mo.name)
+                % (mo.picking_id.name, mo.name)
         return able_to_cancel, message, important
 
     def _can_cancel_mo(self, cr, uid, mo, context=None):
