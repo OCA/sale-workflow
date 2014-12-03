@@ -64,7 +64,7 @@ class SaleOrder(orm.Model):
         else:
             important = True
             message = _("Fail to cancel the Manufacturing Order %s as it's"
-                        " already done" % mo.name)
+                        " already done") % mo.name
         return able_to_cancel, message, important
 
     def _cancel_linked_record(self, cr, uid, order, context=None):
