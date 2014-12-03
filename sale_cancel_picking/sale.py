@@ -44,7 +44,7 @@ class SaleOrder(orm.Model):
                 % (picking.sale_id.name, picking.name))
         else:
             able_to_cancel = True
-            message = _("Canceled picking out: %s" % picking.name)
+            message = _("Canceled picking out: %s") % picking.name
         return able_to_cancel, message, important
 
     def _cancel_linked_record(self, cr, uid, order, context=None):
