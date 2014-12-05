@@ -35,7 +35,6 @@ class SaleOrder(orm.Model):
         else:
             able_to_unlink = False
             important = True
-            print po_line.product_id.name
             message = _("Fail to cancel the line with the product %s "
                         "in the purchase order %s as the state is %s") \
                 % (po_line.product_id.name, po_line.order_id.name,
