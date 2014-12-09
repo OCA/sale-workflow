@@ -17,11 +17,11 @@ class SaleOrder(orm.Model):
 
     def _can_unlink_purchase_line(self, cr, uid, po_line, context=None):
         """
-        Method that return if it's possible or not to unlink the purchase line
+        Method that returns if it's possible or not to unlink the purchase line
 
         :param order: Purchase Order Line
         :type items: browse_record
-        :return: tuple that contain the following value
+        :return: tuple that contains the following values
             (able_to_cancel, message, important)
         """
         able_to_unlink = False
