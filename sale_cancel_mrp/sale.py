@@ -17,12 +17,12 @@ class SaleOrder(orm.Model):
 
     def _can_cancel_mo_internal_move(self, cr, uid, mo, context=None):
         """
-        Method that return if it's possible or not to cancel the internal
+        Method that returns if it's possible or not to cancel the internal
         move linked to the manufacturing order
 
         :param mo: Manufacturing Order
         :type items: browse_record
-        :return: tuple that contain the following value
+        :return: tuple that contains the following values
             (able_to_cancel, message, important)
         """
         able_to_cancel = False
@@ -44,12 +44,12 @@ class SaleOrder(orm.Model):
 
     def _can_cancel_mo(self, cr, uid, mo, context=None):
         """
-        Method that return if it's possible or not to cancel the
+        Method that returns if it's possible or not to cancel the
         manufacturing order
 
         :param mo: Manufacturing Order
         :type items: browse_record
-        :return: tuple that contain the following value
+        :return: tuple that contains the following value
             (able_to_cancel, message, important)
         """
         able_to_cancel = False
