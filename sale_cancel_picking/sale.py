@@ -21,7 +21,7 @@ class SaleOrder(orm.Model):
 
     def _can_cancel_picking_out(self, cr, uid, picking, context=None):
         """
-        Method that return if it's possible or not to cancel the picking_out
+        Method that returns if it's possible or not to cancel the picking_out
         By default we raise an error if the picking is done.
         You can override this behaviours if needed in your custom module
 
@@ -48,6 +48,10 @@ class SaleOrder(orm.Model):
         return able_to_cancel, message, important
 
     def _cancel_linked_record(self, cr, uid, order, context=None):
+        """
+        Method that cancels the pickings related to the order. It writes
+        messages on the cancellation logs attribute.
+        """
         for picking in order.picking_ids:
             able_to_cancel, message, important = \
                 self._can_cancel_picking_out(cr, uid, picking, context=context)
@@ -63,6 +67,10 @@ class SaleOrder(orm.Model):
 
     def add_cancel_log(self, cr, uid, ids, message, important=False,
                        context=None):
+        """
+        Writes message on cancellation logs attribute of the sale order.
+        If important (boolean) is True, the method will write it in red.
+        """
         if not message:
             return True
         for order in self.browse(cr, uid, ids, context=context):
