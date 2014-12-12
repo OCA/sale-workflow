@@ -16,7 +16,7 @@ class ProcurementOrder(orm.Model):
 
     def create_procurement_purchase_order(self, cr, uid, procurement, po_vals,
                                           line_vals, context=None):
-        if procurement.move_id:
+        if procurement.move_id and procurement.move_id.sale_line_id:
             line_vals.update(
                 {'sale_order_id': procurement.move_id.sale_line_id.order_id.id}
             )
