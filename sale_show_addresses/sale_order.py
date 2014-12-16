@@ -31,6 +31,7 @@ class SaleOrder(orm.Model):
     _inherit = 'sale.order'
 
     def _get_addresses(self, cr, uid, ids, field_names, arg, context=None):
+        """ Get formatted addresses for partner fields """
         partner_obj = self.pool['res.partner']
         res = {}
         for so in self.browse(cr, uid, ids, context=context):
@@ -66,6 +67,10 @@ class SaleOrder(orm.Model):
 
     def fields_view_get(self, cr, uid, view_id=None, view_type='form',
                         context=None, toolbar=False, submenu=False):
+        """ Overriden to:
+            - Remove 'show_address' from partner field contexts
+            - Add on_change on on partner_field contexts where applicable
+        """
         res = super(SaleOrder, self).fields_view_get(
             cr, uid, view_id=view_id, view_type=view_type, context=context,
             toolbar=toolbar, submenu=submenu)
@@ -93,6 +98,9 @@ class SaleOrder(orm.Model):
 
     def onchange_partner_address(self, cr, uid, ids, ui_field, partner_id,
                                  context=None):
+        """
+        on_change partner, write the address in the corresponding ui field
+        """
         res = {}
         if partner_id:
             partner_obj = self.pool['res.partner']
@@ -106,6 +114,9 @@ class SaleOrder(orm.Model):
         return res
 
     def onchange_partner_id(self, cr, uid, ids, part, context=None):
+        """
+        override onchange_partner_id, call super() and update ui field
+        """
         res = super(SaleOrder, self).onchange_partner_id(cr, uid, ids, part,
                                                          context=context)
 
