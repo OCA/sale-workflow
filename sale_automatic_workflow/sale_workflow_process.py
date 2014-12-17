@@ -74,5 +74,5 @@ class SaleWorkflowProcess(models.Model):
              "the same than the order's date"
     )
     warning = fields.Text('Warning Message', translate=True,
-                          help='if set, display the message when a '
+                          help='If set, display the message when a '
                                'user selects the process on a sale order')
