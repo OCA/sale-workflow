@@ -1,0 +1,28 @@
+-
+  In order to test Sale Order Amount Uos Based,
+-
+  I create sale order with a pair of sale order line
+-
+  !record {model: sale.order, id: sale_order_1}:
+    partner_id: base.res_partner_2
+    order_line:
+      - product_id: product.product_product_3
+        product_uom_qty: 1
+        product_uos_qty: 2
+        price_unit: 150.0
+        name: 'PC Assemble SC234'
+    order_line:
+      - product_id: product.product_product_5
+        product_uom_qty: 2
+        product_uos_qty: 5
+        price_unit: 200.0
+        name: 'PC Assemble + Custom (PC on Demand)'
+-
+  I check price_subtotal on the sale order lines.
+-
+  !python {model: sale.order}: |
+    order = self.browse(cr, uid, ref("sale_order_1"))
+    for so_line in order.order_line:
+      assert so_line.price_subtotal == so_line.product_uos_qty * so_line.price_unit, "Price sub total is not correspond."
+
+
