@@ -88,9 +88,10 @@ class SaleOrder(orm.Model):
                     context = safe_eval(field.attrib['context'])
                     context.pop('show_address', None)
                     field.attrib['context'] = json.dumps(context)
-                    field.attrib['on_change'] = (
-                        "onchange_partner_address('{0}', {1}, context)".format(
-                            ui, base))
+                    if add_onchange:
+                        field.attrib['on_change'] = (
+                            "onchange_partner_address('{0}', {1}, context)"
+                            .format(ui, base))
 
             res['arch'] = etree.tostring(arch)
 
