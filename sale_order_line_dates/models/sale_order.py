@@ -25,9 +25,11 @@ class SaleOrder(models.Model):
     @api.multi
     def onchange_requested_date(self, requested_date, commitment_date):
         """Warn if the requested dates is sooner than the commitment date"""
-        self.ensure_one()
         result = super(SaleOrder, self).onchange_requested_date(
             requested_date, commitment_date)
+        if not self:
+            return result
+        self.ensure_one()
         if 'warning' not in result:
             lines = []
             for line in self.order_line:
