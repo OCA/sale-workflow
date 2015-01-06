@@ -23,6 +23,6 @@ class Procurement(models.Model):
 
     @api.model
     def _run_move_create(self, procurement):
-        result = super(Procurement, self)._run_move_create(procurement)
-        result['restrict_partner_id'] = procurement.sale_line_id.stock_owner_id.id
-        return result
+        res = super(Procurement, self)._run_move_create(procurement)
+        res['restrict_partner_id'] = procurement.sale_line_id.stock_owner_id.id
+        return res
