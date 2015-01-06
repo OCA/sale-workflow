@@ -18,6 +18,12 @@ from openerp.tests.common import TransactionCase
 
 class TestPropagateOwner(TransactionCase):
 
+    def test_it_propagates_empty_owner_to_the_move(self):
+        self.so.action_button_confirm()
+
+        self.assertEqual(1, len(self.so.picking_ids))
+        self.assertFalse(self.so.picking_ids.move_lines[0].restrict_partner_id)
+
     def test_it_propagates_owner_to_the_move(self):
         self.sol.stock_owner_id = self.partner.id
 
