@@ -1,7 +1,5 @@
 # -*- coding: utf-8 -*-
-#
-#
-#    Author: Yannick Vaucher, Leonardo Pistone
+#    Author: Leonardo Pistone
 #    Copyright 2014 Camptocamp SA
 #
 #    This program is free software: you can redistribute it and/or modify
@@ -16,24 +14,15 @@
 #
 #    You should have received a copy of the GNU Affero General Public License
 #    along with this program.  If not, see <http://www.gnu.org/licenses/>.
-#
-#
-{"name": "Sale Owner Stock Sourcing",
- "summary": "Manage stock ownership on sale order lines",
- "version": "0.1",
- "author": "Camptocamp",
- "license": "AGPL-3",
- "category": "Purchase Management",
- 'complexity': "normal",
- "images": [],
- "website": "http://www.camptocamp.com",
- "depends": ['sale_stock',
-             'stock_ownership_availability_rules',
-             #  'purchase_vendor_consignment_stock',
-             ],
- "demo": [],
- "data": ['view/sale_order.xml',
-          ],
- 'installable': True,
- "auto_install": False,
- }
+
+from openerp import models, api
+
+
+class Procurement(models.Model):
+    _inherit = 'procurement.order'
+
+    @api.model
+    def _run_move_create(self, procurement):
+        result = super(Procurement, self)._run_move_create(procurement)
+        result['restrict_partner_id'] = procurement.sale_line_id.stock_owner_id.id
+        return result
