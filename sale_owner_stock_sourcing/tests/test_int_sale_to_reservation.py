@@ -40,7 +40,30 @@ class TestIntSaleToReservation(TransactionCase):
         picking = self.so.picking_ids
         picking.action_assign()
         self.assertEqual('assigned', picking.state)
-        self.assertEqual(self.env.user.company_id.partner_id,
+        self.assertEqual(self.my_partner,
+                         picking.move_lines.reserved_quant_ids.owner_id)
+
+    def test_two_lines_one_with_owner_reserves_correct_stock(self):
+        sol2 = self.sol.copy({'stock_owner_id': self.owner1.id})
+        self.so.action_button_confirm()
+
+        picking = self.so.picking_ids
+        picking.action_assign()
+        self.assertEqual('assigned', picking.state)
+
+        quant_owners = set([move.reserved_quant_ids.owner_id
+                            for move in picking.move_lines])
+
+        self.assertEqual(set([self.my_partner, self.owner1]), quant_owners)
+
+    def test_one_line_without_owner_insufficient_stock_respects_stock(self):
+        self.sol.product_uom_qty = 6000
+        self.so.action_button_confirm()
+
+        picking = self.so.picking_ids
+        picking.action_assign()
+        self.assertEqual('partially_available', picking.state)
+        self.assertEqual(self.my_partner,
                          picking.move_lines.reserved_quant_ids.owner_id)
 
     def setUp(self):
@@ -52,6 +75,7 @@ class TestIntSaleToReservation(TransactionCase):
         self.owner1 = self.env.ref('base.res_partner_1')
         self.owner2 = self.env.ref('base.res_partner_2')
         customer = self.env.ref('base.res_partner_3')
+        self.my_partner = self.env.user.company_id.partner_id
         self.product = self.env.ref('product.product_product_36')
 
         quant = self.Quant.create({
