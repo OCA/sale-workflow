@@ -23,6 +23,11 @@ class Procurement(models.Model):
 
     @api.model
     def _run_move_create(self, procurement):
+        """Propagate owner from sale order line to stock move.
+
+        This is run when a quotation is validated into a sale order.
+
+        """
         res = super(Procurement, self)._run_move_create(procurement)
         res['restrict_partner_id'] = procurement.sale_line_id.stock_owner_id.id
         return res
