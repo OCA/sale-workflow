@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+
+        <record id="sot_sale_order_type_form_view" model="ir.ui.view">
+            <field name="name">sale.order.type.form.view</field>
+            <field name="model">sale.order.type</field>
+            <field name="arch" type="xml">
+                <form string="Type" version="7.0">
+                    <sheet>
+                        <group>
+                            <div class="oe_title">
+                                <label for="name" class="oe_edit_only"/>
+                                    <h1>
+                                        <field name="name"/>
+                                    </h1>
+                                <label for="nombre" class="oe_edit_only"/>
+                            </div>
+                        </group>
+                        <group>
+                            <group>
+                                <field name="warehouse_id"/>
+                                <field name="sequence_id"/>
+                            </group>
+                            <group>
+                                <field name="journal_id"/>
+                                <field name="refund_journal_id"/>
+                            </group>
+                        </group>
+                        <group>
+                            <field name="description"/>
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <record id="sot_sale_order_type_tree_view" model="ir.ui.view">
+            <field name="name">sale.order.type.tree.view</field>
+            <field name="model">sale.order.type</field>
+            <field name="arch" type="xml">
+                <tree string="Type">
+                    <field name="name"/>
+                    <field name="warehouse_id"/>
+                    <field name="sequence_id"/>
+                    <field name="journal_id"/>
+                    <field name="refund_journal_id"/>
+                    <field name="description"/>
+                </tree>
+            </field>
+        </record>
+
+        <record id="sot_sale_order_type_action" model="ir.actions.act_window">
+            <field name="name">Typology</field>
+            <field name="res_model">sale.order.type</field>
+            <field name="view_mode">form,tree</field>
+            <field name="view_id" ref="sot_sale_order_type_tree_view"/>
+            <field name="help" type="html">
+                <p class="oe_view_nocontent_create">Click to set a new type for sale order.</p>
+            </field>
+        </record>
+
+        <record id="sot_sale_order_type_action_form" model="ir.actions.act_window.view">
+            <field name="sequence" eval="2"/>
+            <field name="view_mode">form</field>
+            <field name="view_id" ref="sot_sale_order_type_form_view"/>
+            <field name="act_window_id" ref="sot_sale_order_type_action"/>
+        </record>
+
+        <record id="sot_sale_order_type_action_tree" model="ir.actions.act_window.view">
+            <field name="sequence" eval="1"/>
+            <field name="view_mode">tree</field>
+            <field name="view_id" ref="sot_sale_order_type_tree_view"/>
+            <field name="act_window_id" ref="sot_sale_order_type_action"/>
+        </record>
+
+        <menuitem id="sot_sale_order_type_menu" parent="base.menu_sales" action="sot_sale_order_type_action" name="Typology" sequence="20"/>
+
+    </data>
+</openerp>
