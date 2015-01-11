@@ -47,13 +47,13 @@ class SaleOrder(orm.Model):
 
     def create(self, cr, uid, vals, context=None):
         if vals.get('name', '/') == '/':
-            if vals['type_id']:
-                type_obj = self.pool['sale.order.type'].browse(
+            if vals.get('type_id'):
+                type = self.pool['sale.order.type'].browse(
                     cr, uid, [vals['type_id']], context=context)
-            if type_obj[0].sequence_id:
-                sequence_obj = self.pool['ir.sequence']
-                vals['name'] = sequence_obj.next_by_id(
-                    cr, uid, type_obj[0].sequence_id.id)
+                if type[0].sequence_id:
+                    sequence_obj = self.pool['ir.sequence']
+                    vals['name'] = sequence_obj.next_by_id(
+                        cr, uid, type[0].sequence_id.id)
         return super(SaleOrder, self).create(cr, uid, vals, context=context)
 
     @api.model
