@@ -21,18 +21,22 @@
     'name': "Sale Order Amount Uos Based",
     'version': '1.0',
     'category': 'Sales Management',
+    'description': """
+This module allows to use quantity (UoS) instead of quantity on the subtotal
+calculation per line
+""",
     'author': 'Agile Business Group',
     'website': 'http://www.agilebg.com',
     'license': 'AGPL-3',
     "depends": [
         'sale',
     ],
-    "data": [
+    'data': [
         'view/sale_order_view.xml',
     ],
-    "test": [
+    'test': [
         'test/sale_order_amount_uos_based.yml',
     ],
-    "active": False,
-    "installable": True
+    'active': False,
+    'installable': True
 }

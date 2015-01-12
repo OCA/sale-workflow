@@ -1,5 +1,5 @@
-Module name
-===========
+Sale Order Amount Uos Based
+===========================
 
 This module allows to use quantity (UoS) instead of quantity on the subtotal
 calculation per line
