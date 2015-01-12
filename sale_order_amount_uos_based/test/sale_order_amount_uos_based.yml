@@ -1,5 +1,10 @@
 -
   In order to test Sale Order Amount Uos Based,
+  I assign product.group_uos group to the admin user
+-
+  !record {model: res.users, id: base.user_root}:
+      groups_id:
+      - product.group_uos
 -
   I create sale order with a pair of sale order line
 -

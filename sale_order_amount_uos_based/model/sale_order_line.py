@@ -26,25 +26,34 @@ class SaleOrderLine(orm.Model):
     _inherit = 'sale.order.line'
 
     def _amount_line(self, cr, uid, ids, field_name, arg, context=None):
-        uom_qty_dict = {}
         if context is None:
             context = {}
-        for line in self.browse(cr, uid, ids, context=context):
-            uom_qty_dict[line.id] = line.product_uom_qty
-            cr.execute(
-                'UPDATE sale_order_line SET product_uom_qty = %s '
-                'WHERE id = %s',
-                (line.product_uos_qty, line.id)
-            )
         res = super(SaleOrderLine, self)._amount_line(
             cr, uid, ids, field_name, arg, context)
-        # replace product_uom_qty by the original value
-        for line_id, uom_qty in uom_qty_dict.iteritems():
-            cr.execute(
-                'UPDATE sale_order_line SET product_uom_qty = %s '
-                'WHERE id = %s',
-                (uom_qty, line_id)
-            )
+        user = self.pool.get('res.users').browse(
+            cr, uid, uid, context=context)
+        user_groups = [g.id for g in user.groups_id]
+        group_ref = self.pool.get('ir.model.data').get_object_reference(
+            cr, uid, 'product', 'group_uos')
+        if group_ref and group_ref[1] in user_groups:
+            uom_qty_dict = {}
+            for line in self.browse(cr, uid, ids, context=context):
+                uom_qty_dict[line.id] = line.product_uom_qty
+                # replace product_uom_qty by product_uos_qty
+                cr.execute(
+                    'UPDATE sale_order_line SET product_uom_qty = %s '
+                    'WHERE id = %s',
+                    (line.product_uos_qty, line.id)
+                )
+            res = super(SaleOrderLine, self)._amount_line(
+                cr, uid, ids, field_name, arg, context)
+            # replace product_uom_qty by the original value
+            for line_id, uom_qty in uom_qty_dict.iteritems():
+                cr.execute(
+                    'UPDATE sale_order_line SET product_uom_qty = %s '
+                    'WHERE id = %s',
+                    (uom_qty, line_id)
+                )
         return res
 
     _columns = {
