@@ -44,7 +44,7 @@ class TestIntSaleToReservation(TransactionCase):
                          picking.move_lines.reserved_quant_ids.owner_id)
 
     def test_two_lines_one_with_owner_reserves_correct_stock(self):
-        sol2 = self.sol.copy({'stock_owner_id': self.owner1.id})
+        self.sol.copy({'stock_owner_id': self.owner1.id})
         self.so.action_button_confirm()
 
         picking = self.so.picking_ids
