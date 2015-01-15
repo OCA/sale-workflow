@@ -29,7 +29,6 @@
  "website": "http://www.camptocamp.com",
  "depends": ['sale_stock',
              'stock_ownership_availability_rules',
-             #  'purchase_vendor_consignment_stock',
              ],
  "demo": [],
  "data": ['view/sale_order.xml',
