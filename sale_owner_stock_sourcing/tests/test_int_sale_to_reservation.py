@@ -68,9 +68,6 @@ class TestIntSaleToReservation(TransactionCase):
 
     def setUp(self):
         super(TestIntSaleToReservation, self).setUp()
-        self.SO = self.env['sale.order']
-        self.SOL = self.env['sale.order.line']
-        self.Quant = self.env['stock.quant']
 
         self.owner1 = self.env.ref('base.res_partner_1')
         self.owner2 = self.env.ref('base.res_partner_2')
@@ -78,22 +75,22 @@ class TestIntSaleToReservation(TransactionCase):
         self.my_partner = self.env.user.company_id.partner_id
 
         # this product has no stock in demo data
-        self.product = self.env.ref('product.product_product_36')
+        product = self.env.ref('product.product_product_36')
 
-        quant = self.Quant.create({
+        quant = self.env['stock.quant'].create({
             'qty': 5000,
             'location_id': self.env.ref('stock.stock_location_stock').id,
-            'product_id': self.product.id,
+            'product_id': product.id,
         })
 
         quant.copy({'owner_id': self.owner1.id})
         quant.copy({'owner_id': self.owner2.id})
 
-        self.so = self.SO.create({
+        self.so = self.env['sale.order'].create({
             'partner_id': customer.id,
         })
-        self.sol = self.SOL.create({
+        self.sol = self.env['sale.order.line'].create({
             'name': '/',
             'order_id': self.so.id,
-            'product_id': self.product.id,
+            'product_id': product.id,
         })

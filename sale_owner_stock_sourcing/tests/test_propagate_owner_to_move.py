@@ -39,14 +39,14 @@ class TestPropagateOwner(TransactionCase):
         self.SOL = self.env['sale.order.line']
 
         # this product has some stock in demo data
-        self.product = self.env.ref('product.product_product_6')
+        product = self.env.ref('product.product_product_6')
         self.partner = self.env.ref('base.res_partner_2')
 
-        self.so = self.SO.create({
+        self.so = self.env['sale.order'].create({
             'partner_id': self.env.ref('base.res_partner_2').id,
         })
-        self.sol = self.SOL.create({
+        self.sol = self.env['sale.order.line'].create({
             'name': '/',
             'order_id': self.so.id,
-            'product_id': self.product.id,
+            'product_id': product.id,
         })
