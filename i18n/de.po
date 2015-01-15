@@ -21,7 +21,7 @@ msgstr ""
 #. module: sale_payment_method
 #: view:sale.order:0
 msgid "Automation Information"
-msgstr "Information zum Automatismus"
+msgstr "Information zur Bearbeitung"
 
 #. module: sale_payment_method
 #: help:payment.method,journal_id:0
@@ -29,7 +29,7 @@ msgid ""
 "If a journal a selected, when a payment is recorded on a backend, payment "
 "entries will be created in this journal. "
 msgstr ""
-"Wenn ein Journal ausgewählt ist, wird bei einem im Backend verbuchtem "
+"Wenn ein Journal ausgewählt ist, wird, bei einem im Backend verbuchten "
 "Zahlungseingang, dieser auch in diesem Journal eingetragen."
 
 #. module: sale_payment_method
@@ -152,6 +152,4 @@ msgstr "Verkaufsauftrag"
 #. module: sale_payment_method
 #: field:sale.order,payment_exists:0
 msgid "Has automatic payment"
-msgstr "Hat automatischen Zahlweg"
-
-
+msgstr "Hat automatische Zahlweise"
