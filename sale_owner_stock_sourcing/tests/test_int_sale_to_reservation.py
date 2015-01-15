@@ -76,6 +76,8 @@ class TestIntSaleToReservation(TransactionCase):
         self.owner2 = self.env.ref('base.res_partner_2')
         customer = self.env.ref('base.res_partner_3')
         self.my_partner = self.env.user.company_id.partner_id
+
+        # this product has no stock in demo data
         self.product = self.env.ref('product.product_product_36')
 
         quant = self.Quant.create({
