@@ -24,12 +24,19 @@ from openerp.osv import fields, orm
 class SaleOrder(orm.Model):
     _inherit = 'sale.order'
 
+    def __get_sub_state_selection(self, cr, uid, context=None):
+        return self._get_sub_state_selection(
+            cr, uid, context=context)
+
+    def _get_sub_state_selection(self, cr, uid, context=None):
+        return [('', '')]
+
     _columns = {
         'sub_state': fields.selection(
-            [('', '')],
+            __get_sub_state_selection,
             'Sub Status',
             readonly=True,
-            help="Gives the status concerning the production and shipment "
-            "of the sales order."
+            help="Gives additionnal status to sales order "
+                 "for example for the production or the shipment."
         ),
     }

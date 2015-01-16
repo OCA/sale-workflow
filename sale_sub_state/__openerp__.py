@@ -26,7 +26,7 @@
     'license': 'AGPL-3',
     'description': """
     This module allows to have a sub state in the sale order
-    for indicate the status of the production or shipping for example.
+    for indicating the status of the production or shipping for example.
     """,
     'author': 'Akretion',
     'website': 'http://wwww.akretion.com/',
