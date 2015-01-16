@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: OpenERP Server 7.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-12-03 09:04+0000\n"
-"PO-Revision-Date: 2014-12-03 09:04+0000\n"
+"POT-Creation-Date: 2015-01-16 15:41+0000\n"
+"PO-Revision-Date: 2015-01-16 15:41+0000\n"
 "Last-Translator: <>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -16,7 +16,7 @@ msgstr ""
 "Plural-Forms: \n"
 
 #. module: sale_cancel_picking
-#: code:addons/sale_cancel_picking/sale.py:47
+#: code:addons/sale_cancel_picking/stock.py:46
 #, python-format
 msgid "Canceled picking out: %s"
 msgstr ""
@@ -29,19 +29,26 @@ msgstr ""
 
 #. module: sale_cancel_picking
 #: code:_description:0
+#: model:ir.model,name:sale_cancel_picking.model_stock_picking
+#, python-format
+msgid "Picking List"
+msgstr ""
+
+#. module: sale_cancel_picking
+#: code:_description:0
 #: model:ir.model,name:sale_cancel_picking.model_sale_order
 #, python-format
 msgid "Sales Order"
 msgstr ""
 
 #. module: sale_cancel_picking
-#: code:addons/sale_cancel_picking/sale.py:42
+#: code:addons/sale_cancel_picking/stock.py:41
 #, python-format
 msgid "The Sale Order %s can not be cancelled as the picking %s is in the done state"
 msgstr ""
 
 #. module: sale_cancel_picking
-#: code:addons/sale_cancel_picking/sale.py:41
+#: code:addons/sale_cancel_picking/stock.py:40
 #, python-format
 msgid "User Error"
 msgstr ""

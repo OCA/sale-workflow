@@ -19,34 +19,6 @@ class SaleOrder(orm.Model):
         'cancel_log': fields.html("Cancellation Logs"),
     }
 
-    def _can_cancel_picking_out(self, cr, uid, picking, context=None):
-        """
-        Method that returns if it's possible or not to cancel the picking_out
-        By default we raise an error if the picking is done.
-        You can override this behaviours if needed in your custom module
-
-        :param order: Picking
-        :type items: browse_record
-        :return: tuple that contain the following value
-            (able_to_cancel, message, important)
-        """
-        able_to_cancel = False
-        important = False
-        message = ""
-
-        if picking.state == 'cancel':
-            pass
-        elif picking.state == 'done':
-            raise orm.except_orm(
-                _('User Error'),
-                _('The Sale Order %s can not be cancelled as the picking'
-                  ' %s is in the done state')
-                % (picking.sale_id.name, picking.name))
-        else:
-            able_to_cancel = True
-            message = _("Canceled picking out: %s") % picking.name
-        return able_to_cancel, message, important
-
     def _cancel_linked_record(self, cr, uid, order, context=None):
         """
         Method that cancels the pickings related to the order. It writes
@@ -54,7 +26,7 @@ class SaleOrder(orm.Model):
         """
         for picking in order.picking_ids:
             able_to_cancel, message, important = \
-                self._can_cancel_picking_out(cr, uid, picking, context=context)
+                picking.can_cancel_picking_out()
             if able_to_cancel:
                 picking.action_cancel()
             order.add_cancel_log(message, important=important)
