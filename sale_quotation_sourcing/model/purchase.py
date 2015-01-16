@@ -47,7 +47,7 @@ class PurchaseOrderLine(models.Model):
             args=args,
             operator=operator,
             limit=limit)
-        if not results:
+        if name and not results:
             po_obj = self.env['purchase.order']
             po_line_ids = []
             pos_found = po_obj.search([('name', operator, name)], limit=limit)
