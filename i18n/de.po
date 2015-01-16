@@ -28,18 +28,14 @@ msgstr "Information zur Bearbeitung"
 msgid ""
 "If a journal a selected, when a payment is recorded on a backend, payment "
 "entries will be created in this journal. "
-msgstr ""
-"Wenn ein Journal ausgewählt ist, wird, bei einem im Backend verbuchten "
-"Zahlungseingang, dieser auch in diesem Journal eingetragen."
+msgstr "Wenn ein Journal ausgewählt ist, wird, bei einem im Backend verbuchten Zahlungseingang, dieser auch in diesem Journal eingetragen."
 
 #. module: sale_payment_method
 #: view:payment.method:0
 msgid ""
 "Even if the E-commerce backend receives a payment for a sale order,\n"
 "                                no payment entries will be generated."
-msgstr ""
-"Auch wenn im E-Commerce-Backend ein Zahlungseingang verbucht wird,\n"
-"                 werden hier keine Buchungen zu Zahlungen angelegt."
+msgstr "Auch wenn im E-Commerce-Backend ein Zahlungseingang verbucht wird, werden hier keine Buchungen zu Zahlungen angelegt."
 
 #. module: sale_payment_method
 #: view:payment.method:0
@@ -105,9 +101,7 @@ msgid ""
 "                                payment entries will be generated in the "
 "selected journal."
 msgstr ""
-"Wenn im E-Commerce-Backend ein Zahlungseingang verbucht wird,\n"
-"                 wird im ausgewählten Journal eine Buchung der Zahlung "
-"angelegt."
+"Wenn im E-Commerce-Backend ein Zahlungseingang verbucht wird, wird im ausgewählten Journal eine Buchung der Zahlung angelegt."
 
 #. module: sale_payment_method
 #: view:payment.method:0
