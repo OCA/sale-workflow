@@ -1,0 +1,30 @@
+<?xml version="1.0"?>
+<openerp>
+  <data>
+    <record id="view_order_form" model="ir.ui.view">
+      <field name="name">Sale Order Form +addresses</field>
+      <field name="model">sale.order</field>
+      <field name="inherit_id" ref="sale.view_order_form" />
+      <field name="arch" type="xml">
+        <xpath expr="//field[@name='partner_id']" position="after">
+          <separator colspan="1" />
+          <field name="ui_partner_address" nolabel="1" />
+          <newline />
+        </xpath>
+
+        <xpath expr="//field[@name='partner_invoice_id']" position="after">
+          <separator colspan="1" />
+          <field name="ui_invoice_address" nolabel="1" />
+          <newline />
+        </xpath>
+
+        <xpath expr="//field[@name='partner_shipping_id']" position="after">
+          <separator colspan="1" />
+          <field name="ui_deliver_address" nolabel="1" />
+          <newline />
+        </xpath>
+      </field>
+    </record>
+  </data>
+</openerp>
+
