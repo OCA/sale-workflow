@@ -61,11 +61,14 @@ class sale_order(orm.Model):
         return res
 
     _columns = {
-        'payment_ids': fields.many2many('account.move.line',
-                                        string='Payments Entries'),
-        'payment_method_id': fields.many2one('payment.method',
-                                             'Payment Method',
-                                             ondelete='restrict'),
+        'payment_ids': fields.many2many(
+            'account.move.line',
+            string='Payments Entries',
+            domain=[('account_id.type', '=', 'receivable')]),
+        'payment_method_id': fields.many2one(
+            'payment.method',
+            'Payment Method',
+            ondelete='restrict'),
         'residual': fields.function(
             _get_amount,
             digits_compute=dp.get_precision('Account'),
