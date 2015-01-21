@@ -29,12 +29,12 @@
     'website': 'www.odoomrp.com',
     'license': 'AGPL-3',
     'depends': ['sale', 'stock'],
+    'demo': ['demo/sale_order_demo.xml'],
     'data': [
         'security/ir.model.access.csv',
         'views/sale_order_view.xml',
         'views/sale_order_type_view.xml',
         'data/default_type.xml',
-        'demo/sale_order_demo.xml',
     ],
     'installable': True,
 }
