@@ -60,6 +60,9 @@ class sale_order(orm.Model):
                 line['tax_id'] = [(6, 0, tax_ids)]
             else:
                 lines_without_product.append(line.get('name'))
+            # hack to avoid https://github.com/OCA/sale-workflow/issues/96
+            if 'state' not in line:
+                line['state'] = 'draft'
         res['value'] = {}
         res['value']['order_line'] = line_dict
 
@@ -72,13 +75,10 @@ class sale_order(orm.Model):
                     "You should update the Taxes of each "
                     "Sale Order Line manually.")
             else:
-                display_line_names = ''
-                for name in lines_without_product:
-                    display_line_names += "- %s\n" % name
                 res['warning']['message'] = _(
                     "The following Sale Order Lines were not updated "
                     "to the new Fiscal Position because they don't have a "
-                    "Product:\n %s\nYou should update the "
+                    "Product:\n - %s\nYou should update the "
                     "Taxes of these Sale Order Lines manually."
-                ) % display_line_names,
+                ) % ('\n- '.join(lines_without_product))
         return res
