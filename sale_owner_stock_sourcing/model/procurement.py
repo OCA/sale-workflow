@@ -29,5 +29,7 @@ class Procurement(models.Model):
 
         """
         res = super(Procurement, self)._run_move_create(procurement)
-        res['restrict_partner_id'] = procurement.sale_line_id.stock_owner_id.id
+        sale_line = procurement.sale_line_id
+        if sale_line:
+            res['restrict_partner_id'] = sale_line.stock_owner_id.id
         return res
