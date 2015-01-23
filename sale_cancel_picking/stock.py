@@ -8,7 +8,7 @@
 #
 ##############################################################################
 
-from openerp.osv import orm, fields
+from openerp.osv import orm
 from openerp.tools.translate import _
 
 
@@ -30,8 +30,8 @@ class StockPickingOut(orm.Model):
         important = False
         message = ""
 
-        assert len(ids) == 1, 'This option should only be used for a single id'
-        ' at a time'
+        assert len(ids) == 1, ('This option should only be used for a single'
+                               'id at a time')
         picking = self.browse(cr, uid, ids, context=context)[0]
         if picking.state == 'cancel':
             pass

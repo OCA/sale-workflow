@@ -9,7 +9,6 @@
 ##############################################################################
 
 from openerp.osv import orm, fields
-from openerp.tools.translate import _
 
 
 class SaleOrder(orm.Model):
