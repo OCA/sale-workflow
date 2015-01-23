@@ -14,6 +14,13 @@
                         </group>
                     </h2>
                 </xpath>
+                <xpath expr="//form/header/button[@name='action_cancel']" position="attributes">
+                    <attribute name="confirm">
+                        Cancelling this Sale Order may cancel other related objects such as Delivery Orders, Manufacturing Orders, Purchases Orders etc. according to installed modules.
+
+                        Do you want to cancel this Sale Order ?
+                    </attribute>
+                </xpath>
             </field>
         </record>
 
