@@ -21,6 +21,26 @@
 from openerp.osv import orm
 
 
+class MrpProduction(orm.Model):
+    _inherit = 'mrp.production'
+
+    def write(self, cr, uid, ids, values, context=None):
+        sale_obj = self.pool['sale.order']
+        mrp_production = self.browse(cr, uid, ids[0], context=context)
+        status_list = ['confirmed', 'ready', 'in_production', 'done']
+        if 'state' in values:
+            if mrp_production.sale_name and values['state'] in status_list:
+                sale_ids = sale_obj.search(cr, uid, [
+                    ('name', '=', mrp_production.sale_name),
+                ], context=context)
+                if sale_ids:
+                    sale_obj.write(cr, uid, sale_ids, {
+                        'sub_state': values['state'],
+                    }, context=context)
+        return super(MrpProduction, self).write(
+            cr, uid, ids, values, context=context)
+
+
 class SaleOrder(orm.Model):
     _inherit = 'sale.order'
 
@@ -28,9 +48,9 @@ class SaleOrder(orm.Model):
         selection = super(SaleOrder, self)._get_sub_state_selection(
             cr, uid, context=context)
         selection += [
-            ('waiting', 'Waiting for raw material'),
-            ('ready_prod', 'Ready to be produced'),
-            ('in_prod', 'In production'),
-            ('ended_prod', 'Production ended'),
+            ('confirmed', 'Awaiting Raw Materials'),
+            ('ready', 'Ready to Produce'),
+            ('in_production', 'Production Started'),
+            ('done', 'Production Done'),
         ]
         return selection
