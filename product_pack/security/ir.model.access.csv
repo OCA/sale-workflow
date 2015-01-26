@@ -1,3 +1,5 @@
-"id","name","model_id:id","group_id:id","perm_read","perm_write","perm_create","perm_unlink"
-"access_product_pack_line_manager","product.pack.line manager","model_product_pack_line","base.group_sale_manager",1,1,1,1
-"access_product_pack_line_mployee","product.pack.line employee","model_product_pack_line","base.group_user",1,0,0,0
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_product_pack_line_manager,product.pack.line manager,model_product_pack_line,base.group_sale_manager,1,1,1,1
+access_product_pack_line_mployee,product.pack.line employee,model_product_pack_line,base.group_user,1,0,0,0
+access_sale_order_line_pack_line_user,sale_order_line_pack_line_user,model_sale_order_line_pack_line,base.group_user,1,1,1,1
+access_sale_order_line_pack_line_all,sale_order_line_pack_line_all,model_sale_order_line_pack_line,,1,0,0,0
