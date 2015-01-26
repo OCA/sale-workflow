@@ -24,8 +24,8 @@
 		<field name="arch" type="xml">
 			<form string="Pack Product Line">
 				<group>
-					<field name="quantity"/>
 					<field name="product_id"/>
+					<field name="quantity"/>
 				</group>
 			</form>
 		</field>
@@ -37,8 +37,8 @@
 		<field name="type">tree</field>
 		<field name="arch" type="xml">
 			<tree string="Pack Product Lines">
-				<field name="quantity"/>
 				<field name="product_id"/>
+				<field name="quantity"/>
 			</tree>
 		</field>
 	</record>

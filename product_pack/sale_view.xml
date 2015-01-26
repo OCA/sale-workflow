@@ -35,9 +35,8 @@
                 <group class="oe_subtotal_footer oe_right" colspan="2" name="pack_total">
                     <div class="oe_subtotal_footer_separator oe_inline">
                         <label for="pack_total"/>
-                        <!-- TODO agregar states a este boton -->
-                        <button name="button_dummy" string="(update)" type="object" class="oe_edit_only oe_link"/>
-                    <!-- <field name="pack_total" widget="monetary" options="{'currency_field': 'currency_id'}"/> -->
+                        <!-- TODO agregar states a este boton y ver de que anda, me pa que no porque el registro no esta guardado -->
+                        <!-- <button name="button_dummy" string="(update)" type="object" class="oe_edit_only oe_link"/> -->
                     </div>
                     <field name="pack_total" nolabel="1" class="oe_subtotal_footer_separator" widget="monetary" options="{'currency_field': 'currency_id'}"/>
                 </group>

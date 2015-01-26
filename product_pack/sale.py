@@ -48,7 +48,10 @@ class sale_order_line(models.Model):
         return True
 
     @api.one
-    @api.depends('pack_line_ids')
+    @api.depends(
+        'pack_line_ids',
+        'pack_line_ids.price_subtotal',
+        )
     def _get_pack_total(self):
         pack_total = 0.0
         if self.pack_line_ids:
@@ -84,7 +87,6 @@ class sale_order_line(models.Model):
 
         pack_line_ids = [(5, False, False)]
         if product_info.pack_line_ids:
-            result['value']['product_uos_qty'] = 1
             for pack_line in product_info.pack_line_ids:
                 price_unit = pack_line.product_id.lst_price
                 quantity = pack_line.quantity

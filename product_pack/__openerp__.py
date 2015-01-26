@@ -8,6 +8,7 @@
     'description': """
 Product Pack
 ============
+# TODO agregar automaticamente a grupo employee el grupo nuevo cread
     """,
     'author':  'Ingenieria ADHOC',
     'website': 'www.ingadhoc.com',
