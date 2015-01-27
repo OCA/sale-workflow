@@ -33,7 +33,11 @@
 Product visible discount extension
 ==================================
 
-This module is based on product_visible_discount that calculate the discount rate on unit price calculated from a price list in sale order lines. The discount rate can be either calculated from the Public Price of the product and the unit price written in the sale order line or set by the user. 
+This module is based on product_visible_discount that calculate
+the discount rate on unit price calculated from a price list in
+sale order lines. The discount rate can be either calculated from
+the Public Price of the product and the unit price written in
+the sale order line or set by the user.
 
 Contributors
 ------------
