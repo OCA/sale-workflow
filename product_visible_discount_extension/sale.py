@@ -60,16 +60,11 @@ class SaleOrderLine(models.Model):
         When the discount is changed, the value of price_unit is
         changed using this formula:
 
-            price_unit = discount / 100 * list_price
+            price_unit = (100 - discount) / 100 * list_price
         """
         for record in self:
 
             if record.list_price and record.temp_value is False:
-
-                if record.discount == 0:
-                    record.price_unit = record.list_price
-                else:
-                    record.price_unit = ((100 - record.discount) / 100
-                                         * record.list_price)
-
+                record.price_unit = ((100 - record.discount) / 100
+                                     * record.list_price)
                 record.temp_value = record.discount
