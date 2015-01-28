@@ -27,5 +27,29 @@
             </field>
         </record>
 
+        <template id="report_saleorder_document" inherit_id="sale.report_saleorder_document">
+            <xpath expr="//tr[@t-foreach='o.order_line']/td[@groups='sale.group_discount_per_so_line']"
+                   position="replace">
+
+                <td groups="sale.group_discount_per_so_line">
+                    <span t-field="l.visible_discount"/>
+                </td>
+
+            </xpath>
+        </template>
+
+        <!--
+        <template id="report_invoice_document" inherit_id="account.report_invoice_document">
+            <xpath expr="//tr[@t-foreach='o.invoice_line']/td[@groups='sale.group_discount_per_so_line']"
+                   position="replace">
+
+                <td class="text-right" groups="sale.group_discount_per_so_line">
+                    <span t-field="l.visible_discount"/>
+                </td>
+
+            </xpath>
+        </template>
+        -->
+
     </data>
 </openerp>
