@@ -1,5 +1,9 @@
-from openerp import models, fields
-from openerp import api
+from openerp.exceptions import ValidationError
+from openerp import (
+    models,
+    fields,
+    api,
+)
 
 
 class SaleOrderLine(models.Model):
@@ -30,6 +34,18 @@ class SaleOrderLine(models.Model):
 
     # We have to store a value in our model to keep track of changes..
     temp_value = fields.Float('Track changes to the price_unit', store=False)
+
+    @api.constrains('visible_discount')
+    def _check_visible_discount(self):
+        """
+        Constrain the visible_discount.
+
+        The visible_discount should not big more than 100%. If the
+        value becomes more than 100%, then the price of the product
+        will become negative.
+        """
+        if self.visible_discount > 100:
+            raise ValidationError("The discount cannot be more than 100%")
 
     @api.onchange('price_unit')
     def _onchange_price(self):
@@ -66,15 +82,30 @@ class SaleOrderLine(models.Model):
         for record in self:
 
             if record.product_id.list_price and record.temp_value is False:
+
                 record.price_unit = ((100 - record.visible_discount) / 100
                                      * record.list_price)
                 record.temp_value = record.visible_discount
+
+                if record.visible_discount < 0:
+                    record.visible_discount = 0
 
     def product_id_change(self, cr, uid, ids, pricelist, product, qty=0,
                           uom=False, qty_uos=0, uos=False, name='',
                           partner_id=False, lang=False, update_tax=True,
                           date_order=False, packaging=False,
                           fiscal_position=False, flag=False, context=None):
+        """
+        Setup the sale_order_line.
+
+        When the sale_order_line are modified by the module
+        product_visible_discount. It changes the amount for price_unit
+        and discount. We convert any change in price as a discount.
+
+        It convert discount, fixed price and mix of fixed price + discount
+        to a fixed discount amount.
+        """
+
         res = super(SaleOrderLine, self).product_id_change(
             cr, uid, ids, pricelist, product, qty, uom, qty_uos, uos, name,
             partner_id, lang, update_tax, date_order, packaging=packaging,
@@ -87,7 +118,6 @@ class SaleOrderLine(models.Model):
                 price_list = product.list_price
                 new_discount = (1 - res['value']['price_unit'] / price_list)
                 res['value']['visible_discount'] = new_discount * 100
-                pass
             else:
                 new_price = ((100 - res['value']['discount']) *
                              res['value']['price_unit'])
