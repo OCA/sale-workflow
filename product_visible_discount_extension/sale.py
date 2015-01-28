@@ -25,7 +25,7 @@ class SaleOrderLine(models.Model):
                               related="product_id.list_price",
                               store=True,
                               readonly=True)
-    visible_discount = fields.Float('Discount (%)')
+    visible_discount = fields.Float('Virtual Discount (%)')
 
     # We have to store a value in our model to keep track of changes..
     temp_value = fields.Float('Track changes to the price_unit', store=False)
@@ -45,8 +45,8 @@ class SaleOrderLine(models.Model):
             if record.list_price and record.temp_value is False:
 
                 if record.price_unit < record.list_price:
-                    record.visible_discount = ((record.list_price - record.price_unit)
-                                       * 100 / record.list_price)
+                    new_price = (record.list_price - record.price_unit) * 100
+                    record.visible_discount = new_price / record.list_price
                 else:
                     record.visible_discount = 0
 
@@ -65,17 +65,34 @@ class SaleOrderLine(models.Model):
         """
         for record in self:
 
-            if record.list_price and record.temp_value is False:
-                if record.discount > 0:
-                    record.visible_discount = record.discount
-                    record.discount = 0
-
+            if record.product_id.list_price and record.temp_value is False:
                 record.price_unit = ((100 - record.visible_discount) / 100
                                      * record.list_price)
                 record.temp_value = record.visible_discount
 
-    #@api.one
-    #def write(self, values, context=None):
-    #    import pdb; pdb.set_trace()
-    #    self._columns['price_subtotal']._fnct = compute_amount_line
-    #    super(SaleOrderLine, self).write(values)
+
+
+    def product_id_change(self, cr, uid, ids, pricelist, product, qty=0,
+            uom=False, qty_uos=0, uos=False, name='', partner_id=False,
+            lang=False, update_tax=True, date_order=False, packaging=False,
+            fiscal_position=False, flag=False, context=None):
+        res=super(SaleOrderLine, self).product_id_change(cr, uid, ids, pricelist, product, qty,
+                                       uom, qty_uos, uos, name, partner_id,
+                                       lang, update_tax, date_order, packaging=packaging,
+                                       fiscal_position=fiscal_position, flag=flag, context=context)
+
+        if 'price_unit' in res['value']:
+            if res['value']['discount'] == 0:
+                product_obj = self.pool.get('product.product')
+                product = product_obj.browse(cr, uid, product, context)
+                price_list = product.list_price
+                res['value']['visible_discount'] = (1 - res['value']['price_unit'] / price_list) * 100
+                pass
+            else:
+                res['value']['price_unit'] = (100 - res['value']['discount']) * res['value']['price_unit']
+                res['value']['visible_discount'] = res['value']['discount']
+                res['value']['discount'] = 0
+
+        return res
+
+
