@@ -13,9 +13,13 @@
                     <xpath expr="//notebook//tree/field[@name='price_unit']"
                            position="before"
                            >
-
                         <field name="list_price" />
+                    </xpath>
 
+                    <xpath expr="//notebook//tree/field[@name='discount']"
+                           position="replace"
+                           >
+                        <field name="visible_discount" />
                     </xpath>
 
                 </data>
