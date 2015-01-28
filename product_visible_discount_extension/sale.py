@@ -126,3 +126,11 @@ class SaleOrderLine(models.Model):
                 res['value']['discount'] = 0
 
         return res
+
+
+    def _prepare_order_line_invoice_line(self, cr, uid, line, account_id=False, context=None):
+        base = super(SaleOrderLine, self)
+        prepare_func = base._prepare_order_line_invoice_line
+        vals = prepare_func(cr, uid, line, account_id, context)
+        vals['visible_discount'] = line.visible_discount
+        return vals

@@ -38,7 +38,6 @@
             </xpath>
         </template>
 
-        <!--
         <template id="report_invoice_document" inherit_id="account.report_invoice_document">
             <xpath expr="//tr[@t-foreach='o.invoice_line']/td[@groups='sale.group_discount_per_so_line']"
                    position="replace">
@@ -49,7 +48,6 @@
 
             </xpath>
         </template>
-        -->
 
     </data>
 </openerp>
