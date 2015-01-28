@@ -1,6 +1,7 @@
 from openerp import models, fields
 from openerp import api
 
+
 class SaleOrderLine(models.Model):
 
     """
@@ -29,7 +30,6 @@ class SaleOrderLine(models.Model):
 
     # We have to store a value in our model to keep track of changes..
     temp_value = fields.Float('Track changes to the price_unit', store=False)
-
 
     @api.onchange('price_unit')
     def _onchange_price(self):
@@ -70,29 +70,29 @@ class SaleOrderLine(models.Model):
                                      * record.list_price)
                 record.temp_value = record.visible_discount
 
-
-
     def product_id_change(self, cr, uid, ids, pricelist, product, qty=0,
-            uom=False, qty_uos=0, uos=False, name='', partner_id=False,
-            lang=False, update_tax=True, date_order=False, packaging=False,
-            fiscal_position=False, flag=False, context=None):
-        res=super(SaleOrderLine, self).product_id_change(cr, uid, ids, pricelist, product, qty,
-                                       uom, qty_uos, uos, name, partner_id,
-                                       lang, update_tax, date_order, packaging=packaging,
-                                       fiscal_position=fiscal_position, flag=flag, context=context)
+                          uom=False, qty_uos=0, uos=False, name='',
+                          partner_id=False, lang=False, update_tax=True,
+                          date_order=False, packaging=False,
+                          fiscal_position=False, flag=False, context=None):
+        res = super(SaleOrderLine, self).product_id_change(
+            cr, uid, ids, pricelist, product, qty, uom, qty_uos, uos, name,
+            partner_id, lang, update_tax, date_order, packaging=packaging,
+            fiscal_position=fiscal_position, flag=flag, context=context)
 
         if 'price_unit' in res['value']:
             if res['value']['discount'] == 0:
                 product_obj = self.pool.get('product.product')
                 product = product_obj.browse(cr, uid, product, context)
                 price_list = product.list_price
-                res['value']['visible_discount'] = (1 - res['value']['price_unit'] / price_list) * 100
+                new_discount = (1 - res['value']['price_unit'] / price_list)
+                res['value']['visible_discount'] = new_discount * 100
                 pass
             else:
-                res['value']['price_unit'] = (100 - res['value']['discount']) * res['value']['price_unit']
+                new_price = ((100 - res['value']['discount']) *
+                             res['value']['price_unit'])
+                res['value']['price_unit'] = new_price
                 res['value']['visible_discount'] = res['value']['discount']
                 res['value']['discount'] = 0
 
         return res
-
-
