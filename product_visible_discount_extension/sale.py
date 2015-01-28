@@ -30,7 +30,7 @@ class SaleOrderLine(models.Model):
                               related="product_id.list_price",
                               store=True,
                               readonly=True)
-    visible_discount = fields.Float('Virtual Discount (%)')
+    visible_discount = fields.Float('Customer  Discount (%)')
 
     # We have to store a value in our model to keep track of changes..
     temp_value = fields.Float('Track changes to the price_unit', store=False)
