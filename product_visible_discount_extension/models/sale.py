@@ -127,7 +127,6 @@ class SaleOrderLine(models.Model):
         It convert discount, fixed price and mix of fixed price + discount
         to a fixed discount amount.
         """
-
         res = super(SaleOrderLine, self).product_id_change(
             cr, uid, ids, pricelist, product, qty, uom, qty_uos, uos, name,
             partner_id, lang, update_tax, date_order, packaging=packaging,
@@ -149,8 +148,14 @@ class SaleOrderLine(models.Model):
 
         return res
 
+    def _prepare_order_line_invoice_line(self, cr, uid, line,
+                                         account_id=False, context=None):
+        """
+        Add the visible_discount to invoice lines.
 
-    def _prepare_order_line_invoice_line(self, cr, uid, line, account_id=False, context=None):
+        In order to show the correct discount on the invoice form, we have to
+        add its value to the invoice lines.
+        """
         base = super(SaleOrderLine, self)
         prepare_func = base._prepare_order_line_invoice_line
         vals = prepare_func(cr, uid, line, account_id, context)
