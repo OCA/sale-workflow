@@ -2,7 +2,7 @@
 ##############################################################################
 #
 #    OpenERP, Open Source Management Solution
-#    This module copyright (C) 2010 - 2014 Savoir-faire Linux
+#    This module copyright (C) 2015 Savoir-faire Linux
 #    (<http://www.savoirfairelinux.com>).
 #
 #    This program is free software: you can redistribute it and/or modify
@@ -20,28 +20,5 @@
 #
 ##############################################################################
 
-from openerp import (
-    models,
-    fields,
-    api,
-)
-
-
-class AccountInvoiceLine(models.Model):
-
-    """
-    Subclass account.invoice.line.
-
-    This class adds an invoice_line_number
-    that should match the order_line_number from
-    the sale_order model.
-    """
-
-    _name = 'account.invoice.line'
-    _inherit = 'account.invoice.line'
-
-    list_price = fields.Float('Price list',
-                              related="product_id.list_price",
-                              store=True,
-                              readonly=True)
-    visible_discount = fields.Float("Customer Discount (%)")
+from . import account_invoice
+from . import sale
