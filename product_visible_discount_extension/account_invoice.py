@@ -40,4 +40,8 @@ class AccountInvoiceLine(models.Model):
     _name = 'account.invoice.line'
     _inherit = 'account.invoice.line'
 
+    list_price = fields.Float('Price list',
+                              related="product_id.list_price",
+                              store=True,
+                              readonly=True)
     visible_discount = fields.Float("Customer Discount (%)")

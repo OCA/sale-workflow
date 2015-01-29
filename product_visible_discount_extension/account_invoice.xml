@@ -2,10 +2,10 @@
 <openerp>
     <data>
 
-        <record id="view_order_form" model="ir.ui.view">
-            <field name="name">sale.order.form</field>
-            <field name="model">sale.order</field>
-            <field name="inherit_id" ref="sale.view_order_form"/>
+        <record id="invoice_form" model="ir.ui.view">
+            <field name="name">account.invoice.form</field>
+            <field name="model">account.invoice</field>
+            <field name="inherit_id" ref="account.invoice_form"/>
             <field name="arch" type="xml">
 
                 <data>
@@ -27,11 +27,11 @@
             </field>
         </record>
 
-        <template id="report_saleorder_document" inherit_id="sale.report_saleorder_document">
-            <xpath expr="//tr[@t-foreach='o.order_line']/td[@groups='sale.group_discount_per_so_line']"
+        <template id="report_invoice_document" inherit_id="account.report_invoice_document">
+            <xpath expr="//tr[@t-foreach='o.invoice_line']/td[@groups='sale.group_discount_per_so_line']"
                    position="replace">
 
-                <td groups="sale.group_discount_per_so_line">
+                <td class="text-right" groups="sale.group_discount_per_so_line">
                     <span t-field="l.visible_discount"/>
                 </td>
 

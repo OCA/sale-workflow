@@ -51,6 +51,7 @@ Contributors
     },
     'data': [
         'sale_view.xml',
+        'account_invoice.xml',
     ],
     'installable': True,
 }
