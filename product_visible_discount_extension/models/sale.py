@@ -95,7 +95,7 @@ class SaleOrderLine(models.Model):
 
                 record.temp_value = record.price_unit
             else:
-                record.visible_dicount = record.temp_value
+                record.visible_discount = record.temp_value
 
     @api.onchange('visible_discount', 'discount')
     def _onchange_visible_discount(self):

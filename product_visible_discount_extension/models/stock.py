@@ -20,6 +20,36 @@
 #
 ##############################################################################
 
-from . import account_invoice
-from . import sale
-from . import stock
+from openerp import (
+    models,
+)
+
+
+class StockMove(models.Model):
+
+    """
+    Subclass stock.move model.
+
+    We have to subclass the stock.move model to copy
+    discount information to invoices when invoices are
+    created from delivery order.
+    """
+
+    _name = 'stock.move'
+    _inherit = 'stock.move'
+
+    def _get_invoice_line_vals(self, cr, uid, move,
+                               partner, inv_type, context=None):
+        """
+        Copy visible_discount value to invoice line.
+
+        When an invoice is created from a delivery order, it has to copy its
+        visible_discount value from here.
+        """
+        base_method = super(StockMove, self)._get_invoice_line_vals
+        res = base_method(cr, uid, move, partner, inv_type, context=context)
+        if move.procurement_id and move.procurement_id.sale_line_id:
+            sale_line = move.procurement_id.sale_line_id
+            res['visible_discount'] = sale_line.visible_discount
+
+        return res
