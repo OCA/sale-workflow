@@ -1,0 +1,20 @@
+<?xml version="1.0"?>
+<openerp>
+  <data>
+    <record id="mt_field_updated" model="mail.message.subtype">
+      <field name="name">Lead Updated</field>
+      <field name="res_model">crm.lead</field>
+      <field name="default" eval="True"/>
+      <field name="description">Lead updated</field>
+    </record>
+
+    <record id="mt_salesteam_field_updated" model="mail.message.subtype">
+      <field name="name">Lead Updated</field>
+      <field name="res_model">crm.case.section</field>
+      <field name="default" eval="True"/>
+      <field name="parent_id" eval="ref('mt_field_updated')"/>
+      <field name="relation_field">section_id</field>
+    </record>
+  </data>
+</openerp>
+
