@@ -96,6 +96,7 @@ class SaleOrderLine(models.Model):
                 record.temp_value = record.price_unit
             else:
                 record.visible_discount = record.temp_value
+                record.temp_value = record.price_unit
 
     @api.onchange('visible_discount', 'discount')
     def _onchange_visible_discount(self):
@@ -124,6 +125,7 @@ class SaleOrderLine(models.Model):
                     record.visible_discount = 0
             else:
                 record.price_unit = record.temp_value
+                record.temp_value = record.visible_discount
 
     def product_id_change(self, cr, uid, ids, pricelist, product, qty=0,
                           uom=False, qty_uos=0, uos=False, name='',
@@ -168,8 +170,8 @@ class SaleOrderLine(models.Model):
 
                 new_discount = round(res['value']['discount'], precision)
 
-            res['value']['discount'] = 0
             res['value']['temp_value'] = res['value']['price_unit']
+            res['value']['discount'] = 0.0
             res['value']['visible_discount'] = new_discount
 
         return res
