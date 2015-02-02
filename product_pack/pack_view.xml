@@ -8,8 +8,13 @@
 		<field name="model">product.product</field>
 		<field name="inherit_id" ref="product.product_normal_form_view" />
 		<field name="arch" type="xml">
+			<field name="type" position="after">
+				<field name="pack"/>
+				<field name="sale_order_pack" groups="product_pack.group_pack" attrs="{'invisible':[('pack','=',False)]}"/>
+				<field name="pack_price_type" attrs="{'invisible':['|', ('pack','=',False), ('sale_order_pack','=',True)], 'required':[('pack','=',True), ('sale_order_pack','=',False)]}"/>
+			</field>
 			<notebook position="inside">
-				<page string="Pack">
+				<page string="Pack" attrs="{'invisible':[('pack','=',False)]}">
 					<field name="pack_line_ids"/>
 				</page>
 			</notebook>
@@ -36,7 +41,7 @@
 		<field name="model">product.pack.line</field>
 		<field name="type">tree</field>
 		<field name="arch" type="xml">
-			<tree string="Pack Product Lines">
+			<tree string="Pack Product Lines" editable="bottom">
 				<field name="product_id"/>
 				<field name="quantity"/>
 			</tree>

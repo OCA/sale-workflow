@@ -8,7 +8,10 @@
     'description': """
 Product Pack
 ============
-# TODO agregar automaticamente a grupo employee el grupo nuevo cread
+# TODO agregar en configuracion si se quiere usar los sale order packs (seria para el group group_pack) y ver que se haga visible la vista form
+# TODO implementar totalice en price get
+# TODO agregar constraint de no pack dentro de pack
+# TODO calcular correctamente pack virtual available para negativos
     """,
     'author':  'Ingenieria ADHOC',
     'website': 'www.ingadhoc.com',
