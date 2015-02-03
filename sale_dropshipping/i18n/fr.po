@@ -1,0 +1,168 @@
+# Translation of OpenERP Server.
+# This file contains the translation of the following modules:
+#	* sale_dropshipping
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: OpenERP Server 7.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2015-02-03 14:32+0000\n"
+"PO-Revision-Date: 2015-02-03 14:32+0000\n"
+"Last-Translator: <>\n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: sale_dropshipping
+#: field:purchase.order,analytic_account_id:0
+msgid "Analytic Account"
+msgstr "Compte analytique"
+
+#. module: sale_dropshipping
+#: selection:purchase.order,sale_flow:0
+#: selection:sale.order.line,sale_flow:0
+msgid "Direct Invoice"
+msgstr "Facture directe"
+
+#. module: sale_dropshipping
+#: selection:purchase.order,sale_flow:0
+#: selection:sale.order.line,sale_flow:0
+msgid "Direct Invoice/Indirect Delivery"
+msgstr "Facture directe, Livraison indirecte"
+
+#. module: sale_dropshipping
+#: selection:purchase.order,sale_flow:0
+#: selection:sale.order.line,sale_flow:0
+msgid "Drop Shipping"
+msgstr "Drop shipping"
+
+#. module: sale_dropshipping
+#: field:product.supplierinfo,direct_delivery_flag:0
+msgid "Drop Shipping?"
+msgstr "Drop shipping ?"
+
+#. module: sale_dropshipping
+#: view:stock.picking:0
+msgid "Hide Drop Shipping"
+msgstr "Cacher le drop shipping"
+
+#. module: sale_dropshipping
+#: code:_description:0
+#: model:ir.model,name:sale_dropshipping.model_product_supplierinfo
+#, python-format
+msgid "Information about a product supplier"
+msgstr "Information sur le fournisseur du produit"
+
+#. module: sale_dropshipping
+#: field:product.product,is_direct_delivery_from_product:0
+msgid "Is Supplier Direct Delivery Automatic?"
+msgstr "Est-ce que la livraison directe est automatique depuis le fournisseur ?"
+
+#. module: sale_dropshipping
+#: help:purchase.order,sale_flow:0
+#: help:sale.order.line,sale_flow:0
+msgid "Is this order tied to a sale order? How will it be delivered and invoiced then?"
+msgstr "Est-ce que cette commande est liée à un bon de commande ? Quand est-ce qu'elle sera livrée et facturée ?"
+
+#. module: sale_dropshipping
+#: selection:purchase.order,sale_flow:0
+#: selection:sale.order.line,sale_flow:0
+msgid "Normal"
+msgstr "Normal"
+
+#. module: sale_dropshipping
+#: code:addons/sale_dropshipping/sale.py:185
+#, python-format
+msgid "Please set at least one supplier on the product: \"%s\" (code: %s)"
+msgstr "Un fournisseur doit être renseigné sur le produit : \"%s\" (code : %s)"
+
+#. module: sale_dropshipping
+#: code:_description:0
+#: model:ir.model,name:sale_dropshipping.model_procurement_order
+#, python-format
+msgid "Procurement"
+msgstr "Approvisionnement"
+
+#. module: sale_dropshipping
+#: code:_description:0
+#: model:ir.model,name:sale_dropshipping.model_product_product
+#, python-format
+msgid "Product"
+msgstr "Article"
+
+#. module: sale_dropshipping
+#: code:_description:0
+#: field:sale.order.line,purchase_order_id:0
+#, python-format
+msgid "Purchase Order"
+msgstr "Commande d'achat"
+
+#. module: sale_dropshipping
+#: code:_description:0
+#: field:sale.order.line,purchase_order_line_id:0
+#, python-format
+msgid "Purchase Order Line"
+msgstr "Ligne de commande d'achat"
+
+#. module: sale_dropshipping
+#: field:sale.order.line,purchase_order_state:0
+msgid "Purchase Order State"
+msgstr "État de la commande d'achat"
+
+#. module: sale_dropshipping
+#: model:ir.model,name:sale_dropshipping.model_purchase_order_line
+msgid "Purchase Order lines"
+msgstr "Lignes de commande d'achat"
+
+#. module: sale_dropshipping
+#: model:ir.model,name:sale_dropshipping.model_purchase_order
+msgid "Purchase order"
+msgstr "Commande d'achat"
+
+#. module: sale_dropshipping
+#: field:purchase.order,sale_id:0
+msgid "Related Sale Order"
+msgstr "Bon de commande lié"
+
+#. module: sale_dropshipping
+#: field:purchase.order,sale_flow:0
+#: field:sale.order.line,sale_flow:0
+msgid "Sale Flow"
+msgstr "Flux de vente"
+
+#. module: sale_dropshipping
+#: model:ir.model,name:sale_dropshipping.model_sale_order
+msgid "Sale Order"
+msgstr "Bon de commande"
+
+#. module: sale_dropshipping
+#: field:procurement.order,sale_order_line_id:0
+#: field:purchase.order.line,sale_order_line_id:0
+msgid "Sale Order Line"
+msgstr "Ligne de bon de commande"
+
+#. module: sale_dropshipping
+#: model:ir.model,name:sale_dropshipping.model_sale_order_line
+msgid "Sale Order line"
+msgstr "Ligne de bon de commande"
+
+#. module: sale_dropshipping
+#: code:_description:0
+#, python-format
+msgid "Sales Order"
+msgstr "Bons de commandes"
+
+#. module: sale_dropshipping
+#: code:_description:0
+#, python-format
+msgid "Sales Order Line"
+msgstr "Ligne de bons de commandes"
+
+#. module: sale_dropshipping
+#: code:addons/sale_dropshipping/sale.py:184
+#, python-format
+msgid "Warning!"
+msgstr "Attention"
+
