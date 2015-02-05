@@ -22,8 +22,10 @@
                 <field name="sale_flow" on_change="onchange_sale_flow(sale_flow, product_id, context)"/>
             </xpath>
             <xpath expr="/form/sheet//field[@name='order_line']/form//label[@for='name']" position="before">
-                <group attrs="{'invisible': [('type', '=', 'make_to_stock')]}" colspan="2" cols="2">
+                <group>
                     <field name="sale_flow" on_change="onchange_sale_flow(sale_flow, product_id, context)"/>
+                </group>
+                <group attrs="{'invisible': [('sale_flow', '=', 'normal')]}" colspan="2" cols="2">
                     <field name="purchase_order_line_id"/>
                     <field name="purchase_order_id" readonly="1"/>
                     <field name="purchase_order_state" readonly="1"/>
