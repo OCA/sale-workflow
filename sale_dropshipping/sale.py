@@ -76,7 +76,7 @@ class sale_order_line(orm.Model):
 
         vals = {}
         if product_id:
-            if sale_flow == 'direct_delivery':
+            if sale_flow in ('direct_delivery', 'direct_invoice_and_delivery'):
                 vals['type'] = 'make_to_order'
             else:
                 product = self.pool['product.product'].browse(cr, uid,
