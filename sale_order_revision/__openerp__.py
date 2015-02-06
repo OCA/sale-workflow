@@ -22,32 +22,13 @@
 
 {
     'name': 'Sale Order Revision',
-    'version': '0.1',
+    'version': '1.0',
     'author': 'Savoir-faire Linux',
     'maintainer': 'Savoir-faire Linux',
     'website': 'http://www.savoirfairelinux.com',
     'license': 'AGPL-3',
     'category': 'Others',
-    'summary': 'Revise sale_orders that are not in a state accepted/ordered/finished/draft',
-    'description': """
-Sale Order Revision
-===================
-This module allows to revise sale_orders that are not in a state accepted/ordered/finished/draft
-
-Contributors
-------------
-
-* Jordi Riera (jordi.riera@savoirfairelinux.com)
-* William BEVERLY (william.beverly@savoirfairelinux.com)
-* Bruno JOLIVEAU (bruno.joliveau@savoirfairelinux.com)
-
-More informations
------------------
-
-    Module developped and tested with Odoo version 8.0
-    For questions, please contact our support services (support@savoirfairelinux.com)
-
-""",
+    'summary': 'Historic for sale orders.',
     'depends': [
         'sale',
     ],
