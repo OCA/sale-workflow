@@ -8,6 +8,7 @@ Add the department on Invoices as well as the related
  filter and button in the search form.""",
     'author': 'Camptocamp',
     'website': 'http://camptocamp.com',
+    'license': 'AGPL-3',
     'depends': ['account', 'hr'],
     'data': ['invoice_view.xml'],
     'installable': True,
