@@ -76,6 +76,7 @@ class sale_order_line(models.Model):
     def _onchange_pack_line_ids(self):
         self.price_unit = self.pack_total
 
+    # onchange para agregar los product en el tipo el pack "sale order pack"
     def product_id_change(
             self, cr, uid, ids, pricelist, product, qty=0,
             uom=False, qty_uos=0, uos=False, name='', partner_id=False,
@@ -191,7 +192,7 @@ class sale_order(models.Model):
 
                 if line.state != 'draft':
                     continue
-                if not line.product_id:
+                if not line.product_id or not line.product_id.pack or line.product_id.sale_order_pack:
                     continue
 
                 """ If pack was already expanded (in another create/write
@@ -223,7 +224,7 @@ class sale_order(models.Model):
                         uos_id = False
                         uos_qty = quantity
 
-                    if line.product_id.pack_price_type == 'pack_fixed_price':
+                    if line.product_id.pack_price_type == 'fixed_price':
                         price = 0.0
                         discount = 0.0
                     elif line.product_id.pack_price_type == 'totalice_price':
@@ -253,7 +254,7 @@ class sale_order(models.Model):
                             '> ' * (line.pack_depth+1), subproduct_name
                         ),
                         'sequence': sequence,
-                        'delay': subproduct.sale_delay or 0.0,
+                        # 'delay': subproduct.sale_delay or 0.0,
                         'product_id': subproduct.id,
                         # 'procurement_ids': (
                         #     [(4, x.id) for x in line.procurement_ids]
