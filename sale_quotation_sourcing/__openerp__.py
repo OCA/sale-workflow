@@ -60,7 +60,7 @@
     'website': "http://www.camptocamp.com",
 
     'category': 'Sales',
-    'version': '0.3.1',
+    'version': '0.4',
 
     'depends': ['sale_stock',
                 'purchase',

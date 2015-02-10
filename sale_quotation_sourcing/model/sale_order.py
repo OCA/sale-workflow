@@ -28,6 +28,12 @@ class SaleOrder(models.Model):
     _inherit = 'sale.order'
 
     @api.multi
+    def action_ship_create(self):
+        proc = self.with_context(foreground_procurement=True)
+        result = super(SaleOrder, proc).action_ship_create()
+        return result
+
+    @api.multi
     def action_button_confirm(self):
         """before triggering the workflow, if some lines need sourcing, run the
         sourcing wizard, otherwise, propagate the call and do the confirmation
