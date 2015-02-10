@@ -64,7 +64,7 @@ class ProcurementOrder(models.Model):
 
                 if (po_line.order_id.location_id
                         != procurement.final_destination()):
-                    raise exceptions.Warning(_(
+                    message = _(
                         'The manually sourced Purchase Order has Destination '
                         'location {}, while the Procurement (or the chained '
                         'moves) have destination {}. To solve the problem, '
@@ -76,11 +76,16 @@ class ProcurementOrder(models.Model):
                             po_line.order_id.location_id.name,
                             procurement.final_destination().name
                         )
-                    ))
-
-                res[procurement.id] = po_line.id
-                procurement.purchase_line_id = po_line
-                procurement.message_post(body=_('Manually sourced'))
+                    )
+                    if 'foreground_procurement' in self.env.context:
+                        raise exceptions.Warning(message)
+                    else:
+                        res[procurement.id] = False
+                        procurement.message_post(body=message)
+                else:
+                    res[procurement.id] = po_line.id
+                    procurement.purchase_line_id = po_line
+                    procurement.message_post(body=_('Manually sourced'))
             else:
                 to_propagate |= procurement
         res.update(super(ProcurementOrder, to_propagate).make_po())
