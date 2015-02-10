@@ -25,6 +25,23 @@ from openerp import exceptions
 class ProcurementOrder(models.Model):
     _inherit = 'procurement.order'
 
+    def final_destination(self):
+        """Find the destination of the final chained move to the procurement.
+
+        This will take into account the move that generated the current
+        procurement through procurement rules. However, it will not take into
+        account push rules.
+
+        """
+        self.ensure_one()
+        move = self.move_dest_id
+        if move:
+            while move.move_dest_id:
+                move = move.move_dest_id
+            return move.location_dest_id
+        else:
+            return self.location_id
+
     @api.multi
     def make_po(self):
         """
@@ -45,17 +62,19 @@ class ProcurementOrder(models.Model):
             if sale_line and sale_line.manually_sourced:
                 po_line = sale_line.sourced_by
 
-                if po_line.order_id.location_id != procurement.location_id:
+                if (po_line.order_id.location_id
+                        != procurement.final_destination()):
                     raise exceptions.Warning(_(
                         'The manually sourced Purchase Order has Destination '
-                        'location {}, while the Procurement was generated '
-                        'with destination {}. To solve the problem, please '
-                        'source a Sale Order Line with a Purchase Order '
-                        'consistent with the active Route. For example, if '
-                        'the active route is Drop Shipping, the chosen PO '
-                        'should have destination location Customers.'.format(
+                        'location {}, while the Procurement (or the chained '
+                        'moves) have destination {}. To solve the problem, '
+                        'please source a Sale Order Line with a '
+                        'Purchase Order consistent with the active Route. '
+                        'For example, if the active route is Drop Shipping, '
+                        'the chosen PO should have destination location '
+                        'Customers.'.format(
                             po_line.order_id.location_id.name,
-                            procurement.location_id.name
+                            procurement.final_destination().name
                         )
                     ))
 
