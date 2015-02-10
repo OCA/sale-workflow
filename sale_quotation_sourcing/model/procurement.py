@@ -19,8 +19,6 @@
 #
 from openerp import models, api, _
 
-from openerp import exceptions
-
 
 class ProcurementOrder(models.Model):
     _inherit = 'procurement.order'
@@ -44,21 +42,6 @@ class ProcurementOrder(models.Model):
 
             if sale_line and sale_line.manually_sourced:
                 po_line = sale_line.sourced_by
-
-                if po_line.order_id.location_id != procurement.location_id:
-                    raise exceptions.Warning(_(
-                        'The manually sourced Purchase Order has Destination '
-                        'location {}, while the Procurement was generated '
-                        'with destination {}. To solve the problem, please '
-                        'source a Sale Order Line with a Purchase Order '
-                        'consistent with the active Route. For example, if '
-                        'the active route is Drop Shipping, the chosen PO '
-                        'should have destination location Customers.'.format(
-                            po_line.order_id.location_id.name,
-                            procurement.location_id.name
-                        )
-                    ))
-
                 res[procurement.id] = po_line.id
                 procurement.purchase_line_id = po_line
                 procurement.message_post(body=_('Manually sourced'))
