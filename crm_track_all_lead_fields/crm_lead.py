@@ -21,11 +21,11 @@
 ##############################################################################
 
 import logging
-_logger = logging.getLogger(__name__)
 
 from openerp.osv import orm
-
 from openerp.addons.crm.crm_lead import crm_lead
+
+_logger = logging.getLogger(__name__)
 
 IGNORED_FIELDS = (
     'date_action_last',
