@@ -33,9 +33,18 @@ class StockMove(models.Model):
 
         sale_obj = self.env['sale.order']
         domain = [('procurement_group_id', '=', procurement_group)]
-        sale = sale_obj.search(domain)
-        if sale:
-            workflow = sale.workflow_process_id
+        sales = sale_obj.search(domain)
+        # If we have several sales orders in one procurement group,
+        # we group them in one picking. The possibilities when we have
+        # several orders for one picking are:
+        # 1. take the workflow of the first sale order
+        # 2. do not propagate the workflow at all
+        # 3. propagate the workflow if all the workflows are the same
+        # The solution 1. is bad, the 3. could be hard to understand and
+        # unpredictable. The solution 2. takes no assumption on what is
+        # expected.
+        if sales and len(sales) == 1:
+            workflow = sales.workflow_process_id
             pickings = self.mapped('picking_id')
             pickings.write({'workflow_process_id': workflow.id})
         return res
