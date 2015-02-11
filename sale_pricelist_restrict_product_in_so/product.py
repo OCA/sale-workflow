@@ -22,9 +22,9 @@
 
 import logging
 
-logger = logging.getLogger(__name__)
-
 from openerp.osv import orm
+
+logger = logging.getLogger(__name__)
 
 # Sentinel value to avoid passing the list of all existing products around
 # when querying possible product ids for a pricelist.

@@ -21,13 +21,12 @@
 ###############################################################################
 
 import logging
-
-logger = logging.getLogger(__name__)
-
 from datetime import datetime
 
 from openerp.tools import DEFAULT_SERVER_DATETIME_FORMAT
 from openerp.osv import orm
+
+logger = logging.getLogger(__name__)
 
 
 class PriceList(orm.Model):

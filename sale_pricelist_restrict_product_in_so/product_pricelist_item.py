@@ -22,10 +22,10 @@
 
 import logging
 
-logger = logging.getLogger(__name__)
-
 from openerp.osv import orm
 from .product import ANY_PRODUCT
+
+logger = logging.getLogger(__name__)
 
 
 def build_q_tuple(cats, prods):
