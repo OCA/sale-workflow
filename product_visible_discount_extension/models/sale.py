@@ -170,7 +170,7 @@ class SaleOrderLine(models.Model):
 
                 new_discount = round(res['value']['discount'], precision)
 
-            res['value']['temp_value'] = res['value']['price_unit']
+            res['value']['temp_value'] = new_discount
             res['value']['discount'] = 0.0
             res['value']['visible_discount'] = new_discount
 
