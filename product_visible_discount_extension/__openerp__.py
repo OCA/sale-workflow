@@ -44,6 +44,8 @@ Contributors
 * Loïc Faure-Lacroix (loic.lacroix@savoirfairelinux.com)
 """,
     'depends': [
+        'sale',
+        'product',
         'product_visible_discount',
     ],
     'external_dependencies': {
