@@ -54,6 +54,7 @@ Contributors
     'data': [
         'views/sale_view.xml',
         'views/account_invoice.xml',
+        'test/test_sale_order_line_discount.yml',
     ],
     'installable': True,
 }
