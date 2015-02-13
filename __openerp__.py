@@ -24,18 +24,6 @@
     'version': '0.2.1',
     'category': 'Generic Modules/Others',
     'license': 'AGPL-3',
-    'description': """
-Sale Payment Method
-===================
-
-This module adds low-level features used for instance by modules:
-
-- Sale Automatic Workflow
-- Sale Quick Payment
-
-It adds a payment method on the sales orders and allow to register
-payments entries on sales orders.
-""",
     'author': "Akretion,Odoo Community Association (OCA)",
     'website': 'http://www.akretion.com/',
     'depends': ['sale',
@@ -47,4 +35,4 @@ payments entries on sales orders.
              ],
     'demo': [],
     'installable': True,
-}
+ }
