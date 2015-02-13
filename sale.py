@@ -20,9 +20,7 @@
 #
 ##############################################################################
 
-from openerp import api, models, fields, exceptions
-from openerp.tools.translate import _
-from collections import Iterable
+from openerp import api, models, fields, exceptions, _
 import openerp.addons.decimal_precision as dp
 
 
@@ -31,135 +29,130 @@ class SaleOrder(models.Model):
 
     @api.one
     @api.depends('amount_total', 'payment_ids.credit', 'payment_ids.debit')
-    def _get_amount(self):
-        paid_amount = 0
-        for line in self.payment_ids:
-            paid_amount += line.credit - line.debit
+    def _compute_amount(self):
+        paid_amount = sum(line.credit - line.debit
+                          for line in self.payment_ids)
         self.amount_paid = paid_amount
         self.residual = self.amount_total - paid_amount
 
     @api.one
     @api.depends('payment_ids')
-    def _payment_exists(self):
+    def _compute_payment_exists(self):
         self.payment_exists = bool(self.payment_ids)
 
     payment_ids = fields.Many2many(
-        'account.move.line',
-        string='Payments Entries')
-
+        comodel_name='account.move.line',
+        string='Payments Entries',
+        domain=[('account_id.type', '=', 'receivable')],
+    )
     payment_method_id = fields.Many2one(
-        'payment.method',
-        'Payment Method',
-        ondelete='restrict')
-
+        comodel_name='payment.method',
+        string='Payment Method',
+        ondelete='restrict',
+    )
     residual = fields.Float(
-        compute=_get_amount,
+        compute='_compute_amount',
         digits_compute=dp.get_precision('Account'),
         string='Balance',
-        store=False)
-
+        store=False,
+    )
     amount_paid = fields.Float(
-        compute=_get_amount,
+        compute='_compute_amount',
         digits_compute=dp.get_precision('Account'),
         string='Amount Paid',
-        store=False)
-
+        store=False,
+    )
     payment_exists = fields.Boolean(
-        compute=_payment_exists,
+        compute='_compute_payment_exists',
         string='Has automatic payment',
-        help="It indicates that sales order has at least one payment.")
+        help="It indicates that sales order has at least one payment.",
+    )
 
-    @api.one
+    @api.multi
+    def action_cancel(self):
+        for sale in self:
+            if sale.payment_ids:
+                raise exceptions.Warning(_('Cannot cancel this sales order '
+                                           'because automatic payment entries '
+                                           'are linked with it.'))
+        return super(SaleOrder, self).action_cancel()
+
+    @api.multi
     def copy(self, default=None):
+        self.ensure_one()
         if default is None:
             default = {}
-        default['payment_ids'] = False
+        default.setdefault('payment_ids', False)
         return super(SaleOrder, self).copy(default=default)
 
-    def automatic_payment(self, cr, uid, ids, amount=None, context=None):
+    @api.multi
+    def automatic_payment(self, amount=None):
         """ Create the payment entries to pay a sale order, respecting
         the payment terms.
         If no amount is defined, it will pay the residual amount of the sale
-        order. """
-        if isinstance(ids, Iterable):
-            assert len(ids) == 1, "one sale order at a time can be paid"
-            ids = ids[0]
-        sale = self.browse(cr, uid, ids, context=context)
-        method = sale.payment_method_id
+        order.
+        """
+        self.ensure_one()
+        method = self.payment_method_id
         if not method:
             raise exceptions.Warning(
                 _("An automatic payment can not be created for the sale "
-                  "order %s because it has no payment method.") % sale.name
+                  "order %s because it has no payment method.") % self.name
             )
 
         if not method.journal_id:
             raise exceptions.Warning(
                 _("An automatic payment should be created for the sale order"
                   " %s but the payment method '%s' has no journal defined.") %
-                (sale.name, method.name)
+                (self.name, method.name)
             )
 
         journal = method.journal_id
-        date = sale.date_order
+        date = self.date_order
         if amount is None:
-            amount = sale.residual
-        if sale.payment_term:
-            term_obj = self.pool.get('account.payment.term')
-            amounts = term_obj.compute(cr, uid, sale.payment_term.id,
-                                       amount, date_ref=date,
-                                       context=context)
+            amount = self.residual
+        if self.payment_term:
+            amounts = self.payment_term.compute(amount, date_ref=date)
         else:
             amounts = [(date, amount)]
 
         # reversed is cosmetic, compute returns terms in the 'wrong' order
         for date, amount in reversed(amounts):
-            self._add_payment(cr, uid, sale, journal,
-                              amount, date, context=context)
+            self._add_payment(journal, amount, date)
         return True
 
-    def add_payment(self, cr, uid, ids, journal_id, amount,
-                    date=None, description=None, context=None):
+    @api.multi
+    def add_payment(self, journal_id, amount, date=None, description=None):
         """ Generate payment move lines of a certain amount linked
-        with the sale order. """
-        if isinstance(ids, Iterable):
-            assert len(ids) == 1, "one sale order at a time can be paid"
-            ids = ids[0]
-        journal_obj = self.pool.get('account.journal')
-
-        sale = self.browse(cr, uid, ids, context=context)
+        with the sale order.
+        """
+        self.ensure_one()
+        journal_model = self.env['account.journal']
         if date is None:
-            date = sale.date_order
-        journal = journal_obj.browse(cr, uid, journal_id, context=context)
-        self._add_payment(cr, uid, sale, journal, amount, date, description,
-                          context=context)
+            date = self.date_order
+        journal = journal_model.browse(journal_id)
+        self._add_payment(journal, amount, date, description)
         return True
 
-    def _add_payment(self, cr, uid, sale, journal, amount, date,
-                     description=None, context=None):
+    @api.multi
+    def _add_payment(self, journal, amount, date, description=None):
         """ Generate move lines entries to pay the sale order. """
-        move_obj = self.pool.get('account.move')
-        period_obj = self.pool.get('account.period')
-        period_id = period_obj.find(cr, uid, dt=date, context=context)[0]
-        period = period_obj.browse(cr, uid, period_id, context=context)
-        move_name = description or self._get_payment_move_name(
-            cr, uid, journal,
-            period, context=context)
-        move_vals = self._prepare_payment_move(cr, uid, move_name, sale,
-                                               journal, period, date,
-                                               context=context)
-        move_lines = self._prepare_payment_move_line(cr, uid, move_name, sale,
-                                                     journal, period, amount,
-                                                     date, context=context)
+        move_model = self.env['account.move']
+        period_model = self.env['account.period']
+        period_id = period_model.find(dt=date)
+        period = period_model.browse(period_id)
+        move_name = description or self._get_payment_move_name(journal, period)
+        move_vals = self._prepare_payment_move(move_name, journal,
+                                               period, date)
+        move_lines = self._prepare_payment_move_line(move_name, journal,
+                                                     period, amount, date)
 
         move_vals['line_id'] = [(0, 0, line) for line in move_lines]
-        move_obj.create(cr, uid, move_vals, context=context)
+        move_model.create(move_vals)
 
-    def _get_payment_move_name(self, cr, uid, journal, period, context=None):
-        if context is None:
-            context = {}
-        seq_obj = self.pool.get('ir.sequence')
+    @api.model
+    def _get_payment_move_name(self, journal, period):
         sequence = journal.sequence_id
-
         if not sequence:
             raise exceptions.Warning(_('Please define a sequence on the '
                                        'journal %s.') % journal.name)
@@ -167,38 +160,30 @@ class SaleOrder(models.Model):
             raise exceptions.Warning(_('Please activate the sequence of the '
                                        'journal %s.') % journal.name)
 
-        ctx = context.copy()
-        ctx['fiscalyear_id'] = period.fiscalyear_id.id
-        name = seq_obj.next_by_id(cr, uid, sequence.id, context=ctx)
+        sequence = sequence.with_context(fiscalyear_id=period.fiscalyear_id.id)
+        name = sequence.next_by_id()
         return name
 
-    def _prepare_payment_move(self, cr, uid, move_name, sale, journal,
-                              period, date, context=None):
+    @api.multi
+    def _prepare_payment_move(self, move_name, journal, period, date):
         return {'name': move_name,
                 'journal_id': journal.id,
                 'date': date,
-                'ref': sale.name,
+                'ref': self.name,
                 'period_id': period.id,
                 }
 
-    def _prepare_payment_move_line(self, cr, uid, move_name, sale, journal,
-                                   period, amount, date, context=None):
-        """ """
-        partner_obj = self.pool.get('res.partner')
-        currency_obj = self.pool.get('res.currency')
-        partner = partner_obj._find_accounting_partner(sale.partner_id)
-
+    @api.multi
+    def _prepare_payment_move_line(self, move_name, journal, period,
+                                   amount, date):
+        partner = self.partner_id.commercial_partner_id
         company = journal.company_id
 
-        currency_id = False
+        currency = False
         amount_currency = 0.0
-        if journal.currency and journal.currency.id != company.currency_id.id:
-            currency_id = journal.currency.id
-            company_amount = currency_obj.compute(cr, uid,
-                                                  currency_id,
-                                                  company.currency_id.id,
-                                                  amount,
-                                                  context=context)
+        if journal.currency and journal.currency != company.currency_id:
+            currency = journal.currency
+            company_amount = currency.compute(amount, company.currency_id)
             amount_currency, amount = amount, company_amount
 
         # payment line (bank / cash)
@@ -212,7 +197,7 @@ class SaleOrder(models.Model):
             'partner_id': partner.id,
             'date': date,
             'amount_currency': amount_currency,
-            'currency_id': currency_id,
+            'currency_id': currency.id,
         }
 
         # payment line (receivable)
@@ -226,58 +211,33 @@ class SaleOrder(models.Model):
             'partner_id': partner.id,
             'date': date,
             'amount_currency': -amount_currency,
-            'currency_id': currency_id,
-            'sale_ids': [(4, sale.id)],
+            'currency_id': currency.id,
+            'sale_ids': [(4, self.id)],
         }
         return debit_line, credit_line
 
-    def onchange_payment_method_id(self, cr, uid, ids, payment_method_id,
-                                   context=None):
-        if not payment_method_id:
+    @api.onchange('payment_method_id')
+    def onchange_payment_method_id_set_payment_term(self):
+        if not self.payment_method_id:
             return {}
-        result = {}
-        method_obj = self.pool.get('payment.method')
-        method = method_obj.browse(cr, uid, payment_method_id, context=context)
+        method = self.payment_method_id
         if method.payment_term_id:
-            result['payment_term'] = method.payment_term_id.id
-        return {'value': result}
+            self.payment_term = method.payment_term_id.id
 
-    def action_view_payments(self, cr, uid, ids, context=None):
+    @api.multi
+    def action_view_payments(self):
         """ Return an action to display the payment linked
         with the sale order """
+        self.ensure_one()
 
-        mod_obj = self.pool.get('ir.model.data')
-        act_obj = self.pool.get('ir.actions.act_window')
+        moves = self.mapped('payment_ids.move_id')
 
-        move_ids = set()
-        for so in self.browse(cr, uid, ids, context=context):
-            # payment_ids are move lines, we want to display the moves
-            move_ids |= set([move_line.move_id.id for move_line
-                             in so.payment_ids])
-        move_ids = list(move_ids)
-
-        ref = mod_obj.get_object_reference(cr, uid, 'account',
-                                           'action_move_journal_line')
-        action_id = False
-        if ref:
-            __, action_id = ref
-        action = act_obj.read(cr, uid, [action_id], context=context)[0]
-
-        # choose the view_mode accordingly
-        if len(move_ids) > 1:
-            action['domain'] = str([('id', 'in', move_ids)])
+        xmlid = ('account', 'action_move_journal_line')
+        action = self.env['ir.actions.act_window'].for_xml_id(*xmlid)
+        if len(moves) > 1:
+            action['domain'] = str([('id', 'in', moves.ids)])
         else:
-            ref = mod_obj.get_object_reference(cr, uid, 'account',
-                                               'view_move_form')
-            action['views'] = [(ref[1] if ref else False, 'form')]
-            action['res_id'] = move_ids[0] if move_ids else False
+            ref = self.env.ref('account.view_move_form')
+            action['views'] = [(ref.id, 'form')]
+            action['res_id'] = moves.ids or False
         return action
-
-    def action_cancel(self, cr, uid, ids, context=None):
-        for sale in self.browse(cr, uid, ids, context=context):
-            if sale.payment_ids:
-                raise exceptions.Warning(_('Cannot cancel this sales order '
-                                           'because automatic payment entries '
-                                           'are linked with it.'))
-        return super(SaleOrder, self).action_cancel(
-            cr, uid, ids, context=context)
