@@ -31,20 +31,22 @@ class PaymentMethod(models.Model):
         company_model = self.env['res.company']
         return company_model._company_default_get('payment.method')
 
-    name = fields.Char('Name', help="The name of the method on the backend")
+    name = fields.Char(required=True,
+                       help="The name of the method on the backend")
     journal_id = fields.Many2one(
-        'account.journal',
-        'Journal',
+        comodel_name='account.journal',
+        string='Journal',
         help="If a journal a selected, when a payment is recorded "
-        "on a backend, payment entries will be created in this "
-        "journal.")
+             "on a backend, payment entries will be created in this "
+             "journal.",
+    )
     payment_term_id = fields.Many2one(
-        'account.payment.term',
-        'Payment Term',
-        help="Default payment term of a sale order using this method.")
-
+        comodel_name='account.payment.term',
+        string='Payment Term',
+        help="Default payment term of a sale order using this method.",
+    )
     company_id = fields.Many2one(
-        'res.company',
-        'Company',
-        default=_default_company_id
+        comodel_name='res.company',
+        string='Company',
+        default=_default_company_id,
     )
