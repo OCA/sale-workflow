@@ -19,18 +19,11 @@
 #
 ##############################################################################
 
-{'name': 'Sale Payment Method - Automatic Worflow (link module)',
- 'version': '1.0',
- 'author': ['Camptocamp', 'Akretion'],
- 'license': 'AGPL-3',
- 'category': 'Generic Modules/Others',
- 'depends': ['sale_payment_method',
-             'sale_automatic_workflow'],
- 'website': 'http://www.camptocamp.com',
- 'data': ['view/sale_order_view.xml',
-          'view/payment_method_view.xml',
-          ],
- 'test': [],
- 'installable': True,
- 'auto_install': True,
- }
+from openerp import models, fields
+
+
+class PaymentMethod(models.Model):
+    _inherit = 'payment.method'
+
+    workflow_process_id = fields.Many2one(comodel_name='sale.workflow.process',
+                                          string='Automatic Workflow')

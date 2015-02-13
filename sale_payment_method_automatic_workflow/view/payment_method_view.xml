@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+  <data noupdate="0">
+    <record id="payment_method_view_form" model="ir.ui.view">
+      <field name="name">sale.automatic_workflow.payment_method.view_form</field>
+      <field name="model">payment.method</field>
+      <field name="inherit_id" ref="sale_payment_method.payment_method_view_form" />
+      <field name="arch" type="xml">
+        <field name="journal_id" position="after">
+          <field name="workflow_process_id" />
+        </field>
+      </field>
+    </record>
+
+    <record id="payment_method_view_tree" model="ir.ui.view">
+      <field name="name">sale_automatic_workflow.payment_method.view_tree</field>
+      <field name="model">payment.method</field>
+      <field name="inherit_id" ref="sale_payment_method.payment_method_view_tree" />
+      <field name="arch" type="xml">
+        <field name="payment_term_id" position="after">
+          <field name="workflow_process_id" />
+        </field>
+      </field>
+    </record>
+  </data>
+</openerp>
