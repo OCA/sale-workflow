@@ -129,7 +129,7 @@ class AccountInvoice(models.Model):
                                                           self.type)
             res_invoice = self._get_sum_invoice_move_line(self.move_id.line_id,
                                                           self.type)
-            lines = res_invoice['line_ids'] + res_payment['line_ids']
+            lines = res_invoice['lines'] + res_payment['lines']
             if not self._lines_can_be_reconciled(lines):
                 return
             if not use_currency:

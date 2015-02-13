@@ -20,7 +20,9 @@
 ##############################################################################
 
 from openerp import models, api
-from openerp.addons.sale_automatic_workflow import commit
+from openerp.addons.sale_automatic_workflow.automatic_workflow_job import (
+    commit
+)
 
 
 class AutomaticWorkflowJob(models.Model):
@@ -31,7 +33,7 @@ class AutomaticWorkflowJob(models.Model):
         invoice_model = self.env['account.invoice']
         for invoice in invoice_model.search([('state', 'in', ['open'])]):
             with commit(self.env.cr):
-                invoice_model.reconcile_invoice(invoice)
+                invoice.reconcile_invoice()
 
     @api.model
     def run(self):
