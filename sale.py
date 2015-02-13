@@ -29,18 +29,6 @@ import openerp.addons.decimal_precision as dp
 class SaleOrder(models.Model):
     _inherit = 'sale.order'
 
-    def _get_order_from_move(self, cr, uid, ids, context=None):
-        result = set()
-        move_obj = self.pool.get('account.move')
-        for move in move_obj.browse(cr, uid, ids, context=context):
-            for order in move.order_ids:
-                result.add(order.id)
-        return list(result)
-
-    def _get_order_from_line(self, cr, uid, ids, context=None):
-        so_obj = self.pool.get('sale.order')
-        return so_obj._get_order(cr, uid, ids, context=context)
-
     @api.one
     @api.depends('amount_total', 'payment_ids.credit', 'payment_ids.debit')
     def _get_amount(self):
