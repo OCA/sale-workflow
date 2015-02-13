@@ -108,11 +108,11 @@ class SaleOrder(models.Model):
             )
 
         journal = method.journal_id
-        date = self.date_order
+        date = self.date_order[:10]
         if amount is None:
             amount = self.residual
         if self.payment_term:
-            amounts = self.payment_term.compute(amount, date_ref=date)
+            amounts = self.payment_term.compute(amount, date_ref=date)[0]
         else:
             amounts = [(date, amount)]
 
@@ -139,8 +139,7 @@ class SaleOrder(models.Model):
         """ Generate move lines entries to pay the sale order. """
         move_model = self.env['account.move']
         period_model = self.env['account.period']
-        period_id = period_model.find(dt=date)
-        period = period_model.browse(period_id)
+        period = period_model.find(dt=date)
         move_name = description or self._get_payment_move_name(journal, period)
         move_vals = self._prepare_payment_move(move_name, journal,
                                                period, date)
@@ -161,7 +160,11 @@ class SaleOrder(models.Model):
                                        'journal %s.') % journal.name)
 
         sequence = sequence.with_context(fiscalyear_id=period.fiscalyear_id.id)
-        name = sequence.next_by_id()
+        # next_by_id not compatible with new api
+        sequence_model = self.pool['ir.sequence']
+        name = sequence_model.next_by_id(self.env.cr, self.env.uid,
+                                         sequence.id,
+                                         context=self.env.context)
         return name
 
     @api.multi
@@ -179,7 +182,7 @@ class SaleOrder(models.Model):
         partner = self.partner_id.commercial_partner_id
         company = journal.company_id
 
-        currency = False
+        currency = self.env['res.currency'].browse()
         amount_currency = 0.0
         if journal.currency and journal.currency != company.currency_id:
             currency = journal.currency
@@ -239,5 +242,5 @@ class SaleOrder(models.Model):
         else:
             ref = self.env.ref('account.view_move_form')
             action['views'] = [(ref.id, 'form')]
-            action['res_id'] = moves.ids or False
+            action['res_id'] = moves.id if moves else False
         return action
