@@ -20,7 +20,7 @@
 #
 ##############################################################################
 
-from openerp import osv, api, models, fields
+from openerp import api, models, fields, exceptions
 from openerp.tools.translate import _
 from collections import Iterable
 import openerp.addons.decimal_precision as dp
@@ -99,17 +99,17 @@ class SaleOrder(models.Model):
         sale = self.browse(cr, uid, ids, context=context)
         method = sale.payment_method_id
         if not method:
-            raise osv.except_osv(
-                _('Configuration Error'),
+            raise exceptions.Warning(
                 _("An automatic payment can not be created for the sale "
-                  "order %s because it has no payment method.") % sale.name)
+                  "order %s because it has no payment method.") % sale.name
+            )
 
         if not method.journal_id:
-            raise osv.except_osv(
-                _('Configuration Error'),
+            raise exceptions.Warning(
                 _("An automatic payment should be created for the sale order"
                   " %s but the payment method '%s' has no journal defined.") %
-                (sale.name, method.name))
+                (sale.name, method.name)
+            )
 
         journal = method.journal_id
         date = sale.date_order
@@ -173,15 +173,11 @@ class SaleOrder(models.Model):
         sequence = journal.sequence_id
 
         if not sequence:
-            raise osv.except_osv(
-                _('Configuration Error'),
-                _('Please define a sequence on the journal %s.') %
-                journal.name)
+            raise exceptions.Warning(_('Please define a sequence on the '
+                                       'journal %s.') % journal.name)
         if not sequence.active:
-            raise osv.except_osv(
-                _('Configuration Error'),
-                _('Please activate the sequence of the journal %s.') %
-                journal.name)
+            raise exceptions.Warning(_('Please activate the sequence of the '
+                                       'journal %s.') % journal.name)
 
         ctx = context.copy()
         ctx['fiscalyear_id'] = period.fiscalyear_id.id
@@ -292,9 +288,8 @@ class SaleOrder(models.Model):
     def action_cancel(self, cr, uid, ids, context=None):
         for sale in self.browse(cr, uid, ids, context=context):
             if sale.payment_ids:
-                raise osv.except_osv(
-                    _('Cannot cancel this sales order!'),
-                    _('Automatic payment entries are linked '
-                      'with the sale order.'))
+                raise exceptions.Warning(_('Cannot cancel this sales order '
+                                           'because automatic payment entries '
+                                           'are linked with it.'))
         return super(SaleOrder, self).action_cancel(
             cr, uid, ids, context=context)
