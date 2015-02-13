@@ -6,14 +6,10 @@
             <field name="model">sale.order</field>
             <field name="inherit_id" ref="sale.view_order_form" />
             <field name="arch" type="xml">
-                <page string="Other Information" position="after">
-                    <page name="automation_information" string="Automation Information">
-                        <group name="payment_information" colspan="4">
-                            <field name="payment_method_id"
-                              on_change="onchange_payment_method_id(payment_method_id)"/>
-                        </group>
-                    </page>
-                </page>
+                <field name="fiscal_position" position="after">
+                    <field name="payment_method_id"/>
+                </field>
+
                 <field name="amount_total" position="after">
                     <field name="residual" invisible="1"/>
                 </field>
