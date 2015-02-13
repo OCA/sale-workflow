@@ -1,25 +1,34 @@
-Sale Payment Method - Automatic Reconcile
-=========================================
+Sale Payment Method - Automatic Worflow
+=======================================
 
-This module is an extension for **Sale Payment Method** and **Sale
-Automatic Workflow**.  When payments are created on a sales orders with
+This module is a glue for **Sale Payment Method** and **Sale
+Automatic Workflow**.
+
+When payments are created on a sales orders with
 **Sale Payment Method**, **Sale Automatic Workflow** will try to
 reconcile them with the invoices.
+
+When a payment method is associated with an automatic workflow, this one
+is automatically selected for the sales orders using this method.
 
 Installation
 ============
 
 As soon as both **Sale Payment Method** and **Sale Automatic Workflow**
-are installed, this module can be installed without special
+are installed, this module is installed and has no special
 dependencies.
 
 Configuration
 =============
 
-No configuration is needed.
+The automatic workflow associated to a payment method can be chosen in
+`Sales > Configuration > Sales > Payment Methods`.
 
 Usage
 =====
+
+When a payment method is selected on a sales order, if it has an
+automatic workflow, the sales order will use it.
 
 The automatic reconcile is done by the **Automatic Workflow Job** cron.
 

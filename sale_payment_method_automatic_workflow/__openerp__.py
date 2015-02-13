@@ -19,7 +19,7 @@
 #
 ##############################################################################
 
-{'name': 'Sale Payment Method - Automatic Reconcile',
+{'name': 'Sale Payment Method - Automatic Worflow (link module)',
  'version': '1.0',
  'author': ['Camptocamp', 'Akretion'],
  'license': 'AGPL-3',
