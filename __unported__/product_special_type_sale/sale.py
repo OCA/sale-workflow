@@ -44,8 +44,8 @@ class sale_order(osv.osv):
                 res[order.id][field] = reduce(
                     add, [
                         line.price_subtotal for line in order.order_line
-                        if line.product_id
-                        and line.product_id.special_type == special_type
+                        if line.product_id and
+                        line.product_id.special_type == special_type
                     ], 0.0)
 
         return res

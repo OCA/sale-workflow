@@ -133,11 +133,11 @@ class SaleOrderLine(models.Model):
         self.ensure_one()
 
         if (
-            self.product_id
-            and self.product_id.type == 'product'
-            and self._is_make_to_stock()
-            and self._get_line_location()
-            and self._get_line_location().usage == 'internal'
+            self.product_id and
+            self.product_id.type == 'product' and
+            self._is_make_to_stock() and
+            self._get_line_location() and
+            self._get_line_location().usage == 'internal'
         ):
             return False
         else:

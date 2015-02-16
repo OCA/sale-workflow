@@ -212,8 +212,9 @@ class sale_order_line_master(orm.Model):
                 master_line.product_id and master_line.product_id.id or False),
             'product_uos_qty': product_uos_qty,
             'product_uos': (
-                master_line.product_uos and master_line.product_uos.id
-                or False),
+                master_line.product_uos.id
+                if master_line.product_uos
+                else False),
             'product_packaging': master_line.product_packaging.id,
             'master_line_id': master_line.id,
             'delay': term_line.delay,
