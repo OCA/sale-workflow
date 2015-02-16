@@ -20,6 +20,7 @@
 #
 #
 from openerp.osv import fields, orm
+from openerp.tools.safe_eval import safe_eval
 
 
 class purchase_order_line(orm.Model):
@@ -102,6 +103,14 @@ class purchase_order(orm.Model):
         elif order.sale_flow == 'direct_invoice':
             vals['invoice_state'] = 'none'
         return vals
+
+    def view_picking(self, cr, uid, ids, context=None):
+        action = super(purchase_order, self).view_picking(cr, uid, ids,
+                                                          context=context)
+        if action.get('domain'):
+            domain = safe_eval(action['domain'])
+            action['domain'] = [x for x in domain if x != ('type', '=', 'in')]
+        return action
 
     def _key_fields_for_grouping(self):
         """Do not merge orders that have different destination addresses."""
