@@ -48,8 +48,8 @@ class account_invoice(osv.osv):
                     [
                         line.price_subtotal
                         for line in invoice.invoice_line
-                        if line.product_id
-                        and line.product_id.special_type == special_type
+                        if line.product_id and
+                        line.product_id.special_type == special_type
                     ], 0.0)
         return res
 
