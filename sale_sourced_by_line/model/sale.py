@@ -94,8 +94,8 @@ class sale_order(orm.Model):
 
                 if (order.order_policy == 'manual'):
                     for line in order.order_line:
-                        if ((not line.invoiced)
-                                and (line.state not in ('cancel', 'draft'))):
+                        if (not line.invoiced and
+                                line.state not in ('cancel', 'draft')):
                             val['state'] = 'manual'
                             break
                 order.write(val)
