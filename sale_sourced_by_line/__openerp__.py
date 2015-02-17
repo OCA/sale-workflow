@@ -21,7 +21,7 @@
 
 {'name': 'Sale Sourced by Line',
  'summary': 'Multiple warehouse source locations for Sale order',
- 'version': '1.0',
+ 'version': '1.0.1',
  'author': 'Camptocamp',
  'category': 'Warehouse',
  'license': 'AGPL-3',
