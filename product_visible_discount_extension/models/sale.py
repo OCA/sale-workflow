@@ -55,8 +55,10 @@ class SaleOrderLine(models.Model):
     visible_discount = fields.Float('Customer  Discount (%)')
 
     # We have to store a value in our model to keep track of changes..
-    temp_discount = fields.Float('Track changes to the price_unit', store=False)
-    temp_price = fields.Float('Track changes to a field', store=False)
+    temp_discount = fields.Float('Track changes to the price_unit',
+                                 store=False)
+    temp_price = fields.Float('Track changes to a field',
+                              store=False)
 
     @api.constrains('visible_discount')
     def _check_visible_discount(self):
@@ -145,7 +147,6 @@ class SaleOrderLine(models.Model):
         It convert discount, fixed price and mix of fixed price + discount
         to a fixed discount amount.
         """
-        #import pdb; pdb.set_trace()
         res = super(SaleOrderLine, self).product_id_change(
             cr, uid, ids, pricelist, product, qty, uom, qty_uos, uos, name,
             partner_id, lang, update_tax, date_order, packaging=packaging,
