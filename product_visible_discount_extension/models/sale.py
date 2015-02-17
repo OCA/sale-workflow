@@ -55,7 +55,8 @@ class SaleOrderLine(models.Model):
     visible_discount = fields.Float('Customer  Discount (%)')
 
     # We have to store a value in our model to keep track of changes..
-    temp_value = fields.Float('Track changes to the price_unit', store=False)
+    temp_discount = fields.Float('Track changes to the price_unit', store=False)
+    temp_price = fields.Float('Track changes to a field', store=False)
 
     @api.constrains('visible_discount')
     def _check_visible_discount(self):
@@ -82,21 +83,22 @@ class SaleOrderLine(models.Model):
         precision = decimal_precision.precision_get('Account')
 
         for record in self:
+            if record.product_id.id:
 
-            if record.list_price and record.temp_value is False:
+                if record.list_price and record.temp_discount is False:
 
-                if record.price_unit < record.list_price:
-                    new_price = (record.list_price - record.price_unit)
-                    discount = new_price / record.list_price * 100
-                    discount = round(discount, precision)
-                    record.visible_discount = discount
+                    if record.price_unit < record.list_price:
+                        new_price = (record.list_price - record.price_unit)
+                        discount = new_price / record.list_price * 100
+                        discount = round(discount, precision)
+                        record.visible_discount = discount
+                    else:
+                        record.visible_discount = 0
+
+                    record.temp_price = record.price_unit
                 else:
-                    record.visible_discount = 0
-
-                record.temp_value = record.price_unit
-            else:
-                record.visible_discount = record.temp_value
-                record.temp_value = record.price_unit
+                    record.visible_discount = record.temp_discount
+                    record.temp_price = record.price_unit
 
     @api.onchange('visible_discount', 'discount')
     def _onchange_visible_discount(self):
@@ -113,19 +115,20 @@ class SaleOrderLine(models.Model):
         precision = decimal_precision.precision_get('Account')
 
         for record in self:
+            if record.product_id.id:
 
-            if record.product_id.list_price and record.temp_value is False:
+                if record.product_id.list_price and record.temp_price is False:
 
-                discount = 100 - record.visible_discount
-                new_price = discount * record.list_price / 100
-                record.price_unit = round(new_price, precision)
-                record.temp_value = record.visible_discount
+                    discount = 100 - record.visible_discount
+                    new_price = discount * record.list_price / 100
+                    record.price_unit = round(new_price, precision)
+                    record.temp_discount = record.visible_discount
 
-                if record.visible_discount < 0:
-                    record.visible_discount = 0
-            else:
-                record.price_unit = record.temp_value
-                record.temp_value = record.visible_discount
+                    if record.visible_discount < 0:
+                        record.visible_discount = 0
+                else:
+                    record.price_unit = record.temp_price
+                    record.temp_discount = record.visible_discount
 
     def product_id_change(self, cr, uid, ids, pricelist, product, qty=0,
                           uom=False, qty_uos=0, uos=False, name='',
@@ -142,6 +145,7 @@ class SaleOrderLine(models.Model):
         It convert discount, fixed price and mix of fixed price + discount
         to a fixed discount amount.
         """
+        #import pdb; pdb.set_trace()
         res = super(SaleOrderLine, self).product_id_change(
             cr, uid, ids, pricelist, product, qty, uom, qty_uos, uos, name,
             partner_id, lang, update_tax, date_order, packaging=packaging,
@@ -151,6 +155,8 @@ class SaleOrderLine(models.Model):
         precision = decimal_precision.precision_get(cr, uid, 'Account')
 
         if 'price_unit' in res['value']:
+            new_price = None
+
             if res['value']['discount'] == 0:
                 # If the pricelist has a fixed price it doesn't set
                 # a discount
@@ -160,6 +166,7 @@ class SaleOrderLine(models.Model):
 
                 new_discount = res['value']['price_unit'] / price_list
                 new_discount = 100 - round(new_discount, precision) * 100
+                new_discount = round(new_discount, precision)
             else:
                 # If the pricelist doesn't have a fixed price it only
                 # set a discount %
@@ -170,7 +177,8 @@ class SaleOrderLine(models.Model):
 
                 new_discount = round(res['value']['discount'], precision)
 
-            res['value']['temp_value'] = new_discount
+            res['value']['temp_price'] = res['value']['price_unit']
+            res['value']['temp_discount'] = new_discount
             res['value']['discount'] = 0.0
             res['value']['visible_discount'] = new_discount
 
