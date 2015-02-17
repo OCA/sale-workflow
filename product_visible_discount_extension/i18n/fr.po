@@ -1,0 +1,51 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+#      * product_visible_discount_extension
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 8.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2015-02-17 21:03+0000\n"
+"PO-Revision-Date: 2015-02-17 16:07-0500\n"
+"Last-Translator: <>\n"
+"Language-Team: Savoir-faire Linux <info@savoirfairelinux.com>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Language: fr\n"
+"X-Generator: Poedit 1.5.4\n"
+
+#. module: product_visible_discount_extension
+#: help:account.invoice.line,list_price:0 help:sale.order.line,list_price:0
+msgid ""
+"Base price to compute the customer price. Sometimes called the catalog price."
+msgstr ""
+"Prix de base pour calculer le prix du client. Parfois appelé le prix "
+"catalogue."
+
+#. module: product_visible_discount_extension
+#: field:account.invoice.line,visible_discount:0
+#: field:sale.order.line,visible_discount:0
+msgid "Discount (%)"
+msgstr "Escompte (%)"
+
+#. module: product_visible_discount_extension
+#: model:ir.model,name:product_visible_discount_extension.model_account_invoice
+msgid "Invoice Line"
+msgstr "Ligne de facture"
+
+#. module: product_visible_discount_extension
+#: field:account.invoice.line,list_price:0 field:sale.order.line,list_price:0
+msgid "Public price"
+msgstr "Prix public"
+
+#. module: product_visible_discount_extension
+#: model:ir.model,name:product_visible_discount_extension.model_sale_order_line
+msgid "Sales Order Line"
+msgstr "Ligne de commande"
+
+#. module: product_visible_discount_extension
+#: model:ir.model,name:product_visible_discount_extension.model_stock_move
+msgid "Stock Move"
+msgstr "Mouvement de stock"
