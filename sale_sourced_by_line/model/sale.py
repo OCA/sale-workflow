@@ -2,7 +2,7 @@
 #
 #
 #    Author: Guewen Baconnier, Yannick Vaucher
-#    Copyright 2013-2014 Camptocamp SA
+#    Copyright 2013-2015 Camptocamp SA
 #
 #    This program is free software: you can redistribute it and/or modify
 #    it under the terms of the GNU Affero General Public License as
@@ -136,12 +136,20 @@ class sale_order(orm.Model):
         return res
 
     def _get_orders_procurements(self, cr, uid, ids, context=None):
+        """ Update shipped value on each procurement group state change
+
+        sale_line_id is only defined on the last procument. But we want
+        all procurement of the chain done to to say it is shipped.
+        """
         res = set()
         proc_orders = self.pool['procurement.order'].browse(
             cr, uid, ids, context=context)
         for proc in proc_orders:
-            if proc.state == 'done' and proc.sale_line_id:
-                res.add(proc.sale_line_id.order_id.id)
+            current_proc = proc
+            while (not current_proc.sale_line_id and
+                   current_proc.move_dest_id):
+                current_proc = proc.move_dest_id.procurement_id
+            res.add(current_proc.sale_line_id.order_id.id)
         return list(res)
 
     ###
