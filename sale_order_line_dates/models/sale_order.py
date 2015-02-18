@@ -41,4 +41,4 @@ class SaleOrder(models.Model):
 class SaleOrderLine(models.Model):
     _inherit = 'sale.order.line'
 
-    requested_date = fields.Date(string='Requested Date')
+    requested_date = fields.Datetime(string='Requested Date')
