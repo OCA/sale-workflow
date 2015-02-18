@@ -24,7 +24,7 @@ from openerp import models, fields, api
 QUOTATION_STATES = ['draft', 'sent']
 
 
-class LogisticRequisitionCancel(models.TransientModel):
+class SaleOrderCancel(models.TransientModel):
 
     """ Ask a reason for the sale order cancellation."""
     _name = 'sale.order.cancel'
