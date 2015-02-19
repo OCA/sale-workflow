@@ -77,7 +77,7 @@ msgstr ""
 
 #. module: sale_payment_method
 #: help:payment.method,journal_id:0
-msgid "If a journal a selected, when a payment is recorded on a backend, payment entries will be created in this journal."
+msgid "If a journal is selected, when a payment is recorded on a backend, payment entries will be created in this journal."
 msgstr ""
 
 #. module: sale_payment_method

@@ -36,7 +36,7 @@ class PaymentMethod(models.Model):
     journal_id = fields.Many2one(
         comodel_name='account.journal',
         string='Journal',
-        help="If a journal a selected, when a payment is recorded "
+        help="If a journal is selected, when a payment is recorded "
              "on a backend, payment entries will be created in this "
              "journal.",
     )
