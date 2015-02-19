@@ -20,8 +20,11 @@
 #
 ##############################################################################
 
+import logging
 from openerp import api, models, fields, exceptions, _
 import openerp.addons.decimal_precision as dp
+
+_logger = logging.getLogger(__name__)
 
 
 class SaleOrder(models.Model):
@@ -143,8 +146,8 @@ class SaleOrder(models.Model):
         move_name = description or self._get_payment_move_name(journal, period)
         move_vals = self._prepare_payment_move(move_name, journal,
                                                period, date)
-        move_lines = self._prepare_payment_move_line(move_name, journal,
-                                                     period, amount, date)
+        move_lines = self._prepare_payment_move_lines(move_name, journal,
+                                                      period, amount, date)
 
         move_vals['line_id'] = [(0, 0, line) for line in move_lines]
         move_model.create(move_vals)
@@ -179,6 +182,15 @@ class SaleOrder(models.Model):
     @api.multi
     def _prepare_payment_move_line(self, move_name, journal, period,
                                    amount, date):
+        # to remove in v9
+        _logger.warning('Deprecated: _prepare_payment_move_line has been '
+                        'deprecated in favor of _prepare_payment_move_lines')
+        return self._prepare_payment_move_lines(move_name, journal, period,
+                                                amount, date)
+
+    @api.multi
+    def _prepare_payment_move_lines(self, move_name, journal, period,
+                                    amount, date):
         partner = self.partner_id.commercial_partner_id
         company = journal.company_id
 
