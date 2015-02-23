@@ -148,7 +148,7 @@ class sale_order(orm.Model):
             current_proc = proc
             while (not current_proc.sale_line_id and
                    current_proc.move_dest_id):
-                current_proc = proc.move_dest_id.procurement_id
+                current_proc = current_proc.move_dest_id.procurement_id
             res.add(current_proc.sale_line_id.order_id.id)
         return list(res)
 
