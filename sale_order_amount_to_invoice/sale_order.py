@@ -21,6 +21,35 @@
 ##############################################################################
 
 from openerp.osv import fields, orm
+import operator
+
+
+def get_operator(name):
+    """
+    Return an operator as function.
+
+    The operators are used to calculate the domains and
+    match the python operators.
+
+    lesser than:     <
+    lesser or equal: <=
+    bigger than:     >
+    bigger or equal: >=
+    different:       <> or !=
+    equal:           = or ==
+    """
+    if name == '<':
+        return operator.lt
+    elif name == '<=':
+        return operator.le
+    elif name == '>':
+        return operator.gt
+    elif name == '>=':
+        return operator.ge
+    elif name == '!=' or name == '<>':
+        return operator.ne
+    elif name == '=' or name == '==':
+        return operator.eq
 
 
 class SaleOrder(orm.Model):
@@ -46,21 +75,23 @@ class SaleOrder(orm.Model):
             context = {}
 
         amount_to_invoice = None
+        compare = None
 
         for arg in args:
             if arg[0] == 'amount_to_invoice':
                 amount_to_invoice = arg[2]
+                compare = get_operator(arg[1])
                 break
 
-        if amount_to_invoice is not None:
+        if amount_to_invoice is not None and compare:
             super_search = super(SaleOrder, self).search
-            all_ids = super_search(cr, uid, [],
-                                   context=context)
+            all_ids = super_search(cr, uid, [], context=context)
             search_ids = []
 
             for sale in self.browse(cr, uid, all_ids, context=context):
-                if sale.amount_to_invoice != 0.00:
+                if compare(sale.amount_to_invoice, amount_to_invoice):
                     search_ids.append(sale.id)
+
             return [('id', 'in', search_ids)]
 
         return []
