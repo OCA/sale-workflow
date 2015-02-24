@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 #
 #    Author: Alexandre Fayolle, Leonardo Pistone
-#    Copyright 2014 Camptocamp SA
+#    Copyright 2014-2015 Camptocamp SA
 #
 #    This program is free software: you can redistribute it and/or modify
 #    it under the terms of the GNU Affero General Public License as
@@ -35,12 +35,13 @@ class ProcurementOrder(models.Model):
         res = {}
         to_propagate = self.browse()
         for procurement in self:
-
-            sale_line = (
-                procurement.sale_line_id or
-                procurement.move_dest_id.procurement_id.sale_line_id or
-                False
-            )
+            curr_proc = procurement
+            sale_line = False
+            while curr_proc:
+                if curr_proc.sale_line_id:
+                    sale_line = curr_proc.sale_line_id
+                    break
+                curr_proc = curr_proc.move_dest_id.procurement_id
 
             if sale_line and sale_line.manually_sourced:
                 po_line = sale_line.sourced_by
