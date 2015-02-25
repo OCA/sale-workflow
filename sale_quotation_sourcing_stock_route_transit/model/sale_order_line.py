@@ -25,16 +25,17 @@ class SaleOrderLine(models.Model):
 
     @api.model
     def _get_po_location_usage(self, purchase_order_line):
-        """override the usage finding in case the PO delivers to a transit
-        stock.location.
+        """in case the PO delivers to a transit stock.location, implement a correct
+        usage computation.
+
+        If there is a stock.warehouse with this location set as input transit
+        location, then we consider this as 'internal'; else if there is a stock
+        warehouse with this location set as output transit location, then we
+        consider this as 'customer'.
         """
         _super = super(SaleOrderLine, self)
         usage = _super._get_po_location_usage(purchase_order_line)
         if usage == 'transit':
-            # heuristic: if there is a stock.warehouse with this location set
-            # as input transit location, then we consider this as 'internal';
-            # else if there is a stock warehouse with this location set as
-            # output transit location, then we consider this as 'customer'
             StockWarehouse = self.env['stock.warehouse']
             location = purchase_order_line.order_id.location_id
             domain_input = [('wh_transit_in_loc_id', '=', location.id)]
