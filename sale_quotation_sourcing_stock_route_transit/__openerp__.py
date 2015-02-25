@@ -19,14 +19,7 @@
 #
 {
     'name': "Sale Quotation Sourcing with Stock Route Transit",
-
     'summary': "Link module for sale_quotation_sourcing + stock_route_transit",
-    'description': """This module makes sure sale_quotation_sourcing and stock_route_transit
-    (from OCA/stock-logistics-workflow) work fine together: it updates the
-    onchange methods selecting the route of the sale order line to handle the
-    transit locations.
-    """,
-
     'author': "Camptocamp",
     'website': "http://www.camptocamp.com",
 
