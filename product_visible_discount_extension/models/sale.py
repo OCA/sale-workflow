@@ -27,8 +27,10 @@ from openerp import (
     api,
 )
 
+
 def dummy_search(self, *a, **ka):
     return []
+
 
 class SaleOrderLine(models.Model):
 
