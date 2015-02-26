@@ -34,14 +34,16 @@
         product_uom_qty: 8
         discount: 0
         visible_discount: 0
-        temp_value: False
+        temp_price: False
+        temp_discount: False
         price_unit: 79.0
 -
   I reset the order line
 -
   !python {model: sale.order}: |
      sale_order = self.browse(cr, uid, ref("sale_order_test3")) 
-     sale_order.order_line[0]._cache['temp_value'] = False
+     sale_order.order_line[0]._cache['temp_price'] = False
+     sale_order.order_line[0]._cache['temp_discount'] = False
      sale_order.order_line[0].price_unit = 79.0
      sale_order.order_line[0].visible_discount = 0
      sale_order.order_line[0].discount = 0
@@ -50,7 +52,8 @@
 -
   !python {model: sale.order}: |
      sale_order = self.browse(cr, uid, ref("sale_order_test3")) 
-     sale_order.order_line[0]._cache['temp_value'] = False
+     sale_order.order_line[0]._cache['temp_price'] = False
+     sale_order.order_line[0]._cache['temp_discount'] = False
      sale_order.order_line[0].price_unit = 39.5
      vals = sale_order.order_line[0]._onchange_price()
 -
@@ -64,7 +67,8 @@
 -
   !python {model: sale.order}: |
      sale_order = self.browse(cr, uid, ref("sale_order_test3")) 
-     sale_order.order_line[0]._cache['temp_value'] = False
+     sale_order.order_line[0]._cache['temp_price'] = False
+     sale_order.order_line[0]._cache['temp_discount'] = False
      sale_order.order_line[0].price_unit = 79.0
      sale_order.order_line[0]._onchange_price()
 -
@@ -78,7 +82,8 @@
 -
   !python {model: sale.order}: |
      sale_order = self.browse(cr, uid, ref("sale_order_test3")) 
-     sale_order.order_line[0]._cache['temp_value'] = False
+     sale_order.order_line[0]._cache['temp_price'] = False
+     sale_order.order_line[0]._cache['temp_discount'] = False
      sale_order.order_line[0].price_unit = 59.25
      sale_order.order_line[0]._onchange_price()
 -
@@ -92,7 +97,8 @@
 -
   !python {model: sale.order}: |
      sale_order = self.browse(cr, uid, ref("sale_order_test3")) 
-     sale_order.order_line[0]._cache['temp_value'] = False
+     sale_order.order_line[0]._cache['temp_price'] = False
+     sale_order.order_line[0]._cache['temp_discount'] = False
      sale_order.order_line[0].visible_discount = 25
      sale_order.order_line[0]._onchange_visible_discount()
 -
@@ -106,7 +112,8 @@
 -
   !python {model: sale.order}: |
      sale_order = self.browse(cr, uid, ref("sale_order_test3")) 
-     sale_order.order_line[0]._cache['temp_value'] = False
+     sale_order.order_line[0]._cache['temp_price'] = False
+     sale_order.order_line[0]._cache['temp_discount'] = False
      sale_order.order_line[0].visible_discount = 75
      sale_order.order_line[0]._onchange_visible_discount()
 -
