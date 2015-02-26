@@ -124,13 +124,13 @@ class SaleOrderLine(models.Model):
 
         for record in self:
             if record.product_id.id:
-
                 if record.product_id.list_price and record.temp_price is False:
 
                     discount = 100 - record.visible_discount
                     new_price = discount * record.list_price / 100
                     record.price_unit = round(new_price, precision)
                     record.temp_discount = record.visible_discount
+                    record.temp_price = record.price_unit
 
                     if record.visible_discount < 0:
                         record.visible_discount = 0
