@@ -56,9 +56,9 @@ class SaleOrderLine(models.Model):
 
     # We have to store a value in our model to keep track of changes..
     temp_discount = fields.Float('Track changes to the price_unit',
-                                 store=False)
+            store=False, search=lambda self, *a, **ka: [])
     temp_price = fields.Float('Track changes to a field',
-                              store=False)
+            store=False, search=lambda self, *a, **ka: [])
 
     @api.constrains('visible_discount')
     def _check_visible_discount(self):
