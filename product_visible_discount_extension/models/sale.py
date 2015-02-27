@@ -19,7 +19,6 @@
 #    along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
 ##############################################################################
-
 from openerp.exceptions import ValidationError
 from openerp import (
     models,
@@ -29,6 +28,12 @@ from openerp import (
 
 
 def dummy_search(self, *a, **ka):
+    """
+    Dummy search method
+
+    This method is used on store=False fields. Without it,
+    the xml layouts for views will fail validations.
+    """
     return []
 
 
