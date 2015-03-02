@@ -10,6 +10,11 @@
           position="after">
           <field name="qty_available"/>
         </xpath>
+
+        <xpath expr="//field[@name='order_line']//tree[@string='Sales Order Lines']"
+          position="attributes">
+          <attribute name="colors">red: product_id and qty_available - product_uom_qty &lt; 0;</attribute>
+        </xpath>
       </field>
     </record>
   </data>
