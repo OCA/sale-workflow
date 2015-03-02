@@ -21,7 +21,7 @@
 #
 {"name": "Sale Dropshipping",
  "version": "1.1.1",
- "author": "Akretion",
+ "author": "Akretion,Odoo Community Association (OCA)",
  "website": "http://www.openerp.com",
  "category": "Generic Modules/Purchase",
  "depends": ["purchase",

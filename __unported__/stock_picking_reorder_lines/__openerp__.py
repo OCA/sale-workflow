@@ -26,7 +26,7 @@
 Provide a new field on stock moves, allowing to manage the orders of moves
 in a picking.
     ''',
-    'author': 'Camptocamp',
+    'author': "Camptocamp,Odoo Community Association (OCA)",
     'website': 'http://www.camptocamp.com',
     'depends': ['stock', 'sale', 'sale_stock'],
     'data': ['stock_view.xml'],

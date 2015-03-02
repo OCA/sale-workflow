@@ -22,7 +22,7 @@
 {
     "name": "Product Special Type on Sale",
     "version": "1.0",
-    "author": "Camptocamp",
+    "author": "Camptocamp,Odoo Community Association (OCA)",
     "license": "AGPL-3",
     "category": "Hidden/Links",
     "description":

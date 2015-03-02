@@ -22,7 +22,7 @@
 
     'summary': "manual sourcing of sale quotations",
 
-    'author': "Camptocamp",
+    'author': "Camptocamp,Odoo Community Association (OCA)",
     'website': "http://www.camptocamp.com",
 
     'category': 'Sales',
