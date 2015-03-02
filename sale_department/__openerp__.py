@@ -6,7 +6,7 @@
     'description': """
 Add the department on Sales Order and Customer Invoices
  as well as the related filter and button in the search form.""",
-    'author': 'Camptocamp',
+    'author': "Camptocamp,Odoo Community Association (OCA)",
     "license": "AGPL-3",
     'website': 'http://camptocamp.com',
     'depends': ['sale', 'invoice_department', 'hr'],
