@@ -34,7 +34,7 @@ the base_sale_multi_channels module, because it's likely a few orders have
 errors when you import them (like product not found in OpenERP, wrong line
 format etc...)
 """,
- 'author': 'Akretion',
+ 'author': "Akretion,Odoo Community Association (OCA)",
  'website': 'http://www.akretion.com',
  'depends': ['sale'],
  'init_xml': ['settings/sale.exception.csv'],

@@ -26,7 +26,7 @@
 Provide a new field on the purchase order form, allowing to manage the lines
 order.
     ''',
-    'author': 'Camptocamp',
+    'author': "Camptocamp,Odoo Community Association (OCA)",
     'website': 'http://www.camptocamp.com',
     'depends': [
         'purchase',

@@ -31,7 +31,7 @@ related option in the following menu:
 
 Settings --> Configuration --> Sale --> Sale Features
     """,
-    'author': 'Agile Business Group',
+    'author': "Agile Business Group,Odoo Community Association (OCA)",
     'website': 'http://www.agilebg.com',
     'license': 'AGPL-3',
     "depends": [

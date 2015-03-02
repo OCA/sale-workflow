@@ -21,7 +21,7 @@
 {
     "name": "Product Customer code on sale",
     "version": "1.0",
-    "author": "Agile Business Group",
+    "author": "Agile Business Group,Odoo Community Association (OCA)",
     "website": "http://www.agilebg.com",
     "category": "Sales Management",
     "depends": [

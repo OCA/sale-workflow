@@ -40,7 +40,7 @@ If multiple Sale Order lines for the same partner where made on the same
 date for the same product, the sum of all quantity and the average price
 will be displayed.
 """,
- 'author': 'Camptocamp',
+ 'author': "Camptocamp,Odoo Community Association (OCA)",
  'maintainer': 'Camptocamp',
  'website': 'http://www.camptocamp.com/',
  'depends': ['base', 'sale'],

@@ -27,7 +27,7 @@
     The resulting pickings are scheduled taking the global lead
     time in addition to the individual lead times on each sale.order.line.
     ''',
-    'author': 'Camptocamp',
+    'author': "Camptocamp,Odoo Community Association (OCA)",
     'website': 'http://www.camptocamp.com',
     'depends': ['sale_stock'],
     'data': ['sale_stock_view.xml'],

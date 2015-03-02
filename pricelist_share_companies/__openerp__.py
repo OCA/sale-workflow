@@ -65,7 +65,7 @@ Product A in company B: The cost price is 70 * currency rate
 
 
 ''',
-    'author': 'Camptocamp',
+    'author': "Camptocamp,Odoo Community Association (OCA)",
     'website': 'http://camptocamp.com',
     'depends': ['product', ],
     'data': [

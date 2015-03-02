@@ -22,7 +22,7 @@
 {
     "name": "Mail quotation",
     "version": "0.1",
-    "author": "Savoir-faire Linux",
+    "author": "Savoir-faire Linux,Odoo Community Association (OCA)",
     "website": "http://www.savoirfairelinux.com",
     "license": "AGPL-3",
     "category": "Mail",

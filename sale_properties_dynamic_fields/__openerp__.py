@@ -33,7 +33,7 @@ When fill the 'Length' field, the module will update the properties field
 This allows to set the line's properties through normal fields, instead of
 creating new properties or selecting existing properties.
 """,
-    'author': 'Agile Business Group',
+    'author': "Agile Business Group,Odoo Community Association (OCA)",
     'website': 'http://www.agilebg.com',
     'license': 'AGPL-3',
     "depends": [

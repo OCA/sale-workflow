@@ -22,7 +22,7 @@
 {"name": "Sales Quotation Validity Date",
  "version": "7.0.0",
  "depends": ["sale"],
- "author": "Camptocamp",
+ "author": "Camptocamp,Odoo Community Association (OCA)",
  "category": "Sales",
  "website": "http://www.camptocamp.com",
  "description": """
