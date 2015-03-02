@@ -25,7 +25,7 @@
     'version': '0.2',
     'category': 'Generic Modules/Others',
     'license': 'AGPL-3',
-    'author': 'Akretion,Camptocamp',
+    'author': "Akretion,Camptocamp,Odoo Community Association (OCA)",
     'website': 'http://www.akretion.com/',
     'depends': ['sale_stock',
                 ],
