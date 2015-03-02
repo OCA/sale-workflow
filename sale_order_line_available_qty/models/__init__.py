@@ -20,13 +20,4 @@
 #
 ##############################################################################
 
-from openerp import models, fields
-
-
-class SaleOrderLine(models.Model):
-    _inherit = 'sale.order.line'
-
-    qty_available = fields.Float(
-        related='product_id.qty_available',
-        string='Available Quantity',
-    )
+from . import sale_order_line

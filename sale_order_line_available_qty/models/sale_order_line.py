@@ -20,23 +20,21 @@
 #
 ##############################################################################
 
-{
-    'name': 'Sale Order Line Available QTY',
-    'version': '0.1',
-    'author': 'Savoir-faire Linux',
-    'maintainer': 'Savoir-faire Linux',
-    'website': 'http://www.savoirfairelinux.com',
-    'license': 'AGPL-3',
-    'category': 'Sale',
-    'summary': 'Display the product quantity available on sale order',
-    'depends': [
-        'sale',
-    ],
-    'external_dependencies': {
-        'python': [],
-    },
-    'data': [
-        'views/sale_order_view.xml',
-    ],
-    'installable': True,
-}
+from openerp import models, fields
+import openerp.addons.decimal_precision as dp
+
+
+class SaleOrderLine(models.Model):
+    _inherit = 'sale.order.line'
+
+    standard_price = fields.Float(
+        related='product_id.standard_price',
+        string='Cost Price',
+        digits_compute=dp.get_precision('Product Price'),
+    )
+
+    qty_available = fields.Float(
+        related='product_id.qty_available',
+        string='Available Quantity',
+        digits_compute=dp.get_precision('Product UoS'),
+    )

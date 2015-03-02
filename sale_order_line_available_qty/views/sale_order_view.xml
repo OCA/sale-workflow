@@ -6,8 +6,9 @@
       <field name="model">sale.order</field>
       <field name="inherit_id" ref="sale.view_order_form" />
       <field name="arch" type="xml">
-        <xpath expr="//field[@name='order_line']//tree[@string='Sales Order Lines']//field[@name='product_id']"
+        <xpath expr="//field[@name='order_line']//tree[@string='Sales Order Lines']//field[@name='name']"
           position="after">
+          <field name="standard_price"/>
           <field name="qty_available"/>
         </xpath>
 
