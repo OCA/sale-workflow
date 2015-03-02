@@ -36,7 +36,7 @@ on properties.
 Used by modules like 'sale_line_price_properties_based' and
 'sale_line_quantity_properties_based'
 """,
-    'author': 'Agile Business Group',
+    'author': "Agile Business Group,Odoo Community Association (OCA)",
     'website': 'http://www.agilebg.com',
     'license': 'AGPL-3',
     "depends": [
