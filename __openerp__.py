@@ -36,7 +36,7 @@ This module adds low-level features used for instance by modules:
 It adds a payment method on the sales orders and allow to register
 payments entries on sales orders.
 """,
-    'author': 'Akretion',
+    'author': "Akretion,Odoo Community Association (OCA)",
     'website': 'http://www.akretion.com/',
     'depends': ['sale',
                 ],
