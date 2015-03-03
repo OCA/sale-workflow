@@ -76,7 +76,9 @@ SQ001
 Sale Quotation 4 Confirmed = Number for Sale Order SO003 from Sale Quotation
 SQ004
 """,
-    'author': ['Elico Corp', 'Agile Business Group'],
+    'author': 'Elico Corp,'
+              'Agile Business Group,'
+              'Odoo Community Association (OCA)',
     'website': 'http://www.openerp.net.cn',
     'depends': ['sale'],
     'data': [
