@@ -21,11 +21,13 @@
 ###############################################################################
 
 {
-    'name': 'sale_credit_note',
+    'name': 'Sale Credit Note',
     'version': '0.1',
     'category': 'Generic Modules/Others',
     'license': 'AGPL-3',
-    'description': """empty""",
+    'description': """This module introduce the concept of credit note on sales.
+    You can pay a part of a sale order with available credit note created from refunds.
+    """,
     'author': 'Akretion',
     'website': 'http://www.akretion.com/',
     'depends': ['sale_payment_method'],
