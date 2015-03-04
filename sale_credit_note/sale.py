@@ -50,6 +50,10 @@ class sale_order(orm.Model):
     }
 
     def get_payment_amount(self, cr, uid, ids, context=None):
+        """
+        Override function field method to take in account the refunded amount
+        in the residual.
+        """
         res = super(sale_order, self).get_payment_amount(
             cr, uid, ids, context=context)
         for order in self.browse(cr, uid, ids, context=context):
@@ -60,6 +64,9 @@ class sale_order(orm.Model):
         return res
 
     def get_credit_lines(self, cr, uid, ids, context=None):
+        """
+        Adds available credit lines on the sale order.
+        """
         for order in self.browse(cr, uid, ids, context=context):
             lines = self._get_credit_lines(
                 cr, uid, order.partner_id.id, order.residual, context=context)
@@ -68,6 +75,10 @@ class sale_order(orm.Model):
         return True
 
     def _get_credit_lines(self, cr, uid, partner_id, max_amount, context=None):
+        """
+        Hook to get the available credit line in other modules.
+        :return list of tuples
+        """
         invoice_obj = self.pool['account.invoice']
         credit_obj = self.pool['credit.line']
         lines = []
