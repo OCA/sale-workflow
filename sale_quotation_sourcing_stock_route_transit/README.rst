@@ -16,6 +16,7 @@ Contributors
 ------------
 
 * Alexandre Fayolle <alexandre.fayolle@camptocamp.com>
+* Yannick Vaucher <yannick.vaucher@camptocamp.com>
 
 Maintainer
 ----------
