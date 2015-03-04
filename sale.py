@@ -42,6 +42,9 @@ class sale_order(orm.Model):
         return so_obj._get_order(cr, uid, ids, context=context)
 
     def _get_amount(self, cr, uid, ids, name, args, context=None):
+        return self.get_payment_amount(cr, uid, ids, context=context)
+
+    def get_payment_amount(self, cr, uid, ids, context=None):
         res = {}
         for order in self.browse(cr, uid, ids, context=context):
             # TODO add support when payment is linked to many order
