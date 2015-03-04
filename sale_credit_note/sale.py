@@ -22,6 +22,7 @@
 
 from openerp.osv import fields, orm
 from openerp.tools.translate import _
+import openerp.addons.decimal_precision as dp
 
 
 class sale_order(orm.Model):
@@ -44,6 +45,7 @@ class sale_order(orm.Model):
         'total_credit_amount': fields.function(
             _get_credit_amount,
             type='float',
+            digits_compute=dp.get_precision('Account'),
             string='Total credit amount'),
     }
 
@@ -94,7 +96,9 @@ class credit_line(orm.Model):
 
     _columns = {
         'order_id': fields.many2one('sale.order', 'Sale order', required=True),
-        'amount': fields.float('Amount'),
+        'amount': fields.float(
+            'Amount',
+            digits_compute=dp.get_precision('Account')),
         'refund_id': fields.many2one(
             'account.invoice',
             'Refund',

@@ -21,7 +21,9 @@
                 <button name="invoice_open" position="after">
                     <button name="%(action_credit_note)d" type="action"
                         string="New credit note"
-                        attrs="{'invisible': ['|', ('type', '!=', 'out_refund'), ('credit_note_amount', '!=', 0)]}"/>
+                        attrs="{'invisible': ['|',
+                                              ('type', '!=', 'out_refund'),
+                                              ('credit_note_amount', '!=', 0)]}"/>
                 </button>
             </field>
         </record>

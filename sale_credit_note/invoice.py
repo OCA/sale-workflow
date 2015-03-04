@@ -57,7 +57,8 @@ class account_invoice(orm.Model):
             context=context)
         refunded_amount = 0
         if credit_line_ids:
-            for line in line_obj.browse(cr, uid, credit_line_ids, context=context):
+            for line in line_obj.browse(
+                    cr, uid, credit_line_ids, context=context):
                 refunded_amount += line.amount
         refund_total = refund.credit_note_amount - refunded_amount
         return refund_total
