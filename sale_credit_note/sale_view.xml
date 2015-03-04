@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  Module for OpenERP
+  Copyright (C) 2015 Akretion (http://www.akretion.com). All Rights Reserved
+  @author Benoît GUILLOT <benoit.guillot@akretion.com>
+  The licence is in the file __openerp__.py
+-->
+
+<openerp>
+    <data>
+        <!-- INHERITED VIEW FOR THE OBJECT : sale.order -->
+
+<record id="view_order_form" model="ir.ui.view">
+    <field name="name">credit_line.order.view_form</field>
+    <field name="model">sale.order</field>
+    <field name="inherit_id" ref="sale.view_order_form" />
+    <field name="arch" type="xml">
+        <group name="sale_total" position="replace">
+            <group colspan="4" col="4">
+                <group coslpan="2" col="4">
+                    <button name="get_credit_lines"
+                            string="Get credit lines"
+                            type="object" states="draft,sent" colspan="4"/>
+                    <group name="refunds" string="Credit lines">
+                        <field name="credit_line_ids" nolabel="1">
+                            <tree string="Credit lines" editable="top">
+                                <field
+                                    name="refund_id"
+                                    on_change="onchange_refund(parent.residual, refund_id, context)"
+                                    domain="['|', ('partner_id', '=', parent.partner_id),
+                                             ('partner_id', 'child_of', parent.partner_id),
+                                             ('type', '=', 'out_refund'),
+                                             ('state', '!=', 'cancel'),
+                                             ('credit_note_amount', '!=', 0)],"/>
+                                <field name="amount"/>
+                            </tree>
+                        </field>
+                    </group>
+                </group>
+                <group class="oe_subtotal_footer oe_right" colspan="2" name="sale_total">
+                    <field name="amount_untaxed" widget='monetary' options="{'currency_field': 'currency_id'}"/>
+                    <field name="amount_tax" widget='monetary' options="{'currency_field': 'currency_id'}"/>
+                    <div class="oe_subtotal_footer_separator oe_inline">
+                        <label for="amount_total" />
+                        <button name="button_dummy"
+                            states="draft,sent" string="(update)" type="object" class="oe_edit_only oe_link"/>
+                    </div>
+                    <field name="amount_total" nolabel="1" class="oe_subtotal_footer_separator" widget='monetary' options="{'currency_field': 'currency_id'}"/>
+                    <field name="total_credit_amount" widget="monetary"/>
+                </group>
+            </group>
+        </group>
+    </field>
+</record>
+
+    </data>
+</openerp>
