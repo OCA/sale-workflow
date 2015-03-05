@@ -38,11 +38,12 @@ class account_invoice(orm.Model):
         'credit_note_amount': 0
     }
 
-    def _search_available_refund(cr, uid, partner_id, context=None):
+    def _search_available_refund(self, cr, uid, partner_id, context=None):
         """
         Advanced search of refund (account.invoice).
         Can be overriden in ther modules.
-        :return list of ids (account.invoice)
+
+        :rtype list of ids (account.invoice)
         """
         return self.search(
             cr, uid, [('type', '=', 'out_refund'),
@@ -56,7 +57,8 @@ class account_invoice(orm.Model):
     def _get_refund_amount(self, cr, uid, refund, context=None):
         """
         Return the available credit amount of a refund (account.invoice).
-        :return float
+
+        :rtype float
         """
         line_obj = self.pool['credit.line']
         credit_line_ids = line_obj.search(
