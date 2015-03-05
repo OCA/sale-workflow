@@ -26,7 +26,8 @@
     'category': 'Generic Modules/Others',
     'license': 'AGPL-3',
     'description': """This module introduce the concept of credit note on sales.
-    You can pay a part of a sale order with available credit note created from refunds.
+    You can pay a part of a sale order with available credit note
+    created from refunds.
     """,
     'author': 'Akretion',
     'website': 'http://www.akretion.com/',
@@ -40,4 +41,3 @@
     'demo': [],
     'installable': True,
 }
-

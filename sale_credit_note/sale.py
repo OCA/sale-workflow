@@ -81,7 +81,6 @@ class sale_order(orm.Model):
         :rtype list of tuples
         """
         invoice_obj = self.pool['account.invoice']
-        credit_obj = self.pool['credit.line']
         lines = []
         refund_ids = invoice_obj._search_available_refund(cr, uid, partner_id,
                                                           context=context)
@@ -125,7 +124,6 @@ class credit_line(orm.Model):
             self, cr, uid, ids, order_residual=False, refund_id=False,
             context=None):
         invoice_obj = self.pool['account.invoice']
-        order_obj = self.pool['sale.order']
         res = {'value': {}}
         if not refund_id:
             return res
@@ -133,8 +131,8 @@ class credit_line(orm.Model):
             res['value']['refund_id'] = False
             res['warning'] = {
                 'title': _('User Error'),
-                'message': _("The order is totally paid or refunded, you can't "
-                             "add a new refund line.")
+                'message': _("The order is totally paid or refunded, "
+                             "you can't add a new refund line.")
             }
             return res
         refund = invoice_obj.browse(cr, uid, refund_id, context=context)
