@@ -77,7 +77,8 @@ class sale_order(orm.Model):
     def _get_credit_lines(self, cr, uid, partner_id, max_amount, context=None):
         """
         Hook to get the available credit line in other modules.
-        :return list of tuples
+
+        :rtype list of tuples
         """
         invoice_obj = self.pool['account.invoice']
         credit_obj = self.pool['credit.line']
