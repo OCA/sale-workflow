@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data> 
+	<record id="view_inquiry_form" model="ir.ui.view">
+        <field name="name">price.inquiry.form</field>
+        <field name="model">product.inquiry</field>
+        <field name="type">form</field>
+        <field name="arch" type="xml">
+            <form string="Sales Order">
+                <field name="product_id" colspan="2" required ="1"/>
+				<field name="qty" colspan="2"/>
+                <field name="pricelist_id" colspan="2"/>
+                <field name="price_unit" invisible="1"/>
+				<button name="action_button_inquiry"  colspan="2" string="Inquiry" type="object" icon="gtk-execute"/>
+                <field colspan="4" name="inquiry_line" nolabel="1">
+                    <tree string="Product Price Inquiry Line">
+                        <field name="pricelist_id"/>
+                        <field name="product_id"/>
+                        <field name="qty"/>
+                        <field name="price_unit"/>
+                    </tree>
+			 	</field>
+            </form>
+        </field>
+    </record>    
+     
+    <record id="action_product_price_inquiry_action_form" model="ir.actions.act_window">
+        <field name="name">Product Price Inquiry</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">product.inquiry</field>
+        <field name="view_type">form</field>
+        <field name="view_mode">form</field>
+        <field name="help"></field>
+    </record>
+    
+	<menuitem action="action_product_price_inquiry_action_form"
+        id="menu_product_price_inquiry_action_form"
+        parent="base.menu_sales" sequence="99"/>
+            
+    <record id="product_pricelist_form_view" model="ir.ui.view">
+        <field name="name">product.pricelist.form</field>
+        <field name="model">product.pricelist</field>
+        <field name="inherit_id" ref="product.product_pricelist_view"/>
+        <field name="type">form</field>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='type']" position="after">
+                <field name="visible"/>
+            </xpath>
+        </field>    
+     </record>
+    </data>
+</openerp>
