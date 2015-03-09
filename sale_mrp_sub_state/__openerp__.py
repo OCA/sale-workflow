@@ -31,7 +31,7 @@
     'author': 'Akretion',
     'website': 'http://wwww.akretion.com/',
     'depends': ['mrp',
-                'sale_sub_state',
+                'base_sale_sub_state',
                 ],
     'data': [],
     'demo': [],

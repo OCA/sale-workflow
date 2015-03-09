@@ -31,16 +31,12 @@ class MrpProduction(orm.Model):
             status_list = ['confirmed', 'ready', 'in_production', 'done']
             if 'state' in values:
                 if mrp_production.sale_name and values['state'] in status_list:
-                    if values['state'] == 'done':
-                        sub_status = 'production_done'
-                    else:
-                        sub_status = values['state']
                     sale_ids = sale_obj.search(cr, uid, [
                         ('name', '=', mrp_production.sale_name),
                     ], context=context)
                     if sale_ids:
                         sale_obj.write(cr, uid, sale_ids, {
-                            'sub_state': sub_status,
+                            'sub_state': values['state'],
                         }, context=context)
         return super(MrpProduction, self).write(
             cr, uid, ids, values, context=context)
