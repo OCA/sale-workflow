@@ -1,4 +1,4 @@
-# -*- coding: utf-8 -*-
+# -*- encoding: utf-8 -*--
 ##############################################################################
 #
 #    Author: Chafique Delli
@@ -31,7 +31,7 @@
     'author': 'Akretion',
     'website': 'http://wwww.akretion.com/',
     'depends': ['sale_stock',
-                'sale_sub_state',
+                'base_sale_sub_state',
                 ],
     'data': [],
     'demo': [],

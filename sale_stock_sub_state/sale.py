@@ -26,18 +26,28 @@ class StockPicking(orm.Model):
 
     def write(self, cr, uid, ids, values, context=None):
         sale_obj = self.pool['sale.order']
-        stock_picking = self.browse(cr, uid, ids[0], context=context)
-        status_list = ['assigned', 'done']
-        if 'state' in values:
-            if stock_picking.sale_id and values['state'] in status_list:
-                if values['state'] == 'done':
-                    sub_status = 'sent'
-                else:
-                    sub_status = values['state']
+        if ids:
+            stock_picking = self.browse(cr, uid, ids[0], context=context)
+            if 'state' in values and stock_picking.sale_id and values['state'] == 'done':
                 sale_obj.write(cr, uid, stock_picking.sale_id.id, {
-                    'sub_state': sub_status,
+                    'sub_state': 'sent',
                 }, context=context)
         return super(StockPicking, self).write(
+            cr, uid, ids, values, context=context)
+
+
+class StockMove(orm.Model):
+    _inherit = 'stock.move'
+
+    def write(self, cr, uid, ids, values, context=None):
+        sale_obj = self.pool['sale.order']
+        if ids:
+            stock_move = self.browse(cr, uid, ids[0], context=context)
+            if 'state' in values and stock_move.sale_line_id and values['state'] == 'done':
+                sale_obj.write(cr, uid, stock_move.sale_line_id.order_id.id, {
+                    'sub_state': 'started_shipment',
+                }, context=context)
+        return super(StockMove, self).write(
             cr, uid, ids, values, context=context)
 
 
@@ -48,7 +58,7 @@ class SaleOrder(orm.Model):
         selection = super(SaleOrder, self)._get_sub_state_selection(
             cr, uid, context=context)
         selection += [
-            ('assigned', 'Started Shipment'),
+            ('started_shipment', 'Shipment Started'),
             ('sent', 'Sent'),
         ]
         return selection
