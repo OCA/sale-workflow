@@ -4,8 +4,19 @@ from openerp.osv import fields, orm
 
 class SaleOrder(orm.Model):
     _inherit = 'sale.order'
+
+    STATES = {
+        'cancel': [('readonly', True)],
+        'progress': [('readonly', True)],
+        'manual': [('readonly', True)],
+        'shipping_except': [('readonly', True)],
+        'invoice_except': [('readonly', True)],
+        'done': [('readonly', True)],
+    }
+
     _columns = {
-        'department_id': fields.many2one('hr.department', 'Department'),
+        'department_id': fields.many2one('hr.department', 'Department',
+                                         states=STATES),
     }
 
     def _get_department(self, cr, uid, ids, context=None):
