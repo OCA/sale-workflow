@@ -1,4 +1,7 @@
-# -*- encoding: latin-1 -*-
+# -*- encoding: utf-8 -*-
+##############################################################################
+# For copyright and license notices, see __openerp__.py file in root directory
+##############################################################################
 from openerp import fields, models
 from openerp.osv import fields as old_fields
 import math
@@ -24,7 +27,8 @@ class product_product(models.Model):
         'product.pack.line', 'parent_product_id', 'Pack Products',
         help='List of products that are part of this pack.')
 
-    def _product_available(self, cr, uid, ids, field_names=None, arg=False, context=None):
+    def _product_available(
+            self, cr, uid, ids, field_names=None, arg=False, context=None):
         pack_product_ids = self.search(cr, uid, [
             ('pack', '=', True),
             ('id', 'in', ids),
@@ -79,14 +83,14 @@ class product_template(models.Model):
 
     pack_price_type = fields.Selection([
         ('components_price', 'Components Prices'),
-        # TODO activar aca y hacer un price get
+        # TODO modify price_get and add this functionality
         # ('totalice_price', 'Totalice Price'),
         ('fixed_price', 'Fixed Price'),
     ],
         'Pack Price Type',
         help="""
         * Totalice Price: Sum individual prices on the product pack price.
-        * Fixed Price: Price of this product instead of components prrices. 
+        * Fixed Price: Price of this product instead of components prrices.
         * Components Price: Components prices plast pack price.
         """
     )
