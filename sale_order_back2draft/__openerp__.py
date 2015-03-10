@@ -2,7 +2,7 @@
 ##############################################################################
 #
 #    OpenERP, Open Source Management Solution
-#    Copyright (c) 2014 Serv. Tecnol. Avanzados (http://www.serviciosbaeza.com)
+#    Copyright (c) 2014-2015 Serv. Tecnol. Av. (http://www.serviciosbaeza.com)
 #                       Pedro M. Baeza Romero <pedro.baeza@serviciosbaeza.com>
 #
 #    This program is free software: you can redistribute it and/or modify

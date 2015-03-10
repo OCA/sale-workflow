@@ -28,6 +28,6 @@ msgstr "Pedido de venta"
 #. module: sale_order_back2draft
 #: code:addons/sale_order_back2draft/models/sale_order.py:18
 #, python-format
-msgid "You can't back any order that it's not on cancel state"
-msgstr "No puede volver ningún pedido que no esté en estado cancelado"
+msgid "You can't back any order that it's not on cancel state. Order: %s"
+msgstr "No puede volver ningún pedido que no esté en estado cancelado. Pedido: %s"
 
