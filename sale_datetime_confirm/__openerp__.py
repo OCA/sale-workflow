@@ -33,8 +33,6 @@ This module changes the type of the field date_confirm from date to datetime.
  'author': "Akretion,Odoo Community Association (OCA)",
  'website': 'http://www.akretion.com',
  'depends': ['sale'],
- 'data': [
-     'sale_view.xml',
-     ]
+ 'data': [],
  'installable': True,
  }
