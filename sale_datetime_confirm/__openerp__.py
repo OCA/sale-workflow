@@ -25,7 +25,7 @@
  'category': 'Generic Modules/Sale',
  'description': """
 Sale Datetime Confirm
-===============
+======================
 
 This module changes the type of the field date_confirm from date to datetime.
 
