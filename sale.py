@@ -250,7 +250,7 @@ class SaleOrder(models.Model):
         xmlid = ('account', 'action_move_journal_line')
         action = self.env['ir.actions.act_window'].for_xml_id(*xmlid)
         if len(moves) > 1:
-            action['domain'] = str([('id', 'in', moves.ids)])
+            action['domain'] = [('id', 'in', moves.ids)]
         else:
             ref = self.env.ref('account.view_move_form')
             action['views'] = [(ref.id, 'form')]
