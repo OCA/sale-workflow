@@ -126,7 +126,8 @@ class sale_order(models.Model):
 
         # keep empty groups
         groups = set([line.procurement_group_id
-                      for line in self.order_line])
+                      for line in self.order_line
+                      if line.product_id.type != 'service'])
         is_shipped = True
         for group in groups:
             if not group or not group.procurement_ids:
