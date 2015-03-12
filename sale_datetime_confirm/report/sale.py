@@ -19,6 +19,10 @@
 #    along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
 ###############################################################################
+from openerp import models, fields, api
 
-from . import sale
-from . import report
+
+class SaleReport(models.Model):
+    _inherit = 'sale.report'
+
+    date_confirm = fields.Datetime()
