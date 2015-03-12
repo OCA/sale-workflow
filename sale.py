@@ -47,6 +47,7 @@ class SaleOrder(models.Model):
         comodel_name='account.move.line',
         string='Payments Entries',
         domain=[('account_id.type', '=', 'receivable')],
+        copy=False,
     )
     payment_method_id = fields.Many2one(
         comodel_name='payment.method',
@@ -79,14 +80,6 @@ class SaleOrder(models.Model):
                                            'because automatic payment entries '
                                            'are linked with it.'))
         return super(SaleOrder, self).action_cancel()
-
-    @api.multi
-    def copy(self, default=None):
-        self.ensure_one()
-        if default is None:
-            default = {}
-        default.setdefault('payment_ids', False)
-        return super(SaleOrder, self).copy(default=default)
 
     @api.multi
     def automatic_payment(self, amount=None):
