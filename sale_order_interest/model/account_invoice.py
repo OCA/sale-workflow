@@ -19,9 +19,67 @@
 #
 #
 
-from openerp import models, fields
+from openerp import models, fields, api
 
 
 class AccountInvoice(models.Model):
     _inherit = 'account.invoice'
 
+    @api.multi
+    def _prepare_interest_line(self, interest_amount):
+        product = self.env.ref('account_invoice_interest.'
+                               'product_product_invoice_interest')
+        values = {'quantity': 1,
+                  'invoice_id': self.id,
+                  'product_id': product.id,
+                  'interest_line': True
+                  }
+        onchanged = self.env['account.invoice.line'].product_id_change(
+            product.id,
+            product.uom_id.id,
+            qty=1,
+            name='',
+            partner_id=self.partner_id.id,
+            fposition_id=self.fiscal_position.id,
+            price_unit=interest_amount,
+            currency_id=self.currency_id.id,
+            company_id=self.company_id.id)
+        values.update(onchanged['value'])
+        values['price_unit'] = interest_amount
+        return values
+
+    @api.multi
+    def get_interest_value(self):
+        self.ensure_one()
+        term = self.payment_term
+        if not term:
+            return 0.
+        if not any(line.interest_rate for line in term.line_ids):
+            return 0.
+        values = term.compute_interest(self.amount_total,
+                                       date_ref=self.date_invoice)
+        return sum(interest for __, __, interest in values)
+
+    @api.multi
+    def update_interest_line(self):
+        interest_line = None
+        for line in self.invoice_line:
+            if line.interest_line:
+                interest_line = line
+
+        interest_amount = self.get_interest_value()
+        values = self._prepare_interest_line(interest_amount)
+
+        if interest_line:
+            if interest_amount:
+                interest_line.write(values)
+            else:
+                interest_line.unlink()
+        elif interest_amount:
+            self.env['account.invoice.line'].create(values)
+
+
+class AccountInvoiceLine(models.Model):
+    _inherit = 'account.invoice.line'
+
+    interest_line = fields.Boolean()
