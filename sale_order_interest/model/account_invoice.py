@@ -19,7 +19,7 @@
 #
 #
 
-from openerp import models, fields, api
+from openerp import models, fields, api, exceptions, _
 
 
 class AccountInvoice(models.Model):
@@ -56,17 +56,23 @@ class AccountInvoice(models.Model):
             return 0.
         if not any(line.interest_rate for line in term.line_ids):
             return 0.
-        values = term.compute_interest(self.amount_total,
+        interest_line = self._get_interest_line()
+        # deduce the existing interest line
+        interest_amount = interest_line.price_subtotal
+        values = term.compute_interest(self.amount_total - interest_amount,
                                        date_ref=self.date_invoice)
         return sum(interest for __, __, interest in values)
 
     @api.multi
-    def update_interest_line(self):
-        interest_line = None
+    def _get_interest_line(self):
         for line in self.invoice_line:
             if line.interest_line:
-                interest_line = line
+                return line
+        return self.env['account.invoice.line'].browse()
 
+    @api.multi
+    def update_interest_line(self):
+        interest_line = self._get_interest_line()
         interest_amount = self.get_interest_value()
         values = self._prepare_interest_line(interest_amount)
 
@@ -77,6 +83,27 @@ class AccountInvoice(models.Model):
                 interest_line.unlink()
         elif interest_amount:
             self.env['account.invoice.line'].create(values)
+
+    @api.multi
+    def check_interest_line(self):
+        self.ensure_one()
+        interest_amount = self.get_interest_value()
+        currency = self.currency_id
+
+        interest_line = self._get_interest_line()
+        current_amount = interest_line.price_unit
+
+        if currency.compare_amounts(current_amount, interest_amount) != 0:
+            raise exceptions.Warning(
+                _('Interest amount differs. Click on "(update interests)" '
+                  'next to the payment terms.')
+            )
+
+    @api.multi
+    def action_move_create(self):
+        result = super(AccountInvoice, self).action_move_create()
+        self.check_interest_line()
+        return result
 
 
 class AccountInvoiceLine(models.Model):
