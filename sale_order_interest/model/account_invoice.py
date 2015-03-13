@@ -51,7 +51,8 @@ class AccountInvoice(models.Model):
         values = {'quantity': 1,
                   'invoice_id': self.id,
                   'product_id': product.id,
-                  'interest_line': True
+                  'interest_line': True,
+                  'sequence': 99999,
                   }
         onchanged = self.env['account.invoice.line'].product_id_change(
             product.id,
