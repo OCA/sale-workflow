@@ -81,4 +81,4 @@ class AccountPaymentTermLine(models.Model):
     _inherit = 'account.payment.term.line'
 
     interest_rate = fields.Float(string='Interest Rate',
-                                 digits=(3, 7))
+                                 digits=dp.get_precision('Payment Term'))
