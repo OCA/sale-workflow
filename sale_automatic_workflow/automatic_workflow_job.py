@@ -86,7 +86,7 @@ class AutomaticWorkflowJob(models.Model):
         _logger.debug('Sale Orders to validate: %s', sales)
         for sale in sales:
             with commit(self.env.cr):
-                sale.signal_workflow('order_confirm')
+                sale.action_button_confirm()
 
     @api.model
     def _validate_invoices(self):
