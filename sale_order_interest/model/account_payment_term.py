@@ -80,5 +80,10 @@ class AccountPaymentTerm(models.Model):
 class AccountPaymentTermLine(models.Model):
     _inherit = 'account.payment.term.line'
 
-    interest_rate = fields.Float(string='Interest Rate',
-                                 digits=dp.get_precision('Payment Term'))
+    interest_rate = fields.Float(
+        string='Interest Rate',
+        digits=dp.get_precision('Payment Term'),
+        help="The rate per day applied on a sales order. "
+             "Value between 0 and 100.\n"
+             "The interest is computed as "
+             "'Amount * (Interest Rate / 100) * Days'")
