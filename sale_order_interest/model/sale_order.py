@@ -84,6 +84,7 @@ class SaleOrder(models.Model):
 
         if interest_line:
             if interest_amount:
+                values.pop('name', None)  # keep the current name
                 interest_line.write(values)
             else:
                 interest_line.unlink()
