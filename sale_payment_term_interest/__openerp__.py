@@ -19,7 +19,7 @@
 #
 #
 
-{'name': 'Invoice Interest',
+{'name': 'Sales Payment Term Interests',
  'version': '1.0',
  'author': 'Camptocamp,Odoo Community Association (OCA)',
  'license': 'AGPL-3',

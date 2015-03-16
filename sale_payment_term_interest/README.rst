@@ -12,7 +12,7 @@ Installation
 
 To install this module, you need to:
 
- * Install the `sale_order_interest` module is the only things to do.
+ * Install the `sale_payment_term_interest` module is the only things to do.
 
 Configuration
 =============

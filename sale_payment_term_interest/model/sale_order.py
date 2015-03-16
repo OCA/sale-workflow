@@ -27,7 +27,7 @@ class SaleOrder(models.Model):
 
     @api.multi
     def _prepare_interest_line(self, interest_amount):
-        product = self.env.ref('sale_order_interest.'
+        product = self.env.ref('sale_payment_term_interest.'
                                'product_product_sale_order_interest')
         values = {'product_uom_qty': 1,
                   'order_id': self.id,
