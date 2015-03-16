@@ -10,7 +10,7 @@
         <field name="payment_term" position="replace">
           <label for="payment_term"/>
           <div>
-            <field name="payment_term" options="{'no_create': True}"/>
+            <field name="payment_term" class="oe_inline" options="{'no_create': True}"/>
             <button name="update_interest_line" states="draft,proforma2"
               string="(update interests)" class="oe_link"
               type="object" help="Recompute interests on payment terms"/>

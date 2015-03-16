@@ -101,8 +101,8 @@ class SaleOrder(models.Model):
 
         if currency.compare_amounts(current_amount, interest_amount) != 0:
             raise exceptions.Warning(
-                _('Interest amount differs. Click on the '
-                  '"Update payment interests" button.')
+                _('Interest amount differs. Click on "(update interests)" '
+                  'next to the payment terms.')
             )
 
     @api.multi
