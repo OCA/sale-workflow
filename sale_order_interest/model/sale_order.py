@@ -54,12 +54,18 @@ class SaleOrder(models.Model):
             return 0.
         if not any(line.interest_rate for line in term.line_ids):
             return 0.
-        interest_line = self._get_interest_line()
-        # deduce the existing interest line
-        # XXX does not include the taxes, so if the interest line has
-        # taxes, the amount will include the tax of the interest line
-        interest_amount = interest_line.price_subtotal
-        values = term.compute_interest(self.amount_total - interest_amount,
+        line = self._get_interest_line()
+        if line:
+            price = line.price_unit * (1 - (line.discount or 0.0) / 100.0)
+            taxes = line.tax_id.compute_all(price,
+                                            line.product_uom_qty,
+                                            product=line.product_id,
+                                            partner=self.partner_id)
+            # remove the interest value from the total if there is a value yet
+            interest = taxes['total_included']
+        else:
+            interest = 0.
+        values = term.compute_interest(self.amount_total - interest,
                                        date_ref=self.date_order)
         return sum(interest for __, __, interest in values)
 
