@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: OpenERP Server 7.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-03-05 03:30+0000\n"
-"PO-Revision-Date: 2015-03-05 03:30+0000\n"
+"POT-Creation-Date: 2015-03-16 07:04+0000\n"
+"PO-Revision-Date: 2015-03-16 07:04+0000\n"
 "Last-Translator: <>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -16,63 +16,14 @@ msgstr ""
 "Plural-Forms: \n"
 
 #. module: product_price_inquiry
-#: model:ir.model,name:product_price_inquiry.model_product_inquiry_line
-msgid "Product Search Line"
+#: field:product.price.inquiry.line,inquiry_id:0
+msgid "Price Inquiry Reference"
 msgstr ""
 
 #. module: product_price_inquiry
-#: field:product.inquiry.line,inquiry_id:0
-msgid "Inquiry Reference"
-msgstr ""
-
-#. module: product_price_inquiry
-#: field:product.inquiry,product_id:0
-#: field:product.inquiry.line,product_id:0
+#: field:product.price.inquiry,product_id:0
+#: field:product.price.inquiry.line,product_id:0
 msgid "Product"
-msgstr ""
-
-#. module: product_price_inquiry
-#: view:product.inquiry:0
-msgid "Sales Order"
-msgstr ""
-
-#. module: product_price_inquiry
-#: model:res.groups,name:product_price_inquiry.group_price_inquiry_user
-msgid "Price list Enquiry"
-msgstr ""
-
-#. module: product_price_inquiry
-#: model:ir.model,name:product_price_inquiry.model_product_inquiry
-msgid "Product Price Search"
-msgstr ""
-
-#. module: product_price_inquiry
-#: code:addons/product_price_inquiry/price_inquiry.py:66
-#, python-format
-msgid "Please check if your product qty is correct!\n"
-"The right format of input is: quantity1,quantity2,quantity3"
-msgstr ""
-
-#. module: product_price_inquiry
-#: view:product.inquiry:0
-msgid "Product Price Inquiry Line"
-msgstr ""
-
-#. module: product_price_inquiry
-#: model:ir.actions.act_window,name:product_price_inquiry.action_product_price_inquiry_action_form
-#: model:ir.ui.menu,name:product_price_inquiry.menu_product_price_inquiry_action_form
-msgid "Product Price Inquiry"
-msgstr ""
-
-#. module: product_price_inquiry
-#: field:product.inquiry,qty:0
-#: field:product.inquiry.line,qty:0
-msgid "Product Qty"
-msgstr ""
-
-#. module: product_price_inquiry
-#: view:product.inquiry:0
-msgid "Inquiry"
 msgstr ""
 
 #. module: product_price_inquiry
@@ -83,7 +34,43 @@ msgid "Visible in Pricelist inquiry"
 msgstr ""
 
 #. module: product_price_inquiry
-#: field:product.inquiry,name:0
+#: code:addons/product_price_inquiry/price_inquiry.py:66
+#, python-format
+msgid "Please check if your product qty is correct!\n"
+"The right format of input is: quantity1,quantity2,quantity3"
+msgstr ""
+
+#. module: product_price_inquiry
+#: model:ir.model,name:product_price_inquiry.model_product_price_inquiry_line
+#: view:product.price.inquiry:0
+msgid "Product Price Inquiry Line"
+msgstr ""
+
+#. module: product_price_inquiry
+#: model:ir.actions.act_window,name:product_price_inquiry.action_product_price_inquiry_action_form
+#: model:ir.model,name:product_price_inquiry.model_product_price_inquiry
+#: model:ir.ui.menu,name:product_price_inquiry.menu_product_price_inquiry_action_form
+msgid "Product Price Inquiry"
+msgstr ""
+
+#. module: product_price_inquiry
+#: field:product.price.inquiry,qty:0
+#: field:product.price.inquiry.line,qty:0
+msgid "Product Qty"
+msgstr ""
+
+#. module: product_price_inquiry
+#: view:product.price.inquiry:0
+msgid "Inquiry"
+msgstr ""
+
+#. module: product_price_inquiry
+#: field:product.price.inquiry,inquiry_line:0
+msgid "Price Inquiry Lines"
+msgstr ""
+
+#. module: product_price_inquiry
+#: field:product.price.inquiry,name:0
 msgid "Order Reference"
 msgstr ""
 
@@ -95,29 +82,29 @@ msgstr ""
 
 #. module: product_price_inquiry
 #: model:ir.model,name:product_price_inquiry.model_product_pricelist
-#: field:product.inquiry,pricelist_id:0
-#: field:product.inquiry.line,pricelist_id:0
+#: field:product.price.inquiry,pricelist_id:0
+#: field:product.price.inquiry.line,pricelist_id:0
 msgid "Pricelist"
 msgstr ""
 
 #. module: product_price_inquiry
-#: help:product.inquiry,pricelist_id:0
-#: help:product.inquiry.line,pricelist_id:0
-msgid "Pricelist for current sales order."
+#: view:product.price.inquiry:0
+msgid "Sales Order"
 msgstr ""
 
 #. module: product_price_inquiry
-#: help:product.inquiry,qty:0
+#: help:product.price.inquiry,qty:0
 msgid "Comma separated values of quantity. eg:100,1000,5000,10000"
 msgstr ""
 
 #. module: product_price_inquiry
-#: field:product.inquiry,price_unit:0
-#: field:product.inquiry.line,price_unit:0
+#: field:product.price.inquiry,price_unit:0
+#: field:product.price.inquiry.line,price_unit:0
 msgid "Price Unit"
 msgstr ""
 
 #. module: product_price_inquiry
-#: field:product.inquiry,inquiry_line:0
-msgid "Inquiry Lines"
+#: help:product.price.inquiry,pricelist_id:0
+#: help:product.price.inquiry.line,pricelist_id:0
+msgid "Pricelist for current sales order."
 msgstr ""

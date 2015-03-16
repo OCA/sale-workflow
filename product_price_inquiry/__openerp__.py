@@ -32,8 +32,8 @@
 Product Sale Price Inquiry
 ==========================
 
-This module is a small tool
-    which allows user easily searching the product price base on the quality.
+This module adds a wizard to quickly search product prices
+based on product quantities.
 
 Usage
 =====
@@ -41,7 +41,7 @@ Usage
 To use this module, you need to:
 
  * go to Sales -> Configuration -> Pricelists, choose the pricelist
-    you want it be visible for price inquiry.
+    you want it to be visible for price inquiry.
  * go to Sales -> Product Price Inquiry, choose product, product quantity
     and pricelist, and click button:inquiry to have the unit price.
 
@@ -82,9 +82,7 @@ To contribute to this module, please visit http://odoo-community.org.
     'sequence': 16,
     'demo': [],
     'data': [
-        'security/price_inquiry_security.xml',
-        'security/ir.model.access.csv',
-        'product_inquiry_view.xml',
+        'product_price_inquiry_view.xml',
     ],
     'test': [],
     'installable': True,

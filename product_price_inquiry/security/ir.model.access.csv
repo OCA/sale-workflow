@@ -1,5 +1,0 @@
-"id","name","model_id:id","group_id:id","perm_read","perm_write","perm_create","perm_unlink"
-"product_price_inquiry_group_user","product_price_inquiry_group_user","model_product_inquiry","base.group_user",1,0,0,0
-"product_price_inquiry_group_user","product_price_inquiry_group_user","model_product_inquiry","group_price_inquiry_user",1,1,1,1
-"product_price_inquiry_group_sale_manager","product_pricec_inquiry_group_sale_manager","model_product_inquiry_line","base.group_user",1,0,0,0
-"product_price_inquiry_group_sale_manager","product_pricec_inquiry_group_sale_manager","model_product_inquiry_line","group_price_inquiry_user",1,1,1,1

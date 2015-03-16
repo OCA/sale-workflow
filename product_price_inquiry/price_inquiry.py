@@ -25,8 +25,8 @@ import decimal_precision as dp
 
 
 # we use TransientModel becuase this is just temporary search tool.
-class ProductInquiry(orm.TransientModel):
-    _name = "product.inquiry"
+class ProductPriceInquiry(orm.TransientModel):
+    _name = "product.price.inquiry"
     _description = "Product Price Inquiry"
 
     def action_button_inquiry(self, cr, uid, ids, context=None):
@@ -37,7 +37,7 @@ class ProductInquiry(orm.TransientModel):
         if ids and isinstance(ids, (list, tuple)):
             ids = ids[0]
         pricelist_obj = self.pool['product.pricelist']
-        pil_obj = self.pool['product.inquiry.line']
+        pil_obj = self.pool['product.price.inquiry.line']
 
         inquiry = self.browse(cr, uid, ids, context=context)
         pricelist_id = inquiry.pricelist_id.id
@@ -46,7 +46,7 @@ class ProductInquiry(orm.TransientModel):
 
         qtylist = qty.strip(' ,').split(',')
         # remove the duplicated qty and null ones
-        qtylist = [i for i in list(set(qtylist)) if i]
+        qtylist = [i for i in set(qtylist) if i]
 
         for q in qtylist:
             if q.isdigit():
@@ -75,11 +75,11 @@ class ProductInquiry(orm.TransientModel):
             domain=[('sale_ok', '=', True)], change_default=True),
         'pricelist_id': fields.many2one(
             'product.pricelist', 'Pricelist',
-            domain=[('visible', '=', True)],
+            domain=[('visible', '=', True), ('type', 'in', (False, 'sale'))],
             required=True, help="Pricelist for current sales order."),
         'inquiry_line': fields.one2many(
-            'product.inquiry.line', 'inquiry_id',
-            'Inquiry Lines', readonly=True),
+            'product.price.inquiry.line', 'inquiry_id',
+            'Price Inquiry Lines', readonly=True),
         'price_unit': fields.float(
             'Price Unit', required=True,
             digits_compute=dp.get_precision('Sale Price')
@@ -95,13 +95,13 @@ class ProductInquiry(orm.TransientModel):
     }
 
 
-class ProductInquiryLine(orm.TransientModel):
-    _name = 'product.inquiry.line'
-    _description = 'Product Inquiry Line'
+class ProductPriceInquiryLine(orm.TransientModel):
+    _name = 'product.price.inquiry.line'
+    _description = 'Product Price Inquiry Line'
 
     _columns = {
         'inquiry_id': fields.many2one(
-            'product.inquiry', 'Inquiry Reference', required=True,
+            'product.price.inquiry', 'Price Inquiry Reference', required=True,
             ondelete='cascade', select=True, readonly=True
         ),
         'product_id': fields.many2one(
