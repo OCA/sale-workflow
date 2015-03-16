@@ -123,7 +123,7 @@ class TestSaleOrder(common.TransactionCase):
     def test_interest_with_tax(self):
         product1 = self.env.ref('product.product_product_7')
         product2 = self.env.ref('product.product_product_9')
-        product_interest = self.env.ref('sale_order_interest.'
+        product_interest = self.env.ref('sale_payment_term_interest.'
                                         'product_product_sale_order_interest')
         tax = self.env['account.tax'].create({
             'name': 'Percent tax',
