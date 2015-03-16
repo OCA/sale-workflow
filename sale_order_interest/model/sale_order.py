@@ -111,6 +111,18 @@ class SaleOrder(models.Model):
         self.check_interest_line()
         return result
 
+    @api.model
+    def create(self, vals):
+        record = super(SaleOrder, self).create(vals)
+        record.update_interest_line()
+        return record
+
+    @api.multi
+    def write(self, vals):
+        result = super(SaleOrder, self).write(vals)
+        self.update_interest_line()
+        return result
+
 
 class SaleOrderLine(models.Model):
     _inherit = 'sale.order.line'
