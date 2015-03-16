@@ -25,25 +25,6 @@ from openerp import models, fields, api, exceptions, _
 class SaleOrder(models.Model):
     _inherit = 'sale.order'
 
-    @api.onchange('payment_term')
-    def onchange_payment_term_add_interest_line(self):
-        line_model = self.env['sale.order.line']
-        interest_line = self._get_interest_line()
-        if not self.payment_term:
-            if interest_line:
-                self.order_line -= interest_line
-        else:
-            interest_amount = self.get_interest_value()
-            values = self._prepare_interest_line(interest_amount)
-
-            if interest_line:
-                if interest_amount:
-                    interest_line.write(values)
-                else:
-                    self.order_line -= interest_line
-            elif interest_amount:
-                self.order_line += line_model.new(values)
-
     @api.multi
     def _prepare_interest_line(self, interest_amount):
         product = self.env.ref('sale_order_interest.'
