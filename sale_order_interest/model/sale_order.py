@@ -22,16 +22,16 @@
 from openerp import models, fields, api, exceptions, _
 
 
-class AccountInvoice(models.Model):
-    _inherit = 'account.invoice'
+class SaleOrder(models.Model):
+    _inherit = 'sale.order'
 
     @api.onchange('payment_term')
     def onchange_payment_term_add_interest_line(self):
-        line_model = self.env['account.invoice.line']
+        line_model = self.env['sale.order.line']
         interest_line = self._get_interest_line()
         if not self.payment_term:
             if interest_line:
-                self.invoice_line -= interest_line
+                self.order_line -= interest_line
         else:
             interest_amount = self.get_interest_value()
             values = self._prepare_interest_line(interest_amount)
@@ -40,30 +40,27 @@ class AccountInvoice(models.Model):
                 if interest_amount:
                     interest_line.write(values)
                 else:
-                    self.invoice_line -= interest_line
+                    self.order_line -= interest_line
             elif interest_amount:
-                self.invoice_line += line_model.new(values)
+                self.order_line += line_model.new(values)
 
     @api.multi
     def _prepare_interest_line(self, interest_amount):
-        product = self.env.ref('account_invoice_interest.'
-                               'product_product_invoice_interest')
-        values = {'quantity': 1,
-                  'invoice_id': self.id,
+        product = self.env.ref('sale_order_interest.'
+                               'product_product_sale_order_interest')
+        values = {'product_uom_qty': 1,
+                  'order_id': self.id,
                   'product_id': product.id,
                   'interest_line': True,
                   'sequence': 99999,
                   }
-        onchanged = self.env['account.invoice.line'].product_id_change(
+        onchanged = self.env['sale.order.line'].product_id_change(
+            self.pricelist_id.id,
             product.id,
-            product.uom_id.id,
             qty=1,
-            name='',
+            uom=product.uom_id.id,
             partner_id=self.partner_id.id,
-            fposition_id=self.fiscal_position.id,
-            price_unit=interest_amount,
-            currency_id=self.currency_id.id,
-            company_id=self.company_id.id)
+            fiscal_position=self.fiscal_position.id)
         values.update(onchanged['value'])
         values['price_unit'] = interest_amount
         return values
@@ -82,15 +79,15 @@ class AccountInvoice(models.Model):
         # taxes, the amount will include the tax of the interest line
         interest_amount = interest_line.price_subtotal
         values = term.compute_interest(self.amount_total - interest_amount,
-                                       date_ref=self.date_invoice)
+                                       date_ref=self.date_order)
         return sum(interest for __, __, interest in values)
 
     @api.multi
     def _get_interest_line(self):
-        for line in self.invoice_line:
+        for line in self.order_line:
             if line.interest_line:
                 return line
-        return self.env['account.invoice.line'].browse()
+        return self.env['sale.order.line'].browse()
 
     @api.multi
     def update_interest_line(self):
@@ -104,7 +101,7 @@ class AccountInvoice(models.Model):
             else:
                 interest_line.unlink()
         elif interest_amount:
-            self.env['account.invoice.line'].create(values)
+            self.env['sale.order.line'].create(values)
 
     @api.multi
     def check_interest_line(self):
@@ -117,18 +114,18 @@ class AccountInvoice(models.Model):
 
         if currency.compare_amounts(current_amount, interest_amount) != 0:
             raise exceptions.Warning(
-                _('Interest amount differs. Click on "(update interests)" '
-                  'next to the payment terms.')
+                _('Interest amount differs. Click on the '
+                  '"Update payment interests" button.')
             )
 
     @api.multi
-    def action_move_create(self):
-        result = super(AccountInvoice, self).action_move_create()
+    def action_button_confirm(self):
+        result = super(SaleOrder, self).action_button_confirm()
         self.check_interest_line()
         return result
 
 
-class AccountInvoiceLine(models.Model):
-    _inherit = 'account.invoice.line'
+class SaleOrderLine(models.Model):
+    _inherit = 'sale.order.line'
 
     interest_line = fields.Boolean()
