@@ -20,3 +20,4 @@
 #
 
 from . import test_payment_term
+from . import test_sale_order
