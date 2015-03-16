@@ -16,10 +16,6 @@
               type="object" help="Recompute interests on payment terms"/>
           </div>
         </field>
-        <xpath expr="//field[@name='order_line']/tree" position="inside">
-          <!-- keep the value that is used in the onchange -->
-          <field name="interest_line" invisible="1"/>
-        </xpath>
       </field>
     </record>
   </data>
