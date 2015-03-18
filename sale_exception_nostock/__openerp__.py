@@ -19,7 +19,7 @@
 #
 #
 {'name': 'Sale stock exception',
- 'version': '1.1',
+ 'version': '1.2',
  'author': "Camptocamp,Odoo Community Association (OCA)",
  'maintainer': 'Camptocamp',
  'category': 'sale',
@@ -43,6 +43,12 @@ The second test will only look for stock moves that pass by the line location,
 so if your stock have children or if you have configured automated stock
 actions they must pass by the location related to the SO line, else they will
 be ignored.
+
+If the module sale_owner_stock_sourcing is installed, each sale order line can
+specify a stock owner. In that case, the owner will be used when computing the
+virtual stock availability. For this to work correctly,
+https://github.com/odoo/odoo/issues/5814 needs to be fixed (fixes are proposed
+both for odoo and OCB).
 
 **Warning:**
 
