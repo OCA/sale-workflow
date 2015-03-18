@@ -37,6 +37,7 @@
     },
 
     'data': [
+        'security/ir.model.access.csv',
         'views/sale_order_view.xml',
         'views/sale_reason_to_export_view.xml',
     ],
