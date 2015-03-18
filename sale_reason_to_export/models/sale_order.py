@@ -27,6 +27,6 @@ class SaleOrder(models.Model):
     _inherit = "sale.order"
 
     reason_to_export_id = fields.Many2one(
-        comodel_name="sale.reason_to_export",
-        string="Reason to Export",
+        'sale.reason_to_export',
+        'Reason to Export',
     )

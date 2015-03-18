@@ -20,7 +20,5 @@
 #
 ##############################################################################
 
-from . import (
-    sale_order,
-    sale_reason_to_export,
-)
+from . import sale_order
+from . import sale_reason_to_export
