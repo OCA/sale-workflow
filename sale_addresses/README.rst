@@ -8,7 +8,7 @@ This module (together with stock_addresses and purchase_addresses) manages in a
 coherent way the following addresses in the standard Odoo workflows:
 
 * origin address
-* destination address
+* destination address, aka partner_shipping_id is already there in sale
 * consignee
 
 

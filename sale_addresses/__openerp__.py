@@ -33,6 +33,7 @@
              ],
  'demo': [],
  'data': ['view/sale.xml',
+          'view/report_saleorder.xml',
           ],
  'auto_install': False,
  'installable': True,
