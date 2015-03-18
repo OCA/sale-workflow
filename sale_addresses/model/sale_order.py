@@ -25,11 +25,11 @@ class SaleOrderLine(models.Model):
     _inherit = 'sale.order.line'
 
     origin_address_id = fields.Many2one(
-        'res.partner'
-        string='Origin Address'
+        'res.partner',
+        string='Origin Address',
         readonly=True,
         compute = '_origin_address',
-        help='The place from which the shipment will be sent'
+        help='The place from which the shipment will be sent',
         )
 
     @api.depends('order_id.warehouse_id',
@@ -44,7 +44,6 @@ class SaleOrderLine(models.Model):
         else:
             address = self.order_id.company_id.partner_id
         self.origin_address_id = address
-
 
 
 class SaleOrder(models.Model):
@@ -64,7 +63,6 @@ class SaleOrder(models.Model):
         string='Consignee',
         states=LO_STATES,
         help="The person to whom the shipment is to be delivered.")
-
 
     @api.model
     def _prepare_procurement_group(self, order):
