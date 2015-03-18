@@ -1,0 +1,49 @@
+-
+  I order to see that webkit report is not broken I run a test report
+-
+  I create a new firesteel product for my test
+-
+  !record {model: product.product, id: product_firesteel}:
+    categ_id: product.product_category_1
+    name: Firesteel
+    type: product
+    uom_id: product.product_uom_unit
+    uom_po_id: product.product_uom_unit
+    property_stock_inventory: stock.location_inventory
+    property_stock_procurement: stock.location_procurement
+    property_stock_production: stock.location_production
+-
+  I create a logistic order
+-
+  !record {model: sale.order, id: so_0}:
+    client_order_ref: ref firesteel 0
+    date_order: !eval time.strftime('%Y-03-30')
+    name: 30th of March
+    order_line:
+      - name: Firesteel
+        price_unit: 0.20
+        product_uom: product.product_uom_unit
+        product_uom_qty: 10000
+        state: draft
+        delay: 7.0
+        product_id: product_firesteel
+        product_uos_qty: 10000
+    order_policy: manual
+    partner_id: base.res_partner_4
+    partner_invoice_id: base.res_partner_address_7
+    partner_shipping_id: base.res_partner_address_7
+    picking_policy: direct
+    pricelist_id: product.list0
+    consignee_id: base.res_partner_address_4
+-
+ I print the report
+-
+  !python {model: sale.order}: |
+    import os
+    import openerp.report
+    from openerp import tools
+    data, format = openerp.report.render_report(cr, uid, [ref('so_0')], 'sale.report_saleorder', {}, {})
+    if tools.config['test_report_directory']:
+        path = os.path.join(tools.config['test_report_directory'], 'logistic_order-report.%s' % format)
+        with open(path, 'wb+') as fobj:
+            fobj.write(data)
