@@ -28,7 +28,7 @@ class SaleOrderLine(models.Model):
         'res.partner',
         string='Origin Address',
         readonly=True,
-        compute = '_origin_address',
+        compute='_origin_address',
         help='The place from which the shipment will be sent',
         )
 
