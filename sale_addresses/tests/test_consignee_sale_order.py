@@ -67,6 +67,9 @@ class TestConsigneeSaleOrder(common.TransactionCase):
 
         """
         self.so.signal_workflow('order_confirm')
-
         self.assertEquals(self.so.picking_ids.consignee_id,
                           self.so.consignee_id)
+        self.assertEquals(self.so.picking_ids.origin_address_id,
+                          self.so.company_id.partner_id)
+        self.assertEquals(self.so.picking_ids.delivery_address_id,
+                          self.so.partner_id)
