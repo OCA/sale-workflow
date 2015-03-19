@@ -68,6 +68,7 @@ class SaleOrder(models.Model):
     def _prepare_procurement_group(self, order):
         res = super(SaleOrder, self)._prepare_procurement_group(order)
         res.update({'consignee_id': order.consignee_id.id,
+                    'delivery_address_id': order.partner_shipping_id.id,
                     })
         return res
 
