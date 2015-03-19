@@ -37,8 +37,8 @@
   a default number of days has been set on comany.
   I change the company settings,
 -
-  !record {model: res.company, id: base.main_company}:
-      default_sale_order_validity_days: 5
+  !python {model: res.company, id: base.main_company}: |
+      self.default_sale_order_validity_days = 5
 -
   I create sale order
 -
