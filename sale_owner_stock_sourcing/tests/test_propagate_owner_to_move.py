@@ -35,8 +35,6 @@ class TestPropagateOwner(TransactionCase):
 
     def setUp(self):
         super(TestPropagateOwner, self).setUp()
-        self.SO = self.env['sale.order']
-        self.SOL = self.env['sale.order.line']
         self.partner = self.env.ref('base.res_partner_2')
 
         # this product already has some stock with no owner in demo data
