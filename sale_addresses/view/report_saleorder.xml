@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+  <data>
+
+    <template id="report_saleorder_document" inherit_id="sale.report_saleorder_document">
+
+      <xpath expr='//div[@t-if="o.partner_shipping_id != o.partner_invoice_id"]' position="after">
+        <div t-if="o.partner_shipping_id != o.partner_invoice_id">
+          <p>Consignee address :</p>
+          <div t-field="o.consignee_id"
+            t-field-options='{"widget": "contact", "fields": ["address", "name", "phone", "fax"], "no_marker": true}'/>
+          <p t-if="o.partner_id.vat">VAT: <span t-field="o.partner_id.vat"/></p>
+        </div>
+      </xpath>
+
+    </template>
+
+  </data>
+</openerp>

@@ -21,7 +21,8 @@ install:
   - git clone https://github.com/OCA/maintainer-quality-tools.git ${HOME}/maintainer-quality-tools
   - export PATH=${HOME}/maintainer-quality-tools/travis:${PATH}
   - travis_install_nightly
-  - git clone https://github.com/OCA/stock-logistics-workflow -b ${VERSION} $HOME/stock-logistics-workflow
+#  - git clone https://github.com/OCA/stock-logistics-workflow -b ${VERSION} $HOME/stock-logistics-workflow
+  - git clone https://github.com/gurneyalex/stock-logistics-workflow -b 8.0-picking-addresses $HOME/stock-logistics-workflow
 
 script:
   - travis_run_tests
