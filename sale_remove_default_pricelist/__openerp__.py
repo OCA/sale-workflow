@@ -21,13 +21,13 @@
 ##############################################################################
 
 {
-    'name': 'Sale Quotation Remove Default Price List',
+    'name': 'Sale Remove Default Price List',
     'version': '1.0',
     'category': 'Sale',
-    'summary': 'Sale Quotation Remove Default Price List',
+    'summary': 'Sale Remove Default Price List',
     'description': '''
-Sale Quotation Remove Default Price List
-========================================
+Sale Remove Default Price List
+==============================
 
 This module allow to fix the default price list configured for the partner.
 
