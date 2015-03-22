@@ -30,7 +30,7 @@
     'category': 'Sale',
     'summary': 'Display the product quantity available on sale order',
     'depends': [
-        'sale',
+        'sale_stock',
     ],
     'external_dependencies': {
         'python': [],

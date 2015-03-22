@@ -10,11 +10,12 @@
           position="after">
           <field name="standard_price"/>
           <field name="qty_available"/>
+          <field name="is_available" invisible="1"/>
         </xpath>
 
         <xpath expr="//field[@name='order_line']//tree[@string='Sales Order Lines']"
           position="attributes">
-          <attribute name="colors">red: product_id and qty_available - product_uom_qty &lt; 0;</attribute>
+          <attribute name="colors">red: is_available == False;</attribute>
         </xpath>
       </field>
     </record>

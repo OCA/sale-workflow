@@ -20,7 +20,7 @@
 #
 ##############################################################################
 
-from openerp import models, fields
+from openerp import models, fields, api
 import openerp.addons.decimal_precision as dp
 
 
@@ -33,8 +33,43 @@ class SaleOrderLine(models.Model):
         digits_compute=dp.get_precision('Product Price'),
     )
 
+    @api.one
+    @api.depends('product_id')
+    def compute_qty_available(self):
+        """Get the quantity available in the selected warehouse"""
+        order = self.order_id
+        self.qty_available = sum(
+            quant.qty for quant in
+            self.env['stock.quant'].search([
+                ('location_id', '=', order.warehouse_id.
+                    lot_stock_id.id),
+                ('product_id', '=', self.product_id.id),
+                '|',
+                ('reservation_id.group_id.name', 'in',
+                    [False, order.name]),
+                ('reservation_id', '=', False),
+            ])
+        )
+
+    @api.one
+    @api.depends('qty_available', 'product_uom_qty')
+    def compute_is_available(self):
+        """Define whether the line will be displayed in red or not"""
+        self.is_available = self.order_id.shipped or \
+            not self.product_id or self.product_id.type != 'product' or \
+            self.qty_available - self.product_uom_qty >= 0
+
     qty_available = fields.Float(
-        related='product_id.qty_available',
         string='Available Quantity',
         digits_compute=dp.get_precision('Product UoS'),
+        compute='compute_qty_available',
+        readonly=True,
+        store=False,
+    )
+
+    is_available = fields.Boolean(
+        string='Product Available',
+        compute='compute_is_available',
+        help='whether the quantity in stock is sufficient',
+        store=False,
     )
