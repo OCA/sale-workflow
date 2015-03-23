@@ -29,7 +29,7 @@
  'images': [],
  'website': "http://www.camptocamp.com",
  'depends': ['sale_sourced_by_line',
-             'sale_addresses',
+             'sale_transport_multi_address',
              ],
  'auto_install': True,
  'installable': True,

@@ -4,10 +4,10 @@ Sale Address Management with multiple warehouse sourcing
 Description
 ===========
 
-This module updates the way the origin address (from `sale_addresses`) is
-computed when `sale_sourced_by_line` is installed: since the latter allows
-specifying a warehouse on the sale order line, we take that address into
-account when computing the origin address.
+This module updates the way the origin address (from
+`sale_transport_multi_address`) is computed when `sale_sourced_by_line` is
+installed: since the latter allows specifying a warehouse on the sale order
+line, we take that address into account when computing the origin address.
 
 Credits
 =======
