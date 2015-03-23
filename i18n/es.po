@@ -49,11 +49,6 @@ msgid "View Automatic Payment"
 msgstr "Ver Pago Automático"
 
 #. module: sale_payment_method
-#: help:sale.order,payment_exists:0
-msgid "It indicates that sales order has at least one payment."
-msgstr "Esto indica que el pedido de venta tiene al menos un pago."
-
-#. module: sale_payment_method
 #: field:payment.method,journal_id:0
 msgid "Journal"
 msgstr "Diario"

@@ -38,11 +38,6 @@ class SaleOrder(models.Model):
         self.amount_paid = paid_amount
         self.residual = self.amount_total - paid_amount
 
-    @api.one
-    @api.depends('payment_ids')
-    def _compute_payment_exists(self):
-        self.payment_exists = bool(self.payment_ids)
-
     payment_ids = fields.Many2many(
         comodel_name='account.move.line',
         string='Payments Entries',
@@ -65,11 +60,6 @@ class SaleOrder(models.Model):
         digits_compute=dp.get_precision('Account'),
         string='Amount Paid',
         store=False,
-    )
-    payment_exists = fields.Boolean(
-        compute='_compute_payment_exists',
-        string='Has automatic payment',
-        help="It indicates that sales order has at least one payment.",
     )
 
     @api.multi
