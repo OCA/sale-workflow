@@ -49,59 +49,46 @@ class TestSaleOrder(common.TransactionCase):
             'days': 70,
             'interest_rate': 0.041666,
         })
-
-    def test_interest(self):
         product1 = self.env.ref('product.product_product_7')
         product2 = self.env.ref('product.product_product_9')
-        line1_values = {
+        self.line1_values = {
             'product_id': product1.id,
             'product_uom_qty': 1,
             'product_uom': product1.uom_id.id,
             'price_unit': 50,
         }
-        line2_values = {
+        self.line2_values = {
             'product_id': product2.id,
             'product_uom_qty': 2,
             'product_uom': product1.uom_id.id,
             'price_unit': 100,
         }
-        sale = self.env['sale.order'].create({
+        self.sale_values = {
             'partner_id': self.env.ref('base.res_partner_2').id,
             'payment_term': self.payment_term.id,
-            'order_line': [(0, 0, line1_values), (0, 0, line2_values)],
-        })
-        self.assertEqual(len(sale.order_line), 3)
+        }
+
+    def test_interest(self):
+        self.sale_values['order_line'] = [(0, 0, self.line1_values),
+                                          (0, 0, self.line2_values)]
+        self.sale = self.env['sale.order'].create(self.sale_values)
+        self.assertEqual(len(self.sale.order_line), 3)
         interest_lines = set()
-        for line in sale.order_line:
+        for line in self.sale.order_line:
             if line.interest_line:
                 interest_lines.add(line)
         self.assertEqual(len(interest_lines), 1)
         line = interest_lines.pop()
         self.assertAlmostEqual(line.price_subtotal, 3.82)
-        self.assertAlmostEqual(sale.amount_total, 253.82)
-        sale.check_interest_line()  # no error
+        self.assertAlmostEqual(self.sale.amount_total, 253.82)
+        self.sale.check_interest_line()  # no error
 
     def test_interest_change_line(self):
-        product1 = self.env.ref('product.product_product_7')
-        product2 = self.env.ref('product.product_product_9')
-        sale = self.env['sale.order'].create({
-            'partner_id': self.env.ref('base.res_partner_2').id,
-            'payment_term': self.payment_term.id,
-        })
-        self.env['sale.order.line'].create({
-            'product_id': product1.id,
-            'product_uom_qty': 1,
-            'product_uom': product1.uom_id.id,
-            'price_unit': 50,
-            'order_id': sale.id,
-        })
-        line2 = self.env['sale.order.line'].create({
-            'product_id': product2.id,
-            'product_uom_qty': 2,
-            'product_uom': product1.uom_id.id,
-            'price_unit': 100,
-            'order_id': sale.id,
-        })
+        sale = self.env['sale.order'].create(self.sale_values)
+        self.line1_values['order_id'] = sale.id
+        self.line2_values['order_id'] = sale.id
+        self.env['sale.order.line'].create(self.line1_values)
+        line2 = self.env['sale.order.line'].create(self.line2_values)
         self.assertEqual(len(sale.order_line), 2)
         with self.assertRaises(exceptions.Warning):
             sale.check_interest_line()
@@ -121,8 +108,6 @@ class TestSaleOrder(common.TransactionCase):
         self.assertFalse(interest_line)
 
     def test_interest_with_tax(self):
-        product1 = self.env.ref('product.product_product_7')
-        product2 = self.env.ref('product.product_product_9')
         product_interest = self.env.ref('sale_payment_term_interest.'
                                         'product_product_sale_order_interest')
         tax = self.env['account.tax'].create({
@@ -131,25 +116,11 @@ class TestSaleOrder(common.TransactionCase):
             'amount': '0.1',
         })
         product_interest.taxes_id = [(6, 0, [tax.id])]
-        line1_values = {
-            'product_id': product1.id,
-            'product_uom_qty': 1,
-            'product_uom': product1.uom_id.id,
-            'price_unit': 50,
-            'tax_id': [(6, 0, [tax.id])],
-        }
-        line2_values = {
-            'product_id': product2.id,
-            'product_uom_qty': 2,
-            'product_uom': product1.uom_id.id,
-            'price_unit': 100,
-            'tax_id': [(6, 0, [tax.id])],
-        }
-        sale = self.env['sale.order'].create({
-            'partner_id': self.env.ref('base.res_partner_2').id,
-            'payment_term': self.payment_term.id,
-            'order_line': [(0, 0, line1_values), (0, 0, line2_values)],
-        })
+        self.line1_values['tax_id'] = [(6, 0, [tax.id])]
+        self.line2_values['order_id'] = [(6, 0, [tax.id])]
+        self.sale_values['order_line'] = [(0, 0, self.line1_values),
+                                          (0, 0, self.line2_values)]
+        sale = self.env['sale.order'].create(self.sale_values)
         self.assertEqual(len(sale.order_line), 3)
         interest_line = sale._get_interest_line()
         self.assertAlmostEqual(interest_line.price_subtotal, 4.2)
