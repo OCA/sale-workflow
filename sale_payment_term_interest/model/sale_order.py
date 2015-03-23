@@ -27,6 +27,7 @@ class SaleOrder(models.Model):
 
     @api.multi
     def _prepare_interest_line(self, interest_amount):
+        self.ensure_one()
         product = self.env.ref('sale_payment_term_interest.'
                                'product_product_sale_order_interest')
         values = {'product_uom_qty': 1,
@@ -78,18 +79,19 @@ class SaleOrder(models.Model):
 
     @api.multi
     def update_interest_line(self):
-        interest_line = self._get_interest_line()
-        interest_amount = self.get_interest_value()
-        values = self._prepare_interest_line(interest_amount)
+        for order in self:
+            interest_line = order._get_interest_line()
+            interest_amount = order.get_interest_value()
+            values = order._prepare_interest_line(interest_amount)
 
-        if interest_line:
-            if interest_amount:
-                values.pop('name', None)  # keep the current name
-                interest_line.write(values)
-            else:
-                interest_line.unlink()
-        elif interest_amount:
-            self.env['sale.order.line'].create(values)
+            if interest_line:
+                if interest_amount:
+                    values.pop('name', None)  # keep the current name
+                    interest_line.write(values)
+                else:
+                    interest_line.unlink()
+            elif interest_amount:
+                self.env['sale.order.line'].create(values)
 
     @api.multi
     def check_interest_line(self):
