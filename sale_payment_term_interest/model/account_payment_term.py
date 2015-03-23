@@ -41,6 +41,11 @@ class AccountPaymentTerm(models.Model):
 
         lines_total = 0.0
         precision_model = self.env['decimal.precision']
+        # The computation of the amount for each term is the exact same
+        # than the one in 'account_payment_term.compute()', this is
+        # required to ensure that the interest fees are based on the
+        # same amounts. This is why the 'account' precision is used:
+        # this is the one used in 'account_payment_term.compute()'.
         prec = precision_model.precision_get('Account')
         for line in self.line_ids:
             if line.value == 'fixed':
