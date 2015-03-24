@@ -45,13 +45,13 @@ Common situations faced in real life by end users:
 
    When asked, the supplier or the logistics department, they say OK.
 
-   The end user is with the system and can't do anything. The only way out:
+   The end user is blocked with the system and can't do anything. The only way out:
    make a new sale order (and purchase order for MTO / drop shipment). That's
    not really good but it works.
 
 3) the Customer wants to cancel the remaining quantity of a product
 
-   The is a remaining quantity to be shipped and the customer wants to cancel
+   There is a remaining quantity to be shipped and the customer wants to cancel
    it. The only way to go is to is to cancel all remaining, and regenerate (and
    if there are other lines to be shipped, the same issue than in point 4 are
    there...)
@@ -72,7 +72,7 @@ Common situations faced in real life by end users:
    When asked, the supplier or the logistics department, they say OK.
 
    The end user is stuck with the system and can't do anything. It is not
-   possible to split a delivery so it isnot possible to  can cancel the proper
+   possible to split a delivery so it is not possible to  can cancel the proper
    line. The only work around: make note in the chatter. Once only the line to
    be cancelled is the only remaining line to be delivered, it is possible to
    cancel it like in point 3 above.
@@ -96,7 +96,7 @@ Conclusion
  * 5) and 6) are ok
  * 1) and 2)) are ok, but tedious
  * 3) is tedious if there are no other products, but otherwise, it's like 4)...
- * 4) is may work, but is really error prone
+ * 4) it may work, but is really error prone
 
 The solution proposed by Sale Amendment / Purchase Amendment does not bypass
 any of the system process, but provides some automation so that the process
@@ -117,7 +117,7 @@ user experience and have a way to have a final sale order with the proper
 information (how much has been canceled, how much has been shipped). With the
 standard, you only have this information in the pickings.
 
-When one of the cases described above is encountered, the process to handle it
+When one of the cases described above is encountered, the process to handle 
 starts with the related picking. A wizard is available to split the picking
 lines (stock moves), and it handles the proper reconnection of the logistic
 flows in case of chained moves. 
@@ -139,7 +139,8 @@ validated, the wizard will:
 * record the reason given for the amendment in the chatter
 
 In the sale order form view, the canceled lines are in grey, and the various
-quantities are displayed in the sale order lines. 
+quantities are displayed in the sale order lines. The total amount of the sale 
+order is now computed ignoring the canceled lines.
 
 Known issues / Roadmap
 ======================
