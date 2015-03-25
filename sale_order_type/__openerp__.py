@@ -25,7 +25,9 @@
     'version': '1.0',
     'category': 'Sales Management',
     'description': """This module adds a typology for the sale orders.""",
-    'author': 'OdooMRP team',
+    "author": "OdooMRP team,"
+              "AvanzOSC,"
+              "Serv. Tecnol. Avanzados - Pedro M. Baeza",
     'website': 'www.odoomrp.com',
     'license': 'AGPL-3',
     'depends': ['sale', 'stock'],
