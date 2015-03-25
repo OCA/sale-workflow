@@ -20,41 +20,33 @@
 #                                                                            #
 ##############################################################################
 
-from openerp import api
-from openerp.osv import fields, orm
+from openerp import models, api, fields
 
 
-class SaleOrder(orm.Model):
-
+class SaleOrder(models.Model):
     _inherit = 'sale.order'
 
-    _columns = {
-        'type_id': fields.many2one('sale.order.type', 'Type', required=True),
-    }
+    def _get_order_type(self):
+        return self.env['sale.order.type'].search([])[:1]
 
-    def _get_order_type(self, cr, uid, context=None):
-        type_obj = self.pool['sale.order.type']
-        type_ids = type_obj.search(cr, uid, [], context=context)
-        return type_ids and type_ids[0] or False
+    type_id = fields.Many2one(
+        comodel_name='sale.order.type', string='Type', default=_get_order_type)
 
-    _defaults = {'type_id': _get_order_type}
-
-    def on_change_type_id(self, cr, uid, ids, type_id, context=None):
+    @api.multi
+    def on_change_type_id(self, type_id):
         if type_id:
-            type_obj = self.pool['sale.order.type'].browse(
-                cr, uid, [type_id], context=context)
-            return {'value': {'warehouse_id': type_obj[0].warehouse_id.id}}
+            type = self.env['sale.order.type'].browse(type_id)
+            return {'value': {'warehouse_id': type.warehouse_id.id}}
+        return {}
 
-    def create(self, cr, uid, vals, context=None):
-        if vals.get('name', '/') == '/':
-            if vals.get('type_id'):
-                type = self.pool['sale.order.type'].browse(
-                    cr, uid, [vals['type_id']], context=context)
-                if type[0].sequence_id:
-                    sequence_obj = self.pool['ir.sequence']
-                    vals['name'] = sequence_obj.next_by_id(
-                        cr, uid, type[0].sequence_id.id)
-        return super(SaleOrder, self).create(cr, uid, vals, context=context)
+    @api.model
+    def create(self, vals):
+        if vals.get('name', '/') == '/'and vals.get('type_id'):
+            type = self.env['sale.order.type'].browse(vals['type_id'])
+            if type.sequence_id:
+                sequence_obj = self.env['ir.sequence']
+                vals['name'] = sequence_obj.next_by_id(type.sequence_id.id)
+        return super(SaleOrder, self).create(vals)
 
     @api.model
     def _prepare_invoice(self, order, line_ids):
