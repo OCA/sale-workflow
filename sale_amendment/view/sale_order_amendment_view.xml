@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<openerp>
+  <data>
+    <record id="view_sale_order_amendment" model="ir.ui.view">
+      <field name="name">Enter the amendment details</field>
+      <field name="model">sale.order.amendment</field>
+      <field name="arch" type="xml">
+        <form string="Amendment Details">
+          <field name="sale_id" invisible="True"/>
+          <group>
+            <field name="item_ids" nolabel="1">
+              <tree string="Details" editable="bottom">
+                <field name="sale_line_id"/>
+                <field name="product_id"/>
+                <field name="ordered_qty"/>
+                <!-- <button name="split_quantities" string="Split" type="object" icon="STOCK_PREFERENCES" attrs="{'invisible': [('quantity', '=', 1)]}"/> -->
+              </tree>
+            </field>
+          </group>
+
+          <footer>
+            <button name="do_amendment" string="_Apply" type="object" class="oe_highlight"/>
+            or
+            <button string="_Cancel" class="oe_link" special="cancel" />
+          </footer>
+        </form>
+      </field>
+    </record>
+
+  </data>
+</openerp>
+

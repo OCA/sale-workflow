@@ -18,4 +18,20 @@
 #    along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
 #
-import logging
+from openerp import models, api
+
+
+class SaleOrder(models.Model):
+    _inherit = 'sale.order'
+
+    @api.multi
+    def button_amend(self):
+        self.ensure_one()
+        amend_model = self.env['sale.order.amendment'].with_context({
+            'active_model': self._name,
+            'active_ids': self.ids,
+            'active_id': self.id,
+        })
+
+        amendment = amend_model.create({'sale_id': self.id})
+        return amendment.wizard_view()

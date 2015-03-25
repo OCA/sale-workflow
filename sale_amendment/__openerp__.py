@@ -31,6 +31,7 @@
     "category": "Sales Management",
     "installable": True,
     "data": ["view/sale_order.xml",
+             "view/sale_order_amendment_view.xml",
              ],
     "test": [],
 }
