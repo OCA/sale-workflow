@@ -8,7 +8,9 @@
             <field name="inherit_id" ref="sale.view_order_form"/>
             <field name="arch" type="xml">
                 <field name="currency_id" position="after">
-                    <field name="type_id" on_change="on_change_type_id(type_id)"/>
+                    <field name="type_id"
+                           on_change="on_change_type_id(type_id)"
+                           required="1"/>
                 </field>
             </field>
         </record>
