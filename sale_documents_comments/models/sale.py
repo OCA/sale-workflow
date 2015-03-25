@@ -16,34 +16,36 @@
 #
 ##############################################################################
 
-from openerp.osv import orm, fields
+from openerp import models, fields, api
 
 
-class SaleOrder(orm.Model):
+class SaleOrder(models.Model):
     _inherit = 'sale.order'
 
-    _columns = {
-        'comment': fields.text('Internal comments'),
-        'propagated_comment': fields.text('Propagated internal comments'),
-    }
+    comment = fields.Text(string='Internal comments')
+    propagated_comment = fields.Text(string='Propagated internal comments')
 
-    def _prepare_invoice(self, cr, uid, order, lines, context=None):
-        res = super(SaleOrder, self)._prepare_invoice(cr, uid, order, lines,
-                                                      context=context)
+    @api.model
+    def _prepare_invoice(self, order, lines):
+        res = super(SaleOrder, self)._prepare_invoice(order, lines)
         if 'sale_comment' not in res:
             res['sale_comment'] = order.propagated_comment
         else:
-            res['sale_comment'] += ' ' + order.propagated_comment
+            res['sale_comment'] += ' ' + (order.propagated_comment or '')
         return res
 
-    def onchange_partner_id(self, cr, uid, ids, partner_id, context=None):
-        val = super(SaleOrder, self).onchange_partner_id(cr, uid, ids,
-                                                         partner_id,
-                                                         context=context)
+    @api.multi
+    def onchange_partner_id(self, partner_id):
+        val = super(SaleOrder, self).onchange_partner_id(partner_id)
         if partner_id:
-            partner_obj = self.pool['res.partner']
-            partner = partner_obj.browse(cr, uid, partner_id, context=context)
-            val['value'].update(
-                {'comment': partner.sale_comment,
-                 'propagated_comment': partner.sale_propagated_comment})
+            partner_obj = self.env['res.partner']
+            partner = partner_obj.browse(partner_id)
+            comment = partner.sale_comment or ''
+            p_comment = partner.sale_propagated_comment or ''
+            if partner.parent_id:
+                comment += '\n' + (partner.parent_id.sale_comment or '')
+                p_comment += '\n' + (partner.parent_id.sale_propagated_comment
+                                     or '')
+            val['value'].update({'comment': comment,
+                                 'propagated_comment': p_comment})
         return val
