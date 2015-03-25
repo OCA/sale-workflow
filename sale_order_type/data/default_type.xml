@@ -5,7 +5,7 @@
             <field name="name">Normal Order</field>
             <field name="warehouse_id" ref="stock.warehouse0"/>
             <field name="sequence_id" ref="sale.seq_sale_order"/>
-            <field name="journal_id" model="account.journal" search="[('type','=','sale')]" />
+            <field name="journal_id" model="account.journal" search="[('type', '=','sale')]" />
         </record>
     </data>
 </openerp>
