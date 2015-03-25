@@ -16,26 +16,27 @@
 #
 ##############################################################################
 
-from openerp.osv import orm, fields
+from openerp import models, fields, api
 
 
-class AccountInvoice(orm.Model):
+class AccountInvoice(models.Model):
     _inherit = 'account.invoice'
 
-    _columns = {
-        'sale_comment': fields.text('Internal comments'),
-    }
+    sale_comment = fields.Text(string='Internal comments')
 
-    def onchange_partner_id(self, cr, uid, ids, invoice_type, partner_id,
+    @api.multi
+    def onchange_partner_id(self, invoice_type, partner_id,
                             date_invoice=False, payment_term=False,
-                            partner_bank_id=False, company_id=False,
-                            context=None):
+                            partner_bank_id=False, company_id=False):
         val = super(AccountInvoice, self).onchange_partner_id(
-            cr, uid, ids, invoice_type, partner_id, date_invoice=date_invoice,
+            invoice_type, partner_id, date_invoice=date_invoice,
             payment_term=payment_term, partner_bank_id=partner_bank_id,
-            company_id=company_id, context=context)
+            company_id=company_id)
         if partner_id:
-            partner_obj = self.pool['res.partner']
-            partner = partner_obj.browse(cr, uid, partner_id, context=context)
-            val['value']['sale_comment'] = partner.invoice_comment
+            partner_obj = self.env['res.partner']
+            partner = partner_obj.browse(partner_id)
+            comment = partner.invoice_comment or ''
+            if partner.parent_id:
+                comment += '\n' + (partner.parent_id.invoice_comment or '')
+            val['value']['sale_comment'] = comment
         return val

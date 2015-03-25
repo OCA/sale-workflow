@@ -16,18 +16,16 @@
 #
 ##############################################################################
 
-from openerp.osv import orm, fields
+from openerp import models, fields
 
 
-class ResPartner(orm.Model):
+class ResPartner(models.Model):
     _inherit = 'res.partner'
 
-    _columns = {
-        'sale_comment': fields.text('Comments for sale orders'),
-        'sale_propagated_comment': fields.text('Propagated comments for sale'
-                                               ' orders'),
-        'picking_comment': fields.text('Comments for pickings'),
-        'picking_propagated_comment': fields.text('Propagated comments for'
-                                                  ' pickings'),
-        'invoice_comment': fields.text('Comments for invoices'),
-    }
+    sale_comment = fields.Text(string='Comments for sale orders')
+    sale_propagated_comment = fields.Text(string='Propagated comments for sale'
+                                          ' orders')
+    picking_comment = fields.Text(string='Comments for pickings')
+    picking_propagated_comment = fields.Text(string='Propagated comments for'
+                                             ' pickings')
+    invoice_comment = fields.Text(string='Comments for invoices')
