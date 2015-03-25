@@ -166,7 +166,8 @@ version 3.0
 
 * Add tab “Amendment” O2M containing datetime, user, reason, SO version
   (archived version)
-
+ * Based on : https://github.com/OCA/sale-workflow/compare/7.0...akretion:70-add-sale_order_revision and 
+ https://github.com/OCA/purchase-workflow/tree/7.0/purchase_order_revision
 
 Credits
 =======
