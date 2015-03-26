@@ -21,6 +21,7 @@
 
 import openerp.addons.decimal_precision as dp
 from openerp import models, fields, api, exceptions, _
+from openerp.tools import html2plaintext
 
 
 class SaleOrderAmendment(models.TransientModel):
@@ -82,15 +83,29 @@ class SaleOrderAmendment(models.TransientModel):
 
     @api.multi
     def _message_content(self):
-        message = _("<h3>Reason for amending</h3><p>%s</p>") % self.reason
+        title = _('Order amendment')
+        message = '<h3>%s</h3><ul>' % title
+        for item in self.item_ids:
+            message += (_('<li><b>%s</b>: %s Ordered, %s '
+                          'Shipped, %s Canceled, %s Amended</li>') %
+                        (item.sale_line_id.name,
+                         item.ordered_qty, item.shipped_qty,
+                         item.canceled_qty, item.amend_qty,
+                         )
+                        )
+        message += '</ul>'
+        # if the html field is touched, it may return '<br/>' or
+        # '<p></p>' so check if it contains text at all
+        if html2plaintext(self.reason).strip():
+            title = _('Reason for amending')
+            message += "<h3>%s</h3><p>%s</p>" % (title, self.reason)
         return message
 
     @api.multi
     def do_amendment(self):
         self.ensure_one()
         sale = self.sale_id
-        if self.reason:
-            sale.message_post(body=self._message_content())
+        sale.message_post(body=self._message_content())
         return True
 
     @api.multi
