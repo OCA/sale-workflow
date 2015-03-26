@@ -45,6 +45,12 @@ class SaleOrderAmendment(models.TransientModel):
         assert active_model == 'sale.order', 'Bad context propagation'
 
         sale = self.env['sale.order'].browse(sale_ids)
+
+        if sale.order_policy != 'picking' and sale.invoice_ids:
+            raise exceptions.Warning(
+                _('An invoiced order cannot be amended.')
+            )
+
         items = []
         for line in sale.order_line:
             if line.state == 'cancel':
