@@ -55,7 +55,7 @@ class SaleOrderAmendment(models.TransientModel):
 
         items = []
         for line in sale.order_line:
-            if line.state == 'cancel':
+            if line.state in ('cancel', 'done'):
                 continue
             items.append(self._prepare_item(line))
         res['item_ids'] = items
@@ -104,6 +104,7 @@ class SaleOrderAmendment(models.TransientModel):
     @api.multi
     def do_amendment(self):
         self.ensure_one()
+        self.item_ids.split_lines()
         sale = self.sale_id
         sale.message_post(body=self._message_content())
         return True
@@ -158,3 +159,61 @@ class SaleOrderAmendmentItem(models.TransientModel):
                   'quantity for the product %s (maximum: %0.2f).') %
                 (self.sale_line_id.name, max_qty)
             )
+
+    @api.multi
+    def split_lines(self):
+        """ Split the order line according to selected quantities
+
+        The shipped quantity is the quantity that will remain in the original
+        sales order line.
+        The canceled quantity will split the original line and cancel the
+        duplicated line.
+        The amended quantity will split the original line; the
+        duplicated line will be 'confirmed' and a new picking will be created.
+        """
+        for item in self:
+            line = item.sale_line_id
+            amend_qty = item.amend_qty
+            shipped_qty = item.shipped_qty
+            ordered_qty = item.ordered_qty
+            # the total canceled may be different than the one displayed
+            # to the user, because the one displayed is the quantity
+            # canceled in the *pickings*, here it includes also the
+            # quantity removed when amending
+            canceled_qty = ordered_qty - shipped_qty - amend_qty
+            if canceled_qty < 0:
+                canceled_qty = 0
+
+            if not (shipped_qty or canceled_qty) and amend_qty == ordered_qty:
+                # the line is not changed
+                continue
+
+            if not canceled_qty and shipped_qty + amend_qty == ordered_qty:
+                # part has been shipped but there is no reason to split
+                # the lines
+                continue
+
+            if shipped_qty:
+                # update the current line with the shipped qty,
+                # the rest will be either canceled either amended
+                line.product_uom_qty = shipped_qty
+
+            if canceled_qty and shipped_qty:
+                values = {'product_uom_qty': canceled_qty,
+                          'procurement_ids': False}
+                canceled_line = line.copy(default=values)
+                canceled_line.button_cancel()
+            elif canceled_qty:
+                line.product_uom_qty = canceled_qty
+                line.procurement_ids.cancel()
+                line.button_cancel()
+
+            if amend_qty:
+                values = {'product_uom_qty': item.amend_qty,
+                          'procurement_ids': False}
+                amend_line = line.copy(default=values)
+                amend_line.button_confirm()
+
+        sale = self.mapped('sale_line_id.order_id')
+        sale.signal_workflow('ship_recreate')
+        return True
