@@ -26,6 +26,7 @@ class TestAmendment(common.TransactionCase):
 
     def setUp(self):
         super(TestAmendment, self).setUp()
+        self.amendment_model = self.env['sale.order.amendment']
         self.sale_model = self.env['sale.order']
         self.sale_line_model = self.env['sale.order.line']
         self.partner1 = self.env.ref('base.res_partner_2')
@@ -110,6 +111,66 @@ class TestAmendment(common.TransactionCase):
         self.assertEqual(picking.move_lines[0].product_qty, 500)
 
         # the sale order is in shipping exception
-        # XXX not the case currently because stock_split_picking does
-        # not split the procurement
-        # self.assertEqual(sale.state, 'shipping_except')
+        self.assertEqual(sale.state, 'shipping_except')
+
+        # amend the sale order
+        amendment = self.amendment_model.with_context(
+            active_model='sale.order',
+            active_id=sale.id,
+            active_ids=sale.ids,
+        ).create({'sale_id': sale.id})
+
+        self.assertEqual(len(amendment.item_ids), 1)
+        item = amendment.item_ids
+        self.assertEqual(item.ordered_qty, 1000)
+        self.assertEqual(item.shipped_qty, 200)
+        self.assertEqual(item.canceled_qty, 300)
+        self.assertEqual(item.amend_qty, 500)
+
+    def test_amendment_cancel_one_line(self):
+        sale = self._create_sale([(self.product1, 1000),
+                                  (self.product2, 500)])
+
+        # generate the picking
+        sale.action_button_confirm()
+        self.assertEqual(len(sale.picking_ids), 1)
+
+        # split; put the product2 in another picking
+        picking = sale.picking_ids
+        move = picking.move_lines.filtered(
+            lambda m: m.product_id == self.product2
+        )
+        self._split_picking(picking, [(move, 500)])
+        self.assertEqual(len(sale.picking_ids), 2)
+
+        # cancel the picking with the product2
+        picking = sale.picking_ids.filtered(
+            lambda p: p.move_lines[0].product_id == self.product2
+        )
+        picking.action_cancel()
+        self.assertEqual(picking.state, 'cancel')
+
+        # the sale order is in shipping exception
+        self.assertEqual(sale.state, 'shipping_except')
+
+        # amend the sale order
+        amendment = self.amendment_model.with_context(
+            active_model='sale.order',
+            active_id=sale.id,
+            active_ids=sale.ids,
+        ).create({'sale_id': sale.id})
+
+        self.assertEqual(len(amendment.item_ids), 2)
+        for item in amendment.item_ids:
+            if item.sale_line_id.product_id == self.product1:
+                self.assertEqual(item.ordered_qty, 1000)
+                self.assertEqual(item.shipped_qty, 0)
+                self.assertEqual(item.canceled_qty, 0)
+                self.assertEqual(item.amend_qty, 1000)
+            elif item.sale_line_id.product_id == self.product2:
+                self.assertEqual(item.ordered_qty, 500)
+                self.assertEqual(item.shipped_qty, 0)
+                self.assertEqual(item.canceled_qty, 500)
+                self.assertEqual(item.amend_qty, 0)
+            else:
+                self.fail('Wrong product')
