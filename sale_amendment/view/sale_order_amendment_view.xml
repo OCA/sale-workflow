@@ -21,6 +21,10 @@
             </field>
           </group>
 
+          <group string="Reason for amending">
+            <field name="reason" nolabel="1"/>
+          </group>
+
           <footer>
             <button name="do_amendment" string="_Apply" type="object" class="oe_highlight"/>
             or

@@ -33,6 +33,7 @@ class SaleOrderAmendment(models.TransientModel):
     item_ids = fields.One2many(comodel_name='sale.order.amendment.item',
                                inverse_name='amendment_id',
                                string='Items')
+    reason = fields.Html()
 
     @api.model
     def default_get(self, fields):
@@ -80,8 +81,16 @@ class SaleOrderAmendment(models.TransientModel):
         }
 
     @api.multi
+    def _message_content(self):
+        message = _("<h3>Reason for amending</h3><p>%s</p>") % self.reason
+        return message
+
+    @api.multi
     def do_amendment(self):
         self.ensure_one()
+        sale = self.sale_id
+        if self.reason:
+            sale.message_post(body=self._message_content())
         return True
 
     @api.multi
