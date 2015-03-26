@@ -132,6 +132,7 @@ class SaleOrderAmendmentItem(models.TransientModel):
     amendment_id = fields.Many2one(comodel_name='sale.order.amendment',
                                    string='Amendment',
                                    required=True,
+                                   ondelete='cascade',
                                    readonly=True)
     sale_line_id = fields.Many2one(comodel_name='sale.order.line',
                                    required=True,
