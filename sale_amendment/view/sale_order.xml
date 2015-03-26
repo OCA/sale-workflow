@@ -11,6 +11,11 @@
            <button name="button_amend" states="shipping_except"
              type="object" string="Amend"/>
          </button>
+         <!-- move the state field to the right and show it -->
+         <xpath expr="//field[@name='order_line']/tree/field[@name='state']" position="replace"/>
+         <xpath expr="//field[@name='order_line']/tree" position="inside">
+            <field name="state"/>
+         </xpath>
       </field>
     </record>
   </data>
