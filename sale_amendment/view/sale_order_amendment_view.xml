@@ -10,9 +10,12 @@
           <group>
             <field name="item_ids" nolabel="1">
               <tree string="Details" editable="bottom">
-                <field name="sale_line_id"/>
-                <field name="product_id"/>
+                <field name="sale_line_id" options="{'no_open': true}"/>
                 <field name="ordered_qty"/>
+                <field name="shipped_qty"/>
+                <field name="canceled_qty"/>
+                <field name="amend_qty"/>
+                <field name="product_uom_id" options="{'no_open': true}"/>
                 <!-- <button name="split_quantities" string="Split" type="object" icon="STOCK_PREFERENCES" attrs="{'invisible': [('quantity', '=', 1)]}"/> -->
               </tree>
             </field>

@@ -19,7 +19,8 @@
 #
 #
 
-from openerp import models, fields, api, _
+import openerp.addons.decimal_precision as dp
+from openerp import models, fields, api, exceptions, _
 
 
 class SaleOrderAmendment(models.TransientModel):
@@ -46,12 +47,31 @@ class SaleOrderAmendment(models.TransientModel):
         sale = self.env['sale.order'].browse(sale_ids)
         items = []
         for line in sale.order_line:
-            item = {
-                'sale_line_id': line.id,
-            }
-            items.append(item)
+            if line.state == 'cancel':
+                continue
+            items.append(self._prepare_item(line))
         res['item_ids'] = items
         return res
+
+    @api.model
+    def _prepare_item(self, sale_line):
+        ordered = sale_line.product_uom_qty
+
+        shipped = 0.
+        canceled = 0.
+        for procurement in sale_line.procurement_ids:
+            if procurement.state == 'done':
+                shipped += procurement.product_qty
+            elif procurement.state == 'cancel':
+                canceled += procurement.product_qty
+
+        amend = ordered - canceled - shipped
+        return {
+            'sale_line_id': sale_line.id,
+            'shipped_qty': shipped,
+            'canceled_qty': canceled,
+            'amend_qty': amend,
+        }
 
     @api.multi
     def do_amendment(self):
@@ -86,6 +106,24 @@ class SaleOrderAmendmentItem(models.TransientModel):
     sale_line_id = fields.Many2one(comodel_name='sale.order.line',
                                    required=True,
                                    readonly=True)
-    product_id = fields.Many2one(related='sale_line_id.product_id',
-                                 readonly=True)
     ordered_qty = fields.Float(related='sale_line_id.product_uom_qty')
+    shipped_qty = fields.Float(string='Delivered',
+                               readonly=True,
+                               digits_compute=dp.get_precision('Product UoS'))
+    canceled_qty = fields.Float(string='Canceled',
+                                readonly=True,
+                                digits_compute=dp.get_precision('Product UoS'))
+    amend_qty = fields.Float(string='Amend',
+                             digits_compute=dp.get_precision('Product UoS'))
+    product_uom_id = fields.Many2one(related='sale_line_id.product_uom',
+                                     readonly=True)
+
+    @api.constrains('amend_qty')
+    def _constrains_amend_qty(self):
+        max_qty = self.ordered_qty - self.shipped_qty
+        if self.amend_qty > max_qty:
+            raise exceptions.ValidationError(
+                _('The quantity cannot be larger than the original ordered '
+                  'quantity for the product %s (maximum: %0.2f).') %
+                (self.sale_line_id.name, max_qty)
+            )

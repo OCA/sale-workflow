@@ -9,7 +9,7 @@
       <field name="arch" type="xml">
          <button name="ship_recreate">
            <button name="button_amend" states="shipping_except"
-             type="object" string="Amend Order"/>
+             type="object" string="Amend"/>
          </button>
       </field>
     </record>
