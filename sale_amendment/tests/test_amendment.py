@@ -90,6 +90,11 @@ class TestAmendmentCombinations(common.TransactionCase):
         pickings.do_transfer()
         for picking in pickings:
             self.assertEqual(picking.state, 'done')
+        # since we forced the assign before, we unreserve
+        remaining_pickings = self.sale.picking_ids.filtered(
+            lambda p: p.state != 'done'
+        )
+        remaining_pickings.do_unreserve()
 
     def split(self, products):
         """ Split pickings
@@ -232,7 +237,10 @@ class TestAmendmentCombinations(common.TransactionCase):
     def test_ship_and_cancel_part(self):
         # We have 1000 product1
         # Ship 200 products
-        self.ship([(self.product1, 200)])
+        self.ship([(self.product1, 200),
+                   (self.product2, 0),
+                   (self.product3, 0),
+                   ])
         # Split 500 and 300 products
         self.split([(self.product1, 300)])
         # Cancel the 300
@@ -270,14 +278,14 @@ class TestAmendmentCombinations(common.TransactionCase):
         ])
         self.assert_procurements([
             (self.product1, 200, 'done'),
-            (self.product1, 800, 'cancel'),
+            (self.product1, 300, 'cancel'),
             (self.product1, 500, 'running'),
             (self.product2, 500, 'running'),
             (self.product3, 800, 'running'),
         ])
         self.assert_moves([
             (self.product1, 200, 'done'),
-            (self.product1, 800, 'cancel'),
+            (self.product1, 300, 'cancel'),
             (self.product1, 500, 'confirmed'),
             (self.product2, 500, 'confirmed'),
             (self.product3, 800, 'confirmed'),

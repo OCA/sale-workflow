@@ -193,26 +193,43 @@ class SaleOrderAmendmentItem(models.TransientModel):
                 # the lines
                 continue
 
+            procurements = line.procurement_ids
             if shipped_qty:
                 # update the current line with the shipped qty,
                 # the rest will be either canceled either amended
                 line.product_uom_qty = shipped_qty
+                # only keep the done procurement on the sale line
+                proc = procurements.filtered(lambda p: p.state == 'done')
+                procurements -= proc
+                line.write({
+                    'product_uom_qty': shipped_qty,
+                    'procurement_ids': [(6, 0, proc.ids)],
+                })
+                line.button_done()
 
             if canceled_qty and shipped_qty:
+                # only keep the canceled procurement on the sale line
+                proc = procurements.filtered(lambda p: p.state == 'cancel')
+                procurements -= proc
                 values = {'product_uom_qty': canceled_qty,
-                          'procurement_ids': False}
+                          'procurement_ids': [(6, 0, proc.ids)]}
                 canceled_line = line.copy(default=values)
                 canceled_line.button_cancel()
             elif canceled_qty:
                 line.product_uom_qty = canceled_qty
                 line.procurement_ids.cancel()
+                procurements -= line.procurement_ids
                 line.button_cancel()
 
             if amend_qty:
-                values = {'product_uom_qty': item.amend_qty,
-                          'procurement_ids': False}
+                values = {'product_uom_qty': amend_qty,
+                          'procurement_ids': [(6, 0, procurements.ids)]}
                 amend_line = line.copy(default=values)
                 amend_line.button_confirm()
+                for proc in amend_line.procurement_ids:
+                    if proc.state == 'confirmed':
+                        # create the move and change to 'running'
+                        proc.run()
 
         sale = self.mapped('sale_line_id.order_id')
         sale.signal_workflow('ship_recreate')
