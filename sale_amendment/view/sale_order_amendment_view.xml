@@ -9,7 +9,7 @@
           <field name="sale_id" invisible="True"/>
           <group>
             <field name="item_ids" nolabel="1">
-              <tree string="Details" editable="bottom">
+              <tree string="Details" create="false" editable="bottom">
                 <field name="sale_line_id" options="{'no_open': true}"/>
                 <field name="ordered_qty"/>
                 <field name="shipped_qty"/>
