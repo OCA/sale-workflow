@@ -285,18 +285,6 @@ class TestAmendmentCombinations(AmendmentTransactionCase):
         )
         item.amend_qty = qty
 
-    def assert_move_qty(self, product, state, qty):
-        moves = self.sale.mapped('picking_ids.move_lines').filtered(
-            lambda m: (m.product_id == product and
-                       m.state == state)
-        )
-        moves_qty = sum(moves.mapped('product_qty'))
-        if moves_qty != qty:
-            raise AssertionError(
-                "Expected %f, got %f (product: '%s', state: '%s')" %
-                (qty, moves_qty, product.display_name, state)
-            )
-
     def assert_amendment_quantities(self, amendment, product,
                                     ordered_qty=0, shipped_qty=0,
                                     canceled_qty=0, amend_qty=0):
@@ -356,6 +344,28 @@ class TestAmendmentCombinations(AmendmentTransactionCase):
         if message:
             raise AssertionError('Procurements do not match:\n\n%s' % message)
 
+    def assert_moves(self, expected_moves):
+        moves = self.sale.mapped('picking_ids.move_lines')
+        not_found = []
+        for product, qty, state in expected_moves:
+            for move in moves:
+                if ((move.product_id, move.product_qty, state) ==
+                        (product, qty, state)):
+                    moves -= move
+                    break
+            else:
+                not_found.append((product, qty, state))
+        message = ''
+        for line in moves:
+            message += ("+ product: '%s', qty: '%s', state: '%s'\n" %
+                        (line.product_id.display_name, line.product_qty,
+                         line.state))
+        for product, qty, state in not_found:
+            message += ("- product: '%s', qty: '%s', state: '%s'\n" %
+                        (product.display_name, qty, state))
+        if message:
+            raise AssertionError('Moves do not match:\n\n%s' % message)
+
     def test_ship_and_cancel_part(self):
         # We have 1000 product1
         # Ship 200 products
@@ -364,9 +374,14 @@ class TestAmendmentCombinations(AmendmentTransactionCase):
         self.split([(self.product1, 300)])
         # Cancel the 300
         self.cancel_move(self.product1, 300)
-        self.assert_move_qty(self.product1, 'done', 200)
-        self.assert_move_qty(self.product1, 'confirmed', 500)
-        self.assert_move_qty(self.product1, 'cancel', 300)
+
+        self.assert_moves([
+            (self.product1, 200, 'done'),
+            (self.product1, 500, 'confirmed'),
+            (self.product1, 300, 'cancel'),
+            (self.product2, 500, 'confirmed'),
+            (self.product3, 800, 'confirmed'),
+        ])
 
         self.assertEqual(self.sale.state, 'shipping_except')
 
@@ -397,7 +412,13 @@ class TestAmendmentCombinations(AmendmentTransactionCase):
             (self.product2, 500, 'running'),
             (self.product3, 800, 'running'),
         ])
-        # TODO assert on pickings
+        self.assert_moves([
+            (self.product1, 200, 'done'),
+            (self.product1, 800, 'cancel'),
+            (self.product1, 500, 'confirmed'),
+            (self.product2, 500, 'confirmed'),
+            (self.product3, 800, 'confirmed'),
+        ])
 
     def test_cancel_one_line(self):
         # We have 500 product2
@@ -406,7 +427,11 @@ class TestAmendmentCombinations(AmendmentTransactionCase):
 
         # Cancel the whole product2
         self.cancel_move(self.product2, 500)
-        self.assert_move_qty(self.product2, 'cancel', 500)
+        self.assert_moves([
+            (self.product1, 1000, 'confirmed'),
+            (self.product2, 500, 'cancel'),
+            (self.product3, 800, 'confirmed'),
+        ])
 
         self.assertEqual(self.sale.state, 'shipping_except')
 
@@ -433,7 +458,11 @@ class TestAmendmentCombinations(AmendmentTransactionCase):
             (self.product2, 500, 'cancel'),
             (self.product3, 800, 'running'),
         ])
-        # TODO assert on pickings
+        self.assert_moves([
+            (self.product1, 1000, 'confirmed'),
+            (self.product2, 500, 'cancel'),
+            (self.product3, 800, 'confirmed'),
+        ])
 
     def test_amend_one_line(self):
         # We have 500 product2
@@ -442,12 +471,17 @@ class TestAmendmentCombinations(AmendmentTransactionCase):
 
         # Cancel the whole product2
         self.cancel_move(self.product2, 500)
-        self.assert_move_qty(self.product2, 'cancel', 500)
+        self.assert_moves([
+            (self.product1, 1000, 'confirmed'),
+            (self.product2, 500, 'cancel'),
+            (self.product3, 800, 'confirmed'),
+        ])
 
         self.assertEqual(self.sale.state, 'shipping_except')
 
         # amend the sale order
         amendment = self.amend()
+        # amend only 100 of the 800
         self.amend_product(amendment, self.product3, 100)
 
         self.assert_amendment_quantities(amendment, self.product1,
@@ -458,7 +492,6 @@ class TestAmendmentCombinations(AmendmentTransactionCase):
                                          shipped_qty=0,
                                          canceled_qty=500,
                                          amend_qty=0)
-        # amend only 100 of the 800
         self.assert_amendment_quantities(amendment, self.product3,
                                          ordered_qty=800, amend_qty=100)
         amendment.do_amendment()
@@ -474,4 +507,9 @@ class TestAmendmentCombinations(AmendmentTransactionCase):
             (self.product3, 800, 'cancel'),
             (self.product3, 100, 'running'),
         ])
-        # TODO assert on pickings
+        self.assert_moves([
+            (self.product1, 1000, 'confirmed'),
+            (self.product2, 500, 'cancel'),
+            (self.product3, 800, 'cancel'),
+            (self.product3, 100, 'confirmed'),
+        ])
