@@ -175,13 +175,13 @@ class TestAmendmentCombinations(common.TransactionCase):
             else:
                 not_found.append((product, qty, state))
         message = ''
+        for product, qty, state in not_found:
+            message += ("- product: '%s', qty: '%s', state: '%s'\n" %
+                        (product.display_name, qty, state))
         for line in lines:
             message += ("+ product: '%s', qty: '%s', state: '%s'\n" %
                         (line.product_id.display_name, line.product_uom_qty,
                          line.state))
-        for product, qty, state in not_found:
-            message += ("- product: '%s', qty: '%s', state: '%s'\n" %
-                        (product.display_name, qty, state))
         if message:
             raise AssertionError('Sales lines do not match:\n\n%s' % message)
 
@@ -197,13 +197,13 @@ class TestAmendmentCombinations(common.TransactionCase):
             else:
                 not_found.append((product, qty, state))
         message = ''
+        for product, qty, state in not_found:
+            message += ("- product: '%s', qty: '%s', state: '%s'\n" %
+                        (product.display_name, qty, state))
         for line in procurements:
             message += ("+ product: '%s', qty: '%s', state: '%s'\n" %
                         (line.product_id.display_name, line.product_qty,
                          line.state))
-        for product, qty, state in not_found:
-            message += ("- product: '%s', qty: '%s', state: '%s'\n" %
-                        (product.display_name, qty, state))
         if message:
             raise AssertionError('Procurements do not match:\n\n%s' % message)
 
@@ -219,13 +219,13 @@ class TestAmendmentCombinations(common.TransactionCase):
             else:
                 not_found.append((product, qty, state))
         message = ''
+        for product, qty, state in not_found:
+            message += ("- product: '%s', qty: '%s', state: '%s'\n" %
+                        (product.display_name, qty, state))
         for line in moves:
             message += ("+ product: '%s', qty: '%s', state: '%s'\n" %
                         (line.product_id.display_name, line.product_qty,
                          line.state))
-        for product, qty, state in not_found:
-            message += ("- product: '%s', qty: '%s', state: '%s'\n" %
-                        (product.display_name, qty, state))
         if message:
             raise AssertionError('Moves do not match:\n\n%s' % message)
 
