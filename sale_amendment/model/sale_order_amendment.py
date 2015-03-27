@@ -205,7 +205,6 @@ class SaleOrderAmendmentItem(models.TransientModel):
                     'product_uom_qty': shipped_qty,
                     'procurement_ids': [(6, 0, proc.ids)],
                 })
-                line.button_done()
 
             if canceled_qty and shipped_qty:
                 # only keep the canceled procurement on the sale line

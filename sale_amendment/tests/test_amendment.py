@@ -270,7 +270,7 @@ class TestAmendmentCombinations(common.TransactionCase):
                                          ordered_qty=800, amend_qty=800)
         amendment.do_amendment()
         self.assert_sale_lines([
-            (self.product1, 200, 'done'),
+            (self.product1, 200, 'confirmed'),
             (self.product1, 300, 'cancel'),
             (self.product1, 500, 'confirmed'),
             (self.product2, 500, 'confirmed'),
