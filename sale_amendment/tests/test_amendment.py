@@ -168,7 +168,7 @@ class TestAmendmentCombinations(common.TransactionCase):
         not_found = []
         for product, qty, state in expected_lines:
             for line in lines:
-                if ((line.product_id, line.product_uom_qty, state) ==
+                if ((line.product_id, line.product_uom_qty, line.state) ==
                         (product, qty, state)):
                     lines -= line
                     break
@@ -190,7 +190,7 @@ class TestAmendmentCombinations(common.TransactionCase):
         not_found = []
         for product, qty, state in expected_procurements:
             for proc in procurements:
-                if ((proc.product_id, proc.product_qty, state) ==
+                if ((proc.product_id, proc.product_qty, proc.state) ==
                         (product, qty, state)):
                     procurements -= proc
                     break
@@ -212,7 +212,7 @@ class TestAmendmentCombinations(common.TransactionCase):
         not_found = []
         for product, qty, state in expected_moves:
             for move in moves:
-                if ((move.product_id, move.product_qty, state) ==
+                if ((move.product_id, move.product_qty, move.state) ==
                         (product, qty, state)):
                     moves -= move
                     break
