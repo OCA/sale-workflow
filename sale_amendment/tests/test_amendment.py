@@ -294,7 +294,7 @@ class TestAmendmentCombinations(AmendmentTransactionCase):
         if moves_qty != qty:
             raise AssertionError(
                 "Expected %f, got %f (product: '%s', state: '%s')" %
-                (qty, moves_qty, product.name, state)
+                (qty, moves_qty, product.display_name, state)
             )
 
     def assert_amendment_quantities(self, amendment, product,
@@ -311,6 +311,28 @@ class TestAmendmentCombinations(AmendmentTransactionCase):
              canceled_qty, amend_qty],
             'The quantities do not match (ordered, shipped, canceled, amended)'
         )
+
+    def assert_sale_lines(self, expected_lines):
+        lines = self.sale.order_line
+        not_found = []
+        for product, qty, state in expected_lines:
+            for line in lines:
+                if ((line.product_id, line.product_uom_qty, state) ==
+                        (product, qty, state)):
+                    lines -= line
+                    break
+            else:
+                not_found.append((product, qty, state))
+        message = ''
+        for line in lines:
+            message += ("+ product: '%s', qty: '%s', state: '%s'\n" %
+                        (line.product_id.display_name, line.product_uom_qty,
+                         line.state))
+        for product, qty, state in not_found:
+            message += ("- product: '%s', qty: '%s', state: '%s'\n" %
+                        (product.display_name, qty, state))
+        if message:
+            raise AssertionError('Sales lines do not match:\n\n%s' % message)
 
     def test_ship_and_cancel_part(self):
         # We have 1000 product1
@@ -339,6 +361,15 @@ class TestAmendmentCombinations(AmendmentTransactionCase):
         self.assert_amendment_quantities(amendment, self.product3,
                                          ordered_qty=800, amend_qty=800)
         amendment.do_amendment()
+        self.assert_sale_lines([
+            (self.product1, 200, 'done'),
+            (self.product1, 300, 'cancel'),
+            (self.product1, 500, 'confirmed'),
+            (self.product2, 500, 'confirmed'),
+            (self.product3, 800, 'confirmed'),
+        ])
+        # TODO assert on procurements
+        # TODO assert on pickings
 
     def test_cancel_one_line(self):
         # We have 500 product2
@@ -364,7 +395,13 @@ class TestAmendmentCombinations(AmendmentTransactionCase):
         self.assert_amendment_quantities(amendment, self.product3,
                                          ordered_qty=800, amend_qty=800)
         amendment.do_amendment()
-        # TODO assert on sale lines
+        self.assert_sale_lines([
+            (self.product1, 1000, 'confirmed'),
+            (self.product2, 500, 'cancel'),
+            (self.product3, 800, 'confirmed'),
+        ])
+        # TODO assert on procurements
+        # TODO assert on pickings
 
     def test_amend_one_line(self):
         # We have 500 product2
@@ -389,7 +426,15 @@ class TestAmendmentCombinations(AmendmentTransactionCase):
                                          shipped_qty=0,
                                          canceled_qty=500,
                                          amend_qty=0)
+        # amend only 100 of the 800
         self.assert_amendment_quantities(amendment, self.product3,
                                          ordered_qty=800, amend_qty=100)
         amendment.do_amendment()
-        # TODO assert on sale lines
+        self.assert_sale_lines([
+            (self.product1, 1000, 'confirmed'),
+            (self.product2, 500, 'cancel'),
+            (self.product3, 700, 'cancel'),
+            (self.product3, 100, 'confirmed'),
+        ])
+        # TODO assert on procurements
+        # TODO assert on pickings
