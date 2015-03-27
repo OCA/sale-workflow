@@ -16,6 +16,9 @@
          <xpath expr="//field[@name='order_line']/tree" position="inside">
             <field name="state"/>
          </xpath>
+         <xpath expr="//field[@name='order_line']/tree" position="attributes">
+           <attribute name="colors">grey:state == 'cancel'</attribute>
+         </xpath>
       </field>
     </record>
   </data>
