@@ -334,6 +334,28 @@ class TestAmendmentCombinations(AmendmentTransactionCase):
         if message:
             raise AssertionError('Sales lines do not match:\n\n%s' % message)
 
+    def assert_procurements(self, expected_procurements):
+        procurements = self.sale.mapped('order_line.procurement_ids')
+        not_found = []
+        for product, qty, state in expected_procurements:
+            for proc in procurements:
+                if ((proc.product_id, proc.product_qty, state) ==
+                        (product, qty, state)):
+                    procurements -= proc
+                    break
+            else:
+                not_found.append((product, qty, state))
+        message = ''
+        for line in procurements:
+            message += ("+ product: '%s', qty: '%s', state: '%s'\n" %
+                        (line.product_id.display_name, line.product_qty,
+                         line.state))
+        for product, qty, state in not_found:
+            message += ("- product: '%s', qty: '%s', state: '%s'\n" %
+                        (product.display_name, qty, state))
+        if message:
+            raise AssertionError('Procurements do not match:\n\n%s' % message)
+
     def test_ship_and_cancel_part(self):
         # We have 1000 product1
         # Ship 200 products
@@ -368,7 +390,13 @@ class TestAmendmentCombinations(AmendmentTransactionCase):
             (self.product2, 500, 'confirmed'),
             (self.product3, 800, 'confirmed'),
         ])
-        # TODO assert on procurements
+        self.assert_procurements([
+            (self.product1, 200, 'done'),
+            (self.product1, 800, 'cancel'),
+            (self.product1, 500, 'running'),
+            (self.product2, 500, 'running'),
+            (self.product3, 800, 'running'),
+        ])
         # TODO assert on pickings
 
     def test_cancel_one_line(self):
@@ -400,7 +428,11 @@ class TestAmendmentCombinations(AmendmentTransactionCase):
             (self.product2, 500, 'cancel'),
             (self.product3, 800, 'confirmed'),
         ])
-        # TODO assert on procurements
+        self.assert_procurements([
+            (self.product1, 1000, 'running'),
+            (self.product2, 500, 'cancel'),
+            (self.product3, 800, 'running'),
+        ])
         # TODO assert on pickings
 
     def test_amend_one_line(self):
@@ -436,5 +468,10 @@ class TestAmendmentCombinations(AmendmentTransactionCase):
             (self.product3, 700, 'cancel'),
             (self.product3, 100, 'confirmed'),
         ])
-        # TODO assert on procurements
+        self.assert_procurements([
+            (self.product1, 1000, 'running'),
+            (self.product2, 500, 'cancel'),
+            (self.product3, 800, 'cancel'),
+            (self.product3, 100, 'running'),
+        ])
         # TODO assert on pickings
