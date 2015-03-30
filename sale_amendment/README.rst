@@ -15,7 +15,7 @@ if you are only interested in the solution.
 
 Common situations faced in real life by end users:
 
-1) the Customer wants to decrease the quantity to be shipped for an ordered
+1. the Customer wants to decrease the quantity to be shipped for an ordered
    product.
 
    There is a remaining quantity to be shipped and the customer wants less than
@@ -37,7 +37,7 @@ Common situations faced in real life by end users:
    delivery and even worse: if you cancel a sale order line on a draft sale
    order, and then confirm the order, the line gets to confirmed...
 
-2) the Customer wants to increase the quantity to be shipped of an ordered
+2. the Customer wants to increase the quantity to be shipped of an ordered
    product.
 
    There is a remaining quantity to be shipped and the customer wants more of the
@@ -49,7 +49,7 @@ Common situations faced in real life by end users:
    make a new sale order (and purchase order for MTO / drop shipment). That's
    not really good but it works.
 
-3) the Customer wants to cancel the remaining quantity of a product
+3. the Customer wants to cancel the remaining quantity of a product
 
    There is a remaining quantity to be shipped and the customer wants to cancel
    it. The only way to go is to is to cancel all remaining, and regenerate (and
@@ -64,7 +64,7 @@ Common situations faced in real life by end users:
    Problems with this solution: the historical values are lost. They can be
    logged in the chatter, but this is not ideal.
 
-4) the Customer wants to cancel a whole line of a product, not yet shipped
+4. the Customer wants to cancel a whole line of a product, not yet shipped
 
    On the sale order, some lines have already been shipped, there are still
    some lines to ship.
@@ -77,7 +77,7 @@ Common situations faced in real life by end users:
    be cancelled is the only remaining line to be delivered, it is possible to
    cancel it like in point 3 above.
 
-5) the Customer wants to cancel a sale order, no yet shipped
+5. the Customer wants to cancel a sale order, no yet shipped
 
    This one works:
 
@@ -86,17 +86,17 @@ Common situations faced in real life by end users:
    * Cancel the purchase order
    * Cancel the sale order
 
-6) the Customer wants to add a new product in an existing confirmed sale order
+6. the Customer wants to add a new product in an existing confirmed sale order
 
    Create a new sale order :)
 
 
 Conclusion
 
- * 5) and 6) are ok
- * 1) and 2)) are ok, but tedious
- * 3) is tedious if there are no other products, but otherwise, it's like 4)...
- * 4) it may work, but is really error prone
+* `5.` and `6.` are ok
+* `1.` and `2.` are ok, but tedious
+* `3.` is tedious if there are no other products, but otherwise, it's like `4.`...
+* `4.` it may work, but is really error prone
 
 The solution proposed by Sale Amendment / Purchase Amendment does not bypass
 any of the system process, but provides some automation so that the process
@@ -178,6 +178,7 @@ Contributors
 
 * Joel Grand-Guillaume <joel.grandguillaume@camptocamp.com>
 * Alexandre Fayolle <alexandre.fayolle@camptocamp.com>
+* Guewen Baconnier <guewen.baconnier@camptocamp.com>
 
 Maintainer
 ----------
