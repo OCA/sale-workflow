@@ -19,6 +19,7 @@
 #
 #
 
+from openerp import exceptions
 from openerp.tests import common
 
 
@@ -584,3 +585,28 @@ class TestAmendmentCombinations(common.TransactionCase):
             (self.product2, 250, 'cancel'),
             (self.product3, 800, 'confirmed'),
         ])
+
+    def test_amend_quantity(self):
+        # Ship 200 product1
+        self.ship([(self.product1, 200),
+                   (self.product2, 0),
+                   (self.product3, 0),
+                   ])
+        # 800 products remain
+        # Split 100 of product1 in another picking and cancel them
+        self.split([(self.product1, 100)])
+        self.cancel_move(self.product1, 100)
+
+        # amend the sale order
+        amendment = self.amend()
+        with self.assertRaises(exceptions.ValidationError):
+            # below min quantity (700, because on the 1000 ordered, 200
+            # have been shipped)
+            self.amend_product(amendment, self.product1, 699)
+        with self.assertRaises(exceptions.ValidationError):
+            # above max quantity (800, because on the 1000 ordered, 200
+            # have been shipped)
+            self.amend_product(amendment, self.product1, 801)
+        # between bounds
+        self.amend_product(amendment, self.product1, 700)
+        self.amend_product(amendment, self.product1, 800)
