@@ -491,3 +491,96 @@ class TestAmendmentCombinations(common.TransactionCase):
             (self.product2, 500, 'confirmed'),
             (self.product3, 800, 'confirmed'),
         ])
+
+    def test_amend_repeat(self):
+        # We have 500 product2
+        # Split product2 in another picking
+        self.split([(self.product2, 300)])
+        # Cancel the 300 product2
+        self.cancel_move(self.product2, 300)
+        self.assertEqual(self.sale.state, 'shipping_except')
+        # amend the sale order
+        amendment = self.amend()
+        # amend 350 of the 300 canceled
+        self.amend_product(amendment, self.product2, 350)
+        amendment.do_amendment()
+        self.assert_sale_lines([
+            (self.product1, 1000, 'confirmed'),
+            (self.product2, 150, 'cancel'),
+            (self.product2, 350, 'confirmed'),
+            (self.product3, 800, 'confirmed'),
+        ])
+        self.assert_procurements([
+            (self.product1, 1000, 'running'),
+            (self.product2, 300, 'cancel'),
+            (self.product2, 350, 'running'),
+            (self.product3, 800, 'running'),
+        ])
+        self.assert_moves([
+            (self.product1, 1000, 'confirmed'),
+            (self.product2, 200, 'cancel'),
+            (self.product2, 300, 'cancel'),
+            (self.product2, 350, 'confirmed'),
+            (self.product3, 800, 'confirmed'),
+        ])
+
+        # second round
+        # Cancel the 350 product2
+        self.cancel_move(self.product2, 350)
+        self.assertEqual(self.sale.state, 'shipping_except')
+        amendment = self.amend()
+        # amend 250 of the 350 canceled
+        self.amend_product(amendment, self.product2, 250)
+        amendment.do_amendment()
+        self.assert_sale_lines([
+            (self.product1, 1000, 'confirmed'),
+            (self.product2, 150, 'cancel'),
+            (self.product2, 100, 'cancel'),
+            (self.product2, 250, 'confirmed'),
+            (self.product3, 800, 'confirmed'),
+        ])
+        self.assert_procurements([
+            (self.product1, 1000, 'running'),
+            (self.product2, 300, 'cancel'),
+            (self.product2, 350, 'cancel'),
+            (self.product2, 250, 'running'),
+            (self.product3, 800, 'running'),
+        ])
+        self.assert_moves([
+            (self.product1, 1000, 'confirmed'),
+            (self.product2, 200, 'cancel'),
+            (self.product2, 300, 'cancel'),
+            (self.product2, 350, 'cancel'),
+            (self.product2, 250, 'confirmed'),
+            (self.product3, 800, 'confirmed'),
+        ])
+
+        # final round
+        self.cancel_move(self.product2, 250)
+        self.assertEqual(self.sale.state, 'shipping_except')
+        amendment = self.amend()
+        # keep cancelling 250 of the 250 canceled
+        self.amend_product(amendment, self.product2, 0)
+        amendment.do_amendment()
+        self.assert_sale_lines([
+            (self.product1, 1000, 'confirmed'),
+            (self.product2, 150, 'cancel'),
+            (self.product2, 100, 'cancel'),
+            (self.product2, 250, 'cancel'),
+            (self.product3, 800, 'confirmed'),
+        ])
+        self.assert_procurements([
+            (self.product1, 1000, 'running'),
+            (self.product2, 300, 'cancel'),
+            (self.product2, 350, 'cancel'),
+            (self.product2, 250, 'cancel'),
+            (self.product3, 800, 'running'),
+        ])
+        self.assert_moves([
+            (self.product1, 1000, 'confirmed'),
+            (self.product2, 200, 'cancel'),
+            (self.product2, 300, 'cancel'),
+            (self.product2, 350, 'cancel'),
+            (self.product2, 250, 'cancel'),
+            (self.product3, 800, 'confirmed'),
+        ])
