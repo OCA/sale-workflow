@@ -198,12 +198,12 @@ class SaleOrderAmendmentItem(models.TransientModel):
 
             procurements = line.procurement_ids
             if shipped_qty:
-                # update the current line with the shipped qty,
-                # the rest will be either canceled either amended
-                line.product_uom_qty = shipped_qty
                 # only keep the done procurement on the sale line
                 proc = procurements.filtered(lambda p: p.state == 'done')
                 procurements -= proc
+                # update the current line with the shipped qty,
+                # the rest will be either canceled either amended,
+                # either both
                 line.write({
                     'product_uom_qty': shipped_qty,
                     'procurement_ids': [(6, 0, proc.ids)],
@@ -248,9 +248,11 @@ class SaleOrderAmendmentItem(models.TransientModel):
                 amend_line.button_confirm()
                 for proc in amend_line.procurement_ids:
                     if proc.state == 'confirmed':
-                        # create the move and change to 'running'
+                        # if a new procurement has been created,
+                        # create the move and change it to 'running'
                         proc.run()
 
         sale = self.mapped('sale_line_id.order_id')
+        # Update the pickings according to the new procurements
         sale.signal_workflow('ship_recreate')
         return True
