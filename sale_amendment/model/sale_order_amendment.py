@@ -19,9 +19,10 @@
 #
 #
 
+from functools import partial
 import openerp.addons.decimal_precision as dp
 from openerp import models, fields, api, exceptions, _
-from openerp.tools import html2plaintext
+from openerp.tools import html2plaintext, float_compare
 
 
 class SaleOrderAmendment(models.TransientModel):
@@ -155,7 +156,10 @@ class SaleOrderAmendmentItem(models.TransientModel):
     def _constrains_amend_qty(self):
         max_qty = self.ordered_qty - self.shipped_qty
         min_qty = self.ordered_qty - self.shipped_qty - self.canceled_qty
-        if not min_qty <= self.amend_qty <= max_qty:
+        rounding = self.sale_line_id.product_id.uom_id.rounding
+        compare = partial(float_compare, precision_digits=rounding)
+        if (compare(min_qty, self.amend_qty) == 1 or
+                compare(self.amend_qty, max_qty) == 1):
             raise exceptions.ValidationError(
                 _('The amended quantity for the product "%s" must be '
                   'between the canceled quantity of %0.2f and the ordered '
@@ -179,19 +183,25 @@ class SaleOrderAmendmentItem(models.TransientModel):
             amend_qty = item.amend_qty
             shipped_qty = item.shipped_qty
             ordered_qty = item.ordered_qty
+            rounding = line.product_id.uom_id.rounding
             # the total canceled may be different than the one displayed
             # to the user, because the one displayed is the quantity
             # canceled in the *pickings*, here it includes also the
             # quantity removed when amending
+            compare = partial(float_compare, precision_digits=rounding)
             canceled_qty = ordered_qty - shipped_qty - amend_qty
-            if canceled_qty < 0:
+            if compare(canceled_qty, 0) == -1:  # Means: canceled_qty < 0
                 canceled_qty = 0
 
-            if not (shipped_qty or canceled_qty) and amend_qty == ordered_qty:
+            if (not (shipped_qty or canceled_qty) and
+                    compare(amend_qty, ordered_qty) == 0):
+                # Means: amend_qty == ordered_qty
                 # the line is not changed
                 continue
 
-            if not canceled_qty and shipped_qty + amend_qty == ordered_qty:
+            if (not canceled_qty and
+                    compare(shipped_qty + amend_qty, ordered_qty) == 0):
+                # Means: shipped_qty + amend_qty == ordered_qty
                 # part has been shipped but there is no reason to split
                 # the lines
                 continue
@@ -238,7 +248,8 @@ class SaleOrderAmendmentItem(models.TransientModel):
                 original_amend_qty = (ordered_qty -
                                       shipped_qty -
                                       item.canceled_qty)
-                if amend_qty != original_amend_qty:
+                if compare(amend_qty, original_amend_qty) != 0:
+                    # Means: amend_qty != original_amend_qty
                     # We need to change the quantity of the move
                     # A new procurement will be generated for the line
                     procurements.cancel()
