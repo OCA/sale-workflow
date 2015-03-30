@@ -375,7 +375,6 @@ class TestAmendmentCombinations(common.TransactionCase):
         self.assert_procurements([
             (self.product1, 1000, 'running'),
             (self.product2, 500, 'cancel'),
-            (self.product3, 800, 'cancel'),
             (self.product3, 100, 'running'),
         ])
         self.assert_moves([
@@ -383,4 +382,53 @@ class TestAmendmentCombinations(common.TransactionCase):
             (self.product2, 500, 'cancel'),
             (self.product3, 800, 'cancel'),
             (self.product3, 100, 'confirmed'),
+        ])
+
+    def test_amend_half(self):
+        # Split 100 of product1 in another picking
+        self.split([(self.product1, 100)])
+
+        # Cancel the 100 product1
+        self.cancel_move(self.product1, 100)
+        self.assert_moves([
+            (self.product1, 900, 'confirmed'),
+            (self.product1, 100, 'cancel'),
+            (self.product2, 500, 'confirmed'),
+            (self.product3, 800, 'confirmed'),
+        ])
+
+        self.assertEqual(self.sale.state, 'shipping_except')
+
+        # amend the sale order
+        amendment = self.amend()
+        # revert the canceled product1 by half, put 950
+        self.amend_product(amendment, self.product1, 950)
+
+        self.assert_amendment_quantities(amendment, self.product1,
+                                         ordered_qty=1000,
+                                         canceled_qty=100,
+                                         amend_qty=950)
+        self.assert_amendment_quantities(amendment, self.product2,
+                                         ordered_qty=500, amend_qty=500)
+        self.assert_amendment_quantities(amendment, self.product3,
+                                         ordered_qty=800, amend_qty=800)
+        amendment.do_amendment()
+        self.assert_sale_lines([
+            (self.product1, 50, 'cancel'),
+            (self.product1, 950, 'confirmed'),
+            (self.product2, 500, 'confirmed'),
+            (self.product3, 800, 'confirmed'),
+        ])
+        self.assert_procurements([
+            (self.product1, 100, 'cancel'),
+            (self.product1, 950, 'running'),
+            (self.product2, 500, 'running'),
+            (self.product3, 800, 'running'),
+        ])
+        self.assert_moves([
+            (self.product1, 100, 'cancel'),
+            (self.product1, 900, 'cancel'),
+            (self.product1, 950, 'confirmed'),
+            (self.product2, 500, 'confirmed'),
+            (self.product3, 800, 'confirmed'),
         ])

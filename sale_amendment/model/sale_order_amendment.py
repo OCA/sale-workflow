@@ -136,6 +136,7 @@ class SaleOrderAmendmentItem(models.TransientModel):
                                    ondelete='cascade',
                                    readonly=True)
     sale_line_id = fields.Many2one(comodel_name='sale.order.line',
+                                   string="Line",
                                    required=True,
                                    readonly=True)
     ordered_qty = fields.Float(related='sale_line_id.product_uom_qty')
@@ -206,23 +207,41 @@ class SaleOrderAmendmentItem(models.TransientModel):
                     'procurement_ids': [(6, 0, proc.ids)],
                 })
 
-            if canceled_qty and shipped_qty:
+            if canceled_qty:
                 # only keep the canceled procurement on the sale line
                 proc = procurements.filtered(lambda p: p.state == 'cancel')
                 procurements -= proc
-                values = {'product_uom_qty': canceled_qty,
-                          'procurement_ids': [(6, 0, proc.ids)]}
-                canceled_line = line.copy(default=values)
-                canceled_line.button_cancel()
-            elif canceled_qty:
-                line.product_uom_qty = canceled_qty
-                line.procurement_ids.cancel()
-                procurements -= line.procurement_ids
-                line.button_cancel()
+                if shipped_qty:
+                    # current line kept for the shipped quantity so
+                    # create a new one
+                    values = {'product_uom_qty': canceled_qty,
+                              'procurement_ids': [(6, 0, proc.ids)]}
+                    canceled_line = line.copy(default=values)
+                    canceled_line.button_cancel()
+                else:
+                    # cancel the current line
+                    proc.cancel()
+                    line.write({
+                        'product_uom_qty': canceled_qty,
+                        'procurement_ids': [(6, 0, proc.ids)],
+                    })
+                    line.button_cancel()
 
             if amend_qty:
+                # link the new line with the remaining procurements
+                # (not done nor canceled)
                 values = {'product_uom_qty': amend_qty,
                           'procurement_ids': [(6, 0, procurements.ids)]}
+
+                original_amend_qty = (ordered_qty -
+                                      shipped_qty -
+                                      item.canceled_qty)
+                if amend_qty != original_amend_qty:
+                    # We need to change the quantity of the move
+                    # A new procurement will be generated for the line
+                    procurements.cancel()
+                    values['procurement_ids'] = False
+
                 amend_line = line.copy(default=values)
                 amend_line.button_confirm()
                 for proc in amend_line.procurement_ids:
