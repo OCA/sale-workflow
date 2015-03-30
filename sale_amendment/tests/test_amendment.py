@@ -335,55 +335,6 @@ class TestAmendmentCombinations(common.TransactionCase):
             (self.product3, 800, 'confirmed'),
         ])
 
-    def test_amend_one_line(self):
-        # We have 500 product2
-        # Split product2 in another picking
-        self.split([(self.product2, 500)])
-
-        # Cancel the whole product2
-        self.cancel_move(self.product2, 500)
-        self.assert_moves([
-            (self.product1, 1000, 'confirmed'),
-            (self.product2, 500, 'cancel'),
-            (self.product3, 800, 'confirmed'),
-        ])
-
-        self.assertEqual(self.sale.state, 'shipping_except')
-
-        # amend the sale order
-        amendment = self.amend()
-        # amend only 100 of the 800
-        self.amend_product(amendment, self.product3, 100)
-
-        self.assert_amendment_quantities(amendment, self.product1,
-                                         ordered_qty=1000,
-                                         amend_qty=1000)
-        self.assert_amendment_quantities(amendment, self.product2,
-                                         ordered_qty=500,
-                                         shipped_qty=0,
-                                         canceled_qty=500,
-                                         amend_qty=0)
-        self.assert_amendment_quantities(amendment, self.product3,
-                                         ordered_qty=800, amend_qty=100)
-        amendment.do_amendment()
-        self.assert_sale_lines([
-            (self.product1, 1000, 'confirmed'),
-            (self.product2, 500, 'cancel'),
-            (self.product3, 700, 'cancel'),
-            (self.product3, 100, 'confirmed'),
-        ])
-        self.assert_procurements([
-            (self.product1, 1000, 'running'),
-            (self.product2, 500, 'cancel'),
-            (self.product3, 100, 'running'),
-        ])
-        self.assert_moves([
-            (self.product1, 1000, 'confirmed'),
-            (self.product2, 500, 'cancel'),
-            (self.product3, 800, 'cancel'),
-            (self.product3, 100, 'confirmed'),
-        ])
-
     def test_amend_half(self):
         # Split 100 of product1 in another picking
         self.split([(self.product1, 100)])

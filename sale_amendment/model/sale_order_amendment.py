@@ -154,11 +154,13 @@ class SaleOrderAmendmentItem(models.TransientModel):
     @api.constrains('amend_qty')
     def _constrains_amend_qty(self):
         max_qty = self.ordered_qty - self.shipped_qty
-        if self.amend_qty > max_qty:
+        min_qty = self.ordered_qty - self.shipped_qty - self.canceled_qty
+        if not min_qty <= self.amend_qty <= max_qty:
             raise exceptions.ValidationError(
-                _('The quantity cannot be larger than the original ordered '
-                  'quantity for the product %s (maximum: %0.2f).') %
-                (self.sale_line_id.name, max_qty)
+                _('The amended quantity for the product "%s" must be '
+                  'between the canceled quantity of %0.2f and the ordered '
+                  'quantity of %0.2f.') % (self.sale_line_id.name,
+                                           min_qty, max_qty)
             )
 
     @api.multi
