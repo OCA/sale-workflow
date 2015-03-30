@@ -21,5 +21,17 @@
          </xpath>
       </field>
     </record>
+
+    <record id="action_order_line_grouped_tree" model="ir.actions.act_window">
+      <field name="context">{'group_by': ['state', 'order_id']}</field>
+      <field name="name">Sales Order Lines by State</field>
+      <field name="res_model">sale.order.line</field>
+      <field name="view_id" ref="sale.view_order_line_tree"/>
+    </record>
+
+    <menuitem action="action_order_line_grouped_tree"
+      id="menu_sale_order_line"
+      parent="base.menu_sales" sequence="10"
+      groups="base.group_sale_salesman,base.group_sale_manager"/>
   </data>
 </openerp>
