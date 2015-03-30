@@ -97,7 +97,7 @@ class SaleOrderAmendment(models.TransientModel):
         message += '</ul>'
         # if the html field is touched, it may return '<br/>' or
         # '<p></p>' so check if it contains text at all
-        if html2plaintext(self.reason).strip():
+        if self.reason and html2plaintext(self.reason).strip():
             title = _('Reason for amending')
             message += "<h3>%s</h3><p>%s</p>" % (title, self.reason)
         return message
