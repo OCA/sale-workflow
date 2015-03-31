@@ -156,7 +156,7 @@ class SaleOrderAmendmentItem(models.TransientModel):
     def _constrains_amend_qty(self):
         max_qty = self.ordered_qty - self.shipped_qty
         min_qty = self.ordered_qty - self.shipped_qty - self.canceled_qty
-        rounding = self.sale_line_id.product_id.uom_id.rounding
+        rounding = self.product_uom_id.rounding
         compare = partial(float_compare, precision_digits=rounding)
         if (compare(min_qty, self.amend_qty) == 1 or
                 compare(self.amend_qty, max_qty) == 1):
@@ -183,7 +183,7 @@ class SaleOrderAmendmentItem(models.TransientModel):
             amend_qty = item.amend_qty
             shipped_qty = item.shipped_qty
             ordered_qty = item.ordered_qty
-            rounding = line.product_id.uom_id.rounding
+            rounding = item.product_uom_id.rounding
             # the total canceled may be different than the one displayed
             # to the user, because the one displayed is the quantity
             # canceled in the *pickings*, here it includes also the
