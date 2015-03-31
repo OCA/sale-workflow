@@ -1,0 +1,8 @@
+<?xml version="1.0" ?>
+<openerp>
+    <data>
+        <record id="group_sale_reviser" model="res.groups">
+            <field name="name">Sale Reviser</field>
+        </record>
+    </data>
+</openerp>

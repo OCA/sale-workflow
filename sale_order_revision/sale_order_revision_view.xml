@@ -1,0 +1,39 @@
+<?xml version="1.0" ?>
+<openerp>
+    <data>
+
+        <record id="sale_order_revision_form_view" model="ir.ui.view">
+            <field name="name">sale.order.revision.form.view</field>
+            <field name="model">sale.order</field>
+            <field name="inherit_id" ref="sale.view_order_form"/>
+            <field name="type">form</field>
+            <field name="arch" type="xml">
+                <xpath expr="//button[@name='cancel']" position="before">
+                    <button name="create_revision"
+                            type="object"
+                            attrs="{'invisible': [('revised', '=', True)]}"
+                            groups="sale_order_revision.group_sale_reviser"
+                            string="Review"/>
+                </xpath>
+                <xpath expr="//sheet/group" position="after">
+                    <group>
+                        <group>
+                            <field name="revision_of"/>
+                        </group>
+                        <group>
+                            <field name="revised_by"/>
+                            <!--Required for the condition on the button-->
+                            <field name="revised" invisible="1"/>
+                        </group>
+                    </group>
+                </xpath>
+                <xpath expr="//page[@string='Other Information']/group" position="after">
+                    <group>
+                        <field name="number_revisions"/>
+                        <field name="revision_original_id"/>
+                    </group>
+                </xpath>
+            </field>
+        </record>
+    </data>
+</openerp>
