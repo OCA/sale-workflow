@@ -22,7 +22,7 @@
 
 {
     'name': 'Sale Order Revision',
-    'version': '1.0',
+    'version': '1.1',
     'author': 'Savoir-faire Linux',
     'maintainer': 'Savoir-faire Linux',
     'website': 'http://www.savoirfairelinux.com',
@@ -36,6 +36,7 @@
         'python': [],
     },
     'data': [
+        'sale_order_revision_data.xml',
         'sale_order_revision_view.xml',
     ],
     'installable': True,

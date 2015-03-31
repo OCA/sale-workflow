@@ -43,13 +43,16 @@ No configuration required.
 Usage
 =====
 
-* Add a new button to revise a sale order depending on its status.
+* Click the new button to revise a sale order
+The button appears only to member to group Sale Reviser and depending on its status.
+
 * When a user revises a sale order:
 
  - the revised sale.order is duplicated
  - the new sale order has a link to the original sale order
  - the revised sale order is set to cancel status
  - the revised sale order has a link to the new sale order
+
 
 Credits
 =======

@@ -12,8 +12,7 @@
                     <button name="create_revision"
                             type="object"
                             attrs="{'invisible': [('revised', '=', True)]}"
-                            groups="base.group_user"
-                            states=""
+                            groups="sale_order_revision.group_sale_reviser"
                             string="Review"/>
                 </xpath>
                 <xpath expr="//sheet/group" position="after">

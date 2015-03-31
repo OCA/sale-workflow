@@ -19,13 +19,11 @@
 #
 
 import logging
-
-_logger = logging.getLogger(__name__)
-logging.basicConfig()
-_logger.setLevel(logging.DEBUG)
-
 from openerp.osv import fields, orm
 from openerp.tools.translate import _
+
+_logger = logging.getLogger(__name__)
+
 
 
 class sale_order_revision(orm.Model):
@@ -35,15 +33,21 @@ class sale_order_revision(orm.Model):
     _columns = {
         'revision_of': fields.many2one(_inherit, 'Revision of', readonly=True),
         'revised_by': fields.many2one(_inherit, 'Revised by', readonly=True),
-        # This could have been a test like bool(record.revision), but I prefered to
-        # store the value in the database, it will be faster and not so footprint heavy
+        # This could have been a test like bool(record.revision),
+        # but I prefered to store the value in the database,
+        # it will be faster and not so footprint heavy
         'revised': fields.boolean('status', readonly=True),
-        'revision_original_id': fields.many2one(_inherit, 'Original Sale Order', readonly=True),
-        'number_revisions': fields.integer('Number of Revisions', readonly=True)
+        'revision_original_id': fields.many2one(
+            _inherit, 'Original Sale Order', readonly=True
+        ),
+        'number_revisions': fields.integer(
+            'Number of Revisions', readonly=True
+        )
     }
 
     def create_revision(self, cr, uid, id_, default=None, context=None):
-        """ Create a copy of the current record and add data to link the two records.
+        """ Create a copy of the current record and add data
+        to link the two records.
 
         :return: View descriptor
         """
@@ -55,13 +59,15 @@ class sale_order_revision(orm.Model):
         current_record = records.browse(cr, uid, id_)
 
         # Regular copy
-        new_record_id = self.copy(cr, uid, id_, default=default, context=context)
+        new_record_id = self.copy(
+            cr, uid, id_, default=default, context=context
+        )
         new_record = records.browse(cr, uid, new_record_id)
         new_record.write({
             'revision_of': current_record.id,
             'revised_by': None,
             'revised': False,
-            })
+        })
 
         revisions = track_revisions(
             cr, uid,
@@ -69,7 +75,7 @@ class sale_order_revision(orm.Model):
             records,
             []
         )
-        #Cancel the record and all its lines
+        # Cancel the record and all its lines
         self.action_cancel(cr, uid, id_, context)
 
         _logger.debug('Revisions: {}'.format(revisions))
@@ -86,10 +92,11 @@ class sale_order_revision(orm.Model):
             'revised_by': new_record_id
         })
 
-
         # redisplay the record as a sales order
         # code extracted from sale/sale.py (action_button_confirm method)
-        view_ref = self.pool.get('ir.model.data').get_object_reference(cr, uid, 'sale', 'view_order_form')
+        view_ref = self.pool.get('ir.model.data').get_object_reference(
+            cr, uid, 'sale', 'view_order_form'
+        )
         view_id = view_ref and view_ref[1] or False,
 
         return {
@@ -102,7 +109,8 @@ class sale_order_revision(orm.Model):
             'nodestroy': True,
             'res_id': new_record_id,
             'target': 'current',
-            }
+        }
+
 
 def track_revisions(cr, uid, record, registry, revisions):
     """ recursively track previous revisions of a given record.
