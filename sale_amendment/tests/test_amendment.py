@@ -61,10 +61,10 @@ class TestAmendmentCombinations(common.TransactionCase):
 
     def _search_picking_by_product(self, product, qty):
         return self.sale.picking_ids.filtered(
-            lambda p: (move.product_id == product and
-                       move.product_qty >= qty and
-                       move.state in ('confirmed', 'assigned')
-                       for move in p.move_lines)
+            lambda p: any(move.product_id == product and
+                          move.product_qty >= qty and
+                          move.state in ('confirmed', 'assigned')
+                          for move in p.move_lines)
         )[0]
 
     def ship(self, products):
