@@ -26,7 +26,7 @@
     'author': 'Jean-Philippe Jobin',
     'maintainer': 'Savoir-faire Linux',
     'website': ' http://www.savoirfairelinux.com',
-    'license': '',
+    'license': 'AGPL-3',
     'category': 'Sales',
     'summary': 'Reason to export in Sales Order',
     'depends': [

@@ -12,6 +12,7 @@
                         <group>
                             <field name="reason_to_export_id"/>
                         </group>
+                        <!-- Need an empty group so that the reason_to_export_id field width does not stretch to the whole page -->
                         <group></group>
                     </group>
                 </group>
