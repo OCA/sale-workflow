@@ -7,7 +7,6 @@
       <field name="arch" type="xml">
         <form string="Amendment Details">
           <field name="sale_id" invisible="True"/>
-          <label string=""/>
           <p class="oe_grey">
             Amendments are proposed based on the delivery moves.<br/>
             Amendments are possible only for canceled moves.<br/>

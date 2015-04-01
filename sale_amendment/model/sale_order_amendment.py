@@ -234,7 +234,6 @@ class SaleOrderAmendmentItem(models.TransientModel):
                     canceled_line.button_cancel()
                 else:
                     # cancel the current line
-                    proc.cancel()
                     line.write({
                         'product_uom_qty': canceled_qty,
                         'procurement_ids': [(6, 0, proc.ids)],
