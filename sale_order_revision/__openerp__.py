@@ -23,27 +23,20 @@
     'name': "Sale order revisions",
     'version': '8.0.0.1.0',
     'category': 'Sale Management',
-    'description': """
-Revisions for sale orders (and requests for quotation)
-==========================================================
-
-On canceled orders, you can click on 'new revision' and the 'old revisions'
-tab of the just created request for quotation will contain all the old
-(canceled orders) revisions.
-So that you can track every change you made to your requests for quotation and
-sale orders.
-""",
-    'author': 'Agile Business Group',
+    'author': 'Agile Business Group,'
+              'Camptocamp,'
+              'Akretion,'
+              'Odoo Community Association (OCA)',
     'website': 'http://www.agilebg.com',
     'license': 'AGPL-3',
     "depends": ['sale'],
     "data": [
-        'sale_view.xml',
+        'view/sale_order.xml',
         ],
-    "demo": [],
     "test": [
         'test/sale_order.yml',
         ],
     "active": False,
-    "installable": True
+    "installable": True,
+    "post_init_hook": 'populate_unrevisioned_name',
 }
