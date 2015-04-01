@@ -193,7 +193,10 @@ class SaleOrderAmendmentItem(models.TransientModel):
             compare = partial(float_compare, precision_digits=rounding)
             canceled_qty = ordered_qty - shipped_qty - amend_qty
             if compare(canceled_qty, 0) == -1:  # Means: canceled_qty < 0
-                canceled_qty = 0
+                # The amended quantity is bigger than ordered qty
+                # Cancel the ordered quantity, create a new line for the
+                # amendment
+                canceled_qty = ordered_qty - shipped_qty
 
             if (not (shipped_qty or canceled_qty) and
                     compare(amend_qty, ordered_qty) == 0):
