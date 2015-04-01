@@ -47,19 +47,21 @@ class sale_order(orm.Model):
             cr, uid, 'sale.order') or '/'
         old_seq = so.name
         so.write({'name': new_seq}, context=context)
+        defaults = {'name': old_seq,
+                    'state': 'cancel',
+                    'shipped': False,
+                    'invoiced': False,
+                    'invoice_ids': [],
+                    'picking_ids': [],
+                    'old_revision_ids': [],
+                    'current_revision_id': so.id,
+                    }
         # 'orm.Model.copy' is called instead of 'self.copy' in order to avoid
         # 'sale.order' method to overwrite our values, like name and state
-        orm.Model.copy(self, cr, uid, so.id, default={
-            'name': old_seq,
-            'state': 'cancel',
-            'shipped': False,
-            'invoiced': False,
-            'invoice_ids': [],
-            'picking_ids': [],
-            'old_revision_ids': [],
-            'current_revision_id': so.id,
-            }, context=None)
-        self.write(cr, uid, ids, {'state':'draft','shipped':0})
+        orm.Model.copy(self, cr, uid, so.id, default=defaults, context=None)
+        self.write(cr, uid, ids,
+                   {'state':'draft', 'shipped':0},
+                   context=context)
         wf_service = netsvc.LocalService("workflow")
         wf_service.trg_delete(uid, 'sale.order', ids[0], cr)
         wf_service.trg_create(uid, 'sale.order', ids[0], cr)
