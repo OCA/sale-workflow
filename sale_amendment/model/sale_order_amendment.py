@@ -225,19 +225,16 @@ class SaleOrderAmendmentItem(models.TransientModel):
                 # only keep the canceled procurement on the sale line
                 proc = procurements.filtered(lambda p: p.state == 'cancel')
                 procurements -= proc
+                values = {'product_uom_qty': canceled_qty,
+                          'procurement_ids': [(6, 0, proc.ids)]}
                 if shipped_qty:
                     # current line kept for the shipped quantity so
                     # create a new one
-                    values = {'product_uom_qty': canceled_qty,
-                              'procurement_ids': [(6, 0, proc.ids)]}
                     canceled_line = line.copy(default=values)
                     canceled_line.button_cancel()
                 else:
                     # cancel the current line
-                    line.write({
-                        'product_uom_qty': canceled_qty,
-                        'procurement_ids': [(6, 0, proc.ids)],
-                    })
+                    line.write(values)
                     line.button_cancel()
 
             if amend_qty:
