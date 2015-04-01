@@ -16,5 +16,9 @@
 -
    !python {model: sale.order}: |
      action = self.copy_quotation(cr, uid, [ref('sale_order_1')])
+     assert action['res_id'] == ref('sale_order_1')
      new_so = self.browse(cr, uid, ref('sale_order_1'))
      assert new_so.old_revision_ids, "Old revisions not set"
+     assert all(so.active == False for so in new_so.old_revision_ids)
+     assert new_so.revision_number == 1
+     assert new_so.name.endswith('-01')
