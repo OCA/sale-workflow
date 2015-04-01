@@ -19,20 +19,4 @@
 #
 ##############################################################################
 
-{
-    'name': "Sale order revisions",
-    'version': '0.1',
-    'category': 'Sale Management',
-    'author': 'Agile Business Group, Odoo Community Association (OCA)',
-    'website': 'http://www.agilebg.com',
-    'license': 'AGPL-3',
-    "depends": ['sale'],
-    "data": [
-        'view/sale_order.xml',
-        ],
-    "test": [
-        'test/sale_order.yml',
-        ],
-    "active": False,
-    "installable": True
-}
+from . import sale_order
