@@ -21,30 +21,24 @@
 #
 ##############################################################################
 
-from openerp import netsvc
-from openerp.osv import fields, orm
+from openerp import fields, models, api
 from openerp.tools.translate import _
 
 
-class sale_order(orm.Model):
-
+class sale_order(models.Model):
     _inherit = "sale.order"
 
-    _columns = {
-        'current_revision_id': fields.many2one(
-            'sale.order', 'Current revision', readonly=True),
-        'old_revision_ids': fields.one2many(
+    current_revision_id = fields.Many2one(
+            'sale.order', 'Current revision', readonly=True)
+    old_revision_ids = fields.One2many(
             'sale.order', 'current_revision_id',
-            'Old revisions', readonly=True),
-        }
+            'Old revisions', readonly=True)
 
-    def copy_quotation(self, cr, uid, ids, context=None):
-        if len(ids) > 1:
-            raise orm.except_orm(
-                _('Error'), _('This only works for 1 SO at a time'))
-        so = self.browse(cr, uid, ids[0], context)
-        new_seq = self.pool.get('ir.sequence').get(
-            cr, uid, 'sale.order') or '/'
+
+    @api.multi
+    def copy_quotation(self):
+        self.ensure_one()
+        new_seq = self.pool['ir.sequence'].next_by_code('sale.order') or '/'
         old_seq = so.name
         so.write({'name': new_seq}, context=context)
         defaults = {'name': old_seq,
@@ -62,9 +56,8 @@ class sale_order(orm.Model):
         self.write(cr, uid, ids,
                    {'state':'draft', 'shipped':0},
                    context=context)
-        wf_service = netsvc.LocalService("workflow")
-        wf_service.trg_delete(uid, 'sale.order', ids[0], cr)
-        wf_service.trg_create(uid, 'sale.order', ids[0], cr)
+        self.delete_workflow()
+        self.create_workflow()
         return True
 
     def copy(self, cr, uid, id, default=None, context=None):
