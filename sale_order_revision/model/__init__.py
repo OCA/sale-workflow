@@ -19,24 +19,4 @@
 #
 ##############################################################################
 
-{
-    'name': "Sale order revisions",
-    'version': '8.0.0.1.0',
-    'category': 'Sale Management',
-    'author': 'Agile Business Group,'
-              'Camptocamp,'
-              'Akretion,'
-              'Odoo Community Association (OCA)',
-    'website': 'http://www.agilebg.com',
-    'license': 'AGPL-3',
-    "depends": ['sale'],
-    "data": [
-        'view/sale_order.xml',
-        ],
-    "test": [
-        'test/sale_order.yml',
-        ],
-    "active": False,
-    "installable": True,
-    "post_init_hook": 'populate_unrevisioned_name',
-}
+from . import sale_order
