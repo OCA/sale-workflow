@@ -24,8 +24,8 @@ from openerp.osv import fields, orm
 import openerp.addons.decimal_precision as dp
 
 
-class new_credit_note(orm.TransientModel):
-    _name = "new.credit.note"
+class sale_new_credit_note(orm.TransientModel):
+    _name = "sale.new.credit.note"
 
     _columns = {
         'credit_amount': fields.float(
