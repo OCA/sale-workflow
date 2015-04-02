@@ -23,7 +23,10 @@
     'name': "Sale order revisions",
     'version': '0.1',
     'category': 'Sale Management',
-    'author': 'Agile Business Group, Odoo Community Association (OCA)',
+    'author': 'Agile Business Group,'
+              'Camptocamp,'
+              'Akretion,'
+              'Odoo Community Association (OCA)',
     'website': 'http://www.agilebg.com',
     'license': 'AGPL-3',
     "depends": ['sale'],
@@ -34,5 +37,5 @@
         'test/sale_order.yml',
         ],
     "active": False,
-    "installable": True
+    "installable": True,
 }

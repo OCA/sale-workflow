@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <openerp>
     <data>
-        
         <record id="sale_order_form" model="ir.ui.view">
             <field name="name">sale.order.form</field>
             <field name="model">sale.order</field>
@@ -9,9 +8,16 @@
             <field name="arch" type="xml">
                 <notebook position="inside">
                     <page string="Revisions">
-                        <field name="old_revision_ids"></field>
+                        <field name="old_revision_ids" >
+                            <tree>
+                                <field name='name'/>
+                                <field name='create_date' string="Superseeded on"/>
+                                <field name='create_uid' string="Superseeded by"/>
+                                <field name='state' invisible='1'/>
+                            </tree>
+                        </field>
                         <group>
-                            <field name="current_revision_id"></field>
+                            <field name="current_revision_id"/>
                         </group>
                     </page>
                 </notebook>
