@@ -1,7 +1,7 @@
 Sale Order Line Available QTY
 =============================
 
-This module adds the available quantity and the cost price of the product on the sale order line.
+This module adds the available quantity of the product on the sale order line.
 
 The quantity available is the current stock for the product in the selected warehouse including
 the quants reserved for the sale order but excluding quants reserved for other sale orders.

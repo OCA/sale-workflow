@@ -19,8 +19,3 @@ msgstr ""
 #: field:sale.order.line,qty_available:0
 msgid "Available Quantity"
 msgstr "Quantité disponible"
-
-#. module: sale_order_line_available_qty
-#: field:sale.order.line,standard_price:0
-msgid "Cost Price"
-msgstr "Coût Unitaire"

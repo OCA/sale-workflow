@@ -27,12 +27,6 @@ import openerp.addons.decimal_precision as dp
 class SaleOrderLine(models.Model):
     _inherit = 'sale.order.line'
 
-    standard_price = fields.Float(
-        related='product_id.standard_price',
-        string='Cost Price',
-        digits_compute=dp.get_precision('Product Price'),
-    )
-
     @api.one
     @api.depends('product_id')
     def compute_qty_available(self):
