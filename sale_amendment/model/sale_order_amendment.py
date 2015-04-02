@@ -231,6 +231,7 @@ class SaleOrderAmendmentItem(models.TransientModel):
                 values = {'product_uom_qty': canceled_qty,
                           'procurement_ids': [(6, 0, proc.ids)]}
                 if shipped_qty:
+                    values['amend_id'] = line.id
                     # current line kept for the shipped quantity so
                     # create a new one
                     canceled_line = line.copy(default=values)
@@ -244,6 +245,7 @@ class SaleOrderAmendmentItem(models.TransientModel):
                 # link the new line with the remaining procurements
                 # (not done nor canceled)
                 values = {'product_uom_qty': amend_qty,
+                          'amend_id': line.id,
                           'procurement_ids': [(6, 0, procurements.ids)]}
 
                 original_amend_qty = (ordered_qty -

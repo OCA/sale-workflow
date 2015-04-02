@@ -18,7 +18,7 @@
 #    along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
 #
-from openerp import models, api
+from openerp import models, fields, api
 
 
 class SaleOrder(models.Model):
@@ -35,3 +35,13 @@ class SaleOrder(models.Model):
 
         amendment = amend_model.create({'sale_id': self.id})
         return amendment.wizard_view()
+
+
+class SaleOrderLine(models.Model):
+    _inherit = 'sale.order.line'
+
+    amend_id = fields.Many2one(comodel_name='sale.order.line',
+                               string='Amend Line')
+    amended_by_ids = fields.One2many(comodel_name='sale.order.line',
+                                     inverse_name='amend_id',
+                                     string='Amended by lines')
