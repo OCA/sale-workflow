@@ -21,7 +21,6 @@
 ###############################################################################
 
 from openerp.osv import fields, orm
-from openerp.tools.translate import _
 import openerp.addons.decimal_precision as dp
 
 
@@ -39,7 +38,7 @@ class sale_order(orm.Model):
 
     _columns = {
         'credit_line_ids': fields.one2many(
-            'credit.line',
+            'sale.credit.line',
             'order_id',
             'Refund lines'),
         'total_credit_amount': fields.function(
@@ -100,54 +99,3 @@ class sale_order(orm.Model):
                     0, 0, {'refund_id': refund.id, 'amount': refund_amount}))
                 max_amount -= refund_amount
         return lines
-
-
-class credit_line(orm.Model):
-    _name = "credit.line"
-
-    _columns = {
-        'order_id': fields.many2one('sale.order', 'Sale order', required=True),
-        'amount': fields.float(
-            'Amount',
-            digits_compute=dp.get_precision('Account')),
-        'refund_id': fields.many2one(
-            'account.invoice',
-            'Refund',
-            required=True,
-            domain=[('type', '=', 'out_refund'),
-                    ('state', '!=', 'cancel'),
-                    ('credit_note_amount', '!=', 0)],
-            ),
-        }
-
-    def onchange_refund(
-            self, cr, uid, ids, order_residual=False, refund_id=False,
-            context=None):
-        invoice_obj = self.pool['account.invoice']
-        res = {'value': {}}
-        if not refund_id:
-            return res
-        if order_residual <= 0:
-            res['value']['refund_id'] = False
-            res['warning'] = {
-                'title': _('User Error'),
-                'message': _("The order is totally paid or refunded, "
-                             "you can't add a new refund line.")
-            }
-            return res
-        refund = invoice_obj.browse(cr, uid, refund_id, context=context)
-        refund_amount = invoice_obj._get_refund_amount(
-            cr, uid, refund, context=context)
-        if refund_amount <= 0:
-            res['value']['refund_id'] = False
-            res['warning'] = {
-                'title': _('User Error'),
-                'message': _("You can't use this refund on a new line, it is "
-                             "totally refunded.")
-            }
-            return res
-        if refund_amount > order_residual:
-            res['value']['amount'] = order_residual
-        else:
-            res['value']['amount'] = refund_amount
-        return res

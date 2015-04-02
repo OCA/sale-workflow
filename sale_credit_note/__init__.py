@@ -21,5 +21,6 @@
 ###############################################################################
 
 from . import sale
+from . import credit_line
 from . import invoice
 from . import wizard
