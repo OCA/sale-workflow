@@ -27,43 +27,75 @@ from openerp.tools.translate import _
 
 class sale_order(models.Model):
     _inherit = "sale.order"
+    current_revision_id = fields.Many2one('sale.order',
+                                          'Current revision',
+                                          readonly=True,
+                                          copy=True)
+    old_revision_ids = fields.One2many('sale.order',
+                                       'current_revision_id',
+                                       'Old revisions',
+                                       readonly=True,
+                                       context={'active_test': False})
+    revision_number = fields.Integer('Revision',
+                                     copy=False)
+    unrevisioned_name = fields.Char('Order Reference',
+                                    copy=True,
+                                    readonly=True)
+    active = fields.Boolean('Active',
+                            default=True,
+                            copy=True)
 
-    current_revision_id = fields.Many2one(
-            'sale.order', 'Current revision', readonly=True)
-    old_revision_ids = fields.One2many(
-            'sale.order', 'current_revision_id',
-            'Old revisions', readonly=True)
-
+    _sql_constraints = [
+        ('revision_unique',
+         'unique(unrevisioned_name, revision_number, company_id)',
+         'Order Reference and revision must be unique per Company.'),
+    ]
 
     @api.multi
     def copy_quotation(self):
         self.ensure_one()
-        new_seq = self.pool['ir.sequence'].next_by_code('sale.order') or '/'
-        old_seq = so.name
-        so.write({'name': new_seq}, context=context)
-        defaults = {'name': old_seq,
-                    'state': 'cancel',
-                    'shipped': False,
-                    'invoiced': False,
-                    'invoice_ids': [],
-                    'picking_ids': [],
-                    'old_revision_ids': [],
-                    'current_revision_id': so.id,
-                    }
-        # 'orm.Model.copy' is called instead of 'self.copy' in order to avoid
-        # 'sale.order' method to overwrite our values, like name and state
-        orm.Model.copy(self, cr, uid, so.id, default=defaults, context=None)
-        self.write(cr, uid, ids,
-                   {'state':'draft', 'shipped':0},
-                   context=context)
+        revision_self = self.with_context(new_sale_revision=True)
+        action = super(sale_order, revision_self).copy_quotation()
+        old_revision = self.browse(action['res_id'])
+        action['res_id'] = self.id
         self.delete_workflow()
         self.create_workflow()
-        return True
+        self.write({'state': 'draft'})
+        msg = _('New revision created: %s') % self.name
+        self.message_post(body=msg)
+        old_revision.message_post(body=msg)
+        return action
 
-    def copy(self, cr, uid, id, default=None, context=None):
-        if not default:
-            default = {}
-        default.update({
-            'old_revision_ids': [],
-        })
-        return super(sale_order, self).copy(cr, uid, id, default, context)
+    @api.returns('self', lambda value: value.id)
+    @api.multi
+    def copy(self, defaults=None):
+        if not defaults:
+            defaults = {}
+        if self.env.context.get('new_sale_revision'):
+            prev_name = self.name
+            revno = self.revision_number
+            self.write({'revision_number': revno + 1,
+                        'name': '%s-%02d' % (self.unrevisioned_name,
+                                             revno + 1)
+                        })
+            defaults.update({'name': prev_name,
+                             'revision_number': revno,
+                             'active': False,
+                             'state': 'cancel',
+                             'current_revision_id': self.id,
+                             })
+        return super(sale_order, self).copy(defaults)
+
+    @api.model
+    def create(self, values):
+        if 'unrevisioned_name' not in values:
+            if values.get('name', '/') == '/':
+                seq = self.env['ir.sequence']
+                values['name'] = seq.next_by_code('sale.order') or '/'
+            values['unrevisioned_name'] = values['name']
+        return super(sale_order, self).create(values)
+
+    def init(self, cr):
+        cr.execute('UPDATE sale_order '
+                   'SET unrevisioned_name = name '
+                   'WHERE unrevisioned_name is NULL')
