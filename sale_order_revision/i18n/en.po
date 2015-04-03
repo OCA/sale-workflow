@@ -18,56 +18,56 @@ msgstr ""
 #. module: sale_order_revision
 #: field:sale.order,active:0
 msgid "Active"
-msgstr ""
+msgstr "Active"
 
 #. module: sale_order_revision
 #: field:sale.order,current_revision_id:0
 msgid "Current revision"
-msgstr ""
+msgstr "Current revision"
 
 #. module: sale_order_revision
 #: code:addons/sale_order_revision/model/sale_order.py:64
 #, python-format
 msgid "New revision created: %s"
-msgstr ""
+msgstr "New revision created: %s"
 
 #. module: sale_order_revision
 #: field:sale.order,old_revision_ids:0
 msgid "Old revisions"
-msgstr ""
+msgstr "Old revisions"
 
 #. module: sale_order_revision
 #: field:sale.order,unrevisioned_name:0
 msgid "Order Reference"
-msgstr ""
+msgstr "Order Reference"
 
 #. module: sale_order_revision
 #: sql_constraint:sale.order:0
 msgid "Order Reference and revision must be unique per Company."
-msgstr ""
+msgstr "Order Reference and revision must be unique per Company."
 
 #. module: sale_order_revision
 #: field:sale.order,revision_number:0
 msgid "Revision"
-msgstr ""
+msgstr "Revision"
 
 #. module: sale_order_revision
 #: view:sale.order:sale_order_revision.sale_order_form
 msgid "Revisions"
-msgstr ""
+msgstr "Revisions"
 
 #. module: sale_order_revision
 #: model:ir.model,name:sale_order_revision.model_sale_order
 msgid "Sales Order"
-msgstr ""
+msgstr "Sales Order"
 
 #. module: sale_order_revision
 #: view:sale.order:sale_order_revision.sale_order_form
 msgid "Superseeded by"
-msgstr ""
+msgstr "Superseeded by"
 
 #. module: sale_order_revision
 #: view:sale.order:sale_order_revision.sale_order_form
 msgid "Superseeded on"
-msgstr ""
+msgstr "Superseeded on"
 
