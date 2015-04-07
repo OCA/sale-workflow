@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+
+        <record id="view_order_tree_lot" model="ir.ui.view">
+            <field name="name">sale.order.tree.lot</field>
+            <field name="model">sale.order</field>
+            <field name="inherit_id" ref="sale.view_order_form"/>
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='order_line']/tree/field[@name='product_id']" position="after">
+                    <field name="lot_id"/>
+                </xpath>
+            </field>
+        </record>
+
+    </data>
+</openerp>
