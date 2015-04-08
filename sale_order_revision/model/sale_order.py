@@ -95,7 +95,3 @@ class sale_order(models.Model):
             values['unrevisioned_name'] = values['name']
         return super(sale_order, self).create(values)
 
-    def init(self, cr):
-        cr.execute('UPDATE sale_order '
-                   'SET unrevisioned_name = name '
-                   'WHERE unrevisioned_name is NULL')
