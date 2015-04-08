@@ -46,7 +46,7 @@
 
         <header>
         <button type="object" string="Partner Web" name="function_url_call" />
-	<button type="object" string="Generate" name="order_create" />
+	<!--button type="object" string="Generate" name="order_create" /-->
         <button name="button_confirm" states="draft" string="Confirm" type="object" />
                 <field name="state" widget="statusbar" />
         </header>
