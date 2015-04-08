@@ -1,0 +1,148 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<openerp>
+    <data>
+	<!-- ===================== This is a template=============================-->
+    <!--
+	   <template id="assets_backend" name="sale.line.generator.from assets " inherit_id="web.assets_backend">
+            <xpath expr="." position="inside">
+                <link rel='stylesheet' href="/sale_generator/static/src/css/bootstrap.css"/>
+		<link rel='stylesheet' href="/sale_generator/static/src/css/style.css"/>
+            </xpath>
+        </template>
+    
+	-->
+	
+<!-- ===================== This is free layout for sale.generator =============================-->
+ 
+        <record model="ir.ui.view" id="sale_generator_xml_tree">
+            <field name="model">sale.generator</field>
+	    <field name="type">tree</field>
+            <field name="arch" type="xml"> 
+		<tree string="Partner"> 
+		<field name="partner_ids" string="Partner"/>
+		<field name="line_ids" string="Line"/> 
+		<field name="sale_ids" string = "sale"/> 
+		</tree>
+            </field>
+        </record>
+
+         
+
+	
+	<record id="act_sale_generator_2_sale_order" model="ir.actions.act_window">
+            <field name="name">Sale Order</field>
+            <field name="res_model">sale.order</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form,graph</field>
+            <field name="context">{'search_default_state':'draft'}</field>
+	    <field name = "domain" > [('generator_id','=',active_id)]</field>
+        </record>
+<!-- ===================== This is from layout for sale.generator =============================-->
+
+          <record model="ir.ui.view" id="view_sale_generator_form">
+            <field name="model">sale.generator</field>
+	     <field name="type">form</field>
+            <field name="arch" type="xml">
+
+        <header>
+        <button type="object" string="Partner Web" name="function_url_call" />
+	<button type="object" string="Generate" name="order_create" />
+        <button name="button_confirm" states="draft" string="Confirm" type="object" />
+                <field name="state" widget="statusbar" />
+        </header>
+	    <sheet>
+                <form string="Partner" editable="bottom">     
+                       <h1><label string="Partner Page"/></h1>
+			 
+			 <group col="6"> 
+			<field name="date" string = "Date" nolabel="2"/>
+                         <button class="oe_inline oe_stat_button" name="%(act_sale_generator_2_sale_order)d"
+				 type="action" icon="fa-strikethrough"
+				 context="{'search_default_state':'draft'}"
+				 />
+
+			 </group>
+			<field name = "partner_ids"/>
+
+			<!--	attrs = "{'invisible': [('Use_On_ligne_from','=',False)]}"></field> -->
+			<label string="Line"/>
+			<field name="line_ids" string="Line" attrs="{'readonly':[('state', '=','confirmed')]}" />
+			
+			
+	      </form>
+	     </sheet>
+            </field>
+	  </record>
+
+	 <record model="ir.actions.act_window" id="action_sale_generator">
+        <field name="name">Generator</field>
+        <field name="res_model">sale.generator</field>
+        <field name="view_type">form</field>
+        <field name="view_mode">tree,form</field>
+        </record>	
+<!-- ===================== This is free layout for sale.line.generator =============================-->
+	  <record model="ir.ui.view" id="sale_generator_line_xml_tree">
+            <field name="model">sale.line.generator</field>
+	    <field name="type">tree</field>
+            <field name="arch" type="xml"> 
+		<tree string="Partner" editable="top"> 
+		<field name="product_id" string="Product"/> 
+		<field name="product_qty" string = "Qantité"/> 
+		</tree>
+            </field>
+        </record>
+<!-- ===================== This is from layout for sale.line.generator =============================-->
+
+          <record model="ir.ui.view" id="sale_generator_line_xml">
+            <field name="model">sale.line.generator</field>
+	     <field name="type">form</field>
+            <field name="arch" type="xml">
+              <sheet>
+
+                <form string="Partner">
+		  <group col="4"> 
+		<field name="product_id" string="Product"/> 
+		<field name="product_qty" string = "quantity"/> 
+                  </group> 
+	      </form>
+            </sheet>
+            </field>
+        </record>
+	
+	  <record model="ir.actions.act_window" id="action_sale_generator_line_xml">
+		<field name="name">sale</field>
+		<field name="res_model">sale.line.generator</field>
+		<field name="view_type">form</field>
+		<field name="view_mode">tree,form</field>
+	</record>
+	  
+	  
+	  
+
+<!--    domain="[('sale_id.partner_id','=',parent.partner_id)]"-->
+      
+	  <record model="ir.actions.act_window" id="action_line_sale_order_measure_xml">
+		<field name="name">New Sale Order field Measure</field>
+		<field name="res_model">sale.order</field>
+		<field name="view_type">form</field>
+		<field name="view_mode">tree,form</field>
+	</record>   
+
+ 
+  
+  <!--
+
+	  <menuitem id="Measure_id" name="Make an Order"/>
+       <menuitem name="Measure" id="Measure_section_id" parent="Measure_id"/>
+        <menuitem name="Sale" id="choix_sale" parent="Measure_section_id" action="action_sale_generator_line_xml"/>
+    
+       <menuitem name="Generator" id="choix_generator" parent="Measure_section_id" action="action_sale_generator"/>
+       
+    
+    
+        <menuitem name="Measure" id="choix_measure" parent="Measure_section_id" action="action_measure_measure_xml"/>
+	<menuitem name="Sale Order" id="choix_Sale_order_measure" parent="Measure_section_id" action="action_line_sale_order_measure_xml"/>
+-->
+  <menuitem name="Generator" id="choix_generator" parent="base.menu_sales" action="action_sale_generator"/>
+    </data> 
+</openerp>
