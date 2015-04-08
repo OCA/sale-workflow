@@ -78,12 +78,14 @@ class SaleGenerator(models.Model):
 		        sale_order_obj.create(vals)
 	self._search_and_delete_partner()
 	
-    @api.one
+    @api.multi
     def write(self,vals):
 	res = super(SaleGenerator,self).write(vals)
 	self.order_test()
 	return res
 	
+
+    
     @api.model
     def create(self,vals):
 	res = super(SaleGenerator,self).create(vals)
@@ -107,4 +109,4 @@ class SaleGenerator(models.Model):
 
 
 
-
+  
