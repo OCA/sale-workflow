@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+
+        <record id="invoice_form" model="ir.ui.view">
+            <field name="model">account.invoice</field>
+            <field name="inherit_id" ref="account.invoice_form"/>
+            <field name="arch" type="xml">
+                <field name='name' position="before">
+                    <field name="sale_parent_line_id"/>
+                </field>
+            </field>
+        </record>
+
+        <record id="view_invoice_line_form" model="ir.ui.view">
+            <field name="model">account.invoice.line</field>
+            <field name="inherit_id" ref="account.view_invoice_line_form"/>
+            <field name="arch" type="xml">
+                <field name='product_id' position="before">
+                    <field name="sale_parent_line_id"/>
+                </field>
+            </field>
+        </record>
+
+    </data>
+</openerp>
