@@ -22,8 +22,9 @@
 from openerp.osv import orm, fields
 
 
-class account_invoice_line(orm.Model):
+class AccountInvoiceLine(orm.Model):
     _inherit = 'account.invoice.line'
+    _order = 'sale_parent_line_id, name desc'
 
     def _get_invoice_line_from_order_line(self, cr, uid, ids, context=None):
         invoice_line_ids = self.pool['account.invoice.line'].search(
@@ -48,10 +49,10 @@ class account_invoice_line(orm.Model):
                     lambda self, cr, uid, ids, c=None: ids,
                     ['sale_line_id'],
                     10),
-                'sale.order.line':
-                    (_get_invoice_line_from_order_line, ['line_parent_id'], 20)
+                'sale.order.line': (
+                    _get_invoice_line_from_order_line,
+                    ['line_parent_id'],
+                    20)
             }
-            )
-        }
-
-    _order = 'sale_parent_line_id, name desc'
+        )
+    }

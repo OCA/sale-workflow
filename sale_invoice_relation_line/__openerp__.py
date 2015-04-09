@@ -23,16 +23,18 @@
     'name': 'Sale Invoice Relation Line',
     'version': '1.0.0',
     'category': 'Generic Modules',
-    "author" : "Akretion",
+    'author': 'Akretion',
     'license': 'AGPL-3',
     'description': """
+    This module allows a suitable display of invoice lines for bundle
+    product with the notion parent product and child products(components)
 """,
-    "website" : 'http://wwww.akretion.com/',
+    'website': 'http://wwww.akretion.com/',
     'depends': ['sale_stock_relation_line',
                 'account'],
     'data': [
         'account_invoice_view.xml',
-        ],
+    ],
     'installable': True,
     'auto_install': False,
 }

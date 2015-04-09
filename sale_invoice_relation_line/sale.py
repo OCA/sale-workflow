@@ -22,11 +22,11 @@
 from openerp.osv import orm
 
 
-
 class sale_order_line(orm.Model):
     _inherit = 'sale.order.line'
 
-    def _prepare_order_line_invoice_line(self, cr, uid, line, account_id=False, context=None):
+    def _prepare_order_line_invoice_line(self, cr, uid,
+                                         line, account_id=False, context=None):
         res = super(sale_order_line, self)._prepare_order_line_invoice_line(
             cr, uid, line, account_id=False, context=context)
         res['sale_line_id'] = line.id
