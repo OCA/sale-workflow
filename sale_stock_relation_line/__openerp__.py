@@ -23,16 +23,18 @@
     'name': 'Sale Stock Relation Line',
     'version': '1.0.0',
     'category': 'Generic Modules',
-    "author" : "Akretion",
+    'author': 'Akretion',
     'license': 'AGPL-3',
     'description': """
+    This module allows a suitable display of delivery lines for bundle
+    product with the notion parent product and child products(components)
 """,
-    "website" : 'http://wwww.akretion.com/',
+    'website': 'http://wwww.akretion.com/',
     'depends': ['sale',
                 'stock'],
     'data': [
         'stock_view.xml',
-        ],
+    ],
     'installable': True,
     'auto_install': False,
 }

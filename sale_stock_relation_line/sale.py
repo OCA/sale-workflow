@@ -19,8 +19,7 @@
 #
 ##############################################################################
 
-from openerp.osv import orm
-from openerp.osv import fields
+from openerp.osv import orm, fields
 
 
 class SaleOrderLine(orm.Model):
@@ -28,7 +27,8 @@ class SaleOrderLine(orm.Model):
 
     _columns = {
         'line_parent_id': fields.many2one('sale.order.line', 'Parent Line'),
-        'line_child_ids': fields.one2many('sale.order.line', 'line_parent_id', 'Children Line'),
+        'line_child_ids': fields.one2many('sale.order.line', 'line_parent_id',
+                                          'Children Line'),
         }
 
 
@@ -40,8 +40,8 @@ class SaleOrder(orm.Model):
             default = {}
         default = {'order_line': False}
         new_order_id = super(SaleOrder, self).copy(cr, uid, id,
-                                                 default=default,
-                                                 context=context)
+                                                   default=default,
+                                                   context=context)
         order_line_model = self.pool.get('sale.order.line')
         order = self.browse(cr, uid, id, context=context)
         for origin_order_line in order.order_line:
@@ -58,7 +58,6 @@ class SaleOrder(orm.Model):
                     'line_parent_id': new_order_line_id,
                     'order_id': new_order_id,
                     }
-                order_line_model.copy(
-                    cr, uid, child_line.id,
-                    default=default, context=context)
+                order_line_model.copy(cr, uid, child_line.id,
+                                      default=default, context=context)
         return new_order_id

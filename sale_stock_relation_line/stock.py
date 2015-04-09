@@ -24,12 +24,12 @@ from openerp.osv import orm, fields
 
 class StockMove(orm.Model):
     _inherit = 'stock.move'
+    _order = 'sale_parent_line_id desc'
 
     def _get_move_from_order_line(self, cr, uid, ids, context=None):
         move_ids = self.pool['stock.move'].search(
             cr, uid, [('sale_line_id', 'in', ids)], context=context)
         return move_ids
-
 
     _columns = {
         'sale_parent_line_id': fields.related(
@@ -43,10 +43,11 @@ class StockMove(orm.Model):
                     lambda self, cr, uid, ids, c=None: ids,
                     ['sale_line_id'],
                     10),
-                'sale.order.line':
-                    (_get_move_from_order_line, ['line_parent_id'], 20)
+                'sale.order.line': (
+                    _get_move_from_order_line,
+                    ['line_parent_id'],
+                    20)
             }
-            )
-        }
+        )
+    }
 
-    _order = 'sale_parent_line_id desc'
