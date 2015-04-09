@@ -62,7 +62,7 @@ class SaleGenerator(models.Model):
     #@api.one
     #def write(self,vals):
 	
-    @api.depends('partner_ids')
+    #@api.depends('partner_ids')
     def order_test(self):
 	sale_order_obj = self.env['sale.order']
 	partner_make_order = []
