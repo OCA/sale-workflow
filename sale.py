@@ -161,7 +161,12 @@ class sale_order(orm.Model):
         """ Generate move lines entries to pay the sale order. """
         move_obj = self.pool.get('account.move')
         period_obj = self.pool.get('account.period')
-        period_id = period_obj.find(cr, uid, dt=date, context=context)[0]
+
+        # Specific context to retrieve correct period
+        period_ctx = context.copy()
+        period_ctx['company_id'] = sale.company_id.id
+        period_ctx['account_period_prefer_normal'] = True
+        period_id = period_obj.find(cr, uid, dt=date, context=period_ctx)[0]
         period = period_obj.browse(cr, uid, period_id, context=context)
         move_name = description or self._get_payment_move_name(
             cr, uid, journal,
