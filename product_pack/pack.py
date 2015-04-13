@@ -51,10 +51,10 @@ class product_product(models.Model):
                         subproduct_stock['virtual_available'] / sub_qty))
             # TODO calcular correctamente pack virtual available para negativos
             res[product.id] = {
-                'qty_available': min(pack_qty_available),
+                'qty_available': pack_qty_available and min(pack_qty_available) or False,
                 'incoming_qty': 0,
                 'outgoing_qty': 0,
-                'virtual_available': max(min(pack_virtual_available), 0),
+                'virtual_available': pack_virtual_available and max(min(pack_virtual_available), 0) or False,
             }
         return res
 
