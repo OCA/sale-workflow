@@ -63,9 +63,10 @@ class StockPicking(models.Model):
             picking_com = partner.picking_comment or ''
             picking_pcom = partner.picking_propagated_comment or ''
             if partner.parent_id:
-                picking_com += '\n' + partner.parent_id.picking_comment
+                picking_com += '\n' + (partner.parent_id.picking_comment or '')
                 picking_pcom += ('\n' +
-                                 partner.parent_id.picking_propagated_comment)
+                                 (partner.parent_id.picking_propagated_comment
+                                  or ''))
             if (picking_com and values['sale_comment'] != picking_com):
                 values['sale_comment'] = (picking_com + '\n' +
                                           (values['sale_comment'] or ''))
