@@ -2,8 +2,9 @@
 ##############################################################################
 # For copyright and license notices, see __openerp__.py file in root directory
 ##############################################################################
-from openerp import fields, models
+from openerp import fields, models, api, _
 from openerp.osv import fields as old_fields
+from openerp.exceptions import Warning
 import math
 
 
@@ -25,6 +26,9 @@ class product_product(models.Model):
 
     pack_line_ids = fields.One2many(
         'product.pack.line', 'parent_product_id', 'Pack Products',
+        help='List of products that are part of this pack.')
+    used_pack_line_ids = fields.One2many(
+        'product.pack.line', 'product_id', 'Pack Products',
         help='List of products that are part of this pack.')
 
     def _product_available(
@@ -76,6 +80,21 @@ class product_product(models.Model):
             _product_available, multi='qty_available',
             fnct_search=_search_product_quantity),
     }
+
+    @api.one
+    @api.constrains('company_id', 'pack_line_ids', 'used_pack_line_ids')
+    def check_pack_line_company(self):
+        # TODO implementar mejores mensajes
+        for line in self.pack_line_ids:
+            if line.product_id.company_id != self.company_id:
+                raise Warning(_(
+                    'Pack lines products company must be the same as the\
+                    parent product company'))
+        for line in self.used_pack_line_ids:
+            if line.parent_product_id.company_id != self.company_id:
+                raise Warning(_(
+                    'Pack lines products company must be the same as the\
+                    parent product company'))
 
 
 class product_template(models.Model):
