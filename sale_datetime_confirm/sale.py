@@ -25,7 +25,7 @@ from openerp import models, fields, api
 class SaleOrder(models.Model):
     _inherit = 'sale.order'
 
-    date_confirm = fields.Datetime()
+    date_confirm = fields.Datetime(copy=False)
 
     @api.multi
     def action_wait(self):
