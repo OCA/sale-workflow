@@ -20,7 +20,7 @@
 ##############################################################################
 
 {
-    'name': 'Sale Invoice Relation Line',
+    'name': 'Sale Line Invoice Line Link',
     'version': '1.0.0',
     'category': 'Generic Modules',
     'author': 'Akretion',
@@ -30,7 +30,7 @@
     product with the notion parent product and child products(components)
 """,
     'website': 'http://wwww.akretion.com/',
-    'depends': ['sale_stock_relation_line',
+    'depends': ['sale_line_stock_move_link',
                 'account'],
     'data': [
         'account_invoice_view.xml',
