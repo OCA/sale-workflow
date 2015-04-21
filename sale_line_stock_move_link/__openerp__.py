@@ -20,7 +20,7 @@
 ##############################################################################
 
 {
-    'name': 'Sale Stock Relation Line',
+    'name': 'Sale Line Stock Move Link',
     'version': '1.0.0',
     'category': 'Generic Modules',
     'author': 'Akretion',
