@@ -19,7 +19,7 @@
 #                                                                       #
 #########################################################################
 
-from openerp import fields, models
+from openerp import fields, models, api
 
 
 class sale_order_line(models.Model):
@@ -31,13 +31,10 @@ class sale_order_line(models.Model):
 class sale_order(models.Model):
     _inherit = "sale.order"
 
-    def _prepare_order_line_procurement(
-            self, cr, uid, order, line, group_id=False, context=None):
+    @api.model
+    def _prepare_order_line_procurement(self, order, line, group_id=False):
         res = super(
             sale_order, self)._prepare_order_line_procurement(
-                cr, uid, order, line, group_id, context=context)
-        if line and line.lot_id:
-            res['lot_id'] = line.lot_id.id
-        else:
-            res['lot_id'] = False
+                order, line, group_id)
+        res['lot_id'] = line.lot_id.id
         return res
