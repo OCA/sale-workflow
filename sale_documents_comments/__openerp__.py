@@ -27,11 +27,17 @@
         "stock",
         "account",
     ],
-    "author": "OdooMRP team,"
-              "AvanzOSC,"
+    "author": "OdooMRP team, "
+              "AvanzOSC, "
               "Serv. Tecnol. Avanzados - Pedro M. Baeza",
     "category": "Custom Module",
     "website": "http://www.odoomrp.com",
+    "contributors": [
+        "Oihane Crucelaegui <oihanecrucelaegi@avanzosc.es>",
+        "Ainara Galdona <ainaragaldona@avanzosc.es>",
+        "Pedro M. Baeza <pedro.baeza@serviciosbaeza.com>",
+        "Ana Juaristi <anajuaristi@avanzosc.es>",
+    ],
     "data": [
         "views/partner_view.xml",
         "views/sale_view.xml",
@@ -39,5 +45,4 @@
         "views/account_view.xml",
     ],
     "installable": True,
-    "auto_install": False,
 }
