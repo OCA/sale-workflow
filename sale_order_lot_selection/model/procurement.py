@@ -19,10 +19,17 @@
 #                                                                       #
 #########################################################################
 
-from openerp import fields, models
+from openerp import fields, models, api
 
 
 class procurement_order(models.Model):
     _inherit = 'procurement.order'
 
     lot_id = fields.Many2one('stock.production.lot', 'Lot')
+
+    @api.model
+    def _run_move_create(self, procurement):
+        res = super(
+            procurement_order, self)._run_move_create(procurement)
+        res['restricted_lot_id'] = procurement.lot_id.id
+        return res
