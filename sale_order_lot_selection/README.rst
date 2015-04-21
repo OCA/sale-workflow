@@ -4,7 +4,7 @@
 Sale Order Lot Selection
 ========================
 
-This Module Allow you to select on sale order the production lot that will be delivered
+This Module Allows you to select on sale order the production lot that will be delivered
 You can select a lot for every sale order line, and it will be proposed on the delivery
 
 Credits
