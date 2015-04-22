@@ -21,4 +21,3 @@
 
 from . import sale
 from . import procurement
-from . import stock_transfer_details
