@@ -31,5 +31,5 @@ class procurement_order(models.Model):
     def _run_move_create(self, procurement):
         res = super(
             procurement_order, self)._run_move_create(procurement)
-        res['restricted_lot_id'] = procurement.lot_id.id
+        res['restrict_lot_id'] = procurement.lot_id.id
         return res
