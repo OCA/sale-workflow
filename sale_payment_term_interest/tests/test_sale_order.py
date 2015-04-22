@@ -41,13 +41,13 @@ class TestSaleOrder(common.TransactionCase):
             'value': 'procent',
             'value_amount': 0.3333,
             'days': 40,
-            'interest_rate': 0.041666,
+            'interest_rate': 15,
         })
         self.env['account.payment.term.line'].create({
             'payment_id': self.payment_term.id,
             'value': 'balance',
             'days': 70,
-            'interest_rate': 0.041666,
+            'interest_rate': 15,
         })
         product1 = self.env.ref('product.product_product_7')
         product2 = self.env.ref('product.product_product_9')
@@ -117,7 +117,7 @@ class TestSaleOrder(common.TransactionCase):
         })
         product_interest.taxes_id = [(6, 0, [tax.id])]
         self.line1_values['tax_id'] = [(6, 0, [tax.id])]
-        self.line2_values['order_id'] = [(6, 0, [tax.id])]
+        self.line2_values['tax_id'] = [(6, 0, [tax.id])]
         self.sale_values['order_line'] = [(0, 0, self.line1_values),
                                           (0, 0, self.line2_values)]
         sale = self.env['sale.order'].create(self.sale_values)

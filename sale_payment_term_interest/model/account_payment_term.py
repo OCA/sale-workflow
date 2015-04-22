@@ -19,6 +19,8 @@
 #
 #
 
+from __future__ import division
+
 from datetime import datetime
 from dateutil.relativedelta import relativedelta
 import openerp.addons.decimal_precision as dp
@@ -69,7 +71,8 @@ class AccountPaymentTerm(models.Model):
             interest = 0.0
             if line.interest_rate:
                 days = (next_date - date_ref).days
-                interest = line_amount * (line.interest_rate / 100) * days
+                rate = line.interest_rate / 100 / (12 * 30)  # %/(months*days)
+                interest = line_amount * rate * days
             result.append((fields.Date.to_string(next_date),
                            line_amount,
                            interest))
@@ -88,7 +91,8 @@ class AccountPaymentTermLine(models.Model):
     interest_rate = fields.Float(
         string='Interest Rate',
         digits=dp.get_precision('Payment Term'),
-        help="The rate per day applied on a sales order. "
+        help="The annual interest rate applied on a sales order. "
              "Value between 0 and 100.\n"
-             "The interest is computed as "
-             "'Amount * (Interest Rate / 100) * Days'")
+             "The interest is computed as: "
+             "'Amount * (Interest Rate / 100 / "
+             " (12 months * 30 days)) * Term Days'")

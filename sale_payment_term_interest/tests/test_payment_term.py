@@ -19,8 +19,11 @@
 #
 #
 
+from __future__ import division
+
 from operator import itemgetter
 from openerp.tests import common
+from openerp.tools.float_utils import float_round as round
 
 
 class TestPaymentTerm(common.TransactionCase):
@@ -39,23 +42,50 @@ class TestPaymentTerm(common.TransactionCase):
             'value': 'procent',
             'value_amount': 0.3333,
             'days': 40,
-            'interest_rate': 0.041666,
+            'interest_rate': 15,  # annual interest
         })
         self.env['account.payment.term.line'].create({
             'payment_id': term.id,
             'value': 'balance',
             'days': 70,
-            'interest_rate': 0.041666,
+            'interest_rate': 15,  # annual interest
         })
-        terms = term.compute_interest(469.35, date_ref='2015-03-13')
+        total_amount = remaining_amount = 469.35
+        terms = term.compute_interest(remaining_amount, date_ref='2015-03-13')
         self.assertEquals(len(terms), 3)
         terms = sorted(terms, key=itemgetter(0))
         line1, line2, line3 = terms
-        self.assertAlmostEqual(line1[1], 156.43)
-        self.assertAlmostEqual(line1[2], 0.0)
 
-        self.assertAlmostEqual(line2[1], 156.43)
-        self.assertAlmostEqual(line2[2], 2.60712495)
+        precision_model = self.env['decimal.precision']
+        precision = precision_model.precision_get('Account')
 
-        self.assertAlmostEqual(line3[1], 156.49)
-        self.assertAlmostEqual(line3[2], 4.56421864)
+        term_amount = total_amount * 0.3333
+        # Odoo rounds the remaining amount between each term
+        remaining_amount -= round(term_amount, precision_digits=precision)
+        self.assertAlmostEqual(line1[1], term_amount,
+                               places=precision)
+        self.assertAlmostEqual(line1[2], 0.0,
+                               places=precision)
+
+        remaining_amount -= round(term_amount, precision_digits=precision)
+        self.assertAlmostEqual(line2[1], term_amount,
+                               places=precision)
+        self.assertAlmostEqual(
+            line2[2],
+            (term_amount *  # due amount
+             (15 / 100 /  # annual interest rate
+              (12 * 30)  # (months / days) get a daily rate
+              ) * 40  # multiply by the number of term days
+             ),
+            places=precision)
+
+        self.assertAlmostEqual(line3[1], remaining_amount,
+                               places=precision)
+        self.assertAlmostEqual(
+            line3[2],
+            (remaining_amount *  # due amount
+             (15 / 100 /  # annual interest rate
+              (12 * 30)  # (months / days) get a daily rate
+              ) * 70  # multiply by the number of term days
+             ),
+            places=precision)
