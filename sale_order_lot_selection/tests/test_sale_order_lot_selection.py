@@ -48,7 +48,7 @@ class TestSaleOrderLotSelection(test_common.SingleTransactionCase):
             'name': 'sol1',
             'order_id': self.order.id,
             'lot_id': self.lot.id,
-            'product_id': product_11.id,
+            'product_id': self.product_11.id,
         })
         self.product_13 = self.env.ref('product.product_product_13')
         self.lotb = self.env['stock.production.lot'].create(
