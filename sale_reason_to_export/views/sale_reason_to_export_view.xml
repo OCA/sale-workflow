@@ -1,0 +1,40 @@
+<?xml version="1.0"?>
+<openerp>
+    <data>
+
+        <record id="view_reason_to_export_tree" model="ir.ui.view">
+            <field name="name">sale.reason_to_export.tree</field>
+            <field name="model">sale.reason_to_export</field>
+            <field name="arch" type="xml">
+                <tree editable="top">
+                    <field name="name"/>
+                    <field name="active"/>
+                </tree>
+            </field>
+        </record>
+
+        <record id="view_sale_reason_to_export_filter" model="ir.ui.view">
+            <field name="name">Reasons to Export</field>
+            <field name="model">sale.reason_to_export</field>
+            <field name="arch" type="xml">
+                <search string="Search Reasons to Export">
+                    <field name="name"/>
+                </search>
+            </field>
+        </record>
+
+        <record id="action_sale_reason_to_export_view"  model="ir.actions.act_window">
+            <field name="name">Reasons to Export</field>
+            <field name="res_model">sale.reason_to_export</field>
+            <field name="view_id" eval="view_reason_to_export_tree"/>
+            <field name="search_view_id" ref="view_sale_reason_to_export_filter"/>
+        </record>
+
+        <menuitem 
+            action="action_sale_reason_to_export_view" id="menu_sale_reason_to_export_act"
+            name="Reasons to Export" sequence="0"
+            parent="base.menu_sale_config_sales"
+            groups="base.group_sale_manager"/>
+
+    </data>
+</openerp>
