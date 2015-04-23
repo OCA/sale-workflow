@@ -19,44 +19,20 @@
 #
 #
 
-{'name': 'Sale Sourced by Line',
- 'summary': 'Multiple warehouse source locations for Sale order',
- 'version': '1.1',
+{'name': 'Sale Procurement Group by Line',
+ 'summary': 'Base module for multiple procurement group by Sale order',
+ 'version': '1.0',
  'author': "Camptocamp,Odoo Community Association (OCA)",
  'category': 'Warehouse',
  'license': 'AGPL-3',
  'complexity': 'expert',
  'images': [],
  'website': "http://www.camptocamp.com",
- 'description': """
-Sale Sourced by Line
-====================
-
-Adds the possibility to source a line of sale order from a specific
-warehouse instead of using the warehouse of the sale order.
-
-This will create one procurement group per warehouse set in sale
-order lines.
-
-It will only supports routes such as MTO and Drop Shipping.
-
-Contributors
-------------
-
-* Guewen Baconnier <guewen.baconnier@camptocamp.com>
-* Yannick Vaucher <yannick.vaucher@camptocamp.com>
-
-""",
  'depends': ['sale_stock',
-             'sale_procurement_group_by_line',
              ],
  'demo': [],
- 'data': ['view/sale_view.xml',
-          ],
- 'test': ['test/sale_order_source.yml',
-          'test/sale_order_multi_source.yml',
-          'test/sale_order_not_sourced.yml',
-          ],
+ 'data': [],
+ 'test': [],
  'auto_install': False,
  'installable': True,
  }
