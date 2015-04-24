@@ -35,12 +35,16 @@ class TestPropagateOwner(TransactionCase):
 
     def setUp(self):
         super(TestPropagateOwner, self).setUp()
-        self.SO = self.env['sale.order']
-        self.SOL = self.env['sale.order.line']
-
-        # this product has some stock in demo data
-        product = self.env.ref('product.product_product_6')
         self.partner = self.env.ref('base.res_partner_2')
+
+        # this product already has some stock with no owner in demo data
+        product = self.env.ref('product.product_product_6')
+        self.env['stock.quant'].create({
+            'qty': 5000,
+            'location_id': self.ref('stock.stock_location_stock'),
+            'product_id': product.id,
+            'owner_id': self.partner.id,
+        })
 
         self.so = self.env['sale.order'].create({
             'partner_id': self.env.ref('base.res_partner_2').id,
