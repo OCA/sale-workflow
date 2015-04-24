@@ -7,7 +7,7 @@
       <field name="model">sale.order</field>
       <field name="inherit_id" ref="sale_stock.view_order_form_inherit"/>
       <field name="arch" type="xml">
-         <button name="ship_recreate">
+         <button name="ship_recreate" position="before">
            <button name="button_amend" states="shipping_except"
              type="object" string="Amend"/>
          </button>
