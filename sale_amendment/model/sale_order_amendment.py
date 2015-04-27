@@ -144,7 +144,7 @@ class SaleOrderAmendmentItem(models.TransientModel):
                                    required=True,
                                    readonly=True)
     ordered_qty = fields.Float(string='Ordered',
-                               digits_compute=dp.get_precision('Product UoS')
+                               digits_compute=dp.get_precision('Product UoS'),
                                readonly=True)
     shipped_qty = fields.Float(string='Delivered',
                                readonly=True,
