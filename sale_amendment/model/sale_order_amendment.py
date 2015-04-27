@@ -80,6 +80,7 @@ class SaleOrderAmendment(models.TransientModel):
             'sale_line_id': sale_line.id,
             'shipped_qty': shipped,
             'canceled_qty': canceled,
+            'ordered_qty': sale_line.product_uos_qty,
             'amend_qty': amend,
         }
 
@@ -88,11 +89,12 @@ class SaleOrderAmendment(models.TransientModel):
         title = _('Order amendment')
         message = '<h3>%s</h3><ul>' % title
         for item in self.item_ids:
+            canceled_qty = item.ordered_qty - item.shipped_qty - item.amend_qty
             message += (_('<li><b>%s</b>: %s Ordered, %s '
                           'Shipped, %s Canceled, %s Amended</li>') %
                         (item.sale_line_id.name,
                          item.ordered_qty, item.shipped_qty,
-                         item.canceled_qty, item.amend_qty,
+                         canceled_qty, item.amend_qty,
                          )
                         )
         message += '</ul>'
@@ -106,9 +108,9 @@ class SaleOrderAmendment(models.TransientModel):
     @api.multi
     def do_amendment(self):
         self.ensure_one()
-        self.item_ids.split_lines()
         sale = self.sale_id
         sale.message_post(body=self._message_content())
+        self.item_ids.split_lines()
         return True
 
     @api.multi
@@ -141,7 +143,8 @@ class SaleOrderAmendmentItem(models.TransientModel):
                                    string="Line",
                                    required=True,
                                    readonly=True)
-    ordered_qty = fields.Float(related='sale_line_id.product_uom_qty',
+    ordered_qty = fields.Float(string='Ordered',
+                               digits_compute=dp.get_precision('Product UoS')
                                readonly=True)
     shipped_qty = fields.Float(string='Delivered',
                                readonly=True,
