@@ -29,7 +29,8 @@ class PaymentMethod(models.Model):
     @api.model
     def _default_company_id(self):
         company_model = self.env['res.company']
-        return company_model._company_default_get('payment.method')
+        return company_model.browse(
+            company_model._company_default_get('payment.method'))
 
     name = fields.Char(required=True,
                        help="The name of the method on the backend")
