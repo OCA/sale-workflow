@@ -28,6 +28,14 @@ class procurement_order(models.Model):
     lot_id = fields.Many2one('stock.production.lot', 'Lot')
 
     @api.model
+    def _run(self, procurement):
+        res = super(
+            procurement_order, self)._run(procurement)
+        for move in procurement.move_ids:
+            move.action_assign()
+        return True
+
+    @api.model
     def _run_move_create(self, procurement):
         res = super(
             procurement_order, self)._run_move_create(procurement)
