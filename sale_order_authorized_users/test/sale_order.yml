@@ -1,0 +1,81 @@
+-
+  I create two users, a normal one, and an Illuminati
+-
+  !record {model: res.users, id: res_users_normal_employee}:
+    company_id: base.main_company
+    name: Normal Employee
+    login: normal
+    password: normal
+    email: stockmanager@yourcompany.com
+    groups_id:
+      - base.group_sale_salesman_all_leads
+-
+  !record {model: res.users, id: res_users_illuminati}:
+    company_id: base.main_company
+    name: Member of Illuminati
+    login: illuminati
+    password: illuminati
+    email: illuminati1@illuminati.illuminati
+    groups_id:
+      - base.group_sale_salesman_all_leads
+-
+  I create a sale order accessible by normal
+-
+  !record {model: sale.order, id: sale_order_normal}:
+    partner_id: base.res_partner_2
+    order_line:
+      - name: "Product nobody cares about"
+    allowed_users_ids:
+      - res_users_normal_employee
+-
+  And another one not accessible by him
+-
+  !record {model: sale.order, id: sale_order_secret}:
+    partner_id: base.res_partner_2
+    order_line:
+      - name: "Super secret product"
+    allowed_users_ids:
+     - res_users_illuminati
+-
+  And yet another one with no authorized users, standard rules should apply.
+-
+  !record {model: sale.order, id: sale_order_standard}:
+    partner_id: base.res_partner_2
+    order_line:
+      - name: "Standard sale order line"
+-
+  Switch to Normal Employee
+-
+  !context
+    uid: 'res_users_normal_employee'
+-
+  I try to get the order I'm authorized to, I should be able to read it.
+- 
+  !python {model: sale.order} : |
+    order = self.browse(cr, uid, ref('sale_order_normal'))
+    partner = order.partner_id
+-
+  Order without authorized_users, I should see it because I'm in see all leads
+-
+  !python {model: sale.order} : |
+    order = self.browse(cr, uid, ref('sale_order_standard'))
+    partner = order.partner_id
+-
+  Now I try to get the secret order, I shouldn't be able to read it.
+-
+  !python {model: sale.order} : |
+    from openerp.osv.orm import except_orm
+    order = self.browse(cr, uid, ref('sale_order_secret'))
+    try:
+      partner = order.partner_id
+      assert 1 == 0, "I should not be able to see the secret order!"
+    except except_orm:
+      pass
+-
+  Now I try to get the secret order lines, I shouldn't see any.
+-
+ !python {model: sale.order.line} : |
+   from openerp.osv.orm import except_orm
+   line_ids = self.search(cr, uid, [('order_id', '=', ref('sale_order_secret'))])
+   lines = self.browse(cr, uid, line_ids)
+   assert len(lines) == 0, "I see the secret order lines!"

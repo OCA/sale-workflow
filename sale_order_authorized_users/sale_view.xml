@@ -1,0 +1,17 @@
+<?xml version="1.0"?>
+<openerp>
+  <data>
+
+    <record id="view_order_form_allowed_users" model="ir.ui.view">
+      <field name="name">sale.order.form.allowed.users</field>
+      <field name="model">sale.order</field>
+      <field name="inherit_id" ref="sale.view_order_form"/>
+      <field name="arch" type="xml">
+        <field name="client_order_ref" position="after">
+          <field name="allowed_users_ids" widget="many2many_tags"/>
+        </field>
+      </field>
+    </record>
+
+  </data>
+</openerp>
