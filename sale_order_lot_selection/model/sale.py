@@ -19,13 +19,41 @@
 #                                                                       #
 #########################################################################
 
-from openerp import fields, models, api
+from openerp import fields, models, api, _
+from openerp.tools import float_compare
 
 
 class sale_order_line(models.Model):
     _inherit = 'sale.order.line'
 
     lot_id = fields.Many2one('stock.production.lot', 'Lot')
+
+    @api.onchange('lot_id')
+    def on_change_lot_id(self):
+        res = {}
+        warning = {}
+
+        product_obj = self.env['product.product'].with_context(
+            lot_id=self.lot_id.id).browse(self.lot_id.product_id.id)
+        compare_qty = float_compare(product_obj.virtual_available,
+                                    self.product_uom_qty,
+                                    precision_rounding=(
+                                        product_obj.uom_id.rounding))
+        if compare_qty == -1:
+            warn_msg = _('You plan to sell %.2f %s but you'
+                         ' only have %.2f %s available !'
+                         '\nThe real stock is %.2f %s.'
+                         ' (without reservations)') % \
+                        (self.product_uom_qty, product_obj.uom_id.name,
+                            max(0, product_obj.virtual_available),
+                            product_obj.uom_id.name,
+                            max(0, product_obj.qty_available),
+                            product_obj.uom_id.name)
+            warning = {'title': _('Configuration Error!'),
+                       'message': _(
+                       "Not enough stock ! : ") + warn_msg + "\n\n"}
+        res.update({'warning': warning})
+        return res
 
 
 class sale_order(models.Model):
