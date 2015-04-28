@@ -27,6 +27,7 @@ class PaymentMethod(models.Model):
     _description = "Payment Method"
 
     @api.model
+    @api.returns('res.company')
     def _default_company_id(self):
         company_model = self.env['res.company']
         return company_model.browse(
