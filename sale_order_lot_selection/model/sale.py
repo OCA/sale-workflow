@@ -20,6 +20,7 @@
 #########################################################################
 
 from openerp import fields, models, api, _
+from openerp.exceptions import Warning
 from openerp.tools import float_compare
 
 
@@ -66,3 +67,35 @@ class sale_order(models.Model):
                 order, line, group_id)
         res['lot_id'] = line.lot_id.id
         return res
+
+    @api.model
+    def get_move_from_line(self, line):
+        move = self.env['stock.move']
+        # i create this counter to check lot's univocity on move line
+        lot_count = 0
+        for p in line.order_id.picking_ids:
+            for m in p.move_lines:
+                if line.lot_id == m.restrict_lot_id:
+                    move = m
+                    lot_count += 1
+        # if counter is 0 or >1 means thar something goes wrong
+        if lot_count != 1:
+            raise Warning(_('Can\'t retrieve lot on stock'))
+        return move
+
+    @api.model
+    def action_ship_create(self):
+        super(sale_order, self).action_ship_create()
+        for line in self.order_line:
+            if line.lot_id:
+                move = self.get_move_from_line(line)
+                if move.state != 'confirmed':
+                    raise Warning(_('Can\'t reserve products for lot %s') %
+                                  line.lot_id.name)
+                else:
+                    move.action_assign()
+                    move.refresh()
+                    if move.state != 'assigned':
+                        raise Warning(_('Can\'t reserve products for lot %s') %
+                                      line.lot_id.name)
+        return True
