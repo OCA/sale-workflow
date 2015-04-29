@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 8.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-04-22 08:16+0000\n"
-"PO-Revision-Date: 2015-04-22 08:16+0000\n"
+"POT-Creation-Date: 2015-04-29 08:05+0000\n"
+"PO-Revision-Date: 2015-04-29 08:05+0000\n"
 "Last-Translator: <>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -26,7 +26,7 @@ msgid "Interest Rate"
 msgstr ""
 
 #. module: sale_payment_term_interest
-#: code:addons/sale_payment_term_interest/model/sale_order.py:107
+#: code:addons/sale_payment_term_interest/model/sale_order.py:109
 #, python-format
 msgid "Interest amount differs. Click on \"(update interests)\" next to the payment terms."
 msgstr ""
@@ -34,6 +34,11 @@ msgstr ""
 #. module: sale_payment_term_interest
 #: field:sale.order.line,interest_line:0
 msgid "Interest line"
+msgstr ""
+
+#. module: sale_payment_term_interest
+#: field:account.payment.term,interest_min:0
+msgid "Minimum Interest Amount"
 msgstr ""
 
 #. module: sale_payment_term_interest
@@ -70,5 +75,10 @@ msgstr ""
 #: help:account.payment.term.line,interest_rate:0
 msgid "The annual interest rate applied on a sales order. Value between 0 and 100.\n"
 "The interest is computed as: 'Amount * (Interest Rate / 100 /  (12 months * 30 days)) * Term Days'"
+msgstr ""
+
+#. module: sale_payment_term_interest
+#: help:account.payment.term,interest_min:0
+msgid "The minimum amount of interest added to a sales order."
 msgstr ""
 
