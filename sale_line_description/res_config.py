@@ -22,7 +22,7 @@
 from openerp.osv import fields, osv
 
 
-class sale_configuration(osv.TransientModel):
+class SaleConfigSettings(osv.TransientModel):
     _inherit = 'sale.config.settings'
 
     _columns = {

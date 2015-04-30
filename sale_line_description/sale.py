@@ -22,7 +22,7 @@
 from openerp.osv import orm
 
 
-class sale_order_line(orm.Model):
+class SaleOrderLine(orm.Model):
     _inherit = "sale.order.line"
 
     def product_id_change(
@@ -31,7 +31,7 @@ class sale_order_line(orm.Model):
         lang=False, update_tax=True, date_order=False, packaging=False,
         fiscal_position=False, flag=False, context=None
     ):
-        res = super(sale_order_line, self).product_id_change(
+        res = super(SaleOrderLine, self).product_id_change(
             cr, uid, ids, pricelist, product_id, qty=qty, uom=uom,
             qty_uos=qty_uos, uos=uos, name='', partner_id=partner_id,
             lang=lang, update_tax=update_tax, date_order=date_order,
