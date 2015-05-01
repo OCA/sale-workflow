@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 #
-#    Author: Alexandre Fayolle, Leonardo Pistone
-#    Copyright 2014 Camptocamp SA
+#    Author: Alexandre Fayolle, Leonardo Pistone, Yannick Vaucher
+#    Copyright 2014-2015 Camptocamp SA
 #
 #    This program is free software: you can redistribute it and/or modify
 #    it under the terms of the GNU Affero General Public License as
@@ -50,6 +50,15 @@ class SaleOrder(models.Model):
                     }
         else:
             return super(SaleOrder, self).action_button_confirm()
+
+    @api.model
+    def _prepare_procurement_group_by_line(self, line):
+        vals = super(SaleOrder, self)._prepare_procurement_group_by_line(line)
+        # for compatibility with sale_quotation_sourcing
+        if line._get_procurement_group_key()[0] == 16:
+            if line.sourced_by:
+                vals['name'] += '/' + line.sourced_by.order_id.name
+        return vals
 
     @api.model
     def _create_sourcing_wizard(self, lines_to_source):
@@ -155,3 +164,17 @@ class SaleOrderLine(models.Model):
         route = self._find_route_from_usage(usage)
         if route:
             self.route_id = route
+
+    @api.multi
+    def _get_procurement_group_key(self):
+        """ Return a key with priority to be used to regroup lines in multiple
+        procurement groups
+
+        """
+        priority = 16
+        key = super(SaleOrderLine, self)._get_procurement_group_key()
+        # Check priority
+        if key[0] < priority:
+            if self.sourced_by:
+                return (priority, self.sourced_by.order_id.id)
+        return key
