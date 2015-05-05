@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+        
+        <record id="mrp_property_form_view_value" model="ir.ui.view">
+            <field name="name">mrp_property_form_view_value</field>
+            <field name="model">mrp.property</field>
+            <field name="inherit_id" ref="mrp.mrp_property_form_view"></field>
+            <field name="arch" type="xml">
+                <field name="composition" position="after">
+                    <field name="value"></field>
+                </field>
+            </field>
+        </record>
+    </data>
+</openerp>
