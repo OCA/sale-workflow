@@ -15,8 +15,10 @@
             <field name="model">mrp.property.formula</field>
             <field name="arch" type="xml">
                 <form string="Formula">
+                   <group>
                     <field name="name"/>
                     <field name="formula_text"/>
+                   </group>
                 </form>
             </field>
         </record>
