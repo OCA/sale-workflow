@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 ##############################################################################
 #
-#    Copyright (C) 2014 Agile Business Group sagl
+#    Copyright (C) 2014-15 Agile Business Group sagl
 #    (<http://www.agilebg.com>)
 #
 #    This program is free software: you can redistribute it and/or modify
@@ -20,7 +20,6 @@
 ##############################################################################
 
 from openerp.osv import orm, fields
-from openerp import SUPERUSER_ID
 from openerp.tools.translate import _
 import logging
 
@@ -43,15 +42,20 @@ class ProductProduct(orm.Model):
                  "You have to put the result in the 'result' variable"),
     }
 
-    def price_get(self, cr, uid, ids, ptype='list_price', context=None):
+
+class ProductTemplate(orm.Model):
+    _inherit = "product.template"
+
+    def _price_get(self, cr, uid, products, ptype='list_price', context=None):
         if context is None:
             context = {}
+
+        res = super(ProductTemplate, self)._price_get(
+            cr, uid, products, ptype=ptype, context=context)
         if 'properties' in context:
-            res = {}
-            for product in self.browse(cr, SUPERUSER_ID, ids, context=context):
-                res[product.id] = super(ProductProduct, self).price_get(
-                    cr, uid, [product.id], ptype=ptype, context=context
-                )[product.id]
+            for product in products:
+                res = super(ProductTemplate, self)._price_get(
+                    cr, uid, products, ptype=ptype, context=context)
                 if product.price_formula_id:
                     localdict = {
                         'self': self,
@@ -76,7 +80,4 @@ class ProductProduct(orm.Model):
                             _('Error'),
                             _("Formula must contain 'result' variable"))
                     res[product.id] = amount
-        else:
-            res = super(ProductProduct, self).price_get(
-                cr, uid, ids, ptype=ptype, context=context)
         return res

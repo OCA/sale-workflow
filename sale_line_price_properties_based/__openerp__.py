@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 ##############################################################################
 #
-#    Copyright (C) 2014 Agile Business Group sagl
+#    Copyright (C) 2014-15 Agile Business Group sagl
 #    (<http://www.agilebg.com>)
 #    @author Lorenzo Battistini <lorenzo.battistini@agilebg.com>
 #    @author Alex Comba <alex.comba@agilebg.com>
@@ -21,36 +21,11 @@
 #
 ##############################################################################
 {
-    'name': "Product price properties based",
-    'version': '0.1',
-    'category': '',
-    'description': """
-This module allows to use python formaulas to compute the sale order line
-price.
-
-You can configure the 'Price formula' on the product form using python code.
-
-Formula example:
-```
-area = float(properties['Width']) * float(properties['Length'])
-result = area / 2.0
-if 'Painting' in properties:
-    result = result + 5
-```
-
-When changing properties on sale order line, the system will automatically
-compute the line price unit.
-
-
-Contributors
-------------
-
- - Lorenzo Battistini <lorenzo.battistini@agilebg.com>
- - Alex Comba <alex.comba@agilebg.com>
-
-""",
-    'author': "Agile Business Group,Odoo Community Association (OCA)",
-    'website': 'http://www.agilebg.com',
+    'name': "Sale line price properties based",
+    'version': '8.0.1.0.0',
+    'category': 'Sales Management',
+    'author': "Agile Business Group, Odoo Community Association (OCA)",
+    'website': 'https://www.agilebg.com',
     'license': 'AGPL-3',
     "depends": [
         'sale_properties_easy_creation',
@@ -66,6 +41,5 @@ Contributors
     "test": [
         'test/sale_order.yml',
     ],
-    "active": False,
     "installable": True
 }
