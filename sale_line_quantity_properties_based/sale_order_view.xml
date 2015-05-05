@@ -5,7 +5,7 @@
         <record id="view_order_form_inherit" model="ir.ui.view">
             <field name="name">sale.order.form.sale.stock</field>
             <field name="model">sale.order</field>
-            <field name="inherit_id" ref="sale_stock.view_order_form_inherit"/>
+            <field name="inherit_id" ref="sale_mrp.view_order_form_inherit_mrp"/>
             <field name="arch" type="xml">
                 <field name="property_ids" position="attributes">
                     <attribute name="on_change">product_id_change(parent.pricelist_id,product_id,product_uom_qty,product_uom,product_uos_qty,False,False,parent.partner_id, False, False, parent.date_order, False, False, True, context)</attribute>
