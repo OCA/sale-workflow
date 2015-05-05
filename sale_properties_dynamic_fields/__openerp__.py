@@ -3,7 +3,6 @@
 #
 #    Copyright (C) 2014-15 Agile Business Group sagl
 #    (<http://www.agilebg.com>)
-#    @author Lorenzo Battistini <lorenzo.battistini@agilebg.com>
 #
 #    This program is free software: you can redistribute it and/or modify
 #    it under the terms of the GNU Affero General Public License as published
@@ -20,20 +19,10 @@
 #
 ##############################################################################
 {
-    'name': "Dynamic fields for sale order line properties",
-    'version': '0.1',
+    'name': "Sale properties dynamic fields",
+    'version': '1.0',
     'category': '',
-    'description': """
-This module allows to dynamically draw properties groups on sale order lines.
-That is, if you have a property group 'Length' and set it as
-'Draw dynamically', the module will automatically add the x_length field to
-the sale order line and visualize it as char field in the form view.
-When fill the 'Length' field, the module will update the properties field
-(property_ids) according to it.
-This allows to set the line's properties through normal fields, instead of
-creating new properties or selecting existing properties.
-""",
-    'author': "Agile Business Group,Odoo Community Association (OCA)",
+    'author': "Agile Business Group, Odoo Community Association (OCA)",
     'website': 'http://www.agilebg.com',
     'license': 'AGPL-3',
     "depends": [
