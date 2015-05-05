@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+        <record model="product.product" id="product.product_product_7">
+            <field name="price_formula_id" ref="sale_properties_easy_creation.area_formula"></field>
+        </record>
+    </data>
+</openerp>
