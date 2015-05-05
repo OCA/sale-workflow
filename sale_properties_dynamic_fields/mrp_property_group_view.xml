@@ -8,9 +8,10 @@
             <field name="inherit_id" ref="mrp.mrp_property_group_form_view"></field>
             <field name="arch" type="xml">
                 <field name="description" position="after">
-                    <label for="draw_dynamically"/>
-                    <field name="draw_dynamically"/>
-                    <field name="field_id"/>
+                    <group>
+                        <field name="draw_dynamically"/>
+                        <field name="field_id"/>
+                    </group>
                 </field>
             </field>
         </record>

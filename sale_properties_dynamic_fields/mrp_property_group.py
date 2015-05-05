@@ -44,6 +44,7 @@ class MrpPropertyGroup(orm.Model):
             'field_description': group.name,
             'ttype': 'char',
             'size': 64,
+            'state': 'manual'
         }
 
     def check_duplicate_field(self, cr, uid, field_id, context=None):
