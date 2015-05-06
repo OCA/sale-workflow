@@ -3,6 +3,7 @@
 #
 #    Copyright (C) 2013 Agile Business Group sagl
 #    (<http://www.agilebg.com>)
+#    @author Alex Comba <alex.comba@agilebg.com>
 #
 #    This program is free software: you can redistribute it and/or modify
 #    it under the terms of the GNU Affero General Public License as published
@@ -18,20 +19,19 @@
 #    along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
 #
-
-from openerp.osv import fields, osv
-
-
-class sale_configuration(osv.TransientModel):
-    _inherit = 'sale.config.settings'
-
-    _columns = {
-        'group_use_product_description_per_so_line': fields.boolean(
-            """Allow using only the product sale description
-            on the sales order lines""",
-            implied_group="sale_line_description."
-            "group_use_product_description_per_so_line",
-            help="""Allows you to use only product sale description on the
-            sales order line."""
-        ),
-    }
+{
+    'name': "Sale line description",
+    'version': '0.1',
+    'category': 'Sales Management',
+    'author': "Agile Business Group,Odoo Community Association (OCA)",
+    'website': 'http://www.agilebg.com',
+    'license': 'AGPL-3',
+    "depends": [
+        'sale',
+    ],
+    "data": [
+        'security/sale_security.xml',
+        'views/res_config_view.xml',
+    ],
+    'installable': True
+}
