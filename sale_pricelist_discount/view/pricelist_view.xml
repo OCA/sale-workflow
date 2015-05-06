@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+        <record model="ir.ui.view" id="product_pricelist_view_form_discount">
+            <field name="name">product.pricelist.item.form.discount</field>
+            <field name="model">product.pricelist.item</field>
+            <field name="inherit_id" ref="product.product_pricelist_item_form_view"/>
+            <field name="arch" type="xml">
+                <field name="price_max_margin" position="after">
+                    <field name="discount"/>
+                </field>
+            </field>
+        </record>
+    </data>
+</openerp>
