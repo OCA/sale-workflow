@@ -22,8 +22,8 @@ Credits
 Contributors
 ------------
 
-* Firstname Lastname <email.address@example.org>
-* Second Person <second.person@example.org>
+* Lorenzo Battistini <lorenzo.battistini@agilebg.com>
+* Alex Comba <alex.comba@agilebg.com>
 
 Maintainer
 ----------
