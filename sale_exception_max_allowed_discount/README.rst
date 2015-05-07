@@ -7,10 +7,6 @@ A sales user cannot approve a sales quotation if any of the items contain a
 sales discount % above the maximum allowed, for a product that is subject to
 this validation.
 
-The user can define in the product, within the 'Sales' tab, if the maximum
-applicable discount should be checked, and can and set the maximum discount as a
-percentage.
-
 Installation
 ============
 
@@ -24,7 +20,9 @@ No specific configuration steps are required.
 Usage
 =====
 
-No specific usage instructions are required.
+The user can define in the product, within the 'Sales' tab, if the maximum
+applicable discount should be checked, and can and set the maximum discount as
+a percentage.
 
 
 Known issues / Roadmap

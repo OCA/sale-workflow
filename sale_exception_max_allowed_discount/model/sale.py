@@ -37,14 +37,7 @@ class SaleOrderLine(models.Model):
     @api.multi
     def _should_skip_discount_checks(self):
         self.ensure_one()
-
-        if (
-            self.product_id and
-            self.product_id.has_max_sale_discount
-        ):
-            return False
-        else:
-            return True
+        return not (self.product_id and self.product_id.has_max_sale_discount)
 
     @api.multi
     def discount_exceeds_max(self):
