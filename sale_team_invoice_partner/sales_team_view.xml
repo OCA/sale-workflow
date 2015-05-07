@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+  <data>
+
+        <record id="crm_case_section_view_form" model="ir.ui.view">
+            <field name="model">crm.case.section</field>
+            <field name="inherit_id" ref="sales_team.crm_case_section_view_form"/>
+            <field name="arch" type="xml">
+                <field name="user_id" position="before">
+                    <field name="invoicing_partner_id"/>
+                </field>
+            </field>
+        </record>
+
+    </data>
+</openerp>
