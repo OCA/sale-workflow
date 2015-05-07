@@ -20,7 +20,7 @@
 #
 {
     'name': "Sale order line description",
-    'version': '1.0',
+    'version': '8.0.1.0.0',
     'category': 'Sales Management',
     'author': "Agile Business Group, Odoo Community Association (OCA)",
     'website': 'http://www.agilebg.com',
@@ -30,7 +30,7 @@
     ],
     "data": [
         'security/sale_security.xml',
-        'res_config_view.xml',
+        'views/res_config_view.xml',
     ],
     "installable": True
 }
