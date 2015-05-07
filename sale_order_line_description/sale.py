@@ -43,7 +43,7 @@ class SaleOrderLine(orm.Model):
                 cr, uid, uid, context=context)
             user_groups = [g.id for g in user.groups_id]
             ref = self.pool.get('ir.model.data').get_object_reference(
-                cr, uid, 'sale_line_description',
+                cr, uid, 'sale_order_line_description',
                 'group_use_product_description_per_so_line'
             )
             if ref and len(ref) > 1 and ref[1] and not flag:

@@ -1,8 +1,8 @@
 .. image:: https://img.shields.io/badge/licence-AGPL--3-blue.svg
     :alt: License: AGPL-3
 
-Sale line description
-=====================
+Sale order line description
+===========================
 
 This module allows to use only the product sale description on the sale order
 lines.
