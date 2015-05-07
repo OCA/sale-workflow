@@ -39,19 +39,16 @@ class SaleOrderLine(orm.Model):
             flag=flag, context=context
         )
         if product:
-            user = self.pool.get('res.users').browse(
-                cr, uid, uid, context=context)
-            user_groups = [g.id for g in user.groups_id]
-            ref = self.pool.get('ir.model.data').get_object_reference(
-                cr, uid, 'sale_order_line_description',
-                'group_use_product_description_per_so_line'
-            )
-            if ref and len(ref) > 1 and ref[1] and not flag:
-                group_id = ref[1]
-                if group_id in user_groups:
-                    product_obj = self.pool.get('product.product')
-                    product = product_obj.browse(
-                        cr, uid, product, context=context)
-                    if (product.description_sale and 'value' in res):
-                        res['value']['name'] = product.description_sale
+            if self.user_has_groups(
+                    cr, uid,
+                    'sale_order_line_description.'
+                    'group_use_product_description_per_so_line',
+                    context=context
+            ):
+                product = self.pool['product.product'].browse(
+                    cr, uid, product, context=context)
+                if product.description_sale:
+                    if 'value' not in res:
+                        res['value'] = {}
+                    res['value']['name'] = product.description_sale
         return res
