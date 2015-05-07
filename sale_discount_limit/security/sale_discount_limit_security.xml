@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+	<data>
+
+		<record id="group_so_discount_block_releaser" model="res.groups">
+        	<field name="name">Sales Quotation Discount Block Releaser</field>
+			<field name="category_id" ref="base.module_category_sales_management"/>
+			<field name="comment">The user will have permission to confirm sales quotations where the maximum allowed discount has been exceeded in at least one item.</field>
+    	</record>
+
+    </data>
+</openerp>

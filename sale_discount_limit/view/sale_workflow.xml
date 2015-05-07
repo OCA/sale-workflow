@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+        <record id="sale.trans_draft_router" model="workflow.transition">
+            <field name="act_from" ref="sale.act_draft"/>
+            <field name="act_to" ref="sale.act_router"/>
+            <field name="signal">order_confirm</field>
+            <field name="condition">check_discount_limit()</field>
+        </record>
+
+        <record id="sale.trans_sent_router" model="workflow.transition">
+            <field name="act_from" ref="sale.act_sent"/>
+            <field name="act_to" ref="sale.act_router"/>
+            <field name="signal">order_confirm</field>
+            <field name="condition">check_discount_limit()</field>
+        </record>
+
+    </data>
+</openerp>

@@ -1,0 +1,76 @@
+# Translation of OpenERP Server.
+# This file contains the translation of the following modules:
+#	* sale_discount_limit
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: OpenERP Server 7.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2015-05-07 08:01+0000\n"
+"PO-Revision-Date: 2015-05-07 08:01+0000\n"
+"Last-Translator: <>\n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: sale_discount_limit
+#: model:ir.model,name:sale_discount_limit.model_product_product
+msgid "Product"
+msgstr "Producto"
+
+#. module: sale_discount_limit
+#: help:product.product,max_sale_discount:0
+msgid "Maximum sales discount defined for this product. Sales quotations containing products where the discount of the line exceeds the discount defined in the product will be blocked."
+msgstr "Máximo descuento de venta definido para este producto. Los presupuestos que contengan líneas con un descuento superior al del producto no podrán ser aprobadas."
+
+#. module: sale_discount_limit
+#: model:res.groups,comment:sale_discount_limit.group_so_discount_block_releaser
+msgid "The user will have permission to confirm sales quotations where the maximum allowed discount has been exceeded in at least one item."
+msgstr "El usuario tendrá permisos para confirmar presupuestos donde el descuento máximo permitido se ha superado en al menos una línea."
+
+#. module: sale_discount_limit
+#: view:sale.order:0
+msgid "Check discount limit"
+msgstr "Comprobar validez del descuento"
+
+#. module: sale_discount_limit
+#: model:res.groups,name:sale_discount_limit.group_so_discount_block_releaser
+msgid "Sales Quotation Discount Block Releaser"
+msgstr "Aprobador de Presupuestos bloqueados por límite de descuento excedido"
+
+#. module: sale_discount_limit
+#: field:product.product,max_sale_discount:0
+msgid "Maximum Discount (%)"
+msgstr "Máximo Descuento (%)"
+
+#. module: sale_discount_limit
+#: model:ir.model,name:sale_discount_limit.model_sale_order
+msgid "Sales Order"
+msgstr "Pedido de venta"
+
+#. module: sale_discount_limit
+#: code:addons/sale_discount_limit/model/sale.py:50
+#, python-format
+msgid "Maximum permitted discount exceeded."
+msgstr "Se ha excedido el máximo descuento permitido."
+
+#. module: sale_discount_limit
+#: code:addons/sale_discount_limit/model/sale.py:51
+#, python-format
+msgid ""
+"Cannot confirm the quotation. The maximum allowed "
+"discount for '%s' is %s %%. Only a user "
+"that belongs to group 'Sales Quotation Discount "
+"Block Releaser' can approve the quotation."
+msgstr ""
+"No se puede confirmar la Oferta. El máximo descuento permitido "
+"para '%s' es %s %%. Solamente un usuario "
+"que pertenezca al grupo 'Aprobador de Presupuestos bloqueados "
+"por límite de descuento excedido' puede aprobar la Oferta."
+
+
+
+
+
