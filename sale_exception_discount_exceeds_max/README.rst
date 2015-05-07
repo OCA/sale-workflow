@@ -7,10 +7,6 @@ set a maximum permitted sales discount % on each product on a sale quotation.
 A sales user cannot approve a sales quotation if any of the items contain a
 sales discount % above the maximum allowed.
 
-Users belonging to the group 'Sales Quotation Discount Block Releaser' will
-have the permission to override this rule and approve the sales quotation.
-
-
 Installation
 ============
 
