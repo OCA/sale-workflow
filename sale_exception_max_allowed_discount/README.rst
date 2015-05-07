@@ -21,7 +21,7 @@ Usage
 =====
 
 The user can define in the product, within the 'Sales' tab, if the maximum
-applicable discount should be checked, and can and set the maximum discount as
+applicable discount should be checked, and set the maximum discount as
 a percentage.
 
 
