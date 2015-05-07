@@ -1,0 +1,47 @@
+# French translation for sale-wkfl
+# Copyright (c) 2014 Rosetta Contributors and Canonical Ltd 2014
+# This file is distributed under the same license as the sale-wkfl package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2014.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: sale-wkfl\n"
+"Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
+"POT-Creation-Date: 2013-10-14 15:56+0000\n"
+"PO-Revision-Date: 2014-03-05 16:40+0000\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: French <fr@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Launchpad-Export-Date: 2014-05-28 05:52+0000\n"
+"X-Generator: Launchpad (build 17017)\n"
+
+#. module: sale_line_description
+#: model:ir.model,name:sale_line_description.model_sale_config_settings
+msgid "sale.config.settings"
+msgstr ""
+
+#. module: sale_line_description
+#: model:res.groups,name:sale_line_description.group_use_product_description_per_so_line
+msgid "Use only product sale description on order lines"
+msgstr ""
+
+#. module: sale_line_description
+#: field:sale.config.settings,group_use_product_description_per_so_line:0
+msgid ""
+"Allow using only the product sale description\n"
+"            on the sales order lines"
+msgstr ""
+
+#. module: sale_line_description
+#: model:ir.model,name:sale_line_description.model_sale_order_line
+msgid "Sales Order Line"
+msgstr ""
+
+#. module: sale_line_description
+#: help:sale.config.settings,group_use_product_description_per_so_line:0
+msgid ""
+"Allows you to use only product sale description on the\n"
+"            sales order line."
+msgstr ""
