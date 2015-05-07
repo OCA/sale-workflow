@@ -1,0 +1,134 @@
+-
+  In order to test Sale maximum discount exceeded exception we have to ensure
+  that if a sale order contains discount greater than the maximum applicable
+  discount defined in the product, it should not be confirmed.
+
+  We have also to test that if line has a product that does not define an
+  applicable discount, we can apply any discount.
+-
+   Create a user as 'Salesman'
+-
+  !record {model: res.users, id: res_users_salesman, view: False}:
+    company_id: base.main_company
+    name: Salesman
+    login: su
+    password: su
+    email: salesman@yourcompany.com
+-
+  I added groups for Salesman.
+-
+  !record {model: res.users, id: res_users_salesman}:
+    groups_id:
+      - base.group_sale_salesman_all_leads
+-
+  We use the salesman user,
+-
+  !context
+    uid: 'res_users_salesman'
+-
+  For testing purpose I deactivate all sale exception(s) that could interfer
+-
+  !python {model: sale.exception}: |
+    ids_to_keep = [ref("discount_exceeds_max")]
+    ids_to_silent = self.search(cr, uid, [('id', 'not in', ids_to_keep)])
+    data = {}
+    data['active'] = False
+    self.write(cr, uid, ids_to_silent, data)
+-
+  I create a new firesteel product for my test
+-
+  !record {model: product.product, id: product_firesteel}:
+    categ_id: product.product_category_1
+    name: Firesteel
+    type: product
+    uom_id: product.product_uom_unit
+    uom_po_id: product.product_uom_unit
+    property_stock_inventory: stock.location_inventory
+    property_stock_procurement: stock.location_procurement
+    property_stock_production: stock.location_production
+    has_max_sale_discount: True
+    max_sale_discount: 10.0
+
+-
+  I create a new screw product for my test
+-
+  !record {model: product.product, id: product_screw}:
+    categ_id: product.product_category_1
+    name: Screw
+    type: product
+    uom_id: product.product_uom_unit
+    uom_po_id: product.product_uom_unit
+    property_stock_inventory: stock.location_inventory
+    property_stock_procurement: stock.location_procurement
+    property_stock_production: stock.location_production
+    has_max_sale_discount: False
+    max_sale_discount: 0.0
+
+-
+  I create a sale order for product Firesteel
+-
+  !record {model: sale.order, id: so_0}:
+    client_order_ref: ref firesteel 0
+    date_order: !eval time.strftime('%Y-03-30')
+    name: 30th of March
+    order_line:
+      - name: Firesteel
+        price_unit: 0.20
+        product_uom: product.product_uom_unit
+        product_uom_qty: 10000
+        state: draft
+        delay: 7.0
+        product_id: product_firesteel
+        product_uos_qty: 10000
+        discount: 15
+    order_policy: manual
+    partner_id: base.res_partner_4
+    partner_invoice_id: base.res_partner_address_7
+    partner_shipping_id: base.res_partner_address_7
+    picking_policy: direct
+    pricelist_id: product.list0
+-
+  Then I confirm the the 30th of March firesteel order
+-
+  !workflow {model: sale.order, action: order_confirm, ref: so_0}
+
+-
+ I check that the sale order is not confirmed and is linked to discount_exceeds_max exception
+-
+  !python {model: sale.order}: |
+    sale_order = self.browse(cr, uid, ref("so_0"))
+    from openerp.addons.sale_exception_discount_exceeds_max.test.test_utils import check_state_and_exceptions
+    check_state_and_exceptions(sale_order, 'draft', ref("discount_exceeds_max"))
+-
+  I create a sale order for product Screw
+-
+  !record {model: sale.order, id: so_1}:
+    client_order_ref: ref firesteel 0
+    date_order: !eval time.strftime('%Y-03-30')
+    name: 30th of March
+    order_line:
+      - name: Screw
+        price_unit: 0.20
+        product_uom: product.product_uom_unit
+        product_uom_qty: 10000
+        state: draft
+        delay: 7.0
+        product_id: product_screw
+        product_uos_qty: 10000
+        discount: 15
+    order_policy: manual
+    partner_id: base.res_partner_4
+    partner_invoice_id: base.res_partner_address_7
+    partner_shipping_id: base.res_partner_address_7
+    picking_policy: direct
+    pricelist_id: product.list0
+-
+  Then I confirm the the 30th of March screw order
+-
+  !workflow {model: sale.order, action: order_confirm, ref: so_1}
+
+-
+ I check that the sale order is confirmed and is not linked to discount_exceeds_max exception
+-
+  !assert {model: sale.order, id: so_1, string: The order should not be 'draft'}:
+    - state != 'draft'

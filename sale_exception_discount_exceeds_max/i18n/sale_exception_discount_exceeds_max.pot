@@ -1,0 +1,52 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+#	* sale_exception_discount_exceeds_max
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 8.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2015-05-07 13:21+0000\n"
+"PO-Revision-Date: 2015-05-07 13:21+0000\n"
+"Last-Translator: <>\n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: sale_exception_discount_exceeds_max
+#: field:product.template,has_max_sale_discount:0
+msgid "Applicable Maximum Discount"
+msgstr ""
+
+#. module: sale_exception_discount_exceeds_max
+#: model:sale.exception,name:sale_exception_discount_exceeds_max.discount_exceeds_max
+msgid "Discount for a line exceeds the maximum allowed"
+msgstr ""
+
+#. module: sale_exception_discount_exceeds_max
+#: field:product.template,max_sale_discount:0
+msgid "Maximum Discount (%)"
+msgstr ""
+
+#. module: sale_exception_discount_exceeds_max
+#: help:product.template,max_sale_discount:0
+msgid "Maximum sales discount defined for this product. Sales quotations containing products where the discount of the line exceeds the discount defined in the product will be blocked."
+msgstr ""
+
+#. module: sale_exception_discount_exceeds_max
+#: model:ir.model,name:sale_exception_discount_exceeds_max.model_product_template
+msgid "Product Template"
+msgstr ""
+
+#. module: sale_exception_discount_exceeds_max
+#: model:ir.model,name:sale_exception_discount_exceeds_max.model_sale_order_line
+msgid "Sales Order Line"
+msgstr ""
+
+#. module: sale_exception_discount_exceeds_max
+#: model:sale.exception,description:sale_exception_discount_exceeds_max.discount_exceeds_max
+msgid "The SO line has a discount that exceeds the maximum defined in the product."
+msgstr ""
+
