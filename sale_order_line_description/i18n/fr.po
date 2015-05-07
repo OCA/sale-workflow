@@ -17,29 +17,29 @@ msgstr ""
 "X-Launchpad-Export-Date: 2014-05-28 05:52+0000\n"
 "X-Generator: Launchpad (build 17017)\n"
 
-#. module: sale_line_description
-#: model:ir.model,name:sale_line_description.model_sale_config_settings
+#. module: sale_order_line_description
+#: model:ir.model,name:sale_order_line_description.model_sale_config_settings
 msgid "sale.config.settings"
 msgstr ""
 
-#. module: sale_line_description
-#: model:res.groups,name:sale_line_description.group_use_product_description_per_so_line
+#. module: sale_order_line_description
+#: model:res.groups,name:sale_order_line_description.group_use_product_description_per_so_line
 msgid "Use only product sale description on order lines"
 msgstr ""
 
-#. module: sale_line_description
+#. module: sale_order_line_description
 #: field:sale.config.settings,group_use_product_description_per_so_line:0
 msgid ""
 "Allow using only the product sale description\n"
 "            on the sales order lines"
 msgstr ""
 
-#. module: sale_line_description
-#: model:ir.model,name:sale_line_description.model_sale_order_line
+#. module: sale_order_line_description
+#: model:ir.model,name:sale_order_line_description.model_sale_order_line
 msgid "Sales Order Line"
 msgstr ""
 
-#. module: sale_line_description
+#. module: sale_order_line_description
 #: help:sale.config.settings,group_use_product_description_per_so_line:0
 msgid ""
 "Allows you to use only product sale description on the\n"
