@@ -61,6 +61,5 @@ class Product(orm.Model):
                                    result=None):
         if result is None:
             result = {'value': {}}
-        if max_sale_discount:
-            result['value']['has_max_sale_discount'] = True
+        result['value']['has_max_sale_discount'] = bool(max_sale_discount)
         return result
