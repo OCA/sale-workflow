@@ -51,8 +51,7 @@ class ProductTemplate(models.Model):
     @api.one
     @api.onchange('max_sale_discount')
     def onchange_max_sale_discount(self):
-        if self.max_sale_discount:
-            self.has_max_sale_discount = True
+        self.has_max_sale_discount = bool(self.max_sale_discount)
 
 
 class Product(models.Model):
@@ -67,5 +66,4 @@ class Product(models.Model):
     @api.one
     @api.onchange('max_sale_discount')
     def onchange_max_sale_discount(self):
-        if self.max_sale_discount:
-            self.has_max_sale_discount = True
+        self.has_max_sale_discount = bool(self.max_sale_discount)
