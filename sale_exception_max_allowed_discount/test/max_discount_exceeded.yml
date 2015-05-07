@@ -1,7 +1,7 @@
 -
-  In order to test Sale maximum discount exceeded exception we have to ensure
-  that if a sale order contains discount greater than the maximum applicable
-  discount defined in the product, it should not be confirmed.
+  In order to test Sale exception maximum allowed discount we have to ensure
+   that if a sale order contains discount greater than the maximum
+   applicable discount defined in the product, it should not be confirmed.
 
   We have also to test that if line has a product that does not define an
   applicable discount, we can apply any discount.
@@ -97,7 +97,7 @@
 -
   !python {model: sale.order}: |
     sale_order = self.browse(cr, uid, ref("so_0"))
-    from openerp.addons.sale_exception_discount_exceeds_max.test.test_utils import check_state_and_exceptions
+    from openerp.addons.sale_exception_max_allowed_discount.test.test_utils import check_state_and_exceptions
     check_state_and_exceptions(sale_order, 'draft', ref("discount_exceeds_max"))
 -
   I create a sale order for product Screw

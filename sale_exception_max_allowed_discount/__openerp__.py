@@ -18,7 +18,7 @@
 #    along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
 ##############################################################################
-{'name': 'Sale maximum discount exceeded exception',
+{'name': 'Sale exception maximum allowed discount',
  'version': '1.0',
  'author': "Eficent,Odoo Community Association (OCA)",
  'maintainer': 'Eficent',

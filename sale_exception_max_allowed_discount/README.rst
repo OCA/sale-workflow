@@ -1,5 +1,5 @@
-Sale maximum discount exceeded exception
-========================================
+Sale exception maximum allowed discount
+=======================================
 
 This module was created to extend the sales process. It allows to
 set a maximum permitted sales discount % on each product on a sale quotation.
