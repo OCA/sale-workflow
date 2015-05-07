@@ -1,10 +1,10 @@
-# Translation of OpenERP Server.
+# Translation of Odoo Server.
 # This file contains the translation of the following modules:
 #	* sale_discount_limit
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: OpenERP Server 7.0\n"
+"Project-Id-Version: Odoo Server 8.0\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2015-05-07 08:01+0000\n"
 "PO-Revision-Date: 2015-05-07 08:01+0000\n"
@@ -65,10 +65,10 @@ msgid ""
 "that belongs to group 'Sales Quotation Discount "
 "Block Releaser' can approve the quotation."
 msgstr ""
-"No se puede confirmar la Oferta. El máximo descuento permitido "
+"No se puede confirmar el Presupuesto. El máximo descuento permitido "
 "para '%s' es %s %%. Solamente un usuario "
 "que pertenezca al grupo 'Aprobador de Presupuestos bloqueados "
-"por límite de descuento excedido' puede aprobar la Oferta."
+"por límite de descuento excedido' puede aprobar el Presupuesto."
 
 
 
