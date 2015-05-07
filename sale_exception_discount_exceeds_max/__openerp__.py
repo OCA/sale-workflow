@@ -19,7 +19,7 @@
 #
 ##############################################################################
 {'name': 'Sale maximum discount exceeded exception',
- 'version': '1.2',
+ 'version': '1.0',
  'author': "Eficent,Odoo Community Association (OCA)",
  'maintainer': 'Eficent',
  'category': 'sale',
