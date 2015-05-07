@@ -1,6 +1,6 @@
 # Translation of OpenERP Server.
 # This file contains the translation of the following modules:
-# 	* sale_line_description
+# 	* sale_order_line_description
 #
 msgid ""
 msgstr ""
@@ -17,18 +17,18 @@ msgstr ""
 "X-Launchpad-Export-Date: 2014-05-28 05:52+0000\n"
 "X-Generator: Launchpad (build 17017)\n"
 
-#. module: sale_line_description
-#: model:ir.model,name:sale_line_description.model_sale_config_settings
+#. module: sale_order_line_description
+#: model:ir.model,name:sale_order_line_description.model_sale_config_settings
 msgid "sale.config.settings"
 msgstr "sale.config.settings"
 
-#. module: sale_line_description
-#: model:res.groups,name:sale_line_description.group_use_product_description_per_so_line
+#. module: sale_order_line_description
+#: model:res.groups,name:sale_order_line_description.group_use_product_description_per_so_line
 msgid "Use only product sale description on order lines"
 msgstr ""
 "Usa solo la descrizione del prodotto sulle righe dell'ordine di vendita"
 
-#. module: sale_line_description
+#. module: sale_order_line_description
 #: field:sale.config.settings,group_use_product_description_per_so_line:0
 msgid ""
 "Allow using only the product sale description\n"
@@ -37,12 +37,12 @@ msgstr ""
 "Permette di usare solamente la descrizione di vendita del prodotto\n"
 "nelle righe dell'ordine di vendita"
 
-#. module: sale_line_description
-#: model:ir.model,name:sale_line_description.model_sale_order_line
+#. module: sale_order_line_description
+#: model:ir.model,name:sale_order_line_description.model_sale_order_line
 msgid "Sales Order Line"
 msgstr "Linea d'ordine di vendita"
 
-#. module: sale_line_description
+#. module: sale_order_line_description
 #: help:sale.config.settings,group_use_product_description_per_so_line:0
 msgid ""
 "Allows you to use only product sale description on the\n"
