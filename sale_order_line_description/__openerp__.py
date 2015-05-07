@@ -30,7 +30,7 @@
     ],
     "data": [
         'security/sale_security.xml',
-        'res_config_view.xml',
+        'views/res_config_view.xml',
     ],
     "installable": True
 }
