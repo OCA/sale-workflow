@@ -22,7 +22,7 @@ Contributors
 ------------
 
 * Alex Comba <email.address@example.org>
-
+* Daniel Campos <danielcampos@avanzosc.es>
 Maintainer
 ----------
 
