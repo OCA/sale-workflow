@@ -51,7 +51,7 @@ Usage
 =====
 
 The user can define in the product 'Sales' tab if the maximum applicable
-discount should be checked, and can and set the maximum discount as a
+discount should be checked, and set the maximum discount as a
 percentage.
 
 Known issues / Roadmap
