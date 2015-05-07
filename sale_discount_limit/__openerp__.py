@@ -27,6 +27,7 @@
     'version': '1.0',
     'author': 'Eficent, Odoo Community Association (OCA)',
     'website': 'http://www.eficent.com',
+    "license": "AGPL-3",
     'depends': ['sale'],
     'init_xml': [],
     'update_xml': [
