@@ -33,14 +33,8 @@ class SaleOrderLine(orm.Model):
     _inherit = "sale.order.line"
 
     def _should_skip_discount_checks(self, cr, uid, line_br, context=None):
-
-        if (
-            line_br.product_id and
-            line_br.product_id.has_max_sale_discount
-        ):
-            return False
-        else:
-            return True
+        return not (line_br.product_id and
+                    line_br.product_id.has_max_sale_discount)
 
     def discount_exceeds_max(self, cr, uid, l_id, context=None):
         """Predicate that checks whether a SO line has a discount that
