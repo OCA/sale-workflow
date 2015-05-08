@@ -1,8 +1,9 @@
 # -*- coding: utf-8 -*-
 ##############################################################################
 #
-#    OpenERP, Open Source Management Solution   
-#    Copyright (C) 2015 credativ ltd (<http://www.credativ.co.uk>). All Rights Reserved
+#    OpenERP, Open Source Management Solution
+#    Copyright (C) 2015 credativ ltd (<http://www.credativ.co.uk>).
+#    All Rights Reserved
 #
 #    This program is free software: you can redistribute it and/or modify
 #    it under the terms of the GNU Affero General Public License as
@@ -20,18 +21,22 @@
 ##############################################################################
 
 from openerp.osv import fields, osv
-from openerp.tools.translate import _
 import openerp.addons.decimal_precision as dp
+
 
 class product_pricelist_item(osv.osv):
     _inherit = 'product.pricelist.item'
 
-    _columns ={
-        'discount': fields.float('Discount (%)', digits_compute= dp.get_precision('Discount'),
-                                 help="Default discount applied on a sale order line."),
+    _columns = {
+        'discount': fields.float(
+            'Discount (%)',
+            digits_compute=dp.get_precision('Discount'),
+            help="Default discount applied on a sale order line.",
+        ),
     }
+
     _defaults = {
-         'discount': 0.0,
+        'discount': 0.0,
     }
 
 # vim:expandtab:smartindent:tabstop=4:softtabstop=4:shiftwidth=4:

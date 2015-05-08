@@ -1,7 +1,8 @@
 ##############################################################################
 #
-#    OpenERP, Open Source Management Solution   
-#    Copyright (C) 2015 credativ ltd (<http://www.credativ.co.uk>). All Rights Reserved
+#    OpenERP, Open Source Management Solution
+#    Copyright (C) 2015 credativ ltd (<http://www.credativ.co.uk>).
+#    All Rights Reserved
 #
 #    This program is free software: you can redistribute it and/or modify
 #    it under the terms of the GNU Affero General Public License as
@@ -20,24 +21,24 @@
 
 {
     'name': 'Sale Pricelist Discount',
-    'version':'1.0',
-    'category' : 'Sale',
+    'version': '1.0',
+    'category': 'Sale',
     'description': """
-This module allows specifying a default percentage discount to apply to sale order lines.
-This ensures the pricelist discount is visible on quotations and sale orders.
+This module allows specifying a default percentage discount to apply
+to sale order lines.  This ensures the pricelist discount is visible
+on quotations and sale orders.
     """,
-    'author' : 'credativ',
-    'website' : 'http://www.credativ.co.uk',
-    'depends':[
-               'base',
-               'sale',
-               'product',
-               ],
-    'update_xml' : [
+    'author': 'credativ',
+    'website': 'http://www.credativ.co.uk',
+    'depends': [
+                'base',
+                'sale',
+                'product',
+    ],
+    'update_xml': [
         'view/pricelist_view.xml'
     ],
     'auto_install': False,
     'installable': True,
 }
 # vim:expandtab:smartindent:tabstop=4:softtabstop=4:shiftwidth=4:
-
