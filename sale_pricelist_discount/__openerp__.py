@@ -2,7 +2,6 @@
 #
 #    OpenERP, Open Source Management Solution
 #    Copyright (C) 2015 credativ ltd (<http://www.credativ.co.uk>).
-#    All Rights Reserved
 #
 #    This program is free software: you can redistribute it and/or modify
 #    it under the terms of the GNU Affero General Public License as
@@ -28,17 +27,16 @@ This module allows specifying a default percentage discount to apply
 to sale order lines.  This ensures the pricelist discount is visible
 on quotations and sale orders.
     """,
-    'author': 'credativ',
+    'author': 'credativ, Odoo Community Association (OCA)',
     'website': 'http://www.credativ.co.uk',
     'depends': [
                 'base',
                 'sale',
                 'product',
     ],
-    'update_xml': [
+    'data': [
         'view/pricelist_view.xml'
     ],
     'auto_install': False,
     'installable': True,
 }
-# vim:expandtab:smartindent:tabstop=4:softtabstop=4:shiftwidth=4:

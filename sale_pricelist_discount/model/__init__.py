@@ -2,7 +2,6 @@
 #
 #    OpenERP, Open Source Management Solution
 #    Copyright (C) 2015 credativ ltd (<http://www.credativ.co.uk>).
-#    All Rights Reserved
 #
 #    This program is free software: you can redistribute it and/or modify
 #    it under the terms of the GNU Affero General Public License as
@@ -21,5 +20,3 @@
 
 from . import pricelist
 from . import sale
-
-# vim:expandtab:smartindent:tabstop=4:softtabstop=4:shiftwidth=4:
