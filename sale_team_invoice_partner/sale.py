@@ -38,4 +38,3 @@ class SaleOrder(models.Model):
                 vals['partner_invoice_id'] = section.invoicing_partner_id.id
         order = super(SaleOrder, self).create(vals)
         return order
-

@@ -12,7 +12,6 @@
             <field name="country_id" ref="base.fr"/>
             <field name="website">http://www.akretion.com</field>
             <field name="email">contact@akretion.com</field>
-            <field name="lang">fr_FR</field>
             <field name="customer" eval="True"/>
             <field name="supplier" eval="False"/>
             <field name="active" eval="True"/>
@@ -33,7 +32,7 @@
             <field name="partner_shipping_id" ref="base.res_partner_2"/>
             <field name="user_id" ref="base.user_demo"/>
             <field name="pricelist_id" ref="product.list0"/>
-            <field name="section_id" ref="sales_team.crm_case_section_invoice_partner"/>
+            <field name="section_id" ref="crm_case_section_invoice_partner"/>
             <field name="date_order" eval="(DateTime.today() - relativedelta(months=1)).strftime('%Y-%m-%d %H:%M')"/>
         </record>
 
