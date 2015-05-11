@@ -42,18 +42,14 @@ class PurchaseOrderLine(models.Model):
 
     @api.model
     def name_search(self, name, args=None, operator='ilike', limit=100):
+        """Do the name search on purchase order, bounded by args"""
         results = super(PurchaseOrderLine, self).name_search(
             name,
             args=args,
             operator=operator,
             limit=limit)
         if name and not results:
-            po_obj = self.env['purchase.order']
-            po_line_ids = []
-            pos_found = po_obj.search([('name', operator, name)], limit=limit)
-            for po in pos_found:
-                for line in po.order_line:
-                    po_line_ids.append(line.id)
-            res = self.browse(po_line_ids)
+            domain = args + [('order_id.name', operator, name)]
+            res = self.search(domain, limit=limit)
             results = res.name_get()
         return results
