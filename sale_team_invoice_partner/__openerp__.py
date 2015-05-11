@@ -40,5 +40,8 @@ create a new Sale Order with this sales team.
         'sales_team_view.xml',
         'sale_view.xml',
     ],
+    'demo': [
+        'demo/sale.xml',
+    ],
     'installable': True,
 }
