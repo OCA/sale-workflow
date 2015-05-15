@@ -34,8 +34,23 @@ class SaleOrder(models.Model):
     def create(self, vals):
         section_id = vals.get('section_id', False)
         if section_id:
-            section = self.env['crm.case.section'].browse(vals['section_id'])
+            section = self.env['crm.case.section'].browse(section_id)
             if section.invoicing_partner_id:
                 vals['partner_invoice_id'] = section.invoicing_partner_id.id
         order = super(SaleOrder, self).create(vals)
         return order
+
+    @api.multi
+    def write(self, vals):
+        if 'section_id' in vals:
+            section_id = vals.get('section_id')
+            section = self.env['crm.case.section'].browse(section_id)
+            if section.invoicing_partner_id:
+                vals.update({
+                    'partner_invoice_id': section.invoicing_partner_id.id
+                })
+            else:
+                vals.update({
+                    'partner_invoice_id': self.partner_id.id
+                })
+        return super(SaleOrder, self).write(vals)
