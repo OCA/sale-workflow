@@ -20,7 +20,7 @@
 ##############################################################################
 
 {
-    'name': 'Sale Team Invoice Partner',
+    'name': 'Sales Team Invoice Partner',
     'version': '0.1',
     'category': 'Sales Management',
     'license': 'AGPL-3',

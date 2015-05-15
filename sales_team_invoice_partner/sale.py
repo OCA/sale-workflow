@@ -32,7 +32,8 @@ class SaleOrder(models.Model):
 
     @api.model
     def create(self, vals):
-        if vals['section_id']:
+        section_id = vals.get('section_id', False)
+        if section_id:
             section = self.env['crm.case.section'].browse(vals['section_id'])
             if section.invoicing_partner_id:
                 vals['partner_invoice_id'] = section.invoicing_partner_id.id
