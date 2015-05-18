@@ -1,9 +1,8 @@
 # -*- coding: utf-8 -*-
 #
 #
-#    Copyright (C) 2013 Agile Business Group sagl
+#    Copyright (C) 2013-15 Agile Business Group sagl
 #    (<http://www.agilebg.com>)
-#    @author Alex Comba <alex.comba@agilebg.com>
 #
 #    This program is free software: you can redistribute it and/or modify
 #    it under the terms of the GNU Affero General Public License as published
@@ -20,17 +19,10 @@
 #
 #
 {
-    'name': "Sale line description",
-    'version': '0.1',
+    'name': "Sale order line description",
+    'version': '1.0',
     'category': 'Sales Management',
-    'description': """
-This module allows to use only the product description on the sale order lines.
-To do so, the user has to belong to group_use_product_description_per_so_line.
-This is possible by selecting the related option in the following menu:
-
-Settings --> Configuration --> Sale --> Sale Features
-    """,
-    'author': "Agile Business Group,Odoo Community Association (OCA)",
+    'author': "Agile Business Group, Odoo Community Association (OCA)",
     'website': 'http://www.agilebg.com',
     'license': 'AGPL-3',
     "depends": [
@@ -38,8 +30,7 @@ Settings --> Configuration --> Sale --> Sale Features
     ],
     "data": [
         'security/sale_security.xml',
-        'res_config_view.xml',
+        'views/res_config_view.xml',
     ],
-    "active": False,
-    'installable': False
+    "installable": True
 }

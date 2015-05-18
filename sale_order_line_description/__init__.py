@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 #
 #
-#    Copyright (C) 2013 Agile Business Group sagl
+#    Copyright (C) 2013-15 Agile Business Group sagl
 #    (<http://www.agilebg.com>)
 #
 #    This program is free software: you can redistribute it and/or modify
@@ -19,19 +19,4 @@
 #
 #
 
-from openerp.osv import fields, osv
-
-
-class sale_configuration(osv.TransientModel):
-    _inherit = 'sale.config.settings'
-
-    _columns = {
-        'group_use_product_description_per_so_line': fields.boolean(
-            """Allow using only the product sale description
-            on the sales order lines""",
-            implied_group="sale_line_description."
-            "group_use_product_description_per_so_line",
-            help="""Allows you to use only product sale description on the
-            sales order line."""
-        ),
-    }
+from . import models
