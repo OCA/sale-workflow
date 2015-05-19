@@ -19,7 +19,8 @@ class SaleOrder(models.Model):
                       "state. Order: %s" % order.name))
             order.order_line.write({'state': 'draft'})
             order.procurement_group_id.unlink()
-            order.order_line.procurement_ids.unlink()
+            for line in order.order_line:
+                line.procurement_ids.unlink()
             order.write({'state': 'draft'})
             order.delete_workflow()
             order.create_workflow()
