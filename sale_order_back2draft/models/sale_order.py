@@ -18,6 +18,8 @@ class SaleOrder(models.Model):
                     _("You can't back any order that it's not on cancel "
                       "state. Order: %s" % order.name))
             order.order_line.write({'state': 'draft'})
+            order.procurement_group_id.unlink()
+            order.order_line.procurement_ids.unlink()
             order.write({'state': 'draft'})
             order.delete_workflow()
             order.create_workflow()
