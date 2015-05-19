@@ -36,7 +36,8 @@ class SaleOrder(models.Model):
         if section_id:
             section = self.env['crm.case.section'].browse(section_id)
             if section.section_partner_invoice_id:
-                vals['partner_invoice_id'] = section.section_partner_invoice_id.id
+                vals['partner_invoice_id'] = (section.
+                                              section_partner_invoice_id.id)
         order = super(SaleOrder, self).create(vals)
         return order
 
@@ -49,8 +50,10 @@ class SaleOrder(models.Model):
                 vals.update({
                     'partner_invoice_id': section.section_partner_invoice_id.id
                 })
-            else:
-                vals.update({
-                    'partner_invoice_id': self.partner_id.id
-                })
         return super(SaleOrder, self).write(vals)
+
+    @api.onchange('section_id')
+    def _onchange_section_id(self):
+        if (not self.section_id or
+                not self.section_id.section_partner_invoice_id):
+            self.partner_invoice_id = self.partner_id.id
