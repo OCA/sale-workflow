@@ -7,7 +7,7 @@
             <field name="inherit_id" ref="sales_team.crm_case_section_view_form"/>
             <field name="arch" type="xml">
                 <field name="user_id" position="before">
-                    <field name="invoicing_partner_id"/>
+                    <field name="section_partner_invoice_id"/>
                 </field>
             </field>
         </record>

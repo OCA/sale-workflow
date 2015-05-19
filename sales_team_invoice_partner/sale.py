@@ -25,8 +25,8 @@ from openerp import fields, models, api
 class SaleOrder(models.Model):
     _inherit = 'sale.order'
 
-    invoicing_partner_id = fields.Many2one(
-        'res.partner', related='section_id.invoicing_partner_id',
+    section_partner_invoice_id = fields.Many2one(
+        'res.partner', related='section_id.section_partner_invoice_id',
         string='Invoice Address', readonly=True,
         help="Invoice address for current sales order.")
 
@@ -35,8 +35,8 @@ class SaleOrder(models.Model):
         section_id = vals.get('section_id', False)
         if section_id:
             section = self.env['crm.case.section'].browse(section_id)
-            if section.invoicing_partner_id:
-                vals['partner_invoice_id'] = section.invoicing_partner_id.id
+            if section.section_partner_invoice_id:
+                vals['partner_invoice_id'] = section.section_partner_invoice_id.id
         order = super(SaleOrder, self).create(vals)
         return order
 
@@ -45,9 +45,9 @@ class SaleOrder(models.Model):
         if 'section_id' in vals:
             section_id = vals.get('section_id')
             section = self.env['crm.case.section'].browse(section_id)
-            if section.invoicing_partner_id:
+            if section.section_partner_invoice_id:
                 vals.update({
-                    'partner_invoice_id': section.invoicing_partner_id.id
+                    'partner_invoice_id': section.section_partner_invoice_id.id
                 })
             else:
                 vals.update({

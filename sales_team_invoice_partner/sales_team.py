@@ -24,6 +24,6 @@ from openerp import fields, models
 class CrmCaseSection(models.Model):
     _inherit = 'crm.case.section'
 
-    invoicing_partner_id = fields.Many2one(
+    section_partner_invoice_id = fields.Many2one(
         'res.partner', string='Final Partner for Invoicing',
         help="Select the final partner to invoice")
