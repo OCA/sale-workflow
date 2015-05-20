@@ -1,0 +1,125 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+#   * sale_order_add_variants
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 8.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2015-05-20 16:14+0000\n"
+"PO-Revision-Date: 2015-05-20 18:18+0100\n"
+"Last-Translator: Hugo Santos <hugo.santos@factorlibre.com>\n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Poedit 1.5.4\n"
+"Language: es_ES\n"
+
+#. module: sale_order_add_variants
+#: code:addons/sale_order_add_variants/wizard/sale_add_variants.py:63
+#: code:addons/sale_order_add_variants/wizard/sale_add_variants.py:104
+#: view:sale.add.variants:sale_order_add_variants.sale_add_variants_form
+#: view:sale.order:sale_order_add_variants.sale_order_add_variants_form
+#, python-format
+msgid "Add Variants"
+msgstr "Añadir variantes"
+
+#. module: sale_order_add_variants
+#: view:sale.add.variants:sale_order_add_variants.sale_add_variants_form
+msgid "Add to order"
+msgstr "Añadir al pedido"
+
+#. module: sale_order_add_variants
+#: view:sale.add.variants:sale_order_add_variants.sale_add_variants_form
+msgid "Add to order and add more"
+msgstr "Añadir al pedido y seleccionar otra plantilla"
+
+#. module: sale_order_add_variants
+#: model:ir.actions.act_window,name:sale_order_add_variants.action_sale_add_variants
+msgid "Add variants"
+msgstr "Añadir variantes"
+
+#. module: sale_order_add_variants
+#: view:sale.add.variants:sale_order_add_variants.sale_add_variants_form
+msgid "Cancel and select other template"
+msgstr "Cancelar y seleccionar otra plantilla"
+
+#. module: sale_order_add_variants
+#: field:sale.add.variants,create_uid:0
+#: field:sale.add.variants.line,create_uid:0
+msgid "Created by"
+msgstr "Creado por"
+
+#. module: sale_order_add_variants
+#: field:sale.add.variants,create_date:0
+#: field:sale.add.variants.line,create_date:0
+msgid "Created on"
+msgstr "Creado en"
+
+#. module: sale_order_add_variants
+#: field:sale.add.variants,id:0 field:sale.add.variants.line,id:0
+msgid "ID"
+msgstr "ID"
+
+#. module: sale_order_add_variants
+#: selection:sale.add.variants,state:0
+msgid "Init"
+msgstr "Init"
+
+#. module: sale_order_add_variants
+#: field:sale.add.variants,write_uid:0
+#: field:sale.add.variants.line,write_uid:0
+msgid "Last Updated by"
+msgstr "Last Updated by"
+
+#. module: sale_order_add_variants
+#: field:sale.add.variants,write_date:0
+#: field:sale.add.variants.line,write_date:0
+msgid "Last Updated on"
+msgstr "Last Updated on"
+
+#. module: sale_order_add_variants
+#: view:sale.add.variants:sale_order_add_variants.sale_add_variants_form
+msgid "Load Variants"
+msgstr "Cargar variantes"
+
+#. module: sale_order_add_variants
+#: field:sale.add.variants.line,quantity:0
+msgid "Quantity"
+msgstr "Cantidad"
+
+#. module: sale_order_add_variants
+#: selection:sale.add.variants,state:0
+msgid "Select Variants"
+msgstr "Seleccionar variantes"
+
+#. module: sale_order_add_variants
+#: field:sale.add.variants,state:0
+msgid "State"
+msgstr "Estad"
+
+#. module: sale_order_add_variants
+#: field:sale.add.variants,product_tmpl_id:0
+msgid "Template"
+msgstr "Plantilla"
+
+#. module: sale_order_add_variants
+#: field:sale.add.variants.line,product_id:0
+msgid "Variant"
+msgstr "Variante"
+
+#. module: sale_order_add_variants
+#: field:sale.add.variants,variant_line_ids:0
+msgid "Variant Lines"
+msgstr "Lineas de variantes"
+
+#. module: sale_order_add_variants
+#: view:sale.add.variants:sale_order_add_variants.sale_add_variants_form
+msgid "Variants"
+msgstr "Variantes"
+
+#. module: sale_order_add_variants
+#: field:sale.add.variants.line,wizard_id:0
+msgid "Wizard id"
+msgstr "Wizard id"
