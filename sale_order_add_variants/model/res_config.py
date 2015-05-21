@@ -18,23 +18,12 @@
 #    along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
 ##############################################################################
-{
-    'name': 'Sale Order Add Variants',
-    'summary': 'Add variants from template into sale order',
-    'version': '0.1',
-    'author': 'Factorlibre,Odoo Community Association (OCA)',
-    'category': 'Sale',
-    'license': 'AGPL-3',
-    'website': 'http://factorlibre.com',
-    'depends': [
-        'sale'
-    ],
-    'demo': [],
-    'data': [
-        'security/sale_order_add_variants_security.xml',
-        'view/sale_add_variants_view.xml',
-        'view/sale_view.xml',
-        'view/res_config_view.xml'
-    ],
-    'installable': True
-}
+from openerp import models, fields
+
+
+class SaleConfiguration(models.TransientModel):
+    _inherit = 'sale.config.settings'
+
+    group_sale_add_variants = fields.Boolean(
+        string='Allow to add variants from template in Sale order',
+        implied_group='sale_order_add_variants.group_sale_add_variants')
