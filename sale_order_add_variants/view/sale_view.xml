@@ -9,7 +9,8 @@
             <field name="arch" type="xml">
                 <xpath expr="//field[@name='order_line']" position="before">
                     <button name="%(action_sale_add_variants)d"
-                        type="action" string="Add Variants"/>
+                        type="action" string="Add Variants"
+                        groups="sale_order_add_variants.group_sale_add_variants"/>
                 </xpath>
             </field>
         </record>
