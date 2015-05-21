@@ -32,7 +32,7 @@
     'demo': [],
     'data': [
         'security/sale_order_add_variants_security.xml',
-        'view/sale_add_variants_view.xml',
+        'wizard/sale_add_variants_view.xml',
         'view/sale_view.xml',
         'view/res_config_view.xml'
     ],
