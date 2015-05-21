@@ -38,11 +38,8 @@ class SaleAddVariants(models.TransientModel):
     @api.onchange('product_tmpl_id')
     def _onchange_product_tmpl_id(self):
         if self.product_tmpl_id:
-            product_variants = self.env['product.product'].search([
-                ('product_tmpl_id', '=', self.product_tmpl_id.id)
-            ])
             variant_lines = []
-            for variant in product_variants:
+            for variant in self.product_tmpl_id.product_variant_ids:
                variant_lines.append([0, 0, {
                     'product_id': variant.id,
                     'quantity': 0
