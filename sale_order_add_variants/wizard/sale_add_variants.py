@@ -29,45 +29,25 @@ class SaleAddVariants(models.TransientModel):
                                       required=True)
     variant_line_ids = fields.One2many('sale.add.variants.line', 'wizard_id',
                                        string="Variant Lines")
-    state = fields.Selection([
-        ('init', 'Init'),
-        ('select_variants', 'Select Variants')
-    ], default="init")
 
     @api.multi
     def clear_previous_selections(self):
         for line in self.variant_line_ids:
             line.unlink()
 
-    @api.multi
-    def load_variants(self):
-        self.ensure_one()
-        self.clear_previous_selections()
-
-        product_variants = self.env['product.product'].search([
-            ('product_tmpl_id', '=', self.product_tmpl_id.id)
-        ])
-
-        for variant in product_variants:
-            self.variant_line_ids.create({
-                'product_id': variant.id,
-                'quantity': 0,
-                'wizard_id': self.id
-            })
-
-        self.write({'state': 'select_variants'})
-
-        return {
-            'type': 'ir.actions.act_window',
-            'res_model': 'sale.add.variants',
-            'name': _('Add Variants'),
-            'res_id': self.id,
-            'view_type': 'form',
-            'view_mode': 'form',
-            'target': 'new',
-            'nodestroy': True,
-            'context': self.env.context
-        }
+    @api.onchange('product_tmpl_id')
+    def _onchange_product_tmpl_id(self):
+        if self.product_tmpl_id:
+            product_variants = self.env['product.product'].search([
+                ('product_tmpl_id', '=', self.product_tmpl_id.id)
+            ])
+            variant_lines = []
+            for variant in product_variants:
+               variant_lines.append([0, 0, {
+                    'product_id': variant.id,
+                    'quantity': 0
+                }])
+            self.variant_line_ids = variant_lines
 
     @api.multi
     def add_to_order(self):
@@ -88,11 +68,6 @@ class SaleAddVariants(models.TransientModel):
     @api.multi
     def add_to_order_continue(self):
         self.add_to_order()
-        self.clear_previous_selections()
-        return self.open_new_window()
-
-    @api.multi
-    def return_to_selection(self):
         self.clear_previous_selections()
         return self.open_new_window()
 

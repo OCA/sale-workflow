@@ -7,13 +7,12 @@
             <field name="model">sale.add.variants</field>
             <field name="arch" type="xml">
                 <form string="Add Variants" version="7.0">
-                    <field name="state" invisible="1"/>
                     <group>
-                        <field name="product_tmpl_id" attrs="{'readonly': [('state', '!=', 'init')]}"
+                        <field name="product_tmpl_id"
                             domain="[('attribute_line_ids', '!=', False)]"
                             options="{'no_create': True}"/>
                     </group>
-                    <group colspan="4" attrs="{'invisible': [('state', '!=', 'select_variants')]}">
+                    <group colspan="4">
                         <field name="variant_line_ids" mode="tree" nolabel="1">
                             <tree string="Variants" editable="top">
                                 <field name="product_id"/>
@@ -22,19 +21,13 @@
                         </field>
                     </group>
                     <footer>
-                        <button name="load_variants"
-                            type="object" states="init" string="Load Variants"
-                            class="oe_highlight"/>
                         <button name="add_to_order"
-                            type="object" states="select_variants"
+                            type="object"
                             string="Add to order"
                             class="oe_highlight"/>
                         <button name="add_to_order_continue"
-                            type="object" states="select_variants"
+                            type="object"
                             string="Add to order and add more"/>
-                        <button name="return_to_selection"
-                            type="object" states="select_variants"
-                            string="Cancel and select other template"/>
                     </footer>
                 </form>
             </field>
