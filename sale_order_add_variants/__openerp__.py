@@ -22,7 +22,7 @@
     'name': 'Sale Order Add Variants',
     'summary': 'Add variants from template into sale order',
     'version': '0.1',
-    'author': 'Factorlibre,Odoo Community Association (OCA)',
+    'author': 'FactorLibre,Odoo Community Association (OCA)',
     'category': 'Sale',
     'license': 'AGPL-3',
     'website': 'http://factorlibre.com',
