@@ -53,11 +53,9 @@ class SaleAddVariants(models.TransientModel):
     def add_to_order(self):
         context = self.env.context
         sale_order = self.env['sale.order'].browse(context.get('active_id'))
-
         for line in self.variant_line_ids:
             if not line.quantity:
                 continue
-
             line_values = {
                 'product_id': line.product_id.id,
                 'product_uom_qty': line.quantity,
