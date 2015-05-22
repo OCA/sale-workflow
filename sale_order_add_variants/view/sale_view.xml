@@ -7,10 +7,11 @@
             <field name="model">sale.order</field>
             <field name="inherit_id" ref="sale.view_order_form"/>
             <field name="arch" type="xml">
-                <xpath expr="//field[@name='order_line']" position="before">
+                <xpath expr="//header/button[@name='invoice_recreate']" position="before">
                     <button name="%(action_sale_add_variants)d"
                         type="action" string="Add Variants"
-                        groups="sale_order_add_variants.group_sale_add_variants"/>
+                        groups="sale_order_add_variants.group_sale_add_variants"
+                        states="draft,sent"/>
                 </xpath>
             </field>
         </record>
