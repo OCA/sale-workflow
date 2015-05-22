@@ -71,13 +71,13 @@ msgstr "ID"
 #: field:sale.add.variants,write_uid:0
 #: field:sale.add.variants.line,write_uid:0
 msgid "Last Updated by"
-msgstr "Last Updated by"
+msgstr "Última actualización de"
 
 #. module: sale_order_add_variants
 #: field:sale.add.variants,write_date:0
 #: field:sale.add.variants.line,write_date:0
 msgid "Last Updated on"
-msgstr "Last Updated on"
+msgstr "Última actualización en"
 
 #. module: sale_order_add_variants
 #: field:sale.add.variants.line,quantity:0
@@ -107,19 +107,4 @@ msgstr "Variantes"
 #. module: sale_order_add_variants
 #: field:sale.add.variants.line,wizard_id:0
 msgid "Wizard id"
-msgstr "Wizard id"
-
-#~ msgid "Cancel and select other template"
-#~ msgstr "Cancelar y seleccionar otra plantilla"
-
-#~ msgid "Init"
-#~ msgstr "Init"
-
-#~ msgid "Load Variants"
-#~ msgstr "Cargar variantes"
-
-#~ msgid "Select Variants"
-#~ msgstr "Seleccionar variantes"
-
-#~ msgid "State"
-#~ msgstr "Estad"
+msgstr "ID Wizard"
