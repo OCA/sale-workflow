@@ -40,7 +40,7 @@ class SaleAddVariants(models.TransientModel):
         if self.product_tmpl_id:
             variant_lines = []
             for variant in self.product_tmpl_id.product_variant_ids:
-               variant_lines.append([0, 0, {
+                variant_lines.append([0, 0, {
                     'product_id': variant.id,
                     'quantity': 0
                 }])
