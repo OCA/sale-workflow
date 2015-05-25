@@ -94,4 +94,3 @@ class sale_order(models.Model):
                 values['name'] = seq.next_by_code('sale.order') or '/'
             values['unrevisioned_name'] = values['name']
         return super(sale_order, self).create(values)
-
