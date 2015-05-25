@@ -16,8 +16,9 @@
                                 <field name='state' invisible='1'/>
                             </tree>
                         </field>
-                        <group>
+                        <group attrs="{'invisible': [('active', '=', True)]}">
                             <field name="current_revision_id"/>
+                            <field name="active" invisible="1"/>
                         </group>
                     </page>
                 </notebook>
