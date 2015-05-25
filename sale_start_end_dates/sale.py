@@ -1,8 +1,8 @@
 # -*- encoding: utf-8 -*-
 ##############################################################################
 #
-#    Sale Start End Dates module for OpenERP
-#    Copyright (C) 2014 Akretion (http://www.akretion.com)
+#    Sale Start End Dates module for Odoo
+#    Copyright (C) 2014-2015 Akretion (http://www.akretion.com)
 #    @author Alexis de Lattre <alexis.delattre@akretion.com>
 #
 #    This program is free software: you can redistribute it and/or modify
@@ -20,59 +20,115 @@
 #
 ##############################################################################
 
-from openerp.osv import orm, fields
-from openerp.tools.translate import _
+from openerp import models, fields, api, _
+from openerp.exceptions import ValidationError
+from dateutil.relativedelta import relativedelta
 
 
-class sale_order_line(orm.Model):
+class SaleOrder(models.Model):
+    _inherit = 'sale.order'
+
+    default_start_date = fields.Date(string='Default Start Date')
+    default_end_date = fields.Date(string='Default End Date')
+
+    @api.one
+    @api.constrains('default_start_date', 'default_end_date')
+    def _check_default_start_end_dates(self):
+        if (
+                self.default_start_date and
+                self.default_end_date and
+                self.default_start_date > self.default_end_date):
+            raise ValidationError(
+                _("Default Start Date should be before or be the "
+                    "same as Default End Date for sale order %s")
+                % self.name)
+
+    @api.onchange('default_start_date')
+    def default_start_date_change(self):
+        if (
+                self.default_start_date and
+                self.default_end_date and
+                self.default_start_date > self.default_end_date):
+            self.default_end_date = self.default_start_date
+
+    @api.onchange('default_end_date')
+    def default_end_date_change(self):
+        if (
+                self.default_start_date and
+                self.default_end_date and
+                self.default_start_date > self.default_end_date):
+            self.default_start_date = self.default_end_date
+
+
+class SaleOrderLine(models.Model):
     _inherit = 'sale.order.line'
 
-    _columns = {
-        'start_date': fields.date(
-            'Start Date',
-            readonly=True, states={'draft': [('readonly', False)]}),
-        'end_date': fields.date(
-            'End Date',
-            readonly=True, states={'draft': [('readonly', False)]}),
-        'must_have_dates': fields.boolean(
-            'Must Have Start and End Dates',
-            readonly=True, states={'draft': [('readonly', False)]}),
-        }
+    @api.one
+    @api.depends('start_date', 'end_date')
+    def _compute_number_of_days(self):
+        if self.start_date and self.end_date:
+            self.number_of_days = (
+                fields.Date.from_string(self.end_date) -
+                fields.Date.from_string(self.start_date)).days + 1
+        else:
+            self.number_of_days = 0
 
-    def _check_start_end_dates(self, cr, uid, ids):
-        for line in self.browse(cr, uid, ids):
-            if line.start_date and not line.end_date:
-                raise orm.except_orm(
-                    _('Error:'),
+    start_date = fields.Date(
+        string='Start Date', readonly=True,
+        states={'draft': [('readonly', False)]})
+    end_date = fields.Date(
+        string='End Date', readonly=True,
+        states={'draft': [('readonly', False)]})
+    number_of_days = fields.Integer(string='Number of Days')
+    must_have_dates = fields.Boolean(
+        string='Must Have Start and End Dates', readonly=True,
+        states={'draft': [('readonly', False)]})
+
+    @api.one
+    @api.constrains('start_date', 'end_date', 'number_of_days')
+    def _check_start_end_dates(self):
+        if self.product_id and self.must_have_dates:
+            if not self.end_date:
+                raise ValidationError(
                     _("Missing End Date for sale order line with "
-                        "Description '%s'.")
-                    % (line.name))
-            if line.end_date and not line.start_date:
-                raise orm.except_orm(
-                    _('Error:'),
+                        "Product '%s'.")
+                    % (self.product_id.name))
+            if not self.start_date:
+                raise ValidationError(
                     _("Missing Start Date for sale order line with "
-                        "Description '%s'.")
-                    % (line.name))
-            if line.end_date and line.start_date and \
-                    line.start_date > line.end_date:
-                raise orm.except_orm(
-                    _('Error:'),
+                        "Product '%s'.")
+                    % (self.product_id.name))
+            if not self.number_of_days:
+                raise ValidationError(
+                    _("Missing number of days for sale order line with "
+                        "Product '%s'.")
+                    % (self.product_id.name))
+            if self.start_date > self.end_date:
+                raise ValidationError(
                     _("Start Date should be before or be the same as "
-                        "End Date for sale order line with Description '%s'.")
-                    % (line.name))
-        return True
+                        "End Date for sale order line with Product '%s'.")
+                    % (self.product_id.name))
+            if self.number_of_days < 0:
+                raise ValidationError(
+                    _("On sale order line with Product '%s', the "
+                        "number of days is negative ; this is not allowed.")
+                    % (self.product_id.name))
+            days_delta = (
+                fields.Date.from_string(self.end_date) -
+                fields.Date.from_string(self.start_date)).days + 1
+            if self.number_of_days != days_delta:
+                raise ValidationError(
+                    _("On the sale order line with Product '%s', "
+                        "there are %d days between the Start Date (%s) and "
+                        "the End Date (%s), but the number of days field "
+                        "has a value of %d days.")
+                    % (self.product_id.name, days_delta, self.start_date,
+                        self.end_date, self.number_of_days))
 
-# TODO check must_have_dates on SO validation ? or in constraint ?
-
-    _constraints = [
-        (_check_start_end_dates, "Error msg in raise",
-            ['start_date', 'end_date', 'product_id']),
-        ]
-
-    def _prepare_order_line_invoice_line(
-            self, cr, uid, line, account_id=False, context=None):
-        res = super(sale_order_line, self)._prepare_order_line_invoice_line(
-            cr, uid, line, account_id=account_id, context=context)
+    @api.model
+    def _prepare_order_line_invoice_line(self, line, account_id=False):
+        res = super(SaleOrderLine, self)._prepare_order_line_invoice_line(
+            line, account_id=account_id)
         if line.must_have_dates:
             res.update({
                 'start_date': line.start_date,
@@ -80,33 +136,55 @@ class sale_order_line(orm.Model):
                 })
         return res
 
-    def start_end_dates_change(
-            self, cr, uid, ids, start_date, end_date, product_id,
-            product_uom_qty, context=None):
-        '''This function is designed to be inherited'''
-        res = {}
-        if start_date and end_date:
-            if end_date < start_date:
-                # We could have put a raise here
-                # but a warning is fine because we have the constraint
-                res['warning'] = {
-                    'title': _('Warning:'),
-                    'message': _("Start Date should be before or be the "
-                                 "same as End Date."),
-                }
-        return res
+    @api.onchange('end_date')
+    def end_date_change(self):
+        if self.end_date:
+            if self.start_date and self.start_date > self.end_date:
+                self.start_date = self.end_date
+            if self.start_date:
+                number_of_days = (
+                    fields.Date.from_string(self.end_date) -
+                    fields.Date.from_string(self.start_date)).days + 1
+                if self.number_of_days != number_of_days:
+                    self.number_of_days = number_of_days
 
+    @api.onchange('start_date')
+    def start_date_change(self):
+        if self.start_date:
+            if self.end_date and self.start_date > self.end_date:
+                self.end_date = self.start_date
+            if self.end_date:
+                number_of_days = (
+                    fields.Date.from_string(self.end_date) -
+                    fields.Date.from_string(self.start_date)).days + 1
+                if self.number_of_days != number_of_days:
+                    self.number_of_days = number_of_days
+
+    @api.onchange('number_of_days')
+    def number_of_days_change(self):
+        if self.number_of_days:
+            if self.start_date:
+                end_date_dt = fields.Date.from_string(self.start_date) +\
+                    relativedelta(days=self.number_of_days - 1)
+                end_date = fields.Date.to_string(end_date_dt)
+                if self.end_date != end_date:
+                    self.end_date = end_date
+            elif self.end_date:
+                self.start_date = fields.Date.from_string(self.end_date) -\
+                    relativedelta(days=self.number_of_days - 1)
+
+    @api.multi
     def product_id_change(
-            self, cr, uid, ids, pricelist, product, qty=0,
+            self, pricelist, product, qty=0,
             uom=False, qty_uos=0, uos=False, name='', partner_id=False,
             lang=False, update_tax=True, date_order=False, packaging=False,
-            fiscal_position=False, flag=False, context=None):
-        res = super(sale_order_line, self).product_id_change(
-            cr, uid, ids, pricelist, product, qty=qty, uom=uom,
+            fiscal_position=False, flag=False):
+        res = super(SaleOrderLine, self).product_id_change(
+            pricelist, product, qty=qty, uom=uom,
             qty_uos=qty_uos, uos=uos, name=name, partner_id=partner_id,
             lang=lang, update_tax=update_tax, date_order=date_order,
             packaging=packaging, fiscal_position=fiscal_position,
-            flag=flag, context=context)
+            flag=flag)
         if not product:
             res['value'].update({
                 'must_have_dates': False,
@@ -114,10 +192,15 @@ class sale_order_line(orm.Model):
                 'end_date': False,
                 })
         else:
-            product_o = self.pool['product.product'].browse(
-                cr, uid, product, context=context)
+            product_o = self.env['product.product'].browse(product)
             if product_o.must_have_dates:
-                res['value'].update({'must_have_dates': True})
+                res['value']['must_have_dates'] = True
+                if self.env.context.get('default_start_date'):
+                    res['value']['start_date'] = self.env.context.get(
+                        'default_start_date')
+                if self.env.context.get('default_end_date'):
+                    res['value']['end_date'] = self.env.context.get(
+                        'default_end_date')
             else:
                 res['value'].update({
                     'must_have_dates': False,
