@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 
 <!--
-    Copyright (C) 2014 Akretion (http://www.akretion.com/)
+    Copyright (C) 2014-2015 Akretion (http://www.akretion.com/)
     @author Alexis de Lattre <alexis.delattre@akretion.com>
     The licence is in the file __openerp__.py
 -->
@@ -11,13 +11,18 @@
 
 
 <record id="view_warehouse" model="ir.ui.view">
-    <field name="name">rental.warehouse.form</field>
+    <field name="name">rental.stock.warehouse.form</field>
     <field name="model">stock.warehouse</field>
     <field name="inherit_id" ref="stock.view_warehouse" />
     <field name="arch" type="xml">
-        <field name="lot_output_id" position="after">
-            <field name="rental_in_location_id" groups="stock.group_locations"/>
-            <field name="rental_out_location_id" groups="stock.group_locations"/>
+        <field name="wh_output_stock_loc_id" position="after">
+            <field name="rental_in_location_id"/>
+            <field name="rental_out_location_id"/>
+        </field>
+        <field name="default_resupply_wh_id" position="before">
+            <field name="rental_allowed"/>
+            <field name="rental_route_id"/>
+            <field name="sell_rented_product_route_id"/>
         </field>
     </field>
 </record>

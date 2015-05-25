@@ -1,8 +1,8 @@
 # -*- encoding: utf-8 -*-
 ##############################################################################
 #
-#    Sale Rental module for OpenERP
-#    Copyright (C) 2014 Akretion (http://www.akretion.com)
+#    Sale Rental module for Odoo
+#    Copyright (C) 2014-2015 Akretion (http://www.akretion.com)
 #    @author Alexis de Lattre <alexis.delattre@akretion.com>
 #
 #    This program is free software: you can redistribute it and/or modify
@@ -20,93 +20,74 @@
 #
 ##############################################################################
 
-from openerp.osv import orm, fields
+from openerp import models, fields, api, _
 import openerp.addons.decimal_precision as dp
-from openerp.tools.translate import _
 
 
-class create_rental_product(orm.TransientModel):
+class CreateRentalProduct(models.TransientModel):
     _name = 'create.rental.product'
     _description = 'Create the Rental Service Product'
 
-    _columns = {
-        'sale_price_per_day': fields.float(
-            'Sale Price per Day', required=True,
-            digits_compute=dp.get_precision('Product Price')),
-        # I would like to translate the field 'name_prefix', but
-        # it doesn't seem to work in a wizard
-        'name': fields.char(
-            'Product Name', size=64, required=True),
-        'default_code': fields.char(
-            'Default Code', size=16, required=True),
-        'categ_id': fields.many2one(
-            'product.category', 'Product Category', required=True),
-        }
-
-    def default_get(self, cr, uid, fields_list, context=None):
-        res = super(create_rental_product, self).default_get(
-            cr, uid, fields_list, context=context)
-        if not res:
-            res = {}
-        if context is None:
-            context = {}
-        assert context.get('active_model') == 'product.product',\
+    @api.model
+    def _default_name(self):
+        assert self.env.context.get('active_model') == 'product.product',\
             'Wrong underlying model, should be product.product'
-        hw_product = self.pool['product.product'].browse(
-            cr, uid, context['active_id'], context=context)
-        res.update({
-            'sale_price_per_day': 1.0,
-            'default_code': _('RENT-%s') % hw_product.default_code,
-            'name': _('Rental of one %s') % hw_product.name,
-        })
-        return res
+        hw_product = self.env['product.product'].browse(
+            self.env.context['active_id'])
+        return _('Rental of a %s') % hw_product.name
 
-    def create_rental_product(self, cr, uid, ids, context=None):
-        assert len(ids) == 1, 'Only 1 ID'
-        if context is None:
-            context = {}
+    @api.model
+    def _default_code(self):
+        assert self.env.context.get('active_model') == 'product.product',\
+            'Wrong underlying model, should be product.product'
+        hw_product = self.env['product.product'].browse(
+            self.env.context['active_id'])
+        return _('RENT-%s') % hw_product.default_code
+
+    sale_price_per_day = fields.Float(
+        string='Rental Price per Day', required=True,
+        digits=dp.get_precision('Product Price'), default=1.0)
+    name = fields.Char(
+        string='Product Name', size=64, required=True,
+        default=_default_name)
+    default_code = fields.Char(
+        string='Default Code', size=16, required=True,
+        default=_default_code)
+    categ_id = fields.Many2one(
+        'product.category', string='Product Category', required=True)
+
+    @api.multi
+    def create_rental_product(self):
+        self.ensure_one()
         #  check that a rental product doesn't already exists ?
-        hw_product_id = context.get('active_id')
-        pp_obj = self.pool['product.product']
-        hw_product = pp_obj.browse(cr, uid, hw_product_id, context=context)
-        assert isinstance(hw_product_id, int), 'Active ID is not set'
-        wiz = self.browse(cr, uid, ids[0], context=context)
-        (uom_model, day_uom_id) = self.pool['ir.model.data'].\
-            get_object_reference(cr, uid, 'product', 'product_uom_day')
-        assert uom_model == 'product.uom', 'Must be product.uom'
+        assert self.env.context.get('active_model') == 'product.product',\
+            'Wrong underlying model, should be product.product'
+        hw_product_id = self.env.context.get('active_id')
+        assert hw_product_id, 'Active ID is not set'
+        pp_obj = self.env['product.product']
+        day_uom_id = self.env.ref('product.product_uom_day').id
 
-        product_id = pp_obj.create(cr, uid, {
+        product = pp_obj.create({
             'type': 'service',
             'sale_ok': True,
             'purchase_ok': False,
             'uom_id': day_uom_id,
             'uom_po_id': day_uom_id,
-            'list_price': wiz.sale_price_per_day,
-            'name': wiz.name,
-            'default_code': wiz.default_code,
+            'list_price': self.sale_price_per_day,
+            'name': self.name,
+            'default_code': self.default_code,
             'rented_product_id': hw_product_id,
             'must_have_dates': True,
-            'categ_id': wiz.categ_id.id,
-            }, context=context)
+            'categ_id': self.categ_id.id,
+            })
 
-#        lang_ids = self.pool['res.lang'].search(cr, uid, [], context=context)
-#        for lang in self.pool['res.lang'].browse(
-#                cr, uid, lang_ids, context=context):
-#            ctx_lang = context.copy()
-#            ctx_lang['lang'] = ctx_lang.code
-#            wiz_lang = self.browse(cr, uid, ids[0], context=ctx_lang)
-#            pp_obj.write(cr, uid, product_id, {
-#                'name': '%s%s' % (
-#                    wiz.name_prefix and wiz.name_prefix + ' ' or '',
-#                    hw_product.name),
-#                }, context=ctx_lang)
-        return {
+        action = {
             'name': pp_obj._description,
             'type': 'ir.actions.act_window',
             'res_model': pp_obj._name,
-            'view_type': 'form',
             'view_mode': 'form,tree,kanban',
             'nodestroy': False,  # Close the wizard pop-up
             'target': 'current',
-            'res_id': product_id,
+            'res_id': product.id,
             }
+        return action
