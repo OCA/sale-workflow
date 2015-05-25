@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 
 <!--
-    Copyright (C) 2014 Akretion (http://www.akretion.com/)
+    Copyright (C) 2014-2015 Akretion (http://www.akretion.com/)
     @author Alexis de Lattre <alexis.delattre@akretion.com>
     The licence is in the file __openerp__.py
 -->
@@ -12,19 +12,45 @@
 
 <record id="rental_in_stock_location" model="stock.location">
     <field name="name">Rental In</field>
-    <field name="location_id" ref="stock.stock_location_company"/>
+    <field name="location_id" ref="stock.stock_location_stock"/>
 </record>
 
 <record id="rental_out_stock_location" model="stock.location">
     <field name="name">Rental Out</field>
-    <field name="location_id" ref="stock.stock_location_company"/>
+    <field name="location_id" ref="stock.stock_location_stock"/>
 </record>
+
+</data>
+
+<data noupdate="0">
+
+<record id="route_warehouse0_rental" model="stock.location.route">
+    <field name="name">Rent</field>
+    <field name="sequence">100</field>
+    <field name="warehouse_selectable" eval="True"/>
+    <field name="product_selectable" eval="False"/>
+</record>
+
+<record id="route_warehouse0_sell_rented_product" model="stock.location.route">
+    <field name="name">Sell Rented Product</field>
+    <field name="sequence">100</field>
+</record>
+
 
 <record id="stock.warehouse0" model="stock.warehouse">
     <field name="rental_in_location_id" ref="rental_in_stock_location"/>
     <field name="rental_out_location_id" ref="rental_out_stock_location"/>
+    <field name="route_ids" eval="[(4, ref('route_warehouse0_rental'))]"/>
 </record>
 
+<!-- I have a second record id="stock.warehouse0" because I need to have
+the rental_in_location_id and rental_out_location_id set on the warehouse
+before I activate the rental_allowed option -->
+<record id="stock.warehouse0" model="stock.warehouse">
+    <field name="rental_allowed">1</field> <!-- I know it is the default value, but I set it here to go through the write() and create the pull rules -->
+    <field name="rental_route_id" ref="route_warehouse0_rental"/>
+    <field name="sell_rented_product_route_id" ref="route_warehouse0_sell_rented_product"/>
+</record>
 
 </data>
 </openerp>
