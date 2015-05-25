@@ -1,13 +1,13 @@
-# Translation of OpenERP Server.
+# Translation of Odoo Server.
 # This file contains the translation of the following modules:
 #	* sale_start_end_dates
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: OpenERP Server 7.0\n"
+"Project-Id-Version: Odoo Server 8.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-02-02 22:31+0000\n"
-"PO-Revision-Date: 2014-02-02 22:31+0000\n"
+"POT-Creation-Date: 2015-06-02 13:01+0000\n"
+"PO-Revision-Date: 2015-06-02 13:01+0000\n"
 "Last-Translator: <>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -16,51 +16,75 @@ msgstr ""
 "Plural-Forms: \n"
 
 #. module: sale_start_end_dates
+#: field:sale.order,default_end_date:0
+msgid "Default End Date"
+msgstr "Date de fin par défaut"
+
+#. module: sale_start_end_dates
+#: field:sale.order,default_start_date:0
+msgid "Default Start Date"
+msgstr "Date de début par défaut"
+
+#. module: sale_start_end_dates
+#: code:addons/sale_start_end_dates/sale.py:42
+#, python-format
+msgid "Default Start Date should be before or be the same as Default End Date for sale order %s"
+msgstr ""
+
+#. module: sale_start_end_dates
 #: field:sale.order.line,end_date:0
 msgid "End Date"
 msgstr "Date de fin"
 
 #. module: sale_start_end_dates
-#: code:addons/sale_start_end_dates/sale.py:94
+#: code:addons/sale_start_end_dates/sale.py:93
 #, python-format
-msgid "Start Date should be before or be the same as End Date."
-msgstr "La date de début doit être antérieure ou égale à la date de fin."
+msgid "Missing End Date for sale order line with Product '%s'."
+msgstr ""
 
 #. module: sale_start_end_dates
-#: code:addons/sale_start_end_dates/sale.py:47
+#: code:addons/sale_start_end_dates/sale.py:98
 #, python-format
-msgid "Missing End Date for sale order line with Description '%s'."
-msgstr "Date de fin manquante sur la ligne de commande ayant pour description '%s'."
+msgid "Missing Start Date for sale order line with Product '%s'."
+msgstr ""
 
 #. module: sale_start_end_dates
-#: constraint:sale.order.line:0
-msgid "Error msg in raise"
-msgstr "Error msg in raise"
-
-#. module: sale_start_end_dates
-#: code:addons/sale_start_end_dates/sale.py:46
-#: code:addons/sale_start_end_dates/sale.py:52
-#: code:addons/sale_start_end_dates/sale.py:59
+#: code:addons/sale_start_end_dates/sale.py:103
 #, python-format
-msgid "Error:"
-msgstr "Erreur :"
+msgid "Missing number of days for sale order line with Product '%s'."
+msgstr ""
 
 #. module: sale_start_end_dates
 #: field:sale.order.line,must_have_dates:0
 msgid "Must Have Start and End Dates"
-msgstr "Doit avoir une date de début et de fin"
+msgstr ""
 
 #. module: sale_start_end_dates
-#: code:addons/sale_start_end_dates/sale.py:93
-#, python-format
-msgid "Warning:"
-msgstr "Avertissement :"
+#: field:sale.order.line,number_of_days:0
+msgid "Number of Days"
+msgstr "Nombre de jours"
 
 #. module: sale_start_end_dates
-#: code:addons/sale_start_end_dates/sale.py:53
+#: code:addons/sale_start_end_dates/sale.py:113
 #, python-format
-msgid "Missing Start Date for sale order line with Description '%s'."
-msgstr "Date de début manquante sur la ligne de commande ayant pour description '%s'."
+msgid "On sale order line with Product '%s', the number of days is negative ; this is not allowed."
+msgstr ""
+
+#. module: sale_start_end_dates
+#: code:addons/sale_start_end_dates/sale.py:121
+#, python-format
+msgid "On the sale order line with Product '%s', there are %d days between the Start Date (%s) and the End Date (%s), but the number of days field has a value of %d days."
+msgstr ""
+
+#. module: sale_start_end_dates
+#: model:ir.model,name:sale_start_end_dates.model_sale_order
+msgid "Sales Order"
+msgstr "Bon de commande"
+
+#. module: sale_start_end_dates
+#: model:ir.model,name:sale_start_end_dates.model_sale_order_line
+msgid "Sales Order Line"
+msgstr "Ligne de commandes de vente"
 
 #. module: sale_start_end_dates
 #: field:sale.order.line,start_date:0
@@ -68,13 +92,17 @@ msgid "Start Date"
 msgstr "Date de début"
 
 #. module: sale_start_end_dates
-#: code:addons/sale_start_end_dates/sale.py:60
+#: code:addons/sale_start_end_dates/sale.py:108
 #, python-format
-msgid "Start Date should be before or be the same as End Date for sale order line with Description '%s'."
-msgstr "La date de début doit être antérieure ou égale à la date de fin sur la ligne de commande ayant pour description '%s'."
+msgid "Start Date should be before or be the same as End Date for sale order line with Product '%s'."
+msgstr ""
 
 #. module: sale_start_end_dates
-#: model:ir.model,name:sale_start_end_dates.model_sale_order_line
-msgid "Sales Order Line"
-msgstr "Ligne de commandes de vente"
+#: view:sale.order:sale_start_end_dates.view_order_form
+msgid "{'default_end_date': parent.default_end_date}"
+msgstr ""
 
+#. module: sale_start_end_dates
+#: view:sale.order:sale_start_end_dates.view_order_form
+msgid "{'default_start_date': parent.default_start_date}"
+msgstr ""
