@@ -1,8 +1,8 @@
 # -*- encoding: utf-8 -*-
 ##############################################################################
 #
-#    Rental module for OpenERP
-#    Copyright (C) 2014 Akretion (http://www.akretion.com)
+#    Rental module for Odoo
+#    Copyright (C) 2014-2015 Akretion (http://www.akretion.com)
 #    @author Alexis de Lattre <alexis.delattre@akretion.com>
 #
 #    This program is free software: you can redistribute it and/or modify
@@ -27,36 +27,6 @@
     'category': 'Sales Management',
     'license': 'AGPL-3',
     'summary': 'Manage Rental of Products',
-    'description': """
-Rental
-======
-
-This module will allows you to rent products with OpenERP. On the form view of a stockable product or consumable, there is a wizard to generate the corresponding rental service. On the warehouse, you have two additionnal stock locations: *Rental In* (stock of products to rent) and *Rental Out* (products currently rented).
-
-In a sale order line (form view, not tree view), if you select a rental service, you can :
-
-* create a new rental with a start date and an end date: when the sale order is confirmed, it will generate a delivery order and an incoming shipment.
-
-* extend an existing rental: the incoming shipment will be postponed to the end date of the extension.
-
-In a sale order line, if you select a product that has a corresponding rental service, you can decide to sell the rented product that the customer already has. If the sale order is confirmed, the incoming shipment will be cancelled and a new delivery order will be created with a stock move from *Rental Out* to *Customers*.
-
-To use the module, you need to have access to the form view of sale order lines. For that, you must add your user to one of these groups:
-
-* Manage Product Packaging
-
-* Properties on lines
-
-A screencast that explains how to install, configure and use this module is available on Akretion's Youtube channel: https://www.youtube.com/watch?v=9o0QrGryBn8
-
-Known limitations of the current implementation:
-
-* the unit of measure of the rental services must be *Day* (we don't support the rental per hours / per week / per month...)
-
-* when you sell a rental service, you must have as many sale order lines as rented equipements i.e. you can't rent multiple units of an equipment in one sale order line (it is possible to develop that, but it requires additionnal work).
-
-This module has been developped by Alexis de Lattre from Akretion <alexis.delattre@akretion.com>.
-    """,
     'author': 'Akretion',
     'website': 'http://www.akretion.com',
     'depends': ['sale_start_end_dates', 'stock'],
