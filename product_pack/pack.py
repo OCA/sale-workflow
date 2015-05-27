@@ -20,6 +20,75 @@ class product_pack(models.Model):
     product_id = fields.Many2one(
         'product.product', 'Product', required=True)
 
+    @api.multi
+    def get_sale_order_line_vals(self, line, order, sequence, fiscal_position):
+        self.ensure_one()
+        sequence += 1
+        # pack_price = 0.0
+        subproduct = self.product_id
+        quantity = self.quantity * line.product_uom_qty
+
+        tax_ids = self.env['account.fiscal.position'].map_tax(
+            subproduct.taxes_id)
+        tax_id = [(6, 0, tax_ids)]
+
+        if subproduct.uos_id:
+            uos_id = subproduct.uos_id.id
+            uos_qty = quantity * subproduct.uos_coeff
+        else:
+            uos_id = False
+            uos_qty = quantity
+
+        if line.product_id.pack_price_type == 'fixed_price':
+            price = 0.0
+            discount = 0.0
+        # TODO this should go in price get of pricelist 
+        # elif line.product_id.pack_price_type == 'totalice_price':
+        #     pack_price += (price * uos_qty)
+        #     price = 0.0
+        #     discount = 0.0
+        #     tax_id = False
+        else:
+            pricelist = order.pricelist_id.id
+            price = self.env['product.pricelist'].price_get(
+                subproduct.id, quantity,
+                order.partner_id.id, context={
+                    'uom': subproduct.uom_id.id,
+                    'date': order.date_order})[pricelist]
+            discount = line.discount
+
+        # Obtain product name in partner's language
+        # ctx = {'lang': order.partner_id.lang}
+        subproduct_name = subproduct.name
+
+        vals = {
+            'order_id': order.id,
+            'name': '%s%s' % (
+                '> ' * (line.pack_depth + 1), subproduct_name
+            ),
+            'sequence': sequence,
+            # 'delay': subproduct.sale_delay or 0.0,
+            'product_id': subproduct.id,
+            # 'procurement_ids': (
+            #     [(4, x.id) for x in line.procurement_ids]
+            # ),
+            'price_unit': price,
+            'tax_id': tax_id,
+            'address_allotment_id': False,
+            'product_uom_qty': quantity,
+            'product_uom': subproduct.uom_id.id,
+            'product_uos_qty': uos_qty,
+            'product_uos': uos_id,
+            'product_packaging': False,
+            'discount': discount,
+            'number_packages': False,
+            'th_weight': False,
+            'state': 'draft',
+            'pack_parent_line_id': line.id,
+            'pack_depth': line.pack_depth + 1,
+        }
+        return vals
+
 
 class product_product(models.Model):
     _inherit = 'product.product'

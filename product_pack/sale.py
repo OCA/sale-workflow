@@ -51,14 +51,14 @@ class sale_order_line(models.Model):
     pack_depth = fields.Integer(
         'Depth',
         help='Depth of the product if it is part of a pack.'
-        )
+    )
     pack_parent_line_id = fields.Many2one(
         'sale.order.line', 'Pack',
         help='The pack that contains this product.', ondelete="cascade"
-        )
+    )
     pack_child_line_ids = fields.One2many(
         'sale.order.line', 'pack_parent_line_id', 'Lines in pack'
-        )
+    )
 
     def button_dummy(self, cr, uid, ids, context=None):
         return True
@@ -67,7 +67,7 @@ class sale_order_line(models.Model):
     @api.depends(
         'pack_line_ids',
         'pack_line_ids.price_subtotal',
-        )
+    )
     def _get_pack_total(self):
         pack_total = 0.0
         if self.pack_line_ids:
@@ -92,7 +92,7 @@ class sale_order_line(models.Model):
                 'product_packaging': False,
                 'product_uos_qty': qty},
                 'domain': {'product_uom': [], 'product_uos': []}
-                }
+            }
         product_obj = self.pool.get('product.product')
         product_info = product_obj.browse(cr, uid, product)
 
@@ -112,7 +112,7 @@ class sale_order_line(models.Model):
                     'product_uom_qty': quantity,
                     'price_unit': price_unit,
                     'price_subtotal': price_unit * quantity,
-                    }))
+                }))
         result['value']['pack_line_ids'] = pack_line_ids
         return result
 
@@ -208,75 +208,77 @@ class sale_order(models.Model):
                     # last_had_children = True
                     # continue
                 last_had_children = False
-                pack_price = 0.0
+                # pack_price = 0.0
 
                 for subline in line.product_id.pack_line_ids:
-                    sequence += 1
+                    vals = subline.get_sale_order_line_vals(
+                        line, order, sequence, fiscal_position)
+                    # sequence += 1
 
-                    subproduct = subline.product_id
-                    quantity = subline.quantity * line.product_uom_qty
+                    # subproduct = subline.product_id
+                    # quantity = subline.quantity * line.product_uom_qty
 
-                    tax_ids = self.pool.get('account.fiscal.position').map_tax(
-                        cr, uid, fiscal_position, subproduct.taxes_id)
-                    tax_id = [(6, 0, tax_ids)]
+                    # tax_ids = self.pool.get('account.fiscal.position').map_tax(
+                    #     cr, uid, fiscal_position, subproduct.taxes_id)
+                    # tax_id = [(6, 0, tax_ids)]
 
-                    if subproduct.uos_id:
-                        uos_id = subproduct.uos_id.id
-                        uos_qty = quantity * subproduct.uos_coeff
-                    else:
-                        uos_id = False
-                        uos_qty = quantity
+                    # if subproduct.uos_id:
+                    #     uos_id = subproduct.uos_id.id
+                    #     uos_qty = quantity * subproduct.uos_coeff
+                    # else:
+                    #     uos_id = False
+                    #     uos_qty = quantity
 
-                    if line.product_id.pack_price_type == 'fixed_price':
-                        price = 0.0
-                        discount = 0.0
-                    elif line.product_id.pack_price_type == 'totalice_price':
-                        pack_price += (price * uos_qty)
-                        price = 0.0
-                        discount = 0.0
-                        tax_id = False
-                    else:
-                        pricelist = order.pricelist_id.id
-                        price = self.pool.get('product.pricelist').price_get(
-                            cr, uid, [pricelist], subproduct.id, quantity,
-                            order.partner_id.id, {
-                                'uom': subproduct.uom_id.id,
-                                'date': order.date_order,
-                                }
-                            )[pricelist]
-                        discount = line.discount
+                    # if line.product_id.pack_price_type == 'fixed_price':
+                    #     price = 0.0
+                    #     discount = 0.0
+                    # elif line.product_id.pack_price_type == 'totalice_price':
+                    #     pack_price += (price * uos_qty)
+                    #     price = 0.0
+                    #     discount = 0.0
+                    #     tax_id = False
+                    # else:
+                    #     pricelist = order.pricelist_id.id
+                    #     price = self.pool.get('product.pricelist').price_get(
+                    #         cr, uid, [pricelist], subproduct.id, quantity,
+                    #         order.partner_id.id, {
+                    #             'uom': subproduct.uom_id.id,
+                    #             'date': order.date_order,
+                    #             }
+                    #         )[pricelist]
+                    #     discount = line.discount
 
                     # Obtain product name in partner's language
-                    ctx = {'lang': order.partner_id.lang}
-                    subproduct_name = self.pool.get('product.product').browse(
-                        cr, uid, subproduct.id, ctx).name
+                    # ctx = {'lang': order.partner_id.lang}
+                    # subproduct_name = self.pool.get('product.product').browse(
+                    #     cr, uid, subproduct.id, ctx).name
 
-                    vals = {
-                        'order_id': order.id,
-                        'name': '%s%s' % (
-                            '> ' * (line.pack_depth+1), subproduct_name
-                        ),
-                        'sequence': sequence,
-                        # 'delay': subproduct.sale_delay or 0.0,
-                        'product_id': subproduct.id,
-                        # 'procurement_ids': (
-                        #     [(4, x.id) for x in line.procurement_ids]
-                        # ),
-                        'price_unit': price,
-                        'tax_id': tax_id,
-                        'address_allotment_id': False,
-                        'product_uom_qty': quantity,
-                        'product_uom': subproduct.uom_id.id,
-                        'product_uos_qty': uos_qty,
-                        'product_uos': uos_id,
-                        'product_packaging': False,
-                        'discount': discount,
-                        'number_packages': False,
-                        'th_weight': False,
-                        'state': 'draft',
-                        'pack_parent_line_id': line.id,
-                        'pack_depth': line.pack_depth + 1,
-                    }
+                    # vals = {
+                    #     'order_id': order.id,
+                    #     'name': '%s%s' % (
+                    #         '> ' * (line.pack_depth+1), subproduct_name
+                    #     ),
+                    #     'sequence': sequence,
+                    # 'delay': subproduct.sale_delay or 0.0,
+                    #     'product_id': subproduct.id,
+                    # 'procurement_ids': (
+                    # [(4, x.id) for x in line.procurement_ids]
+                    # ),
+                    #     'price_unit': price,
+                    #     'tax_id': tax_id,
+                    #     'address_allotment_id': False,
+                    #     'product_uom_qty': quantity,
+                    #     'product_uom': subproduct.uom_id.id,
+                    #     'product_uos_qty': uos_qty,
+                    #     'product_uos': uos_id,
+                    #     'product_packaging': False,
+                    #     'discount': discount,
+                    #     'number_packages': False,
+                    #     'th_weight': False,
+                    #     'state': 'draft',
+                    #     'pack_parent_line_id': line.id,
+                    #     'pack_depth': line.pack_depth + 1,
+                    # }
 
                     self.pool.get('sale.order.line').create(
                         cr, uid, vals, context)
