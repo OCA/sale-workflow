@@ -204,50 +204,7 @@ class SaleOrderLine(models.Model):
         return res
 
     @api.multi
-    def product_id_change_with_wh(
-            self, pricelist, product, qty=0,
-            uom=False, qty_uos=0, uos=False, name='', partner_id=False,
-            lang=False, update_tax=True, date_order=False, packaging=False,
-            fiscal_position=False, flag=False, warehouse_id=False):
-        res = super(SaleOrderLine, self).product_id_change_with_wh(
-            pricelist, product, qty=qty, uom=uom,
-            qty_uos=qty_uos, uos=uos, name=name, partner_id=partner_id,
-            lang=lang, update_tax=update_tax, date_order=date_order,
-            packaging=packaging, fiscal_position=fiscal_position,
-            flag=flag, warehouse_id=warehouse_id)
-        if not product:
-            res['value'].update({
-                'rental_type': False,
-                'rental': False,
-                'rental_qty': 0,
-                'can_sell_rental': False,
-                'sell_rental_id': False,
-                })
-        else:
-            product_o = self.env['product.product'].browse(product)
-            if product_o.rented_product_id:
-                res['value']['rental'] = True
-                # We can't set rental_type to default value 'new_rental' here
-                # because we would need to check if rental_type is False
-                # and we don't have rental_type as arg of
-                # product_id_change_with_wh()
-            else:
-                res['value'].update({
-                    'rental_type': False,
-                    'rental': False,
-                    'rental_qty': 0,
-                    })
-            if product_o.rental_service_ids:
-                res['value']['can_sell_rental'] = True
-            else:
-                res['value'].update({
-                    'can_sell_rental': False,
-                    'sell_rental_id': False,
-                    })
-        return res
-
-    @api.multi
-    def product_uom_qty_change_with_wh_with_rental(
+    def product_id_change_with_wh_with_rental(
             self, pricelist, product, qty=0,
             uom=False, qty_uos=0, uos=False, name='', partner_id=False,
             lang=False, update_tax=True, date_order=False, packaging=False,
@@ -259,39 +216,71 @@ class SaleOrderLine(models.Model):
             lang=lang, update_tax=update_tax, date_order=date_order,
             packaging=packaging, fiscal_position=fiscal_position,
             flag=flag, warehouse_id=warehouse_id)
-        if (
-                product
-                and rental_type == 'new_rental'
-                and rental_qty
-                and warehouse_id):
+        if product:
             product_o = self.env['product.product'].browse(product)
             if product_o.rented_product_id:
-                product_uom = product_o.rented_product_id.uom_id
-                warehouse = self.env['stock.warehouse'].browse(warehouse_id)
-                rental_in_location = warehouse.rental_in_location_id
-                product_o_in = self.with_context(
-                    location=rental_in_location.id).env['product.product']\
-                    .browse(product)
-                in_location_available_qty =\
-                    product_o_in.rented_product_id.qty_available\
-                    - product_o_in.rented_product_id.outgoing_qty
-                compare_qty = float_compare(
-                    in_location_available_qty,
-                    rental_qty, precision_rounding=product_uom.rounding)
-                if compare_qty == -1:
-                    res['warning'] = {
-                        'title': _("Not enough stock !"),
-                        'message':
-                        _("You want to rent %.2f %s but you only "
-                            "have %.2f %s currently available on the stock "
-                            "location '%s' ! Make sure that you get some "
-                            "units back in the mean time or re-supply the "
-                            "stock location '%s'.")
-                        % (rental_qty, product_uom.name,
-                            in_location_available_qty,
-                            product_uom.name, rental_in_location.name,
-                            rental_in_location.name)
-                    }
+                res['value'].update({
+                    'rental': True,
+                    'can_sell_rental': False,
+                    'sell_rental_id': False,
+                    })
+                if not rental_type:
+                    res['value']['rental_type'] = 'new_rental'
+                elif (
+                        rental_type == 'new_rental' and
+                        rental_qty and warehouse_id):
+                    product_uom = product_o.rented_product_id.uom_id
+                    warehouse = self.env['stock.warehouse'].browse(warehouse_id)
+                    rental_in_location = warehouse.rental_in_location_id
+                    product_o_in = self.with_context(
+                        location=rental_in_location.id).env['product.product']\
+                        .browse(product)
+                    in_location_available_qty =\
+                        product_o_in.rented_product_id.qty_available\
+                        - product_o_in.rented_product_id.outgoing_qty
+                    compare_qty = float_compare(
+                        in_location_available_qty,
+                        rental_qty, precision_rounding=product_uom.rounding)
+                    if compare_qty == -1:
+                        res['warning'] = {
+                            'title': _("Not enough stock !"),
+                            'message':
+                            _("You want to rent %.2f %s but you only "
+                                "have %.2f %s currently available on the stock "
+                                "location '%s' ! Make sure that you get some "
+                                "units back in the mean time or re-supply the "
+                                "stock location '%s'.")
+                            % (rental_qty, product_uom.name,
+                                in_location_available_qty,
+                                product_uom.name, rental_in_location.name,
+                                rental_in_location.name)
+                            }
+            elif product_o.rental_service_ids:
+                res['value'].update({
+                    'can_sell_rental': True,
+                    'rental': False,
+                    'rental_type': False,
+                    'rental_qty': 0,
+                    'extension_rental_id': False,
+                })
+            else:
+                res['value'].update({
+                    'rental_type': False,
+                    'rental': False,
+                    'rental_qty': 0,
+                    'extension_rental_id': False,
+                    'can_sell_rental': False,
+                    'sell_rental_id': False,
+                    })
+        else:
+            res['value'].update({
+                'rental_type': False,
+                'rental': False,
+                'rental_qty': 0,
+                'extension_rental_id': False,
+                'can_sell_rental': False,
+                'sell_rental_id': False,
+                })
         return res
 
     @api.onchange('extension_rental_id')
@@ -322,6 +311,11 @@ class SaleOrderLine(models.Model):
         qty = self.rental_qty * self.number_of_days
         self.product_uom_qty = qty
         self.product_uos_qty = qty
+
+    @api.onchange('rental_type')
+    def rental_type_change(self):
+        if self.rental_type == 'new_rental':
+            self.extension_rental_id = False
 
 
 class SaleRental(models.Model):
