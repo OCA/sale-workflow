@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 8.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-02-26 11:07+0000\n"
-"PO-Revision-Date: 2015-02-26 11:07+0000\n"
+"POT-Creation-Date: 2015-06-02 13:00+0000\n"
+"PO-Revision-Date: 2015-06-02 13:00+0000\n"
 "Last-Translator: <>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -26,7 +26,7 @@ msgid "Default Start Date"
 msgstr ""
 
 #. module: sale_start_end_dates
-#: code:addons/sale_start_end_dates/sale.py:40
+#: code:addons/sale_start_end_dates/sale.py:42
 #, python-format
 msgid "Default Start Date should be before or be the same as Default End Date for sale order %s"
 msgstr ""
@@ -37,20 +37,43 @@ msgid "End Date"
 msgstr ""
 
 #. module: sale_start_end_dates
-#: code:addons/sale_start_end_dates/sale.py:89
+#: code:addons/sale_start_end_dates/sale.py:93
 #, python-format
 msgid "Missing End Date for sale order line with Product '%s'."
 msgstr ""
 
 #. module: sale_start_end_dates
-#: code:addons/sale_start_end_dates/sale.py:94
+#: code:addons/sale_start_end_dates/sale.py:98
 #, python-format
 msgid "Missing Start Date for sale order line with Product '%s'."
 msgstr ""
 
 #. module: sale_start_end_dates
+#: code:addons/sale_start_end_dates/sale.py:103
+#, python-format
+msgid "Missing number of days for sale order line with Product '%s'."
+msgstr ""
+
+#. module: sale_start_end_dates
 #: field:sale.order.line,must_have_dates:0
 msgid "Must Have Start and End Dates"
+msgstr ""
+
+#. module: sale_start_end_dates
+#: field:sale.order.line,number_of_days:0
+msgid "Number of Days"
+msgstr ""
+
+#. module: sale_start_end_dates
+#: code:addons/sale_start_end_dates/sale.py:113
+#, python-format
+msgid "On sale order line with Product '%s', the number of days is negative ; this is not allowed."
+msgstr ""
+
+#. module: sale_start_end_dates
+#: code:addons/sale_start_end_dates/sale.py:121
+#, python-format
+msgid "On the sale order line with Product '%s', there are %d days between the Start Date (%s) and the End Date (%s), but the number of days field has a value of %d days."
 msgstr ""
 
 #. module: sale_start_end_dates
@@ -69,7 +92,7 @@ msgid "Start Date"
 msgstr ""
 
 #. module: sale_start_end_dates
-#: code:addons/sale_start_end_dates/sale.py:99
+#: code:addons/sale_start_end_dates/sale.py:108
 #, python-format
 msgid "Start Date should be before or be the same as End Date for sale order line with Product '%s'."
 msgstr ""
