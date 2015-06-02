@@ -17,7 +17,7 @@ corresponding rental service.
 
 In the menu *Warehouse > Configuration > Warehouses*, on the form view
 of the warehouse, in the *Technical Information* tab, you will see two
-additionnal stock locations: *Rental In* (stock of products to rent) and
+additional stock locations: *Rental In* (stock of products to rent) and
 *Rental Out* (products currently rented). In the *Warehouse Configuration* tab,
 make sure that the option *Rental Allowed* is checked.
 
