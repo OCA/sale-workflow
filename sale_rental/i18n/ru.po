@@ -1,25 +1,36 @@
 # Translation of Odoo Server.
 # This file contains the translation of the following modules:
-#	* sale_rental
+# * sale_rental
 #
+# Translators:
+# OCA Transbot <transbot@odoo-community.org>, 2017
 msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 10.0\n"
 "Report-Msgid-Bugs-To: \n"
-"Last-Translator: <>\n"
-"Language-Team: \n"
+"POT-Creation-Date: 2017-07-08 00:50+0000\n"
+"PO-Revision-Date: 2017-07-08 00:50+0000\n"
+"Last-Translator: OCA Transbot <transbot@odoo-community.org>, 2017\n"
+"Language-Team: Russian (https://www.transifex.com/oca/teams/23907/ru/)\n"
+"Language: ru\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
-"Plural-Forms: \n"
+"Plural-Forms: nplurals=4; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n"
+"%10<=4 && (n%100<12 || n%100>14) ? 1 : n%10==0 || (n%10>=5 && n%10<=9) || (n"
+"%100>=11 && n%100<=14)? 2 : 3);\n"
 
 #. module: sale_rental
 #: model:ir.model.fields,help:sale_rental.field_sale_rental_in_state
 #: model:ir.model.fields,help:sale_rental.field_sale_rental_out_state
 #: model:ir.model.fields,help:sale_rental.field_sale_rental_sell_state
-msgid "* New: When the stock move is created and not yet confirmed.\n"
-"* Waiting Another Move: This state can be seen when a move is waiting for another one, for example in a chained flow.\n"
-"* Waiting Availability: This state is reached when the procurement resolution is not straight forward. It may need the scheduler to run, a component to be manufactured...\n"
+msgid ""
+"* New: When the stock move is created and not yet confirmed.\n"
+"* Waiting Another Move: This state can be seen when a move is waiting for "
+"another one, for example in a chained flow.\n"
+"* Waiting Availability: This state is reached when the procurement "
+"resolution is not straight forward. It may need the scheduler to run, a "
+"component to be manufactured...\n"
 "* Available: When products are reserved, it is set to 'Available'.\n"
 "* Done: When the shipment is processed, the state is 'Done'."
 msgstr ""
@@ -66,7 +77,7 @@ msgstr ""
 #. module: sale_rental
 #: model:ir.model.fields,field_description:sale_rental.field_sale_rental_company_id
 msgid "Company"
-msgstr ""
+msgstr "Компания"
 
 #. module: sale_rental
 #: model:ir.model.fields,field_description:sale_rental.field_create_rental_product_copy_image
@@ -94,13 +105,13 @@ msgstr ""
 #: model:ir.model.fields,field_description:sale_rental.field_create_rental_product_create_uid
 #: model:ir.model.fields,field_description:sale_rental.field_sale_rental_create_uid
 msgid "Created by"
-msgstr ""
+msgstr "Создано"
 
 #. module: sale_rental
 #: model:ir.model.fields,field_description:sale_rental.field_create_rental_product_create_date
 #: model:ir.model.fields,field_description:sale_rental.field_sale_rental_create_date
 msgid "Created on"
-msgstr ""
+msgstr "Создан"
 
 #. module: sale_rental
 #: model:ir.model.fields,field_description:sale_rental.field_sale_rental_partner_id
@@ -142,7 +153,9 @@ msgstr ""
 
 #. module: sale_rental
 #: model:ir.model.fields,help:sale_rental.field_sale_rental_end_date
-msgid "End Date of the Rental, taking into account all the extensions sold to the customer."
+msgid ""
+"End Date of the Rental, taking into account all the extensions sold to the "
+"customer."
 msgstr ""
 
 #. module: sale_rental
@@ -154,7 +167,7 @@ msgstr ""
 #: model:ir.model.fields,field_description:sale_rental.field_create_rental_product_id
 #: model:ir.model.fields,field_description:sale_rental.field_sale_rental_id
 msgid "ID"
-msgstr ""
+msgstr "ID"
 
 #. module: sale_rental
 #: model:ir.model.fields,help:sale_rental.field_sale_order_line_rental_qty
@@ -177,18 +190,19 @@ msgstr ""
 #: model:ir.model.fields,field_description:sale_rental.field_create_rental_product_write_uid
 #: model:ir.model.fields,field_description:sale_rental.field_sale_rental_write_uid
 msgid "Last Updated by"
-msgstr ""
+msgstr "Последний раз обновлено"
 
 #. module: sale_rental
 #: model:ir.model.fields,field_description:sale_rental.field_create_rental_product_write_date
 #: model:ir.model.fields,field_description:sale_rental.field_sale_rental_write_date
 msgid "Last Updated on"
-msgstr ""
+msgstr "Последний раз обновлено"
 
 #. module: sale_rental
 #: code:addons/sale_rental/models/sale_order.py:68
 #, python-format
-msgid "Missing 'Rental to Extend' on the sale order line with rental service %s"
+msgid ""
+"Missing 'Rental to Extend' on the sale order line with rental service %s"
 msgstr ""
 
 #. module: sale_rental
@@ -205,25 +219,35 @@ msgstr ""
 #. module: sale_rental
 #: code:addons/sale_rental/models/sale_order.py:84
 #, python-format
-msgid "On the 'new rental' sale order line with product '%s', we should have a rental service product !"
+msgid ""
+"On the 'new rental' sale order line with product '%s', we should have a "
+"rental service product !"
 msgstr ""
 
 #. module: sale_rental
 #: code:addons/sale_rental/models/sale_order.py:101
 #, python-format
-msgid "On the sale order line with product %s you are trying to sell a rented product with a quantity (%s) that is different from the rented quantity (%s). This is not supported."
+msgid ""
+"On the sale order line with product %s you are trying to sell a rented "
+"product with a quantity (%s) that is different from the rented quantity "
+"(%s). This is not supported."
 msgstr ""
 
 #. module: sale_rental
 #: code:addons/sale_rental/models/sale_order.py:90
 #, python-format
-msgid "On the sale order line with product '%s' the Product Quantity (%s) should be the number of days (%s) multiplied by the Rental Quantity (%s)."
+msgid ""
+"On the sale order line with product '%s' the Product Quantity (%s) should be "
+"the number of days (%s) multiplied by the Rental Quantity (%s)."
 msgstr ""
 
 #. module: sale_rental
 #: code:addons/sale_rental/models/sale_order.py:73
 #, python-format
-msgid "On the sale order line with rental service %s, you are trying to extend a rental with a rental quantity (%s) that is different from the quantity of the original rental (%s). This is not supported."
+msgid ""
+"On the sale order line with rental service %s, you are trying to extend a "
+"rental with a rental quantity (%s) that is different from the quantity of "
+"the original rental (%s). This is not supported."
 msgstr ""
 
 #. module: sale_rental
@@ -536,7 +560,9 @@ msgstr ""
 #. module: sale_rental
 #: code:addons/sale_rental/models/sale_order.py:217
 #, python-format
-msgid "The Rental Service of the Rental Extension you just selected is '%s' and it's not the same as the Product currently selected in this Sale Order Line."
+msgid ""
+"The Rental Service of the Rental Extension you just selected is '%s' and "
+"it's not the same as the Product currently selected in this Sale Order Line."
 msgstr ""
 
 #. module: sale_rental
@@ -548,7 +574,9 @@ msgstr ""
 #. module: sale_rental
 #: code:addons/sale_rental/models/product.py:31
 #, python-format
-msgid "The rental product '%s' must have the option 'Must Have Start and End Dates' checked."
+msgid ""
+"The rental product '%s' must have the option 'Must Have Start and End Dates' "
+"checked."
 msgstr ""
 
 #. module: sale_rental
@@ -575,6 +603,8 @@ msgstr ""
 #. module: sale_rental
 #: code:addons/sale_rental/models/sale_order.py:175
 #, python-format
-msgid "You want to rent %.2f %s but you only have %.2f %s currently available on the stock location '%s' ! Make sure that you get some units back in the mean time or re-supply the stock location '%s'."
+msgid ""
+"You want to rent %.2f %s but you only have %.2f %s currently available on "
+"the stock location '%s' ! Make sure that you get some units back in the mean "
+"time or re-supply the stock location '%s'."
 msgstr ""
-
