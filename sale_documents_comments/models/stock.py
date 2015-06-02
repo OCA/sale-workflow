@@ -16,16 +16,7 @@ class StockPicking(models.Model):
     @api.one
     @api.onchange('partner_id')
     def onchange_partner_id(self):
-        picking_com = ''
-        picking_pcom = ''
-        if self.partner_id:
-            picking_com = self.partner_id.picking_comment or ''
-            picking_pcom = self.partner_id.picking_propagated_comment or ''
-            parent = self.partner_id.parent_id
-            if parent:
-                picking_com += '\n%s' % (parent.picking_comment or '')
-                picking_pcom += '\n%s' % (parent.picking_propagated_comment or
-                                          '')
+        picking_com, picking_pcom = self.partner_id._get_picking_comments()
         self.sale_comment = picking_com
         self.sale_propagated_comment = picking_pcom
 
@@ -36,34 +27,27 @@ class StockPicking(models.Model):
         comment = values.get('sale_comment', '')
         pcomment = values.get('sale_propagated_comment', '')
         if partner_id:
-            partner_obj = self.env['res.partner']
             if origin:
                 sale_obj = self.env['sale.order']
                 sale = sale_obj.search([('name', '=', origin)], limit=1)
                 pcomment += '\n%s' % (sale.propagated_comment or '')
-            partner = partner_obj.browse(partner_id)
-            picking_com = partner.picking_comment or ''
-            picking_pcom = partner.picking_propagated_comment or ''
-            if partner.parent_id:
-                picking_com += '\n%s' % (partner.parent_id.picking_comment or
-                                         '')
-                picking_pcom += (
-                    '\n%s' % (
-                        partner.parent_id.picking_propagated_comment or ''))
-            if comment != picking_com:
-                comment += '\n%s' % (picking_com or '')
-            if pcomment != picking_pcom:
-                pcomment += '\n%s' % (picking_pcom or '')
+            partner = self.env['res.partner'].browse(partner_id)
+            picking_com, picking_pcom = partner._get_picking_comments()
+            comment += '\n%s' % (picking_com or '')
+            pcomment += '\n%s' % (picking_pcom or '')
             values.update({'sale_comment': comment,
                            'sale_propagated_comment': pcomment})
         return super(StockPicking, self).create(values)
 
     @api.model
     def _create_invoice_from_picking(self, picking, values):
-        if 'sale_comment' not in values:
-            values['sale_comment'] = ''
-        values['sale_comment'] = ('%s\n%s' %
-                                  (values['sale_comment'],
-                                   picking.sale_propagated_comment or ''))
-        return super(StockPicking, self)._create_invoice_from_picking(picking,
-                                                                      values)
+        sale_comment = values.get('sale_comment', '')
+        sale_comment += (
+            '\n%s' % (picking.sale_propagated_comment or ''))
+        partner_id = values.get('partner_id')
+        if partner_id:
+            partner = self.env['res.partner'].browse(partner_id)
+            sale_comment += '\n%s' % (partner._get_invoice_comments() or '')
+        values['sale_comment'] = sale_comment
+        return super(StockPicking, self)._create_invoice_from_picking(
+            picking, values)
