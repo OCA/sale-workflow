@@ -53,7 +53,7 @@ class ProductProduct(models.Model):
         if self.rented_product_id and not self.must_have_dates:
             raise ValidationError(
                 _("The rental product '%s' must have the option "
-                    "''Must Have Start and End Dates' checked.")
+                    "'Must Have Start and End Dates' checked.")
                 % self.name)
         # In the future, we would like to support all time UoMs
         # but it is more complex and requires additionnal developments
