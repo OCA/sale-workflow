@@ -68,8 +68,8 @@ class SaleOrderLine(models.Model):
     def _compute_number_of_days(self):
         if self.start_date and self.end_date:
             self.number_of_days = (
-                fields.Date.from_string(self.end_date)
-                - fields.Date.from_string(self.start_date)).days + 1
+                fields.Date.from_string(self.end_date) -
+                fields.Date.from_string(self.start_date)).days + 1
         else:
             self.number_of_days = 0
 

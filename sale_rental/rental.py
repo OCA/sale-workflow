@@ -78,8 +78,8 @@ class SaleOrder(models.Model):
         res = super(SaleOrder, self)._prepare_order_line_procurement(
             order, line, group_id=group_id)
         if (
-                line.product_id.rented_product_id
-                and line.rental_type == 'new_rental'):
+                line.product_id.rented_product_id and
+                line.rental_type == 'new_rental'):
             res.update({
                 'product_id': line.product_id.rented_product_id.id,
                 'product_qty': line.rental_qty,
@@ -198,8 +198,8 @@ class SaleOrderLine(models.Model):
         if not res:
             for soline in self:
                 if (
-                        soline.product_id.rented_product_id
-                        and soline.rental_type == 'new_rental'):
+                        soline.product_id.rented_product_id and
+                        soline.rental_type == 'new_rental'):
                     return True
         return res
 
@@ -230,7 +230,8 @@ class SaleOrderLine(models.Model):
                         rental_type == 'new_rental' and
                         rental_qty and warehouse_id):
                     product_uom = product_o.rented_product_id.uom_id
-                    warehouse = self.env['stock.warehouse'].browse(warehouse_id)
+                    warehouse = self.env['stock.warehouse'].browse(
+                        warehouse_id)
                     rental_in_location = warehouse.rental_in_location_id
                     product_o_in = self.with_context(
                         location=rental_in_location.id).env['product.product']\
@@ -246,10 +247,10 @@ class SaleOrderLine(models.Model):
                             'title': _("Not enough stock !"),
                             'message':
                             _("You want to rent %.2f %s but you only "
-                                "have %.2f %s currently available on the stock "
-                                "location '%s' ! Make sure that you get some "
-                                "units back in the mean time or re-supply the "
-                                "stock location '%s'.")
+                                "have %.2f %s currently available on the "
+                                "stock location '%s' ! Make sure that you "
+                                "get some units back in the mean time or "
+                                "re-supply the stock location '%s'.")
                             % (rental_qty, product_uom.name,
                                 in_location_available_qty,
                                 product_uom.name, rental_in_location.name,
@@ -286,9 +287,9 @@ class SaleOrderLine(models.Model):
     @api.onchange('extension_rental_id')
     def extension_rental_id_change(self):
         if (
-                self.product_id
-                and self.rental_type == 'rental_extension'
-                and self.extension_rental_id):
+                self.product_id and
+                self.rental_type == 'rental_extension' and
+                self.extension_rental_id):
             if self.extension_rental_id.rental_product_id != self.product_id:
                 raise Warning(
                     _("The Rental Service of the Rental Extension you just "
@@ -346,8 +347,8 @@ class SaleRental(models.Model):
         sell_move = False
         state = False
         if (
-                self.start_order_line_id
-                and self.start_order_line_id.procurement_ids):
+                self.start_order_line_id and
+                self.start_order_line_id.procurement_ids):
 
             procurement = self.start_order_line_id.procurement_ids[0]
             if procurement.move_ids:
@@ -370,9 +371,9 @@ class SaleRental(models.Model):
                 if out_move.state == 'done' and in_move.state == 'done':
                     state = 'in'
                 if (
-                        out_move.state == 'done'
-                        and in_move.state == 'cancel'
-                        and sell_procurement):
+                        out_move.state == 'done' and
+                        in_move.state == 'cancel' and
+                        sell_procurement):
                     state = 'sell_progress'
                     if sell_move and sell_move.state == 'done':
                         state = 'sold'
@@ -608,9 +609,9 @@ class StockMove(models.Model):
         '''When we invoice from delivery, we shouldn't invoice
         the rented product'''
         if (
-                move.procurement_id
-                and move.procurement_id.sale_line_id
-                and move.procurement_id.sale_line_id.rental):
+                move.procurement_id and
+                move.procurement_id.sale_line_id and
+                move.procurement_id.sale_line_id.rental):
             return False
         else:
             return super(StockMove, self)._create_invoice_line_from_vals(
@@ -625,12 +626,11 @@ class StockLocationPath(models.Model):
         '''Inherit to write the end date of the rental on the return move'''
         vals = super(StockLocationPath, self)._prepare_push_apply(rule, move)
         if (
-                move.procurement_id
-                and move.procurement_id.location_id ==
-                move.procurement_id.warehouse_id.rental_out_location_id
-                and move.procurement_id.sale_line_id
-                and move.procurement_id.sale_line_id
-                .rental_type == 'new_rental'):
+                move.procurement_id and
+                move.procurement_id.location_id ==
+                move.procurement_id.warehouse_id.rental_out_location_id and
+                move.procurement_id.sale_line_id and
+                move.procurement_id.sale_line_id.rental_type == 'new_rental'):
             rental_end_date = move.procurement_id.sale_line_id.end_date
             vals['date'] = vals['date_expected'] = rental_end_date
         return vals
