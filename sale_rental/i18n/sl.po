@@ -1,25 +1,35 @@
 # Translation of Odoo Server.
 # This file contains the translation of the following modules:
-#	* sale_rental
+# * sale_rental
 #
+# Translators:
+# OCA Transbot <transbot@odoo-community.org>, 2017
 msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 10.0\n"
 "Report-Msgid-Bugs-To: \n"
-"Last-Translator: <>\n"
-"Language-Team: \n"
+"POT-Creation-Date: 2017-11-23 01:51+0000\n"
+"PO-Revision-Date: 2017-11-23 01:51+0000\n"
+"Last-Translator: OCA Transbot <transbot@odoo-community.org>, 2017\n"
+"Language-Team: Slovenian (https://www.transifex.com/oca/teams/23907/sl/)\n"
+"Language: sl\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
-"Plural-Forms: \n"
+"Plural-Forms: nplurals=4; plural=(n%100==1 ? 0 : n%100==2 ? 1 : n%100==3 || n"
+"%100==4 ? 2 : 3);\n"
 
 #. module: sale_rental
 #: model:ir.model.fields,help:sale_rental.field_sale_rental_in_state
 #: model:ir.model.fields,help:sale_rental.field_sale_rental_out_state
 #: model:ir.model.fields,help:sale_rental.field_sale_rental_sell_state
-msgid "* New: When the stock move is created and not yet confirmed.\n"
-"* Waiting Another Move: This state can be seen when a move is waiting for another one, for example in a chained flow.\n"
-"* Waiting Availability: This state is reached when the procurement resolution is not straight forward. It may need the scheduler to run, a component to be manufactured...\n"
+msgid ""
+"* New: When the stock move is created and not yet confirmed.\n"
+"* Waiting Another Move: This state can be seen when a move is waiting for "
+"another one, for example in a chained flow.\n"
+"* Waiting Availability: This state is reached when the procurement "
+"resolution is not straight forward. It may need the scheduler to run, a "
+"component to be manufactured...\n"
 "* Available: When products are reserved, it is set to 'Available'.\n"
 "* Done: When the shipment is processed, the state is 'Done'."
 msgstr ""
@@ -33,24 +43,24 @@ msgstr ""
 #. module: sale_rental
 #: model:ir.model.fields,field_description:sale_rental.field_sale_order_line_can_sell_rental
 msgid "Can Sell from Rental"
-msgstr ""
+msgstr "Možna prodaja najemniških proizvodov"
 
 #. module: sale_rental
 #: code:addons/sale_rental/models/stock.py:39
 #, python-format
 msgid "Can't find any generic 'Rent' route."
-msgstr ""
+msgstr "Nobena generična najemna proga ni najdena."
 
 #. module: sale_rental
 #: code:addons/sale_rental/models/stock.py:50
 #, python-format
 msgid "Can't find any generic 'Sell Rented Product' route."
-msgstr ""
+msgstr "Nobena generična proga 'prodanih najemniških proizvodov' ni najdena."
 
 #. module: sale_rental
 #: model:ir.ui.view,arch_db:sale_rental.create_rental_product_form
 msgid "Cancel"
-msgstr ""
+msgstr "Preklic"
 
 #. module: sale_rental
 #: selection:sale.rental,state:0
@@ -61,46 +71,46 @@ msgstr ""
 #: code:addons/sale_rental/models/sale_order.py:34
 #, python-format
 msgid "Cannot sell the rental %s because it has not been delivered"
-msgstr ""
+msgstr "Ni mogoče prodati najemniškega proizvoda %s, ker ni bil dostavljen"
 
 #. module: sale_rental
 #: model:ir.model.fields,field_description:sale_rental.field_sale_rental_company_id
 msgid "Company"
-msgstr ""
+msgstr "Družba"
 
 #. module: sale_rental
 #: model:ir.model.fields,field_description:sale_rental.field_create_rental_product_copy_image
 msgid "Copy Product Image"
-msgstr ""
+msgstr "Kopiranje slike proizvoda"
 
 #. module: sale_rental
 #: model:ir.ui.view,arch_db:sale_rental.create_rental_product_form
 msgid "Create"
-msgstr ""
+msgstr "Ustvari"
 
 #. module: sale_rental
 #: model:ir.actions.act_window,name:sale_rental.create_rental_product_action
 #: model:ir.ui.view,arch_db:sale_rental.create_rental_product_form
 #: model:ir.ui.view,arch_db:sale_rental.product_normal_form_view
 msgid "Create Rental Service"
-msgstr ""
+msgstr "Ustvari najemniško storitev"
 
 #. module: sale_rental
 #: model:ir.model,name:sale_rental.model_create_rental_product
 msgid "Create the Rental Service Product"
-msgstr ""
+msgstr "Ustvari proizvod najemniške storitve"
 
 #. module: sale_rental
 #: model:ir.model.fields,field_description:sale_rental.field_create_rental_product_create_uid
 #: model:ir.model.fields,field_description:sale_rental.field_sale_rental_create_uid
 msgid "Created by"
-msgstr ""
+msgstr "Ustvaril"
 
 #. module: sale_rental
 #: model:ir.model.fields,field_description:sale_rental.field_create_rental_product_create_date
 #: model:ir.model.fields,field_description:sale_rental.field_sale_rental_create_date
 msgid "Created on"
-msgstr ""
+msgstr "Ustvarjeno"
 
 #. module: sale_rental
 #: model:ir.model.fields,field_description:sale_rental.field_sale_rental_partner_id
@@ -111,13 +121,13 @@ msgstr ""
 #. module: sale_rental
 #: model:ir.model.fields,field_description:sale_rental.field_create_rental_product_default_code
 msgid "Default Code"
-msgstr ""
+msgstr "Privzeta koda"
 
 #. module: sale_rental
 #: model:ir.ui.view,arch_db:sale_rental.sale_rental_form
 #: model:ir.ui.view,arch_db:sale_rental.sale_rental_tree
 msgid "Delivery"
-msgstr ""
+msgstr "Dostava"
 
 #. module: sale_rental
 #: model:ir.model.fields,field_description:sale_rental.field_sale_rental_out_picking_id
@@ -128,12 +138,12 @@ msgstr ""
 #: model:ir.model.fields,field_description:sale_rental.field_create_rental_product_display_name
 #: model:ir.model.fields,field_description:sale_rental.field_sale_rental_display_name
 msgid "Display Name"
-msgstr ""
+msgstr "Prikazni naziv"
 
 #. module: sale_rental
 #: model:ir.ui.view,arch_db:sale_rental.sale_rental_tree
 msgid "End Date"
-msgstr ""
+msgstr "Končni datum"
 
 #. module: sale_rental
 #: model:ir.model.fields,field_description:sale_rental.field_sale_rental_end_date
@@ -142,25 +152,27 @@ msgstr ""
 
 #. module: sale_rental
 #: model:ir.model.fields,help:sale_rental.field_sale_rental_end_date
-msgid "End Date of the Rental, taking into account all the extensions sold to the customer."
+msgid ""
+"End Date of the Rental, taking into account all the extensions sold to the "
+"customer."
 msgstr ""
 
 #. module: sale_rental
 #: model:ir.ui.view,arch_db:sale_rental.sale_rental_search
 msgid "Group By"
-msgstr ""
+msgstr "Združeno po"
 
 #. module: sale_rental
 #: model:ir.model.fields,field_description:sale_rental.field_create_rental_product_id
 #: model:ir.model.fields,field_description:sale_rental.field_sale_rental_id
 msgid "ID"
-msgstr ""
+msgstr "ID"
 
 #. module: sale_rental
 #: model:ir.model.fields,help:sale_rental.field_sale_order_line_rental_qty
 #: model:ir.model.fields,help:sale_rental.field_sale_rental_rental_qty
 msgid "Indicate the number of items that will be rented."
-msgstr ""
+msgstr "Določa število predmetov za najem."
 
 #. module: sale_rental
 #: model:ir.model,name:sale_rental.model_stock_inventory
@@ -171,60 +183,81 @@ msgstr ""
 #: model:ir.model.fields,field_description:sale_rental.field_create_rental_product___last_update
 #: model:ir.model.fields,field_description:sale_rental.field_sale_rental___last_update
 msgid "Last Modified on"
-msgstr ""
+msgstr "Zadnjič spremenjeno"
 
 #. module: sale_rental
 #: model:ir.model.fields,field_description:sale_rental.field_create_rental_product_write_uid
 #: model:ir.model.fields,field_description:sale_rental.field_sale_rental_write_uid
 msgid "Last Updated by"
-msgstr ""
+msgstr "Zadnji posodobil"
 
 #. module: sale_rental
 #: model:ir.model.fields,field_description:sale_rental.field_create_rental_product_write_date
 #: model:ir.model.fields,field_description:sale_rental.field_sale_rental_write_date
 msgid "Last Updated on"
-msgstr ""
+msgstr "Zadnjič posodobljeno"
 
 #. module: sale_rental
 #: code:addons/sale_rental/models/sale_order.py:68
 #, python-format
-msgid "Missing 'Rental to Extend' on the sale order line with rental service %s"
+msgid ""
+"Missing 'Rental to Extend' on the sale order line with rental service %s"
 msgstr ""
 
 #. module: sale_rental
 #: selection:sale.order.line,rental_type:0
 msgid "New Rental"
-msgstr ""
+msgstr "Novo najemništvo"
 
 #. module: sale_rental
 #: code:addons/sale_rental/models/sale_order.py:174
 #, python-format
 msgid "Not enough stock !"
-msgstr ""
+msgstr "Ni dovolj zaloge!"
 
 #. module: sale_rental
 #: code:addons/sale_rental/models/sale_order.py:84
 #, python-format
-msgid "On the 'new rental' sale order line with product '%s', we should have a rental service product !"
+msgid ""
+"On the 'new rental' sale order line with product '%s', we should have a "
+"rental service product !"
 msgstr ""
+"Na novi najemniški postavki prodajnega naloga s proizvodom '%s' morate imeti "
+"proizvod najemniške storitve!"
 
 #. module: sale_rental
 #: code:addons/sale_rental/models/sale_order.py:101
 #, python-format
-msgid "On the sale order line with product %s you are trying to sell a rented product with a quantity (%s) that is different from the rented quantity (%s). This is not supported."
+msgid ""
+"On the sale order line with product %s you are trying to sell a rented "
+"product with a quantity (%s) that is different from the rented quantity "
+"(%s). This is not supported."
 msgstr ""
+"Na postavki prodajnega naloga s proizvodom %s poskušate prodati najemniški "
+"proizvod s količino (%s), ki je drugačen od najemniške količine (%s). To ni "
+"podprto."
 
 #. module: sale_rental
 #: code:addons/sale_rental/models/sale_order.py:90
 #, python-format
-msgid "On the sale order line with product '%s' the Product Quantity (%s) should be the number of days (%s) multiplied by the Rental Quantity (%s)."
+msgid ""
+"On the sale order line with product '%s' the Product Quantity (%s) should be "
+"the number of days (%s) multiplied by the Rental Quantity (%s)."
 msgstr ""
+"Na postavki prodajnega naloga s proizvodom %s mora biti količina proizvodov "
+"(%s) v številu dni (%s) pomnoženim z najemniško količino (%s)."
 
 #. module: sale_rental
 #: code:addons/sale_rental/models/sale_order.py:73
 #, python-format
-msgid "On the sale order line with rental service %s, you are trying to extend a rental with a rental quantity (%s) that is different from the quantity of the original rental (%s). This is not supported."
+msgid ""
+"On the sale order line with rental service %s, you are trying to extend a "
+"rental with a rental quantity (%s) that is different from the quantity of "
+"the original rental (%s). This is not supported."
 msgstr ""
+"Na postavki prodajnega naloga s proizvodom %s poskušate podaljšati "
+"najemništvo s količino (%s), ki je drugačna od količine izvornega najema "
+"(%s). To ni podprto."
 
 #. module: sale_rental
 #: model:ir.ui.view,arch_db:sale_rental.sale_rental_search
@@ -252,22 +285,22 @@ msgstr ""
 #: model:ir.model,name:sale_rental.model_procurement_order
 #: model:ir.model.fields,field_description:sale_rental.field_sale_rental_procurement_id
 msgid "Procurement"
-msgstr ""
+msgstr "Oskrbovanje"
 
 #. module: sale_rental
 #: model:ir.model,name:sale_rental.model_product_product
 msgid "Product"
-msgstr ""
+msgstr "Proizvod"
 
 #. module: sale_rental
 #: model:ir.model.fields,field_description:sale_rental.field_create_rental_product_categ_id
 msgid "Product Category"
-msgstr ""
+msgstr "Kategorija proizvoda"
 
 #. module: sale_rental
 #: model:ir.model.fields,field_description:sale_rental.field_create_rental_product_name
 msgid "Product Name"
-msgstr ""
+msgstr "Naziv proizvoda"
 
 #. module: sale_rental
 #: model:ir.model,name:sale_rental.model_stock_location_path
@@ -278,27 +311,27 @@ msgstr ""
 #: code:addons/sale_rental/wizard/create_rental_product.py:30
 #, python-format
 msgid "RENT-%s"
-msgstr ""
+msgstr "NAJEM-%s"
 
 #. module: sale_rental
 #: model:ir.model.fields,field_description:sale_rental.field_delivery_carrier_rental_service_ids
 #: model:ir.model.fields,field_description:sale_rental.field_product_product_rental_service_ids
 #: model:ir.ui.view,arch_db:sale_rental.product_normal_form_view
 msgid "Related Rental Services"
-msgstr ""
+msgstr "Povezane najemniške storitve"
 
 #. module: sale_rental
 #: model:ir.model.fields,field_description:sale_rental.field_delivery_carrier_rented_product_id
 #: model:ir.model.fields,field_description:sale_rental.field_product_product_rented_product_id
 msgid "Related Rented Product"
-msgstr ""
+msgstr "Povezani najemniški proizvod"
 
 #. module: sale_rental
 #: code:addons/sale_rental/models/stock.py:36
 #: model:stock.location.route,name:sale_rental.route_warehouse0_rental
 #, python-format
 msgid "Rent"
-msgstr ""
+msgstr "Najem"
 
 #. module: sale_rental
 #: code:addons/sale_rental/models/stock.py:113
@@ -308,53 +341,53 @@ msgstr ""
 #: model:ir.ui.view,arch_db:sale_rental.sale_rental_form
 #, python-format
 msgid "Rental"
-msgstr ""
+msgstr "Najemništvo"
 
 #. module: sale_rental
 #: model:ir.model.fields,field_description:sale_rental.field_stock_warehouse_rental_allowed
 msgid "Rental Allowed"
-msgstr ""
+msgstr "Najemništvo je dovoljeno"
 
 #. module: sale_rental
 #: selection:sale.order.line,rental_type:0
 msgid "Rental Extension"
-msgstr ""
+msgstr "Podaljšanje najemništva"
 
 #. module: sale_rental
 #: model:ir.model.fields,field_description:sale_rental.field_sale_rental_extension_order_line_ids
 #: model:ir.ui.view,arch_db:sale_rental.sale_rental_form
 msgid "Rental Extensions"
-msgstr ""
+msgstr "Podaljšanja najemništva"
 
 #. module: sale_rental
 #: code:addons/sale_rental/models/stock.py:123
 #: model:ir.model.fields,field_description:sale_rental.field_stock_warehouse_rental_in_location_id
 #, python-format
 msgid "Rental In"
-msgstr ""
+msgstr "Vhodni najem"
 
 #. module: sale_rental
 #: code:addons/sale_rental/models/stock.py:133
 #: model:ir.model.fields,field_description:sale_rental.field_stock_warehouse_rental_out_location_id
 #, python-format
 msgid "Rental Out"
-msgstr ""
+msgstr "Izhodni najem"
 
 #. module: sale_rental
 #: model:ir.model.fields,field_description:sale_rental.field_create_rental_product_sale_price_per_day
 msgid "Rental Price per Day"
-msgstr ""
+msgstr "Dnevna najemniška cena"
 
 #. module: sale_rental
 #: model:ir.model.fields,field_description:sale_rental.field_sale_order_line_rental_qty
 #: model:ir.model.fields,field_description:sale_rental.field_sale_rental_rental_qty
 msgid "Rental Quantity"
-msgstr ""
+msgstr "Najemniška količina"
 
 #. module: sale_rental
 #: model:ir.model.fields,field_description:sale_rental.field_stock_warehouse_rental_route_id
 msgid "Rental Route"
-msgstr ""
+msgstr "Najemniška proga"
 
 #. module: sale_rental
 #: model:ir.model.fields,field_description:sale_rental.field_sale_rental_start_order_id
@@ -364,7 +397,7 @@ msgstr ""
 #. module: sale_rental
 #: model:ir.model.fields,field_description:sale_rental.field_sale_rental_start_order_line_id
 msgid "Rental Sale Order Line"
-msgstr ""
+msgstr "Najemniška postavka prodajnega naloga"
 
 #. module: sale_rental
 #: model:ir.model.fields,field_description:sale_rental.field_sale_rental_rental_product_id
@@ -374,48 +407,48 @@ msgstr ""
 #. module: sale_rental
 #: model:ir.model.fields,field_description:sale_rental.field_sale_order_line_rental_type
 msgid "Rental Type"
-msgstr ""
+msgstr "Tip najemništva"
 
 #. module: sale_rental
 #: code:addons/sale_rental/wizard/create_rental_product.py:21
 #, python-format
 msgid "Rental of a %s"
-msgstr ""
+msgstr "Najem %s"
 
 #. module: sale_rental
 #: model:product.product,name:sale_rental.rent_product_product_25
 #: model:product.template,name:sale_rental.rent_product_product_25_product_template
 msgid "Rental of one Laptop E5023"
-msgstr ""
+msgstr "Najemn enega prenosnika E5023"
 
 #. module: sale_rental
 #: model:product.product,name:sale_rental.rent_product_product_8
 #: model:product.template,name:sale_rental.rent_product_product_8_product_template
 msgid "Rental of one iMac"
-msgstr ""
+msgstr "Najem enega iMac"
 
 #. module: sale_rental
 #: model:product.product,name:sale_rental.rent_product_product_6
 #: model:product.template,name:sale_rental.rent_product_product_6_product_template
 msgid "Rental of one iPad Mini"
-msgstr ""
+msgstr "Najem enega iPad Mini"
 
 #. module: sale_rental
 #: model:ir.model.fields,field_description:sale_rental.field_sale_order_line_extension_rental_id
 msgid "Rental to Extend"
-msgstr ""
+msgstr "Najem za podaljšanje"
 
 #. module: sale_rental
 #: model:ir.model.fields,field_description:sale_rental.field_sale_order_line_sell_rental_id
 msgid "Rental to Sell"
-msgstr ""
+msgstr "Najem za prodajo"
 
 #. module: sale_rental
 #: model:ir.actions.act_window,name:sale_rental.sale_rental_action
 #: model:ir.ui.menu,name:sale_rental.sale_rental_menu
 #: model:ir.ui.view,arch_db:sale_rental.sale_rental_tree
 msgid "Rentals"
-msgstr ""
+msgstr "Najemi"
 
 #. module: sale_rental
 #: model:ir.model.fields,field_description:sale_rental.field_sale_rental_rented_product_id
@@ -426,7 +459,7 @@ msgstr ""
 #: model:ir.ui.view,arch_db:sale_rental.sale_rental_form
 #: model:ir.ui.view,arch_db:sale_rental.sale_rental_tree
 msgid "Return"
-msgstr ""
+msgstr "Vračilo"
 
 #. module: sale_rental
 #: model:ir.model.fields,field_description:sale_rental.field_sale_rental_in_picking_id
@@ -441,12 +474,12 @@ msgstr ""
 #. module: sale_rental
 #: model:ir.model,name:sale_rental.model_sale_order
 msgid "Sales Order"
-msgstr ""
+msgstr "Prodajni nalog"
 
 #. module: sale_rental
 #: model:ir.model,name:sale_rental.model_sale_order_line
 msgid "Sales Order Line"
-msgstr ""
+msgstr "Postavka prodajnega naloga"
 
 #. module: sale_rental
 #: model:ir.ui.view,arch_db:sale_rental.sale_rental_search
@@ -470,12 +503,12 @@ msgstr ""
 #: model:stock.location.route,name:sale_rental.route_warehouse0_sell_rented_product
 #, python-format
 msgid "Sell Rented Product"
-msgstr ""
+msgstr "Prodaja najemniškega proizvoda"
 
 #. module: sale_rental
 #: model:ir.model.fields,field_description:sale_rental.field_stock_warehouse_sell_rented_product_route_id
 msgid "Sell Rented Product Route"
-msgstr ""
+msgstr "Prodajna proga najemniškega proizvoda"
 
 #. module: sale_rental
 #: model:ir.model.fields,field_description:sale_rental.field_sale_rental_sell_move_id
@@ -498,7 +531,7 @@ msgstr ""
 #: model:ir.model.fields,field_description:sale_rental.field_sale_rental_start_date
 #: model:ir.ui.view,arch_db:sale_rental.sale_rental_search
 msgid "Start Date"
-msgstr ""
+msgstr "Začetni datum"
 
 #. module: sale_rental
 #: model:ir.model.fields,field_description:sale_rental.field_sale_rental_state
@@ -525,56 +558,69 @@ msgstr ""
 #: code:addons/sale_rental/models/stock.py:54
 #, python-format
 msgid "The Rental Input stock location is not set on the warehouse %s"
-msgstr ""
+msgstr "Lokacija vhodne najemne zaloge v skladišču %s ni nastavljena"
 
 #. module: sale_rental
 #: code:addons/sale_rental/models/stock.py:58
 #, python-format
 msgid "The Rental Output stock location is not set on the warehouse %s"
-msgstr ""
+msgstr "Lokacija izhodne najemne zaloge v skladišču %s ni nastavljena"
 
 #. module: sale_rental
 #: code:addons/sale_rental/models/sale_order.py:217
 #, python-format
-msgid "The Rental Service of the Rental Extension you just selected is '%s' and it's not the same as the Product currently selected in this Sale Order Line."
+msgid ""
+"The Rental Service of the Rental Extension you just selected is '%s' and "
+"it's not the same as the Product currently selected in this Sale Order Line."
 msgstr ""
+"Najemniška storitev podaljšanja najema, ki ste jo ravnokar izbrali je '%s' "
+"in ne ustreza trenutno izbranemu proizvodu v tej postavki prodajnega naloga."
 
 #. module: sale_rental
 #: code:addons/sale_rental/models/product.py:27
 #, python-format
 msgid "The rental product '%s' must be of type 'Service'."
-msgstr ""
+msgstr "Najemniški proizvod '%s' mora biti tipa 'storitev'."
 
 #. module: sale_rental
 #: code:addons/sale_rental/models/product.py:31
 #, python-format
-msgid "The rental product '%s' must have the option 'Must Have Start and End Dates' checked."
+msgid ""
+"The rental product '%s' must have the option 'Must Have Start and End Dates' "
+"checked."
 msgstr ""
+"Najemniški proizvod '%s' mora imeti označeno opcijo 'zahteva se začetni in "
+"končni datum'."
 
 #. module: sale_rental
 #: code:addons/sale_rental/models/product.py:39
 #, python-format
 msgid "The unit of measure of the rental product '%s' must be 'Day'."
-msgstr ""
+msgstr "Enota mere najemniškega proizvoda '%s' mora biti 'dni'"
 
 #. module: sale_rental
 #: model:ir.ui.view,arch_db:sale_rental.sale_rental_form
 msgid "Total"
-msgstr ""
+msgstr "Skupaj"
 
 #. module: sale_rental
 #: model:ir.ui.view,arch_db:sale_rental.sale_rental_form
 msgid "Unit of Measure"
-msgstr ""
+msgstr "Enota mere"
 
 #. module: sale_rental
 #: model:ir.model,name:sale_rental.model_stock_warehouse
 msgid "Warehouse"
-msgstr ""
+msgstr "Skladišče"
 
 #. module: sale_rental
 #: code:addons/sale_rental/models/sale_order.py:175
 #, python-format
-msgid "You want to rent %.2f %s but you only have %.2f %s currently available on the stock location '%s' ! Make sure that you get some units back in the mean time or re-supply the stock location '%s'."
+msgid ""
+"You want to rent %.2f %s but you only have %.2f %s currently available on "
+"the stock location '%s' ! Make sure that you get some units back in the mean "
+"time or re-supply the stock location '%s'."
 msgstr ""
-
+"Poskušate posoditi %.2f %s a imate le %.2f %s trenutno razpoložljive zaloge "
+"na lokaciji '%s' ! Prepričajte se, da dobite nekaj enot nazaj ali pa "
+"povečajte zalogo na lokaciji '%s'."
