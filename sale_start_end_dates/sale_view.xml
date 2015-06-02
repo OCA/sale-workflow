@@ -21,7 +21,7 @@
             <field name="end_date"
                 attrs="{'invisible': [('must_have_dates', '=', False)], 'required': [('must_have_dates', '=', True)]}"/>
             <field name="number_of_days"
-                attrs="{'invisible': [('must_have_dates', '=', False)]}"/>
+                attrs="{'invisible': [('must_have_dates', '=', False)], 'required': [('must_have_dates', '=', True)]}"/>
             <field name="must_have_dates" invisible="1"/>
         </xpath>
         <xpath expr="//field[@name='order_line']/tree/field[@name='name']" position="after">

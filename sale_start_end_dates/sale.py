@@ -22,6 +22,7 @@
 
 from openerp import models, fields, api, _
 from openerp.exceptions import ValidationError
+from dateutil.relativedelta import relativedelta
 
 
 class SaleOrder(models.Model):
@@ -78,15 +79,13 @@ class SaleOrderLine(models.Model):
     end_date = fields.Date(
         string='End Date', readonly=True,
         states={'draft': [('readonly', False)]})
-    number_of_days = fields.Integer(
-        compute='_compute_number_of_days', string='Number of Days',
-        readonly=True)
+    number_of_days = fields.Integer(string='Number of Days')
     must_have_dates = fields.Boolean(
         string='Must Have Start and End Dates', readonly=True,
         states={'draft': [('readonly', False)]})
 
     @api.one
-    @api.constrains('start_date', 'end_date')
+    @api.constrains('start_date', 'end_date', 'number_of_days')
     def _check_start_end_dates(self):
         if self.product_id and self.must_have_dates:
             if not self.end_date:
@@ -99,13 +98,32 @@ class SaleOrderLine(models.Model):
                     _("Missing Start Date for sale order line with "
                         "Product '%s'.")
                     % (self.product_id.name))
+            if not self.number_of_days:
+                raise ValidationError(
+                    _("Missing number of days for sale order line with "
+                        "Product '%s'.")
+                    % (self.product_id.name))
             if self.start_date > self.end_date:
                 raise ValidationError(
                     _("Start Date should be before or be the same as "
                         "End Date for sale order line with Product '%s'.")
                     % (self.product_id.name))
-
-# TODO check must_have_dates on SO validation ? or in constraint ?
+            if self.number_of_days < 0:
+                raise ValidationError(
+                    _("On sale order line with Product '%s', the "
+                        "number of days is negative ; this is not allowed.")
+                    % (self.product_id.name))
+            days_delta = (
+                fields.Date.from_string(self.end_date) -
+                fields.Date.from_string(self.start_date)).days + 1
+            if self.number_of_days != days_delta:
+                raise ValidationError(
+                    _("On the sale order line with Product '%s', "
+                        "there are %d days between the Start Date (%s) and "
+                        "the End Date (%s), but the number of days field "
+                        "has a value of %d days.")
+                    % (self.product_id.name, days_delta, self.start_date,
+                        self.end_date, self.number_of_days))
 
     @api.model
     def _prepare_order_line_invoice_line(self, line, account_id=False):
@@ -118,36 +136,42 @@ class SaleOrderLine(models.Model):
                 })
         return res
 
-# Disable this method, because I can't put both an on_change in the
-# XML and an @api.onchange on the same fields :-(
-# And I prefer to use @api.onchange on higher-level modules
-#    @api.multi
-#    def start_end_dates_change(self, start_date, end_date):
-#        res = {}
-#        if start_date and end_date:
-#            if end_date < start_date:
-#                # We could have put a raise here
-#                # but a warning is fine because we have the constraint
-#                res['warning'] = {
-#                    'title': _('Warning:'),
-#                    'message': _("Start Date should be before or be the "
-#                                 "same as End Date."),
-#                }
-#        return res
-
     @api.onchange('end_date')
     def end_date_change(self):
-        if (
-                self.start_date and self.end_date and
-                self.start_date > self.end_date):
-            self.start_date = self.end_date
+        if self.end_date:
+            if self.start_date and self.start_date > self.end_date:
+                self.start_date = self.end_date
+            if self.start_date:
+                number_of_days = (
+                    fields.Date.from_string(self.end_date) -
+                    fields.Date.from_string(self.start_date)).days + 1
+                if self.number_of_days != number_of_days:
+                    self.number_of_days = number_of_days
 
     @api.onchange('start_date')
     def start_date_change(self):
-        if (
-                self.start_date and self.end_date and
-                self.start_date > self.end_date):
-            self.end_date = self.start_date
+        if self.start_date:
+            if self.end_date and self.start_date > self.end_date:
+                self.end_date = self.start_date
+            if self.end_date:
+                number_of_days = (
+                    fields.Date.from_string(self.end_date) -
+                    fields.Date.from_string(self.start_date)).days + 1
+                if self.number_of_days != number_of_days:
+                    self.number_of_days = number_of_days
+
+    @api.onchange('number_of_days')
+    def number_of_days_change(self):
+        if self.number_of_days:
+            if self.start_date:
+                end_date_dt = fields.Date.from_string(self.start_date) +\
+                    relativedelta(days=self.number_of_days - 1)
+                end_date = fields.Date.to_string(end_date_dt)
+                if self.end_date != end_date:
+                    self.end_date = end_date
+            elif self.end_date:
+                self.start_date = fields.Date.from_string(self.end_date) -\
+                    relativedelta(days=self.number_of_days - 1)
 
     @api.multi
     def product_id_change(
