@@ -22,7 +22,7 @@
 
 {
     'name': 'Sale Quick Payment',
-    'version': '0.2',
+    'version': '0.3',
     'category': 'Generic Modules/Others',
     'license': 'AGPL-3',
     'description': """
@@ -50,6 +50,5 @@ does not preclude to use it in other sectors.
              'sale_view.xml',
              'settings/sale.exception.csv',
              ],
-    'demo': [],
     'installable': True,
 }

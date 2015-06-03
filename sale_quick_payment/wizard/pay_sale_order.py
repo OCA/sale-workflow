@@ -19,66 +19,56 @@
 #
 ##############################################################################
 
-from openerp.osv import orm, fields
+from openerp import api, fields, models
 import openerp.addons.decimal_precision as dp
 
 
-class pay_sale_order(orm.TransientModel):
+class PaySaleOrder(models.TransientModel):
     _name = 'pay.sale.order'
     _description = 'Wizard to generate a payment from the sale order'
 
-    _columns = {
-        'journal_id': fields.many2one('account.journal', 'Journal'),
-        'amount': fields.float('Amount',
-                               digits_compute=dp.get_precision('Sale Price')),
-        'date': fields.datetime('Payment Date'),
-        'description': fields.char('Description', size=64),
-    }
-
-    def _get_journal_id(self, cr, uid, context=None):
-        if context is None:
-            context = {}
-        if context.get('active_id'):
-            sale_obj = self.pool.get('sale.order')
-            order = sale_obj.browse(cr, uid, context['active_id'],
-                                    context=context)
-            if order.payment_method_id:
-                return order.payment_method_id.journal_id.id
+    @api.model
+    def _default_journal_id(self):
+        context = self.env.context
+        if not context.get('active_id'):
+            return False
+        order = self.env['sale.order'].browse(context['active_id'])
+        if order.payment_method_id:
+            return order.payment_method_id.journal_id.id
         return False
 
-    def _get_amount(self, cr, uid, context=None):
-        if context is None:
-            context = {}
-        if context.get('active_id'):
-            sale_obj = self.pool.get('sale.order')
-            order = sale_obj.browse(cr, uid, context['active_id'],
-                                    context=context)
-            return order.residual
-        return False
+    journal_id = fields.Many2one('account.journal', 'Journal',
+                                 default=_default_journal_id)
 
-    _defaults = {
-        'journal_id': _get_journal_id,
-        'amount': _get_amount,
-        'date': fields.datetime.now,
-    }
+    @api.model
+    def _default_amount(self):
+        context = self.env.context
+        if not context.get('active_id'):
+            return False
+        return self.env['sale.order'].browse(context['active_id']).residual
 
-    def pay_sale_order(self, cr, uid, ids, context=None):
+    amount = fields.Float('Amount', digits=dp.get_precision('Sale Price'),
+                          default=_default_amount)
+
+    date = fields.Datetime('Payment Date', default=fields.Datetime.now)
+
+    description = fields.Char('Description', size=64)
+
+    @api.multi
+    def pay_sale_order(self):
         """ Pay the sale order """
-        wizard = self.browse(cr, uid, ids[0], context=context)
-        sale_obj = self.pool.get('sale.order')
-        sale_obj.add_payment(cr, uid,
-                             context['active_id'],
-                             wizard.journal_id.id,
-                             wizard.amount,
-                             wizard.date,
-                             description=wizard.description,
-                             context=context)
-        return {'type': 'ir.actions.act_window_close'}
+        self.ensure_one()
+        order = self.env['sale.order'].browse(self.env.context['active_id'])
+        order.add_payment(self.journal_id.id,
+                          self.amount,
+                          date=self.date,
+                          description=self.description)
+        return True
 
-    def pay_sale_order_and_confirm(self, cr, uid, ids, context=None):
+    @api.multi
+    def pay_sale_order_and_confirm(self):
         """ Pay the sale order """
-        self.pay_sale_order(cr, uid, ids, context=context)
-        sale_obj = self.pool.get('sale.order')
-        return sale_obj.action_button_confirm(cr, uid,
-                                              [context['active_id']],
-                                              context=context)
+        self.ensure_one()
+        self.pay_sale_order()
+        order = self.env['sale.order'].browse(self.env.context['active_id'])
+        return order.action_button_confirm()
