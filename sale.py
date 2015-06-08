@@ -28,13 +28,13 @@ class SaleOrderLineOption(models.Model):
 
     parent_id = fields.Many2one('sale.order.line')
     product_id = fields.Many2one('product.product', 'Option')
-    uom_qty = fields.Integer()
+    uom_qty = fields.Integer(default=1)
     price_unit = fields.Float()
     note = fields.Text()
 
     @api.onchange('product_id')
     def _onchange_product(self):
-        self.price_unit = self.product_id.lst_price
+        self.price_unit = self.product_id.list_price
 
 
 class SaleOrderLine(models.Model):
