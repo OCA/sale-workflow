@@ -14,6 +14,12 @@ from osv import orm, fields
 class MrpProd(orm.Model):
     _inherit = 'mrp.production'
 
+    def _get_sale_order(self, cr, uid, move, context=None):
+        sale_id = None
+        if move.picking_id.sale_id:
+            sale_id = move.picking_id.sale_id.id
+        return sale_id
+
     def create(self, cr, uid, vals, context=None):
         if context is None:
             context = {}
@@ -22,8 +28,9 @@ class MrpProd(orm.Model):
             move = move_obj.browse(
                 cr, uid, vals['move_prod_id'], context=context
             )
-            if move.picking_id.sale_id:
-                vals['sale_order_id'] = move.picking_id.sale_id.id
+            sale_id = self._get_sale_order(cr, uid, move, context=context)
+            if sale_id:
+                vals['sale_order_id'] = sale_id
         return super(MrpProd, self).create(
             cr, uid, vals, context=context
         )
