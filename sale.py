@@ -26,7 +26,7 @@ from openerp import fields, api, models
 class SaleOrderLineOption(models.Model):
     _name = 'sale.order.line.option'
 
-    parent_id = fields.Many2one('sale.order.line')
+    sale_line_id = fields.Many2one('sale.order.line')
     product_id = fields.Many2one('product.product', 'Option')
     uom_qty = fields.Integer(default=1)
     price_unit = fields.Float()
@@ -34,19 +34,29 @@ class SaleOrderLineOption(models.Model):
 
     @api.onchange('product_id')
     def _onchange_product(self):
-        self.price_unit = self.product_id.list_price
+        if self.product_id:
+            pricelist = self.env['product.pricelist'].browse(self.env.context['pricelist_id'])
+            price = pricelist.price_get(
+                self.product_id.id,
+                self.uom_qty or 1.0,
+                self.sale_line_id.order_id.partner_id.id,
+            )[pricelist.id]
+            self.price_unit = price
 
 
 class SaleOrderLine(models.Model):
     _inherit = "sale.order.line"
 
     base_price_unit = fields.Float()
-    option_ids = fields.One2many('sale.order.line.option', 'parent_id', 'Options')
+    option_ids = fields.One2many('sale.order.line.option', 'sale_line_id',
+                                 'Options')
 
 
     def product_id_change(self, cr, uid, ids, pricelist, product, qty=0,
-            uom=False, qty_uos=0, uos=False, name='', partner_id=False,
-            lang=False, update_tax=True, date_order=False, packaging=False, fiscal_position=False, flag=False, context=None):
+                          uom=False, qty_uos=0, uos=False, name='',
+                          partner_id=False, lang=False, update_tax=True,
+                          date_order=False, packaging=False,
+                          fiscal_position=False, flag=False, context=None):
         res = super(SaleOrderLine, self).product_id_change(cr, uid, ids,
                                                            pricelist,
                                                            product, qty, uom,
@@ -72,4 +82,4 @@ class SaleOrderLine(models.Model):
         option_price = 0
         for option in self.option_ids:
             option_price += option.price_unit * option.uom_qty
-        self.price_unit += option_price
+        self.price_unit = option_price + self.base_price_unit

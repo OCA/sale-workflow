@@ -11,15 +11,18 @@
                     <field name="base_price_unit"/>
                 </xpath>
                 <xpath expr="//field[@name='order_line']/form/div/field[@name='invoice_lines']" position="after">
-                    <field name="option_ids">
+                    <field name="option_ids" context="{'pricelist_id': parent.pricelist_id}">
                         <tree editable="bottom">
-                            <field name="parent_id" invisible="1"/>
+                            <field name="sale_line_id" invisible="1"/>
                             <field name="product_id" domain="[('option_for_product_ids', '=', parent.product_id)]"/>
                             <field name="uom_qty"/>
                             <field name="price_unit"/>
                         </tree>
                     </field>
 
+                </xpath>
+                <xpath expr="//field[@name='order_line']/tree/field[@name='product_uom_qty']" position="after">
+                    <field name="option_ids"/>
                 </xpath>
             </field>
         </record>
