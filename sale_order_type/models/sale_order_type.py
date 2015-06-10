@@ -1,43 +1,67 @@
 # -*- encoding: utf-8 -*-
 ##############################################################################
-#                                                                            #
-#  OpenERP, Open Source Management Solution.                                 #
-#                                                                            #
-#  @author Carlos Sánchez Cifuentes <csanchez@grupovermon.com>               #
-#                                                                            #
-#  This program is free software: you can redistribute it and/or modify      #
-#  it under the terms of the GNU Affero General Public License as            #
-#  published by the Free Software Foundation, either version 3 of the        #
-#  License, or (at your option) any later version.                           #
-#                                                                            #
-#  This program is distributed in the hope that it will be useful,           #
-#  but WITHOUT ANY WARRANTY; without even the implied warranty of            #
-#  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the              #
-#  GNU Affero General Public License for more details.                       #
-#                                                                            #
-#  You should have received a copy of the GNU Affero General Public License  #
-#  along with this program. If not, see <http://www.gnu.org/licenses/>.      #
-#                                                                            #
+# For copyright and license notices, see __openerp__.py file in root directory
 ##############################################################################
 
-from openerp.osv import fields, orm
+from openerp import api, fields, models
 
 
-class SaleOrderTypology(orm.Model):
-
+class SaleOrderTypology(models.Model):
     _name = 'sale.order.type'
-
     _description = 'Type of sale order'
 
-    _columns = {
-        'refund_journal_id': fields.many2one('account.journal',
-                                             'Refund Billing Journal'),
-        'description': fields.text('Description'),
-        'journal_id': fields.many2one('account.journal',
-                                      'Billing Journal'),
-        'name': fields.char('Name', required=True),
-        'sequence_id': fields.many2one('ir.sequence', 'Entry Sequence',
-                                       copy=False),
-        'warehouse_id': fields.many2one('stock.warehouse',
-                                        'Warehouse', required=True),
-    }
+    @api.model
+    def _get_domain_sequence_id(self):
+        seq_type = self.env.ref('sale.seq_type_sale_order')
+        domain = [('code', '=', seq_type.code)]
+        return domain
+
+    @api.model
+    def _get_selection_picking_policy(self):
+        return self.env['sale.order'].fields_get(
+            allfields=['picking_policy'])['picking_policy']['selection']
+
+    def default_picking_policy(self):
+        default_dict = self.env['sale.order'].default_get(['picking_policy'])
+        return default_dict.get('picking_policy')
+
+    @api.model
+    def _get_selection_order_policy(self):
+        return self.env['sale.order'].fields_get(
+            allfields=['order_policy'])['order_policy']['selection']
+
+    def default_order_policy(self):
+        default_dict = self.env['sale.order'].default_get(['order_policy'])
+        return default_dict.get('order_policy')
+
+    @api.model
+    def _get_selection_invoice_state(self):
+        return self.env['stock.picking'].fields_get(
+            allfields=['invoice_state'])['invoice_state']['selection']
+
+    def default_invoice_state(self):
+        default_dict = self.env['stock.picking'].default_get(['invoice_state'])
+        return default_dict.get('invoice_state')
+
+    name = fields.Char(string='Name', required=True, translate=True)
+    description = fields.Text(string='Description', translate=True)
+    sequence_id = fields.Many2one(
+        comodel_name='ir.sequence', string='Entry Sequence', copy=False,
+        domain=_get_domain_sequence_id)
+    journal_id = fields.Many2one(
+        comodel_name='account.journal', string='Billing Journal',
+        domain=[('type', '=', 'sale')])
+    refund_journal_id = fields.Many2one(
+        comodel_name='account.journal', string='Refund Billing Journal',
+        domain=[('type', '=', 'sale_refund')])
+    warehouse_id = fields.Many2one(
+        comodel_name='stock.warehouse', string='Warehouse', required=True)
+    picking_policy = fields.Selection(
+        selection='_get_selection_picking_policy', string='Shipping Policy',
+        required=True, default=default_picking_policy)
+    order_policy = fields.Selection(
+        selection='_get_selection_order_policy', string='Create Invoice',
+        required=True, default=default_order_policy)
+    invoice_state = fields.Selection(
+        selection='_get_selection_invoice_state', string='Invoice Control',
+        required=True, default=default_invoice_state)
