@@ -27,8 +27,7 @@
     'website': 'http://www.agilebg.com',
     'license': 'AGPL-3',
     "depends": [
-        'sale_stock',
-        'mrp',
+        'sale_mrp',
     ],
     "data": [
         'security/ir.model.access.csv',
