@@ -1,26 +1,9 @@
 # -*- encoding: utf-8 -*-
 ##############################################################################
-#                                                                            #
-#  OpenERP, Open Source Management Solution.                                 #
-#                                                                            #
-#  @author Carlos Sánchez Cifuentes <csanchez@grupovermon.com>               #
-#                                                                            #
-#  This program is free software: you can redistribute it and/or modify      #
-#  it under the terms of the GNU Affero General Public License as            #
-#  published by the Free Software Foundation, either version 3 of the        #
-#  License, or (at your option) any later version.                           #
-#                                                                            #
-#  This program is distributed in the hope that it will be useful,           #
-#  but WITHOUT ANY WARRANTY; without even the implied warranty of            #
-#  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the              #
-#  GNU Affero General Public License for more details.                       #
-#                                                                            #
-#  You should have received a copy of the GNU Affero General Public License  #
-#  along with this program. If not, see <http://www.gnu.org/licenses/>.      #
-#                                                                            #
+# For copyright and license notices, see __openerp__.py file in root directory
 ##############################################################################
 
-from openerp import models, api, fields
+from openerp import api, fields, models
 
 
 class SaleOrder(models.Model):
@@ -33,11 +16,21 @@ class SaleOrder(models.Model):
         comodel_name='sale.order.type', string='Type', default=_get_order_type)
 
     @api.multi
-    def on_change_type_id(self, type_id):
-        if type_id:
-            type = self.env['sale.order.type'].browse(type_id)
-            return {'value': {'warehouse_id': type.warehouse_id.id}}
-        return {}
+    def onchange_partner_id(self, part):
+        res = super(SaleOrder, self).onchange_partner_id(part)
+        if part:
+            partner = self.env['res.partner'].browse(part)
+            res['value'].update({
+                'type_id': partner.sale_type.id or self._get_order_type().id,
+            })
+        return res
+
+    @api.one
+    @api.onchange('type_id')
+    def onchange_type_id(self):
+        self.warehouse_id = self.type_id.warehouse_id
+        self.picking_policy = self.type_id.picking_policy
+        self.order_policy = self.type_id.order_policy
 
     @api.model
     def create(self, vals):
@@ -51,5 +44,6 @@ class SaleOrder(models.Model):
     @api.model
     def _prepare_invoice(self, order, line_ids):
         res = super(SaleOrder, self)._prepare_invoice(order, line_ids)
-        res['journal_id'] = order.type_id.journal_id.id
+        if order.type_id.journal_id:
+            res['journal_id'] = order.type_id.journal_id.id
         return res
