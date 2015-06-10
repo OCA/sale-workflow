@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 8.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-03-09 14:10+0000\n"
-"PO-Revision-Date: 2015-03-09 14:10+0000\n"
+"POT-Creation-Date: 2015-08-04 13:15+0000\n"
+"PO-Revision-Date: 2015-08-04 13:15+0000\n"
 "Last-Translator: <>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -23,9 +23,16 @@ msgstr "<p class=\"oe_view_nocontent_create\">Pulse para crear un nuevo tipo de 
 "            "
 
 #. module: sale_order_type
+#: view:sale.order.type:sale_order_type.sot_sale_order_type_search_view
 #: field:sale.order.type,journal_id:0
 msgid "Billing Journal"
 msgstr "Diario de facturación"
+
+#. module: sale_order_type
+#: view:sale.order.type:sale_order_type.sot_sale_order_type_search_view
+#: field:sale.order.type,order_policy:0
+msgid "Create Invoice"
+msgstr "Crear factura"
 
 #. module: sale_order_type
 #: field:sale.order.type,create_uid:0
@@ -43,9 +50,15 @@ msgid "Description"
 msgstr "Descripción"
 
 #. module: sale_order_type
+#: view:sale.order.type:sale_order_type.sot_sale_order_type_search_view
 #: field:sale.order.type,sequence_id:0
 msgid "Entry Sequence"
 msgstr "Secuencia de entrada"
+
+#. module: sale_order_type
+#: view:sale.order.type:sale_order_type.sot_sale_order_type_search_view
+msgid "Group By"
+msgstr "Agrupar por"
 
 #. module: sale_order_type
 #: field:sale.order.type,id:0
@@ -56,6 +69,12 @@ msgstr "ID"
 #: model:ir.model,name:sale_order_type.model_account_invoice
 msgid "Invoice"
 msgstr "Factura"
+
+#. module: sale_order_type
+#: view:sale.order.type:sale_order_type.sot_sale_order_type_search_view
+#: field:sale.order.type,invoice_state:0
+msgid "Invoice Control"
+msgstr "Control de facturas"
 
 #. module: sale_order_type
 #: field:sale.order.type,write_uid:0
@@ -73,14 +92,37 @@ msgid "Name"
 msgstr "Nombre"
 
 #. module: sale_order_type
+#: model:sale.order.type,name:sale_order_type.normal_sale_type
+msgid "Normal Order"
+msgstr "Pedido Normal"
+
+#. module: sale_order_type
+#: model:ir.model,name:sale_order_type.model_res_partner
+msgid "Partner"
+msgstr "Empresa"
+
+#. module: sale_order_type
 #: model:ir.model,name:sale_order_type.model_stock_picking
 msgid "Picking List"
 msgstr "Albarán"
 
 #. module: sale_order_type
+#: view:sale.order.type:sale_order_type.sot_sale_order_type_search_view
 #: field:sale.order.type,refund_journal_id:0
 msgid "Refund Billing Journal"
 msgstr "Diario de facturación rectificativa"
+
+#. module: sale_order_type
+#: view:res.partner:sale_order_type.res_partner_sale_type_form_view
+#: field:res.partner,sale_type:0
+msgid "Sale Order Type"
+msgstr "Tipo de pedido de venta"
+
+#. module: sale_order_type
+#: model:ir.actions.act_window,name:sale_order_type.sot_sale_order_type_action
+#: model:ir.ui.menu,name:sale_order_type.sot_sale_order_type_menu
+msgid "Sale Order Types"
+msgstr "Tipos de pedidos de venta"
 
 #. module: sale_order_type
 #: model:ir.model,name:sale_order_type.model_sale_order
@@ -88,8 +130,15 @@ msgid "Sales Order"
 msgstr "Pedido de venta"
 
 #. module: sale_order_type
+#: view:sale.order.type:sale_order_type.sot_sale_order_type_search_view
+#: field:sale.order.type,picking_policy:0
+msgid "Shipping Policy"
+msgstr "Política de facturación"
+
+#. module: sale_order_type
 #: field:sale.order,type_id:0
 #: view:sale.order.type:sale_order_type.sot_sale_order_type_form_view
+#: view:sale.order.type:sale_order_type.sot_sale_order_type_search_view
 #: view:sale.order.type:sale_order_type.sot_sale_order_type_tree_view
 msgid "Type"
 msgstr "Tipo"
@@ -100,12 +149,7 @@ msgid "Type of sale order"
 msgstr "Tipo de pedido de venta"
 
 #. module: sale_order_type
-#: model:ir.actions.act_window,name:sale_order_type.sot_sale_order_type_action
-#: model:ir.ui.menu,name:sale_order_type.sot_sale_order_type_menu
-msgid "Typology"
-msgstr "Tipología"
-
-#. module: sale_order_type
+#: view:sale.order.type:sale_order_type.sot_sale_order_type_search_view
 #: field:sale.order.type,warehouse_id:0
 msgid "Warehouse"
 msgstr "Almacén"
