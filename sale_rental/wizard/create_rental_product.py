@@ -42,7 +42,10 @@ class CreateRentalProduct(models.TransientModel):
             'Wrong underlying model, should be product.product'
         hw_product = self.env['product.product'].browse(
             self.env.context['active_id'])
-        return _('RENT-%s') % hw_product.default_code
+        if hw_product.default_code:
+            return _('RENT-%s') % hw_product.default_code
+        else:
+            return ''
 
     sale_price_per_day = fields.Float(
         string='Rental Price per Day', required=True,
@@ -51,23 +54,21 @@ class CreateRentalProduct(models.TransientModel):
         string='Product Name', size=64, required=True,
         default=_default_name)
     default_code = fields.Char(
-        string='Default Code', size=16, required=True,
-        default=_default_code)
+        string='Default Code', size=16, default=_default_code)
     categ_id = fields.Many2one(
         'product.category', string='Product Category', required=True)
+    copy_image = fields.Boolean(string='Copy Product Image')
 
-    @api.multi
-    def create_rental_product(self):
-        self.ensure_one()
-        #  check that a rental product doesn't already exists ?
+    @api.model
+    def _prepare_rental_product(self):
         assert self.env.context.get('active_model') == 'product.product',\
             'Wrong underlying model, should be product.product'
         hw_product_id = self.env.context.get('active_id')
         assert hw_product_id, 'Active ID is not set'
         pp_obj = self.env['product.product']
+        hw_product = pp_obj.browse(hw_product_id)
         day_uom_id = self.env.ref('product.product_uom_day').id
-
-        product = pp_obj.create({
+        vals = {
             'type': 'service',
             'sale_ok': True,
             'purchase_ok': False,
@@ -79,8 +80,17 @@ class CreateRentalProduct(models.TransientModel):
             'rented_product_id': hw_product_id,
             'must_have_dates': True,
             'categ_id': self.categ_id.id,
-            })
+            }
+        if self.copy_image:
+            vals['image'] = hw_product.image
+        return vals
 
+    @api.multi
+    def create_rental_product(self):
+        self.ensure_one()
+        pp_obj = self.env['product.product']
+        #  check that a rental product doesn't already exists ?
+        product = pp_obj.create(self._prepare_rental_product())
         action = {
             'name': pp_obj._description,
             'type': 'ir.actions.act_window',
