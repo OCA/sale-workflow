@@ -26,7 +26,6 @@
     'website': 'http://www.agilebg.com',
     'license': 'AGPL-3',
     'depends': [
-        'sale_mrp',
         'sale_properties_easy_creation',
         'web_context_tunnel',
     ],
