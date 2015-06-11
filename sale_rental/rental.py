@@ -135,7 +135,8 @@ class SaleOrderLine(models.Model):
     extension_rental_id = fields.Many2one(
         'sale.rental', string='Rental to Extend')
     rental_qty = fields.Float(
-        string='Rental Quantity', digits=dp.get_precision('Product UoS'))
+        string='Rental Quantity', digits=dp.get_precision('Product UoS'),
+        help="Indicate the number of items that will be rented.")
     sell_rental_id = fields.Many2one(
         'sale.rental', string='Rental to Sell')
 
