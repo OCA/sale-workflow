@@ -29,10 +29,8 @@
     'license': 'AGPL-3',
     "depends": [
         'sale_properties_easy_creation',
-        'web_context_tunnel',
     ],
     "data": [
-        'sale_order_view.xml',
         'product_view.xml',
     ],
     "demo": [
