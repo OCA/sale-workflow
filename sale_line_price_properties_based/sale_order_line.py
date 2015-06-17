@@ -30,25 +30,26 @@ class SaleOrderLine(models.Model):
     @api.onchange(
         'property_ids', 'product_id', 'product_uom_qty', 'product_uom'
     )
-    def property_ids_changed(self):
+    def price_property_ids_changed(self):
         prop_dict = {}
         prop_ctx = self.env.context.copy()
         if 'lang' in prop_ctx:
             del prop_ctx['lang']
-        for prop in self.env['mrp.property'].with_context(prop_ctx).browse(
-            [p.id for p in self.property_ids]
-        ):
-            if prop.group_id.name in prop_dict:
-                raise except_orm(
-                    _('Error'),
-                    _('Property of group %s already present')
-                    % prop.group_id.name)
-            prop_dict[prop.group_id.name] = prop.value
-        self.price_unit = self.pool.get('product.pricelist').price_get(
-            self._cr, self._uid, [self.order_id.pricelist_id.id],
-            self.product_id.id, self.product_uom_qty or 1.0,
-            self.order_id.partner_id.id, {
-                'uom': self.product_uom.id,
-                'date': self.order_id.date_order,
-                'properties': prop_dict,
-            })[self.order_id.pricelist_id.id]
+        if self.product_id:
+            for prop in self.env['mrp.property'].with_context(prop_ctx).browse(
+                [p.id for p in self.property_ids]
+            ):
+                if prop.group_id.name in prop_dict:
+                    raise except_orm(
+                        _('Error'),
+                        _('Property of group %s already present')
+                        % prop.group_id.name)
+                prop_dict[prop.group_id.name] = prop.value
+            self.price_unit = self.pool.get('product.pricelist').price_get(
+                self._cr, self._uid, [self.order_id.pricelist_id.id],
+                self.product_id.id, self.product_uom_qty or 1.0,
+                self.order_id.partner_id.id, {
+                    'uom': self.product_uom.id,
+                    'date': self.order_id.date_order,
+                    'properties': prop_dict,
+                })[self.order_id.pricelist_id.id]
