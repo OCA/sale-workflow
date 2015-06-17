@@ -34,7 +34,7 @@ class SaleOrderLine(models.Model):
     @api.onchange(
         'property_ids', 'product_id', 'product_uos_qty'
     )
-    def property_ids_changed(self):
+    def quantity_property_ids_changed(self):
         prop_ctx = self.env.context.copy()
         if 'lang' in prop_ctx:
             del prop_ctx['lang']
@@ -62,10 +62,8 @@ class SaleOrderLine(models.Model):
                     'product_id': self.product_id.id,
                 }
                 try:
-                    exec (
-                        self.product_id.quantity_formula_id.formula_text
-                        in localdict
-                    )
+                    exec self.product_id.quantity_formula_id.\
+                        formula_text in localdict
                     try:
                         amount = localdict['result']
                     except KeyError:
