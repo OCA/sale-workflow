@@ -19,13 +19,12 @@
 {
     "name": "Product Last Price Info - Sale",
     "version": "1.0",
-    "depends": [
-        "sale",
-        "product_last_price_info",
-    ],
+    "category": "Hidden/Dependency",
+    "license": "AGPL-3",
     "author": "OdooMRP team, "
               "AvanzOSC, "
-              "Serv. Tecnol. Avanzados - Pedro M. Baeza",
+              "Serv. Tecnol. Avanzados - Pedro M. Baeza, "
+              "Odoo Community Association (OCA)",
     "website": "http://www.odoomrp.com",
     "contributors": [
         "Alfredo de la Fuente <alfredodelafuente@avanzosc.es>",
@@ -33,11 +32,11 @@
         "Pedro M. Baeza <pedro.baeza@serviciosbaeza.com>",
         "Ana Juaristi <anajuaristi@avanzosc.es>",
     ],
-    "category": "Hidden/Dependency",
-    "summary": "",
+    "depends": [
+        "sale",
+    ],
     "data": [
         "views/product_view.xml",
     ],
     "installable": True,
-    "auto_install": True,
 }
