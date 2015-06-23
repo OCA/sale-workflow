@@ -2,7 +2,7 @@
     :alt: License: AGPL-3
 
 Product Last Price Info - Sale
-==================================
+==============================
 
 This module adds the last sale info of the product.
 

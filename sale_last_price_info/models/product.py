@@ -11,9 +11,7 @@ class ProductProduct(models.Model):
 
     @api.one
     def _get_last_sale(self):
-        """
-        Get last sale price, last sale date and last customer
-        """
+        """ Get last sale price, last sale date and last customer """
         lines = self.env['sale.order.line'].search(
             [('product_id', '=', self.id),
              ('state', 'in', ['confirmed', 'done'])]).sorted(
