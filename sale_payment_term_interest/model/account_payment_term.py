@@ -25,11 +25,32 @@ from datetime import datetime
 from dateutil.relativedelta import relativedelta
 import openerp.addons.decimal_precision as dp
 from openerp import models, fields, api
-from openerp.tools.float_utils import float_round as round
+from openerp.tools.float_utils import float_round as round, float_compare
 
 
 class AccountPaymentTerm(models.Model):
     _inherit = 'account.payment.term'
+
+    interest_min = fields.Float(
+        string='Minimum Interest Amount',
+        digits=dp.get_precision('Account'),
+        help="The minimum amount of interest added to a sales "
+             "order.")
+
+    @api.multi
+    def compute_total_interest(self, value):
+        self.ensure_one()
+        values = self.compute_interest(value)
+        interest = sum(interest for __, __, interest in values)
+        precision_model = self.env['decimal.precision']
+        precision = precision_model.precision_get('Account')
+        compare = float_compare(interest,
+                                self.interest_min,
+                                precision_digits=precision)
+        if compare == -1:  # interest < interest_min
+            return self.interest_min
+        else:
+            return interest
 
     @api.multi
     def compute_interest(self, value, date_ref=False):

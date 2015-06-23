@@ -28,36 +28,44 @@ from openerp.tools.float_utils import float_round as round
 
 class TestPaymentTerm(common.TransactionCase):
 
-    def test_interest(self):
-        term = self.env['account.payment.term'].create({'name': 'test'})
+    def setUp(self):
+        super(TestPaymentTerm, self).setUp()
+        self.term = self.env['account.payment.term'].create({
+            'name': 'test',
+            'interest_min': 2.,
+        })
         self.env['account.payment.term.line'].create({
-            'payment_id': term.id,
+            'payment_id': self.term.id,
             'value': 'procent',
             'value_amount': 0.3333,
             'days': 10,
             'interest_rate': 0.0,
         })
         self.env['account.payment.term.line'].create({
-            'payment_id': term.id,
+            'payment_id': self.term.id,
             'value': 'procent',
             'value_amount': 0.3333,
             'days': 40,
             'interest_rate': 15,  # annual interest
         })
         self.env['account.payment.term.line'].create({
-            'payment_id': term.id,
+            'payment_id': self.term.id,
             'value': 'balance',
             'days': 70,
             'interest_rate': 15,  # annual interest
         })
+        precision_model = self.env['decimal.precision']
+        self.precision = precision_model.precision_get('Account')
+
+    def test_interest_lines(self):
         total_amount = remaining_amount = 469.35
-        terms = term.compute_interest(remaining_amount, date_ref='2015-03-13')
+        terms = self.term.compute_interest(remaining_amount,
+                                           date_ref='2015-03-13')
         self.assertEquals(len(terms), 3)
         terms = sorted(terms, key=itemgetter(0))
         line1, line2, line3 = terms
 
-        precision_model = self.env['decimal.precision']
-        precision = precision_model.precision_get('Account')
+        precision = self.precision
 
         term_amount = total_amount * 0.3333
         # Odoo rounds the remaining amount between each term
@@ -89,3 +97,20 @@ class TestPaymentTerm(common.TransactionCase):
               ) * 70  # multiply by the number of term days
              ),
             places=precision)
+
+    def test_total_interest(self):
+        total_amount = 469.35
+        interest = self.term.compute_total_interest(total_amount)
+        expected = (
+            # ((term amount) * rate / (number of days in one year) *
+            # number of days)
+            (((469.35 * 0.3333) * 0.15 / (12 * 30)) * 40) +
+            (((469.35 * 0.3333) * 0.15 / (12 * 30)) * 70)
+        )
+        self.assertAlmostEqual(interest, expected, places=self.precision)
+
+    def test_total_interest_min(self):
+        total_amount = 469.35
+        self.term.interest_min = interest_min = 20.
+        interest = self.term.compute_total_interest(total_amount)
+        self.assertAlmostEqual(interest, interest_min, places=self.precision)

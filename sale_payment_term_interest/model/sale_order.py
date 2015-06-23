@@ -63,12 +63,13 @@ class SaleOrder(models.Model):
                                             product=line.product_id,
                                             partner=self.partner_id)
             # remove the interest value from the total if there is a value yet
-            interest = taxes['total_included']
+            current_interest = taxes['total_included']
         else:
-            interest = 0.
-        values = term.compute_interest(self.amount_total - interest,
-                                       date_ref=self.date_order)
-        return sum(interest for __, __, interest in values)
+            current_interest = 0.
+        interest = term.compute_total_interest(
+            self.amount_total - current_interest,
+        )
+        return interest
 
     @api.multi
     def _get_interest_line(self):
