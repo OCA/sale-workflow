@@ -49,7 +49,7 @@ msgstr "Montant d'intérêt minimum"
 #. module: sale_payment_term_interest
 #: model:ir.model,name:sale_payment_term_interest.model_account_payment_term
 msgid "Payment Term"
-msgstr "Condition de règlement"
+msgstr "Conditions de règlement"
 
 #. module: sale_payment_term_interest
 #: model:ir.model,name:sale_payment_term_interest.model_account_payment_term_line
@@ -59,7 +59,7 @@ msgstr "Détail des conditions de règlement"
 #. module: sale_payment_term_interest
 #: model:product.template,name:sale_payment_term_interest.product_product_sale_order_interest_product_template
 msgid "Payment terms interests"
-msgstr "Intérêt des conditions de règlement"
+msgstr "Intérêts des conditions de règlement"
 
 #. module: sale_payment_term_interest
 #: view:sale.order:sale_payment_term_interest.view_order_form
