@@ -26,16 +26,15 @@
     'category': 'Sale',
     'license': 'AGPL-3',
     'complexity': 'easy',
-    'images': [],
     'website': "http://www.ecosoft.co.th",
     'description': """
 This module provides "Expected Delivery Date" in Sales Order.
-This date will be used for DO's Scheduled Time instead of standard use of Product's customer lead time (will be ignored).    
+This date will be used for DO's Scheduled Time instead of standard
+use of Product's customer lead time (will be ignored).
     """,
     'depends': ['sale',
                  'sale_stock'
                  ],
-    'demo': [],
     'data': ['view/sale_view.xml',
              ],
     'auto_install': False,
@@ -44,4 +43,3 @@ This date will be used for DO's Scheduled Time instead of standard use of Produc
               ],
     'installable': True,
  }
-

@@ -20,7 +20,7 @@
 #
 
 from openerp import models, fields, api
-from datetime import datetime
+
 
 class SaleOrder(models.Model):
     _inherit = 'sale.order'
@@ -30,12 +30,11 @@ class SaleOrder(models.Model):
         required=True,
         readonly=True,
         states={'draft': [('readonly', False)]},
-        default=lambda *a: datetime.now().strftime('%Y-%m-%d'),
+        default=fields.datetime.now(),
         )
 
     @api.v7
-    def _get_date_planned(self, cr, uid, order, line, start_date, context=None):
+    def _get_date_planned(self, cr, uid, order, line,
+                          start_date, context=None):
         # Overwrite with this date
         return order.date_expected
-
-# vim:expandtab:smartindent:tabstop=4:softtabstop=4:shiftwidth=4:
