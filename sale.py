@@ -23,34 +23,16 @@
 from openerp import fields, api, models
 
 
-class SaleOrderLineOption(models.Model):
-    _name = 'sale.order.line.option'
-
-    sale_line_id = fields.Many2one('sale.order.line')
-    product_id = fields.Many2one('product.product', 'Option')
-    uom_qty = fields.Integer(default=1)
-    price_unit = fields.Float()
-    note = fields.Text()
-
-    @api.onchange('product_id')
-    def _onchange_product(self):
-        if self.product_id:
-            pricelist = self.env['product.pricelist'].browse(self.env.context['pricelist_id'])
-            price = pricelist.price_get(
-                self.product_id.id,
-                self.uom_qty or 1.0,
-                self.sale_line_id.order_id.partner_id.id,
-            )[pricelist.id]
-            self.price_unit = price
-
-
 class SaleOrderLine(models.Model):
     _inherit = "sale.order.line"
 
     base_price_unit = fields.Float()
-    option_ids = fields.One2many('sale.order.line.option', 'sale_line_id',
-                                 'Options')
-
+    optionnal_bom_line_ids = fields.Many2many('mrp.bom.line',
+                                       'sale_line_bom_line',
+                                       'sale_line_id',
+                                       'bom_line_id',
+                                       'Optionnal BoM Line'
+                                       )
 
     def product_id_change(self, cr, uid, ids, pricelist, product, qty=0,
                           uom=False, qty_uos=0, uos=False, name='',
@@ -68,18 +50,38 @@ class SaleOrderLine(models.Model):
                                                            fiscal_position,
                                                            flag, context
                                                            )
-        if pricelist and product:
-            price = self.pool.get('product.pricelist').price_get(cr, uid, [pricelist],
-                    product, qty or 1.0, partner_id, {
-                        'uom': uom or res['value'].get('product_uom'),
-                        'date': date_order,
-                        })[pricelist]
-            res['value']['base_price_unit'] = price
+        res['value']['base_price_unit'] = res['value']['price_unit']
         return res
 
-    @api.onchange('option_ids')
+    @api.onchange('optionnal_bom_line_ids', 'base_price_unit')
     def _onchange_option(self):
         option_price = 0
-        for option in self.option_ids:
-            option_price += option.price_unit * option.uom_qty
-        self.price_unit = option_price + self.base_price_unit
+        final_options_price = 0
+        for option in self.optionnal_bom_line_ids:
+            option_price = self.pool.get('product.pricelist').price_get(
+                    self.env.cr,
+                    self.env.uid,
+                    [self.order_id.pricelist_id.id],
+                    option.product_id.id,
+                    option.product_qty or 1.0,
+                    self.order_id.partner_id.id,
+                    {
+                        'uom': option.product_uom.id ,
+                        'date': self.order_id.date_order,
+                    })[self.order_id.pricelist_id.id]
+            option_price = option_price * option.product_qty
+            final_options_price += option_price
+        self.price_unit = final_options_price + self.base_price_unit
+
+
+class SaleOrder(models.Model):
+    _inherit = "sale.order"
+
+    @api.model
+    def _prepare_vals_lot_number(self, order_line_id, index_lot):
+        res = super(SaleOrder, self)._prepare_vals_lot_number(order_line_id,
+                                                              index_lot
+                                                              )
+        order_line = self.env['sale.order.line'].browse(order_line_id)
+        res['optionnal_bom_line_ids'] = order_line.optionnal_bom_line_ids
+        return res

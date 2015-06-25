@@ -20,32 +20,43 @@
 #
 ###############################################################################
 
-{'name': 'Sale option',
- 'version': '0.0.1',
- 'author': 'Akretion',
- 'website': 'www.akretion.com',
- 'license': 'AGPL-3',
- 'category': 'Generic Modules',
- 'description': """
-
- """,
- 'depends': [
-     'sale',
-     'sale_embedded_configuration',
-     'mrp',
- ],
- 'data': [
-     'sale_view.xml',
-     'product_view.xml',
-     'mrp_view.xml',
-    'demo/product_demo.xml',
- ],
- # 'demo': [
- #    'demo/product_demo.xml',
- # ],
- 'installable': True,
- 'application': False,
-}
+from openerp import fields, api, models
 
 
+class BomOption(models.Model):
+    _name = "mrp.bom.line.option"
 
+    @api.model
+    def _get_type(self):
+        selection = (
+            ('select', 'selection'),
+            ('multiselect', 'multi-selection'),
+        )
+        return selection
+
+    name = fields.Char()
+    sequence = fields.Integer()
+    type = fields.Selection('_get_type')
+
+
+class BomLine(models.Model):
+    _inherit = "mrp.bom.line"
+
+    option_id = fields.Many2one('mrp.bom.line.option', 'Option')
+
+
+class Bom(models.Model):
+    _inherit = "mrp.bom"
+
+    @api.model
+    def _skip_bom_line(self, line, product):
+        print "_skip bom line"
+        import ipdb; ipdb.set_trace()
+        res = super(Bom, self)._skip_bom_line(line, product)
+        prod_id = self.env.context['production_id']
+        prod = self.env['mrp.production'].browse(prod_id)
+        if line in line.lot_id.optionnal_bom_line_ids:
+            res = True
+        else:
+            res = False
+        return res
