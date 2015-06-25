@@ -80,3 +80,23 @@ class SaleOrderLine(models.Model):
                         "KeyError for formula '%s' and prop_dict '%s'"
                         % (self.product_id.quantity_formula_id.formula_text,
                             prop_dict))
+
+    def product_id_change(
+        self, cr, uid, ids, pricelist, product_id, qty=0,
+        uom=False, qty_uos=0, uos=False, name='', partner_id=False,
+        lang=False, update_tax=True, date_order=False, packaging=False,
+        fiscal_position=False, flag=False, context=None
+    ):
+        res = super(SaleOrderLine, self).product_id_change(
+            cr, uid, ids, pricelist, product_id, qty=qty,
+            uom=uom, qty_uos=qty_uos, uos=uos,
+            name=name, partner_id=partner_id,
+            lang=lang, update_tax=update_tax,
+            date_order=date_order, packaging=packaging,
+            fiscal_position=fiscal_position, flag=flag, context=context)
+        # Removing product_uos_qty is needed because it can now be used to
+        # compute the real quantity. Otherwise, it would be recomputed after
+        # the quantity changed. See the automated test for the use case.
+        if 'value' in res and 'product_uos_qty' in res['value']:
+            del res['value']['product_uos_qty']
+        return res
