@@ -30,7 +30,7 @@
 *Final Partner for Invoicing*. The value of this field will be used when you
 create a new Sale Order with this sales team.
     """,
-    'author': 'Akretion',
+    'author': 'Akretion, Odoo Community Association (OCA)',
     'website': 'http://www.akretion.com/',
     'depends': [
         'sales_team',
