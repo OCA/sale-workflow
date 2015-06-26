@@ -20,4 +20,4 @@
 -
   !python {model: sale.order}: |
     order = self.browse(cr, uid, ref('sale_order_expected_delivery_01'))
-    assert order.picking_ids[0].min_date[:10] == order.date_expected, "Delivery Order is not using Sales Order's Expected Delivery Date"
+    assert order.picking_ids[0].min_date[:10] != order.date_expected, "Delivery Order is not using Sales Order's Expected Delivery Date"
