@@ -29,7 +29,6 @@
         'sale_properties_dynamic_fields',
     ],
     'data': [
-        'sale_order_view.xml',
         'product_view.xml',
     ],
     'test': [
