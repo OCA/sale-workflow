@@ -50,7 +50,8 @@ class SaleOrderLine(models.Model):
                                                            fiscal_position,
                                                            flag, context
                                                            )
-        res['value']['base_price_unit'] = res['value']['price_unit']
+        if product:
+            res['value']['base_price_unit'] = res['value']['price_unit']
         return res
 
     @api.onchange('optionnal_bom_line_ids', 'base_price_unit')
@@ -83,5 +84,5 @@ class SaleOrder(models.Model):
                                                               index_lot
                                                               )
         order_line = self.env['sale.order.line'].browse(order_line_id)
-        res['optionnal_bom_line_ids'] = order_line.optionnal_bom_line_ids
+        res['optionnal_bom_line_ids'] = [line.id for line in order_line.optionnal_bom_line_ids]
         return res

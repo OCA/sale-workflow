@@ -31,6 +31,7 @@ class BomOption(models.Model):
         selection = (
             ('select', 'selection'),
             ('multiselect', 'multi-selection'),
+            ('required', 'Required'),
         )
         return selection
 
@@ -50,13 +51,20 @@ class Bom(models.Model):
 
     @api.model
     def _skip_bom_line(self, line, product):
-        print "_skip bom line"
-        import ipdb; ipdb.set_trace()
         res = super(Bom, self)._skip_bom_line(line, product)
         prod_id = self.env.context['production_id']
         prod = self.env['mrp.production'].browse(prod_id)
-        if line in line.lot_id.optionnal_bom_line_ids:
+        if line.option_id.type == 'required' or line in prod.lot_id.optionnal_bom_line_ids:
             res = True
         else:
             res = False
         return res
+
+class StockProductionLot(models.Model):
+    _inherit = 'stock.production.lot'
+
+    optionnal_bom_line_ids = fields.Many2many('mrp.bom.line',
+                                              'bom_line_lot_rel',
+                                              'lot_id',
+                                              'bom_line_id',
+                                              'Optionnal bom lines')

@@ -33,10 +33,10 @@
      'sale',
      'sale_embedded_configuration',
      'mrp',
+     'sale_prodlot',
  ],
  'data': [
      'sale_view.xml',
-     'product_view.xml',
      'mrp_view.xml',
     'demo/product_demo.xml',
  ],
