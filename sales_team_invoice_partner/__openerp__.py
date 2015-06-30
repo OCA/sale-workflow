@@ -1,8 +1,7 @@
 # -*- encoding: utf-8 -*-
 ##############################################################################
 #
-#    Copyright (C) 2015 AKRETION
-#    @author Chafique Delli <chafique.delli@akretion.com>
+#    Copyright (C) 2015 AKRETION (<http://www.akretion.com>).
 #
 #    This program is free software: you can redistribute it and/or modify
 #    it under the terms of the GNU Affero General Public License as
@@ -21,17 +20,12 @@
 
 {
     'name': 'Sales Team Invoice Partner',
-    'version': '0.1',
+    'version': '1.0',
     'category': 'Sales Management',
-    'license': 'AGPL-3',
-    'summary': "Adds invoice partner in sales team for use in a sale order",
-    'description': """
-    This module adds a new field on the sales team form:
-*Final Partner for Invoicing*. The value of this field will be used when you
-create a new Sale Order with this sales team.
-    """,
+    'summary': 'Adds invoice partner in sales team for use in a sale order',
     'author': 'Akretion, Odoo Community Association (OCA)',
     'website': 'http://www.akretion.com/',
+    'license': 'AGPL-3',
     'depends': [
         'sales_team',
         'sale'
