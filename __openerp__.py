@@ -33,7 +33,9 @@
         'sale_embedded_configuration',
         'mrp_production_note',
     ],
-    'data': [],
+    'data': [
+        'mrp_view.xml',
+    ],
     'installable': True,
     'auto_install': False,
     'application': False,
