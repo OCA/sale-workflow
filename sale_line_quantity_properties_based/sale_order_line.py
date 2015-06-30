@@ -31,9 +31,7 @@ _logger = logging.getLogger(__name__)
 class SaleOrderLine(models.Model):
     _inherit = 'sale.order.line'
 
-    @api.onchange(
-        'property_ids', 'product_id', 'product_uos_qty'
-    )
+    @api.onchange('property_ids')
     def quantity_property_ids_changed(self):
         prop_ctx = self.env.context.copy()
         if 'lang' in prop_ctx:
@@ -94,6 +92,17 @@ class SaleOrderLine(models.Model):
             lang=lang, update_tax=update_tax,
             date_order=date_order, packaging=packaging,
             fiscal_position=fiscal_position, flag=flag, context=context)
+        if 'value' in res:
+            # get empty properties
+            res['value']['property_ids'] = []
+            # get empty properties dynamic fields
+            property_group_pool = self.pool['mrp.property.group']
+            group_to_empty_ids = property_group_pool.search(
+                cr, uid, [('draw_dynamically', '=', True)], context=context)
+            for group in property_group_pool.browse(
+                    cr, uid, group_to_empty_ids, context=context
+            ):
+                res['value'][group.field_id.name] = None
         # Removing product_uos_qty is needed because it can now be used to
         # compute the real quantity. Otherwise, it would be recomputed after
         # the quantity changed. See the automated test for the use case.

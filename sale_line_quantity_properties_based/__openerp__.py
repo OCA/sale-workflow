@@ -26,8 +26,7 @@
     'website': 'http://www.agilebg.com',
     'license': 'AGPL-3',
     'depends': [
-        'sale_properties_easy_creation',
-        'web_context_tunnel',
+        'sale_properties_dynamic_fields',
     ],
     'data': [
         'sale_order_view.xml',
