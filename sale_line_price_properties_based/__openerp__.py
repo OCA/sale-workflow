@@ -32,6 +32,7 @@
     ],
     "data": [
         'product_view.xml',
+        'sale_order_view.xml',
     ],
     "demo": [
         'product_demo.xml',
