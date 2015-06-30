@@ -31,7 +31,7 @@ _logger = logging.getLogger(__name__)
 class SaleOrderLine(models.Model):
     _inherit = 'sale.order.line'
 
-    @api.onchange('property_ids')
+    @api.onchange('property_ids', 'product_uos_qty')
     def quantity_property_ids_changed(self):
         prop_ctx = self.env.context.copy()
         if 'lang' in prop_ctx:
