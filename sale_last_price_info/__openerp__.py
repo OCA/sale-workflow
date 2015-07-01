@@ -19,7 +19,7 @@
 {
     "name": "Product Last Price Info - Sale",
     "version": "1.0",
-    "category": "Hidden/Dependency",
+    "category": "Sales Management",
     "license": "AGPL-3",
     "author": "OdooMRP team, "
               "AvanzOSC, "
