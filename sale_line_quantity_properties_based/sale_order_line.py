@@ -36,7 +36,7 @@ class SaleOrderLine(models.Model):
         prop_ctx = self.env.context.copy()
         if 'lang' in prop_ctx:
             del prop_ctx['lang']
-        if self.product_id and self.property_ids and self.product_uos_qty:
+        if self.product_id and (self.property_ids or self.product_uos_qty):
             if self.product_id.quantity_formula_id:
                 prop_dict = {}
                 uom_precision = self.pool['decimal.precision'].precision_get(
