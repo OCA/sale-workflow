@@ -81,7 +81,7 @@ class SaleOrder(models.Model):
         """ original method is in module purchase/purchase.py """
         result = super(SaleOrder, self)._prepare_order_line_move(
             order, line, picking_id, date_planned)
-        result.update({'lot_id': line.lot_id.id})
+        result.update({'restrict_lot_id': line.lot_id.id})
         return result
 
     @api.model
