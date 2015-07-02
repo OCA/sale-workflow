@@ -20,7 +20,7 @@
         <!-- crm.case.section -->
         <record model="crm.case.section" id="crm_case_section_invoice_partner">
             <field name="name">With Invoice Partner</field>
-            <field name="invoicing_partner_id" ref="base.akretion_customer"/>
+            <field name="section_partner_invoice_id" ref="base.akretion_customer"/>
             <field name="code">IP</field>
             <field name="member_ids" eval="[(4, ref('base.user_root')),(4, ref('base.user_demo'))]"/>
         </record>
