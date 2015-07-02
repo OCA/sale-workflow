@@ -26,11 +26,9 @@ from openerp import fields, api, models
 class StockMove(models.Model):
     _inherit = 'stock.move'
 
-    lot_id = fields.Many2one('stock.production.lot', 'Lot')
-
     @api.model
     def _prepare_procurement_from_move(self, move):
         vals = super(StockMove, self)._prepare_procurement_from_move(move)
-        vals['lot_id'] = move.lot_id.id
+        vals['lot_id'] = move.restrict_lot_id.id
         return vals
 
