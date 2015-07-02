@@ -30,7 +30,6 @@ class StockMove(orm.Model):
             cr, uid, move, context=ctx)
 
     def _prepare_explode_move(self, cr, uid, move, line, context=None):
-        import pdb;pdb.set_trace()
         product_obj = self.pool['product.product']
         lot_obj = self.pool['stock.production.lot']
         if context is None:

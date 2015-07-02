@@ -36,5 +36,5 @@ class ProcurementOrder(models.Model):
     def _prepare_mo_vals(self, cr, uid, procurement, context=None):
         res = super(ProcurementOrder, self)._prepare_mo_vals(
             cr, uid, procurement, context=context)
-        res['lot_id'] = procurement.sale_line_id.lot_id
+        res['lot_id'] = procurement.lot_id.id
         return res
