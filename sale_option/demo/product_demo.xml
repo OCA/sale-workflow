@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<openerp>
+    <data>
+
+        <record id="product_missile_launcher_option" model="product.product">
+            <field name="name">Light Missile Launcher</field>
+            <field name="lst_price" eval="708000"/>
+        </record>
+
+        <record id="product_shield_extender_option" model="product.product">
+            <field name="name">Medium Shield Extender</field>
+            <field name="lst_price" eval="450000"/>
+        </record>
+
+        <record id="product_jackdaw_main" model="product.product">
+            <field name="name">Jackdaw</field>
+            <field name="lst_price" eval="34000000"/>
+        </record>
+
+        <record id="partner_capsuleer" model="res.partner">
+            <field name="name">Capsuleer</field>
+        </record>
+
+        <record id="sale_order_option" model="sale.order">
+            <field name="partner_id" eval="ref('sale_option.partner_capsuleer')"/>
+            <field name="picking_policy" eval="'direct'"/>
+        </record>
+
+        <record id="sale_order_line_option" model="sale.order.line">
+            <field name="order_id" eval="ref('sale_option.sale_order_option')"/>
+            <field name="product_id" eval="ref('sale_option.product_jackdaw_main')"/>
+            <field name="price_unit" eval="37732000"/>
+        </record>
+
+    </data>
+</openerp>

@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<openerp>
+    <data>
+
+
+        <record id="view_sale_line_form" model="ir.ui.view">
+            <field name="model">sale.order</field>
+            <field name="inherit_id" ref="sale.view_order_form"/>
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='order_line']/form/group/group/field[@name='price_unit']" position="after">
+                    <field name="base_price_unit"/>
+                </xpath>
+                <xpath expr="//field[@name='order_line']/form/div/field[@name='invoice_lines']" position="after">
+                    <label for="optionnal_bom_line_ids"/>
+                    <field name="optionnal_bom_line_ids" domain="[('bom_id.product_id', '=', product_id), ('option_id', '!=', False)]"/>
+
+                </xpath>
+                <xpath expr="//field[@name='order_line']/tree/field[@name='product_uom_qty']" position="after">
+                    <field name="optionnal_bom_line_ids"/>
+                </xpath>
+            </field>
+        </record>
+
+    </data>
+</openerp>
