@@ -83,3 +83,9 @@ class SaleOrder(models.Model):
             order, line, picking_id, date_planned)
         result.update({'lot_id': line.lot_id.id})
         return result
+
+    @api.model
+    def _prepare_order_line_procurement(self, order, line, group_id=False):
+        res = super(SaleOrder, self)._prepare_order_line_procurement(order, line, group_id)
+        res['lot_id'] = line.lot_id.id
+        return res
