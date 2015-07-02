@@ -84,5 +84,5 @@ class SaleOrder(models.Model):
                                                               index_lot
                                                               )
         order_line = self.env['sale.order.line'].browse(order_line_id)
-        res['optionnal_bom_line_ids'] = [line.id for line in order_line.optionnal_bom_line_ids]
+        res['optionnal_bom_line_ids'] = [(6, 0, [line.id for line in order_line.optionnal_bom_line_ids])]
         return res

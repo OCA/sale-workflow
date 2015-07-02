@@ -55,10 +55,9 @@ class Bom(models.Model):
         prod_id = self.env.context['production_id']
         prod = self.env['mrp.production'].browse(prod_id)
         if line.option_id.type == 'required' or line in prod.lot_id.optionnal_bom_line_ids:
-            res = True
+            return res
         else:
-            res = False
-        return res
+            return True
 
 class StockProductionLot(models.Model):
     _inherit = 'stock.production.lot'
