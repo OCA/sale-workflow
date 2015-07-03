@@ -26,14 +26,6 @@ from openerp import fields, api, models
 class SaleOrderLine(models.Model):
     _inherit = 'sale.order.line'
 
-
-    lot_id = fields.Many2one(
-                             'stock.production.lot',
-                             string='Serial Number',
-                             readonly=True
-                            )
-
-
     def copy_data(self, cr, uid, id, default=None, context=None):
         if default is None:
             default = {}
@@ -83,9 +75,3 @@ class SaleOrder(models.Model):
             order, line, picking_id, date_planned)
         result.update({'restrict_lot_id': line.lot_id.id})
         return result
-
-    @api.model
-    def _prepare_order_line_procurement(self, order, line, group_id=False):
-        res = super(SaleOrder, self)._prepare_order_line_procurement(order, line, group_id)
-        res['lot_id'] = line.lot_id.id
-        return res

@@ -31,7 +31,8 @@
  """,
  'depends': [
      'sale',
-     'mrp'
+     'mrp',
+     'sale_order_lot_selection',
  ],
  'data': [
      'product_view.xml',
