@@ -30,8 +30,8 @@
     'author': 'Akretion',
     'website': '',
     'depends': [
-        'sale_embedded_configuration',
         'mrp_production_note',
+        'sale_order_lot_generator',
     ],
     'data': [
         'mrp_view.xml',

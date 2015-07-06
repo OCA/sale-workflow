@@ -15,19 +15,24 @@ class MrpProduction(models.Model):
     """ Purpose to generate manufacturing base on custom product raw material
     """
     _inherit = 'mrp.production'
-    _service_product_lst = []
-    _product_config_dict = {}
 
     lot_id = fields.Many2one('stock.production.lot', 'Lot')
 
     @api.multi
     def _action_compute_lines(self, properties=None):
+        """
+        We passe the production.id in the context so you can easily get
+        retrieve the production information during the process that generate
+        the line of needed for the production order. For exemple, you can in
+        the function bom_explod read the information of the production order
+        to customise the needed.
+        """
         res = []
         for production in self:
             self = self.with_context(production_id=production.id)
             res = super(MrpProduction, self)._action_compute_lines(
                 properties=properties)
-        return res
+            return res
 
 
 class ProcurementOrder(models.Model):

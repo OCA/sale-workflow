@@ -37,10 +37,10 @@ class StockMove(orm.Model):
         res = super(StockMove, self).\
             _prepare_explode_move(cr, uid, move, line, context=context)
         if context.get('explode_lot'):
-            if move.product_id.track_from_sale:
+            if move.product_id.sale_prodlot_generation:
                 product = product_obj.browse(
                     cr, uid, line['product_id'], context=context)
-                if product.track_from_sale:
+                if product.sale_prodlot_generation:
                     lot_vals = self._prepare_lot_for_move(
                         cr, uid, line['product_id'], move,
                         context['lot_index'], context=context)
@@ -57,7 +57,6 @@ class StockMove(orm.Model):
             'name': lot_number,
             'product_id': product_id,
             'company_id': move.company_id.id,
-            'config': move.restrict_lot_id.config,
         }
 
     def create_chained_picking(self, cr, uid, moves, context=None):
