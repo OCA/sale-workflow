@@ -99,3 +99,10 @@ class sale_order(models.Model):
                         raise Warning(_('Can\'t reserve products for lot %s') %
                                       line.lot_id.name)
         return True
+
+    def copy_data(self, cr, uid, id, default=None, context=None):
+        if default is None:
+            default = {}
+        default['lot_id'] = False
+        return super(SaleOrderLine, self).copy_data(
+            cr, uid, id, default, context=context)
