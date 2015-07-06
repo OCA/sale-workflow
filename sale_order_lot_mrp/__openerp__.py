@@ -21,11 +21,10 @@
 
 
 {
-    'name': 'Production From Configuration',
+    'name': 'sale_order_lot_mrp',
     'version': '1.0',
     'category': 'Generic Modules',
     'description': """
-        production from configuration
     """,
     'author': 'Akretion',
     'website': '',
