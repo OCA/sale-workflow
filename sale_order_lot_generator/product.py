@@ -15,8 +15,8 @@ from openerp.osv import orm, fields as oldfields
 class ProductTemplate(models.Model):
     _inherit = 'product.template'
 
-    track_from_sale = fields.Boolean(
-        'Track Lots since Sales',
+    sale_prodlot_generation = fields.Boolean(
+        'Lot generation auto',
         help="Forces to specifiy a Serial Number for all "
              "lines containing this product since the confirm "
              "of the Sale Order"

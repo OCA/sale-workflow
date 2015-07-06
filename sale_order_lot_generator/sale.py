@@ -23,16 +23,6 @@
 from openerp import fields, api, models
 
 
-class SaleOrderLine(models.Model):
-    _inherit = 'sale.order.line'
-
-    def copy_data(self, cr, uid, id, default=None, context=None):
-        if default is None:
-            default = {}
-        default['lot_id'] = False
-        return super(SaleOrderLine, self).copy_data(
-            cr, uid, id, default, context=context)
-
 class SaleOrder(models.Model):
     _inherit = 'sale.order'
 
@@ -57,7 +47,7 @@ class SaleOrder(models.Model):
             index_lot = 1
             for line in sale_order.order_line:
                 line_vals = {}
-                if line.product_id.track_from_sale:
+                if line.product_id.sale_prodlot_generation:
                     vals = self._prepare_vals_lot_number(
                         line.id, index_lot)
                     index_lot += 1

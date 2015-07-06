@@ -20,7 +20,7 @@
 #
 ###############################################################################
 
-{'name': 'sale_prodlot',
+{'name': 'sale_order_lot_generation',
  'version': '0.0.1',
  'author': 'Akretion',
  'website': 'www.akretion.com',
@@ -31,12 +31,10 @@
  """,
  'depends': [
      'sale',
-     'mrp',
      'sale_order_lot_selection',
  ],
  'data': [
      'product_view.xml',
-     'sale_view.xml'
  ],
  'installable': True,
  'application': False,
