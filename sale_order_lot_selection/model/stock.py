@@ -18,7 +18,7 @@
 #   <http://www.gnu.org/licenses/>.ArithmeticError#
 ###############################################################################
 
-from openerp import fields, api, models
+from openerp import api, models
 
 
 class StockMove(models.Model):
