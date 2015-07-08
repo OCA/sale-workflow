@@ -26,11 +26,7 @@
  'website': 'www.akretion.com',
  'license': 'AGPL-3',
  'category': 'Generic Modules',
- 'description': """
-
- """,
  'depends': [
-     'sale',
      'sale_order_lot_selection',
  ],
  'data': [

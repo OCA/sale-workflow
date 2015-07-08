@@ -6,7 +6,7 @@
             <field name="inherit_id" ref="stock.view_template_property_form"/>
             <field name="arch" type="xml">
                 <field name="track_outgoing" position="after">
-                    <field name="sale_prodlot_generation"/>
+                    <field name="auto_generate_prodlot"/>
                 </field>
             </field>
         </record>

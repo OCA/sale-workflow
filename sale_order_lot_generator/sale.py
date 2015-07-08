@@ -20,12 +20,11 @@
 #
 ###############################################################################
 
-from openerp import fields, api, models
+from openerp import api, models
 
 
 class SaleOrder(models.Model):
     _inherit = 'sale.order'
-
 
     @api.model
     def _prepare_vals_lot_number(self, order_line_id, index_lot):
@@ -36,7 +35,7 @@ class SaleOrder(models.Model):
             'name': lot_number,
             'product_id': order_line.product_id.id,
             # in V8 company_id doesn't exist
-            #'company_id': order_line.order_id.company_id.id,
+            # 'company_id': order_line.order_id.company_id.id,
         }
 
     @api.multi
@@ -47,7 +46,7 @@ class SaleOrder(models.Model):
             index_lot = 1
             for line in sale_order.order_line:
                 line_vals = {}
-                if line.product_id.sale_prodlot_generation:
+                if line.product_id.auto_generate_prodlot:
                     vals = self._prepare_vals_lot_number(
                         line.id, index_lot)
                     index_lot += 1

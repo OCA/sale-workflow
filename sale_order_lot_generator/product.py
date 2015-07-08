@@ -9,13 +9,12 @@
 ##############################################################################
 
 from openerp import models, fields
-from openerp.osv import orm, fields as oldfields
 
 
 class ProductTemplate(models.Model):
     _inherit = 'product.template'
 
-    sale_prodlot_generation = fields.Boolean(
+    auto_generate_prodlot = fields.Boolean(
         'Lot generation auto',
         help="Forces to specifiy a Serial Number for all "
              "lines containing this product since the confirm "
