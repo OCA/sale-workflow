@@ -27,7 +27,7 @@ from openerp.tools import float_compare
 class sale_order_line(models.Model):
     _inherit = 'sale.order.line'
 
-    lot_id = fields.Many2one('stock.production.lot', 'Lot')
+    lot_id = fields.Many2one('stock.production.lot', 'Lot', copy=False)
 
     @api.onchange('lot_id')
     def on_change_lot_id(self):
@@ -84,8 +84,7 @@ class sale_order(models.Model):
         return move
 
     @api.model
-    def action_ship_create(self):
-        super(sale_order, self).action_ship_create()
+    def _check_move_state(self):
         for line in self.order_line:
             if line.lot_id:
                 move = self.get_move_from_line(line)
@@ -100,9 +99,8 @@ class sale_order(models.Model):
                                       line.lot_id.name)
         return True
 
-    def copy_data(self, cr, uid, id, default=None, context=None):
-        if default is None:
-            default = {}
-        default['lot_id'] = False
-        return super(SaleOrderLine, self).copy_data(
-            cr, uid, id, default, context=context)
+    @api.model
+    def action_ship_create(self):
+        super(sale_order, self).action_ship_create()
+        self._check_move_state()
+        return True
