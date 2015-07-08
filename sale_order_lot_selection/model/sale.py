@@ -45,16 +45,16 @@ class sale_order_line(models.Model):
                          ' only have %.2f %s available !'
                          '\nThe real stock is %.2f %s.'
                          ' (without reservations)') % \
-                        (self.product_uom_qty, product_obj.uom_id.name,
-                            max(0, product_obj.virtual_available),
-                            product_obj.uom_id.name,
-                            max(0, product_obj.qty_available),
-                            product_obj.uom_id.name)
+                (self.product_uom_qty, product_obj.uom_id.name,
+                 max(0, product_obj.virtual_available),
+                 product_obj.uom_id.name,
+                 max(0, product_obj.qty_available),
+                 product_obj.uom_id.name)
             warning = {'title': _('Configuration Error!'),
                        'message': _(
-                       "Not enough stock ! : ") + warn_msg + "\n\n"}
-        res.update({'warning': warning})
-        return res
+                           "Not enough stock ! : ") + warn_msg + "\n\n"}
+            res.update({'warning': warning})
+            return res
 
 
 class sale_order(models.Model):
@@ -78,29 +78,29 @@ class sale_order(models.Model):
                 if line.lot_id == m.restrict_lot_id:
                     move = m
                     lot_count += 1
-        # if counter is 0 or >1 means thar something goes wrong
-        if lot_count != 1:
-            raise Warning(_('Can\'t retrieve lot on stock'))
+                    # if counter is 0 or >1 means thar something goes wrong
+                    if lot_count != 1:
+                        raise Warning(_('Can\'t retrieve lot on stock'))
         return move
 
     @api.model
-    def _check_move_state(self):
-        for line in self.order_line:
-            if line.lot_id:
-                move = self.get_move_from_line(line)
-                if move.state != 'confirmed':
+    def _check_move_state(self, line):
+        if line.lot_id:
+            move = self.get_move_from_line(line)
+            if move.state != 'confirmed':
+                raise Warning(_('Can\'t reserve products for lot %s') %
+                              line.lot_id.name)
+            else:
+                move.action_assign()
+                move.refresh()
+                if move.state != 'assigned':
                     raise Warning(_('Can\'t reserve products for lot %s') %
                                   line.lot_id.name)
-                else:
-                    move.action_assign()
-                    move.refresh()
-                    if move.state != 'assigned':
-                        raise Warning(_('Can\'t reserve products for lot %s') %
-                                      line.lot_id.name)
         return True
 
     @api.model
     def action_ship_create(self):
         super(sale_order, self).action_ship_create()
-        self._check_move_state()
-        return True
+        for line in self.order_line:
+            self._check_move_state(line)
+            return True
