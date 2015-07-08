@@ -48,7 +48,7 @@ class BaseTest(TransactionCase):
             'sale_ok' : True,
             'procure_method' : 'make_to_order',
             'supply_method' : 'produce',
-            'sale_prodlot_generation' : True,
+            'auto_generate_prodlot' : True,
         }
         self.product_ids.append(
             self.product_obj.create(cr, uid, vals_1)

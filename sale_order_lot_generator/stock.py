@@ -50,10 +50,10 @@ class StockMove(orm.Model):
         res = super(StockMove, self).\
             _prepare_explode_move(cr, uid, move, line, context=context)
         if context.get('explode_lot'):
-            if move.product_id.sale_prodlot_generation:
+            if move.product_id.auto_generate_prodlot:
                 product = product_obj.browse(
                     cr, uid, line['product_id'], context=context)
-                if product.sale_prodlot_generation:
+                if product.auto_generate_prodlot:
                     lot_vals = self._prepare_lot_for_move(
                         cr, uid, line['product_id'], move,
                         context['lot_index'], context=context)
