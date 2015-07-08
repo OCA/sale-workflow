@@ -32,7 +32,7 @@ class MrpProduction(models.Model):
             self = self.with_context(production_id=production.id)
             res = super(MrpProduction, self)._action_compute_lines(
                 properties=properties)
-            return res
+        return res
 
 
 class ProcurementOrder(models.Model):
