@@ -64,3 +64,10 @@ class SaleOrder(models.Model):
             order, line, picking_id, date_planned)
         result.update({'restrict_lot_id': line.lot_id.id})
         return result
+
+    @api.model
+    def _check_move_state(self, line):
+        if not line.product_id.auto_generate_prodlot:
+            return super(SaleOrder, self)._check_move_state(line)
+        else:
+            return True
