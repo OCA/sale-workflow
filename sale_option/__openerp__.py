@@ -33,7 +33,7 @@
      'sale',
      'sale_embedded_configuration',
      'mrp',
-     'sale_prodlot',
+     'sale_order_lot_generator',
  ],
  'data': [
      'sale_view.xml',
