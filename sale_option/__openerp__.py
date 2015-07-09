@@ -34,6 +34,7 @@
      'sale_embedded_configuration',
      'mrp',
      'sale_order_lot_generator',
+     'sale_order_lot_mrp',
  ],
  'data': [
      'sale_view.xml',
