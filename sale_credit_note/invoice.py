@@ -60,7 +60,7 @@ class account_invoice(orm.Model):
 
         :rtype float
         """
-        line_obj = self.pool['sale.redit.line']
+        line_obj = self.pool['sale.credit.line']
         credit_line_ids = line_obj.search(
             cr, uid,
             [('refund_id', '=', refund.id),
