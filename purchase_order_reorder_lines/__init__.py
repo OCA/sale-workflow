@@ -3,6 +3,8 @@
 #
 #    Author: Alexandre Fayolle
 #    Copyright 2013 Camptocamp SA
+#    Author: Damien Crier
+#    Copyright 2015 Camptocamp SA
 #
 #    This program is free software: you can redistribute it and/or modify
 #    it under the terms of the GNU Affero General Public License as
@@ -18,26 +20,5 @@
 #    along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
 #
-{
-    'name': 'Purchase order lines with sequence number',
-    'version': '0.1',
-    'category': 'Purchase Management',
-    'description': '''
-Provide a new field on the purchase order form, allowing to manage the lines
-order.
-    ''',
-    'author': "Camptocamp,Odoo Community Association (OCA)",
-    'website': 'http://www.camptocamp.com',
-    'depends': [
-        'purchase',
-        'stock_picking_reorder_lines',
-        'account_invoice_reorder_lines'
-    ],
-    'data': ['purchase_view.xml'],
-    'demo': [],
-    'test': [],
-    'installable': False,
-    'auto_install': False,
-    'application': False,
-    'license': "AGPL-3",
-}
+
+from . import purchase
