@@ -54,7 +54,9 @@ class Bom(models.Model):
         res = super(Bom, self)._skip_bom_line(line, product)
         prod_id = self.env.context['production_id']
         prod = self.env['mrp.production'].browse(prod_id)
-        if line.option_id.type == 'required' or line in prod.lot_id.optionnal_bom_line_ids:
+        if not line.option_id\
+                or line.option_id.type == 'required'\
+                or line in prod.lot_id.optionnal_bom_line_ids:
             return res
         else:
             return True
