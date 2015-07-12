@@ -61,11 +61,16 @@ class Bom(models.Model):
         else:
             return True
 
+    @api.model
+    def _prepare_conssumed_line(self, bom_line_id, quantity, product_uos_qty):
+        vals = super(MrpBom, self)._prepare_conssumed_line(bom_line_id, quantity, product_uos_qty)
+        return vals
+
 class StockProductionLot(models.Model):
     _inherit = 'stock.production.lot'
 
-    optionnal_bom_line_ids = fields.Many2many('mrp.bom.line',
-                                              'bom_line_lot_rel',
+    optionnal_bom_line_ids = fields.Many2many('sale.order.line.option',
+                                              'option_lot_rel',
                                               'lot_id',
-                                              'bom_line_id',
+                                              'option_id',
                                               'Optionnal bom lines')

@@ -12,7 +12,20 @@
                 </xpath>
                 <xpath expr="//field[@name='order_line']/form/div/field[@name='invoice_lines']" position="after">
                     <label for="optionnal_bom_line_ids"/>
-                    <field name="optionnal_bom_line_ids" domain="[('bom_id.product_id', '=', product_id), ('option_id', '!=', False)]"/>
+                    <field name="optionnal_bom_line_ids">
+                        <form>
+                            <sheet>
+                                <group>
+                                    <field name="bom_line_id" domain="[('bom_id.product_id', '=', parent.product_id), ('option_id', '!=', False)]"/>
+                                    <field name="qty"/>
+                                </group>
+                            </sheet>
+                        </form>
+                        <tree>
+                            <field name="bom_line_id"/>
+                            <field name="qty"/>
+                        </tree>
+                    </field>
 
                 </xpath>
                 <xpath expr="//field[@name='order_line']/tree/field[@name='product_uom_qty']" position="after">
