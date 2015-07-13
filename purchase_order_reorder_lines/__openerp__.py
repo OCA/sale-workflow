@@ -3,6 +3,7 @@
 #
 #    Author: Alexandre Fayolle
 #    Copyright 2013 Camptocamp SA
+#
 #    Author: Damien Crier
 #    Copyright 2015 Camptocamp SA
 #
