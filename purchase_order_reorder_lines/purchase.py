@@ -22,23 +22,29 @@
 #
 
 from openerp import models, api, fields
+from openerp.tools.safe_eval import safe_eval
 
 
-class purchase_order_line(models.Model):
+class PurchaseOrderLine(models.Model):
     _inherit = 'purchase.order.line'
-
-    sequence = fields.Integer(default=10,
-                              help="Gives the sequence of this line when "
-                                   "displaying the purchase order.")
     _order = 'order_id desc, sequence, id'
 
+    @api.model
+    def _get_sequence(self):
+        last_sequence = 0
+        return last_sequence
 
-class purchase_order(models.Model):
+    sequence = fields.Integer(default=_get_sequence,
+                              help="Gives the sequence of this line when "
+                                   "displaying the purchase order.")
+
+
+class PurchaseOrder(models.Model):
     _inherit = 'purchase.order'
 
     @api.model
     def _prepare_inv_line(self, account_id, order_line):
-        res = super(purchase_order, self)._prepare_inv_line(
+        res = super(PurchaseOrder, self)._prepare_inv_line(
             account_id,
             order_line,
             )
@@ -48,7 +54,7 @@ class purchase_order(models.Model):
     @api.model
     def _prepare_order_line_move(self, order, order_line,
                                  picking_id, group_id):
-        res = super(purchase_order, self)._prepare_order_line_move(
+        res = super(PurchaseOrder, self)._prepare_order_line_move(
             order,
             order_line,
             picking_id,
@@ -58,15 +64,21 @@ class purchase_order(models.Model):
         return res
 
 
-class purchase_line_invoice(models.TransientModel):
+class PurchaseLineInvoice(models.TransientModel):
     _inherit = 'purchase.order.line_invoice'
 
     @api.multi
     def makeInvoices(self):
         invoice_line_obj = self.env['account.invoice.line']
         purchase_line_obj = self.env['purchase.order.line']
-        res = super(purchase_line_invoice, self).makeInvoices()
-        invoice_ids = eval(res['domain'])[0][-1]  # OMG :-(
+        res = super(PurchaseLineInvoice, self).makeInvoices()
+
+        invoice_ids = []
+        for field, op, val in safe_eval(res['domain']):
+            if field == 'id':
+                invoice_ids = val
+                break
+
         invoice_lines = invoice_line_obj.search(
             [('invoice_id', 'in', invoice_ids)])
         for invoice_line in invoice_lines:

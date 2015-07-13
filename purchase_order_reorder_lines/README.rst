@@ -4,7 +4,7 @@
 Purchase order lines with sequence number
 =========================================
 
-Provide a new field on the purchase order form, allowing to manage the lines
+Provide a new field on the purchase order form, allowing to manage the order of the lines
 order.
 
 For further information, please visit:
@@ -13,7 +13,7 @@ For further information, please visit:
 
 Known issues / Roadmap
 ======================
-
+None known
 
 Bug Tracker
 ===========
