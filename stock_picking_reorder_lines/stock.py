@@ -4,6 +4,9 @@
 #    Author: Alexandre Fayolle
 #    Copyright 2013 Camptocamp SA
 #
+#    Author: Damien Crier
+#    Copyright 2015 Camptocamp SA
+#
 #    This program is free software: you can redistribute it and/or modify
 #    it under the terms of the GNU Affero General Public License as
 #    published by the Free Software Foundation, either version 3 of the
@@ -19,4 +22,24 @@
 #
 #
 
-from . import stock
+from openerp import models, api, fields
+
+
+class StockMove(models.Model):
+    _inherit = 'stock.move'
+    _order = 'date_expected desc, sequence, id'
+
+    @api.model
+    def _get_sequence(self):
+        last_sequence = 10
+        return last_sequence
+
+    sequence = fields.Integer(default=_get_sequence)
+
+    @api.model
+    def _get_invoice_line_vals(self, move, partner, inv_type):
+        res = super(StockMove, self)._get_invoice_line_vals(move,
+                                                            partner,
+                                                            inv_type)
+        res['sequence'] = move.sequence
+        return res

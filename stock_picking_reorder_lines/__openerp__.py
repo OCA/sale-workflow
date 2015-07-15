@@ -4,6 +4,9 @@
 #    Author: Alexandre Fayolle
 #    Copyright 2013 Camptocamp SA
 #
+#    Author: Damien Crier
+#    Copyright 2015 Camptocamp SA
+#
 #    This program is free software: you can redistribute it and/or modify
 #    it under the terms of the GNU Affero General Public License as
 #    published by the Free Software Foundation, either version 3 of the
@@ -22,7 +25,7 @@
     'name': 'Stock picking lines with sequence number',
     'version': '0.1',
     'category': 'Warehouse Management',
-    'description': '''
+    'summary': '''
 Provide a new field on stock moves, allowing to manage the orders of moves
 in a picking.
     ''',
@@ -32,7 +35,7 @@ in a picking.
     'data': ['stock_view.xml'],
     'demo': [],
     'test': [],
-    'installable': False,
+    'installable': True,
     'auto_install': False,
     'application': False,
     'license': "AGPL-3",
