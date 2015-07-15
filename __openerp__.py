@@ -17,6 +17,9 @@ Product bundle management
     ],
     'data': [
         'views/product_bundle.xml',
+        'wizard/sale_order_bundle.xml',
+        'views/sale_order.xml',
+        'views/product_bundle_line.xml',
     ],
     'init': [
 
