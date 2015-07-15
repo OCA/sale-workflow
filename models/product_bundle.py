@@ -18,7 +18,8 @@ class product_bundle_line(models.Model):
     _name = 'product.bundle.line'
     _description = 'Product bundle line'
 
-    product_id = fields.Many2one('product.template', string=_('Product'), required=True)
+    product_id = fields.Many2one(
+        'product.product', domain=[('sale_ok', '=', True)], string=_('Product'), required=True)
     quantity = fields.Float(
         string=_('Quantity'), digits=dp.get_precision('Product Unit of Measure'),
         required=True, default=1)
