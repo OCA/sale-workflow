@@ -56,14 +56,16 @@ class Bom(models.Model):
         prod = self.env['mrp.production'].browse(prod_id)
         if not line.option_id\
                 or line.option_id.type == 'required'\
-                or line in prod.lot_id.optionnal_bom_line_ids:
+                or line in prod.lot_id.optionnal_bom_line_ids.bom_line_id:
             return res
         else:
             return True
 
     @api.model
     def _prepare_conssumed_line(self, bom_line_id, quantity, product_uos_qty):
-        vals = super(MrpBom, self)._prepare_conssumed_line(bom_line_id, quantity, product_uos_qty)
+        vals = super(Bom, self)._prepare_conssumed_line(bom_line_id, quantity, product_uos_qty)
+        prod = self.env['mrp.production'].browse(self.env.context['production_id'])
+        vals['product_qty'] = vals['product_qty'] * prod.lot_id.optionnal_bom_line_ids.qty
         return vals
 
 class StockProductionLot(models.Model):
