@@ -29,23 +29,19 @@
     'summary': """Manage trainings""",
 
     'description': """
-           Sale Generator :
-            For use this model you need to install :
-            sale_generator_web    
+        TODO
     """,
 
     'author': "Akretion",
     'website': "http://www.Akretion.com",
-
-
     'category': 'sale',
     'version': '0.1',
-    'depends': ['base','sale'],
-    'data': ['sale_generator.xml',],
-    # only loaded in demonstration mode
+    'depends': ['sale'],
+    'data': [
+        'sale_generator.xml',
+        'generator_sequence.xml',
+        ],
     'demo': [],
-
-
 }
 
 
