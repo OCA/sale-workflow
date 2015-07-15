@@ -27,13 +27,14 @@ class SaleOrder(models.Model):
 class SaleGenerator(models.Model):
     _name='sale.generator'
 
+    name = fields.Char('Generator', default='/')
     line_ids = fields.One2many(
         'sale.line.generator',
         'generator_id',
         string="lines")
     partner_ids = fields.Many2many('res.partner', string="Partner")
     sale_ids = fields.One2many('sale.order','generator_id', string="Sales")
-    date = fields.Date('Date')
+    date = fields.Date('Date', default=fields.datetime.now())
     state = fields.Selection([
         ('draft','Draft'),
         ('confirmed','Confirmed'),
@@ -52,54 +53,43 @@ class SaleGenerator(models.Model):
          }
 
     @api.one
-    def _search_and_delete_partner(self):
+    def _create_order_for_partner(self, partner):
         sale_order_obj = self.env['sale.order']
-        partner_list = []
-        for partner in self.partner_ids:
-            partner_list.append(partner.id)
-        for sale in self.sale_ids:
-            if sale.partner_id.id not in partner_list:
-                sale.unlink()
-
-    @api.one
-    def order_create(self):
-        sale_order_obj = self.env['sale.order']
-        for partner in self.partner_ids:
-            vals = self._prepare_generator_sale_vals(partner)
-            vals['order_line'] = []
-            for gline in self.line_ids:
-                vals['order_line'].append((0,
-                             0, self._prepare_sale_order_line(gline)))
-                sale_order_obj.create(vals)
+        vals = self._prepare_generator_sale_vals(partner)
+        vals['order_line'] = []
+        for generator_line in self.line_ids:
+            line = self._prepare_sale_order_line(generator_line)
+            vals['order_line'].append((0, 0, line))
+        sale_order_obj.create(vals)
 
     @api.one
     def button_confirm(self):
         return self.write({'state': 'confirmed'})
 
-    def order_test(self):
+    @api.one
+    def _update_order(self):
         sale_order_obj = self.env['sale.order']
         partner_make_order = []
         if self.state == 'confirmed':
-            for sale in self.sale_ids:
-                partner_make_order.append(sale.partner_id.id)
+            partner_ids_with_order = [sale.partner_id.id
+                                      for sale in self.sale_ids]
             for partner in self.partner_ids:
-                if partner.id not in partner_make_order:
-                    vals = self._prepare_generator_sale_vals(partner)
-                    vals['order_line'] = []
-                    for gline in self.line_ids:
-                        vals['order_line'].append((0,
-                                0, self._prepare_sale_order_line(gline)))
-                        sale_order_obj.create(vals)
-        self._search_and_delete_partner()
+                if partner.id not in partner_ids_with_order:
+                    self._create_order_for_partner(partner)
+            for sale in self.sale_ids:
+                if sale.partner_id not in self.partner_ids:
+                    self.unlink()
 
     @api.multi
-    def write(self,vals):
+    def write(self, vals):
         res = super(SaleGenerator,self).write(vals)
-        self.order_test()
+        if 'partner_ids' in vals or 'state' in vals:
+            self._update_order()
         return res
 
     @api.model
-    def create(self,vals):
-        res = super(SaleGenerator,self).create(vals)
-        self.order_test()
-        return res
+    def create(self, vals):
+        if vals.get('name', '/') == '/':
+            vals['name'] = self.env['ir.sequence'].\
+                get('sale.order.generator') or '/'
+        return super(SaleGenerator,self).create(vals)
