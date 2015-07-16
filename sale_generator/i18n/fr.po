@@ -1,0 +1,130 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* sale_generator
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 8.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2015-07-15 15:24+0000\n"
+"PO-Revision-Date: 2015-07-15 17:38+0100\n"
+"Last-Translator: Abdessamad HILALI <abdessamad.hilali@akretion.com>\n"
+"Language-Team: Abdessamad HILALI <abdessamad.hilali@akretion.com>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Poedit 1.5.4\n"
+"Language: Français\n"
+
+#. module: sale_generator
+#: view:sale.generator:sale_generator.view_sale_generator_form
+msgid "Confirm"
+msgstr "Confirmer"
+
+#. module: sale_generator
+#: selection:sale.generator,state:0
+msgid "Confirmed"
+msgstr "Confirmé"
+
+#. module: sale_generator
+#: field:sale.generator,create_uid:0 field:sale.line.generator,create_uid:0
+msgid "Created by"
+msgstr "Créé par"
+
+#. module: sale_generator
+#: field:sale.generator,create_date:0 field:sale.line.generator,create_date:0
+msgid "Created on"
+msgstr "créé le"
+
+#. module: sale_generator
+#: field:sale.generator,date:0
+msgid "Date"
+msgstr "Date"
+
+#. module: sale_generator
+#: selection:sale.generator,state:0
+msgid "Draft"
+msgstr ""
+
+#. module: sale_generator
+#: model:ir.actions.act_window,name:sale_generator.action_sale_generator
+#: model:ir.ui.menu,name:sale_generator.choix_generator
+#: view:sale.generator:sale_generator.view_sale_generator_form
+#: field:sale.generator,name:0 field:sale.line.generator,generator_id:0
+#: field:sale.order,generator_id:0
+msgid "Generator"
+msgstr "Générateur"
+
+#. module: sale_generator
+#: field:sale.generator,id:0 field:sale.line.generator,id:0
+msgid "ID"
+msgstr ""
+
+#. module: sale_generator
+#: field:sale.generator,write_uid:0 field:sale.line.generator,write_uid:0
+msgid "Last Updated by"
+msgstr "Dernière mise à jour par"
+
+#. module: sale_generator
+#: field:sale.generator,write_date:0 field:sale.line.generator,write_date:0
+msgid "Last Updated on"
+msgstr "Dernière mise à jour"
+
+#. module: sale_generator
+#: view:sale.generator:sale_generator.view_sale_generator_form
+msgid "Line"
+msgstr "Ligne"
+
+#. module: sale_generator
+#: model:ir.actions.act_window,name:sale_generator.action_line_sale_order_measure_xml
+msgid "New Sale Order field Measure"
+msgstr ""
+
+#. module: sale_generator
+#: view:sale.generator:sale_generator.sale_generator_xml_tree
+#: field:sale.generator,partner_ids:0
+#: view:sale.line.generator:sale_generator.sale_generator_line_xml
+#: view:sale.line.generator:sale_generator.sale_generator_line_xml_tree
+msgid "Partner"
+msgstr "Partenaire"
+
+#. module: sale_generator
+#: field:sale.line.generator,product_id:0
+msgid "Product"
+msgstr "Produit"
+
+#. module: sale_generator
+#: model:ir.actions.act_window,name:sale_generator.act_sale_generator_2_sale_order
+msgid "Sale Order"
+msgstr "Commande"
+
+#. module: sale_generator
+#: view:sale.generator:sale_generator.view_sale_generator_form
+#: field:sale.generator,sale_ids:0
+msgid "Sales"
+msgstr "Ventes"
+
+#. module: sale_generator
+#: model:ir.model,name:sale_generator.model_sale_order
+msgid "Sales Order"
+msgstr "Commandes"
+
+#. module: sale_generator
+#: field:sale.generator,state:0
+msgid "State"
+msgstr "Etat"
+
+#. module: sale_generator
+#: field:sale.generator,line_ids:0
+msgid "lines"
+msgstr "Lignes"
+
+#. module: sale_generator
+#: field:sale.line.generator,product_qty:0
+msgid "quantity"
+msgstr "Quantité"
+
+#. module: sale_generator
+#: model:ir.actions.act_window,name:sale_generator.action_sale_generator_line_xml
+msgid "sale"
+msgstr "Vente"
