@@ -13,7 +13,7 @@
                     <button name="%(action_sale_order_cancel)d" states="manual,progress" string="Cancel Order" type="action" groups="base.group_user"/>
                 </xpath>
                 <xpath expr="//button[@name='cancel']" position="attributes">
-                    <attribute name="invisible" eval="1"/>
+                    <attribute name="invisible">True</attribute>
                 </xpath>
                 <xpath expr="//button[@name='cancel']" position="after">
                     <button name="%(action_sale_order_cancel)d" type="action" states="draft,sent" string="Cancel Quotation" groups="base.group_user"/>
