@@ -36,15 +36,11 @@
  'data': [
      'sale_view.xml',
      'mrp_view.xml',
-    'demo/product_demo.xml',
      'security/ir.model.access.csv',
  ],
- # 'demo': [
- #    'demo/product_demo.xml',
- # ],
+  'demo': [
+     'demo/product_demo.xml',
+ ],
  'installable': True,
  'application': False,
 }
-
-
-
