@@ -19,19 +19,11 @@
 #
 ###############################################################################
 
-
-
-
-# -*- coding: utf-8 -*-
 {
     'name': "Sale Generator",
-
-    'summary': """Manage trainings""",
-
     'description': """
         TODO
     """,
-
     'author': "Akretion",
     'website': "http://www.Akretion.com",
     'category': 'sale',
@@ -43,5 +35,3 @@
         ],
     'demo': [],
 }
-
-

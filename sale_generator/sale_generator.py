@@ -1,8 +1,8 @@
-from openerp import fields, models , api
+from openerp import fields, models, api
 
 
 class SaleLineGenerator(models.Model):
-        _name='sale.line.generator'
+        _name = 'sale.line.generator'
 
         generator_id = fields.Many2one(
             'sale.generator',
@@ -12,20 +12,20 @@ class SaleLineGenerator(models.Model):
             'product.product',
             string="Product",
             required=True)
-        product_qty= fields.Float(
-            'quantity',
+        product_qty = fields.Float(
+            'Quantity',
             required=True,
             default=1)
 
 
 class SaleOrder(models.Model):
-        _inherit='sale.order'
+        _inherit = 'sale.order'
 
         generator_id = fields.Many2one('sale.generator', string="Generator")
 
 
 class SaleGenerator(models.Model):
-    _name='sale.generator'
+    _name = 'sale.generator'
 
     name = fields.Char('Generator', default='/')
     line_ids = fields.One2many(
@@ -33,11 +33,11 @@ class SaleGenerator(models.Model):
         'generator_id',
         string="lines")
     partner_ids = fields.Many2many('res.partner', string="Partner")
-    sale_ids = fields.One2many('sale.order','generator_id', string="Sales")
+    sale_ids = fields.One2many('sale.order', 'generator_id', string="Sales")
     date = fields.Date('Date', default=fields.datetime.now())
     state = fields.Selection([
-        ('draft','Draft'),
-        ('confirmed','Confirmed'),
+        ('draft', 'Draft'),
+        ('confirmed', 'Confirmed'),
         ], 'State', readonly=True, default='draft')
 
     def _prepare_generator_sale_vals(self, partner):
@@ -68,8 +68,6 @@ class SaleGenerator(models.Model):
 
     @api.one
     def _update_order(self):
-        sale_order_obj = self.env['sale.order']
-        partner_make_order = []
         if self.state == 'confirmed':
             partner_ids_with_order = [sale.partner_id.id
                                       for sale in self.sale_ids]
@@ -82,7 +80,7 @@ class SaleGenerator(models.Model):
 
     @api.multi
     def write(self, vals):
-        res = super(SaleGenerator,self).write(vals)
+        res = super(SaleGenerator, self).write(vals)
         if 'partner_ids' in vals or 'state' in vals:
             self._update_order()
         return res
@@ -92,4 +90,4 @@ class SaleGenerator(models.Model):
         if vals.get('name', '/') == '/':
             vals['name'] = self.env['ir.sequence'].\
                 get('sale.order.generator') or '/'
-        return super(SaleGenerator,self).create(vals)
+        return super(SaleGenerator, self).create(vals)
