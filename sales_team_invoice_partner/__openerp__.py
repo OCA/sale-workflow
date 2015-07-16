@@ -31,6 +31,7 @@
         'sale'
     ],
     'data': [
+        'config/sale_config.yml',
         'sales_team_view.xml',
         'sale_view.xml',
     ],

@@ -1,7 +1,7 @@
 Sales Team Invoice Partner
 ==========================
 
-This module adds a new field on the sales team form: "Final Partner for Invoicing".
+This module adds a new field on the sales team form: Final Partner for Invoicing.
 The value of this field will be used when you create a new Sale Order with this sales team.
 
 
