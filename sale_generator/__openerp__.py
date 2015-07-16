@@ -32,6 +32,7 @@
     'data': [
         'sale_generator.xml',
         'generator_sequence.xml',
+        'security/ir.model.access.csv',
         ],
     'demo': [],
 }
