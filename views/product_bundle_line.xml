@@ -7,7 +7,7 @@
             <field name="type">tree</field>
             <field name="priority" eval="8"/>
             <field name="arch" type="xml">
-                <tree string="Product bundle line">
+                <tree string="Product bundle line" editable="top">
                     <field name="product_id"/>
                     <field name="quantity"/>
                 </tree>
