@@ -30,9 +30,6 @@
 
  """,
  'depends': [
-     'sale',
-     'sale_embedded_configuration',
-     'mrp',
      'sale_order_lot_generator',
      'sale_order_lot_mrp',
  ],
