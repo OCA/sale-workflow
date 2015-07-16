@@ -16,7 +16,7 @@
                         <form>
                             <sheet>
                                 <group>
-                                    <field name="bom_line_id" domain="[('bom_id.product_id', '=', parent.product_id), ('option_id', '!=', False)]"/>
+                                    <field name="bom_line_id" domain="['|', '&amp;', ('bom_id.product_tmpl_id.product_variant_ids', '=', parent.product_id), ('bom_id.product_id', '=', False), ('bom_id.product_id', '=', parent.product_id), ('option_id', '!=', False)]"/>
                                     <field name="qty"/>
                                 </group>
                             </sheet>
