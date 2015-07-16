@@ -21,7 +21,7 @@ class sale_order_bundle(osv.osv_memory):
         so_id = self._context['active_id']
         if not so_id:
             return
-        sol = self.env['sale.order.line']
+        SaleOrderLine = self.env['sale.order.line']
         for bundle in self.product_bundle_id.bundle_line_ids:
             sol_data = {
                 'order_id': so_id,
@@ -30,4 +30,4 @@ class sale_order_bundle(osv.osv_memory):
                 'price_unit': bundle.product_id.list_price,
                 'product_uom_qty': bundle.quantity*self.quantity,
             }
-            sol.create(sol_data)
+            SaleOrderLine.create(sol_data)
