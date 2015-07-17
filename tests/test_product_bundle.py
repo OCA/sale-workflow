@@ -1,19 +1,12 @@
 # -*- coding: utf-8 -*-
-import unittest2
+from openerp.tests import common
 
 
-class test_product_bundle(unittest2.TestCase):
+class test_product_bundle(common.TransactionCase):
     """ Test Product bundle"""
 
     def setUp(self):
         super(test_product_bundle, self).setUp()
-
-    def tearDown(self):
-        super(test_product_bundle, self).tearDown()
-
-    @classmethod
-    def init(self):
-        super(test_product_bundle, self).init()
         self.partner = self.env['res.partner']
         self.product = self.env['product.product']
         self.sale_order = self.env['sale.order']
@@ -21,6 +14,9 @@ class test_product_bundle(unittest2.TestCase):
         self.product_bundle = self.env['product.bundle']
         self.product_bundle_line = self.env['product.bundle.line']
         self.sale_order_bundle = self.env['sale.order.bundle']
+
+    def tearDown(self):
+        super(test_product_bundle, self).tearDown()
 
     def create_partner(self):
         return self.partner.create({
@@ -39,9 +35,9 @@ class test_product_bundle(unittest2.TestCase):
 
     def _get_product(self):
         prod_1 = self.create_product('Product 1', 100, 150)
-        prod_2 = self.create_product('Product 2', 101, 151)
-        prod_3 = self.create_product('Product 3', 102, 152)
-        prod_4 = self.create_product('Product 4', 103, 153)
+        prod_2 = self.create_product('Product 2', 200, 250)
+        prod_3 = self.create_product('Product 3', 300, 350)
+        prod_4 = self.create_product('Product 4', 400, 450)
         return [prod_1, prod_2, prod_3, prod_4]
 
     def create_sale_order(self):
@@ -64,9 +60,7 @@ class test_product_bundle(unittest2.TestCase):
         prod = self._get_product()
 
         self.create_sale_order_line(so, prod[0], 1)
-        self.create_sale_order_line(so, prod[1], 1)
-        self.create_sale_order_line(so, prod[2], 1)
-        self.create_sale_order_line(so, prod[3], 1)
+        self.create_sale_order_line(so, prod[1], 2)
 
         return so
 
@@ -79,14 +73,30 @@ class test_product_bundle(unittest2.TestCase):
 
     def create_product_bundle_complete(self):
         bundle = self.create_product_bundle()
-        prod = self._get_product()
-        self.product_bundle_line.create({
-            'product_bundle_id': bundle.id, 'product_id': prod[0], 'quantity': 2})
+        products = self._get_product()
+        for product in products:
+            self.product_bundle_line.create({
+                'product_bundle_id': bundle.id, 'product_id': product.id, 'quantity': 2})
+        return bundle
 
     def test_add_bundle(self):
+        # Create a sale.order with 02 lines
         so = self.create_sale_order_complete()
-        self._context.update(active_id=so.id)
-        product_bundle_id = self.create_product_bundle_complete()
-        so_bundle = self.sale_order_bundle.create({
-            'product_bundle_id': product_bundle_id, 'quantity': 2})
+        self.assertEquals(len(so.order_line), 2)
+        # Checking sale order price
+        self.assertEquals(so.amount_untaxed, 650)  # (150*1)+(250*2)
+        self.assertEquals(so.amount_tax, 0)  # without tax
+        self.assertEquals(so.amount_total, 650)
+
+        # Create a bundle which contains 04 products
+        product_bundle = self.create_product_bundle_complete()
+        # Simulation the opening of the wizard and adding a bundle on the current sale order
+        so_bundle = self.sale_order_bundle.with_context(active_id=so.id).create({
+            'product_bundle_id': product_bundle.id, 'quantity': 1})
         so_bundle.add_bundle()
+        # checking our sale order
+        self.assertEquals(len(so.order_line), 6)
+        # (150*1)+(250*2)+(150*2)+(250*2)+(350*2)+(450*2) =
+        self.assertEquals(so.amount_untaxed, 3050)
+        self.assertEquals(so.amount_tax, 0)  # without tax
+        self.assertEquals(so.amount_total, 3050)
