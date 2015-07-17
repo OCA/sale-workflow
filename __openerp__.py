@@ -20,6 +20,7 @@ Product bundle management
         'wizard/sale_order_bundle.xml',
         'views/sale_order.xml',
         'views/product_bundle_line.xml',
+        'security/ir.model.access.csv',
     ],
     'init': [
 
