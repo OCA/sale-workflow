@@ -68,6 +68,17 @@ class sale_order(models.Model):
         msg = _('New revision created: %s') % self.name
         self.message_post(body=msg)
         old_revision.message_post(body=msg)
+
+        # cancel order lines for old revision
+        line = self.pool.get('sale.order.line')
+        line.write(self._cr, self._uid,
+                   [line.id for line in old_revision.order_line],
+                   {'state': 'cancel'}, context=self._context)
+        # for current revision, set them to draft
+        line.write(self._cr, self._uid,
+                   [line.id for line in self.order_line],
+                   {'state': 'draft'}, context=self._context)
+
         return action
 
     @api.returns('self', lambda value: value.id)
