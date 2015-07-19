@@ -10,23 +10,16 @@
                 <xpath expr="//field[@name='order_line']/form/group/group/field[@name='price_unit']" position="after">
                     <field name="base_price_unit"/>
                 </xpath>
-                <xpath expr="//field[@name='order_line']/form/div/field[@name='invoice_lines']" position="after">
-                    <label for="optionnal_bom_line_ids"/>
-                    <field name="optionnal_bom_line_ids">
-                        <form>
-                            <sheet>
-                                <group>
-                                    <field name="bom_line_id" domain="['|', '&amp;', ('bom_id.product_tmpl_id.product_variant_ids', '=', parent.product_id), ('bom_id.product_id', '=', False), ('bom_id.product_id', '=', parent.product_id), ('option_id', '!=', False)]"/>
-                                    <field name="qty"/>
-                                </group>
-                            </sheet>
-                        </form>
-                        <tree>
-                            <field name="bom_line_id"/>
-                            <field name="qty"/>
-                        </tree>
-                    </field>
-
+                <xpath expr="//field[@name='order_line']/form/div/field[@name='invoice_lines']/.." position="after">
+                    <div>
+                        <label for="optionnal_bom_line_ids"/>
+                        <field name="optionnal_bom_line_ids">
+                            <tree editable="top">
+                                <field name="bom_line_id" domain="['|', '&amp;', ('bom_id.product_tmpl_id.product_variant_ids', '=', parent.product_id), ('bom_id.product_id', '=', False), ('bom_id.product_id', '=', parent.product_id), ('option_id', '!=', False)]"/>
+                                <field name="qty"/>
+                            </tree>
+                        </field>
+                    </div>
                 </xpath>
                 <xpath expr="//field[@name='order_line']/tree/field[@name='product_uom_qty']" position="after">
                     <field name="optionnal_bom_line_ids"/>
