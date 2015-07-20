@@ -52,8 +52,6 @@ class SaleOrder(models.Model):
                     index_lot += 1
                     lot_id = lot_m.create(vals)
                     line_vals['lot_id'] = lot_id.id
-                line_vals.update(self._prepare_sale_line(line))
-                if line_vals:
                     line.write(line_vals)
         return super(SaleOrder, self).action_ship_create()
 
