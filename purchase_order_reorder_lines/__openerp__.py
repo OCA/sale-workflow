@@ -32,7 +32,7 @@
     ],
     'data': ['purchase_view.xml'],
     'demo': [],
-    'test': [],
+    'test': ['test/test_invoice_on_po_line.yml'],
     'installable': True,
     'auto_install': False,
     'application': False,
