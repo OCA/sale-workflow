@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<openerp>
+    <data>
+        <record id="view_product_bundle_line_tree" model="ir.ui.view">
+            <field name="name">product.bundle.line.tree</field>
+            <field name="model">product.bundle.line</field>
+            <field name="type">tree</field>
+            <field name="priority" eval="8"/>
+            <field name="arch" type="xml">
+                <tree string="Product bundle line" editable="top">
+                    <field name="product_id"/>
+                    <field name="quantity"/>
+                </tree>
+            </field>
+        </record>
+        
+        <record id="view_product_bundle_line_form" model="ir.ui.view">
+            <field name="name">product.bundle.line.form</field>
+            <field name="model">product.bundle.line</field>
+            <field name="type">form</field>
+            <field name="priority" eval="8"/>
+            <field name="arch" type="xml">
+                <form string="Product bundle line" version="7.0">
+                    <field name="product_id" select="1"/>
+                    <field name="quantity"/>
+                </form>
+            </field>
+        </record>
+        
+        <record id="view_product_bundle_line_search" model="ir.ui.view">
+            <field name="name">product.bundle.line.search</field>
+            <field name="model">product.bundle.line</field>
+            <field name="type">search</field>
+            <field name="priority" eval="8"/>
+            <field name="arch" type="xml">
+            <search string="Product bundle line">
+                <field name="product_id" select="True"/>
+            </search>
+            </field>
+        </record>
+        
+    </data>
+</openerp>
