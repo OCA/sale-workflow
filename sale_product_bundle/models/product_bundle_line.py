@@ -10,9 +10,11 @@ class ProductBundleLine(models.Model):
     _rec_name = 'product_id'
 
     product_id = fields.Many2one(
-        'product.product', domain=[('sale_ok', '=', True)], string=_('Product'), required=True)
+        'product.product', domain=[('sale_ok', '=', True)],
+        string=_('Product'), required=True)
     quantity = fields.Float(
-        string=_('Quantity'), digits=dp.get_precision('Product Unit of Measure'),
+        string=_('Quantity'),
+        digits=dp.get_precision('Product Unit of Measure'),
         required=True, default=1)
     product_bundle_id = fields.Many2one(
         'product.bundle', _('Bundle reference'), ondelete='cascade')
