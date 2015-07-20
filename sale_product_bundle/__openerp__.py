@@ -17,6 +17,10 @@
         'wizard/sale_order_bundle.xml',
         'security/ir.model.access.csv',
     ],
+    'demo': [
+        'demo/product_bundle.xml',
+        'demo/product_bundle_line.xml',
+    ],
     'installable': True,
     'application': False,
     'auto_install': False,
