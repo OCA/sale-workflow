@@ -48,7 +48,6 @@ class test_product_bundle(common.TransactionCase):
     def create_sale_order_line(self, so, product, quantity):
         sol_data = {
             'order_id': so.id,
-            'description': product.name,
             'product_id': product.id,
             'price_unit': product.list_price,
             'product_uom_qty': quantity,
