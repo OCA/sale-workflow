@@ -34,7 +34,7 @@ in a picking.
     'depends': ['stock', 'sale', 'sale_stock'],
     'data': ['stock_view.xml'],
     'demo': [],
-    'test': [],
+    'test': ['test/invoice_on_poline.yml'],
     'installable': True,
     'auto_install': False,
     'application': False,

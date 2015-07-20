@@ -1,0 +1,44 @@
+-
+  I create a purchase order with invoice_policy=picking
+-
+  !record {model: purchase.order, id: purchase_order_picking}:
+    partner_id: base.res_partner_3
+    invoice_method: picking
+    order_line:
+      - product_id: product.product_product_31
+        price_unit: 132.50
+        product_qty: 20.0
+      - product_id: product.product_product_29
+        price_unit: 89
+        product_qty: 5
+-
+  I confirm purchase order which has invoicing control method "".
+-
+  !workflow {model: purchase.order, action: purchase_confirm, ref: purchase_order_picking}
+-
+  In order to test create invoice for purchase order line.
+-
+  !python {model: purchase.order}: |
+    purchase_order = self.browse(cr, uid, ref("purchase_order_picking"))
+    picking_ids = purchase_order.picking_ids
+    for picking in picking_ids:
+        for move in picking.move_lines:
+            assert move.sequence == 10, "Sequence should be 10"
+-
+  Create invoice from picking
+-
+  !python {model: purchase.order}: |
+    journal_obj = self.pool.get('account.journal')
+    invoice_obj = self.pool.get('account.invoice')
+    purchase_order = self.browse(cr, uid, ref("purchase_order_picking"))
+    picking_ids = purchase_order.picking_ids
+    for picking in picking_ids:
+        picking.do_transfer()
+        assert picking.state == 'done', "Picking state should be done"
+        invoice_ids = picking.action_invoice_create(
+              journal_id = journal_obj.search(cr, uid, [('type', '=', 'purchase')])[0],
+              group = False,
+              type = 'in_invoice')
+        for invoice in invoice_obj.browse(cr, uid, invoice_ids, context=context):
+            for line in invoice.invoice_line:
+                assert line.sequence == 10, "Sequence should be 10"
