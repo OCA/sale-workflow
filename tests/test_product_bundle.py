@@ -67,10 +67,6 @@ class test_product_bundle(common.TransactionCase):
     def create_product_bundle(self):
         return self.product_bundle.create({'name': 'Bundle test'})
 
-    def create_product_bundle_line(self, bundle, product, quantity):
-        return self.product_bundle_line.create({
-            'product_bundle_id': bundle.id, 'product_id': product.id, 'quantity': quantity})
-
     def create_product_bundle_complete(self):
         bundle = self.create_product_bundle()
         products = self._get_product()
