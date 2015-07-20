@@ -1,32 +1,42 @@
 .. image:: https://img.shields.io/badge/licence-AGPL--3-blue.svg
     :alt: License: AGPL-3
 
-Product bundle management
-=========================
+Sale Product bundle
+===================
 
-This module was written to extend the functionality of ... to support ...
-and allow you to ...
+This module was written to extend the functionality of sale module
+and allow you to set product bundles, which you can quickly add to the sale
+order.
 
-Installation
-============
+After added to the sale order, each line can be update or remove as any other
+sale order lines.
 
-To install this module, you need to:
-
-* do this ...
-
-Configuration
-=============
-
-To configure this module, you need to:
-
-* go to ...
+This is differ to packing products as you don't follow product bundles after it
+was added to the sale order.
 
 Usage
 =====
 
 To use this module, you need to:
 
-* go to ...
+* Set product bundle as sale manager where you can set:
+    - a list of products
+    - for each products, a quantity
+
+.. image:: /sale_product_bundle/static/description/product_bundle.png
+    :alt: Set a product bundle
+
+* On quotation, any salesman can click on "Add bundle in sale order" button
+  which will open wizard where users can chose the product bundle and quantity
+  to add in the list of sale order lines.
+
+.. image:: /sale_product_bundle/static/description/add_bundle.png
+    :alt: Add bundle to sale order
+
+* Then you can remove or update added lines as any other sale order lines.
+
+.. image:: /sale_product_bundle/static/description/sale_order.png
+    :alt: Sale order
 
 For further information, please visit:
 
@@ -35,7 +45,7 @@ For further information, please visit:
 Known issues / Roadmap
 ======================
 
-* ...
+*
 
 Bug Tracker
 ===========
@@ -53,6 +63,7 @@ Contributors
 ------------
 
 * Clovis Nzouendjou <clovis@anybox.fr>
+* Pierre Verkest <pverkest@anybox.fr>
 
 Maintainer
 ----------

@@ -71,7 +71,8 @@ class test_product_bundle(common.TransactionCase):
         products = self._get_product()
         for product in products:
             self.product_bundle_line.create({
-                'product_bundle_id': bundle.id, 'product_id': product.id, 'quantity': 2})
+                'product_bundle_id': bundle.id, 'product_id': product.id,
+                'quantity': 2})
         return bundle
 
     def test_add_bundle(self):
@@ -85,9 +86,11 @@ class test_product_bundle(common.TransactionCase):
 
         # Create a bundle which contains 04 products
         product_bundle = self.create_product_bundle_complete()
-        # Simulation the opening of the wizard and adding a bundle on the current sale order
-        so_bundle = self.sale_order_bundle.with_context(active_id=so.id).create({
-            'product_bundle_id': product_bundle.id, 'quantity': 1})
+        # Simulation the opening of the wizard and adding a bundle on the
+        # current sale order
+        so_bundle = self.sale_order_bundle.with_context(
+            active_id=so.id).create({'product_bundle_id': product_bundle.id,
+                                     'quantity': 1})
         so_bundle.add_bundle()
         # checking our sale order
         self.assertEquals(len(so.order_line), 6)
