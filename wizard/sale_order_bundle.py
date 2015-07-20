@@ -25,9 +25,7 @@ class sale_order_bundle(osv.osv_memory):
         for bundle in self.product_bundle_id.bundle_line_ids:
             sol_data = {
                 'order_id': so_id,
-                'description': bundle.product_id.name,
                 'product_id': bundle.product_id.id,
-                'price_unit': bundle.product_id.list_price,
-                'product_uom_qty': bundle.quantity*self.quantity,
+                'product_uom_qty': bundle.quantity * self.quantity,
             }
             SaleOrderLine.create(sol_data)
