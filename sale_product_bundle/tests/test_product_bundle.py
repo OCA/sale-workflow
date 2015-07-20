@@ -14,9 +14,8 @@ class test_product_bundle(common.TransactionCase):
         count_lines = len(so.order_line)
         untaxed_amount = so.amount_untaxed
         tax_amount = so.amount_tax
-        total_amout = so.amount_total
+        total_amount = so.amount_total
 
-        # Create a bundle which contains 04 products
         product_bundle = self.env.ref(
             'sale_product_bundle.product_bundle_i5_computer')
         # Simulation the opening of the wizard and adding a bundle on the
@@ -30,7 +29,7 @@ class test_product_bundle(common.TransactionCase):
         # untaxed_amount + ((147*1)+(2100*1)+(2000*1)+(85*2)) * 2
         self.assertEquals(so.amount_untaxed, untaxed_amount + 8834.0)
         self.assertEquals(so.amount_tax, tax_amount + 0)  # without tax
-        self.assertEquals(so.amount_total, total_amout + 8834.0)
+        self.assertEquals(so.amount_total, total_amount + 8834.0)
         for line in so.order_line:
             for bundle_line in product_bundle.bundle_line_ids:
                 if line.product_id.id == bundle_line.product_id.id:
