@@ -27,10 +27,6 @@ class SaleOrderLine(models.Model):
     _inherit = "sale.order.line"
 
     base_price_unit = fields.Float()
-    # optionnal_bom_line_ids = fields.Many2many('mrp.bom.line',
-    #                                           'sale_line_bom_line',
-    #                                           'sale_line_id', 'bom_line_id',
-    #                                           'Optionnal BoM Line')
     optionnal_bom_line_ids = fields.One2many('sale.order.line.option',
                                              'sale_line_id',
                                              'Optionnal BoM Line')
@@ -71,6 +67,8 @@ class SaleOrderLine(models.Model):
                     'date': self.order_id.date_order,
                 })[self.order_id.pricelist_id.id]
             option_price = option_price * option.bom_line_id.product_qty
+            option_price = option_price * option.qty
+            option.write({'line_price': option_price})
             final_options_price += option_price
         self.price_unit = final_options_price + self.base_price_unit
 
