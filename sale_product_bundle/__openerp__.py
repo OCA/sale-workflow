@@ -13,8 +13,8 @@
     ],
     'data': [
         'views/product_bundle.xml',
-        'views/sale_order.xml',
         'wizard/sale_order_bundle.xml',
+        'views/sale_order.xml',
         'security/ir.model.access.csv',
     ],
     'demo': [
