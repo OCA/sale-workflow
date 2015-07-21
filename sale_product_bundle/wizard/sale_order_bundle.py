@@ -25,8 +25,8 @@ class SaleOrderBundle(osv.osv_memory):
         sale_order_line = self.env['sale.order.line']
         for bundle_line in self.product_bundle_id.bundle_line_ids:
             sale_order_line.create(
-                self.prepare_sale_order_line_data(so_id, self.product_bundle_id,
-                                                  bundle_line))
+                self.prepare_sale_order_line_data(
+                    so_id, self.product_bundle_id, bundle_line))
 
     def prepare_sale_order_line_data(self, sale_order_id, bundle, bundle_line):
         return {
