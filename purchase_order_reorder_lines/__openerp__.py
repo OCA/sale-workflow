@@ -29,6 +29,8 @@
     'website': 'http://www.camptocamp.com',
     'depends': [
         'purchase',
+        'stock_picking_reorder_lines',
+        'account_invoice_reorder_lines',
     ],
     'data': ['purchase_view.xml'],
     'demo': [],
