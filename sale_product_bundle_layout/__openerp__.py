@@ -14,6 +14,9 @@
     'data': [
         'views/product_bundle.xml',
     ],
+    'demo': [
+        'demo/product_bundle.xml',
+    ],
     'installable': True,
     'application': False,
     'auto_install': False,
