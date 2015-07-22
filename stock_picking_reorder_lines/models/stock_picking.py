@@ -22,18 +22,6 @@
 from openerp.osv import orm, fields
 
 
-class stock_move(orm.Model):
-    _inherit = 'stock.move'
-    _columns = {
-        'sequence': fields.integer('Sequence',
-                                   help="Gives the sequence of this line when "
-                                        "displaying the picking."),
-    }
-    _order = 'date_expected desc, sequence, id'
-    _defaults = {'sequence': 10,
-                 }
-
-
 class stock_picking(orm.Model):
     _inherit = 'stock.picking'
 
@@ -49,20 +37,4 @@ class stock_picking(orm.Model):
                                                                invoice_vals,
                                                                context)
         res['sequence'] = move_line.sequence
-        return res
-
-
-class sale_order(orm.Model):
-    _inherit = 'sale.order'
-
-    def _prepare_order_line_move(
-        self, cr, uid, order, line, picking_id, date_planned, context=None
-    ):
-        res = super(sale_order, self)._prepare_order_line_move(cr, uid,
-                                                               order,
-                                                               line,
-                                                               picking_id,
-                                                               date_planned,
-                                                               context)
-        res['sequence'] = line.sequence
         return res
