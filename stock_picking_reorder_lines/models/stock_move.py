@@ -19,16 +19,14 @@
 #
 #
 
-from openerp.osv import orm, fields
+from openerp import fields
+from openerp.models import Model
 
 
-class stock_move(orm.Model):
+class StockMove(Model):
     _inherit = 'stock.move'
-    _columns = {
-        'sequence': fields.integer('Sequence',
-                                   help="Gives the sequence of this line when "
-                                        "displaying the picking."),
-    }
     _order = 'date_expected desc, sequence, id'
-    _defaults = {'sequence': 10,
-                 }
+
+    sequence = fields.Integer(
+        default=10,
+        help="Gives the sequence of this line when displaying the picking.")
