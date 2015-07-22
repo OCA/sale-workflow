@@ -18,7 +18,7 @@
 #    along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
 ##############################################################################
-
+import openerp.addons.decimal_precision as dp
 from openerp import api, models, fields, _
 
 
@@ -42,7 +42,8 @@ class SaleAddVariants(models.TransientModel):
             for variant in self.product_tmpl_id.product_variant_ids:
                 variant_lines.append([0, 0, {
                     'product_id': variant.id,
-                    'quantity': 0
+                    'product_uom_qty': 0,
+                    'product_uom': variant.uom_id.id
                 }])
             self.variant_line_ids = variant_lines
 
@@ -51,11 +52,12 @@ class SaleAddVariants(models.TransientModel):
         context = self.env.context
         sale_order = self.env['sale.order'].browse(context.get('active_id'))
         for line in self.variant_line_ids:
-            if not line.quantity:
+            if not line.product_uom_qty:
                 continue
             line_values = {
                 'product_id': line.product_id.id,
-                'product_uom_qty': line.quantity,
+                'product_uom_qty': line.product_uom_qty,
+                'product_uom': line.product_uom.id,
                 'order_id': sale_order.id
             }
             sale_order.order_line.create(line_values)
@@ -86,4 +88,7 @@ class SaleAddVariantsLine(models.TransientModel):
     wizard_id = fields.Many2one('sale.add.variants')
     product_id = fields.Many2one('product.product', string="Variant",
                                  required=True, readonly=True)
-    quantity = fields.Float(string="Quantity")
+    product_uom_qty = fields.Float(
+        string="Quantity", digits_compute=dp.get_precision('Product UoS'))
+    product_uom = fields.Many2one('product.uom', string='Unit of Measure ',
+                                  required=True)
