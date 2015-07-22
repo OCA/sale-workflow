@@ -19,20 +19,16 @@
 #
 #
 
-from openerp.osv import orm, fields
+from openerp.osv.orm import Model
 
 
-class sale_order(orm.Model):
+class sale_order(Model):
     _inherit = 'sale.order'
 
     def _prepare_order_line_move(
-        self, cr, uid, order, line, picking_id, date_planned, context=None
-    ):
-        res = super(sale_order, self)._prepare_order_line_move(cr, uid,
-                                                               order,
-                                                               line,
-                                                               picking_id,
-                                                               date_planned,
-                                                               context)
+            self, cr, uid, order, line, picking_id, date_planned,
+            context=None):
+        res = super(sale_order, self)._prepare_order_line_move(
+            cr, uid, order, line, picking_id, date_planned, context=context)
         res['sequence'] = line.sequence
         return res

@@ -19,22 +19,17 @@
 #
 #
 
-from openerp.osv import orm, fields
+from openerp.osv.orm import Model
 
 
-class stock_picking(orm.Model):
+class stock_picking(Model):
     _inherit = 'stock.picking'
 
     def _prepare_invoice_line(
-        self, cr, uid, group, picking, move_line, invoice_id,
-        invoice_vals, context=None
-    ):
-        res = super(stock_picking, self)._prepare_invoice_line(cr, uid,
-                                                               group,
-                                                               picking,
-                                                               move_line,
-                                                               invoice_id,
-                                                               invoice_vals,
-                                                               context)
+            self, cr, uid, group, picking, move_line, invoice_id,
+            invoice_vals, context=None):
+        res = super(stock_picking, self)._prepare_invoice_line(
+            cr, uid, group, picking, move_line, invoice_id, invoice_vals,
+            context=context)
         res['sequence'] = move_line.sequence
         return res
