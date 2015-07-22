@@ -51,26 +51,15 @@ class SaleOrderLine(models.Model):
             fiscal_position, flag, context)
         if product:
             res['value']['base_price_unit'] = res['value']['price_unit']
-        return res
+            return res
 
     @api.onchange('optionnal_bom_line_ids', 'base_price_unit')
     def _onchange_option(self):
         option_price = 0
         final_options_price = 0
         for option in self.optionnal_bom_line_ids:
-            option_price = self.pool.get('product.pricelist').price_get(
-                self.env.cr, self.env.uid, [self.order_id.pricelist_id.id
-                ], option.bom_line_id.product_id.id,
-                option.bom_line_id.product_qty or 1.0,
-                self.order_id.partner_id.id, {
-                    'uom': option.bom_line_id.product_uom.id,
-                    'date': self.order_id.date_order,
-                })[self.order_id.pricelist_id.id]
-            option_price = option_price * option.bom_line_id.product_qty
-            option_price = option_price * option.qty
-            option.write({'line_price': option_price})
-            final_options_price += option_price
-        self.price_unit = final_options_price + self.base_price_unit
+            final_options_price += option.line_price
+            self.price_unit = final_options_price + self.base_price_unit
 
 
 class SaleOrder(models.Model):
@@ -93,4 +82,24 @@ class SaleOrderLineOption(models.Model):
     sale_line_id = fields.Many2one('sale.order.line')
     bom_line_id = fields.Many2one('mrp.bom.line', 'Bom line')
     qty = fields.Integer()
-    line_price = fields.Float()
+    line_price = fields.Float(compute='_compute_price', store=True)
+
+    @api.one
+    @api.depends('bom_line_id', 'qty')
+    def _compute_price(self):
+        option_price = 0
+        if self.bom_line_id and self.sale_line_id and self.sale_line_id.order_id and self.sale_line_id.order_id.pricelist_id:
+            option_price = self.sale_line_id.order_id.pricelist_id.with_context(
+                {
+                    'uom': self.bom_line_id.product_uom.id,
+                    'date': self.sale_line_id.order_id.date_order,
+                    'with_rm': self.sale_line_id.price_with_material,
+                    'urgent': self.sale_line_id.order_id.urgent
+                }).price_get(
+                self.bom_line_id.product_id.id,
+                self.bom_line_id.product_qty or 1.0,
+                self.sale_line_id.order_id.partner_id.id
+            )[self.sale_line_id.order_id.pricelist_id.id]
+            option_price = option_price * self.bom_line_id.product_qty
+            option_price = option_price * self.qty
+        self.line_price = option_price
