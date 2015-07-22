@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 8.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-05-21 15:38+0000\n"
-"PO-Revision-Date: 2015-05-21 17:39+0100\n"
+"POT-Creation-Date: 2015-07-22 10:20+0000\n"
+"PO-Revision-Date: 2015-07-22 12:25+0100\n"
 "Last-Translator: Hugo Santos <hugo.santos@factorlibre.com>\n"
 "Language-Team: \n"
 "Language: es_ES\n"
@@ -17,7 +17,7 @@ msgstr ""
 "X-Generator: Poedit 1.5.4\n"
 
 #. module: sale_order_add_variants
-#: code:addons/sale_order_add_variants/wizard/sale_add_variants.py:79
+#: code:addons/sale_order_add_variants/wizard/sale_add_variants.py:76
 #: view:sale.add.variants:sale_order_add_variants.sale_add_variants_form
 #: view:sale.order:sale_order_add_variants.sale_order_add_variants_form
 #, python-format
@@ -80,7 +80,7 @@ msgid "Last Updated on"
 msgstr "Última actualización en"
 
 #. module: sale_order_add_variants
-#: field:sale.add.variants.line,quantity:0
+#: field:sale.add.variants.line,product_uom_qty:0
 msgid "Quantity"
 msgstr "Cantidad"
 
@@ -88,6 +88,11 @@ msgstr "Cantidad"
 #: field:sale.add.variants,product_tmpl_id:0
 msgid "Template"
 msgstr "Plantilla"
+
+#. module: sale_order_add_variants
+#: field:sale.add.variants.line,product_uom:0
+msgid "Unit of Measure "
+msgstr "Unidad de medida"
 
 #. module: sale_order_add_variants
 #: field:sale.add.variants.line,product_id:0
