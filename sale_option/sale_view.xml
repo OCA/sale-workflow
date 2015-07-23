@@ -7,8 +7,12 @@
             <field name="model">sale.order</field>
             <field name="inherit_id" ref="sale.view_order_form"/>
             <field name="arch" type="xml">
+                <xpath expr="//field[@name='order_line']" position="attributes">
+                    <attribute name="context">{'default_pricelist_id': pricelist_id}</attribute>
+                </xpath>
                 <xpath expr="//field[@name='order_line']/form/group/group/field[@name='price_unit']" position="after">
                     <field name="base_price_unit"/>
+                    <field name="pricelist_id" invisible="True"/>
                 </xpath>
                 <xpath expr="//field[@name='order_line']/form/field[@name='name']" position="after">
                     <div>

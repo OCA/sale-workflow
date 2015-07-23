@@ -27,6 +27,7 @@ class SaleOrderLine(models.Model):
     _inherit = "sale.order.line"
 
     base_price_unit = fields.Float()
+    pricelist_id = fields.Many2one(related="order_id.pricelist_id")
     optionnal_bom_line_ids = fields.One2many('sale.order.line.option',
                                              'sale_line_id',
                                              'Optionnal BoM Line')
@@ -85,11 +86,12 @@ class SaleOrderLineOption(models.Model):
     line_price = fields.Float(compute='_compute_price', store=True)
 
     @api.one
+    @api.onchange('bom_line_id', 'qty')
     @api.depends('bom_line_id', 'qty')
     def _compute_price(self):
         option_price = 0
-        if self.bom_line_id and self.sale_line_id and self.sale_line_id.order_id and self.sale_line_id.order_id.pricelist_id:
-            option_price = self.sale_line_id.order_id.pricelist_id.with_context(
+        if self.bom_line_id and self.sale_line_id.pricelist_id:
+            option_price = self.sale_line_id.pricelist_id.with_context(
                 {
                     'uom': self.bom_line_id.product_uom.id,
                     'date': self.sale_line_id.order_id.date_order,
@@ -99,7 +101,6 @@ class SaleOrderLineOption(models.Model):
                 self.bom_line_id.product_id.id,
                 self.bom_line_id.product_qty or 1.0,
                 self.sale_line_id.order_id.partner_id.id
-            )[self.sale_line_id.order_id.pricelist_id.id]
-            option_price = option_price * self.bom_line_id.product_qty
-            option_price = option_price * self.qty
+            )[self.sale_line_id.pricelist_id.id]
+            option_price *= self.bom_line_id.product_qty * self.qty
         self.line_price = option_price
