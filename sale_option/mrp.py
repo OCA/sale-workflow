@@ -64,10 +64,12 @@ class Bom(models.Model):
             return True
 
     @api.model
-    def _prepare_conssumed_line(self, bom_line_id, quantity, product_uos_qty):
-        vals = super(Bom, self)._prepare_conssumed_line(bom_line_id, quantity, product_uos_qty)
+    def _prepare_conssumed_line(self, bom_line, quantity, product_uos_qty):
+        vals = super(Bom, self)._prepare_conssumed_line(bom_line, quantity, product_uos_qty)
         prod = self.env['mrp.production'].browse(self.env.context['production_id'])
-        vals['product_qty'] = vals['product_qty'] * prod.lot_id.optionnal_bom_line_ids.qty
+        for option in prod.lot_id.optionnal_bom_line_ids:
+            if option.bom_line_id == bom_line:
+                vals['product_qty'] = vals['product_qty'] * option.qty
         return vals
 
 class StockProductionLot(models.Model):
