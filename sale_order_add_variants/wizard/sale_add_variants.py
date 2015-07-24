@@ -32,8 +32,7 @@ class SaleAddVariants(models.TransientModel):
 
     @api.multi
     def clear_previous_selections(self):
-        for line in self.variant_line_ids:
-            line.unlink()
+        self.mapped('variant_line_ids').unlink()
 
     @api.onchange('product_tmpl_id')
     def _onchange_product_tmpl_id(self):
