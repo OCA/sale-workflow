@@ -7,10 +7,10 @@
             <field name="inherit_id" ref="sale.view_order_form"/>
             <field name="arch" type="xml">
                 <field name="partner_invoice_id" position="after">
-                    <field name="section_partner_invoice_id" attrs="{'invisible':['|', ('partner_invoice_id', '!=', False), ('section_partner_invoice_id', '=', False)]}"/>
+                    <field name="section_partner_invoice_id" invisible="1"/>
                 </field>
                 <field name="partner_invoice_id" position="attributes">
-                    <attribute name="attrs">{'readonly':[('section_partner_invoice_id','!=', False)], 'invisible':[('partner_invoice_id', '=', False), ('section_partner_invoice_id', '!=', False)]}</attribute>
+                    <attribute name="attrs">{'readonly':[('section_partner_invoice_id','!=', False)]}</attribute>
                 </field>
             </field>
         </record>

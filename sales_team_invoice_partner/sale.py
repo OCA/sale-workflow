@@ -51,8 +51,21 @@ class SaleOrder(models.Model):
                 })
         return super(SaleOrder, self).write(vals)
 
-    @api.onchange('section_id')
-    def _onchange_section_id(self):
-        if (not self.section_id or
-                not self.section_id.section_partner_invoice_id):
-            self.partner_invoice_id = self.partner_id.id
+    @api.multi
+    def update(self, vals):
+        if self.section_id.section_partner_invoice_id:
+            section_partner_invoice_id = (self.section_id.
+                                          section_partner_invoice_id)
+            vals.update({
+                'partner_invoice_id': section_partner_invoice_id.id
+            })
+            if 'partner_invoice_id' in vals:
+                partner_invoice_id = vals.get('partner_invoice_id')
+                section_partner_invoice_id = (self.section_id.
+                                              section_partner_invoice_id)
+                if (partner_invoice_id and
+                        partner_invoice_id != section_partner_invoice_id):
+                    vals.update({
+                        'partner_invoice_id': section_partner_invoice_id.id
+                    })
+        return super(SaleOrder, self).update(vals)
