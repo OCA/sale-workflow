@@ -25,12 +25,12 @@ msgstr ""
 #. module: sale_validity
 #: help:sale.order,date_validity:0
 msgid "Define date until when quotation is valid"
-msgstr ""
+msgstr "Définir la date jusqu'à laquelle le devis est valide"
 
 #. module: sale_validity
 #: field:sale.order,date_validity:0
 msgid "Valid Until"
-msgstr ""
+msgstr "Valide jusqu'au"
 
 #. module: sale_validity
 #: model:ir.model,name:sale_validity.model_res_company
@@ -40,7 +40,7 @@ msgstr ""
 #. module: sale_validity
 #: field:res.company,default_sale_order_validity_days:0
 msgid "Default Validity of Sale Orders (in days)"
-msgstr ""
+msgstr "Validité par défaut des devis (en jours)"
 
 #. module: sale_validity
 #: help:res.company,default_sale_order_validity_days:0
@@ -49,6 +49,9 @@ msgid ""
 "order plus the number of days defined in this field. If the value of this "
 "field is 0, the sale orders will not have a validity date by default."
 msgstr ""
+"Par défaut, la date de validité des devis sera égale à leur date de "
+"création plus le nombre de jours saisi dans ce champ. Si ce champ "
+"n'a pas de valeur, la date de validité ne sera pas pré-remplie. "
 
 #. module: sale_validity
 #: model:ir.model,name:sale_validity.model_sale_order
@@ -61,3 +64,5 @@ msgid ""
 "The value of the field 'Default Validity Duration of Sale Orders' must be "
 "positive or 0."
 msgstr ""
+"La valeur du champ 'Validité par défaut des devis' doit-être supérieure "
+"ou égale à 0. "
