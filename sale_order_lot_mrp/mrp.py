@@ -41,5 +41,8 @@ class ProcurementOrder(models.Model):
     def _prepare_mo_vals(self, cr, uid, procurement, context=None):
         res = super(ProcurementOrder, self)._prepare_mo_vals(
             cr, uid, procurement, context=context)
-        res['lot_id'] = procurement.lot_id.id
+        res.update({
+            'lot_id': procurement.lot_id.id,
+            'name': procurement.lot_id.name,
+            })
         return res
