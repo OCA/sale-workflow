@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 8.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-07-20 21:02+0000\n"
-"PO-Revision-Date: 2015-07-20 21:02+0000\n"
+"POT-Creation-Date: 2015-07-29 15:02+0000\n"
+"PO-Revision-Date: 2015-07-29 15:02+0000\n"
 "Last-Translator: <>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -32,7 +32,7 @@ msgid "Add bundle in sale order line"
 msgstr ""
 
 #. module: sale_product_bundle
-#: code:addons/sale_product_bundle/models/product_bundle_line.py:18
+#: code:addons/sale_product_bundle/models/product_bundle_line.py:21
 #: field:product.bundle.line,product_bundle_id:0
 #, python-format
 msgid "Bundle reference"
@@ -86,7 +86,7 @@ msgid "Name"
 msgstr ""
 
 #. module: sale_product_bundle
-#: code:addons/sale_product_bundle/models/product_bundle_line.py:13
+#: code:addons/sale_product_bundle/models/product_bundle_line.py:15
 #: field:product.bundle.line,product_id:0
 #, python-format
 msgid "Product"
@@ -130,12 +130,19 @@ msgid "Products"
 msgstr ""
 
 #. module: sale_product_bundle
-#: code:addons/sale_product_bundle/models/product_bundle_line.py:15
+#: code:addons/sale_product_bundle/models/product_bundle_line.py:17
 #: code:addons/sale_product_bundle/wizard/sale_order_bundle.py:15
 #: field:product.bundle.line,quantity:0
 #: field:sale.order.bundle,quantity:0
 #, python-format
 msgid "Quantity"
+msgstr ""
+
+#. module: sale_product_bundle
+#: code:addons/sale_product_bundle/models/product_bundle_line.py:23
+#: field:product.bundle.line,sequence:0
+#, python-format
+msgid "Sequence"
 msgstr ""
 
 #. module: sale_product_bundle
