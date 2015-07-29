@@ -8,6 +8,7 @@ class ProductBundleLine(models.Model):
     _name = 'product.bundle.line'
     _description = 'Product bundle line'
     _rec_name = 'product_id'
+    _order = 'sequence'
 
     product_id = fields.Many2one(
         'product.product', domain=[('sale_ok', '=', True)],
@@ -18,5 +19,10 @@ class ProductBundleLine(models.Model):
         required=True, default=1)
     product_bundle_id = fields.Many2one(
         'product.bundle', _('Bundle reference'), ondelete='cascade')
+    sequence = fields.Integer(
+        string=_('Sequence'),
+        required=True, default=0,
+        help=_(u""),
+    )
 
 # vim:expandtab:smartindent:tabstop=4:softtabstop=4:shiftwidth=4:

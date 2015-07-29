@@ -30,8 +30,29 @@ class test_product_bundle(common.TransactionCase):
         self.assertEquals(so.amount_untaxed, untaxed_amount + 8834.0)
         self.assertEquals(so.amount_tax, tax_amount + 0)  # without tax
         self.assertEquals(so.amount_total, total_amount + 8834.0)
+        sequence = {}
         for line in so.order_line:
+            sequence[line.product_id.id] = line.sequence
             for bundle_line in product_bundle.bundle_line_ids:
                 if line.product_id.id == bundle_line.product_id.id:
                     self.assertEquals(line.product_id.name,
                                       bundle_line.product_id.name)
+        # make sure sale order line sequence keep sequence set on bundle
+        seq_line1 = sequence.pop(
+            self.env.ref(
+                "sale_product_bundle.product_bundle_line_computer_2"
+            ).product_id.id)
+        seq_line2 = sequence.pop(
+            self.env.ref(
+                "sale_product_bundle.product_bundle_line_computer_4"
+            ).product_id.id)
+        seq_line3 = sequence.pop(
+            self.env.ref(
+                "sale_product_bundle.product_bundle_line_computer_1"
+            ).product_id.id)
+        seq_line4 = sequence.pop(
+            self.env.ref(
+                "sale_product_bundle.product_bundle_line_computer_3"
+            ).product_id.id)
+        self.assertTrue(max([v for k, v in sequence.iteritems()]) <
+                        seq_line1 < seq_line2 < seq_line3 < seq_line4)

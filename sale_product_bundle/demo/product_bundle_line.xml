@@ -5,21 +5,25 @@
             <field name="product_bundle_id" ref="product_bundle_i5_computer"/>
             <field name="product_id" ref="product.product_product_5"/>
             <field name="quantity">1</field>
+            <field name="sequence">30</field>
         </record>
         <record id="product_bundle_line_computer_2" model="product.bundle.line">
             <field name="product_bundle_id" ref="product_bundle_i5_computer"/>
             <field name="product_id" ref="product.product_product_21"/>
             <field name="quantity">1</field>
+            <field name="sequence">10</field>
         </record>
         <record id="product_bundle_line_computer_3" model="product.bundle.line">
             <field name="product_bundle_id" ref="product_bundle_i5_computer"/>
             <field name="product_id" ref="product.product_product_22"/>
             <field name="quantity">1</field>
+            <field name="sequence">50</field>
         </record>
         <record id="product_bundle_line_computer_4" model="product.bundle.line">
             <field name="product_bundle_id" ref="product_bundle_i5_computer"/>
             <field name="product_id" ref="product.product_product_13"/>
             <field name="quantity">2</field>
+            <field name="sequence">20</field>
         </record>
 
         <record id="product_bundle_line_services_1" model="product.bundle.line">
