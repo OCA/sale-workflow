@@ -14,21 +14,20 @@
                                     <h1>
                                         <field name="name"/>
                                     </h1>
-                                <label for="name" class="oe_edit_only"/>
                             </div>
                         </group>
                         <group>
                             <group>
-                                <field name="warehouse_id"/>
-                                <field name="sequence_id"/>
+                                <field name="warehouse_id" />
+                                <field name="sequence_id" />
                             </group>
                             <group>
-                                <field name="journal_id"/>
-                                <field name="refund_journal_id"/>
+                                <field name="journal_id" />
+                                <field name="refund_journal_id" />
                             </group>
                         </group>
                         <group>
-                            <field name="description"/>
+                            <field name="description" nolabel="1" />
                         </group>
                     </sheet>
                 </form>

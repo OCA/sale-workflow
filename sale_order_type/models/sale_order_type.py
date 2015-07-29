@@ -10,8 +10,8 @@ class SaleOrderTypology(models.Model):
     _name = 'sale.order.type'
     _description = 'Type of sale order'
 
-    name = fields.Char(string='Name', required=True)
-    description = fields.Text(string='Description')
+    name = fields.Char(string='Name', required=True, translate=True)
+    description = fields.Text(string='Description', translate=True)
     sequence_id = fields.Many2one(
         comodel_name='ir.sequence', string='Entry Sequence', copy=False)
     journal_id = fields.Many2one(

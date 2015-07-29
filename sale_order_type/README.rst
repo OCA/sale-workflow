@@ -4,7 +4,11 @@
 Sale Order Types
 ================
 
-This module adds a typology for the sale orders.
+This module adds a typology for the sale orders. In each different type, you
+can define, invoicing and refunding journal, a warehouse and a sequence.
+
+You are able to select a sale order type by partner so that when you add a
+partner to a sale order it will get the related type and warehouse to it.
 
 
 Bug Tracker

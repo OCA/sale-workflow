@@ -73,6 +73,11 @@ msgid "Name"
 msgstr "Nombre"
 
 #. module: sale_order_type
+#: model:sale.order.type,name:sale_order_type.normal_sale_type
+msgid "Normal Order"
+msgstr "Pedido Normal"
+
+#. module: sale_order_type
 #: model:ir.model,name:sale_order_type.model_res_partner
 msgid "Partner"
 msgstr "Empresa"
@@ -88,6 +93,7 @@ msgid "Refund Billing Journal"
 msgstr "Diario de facturación rectificativa"
 
 #. module: sale_order_type
+#: view:res.partner:sale_order_type.res_partner_sale_type_form_view
 #: field:res.partner,sale_type:0
 msgid "Sale Order Type"
 msgstr "Tipo de pedido de venta"

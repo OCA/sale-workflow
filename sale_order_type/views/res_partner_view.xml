@@ -6,11 +6,12 @@
             <field name="model">res.partner</field>
             <field name="inherit_id" ref="base.view_partner_form"/>
             <field name="arch" type="xml">
-                <xpath expr="//page[@name='sales_purchases']//field[@name='customer']"
-                       position="after">
-                    <field name="sale_type"
-                           attrs="{'invisible':[('customer', '=', False)]}"/>
-                </xpath>
+                <page name="sales_purchases" position="inside">
+                    <group colspan="2" col="2" attrs="{'invisible':[('customer', '=', False)]}">
+                        <separator string="Sale Order Type" colspan="2"/>
+                        <field name="sale_type"/>
+                    </group>
+                </page>
             </field>
         </record>
 
