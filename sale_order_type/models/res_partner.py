@@ -3,8 +3,11 @@
 # For copyright and license notices, see __openerp__.py file in root directory
 ##############################################################################
 
-from . import account_invoice
-from . import sale_order_type
-from . import sale_order
-from . import stock_picking
-from . import res_partner
+from openerp import fields, models
+
+
+class ResPartner(models.Model):
+    _inherit = 'res.partner'
+
+    sale_type = fields.Many2one(
+        comodel_name='sale.order.type', string='Sale Order Type')

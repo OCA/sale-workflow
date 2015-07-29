@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 8.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-03-09 14:10+0000\n"
-"PO-Revision-Date: 2015-03-09 14:10+0000\n"
+"POT-Creation-Date: 2015-07-29 11:29+0000\n"
+"PO-Revision-Date: 2015-07-29 11:29+0000\n"
 "Last-Translator: <>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -73,6 +73,11 @@ msgid "Name"
 msgstr "Nombre"
 
 #. module: sale_order_type
+#: model:ir.model,name:sale_order_type.model_res_partner
+msgid "Partner"
+msgstr "Empresa"
+
+#. module: sale_order_type
 #: model:ir.model,name:sale_order_type.model_stock_picking
 msgid "Picking List"
 msgstr "Albarán"
@@ -81,6 +86,11 @@ msgstr "Albarán"
 #: field:sale.order.type,refund_journal_id:0
 msgid "Refund Billing Journal"
 msgstr "Diario de facturación rectificativa"
+
+#. module: sale_order_type
+#: field:res.partner,sale_type:0
+msgid "Sale Order Type"
+msgstr "Tipo de pedido de venta"
 
 #. module: sale_order_type
 #: model:ir.model,name:sale_order_type.model_sale_order

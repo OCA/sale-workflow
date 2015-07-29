@@ -16,11 +16,19 @@ class SaleOrder(models.Model):
         comodel_name='sale.order.type', string='Type', default=_get_order_type)
 
     @api.multi
-    def on_change_type_id(self, type_id):
-        if type_id:
-            type = self.env['sale.order.type'].browse(type_id)
-            return {'value': {'warehouse_id': type.warehouse_id.id}}
-        return {}
+    def onchange_partner_id(self, part):
+        res = super(SaleOrder, self).onchange_partner_id(part)
+        if part:
+            partner = self.env['res.partner'].browse(part)
+            res['value'].update({
+                'type_id': partner.sale_type.id or self._get_order_type().id,
+            })
+        return res
+
+    @api.one
+    @api.onchange('type_id')
+    def onchange_type_id(self):
+        self.warehouse_id = self.type_id.warehouse_id
 
     @api.model
     def create(self, vals):
@@ -34,5 +42,6 @@ class SaleOrder(models.Model):
     @api.model
     def _prepare_invoice(self, order, line_ids):
         res = super(SaleOrder, self)._prepare_invoice(order, line_ids)
-        res['journal_id'] = order.type_id.journal_id.id
+        if order.type_id.journal_id:
+            res['journal_id'] = order.type_id.journal_id.id
         return res
