@@ -6,10 +6,11 @@
             <field name="model">sale.generator</field>
                 <field name="type">tree</field>
                 <field name="arch" type="xml"> 
-                <tree string="Partner"> 
+                <tree string="Partner" colors="blue:state!='done'">
                     <field name="name"/>
                     <field name="date"/>
                     <field name="sale_ids"/>
+                    <field name="state"/>
                 </tree>
             </field>
         </record>
@@ -29,7 +30,9 @@
             <field name="arch" type="xml">
                 <header>
                     <button name="button_confirm" states="draft"
-                            string="Confirm" type="object" />
+                            string="Generate Sale" type="object" />
+                    <button name="action_button_confirm" string="Confirm Sale"
+                            states="confirmed" type="object" />
                     <field name="state" widget="statusbar" />
                 </header>
                 <sheet>
@@ -37,7 +40,7 @@
                         <label string="Generator"/>
                         <field name="name"
                                class="oe_inline"
-                               readonly="1"/>
+                               />
                     </h1>
                     <group col="6">
                         <field name="date" nolabel="2"/>
@@ -47,11 +50,10 @@
                                 string="Sales"
                                 context="{'search_default_state':'draft'}" />
                     </group>
-                <field name="partner_ids"/>
-                <label string="Line"/>
                 <field name="line_ids"
                        string="Line"
                        attrs="{'readonly':[('state', '=','confirmed')]}"/>
+                <field name="partner_ids"/>
                 </sheet>
             </field>
         </record>
