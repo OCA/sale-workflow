@@ -38,6 +38,7 @@ class SaleGenerator(models.Model):
     state = fields.Selection([
         ('draft', 'Draft'),
         ('confirmed', 'Confirmed'),
+        ('done', 'Done'),
         ], 'State', readonly=True, default='draft')
 
     def _prepare_generator_sale_vals(self, partner):
@@ -76,7 +77,13 @@ class SaleGenerator(models.Model):
                     self._create_order_for_partner(partner)
             for sale in self.sale_ids:
                 if sale.partner_id not in self.partner_ids:
-                    self.unlink()
+                    sale.unlink()
+
+    @api.one
+    def action_button_confirm(self):
+        self.write({'state': 'done'})
+        for sale in self.sale_ids:
+            sale.action_button_confirm()
 
     @api.multi
     def write(self, vals):
