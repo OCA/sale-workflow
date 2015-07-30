@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 {
-    'name': 'sale_product_bundle_layout',
+    'name': 'Sale product bundle layout',
     'category': 'Sale',
     'author': 'Anybox',
     'version': '1.0',

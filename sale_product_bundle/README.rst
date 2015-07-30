@@ -22,13 +22,14 @@ To use this module, you need to:
 * Set product bundle as sale manager where you can set:
     - a list of products
     - for each products, a quantity
+    - User can set a default bundle lines order that will be keep in sale order
 
 .. image:: /sale_product_bundle/static/description/product_bundle.png
     :alt: Set a product bundle
 
 * On quotation, any salesman can click on "Add bundle in sale order" button
   which will open wizard where users can chose the product bundle and quantity
-  to add in the list of sale order lines.
+  to add then at the end of sale order lines.
 
 .. image:: /sale_product_bundle/static/description/add_bundle.png
     :alt: Add bundle to sale order
