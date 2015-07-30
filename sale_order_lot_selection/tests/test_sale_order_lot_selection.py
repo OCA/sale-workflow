@@ -34,8 +34,8 @@ class TestSaleOrderLotSelection(test_common.SingleTransactionCase):
 
         """
         super(TestSaleOrderLotSelection, self).setUp()
-        self.product_11 = self.env.ref('product.product_product_11')
-        self.lot = self.env['stock.production.lot'].create(
+        self.product_11 = self.env.ref('product.product_product_14')
+        self.lot10 = self.env['stock.production.lot'].create(
             {
                 'name': "0000010",
                 'product_id': self.product_11.id
@@ -47,11 +47,11 @@ class TestSaleOrderLotSelection(test_common.SingleTransactionCase):
         self.sol1 = self.env['sale.order.line'].create({
             'name': 'sol1',
             'order_id': self.order.id,
-            'lot_id': self.lot.id,
+            'lot_id': self.lot10.id,
             'product_id': self.product_11.id,
         })
         self.product_13 = self.env.ref('product.product_product_13')
-        self.lot13 = self.env['stock.production.lot'].create(
+        self.lot11 = self.env['stock.production.lot'].create(
             {
                 'name': "0000011",
                 'product_id': self.product_13.id
@@ -69,7 +69,7 @@ class TestSaleOrderLotSelection(test_common.SingleTransactionCase):
         self.sol2a = self.env['sale.order.line'].create({
             'name': 'sol2a',
             'order_id': self.order2.id,
-            'lot_id': self.lot13.id,
+            'lot_id': self.lot11.id,
             'product_id': self.product_13.id,
         })
         self.sol2b = self.env['sale.order.line'].create({
@@ -89,7 +89,7 @@ class TestSaleOrderLotSelection(test_common.SingleTransactionCase):
         wiz.do_detailed_transfer()
         for pack in picking.pack_operation_ids:
             if pack.product_id.id == self.product_11.id:
-                self.assertEqual(pack.lot_id, self.lot)
+                self.assertEqual(pack.lot_id, self.lot10)
 
     def test_order_confirm_and_picking_transfer_2_products_2_lots(self):
         self.order2.action_button_confirm()
@@ -101,6 +101,6 @@ class TestSaleOrderLotSelection(test_common.SingleTransactionCase):
         wiz.do_detailed_transfer()
         for pack in picking.pack_operation_ids:
             if pack.product_id.id == self.product_13.id:
-                self.assertEqual(pack.lot_id, self.lot13)
+                self.assertEqual(pack.lot_id, self.lot11)
             else:
                 self.assertEqual(pack.lot_id, self.lot12)
