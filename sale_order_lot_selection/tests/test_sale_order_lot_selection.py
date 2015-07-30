@@ -22,6 +22,7 @@ import openerp.tests.common as test_common
 
 
 class TestSaleOrderLotSelection(test_common.SingleTransactionCase):
+
     def setUp(self):
         """
         Set up a sale order a particular lot.
@@ -35,11 +36,24 @@ class TestSaleOrderLotSelection(test_common.SingleTransactionCase):
         """
         super(TestSaleOrderLotSelection, self).setUp()
         self.product_11 = self.env.ref('product.product_product_14')
+        self.product_13 = self.env.ref('product.product_product_13')
+        self.product_12 = self.env.ref('product.product_product_12')
         self.lot10 = self.env['stock.production.lot'].create(
             {
                 'name': "0000010",
                 'product_id': self.product_11.id
             })
+        self.lot11 = self.env['stock.production.lot'].create(
+            {
+                'name': "0000011",
+                'product_id': self.product_13.id
+            })
+        self.lot12 = self.env['stock.production.lot'].create(
+            {
+                'name': "0000012",
+                'product_id': self.product_12.id
+            })
+
         self.order = self.env['sale.order'].create(
             {
                 'partner_id': self.env.ref('base.res_partner_1').id,
@@ -50,18 +64,70 @@ class TestSaleOrderLotSelection(test_common.SingleTransactionCase):
             'lot_id': self.lot10.id,
             'product_id': self.product_11.id,
         })
-        self.product_13 = self.env.ref('product.product_product_13')
-        self.lot11 = self.env['stock.production.lot'].create(
-            {
-                'name': "0000011",
-                'product_id': self.product_13.id
-            })
-        self.product_12 = self.env.ref('product.product_product_12')
-        self.lot12 = self.env['stock.production.lot'].create(
-            {
-                'name': "0000012",
-                'product_id': self.product_12.id
-            })
+        supplier_location = self.env['ir.model.data'].xmlid_to_res_id(
+            'stock.stock_location_suppliers')
+        stock_location = self.env['ir.model.data'].xmlid_to_res_id(
+            'stock.stock_location_stock')
+        picking_in = self.env['stock.picking'].create({
+            'partner_id': self.env.ref('base.res_partner_1').id,
+            'picking_type_id': self.env['ir.model.data'].xmlid_to_res_id(
+                'stock.picking_type_in')})
+        self.env['stock.move'].create({
+            'name': self.product_11.name,
+            'product_id': self.product_11.id,
+            'product_uom_qty': 1,
+            'product_uom': self.product_11.uom_id.id,
+            'picking_id': picking_in.id,
+            'location_id': supplier_location,
+            'location_dest_id': stock_location})
+        self.env['stock.move'].create({
+            'name': self.product_12.name,
+            'product_id': self.product_12.id,
+            'product_uom_qty': 1,
+            'product_uom': self.product_12.uom_id.id,
+            'picking_id': picking_in.id,
+            'location_id': supplier_location,
+            'location_dest_id': stock_location})
+        self.env['stock.move'].create({
+            'name': self.product_13.name,
+            'product_id': self.product_13.id,
+            'product_uom_qty': 1,
+            'product_uom': self.product_13.uom_id.id,
+            'picking_id': picking_in.id,
+            'location_id': supplier_location,
+            'location_dest_id': stock_location})
+        for move in picking_in.move_lines:
+            self.assertEqual(move.state, 'draft', 'Wrong state of move line.')
+        picking_in.action_confirm()
+        for move in picking_in.move_lines:
+            self.assertEqual(
+                move.state, 'assigned', 'Wrong state of move line.')
+        picking_in.do_prepare_partial()
+        self.env['stock.pack.operation'].create({
+            'product_id': self.product_11.id,
+            'product_qty': 2,
+            'product_uom_id': self.product_11.uom_id.id,
+            'location_id': supplier_location,
+            'location_dest_id': stock_location,
+            'picking_id': picking_in.id,
+            'lot_id': self.lot10.id})
+        self.env['stock.pack.operation'].create({
+            'product_id': self.product_13.id,
+            'product_qty': 2,
+            'product_uom_id': self.product_13.uom_id.id,
+            'location_id': supplier_location,
+            'location_dest_id': stock_location,
+            'picking_id': picking_in.id,
+            'lot_id': self.lot11.id})
+        self.env['stock.pack.operation'].create({
+            'product_id': self.product_12.id,
+            'product_qty': 2,
+            'product_uom_id': self.product_12.uom_id.id,
+            'location_id': supplier_location,
+            'location_dest_id': stock_location,
+            'picking_id': picking_in.id,
+            'lot_id': self.lot12.id})
+        picking_in.do_transfer()
         self.order2 = self.env['sale.order'].create(
             {
                 'partner_id': self.env.ref('base.res_partner_1').id,
