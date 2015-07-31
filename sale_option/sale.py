@@ -56,7 +56,6 @@ class SaleOrderLine(models.Model):
 
     @api.onchange('optionnal_bom_line_ids', 'base_price_unit')
     def _onchange_option(self):
-        option_price = 0
         final_options_price = 0
         for option in self.optionnal_bom_line_ids:
             final_options_price += option.line_price
@@ -67,10 +66,9 @@ class SaleOrder(models.Model):
     _inherit = "sale.order"
 
     @api.model
-    def _prepare_vals_lot_number(self, order_line_id, index_lot):
-        res = super(SaleOrder, self)._prepare_vals_lot_number(order_line_id,
+    def _prepare_vals_lot_number(self, order_line, index_lot):
+        res = super(SaleOrder, self)._prepare_vals_lot_number(order_line,
                                                               index_lot)
-        order_line = self.env['sale.order.line'].browse(order_line_id)
         res['optionnal_bom_line_ids'] = [
             (6, 0, [line.id for line in order_line.optionnal_bom_line_ids])
         ]
