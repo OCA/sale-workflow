@@ -7,6 +7,7 @@ class test_product_bundle(common.TransactionCase):
 
     def setUp(self):
         super(test_product_bundle, self).setUp()
+        self.sale_order = self.env['sale.order']
         self.sale_order_bundle = self.env['sale.order.bundle']
 
     def test_add_bundle(self):
@@ -56,3 +57,14 @@ class test_product_bundle(common.TransactionCase):
             ).product_id.id)
         self.assertTrue(max([v for k, v in sequence.iteritems()]) <
                         seq_line1 < seq_line2 < seq_line3 < seq_line4)
+
+    def test_add_bundle_on_empty_so(self):
+        so = self.sale_order.create({
+            'partner_id': self.ref('base.res_partner_1')})
+        product_bundle = self.env.ref(
+            'sale_product_bundle.product_bundle_i5_computer')
+        so_bundle = self.sale_order_bundle.with_context(
+            active_id=so.id).create({'product_bundle_id': product_bundle.id,
+                                     'quantity': 2})
+        so_bundle.add_bundle()
+        self.assertEquals(len(so.order_line), 4)

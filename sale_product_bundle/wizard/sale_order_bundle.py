@@ -23,7 +23,9 @@ class SaleOrderBundle(osv.osv_memory):
         if not so_id:
             return
         so = self.env['sale.order'].browse(so_id)
-        max_sequence = max([line.sequence for line in so.order_line])
+        max_sequence = 0
+        if so.order_line:
+            max_sequence = max([line.sequence for line in so.order_line])
         sale_order_line = self.env['sale.order.line']
         for bundle_line in self.product_bundle_id.bundle_line_ids:
             sale_order_line.create(
