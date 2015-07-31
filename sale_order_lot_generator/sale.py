@@ -27,9 +27,8 @@ class SaleOrder(models.Model):
     _inherit = 'sale.order'
 
     @api.model
-    def _prepare_vals_lot_number(self, order_line_id, index_lot):
+    def _prepare_vals_lot_number(self, order_line, index_lot):
         """Prepare values before creating a lot number"""
-        order_line = self.env['sale.order.line'].browse(order_line_id)
         lot_number = "%s-%02d" % (order_line.order_id.name, index_lot)
         return {
             'name': lot_number,
@@ -47,8 +46,7 @@ class SaleOrder(models.Model):
             for line in sale_order.order_line:
                 line_vals = {}
                 if line.product_id.auto_generate_prodlot:
-                    vals = self._prepare_vals_lot_number(
-                        line.id, index_lot)
+                    vals = self._prepare_vals_lot_number(line, index_lot)
                     index_lot += 1
                     lot_id = lot_m.create(vals)
                     line_vals['lot_id'] = lot_id.id
