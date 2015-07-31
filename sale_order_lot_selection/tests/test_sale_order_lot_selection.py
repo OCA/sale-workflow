@@ -103,30 +103,19 @@ class TestSaleOrderLotSelection(test_common.SingleTransactionCase):
             self.assertEqual(
                 move.state, 'assigned', 'Wrong state of move line.')
         picking_in.do_prepare_partial()
-        self.env['stock.pack.operation'].create({
-            'product_id': self.product_14.id,
-            'product_qty': 2,
-            'product_uom_id': self.product_14.uom_id.id,
-            'location_id': supplier_location,
-            'location_dest_id': stock_location,
-            'picking_id': picking_in.id,
-            'lot_id': self.lot10.id})
-        self.env['stock.pack.operation'].create({
-            'product_id': self.product_13.id,
-            'product_qty': 2,
-            'product_uom_id': self.product_13.uom_id.id,
-            'location_id': supplier_location,
-            'location_dest_id': stock_location,
-            'picking_id': picking_in.id,
-            'lot_id': self.lot11.id})
-        self.env['stock.pack.operation'].create({
-            'product_id': self.product_12.id,
-            'product_qty': 2,
-            'product_uom_id': self.product_12.uom_id.id,
-            'location_id': supplier_location,
-            'location_dest_id': stock_location,
-            'picking_id': picking_in.id,
-            'lot_id': self.lot12.id})
+        pick_wizard = self.env['stock.transfer_details'].with_context({
+            'active_model': 'stock.picking',
+            'active_ids': [picking_in.id],
+            'active_id': picking_in.id,
+            'default_picking_type_id': picking_in.id}).create({})
+        for item in pick_wizard.item_ids:
+            if item.product_id == self.product_14:
+                item.lot_id = self.lot10
+            if item.product_id == self.product_13:
+                item.lot_id = self.lot11
+            if item.product_id == self.product_12:
+                item.lot_id = self.lot12
+        pick_wizard.do_detailed_transfer()
         picking_in.do_transfer()
         self.order2 = self.env['sale.order'].create(
             {
