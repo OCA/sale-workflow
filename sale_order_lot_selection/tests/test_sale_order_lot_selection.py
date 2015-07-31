@@ -35,13 +35,13 @@ class TestSaleOrderLotSelection(test_common.SingleTransactionCase):
 
         """
         super(TestSaleOrderLotSelection, self).setUp()
-        self.product_11 = self.env.ref('product.product_product_14')
+        self.product_14 = self.env.ref('product.product_product_14')
         self.product_13 = self.env.ref('product.product_product_13')
         self.product_12 = self.env.ref('product.product_product_12')
         self.lot10 = self.env['stock.production.lot'].create(
             {
                 'name': "0000010",
-                'product_id': self.product_11.id
+                'product_id': self.product_14.id
             })
         self.lot11 = self.env['stock.production.lot'].create(
             {
@@ -62,7 +62,7 @@ class TestSaleOrderLotSelection(test_common.SingleTransactionCase):
             'name': 'sol1',
             'order_id': self.order.id,
             'lot_id': self.lot10.id,
-            'product_id': self.product_11.id,
+            'product_id': self.product_14.id,
         })
         supplier_location = self.env['ir.model.data'].xmlid_to_res_id(
             'stock.stock_location_suppliers')
@@ -73,10 +73,10 @@ class TestSaleOrderLotSelection(test_common.SingleTransactionCase):
             'picking_type_id': self.env['ir.model.data'].xmlid_to_res_id(
                 'stock.picking_type_in')})
         self.env['stock.move'].create({
-            'name': self.product_11.name,
-            'product_id': self.product_11.id,
+            'name': self.product_14.name,
+            'product_id': self.product_14.id,
             'product_uom_qty': 1,
-            'product_uom': self.product_11.uom_id.id,
+            'product_uom': self.product_14.uom_id.id,
             'picking_id': picking_in.id,
             'location_id': supplier_location,
             'location_dest_id': stock_location})
@@ -104,9 +104,9 @@ class TestSaleOrderLotSelection(test_common.SingleTransactionCase):
                 move.state, 'assigned', 'Wrong state of move line.')
         picking_in.do_prepare_partial()
         self.env['stock.pack.operation'].create({
-            'product_id': self.product_11.id,
+            'product_id': self.product_14.id,
             'product_qty': 2,
-            'product_uom_id': self.product_11.uom_id.id,
+            'product_uom_id': self.product_14.uom_id.id,
             'location_id': supplier_location,
             'location_dest_id': stock_location,
             'picking_id': picking_in.id,
@@ -154,7 +154,7 @@ class TestSaleOrderLotSelection(test_common.SingleTransactionCase):
             ['picking_id', '=', picking.id]])
         wiz.do_detailed_transfer()
         for pack in picking.pack_operation_ids:
-            if pack.product_id.id == self.product_11.id:
+            if pack.product_id.id == self.product_14.id:
                 self.assertEqual(pack.lot_id, self.lot10)
 
     def test_order_confirm_and_picking_transfer_2_products_2_lots(self):
