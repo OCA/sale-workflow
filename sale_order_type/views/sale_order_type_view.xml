@@ -11,9 +11,9 @@
                         <group>
                             <div class="oe_title">
                                 <label for="name" class="oe_edit_only"/>
-                                    <h1>
-                                        <field name="name"/>
-                                    </h1>
+                                <h1>
+                                    <field name="name"/>
+                                </h1>
                             </div>
                         </group>
                         <group>
@@ -24,6 +24,9 @@
                             <group>
                                 <field name="journal_id" />
                                 <field name="refund_journal_id" />
+                                <field name="picking_policy" />
+                                <field name="order_policy" />
+                                <field name="invoice_state" />
                             </group>
                         </group>
                         <group>
@@ -43,9 +46,45 @@
                     <field name="warehouse_id"/>
                     <field name="sequence_id"/>
                     <field name="journal_id"/>
-                    <field name="refund_journal_id"/>
-                    <field name="description"/>
+                    <field name="refund_journal_id" />
+                    <field name="picking_policy" />
+                    <field name="order_policy" />
+                    <field name="invoice_state" />
+                    <field name="description" />
                 </tree>
+            </field>
+        </record>
+
+        <record id="sot_sale_order_type_search_view" model="ir.ui.view">
+            <field name="name">sale.order.type.search.view</field>
+            <field name="model">sale.order.type</field>
+            <field name="arch" type="xml">
+                <search string="Type">
+                    <field name="name"/>
+                    <field name="warehouse_id"/>
+                    <field name="sequence_id"/>
+                    <field name="journal_id"/>
+                    <field name="refund_journal_id"/>
+                    <field name="picking_policy" />
+                    <field name="order_policy" />
+                    <field name="invoice_state" />
+                    <group expand="0" string="Group By">
+                        <filter string="Warehouse" domain="[]"
+                                context="{'group_by':'warehouse_id'}" />
+                        <filter string="Entry Sequence" domain="[]"
+                                context="{'group_by':'sequence_id'}" />
+                        <filter string="Billing Journal" domain="[]"
+                                context="{'group_by':'journal_id'}" />
+                        <filter string="Refund Billing Journal" domain="[]"
+                                context="{'group_by':'refund_journal_id'}" />
+                        <filter string="Shipping Policy" domain="[]"
+                                context="{'group_by':'picking_policy'}" />
+                        <filter string="Create Invoice" domain="[]"
+                                context="{'group_by':'order_policy'}" />
+                        <filter string="Invoice Control" domain="[]"
+                                context="{'group_by':'invoice_state'}" />
+                    </group>
+                </search>
             </field>
         </record>
 

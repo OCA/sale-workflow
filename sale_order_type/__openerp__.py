@@ -34,6 +34,8 @@
     "depends": [
         "sale",
         "stock",
+        "sale_stock",
+        "account",
     ],
     "demo": [
         "demo/sale_order_demo.xml",
