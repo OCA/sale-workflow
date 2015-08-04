@@ -18,12 +18,12 @@ class ProductProduct(models.Model):
             key=lambda l: l.order_id.date_order, reverse=True)
         self.last_sale_date = lines[:1].order_id.date_order
         self.last_sale_price = lines[:1].price_unit
-        self.last_customer = lines[:1].order_id.partner_id
+        self.last_customer_id = lines[:1].order_id.partner_id
 
     last_sale_price = fields.Float(
         string='Last Sale Price', compute='_get_last_sale')
     last_sale_date = fields.Date(
         string='Last Sale Date', compute='_get_last_sale')
-    last_customer = fields.Many2one(
+    last_customer_id = fields.Many2one(
         comodel_name='res.partner', string='Last Customer',
         compute='_get_last_sale')

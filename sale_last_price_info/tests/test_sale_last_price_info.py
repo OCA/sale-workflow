@@ -32,4 +32,4 @@ class TestSaleLastPriceInfo(common.TransactionCase):
         self.assertEqual(
             sale_lines[:1].price_unit, self.product.last_sale_price)
         self.assertEqual(
-            sale_lines[:1].order_id.partner_id, self.product.last_customer)
+            sale_lines[:1].order_id.partner_id, self.product.last_customer_id)

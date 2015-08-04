@@ -31,7 +31,7 @@ msgid "Sale"
 msgstr ""
 
 #. module: sale_last_price_info
-#: field:product.product,last_customer:0
+#: field:product.product,last_customer_id:0
 msgid "Last Customer"
 msgstr ""
 
