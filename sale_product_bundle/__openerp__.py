@@ -3,7 +3,7 @@
 {
     'name': 'sale_product_bundle',
     'category': 'Sale',
-    'author': 'Anybox',
+    'author': 'Anybox, Odoo Community Association (OCA)',
     'version': '1.0',
     'sequence': 150,
     'website': 'http://anybox.fr',
