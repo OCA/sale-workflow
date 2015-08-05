@@ -24,5 +24,3 @@ class ProductBundleLine(models.Model):
         required=True, default=0,
         help=_(u""),
     )
-
-# vim:expandtab:smartindent:tabstop=4:softtabstop=4:shiftwidth=4:

@@ -9,5 +9,3 @@ class ProductBundle(models.Model):
     name = fields.Char(_('Name'), help=_('Product bundle name'), required=True)
     bundle_line_ids = fields.One2many(
         'product.bundle.line', 'product_bundle_id', _(u"Products"))
-
-# vim:expandtab:smartindent:tabstop=4:softtabstop=4:shiftwidth=4:
