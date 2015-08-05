@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<openerp>
+    <data>
+        <record id="partner_extended_form_view" model="ir.ui.view">
+            <field name="name">partner.extended.form</field>
+            <field name="model">res.partner</field>
+            <field name="inherit_id" ref="base.view_partner_form" />
+            <field name="arch" type="xml">
+                <label for="street" position="before">
+                    <field name="handbill" />
+                </label>
+            </field>
+        </record>
+
+        <record id="partner_extended_tree_view" model="ir.ui.view">
+            <field name="name">partner.extended.tree</field>
+            <field name="model">res.partner</field>
+            <field name="inherit_id" ref="base.view_partner_tree" />
+            <field name="arch" type="xml">
+                <field name="email" position="after">
+                    <field name="handbill" />
+                </field>
+            </field>
+        </record>
+
+        <record id="partner_extended_search_view" model="ir.ui.view">
+            <field name="name">partner.extended.search</field>
+            <field name="model">res.partner</field>
+            <field name="inherit_id" ref="base.view_res_partner_filter" />
+            <field name="arch" type="xml">
+                <filter string="Suppliers" position="after">
+                    <filter string="Confirmed purchase order" name="handbill" domain="[('handbill','=',False)]"/>
+                </filter>
+                <group string="Group By" position="inside">
+                    <filter string="Handbill" domain="[]" context="{'group_by':'handbill'}"/>
+                </group>
+            </field>
+        </record>
+        
+        <record id="base.action_partner_form" model="ir.actions.act_window">
+            <field name="context">{
+                "search_default_customer":1,
+                "search_default_handbill":1}</field>
+        </record>
+    </data>
+</openerp>
