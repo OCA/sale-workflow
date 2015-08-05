@@ -3,9 +3,15 @@
 -
   !record {model: sale.order, id: sale_order_1}:
     partner_id: base.res_partner_2
+    partner_invoice_id: base.res_partner_2
+    partner_shipping_id: base.res_partner_2
     order_line:
       - product_id: product.product_product_15
         product_uom_qty: 15.0
+-
+  I confirm the SO
+-
+  !workflow {model: sale.order, action: order_confirm, ref: sale_order_1}
 -
   I cancel the SO
 -
@@ -24,5 +30,6 @@
      assert new_so.name.endswith('-01')
      assert not new_so.order_line[0].procurement_ids
      assert all(line.state == 'draft' for line in new_so.order_line)
+     assert len(new_so.procurement_group_id.ids) == 0
      old_so = new_so.old_revision_ids[0]
      assert all(line.state == 'cancel' for line in old_so.order_line)

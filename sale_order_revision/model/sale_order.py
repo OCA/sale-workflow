@@ -79,8 +79,8 @@ class sale_order(models.Model):
 
         # swap order lines of old and new order
         so_line = self.env['sale.order.line']
-        old_lines = so_line.browse(old_revision.order_line.ids)
-        new_lines = so_line.browse(self.order_line.ids)
+        old_lines = old_revision.order_line
+        new_lines = self.order_line
         old_lines.write({'order_id': self.id})
         new_lines.write({'order_id': old_revision.id})
 
