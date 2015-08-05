@@ -1,11 +1,9 @@
 # -*- coding: utf-8 -*-
-from openerp.osv import osv
-from openerp import fields, api, _
-
+from openerp import models, fields, api, _
 import openerp.addons.decimal_precision as dp
 
 
-class SaleOrderBundle(osv.osv_memory):
+class SaleOrderBundle(models.TransientModel):
     _name = 'sale.order.bundle'
     _rec_name = 'product_bundle_id'
 

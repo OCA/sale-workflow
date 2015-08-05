@@ -1,8 +1,8 @@
 # -*- encoding: utf-8 -*-
-from openerp.osv import osv
+from openerp import models
 
 
-class SaleOrderBundle(osv.osv_memory):
+class SaleOrderBundle(models.TransientModel):
     _inherit = 'sale.order.bundle'
 
     def prepare_sale_order_line_data(self, sale_order_id, bundle, bundle_line,
