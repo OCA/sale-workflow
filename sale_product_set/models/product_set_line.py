@@ -18,7 +18,7 @@ class ProductBundleLine(models.Model):
         digits=dp.get_precision('Product Unit of Measure'),
         required=True, default=1)
     product_set_id = fields.Many2one(
-        'product.set', _('Bundle reference'), ondelete='cascade')
+        'product.set', _('Set'), ondelete='cascade')
     sequence = fields.Integer(
         string=_('Sequence'),
         required=True, default=0,

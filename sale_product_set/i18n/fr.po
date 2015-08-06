@@ -21,24 +21,24 @@ msgstr ""
 #: view:sale.order:sale_product_set.view_order_stock_form
 #: view:sale.order.set:sale_product_set.sale_order_set_form_view
 msgid "Add set"
-msgstr "Ajout set"
+msgstr "Ajout d'un Set"
 
 #. module: sale_product_set
 #: model:ir.actions.act_window,name:sale_product_set.act_open_wizard_sale_order_set
 msgid "Add set in sale order"
-msgstr "Ajouter un set"
+msgstr "Ajouter un Set"
 
 #. module: sale_product_set
 #: view:sale.order.set:sale_product_set.sale_order_set_form_view
 msgid "Add set in sale order line"
-msgstr "Ajout d'un set au devis"
+msgstr "Ajout d'un Set au devis"
 
 #. module: sale_product_set
 #: code:addons/sale_product_set/models/product_set_line.py:21
 #: field:product.set.line,product_set_id:0
 #, python-format
-msgid "Bundle reference"
-msgstr "Bundle"
+msgid "Set"
+msgstr "Set"
 
 #. module: sale_product_set
 #: view:sale.order.set:sale_product_set.sale_order_set_form_view
@@ -100,24 +100,24 @@ msgstr "Produit"
 #: field:sale.order.set,product_set_id:0
 #, python-format
 msgid "Product set"
-msgstr "Bundle"
+msgstr "Set de produit"
 
 #. module: sale_product_set
 #: model:ir.model,name:sale_product_set.model_product_set_line
 msgid "Product set line"
-msgstr "ligne de set"
+msgstr "ligne du Set"
 
 #. module: sale_product_set
 #: view:product.set:sale_product_set.view_product_set_form
 msgid "Product set lines"
-msgstr "Lignes de set"
+msgstr "Lignes du Set"
 
 #. module: sale_product_set
 #: code:addons/sale_product_set/models/product_set.py:9
 #: help:product.set,name:0
 #, python-format
 msgid "Product set name"
-msgstr "Nom du set"
+msgstr "Nom du Set"
 
 #. module: sale_product_set
 #: code:addons/sale_product_set/models/product_set.py:11
