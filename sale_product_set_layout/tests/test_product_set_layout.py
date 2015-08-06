@@ -7,7 +7,7 @@ class test_product_set_layout(common.TransactionCase):
 
     def setUp(self):
         super(test_product_set_layout, self).setUp()
-        self.sale_order_set = self.env['sale.order.set']
+        self.product_set_add = self.env['product.set.add']
 
     def test_add_set(self):
         so = self.env.ref('sale.sale_order_6')
@@ -16,12 +16,12 @@ class test_product_set_layout(common.TransactionCase):
             'sale_product_set.product_set_i5_computer')
         product_set_with_section = self.env.ref(
             'sale_product_set.product_set_services')
-        so_set = self.sale_order_set.with_context(
+        so_set = self.product_set_add.with_context(
             active_id=so.id).create(
                 {'product_set_id': product_set_without_section.id,
                  'quantity': 2})
         so_set.add_set()
-        so_set = self.sale_order_set.with_context(
+        so_set = self.product_set_add.with_context(
             active_id=so.id).create(
                 {'product_set_id': product_set_with_section.id,
                  'quantity': 2})
