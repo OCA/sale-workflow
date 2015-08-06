@@ -11,10 +11,9 @@ class ResPartner(models.Model):
 
     @api.one
     @api.depends('sale_order_ids', 'sale_order_ids.state')
-    def _sale_order_count2(self):
-        for line in self.sale_order_ids:
-            if line.state in ('done', 'cancel'):
-                self.handbill = True
+    def _compute_handbill(self):
+        self.handbill = not self.sale_order_ids.filtered(
+            lambda r: r.state not in ('draft', 'sent', 'cancel'))
 
     handbill = fields.Boolean(string='Handbill', readonly=True,
-                              compute='_sale_order_count2', store=True)
+                              compute='_compute_handbill', store=True)
