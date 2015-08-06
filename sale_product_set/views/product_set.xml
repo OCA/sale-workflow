@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<openerp>
+    <data>
+        <record id="view_product_set_tree" model="ir.ui.view">
+            <field name="name">product.set.tree</field>
+            <field name="model">product.set</field>
+            <field name="type">tree</field>
+            <field name="priority" eval="8"/>
+            <field name="arch" type="xml">
+            <tree string="Product set">
+                <field name="name"/>
+            </tree>
+            </field>
+        </record>
+        
+        <record id="view_product_set_form" model="ir.ui.view">
+            <field name="name">product.set.form</field>
+            <field name="model">product.set</field>
+            <field name="type">form</field>
+            <field name="priority" eval="8"/>
+            <field name="arch" type="xml">
+            <form string="Product set" version="7.0">
+                <sheet>
+                    <group>
+                        <field name="name" select="1"/>
+                        <field name="set_line_ids">
+                            <tree string="Product set lines" editable="top">
+                                <field name="sequence" widget="handle"/>
+                                <field name="product_id"/>
+                                <field name="quantity"/>
+                            </tree>
+                        </field>
+                    </group>
+                </sheet>
+            </form>
+            </field>
+        </record>
+        
+        <record id="view_product_set_search" model="ir.ui.view">
+            <field name="name">product.set.search</field>
+            <field name="model">product.set</field>
+            <field name="type">search</field>
+            <field name="priority" eval="8"/>
+            <field name="arch" type="xml">
+                <search string="Product set">
+                    <field name="name" select="True"/>
+                </search>
+            </field>
+        </record>
+        
+        <record model="ir.actions.act_window" id="act_open_product_set_view">
+            <field name="name">Product set</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">product.set</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form</field>
+            <field name="search_view_id" ref="view_product_set_search"/>
+            <field name="domain">[]</field>
+            <field name="context">{}</field>
+        </record>
+        
+        <record model="ir.actions.act_window.view" id="act_open_product_set_view_form">
+            <field name="act_window_id" ref="act_open_product_set_view"/>
+            <field name="sequence" eval="20"/>
+            <field name="view_mode">form</field>
+            <field name="view_id" ref="view_product_set_form"/>
+        </record>
+        
+        <record model="ir.actions.act_window.view" id="act_open_product_set_view_tree">
+            <field name="act_window_id" ref="act_open_product_set_view"/>
+            <field name="sequence" eval="10"/>
+            <field name="view_mode">tree</field>
+            <field name="view_id" ref="view_product_set_tree"/>
+        </record>
+        
+        <menuitem id="menu_product_set"
+            parent="base.menu_product"
+            groups="base.group_sale_manager" 
+            sequence="20"
+            action="act_open_product_set_view"/>
+    </data>
+</openerp>
