@@ -3,9 +3,10 @@ from openerp import models, fields, api, _
 import openerp.addons.decimal_precision as dp
 
 
-class SaleOrderSet(models.TransientModel):
-    _name = 'sale.order.set'
+class ProductSetAd(models.TransientModel):
+    _name = 'product.set.add'
     _rec_name = 'product_set_id'
+    _descritpion = "Wizard model to add product set into a quotation"
 
     product_set_id = fields.Many2one(
         'product.set', _('Product set'), required=True)

@@ -13,7 +13,7 @@
     ],
     'data': [
         'views/product_set.xml',
-        'wizard/sale_order_set.xml',
+        'wizard/product_set_add.xml',
         'views/sale_order.xml',
         'security/ir.model.access.csv',
     ],
