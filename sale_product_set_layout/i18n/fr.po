@@ -20,7 +20,7 @@ msgstr ""
 #. module: sale_product_set_layout
 #: model:ir.model,name:sale_product_set_layout.model_product_set
 msgid "Product set"
-msgstr "Bundle"
+msgstr "Set de produit"
 
 #. module: sale_product_set_layout
 #: code:addons/sale_product_set_layout/models/product_set.py:9
