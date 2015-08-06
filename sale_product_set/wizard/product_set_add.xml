@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<openerp>
+    <data>
+        <record id="product_set_add_form_view" model="ir.ui.view">
+            <field name="name">product.set.add.form.view</field>
+            <field name="model">product.set.add</field>
+            <field name="arch" type="xml">
+                <form string="Add set in sale order line" version="7.0">
+                    <group>
+                        <field name="product_set_id"/>
+                        <field name="quantity"/>
+                    </group>
+                    <footer>
+                        <button name="add_set" string="Add set"
+                                type="object" class="oe_highlight"/>
+                         or
+                        <button special="cancel" string="Cancel" class="oe_link"/>
+                    </footer>
+                </form>
+            </field>
+        </record>
+
+        <record id="act_open_wizard_product_set_add" model="ir.actions.act_window">
+            <field name="name">Add set in sale order</field>
+            <field name="res_model">product.set.add</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">form</field>
+            <field name="view_id" ref="product_set_add_form_view"/>
+            <field name="domain">[]</field>
+            <field name="context">{}</field>
+            <field name="target">new</field>
+        </record>
+
+    </data>
+</openerp>
