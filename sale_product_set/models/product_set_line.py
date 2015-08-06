@@ -4,7 +4,7 @@ from openerp import fields, models, _
 import openerp.addons.decimal_precision as dp
 
 
-class ProductBundleLine(models.Model):
+class ProductSetLine(models.Model):
     _name = 'product.set.line'
     _description = 'Product set line'
     _rec_name = 'product_id'

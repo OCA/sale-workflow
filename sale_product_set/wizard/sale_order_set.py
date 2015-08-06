@@ -3,7 +3,7 @@ from openerp import models, fields, api, _
 import openerp.addons.decimal_precision as dp
 
 
-class SaleOrderBundle(models.TransientModel):
+class SaleOrderSet(models.TransientModel):
     _name = 'sale.order.set'
     _rec_name = 'product_set_id'
 

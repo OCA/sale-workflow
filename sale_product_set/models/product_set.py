@@ -2,7 +2,7 @@
 from openerp import fields, models, _
 
 
-class ProductBundle(models.Model):
+class ProductSet(models.Model):
     _name = 'product.set'
     _description = 'Product set'
 

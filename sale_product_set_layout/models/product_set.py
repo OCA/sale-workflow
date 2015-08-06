@@ -2,7 +2,7 @@
 from openerp import models, fields, _
 
 
-class ProductBundle(models.Model):
+class ProductSet(models.Model):
     _inherit = 'product.set'
 
     # field name on sale order line: ``sale_layout_cat_id``

@@ -35,7 +35,7 @@ msgstr ""
 #: code:addons/sale_product_set/models/product_set_line.py:21
 #: field:product.set.line,product_set_id:0
 #, python-format
-msgid "Bundle reference"
+msgid "Set reference"
 msgstr ""
 
 #. module: sale_product_set
