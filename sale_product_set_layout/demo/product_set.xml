@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<openerp>
+    <data>
+        <record id="sale_product_set.product_set_services"
+                model="product.set">
+            <field name="section_id" ref="sale_layout.sale_layout_cat_1"/>
+        </record>
+    </data>
+</openerp>
