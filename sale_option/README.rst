@@ -1,5 +1,5 @@
 .. image:: https://img.shields.io/badge/licence-AGPL--3-blue.svg
-:alt: License: AGPL-3
+  :alt: License: AGPL-3
 
 Sale Option
 ==============
@@ -46,8 +46,8 @@ Maintainer
 ----------
 
 .. image:: https://odoo-community.org/logo.png
-:alt: Odoo Community Association
-:target: https://odoo-community.org
+  :alt: Odoo Community Association
+  :target: https://odoo-community.org
 
 This module is maintained by the OCA.
 
