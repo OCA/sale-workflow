@@ -16,8 +16,8 @@
                 </xpath>
                 <xpath expr="//field[@name='order_line']/form/field[@name='name']" position="after">
                     <div>
-                        <label for="optionnal_bom_line_ids"/>
-                        <field name="optionnal_bom_line_ids">
+                        <label for="optional_bom_line_ids"/>
+                        <field name="optional_bom_line_ids">
                             <tree editable="top">
                                 <field name="bom_line_id" domain="['|', '&amp;', ('bom_id.product_tmpl_id.product_variant_ids', '=', parent.product_id), ('bom_id.product_id', '=', False), ('bom_id.product_id', '=', parent.product_id), ('option_id', '!=', False)]"/>
                                 <field name="qty"/>
@@ -27,7 +27,7 @@
                     </div>
                 </xpath>
                 <xpath expr="//field[@name='order_line']/tree/field[@name='product_uom_qty']" position="after">
-                    <field name="optionnal_bom_line_ids"/>
+                    <field name="optional_bom_line_ids"/>
                 </xpath>
             </field>
         </record>

@@ -28,9 +28,9 @@ class SaleOrderLine(models.Model):
 
     base_price_unit = fields.Float()
     pricelist_id = fields.Many2one(related="order_id.pricelist_id")
-    optionnal_bom_line_ids = fields.One2many('sale.order.line.option',
+    optional_bom_line_ids = fields.One2many('sale.order.line.option',
                                              'sale_line_id',
-                                             'Optionnal BoM Line')
+                                             'optional BoM Line')
 
     def product_id_change(self, cr, uid, ids, pricelist, product,
                           qty=0,
@@ -54,10 +54,10 @@ class SaleOrderLine(models.Model):
             res['value']['base_price_unit'] = res['value']['price_unit']
             return res
 
-    @api.onchange('optionnal_bom_line_ids', 'base_price_unit')
+    @api.onchange('optional_bom_line_ids', 'base_price_unit')
     def _onchange_option(self):
         final_options_price = 0
-        for option in self.optionnal_bom_line_ids:
+        for option in self.optional_bom_line_ids:
             final_options_price += option.line_price
             self.price_unit = final_options_price + self.base_price_unit
 
@@ -69,8 +69,8 @@ class SaleOrder(models.Model):
     def _prepare_vals_lot_number(self, order_line, index_lot):
         res = super(SaleOrder, self)._prepare_vals_lot_number(order_line,
                                                               index_lot)
-        res['optionnal_bom_line_ids'] = [
-            (6, 0, [line.id for line in order_line.optionnal_bom_line_ids])
+        res['optional_bom_line_ids'] = [
+            (6, 0, [line.id for line in order_line.optional_bom_line_ids])
         ]
         return res
 

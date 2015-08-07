@@ -55,7 +55,7 @@ class Bom(models.Model):
         prod_id = self.env.context['production_id']
         prod = self.env['mrp.production'].browse(prod_id)
         bom_lines = [option.bom_line_id
-                     for option in prod.lot_id.optionnal_bom_line_ids]
+                     for option in prod.lot_id.optional_bom_line_ids]
         if not line.option_id\
                 or line.option_id.type == 'required'\
                 or line in bom_lines:
@@ -67,7 +67,7 @@ class Bom(models.Model):
     def _prepare_conssumed_line(self, bom_line, quantity, product_uos_qty):
         vals = super(Bom, self)._prepare_conssumed_line(bom_line, quantity, product_uos_qty)
         prod = self.env['mrp.production'].browse(self.env.context['production_id'])
-        for option in prod.lot_id.optionnal_bom_line_ids:
+        for option in prod.lot_id.optional_bom_line_ids:
             if option.bom_line_id == bom_line:
                 vals['product_qty'] = vals['product_qty'] * option.qty
         return vals
@@ -75,8 +75,8 @@ class Bom(models.Model):
 class StockProductionLot(models.Model):
     _inherit = 'stock.production.lot'
 
-    optionnal_bom_line_ids = fields.Many2many('sale.order.line.option',
+    optional_bom_line_ids = fields.Many2many('sale.order.line.option',
                                               'option_lot_rel',
                                               'lot_id',
                                               'option_id',
-                                              'Optionnal bom lines')
+                                              'optional bom lines')
