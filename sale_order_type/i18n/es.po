@@ -115,14 +115,14 @@ msgstr "Diario de facturación rectificativa"
 #. module: sale_order_type
 #: view:res.partner:sale_order_type.res_partner_sale_type_form_view
 #: field:res.partner,sale_type:0
-msgid "Sale Order Type"
+msgid "Sales Order Type"
 msgstr "Tipo de pedido de venta"
 
 #. module: sale_order_type
 #: model:ir.actions.act_window,name:sale_order_type.sot_sale_order_type_action
 #: model:ir.ui.menu,name:sale_order_type.sot_sale_order_type_menu
-msgid "Sale Order Types"
-msgstr "Tipos de pedidos de venta"
+msgid "Sales Order Types"
+msgstr "Tipos de pedido de venta"
 
 #. module: sale_order_type
 #: model:ir.model,name:sale_order_type.model_sale_order
