@@ -8,7 +8,7 @@
             <field name="arch" type="xml">
                 <page name="sales_purchases" position="inside">
                     <group colspan="2" col="2" attrs="{'invisible':[('customer', '=', False)]}">
-                        <separator string="Sale Order Type" colspan="2"/>
+                        <separator string="Sales Order Type" colspan="2"/>
                         <field name="sale_type"/>
                     </group>
                 </page>
