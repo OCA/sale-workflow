@@ -89,7 +89,7 @@
         </record>
 
         <record id="sot_sale_order_type_action" model="ir.actions.act_window">
-            <field name="name">Sale Order Types</field>
+            <field name="name">Sales Order Types</field>
             <field name="res_model">sale.order.type</field>
             <field name="view_mode">form,tree</field>
             <field name="view_id" ref="sot_sale_order_type_tree_view"/>
