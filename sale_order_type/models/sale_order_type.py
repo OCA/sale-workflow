@@ -18,9 +18,8 @@ class SaleOrderTypology(models.Model):
 
     @api.model
     def _get_selection_picking_policy(self):
-        res_filter = self.env[
-            'sale.order']._fields['picking_policy'].selection
-        return res_filter
+        return self.env['sale.order'].fields_get(
+            allfields=['picking_policy'])['picking_policy']['selection']
 
     def default_picking_policy(self):
         default_dict = self.env['sale.order'].default_get(['picking_policy'])
@@ -28,9 +27,8 @@ class SaleOrderTypology(models.Model):
 
     @api.model
     def _get_selection_order_policy(self):
-        res_filter = self.env[
-            'sale.order']._fields['order_policy'].selection
-        return res_filter
+        return self.env['sale.order'].fields_get(
+            allfields=['order_policy'])['order_policy']['selection']
 
     def default_order_policy(self):
         default_dict = self.env['sale.order'].default_get(['order_policy'])
@@ -38,9 +36,8 @@ class SaleOrderTypology(models.Model):
 
     @api.model
     def _get_selection_invoice_state(self):
-        res_filter = self.env[
-            'stock.picking']._fields['invoice_state'].selection
-        return res_filter
+        return self.env['stock.picking'].fields_get(
+            allfields=['invoice_state'])['invoice_state']['selection']
 
     def default_invoice_state(self):
         default_dict = self.env['stock.picking'].default_get(['invoice_state'])

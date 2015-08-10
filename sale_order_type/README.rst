@@ -8,7 +8,15 @@ This module adds a typology for the sale orders. In each different type, you
 can define, invoicing and refunding journal, a warehouse and a sequence.
 
 You are able to select a sale order type by partner so that when you add a
-partner to a sale order it will get the related type and warehouse to it.
+partner to a sale order it will get the related info to it.
+
+
+Usage
+=====
+
+.. image:: https://odoo-community.org/website/image/ir.attachment/5784_f2813bd/datas
+   :alt: Try me on Runbot
+   :target: https://runbot.odoo-community.org/runbot/167/8.0
 
 
 Bug Tracker

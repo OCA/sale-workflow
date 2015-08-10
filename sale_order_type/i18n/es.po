@@ -119,6 +119,12 @@ msgid "Sale Order Type"
 msgstr "Tipo de pedido de venta"
 
 #. module: sale_order_type
+#: model:ir.actions.act_window,name:sale_order_type.sot_sale_order_type_action
+#: model:ir.ui.menu,name:sale_order_type.sot_sale_order_type_menu
+msgid "Sale Order Types"
+msgstr "Tipos de pedidos de venta"
+
+#. module: sale_order_type
 #: model:ir.model,name:sale_order_type.model_sale_order
 msgid "Sales Order"
 msgstr "Pedido de venta"
@@ -141,12 +147,6 @@ msgstr "Tipo"
 #: model:ir.model,name:sale_order_type.model_sale_order_type
 msgid "Type of sale order"
 msgstr "Tipo de pedido de venta"
-
-#. module: sale_order_type
-#: model:ir.actions.act_window,name:sale_order_type.sot_sale_order_type_action
-#: model:ir.ui.menu,name:sale_order_type.sot_sale_order_type_menu
-msgid "Typology"
-msgstr "Tipología"
 
 #. module: sale_order_type
 #: view:sale.order.type:sale_order_type.sot_sale_order_type_search_view
