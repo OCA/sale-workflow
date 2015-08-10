@@ -1,14 +1,14 @@
 .. image:: https://img.shields.io/badge/licence-AGPL--3-blue.svg
     :alt: License: AGPL-3
 
-Sale Order Types
-================
+Sales Order Types
+=================
 
-This module adds a typology for the sale orders. In each different type, you
+This module adds a typology for the sales orders. In each different type, you
 can define, invoicing and refunding journal, a warehouse and a sequence.
 
-You are able to select a sale order type by partner so that when you add a
-partner to a sale order it will get the related info to it.
+You are able to select a sales order type by partner so that when you add a
+partner to a sales order it will get the related info to it.
 
 
 Usage
