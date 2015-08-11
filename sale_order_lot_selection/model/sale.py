@@ -24,16 +24,17 @@ from openerp.exceptions import Warning
 from openerp.tools import float_compare
 
 
-class sale_order_line(models.Model):
+class SaleOrderLine(models.Model):
     _inherit = 'sale.order.line'
 
-    lot_id = fields.Many2one('stock.production.lot', 'Lot', copy=False)
+    lot_id = fields.Many2one(
+        'stock.production.lot', 'Lot',
+        domain="[('product_id','=',product_id)]", copy=False)
 
     @api.onchange('lot_id')
     def on_change_lot_id(self):
         res = {}
         warning = {}
-
         product_obj = self.env['product.product'].with_context(
             lot_id=self.lot_id.id).browse(self.lot_id.product_id.id)
         compare_qty = float_compare(product_obj.virtual_available,
@@ -57,13 +58,13 @@ class sale_order_line(models.Model):
             return res
 
 
-class sale_order(models.Model):
+class SaleOrder(models.Model):
     _inherit = "sale.order"
 
     @api.model
     def _prepare_order_line_procurement(self, order, line, group_id=False):
         res = super(
-            sale_order, self)._prepare_order_line_procurement(
+            SaleOrder, self)._prepare_order_line_procurement(
                 order, line, group_id)
         res['lot_id'] = line.lot_id.id
         return res
@@ -100,7 +101,7 @@ class sale_order(models.Model):
 
     @api.model
     def action_ship_create(self):
-        super(sale_order, self).action_ship_create()
+        super(SaleOrder, self).action_ship_create()
         for line in self.order_line:
             self._check_move_state(line)
             return True
