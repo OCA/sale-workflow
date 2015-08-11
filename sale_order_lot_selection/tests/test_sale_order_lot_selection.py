@@ -19,6 +19,7 @@
 #                                                                       #
 #########################################################################
 import openerp.tests.common as test_common
+from openerp.exceptions import Warning
 
 
 class TestSaleOrderLotSelection(test_common.SingleTransactionCase):
@@ -145,6 +146,20 @@ class TestSaleOrderLotSelection(test_common.SingleTransactionCase):
         for pack in picking.pack_operation_ids:
             if pack.product_id.id == self.product_14.id:
                 self.assertEqual(pack.lot_id, self.lot10)
+# I'll try to create a sale order with lot10
+# and confirm it to check lot reservation
+        self.order_test = self.env['sale.order'].create(
+            {
+                'partner_id': self.env.ref('base.res_partner_1').id,
+            })
+        self.order_line_test_1 = self.env['sale.order.line'].create({
+            'name': 'sol_test_1',
+            'order_id': self.order_test.id,
+            'lot_id': self.lot10.id,
+            'product_id': self.product_14.id,
+        })
+        with self.assertRaises(Warning):
+            self.order_test.action_button_confirm()
 
     def test_order_confirm_and_picking_transfer_2_products_2_lots(self):
         self.order2.action_button_confirm()
