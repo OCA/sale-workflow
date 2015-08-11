@@ -80,7 +80,7 @@ class SaleOrderLineOption(models.Model):
 
     sale_line_id = fields.Many2one('sale.order.line')
     bom_line_id = fields.Many2one('mrp.bom.line', 'Bom line')
-    qty = fields.Integer()
+    qty = fields.Integer(default=1)
     line_price = fields.Float(compute='_compute_price', store=True)
 
     @api.one
