@@ -21,7 +21,6 @@
 
 from openerp import fields, models, api, _
 from openerp.exceptions import Warning
-from openerp.tools import float_compare
 
 
 class SaleOrderLine(models.Model):
@@ -31,31 +30,32 @@ class SaleOrderLine(models.Model):
         'stock.production.lot', 'Lot',
         domain="[('product_id','=',product_id)]", copy=False)
 
-    @api.onchange('lot_id')
-    def on_change_lot_id(self):
-        res = {}
-        warning = {}
-        product_obj = self.env['product.product'].with_context(
-            lot_id=self.lot_id.id).browse(self.lot_id.product_id.id)
-        compare_qty = float_compare(product_obj.virtual_available,
-                                    self.product_uom_qty,
-                                    precision_rounding=(
-                                        product_obj.uom_id.rounding))
-        if compare_qty == -1:
-            warn_msg = _('You plan to sell %.2f %s but you'
-                         ' only have %.2f %s available !'
-                         '\nThe real stock is %.2f %s.'
-                         ' (without reservations)') % \
-                (self.product_uom_qty, product_obj.uom_id.name,
-                 max(0, product_obj.virtual_available),
-                 product_obj.uom_id.name,
-                 max(0, product_obj.qty_available),
-                 product_obj.uom_id.name)
-            warning = {'title': _('Configuration Error!'),
-                       'message': _(
-                           "Not enough stock ! : ") + warn_msg + "\n\n"}
-            res.update({'warning': warning})
-            return res
+    @api.v7
+    def product_id_change_with_wh(
+            self, cr, uid, ids, pricelist, product, qty=0,
+            uom=False, qty_uos=0, uos=False, name='', partner_id=False,
+            lang=False, update_tax=True, date_order=False, packaging=False,
+            fiscal_position=False, flag=False, warehouse_id=False,
+            context=False):
+        res = super(SaleOrderLine, self).product_id_change_with_wh(
+            cr, uid, ids, pricelist, product, qty, uom,
+            qty_uos, uos, name, partner_id, lang, update_tax,
+            date_order, packaging, fiscal_position, flag,
+            warehouse_id, context)
+        location_obj = self.pool.get('stock.location').browse(
+            cr, uid, warehouse_id)
+        prod_obj = self.pool.get('product.product').browse(
+            cr, uid, product)
+        quant_ids = self.pool.get('stock.quant').quants_get_prefered_domain(
+            cr, uid, location=location_obj, product=prod_obj, qty=qty,
+            context=context)
+        lots = []
+        for quant_tuple in quant_ids:
+            if quant_tuple[0] is not None:
+                lots.append(quant_tuple[0].lot_id.id)
+        res.update({'domain': {'lot_id': ['id', 'in', list(set(lots))]}})
+        res['value']['lot_id'] = False
+        return res
 
 
 class SaleOrder(models.Model):
