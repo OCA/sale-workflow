@@ -10,9 +10,17 @@ class ResPartner(models.Model):
     _inherit = 'res.partner'
 
     @api.one
-    @api.depends('sale_order_ids', 'sale_order_ids.state')
+    @api.depends('commercial_partner_id',
+                 'commercial_partner_id.sale_order_ids',
+                 'commercial_partner_id.sale_order_ids.state',
+                 'commercial_partner_id.child_ids',
+                 'commercial_partner_id.child_ids.sale_order_ids',
+                 'commercial_partner_id.child_ids.sale_order_ids.state')
     def _compute_prospect(self):
-        self.prospect = not self.sale_order_ids.filtered(
+        sale_ids = (
+            self.commercial_partner_id.sale_order_ids +
+            self.commercial_partner_id.mapped('child_ids.sale_order_ids'))
+        self.prospect = not sale_ids.filtered(
             lambda r: r.state not in ('draft', 'sent', 'cancel'))
 
     prospect = fields.Boolean(
