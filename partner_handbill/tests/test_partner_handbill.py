@@ -24,6 +24,14 @@ class TestPartnerHandbill(TransactionCase):
                             })],
              })
         self.sale_order_partner1.action_button_confirm()
+        self.sale_order_partner2 = self.sale_order_model.create(
+            {'partner_id': self.partner2.id,
+             'order_policy': 'manual',
+             'order_line': [(0, 0, {
+                            'product_id': self.product.id,
+                            })],
+             })
+        self.sale_order_partner2.action_quotation_send()
 
     def test_partner_handbill_check(self):
         self.assertFalse(self.partner1.handbill, 'Partner is handbill')
