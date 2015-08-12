@@ -11,9 +11,9 @@ class ResPartner(models.Model):
 
     @api.one
     @api.depends('sale_order_ids', 'sale_order_ids.state')
-    def _compute_handbill(self):
-        self.handbill = not self.sale_order_ids.filtered(
+    def _compute_prospect(self):
+        self.prospect = not self.sale_order_ids.filtered(
             lambda r: r.state not in ('draft', 'sent', 'cancel'))
 
-    handbill = fields.Boolean(string='Handbill', readonly=True,
-                              compute='_compute_handbill', store=True)
+    prospect = fields.Boolean(
+        string='Prospect', compute='_compute_prospect', store=True)

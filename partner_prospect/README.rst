@@ -1,10 +1,12 @@
 .. image:: https://img.shields.io/badge/licence-AGPL--3-blue.svg
     :alt: License: AGPL-3
 
-Partner handbill
+Partner prospect
 ================
 
-This module controls with a check if a costumer has a sale order confirmed.
+With this module you can easily distinguise if a partner is currently customer
+or prospect. A prospect partner will be those to which you still haven't sold
+anything, considering sales as non cancelled nor draft sale orders to that partner.
 
 
 Usage
