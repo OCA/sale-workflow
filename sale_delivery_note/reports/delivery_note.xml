@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+<data>
+
+<template id="delivery_note_document">
+    <div class="page">
+        <div class="row">
+            <div name="delivery_address_block" class="col-xs-4">
+                <strong>Deliver To:</strong>
+                <div name="delivery_address_field" t-field="o.partner_id"
+                     t-field-options='{"widget": "contact", "fields": ["address", "name", "phone", "fax", "email"], "no_marker": true }'
+                />
+            </div>
+            <div name="invoice_address_block" class="col-xs-4" t-if="o.sale_id and o.sale_id.partner_invoice_id">
+                <strong>Invoice To:</strong>
+                <div name="invoice_address_field" t-field="o.sale_id.partner_invoice_id"
+                     t-field-options='{"widget": "contact", "fields": ["address", "name", "phone", "fax", "email"], "no_marker": true }'
+                />
+            </div>
+        </div>
+        <hr />
+        <h2>Delivery Note <span t-field="o.name"/></h2>
+        <div name="ids_row" class="row">
+            <div name="date_col" class="col-xs-2" t-if="o.date">
+                <strong>Date:</strong>
+                <div t-field="o.date" t-field-options='{"format": "dd/MM/YYYY"}'/>
+            </div>
+            <div name="origin_col" class="col-xs-2" t-if="o.origin">
+                <strong>Order No:</strong>
+                <div t-field="o.origin"/>
+            </div>
+            <div name="contact_ref_col" class="col-xs-2" t-if="o.partner_id.ref">
+                <strong>Contact Ref:</strong>
+                <div t-field="o.partner_id.ref"/>
+            </div>
+            <div name="your_ref_col" class="col-xs-4" t-if="o.source_doc_client_order_ref">
+                <strong>Your Ref:</strong>&#160;<span t-field="o.source_doc_client_order_ref"/>
+                <div class="pull-right">
+                    <img t-att-src="'/report/barcode/?type=%s&amp;value=%s&amp;width=%s&amp;height=%s' % ('Standard39', o.source_doc_client_order_ref, 300, 30)"/>
+                </div>
+            </div>
+        </div>
+        <hr />
+        <div class="row">
+            <table class="table table-condensed">
+                <thead>
+                    <th name="table_description_header">Description</th>
+                    <th>Quantity</th>
+                    <th name="table_outstanding_qty_header">Outstanding</th>
+                </thead>
+                <tbody>
+                    <tr name="table_detail_row" t-foreach="o.move_lines" t-as="stockmove">
+                        <td name="table_name_td"><span name="table_name_row" t-field="stockmove.name"/></td>
+                        <td><span t-field="stockmove.product_qty"/></td>
+                        <td><span t-field="stockmove.outstanding_qty" name="table_outstanding_qty_cell"/></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</template>
+
+<template id="delivery_note_print_template">
+<t t-call="report.html_container">
+    <t t-call="report.external_layout">
+        <t t-foreach="docs" t-as="o">
+            <t t-call="sale_delivery_note.delivery_note_document"/>
+        </t>
+    </t>
+</t>
+</template>
+
+<report 
+    id="delivery_note_print"
+    model="stock.picking"
+    string="Delivery Note"
+    report_type="qweb-pdf"
+    name="sale_delivery_note.delivery_note_print_template"
+    file="sale_delivery_note.delivery_note_print_template"
+    attachment="(object.name or 'UNNAMED').replace('/','_')+'__delivery_note.pdf'"
+/>
+
+</data>
+</openerp>

@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+        <record id="view_picking_form_delivery_note" model="ir.ui.view">
+            <field name="name">stock.picking.form.inherit_delivery_note</field>
+            <field name="model">stock.picking</field>
+            <field name="inherit_id" ref="stock.view_picking_form"/>
+            <field name="arch" type="xml">
+                <!-- For Reference/Description -->
+                <field name="origin" position="after">
+                    <field name="source_doc_client_order_ref"/>
+                </field>
+            </field>
+        </record>
+
+        <record id="view_purchase_order_ref_form" model="ir.ui.view">
+            <field name="name">purchase.order.view.ref_inherit</field>
+            <field name="model">purchase.order</field>
+            <field name="inherit_id" ref="purchase.purchase_order_form"/>
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='origin']" position="after">
+                    <field name='source_doc_client_order_ref'/>
+                </xpath>
+            </field>
+        </record>
+    </data>
+</openerp>
