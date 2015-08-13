@@ -3,4 +3,4 @@
 # For copyright and license notices, see __openerp__.py file in root directory
 ##############################################################################
 
-from . import test_partner_handbill
+from . import test_partner_prospect
