@@ -56,9 +56,9 @@ class SaleOrderLine(models.Model):
         for quant_tuple in quant_ids:
             if quant_tuple[0] is not None:
                 quant_obj = self.pool.get('stock.quant').browse(
-                    cr, uid, quant_tuple)
+                    cr, uid, context, quant_tuple[0])
                 lots.append(quant_obj.lot_id.id)
-        res.update({'domain': {'lot_id': ['id', 'not in', list(set(lots))]}})
+            res.update({'domain': {'lot_id': ['id', 'in', list(set(lots))]}})
         return res
 
 
