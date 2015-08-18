@@ -36,8 +36,12 @@ class Common(object):
 
     def _get_source_order(self):
         if self.origin:
-            matched_sale = self.env['sale.order'].search([('name', '=', self.origin)])
-            matched_product = self.env['purchase.order'].search([('name', '=', self.origin)])
+            matched_sale = self.env['sale.order'].search(
+                [('name', '=', self.origin)]
+            )
+            matched_product = self.env['purchase.order'].search(
+                [('name', '=', self.origin)]
+            )
             if matched_sale:
                 return {'order': matched_sale, 'model': 'sale.order'}
             elif matched_product:

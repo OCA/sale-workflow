@@ -27,9 +27,9 @@
     'author': 'OpusVL, Odoo Community Association (OCA)',
     'website': 'http://opusvl.com/',
     'summary': 'Allow printing of delivery note',
-    
+
     'category': 'Warehouse',
-    
+
     'description': """Allow printing of delivery note from delivery order screen.
 """,
     'images': [
