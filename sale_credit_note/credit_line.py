@@ -30,7 +30,11 @@ class sale_credit_line(orm.Model):
     _description = "Lines used to decrease the residual on sales from refunds."
 
     _columns = {
-        'order_id': fields.many2one('sale.order', 'Sale order', required=True),
+        'order_id': fields.many2one(
+            'sale.order',
+            'Sale order',
+            required=True,
+            ondelete='cascade'),
         'amount': fields.float(
             'Amount',
             digits_compute=dp.get_precision('Account')),
