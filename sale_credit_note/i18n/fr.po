@@ -1,0 +1,148 @@
+# Translation of OpenERP Server.
+# This file contains the translation of the following modules:
+#	* sale_credit_note
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: OpenERP Server 7.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2015-03-03 17:43+0000\n"
+"PO-Revision-Date: 2015-03-03 17:43+0000\n"
+"Last-Translator: <>\n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: sale_credit_note
+#: view:sale.order:0
+msgid "(update)"
+msgstr "(mise à jour)"
+
+#. module: sale_credit_note
+#: field:sale.credit.line,amount:0
+#: model:ir.model.fields,field_description:sale_credit_note.field_credit_line_amount
+msgid "Amount"
+msgstr "Montant"
+
+#. module: sale_credit_note
+#: help:account.invoice,credit_note_amount:0
+msgid "Amount available on sale orders to create a credit line"
+msgstr "Montant disponible pour créer des des lignes d'avoir sur les bons de commande."
+
+#. module: sale_credit_note
+#: view:sale.new.credit.note:0
+msgid "Cancel"
+msgstr "Annuler"
+
+#. module: sale_credit_note
+#: view:sale.order:0
+msgid "Credit lines"
+msgstr "Lignes d'avoir"
+
+#. module: sale_credit_note
+#: field:account.invoice,credit_note_amount:0
+#: model:ir.model.fields,field_description:sale_credit_note.field_account_invoice_credit_note_amount
+#: model:ir.model.fields,field_description:sale_credit_note.field_sale_new_credit_note_credit_amount
+#: field:sale.new.credit.note,credit_amount:0
+msgid "Credit note amount"
+msgstr "Montant de l'avoir magasin"
+
+#. module: sale_credit_note
+#: view:sale.order:0
+msgid "Get credit lines"
+msgstr "Ajouter des lignes d'avoir"
+
+#. module: sale_credit_note
+#: code:_description:0
+#: model:ir.model,name:sale_credit_note.model_account_invoice
+#, python-format
+msgid "Invoice"
+msgstr "Facture"
+
+#. module: sale_credit_note
+#: view:account.invoice:0
+#: model:ir.actions.act_window,name:sale_credit_note.action_credit_note
+#: view:sale.new.credit.note:0
+msgid "New credit note"
+msgstr "Nouvel avoir magasin"
+
+#. module: sale_credit_note
+#: field:sale.credit.line,refund_id:0
+#: model:ir.model.fields,field_description:sale_credit_note.field_sale_credit_line_refund_id
+msgid "Refund"
+msgstr "Avoir"
+
+#. module: sale_credit_note
+#: model:ir.model.fields,field_description:sale_credit_note.field_sale_order_credit_line_ids
+#: field:sale.order,credit_line_ids:0
+msgid "Refund lines"
+msgstr "Lignes d'avoir"
+
+#. module: sale_credit_note
+#: code:_description:0
+#, python-format
+msgid "Sale Order"
+msgstr "Bon de commande"
+
+#. module: sale_credit_note
+#: field:sale.credit.line,order_id:0
+#: model:ir.model.fields,field_description:sale_credit_note.field_sale_credit_line_order_id
+msgid "Sale order"
+msgstr "Bon de commande"
+
+#. module: sale_credit_note
+#: model:ir.model,name:sale_credit_note.model_sale_order
+msgid "Sales Order"
+msgstr "Bon de commande"
+
+#. module: sale_credit_note
+#: view:sale.new.credit.note:0
+msgid "Set the amount of the credit note linked to the refund."
+msgstr "Entrer le montant de l'avoir magasin lié à cet avoir."
+
+#. module: sale_credit_note
+#: code:addons/sale_credit_note/credit_line.py:58
+#, python-format
+msgid "The order is totally paid or refunded, you can't add a new refund line."
+msgstr "La commande est totalement payée ou remboursée, vous ne pouvez pas ajouter de nouvelle ligne d'avoir."
+
+#. module: sale_credit_note
+#: model:ir.model.fields,field_description:sale_credit_note.field_sale_order_total_credit_amount
+#: field:sale.order,total_credit_amount:0
+msgid "Total credit amount"
+msgstr "Montant total d'avoir"
+
+#. module: sale_credit_note
+#: code:addons/sale_credit_note/credit_line.py:57
+#: code:addons/sale_credit_note/credit_line.py:68
+#, python-format
+msgid "User Error"
+msgstr "Erreur utilisateur"
+
+#. module: sale_credit_note
+#: code:addons/sale_credit_note/credit_line.py:69
+#, python-format
+msgid "You can't use this refund on a new line, it is totally refunded."
+msgstr "Vous ne pouvez pas utiliser cet avoir pour une nouvelle ligne d'avoir, la totalité de cet avoir est déjà affectée à des commandes."
+
+#. module: sale_credit_note
+#: code:_description:0
+#: model:ir.model,name:sale_credit_note.model_sale_credit_line
+#, python-format
+msgid "sale.credit.line"
+msgstr "sale.credit.line"
+
+#. module: sale_credit_note
+#: code:_description:0
+#: model:ir.model,name:sale_credit_note.model_sale_new_credit_note
+#, python-format
+msgid "Lines used to decrease the residual on sales from refunds."
+msgstr "Lignes utilisée pour réduire le montant restant sur les commandes de vente depuis les avoirs."
+
+#. module: sale_credit_note
+#: view:sale.new.credit.note:0
+msgid "or"
+msgstr "ou"
+

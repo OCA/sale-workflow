@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  Module for OpenERP
+  Copyright (C) 2015 Akretion (http://www.akretion.com). All Rights Reserved
+  @author Benoît GUILLOT <benoit.guillot@akretion.com>
+  The licence is in the file __openerp__.py
+-->
+
+<openerp>
+    <data>
+        <!-- INHERITED VIEW FOR THE OBJECT : account.invoice  -->
+
+        <record id="invoice_form" model="ir.ui.view">
+            <field name="name">credit_line.invoice.view_form</field>
+            <field name="model">account.invoice</field>
+            <field name="inherit_id" ref="account.invoice_form" />
+            <field name="arch" type="xml">
+                <field name="residual" position="after">
+                    <field name="credit_note_amount" widget="monetary"/>
+                </field>
+                <button name="invoice_open" position="after">
+                    <button name="%(action_credit_note)d" type="action"
+                        string="New credit note"
+                        attrs="{'invisible': ['|',
+                                              ('type', '!=', 'out_refund'),
+                                              ('credit_note_amount', '!=', 0)]}"/>
+                </button>
+            </field>
+        </record>
+    </data>
+</openerp>
