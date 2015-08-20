@@ -1,0 +1,48 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* sale_sourced_by_line
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 8.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2014-10-14 08:07+0000\n"
+"PO-Revision-Date: 2015-08-16 08:26+0200\n"
+"Last-Translator: Matjaz Mozetic <m.mozetic@matmoz.si>\n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: \n"
+"Language: sl\n"
+"X-Generator: Poedit 1.8.4\n"
+
+#. module: sale_sourced_by_line
+#: help:sale.order.line,warehouse_id:0
+msgid "If a source warehouse is selected, it will be used to define the route. Otherwise, it will get the warehouse of the sale order"
+msgstr "Ob izbiri izvornega skladišča, bo to uporabljeno za določitev proge. Drugače bo izbrano skladišče iz prodajnega naloga"
+
+#. module: sale_sourced_by_line
+#: model:ir.model,name:sale_sourced_by_line.model_stock_picking
+msgid "Picking List"
+msgstr "Zbirnik"
+
+#. module: sale_sourced_by_line
+#: field:sale.order.line,procurement_group_id:0
+msgid "Procurement group"
+msgstr "Skupina oskrbovanja"
+
+#. module: sale_sourced_by_line
+#: model:ir.model,name:sale_sourced_by_line.model_sale_order
+msgid "Sales Order"
+msgstr "Prodajni nalog"
+
+#. module: sale_sourced_by_line
+#: model:ir.model,name:sale_sourced_by_line.model_sale_order_line
+msgid "Sales Order Line"
+msgstr "Postavka prodajnega naloga"
+
+#. module: sale_sourced_by_line
+#: field:sale.order.line,warehouse_id:0
+msgid "Source Warehouse"
+msgstr "Izvorno skladišče"
