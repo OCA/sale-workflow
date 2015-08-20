@@ -3,20 +3,19 @@
 # * sale_validity
 # 
 # Translators:
-# Pierre Verkest <pverkest@anybox.fr>, 2015
 msgid ""
 msgstr ""
 "Project-Id-Version: sale-workflow (8.0)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-10-02 17:59+0000\n"
-"PO-Revision-Date: 2015-09-24 21:19+0000\n"
-"Last-Translator: Pierre Verkest <pverkest@anybox.fr>\n"
-"Language-Team: French (http://www.transifex.com/oca/OCA-sale-workflow-8-0/language/fr/)\n"
+"POT-Creation-Date: 2015-09-09 12:27+0000\n"
+"PO-Revision-Date: 2015-09-03 07:11+0000\n"
+"Last-Translator: <>\n"
+"Language-Team: Spanish (http://www.transifex.com/oca/OCA-sale-workflow-8-0/language/es/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
-"Language: fr\n"
-"Plural-Forms: nplurals=2; plural=(n > 1);\n"
+"Language: es\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
 #. module: sale_validity
 #: help:res.company,default_sale_order_validity_days:0
@@ -24,36 +23,36 @@ msgid ""
 "By default, the validity date of sale orders will be the date of the sale "
 "order plus the number of days defined in this field. If the value of this "
 "field is 0, the sale orders will not have a validity date by default."
-msgstr "Par défaut, la date de validité des bons de commande est la date du bon de commande plus le nombre de jours défini par ce champ. Si la valeur est 0, le bon de commande n'aura pas de date de validité par défaut."
+msgstr ""
 
 #. module: sale_validity
 #: model:ir.model,name:sale_validity.model_res_company
 msgid "Companies"
-msgstr "Sociétés"
+msgstr ""
 
 #. module: sale_validity
 #: field:res.company,default_sale_order_validity_days:0
 msgid "Default Validity of Sale Orders (in days)"
-msgstr "Validité par défaut des bons de commande (en jours)"
+msgstr ""
 
 #. module: sale_validity
 #: help:sale.order,date_validity:0
 msgid "Define date until when quotation is valid"
-msgstr "Défini la date de validité du devis "
+msgstr ""
 
 #. module: sale_validity
 #: model:ir.model,name:sale_validity.model_sale_order
 msgid "Sales Order"
-msgstr "Bon de commande"
+msgstr "Pedido de venta"
 
 #. module: sale_validity
 #: sql_constraint:res.company:0
 msgid ""
 "The value of the field 'Default Validity Duration of Sale Orders' must be "
 "positive or 0."
-msgstr "La valeur du champ 'Validité par défaut des bons de commande' doit être supérieur ou égale à 0."
+msgstr ""
 
 #. module: sale_validity
 #: field:sale.order,date_validity:0
 msgid "Valid Until"
-msgstr "Valide jusqu'au"
+msgstr ""
