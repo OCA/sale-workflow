@@ -18,25 +18,26 @@
 #    along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
 ##############################################################################
-from openerp import models, _
+from openerp import models, api, _
 
 
 class SaleOrder(models.Model):
     _inherit = 'sale.order'
 
-    def onchange_pricelist_id(self, cr, uid, ids, pricelist_id, order_lines,
-                              context=None):
-        context = context or {}
+    @api.multi
+    def onchange_pricelist_id(self, pricelist_id, order_lines):
         if not pricelist_id:
             return {}
-        pricelist = self.pool.get('product.pricelist').browse(
-            cr, uid, pricelist_id, context=context)
-        res = {'value': {}}
-        res['value']['currency_id'] = pricelist.currency_id.id
+        pricelist_model = self.env['product.pricelist']
+        res = super(SaleOrder, self).onchange_pricelist_id(pricelist_id,
+                                                           order_lines)
+        # Remove warning from super call
+        if res.get('warning'):
+            res.pop('warning', None)
         if not order_lines or order_lines == [(6, 0, [])]:
             return res
-        line_dict = self.resolve_2many_commands(
-            cr, uid, 'order_line', order_lines, context=context)
+        pricelist = pricelist_model.browse(pricelist_id)
+        line_dict = self.resolve_2many_commands('order_line', order_lines)
         warning_msg = ""
         for line in line_dict:
             # Reformat line_dict so as to be compatible with what is
@@ -45,10 +46,11 @@ class SaleOrder(models.Model):
                 if isinstance(value, tuple) and len(value) == 2:
                     line[key] = value[0]
             if line.get('product_id'):
-                price = self.pool.get('product.pricelist').price_get(
-                    cr, uid, [pricelist_id], line['product_id'],
-                    line['product_uom_qty'] or 1.0, False,
-                    {'uom': line['product_uom']})[pricelist_id]
+                ctx = dict(self.env.context)
+                ctx['uom'] = line['product_uom']
+                price = pricelist.with_context(ctx).price_get(
+                    line['product_id'],
+                    line['product_uom_qty'] or 1.0)[pricelist_id]
                 if price:
                     line['price_unit'] = price
                 else:
