@@ -50,7 +50,7 @@ msgid ""
 "field is 0, the sale orders will not have a validity date by default."
 msgstr ""
 "Par défaut, la date de validité des devis sera égale à leur date de "
-"création plus le nombre de jours saisies dans ce champs. Si ce champs "
+"création plus le nombre de jours saisi dans ce champs. Si ce champs "
 "n'a pas de valeur, la date de validité ne sera pas pré-remplie. "
 
 #. module: sale_validity
