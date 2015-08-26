@@ -58,7 +58,8 @@ class SaleOrderLine(models.Model):
                 quant_obj = self.pool.get('stock.quant').browse(
                     cr, uid, context, quant_tuple[0])
                 lots.append(quant_obj.lot_id.id)
-        res.update({'domain': {'lot_id': ['id', 'in', list(set(lots))]}})
+        if lots:
+            res.update({'domain': {'lot_id': ['id', 'in', list(set(lots))]}})
         return res
 
 
