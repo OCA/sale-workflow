@@ -11,6 +11,8 @@ class TestSaleOrderType(common.TransactionCase):
         super(TestSaleOrderType, self).setUp()
         self.sale_type_model = self.env['sale.order.type']
         self.sale_order_model = self.env['sale.order']
+        self.stock_picking_model = self.env['stock.picking']
+        self.picking_type_out = self.env.ref('stock.picking_type_out')
         self.sale_line_model = self.env['sale.order.line']
         self.picking_model = self.env['stock.picking']
         self.partner = self.env.ref('base.res_partner_1')
@@ -68,3 +70,10 @@ class TestSaleOrderType(common.TransactionCase):
         for picking in sale_order.picking_ids:
             self.assertEqual(self.sale_type.invoice_state,
                              picking.invoice_state)
+
+    def test_stock_picking_create(self):
+        self.picking_out = self.picking_model.create({
+            'partner_id': self.partner.id,
+            'picking_type_id': self.picking_type_out.id
+        })
+        self.assertTrue(self.picking_out.id)
