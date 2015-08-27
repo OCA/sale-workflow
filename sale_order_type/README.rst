@@ -38,6 +38,7 @@ Contributors
 * Oihane Crucelaegui <oihanecrucelaegi@avanzosc.es>
 * Pedro M. Baeza <pedro.baeza@serviciosbaeza.com>
 * Ana Juaristi <anajuaristi@avanzosc.es>
+* Daniel Campos <danielcampos@avanzosc.es>
 
 Maintainer
 ----------
