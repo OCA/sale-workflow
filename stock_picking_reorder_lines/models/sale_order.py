@@ -22,13 +22,13 @@
 from openerp.osv.orm import Model
 
 
-class sale_order(Model):
+class SaleOrder(Model):
     _inherit = 'sale.order'
 
+    @api.model
     def _prepare_order_line_move(
-            self, cr, uid, order, line, picking_id, date_planned,
-            context=None):
+            self, order, line, picking_id, date_planned):
         res = super(sale_order, self)._prepare_order_line_move(
-            cr, uid, order, line, picking_id, date_planned, context=context)
+            order, line, picking_id, date_planned)
         res['sequence'] = line.sequence
         return res
