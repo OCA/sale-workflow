@@ -27,7 +27,6 @@
     'depends': [
         'stock',
         'sale',
-        'sale_stock',
     ],
     'data': [
         'views/view.xml',
