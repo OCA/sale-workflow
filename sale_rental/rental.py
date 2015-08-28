@@ -308,11 +308,12 @@ class SaleOrderLine(models.Model):
             self.product_uom_qty = self.sell_rental_id.rental_qty
             self.product_uos_qty = self.sell_rental_id.rental_qty
 
-    @api.onchange('rental_qty', 'number_of_days')
+    @api.onchange('rental_qty', 'number_of_days', 'product_id')
     def rental_qty_number_of_days_change(self):
-        qty = self.rental_qty * self.number_of_days
-        self.product_uom_qty = qty
-        self.product_uos_qty = qty
+        if self.product_id.rented_product_id:
+            qty = self.rental_qty * self.number_of_days
+            self.product_uom_qty = qty
+            self.product_uos_qty = qty
 
     @api.onchange('rental_type')
     def rental_type_change(self):
