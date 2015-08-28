@@ -28,5 +28,4 @@ class StockMove(Model):
     _order = 'date_expected desc, sequence, id'
 
     sequence = fields.Integer(
-        default=10,
         help="Gives the sequence of this line when displaying the picking.")
