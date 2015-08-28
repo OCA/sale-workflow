@@ -28,7 +28,7 @@ class SaleOrder(models.Model):
     @api.model
     def _prepare_order_line_move(
             self, order, line, picking_id, date_planned):
-        res = super(sale_order, self)._prepare_order_line_move(
+        res = super(SaleOrder, self)._prepare_order_line_move(
             order, line, picking_id, date_planned)
         res['sequence'] = line.sequence
         return res

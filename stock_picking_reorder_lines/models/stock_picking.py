@@ -19,7 +19,7 @@
 #
 #
 
-from openerp import models, fields
+from openerp import models
 
 
 class StockPicking(models.Model):
@@ -27,7 +27,7 @@ class StockPicking(models.Model):
 
     def _prepare_invoice_line(
             self, group, picking, move_line, invoice_id, invoice_vals):
-        res = super(stock_picking, self)._prepare_invoice_line(
+        res = super(StockPicking, self)._prepare_invoice_line(
             group, picking, move_line, invoice_id, invoice_vals)
         res['sequence'] = move_line.sequence
         return res
