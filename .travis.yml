@@ -1,3 +1,4 @@
+language: python
 sudo: false
 cache: pip
 
@@ -7,26 +8,22 @@ addons:
       - expect-dev  # provides unbuffer utility
       - python-lxml # because pip installation is slow
 
-language: python
-
 python:
   - "2.7"
 
 env:
+  global:
+  - VERSION="7.0" TESTS="0" LINT_CHECK="0" TRANSIFEX="0"
+  matrix:
+  - LINT_CHECK=1
   # exclude tests of modules which doesn't depends on sale_stock
-  - VERSION="7.0" ODOO_REPO="odoo/odoo" EXCLUDE="last_sale_price"
-  - VERSION="7.0" ODOO_REPO="odoo/odoo" INCLUDE="last_sale_price"
-
-  - VERSION="7.0" ODOO_REPO="OCA/OCB" EXCLUDE="last_sale_price"
-  - VERSION="7.0" ODOO_REPO="OCA/OCB" INCLUDE="last_sale_price"
+  - TESTS=1 ODOO_REPO="odoo/odoo" EXCLUDE="last_sale_price"
+  - TESTS=1 ODOO_REPO="odoo/odoo" INCLUDE="last_sale_price"
+  - TESTS=1 ODOO_REPO="OCA/OCB" EXCLUDE="last_sale_price"
+  - TESTS=1 ODOO_REPO="OCA/OCB" INCLUDE="last_sale_price"
 
 virtualenv:
   system_site_packages: true
-
-before_install:
-  - git clone https://github.com/OCA/product-attribute $HOME/product-attribute -b ${VERSION}
-  - git clone https://github.com/OCA/purchase-workflow $HOME/purchase-workflow -b ${VERSION}
-  - git clone https://github.com/OCA/server-tools.git $HOME/server-tools -b ${VERSION}
 
 install:
   - git clone https://github.com/OCA/maintainer-quality-tools.git ${HOME}/maintainer-quality-tools
@@ -37,4 +34,4 @@ script:
   - travis_run_tests
 
 after_success:
-  coveralls
+  - travis_after_tests_success

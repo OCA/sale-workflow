@@ -26,19 +26,19 @@ class sale_order_line(orm.Model):
     _inherit = "sale.order.line"
 
     def product_id_change(
-        self, cr, uid, ids, pricelist, product_id, qty=0,
+        self, cr, uid, ids, pricelist, product, qty=0,
         uom=False, qty_uos=0, uos=False, name='', partner_id=False,
         lang=False, update_tax=True, date_order=False, packaging=False,
         fiscal_position=False, flag=False, context=None
     ):
         res = super(sale_order_line, self).product_id_change(
-            cr, uid, ids, pricelist, product_id, qty=qty, uom=uom,
+            cr, uid, ids, pricelist, product, qty=qty, uom=uom,
             qty_uos=qty_uos, uos=uos, name='', partner_id=partner_id,
             lang=lang, update_tax=update_tax, date_order=date_order,
             packaging=packaging, fiscal_position=fiscal_position,
             flag=flag, context=context
         )
-        if product_id:
+        if product:
             user = self.pool.get('res.users').browse(
                 cr, uid, uid, context=context)
             user_groups = [g.id for g in user.groups_id]
@@ -51,7 +51,7 @@ class sale_order_line(orm.Model):
                 if group_id in user_groups:
                     product_obj = self.pool.get('product.product')
                     product = product_obj.browse(
-                        cr, uid, product_id, context=context)
+                        cr, uid, product, context=context)
                     if (
                         product and
                         product.description and
