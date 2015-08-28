@@ -43,8 +43,8 @@ Contributors :
 * Alexis de Lattre <alexis.delattre@akretion.com>
 """,
     'author':
-        """Julius Network Solutions,"""
-        """Akretion,Odoo Community Association (OCA)""",
+        "Julius Network Solutions,"
+        "Akretion,Odoo Community Association (OCA)",
     'depends': ['sale'],
     'data': ['sale_view.xml'],
     'installable': False,
