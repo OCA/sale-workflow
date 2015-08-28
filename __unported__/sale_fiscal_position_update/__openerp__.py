@@ -22,7 +22,7 @@
 
 {
     'name': 'Sale Fiscal Position Update',
-    'version': '1.0',
+    'version': '8.0.1.0',
     'category': 'Sales Management',
     'license': 'AGPL-3',
     'summary': 'Changing the fiscal position of a sale order will auto-update '
