@@ -19,10 +19,10 @@
 #
 #
 
-from openerp.osv.orm import Model
+from openerp import models, fields
 
 
-class stock_picking(Model):
+class StockPicking(models.Model):
     _inherit = 'stock.picking'
 
     def _prepare_invoice_line(

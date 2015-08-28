@@ -19,11 +19,10 @@
 #
 #
 
-from openerp import fields
-from openerp.models import Model
+from openerp import models, fields
 
 
-class StockMove(Model):
+class StockMove(models.Model):
     _inherit = 'stock.move'
     _order = 'date_expected desc, sequence, id'
 

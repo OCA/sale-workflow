@@ -19,10 +19,10 @@
 #
 #
 
-from openerp.osv.orm import Model
+from openerp import models, api
 
 
-class SaleOrder(Model):
+class SaleOrder(models.Model):
     _inherit = 'sale.order'
 
     @api.model
