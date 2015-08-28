@@ -48,5 +48,5 @@ class StockMove(orm.Model):
                 cr, uid, [product.id], {'standard_price': new_price},
                 context=context)
         else:
-            return super(StockMove)._update_average_price(
+            return super(StockMove, self)._update_average_price(
                 cr, uid, move, context=context)
