@@ -20,7 +20,7 @@
 #
 {
     'name': 'Stock picking lines with sequence number',
-    'version': '1.0',
+    'version': '8.0.1.0',
     'category': 'Warehouse Management',
     'author': 'Camptocamp,GRAP,Odoo Community Association (OCA)',
     'website': 'http://www.camptocamp.com',
