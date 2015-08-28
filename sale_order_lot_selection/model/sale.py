@@ -42,18 +42,24 @@ class SaleOrderLine(models.Model):
             qty_uos, uos, name, partner_id, lang, update_tax,
             date_order, packaging, fiscal_position, flag,
             warehouse_id, context)
-        location_obj = self.pool.get('stock.location').browse(
-            cr, uid, warehouse_id)
-        prod_obj = self.pool.get('product.product').browse(
-            cr, uid, product)
-        quant_ids = self.pool.get('stock.quant').quants_get_prefered_domain(
-            cr, uid, location=location_obj, product=prod_obj, qty=qty,
-            context=context)
-        lots = []
-        for quant_tuple in quant_ids:
-            if quant_tuple[0] is not None:
-                lots.append(quant_tuple[0].lot_id.id)
-        res.update({'domain': {'lot_id': ['id', 'in', list(set(lots))]}})
+
+        available_lots = []
+        lot_model = self.pool['stock.production.lot']
+        product_model = self.pool['product.product']
+        location = self.pool.get('stock.warehouse').browse(
+            cr, uid, warehouse_id).lot_stock_id
+        lot_ids = lot_model.search(
+            cr, uid, [('product_id', '=', product)], context=context)
+        for lot_id in lot_ids:
+            ctx = context.copy()
+            ctx['lot_id'] = lot_id
+            ctx['location'] = location.id
+            qty_res = product_model._product_available(
+                cr, uid, [product], field_names=None, arg=False, context=ctx)
+            if qty_res[product]['qty_available'] > 0:
+                if lot_id not in available_lots:
+                    available_lots.append(lot_id)
+        res.update({'domain': {'lot_id': [('id', 'in', available_lots)]}})
         res['value']['lot_id'] = False
         return res
 
