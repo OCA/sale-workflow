@@ -39,6 +39,12 @@ class TestSaleOrderLotSelection(test_common.SingleTransactionCase):
         self.product_14 = self.env.ref('product.product_product_14')
         self.product_13 = self.env.ref('product.product_product_13')
         self.product_12 = self.env.ref('product.product_product_12')
+        self.supplier_location = self.env['ir.model.data'].xmlid_to_res_id(
+            'stock.stock_location_suppliers')
+        self.stock_location = self.env['ir.model.data'].xmlid_to_res_id(
+            'stock.stock_location_stock')
+
+    def test_sale_order_lot_selection(self):
         self.lot10 = self.env['stock.production.lot'].create(
             {
                 'name': "0000010",
@@ -65,10 +71,6 @@ class TestSaleOrderLotSelection(test_common.SingleTransactionCase):
             'lot_id': self.lot10.id,
             'product_id': self.product_14.id,
         })
-        supplier_location = self.env['ir.model.data'].xmlid_to_res_id(
-            'stock.stock_location_suppliers')
-        stock_location = self.env['ir.model.data'].xmlid_to_res_id(
-            'stock.stock_location_stock')
         picking_in = self.env['stock.picking'].create({
             'partner_id': self.env.ref('base.res_partner_1').id,
             'picking_type_id': self.env['ir.model.data'].xmlid_to_res_id(
@@ -79,24 +81,24 @@ class TestSaleOrderLotSelection(test_common.SingleTransactionCase):
             'product_uom_qty': 1,
             'product_uom': self.product_14.uom_id.id,
             'picking_id': picking_in.id,
-            'location_id': supplier_location,
-            'location_dest_id': stock_location})
+            'location_id': self.supplier_location,
+            'location_dest_id': self.stock_location})
         self.env['stock.move'].create({
             'name': self.product_12.name,
             'product_id': self.product_12.id,
             'product_uom_qty': 1,
             'product_uom': self.product_12.uom_id.id,
             'picking_id': picking_in.id,
-            'location_id': supplier_location,
-            'location_dest_id': stock_location})
+            'location_id': self.supplier_location,
+            'location_dest_id': self.stock_location})
         self.env['stock.move'].create({
             'name': self.product_13.name,
             'product_id': self.product_13.id,
             'product_uom_qty': 1,
             'product_uom': self.product_13.uom_id.id,
             'picking_id': picking_in.id,
-            'location_id': supplier_location,
-            'location_dest_id': stock_location})
+            'location_id': self.supplier_location,
+            'location_dest_id': self.stock_location})
         for move in picking_in.move_lines:
             self.assertEqual(move.state, 'draft', 'Wrong state of move line.')
         picking_in.action_confirm()
@@ -134,8 +136,6 @@ class TestSaleOrderLotSelection(test_common.SingleTransactionCase):
             'lot_id': self.lot12.id,
             'product_id': self.product_12.id,
         })
-
-    def test_order_confirm_and_picking_transfer_one_lot(self):
         self.order.action_button_confirm()
         picking = self.order.picking_ids
         picking.action_assign()
@@ -146,8 +146,8 @@ class TestSaleOrderLotSelection(test_common.SingleTransactionCase):
         for pack in picking.pack_operation_ids:
             if pack.product_id.id == self.product_14.id:
                 self.assertEqual(pack.lot_id, self.lot10)
-# I'll try to create a sale order with lot10
-# and confirm it to check lot reservation
+        # I'll try to create a sale order with lot10
+        # and confirm it to check lot reservation
         self.order_test = self.env['sale.order'].create(
             {
                 'partner_id': self.env.ref('base.res_partner_1').id,
@@ -158,10 +158,39 @@ class TestSaleOrderLotSelection(test_common.SingleTransactionCase):
             'lot_id': self.lot10.id,
             'product_id': self.product_14.id,
         })
+
+        # also test on_change for order_test
+        onchange_res = self.registry(
+            'sale.order.line'
+        ).product_id_change_with_wh(
+            self.cr, self.uid, [], self.order_test.pricelist_id.id,
+            self.order_line_test_1.product_id.id,
+            qty=self.order_line_test_1.product_uom_qty,
+            uom=self.order_line_test_1.product_uom.id, qty_uos=0, uos=False,
+            name='', partner_id=self.order_test.partner_id.id,
+            lang=False, update_tax=True, date_order=self.order_test.date_order,
+            packaging=False, fiscal_position=False, flag=False,
+            warehouse_id=self.order_test.warehouse_id.id,
+            context=self.env.context)
+        self.assertEqual(onchange_res['domain']['lot_id'], [('id', 'in', [])])
+
         with self.assertRaises(Warning):
             self.order_test.action_button_confirm()
 
-    def test_order_confirm_and_picking_transfer_2_products_2_lots(self):
+        # also test on_change for order2
+        onchange_res = self.registry(
+            'sale.order.line'
+        ).product_id_change_with_wh(
+            self.cr, self.uid, [], self.order2.pricelist_id.id,
+            self.sol2a.product_id.id, qty=self.sol2a.product_uom_qty,
+            uom=self.sol2a.product_uom.id, qty_uos=0, uos=False, name='',
+            partner_id=self.order2.partner_id.id,
+            lang=False, update_tax=True, date_order=self.order2.date_order,
+            packaging=False, fiscal_position=False, flag=False,
+            warehouse_id=self.order2.warehouse_id.id, context=self.env.context)
+        self.assertEqual(
+            onchange_res['domain']['lot_id'], [('id', 'in', [self.lot11.id])])
+
         self.order2.action_button_confirm()
         picking = self.order2.picking_ids
         picking.action_assign()
