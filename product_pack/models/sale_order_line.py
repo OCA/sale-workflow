@@ -31,7 +31,8 @@ class sale_order_line(models.Model):
         'sale.order.line',
         'Pack',
         help='The pack that contains this product.',
-        ondelete="cascade"
+        ondelete="cascade",
+        # copy=False,
     )
     pack_child_line_ids = fields.One2many(
         'sale.order.line',
@@ -39,29 +40,26 @@ class sale_order_line(models.Model):
         'Lines in pack'
     )
 
-    @api.multi
-    def update_pack_lines(self):
-        pack_lines = self.env['sale.order.line']
-        for line in self:
-            for subline in line.product_id.pack_line_ids:
+    @api.one
+    @api.constrains('product_id', 'price_unit', 'product_uom_qty')
+    def expand_pack_line(self):
+        if (
+                self.state == 'draft' and
+                self.product_id.pack and
+                not self.product_id.sale_order_pack):
+            for subline in self.product_id.pack_line_ids:
                 vals = subline.get_sale_order_line_vals(
-                    line, line.order_id)
-                vals['sequence'] = line.sequence
-                existing_subline = line.search([
+                    self, self.order_id)
+                vals['sequence'] = self.sequence
+                existing_subline = self.search([
                     ('product_id', '=', subline.product_id.id),
-                    ('pack_parent_line_id', '=', line.id),
+                    ('pack_parent_line_id', '=', self.id),
                     ], limit=1)
                 # if subline already exists we update, if not we create
                 if existing_subline:
                     existing_subline.write(vals)
                 else:
-                    new_line = line.create(vals)
-                    if (
-                            new_line.state == 'draft' and
-                            new_line.product_id.pack and
-                            not new_line.product_id.sale_order_pack):
-                        pack_lines += new_line
-        return pack_lines
+                    self.create(vals)
 
     @api.multi
     def button_save_data(self):

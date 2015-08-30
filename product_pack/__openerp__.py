@@ -28,13 +28,12 @@
 Product Pack
 ============
 # TODO implementar totalice en price get
-# TODO ver de permitir packs dentro de packs (robar de v7)
-# TODO calcular correctamente pack virtual available para negativos
 # TODO chequear si en todos los casos un copy de sale order anda bien o hacemos
 como en v7 que el copy lo bloqueamos
 
 Withilist:
 ----------
+* TODO calcular correctamente pack virtual available para negativos
 * Add configuration to enable "group_pack" functionality, now you have to set
 it manually
 (seria para el group group_pack) y ver que se haga visible la vista form

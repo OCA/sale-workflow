@@ -24,9 +24,9 @@ class product_pack(models.Model):
         subproduct = self.product_id
         quantity = self.quantity * line.product_uom_qty
 
-        tax_ids = order.fiscal_position.map_tax(
+        taxes = order.fiscal_position.map_tax(
             subproduct.taxes_id)
-        tax_id = [(6, 0, tax_ids)]
+        tax_id = [(6, 0, taxes.ids)]
 
         if subproduct.uos_id:
             uos_id = subproduct.uos_id.id
