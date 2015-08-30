@@ -2,12 +2,6 @@
 <openerp>
     <data>
 
-    <!-- inherited view to make the order lines list in the form non-editable
-         for the members of some usability groups -->
-    <record id="sale.view_order_form_editable_list" model="ir.ui.view">
-        <field name="groups_id" eval="[(4, ref('product_pack.group_pack'))]"/>
-    </record>
-
     <!-- sale order line pack line -->
     <record model="ir.ui.view" id="view_sale_line_pack_line_tree">
         <field name="name">sale.line.pack.line.tree</field>
@@ -22,11 +16,32 @@
         </field>
     </record>
 
+       <record model="ir.ui.view" id="view_order_line_form2_button">
+            <field name="name">view.order.line.form2.button</field>
+            <field name="model">sale.order.line</field>
+            <field eval="40" name="priority"/>
+            <field name="inherit_id" ref="sale.view_order_line_form2" />
+            <field name="arch" type="xml">
+                <xpath expr="//sheet" position="after">
+                    <footer invisible="not context.get('view_buttons')">
+                        <button class="oe_highlight" name="button_save_data" string="Save" type="object" />
+                        or
+                        <button class="oe_link" special="cancel" string="Cancel" />
+                    </footer>
+                </xpath>
+            </field>
+        </record>
+
     <record model="ir.ui.view" id="view_order_stock_form">
         <field name="name">sale.order.form.inherit</field>
         <field name="model">sale.order</field>
         <field name="inherit_id" ref="sale.view_order_form"/>
         <field name="arch" type="xml">
+            <!-- button to open line form -->
+            <xpath expr="//field[@name='order_line']/tree//field[@name='price_subtotal']" position="after">
+                <button name="button_details" string="Details" type="object"/>
+            </xpath>
+
             <xpath expr="//field[@name='order_line']/form/field[@name='name']" position="after">
                 <field name="sale_order_pack" invisible="1"/>
                 <div attrs="{'invisible':[('sale_order_pack','=',False)]}">
@@ -38,7 +53,7 @@
                         <div class="oe_subtotal_footer_separator oe_inline">
                             <label for="pack_total"/>
                             <!-- TODO agregar states a este boton y ver de que anda, me pa que no porque el registro no esta guardado -->
-                            <!-- <button name="button_dummy" string="(update)" type="object" class="oe_edit_only oe_link"/> -->
+                            <!-- <button name="button_save_data" string="(update)" type="object" class="oe_edit_only oe_link"/> -->
                         </div>
                         <field name="pack_total" nolabel="1" class="oe_subtotal_footer_separator" widget="monetary" options="{'currency_field': 'currency_id'}"/>
                     </group>
