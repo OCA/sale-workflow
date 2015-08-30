@@ -20,14 +20,13 @@
 ##############################################################################
 {
     'name': 'Product Pack',
-    'version': '8.0.1.0.0',
+    'version': '8.0.1.1.0',
     'category': 'Product',
     'sequence': 14,
     'summary': '',
     'description': """
 Product Pack
 ============
-# TODO que el boton de abrir lineas de un pack habra una form para configurar eso.
 # TODO implementar totalice en price get
 # TODO ver de permitir packs dentro de packs (robar de v7)
 # TODO calcular correctamente pack virtual available para negativos
@@ -53,8 +52,8 @@ is active)
     'data': [
         'security/ir.model.access.csv',
         'security/product_security.xml',
-        'pack_view.xml',
-        'sale_view.xml',
+        'views/pack_view.xml',
+        'views/sale_view.xml',
     ],
     'demo': [
     ],

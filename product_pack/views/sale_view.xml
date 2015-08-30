@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+
+    <!-- sale order line pack line -->
+    <record model="ir.ui.view" id="view_sale_line_pack_line_tree">
+        <field name="name">sale.line.pack.line.tree</field>
+        <field name="model">sale.order.line.pack.line</field>
+        <field name="arch" type="xml">
+            <tree string="Sales Order Line Pack Lines" editable="bottom">
+                <field name="product_id" groups="base.group_user"/>
+                <field name="price_unit"/>
+                <field name="product_uom_qty"/>
+                <field name="price_subtotal"/>
+            </tree>
+        </field>
+    </record>
+
+   <record model="ir.ui.view" id="view_order_line_form2">
+        <field name="name">view.order.line.button</field>
+        <field name="model">sale.order.line</field>
+        <field eval="90" name="priority"/>
+        <field name="arch" type="xml">
+            <form string="Sales Order Lines" create="false">
+                <header>
+                    <field name="state" widget="statusbar" statusbar_visible="draft,confirmed,done" statusbar_colors="{'exception':'red','cancel':'red'}"/>
+                </header>
+                <sheet>
+                    <field name="sale_order_pack" invisible="1"/>
+                    <div attrs="{'invisible':[('sale_order_pack','=',False)]}">
+                        <div name="product_pack">
+                            <label for="pack_line_ids"/>
+                            <field name="pack_line_ids"/>
+                        </div>
+
+                            <group class="oe_subtotal_footer oe_right" colspan="2" name="pack_total">
+                                <field name="pack_total" widget="monetary" options="{'currency_field': 'currency_id'}"/>
+                                <div class="oe_subtotal_footer_separator" colspan="2"/>
+                                <field name="price_unit" widget="monetary" options="{'currency_field': 'currency_id'}"/>
+                        </group>
+                    </div>
+                </sheet>
+                <footer>
+                    <button class="oe_highlight" name="button_save_data" string="Save" type="object" />
+                    or
+                    <button class="oe_link" special="cancel" string="Cancel" />
+                </footer>
+            </form>
+        </field>
+    </record>
+
+    <record model="ir.ui.view" id="view_order_stock_form">
+        <field name="name">sale.order.form.inherit</field>
+        <field name="model">sale.order</field>
+        <field name="inherit_id" ref="sale.view_order_form"/>
+        <field name="arch" type="xml">
+            <!-- button to open line form -->
+            <xpath expr="//field[@name='order_line']/tree//field[@name='price_subtotal']" position="after">
+                <field name="sale_order_pack" invisible="1"/>
+                <button name="action_pack_detail" string="Detail" attrs="{'invisible':[('sale_order_pack', '=', False)]}" type="object"/>
+            </xpath> 
+        </field>
+    </record>
+
+    </data>
+</openerp>

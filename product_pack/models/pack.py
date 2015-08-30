@@ -18,14 +18,13 @@ class product_pack(models.Model):
         'product.product', 'Product', required=True)
 
     @api.multi
-    def get_sale_order_line_vals(self, line, order, sequence, fiscal_position):
+    def get_sale_order_line_vals(self, line, order):
         self.ensure_one()
-        sequence += 1
         # pack_price = 0.0
         subproduct = self.product_id
         quantity = self.quantity * line.product_uom_qty
 
-        tax_ids = self.env['account.fiscal.position'].map_tax(
+        tax_ids = order.fiscal_position.map_tax(
             subproduct.taxes_id)
         tax_id = [(6, 0, tax_ids)]
 
@@ -65,7 +64,6 @@ class product_pack(models.Model):
             'name': '%s%s' % (
                 '> ' * (line.pack_depth + 1), subproduct_name
             ),
-            'sequence': sequence,
             # 'delay': subproduct.sale_delay or 0.0,
             'product_id': subproduct.id,
             # 'procurement_ids': (

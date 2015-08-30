@@ -40,24 +40,48 @@ class sale_order_line(models.Model):
     )
 
     @api.multi
+    def update_pack_lines(self):
+        pack_lines = self.env['sale.order.line']
+        for line in self:
+            for subline in line.product_id.pack_line_ids:
+                vals = subline.get_sale_order_line_vals(
+                    line, line.order_id)
+                vals['sequence'] = line.sequence
+                existing_subline = line.search([
+                    ('product_id', '=', subline.product_id.id),
+                    ('pack_parent_line_id', '=', line.id),
+                    ], limit=1)
+                # if subline already exists we update, if not we create
+                if existing_subline:
+                    existing_subline.write(vals)
+                else:
+                    new_line = line.create(vals)
+                    if (
+                            new_line.state == 'draft' and
+                            new_line.product_id.pack and
+                            not new_line.product_id.sale_order_pack):
+                        pack_lines += new_line
+        return pack_lines
+
+    @api.multi
     def button_save_data(self):
         return True
 
     @api.multi
-    def button_details(self):
-        context = self.env.context.copy()
-        context['view_buttons'] = True
+    def action_pack_detail(self):
+        view_id = self.env['ir.model.data'].xmlid_to_res_id(
+            'product_pack.view_order_line_form2')
         view = {
             'name': _('Details'),
             'view_type': 'form',
             'view_mode': 'form',
             'res_model': 'sale.order.line',
-            'view_id': False,
+            'view_id': view_id,
             'type': 'ir.actions.act_window',
             'target': 'new',
             'readonly': True,
             'res_id': self.id,
-            'context': context
+            'context': self.env.context
         }
         return view
 
