@@ -39,9 +39,11 @@
         <field name="arch" type="xml">
             <!-- button to open line form -->
             <xpath expr="//field[@name='order_line']/tree//field[@name='price_subtotal']" position="after">
-                <button name="button_details" string="Details" type="object"/>
+                <field name="sale_order_pack" invisible="1"/>
+                <button name="button_details" string="Details" attrs="{'invisible':[('sale_order_pack', '=', False)]}" type="object"/>
             </xpath>
 
+            <!-- TODO esto va a una form especifica -->
             <xpath expr="//field[@name='order_line']/form/field[@name='name']" position="after">
                 <field name="sale_order_pack" invisible="1"/>
                 <div attrs="{'invisible':[('sale_order_pack','=',False)]}">

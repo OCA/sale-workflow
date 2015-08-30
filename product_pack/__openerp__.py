@@ -27,14 +27,22 @@
     'description': """
 Product Pack
 ============
-# TODO agregar en configuracion si se quiere usar los sale order packs
-(seria para el group group_pack) y ver que se haga visible la vista form
+# TODO que el boton de abrir lineas de un pack habra una form para configurar eso.
 # TODO implementar totalice en price get
 # TODO ver de permitir packs dentro de packs (robar de v7)
 # TODO calcular correctamente pack virtual available para negativos
 # TODO chequear si en todos los casos un copy de sale order anda bien o hacemos
 como en v7 que el copy lo bloqueamos
 
+Withilist:
+----------
+* Add configuration to enable "group_pack" functionality, now you have to set
+it manually
+(seria para el group group_pack) y ver que se haga visible la vista form
+* Improove packs interaction from product.template views
+* Analize if better to unify sale_order_pack to pack_price_type selection
+(perhups no because this functionality is only available if group "group_pack"
+is active)
     """,
     'author':  'NaN·tic, ADHOC',
     'images': [
