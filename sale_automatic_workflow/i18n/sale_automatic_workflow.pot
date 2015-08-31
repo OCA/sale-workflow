@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 8.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-11-24 14:16+0000\n"
-"PO-Revision-Date: 2014-11-24 14:16+0000\n"
+"POT-Creation-Date: 2015-08-31 09:38+0000\n"
+"PO-Revision-Date: 2015-08-31 09:38+0000\n"
 "Last-Translator: <>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -32,6 +32,11 @@ msgstr ""
 #. module: sale_automatic_workflow
 #: view:sale.order:sale_automatic_workflow.sale_order_view_form
 msgid "Automation Information"
+msgstr ""
+
+#. module: sale_automatic_workflow
+#: model:sale.workflow.process,warning:sale_automatic_workflow.automatic_validation
+msgid "Be careful, if you save the order with this setting, it could be auto-confirmed, even if you are editing it."
 msgstr ""
 
 #. module: sale_automatic_workflow
@@ -80,6 +85,11 @@ msgstr ""
 #: field:automatic.workflow.job,id:0
 #: field:sale.workflow.process,id:0
 msgid "ID"
+msgstr ""
+
+#. module: sale_automatic_workflow
+#: help:sale.workflow.process,warning:0
+msgid "If set, display the message when a user selects the process on a sale order"
 msgstr ""
 
 #. module: sale_automatic_workflow
@@ -172,6 +182,11 @@ msgid "Sales Order"
 msgstr ""
 
 #. module: sale_automatic_workflow
+#: field:sale.workflow.process,section_id:0
+msgid "Sales Team"
+msgstr ""
+
+#. module: sale_automatic_workflow
 #: selection:sale.workflow.process,invoice_quantity:0
 msgid "Shipped Quantities"
 msgstr ""
@@ -212,12 +227,8 @@ msgid "Workflow Options"
 msgstr ""
 
 #. module: sale_automatic_workflow
-#: code:addons/sale_automatic_workflow/sale.py:62
+#: code:addons/sale_automatic_workflow/sale.py:64
 #, python-format
 msgid "Workflow Warning"
 msgstr ""
 
-#. module: sale_automatic_workflow
-#: help:sale.workflow.process,warning:0
-msgid "if set, display the message when a user selects the process on a sale order"
-msgstr ""
