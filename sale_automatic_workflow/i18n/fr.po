@@ -1,16 +1,15 @@
-# Translation of OpenERP Server.
+# Translation of Odoo Server.
 # This file contains the translation of the following modules:
-# 	* sale_automatic_workflow
+#	* sale_automatic_workflow
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: OpenERP Server 7.0\n"
+"Project-Id-Version: Odoo Server 8.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-11-24 14:16+0000\n"
-"PO-Revision-Date: 2013-05-02 07:15+0000\n"
+"POT-Creation-Date: 2015-08-31 09:38+0000\n"
+"PO-Revision-Date: 2015-08-31 09:38+0000\n"
 "Last-Translator: <>\n"
 "Language-Team: \n"
-"Language: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
@@ -34,6 +33,11 @@ msgstr "Flux automatique"
 #: view:sale.order:sale_automatic_workflow.sale_order_view_form
 msgid "Automation Information"
 msgstr "Informations d'automatisation"
+
+#. module: sale_automatic_workflow
+#: model:sale.workflow.process,warning:sale_automatic_workflow.automatic_validation
+msgid "Be careful, if you save the order with this setting, it could be auto-confirmed, even if you are editing it."
+msgstr ""
 
 #. module: sale_automatic_workflow
 #: selection:sale.workflow.process,order_policy:0
@@ -78,8 +82,14 @@ msgid "Force Invoice Date"
 msgstr "Forcer la date de facturation"
 
 #. module: sale_automatic_workflow
-#: field:automatic.workflow.job,id:0 field:sale.workflow.process,id:0
+#: field:automatic.workflow.job,id:0
+#: field:sale.workflow.process,id:0
 msgid "ID"
+msgstr "ID"
+
+#. module: sale_automatic_workflow
+#: help:sale.workflow.process,warning:0
+msgid "If set, display the message when a user selects the process on a sale order"
 msgstr ""
 
 #. module: sale_automatic_workflow
@@ -152,7 +162,7 @@ msgstr "Autres informations"
 #. module: sale_automatic_workflow
 #: model:ir.model,name:sale_automatic_workflow.model_stock_picking
 msgid "Picking List"
-msgstr "Liste de colisage"
+msgstr "Opération de manutention"
 
 #. module: sale_automatic_workflow
 #: field:account.invoice,sale_ids:0
@@ -170,6 +180,11 @@ msgstr "Flux automatique de vente"
 #: model:ir.model,name:sale_automatic_workflow.model_sale_order
 msgid "Sales Order"
 msgstr "Bon de commande"
+
+#. module: sale_automatic_workflow
+#: field:sale.workflow.process,section_id:0
+msgid "Sales Team"
+msgstr "Équipe commerciale"
 
 #. module: sale_automatic_workflow
 #: selection:sale.workflow.process,invoice_quantity:0
@@ -204,8 +219,7 @@ msgstr "Message d'avertissement"
 #. module: sale_automatic_workflow
 #: help:sale.workflow.process,invoice_date_is_order_date:0
 msgid "When checked, the invoice date will be the same than the order's date"
-msgstr ""
-"Si activé, la date de facturation sera identique à la date de la commande."
+msgstr "Si activé, la date de facturation sera identique à la date de la commande."
 
 #. module: sale_automatic_workflow
 #: view:sale.workflow.process:sale_automatic_workflow.sale_workflow_process_view_form
@@ -213,12 +227,8 @@ msgid "Workflow Options"
 msgstr "Options du flux automatique"
 
 #. module: sale_automatic_workflow
-#: code:addons/sale_automatic_workflow/sale.py:62
+#: code:addons/sale_automatic_workflow/sale.py:64
+#, python-format
 msgid "Workflow Warning"
 msgstr "Message d'avertissement"
 
-#. module: sale_automatic_workflow
-#: help:sale.workflow.process,warning:0
-msgid ""
-"if set, display the message when a user selects the process on a sale order"
-msgstr "Ce message sera affiché aux utilisateurs quand ils sélectionnent ce flux sur une commande."
