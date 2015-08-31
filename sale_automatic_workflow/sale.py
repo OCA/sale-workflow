@@ -58,6 +58,8 @@ class sale_order(models.Model):
             self.order_policy = workflow.order_policy
         if workflow.invoice_quantity:
             self.invoice_quantity = workflow.invoice_quantity
+        if workflow.section_id:
+            self.section_id = workflow.section_id.id
         if workflow.warning:
             warning = {'title': _('Workflow Warning'),
                        'message': workflow.warning}
