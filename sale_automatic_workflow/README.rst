@@ -11,6 +11,7 @@ A workflow can:
   * Shipping Policy (prepaid, manual, postpaid, picking)
   * Invoice On (ordered quantities, shipped quantities)
   * Set the invoice's date to the sale order's date
+  * Set a sales team
 
 - Apply automatic actions:
   * Validate the order (only if paid, always, never)
