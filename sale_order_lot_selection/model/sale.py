@@ -27,8 +27,7 @@ class SaleOrderLine(models.Model):
     _inherit = 'sale.order.line'
 
     lot_id = fields.Many2one(
-        'stock.production.lot', 'Lot',
-        domain="[('product_id','=',product_id)]", copy=False)
+        'stock.production.lot', 'Lot', copy=False)
 
     @api.v7
     def product_id_change_with_wh(
@@ -51,6 +50,9 @@ class SaleOrderLine(models.Model):
         lot_ids = lot_model.search(
             cr, uid, [('product_id', '=', product)], context=context)
         for lot_id in lot_ids:
+            # for the selected product, search for every associated lot
+            # for every lot, check if it is available (in location.id)
+            # if it is, add it to selectable lots
             ctx = context.copy()
             ctx['lot_id'] = lot_id
             ctx['location'] = location.id
