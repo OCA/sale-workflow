@@ -76,3 +76,5 @@ class SaleWorkflowProcess(models.Model):
     warning = fields.Text('Warning Message', translate=True,
                           help='If set, display the message when a '
                                'user selects the process on a sale order')
+    section_id = fields.Many2one(comodel_name='crm.case.section',
+                                 string='Sales Team')
