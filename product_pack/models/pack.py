@@ -35,15 +35,12 @@ class product_pack(models.Model):
             uos_id = False
             uos_qty = quantity
 
-        if line.product_id.pack_price_type == 'fixed_price':
+        # if pack is fixed price or totlice price we don want amount on
+        # pack lines
+        if line.product_id.pack_price_type in [
+                'fixed_price', 'totalice_price']:
             price = 0.0
             discount = 0.0
-        # TODO this should go in price get of pricelist 
-        # elif line.product_id.pack_price_type == 'totalice_price':
-        #     pack_price += (price * uos_qty)
-        #     price = 0.0
-        #     discount = 0.0
-        #     tax_id = False
         else:
             pricelist = order.pricelist_id.id
             price = self.env['product.pricelist'].price_get(

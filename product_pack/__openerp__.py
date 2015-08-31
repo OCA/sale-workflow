@@ -27,10 +27,6 @@
     'description': """
 Product Pack
 ============
-# TODO implementar totalice en price get
-# TODO chequear si en todos los casos un copy de sale order anda bien o hacemos
-como en v7 que el copy lo bloqueamos
-
 Withilist:
 ----------
 * TODO calcular correctamente pack virtual available para negativos

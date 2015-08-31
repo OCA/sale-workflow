@@ -121,3 +121,19 @@ class product_template(models.Model):
         'Pack?',
         help='Is a Product Pack?',
     )
+
+    @api.model
+    def _price_get(self, products, ptype='list_price'):
+        res = super(product_template, self)._price_get(
+            products, ptype=ptype)
+        for product in products:
+            if (
+                    product.pack and
+                    product.pack_price_type == 'totalice_price'):
+                # TODO should use price and not list_price
+                pack_price = 0.0
+                for pack_line in product.pack_line_ids:
+                    pack_price += (
+                        pack_line.product_id.list_price * pack_line.quantity)
+                res[product.id] = pack_price
+        return res
