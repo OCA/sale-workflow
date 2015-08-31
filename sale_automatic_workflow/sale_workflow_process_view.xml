@@ -21,7 +21,7 @@
                         <field name="picking_policy"/>
                         <field name="order_policy"/>
                         <field name="invoice_quantity"/>
-                        <field name="section_id"/>
+                        <field name="section_id" groups="base.group_multi_salesteams"/>
                     </group>
                     <group string="Workflow Options">
                         <field name="validate_order"/>
@@ -44,7 +44,7 @@
                     <field name="picking_policy"/>
                     <field name="order_policy"/>
                     <field name="invoice_quantity"/>
-                    <field name="section_id"/>
+                    <field name="section_id" groups="base.group_multi_salesteams"/>
                     <field name="validate_order"/>
                     <field name="validate_picking"/>
                     <field name="create_invoice_on" />
