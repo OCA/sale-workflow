@@ -41,7 +41,8 @@ class SaleOrderLine(models.Model):
             if self.user_has_groups(
                     'sale_order_line_description.'
                     'group_use_product_description_per_so_line'):
-                product = product_obj.browse(product)
+                lang = self.env['res.partner'].browse(partner_id).lang
+                product = product_obj.with_context(lang=lang).browse(product)
                 if product.description_sale:
                     if 'value' not in res:
                         res['value'] = {}
