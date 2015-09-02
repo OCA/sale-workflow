@@ -33,15 +33,18 @@ class SaleOrderLine(models.Model):
             fiscal_position=False, flag=False
     ):
         res = super(SaleOrderLine, self).product_id_change(
-            pricelist, product, qty, uom, qty_uos, uos, name,
-            partner_id, lang, update_tax, date_order, packaging,
-            fiscal_position, flag)
+            pricelist=pricelist, product=product, qty=qty, uom=uom,
+            qty_uos=qty_uos, uos=uos, name=name,
+            partner_id=partner_id, lang=lang, update_tax=update_tax,
+            date_order=date_order, packaging=packaging,
+            fiscal_position=fiscal_position, flag=flag)
         if product:
             product_obj = self.env['product.product']
             if self.user_has_groups(
                     'sale_order_line_description.'
                     'group_use_product_description_per_so_line'):
-                product = product_obj.browse(product)
+                lang = self.env['res.partner'].browse(partner_id).lang
+                product = product_obj.with_context(lang=lang).browse(product)
                 if product.description_sale:
                     if 'value' not in res:
                         res['value'] = {}
