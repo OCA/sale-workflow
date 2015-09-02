@@ -13,3 +13,8 @@ This project aim to deal with modules related to manage sale and their related w
  - Easy the cancellation of SO
  - ...
 
+Translation status
+------------------
+
+[![Transifex Status](https://www.transifex.com/projects/p/OCA-sale-workflow-8-0/chart/image_png)](https://www.transifex.com/projects/p/OCA-sale-workflow-8-0)
+
