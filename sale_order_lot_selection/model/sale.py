@@ -87,7 +87,7 @@ class SaleOrder(models.Model):
                 if line.lot_id == m.restrict_lot_id:
                     move = m
                     lot_count += 1
-                    # if counter is 0 or >1 means thar something goes wrong
+                    # if counter is 0 or > 1 means that something goes wrong
                     if lot_count != 1:
                         raise Warning(_('Can\'t retrieve lot on stock'))
         return move
