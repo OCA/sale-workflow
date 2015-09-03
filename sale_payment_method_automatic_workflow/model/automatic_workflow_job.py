@@ -18,11 +18,15 @@
 #    along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
 ##############################################################################
+import logging
 
 from openerp import models, api
 from openerp.addons.sale_automatic_workflow.automatic_workflow_job import (
     commit
 )
+
+
+_logger = logging.getLogger(__name__)
 
 
 class AutomaticWorkflowJob(models.Model):
@@ -37,6 +41,21 @@ class AutomaticWorkflowJob(models.Model):
 
     @api.model
     def run(self):
+        self._autopay()
         res = super(AutomaticWorkflowJob, self).run()
         self._reconcile_invoices()
         return res
+
+    @api.model
+    def _get_domain_for_sale_autopayment(self):
+        return [('state', '=', 'draft'),
+                ('workflow_process_id.autopay', '=', True)]
+
+    @api.model
+    def _autopay(self):
+        sale_obj = self.env['sale.order']
+        sales = sale_obj.search(self._get_domain_for_sale_autopayment())
+        _logger.debug('Sale Orders to automatically pay: %s', sales)
+        for sale in sales:
+            with commit(self.env.cr):
+                sale.automatic_payment()

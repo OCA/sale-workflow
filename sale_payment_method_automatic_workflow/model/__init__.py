@@ -4,3 +4,4 @@ from . import account_invoice
 from . import automatic_workflow_job
 from . import payment_method
 from . import sale_order
+from . import sale_workflow_process

@@ -29,6 +29,7 @@
  'website': 'http://www.camptocamp.com',
  'data': ['view/sale_order_view.xml',
           'view/payment_method_view.xml',
+          'view/sale_workflow_process.xml',
           ],
  'test': [],
  'installable': True,

@@ -24,6 +24,11 @@ Configuration
 The automatic workflow associated to a payment method can be chosen in
 `Sales > Configuration > Sales > Payment Methods`.
 
+It is also possible to set the `autopay` option on the workflow. Use this with
+care, only if you have guarantee from some outside system that the payment has
+really been done. In this case before the sale order is confirmed, a payment
+will be generated.
+
 Usage
 =====
 
@@ -40,6 +45,7 @@ Contributors
 
 * Guewen Baconnier <guewen.baconnier@camptocamp.com>
 * Sébastien Beau <sebastien.beau@akretion.com>
+* Alexandre Fayolle <alexandre.fayolle@camptocamp.com>
 
 Maintainer
 ----------
@@ -50,6 +56,8 @@ Maintainer
 
 This module is maintained by the OCA.
 
-OCA, or the Odoo Community Association, is a nonprofit organization whose mission is to support the collaborative development of Odoo features and promote its widespread use.
+OCA, or the Odoo Community Association, is a nonprofit organization whose
+mission is to support the collaborative development of Odoo features and
+promote its widespread use.
 
 To contribute to this module, please visit http://odoo-community.org.
