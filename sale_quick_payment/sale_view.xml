@@ -20,19 +20,6 @@
                       string="Register Payments"
                       type="action" states="draft,sent"/>
                 </button>
-                <field name="payment_method_id" position="after" >
-                    <group name="payments" string="Generated Payments" colspan="4">
-                        <field name="payment_ids" nolabel="1">
-                            <tree string="Payment">
-                                <field name="date"/>
-                                <field name="journal_id"/>
-                                <field name="partner_id"/>
-                                <field name="debit"/>
-                                <field name="credit"/>
-                            </tree>
-                        </field>
-                    </group>
-                </field>
             </field>
         </record>
 
