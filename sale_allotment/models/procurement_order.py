@@ -20,22 +20,18 @@
 #
 ##############################################################################
 
-{
-    'name': 'Line ship',
-    'version': '1.0',
-    'category': 'Sales Management',
-    'description': """
-Module to create sale order line wise shipment based on address defined on sale order line.
-""",
-    'summary': "Order Line, Allotment Partner, Shipment",
-    'author': 'Openies',
-    'website': 'http://www.Openies.com/',
-    'images': [],
-    'depends': ['sale_stock'],
-    'data': [
-    ],
-    'installable': True,
-    'auto_install': False,
-}
+from openerp import models, api
 
-# vim:expandtab:smartindent:tabstop=4:softtabstop=4:shiftwidth=4:
+
+class ProcurementOrder(models.Model):
+    _inherit = 'procurement.order'
+
+    @api.model
+    def _run_move_create(self, procurement):
+        vals = super(ProcurementOrder, self)._run_move_create(procurement)
+        partner_id = (procurement.sale_line_id and
+                      procurement.sale_line_id.address_allotment_id)
+        if partner_id:
+            vals['partner_id'] = \
+                procurement.sale_line_id.address_allotment_id.id
+        return vals
