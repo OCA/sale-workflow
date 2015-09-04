@@ -18,5 +18,18 @@
 #    along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
 #
-
-from . import stock
+{
+    'name': 'Stock picking lines with sequence number',
+    'version': '8.0.1.0',
+    'category': 'Warehouse Management',
+    'author': 'Camptocamp,GRAP,Odoo Community Association (OCA)',
+    'website': 'http://www.camptocamp.com',
+    'depends': [
+        'stock',
+        'sale',
+    ],
+    'data': [
+        'views/view.xml',
+    ],
+    'license': 'AGPL-3',
+}

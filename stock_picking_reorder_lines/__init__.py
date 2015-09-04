@@ -18,22 +18,5 @@
 #    along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
 #
-{
-    'name': 'Stock picking lines with sequence number',
-    'version': '0.1',
-    'category': 'Warehouse Management',
-    'description': '''
-Provide a new field on stock moves, allowing to manage the orders of moves
-in a picking.
-    ''',
-    'author': "Camptocamp,Odoo Community Association (OCA)",
-    'website': 'http://www.camptocamp.com',
-    'depends': ['stock', 'sale', 'sale_stock'],
-    'data': ['stock_view.xml'],
-    'demo': [],
-    'test': [],
-    'installable': False,
-    'auto_install': False,
-    'application': False,
-    'license': "AGPL-3",
-}
+
+from . import models
