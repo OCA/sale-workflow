@@ -20,7 +20,7 @@
             <field name="res_model">sale.order</field>
             <field name="view_type">form</field>
             <field name="view_mode">tree,form,graph</field>
-            <field name="context">{'search_default_state':'draft'}</field>
+            <field name="context">{}</field>
             <field name="domain" > [('generator_id','=',active_id)]</field>
         </record>
         
@@ -29,31 +29,49 @@
             <field name="type">form</field>
             <field name="arch" type="xml">
                 <header>
-                    <button name="button_confirm" states="draft"
-                            string="Generate Sale" type="object" />
-                    <button name="action_button_confirm" string="Confirm Sale"
-                            states="confirmed" type="object" />
-                    <field name="state" widget="statusbar" />
+                    <button name="button_confirm"
+                            states="draft"
+                            string="Start Generating Sale"
+                            type="object"
+                            class="oe_highlight"/>
+                    <button name="action_button_confirm"
+                            string="Confirm All Sale Generated"
+                            states="generating"
+                            type="object"
+                            class="oe_highlight"/>
+                    <field name="state" widget="statusbar"/>
                 </header>
                 <sheet>
                     <h1>
                         <label string="Generator"/>
                         <field name="name"
-                               class="oe_inline"
-                               />
+                               class="oe_inline"/>
                     </h1>
-                    <group col="6">
-                        <field name="date" nolabel="2"/>
-                        <button class="oe_inline oe_stat_button"
-                                name="%(act_sale_generator_2_sale_order)d"
-                                type="action" icon="fa-strikethrough"
-                                string="Sales"
-                                context="{'search_default_state':'draft'}" />
+                    <button class="oe_inline oe_stat_button oe_right"
+                            name="%(act_sale_generator_2_sale_order)d"
+                            type="action"
+                            icon="fa-strikethrough"
+                            string="Sales"/>
+                    <group colspan="2">
+                        <field name="date"/>
+                        <field name="tmpl_sale_id"
+                               context="{'default_is_template': True, 'default_name': '', 'default_partner_id': %(sale_generator.res_partner_for_sale_template)d}"/>
+                        <field name="warehouse_id"/>
                     </group>
-                <field name="line_ids"
-                       string="Line"
-                       attrs="{'readonly':[('state', '=','confirmed')]}"/>
-                <field name="partner_ids"/>
+                    <separator string="Customer"/>
+                    <span>In order to add customer you have two possibility:
+                        <ul>
+                            <li>adding an existing customer by searching in your database
+                                for that you have to click on add item at the end of the list.</li>
+                            <li>creating massively customer by launching the following wizard
+                                <button name="%(action_partner_create_form)d"
+                                    string="Create Customer"
+                                    type="action"
+                                    context="{'from_generator_id': active_id'}"
+                                    states="draft,generating"/></li>
+                        </ul>
+                    </span>
+                    <field name="partner_ids"/>
                 </sheet>
             </field>
         </record>
@@ -64,45 +82,7 @@
             <field name="view_type">form</field>
             <field name="view_mode">tree,form</field>
         </record>   
-        
-        <record model="ir.ui.view" id="sale_generator_line_xml_tree">
-            <field name="model">sale.line.generator</field>
-            <field name="type">tree</field>
-            <field name="arch" type="xml"> 
-                <tree string="Partner" editable="top"> 
-                    <field name="product_id"/>
-                    <field name="product_qty"/>
-                </tree>
-            </field>
-        </record>
 
-        <record model="ir.ui.view" id="sale_generator_line_xml">
-            <field name="model">sale.line.generator</field>
-            <field name="type">form</field>
-            <field name="arch" type="xml">
-                <form string="Partner">
-                    <group col="4"> 
-                        <field name="product_id"/>
-                        <field name="product_qty"/>
-                    </group> 
-                </form>
-            </field>
-        </record>
-            
-        <record model="ir.actions.act_window" id="action_sale_generator_line_xml">
-            <field name="name">sale</field>
-            <field name="res_model">sale.line.generator</field>
-            <field name="view_type">form</field>
-            <field name="view_mode">tree,form</field>
-        </record>      
-        
-        <record model="ir.actions.act_window" id="action_line_sale_order_measure_xml">
-            <field name="name">New Sale Order field Measure</field>
-            <field name="res_model">sale.order</field>
-            <field name="view_type">form</field>
-            <field name="view_mode">tree,form</field>
-        </record>   
-        
         <menuitem name="Generator"
                   id="choix_generator"
                   parent="base.menu_sales"
