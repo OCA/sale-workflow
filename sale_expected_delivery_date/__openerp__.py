@@ -40,4 +40,4 @@ use of Product's customer lead time (will be ignored).
     'test': ['test/sale_expected_delivery_date.yml',
              ],
     'installable': True,
- }
+}
