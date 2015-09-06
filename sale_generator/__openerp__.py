@@ -21,18 +21,16 @@
 
 {
     'name': "Sale Generator",
-    'description': """
-        TODO
-    """,
     'author': "Akretion",
     'website': "http://www.Akretion.com",
     'category': 'sale',
     'version': '0.1',
-    'depends': ['sale'],
+    'depends': ['sale_stock'],
     'data': [
+        'data.xml',
+        'partner_view.xml',
         'sale_generator.xml',
-        'generator_sequence.xml',
-        'security/ir.model.access.csv',
+        'sale_view.xml',
         ],
     'demo': [],
 }
