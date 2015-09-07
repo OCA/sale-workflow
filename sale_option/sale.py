@@ -28,9 +28,11 @@ class SaleOrderLine(models.Model):
 
     base_price_unit = fields.Float()
     pricelist_id = fields.Many2one(related="order_id.pricelist_id")
-    optional_bom_line_ids = fields.One2many('sale.order.line.option',
-                                             'sale_line_id',
-                                             'optional BoM Line')
+    optional_bom_line_ids = fields.One2many(
+        'sale.order.line.option',
+        'sale_line_id',
+        string='optional BoM Line',
+        copy=True)
 
     def product_id_change(self, cr, uid, ids, pricelist, product,
                           qty=0,
