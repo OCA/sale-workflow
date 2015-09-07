@@ -31,6 +31,11 @@ class SaleGenerator(models.Model):
         ('generating', 'Generating Order'),
         ('done', 'Done'),
         ], 'State', readonly=True, default='draft')
+    company_id = fields.Many2one(
+        'res.company',
+        string="Company",
+        related="warehouse_id.company_id",
+        store=True)
 
     @api.one
     def _create_order_for_partner(self, partner):

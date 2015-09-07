@@ -52,7 +52,7 @@
                             type="action"
                             icon="fa-strikethrough"
                             string="Sales"/>
-                    <group colspan="2">
+                    <group name="header" colspan="2">
                         <field name="date"/>
                         <field name="tmpl_sale_id"
                                context="{'default_is_template': True, 'default_name': '', 'default_partner_id': %(sale_generator.res_partner_for_sale_template)d}"/>
