@@ -31,6 +31,8 @@
         'partner_view.xml',
         'sale_generator.xml',
         'sale_view.xml',
+        'security/ir.model.access.csv',
+        'security/ir.rule.csv',
         ],
     'demo': [],
 }
