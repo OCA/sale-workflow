@@ -1,13 +1,13 @@
 # Translation of Odoo Server.
 # This file contains the translation of the following modules:
-#	* sale_generator
+#   * sale_generator
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 8.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-07-15 15:24+0000\n"
-"PO-Revision-Date: 2015-07-15 15:24+0000\n"
+"POT-Creation-Date: 2015-09-07 02:05+0000\n"
+"PO-Revision-Date: 2015-09-07 02:05+0000\n"
 "Last-Translator: <>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -16,25 +16,43 @@ msgstr ""
 "Plural-Forms: \n"
 
 #. module: sale_generator
-#: view:sale.generator:sale_generator.view_sale_generator_form
-msgid "Confirm"
+#: field:sale.generator,company_id:0
+msgid "Company"
 msgstr ""
 
 #. module: sale_generator
-#: selection:sale.generator,state:0
-msgid "Confirmed"
+#: view:sale.generator:sale_generator.view_sale_generator_form
+msgid "Confirm All Sale Generated"
+msgstr ""
+
+#. module: sale_generator
+#: view:res.partner:sale_generator.view_partner_form
+msgid "Confirm and create a new customer"
+msgstr ""
+
+#. module: sale_generator
+#: view:sale.generator:sale_generator.view_sale_generator_form
+msgid "Create Customer"
 msgstr ""
 
 #. module: sale_generator
 #: field:sale.generator,create_uid:0
-#: field:sale.line.generator,create_uid:0
 msgid "Created by"
 msgstr ""
 
 #. module: sale_generator
 #: field:sale.generator,create_date:0
-#: field:sale.line.generator,create_date:0
 msgid "Created on"
+msgstr ""
+
+#. module: sale_generator
+#: view:sale.generator:sale_generator.view_sale_generator_form
+msgid "Customer"
+msgstr ""
+
+#. module: sale_generator
+#: model:ir.actions.act_window,name:sale_generator.action_partner_create_form
+msgid "Customers"
 msgstr ""
 
 #. module: sale_generator
@@ -44,7 +62,17 @@ msgstr ""
 
 #. module: sale_generator
 #: selection:sale.generator,state:0
+msgid "Done"
+msgstr ""
+
+#. module: sale_generator
+#: selection:sale.generator,state:0
 msgid "Draft"
+msgstr ""
+
+#. module: sale_generator
+#: selection:sale.generator,state:0
+msgid "Generating Order"
 msgstr ""
 
 #. module: sale_generator
@@ -52,55 +80,55 @@ msgstr ""
 #: model:ir.ui.menu,name:sale_generator.choix_generator
 #: view:sale.generator:sale_generator.view_sale_generator_form
 #: field:sale.generator,name:0
-#: field:sale.line.generator,generator_id:0
 #: field:sale.order,generator_id:0
 msgid "Generator"
 msgstr ""
 
 #. module: sale_generator
 #: field:sale.generator,id:0
-#: field:sale.line.generator,id:0
 msgid "ID"
 msgstr ""
 
 #. module: sale_generator
+#: view:sale.generator:sale_generator.view_sale_generator_form
+msgid "In order to add customer you have two possibility:"
+msgstr ""
+
+#. module: sale_generator
+#: field:sale.order,is_template:0
+msgid "Is template"
+msgstr ""
+
+#. module: sale_generator
 #: field:sale.generator,write_uid:0
-#: field:sale.line.generator,write_uid:0
 msgid "Last Updated by"
 msgstr ""
 
 #. module: sale_generator
 #: field:sale.generator,write_date:0
-#: field:sale.line.generator,write_date:0
 msgid "Last Updated on"
 msgstr ""
 
 #. module: sale_generator
-#: view:sale.generator:sale_generator.view_sale_generator_form
-msgid "Line"
-msgstr ""
-
-#. module: sale_generator
-#: model:ir.actions.act_window,name:sale_generator.action_line_sale_order_measure_xml
-msgid "New Sale Order field Measure"
-msgstr ""
-
-#. module: sale_generator
+#: model:ir.model,name:sale_generator.model_res_partner
 #: view:sale.generator:sale_generator.sale_generator_xml_tree
 #: field:sale.generator,partner_ids:0
-#: view:sale.line.generator:sale_generator.sale_generator_line_xml
-#: view:sale.line.generator:sale_generator.sale_generator_line_xml_tree
 msgid "Partner"
 msgstr ""
 
 #. module: sale_generator
-#: field:sale.line.generator,product_id:0
-msgid "Product"
+#: view:sale.order:sale_generator.view_sale_order_form
+msgid "Quotation"
 msgstr ""
 
 #. module: sale_generator
 #: model:ir.actions.act_window,name:sale_generator.act_sale_generator_2_sale_order
 msgid "Sale Order"
+msgstr ""
+
+#. module: sale_generator
+#: field:sale.generator,tmpl_sale_id:0
+msgid "Sale Template"
 msgstr ""
 
 #. module: sale_generator
@@ -115,22 +143,32 @@ msgid "Sales Order"
 msgstr ""
 
 #. module: sale_generator
+#: view:sale.generator:sale_generator.view_sale_generator_form
+msgid "Start Generating Sale"
+msgstr ""
+
+#. module: sale_generator
 #: field:sale.generator,state:0
 msgid "State"
 msgstr ""
 
 #. module: sale_generator
-#: field:sale.generator,line_ids:0
-msgid "lines"
+#: view:sale.order:sale_generator.view_sale_order_form
+msgid "Template"
 msgstr ""
 
 #. module: sale_generator
-#: field:sale.line.generator,product_qty:0
-msgid "quantity"
+#: field:sale.generator,warehouse_id:0
+msgid "Warehouse"
 msgstr ""
 
 #. module: sale_generator
-#: model:ir.actions.act_window,name:sale_generator.action_sale_generator_line_xml
-msgid "sale"
+#: view:sale.generator:sale_generator.view_sale_generator_form
+msgid "adding an existing customer by searching in your database\n"
+"                                for that you have to click on add item at the end of the list."
 msgstr ""
 
+#. module: sale_generator
+#: view:sale.generator:sale_generator.view_sale_generator_form
+msgid "creating massively customer by launching the following wizard"
+msgstr ""
