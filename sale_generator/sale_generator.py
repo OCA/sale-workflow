@@ -37,16 +37,22 @@ class SaleGenerator(models.Model):
         related="warehouse_id.company_id",
         store=True)
 
-    @api.one
-    def _create_order_for_partner(self, partner):
-        sale_order_obj = self.env['sale.order']
-        self.tmpl_sale_id.copy(default={
+    @api.multi
+    def _prepare_copy_vals(self, partner):
+        vals = self.env['sale.order'].onchange_partner_id(partner.id)['value']
+        vals.update({
             'partner_id': partner.id,
             'generator_id': self.id,
             'warehouse_id': self.warehouse_id.id,
             'company_id': self.warehouse_id.company_id.id,
             'is_template': False,
             })
+        return vals
+
+    @api.one
+    def _create_order_for_partner(self, partner):
+        vals = self._prepare_copy_vals(partner)
+        self.tmpl_sale_id.copy(default=vals)
 
     @api.one
     def button_confirm(self):
