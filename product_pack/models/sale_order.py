@@ -10,10 +10,10 @@ class sale_order(models.Model):
 
     @api.one
     def copy(self, default=None):
-        # we unlink pack lines that should be copied
         sale_copy = super(sale_order, self).copy(default)
-        pack_copied_lines = self.order_line.filtered(
-                lambda l: l.pack_parent_line_id.order_id != sale_copy)
+        # we unlink pack lines that should not be copied
+        pack_copied_lines = sale_copy.order_line.filtered(
+                lambda l: l.pack_parent_line_id.order_id == self)
         pack_copied_lines.unlink()
         return sale_copy
 
