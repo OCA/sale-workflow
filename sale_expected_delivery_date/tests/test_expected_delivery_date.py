@@ -13,7 +13,7 @@ class TestExpectedDeliveryDate(common.TransactionCase):
         self.sale_order_model = self.env['sale.order']
         self.partner_id = self.env.ref('base.res_partner_2')
         self.product_id = self.env.ref(
-                            'stock.product_icecream_product_template')
+            'stock.product_icecream_product_template')
         self.order_id = self.sale_order_model.create({
             'partner_id': self.partner_id.id,
             'order_policy': 'picking',
