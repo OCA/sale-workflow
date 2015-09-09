@@ -32,7 +32,5 @@
     'data': ['view/sale_view.xml',
              ],
     'auto_install': False,
-    'test': ['test/sale_expected_delivery_date.yml',
-             ],
     'installable': True,
 }
