@@ -29,38 +29,39 @@ class SaleOrderLine(models.Model):
     lot_id = fields.Many2one(
         'stock.production.lot', 'Lot', copy=False)
 
-    @api.v7
+    @api.multi
     def product_id_change_with_wh(
-            self, cr, uid, ids, pricelist, product, qty=0,
+            self, pricelist, product, qty=0,
             uom=False, qty_uos=0, uos=False, name='', partner_id=False,
             lang=False, update_tax=True, date_order=False, packaging=False,
-            fiscal_position=False, flag=False, warehouse_id=False,
-            context=False):
+            fiscal_position=False, flag=False, warehouse_id=False):
         res = super(SaleOrderLine, self).product_id_change_with_wh(
-            cr, uid, ids, pricelist, product, qty, uom,
-            qty_uos, uos, name, partner_id, lang, update_tax,
-            date_order, packaging, fiscal_position, flag,
-            warehouse_id, context)
+            pricelist, product, qty=qty, uom=uom,
+            qty_uos=qty_uos, uos=uos, name=name, partner_id=partner_id,
+            lang=lang, update_tax=update_tax,
+            date_order=date_order, packaging=packaging,
+            fiscal_position=fiscal_position, flag=flag,
+            warehouse_id=warehouse_id)
 
         available_lots = []
-        lot_model = self.pool['stock.production.lot']
-        product_model = self.pool['product.product']
-        location = self.pool.get('stock.warehouse').browse(
-            cr, uid, warehouse_id).lot_stock_id
-        lot_ids = lot_model.search(
-            cr, uid, [('product_id', '=', product)], context=context)
-        for lot_id in lot_ids:
+        lot_model = self.env['stock.production.lot']
+        product_model = self.env['product.product']
+        product_obj = product_model.browse(product)
+        location = self.env['stock.warehouse'].browse(
+            warehouse_id).lot_stock_id
+        lots = lot_model.search(
+            [('product_id', '=', product)])
+        for lot in lots:
             # for the selected product, search for every associated lot
             # for every lot, check if it is available (in location.id)
             # if it is, add it to selectable lots
-            ctx = context.copy()
-            ctx['lot_id'] = lot_id
-            ctx['location'] = location.id
-            qty_res = product_model._product_available(
-                cr, uid, [product], field_names=None, arg=False, context=ctx)
+            qty_res = product_obj.with_context({
+                'lot_id': lot.id,
+                'location': location.id,
+                })._product_available()
             if qty_res[product]['qty_available'] > 0:
-                if lot_id not in available_lots:
-                    available_lots.append(lot_id)
+                if lot.id not in available_lots:
+                    available_lots.append(lot.id)
         res.update({'domain': {'lot_id': [('id', 'in', available_lots)]}})
         res['value']['lot_id'] = False
         return res
