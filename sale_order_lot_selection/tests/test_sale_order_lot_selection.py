@@ -39,10 +39,15 @@ class TestSaleOrderLotSelection(test_common.SingleTransactionCase):
         self.product_14 = self.env.ref('product.product_product_14')
         self.product_13 = self.env.ref('product.product_product_13')
         self.product_12 = self.env.ref('product.product_product_12')
-        self.supplier_location = self.env['ir.model.data'].xmlid_to_res_id(
-            'stock.stock_location_suppliers')
-        self.stock_location = self.env['ir.model.data'].xmlid_to_res_id(
-            'stock.stock_location_stock')
+        self.supplier_location = self.env.ref('stock.stock_location_suppliers')
+        self.stock_location = self.env.ref('stock.stock_location_stock')
+        self.product_model = self.env['product.product']
+
+    def _stock_quantity(self, product, lot, location):
+        return product.with_context({
+            'lot_id': lot.id,
+            'location': location.id,
+            })._product_available()
 
     def test_sale_order_lot_selection(self):
         self.lot10 = self.env['stock.production.lot'].create(
@@ -61,16 +66,59 @@ class TestSaleOrderLotSelection(test_common.SingleTransactionCase):
                 'product_id': self.product_12.id
             })
 
-        self.order = self.env['sale.order'].create(
+        self.order1 = self.env['sale.order'].create(
             {
                 'partner_id': self.env.ref('base.res_partner_1').id,
             })
         self.sol1 = self.env['sale.order.line'].create({
             'name': 'sol1',
-            'order_id': self.order.id,
+            'order_id': self.order1.id,
             'lot_id': self.lot10.id,
             'product_id': self.product_14.id,
+            'product_uom_qty': 1,
         })
+        self.order2 = self.env['sale.order'].create(
+            {
+                'partner_id': self.env.ref('base.res_partner_1').id,
+            })
+        self.sol2a = self.env['sale.order.line'].create({
+            'name': 'sol2a',
+            'order_id': self.order2.id,
+            'lot_id': self.lot11.id,
+            'product_id': self.product_13.id,
+            'product_uom_qty': 1,
+        })
+        self.sol2b = self.env['sale.order.line'].create({
+            'name': 'sol2b',
+            'order_id': self.order2.id,
+            'lot_id': self.lot12.id,
+            'product_id': self.product_12.id,
+            'product_uom_qty': 1,
+        })
+        self.order3 = self.env['sale.order'].create(
+            {
+                'partner_id': self.env.ref('base.res_partner_1').id,
+            })
+        self.sol3 = self.env['sale.order.line'].create({
+            'name': 'sol_test_1',
+            'order_id': self.order3.id,
+            'lot_id': self.lot10.id,
+            'product_id': self.product_14.id,
+            'product_uom_qty': 1,
+        })
+        self.order4 = self.env['sale.order'].create(
+            {
+                'partner_id': self.env.ref('base.res_partner_1').id,
+            })
+        self.sol4 = self.env['sale.order.line'].create({
+            'name': 'sol4',
+            'order_id': self.order4.id,
+            'lot_id': self.lot11.id,
+            'product_id': self.product_13.id,
+            'product_uom_qty': 2,
+        })
+
+        # make products enter
         picking_in = self.env['stock.picking'].create({
             'partner_id': self.env.ref('base.res_partner_1').id,
             'picking_type_id': self.env['ir.model.data'].xmlid_to_res_id(
@@ -81,24 +129,24 @@ class TestSaleOrderLotSelection(test_common.SingleTransactionCase):
             'product_uom_qty': 1,
             'product_uom': self.product_14.uom_id.id,
             'picking_id': picking_in.id,
-            'location_id': self.supplier_location,
-            'location_dest_id': self.stock_location})
+            'location_id': self.supplier_location.id,
+            'location_dest_id': self.stock_location.id})
         self.env['stock.move'].create({
             'name': self.product_12.name,
             'product_id': self.product_12.id,
             'product_uom_qty': 1,
             'product_uom': self.product_12.uom_id.id,
             'picking_id': picking_in.id,
-            'location_id': self.supplier_location,
-            'location_dest_id': self.stock_location})
+            'location_id': self.supplier_location.id,
+            'location_dest_id': self.stock_location.id})
         self.env['stock.move'].create({
             'name': self.product_13.name,
             'product_id': self.product_13.id,
-            'product_uom_qty': 1,
+            'product_uom_qty': 2,
             'product_uom': self.product_13.uom_id.id,
             'picking_id': picking_in.id,
-            'location_id': self.supplier_location,
-            'location_dest_id': self.stock_location})
+            'location_id': self.supplier_location.id,
+            'location_dest_id': self.stock_location.id})
         for move in picking_in.move_lines:
             self.assertEqual(move.state, 'draft', 'Wrong state of move line.')
         picking_in.action_confirm()
@@ -120,24 +168,21 @@ class TestSaleOrderLotSelection(test_common.SingleTransactionCase):
                 item.lot_id = self.lot12
         pick_wizard.do_detailed_transfer()
         picking_in.do_transfer()
-        self.order2 = self.env['sale.order'].create(
-            {
-                'partner_id': self.env.ref('base.res_partner_1').id,
-            })
-        self.sol2a = self.env['sale.order.line'].create({
-            'name': 'sol2a',
-            'order_id': self.order2.id,
-            'lot_id': self.lot11.id,
-            'product_id': self.product_13.id,
-        })
-        self.sol2b = self.env['sale.order.line'].create({
-            'name': 'sol2b',
-            'order_id': self.order2.id,
-            'lot_id': self.lot12.id,
-            'product_id': self.product_12.id,
-        })
-        self.order.action_button_confirm()
-        picking = self.order.picking_ids
+
+        # check quantities
+        lot10_qty = self._stock_quantity(
+            self.product_14, self.lot10, self.stock_location)
+        self.assertEqual(lot10_qty[self.product_14.id]['qty_available'], 1)
+        lot11_qty = self._stock_quantity(
+            self.product_13, self.lot11, self.stock_location)
+        self.assertEqual(lot11_qty[self.product_13.id]['qty_available'], 2)
+        lot12_qty = self._stock_quantity(
+            self.product_12, self.lot12, self.stock_location)
+        self.assertEqual(lot12_qty[self.product_12.id]['qty_available'], 1)
+
+        # confirm orders
+        self.order1.action_button_confirm()
+        picking = self.order1.picking_ids
         picking.action_assign()
         picking.do_enter_transfer_details()
         wiz = self.env['stock.transfer_details'].search([
@@ -146,36 +191,26 @@ class TestSaleOrderLotSelection(test_common.SingleTransactionCase):
         for pack in picking.pack_operation_ids:
             if pack.product_id.id == self.product_14.id:
                 self.assertEqual(pack.lot_id, self.lot10)
-        # I'll try to create a sale order with lot10
-        # and confirm it to check lot reservation
-        self.order_test = self.env['sale.order'].create(
-            {
-                'partner_id': self.env.ref('base.res_partner_1').id,
-            })
-        self.order_line_test_1 = self.env['sale.order.line'].create({
-            'name': 'sol_test_1',
-            'order_id': self.order_test.id,
-            'lot_id': self.lot10.id,
-            'product_id': self.product_14.id,
-        })
 
-        # also test on_change for order_test
+        # also test on_change for order3
         onchange_res = self.registry(
             'sale.order.line'
         ).product_id_change_with_wh(
-            self.cr, self.uid, [], self.order_test.pricelist_id.id,
-            self.order_line_test_1.product_id.id,
-            qty=self.order_line_test_1.product_uom_qty,
-            uom=self.order_line_test_1.product_uom.id, qty_uos=0, uos=False,
-            name='', partner_id=self.order_test.partner_id.id,
-            lang=False, update_tax=True, date_order=self.order_test.date_order,
+            self.cr, self.uid, [], self.order3.pricelist_id.id,
+            self.sol3.product_id.id,
+            qty=self.sol3.product_uom_qty,
+            uom=self.sol3.product_uom.id, qty_uos=0, uos=False,
+            name='', partner_id=self.order3.partner_id.id,
+            lang=False, update_tax=True, date_order=self.order3.date_order,
             packaging=False, fiscal_position=False, flag=False,
-            warehouse_id=self.order_test.warehouse_id.id,
+            warehouse_id=self.order3.warehouse_id.id,
             context=self.env.context)
         self.assertEqual(onchange_res['domain']['lot_id'], [('id', 'in', [])])
 
+        # I'll try to confirm it to check lot reservation:
+        # lot10 was delivered by order1
         with self.assertRaises(Warning):
-            self.order_test.action_button_confirm()
+            self.order3.action_button_confirm()
 
         # also test on_change for order2
         onchange_res = self.registry(
@@ -198,8 +233,30 @@ class TestSaleOrderLotSelection(test_common.SingleTransactionCase):
         wiz = self.env['stock.transfer_details'].search([
             ['picking_id', '=', picking.id]])
         wiz.do_detailed_transfer()
+        lot11_found = False
+        lot12_found = False
         for pack in picking.pack_operation_ids:
             if pack.product_id.id == self.product_13.id:
                 self.assertEqual(pack.lot_id, self.lot11)
+                lot11_found = True
             else:
                 self.assertEqual(pack.lot_id, self.lot12)
+                lot12_found = True
+        self.assertTrue(lot11_found)
+        self.assertTrue(lot12_found)
+
+        # check quantities
+        lot10_qty = self._stock_quantity(
+            self.product_14, self.lot10, self.stock_location)
+        self.assertEqual(lot10_qty[self.product_14.id]['qty_available'], 0)
+        lot11_qty = self._stock_quantity(
+            self.product_13, self.lot11, self.stock_location)
+        self.assertEqual(lot11_qty[self.product_13.id]['qty_available'], 1)
+        lot12_qty = self._stock_quantity(
+            self.product_12, self.lot12, self.stock_location)
+        self.assertEqual(lot12_qty[self.product_12.id]['qty_available'], 0)
+
+        # I'll try to confirm it to check lot reservation:
+        # lot11 has 1 availability and order4 has quantity 2
+        with self.assertRaises(Warning):
+            self.order4.action_button_confirm()
