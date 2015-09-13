@@ -3,142 +3,141 @@
 # * sale_cancel_reason
 # 
 # Translators:
-# Matjaž Mozetič <m.mozetic@matmoz.si>, 2015
 msgid ""
 msgstr ""
 "Project-Id-Version: sale-workflow (8.0)\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2015-09-09 12:27+0000\n"
-"PO-Revision-Date: 2015-09-07 14:30+0000\n"
-"Last-Translator: Matjaž Mozetič <m.mozetic@matmoz.si>\n"
-"Language-Team: Slovenian (http://www.transifex.com/oca/OCA-sale-workflow-8-0/language/sl/)\n"
+"PO-Revision-Date: 2015-09-03 07:08+0000\n"
+"Last-Translator: <>\n"
+"Language-Team: Chinese (China) (http://www.transifex.com/oca/OCA-sale-workflow-8-0/language/zh_CN/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
-"Language: sl\n"
-"Plural-Forms: nplurals=4; plural=(n%100==1 ? 0 : n%100==2 ? 1 : n%100==3 || n%100==4 ? 2 : 3);\n"
+"Language: zh_CN\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
 
 #. module: sale_cancel_reason
 #: model:ir.model,name:sale_cancel_reason.model_sale_order_cancel
 msgid " Ask a reason for the sale order cancellation."
-msgstr "Zahtevaj razlog za preklic prodajnega naloga."
+msgstr ""
 
 #. module: sale_cancel_reason
 #: view:sale.order.cancel:sale_cancel_reason.view_sale_order_cancel
 msgid "Cancel"
-msgstr "Preklic"
+msgstr ""
 
 #. module: sale_cancel_reason
 #: view:sale.order:sale_cancel_reason.view_order_form
 msgid "Cancel Order"
-msgstr "Preklic naloga"
+msgstr ""
 
 #. module: sale_cancel_reason
 #: view:sale.order:sale_cancel_reason.view_order_form
 msgid "Cancel Quotation"
-msgstr "Preklic predračuna"
+msgstr ""
 
 #. module: sale_cancel_reason
 #: view:sale.order:sale_cancel_reason.view_order_form
 msgid "Cancellation reason:"
-msgstr "Razlogi za preklic:"
+msgstr ""
 
 #. module: sale_cancel_reason
 #: view:sale.order.cancel:sale_cancel_reason.view_sale_order_cancel
 msgid ""
 "Choose the reason for the cancellation of the\n"
 "                    sale order."
-msgstr "Izberite razlog za preklic\n                    prodajnega naloga."
+msgstr ""
 
 #. module: sale_cancel_reason
 #: view:sale.order.cancel:sale_cancel_reason.view_sale_order_cancel
 msgid "Confirm"
-msgstr "Potrdi"
+msgstr ""
 
 #. module: sale_cancel_reason
 #: field:sale.order.cancel,create_uid:0
 #: field:sale.order.cancel.reason,create_uid:0
 msgid "Created by"
-msgstr "Ustvaril"
+msgstr ""
 
 #. module: sale_cancel_reason
 #: field:sale.order.cancel,create_date:0
 #: field:sale.order.cancel.reason,create_date:0
 msgid "Created on"
-msgstr "Ustvarjeno"
+msgstr ""
 
 #. module: sale_cancel_reason
 #: field:sale.order.cancel,id:0 field:sale.order.cancel.reason,id:0
 msgid "ID"
-msgstr "ID"
+msgstr ""
 
 #. module: sale_cancel_reason
 #: model:sale.order.cancel.reason,name:sale_cancel_reason.cancel_reason_only_quotation
 msgid "Just for Quotation"
-msgstr "Le za predračun"
+msgstr ""
 
 #. module: sale_cancel_reason
 #: field:sale.order.cancel,write_uid:0
 #: field:sale.order.cancel.reason,write_uid:0
 msgid "Last Updated by"
-msgstr "Zadnji posodobil"
+msgstr ""
 
 #. module: sale_cancel_reason
 #: field:sale.order.cancel,write_date:0
 #: field:sale.order.cancel.reason,write_date:0
 msgid "Last Updated on"
-msgstr "Zadnjič posodobljeno"
+msgstr ""
 
 #. module: sale_cancel_reason
 #: model:sale.order.cancel.reason,name:sale_cancel_reason.cancel_reason_other_provider
 msgid "Other Service Provider selected"
-msgstr "Izbran drugi ponudnik storitev"
+msgstr ""
 
 #. module: sale_cancel_reason
 #: field:sale.order.cancel,reason_id:0 field:sale.order.cancel.reason,name:0
 msgid "Reason"
-msgstr "Razlog"
+msgstr ""
 
 #. module: sale_cancel_reason
 #: field:sale.order,cancel_reason_id:0
 msgid "Reason for cancellation"
-msgstr "Razlog za preklic"
+msgstr ""
 
 #. module: sale_cancel_reason
 #: model:ir.actions.act_window,name:sale_cancel_reason.action_sale_order_cancel
 #: view:sale.order.cancel:sale_cancel_reason.view_sale_order_cancel
 msgid "Reason for the cancellation"
-msgstr "Razlog za preklic"
+msgstr ""
 
 #. module: sale_cancel_reason
 #: model:ir.actions.act_window,name:sale_cancel_reason.action_sale_order_cancel_reason
 #: model:ir.model,name:sale_cancel_reason.model_sale_order_cancel_reason
 msgid "Sale Order Cancel Reason"
-msgstr "Razlog za preklic prodajnega naloga"
+msgstr ""
 
 #. module: sale_cancel_reason
 #: model:ir.ui.menu,name:sale_cancel_reason.menu_sale_order_cancel_reason
 #: view:sale.order.cancel.reason:sale_cancel_reason.view_sale_order_cancel_reason_form
 #: view:sale.order.cancel.reason:sale_cancel_reason.view_sale_order_cancel_reason_tree
 msgid "Sale Order Cancel Reasons"
-msgstr "Razlogi za preklic prodajnega naloga"
+msgstr ""
 
 #. module: sale_cancel_reason
 #: model:ir.model,name:sale_cancel_reason.model_sale_order
 msgid "Sales Order"
-msgstr "Prodajni nalog"
+msgstr "销售订单"
 
 #. module: sale_cancel_reason
 #: model:sale.order.cancel.reason,name:sale_cancel_reason.cancel_reason_no_service_needed
 msgid "Service no longer needed"
-msgstr "Storitev ni več potrebovana"
+msgstr ""
 
 #. module: sale_cancel_reason
 #: view:sale.order:sale_cancel_reason.view_order_form
 msgid "True"
-msgstr "Pravilno"
+msgstr ""
 
 #. module: sale_cancel_reason
 #: view:sale.order.cancel:sale_cancel_reason.view_sale_order_cancel
 msgid "or"
-msgstr "ali"
+msgstr ""
