@@ -1,0 +1,74 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# * sale_order_revision
+# 
+# Translators:
+msgid ""
+msgstr ""
+"Project-Id-Version: sale-workflow (8.0)\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2015-09-09 12:27+0000\n"
+"PO-Revision-Date: 2015-09-03 07:09+0000\n"
+"Last-Translator: <>\n"
+"Language-Team: Finnish (http://www.transifex.com/oca/OCA-sale-workflow-8-0/language/fi/)\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Language: fi\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+#. module: sale_order_revision
+#: field:sale.order,active:0
+msgid "Active"
+msgstr ""
+
+#. module: sale_order_revision
+#: field:sale.order,current_revision_id:0
+msgid "Current revision"
+msgstr ""
+
+#. module: sale_order_revision
+#: code:addons/sale_order_revision/model/sale_order.py:64
+#, python-format
+msgid "New revision created: %s"
+msgstr ""
+
+#. module: sale_order_revision
+#: field:sale.order,old_revision_ids:0
+msgid "Old revisions"
+msgstr ""
+
+#. module: sale_order_revision
+#: field:sale.order,unrevisioned_name:0
+msgid "Order Reference"
+msgstr ""
+
+#. module: sale_order_revision
+#: sql_constraint:sale.order:0
+msgid "Order Reference and revision must be unique per Company."
+msgstr ""
+
+#. module: sale_order_revision
+#: field:sale.order,revision_number:0
+msgid "Revision"
+msgstr ""
+
+#. module: sale_order_revision
+#: view:sale.order:sale_order_revision.sale_order_form
+msgid "Revisions"
+msgstr ""
+
+#. module: sale_order_revision
+#: model:ir.model,name:sale_order_revision.model_sale_order
+msgid "Sales Order"
+msgstr "Myyntitilaus"
+
+#. module: sale_order_revision
+#: view:sale.order:sale_order_revision.sale_order_form
+msgid "Superseeded by"
+msgstr ""
+
+#. module: sale_order_revision
+#: view:sale.order:sale_order_revision.sale_order_form
+msgid "Superseeded on"
+msgstr ""
