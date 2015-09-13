@@ -1,21 +1,22 @@
 # Translation of Odoo Server.
 # This file contains the translation of the following modules:
-# 	* sale_quotation_sourcing
-#
+# * sale_quotation_sourcing
+# 
+# Translators:
+# Matjaž Mozetič <m.mozetic@matmoz.si>, 2015
 msgid ""
 msgstr ""
-"Project-Id-Version: Odoo Server 8.0rc1\n"
+"Project-Id-Version: sale-workflow (8.0)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-09-12 12:08+0000\n"
-"PO-Revision-Date: 2015-08-16 08:01+0200\n"
-"Last-Translator: Matjaz Mozetic <m.mozetic@matmoz.si>\n"
-"Language-Team: \n"
+"POT-Creation-Date: 2015-09-09 12:27+0000\n"
+"PO-Revision-Date: 2015-09-07 14:32+0000\n"
+"Last-Translator: Matjaž Mozetič <m.mozetic@matmoz.si>\n"
+"Language-Team: Slovenian (http://www.transifex.com/oca/OCA-sale-workflow-8-0/language/sl/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
-"Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: \n"
+"Content-Transfer-Encoding: \n"
 "Language: sl\n"
-"X-Generator: Poedit 1.8.4\n"
+"Plural-Forms: nplurals=4; plural=(n%100==1 ? 0 : n%100==2 ? 1 : n%100==3 || n%100==4 ? 2 : 3);\n"
 
 #. module: sale_quotation_sourcing
 #: view:sale.order.sourcing:sale_quotation_sourcing.sale_order_sourcing_wizard
@@ -62,7 +63,7 @@ msgid "Manually Sourced"
 msgstr "Ročni izvor"
 
 #. module: sale_quotation_sourcing
-#: code:addons/sale_quotation_sourcing/models/sale_order.py:98
+#: code:addons/sale_quotation_sourcing/model/procurement.py:48
 #, python-format
 msgid "Manually sourced"
 msgstr "Ročni izvor"
@@ -73,9 +74,9 @@ msgid "Procurement"
 msgstr "Oskrbovanje"
 
 #. module: sale_quotation_sourcing
-#: field:sale.order.line.sourcing,po_id:0
-msgid "Purchase Order"
-msgstr "Nabavni nalog"
+#: model:ir.model,name:sale_quotation_sourcing.model_purchase_order_line
+msgid "Purchase Order Line"
+msgstr "Postavka nabavnega naloga"
 
 #. module: sale_quotation_sourcing
 #: view:sale.order.sourcing:sale_quotation_sourcing.sale_order_sourcing_wizard
@@ -118,18 +119,24 @@ msgid "Sourced by"
 msgstr "Izvor določil"
 
 #. module: sale_quotation_sourcing
+#: model:sale.exception,description:sale_quotation_sourcing.inconsistent_sourcing
+msgid ""
+"The chosen route is inconsistent with the destination of the purchase line "
+"that has been chosen. Please change the route or choose a different "
+"purchase."
+msgstr "Izbrana proga ne ustreza destinaciji izbrane nabavne postavke. Spremenite progo ali izberite drugo nabavo."
+
+#. module: sale_quotation_sourcing
+#: model:sale.exception,name:sale_quotation_sourcing.inconsistent_sourcing
+msgid "The chosen route is inconsistent with the purchase"
+msgstr "Izbrana proga ne ustreza nabavi"
+
+#. module: sale_quotation_sourcing
 #: field:sale.order.line.sourcing,wizard_id:0
 msgid "Wizard"
 msgstr "Čarovnik"
 
 #. module: sale_quotation_sourcing
-#: code:addons/sale_quotation_sourcing/models/sale_order.py:76
-#, python-format
-msgid "configuration problem"
-msgstr "nastavitvena težava"
-
-#. module: sale_quotation_sourcing
-#: code:addons/sale_quotation_sourcing/models/sale_order.py:77
-#, python-format
-msgid "no buy rule configured for warehouse %d"
-msgstr "za skladišče %d ni nastavljenih nabavnih pravil"
+#: view:sale.order.sourcing:sale_quotation_sourcing.sale_order_sourcing_wizard
+msgid "or"
+msgstr "ali"

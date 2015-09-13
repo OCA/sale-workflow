@@ -1,0 +1,75 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# * sale_reason_to_export
+# 
+# Translators:
+msgid ""
+msgstr ""
+"Project-Id-Version: sale-workflow (8.0)\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2015-09-09 12:27+0000\n"
+"PO-Revision-Date: 2015-09-03 07:10+0000\n"
+"Last-Translator: <>\n"
+"Language-Team: Chinese (China) (http://www.transifex.com/oca/OCA-sale-workflow-8-0/language/zh_CN/)\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Language: zh_CN\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+
+#. module: sale_reason_to_export
+#: field:sale.reason_to_export,active:0
+msgid "Active"
+msgstr ""
+
+#. module: sale_reason_to_export
+#: field:sale.reason_to_export,create_uid:0
+msgid "Created by"
+msgstr ""
+
+#. module: sale_reason_to_export
+#: field:sale.reason_to_export,create_date:0
+msgid "Created on"
+msgstr ""
+
+#. module: sale_reason_to_export
+#: field:sale.reason_to_export,id:0
+msgid "ID"
+msgstr ""
+
+#. module: sale_reason_to_export
+#: field:sale.reason_to_export,write_uid:0
+msgid "Last Updated by"
+msgstr ""
+
+#. module: sale_reason_to_export
+#: field:sale.reason_to_export,write_date:0
+msgid "Last Updated on"
+msgstr ""
+
+#. module: sale_reason_to_export
+#: field:sale.reason_to_export,name:0
+msgid "Name"
+msgstr ""
+
+#. module: sale_reason_to_export
+#: model:ir.model,name:sale_reason_to_export.model_sale_reason_to_export
+#: field:sale.order,reason_to_export_id:0
+msgid "Reason to Export"
+msgstr ""
+
+#. module: sale_reason_to_export
+#: model:ir.actions.act_window,name:sale_reason_to_export.action_sale_reason_to_export_view
+#: model:ir.ui.menu,name:sale_reason_to_export.menu_sale_reason_to_export_act
+msgid "Reasons to Export"
+msgstr ""
+
+#. module: sale_reason_to_export
+#: model:ir.model,name:sale_reason_to_export.model_sale_order
+msgid "Sales Order"
+msgstr "销售订单"
+
+#. module: sale_reason_to_export
+#: view:sale.reason_to_export:sale_reason_to_export.view_sale_reason_to_export_filter
+msgid "Search Reasons to Export"
+msgstr ""
