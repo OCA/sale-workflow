@@ -9,25 +9,25 @@ msgstr ""
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2015-09-09 12:27+0000\n"
 "PO-Revision-Date: 2015-09-03 07:08+0000\n"
-"Last-Translator: OCA Transbot <transbot@odoo-community.org>\n"
-"Language-Team: Spanish (http://www.transifex.com/oca/OCA-sale-workflow-8-0/language/es/)\n"
+"Last-Translator: <>\n"
+"Language-Team: French (http://www.transifex.com/oca/OCA-sale-workflow-8-0/language/fr/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
-"Language: es\n"
-"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"Language: fr\n"
+"Plural-Forms: nplurals=2; plural=(n > 1);\n"
 
 #. module: sale_last_price_info
 #: view:product.product:sale_last_price_info.product_last_sale_info_form_view
 msgid "Last Price Info"
-msgstr "Información último precio"
+msgstr ""
 
 #. module: sale_last_price_info
 #: model:ir.model,name:sale_last_price_info.model_product_product
 msgid "Product"
-msgstr "Producto"
+msgstr "Produit"
 
 #. module: sale_last_price_info
 #: view:product.product:sale_last_price_info.product_last_sale_info_form_view
 msgid "Sale"
-msgstr "Ventas"
+msgstr "Commande"
