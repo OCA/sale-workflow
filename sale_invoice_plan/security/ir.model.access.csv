@@ -1,0 +1,5 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_sale_invoice_plan,access_sale_invoice_plan,model_sale_invoice_plan,,1,1,1,1
+access_sale_create_invoice_plan,access_sale_create_invoice_plan,model_sale_create_invoice_plan,,1,1,1,1
+access_sale_make_planned_invoice,access_sale_make_planned_invoice,model_sale_make_planned_invoice,,1,1,1,1
+access_stock_scrap_sale_invoice_plan_,access_stock_scrap_sale_invoice_plan,stock.model_stock_scrap,,1,0,0,0

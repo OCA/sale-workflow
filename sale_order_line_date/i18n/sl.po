@@ -1,0 +1,41 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# * sale_order_line_date
+#
+# Translators:
+# OCA Transbot <transbot@odoo-community.org>, 2018
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 10.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2018-01-27 03:53+0000\n"
+"PO-Revision-Date: 2018-01-27 03:53+0000\n"
+"Last-Translator: OCA Transbot <transbot@odoo-community.org>, 2018\n"
+"Language-Team: Slovenian (https://www.transifex.com/oca/teams/23907/sl/)\n"
+"Language: sl\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: nplurals=4; plural=(n%100==1 ? 0 : n%100==2 ? 1 : n%100==3 || n"
+"%100==4 ? 2 : 3);\n"
+
+#. module: sale_order_line_date
+#: model_terms:ir.ui.view,arch_db:sale_order_line_date.report_saleorder_document
+msgid "Commitment Date"
+msgstr ""
+
+#. module: sale_order_line_date
+#: model:ir.model.fields,field_description:sale_order_line_date.field_sale_order_line__commitment_date
+msgid "Delivery Date"
+msgstr ""
+
+#. module: sale_order_line_date
+#: model:ir.model,name:sale_order_line_date.model_sale_order
+#, fuzzy
+msgid "Sales Order"
+msgstr "Prodajni nalog"
+
+#. module: sale_order_line_date
+#: model:ir.model,name:sale_order_line_date.model_sale_order_line
+msgid "Sales Order Line"
+msgstr "Postavka prodajnega naloga"
