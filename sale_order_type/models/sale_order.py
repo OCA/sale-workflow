@@ -42,6 +42,13 @@ class SaleOrder(models.Model):
         return super(SaleOrder, self).create(vals)
 
     @api.model
+    def _prepare_order_line_procurement(self, order, line, group_id=False):
+        vals = super(SaleOrder, self)._prepare_order_line_procurement(
+            order, line, group_id=group_id)
+        vals['invoice_state'] = order.type_id.invoice_state
+        return vals
+
+    @api.model
     def _prepare_invoice(self, order, line_ids):
         res = super(SaleOrder, self)._prepare_invoice(order, line_ids)
         if order.type_id.journal_id:
