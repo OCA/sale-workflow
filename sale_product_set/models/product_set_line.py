@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-from openerp import fields, models, _
+from openerp import fields, models
 
 import openerp.addons.decimal_precision as dp
 
@@ -12,15 +12,14 @@ class ProductSetLine(models.Model):
 
     product_id = fields.Many2one(
         'product.product', domain=[('sale_ok', '=', True)],
-        string=_('Product'), required=True)
+        string=u"Product", required=True)
     quantity = fields.Float(
-        string=_('Quantity'),
+        string=u"Quantity",
         digits=dp.get_precision('Product Unit of Measure'),
         required=True, default=1)
     product_set_id = fields.Many2one(
-        'product.set', _('Set'), ondelete='cascade')
+        'product.set', 'Set', ondelete='cascade')
     sequence = fields.Integer(
-        string=_('Sequence'),
+        string='Sequence',
         required=True, default=0,
-        help=_(u""),
     )

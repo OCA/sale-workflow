@@ -6,9 +6,9 @@ class ProductSet(models.Model):
     _name = 'product.set'
     _description = 'Product set'
 
-    name = fields.Char(_('Name'), help=_('Product set name'), required=True)
+    name = fields.Char(u"Name", help=u"Product set name", required=True)
     set_line_ids = fields.One2many(
-        'product.set.line', 'product_set_id', _(u"Products"), copy=True)
+        'product.set.line', 'product_set_id', u"Products", copy=True)
 
     @api.one
     def copy(self, default=None):
