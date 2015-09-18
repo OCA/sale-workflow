@@ -19,7 +19,8 @@ class sale_order_line(models.Model):
         'Pack Lines'
         )
     sale_order_pack = fields.Boolean(
-        related='product_id.sale_order_pack'
+        related='product_id.sale_order_pack',
+        readonly=True
         )
 
     # Fields for common packs
