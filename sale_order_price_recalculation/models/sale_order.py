@@ -12,6 +12,7 @@ class SaleOrder(models.Model):
 
     @api.multi
     def recalculate_prices(self):
+        flag = self.env.context.get('price_only', False)
         for line in self.mapped('order_line'):
             order = line.order_id
             res = line.product_id_change(
@@ -20,6 +21,6 @@ class SaleOrder(models.Model):
                 qty_uos=line.product_uos_qty, uos=line.product_uos.id,
                 name=line.name, partner_id=order.partner_id.id, lang=False,
                 update_tax=True, date_order=order.date_order, packaging=False,
-                fiscal_position=order.fiscal_position.id, flag=False)
+                fiscal_position=order.fiscal_position.id, flag=flag)
             line.write(res['value'])
         return True

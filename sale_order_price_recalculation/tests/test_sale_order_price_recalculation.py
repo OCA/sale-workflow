@@ -45,3 +45,16 @@ class TestSaleOrderPriceRecalculation(common.TransactionCase):
         # Check if quantities have changed
         self.assertEqual(self.sale_order_line.product_uom_qty, 1.0)
         self.assertEqual(self.sale_order_line.product_uos_qty, 12.0)
+
+    def test_name_recalculation(self):
+        initial_name = self.sale_order_line.name
+        self.assertEqual(
+            self.sale_order_line.name, self.product.name
+        )
+        self.product.name = u"Test product"
+        self.product.description_sale = ''
+        self.sale_order.with_context(price_only=True).recalculate_prices()
+        self.assertEquals(initial_name, self.sale_order_line.name)
+        self.sale_order.with_context(price_only=False).recalculate_prices()
+        self.assertEquals(u"[A2323] Test product (16 GB, White, 2.4 GHz)",
+                          self.sale_order_line.name)
