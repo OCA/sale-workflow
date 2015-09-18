@@ -5,18 +5,26 @@ Recalculation of sales order lines prices on demand
 .. image:: https://img.shields.io/badge/licence-AGPL--3-blue.svg
     :alt: License: AGPL-3
 
-This module adds a button on sale orders below pricelist that recalculates the
-prices of the order lines that contain a product in them.
+This module add 2 buttons on sale orders (below sale order lines) that:
+
+ * recalculates the prices of the order lines that contain a product in them.
+ * Reset product descriptions from current product information.
 
 It is launched manually as a button to get the user decide if he/she wants to
-recalculate prices when pricelist is changed.
+recalculate prices when pricelist is changed or after duplicating a sale order
+to actualize or not sales information.
 
 Usage
 =====
 
-Inside a sale order, you can click in any moment a button called
-"(Recalculate prices)", that is next to the pricelist selection, to launch
-a recalculation of all the prices of the lines, losing previous custom prices.
+Inside a sale order, you can click on "Recalculate prices", to launch a
+recalculation of all the prices of the lines, losing previous custom prices.
+
+The second "Reset descriptions" will getting descriptions from products,
+loosing custom descriptions.
+
+.. image:: /sale_order_price_recalculation/static/description/sale_order_price_recalculation.png
+    :alt: Sale order price recalculation
 
 .. image:: https://odoo-community.org/website/image/ir.attachment/5784_f2813bd/datas
    :alt: Try me on Runbot
@@ -47,6 +55,7 @@ Contributors
 * Carlos Sánchez Cifuentes <csanchez@grupovermon.com>
 * Pedro M. Baeza <pedro.baeza@serviciosbaeza.com>
 * Oihane Crucelaegui <oihanecrucelaegi@avanzosc.es>
+* Pierre Verkest <pverkest@anybox.fr>
 
 Maintainer
 ----------
