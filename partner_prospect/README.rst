@@ -1,20 +1,17 @@
 .. image:: https://img.shields.io/badge/licence-AGPL--3-blue.svg
     :alt: License: AGPL-3
 
+================
 Partner prospect
 ================
 
-With this module you can easily distinguise if a partner is currently customer
+With this module you can easily distinguish if a partner is currently customer
 or prospect. A prospect partner will be those to which you still haven't sold
 anything, considering sales as non cancelled nor draft sale orders to that partner.
 
 
 Usage
 =====
-
-To use this module, you need to:
-
-* go to ...
 
 .. image:: https://odoo-community.org/website/image/ir.attachment/5784_f2813bd/datas
    :alt: Try me on Runbot
