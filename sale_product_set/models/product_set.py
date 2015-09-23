@@ -14,7 +14,5 @@ class ProductSet(models.Model):
     def copy(self, default=None):
         if default is None:
             default = {}
-        default.update({
-            'name': self.name + _(" (copy)"),
-        })
+        default['name'] = "%s %s" % (self.name, _("(copy)"), )
         return super(ProductSet, self).copy(default=default)

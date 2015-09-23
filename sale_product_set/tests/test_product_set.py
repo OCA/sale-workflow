@@ -80,3 +80,7 @@ class test_product_set(common.TransactionCase):
             pdt_set.set_line_ids,
             pdt_set_copy.set_line_ids
         )
+        self.assertEquals(
+            pdt_set.name + " (copy)",
+            pdt_set_copy.name
+        )
