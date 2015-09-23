@@ -14,9 +14,15 @@ recalculate prices when pricelist is changed.
 Usage
 =====
 
-Inside a sale order, you can click in any moment a button called
-"(Recalculate prices)", that is next to the pricelist selection, to launch
-a recalculation of all the prices of the lines, losing previous custom prices.
+Inside a sale order, you can click on "(Recalculate prices only)", that is next
+to the pricelist selection, to launch a recalculation of all the prices of the
+lines, losing previous custom prices.
+
+The second "(Recalculate prices and reset descriptions)" will do the same with
+getting descriptions from products, loosing custom descriptions.
+
+.. image:: /sale_order_price_recalculation/static/description/sale_order_price_recalculation.png
+    :alt: Sale order price recalculation
 
 .. image:: https://odoo-community.org/website/image/ir.attachment/5784_f2813bd/datas
    :alt: Try me on Runbot
