@@ -7,7 +7,8 @@
             <field name="inherit_id" ref="base.view_partner_form" />
             <field name="arch" type="xml">
                 <label for="street" position="before">
-                    <field name="prospect" />
+                    <field name="prospect"
+                           attrs="{'invisible': [('customer', '=', False)]}"/>
                 </label>
             </field>
         </record>
@@ -30,11 +31,14 @@
             <field name="arch" type="xml">
                 <filter string="Suppliers" position="after">
                     <separator/>
-                    <filter string="Actual Customer" name="noprospect" domain="[('prospect','=',False)]"/>
-                    <filter string="Prospect" name="prospect" domain="[('prospect','=',True)]"/>
+                    <filter string="Actual Customer" name="noprospect"
+                            domain="[('customer','=',1),('prospect','=',False)]" />
+                    <filter string="Prospect" name="prospect"
+                            domain="[('customer','=',1),('prospect','=',True)]" />
                 </filter>
                 <group string="Group By" position="inside">
-                    <filter string="Prospect" domain="[]" context="{'group_by':'prospect'}"/>
+                    <filter string="Prospect" domain="[('customer','=',1)]"
+                            context="{'group_by':'prospect'}"/>
                 </group>
             </field>
         </record>

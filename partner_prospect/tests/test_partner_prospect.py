@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
-##############################################################################
-# For copyright and license notices, see __openerp__.py file in root directory
-##############################################################################
+# (c) 2015 Esther Martin - AvanzOSC
+# (c) 2015 Oihane Crucelaegui - AvanzOSC
+# License AGPL-3 - See http://www.gnu.org/licenses/agpl-3.0.html
 
 from openerp.tests.common import TransactionCase
 
@@ -12,7 +12,10 @@ class TestPartnerProspect(TransactionCase):
         super(TestPartnerProspect, self).setUp()
         self.sale_order_model = self.env['sale.order']
         self.partner_model = self.env['res.partner']
-        self.partner1 = self.partner_model.create({'name': 'Partner1'})
+        self.invoice_model = self.env['account.invoice']
+        self.partner1 = self.partner_model.create({
+            'name': 'Partner1',
+        })
         self.partner2 = self.partner_model.create({
             'name': 'Partner2',
             'parent_id': self.partner1.id,
@@ -57,3 +60,29 @@ class TestPartnerProspect(TransactionCase):
         self.assertFalse(self.partner4.prospect, 'Partner4 is a prospect')
         self.sale_order3.action_cancel()
         self.assertTrue(self.partner4.prospect, 'Partner4 is not a prospect')
+
+    def test_partner_child_check_invoice(self):
+        type = 'out_invoice'
+        invoice_vals = self.invoice_model.onchange_partner_id(
+            type, self.partner2.id)
+        self.invoice_model.create({
+            'partner_id': self.partner2.id,
+            'type': type,
+            'account_id': invoice_vals.get('value', {}).get('account_id'),
+        })
+        self.assertFalse(self.partner1.prospect, 'Partner1 is a prospect')
+        self.assertFalse(self.partner2.prospect, 'Partner2 is a prospect')
+        self.assertFalse(self.partner3.prospect, 'Partner3 is a prospect')
+
+    def test_partner_parent_check_invoice(self):
+        type = 'out_refund'
+        invoice_vals = self.invoice_model.onchange_partner_id(
+            type, self.partner1.id)
+        self.invoice_model.create({
+            'partner_id': self.partner1.id,
+            'type': type,
+            'account_id': invoice_vals.get('value', {}).get('account_id'),
+        })
+        self.assertFalse(self.partner1.prospect, 'Partner1 is a prospect')
+        self.assertFalse(self.partner2.prospect, 'Partner2 is a prospect')
+        self.assertFalse(self.partner3.prospect, 'Partner3 is a prospect')
