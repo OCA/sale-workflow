@@ -19,24 +19,33 @@
 #                                                                       #
 #########################################################################
 
-from openerp import fields, models, api, _
-from openerp.exceptions import Warning
+from openerp import fields, models, api
 
 
 class SaleOrderLine(models.Model):
     _inherit = 'sale.order.line'
 
     lot_id = fields.Many2one(
-        'stock.production.lot', 'Lot', copy=False)
+        'stock.production.lot', 'Lot/Serial Number', copy=False)
+
+    @api.model
+    def _select_lot_product(self, product):
+        """Method inherited in the module sale_rental_lot_selection"""
+        return product
+
+    @api.model
+    def _select_lot_stock_location(self, product, warehouse):
+        """Method inherited in the module sale_rental_lot_selection"""
+        return warehouse.lot_stock_id
 
     @api.multi
     def product_id_change_with_wh(
-            self, pricelist, product, qty=0,
+            self, pricelist, product_id, qty=0,
             uom=False, qty_uos=0, uos=False, name='', partner_id=False,
             lang=False, update_tax=True, date_order=False, packaging=False,
             fiscal_position=False, flag=False, warehouse_id=False):
         res = super(SaleOrderLine, self).product_id_change_with_wh(
-            pricelist, product, qty=qty, uom=uom,
+            pricelist, product_id, qty=qty, uom=uom,
             qty_uos=qty_uos, uos=uos, name=name, partner_id=partner_id,
             lang=lang, update_tax=update_tax,
             date_order=date_order, packaging=packaging,
@@ -45,24 +54,28 @@ class SaleOrderLine(models.Model):
 
         available_lots = []
         lot_model = self.env['stock.production.lot']
-        product_model = self.env['product.product']
-        product_obj = product_model.browse(product)
-        location = self.env['stock.warehouse'].browse(
-            warehouse_id).lot_stock_id
-        lots = lot_model.search(
-            [('product_id', '=', product)])
+        product = self.env['product.product'].browse(product_id)
+        warehouse = self.env['stock.warehouse'].browse(warehouse_id)
+        location = self._select_lot_stock_location(product, warehouse)
+        # DO NOT use 'product_id' AFTER THIS LIMIT ; only use 'product'
+        product = self._select_lot_product(product)
+
+        lots = lot_model.search([('product_id', '=', product.id)])
         for lot in lots:
             # for the selected product, search for every associated lot
             # for every lot, check if it is available (in location.id)
             # if it is, add it to selectable lots
-            qty_res = product_obj.with_context({
+            qty_res = product.with_context({
                 'lot_id': lot.id,
                 'location': location.id,
                 })._product_available()
-            if qty_res[product]['qty_available'] > 0:
+            if qty_res[product.id]['qty_available'] > 0:
                 if lot.id not in available_lots:
                     available_lots.append(lot.id)
-        res.update({'domain': {'lot_id': [('id', 'in', available_lots)]}})
+        res.update({'domain': {'lot_id': [
+            ('id', 'in', available_lots),
+            ('product_id', '=', product.id),
+            ]}})
         res['value']['lot_id'] = False
         return res
 
@@ -78,39 +91,44 @@ class SaleOrder(models.Model):
         res['lot_id'] = line.lot_id.id
         return res
 
-    @api.model
-    def get_move_from_line(self, line):
-        move = self.env['stock.move']
+#    @api.model
+#    def get_move_from_line(self, line):
+#        move = self.env['stock.move']
         # i create this counter to check lot's univocity on move line
-        lot_count = 0
-        for p in line.order_id.picking_ids:
-            for m in p.move_lines:
-                if line.lot_id == m.restrict_lot_id:
-                    move = m
-                    lot_count += 1
-                    # if counter is 0 or > 1 means that something goes wrong
-                    if lot_count != 1:
-                        raise Warning(_('Can\'t retrieve lot on stock'))
-        return move
+#        lot_count = 0
+#        for p in line.order_id.picking_ids:
+#            print "p=", p
+#            for m in p.move_lines:
+#                print "m=", m
+#                print "line.lot_id=", line.lot_id
+#                print "m.restrict_lot_id=", m.restrict_lot_id
+#                if line.lot_id == m.restrict_lot_id:
+#                    move = m
+#                    lot_count += 1
+#                    print "+1 lot_count"
+#                    # if counter is 0 or > 1 means that something goes wrong
+#                    if lot_count != 1:
+#                        raise Warning(_('Can\'t retrieve lot on stock'))
+#        return move
 
-    @api.model
-    def _check_move_state(self, line):
-        if line.lot_id:
-            move = self.get_move_from_line(line)
-            if move.state != 'confirmed':
-                raise Warning(_('Can\'t reserve products for lot %s') %
-                              line.lot_id.name)
-            else:
-                move.action_assign()
-                move.refresh()
-                if move.state != 'assigned':
-                    raise Warning(_('Can\'t reserve products for lot %s') %
-                                  line.lot_id.name)
-        return True
+#    @api.model
+#    def _check_move_state(self, line):
+#        if line.lot_id:
+#            move = self.get_move_from_line(line)
+#            if move.state != 'confirmed':
+#                raise Warning(_('Can\'t reserve products for lot %s') %
+#                              line.lot_id.name)
+#            else:
+#                move.action_assign()
+#                move.refresh()
+#                if move.state != 'assigned':
+#                    raise Warning(_('Can\'t reserve products for lot %s') %
+#                                  line.lot_id.name)
+#        return True
 
-    @api.model
-    def action_ship_create(self):
-        super(SaleOrder, self).action_ship_create()
-        for line in self.order_line:
-            self._check_move_state(line)
-            return True
+#    @api.model
+#    def action_ship_create(self):
+#        super(SaleOrder, self).action_ship_create()
+#        for line in self.order_line:
+#            self._check_move_state(line)
+#            return True

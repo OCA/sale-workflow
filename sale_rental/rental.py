@@ -404,7 +404,8 @@ class SaleRental(models.Model):
     display_name = fields.Char(
         compute='_display_name', string='Display Name')
     start_order_line_id = fields.Many2one(
-        'sale.order.line', string='Rental Sale Order Line')
+        'sale.order.line', string='Rental Sale Order Line',
+        readonly=True)
     start_date = fields.Date(
         related='start_order_line_id.start_date',
         string='Start Date', readonly=True)
@@ -502,6 +503,8 @@ class SaleRental(models.Model):
 class StockWarehouse(models.Model):
     _inherit = "stock.warehouse"
 
+    rental_view_location_id = fields.Many2one(
+        'stock.location', 'Parent Rental', domain=[('usage', '=', 'view')])
     rental_in_location_id = fields.Many2one(
         'stock.location', 'Rental In', domain=[('usage', '<>', 'view')])
     rental_out_location_id = fields.Many2one(
@@ -590,6 +593,29 @@ class StockWarehouse(models.Model):
         if 'rental_allowed' in vals:
             if vals.get('rental_allowed'):
                 for warehouse in self:
+                    # create stock locations
+                    slo = self.env['stock.location']
+                    if not warehouse.rental_view_location_id:
+                        view_loc_id = slo.create({
+                            'name': _('Rental'),
+                            'location_id': self.view_location_id.id,
+                            'usage': 'view',
+                            })
+                        warehouse.rental_view_location_id = view_loc_id.id
+                    if not warehouse.rental_in_location_id:
+                        in_loc_id = slo.create({
+                            'name': _('Rental In'),
+                            'location_id':
+                            warehouse.rental_view_location_id.id,
+                            })
+                        warehouse.rental_in_location_id = in_loc_id.id
+                    if not warehouse.rental_out_location_id:
+                        out_loc_id = slo.create({
+                            'name': _('Rental Out'),
+                            'location_id':
+                            warehouse.rental_view_location_id.id,
+                            })
+                        warehouse.rental_out_location_id = out_loc_id.id
                     for obj, rules_list in\
                             self._get_rental_push_pull_rules().iteritems():
                         for rule in rules_list:
@@ -636,3 +662,29 @@ class StockLocationPath(models.Model):
             rental_end_date = move.procurement_id.sale_line_id.end_date
             vals['date'] = vals['date_expected'] = rental_end_date
         return vals
+
+
+class StockInventory(models.Model):
+    _inherit = 'stock.inventory'
+
+    @api.multi
+    def create_demo_and_validate(self):
+        silo = self.env['stock.inventory.line']
+        demo_inv = self.env.ref('sale_rental.rental_inventory')
+        rental_in_loc = self.env.ref('stock.warehouse0').rental_in_location_id
+        products = [
+            ('product.product_product_6', 56),
+            ('product.product_product_8', 46),
+            ('product.product_product_25', 2),
+            ]
+        for (product_xmlid, qty) in products:
+            product = self.env.ref(product_xmlid)
+            silo.create({
+                'product_id': product.id,
+                'product_uom_id': product.uom_id.id,
+                'inventory_id': demo_inv.id,
+                'product_qty': qty,
+                'location_id': rental_in_loc.id,
+            })
+        demo_inv.action_done()
+        return True

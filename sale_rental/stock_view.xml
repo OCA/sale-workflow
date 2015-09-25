@@ -16,8 +16,12 @@
     <field name="inherit_id" ref="stock.view_warehouse" />
     <field name="arch" type="xml">
         <field name="wh_output_stock_loc_id" position="after">
-            <field name="rental_in_location_id"/>
-            <field name="rental_out_location_id"/>
+            <field name="rental_view_location_id"
+                attrs="{'invisible': [('rental_allowed', '=', False)]}"/>
+            <field name="rental_in_location_id"
+                attrs="{'invisible': [('rental_allowed', '=', False)]}"/>
+            <field name="rental_out_location_id"
+                attrs="{'invisible': [('rental_allowed', '=', False)]}"/>
         </field>
         <field name="default_resupply_wh_id" position="before">
             <field name="rental_allowed"/>

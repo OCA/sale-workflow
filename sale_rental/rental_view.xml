@@ -50,7 +50,6 @@
                 <field name="out_move_id" />
                 <field name="out_state" />
                 <field name="out_picking_id" />
-<!--                <field name="prodlot_id" /> -->
             </group>
             <group name="stock-in" string="Return">
                 <field name="in_move_id" />

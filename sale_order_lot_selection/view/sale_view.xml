@@ -2,16 +2,18 @@
 <openerp>
     <data>
 
-        <record id="view_order_tree_lot" model="ir.ui.view">
-            <field name="name">sale.order.tree.lot</field>
+        <record id="view_order_form" model="ir.ui.view">
+            <field name="name">sale.order.lot.selection</field>
             <field name="model">sale.order</field>
-            <field name="inherit_id" ref="sale.view_order_form"/>
+            <field name="inherit_id" ref="sale_stock.view_order_form_inherit"/>
             <field name="arch" type="xml">
-                <xpath expr="//field[@name='order_line']/tree/field[@name='product_id']" position="after">
-                    <field name="lot_id" domain="[('product_id','=', product_id)]" context="{'default_product_id': product_id}" groups="stock.group_production_lot"/>
+                <xpath expr="//field[@name='order_line']/tree/field[@name='name']" position="after">
+                    <field name="lot_id" context="{'product_id': product_id}"
+                        groups="stock.group_production_lot"/> <!-- the domain is set by the on_change, for compatibility with sale_rental -->
                 </xpath>
-                <xpath expr="//field[@name='order_line']/form/group/group/field[@name='product_id']" position="after">
-                    <field name="lot_id" domain="[('product_id','=', product_id)]" context="{'default_product_id': product_id}" groups="stock.group_production_lot"/>
+                <xpath expr="//field[@name='order_line']/form/group/group/field[@name='price_unit']" position="before">
+                    <field name="lot_id" context="{'product_id': product_id}"
+                        groups="stock.group_production_lot"/>
                 </xpath>
             </field>
         </record>
