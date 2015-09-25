@@ -3,6 +3,23 @@
 <data>
 
 	<!-- Product view modification -->
+	<record model="ir.ui.view" id="product_template_only_form_view">
+		<field name="name">product.template.pack.form</field>
+		<field name="model">product.template</field>
+		<field name="inherit_id" ref="product.product_template_only_form_view" />
+		<field name="arch" type="xml">
+			<field name="type" position="after">
+				<field name="pack"/>
+				<field name="pack_price_type" attrs="{'invisible':[('pack', '=', False)], 'required':[('pack','=',True)]}"/>
+			</field>
+			<notebook position="inside">
+				<page string="Pack" attrs="{'invisible': ['|', ('product_variant_count', '>', 1), ('pack', '=', False)]}">
+					<field name="pack_line_ids"/>
+				</page>
+			</notebook>
+		</field>
+	</record>
+
 	<record model="ir.ui.view" id="nan_product_pack_form">
 		<field name="name">product.product.pack.form</field>
 		<field name="model">product.product</field>
@@ -10,11 +27,10 @@
 		<field name="arch" type="xml">
 			<field name="type" position="after">
 				<field name="pack"/>
-				<field name="sale_order_pack" groups="product_pack.group_pack" attrs="{'invisible':[('pack','=',False)]}"/>
-				<field name="pack_price_type" attrs="{'invisible':['|', ('pack','=',False), ('sale_order_pack','=',True)], 'required':[('pack','=',True), ('sale_order_pack','=',False)]}"/>
+				<field name="pack_price_type" attrs="{'invisible':[('pack', '=', False)], 'required':[('pack','=',True)]}"/>
 			</field>
 			<notebook position="inside">
-				<page string="Pack" attrs="{'invisible':[('pack','=',False)]}">
+				<page string="Pack" attrs="{'invisible':[('pack', '=', False)]}">
 					<field name="pack_line_ids"/>
 				</page>
 			</notebook>

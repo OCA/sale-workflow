@@ -26,8 +26,8 @@
                     <field name="state" widget="statusbar" statusbar_visible="draft,confirmed,done" statusbar_colors="{'exception':'red','cancel':'red'}"/>
                 </header>
                 <sheet>
-                    <field name="sale_order_pack" invisible="1"/>
-                    <div attrs="{'invisible':[('sale_order_pack','=',False)]}">
+                    <field name="pack_type" invisible="1"/>
+                    <div attrs="{'invisible':[('pack_type', '!=', 'none_detailed_assited_price')]}">
                         <div name="product_pack">
                             <label for="pack_line_ids"/>
                             <field name="pack_line_ids"/>
@@ -56,8 +56,8 @@
         <field name="arch" type="xml">
             <!-- button to open line form -->
             <xpath expr="//field[@name='order_line']/tree//field[@name='price_subtotal']" position="after">
-                <field name="sale_order_pack" invisible="1"/>
-                <button name="action_pack_detail" string="Detail" attrs="{'invisible':[('sale_order_pack', '=', False)]}" type="object"/>
+                <field name="pack_type" invisible="1"/>
+                <button name="action_pack_detail" string="Detail" attrs="{'invisible':[('pack_type', '!=', 'none_detailed_assited_price')]}" type="object"/>
             </xpath> 
         </field>
     </record>

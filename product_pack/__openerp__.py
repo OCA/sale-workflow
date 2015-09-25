@@ -20,7 +20,7 @@
 ##############################################################################
 {
     'name': 'Product Pack',
-    'version': '8.0.1.1.2',
+    'version': '8.0.1.2.2',
     'category': 'Product',
     'sequence': 14,
     'summary': '',
@@ -30,13 +30,6 @@ Product Pack
 Withilist:
 ----------
 * TODO calcular correctamente pack virtual available para negativos
-* Add configuration to enable "group_pack" functionality, now you have to set
-it manually
-(seria para el group group_pack) y ver que se haga visible la vista form
-* Improove packs interaction from product.template views
-* Analize if better to unify sale_order_pack to pack_price_type selection
-(perhups no because this functionality is only available if group "group_pack"
-is active)
     """,
     'author':  'NaN·tic, ADHOC',
     'images': [
@@ -46,11 +39,11 @@ is active)
     ],
     'data': [
         'security/ir.model.access.csv',
-        'security/product_security.xml',
         'views/pack_view.xml',
         'views/sale_view.xml',
     ],
     'demo': [
+        'demo/demo_data.xml',
     ],
     'test': [
     ],

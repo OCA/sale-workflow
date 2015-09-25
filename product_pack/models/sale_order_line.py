@@ -18,8 +18,8 @@ class sale_order_line(models.Model):
         'order_line_id',
         'Pack Lines'
         )
-    sale_order_pack = fields.Boolean(
-        related='product_id.sale_order_pack',
+    pack_type = fields.Selection(
+        related='product_id.pack_price_type',
         readonly=True
         )
 
@@ -44,10 +44,11 @@ class sale_order_line(models.Model):
     @api.one
     @api.constrains('product_id', 'price_unit', 'product_uom_qty')
     def expand_pack_line(self):
+        detailed_packs = ['components_price', 'totalice_price', 'fixed_price']
         if (
                 self.state == 'draft' and
                 self.product_id.pack and
-                not self.product_id.sale_order_pack):
+                self.pack_type in detailed_packs):
             for subline in self.product_id.pack_line_ids:
                 vals = subline.get_sale_order_line_vals(
                     self, self.order_id)
@@ -100,39 +101,21 @@ class sale_order_line(models.Model):
     def _onchange_pack_line_ids(self):
         self.price_unit = self.pack_total
 
-    # onchange para agregar los product en el tipo el pack "sale order pack"
-    def product_id_change(
-            self, cr, uid, ids, pricelist, product, qty=0,
-            uom=False, qty_uos=0, uos=False, name='', partner_id=False,
-            lang=False, update_tax=True, date_order=False, packaging=False,
-            fiscal_position=False, flag=False, context=None):
-        # warning = {}
-        if not product:
-            return {'value': {
-                'th_weight': 0,
-                'product_packaging': False,
-                'product_uos_qty': qty},
-                'domain': {'product_uom': [], 'product_uos': []}
-            }
-        product_obj = self.pool.get('product.product')
-        product_info = product_obj.browse(cr, uid, product)
+    @api.constrains('product_id')
+    def expand_none_detailed_pack(self):
+        if self.product_id.pack_price_type == 'none_detailed_assited_price':
+            # remove previus existing lines
+            self.pack_line_ids.unlink()
 
-        result = super(sale_order_line, self).product_id_change(
-            cr, uid, ids, pricelist, product, qty,
-            uom, qty_uos, uos, name, partner_id,
-            lang, update_tax, date_order, packaging,
-            fiscal_position, flag, context)
-
-        pack_line_ids = [(5, False, False)]
-        if product_info.pack_line_ids and product_info.sale_order_pack:
-            for pack_line in product_info.pack_line_ids:
+            # create a sale pack line for each product pack line
+            for pack_line in self.product_id.pack_line_ids:
                 price_unit = pack_line.product_id.lst_price
                 quantity = pack_line.quantity
-                pack_line_ids.append((0, False, {
+                vals = {
+                    'order_line_id': self.id,
                     'product_id': pack_line.product_id.id,
                     'product_uom_qty': quantity,
                     'price_unit': price_unit,
                     'price_subtotal': price_unit * quantity,
-                }))
-        result['value']['pack_line_ids'] = pack_line_ids
-        return result
+                    }
+                self.pack_line_ids.create(vals)

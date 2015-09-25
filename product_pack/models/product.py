@@ -12,11 +12,17 @@ class product_product(models.Model):
     _inherit = 'product.product'
 
     pack_line_ids = fields.One2many(
-        'product.pack.line', 'parent_product_id', 'Pack Products',
-        help='List of products that are part of this pack.')
+        'product.pack.line',
+        'parent_product_id',
+        'Pack Products',
+        help='List of products that are part of this pack.'
+        )
     used_pack_line_ids = fields.One2many(
-        'product.pack.line', 'product_id', 'Pack Products',
-        help='List of products that are part of this pack.')
+        'product.pack.line',
+        'product_id',
+        'On Packs',
+        help='List of packs where product is used.'
+        )
 
     def _product_available(
             self, cr, uid, ids, field_names=None, arg=False, context=None):
@@ -80,8 +86,88 @@ class product_product(models.Model):
     }
 
     @api.one
+    @api.constrains('pack_line_ids')
+    def check_recursion(self):
+        """
+        Check recursion on packs
+        """
+        pack_lines = self.pack_line_ids
+        while pack_lines:
+            print 'pack_lines', pack_lines
+            if self in pack_lines.mapped('product_id'):
+                raise Warning(_(
+                    'Error! You cannot create recursive packs.\n'
+                    'Product id: %s') % self.id)
+            pack_lines = pack_lines.mapped('product_id.pack_line_ids')
+
+
+class product_template(models.Model):
+    _inherit = 'product.template'
+
+    # TODO rename a pack_type
+    pack_price_type = fields.Selection([
+        ('components_price', 'Detailed - Components Prices'),
+        ('totalice_price', 'Detailed - Totaliced Price'),
+        ('fixed_price', 'Detailed - Fixed Price'),
+        ('none_detailed_assited_price', 'None Detailed - Assisted Price'),
+        ('none_detailed_totaliced_price', 'None Detailed - Totaliced Price'),
+    ],
+        'Pack Type',
+        help="""
+        * Detailed - Components Prices: Detail lines with prices on sales order.
+        * Detailed - Totaliced Price: Detail lines on sales order totalicing lines prices on pack (don't show component prices).
+        * Detailed - Fixed Price: Detail lines on sales order and use product pack price (ignore line prices).
+        * None Detailed - Assisted Price: Do not detail lines on sales order. Assist to get pack price using pack lines.
+        """
+        )
+    pack = fields.Boolean(
+        'Pack?',
+        help='Is a Product Pack?',
+        )
+    pack_line_ids = fields.One2many(
+        related='product_variant_ids.pack_line_ids'
+        )
+    used_pack_line_ids = fields.One2many(
+        related='product_variant_ids.used_pack_line_ids'
+        )
+
+    @api.constrains(
+        'parent_product_id', 'product_id', 'pack_price_type', 'pack')
+    def check_relations(self):
+        """
+        Check assited packs dont have packs a childs
+        """
+        # check assited price has no packs child of them
+        if self.pack_price_type == 'none_detailed_assited_price':
+            child_packs = self.mapped(
+                'pack_line_ids.product_id').filtered('pack')
+            if child_packs:
+                raise Warning(_(
+                    'A "None Detailed - Assisted Price Pack" can not have a '
+                    'pack as a child!'))
+
+        # TODO we also should check this
+        # check if we are configuring a pack for a product that is partof a
+        # assited pack
+        # if self.pack:
+        #     for product in self.product_variant_ids
+        #     parent_assited_packs = self.env['product.pack.line'].search([
+        #         ('product_id', '=', self.id),
+        #         ('parent_product_id.pack_price_type', '=',
+        #             'none_detailed_assited_price'),
+        #         ])
+        #     print 'parent_assited_packs', parent_assited_packs
+        #     if parent_assited_packs:
+        #         raise Warning(_(
+        #             'You can not set this product as pack because it is part '
+        #             'of a "None Detailed - Assisted Price Pack"'))
+
+    @api.one
     @api.constrains('company_id', 'pack_line_ids', 'used_pack_line_ids')
     def check_pack_line_company(self):
+        """
+        Check packs are related to packs of same company
+        """
         for line in self.pack_line_ids:
             if line.product_id.company_id != self.company_id:
                 raise Warning(_(
@@ -93,34 +179,15 @@ class product_product(models.Model):
                     'Pack lines products company must be the same as the\
                     parent product company'))
 
-
-class product_template(models.Model):
-    _inherit = 'product.template'
-
-    pack_price_type = fields.Selection([
-        ('components_price', 'Components Prices'),
-        ('totalice_price', 'Totalice Price'),
-        ('fixed_price', 'Fixed Price'),
-    ],
-        'Pack Price Type',
-        help="""
-        * Totalice Price: Sum individual prices on the product pack price.
-        * Fixed Price: Price of this product instead of components prrices.
-        * Components Price: Components prices plast pack price.
+    @api.multi
+    def write(self, vals):
         """
-    )
-    # TODO analize to make sale_order_pack a value of pack_price_type
-    # selection and perhups rename pack_price_type field to pack_type or
-    # similar
-    sale_order_pack = fields.Boolean(
-        'Sale Order Pack',
-        help='Sale order packs are used on sale orders to calculate a price of'
-        ' a line',
-    )
-    pack = fields.Boolean(
-        'Pack?',
-        help='Is a Product Pack?',
-    )
+        We remove from prod.prod to avoid error
+        """
+        if vals.get('pack_line_ids', False):
+            self.product_variant_ids.write(
+                {'pack_line_ids': vals.pop('pack_line_ids')})
+        return super(product_template, self).write(vals)
 
     @api.model
     def _price_get(self, products, ptype='list_price'):
@@ -129,11 +196,14 @@ class product_template(models.Model):
         for product in products:
             if (
                     product.pack and
-                    product.pack_price_type == 'totalice_price'):
-                # TODO should use price and not list_price
+                    product.pack_price_type in [
+                        'totalice_price',
+                        'none_detailed_assited_price',
+                        'none_detailed_totaliced_price']):
                 pack_price = 0.0
                 for pack_line in product.pack_line_ids:
-                    pack_price += (
-                        pack_line.product_id.list_price * pack_line.quantity)
+                    product_line_price = pack_line.product_id.price_get()[
+                            pack_line.product_id.id]
+                    pack_price += (product_line_price * pack_line.quantity)
                 res[product.id] = pack_price
         return res

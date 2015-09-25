@@ -8,7 +8,7 @@ import openerp.addons.decimal_precision as dp
 
 class sale_order_line_pack_line(models.Model):
     _name = 'sale.order.line.pack.line'
-    _description = 'sale.order.line.pack.line'
+    _description = 'Sale Order None Detailed Pack Lines'
 
     order_line_id = fields.Many2one(
         'sale.order.line',

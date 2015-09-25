@@ -10,12 +10,22 @@ class product_pack(models.Model):
     _rec_name = 'product_id'
 
     parent_product_id = fields.Many2one(
-        'product.product', 'Parent Product',
-        ondelete='cascade', required=True)
+        'product.product',
+        'Parent Product',
+        ondelete='cascade',
+        required=True
+        )
     quantity = fields.Float(
-        'Quantity', required=True)
+        'Quantity',
+        required=True,
+        default=1.0,
+        )
     product_id = fields.Many2one(
-        'product.product', 'Product', required=True)
+        'product.product',
+        'Product',
+        ondelete='cascade',
+        required=True,
+        )
 
     @api.multi
     def get_sale_order_line_vals(self, line, order):
