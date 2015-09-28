@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: sale-workflow (8.0)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-09-18 17:19+0000\n"
+"POT-Creation-Date: 2015-09-28 10:17+0000\n"
 "PO-Revision-Date: 2015-09-07 14:31+0000\n"
 "Last-Translator: Matjaž Mozetič <m.mozetic@matmoz.si>\n"
 "Language-Team: Slovenian (http://www.transifex.com/oca/OCA-sale-workflow-8-0/"
@@ -23,14 +23,13 @@ msgstr ""
 #. module: sale_order_price_recalculation
 #: view:sale.order:sale_order_price_recalculation.sorp_view_order_form
 #, fuzzy
-msgid "(Recalculate prices and reset descriptions)"
+msgid "Recalculate prices"
 msgstr "(Preračun cen)"
 
 #. module: sale_order_price_recalculation
 #: view:sale.order:sale_order_price_recalculation.sorp_view_order_form
-#, fuzzy
-msgid "(Recalculate prices only)"
-msgstr "(Preračun cen)"
+msgid "Reset descriptions"
+msgstr ""
 
 #. module: sale_order_price_recalculation
 #: model:ir.model,name:sale_order_price_recalculation.model_sale_order
