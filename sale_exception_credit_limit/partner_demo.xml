@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data noupdate="1">
+    
+        <!-- we add credit for test cases -->
+
+        <!-- agrolait -->
+        <record id="base.res_partner_2" model="res.partner">
+            <!-- 4887.00 de sale_order_5 + 9705.00 de sale_order_1 + 24566.00 de facturas -->
+            <field name="credit_limit" eval="60000.00"/>
+        </record>
+        
+        <!-- millenium -->
+        <record id="base.res_partner_11" model="res.partner">
+            <!-- 14981.00 de sale_order_7 -->
+            <field name="credit_limit" eval="60000.00"/>
+        </record>
+
+    </data>
+</openerp>

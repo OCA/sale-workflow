@@ -1,0 +1,41 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# * sale_exception_credit_limit
+# 
+# Translators:
+# Juan José Scarafía <scarafia.juanjose@gmail.com>, 2016
+msgid ""
+msgstr ""
+"Project-Id-Version: sale (8.0)\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2016-05-20 22:53+0000\n"
+"PO-Revision-Date: 2016-05-24 23:00+0000\n"
+"Last-Translator: Juan José Scarafía <scarafia.juanjose@gmail.com>\n"
+"Language-Team: Spanish (http://www.transifex.com/adhoc/ingadhoc-sale-8-0/language/es/)\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Language: es\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+#. module: sale_exception_credit_limit
+#: model:res.groups,name:sale_exception_credit_limit.credit_config
+msgid "Config Credit Limit On partners"
+msgstr "Configurar Límite de Crédito en Partners"
+
+#. module: sale_exception_credit_limit
+#: model:sale.exception,name:sale_exception_credit_limit.credit_limit_exceeded
+msgid "Credit Limit Exceeded"
+msgstr "Límite de Crédito Excedido"
+
+#. module: sale_exception_credit_limit
+#: model:sale.exception,description:sale_exception_credit_limit.credit_limit_exceeded
+msgid ""
+"Not enough credit on partner for this sales order. You can use \"Before "
+"Delivery\" on \"Create Invoice\" if available on \"Other Information\" tab."
+msgstr "No hay crédito suficiente en el partner para esta orden de venta. Puede utilizar \"Antes del Envío\" en \"Crear Factura\" en la pestaña \"Otra Información\" si está disponible"
+
+#. module: sale_exception_credit_limit
+#: model:ir.model,name:sale_exception_credit_limit.model_sale_order
+msgid "Sales Order"
+msgstr "Pedido de venta"
