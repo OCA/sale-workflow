@@ -1,6 +1,6 @@
 # Translation of Odoo Server.
 # This file contains the translation of the following modules:
-# * sale_procurement_group_by_line
+# * sale_order_back2draft
 # 
 # Translators:
 msgid ""
@@ -17,17 +17,18 @@ msgstr ""
 "Language: it\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
-#. module: sale_procurement_group_by_line
-#: field:sale.order.line,procurement_group_id:0
-msgid "Procurement group"
+#. module: sale_order_back2draft
+#: view:sale.order:sale_order_back2draft.view_order_form_draft
+msgid "Back to draft"
 msgstr ""
 
-#. module: sale_procurement_group_by_line
-#: model:ir.model,name:sale_procurement_group_by_line.model_sale_order
+#. module: sale_order_back2draft
+#: model:ir.model,name:sale_order_back2draft.model_sale_order
 msgid "Sales Order"
 msgstr "Ordini vendita"
 
-#. module: sale_procurement_group_by_line
-#: model:ir.model,name:sale_procurement_group_by_line.model_sale_order_line
-msgid "Sales Order Line"
-msgstr "Linea d'ordine di vendita"
+#. module: sale_order_back2draft
+#: code:addons/sale_order_back2draft/models/sale_order.py:18
+#, python-format
+msgid "You can't back any order that it's not on cancel state. Order: %s"
+msgstr ""

@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: sale-workflow (8.0)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-09-09 12:27+0000\n"
+"POT-Creation-Date: 2015-10-02 17:59+0000\n"
 "PO-Revision-Date: 2015-09-03 07:09+0000\n"
 "Last-Translator: <>\n"
 "Language-Team: Italian (http://www.transifex.com/oca/OCA-sale-workflow-8-0/language/it/)\n"
@@ -68,7 +68,7 @@ msgstr ""
 #. module: sale_payment_term_interest
 #: model:ir.model,name:sale_payment_term_interest.model_sale_order
 msgid "Sales Order"
-msgstr ""
+msgstr "Ordini vendita"
 
 #. module: sale_payment_term_interest
 #: model:ir.model,name:sale_payment_term_interest.model_sale_order_line

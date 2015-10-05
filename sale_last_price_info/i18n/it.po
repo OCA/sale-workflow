@@ -1,6 +1,6 @@
 # Translation of Odoo Server.
 # This file contains the translation of the following modules:
-# * sale_procurement_group_by_line
+# * sale_last_price_info
 # 
 # Translators:
 msgid ""
@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: sale-workflow (8.0)\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2015-10-02 17:59+0000\n"
-"PO-Revision-Date: 2015-09-03 07:09+0000\n"
+"PO-Revision-Date: 2015-09-03 07:08+0000\n"
 "Last-Translator: <>\n"
 "Language-Team: Italian (http://www.transifex.com/oca/OCA-sale-workflow-8-0/language/it/)\n"
 "MIME-Version: 1.0\n"
@@ -17,17 +17,17 @@ msgstr ""
 "Language: it\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
-#. module: sale_procurement_group_by_line
-#: field:sale.order.line,procurement_group_id:0
-msgid "Procurement group"
+#. module: sale_last_price_info
+#: view:product.product:sale_last_price_info.product_last_sale_info_form_view
+msgid "Last Price Info"
 msgstr ""
 
-#. module: sale_procurement_group_by_line
-#: model:ir.model,name:sale_procurement_group_by_line.model_sale_order
-msgid "Sales Order"
-msgstr "Ordini vendita"
+#. module: sale_last_price_info
+#: model:ir.model,name:sale_last_price_info.model_product_product
+msgid "Product"
+msgstr "Produtto"
 
-#. module: sale_procurement_group_by_line
-#: model:ir.model,name:sale_procurement_group_by_line.model_sale_order_line
-msgid "Sales Order Line"
-msgstr "Linea d'ordine di vendita"
+#. module: sale_last_price_info
+#: view:product.product:sale_last_price_info.product_last_sale_info_form_view
+msgid "Sale"
+msgstr "Vendite"

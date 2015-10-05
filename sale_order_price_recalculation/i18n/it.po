@@ -10,11 +10,11 @@ msgstr ""
 "POT-Creation-Date: 2015-10-02 17:59+0000\n"
 "PO-Revision-Date: 2015-09-28 12:51+0000\n"
 "Last-Translator: OCA Transbot <transbot@odoo-community.org>\n"
-"Language-Team: Spanish (http://www.transifex.com/oca/OCA-sale-workflow-8-0/language/es/)\n"
+"Language-Team: Italian (http://www.transifex.com/oca/OCA-sale-workflow-8-0/language/it/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
-"Language: es\n"
+"Language: it\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
 #. module: sale_order_price_recalculation
@@ -30,4 +30,4 @@ msgstr ""
 #. module: sale_order_price_recalculation
 #: model:ir.model,name:sale_order_price_recalculation.model_sale_order
 msgid "Sales Order"
-msgstr "Pedido de venta"
+msgstr "Ordini vendita"

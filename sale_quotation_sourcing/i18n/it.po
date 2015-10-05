@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: sale-workflow (8.0)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-09-09 12:27+0000\n"
+"POT-Creation-Date: 2015-10-02 17:59+0000\n"
 "PO-Revision-Date: 2015-09-03 07:10+0000\n"
 "Last-Translator: <>\n"
 "Language-Team: Italian (http://www.transifex.com/oca/OCA-sale-workflow-8-0/language/it/)\n"
@@ -20,36 +20,36 @@ msgstr ""
 #. module: sale_quotation_sourcing
 #: view:sale.order.sourcing:sale_quotation_sourcing.sale_order_sourcing_wizard
 msgid "Cancel"
-msgstr ""
+msgstr "Cancella"
 
 #. module: sale_quotation_sourcing
 #: field:sale.order.line.sourcing,create_uid:0
 #: field:sale.order.sourcing,create_uid:0
 msgid "Created by"
-msgstr ""
+msgstr "Creato da"
 
 #. module: sale_quotation_sourcing
 #: field:sale.order.line.sourcing,create_date:0
 #: field:sale.order.sourcing,create_date:0
 msgid "Created on"
-msgstr ""
+msgstr "Creato il"
 
 #. module: sale_quotation_sourcing
 #: field:sale.order.line.sourcing,id:0 field:sale.order.sourcing,id:0
 msgid "ID"
-msgstr ""
+msgstr "ID"
 
 #. module: sale_quotation_sourcing
 #: field:sale.order.line.sourcing,write_uid:0
 #: field:sale.order.sourcing,write_uid:0
 msgid "Last Updated by"
-msgstr ""
+msgstr "Ultimo aggiornamento di"
 
 #. module: sale_quotation_sourcing
 #: field:sale.order.line.sourcing,write_date:0
 #: field:sale.order.sourcing,write_date:0
 msgid "Last Updated on"
-msgstr ""
+msgstr "Ultimo aggiornamento il"
 
 #. module: sale_quotation_sourcing
 #: field:sale.order.sourcing,line_ids:0
@@ -85,12 +85,12 @@ msgstr ""
 #. module: sale_quotation_sourcing
 #: field:sale.order.sourcing,sale_id:0
 msgid "Sale Order"
-msgstr ""
+msgstr "Ordine di vendita"
 
 #. module: sale_quotation_sourcing
 #: field:sale.order.line.sourcing,so_line_id:0
 msgid "Sale Order Line"
-msgstr ""
+msgstr "Riga ordine di vendita"
 
 #. module: sale_quotation_sourcing
 #: view:sale.order.sourcing:sale_quotation_sourcing.sale_order_sourcing_wizard
@@ -100,7 +100,7 @@ msgstr ""
 #. module: sale_quotation_sourcing
 #: model:ir.model,name:sale_quotation_sourcing.model_sale_order
 msgid "Sales Order"
-msgstr ""
+msgstr "Ordini vendita"
 
 #. module: sale_quotation_sourcing
 #: model:ir.model,name:sale_quotation_sourcing.model_sale_order_line
