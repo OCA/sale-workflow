@@ -3,19 +3,18 @@
 # * sale_order_type
 # 
 # Translators:
-# Rudolf Schnapka <rs@techno-flex.de>, 2015
 msgid ""
 msgstr ""
 "Project-Id-Version: sale-workflow (8.0)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-10-08 20:48+0000\n"
-"PO-Revision-Date: 2015-10-09 14:32+0000\n"
-"Last-Translator: Rudolf Schnapka <rs@techno-flex.de>\n"
-"Language-Team: German (http://www.transifex.com/oca/OCA-sale-workflow-8-0/language/de/)\n"
+"POT-Creation-Date: 2015-10-02 17:59+0000\n"
+"PO-Revision-Date: 2015-09-03 07:09+0000\n"
+"Last-Translator: <>\n"
+"Language-Team: Italian (http://www.transifex.com/oca/OCA-sale-workflow-8-0/language/it/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
-"Language: de\n"
+"Language: it\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
 #. module: sale_order_type
@@ -23,45 +22,45 @@ msgstr ""
 msgid ""
 "<p class=\"oe_view_nocontent_create\">Click to set a new type for sale order.</p>\n"
 "            "
-msgstr "<p class=\"oe_view_nocontent_create\">Klicken, um neue Art von Verkaufsaufträgen anzulegen.</p>\n            "
+msgstr ""
 
 #. module: sale_order_type
 #: view:sale.order.type:sale_order_type.sot_sale_order_type_search_view
 #: field:sale.order.type,journal_id:0
 msgid "Billing Journal"
-msgstr "Abrechnungs-Journal"
+msgstr ""
 
 #. module: sale_order_type
 #: view:sale.order.type:sale_order_type.sot_sale_order_type_search_view
 #: field:sale.order.type,order_policy:0
 msgid "Create Invoice"
-msgstr "Rechnung anlegen"
+msgstr ""
 
 #. module: sale_order_type
 #: field:sale.order.type,create_uid:0
 msgid "Created by"
-msgstr "Angelegt durch"
+msgstr "Creato da"
 
 #. module: sale_order_type
 #: field:sale.order.type,create_date:0
 msgid "Created on"
-msgstr "Angelegt am"
+msgstr "Creato il"
 
 #. module: sale_order_type
 #: field:sale.order.type,description:0
 msgid "Description"
-msgstr "Beschreibung"
+msgstr "Descrizione"
 
 #. module: sale_order_type
 #: view:sale.order.type:sale_order_type.sot_sale_order_type_search_view
 #: field:sale.order.type,sequence_id:0
 msgid "Entry Sequence"
-msgstr "Eingabereihenfolge"
+msgstr ""
 
 #. module: sale_order_type
 #: view:sale.order.type:sale_order_type.sot_sale_order_type_search_view
 msgid "Group By"
-msgstr "Gruppierung"
+msgstr ""
 
 #. module: sale_order_type
 #: field:sale.order.type,id:0
@@ -71,81 +70,81 @@ msgstr "ID"
 #. module: sale_order_type
 #: model:ir.model,name:sale_order_type.model_account_invoice
 msgid "Invoice"
-msgstr "Rechnung"
+msgstr ""
 
 #. module: sale_order_type
 #: view:sale.order.type:sale_order_type.sot_sale_order_type_search_view
 #: field:sale.order.type,invoice_state:0
 msgid "Invoice Control"
-msgstr "Rechnungsprüfung"
+msgstr ""
 
 #. module: sale_order_type
 #: field:sale.order.type,write_uid:0
 msgid "Last Updated by"
-msgstr "Zuletzt akualisiert durch"
+msgstr "Ultimo aggiornamento di"
 
 #. module: sale_order_type
 #: field:sale.order.type,write_date:0
 msgid "Last Updated on"
-msgstr "Zuletzt akualisiert am"
+msgstr "Ultimo aggiornamento il"
 
 #. module: sale_order_type
 #: field:sale.order.type,name:0
 msgid "Name"
-msgstr "Bezeichnung"
+msgstr ""
 
 #. module: sale_order_type
 #: model:sale.order.type,name:sale_order_type.normal_sale_type
 msgid "Normal Order"
-msgstr "Normaler Auftrag"
+msgstr ""
 
 #. module: sale_order_type
 #: model:ir.model,name:sale_order_type.model_res_partner
 msgid "Partner"
-msgstr "Partner"
+msgstr ""
 
 #. module: sale_order_type
 #: model:ir.model,name:sale_order_type.model_stock_picking
 msgid "Picking List"
-msgstr "Kommissionierliste"
+msgstr ""
 
 #. module: sale_order_type
 #: view:sale.order.type:sale_order_type.sot_sale_order_type_search_view
 #: field:sale.order.type,refund_journal_id:0
 msgid "Refund Billing Journal"
-msgstr "Gutschrifts-Journal"
+msgstr ""
 
 #. module: sale_order_type
 #: field:res.partner,sale_type:0
 msgid "Sale Order Type"
-msgstr "Verkaufsauftragsart"
+msgstr ""
 
 #. module: sale_order_type
 #: model:ir.model,name:sale_order_type.model_sale_order
 msgid "Sales Order"
-msgstr "Verkaufsauftrag"
+msgstr "Ordini vendita"
 
 #. module: sale_order_type
 #: view:res.partner:sale_order_type.res_partner_sale_type_form_view
 msgid "Sales Order Type"
-msgstr "Verkaufsauftragsart"
+msgstr ""
 
 #. module: sale_order_type
 #: model:ir.actions.act_window,name:sale_order_type.sot_sale_order_type_action
 #: model:ir.ui.menu,name:sale_order_type.sot_sale_order_type_menu
 msgid "Sales Order Types"
-msgstr "Verkaufsauftragsarten"
+msgstr ""
 
 #. module: sale_order_type
 #: view:sale.order.type:sale_order_type.sot_sale_order_type_search_view
 #: field:sale.order.type,picking_policy:0
 msgid "Shipping Policy"
-msgstr "Lieferbedingung"
+msgstr ""
 
 #. module: sale_order_type
 #: model:ir.model,name:sale_order_type.model_stock_move
 msgid "Stock Move"
-msgstr "Lagerbuchung"
+msgstr "Movimenti magazzino"
 
 #. module: sale_order_type
 #: field:sale.order,type_id:0
@@ -153,15 +152,15 @@ msgstr "Lagerbuchung"
 #: view:sale.order.type:sale_order_type.sot_sale_order_type_search_view
 #: view:sale.order.type:sale_order_type.sot_sale_order_type_tree_view
 msgid "Type"
-msgstr "Art"
+msgstr ""
 
 #. module: sale_order_type
 #: model:ir.model,name:sale_order_type.model_sale_order_type
 msgid "Type of sale order"
-msgstr "Art des Verkaufsauftrags"
+msgstr ""
 
 #. module: sale_order_type
 #: view:sale.order.type:sale_order_type.sot_sale_order_type_search_view
 #: field:sale.order.type,warehouse_id:0
 msgid "Warehouse"
-msgstr "Lager"
+msgstr "Magazzino"
