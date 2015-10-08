@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+<data noupdate="1">
+
+	<menuitem id="menu_product_packaging_action"
+			  action="action_product_packaging_form"
+			  parent="base.menu_product" sequence="99"
+			  groups="product.group_stock_packaging"
+			/>
+
+</data>
+</openerp>
