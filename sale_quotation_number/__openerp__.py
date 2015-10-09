@@ -24,7 +24,7 @@
 
 {
     'name': 'Sale Quotation Numeration',
-    'version': '1.1',
+    'version': '8.0.1.1.0',
     'category': 'Sales Management',
     'summary': "Different sequence for sale quotations",
     'description': """
