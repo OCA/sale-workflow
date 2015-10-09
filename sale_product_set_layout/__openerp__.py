@@ -3,7 +3,7 @@
     'name': 'Sale product set layout',
     'category': 'Sale',
     'author': 'Anybox, Odoo Community Association (OCA)',
-    'version': '1.0',
+    'version': '8.0.1.0.0',
     'sequence': 150,
     'website': 'http://anybox.fr',
     'summary': "Sale product set layout",

@@ -22,7 +22,7 @@
 {'name': 'Sale Addresses with multiple Warehouse sources',
  'summary': 'Make sale_sourced_by_line and sale_transport_multi_address'
  'work together',
- 'version': '1.0',
+ 'version': '8.0.1.0.0',
  'author': "Camptocamp,Odoo Community Association (OCA)",
  'category': 'Sales Management',
  'license': 'AGPL-3',

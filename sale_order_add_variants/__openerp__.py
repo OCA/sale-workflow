@@ -21,7 +21,7 @@
 {
     'name': 'Sale Order Add Variants',
     'summary': 'Add variants from template into sale order',
-    'version': '0.1',
+    'version': '8.0.0.1.0',
     'author': 'FactorLibre,Odoo Community Association (OCA)',
     'category': 'Sale',
     'license': 'AGPL-3',

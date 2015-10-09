@@ -18,33 +18,33 @@ Available addons
 ----------------
 addon | version | summary
 --- | --- | ---
-[partner_prepayment](partner_prepayment/) | 1.0 | Option on partner to set prepayment policy
-[partner_prospect](partner_prospect/) | 1.0 | Partner Prospect
+[partner_prepayment](partner_prepayment/) | 8.0.1.0.0 | Option on partner to set prepayment policy
+[partner_prospect](partner_prospect/) | 8.0.1.0.0 | Partner Prospect
 [sale_cancel_reason](sale_cancel_reason/) | 8.0.1.1 | Sale Cancel Reason
-[sale_exception_nostock](sale_exception_nostock/) | 1.2 | Sale stock exception
-[sale_exceptions](sale_exceptions/) | 1.0 | Custom exceptions on sale order
-[sale_last_price_info](sale_last_price_info/) | 1.0 | Product Last Price Info - Sale
-[sale_order_add_variants](sale_order_add_variants/) | 0.1 | Add variants from template into sale order
-[sale_order_back2draft](sale_order_back2draft/) | 1.0 | Back to draft on sales orders
-[sale_order_line_description](sale_order_line_description/) | 1.0 | Sale order line description
+[sale_exception_nostock](sale_exception_nostock/) | 8.0.1.2.0 | Sale stock exception
+[sale_exceptions](sale_exceptions/) | 8.0.1.0.0 | Custom exceptions on sale order
+[sale_last_price_info](sale_last_price_info/) | 8.0.1.0.0 | Product Last Price Info - Sale
+[sale_order_add_variants](sale_order_add_variants/) | 8.0.0.1.0 | Add variants from template into sale order
+[sale_order_back2draft](sale_order_back2draft/) | 8.0.1.0.0 | Back to draft on sales orders
+[sale_order_line_description](sale_order_line_description/) | 8.0.1.0.0 | Sale order line description
 [sale_order_price_recalculation](sale_order_price_recalculation/) | 8.0.1.0.0 | Price recalculation in sales orders
-[sale_order_revision](sale_order_revision/) | 0.1 | Sale order revisions
+[sale_order_revision](sale_order_revision/) | 8.0.0.1.0 | Sale order revisions
 [sale_order_type](sale_order_type/) | 8.0.1.0.1 | Sale Order Types
-[sale_owner_stock_sourcing](sale_owner_stock_sourcing/) | 0.1 | Manage stock ownership on sale order lines
-[sale_partner_order_policy](sale_partner_order_policy/) | 1.0 | Adds customer create invoice method on partner form
-[sale_payment_term_interest](sale_payment_term_interest/) | 1.0 | Sales Payment Term Interests
-[sale_procurement_group_by_line](sale_procurement_group_by_line/) | 1.0 | Base module for multiple procurement group by Sale order
-[sale_product_set](sale_product_set/) | 1.0 | Sale product set
-[sale_product_set_layout](sale_product_set_layout/) | 1.0 | Sale product set layout
-[sale_quotation_number](sale_quotation_number/) | 1.1 | Different sequence for sale quotations
-[sale_quotation_sourcing](sale_quotation_sourcing/) | 0.3.1 | manual sourcing of sale quotations
-[sale_quotation_sourcing_stock_route_transit](sale_quotation_sourcing_stock_route_transit/) | 0.1 | Link module for sale_quotation_sourcing + stock_route_transit
-[sale_reason_to_export](sale_reason_to_export/) | 0.1 | Reason to export in Sales Order
-[sale_rental](sale_rental/) | 0.1 | Manage Rental of Products
-[sale_sourced_by_line](sale_sourced_by_line/) | 1.1 | Multiple warehouse source locations for Sale order
-[sale_sourced_by_line_sale_transport_multi_address](sale_sourced_by_line_sale_transport_multi_address/) | 1.0 | Make sale_sourced_by_line and sale_transport_multi_addresswork together
-[sale_start_end_dates](sale_start_end_dates/) | 0.1 | Adds start date and end date on sale order lines
-[sale_validity](sale_validity/) | 7.0.0 | Sales Quotation Validity Date
+[sale_owner_stock_sourcing](sale_owner_stock_sourcing/) | 8.0.0.1.0 | Manage stock ownership on sale order lines
+[sale_partner_order_policy](sale_partner_order_policy/) | 8.0.1.0.0 | Adds customer create invoice method on partner form
+[sale_payment_term_interest](sale_payment_term_interest/) | 8.0.1.0.0 | Sales Payment Term Interests
+[sale_procurement_group_by_line](sale_procurement_group_by_line/) | 8.0.1.0.0 | Base module for multiple procurement group by Sale order
+[sale_product_set](sale_product_set/) | 8.0.1.0.0 | Sale product set
+[sale_product_set_layout](sale_product_set_layout/) | 8.0.1.0.0 | Sale product set layout
+[sale_quotation_number](sale_quotation_number/) | 8.0.1.1.0 | Different sequence for sale quotations
+[sale_quotation_sourcing](sale_quotation_sourcing/) | 8.0.0.3.1 | manual sourcing of sale quotations
+[sale_quotation_sourcing_stock_route_transit](sale_quotation_sourcing_stock_route_transit/) | 8.0.0.1.0 | Link module for sale_quotation_sourcing + stock_route_transit
+[sale_reason_to_export](sale_reason_to_export/) | 8.0.0.1.0 | Reason to export in Sales Order
+[sale_rental](sale_rental/) | 8.0.0.1.0 | Manage Rental of Products
+[sale_sourced_by_line](sale_sourced_by_line/) | 8.0.1.1.0 | Multiple warehouse source locations for Sale order
+[sale_sourced_by_line_sale_transport_multi_address](sale_sourced_by_line_sale_transport_multi_address/) | 8.0.1.0.0 | Make sale_sourced_by_line and sale_transport_multi_addresswork together
+[sale_start_end_dates](sale_start_end_dates/) | 8.0.0.1.0 | Adds start date and end date on sale order lines
+[sale_validity](sale_validity/) | 8.0.7.0.0 | Sales Quotation Validity Date
 
 Unported addons
 ---------------

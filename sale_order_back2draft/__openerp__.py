@@ -22,7 +22,7 @@
 
 {
     "name": "Back to draft on sales orders",
-    "version": "1.0",
+    "version": "8.0.1.0.0",
     "category": "Sales Management",
     "author": "Serv. Tecnol. Avanzados - Pedro M. Baeza",
     "website": "http://www.serviciosbaeza.com",
