@@ -21,7 +21,7 @@
 
 {'name': 'Sale Procurement Group by Line',
  'summary': 'Base module for multiple procurement group by Sale order',
- 'version': '1.0',
+ 'version': '8.0.1.0.0',
  'author': "Camptocamp,Odoo Community Association (OCA)",
  'category': 'Warehouse',
  'license': 'AGPL-3',
