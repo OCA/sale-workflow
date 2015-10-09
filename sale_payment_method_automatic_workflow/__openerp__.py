@@ -20,7 +20,7 @@
 ##############################################################################
 
 {'name': 'Sale Payment Method - Automatic Worflow (link module)',
- 'version': '1.0',
+ 'version': '8.0.1.0.0',
  'author': 'Camptocamp,Akretion,Odoo Community Association (OCA)',
  'license': 'AGPL-3',
  'category': 'Generic Modules/Others',
