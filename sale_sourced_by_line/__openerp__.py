@@ -21,7 +21,7 @@
 
 {'name': 'Sale Sourced by Line',
  'summary': 'Multiple warehouse source locations for Sale order',
- 'version': '1.1',
+ 'version': '8.0.1.1.0',
  'author': "Camptocamp,Odoo Community Association (OCA)",
  'category': 'Warehouse',
  'license': 'AGPL-3',
