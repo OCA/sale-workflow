@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: sale-workflow (8.0)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-09-09 12:27+0000\n"
+"POT-Creation-Date: 2015-10-08 20:48+0000\n"
 "PO-Revision-Date: 2015-09-03 07:10+0000\n"
 "Last-Translator: <>\n"
 "Language-Team: German (http://www.transifex.com/oca/OCA-sale-workflow-8-0/language/de/)\n"
@@ -37,7 +37,7 @@ msgstr ""
 #. module: sale_rental
 #: view:create.rental.product:sale_rental.create_rental_product_form
 msgid "Cancel"
-msgstr ""
+msgstr "Abbrechen"
 
 #. module: sale_rental
 #: code:addons/sale_rental/rental.py:118
@@ -70,12 +70,12 @@ msgstr ""
 #. module: sale_rental
 #: field:create.rental.product,create_uid:0 field:sale.rental,create_uid:0
 msgid "Created by"
-msgstr ""
+msgstr "Angelegt durch"
 
 #. module: sale_rental
 #: field:create.rental.product,create_date:0 field:sale.rental,create_date:0
 msgid "Created on"
-msgstr ""
+msgstr "Angelegt am"
 
 #. module: sale_rental
 #: field:create.rental.product,default_code:0
@@ -91,12 +91,12 @@ msgstr ""
 #. module: sale_rental
 #: view:sale.rental:sale_rental.sale_rental_tree
 msgid "End Date"
-msgstr ""
+msgstr "Enddatum"
 
 #. module: sale_rental
 #: field:create.rental.product,id:0 field:sale.rental,id:0
 msgid "ID"
-msgstr ""
+msgstr "ID"
 
 #. module: sale_rental
 #: help:sale.order.line,rental_qty:0
@@ -106,12 +106,12 @@ msgstr ""
 #. module: sale_rental
 #: field:create.rental.product,write_uid:0 field:sale.rental,write_uid:0
 msgid "Last Updated by"
-msgstr ""
+msgstr "Zuletzt akualisiert durch"
 
 #. module: sale_rental
 #: field:create.rental.product,write_date:0 field:sale.rental,write_date:0
 msgid "Last Updated on"
-msgstr ""
+msgstr "Zuletzt akualisiert am"
 
 #. module: sale_rental
 #: code:addons/sale_rental/rental.py:151
@@ -175,7 +175,7 @@ msgstr ""
 #. module: sale_rental
 #: model:ir.model,name:sale_rental.model_product_product
 msgid "Product"
-msgstr ""
+msgstr "Produkt"
 
 #. module: sale_rental
 #: field:create.rental.product,categ_id:0
@@ -329,7 +329,7 @@ msgstr "Verkaufsauftrag"
 #. module: sale_rental
 #: model:ir.model,name:sale_rental.model_sale_order_line
 msgid "Sales Order Line"
-msgstr ""
+msgstr "Auftragsposition"
 
 #. module: sale_rental
 #: code:addons/sale_rental/rental.py:531
@@ -348,7 +348,7 @@ msgstr ""
 #. module: sale_rental
 #: model:ir.model,name:sale_rental.model_stock_move
 msgid "Stock Move"
-msgstr ""
+msgstr "Lagerbuchung"
 
 #. module: sale_rental
 #: code:addons/sale_rental/rental.py:541
@@ -403,7 +403,7 @@ msgstr ""
 #. module: sale_rental
 #: model:ir.model,name:sale_rental.model_stock_warehouse
 msgid "Warehouse"
-msgstr ""
+msgstr "Lager"
 
 #. module: sale_rental
 #: code:addons/sale_rental/rental.py:250
