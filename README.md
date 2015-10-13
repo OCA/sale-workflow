@@ -50,23 +50,23 @@ Unported addons
 ---------------
 addon | version | summary
 --- | --- | ---
-[account_invoice_reorder_lines](__unported__/account_invoice_reorder_lines/) | 0.1 (unported) | Invoice lines with sequence number
-[mail_quotation](__unported__/mail_quotation/) | 0.1 (unported) | Mail quotation
-[pricelist_share_companies](__unported__/pricelist_share_companies/) | 1.0 (unported) | Share pricelist between compagnies, not product
-[product_customer_code_sale](__unported__/product_customer_code_sale/) | 1.0 (unported) | Product Customer code on sale
-[product_special_type](__unported__/product_special_type/) | 1.0 (unported) | Product Special Types
-[product_special_type_invoice](__unported__/product_special_type_invoice/) | 1.0 (unported) | Product Special Type on Invoice
-[product_special_type_sale](__unported__/product_special_type_sale/) | 1.0 (unported) | Product Special Type on Sale
-[purchase_order_reorder_lines](__unported__/purchase_order_reorder_lines/) | 0.1 (unported) | Purchase order lines with sequence number
-[sale_condition_text](__unported__/sale_condition_text/) | 1.3 (unported) | Sale/invoice condition
-[sale_delivery_term](__unported__/sale_delivery_term/) | 0.1 (unported) | Delivery term for sale orders
-[sale_dropshipping](__unported__/sale_dropshipping/) | 1.1.1 (unported) | Sale Dropshipping
-[sale_fiscal_position_update](__unported__/sale_fiscal_position_update/) | 1.0 (unported) | Changing the fiscal position of a sale order will auto-update sale order lines
-[sale_jit_on_services](__unported__/sale_jit_on_services/) | 1.0 (unported) | Sale Service Just In Time
-[sale_journal_shop](__unported__/sale_journal_shop/) | 0.0.1 (unported) | Sale Journal Shop
-[sale_multi_picking](__unported__/sale_multi_picking/) | 0.1 (unported) | Multi Pickings from Sale Orders
-[sale_order_force_number](__unported__/sale_order_force_number/) | 0.1 (unported) | Force sale orders numeration
-[sale_stock_global_delivery_lead_time](__unported__/sale_stock_global_delivery_lead_time/) | 0.1 (unported) | Sale global delivery lead time
+[account_invoice_reorder_lines](account_invoice_reorder_lines/) | 0.1 (unported) | Invoice lines with sequence number
+[mail_quotation](mail_quotation/) | 0.1 (unported) | Mail quotation
+[pricelist_share_companies](pricelist_share_companies/) | 1.0 (unported) | Share pricelist between compagnies, not product
+[product_customer_code_sale](product_customer_code_sale/) | 1.0 (unported) | Product Customer code on sale
+[product_special_type](product_special_type/) | 1.0 (unported) | Product Special Types
+[product_special_type_invoice](product_special_type_invoice/) | 1.0 (unported) | Product Special Type on Invoice
+[product_special_type_sale](product_special_type_sale/) | 1.0 (unported) | Product Special Type on Sale
+[purchase_order_reorder_lines](purchase_order_reorder_lines/) | 0.1 (unported) | Purchase order lines with sequence number
+[sale_condition_text](sale_condition_text/) | 1.3 (unported) | Sale/invoice condition
+[sale_delivery_term](sale_delivery_term/) | 0.1 (unported) | Delivery term for sale orders
+[sale_dropshipping](sale_dropshipping/) | 1.1.1 (unported) | Sale Dropshipping
+[sale_fiscal_position_update](sale_fiscal_position_update/) | 1.0 (unported) | Changing the fiscal position of a sale order will auto-update sale order lines
+[sale_jit_on_services](sale_jit_on_services/) | 1.0 (unported) | Sale Service Just In Time
+[sale_journal_shop](sale_journal_shop/) | 0.0.1 (unported) | Sale Journal Shop
+[sale_multi_picking](sale_multi_picking/) | 0.1 (unported) | Multi Pickings from Sale Orders
+[sale_order_force_number](sale_order_force_number/) | 0.1 (unported) | Force sale orders numeration
+[sale_stock_global_delivery_lead_time](sale_stock_global_delivery_lead_time/) | 0.1 (unported) | Sale global delivery lead time
 
 [//]: # (end addons)
 
