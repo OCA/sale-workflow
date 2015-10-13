@@ -57,7 +57,6 @@ addon | version | summary
 [product_special_type](product_special_type/) | 1.0 (unported) | Product Special Types
 [product_special_type_invoice](product_special_type_invoice/) | 1.0 (unported) | Product Special Type on Invoice
 [product_special_type_sale](product_special_type_sale/) | 1.0 (unported) | Product Special Type on Sale
-[purchase_order_reorder_lines](purchase_order_reorder_lines/) | 0.1 (unported) | Purchase order lines with sequence number
 [sale_condition_text](sale_condition_text/) | 1.3 (unported) | Sale/invoice condition
 [sale_delivery_term](sale_delivery_term/) | 0.1 (unported) | Delivery term for sale orders
 [sale_dropshipping](sale_dropshipping/) | 1.1.1 (unported) | Sale Dropshipping
