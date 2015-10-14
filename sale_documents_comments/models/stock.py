@@ -24,8 +24,8 @@ class StockPicking(models.Model):
     def create(self, values):
         partner_id = values.get('partner_id', False)
         origin = values.get('origin', False)
-        comment = values.get('sale_comment', '')
-        pcomment = values.get('sale_propagated_comment', '')
+        comment = values.get('sale_comment', '') or ''
+        pcomment = values.get('sale_propagated_comment', '') or ''
         if partner_id:
             if origin:
                 sale_obj = self.env['sale.order']
