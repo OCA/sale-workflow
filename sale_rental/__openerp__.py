@@ -40,5 +40,5 @@
         'security/ir.model.access.csv',
     ],
     'demo': ['rental_demo.xml'],
-    'installable': True,
+    'installable': False,
 }
