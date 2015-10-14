@@ -37,6 +37,6 @@
         'test/sale_order.yml',
         ],
     "active": False,
-    "installable": True,
+    'installable': False,
     "post_init_hook": 'populate_unrevisioned_name',
 }
