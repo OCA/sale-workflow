@@ -86,6 +86,6 @@ SQ004
     ],
     'demo': [],
     'test': [],
-    'installable': True,
+    'installable': False,
     'active': False,
 }
