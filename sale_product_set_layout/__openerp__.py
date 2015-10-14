@@ -17,7 +17,7 @@
     'demo': [
         'demo/product_set.xml',
     ],
-    'installable': True,
+    'installable': False,
     'application': False,
     'auto_install': False,
 }
