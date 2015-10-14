@@ -46,5 +46,5 @@ it is chosen from a configured list.
  'auto_install': False,
  'test': ['test/sale_order_cancel.yml',
           ],
- 'installable': True,
+ 'installable': False,
  }
