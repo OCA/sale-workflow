@@ -36,5 +36,5 @@
         'view/sale_view.xml',
         'view/res_config_view.xml'
     ],
-    'installable': True
+    'installable': False
 }
