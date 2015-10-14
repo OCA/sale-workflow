@@ -42,7 +42,7 @@
         'views/sale_reason_to_export_view.xml',
     ],
 
-    'installable': True,
+    'installable': False,
     'auto_install': False,
     'application': False,
 }

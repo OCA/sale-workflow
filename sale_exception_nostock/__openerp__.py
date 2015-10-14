@@ -60,7 +60,7 @@ and should not be be used if you have hundreds of simultaneous open SO.
  'data': ["data/data.xml"],
  'demo': [],
  'test': ['test/no_stock_test.yml'],
- 'installable': True,
+ 'installable': False,
  'auto_install': False,
  'license': 'AGPL-3',
  'application': False,

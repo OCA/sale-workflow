@@ -21,7 +21,7 @@
         'demo/product_set.xml',
         'demo/product_set_line.xml',
     ],
-    'installable': True,
+    'installable': False,
     'application': False,
     'auto_install': False,
 }

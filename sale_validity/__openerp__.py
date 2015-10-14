@@ -42,5 +42,5 @@ A default validity duration (in days) can be configured on the company.
  'test': [
      'test/sale_validity.yml',
  ],
- 'installable': True,
+ 'installable': False,
  }

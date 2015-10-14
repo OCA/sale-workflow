@@ -32,5 +32,5 @@
         'security/sale_security.xml',
         'views/res_config_view.xml',
     ],
-    "installable": True
+    'installable': False
 }

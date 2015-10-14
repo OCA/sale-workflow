@@ -47,4 +47,5 @@
         'test/test_manual_mto_sourcing.yml',
         'test/test_manual_sourcing_dropshipping.yml',
     ],
+    'installable': False,
 }

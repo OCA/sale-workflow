@@ -32,4 +32,5 @@
     'test': [
     ],
     'auto_install': True,
+    'installable': False,
 }

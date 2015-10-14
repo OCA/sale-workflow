@@ -31,6 +31,6 @@
           'view/account_payment_term_view.xml',
           ],
  'test': [],
- 'installable': True,
+ 'installable': False,
  'auto_install': False,
  }

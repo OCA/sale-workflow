@@ -42,6 +42,6 @@ is set to 'Before Delivery'.
           ],
  'test': ['test/sale_order_prepaid.yml',
           ],
- 'installable': True,
+ 'installable': False,
  'auto_install': False,
  }

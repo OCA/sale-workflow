@@ -32,5 +32,5 @@
     'depends': ['account_cutoff_prepaid', 'sale', 'web_context_tunnel'],
     'data': ['sale_view.xml'],
     'demo': ['sale_demo.xml'],
-    'installable': True,
+    'installable': False,
 }

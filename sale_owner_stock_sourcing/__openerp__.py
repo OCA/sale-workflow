@@ -34,6 +34,6 @@
  "data": ['view/sale_order.xml',
           'security/group.xml',
           ],
- 'installable': True,
+ 'installable': False,
  "auto_install": False,
  }

@@ -33,5 +33,5 @@
              'sale_transport_multi_address',
              ],
  'auto_install': True,
- 'installable': True,
+ 'installable': False,
  }
