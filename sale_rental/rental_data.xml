@@ -21,18 +21,11 @@
     <field name="sequence">100</field>
 </record>
 
-
 <record id="stock.warehouse0" model="stock.warehouse">
     <field name="route_ids" eval="[(4, ref('route_warehouse0_rental'))]"/>
     <field name="rental_route_id" ref="route_warehouse0_rental"/>
     <field name="sell_rented_product_route_id" ref="route_warehouse0_sell_rented_product"/>
-</record>
-
-<!-- I have a second record id="stock.warehouse0" because I need to have
-the rental_in_location_id and rental_out_location_id set on the warehouse
-before I activate the rental_allowed option -->
-<record id="stock.warehouse0" model="stock.warehouse">
-    <field name="rental_allowed">1</field> <!-- I know it is the default value, but I set it here to go through the write() and create the pull rules -->
+    <field name="rental_allowed">1</field>
 </record>
 
 </data>

@@ -503,17 +503,34 @@ class SaleRental(models.Model):
 class StockWarehouse(models.Model):
     _inherit = "stock.warehouse"
 
+    def _default_rental_route(self):
+        try:
+            rental_route = self.env.ref('sale_rental.route_warehouse0_rental')
+        except:
+            rental_route = self.env['stock.location.route'].browse([])
+        return rental_route
+
+    def _default_sell_rented_product_route(self):
+        try:
+            route = self.env.ref(
+                'sale_rental.route_warehouse0_sell_rented_product')
+        except:
+            route = self.env['stock.location.route'].browse([])
+        return route
+
     rental_view_location_id = fields.Many2one(
         'stock.location', 'Parent Rental', domain=[('usage', '=', 'view')])
     rental_in_location_id = fields.Many2one(
         'stock.location', 'Rental In', domain=[('usage', '<>', 'view')])
     rental_out_location_id = fields.Many2one(
         'stock.location', 'Rental Out', domain=[('usage', '<>', 'view')])
-    rental_allowed = fields.Boolean('Rental Allowed', default=True)
+    rental_allowed = fields.Boolean('Rental Allowed')
     rental_route_id = fields.Many2one(
-        'stock.location.route', string='Rental Route')
+        'stock.location.route', string='Rental Route',
+        default=_default_rental_route)
     sell_rented_product_route_id = fields.Many2one(
-        'stock.location.route', string='Sell Rented Product Route')
+        'stock.location.route', string='Sell Rented Product Route',
+        default=_default_sell_rented_product_route)
 
     @api.multi
     def _get_rental_push_pull_rules(self):
