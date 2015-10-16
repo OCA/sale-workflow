@@ -1,5 +1,6 @@
 # -*- coding: utf-8 -*-
 from openerp.tests import common
+from openerp.exceptions import except_orm
 
 
 class test_product_set(common.TransactionCase):
@@ -9,6 +10,7 @@ class test_product_set(common.TransactionCase):
         super(test_product_set, self).setUp()
         self.sale_order = self.env['sale.order']
         self.product_set_add = self.env['product.set.add']
+        self.product_set = self.env['product.set']
 
     def test_add_set(self):
         so = self.env.ref('sale.sale_order_6')
@@ -84,3 +86,9 @@ class test_product_set(common.TransactionCase):
             pdt_set.name + " (copy)",
             pdt_set_copy.name
         )
+
+    def test_copy_multi_product_set(self):
+        productset = self.product_set.search([])
+        self.assertTrue(len(productset) > 0)
+        with self.assertRaises(except_orm):
+            productset.copy()
