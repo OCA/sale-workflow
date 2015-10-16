@@ -503,21 +503,6 @@ class SaleRental(models.Model):
 class StockWarehouse(models.Model):
     _inherit = "stock.warehouse"
 
-    def _default_rental_route(self):
-        try:
-            rental_route = self.env.ref('sale_rental.route_warehouse0_rental')
-        except:
-            rental_route = self.env['stock.location.route'].browse([])
-        return rental_route
-
-    def _default_sell_rented_product_route(self):
-        try:
-            route = self.env.ref(
-                'sale_rental.route_warehouse0_sell_rented_product')
-        except:
-            route = self.env['stock.location.route'].browse([])
-        return route
-
     rental_view_location_id = fields.Many2one(
         'stock.location', 'Parent Rental', domain=[('usage', '=', 'view')])
     rental_in_location_id = fields.Many2one(
@@ -526,11 +511,9 @@ class StockWarehouse(models.Model):
         'stock.location', 'Rental Out', domain=[('usage', '<>', 'view')])
     rental_allowed = fields.Boolean('Rental Allowed')
     rental_route_id = fields.Many2one(
-        'stock.location.route', string='Rental Route',
-        default=_default_rental_route)
+        'stock.location.route', string='Rental Route')
     sell_rented_product_route_id = fields.Many2one(
-        'stock.location.route', string='Sell Rented Product Route',
-        default=_default_sell_rented_product_route)
+        'stock.location.route', string='Sell Rented Product Route')
 
     @api.multi
     def _get_rental_push_pull_rules(self):
@@ -608,6 +591,9 @@ class StockWarehouse(models.Model):
     @api.multi
     def write(self, vals):
         if 'rental_allowed' in vals:
+            rental_route = self.env.ref('sale_rental.route_warehouse0_rental')
+            sell_rented_route = self.env.ref(
+                'sale_rental.route_warehouse0_sell_rented_product')
             if vals.get('rental_allowed'):
                 for warehouse in self:
                     # create stock locations
@@ -633,16 +619,40 @@ class StockWarehouse(models.Model):
                             warehouse.rental_view_location_id.id,
                             })
                         warehouse.rental_out_location_id = out_loc_id.id
+                    warehouse.write({
+                        'route_ids': [(4, rental_route.id)],
+                        'rental_route_id': rental_route.id,
+                        'sell_rented_product_route_id': sell_rented_route.id,
+                        })
                     for obj, rules_list in\
                             self._get_rental_push_pull_rules().iteritems():
                         for rule in rules_list:
                             self.env[obj].create(rule)
             else:
                 for warehouse in self:
-                    warehouse.rental_route_id.pull_ids.unlink()
-                    warehouse.rental_route_id.push_ids.unlink()
-                    warehouse.sell_rented_product_route_id.pull_ids.unlink()
-                    warehouse.sell_rented_product_route_id.push_ids.unlink()
+                    pull_rules_to_delete = self.env['procurement.rule'].search(
+                        [
+                            ('route_id', 'in', (
+                                warehouse.rental_route_id.id,
+                                warehouse.sell_rented_product_route_id.id)),
+                            ('location_src_id', 'in', (
+                                warehouse.rental_out_location_id.id,
+                                warehouse.rental_in_location_id.id)),
+                            ('action', '=', 'move')])
+                    pull_rules_to_delete.unlink()
+                    push_rule_to_delete =\
+                        self.env['stock.location.path'].search([
+                            ('route_id', '=', warehouse.rental_route_id.id),
+                            ('location_from_id', '=',
+                                warehouse.rental_out_location_id.id),
+                            ('location_dest_id', '=',
+                                warehouse.rental_in_location_id.id)])
+                    push_rule_to_delete.unlink()
+                    warehouse.write({
+                        'route_ids': [(3, rental_route.id)],
+                        'rental_route_id': False,
+                        'sell_rented_product_route_id': False,
+                        })
         return super(StockWarehouse, self).write(vals)
 
 

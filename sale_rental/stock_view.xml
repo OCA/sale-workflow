@@ -25,8 +25,10 @@
         </field>
         <field name="default_resupply_wh_id" position="before">
             <field name="rental_allowed"/>
-            <field name="rental_route_id"/>
-            <field name="sell_rented_product_route_id"/>
+            <field name="rental_route_id"
+                attrs="{'invisible': [('rental_allowed', '=', False)]}"/>
+            <field name="sell_rented_product_route_id"
+                attrs="{'invisible': [('rental_allowed', '=', False)]}"/>
         </field>
     </field>
 </record>

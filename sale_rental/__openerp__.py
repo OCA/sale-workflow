@@ -40,6 +40,5 @@
         'security/ir.model.access.csv',
     ],
     'demo': ['rental_demo.xml'],
-    'post_init_hook': 'set_rental_route_on_warehouse',
     'installable': True,
 }

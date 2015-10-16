@@ -22,9 +22,6 @@
 </record>
 
 <record id="stock.warehouse0" model="stock.warehouse">
-    <field name="route_ids" eval="[(4, ref('route_warehouse0_rental'))]"/>
-    <field name="rental_route_id" ref="route_warehouse0_rental"/>
-    <field name="sell_rented_product_route_id" ref="route_warehouse0_sell_rented_product"/>
     <field name="rental_allowed">1</field>
 </record>
 

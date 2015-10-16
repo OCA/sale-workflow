@@ -22,4 +22,3 @@
 
 from . import rental
 from . import wizard
-from .post_install import set_rental_route_on_warehouse
