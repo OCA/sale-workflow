@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+<data>
+
+    <record id="view_sale_service_fleet_inherit_form2" model="ir.ui.view">
+        <field name="name">sale.service.fleet.form.view.inherit</field>
+        <field name="model">project.task</field>
+        <field name="inherit_id" ref="sale_service.view_sale_service_inherit_form2"/>
+        <field name="arch" type="xml">
+            <field name="sale_line_id" position="before">
+                <field name="vehicle_id" string="Vehicle"/>
+            </field>
+        </field>
+    </record>
+
+    <record id="view_sale_service_fleet_edit_project_form_inherit" model="ir.ui.view">
+        <field name="name">sale.service.fleet.project.form.inherit</field>
+        <field name="model">project.project</field>
+        <field name="inherit_id" ref="project.edit_project"/>
+        <field name="arch" type="xml">
+            <field name="partner_id" position="after">
+                <newline/>
+                <field name="vehicle_id" string="Vehicle"/>
+            </field>
+        </field>
+    </record>
+
+    <record id="view_sale_service_fleet_task_search" model="ir.ui.view">
+        <field name="name">sale.service.fleet.task.filter.inherit</field>
+        <field name="model">project.task</field>
+        <field name="inherit_id" ref="project.view_task_search_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='project_id']" position="after">
+                <field name="vehicle_id"/>
+            </xpath>
+            <xpath expr="//filter[@name='User']" position="after">
+                <filter string="Vehicle" name="vehicle"
+                        context="{'group_by':'vehicle_id'}"/>
+            </xpath>
+        </field>
+    </record>
+
+    <record id="view_sale_service_fleet_project_search" model="ir.ui.view">
+        <field name="name">sale.service.fleet.project.filter.inherit</field>
+        <field name="model">project.project</field>
+        <field name="inherit_id" ref="project.view_project_project_filter"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='partner_id']" position="after">
+                <field name="vehicle_id"/>
+            </xpath>
+        </field>
+    </record>
+
+    <record id="view_sale_service_fleet_project_kanban" model="ir.ui.view">
+        <field name="name">sale.service.fleet.project.kanban</field>
+        <field name="model">project.project</field>
+        <field name="inherit_id" ref="project.view_project_kanban"/>
+        <field name="arch" type="xml">
+            <xpath expr="//div[@class='oe_kanban_project_avatars']" position="before">
+                <div class="oe_kanban_sale_service_vehicle">
+                    <strong><field name="vehicle_id"/></strong>
+                </div>
+            </xpath>
+        </field>
+    </record>
+
+    <record id="view_account_analytic_account_fleet_list" model="ir.ui.view">
+        <field name="name">account.analytic.account.fleet.list</field>
+        <field name="model">account.analytic.account</field>
+        <field name="inherit_id"
+               ref="account.view_account_analytic_account_list"/>
+        <field name="arch" type="xml">
+            <field name="company_id" position="before">
+                <field name="vehicle_id"/>
+            </field>
+        </field>
+    </record>
+
+</data>
+</openerp>
