@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+<data>
+
+    <record id="view_sale_service_fleet_order_form" model="ir.ui.view">
+        <field name="name">sale.order.fleet.form.inherit</field>
+        <field name="model">sale.order</field>
+        <field name="inherit_id" ref="sale.view_order_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='client_order_ref']" position="after">
+                <field name="vehicle_id" context="{'default_driver_id': partner_id}"/>
+            </xpath>
+        </field>
+    </record>
+
+    <record id="view_sale_service_fleet_order_filter" model="ir.ui.view">
+        <field name="name">sale.order.fleet.filter.inherit</field>
+        <field name="model">sale.order</field>
+        <field name="inherit_id" ref="sale.view_sales_order_filter"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='project_id']" position="after">
+                <field name="vehicle_id"/>
+            </xpath>
+        </field>
+    </record>
+
+</data>
+</openerp>
