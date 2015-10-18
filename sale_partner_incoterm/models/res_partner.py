@@ -17,7 +17,7 @@
 #    along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
 ##############################################################################
-from openerp import models, fields, api
+from openerp import models, fields
 
 
 class Partner(models.Model):
@@ -27,7 +27,3 @@ class Partner(models.Model):
         string='Default Sales Incoterm',
         comodel_name='stock.incoterms',
         help="The default incoterm for new sales orders for this customer.")
-
-    @api.model
-    def _commercial_fields(self):
-        return super(Partner, self)._commercial_fields() + ['sale_incoterm_id']
