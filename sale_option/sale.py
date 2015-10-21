@@ -81,7 +81,7 @@ class SaleOrderLineOption(models.Model):
     _name = 'sale.order.line.option'
 
     sale_line_id = fields.Many2one('sale.order.line')
-    bom_line_id = fields.Many2one('mrp.bom.line', 'Bom line')
+    bom_line_id = fields.Many2one('mrp.bom.line', 'Bom line', required=True)
     qty = fields.Integer(default=1)
     line_price = fields.Float(compute='_compute_price', store=True)
 
