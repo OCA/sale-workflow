@@ -2,8 +2,8 @@
 <openerp>
 <data>
 
-    <record id="sale_packaging_price_view_order_form_inherit" model="ir.ui.view">
-        <field name="name">sale.packaging.price.view.order.form.inherit</field>
+    <record id="view_order_form_inherit" model="ir.ui.view">
+        <field name="name">view.order.form.inherit</field>
         <field name="model">sale.order</field>
         <field name="type">form</field>
         <field name="inherit_id" ref="sale_stock.view_order_form_inherit"/>

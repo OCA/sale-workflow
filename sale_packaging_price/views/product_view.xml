@@ -2,8 +2,8 @@
 <openerp>
 <data>
 
-    <record id="sale_packaging_price_product_tree_inherit" model="ir.ui.view">
-        <field name="name">sale.packaging.price.product.tree.inherit</field>
+    <record id="product_tree_inherit" model="ir.ui.view">
+        <field name="name">product.tree.inherit</field>
         <field name="model">product.packaging</field>
         <field name="inherit_id" ref="product.product_packaging_tree_view_product"/>
         <field name="arch" type="xml">
@@ -13,8 +13,8 @@
         </field>
     </record>
 
-    <record id="sale_packaging_price_product_packaging_tree_inherit" model="ir.ui.view">
-        <field name="name">sale.packaging.price.product.packaging.tree.inherit</field>
+    <record id="product_packaging_tree_inherit" model="ir.ui.view">
+        <field name="name">product.packaging.tree.inherit</field>
         <field name="model">product.packaging</field>
         <field name="inherit_id" ref="product.product_packaging_tree_view"/>
         <field name="arch" type="xml">
@@ -28,8 +28,8 @@
         </field>
     </record>
 
-    <record id="sale_packaging_price_product_packaging_form_inherit" model="ir.ui.view">
-        <field name="name">sale.packaging.price.product.packaging.form.inherit</field>
+    <record id="product_packaging_form_inherit" model="ir.ui.view">
+        <field name="name">product.packaging.form.inherit</field>
         <field name="model">product.packaging</field>
         <field name="inherit_id" ref="product.product_packaging_form_view"/>
         <field name="arch" type="xml">
@@ -39,8 +39,8 @@
         </field>
     </record>
 
-    <record id="sale_packaging_price_no_product_packaging_form_inherit" model="ir.ui.view">
-        <field name="name">sale.packaging.price.no.product.packaging.form.inherit</field>
+    <record id="no_product_packaging_form_inherit" model="ir.ui.view">
+        <field name="name">no.product.packaging.form.inherit</field>
         <field name="model">product.packaging</field>
         <field name="inherit_id" ref="product.product_packaging_form_view_without_product"/>
         <field name="arch" type="xml">
@@ -50,8 +50,8 @@
         </field>
     </record>
 
-    <record id="view_sale_packaging_price_product_packaging_filter" model="ir.ui.view">
-        <field name="name">sale.packaging.price.product.packaging.filter</field>
+    <record id="product_packaging_filter" model="ir.ui.view">
+        <field name="name">product.packaging.filter</field>
         <field name="model">product.packaging</field>
         <field name="arch" type="xml">
             <search string="Search Product Packaging">
