@@ -8,5 +8,11 @@
 			  groups="product.group_stock_packaging"
 			/>
 
+	<menuitem id="menu_product_packaging_wh_action"
+			  action="action_product_packaging_form"
+			  parent="stock.menu_stock_product" sequence="99"
+			  groups="product.group_stock_packaging"
+			/>
+
 </data>
 </openerp>

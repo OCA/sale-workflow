@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 8.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-10-09 10:03+0000\n"
-"PO-Revision-Date: 2015-10-09 12:07+0100\n"
+"POT-Creation-Date: 2015-10-22 17:33+0000\n"
+"PO-Revision-Date: 2015-10-22 19:34+0100\n"
 "Last-Translator: Sergio Teruel <sergio@incaser.es>\n"
 "Language-Team: \n"
 "Language: es-ES\n"
@@ -26,23 +26,23 @@ msgid ""
 msgstr "Pinche aquí crear empaquetados de productos"
 
 #. module: sale_packaging_price
-#: view:product.packaging:sale_packaging_price.view_sale_packaging_price_product_packaging_filter
+#: view:product.packaging:sale_packaging_price.product_packaging_filter
 msgid "Group By..."
 msgstr "Agrupar por..."
 
 #. module: sale_packaging_price
-#: view:product.packaging:sale_packaging_price.view_sale_packaging_price_product_packaging_filter
+#: view:product.packaging:sale_packaging_price.product_packaging_filter
 msgid "Logistic Unit"
 msgstr "Unidad logística"
 
 #. module: sale_packaging_price
 #: field:product.packaging,list_price:0
-#: view:sale.order:sale_packaging_price.sale_packaging_price_view_order_form_inherit
+#: view:sale.order:sale_packaging_price.view_order_form_inherit
 msgid "Package Price"
 msgstr "Precio paquete"
 
 #. module: sale_packaging_price
-#: view:sale.order:sale_packaging_price.sale_packaging_price_view_order_form_inherit
+#: view:sale.order:sale_packaging_price.view_order_form_inherit
 #: field:sale.order.line,packaging_weight:0
 msgid "Package Weight"
 msgstr "Peso empaquetado"
@@ -53,7 +53,7 @@ msgid "Packaging"
 msgstr "Empaquetado"
 
 #. module: sale_packaging_price
-#: view:product.packaging:sale_packaging_price.view_sale_packaging_price_product_packaging_filter
+#: view:product.packaging:sale_packaging_price.product_packaging_filter
 msgid "Product"
 msgstr "Producto"
 
@@ -65,6 +65,7 @@ msgstr "Empaquetado"
 #. module: sale_packaging_price
 #: model:ir.actions.act_window,name:sale_packaging_price.action_product_packaging_form
 #: model:ir.ui.menu,name:sale_packaging_price.menu_product_packaging_action
+#: model:ir.ui.menu,name:sale_packaging_price.menu_product_packaging_wh_action
 msgid "Product Packaging"
 msgstr "Empaquetado"
 
@@ -84,7 +85,7 @@ msgid "Sales Orders Statistics"
 msgstr "Estadísticas pedidos de venta"
 
 #. module: sale_packaging_price
-#: view:product.packaging:sale_packaging_price.view_sale_packaging_price_product_packaging_filter
+#: view:product.packaging:sale_packaging_price.product_packaging_filter
 msgid "Search Product Packaging"
 msgstr "Buscar empaquetado"
 
@@ -94,7 +95,7 @@ msgid "This price will be considered as a price for complete package"
 msgstr "Precio del paquete completo"
 
 #. module: sale_packaging_price
-#: view:product.packaging:sale_packaging_price.sale_packaging_price_product_packaging_tree_inherit
+#: view:product.packaging:sale_packaging_price.product_packaging_tree_inherit
 #, fuzzy
 msgid "top"
 msgstr "Lo más de lo más"
