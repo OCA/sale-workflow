@@ -8,6 +8,7 @@ import math
 from openerp import models, fields, api
 from openerp.addons.decimal_precision import decimal_precision as dp
 
+
 class SaleOrderLine(models.Model):
     _inherit = 'sale.order.line'
 
@@ -36,9 +37,9 @@ class SaleOrderLine(models.Model):
                 qty / product_packaging.qty) * product_packaging.ul.weight
             res['value']['packaging_weight'] = package_weight
         else:
-            res = self.product_id_change(pricelist=pricelist,
-                    product=product, qty=qty, uom=uom, partner_id=partner_id,
-                    packaging=packaging, flag=False)
+            res = self.product_id_change(
+                pricelist=pricelist, product=product, qty=qty, uom=uom,
+                partner_id=partner_id, packaging=packaging, flag=False)
             price_unit = res['value'].get('price_unit', 0.0)
             package_weight = res['value'].get('packaging_weight', 0.0)
             res['value'] = {'price_unit': price_unit,
