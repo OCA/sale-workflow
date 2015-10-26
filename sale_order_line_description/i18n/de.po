@@ -11,11 +11,11 @@ msgstr ""
 "POT-Creation-Date: 2017-11-23 01:51+0000\n"
 "PO-Revision-Date: 2017-11-23 01:51+0000\n"
 "Last-Translator: OCA Transbot <transbot@odoo-community.org>, 2017\n"
-"Language-Team: Italian (https://www.transifex.com/oca/teams/23907/it/)\n"
+"Language-Team: German (https://www.transifex.com/oca/teams/23907/de/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
-"Language: it\n"
+"Language: de\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
 #. module: sale_order_line_description
@@ -37,7 +37,7 @@ msgstr ""
 #. module: sale_order_line_description
 #: model:ir.model,name:sale_order_line_description.model_sale_order_line
 msgid "Sales Order Line"
-msgstr "Linea d'ordine di vendita"
+msgstr "Auftragsposition"
 
 #. module: sale_order_line_description
 #: model:res.groups,name:sale_order_line_description.group_use_product_description_per_so_line
