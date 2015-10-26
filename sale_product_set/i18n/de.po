@@ -7,15 +7,21 @@ msgid ""
 msgstr ""
 "Project-Id-Version: sale-workflow (8.0)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-10-08 20:48+0000\n"
-"PO-Revision-Date: 2015-09-03 07:10+0000\n"
-"Last-Translator: <>\n"
+"POT-Creation-Date: 2015-10-23 08:14+0000\n"
+"PO-Revision-Date: 2015-10-21 10:13+0000\n"
+"Last-Translator: OCA Transbot <transbot@odoo-community.org>\n"
 "Language-Team: German (http://www.transifex.com/oca/OCA-sale-workflow-8-0/language/de/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
 "Language: de\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+#. module: sale_product_set
+#: code:addons/sale_product_set/models/product_set.py:18
+#, python-format
+msgid "(copy)"
+msgstr ""
 
 #. module: sale_product_set
 #: view:product.set.add:sale_product_set.product_set_add_form_view
@@ -69,24 +75,24 @@ msgid "Last Updated on"
 msgstr "Zuletzt akualisiert am"
 
 #. module: sale_product_set
-#: code:addons/sale_product_set/models/product_set.py:9
 #: field:product.set,name:0
-#, python-format
 msgid "Name"
 msgstr "Bezeichnung"
 
 #. module: sale_product_set
-#: code:addons/sale_product_set/models/product_set_line.py:15
 #: field:product.set.line,product_id:0
-#, python-format
 msgid "Product"
 msgstr "Produkt"
 
 #. module: sale_product_set
-#: code:addons/sale_product_set/wizard/product_set_add.py:12
 #: model:ir.actions.act_window,name:sale_product_set.act_open_product_set_view
-#: model:ir.model,name:sale_product_set.model_product_set
 #: model:ir.ui.menu,name:sale_product_set.menu_product_set
+msgid "Product Set"
+msgstr ""
+
+#. module: sale_product_set
+#: code:addons/sale_product_set/wizard/product_set_add.py:12
+#: model:ir.model,name:sale_product_set.model_product_set
 #: view:product.set:sale_product_set.view_product_set_form
 #: view:product.set:sale_product_set.view_product_set_search
 #: view:product.set:sale_product_set.view_product_set_tree
@@ -106,21 +112,16 @@ msgid "Product set lines"
 msgstr ""
 
 #. module: sale_product_set
-#: code:addons/sale_product_set/models/product_set.py:9
 #: help:product.set,name:0
-#, python-format
 msgid "Product set name"
 msgstr ""
 
 #. module: sale_product_set
-#: code:addons/sale_product_set/models/product_set.py:11
 #: field:product.set,set_line_ids:0
-#, python-format
 msgid "Products"
 msgstr ""
 
 #. module: sale_product_set
-#: code:addons/sale_product_set/models/product_set_line.py:17
 #: code:addons/sale_product_set/wizard/product_set_add.py:14
 #: field:product.set.add,quantity:0 field:product.set.line,quantity:0
 #, python-format
@@ -128,16 +129,12 @@ msgid "Quantity"
 msgstr "Menge"
 
 #. module: sale_product_set
-#: code:addons/sale_product_set/models/product_set_line.py:23
 #: field:product.set.line,sequence:0
-#, python-format
 msgid "Sequence"
 msgstr "Reihenfolge"
 
 #. module: sale_product_set
-#: code:addons/sale_product_set/models/product_set_line.py:21
 #: field:product.set.line,product_set_id:0
-#, python-format
 msgid "Set"
 msgstr ""
 
