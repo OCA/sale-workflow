@@ -91,44 +91,39 @@ class SaleOrder(models.Model):
         res['lot_id'] = line.lot_id.id
         return res
 
-#    @api.model
-#    def get_move_from_line(self, line):
-#        move = self.env['stock.move']
+    @api.model
+    def get_move_from_line(self, line):
+        move = self.env['stock.move']
         # i create this counter to check lot's univocity on move line
-#        lot_count = 0
-#        for p in line.order_id.picking_ids:
-#            print "p=", p
-#            for m in p.move_lines:
-#                print "m=", m
-#                print "line.lot_id=", line.lot_id
-#                print "m.restrict_lot_id=", m.restrict_lot_id
-#                if line.lot_id == m.restrict_lot_id:
-#                    move = m
-#                    lot_count += 1
-#                    print "+1 lot_count"
-#                    # if counter is 0 or > 1 means that something goes wrong
-#                    if lot_count != 1:
-#                        raise Warning(_('Can\'t retrieve lot on stock'))
-#        return move
+        lot_count = 0
+        for p in line.order_id.picking_ids:
+            for m in p.move_lines:
+                if line.lot_id == m.restrict_lot_id:
+                    move = m
+                    lot_count += 1
+                    # if counter is 0 or > 1 means that something goes wrong
+                    if lot_count != 1:
+                        raise Warning(_('Can\'t retrieve lot on stock'))
+        return move
 
-#    @api.model
-#    def _check_move_state(self, line):
-#        if line.lot_id:
-#            move = self.get_move_from_line(line)
-#            if move.state != 'confirmed':
-#                raise Warning(_('Can\'t reserve products for lot %s') %
-#                              line.lot_id.name)
-#            else:
-#                move.action_assign()
-#                move.refresh()
-#                if move.state != 'assigned':
-#                    raise Warning(_('Can\'t reserve products for lot %s') %
-#                                  line.lot_id.name)
-#        return True
+    @api.model
+    def _check_move_state(self, line):
+        if line.lot_id:
+            move = self.get_move_from_line(line)
+            if move.state != 'confirmed':
+                raise Warning(_('Can\'t reserve products for lot %s') %
+                              line.lot_id.name)
+            else:
+                move.action_assign()
+                move.refresh()
+                if move.state != 'assigned':
+                    raise Warning(_('Can\'t reserve products for lot %s') %
+                                  line.lot_id.name)
+        return True
 
-#    @api.model
-#    def action_ship_create(self):
-#        super(SaleOrder, self).action_ship_create()
-#        for line in self.order_line:
-#            self._check_move_state(line)
-#            return True
+    @api.model
+    def action_ship_create(self):
+        super(SaleOrder, self).action_ship_create()
+        for line in self.order_line:
+            self._check_move_state(line)
+            return True
