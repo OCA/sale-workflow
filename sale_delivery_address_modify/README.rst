@@ -10,6 +10,10 @@ For sales orders that have not been shipped completely, this module allows the
 user to change the delivery address on the sales order for the remaining
 deliveries.
 
+The address of the related procurement group and procurements are updated as
+well, given that the address is actually taken from there when a new picking is
+generated.
+
 Installation
 ============
 
