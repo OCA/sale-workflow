@@ -44,12 +44,10 @@ class SaleOrder(models.Model):
                             'the related customer location remains the same.'))
                         procurement.write({'partner_dest_id':
                                            order.partner_shipping_id})
-                pickings = self.env['stock.picking'].search(
-                    [('group_id', '=', order.procurement_group_id.id),
-                     ('state', '!=', 'done')])
+                pickings = order.picking_ids.filtered(
+                    lambda picking: picking.state != 'done')
                 pickings.write(
                     {'partner_id': order.partner_shipping_id.id})
-                self.env['stock.move'].search(
-                    [('picking_id', 'in', pickings.ids)]).write(
+                pickings.mapped('move_lines').write(
                     {'partner_id': order.partner_shipping_id.id})
         return res
