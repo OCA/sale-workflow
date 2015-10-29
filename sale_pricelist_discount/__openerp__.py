@@ -22,11 +22,6 @@
     'name': 'Sale Pricelist Discount',
     'version': '1.0',
     'category': 'Sale',
-    'description': """
-This module allows specifying a default percentage discount to apply
-to sale order lines.  This ensures the pricelist discount is visible
-on quotations and sale orders.
-    """,
     'author': 'credativ, Odoo Community Association (OCA)',
     'website': 'http://www.credativ.co.uk',
     'depends': [
