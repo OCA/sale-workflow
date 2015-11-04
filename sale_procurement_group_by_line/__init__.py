@@ -19,3 +19,12 @@
 #
 #
 from . import model
+
+
+def populate_old_procurement_group_id(cr, registry):
+    line_registry = registry['sale.order.line']
+    line_ids = line_registry.search(cr, 1, [])
+    for line in line_registry.browse(cr, 1, line_ids):
+        line.write({
+            'procurement_group_id': line.order_id.procurement_group_id.id
+            })
