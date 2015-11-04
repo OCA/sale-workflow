@@ -35,4 +35,5 @@
  'test': [],
  'auto_install': False,
  'installable': True,
+ 'post_init_hook': 'populate_old_procurement_group_id',
  }
