@@ -37,6 +37,10 @@ class SaleOrder(models.Model):
             result['value'] = {'order_line': lines}
         return result
 
+    @api.model
+    def _get_date_planned(self, order, line, start_date):
+        return line.requested_date
+
 
 class SaleOrderLine(models.Model):
     _inherit = 'sale.order.line'
