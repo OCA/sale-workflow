@@ -18,26 +18,22 @@
 
 {
     "name": "Dates on Sales Order",
-    "version": "1.0",
-    "depends": [
-        "sale_order_dates",
-    ],
+    "version": "8.0.1.0.0",
     "author": "OdooMRP team,"
               "AvanzOSC,"
               "Serv. Tecnol. Avanzados - Pedro M. Baeza",
+    "website": "http://www.odoomrp.com",
+    "category": "Sales Management",
+    "license": "AGPL-3",
     "contributors": [
         "Oihane Crucelaegui <oihanecrucelaegi@avanzosc.es>",
+        "Esther Martín <esthermartin@avanzosc.es>",
+        "Pedro M. Baeza <pedro.baeza@serviciosbaeza.com>",
+        "Ana Juaristi <anajuaristi@avanzosc.es>",
     ],
-    "category": "Sales Management",
-    "website": "http://www.odoomrp.com",
-    "summary": "",
-    "description": """
-Add additional date information to the sales order.
-===================================================
-You can add the following additional dates to a sales order lines:
-------------------------------------------------------------------
-    * Requested Date
-    """,
+    "depends": [
+        "sale_order_dates",
+    ],
     "data": [
         "views/sale_order_view.xml",
     ],
