@@ -39,7 +39,11 @@ class SaleOrder(models.Model):
 
     @api.model
     def _get_date_planned(self, order, line, start_date):
-        return line.requested_date
+        if line.requested_date:
+            return line.requested_date
+        else:
+            return super(SaleOrder, self)._get_date_planned(
+                order, line, start_date)
 
 
 class SaleOrderLine(models.Model):
