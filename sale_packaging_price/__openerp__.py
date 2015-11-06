@@ -13,8 +13,8 @@
         'views/sale_stock_view.xml',
         'views/sale_packaging_price_menu.xml',
     ],
-    'author': 'Incaser Informatica S.L., '
-              'Antiun Ingeniería S.L., '
+    'author': 'Antiun Ingeniería S.L., '
+              'Incaser Informatica S.L., '
               'Odoo Community Association (OCA)',
     'website': 'http://www.incaser.es',
     'license': 'AGPL-3',
