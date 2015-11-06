@@ -3,7 +3,7 @@
 # (c) 2015 Antiun Ingeniería S.L. - Carlos Dauden
 # License AGPL-3 - See http://www.gnu.org/licenses/agpl-3.0.html
 
-from openerp import models, fields
+from openerp import api, fields, models, _
 from openerp.addons.decimal_precision import decimal_precision as dp
 
 
@@ -14,3 +14,21 @@ class ProductPackaging(models.Model):
         string='Package Price',
         digits_compute=dp.get_precision('Product Price'),
         help="This price will be considered as a price for complete package")
+
+    @api.onchange('list_price')
+    def _onchange_list_price(self):
+        price_precision = self.env['decimal.precision'].precision_get(
+            'Product Price')
+        price_computed = (
+            round(self.list_price / self.qty, price_precision) *
+            self.qty)
+        if str(self.list_price) != str(price_computed):
+            return {
+                'warning': {
+                    'title': _('Problem with price'),
+                    'message': _(
+                        "With the actual decimal precision, can't get this "
+                        "price. (Approx. price suggested: %s)"
+                    ) % str(price_computed)
+                }
+            }

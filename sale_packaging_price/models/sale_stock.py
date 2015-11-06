@@ -28,11 +28,11 @@ class SaleOrderLine(models.Model):
             pricelist, product, qty, uom, partner_id, packaging, flag)
         if packaging:
             product_packaging = self.env['product.packaging'].browse(packaging)
-            product_prec = self.env['decimal.precision'].precision_get(
+            price_precision = self.env['decimal.precision'].precision_get(
                 'Product Price')
             res['value']['price_unit'] = round(
                 product_packaging.list_price / product_packaging.qty,
-                product_prec)
+                price_precision)
             package_weight = math.ceil(
                 qty / product_packaging.qty) * product_packaging.ul.weight
             res['value']['packaging_weight'] = package_weight
