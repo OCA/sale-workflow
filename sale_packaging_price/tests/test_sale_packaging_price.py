@@ -2,7 +2,6 @@
 # (c) 2015 Antiun Ingeniería S.L. - Sergio Teruel
 # (c) 2015 Antiun Ingeniería S.L. - Carlos Dauden
 # License AGPL-3 - See http://www.gnu.org/licenses/agpl-3.0.html
-
 from openerp.tests.common import TransactionCase
 
 
@@ -80,3 +79,8 @@ class TestSalePackagingPrice(TransactionCase):
         self.assertAlmostEqual(
             price_unit, self.product.product_tmpl_id.lst_price)
         self.assertAlmostEqual(package_weight, 0.0)
+
+    def test_onchange_price_list(self):
+        self.product_pack_6.list_price = 100
+        res = self.product_pack_6._onchange_list_price()
+        self.assertIn('warning', res)
