@@ -6,9 +6,9 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 8.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-10-22 17:33+0000\n"
-"PO-Revision-Date: 2015-10-22 19:34+0100\n"
-"Last-Translator: Sergio Teruel <sergio@incaser.es>\n"
+"POT-Creation-Date: 2015-11-11 11:17+0000\n"
+"PO-Revision-Date: 2015-11-11 12:30+0100\n"
+"Last-Translator: Carlos Incaser <carlos@incaser.es>\n"
 "Language-Team: \n"
 "Language: es-ES\n"
 "MIME-Version: 1.0\n"
@@ -53,6 +53,12 @@ msgid "Packaging"
 msgstr "Empaquetado"
 
 #. module: sale_packaging_price
+#: code:addons/sale_packaging_price/models/product.py:31
+#, python-format
+msgid "Problem with price"
+msgstr "Problema con el precio"
+
+#. module: sale_packaging_price
 #: view:product.packaging:sale_packaging_price.product_packaging_filter
 msgid "Product"
 msgstr "Producto"
@@ -92,10 +98,19 @@ msgstr "Buscar empaquetado"
 #. module: sale_packaging_price
 #: help:product.packaging,list_price:0
 msgid "This price will be considered as a price for complete package"
-msgstr "Precio del paquete completo"
+msgstr "Este precio sera considerado como precio para el paquete completo"
+
+#. module: sale_packaging_price
+#: code:addons/sale_packaging_price/models/product.py:32
+#, python-format
+msgid ""
+"With the configured decimal precision, can't get this price. (Approx. price "
+"suggested: %s)"
+msgstr ""
+"Con la precisión decimal configurada no se puede obtener este precio. "
+"(Precio sugerido aproximado: %s)"
 
 #. module: sale_packaging_price
 #: view:product.packaging:sale_packaging_price.product_packaging_tree_inherit
-#, fuzzy
 msgid "top"
-msgstr "Lo más de lo más"
+msgstr "Arriba"
