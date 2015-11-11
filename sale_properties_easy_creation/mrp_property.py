@@ -33,7 +33,7 @@ class MrpProperty(orm.Model):
         This allows the user to digit 'width 0.5' and the system will
         automatically create a property of group 'width' with value '0.5'
         """
-        splitted_name = name.split(' ')
+        splitted_name = name.split()
         if len(splitted_name) == 2:
             group_ids = self.pool['mrp.property.group'].search(
                 cr, uid, [('name', '=', splitted_name[0])], context=context)
