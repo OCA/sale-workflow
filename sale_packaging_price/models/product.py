@@ -15,20 +15,23 @@ class ProductPackaging(models.Model):
         digits_compute=dp.get_precision('Product Price'),
         help="This price will be considered as a price for complete package")
 
-    @api.onchange('list_price')
+    @api.onchange('list_price', 'qty')
     def _onchange_list_price(self):
         price_precision = self.env['decimal.precision'].precision_get(
             'Product Price')
-        price_computed = (
-            round(self.list_price / self.qty, price_precision) *
-            self.qty)
+        if self.qty:
+            price_computed = (
+                round(self.list_price / self.qty, price_precision) *
+                self.qty)
+        else:
+            price_computed = 0.0
         if str(self.list_price) != str(price_computed):
             return {
                 'warning': {
                     'title': _('Problem with price'),
                     'message': _(
-                        "With the actual decimal precision, can't get this "
-                        "price. (Approx. price suggested: %s)"
+                        "With the configured decimal precision, can't get this"
+                        " price. (Approx. price suggested: %s)"
                     ) % str(price_computed)
                 }
             }
