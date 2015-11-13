@@ -8,7 +8,7 @@
                 <field name="arch" type="xml"> 
                 <tree string="Partner" colors="blue:state!='done'">
                     <field name="name"/>
-                    <field name="date"/>
+                    <field name="date_order"/>
                     <field name="sale_ids"/>
                     <field name="state"/>
                 </tree>
@@ -53,7 +53,7 @@
                             icon="fa-strikethrough"
                             string="Sales"/>
                     <group name="header" colspan="2">
-                        <field name="date"/>
+                        <field name="date_order"/>
                         <field name="tmpl_sale_id"
                                context="{'default_is_template': True, 'default_name': '', 'default_partner_id': %(sale_generator.res_partner_for_sale_template)d}"/>
                         <field name="warehouse_id"/>

@@ -29,7 +29,7 @@
     'data': [
         'data.xml',
         'partner_view.xml',
-        'sale_generator.xml',
+        'generator_view.xml',
         'sale_view.xml',
         'security/ir.model.access.csv',
         'security/ir.rule.csv',

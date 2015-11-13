@@ -19,8 +19,8 @@ class SaleGenerator(models.Model):
         string="Sale Template",
         required=True,
         domain=[('is_template', '=', True)])
-    date = fields.Date(
-        'Date',
+    date_order = fields.Datetime(
+        'Date', oldname='date',
         default=fields.datetime.now())
     warehouse_id = fields.Many2one(
         'stock.warehouse',
