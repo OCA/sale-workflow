@@ -30,8 +30,8 @@ class ProductPackaging(models.Model):
                 'warning': {
                     'title': _('Problem with price'),
                     'message': _(
-                        "With the configured decimal precision, can't get this"
-                        " price. (Approx. price suggested: %s)"
+                        "With the current decimal precision, you can't get "
+                        "this price. (Approx. price suggested: %s)"
                     ) % str(price_computed)
                 }
             }
