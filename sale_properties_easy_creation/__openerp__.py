@@ -22,7 +22,7 @@
 {
     'name': "Easing properties input in sale order line",
     'version': '8.0.1.0.0',
-    'category': '',
+    'category': 'Sales Management',
     'author': "Agile Business Group,Odoo Community Association (OCA)",
     'website': 'http://www.agilebg.com',
     'license': 'AGPL-3',
