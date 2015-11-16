@@ -19,7 +19,13 @@
 #
 ##############################################################################
 
+import logging
 from openerp.osv import orm, fields
+from openerp.tools.translate import _
+from openerp.tools.safe_eval import safe_eval
+from openerp.exceptions import except_orm
+
+_logger = logging.getLogger(__name__)
 
 
 class MrpPropertyFormula(orm.Model):
@@ -28,3 +34,11 @@ class MrpPropertyFormula(orm.Model):
         'name': fields.char('Name', size=128),
         'formula_text': fields.text('Formula'),
     }
+
+    def compute_formula(self, local_dict):
+        if ('result' not in self.formula_text):
+            raise except_orm(
+                _('Error'),
+                _("Formula must contain 'result' variable"))
+        safe_eval(self.formula_text, local_dict, mode="exec", nocopy=True)
+        return local_dict['result']
