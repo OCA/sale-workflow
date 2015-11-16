@@ -60,24 +60,16 @@ class SaleOrderLine(models.Model):
                     'product_id': self.product_id.id,
                 }
                 try:
-                    exec self.product_id.quantity_formula_id.\
-                        formula_text in localdict
-                    try:
-                        amount = localdict['result']
-                    except KeyError:
-                        raise except_orm(
-                            _('Error'),
-                            _("Formula must contain 'result' variable"))
+                    amount = self.product_id.quantity_formula_id.\
+                        compute_formula(localdict)
                     # rounding because decimal values, different from what
                     # displayed on interface, could generate infinite
                     # on_change loop
                     self.product_uom_qty = float_round(
                         amount, precision_digits=uom_precision)
-                except KeyError:
+                except ValueError as e:
                     _logger.warning(
-                        "KeyError for formula '%s' and prop_dict '%s'"
-                        % (self.product_id.quantity_formula_id.formula_text,
-                            prop_dict))
+                        "Formula evaluation error: '%s'" % e.message)
 
     def product_id_change(
         self, cr, uid, ids, pricelist, product_id, qty=0,
