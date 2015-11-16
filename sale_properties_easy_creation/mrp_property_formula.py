@@ -32,7 +32,9 @@ class MrpPropertyFormula(orm.Model):
     _name = 'mrp.property.formula'
     _columns = {
         'name': fields.char('Name', size=128),
-        'formula_text': fields.text('Formula'),
+        'formula_text': fields.text(
+            'Formula',
+            help="Here you can write the formula using by python code"),
     }
 
     def compute_formula(self, local_dict):
