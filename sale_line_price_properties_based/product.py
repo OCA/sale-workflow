@@ -66,18 +66,10 @@ class ProductTemplate(orm.Model):
                         'properties': context['properties'],
                     }
                     try:
-                        exec product.price_formula_id.formula_text in localdict
-                    except KeyError:
+                        res[product.id] = product.price_formula_id.\
+                            compute_formula(localdict)
+                    except ValueError as e:
                         _logger.warning(
-                            "KeyError for formula '%s' and prop_dict '%s'"
-                            % (product.price_formula_id.formula_text,
-                                context['properties']))
+                            "Formula evaluation error: '%s'" % e.message)
                         continue
-                    try:
-                        amount = localdict['result']
-                    except KeyError:
-                        raise orm.except_orm(
-                            _('Error'),
-                            _("Formula must contain 'result' variable"))
-                    res[product.id] = amount
         return res
