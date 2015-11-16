@@ -20,8 +20,8 @@
 ##############################################################################
 {
     'name': "Sale properties dynamic fields",
-    'version': '1.0',
-    'category': '',
+    'version': '8.0.1.0.0',
+    'category': 'Sales Management',
     'author': "Agile Business Group, Odoo Community Association (OCA)",
     'website': 'http://www.agilebg.com',
     'license': 'AGPL-3',
@@ -30,8 +30,6 @@
     ],
     "data": [
         'mrp_property_group_view.xml',
-    ],
-    "demo": [
     ],
     "test": [
         'test/properties.yml',
