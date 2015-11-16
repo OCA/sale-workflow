@@ -17,6 +17,12 @@ on properties.
 Used by modules like 'sale_line_price_properties_based' and
 'sale_line_quantity_properties_based'
 
+Configuration
+=============
+
+The user needs to enable **Properties on lines** setting in
+**Technical Settings** section.
+
 Usage
 =====
 
