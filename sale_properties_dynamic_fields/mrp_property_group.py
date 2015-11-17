@@ -99,10 +99,11 @@ class MrpPropertyGroup(orm.Model):
     def unlink(self, cr, uid, ids, context=None):
         if context is None:
             context = {}
+        ctx = context.copy()
         for group in self.browse(cr, uid, ids, context=context):
             if group.field_id:
-                context['_force_unlink'] = True
-                group.field_id.unlink(context=context)
+                ctx['_force_unlink'] = True
+                group.field_id.unlink(context=ctx)
         res = super(MrpPropertyGroup, self).unlink(
-            cr, uid, ids, context=context)
+            cr, uid, ids, context=ctx)
         return res
