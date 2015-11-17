@@ -1,0 +1,85 @@
+# Translation of OpenERP Server.
+# This file contains the translation of the following modules:
+#	* sale_line_quantity_properties_based
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: OpenERP Server 7.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2014-06-18 12:43+0000\n"
+"PO-Revision-Date: 2014-06-18 12:43+0000\n"
+"Last-Translator: <>\n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: sale_line_quantity_properties_based
+#: model:ir.actions.act_window,name:sale_line_quantity_properties_based.mrp_formula_action
+#: model:ir.ui.menu,name:sale_line_quantity_properties_based.menu_mrp_formula_group_action
+msgid "Formulas"
+msgstr ""
+
+#. module: sale_line_quantity_properties_based
+#: code:addons/sale_line_quantity_properties_based/sale.py:48
+#, python-format
+msgid "The property %s has the field description not filled"
+msgstr ""
+
+#. module: sale_line_quantity_properties_based
+#: field:sale.order.line.quantity.formula,name:0
+msgid "Name"
+msgstr ""
+
+#. module: sale_line_quantity_properties_based
+#: code:addons/sale_line_quantity_properties_based/sale.py:38
+#, python-format
+msgid "Formula Error!"
+msgstr ""
+
+#. module: sale_line_quantity_properties_based
+#: model:ir.actions.act_window,help:sale_line_quantity_properties_based.mrp_formula_action
+msgid "<p class=\"oe_view_nocontent_create\">\n"
+"                Click to create a new formula.\n"
+"              </p><p>\n"
+"                The formulas are used to automatically compute the product quantity on the basis of the properties specified by the user\n"
+"                on the sale order line and on the quantity (UoS)\n"
+"              </p>\n"
+"            "
+msgstr ""
+
+#. module: sale_line_quantity_properties_based
+#: model:ir.model,name:sale_line_quantity_properties_based.model_sale_order_line_quantity_formula
+msgid "sale.order.line.quantity.formula"
+msgstr ""
+
+#. module: sale_line_quantity_properties_based
+#: code:addons/sale_line_quantity_properties_based/sale.py:54
+#, python-format
+msgid "The formula %s cannot work since there are more than one property belong to the same group"
+msgstr ""
+
+#. module: sale_line_quantity_properties_based
+#: field:sale.order.line,formula_id:0
+#: field:sale.order.line.quantity.formula,formula_text:0
+msgid "Formula"
+msgstr ""
+
+#. module: sale_line_quantity_properties_based
+#: code:addons/sale_line_quantity_properties_based/sale.py:83
+#, python-format
+msgid "%s is not a valid formula. Reason: %s"
+msgstr ""
+
+#. module: sale_line_quantity_properties_based
+#: code:addons/sale_line_quantity_properties_based/sale.py:67
+#, python-format
+msgid "%s is not a valid value for the property %s, it must be a number"
+msgstr ""
+
+#. module: sale_line_quantity_properties_based
+#: model:ir.model,name:sale_line_quantity_properties_based.model_sale_order_line
+msgid "Sales Order Line"
+msgstr ""
+
