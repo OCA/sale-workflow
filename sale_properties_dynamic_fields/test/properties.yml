@@ -53,21 +53,6 @@
     assert group.field_id.name == 'x_width', "Field name must be 'x_width', %s found" % group.field_id.name
     assert group.field_id.model == 'sale.order.line', "Field model must be 'sale.order.line', %s found" % group.field_id.model
     assert group.field_id.model_id.model == 'sale.order.line', "Field model must be 'sale.order.line', %s found" % group.field_id.model_id.model
-
-# Can't do the following due to
-# https://github.com/odoo/odoo/blob/7.0/openerp/tools/yaml_import.py#L495
-# as it would cause
-# KeyError: "Object '<openerp.osv.orm.sale.order.line object at 0xb2b67a4c>' does not contain field 'x_width'"
-#-
-#  I create a sale order
-#-
-#  !record {model: sale.order, id: sale_order_test1, view: sale.view_order_form}:
-#    partner_id: base.res_partner_2
-#    order_line: 
-#      - product_id: product.product_product_7
-#        product_uom_qty: 8
-#        x_width: 7
-
 -
   I run the on_change
 -
@@ -83,4 +68,4 @@
     assert len(res['value']['property_ids'][0][2]) == 1, "There must be 1 property, %s found" % len(res['value']['property_ids'][0][2])
     property = prop_pool.browse(cr, uid, res['value']['property_ids'][0][2][0], context=context)
     assert property.value == '7', "Property value must be 7, %s found" % property.value
-      
+
