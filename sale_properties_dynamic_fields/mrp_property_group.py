@@ -44,7 +44,6 @@ class MrpPropertyGroup(orm.Model):
             'model_id': model_ids[0],
             'field_description': group.name,
             'ttype': 'char',
-            'size': 64,
             'state': 'manual'
         }
 

@@ -68,7 +68,6 @@ class SaleOrder(orm.Model):
                             field_name: {
                                 'string': group.name,
                                 'type': 'char',
-                                'size': 64,
                                 'context': {}
                             }
                         }
@@ -79,7 +78,7 @@ class SaleOrder(orm.Model):
                         on_change="dynamic_property_changed(property_ids, %s, "
                                   "context)"
                         % (field_name),
-                        context="{\'field_name\': \'%s\'}" % field_name
+                        context="{'field_name': '%s'}" % field_name
                     )
                     prop_m2m_field = eview.xpath(
                         "//field[@name='property_ids']")[0]
