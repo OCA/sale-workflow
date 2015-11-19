@@ -21,6 +21,7 @@
 
 from openerp.osv import orm, fields
 from openerp.tools.translate import _
+from openerp import exceptions
 
 
 class MrpPropertyGroup(orm.Model):
@@ -56,8 +57,7 @@ class MrpPropertyGroup(orm.Model):
         ],
             context=context)
         if len(field_ids) > 1:
-            raise orm.except_orm(
-                _('Error'),
+            raise exceptions.Warning(
                 _('Field %s (sale.order.line) already present')
                 % field.name)
         return True

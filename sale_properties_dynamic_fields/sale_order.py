@@ -22,6 +22,7 @@
 from openerp.osv import orm
 from lxml import etree
 from openerp.tools.translate import _
+from openerp import exceptions
 
 
 class SaleOrder(orm.Model):
@@ -44,8 +45,7 @@ class SaleOrder(orm.Model):
                     cr, uid, group_to_draw_ids, context=context
                 ):
                     if not group.field_id:
-                        raise orm.except_orm(
-                            _('Error'),
+                        raise exceptions.Warning(
                             _(
                                 'The group %s has draw_dynamically set but '
                                 'there is no linked field '
@@ -55,8 +55,7 @@ class SaleOrder(orm.Model):
                         group.field_id.name in res['fields']['order_line'][
                             'views']['form']['fields']
                     ):
-                        raise orm.except_orm(
-                            _('Error'),
+                        raise exceptions.Warning(
                             _('Field %s already present') % group.name)
                     field_name = group.field_id.name
                     res['fields']['order_line']['views']['form'][

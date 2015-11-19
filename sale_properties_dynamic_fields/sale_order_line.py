@@ -21,6 +21,7 @@
 
 from openerp.osv import orm
 from openerp.tools.translate import _
+from openerp import exceptions
 
 
 class SaleOrderLine(orm.Model):
@@ -46,8 +47,7 @@ class SaleOrderLine(orm.Model):
                         cr, uid, m2m_tup[2], context=context
                     ):
                         if prop.group_id.name in prop_dict:
-                            raise orm.except_orm(
-                                _('Error'),
+                            raise exceptions.Warning(
                                 _('Property of group %s already present')
                                 % prop.group_id.name)
                         prop_dict[prop.group_id.name] = (prop.id, prop.value)
@@ -59,16 +59,14 @@ class SaleOrderLine(orm.Model):
                 ('model', '=', 'sale.order.line'),
             ], context=context)
             if len(field_ids) != 1:
-                raise orm.except_orm(
-                    _('Error'),
+                raise exceptions.Warning(
                     _('There must be 1 and only 1 %s')
                     % context['field_name'])
             group_ids = group_pool.search(cr, uid, [
                 ('field_id', '=', field_ids[0]),
             ], context=context)
             if len(group_ids) != 1:
-                raise orm.except_orm(
-                    _('Error'),
+                raise exceptions.Warning(
                     _('There must be 1 and only 1 group for %s')
                     % context['field_name'])
             group = group_pool.browse(cr, uid, group_ids[0], context=context)
