@@ -28,6 +28,20 @@ from openerp import exceptions
 class SaleOrder(orm.Model):
     _inherit = 'sale.order'
 
+    def test_linked_field_presence(self, group):
+        if not group.field_id:
+            raise exceptions.Warning(
+                _(
+                    'The group %s has draw_dynamically set but '
+                    'there is no linked field '
+                ) % group.name
+            )
+
+    def test_field_presence(self, group, view):
+        if group.field_id.name in view['fields']:
+            raise exceptions.Warning(
+                _('Field %s already present') % group.name)
+
     def fields_view_get(
         self, cr, uid, view_id=None, view_type='form', context=None,
         toolbar=False, submenu=False
@@ -44,23 +58,12 @@ class SaleOrder(orm.Model):
                 for group in property_group_pool.browse(
                     cr, uid, group_to_draw_ids, context=context
                 ):
-                    if not group.field_id:
-                        raise exceptions.Warning(
-                            _(
-                                'The group %s has draw_dynamically set but '
-                                'there is no linked field '
-                            ) % group.name
-                        )
-                    if (
-                        group.field_id.name in res['fields']['order_line'][
-                            'views']['form']['fields']
-                    ):
-                        raise exceptions.Warning(
-                            _('Field %s already present') % group.name)
+                    self.test_linked_field_presence(group)
+                    line_form_view = res['fields']['order_line']['views'][
+                        'form']
+                    self.test_field_presence(group, line_form_view)
                     field_name = group.field_id.name
-                    res['fields']['order_line']['views']['form'][
-                        'fields'
-                    ].update(
+                    line_form_view['fields'].update(
                         {
                             field_name: {
                                 'string': group.name,
@@ -70,8 +73,7 @@ class SaleOrder(orm.Model):
                             }
                         }
                     )
-                    eview = etree.fromstring(
-                        res['fields']['order_line']['views']['form']['arch'])
+                    eview = etree.fromstring(line_form_view['arch'])
                     group_field = etree.Element(
                         'field', name=field_name,
                         on_change="dynamic_property_changed(property_ids, %s, "
@@ -82,7 +84,6 @@ class SaleOrder(orm.Model):
                     prop_m2m_field = eview.xpath(
                         "//field[@name='property_ids']")[0]
                     prop_m2m_field.addprevious(group_field)
-                    res['fields']['order_line']['views']['form'][
-                        'arch'
-                    ] = etree.tostring(eview, pretty_print=True)
+                    line_form_view['arch'] = etree.tostring(
+                        eview, pretty_print=True)
         return res

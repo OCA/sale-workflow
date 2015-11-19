@@ -27,6 +27,12 @@ from openerp import exceptions
 class SaleOrderLine(orm.Model):
     _inherit = 'sale.order.line'
 
+    def test_property_presence(self, prop, prop_dict):
+        if prop.group_id.name in prop_dict:
+            raise exceptions.Warning(
+                _('Property of group %s already present')
+                % prop.group_id.name)
+
     def build_prop_m2m_from_dict(self, cr, uid, prop_dict, context=None):
         res = [(6, 0, [])]
         for prop_tuple in prop_dict.values():
@@ -40,24 +46,20 @@ class SaleOrderLine(orm.Model):
         res = {}
         prop_dict = {}  # properties already present on line
         if dynamic_property and context.get('field_name'):
-            if property_ids:
-                prop_pool = self.pool['mrp.property']
-                for m2m_tup in property_ids:
-                    for prop in prop_pool.browse(
-                        cr, uid, m2m_tup[2], context=context
-                    ):
-                        if prop.group_id.name in prop_dict:
-                            raise exceptions.Warning(
-                                _('Property of group %s already present')
-                                % prop.group_id.name)
-                        prop_dict[prop.group_id.name] = (prop.id, prop.value)
+            prop_pool = self.pool['mrp.property']
             field_pool = self.pool['ir.model.fields']
             group_pool = self.pool['mrp.property.group']
-            prop_pool = self.pool['mrp.property']
             field_ids = field_pool.search(cr, uid, [
                 ('name', '=', context['field_name']),
                 ('model', '=', 'sale.order.line'),
             ], context=context)
+            if property_ids:
+                for m2m_tup in property_ids:
+                    for prop in prop_pool.browse(
+                        cr, uid, m2m_tup[2], context=context
+                    ):
+                        self.test_property_presence(prop, prop_dict)
+                        prop_dict[prop.group_id.name] = (prop.id, prop.value)
             if len(field_ids) != 1:
                 raise exceptions.Warning(
                     _('There must be 1 and only 1 %s')
