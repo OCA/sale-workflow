@@ -36,3 +36,11 @@ class SaleOrder(models.Model):
     @api.onchange('user_id')
     def user_id_change_section_id(self):
         self.section_id = self.user_id.default_section_id
+
+    @api.model
+    def _prepare_invoice(self, order, lines):
+        invoice_data = super(SaleOrder, self)._prepare_invoice(order, lines)
+
+        if order.section_id:
+            invoice_data['journal_id'] = order.section_id.journal_id.id
+        return invoice_data
