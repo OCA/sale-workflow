@@ -1,0 +1,15 @@
+<?xml version="1.0"?>
+<openerp>
+    <data noupdate="0">
+        <record id="sale.advance_product_0" model="product.product">
+            <field name="list_price">0.0</field>
+            <field name="standard_price">0.0</field>
+            <field name="type">service</field>
+           <field name="name">Advance product</field>
+            <field name="company_id" />
+            <field name="taxes_id" />
+            <field name="supplier_taxes_id" />
+            <field name="sale_ok" eval="0"/>
+        </record>
+    </data>
+</openerp>

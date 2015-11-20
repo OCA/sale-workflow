@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+        <record id="view_sale_order_line_make_invoice" model="ir.ui.view">
+            <field name="name">Sales OrderLine Make Invoice</field>
+            <field name="model">sale.order.line.make.invoice</field>
+            <field name="inherit_id" ref='sale.view_sale_order_line_make_invoice'/>
+            <field name="arch" type="xml">
+                <xpath expr="//footer" position="before">
+                    <group>
+                        <field name="order_ids" nolabel="1" attrs="{'invisible': [('order_ids', '=', False)]}">
+                            <tree create="0" delete="0" editable="bottom">
+                                <field name="order_id" readonly="1"/>
+                                <field name="advance_amount_available" readonly="1"/>
+                                <field name="advance_amount_to_use" attrs="{'readonly': [('all_lines', '=', True)]}"/>
+                                <field name="all_lines" invisible="1"/>
+                            </tree>
+                        </field>
+                    </group>
+                </xpath>
+            </field>
+        </record>
+    </data>
+</openerp>
