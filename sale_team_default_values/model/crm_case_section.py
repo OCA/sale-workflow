@@ -43,3 +43,7 @@ class CrmCaseSection(models.Model):
         domain=[('type', '!=', 'view'),
                 ('state', 'not in', ('close', 'cancelled'))],
     )
+    journal_id = fields.Many2one(
+        comodel_name='account.journal',
+        string='Journal',
+    )

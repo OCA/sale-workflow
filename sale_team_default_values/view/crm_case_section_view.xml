@@ -15,6 +15,7 @@
               <field name="fiscal_position_id"/>
               <field name="warehouse_id"/>
               <field name="account_analytic_id" groups="analytic.group_analytic_accounting"/>
+              <field name="journal_id"/>
             </group>
           </page>
         </xpath>
