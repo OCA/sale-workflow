@@ -11,21 +11,24 @@ class CrmCaseSection(models.Model):
 
     pricelist_id = fields.Many2one(comodel_name='product.pricelist',
                                    string='Pricelist')
-    payment_term_id = fields.Many2one(comodel_name='account.payment.term',
-                                      string='Payment Term')
-    fiscal_position_id = fields.Many2one(
+    payment_term = fields.Many2one(comodel_name='account.payment.term',
+                                   string='Payment Term',
+                                   oldname='payment_term_id')
+    fiscal_position = fields.Many2one(
         comodel_name='account.fiscal.position',
         string='Fiscal Position',
+        oldname='fiscal_position_id',
     )
     warehouse_id = fields.Many2one(
         comodel_name='stock.warehouse',
         string='Warehouse',
     )
-    account_analytic_id = fields.Many2one(
+    project = fields.Many2one(
         comodel_name='account.analytic.account',
         string='Analytic Account',
         domain=[('type', '!=', 'view'),
                 ('state', 'not in', ('close', 'cancelled'))],
+        oldname='account_analytic_id',
     )
     journal_id = fields.Many2one(
         comodel_name='account.journal',

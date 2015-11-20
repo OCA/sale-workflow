@@ -4,6 +4,13 @@
 # Copyright 2014-2015 Camptocamp SA
 
 from openerp import models, api
+PROPAGATE_FIELDS = [
+    'payment_term_id',
+    'fiscal_position_id',
+    'pricelist_id',
+    'warehouse_id',
+    'account_analytic_id',
+]
 
 
 class SaleOrder(models.Model):
@@ -11,11 +18,9 @@ class SaleOrder(models.Model):
 
     @api.onchange('section_id')
     def section_id_set_section_id_default(self):
-        self.payment_term = self.section_id.payment_term_id
-        self.fiscal_position = self.section_id.fiscal_position_id
-        self.pricelist_id = self.section_id.pricelist_id
-        self.warehouse_id = self.section_id.warehouse_id
-        self.project_id = self.section_id.account_analytic_id
+        for field in PROPAGATE_FIELDS:
+            if self.section_id[field]:
+                self.write({field: self.section_id[field]})
 
     @api.onchange('user_id')
     def user_id_change_section_id(self):
