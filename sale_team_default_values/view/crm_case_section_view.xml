@@ -14,6 +14,7 @@
               <field name="payment_term_id"/>
               <field name="fiscal_position_id"/>
               <field name="warehouse_id"/>
+              <field name="account_analytic_id" groups="analytic.group_analytic_accounting"/>
             </group>
           </page>
         </xpath>

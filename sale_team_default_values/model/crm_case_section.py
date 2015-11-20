@@ -37,3 +37,9 @@ class CrmCaseSection(models.Model):
         comodel_name='stock.warehouse',
         string='Warehouse',
     )
+    account_analytic_id = fields.Many2one(
+        comodel_name='account.analytic.account',
+        string='Analytic Account',
+        domain=[('type', '!=', 'view'),
+                ('state', 'not in', ('close', 'cancelled'))],
+    )

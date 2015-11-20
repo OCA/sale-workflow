@@ -31,3 +31,8 @@ class SaleOrder(models.Model):
         self.fiscal_position = self.section_id.fiscal_position_id
         self.pricelist_id = self.section_id.pricelist_id
         self.warehouse_id = self.section_id.warehouse_id
+        self.project_id = self.section_id.account_analytic_id
+
+    @api.onchange('user_id')
+    def user_id_change_section_id(self):
+        self.section_id = self.user_id.default_section_id
