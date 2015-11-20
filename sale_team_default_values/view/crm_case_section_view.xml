@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+  <data noupdate="0">
+
+    <record id="crm_case_section_view_form" model="ir.ui.view">
+      <field name="name">crm.case.section.form</field>
+      <field name="model">crm.case.section</field>
+      <field name="inherit_id" ref="sales_team.crm_case_section_view_form"/>
+      <field name="arch" type="xml">
+        <xpath expr="//notebook/page/field[@name='note']/.." position="before">
+          <page string="Default Values" name="default_values">
+            <group>
+              <field name="pricelist_id"/>
+              <field name="payment_term_id"/>
+              <field name="fiscal_position_id"/>
+              <field name="warehouse_id"/>
+            </group>
+          </page>
+        </xpath>
+      </field>
+    </record>
+
+  </data>
+</openerp>
