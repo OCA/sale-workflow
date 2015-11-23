@@ -1,27 +1,6 @@
 # -*- coding: utf-8 -*-
-##############################################################################
-#
-#     This file is part of sale_order_partial_advance,
-#     an Odoo module.
-#
-#     Copyright (c) 2015 ACSONE SA/NV (<http://acsone.eu>)
-#
-#     sale_order_partial_advance is free software:
-#     you can redistribute it and/or modify it under the terms of the GNU
-#     Affero General Public License as published by the Free Software
-#     Foundation,either version 3 of the License, or (at your option) any
-#     later version.
-#
-#     sale_order_partial_advance is distributed
-#     in the hope that it will be useful, but WITHOUT ANY WARRANTY; without
-#     even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR
-#     PURPOSE.  See the GNU Affero General Public License for more details.
-#
-#     You should have received a copy of the GNU Affero General Public License
-#     along with sale_order_partial_advance.
-#     If not, see <http://www.gnu.org/licenses/>.
-#
-##############################################################################
+# © 2015 ACSONE SA/NV (<http://acsone.eu>)
+# License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
 from openerp.tests import common as test_common
 from uuid import uuid4
 
@@ -31,13 +10,10 @@ class TestSaleOrderPartialAdvance(test_common.TransactionCase):
     def setUp(self):
         super(TestSaleOrderPartialAdvance, self).setUp()
         self.so_obj = self.env['sale.order']
-        self.data_obj = self.env['ir.model.data']
         self.partner_id = self.env['res.partner'].create(
             {'name': '%s' % uuid4()})
-        product1 = self.data_obj.get_object_reference('product',
-                                                      'product_product_28')[1]
-        product2 = self.data_obj.get_object_reference('product',
-                                                      'product_product_29')[1]
+        product1 = self.ref('product.product_product_28')
+        product2 = self.ref('product.product_product_29')
         self.order_lines = [
             (0, 0, {'product_id': product1,
                     'name': 'Test',

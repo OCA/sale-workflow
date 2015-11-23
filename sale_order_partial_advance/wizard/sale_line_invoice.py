@@ -1,28 +1,7 @@
 # -*- coding: utf-8 -*-
-##############################################################################
-#
-#     This file is part of sale_order_partial_advance,
-#     an Odoo module.
-#
-#     Copyright (c) 2015 ACSONE SA/NV (<http://acsone.eu>)
-#
-#     sale_order_partial_advance is free software:
-#     you can redistribute it and/or modify it under the terms of the GNU
-#     Affero General Public License as published by the Free Software
-#     Foundation,either version 3 of the License, or (at your option) any
-#     later version.
-#
-#     sale_order_partial_advance is distributed
-#     in the hope that it will be useful, but WITHOUT ANY WARRANTY; without
-#     even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR
-#     PURPOSE.  See the GNU Affero General Public License for more details.
-#
-#     You should have received a copy of the GNU Affero General Public License
-#     along with sale_order_partial_advance.
-#     If not, see <http://www.gnu.org/licenses/>.
-#
-##############################################################################
-from openerp import models, api, fields
+# © 2015 ACSONE SA/NV (<http://acsone.eu>)
+# License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
+from openerp import api, fields, models
 from openerp.tools.translate import _
 
 
@@ -35,6 +14,15 @@ class SaleOrderLineMakeInvoice(models.TransientModel):
 
     @api.model
     def default_get(self, fields_list):
+        '''
+            Extract all sale orders impacted in order to suggest to the user
+            a table containing:
+            - order reference
+            - advance amount still available
+            - advance amount he wants to use
+            If all the lines of the sale order are selected the advance amount
+            to use is automatically set to the amount available
+        '''
         defaults = super(SaleOrderLineMakeInvoice,
                          self).default_get(fields_list)
         lines = self.env['sale.order.line'].browse(
@@ -62,6 +50,8 @@ class SaleOrderLineMakeInvoice(models.TransientModel):
 
     @api.model
     def _prepare_invoice(self, order, lines):
+        # retrieve the context from order recordset because the method caller
+        # does not pass it
         wizard = order.env.context.get('instance')
         order_adv_data = wizard.order_ids.filtered(
             lambda x: x.order_id.id == order.id)

@@ -5,7 +5,7 @@
             <field name="list_price">0.0</field>
             <field name="standard_price">0.0</field>
             <field name="type">service</field>
-           <field name="name">Advance product</field>
+            <field name="name">Advance product</field>
             <field name="company_id" />
             <field name="taxes_id" />
             <field name="supplier_taxes_id" />
