@@ -23,7 +23,7 @@ class CrmCaseSection(models.Model):
         comodel_name='stock.warehouse',
         string='Warehouse',
     )
-    project = fields.Many2one(
+    project_id = fields.Many2one(
         comodel_name='account.analytic.account',
         string='Analytic Account',
         domain=[('type', '!=', 'view'),

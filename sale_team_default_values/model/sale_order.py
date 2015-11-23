@@ -9,7 +9,7 @@ PROPAGATE_FIELDS = [
     'fiscal_position',
     'pricelist_id',
     'warehouse_id',
-    'account_analytic_id',
+    'project_id',
 ]
 
 

@@ -14,7 +14,7 @@
               <field name="payment_term"/>
               <field name="fiscal_position"/>
               <field name="warehouse_id"/>
-              <field name="project" groups="analytic.group_analytic_accounting"/>
+              <field name="project_id" groups="analytic.group_analytic_accounting"/>
               <field name="journal_id"/>
             </group>
           </page>
