@@ -1,5 +1,7 @@
-#    Author: Leonardo Pistone
-#    Copyright 2015 Camptocamp SA
+# -*- coding: utf-8 -*-
+# License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
+# Author: Leonardo Pistone
+# Copyright 2015 Camptocamp SA
 from openerp.tests.common import TransactionCase
 
 
