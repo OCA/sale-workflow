@@ -5,8 +5,8 @@
 
 from openerp import models, api
 PROPAGATE_FIELDS = [
-    'payment_term_id',
-    'fiscal_position_id',
+    'payment_term',
+    'fiscal_position',
     'pricelist_id',
     'warehouse_id',
     'account_analytic_id',
