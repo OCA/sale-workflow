@@ -1,4 +1,4 @@
-# -*- encoding: utf-8 -*-
+# -*- coding: utf-8 -*-
 ##############################################################################
 # For copyright and license notices, see __openerp__.py file in root directory
 ##############################################################################
@@ -26,28 +26,43 @@ class StockPicking(models.Model):
         origin = values.get('origin', False)
         comment = values.get('sale_comment', '') or ''
         pcomment = values.get('sale_propagated_comment', '') or ''
+        comment_list = []
+        pcomment_list = []
         if partner_id:
             if origin:
                 sale_obj = self.env['sale.order']
                 sale = sale_obj.search([('name', '=', origin)], limit=1)
-                pcomment += '\n%s' % (sale.propagated_comment or '')
+                if sale.propagated_comment:
+                    pcomment_list.append(sale.propagated_comment)
             partner = self.env['res.partner'].browse(partner_id)
             picking_com, picking_pcom = partner._get_picking_comments()
-            comment += '\n%s' % (picking_com or '')
-            pcomment += '\n%s' % (picking_pcom or '')
-            values.update({'sale_comment': comment,
-                           'sale_propagated_comment': pcomment})
+            if comment:
+                comment_list.append(comment)
+            if picking_com:
+                comment_list.append(picking_com)
+            if pcomment:
+                pcomment_list.append(pcomment)
+            if picking_pcom:
+                pcomment_list.append(picking_pcom)
+            values.update({
+                'sale_comment': '\n'.join(comment_list),
+                'sale_propagated_comment': '\n'.join(pcomment_list)})
         return super(StockPicking, self).create(values)
 
     @api.model
     def _create_invoice_from_picking(self, picking, values):
         sale_comment = values.get('sale_comment', '')
-        sale_comment += (
-            '\n%s' % (picking.sale_propagated_comment or ''))
+        pcomment_list = []
+        if sale_comment:
+            pcomment_list.append(sale_comment)
+        if picking.sale_propagated_comment:
+            pcomment_list.append(picking.sale_propagated_comment
+                                 )
         partner_id = values.get('partner_id')
         if partner_id:
             partner = self.env['res.partner'].browse(partner_id)
-            sale_comment += '\n%s' % (partner._get_invoice_comments() or '')
-        values['sale_comment'] = sale_comment
+            if partner._get_invoice_comments():
+                pcomment_list.append(partner._get_invoice_comments())
+        values['sale_comment'] = '\n'.join(pcomment_list)
         return super(StockPicking, self)._create_invoice_from_picking(
             picking, values)

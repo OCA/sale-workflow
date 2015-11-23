@@ -1,4 +1,4 @@
-# -*- encoding: utf-8 -*-
+# -*- coding: utf-8 -*-
 ##############################################################################
 # For copyright and license notices, see __openerp__.py file in root directory
 ##############################################################################
@@ -14,14 +14,19 @@ class SaleOrder(models.Model):
 
     @api.model
     def _prepare_invoice(self, order, lines):
+        comment_list = []
         res = super(SaleOrder, self)._prepare_invoice(order, lines)
-        sale_comment = res.get('sale_comment', '')
+        sale_comment = res.get('sale_comment')
         partner_id = res.get('partner_id', order.partner_invoice_id.id)
-        sale_comment += '\n%s' % (order.propagated_comment or '')
+        if sale_comment:
+            comment_list.append(sale_comment)
+        if order.propagated_comment:
+            comment_list.append(order.propagated_comment)
         if partner_id:
             partner = self.env['res.partner'].browse(partner_id)
-            sale_comment += '\n%s' % (partner._get_invoice_comments() or '')
-        res['sale_comment'] = sale_comment
+            if partner._get_invoice_comments():
+                comment_list.append(partner._get_invoice_comments())
+        res['sale_comment'] = '\n'.join(comment_list)
         return res
 
     @api.multi

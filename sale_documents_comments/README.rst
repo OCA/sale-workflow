@@ -1,3 +1,4 @@
+========================================================
 Comments for sale documents (order, picking and invoice)
 ========================================================
 With this module you can add specific comments to a customer, for sale order,
@@ -14,3 +15,4 @@ Contributors
 * Ainara Galdona <ainaragaldona@avanzosc.es>
 * Pedro M. Baeza <pedro.baeza@serviciosbaeza.com>
 * Ana Juaristi <anajuaristi@avanzosc.es>
+* Esther Martín <esthermartin@avanzosc.es>
