@@ -17,7 +17,7 @@ class SaleOrder(models.Model):
     _inherit = 'sale.order'
 
     @api.onchange('section_id')
-    def section_id_set_section_id_default(self):
+    def onchange_section_id(self):
         for field in PROPAGATE_FIELDS:
             if self.section_id[field]:
                 self.write({field: self.section_id[field].id})
