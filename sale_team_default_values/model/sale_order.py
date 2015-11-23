@@ -20,7 +20,7 @@ class SaleOrder(models.Model):
     def section_id_set_section_id_default(self):
         for field in PROPAGATE_FIELDS:
             if self.section_id[field]:
-                self.write({field: self.section_id[field]})
+                self.write({field: self.section_id[field].id})
 
     @api.onchange('user_id')
     def user_id_change_section_id(self):
