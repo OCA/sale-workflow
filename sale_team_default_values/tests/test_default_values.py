@@ -9,6 +9,7 @@ class TestDefaultValues(TransactionCase):
         self.so.onchange_section_id()
         self.so.action_button_confirm()
         self.assertEqual(self.so.project_id, self.team.project_id)
+        self.assertEqual(self.so.fiscal_position, self.position)
         self.so.action_invoice_create()
         invoice = self.so.invoice_ids
         self.assertEqual(1, len(invoice))
@@ -17,12 +18,14 @@ class TestDefaultValues(TransactionCase):
     def setUp(self):
         super(TestDefaultValues, self).setUp()
 
-        # Team = self.env['crm.case.section']
         self.team = self.env.ref('sales_team.section_sales_department')
+        self.position = self.env['account.fiscal.position'].create({
+            'name': 'more tax',
+        })
         self.team.write({
             'payment_term':
             self.env.ref('account.account_payment_term_15days').id,
-            # 'fiscal_position_id':
+            'fiscal_position': self.position.id,
             # 'pricelist_id',
             'warehouse_id': self.env.ref('stock.stock_warehouse_shop0').id,
             'project_id': self.env.ref('account.analytic_nebula').id,
