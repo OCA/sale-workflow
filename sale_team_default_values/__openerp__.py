@@ -8,7 +8,7 @@
  'author': "Camptocamp,Odoo Community Association (OCA)",
  'license': 'AGPL-3',
  'category': 'Sales',
- 'depends': ['sale',
+ 'depends': ['sale_stock',
              'sales_team',
              ],
  'website': 'http://www.camptocamp.com',
