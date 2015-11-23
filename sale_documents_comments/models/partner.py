@@ -1,4 +1,4 @@
-# -*- encoding: utf-8 -*-
+# -*- coding: utf-8 -*-
 ##############################################################################
 # For copyright and license notices, see __openerp__.py file in root directory
 ##############################################################################
@@ -18,25 +18,35 @@ class ResPartner(models.Model):
     invoice_comment = fields.Text(string='Comments for invoices')
 
     def _get_sale_comments(self):
-        comment = self.sale_comment or ''
-        pcomment = self.sale_propagated_comment or ''
-        if self.parent_id:
-            comment += '\n%s' % (self.parent_id.sale_comment or '')
-            pcomment += '\n%s' % (self.parent_id.sale_propagated_comment or
-                                  '')
-        return comment, pcomment
+        comment_list = []
+        pcomment_list = []
+        if self.sale_comment:
+            comment_list.append(self.sale_comment)
+        if self.parent_id.sale_comment:
+            comment_list.append(self.parent_id.sale_comment)
+        if self.sale_propagated_comment:
+            pcomment_list.append(self.sale_propagated_comment)
+        if self.parent_id.sale_propagated_comment:
+            pcomment_list.append(self.parent_id.sale_propagated_comment)
+        return '\n'.join(comment_list), '\n'.join(pcomment_list)
 
     def _get_picking_comments(self):
-        comment = self.picking_comment or ''
-        pcomment = self.picking_propagated_comment or ''
-        if self.parent_id:
-            comment += '\n%s' % (self.parent_id.picking_comment or '')
-            pcomment += '\n%s' % (self.parent_id.picking_propagated_comment or
-                                  '')
-        return comment, pcomment
+        comment_list = []
+        pcomment_list = []
+        if self.picking_comment:
+            comment_list.append(self.picking_comment)
+        if self.parent_id.picking_comment:
+            comment_list.append(self.parent_id.picking_comment)
+        if self.picking_propagated_comment:
+            pcomment_list.append(self.picking_propagated_comment)
+        if self.parent_id.picking_propagated_comment:
+            pcomment_list.append(self.parent_id.picking_propagated_comment)
+        return '\n'.join(comment_list), '\n'.join(pcomment_list)
 
     def _get_invoice_comments(self):
-        comment = self.invoice_comment or ''
-        if self.parent_id:
-            comment += '\n%s' % (self.parent_id.invoice_comment or '')
-        return comment
+        comment_list = []
+        if self.invoice_comment:
+            comment_list.append(self.invoice_comment)
+        if self.parent_id.invoice_comment:
+            comment_list.append(self.parent_id.invoice_comment)
+        return '\n'.join(comment_list)
