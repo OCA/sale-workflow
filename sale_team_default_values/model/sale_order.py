@@ -30,6 +30,6 @@ class SaleOrder(models.Model):
     def _prepare_invoice(self, order, lines):
         invoice_data = super(SaleOrder, self)._prepare_invoice(order, lines)
 
-        if order.section_id:
+        if order.section_id and order.section_id.journal_id:
             invoice_data['journal_id'] = order.section_id.journal_id.id
         return invoice_data

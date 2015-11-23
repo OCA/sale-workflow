@@ -11,5 +11,5 @@ class Invoice(models.Model):
 
     @api.onchange('section_id')
     def onchange_section_id(self):
-        if self.section_id:
+        if self.section_id and self.section_id.journal_id:
             self.journal_id = self.section_id.journal_id

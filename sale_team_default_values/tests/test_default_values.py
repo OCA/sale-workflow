@@ -9,6 +9,10 @@ class TestDefaultValues(TransactionCase):
         self.so.onchange_section_id()
         self.so.action_button_confirm()
         self.assertEqual(self.so.project_id, self.team.project_id)
+        self.so.action_invoice_create()
+        invoice = self.so.invoice_ids
+        self.assertEqual(1, len(invoice))
+        self.assertEqual(invoice.journal_id, self.team.journal_id)
 
     def setUp(self):
         super(TestDefaultValues, self).setUp()
@@ -22,6 +26,7 @@ class TestDefaultValues(TransactionCase):
             # 'pricelist_id',
             'warehouse_id': self.env.ref('stock.stock_warehouse_shop0').id,
             'project_id': self.env.ref('account.analytic_nebula').id,
+            'journal_id': self.env.ref('account.miscellaneous_journal').id
         })
 
         customer = self.env.ref('base.res_partner_3')
