@@ -22,7 +22,7 @@
 
 {
     'name': 'Sale Automatic Workflow',
-    'version': '8.0.0.2.0',
+    'version': '8.0.0.3.0',
     'category': 'Generic Modules/Others',
     'license': 'AGPL-3',
     'author': "Akretion,Camptocamp,Odoo Community Association (OCA)",
