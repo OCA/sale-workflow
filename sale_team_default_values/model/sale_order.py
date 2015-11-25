@@ -4,13 +4,6 @@
 # Copyright 2014-2015 Camptocamp SA
 
 from openerp import models, api
-PROPAGATE_FIELDS = [
-    'payment_term',
-    'fiscal_position',
-    'pricelist_id',
-    'warehouse_id',
-    'project_id',
-]
 
 
 class SaleOrder(models.Model):
@@ -18,7 +11,7 @@ class SaleOrder(models.Model):
 
     @api.onchange('section_id')
     def onchange_section_id(self):
-        for field in PROPAGATE_FIELDS:
+        for field in self._propagate_fields():
             if self.section_id[field]:
                 setattr(self, field, self.section_id[field])
 
@@ -33,3 +26,13 @@ class SaleOrder(models.Model):
         if order.section_id and order.section_id.journal_id:
             invoice_data['journal_id'] = order.section_id.journal_id.id
         return invoice_data
+
+    @api.model
+    def _propagate_fields(self):
+        return [
+            'payment_term',
+            'fiscal_position',
+            'pricelist_id',
+            'warehouse_id',
+            'project_id',
+        ]
