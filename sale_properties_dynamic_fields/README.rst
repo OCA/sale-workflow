@@ -5,9 +5,9 @@
 Sale properties dynamic fields
 ==============================
 
-This module allows to dynamically draw properties groups on sale order lines.
+This module allows to dynamically display properties groups on sale order lines.
 That is, if you have a property group 'Length' and set it as
-'Draw dynamically', the module will automatically add the x_length field to
+'Display dynamically', the module will automatically add the x_length field to
 the sale order line and visualize it as char field in the form view.
 When fill the 'Length' field, the module will update the properties field
 (property_ids) according to it.
