@@ -47,6 +47,7 @@ class TestDefaultValues(TransactionCase):
         self.so = self.env['sale.order'].create({
             'partner_id': customer.id,
             'section_id': self.team.id,
+            'ignore_exceptions': True,   # in case sale_exception is installed
         })
         self.sol = self.env['sale.order.line'].create({
             'name': '/',
