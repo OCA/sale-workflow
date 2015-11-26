@@ -25,7 +25,7 @@ class TestDefaultValues(TransactionCase):
         self.position = self.env['account.fiscal.position'].create({
             'name': 'more tax',
         })
-        self.pricelist = self.env['product.pricelist'].create({
+        self.pricelist = self.env['product.pricelist'].search([])[0].copy({
             'name': 'super expensive',
             'type': 'sale',
         })
