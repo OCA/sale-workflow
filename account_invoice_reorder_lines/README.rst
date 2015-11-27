@@ -4,7 +4,7 @@
 Invoice lines with sequence number
 ==================================
 
-This module was written to provide a new field on the invoice line form, allowing to manage the invoice lines
+This module was written to provide a new field on the invoice form, allowing to manage the invoice lines
 order.
 
 For further information, please visit:
