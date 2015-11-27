@@ -2,20 +2,41 @@
    :target: http://www.gnu.org/licenses/agpl-3.0-standalone.html
    :alt: License: AGPL-3
 
-==========================
-Sales Teams Default Values
-==========================
+=========================
+Sale Teams Default Values
+=========================
 
 Before Odoo 8.0, the sale.shop object contained some defaults for the sale
 process that were propagated to sale orders and invoices.
 
 The shop was removed in 8.0, so this module uses the Sale Team as a
-replacement. Now a new tab in the Sales Team contains defaults that will be
+replacement. Now a new tab in the Sale Team contains defaults that will be
 propagated to orders and invoices.
+
+This module is useful both to set up defaults for manual use, and also for
+interfaces with external systems (e-commerce, ESBs, etc) were orders need to be
+validated automatically.
 
 .. image:: https://odoo-community.org/website/image/ir.attachment/5784_f2813bd/datas
    :alt: Try me on Runbot
    :target: https://runbot.odoo-community.org/runbot/167/8.0
+
+Configuration
+=============
+
+To configure the module, open a Sale Team and fill in the fields in the
+"Default Values" tab. None of them is required.
+
+Usage
+=====
+
+In a Sale Order, choose one of the Sale Teams where you configured default
+values. All the default values that were given will be applied to the current
+Sale Order. The Journal field is only relevant to invoices. The Journal from
+the chosen Sale Team will be used when generating an invoice from the Order.
+
+If a default value is left empty in the Sale Team, than no action will be done:
+existing values in the Sale Order will not be removed.
 
 Bug Tracker
 ===========
