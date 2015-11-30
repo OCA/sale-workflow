@@ -21,7 +21,7 @@
 #
 {
     'name': 'Invoice lines with sequence number',
-    'version': '0.1',
+    'version': '8.0.1.0.0',
     'category': 'Generic Modules/Accounting',
     'summary': '''
 Provide a new field on the invoice line form, allowing to manage the lines
@@ -29,10 +29,7 @@ order.
     ''',
     'author': "Tiny,Odoo Community Association (OCA)",
     'website': 'http://www.openerp.com',
-    'depends': ['account', 'base'],
-    'data': [],
-    'demo': [],
-    'test': [],
+    'depends': ['account'],
     'installable': True,
     'auto_install': False,
     'application': False,
