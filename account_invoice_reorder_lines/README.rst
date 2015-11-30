@@ -6,23 +6,15 @@
 Invoice lines with sequence number
 ==================================
 
-This module was written to provide a new field on the invoice form, allowing to manage the invoice lines
+This module was written to allow to manage the invoice lines
 order.
 
 Usage
 =====
 
-To use this module, you need to:
-
-* Go to ...
-
   .. image:: https://odoo-community.org/website/image/ir.attachment/5784_f2813bd/datas
      :alt: Try me on Runbot
         :target: https://runbot.odoo-community.org/runbot/167/8.0
-
-     .. repo_id is available in https://github.com/OCA/maintainer-tools/blob/master/tools/repos_with_ids.txt
-     .. branch is "8.0" for example
-
 
 Bug Tracker
 ===========
