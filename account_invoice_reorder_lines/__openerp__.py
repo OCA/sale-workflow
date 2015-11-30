@@ -21,19 +21,16 @@
 #
 {
     'name': 'Invoice lines with sequence number',
-    'version': '0.1',
+    'version': '8.0.1.0.0',
     'category': 'Generic Modules/Accounting',
-    'description': '''
+    'summary': '''
 Provide a new field on the invoice line form, allowing to manage the lines
 order.
     ''',
     'author': "Tiny,Odoo Community Association (OCA)",
     'website': 'http://www.openerp.com',
-    'depends': ['account', 'base'],
-    'data': ['invoice_view.xml'],
-    'demo': [],
-    'test': [],
-    'installable': False,
+    'depends': ['account'],
+    'installable': True,
     'auto_install': False,
     'application': False,
     'license': "AGPL-3",

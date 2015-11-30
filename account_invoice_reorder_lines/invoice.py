@@ -19,9 +19,9 @@
 #    along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
 #
-from openerp.osv import orm
+from openerp import models
 
 
-class account_invoice_line(orm.Model):
+class AccountInvoiceLine(models.Model):
     _inherit = 'account.invoice.line'
     _order = 'invoice_id desc, sequence, id'
