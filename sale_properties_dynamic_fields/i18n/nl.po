@@ -1,0 +1,84 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# * sale_properties_dynamic_fields
+# 
+# Translators:
+msgid ""
+msgstr ""
+"Project-Id-Version: sale-workflow (8.0)\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2015-11-30 09:39+0000\n"
+"PO-Revision-Date: 2015-11-25 10:20+0000\n"
+"Last-Translator: <>\n"
+"Language-Team: Dutch (http://www.transifex.com/oca/OCA-sale-workflow-8-0/language/nl/)\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Language: nl\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+#. module: sale_properties_dynamic_fields
+#: field:mrp.property.group,draw_dynamically:0
+msgid "Display dynamically"
+msgstr ""
+
+#. module: sale_properties_dynamic_fields
+#: field:mrp.property.group,field_id:0
+msgid "Field"
+msgstr ""
+
+#. module: sale_properties_dynamic_fields
+#: code:addons/sale_properties_dynamic_fields/mrp_property_group.py:62
+#, python-format
+msgid "Field %s (sale.order.line) already present"
+msgstr ""
+
+#. module: sale_properties_dynamic_fields
+#: code:addons/sale_properties_dynamic_fields/sale_order.py:43
+#, python-format
+msgid "Field %s already present"
+msgstr ""
+
+#. module: sale_properties_dynamic_fields
+#: help:mrp.property.group,draw_dynamically:0
+msgid "In sale order line, display this property dynamically, as text field"
+msgstr ""
+
+#. module: sale_properties_dynamic_fields
+#: model:ir.model,name:sale_properties_dynamic_fields.model_mrp_property_group
+msgid "Property Group"
+msgstr ""
+
+#. module: sale_properties_dynamic_fields
+#: code:addons/sale_properties_dynamic_fields/sale_order_line.py:33
+#, python-format
+msgid "Property of group %s already present"
+msgstr ""
+
+#. module: sale_properties_dynamic_fields
+#: model:ir.model,name:sale_properties_dynamic_fields.model_sale_order
+msgid "Sales Order"
+msgstr "Verkooporder"
+
+#. module: sale_properties_dynamic_fields
+#: model:ir.model,name:sale_properties_dynamic_fields.model_sale_order_line
+msgid "Sales Order Line"
+msgstr ""
+
+#. module: sale_properties_dynamic_fields
+#: code:addons/sale_properties_dynamic_fields/sale_order.py:34
+#, python-format
+msgid "The group %s has draw_dynamically set but there is no linked field "
+msgstr ""
+
+#. module: sale_properties_dynamic_fields
+#: code:addons/sale_properties_dynamic_fields/sale_order_line.py:65
+#, python-format
+msgid "There must be 1 and only 1 %s"
+msgstr ""
+
+#. module: sale_properties_dynamic_fields
+#: code:addons/sale_properties_dynamic_fields/sale_order_line.py:72
+#, python-format
+msgid "There must be 1 and only 1 group for %s"
+msgstr ""

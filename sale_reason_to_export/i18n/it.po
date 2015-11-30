@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: sale-workflow (8.0)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-10-02 17:59+0000\n"
+"POT-Creation-Date: 2015-11-30 09:39+0000\n"
 "PO-Revision-Date: 2015-09-03 07:10+0000\n"
 "Last-Translator: <>\n"
 "Language-Team: Italian (http://www.transifex.com/oca/OCA-sale-workflow-8-0/language/it/)\n"
@@ -50,7 +50,7 @@ msgstr "Ultimo aggiornamento il"
 #. module: sale_reason_to_export
 #: field:sale.reason_to_export,name:0
 msgid "Name"
-msgstr ""
+msgstr "Name"
 
 #. module: sale_reason_to_export
 #: model:ir.model,name:sale_reason_to_export.model_sale_reason_to_export

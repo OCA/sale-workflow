@@ -10,11 +10,11 @@ msgstr ""
 "POT-Creation-Date: 2015-11-30 09:39+0000\n"
 "PO-Revision-Date: 2015-11-17 08:45+0000\n"
 "Last-Translator: OCA Transbot <transbot@odoo-community.org>\n"
-"Language-Team: Italian (http://www.transifex.com/oca/OCA-sale-workflow-8-0/language/it/)\n"
+"Language-Team: English (http://www.transifex.com/oca/OCA-sale-workflow-8-0/language/en/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
-"Language: it\n"
+"Language: en\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
 #. module: sale_properties_easy_creation
@@ -42,7 +42,7 @@ msgstr "Created on"
 #: code:addons/sale_properties_easy_creation/mrp_property_formula.py:43
 #, python-format
 msgid "Error"
-msgstr "Errore"
+msgstr "Error"
 
 #. module: sale_properties_easy_creation
 #: view:mrp.property.formula:sale_properties_easy_creation.mrp_property_formula_form_view
@@ -54,7 +54,7 @@ msgstr "Formula"
 #: code:addons/sale_properties_easy_creation/mrp_property_formula.py:44
 #, python-format
 msgid "Formula must contain 'result' variable"
-msgstr "Formula deve contenere la varibile 'result'"
+msgstr "Formula must contain 'result' variable"
 
 #. module: sale_properties_easy_creation
 #: view:mrp.property.formula:sale_properties_easy_creation.mrp_property_formula_tree_view
@@ -64,7 +64,7 @@ msgstr "Formulas"
 #. module: sale_properties_easy_creation
 #: help:mrp.property.formula,formula_text:0
 msgid "Here you can write the formula using by python code"
-msgstr ""
+msgstr "Here you can write the formula using by python code"
 
 #. module: sale_properties_easy_creation
 #: field:mrp.property.formula,id:0
@@ -90,12 +90,12 @@ msgstr "Name"
 #: model:ir.actions.act_window,name:sale_properties_easy_creation.mrp_property_formula_action
 #: model:ir.ui.menu,name:sale_properties_easy_creation.menu_mrp_property_formula_action
 msgid "Properties Formulas"
-msgstr "Formule Proprietà"
+msgstr "Properties Formulas"
 
 #. module: sale_properties_easy_creation
 #: model:ir.model,name:sale_properties_easy_creation.model_mrp_property
 msgid "Property"
-msgstr "Proprietà"
+msgstr "Property"
 
 #. module: sale_properties_easy_creation
 #: view:mrp.property.formula:sale_properties_easy_creation.view_mrp_property_formula_search

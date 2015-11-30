@@ -3,13 +3,14 @@
 # * sale_payment_term_interest
 # 
 # Translators:
+# Rudolf Schnapka <rs@techno-flex.de>, 2015
 msgid ""
 msgstr ""
 "Project-Id-Version: sale-workflow (8.0)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-10-08 20:48+0000\n"
-"PO-Revision-Date: 2015-09-03 07:09+0000\n"
-"Last-Translator: <>\n"
+"POT-Creation-Date: 2015-11-30 09:39+0000\n"
+"PO-Revision-Date: 2015-11-20 11:01+0000\n"
+"Last-Translator: Rudolf Schnapka <rs@techno-flex.de>\n"
 "Language-Team: German (http://www.transifex.com/oca/OCA-sale-workflow-8-0/language/de/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -20,12 +21,12 @@ msgstr ""
 #. module: sale_payment_term_interest
 #: view:sale.order:sale_payment_term_interest.view_order_form
 msgid "(update interests)"
-msgstr ""
+msgstr "(Zinsen aktualisieren)"
 
 #. module: sale_payment_term_interest
 #: field:account.payment.term.line,interest_rate:0
 msgid "Interest Rate"
-msgstr ""
+msgstr "Zinssatz"
 
 #. module: sale_payment_term_interest
 #: code:addons/sale_payment_term_interest/model/sale_order.py:108
@@ -33,37 +34,37 @@ msgstr ""
 msgid ""
 "Interest amount differs. Click on \"(update interests)\" next to the payment"
 " terms."
-msgstr ""
+msgstr "Zinsbetrag weicht ab. Klicken Sie auf \"(Zinsen aktualisieren)\" neben den Zahlungsbedingungen"
 
 #. module: sale_payment_term_interest
 #: field:sale.order.line,interest_line:0
 msgid "Interest line"
-msgstr ""
+msgstr "Zinsposition"
 
 #. module: sale_payment_term_interest
 #: field:account.payment.term,interest_min:0
 msgid "Minimum Interest Amount"
-msgstr ""
+msgstr "Mindestzinsbetrag"
 
 #. module: sale_payment_term_interest
 #: model:ir.model,name:sale_payment_term_interest.model_account_payment_term
 msgid "Payment Term"
-msgstr ""
+msgstr "Zahlungsbedingung"
 
 #. module: sale_payment_term_interest
 #: model:ir.model,name:sale_payment_term_interest.model_account_payment_term_line
 msgid "Payment Term Line"
-msgstr ""
+msgstr "Zahlungsbedingungsposition"
 
 #. module: sale_payment_term_interest
 #: model:product.template,name:sale_payment_term_interest.product_product_sale_order_interest_product_template
 msgid "Payment terms interests"
-msgstr ""
+msgstr "Zinssatz der Zahlungsbedingung"
 
 #. module: sale_payment_term_interest
 #: view:sale.order:sale_payment_term_interest.view_order_form
 msgid "Recompute interests on payment terms"
-msgstr ""
+msgstr "Neuberechnen der Zinsen aus Zahlungsbedingungen"
 
 #. module: sale_payment_term_interest
 #: model:ir.model,name:sale_payment_term_interest.model_sale_order
@@ -80,9 +81,9 @@ msgstr "Auftragsposition"
 msgid ""
 "The annual interest rate applied on a sales order. Value between 0 and 100.\n"
 "The interest is computed as: 'Amount * (Interest Rate / 100 /  (12 months * 30 days)) * Term Days'"
-msgstr ""
+msgstr "Der auf den Verkaufsauftrag anzuwendende Jahreszinssatz. Wert zwischen 0 und 100.\nDie Zinsbetrag wird ermittelt zu: 'Betrag * (Zins /100 / (12 Monate * 30 Tage)) * Bedingungs-Tage'"
 
 #. module: sale_payment_term_interest
 #: help:account.payment.term,interest_min:0
 msgid "The minimum amount of interest added to a sales order."
-msgstr ""
+msgstr "Der Mindestzinsbetrag, der zum Auftrag beaufschlagt wird."
