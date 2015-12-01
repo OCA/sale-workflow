@@ -1,0 +1,21 @@
+<?xml version="1.0"?>
+<openerp>
+    <data>
+        <record model="ir.ui.view" id="purchase_order_form_ordering">
+            <field name="name">purchase.order.form.ordering</field>
+            <field name="model">purchase.order</field>
+            <field name="inherit_id" ref="purchase.purchase_order_form"/>
+            <field name="arch" type="xml">
+                <header>
+                    <!-- states: draft,sent,confirmed,approved,except_picking,except_invoice,done,cancel -->
+                    <!-- since field 'order_line' is readonly in states 'done' and 'approved', we also exclude these here -->
+                    <button name="ask_ordering" string="Sort lines..." type="object" states="draft,sent,confirmed,except_picking,except_invoice,cancel" />
+                </header>
+
+                <xpath expr="//field[@name='order_line']" position="attributes">
+                    <attribute name="on_change">on_change_order_line(order_line)</attribute>
+                </xpath>
+            </field>
+        </record>
+    </data>
+</openerp>
