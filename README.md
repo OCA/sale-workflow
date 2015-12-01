@@ -18,6 +18,7 @@ Available addons
 ----------------
 addon | version | summary
 --- | --- | ---
+[account_invoice_reorder_lines](account_invoice_reorder_lines/) | 8.0.1.0.0 | Provide a new field on the invoice line form, allowing to manage the lines order.
 [partner_prepayment](partner_prepayment/) | 8.0.1.0.0 | Option on partner to set prepayment policy
 [partner_prospect](partner_prospect/) | 8.0.1.0.0 | Partner Prospect
 [sale_cancel_reason](sale_cancel_reason/) | 8.0.1.1 | Sale Cancel Reason
@@ -54,7 +55,6 @@ Unported addons
 ---------------
 addon | version | summary
 --- | --- | ---
-[account_invoice_reorder_lines](account_invoice_reorder_lines/) | 0.1 (unported) | Invoice lines with sequence number
 [mail_quotation](mail_quotation/) | 0.1 (unported) | Mail quotation
 [pricelist_share_companies](pricelist_share_companies/) | 1.0 (unported) | Share pricelist between compagnies, not product
 [product_customer_code_sale](product_customer_code_sale/) | 1.0 (unported) | Product Customer code on sale
