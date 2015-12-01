@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data noupdate="1">
+
+        <!-- sale.delivery.term -->
+        <record id="sale_delivery_term_1" model="sale.delivery.term">
+            <field name="name">15 - 30</field>
+        </record>
+        
+        <!-- sale.delivery.term.line -->
+        <record id="sale_delivery_term_line_1" model="sale.delivery.term.line">
+            <field name="quantity_perc">0.5</field>
+            <field name="delay">15</field>
+            <field name="term_id" ref="sale_delivery_term_1"></field>
+        </record>
+        <record id="sale_delivery_term_line_2" model="sale.delivery.term.line">
+            <field name="quantity_perc">0.5</field>
+            <field name="delay">30</field>
+            <field name="term_id" ref="sale_delivery_term_1"></field>
+        </record>
+    </data>
+</openerp>

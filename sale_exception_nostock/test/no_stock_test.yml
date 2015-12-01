@@ -1,0 +1,182 @@
+-
+  In order to test stock sale exception we have to ensure that
+  if a sale order that can not be delivired on time it should not be confirmed.
+  We have also to test that even if our sale order can be delivered
+  it should not break any already placed SO,
+-
+  For testing purpose I deactivate all sale exception(s) that could interfer
+-
+  !python {model: sale.exception}: |
+    ids_to_keep = [ref("no_stock_at_date"), ref("no_stock_in_future")]
+    ids_to_silent = self.search(cr, uid, [('id', 'not in', ids_to_keep)])
+    data = {}
+    data['active'] = False
+    self.write(cr, uid, ids_to_silent, data)
+-
+  I create a new firesteel product for my test
+-
+  !record {model: product.product, id: product_firesteel}:
+    categ_id: product.product_category_1
+    name: Firesteel
+    type: product
+    uom_id: product.product_uom_unit
+    uom_po_id: product.product_uom_unit
+    property_stock_inventory: stock.location_inventory
+    property_stock_procurement: stock.location_procurement
+    property_stock_production: stock.location_production
+-
+  I create a sale order to be delivered for the 30th of March for product Firesteel
+-
+  !record {model: sale.order, id: so_0}:
+    client_order_ref: ref firesteel 0
+    date_order: !eval time.strftime('%Y-03-30')
+    name: 30th of March
+    order_line:
+      - name: Firesteel
+        price_unit: 0.20
+        product_uom: product.product_uom_unit
+        product_uom_qty: 10000
+        state: draft
+        delay: 7.0
+        product_id: product_firesteel
+        product_uos_qty: 10000
+    order_policy: manual
+    partner_id: base.res_partner_4
+    partner_invoice_id: base.res_partner_address_7
+    partner_shipping_id: base.res_partner_address_7
+    picking_policy: direct
+    pricelist_id: product.list0
+-
+  Then I confirm the the 30th of March firesteel order
+-
+  !workflow {model: sale.order, action: order_confirm, ref: so_0}
+
+-
+ I check that the sale order is not confirmed and his linked to no_stock_at_date exception
+-
+  !python {model: sale.order}: |
+    sale_order = self.browse(cr, uid, ref("so_0"))
+    from openerp.addons.sale_exception_nostock.test.test_utils import check_state_and_exceptions
+    check_state_and_exceptions(sale_order, 'draft', ref("no_stock_at_date"))
+-
+ I create a stock move to make an appro for the 15th of April
+-
+  !record {model: stock.move, id: sm_0}:
+    company_id: base.main_company
+    date: !eval time.strftime('%Y-04-15 00:00:00')
+    date_expected: !eval time.strftime('%Y-04-15 00:00:00')
+    location_dest_id: stock.stock_location_stock
+    location_id: stock.location_inventory
+    name: 'PO 1 for the 5th of April'
+    product_id: product_firesteel
+    product_uom_qty: 10500
+    product_uom: product.product_uom_unit
+    product_uos_qty: 10500
+-
+ I force move assignation
+-
+  !python {model: stock.move}: |
+    self.write(cr, uid, [ref('sm_0')], {'state': 'done'})
+-
+  Then I confirm the firesteel order
+-
+  !workflow {model: sale.order, action: order_confirm, ref: so_0}
+
+-
+ I check that the sale order is not confirmed and is only linked to no_stock_at_date exception
+-
+  !python {model: sale.order}: |
+    sale_order = self.browse(cr, uid, ref("so_0"))
+    from openerp.addons.sale_exception_nostock.test.test_utils import check_state_and_exceptions
+    check_state_and_exceptions(sale_order, 'draft', ref("no_stock_at_date"))
+-
+ I create a stock move to make an appro for the 25th of March
+-
+  !record {model: stock.move, id: sm_1}:
+    company_id: base.main_company
+    date: !eval time.strftime('%Y-03-25 00:00:00')
+    date_expected: !eval time.strftime('%Y-03-25 00:00:00')
+    location_dest_id: stock.stock_location_stock
+    location_id: stock.location_inventory
+    name: 'PO 1 for the 25th of March'
+    product_id: product_firesteel
+    product_uom_qty: 10500
+    product_uom: product.product_uom_unit
+    product_uos_qty: 10500
+-
+ I force move PO 1 for the 25 of march assignation
+-
+  !python {model: stock.move}: |
+    self.action_done(cr, uid, [ref('sm_1')])
+-
+  Then I confirm the the 30th of March firesteel order
+-
+  !workflow {model: sale.order, action: order_confirm, ref: so_0}
+-
+ I check that the sale order is confirmed
+-
+  !python {model: sale.order}: |
+    sale_order = self.browse(cr, uid, ref("so_0"))
+    assert sale_order.state == "manual", "The sale order was not confirmed when it should"
+-
+ I create an SO for the 26th of March with a short delay of one day
+-
+  !record {model: sale.order, id: so_1}:
+    client_order_ref: ref firesteel 1
+    date_order: !eval time.strftime('%Y-03-26')
+    name: 26th of March
+    order_line:
+      - name: Firesteel
+        price_unit: 0.20
+        product_uom: product.product_uom_unit
+        product_uom_qty: 10000
+        state: draft
+        delay: 1.2
+        product_id: product_firesteel
+        product_uos_qty: 10000
+    order_policy: manual
+    partner_id: base.res_partner_4
+    partner_invoice_id: base.res_partner_address_7
+    partner_shipping_id: base.res_partner_address_7
+    picking_policy: direct
+    pricelist_id: product.list0
+-
+  Then I confirm the the 26th of March firesteel order
+-
+  !workflow {model: sale.order, action: order_confirm, ref: so_1}
+-
+ Then my sale order should be in draft state and only related to no_stock_in_future exception
+-
+  !python {model: sale.order}: |
+    sale_order = self.browse(cr, uid, ref("so_1"))
+    from openerp.addons.sale_exception_nostock.test.test_utils import check_state_and_exceptions
+    check_state_and_exceptions(sale_order, 'draft', ref("no_stock_in_future"))
+-
+ I create a quick stock move to make an appro for the 27th of March in the morning
+-
+  !record {model: stock.move, id: sm_3}:
+    company_id: base.main_company
+    date: !eval time.strftime('%Y-03-27 00:00:00')
+    date_expected: !eval time.strftime('%Y-03-27 00:00:00')
+    location_dest_id: stock.stock_location_stock
+    location_id: stock.location_inventory
+    name: 'PO 1 for the 27th of March'
+    product_id: product_firesteel
+    product_uom_qty: 10500
+    product_uom: product.product_uom_unit
+    product_uos_qty: 10500
+-
+ I force move PO 1 for the 27 of march assignation
+-
+  !python {model: stock.move}: |
+    self.action_done(cr, uid, [ref('sm_3')])
+-
+  Then I confirm the the 26th of March firesteel order
+-
+  !workflow {model: sale.order, action: order_confirm, ref: so_1}
+-
+ I check that the sale order is confirmed
+-
+  !python {model: sale.order}: |
+    sale_order = self.browse(cr, uid, ref("so_1"))
+    assert sale_order.state == "manual", "The sale order was not confirmed when it should"

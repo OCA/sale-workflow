@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+  <data noupdate="0">
+
+    <record id="view_payment_term_form" model="ir.ui.view">
+      <field name="name">account.payment.term.form</field>
+      <field name="model">account.payment.term</field>
+      <field name="inherit_id" ref="account.view_payment_term_form"/>
+      <field name="arch" type="xml">
+        <field name="name" position="after">
+            <field name="interest_min"/>
+        </field>
+      </field>
+    </record>
+
+    <record id="view_payment_term_line_tree" model="ir.ui.view">
+      <field name="name">account.payment.term.line.tree</field>
+      <field name="model">account.payment.term.line</field>
+      <field name="inherit_id" ref="account.view_payment_term_line_tree"/>
+      <field name="arch" type="xml">
+        <field name="days2" position="after">
+          <field name="interest_rate"/>
+        </field>
+      </field>
+    </record>
+
+    <record id="view_payment_term_line_form" model="ir.ui.view">
+      <field name="name">account.payment.term.line.form</field>
+      <field name="model">account.payment.term.line</field>
+      <field name="inherit_id" ref="account.view_payment_term_line_form"/>
+      <field name="arch" type="xml">
+        <xpath expr="/form/group/group[1]" position="inside">
+          <field name="interest_rate"/>
+        </xpath>
+      </field>
+    </record>
+  </data>
+</openerp>

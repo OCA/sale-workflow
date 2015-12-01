@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+        <record id="sale.trans_draft_router" model="workflow.transition">
+            <field name="signal">order_confirm</field>
+            <field name="condition">test_exceptions()</field>
+        </record>
+        <record id="sale.trans_sent_router" model="workflow.transition">
+            <field name="signal">order_confirm</field>
+            <field name="condition">test_exceptions()</field>
+        </record>
+    </data>
+</openerp>

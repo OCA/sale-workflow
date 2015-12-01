@@ -1,0 +1,10 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_sale_order_line_master,sale_order_line_master,model_sale_order_line_master,base.group_sale_salesman,1,1,1,1
+access_sale_order_line_master_accountant,sale_order_line_master accountant,model_sale_order_line_master,account.group_account_user,1,1,0,0
+access_sale_order_line_master_stock_worker,sale_order_line_master stock worker,model_sale_order_line_master,stock.group_stock_user,1,1,0,0
+access_sale_delivery_term_sale_user,sale_delivery_term.sale.user,model_sale_delivery_term,base.group_sale_salesman,1,0,0,0
+access_sale_delivery_term_sale_manager,sale_delivery_term.sale.manager,model_sale_delivery_term,base.group_sale_manager,1,1,1,1
+access_sale_delivery_term,sale_delivery_term,model_sale_delivery_term,base.group_user,1,0,0,0
+access_sale_delivery_term_line_sale_user,sale_delivery_term_line.sale.user,model_sale_delivery_term_line,base.group_sale_salesman,1,0,0,0
+access_sale_delivery_term_line_sale_manager,sale_delivery_term_line.sale.manager,model_sale_delivery_term_line,base.group_sale_manager,1,1,1,1
+access_sale_delivery_term_line_sale_manager,sale_delivery_term_line.sale.manager,model_sale_delivery_term_line,base.group_user,1,0,0,0

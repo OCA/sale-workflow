@@ -1,0 +1,52 @@
+-
+  Given I activate the 'Use prepayment' on a customer
+-
+  !python {model: res.partner}: |
+    # for some reason, this is not updated in a !record block
+    partner = self.browse(cr, uid, ref("base.res_partner_4"))
+    partner.write({'use_prepayment': True})
+-
+  When I create a sale order for a customer not having 'Use prepayment'
+-
+  !record {model: sale.order, id: partner_prepay_sale_01}:
+    partner_id: base.res_partner_3
+    order_policy: 'manual'
+    order_line:
+      - product_id: product.product_product_7
+        product_uom_qty: 8
+-
+  Then the sale order should have the selected policy
+-
+  !assert {model: sale.order, id: partner_prepay_sale_01, string: The order policy should be 'manual'}:
+    - order_policy == 'manual'
+-
+  When I change the sale order for a customer having 'Use prepayment'
+-
+  !record {model: sale.order, id: partner_prepay_sale_01}:
+    partner_id: base.res_partner_4
+-
+  Then the sale order should have the order policy 'prepaid'
+-
+  !assert {model: sale.order, id: partner_prepay_sale_01, string: The order policy should be 'prepaid'}:
+    - order_policy == 'prepaid'
+-
+  When I set the order policy to 'manual' again.
+-
+  !record {model: sale.order, id: partner_prepay_sale_01}:
+    order_policy: manual
+-
+  Then the order policy should be manual
+-
+  !assert {model: sale.order, id: partner_prepay_sale_01, string: The order policy should be 'manual'}:
+    - order_policy == 'manual'
+-
+  And I change the customer of the sale order to a contact of the
+  commercial entity having 'Use prepayment'.
+-
+  !record {model: sale.order, id: partner_prepay_sale_01}:
+    partner_id: base.res_partner_address_8
+-
+  Then the sale order should have the order policy 'prepaid' again.
+-
+  !assert {model: sale.order, id: partner_prepay_sale_01, string: The order policy should be 'prepaid'}:
+    - order_policy == 'prepaid'

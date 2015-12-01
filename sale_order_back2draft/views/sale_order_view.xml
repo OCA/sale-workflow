@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+
+        <record id="view_order_form_draft" model="ir.ui.view">
+            <field name="name">sale.order.form.draft</field>
+            <field name="model">sale.order</field>
+            <field name="inherit_id" ref="sale.view_order_form"/>
+            <field name="arch" type="xml">
+                <field name="state" position="before">
+                    <button name="button_draft"
+                            states="cancel"
+                            string="Back to draft"
+                            type="object"
+                            groups="base.group_user"/>
+                </field>
+            </field>
+        </record>
+
+    </data>
+</openerp>

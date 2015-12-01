@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+        
+        <record id="mrp_property_group_form_view_draw" model="ir.ui.view">
+            <field name="name">mrp_property_group_form_view_draw</field>
+            <field name="model">mrp.property.group</field>
+            <field name="inherit_id" ref="mrp.mrp_property_group_form_view"></field>
+            <field name="arch" type="xml">
+                <field name="description" position="after">
+                    <group>
+                        <field name="draw_dynamically"/>
+                        <field name="field_id"/>
+                    </group>
+                </field>
+            </field>
+        </record>
+    </data>
+</openerp>

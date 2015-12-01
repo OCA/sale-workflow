@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data noupdate="1">
+        <record model="mrp.property.formula" id="area_formula">
+            <field name="name">Formula based on area and painting</field>
+            <field name="formula_text">
+area = float(properties['Width']) * float(properties['Length'])
+result = area / 2.0
+if 'Painting' in properties:
+    result = result + 5
+</field>
+        </record>
+    </data>
+</openerp>

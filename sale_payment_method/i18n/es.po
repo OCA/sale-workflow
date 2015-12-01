@@ -1,0 +1,138 @@
+# Translation of OpenERP Server.
+# This file contains the translation of the following modules:
+#	* sale_payment_method
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: OpenERP Server 7.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2013-05-02 07:06+0000\n"
+"PO-Revision-Date: 2014-06-24 11:55+0100\n"
+"Last-Translator: Alberto Garcia <alberto.garcia@factorlibre.com>\n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: \n"
+
+#. module: sale_payment_method
+#: view:sale.order:0
+msgid "Automation Information"
+msgstr "Información Automática"
+
+#. module: sale_payment_method
+#: help:payment.method,journal_id:0
+msgid "If a journal is selected, when a payment is recorded on a backend, payment entries will be created in this journal. "
+msgstr "Si un diario es sleccionado, cuando un pago es registrado en el backend, las entradas de los pagos serán creadas en ese diario"
+
+#. module: sale_payment_method
+#: view:payment.method:0
+msgid ""
+"Even if the E-commerce backend receives a payment for a sale order,\n"
+"                                no payment entries will be generated."
+msgstr "Incluso si el E-commerce backend recibe un pago de un pedido de venta,"
+
+#. module: sale_payment_method
+#: view:payment.method:0
+msgid "Default Values"
+msgstr "Valores por defecto"
+
+#. module: sale_payment_method
+#: model:ir.model,name:sale_payment_method.model_payment_method
+#: field:sale.order,payment_method_id:0
+msgid "Payment Method"
+msgstr "Método de pago"
+
+#. module: sale_payment_method
+#: view:sale.order:0
+msgid "View Automatic Payment"
+msgstr "Ver Pago Automático"
+
+#. module: sale_payment_method
+#: field:payment.method,journal_id:0
+msgid "Journal"
+msgstr "Diario"
+
+#. module: sale_payment_method
+#: model:ir.actions.act_window,name:sale_payment_method.act_payment_method_form
+#: model:ir.ui.menu,name:sale_payment_method.menu_action_paymetn_method_form
+msgid "Payment Methods "
+msgstr "Métodos de Pago"
+
+#. module: sale_payment_method
+#: field:account.move,order_ids:0
+msgid "Sales Orders"
+msgstr "Pedidos de venta"
+
+#. module: sale_payment_method
+#: view:sale.order:0
+msgid "Other Information"
+msgstr "Otra información"
+
+#. module: sale_payment_method
+#: view:payment.method:0
+msgid "Payment Methods"
+msgstr "Métodos de pago"
+
+#. module: sale_payment_method
+#: field:payment.method,name:0
+msgid "Name"
+msgstr "Nombre"
+
+#. module: sale_payment_method
+#: field:sale.order,payment_ids:0
+msgid "Payments Entries"
+msgstr "Entradas de pagos"
+
+#. module: sale_payment_method
+#: view:payment.method:0
+msgid ""
+"When the E-commerce backend will receive a payment for a sale order,\n"
+"                                payment entries will be generated in the selected journal."
+msgstr "Cuando el E-commerce backend recibe un pago para un pedido de venta,"
+
+#. module: sale_payment_method
+#: view:payment.method:0
+msgid "Journal for payment"
+msgstr "Diario de pago"
+
+#. module: sale_payment_method
+#: field:sale.order,residual:0
+msgid "Balance"
+msgstr "Balance"
+
+#. module: sale_payment_method
+#: model:ir.model,name:sale_payment_method.model_account_move
+msgid "Account Entry"
+msgstr "Apunte Contable"
+
+#. module: sale_payment_method
+#: help:payment.method,payment_term_id:0
+msgid "Default payment term of a sale order using this method."
+msgstr "Forma de pago por defecto de un pedido de venta usado por este método."
+
+#. module: sale_payment_method
+#: field:payment.method,payment_term_id:0
+msgid "Payment Term"
+msgstr "Modo de pago"
+
+#. module: sale_payment_method
+#: view:sale.order:0
+msgid "Create Invoice"
+msgstr "Crear Factura"
+
+#. module: sale_payment_method
+#: help:payment.method,name:0
+msgid "The name of the method on the backend"
+msgstr "El nombre del método en el backend"
+
+#. module: sale_payment_method
+#: model:ir.model,name:sale_payment_method.model_sale_order
+msgid "Sales Order"
+msgstr "Pediso de Ventas"
+
+#. module: sale_payment_method
+#: field:sale.order,payment_exists:0
+msgid "Has automatic payment"
+msgstr "Tiene pago automático"
+

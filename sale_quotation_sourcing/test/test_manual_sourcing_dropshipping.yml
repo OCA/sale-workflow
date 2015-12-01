@@ -1,0 +1,36 @@
+-
+  Feature. Manual sourcing of a dropshipping sale
+    Scenario. Check consistency between a dropshipping sale and a purchase with destination Stock
+-
+  Background. I log in as Fiona
+-
+  !context
+  uid: 'res_users_fiona'
+-
+  Given I have a Sale with dropshipping route
+-
+  !record {model: sale.order, id: so_5}:
+    partner_id: base.res_partner_3
+    order_line:
+      - product_id: product.product_product_7
+        product_uom_qty: 8
+        manually_sourced: 1
+        route_id: route_drop_shipping
+-
+  When I source it with a purchase with destination Stock
+-
+  !record {model: purchase.order, id: po_5}:
+    partner_id: base.res_partner_6
+    order_line:
+      - product_id: product.product_product_7
+        product_qty: 8
+-
+  !python {model: sale.order, id: so_5}: |
+    po = self.env['purchase.order'].browse(ref('po_5'))
+    self.order_line[0].sourced_by = po.order_line[0]
+-
+  Then the sale should have a route with origin Stock
+-
+  !python {model: sale.order, id: so_5}: |
+    from nose.tools import *
+    assert_equal('internal', self.order_line[0].route_id.pull_ids[0].location_src_id.usage)

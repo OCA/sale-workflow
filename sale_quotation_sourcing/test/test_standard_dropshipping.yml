@@ -1,0 +1,35 @@
+-
+  I select for this file a user that is not admin
+-
+  !context
+  uid: 'res_users_fiona'
+-
+  I create a quotation with a manually sourced dropshipping line.
+-
+  !record {model: sale.order, id: so_4}:
+    partner_id: base.res_partner_3
+    order_line:
+      - product_id: product.product_product_7
+        product_uom_qty: 8
+        route_id: route_drop_shipping
+-
+  I confirm the sale order.
+-
+  !python {model: sale.order, id: so_4}: |
+    from nose.tools import *
+
+    self.action_button_confirm()
+
+    assert_not_equal(self.state, 'draft')
+
+    self.env['procurement.order'].run_scheduler()
+
+    line_procurements = self.order_line[0].procurement_ids
+    assert_equal(len(line_procurements), 1)
+
+    proc1 = line_procurements[0]
+    assert_equal(proc1.rule_id.action, "buy")
+    assert_equal(proc1.state, "running")
+    assert_equal(len(proc1.purchase_line_id), 1)
+
+    assert_equal(len(self.picking_ids), 0)

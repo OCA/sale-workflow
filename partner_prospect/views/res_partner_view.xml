@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<openerp>
+    <data>
+        <record id="res_partner_prospect_form_view" model="ir.ui.view">
+            <field name="name">res.partner.prospect.form</field>
+            <field name="model">res.partner</field>
+            <field name="inherit_id" ref="base.view_partner_form" />
+            <field name="arch" type="xml">
+                <label for="street" position="before">
+                    <field name="prospect"
+                           attrs="{'invisible': [('customer', '=', False)]}"/>
+                </label>
+            </field>
+        </record>
+
+        <record id="res_partner_prospect_tree_view" model="ir.ui.view">
+            <field name="name">res.partner.prospect.tree</field>
+            <field name="model">res.partner</field>
+            <field name="inherit_id" ref="base.view_partner_tree" />
+            <field name="arch" type="xml">
+                <field name="email" position="after">
+                    <field name="prospect" />
+                </field>
+            </field>
+        </record>
+
+        <record id="res_partner_prospect_search_view" model="ir.ui.view">
+            <field name="name">res.partner.prospect.search</field>
+            <field name="model">res.partner</field>
+            <field name="inherit_id" ref="base.view_res_partner_filter" />
+            <field name="arch" type="xml">
+                <filter string="Suppliers" position="after">
+                    <separator/>
+                    <filter string="Actual Customer" name="noprospect"
+                            domain="[('customer','=',1),('prospect','=',False)]" />
+                    <filter string="Prospect" name="prospect"
+                            domain="[('customer','=',1),('prospect','=',True)]" />
+                </filter>
+                <group string="Group By" position="inside">
+                    <filter string="Prospect" domain="[('customer','=',1)]"
+                            context="{'group_by':'prospect'}"/>
+                </group>
+            </field>
+        </record>
+
+        <record id="base.action_partner_form" model="ir.actions.act_window">
+            <field name="context">{"search_default_customer": 1, "search_default_noprospect": 1}</field>
+        </record>
+    </data>
+</openerp>

@@ -1,0 +1,111 @@
+-
+  I create a product with procure method MTS
+-
+  !record {model: product.product, id: prod_mts}:
+    name: testproduct mts
+    procure_method: make_to_stock
+    supply_method: buy
+    seller_ids:
+      - name: base.res_partner_1
+        min_qty: 1
+        product_uom: 1
+        direct_delivery_flag: True
+-
+  I create a product with procure method MTO
+-
+  !record {model: product.product, id: prod_mto}:
+    name: testproduct mto
+    procure_method: make_to_order
+    supply_method: buy
+    seller_ids:
+      - name: base.res_partner_1
+        min_qty: 1
+        product_uom: 1
+        direct_delivery_flag: True
+-
+  I create SO for 3xMTS Product
+-
+  !record {model: sale.order, id: so_mts}:
+    partner_id: base.res_partner_2
+    order_line:
+      - product_id: prod_mts
+        product_uom_qty: 3
+-
+  The so line should have sale_flow set to dropshipping
+-
+  !assert {model: sale.order, id: so_mts, string: wrong so line sale_flow state}:
+    - order_line[0].sale_flow == 'direct_delivery'
+-
+  I create SO for 3xMT0 Product
+-
+  !record {model: sale.order, id: so_mto}:
+    partner_id: base.res_partner_2
+    order_line:
+      - product_id: prod_mto
+        product_uom_qty: 3
+-
+  The so line should have sale_flow set to dropshipping
+-
+  !assert {model: sale.order, id: so_mto, string: wrong so line sale_flow state}:
+    - order_line[0].sale_flow == 'direct_delivery'
+-
+  I create some stock (5 units) for each product
+-
+  !record {model: stock.picking.in, id: in_pick}:
+    type: in
+    move_lines:
+      - product_id: prod_mto
+        product_qty: 5
+        product_uom: 1
+        location_id: stock.stock_location_suppliers
+        location_dest_id: stock.stock_location_stock
+      - product_id: prod_mts
+        product_qty: 5
+        product_uom: 1
+        location_id: stock.stock_location_suppliers
+        location_dest_id: stock.stock_location_stock
+-
+  !python {model: stock.picking.in}: |
+      self.action_move(cr, uid, [ref("in_pick")])
+-
+  !assert {model: product.product, id: prod_mto, string: wrong so stock_level}:
+    - qty_available == 5
+-
+  I create SO for 3xMTS Product
+-
+  !record {model: sale.order, id: so_mts2}:
+    partner_id: base.res_partner_2
+    order_line:
+      - product_id: prod_mts
+        product_uom_qty: 3
+-
+  The so line should have sale_flow set to normal
+-
+  !assert {model: sale.order, id: so_mts2, string: wrong so line sale_flow state}:
+    - order_line[0].sale_flow == 'normal'
+-
+  I create SO for 10xMTS Product
+-
+  !record {model: sale.order, id: so_mts3}:
+    partner_id: base.res_partner_2
+    order_line:
+      - product_id: prod_mts
+        product_uom_qty: 10
+-
+  The so line should have sale_flow set to drop shipping
+-
+  !assert {model: sale.order, id: so_mts3, string: wrong so line sale_flow state}:
+    - order_line[0].sale_flow == 'direct_delivery'
+-
+  I create SO for 3xMT0 Product
+-
+  !record {model: sale.order, id: so_mto2}:
+    partner_id: base.res_partner_2
+    order_line:
+      - product_id: prod_mto
+        product_uom_qty: 3
+-
+  The so line should have sale_flow set to dropshipping
+-
+  !assert {model: sale.order, id: so_mto2, string: wrong so line sale_flow state}:
+    - order_line[0].sale_flow == 'direct_delivery'

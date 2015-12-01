@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+  <data>
+
+    <record id="product_price_type_view" model="ir.ui.view">
+      <field name="name">product.price.type.form</field>
+      <field name="model">product.price.type</field>
+      <field name="inherit_id" ref="product.product_price_type_view" />
+      <field name="arch" type="xml">
+        <field name="currency_id" position="after">
+          <field name="company_id" widget="selection"/>
+        </field>
+      </field>
+    </record>
+
+  </data>
+</openerp>

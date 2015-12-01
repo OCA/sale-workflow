@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+	<data>
+		<record id="ir_ui_view_purchase_to_sale_stock" model="ir.ui.view">
+            <field name="model">stock.picking</field>
+			<field name="inherit_id" ref="stock.view_picking_out_search"/>
+			<field name="name">ir_ui_view_purchase_to_sale_stock</field>
+			<field name="type">search</field>
+            <field name="arch" type="xml">
+                <filter name="done" position="after"> 
+                    <filter icon="terp-accessories-archiver-minus" name="no_direct_delivery" string="Hide Drop Shipping" domain="[('purchase_id','=',False)]" />
+                </filter>
+			</field>
+		</record>
+
+        <record id="stock.action_picking_tree" model="ir.actions.act_window">
+            <field name="context">{'contact_display': 'partner_address', 'search_default_no_direct_delivery': 1}</field>
+        </record>
+
+	</data>
+</openerp>

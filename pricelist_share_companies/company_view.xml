@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+  <data>
+
+    <record id="company_form_price_fields" model="ir.ui.view">
+      <field name="name">res.company.form.inherit</field>
+      <field name="model">res.company</field>
+      <field name="inherit_id" ref="base.view_company_form"/>
+      <field name="arch" type="xml">
+        <data>
+          <page string="Configuration" position="inside">
+            <separator string="Prices Fields"/>
+            <group>
+              <field name="standard_price_field"/>
+            </group>
+          </page>
+        </data>
+      </field>
+    </record>
+
+  </data>
+</openerp>
