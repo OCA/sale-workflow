@@ -158,20 +158,19 @@ class SaleOrder(models.Model):
     def _detect_exceptions(self, order_exceptions,
                            line_exceptions):
         self.ensure_one()
-        exception_ids = []
+        exception_ids = set()
         for rule in order_exceptions:
             if self._rule_eval(rule, 'order', self):
-                exception_ids.append(rule.id)
+                exception_ids.add(rule.id)
 
         for order_line in self.order_line:
             for rule in line_exceptions:
-                if rule.id in exception_ids:
-                    # we do not matter if the exception as already been
-                    # found for an order line of this order
-                    continue
                 if self._rule_eval(rule, 'line', order_line):
-                    exception_ids.append(rule.id)
-        return exception_ids
+                    order_line.exception_ids |= rule
+                    exception_ids.add(rule.id)
+                else:
+                    order_line.exception_ids -= rule
+        return list(exception_ids)
 
     @api.one
     def copy(self, default=None):

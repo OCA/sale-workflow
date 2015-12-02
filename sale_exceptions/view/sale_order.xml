@@ -21,6 +21,9 @@
                         <field name="exception_ids" colspan="2" nolabel="1"/>
                     </group>
                 </xpath>
+                <xpath expr="//field[@name='order_line']/tree//field[@name='price_subtotal']" position="before">
+                  <field name="main_exception_id"/>
+                </xpath>
             </field>
         </record>
 
