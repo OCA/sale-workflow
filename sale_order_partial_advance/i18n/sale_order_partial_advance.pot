@@ -1,0 +1,88 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+#	* sale_order_partial_advance
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 8.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2015-12-02 08:59+0000\n"
+"PO-Revision-Date: 2015-12-02 08:59+0000\n"
+"Last-Translator: <>\n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: sale_order_partial_advance
+#: field:sale.order.make.invoice,advance_amount_available:0
+msgid "Advance Available"
+msgstr ""
+
+#. module: sale_order_partial_advance
+#: field:sale.order.make.invoice,advance_amount_to_use:0
+msgid "Advance To Use"
+msgstr ""
+
+#. module: sale_order_partial_advance
+#: field:sale.order.make.invoice,all_lines:0
+msgid "All Sale Order Lines Selected"
+msgstr ""
+
+#. module: sale_order_partial_advance
+#: field:sale.order.make.invoice,create_uid:0
+msgid "Created by"
+msgstr ""
+
+#. module: sale_order_partial_advance
+#: field:sale.order.make.invoice,create_date:0
+msgid "Created on"
+msgstr ""
+
+#. module: sale_order_partial_advance
+#: field:sale.order.make.invoice,id:0
+msgid "ID"
+msgstr ""
+
+#. module: sale_order_partial_advance
+#: field:sale.order.make.invoice,write_uid:0
+msgid "Last Updated by"
+msgstr ""
+
+#. module: sale_order_partial_advance
+#: field:sale.order.make.invoice,write_date:0
+msgid "Last Updated on"
+msgstr ""
+
+#. module: sale_order_partial_advance
+#: code:addons/sale_order_partial_advance/wizard/sale_line_invoice.py:69
+#, python-format
+msgid "Part of advance (%s %s) used"
+msgstr ""
+
+#. module: sale_order_partial_advance
+#: field:sale.order.make.invoice,order_id:0
+msgid "Sale Order"
+msgstr ""
+
+#. module: sale_order_partial_advance
+#: model:ir.model,name:sale_order_partial_advance.model_sale_order_line_make_invoice
+msgid "Sale OrderLine Make_invoice"
+msgstr ""
+
+#. module: sale_order_partial_advance
+#: field:sale.order.line.make.invoice,order_ids:0
+msgid "Sale Orders"
+msgstr ""
+
+#. module: sale_order_partial_advance
+#: model:ir.model,name:sale_order_partial_advance.model_sale_order
+msgid "Sales Order"
+msgstr ""
+
+#. module: sale_order_partial_advance
+#: field:sale.order.make.invoice,wizard_id:0
+msgid "Wizard"
+msgstr ""
+
