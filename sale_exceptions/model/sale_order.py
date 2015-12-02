@@ -28,46 +28,6 @@ from openerp.tools.safe_eval import safe_eval
 from openerp.tools.translate import _
 
 
-class SaleException(models.Model):
-    _name = 'sale.exception'
-    _description = "Sale Exceptions"
-    _order = 'active desc, sequence asc'
-
-    name = fields.Char('Exception Name', required=True, translate=True)
-    description = fields.Text('Description', translate=True)
-    sequence = fields.Integer(
-        string='Sequence',
-        help="Gives the sequence order when applying the test")
-    model = fields.Selection(
-        [('sale.order', 'Sale Order'),
-         ('sale.order.line', 'Sale Order Line')],
-        string='Apply on', required=True)
-    active = fields.Boolean('Active')
-    code = fields.Text(
-        'Python Code',
-        help="Python code executed to check if the exception apply or "
-             "not. The code must apply block = True to apply the "
-             "exception.",
-        default="""
-# Python code. Use failed = True to block the sale order.
-# You can use the following variables :
-#  - self: ORM model of the record which is checked
-#  - order or line: browse_record of the sale order or sale order line
-#  - object: same as order or line, browse_record of the sale order or
-#    sale order line
-#  - pool: ORM model pool (i.e. self.pool)
-#  - time: Python time module
-#  - cr: database cursor
-#  - uid: current user id
-#  - context: current context
-""")
-    sale_order_ids = fields.Many2many(
-        'sale.order',
-        'sale_order_exception_rel', 'exception_id', 'sale_order_id',
-        string='Sale Orders',
-        readonly=True)
-
-
 class SaleOrder(models.Model):
     _inherit = 'sale.order'
 
