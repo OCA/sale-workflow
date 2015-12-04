@@ -104,7 +104,8 @@ class SaleOrder(models.Model):
 
         # reversed is cosmetic, compute returns terms in the 'wrong' order
         for date, amount in reversed(amounts):
-            self._add_payment(journal, amount, date)
+            if amount:
+                self._add_payment(journal, amount, date)
         return True
 
     @api.multi
