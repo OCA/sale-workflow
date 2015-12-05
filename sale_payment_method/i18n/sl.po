@@ -3,19 +3,20 @@
 # * sale_payment_method
 # 
 # Translators:
+# Matjaž Mozetič <m.mozetic@matmoz.si>, 2015
 msgid ""
 msgstr ""
 "Project-Id-Version: sale-workflow (8.0)\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2015-12-02 01:51+0000\n"
-"PO-Revision-Date: 2015-12-01 14:35+0000\n"
-"Last-Translator: OCA Transbot <transbot@odoo-community.org>\n"
-"Language-Team: Spanish (http://www.transifex.com/oca/OCA-sale-workflow-8-0/language/es/)\n"
+"PO-Revision-Date: 2015-12-02 05:26+0000\n"
+"Last-Translator: Matjaž Mozetič <m.mozetic@matmoz.si>\n"
+"Language-Team: Slovenian (http://www.transifex.com/oca/OCA-sale-workflow-8-0/language/sl/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
-"Language: es\n"
-"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"Language: sl\n"
+"Plural-Forms: nplurals=4; plural=(n%100==1 ? 0 : n%100==2 ? 1 : n%100==3 || n%100==4 ? 2 : 3);\n"
 
 #. module: sale_payment_method
 #: code:addons/sale_payment_method/sale.py:85
@@ -23,7 +24,7 @@ msgstr ""
 msgid ""
 "An automatic payment can not be created for the sale order %s because it has"
 " no payment method."
-msgstr ""
+msgstr "Za prodajni nalog %s ni mogoče ustvariti samodejnega plačila, ker nima določenega načina plačila."
 
 #. module: sale_payment_method
 #: code:addons/sale_payment_method/sale.py:91
@@ -31,7 +32,7 @@ msgstr ""
 msgid ""
 "An automatic payment should be created for the sale order %s but the payment"
 " method '%s' has no journal defined."
-msgstr ""
+msgstr "Za prodajni nalog %s bi se moralo ustvariti samodejno plačilo, a način plačila '%s' nima določenega dnevnika."
 
 #. module: sale_payment_method
 #: code:addons/sale_payment_method/sale.py:69
@@ -39,45 +40,45 @@ msgstr ""
 msgid ""
 "Cannot cancel this sales order because automatic payment entries are linked "
 "with it."
-msgstr ""
+msgstr "Prodajnega naloga ni mogoče preklicati, ker so z njim povezani vnosi samodejnih plačil."
 
 #. module: sale_payment_method
 #: view:payment.method:sale_payment_method.payment_method_view_form
 #: field:payment.method,company_id:0
 msgid "Company"
-msgstr ""
+msgstr "Družba"
 
 #. module: sale_payment_method
 #: view:sale.order:sale_payment_method.sale_order_view_form
 msgid "Create Invoice"
-msgstr "Crear Factura"
+msgstr "Ustvari račun"
 
 #. module: sale_payment_method
 #: field:payment.method,create_uid:0
 msgid "Created by"
-msgstr "Creado por"
+msgstr "Ustvaril"
 
 #. module: sale_payment_method
 #: field:payment.method,create_date:0
 msgid "Created on"
-msgstr "Creado el"
+msgstr "Ustvarjeno"
 
 #. module: sale_payment_method
 #: view:payment.method:sale_payment_method.payment_method_view_form
 msgid "Default Values"
-msgstr "Valores por defecto"
+msgstr "Privzete vrednosti"
 
 #. module: sale_payment_method
 #: help:payment.method,payment_term_id:0
 msgid "Default payment term of a sale order using this method."
-msgstr "Forma de pago por defecto de un pedido de venta usado por este método."
+msgstr "Privzeti plačilni pogoj prodajnega naloga, ki uporablja to metodo."
 
 #. module: sale_payment_method
 #: view:payment.method:sale_payment_method.payment_method_view_form
 msgid ""
 "Even if the E-commerce backend receives a payment for a sale order,\n"
 "                                no payment entries will be generated."
-msgstr "Incluso si el E-commerce backend recibe un pago de un pedido de venta,"
+msgstr "Čeprav ozadje E-trgovine prejema plačilo prodajnega naloga,\n                                ne bo ustvarjenih plačilnih vnosov."
 
 #. module: sale_payment_method
 #: field:payment.method,id:0
@@ -89,111 +90,111 @@ msgstr "ID"
 msgid ""
 "If a journal is selected, when a payment is recorded on a backend, payment "
 "entries will be created in this journal."
-msgstr ""
+msgstr "Če je izbran dnevnik, bodo na tem dnevniku ob zapisu plačila v ozadju ustvarjeni plačilni vnosi."
 
 #. module: sale_payment_method
 #: field:payment.method,journal_id:0
 msgid "Journal"
-msgstr "Diario"
+msgstr "Dnevnik"
 
 #. module: sale_payment_method
 #: model:ir.model,name:sale_payment_method.model_account_move_line
 msgid "Journal Items"
-msgstr ""
+msgstr "Dnevniške postavke"
 
 #. module: sale_payment_method
 #: view:payment.method:sale_payment_method.payment_method_view_form
 msgid "Journal for payment"
-msgstr "Diario de pago"
+msgstr "Dnevnik za plačilo"
 
 #. module: sale_payment_method
 #: field:payment.method,write_uid:0
 msgid "Last Updated by"
-msgstr "Última actualización por"
+msgstr "Zadnji posodobil"
 
 #. module: sale_payment_method
 #: field:payment.method,write_date:0
 msgid "Last Updated on"
-msgstr "Última actualización el"
+msgstr "Zadnjič posodobljeno"
 
 #. module: sale_payment_method
 #: field:payment.method,name:0
 msgid "Name"
-msgstr "Nombre"
+msgstr "Naziv"
 
 #. module: sale_payment_method
 #: view:sale.order:sale_payment_method.view_sales_order_filter
 msgid "Order With Payment"
-msgstr ""
+msgstr "Nalog s plačilom"
 
 #. module: sale_payment_method
 #: model:ir.model,name:sale_payment_method.model_payment_method
 #: field:sale.order,payment_method_id:0
 msgid "Payment Method"
-msgstr "Método de pago"
+msgstr "Način plačila"
 
 #. module: sale_payment_method
 #: view:payment.method:sale_payment_method.payment_method_view_form
 #: view:payment.method:sale_payment_method.payment_method_view_tree
 msgid "Payment Methods"
-msgstr "Métodos de pago"
+msgstr "Načini plačila"
 
 #. module: sale_payment_method
 #: model:ir.actions.act_window,name:sale_payment_method.act_payment_method_form
 #: model:ir.ui.menu,name:sale_payment_method.menu_action_paymetn_method_form
 msgid "Payment Methods "
-msgstr "Métodos de Pago"
+msgstr "Načini plačila"
 
 #. module: sale_payment_method
 #: field:payment.method,payment_term_id:0
 msgid "Payment Term"
-msgstr "Modo de pago"
+msgstr "Plačilni pogoj"
 
 #. module: sale_payment_method
 #: field:sale.order,payment_ids:0
 msgid "Payments Entries"
-msgstr "Entradas de pagos"
+msgstr "Vnosi plačil"
 
 #. module: sale_payment_method
 #: code:addons/sale_payment_method/sale.py:145
 #, python-format
 msgid "Please activate the sequence of the journal %s."
-msgstr ""
+msgstr "Aktivirajte zaporedje za dnevnik %s."
 
 #. module: sale_payment_method
 #: code:addons/sale_payment_method/sale.py:142
 #, python-format
 msgid "Please define a sequence on the journal %s."
-msgstr ""
+msgstr "Definirajte zaporedje za dnevnik %s."
 
 #. module: sale_payment_method
 #: model:ir.model,name:sale_payment_method.model_sale_order
 msgid "Sales Order"
-msgstr "Pediso de Ventas"
+msgstr "Prodajni nalog"
 
 #. module: sale_payment_method
 #: field:account.move.line,sale_ids:0
 msgid "Sales Orders"
-msgstr "Pedidos de venta"
+msgstr "Prodajni nalogi"
 
 #. module: sale_payment_method
 #: help:payment.method,name:0
 msgid "The name of the method on the backend"
-msgstr "El nombre del método en el backend"
+msgstr "Naziv metode na ozadju"
 
 #. module: sale_payment_method
 #: view:sale.order:sale_payment_method.sale_order_view_form
 msgid "View Automatic Payment"
-msgstr "Ver Pago Automático"
+msgstr "Prikaz samodejnega plačila"
 
 #. module: sale_payment_method
 #: view:payment.method:sale_payment_method.payment_method_view_form
 msgid ""
 "When the E-commerce backend will receive a payment for a sale order,\n"
 "                                payment entries will be generated in the selected journal."
-msgstr "Cuando el E-commerce backend recibe un pago para un pedido de venta,"
+msgstr "Ko ozadje E-trgovine prejme plačilo za prodajni nalog,\n                                se ustvarijo plačilni vnosi v izbranem dnevniku."
 
 #. module: sale_payment_method
 #: view:sale.order:sale_payment_method.view_sales_order_filter
 msgid "With Payment"
-msgstr ""
+msgstr "S plačilom"

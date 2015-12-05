@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: sale-workflow (8.0)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-09-09 12:27+0000\n"
+"POT-Creation-Date: 2015-12-02 01:51+0000\n"
 "PO-Revision-Date: 2015-09-03 07:09+0000\n"
 "Last-Translator: <>\n"
 "Language-Team: Spanish (http://www.transifex.com/oca/OCA-sale-workflow-8-0/language/es/)\n"
@@ -20,7 +20,7 @@ msgstr ""
 #. module: sale_partner_order_policy
 #: selection:res.partner,customer_order_policy:0
 msgid "Before Delivery"
-msgstr ""
+msgstr "Antes de envío"
 
 #. module: sale_partner_order_policy
 #: field:res.partner,customer_order_policy:0
@@ -30,12 +30,12 @@ msgstr ""
 #. module: sale_partner_order_policy
 #: selection:res.partner,customer_order_policy:0
 msgid "On Delivery Order"
-msgstr ""
+msgstr "En Albarán"
 
 #. module: sale_partner_order_policy
 #: selection:res.partner,customer_order_policy:0
 msgid "On Demand"
-msgstr ""
+msgstr "Bajo Demanda"
 
 #. module: sale_partner_order_policy
 #: model:ir.model,name:sale_partner_order_policy.model_res_partner
