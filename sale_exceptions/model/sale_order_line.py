@@ -22,4 +22,4 @@ class SaleOrderLine(models.Model):
     def _get_main_error(self):
         for line in self:
             exceptions = line.exception_ids
-            line.main_exception_id = exceptions and exceptions or False
+            line.main_exception_id = exceptions and exceptions[0] or False
