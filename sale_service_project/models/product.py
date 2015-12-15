@@ -7,7 +7,7 @@ from openerp import models, fields, api, _
 from openerp.addons.decimal_precision import decimal_precision as dp
 
 
-class ProductProduct(models.Model):
+class ProductTemplate(models.Model):
     _inherit = 'product.template'
 
     task_work_ids = fields.One2many(

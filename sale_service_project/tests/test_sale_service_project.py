@@ -7,7 +7,7 @@ from openerp.tests.common import TransactionCase
 
 
 class TestSaleServiceProject(TransactionCase):
-    # Use case : Prepare some data for current test case
+    """ Use case : Prepare some data for current test case """
     def setUp(self):
         super(TestSaleServiceProject, self).setUp()
 
