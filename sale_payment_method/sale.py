@@ -23,6 +23,7 @@
 import logging
 from openerp import api, models, fields, exceptions, _
 import openerp.addons.decimal_precision as dp
+from openerp.tools import float_is_zero
 
 _logger = logging.getLogger(__name__)
 
@@ -103,8 +104,9 @@ class SaleOrder(models.Model):
             amounts = [(date, amount)]
 
         # reversed is cosmetic, compute returns terms in the 'wrong' order
+        precision = self.env['decimal.precision'].precision_get('Account')
         for date, amount in reversed(amounts):
-            if amount:
+            if not float_is_zero(amount, precision_digits=precision):
                 self._add_payment(journal, amount, date)
         return True
 
