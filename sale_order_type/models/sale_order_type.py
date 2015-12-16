@@ -44,6 +44,10 @@ class SaleOrderTypology(models.Model):
         return default_dict.get('invoice_state')
 
     name = fields.Char(string='Name', required=True, translate=True)
+    company_id = fields.Many2one(
+        comodel_name='res.company',
+        string='Company',
+        default=lambda self: self.env.user.company_id)
     description = fields.Text(string='Description', translate=True)
     sequence_id = fields.Many2one(
         comodel_name='ir.sequence', string='Entry Sequence', copy=False,
