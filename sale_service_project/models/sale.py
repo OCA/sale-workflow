@@ -12,6 +12,15 @@ class SaleOrder(models.Model):
     _inherit = 'sale.order'
 
     order_policy = fields.Selection(selection_add=[('analytic', 'Analytic')])
+    task_ids = fields.One2many(
+        comodel_name='project.task',
+        compute='_compute_task_ids',
+        string='Tasks')
+
+    def _compute_task_ids(self):
+        for order in self:
+            self.task_ids = self.env['project.task'].search(
+                [('sale_line_id', 'in', order.order_line.ids)])
 
     @api.model
     def fields_view_get(self, view_id=None, view_type='form', toolbar=False,
