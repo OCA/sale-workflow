@@ -63,7 +63,7 @@ class SaleOrder(orm.Model):
         '''
         By default, date_order is set to today on copy()
         cf addons/sale/sale.py. So we set date_validity to
-        it's default value on copy()
+        its default value on copy()
         '''
         if default is None:
             default = {}
