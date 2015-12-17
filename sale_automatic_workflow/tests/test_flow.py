@@ -174,3 +174,28 @@ class TestAutomaticWorkflow(common.TransactionCase):
         self.assertTrue(sale.invoice_ids)
         invoice = sale.invoice_ids
         self.assertEqual(invoice.workflow_process_id, sale.workflow_process_id)
+
+    def test_journal_on_invoice(self):
+        new_sale_journal = self.env['account.journal'].create({"name": "TTSA",
+                                                               "code": "TTSA",
+                                                               "type": "sale"})
+        sale_journal = self.env.ref("account.sales_journal")
+
+        workflow = self._create_full_automatic()
+        sale = self._create_sale_order(workflow)
+        sale.onchange_workflow_process_id()
+        self.progress()
+        self.assertTrue(sale.invoice_ids)
+        invoice = sale.invoice_ids
+        self.assertEqual(invoice.journal_id.id, sale_journal.id)
+
+        workflow = self._create_full_automatic(
+            override={'property_journal_id': new_sale_journal.id,
+                      },
+        )
+        sale = self._create_sale_order(workflow)
+        sale.onchange_workflow_process_id()
+        self.progress()
+        self.assertTrue(sale.invoice_ids)
+        invoice = sale.invoice_ids
+        self.assertEqual(invoice.journal_id.id, new_sale_journal.id)
