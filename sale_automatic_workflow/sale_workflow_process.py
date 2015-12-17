@@ -78,3 +78,6 @@ class SaleWorkflowProcess(models.Model):
                                'user selects the process on a sale order')
     section_id = fields.Many2one(comodel_name='crm.case.section',
                                  string='Sales Team')
+    property_journal_id = fields.Many2one(
+        comodel_name='account.journal', company_dependent=True,
+        string='Sales Journal', help='Set default journal to use on invoice')
