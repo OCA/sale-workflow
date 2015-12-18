@@ -11,7 +11,6 @@ from lxml import etree
 class SaleOrder(models.Model):
     _inherit = 'sale.order'
 
-    order_policy = fields.Selection(selection_add=[('analytic', 'Analytic')])
     task_ids = fields.One2many(
         comodel_name='project.task',
         compute='_compute_task_ids',

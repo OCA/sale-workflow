@@ -11,26 +11,16 @@ class ProcurementOrder(models.Model):
 
     @api.model
     def _get_project(self, procurement):
-        def new_project(parent):
-            res = projects.filtered(
-                lambda x: x.parent_id == parent)
-            if not res:
-                vals = self._prepare_project(procurement, parent)
-                return self.env['project.project'].create(vals)
-            return res
         order = procurement.sale_line_id.order_id
-        projects = order.task_ids.mapped('project_id')
-        if (order.order_policy == 'analytic' and
-                procurement.product_id.project_id):
-            project = new_project(
-                procurement.product_id.project_id.analytic_account_id)
+        if procurement.product_id.project_id:
+            project = procurement.product_id.project_id
+        elif order.project_id and order.name in order.project_id.name:
+            project = self.env['project.project'].search(
+                [('analytic_account_id', '=', order.project_id.id)])
         else:
-            if order.project_id and order.name in order.project_id.name:
-                project = self.env['project.project'].search(
-                    [('analytic_account_id', '=', order.project_id.id)])
-            else:
-                project = new_project(order.project_id)
-                order.project_id = project.analytic_account_id.id
+            vals = self._prepare_project(procurement, order.project_id)
+            project = self.env['project.project'].create(vals)
+            order.project_id = project.analytic_account_id.id
         return project
 
     @api.model
@@ -39,7 +29,7 @@ class ProcurementOrder(models.Model):
             procurement)
         vals = self._prepare_task(procurement)
         self.env['project.task'].browse(task_id).write(vals)
-        if procurement.sale_line_id.order_id.order_policy == 'analytic':
+        if procurement.sale_line_id.order_id.order_policy == 'picking':
             procurement.sale_line_id.order_id.state = 'progress'
         return task_id
 
@@ -72,9 +62,7 @@ class ProcurementOrder(models.Model):
     @api.model
     def _prepare_project(self, procurement, parent=None):
         sale_order = procurement.sale_line_id.order_id
-        name = u" %s - %s" % (
-            sale_order.name,
-            parent and parent.name or '')
+        name = u"%s" % sale_order.name
         res = {
             'user_id': sale_order.user_id.id,
             'name': name,
@@ -83,7 +71,7 @@ class ProcurementOrder(models.Model):
         }
         if parent:
             res['parent_id'] = parent.id
-        if procurement.sale_line_id.order_id.order_policy == 'analytic':
+        if procurement.sale_line_id.order_id.order_policy != 'picking':
             res['to_invoice'] = self.env.ref(
                 'hr_timesheet_invoice.timesheet_invoice_factor1').id
         return res

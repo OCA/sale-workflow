@@ -39,7 +39,7 @@ class TestSaleServiceProject(TransactionCase):
 
         self.sale_order_analytic = self.sale_order_model.create({
             'partner_id': self.partner.id,
-            'order_policy': 'analytic',
+            'order_policy': 'picking',
             'pricelist_id': self.price_list.id,
         })
         self.sale_order_line.create(
