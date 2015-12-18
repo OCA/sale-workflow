@@ -4,7 +4,6 @@
 # License AGPL-3 - See http://www.gnu.org/licenses/agpl-3.0.html
 
 from openerp import models, fields, api, _
-# from openerp.exceptions import Warning
 
 
 class ProcurementOrder(models.Model):
@@ -12,26 +11,26 @@ class ProcurementOrder(models.Model):
 
     @api.model
     def _get_project(self, procurement):
-        # Search project assigned by another line
-        project_obj = self.env['project.project']
+        def new_project(parent):
+            res = projects.filtered(
+                lambda x: x.parent_id == parent)
+            if not res:
+                vals = self._prepare_project(procurement, parent)
+                return self.env['project.project'].create(vals)
+            return res
         order = procurement.sale_line_id.order_id
-        # if not order.project_id and len(order.mapped('order_line.product_id.project_id')) > 1:
-        #     raise Warning(_("""Order policy is not analytic and different projects in lines. You must assign project in sale order"""))
-        project = order.task_ids and order.task_ids[0].project_id or False
-        order_project_id = order.project_id and project_obj.search(
-            [('analytic_account_id', '=', order.project_id.id)]) or False
-        if order.order_policy == 'analytic':
-            parent = procurement.product_id.project_id or order_project_id
+        projects = order.task_ids.mapped('project_id')
+        if (order.order_policy == 'analytic' and
+                procurement.product_id.project_id):
+            project = new_project(
+                procurement.product_id.project_id.analytic_account_id)
         else:
-            parent = order_project_id
-
-        if not project:
-            vals = self._prepare_project(procurement, parent)
-            project = project_obj.create(vals)
-            order.project_id = project.analytic_account_id.id
-        elif (order.order_policy == 'analytic' and project != parent):
-            vals = self._prepare_project(procurement, parent)
-            project = project_obj.create(vals)
+            if order.project_id and order.name in order.project_id.name:
+                project = self.env['project.project'].search(
+                    [('analytic_account_id', '=', order.project_id.id)])
+            else:
+                project = new_project(order.project_id)
+                order.project_id = project.analytic_account_id.id
         return project
 
     @api.model
@@ -54,7 +53,7 @@ class ProcurementOrder(models.Model):
         for work in sale_works:
             work_list.append((0, 0, {
                 'name': work.name,
-                'hours': work.hours,
+                'hours': False,
                 'user_id': self.env.user.id,
             }))
             total_work_hours += work.hours
@@ -75,7 +74,7 @@ class ProcurementOrder(models.Model):
         sale_order = procurement.sale_line_id.order_id
         name = u" %s - %s" % (
             sale_order.name,
-            fields.Date.context_today(self))
+            parent and parent.name or '')
         res = {
             'user_id': sale_order.user_id.id,
             'name': name,
@@ -83,7 +82,7 @@ class ProcurementOrder(models.Model):
             'pricelist_id': sale_order.pricelist_id.id,
         }
         if parent:
-            res['parent_id'] = parent.analytic_account_id.id
+            res['parent_id'] = parent.id
         if procurement.sale_line_id.order_id.order_policy == 'analytic':
             res['to_invoice'] = self.env.ref(
                 'hr_timesheet_invoice.timesheet_invoice_factor1').id

@@ -2,6 +2,22 @@
 <openerp>
 <data>
 
+    <record id="view_order_form_service_project" model="ir.ui.view">
+        <field name="name">sale.order.form.service.project</field>
+        <field name="model">sale.order</field>
+        <field name="inherit_id" ref="sale.view_order_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//button[@name='action_view_invoice']"
+                   position="before">
+                <button name="action_view_task"
+                        string="View Tasks"
+                        type="object"
+                        class="oe_highlight"
+                        groups="base.group_user"/>
+            </xpath>
+        </field>
+    </record>
+
     <record id="view_sale_order_line_form" model="ir.ui.view">
         <field name="name">sale.order.form.inherit</field>
         <field name="model">sale.order</field>
