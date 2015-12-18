@@ -21,26 +21,6 @@ class SaleOrder(models.Model):
             self.task_ids = self.env['project.task'].search(
                 [('sale_line_id', 'in', order.order_line.ids)])
 
-    @api.model
-    def fields_view_get(self, view_id=None, view_type='form', toolbar=False,
-                        submenu=False):
-        res = super(SaleOrder, self).fields_view_get(
-            view_id, view_type, toolbar=toolbar, submenu=submenu)
-        if view_type == 'form' and not res['fields'].get(
-                'order_policy', False):
-            xml_form = etree.fromstring(res['arch'])
-            placeholder = xml_form.xpath("//field[@name='user_id']")
-            placeholder[0].addnext(etree.Element(
-                'field', {'name': 'order_policy'}))
-            res['arch'] = etree.tostring(xml_form)
-            select_values = self._columns['order_policy'].selection
-            res['fields'].update(
-                {'order_policy': {
-                    'string': _('Order Policy'),
-                    'type': 'selection',
-                    'selection': select_values}})
-        return res
-
     @api.multi
     def action_view_task(self):
         task_ids = self.mapped('task_ids')

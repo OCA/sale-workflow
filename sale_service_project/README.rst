@@ -18,9 +18,7 @@ To use this module, you need to:
 1. Create a service product and check 'Create Task Automatically'.
 2. Now you can add task works and materials for this product.
 3. You can compute the total price based in all materials and time.
-4. If you want to invoice from analytic lines you need select analytic
-   order policy option.
-5. When you confirm the sale order odoo will create a project and tasks.
+4. When you confirm the sale order odoo will create a project and tasks.
 
 .. image:: https://odoo-community.org/website/image/ir.attachment/5784_f2813bd/datas
    :alt: Try me on Runbot
@@ -29,10 +27,6 @@ To use this module, you need to:
 For further information, please visit:
 
 * https://www.odoo.com/forum/help-1
-
-Known issues / Roadmap
-======================
-
 
 Bug Tracker
 ===========

@@ -13,6 +13,7 @@
                         string="View Tasks"
                         type="object"
                         class="oe_highlight"
+                        attrs="{'invisible': [('state','!=','progress')]}"
                         groups="base.group_user"/>
             </xpath>
         </field>

@@ -30,7 +30,6 @@ class AccountAnalyticLine(models.Model):
 
     @api.multi
     def invoice_cost_create(self, data=None):
-        invoice_obj = self.env['account.invoice']
         invoice_line_obj = self.env['account.invoice.line']
         analytic_line_obj = self.env['account.analytic.line']
         invoices = self.env['account.invoice']
@@ -64,8 +63,8 @@ class AccountAnalyticLine(models.Model):
             invoice_context = dict(
                 self._context, lang=partner.lang, force_company=company_id,
                 company_id=company_id)
-            last_invoice = invoice_obj.with_context(invoice_context).create(
-                curr_invoice)
+            last_invoice = self.env['account.invoice'].with_context(
+                invoice_context).create(curr_invoice)
             invoices = invoices | last_invoice
             # use key (product, uom, user, invoiceable,
             # analytic account, journal type)
