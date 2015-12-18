@@ -7,3 +7,4 @@ from . import product
 from . import sale
 from . import sale_service
 from . import hr_timesheet_invoice
+from . import project

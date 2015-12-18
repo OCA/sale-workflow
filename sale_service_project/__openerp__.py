@@ -19,6 +19,7 @@
         'views/sale_service_view.xml',
         'views/sale_service_project_view.xml',
         'views/sale_view.xml',
+        'views/project_view.xml',
         'wizard/product_price_service_view.xml',
     ],
     'author': 'Antiun Ingeniería S.L., '
