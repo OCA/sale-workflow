@@ -1,0 +1,44 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# * partner_prospect
+# 
+# Translators:
+msgid ""
+msgstr ""
+"Project-Id-Version: sale-workflow (8.0)\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2015-12-05 23:35+0000\n"
+"PO-Revision-Date: 2015-09-21 21:52+0000\n"
+"Last-Translator: <>\n"
+"Language-Team: Turkish (http://www.transifex.com/oca/OCA-sale-workflow-8-0/language/tr/)\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Language: tr\n"
+"Plural-Forms: nplurals=2; plural=(n > 1);\n"
+
+#. module: partner_prospect
+#: view:res.partner:partner_prospect.res_partner_prospect_search_view
+msgid "Actual Customer"
+msgstr ""
+
+#. module: partner_prospect
+#: view:res.partner:partner_prospect.res_partner_prospect_search_view
+msgid "Group By"
+msgstr ""
+
+#. module: partner_prospect
+#: model:ir.model,name:partner_prospect.model_res_partner
+msgid "Partner"
+msgstr "İş ortağı"
+
+#. module: partner_prospect
+#: view:res.partner:partner_prospect.res_partner_prospect_search_view
+#: field:res.partner,prospect:0
+msgid "Prospect"
+msgstr ""
+
+#. module: partner_prospect
+#: view:res.partner:partner_prospect.res_partner_prospect_search_view
+msgid "Suppliers"
+msgstr ""
