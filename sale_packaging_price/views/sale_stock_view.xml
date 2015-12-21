@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+<data>
+
+    <record id="view_order_form_inherit" model="ir.ui.view">
+        <field name="name">view.order.form.inherit</field>
+        <field name="model">sale.order</field>
+        <field name="type">form</field>
+        <field name="inherit_id" ref="sale_stock.view_order_form_inherit"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='order_line']/tree/field[@name='product_packaging']"
+                   position="replace">
+            </xpath>
+            <xpath expr="//field[@name='order_line']/tree/field[@name='product_uom_qty']"
+                    position="after">
+                <field name="product_packaging"/>
+            </xpath>
+           <xpath expr="//field[@name='order_line']/form/group/group/field[@name='price_unit']"
+                  position="after">
+               <field name="packaging_price" string="Package Price"/>
+           </xpath>
+           <xpath expr="//field[@name='order_line']/form/group/group/field[@name='th_weight']"
+                  position="after">
+               <field name="packaging_weight" string="Package Weight"/>
+           </xpath>
+        </field>
+    </record>
+
+</data>
+</openerp>
