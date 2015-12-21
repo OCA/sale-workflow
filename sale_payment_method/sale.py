@@ -103,8 +103,8 @@ class SaleOrder(models.Model):
         else:
             amounts = [(date, amount)]
 
-        # reversed is cosmetic, compute returns terms in the 'wrong' order
         precision = self.env['decimal.precision'].precision_get('Account')
+        # reversed is cosmetic, compute returns terms in the 'wrong' order
         for date, amount in reversed(amounts):
             if not float_is_zero(amount, precision_digits=precision):
                 self._add_payment(journal, amount, date)
