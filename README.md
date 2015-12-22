@@ -33,6 +33,7 @@ addon | version | summary
 [sale_order_revision](sale_order_revision/) | 8.0.0.1.0 | Sale order revisions
 [sale_order_type](sale_order_type/) | 8.0.1.0.1 | Sale Order Types
 [sale_owner_stock_sourcing](sale_owner_stock_sourcing/) | 8.0.0.1.0 | Manage stock ownership on sale order lines
+[sale_packaging_price](sale_packaging_price/) | 8.0.1.0.0 | Sale Packaging Price
 [sale_partner_incoterm](sale_partner_incoterm/) | 8.0.1.0.0 | Set the customer preferred incoterm on each sales order
 [sale_partner_order_policy](sale_partner_order_policy/) | 8.0.1.0.0 | Adds customer create invoice method on partner form
 [sale_payment_method](sale_payment_method/) | 0.2.1 | Sale Payment Method
