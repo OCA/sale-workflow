@@ -18,7 +18,9 @@ class ProcurementOrder(models.Model):
             project = self.env['project.project'].search(
                 [('analytic_account_id', '=', order.project_id.id)])
         else:
-            vals = self._prepare_project(procurement, order.project_id)
+            vals = self._prepare_project(procurement)
+            if order.project_id:
+                vals['parent_id'] = order.project_id.id
             project = self.env['project.project'].create(vals)
             order.project_id = project.analytic_account_id.id
         return project
@@ -60,18 +62,15 @@ class ProcurementOrder(models.Model):
         return vals
 
     @api.model
-    def _prepare_project(self, procurement, parent=None):
+    def _prepare_project(self, procurement):
         sale_order = procurement.sale_line_id.order_id
-        name = u"%s" % sale_order.name
         res = {
             'user_id': sale_order.user_id.id,
-            'name': name,
+            'name': sale_order.name,
             'partner_id': sale_order.partner_id.id,
             'pricelist_id': sale_order.pricelist_id.id,
         }
-        if parent:
-            res['parent_id'] = parent.id
-        if procurement.sale_line_id.order_id.order_policy != 'picking':
+        if procurement.sale_line_id.order_id.order_policy != 'manual':
             res['to_invoice'] = self.env.ref(
                 'hr_timesheet_invoice.timesheet_invoice_factor1').id
         return res

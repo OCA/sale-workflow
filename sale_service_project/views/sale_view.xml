@@ -9,11 +9,12 @@
         <field name="arch" type="xml">
             <xpath expr="//button[@name='action_view_invoice']"
                    position="before">
+                <field name="task_ids" invisible="1"/>
                 <button name="action_view_task"
                         string="View Tasks"
                         type="object"
                         class="oe_highlight"
-                        attrs="{'invisible': [('state','!=','progress')]}"
+                        attrs="{'invisible': ['|',('task_ids','=',False),('task_ids','=',[])]}"
                         groups="base.group_user"/>
             </xpath>
         </field>

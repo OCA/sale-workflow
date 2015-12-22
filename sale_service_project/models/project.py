@@ -26,3 +26,4 @@ class ProjectTask(models.Model):
         related='project_id.parent_id',
         store=True,
         string='Project Parent')
+    sale_line_id = fields.Many2one(index=True)
