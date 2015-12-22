@@ -26,7 +26,7 @@
     "category": 'Sales Management',
     "license": "AGPL-3",
     'complexity': "easy",
-    'depends': ['web_widget_digital_signature', 'sale'],
+    'depends': ['web_widget_digitized_signature', 'sale'],
     'data': [
         'views/sale_order_view.xml'
     ],
