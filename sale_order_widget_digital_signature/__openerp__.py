@@ -23,7 +23,7 @@
     "version" : "8.0.1.0.0",
     "author" : "Agile Business Group, "
                "Odoo Community Association (OCA)",
-    "category": 'web',
+    "category": 'Sales Management',
     "license": "AGPL-3",
     'complexity': "easy",
     'depends': ['web_widget_digital_signature', 'sale'],
