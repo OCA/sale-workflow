@@ -21,6 +21,7 @@
         'views/sale_view.xml',
         'views/project_view.xml',
         'wizard/product_price_service_view.xml',
+        'security/ir.model.access.csv',
     ],
     'author': 'Antiun Ingeniería S.L., '
               'Incaser Informatica S.L., '
