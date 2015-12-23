@@ -8,7 +8,7 @@
             <field name="arch" type="xml">
                 <field name="partner_shipping_id" position="after">
 					<field name="partner_contact_id"
-                           context="{'default_type':'contact', 'search_default_parent_id':partner_id}"/>
+                           context="{'default_type':'contact', 'default_is_company': False, 'default_parent_id':partner_id, 'default_use_parent_address':True, 'search_default_parent_id':partner_id}"/>
 				</field>
 			</field>
 		</record>
