@@ -19,18 +19,19 @@
 #
 ##############################################################################
 
-from openerp.osv import orm
+from openerp import api, models
 
 
-class sale_order(orm.Model):
+class SaleOrder(models.Model):
     _inherit = 'sale.order'
 
-    def _prepare_payment_move_line(self, cr, uid, move_name, sale, journal,
-                                   period, amount, date, context=None):
-        debit_line, credit_line = super(sale_order, self).\
-            _prepare_payment_move_line(cr, uid, move_name, sale, journal,
-                                       period, amount, date, context=context)
-        if sale.transaction_id:
-            debit_line['transaction_ref'] = sale.transaction_id
-            credit_line['transaction_ref'] = sale.transaction_id
+    @api.multi
+    def _prepare_payment_move_lines(self, move_name, journal,
+                                    period, amount, date):
+        debit_line, credit_line = super(SaleOrder, self).\
+            _prepare_payment_move_lines(move_name, journal,
+                                        period, amount, date)
+        if self.transaction_id:
+            debit_line['transaction_ref'] = self.transaction_id
+            credit_line['transaction_ref'] = self.transaction_id
         return debit_line, credit_line
