@@ -12,15 +12,20 @@ class ProcurementOrder(models.Model):
     @api.model
     def _get_project(self, procurement):
         order = procurement.sale_line_id.order_id
+        parent = order.project_id
         if procurement.product_id.project_id:
             project = procurement.product_id.project_id
-        elif order.project_id and order.name in order.project_id.name:
+        elif parent and order.name in parent.name:
             project = self.env['project.project'].search(
-                [('analytic_account_id', '=', order.project_id.id)])
+                [('analytic_account_id', '=', parent.id)])
         else:
             vals = self._prepare_project(procurement)
-            if order.project_id:
-                vals['parent_id'] = order.project_id.id
+            if parent:
+                vals.update({
+                    'parent_id': parent.id,
+                    'invoice_on_timesheets': parent.invoice_on_timesheets,
+                    'to_invoice': parent.to_invoice.id,
+                })
             project = self.env['project.project'].create(vals)
             order.project_id = project.analytic_account_id.id
         return project
@@ -31,7 +36,7 @@ class ProcurementOrder(models.Model):
             procurement)
         vals = self._prepare_task(procurement)
         self.env['project.task'].browse(task_id).write(vals)
-        if procurement.sale_line_id.order_id.order_policy == 'picking':
+        if procurement.sale_line_id.order_id.project_id.invoice_on_timesheets:
             procurement.sale_line_id.order_id.state = 'progress'
         return task_id
 
@@ -70,7 +75,4 @@ class ProcurementOrder(models.Model):
             'partner_id': sale_order.partner_id.id,
             'pricelist_id': sale_order.pricelist_id.id,
         }
-        if procurement.sale_line_id.order_id.order_policy != 'manual':
-            res['to_invoice'] = self.env.ref(
-                'hr_timesheet_invoice.timesheet_invoice_factor1').id
         return res

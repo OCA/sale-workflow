@@ -6,20 +6,28 @@
 Sale Service Project
 ====================
 
-This module extends the functionality of sale workflow and allow you to create
-projects and tasks with materials and works from sale lines.
-You can invoice from sale order or analytic lines.
+This module adds the option to assign materials and/or work to a service
+product type which serve as a template transferring this information to the
+line order which may be changed.
+This module extends the functionality of the *sale_service* module creating a
+new project for each order adding materials and works informed on the order
+line to the generated task.
 
 Usage
 =====
 
 To use this module, you need to:
 
-1. Create a service product and check 'Create Task Automatically'.
-2. Now you can add task works and materials for this product.
-3. You can compute the total price based in all materials and task works
-   assigned.
-4. When you confirm the sale order odoo will create a project and tasks.
+1.Create a service product and check 'Create Task Automatically'.
+2.Now you can add task works and materials for this product.
+3.You can compute the total price based in all materials and task works
+  assigned.
+4.Create sale order and assign an analytic account which will be parent of new
+  project.
+  If *invoice_on_timesheets* option is checked on analiytic account this sale
+  order will be invoiced from analytic lines. Otherwise sale order will be
+  invoiced normally.
+5.When you confirm the sale order odoo will create a project and tasks.
 
 .. image:: https://odoo-community.org/website/image/ir.attachment/5784_f2813bd/datas
    :alt: Try me on Runbot

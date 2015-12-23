@@ -29,6 +29,8 @@ class TestSaleServiceProject(TransactionCase):
             'partner_id': self.partner.id,
             'order_policy': 'manual',
             'pricelist_id': self.price_list.id,
+            'project_id': self.env.ref('sale_service_project.project_revisions'
+                                       ).analytic_account_id.id,
         })
         self.sale_order_line.create(
             {'product_id': self.product_revision.id,
@@ -41,6 +43,8 @@ class TestSaleServiceProject(TransactionCase):
             'partner_id': self.partner.id,
             'order_policy': 'picking',
             'pricelist_id': self.price_list.id,
+            'project_id': self.env.ref('sale_service_project.project_revisions'
+                                       ).analytic_account_id.id,
         })
         self.sale_order_line.create(
             {'product_id': self.product_revision.id,
