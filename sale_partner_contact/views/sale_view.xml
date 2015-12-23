@@ -16,8 +16,8 @@
         <record id="view_sales_order_filter" model="ir.ui.view">
             <field name="name">sale.order.list.select</field>
             <field name="model">sale.order</field>
-            <field name="arch" type="xml">
             <field name="inherit_id" ref="sale.view_sales_order_filter"/>
+            <field name="arch" type="xml">
                 <field name="partner_id" position="inside">
 					<field name="partner_contact_id"/>
 				</field>
