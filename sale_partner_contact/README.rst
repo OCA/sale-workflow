@@ -6,8 +6,7 @@
 Sale partner contact
 ====================
 
-This module allows to add to a quotation or sales order the contact person of
-for that order.
+This module allows to add to a quotation or sales order the contact person.
 
 
 Usage
