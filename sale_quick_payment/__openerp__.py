@@ -22,7 +22,7 @@
 
 {
     'name': 'Sale Quick Payment',
-    'version': '0.3',
+    'version': '8.0.3.0.0',
     'category': 'Generic Modules/Others',
     'license': 'AGPL-3',
     'author': "Akretion,Odoo Community Association (OCA)",
