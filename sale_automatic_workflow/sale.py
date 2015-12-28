@@ -75,6 +75,12 @@ class sale_order(models.Model):
         invoice_on = self.workflow_process_id.create_invoice_on
         if invoice_on == 'on_order_confirm':
             return True
-        elif invoice_on == 'on_picking_done' and self.shipped:
-            return True
+        elif invoice_on == 'on_picking_done':
+            if self.shipped:
+                return True
+            # case of a sale order with only product service
+            sale_obj = self.env['sale.order']
+            no_products = [sale_obj.test_no_product(order) for order in self]
+            if no_products.count(False) == 0:
+                return True
         return False
