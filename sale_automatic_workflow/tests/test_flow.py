@@ -153,3 +153,24 @@ class TestAutomaticWorkflow(common.TransactionCase):
         invoice = sale.invoice_ids
         self.assertEqual(invoice.date_invoice, last_week_date)
         self.assertEqual(invoice.workflow_process_id, sale.workflow_process_id)
+
+    def test_invoice_from_picking_with_service_product(self):
+        workflow = self._create_full_automatic(
+            override={'order_policy': 'picking',
+                      'create_invoice_on': 'on_picking_done',
+                      },
+        )
+
+        product_service = self.env.ref('product.product_product_consultant')
+        override = {
+            'order_line': [(0, 0, {'product_id': product_service.id,
+                                   'product_uom_qty': 1})],
+        }
+        sale = self._create_sale_order(workflow, override=override)
+        sale.onchange_workflow_process_id()
+        self.progress()
+        self.assertEqual(sale.order_policy, 'manual')
+        self.assertFalse(sale.picking_ids)
+        self.assertTrue(sale.invoice_ids)
+        invoice = sale.invoice_ids
+        self.assertEqual(invoice.workflow_process_id, sale.workflow_process_id)
