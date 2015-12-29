@@ -17,6 +17,9 @@
                         attrs="{'invisible': ['|',('task_ids','=',False),('task_ids','=',[])]}"
                         groups="base.group_user"/>
             </xpath>
+            <xpath expr="//field[@name='pricelist_id']" position="after">
+                <field name="print_works"/>
+            </xpath>
         </field>
     </record>
 

@@ -20,6 +20,7 @@
         'views/sale_service_project_view.xml',
         'views/sale_view.xml',
         'views/project_view.xml',
+        'views/report_saleorder.xml',
         'wizard/product_price_service_view.xml',
         'security/ir.model.access.csv',
     ],

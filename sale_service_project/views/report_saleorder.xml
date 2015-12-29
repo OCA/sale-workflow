@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+<data>
+
+    <template id="report_saleorder_document"
+              inherit_id="sale.report_saleorder_document">
+        <xpath expr="//tr[@t-foreach='o.order_line']/td" position="inside">
+            <t t-if="o.print_works">
+                <p t-if="l.task_work_ids" style="margin-left:10px;">
+                    <i><u>Works</u></i><br/>
+                    <t t-foreach="l.task_work_ids" t-as="work">
+                       <span style="margin-left:5px;" t-field="work.name"/><br/>
+                    </t>
+                </p>
+                <p t-if="l.task_materials_ids" style="margin-left:10px;">
+                    <i><u>Materials</u></i><br/>
+                    <t t-foreach="l.task_materials_ids" t-as="material">
+                           <span style="margin-left:5px;" t-field="material.material_id"/><br/>
+                    </t>
+                </p>
+            </t>
+        </xpath>
+    </template>
+
+</data>
+</openerp>
