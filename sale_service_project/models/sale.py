@@ -15,7 +15,7 @@ class SaleOrder(models.Model):
         compute='_compute_task_ids',
         string='Tasks')
     print_works = fields.Boolean(
-            string='Print materials and works', default=True)
+        string='Print materials and works', default=True)
 
     def _compute_task_ids(self):
         for order in self:
