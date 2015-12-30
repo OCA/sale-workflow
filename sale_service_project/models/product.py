@@ -38,7 +38,9 @@ class ProductTaskWork(models.Model):
     product_id = fields.Many2one(
         comodel_name='product.template', string='Product', ondelete='restrict')
     name = fields.Char(string='Name')
-    hours = fields.Float(string='Hours')
+    hours = fields.Float(
+        string='Hours',
+        digits_compute=dp.get_precision('Product Unit of Measure'))
 
 
 class ProductTaskMaterials(models.Model):

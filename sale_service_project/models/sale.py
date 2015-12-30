@@ -106,7 +106,9 @@ class SaleOrderLineTaskWork(models.Model):
     order_line_id = fields.Many2one(
         comodel_name='sale.order.line', string='Order Line')
     name = fields.Char(string='Name')
-    hours = fields.Float(string='Hours')
+    hours = fields.Float(
+        string='Hours',
+        digits_compute=dp.get_precision('Product Unit of Measure'))
 
 
 class SaleOrderLineTaskMaterials(models.Model):
