@@ -65,10 +65,8 @@ class SaleOrderLineMakeInvoice(models.TransientModel):
                 company_id=order.company_id.id)
             inv_line_values = val['value']
             inv_line_values['product_id'] = advance_prod_id
-            inv_line_values['name'] = _('Part of advance (%s %s) used'
-                                        % (order.advance_amount,
-                                           order.company_id.currency_id.symbol)
-                                        )
+            inv_line_values['name'] = _("Part of advance (%s %s) used") % \
+                (order.advance_amount, order.company_id.currency_id.symbol)
             inv_line_values['price_unit'] =\
                 -order_adv_data.advance_amount_to_use
             if inv_line_values.get('invoice_line_tax_id', False):
