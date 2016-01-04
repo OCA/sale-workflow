@@ -25,6 +25,10 @@ class TestSaleOrderPartialAdvance(test_common.TransactionCase):
                     'product_uom_qty': 5.0,
                     'price_unit': 120
                     })]
+        # set taxes on advance product
+        self.product_advance = self.env.ref('sale.advance_product_0')
+        self.tax = self.env['account.tax'].create({'name': 'advance tax'})
+        self.product_advance.taxes_id = [(4, self.tax.id)]
 
     def test_sale_order_partial_advance(self):
         '''
@@ -69,6 +73,14 @@ class TestSaleOrderPartialAdvance(test_common.TransactionCase):
         wizard.order_ids[0].advance_amount_to_use = 200.0
         res = wizard.with_context(open_invoices=True).make_invoices()
         invoice = self.env['account.invoice'].browse(res['res_id'])
+        self.assertEqual(len(invoice.invoice_line), 2)
+        inv_adv_line = self.env['account.invoice.line']
+        for line in invoice.invoice_line:
+            if line.product_id.id == self.product_advance.id:
+                inv_adv_line = line
+                break
+        self.assertEqual(inv_adv_line.invoice_line_tax_id.id,
+                         self.tax.id)
         self.assertEqual(invoice.amount_total, 800.0)
         self.assertEqual(order.advance_amount, 500.0)
         self.assertEqual(order.advance_amount_available, 300.0)

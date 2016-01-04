@@ -71,6 +71,9 @@ class SaleOrderLineMakeInvoice(models.TransientModel):
                                         )
             inv_line_values['price_unit'] =\
                 -order_adv_data.advance_amount_to_use
+            if inv_line_values.get('invoice_line_tax_id', False):
+                inv_line_values['invoice_line_tax_id'] = \
+                    [(6, 0, inv_line_values['invoice_line_tax_id'])]
             adv_line = inv_l_obj.create(inv_line_values)
             lines.append(adv_line.id)
 
