@@ -32,6 +32,7 @@ Withilist:
 * TODO calcular correctamente pack virtual available para negativos
     """,
     'author':  'NaN·tic, ADHOC',
+    'license': 'AGPL-3',
     'images': [
     ],
     'depends': [
