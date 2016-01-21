@@ -29,6 +29,7 @@ addon | version | summary
 [sale_order_add_variants](sale_order_add_variants/) | 8.0.0.1.0 | Add variants from template into sale order
 [sale_order_back2draft](sale_order_back2draft/) | 8.0.1.0.0 | Back to draft on sales orders
 [sale_order_line_description](sale_order_line_description/) | 8.0.1.0.0 | Sale order line description
+[sale_order_line_variant_description](sale_order_line_variant_description/) | 8.0.1.0.0 | Sale order line variant description
 [sale_order_price_recalculation](sale_order_price_recalculation/) | 8.0.1.0.0 | Price recalculation in sales orders
 [sale_order_revision](sale_order_revision/) | 8.0.0.1.0 | Sale order revisions
 [sale_order_type](sale_order_type/) | 8.0.1.0.1 | Sale Order Types
