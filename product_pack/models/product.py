@@ -132,7 +132,7 @@ class product_template(models.Model):
         )
 
     @api.constrains(
-        'parent_product_id', 'product_id', 'pack_price_type', 'pack')
+        'parent_product_id', 'product_variant_ids', 'pack_price_type', 'pack')
     def check_relations(self):
         """
         Check assited packs dont have packs a childs
@@ -163,7 +163,7 @@ class product_template(models.Model):
         #             'of a "None Detailed - Assisted Price Pack"'))
 
     @api.one
-    @api.constrains('company_id', 'pack_line_ids', 'used_pack_line_ids')
+    @api.constrains('company_id', 'product_variant_ids', 'used_pack_line_ids')
     def check_pack_line_company(self):
         """
         Check packs are related to packs of same company
