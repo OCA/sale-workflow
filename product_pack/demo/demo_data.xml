@@ -16,16 +16,19 @@
         <field name="parent_product_id" ref="product_pack_cpu_detailed_components"/>
         <field name="product_id" ref="product.product_product_20"/>
         <field name="quantity" eval="1.0"/>
+        <field name="discount" eval="10.0"/>
     </record>
     <record id="pack_cpu_detailed_components_2" model="product.pack.line">
         <field name="parent_product_id" ref="product_pack_cpu_detailed_components"/>
         <field name="product_id" ref="product.product_product_19"/>
         <field name="quantity" eval="1.0"/>
+        <field name="discount" eval="10.0"/>
     </record>
     <record id="pack_cpu_detailed_components_3" model="product.pack.line">
         <field name="parent_product_id" ref="product_pack_cpu_detailed_components"/>
         <field name="product_id" ref="product.product_product_16"/>
         <field name="quantity" eval="1.0"/>
+        <field name="discount" eval="10.0"/>
     </record>
     <record id="pack_cpu_detailed_components_4" model="product.pack.line">
         <field name="parent_product_id" ref="product_pack_cpu_detailed_components"/>
@@ -52,16 +55,19 @@
         <field name="parent_product_id" ref="product_pack_cpu_detailed_totaliced"/>
         <field name="product_id" ref="product.product_product_20"/>
         <field name="quantity" eval="1.0"/>
+        <field name="discount" eval="10.0"/>
     </record>
     <record id="pack_cpu_detailed_totaliced_2" model="product.pack.line">
         <field name="parent_product_id" ref="product_pack_cpu_detailed_totaliced"/>
         <field name="product_id" ref="product.product_product_19"/>
         <field name="quantity" eval="1.0"/>
+        <field name="discount" eval="10.0"/>
     </record>
     <record id="pack_cpu_detailed_totaliced_3" model="product.pack.line">
         <field name="parent_product_id" ref="product_pack_cpu_detailed_totaliced"/>
         <field name="product_id" ref="product.product_product_16"/>
         <field name="quantity" eval="1.0"/>
+        <field name="discount" eval="10.0"/>
     </record>
     <record id="pack_cpu_detailed_totaliced_4" model="product.pack.line">
         <field name="parent_product_id" ref="product_pack_cpu_detailed_totaliced"/>
@@ -124,16 +130,19 @@
         <field name="parent_product_id" ref="product_pack_cpu_none_detailed_assited"/>
         <field name="product_id" ref="product.product_product_20"/>
         <field name="quantity" eval="1.0"/>
+        <field name="discount" eval="10.0"/>
     </record>
     <record id="pack_cpu_none_detailed_assited_2" model="product.pack.line">
         <field name="parent_product_id" ref="product_pack_cpu_none_detailed_assited"/>
         <field name="product_id" ref="product.product_product_19"/>
         <field name="quantity" eval="1.0"/>
+        <field name="discount" eval="10.0"/>
     </record>
     <record id="pack_cpu_none_detailed_assited_3" model="product.pack.line">
         <field name="parent_product_id" ref="product_pack_cpu_none_detailed_assited"/>
         <field name="product_id" ref="product.product_product_16"/>
         <field name="quantity" eval="1.0"/>
+        <field name="discount" eval="10.0"/>
     </record>
     <record id="pack_cpu_none_detailed_assited_4" model="product.pack.line">
         <field name="parent_product_id" ref="product_pack_cpu_none_detailed_assited"/>
@@ -160,16 +169,19 @@
         <field name="parent_product_id" ref="product_pack_cpu_none_detailed_totaliced"/>
         <field name="product_id" ref="product.product_product_20"/>
         <field name="quantity" eval="1.0"/>
+        <field name="discount" eval="10.0"/>
     </record>
     <record id="pack_cpu_none_detailed_totaliced_2" model="product.pack.line">
         <field name="parent_product_id" ref="product_pack_cpu_none_detailed_totaliced"/>
         <field name="product_id" ref="product.product_product_19"/>
         <field name="quantity" eval="1.0"/>
+        <field name="discount" eval="10.0"/>
     </record>
     <record id="pack_cpu_none_detailed_totaliced_3" model="product.pack.line">
         <field name="parent_product_id" ref="product_pack_cpu_none_detailed_totaliced"/>
         <field name="product_id" ref="product.product_product_16"/>
         <field name="quantity" eval="1.0"/>
+        <field name="discount" eval="10.0"/>
     </record>
     <record id="pack_cpu_none_detailed_totaliced_4" model="product.pack.line">
         <field name="parent_product_id" ref="product_pack_cpu_none_detailed_totaliced"/>

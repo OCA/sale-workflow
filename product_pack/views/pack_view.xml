@@ -10,7 +10,7 @@
 		<field name="arch" type="xml">
 			<field name="type" position="after">
 				<field name="pack"/>
-				<field name="pack_price_type" attrs="{'invisible':[('pack', '=', False)], 'required':[('pack','=',True)]}"/>
+				<field name="pack_price_type" attrs="{'invisible':[('pack', '=', False)], 'required':[('pack','=',True)]}" context="{'pack_price_type': pack_price_type}"/>
 			</field>
 			<notebook position="inside">
 				<page string="Pack" attrs="{'invisible': ['|', ('product_variant_count', '>', 1), ('pack', '=', False)]}">
@@ -27,7 +27,7 @@
 		<field name="arch" type="xml">
 			<field name="type" position="after">
 				<field name="pack"/>
-				<field name="pack_price_type" attrs="{'invisible':[('pack', '=', False)], 'required':[('pack','=',True)]}"/>
+				<field name="pack_price_type" attrs="{'invisible':[('pack', '=', False)], 'required':[('pack','=',True)]}" context="{'pack_price_type': pack_price_type}"/>
 			</field>
 			<notebook position="inside">
 				<page string="Pack" attrs="{'invisible':[('pack', '=', False)]}">
@@ -47,6 +47,7 @@
 				<group>
 					<field name="product_id"/>
 					<field name="quantity"/>
+					<field name="discount" groups="sale.group_discount_per_so_line" invisible="context.get('pack_price_type') == 'fixed_price'"/>
 				</group>
 			</form>
 		</field>
@@ -60,6 +61,7 @@
 			<tree string="Pack Product Lines" editable="bottom">
 				<field name="product_id"/>
 				<field name="quantity"/>
+				<field name="discount" groups="sale.group_discount_per_so_line" invisible="context.get('pack_price_type') == 'fixed_price'"/>
 			</tree>
 		</field>
 	</record>

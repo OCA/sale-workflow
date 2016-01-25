@@ -116,6 +116,7 @@ class sale_order_line(models.Model):
                     'product_id': pack_line.product_id.id,
                     'product_uom_qty': quantity,
                     'price_unit': price_unit,
+                    'discount': pack_line.discount,
                     'price_subtotal': price_unit * quantity,
                     }
                 self.pack_line_ids.create(vals)

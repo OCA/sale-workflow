@@ -26,6 +26,10 @@ class sale_order_line_pack_line(models.Model):
         required=True,
         digits=dp.get_precision('Product Price')
         )
+    discount = fields.Float(
+        'Discount (%)',
+        digits=dp.get_precision('Discount'),
+        )
     price_subtotal = fields.Float(
         compute="_amount_line",
         string='Subtotal',
@@ -34,7 +38,8 @@ class sale_order_line_pack_line(models.Model):
     product_uom_qty = fields.Float(
         'Quantity',
         digits=dp.get_precision('Product UoS'),
-        required=True)
+        required=True
+        )
 
     @api.one
     @api.onchange('product_id')
@@ -44,4 +49,6 @@ class sale_order_line_pack_line(models.Model):
     @api.one
     @api.depends('price_unit', 'product_uom_qty')
     def _amount_line(self):
-        self.price_subtotal = self.product_uom_qty * self.price_unit
+        self.price_subtotal = (
+            self.product_uom_qty * self.price_unit *
+            (1 - (self.discount or 0.0) / 100.0))

@@ -3,6 +3,7 @@
 # For copyright and license notices, see __openerp__.py file in root directory
 ##############################################################################
 from openerp import fields, models, api
+import openerp.addons.decimal_precision as dp
 
 
 class product_pack(models.Model):
@@ -19,12 +20,17 @@ class product_pack(models.Model):
         'Quantity',
         required=True,
         default=1.0,
+        digits=dp.get_precision('Product UoS'),
         )
     product_id = fields.Many2one(
         'product.product',
         'Product',
         ondelete='cascade',
         required=True,
+        )
+    discount = fields.Float(
+        'Discount (%)',
+        digits=dp.get_precision('Discount'),
         )
 
     @api.multi
@@ -58,7 +64,7 @@ class product_pack(models.Model):
                 order.partner_id.id, context={
                     'uom': subproduct.uom_id.id,
                     'date': order.date_order})[pricelist]
-            discount = line.discount
+            discount = self.discount
 
         # Obtain product name in partner's language
         if order.partner_id.lang:
