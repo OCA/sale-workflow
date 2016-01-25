@@ -1,0 +1,35 @@
+<?xml version="1.0"?>
+<openerp>
+    <data>
+        <record id="view_order_credit_limit_form" model="ir.ui.view" >
+            <field name="name">order.credit.limit.form</field>
+            <field name="model">sale.order</field>
+            <field name="inherit_id" ref="sale.view_order_form"/>
+            <field name="arch" type="xml">
+                <xpath expr="//button[@name='action_button_confirm'][1]" position="attributes">
+                    <attribute name="string">Approve Sale</attribute>
+                    <attribute name="states">waiting_for_approval</attribute>
+                    <attribute name="groups">base.group_sale_manager</attribute>
+                    <attribute name="class">oe_highlight</attribute>
+                </xpath>
+                <xpath expr="//button[@name='action_button_confirm'][2]" position="attributes">
+                    <attribute name="invisible">1</attribute>
+                </xpath>
+                <xpath expr="//button[@name='action_button_confirm'][1]" position="after">
+                    <button name="move_to_waiting_for_approval" states="draft,sent" string="Confirm Sale"
+                        groups="base.group_user" class="oe_highlight"/>
+                    <button name="deny_order" states="waiting_for_approval" string="Deny order"
+                        groups="base.group_sale_manager"/>
+                </xpath>
+                <xpath expr="//sheet/group[1]" position="before">
+                    <field name="confirmation_allowed" invisible="1"/>
+                    <group name="warning_box" attrs="{'invisible': ['|', ('confirmation_allowed', '=', True), ('state', 'not in', ['cancel', 'draft', 'sent', 'waiting_for_approval'])]}">
+                        <div class="alert alert-danger">
+                            <span style="margin-right: 20px;"><strong>Warning</strong></span><field name="credit_limit_warning" nolabel="1" class="oe_inline"/>
+                        </div>
+                    </group>
+                </xpath>
+            </field>
+        </record>
+    </data>
+</openerp>

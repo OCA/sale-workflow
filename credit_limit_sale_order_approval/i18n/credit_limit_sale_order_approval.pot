@@ -1,0 +1,86 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+#	* credit_limit_sale_order_approval
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 8.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2016-01-22 13:16+0000\n"
+"PO-Revision-Date: 2016-01-22 13:16+0000\n"
+"Last-Translator: <>\n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: credit_limit_sale_order_approval
+#: view:sale.order:credit_limit_sale_order_approval.view_order_credit_limit_form
+msgid "Approve Sale"
+msgstr ""
+
+#. module: credit_limit_sale_order_approval
+#: view:sale.order:credit_limit_sale_order_approval.view_order_credit_limit_form
+msgid "Confirm Sale"
+msgstr ""
+
+#. module: credit_limit_sale_order_approval
+#: code:addons/credit_limit_sale_order_approval/models/sale.py:41
+#, python-format
+msgid "Contact credit limit exceeded."
+msgstr ""
+
+#. module: credit_limit_sale_order_approval
+#: view:sale.order:credit_limit_sale_order_approval.view_order_credit_limit_form
+msgid "Deny order"
+msgstr ""
+
+#. module: credit_limit_sale_order_approval
+#: code:addons/credit_limit_sale_order_approval/models/sale.py:60
+#, python-format
+msgid "Gives the status of the quotation or sales order.               \n"
+"The exception status is automatically set when a cancel                operation occurs in the invoice validation (Invoice Exception)                or in the picking list process (Shipping Exception).               \n"
+"The 'Waiting Schedule' status is set when the invoice is                confirmed but waiting for the scheduler to run on the order                date."
+msgstr ""
+
+#. module: credit_limit_sale_order_approval
+#: model:ir.model,name:credit_limit_sale_order_approval.model_res_partner
+msgid "Partner"
+msgstr ""
+
+#. module: credit_limit_sale_order_approval
+#: model:ir.model,name:credit_limit_sale_order_approval.model_sale_order
+msgid "Sales Order"
+msgstr ""
+
+#. module: credit_limit_sale_order_approval
+#: field:res.partner,set_credit_limit:0
+msgid "Set credit limit"
+msgstr ""
+
+#. module: credit_limit_sale_order_approval
+#: view:sale.order:credit_limit_sale_order_approval.view_order_credit_limit_form
+msgid "Warning"
+msgstr ""
+
+#. module: credit_limit_sale_order_approval
+#: view:sale.order:credit_limit_sale_order_approval.view_order_credit_limit_form
+msgid "base.group_sale_manager"
+msgstr ""
+
+#. module: credit_limit_sale_order_approval
+#: view:sale.order:credit_limit_sale_order_approval.view_order_credit_limit_form
+msgid "oe_highlight"
+msgstr ""
+
+#. module: credit_limit_sale_order_approval
+#: view:sale.order:credit_limit_sale_order_approval.view_order_credit_limit_form
+msgid "waiting_for_approval"
+msgstr ""
+
+#. module: credit_limit_sale_order_approval
+#: view:res.partner:credit_limit_sale_order_approval.view_set_credit_limit_res_partner_form
+msgid "{'invisible': [('set_credit_limit', '=', False)]}"
+msgstr ""
+
