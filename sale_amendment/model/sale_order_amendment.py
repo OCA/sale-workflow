@@ -49,8 +49,8 @@ class SaleOrderAmendment(models.TransientModel):
 
         sale = self.env['sale.order'].browse(sale_ids)
 
-        if sale.order_policy != 'picking' and any(inv.state != 'cancel'
-                                                  for inv in sale.invoice_ids):
+        if sale.order_policy != 'picking' and any([l.invoiced
+                                                   for l in sale.order_line]):
             raise exceptions.Warning(
                 _('An invoiced order cannot be amended.')
             )
