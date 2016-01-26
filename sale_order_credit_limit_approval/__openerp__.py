@@ -21,7 +21,7 @@
 ##############################################################################
 
 {
-    'name': 'Credit Limit Sale Order Approval',
+    'name': 'Sale Order Credit Limit Approval',
     'summary': 'Need of validation by responsible when sale order exceeds '
                'credit limit',
     'version': '0.1',
