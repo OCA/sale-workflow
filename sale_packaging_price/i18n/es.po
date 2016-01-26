@@ -6,9 +6,9 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 8.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-11-13 08:28+0000\n"
-"PO-Revision-Date: 2015-11-13 09:30+0100\n"
-"Last-Translator: Carlos Incaser <carlos@incaser.es>\n"
+"POT-Creation-Date: 2016-01-26 16:00+0000\n"
+"PO-Revision-Date: 2016-01-26 17:02+0100\n"
+"Last-Translator: Sergio Teruel <sergio@incaser.es>\n"
 "Language-Team: \n"
 "Language: es-ES\n"
 "MIME-Version: 1.0\n"
@@ -26,6 +26,11 @@ msgid ""
 msgstr "Pinche aquí crear empaquetados de productos"
 
 #. module: sale_packaging_price
+#: selection:product.packaging,package_material_type:0
+msgid "Cardboard"
+msgstr "Cartón"
+
+#. module: sale_packaging_price
 #: view:product.packaging:sale_packaging_price.product_packaging_filter
 msgid "Group By..."
 msgstr "Agrupar por..."
@@ -34,6 +39,22 @@ msgstr "Agrupar por..."
 #: view:product.packaging:sale_packaging_price.product_packaging_filter
 msgid "Logistic Unit"
 msgstr "Unidad logística"
+
+#. module: sale_packaging_price
+#: selection:product.packaging,package_material_type:0
+msgid "Metal"
+msgstr "Metal"
+
+#. module: sale_packaging_price
+#: view:product.packaging:sale_packaging_price.product_packaging_filter
+#, fuzzy
+msgid "Pack Type"
+msgstr "Vista %(view_type)s"
+
+#. module: sale_packaging_price
+#: field:product.packaging,package_material_type:0
+msgid "Package Material Type"
+msgstr "Material empaquetado"
 
 #. module: sale_packaging_price
 #: field:product.packaging,list_price:0
@@ -53,7 +74,7 @@ msgid "Packaging"
 msgstr "Empaquetado"
 
 #. module: sale_packaging_price
-#: code:addons/sale_packaging_price/models/product.py:31
+#: code:addons/sale_packaging_price/models/product.py:36
 #, python-format
 msgid "Problem with price"
 msgstr "Problema con el precio"
@@ -101,7 +122,7 @@ msgid "This price will be considered as a price for complete package"
 msgstr "Este precio sera considerado como precio para el paquete completo"
 
 #. module: sale_packaging_price
-#: code:addons/sale_packaging_price/models/product.py:32
+#: code:addons/sale_packaging_price/models/product.py:37
 #, python-format
 msgid ""
 "With the current decimal precision, you can't get this price. (Approx. price "
@@ -109,6 +130,11 @@ msgid ""
 msgstr ""
 "Con la precisión decimal actual no puedes obtener este precio. (Precio "
 "sugerido aproximado: %s)"
+
+#. module: sale_packaging_price
+#: selection:product.packaging,package_material_type:0
+msgid "Wood"
+msgstr "Madera"
 
 #. module: sale_packaging_price
 #: view:product.packaging:sale_packaging_price.product_packaging_tree_inherit
