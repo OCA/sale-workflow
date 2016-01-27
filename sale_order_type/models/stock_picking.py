@@ -13,7 +13,10 @@ class StockPicking(models.Model):
     def _create_invoice_from_picking(self, picking, vals):
         if picking and picking.sale_id:
             sale = picking.sale_id
-            if sale.type_id and sale.type_id.journal_id:
-                vals['journal_id'] = sale.type_id.journal_id.id
+            if sale.type_id:
+                if vals['type'] == 'out_invoice' and sale.type_id.journal_id:
+                    vals['journal_id'] = sale.type_id.journal_id.id
+                elif vals['type'] == 'out_refund' and sale.type_id.refund_journal_id:
+                    vals['journal_id'] = sale.type_id.refund_journal_id.id
         return super(StockPicking, self)._create_invoice_from_picking(picking,
                                                                       vals)
