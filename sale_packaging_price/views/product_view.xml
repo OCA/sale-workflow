@@ -8,7 +8,7 @@
         <field name="inherit_id" ref="product.product_packaging_tree_view_product"/>
         <field name="arch" type="xml">
             <xpath expr='//field[@name="ul"]' position='after'>
-                <field name="package_material"/>
+                <field name="package_material_id"/>
                 <field name="list_price"/>
             </xpath>
         </field>
@@ -21,7 +21,7 @@
         <field name="arch" type="xml">
             <xpath expr='//field[@name="qty"]' position='after'>
                 <field name="list_price"/>
-                <field name="package_material"/>
+                <field name="package_material_id"/>
             </xpath>
             <xpath expr='//tree'
                    position='attributes'>
@@ -36,7 +36,7 @@
         <field name="inherit_id" ref="product.product_packaging_form_view"/>
         <field name="arch" type="xml">
             <xpath expr='//field[@name="qty"]' position='after'>
-                <field name="package_material"/>
+                <field name="package_material_id"/>
                 <field name="list_price"/>
             </xpath>
         </field>
@@ -48,7 +48,7 @@
         <field name="inherit_id" ref="product.product_packaging_form_view_without_product"/>
         <field name="arch" type="xml">
             <xpath expr='//field[@name="ul"]' position='after'>
-                <field name="package_material"/>
+                <field name="package_material_id"/>
                 <field name="list_price"/>
             </xpath>
         </field>
@@ -60,11 +60,11 @@
         <field name="arch" type="xml">
             <search string="Search Product Packaging">
                 <field name="product_tmpl_id"/>
-                <field name="package_material"/>
+                <field name="package_material_id"/>
                 <group expand="0" string="Group By...">
-                   <filter string="Product" context="{'group_by': 'product_tmpl_id'}"/>
-                   <filter string="Logistic Unit" context="{'group_by': 'ul'}"/>
-                   <filter string="Pack Type" context="{'group_by': 'package_material'}"/>
+                    <filter string="Product" context="{'group_by': 'product_tmpl_id'}"/>
+                    <filter string="Logistic Unit" context="{'group_by': 'ul'}"/>
+                    <filter string="Pack Type" context="{'group_by': 'package_material_id'}"/>
                </group>
            </search>
         </field>
@@ -77,9 +77,9 @@
         <field name="view_type">form</field>
         <field name="view_mode">tree,form</field>
         <field name="help" type="html">
-          <p class="oe_view_nocontent_create">
-            Click to add a packaging for your products.
-          </p>
+            <p class="oe_view_nocontent_create">
+                Click to add a packaging for your products.
+            </p>
         </field>
     </record>
 

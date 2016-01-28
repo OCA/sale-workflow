@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 8.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-01-28 11:15+0000\n"
-"PO-Revision-Date: 2016-01-28 12:16+0100\n"
+"POT-Creation-Date: 2016-01-28 16:02+0000\n"
+"PO-Revision-Date: 2016-01-28 17:03+0100\n"
 "Last-Translator: Sergio Teruel <sergio@incaser.es>\n"
 "Language-Team: \n"
 "Language: es-ES\n"
@@ -66,14 +66,10 @@ msgid "Pack Type"
 msgstr "Tipo de paquete"
 
 #. module: sale_packaging_price
+#: field:product.packaging,package_material_id:0
 #: field:product.packaging.material,name:0
 msgid "Package Material"
-msgstr "Material empaquetado"
-
-#. module: sale_packaging_price
-#: field:product.packaging,package_material:0
-msgid "Package Material Type"
-msgstr "Material empaquetado"
+msgstr "Material de empaquetado"
 
 #. module: sale_packaging_price
 #: field:product.packaging,list_price:0
@@ -155,11 +151,5 @@ msgstr ""
 msgid "top"
 msgstr "Arriba"
 
-#~ msgid "Cardboard"
-#~ msgstr "Cartón"
-
-#~ msgid "Metal"
-#~ msgstr "Metal"
-
-#~ msgid "Wood"
-#~ msgstr "Madera"
+#~ msgid "Package Material Type"
+#~ msgstr "Material empaquetado"

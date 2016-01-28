@@ -20,9 +20,9 @@ class ProductPackaging(models.Model):
         string='Package Price',
         digits_compute=dp.get_precision('Product Price'),
         help="This price will be considered as a price for complete package")
-    package_material = fields.Many2one(
+    package_material_id = fields.Many2one(
         comodel_name='product.packaging.material',
-        string='Package Material Type')
+        string='Package Material')
 
     @api.onchange('list_price', 'qty')
     def _onchange_list_price(self):
