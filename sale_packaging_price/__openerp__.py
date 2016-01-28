@@ -12,6 +12,7 @@
         'views/product_view.xml',
         'views/sale_stock_view.xml',
         'views/sale_packaging_price_menu.xml',
+        'security/ir.model.access.csv',
     ],
     'author': 'Antiun Ingeniería S.L., '
               'Incaser Informatica S.L., '
