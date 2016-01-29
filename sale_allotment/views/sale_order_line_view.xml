@@ -25,8 +25,8 @@
                             ]</attribute>
                     </xpath>
                     <xpath
-                        expr="//field[@name='order_line']//tree//field[@name='name']"
-                        position="before">
+                        expr="//field[@name='order_line']//tree//field[@name='product_id']"
+                        position="after">
                         <field name="address_allotment_id"
                             context="{'default_parent_id': parent.partner_id,
                                       'default_use_parent_address': True,
