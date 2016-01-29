@@ -14,6 +14,9 @@
         'views/sale_packaging_price_menu.xml',
         'security/ir.model.access.csv',
     ],
+    'demo': [
+        'demo/sale_packaging_price_demo.xml',
+    ],
     'author': 'Antiun Ingeniería S.L., '
               'Incaser Informatica S.L., '
               'Odoo Community Association (OCA)',

@@ -10,7 +10,8 @@ This module was written to extends the functionality of sale workflow
 and allow you to assign a selling price of a complete package.
 This price is split for having the price unit according the number of pieces
 that fits in that packaging, so there can be rounding issues to get the exact
-price that are warned if happens.
+price that are warned if happens. It also adds a field to set the package
+material.
 
 Configuration
 =============
