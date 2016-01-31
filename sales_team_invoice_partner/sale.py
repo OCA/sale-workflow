@@ -54,18 +54,6 @@ class SaleOrder(models.Model):
     @api.multi
     def update(self, vals):
         if self.section_id.section_partner_invoice_id:
-            section_partner_invoice_id = (self.section_id.
-                                          section_partner_invoice_id)
-            vals.update({
-                'partner_invoice_id': section_partner_invoice_id.id
-            })
-            if 'partner_invoice_id' in vals:
-                partner_invoice_id = vals.get('partner_invoice_id')
-                section_partner_invoice_id = (self.section_id.
-                                              section_partner_invoice_id)
-                if (partner_invoice_id and
-                        partner_invoice_id != section_partner_invoice_id):
-                    vals.update({
-                        'partner_invoice_id': section_partner_invoice_id.id
-                    })
+            vals['partner_invoice_id'] = \
+                self.section_id.section_partner_invoice_id
         return super(SaleOrder, self).update(vals)
