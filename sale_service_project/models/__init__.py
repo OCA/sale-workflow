@@ -8,3 +8,4 @@ from . import sale
 from . import sale_service
 from . import hr_timesheet_invoice
 from . import project
+from . import account_invoice
