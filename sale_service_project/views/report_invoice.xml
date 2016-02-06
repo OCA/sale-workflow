@@ -28,7 +28,7 @@
                 <t t-foreach="l.sale_order_lines" t-as="order_line">
                     <t t-set="uom_hour" t-value="l.env.ref('product.product_uom_hour')"/>
                     <t t-set="uom_unit" t-value="l.env.ref('product.product_uom_unit')"/>
-                    <p t-if="order_line.task_work_ids" style="margin-left:10px;">
+                    <p id="qty" t-if="order_line.task_work_ids" style="margin-left:10px;">
                         <br/>
                         <t t-foreach="order_line.task_work_ids" t-as="work">
                            <span style="margin-left:5px;" t-field="work.hours"/>
