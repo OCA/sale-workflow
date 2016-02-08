@@ -3,13 +3,14 @@
 # * sale_payment_method
 # 
 # Translators:
+# Rudolf Schnapka <rs@techno-flex.de>, 2016
 msgid ""
 msgstr ""
 "Project-Id-Version: sale-workflow (8.0)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-12-02 01:51+0000\n"
-"PO-Revision-Date: 2015-12-01 11:04+0000\n"
-"Last-Translator: <>\n"
+"POT-Creation-Date: 2016-01-10 01:51+0000\n"
+"PO-Revision-Date: 2016-01-18 12:56+0000\n"
+"Last-Translator: Rudolf Schnapka <rs@techno-flex.de>\n"
 "Language-Team: German (http://www.transifex.com/oca/OCA-sale-workflow-8-0/language/de/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -23,7 +24,7 @@ msgstr ""
 msgid ""
 "An automatic payment can not be created for the sale order %s because it has"
 " no payment method."
-msgstr ""
+msgstr "Eine automatische Zahlung kann für den Verkaufsauftrag %s nicht angelegt werden, da keine Zahlweise angegeben ist."
 
 #. module: sale_payment_method
 #: code:addons/sale_payment_method/sale.py:91
@@ -31,7 +32,7 @@ msgstr ""
 msgid ""
 "An automatic payment should be created for the sale order %s but the payment"
 " method '%s' has no journal defined."
-msgstr ""
+msgstr "Eine Automatische Zahlung soll für den Verkaufsauftrag %s angelegt werden, aber zur Zahlweise '%s' ist kein Journal festgelegt."
 
 #. module: sale_payment_method
 #: code:addons/sale_payment_method/sale.py:69
@@ -39,13 +40,13 @@ msgstr ""
 msgid ""
 "Cannot cancel this sales order because automatic payment entries are linked "
 "with it."
-msgstr ""
+msgstr "Kann diesen Verkaufsauftrag nicht stornieren, da automatische Zahlungen damit verbunden sind."
 
 #. module: sale_payment_method
 #: view:payment.method:sale_payment_method.payment_method_view_form
 #: field:payment.method,company_id:0
 msgid "Company"
-msgstr ""
+msgstr "Unternehmen"
 
 #. module: sale_payment_method
 #: view:sale.order:sale_payment_method.sale_order_view_form
@@ -65,19 +66,19 @@ msgstr "Angelegt am"
 #. module: sale_payment_method
 #: view:payment.method:sale_payment_method.payment_method_view_form
 msgid "Default Values"
-msgstr ""
+msgstr "Vorgabewerte"
 
 #. module: sale_payment_method
 #: help:payment.method,payment_term_id:0
 msgid "Default payment term of a sale order using this method."
-msgstr ""
+msgstr "Vorgabe-Zahlungsbedingung eines Verkaufsauftrags bei Verwendung dieser Methode."
 
 #. module: sale_payment_method
 #: view:payment.method:sale_payment_method.payment_method_view_form
 msgid ""
 "Even if the E-commerce backend receives a payment for a sale order,\n"
 "                                no payment entries will be generated."
-msgstr ""
+msgstr "Selbst wenn das E-Commerce-Backend eine Zahlung zu einem\nVerkaufsauftrag erhält, werden keine Zahlpositionen erzeugt."
 
 #. module: sale_payment_method
 #: field:payment.method,id:0
@@ -89,22 +90,22 @@ msgstr "ID"
 msgid ""
 "If a journal is selected, when a payment is recorded on a backend, payment "
 "entries will be created in this journal."
-msgstr ""
+msgstr "Wenn ein Journal gewählt ist, während eine Zahlung im Backend festgestellt wird, werden Zahlungsbuchungen in diesem Journal erstellt."
 
 #. module: sale_payment_method
 #: field:payment.method,journal_id:0
 msgid "Journal"
-msgstr ""
+msgstr "Journal"
 
 #. module: sale_payment_method
 #: model:ir.model,name:sale_payment_method.model_account_move_line
 msgid "Journal Items"
-msgstr ""
+msgstr "Journal-Posten"
 
 #. module: sale_payment_method
 #: view:payment.method:sale_payment_method.payment_method_view_form
 msgid "Journal for payment"
-msgstr ""
+msgstr "Journal für Zahlungen"
 
 #. module: sale_payment_method
 #: field:payment.method,write_uid:0
@@ -124,25 +125,25 @@ msgstr "Bezeichnung"
 #. module: sale_payment_method
 #: view:sale.order:sale_payment_method.view_sales_order_filter
 msgid "Order With Payment"
-msgstr ""
+msgstr "Auftrag mit Zahlung"
 
 #. module: sale_payment_method
 #: model:ir.model,name:sale_payment_method.model_payment_method
 #: field:sale.order,payment_method_id:0
 msgid "Payment Method"
-msgstr ""
+msgstr "Zahlweise"
 
 #. module: sale_payment_method
 #: view:payment.method:sale_payment_method.payment_method_view_form
 #: view:payment.method:sale_payment_method.payment_method_view_tree
 msgid "Payment Methods"
-msgstr ""
+msgstr "Zahlweisen"
 
 #. module: sale_payment_method
 #: model:ir.actions.act_window,name:sale_payment_method.act_payment_method_form
 #: model:ir.ui.menu,name:sale_payment_method.menu_action_paymetn_method_form
 msgid "Payment Methods "
-msgstr ""
+msgstr "Zahlweisen"
 
 #. module: sale_payment_method
 #: field:payment.method,payment_term_id:0
@@ -152,19 +153,19 @@ msgstr "Zahlungsbedingung"
 #. module: sale_payment_method
 #: field:sale.order,payment_ids:0
 msgid "Payments Entries"
-msgstr ""
+msgstr "Zahlungs-Posten"
 
 #. module: sale_payment_method
 #: code:addons/sale_payment_method/sale.py:145
 #, python-format
 msgid "Please activate the sequence of the journal %s."
-msgstr ""
+msgstr "Aktivieren Sie bitte den Nummernkreis im Journal %s."
 
 #. module: sale_payment_method
 #: code:addons/sale_payment_method/sale.py:142
 #, python-format
 msgid "Please define a sequence on the journal %s."
-msgstr ""
+msgstr "Legen Sie bitte einen Nummernkreis für das Journal %s fest."
 
 #. module: sale_payment_method
 #: model:ir.model,name:sale_payment_method.model_sale_order
@@ -174,26 +175,26 @@ msgstr "Verkaufsauftrag"
 #. module: sale_payment_method
 #: field:account.move.line,sale_ids:0
 msgid "Sales Orders"
-msgstr ""
+msgstr "Verkaufsaufträge"
 
 #. module: sale_payment_method
 #: help:payment.method,name:0
 msgid "The name of the method on the backend"
-msgstr ""
+msgstr "Die Bezeichnung der Methode im Backend"
 
 #. module: sale_payment_method
 #: view:sale.order:sale_payment_method.sale_order_view_form
 msgid "View Automatic Payment"
-msgstr ""
+msgstr "Autmatische Zahlung anzeigen"
 
 #. module: sale_payment_method
 #: view:payment.method:sale_payment_method.payment_method_view_form
 msgid ""
 "When the E-commerce backend will receive a payment for a sale order,\n"
 "                                payment entries will be generated in the selected journal."
-msgstr ""
+msgstr "Wenn das E-Commerce-Backend eine Zahlung zu einem Verkaufsauftrag\nerhält, werden Zahlungspostenim gewählten Journal erstellt."
 
 #. module: sale_payment_method
 #: view:sale.order:sale_payment_method.view_sales_order_filter
 msgid "With Payment"
-msgstr ""
+msgstr "Mit Zahlung"

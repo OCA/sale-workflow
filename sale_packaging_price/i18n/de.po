@@ -3,13 +3,14 @@
 # * sale_packaging_price
 # 
 # Translators:
+# Rudolf Schnapka <rs@techno-flex.de>, 2016
 msgid ""
 msgstr ""
 "Project-Id-Version: sale-workflow (8.0)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-12-22 01:40+0000\n"
-"PO-Revision-Date: 2015-12-21 21:10+0000\n"
-"Last-Translator: <>\n"
+"POT-Creation-Date: 2016-01-10 01:51+0000\n"
+"PO-Revision-Date: 2016-01-18 12:54+0000\n"
+"Last-Translator: Rudolf Schnapka <rs@techno-flex.de>\n"
 "Language-Team: German (http://www.transifex.com/oca/OCA-sale-workflow-8-0/language/de/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -24,40 +25,40 @@ msgid ""
 "            Click to add a packaging for your products.\n"
 "          </p>\n"
 "        "
-msgstr ""
+msgstr "<p class=\"oe_view_nocontent_create\">\n            Klicken, um dem Produkt eine Verpackung hinzuzufügen.\n          </p>\n        "
 
 #. module: sale_packaging_price
 #: view:product.packaging:sale_packaging_price.product_packaging_filter
 msgid "Group By..."
-msgstr ""
+msgstr "Gruppiere"
 
 #. module: sale_packaging_price
 #: view:product.packaging:sale_packaging_price.product_packaging_filter
 msgid "Logistic Unit"
-msgstr ""
+msgstr "Logistische Einheit"
 
 #. module: sale_packaging_price
 #: field:product.packaging,list_price:0
 #: view:sale.order:sale_packaging_price.view_order_form_inherit
 msgid "Package Price"
-msgstr ""
+msgstr "Packungspreis"
 
 #. module: sale_packaging_price
 #: view:sale.order:sale_packaging_price.view_order_form_inherit
 #: field:sale.order.line,packaging_weight:0
 msgid "Package Weight"
-msgstr ""
+msgstr "Packungsgewicht"
 
 #. module: sale_packaging_price
 #: model:ir.model,name:sale_packaging_price.model_product_packaging
 msgid "Packaging"
-msgstr ""
+msgstr "Verpackung"
 
 #. module: sale_packaging_price
 #: code:addons/sale_packaging_price/models/product.py:31
 #, python-format
 msgid "Problem with price"
-msgstr ""
+msgstr "Problem beim Preis"
 
 #. module: sale_packaging_price
 #: view:product.packaging:sale_packaging_price.product_packaging_filter
@@ -67,19 +68,19 @@ msgstr "Produkt"
 #. module: sale_packaging_price
 #: field:sale.report,product_packaging:0
 msgid "Product Package"
-msgstr ""
+msgstr "Produktpackung"
 
 #. module: sale_packaging_price
 #: model:ir.actions.act_window,name:sale_packaging_price.action_product_packaging_form
 #: model:ir.ui.menu,name:sale_packaging_price.menu_product_packaging_action
 #: model:ir.ui.menu,name:sale_packaging_price.menu_product_packaging_wh_action
 msgid "Product Packaging"
-msgstr ""
+msgstr "Produktverpackung"
 
 #. module: sale_packaging_price
 #: field:sale.report,qty_packaging:0
 msgid "Qty Package"
-msgstr ""
+msgstr "Packungsmenge"
 
 #. module: sale_packaging_price
 #: model:ir.model,name:sale_packaging_price.model_sale_order_line
@@ -89,17 +90,17 @@ msgstr "Auftragsposition"
 #. module: sale_packaging_price
 #: model:ir.model,name:sale_packaging_price.model_sale_report
 msgid "Sales Orders Statistics"
-msgstr ""
+msgstr "Verkaufsauftrag-Statistiken"
 
 #. module: sale_packaging_price
 #: view:product.packaging:sale_packaging_price.product_packaging_filter
 msgid "Search Product Packaging"
-msgstr ""
+msgstr "Suche in Verpackungen"
 
 #. module: sale_packaging_price
 #: help:product.packaging,list_price:0
 msgid "This price will be considered as a price for complete package"
-msgstr ""
+msgstr "Dieser Preis wird als Preis für die Gesamte Packung angenommen"
 
 #. module: sale_packaging_price
 #: code:addons/sale_packaging_price/models/product.py:32
@@ -107,7 +108,7 @@ msgstr ""
 msgid ""
 "With the current decimal precision, you can't get this price. (Approx. price"
 " suggested: %s)"
-msgstr ""
+msgstr "Mit der gegenwärtigen Dezimalauflösung können Sie diesen Preis nicht erhalten. (Geschätzter vorgeschlagener Preis: %s)"
 
 #. module: sale_packaging_price
 #: view:product.packaging:sale_packaging_price.product_packaging_tree_inherit
