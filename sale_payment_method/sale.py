@@ -174,7 +174,7 @@ class SaleOrder(models.Model):
     @api.multi
     def _prepare_payment_move_lines(self, move_name, journal, period,
                                     amount, date):
-        partner = self.partner_id.commercial_partner_id
+        partner = self.partner_invoice_id.commercial_partner_id
         company = journal.company_id
 
         currency = self.env['res.currency'].browse()
