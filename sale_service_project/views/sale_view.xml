@@ -18,6 +18,7 @@
                         groups="base.group_user"/>
             </xpath>
             <xpath expr="//field[@name='pricelist_id']" position="after">
+                <field name="invoice_on_timesheets"/>
                 <field name="print_works"/>
             </xpath>
         </field>

@@ -105,3 +105,11 @@ class AccountAnalyticLine(models.Model):
             analytic_lines.write({'invoice_id': last_invoice.id})
             invoices.button_reset_taxes()
         return invoices.ids
+
+    @api.model
+    def _prepare_cost_invoice(
+            self, partner, company_id, currency_id, analytic_lines):
+        res = super(AccountAnalyticLine, self)._prepare_cost_invoice(
+            partner, company_id, currency_id, analytic_lines)
+        res['print_works'] = False
+        return res

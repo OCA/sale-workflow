@@ -6,9 +6,9 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 8.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-02-05 17:50+0000\n"
-"PO-Revision-Date: 2016-02-05 18:51+0100\n"
-"Last-Translator: Sergio Teruel <sergio@incaser.es>\n"
+"POT-Creation-Date: 2016-02-11 18:28+0000\n"
+"PO-Revision-Date: 2016-02-11 19:32+0100\n"
+"Last-Translator: Carlos Incaser <carlos@incaser.es>\n"
 "Language-Team: \n"
 "Language: es-ES\n"
 "MIME-Version: 1.0\n"
@@ -33,9 +33,8 @@ msgstr "Cancelar"
 
 #. module: sale_service_project
 #: model:product.template,name:sale_service_project.product_template_revision_1
-#, fuzzy
 msgid "Complete Revision"
-msgstr "Dirección completa"
+msgstr "Revisión completa"
 
 #. module: sale_service_project
 #: model:ir.actions.act_window,name:sale_service_project.action_sale_service_project_product_price
@@ -62,22 +61,11 @@ msgid ""
 msgstr "Contrato incompleto. Por favor rellene el cliente y la tarifa para %s."
 
 #. module: sale_service_project
-#: field:product.price.service.wizard,create_uid:0
-#: field:product.task.materials,create_uid:0
-#: field:product.task.work,create_uid:0
-#: field:sale.order.line.task.materials,create_uid:0
-#: field:sale.order.line.task.work,create_uid:0
-msgid "Created by"
-msgstr "Creado por"
-
-#. module: sale_service_project
-#: field:product.price.service.wizard,create_date:0
-#: field:product.task.materials,create_date:0
-#: field:product.task.work,create_date:0
-#: field:sale.order.line.task.materials,create_date:0
-#: field:sale.order.line.task.work,create_date:0
-msgid "Created on"
-msgstr "Creado en"
+#: code:addons/sale_service_project/models/project.py:60
+#: view:project.task:sale_service_project.view_sale_service_inherit_form2
+#, python-format
+msgid "Create Invoice"
+msgstr "Crear factura"
 
 #. module: sale_service_project
 #: code:addons/sale_service_project/models/hr_timesheet_invoice.py:57
@@ -88,21 +76,8 @@ msgstr "¡Error!"
 
 #. module: sale_service_project
 #: model:product.template,name:sale_service_project.product_product_filter_product_template
-#, fuzzy
 msgid "Filter Oil"
-msgstr "Filtro Personalizado"
-
-#. module: sale_service_project
-#: field:product.task.work,hours:0 field:sale.order.line.task.work,hours:0
-msgid "Hours"
-msgstr "Horas"
-
-#. module: sale_service_project
-#: field:product.price.service.wizard,id:0 field:product.task.materials,id:0
-#: field:product.task.work,id:0 field:sale.order.line.task.materials,id:0
-#: field:sale.order.line.task.work,id:0
-msgid "ID"
-msgstr "ID (identificación)"
+msgstr "Filtro aceite"
 
 #. module: sale_service_project
 #: model:ir.model,name:sale_service_project.model_account_invoice
@@ -115,49 +90,17 @@ msgid "Invoice Line"
 msgstr "Línea de factura"
 
 #. module: sale_service_project
-#: field:product.price.service.wizard,write_uid:0
-#: field:product.task.materials,write_uid:0
-#: field:product.task.work,write_uid:0
-#: field:sale.order.line.task.materials,write_uid:0
-#: field:sale.order.line.task.work,write_uid:0
-msgid "Last Updated by"
-msgstr "Última actualización de"
-
-#. module: sale_service_project
-#: field:product.price.service.wizard,write_date:0
-#: field:product.task.materials,write_date:0
-#: field:product.task.work,write_date:0
-#: field:sale.order.line.task.materials,write_date:0
-#: field:sale.order.line.task.work,write_date:0
-msgid "Last Updated on"
-msgstr "Última actualización en"
-
-#. module: sale_service_project
-#: field:product.task.materials,material_id:0
-#: field:sale.order.line.task.materials,material_id:0
-msgid "Material"
-msgstr "Material"
+#: field:sale.order,invoice_on_timesheets:0
+msgid "Invoice on timesheets"
+msgstr "Facturar desde trabajos "
 
 #. module: sale_service_project
 #: view:product.template:sale_service_project.view_product_task_form
-#: field:product.template,task_materials_ids:0
 #: view:sale.order:sale_service_project.view_sale_order_line_form
-#: field:sale.order.line,task_materials_ids:0
 #: view:website:account.report_invoice_document
 #: view:website:sale.report_saleorder_document
 msgid "Materials"
 msgstr "Materiales"
-
-#. module: sale_service_project
-#: field:product.task.work,name:0 field:sale.order.line.task.work,name:0
-msgid "Name"
-msgstr "Nombre"
-
-#. module: sale_service_project
-#: field:sale.order.line.task.materials,order_line_id:0
-#: field:sale.order.line.task.work,order_line_id:0
-msgid "Order Line"
-msgstr "Línea pedido de venta"
 
 #. module: sale_service_project
 #: field:account.invoice,print_works:0 field:sale.order,print_works:0
@@ -168,13 +111,6 @@ msgstr "Imprimir trabajos y materiales"
 #: model:ir.model,name:sale_service_project.model_procurement_order
 msgid "Procurement"
 msgstr "Abastecimiento"
-
-#. module: sale_service_project
-#: field:product.price.service.wizard,product_id:0
-#: field:product.task.materials,product_id:0
-#: field:product.task.work,product_id:0
-msgid "Product"
-msgstr "Producto"
 
 #. module: sale_service_project
 #: model:ir.actions.act_window,name:sale_service_project.act_view_product_task_materials
@@ -198,15 +134,8 @@ msgstr "Proyecto"
 
 #. module: sale_service_project
 #: view:project.task:sale_service_project.view_task_search_form_project_parent
-#: field:project.task,project_parent_id:0
 msgid "Project Parent"
 msgstr "Proyecto padre"
-
-#. module: sale_service_project
-#: field:product.task.materials,quantity:0
-#: field:sale.order.line.task.materials,quantity:0
-msgid "Quantity"
-msgstr "Cantidad"
 
 #. module: sale_service_project
 #: field:account.invoice.line,sale_order_lines:0
@@ -231,7 +160,7 @@ msgstr "Selecciona un producto de tipo servicio para calcular el precio"
 #. module: sale_service_project
 #: model:product.template,name:sale_service_project.product_product_oil_product_template
 msgid "Synthetic Oil"
-msgstr ""
+msgstr "Aceite sintético"
 
 #. module: sale_service_project
 #: model:ir.model,name:sale_service_project.model_project_task
@@ -243,16 +172,6 @@ msgstr "Tareas"
 #: view:product.task.materials:sale_service_project.product_task_materials_tree_view
 msgid "Task Materials"
 msgstr "Materiales usados en la tarea"
-
-#. module: sale_service_project
-#: field:product.template,task_work_ids:0
-msgid "Task Works"
-msgstr "Trabajos"
-
-#. module: sale_service_project
-#: field:project.project,task_hours:0
-msgid "Task hours"
-msgstr "Trabajos"
 
 #. module: sale_service_project
 #: view:product.task.work:sale_service_project.product_task_work_form_view
@@ -274,9 +193,9 @@ msgid "Trying to invoice non invoiceable line for %s."
 msgstr "Intenanto facturar líneas no facturables %s."
 
 #. module: sale_service_project
-#: field:product.price.service.wizard,uom_id:0
-msgid "Unit of measure"
-msgstr "Unidad de medida"
+#: view:project.task:sale_service_project.view_sale_service_inherit_form2
+msgid "View Invoice"
+msgstr "Ver Factura"
 
 #. module: sale_service_project
 #: view:sale.order:sale_service_project.view_order_form_service_project
@@ -286,7 +205,6 @@ msgstr "Tareas"
 #. module: sale_service_project
 #: view:product.template:sale_service_project.view_product_task_form
 #: view:sale.order:sale_service_project.view_sale_order_line_form
-#: field:sale.order.line,task_work_ids:0
 #: view:website:account.report_invoice_document
 #: view:website:sale.report_saleorder_document
 msgid "Works"
@@ -303,6 +221,48 @@ msgstr ""
 #: view:product.price.service.wizard:sale_service_project.wiz_compute_task_price
 msgid "or"
 msgstr "o"
+
+#~ msgid "Created by"
+#~ msgstr "Creado por"
+
+#~ msgid "Created on"
+#~ msgstr "Creado en"
+
+#~ msgid "Hours"
+#~ msgstr "Horas"
+
+#~ msgid "ID"
+#~ msgstr "ID (identificación)"
+
+#~ msgid "Last Updated by"
+#~ msgstr "Última actualización de"
+
+#~ msgid "Last Updated on"
+#~ msgstr "Última actualización en"
+
+#~ msgid "Material"
+#~ msgstr "Material"
+
+#~ msgid "Name"
+#~ msgstr "Nombre"
+
+#~ msgid "Order Line"
+#~ msgstr "Línea pedido de venta"
+
+#~ msgid "Product"
+#~ msgstr "Producto"
+
+#~ msgid "Quantity"
+#~ msgstr "Cantidad"
+
+#~ msgid "Task Works"
+#~ msgstr "Trabajos"
+
+#~ msgid "Task hours"
+#~ msgstr "Trabajos"
+
+#~ msgid "Unit of measure"
+#~ msgstr "Unidad de medida"
 
 #~ msgid "Order Policy"
 #~ msgstr "Crear factura"

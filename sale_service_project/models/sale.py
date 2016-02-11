@@ -16,11 +16,28 @@ class SaleOrder(models.Model):
         string='Tasks')
     print_works = fields.Boolean(
         string='Print materials and works', default=True)
+    invoice_on_timesheets = fields.Boolean(
+        readonly=True,
+        states={'draft': [('readonly', False)], 'sent': [('readonly', False)]}
+    )
 
     def _compute_task_ids(self):
         for order in self:
             self.task_ids = self.env['project.task'].search(
                 [('sale_line_id', 'in', order.order_line.ids)])
+
+    @api.model
+    def test_no_product(self, order):
+        if order.invoice_on_timesheets:
+            return False
+        else:
+            return super(SaleOrder, self).test_no_product(order)
+
+    @api.onchange('project_id')
+    def _onchange_project_id(self):
+        project = self.env['project.project'].search(
+            [('analytic_account_id', '=', self.project_id.id)])
+        self.invoice_on_timesheets = project.invoice_on_timesheets
 
     @api.multi
     def action_view_task(self):

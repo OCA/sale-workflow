@@ -4,6 +4,7 @@
 # License AGPL-3 - See http://www.gnu.org/licenses/agpl-3.0.html
 
 from openerp import models, api, fields
+from openerp.tools.translate import _
 
 
 class ProjectProject(models.Model):
@@ -27,3 +28,52 @@ class ProjectTask(models.Model):
         store=True,
         string='Project Parent')
     sale_line_id = fields.Many2one(index=True)
+    analytic_line_ids = fields.One2many(comodel_name='account.analytic.line',
+                                        compute='_compute_analytic_line_ids')
+    invoice_ids = fields.One2many(comodel_name='account.invoice',
+                                  compute='_compute_analytic_line_ids')
+    all_invoiced = fields.Boolean(compute='_compute_analytic_line_ids')
+    invoice_exists = fields.Boolean(compute='_compute_analytic_line_ids')
+
+    @api.multi
+    def _compute_analytic_line_ids(self):
+        for task in self:
+            all_inv = True
+            invoice_ids = []
+            lines = task.mapped('material_ids.analytic_line_id') | task.mapped(
+                    'work_ids.hr_analytic_timesheet_id.line_id')
+            for line in lines:
+                if line.invoice_id:
+                    invoice_ids.append(line.invoice_id.id)
+                elif line.to_invoice:
+                    all_inv = False
+            task.analytic_line_ids = lines
+            task.invoice_ids = invoice_ids
+            task.invoice_exists = invoice_ids and True or False
+            task.all_invoiced = all_inv
+
+    @api.multi
+    def action_create_invoice(self):
+        lines = self.analytic_line_ids.filtered(
+            lambda x: x.to_invoice and not x.invoice_id)
+        return {
+            'name': _('Create Invoice'),
+            'view_type': 'form',
+            'view_mode': 'form',
+            'res_model': 'hr.timesheet.invoice.create',
+            'type': 'ir.actions.act_window',
+            'target': 'new',
+            'context': dict(self.env.context or {}, active_ids=lines.ids),
+        }
+
+    @api.multi
+    def action_view_invoice(self):
+        result = self.env.ref('account.action_invoice_tree1').read()[0]
+        if len(self.invoice_ids) != 1:
+            result['domain'] = ("[('id', 'in', " + str(self.invoice_ids.ids) +
+                                ")]")
+        elif len(self.invoice_ids) == 1:
+            res = self.env.ref('account.invoice_form', False)
+            result['views'] = [(res and res.id or False, 'form')]
+            result['res_id'] = self.invoice_ids.id
+        return result

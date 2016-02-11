@@ -23,7 +23,6 @@ class ProcurementOrder(models.Model):
             if parent:
                 vals.update({
                     'parent_id': parent.id,
-                    'invoice_on_timesheets': parent.invoice_on_timesheets,
                     'to_invoice': parent.to_invoice.id,
                 })
             project = self.env['project.project'].create(vals)
@@ -74,5 +73,6 @@ class ProcurementOrder(models.Model):
             'name': sale_order.name,
             'partner_id': sale_order.partner_id.id,
             'pricelist_id': sale_order.pricelist_id.id,
+            'invoice_on_timesheets': sale_order.invoice_on_timesheets,
         }
         return res
