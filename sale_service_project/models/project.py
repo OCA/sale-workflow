@@ -41,7 +41,7 @@ class ProjectTask(models.Model):
             all_inv = True
             invoice_ids = []
             lines = task.mapped('material_ids.analytic_line_id') | task.mapped(
-                    'work_ids.hr_analytic_timesheet_id.line_id')
+                'work_ids.hr_analytic_timesheet_id.line_id')
             for line in lines:
                 if line.invoice_id:
                     invoice_ids.append(line.invoice_id.id)

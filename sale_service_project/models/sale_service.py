@@ -13,9 +13,7 @@ class ProcurementOrder(models.Model):
     def _get_project(self, procurement):
         order = procurement.sale_line_id.order_id
         parent = order.project_id
-        if procurement.product_id.project_id:
-            project = procurement.product_id.project_id
-        elif parent and order.name in parent.name:
+        if parent and order.name in parent.name:
             project = self.env['project.project'].search(
                 [('analytic_account_id', '=', parent.id)])
         else:
@@ -25,6 +23,9 @@ class ProcurementOrder(models.Model):
                     'parent_id': parent.id,
                     'to_invoice': parent.to_invoice.id,
                 })
+            if not parent.to_invoice and order.invoice_on_timesheets:
+                vals['to_invoice'] = self.env.ref(
+                    'hr_timesheet_invoice.timesheet_invoice_factor1').id
             project = self.env['project.project'].create(vals)
             order.project_id = project.analytic_account_id.id
         return project
