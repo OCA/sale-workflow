@@ -18,13 +18,13 @@ total area sold expressed in square meters:
     10 [pcs of] (4 m x 0.5 m) shelves = 20 m² of wood
 
 In order to have this function working, it is necessary to have the user
-proceeding as follows:
+proceed as follows:
 
 Then s/he shall create properties such as ‘length 4’, ‘width 0.5’.
 (Note: this can be more easily achieved by using the modules
 'sale_properties_easy_creation' and/or 'sale_properties_dynamic_fields')
 
-Properties must respond the following criteria:
+Properties must respect the following criteria:
     * Name: ‘length 1’, ‘length 4’, ‘width 0.5’
     * Property Group : either ‘length’ or ‘width’
     * Value : the corresponding quantity (1, 4, 0.5...)
