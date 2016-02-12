@@ -43,7 +43,7 @@ class SaleOrderLine(models.Model):
                     self._cr, self._uid, 'Product UoS')
                 for prop in self.env['mrp.property'].with_context(
                     prop_ctx
-                ).browse([p.id for p in self.property_ids]):
+                ).browse(self.property_ids.ids):
                     if prop.group_id.name in prop_dict:
                         raise except_orm(
                             _('Error'),
