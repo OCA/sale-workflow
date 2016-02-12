@@ -7,7 +7,7 @@
             <field name="model">product.price.service.wizard</field>
             <field name="arch" type="xml">
                 <form string="Compute Price">
-                    <group string="Select a service product to compute price">
+                    <group string="Select a product to get hour price">
                         <field name="product_id"/>
                     </group>                    <footer>
                         <button name="action_compute_price" string="Accept"

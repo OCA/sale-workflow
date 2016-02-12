@@ -154,8 +154,8 @@ msgstr "Línea pedido de venta"
 
 #. module: sale_service_project
 #: view:product.price.service.wizard:sale_service_project.wiz_compute_task_price
-msgid "Select a service product to compute price"
-msgstr "Selecciona un producto de tipo servicio para calcular el precio"
+msgid "Select a product to get hour price"
+msgstr "Selecciona un producto para obtener el precio de la hora"
 
 #. module: sale_service_project
 #: model:product.template,name:sale_service_project.product_product_oil_product_template
