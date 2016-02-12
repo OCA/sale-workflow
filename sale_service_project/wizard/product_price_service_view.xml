@@ -5,19 +5,11 @@
         <record id="wiz_compute_task_price" model="ir.ui.view">
             <field name="name">product.price.service.wizard.form</field>
             <field name="model">product.price.service.wizard</field>
-            <field name="type">form</field>
             <field name="arch" type="xml">
                 <form string="Compute Price">
-                        <DIV>
-                            <h3>Select a service product to compute price</h3>
-                        </DIV>
-                        <group>
-                            <group>
-                                <field name="product_id"
-                                       domain="[('type','=','service')]"/>
-                            </group>
-                        </group>
-                    <footer>
+                    <group string="Select a service product to compute price">
+                        <field name="product_id"/>
+                    </group>                    <footer>
                         <button name="action_compute_price" string="Accept"
                                 type="object" class="oe_highlight"/>
                         or

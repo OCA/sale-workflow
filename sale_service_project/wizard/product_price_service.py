@@ -10,9 +10,12 @@ class ProductPriceServiceWizard(models.TransientModel):
     _name = 'product.price.service.wizard'
 
     product_id = fields.Many2one(
-        comodel_name='product.product', string='Product')
+        comodel_name='product.product',
+        domain=[('type','=','service')],
+        string='Product')
     uom_id = fields.Many2one('product.uom', string='Unit of measure')
 
+    @api.model
     def _compute_price(self, product, product_service):
         total_hours = sum(product.mapped('task_work_ids.hours') or [0.0])
         total_price_hours = product_service.list_price * total_hours

@@ -46,7 +46,7 @@ msgstr "Calcular precio"
 #: code:addons/sale_service_project/models/product.py:23
 #, python-format
 msgid "Compute Service Price"
-msgstr "Carcular precio del servicio"
+msgstr "Calcular precio del servicio"
 
 #. module: sale_service_project
 #: view:product.template:sale_service_project.view_product_task_form

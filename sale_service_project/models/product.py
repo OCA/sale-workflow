@@ -43,6 +43,24 @@ class ProductTaskWork(models.Model):
         digits_compute=dp.get_precision('Product Unit of Measure'))
 
 
+class ProductProduct(models.Model):
+    _inherit = 'product.product'
+
+    @api.multi
+    def action_compute_price(self):
+        ctx = dict(self.env.context.copy(), active_id=self.product_tmpl_id.id)
+        wiz = {
+            'name': _("Compute Service Price"),
+            'view_mode': 'form',
+            'view_type': 'form',
+            'res_model': 'product.price.service.wizard',
+            'type': 'ir.actions.act_window',
+            'target': 'new',
+            'context': ctx
+            }
+        return wiz
+
+
 class ProductTaskMaterials(models.Model):
     _name = 'product.task.materials'
 
