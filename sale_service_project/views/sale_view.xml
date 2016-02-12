@@ -20,6 +20,7 @@
             <xpath expr="//field[@name='pricelist_id']" position="after">
                 <field name="invoice_on_timesheets"/>
                 <field name="print_works"/>
+                <field name="task_closed"/>
             </xpath>
         </field>
     </record>

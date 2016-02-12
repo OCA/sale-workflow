@@ -11,7 +11,7 @@ class ProductPriceServiceWizard(models.TransientModel):
 
     product_id = fields.Many2one(
         comodel_name='product.product',
-        domain=[('type','=','service')],
+        domain=[('type', '=', 'service')],
         string='Product')
     uom_id = fields.Many2one('product.uom', string='Unit of measure')
 

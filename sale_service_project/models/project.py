@@ -34,14 +34,16 @@ class ProjectTask(models.Model):
                                   compute='_compute_analytic_line_ids')
     all_invoiced = fields.Boolean(compute='_compute_analytic_line_ids')
     invoice_exists = fields.Boolean(compute='_compute_analytic_line_ids')
+    is_closed = fields.Boolean(relation='stage_id.closed')
 
     @api.multi
     def _compute_analytic_line_ids(self):
         for task in self:
             all_inv = True
             invoice_ids = []
-            lines = task.mapped('material_ids.analytic_line_id') | task.mapped(
-                'work_ids.hr_analytic_timesheet_id.line_id')
+            lines = task.mapped('work_ids.hr_analytic_timesheet_id.line_id')
+            if 'analytic_line_id' in task.material_ids._all_columns:
+                lines = lines | task.mapped('material_ids.analytic_line_id')
             for line in lines:
                 if line.invoice_id:
                     invoice_ids.append(line.invoice_id.id)

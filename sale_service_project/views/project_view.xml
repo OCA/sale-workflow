@@ -38,11 +38,13 @@
         <field name="inherit_id" ref="project.view_task_form2"/>
         <field name="arch" type="xml">
             <field name="stage_id" position="before">
+                <field name="is_closed" invisible="1"/>
                 <field name="all_invoiced" invisible="1"/>
                 <field name="invoice_exists" invisible="1"/>
                 <button name="action_create_invoice" string="Create Invoice"
                         type="object" class="oe_highlight"
-                        attrs="{'invisible':[('all_invoiced', '=', True)]}"/>
+                        attrs="{'invisible':['|',
+                        ('is_closed', '=', False), ('all_invoiced', '=', True)]}"/>
                 <button name="action_view_invoice" string="View Invoice"
                         type="object" class="oe_highlight"
                         attrs="{'invisible':[('invoice_exists', '=', False)]}"/>

@@ -20,11 +20,27 @@ class SaleOrder(models.Model):
         readonly=True,
         states={'draft': [('readonly', False)], 'sent': [('readonly', False)]}
     )
+    task_closed = fields.Boolean(
+        compute='_compute_task_closed',
+        search='_search_task_closed'
+    )
 
+    @api.multi
     def _compute_task_ids(self):
         for order in self:
-            self.task_ids = self.env['project.task'].search(
+            order.task_ids = self.env['project.task'].search(
                 [('sale_line_id', 'in', order.order_line.ids)])
+
+    @api.multi
+    def _compute_task_closed(self):
+        for order in self:
+            order.task_closed = all(order.task_ids.mapped('stage_id.closed'))
+
+    @api.model
+    def _search_task_closed(self, operator, operand):
+        tasks = self.env['project.task'].search([
+            ('stage_id.closed', operator, operand)])
+        return [('id', 'in', tasks.mapped('sale_line_id.order_id.id'))]
 
     @api.model
     def test_no_product(self, order):
@@ -41,6 +57,7 @@ class SaleOrder(models.Model):
 
     @api.multi
     def action_view_task(self):
+        # TODO: Simplify. View ./project.py action_view_invoice
         task_ids = self.mapped('task_ids')
         imd = self.env['ir.model.data']
         action = imd.xmlid_to_object('project.action_view_task')
