@@ -60,6 +60,7 @@ class SaleOrderLine(models.Model):
                     'product_id': self.product_id.id,
                 }
                 try:
+                    result = {}
                     amount = self.product_id.quantity_formula_id.\
                         compute_formula(localdict)
                     # rounding because decimal values, different from what
@@ -68,8 +69,13 @@ class SaleOrderLine(models.Model):
                     self.product_uom_qty = float_round(
                         amount, precision_digits=uom_precision)
                 except ValueError as e:
-                    _logger.warning(
-                        "Formula evaluation error: '%s'" % e.message)
+                    message = (
+                        _("Evaluation error in formula %s: ")
+                        % self.product_id.quantity_formula_id.name)
+                    message += e.message
+                    result['warning'] = {'title': _('Warning'),
+                                         'message': message}
+                return result
 
     def product_id_change(
         self, cr, uid, ids, pricelist, product_id, qty=0,
