@@ -51,7 +51,7 @@ class ProjectTask(models.Model):
                     all_inv = False
             task.analytic_line_ids = lines
             task.invoice_ids = invoice_ids
-            task.invoice_exists = invoice_ids and True or False
+            task.invoice_exists = bool(invoice_ids)
             task.all_invoiced = all_inv
 
     @api.multi
@@ -72,9 +72,8 @@ class ProjectTask(models.Model):
     def action_view_invoice(self):
         result = self.env.ref('account.action_invoice_tree1').read()[0]
         if len(self.invoice_ids) != 1:
-            result['domain'] = ("[('id', 'in', " + str(self.invoice_ids.ids) +
-                                ")]")
-        elif len(self.invoice_ids) == 1:
+            result['domain'] = "[('id', 'in', %s)]" % self.invoice_ids.ids
+        else:
             res = self.env.ref('account.invoice_form', False)
             result['views'] = [(res and res.id or False, 'form')]
             result['res_id'] = self.invoice_ids.id

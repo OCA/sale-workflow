@@ -57,35 +57,14 @@ class SaleOrder(models.Model):
 
     @api.multi
     def action_view_task(self):
-        # TODO: Simplify. View ./project.py action_view_invoice
         task_ids = self.mapped('task_ids')
-        imd = self.env['ir.model.data']
-        action = imd.xmlid_to_object('project.action_view_task')
-        list_view_id = imd.xmlid_to_res_id('project.view_task_tree2')
-        form_view_id = imd.xmlid_to_res_id('project.view_task_form2')
-
-        result = {
-            'name': action.name,
-            'help': action.help,
-            'type': action.type,
-            'views': [
-                [list_view_id, 'tree'],
-                [form_view_id, 'form'],
-                [False, 'graph'],
-                [False, 'kanban'],
-                [False, 'calendar'],
-                [False, 'pivot']],
-            'target': action.target,
-            'context': action.context,
-            'res_model': action.res_model,
-        }
-        if len(task_ids) > 1:
-            result['domain'] = "[('id','in',%s)]" % task_ids.ids
-        elif len(task_ids) == 1:
-            result['views'] = [(form_view_id, 'form')]
-            result['res_id'] = task_ids.ids[0]
+        result = self.env.ref('project.action_view_task').read()[0]
+        if len(task_ids) != 1:
+            result['domain'] = "[('id', 'in', %s)]" % task_ids.ids
         else:
-            result = {'type': 'ir.actions.act_window_close'}
+            res = self.env.ref('project.view_task_form2', False)
+            result['views'] = [(res and res.id or False, 'form')]
+            result['res_id'] = task_ids.id
         return result
 
 

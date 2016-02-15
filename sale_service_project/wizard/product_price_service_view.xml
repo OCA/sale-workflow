@@ -9,7 +9,8 @@
                 <form string="Compute Price">
                     <group string="Select a product to get hour price">
                         <field name="product_id"/>
-                    </group>                    <footer>
+                    </group>
+                    <footer>
                         <button name="action_compute_price" string="Accept"
                                 type="object" class="oe_highlight"/>
                         or
