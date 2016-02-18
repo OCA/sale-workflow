@@ -74,11 +74,15 @@ class SaleOrderLine(models.Model):
     auto_create_task = fields.Boolean(
         related='product_id.auto_create_task', readonly=True)
     task_work_ids = fields.One2many(
-        comodel_name='sale.order.line.task.work', inverse_name='order_line_id',
+        comodel_name='sale.order.line.task.work',
+        inverse_name='order_line_id',
+        copy=True,
         string='Works')
     task_materials_ids = fields.One2many(
         comodel_name='sale.order.line.task.materials',
-        inverse_name='order_line_id', string='Materials')
+        inverse_name='order_line_id',
+        copy=True,
+        string='Materials')
 
     @api.multi
     def product_id_change(
