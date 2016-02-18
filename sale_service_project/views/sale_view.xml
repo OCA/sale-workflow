@@ -17,11 +17,13 @@
                         attrs="{'invisible': ['|',('task_ids','=',False),('task_ids','=',[])]}"
                         groups="base.group_user"/>
             </xpath>
-            <xpath expr="//field[@name='pricelist_id']" position="after">
-                <field name="invoice_on_timesheets"/>
+            <field name="pricelist_id" position="after">
                 <field name="print_works"/>
-                <field name="task_closed"/>
-            </xpath>
+                <field name="task_closed" invisible="1"/>
+            </field>
+            <field name="origin" position="after">
+                <field name="invoice_on_timesheets"/>
+            </field>
         </field>
     </record>
 
@@ -55,8 +57,36 @@
                             </tree>
                         </field>
                     </group>
+                    <group string="Tasks">
+                        <field name="task_closed"/>
+                        <field name="task_ids" nolabel="1"/>
+                    </group>
                 </group>
             </xpath>
+        </field>
+    </record>
+
+    <record id="view_sale_service_project_order_filter" model="ir.ui.view">
+        <field name="name">sale.order.task.filter.inherit </field>
+        <field name="model">sale.order</field>
+        <field name="inherit_id" ref="sale.view_sales_order_filter"/>
+        <field name="arch" type="xml">
+            <xpath expr="//filter[@name='sales']" position="after">
+                <filter string="Task to invoice" name="sales"
+                        domain="[('state','=','manual'), ('order_line.task_closed','=',True)]"/>
+            </xpath>
+        </field>
+    </record>
+	sale.view_order_line_tree
+
+    <record id="view_order_line_tree_task" model="ir.ui.view">
+        <field name="name">sale.order.line.tree.task</field>
+        <field name="model">sale.order.line</field>
+        <field name="inherit_id" ref="sale.view_order_line_tree"/>
+        <field name="arch" type="xml">
+            <field name="state" position="after">
+                <field name="task_closed"/>
+            </field>
         </field>
     </record>
 

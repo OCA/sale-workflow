@@ -20,27 +20,17 @@ class SaleOrder(models.Model):
         readonly=True,
         states={'draft': [('readonly', False)], 'sent': [('readonly', False)]}
     )
-    task_closed = fields.Boolean(
-        compute='_compute_task_closed',
-        search='_search_task_closed'
-    )
+    task_closed = fields.Boolean(compute='_compute_task_closed')
 
     @api.multi
     def _compute_task_ids(self):
         for order in self:
-            order.task_ids = self.env['project.task'].search(
-                [('sale_line_id', 'in', order.order_line.ids)])
+            order.task_ids = order.mapped('order_line.task_ids')
 
     @api.multi
     def _compute_task_closed(self):
         for order in self:
-            order.task_closed = all(order.task_ids.mapped('stage_id.closed'))
-
-    @api.model
-    def _search_task_closed(self, operator, operand):
-        tasks = self.env['project.task'].search([
-            ('stage_id.closed', operator, operand)])
-        return [('id', 'in', tasks.mapped('sale_line_id.order_id.id'))]
+            order.task_closed = all(order.mapped('order_line.task_closed'))
 
     @api.model
     def test_no_product(self, order):
@@ -83,6 +73,20 @@ class SaleOrderLine(models.Model):
         inverse_name='order_line_id',
         copy=True,
         string='Materials')
+    task_ids = fields.One2many(
+        comodel_name='project.task',
+        inverse_name='sale_line_id',
+        string='Tasks')
+    task_closed = fields.Boolean(
+        compute='_compute_task_closed',
+        store=True,
+    )
+
+    @api.multi
+    @api.depends('task_ids.stage_id.closed')
+    def _compute_task_closed(self):
+        for line in self:
+            line.task_closed = all(line.mapped('task_ids.stage_id.closed'))
 
     @api.multi
     def product_id_change(
