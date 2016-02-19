@@ -10,7 +10,12 @@
             </t>
             <t t-if="o.print_works">
                 <t t-if="l.task_work_ids or l.task_materials_ids">
-                    <span t-field="l.task_work_ids[0].task_id.name"/>
+                    <t t-if="l.task_work_ids">
+                        <span t-field="l.task_work_ids[0].task_id.name"/>
+                    </t>
+                    <t t-if="not l.task_work_ids and l.task_materials_ids">
+                        <span t-field="l.task_materials_ids[0].task_id.name"/>
+                    </t>
                     <t t-set="order_line" t-value="l"/>
                     <t t-call="sale_service_project.works_and_materials"/>
                 </t>
@@ -47,7 +52,7 @@
         <p t-if="order_line.task_materials_ids" style="margin-left:10px;">
             <i><u>Materials</u></i><br/>
             <t t-foreach="order_line.task_materials_ids" t-as="material">
-                   <span style="margin-left:5px;" t-field="material.material_id"/><br/>
+                   <span style="margin-left:5px;" t-field="material.product_id"/><br/>
             </t>
         </p>
     </template>
