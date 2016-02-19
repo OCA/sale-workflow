@@ -7,18 +7,32 @@
         <field name="model">sale.order</field>
         <field name="inherit_id" ref="sale.view_order_form"/>
         <field name="arch" type="xml">
-            <xpath expr="//button[@name='action_view_invoice']"
-                   position="before">
-                <field name="task_ids" invisible="1"/>
+            <xpath expr="//button[@name='%(sale.action_view_sale_advance_payment_inv)d']"
+                   position="replace">
                 <button name="action_view_task"
                         string="View Tasks"
                         type="object"
                         class="oe_highlight"
-                        attrs="{'invisible': ['|',('task_ids','=',False),('task_ids','=',[])]}"
+                        attrs="{'invisible': ['|',('has_task','=',False),('task_closed','=',True)]}"
                         groups="base.group_user"/>
+                <button name="action_view_task"
+                        string="View Tasks"
+                        type="object"
+                        attrs="{'invisible': ['|',('has_task','=',False),('task_closed','=',False)]}"
+                        groups="base.group_user"/>
+                <button name="%(sale.action_view_sale_advance_payment_inv)d" string="Create Invoice"
+                    type="action" class="oe_highlight" groups="base.group_user"
+                    attrs="{'invisible': ['|',('state','!=','manual'),
+                                              '&amp;',('has_task','=',True),('task_closed','=',False)]}"
+                />
+                <button name="%(sale.action_view_sale_advance_payment_inv)d" string="Create Invoice"
+                    type="action" groups="base.group_user"
+                    attrs="{'invisible': ['|','|',('state','!=','manual'),('has_task','=',False),('task_closed','=',True)]}"
+                />
             </xpath>
             <field name="pricelist_id" position="after">
                 <field name="print_works"/>
+                <field name="has_task" invisible="1"/>
                 <field name="task_closed" invisible="1"/>
             </field>
             <field name="origin" position="after">
@@ -56,10 +70,6 @@
                                 <field name="quantity"/>
                             </tree>
                         </field>
-                    </group>
-                    <group string="Tasks">
-                        <field name="task_closed"/>
-                        <field name="task_ids" nolabel="1"/>
                     </group>
                 </group>
             </xpath>

@@ -107,9 +107,35 @@ class AccountAnalyticLine(models.Model):
         return invoices.ids
 
     @api.model
-    def _prepare_cost_invoice(
-            self, partner, company_id, currency_id, analytic_lines):
+    def _prepare_cost_invoice(self, partner, company_id, currency_id,
+                              analytic_lines):
         res = super(AccountAnalyticLine, self)._prepare_cost_invoice(
             partner, company_id, currency_id, analytic_lines)
-        res['print_works'] = False
+        res['print_works'] = True
+        return res
+
+    @api.model
+    def _prepare_cost_invoice_line(
+            self, invoice_id, product_id, uom, user_id, factor_id, account,
+            analytic_lines, journal_type, data):
+        res = super(AccountAnalyticLine, self)._prepare_cost_invoice_line(
+            invoice_id, product_id, uom, user_id, factor_id, account,
+            analytic_lines, journal_type, data)
+        analytic_lines_ids = [x.id for x in analytic_lines]
+        works = self.env['project.task.work'].search([
+            ('hr_analytic_timesheet_id.line_id', 'in', analytic_lines_ids)])
+        materials = self.env['project.task.materials']
+        if 'analytic_line_id' in materials._all_columns:
+            materials = materials.search([
+                ('analytic_line_id', 'in', analytic_lines_ids)])
+        res['task_work_ids'] = [(6, 0, works.ids)]
+        res['task_materials_ids'] = [(6, 0, materials.ids)]
+        # tasks = self.env['project.task'].search([
+        #     ('work_ids.hr_analytic_timesheet_id.line_id',
+        #          'in', analytic_lines.ids)])
+        # if 'analytic_line_id' in tasks.material_ids._all_columns:
+        #     tasks = tasks | self.env['project.task'].search([
+        #         ('material_ids.analytic_line_id',
+        #          '=', analytic_lines.ids)])
+        # res['task_ids'] = (6, 0, tasks.ids)
         return res

@@ -34,7 +34,7 @@ class ProjectTask(models.Model):
                                   compute='_compute_analytic_line_ids')
     all_invoiced = fields.Boolean(compute='_compute_analytic_line_ids')
     invoice_exists = fields.Boolean(compute='_compute_analytic_line_ids')
-    is_closed = fields.Boolean(relation='stage_id.closed')
+    is_closed = fields.Boolean(compute='_compute_analytic_line_ids')
 
     @api.multi
     def _compute_analytic_line_ids(self):
@@ -53,6 +53,7 @@ class ProjectTask(models.Model):
             task.invoice_ids = invoice_ids
             task.invoice_exists = bool(invoice_ids)
             task.all_invoiced = all_inv
+            task.is_closed = task.stage_id.closed
 
     @api.multi
     def action_create_invoice(self):

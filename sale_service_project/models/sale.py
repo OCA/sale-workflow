@@ -10,26 +10,25 @@ from openerp.addons.decimal_precision import decimal_precision as dp
 class SaleOrder(models.Model):
     _inherit = 'sale.order'
 
-    task_ids = fields.One2many(
-        comodel_name='project.task',
-        compute='_compute_task_ids',
-        string='Tasks')
     print_works = fields.Boolean(
         string='Print materials and works', default=True)
+    task_ids = fields.One2many(
+        comodel_name='project.task',
+        compute='_compute_tasks',
+        string='Tasks')
     invoice_on_timesheets = fields.Boolean(
         readonly=True,
         states={'draft': [('readonly', False)], 'sent': [('readonly', False)]}
     )
-    task_closed = fields.Boolean(compute='_compute_task_closed')
+    task_closed = fields.Boolean(compute='_compute_tasks')
+    has_task = fields.Boolean(compute='_compute_tasks')
 
     @api.multi
-    def _compute_task_ids(self):
+    def _compute_tasks(self):
         for order in self:
-            order.task_ids = order.mapped('order_line.task_ids')
-
-    @api.multi
-    def _compute_task_closed(self):
-        for order in self:
+            tasks = order.mapped('order_line.task_ids')
+            order.task_ids = tasks
+            order.has_task = bool(tasks)
             order.task_closed = all(order.mapped('order_line.task_closed'))
 
     @api.model
