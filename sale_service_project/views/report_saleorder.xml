@@ -15,7 +15,7 @@
                 <p t-if="l.task_materials_ids" style="margin-left:10px;">
                     <i><u>Materials</u></i><br/>
                     <t t-foreach="l.task_materials_ids" t-as="material">
-                           <span style="margin-left:5px;" t-field="material.material_id"/><br/>
+                           <span style="margin-left:5px;" t-field="material.product_id"/><br/>
                     </t>
                 </p>
             </t>

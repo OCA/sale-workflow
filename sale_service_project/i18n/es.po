@@ -146,7 +146,7 @@ msgstr "Última actualización en"
 
 #. module: sale_service_project
 #: field:product.task.materials,material_id:0
-#: field:sale.order.line.task.materials,material_id:0
+#: field:sale.order.line.task.materials,product_id:0
 msgid "Material"
 msgstr "Material"
 

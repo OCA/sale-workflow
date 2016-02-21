@@ -56,7 +56,7 @@ class ProcurementOrder(models.Model):
             total_work_hours += work.hours
         for material in sale_materials:
             material_list.append((0, 0, {
-                'product_id': material.material_id.id,
+                'product_id': material.product_id.id,
                 'quantity': material.quantity
             }))
         vals = {'planned_hours': total_work_hours,

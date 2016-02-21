@@ -108,7 +108,7 @@ class SaleOrderLine(models.Model):
             material_list = []
             for material in product_id.task_materials_ids:
                 material_list.append((0, 0, {
-                    'material_id': material.material_id.id,
+                    'product_id': material.material_id.id,
                     'quantity': material.quantity
                 }))
             vals = {'task_work_ids': work_list,
@@ -136,7 +136,7 @@ class SaleOrderLineTaskMaterials(models.Model):
 
     order_line_id = fields.Many2one(
         comodel_name='sale.order.line', string='Order Line')
-    material_id = fields.Many2one(
+    product_id = fields.Many2one(
         comodel_name='product.product', string='Material')
     quantity = fields.Float(
         string='Quantity',

@@ -10,11 +10,9 @@
             </t>
             <t t-if="o.print_works">
                 <t t-if="l.task_work_ids or l.task_materials_ids">
-                    <t t-if="l.task_work_ids">
-                        <span t-field="l.task_work_ids[0].task_id.name"/>
-                    </t>
-                    <t t-if="not l.task_work_ids and l.task_materials_ids">
-                        <span t-field="l.task_materials_ids[0].task_id.name"/>
+                    <t t-foreach="l.task_work_ids.mapped('task_id') | l.task_materials_ids.mapped('task_id')"
+                       t-as="task">
+                        <span t-field="task.name"/>
                     </t>
                     <t t-set="order_line" t-value="l"/>
                     <t t-call="sale_service_project.works_and_materials"/>
