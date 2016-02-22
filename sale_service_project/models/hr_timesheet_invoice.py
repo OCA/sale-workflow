@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
-# (c) 2015 Antiun Ingeniería S.L. - Sergio Teruel
-# (c) 2015 Antiun Ingeniería S.L. - Carlos Dauden
+# © 2015 Antiun Ingeniería S.L. - Sergio Teruel
+# © 2015 Antiun Ingeniería S.L. - Carlos Dauden
 # License AGPL-3 - See http://www.gnu.org/licenses/agpl-3.0.html
 
 from openerp import models, api, _
@@ -107,14 +107,6 @@ class AccountAnalyticLine(models.Model):
         return invoices.ids
 
     @api.model
-    def _prepare_cost_invoice(self, partner, company_id, currency_id,
-                              analytic_lines):
-        res = super(AccountAnalyticLine, self)._prepare_cost_invoice(
-            partner, company_id, currency_id, analytic_lines)
-        res['print_works'] = True
-        return res
-
-    @api.model
     def _prepare_cost_invoice_line(
             self, invoice_id, product_id, uom, user_id, factor_id, account,
             analytic_lines, journal_type, data):
@@ -130,12 +122,4 @@ class AccountAnalyticLine(models.Model):
                 ('analytic_line_id', 'in', analytic_lines_ids)])
         res['task_work_ids'] = [(6, 0, works.ids)]
         res['task_materials_ids'] = [(6, 0, materials.ids)]
-        # tasks = self.env['project.task'].search([
-        #     ('work_ids.hr_analytic_timesheet_id.line_id',
-        #          'in', analytic_lines.ids)])
-        # if 'analytic_line_id' in tasks.material_ids._all_columns:
-        #     tasks = tasks | self.env['project.task'].search([
-        #         ('material_ids.analytic_line_id',
-        #          '=', analytic_lines.ids)])
-        # res['task_ids'] = (6, 0, tasks.ids)
         return res

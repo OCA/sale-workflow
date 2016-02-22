@@ -6,7 +6,11 @@
 Sale Service Project
 ====================
 
-This module adds the option to assign materials and/or work to a service
+This module helps you to manage task created from sales order, let you choose
+if you wants to invoice from sale order or from task, and helps you to control
+with sale order must be invoiced or not depending if the task have been done or
+not.
+This module adds the option to assign materials and/or works to a service
 product type which serve as a template transferring this information to the
 line order which may be changed.
 This module extends the functionality of the *sale_service* module creating a
@@ -18,16 +22,26 @@ Usage
 
 To use this module, you need to:
 
-1. Create a service product and check 'Create Task Automatically'.
-2. Now you can add task works and materials for this product.
-3. You can compute the total price based in all materials and task works
-   assigned.
-4. Create sale order and assign an analytic account which will be parent of new
-   project.
-   If *invoice_on_timesheets* option is checked on analiytic account this sale
-   order will be invoiced from analytic lines. Otherwise sale order will be
-   invoiced normally.
-5. When you confirm the sale order odoo will create a project and tasks.
+#. Go to Sales -> Products and create a product with type Service, check also
+   option 'Create task automatically'.
+   Now you can add task works and materials for this product.
+   You can compute the total price based in all materials and task works
+   assigned. In the wizard you must select the product that has assigned
+   price's work hour.
+#. Go to Sales -> Sales Orders and create new with a service product with works
+   or/and materials which can be modified in each line.
+#. Print Sale Order to view the new detailed report. If you don't want detail,
+   you can disable *Print materials and works*.
+#. Assign a Analytic Account or check *invoice_on_timesheets* in Other
+   Information tab. (Default value to this field is the same that analytic
+   account have assigned, but it can be modified. In the new project created,
+   the invoice_on_timesheets field will have same value that the Sale Order.)
+   If invoice_on_timesheets field is checked this SO will be invoiced from
+   tasks or analytic lines.
+#. Confirm Sale Order. A new child project will be created and assigned to the
+   Sale Order.
+#. Manage the task/s created and invoice when task is closed.
+
 
 .. image:: https://odoo-community.org/website/image/ir.attachment/5784_f2813bd/datas
    :alt: Try me on Runbot

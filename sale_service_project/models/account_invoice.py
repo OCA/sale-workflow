@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
-# (c) 2015 Antiun Ingeniería S.L. - Sergio Teruel
-# (c) 2015 Antiun Ingeniería S.L. - Carlos Dauden
+# © 2015 Antiun Ingeniería S.L. - Sergio Teruel
+# © 2015 Antiun Ingeniería S.L. - Carlos Dauden
 # License AGPL-3 - See http://www.gnu.org/licenses/agpl-3.0.html
 
 from openerp import fields, models
@@ -11,22 +11,6 @@ class AccountInvoice(models.Model):
 
     print_works = fields.Boolean(
         string='Print materials and works', default=True)
-    # task_ids = fields.One2many(
-    #     comodel_name='project.task',
-    #     compute='_compute_task_ids',
-    #     string='Tasks')
-    #
-    # @api.multi
-    # def _compute_task_ids(self):
-    #     for inv in self:
-    #         tasks = self.env['project.task'].search([
-    #             ('work_ids.hr_analytic_timesheet_id.line_id.invoice_id',
-    #              '=', inv.id)])
-    #         if 'analytic_line_id' in tasks.material_ids._all_columns:
-    #             tasks = tasks | self.env['project.task'].search([
-    #                 ('material_ids.analytic_line_id.invoice_id.id',
-    #                  '=', inv.id)])
-    #         self.task_ids = tasks
 
 
 class AccountInvoiceLine(models.Model):
