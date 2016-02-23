@@ -158,7 +158,8 @@ class TestSaleOrderLotSelection(test_common.SingleTransactionCase):
             'active_model': 'stock.picking',
             'active_ids': [picking_in.id],
             'active_id': picking_in.id,
-            'default_picking_type_id': picking_in.id}).create({})
+            'default_picking_type_id': picking_in.id}).create({
+                'picking_id': picking_in.id})
         for item in pick_wizard.item_ids:
             if item.product_id == self.product_14:
                 item.lot_id = self.lot10
@@ -167,7 +168,6 @@ class TestSaleOrderLotSelection(test_common.SingleTransactionCase):
             if item.product_id == self.product_12:
                 item.lot_id = self.lot12
         pick_wizard.do_detailed_transfer()
-        picking_in.do_transfer()
 
         # check quantities
         lot10_qty = self._stock_quantity(
