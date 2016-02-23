@@ -1,23 +1,15 @@
 -
-  I modify the property group Length
--
-  !record {model: mrp.property.group, id: sale_properties_easy_creation.length_group, view: mrp.mrp_property_group_form_view}:
-    draw_dynamically: True
--
-  I check the created field
+  I modify the property group Length and check the created field
 -
   !python {model: mrp.property.group}: |
+    self.write(cr, uid, [ref('sale_properties_easy_creation.length_group')], {'draw_dynamically': True}, context=context)
     group = self.browse(cr, uid, ref('sale_properties_easy_creation.length_group'), context=context)
     assert group.field_id.name == 'x_length', "Field name must be 'x_length', %s found" % group.field_id.name
 -
-  I remove the draw_dynamically field
--
-  !record {model: mrp.property.group, id: sale_properties_easy_creation.length_group, view: mrp.mrp_property_group_form_view}:
-    draw_dynamically: False
--
-  I check the removed field
+  I remove the draw_dynamically field and check the removed field
 -
   !python {model: mrp.property.group}: |
+    self.write(cr, uid, [ref('sale_properties_easy_creation.length_group')], {'draw_dynamically': False}, context=context)
     group = self.browse(cr, uid, ref('sale_properties_easy_creation.length_group'), context=context)
     assert not group.field_id, "field_id must be empty"
 -
@@ -41,14 +33,10 @@
         context=context)
     assert not field_ids, "No x_depth field must be present"
 -
-  I modify the property group Width
--
-  !record {model: mrp.property.group, id: sale_properties_easy_creation.width_group, view: mrp.mrp_property_group_form_view}:
-    draw_dynamically: True
--
-  I check the created field
+  I modify the property group Width and check the created field
 -
   !python {model: mrp.property.group}: |
+    self.write(cr, uid, [ref('sale_properties_easy_creation.width_group')], {'draw_dynamically': True}, context=context)
     group = self.browse(cr, uid, ref('sale_properties_easy_creation.width_group'), context=context)
     assert group.field_id.name == 'x_width', "Field name must be 'x_width', %s found" % group.field_id.name
     assert group.field_id.model == 'sale.order.line', "Field model must be 'sale.order.line', %s found" % group.field_id.model
