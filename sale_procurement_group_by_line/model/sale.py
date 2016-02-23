@@ -49,7 +49,12 @@ class SaleOrder(models.Model):
             groups = {}
 
             for line in order.order_line:
+                if order.state == 'shipping_except':
+                    groups[line._get_procurement_group_key()] = \
+                        line.procurement_group_id.id
+
                 group_id = groups.get(line._get_procurement_group_key())
+
                 if not group_id:
                     vals = self._prepare_procurement_group_by_line(
                         cr, uid, line, context=context)
@@ -70,6 +75,8 @@ class SaleOrder(models.Model):
                     # trigger another move
                     proc_ids += [x.id for x in line.procurement_ids
                                  if x.state in ('exception', 'cancel')]
+                    procurement_obj.reset_to_confirmed(cr, uid, proc_ids,
+                                                       context=context)
                 elif sale_line_obj.need_procurement(cr, uid, [line.id],
                                                     context=context):
                     if (line.state == 'done') or not line.product_id:
