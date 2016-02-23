@@ -1,0 +1,5 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_product_task_work_user,product.task.work.user,model_product_task_work,base.group_user,1,1,1,1
+access_product_task_materials_user,product.task.materials.user,model_product_task_materials,base.group_user,1,1,1,1
+access_sale_order_line_materials_user,sale.order.line.materials.user,model_sale_order_line_task_materials,base.group_sale_salesman,1,1,1,1
+access_sale_order_line_works_user,sale.order.line.works.user,model_sale_order_line_task_work,base.group_sale_salesman,1,1,1,1
