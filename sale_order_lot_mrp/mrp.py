@@ -99,3 +99,19 @@ class MrpProductionProductLine(models.Model):
     _inherit = 'mrp.production.product.line'
 
     lot_id = fields.Many2one('stock.production.lot', 'Lot')
+
+
+class StockProductionLot(models.Model):
+    _inherit = 'stock.production.lot'
+
+    mrp_production_ids = fields.One2many(
+        'mrp.production',
+        'lot_id',
+        string='Production Order')
+
+    @api.multi
+    def unlink(self):
+        for lot in self:
+            for mo in lot.mrp_production_ids:
+                mo.unlink()
+        return super(StockProductionLot, self).unlink()
