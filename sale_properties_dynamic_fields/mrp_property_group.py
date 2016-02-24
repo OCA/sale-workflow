@@ -82,6 +82,9 @@ class MrpPropertyGroup(orm.Model):
             context = {}
         res = super(MrpPropertyGroup, self).write(
             cr, uid, ids, vals, context=context)
+        if 'draw_dynamically' not in vals:
+            # update field_id only when changing draw_dynamically field
+            return res
         field_pool = self.pool['ir.model.fields']
         for group in self.browse(cr, uid, ids, context=context):
             if group.draw_dynamically and not group.field_id:
