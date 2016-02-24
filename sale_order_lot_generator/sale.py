@@ -70,3 +70,11 @@ class SaleOrder(models.Model):
             return super(SaleOrder, self)._check_move_state(line)
         else:
             return True
+
+    @api.multi
+    def action_cancel(self):
+        res = super(SaleOrder, self).action_cancel()
+        for sale in self:
+            for line in sale.order_line:
+                line.lot_id.unlink()
+        return res
