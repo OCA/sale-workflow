@@ -97,7 +97,8 @@ class MrpPropertyGroup(orm.Model):
                 }, context=context)
             if not group.draw_dynamically and group.field_id:
                 context['_force_unlink'] = True
-                group.field_id.unlink(context=context)
+                field_pool.unlink(
+                    cr, uid, [group.field_id.id], context=context)
         return res
 
     def unlink(self, cr, uid, ids, context=None):
