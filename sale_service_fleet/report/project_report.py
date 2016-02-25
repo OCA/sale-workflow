@@ -15,6 +15,7 @@ class ReportProjectTaskUser(models.Model):
 
     def init(self, cr):
         tools.sql.drop_view_if_exists(cr, 'report_project_task_user')
+        # Adds t.vehicle_id to select and group in tasks report view
         cr.execute("""
             CREATE view report_project_task_user as
               SELECT
