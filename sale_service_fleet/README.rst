@@ -7,15 +7,17 @@ Sale Service Fleet
 ==================
 
 This module was written to extend the functionality of sale service project
-and allow you to assign a vehicle to a sale order, so when the project is
-created the vehicle is assigned to it.
+and allow you to assign a vehicle to analytic accounts and/or sale orders.
 
 Usage
 =====
 
 To use this module, you need to:
 
-1. Create a vehicle in fleet menu and assign it to a sale order.
+1. Go to Fleet -> Vehicle and create new.
+2. Go to Sales -> Contracts and assign a vehicle to an analytic account.
+3. Go to Sales -> Sales Orders and create new assign an analytic account
+   related with a vehicle or assign vehicle directly.
 
 .. image:: https://odoo-community.org/website/image/ir.attachment/5784_f2813bd/datas
    :alt: Try me on Runbot
