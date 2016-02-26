@@ -82,6 +82,9 @@ class MrpPropertyGroup(orm.Model):
             context = {}
         res = super(MrpPropertyGroup, self).write(
             cr, uid, ids, vals, context=context)
+        if 'draw_dynamically' not in vals:
+            # update field_id only when changing draw_dynamically field
+            return res
         field_pool = self.pool['ir.model.fields']
         for group in self.browse(cr, uid, ids, context=context):
             if group.draw_dynamically and not group.field_id:
@@ -94,7 +97,8 @@ class MrpPropertyGroup(orm.Model):
                 }, context=context)
             if not group.draw_dynamically and group.field_id:
                 context['_force_unlink'] = True
-                group.field_id.unlink(context=context)
+                field_pool.unlink(
+                    cr, uid, [group.field_id.id], context=context)
         return res
 
     def unlink(self, cr, uid, ids, context=None):
