@@ -1,6 +1,6 @@
 # Translation of Odoo Server.
 # This file contains the translation of the following modules:
-# * sale_owner_stock_sourcing
+# * account_invoice_reorder_lines
 # 
 # Translators:
 msgid ""
@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: sale-workflow (8.0)\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2016-02-26 09:59+0000\n"
-"PO-Revision-Date: 2015-09-03 07:09+0000\n"
+"PO-Revision-Date: 2015-11-30 09:39+0000\n"
 "Last-Translator: <>\n"
 "Language-Team: Spanish (http://www.transifex.com/oca/OCA-sale-workflow-8-0/language/es/)\n"
 "MIME-Version: 1.0\n"
@@ -17,17 +17,7 @@ msgstr ""
 "Language: es\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
-#. module: sale_owner_stock_sourcing
-#: model:ir.model,name:sale_owner_stock_sourcing.model_procurement_order
-msgid "Procurement"
-msgstr "Abastecimiento"
-
-#. module: sale_owner_stock_sourcing
-#: model:ir.model,name:sale_owner_stock_sourcing.model_sale_order_line
-msgid "Sales Order Line"
-msgstr "Línea de pedido de venta"
-
-#. module: sale_owner_stock_sourcing
-#: field:sale.order.line,stock_owner_id:0
-msgid "Stock Owner"
-msgstr ""
+#. module: account_invoice_reorder_lines
+#: model:ir.model,name:account_invoice_reorder_lines.model_account_invoice_line
+msgid "Invoice Line"
+msgstr "Línea de factura"

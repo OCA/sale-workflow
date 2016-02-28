@@ -8,52 +8,52 @@ msgstr ""
 "Project-Id-Version: sale-workflow (8.0)\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2016-02-26 09:59+0000\n"
-"PO-Revision-Date: 2016-02-26 16:54+0000\n"
-"Last-Translator: OCA Transbot <transbot@odoo-community.org>\n"
-"Language-Team: Spanish (http://www.transifex.com/oca/OCA-sale-workflow-8-0/language/es/)\n"
+"PO-Revision-Date: 2016-02-26 10:03+0000\n"
+"Last-Translator: <>\n"
+"Language-Team: Chinese (China) (http://www.transifex.com/oca/OCA-sale-workflow-8-0/language/zh_CN/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
-"Language: es\n"
-"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"Language: zh_CN\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
 
 #. module: sale_service_project
 #: view:product.price.service.wizard:sale_service_project.wiz_compute_task_price
 msgid "Accept"
-msgstr "Aceptar"
+msgstr ""
 
 #. module: sale_service_project
 #: model:ir.model,name:sale_service_project.model_account_analytic_line
 msgid "Analytic Line"
-msgstr "Línea analítica"
+msgstr ""
 
 #. module: sale_service_project
 #: view:product.price.service.wizard:sale_service_project.wiz_compute_task_price
 msgid "Cancel"
-msgstr "Cancelar"
+msgstr ""
 
 #. module: sale_service_project
 #: model:product.template,name:sale_service_project.product_template_revision_1
 msgid "Complete Revision"
-msgstr "Revisión completa"
+msgstr ""
 
 #. module: sale_service_project
 #: model:ir.actions.act_window,name:sale_service_project.action_sale_service_project_product_price
 #: view:product.price.service.wizard:sale_service_project.wiz_compute_task_price
 msgid "Compute Price"
-msgstr "Calcular precio"
+msgstr ""
 
 #. module: sale_service_project
 #: code:addons/sale_service_project/models/product.py:23
 #: code:addons/sale_service_project/models/product.py:53
 #, python-format
 msgid "Compute Service Price"
-msgstr "Calcular precio del servicio"
+msgstr ""
 
 #. module: sale_service_project
 #: view:product.template:sale_service_project.view_product_task_form
 msgid "Compute price"
-msgstr "Calcular precio"
+msgstr ""
 
 #. module: sale_service_project
 #: code:addons/sale_service_project/models/hr_timesheet_invoice.py:57
@@ -61,7 +61,7 @@ msgstr "Calcular precio"
 msgid ""
 "Contract incomplete. Please fill in the Customer and Pricelist fields for "
 "%s."
-msgstr "Contrato incompleto. Por favor rellene el cliente y la tarifa para %s."
+msgstr ""
 
 #. module: sale_service_project
 #: code:addons/sale_service_project/models/project.py:63
@@ -69,7 +69,7 @@ msgstr "Contrato incompleto. Por favor rellene el cliente y la tarifa para %s."
 #: view:sale.order:sale_service_project.view_order_form_service_project
 #, python-format
 msgid "Create Invoice"
-msgstr "Crear factura"
+msgstr ""
 
 #. module: sale_service_project
 #: field:product.price.service.wizard,create_uid:0
@@ -78,7 +78,7 @@ msgstr "Crear factura"
 #: field:sale.order.line.task.materials,create_uid:0
 #: field:sale.order.line.task.work,create_uid:0
 msgid "Created by"
-msgstr "Creado por"
+msgstr ""
 
 #. module: sale_service_project
 #: field:product.price.service.wizard,create_date:0
@@ -87,46 +87,46 @@ msgstr "Creado por"
 #: field:sale.order.line.task.materials,create_date:0
 #: field:sale.order.line.task.work,create_date:0
 msgid "Created on"
-msgstr "Creado en"
+msgstr ""
 
 #. module: sale_service_project
 #: code:addons/sale_service_project/models/hr_timesheet_invoice.py:57
 #: code:addons/sale_service_project/models/hr_timesheet_invoice.py:75
 #, python-format
 msgid "Error!"
-msgstr "¡Error!"
+msgstr ""
 
 #. module: sale_service_project
 #: model:product.template,name:sale_service_project.product_product_filter_product_template
 msgid "Filter Oil"
-msgstr "Filtro aceite"
+msgstr ""
 
 #. module: sale_service_project
 #: field:product.task.work,hours:0 field:sale.order.line.task.work,hours:0
 msgid "Hours"
-msgstr "Horas"
+msgstr ""
 
 #. module: sale_service_project
 #: field:product.price.service.wizard,id:0 field:product.task.materials,id:0
 #: field:product.task.work,id:0 field:sale.order.line.task.materials,id:0
 #: field:sale.order.line.task.work,id:0
 msgid "ID"
-msgstr "ID (identificación)"
+msgstr ""
 
 #. module: sale_service_project
 #: model:ir.model,name:sale_service_project.model_account_invoice
 msgid "Invoice"
-msgstr "Factura"
+msgstr ""
 
 #. module: sale_service_project
 #: model:ir.model,name:sale_service_project.model_account_invoice_line
 msgid "Invoice Line"
-msgstr "Línea de factura"
+msgstr ""
 
 #. module: sale_service_project
 #: field:sale.order,invoice_on_timesheets:0
 msgid "Invoice on timesheets"
-msgstr "Facturar desde trabajos "
+msgstr ""
 
 #. module: sale_service_project
 #: field:product.price.service.wizard,write_uid:0
@@ -135,7 +135,7 @@ msgstr "Facturar desde trabajos "
 #: field:sale.order.line.task.materials,write_uid:0
 #: field:sale.order.line.task.work,write_uid:0
 msgid "Last Updated by"
-msgstr "Última actualización de"
+msgstr ""
 
 #. module: sale_service_project
 #: field:product.price.service.wizard,write_date:0
@@ -144,13 +144,13 @@ msgstr "Última actualización de"
 #: field:sale.order.line.task.materials,write_date:0
 #: field:sale.order.line.task.work,write_date:0
 msgid "Last Updated on"
-msgstr "Última actualización en"
+msgstr ""
 
 #. module: sale_service_project
 #: field:product.task.materials,material_id:0
 #: field:sale.order.line.task.materials,product_id:0
 msgid "Material"
-msgstr "Material"
+msgstr ""
 
 #. module: sale_service_project
 #: field:account.invoice.line,task_materials_ids:0
@@ -161,28 +161,28 @@ msgstr "Material"
 #: view:website:sale.report_saleorder_document
 #: view:website:sale_service_project.works_and_materials
 msgid "Materials"
-msgstr "Materiales"
+msgstr ""
 
 #. module: sale_service_project
 #: field:product.task.work,name:0 field:sale.order.line.task.work,name:0
 msgid "Name"
-msgstr "Nombre"
+msgstr ""
 
 #. module: sale_service_project
 #: field:sale.order.line.task.materials,order_line_id:0
 #: field:sale.order.line.task.work,order_line_id:0
 msgid "Order Line"
-msgstr "Línea pedido de venta"
+msgstr ""
 
 #. module: sale_service_project
 #: field:account.invoice,print_works:0 field:sale.order,print_works:0
 msgid "Print materials and works"
-msgstr "Imprimir trabajos y materiales"
+msgstr ""
 
 #. module: sale_service_project
 #: model:ir.model,name:sale_service_project.model_procurement_order
 msgid "Procurement"
-msgstr "Abastecimiento"
+msgstr ""
 
 #. module: sale_service_project
 #: model:ir.model,name:sale_service_project.model_product_product
@@ -190,95 +190,95 @@ msgstr "Abastecimiento"
 #: field:product.task.materials,product_id:0
 #: field:product.task.work,product_id:0
 msgid "Product"
-msgstr "Producto"
+msgstr ""
 
 #. module: sale_service_project
 #: model:ir.actions.act_window,name:sale_service_project.act_view_product_task_materials
 msgid "Product Task Materials"
-msgstr "Materiales usados en la tarea"
+msgstr ""
 
 #. module: sale_service_project
 #: model:ir.actions.act_window,name:sale_service_project.act_view_product_task_work
 msgid "Product Task Work"
-msgstr "Actualizar Modo Trabajo"
+msgstr ""
 
 #. module: sale_service_project
 #: model:ir.model,name:sale_service_project.model_product_template
 msgid "Product Template"
-msgstr "Plantilla de producto"
+msgstr ""
 
 #. module: sale_service_project
 #: model:ir.model,name:sale_service_project.model_project_project
 msgid "Project"
-msgstr "Proyecto"
+msgstr ""
 
 #. module: sale_service_project
 #: view:project.task:sale_service_project.view_task_search_form_project_parent
 #: field:project.task,project_parent_id:0
 msgid "Project Parent"
-msgstr "Proyecto padre"
+msgstr ""
 
 #. module: sale_service_project
 #: field:product.task.materials,quantity:0
 #: field:sale.order.line.task.materials,quantity:0
 msgid "Quantity"
-msgstr "Cantidad"
+msgstr ""
 
 #. module: sale_service_project
 #: field:account.invoice.line,sale_order_lines:0
 msgid "Sale Order Lines"
-msgstr "Líneas pedido de ventas"
+msgstr ""
 
 #. module: sale_service_project
 #: model:ir.model,name:sale_service_project.model_sale_order
 msgid "Sales Order"
-msgstr "Pedido de venta"
+msgstr "销售订单"
 
 #. module: sale_service_project
 #: model:ir.model,name:sale_service_project.model_sale_order_line
 msgid "Sales Order Line"
-msgstr "Línea pedido de venta"
+msgstr ""
 
 #. module: sale_service_project
 #: view:product.price.service.wizard:sale_service_project.wiz_compute_task_price
 msgid "Select a product to get hour price"
-msgstr "Selecciona un producto para obtener el precio de la hora"
+msgstr ""
 
 #. module: sale_service_project
 #: model:product.template,name:sale_service_project.product_product_oil_product_template
 msgid "Synthetic Oil"
-msgstr "Aceite sintético"
+msgstr ""
 
 #. module: sale_service_project
 #: model:ir.model,name:sale_service_project.model_project_task
 msgid "Task"
-msgstr "Tareas"
+msgstr ""
 
 #. module: sale_service_project
 #: view:product.task.materials:sale_service_project.product_task_materials_form_view
 #: view:product.task.materials:sale_service_project.product_task_materials_tree_view
 msgid "Task Materials"
-msgstr "Materiales usados en la tarea"
+msgstr ""
 
 #. module: sale_service_project
 #: field:product.template,task_work_ids:0
 msgid "Task Works"
-msgstr "Trabajos"
+msgstr ""
 
 #. module: sale_service_project
 #: field:sale.order.line,task_closed:0
 msgid "Task closed"
-msgstr "Tarea cerrada"
+msgstr ""
 
 #. module: sale_service_project
 #: field:project.project,task_hours:0
 msgid "Task hours"
-msgstr "Trabajos"
+msgstr ""
 
 #. module: sale_service_project
 #: view:sale.order:sale_service_project.view_sale_service_project_order_filter
 msgid "Task to invoice"
-msgstr "Tareas a facturar"
+msgstr ""
 
 #. module: sale_service_project
 #: view:product.task.work:sale_service_project.product_task_work_form_view
@@ -287,33 +287,33 @@ msgstr "Tareas a facturar"
 #: view:sale.order:sale_service_project.view_sale_order_line_form
 #: field:sale.order.line,task_ids:0
 msgid "Tasks"
-msgstr "Tareas"
+msgstr ""
 
 #. module: sale_service_project
 #: model:ir.model,name:sale_service_project.model_hr_analytic_timesheet
 msgid "Timesheet Line"
-msgstr "Línea del parte de horas"
+msgstr ""
 
 #. module: sale_service_project
 #: code:addons/sale_service_project/models/hr_timesheet_invoice.py:75
 #, python-format
 msgid "Trying to invoice non invoiceable line for %s."
-msgstr "Intenanto facturar líneas no facturables %s."
+msgstr ""
 
 #. module: sale_service_project
 #: field:product.price.service.wizard,uom_id:0
 msgid "Unit of measure"
-msgstr "Unidad de medida"
+msgstr ""
 
 #. module: sale_service_project
 #: view:project.task:sale_service_project.view_sale_service_inherit_form2
 msgid "View Invoice"
-msgstr "Ver Factura"
+msgstr ""
 
 #. module: sale_service_project
 #: view:sale.order:sale_service_project.view_order_form_service_project
 msgid "View Tasks"
-msgstr "Tareas"
+msgstr ""
 
 #. module: sale_service_project
 #: field:account.invoice.line,task_work_ids:0
@@ -323,7 +323,7 @@ msgstr "Tareas"
 #: view:website:sale.report_saleorder_document
 #: view:website:sale_service_project.works_and_materials
 msgid "Works"
-msgstr "Trabajos"
+msgstr ""
 
 #. module: sale_service_project
 #: view:product.template:sale_service_project.view_product_task_form
@@ -335,4 +335,4 @@ msgstr ""
 #. module: sale_service_project
 #: view:product.price.service.wizard:sale_service_project.wiz_compute_task_price
 msgid "or"
-msgstr "o"
+msgstr ""

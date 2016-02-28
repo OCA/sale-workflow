@@ -3,13 +3,13 @@
 # * sale_packaging_price
 # 
 # Translators:
-# Matjaž Mozetič <m.mozetic@matmoz.si>, 2015
+# Matjaž Mozetič <m.mozetic@matmoz.si>, 2015-2016
 msgid ""
 msgstr ""
 "Project-Id-Version: sale-workflow (8.0)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-12-22 01:40+0000\n"
-"PO-Revision-Date: 2015-12-22 08:00+0000\n"
+"POT-Creation-Date: 2016-02-26 09:59+0000\n"
+"PO-Revision-Date: 2016-02-27 16:56+0000\n"
 "Last-Translator: Matjaž Mozetič <m.mozetic@matmoz.si>\n"
 "Language-Team: Slovenian (http://www.transifex.com/oca/OCA-sale-workflow-8-0/language/sl/)\n"
 "MIME-Version: 1.0\n"
@@ -22,10 +22,20 @@ msgstr ""
 #: model:ir.actions.act_window,help:sale_packaging_price.action_product_packaging_form
 msgid ""
 "<p class=\"oe_view_nocontent_create\">\n"
-"            Click to add a packaging for your products.\n"
-"          </p>\n"
+"                Click to add a packaging for your products.\n"
+"            </p>\n"
 "        "
-msgstr "<p class=\"oe_view_nocontent_create\">\n            Dodaj pakiranje proizvodov.\n          </p>\n        "
+msgstr "<p class=\"oe_view_nocontent_create\">\n                Dodajanje pakiranja k proizvodom.\n            </p>\n        "
+
+#. module: sale_packaging_price
+#: field:product.packaging.material,create_uid:0
+msgid "Created by"
+msgstr "Ustvaril"
+
+#. module: sale_packaging_price
+#: field:product.packaging.material,create_date:0
+msgid "Created on"
+msgstr "Ustvarjeno"
 
 #. module: sale_packaging_price
 #: view:product.packaging:sale_packaging_price.product_packaging_filter
@@ -33,9 +43,35 @@ msgid "Group By..."
 msgstr "Združi po..."
 
 #. module: sale_packaging_price
+#: field:product.packaging.material,id:0
+msgid "ID"
+msgstr "ID"
+
+#. module: sale_packaging_price
+#: field:product.packaging.material,write_uid:0
+msgid "Last Updated by"
+msgstr "Zadnji posodobil"
+
+#. module: sale_packaging_price
+#: field:product.packaging.material,write_date:0
+msgid "Last Updated on"
+msgstr "Zadnjič posodobljeno"
+
+#. module: sale_packaging_price
 #: view:product.packaging:sale_packaging_price.product_packaging_filter
 msgid "Logistic Unit"
 msgstr "Logistična enota"
+
+#. module: sale_packaging_price
+#: view:product.packaging:sale_packaging_price.product_packaging_filter
+msgid "Pack Type"
+msgstr "Tip pakiranja"
+
+#. module: sale_packaging_price
+#: field:product.packaging,package_material_id:0
+#: field:product.packaging.material,name:0
+msgid "Package Material"
+msgstr "Material pakiranja"
 
 #. module: sale_packaging_price
 #: field:product.packaging,list_price:0
@@ -55,7 +91,7 @@ msgid "Packaging"
 msgstr "Pakiranje"
 
 #. module: sale_packaging_price
-#: code:addons/sale_packaging_price/models/product.py:31
+#: code:addons/sale_packaging_price/models/product.py:40
 #, python-format
 msgid "Problem with price"
 msgstr "Težava s ceno"
@@ -103,7 +139,7 @@ msgid "This price will be considered as a price for complete package"
 msgstr "Ta cena bo upoštevana kot cena celotnega pakiranja"
 
 #. module: sale_packaging_price
-#: code:addons/sale_packaging_price/models/product.py:32
+#: code:addons/sale_packaging_price/models/product.py:41
 #, python-format
 msgid ""
 "With the current decimal precision, you can't get this price. (Approx. price"
