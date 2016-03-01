@@ -112,12 +112,14 @@ class product_template(models.Model):
         ('none_detailed_totaliced_price', 'None Detailed - Totaliced Price'),
     ],
         'Pack Type',
-        help="""
-        * Detailed - Components Prices: Detail lines with prices on sales order.
-        * Detailed - Totaliced Price: Detail lines on sales order totalicing lines prices on pack (don't show component prices).
-        * Detailed - Fixed Price: Detail lines on sales order and use product pack price (ignore line prices).
-        * None Detailed - Assisted Price: Do not detail lines on sales order. Assist to get pack price using pack lines.
-        """
+        help="* Detailed - Components Prices: Detail lines with prices on "
+        "sales order.\n"
+        "* Detailed - Totaliced Price: Detail lines on sales order totalicing "
+        "lines prices on pack (don't show component prices).\n"
+        "* Detailed - Fixed Price: Detail lines on sales order and use product"
+        " pack price (ignore line prices).\n"
+        "* None Detailed - Assisted Price: Do not detail lines on sales "
+        "order. Assist to get pack price using pack lines."
         )
     pack = fields.Boolean(
         'Pack?',
@@ -131,7 +133,7 @@ class product_template(models.Model):
         )
 
     @api.constrains(
-        'parent_product_id', 'product_variant_ids', 'pack_price_type', 'pack')
+        'product_variant_ids', 'pack_price_type')
     def check_relations(self):
         """
         Check assited packs dont have packs a childs
@@ -158,8 +160,8 @@ class product_template(models.Model):
         #     print 'parent_assited_packs', parent_assited_packs
         #     if parent_assited_packs:
         #         raise Warning(_(
-        #             'You can not set this product as pack because it is part '
-        #             'of a "None Detailed - Assisted Price Pack"'))
+        #             'You can not set this product as pack because it is part'
+        #             ' of a "None Detailed - Assisted Price Pack"'))
 
     @api.one
     @api.constrains('company_id', 'product_variant_ids', 'used_pack_line_ids')
