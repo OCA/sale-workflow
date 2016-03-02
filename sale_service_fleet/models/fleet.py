@@ -9,8 +9,8 @@ from openerp import models, fields
 class FleetVehicle(models.Model):
     _inherit = "fleet.vehicle"
 
-    project_ids = fields.One2many(
-        comodel_name='project.project', inverse_name='vehicle_id',
+    analytic_account_ids = fields.One2many(
+        comodel_name='account.analytic.account', inverse_name='vehicle_id',
         string='Projects')
     task_ids = fields.One2many(
         comodel_name='project.task', inverse_name='vehicle_id',
