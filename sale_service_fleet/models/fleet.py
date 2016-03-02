@@ -11,7 +11,7 @@ class FleetVehicle(models.Model):
 
     analytic_account_ids = fields.One2many(
         comodel_name='account.analytic.account', inverse_name='vehicle_id',
-        string='Projects')
+        string='Contracts')
     task_ids = fields.One2many(
         comodel_name='project.task', inverse_name='vehicle_id',
-        string='Projects')
+        string='Tasks')
