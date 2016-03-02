@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+<data>
+
+<template id="report_saleorder_document" inherit_id="sale.report_saleorder_document">
+    <xpath expr="//div[@id='informations']" position="inside">
+        <div t-if="o.vehicle_id" class="col-xs-3">
+            <strong>Vehicle:</strong>
+            <p t-field="o.vehicle_id"/>
+        </div>
+    </xpath>
+</template>
+
+</data>
+</openerp>
