@@ -52,6 +52,7 @@ addon | version | summary
 [sale_quotation_sourcing_stock_route_transit](sale_quotation_sourcing_stock_route_transit/) | 8.0.0.1.0 | Link module for sale_quotation_sourcing + stock_route_transit
 [sale_reason_to_export](sale_reason_to_export/) | 8.0.0.1.0 | Reason to export in Sales Order
 [sale_rental](sale_rental/) | 8.0.0.1.0 | Manage Rental of Products
+[sale_service_fleet](sale_service_fleet/) | 8.0.1.0.0 | Sale Service Fleet
 [sale_service_project](sale_service_project/) | 8.0.1.0.0 | Sale Service Project
 [sale_sourced_by_line](sale_sourced_by_line/) | 8.0.1.1.0 | Multiple warehouse source locations for Sale order
 [sale_sourced_by_line_sale_transport_multi_address](sale_sourced_by_line_sale_transport_multi_address/) | 8.0.1.0.0 | Make sale_sourced_by_line and sale_transport_multi_addresswork together
