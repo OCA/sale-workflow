@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+        <record id="payment_method_view_form" model="ir.ui.view">
+            <field name="name">sale_payment_method.payment_method.view_form</field>
+            <field name="model">payment.method</field>
+            <field name="arch" type="xml">
+                <form string="Payment Methods">
+                    <h1>
+                        <field name="name" class="oe_inline"/>
+                    </h1>
+                    <group name="general">
+                        <group name="config">
+                            <field name="company_id" string="Company" />
+                            <field name="journal_id" string="Journal for payment"/>
+                        </group>
+                        <group name="payment_help" class="oe_grey" col="1">
+                            <p attrs="{'invisible': [('journal_id', '=', False)]}">
+                                When the E-commerce backend will receive a payment for a sale order,
+                                payment entries will be generated in the selected journal.
+                            </p>
+                            <p attrs="{'invisible': [('journal_id', '!=', False)]}">
+                                Even if the E-commerce backend receives a payment for a sale order,
+                                no payment entries will be generated.
+                            </p>
+                        </group>
+                    </group>
+                    <group string="Default Values">
+                        <field name="payment_term_id" />
+                    </group>
+                </form>
+            </field>
+        </record>
+
+        <record id="payment_method_view_tree" model="ir.ui.view">
+            <field name="name">sale_payment_method.payment_method.view_tree</field>
+            <field name="model">payment.method</field>
+            <field name="arch" type="xml">
+                <tree string="Payment Methods">
+                    <field name="name" />
+                    <field name="journal_id" />
+                    <field name="payment_term_id" />
+                </tree>
+            </field>
+        </record>
+
+        <record id="act_payment_method_form" model="ir.actions.act_window">
+            <field name="name">Payment Methods </field>
+            <field name="res_model">payment.method</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+
+        <menuitem action="act_payment_method_form" id="menu_action_paymetn_method_form" parent="base.menu_sale_config_sales" sequence="20"/>
+
+    </data>
+</openerp>

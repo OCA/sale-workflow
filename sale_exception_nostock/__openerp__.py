@@ -19,7 +19,7 @@
 #
 #
 {'name': 'Sale stock exception',
- 'version': '1.2',
+ 'version': '8.0.1.2.0',
  'author': "Camptocamp,Odoo Community Association (OCA)",
  'maintainer': 'Camptocamp',
  'category': 'sale',

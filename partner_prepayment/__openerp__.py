@@ -20,7 +20,7 @@
 
 {'name': 'Partner Prepayment',
  'summary': 'Option on partner to set prepayment policy',
- 'version': '1.0',
+ 'version': '8.0.1.0.0',
  'author': "Camptocamp,Odoo Community Association (OCA)",
  'category': 'Sales',
  'license': 'AGPL-3',

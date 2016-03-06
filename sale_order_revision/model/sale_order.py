@@ -61,6 +61,7 @@ class sale_order(models.Model):
         self.delete_workflow()
         self.create_workflow()
         self.write({'state': 'draft'})
+        self.order_line.write({'state': 'draft'})
         msg = _('New revision created: %s') % self.name
         self.message_post(body=msg)
         old_revision.message_post(body=msg)

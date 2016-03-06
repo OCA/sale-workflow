@@ -24,7 +24,7 @@
     'website': "http://www.camptocamp.com",
 
     'category': 'Sales',
-    'version': '0.1',
+    'version': '8.0.0.1.0',
 
     'depends': ['sale_quotation_sourcing',
                 'stock_route_transit',

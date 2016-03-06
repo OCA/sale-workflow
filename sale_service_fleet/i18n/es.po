@@ -1,0 +1,85 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* sale_service_fleet
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 8.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2016-03-02 17:48+0000\n"
+"PO-Revision-Date: 2016-03-02 18:49+0100\n"
+"Last-Translator: Carlos Incaser <carlos@incaser.es>\n"
+"Language-Team: \n"
+"Language: es-ES\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Poedit 1.5.4\n"
+
+#. module: sale_service_fleet
+#: model:ir.model,name:sale_service_fleet.model_account_analytic_account
+msgid "Analytic Account"
+msgstr "Cuenta analítica"
+
+#. module: sale_service_fleet
+#: field:fleet.vehicle,analytic_account_ids:0
+msgid "Contracts"
+msgstr "Contratos"
+
+#. module: sale_service_fleet
+#: model:ir.model,name:sale_service_fleet.model_fleet_vehicle
+msgid "Information on a vehicle"
+msgstr "Información de un vehículo"
+
+#. module: sale_service_fleet
+#: model:ir.model,name:sale_service_fleet.model_procurement_order
+msgid "Procurement"
+msgstr "Abastecimiento"
+
+#. module: sale_service_fleet
+#: model:ir.model,name:sale_service_fleet.model_sale_order
+msgid "Sales Order"
+msgstr "Pedido de venta"
+
+#. module: sale_service_fleet
+#: model:ir.model,name:sale_service_fleet.model_project_task
+msgid "Task"
+msgstr "Tarea"
+
+#. module: sale_service_fleet
+#: field:fleet.vehicle,task_ids:0
+msgid "Tasks"
+msgstr "Tareas"
+
+#. module: sale_service_fleet
+#: model:ir.model,name:sale_service_fleet.model_report_project_task_user
+msgid "Tasks by user and project"
+msgstr "Tareas por usuario y proyecto"
+
+#. module: sale_service_fleet
+#: view:account.analytic.account:sale_service_fleet.view_account_analytic_account_vehicle_form
+#: view:account.analytic.account:sale_service_fleet.view_sale_service_fleet_analytic_search
+#: field:account.analytic.account,vehicle_id:0
+#: view:project.project:sale_service_fleet.view_sale_service_fleet_edit_project_form_inherit
+#: view:project.task:sale_service_fleet.view_sale_service_fleet_inherit_form2
+#: view:project.task:sale_service_fleet.view_sale_service_fleet_task_search
+#: field:project.task,vehicle_id:0
+#: view:report.project.task.user:sale_service_fleet.view_task_project_user_search
+#: field:report.project.task.user,vehicle_id:0 field:sale.order,vehicle_id:0
+msgid "Vehicle"
+msgstr "Vehículo"
+
+#. module: sale_service_fleet
+#: view:website:account.report_invoice_document
+#: view:website:sale.report_saleorder_document
+msgid "Vehicle:"
+msgstr "Vehículo:"
+
+#~ msgid "Projects"
+#~ msgstr "Proyectos"
+
+#~ msgid "Invoice on timesheets"
+#~ msgstr "Facturar desde trabajos"
+
+#~ msgid "Project"
+#~ msgstr "Proyecto"

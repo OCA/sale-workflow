@@ -1,21 +1,22 @@
 # Translation of Odoo Server.
 # This file contains the translation of the following modules:
-# 	* sale_rental
-#
+# * sale_rental
+# 
+# Translators:
+# Matjaž Mozetič <m.mozetic@matmoz.si>, 2015
 msgid ""
 msgstr ""
-"Project-Id-Version: Odoo Server 8.0\n"
+"Project-Id-Version: sale-workflow (8.0)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-06-02 13:04+0000\n"
-"PO-Revision-Date: 2015-08-16 08:25+0200\n"
-"Last-Translator: Matjaz Mozetic <m.mozetic@matmoz.si>\n"
-"Language-Team: \n"
+"POT-Creation-Date: 2015-09-09 12:27+0000\n"
+"PO-Revision-Date: 2015-09-07 14:32+0000\n"
+"Last-Translator: Matjaž Mozetič <m.mozetic@matmoz.si>\n"
+"Language-Team: Slovenian (http://www.transifex.com/oca/OCA-sale-workflow-8-0/language/sl/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
-"Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: \n"
+"Content-Transfer-Encoding: \n"
 "Language: sl\n"
-"X-Generator: Poedit 1.8.4\n"
+"Plural-Forms: nplurals=4; plural=(n%100==1 ? 0 : n%100==2 ? 1 : n%100==3 || n%100==4 ? 2 : 3);\n"
 
 #. module: sale_rental
 #: field:sale.order.line,can_sell_rental:0
@@ -23,13 +24,13 @@ msgid "Can Sell from Rental"
 msgstr "Možna prodaja najemniških proizvodov"
 
 #. module: sale_rental
-#: code:addons/sale_rental/rental.py:523
+#: code:addons/sale_rental/rental.py:525
 #, python-format
 msgid "Can't find any generic 'Rent' route."
 msgstr "Nobena generična najemna proga ni najdena."
 
 #. module: sale_rental
-#: code:addons/sale_rental/rental.py:535
+#: code:addons/sale_rental/rental.py:537
 #, python-format
 msgid "Can't find any generic 'Sell Rented Product' route."
 msgstr "Nobena generična proga 'prodanih najemniških proizvodov' ni najdena."
@@ -44,6 +45,11 @@ msgstr "Preklic"
 #, python-format
 msgid "Cannot sell the rental %s because it has not been delivered"
 msgstr "Ni mogoče prodati najemniškega proizvoda %s, ker ni bil dostavljen"
+
+#. module: sale_rental
+#: field:create.rental.product,copy_image:0
+msgid "Copy Product Image"
+msgstr "Kopiranje slike proizvoda"
 
 #. module: sale_rental
 #: view:create.rental.product:sale_rental.create_rental_product_form
@@ -94,6 +100,11 @@ msgid "ID"
 msgstr "ID"
 
 #. module: sale_rental
+#: help:sale.order.line,rental_qty:0
+msgid "Indicate the number of items that will be rented."
+msgstr "Določa število predmetov za najem."
+
+#. module: sale_rental
 #: field:create.rental.product,write_uid:0 field:sale.rental,write_uid:0
 msgid "Last Updated by"
 msgstr "Zadnji posodobil"
@@ -104,7 +115,7 @@ msgid "Last Updated on"
 msgstr "Zadnjič posodobljeno"
 
 #. module: sale_rental
-#: code:addons/sale_rental/rental.py:150
+#: code:addons/sale_rental/rental.py:151
 #, python-format
 msgid "Missing Rental to Extend on the sale order line with rental service %s"
 msgstr "Na postavki prodajnega naloga z najemniško storitvijo %s manjka najemniški proizvod za podaljšanje"
@@ -115,39 +126,51 @@ msgid "New Rental"
 msgstr "Novo najemništvo"
 
 #. module: sale_rental
-#: code:addons/sale_rental/rental.py:247
+#: code:addons/sale_rental/rental.py:248
 #, python-format
 msgid "Not enough stock !"
 msgstr "Ni dovolj zaloge!"
 
 #. module: sale_rental
-#: code:addons/sale_rental/rental.py:166
+#: code:addons/sale_rental/rental.py:167
 #, python-format
-msgid "On the 'new rental' sale order line with product '%s', we should have a rental service product !"
+msgid ""
+"On the 'new rental' sale order line with product '%s', we should have a "
+"rental service product !"
 msgstr "Na novi najemniški postavki prodajnega naloga s proizvodom '%s' morate imeti proizvod najemniške storitve!"
 
 #. module: sale_rental
-#: code:addons/sale_rental/rental.py:179
+#: code:addons/sale_rental/rental.py:180
 #, python-format
-msgid "On the rental sale order line with product %sthe must have dates option should be enabled"
+msgid ""
+"On the rental sale order line with product %sthe must have dates option "
+"should be enabled"
 msgstr "Na najemniški postavki prodajnega naloga s proizvodom %s morate imeti omogočene opcije datuma"
 
 #. module: sale_rental
-#: code:addons/sale_rental/rental.py:187
+#: code:addons/sale_rental/rental.py:188
 #, python-format
-msgid "On the sale order line with product %s you are trying to sell a rented product with a quantity (%s) that is different from the rented quantity (%s). This is not supported."
+msgid ""
+"On the sale order line with product %s you are trying to sell a rented "
+"product with a quantity (%s) that is different from the rented quantity "
+"(%s). This is not supported."
 msgstr "Na postavki prodajnega naloga s proizvodom %s poskušate prodati najemniški proizvod s količino (%s), ki je drugačen od najemniške količine (%s). To ni podprto."
 
 #. module: sale_rental
-#: code:addons/sale_rental/rental.py:171
+#: code:addons/sale_rental/rental.py:172
 #, python-format
-msgid "On the sale order line with product '%s' the Product Quantity (%s) should be the number of days (%s) multiplied by the Rental Quantity (%s)."
+msgid ""
+"On the sale order line with product '%s' the Product Quantity (%s) should be"
+" the number of days (%s) multiplied by the Rental Quantity (%s)."
 msgstr "Na postavki prodajnega naloga s proizvodom %s mora biti količina proizvodov (%s) v številu dni (%s) pomnoženim z najemniško količino (%s)."
 
 #. module: sale_rental
-#: code:addons/sale_rental/rental.py:155
+#: code:addons/sale_rental/rental.py:156
 #, python-format
-msgid "On the sale order line with rental service %s, you are trying to extend a rental with a rental quantity (%s) that is different from the quantity of the original rental (%s). This is not supported."
+msgid ""
+"On the sale order line with rental service %s, you are trying to extend a "
+"rental with a rental quantity (%s) that is different from the quantity of "
+"the original rental (%s). This is not supported."
 msgstr "Na postavki prodajnega naloga s proizvodom %s poskušate podaljšati najemništvo s količino (%s), ki je drugačna od količine izvornega najema (%s). To ni podprto."
 
 #. module: sale_rental
@@ -171,7 +194,7 @@ msgid "Pushed Flows"
 msgstr "Potisnjeni tokovi"
 
 #. module: sale_rental
-#: code:addons/sale_rental/wizard/create_rental_product.py:45
+#: code:addons/sale_rental/wizard/create_rental_product.py:46
 #, python-format
 msgid "RENT-%s"
 msgstr "NAJEM-%s"
@@ -188,7 +211,8 @@ msgid "Related Rented Product"
 msgstr "Povezani najemniški proizvod"
 
 #. module: sale_rental
-#: code:addons/sale_rental/rental.py:520
+#: code:addons/sale_rental/rental.py:522
+#: model:stock.location.route,name:sale_rental.route_warehouse0_rental
 #, python-format
 msgid "Rent"
 msgstr "Najem"
@@ -218,11 +242,13 @@ msgid "Rental Extensions"
 msgstr "Podaljšanja najemništva"
 
 #. module: sale_rental
+#: model:stock.location,name:sale_rental.rental_in_stock_location
 #: field:stock.warehouse,rental_in_location_id:0
 msgid "Rental In"
 msgstr "Vhodni najem"
 
 #. module: sale_rental
+#: model:stock.location,name:sale_rental.rental_out_stock_location
 #: field:stock.warehouse,rental_out_location_id:0
 msgid "Rental Out"
 msgstr "Izhodni najem"
@@ -307,9 +333,10 @@ msgid "Sales Order Line"
 msgstr "Postavka prodajnega naloga"
 
 #. module: sale_rental
-#: code:addons/sale_rental/rental.py:529
+#: code:addons/sale_rental/rental.py:531
 #: view:sale.rental:sale_rental.sale_rental_form
 #: field:sale.rental,sell_order_line_ids:0
+#: model:stock.location.route,name:sale_rental.route_warehouse0_sell_rented_product
 #, python-format
 msgid "Sell Rented Product"
 msgstr "Prodaja najemniškega proizvoda"
@@ -325,21 +352,23 @@ msgid "Stock Move"
 msgstr "Premik zaloge"
 
 #. module: sale_rental
-#: code:addons/sale_rental/rental.py:539
+#: code:addons/sale_rental/rental.py:541
 #, python-format
 msgid "The Rental Input stock location is not set on the warehouse %s"
 msgstr "Lokacija vhodne najemne zaloge v skladišču %s ni nastavljena"
 
 #. module: sale_rental
-#: code:addons/sale_rental/rental.py:543
+#: code:addons/sale_rental/rental.py:545
 #, python-format
 msgid "The Rental Output stock location is not set on the warehouse %s"
 msgstr "Lokacija izhodne najemne zaloge v skladišču %s ni nastavljena"
 
 #. module: sale_rental
-#: code:addons/sale_rental/rental.py:295
+#: code:addons/sale_rental/rental.py:296
 #, python-format
-msgid "The Rental Service of the Rental Extension you just selected is '%s' and it's not the same as the Product currently selected in this Sale Order Line."
+msgid ""
+"The Rental Service of the Rental Extension you just selected is '%s' and "
+"it's not the same as the Product currently selected in this Sale Order Line."
 msgstr "Najemniška storitev podaljšanja najema, ki ste jo ravnokar izbrali je '%s' in ne ustreza trenutno izbranemu proizvodu v tej postavki prodajnega naloga."
 
 #. module: sale_rental
@@ -351,7 +380,9 @@ msgstr "Najemniški proizvod '%s' mora biti tipa 'storitev'."
 #. module: sale_rental
 #: code:addons/sale_rental/rental.py:55
 #, python-format
-msgid "The rental product '%s' must have the option 'Must Have Start and End Dates' checked."
+msgid ""
+"The rental product '%s' must have the option 'Must Have Start and End Dates'"
+" checked."
 msgstr "Najemniški proizvod '%s' mora imeti označeno opcijo 'zahteva se začetni in končni datum'."
 
 #. module: sale_rental
@@ -376,12 +407,28 @@ msgid "Warehouse"
 msgstr "Skladišče"
 
 #. module: sale_rental
-#: code:addons/sale_rental/rental.py:249
+#: code:addons/sale_rental/rental.py:250
 #, python-format
-msgid "You want to rent %.2f %s but you only have %.2f %s currently available on the stock location '%s' ! Make sure that you get some units back in the mean time or re-supply the stock location '%s'."
+msgid ""
+"You want to rent %.2f %s but you only have %.2f %s currently available on "
+"the stock location '%s' ! Make sure that you get some units back in the mean"
+" time or re-supply the stock location '%s'."
 msgstr "Poskušate posoditi %.2f %s a imate le %.2f %s trenutno razpoložljive zaloge na lokaciji '%s' ! Prepričajte se, da dobite nekaj enot nazaj ali pa povečajte zalogo na lokaciji '%s'."
 
 #. module: sale_rental
 #: view:sale.order:sale_rental.view_order_form_sale_stock
-msgid "product_id_change_with_wh_with_rental(parent.pricelist_id,product_id,product_uom_qty,product_uom,product_uos_qty,False,name,parent.partner_id, False, False, parent.date_order, product_packaging, parent.fiscal_position, True, parent.warehouse_id, rental_type, rental_qty, context)"
+msgid ""
+"product_id_change_with_wh_with_rental(parent.pricelist_id, product_id, "
+"product_uom_qty, product_uom, product_uos_qty, False, name, "
+"parent.partner_id, False, True, parent.date_order, product_packaging, "
+"parent.fiscal_position, False, parent.warehouse_id, rental_type, rental_qty,"
+" context)"
+msgstr "product_id_change_with_wh_with_rental(parent.pricelist_id, product_id, product_uom_qty, product_uom, product_uos_qty, False, name, parent.partner_id, False, True, parent.date_order, product_packaging, parent.fiscal_position, False, parent.warehouse_id, rental_type, rental_qty, context)"
+
+#. module: sale_rental
+#: view:sale.order:sale_rental.view_order_form_sale_stock
+msgid ""
+"product_id_change_with_wh_with_rental(parent.pricelist_id,product_id,product_uom_qty,product_uom,product_uos_qty,False,name,parent.partner_id,"
+" False, False, parent.date_order, product_packaging, parent.fiscal_position,"
+" True, parent.warehouse_id, rental_type, rental_qty, context)"
 msgstr "product_id_change_with_wh_with_rental(parent.pricelist_id,product_id,product_uom_qty,product_uom,product_uos_qty,False,name,parent.partner_id, False, False, parent.date_order, product_packaging, parent.fiscal_position, True, parent.warehouse_id, rental_type, rental_qty, context)"

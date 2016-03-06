@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+        <record id="mrp_property_formula_tree_view" model="ir.ui.view">
+            <field name="name">mrp.property.formula.tree</field>
+            <field name="model">mrp.property.formula</field>
+            <field name="arch" type="xml">
+                <tree string="Formulas">
+                    <field name="name"/>
+                </tree>
+            </field>
+        </record>
+        <record id="mrp_property_formula_form_view" model="ir.ui.view">
+            <field name="name">mrp.property.formula.form</field>
+            <field name="model">mrp.property.formula</field>
+            <field name="arch" type="xml">
+                <form string="Formula">
+                   <group>
+                    <field name="name"/>
+                    <field name="formula_text"/>
+                   </group>
+                </form>
+            </field>
+        </record>
+
+        <record id="view_mrp_property_formula_search" model="ir.ui.view">
+            <field name="name">mrp.property.formula.search</field>
+            <field name="model">mrp.property.formula</field>
+            <field name="arch" type="xml">
+                <search string="Search">
+                    <field name="name"/>
+                    <field name="formula_text"/>
+               </search>
+            </field>
+        </record>
+
+
+        <record id="mrp_property_formula_action" model="ir.actions.act_window">
+            <field name="name">Properties Formulas</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">mrp.property.formula</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form</field>
+            <field name="help" type="html">
+              <p class="oe_view_nocontent_create">
+                Click to create a new formula.
+              </p><p>
+                The formulas are used to automatically compute sale line data (like price or quantity) on the basis of the properties specified by the user on the sale order
+              </p>
+            </field>
+        </record>
+        <menuitem
+            action="mrp_property_formula_action"
+            id="menu_mrp_property_formula_action"
+            groups="product.group_mrp_properties"
+            parent="mrp.menu_mrp_configuration"/>
+    </data>
+</openerp>

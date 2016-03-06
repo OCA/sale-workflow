@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+<data>
+
+    <template id="report_saleorder_document"
+              inherit_id="sale.report_saleorder_document">
+        <xpath expr="//span[@t-field='l.name']" position="after">
+            <t t-if="o.print_works">
+                <p t-if="l.task_work_ids" style="margin-left:10px;">
+                    <i><u>Works</u></i><br/>
+                    <t t-foreach="l.task_work_ids" t-as="work">
+                       <span style="margin-left:5px;" t-field="work.name"/><br/>
+                    </t>
+                </p>
+                <p t-if="l.task_materials_ids" style="margin-left:10px;">
+                    <i><u>Materials</u></i><br/>
+                    <t t-foreach="l.task_materials_ids" t-as="material">
+                           <span style="margin-left:5px;" t-field="material.product_id"/><br/>
+                    </t>
+                </p>
+            </t>
+        </xpath>
+        <xpath expr="//span[@t-field='l.product_uom']" position="after">
+            <t t-if="o.print_works">
+                <t t-set="uom_hour" t-value="l.env.ref('product.product_uom_hour')"/>
+                <t t-set="uom_unit" t-value="l.env.ref('product.product_uom_unit')"/>
+                <p t-if="l.task_work_ids" style="margin-left:10px;">
+                    <br/>
+                    <t t-foreach="l.task_work_ids" t-as="work">
+                       <span style="margin-left:5px;" t-field="work.hours"/>
+                       <span groups="product.group_uom" t-field="uom_hour.name"/><br/>
+                    </t>
+                </p>
+                <p t-if="l.task_materials_ids" style="margin-left:10px;">
+                    <br/>
+                    <t t-foreach="l.task_materials_ids" t-as="material">
+                        <span style="margin-left:5px;" t-field="material.quantity"/>
+                        <span groups="product.group_uom" t-field="uom_unit.name"/><br/>
+                    </t>
+                </p>
+            </t>
+        </xpath>
+    </template>
+
+</data>
+</openerp>

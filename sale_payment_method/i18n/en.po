@@ -1,0 +1,199 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# * sale_payment_method
+# 
+# Translators:
+msgid ""
+msgstr ""
+"Project-Id-Version: sale-workflow (8.0)\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2015-12-02 01:51+0000\n"
+"PO-Revision-Date: 2015-12-01 11:04+0000\n"
+"Last-Translator: OCA Transbot <transbot@odoo-community.org>\n"
+"Language-Team: English (http://www.transifex.com/oca/OCA-sale-workflow-8-0/language/en/)\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Language: en\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+#. module: sale_payment_method
+#: code:addons/sale_payment_method/sale.py:85
+#, python-format
+msgid ""
+"An automatic payment can not be created for the sale order %s because it has"
+" no payment method."
+msgstr "An automatic payment can not be created for the sale order %s because it has no payment method."
+
+#. module: sale_payment_method
+#: code:addons/sale_payment_method/sale.py:91
+#, python-format
+msgid ""
+"An automatic payment should be created for the sale order %s but the payment"
+" method '%s' has no journal defined."
+msgstr "An automatic payment should be created for the sale order %s but the payment method '%s' has no journal defined."
+
+#. module: sale_payment_method
+#: code:addons/sale_payment_method/sale.py:69
+#, python-format
+msgid ""
+"Cannot cancel this sales order because automatic payment entries are linked "
+"with it."
+msgstr "Cannot cancel this sales order because automatic payment entries are linked with it."
+
+#. module: sale_payment_method
+#: view:payment.method:sale_payment_method.payment_method_view_form
+#: field:payment.method,company_id:0
+msgid "Company"
+msgstr "Company"
+
+#. module: sale_payment_method
+#: view:sale.order:sale_payment_method.sale_order_view_form
+msgid "Create Invoice"
+msgstr "Create Invoice"
+
+#. module: sale_payment_method
+#: field:payment.method,create_uid:0
+msgid "Created by"
+msgstr "Created by"
+
+#. module: sale_payment_method
+#: field:payment.method,create_date:0
+msgid "Created on"
+msgstr "Created on"
+
+#. module: sale_payment_method
+#: view:payment.method:sale_payment_method.payment_method_view_form
+msgid "Default Values"
+msgstr "Default Values"
+
+#. module: sale_payment_method
+#: help:payment.method,payment_term_id:0
+msgid "Default payment term of a sale order using this method."
+msgstr "Default payment term of a sale order using this method."
+
+#. module: sale_payment_method
+#: view:payment.method:sale_payment_method.payment_method_view_form
+msgid ""
+"Even if the E-commerce backend receives a payment for a sale order,\n"
+"                                no payment entries will be generated."
+msgstr "Even if the E-commerce backend receives a payment for a sale order,\n                                no payment entries will be generated."
+
+#. module: sale_payment_method
+#: field:payment.method,id:0
+msgid "ID"
+msgstr "ID"
+
+#. module: sale_payment_method
+#: help:payment.method,journal_id:0
+msgid ""
+"If a journal is selected, when a payment is recorded on a backend, payment "
+"entries will be created in this journal."
+msgstr "If a journal is selected, when a payment is recorded on a backend, payment entries will be created in this journal."
+
+#. module: sale_payment_method
+#: field:payment.method,journal_id:0
+msgid "Journal"
+msgstr "Journal"
+
+#. module: sale_payment_method
+#: model:ir.model,name:sale_payment_method.model_account_move_line
+msgid "Journal Items"
+msgstr "Journal Items"
+
+#. module: sale_payment_method
+#: view:payment.method:sale_payment_method.payment_method_view_form
+msgid "Journal for payment"
+msgstr "Journal for payment"
+
+#. module: sale_payment_method
+#: field:payment.method,write_uid:0
+msgid "Last Updated by"
+msgstr "Last Updated by"
+
+#. module: sale_payment_method
+#: field:payment.method,write_date:0
+msgid "Last Updated on"
+msgstr "Last Updated on"
+
+#. module: sale_payment_method
+#: field:payment.method,name:0
+msgid "Name"
+msgstr "Name"
+
+#. module: sale_payment_method
+#: view:sale.order:sale_payment_method.view_sales_order_filter
+msgid "Order With Payment"
+msgstr "Order With Payment"
+
+#. module: sale_payment_method
+#: model:ir.model,name:sale_payment_method.model_payment_method
+#: field:sale.order,payment_method_id:0
+msgid "Payment Method"
+msgstr "Payment Method"
+
+#. module: sale_payment_method
+#: view:payment.method:sale_payment_method.payment_method_view_form
+#: view:payment.method:sale_payment_method.payment_method_view_tree
+msgid "Payment Methods"
+msgstr "Payment Methods"
+
+#. module: sale_payment_method
+#: model:ir.actions.act_window,name:sale_payment_method.act_payment_method_form
+#: model:ir.ui.menu,name:sale_payment_method.menu_action_paymetn_method_form
+msgid "Payment Methods "
+msgstr "Payment Methods "
+
+#. module: sale_payment_method
+#: field:payment.method,payment_term_id:0
+msgid "Payment Term"
+msgstr "Payment Term"
+
+#. module: sale_payment_method
+#: field:sale.order,payment_ids:0
+msgid "Payments Entries"
+msgstr "Payments Entries"
+
+#. module: sale_payment_method
+#: code:addons/sale_payment_method/sale.py:145
+#, python-format
+msgid "Please activate the sequence of the journal %s."
+msgstr "Please activate the sequence of the journal %s."
+
+#. module: sale_payment_method
+#: code:addons/sale_payment_method/sale.py:142
+#, python-format
+msgid "Please define a sequence on the journal %s."
+msgstr "Please define a sequence on the journal %s."
+
+#. module: sale_payment_method
+#: model:ir.model,name:sale_payment_method.model_sale_order
+msgid "Sales Order"
+msgstr "Sales Order"
+
+#. module: sale_payment_method
+#: field:account.move.line,sale_ids:0
+msgid "Sales Orders"
+msgstr "Sales Orders"
+
+#. module: sale_payment_method
+#: help:payment.method,name:0
+msgid "The name of the method on the backend"
+msgstr "The name of the method on the backend"
+
+#. module: sale_payment_method
+#: view:sale.order:sale_payment_method.sale_order_view_form
+msgid "View Automatic Payment"
+msgstr "View Automatic Payment"
+
+#. module: sale_payment_method
+#: view:payment.method:sale_payment_method.payment_method_view_form
+msgid ""
+"When the E-commerce backend will receive a payment for a sale order,\n"
+"                                payment entries will be generated in the selected journal."
+msgstr "When the E-commerce backend will receive a payment for a sale order,\n                                payment entries will be generated in the selected journal."
+
+#. module: sale_payment_method
+#: view:sale.order:sale_payment_method.view_sales_order_filter
+msgid "With Payment"
+msgstr "With Payment"

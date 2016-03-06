@@ -1,0 +1,56 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# * sale_partner_order_policy
+# 
+# Translators:
+# Thomas A. Jaeger, 2015
+msgid ""
+msgstr ""
+"Project-Id-Version: sale-workflow (8.0)\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2015-11-30 09:39+0000\n"
+"PO-Revision-Date: 2015-11-06 18:02+0000\n"
+"Last-Translator: Thomas A. Jaeger\n"
+"Language-Team: German (http://www.transifex.com/oca/OCA-sale-workflow-8-0/language/de/)\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Language: de\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+#. module: sale_partner_order_policy
+#: selection:res.partner,customer_order_policy:0
+msgid "Before Delivery"
+msgstr "Vor der Lieferung"
+
+#. module: sale_partner_order_policy
+#: field:res.partner,customer_order_policy:0
+msgid "Customer Create Invoice"
+msgstr "Kundenrechnung anlegen"
+
+#. module: sale_partner_order_policy
+#: selection:res.partner,customer_order_policy:0
+msgid "On Delivery Order"
+msgstr "Auf Lieferschein"
+
+#. module: sale_partner_order_policy
+#: selection:res.partner,customer_order_policy:0
+msgid "On Demand"
+msgstr "Auf Anfrage"
+
+#. module: sale_partner_order_policy
+#: model:ir.model,name:sale_partner_order_policy.model_res_partner
+msgid "Partner"
+msgstr "Partner"
+
+#. module: sale_partner_order_policy
+#: model:ir.model,name:sale_partner_order_policy.model_sale_order
+msgid "Sales Order"
+msgstr "Verkaufsauftrag"
+
+#. module: sale_partner_order_policy
+#: help:res.partner,customer_order_policy:0
+msgid ""
+"Select the default create invoice method for the sale orders of this "
+"customer"
+msgstr "Selektieren Sie die Standarderstellungmethode für Rechnungen im Verkaufsauftrag für diesen Kunden"

@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+<data>
+
+    <template id="report_invoice_document"
+              inherit_id="account.report_invoice_document">
+        <xpath expr="//span[@t-field='l.name']" position="replace">
+            <t t-if="not o.print_works or not (l.task_work_ids or l.task_materials_ids)">
+                <span t-field="l.name"/>
+            </t>
+            <t t-if="o.print_works">
+                <t t-if="l.task_work_ids or l.task_materials_ids">
+                    <t t-foreach="l.task_work_ids.mapped('task_id') | l.task_materials_ids.mapped('task_id')"
+                       t-as="task">
+                        <span t-field="task.name"/>
+                    </t>
+                    <t t-set="order_line" t-value="l"/>
+                    <t t-call="sale_service_project.works_and_materials"/>
+                </t>
+                <t t-if="not l.task_work_ids and not l.task_materials_ids">
+                    <t t-foreach="l.sale_order_lines" t-as="order_line">
+                        <t t-call="sale_service_project.works_and_materials"/>
+                    </t>
+                </t>
+            </t>
+        </xpath>
+
+        <xpath expr="//span[@t-field='l.uos_id']" position="after">
+            <t t-if="o.print_works">
+                <t t-if="l.task_work_ids or l.task_materials_ids">
+                    <t t-set="order_line" t-value="l"/>
+                    <t t-call="sale_service_project.works_and_materials_units"/>
+                </t>
+                <t t-if="not l.task_work_ids and not l.task_materials_ids">
+                    <t t-foreach="l.sale_order_lines" t-as="order_line">
+                        <t t-call="sale_service_project.works_and_materials_units"/>
+                    </t>
+                </t>
+            </t>
+        </xpath>
+    </template>
+
+    <template id="works_and_materials">
+        <p t-if="order_line.task_work_ids" style="margin-left:10px;">
+            <i><u>Works</u></i><br/>
+            <t t-foreach="order_line.task_work_ids" t-as="work">
+               <span style="margin-left:5px;" t-field="work.name"/><br/>
+            </t>
+        </p>
+        <p t-if="order_line.task_materials_ids" style="margin-left:10px;">
+            <i><u>Materials</u></i><br/>
+            <t t-foreach="order_line.task_materials_ids" t-as="material">
+                   <span style="margin-left:5px;" t-field="material.product_id"/><br/>
+            </t>
+        </p>
+    </template>
+
+    <template id="works_and_materials_units">
+        <t t-set="uom_hour" t-value="l.env.ref('product.product_uom_hour')"/>
+        <t t-set="uom_unit" t-value="l.env.ref('product.product_uom_unit')"/>
+        <p id="qty" t-if="order_line.task_work_ids" style="margin-left:10px;">
+            <br/>
+            <t t-foreach="order_line.task_work_ids" t-as="work">
+               <span style="margin-left:5px;" t-field="work.hours"/>
+               <span groups="product.group_uom" t-field="uom_hour.name"/><br/>
+            </t>
+        </p>
+        <p t-if="order_line.task_materials_ids" style="margin-left:10px;">
+            <br/>
+            <t t-foreach="order_line.task_materials_ids" t-as="material">
+                <span style="margin-left:5px;" t-field="material.quantity"/>
+                <span groups="product.group_uom" t-field="uom_unit.name"/><br/>
+            </t>
+        </p>
+    </template>
+
+</data>
+</openerp>

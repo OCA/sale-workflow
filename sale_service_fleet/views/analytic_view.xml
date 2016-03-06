@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+<data>
+
+    <record id="view_account_analytic_account_vehicle_form" model="ir.ui.view">
+        <field name="name">analytic.analytic.account.vehicle.form</field>
+        <field name="model">account.analytic.account</field>
+        <field name="inherit_id"
+               ref="analytic.view_account_analytic_account_form"/>
+        <field name="arch" type="xml">
+            <field name="currency_id" position="after">
+                <field name="vehicle_id" string="Vehicle"/>
+            </field>
+        </field>
+    </record>
+
+ </data>
+</openerp>

@@ -1,46 +1,22 @@
-# French translation for sale-wkfl
-# Copyright (c) 2014 Rosetta Contributors and Canonical Ltd 2014
-# This file is distributed under the same license as the sale-wkfl package.
-# FIRST AUTHOR <EMAIL@ADDRESS>, 2014.
-#
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# * sale_validity
+# 
+# Translators:
+# Pierre Verkest <pverkest@anybox.fr>, 2015
 msgid ""
 msgstr ""
-"Project-Id-Version: sale-wkfl\n"
-"Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
-"POT-Creation-Date: 2014-01-15 11:51+0000\n"
-"PO-Revision-Date: 2014-03-13 14:50+0000\n"
-"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
-"Language-Team: French <fr@li.org>\n"
+"Project-Id-Version: sale-workflow (8.0)\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2015-10-02 17:59+0000\n"
+"PO-Revision-Date: 2015-09-24 21:19+0000\n"
+"Last-Translator: Pierre Verkest <pverkest@anybox.fr>\n"
+"Language-Team: French (http://www.transifex.com/oca/OCA-sale-workflow-8-0/language/fr/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
-"Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2014-05-28 05:52+0000\n"
-"X-Generator: Launchpad (build 17017)\n"
-
-#. module: sale_validity
-#: view:sale.order:0
-msgid "date_order_change(date_order, date_validity, company_id, context)"
-msgstr ""
-
-#. module: sale_validity
-#: help:sale.order,date_validity:0
-msgid "Define date until when quotation is valid"
-msgstr ""
-
-#. module: sale_validity
-#: field:sale.order,date_validity:0
-msgid "Valid Until"
-msgstr ""
-
-#. module: sale_validity
-#: model:ir.model,name:sale_validity.model_res_company
-msgid "Companies"
-msgstr ""
-
-#. module: sale_validity
-#: field:res.company,default_sale_order_validity_days:0
-msgid "Default Validity of Sale Orders (in days)"
-msgstr ""
+"Content-Transfer-Encoding: \n"
+"Language: fr\n"
+"Plural-Forms: nplurals=2; plural=(n > 1);\n"
 
 #. module: sale_validity
 #: help:res.company,default_sale_order_validity_days:0
@@ -48,16 +24,36 @@ msgid ""
 "By default, the validity date of sale orders will be the date of the sale "
 "order plus the number of days defined in this field. If the value of this "
 "field is 0, the sale orders will not have a validity date by default."
-msgstr ""
+msgstr "Par défaut, la date de validité des bons de commande est la date du bon de commande plus le nombre de jours défini par ce champ. Si la valeur est 0, le bon de commande n'aura pas de date de validité par défaut."
+
+#. module: sale_validity
+#: model:ir.model,name:sale_validity.model_res_company
+msgid "Companies"
+msgstr "Sociétés"
+
+#. module: sale_validity
+#: field:res.company,default_sale_order_validity_days:0
+msgid "Default Validity of Sale Orders (in days)"
+msgstr "Validité par défaut des bons de commande (en jours)"
+
+#. module: sale_validity
+#: help:sale.order,date_validity:0
+msgid "Define date until when quotation is valid"
+msgstr "Défini la date de validité du devis "
 
 #. module: sale_validity
 #: model:ir.model,name:sale_validity.model_sale_order
 msgid "Sales Order"
-msgstr ""
+msgstr "Bon de commande"
 
 #. module: sale_validity
 #: sql_constraint:res.company:0
 msgid ""
 "The value of the field 'Default Validity Duration of Sale Orders' must be "
 "positive or 0."
-msgstr ""
+msgstr "La valeur du champ 'Validité par défaut des bons de commande' doit être supérieur ou égale à 0."
+
+#. module: sale_validity
+#: field:sale.order,date_validity:0
+msgid "Valid Until"
+msgstr "Valide jusqu'au"

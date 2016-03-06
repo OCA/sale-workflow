@@ -1,0 +1,108 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# * sale_properties_easy_creation
+# 
+# Translators:
+msgid ""
+msgstr ""
+"Project-Id-Version: sale-workflow (8.0)\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2015-11-30 09:39+0000\n"
+"PO-Revision-Date: 2015-11-17 08:45+0000\n"
+"Last-Translator: OCA Transbot <transbot@odoo-community.org>\n"
+"Language-Team: Italian (http://www.transifex.com/oca/OCA-sale-workflow-8-0/language/it/)\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Language: it\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+#. module: sale_properties_easy_creation
+#: model:ir.actions.act_window,help:sale_properties_easy_creation.mrp_property_formula_action
+msgid ""
+"<p class=\"oe_view_nocontent_create\">\n"
+"                Click to create a new formula.\n"
+"              </p><p>\n"
+"                The formulas are used to automatically compute sale line data (like price or quantity) on the basis of the properties specified by the user on the sale order\n"
+"              </p>\n"
+"            "
+msgstr "<p class=\"oe_view_nocontent_create\">\n                Click to create a new formula.\n              </p><p>\n                The formulas are used to automatically compute sale line data (like price or quantity) on the basis of the properties specified by the user on the sale order\n              </p>\n            "
+
+#. module: sale_properties_easy_creation
+#: field:mrp.property.formula,create_uid:0
+msgid "Created by"
+msgstr "Created by"
+
+#. module: sale_properties_easy_creation
+#: field:mrp.property.formula,create_date:0
+msgid "Created on"
+msgstr "Created on"
+
+#. module: sale_properties_easy_creation
+#: code:addons/sale_properties_easy_creation/mrp_property_formula.py:43
+#, python-format
+msgid "Error"
+msgstr "Errore"
+
+#. module: sale_properties_easy_creation
+#: view:mrp.property.formula:sale_properties_easy_creation.mrp_property_formula_form_view
+#: field:mrp.property.formula,formula_text:0
+msgid "Formula"
+msgstr "Formula"
+
+#. module: sale_properties_easy_creation
+#: code:addons/sale_properties_easy_creation/mrp_property_formula.py:44
+#, python-format
+msgid "Formula must contain 'result' variable"
+msgstr "Formula deve contenere la varibile 'result'"
+
+#. module: sale_properties_easy_creation
+#: view:mrp.property.formula:sale_properties_easy_creation.mrp_property_formula_tree_view
+msgid "Formulas"
+msgstr "Formulas"
+
+#. module: sale_properties_easy_creation
+#: help:mrp.property.formula,formula_text:0
+msgid "Here you can write the formula using by python code"
+msgstr ""
+
+#. module: sale_properties_easy_creation
+#: field:mrp.property.formula,id:0
+msgid "ID"
+msgstr "ID"
+
+#. module: sale_properties_easy_creation
+#: field:mrp.property.formula,write_uid:0
+msgid "Last Updated by"
+msgstr "Last Updated by"
+
+#. module: sale_properties_easy_creation
+#: field:mrp.property.formula,write_date:0
+msgid "Last Updated on"
+msgstr "Last Updated on"
+
+#. module: sale_properties_easy_creation
+#: field:mrp.property.formula,name:0
+msgid "Name"
+msgstr "Name"
+
+#. module: sale_properties_easy_creation
+#: model:ir.actions.act_window,name:sale_properties_easy_creation.mrp_property_formula_action
+#: model:ir.ui.menu,name:sale_properties_easy_creation.menu_mrp_property_formula_action
+msgid "Properties Formulas"
+msgstr "Formule Proprietà"
+
+#. module: sale_properties_easy_creation
+#: model:ir.model,name:sale_properties_easy_creation.model_mrp_property
+msgid "Property"
+msgstr "Proprietà"
+
+#. module: sale_properties_easy_creation
+#: view:mrp.property.formula:sale_properties_easy_creation.view_mrp_property_formula_search
+msgid "Search"
+msgstr "Search"
+
+#. module: sale_properties_easy_creation
+#: field:mrp.property,value:0
+msgid "Value"
+msgstr "Value"

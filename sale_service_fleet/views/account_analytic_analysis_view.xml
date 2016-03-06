@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+<data>
+
+    <record id="view_sale_service_fleet_analytic_search" model="ir.ui.view">
+        <field name="name">account.analytic.account.fleet.search</field>
+        <field name="model">account.analytic.account</field>
+        <field name="inherit_id"
+               ref="account_analytic_analysis.view_account_analytic_account_overdue_search"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='parent_id']" position="after">
+                <field name="vehicle_id"/>
+            </xpath>
+            <xpath expr="//group" position="inside">
+                <filter string="Vehicle"
+                        domain="[]"
+                        context="{'group_by':'vehicle_id'}"/>
+            </xpath>
+        </field>
+    </record>
+
+    <record id="view_sale_service_fleet_inherit_form2" model="ir.ui.view">
+        <field name="name">sale.service.fleet.form.view.inherit</field>
+        <field name="model">project.task</field>
+        <field name="inherit_id" ref="sale_service.view_sale_service_inherit_form2"/>
+        <field name="arch" type="xml">
+            <field name="sale_line_id" position="before">
+                <field name="vehicle_id" string="Vehicle"/>
+            </field>
+        </field>
+    </record>
+
+</data>
+</openerp>

@@ -1,36 +1,29 @@
-# Translation of OpenERP Server.
+# Translation of Odoo Server.
 # This file contains the translation of the following modules:
-# 	* sale_validity
-#
+# * sale_validity
+# 
+# Translators:
 msgid ""
 msgstr ""
-"Project-Id-Version: OpenERP Server 7.0\n"
+"Project-Id-Version: sale-workflow (8.0)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-01-15 11:51+0000\n"
-"PO-Revision-Date: 2015-08-16 08:34+0200\n"
-"Last-Translator: Matjaz Mozetic <m.mozetic@matmoz.si>\n"
-"Language-Team: \n"
+"POT-Creation-Date: 2015-09-09 12:27+0000\n"
+"PO-Revision-Date: 2015-09-07 14:32+0000\n"
+"Last-Translator: Matjaž Mozetič <m.mozetic@matmoz.si>\n"
+"Language-Team: Slovenian (http://www.transifex.com/oca/OCA-sale-workflow-8-0/language/sl/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
-"Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: \n"
+"Content-Transfer-Encoding: \n"
 "Language: sl\n"
-"X-Generator: Poedit 1.8.4\n"
+"Plural-Forms: nplurals=4; plural=(n%100==1 ? 0 : n%100==2 ? 1 : n%100==3 || n%100==4 ? 2 : 3);\n"
 
 #. module: sale_validity
-#: view:sale.order:0
-msgid "date_order_change(date_order, date_validity, company_id, context)"
-msgstr "date_order_change(date_order, date_validity, company_id, context)"
-
-#. module: sale_validity
-#: help:sale.order,date_validity:0
-msgid "Define date until when quotation is valid"
-msgstr "Določite datum veljavnosti predračuna"
-
-#. module: sale_validity
-#: field:sale.order,date_validity:0
-msgid "Valid Until"
-msgstr "Veljavno do"
+#: help:res.company,default_sale_order_validity_days:0
+msgid ""
+"By default, the validity date of sale orders will be the date of the sale "
+"order plus the number of days defined in this field. If the value of this "
+"field is 0, the sale orders will not have a validity date by default."
+msgstr "Privzeto bo datum veljavnosti prodajnih nalogov enak datumu naloga plus število dni določeno v tem polju. Če je vrednost tega polja 0, prodajni nalogi ne bodo imeli privzetega datuma veljavnosti."
 
 #. module: sale_validity
 #: model:ir.model,name:sale_validity.model_res_company
@@ -43,9 +36,9 @@ msgid "Default Validity of Sale Orders (in days)"
 msgstr "Privzeta veljavnost prodajnih nalogov (v dnevih)"
 
 #. module: sale_validity
-#: help:res.company,default_sale_order_validity_days:0
-msgid "By default, the validity date of sale orders will be the date of the sale order plus the number of days defined in this field. If the value of this field is 0, the sale orders will not have a validity date by default."
-msgstr "Privzeto bo datum veljavnosti prodajnih nalogov enak datumu naloga plus število dni določeno v tem polju. Če je vrednost tega polja 0, prodajni nalogi ne bodo imeli privzetega datuma veljavnosti."
+#: help:sale.order,date_validity:0
+msgid "Define date until when quotation is valid"
+msgstr "Določite datum veljavnosti predračuna"
 
 #. module: sale_validity
 #: model:ir.model,name:sale_validity.model_sale_order
@@ -54,5 +47,12 @@ msgstr "Prodajni nalog"
 
 #. module: sale_validity
 #: sql_constraint:res.company:0
-msgid "The value of the field 'Default Validity Duration of Sale Orders' must be positive or 0."
+msgid ""
+"The value of the field 'Default Validity Duration of Sale Orders' must be "
+"positive or 0."
 msgstr "Vrednost polja 'privzeto trajanje veljavnosti prodajnih nalogov' mora biti pozitivna ali 0."
+
+#. module: sale_validity
+#: field:sale.order,date_validity:0
+msgid "Valid Until"
+msgstr "Veljavno do"

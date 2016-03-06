@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+<data>
+
+<record id="view_task_project_user_search" model="ir.ui.view">
+    <field name="name">report.project.task.user.search.fleet</field>
+    <field name="model">report.project.task.user</field>
+    <field name="inherit_id" ref="project.view_task_project_user_search"/>
+    <field name="arch" type="xml">
+    <xpath expr="//filter[@name='project']/.." position="inside">
+        <filter string="Vehicle" name="vehicle"
+                context="{'group_by':'vehicle_id'}"/>
+    </xpath>
+    </field>
+</record>
+
+</data>
+</openerp>

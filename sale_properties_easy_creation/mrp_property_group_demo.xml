@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data noupdate="1">
+        <record id="length_group" model="mrp.property.group">
+            <field name="name">Length</field>
+        </record>
+        <record id="width_group" model="mrp.property.group">
+            <field name="name">Width</field>
+        </record>
+        <record id="painting_group" model="mrp.property.group">
+            <field name="name">Painting</field>
+        </record>
+    </data>
+</openerp>

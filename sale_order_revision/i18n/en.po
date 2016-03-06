@@ -1,0 +1,74 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# * sale_order_revision
+# 
+# Translators:
+msgid ""
+msgstr ""
+"Project-Id-Version: sale-workflow (8.0)\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2015-10-23 08:14+0000\n"
+"PO-Revision-Date: 2015-09-03 07:09+0000\n"
+"Last-Translator: OCA Transbot <transbot@odoo-community.org>\n"
+"Language-Team: English (http://www.transifex.com/oca/OCA-sale-workflow-8-0/language/en/)\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Language: en\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+#. module: sale_order_revision
+#: field:sale.order,active:0
+msgid "Active"
+msgstr "Active"
+
+#. module: sale_order_revision
+#: field:sale.order,current_revision_id:0
+msgid "Current revision"
+msgstr "Current revision"
+
+#. module: sale_order_revision
+#: code:addons/sale_order_revision/model/sale_order.py:65
+#, python-format
+msgid "New revision created: %s"
+msgstr "New revision created: %s"
+
+#. module: sale_order_revision
+#: field:sale.order,old_revision_ids:0
+msgid "Old revisions"
+msgstr "Old revisions"
+
+#. module: sale_order_revision
+#: field:sale.order,unrevisioned_name:0
+msgid "Order Reference"
+msgstr "Order Reference"
+
+#. module: sale_order_revision
+#: sql_constraint:sale.order:0
+msgid "Order Reference and revision must be unique per Company."
+msgstr "Order Reference and revision must be unique per Company."
+
+#. module: sale_order_revision
+#: field:sale.order,revision_number:0
+msgid "Revision"
+msgstr "Revision"
+
+#. module: sale_order_revision
+#: view:sale.order:sale_order_revision.sale_order_form
+msgid "Revisions"
+msgstr "Revisions"
+
+#. module: sale_order_revision
+#: model:ir.model,name:sale_order_revision.model_sale_order
+msgid "Sales Order"
+msgstr "Sales Order"
+
+#. module: sale_order_revision
+#: view:sale.order:sale_order_revision.sale_order_form
+msgid "Superseeded by"
+msgstr "Superseeded by"
+
+#. module: sale_order_revision
+#: view:sale.order:sale_order_revision.sale_order_form
+msgid "Superseeded on"
+msgstr "Superseeded on"

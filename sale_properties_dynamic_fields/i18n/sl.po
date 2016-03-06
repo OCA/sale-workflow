@@ -1,0 +1,85 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# * sale_properties_dynamic_fields
+# 
+# Translators:
+# Matjaž Mozetič <m.mozetic@matmoz.si>, 2015
+msgid ""
+msgstr ""
+"Project-Id-Version: sale-workflow (8.0)\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2015-11-30 09:39+0000\n"
+"PO-Revision-Date: 2015-11-26 04:39+0000\n"
+"Last-Translator: Matjaž Mozetič <m.mozetic@matmoz.si>\n"
+"Language-Team: Slovenian (http://www.transifex.com/oca/OCA-sale-workflow-8-0/language/sl/)\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Language: sl\n"
+"Plural-Forms: nplurals=4; plural=(n%100==1 ? 0 : n%100==2 ? 1 : n%100==3 || n%100==4 ? 2 : 3);\n"
+
+#. module: sale_properties_dynamic_fields
+#: field:mrp.property.group,draw_dynamically:0
+msgid "Display dynamically"
+msgstr "Dinamični prikaz"
+
+#. module: sale_properties_dynamic_fields
+#: field:mrp.property.group,field_id:0
+msgid "Field"
+msgstr "Polje"
+
+#. module: sale_properties_dynamic_fields
+#: code:addons/sale_properties_dynamic_fields/mrp_property_group.py:62
+#, python-format
+msgid "Field %s (sale.order.line) already present"
+msgstr "Polje %s (sale.order.line) je že prisotno"
+
+#. module: sale_properties_dynamic_fields
+#: code:addons/sale_properties_dynamic_fields/sale_order.py:43
+#, python-format
+msgid "Field %s already present"
+msgstr "Polje %s je že prisotno"
+
+#. module: sale_properties_dynamic_fields
+#: help:mrp.property.group,draw_dynamically:0
+msgid "In sale order line, display this property dynamically, as text field"
+msgstr "Dinamični prikaz te lastnosti kot tekstovno polje v postavki prodajnega naloga"
+
+#. module: sale_properties_dynamic_fields
+#: model:ir.model,name:sale_properties_dynamic_fields.model_mrp_property_group
+msgid "Property Group"
+msgstr "Lastnost skupine"
+
+#. module: sale_properties_dynamic_fields
+#: code:addons/sale_properties_dynamic_fields/sale_order_line.py:33
+#, python-format
+msgid "Property of group %s already present"
+msgstr "Lastnost skupine %s je že prisotna"
+
+#. module: sale_properties_dynamic_fields
+#: model:ir.model,name:sale_properties_dynamic_fields.model_sale_order
+msgid "Sales Order"
+msgstr "Prodajni nalog"
+
+#. module: sale_properties_dynamic_fields
+#: model:ir.model,name:sale_properties_dynamic_fields.model_sale_order_line
+msgid "Sales Order Line"
+msgstr "Postavka prodajnega naloga"
+
+#. module: sale_properties_dynamic_fields
+#: code:addons/sale_properties_dynamic_fields/sale_order.py:34
+#, python-format
+msgid "The group %s has draw_dynamically set but there is no linked field "
+msgstr "Skupina %s ima nastavljeno draw_dynamically, a ni povezanega polja"
+
+#. module: sale_properties_dynamic_fields
+#: code:addons/sale_properties_dynamic_fields/sale_order_line.py:65
+#, python-format
+msgid "There must be 1 and only 1 %s"
+msgstr "Biti mora 1 in samo 1 %s"
+
+#. module: sale_properties_dynamic_fields
+#: code:addons/sale_properties_dynamic_fields/sale_order_line.py:72
+#, python-format
+msgid "There must be 1 and only 1 group for %s"
+msgstr "Biti mora 1 in samo 1 skupina za %s"

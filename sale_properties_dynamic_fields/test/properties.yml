@@ -1,0 +1,59 @@
+-
+  I modify the property group Length and check the created field
+-
+  !python {model: mrp.property.group}: |
+    self.write(cr, uid, [ref('sale_properties_easy_creation.length_group')], {'draw_dynamically': True}, context=context)
+    group = self.browse(cr, uid, ref('sale_properties_easy_creation.length_group'), context=context)
+    assert group.field_id.name == 'x_length', "Field name must be 'x_length', %s found" % group.field_id.name
+-
+  I remove the draw_dynamically field and check the removed field
+-
+  !python {model: mrp.property.group}: |
+    self.write(cr, uid, [ref('sale_properties_easy_creation.length_group')], {'draw_dynamically': False}, context=context)
+    group = self.browse(cr, uid, ref('sale_properties_easy_creation.length_group'), context=context)
+    assert not group.field_id, "field_id must be empty"
+-
+  I craete the property group depth
+-
+  !record {model: mrp.property.group, id: depth_group, view: mrp.mrp_property_group_form_view}:
+    name: Depth
+    draw_dynamically: True
+-
+  I check the created field and remove the group
+-
+  !python {model: mrp.property.group}: |
+    group = self.browse(cr, uid, ref('depth_group'), context=context)
+    assert group.field_id.name == 'x_depth', "Field name must be 'x_depth', %s found" % group.field_id.name
+    group.unlink()
+    field_pool = self.pool['ir.model.fields']
+    field_ids = field_pool.search(cr, uid, [
+        ('name', '=', 'x_depth'),
+        ('model', '=', 'sale.order.line'),
+        ],
+        context=context)
+    assert not field_ids, "No x_depth field must be present"
+-
+  I modify the property group Width and check the created field
+-
+  !python {model: mrp.property.group}: |
+    self.write(cr, uid, [ref('sale_properties_easy_creation.width_group')], {'draw_dynamically': True}, context=context)
+    group = self.browse(cr, uid, ref('sale_properties_easy_creation.width_group'), context=context)
+    assert group.field_id.name == 'x_width', "Field name must be 'x_width', %s found" % group.field_id.name
+    assert group.field_id.model == 'sale.order.line', "Field model must be 'sale.order.line', %s found" % group.field_id.model
+    assert group.field_id.model_id.model == 'sale.order.line', "Field model must be 'sale.order.line', %s found" % group.field_id.model_id.model
+-
+  I run the on_change
+-
+  !python {model: sale.order.line}: |
+    if context is None:
+        context = {}
+    context['field_name'] = 'x_width'
+    res = self.dynamic_property_changed(
+        cr, uid, [], [(6, 0, [])], '7', context=context)
+    assert res['value']['property_ids'], "property_ids must be present"
+    prop_pool = self.pool['mrp.property']
+    assert len(res['value']['property_ids']) == 1, "There must be 1 property tuple, %s found" % len(res['value']['property_ids'])
+    assert len(res['value']['property_ids'][0][2]) == 1, "There must be 1 property, %s found" % len(res['value']['property_ids'][0][2])
+    property = prop_pool.browse(cr, uid, res['value']['property_ids'][0][2][0], context=context)
+    assert property.value == '7', "Property value must be 7, %s found" % property.value
+

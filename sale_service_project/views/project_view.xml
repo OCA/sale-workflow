@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+<data>
+
+    <record id="view_project_kanban_task_hours" model="ir.ui.view">
+        <field name="name">project.project.kanban.inherited</field>
+        <field name="model">project.project</field>
+        <field name="inherit_id" ref="project_timesheet.view_project_kanban_inherited"/>
+        <field name="arch" type="xml">
+            <field name="hours_quantity" position="replace">
+                <field name="task_hours"/>
+            </field>
+            <xpath expr="//a[@name='open_timesheets']/field[@name='hours_quantity']"
+                   position="replace">
+                <field name="task_hours"/>
+            </xpath>
+        </field>
+    </record>
+
+    <record id="view_task_search_form_project_parent" model="ir.ui.view">
+        <field name="name">project.task.search.form.project.parent</field>
+        <field name="model">project.task</field>
+        <field name="inherit_id" ref="project.view_task_search_form"/>
+        <field name="arch" type="xml">
+            <field name="project_id" position="after">
+                <field name="project_parent_id"/>
+            </field>
+            <filter name="project" position="after">
+                <filter string="Project Parent" name="project_parent_id"
+                        context="{'group_by':'project_parent_id'}"/>
+            </filter>
+        </field>
+    </record>
+
+    <record id="view_sale_service_inherit_form2" model="ir.ui.view">
+        <field name="name">sale.service.form.view.inherit</field>
+        <field name="model">project.task</field>
+        <field name="inherit_id" ref="project.view_task_form2"/>
+        <field name="arch" type="xml">
+            <field name="stage_id" position="before">
+                <field name="is_closed" invisible="1"/>
+                <field name="all_invoiced" invisible="1"/>
+                <field name="invoice_exists" invisible="1"/>
+                <button name="action_create_invoice" string="Create Invoice"
+                        type="object" class="oe_highlight"
+                        attrs="{'invisible':['|',
+                        ('is_closed', '=', False), ('all_invoiced', '=', True)]}"/>
+                <button name="action_view_invoice" string="View Invoice"
+                        type="object" class="oe_highlight"
+                        attrs="{'invisible':[('invoice_exists', '=', False)]}"/>
+            </field>
+        </field>
+    </record>
+
+</data>
+</openerp>

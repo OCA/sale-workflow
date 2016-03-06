@@ -18,7 +18,7 @@
 
 {
     "name": "Product Last Price Info - Sale",
-    "version": "1.0",
+    "version": "8.0.1.0.0",
     "category": "Sales Management",
     "license": "AGPL-3",
     "author": "OdooMRP team, "

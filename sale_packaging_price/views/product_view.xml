@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+<data>
+
+    <record id="product_tree_inherit" model="ir.ui.view">
+        <field name="name">product.tree.inherit</field>
+        <field name="model">product.packaging</field>
+        <field name="inherit_id" ref="product.product_packaging_tree_view_product"/>
+        <field name="arch" type="xml">
+            <xpath expr='//field[@name="ul"]' position='after'>
+                <field name="package_material_id"/>
+                <field name="list_price"/>
+            </xpath>
+        </field>
+    </record>
+
+    <record id="product_packaging_tree_inherit" model="ir.ui.view">
+        <field name="name">product.packaging.tree.inherit</field>
+        <field name="model">product.packaging</field>
+        <field name="inherit_id" ref="product.product_packaging_tree_view"/>
+        <field name="arch" type="xml">
+            <xpath expr='//field[@name="qty"]' position='after'>
+                <field name="list_price"/>
+                <field name="package_material_id"/>
+            </xpath>
+            <xpath expr='//tree'
+                   position='attributes'>
+                <attribute name="editable">top</attribute>
+            </xpath>
+        </field>
+    </record>
+
+    <record id="product_packaging_form_inherit" model="ir.ui.view">
+        <field name="name">product.packaging.form.inherit</field>
+        <field name="model">product.packaging</field>
+        <field name="inherit_id" ref="product.product_packaging_form_view"/>
+        <field name="arch" type="xml">
+            <xpath expr='//field[@name="qty"]' position='after'>
+                <field name="package_material_id"/>
+                <field name="list_price"/>
+            </xpath>
+        </field>
+    </record>
+
+    <record id="no_product_packaging_form_inherit" model="ir.ui.view">
+        <field name="name">no.product.packaging.form.inherit</field>
+        <field name="model">product.packaging</field>
+        <field name="inherit_id" ref="product.product_packaging_form_view_without_product"/>
+        <field name="arch" type="xml">
+            <xpath expr='//field[@name="ul"]' position='after'>
+                <field name="package_material_id"/>
+                <field name="list_price"/>
+            </xpath>
+        </field>
+    </record>
+
+    <record id="product_packaging_filter" model="ir.ui.view">
+        <field name="name">product.packaging.filter</field>
+        <field name="model">product.packaging</field>
+        <field name="arch" type="xml">
+            <search string="Search Product Packaging">
+                <field name="product_tmpl_id"/>
+                <field name="package_material_id"/>
+                <group expand="0" string="Group By...">
+                    <filter string="Product" context="{'group_by': 'product_tmpl_id'}"/>
+                    <filter string="Logistic Unit" context="{'group_by': 'ul'}"/>
+                    <filter string="Pack Type" context="{'group_by': 'package_material_id'}"/>
+               </group>
+           </search>
+        </field>
+    </record>
+
+    <record id="action_product_packaging_form" model="ir.actions.act_window">
+        <field name="name">Product Packaging</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">product.packaging</field>
+        <field name="view_type">form</field>
+        <field name="view_mode">tree,form</field>
+        <field name="help" type="html">
+            <p class="oe_view_nocontent_create">
+                Click to add a packaging for your products.
+            </p>
+        </field>
+    </record>
+
+</data>
+</openerp>

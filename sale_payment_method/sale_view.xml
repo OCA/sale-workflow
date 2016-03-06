@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+        <record id="sale_order_view_form" model="ir.ui.view">
+            <field name="name">sale.order.view.form</field>
+            <field name="model">sale.order</field>
+            <field name="inherit_id" ref="sale.view_order_form" />
+            <field name="arch" type="xml">
+                <field name="fiscal_position" position="after">
+                    <field name="payment_method_id"/>
+                </field>
+
+                <field name="amount_total" position="after">
+                    <field name="residual" invisible="1"/>
+                </field>
+
+                <button string="Create Invoice" position="after">
+                    <field name="payment_ids" invisible="1"/>
+                    <button name="action_view_payments"
+                        string="View Automatic Payment"
+                        type="object" class="oe_highlight"
+                        attrs="{'invisible': [('payment_ids', '=', [[6, False, []]])]}"
+                        groups="base.group_user"/>
+                </button>
+            </field>
+        </record>
+
+        <record id="sale_order_view_tree" model="ir.ui.view">
+            <field name="name">sale.order.view.tree</field>
+            <field name="model">sale.order</field>
+            <field name="inherit_id" ref="sale.view_order_tree" />
+            <field name="arch" type="xml">
+                <field name="state" position="after">
+                    <field name="payment_method_id" />
+                </field>
+            </field>
+        </record>
+
+        <record id="view_quotation_tree" model="ir.ui.view">
+            <field name="name">sale.order.view.tree</field>
+            <field name="model">sale.order</field>
+            <field name="inherit_id" ref="sale.view_quotation_tree" />
+            <field name="arch" type="xml">
+                <field name="amount_total" position="after">
+                    <field name="amount_paid"/>
+                    <field name="payment_method_id"/>
+                </field>
+            </field>
+        </record>
+
+
+        <record id="view_sales_order_filter" model="ir.ui.view">
+            <field name="model">sale.order</field>
+            <field name="inherit_id" ref="sale.view_sales_order_filter"/>
+            <field name="arch" type="xml">
+                <filter name="my_sale_orders_filter" position="before">
+                    <filter string="With Payment" domain="[('payment_ids','!=',False)]" help="Order With Payment"  name="with_payment"/>
+                    <separator/>
+                </filter>
+            </field>
+        </record>
+    </data>
+</openerp>

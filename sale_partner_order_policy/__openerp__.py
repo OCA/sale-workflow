@@ -22,7 +22,7 @@
 
 {
     'name': 'Sale Partner Order Policy',
-    'version': '1.0',
+    'version': '8.0.1.0.0',
     'category': 'Sales Management',
     'license': 'AGPL-3',
     'summary': "Adds customer create invoice method on partner form",
