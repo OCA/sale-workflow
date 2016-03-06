@@ -24,8 +24,8 @@ class TestExpectedDeliveryDate(common.TransactionCase):
 
     def test_sale_expected_delivery_date(self):
         self.order_id.signal_workflow('order_confirm')
-        # Check current price
-        self.assertEqual(
-            self.order_id.picking_ids[0].min_date[:10],
-            self.order_id.date_expected
-        )
+        if self.order_id.picking_ids:
+            self.assertEqual(
+                self.order_id.picking_ids[0].min_date[:10],
+                self.order_id.date_expected
+            )
