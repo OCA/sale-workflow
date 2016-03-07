@@ -19,7 +19,8 @@
 #                                                                       #
 #########################################################################
 
-from openerp import fields, models, api
+from openerp import fields, models, api, _
+from openerp.exceptions import Warning as UserError
 
 
 class SaleOrderLine(models.Model):
@@ -103,7 +104,7 @@ class SaleOrder(models.Model):
                     lot_count += 1
                     # if counter is 0 or > 1 means that something goes wrong
                     if lot_count != 1:
-                        raise Warning(_('Can\'t retrieve lot on stock'))
+                        raise UserError(_("Can't retrieve lot on stock"))
         return move
 
     @api.model
@@ -111,14 +112,14 @@ class SaleOrder(models.Model):
         if line.lot_id:
             move = self.get_move_from_line(line)
             if move.state != 'confirmed':
-                raise Warning(_('Can\'t reserve products for lot %s') %
-                              line.lot_id.name)
+                raise UserError(_("Can't reserve products for lot %s") %
+                                line.lot_id.name)
             else:
                 move.action_assign()
                 move.refresh()
                 if move.state != 'assigned':
-                    raise Warning(_('Can\'t reserve products for lot %s') %
-                                  line.lot_id.name)
+                    raise UserError(_("Can't reserve products for lot %s") %
+                                    line.lot_id.name)
         return True
 
     @api.model

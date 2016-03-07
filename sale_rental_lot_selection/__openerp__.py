@@ -27,7 +27,7 @@
     'category': 'Sales Management',
     'license': 'AGPL-3',
     'summary': 'Manage Rental with Serial Numbers',
-    'author': 'Akretion',
+    'author': 'Akretion,Odoo Community Association (OCA)',
     'website': 'http://www.akretion.com',
     'depends': ['sale_order_lot_selection', 'sale_rental'],
     'data': ['rental_view.xml'],

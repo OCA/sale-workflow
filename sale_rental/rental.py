@@ -1,4 +1,4 @@
-# -*- encoding: utf-8 -*-
+# -*- coding: utf-8 -*-
 ##############################################################################
 #
 #    Sale Rental module for Odoo
@@ -21,7 +21,8 @@
 ##############################################################################
 
 from openerp import models, fields, api, _
-from openerp.exceptions import Warning, ValidationError
+from openerp.exceptions import ValidationError
+from openerp.exceptions import Warning as UserError
 from openerp.tools import float_compare
 from dateutil.relativedelta import relativedelta
 import openerp.addons.decimal_precision as dp
@@ -114,7 +115,7 @@ class SaleOrder(models.Model):
                     line.extension_rental_id.in_move_id.date = line.end_date
                 elif line.sell_rental_id:
                     if line.sell_rental_id.out_move_id.state != 'done':
-                        raise Warning(
+                        raise UserError(
                             _('Cannot sell the rental %s because it has '
                                 'not been delivered')
                             % line.sell_rental_id.display_name)
@@ -292,7 +293,7 @@ class SaleOrderLine(models.Model):
                 self.rental_type == 'rental_extension' and
                 self.extension_rental_id):
             if self.extension_rental_id.rental_product_id != self.product_id:
-                raise Warning(
+                raise UserError(
                     _("The Rental Service of the Rental Extension you just "
                         "selected is '%s' and it's not the same as the "
                         "Product currently selected in this Sale Order Line.")
@@ -525,7 +526,7 @@ class StockWarehouse(models.Model):
             rental_routes = route_obj.search([('name', '=', _('Rent'))])
             rental_route = rental_routes and rental_routes[0] or False
         if not rental_route:
-            raise Warning(_("Can't find any generic 'Rent' route."))
+            raise UserError(_("Can't find any generic 'Rent' route."))
         try:
             sell_rented_product_route = self.env.ref(
                 'sale_rental.route_warehouse0_sell_rented_product')
@@ -536,15 +537,15 @@ class StockWarehouse(models.Model):
                 sell_rented_product_routes and sell_rented_product_routes[0]\
                 or False
         if not sell_rented_product_route:
-            raise Warning(
+            raise UserError(
                 _("Can't find any generic 'Sell Rented Product' route."))
 
         if not self.rental_in_location_id:
-            raise Warning(
+            raise UserError(
                 _("The Rental Input stock location is not set on the "
                     "warehouse %s") % self.name)
         if not self.rental_out_location_id:
-            raise Warning(
+            raise UserError(
                 _("The Rental Output stock location is not set on the "
                     "warehouse %s") % self.name)
         rental_pull_rule = {
