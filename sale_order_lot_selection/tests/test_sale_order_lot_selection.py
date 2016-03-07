@@ -205,7 +205,9 @@ class TestSaleOrderLotSelection(test_common.SingleTransactionCase):
             packaging=False, fiscal_position=False, flag=False,
             warehouse_id=self.order3.warehouse_id.id,
             context=self.env.context)
-        self.assertEqual(onchange_res['domain']['lot_id'], [('id', 'in', [])])
+        self.assertEqual(onchange_res['domain']['lot_id'], [
+            ('id', 'in', []),
+            ('product_id', '=', self.sol3.product_id.id)])
 
         # I'll try to confirm it to check lot reservation:
         # lot10 was delivered by order1
@@ -224,7 +226,9 @@ class TestSaleOrderLotSelection(test_common.SingleTransactionCase):
             packaging=False, fiscal_position=False, flag=False,
             warehouse_id=self.order2.warehouse_id.id, context=self.env.context)
         self.assertEqual(
-            onchange_res['domain']['lot_id'], [('id', 'in', [self.lot11.id])])
+            onchange_res['domain']['lot_id'], [
+                ('id', 'in', [self.lot11.id]),
+                ('product_id', '=', self.sol2a.product_id.id)])
 
         self.order2.action_button_confirm()
         picking = self.order2.picking_ids
