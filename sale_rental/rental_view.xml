@@ -83,10 +83,35 @@
     </field>
 </record>
 
+<record id="sale_rental_search" model="ir.ui.view">
+    <field name="name">sale.rental.search</field>
+    <field name="model">sale.rental</field>
+    <field name="arch" type="xml">
+        <search string="Search Rentals">
+            <field name="partner_id"/>
+            <filter name="ordered" string="Ordered"
+                domain="[('state', '=', 'ordered')]"/>
+            <filter name="out" string="Out" domain="[('state', '=', 'out')]"/>
+            <filter name="sell_progress" string="Sell in progress"
+                domain="[('state', '=', 'sell_progress')]"/>
+            <filter name="sold" string="Sold" domain="[('state', '=', 'sold')]"/>
+            <filter name="in" string="Back In" domain="[('state', '=', 'in')]"/>
+            <group string="Group By" name="groupby">
+                <filter name="partner_groupby" string="Customer"
+                    context="{'group_by': 'partner_id'}"/>
+                <filter name="state_groupby" string="State"
+                    context="{'group_by': 'state'}"/>
+                <filter name="start_date_groupby" string="Start Date"
+                    context="{'group_by': 'start_date'}"/>
+            </group>
+        </search>
+    </field>
+</record>
+
+
 <record id="sale_rental_action" model="ir.actions.act_window">
     <field name="name">Rentals</field>
     <field name="res_model">sale.rental</field>
-    <field name="view_type">form</field>
     <field name="view_mode">tree,form</field>
 </record>
 

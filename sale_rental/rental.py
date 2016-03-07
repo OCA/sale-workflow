@@ -341,7 +341,14 @@ class SaleRental(models.Model):
             self.state)  # TODO : display label, not the technical key
 
     @api.one
-    @api.depends('start_order_line_id', 'start_order_line_id.procurement_ids')
+    @api.depends(
+        'start_order_line_id', 'start_order_line_id.procurement_ids',
+        'start_order_line_id.procurement_ids.move_ids',
+        'start_order_line_id.procurement_ids.move_ids.state',
+        'sell_order_line_ids', 'sell_order_line_ids.procurement_ids',
+        'sell_order_line_ids.procurement_ids.move_ids',
+        'sell_order_line_ids.procurement_ids.move_ids.state',
+        )
     def _compute_procurement_and_move(self):
         procurement = False
         in_move = False
@@ -409,7 +416,7 @@ class SaleRental(models.Model):
         readonly=True)
     start_date = fields.Date(
         related='start_order_line_id.start_date',
-        string='Start Date', readonly=True)
+        string='Start Date', readonly=True, store=True)
     rental_product_id = fields.Many2one(
         'product.product', related='start_order_line_id.product_id',
         string="Rental Service", readonly=True)
@@ -428,16 +435,16 @@ class SaleRental(models.Model):
         string='Company', readonly=True)
     partner_id = fields.Many2one(
         'res.partner', related='start_order_id.partner_id',
-        string='Partner', readonly=True)
+        string='Partner', readonly=True, store=True)
     procurement_id = fields.Many2one(
         'procurement.order', string="Procurement", readonly=True,
-        compute='_compute_procurement_and_move')
+        compute='_compute_procurement_and_move', store=True)
     out_move_id = fields.Many2one(
         'stock.move', compute='_compute_procurement_and_move',
-        string='Outgoing Stock Move', readonly=True)
+        string='Outgoing Stock Move', readonly=True, store=True)
     in_move_id = fields.Many2one(
         'stock.move', compute='_compute_procurement_and_move',
-        string='Return Stock Move', readonly=True)
+        string='Return Stock Move', readonly=True, store=True)
     out_state = fields.Selection([
         ('draft', 'New'),
         ('cancel', 'Cancelled'),
@@ -470,10 +477,10 @@ class SaleRental(models.Model):
         string='Sell Rented Product', readonly=True)
     sell_procurement_id = fields.Many2one(
         'procurement.order', string="Sell Procurement", readonly=True,
-        compute='_compute_procurement_and_move')
+        compute='_compute_procurement_and_move', store=True)
     sell_move_id = fields.Many2one(
         'stock.move', compute='_compute_procurement_and_move',
-        string='Sell Stock Move', readonly=True)
+        string='Sell Stock Move', readonly=True, store=True)
     sell_state = fields.Selection([
         ('draft', 'New'),
         ('cancel', 'Cancelled'),
@@ -498,7 +505,7 @@ class SaleRental(models.Model):
         ('sold', 'Sold'),
         ('in', 'Back In'),
         ], string='State', compute='_compute_procurement_and_move',
-        readonly=True)
+        readonly=True, store=True)
 
 
 class StockWarehouse(models.Model):

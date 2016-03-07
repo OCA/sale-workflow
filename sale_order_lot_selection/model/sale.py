@@ -98,13 +98,15 @@ class SaleOrder(models.Model):
         # i create this counter to check lot's univocity on move line
         lot_count = 0
         for p in line.order_id.picking_ids:
-            for m in p.move_lines:
-                if line.lot_id == m.restrict_lot_id:
-                    move = m
-                    lot_count += 1
-                    # if counter is 0 or > 1 means that something goes wrong
-                    if lot_count != 1:
-                        raise UserError(_("Can't retrieve lot on stock"))
+            if p.picking_type_id.code == 'outgoing':  # required for rental
+                for m in p.move_lines:
+                    if line.lot_id == m.restrict_lot_id:
+                        move = m
+                        lot_count += 1
+                        # if counter is 0 or > 1
+                        # it means that something goes wrong
+                        if lot_count != 1:
+                            raise UserError(_("Can't retrieve lot on stock"))
         return move
 
     @api.model
