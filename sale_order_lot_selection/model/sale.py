@@ -53,30 +53,22 @@ class SaleOrderLine(models.Model):
             fiscal_position=fiscal_position, flag=flag,
             warehouse_id=warehouse_id)
 
-        available_lots = []
-        lot_model = self.env['stock.production.lot']
         product = self.env['product.product'].browse(product_id)
         warehouse = self.env['stock.warehouse'].browse(warehouse_id)
         location = self._select_lot_stock_location(product, warehouse)
         # DO NOT use 'product_id' AFTER THIS LIMIT ; only use 'product'
         product = self._select_lot_product(product)
 
-        lots = lot_model.search([('product_id', '=', product.id)])
-        for lot in lots:
-            # for the selected product, search for every associated lot
-            # for every lot, check if it is available (in location.id)
-            # if it is, add it to selectable lots
-            qty_res = product.with_context({
-                'lot_id': lot.id,
-                'location': location.id,
-                })._product_available()
-            if qty_res[product.id]['qty_available'] > 0:
-                if lot.id not in available_lots:
-                    available_lots.append(lot.id)
-        res.update({'domain': {'lot_id': [
-            ('id', 'in', available_lots),
+        # Search all lot existing lot for the product and location selected
+        quants = self.env['stock.quant'].read_group([
             ('product_id', '=', product.id),
-            ]}})
+            ('location_id', 'child_of', location.id),
+            ('qty', '>', 0),
+            ('lot_id', '!=', False),
+            ], ['lot_id'], 'lot_id')
+        available_lots = [quant['lot_id'][0] for quant in quants]
+        res.setdefault('domain', {}).update(
+            {'lot_id': [('id', 'in', available_lots)]})
         res['value']['lot_id'] = False
         return res
 
