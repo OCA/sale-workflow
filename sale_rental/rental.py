@@ -342,11 +342,9 @@ class SaleRental(models.Model):
 
     @api.one
     @api.depends(
-        'start_order_line_id', 'start_order_line_id.procurement_ids',
-        'start_order_line_id.procurement_ids.move_ids',
+        'start_order_line_id.order_id.state',
         'start_order_line_id.procurement_ids.move_ids.state',
-        'sell_order_line_ids', 'sell_order_line_ids.procurement_ids',
-        'sell_order_line_ids.procurement_ids.move_ids',
+        'start_order_line_id.procurement_ids.move_ids.move_dest_id.state',
         'sell_order_line_ids.procurement_ids.move_ids.state',
         )
     def _compute_procurement_and_move(self):
@@ -387,6 +385,8 @@ class SaleRental(models.Model):
                     state = 'sell_progress'
                     if sell_move and sell_move.state == 'done':
                         state = 'sold'
+            if self.start_order_line_id.order_id.state == 'cancel':
+                state = 'cancel'
         self.procurement_id = procurement
         self.in_move_id = in_move
         self.out_move_id = out_move
@@ -435,7 +435,7 @@ class SaleRental(models.Model):
         string='Company', readonly=True)
     partner_id = fields.Many2one(
         'res.partner', related='start_order_id.partner_id',
-        string='Partner', readonly=True, store=True)
+        string='Customer', readonly=True, store=True)
     procurement_id = fields.Many2one(
         'procurement.order', string="Procurement", readonly=True,
         compute='_compute_procurement_and_move', store=True)
@@ -504,6 +504,7 @@ class SaleRental(models.Model):
         ('sell_progress', 'Sell in progress'),
         ('sold', 'Sold'),
         ('in', 'Back In'),
+        ('cancel', 'Cancelled'),
         ], string='State', compute='_compute_procurement_and_move',
         readonly=True, store=True)
 
