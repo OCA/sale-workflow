@@ -1,33 +1,17 @@
 # -*- coding: utf-8 -*-
-###############################################################################
-#
-#   Module for OpenERP
-#   Copyright (C) 2014 Akretion (http://www.akretion.com).
-#   @author Sébastien BEAU <sebastien.beau@akretion.com>
-#
-#   This program is free software: you can redistribute it and/or modify
-#   it under the terms of the GNU Affero General Public License as
-#   published by the Free Software Foundation, either version 3 of the
-#   License, or (at your option) any later version.
-#
-#   This program is distributed in the hope that it will be useful,
-#   but WITHOUT ANY WARRANTY; without even the implied warranty of
-#   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-#   GNU Affero General Public License for more details.
-#
-#   You should have received a copy of the GNU Affero General Public License
-#   along with this program.  If not, see <http://www.gnu.org/licenses/>.
-#
-###############################################################################
+# © 2014-2016 Akretion (http://www.akretion.com)
+# Sébastien BEAU <sebastien.beau@akretion.com>
+# License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
 
-from openerp.osv import orm
+from openerp import api, models
 
 
-class AutomaticWorkflowJob(orm.Model):
+class AutomaticWorkflowJob(models.Model):
     _inherit = 'automatic.workflow.job'
 
-    def _get_domain_for_sale_validation(self, cr, uid, context=None):
+    @api.multi
+    def _get_domain_for_sale_validation(self):
         res = super(AutomaticWorkflowJob, self).\
-            _get_domain_for_sale_validation(cr, uid, context=context)
-        res.append(('exceptions_ids', '=', False))
+            _get_domain_for_sale_validation()
+        res.append(('exception_ids', '=', False))
         return res
