@@ -431,10 +431,10 @@ class SaleRental(models.Model):
         'sale.order', related='start_order_line_id.order_id',
         string='Rental Sale Order', readonly=True)
     company_id = fields.Many2one(
-        'res.company', related='start_order_id.company_id',
+        'res.company', related='start_order_line_id.order_id.company_id',
         string='Company', readonly=True)
     partner_id = fields.Many2one(
-        'res.partner', related='start_order_id.partner_id',
+        'res.partner', related='start_order_line_id.order_id.partner_id',
         string='Customer', readonly=True, store=True)
     procurement_id = fields.Many2one(
         'procurement.order', string="Procurement", readonly=True,
