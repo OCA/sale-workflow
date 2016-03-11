@@ -28,11 +28,6 @@ On the user configuration (Configuration > Users > Users), select in the
 mentioned before will be filtered out to have only those belonging to the
 teams the user belongs to.
 
-This is complementary to the Sales level access, but sometimes can be
-incoherent depending on the combination chosen. If you chose "See Own Leads"
-on *Sales* section, marking on unmarking the sales team check will be
-irrelevant, because the most restricting level, which the sales one, will
-prevail.
 
 .. image:: https://odoo-community.org/website/image/ir.attachment/5784_f2813bd/datas
    :alt: Try me on Runbot
@@ -66,6 +61,7 @@ Contributors
 ------------
 
 * Pedro M. Baeza <pedro.baeza@serviciosbaeza.com>
+* Victor M. Martin <victor.martin@elico-corp.com>
 
 Maintainer
 ----------

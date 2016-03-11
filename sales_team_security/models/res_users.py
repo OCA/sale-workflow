@@ -11,3 +11,11 @@ class ResUsers(models.Model):
     section_ids = fields.Many2many(
         comodel_name="crm.case.section", string="Sales teams",
         relation='sale_member_rel', column1='member_id', column2='section_id')
+
+
+class SaleOrderLine(models.Model):
+    _inherit = 'sale.order.line'
+
+    section_id = fields.Many2one(
+        'crm.case.section'
+    )
