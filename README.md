@@ -22,6 +22,7 @@ addon | version | summary
 [partner_prepayment](partner_prepayment/) | 8.0.1.0.0 | Option on partner to set prepayment policy
 [partner_prospect](partner_prospect/) | 8.0.1.0.0 | Partner Prospect
 [sale_automatic_workflow](sale_automatic_workflow/) | 8.0.0.2.0 | Sale Automatic Workflow
+[sale_automatic_workflow_exception](sale_automatic_workflow_exception/) | 8.0.1.0.0 | Sale Automatic Workflow Exception
 [sale_cancel_reason](sale_cancel_reason/) | 8.0.1.1 | Sale Cancel Reason
 [sale_exception_nostock](sale_exception_nostock/) | 8.0.1.2.0 | Sale stock exception
 [sale_exceptions](sale_exceptions/) | 8.0.1.0.0 | Custom exceptions on sale order
@@ -69,7 +70,6 @@ addon | version | summary
 [product_special_type](product_special_type/) | 1.0 (unported) | Product Special Types
 [product_special_type_invoice](product_special_type_invoice/) | 1.0 (unported) | Product Special Type on Invoice
 [product_special_type_sale](product_special_type_sale/) | 1.0 (unported) | Product Special Type on Sale
-[sale_automatic_workflow_exception](sale_automatic_workflow_exception/) | 0.0.1 (unported) | Sale Automatic Workflow Exception
 [sale_condition_text](sale_condition_text/) | 1.3 (unported) | Sale/invoice condition
 [sale_delivery_term](sale_delivery_term/) | 0.1 (unported) | Delivery term for sale orders
 [sale_dropshipping](sale_dropshipping/) | 1.1.1 (unported) | Sale Dropshipping
