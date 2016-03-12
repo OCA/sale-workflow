@@ -48,6 +48,7 @@ addon | version | summary
 [sale_product_set_layout](sale_product_set_layout/) | 8.0.1.0.0 | Sale product set layout
 [sale_properties_dynamic_fields](sale_properties_dynamic_fields/) | 8.0.1.0.0 | Sale properties dynamic fields
 [sale_properties_easy_creation](sale_properties_easy_creation/) | 8.0.1.0.0 | Easing properties input in sale order line
+[sale_quick_payment](sale_quick_payment/) | 8.0.3.0.0 | Sale Quick Payment
 [sale_quotation_number](sale_quotation_number/) | 8.0.1.1.0 | Different sequence for sale quotations
 [sale_quotation_sourcing](sale_quotation_sourcing/) | 8.0.0.3.1 | manual sourcing of sale quotations
 [sale_quotation_sourcing_stock_route_transit](sale_quotation_sourcing_stock_route_transit/) | 8.0.0.1.0 | Link module for sale_quotation_sourcing + stock_route_transit
