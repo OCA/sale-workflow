@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: sale-workflow (8.0)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-02-26 09:59+0000\n"
+"POT-Creation-Date: 2016-03-12 01:52+0000\n"
 "PO-Revision-Date: 2016-02-26 10:03+0000\n"
 "Last-Translator: <>\n"
 "Language-Team: Italian (http://www.transifex.com/oca/OCA-sale-workflow-8-0/language/it/)\n"
@@ -69,7 +69,7 @@ msgstr ""
 #: view:sale.order:sale_service_project.view_order_form_service_project
 #, python-format
 msgid "Create Invoice"
-msgstr ""
+msgstr "Crea Fattura"
 
 #. module: sale_service_project
 #: field:product.price.service.wizard,create_uid:0
@@ -116,7 +116,7 @@ msgstr "ID"
 #. module: sale_service_project
 #: model:ir.model,name:sale_service_project.model_account_invoice
 msgid "Invoice"
-msgstr ""
+msgstr "Fattura"
 
 #. module: sale_service_project
 #: model:ir.model,name:sale_service_project.model_account_invoice_line
@@ -335,4 +335,4 @@ msgstr ""
 #. module: sale_service_project
 #: view:product.price.service.wizard:sale_service_project.wiz_compute_task_price
 msgid "or"
-msgstr ""
+msgstr "o"

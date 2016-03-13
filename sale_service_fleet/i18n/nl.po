@@ -8,54 +8,54 @@ msgstr ""
 "Project-Id-Version: sale-workflow (8.0)\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2016-03-12 01:52+0000\n"
-"PO-Revision-Date: 2016-03-03 02:12+0000\n"
-"Last-Translator: OCA Transbot <transbot@odoo-community.org>\n"
-"Language-Team: Spanish (http://www.transifex.com/oca/OCA-sale-workflow-8-0/language/es/)\n"
+"PO-Revision-Date: 2016-03-03 02:11+0000\n"
+"Last-Translator: <>\n"
+"Language-Team: Dutch (http://www.transifex.com/oca/OCA-sale-workflow-8-0/language/nl/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
-"Language: es\n"
+"Language: nl\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
 #. module: sale_service_fleet
 #: model:ir.model,name:sale_service_fleet.model_account_analytic_account
 msgid "Analytic Account"
-msgstr "Cuenta analítica"
+msgstr ""
 
 #. module: sale_service_fleet
 #: field:fleet.vehicle,analytic_account_ids:0
 msgid "Contracts"
-msgstr "Contratos"
+msgstr ""
 
 #. module: sale_service_fleet
 #: model:ir.model,name:sale_service_fleet.model_fleet_vehicle
 msgid "Information on a vehicle"
-msgstr "Información de un vehículo"
+msgstr ""
 
 #. module: sale_service_fleet
 #: model:ir.model,name:sale_service_fleet.model_procurement_order
 msgid "Procurement"
-msgstr "Abastecimiento"
+msgstr ""
 
 #. module: sale_service_fleet
 #: model:ir.model,name:sale_service_fleet.model_sale_order
 msgid "Sales Order"
-msgstr "Pedido de venta"
+msgstr "Verkooporder"
 
 #. module: sale_service_fleet
 #: model:ir.model,name:sale_service_fleet.model_project_task
 msgid "Task"
-msgstr "Tarea"
+msgstr ""
 
 #. module: sale_service_fleet
 #: field:fleet.vehicle,task_ids:0
 msgid "Tasks"
-msgstr "Tareas"
+msgstr ""
 
 #. module: sale_service_fleet
 #: model:ir.model,name:sale_service_fleet.model_report_project_task_user
 msgid "Tasks by user and project"
-msgstr "Tareas por usuario y proyecto"
+msgstr ""
 
 #. module: sale_service_fleet
 #: view:account.analytic.account:sale_service_fleet.view_account_analytic_account_vehicle_form
@@ -68,10 +68,10 @@ msgstr "Tareas por usuario y proyecto"
 #: view:report.project.task.user:sale_service_fleet.view_task_project_user_search
 #: field:report.project.task.user,vehicle_id:0 field:sale.order,vehicle_id:0
 msgid "Vehicle"
-msgstr "Vehículo"
+msgstr ""
 
 #. module: sale_service_fleet
 #: view:website:account.report_invoice_document
 #: view:website:sale.report_saleorder_document
 msgid "Vehicle:"
-msgstr "Vehículo:"
+msgstr ""
