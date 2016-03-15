@@ -1,29 +1,11 @@
 # -*- coding: utf-8 -*-
-#
-#
-#    OpenERP, Open Source Management Solution
-#    Authors: Raphaël Valyi, Renato Lima
-#    Copyright (C) 2011 Akretion LTDA.
-#
-#    This program is free software: you can redistribute it and/or modify
-#    it under the terms of the GNU Affero General Public License as
-#    published by the Free Software Foundation, either version 3 of the
-#    License, or (at your option) any later version.
-#
-#    This program is distributed in the hope that it will be useful,
-#    but WITHOUT ANY WARRANTY; without even the implied warranty of
-#    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-#    GNU Affero General Public License for more details.
-#
-#    You should have received a copy of the GNU Affero General Public License
-#    along with this program.  If not, see <http://www.gnu.org/licenses/>.
-#
-#
+# © 2011 Raphaël Valyi, Renato Lima, Guewen Baconnier, Sodexis
+# License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
 
 import time
 
 from openerp import api, models, fields
-from openerp.exceptions import except_orm
+from openerp.exceptions import Warning
 from openerp.tools.safe_eval import safe_eval
 from openerp.tools.translate import _
 
@@ -82,8 +64,7 @@ class SaleOrder(models.Model):
         'sale.exception',
         'sale_order_exception_rel', 'sale_order_id', 'exception_id',
         string='Exceptions')
-
-    ignore_exceptions = fields.Boolean('Ignore Exceptions')
+    ignore_exceptions = fields.Boolean('Ignore Exceptions', copy=False)
 
     @api.one
     @api.depends('state', 'exception_ids')
@@ -101,35 +82,29 @@ class SaleOrder(models.Model):
 
     @api.multi
     def _popup_exceptions(self):
-        model_data_model = self.env['ir.model.data']
-        wizard_model = self.env['sale.exception.confirm']
-
-        new_context = {'active_id': self.ids[0], 'active_ids': self.ids}
-        wizard = wizard_model.with_context(new_context).create({})
-
-        view_id = model_data_model.get_object_reference(
-            'sale_exceptions', 'view_sale_exception_confirm')[1]
-
-        action = {
-            'name': _("Blocked in draft due to exceptions"),
-            'type': 'ir.actions.act_window',
-            'view_type': 'form',
-            'view_mode': 'form',
-            'res_model': 'sale.exception.confirm',
-            'view_id': [view_id],
-            'target': 'new',
-            'nodestroy': True,
-            'res_id': wizard.id,
-        }
+        action = self.env.ref('sale_exceptions.action_sale_exception_confirm')
+        action = action.read()[0]
+        action.update({
+            'context': {
+                'active_id': self.ids[0],
+                'active_ids': self.ids
+            }
+        })
         return action
 
     @api.multi
-    def action_button_confirm(self):
-        self.ensure_one()
+    def action_confirm(self):
         if self.detect_exceptions():
             return self._popup_exceptions()
         else:
-            return super(SaleOrder, self).action_button_confirm()
+            return super(SaleOrder, self).action_confirm()
+
+    @api.multi
+    def action_cancel(self):
+        for order in self:
+            if order.ignore_exceptions:
+                order.ignore_exceptions = False
+        return super(SaleOrder, self).action_cancel()
 
     @api.multi
     def test_exceptions(self):
@@ -188,8 +163,7 @@ class SaleOrder(models.Model):
                       mode='exec',
                       nocopy=True)  # nocopy allows to return 'result'
         except Exception, e:
-            raise except_orm(
-                _('Error'),
+            raise Warning(
                 _('Error when evaluating the sale exception '
                   'rule:\n %s \n(%s)') % (rule.name, e))
         return space.get('failed', False)
@@ -212,12 +186,3 @@ class SaleOrder(models.Model):
                 if self._rule_eval(rule, 'line', order_line):
                     exception_ids.append(rule.id)
         return exception_ids
-
-    @api.one
-    def copy(self, default=None):
-        if default is None:
-            default = {}
-        default.update({
-            'ignore_exceptions': False,
-        })
-        return super(SaleOrder, self).copy(default=default)
