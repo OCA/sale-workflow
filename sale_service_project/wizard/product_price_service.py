@@ -27,7 +27,9 @@ class ProductPriceServiceWizard(models.TransientModel):
 
     @api.multi
     def action_compute_price(self):
-        product = self.env['product.template'].browse(
-            self._context['active_id'])
-        product.write(
-            {'list_price': self._compute_price(product, self.product_id)})
+        self.ensure_one()
+        product = self.env[self.env.context['active_model']].browse(
+            self.env.context['active_id'])
+        product.write({
+            'list_price': self._compute_price(product, self.product_id),
+        })
