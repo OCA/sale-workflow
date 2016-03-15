@@ -80,6 +80,11 @@ class SaleOrderLine(models.Model):
         compute='_compute_task_closed',
         store=True,
     )
+    compute_price = fields.Boolean()
+    task_work_product_id = fields.Many2one(
+        comodel_name='product.product',
+        domain=[('type', '=', 'service')],
+        string='Work Price Product')
 
     @api.multi
     @api.depends('task_ids.stage_id.closed')
@@ -118,6 +123,20 @@ class SaleOrderLine(models.Model):
                     'task_materials_ids': False}
         res['value'].update(vals)
         return res
+
+    @api.multi
+    @api.onchange(
+        'task_work_product_id', 'task_work_ids', 'task_materials_ids')
+    def _onchange_task_work_product_id(self):
+        if self.compute_price and self.task_work_product_id:
+            total_hours = sum(self.mapped('task_work_ids.hours') or [0.0])
+            total_price_hours = (
+                self.task_work_product_id.list_price * total_hours)
+            materials = self.mapped('task_materials_ids')
+            total_price_materials = sum(
+                [m.quantity * m.product_id.lst_price for m in materials])
+            total_price = total_price_hours + total_price_materials
+            self.price_unit = total_price
 
 
 class SaleOrderLineTaskWork(models.Model):

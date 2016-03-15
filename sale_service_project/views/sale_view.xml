@@ -51,8 +51,7 @@
             </xpath>
             <xpath expr="//field[@name='order_line']/form//field[@name='name']" position="after">
                 <field name="auto_create_task" invisible="1"/>
-                <group colspan="4"
-                       attrs="{'invisible': [('auto_create_task', '=', False)]}">
+                <group attrs="{'invisible': [('auto_create_task', '=', False)]}">
                     <group string="Works">
                         <field name="task_work_ids" nolabel="1">
                             <tree string="Tasks" editable="top">
@@ -68,6 +67,11 @@
                                 <field name="quantity"/>
                             </tree>
                         </field>
+                    </group>
+                    <group>
+                        <field name="compute_price"/>
+                        <field name="task_work_product_id"
+                               attrs="{'invisible': [('compute_price', '=', False)]}"/>
                     </group>
                 </group>
             </xpath>
