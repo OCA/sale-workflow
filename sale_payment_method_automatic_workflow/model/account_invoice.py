@@ -84,20 +84,18 @@ class AccountInvoice(models.Model):
     def _prepare_write_off(self, res_invoice, res_payment):
         self.ensure_one()
         if res_invoice['total_amount'] - res_payment['total_amount'] > 0:
-            writeoff_type = 'expense'
+            account = self.company_id.expense_currency_exchange_account_id
         else:
-            writeoff_type = 'income'
-        writeoff_info = self.company_id.get_write_off_information
-        account_id, journal_id = writeoff_info('exchange', writeoff_type)
+            account = self.company_id.income_currency_exchange_account_id
         max_date = max(res_invoice['max_date'], res_payment['max_date'])
         ctx_vals = {'p_date': max_date}
         period_model = self.env['account.period'].with_context(**ctx_vals)
         period = period_model.find(max_date)[0]
         return {
             'type': 'auto',
-            'writeoff_acc_id': account_id,
+            'writeoff_acc_id': account.id,
             'writeoff_period_id': period.id,
-            'writeoff_journal_id': journal_id,
+            'writeoff_journal_id': self.journal_id.id,
             'context_vals': ctx_vals,
         }
 
@@ -138,8 +136,8 @@ class AccountInvoice(models.Model):
                 if lines and currency.is_zero(balance):
                     lines.reconcile()
             else:
-                balance = abs(res_invoice['total_amount_currency'] -
-                              res_payment['total_amount_currency'])
+                balance = (abs(res_invoice['total_amount_currency']) -
+                           abs(res_payment['total_amount_currency']))
                 if lines and currency.is_zero(balance):
                     kwargs = self._prepare_write_off(res_invoice, res_payment)
                     ctx_vals = kwargs.pop('context_vals')
