@@ -82,7 +82,7 @@ class SaleOrder(models.Model):
 
     @api.multi
     def _popup_exceptions(self):
-        action = self.env.ref('sale_exceptions.action_sale_exception_confirm')
+        action = self.env.ref('sale_exception.action_sale_exception_confirm')
         action = action.read()[0]
         action.update({
             'context': {

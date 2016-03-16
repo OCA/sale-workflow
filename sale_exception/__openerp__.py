@@ -13,7 +13,7 @@
      'security/ir.model.access.csv',
      'wizard/sale_exception_confirm_view.xml',
      'settings/sale.exception.csv',
-     'sale_exceptions_data.xml',
+     'sale_exception_data.xml',
      'sale_view.xml',
  ],
  'installable': True,
