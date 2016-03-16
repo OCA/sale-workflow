@@ -13,6 +13,7 @@ addons:
       - python-simplejson
       - python-serial
       - python-yaml
+      - wkhtmltopdf # for odoo pdf reports (tested on sale for eg.)
 
 env:
   global:
