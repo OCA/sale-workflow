@@ -23,12 +23,12 @@
 """ r0.1: Migration 6.1 => 7.0.0.1
     migrate the field payment_id from one2many to payment_ids many2many
 """
-__name__ = ("sale.order:: V7 change/rename the field payment_id into a"
+__name__ = ("sale.order:: V7 change/rename the field payment_id into a "
             "many2many with the name payment_ids")
 
 
 def migrate(cr, version):
-    if version:
+    if version < "7.0.0.0":
         cr.execute("INSERT INTO account_voucher_sale_order_rel"
                    "(sale_order_id, account_voucher_id) "
                    "(SELECT id, payment_id FROM "
