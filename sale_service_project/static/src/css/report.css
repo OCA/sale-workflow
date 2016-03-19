@@ -1,0 +1,23 @@
+.table > tbody > .works_title > td,
+.table > tbody > .works_line > td,
+.table > tbody > .materials_title > td,
+.table > tbody > .materials_line > td {
+    border: 0;
+}
+
+.table > tbody > .works_title > .works_lbl,
+.table > tbody > .materials_title > .materials_lbl {
+    padding-left: 15px;
+    font-style: italic;
+    text-decoration: underline;
+}
+
+.table > tbody > .works_line > .works_line_name,
+.table > tbody > .materials_line > .materials_line_name {
+    padding-left: 25px;
+}
+
+.works_line_hours, .works_line_price,
+.materials_line_qty, .materials_line_price {
+    text-align: right;
+}

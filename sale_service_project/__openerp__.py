@@ -1,12 +1,13 @@
 # -*- coding: utf-8 -*-
 # © 2015 Antiun Ingeniería S.L. - Sergio Teruel
 # © 2015 Antiun Ingeniería S.L. - Carlos Dauden
+# © 2016 Antiun Ingenieria S.L. - Antonio Espinosa
 # License AGPL-3 - See http://www.gnu.org/licenses/agpl-3.0.html
 
 {
     'name': "Sale Service Project",
     'category': 'Sales',
-    'version': '8.0.1.0.0',
+    'version': '8.0.1.1.0',
     'depends': [
         'project_task_materials',
         'sale_service',
@@ -21,6 +22,7 @@
         'views/sale_view.xml',
         'views/account_invoice_view.xml',
         'views/project_view.xml',
+        'views/report_common.xml',
         'views/report_saleorder.xml',
         'views/report_invoice.xml',
         'wizard/product_price_service_view.xml',

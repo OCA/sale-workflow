@@ -1,10 +1,12 @@
 # -*- coding: utf-8 -*-
 # © 2015 Antiun Ingeniería S.L. - Sergio Teruel
 # © 2015 Antiun Ingeniería S.L. - Carlos Dauden
+# © 2016 Antiun Ingenieria S.L. - Antonio Espinosa
 # License AGPL-3 - See http://www.gnu.org/licenses/agpl-3.0.html
 
 from openerp import models, fields, api
 from openerp.addons.decimal_precision import decimal_precision as dp
+from openerp.report.report_sxw import rml_parse
 
 
 class SaleOrder(models.Model):
@@ -125,18 +127,26 @@ class SaleOrderLine(models.Model):
         return res
 
     @api.multi
-    @api.onchange(
-        'task_work_product_id', 'task_work_ids', 'task_materials_ids')
+    @api.onchange('task_work_product_id', 'compute_price',
+                  'task_work_ids', 'task_materials_ids')
     def _onchange_task_work_product_id(self):
-        if self.compute_price and self.task_work_product_id:
-            total_hours = sum(self.mapped('task_work_ids.hours') or [0.0])
-            total_price_hours = (
-                self.task_work_product_id.list_price * total_hours)
-            materials = self.mapped('task_materials_ids')
-            total_price_materials = sum(
-                [m.quantity * m.product_id.lst_price for m in materials])
-            total_price = total_price_hours + total_price_materials
-            self.price_unit = total_price
+        for line in self:
+            if line.compute_price and line.task_work_product_id:
+                pricelist_id = line.order_id.pricelist_id.id
+                partner_id = line.order_id.partner_id.id
+                total_hours = sum(line.mapped('task_work_ids.hours') or [0.0])
+                price_hours = line.order_id.pricelist_id.price_get(
+                    line.task_work_product_id.id, total_hours,
+                    partner_id)[pricelist_id]
+                total_price_hours = (price_hours * total_hours)
+                total_price_materials = 0.0
+                for material in line.mapped('task_materials_ids'):
+                    material_price = line.order_id.pricelist_id.price_get(
+                        material.product_id.id, material.quantity,
+                        partner_id)[pricelist_id]
+                    total_price_materials += (
+                        material.quantity * material_price)
+                line.price_unit = total_price_hours + total_price_materials
 
 
 class SaleOrderLineTaskWork(models.Model):
@@ -146,8 +156,7 @@ class SaleOrderLineTaskWork(models.Model):
         comodel_name='sale.order.line', string='Order Line')
     name = fields.Char(string='Name')
     hours = fields.Float(
-        string='Hours',
-        digits_compute=dp.get_precision('Product Unit of Measure'))
+        string='Hours', digits=dp.get_precision('Product UoS'))
 
 
 class SaleOrderLineTaskMaterials(models.Model):
@@ -158,5 +167,21 @@ class SaleOrderLineTaskMaterials(models.Model):
     product_id = fields.Many2one(
         comodel_name='product.product', string='Material')
     quantity = fields.Float(
-        string='Quantity',
-        digits_compute=dp.get_precision('Product Unit of Measure'))
+        string='Quantity', digits=dp.get_precision('Product UoS'))
+
+
+class SaleOrderReport(models.AbstractModel):
+    _name = 'report.sale.report_saleorder'
+
+    @api.multi
+    def render_html(self, data=None):
+        report_obj = self.env['report']
+        report = report_obj._get_report_from_name('sale.report_saleorder')
+        docargs = {
+            'doc_ids': self._ids,
+            'doc_model': report.model,
+            'docs': self,
+            'formatLang': rml_parse(
+                self.env.cr, self.env.uid, 'sale.report_saleorder').formatLang,
+        }
+        return report_obj.render('sale.report_saleorder', docargs)
