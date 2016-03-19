@@ -69,6 +69,7 @@ Contributors
 * Pedro M. Baeza <pedro.baeza@serviciosbaeza.com>
 * Carlos Dauden <carlos@incaser.es>
 * Sergio Teruel <sergio@incaser.es>
+* Antonio Espinosa <antonioea@antiun.com>
 
 Maintainer
 ----------

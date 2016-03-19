@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- © 2016 Antiun Ingenieria S.L. - Antonio Espinosa
+     License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html). -->
+<openerp>
+<data>
+
+<template id="minimal_layout"
+          inherit_id="report.minimal_layout"
+          name="Sale service project report CSS">
+    <xpath expr="//head" position="inside">
+        <link rel="stylesheet"
+              href="/sale_service_project/static/src/css/report.css"/>
+    </xpath>
+</template>
+
+</data>
+</openerp>
