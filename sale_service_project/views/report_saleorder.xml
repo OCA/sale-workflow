@@ -7,65 +7,67 @@
 <template id="report_saleorder_document"
           inherit_id="sale.report_saleorder_document">
     <xpath expr="//span[@t-field='l.name']/../.." position="inside">
-        <t t-set="uom_hour" t-value="l.env.ref('product.product_uom_hour')"/>
-        <t t-if="l.compute_price">
-            <t t-set="pricelist_id" t-value="l.order_id.pricelist_id.id"/>
-            <t t-set="partner_id" t-value="l.order_id.partner_id.id"/>
-            <t t-set="total_hours"
-               t-value="sum([x.hours for x in l.task_work_ids])"/>
-            <t t-set="price_hours"
-               t-value="l.order_id.pricelist_id.price_get(l.task_work_product_id.id, total_hours, partner_id)[pricelist_id]" />
-        </t>
-        <t t-raw="'&lt;/tr&gt;&lt;tr class=\'works_title\'&gt;'"/>
-            <td class="works_lbl">Works</td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td groups="sale.group_discount_per_so_line"></td>
-            <td></td>
-        <t t-foreach="l.task_work_ids" t-as="work">
-            <t t-raw="'&lt;/tr&gt;&lt;tr class=\'works_line\'&gt;'"/>
-            <td class="works_line_name"><span t-field="work.name"/></td>
-            <td></td>
-            <td class="works_line_hours">
-                <span t-field="work.hours"/>
-                <span groups="product.group_uom" t-field="uom_hour.name"/>
-            </td>
-            <td class="works_line_price">
-                <t t-if="l.compute_price">
-                    <span t-esc="formatLang(price_hours, dp='Product Price')"/>
-                </t>
-            </td>
-            <td groups="sale.group_discount_per_so_line"></td>
-            <td></td>
-        </t>
-        <t t-raw="'&lt;/tr&gt;&lt;tr class=\'materials_title\'&gt;'"/>
-            <td class="materials_lbl">Materials</td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td groups="sale.group_discount_per_so_line"></td>
-            <td></td>
-        <t t-foreach="l.task_materials_ids" t-as="material">
-            <t t-raw="'&lt;/tr&gt;&lt;tr class=\'materials_line\'&gt;'"/>
-            <td class="materials_line_name">
-                <span t-field="material.product_id.display_name"/>
-            </td>
-            <td></td>
-            <td class="materials_line_qty">
-                <span t-field="material.quantity"/>
-                <span groups="product.group_uom"
-                      t-field="material.product_id.uom_id.name"/>
-            </td>
-            <td class="materials_line_price">
-                <t t-if="l.compute_price">
-                    <t t-set="price_material"
-                       t-value="l.order_id.pricelist_id.price_get(material.product_id.id, material.quantity, partner_id)[pricelist_id]" />
-                    <span t-esc="formatLang(price_material, dp='Product Price')"/>
-                </t>
-            </td>
-            <td groups="sale.group_discount_per_so_line"></td>
-            <td></td>
+        <t t-if="o.print_works">
+            <t t-set="uom_hour" t-value="l.env.ref('product.product_uom_hour')"/>
+            <t t-if="l.compute_price">
+                <t t-set="pricelist_id" t-value="l.order_id.pricelist_id.id"/>
+                <t t-set="partner_id" t-value="l.order_id.partner_id.id"/>
+                <t t-set="total_hours"
+                   t-value="sum([x.hours for x in l.task_work_ids])"/>
+                <t t-set="price_hours"
+                   t-value="l.order_id.pricelist_id.price_get(l.task_work_product_id.id, total_hours, partner_id)[pricelist_id]" />
+            </t>
+            <t t-raw="'&lt;/tr&gt;&lt;tr class=\'works_title\'&gt;'"/>
+                <td class="works_lbl">Works</td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td groups="sale.group_discount_per_so_line"></td>
+                <td></td>
+            <t t-foreach="l.task_work_ids" t-as="work">
+                <t t-raw="'&lt;/tr&gt;&lt;tr class=\'works_line\'&gt;'"/>
+                <td class="works_line_name"><span t-field="work.name"/></td>
+                <td></td>
+                <td class="works_line_hours">
+                    <span t-field="work.hours"/>
+                    <span groups="product.group_uom" t-field="uom_hour.name"/>
+                </td>
+                <td class="works_line_price">
+                    <t t-if="l.compute_price">
+                        <span t-esc="formatLang(price_hours, dp='Product Price')"/>
+                    </t>
+                </td>
+                <td groups="sale.group_discount_per_so_line"></td>
+                <td></td>
+            </t>
+            <t t-raw="'&lt;/tr&gt;&lt;tr class=\'materials_title\'&gt;'"/>
+                <td class="materials_lbl">Materials</td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td groups="sale.group_discount_per_so_line"></td>
+                <td></td>
+            <t t-foreach="l.task_materials_ids" t-as="material">
+                <t t-raw="'&lt;/tr&gt;&lt;tr class=\'materials_line\'&gt;'"/>
+                <td class="materials_line_name">
+                    <span t-field="material.product_id.display_name"/>
+                </td>
+                <td></td>
+                <td class="materials_line_qty">
+                    <span t-field="material.quantity"/>
+                    <span groups="product.group_uom"
+                          t-field="material.product_id.uom_id.name"/>
+                </td>
+                <td class="materials_line_price">
+                    <t t-if="l.compute_price">
+                        <t t-set="price_material"
+                           t-value="l.order_id.pricelist_id.price_get(material.product_id.id, material.quantity, partner_id)[pricelist_id]" />
+                        <span t-esc="formatLang(price_material, dp='Product Price')"/>
+                    </t>
+                </td>
+                <td groups="sale.group_discount_per_so_line"></td>
+                <td></td>
+            </t>
         </t>
     </xpath>
 </template>
