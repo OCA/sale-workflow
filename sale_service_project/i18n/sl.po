@@ -8,8 +8,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: sale-workflow (8.0)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-02-26 09:59+0000\n"
-"PO-Revision-Date: 2016-02-27 16:56+0000\n"
+"POT-Creation-Date: 2016-03-17 01:49+0000\n"
+"PO-Revision-Date: 2016-03-16 05:27+0000\n"
 "Last-Translator: Matjaž Mozetič <m.mozetic@matmoz.si>\n"
 "Language-Team: Slovenian (http://www.transifex.com/oca/OCA-sale-workflow-8-0/language/sl/)\n"
 "MIME-Version: 1.0\n"
@@ -53,6 +53,7 @@ msgstr "Izračun cene storitve"
 
 #. module: sale_service_project
 #: view:product.template:sale_service_project.view_product_task_form
+#: field:sale.order.line,compute_price:0
 msgid "Compute price"
 msgstr "Izračun cene"
 
@@ -315,6 +316,11 @@ msgstr "Prikaz računa"
 #: view:sale.order:sale_service_project.view_order_form_service_project
 msgid "View Tasks"
 msgstr "Prikaz opravil"
+
+#. module: sale_service_project
+#: field:sale.order.line,task_work_product_id:0
+msgid "Work Price Product"
+msgstr "Proizvod cene dela"
 
 #. module: sale_service_project
 #: field:account.invoice.line,task_work_ids:0

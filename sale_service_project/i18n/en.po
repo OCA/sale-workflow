@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: sale-workflow (8.0)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-02-26 09:59+0000\n"
-"PO-Revision-Date: 2016-02-26 10:03+0000\n"
+"POT-Creation-Date: 2016-03-17 01:49+0000\n"
+"PO-Revision-Date: 2016-03-15 18:51+0000\n"
 "Last-Translator: OCA Transbot <transbot@odoo-community.org>\n"
 "Language-Team: English (http://www.transifex.com/oca/OCA-sale-workflow-8-0/language/en/)\n"
 "MIME-Version: 1.0\n"
@@ -52,6 +52,7 @@ msgstr "Compute Service Price"
 
 #. module: sale_service_project
 #: view:product.template:sale_service_project.view_product_task_form
+#: field:sale.order.line,compute_price:0
 msgid "Compute price"
 msgstr "Compute price"
 
@@ -314,6 +315,11 @@ msgstr "View Invoice"
 #: view:sale.order:sale_service_project.view_order_form_service_project
 msgid "View Tasks"
 msgstr "View Tasks"
+
+#. module: sale_service_project
+#: field:sale.order.line,task_work_product_id:0
+msgid "Work Price Product"
+msgstr "Work Price Product"
 
 #. module: sale_service_project
 #: field:account.invoice.line,task_work_ids:0
