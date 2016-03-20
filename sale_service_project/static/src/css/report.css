@@ -21,3 +21,8 @@
 .materials_line_qty, .materials_line_price {
     text-align: right;
 }
+
+.table > tbody > .invoice_works_line > td,
+.table > tbody > .invoice_materials_line > td {
+    border: 0;
+}

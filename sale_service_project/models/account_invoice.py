@@ -3,7 +3,8 @@
 # © 2015 Antiun Ingeniería S.L. - Carlos Dauden
 # License AGPL-3 - See http://www.gnu.org/licenses/agpl-3.0.html
 
-from openerp import fields, models
+from openerp import fields, models, api
+from openerp.report.report_sxw import rml_parse
 
 
 class AccountInvoice(models.Model):
@@ -29,3 +30,21 @@ class AccountInvoiceLine(models.Model):
         comodel_name='project.task.materials',
         column1='invoice_line_id', column2='material_line_id',
         readonly=True, string='Materials')
+
+
+class SaleOrderReport(models.AbstractModel):
+    _name = 'report.account.report_invoice'
+
+    @api.multi
+    def render_html(self, data=None):
+        report_obj = self.env['report']
+        report = report_obj._get_report_from_name('account.report_invoice')
+        docargs = {
+            'doc_ids': self._ids,
+            'doc_model': report.model,
+            'docs': self,
+            'formatLang':rml_parse(
+                self.env.cr, self.env.uid, 'account.report_invoice'
+            ).formatLang,
+        }
+        return report_obj.render('account.report_invoice', docargs)
