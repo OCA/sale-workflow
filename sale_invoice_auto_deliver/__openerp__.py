@@ -12,7 +12,7 @@
                 "sale_stock",
                 "stock",
                 ],
-    "data": [],
+    "data": ["views/sale_line_invoice_views.xml"],
     "license": "AGPL-3",
     "installable": True,
     "application": False,
