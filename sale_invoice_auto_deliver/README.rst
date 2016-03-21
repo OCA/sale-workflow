@@ -10,6 +10,8 @@ The goal of this module is to automatically deliver products when an user create
 On Sale Order when an user choose to create an invoice, he can use the option : "Invoice the whole sales order + Automatic Deliver"
 in order to deliver products at the same time than the invoice. This functionality can be useful in the case where products are already take out of the stock.
 
+When invoice sale order line it is possible to choose the option : "Create Invoice + Automatic Deliver" to deliver the product and invoice it.
+
 Consider as pre-requirement that all products must be available.
 
 Installation
