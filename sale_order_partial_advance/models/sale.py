@@ -16,15 +16,15 @@ class SaleOrder(models.Model):
         for invoice in self.invoice_ids:
             if invoice.state == 'cancel':
                 continue
-            advance_amount += sum([line.price_subtotal
+            advance_amount += sum([line.price_unit
                                   for line in invoice.invoice_line
                                   if (line.product_id.id == adv_product_id
-                                      and line.price_subtotal > 0)])
-            advance_amount_used -= sum([line.price_subtotal
+                                      and line.price_unit > 0)])
+            advance_amount_used -= sum([line.price_unit
                                         for line in invoice.invoice_line
                                         if (line.product_id.id ==
                                             adv_product_id
-                                            and line.price_subtotal < 0)])
+                                            and line.price_unit < 0)])
         self.advance_amount_available = advance_amount - advance_amount_used
         self.advance_amount = advance_amount
         self.advance_amount_used = advance_amount_used
