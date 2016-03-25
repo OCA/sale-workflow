@@ -66,6 +66,7 @@ Contributors
 ------------
 
 * Pedro M. Baeza <pedro.baeza@serviciosbaeza.com>
+* Victor M. Martin <victor.martin@elico-corp.com>
 
 Maintainer
 ----------
