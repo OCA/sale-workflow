@@ -69,3 +69,6 @@ class SaleOrderTypology(models.Model):
     sequence = fields.Integer(
         string='Sequence',
         default=0)
+    company_id = fields.Many2one(
+        'res.company',
+        related='warehouse_id.company_id', store=True, readonly=True)
