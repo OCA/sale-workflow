@@ -42,8 +42,8 @@ class SaleOrder(models.Model):
                         raise UserError(_(
                             'The delivery address can only be changed if '
                             'the related customer location remains the same.'))
-                        procurement.write({'partner_dest_id':
-                                           order.partner_shipping_id})
+                    procurement.write({'partner_dest_id':
+                                       order.partner_shipping_id.id})
                 pickings = order.picking_ids.filtered(
                     lambda picking: picking.state != 'done')
                 pickings.write(
