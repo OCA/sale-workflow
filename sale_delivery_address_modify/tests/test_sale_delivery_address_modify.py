@@ -33,8 +33,12 @@ class TestSaleDeliveryAddressModify(TransactionCase):
             'use_parent_address': True,
             'type': 'delivery',
         })
-        shipping_partner2 = shipping_partner1.copy(
-            {'name': 'Shipping address 2'})
+
+        # Using old API as per https://github.com/odoo/odoo/pull/11563
+        shipping_partner2 = self.env['res.partner'].browse(
+            self.registry('res.partner').copy(
+                self.env.cr, self.env.uid, shipping_partner1.id,
+                {'name': 'Shipping address 2'}))
 
         # Create a sales order with two lines
         sale_vals = {
