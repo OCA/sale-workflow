@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: sale-workflow (8.0)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-12-02 01:51+0000\n"
+"POT-Creation-Date: 2016-04-02 09:29+0000\n"
 "PO-Revision-Date: 2015-12-01 11:04+0000\n"
 "Last-Translator: OCA Transbot <transbot@odoo-community.org>\n"
 "Language-Team: English (http://www.transifex.com/oca/OCA-sale-workflow-8-0/language/en/)\n"
@@ -18,7 +18,7 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
 #. module: sale_payment_method
-#: code:addons/sale_payment_method/sale.py:85
+#: code:addons/sale_payment_method/sale.py:86
 #, python-format
 msgid ""
 "An automatic payment can not be created for the sale order %s because it has"
@@ -26,7 +26,7 @@ msgid ""
 msgstr "An automatic payment can not be created for the sale order %s because it has no payment method."
 
 #. module: sale_payment_method
-#: code:addons/sale_payment_method/sale.py:91
+#: code:addons/sale_payment_method/sale.py:92
 #, python-format
 msgid ""
 "An automatic payment should be created for the sale order %s but the payment"
@@ -34,7 +34,7 @@ msgid ""
 msgstr "An automatic payment should be created for the sale order %s but the payment method '%s' has no journal defined."
 
 #. module: sale_payment_method
-#: code:addons/sale_payment_method/sale.py:69
+#: code:addons/sale_payment_method/sale.py:70
 #, python-format
 msgid ""
 "Cannot cancel this sales order because automatic payment entries are linked "
@@ -155,13 +155,13 @@ msgid "Payments Entries"
 msgstr "Payments Entries"
 
 #. module: sale_payment_method
-#: code:addons/sale_payment_method/sale.py:145
+#: code:addons/sale_payment_method/sale.py:148
 #, python-format
 msgid "Please activate the sequence of the journal %s."
 msgstr "Please activate the sequence of the journal %s."
 
 #. module: sale_payment_method
-#: code:addons/sale_payment_method/sale.py:142
+#: code:addons/sale_payment_method/sale.py:145
 #, python-format
 msgid "Please define a sequence on the journal %s."
 msgstr "Please define a sequence on the journal %s."

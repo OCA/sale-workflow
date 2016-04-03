@@ -3,12 +3,13 @@
 # * sale_payment_method
 # 
 # Translators:
+# Hotellook, 2014
 # Rudolf Schnapka <rs@techno-flex.de>, 2016
 msgid ""
 msgstr ""
 "Project-Id-Version: sale-workflow (8.0)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-01-10 01:51+0000\n"
+"POT-Creation-Date: 2016-04-02 09:29+0000\n"
 "PO-Revision-Date: 2016-01-18 12:56+0000\n"
 "Last-Translator: Rudolf Schnapka <rs@techno-flex.de>\n"
 "Language-Team: German (http://www.transifex.com/oca/OCA-sale-workflow-8-0/language/de/)\n"
@@ -19,7 +20,7 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
 #. module: sale_payment_method
-#: code:addons/sale_payment_method/sale.py:85
+#: code:addons/sale_payment_method/sale.py:86
 #, python-format
 msgid ""
 "An automatic payment can not be created for the sale order %s because it has"
@@ -27,7 +28,7 @@ msgid ""
 msgstr "Eine automatische Zahlung kann für den Verkaufsauftrag %s nicht angelegt werden, da keine Zahlweise angegeben ist."
 
 #. module: sale_payment_method
-#: code:addons/sale_payment_method/sale.py:91
+#: code:addons/sale_payment_method/sale.py:92
 #, python-format
 msgid ""
 "An automatic payment should be created for the sale order %s but the payment"
@@ -35,7 +36,7 @@ msgid ""
 msgstr "Eine Automatische Zahlung soll für den Verkaufsauftrag %s angelegt werden, aber zur Zahlweise '%s' ist kein Journal festgelegt."
 
 #. module: sale_payment_method
-#: code:addons/sale_payment_method/sale.py:69
+#: code:addons/sale_payment_method/sale.py:70
 #, python-format
 msgid ""
 "Cannot cancel this sales order because automatic payment entries are linked "
@@ -156,13 +157,13 @@ msgid "Payments Entries"
 msgstr "Zahlungs-Posten"
 
 #. module: sale_payment_method
-#: code:addons/sale_payment_method/sale.py:145
+#: code:addons/sale_payment_method/sale.py:148
 #, python-format
 msgid "Please activate the sequence of the journal %s."
 msgstr "Aktivieren Sie bitte den Nummernkreis im Journal %s."
 
 #. module: sale_payment_method
-#: code:addons/sale_payment_method/sale.py:142
+#: code:addons/sale_payment_method/sale.py:145
 #, python-format
 msgid "Please define a sequence on the journal %s."
 msgstr "Legen Sie bitte einen Nummernkreis für das Journal %s fest."
