@@ -140,21 +140,15 @@ class SaleOrder(models.Model):
 
     @api.model
     def _get_payment_move_name(self, journal, period):
-        sequence = journal.sequence_id
+        sequence = journal.sequence_id.with_context(
+            fiscalyear_id=period.fiscalyear_id.id)
         if not sequence:
             raise exceptions.Warning(_('Please define a sequence on the '
                                        'journal %s.') % journal.name)
         if not sequence.active:
             raise exceptions.Warning(_('Please activate the sequence of the '
                                        'journal %s.') % journal.name)
-
-        sequence = sequence.with_context(fiscalyear_id=period.fiscalyear_id.id)
-        # next_by_id not compatible with new api
-        sequence_model = self.pool['ir.sequence']
-        name = sequence_model.next_by_id(self.env.cr, self.env.uid,
-                                         sequence.id,
-                                         context=sequence.env.context)
-        return name
+        return sequence.next_by_id(sequence.id)
 
     @api.multi
     def _prepare_payment_move(self, move_name, journal, period, date):
