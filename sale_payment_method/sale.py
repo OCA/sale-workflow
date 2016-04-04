@@ -153,7 +153,7 @@ class SaleOrder(models.Model):
         sequence_model = self.pool['ir.sequence']
         name = sequence_model.next_by_id(self.env.cr, self.env.uid,
                                          sequence.id,
-                                         context=self.env.context)
+                                         context=sequence.env.context)
         return name
 
     @api.multi
