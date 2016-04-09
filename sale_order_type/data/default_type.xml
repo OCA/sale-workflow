@@ -5,6 +5,7 @@
             <field name="name">Normal Order</field>
             <field name="warehouse_id" ref="stock.warehouse0"/>
             <field name="sequence_id" ref="sale.seq_sale_order"/>
+            <field name="company_id" ref="base.main_company"/>
         </record>
     </data>
 </openerp>

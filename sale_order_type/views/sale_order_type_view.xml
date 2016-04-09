@@ -14,6 +14,7 @@
                                 <h1>
                                     <field name="name"/>
                                 </h1>
+                                <field name="company_id" placeholder="Company" groups="base.group_multi_company"/>
                             </div>
                         </group>
                         <group>
@@ -44,6 +45,7 @@
                 <tree string="Type">
                     <field name="sequence" widget="handle"/>
                     <field name="name"/>
+                    <field name="company_id" groups="base.group_multi_company"/>
                     <field name="warehouse_id"/>
                     <field name="sequence_id"/>
                     <field name="journal_id"/>
@@ -62,6 +64,7 @@
             <field name="arch" type="xml">
                 <search string="Type">
                     <field name="name"/>
+                    <field name="company_id" groups="base.group_multi_company"/>
                     <field name="warehouse_id"/>
                     <field name="sequence_id"/>
                     <field name="journal_id"/>
@@ -70,6 +73,9 @@
                     <field name="order_policy" />
                     <field name="invoice_state" />
                     <group expand="0" string="Group By">
+                        <filter string="Company" domain="[]"
+                                context="{'group_by':'company_id'}"
+                                groups="base.group_multi_company" />
                         <filter string="Warehouse" domain="[]"
                                 context="{'group_by':'warehouse_id'}" />
                         <filter string="Entry Sequence" domain="[]"

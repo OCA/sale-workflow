@@ -28,6 +28,7 @@
               "Grupo Vermon, "
               "AvanzOSC, "
               "Serv. Tecnol. Avanzados - Pedro M. Baeza, "
+              "Trey, "
               "Odoo Community Association (OCA)",
     "website": "http://www.odoomrp.com",
     "license": "AGPL-3",
@@ -41,6 +42,7 @@
         "demo/sale_order_demo.xml",
     ],
     "data": [
+        "security/sale_order_type_security.xml",
         "security/ir.model.access.csv",
         "views/sale_order_view.xml",
         "views/sale_order_type_view.xml",
