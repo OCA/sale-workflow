@@ -58,6 +58,7 @@ class SaleOrderLine(models.Model):
                     'properties': prop_dict,
                     'qty_uos': self.product_uos_qty,
                     'product_id': self.product_id.id,
+                    'uos_id': self.product_uos.id,
                 }
                 try:
                     result = {}
