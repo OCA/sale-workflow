@@ -25,7 +25,7 @@ from openerp.tools.translate import _
 
 class SaleOrderLine(models.Model):
 
-    """Adds two exception functions to be called by the sale_exceptions module.
+    """Adds two exception functions to be called by the sale_exception module.
 
     The first one will ensure that an order line can be delivered on the
     delivery date, if the related product is in MTS. Validation is done by

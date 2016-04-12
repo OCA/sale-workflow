@@ -20,18 +20,18 @@
             <field name="name">sale.exception.form</field>
             <field name="model">sale.exception</field>
             <field name="arch" type="xml">
-                <form string="Sale Exception Setup">
+                <form string="Sale Exception Setup" name="sale_exception">
                     <group colspan="4" col="2">
                         <field name="name"/>
                         <field name="description"/>
                     </group>
-                    <group col="4" colspan="4" groups="base.group_sale_manager">
+                    <group colspan="4" groups="base.group_sale_manager">
                         <field name="active"/>
                         <field name="sequence"/>
-                        <group colspan="4" col="2" groups="base.group_system">
-                            <field name="model"/>
-                            <field name="code"/>
-                        </group>
+                    </group>
+                    <group colspan="4" col="2" groups="base.group_system">
+                        <field name="model"/>
+                        <field name="code"/>
                     </group>
                     <group colspan="4" col="2">
                         <separator string="Affected Sales Orders"/>
@@ -55,7 +55,7 @@
 
 
         <record id="view_order_form" model="ir.ui.view">
-            <field name="name">sale_exceptions.view_order_form</field>
+            <field name="name">sale_exception.view_order_form</field>
             <field name="model">sale.order</field>
             <field name="inherit_id" ref="sale.view_order_form"/>
             <field name="arch" type="xml">
@@ -66,8 +66,12 @@
                            attrs="{'invisible':[('main_exception_id','=', False)]}"/>
                     </group>
                 </field>
-                <xpath expr="//page[@string='Other Information']/group"
+                <xpath expr="//field[@name='date_order']/.." position="inside">
+                    <field name="ignore_exception" states="sale" />
+                </xpath>
+                <xpath expr="//group[@name='sales_person']/.."
                         position="inside">
+                    <newline />
                     <group name="exception" colspan="2" col="2">
                         <separator string="Exception" colspan="2"/>
                         <field name="exception_ids" colspan="2" nolabel="1"/>
@@ -77,7 +81,7 @@
         </record>
 
         <record id="view_order_tree" model="ir.ui.view">
-            <field name="name">sale_exceptions.view_order_tree</field>
+            <field name="name">sale_exception.view_order_tree</field>
             <field name="model">sale.order</field>
             <field name="inherit_id" ref="sale.view_order_tree"/>
             <field name="arch" type="xml">
@@ -88,7 +92,7 @@
         </record>
 
         <record id="view_quotation_tree" model="ir.ui.view">
-            <field name="name">sale_exceptions.view_order_tree</field>
+            <field name="name">sale_exception.view_order_tree</field>
             <field name="model">sale.order</field>
             <field name="inherit_id" ref="sale.view_quotation_tree"/>
             <field name="arch" type="xml">
@@ -99,7 +103,7 @@
         </record>
 
         <record id="view_sales_order_filter" model="ir.ui.view">
-            <field name="name">sale_exceptions.view_sales_order_filter</field>
+            <field name="name">sale_exception.view_sales_order_filter</field>
             <field name="model">sale.order</field>
             <field name="inherit_id" ref="sale.view_sales_order_filter" />
             <field name="arch" type="xml">

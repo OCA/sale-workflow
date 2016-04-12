@@ -24,7 +24,7 @@
  'maintainer': 'Camptocamp',
  'category': 'sale',
  'complexity': "normal",
- 'depends': ['sale_exceptions', 'sale_stock'],
+ 'depends': ['sale_exception', 'sale_stock'],
  'description': """
 Sale stock exception
 --------------------

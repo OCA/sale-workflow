@@ -31,7 +31,7 @@
     'depends': ['sale_stock',
                 'purchase',
                 'stock_dropshipping',
-                'sale_exceptions',
+                'sale_exception',
                 'sale_procurement_group_by_line'],
     'data': ['views/sale_order_sourcing.xml',
              'views/sale_order.xml',
