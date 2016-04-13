@@ -24,7 +24,8 @@
                     <group string="Works">
                         <field name="task_work_ids" nolabel="1"
                                context="{'default_product_id': active_id}">
-                            <tree string="Tasks" editable="top">
+                            <tree string="Tasks" editable="bottom">
+                                <field name="sequence" widget="handle"/>
                                 <field name="name"/>
                                 <field name="hours"/>
                             </tree>
@@ -33,7 +34,8 @@
                     <group string="Materials">
                         <field name="task_materials_ids" nolabel="1"
                                context="{'default_product_id': active_id}">
-                            <tree string="Materials" editable="top">
+                            <tree string="Materials" editable="bottom">
+                                <field name="sequence" widget="handle"/>
                                 <field name="material_id" domain="[('type','!=','service')]"/>
                                 <field name="quantity"/>
                             </tree>
