@@ -151,16 +151,19 @@ class SaleOrderLine(models.Model):
 
 class SaleOrderLineTaskWork(models.Model):
     _name = 'sale.order.line.task.work'
+    _order = 'sequence'
 
     order_line_id = fields.Many2one(
         comodel_name='sale.order.line', string='Order Line')
     name = fields.Char(string='Name')
     hours = fields.Float(
         string='Hours', digits=dp.get_precision('Product UoS'))
+    sequence = fields.Integer()
 
 
 class SaleOrderLineTaskMaterials(models.Model):
     _name = 'sale.order.line.task.materials'
+    _order = 'sequence'
 
     order_line_id = fields.Many2one(
         comodel_name='sale.order.line', string='Order Line')
@@ -168,6 +171,7 @@ class SaleOrderLineTaskMaterials(models.Model):
         comodel_name='product.product', string='Material')
     quantity = fields.Float(
         string='Quantity', digits=dp.get_precision('Product UoS'))
+    sequence = fields.Integer()
 
 
 class SaleOrderReport(models.AbstractModel):
