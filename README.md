@@ -14,6 +14,12 @@ This project aim to deal with modules related to manage sale and their related w
  - ...
 
 [//]: # (addons)
+Available addons
+----------------
+addon | version | summary
+--- | --- | ---
+[sale_exception](sale_exception/) | 9.0.1.0.0 | Custom exceptions on sale order
+
 Unported addons
 ---------------
 addon | version | summary
@@ -32,7 +38,6 @@ addon | version | summary
 [sale_delivery_term](sale_delivery_term/) | 0.1 (unported) | Delivery term for sale orders
 [sale_dropshipping](sale_dropshipping/) | 1.1.1 (unported) | Sale Dropshipping
 [sale_exception_nostock](sale_exception_nostock/) | 8.0.1.2.0 (unported) | Sale stock exception
-[sale_exceptions](sale_exceptions/) | 8.0.1.0.0 (unported) | Custom exceptions on sale order
 [sale_fiscal_position_update](sale_fiscal_position_update/) | 1.0 (unported) | Changing the fiscal position of a sale order will auto-update sale order lines
 [sale_jit_on_services](sale_jit_on_services/) | 1.0 (unported) | Sale Service Just In Time
 [sale_journal_shop](sale_journal_shop/) | 0.0.1 (unported) | Sale Journal Shop
