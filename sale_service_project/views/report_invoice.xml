@@ -16,19 +16,16 @@
                     <td groups="sale.group_discount_per_so_line"></td>
                     <td></td>
                 <t t-foreach="l.sale_order_lines" t-as="order_line">
-                    <t t-set="pricelist_id" t-value="order_line.order_id.pricelist_id.id"/>
                     <t t-foreach="order_line.task_work_ids" t-as="work">
                         <t t-raw="'&lt;/tr&gt;&lt;tr class=\'invoice_works_line\'&gt;'"/>
                         <td class="works_line_name"><span t-field="work.name"/></td>
                         <td class="invoice_works_line_hours">
-                            <span t-esc="formatLang(work.hours, dp='Product Unit of Measure')"/>
+                            <span t-field="work.hours"/>
                             <span groups="product.group_uom" t-field="uom_hour.name"/>
                         </td>
                         <td class="works_line_price">
                             <t t-if="order_line.compute_price">
-                                <t t-set="price_hours"
-                                   t-value="order_line.order_id.pricelist_id.price_get(order_line.task_work_product_id.id, total_hours, partner_id)[pricelist_id]" />
-                                <span t-esc="formatLang(price_hours, dp='Product Price')"/>
+                                <span t-field="order_line.task_work_product_price"/>
                             </t>
                         </td>
                         <td groups="sale.group_discount_per_so_line"></td>
@@ -48,15 +45,13 @@
                             <span t-field="material.product_id.display_name"/>
                         </td>
                         <td class="invoice_materials_line_qty">
-                            <span t-esc="formatLang(material.quantity, dp='Product Unit of Measure')"/>
+                            <span t-field="material.quantity"/>
                             <span groups="product.group_uom"
                                   t-field="material.product_id.uom_id.name"/>
                         </td>
                         <td class="materials_line_price">
                             <t t-if="order_line.compute_price">
-                                <t t-set="price_material"
-                                   t-value="order_line.order_id.pricelist_id.price_get(material.product_id.id, material.quantity, partner_id)[pricelist_id]" />
-                                <span t-esc="formatLang(price_material, dp='Product Price')"/>
+                                <span t-field="material.price"/>
                             </t>
                         </td>
                         <td groups="sale.group_discount_per_so_line"></td>
@@ -79,7 +74,7 @@
                         <t t-raw="'&lt;/tr&gt;&lt;tr class=\'invoice_works_line\'&gt;'"/>
                         <td class="works_line_name"><span t-field="work.name"/></td>
                         <td class="invoice_works_line_hours">
-                            <span t-esc="formatLang(work.hours, dp='Product Unit of Measure')"/>
+                            <span t-field="work.hours"/>
                             <span groups="product.group_uom" t-field="uom_hour.name"/>
                         </td>
                         <td></td>

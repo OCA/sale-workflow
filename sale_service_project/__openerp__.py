@@ -12,7 +12,8 @@
         'project_task_materials',
         'sale_service',
         'project_timesheet',
-        'hr_timesheet_invoice'],
+        'hr_timesheet_invoice'
+    ],
     'demo': [
         'data/sale_service_project_demo.xml',
     ],

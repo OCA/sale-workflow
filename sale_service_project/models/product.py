@@ -41,7 +41,7 @@ class ProductTaskWork(models.Model):
     name = fields.Char(string='Name')
     hours = fields.Float(
         string='Hours',
-        digits_compute=dp.get_precision('Product Unit of Measure'))
+        digits=dp.get_precision('Product UoS'))
     sequence = fields.Integer()
 
 
@@ -73,5 +73,5 @@ class ProductTaskMaterials(models.Model):
         comodel_name='product.product', string='Material', required=True)
     quantity = fields.Float(
         string='Quantity',
-        digits_compute=dp.get_precision('Product Unit of Measure'))
+        digits=dp.get_precision('Product UoS'))
     sequence = fields.Integer()
