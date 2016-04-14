@@ -58,7 +58,7 @@ class SaleOrderLine(models.Model):
 
     @api.multi
     def _onchange_eval(self, field_name, onchange, result):
-        super(SaleOrderLine, self).onchange(field_name, onchange, result)
+        super(SaleOrderLine, self)._onchange_eval(field_name, onchange, result)
         # As onchange is an old api version we have to hack to update
         # the price unit with the option value
         if 'product_id_change' in onchange:
