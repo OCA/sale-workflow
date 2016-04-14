@@ -54,9 +54,25 @@ class SaleOrderLine(models.Model):
             fiscal_position, flag, context)
         if product:
             res['value']['base_price_unit'] = res['value']['price_unit']
-            return res
+        return res
 
-    @api.onchange('optional_bom_line_ids', 'base_price_unit')
+    @api.multi
+    def _onchange_eval(self, field_name, onchange, result):
+        super(SaleOrderLine, self).onchange(field_name, onchange, result)
+        # As onchange is an old api version we have to hack to update
+        # the price unit with the option value
+        if 'product_id_change' in onchange:
+            self._onchange_option()
+
+        # For some strange reason changing the qty of the product in the
+        # option will not recompute the price unit
+        # in order to be sure to recompute the price for it here
+        if field_name == 'optional_bom_line_ids':
+            self._onchange_option()
+
+    @api.onchange(
+        'optional_bom_line_ids',
+        'base_price_unit')
     def _onchange_option(self):
         final_options_price = 0
         for option in self.optional_bom_line_ids:
@@ -89,7 +105,6 @@ class SaleOrderLineOption(models.Model):
     line_price = fields.Float(compute='_compute_price', store=True)
 
     @api.one
-    @api.onchange('bom_line_id', 'qty')
     @api.depends('bom_line_id', 'qty')
     def _compute_price(self):
         option_price = 0
