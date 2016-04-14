@@ -6,7 +6,6 @@
 
 from openerp import models, fields, api
 from openerp.addons.decimal_precision import decimal_precision as dp
-from openerp.report.report_sxw import rml_parse
 
 
 class SaleOrder(models.Model):
@@ -87,12 +86,27 @@ class SaleOrderLine(models.Model):
         comodel_name='product.product',
         domain=[('type', '=', 'service')],
         string='Work Price Product')
+    task_work_product_price = fields.Float(
+        compute='_compute_task_work_product_price',
+        digits=dp.get_precision('Product Price'),
+        readonly=True)
 
     @api.multi
     @api.depends('task_ids.stage_id.closed')
     def _compute_task_closed(self):
         for line in self:
             line.task_closed = all(line.mapped('task_ids.stage_id.closed'))
+
+    @api.multi
+    @api.depends('task_work_ids', 'task_work_product_id')
+    def _compute_task_work_product_price(self):
+        for line in self:
+            pricelist = line.order_id.pricelist_id
+            partner = line.order_id.partner_id
+            total_hours = sum(line.task_work_ids.mapped('hours'))
+            line.task_work_product_price = pricelist.price_get(
+                line.task_work_product_id.id, total_hours,
+                partner.id)[pricelist.id]
 
     @api.multi
     def product_id_change(
@@ -171,21 +185,16 @@ class SaleOrderLineTaskMaterials(models.Model):
         comodel_name='product.product', string='Material')
     quantity = fields.Float(
         string='Quantity', digits=dp.get_precision('Product UoS'))
+    price = fields.Float(
+        compute='_compute_price', digits=dp.get_precision('Product Price'))
     sequence = fields.Integer()
 
-
-class SaleOrderReport(models.AbstractModel):
-    _name = 'report.sale.report_saleorder'
-
     @api.multi
-    def render_html(self, data=None):
-        report_obj = self.env['report']
-        report = report_obj._get_report_from_name('sale.report_saleorder')
-        docargs = {
-            'doc_ids': self._ids,
-            'doc_model': report.model,
-            'docs': self,
-            'formatLang': rml_parse(
-                self.env.cr, self.env.uid, 'sale.report_saleorder').formatLang,
-        }
-        return report_obj.render('sale.report_saleorder', docargs)
+    @api.depends('order_line_id', 'quantity')
+    def _compute_price(self):
+        for task_material in self:
+            pricelist = task_material.order_line_id.order_id.pricelist_id
+            partner = task_material.order_line_id.order_id.partner_id
+            task_material.price = pricelist.price_get(
+                task_material.product_id.id, task_material.quantity,
+                partner.id)[pricelist.id]

@@ -9,14 +9,6 @@
     <xpath expr="//span[@t-field='l.name']/../.." position="inside">
         <t t-if="o.print_works">
             <t t-set="uom_hour" t-value="l.env.ref('product.product_uom_hour')"/>
-            <t t-if="l.compute_price">
-                <t t-set="pricelist_id" t-value="l.order_id.pricelist_id.id"/>
-                <t t-set="partner_id" t-value="l.order_id.partner_id.id"/>
-                <t t-set="total_hours"
-                   t-value="sum([x.hours for x in l.task_work_ids])"/>
-                <t t-set="price_hours"
-                   t-value="l.order_id.pricelist_id.price_get(l.task_work_product_id.id, total_hours, partner_id)[pricelist_id]" />
-            </t>
             <t t-raw="'&lt;/tr&gt;&lt;tr class=\'works_title\'&gt;'"/>
                 <td class="works_lbl">Works</td>
                 <td></td>
@@ -34,7 +26,7 @@
                 </td>
                 <td class="works_line_price">
                     <t t-if="l.compute_price">
-                        <span t-esc="formatLang(price_hours, dp='Product Price')"/>
+                        <span t-field="l.task_work_product_price"/>
                     </t>
                 </td>
                 <td groups="sale.group_discount_per_so_line"></td>
@@ -60,9 +52,7 @@
                 </td>
                 <td class="materials_line_price">
                     <t t-if="l.compute_price">
-                        <t t-set="price_material"
-                           t-value="l.order_id.pricelist_id.price_get(material.product_id.id, material.quantity, partner_id)[pricelist_id]" />
-                        <span t-esc="formatLang(price_material, dp='Product Price')"/>
+                        <span t-field="material.price"/>
                     </t>
                 </td>
                 <td groups="sale.group_discount_per_so_line"></td>
