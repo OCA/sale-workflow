@@ -10,35 +10,52 @@
         <t t-if="o.print_works">
             <t t-set="uom_hour" t-value="l.env.ref('product.product_uom_hour')"/>
             <t t-raw="'&lt;/tr&gt;&lt;tr class=\'works_title\'&gt;'"/>
-                <td class="works_lbl">Works</td>
+                <td class="works_lbl">Total Works</td>
                 <td></td>
-                <td></td>
-                <td></td>
-                <td groups="sale.group_discount_per_so_line"></td>
-                <td></td>
-            <t t-foreach="l.task_work_ids" t-as="work">
-                <t t-raw="'&lt;/tr&gt;&lt;tr class=\'works_line\'&gt;'"/>
-                <td class="works_line_name"><span t-field="work.name"/></td>
-                <td></td>
-                <td class="works_line_hours">
-                    <span t-field="work.hours"/>
+                <td class="works_total_hours">
+                    <span t-field="l.task_work_hours"/>
                     <span groups="product.group_uom" t-field="uom_hour.name"/>
                 </td>
-                <td class="works_line_price">
+                <td class="works_hours_price">
                     <t t-if="l.compute_price">
                         <span t-field="l.task_work_product_price"/>
                     </t>
                 </td>
                 <td groups="sale.group_discount_per_so_line"></td>
+                <td class="works_total_amount">
+                    <t t-if="l.compute_price">
+                        <span t-field="l.task_work_amount"
+                              t-field-options='{"widget": "monetary",
+                                                "display_currency": "o.pricelist_id.currency_id"}'/>
+                    </t>
+                </td>
+            <t t-foreach="l.task_work_ids" t-as="work">
+                <t t-raw="'&lt;/tr&gt;&lt;tr class=\'works_line\'&gt;'"/>
+                <td class="works_line_name"><span t-field="work.name"/></td>
+                <td></td>
+                <td class="works_line_hours">
+                    <t t-if="l.detailed_time">
+                        <span t-field="work.hours"/>
+                        <span groups="product.group_uom" t-field="uom_hour.name"/>
+                    </t>
+                </td>
+                <td></td>
+                <td groups="sale.group_discount_per_so_line"></td>
                 <td></td>
             </t>
             <t t-raw="'&lt;/tr&gt;&lt;tr class=\'materials_title\'&gt;'"/>
-                <td class="materials_lbl">Materials</td>
+                <td class="materials_lbl">Total Materials</td>
                 <td></td>
                 <td></td>
                 <td></td>
                 <td groups="sale.group_discount_per_so_line"></td>
-                <td></td>
+                <td class="materials_total_amount">
+                    <t t-if="l.compute_price">
+                        <span t-field="l.task_materials_amount"
+                              t-field-options='{"widget": "monetary",
+                                                "display_currency": "o.pricelist_id.currency_id"}'/>
+                    </t>
+                </td>
             <t t-foreach="l.task_materials_ids" t-as="material">
                 <t t-raw="'&lt;/tr&gt;&lt;tr class=\'materials_line\'&gt;'"/>
                 <td class="materials_line_name">

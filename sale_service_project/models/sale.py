@@ -82,14 +82,27 @@ class SaleOrderLine(models.Model):
         store=True,
     )
     compute_price = fields.Boolean()
+    detailed_time = fields.Boolean()
     task_work_product_id = fields.Many2one(
         comodel_name='product.product',
         domain=[('type', '=', 'service')],
         string='Work Price Product')
     task_work_product_price = fields.Float(
-        compute='_compute_task_work_product_price',
+        compute='_compute_task_work_values',
         digits=dp.get_precision('Product Price'),
         readonly=True)
+    task_work_hours = fields.Float(
+        string='Total Hours',
+        compute='_compute_task_work_values',
+        digits=dp.get_precision('Product UoS'))
+    task_work_amount = fields.Float(
+        string='Work Amount',
+        compute='_compute_task_work_values',
+        digits=dp.get_precision('Account'))
+    task_materials_amount = fields.Float(
+        string='Material Amount',
+        compute='_compute_task_materials_amount',
+        digits=dp.get_precision('Account'))
 
     @api.multi
     @api.depends('task_ids.stage_id.closed')
@@ -99,35 +112,46 @@ class SaleOrderLine(models.Model):
 
     @api.multi
     @api.depends('task_work_ids', 'task_work_product_id')
-    def _compute_task_work_product_price(self):
+    def _compute_task_work_values(self):
         for line in self:
             pricelist = line.order_id.pricelist_id
             partner = line.order_id.partner_id
-            total_hours = sum(line.task_work_ids.mapped('hours'))
+            line.task_work_hours = sum(line.task_work_ids.mapped('hours'))
             line.task_work_product_price = pricelist.price_get(
-                line.task_work_product_id.id, total_hours,
+                line.task_work_product_id.id, line.task_work_hours,
                 partner.id)[pricelist.id]
+            line.task_work_amount = (
+                line.task_work_hours * line.task_work_product_price)
+
+    @api.multi
+    @api.depends('task_materials_ids')
+    def _compute_task_materials_amount(self):
+        for line in self:
+            materials_amount = 0.0
+            for material in line.task_materials_ids:
+                materials_amount += material.quantity * material.price
+            line.task_materials_amount = materials_amount
 
     @api.multi
     def product_id_change(
-        self, pricelist, product, qty=0, uom=False, qty_uos=0, uos=False,
+        self, pricelist, product_id, qty=0, uom=False, qty_uos=0, uos=False,
             name='', partner_id=False, lang=False, update_tax=True,
             date_order=False, packaging=False, fiscal_position=False,
             flag=False):
         res = super(SaleOrderLine, self).product_id_change(
-            pricelist, product, qty, uom, qty_uos, uos, name, partner_id,
+            pricelist, product_id, qty, uom, qty_uos, uos, name, partner_id,
             lang, update_tax, date_order, packaging, fiscal_position, flag)
 
-        product_id = self.product_id.browse(product)
-        if product_id.auto_create_task:
+        product = self.product_id.browse(product_id)
+        if product.auto_create_task:
             work_list = []
-            for work in product_id.task_work_ids:
+            for work in product.task_work_ids:
                 work_list.append((0, 0, {
                     'name': work.name,
                     'hours': work.hours
                 }))
             material_list = []
-            for material in product_id.task_materials_ids:
+            for material in product.task_materials_ids:
                 material_list.append((0, 0, {
                     'product_id': material.material_id.id,
                     'quantity': material.quantity
@@ -146,21 +170,8 @@ class SaleOrderLine(models.Model):
     def _onchange_task_work_product_id(self):
         for line in self:
             if line.compute_price and line.task_work_product_id:
-                pricelist_id = line.order_id.pricelist_id.id
-                partner_id = line.order_id.partner_id.id
-                total_hours = sum(line.mapped('task_work_ids.hours') or [0.0])
-                price_hours = line.order_id.pricelist_id.price_get(
-                    line.task_work_product_id.id, total_hours,
-                    partner_id)[pricelist_id]
-                total_price_hours = (price_hours * total_hours)
-                total_price_materials = 0.0
-                for material in line.mapped('task_materials_ids'):
-                    material_price = line.order_id.pricelist_id.price_get(
-                        material.product_id.id, material.quantity,
-                        partner_id)[pricelist_id]
-                    total_price_materials += (
-                        material.quantity * material_price)
-                line.price_unit = total_price_hours + total_price_materials
+                line.price_unit = (
+                    line.task_work_amount + line.task_materials_amount)
 
 
 class SaleOrderLineTaskWork(models.Model):
