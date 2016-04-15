@@ -34,13 +34,15 @@ class ProductTemplate(models.Model):
 
 class ProductTaskWork(models.Model):
     _name = 'product.task.work'
+    _order = 'sequence'
 
     product_id = fields.Many2one(
         comodel_name='product.template', string='Product', ondelete='restrict')
     name = fields.Char(string='Name')
     hours = fields.Float(
         string='Hours',
-        digits_compute=dp.get_precision('Product Unit of Measure'))
+        digits=dp.get_precision('Product UoS'))
+    sequence = fields.Integer()
 
 
 class ProductProduct(models.Model):
@@ -63,6 +65,7 @@ class ProductProduct(models.Model):
 
 class ProductTaskMaterials(models.Model):
     _name = 'product.task.materials'
+    _order = 'sequence'
 
     product_id = fields.Many2one(
         comodel_name='product.template', string='Product', ondelete='restrict')
@@ -70,4 +73,5 @@ class ProductTaskMaterials(models.Model):
         comodel_name='product.product', string='Material', required=True)
     quantity = fields.Float(
         string='Quantity',
-        digits_compute=dp.get_precision('Product Unit of Measure'))
+        digits=dp.get_precision('Product UoS'))
+    sequence = fields.Integer()

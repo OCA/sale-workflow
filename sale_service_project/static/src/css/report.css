@@ -1,0 +1,50 @@
+.table > tbody > .works_title > td,
+.table > tbody > .works_line > td,
+.table > tbody > .materials_title > td,
+.table > tbody > .materials_line > td {
+    border: 0;
+}
+
+.table > tbody > .works_title > .works_lbl,
+.table > tbody > .materials_title > .materials_lbl {
+    padding-left: 15px;
+    text-decoration: underline;
+}
+
+.table > tbody > .works_line > td,
+.table > tbody > .materials_line > td,
+.table > tbody > .invoice_works_line > td,
+.table > tbody > .invoice_materials_line > td {
+    padding-top: 0;
+    padding-bottom: 0;
+    border: 0;
+}
+
+.table > tbody > .works_line > .works_line_name,
+.table > tbody > .materials_line > .materials_line_name,
+.table > tbody > .invoice_works_line > .works_line_name,
+.table > tbody > .invoice_materials_line > .materials_line_name {
+    padding-left: 25px;
+    font-size: 12px;
+    color: grey;
+}
+
+.works_total_hours, .works_hours_price,
+.works_total_amount, .materials_total_amount {
+    text-align: right;
+    font-size: 12px;
+    color: grey;
+}
+
+.works_line_hours, .materials_line_qty, .materials_line_price {
+    text-align: right;
+    font-style: italic;
+    font-size: 10px;
+    color: grey;
+}
+
+.invoice_works_line_hours {
+    font-style: italic;
+    font-size: 10px;
+    color: grey;
+}
