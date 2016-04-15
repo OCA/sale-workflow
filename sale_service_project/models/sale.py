@@ -113,7 +113,8 @@ class SaleOrderLine(models.Model):
     @api.multi
     @api.depends('task_work_ids', 'task_work_product_id')
     def _compute_task_work_values(self):
-        for line in self:
+        for line in self.filtered(
+                lambda x: x.task_work_ids and x.task_work_product_id):
             pricelist = line.order_id.pricelist_id
             partner = line.order_id.partner_id
             line.task_work_hours = sum(line.task_work_ids.mapped('hours'))
@@ -126,7 +127,7 @@ class SaleOrderLine(models.Model):
     @api.multi
     @api.depends('task_materials_ids')
     def _compute_task_materials_amount(self):
-        for line in self:
+        for line in self.filtered(lambda x: x.task_materials_ids):
             materials_amount = 0.0
             for material in line.task_materials_ids:
                 materials_amount += material.quantity * material.price
