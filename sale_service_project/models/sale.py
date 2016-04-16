@@ -94,7 +94,7 @@ class SaleOrderLine(models.Model):
     task_work_hours = fields.Float(
         string='Total Hours',
         compute='_compute_task_work_values',
-        digits=dp.get_precision('Product UoS'))
+        digits=dp.get_precision('Product Unit of Measure'))
     task_work_amount = fields.Float(
         string='Work Amount',
         compute='_compute_task_work_values',
@@ -128,31 +128,29 @@ class SaleOrderLine(models.Model):
     @api.depends('task_materials_ids')
     def _compute_task_materials_amount(self):
         for line in self.filtered(lambda x: x.task_materials_ids):
-            materials_amount = 0.0
-            for material in line.task_materials_ids:
-                materials_amount += material.quantity * material.price
-            line.task_materials_amount = materials_amount
+            line.task_materials_amount = sum(
+                line.task_materials_ids.mapped(lambda x: x.quantity * x.price))
 
     @api.multi
     def product_id_change(
-        self, pricelist, product_id, qty=0, uom=False, qty_uos=0, uos=False,
+        self, pricelist, product, qty=0, uom=False, qty_uos=0, uos=False,
             name='', partner_id=False, lang=False, update_tax=True,
             date_order=False, packaging=False, fiscal_position=False,
             flag=False):
         res = super(SaleOrderLine, self).product_id_change(
-            pricelist, product_id, qty, uom, qty_uos, uos, name, partner_id,
+            pricelist, product, qty, uom, qty_uos, uos, name, partner_id,
             lang, update_tax, date_order, packaging, fiscal_position, flag)
 
-        product = self.product_id.browse(product_id)
-        if product.auto_create_task:
+        product_rec = self.product_id.browse(product)
+        if product_rec.auto_create_task:
             work_list = []
-            for work in product.task_work_ids:
+            for work in product_rec.task_work_ids:
                 work_list.append((0, 0, {
                     'name': work.name,
                     'hours': work.hours
                 }))
             material_list = []
-            for material in product.task_materials_ids:
+            for material in product_rec.task_materials_ids:
                 material_list.append((0, 0, {
                     'product_id': material.material_id.id,
                     'quantity': material.quantity
@@ -183,7 +181,7 @@ class SaleOrderLineTaskWork(models.Model):
         comodel_name='sale.order.line', string='Order Line')
     name = fields.Char(string='Name')
     hours = fields.Float(
-        string='Hours', digits=dp.get_precision('Product UoS'))
+        string='Hours', digits=dp.get_precision('Product Unit of Measure'))
     sequence = fields.Integer()
 
 
@@ -196,7 +194,7 @@ class SaleOrderLineTaskMaterials(models.Model):
     product_id = fields.Many2one(
         comodel_name='product.product', string='Material')
     quantity = fields.Float(
-        string='Quantity', digits=dp.get_precision('Product UoS'))
+        string='Quantity', digits=dp.get_precision('Product Unit of Measure'))
     price = fields.Float(
         compute='_compute_price', digits=dp.get_precision('Product Price'))
     sequence = fields.Integer()
