@@ -54,10 +54,14 @@ For further information, please visit:
 Bug Tracker
 ===========
 
-Bugs are tracked on `GitHub Issues <https://github.com/OCA/sale-workflow/issues>`_.
+Bugs are tracked on `GitHub Issues <https://github.com/OCA/
+sale-workflow/issues>`_.
 In case of trouble, please check there if your issue has already been reported.
-If you spotted it first, help us smashing it by providing a detailed and welcomed feedback
-`here <https://github.com/OCA/sale-workflow/issues/new?body=module:%20sale_service_project%0Aversion:%208.0%0A%0A**Steps%20to%20reproduce**%0A-%20...%0A%0A**Current%20behavior**%0A%0A**Expected%20behavior**>`_.
+If you spotted it first, help us smashing it by providing a detailed and welcomed feedback `here <https://github.com/OCA/
+sale-workflow/issues/new?body=module:%20
+sale_service_project%0Aversion:%20
+8.0%0A%0A**Steps%20to%20reproduce**%0A-%20...%0A%0A**Current%20behavior**%0A%0A**Expected%20behavior**>`_.
+
 
 Credits
 =======
@@ -65,11 +69,11 @@ Credits
 Contributors
 ------------
 
-* Rafael Blasco <rafabn@antiun.com>
-* Pedro M. Baeza <pedro.baeza@serviciosbaeza.com>
-* Carlos Dauden <carlos@incaser.es>
-* Sergio Teruel <sergio@incaser.es>
-* Antonio Espinosa <antonioea@antiun.com>
+* Rafael Blasco <rafael.blasco@tecnativa.com>
+* Pedro M. Baeza <pedro.baeza@tecnativa.com>
+* Carlos Dauden <carlos.dauden@tecnativa.com>
+* Sergio Teruel <sergio.teruel@tecnativa.com>
+* Antonio Espinosa <antonio.espinosa@tecnativa.com>
 
 Maintainer
 ----------

@@ -4,6 +4,10 @@
 
 <template id="report_invoice_document"
           inherit_id="account.report_invoice_document">
+    <xpath expr="//div[@class='page']" position="inside">
+        <link rel="stylesheet"
+              href="/sale_service_project/static/src/css/report.css"/>
+    </xpath>
     <xpath expr="//span[@t-field='l.name']/../.." position="inside">
         <t t-if="o.print_works">
             <!--Invoice done directly from sale order-->
@@ -109,10 +113,10 @@
     </xpath>
 
     <xpath expr="//span[@t-field='l.name']" position="replace">
+        <t t-if="not o.print_works or l.product_id.type!='service'">
+            <span t-field="l.name"/>
+        </t>
         <t t-if="o.print_works">
-            <t t-if="l.product_id.type!='service'">
-                <span t-field="l.name"/>
-            </t>
             <t t-if="l.product_id.type=='service'">
                 <t t-if="not (l.task_work_ids or l.task_materials_ids)">
                     <span t-field="l.name"/>
