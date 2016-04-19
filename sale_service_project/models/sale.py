@@ -1,8 +1,8 @@
 # -*- coding: utf-8 -*-
-# © 2015 Antiun Ingeniería S.L. - Sergio Teruel
-# © 2015 Antiun Ingeniería S.L. - Carlos Dauden
-# © 2016 Antiun Ingenieria S.L. - Antonio Espinosa
-# License AGPL-3 - See http://www.gnu.org/licenses/agpl-3.0.html
+# © 2015 Sergio Teruel <sergio.teruel@tecnativa.com>
+# © 2015 Carlos Dauden <carlos.dauden@tecnativa.com>
+# © 2016 Antonio Espinosa <antonio.espinosa@tecnativa.com>
+# License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
 from openerp import models, fields, api
 from openerp.addons.decimal_precision import decimal_precision as dp

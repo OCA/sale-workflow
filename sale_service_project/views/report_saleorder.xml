@@ -6,6 +6,10 @@
 
 <template id="report_saleorder_document"
           inherit_id="sale.report_saleorder_document">
+    <xpath expr="//div[@class='page']" position="inside">
+        <link rel="stylesheet"
+              href="/sale_service_project/static/src/css/report.css"/>
+    </xpath>
     <xpath expr="//span[@t-field='l.name']/../.." position="inside">
         <t t-if="o.print_works">
             <t t-if="l.task_work_ids">
