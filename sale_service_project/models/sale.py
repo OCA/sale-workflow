@@ -83,6 +83,7 @@ class SaleOrderLine(models.Model):
     )
     compute_price = fields.Boolean()
     detailed_time = fields.Boolean()
+    detailed_materials = fields.Boolean()
     task_work_product_id = fields.Many2one(
         comodel_name='product.product',
         domain=[('type', '=', 'service')],
@@ -125,7 +126,8 @@ class SaleOrderLine(models.Model):
                 line.task_work_hours * line.task_work_product_price)
 
     @api.multi
-    @api.depends('task_materials_ids')
+    @api.depends('task_materials_ids', 'task_materials_ids.product_id',
+                 'task_materials_ids.quantity', 'task_materials_ids.price')
     def _compute_task_materials_amount(self):
         for line in self.filtered(lambda x: x.task_materials_ids):
             line.task_materials_amount = sum(
@@ -140,7 +142,7 @@ class SaleOrderLine(models.Model):
         res = super(SaleOrderLine, self).product_id_change(
             pricelist, product, qty, uom, qty_uos, uos, name, partner_id,
             lang, update_tax, date_order, packaging, fiscal_position, flag)
-
+        pricelist_obj = self.env['product.pricelist']
         product_rec = self.product_id.browse(product)
         if product_rec.auto_create_task:
             work_list = []
@@ -150,10 +152,13 @@ class SaleOrderLine(models.Model):
                     'hours': work.hours
                 }))
             material_list = []
-            for material in product_rec.task_materials_ids:
+            for task_material in product_rec.task_materials_ids:
                 material_list.append((0, 0, {
-                    'product_id': material.material_id.id,
-                    'quantity': material.quantity
+                    'product_id': task_material.material_id.id,
+                    'quantity': task_material.quantity,
+                    'price': pricelist_obj.price_get(
+                        task_material.material_id.id, task_material.quantity,
+                        partner_id)[pricelist],
                 }))
             vals = {'task_work_ids': work_list,
                     'task_materials_ids': material_list}
@@ -167,10 +172,10 @@ class SaleOrderLine(models.Model):
     @api.onchange('task_work_product_id', 'compute_price',
                   'task_work_ids', 'task_materials_ids')
     def _onchange_task_work_product_id(self):
-        for line in self:
-            if line.compute_price and line.task_work_product_id:
-                line.price_unit = (
-                    line.task_work_amount + line.task_materials_amount)
+        for line in self.filtered(
+                lambda x: x.compute_price and x.task_work_product_id):
+            line.price_unit = (line.task_work_amount +
+                               line.task_materials_amount)
 
 
 class SaleOrderLineTaskWork(models.Model):
@@ -194,17 +199,17 @@ class SaleOrderLineTaskMaterials(models.Model):
     product_id = fields.Many2one(
         comodel_name='product.product', string='Material')
     quantity = fields.Float(
-        string='Quantity', digits=dp.get_precision('Product Unit of Measure'))
-    price = fields.Float(
-        compute='_compute_price', digits=dp.get_precision('Product Price'))
+        string='Quantity', digits=dp.get_precision('Product Unit of Measure'),
+        default=1.0)
+    price = fields.Float(digits=dp.get_precision('Product Price'))
     sequence = fields.Integer()
 
     @api.multi
-    @api.depends('order_line_id', 'quantity')
-    def _compute_price(self):
-        for task_material in self:
-            pricelist = task_material.order_line_id.order_id.pricelist_id
-            partner = task_material.order_line_id.order_id.partner_id
-            task_material.price = pricelist.price_get(
+    @api.onchange('product_id', 'quantity')
+    def _onchange_product_id(self):
+        partner_id = self._context.get('order_partner_id')
+        pricelist_id = self._context.get('order_pricelist_id')
+        for task_material in self.filtered(lambda x: bool(x.product_id)):
+            task_material.price = self.env['product.pricelist'].price_get(
                 task_material.product_id.id, task_material.quantity,
-                partner.id)[pricelist.id]
+                partner_id)[pricelist_id]

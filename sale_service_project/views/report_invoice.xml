@@ -75,7 +75,7 @@
                                       t-field="material.product_id.uom_id.name"/>
                             </td>
                             <td class="materials_line_price">
-                                <t t-if="order_line.compute_price">
+                                <t t-if="order_line.compute_price and order_line.detailed_materials">
                                     <span t-field="material.price"/>
                                 </t>
                             </td>
