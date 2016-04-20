@@ -10,9 +10,11 @@ This module helps you to manage task created from sales order, let you choose
 if you wants to invoice from sale order or from task, and helps you to control
 with sale order must be invoiced or not depending if the task have been done or
 not.
+
 This module adds the option to assign materials and/or works to a service
 product type which serve as a template transferring this information to the
 line order which may be changed.
+
 This module extends the functionality of the *sale_service* module creating a
 new project for each order adding materials and works informed on the order
 line to the generated task.

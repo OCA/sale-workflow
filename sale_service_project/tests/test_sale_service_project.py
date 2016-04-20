@@ -120,3 +120,11 @@ class TestSaleServiceProject(TransactionCase):
         amount = (self.order_manual_line.task_work_amount +
                   self.order_manual_line.task_materials_amount)
         self.assertAlmostEqual(amount, 170.00)
+        task_material = self.order_manual_line.task_materials_ids[0]
+        task_material.quantity = 2.0
+        task_material.with_context(
+            order_partner_id=self.partner.id,
+            order_pricelist_id=self.price_list.id)._onchange_product_id()
+        amount = (self.order_manual_line.task_work_amount +
+                  self.order_manual_line.task_materials_amount)
+        self.assertAlmostEqual(amount, 180.00)
