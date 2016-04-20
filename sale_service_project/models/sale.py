@@ -82,8 +82,8 @@ class SaleOrderLine(models.Model):
         store=True,
     )
     compute_price = fields.Boolean()
-    detailed_time = fields.Boolean()
-    detailed_materials = fields.Boolean()
+    detailed_time = fields.Boolean(string='Print Works Times')
+    detailed_materials = fields.Boolean(string='Print Material Prices')
     task_work_product_id = fields.Many2one(
         comodel_name='product.product',
         domain=[('type', '=', 'service')],
@@ -112,18 +112,19 @@ class SaleOrderLine(models.Model):
             line.task_closed = all(line.mapped('task_ids.stage_id.closed'))
 
     @api.multi
-    @api.depends('task_work_ids', 'task_work_product_id')
+    @api.depends('task_work_ids', 'task_work_ids.hours',
+                 'task_work_product_id')
     def _compute_task_work_values(self):
-        for line in self.filtered(
-                lambda x: x.task_work_ids and x.task_work_product_id):
-            pricelist = line.order_id.pricelist_id
-            partner = line.order_id.partner_id
+        for line in self:
             line.task_work_hours = sum(line.task_work_ids.mapped('hours'))
-            line.task_work_product_price = pricelist.price_get(
-                line.task_work_product_id.id, line.task_work_hours,
-                partner.id)[pricelist.id]
-            line.task_work_amount = (
-                line.task_work_hours * line.task_work_product_price)
+            if line.task_work_product_id:
+                pricelist = line.order_id.pricelist_id
+                partner = line.order_id.partner_id
+                line.task_work_product_price = pricelist.price_get(
+                    line.task_work_product_id.id, line.task_work_hours,
+                    partner.id)[pricelist.id]
+                line.task_work_amount = (
+                    line.task_work_hours * line.task_work_product_price)
 
     @api.multi
     @api.depends('task_materials_ids', 'task_materials_ids.product_id',
@@ -135,7 +136,7 @@ class SaleOrderLine(models.Model):
 
     @api.multi
     def product_id_change(
-        self, pricelist, product, qty=0, uom=False, qty_uos=0, uos=False,
+            self, pricelist, product, qty=0, uom=False, qty_uos=0, uos=False,
             name='', partner_id=False, lang=False, update_tax=True,
             date_order=False, packaging=False, fiscal_position=False,
             flag=False):
@@ -180,19 +181,19 @@ class SaleOrderLine(models.Model):
 
 class SaleOrderLineTaskWork(models.Model):
     _name = 'sale.order.line.task.work'
-    _order = 'sequence'
+    _order = 'order_line_id, sequence, id'
 
     order_line_id = fields.Many2one(
         comodel_name='sale.order.line', string='Order Line')
     name = fields.Char(string='Name')
     hours = fields.Float(
         string='Hours', digits=dp.get_precision('Product Unit of Measure'))
-    sequence = fields.Integer()
+    sequence = fields.Integer(default=10)
 
 
 class SaleOrderLineTaskMaterials(models.Model):
     _name = 'sale.order.line.task.materials'
-    _order = 'sequence'
+    _order = 'order_line_id, sequence, id'
 
     order_line_id = fields.Many2one(
         comodel_name='sale.order.line', string='Order Line')
@@ -202,13 +203,13 @@ class SaleOrderLineTaskMaterials(models.Model):
         string='Quantity', digits=dp.get_precision('Product Unit of Measure'),
         default=1.0)
     price = fields.Float(digits=dp.get_precision('Product Price'))
-    sequence = fields.Integer()
+    sequence = fields.Integer(default=10)
 
     @api.multi
     @api.onchange('product_id', 'quantity')
     def _onchange_product_id(self):
-        partner_id = self._context.get('order_partner_id')
-        pricelist_id = self._context.get('order_pricelist_id')
+        partner_id = self.env.context.get('order_partner_id')
+        pricelist_id = self.env.context.get('order_pricelist_id')
         for task_material in self.filtered(lambda x: bool(x.product_id)):
             task_material.price = self.env['product.pricelist'].price_get(
                 task_material.product_id.id, task_material.quantity,

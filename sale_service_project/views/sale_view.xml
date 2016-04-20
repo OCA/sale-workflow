@@ -55,7 +55,7 @@
                     <group string="Works" colspan="2">
                         <field name="task_work_ids" nolabel="1">
                             <tree string="Tasks" editable="bottom">
-                                <field name="sequence" widget="handle"/>
+                                <field name="sequence"/>
                                 <field name="name"/>
                                 <field name="hours"/>
                             </tree>
@@ -66,7 +66,7 @@
                                context="{'order_partner_id': parent.partner_id,
                                          'order_pricelist_id': parent.pricelist_id}">
                             <tree string="Materials" editable="bottom">
-                                <field name="sequence" widget="handle"/>
+                                <field name="sequence"/>
                                 <field name="product_id" domain="[('type','!=','service')]"/>
                                 <field name="quantity"/>
                                 <field name="price"/>
@@ -99,7 +99,6 @@
             </xpath>
         </field>
     </record>
-	sale.view_order_line_tree
 
     <record id="view_order_line_tree_task" model="ir.ui.view">
         <field name="name">sale.order.line.tree.task</field>
