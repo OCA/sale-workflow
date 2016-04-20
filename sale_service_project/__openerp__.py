@@ -30,7 +30,7 @@
     ],
     'author': 'Tecnativa, '
               'Odoo Community Association (OCA)',
-    'website': 'http://www.antiun.com',
+    'website': 'http://www.tecnativa.com',
     'license': 'AGPL-3',
     'installable': True,
     'images': [],
