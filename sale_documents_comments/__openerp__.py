@@ -1,7 +1,8 @@
 # -*- coding: utf-8 -*-
-# (c) 2015 Ainara Galdona - AvanzOSC
-# (c) 2015 Oihane Crucelaegui - AvanzOSC
-# (c) 2015 Esther Martín <esthermartin@avanzosc.es> - Avanzosc S.L.
+# © 2015 Ainara Galdona - AvanzOSC
+# © 2015 Oihane Crucelaegui - AvanzOSC
+# © 2015 Esther Martín <esthermartin@avanzosc.es> - Avanzosc S.L.
+# © 2016 Lorenzo Battistini - Agile Business Group
 # License AGPL-3 - See http://www.gnu.org/licenses/agpl-3.0.html
 
 {
@@ -16,16 +17,10 @@
     ],
     "author": "OdooMRP team, "
               "AvanzOSC, "
-              "Serv. Tecnol. Avanzados - Pedro M. Baeza",
-    "category": "Custom Module",
+              "Serv. Tecnol. Avanzados - Pedro M. Baeza, "
+              "Odoo Community Association (OCA)",
+    "category": "Sales",
     "website": "http://www.odoomrp.com",
-    "contributors": [
-        "Oihane Crucelaegui <oihanecrucelaegi@avanzosc.es>",
-        "Ainara Galdona <ainaragaldona@avanzosc.es>",
-        "Pedro M. Baeza <pedro.baeza@serviciosbaeza.com>",
-        "Ana Juaristi <anajuaristi@avanzosc.es>",
-        "Esther Marítn <esthermartin@avanzosc.es"
-    ],
     "data": [
         "views/partner_view.xml",
         "views/sale_view.xml",
@@ -33,4 +28,5 @@
         "views/account_view.xml",
     ],
     "installable": True,
+    "images": ['images/sale_comments.png'],
 }
