@@ -1,7 +1,8 @@
 # -*- coding: utf-8 -*-
-##############################################################################
-# For copyright and license notices, see __openerp__.py file in root directory
-##############################################################################
+# © 2015 Ainara Galdona - AvanzOSC
+# © 2015 Oihane Crucelaegui - AvanzOSC
+# © 2015 Esther Martín <esthermartin@avanzosc.es> - Avanzosc S.L.
+# License AGPL-3 - See http://www.gnu.org/licenses/agpl-3.0.html
 
 from openerp import api, models, fields
 
@@ -20,6 +21,7 @@ class StockPicking(models.Model):
         self.sale_comment = picking_com
         self.sale_propagated_comment = picking_pcom
 
+    @api.returns('self', lambda value: value.id)
     @api.model
     def create(self, values):
         partner_id = values.get('partner_id', False)
