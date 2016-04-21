@@ -52,25 +52,35 @@
             <xpath expr="//field[@name='order_line']/form//field[@name='name']" position="after">
                 <field name="auto_create_task" invisible="1"/>
                 <group attrs="{'invisible': [('auto_create_task', '=', False)]}">
-                    <group string="Works">
+                    <group string="Works" colspan="2">
                         <field name="task_work_ids" nolabel="1">
-                            <tree string="Tasks" editable="top">
+                            <tree string="Tasks" editable="bottom">
+                                <field name="sequence"/>
                                 <field name="name"/>
                                 <field name="hours"/>
                             </tree>
                         </field>
                     </group>
-                    <group string="Materials">
-                        <field name="task_materials_ids" nolabel="1">
-                            <tree string="Materials" editable="top">
+                    <group string="Materials" colspan="2">
+                        <field name="task_materials_ids" nolabel="1"
+                               context="{'order_partner_id': parent.partner_id,
+                                         'order_pricelist_id': parent.pricelist_id}">
+                            <tree string="Materials" editable="bottom">
+                                <field name="sequence"/>
                                 <field name="product_id" domain="[('type','!=','service')]"/>
                                 <field name="quantity"/>
+                                <field name="price"/>
                             </tree>
                         </field>
                     </group>
                     <group>
                         <field name="compute_price"/>
                         <field name="task_work_product_id"
+                               attrs="{'invisible': [('compute_price', '=', False)]}"/>
+                    </group>
+                    <group>
+                        <field name="detailed_time"/>
+                        <field name="detailed_materials"
                                attrs="{'invisible': [('compute_price', '=', False)]}"/>
                     </group>
                 </group>
@@ -89,7 +99,6 @@
             </xpath>
         </field>
     </record>
-	sale.view_order_line_tree
 
     <record id="view_order_line_tree_task" model="ir.ui.view">
         <field name="name">sale.order.line.tree.task</field>

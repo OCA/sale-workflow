@@ -1,17 +1,19 @@
 # -*- coding: utf-8 -*-
-# © 2015 Antiun Ingeniería S.L. - Sergio Teruel
-# © 2015 Antiun Ingeniería S.L. - Carlos Dauden
-# License AGPL-3 - See http://www.gnu.org/licenses/agpl-3.0.html
+# © 2015 Sergio Teruel <sergio.teruel@tecnativa.com>
+# © 2015 Carlos Dauden <carlos.dauden@tecnativa.com>
+# © 2016 Antonio Espinosa <antonio.espinosa@tecnativa.com>
+# License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
 {
     'name': "Sale Service Project",
     'category': 'Sales',
-    'version': '8.0.1.0.0',
+    'version': '8.0.1.1.1',
     'depends': [
         'project_task_materials',
         'sale_service',
         'project_timesheet',
-        'hr_timesheet_invoice'],
+        'hr_timesheet_invoice'
+    ],
     'demo': [
         'data/sale_service_project_demo.xml',
     ],
@@ -26,10 +28,9 @@
         'wizard/product_price_service_view.xml',
         'security/ir.model.access.csv',
     ],
-    'author': 'Antiun Ingeniería S.L., '
-              'Incaser Informatica S.L., '
+    'author': 'Tecnativa, '
               'Odoo Community Association (OCA)',
-    'website': 'http://www.antiun.com',
+    'website': 'http://www.tecnativa.com',
     'license': 'AGPL-3',
     'installable': True,
     'images': [],
