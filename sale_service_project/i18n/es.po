@@ -1,23 +1,22 @@
 # Translation of Odoo Server.
 # This file contains the translation of the following modules:
 # * sale_service_project
-#
+# 
 # Translators:
+# Paolo Valier, 2016
 msgid ""
 msgstr ""
 "Project-Id-Version: sale-workflow (8.0)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-04-20 12:35+0000\n"
-"PO-Revision-Date: 2016-04-20 14:38+0100\n"
-"Last-Translator: Carlos Dauden <carlos.dauden@tecnativa.com>\n"
-"Language-Team: Spanish (http://www.transifex.com/oca/OCA-sale-workflow-8-0/"
-"language/es/) <info@tecnativa.com>\n"
-"Language: es\n"
+"POT-Creation-Date: 2016-04-22 00:49+0000\n"
+"PO-Revision-Date: 2016-04-21 09:23+0000\n"
+"Last-Translator: OCA Transbot <transbot@odoo-community.org>\n"
+"Language-Team: Spanish (http://www.transifex.com/oca/OCA-sale-workflow-8-0/language/es/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
-"Content-Transfer-Encoding: 8bit\n"
+"Content-Transfer-Encoding: \n"
+"Language: es\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Generator: Poedit 1.5.4\n"
 
 #. module: sale_service_project
 #: view:product.price.service.wizard:sale_service_project.wiz_compute_task_price
@@ -62,7 +61,8 @@ msgstr "Calcular precio"
 #: code:addons/sale_service_project/models/hr_timesheet_invoice.py:57
 #, python-format
 msgid ""
-"Contract incomplete. Please fill in the Customer and Pricelist fields for %s."
+"Contract incomplete. Please fill in the Customer and Pricelist fields for "
+"%s."
 msgstr "Contrato incompleto. Por favor rellene el cliente y la tarifa para %s."
 
 #. module: sale_service_project
@@ -365,13 +365,10 @@ msgstr "Trabajos"
 
 #. module: sale_service_project
 #: view:product.template:sale_service_project.view_product_task_form
-#, fuzzy
 msgid ""
 "auto_create_task and\n"
 "                    [('category_id','=', 3)] or []"
 msgstr ""
-"auto_create_task and\n"
-"                    [('category_id','=', 3)] or []"
 
 #. module: sale_service_project
 #: view:product.price.service.wizard:sale_service_project.wiz_compute_task_price

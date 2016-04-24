@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: sale-workflow (8.0)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-03-17 01:49+0000\n"
-"PO-Revision-Date: 2016-03-15 18:51+0000\n"
+"POT-Creation-Date: 2016-04-22 00:49+0000\n"
+"PO-Revision-Date: 2016-04-21 09:23+0000\n"
 "Last-Translator: OCA Transbot <transbot@odoo-community.org>\n"
 "Language-Team: English (http://www.transifex.com/oca/OCA-sale-workflow-8-0/language/en/)\n"
 "MIME-Version: 1.0\n"
@@ -45,7 +45,7 @@ msgstr "Compute Price"
 
 #. module: sale_service_project
 #: code:addons/sale_service_project/models/product.py:23
-#: code:addons/sale_service_project/models/product.py:53
+#: code:addons/sale_service_project/models/product.py:55
 #, python-format
 msgid "Compute Service Price"
 msgstr "Compute Service Price"
@@ -159,8 +159,6 @@ msgstr "Material"
 #: field:product.template,task_materials_ids:0
 #: view:sale.order:sale_service_project.view_sale_order_line_form
 #: field:sale.order.line,task_materials_ids:0
-#: view:website:sale.report_saleorder_document
-#: view:website:sale_service_project.works_and_materials
 msgid "Materials"
 msgstr "Materials"
 
@@ -174,6 +172,21 @@ msgstr "Name"
 #: field:sale.order.line.task.work,order_line_id:0
 msgid "Order Line"
 msgstr "Order Line"
+
+#. module: sale_service_project
+#: field:sale.order.line.task.materials,price:0
+msgid "Price"
+msgstr "Price"
+
+#. module: sale_service_project
+#: field:sale.order.line,detailed_materials:0
+msgid "Print Material Prices"
+msgstr "Print Material Prices"
+
+#. module: sale_service_project
+#: field:sale.order.line,detailed_time:0
+msgid "Print Works Times"
+msgstr "Print Works Times"
 
 #. module: sale_service_project
 #: field:account.invoice,print_works:0 field:sale.order,print_works:0
@@ -246,6 +259,13 @@ msgid "Select a product to get hour price"
 msgstr "Select a product to get hour price"
 
 #. module: sale_service_project
+#: field:product.task.materials,sequence:0 field:product.task.work,sequence:0
+#: field:sale.order.line.task.materials,sequence:0
+#: field:sale.order.line.task.work,sequence:0
+msgid "Sequence"
+msgstr "Sequence"
+
+#. module: sale_service_project
 #: model:product.template,name:sale_service_project.product_product_oil_product_template
 msgid "Synthetic Oil"
 msgstr "Synthetic Oil"
@@ -296,6 +316,18 @@ msgid "Timesheet Line"
 msgstr "Timesheet Line"
 
 #. module: sale_service_project
+#: view:website:account.report_invoice_document
+#: view:website:sale.report_saleorder_document
+msgid "Total Materials"
+msgstr "Total Materials"
+
+#. module: sale_service_project
+#: view:website:account.report_invoice_document
+#: view:website:sale.report_saleorder_document
+msgid "Total Works"
+msgstr "Total Works"
+
+#. module: sale_service_project
 #: code:addons/sale_service_project/models/hr_timesheet_invoice.py:75
 #, python-format
 msgid "Trying to invoice non invoiceable line for %s."
@@ -326,8 +358,7 @@ msgstr "Work Price Product"
 #: view:product.template:sale_service_project.view_product_task_form
 #: view:sale.order:sale_service_project.view_sale_order_line_form
 #: field:sale.order.line,task_work_ids:0
-#: view:website:sale.report_saleorder_document
-#: view:website:sale_service_project.works_and_materials
+#: view:website:account.report_invoice_document
 msgid "Works"
 msgstr "Works"
 
