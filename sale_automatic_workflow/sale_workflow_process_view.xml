@@ -26,6 +26,7 @@
                     <group string="Workflow Options">
                         <field name="validate_order"/>
                         <field name="validate_picking"/>
+                        <field name="ship_only_available" attrs="{'invisible': [('validate_picking', '=', False)]}" />
                         <field name="create_invoice_on" attrs="{'readonly': [('order_policy', '!=', 'manual')]}" />
                         <field name="validate_invoice"/>
                         <field name="invoice_date_is_order_date"/>

@@ -68,6 +68,11 @@ class SaleWorkflowProcess(models.Model):
     )
     validate_invoice = fields.Boolean(string='Validate Invoice')
     validate_picking = fields.Boolean(string='Confirm and Close Picking')
+    ship_only_available = fields.Boolean(
+        string='Ship only available goods',
+        help="When checked, the available quantity is shipped, and if so, a "
+        "backorder is created with the rest."
+    )
     invoice_date_is_order_date = fields.Boolean(
         string='Force Invoice Date',
         help="When checked, the invoice date will be "
