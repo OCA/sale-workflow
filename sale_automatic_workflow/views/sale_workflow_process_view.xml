@@ -19,15 +19,22 @@
                     </group>
                     <group string="Order Configuration">
                         <field name="picking_policy"/>
-                        <field name="order_policy"/>
-                        <field name="invoice_quantity"/>
-                        <field name="section_id" groups="base.group_multi_salesteams"/>
+                        <field name="team_id" />
+                        <!-- <field name="team_id" groups="base.group_multi_salesteams"/> -->
                     </group>
-                    <group string="Workflow Options">
-                        <field name="validate_order"/>
-                        <field name="validate_picking"/>
-                        <field name="create_invoice_on" attrs="{'readonly': [('order_policy', '!=', 'manual')]}" />
+                    <group string="Workflow Options" col="4">
+                        <field name="validate_order" />
+                        <field name="order_filter_id" attrs="{'required':[('validate_order','=',True)], 'readonly':[('validate_order','!=',True)]}"/>
+                        <field name="validate_picking" />
+                        <field name="picking_filter_id" attrs="{'required':[('validate_picking','=',True)], 'readonly':[('validate_picking','!=',True)]}"/>
+                        <field name="create_invoice"/>                        
+                        <field name="create_invoice_filter_id" attrs="{'required':[('create_invoice','=',True)], 'readonly':[('create_invoice','!=',True)]}"/>
                         <field name="validate_invoice"/>
+                        <field name="validate_invoice_filter_id" attrs="{'required':[('validate_invoice','=',True)], 'readonly':[('validate_invoice','!=',True)]}"/>
+                        <field name="register_payment"/>
+                        <field name="payment_filter_id" attrs="{'required':[('register_payment','=',True)], 'readonly':[('register_payment','!=',True)]}"/>
+                        <field name="sale_done"/>
+                        <field name="sale_done_filter_id" attrs="{'required':[('sale_done','=',True)], 'readonly':[('sale_done','!=',True)]}"/>
                         <field name="invoice_date_is_order_date"/>
                         <field name="property_journal_id" groups="account.group_account_invoice"
                                domain="[('type', '=', 'sale')]"/>
@@ -44,14 +51,13 @@
                 <tree string="Automatic Workflow">
                     <field name="name"/>
                     <field name="picking_policy"/>
-                    <field name="order_policy"/>
-                    <field name="invoice_quantity"/>
-                    <field name="section_id" groups="base.group_multi_salesteams"/>
+                    <field name="team_id"/>
+                    <!-- <field name="team_id" groups="base.group_multi_salesteams"/> -->
                     <field name="validate_order"/>
                     <field name="validate_picking"/>
-                    <field name="create_invoice_on" />
                     <field name="validate_invoice"/>
                     <field name="invoice_date_is_order_date"/>
+                    <field name="register_payment"/>
                 </tree>
             </field>
         </record>
