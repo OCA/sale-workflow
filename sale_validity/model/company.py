@@ -22,7 +22,7 @@
 from openerp.osv import fields, orm
 
 
-class res_company(orm.Model):
+class ResCompany(orm.Model):
     _inherit = "res.company"
 
     _columns = {

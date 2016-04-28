@@ -24,7 +24,7 @@ from datetime import datetime
 from dateutil.relativedelta import relativedelta
 
 
-class sale_order(orm.Model):
+class SaleOrder(orm.Model):
     _inherit = "sale.order"
 
     _columns = {
@@ -58,6 +58,19 @@ class sale_order(orm.Model):
     _defaults = {
         'date_validity': _default_date_validity,
     }
+
+    def copy(self, cr, uid, id, default=None, context=None):
+        """
+        By default, date_order is set to today on copy()
+        cf addons/sale/sale.py. So we set date_validity to
+        its default value on copy()
+        """
+        if default is None:
+            default = {}
+        default['date_validity'] = self._default_date_validity(
+            cr, uid, context=context)
+        return super(SaleOrder, self).copy(
+            cr, uid, id, default=default, context=context)
 
     def date_order_change(
             self, cr, uid, ids, date_order, date_validity, company_id,
