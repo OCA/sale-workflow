@@ -50,12 +50,12 @@ class TestAutomaticWorkflow(common.TransactionCase):
         values = workflow_obj.create({
             'name': 'Full Automatic',
             'picking_policy': 'one',
-            'order_policy': 'manual',
-            'invoice_quantity': 'order',
+            #             'order_policy': 'manual',
+            #             'invoice_quantity': 'order',
             'validate_order': True,
             'validate_picking': True,
             'validate_invoice': True,
-            'create_invoice_on': 'on_order_confirm',
+            #             'create_invoice_on': 'on_order_confirm',
             'invoice_date_is_order_date': True,
         })
         if override:
@@ -86,25 +86,26 @@ class TestAutomaticWorkflow(common.TransactionCase):
         sale = self._create_sale_order(workflow)
         sale.onchange_workflow_process_id()
         self.assertEqual(sale.picking_policy, 'one')
-        self.assertEqual(sale.order_policy, 'manual')
-        self.assertEqual(sale.invoice_quantity, 'order')
+#         self.assertEqual(sale.order_policy, 'manual')
+#         self.assertEqual(sale.invoice_quantity, 'order')
         workflow2 = self._create_full_automatic(
             override={'picking_policy': 'direct',
-                      'order_policy': 'prepaid',
-                      'invoice_quantity': 'procurement',
+                      #                       'order_policy': 'prepaid',
+                      #                       'invoice_quantity': 'procurement',
                       }
         )
         sale.workflow_process_id = workflow2.id
         sale.onchange_workflow_process_id()
         self.assertEqual(sale.picking_policy, 'direct')
-        self.assertEqual(sale.order_policy, 'prepaid')
-        self.assertEqual(sale.invoice_quantity, 'procurement')
+#         self.assertEqual(sale.order_policy, 'prepaid')
+#         self.assertEqual(sale.invoice_quantity, 'procurement')
 
     def test_date_invoice_from_sale_order(self):
         workflow = self._create_full_automatic(
-            override={'order_policy': 'prepaid',
-                      'invoice_quantity': 'order',
-                      },
+            override={
+                #                       'order_policy': 'prepaid',
+                #                       'invoice_quantity': 'order',
+            },
         )
         # date_order on sale.order is date + time
         # date_invoice on account.invoice is date only
@@ -125,9 +126,10 @@ class TestAutomaticWorkflow(common.TransactionCase):
 
     def test_date_invoice_from_picking(self):
         workflow = self._create_full_automatic(
-            override={'order_policy': 'picking',
-                      'invoice_quantity': 'procurement',
-                      },
+            override={
+                #                       'order_policy': 'picking',
+                #                       'invoice_quantity': 'procurement',
+            },
         )
         # date_order on sale.order is date + time
         # date_invoice on account.invoice is date only
@@ -156,9 +158,10 @@ class TestAutomaticWorkflow(common.TransactionCase):
 
     def test_invoice_from_picking_with_service_product(self):
         workflow = self._create_full_automatic(
-            override={'order_policy': 'picking',
-                      'create_invoice_on': 'on_picking_done',
-                      },
+            override={
+                #                       'order_policy': 'picking',
+                #                       'create_invoice_on': 'on_picking_done',
+            },
         )
 
         product_service = self.env.ref('product.product_product_consultant')
@@ -169,7 +172,7 @@ class TestAutomaticWorkflow(common.TransactionCase):
         sale = self._create_sale_order(workflow, override=override)
         sale.onchange_workflow_process_id()
         self.progress()
-        self.assertEqual(sale.order_policy, 'manual')
+#         self.assertEqual(sale.order_policy, 'manual')
         self.assertFalse(sale.picking_ids)
         self.assertTrue(sale.invoice_ids)
         invoice = sale.invoice_ids
