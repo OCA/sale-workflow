@@ -3,13 +3,14 @@
 # * sale_order_back2draft
 # 
 # Translators:
+# Paolo Valier, 2016
 msgid ""
 msgstr ""
 "Project-Id-Version: sale-workflow (8.0)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-10-02 17:59+0000\n"
-"PO-Revision-Date: 2015-09-03 07:09+0000\n"
-"Last-Translator: <>\n"
+"POT-Creation-Date: 2016-04-29 00:55+0000\n"
+"PO-Revision-Date: 2016-04-27 19:59+0000\n"
+"Last-Translator: Paolo Valier\n"
 "Language-Team: Italian (http://www.transifex.com/oca/OCA-sale-workflow-8-0/language/it/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -20,7 +21,7 @@ msgstr ""
 #. module: sale_order_back2draft
 #: view:sale.order:sale_order_back2draft.view_order_form_draft
 msgid "Back to draft"
-msgstr ""
+msgstr "Reimposta a bozza"
 
 #. module: sale_order_back2draft
 #: model:ir.model,name:sale_order_back2draft.model_sale_order
