@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: sale-workflow (8.0)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-03-12 01:52+0000\n"
-"PO-Revision-Date: 2016-03-05 09:54+0000\n"
+"POT-Creation-Date: 2016-04-29 00:55+0000\n"
+"PO-Revision-Date: 2016-04-28 13:43+0000\n"
 "Last-Translator: OCA Transbot <transbot@odoo-community.org>\n"
 "Language-Team: English (http://www.transifex.com/oca/OCA-sale-workflow-8-0/language/en/)\n"
 "MIME-Version: 1.0\n"
@@ -81,6 +81,12 @@ msgid "Deliver each product when available"
 msgstr "Deliver each product when available"
 
 #. module: sale_automatic_workflow
+#: field:automatic.workflow.job,display_name:0
+#: field:sale.workflow.process,display_name:0
+msgid "Display Name"
+msgstr "Display Name"
+
+#. module: sale_automatic_workflow
 #: field:sale.workflow.process,invoice_date_is_order_date:0
 msgid "Force Invoice Date"
 msgstr "Force Invoice Date"
@@ -110,6 +116,12 @@ msgstr "Invoice Policy"
 #: field:sale.workflow.process,invoice_quantity:0
 msgid "Invoice on"
 msgstr "Invoice on"
+
+#. module: sale_automatic_workflow
+#: field:automatic.workflow.job,__last_update:0
+#: field:sale.workflow.process,__last_update:0
+msgid "Last Modified on"
+msgstr "Last Modified on"
 
 #. module: sale_automatic_workflow
 #: field:automatic.workflow.job,write_uid:0
@@ -201,6 +213,11 @@ msgid "Set default journal to use on invoice"
 msgstr "Set default journal to use on invoice"
 
 #. module: sale_automatic_workflow
+#: field:sale.workflow.process,ship_only_available:0
+msgid "Ship only available goods"
+msgstr "Ship only available goods"
+
+#. module: sale_automatic_workflow
 #: selection:sale.workflow.process,invoice_quantity:0
 msgid "Shipped Quantities"
 msgstr "Shipped Quantities"
@@ -229,6 +246,13 @@ msgstr "Validate Order"
 #: field:sale.workflow.process,warning:0
 msgid "Warning Message"
 msgstr "Warning Message"
+
+#. module: sale_automatic_workflow
+#: help:sale.workflow.process,ship_only_available:0
+msgid ""
+"When checked, the available quantity is shipped, and if so, a backorder is "
+"created with the rest."
+msgstr "When checked, the available quantity is shipped, and if so, a backorder is created with the rest."
 
 #. module: sale_automatic_workflow
 #: help:sale.workflow.process,invoice_date_is_order_date:0

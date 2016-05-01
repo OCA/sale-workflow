@@ -1,6 +1,6 @@
 # Translation of Odoo Server.
 # This file contains the translation of the following modules:
-# * sale_order_price_recalculation
+# * account_invoice_reorder_lines
 # 
 # Translators:
 # Paolo Valier, 2016
@@ -18,17 +18,7 @@ msgstr ""
 "Language: it\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
-#. module: sale_order_price_recalculation
-#: view:sale.order:sale_order_price_recalculation.sorp_view_order_form
-msgid "Recalculate prices"
-msgstr "Ricalcola prezzi"
-
-#. module: sale_order_price_recalculation
-#: view:sale.order:sale_order_price_recalculation.sorp_view_order_form
-msgid "Reset descriptions"
-msgstr ""
-
-#. module: sale_order_price_recalculation
-#: model:ir.model,name:sale_order_price_recalculation.model_sale_order
-msgid "Sales Order"
-msgstr "Ordini vendita"
+#. module: account_invoice_reorder_lines
+#: model:ir.model,name:account_invoice_reorder_lines.model_account_invoice_line
+msgid "Invoice Line"
+msgstr "Riga Fattura"

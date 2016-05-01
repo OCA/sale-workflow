@@ -8,8 +8,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: sale-workflow (8.0)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-02-26 09:59+0000\n"
-"PO-Revision-Date: 2016-02-26 16:54+0000\n"
+"POT-Creation-Date: 2016-04-29 00:55+0000\n"
+"PO-Revision-Date: 2016-04-27 19:20+0000\n"
 "Last-Translator: OCA Transbot <transbot@odoo-community.org>\n"
 "Language-Team: German (http://www.transifex.com/oca/OCA-sale-workflow-8-0/language/de/)\n"
 "MIME-Version: 1.0\n"
@@ -38,6 +38,11 @@ msgid "Created on"
 msgstr "Angelegt am"
 
 #. module: sale_packaging_price
+#: field:product.packaging.material,display_name:0
+msgid "Display Name"
+msgstr ""
+
+#. module: sale_packaging_price
 #: view:product.packaging:sale_packaging_price.product_packaging_filter
 msgid "Group By..."
 msgstr "Gruppiere"
@@ -46,6 +51,11 @@ msgstr "Gruppiere"
 #: field:product.packaging.material,id:0
 msgid "ID"
 msgstr "ID"
+
+#. module: sale_packaging_price
+#: field:product.packaging.material,__last_update:0
+msgid "Last Modified on"
+msgstr ""
 
 #. module: sale_packaging_price
 #: field:product.packaging.material,write_uid:0
@@ -76,6 +86,7 @@ msgstr ""
 #. module: sale_packaging_price
 #: field:product.packaging,list_price:0
 #: view:sale.order:sale_packaging_price.view_order_form_inherit
+#: field:sale.order.line,packaging_price:0
 msgid "Package Price"
 msgstr "Packungspreis"
 
@@ -134,7 +145,7 @@ msgid "Search Product Packaging"
 msgstr "Suche in Verpackungen"
 
 #. module: sale_packaging_price
-#: help:product.packaging,list_price:0
+#: help:product.packaging,list_price:0 help:sale.order.line,packaging_price:0
 msgid "This price will be considered as a price for complete package"
 msgstr "Dieser Preis wird als Preis für die Gesamte Packung angenommen"
 

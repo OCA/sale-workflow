@@ -4,13 +4,14 @@
 # 
 # Translators:
 # Paolo Valier, 2016
+# Paolo Valier, 2016
 msgid ""
 msgstr ""
 "Project-Id-Version: sale-workflow (8.0)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-03-12 01:52+0000\n"
-"PO-Revision-Date: 2016-03-12 09:24+0000\n"
-"Last-Translator: Paolo Valier\n"
+"POT-Creation-Date: 2016-04-29 00:56+0000\n"
+"PO-Revision-Date: 2016-04-27 19:58+0000\n"
+"Last-Translator: OCA Transbot <transbot@odoo-community.org>\n"
 "Language-Team: Italian (http://www.transifex.com/oca/OCA-sale-workflow-8-0/language/it/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -19,7 +20,12 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
 #. module: sale_payment_method
-#: code:addons/sale_payment_method/sale.py:85
+#: field:sale.order,amount_paid:0
+msgid "Amount Paid"
+msgstr ""
+
+#. module: sale_payment_method
+#: code:addons/sale_payment_method/sale.py:86
 #, python-format
 msgid ""
 "An automatic payment can not be created for the sale order %s because it has"
@@ -27,7 +33,7 @@ msgid ""
 msgstr ""
 
 #. module: sale_payment_method
-#: code:addons/sale_payment_method/sale.py:91
+#: code:addons/sale_payment_method/sale.py:92
 #, python-format
 msgid ""
 "An automatic payment should be created for the sale order %s but the payment"
@@ -35,7 +41,12 @@ msgid ""
 msgstr ""
 
 #. module: sale_payment_method
-#: code:addons/sale_payment_method/sale.py:69
+#: field:sale.order,residual:0
+msgid "Balance"
+msgstr ""
+
+#. module: sale_payment_method
+#: code:addons/sale_payment_method/sale.py:70
 #, python-format
 msgid ""
 "Cannot cancel this sales order because automatic payment entries are linked "
@@ -74,6 +85,11 @@ msgid "Default payment term of a sale order using this method."
 msgstr ""
 
 #. module: sale_payment_method
+#: field:payment.method,display_name:0
+msgid "Display Name"
+msgstr "Nome da visualizzare"
+
+#. module: sale_payment_method
 #: view:payment.method:sale_payment_method.payment_method_view_form
 msgid ""
 "Even if the E-commerce backend receives a payment for a sale order,\n"
@@ -106,6 +122,11 @@ msgstr ""
 #: view:payment.method:sale_payment_method.payment_method_view_form
 msgid "Journal for payment"
 msgstr ""
+
+#. module: sale_payment_method
+#: field:payment.method,__last_update:0
+msgid "Last Modified on"
+msgstr "Ultima modifica il"
 
 #. module: sale_payment_method
 #: field:payment.method,write_uid:0
@@ -156,13 +177,13 @@ msgid "Payments Entries"
 msgstr ""
 
 #. module: sale_payment_method
-#: code:addons/sale_payment_method/sale.py:145
+#: code:addons/sale_payment_method/sale.py:149
 #, python-format
 msgid "Please activate the sequence of the journal %s."
 msgstr ""
 
 #. module: sale_payment_method
-#: code:addons/sale_payment_method/sale.py:142
+#: code:addons/sale_payment_method/sale.py:146
 #, python-format
 msgid "Please define a sequence on the journal %s."
 msgstr ""

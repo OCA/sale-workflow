@@ -3,13 +3,13 @@
 # * sale_payment_method
 # 
 # Translators:
-# Matjaž Mozetič <m.mozetic@matmoz.si>, 2015
+# Matjaž Mozetič <m.mozetic@matmoz.si>, 2015-2016
 msgid ""
 msgstr ""
 "Project-Id-Version: sale-workflow (8.0)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-04-14 06:47+0000\n"
-"PO-Revision-Date: 2015-12-02 05:26+0000\n"
+"POT-Creation-Date: 2016-04-29 00:56+0000\n"
+"PO-Revision-Date: 2016-04-30 06:25+0000\n"
 "Last-Translator: Matjaž Mozetič <m.mozetic@matmoz.si>\n"
 "Language-Team: Slovenian (http://www.transifex.com/oca/OCA-sale-workflow-8-0/language/sl/)\n"
 "MIME-Version: 1.0\n"
@@ -17,6 +17,11 @@ msgstr ""
 "Content-Transfer-Encoding: \n"
 "Language: sl\n"
 "Plural-Forms: nplurals=4; plural=(n%100==1 ? 0 : n%100==2 ? 1 : n%100==3 || n%100==4 ? 2 : 3);\n"
+
+#. module: sale_payment_method
+#: field:sale.order,amount_paid:0
+msgid "Amount Paid"
+msgstr "Plačani znesek"
 
 #. module: sale_payment_method
 #: code:addons/sale_payment_method/sale.py:86
@@ -33,6 +38,11 @@ msgid ""
 "An automatic payment should be created for the sale order %s but the payment"
 " method '%s' has no journal defined."
 msgstr "Za prodajni nalog %s bi se moralo ustvariti samodejno plačilo, a način plačila '%s' nima določenega dnevnika."
+
+#. module: sale_payment_method
+#: field:sale.order,residual:0
+msgid "Balance"
+msgstr "Bilanca"
 
 #. module: sale_payment_method
 #: code:addons/sale_payment_method/sale.py:70
@@ -74,6 +84,11 @@ msgid "Default payment term of a sale order using this method."
 msgstr "Privzeti plačilni pogoj prodajnega naloga, ki uporablja to metodo."
 
 #. module: sale_payment_method
+#: field:payment.method,display_name:0
+msgid "Display Name"
+msgstr "Prikazni naziv"
+
+#. module: sale_payment_method
 #: view:payment.method:sale_payment_method.payment_method_view_form
 msgid ""
 "Even if the E-commerce backend receives a payment for a sale order,\n"
@@ -106,6 +121,11 @@ msgstr "Dnevniške postavke"
 #: view:payment.method:sale_payment_method.payment_method_view_form
 msgid "Journal for payment"
 msgstr "Dnevnik za plačilo"
+
+#. module: sale_payment_method
+#: field:payment.method,__last_update:0
+msgid "Last Modified on"
+msgstr "Zadnjič spremenjeno"
 
 #. module: sale_payment_method
 #: field:payment.method,write_uid:0

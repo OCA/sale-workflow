@@ -3,12 +3,14 @@
 # * sale_rental
 # 
 # Translators:
+# Hotellook, 2014
+# Rudolf Schnapka <rs@techno-flex.de>, 2016
 msgid ""
 msgstr ""
 "Project-Id-Version: sale-workflow (8.0)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-09-09 12:27+0000\n"
-"PO-Revision-Date: 2015-09-03 07:10+0000\n"
+"POT-Creation-Date: 2016-04-29 00:56+0000\n"
+"PO-Revision-Date: 2016-04-27 19:22+0000\n"
 "Last-Translator: OCA Transbot <transbot@odoo-community.org>\n"
 "Language-Team: French (http://www.transifex.com/oca/OCA-sale-workflow-8-0/language/fr/)\n"
 "MIME-Version: 1.0\n"
@@ -16,6 +18,22 @@ msgstr ""
 "Content-Transfer-Encoding: \n"
 "Language: fr\n"
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
+
+#. module: sale_rental
+#: help:sale.rental,in_state:0 help:sale.rental,out_state:0
+#: help:sale.rental,sell_state:0
+msgid ""
+"* New: When the stock move is created and not yet confirmed.\n"
+"* Waiting Another Move: This state can be seen when a move is waiting for another one, for example in a chained flow.\n"
+"* Waiting Availability: This state is reached when the procurement resolution is not straight forward. It may need the scheduler to run, a component to me manufactured...\n"
+"* Available: When products are reserved, it is set to 'Available'.\n"
+"* Done: When the shipment is processed, the state is 'Done'."
+msgstr ""
+
+#. module: sale_rental
+#: selection:sale.rental,state:0
+msgid "Back In"
+msgstr ""
 
 #. module: sale_rental
 #: field:sale.order.line,can_sell_rental:0
@@ -44,6 +62,11 @@ msgstr "Annuler"
 #, python-format
 msgid "Cannot sell the rental %s because it has not been delivered"
 msgstr ""
+
+#. module: sale_rental
+#: field:sale.rental,company_id:0
+msgid "Company"
+msgstr "Société"
 
 #. module: sale_rental
 #: field:create.rental.product,copy_image:0
@@ -89,9 +112,31 @@ msgid "Delivery"
 msgstr "Livraison"
 
 #. module: sale_rental
+#: field:sale.rental,out_picking_id:0
+msgid "Delivery Order"
+msgstr ""
+
+#. module: sale_rental
+#: field:create.rental.product,display_name:0 field:sale.rental,display_name:0
+msgid "Display Name"
+msgstr ""
+
+#. module: sale_rental
 #: view:sale.rental:sale_rental.sale_rental_tree
 msgid "End Date"
 msgstr "Date de fin"
+
+#. module: sale_rental
+#: field:sale.rental,end_date:0
+msgid "End Date (extensions included)"
+msgstr ""
+
+#. module: sale_rental
+#: help:sale.rental,end_date:0
+msgid ""
+"End Date of the Rental, taking into account all the extensions sold to the "
+"customer."
+msgstr ""
 
 #. module: sale_rental
 #: field:create.rental.product,id:0 field:sale.rental,id:0
@@ -99,8 +144,14 @@ msgid "ID"
 msgstr "ID"
 
 #. module: sale_rental
-#: help:sale.order.line,rental_qty:0
+#: help:sale.order.line,rental_qty:0 help:sale.rental,rental_qty:0
 msgid "Indicate the number of items that will be rented."
+msgstr ""
+
+#. module: sale_rental
+#: field:create.rental.product,__last_update:0
+#: field:sale.rental,__last_update:0
+msgid "Last Modified on"
 msgstr ""
 
 #. module: sale_rental
@@ -171,6 +222,31 @@ msgid ""
 "rental with a rental quantity (%s) that is different from the quantity of "
 "the original rental (%s). This is not supported."
 msgstr ""
+
+#. module: sale_rental
+#: selection:sale.rental,state:0
+msgid "Ordered"
+msgstr ""
+
+#. module: sale_rental
+#: selection:sale.rental,state:0
+msgid "Out"
+msgstr ""
+
+#. module: sale_rental
+#: field:sale.rental,out_move_id:0
+msgid "Outgoing Stock Move"
+msgstr ""
+
+#. module: sale_rental
+#: field:sale.rental,partner_id:0
+msgid "Partner"
+msgstr "Partenaire"
+
+#. module: sale_rental
+#: field:sale.rental,procurement_id:0
+msgid "Procurement"
+msgstr "Procurement"
 
 #. module: sale_rental
 #: model:ir.model,name:sale_rental.model_product_product
@@ -258,7 +334,7 @@ msgid "Rental Price per Day"
 msgstr "Prix de location par jour"
 
 #. module: sale_rental
-#: field:sale.order.line,rental_qty:0
+#: field:sale.order.line,rental_qty:0 field:sale.rental,rental_qty:0
 msgid "Rental Quantity"
 msgstr "Quantité louée"
 
@@ -268,9 +344,19 @@ msgid "Rental Route"
 msgstr "Route de location"
 
 #. module: sale_rental
+#: field:sale.rental,start_order_id:0
+msgid "Rental Sale Order"
+msgstr ""
+
+#. module: sale_rental
 #: field:sale.rental,start_order_line_id:0
 msgid "Rental Sale Order Line"
 msgstr "Ligne de commande de location"
+
+#. module: sale_rental
+#: field:sale.rental,rental_product_id:0
+msgid "Rental Service"
+msgstr ""
 
 #. module: sale_rental
 #: field:sale.order.line,rental_type:0
@@ -316,10 +402,25 @@ msgid "Rentals"
 msgstr "Locations"
 
 #. module: sale_rental
+#: field:sale.rental,rented_product_id:0
+msgid "Rented Product"
+msgstr ""
+
+#. module: sale_rental
 #: view:sale.rental:sale_rental.sale_rental_form
 #: view:sale.rental:sale_rental.sale_rental_tree
 msgid "Return"
 msgstr "Retour"
+
+#. module: sale_rental
+#: field:sale.rental,in_picking_id:0
+msgid "Return Picking"
+msgstr ""
+
+#. module: sale_rental
+#: field:sale.rental,in_move_id:0
+msgid "Return Stock Move"
+msgstr ""
 
 #. module: sale_rental
 #: model:ir.model,name:sale_rental.model_sale_order
@@ -330,6 +431,16 @@ msgstr "Bon de commande"
 #: model:ir.model,name:sale_rental.model_sale_order_line
 msgid "Sales Order Line"
 msgstr "Ligne de commandes de vente"
+
+#. module: sale_rental
+#: field:sale.rental,sell_picking_id:0
+msgid "Sell Delivery Order"
+msgstr ""
+
+#. module: sale_rental
+#: field:sale.rental,sell_procurement_id:0
+msgid "Sell Procurement"
+msgstr ""
 
 #. module: sale_rental
 #: code:addons/sale_rental/rental.py:531
@@ -344,6 +455,46 @@ msgstr "Vente du produit loué"
 #: field:stock.warehouse,sell_rented_product_route_id:0
 msgid "Sell Rented Product Route"
 msgstr "Route pour la vente des produits loués"
+
+#. module: sale_rental
+#: field:sale.rental,sell_move_id:0
+msgid "Sell Stock Move"
+msgstr ""
+
+#. module: sale_rental
+#: selection:sale.rental,state:0
+msgid "Sell in progress"
+msgstr ""
+
+#. module: sale_rental
+#: selection:sale.rental,state:0
+msgid "Sold"
+msgstr ""
+
+#. module: sale_rental
+#: field:sale.rental,start_date:0
+msgid "Start Date"
+msgstr "Date de début"
+
+#. module: sale_rental
+#: field:sale.rental,state:0
+msgid "State"
+msgstr ""
+
+#. module: sale_rental
+#: field:sale.rental,out_state:0
+msgid "State of the Outgoing Stock Move"
+msgstr ""
+
+#. module: sale_rental
+#: field:sale.rental,in_state:0
+msgid "State of the Return Stock Move"
+msgstr ""
+
+#. module: sale_rental
+#: field:sale.rental,sell_state:0
+msgid "State of the Sell Stock Move"
+msgstr ""
 
 #. module: sale_rental
 #: model:ir.model,name:sale_rental.model_stock_move

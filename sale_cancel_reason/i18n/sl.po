@@ -8,8 +8,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: sale-workflow (8.0)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-09-09 12:27+0000\n"
-"PO-Revision-Date: 2015-09-07 14:30+0000\n"
+"POT-Creation-Date: 2016-04-29 00:55+0000\n"
+"PO-Revision-Date: 2016-04-30 06:24+0000\n"
 "Last-Translator: Matjaž Mozetič <m.mozetic@matmoz.si>\n"
 "Language-Team: Slovenian (http://www.transifex.com/oca/OCA-sale-workflow-8-0/language/sl/)\n"
 "MIME-Version: 1.0\n"
@@ -68,6 +68,12 @@ msgid "Created on"
 msgstr "Ustvarjeno"
 
 #. module: sale_cancel_reason
+#: field:sale.order.cancel,display_name:0
+#: field:sale.order.cancel.reason,display_name:0
+msgid "Display Name"
+msgstr "Prikazni naziv"
+
+#. module: sale_cancel_reason
 #: field:sale.order.cancel,id:0 field:sale.order.cancel.reason,id:0
 msgid "ID"
 msgstr "ID"
@@ -76,6 +82,12 @@ msgstr "ID"
 #: model:sale.order.cancel.reason,name:sale_cancel_reason.cancel_reason_only_quotation
 msgid "Just for Quotation"
 msgstr "Le za predračun"
+
+#. module: sale_cancel_reason
+#: field:sale.order.cancel,__last_update:0
+#: field:sale.order.cancel.reason,__last_update:0
+msgid "Last Modified on"
+msgstr "Zadnjič spremenjeno"
 
 #. module: sale_cancel_reason
 #: field:sale.order.cancel,write_uid:0

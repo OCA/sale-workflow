@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: sale-workflow (8.0)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-03-12 01:52+0000\n"
-"PO-Revision-Date: 2016-03-12 09:24+0000\n"
+"POT-Creation-Date: 2016-04-29 00:56+0000\n"
+"PO-Revision-Date: 2016-04-27 19:58+0000\n"
 "Last-Translator: OCA Transbot <transbot@odoo-community.org>\n"
 "Language-Team: Italian (http://www.transifex.com/oca/OCA-sale-workflow-8-0/language/it/)\n"
 "MIME-Version: 1.0\n"
@@ -57,10 +57,22 @@ msgid "Created on"
 msgstr "Creato il"
 
 #. module: sale_product_set
+#: field:product.set,display_name:0 field:product.set.add,display_name:0
+#: field:product.set.line,display_name:0
+msgid "Display Name"
+msgstr "Nome da visualizzare"
+
+#. module: sale_product_set
 #: field:product.set,id:0 field:product.set.add,id:0
 #: field:product.set.line,id:0
 msgid "ID"
 msgstr "ID"
+
+#. module: sale_product_set
+#: field:product.set,__last_update:0 field:product.set.add,__last_update:0
+#: field:product.set.line,__last_update:0
+msgid "Last Modified on"
+msgstr "Ultima modifica il"
 
 #. module: sale_product_set
 #: field:product.set,write_uid:0 field:product.set.add,write_uid:0

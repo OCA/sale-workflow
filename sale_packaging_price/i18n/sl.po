@@ -4,12 +4,13 @@
 # 
 # Translators:
 # Matjaž Mozetič <m.mozetic@matmoz.si>, 2015-2016
+# Paolo Valier, 2016
 msgid ""
 msgstr ""
 "Project-Id-Version: sale-workflow (8.0)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-02-26 09:59+0000\n"
-"PO-Revision-Date: 2016-02-27 16:56+0000\n"
+"POT-Creation-Date: 2016-04-29 00:55+0000\n"
+"PO-Revision-Date: 2016-04-30 06:24+0000\n"
 "Last-Translator: Matjaž Mozetič <m.mozetic@matmoz.si>\n"
 "Language-Team: Slovenian (http://www.transifex.com/oca/OCA-sale-workflow-8-0/language/sl/)\n"
 "MIME-Version: 1.0\n"
@@ -38,6 +39,11 @@ msgid "Created on"
 msgstr "Ustvarjeno"
 
 #. module: sale_packaging_price
+#: field:product.packaging.material,display_name:0
+msgid "Display Name"
+msgstr "Prikazni naziv"
+
+#. module: sale_packaging_price
 #: view:product.packaging:sale_packaging_price.product_packaging_filter
 msgid "Group By..."
 msgstr "Združi po..."
@@ -46,6 +52,11 @@ msgstr "Združi po..."
 #: field:product.packaging.material,id:0
 msgid "ID"
 msgstr "ID"
+
+#. module: sale_packaging_price
+#: field:product.packaging.material,__last_update:0
+msgid "Last Modified on"
+msgstr "Zadnjič spremenjeno"
 
 #. module: sale_packaging_price
 #: field:product.packaging.material,write_uid:0
@@ -76,6 +87,7 @@ msgstr "Material pakiranja"
 #. module: sale_packaging_price
 #: field:product.packaging,list_price:0
 #: view:sale.order:sale_packaging_price.view_order_form_inherit
+#: field:sale.order.line,packaging_price:0
 msgid "Package Price"
 msgstr "Cena pakiranja"
 
@@ -134,7 +146,7 @@ msgid "Search Product Packaging"
 msgstr "Iskanje pakiranj proizvoda"
 
 #. module: sale_packaging_price
-#: help:product.packaging,list_price:0
+#: help:product.packaging,list_price:0 help:sale.order.line,packaging_price:0
 msgid "This price will be considered as a price for complete package"
 msgstr "Ta cena bo upoštevana kot cena celotnega pakiranja"
 

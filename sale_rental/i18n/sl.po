@@ -3,13 +3,13 @@
 # * sale_rental
 # 
 # Translators:
-# Matjaž Mozetič <m.mozetic@matmoz.si>, 2015
+# Matjaž Mozetič <m.mozetic@matmoz.si>, 2015-2016
 msgid ""
 msgstr ""
 "Project-Id-Version: sale-workflow (8.0)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-09-09 12:27+0000\n"
-"PO-Revision-Date: 2015-09-07 14:32+0000\n"
+"POT-Creation-Date: 2016-04-29 00:56+0000\n"
+"PO-Revision-Date: 2016-05-01 04:53+0000\n"
 "Last-Translator: Matjaž Mozetič <m.mozetic@matmoz.si>\n"
 "Language-Team: Slovenian (http://www.transifex.com/oca/OCA-sale-workflow-8-0/language/sl/)\n"
 "MIME-Version: 1.0\n"
@@ -17,6 +17,22 @@ msgstr ""
 "Content-Transfer-Encoding: \n"
 "Language: sl\n"
 "Plural-Forms: nplurals=4; plural=(n%100==1 ? 0 : n%100==2 ? 1 : n%100==3 || n%100==4 ? 2 : 3);\n"
+
+#. module: sale_rental
+#: help:sale.rental,in_state:0 help:sale.rental,out_state:0
+#: help:sale.rental,sell_state:0
+msgid ""
+"* New: When the stock move is created and not yet confirmed.\n"
+"* Waiting Another Move: This state can be seen when a move is waiting for another one, for example in a chained flow.\n"
+"* Waiting Availability: This state is reached when the procurement resolution is not straight forward. It may need the scheduler to run, a component to me manufactured...\n"
+"* Available: When products are reserved, it is set to 'Available'.\n"
+"* Done: When the shipment is processed, the state is 'Done'."
+msgstr "* Novo: ob nastanku premika zaloge, ki še ni potrjen.\n* Čakanje na drug premik: ko premik čaka na drug premik, primer je verižni proces.\n* Čakanje razpoložljivosti: ko izpolnitev oskrbe ni neposredna. Lahko bi bil potreben zagon razporejevalnika, lahko je potrebno proizvesti komponento...\n* Na voljo: ko so proizvodi rezervirani se prestavi v 'Na voljo'.\n* Opravljeno: po obdelavi odpreme se prestavi v 'Opravljeno'."
+
+#. module: sale_rental
+#: selection:sale.rental,state:0
+msgid "Back In"
+msgstr "Povratek"
 
 #. module: sale_rental
 #: field:sale.order.line,can_sell_rental:0
@@ -45,6 +61,11 @@ msgstr "Preklic"
 #, python-format
 msgid "Cannot sell the rental %s because it has not been delivered"
 msgstr "Ni mogoče prodati najemniškega proizvoda %s, ker ni bil dostavljen"
+
+#. module: sale_rental
+#: field:sale.rental,company_id:0
+msgid "Company"
+msgstr "Družba"
 
 #. module: sale_rental
 #: field:create.rental.product,copy_image:0
@@ -90,9 +111,31 @@ msgid "Delivery"
 msgstr "Dostava"
 
 #. module: sale_rental
+#: field:sale.rental,out_picking_id:0
+msgid "Delivery Order"
+msgstr "Dostavni nalog"
+
+#. module: sale_rental
+#: field:create.rental.product,display_name:0 field:sale.rental,display_name:0
+msgid "Display Name"
+msgstr "Prikazni naziv"
+
+#. module: sale_rental
 #: view:sale.rental:sale_rental.sale_rental_tree
 msgid "End Date"
 msgstr "Končni datum"
+
+#. module: sale_rental
+#: field:sale.rental,end_date:0
+msgid "End Date (extensions included)"
+msgstr "Končni datum (vključno razširitve)"
+
+#. module: sale_rental
+#: help:sale.rental,end_date:0
+msgid ""
+"End Date of the Rental, taking into account all the extensions sold to the "
+"customer."
+msgstr "Končni datum izposoje ob upoštevanju vseh razširitev, ki so bile kupcu prodane."
 
 #. module: sale_rental
 #: field:create.rental.product,id:0 field:sale.rental,id:0
@@ -100,9 +143,15 @@ msgid "ID"
 msgstr "ID"
 
 #. module: sale_rental
-#: help:sale.order.line,rental_qty:0
+#: help:sale.order.line,rental_qty:0 help:sale.rental,rental_qty:0
 msgid "Indicate the number of items that will be rented."
 msgstr "Določa število predmetov za najem."
+
+#. module: sale_rental
+#: field:create.rental.product,__last_update:0
+#: field:sale.rental,__last_update:0
+msgid "Last Modified on"
+msgstr "Zadnjič spremenjeno"
 
 #. module: sale_rental
 #: field:create.rental.product,write_uid:0 field:sale.rental,write_uid:0
@@ -172,6 +221,31 @@ msgid ""
 "rental with a rental quantity (%s) that is different from the quantity of "
 "the original rental (%s). This is not supported."
 msgstr "Na postavki prodajnega naloga s proizvodom %s poskušate podaljšati najemništvo s količino (%s), ki je drugačna od količine izvornega najema (%s). To ni podprto."
+
+#. module: sale_rental
+#: selection:sale.rental,state:0
+msgid "Ordered"
+msgstr "Naročeno"
+
+#. module: sale_rental
+#: selection:sale.rental,state:0
+msgid "Out"
+msgstr "Izhod"
+
+#. module: sale_rental
+#: field:sale.rental,out_move_id:0
+msgid "Outgoing Stock Move"
+msgstr "Izhodni premik zaloge"
+
+#. module: sale_rental
+#: field:sale.rental,partner_id:0
+msgid "Partner"
+msgstr "Partner"
+
+#. module: sale_rental
+#: field:sale.rental,procurement_id:0
+msgid "Procurement"
+msgstr "Oskrbovanje"
 
 #. module: sale_rental
 #: model:ir.model,name:sale_rental.model_product_product
@@ -259,7 +333,7 @@ msgid "Rental Price per Day"
 msgstr "Dnevna najemniška cena"
 
 #. module: sale_rental
-#: field:sale.order.line,rental_qty:0
+#: field:sale.order.line,rental_qty:0 field:sale.rental,rental_qty:0
 msgid "Rental Quantity"
 msgstr "Najemniška količina"
 
@@ -269,9 +343,19 @@ msgid "Rental Route"
 msgstr "Najemniška proga"
 
 #. module: sale_rental
+#: field:sale.rental,start_order_id:0
+msgid "Rental Sale Order"
+msgstr "Prodajni nalog izposoje"
+
+#. module: sale_rental
 #: field:sale.rental,start_order_line_id:0
 msgid "Rental Sale Order Line"
 msgstr "Najemniška postavka prodajnega naloga"
+
+#. module: sale_rental
+#: field:sale.rental,rental_product_id:0
+msgid "Rental Service"
+msgstr "Storitev izposoje"
 
 #. module: sale_rental
 #: field:sale.order.line,rental_type:0
@@ -317,10 +401,25 @@ msgid "Rentals"
 msgstr "Najemi"
 
 #. module: sale_rental
+#: field:sale.rental,rented_product_id:0
+msgid "Rented Product"
+msgstr "Izposojeni proizvod"
+
+#. module: sale_rental
 #: view:sale.rental:sale_rental.sale_rental_form
 #: view:sale.rental:sale_rental.sale_rental_tree
 msgid "Return"
 msgstr "Vračilo"
+
+#. module: sale_rental
+#: field:sale.rental,in_picking_id:0
+msgid "Return Picking"
+msgstr "Vračilni zbirnik"
+
+#. module: sale_rental
+#: field:sale.rental,in_move_id:0
+msgid "Return Stock Move"
+msgstr "Vračilni premik zaloge"
 
 #. module: sale_rental
 #: model:ir.model,name:sale_rental.model_sale_order
@@ -331,6 +430,16 @@ msgstr "Prodajni nalog"
 #: model:ir.model,name:sale_rental.model_sale_order_line
 msgid "Sales Order Line"
 msgstr "Postavka prodajnega naloga"
+
+#. module: sale_rental
+#: field:sale.rental,sell_picking_id:0
+msgid "Sell Delivery Order"
+msgstr "Prodajni dostavni nalog"
+
+#. module: sale_rental
+#: field:sale.rental,sell_procurement_id:0
+msgid "Sell Procurement"
+msgstr "Prodajna oskrba"
 
 #. module: sale_rental
 #: code:addons/sale_rental/rental.py:531
@@ -345,6 +454,46 @@ msgstr "Prodaja najemniškega proizvoda"
 #: field:stock.warehouse,sell_rented_product_route_id:0
 msgid "Sell Rented Product Route"
 msgstr "Prodajna proga najemniškega proizvoda"
+
+#. module: sale_rental
+#: field:sale.rental,sell_move_id:0
+msgid "Sell Stock Move"
+msgstr "Prodajni premik zaloge"
+
+#. module: sale_rental
+#: selection:sale.rental,state:0
+msgid "Sell in progress"
+msgstr "Prodaja v teku"
+
+#. module: sale_rental
+#: selection:sale.rental,state:0
+msgid "Sold"
+msgstr "Prodano"
+
+#. module: sale_rental
+#: field:sale.rental,start_date:0
+msgid "Start Date"
+msgstr "Začetni datum"
+
+#. module: sale_rental
+#: field:sale.rental,state:0
+msgid "State"
+msgstr "Stanje"
+
+#. module: sale_rental
+#: field:sale.rental,out_state:0
+msgid "State of the Outgoing Stock Move"
+msgstr "Stanje izhodnega premika zaloge"
+
+#. module: sale_rental
+#: field:sale.rental,in_state:0
+msgid "State of the Return Stock Move"
+msgstr "Stanje vračilnega premika zaloge"
+
+#. module: sale_rental
+#: field:sale.rental,sell_state:0
+msgid "State of the Sell Stock Move"
+msgstr "Stanje prodajnega premika zaloge"
 
 #. module: sale_rental
 #: model:ir.model,name:sale_rental.model_stock_move

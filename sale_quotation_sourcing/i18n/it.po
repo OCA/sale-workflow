@@ -3,11 +3,13 @@
 # * sale_quotation_sourcing
 # 
 # Translators:
+# Ahmet Altınışık <aaltinisik@altinkaya.com.tr>, 2015
+# Matjaž Mozetič <m.mozetic@matmoz.si>, 2016
 msgid ""
 msgstr ""
 "Project-Id-Version: sale-workflow (8.0)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-03-12 01:52+0000\n"
+"POT-Creation-Date: 2016-04-29 00:56+0000\n"
 "PO-Revision-Date: 2015-09-03 07:10+0000\n"
 "Last-Translator: <>\n"
 "Language-Team: Italian (http://www.transifex.com/oca/OCA-sale-workflow-8-0/language/it/)\n"
@@ -35,9 +37,21 @@ msgid "Created on"
 msgstr "Creato il"
 
 #. module: sale_quotation_sourcing
+#: field:sale.order.line.sourcing,display_name:0
+#: field:sale.order.sourcing,display_name:0
+msgid "Display Name"
+msgstr "Nome da visualizzare"
+
+#. module: sale_quotation_sourcing
 #: field:sale.order.line.sourcing,id:0 field:sale.order.sourcing,id:0
 msgid "ID"
 msgstr "ID"
+
+#. module: sale_quotation_sourcing
+#: field:sale.order.line.sourcing,__last_update:0
+#: field:sale.order.sourcing,__last_update:0
+msgid "Last Modified on"
+msgstr "Ultima modifica il"
 
 #. module: sale_quotation_sourcing
 #: field:sale.order.line.sourcing,write_uid:0
@@ -71,6 +85,11 @@ msgstr ""
 #: model:ir.model,name:sale_quotation_sourcing.model_procurement_order
 msgid "Procurement"
 msgstr ""
+
+#. module: sale_quotation_sourcing
+#: field:sale.order.line.sourcing,product_id:0
+msgid "Product"
+msgstr "Prodotto"
 
 #. module: sale_quotation_sourcing
 #: model:ir.model,name:sale_quotation_sourcing.model_purchase_order_line
