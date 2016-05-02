@@ -27,7 +27,9 @@ class SaleOrderLine(models.Model):
     _inherit = "sale.order.line"
 
     base_price_unit = fields.Float()
-    pricelist_id = fields.Many2one(related="order_id.pricelist_id")
+    pricelist_id = fields.Many2one(
+        related="order_id.pricelist_id",
+        readonly=True)
     optional_bom_line_ids = fields.One2many(
         'sale.order.line.option',
         'sale_line_id',
