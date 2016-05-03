@@ -84,6 +84,7 @@ class sale_order(models.Model):
                              'active': False,
                              'state': 'cancel',
                              'current_revision_id': self.id,
+                             'unrevisioned_name': self.unrevisioned_name,
                              })
         return super(sale_order, self).copy(defaults)
 
