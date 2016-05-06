@@ -89,10 +89,11 @@ class TestAutomaticWorkflow(common.TransactionCase):
 #         self.assertEqual(sale.order_policy, 'manual')
 #         self.assertEqual(sale.invoice_quantity, 'order')
         workflow2 = self._create_full_automatic(
-            override={'picking_policy': 'direct',
-                      #                       'order_policy': 'prepaid',
-                      #                       'invoice_quantity': 'procurement',
-                      }
+            override={
+                'picking_policy': 'direct',
+                #                 'order_policy': 'prepaid',
+                #                 'invoice_quantity': 'procurement',
+            }
         )
         sale.workflow_process_id = workflow2.id
         sale.onchange_workflow_process_id()
