@@ -46,50 +46,51 @@ class SaleWorkflowProcess(models.Model):
 #     sale_done_filter = fields.Text(string='Sale Done Filter')
     warning = fields.Text(
         'Warning Message', translate=True,
-        help='If set, displays the message when an user' 
-            'selects the process on a sale order')
+        help='If set, displays the message when an user'
+        'selects the process on a sale order')
     team_id = fields.Many2one(
         comodel_name='crm.team',
         string='Sales Team'
     )
     property_journal_id = fields.Many2one(
-        comodel_name='account.journal', 
+        comodel_name='account.journal',
         company_dependent=True,
-        string='Sales Journal', 
+        string='Sales Journal',
         help='Set default journal to use on invoice'
     )
     order_filter_id = fields.Many2one(
-        'ir.filters', 
+        'ir.filters',
         string='Order Filter',
         default=lambda self: self.env.ref(
             'sale_automatic_workflow.automatic_workflow_order_filter')
     )
     picking_filter_id = fields.Many2one(
-        'ir.filters', 
+        'ir.filters',
         string='Picking Filter',
         default=lambda self: self.env.ref(
             'sale_automatic_workflow.automatic_workflow_picking_filter')
     )
     create_invoice_filter_id = fields.Many2one(
-        'ir.filters', 
+        'ir.filters',
         string='Create Invoice Filter',
         default=lambda self: self.env.ref(
             'sale_automatic_workflow.automatic_workflow_create_invoice_filter')
     )
     validate_invoice_filter_id = fields.Many2one(
-        'ir.filters', 
+        'ir.filters',
         string='Validate Invoice Filter',
         default=lambda self: self.env.ref(
-            'sale_automatic_workflow.automatic_workflow_validate_invoice_filter')
+            'sale_automatic_workflow.'
+            'automatic_workflow_validate_invoice_filter')
     )
     payment_filter_id = fields.Many2one(
-        'ir.filters', 
+        'ir.filters',
         string='Payment Filter',
         default=lambda self: self.env.ref(
             'sale_automatic_workflow.automatic_workflow_payment_filter')
     )
     sale_done_filter_id = fields.Many2one(
-        'ir.filters', 
+        'ir.filters',
         string='Sale Done Filter',
         default=lambda self: self.env.ref(
             'sale_automatic_workflow.automatic_workflow_sale_done_filter')
