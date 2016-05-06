@@ -7,15 +7,17 @@
 from openerp import models, fields, api, _
 
 
-class sale_order(models.Model):
+class SaleOrder(models.Model):
     _inherit = "sale.order"
 
-    workflow_process_id = fields.Many2one(comodel_name='sale.workflow.process',
-                                          string='Automatic Workflow',
-                                          ondelete='restrict')
+    workflow_process_id = fields.Many2one(
+        comodel_name='sale.workflow.process',
+        string='Automatic Workflow',
+        ondelete='restrict'
+    )
 
     def _prepare_invoice(self):
-        invoice_vals = super(sale_order, self)._prepare_invoice()
+        invoice_vals = super(SaleOrder, self)._prepare_invoice()
         workflow = self.workflow_process_id
         if not workflow:
             return invoice_vals
