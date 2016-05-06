@@ -139,7 +139,7 @@ class AutomaticWorkflowJob(models.Model):
         """ Must be called from ir.cron """
         sale_workflow_process = self.env['sale.workflow.process']
         for sale_workflow in sale_workflow_process.search([]):
-            workflow_domain =[('workflow_process_id', '=', sale_workflow.id)]
+            workflow_domain = [('workflow_process_id', '=', sale_workflow.id)]
             if sale_workflow.validate_order:
                 self._validate_sale_orders(
                     safe_eval(sale_workflow.order_filter_id.domain) +
@@ -154,7 +154,8 @@ class AutomaticWorkflowJob(models.Model):
                     workflow_domain)
             if sale_workflow.validate_invoice:
                 self._validate_invoices(
-                    safe_eval(sale_workflow.validate_invoice_filter_id.domain) +
+                    safe_eval(
+                        sale_workflow.validate_invoice_filter_id.domain) +
                     workflow_domain)
             # TODO
 #             if sale_workflow.register_payment:
@@ -165,5 +166,5 @@ class AutomaticWorkflowJob(models.Model):
                 self._sale_done(
                     safe_eval(
                         sale_workflow.sale_done_filter_id.domain) +
-                                workflow_domain)
+                    workflow_domain)
         return True
