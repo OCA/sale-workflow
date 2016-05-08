@@ -14,13 +14,17 @@ Usage
 
 To use this module, you need to:
 
-* Go to *Sales -> Sale Orders* and create a new Sale Order.
-* Add line selecting a product with *Invoicing Policy* -> *Delivered
-  quantities* and *Track Service* -> *Timesheets on contract*.
-  P.E. *Support Contract (on timesheet)*
-* Confirm Sale
-* Go to *Timesheets -> Activities* and create line with same project of SO
-* Go to Sale Order and *Create Invoice*
+#. Go to *Sales -> Sale Orders* and create a new Sale Order.
+#. Add line selecting a product with
+
+   - *Invoicing Policy* -> **Delivered quantities**
+
+   - *Track Service* -> **Timesheets on contract**
+
+   P.E. *Support Contract (on timesheet)*
+#. Confirm Sale
+#. Go to *Timesheets -> Activities* and create line with same project of SO
+#. Go to Sale Order and *Create Invoice*
 
 
 .. image:: https://odoo-community.org/website/image/ir.attachment/5784_f2813bd/datas
