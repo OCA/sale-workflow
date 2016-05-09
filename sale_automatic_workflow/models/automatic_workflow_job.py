@@ -4,30 +4,6 @@
 # © 2016 Sodexis
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
-"""
-Some comments about the implementation
-
-In order to validate the invoice and the picking, we have to use
-scheduled actions, because if we directly jump the various steps in the
-workflow of the invoice and the picking, the sale order workflow will be
-broken.
-
-The explanation is 'simple'. Example with the invoice workflow: When we
-are in the sale order at the workflow router, a transition like a signal
-or condition will change the step of the workflow to the step 'invoice';
-this step will launch the creation of the invoice.  If the invoice is
-directly validated and reconciled with the payment, the subworkflow will
-end and send a signal to the sale order workflow.  The problem is that
-the sale order workflow has not yet finished to apply the step 'invoice',
-so the signal of the subworkflow will be lost because the step 'invoice'
-is still not finished. The step invoice should be finished before
-receiving the signal. This means that we can not directly validate every
-steps of the workflow in the same transaction.
-
-If my explanation is not clear, contact me by email and I will improve
-it: sebastien.beau@akretion.com
-"""
-
 import logging
 from contextlib import contextmanager
 from openerp import models, api, fields
