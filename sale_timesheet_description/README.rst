@@ -21,7 +21,7 @@ To use this module, you need to:
 
    - *Track Service* -> **Timesheets on contract**
 
-   P.E. *Support Contract (on timesheet)*
+   e.g. *Support Contract (on timesheet)*
 #. Confirm Sale
 #. Go to *Timesheets -> Activities* and create line with same project of SO
 #. Go to Sale Order and *Create Invoice*
