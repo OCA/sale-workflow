@@ -53,7 +53,6 @@
         <record id="automatic_validation" model="sale.workflow.process">
             <field name="name">Automatic</field>
             <field name="picking_policy">one</field>
-            <field name="advance_payment_method">delivered</field>
             <field name="validate_order" eval="1"/>
             <field name="order_filter_id" eval="automatic_workflow_order_filter"/>
             <field name="create_invoice" eval="1" />
@@ -77,6 +76,12 @@
             <field name="validate_invoice" eval="0" />
             <field name="invoice_date_is_order_date" eval="0" />
             <field name="validate_picking" eval="0" />
+            <field name="order_filter_id" eval="automatic_workflow_order_filter"/>
+            <field name="create_invoice_filter_id" eval="automatic_workflow_create_invoice_filter"/>
+            <field name="validate_invoice_filter_id" eval="automatic_workflow_validate_invoice_filter"/>
+            <field name="picking_filter_id" eval="automatic_workflow_picking_filter"/>
+            <field name="payment_filter_id" eval="automatic_workflow_payment_filter"/>
+            <field name="sale_done_filter_id" eval="automatic_workflow_sale_done_filter"/>
         </record>
 
         <record forcecreate="True" id="ir_cron_automatic_workflow_job" model="ir.cron">
