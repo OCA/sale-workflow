@@ -14,11 +14,3 @@ class AccountInvoice(models.Model):
         comodel_name='sale.workflow.process',
         string='Sale Workflow Process'
     )
-    # TODO propose a merge to add this field by default in account module
-    sale_ids = fields.Many2many(
-        comodel_name='sale.order',
-        relation='sale_order_invoice_rel',
-        column1='invoice_id',
-        column2='order_id',
-        string='Sale Orders'
-    )
