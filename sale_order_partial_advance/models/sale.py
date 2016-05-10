@@ -18,13 +18,13 @@ class SaleOrder(models.Model):
                 continue
             advance_amount += sum([line.price_unit
                                   for line in invoice.invoice_line
-                                  if (line.product_id.id == adv_product_id
-                                      and line.price_unit > 0)])
+                                  if (line.product_id.id == adv_product_id and
+                                      line.price_unit > 0)])
             advance_amount_used -= sum([line.price_unit
                                         for line in invoice.invoice_line
                                         if (line.product_id.id ==
-                                            adv_product_id
-                                            and line.price_unit < 0)])
+                                            adv_product_id and
+                                            line.price_unit < 0)])
         self.advance_amount_available = advance_amount - advance_amount_used
         self.advance_amount = advance_amount
         self.advance_amount_used = advance_amount_used
