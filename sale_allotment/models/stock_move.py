@@ -58,7 +58,7 @@ class StockMove(models.Model):
                 new_picking = first_picking.copy(
                     {'partner_id': move.partner_id.id,
                      'move_lines': False})
-                picking_move_dict[move.partner_id] = (new_picking, move)
+                picking_move_dict[move.partner_id] = [new_picking, move]
 
         # Attach the moves to the right pickings (1 query per picking)
         for picking, moves in picking_move_dict.values():
