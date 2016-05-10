@@ -8,9 +8,8 @@
 <openerp>
     <data>
 
-        <!-- VIEW FOR THE OBJECT : sale_workflow_process -->
         <record id="sale_workflow_process_view_form" model="ir.ui.view">
-            <field name="name">sale_automic_workflow.sale_workflow_process.view_form</field>
+            <field name="name">sale.order.form.automatic.inherit</field>
             <field name="model">sale.workflow.process</field>
             <field name="arch" type="xml">
                 <form string="Automatic Workflow">
@@ -24,17 +23,72 @@
                     </group>
                     <group string="Workflow Options" col="4">
                         <field name="validate_order" />
-                        <field name="order_filter_id" attrs="{'required':[('validate_order','=',True)], 'readonly':[('validate_order','!=',True)]}"/>
+                        <label for="order_filter_id" attrs="{'required':[('validate_order','=',True)], 'invisible':[('validate_order','!=',True)]}"/>
+                        <div attrs="{'required':[('validate_order','=',True)], 'invisible':[('validate_order','!=',True)]}">
+                            <field name="order_filter_domain" widget="char_domain" options="{'model': 'sale.order'}" class="oe_inline" />
+                            <div class="oe_edit_only oe_inline">
+                                Set selection based on a search filter:
+                                                
+                                <field name="order_filter_id" domain="[('model_id', '=', 'sale.order')]" class="oe_inline" context="{'default_model_id': 'sale.order', 'default_active': False, 'active_test': False}" can_create="true" can_write="true" />
+                            </div>
+                        </div>
+
                         <field name="validate_picking" />
-                        <field name="picking_filter_id" attrs="{'required':[('validate_picking','=',True)], 'readonly':[('validate_picking','!=',True)]}"/>
-                        <field name="create_invoice"/>                        
-                        <field name="create_invoice_filter_id" attrs="{'required':[('create_invoice','=',True)], 'readonly':[('create_invoice','!=',True)]}"/>
-                        <field name="validate_invoice"/>
-                        <field name="validate_invoice_filter_id" attrs="{'required':[('validate_invoice','=',True)], 'readonly':[('validate_invoice','!=',True)]}"/>
-                        <field name="register_payment"/>
-                        <field name="payment_filter_id" attrs="{'required':[('register_payment','=',True)], 'readonly':[('register_payment','!=',True)]}"/>
-                        <field name="sale_done"/>
-                        <field name="sale_done_filter_id" attrs="{'required':[('sale_done','=',True)], 'readonly':[('sale_done','!=',True)]}"/>
+                        <label for="picking_filter_id" attrs="{'required':[('validate_picking','=',True)], 'invisible':[('validate_picking','!=',True)]}"/>
+                        <div attrs="{'required':[('validate_picking','=',True)], 'invisible':[('validate_picking','!=',True)]}">
+                            <field name="picking_filter_domain" widget="char_domain" options="{'model': 'stock.picking'}" class="oe_inline" />
+                            <div class="oe_edit_only oe_inline">
+                                Set selection based on a search filter:
+                                                
+                                <field name="picking_filter_id" domain="[('model_id', '=', 'stock.picking')]" class="oe_inline" context="{'default_model_id': 'stock.picking', 'default_active': False, 'active_test': False}" can_create="true" can_write="true" />
+                            </div>
+                        </div>
+
+                        <field name="create_invoice" />
+                        <label for="create_invoice_filter_id" attrs="{'required':[('create_invoice','=',True)], 'invisible':[('create_invoice','!=',True)]}"/>
+                        <div attrs="{'required':[('create_invoice','=',True)], 'invisible':[('create_invoice','!=',True)]}">
+                            <field name="create_invoice_filter_domain" widget="char_domain" options="{'model': 'sale.order'}" class="oe_inline" />
+                            <div class="oe_edit_only oe_inline">
+                                Set selection based on a search filter:
+                                                
+                                <field name="create_invoice_filter_id" domain="[('model_id', '=', 'sale.order')]" class="oe_inline" context="{'default_model_id': 'sale.order', 'default_active': False, 'active_test': False}" can_create="true" can_write="true" />
+                            </div>
+                        </div>
+
+                        <field name="validate_invoice" />
+                        <label for="validate_invoice_filter_id" attrs="{'required':[('validate_invoice','=',True)], 'invisible':[('validate_invoice','!=',True)]}"/>
+                        <div attrs="{'required':[('validate_invoice','=',True)], 'invisible':[('validate_invoice','!=',True)]}">
+                            <field name="validate_invoice_filter_domain" widget="char_domain" options="{'model': 'account.invoice'}" class="oe_inline" />
+                            <div class="oe_edit_only oe_inline">
+                                Set selection based on a search filter:
+                                                
+                                <field name="validate_invoice_filter_id" domain="[('model_id', '=', 'account.invoice')]" class="oe_inline" context="{'default_model_id': 'account.invoice', 'default_active': False, 'active_test': False}" can_create="true" can_write="true" />
+                            </div>
+                        </div>
+
+                        <field name="register_payment" />
+                        <label for="payment_filter_id" attrs="{'required':[('register_payment','=',True)], 'invisible':[('register_payment','!=',True)]}"/>
+                        <div attrs="{'required':[('register_payment','=',True)], 'invisible':[('register_payment','!=',True)]}">
+                            <field name="payment_filter_domain" widget="char_domain" options="{'model': 'account.invoice'}" class="oe_inline" />
+                            <div class="oe_edit_only oe_inline">
+                                Set selection based on a search filter:
+                                                
+                                <field name="payment_filter_id" domain="[('model_id', '=', 'account.invoice')]" class="oe_inline" context="{'default_model_id': 'account.invoice', 'default_active': False, 'active_test': False}" can_create="true" can_write="true" />
+                            </div>
+                        </div>
+
+                        <field name="sale_done" />
+                        <label for="sale_done_filter_id" attrs="{'required':[('sale_done','=',True)], 'invisible':[('sale_done','!=',True)]}"/>
+                        <div attrs="{'required':[('sale_done','=',True)], 'invisible':[('sale_done','!=',True)]}">
+                            <field name="sale_done_filter_domain" widget="char_domain" options="{'model': 'sale.order'}" class="oe_inline" />
+                            <div class="oe_edit_only oe_inline">
+                                Set selection based on a search filter:
+                                                
+                                <field name="sale_done_filter_id" domain="[('model_id', '=', 'sale.order')]" class="oe_inline" context="{'default_model_id': 'sale.order', 'default_active': False, 'active_test': False}" can_create="true" can_write="true" />
+                            </div>
+                        </div>
+                    </group>
+                    <group>
                         <field name="invoice_date_is_order_date"/>
                         <field name="property_journal_id" groups="account.group_account_invoice"
                                domain="[('type', '=', 'sale')]"/>
