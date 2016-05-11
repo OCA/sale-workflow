@@ -25,7 +25,7 @@
                         <field name="validate_order" />
                         <label for="order_filter_id" attrs="{'required':[('validate_order','=',True)], 'invisible':[('validate_order','!=',True)]}"/>
                         <div attrs="{'required':[('validate_order','=',True)], 'invisible':[('validate_order','!=',True)]}">
-                            <field name="order_filter_domain" widget="char_domain" options="{'model': 'sale.order'}" class="oe_inline" />
+                            <field name="order_filter_domain" />
                             <div class="oe_edit_only oe_inline">
                                 Set selection based on a search filter:
                                                 
@@ -36,7 +36,7 @@
                         <field name="validate_picking" />
                         <label for="picking_filter_id" attrs="{'required':[('validate_picking','=',True)], 'invisible':[('validate_picking','!=',True)]}"/>
                         <div attrs="{'required':[('validate_picking','=',True)], 'invisible':[('validate_picking','!=',True)]}">
-                            <field name="picking_filter_domain" widget="char_domain" options="{'model': 'stock.picking'}" class="oe_inline" />
+                            <field name="picking_filter_domain" />
                             <div class="oe_edit_only oe_inline">
                                 Set selection based on a search filter:
                                                 
@@ -47,7 +47,7 @@
                         <field name="create_invoice" />
                         <label for="create_invoice_filter_id" attrs="{'required':[('create_invoice','=',True)], 'invisible':[('create_invoice','!=',True)]}"/>
                         <div attrs="{'required':[('create_invoice','=',True)], 'invisible':[('create_invoice','!=',True)]}">
-                            <field name="create_invoice_filter_domain" widget="char_domain" options="{'model': 'sale.order'}" class="oe_inline" />
+                            <field name="create_invoice_filter_domain" />
                             <div class="oe_edit_only oe_inline">
                                 Set selection based on a search filter:
                                                 
@@ -58,7 +58,7 @@
                         <field name="validate_invoice" />
                         <label for="validate_invoice_filter_id" attrs="{'required':[('validate_invoice','=',True)], 'invisible':[('validate_invoice','!=',True)]}"/>
                         <div attrs="{'required':[('validate_invoice','=',True)], 'invisible':[('validate_invoice','!=',True)]}">
-                            <field name="validate_invoice_filter_domain" widget="char_domain" options="{'model': 'account.invoice'}" class="oe_inline" />
+                            <field name="validate_invoice_filter_domain" />
                             <div class="oe_edit_only oe_inline">
                                 Set selection based on a search filter:
                                                 
@@ -69,7 +69,7 @@
                         <field name="register_payment" />
                         <label for="payment_filter_id" attrs="{'required':[('register_payment','=',True)], 'invisible':[('register_payment','!=',True)]}"/>
                         <div attrs="{'required':[('register_payment','=',True)], 'invisible':[('register_payment','!=',True)]}">
-                            <field name="payment_filter_domain" widget="char_domain" options="{'model': 'account.invoice'}" class="oe_inline" />
+                            <field name="payment_filter_domain" />
                             <div class="oe_edit_only oe_inline">
                                 Set selection based on a search filter:
                                                 
@@ -80,7 +80,7 @@
                         <field name="sale_done" />
                         <label for="sale_done_filter_id" attrs="{'required':[('sale_done','=',True)], 'invisible':[('sale_done','!=',True)]}"/>
                         <div attrs="{'required':[('sale_done','=',True)], 'invisible':[('sale_done','!=',True)]}">
-                            <field name="sale_done_filter_domain" widget="char_domain" options="{'model': 'sale.order'}" class="oe_inline" />
+                            <field name="sale_done_filter_domain" />
                             <div class="oe_edit_only oe_inline">
                                 Set selection based on a search filter:
                                                 
