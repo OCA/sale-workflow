@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+    sale_automatic_workflow_payment_mode for Odoo
+    Copyright (C) 2016 Sodexis
+    The licence is in the file __openerp__.py
+-->
+<odoo>
+    <data noupdate="1">
+        <record id="sale_automatic_workflow.automatic_validation" model="sale.workflow.process">
+            <field name="register_payment" eval="0" />
+            <field name="payment_filter_id" ref="sale_automatic_workflow.automatic_workflow_payment_filter" />
+        </record>
+        <record id="sale_automatic_workflow.manual_validation" model="sale.workflow.process">
+            <field name="register_payment" eval="0" />
+            <field name="payment_filter_id" ref="sale_automatic_workflow.automatic_workflow_payment_filter" />
+        </record>
+    </data>
+</odoo>
