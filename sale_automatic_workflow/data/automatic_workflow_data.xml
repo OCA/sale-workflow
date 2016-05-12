@@ -62,8 +62,6 @@
             <field name="invoice_date_is_order_date" eval="0" />
             <field name="validate_picking" eval="1" />
             <field name="picking_filter_id" eval="automatic_workflow_picking_filter"/>
-            <field name="register_payment" eval="0"/>
-            <field name="payment_filter_id" eval="automatic_workflow_payment_filter"/>
             <field name="sale_done" eval="0"/>
             <field name="sale_done_filter_id" eval="automatic_workflow_sale_done_filter"/>
             <field name="warning">Be careful, if you save the order with this setting, it could be auto-confirmed, even if you are editing it.</field>
@@ -80,7 +78,6 @@
             <field name="create_invoice_filter_id" eval="automatic_workflow_create_invoice_filter"/>
             <field name="validate_invoice_filter_id" eval="automatic_workflow_validate_invoice_filter"/>
             <field name="picking_filter_id" eval="automatic_workflow_picking_filter"/>
-            <field name="payment_filter_id" eval="automatic_workflow_payment_filter"/>
             <field name="sale_done_filter_id" eval="automatic_workflow_sale_done_filter"/>
         </record>
 

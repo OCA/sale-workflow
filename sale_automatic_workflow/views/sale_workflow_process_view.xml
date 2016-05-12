@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!--
-  sale_automic_workflow for OpenERP
+  sale_automic_workflow for Odoo
   Copyright (C) 2011 Akretion Sébastien BEAU <sebastien.beau@akretion.com>
+  Copyright (C) 2016 Sodexis <dev@sodexis.com>
   The licence is in the file __openerp__.py
 -->
 
@@ -66,17 +67,6 @@
                             </div>
                         </div>
 
-                        <field name="register_payment" />
-                        <label for="payment_filter_id" attrs="{'required':[('register_payment','=',True)], 'invisible':[('register_payment','!=',True)]}"/>
-                        <div attrs="{'required':[('register_payment','=',True)], 'invisible':[('register_payment','!=',True)]}">
-                            <field name="payment_filter_domain" />
-                            <div class="oe_edit_only oe_inline">
-                                Set selection based on a search filter:
-                                                
-                                <field name="payment_filter_id" domain="[('model_id', '=', 'account.invoice')]" class="oe_inline" context="{'default_model_id': 'account.invoice', 'default_active': False, 'active_test': False}" can_create="true" can_write="true" />
-                            </div>
-                        </div>
-
                         <field name="sale_done" />
                         <label for="sale_done_filter_id" attrs="{'required':[('sale_done','=',True)], 'invisible':[('sale_done','!=',True)]}"/>
                         <div attrs="{'required':[('sale_done','=',True)], 'invisible':[('sale_done','!=',True)]}">
@@ -111,7 +101,6 @@
                     <field name="validate_picking"/>
                     <field name="validate_invoice"/>
                     <field name="invoice_date_is_order_date"/>
-                    <field name="register_payment"/>
                 </tree>
             </field>
         </record>
