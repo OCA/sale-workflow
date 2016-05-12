@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!--
-  sale_automatic_workflow for OpenERP
+  sale_automatic_workflow for Odoo
   Copyright (C) 2011 Akretion Sébastien BEAU <sebastien.beau@akretion.com>
+  Copyright (C) 2016 Sodexis <dev@sodexis.com>
   The licence is in the file __openerp__.py
 -->
 
