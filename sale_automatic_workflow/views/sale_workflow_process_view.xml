@@ -6,8 +6,7 @@
   The licence is in the file __openerp__.py
 -->
 
-<openerp>
-    <data>
+<odoo>
 
         <record id="sale_workflow_process_view_form" model="ir.ui.view">
             <field name="name">sale.order.form.automatic.inherit</field>
@@ -112,7 +111,6 @@
             <field name="view_mode">tree,form</field>
         </record>
 
-        <menuitem action="act_sale_workflow_process_form" id="menu_act_sale_workflow_process_form" parent="base.menu_sale_config_sales" sequence="20"/>
+        <menuitem action="act_sale_workflow_process_form" id="menu_act_sale_workflow_process_form" parent="base.menu_sale_general_settings" sequence="20"/>
 
-    </data>
-</openerp>
+</odoo>
