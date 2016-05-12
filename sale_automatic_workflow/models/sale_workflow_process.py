@@ -53,11 +53,7 @@ class SaleWorkflowProcess(models.Model):
         help="When checked, the invoice date will be "
              "the same than the order's date"
     )
-    register_payment = fields.Boolean(string='Register Payment')
-    payment_filter_domain = fields.Char(
-        string='Payment Filter Domain',
-        default="[('state', '=', 'open')]"
-    )
+
     sale_done = fields.Boolean(string='Sale Done')
     sale_done_filter_domain = fields.Char(
         string='Sale Done Filter Domain',
@@ -102,12 +98,6 @@ class SaleWorkflowProcess(models.Model):
             'sale_automatic_workflow.'
             'automatic_workflow_validate_invoice_filter')
     )
-    payment_filter_id = fields.Many2one(
-        'ir.filters',
-        string='Payment Filter',
-        default=lambda self: self.env.ref(
-            'sale_automatic_workflow.automatic_workflow_payment_filter')
-    )
     sale_done_filter_id = fields.Many2one(
         'ir.filters',
         string='Sale Done Filter',
@@ -141,8 +131,3 @@ class SaleWorkflowProcess(models.Model):
     def onchange_sale_done_filter_id(self):
         if self.sale_done_filter_id:
             self.sale_done_filter_domain = self.sale_done_filter_id.domain
-
-    @api.onchange('payment_filter_id')
-    def onchange_payment_filter_id(self):
-        if self.payment_filter_id:
-            self.payment_filter_domain = self.payment_filter_id.domain
