@@ -7,7 +7,7 @@
 {
     'name': 'Sale Automatic Workflow',
     'version': '9.0.1.0.0',
-    'category': 'Generic Modules/Others',
+    'category': 'Sales Management',
     'license': 'AGPL-3',
     'author': "Akretion,Camptocamp,Sodexis,Odoo Community Association (OCA)",
     'website': 'http://www.akretion.com/',
