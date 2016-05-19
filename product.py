@@ -9,7 +9,7 @@ class ProductTemplate(models.Model):
     _inherit = 'product.template'
 
     auto_generate_prodlot = fields.Boolean(
-        'Lot generation auto',
+        string='Lot Generation Auto',
         help="Forces to specifiy a Serial Number for all "
              "lines containing this product since the confirm "
              "of the Sale Order"
