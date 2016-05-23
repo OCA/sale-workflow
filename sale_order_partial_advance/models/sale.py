@@ -14,7 +14,7 @@ class SaleOrder(models.Model):
         adv_product_id =\
             self.env['sale.advance.payment.inv']._get_advance_product()
         for invoice in self.invoice_ids:
-            if invoice.state == 'cancel':
+            if invoice.state == 'cancel' or invoice.cancelled_by_refund:
                 continue
             advance_amount += sum([line.price_unit
                                   for line in invoice.invoice_line
@@ -33,11 +33,16 @@ class SaleOrder(models.Model):
     def _prepare_invoice(self, order, lines):
         adv_product_id =\
             self.env['sale.advance.payment.inv']._get_advance_product()
+        adv_line_count = 0
         for invoice_line in self.env['account.invoice.line'].browse(lines):
             if invoice_line.product_id.id == adv_product_id:
-                if - invoice_line.price_unit > order.advance_amount_available:
+                if adv_line_count == 0 and order.advance_amount_available > 0:
                     invoice_line.write(
                         {'price_unit': - order.advance_amount_available})
+                    adv_line_count += 1
+                else:
+                    lines.remove(invoice_line.id)
+                    invoice_line.unlink()
         return super(SaleOrder, self)._prepare_invoice(order, lines)
 
     advance_amount = fields.Float('Advance Amount',

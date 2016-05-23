@@ -145,3 +145,73 @@ class TestSaleOrderPartialAdvance(test_common.TransactionCase):
         self.assertEqual(order.advance_amount, 500.0)
         self.assertEqual(order.advance_amount_available, 0.0)
         self.assertEqual(order.advance_amount_used, 500.0)
+
+    def test_sale_order_partial_advance_refund(self):
+        '''
+            Test scenario
+            - Create a sale order with 2 lines
+            - Confirm the sale order
+            - Invoice an advance
+            - Make a refund for the advance
+            - Invoice a new advance
+            - Invoice the 2 order lines at the same time, the first advance
+              amount should be ignored
+        '''
+        # ----------------------------------------------
+        # Create and confirm a sale order with 2 lines
+        # ----------------------------------------------
+        vals = {
+            'partner_id': self.partner_id.id,
+            'order_line': self.order_lines,
+        }
+        order = self.so_obj.create(vals)
+        self.assertEqual(order.amount_total, 1600.0)
+        order.action_button_confirm()
+
+        # ----------------------------------------------
+        #    Invoice a deposit of 500.0
+        # ----------------------------------------------
+        adv_wizard = self.env['sale.advance.payment.inv'].create(
+            {'advance_payment_method': 'fixed',
+             'amount': 500.0,
+             })
+        adv_wizard.with_context(active_ids=[order.id]).create_invoices()
+        self.assertTrue(order.invoice_ids)
+        self.assertEqual(order.advance_amount, 500.0)
+        self.assertEqual(order.advance_amount_available, 500.0)
+        self.assertEqual(order.advance_amount_used, 0.0)
+        # ----------------------------------------------
+        #    Refund the deposit of 500.0
+        # ----------------------------------------------
+        invoice = order.invoice_ids[0]
+        invoice.signal_workflow('invoice_open')
+        refund_wizard = self.env['account.invoice.refund'].with_context(
+            active_ids=[invoice.id]).create({'filter_refund': 'cancel'})
+        refund_wizard.invoice_refund()
+        self.assertEqual(invoice.state, 'paid')
+
+        # ----------------------------------------------
+        #    Invoice a deposit of 300.0
+        # ----------------------------------------------
+        adv_wizard = self.env['sale.advance.payment.inv'].create(
+            {'advance_payment_method': 'fixed',
+             'amount': 300.0,
+             })
+        adv_wizard.with_context(active_ids=[order.id]).create_invoices()
+        self.assertTrue(order.invoice_ids)
+        self.assertEqual(order.advance_amount, 300.0)
+        self.assertEqual(order.advance_amount_available, 300.0)
+        self.assertEqual(order.advance_amount_used, 0.0)
+
+        # ----------------------------------------------------------
+        #    Invoice the 2 sale order line, the whole advance amount
+        #    should be consumed
+        # ----------------------------------------------
+        wizard = self.env['sale.order.line.make.invoice'].with_context(
+            active_ids=order.order_line.ids).create({})
+        res = wizard.with_context(open_invoices=True).make_invoices()
+        invoice = self.env['account.invoice'].browse(res['res_id'])
+        self.assertEqual(invoice.amount_total, 1300.0)
+        self.assertEqual(order.advance_amount, 300.0)
+        self.assertEqual(order.advance_amount_available, 0.0)
+        self.assertEqual(order.advance_amount_used, 300.0)
