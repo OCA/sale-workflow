@@ -18,7 +18,7 @@ Contributors
 
 * Katja Matthes <katja.matthes@initos.com>
 * Rami Alwafaie <rami.alwafaie@initos.com>
-* Sponsored by Nitrokey
+* Sponsored by Nitrokey: www.nitrokey.com
 
 Maintainer
 ----------

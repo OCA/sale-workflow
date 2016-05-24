@@ -10,8 +10,8 @@
              "website_sale",
              ],
  'author': 'initOS GmbH, Odoo Community Association (OCA)',
- "category": ""
-    ,    "summary": "",
+ "category": "",
+ "summary": "",
  'license': 'AGPL-3',
  "description": """
  Sale Payment Method - Payment Acquirer
