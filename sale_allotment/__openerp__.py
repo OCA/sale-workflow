@@ -22,7 +22,7 @@
 
 {
     'name': 'Allotment on sale orders',
-    'version': '8.0.1.1',
+    'version': '8.0.1.1.0',
     'category': 'Sales',
     'summary': "Separate the shipment according to allotment partner",
     'author': u'Openies,Numérigraphe,Odoo Community Association (OCA)',
