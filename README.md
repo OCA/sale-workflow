@@ -21,7 +21,7 @@ addon | version | summary
 [account_invoice_reorder_lines](account_invoice_reorder_lines/) | 8.0.1.0.0 | Provide a new field on the invoice line form, allowing to manage the lines order.
 [partner_prepayment](partner_prepayment/) | 8.0.1.0.0 | Option on partner to set prepayment policy
 [partner_prospect](partner_prospect/) | 8.0.1.0.0 | Partner Prospect
-[sale_allotment](sale_allotment/) | 8.0.1.1 | Separate the shipment according to allotment partner
+[sale_allotment](sale_allotment/) | 8.0.1.1.0 | Separate the shipment according to allotment partner
 [sale_automatic_workflow](sale_automatic_workflow/) | 8.0.0.3.0 | Sale Automatic Workflow
 [sale_automatic_workflow_exception](sale_automatic_workflow_exception/) | 8.0.1.0.0 | Sale Automatic Workflow Exception
 [sale_cancel_reason](sale_cancel_reason/) | 8.0.1.1 | Sale Cancel Reason
