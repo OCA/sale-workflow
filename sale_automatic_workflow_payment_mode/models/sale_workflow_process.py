@@ -12,7 +12,8 @@ class SaleWorkflowProcess(models.Model):
         'ir.filters',
         string='Payment Filter',
         default=lambda self: self.env.ref(
-            'sale_automatic_workflow.automatic_workflow_payment_filter')
+            'sale_automatic_workflow_payment_mode.'
+            'automatic_workflow_payment_filter')
     )
     register_payment = fields.Boolean(string='Register Payment')
     payment_filter_domain = fields.Char(
