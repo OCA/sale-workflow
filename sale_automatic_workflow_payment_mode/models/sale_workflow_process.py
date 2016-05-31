@@ -8,12 +8,19 @@ from openerp import models, fields, api
 class SaleWorkflowProcess(models.Model):
     _inherit = "sale.workflow.process"
 
+    @api.model
+    def _default_payment_filter_id(self):
+        xmlid = ('sale_automatic_workflow_payment_mode.'
+                 'automatic_workflow_payment_filter')
+        try:
+            return self.env.ref(xmlid)
+        except ValueError:
+            return self.env['ir.filters'].browse()
+
     payment_filter_id = fields.Many2one(
         'ir.filters',
         string='Payment Filter',
-        default=lambda self: self.env.ref(
-            'sale_automatic_workflow_payment_mode.'
-            'automatic_workflow_payment_filter')
+        default=_default_payment_filter_id,
     )
     register_payment = fields.Boolean(string='Register Payment')
     payment_filter_domain = fields.Char(
