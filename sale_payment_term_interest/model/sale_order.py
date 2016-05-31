@@ -44,6 +44,7 @@ class SaleOrder(models.Model):
             partner_id=self.partner_id.id,
             fiscal_position=self.fiscal_position.id)
         values.update(onchanged['value'])
+        values['tax_id'] = [(6, 0, values['tax_id'])]
         values['price_unit'] = interest_amount
         return values
 
