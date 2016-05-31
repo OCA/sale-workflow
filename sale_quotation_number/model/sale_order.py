@@ -25,12 +25,12 @@ from openerp import models, api
 class SaleOrder(models.Model):
     _inherit = "sale.order"
 
-    @api.one
+    @api.multi
     def copy(self, default=None):
         if default is None:
             default = {}
         default['name'] = '/'
-        return super(SaleOrder, self).copy(default=default)
+        return super(SaleOrder, self).copy(default)
 
     @api.model
     def create(self, vals):
