@@ -124,5 +124,38 @@ class TestSaleOrder(common.TransactionCase):
         self.assertEqual(len(sale.order_line), 3)
         interest_line = sale._get_interest_line()
         self.assertAlmostEqual(interest_line.price_subtotal, 4.2)
-        self.assertAlmostEqual(sale.amount_total, 279.2)
+        self.assertAlmostEqual(sale.amount_total, 279.62)
+        sale.check_interest_line()  # no error
+
+    def test_interest_with_on_change_tax(self):
+        product_interest = self.env.ref('sale_payment_term_interest.'
+                                        'product_product_sale_order_interest')
+        tax = self.env['account.tax'].create({
+            'name': 'Percent tax',
+            'type': 'percent',
+            'amount': '0.1',
+        })
+        product_interest.taxes_id = [(6, 0, [tax.id])]
+        # Call the on change to retrieve information
+        onchanged = self.env['sale.order.line'].product_id_change(
+            False,
+            product_interest.id,
+            qty=self.line1_values['product_uom_qty'],
+            uom=product_interest.uom_id.id,
+            partner_id=self.env.ref('base.res_partner_2').id,
+            fiscal_position=False)
+        line3_values = {
+            'product_id': product_interest.id,
+            'product_uom_qty': 1,
+            'product_uom': product_interest.uom_id.id,
+            'price_unit': 50,
+            'tax_id': [(6, 0, onchanged['value']['tax_id'])]
+
+        }
+        self.sale_values['order_line'] = [(0, 0, line3_values)]
+        sale = self.env['sale.order'].create(self.sale_values)
+        self.assertEqual(len(sale.order_line), 2)
+        interest_line = sale._get_interest_line()
+        self.assertAlmostEqual(interest_line.price_subtotal, 0.84)
+        self.assertAlmostEqual(sale.amount_total, 55.92)
         sale.check_interest_line()  # no error
