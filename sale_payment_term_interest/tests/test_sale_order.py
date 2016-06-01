@@ -124,7 +124,7 @@ class TestSaleOrder(common.TransactionCase):
         self.assertEqual(len(sale.order_line), 3)
         interest_line = sale._get_interest_line()
         self.assertAlmostEqual(interest_line.price_subtotal, 4.2)
-        self.assertAlmostEqual(sale.amount_total, 279.2)
+        self.assertAlmostEqual(sale.amount_total, 279.62)
         sale.check_interest_line()  # no error
 
     def test_interest_with_on_change_tax(self):
