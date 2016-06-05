@@ -102,7 +102,7 @@ class SaleOrder(models.Model):
 
     @api.model
     def action_ship_create(self):
-        super(SaleOrder, self).action_ship_create()
+        res = super(SaleOrder, self).action_ship_create()
         for line in self.order_line:
             self._check_move_state(line)
-            return True
+        return res
