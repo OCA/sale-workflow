@@ -1,13 +1,13 @@
 # Translation of Odoo Server.
 # This file contains the translation of the following modules:
-#	* sale_unified_menu
+#	* sale_order_unified_menu
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 8.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-06-07 09:09+0000\n"
-"PO-Revision-Date: 2016-06-07 09:09+0000\n"
+"POT-Creation-Date: 2016-06-07 13:03+0000\n"
+"PO-Revision-Date: 2016-06-07 13:03+0000\n"
 "Last-Translator: <>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -15,8 +15,8 @@ msgstr ""
 "Content-Transfer-Encoding: \n"
 "Plural-Forms: \n"
 
-#. module: sale_unified_menu
-#: model:ir.actions.act_window,help:sale_unified_menu.action_unified_order
+#. module: sale_order_unified_menu
+#: model:ir.actions.act_window,help:sale_order_unified_menu.action_unified_order
 msgid "<p class=\"oe_view_nocontent_create\">\n"
 "                Click to create a quotation, the first step of a new sale.\n"
 "              </p><p>\n"
@@ -40,9 +40,9 @@ msgstr "<p class=\"oe_view_nocontent_create\">\n"
 "              </p>\n"
 "            "
 
-#. module: sale_unified_menu
-#: model:ir.actions.act_window,name:sale_unified_menu.action_unified_order
-#: model:ir.ui.menu,name:sale_unified_menu.menu_unified_order
+#. module: sale_order_unified_menu
+#: model:ir.actions.act_window,name:sale_order_unified_menu.action_unified_order
+#: model:ir.ui.menu,name:sale_order_unified_menu.menu_unified_order
 msgid "All Orders"
 msgstr "Tutti gli Ordini"
 

@@ -3,7 +3,7 @@
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
 
 {
-    "name": "Sale Unified Menu",
+    "name": "Sale Order Unified Menu",
     "summary": "Add a menu to show draft and confirmed orders",
     "version": "8.0.1.0.0",
     "category": "Sale",
