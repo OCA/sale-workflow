@@ -62,6 +62,9 @@ class sale_order(models.Model):
         self.create_workflow()
         self.write({'state': 'draft'})
         self.order_line.write({'state': 'draft'})
+        # remove old procurements
+        self.mapped('order_line.procurement_ids').write(
+            {'sale_line_id': False})
         msg = _('New revision created: %s') % self.name
         self.message_post(body=msg)
         old_revision.message_post(body=msg)

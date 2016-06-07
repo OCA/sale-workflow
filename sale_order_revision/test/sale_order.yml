@@ -22,3 +22,4 @@
      assert all(so.active == False for so in new_so.old_revision_ids)
      assert new_so.revision_number == 1
      assert new_so.name.endswith('-01')
+     assert not new_so.order_line[0].procurement_ids
