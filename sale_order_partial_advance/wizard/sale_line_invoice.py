@@ -64,6 +64,9 @@ class SaleOrderLineMakeInvoice(models.TransientModel):
                 fposition_id=order.fiscal_position.id,
                 company_id=order.company_id.id)
             inv_line_values = val['value']
+            # Set analytic on new invoice line
+            project_id = order.project_id.id or False
+            inv_line_values['account_analytic_id'] = project_id
             inv_line_values['product_id'] = advance_prod_id
             inv_line_values['name'] = _("Part of advance (%s %s) used") % \
                 (order.advance_amount, order.company_id.currency_id.symbol)
