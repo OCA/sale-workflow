@@ -28,6 +28,10 @@
  'category': 'Generic Modules',
  'description': """This module adds the fields "Sub total tax inc"
  and "Sub total tax" on sale order line and invoice line
+ Note :
+ This module is obsolete in 8.0 serie. Do not port this module and use
+ instead 'account_invoice_line_price_subtotal_gross' and
+ 'sale_order_line_price_subtotal_gross' in OCA / account-invoicing.
  """,
  'depends': [
      'sale',
