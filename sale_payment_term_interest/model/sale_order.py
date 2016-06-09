@@ -58,7 +58,7 @@ class SaleOrder(models.Model):
         if not any(line.interest_rate for line in term.line_ids):
             return 0.
         for line in [line for line in self.order_line
-                     if not line.interest_line]:
+                     if not line == self._get_interest_line()]:
             price = line.price_unit * (1 - (line.discount or 0.0) / 100.0)
             taxes = line.tax_id.compute_all(price,
                                             line.product_uom_qty,
