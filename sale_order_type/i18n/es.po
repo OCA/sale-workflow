@@ -9,8 +9,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: sale-workflow (8.0)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-04-02 09:29+0000\n"
-"PO-Revision-Date: 2016-04-02 09:31+0000\n"
+"POT-Creation-Date: 2016-06-09 02:44+0000\n"
+"PO-Revision-Date: 2016-05-30 20:15+0000\n"
 "Last-Translator: OCA Transbot <transbot@odoo-community.org>\n"
 "Language-Team: Spanish (http://www.transifex.com/oca/OCA-sale-workflow-8-0/language/es/)\n"
 "MIME-Version: 1.0\n"
@@ -33,6 +33,11 @@ msgid "Billing Journal"
 msgstr "Diario de facturación"
 
 #. module: sale_order_type
+#: field:sale.order.type,company_id:0
+msgid "Company"
+msgstr "Empresa"
+
+#. module: sale_order_type
 #: view:sale.order.type:sale_order_type.sot_sale_order_type_search_view
 #: field:sale.order.type,order_policy:0
 msgid "Create Invoice"
@@ -52,6 +57,11 @@ msgstr "Creado el"
 #: field:sale.order.type,description:0
 msgid "Description"
 msgstr "Descripción"
+
+#. module: sale_order_type
+#: field:sale.order.type,display_name:0
+msgid "Display Name"
+msgstr "Mostrar nombre"
 
 #. module: sale_order_type
 #: view:sale.order.type:sale_order_type.sot_sale_order_type_search_view
@@ -79,6 +89,11 @@ msgstr "Factura"
 #: field:sale.order.type,invoice_state:0
 msgid "Invoice Control"
 msgstr "Control de facturas"
+
+#. module: sale_order_type
+#: field:sale.order.type,__last_update:0
+msgid "Last Modified on"
+msgstr "Última modificación el"
 
 #. module: sale_order_type
 #: field:sale.order.type,write_uid:0

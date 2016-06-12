@@ -4,11 +4,12 @@
 # 
 # Translators:
 # Matjaž Mozetič <m.mozetic@matmoz.si>, 2015
+# Stefano <stefano.sforzi@agilebg.com>, 2015
 msgid ""
 msgstr ""
 "Project-Id-Version: sale-workflow (8.0)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-09-09 12:27+0000\n"
+"POT-Creation-Date: 2016-06-09 02:44+0000\n"
 "PO-Revision-Date: 2015-09-07 14:31+0000\n"
 "Last-Translator: Matjaž Mozetič <m.mozetic@matmoz.si>\n"
 "Language-Team: Slovenian (http://www.transifex.com/oca/OCA-sale-workflow-8-0/language/sl/)\n"
@@ -29,7 +30,7 @@ msgid "Interest Rate"
 msgstr "Obrestna mera"
 
 #. module: sale_payment_term_interest
-#: code:addons/sale_payment_term_interest/model/sale_order.py:108
+#: code:addons/sale_payment_term_interest/model/sale_order.py:109
 #, python-format
 msgid ""
 "Interest amount differs. Click on \"(update interests)\" next to the payment"
