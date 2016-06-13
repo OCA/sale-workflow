@@ -20,6 +20,13 @@ class SaleWorkflowProcess(models.Model):
     _name = "sale.workflow.process"
     _description = "Sale Workflow Process"
 
+    @api.model
+    def _default_filter(self, xmlid):
+        record = self.env.ref(xmlid, raise_if_not_found=False)
+        if record:
+            return record
+        return self.env['ir.filters'].browse()
+
     name = fields.Char()
     picking_policy = fields.Selection(
         selection=[('direct', 'Deliver each product when available'),
@@ -76,33 +83,38 @@ class SaleWorkflowProcess(models.Model):
     order_filter_id = fields.Many2one(
         'ir.filters',
         string='Order Filter',
-        default=lambda self: self.env.ref(
-            'sale_automatic_workflow.automatic_workflow_order_filter')
+        default=lambda self: self._default_filter(
+            'sale_automatic_workflow.automatic_workflow_order_filter'
+        )
     )
     picking_filter_id = fields.Many2one(
         'ir.filters',
         string='Picking Filter',
-        default=lambda self: self.env.ref(
-            'sale_automatic_workflow.automatic_workflow_picking_filter')
+        default=lambda self: self._default_filter(
+            'sale_automatic_workflow.automatic_workflow_picking_filter'
+        )
     )
     create_invoice_filter_id = fields.Many2one(
         'ir.filters',
         string='Create Invoice Filter',
-        default=lambda self: self.env.ref(
-            'sale_automatic_workflow.automatic_workflow_create_invoice_filter')
+        default=lambda self: self._default_filter(
+            'sale_automatic_workflow.automatic_workflow_create_invoice_filter'
+        )
     )
     validate_invoice_filter_id = fields.Many2one(
         'ir.filters',
         string='Validate Invoice Filter',
-        default=lambda self: self.env.ref(
+        default=lambda self: self._default_filter(
             'sale_automatic_workflow.'
-            'automatic_workflow_validate_invoice_filter')
+            'automatic_workflow_validate_invoice_filter'
+        )
     )
     sale_done_filter_id = fields.Many2one(
         'ir.filters',
         string='Sale Done Filter',
-        default=lambda self: self.env.ref(
-            'sale_automatic_workflow.automatic_workflow_sale_done_filter')
+        default=lambda self: self._default_filter(
+            'sale_automatic_workflow.automatic_workflow_sale_done_filter'
+        )
     )
 
     @api.onchange('order_filter_id')
