@@ -14,7 +14,7 @@
         'views/product.xml',
     ],
     'demo': [
-        #'demo/product_set.xml',
+        'demo/product.xml',
     ],
     'installable': True,
     'application': False,

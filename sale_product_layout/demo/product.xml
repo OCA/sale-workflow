@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<openerp>
+    <data>
+        <record id="sale_layout_sound" model="sale_layout.category">
+            <field name="name">Sound</field>
+            <field name="subtotal" eval="1"/>
+            <field name="separator" eval="0"/>
+            <field name="pagebreak" eval="0"/>
+            <field name="sequence">10</field>
+        </record>
+
+        <record id="product.product_product_1" model="product.product">
+            <field name="section_id" ref="sale_layout.sale_layout_cat_1"/>
+        </record>
+
+        <record id="product.product_product_2" model="product.product">
+            <field name="section_id" ref="sale_layout.sale_layout_cat_1"/>
+        </record>
+
+        <record id="product.product_product_5b" model="product.product">
+            <field name="section_id" ref="sale_layout_sound"/>
+        </record>
+
+        <record id="product.product_product_7" model="product.product">
+            <field name="section_id" ref="sale_layout_sound"/>
+        </record>
+
+    </data>
+</openerp>
