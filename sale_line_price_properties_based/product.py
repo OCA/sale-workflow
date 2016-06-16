@@ -20,7 +20,6 @@
 ##############################################################################
 
 from openerp.osv import orm, fields
-from openerp.tools.translate import _
 import logging
 
 _logger = logging.getLogger(__name__)
@@ -63,6 +62,7 @@ class ProductTemplate(orm.Model):
                         'uid': uid,
                         'ptype': ptype,
                         'product_id': product.id,
+                        'uos_id': context['uos_id'],
                         'properties': context['properties'],
                     }
                     try:
