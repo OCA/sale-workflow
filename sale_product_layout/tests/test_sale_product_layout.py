@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
 import openerp.tests.common as common
 
+
 class TestSaleProductLayout(common.TransactionCase):
 
     def setUp(self):
@@ -20,5 +21,7 @@ class TestSaleProductLayout(common.TransactionCase):
         self.product.write({'section_id': self.layout_cat.id})
 
     def test_onchange_product(self):
-        onchange_res = self.line_model.product_id_change([], self.product.id, partner_id=1)
-        self.assertEqual(self.layout_cat.id, onchange_res['value']['sale_layout_cat_id'])
+        onchange_res = self.line_model.product_id_change(
+            [], self.product.id, partner_id=1)
+        self.assertEqual(
+            self.layout_cat.id, onchange_res['value']['sale_layout_cat_id'])
