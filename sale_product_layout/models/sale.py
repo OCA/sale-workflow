@@ -23,6 +23,6 @@ class SaleOrderLine(models.Model):
         if product:
             pro = self.pool['product.product'].browse(
                 cr, uid, product, context=context)
-            res['value']['sale_layout_cat_id'] = pro.section_id and \
-                    pro.section_id.id or False
+            res['value']['sale_layout_cat_id'] = pro.section_id \
+                and pro.section_id.id or False
         return res
