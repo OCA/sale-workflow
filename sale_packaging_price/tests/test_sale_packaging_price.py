@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 # (c) 2015 Antiun Ingeniería S.L. - Sergio Teruel
 # (c) 2015 Antiun Ingeniería S.L. - Carlos Dauden
-# License AGPL-3 - See http://www.gnu.org/licenses/agpl-3.0.html
+# License LGPL-3 - See http://www.gnu.org/licenses/lgpl
 from openerp.tests.common import TransactionCase
 
 
@@ -11,30 +11,23 @@ class TestSalePackagingPrice(TransactionCase):
         super(TestSalePackagingPrice, self).setUp()
         self.product = self.env.ref('product.product_product_6')
         self.product.product_tmpl_id.lst_price = 10.0
-
-        # Create logistic units
-        product_ul_obj = self.env['product.ul']
-        self.pack_3 = product_ul_obj.create({'name': 'pack 3 units',
-                                             'type': 'box',
-                                             'weight': 25.50})
-        self.pack_6 = product_ul_obj.create({'name': 'pack 6 units',
-                                             'type': 'box'})
+        self.product.product_tmpl_id.weight = 5
 
         # Assign logistic units to product packaging
         product_packaging_obj = self.env['product.packaging']
         self.product_pack_3 = product_packaging_obj.create(
             {'name': 'product pack 3 units',
              'product_tmpl_id': self.product.product_tmpl_id.id,
-             'ul': self.pack_3.id,
              'qty': 3.0,
              'list_price': 60.0,
+             "weight": 1.2,
              })
         self.product_pack_6 = product_packaging_obj.create(
             {'name': 'product pack 6 units',
              'product_tmpl_id': self.product.product_tmpl_id.id,
-             'ul': self.pack_6.id,
              'qty': 6.0,
              'list_price': 90.0,
+             "weight": 1.5,
              })
 
         self.sale_order_model = self.env['sale.order']
@@ -47,40 +40,22 @@ class TestSalePackagingPrice(TransactionCase):
         })
 
     def test_sale_packaging_price(self):
-        res = self.sale_order.order_line.product_packaging_change(
-            1, self.product.id, qty=3, uom=False,
-            partner_id=self.sale_order.partner_id.id,
-            packaging=self.product_pack_3.id, flag=False)
-        price_unit = res['value']['price_unit']
-        self.assertAlmostEqual(price_unit, 20.0)
+        """Order line gets updated correctly."""
+        # Using a 3 pack
+        self.sale_order.order_line.product_uom_qty = 3
+        self.sale_order.order_line.product_packaging = self.product_pack_3
+        self.sale_order.order_line._onchange_product_packaging()
+        self.assertEqual(self.sale_order.order_line.price_unit, 20)
+        self.assertEqual(self.sale_order.order_line.packaging_weight, 16.2)
 
-        # Check package weight
-        res = self.sale_order.order_line.product_packaging_change(
-            1, self.product.id, qty=2, uom=False,
-            partner_id=self.sale_order.partner_id.id,
-            packaging=self.product_pack_3.id, flag=False)
-        package_weight = res['value']['packaging_weight']
-        self.assertAlmostEqual(package_weight, 25.5)
-
-        res = self.sale_order.order_line.product_packaging_change(
-            1, self.product.id, qty=6, uom=False,
-            partner_id=self.sale_order.partner_id.id,
-            packaging=self.product_pack_6.id, flag=False)
-        price_unit = res['value']['price_unit']
-        self.assertAlmostEqual(price_unit, 15.0)
-
-        # Check values when delete package assigned
-        res = self.sale_order.order_line.product_packaging_change(
-            1, self.product.id, qty=6, uom=False,
-            partner_id=self.sale_order.partner_id.id,
-            packaging=False, flag=False)
-        price_unit = res['value']['price_unit']
-        package_weight = res['value']['packaging_weight']
-        self.assertAlmostEqual(
-            price_unit, self.product.product_tmpl_id.lst_price)
-        self.assertAlmostEqual(package_weight, 0.0)
+        # Using a 6 pack
+        self.sale_order.order_line.product_packaging = self.product_pack_6
+        self.sale_order.order_line._onchange_product_packaging()
+        self.assertEqual(self.sale_order.order_line.price_unit, 30)
+        self.assertEqual(self.sale_order.order_line.packaging_weight, 16.5)
 
     def test_onchange_price_list(self):
+        """User is warned when pack price is not divisible by qty."""
         self.product_pack_6.list_price = 100
         res = self.product_pack_6._onchange_list_price()
         self.assertIn('warning', res)

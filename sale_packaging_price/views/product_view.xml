@@ -1,27 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
-<openerp>
-<data>
+<odoo>
 
-    <record id="product_tree_inherit" model="ir.ui.view">
-        <field name="name">product.tree.inherit</field>
-        <field name="model">product.packaging</field>
-        <field name="inherit_id" ref="product.product_packaging_tree_view_product"/>
-        <field name="arch" type="xml">
-            <xpath expr='//field[@name="ul"]' position='after'>
-                <field name="package_material_id"/>
-                <field name="list_price"/>
-            </xpath>
-        </field>
-    </record>
-
-    <record id="product_packaging_tree_inherit" model="ir.ui.view">
+    <record id="product_packaging_tree_view" model="ir.ui.view">
         <field name="name">product.packaging.tree.inherit</field>
         <field name="model">product.packaging</field>
         <field name="inherit_id" ref="product.product_packaging_tree_view"/>
         <field name="arch" type="xml">
+            <xpath expr="//field[@name='name']" position="before">
+                <field name="product_tmpl_id"/>
+            </xpath>
             <xpath expr='//field[@name="qty"]' position='after'>
                 <field name="list_price"/>
                 <field name="package_material_id"/>
+                <field name="weight"/>
             </xpath>
             <xpath expr='//tree'
                    position='attributes'>
@@ -38,18 +29,7 @@
             <xpath expr='//field[@name="qty"]' position='after'>
                 <field name="package_material_id"/>
                 <field name="list_price"/>
-            </xpath>
-        </field>
-    </record>
-
-    <record id="no_product_packaging_form_inherit" model="ir.ui.view">
-        <field name="name">no.product.packaging.form.inherit</field>
-        <field name="model">product.packaging</field>
-        <field name="inherit_id" ref="product.product_packaging_form_view_without_product"/>
-        <field name="arch" type="xml">
-            <xpath expr='//field[@name="ul"]' position='after'>
-                <field name="package_material_id"/>
-                <field name="list_price"/>
+                <field name="weight"/>
             </xpath>
         </field>
     </record>
@@ -83,5 +63,9 @@
         </field>
     </record>
 
-</data>
-</openerp>
+    <menuitem id="menu_product_packaging_action"
+              action="action_product_packaging_form"
+              parent="stock.menu_stock_inventory_control"
+              groups="product.group_stock_packaging"/>
+
+</odoo>

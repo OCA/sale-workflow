@@ -1,56 +1,57 @@
-.. image:: https://img.shields.io/badge/licence-AGPL--3-blue.svg
-    :target: http://www.gnu.org/licenses/agpl-3.0-standalone.html
-    :alt: License: AGPL-3
+.. image:: https://img.shields.io/badge/licence-LGPL--3-blue.svg
+    :target: http://www.gnu.org/licenses/lgpl
+    :alt: License: LGPL-3
 
 ====================
 Sale Packaging Price
 ====================
 
-This module was written to extends the functionality of sale workflow
-and allow you to assign a selling price of a complete package.
-This price is split for having the price unit according the number of pieces
-that fits in that packaging, so there can be rounding issues to get the exact
-price that are warned if happens. It also adds a field to set the package
-material.
+This module extends the functionality of sale workflow and allows you to assign
+a selling price of a complete package. This price is split for having the price
+unit according the number of pieces that fit in that packaging, so there can be
+rounding issues to get the exact price that are warned if happens. It also adds
+a field to set the package material.
 
 Configuration
 =============
 
 To configure this module, you need to:
 
-* go to warehouse config and check 'Use packages: pallets, boxes, ...' and
-  'Allow to define several packaging methods on products'
+#. Go to *Warehouse > Configuration > Settings*.
+#. Enable *Packages > Traceability > Record packages used on packing: pallets,
+   boxes, ...*
+#. Enable *Products > Packaging Methods > Manage available packaging options
+   per products*.
+#. *Apply*.
 
 Usage
 =====
 
-To use this module, you need to:
+First, ensure you have permissions for *Technical Settings / Manage Product
+Packaging*.
 
-* go to product and into inventory tab you can add new packages with a
-  sale price
+Then, to use this module, you need to:
 
-* This module also adds a new entry into product menu called 'Packaging' to
-  add quickly combinations packages
+#. Go to *Inventory > Inventory Control > Products*.
+#. Edit or create a product.
+#. Go to *Inventory* tab.
+#. Under *Packaging* you can create packages for this product.
+
+To batch managing of packages, you need to:
+
+* Go to *Inventory > Inventory Control > Packagings*.
 
 .. image:: https://odoo-community.org/website/image/ir.attachment/5784_f2813bd/datas
    :alt: Try me on Runbot
-   :target: https://runbot.odoo-community.org/runbot/167/8.0
-
-For further information, please visit:
-
-* https://www.odoo.com/forum/help-1
-
-Known issues / Roadmap
-======================
-
+   :target: https://runbot.odoo-community.org/runbot/167/9.0
 
 Bug Tracker
 ===========
 
-Bugs are tracked on `GitHub Issues <https://github.com/OCA/sale_workflow/issues>`_.
-In case of trouble, please check there if your issue has already been reported.
-If you spotted it first, help us smashing it by providing a detailed and welcomed feedback
-`here <https://github.com/OCA/sale_workflow/issues/new?body=module:%20sale_packaging_price%0Aversion:%208.0%0A%0A**Steps%20to%20reproduce**%0A-%20...%0A%0A**Current%20behavior**%0A%0A**Expected%20behavior**>`_.
+Bugs are tracked on `GitHub Issues
+<https://github.com/OCA/sale-workflow/issues>`_. In case of trouble, please
+check there if your issue has already been reported. If you spotted it first,
+help us smashing it by providing a detailed and welcomed feedback.
 
 Credits
 =======
@@ -62,6 +63,7 @@ Contributors
 * Pedro M. Baeza <pedro.baeza@serviciosbaeza.com>
 * Carlos Dauden <carlos@incaser.es>
 * Sergio Teruel <sergio@incaser.es>
+* Jairo Llopis <jairo.llopis@tecnativa.com>
 
 Maintainer
 ----------
@@ -76,4 +78,4 @@ OCA, or the Odoo Community Association, is a nonprofit organization whose
 mission is to support the collaborative development of Odoo features and
 promote its widespread use.
 
-To contribute to this module, please visit http://odoo-community.org.
+To contribute to this module, please visit https://odoo-community.org.

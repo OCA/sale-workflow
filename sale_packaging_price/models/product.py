@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 # (c) 2015 Antiun Ingeniería S.L. - Sergio Teruel
 # (c) 2015 Antiun Ingeniería S.L. - Carlos Dauden
-# License AGPL-3 - See http://www.gnu.org/licenses/agpl-3.0.html
+# License LGPL-3 - See http://www.gnu.org/licenses/lgpl
 
 from openerp import api, fields, models, _
 from openerp.addons.decimal_precision import decimal_precision as dp
@@ -23,6 +23,10 @@ class ProductPackaging(models.Model):
     package_material_id = fields.Many2one(
         comodel_name='product.packaging.material',
         string='Package Material')
+    weight = fields.Float(
+        string='Package Weight',
+        digits_compute=dp.get_precision('Stock Weight'),
+        help="Weight of the package itself, wighout counting inner products.")
 
     @api.onchange('list_price', 'qty')
     def _onchange_list_price(self):
