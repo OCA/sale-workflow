@@ -53,7 +53,7 @@
             <field name="validate_invoice" eval="1" />
             <field name="validate_invoice_filter_id" eval="automatic_workflow_validate_invoice_filter"/>
             <field name="invoice_date_is_order_date" eval="0" />
-            <field name="validate_picking" eval="1" />
+            <field name="validate_picking" eval="0" />
             <field name="picking_filter_id" eval="automatic_workflow_picking_filter"/>
             <field name="sale_done" eval="0"/>
             <field name="sale_done_filter_id" eval="automatic_workflow_sale_done_filter"/>
