@@ -13,6 +13,7 @@ class SaleOrder(orm.Model):
         res = super(SaleOrder, self)._prepare_order_line_invoice_line(
             cr, uid, line, account_id=account_id, context=context)
         res['order_line_sequence'] = line.sequence
+        return res
 
     def _prepare_order_line_move(self, cr, uid, order, line, picking_id,
                                  date_planned, context=None):
