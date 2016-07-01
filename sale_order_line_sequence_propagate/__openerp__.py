@@ -12,8 +12,11 @@
     "website": "http://www.eficent.com/",
     "license": "AGPL-3", 
     "depends": [
+        "stock",
+        "sale",
+        "sale_stock",
         "account_invoice_line_order_sequence",
-        "stock_move_order_sequence"
+        "stock_move_order_sequence",
     ],
     "installable": True, 
     "auto_install": False, 
