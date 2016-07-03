@@ -4,14 +4,15 @@
 # 
 # Translators:
 # Carles Antoli <carlesantoli@hotmail.com>, 2016
+# Jesús Ventosinos Mayor <jesus@comunitea.com>, 2016
 # Paolo Valier, 2016
 msgid ""
 msgstr ""
 "Project-Id-Version: sale-workflow (8.0)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-06-09 02:44+0000\n"
-"PO-Revision-Date: 2016-05-30 20:23+0000\n"
-"Last-Translator: Carles Antoli <carlesantoli@hotmail.com>\n"
+"POT-Creation-Date: 2016-06-12 14:32+0000\n"
+"PO-Revision-Date: 2016-06-13 16:54+0000\n"
+"Last-Translator: Jesús Ventosinos Mayor <jesus@comunitea.com>\n"
 "Language-Team: Spanish (http://www.transifex.com/oca/OCA-sale-workflow-8-0/language/es/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -82,7 +83,7 @@ msgstr "Valores por defecto"
 #. module: sale_payment_method
 #: help:payment.method,payment_term_id:0
 msgid "Default payment term of a sale order using this method."
-msgstr "Forma de pago por defecto de un pedido de venta usado por este método."
+msgstr "Plazo de pago por defecto de un pedido de venta usado por este método."
 
 #. module: sale_payment_method
 #: field:payment.method,display_name:0
@@ -169,7 +170,7 @@ msgstr "Métodos de Pago"
 #. module: sale_payment_method
 #: field:payment.method,payment_term_id:0
 msgid "Payment Term"
-msgstr "Modo de pago"
+msgstr "Plazo de pago"
 
 #. module: sale_payment_method
 #: field:sale.order,payment_ids:0
