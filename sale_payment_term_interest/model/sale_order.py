@@ -50,26 +50,23 @@ class SaleOrder(models.Model):
 
     @api.multi
     def get_interest_value(self):
+        current_total = 0.
         self.ensure_one()
         term = self.payment_term
         if not term:
             return 0.
         if not any(line.interest_rate for line in term.line_ids):
             return 0.
-        line = self._get_interest_line()
-        if line:
+        for line in [line for line in self.order_line
+                     if not line == self._get_interest_line()]:
             price = line.price_unit * (1 - (line.discount or 0.0) / 100.0)
             taxes = line.tax_id.compute_all(price,
                                             line.product_uom_qty,
                                             product=line.product_id,
                                             partner=self.partner_id)
             # remove the interest value from the total if there is a value yet
-            current_interest = taxes['total_included']
-        else:
-            current_interest = 0.
-        interest = term.compute_total_interest(
-            self.amount_total - current_interest,
-        )
+            current_total += taxes['total_included']
+        interest = term.compute_total_interest(current_total)
         return interest
 
     @api.multi
