@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+Copyright (C) 2016-Today GRAP (http://www.grap.coop)
+@author: Sylvain LE GAL (https://twitter.com/legalsylvain)
+License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
+-->
+
+<openerp><data>
+
+    <record id="view_product_margin_classification_tree" model="ir.ui.view">
+        <field name="model">product.margin.classification</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="name"/>
+                <field name="margin"/>
+                <field name="template_cheap_qty"/>
+                <field name="template_expensive_qty"/>
+                <field name="template_different_price_qty" />
+                <field name="template_qty"/>
+                <field name="company_id" groups="base.group_multi_company"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="view_product_margin_classification_form" model="ir.ui.view">
+        <field name="model">product.margin.classification</field>
+        <field name="arch" type="xml">
+            <form>
+                <header>
+                    <button name="apply_theoritical_price" type="object" string="Apply Theoritical Price"/>
+                    <button name="apply_theoritical_price_cheap" type="object" string="Up to Theoritical Price"/>
+                    <button name="apply_theoritical_price_expensive" type="object" string="Down to Theoritical Price"/>
+                </header>
+                <sheet>
+                    <div class="oe_title">
+                        <label for="name" class="oe_edit_only"/>
+                        <h1><field name="name"/></h1>
+                    </div>
+                    <div class="oe_right oe_button_box" />
+                    <group col="4">
+                        <field name="template_qty"/>
+                        <field name="company_id" groups="base.group_multi_company"/>
+                    </group>
+                    <group col="4">
+                        <field name="template_different_price_qty"/>
+                        <newline />
+                        <field name="template_cheap_qty"/>
+                        <field name="template_expensive_qty"/>
+                    </group>
+                    <group col="4" string="Computation">
+                        <field name="margin"/>
+                        <newline />
+                        <field name="price_round"/>
+                        <field name="price_surcharge"/>
+                    </group>
+                    <notebook>
+                        <page string="Products">
+                            <group>
+                                <field name="template_ids" nolabel="1">
+                                    <tree colors="black: margin_state == 'expensive'; red: margin_state == 'cheap'; gray: margin_state == 'ok'">
+                                        <field name="default_code" />
+                                        <field name="name" />
+                                        <field name="theoritical_price" />
+                                        <field name="list_price" />
+                                        <field name="margin_state"/>
+                                        <field name="theoritical_difference" />
+                                        <button name="use_theoritical_price" type="object" string="Use Theoritical Price"
+                                            attrs="{'invisible': [('margin_state', '=', 'ok')]}" icon="gtk-convert"/>
+                                    </tree>
+                                </field>
+                            </group>
+                        </page>
+                    </notebook>
+
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+</data></openerp>

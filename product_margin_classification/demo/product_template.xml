@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+Copyright (C) 2016-Today GRAP (http://www.grap.coop)
+@author: Sylvain LE GAL (https://twitter.com/legalsylvain)
+License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
+-->
+
+<openerp><data>
+
+    <record id="product.product_product_7_product_template" model="product.template">
+        <field name="margin_classification_id" eval="classification_normal_margin" />
+    </record>
+
+    <record id="product.product_product_35_product_template" model="product.template">
+        <field name="margin_classification_id" eval="classification_normal_margin" />
+    </record>
+
+    <record id="product.product_product_36_product_template" model="product.template">
+        <field name="margin_classification_id" eval="classification_normal_margin" />
+    </record>
+
+    <record id="product.product_product_9_product_template" model="product.template">
+        <field name="margin_classification_id" eval="classification_big_margin" />
+    </record>
+
+</data></openerp>
