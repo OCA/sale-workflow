@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+Copyright (C) 2016-Today GRAP (http://www.grap.coop)
+@author: Sylvain LE GAL (https://twitter.com/legalsylvain)
+License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
+ -->
+<openerp><data>
+
+    <record id="action_product_margin_classification" model="ir.actions.act_window">
+        <field name="name">Margin Classifications</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">product.margin.classification</field>
+        <field name="view_type">form</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+
+</data></openerp>

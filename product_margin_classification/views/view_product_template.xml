@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+Copyright (C) 2016-Today GRAP (http://www.grap.coop)
+@author: Sylvain LE GAL (https://twitter.com/legalsylvain)
+License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
+-->
+
+<openerp><data>
+
+    <record id="view_product_template_search" model="ir.ui.view">
+        <field name="model">product.template</field>
+        <field name="inherit_id" ref="product.product_template_search_view" />
+        <field name="arch" type="xml">
+            <field name="categ_id" position="after">
+                <field name="margin_classification_id" />
+            </field>
+            <xpath expr="//filter[@string='Type']" position="after">
+                <filter name="group_by_margin_classification_id" string="Margin Classifications"
+                    context="{'group_by': 'margin_classification_id'}" />
+            </xpath>
+        </field>
+    </record>
+
+    <record id="view_product_template_form" model="ir.ui.view">
+        <field name="model">product.template</field>
+        <field name="inherit_id" ref="product.product_template_form_view" />
+        <field name="arch" type="xml">
+            <field name="list_price" position="before">
+                <field name="margin_classification_id"/>
+            </field>
+            <field name="list_price" position="after">
+                <field name="theoritical_price" attrs="{'invisible': [('margin_classification_id', '=', False)]}"/>
+                <field name="theoritical_difference" invisible="1" />
+                <field name="margin_state" invisible="1" />
+            </field>
+            <xpath expr="//div[@name='buttons']" position="inside">
+                <button class="oe_inline oe_stat_button" name="use_theoritical_price" type="object"
+                    icon="fa-hand-o-up" attrs="{'invisible': [('margin_state', '!=', 'cheap')]}"
+                    string="Apply Margin"
+                    help="Increase the Sale Price up to Theoretical Price"/>
+                <button class="oe_inline oe_stat_button" name="use_theoritical_price" type="object"
+                    icon="fa-hand-o-down" attrs="{'invisible': [('margin_state', '!=', 'expensive')]}"
+                    string="Apply Margin"
+                    help="Decrease the Sale Price down to Theoretical Price"/>
+            </xpath>
+        </field>
+    </record>
+
+</data></openerp>
