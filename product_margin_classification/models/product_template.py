@@ -21,20 +21,20 @@ class ProductTemplate(models.Model):
         comodel_name='product.margin.classification',
         string='Margin Classification')
 
-    theoritical_price = fields.Float(
-        string='Theoritical Price', store=True,
+    theoretical_price = fields.Float(
+        string='Theoretical Price', store=True,
         digits=dp.get_precision('Product Price'),
-        compute='_compute_theoritical_multi', multi='theoritical_multi')
+        compute='_compute_theoretical_multi', multi='theoretical_multi')
 
-    theoritical_difference = fields.Float(
-        string='Theoritical Difference', store=True,
+    theoretical_difference = fields.Float(
+        string='Theoretical Difference', store=True,
         digits=dp.get_precision('Product Price'),
-        compute='_compute_theoritical_multi', multi='theoritical_multi')
+        compute='_compute_theoretical_multi', multi='theoretical_multi')
 
     margin_state = fields.Selection(
-        string='Theoritical Price State', store=True,
+        string='Theoretical Price State', store=True,
         selection=MARGIN_STATE_SELECTION,
-        compute='_compute_theoritical_multi', multi='theoritical_multi')
+        compute='_compute_theoretical_multi', multi='theoretical_multi')
 
     # Compute Section
     @api.multi
@@ -43,7 +43,7 @@ class ProductTemplate(models.Model):
         'margin_classification_id.margin',
         'margin_classification_id.price_round',
         'margin_classification_id.price_surcharge')
-    def _compute_theoritical_multi(self):
+    def _compute_theoretical_multi(self):
         for template in self:
             classification = template.margin_classification_id
             if classification:
@@ -56,16 +56,16 @@ class ProductTemplate(models.Model):
                             " prices with coefficients for the product %s") % (
                             tax.name, template.name))
                     multi *= 1 + (tax.amount / 100)
-                template.theoritical_price = tools.float_round(
+                template.theoretical_price = tools.float_round(
                     template.standard_price * multi,
                     precision_rounding=classification.price_round) +\
                     classification.price_surcharge
             else:
-                template.theoritical_price = template.list_price
-            difference = (template.list_price - template.theoritical_price)
+                template.theoretical_price = template.list_price
+            difference = (template.list_price - template.theoretical_price)
             if max(difference, -difference) < 10 ** -9:
                 difference = 0
-            template.theoritical_difference = difference
+            template.theoretical_difference = difference
             if difference < 0:
                 template.margin_state = 'cheap'
             elif difference > 0:
@@ -75,6 +75,6 @@ class ProductTemplate(models.Model):
 
     # Custom Section
     @api.multi
-    def use_theoritical_price(self):
+    def use_theoretical_price(self):
         for template in self:
-            template.list_price = template.theoritical_price
+            template.list_price = template.theoretical_price

@@ -29,16 +29,16 @@ License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
                 <field name="margin_classification_id"/>
             </field>
             <field name="list_price" position="after">
-                <field name="theoritical_price" attrs="{'invisible': [('margin_classification_id', '=', False)]}"/>
-                <field name="theoritical_difference" invisible="1" />
+                <field name="theoretical_price" attrs="{'invisible': [('margin_classification_id', '=', False)]}"/>
+                <field name="theoretical_difference" invisible="1" />
                 <field name="margin_state" invisible="1" />
             </field>
             <xpath expr="//div[@name='buttons']" position="inside">
-                <button class="oe_inline oe_stat_button" name="use_theoritical_price" type="object"
+                <button class="oe_inline oe_stat_button" name="use_theoretical_price" type="object"
                     icon="fa-hand-o-up" attrs="{'invisible': [('margin_state', '!=', 'cheap')]}"
                     string="Apply Margin"
                     help="Increase the Sale Price up to Theoretical Price"/>
-                <button class="oe_inline oe_stat_button" name="use_theoritical_price" type="object"
+                <button class="oe_inline oe_stat_button" name="use_theoretical_price" type="object"
                     icon="fa-hand-o-down" attrs="{'invisible': [('margin_state', '!=', 'expensive')]}"
                     string="Apply Margin"
                     help="Decrease the Sale Price down to Theoretical Price"/>

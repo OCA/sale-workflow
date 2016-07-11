@@ -14,16 +14,16 @@ This module add a new model 'Margin Classifications' linked to Product Templates
 A margin classification has a margin field (and fields to manage rounding method, like Pricelist Item model).
 
 If product has a margin classification defined, an extra field
-'Theoritical Price' is displayed, based on the Margin and the Cost Price.
+'Theoretical Price' is displayed, based on the Margin and the Cost Price.
 
-If the theoritical price is not the same as the sale price, a button is
+If the theoretical price is not the same as the sale price, a button is
 available to change sale price.
 
 .. image:: /product_margin_classification/static/description/product_template_form.png
 
 On the Margin classification Form, user can change computation fields.
 (Margin, Rounding method, ...) 
-Three buttons are available to apply theoritical prices to all products, or
+Three buttons are available to apply theoretical prices to all products, or
 only for products that have a too big or too little real margin.
 
 .. image:: /product_margin_classification/static/description/margin_classification_form.png
@@ -50,16 +50,53 @@ Normal installation.
 Configuration
 =============
 
-Once Installed :
+Once Installed
 
 * Go to : 'Sale' / 'Products' / 'Margin Classifications'
 * Create new classifications
 * Set classification to your products
 
+Usage
+=====
+
+.. image:: https://odoo-community.org/website/image/ir.attachment/5784_f2813bd/datas
+   :alt: Try me on Runbot
+   :target: https://runbot.odoo-community.org/runbot/167/8.0
+
+Bug Tracker
+===========
+
+Bugs are tracked on `GitHub Issues
+<https://github.com/OCA/sale-workflow/issues>`_. In case of trouble, please
+check there if your issue has already been reported. If you spotted it first,
+help us smashing it by providing a detailed and welcomed feedback.
+
+
 Credits
 =======
+
+Images
+------
+
+* Odoo Community Association: `Icon <https://github.com/OCA/maintainer-tools/blob/master/template/module/static/description/icon.svg>`_.
+
 
 Contributors
 ------------
 
 * Sylvain LE GAL <https://twitter.com/legalsylvain>
+
+Maintainer
+----------
+
+.. image:: https://odoo-community.org/logo.png
+   :alt: Odoo Community Association
+   :target: https://odoo-community.org
+
+This module is maintained by the OCA.
+
+OCA, or the Odoo Community Association, is a nonprofit organization whose
+mission is to support the collaborative development of Odoo features and
+promote its widespread use.
+
+To contribute to this module, please visit https://odoo-community.org.

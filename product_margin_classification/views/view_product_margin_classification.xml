@@ -27,9 +27,9 @@ License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
         <field name="arch" type="xml">
             <form>
                 <header>
-                    <button name="apply_theoritical_price" type="object" string="Apply Theoritical Price"/>
-                    <button name="apply_theoritical_price_cheap" type="object" string="Up to Theoritical Price"/>
-                    <button name="apply_theoritical_price_expensive" type="object" string="Down to Theoritical Price"/>
+                    <button name="apply_theoretical_price" type="object" string="Apply Theoretical Price"/>
+                    <button name="apply_theoretical_price_cheap" type="object" string="Up to Theoretical Price"/>
+                    <button name="apply_theoretical_price_expensive" type="object" string="Down to Theoretical Price"/>
                 </header>
                 <sheet>
                     <div class="oe_title">
@@ -60,11 +60,11 @@ License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
                                     <tree colors="black: margin_state == 'expensive'; red: margin_state == 'cheap'; gray: margin_state == 'ok'">
                                         <field name="default_code" />
                                         <field name="name" />
-                                        <field name="theoritical_price" />
+                                        <field name="theoretical_price" />
                                         <field name="list_price" />
                                         <field name="margin_state"/>
-                                        <field name="theoritical_difference" />
-                                        <button name="use_theoritical_price" type="object" string="Use Theoritical Price"
+                                        <field name="theoretical_difference" />
+                                        <button name="use_theoretical_price" type="object" string="Use Theoretical Price"
                                             attrs="{'invisible': [('margin_state', '=', 'ok')]}" icon="gtk-convert"/>
                                     </tree>
                                 </field>
