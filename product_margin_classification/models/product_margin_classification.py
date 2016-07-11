@@ -64,7 +64,7 @@ class ProductMarginClassification(models.Model):
 
     # Compute Section
     @api.multi
-    @api.depends('template_ids.theoritical_difference')
+    @api.depends('template_ids.theoretical_difference')
     def _compute_template_different_price_qty(self):
         for classification in self:
             classification.template_cheap_qty =\
@@ -94,22 +94,22 @@ class ProductMarginClassification(models.Model):
 
     # Custom Section
     @api.multi
-    def _apply_theoritical_price(self, state_list):
+    def _apply_theoretical_price(self, state_list):
         template_obj = self.env['product.template']
         for classification in self:
             templates = template_obj.search([
                 ('margin_classification_id', '=', classification.id),
                 ('margin_state', 'in', state_list)])
-            templates.use_theoritical_price()
+            templates.use_theoretical_price()
 
     @api.multi
-    def apply_theoritical_price(self):
-        self._apply_theoritical_price(['cheap', 'expensive'])
+    def apply_theoretical_price(self):
+        self._apply_theoretical_price(['cheap', 'expensive'])
 
     @api.multi
-    def apply_theoritical_price_cheap(self):
-        self._apply_theoritical_price(['cheap'])
+    def apply_theoretical_price_cheap(self):
+        self._apply_theoretical_price(['cheap'])
 
     @api.multi
-    def apply_theoritical_price_expensive(self):
-        self._apply_theoritical_price(['expensive'])
+    def apply_theoretical_price_expensive(self):
+        self._apply_theoretical_price(['expensive'])
