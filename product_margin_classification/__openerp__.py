@@ -7,7 +7,7 @@
     'name': 'Product Margin Classification',
     'version': '8.0.1.0.0',
     'category': 'Account',
-    'author': 'GRAP',
+    'author': 'GRAP,Odoo Community Association (OCA)',
     'website': 'http://www.grap.coop',
     'license': 'AGPL-3',
     'depends': [
