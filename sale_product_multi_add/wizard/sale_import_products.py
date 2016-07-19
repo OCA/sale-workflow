@@ -5,14 +5,14 @@
 from openerp import models, fields, api
 import openerp.addons.decimal_precision as dp
 
-UNIT = dp.get_precision('Product Unit of Measure')
-
 
 class SaleImportProducts(models.TransientModel):
     _name = 'sale.import.products'
     _description = 'Sale Import Products'
 
-    quantity = fields.Float(string='Quantity', digits_compute=UNIT,
+    quantity = fields.Float(string='Quantity',
+                            digits_compute=dp.get_precision(
+                                'Product Unit of Measure'),
                             default=1.0)
     products = fields.Many2many(comodel_name='product.product',
                                 string="Products")

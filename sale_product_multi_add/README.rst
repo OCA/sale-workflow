@@ -12,7 +12,8 @@ and allow you to import multiple products into your current sale order.
 Usage
 =====
 
-This module add a button on sale order to import several products f
+This module add a button on sale order to import several products on your current sale order.
+A wizard opens and allows the user to search and select products.
 
 .. image:: https://odoo-community.org/website/image/ir.attachment/5784_f2813bd/datas
    :alt: Try me on Runbot
