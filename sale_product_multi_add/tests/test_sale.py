@@ -28,12 +28,16 @@ class TestSale(common.TransactionCase):
 
         products = [(6, 0, [self.product_35.id, self.product_36.id])]
 
-        wizard_id = wizard.create({'products': products,
-                                   'quantity': 5.0})
-
+        wizard_id = wizard.create({'products': products})
+        wizard_id.create_items()
+        wizard_id.items[0].quantity = 4
+        wizard_id.items[1].quantity = 6
         wizard_id.select_products()
 
         self.assertEqual(len(so.order_line), 2)
 
         for line in so.order_line:
-            self.assertEqual(line.product_uos_qty, 5.0)
+            if line.product_id.id == self.product_35.id:
+                self.assertEqual(line.product_uom_qty, 4)
+            else:
+                self.assertEqual(line.product_uom_qty, 6)
