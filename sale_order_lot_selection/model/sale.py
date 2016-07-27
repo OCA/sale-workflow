@@ -29,46 +29,34 @@ class SaleOrderLine(models.Model):
     lot_id = fields.Many2one(
         'stock.production.lot', 'Lot', copy=False)
 
-    @api.multi
-    def product_id_change_with_wh(
-            self, pricelist, product, qty=0,
-            uom=False, qty_uos=0, uos=False, name='', partner_id=False,
-            lang=False, update_tax=True, date_order=False, packaging=False,
-            fiscal_position=False, flag=False, warehouse_id=False):
-        res = super(SaleOrderLine, self).product_id_change_with_wh(
-            pricelist, product, qty=qty, uom=uom,
-            qty_uos=qty_uos, uos=uos, name=name, partner_id=partner_id,
-            lang=lang, update_tax=update_tax,
-            date_order=date_order, packaging=packaging,
-            fiscal_position=fiscal_position, flag=flag,
-            warehouse_id=warehouse_id)
+    @api.onchange('product_id')
+    def _onchange_product_id_set_lot_domain(self):
+        available_lot_ids = []
+        if self.order_id.warehouse_id and self.product_id:
+            location = self.order_id.warehouse_id.lot_stock_id
+            quants = self.env['stock.quant'].read_group([
+                ('product_id', '=', self.product_id.id),
+                ('location_id', 'child_of', location.id),
+                ('qty', '>', 0),
+                ('lot_id', '!=', False),
+                ], ['lot_id'], 'lot_id')
+            available_lot_ids = [quant['lot_id'][0] for quant in quants]
+        self.lot_id = False
+        return {
+            'domain': {'lot_id': [('id', 'in', available_lot_ids)]}
+        }
 
-        available_lots = []
-        location = self.env['stock.warehouse'].browse(
-            warehouse_id).lot_stock_id
-        # Search all lot existing lot for the product and location selected
-        quants = self.env['stock.quant'].read_group([
-            ('product_id', '=', product),
-            ('location_id', 'child_of', location.id),
-            ('qty', '>', 0),
-            ('lot_id', '!=', False),
-            ], ['lot_id'], 'lot_id')
-        available_lots = [quant['lot_id'][0] for quant in quants]
-        res.update({'domain': {'lot_id': [('id', 'in', available_lots)]}})
-        res['value']['lot_id'] = False
+    @api.multi
+    def _prepare_order_line_procurement(self, group_id=False):
+        res = super(
+            SaleOrderLine, self)._prepare_order_line_procurement(
+            group_id=group_id)
+        res['lot_id'] = self.lot_id.id
         return res
 
 
 class SaleOrder(models.Model):
     _inherit = "sale.order"
-
-    @api.model
-    def _prepare_order_line_procurement(self, order, line, group_id=False):
-        res = super(
-            SaleOrder, self)._prepare_order_line_procurement(
-                order, line, group_id)
-        res['lot_id'] = line.lot_id.id
-        return res
 
     @api.model
     def get_move_from_line(self, line):
@@ -89,20 +77,17 @@ class SaleOrder(models.Model):
     def _check_move_state(self, line):
         if line.lot_id:
             move = self.get_move_from_line(line)
-            if move.state != 'confirmed':
-                raise Warning(_('Can\'t reserve products for lot %s') %
-                              line.lot_id.name)
-            else:
+            if move.state == 'confirmed':
                 move.action_assign()
                 move.refresh()
-                if move.state != 'assigned':
-                    raise Warning(_('Can\'t reserve products for lot %s') %
-                                  line.lot_id.name)
+            if move.state != 'assigned':
+                raise Warning(_('Can\'t reserve products for lot %s') %
+                              line.lot_id.name)
         return True
 
-    @api.model
-    def action_ship_create(self):
-        res = super(SaleOrder, self).action_ship_create()
+    @api.multi
+    def action_confirm(self):
+        super(SaleOrder, self).action_confirm()
         for line in self.order_line:
             self._check_move_state(line)
-        return res
+            return True
