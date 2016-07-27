@@ -22,12 +22,12 @@
 
 {
     'name': 'Sale Order Lot Selection',
-    'version': '8.0.1.0.0',
+    'version': '9.0.1.0.0',
     'category': 'Sales Management',
     'author': "Odoo Community Association (OCA), Agile Business Group",
     'website': 'http://www.agilebg.com',
     'license': 'AGPL-3',
-    'depends': ['sale', 'sale_stock', 'procurement', 'stock'],
+    'depends': ['sale_stock', 'procurement'],
     'data': ['view/sale_view.xml'],
     'installable': True,
     'active': False,
