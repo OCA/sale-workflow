@@ -20,7 +20,7 @@
 ##############################################################################
 {
     'name': 'Product Pack',
-    'version': '8.0.1.3.3',
+    'version': '9.0.1.0.0',
     'category': 'Product',
     'sequence': 14,
     'summary': '',
@@ -48,7 +48,7 @@ Withilist:
     ],
     'test': [
     ],
-    'installable': True,
+    'installable': False,
     'auto_install': False,
     'application': False,
 }
