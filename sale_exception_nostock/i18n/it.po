@@ -3,14 +3,15 @@
 # * sale_exception_nostock
 # 
 # Translators:
+# Paolo Valier, 2016
 # Stefano <stefano.sforzi@agilebg.com>, 2015
 msgid ""
 msgstr ""
 "Project-Id-Version: sale-workflow (8.0)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-10-02 17:59+0000\n"
-"PO-Revision-Date: 2015-09-21 15:33+0000\n"
-"Last-Translator: Stefano <stefano.sforzi@agilebg.com>\n"
+"POT-Creation-Date: 2016-07-10 15:37+0000\n"
+"PO-Revision-Date: 2016-07-21 19:06+0000\n"
+"Last-Translator: Paolo Valier\n"
 "Language-Team: Italian (http://www.transifex.com/oca/OCA-sale-workflow-8-0/language/it/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -23,7 +24,7 @@ msgstr ""
 #: code:addons/sale_exception_nostock/model/sale.py:235
 #, python-format
 msgid "No rules specifies a location for this sale order line"
-msgstr "Nessuna regola specifica per la location per questa linea dell'ordine di vendita"
+msgstr "Nessuna regola che specifichi la location per questa riga di ordine di vendita"
 
 #. module: sale_exception_nostock
 #: model:sale.exception,name:sale_exception_nostock.no_stock_at_date
@@ -35,7 +36,7 @@ msgstr "Non abbastanza stock alla data di consegna"
 msgid ""
 "Not enough stock at delivery date for this SO line\n"
 "to be delivered using MTS procument method"
-msgstr "Non abbastanza stock alla data di consegna per questa linea dell'ordine di vendita\nper essere consegnata usare MTS "
+msgstr "Non vi è sufficiente stock alla data di consegna di questa\nriga dell'Ordine di Vendita da spedire utilizzando il metodo\ndi approvvigionamento MTS "
 
 #. module: sale_exception_nostock
 #: model:sale.exception,name:sale_exception_nostock.no_stock_in_future
@@ -46,7 +47,7 @@ msgstr "Non c'e' abbastanza stock per soddisfare gli ordini validati pianificati
 #. module: sale_exception_nostock
 #: model:ir.model,name:sale_exception_nostock.model_sale_order_line
 msgid "Sales Order Line"
-msgstr "Linea d'ordine di vendita"
+msgstr "Riga dell'Ordine di Vendita"
 
 #. module: sale_exception_nostock
 #: model:sale.exception,description:sale_exception_nostock.no_stock_in_future

@@ -10,9 +10,9 @@ msgid ""
 msgstr ""
 "Project-Id-Version: sale-workflow (8.0)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-04-29 00:55+0000\n"
-"PO-Revision-Date: 2016-04-27 19:58+0000\n"
-"Last-Translator: OCA Transbot <transbot@odoo-community.org>\n"
+"POT-Creation-Date: 2016-07-10 15:37+0000\n"
+"PO-Revision-Date: 2016-07-21 19:01+0000\n"
+"Last-Translator: Paolo Valier\n"
 "Language-Team: Italian (http://www.transifex.com/oca/OCA-sale-workflow-8-0/language/it/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -23,34 +23,34 @@ msgstr ""
 #. module: sale_cancel_reason
 #: model:ir.model,name:sale_cancel_reason.model_sale_order_cancel
 msgid " Ask a reason for the sale order cancellation."
-msgstr "Motivo per la cancellazione dell'ordine di vendita"
+msgstr "Richiede il motivo per l'annullamento dell'Ordine di vendita"
 
 #. module: sale_cancel_reason
 #: view:sale.order.cancel:sale_cancel_reason.view_sale_order_cancel
 msgid "Cancel"
-msgstr "Cancella"
+msgstr "Annulla"
 
 #. module: sale_cancel_reason
 #: view:sale.order:sale_cancel_reason.view_order_form
 msgid "Cancel Order"
-msgstr "Cancella Ordine"
+msgstr "Annulla Ordine"
 
 #. module: sale_cancel_reason
 #: view:sale.order:sale_cancel_reason.view_order_form
 msgid "Cancel Quotation"
-msgstr "Cancella Preventivo"
+msgstr "Annulla Preventivo"
 
 #. module: sale_cancel_reason
 #: view:sale.order:sale_cancel_reason.view_order_form
 msgid "Cancellation reason:"
-msgstr "Motivo della cancellazione:"
+msgstr "Motivo dell'annullamento:"
 
 #. module: sale_cancel_reason
 #: view:sale.order.cancel:sale_cancel_reason.view_sale_order_cancel
 msgid ""
 "Choose the reason for the cancellation of the\n"
 "                    sale order."
-msgstr "Scegli il motivo per la cancellazione\ndell'ordine di vendita."
+msgstr "Scegli il motivo per l'annullamento\ndell'ordine di vendita."
 
 #. module: sale_cancel_reason
 #: view:sale.order.cancel:sale_cancel_reason.view_sale_order_cancel
@@ -116,26 +116,26 @@ msgstr "Motivo"
 #. module: sale_cancel_reason
 #: field:sale.order,cancel_reason_id:0
 msgid "Reason for cancellation"
-msgstr "Motivo cancellazione"
+msgstr "Motivo annullamento"
 
 #. module: sale_cancel_reason
 #: model:ir.actions.act_window,name:sale_cancel_reason.action_sale_order_cancel
 #: view:sale.order.cancel:sale_cancel_reason.view_sale_order_cancel
 msgid "Reason for the cancellation"
-msgstr "Motivo della cancellazione"
+msgstr "Motivo dell'annullamento"
 
 #. module: sale_cancel_reason
 #: model:ir.actions.act_window,name:sale_cancel_reason.action_sale_order_cancel_reason
 #: model:ir.model,name:sale_cancel_reason.model_sale_order_cancel_reason
 msgid "Sale Order Cancel Reason"
-msgstr "Motivo della Cancellazione dell'Ordine di Vendita"
+msgstr "Motivo dell'Annullamento dell'Ordine di Vendita"
 
 #. module: sale_cancel_reason
 #: model:ir.ui.menu,name:sale_cancel_reason.menu_sale_order_cancel_reason
 #: view:sale.order.cancel.reason:sale_cancel_reason.view_sale_order_cancel_reason_form
 #: view:sale.order.cancel.reason:sale_cancel_reason.view_sale_order_cancel_reason_tree
 msgid "Sale Order Cancel Reasons"
-msgstr "Motivi della cancellazione dell'Ordine di Vendita"
+msgstr "Motivi dell'Annullamento dell'Ordine di Vendita"
 
 #. module: sale_cancel_reason
 #: model:ir.model,name:sale_cancel_reason.model_sale_order

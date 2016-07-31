@@ -5,13 +5,14 @@
 # Translators:
 # Matjaž Mozetič <m.mozetic@matmoz.si>, 2015
 # Paolo Valier, 2016
+# Paolo Valier, 2016
 # Rudolf Schnapka <rs@techno-flex.de>, 2015
 msgid ""
 msgstr ""
 "Project-Id-Version: sale-workflow (8.0)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-04-29 00:56+0000\n"
-"PO-Revision-Date: 2016-04-27 20:00+0000\n"
+"POT-Creation-Date: 2016-07-10 15:38+0000\n"
+"PO-Revision-Date: 2016-07-21 19:09+0000\n"
 "Last-Translator: Paolo Valier\n"
 "Language-Team: Italian (http://www.transifex.com/oca/OCA-sale-workflow-8-0/language/it/)\n"
 "MIME-Version: 1.0\n"
@@ -38,7 +39,7 @@ msgstr ""
 #. module: sale_service_project
 #: view:product.price.service.wizard:sale_service_project.wiz_compute_task_price
 msgid "Cancel"
-msgstr "Cancella"
+msgstr "Annulla"
 
 #. module: sale_service_project
 #: model:product.template,name:sale_service_project.product_template_revision_1
@@ -117,7 +118,7 @@ msgstr "Nome da visualizzare"
 #: code:addons/sale_service_project/models/hr_timesheet_invoice.py:75
 #, python-format
 msgid "Error!"
-msgstr ""
+msgstr "Errore!"
 
 #. module: sale_service_project
 #: model:product.template,name:sale_service_project.product_product_filter_product_template
@@ -265,7 +266,7 @@ msgstr ""
 #. module: sale_service_project
 #: model:ir.model,name:sale_service_project.model_procurement_order
 msgid "Procurement"
-msgstr ""
+msgstr "Approvvigionamento"
 
 #. module: sale_service_project
 #: model:ir.model,name:sale_service_project.model_product_product
@@ -305,7 +306,7 @@ msgstr ""
 #: field:product.task.materials,quantity:0
 #: field:sale.order.line.task.materials,quantity:0
 msgid "Quantity"
-msgstr ""
+msgstr "Quantità"
 
 #. module: sale_service_project
 #: field:account.invoice.line,sale_order_lines:0
@@ -320,7 +321,7 @@ msgstr "Ordini vendita"
 #. module: sale_service_project
 #: model:ir.model,name:sale_service_project.model_sale_order_line
 msgid "Sales Order Line"
-msgstr "Linea d'ordine di vendita"
+msgstr "Riga dell'Ordine di Vendita"
 
 #. module: sale_service_project
 #: view:product.price.service.wizard:sale_service_project.wiz_compute_task_price
@@ -400,7 +401,7 @@ msgstr ""
 #. module: sale_service_project
 #: field:sale.order.line,task_work_hours:0
 msgid "Total Hours"
-msgstr ""
+msgstr "Ore totali"
 
 #. module: sale_service_project
 #: view:website:account.report_invoice_document

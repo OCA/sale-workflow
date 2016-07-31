@@ -4,13 +4,14 @@
 # 
 # Translators:
 # Paolo Valier, 2016
+# Paolo Valier, 2016
 # Rudolf Schnapka <rs@techno-flex.de>, 2015
 msgid ""
 msgstr ""
 "Project-Id-Version: sale-workflow (8.0)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-04-29 00:55+0000\n"
-"PO-Revision-Date: 2016-04-27 19:59+0000\n"
+"POT-Creation-Date: 2016-07-10 15:37+0000\n"
+"PO-Revision-Date: 2016-07-21 18:55+0000\n"
 "Last-Translator: Paolo Valier\n"
 "Language-Team: Italian (http://www.transifex.com/oca/OCA-sale-workflow-8-0/language/it/)\n"
 "MIME-Version: 1.0\n"
@@ -30,27 +31,27 @@ msgstr "Aggiungi Varianti"
 #. module: sale_order_add_variants
 #: view:sale.add.variants:sale_order_add_variants.sale_add_variants_form
 msgid "Add to order"
-msgstr ""
+msgstr "Aggiungi all'Ordine"
 
 #. module: sale_order_add_variants
 #: view:sale.add.variants:sale_order_add_variants.sale_add_variants_form
 msgid "Add to order and add more"
-msgstr ""
+msgstr "Aggiungi all'Ordine e aggiungi ancora"
 
 #. module: sale_order_add_variants
 #: model:ir.actions.act_window,name:sale_order_add_variants.action_sale_add_variants
 msgid "Add variants"
-msgstr ""
+msgstr "Aggiungi Varianti"
 
 #. module: sale_order_add_variants
 #: model:res.groups,name:sale_order_add_variants.group_sale_add_variants
 msgid "Add variants to Sale Order from template"
-msgstr ""
+msgstr "Aggiungi da template Varianti all'Ordine di Vendita"
 
 #. module: sale_order_add_variants
 #: field:sale.config.settings,group_sale_add_variants:0
 msgid "Allow to add variants from template in Sale order"
-msgstr ""
+msgstr "Permette di aggiungere da template Varianti nell'Ordine di Vendita"
 
 #. module: sale_order_add_variants
 #: field:sale.add.variants,create_uid:0
@@ -96,34 +97,34 @@ msgstr "Ultimo aggiornamento il"
 #. module: sale_order_add_variants
 #: field:sale.add.variants.line,product_uom_qty:0
 msgid "Quantity"
-msgstr ""
+msgstr "Quantità"
 
 #. module: sale_order_add_variants
 #: field:sale.add.variants,product_tmpl_id:0
 msgid "Template"
-msgstr ""
+msgstr "Template"
 
 #. module: sale_order_add_variants
 #: field:sale.add.variants.line,product_uom:0
 msgid "Unit of Measure "
-msgstr ""
+msgstr "Unità di Misura"
 
 #. module: sale_order_add_variants
 #: field:sale.add.variants.line,product_id:0
 msgid "Variant"
-msgstr ""
+msgstr "Variante"
 
 #. module: sale_order_add_variants
 #: field:sale.add.variants,variant_line_ids:0
 msgid "Variant Lines"
-msgstr ""
+msgstr "Righe della Variante"
 
 #. module: sale_order_add_variants
 #: view:sale.add.variants:sale_order_add_variants.sale_add_variants_form
 msgid "Variants"
-msgstr ""
+msgstr "Varianti"
 
 #. module: sale_order_add_variants
 #: field:sale.add.variants.line,wizard_id:0
 msgid "Wizard id"
-msgstr ""
+msgstr "ID Procedura Guidata"
