@@ -12,6 +12,7 @@ orders.
 A workflow can:
 
 - Apply default values:
+
   * Packing Policy (partial, complete)
   * Shipping Policy (prepaid, manual, postpaid, picking)
   * Invoice On (ordered quantities, shipped quantities)
@@ -19,6 +20,7 @@ A workflow can:
   * Set a sales team
 
 - Apply automatic actions:
+
   * Validate the order (only if paid, always, never)
   * Create an invoice
   * Validate the invoice
