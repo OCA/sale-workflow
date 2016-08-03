@@ -219,7 +219,7 @@ msgstr "Lagerbuchung"
 #. module: sale_automatic_workflow
 #: field:sale.workflow.process,validate_invoice:0
 msgid "Validate Invoice"
-msgstr "KommissionierscheiPrüfe Rechnung"
+msgstr "Prüfe Rechnung"
 
 #. module: sale_automatic_workflow
 #: field:sale.workflow.process,validate_order:0
