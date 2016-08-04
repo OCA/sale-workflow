@@ -9,6 +9,7 @@ from openerp import api, fields, models
 class SaleOrderTypology(models.Model):
     _name = 'sale.order.type'
     _description = 'Type of sale order'
+    _order = 'sequence'
 
     @api.model
     def _get_domain_sequence_id(self):
@@ -65,3 +66,9 @@ class SaleOrderTypology(models.Model):
     invoice_state = fields.Selection(
         selection='_get_selection_invoice_state', string='Invoice Control',
         required=True, default=default_invoice_state)
+    sequence = fields.Integer(
+        string='Sequence',
+        default=0)
+    company_id = fields.Many2one(
+        'res.company',
+        related='warehouse_id.company_id', store=True, readonly=True)

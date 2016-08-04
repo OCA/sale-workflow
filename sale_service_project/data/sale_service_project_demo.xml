@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data noupdate="1">
+
+        <!-- Products -->
+        <record id="product_product_oil" model="product.product">
+            <field name="name">Synthetic Oil</field>
+            <field name="categ_id" ref="product.product_category_4"/>
+            <field name="list_price">10.0</field>
+            <field name="standard_price">6.0</field>
+            <field name="type">consu</field>
+            <field name="uom_id" ref="product.product_uom_unit"/>
+            <field name="uom_po_id" ref="product.product_uom_unit"/>
+            <field name="default_code">Oil5w40</field>
+        </record>
+
+        <record id="product_product_filter" model="product.product">
+            <field name="name">Filter Oil</field>
+            <field name="categ_id" ref="product.product_category_4"/>
+            <field name="list_price">10.0</field>
+            <field name="standard_price">6.0</field>
+            <field name="type">consu</field>
+            <field name="uom_id" ref="product.product_uom_unit"/>
+            <field name="uom_po_id" ref="product.product_uom_unit"/>
+            <field name="default_code">filter01</field>
+        </record>
+
+        <record id="product_template_revision_1" model="product.template">
+            <field name="list_price">45.0</field>
+            <field name="standard_price">15.0</field>
+            <field name="uom_id" ref="product.product_uom_hour"/>
+            <field name="uom_po_id" ref="product.product_uom_hour"/>
+            <field name="name">Complete Revision</field>
+            <field name="categ_id" ref="product.product_category_all"/>
+            <field name="type">service</field>
+            <field name="sale_ok" eval="True"/>
+            <field name="auto_create_task" eval="True"/>
+        </record>
+
+        <record id="product_task_work_oil" model="product.task.work">
+            <field name="name">Change Oil</field>
+            <field name="hours">1.0</field>
+            <field name="product_id" ref="sale_service_project.product_template_revision_1"/>
+        </record>
+
+        <record id="product_task_work_filter" model="product.task.work">
+            <field name="name">Change Filter</field>
+            <field name="product_id" ref="sale_service_project.product_template_revision_1"/>
+            <field name="hours">1.0</field>
+        </record>
+
+        <record id="product_task_materials_oil" model="product.task.materials">
+            <field name="product_id" ref="sale_service_project.product_template_revision_1"/>
+            <field name="material_id" ref="sale_service_project.product_product_oil"/>
+            <field name="quantity">1.0</field>
+        </record>
+
+        <record id="product_task_materials_filter" model="product.task.materials">
+            <field name="product_id" ref="sale_service_project.product_template_revision_1"/>
+            <field name="material_id" ref="sale_service_project.product_product_filter"/>
+            <field name="quantity">1.0</field>
+        </record>
+
+        <record id="project_revisions" model="project.project">
+            <field name="date_start" eval="time.strftime('%Y-%m-01 10:00:00')"/>
+            <field name="state">open</field>
+            <field name="type">contract</field>
+            <field name="name">Revisions</field>
+            <field name="color">3</field>
+            <field name="partner_id" ref="base.res_partner_2"/>
+            <field name="parent_id" ref="project.all_projects_account"/>
+            <field name="privacy_visibility">public</field>
+            <field name="members" eval="[(6, 0, [
+                    ref('base.user_root'),
+                    ref('base.user_demo')])]"/>
+            <field name="user_id" ref="base.user_demo"/>
+            <field name="description">Fleet Revisions.</field>
+            <field name="alias_model">project.task</field>
+            <field name="invoice_on_timesheets" eval="True"/>
+            <field name="pricelist_id" ref="product.list0"/>
+            <field name="to_invoice" ref="hr_timesheet_invoice.timesheet_invoice_factor1"/>
+        </record>
+
+    </data>
+</openerp>

@@ -3,13 +3,15 @@
 # * sale_properties_easy_creation
 # 
 # Translators:
+# Matjaž Mozetič <m.mozetic@matmoz.si>, 2015
+# Oihane Crucelaegui <oihanecruce@gmail.com>, 2015
 msgid ""
 msgstr ""
 "Project-Id-Version: sale-workflow (8.0)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-11-30 09:39+0000\n"
-"PO-Revision-Date: 2015-11-17 08:45+0000\n"
-"Last-Translator: <>\n"
+"POT-Creation-Date: 2016-06-09 02:44+0000\n"
+"PO-Revision-Date: 2016-05-30 20:12+0000\n"
+"Last-Translator: OCA Transbot <transbot@odoo-community.org>\n"
 "Language-Team: Spanish (http://www.transifex.com/oca/OCA-sale-workflow-8-0/language/es/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -37,6 +39,11 @@ msgstr "Creado por"
 #: field:mrp.property.formula,create_date:0
 msgid "Created on"
 msgstr "Creado el"
+
+#. module: sale_properties_easy_creation
+#: field:mrp.property.formula,display_name:0
+msgid "Display Name"
+msgstr "Mostrar nombre"
 
 #. module: sale_properties_easy_creation
 #: code:addons/sale_properties_easy_creation/mrp_property_formula.py:43
@@ -70,6 +77,11 @@ msgstr ""
 #: field:mrp.property.formula,id:0
 msgid "ID"
 msgstr "ID"
+
+#. module: sale_properties_easy_creation
+#: field:mrp.property.formula,__last_update:0
+msgid "Last Modified on"
+msgstr "Última modificación el"
 
 #. module: sale_properties_easy_creation
 #: field:mrp.property.formula,write_uid:0

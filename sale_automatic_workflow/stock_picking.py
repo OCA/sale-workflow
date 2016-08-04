@@ -40,6 +40,14 @@ class StockPicking(models.Model):
 
     @api.multi
     def validate_picking(self):
-        self.force_assign()
-        self.do_transfer()
+        only_available = self.filtered(
+            'workflow_process_id.ship_only_available')
+        to_force = self - only_available
+        if only_available:
+            only_available.action_assign()
+            only_available.do_prepare_partial()
+            only_available.do_transfer()
+        if to_force:
+            to_force.force_assign()
+            to_force.do_transfer()
         return True

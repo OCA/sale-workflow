@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+<data>
+
+    <template id="report_invoice_document"
+              inherit_id="sale_service_project.report_invoice_document">
+
+        <xpath expr="//div[@t-if='o.reference']" position="after">
+            <t t-set="vehicles"
+               t-value="o.mapped('invoice_line.sale_order_lines.order_id.vehicle_id')"/>
+            <div t-if="vehicles" class="col-xs-3">
+                <strong>Vehicle:</strong>
+                <p t-esc="vehicles[0].name"/>
+            </div>
+        </xpath>
+
+    </template>
+
+</data>
+</openerp>

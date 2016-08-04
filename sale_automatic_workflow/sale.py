@@ -38,6 +38,8 @@ class sale_order(models.Model):
         invoice_vals['workflow_process_id'] = workflow.id
         if workflow.invoice_date_is_order_date:
             invoice_vals['date_invoice'] = order.date_order
+        if workflow.property_journal_id:
+            invoice_vals['journal_id'] = workflow.property_journal_id.id
         return invoice_vals
 
     def _prepare_order_picking(self, cr, uid, order, context=None):
@@ -75,6 +77,12 @@ class sale_order(models.Model):
         invoice_on = self.workflow_process_id.create_invoice_on
         if invoice_on == 'on_order_confirm':
             return True
-        elif invoice_on == 'on_picking_done' and self.shipped:
-            return True
+        elif invoice_on == 'on_picking_done':
+            if self.shipped:
+                return True
+            # case of a sale order with only product service
+            sale_obj = self.env['sale.order']
+            no_products = [sale_obj.test_no_product(order) for order in self]
+            if no_products.count(False) == 0:
+                return True
         return False

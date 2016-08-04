@@ -1,8 +1,9 @@
 # -*- coding: utf-8 -*-
 ##############################################################################
 #
-#    Author: Guewen Baconnier
-#    Copyright 2014 Camptocamp SA
+#    OpenERP, Open Source Management Solution
+#    Copyright (C) 2015 Odoo.com.
+#    Copyright (C) 2015 Openies.com.
 #
 #    This program is free software: you can redistribute it and/or modify
 #    it under the terms of the GNU Affero General Public License as
@@ -19,18 +20,4 @@
 #
 ##############################################################################
 
-from openerp.osv import orm
-
-
-class sale_order(orm.Model):
-    _inherit = 'sale.order'
-
-    def _prepare_payment_move_line(self, cr, uid, move_name, sale, journal,
-                                   period, amount, date, context=None):
-        debit_line, credit_line = super(sale_order, self).\
-            _prepare_payment_move_line(cr, uid, move_name, sale, journal,
-                                       period, amount, date, context=context)
-        if sale.transaction_id:
-            debit_line['transaction_ref'] = sale.transaction_id
-            credit_line['transaction_ref'] = sale.transaction_id
-        return debit_line, credit_line
+from . import models

@@ -19,6 +19,7 @@
                         <group>
                             <group>
                                 <field name="warehouse_id" />
+                                <field name="company_id" />
                                 <field name="sequence_id" />
                             </group>
                             <group>
@@ -42,6 +43,7 @@
             <field name="model">sale.order.type</field>
             <field name="arch" type="xml">
                 <tree string="Type">
+                    <field name="sequence" widget="handle"/>
                     <field name="name"/>
                     <field name="warehouse_id"/>
                     <field name="sequence_id"/>

@@ -20,31 +20,18 @@
 ##############################################################################
 
 {'name': 'Sale Payment Method - Transaction ID Compatibility',
- 'version': '1.0',
+ 'version': '8.0.1.0.0',
  'author': "Camptocamp,Odoo Community Association (OCA)",
- 'maintainer': 'Camptocamp',
  'license': 'AGPL-3',
  'category': 'Hidden',
  'depends': ['sale_payment_method',
              # base_transaction_id is in
-             # https://github.com/OCA/bank-statement-reconcile/tree/7.0
+             # https://github.com/OCA/bank-statement-reconcile/tree/8.0
              'base_transaction_id',
              ],
- 'description': """
-Sale Payment Method - Transaction ID Compatibility
-==================================================
-
-Link module between the sale payment method module
-and the module adding a transaction ID field (`base_transaction_id` in the
-`lp:banking-addons/bank-statement-reconcile-7.0` branch).
-
-When a payment is created from a sales order with a transaction ID, the
-move lines are created with the transaction id.
-
- """,
  'website': 'http://www.camptocamp.com',
  'data': [],
  'tests': [],
- 'installable': False,
+ 'installable': True,
  'auto_install': True,
  }

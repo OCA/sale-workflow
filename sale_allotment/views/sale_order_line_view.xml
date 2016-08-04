@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<openerp>
+    <data>
+        <record model="ir.ui.view" id="view_order_form">
+            <field name="name">Add the allotment to lines' list view</field>
+            <field name="model">sale.order</field>
+            <field name="inherit_id" ref="sale.view_order_form" />
+            <field name="type">form</field>
+            <field name="arch" type="xml">
+                <data>
+                    <xpath
+                        expr="//field[@name='order_line']//form//field[@name='address_allotment_id']"
+                        position="attributes">
+                        <attribute name="context">
+                            {
+                                'default_parent_id': parent.partner_id,
+                                'default_use_parent_address': True,
+                                'default_type':'other',
+                            }
+                        </attribute>
+                        <attribute name="domain">
+                            [
+                                ('parent_id','child_of', parent.partner_id),
+                                ('type', 'in', ['other', 'delivery', 'contact']),
+                            ]</attribute>
+                    </xpath>
+                    <xpath
+                        expr="//field[@name='order_line']//tree//field[@name='product_id']"
+                        position="after">
+                        <field name="address_allotment_id"
+                            context="{'default_parent_id': parent.partner_id,
+                                      'default_use_parent_address': True,
+                                      'default_type':'other'}"
+                            domain="[('parent_id','child_of', parent.partner_id),
+                                     ('type', 'in', ['other', 'delivery', 'contact'])]"/>
+                    </xpath>
+                </data>
+            </field>
+        </record>
+    </data>
+</openerp>

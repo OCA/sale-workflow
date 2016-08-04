@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+<data>
+
+    <record id="view_order_form_service_project" model="ir.ui.view">
+        <field name="name">sale.order.form.service.project</field>
+        <field name="model">sale.order</field>
+        <field name="inherit_id" ref="sale.view_order_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//button[@name='%(sale.action_view_sale_advance_payment_inv)d']"
+                   position="replace">
+                <button name="action_view_task"
+                        string="View Tasks"
+                        type="object"
+                        class="oe_highlight"
+                        attrs="{'invisible': ['|',('has_task','=',False),('task_closed','=',True)]}"
+                        groups="base.group_user"/>
+                <button name="action_view_task"
+                        string="View Tasks"
+                        type="object"
+                        attrs="{'invisible': ['|',('has_task','=',False),('task_closed','=',False)]}"
+                        groups="base.group_user"/>
+                <button name="%(sale.action_view_sale_advance_payment_inv)d" string="Create Invoice"
+                    type="action" class="oe_highlight" groups="base.group_user"
+                    attrs="{'invisible': ['|',('state','!=','manual'),
+                                              '&amp;',('has_task','=',True),('task_closed','=',False)]}"
+                />
+                <button name="%(sale.action_view_sale_advance_payment_inv)d" string="Create Invoice"
+                    type="action" groups="base.group_user"
+                    attrs="{'invisible': ['|','|',('state','!=','manual'),('has_task','=',False),('task_closed','=',True)]}"
+                />
+            </xpath>
+            <field name="pricelist_id" position="after">
+                <field name="print_works"/>
+                <field name="has_task" invisible="1"/>
+                <field name="task_closed" invisible="1"/>
+            </field>
+            <field name="origin" position="after">
+                <field name="invoice_on_timesheets"/>
+            </field>
+        </field>
+    </record>
+
+    <record id="view_sale_order_line_form" model="ir.ui.view">
+        <field name="name">sale.order.form.inherit</field>
+        <field name="model">sale.order</field>
+        <field name="inherit_id" ref="sale.view_order_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='order_line']/tree" position="attributes">
+                <attribute name="editable"/>
+            </xpath>
+            <xpath expr="//field[@name='order_line']/form//field[@name='name']" position="after">
+                <field name="auto_create_task" invisible="1"/>
+                <group attrs="{'invisible': [('auto_create_task', '=', False)]}">
+                    <group string="Works" colspan="2">
+                        <field name="task_work_ids" nolabel="1">
+                            <tree string="Tasks" editable="bottom">
+                                <field name="sequence"/>
+                                <field name="name"/>
+                                <field name="hours"/>
+                            </tree>
+                        </field>
+                    </group>
+                    <group string="Materials" colspan="2">
+                        <field name="task_materials_ids" nolabel="1"
+                               context="{'order_partner_id': parent.partner_id,
+                                         'order_pricelist_id': parent.pricelist_id}">
+                            <tree string="Materials" editable="bottom">
+                                <field name="sequence"/>
+                                <field name="product_id" domain="[('type','!=','service')]"/>
+                                <field name="quantity"/>
+                                <field name="price"/>
+                            </tree>
+                        </field>
+                    </group>
+                    <group>
+                        <field name="compute_price"/>
+                        <field name="task_work_product_id"
+                               attrs="{'invisible': [('compute_price', '=', False)]}"/>
+                    </group>
+                    <group>
+                        <field name="detailed_time"/>
+                        <field name="detailed_materials"
+                               attrs="{'invisible': [('compute_price', '=', False)]}"/>
+                    </group>
+                </group>
+            </xpath>
+        </field>
+    </record>
+
+    <record id="view_sale_service_project_order_filter" model="ir.ui.view">
+        <field name="name">sale.order.task.filter.inherit </field>
+        <field name="model">sale.order</field>
+        <field name="inherit_id" ref="sale.view_sales_order_filter"/>
+        <field name="arch" type="xml">
+            <xpath expr="//filter[@name='sales']" position="after">
+                <filter string="Task to invoice" name="sales"
+                        domain="[('state','=','manual'), ('order_line.task_closed','=',True)]"/>
+            </xpath>
+        </field>
+    </record>
+
+    <record id="view_order_line_tree_task" model="ir.ui.view">
+        <field name="name">sale.order.line.tree.task</field>
+        <field name="model">sale.order.line</field>
+        <field name="inherit_id" ref="sale.view_order_line_tree"/>
+        <field name="arch" type="xml">
+            <field name="state" position="after">
+                <field name="task_closed"/>
+            </field>
+        </field>
+    </record>
+
+</data>
+</openerp>

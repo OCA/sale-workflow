@@ -3,14 +3,16 @@
 # * sale_exceptions
 # 
 # Translators:
+# Ahmet Altınışık <aaltinisik@altinkaya.com.tr>, 2015
+# Paolo Valier, 2016
 # Stefano <stefano.sforzi@agilebg.com>, 2015
 msgid ""
 msgstr ""
 "Project-Id-Version: sale-workflow (8.0)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-10-02 17:59+0000\n"
-"PO-Revision-Date: 2015-09-23 14:23+0000\n"
-"Last-Translator: Stefano <stefano.sforzi@agilebg.com>\n"
+"POT-Creation-Date: 2016-04-29 00:55+0000\n"
+"PO-Revision-Date: 2016-04-27 19:58+0000\n"
+"Last-Translator: Paolo Valier\n"
 "Language-Team: Italian (http://www.transifex.com/oca/OCA-sale-workflow-8-0/language/it/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -61,6 +63,12 @@ msgstr "Creato il"
 #: field:sale.exception,description:0
 msgid "Description"
 msgstr "Descrizione"
+
+#. module: sale_exceptions
+#: field:sale.exception,display_name:0
+#: field:sale.exception.confirm,display_name:0
+msgid "Display Name"
+msgstr "Nome da visualizzare"
 
 #. module: sale_exceptions
 #: code:addons/sale_exceptions/sale.py:192
@@ -122,6 +130,12 @@ msgstr "ID"
 #: field:sale.exception.confirm,ignore:0 field:sale.order,ignore_exceptions:0
 msgid "Ignore Exceptions"
 msgstr "Ignora eccezioni"
+
+#. module: sale_exceptions
+#: field:sale.exception,__last_update:0
+#: field:sale.exception.confirm,__last_update:0
+msgid "Last Modified on"
+msgstr "Ultima modifica il"
 
 #. module: sale_exceptions
 #: field:sale.exception,write_uid:0 field:sale.exception.confirm,write_uid:0

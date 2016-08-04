@@ -1,0 +1,135 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+<data>
+
+<template id="report_invoice_document"
+          inherit_id="account.report_invoice_document">
+    <xpath expr="//div[@class='page']" position="inside">
+        <link rel="stylesheet"
+              href="/sale_service_project/static/src/css/report.css"/>
+    </xpath>
+    <xpath expr="//span[@t-field='l.name']/../.." position="inside">
+        <t t-if="o.print_works">
+            <!--Invoice done directly from sale order-->
+            <t t-if="not l.task_work_ids and not l.task_materials_ids">
+                <t t-foreach="l.sale_order_lines" t-as="order_line">
+                    <t t-if="order_line.task_work_ids">
+                        <t t-raw="'&lt;/tr&gt;&lt;tr class=\'works_title\'&gt;'"/>
+                        <td class="works_lbl">Total Works</td>
+                        <td></td>
+                        <td class="works_total_hours">
+                            <span t-field="order_line.task_work_hours"/>
+                            <span groups="product.group_uom" t-field="uom_hour.name"/>
+                        </td>
+                        <td class="works_hours_price">
+                            <t t-if="order_line.compute_price">
+                                <span t-field="order_line.task_work_product_price"/>
+                            </t>
+                        </td>
+                        <td groups="sale.group_discount_per_so_line"></td>
+                        <td class="works_total_amount">
+                            <t t-if="order_line.compute_price">
+                                <span t-field="order_line.task_work_amount"
+                                      t-field-options='{"widget": "monetary",
+                                                        "display_currency": "o.pricelist_id.currency_id"}'/>
+                            </t>
+                        </td>
+                        <t t-foreach="order_line.task_work_ids" t-as="work">
+                            <t t-raw="'&lt;/tr&gt;&lt;tr class=\'invoice_works_line\'&gt;'"/>
+                            <td class="works_line_name"><span t-field="work.name"/></td>
+                            <td></td>
+                            <td class="works_line_hours">
+                                <t t-if="order_line.detailed_time">
+                                    <span t-field="work.hours"/>
+                                    <span groups="product.group_uom" t-field="uom_hour.name"/>
+                                </t>
+                            </td>
+                            <td></td>
+                            <td groups="sale.group_discount_per_so_line"></td>
+                            <td></td>
+                        </t>
+                    </t>
+                    <t t-if="order_line.task_materials_ids">
+                        <t t-raw="'&lt;/tr&gt;&lt;tr class=\'materials_title\'&gt;'"/>
+                            <td class="materials_lbl">Total Materials</td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td groups="sale.group_discount_per_so_line"></td>
+                            <td class="materials_total_amount">
+                                <t t-if="order_line.compute_price">
+                                    <span t-field="order_line.task_materials_amount"
+                                          t-field-options='{"widget": "monetary",
+                                                            "display_currency": "o.pricelist_id.currency_id"}'/>
+                                </t>
+                            </td>
+                        <t t-foreach="order_line.task_materials_ids" t-as="material">
+                            <t t-raw="'&lt;/tr&gt;&lt;tr class=\'invoice_materials_line\'&gt;'"/>
+                            <td class="materials_line_name">
+                                <span t-field="material.product_id.display_name"/>
+                            </td>
+                            <td></td>
+                            <td class="materials_line_qty">
+                                <span t-field="material.quantity"/>
+                                <span groups="product.group_uom"
+                                      t-field="material.product_id.uom_id.name"/>
+                            </td>
+                            <td class="materials_line_price">
+                                <t t-if="order_line.compute_price and order_line.detailed_materials">
+                                    <span t-field="material.price"/>
+                                </t>
+                            </td>
+                            <td groups="sale.group_discount_per_so_line"></td>
+                            <td></td>
+                        </t>
+                    </t>
+                </t>
+            </t>
+            <!--Invoice done directly from project task-->
+            <t t-if="l.task_work_ids or l.task_materials_ids">
+                <t t-if="l.task_work_ids">
+                    <t t-raw="'&lt;/tr&gt;&lt;tr class=\'works_title\'&gt;'"/>
+                        <td class="works_lbl">Works</td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td groups="sale.group_discount_per_so_line"></td>
+                        <td></td>
+                    <t t-foreach="l.task_work_ids" t-as="work">
+                        <t t-raw="'&lt;/tr&gt;&lt;tr class=\'invoice_works_line\'&gt;'"/>
+                        <td class="works_line_name"><span t-field="work.name"/></td>
+                        <td class="invoice_works_line_hours">
+                            <span t-field="work.hours"/>
+                            <span groups="product.group_uom" t-field="uom_hour.name"/>
+                        </td>
+                        <td></td>
+                        <td groups="sale.group_discount_per_so_line"></td>
+                        <td></td>
+                        <td></td>
+                    </t>
+                </t>
+            </t>
+        </t>
+    </xpath>
+
+    <xpath expr="//span[@t-field='l.name']" position="replace">
+        <t t-if="not o.print_works or l.product_id.type!='service'">
+            <span t-field="l.name"/>
+        </t>
+        <t t-if="o.print_works">
+            <t t-if="l.product_id.type=='service'">
+                <t t-if="not (l.task_work_ids or l.task_materials_ids)">
+                    <span t-field="l.name"/>
+                </t>
+                <t t-if="l.task_work_ids or l.task_materials_ids">
+                    <t t-set="task"
+                       t-value="l.task_work_ids.mapped('task_id') | l.task_materials_ids.mapped('task_id')"/>
+                    <span t-field="task.name"/>
+                </t>
+            </t>
+        </t>
+    </xpath>
+</template>
+
+</data>
+</openerp>

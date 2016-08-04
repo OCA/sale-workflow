@@ -3,13 +3,15 @@
 # * sale_reason_to_export
 # 
 # Translators:
+# Paolo Valier, 2016
+# Paolo Valier, 2016
 msgid ""
 msgstr ""
 "Project-Id-Version: sale-workflow (8.0)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-11-30 09:39+0000\n"
-"PO-Revision-Date: 2015-09-03 07:10+0000\n"
-"Last-Translator: <>\n"
+"POT-Creation-Date: 2016-04-29 00:56+0000\n"
+"PO-Revision-Date: 2016-04-27 19:58+0000\n"
+"Last-Translator: OCA Transbot <transbot@odoo-community.org>\n"
 "Language-Team: Italian (http://www.transifex.com/oca/OCA-sale-workflow-8-0/language/it/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -33,9 +35,19 @@ msgid "Created on"
 msgstr "Creato il"
 
 #. module: sale_reason_to_export
+#: field:sale.reason_to_export,display_name:0
+msgid "Display Name"
+msgstr "Nome da visualizzare"
+
+#. module: sale_reason_to_export
 #: field:sale.reason_to_export,id:0
 msgid "ID"
 msgstr "ID"
+
+#. module: sale_reason_to_export
+#: field:sale.reason_to_export,__last_update:0
+msgid "Last Modified on"
+msgstr "Ultima modifica il"
 
 #. module: sale_reason_to_export
 #: field:sale.reason_to_export,write_uid:0
@@ -56,13 +68,13 @@ msgstr "Name"
 #: model:ir.model,name:sale_reason_to_export.model_sale_reason_to_export
 #: field:sale.order,reason_to_export_id:0
 msgid "Reason to Export"
-msgstr ""
+msgstr "Motivo di esportazione"
 
 #. module: sale_reason_to_export
 #: model:ir.actions.act_window,name:sale_reason_to_export.action_sale_reason_to_export_view
 #: model:ir.ui.menu,name:sale_reason_to_export.menu_sale_reason_to_export_act
 msgid "Reasons to Export"
-msgstr ""
+msgstr "Motivi di esportazione"
 
 #. module: sale_reason_to_export
 #: model:ir.model,name:sale_reason_to_export.model_sale_order
@@ -72,4 +84,4 @@ msgstr "Ordini vendita"
 #. module: sale_reason_to_export
 #: view:sale.reason_to_export:sale_reason_to_export.view_sale_reason_to_export_filter
 msgid "Search Reasons to Export"
-msgstr ""
+msgstr "Ricerca motivi di Esportazione"

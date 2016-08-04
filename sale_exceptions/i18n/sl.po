@@ -3,13 +3,14 @@
 # * sale_exceptions
 # 
 # Translators:
-# Matjaž Mozetič <m.mozetic@matmoz.si>, 2015
+# Matjaž Mozetič <m.mozetic@matmoz.si>, 2015-2016
+# Paolo Valier, 2016
 msgid ""
 msgstr ""
 "Project-Id-Version: sale-workflow (8.0)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-09-09 12:27+0000\n"
-"PO-Revision-Date: 2015-09-07 14:31+0000\n"
+"POT-Creation-Date: 2016-04-29 00:55+0000\n"
+"PO-Revision-Date: 2016-04-30 06:23+0000\n"
 "Last-Translator: Matjaž Mozetič <m.mozetic@matmoz.si>\n"
 "Language-Team: Slovenian (http://www.transifex.com/oca/OCA-sale-workflow-8-0/language/sl/)\n"
 "MIME-Version: 1.0\n"
@@ -61,6 +62,12 @@ msgstr "Ustvarjeno"
 #: field:sale.exception,description:0
 msgid "Description"
 msgstr "Opis"
+
+#. module: sale_exceptions
+#: field:sale.exception,display_name:0
+#: field:sale.exception.confirm,display_name:0
+msgid "Display Name"
+msgstr "Prikazni naziv"
 
 #. module: sale_exceptions
 #: code:addons/sale_exceptions/sale.py:192
@@ -122,6 +129,12 @@ msgstr "ID"
 #: field:sale.exception.confirm,ignore:0 field:sale.order,ignore_exceptions:0
 msgid "Ignore Exceptions"
 msgstr "Prezri izjeme"
+
+#. module: sale_exceptions
+#: field:sale.exception,__last_update:0
+#: field:sale.exception.confirm,__last_update:0
+msgid "Last Modified on"
+msgstr "Zadnjič spremenjeno"
 
 #. module: sale_exceptions
 #: field:sale.exception,write_uid:0 field:sale.exception.confirm,write_uid:0

@@ -1,0 +1,158 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# * sale_quotation_sourcing
+# 
+# Translators:
+msgid ""
+msgstr ""
+"Project-Id-Version: sale-workflow (8.0)\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2016-04-29 00:56+0000\n"
+"PO-Revision-Date: 2016-04-27 19:22+0000\n"
+"Last-Translator: OCA Transbot <transbot@odoo-community.org>\n"
+"Language-Team: English (http://www.transifex.com/oca/OCA-sale-workflow-8-0/language/en/)\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Language: en\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+#. module: sale_quotation_sourcing
+#: view:sale.order.sourcing:sale_quotation_sourcing.sale_order_sourcing_wizard
+msgid "Cancel"
+msgstr "Cancel"
+
+#. module: sale_quotation_sourcing
+#: field:sale.order.line.sourcing,create_uid:0
+#: field:sale.order.sourcing,create_uid:0
+msgid "Created by"
+msgstr "Created by"
+
+#. module: sale_quotation_sourcing
+#: field:sale.order.line.sourcing,create_date:0
+#: field:sale.order.sourcing,create_date:0
+msgid "Created on"
+msgstr "Created on"
+
+#. module: sale_quotation_sourcing
+#: field:sale.order.line.sourcing,display_name:0
+#: field:sale.order.sourcing,display_name:0
+msgid "Display Name"
+msgstr "Display Name"
+
+#. module: sale_quotation_sourcing
+#: field:sale.order.line.sourcing,id:0 field:sale.order.sourcing,id:0
+msgid "ID"
+msgstr "ID"
+
+#. module: sale_quotation_sourcing
+#: field:sale.order.line.sourcing,__last_update:0
+#: field:sale.order.sourcing,__last_update:0
+msgid "Last Modified on"
+msgstr "Last Modified on"
+
+#. module: sale_quotation_sourcing
+#: field:sale.order.line.sourcing,write_uid:0
+#: field:sale.order.sourcing,write_uid:0
+msgid "Last Updated by"
+msgstr "Last Updated by"
+
+#. module: sale_quotation_sourcing
+#: field:sale.order.line.sourcing,write_date:0
+#: field:sale.order.sourcing,write_date:0
+msgid "Last Updated on"
+msgstr "Last Updated on"
+
+#. module: sale_quotation_sourcing
+#: field:sale.order.sourcing,line_ids:0
+msgid "Lines"
+msgstr "Lines"
+
+#. module: sale_quotation_sourcing
+#: field:sale.order.line,manually_sourced:0
+msgid "Manually Sourced"
+msgstr "Manually Sourced"
+
+#. module: sale_quotation_sourcing
+#: code:addons/sale_quotation_sourcing/model/procurement.py:48
+#, python-format
+msgid "Manually sourced"
+msgstr "Manually sourced"
+
+#. module: sale_quotation_sourcing
+#: model:ir.model,name:sale_quotation_sourcing.model_procurement_order
+msgid "Procurement"
+msgstr "Procurement"
+
+#. module: sale_quotation_sourcing
+#: field:sale.order.line.sourcing,product_id:0
+msgid "Product"
+msgstr "Product"
+
+#. module: sale_quotation_sourcing
+#: model:ir.model,name:sale_quotation_sourcing.model_purchase_order_line
+msgid "Purchase Order Line"
+msgstr "Purchase Order Line"
+
+#. module: sale_quotation_sourcing
+#: view:sale.order.sourcing:sale_quotation_sourcing.sale_order_sourcing_wizard
+msgid "Record sourcing"
+msgstr "Record sourcing"
+
+#. module: sale_quotation_sourcing
+#: field:sale.order.sourcing,sale_id:0
+msgid "Sale Order"
+msgstr "Sale Order"
+
+#. module: sale_quotation_sourcing
+#: field:sale.order.line.sourcing,so_line_id:0
+msgid "Sale Order Line"
+msgstr "Sale Order Line"
+
+#. module: sale_quotation_sourcing
+#: view:sale.order.sourcing:sale_quotation_sourcing.sale_order_sourcing_wizard
+msgid "Sale order line sourcing"
+msgstr "Sale order line sourcing"
+
+#. module: sale_quotation_sourcing
+#: model:ir.model,name:sale_quotation_sourcing.model_sale_order
+msgid "Sales Order"
+msgstr "Sales Order"
+
+#. module: sale_quotation_sourcing
+#: model:ir.model,name:sale_quotation_sourcing.model_sale_order_line
+msgid "Sales Order Line"
+msgstr "Sales Order Line"
+
+#. module: sale_quotation_sourcing
+#: field:sale.order.line.sourcing,po_line_id:0
+msgid "Sourced By"
+msgstr "Sourced By"
+
+#. module: sale_quotation_sourcing
+#: field:sale.order.line,sourced_by:0
+msgid "Sourced by"
+msgstr "Sourced by"
+
+#. module: sale_quotation_sourcing
+#: model:sale.exception,description:sale_quotation_sourcing.inconsistent_sourcing
+msgid ""
+"The chosen route is inconsistent with the destination of the purchase line "
+"that has been chosen. Please change the route or choose a different "
+"purchase."
+msgstr "The chosen route is inconsistent with the destination of the purchase line that has been chosen. Please change the route or choose a different purchase."
+
+#. module: sale_quotation_sourcing
+#: model:sale.exception,name:sale_quotation_sourcing.inconsistent_sourcing
+msgid "The chosen route is inconsistent with the purchase"
+msgstr "The chosen route is inconsistent with the purchase"
+
+#. module: sale_quotation_sourcing
+#: field:sale.order.line.sourcing,wizard_id:0
+msgid "Wizard"
+msgstr "Wizard"
+
+#. module: sale_quotation_sourcing
+#: view:sale.order.sourcing:sale_quotation_sourcing.sale_order_sourcing_wizard
+msgid "or"
+msgstr "or"

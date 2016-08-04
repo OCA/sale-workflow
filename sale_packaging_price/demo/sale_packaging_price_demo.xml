@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+<data>
+        
+    <!-- PRODUCT PACKAGING MATERIALS -->
+
+    <record id="demo_metal_packaging_material" model="product.packaging.material">
+        <field name="name">Metal</field>
+    </record>
+    <record id="demo_wood_packaging_material" model="product.packaging.material">
+        <field name="name">Wood</field>
+    </record>
+    <record id="demo_cardboard_packaging_material" model="product.packaging.material">
+        <field name="name">Cardboard</field>
+    </record>
+
+</data>
+</openerp>

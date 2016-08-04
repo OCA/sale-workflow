@@ -3,13 +3,14 @@
 # * sale_order_type
 # 
 # Translators:
+# Hotellook, 2014
 # Matjaž Mozetič <m.mozetic@matmoz.si>, 2015
 msgid ""
 msgstr ""
 "Project-Id-Version: sale-workflow (8.0)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-09-09 12:27+0000\n"
-"PO-Revision-Date: 2015-09-07 14:31+0000\n"
+"POT-Creation-Date: 2016-04-29 00:55+0000\n"
+"PO-Revision-Date: 2016-04-30 06:24+0000\n"
 "Last-Translator: Matjaž Mozetič <m.mozetic@matmoz.si>\n"
 "Language-Team: Slovenian (http://www.transifex.com/oca/OCA-sale-workflow-8-0/language/sl/)\n"
 "MIME-Version: 1.0\n"
@@ -32,6 +33,11 @@ msgid "Billing Journal"
 msgstr "Dnevnik obračuna"
 
 #. module: sale_order_type
+#: field:sale.order.type,company_id:0
+msgid "Company"
+msgstr "Družba"
+
+#. module: sale_order_type
 #: view:sale.order.type:sale_order_type.sot_sale_order_type_search_view
 #: field:sale.order.type,order_policy:0
 msgid "Create Invoice"
@@ -51,6 +57,11 @@ msgstr "Ustvarjeno"
 #: field:sale.order.type,description:0
 msgid "Description"
 msgstr "Opis"
+
+#. module: sale_order_type
+#: field:sale.order.type,display_name:0
+msgid "Display Name"
+msgstr "Prikazni naziv"
 
 #. module: sale_order_type
 #: view:sale.order.type:sale_order_type.sot_sale_order_type_search_view
@@ -78,6 +89,11 @@ msgstr "Račun"
 #: field:sale.order.type,invoice_state:0
 msgid "Invoice Control"
 msgstr "Nadzor računov"
+
+#. module: sale_order_type
+#: field:sale.order.type,__last_update:0
+msgid "Last Modified on"
+msgstr "Zadnjič spremenjeno"
 
 #. module: sale_order_type
 #: field:sale.order.type,write_uid:0
@@ -135,6 +151,11 @@ msgstr "Tip prodajnega naloga"
 #: model:ir.ui.menu,name:sale_order_type.sot_sale_order_type_menu
 msgid "Sales Order Types"
 msgstr "Tipi prodajnega naloga"
+
+#. module: sale_order_type
+#: field:sale.order.type,sequence:0
+msgid "Sequence"
+msgstr "Zaporedje"
 
 #. module: sale_order_type
 #: view:sale.order.type:sale_order_type.sot_sale_order_type_search_view

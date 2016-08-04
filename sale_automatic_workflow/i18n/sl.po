@@ -3,13 +3,14 @@
 # * sale_automatic_workflow
 # 
 # Translators:
-# Matjaž Mozetič <m.mozetic@matmoz.si>, 2015
+# Hotellook, 2014
+# Matjaž Mozetič <m.mozetic@matmoz.si>, 2015-2016
 msgid ""
 msgstr ""
 "Project-Id-Version: sale-workflow (8.0)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-12-02 01:51+0000\n"
-"PO-Revision-Date: 2015-12-02 05:18+0000\n"
+"POT-Creation-Date: 2016-04-29 00:55+0000\n"
+"PO-Revision-Date: 2016-04-30 06:24+0000\n"
 "Last-Translator: Matjaž Mozetič <m.mozetic@matmoz.si>\n"
 "Language-Team: Slovenian (http://www.transifex.com/oca/OCA-sale-workflow-8-0/language/sl/)\n"
 "MIME-Version: 1.0\n"
@@ -82,6 +83,12 @@ msgid "Deliver each product when available"
 msgstr "Dobavi vsak proizvod, ko je na voljo"
 
 #. module: sale_automatic_workflow
+#: field:automatic.workflow.job,display_name:0
+#: field:sale.workflow.process,display_name:0
+msgid "Display Name"
+msgstr "Prikazni naziv"
+
+#. module: sale_automatic_workflow
 #: field:sale.workflow.process,invoice_date_is_order_date:0
 msgid "Force Invoice Date"
 msgstr "Vsili datum računa"
@@ -111,6 +118,12 @@ msgstr "Obračunska pravila"
 #: field:sale.workflow.process,invoice_quantity:0
 msgid "Invoice on"
 msgstr "Obračun ob"
+
+#. module: sale_automatic_workflow
+#: field:automatic.workflow.job,__last_update:0
+#: field:sale.workflow.process,__last_update:0
+msgid "Last Modified on"
+msgstr "Zadnjič spremenjeno"
 
 #. module: sale_automatic_workflow
 #: field:automatic.workflow.job,write_uid:0
@@ -182,6 +195,11 @@ msgid "Sale Workflow Process"
 msgstr "Proces prodajnega delotoka"
 
 #. module: sale_automatic_workflow
+#: field:sale.workflow.process,property_journal_id:0
+msgid "Sales Journal"
+msgstr "Prodajni dnevnik"
+
+#. module: sale_automatic_workflow
 #: model:ir.model,name:sale_automatic_workflow.model_sale_order
 msgid "Sales Order"
 msgstr "Prodajni nalog"
@@ -190,6 +208,16 @@ msgstr "Prodajni nalog"
 #: field:sale.workflow.process,section_id:0
 msgid "Sales Team"
 msgstr "Prodajna ekipa"
+
+#. module: sale_automatic_workflow
+#: help:sale.workflow.process,property_journal_id:0
+msgid "Set default journal to use on invoice"
+msgstr "Določi privzeti prodajni dnevnik za izdajo računov"
+
+#. module: sale_automatic_workflow
+#: field:sale.workflow.process,ship_only_available:0
+msgid "Ship only available goods"
+msgstr "Odpremi le razpoložljivo blago"
 
 #. module: sale_automatic_workflow
 #: selection:sale.workflow.process,invoice_quantity:0
@@ -222,6 +250,13 @@ msgid "Warning Message"
 msgstr "Opozorilno sporočilo"
 
 #. module: sale_automatic_workflow
+#: help:sale.workflow.process,ship_only_available:0
+msgid ""
+"When checked, the available quantity is shipped, and if so, a backorder is "
+"created with the rest."
+msgstr "Če označeno, se odpremi razpoložljiva količina, in v tem primeru se ustvari zaostali nalog s preostalo količino."
+
+#. module: sale_automatic_workflow
 #: help:sale.workflow.process,invoice_date_is_order_date:0
 msgid "When checked, the invoice date will be the same than the order's date"
 msgstr "Če označeno, bo datum računa enak datumu naloga"
@@ -232,7 +267,7 @@ msgid "Workflow Options"
 msgstr "Opcije delotoka"
 
 #. module: sale_automatic_workflow
-#: code:addons/sale_automatic_workflow/sale.py:64
+#: code:addons/sale_automatic_workflow/sale.py:66
 #, python-format
 msgid "Workflow Warning"
 msgstr "Opozorilo delotoka"

@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: sale-workflow (8.0)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-11-30 09:39+0000\n"
-"PO-Revision-Date: 2015-11-17 08:45+0000\n"
+"POT-Creation-Date: 2016-04-29 00:56+0000\n"
+"PO-Revision-Date: 2016-04-27 19:21+0000\n"
 "Last-Translator: OCA Transbot <transbot@odoo-community.org>\n"
 "Language-Team: English (http://www.transifex.com/oca/OCA-sale-workflow-8-0/language/en/)\n"
 "MIME-Version: 1.0\n"
@@ -37,6 +37,11 @@ msgstr "Created by"
 #: field:mrp.property.formula,create_date:0
 msgid "Created on"
 msgstr "Created on"
+
+#. module: sale_properties_easy_creation
+#: field:mrp.property.formula,display_name:0
+msgid "Display Name"
+msgstr "Display Name"
 
 #. module: sale_properties_easy_creation
 #: code:addons/sale_properties_easy_creation/mrp_property_formula.py:43
@@ -70,6 +75,11 @@ msgstr "Here you can write the formula using by python code"
 #: field:mrp.property.formula,id:0
 msgid "ID"
 msgstr "ID"
+
+#. module: sale_properties_easy_creation
+#: field:mrp.property.formula,__last_update:0
+msgid "Last Modified on"
+msgstr "Last Modified on"
 
 #. module: sale_properties_easy_creation
 #: field:mrp.property.formula,write_uid:0

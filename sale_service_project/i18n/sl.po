@@ -1,0 +1,467 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# * sale_service_project
+# 
+# Translators:
+# Ahmet Altınışık <aaltinisik@altinkaya.com.tr>, 2015
+# Ahmet Altınışık <aaltinisik@altinkaya.com.tr>, 2015
+# Matjaž Mozetič <m.mozetic@matmoz.si>, 2016
+msgid ""
+msgstr ""
+"Project-Id-Version: sale-workflow (8.0)\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2016-04-29 00:56+0000\n"
+"PO-Revision-Date: 2016-04-30 06:53+0000\n"
+"Last-Translator: Matjaž Mozetič <m.mozetic@matmoz.si>\n"
+"Language-Team: Slovenian (http://www.transifex.com/oca/OCA-sale-workflow-8-0/language/sl/)\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Language: sl\n"
+"Plural-Forms: nplurals=4; plural=(n%100==1 ? 0 : n%100==2 ? 1 : n%100==3 || n%100==4 ? 2 : 3);\n"
+
+#. module: sale_service_project
+#: view:product.price.service.wizard:sale_service_project.wiz_compute_task_price
+msgid "Accept"
+msgstr "Sprejmi"
+
+#. module: sale_service_project
+#: field:project.task,all_invoiced:0
+msgid "All invoiced"
+msgstr "Vse zaračunano"
+
+#. module: sale_service_project
+#: model:ir.model,name:sale_service_project.model_account_analytic_line
+msgid "Analytic Line"
+msgstr "Analitična postavka"
+
+#. module: sale_service_project
+#: view:product.price.service.wizard:sale_service_project.wiz_compute_task_price
+msgid "Cancel"
+msgstr "Preklic"
+
+#. module: sale_service_project
+#: model:product.template,name:sale_service_project.product_template_revision_1
+msgid "Complete Revision"
+msgstr "Dokončna revizija"
+
+#. module: sale_service_project
+#: model:ir.actions.act_window,name:sale_service_project.action_sale_service_project_product_price
+#: view:product.price.service.wizard:sale_service_project.wiz_compute_task_price
+msgid "Compute Price"
+msgstr "Izračun cene"
+
+#. module: sale_service_project
+#: code:addons/sale_service_project/models/product.py:23
+#: code:addons/sale_service_project/models/product.py:55
+#, python-format
+msgid "Compute Service Price"
+msgstr "Izračun cene storitve"
+
+#. module: sale_service_project
+#: view:product.template:sale_service_project.view_product_task_form
+#: field:sale.order.line,compute_price:0
+msgid "Compute price"
+msgstr "Izračun cene"
+
+#. module: sale_service_project
+#: code:addons/sale_service_project/models/hr_timesheet_invoice.py:57
+#, python-format
+msgid ""
+"Contract incomplete. Please fill in the Customer and Pricelist fields for "
+"%s."
+msgstr "Pogodba ni popolna. Izpolnite polja kupec in cenik za %s."
+
+#. module: sale_service_project
+#: code:addons/sale_service_project/models/project.py:63
+#: view:project.task:sale_service_project.view_sale_service_inherit_form2
+#: view:sale.order:sale_service_project.view_order_form_service_project
+#, python-format
+msgid "Create Invoice"
+msgstr "Ustvari račun"
+
+#. module: sale_service_project
+#: field:sale.order.line,auto_create_task:0
+msgid "Create Task Automatically"
+msgstr "Samodejno ustvari opravilo"
+
+#. module: sale_service_project
+#: field:product.price.service.wizard,create_uid:0
+#: field:product.task.materials,create_uid:0
+#: field:product.task.work,create_uid:0
+#: field:sale.order.line.task.materials,create_uid:0
+#: field:sale.order.line.task.work,create_uid:0
+msgid "Created by"
+msgstr "Ustvaril"
+
+#. module: sale_service_project
+#: field:product.price.service.wizard,create_date:0
+#: field:product.task.materials,create_date:0
+#: field:product.task.work,create_date:0
+#: field:sale.order.line.task.materials,create_date:0
+#: field:sale.order.line.task.work,create_date:0
+msgid "Created on"
+msgstr "Ustvarjeno"
+
+#. module: sale_service_project
+#: field:product.price.service.wizard,display_name:0
+#: field:product.task.materials,display_name:0
+#: field:product.task.work,display_name:0
+#: field:sale.order.line.task.materials,display_name:0
+#: field:sale.order.line.task.work,display_name:0
+msgid "Display Name"
+msgstr "Prikazni naziv"
+
+#. module: sale_service_project
+#: code:addons/sale_service_project/models/hr_timesheet_invoice.py:57
+#: code:addons/sale_service_project/models/hr_timesheet_invoice.py:75
+#, python-format
+msgid "Error!"
+msgstr "Napaka!"
+
+#. module: sale_service_project
+#: model:product.template,name:sale_service_project.product_product_filter_product_template
+msgid "Filter Oil"
+msgstr "Oljni filter"
+
+#. module: sale_service_project
+#: field:sale.order,has_task:0
+msgid "Has task"
+msgstr "Ima opravilo"
+
+#. module: sale_service_project
+#: field:product.task.work,hours:0 field:sale.order.line.task.work,hours:0
+msgid "Hours"
+msgstr "Ure"
+
+#. module: sale_service_project
+#: field:product.price.service.wizard,id:0 field:product.task.materials,id:0
+#: field:product.task.work,id:0 field:sale.order.line.task.materials,id:0
+#: field:sale.order.line.task.work,id:0
+msgid "ID"
+msgstr "ID"
+
+#. module: sale_service_project
+#: help:product.product,must_have_dates:0
+msgid ""
+"If this option is active, the user will have to enter a Start Date and an "
+"End Date on the invoice lines that have this product."
+msgstr "Če je ta opcija aktivna, mora uporabnik vnesti Začetni datum in Končni datum v postavke računa, ki vsebujejo ta proizvod."
+
+#. module: sale_service_project
+#: model:ir.model,name:sale_service_project.model_account_invoice
+msgid "Invoice"
+msgstr "Račun"
+
+#. module: sale_service_project
+#: model:ir.model,name:sale_service_project.model_account_invoice_line
+msgid "Invoice Line"
+msgstr "Postavka računa"
+
+#. module: sale_service_project
+#: field:project.task,invoice_exists:0
+msgid "Invoice exists"
+msgstr "Račun obstaja"
+
+#. module: sale_service_project
+#: field:project.task,invoice_ids:0
+msgid "Invoice ids"
+msgstr "ID-ji računa"
+
+#. module: sale_service_project
+#: field:sale.order,invoice_on_timesheets:0
+msgid "Invoice on timesheets"
+msgstr "Račun po časovnicah"
+
+#. module: sale_service_project
+#: field:project.task,is_closed:0
+msgid "Is closed"
+msgstr "Je zaključeno"
+
+#. module: sale_service_project
+#: field:product.price.service.wizard,__last_update:0
+#: field:product.task.materials,__last_update:0
+#: field:product.task.work,__last_update:0
+#: field:sale.order.line.task.materials,__last_update:0
+#: field:sale.order.line.task.work,__last_update:0
+msgid "Last Modified on"
+msgstr "Zadnjič spremenjeno"
+
+#. module: sale_service_project
+#: field:product.price.service.wizard,write_uid:0
+#: field:product.task.materials,write_uid:0
+#: field:product.task.work,write_uid:0
+#: field:sale.order.line.task.materials,write_uid:0
+#: field:sale.order.line.task.work,write_uid:0
+msgid "Last Updated by"
+msgstr "Zadnji posodobil"
+
+#. module: sale_service_project
+#: field:product.price.service.wizard,write_date:0
+#: field:product.task.materials,write_date:0
+#: field:product.task.work,write_date:0
+#: field:sale.order.line.task.materials,write_date:0
+#: field:sale.order.line.task.work,write_date:0
+msgid "Last Updated on"
+msgstr "Zadnjič posodobljeno"
+
+#. module: sale_service_project
+#: field:product.task.materials,material_id:0
+#: field:sale.order.line.task.materials,product_id:0
+msgid "Material"
+msgstr "Material"
+
+#. module: sale_service_project
+#: field:sale.order.line,task_materials_amount:0
+msgid "Material Amount"
+msgstr "Znesek materiala"
+
+#. module: sale_service_project
+#: field:account.invoice.line,task_materials_ids:0
+#: field:product.product,task_materials_ids:0
+#: view:product.template:sale_service_project.view_product_task_form
+#: field:product.template,task_materials_ids:0
+#: view:sale.order:sale_service_project.view_sale_order_line_form
+#: field:sale.order.line,task_materials_ids:0
+msgid "Materials"
+msgstr "Materiali"
+
+#. module: sale_service_project
+#: field:product.product,must_have_dates:0
+msgid "Must Have Start and End Dates"
+msgstr "Zahteva se začetni in končni datum"
+
+#. module: sale_service_project
+#: field:product.task.work,name:0 field:sale.order.line.task.work,name:0
+msgid "Name"
+msgstr "Naziv"
+
+#. module: sale_service_project
+#: field:sale.order.line.task.materials,order_line_id:0
+#: field:sale.order.line.task.work,order_line_id:0
+msgid "Order Line"
+msgstr "Postavka naloga"
+
+#. module: sale_service_project
+#: field:sale.order.line.task.materials,price:0
+msgid "Price"
+msgstr "Cena"
+
+#. module: sale_service_project
+#: field:sale.order.line,detailed_materials:0
+msgid "Print Material Prices"
+msgstr "Natisni cene materiala"
+
+#. module: sale_service_project
+#: field:sale.order.line,detailed_time:0
+msgid "Print Works Times"
+msgstr "Natisni cene dela"
+
+#. module: sale_service_project
+#: field:account.invoice,print_works:0 field:sale.order,print_works:0
+msgid "Print materials and works"
+msgstr "Natisni material in delo"
+
+#. module: sale_service_project
+#: model:ir.model,name:sale_service_project.model_procurement_order
+msgid "Procurement"
+msgstr "Oskrbovanje"
+
+#. module: sale_service_project
+#: model:ir.model,name:sale_service_project.model_product_product
+#: field:product.price.service.wizard,product_id:0
+#: field:product.task.materials,product_id:0
+#: field:product.task.work,product_id:0
+msgid "Product"
+msgstr "Proizvod"
+
+#. module: sale_service_project
+#: model:ir.actions.act_window,name:sale_service_project.act_view_product_task_materials
+msgid "Product Task Materials"
+msgstr "Proizvod material na opravilu"
+
+#. module: sale_service_project
+#: model:ir.actions.act_window,name:sale_service_project.act_view_product_task_work
+msgid "Product Task Work"
+msgstr "Proizvod delo na opravilu"
+
+#. module: sale_service_project
+#: model:ir.model,name:sale_service_project.model_product_template
+msgid "Product Template"
+msgstr "Predloga proizvoda"
+
+#. module: sale_service_project
+#: model:ir.model,name:sale_service_project.model_project_project
+msgid "Project"
+msgstr "Projekt"
+
+#. module: sale_service_project
+#: view:project.task:sale_service_project.view_task_search_form_project_parent
+#: field:project.task,project_parent_id:0
+msgid "Project Parent"
+msgstr "Nadrejeni projekt"
+
+#. module: sale_service_project
+#: field:product.task.materials,quantity:0
+#: field:sale.order.line.task.materials,quantity:0
+msgid "Quantity"
+msgstr "Količina"
+
+#. module: sale_service_project
+#: field:account.invoice.line,sale_order_lines:0
+msgid "Sale Order Lines"
+msgstr "Postavke prodajnega naloga"
+
+#. module: sale_service_project
+#: model:ir.model,name:sale_service_project.model_sale_order
+msgid "Sales Order"
+msgstr "Prodajni nalog"
+
+#. module: sale_service_project
+#: model:ir.model,name:sale_service_project.model_sale_order_line
+msgid "Sales Order Line"
+msgstr "Postavka prodajnega naloga"
+
+#. module: sale_service_project
+#: view:product.price.service.wizard:sale_service_project.wiz_compute_task_price
+msgid "Select a product to get hour price"
+msgstr "Izberite proizvod za urno postavko"
+
+#. module: sale_service_project
+#: field:product.task.materials,sequence:0 field:product.task.work,sequence:0
+#: field:sale.order.line.task.materials,sequence:0
+#: field:sale.order.line.task.work,sequence:0
+msgid "Sequence"
+msgstr "Zaporedje"
+
+#. module: sale_service_project
+#: model:product.template,name:sale_service_project.product_product_oil_product_template
+msgid "Synthetic Oil"
+msgstr "Sintetično olje"
+
+#. module: sale_service_project
+#: model:ir.model,name:sale_service_project.model_project_task
+msgid "Task"
+msgstr "Opravilo"
+
+#. module: sale_service_project
+#: view:product.task.materials:sale_service_project.product_task_materials_form_view
+#: view:product.task.materials:sale_service_project.product_task_materials_tree_view
+msgid "Task Materials"
+msgstr "Material na opravilu"
+
+#. module: sale_service_project
+#: field:product.product,task_work_ids:0
+#: field:product.template,task_work_ids:0
+msgid "Task Works"
+msgstr "Delo na opravilu"
+
+#. module: sale_service_project
+#: field:sale.order,task_closed:0 field:sale.order.line,task_closed:0
+msgid "Task closed"
+msgstr "Opravilo zaključeno"
+
+#. module: sale_service_project
+#: field:project.project,task_hours:0
+msgid "Task hours"
+msgstr "Ure na opravilu"
+
+#. module: sale_service_project
+#: view:sale.order:sale_service_project.view_sale_service_project_order_filter
+msgid "Task to invoice"
+msgstr "Opravilo za obračun"
+
+#. module: sale_service_project
+#: field:sale.order.line,task_work_product_price:0
+msgid "Task work product price"
+msgstr "Cena proizvoda dela na opravilu"
+
+#. module: sale_service_project
+#: view:product.task.work:sale_service_project.product_task_work_form_view
+#: view:product.task.work:sale_service_project.product_task_work_tree_view
+#: view:product.template:sale_service_project.view_product_task_form
+#: view:sale.order:sale_service_project.view_sale_order_line_form
+#: field:sale.order,task_ids:0 field:sale.order.line,task_ids:0
+msgid "Tasks"
+msgstr "Opravila"
+
+#. module: sale_service_project
+#: help:sale.order.line,auto_create_task:0
+msgid ""
+"Tick this option if you want to create a task automatically each time this "
+"product is sold"
+msgstr "Označite, če želite samodejno ustvariti opravilo vsakič, ko se ta proizvod proda."
+
+#. module: sale_service_project
+#: model:ir.model,name:sale_service_project.model_hr_analytic_timesheet
+msgid "Timesheet Line"
+msgstr "Postavka časovnice"
+
+#. module: sale_service_project
+#: field:sale.order.line,task_work_hours:0
+msgid "Total Hours"
+msgstr "Skupaj ur"
+
+#. module: sale_service_project
+#: view:website:account.report_invoice_document
+#: view:website:sale.report_saleorder_document
+msgid "Total Materials"
+msgstr "Skupaj material"
+
+#. module: sale_service_project
+#: view:website:account.report_invoice_document
+#: view:website:sale.report_saleorder_document
+msgid "Total Works"
+msgstr "Skupaj delo"
+
+#. module: sale_service_project
+#: code:addons/sale_service_project/models/hr_timesheet_invoice.py:75
+#, python-format
+msgid "Trying to invoice non invoiceable line for %s."
+msgstr "Poskušate zaračunati postavko, ki ni za obračun za %s."
+
+#. module: sale_service_project
+#: field:product.price.service.wizard,uom_id:0
+msgid "Unit of measure"
+msgstr "Enota mere"
+
+#. module: sale_service_project
+#: view:project.task:sale_service_project.view_sale_service_inherit_form2
+msgid "View Invoice"
+msgstr "Prikaz računa"
+
+#. module: sale_service_project
+#: view:sale.order:sale_service_project.view_order_form_service_project
+msgid "View Tasks"
+msgstr "Prikaz opravil"
+
+#. module: sale_service_project
+#: field:sale.order.line,task_work_amount:0
+msgid "Work Amount"
+msgstr "Znesek dela"
+
+#. module: sale_service_project
+#: field:sale.order.line,task_work_product_id:0
+msgid "Work Price Product"
+msgstr "Proizvod cene dela"
+
+#. module: sale_service_project
+#: field:account.invoice.line,task_work_ids:0
+#: view:product.template:sale_service_project.view_product_task_form
+#: view:sale.order:sale_service_project.view_sale_order_line_form
+#: field:sale.order.line,task_work_ids:0
+#: view:website:account.report_invoice_document
+msgid "Works"
+msgstr "Delo"
+
+#. module: sale_service_project
+#: view:product.template:sale_service_project.view_product_task_form
+msgid ""
+"auto_create_task and\n"
+"                    [('category_id','=', 3)] or []"
+msgstr "auto_create_task and\n                    [('category_id','=', 3)] or []"
+
+#. module: sale_service_project
+#: view:product.price.service.wizard:sale_service_project.wiz_compute_task_price
+msgid "or"
+msgstr "ali"

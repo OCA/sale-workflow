@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: sale-workflow (8.0)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-10-23 08:14+0000\n"
+"POT-Creation-Date: 2016-02-26 09:59+0000\n"
 "PO-Revision-Date: 2015-09-03 07:09+0000\n"
 "Last-Translator: <>\n"
 "Language-Team: Spanish (http://www.transifex.com/oca/OCA-sale-workflow-8-0/language/es/)\n"
@@ -20,7 +20,7 @@ msgstr ""
 #. module: sale_owner_stock_sourcing
 #: model:ir.model,name:sale_owner_stock_sourcing.model_procurement_order
 msgid "Procurement"
-msgstr ""
+msgstr "Abastecimiento"
 
 #. module: sale_owner_stock_sourcing
 #: model:ir.model,name:sale_owner_stock_sourcing.model_sale_order_line
