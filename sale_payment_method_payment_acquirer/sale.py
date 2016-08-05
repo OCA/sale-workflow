@@ -10,7 +10,7 @@ class SaleOrder(models.Model):
 
     @api.onchange('payment_acquirer_id')
     def onchange_payment_acquirer_id(self):
-        #change payment method according to payment_acquirer_id
+        # change payment method according to payment_acquirer_id
         if not self.payment_acquirer_id:
             return
         method = self.payment_acquirer_id.payment_method_id
