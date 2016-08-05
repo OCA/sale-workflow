@@ -17,8 +17,8 @@ Configuration
 
 To configure this module, you need to:
 
-#. Go to *Warehouse > Configuration > Settings*.
-#. Enable *Packages > Traceability > Record packages used on packing: pallets,
+#. Go to *Inventory > Configuration > Settings*.
+#. Enable *Traceability > Packages > Record packages used on packing: pallets,
    boxes, ...*
 #. Enable *Products > Packaging Methods > Manage available packaging options
    per products*.
