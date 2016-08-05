@@ -5,14 +5,6 @@
 {'name': 'Sale Payment Method - Selection for Automatic Payment',
  'version': '8.0.1.0.0',
  'category': '',
- 'description': """
-Sale Payment Method - Selection for Automatic Payment
-=====================================================
-
-* Adds an selection to payment methods to configure when an /
-automatic payment is allowed to be created.
-
-""",
  'depends': ['sale_payment_method',
              ],
  'author': "initOS GmbH, Odoo Community Association (OCA) ",
