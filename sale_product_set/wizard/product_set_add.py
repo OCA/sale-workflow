@@ -1,23 +1,24 @@
 # -*- coding: utf-8 -*-
-from openerp import models, fields, api, _
+# License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
+
+from openerp import api, fields, models
 import openerp.addons.decimal_precision as dp
 
 
-class ProductSetAd(models.TransientModel):
+class ProductSetAdd(models.TransientModel):
     _name = 'product.set.add'
     _rec_name = 'product_set_id'
-    _descritpion = "Wizard model to add product set into a quotation"
+    _description = "Wizard to add product set into a quotation"
 
     product_set_id = fields.Many2one(
-        'product.set', _('Product set'), required=True)
+        'product.set', string='Product set', required=True, ondelete='cascade')
     quantity = fields.Float(
-        string=_('Quantity'),
         digits=dp.get_precision('Product Unit of Measure'), required=True,
         default=1)
 
     @api.multi
     def add_set(self):
-        """ Add product set, multiplied by quantity in sale order line """
+        """ Add product set, multiplied by quantity in sale order """
         so_id = self._context['active_id']
         if not so_id:
             return
