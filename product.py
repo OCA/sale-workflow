@@ -11,6 +11,6 @@ class ProductTemplate(models.Model):
     auto_generate_prodlot = fields.Boolean(
         string='Lot Generation Auto',
         help="Forces to specifiy a Serial Number for all "
-             "lines containing this product since the confirm "
+             "lines containing this product since the confirmation "
              "of the Sale Order"
     )

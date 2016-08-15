@@ -4,7 +4,7 @@
 
 {
     'name': 'sale_order_lot_generator',
-    'version': '8.0.0.0.1',
+    'version': '9.0.0.0.1',
     'author': 'Akretion',
     'website': 'www.akretion.com',
     'license': 'AGPL-3',

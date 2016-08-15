@@ -11,12 +11,10 @@ class SaleOrder(models.Model):
     @api.model
     def _prepare_vals_lot_number(self, order_line, index_lot):
         """Prepare values before creating a lot number"""
-        lot_number = "%s-%02d" % (order_line.order_id.name, index_lot)
+        lot_number = "%s-%03d" % (order_line.order_id.name, index_lot)
         return {
             'name': lot_number,
             'product_id': order_line.product_id.id,
-            # in V8 company_id doesn't exist
-            # 'company_id': order_line.order_id.company_id.id,
         }
 
     @api.multi
@@ -26,7 +24,9 @@ class SaleOrder(models.Model):
             index_lot = 1
             for line in rec.order_line:
                 line_vals = {}
-                if line.product_id.auto_generate_prodlot and not line.lot_id:
+                if (line.product_id.auto_generate_prodlot and not 
+                        line.lot_id and
+                        line.product_id.tracking != 'none'):
                     vals = rec._prepare_vals_lot_number(line, index_lot)
                     index_lot += 1
                     lot_id = lot_m.create(vals)
@@ -34,18 +34,10 @@ class SaleOrder(models.Model):
                     line.write(line_vals)
 
     @api.multi
-    def action_ship_create(self):
+    def action_confirm(self):
         self.ensure_one()
         self.generate_prodlot()
-        return super(SaleOrder, self).action_ship_create()
-
-    @api.model
-    def _prepare_order_line_move(self, order, line, picking_id, date_planned):
-        """ original method is in module purchase/purchase.py """
-        result = super(SaleOrder, self)._prepare_order_line_move(
-            order, line, picking_id, date_planned)
-        result.update({'restrict_lot_id': line.lot_id.id})
-        return result
+        return super(SaleOrder, self).action_confirm()
 
     @api.model
     def _check_move_state(self, line):

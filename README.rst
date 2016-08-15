@@ -4,7 +4,7 @@
 Sale Order Lot Generator
 ========================
 
-This module was written to generate automatically the lot number when you confirm a sale order
+This module was written to generate automatically the lot number when you confirmation a sale order
 
 Installation
 ============
@@ -28,3 +28,4 @@ Contributors
 ------------
 
 * Valentin Chemiere <valentin.chemiere@akretion.com>
+* Florian da Costa <florian.dacosta@akretion.com>
