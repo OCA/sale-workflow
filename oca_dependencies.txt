@@ -1,3 +1,4 @@
+bank-payment
 stock-logistics-workflow
 stock-logistics-transport
 account-closing
