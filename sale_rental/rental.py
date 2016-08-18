@@ -357,8 +357,7 @@ class SaleRental(models.Model):
                 for move in procurement.move_ids:
                     if move.move_dest_id:
                         out_move = move
-                    else:
-                        in_move = move
+                        in_move = move.move_dest_id
             if (
                     self.sell_order_line_ids and
                     self.sell_order_line_ids[0].procurement_ids):
