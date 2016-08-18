@@ -64,6 +64,7 @@ Contributors
 ------------
 
 * Alexis de Lattre <alexis.delattre@akretion.com>
+* Javi Melendez <javi.melendez@algios.com>
 
 Maintainer
 ----------
