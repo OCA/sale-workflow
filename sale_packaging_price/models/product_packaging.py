@@ -3,7 +3,7 @@
 # (c) 2015 Antiun Ingeniería S.L. - Carlos Dauden
 # License LGPL-3 - See http://www.gnu.org/licenses/lgpl
 
-from openerp import api, fields, models, _
+from openerp import _, api, fields, models
 from openerp.addons.decimal_precision import decimal_precision as dp
 
 
