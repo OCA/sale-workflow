@@ -3,13 +3,17 @@
 # * sale_validity
 # 
 # Translators:
+# Matjaž Mozetič <m.mozetic@matmoz.si>, 2015
+# Paolo Valier, 2016
+# Paolo Valier, 2016
+# Thomas A. Jaeger, 2015
 msgid ""
 msgstr ""
 "Project-Id-Version: sale-workflow (8.0)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-10-02 17:59+0000\n"
-"PO-Revision-Date: 2015-09-03 07:11+0000\n"
-"Last-Translator: <>\n"
+"POT-Creation-Date: 2016-08-15 22:30+0000\n"
+"PO-Revision-Date: 2016-08-20 13:33+0000\n"
+"Last-Translator: Paolo Valier\n"
 "Language-Team: Italian (http://www.transifex.com/oca/OCA-sale-workflow-8-0/language/it/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -28,7 +32,7 @@ msgstr ""
 #. module: sale_validity
 #: model:ir.model,name:sale_validity.model_res_company
 msgid "Companies"
-msgstr ""
+msgstr "Aziende"
 
 #. module: sale_validity
 #: field:res.company,default_sale_order_validity_days:0
@@ -55,4 +59,4 @@ msgstr ""
 #. module: sale_validity
 #: field:sale.order,date_validity:0
 msgid "Valid Until"
-msgstr ""
+msgstr "Valido fino"
