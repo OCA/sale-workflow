@@ -4,15 +4,28 @@
     
         <!-- we add credit for test cases -->
 
-        <!-- agrolait -->
-        <record id="base.res_partner_2" model="res.partner">
-            <!-- 4887.00 de sale_order_5 + 9705.00 de sale_order_1 + 24566.00 de facturas -->
+        <!-- austek -->
+        <record id="base.res_partner_1" model="res.partner">
             <field name="credit_limit" eval="60000.00"/>
         </record>
         
-        <!-- millenium -->
-        <record id="base.res_partner_11" model="res.partner">
-            <!-- 14981.00 de sale_order_7 -->
+        <!-- agrolait -->
+        <record id="base.res_partner_2" model="res.partner">
+            <field name="credit_limit" eval="60000.00"/>
+        </record>
+        
+        <!-- China Export -->
+        <record id="base.res_partner_3" model="res.partner">
+            <field name="credit_limit" eval="60000.00"/>
+        </record>
+
+        <!-- Delta PC -->
+        <record id="base.res_partner_4" model="res.partner">
+            <field name="credit_limit" eval="60000.00"/>
+        </record>
+
+        <!-- Think Big Systems -->
+        <record id="base.res_partner_18" model="res.partner">
             <field name="credit_limit" eval="60000.00"/>
         </record>
 
