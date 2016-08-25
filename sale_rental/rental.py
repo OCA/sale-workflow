@@ -45,7 +45,7 @@ class ProductProduct(models.Model):
         string='Related Rental Services')
 
     @api.one
-    @api.constrains('rented_product_id', 'must_have_dates')
+    @api.constrains('rented_product_id', 'must_have_dates', 'type', 'uom_id')
     def _check_rental(self):
         if self.rented_product_id and self.type != 'service':
             raise ValidationError(
