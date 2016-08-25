@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+
+        <record id="view_datetime_confirm_sale_form" model="ir.ui.view">
+            <field name="model">sale.order</field>
+            <field name="inherit_id" ref="sale.view_order_form" />
+            <field name="priority">5</field>
+            <field name="arch" type="xml">
+                <field name="pricelist_id" position="after">
+                    <field name="datetime_confirm"/>
+                </field>
+            </field>
+        </record>
+
+</openerp>
