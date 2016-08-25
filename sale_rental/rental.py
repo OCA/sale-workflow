@@ -178,7 +178,7 @@ class SaleOrderLine(models.Model):
                         self.number_of_days, self.rental_qty))
             if not self.must_have_dates:
                 raise ValidationError(
-                    _("On the rental sale order line with product %s"
+                    _("On the rental sale order line with product %s "
                         "the must have dates option should be enabled")
                     % self.product_id.name)
                 # the module sale_start_end_dates checks that, when we have
