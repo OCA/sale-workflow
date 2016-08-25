@@ -338,7 +338,7 @@ class SaleRental(models.Model):
             self.rented_product_id.name,
             self.start_date,
             self.end_date,
-            self.state)  # TODO : display label, not the technical key
+            self._fields['state'].convert_to_export(self.state, self.env))
 
     @api.one
     @api.depends(
