@@ -6,4 +6,4 @@ server-tools
 project
 partner-contact
 community-data-files
-https://github.com/akretion/account-invoicing -b 8.0-add-pdf-invoice-import
+https://github.com/akretion/account-invoicing 8.0-add-pdf-invoice-import
