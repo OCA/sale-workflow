@@ -1,0 +1,341 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Order xmlns="urn:oasis:names:specification:ubl:schema:xsd:Order-2"
+  xmlns:cac="urn:oasis:names:specification:ubl:schema:xsd:CommonAggregateComponents-2"
+  xmlns:cbc="urn:oasis:names:specification:ubl:schema:xsd:CommonBasicComponents-2">
+  <cbc:UBLVersionID>2.1</cbc:UBLVersionID>
+  <cbc:CustomizationID>urn:www.cenbii.eu:transaction:biicoretrdm001:ver1.0</cbc:CustomizationID>
+  <cbc:ProfileID schemeAgencyID="BII" schemeID="Profile"
+    >urn:www.cenbii.eu:profile:BII01:ver1.0</cbc:ProfileID>
+  <cbc:ID>34</cbc:ID>
+  <cbc:IssueDate>2010-01-20</cbc:IssueDate>
+  <cbc:IssueTime>12:30:00</cbc:IssueTime>
+  <cbc:Note>Information text for the whole order</cbc:Note>
+  <cbc:DocumentCurrencyCode>SEK</cbc:DocumentCurrencyCode>
+  <cbc:AccountingCostCode>Project123</cbc:AccountingCostCode>
+  <cac:ValidityPeriod>
+    <cbc:EndDate>2010-01-31</cbc:EndDate>
+  </cac:ValidityPeriod>
+  <cac:QuotationDocumentReference>
+    <cbc:ID>QuoteID123</cbc:ID>
+  </cac:QuotationDocumentReference>
+  <cac:OrderDocumentReference>
+    <cbc:ID>RjectedOrderID123</cbc:ID>
+  </cac:OrderDocumentReference>
+  <cac:OriginatorDocumentReference>
+    <cbc:ID>MAFO</cbc:ID>
+  </cac:OriginatorDocumentReference>
+  <cac:AdditionalDocumentReference>
+    <cbc:ID>Doc1</cbc:ID>
+    <cbc:DocumentType>Timesheet</cbc:DocumentType>
+    <cac:Attachment>
+      <cac:ExternalReference>
+        <cbc:URI>http://www.suppliersite.eu/sheet001.html</cbc:URI>
+      </cac:ExternalReference>
+    </cac:Attachment>
+  </cac:AdditionalDocumentReference>
+  <cac:AdditionalDocumentReference>
+    <cbc:ID>Doc2</cbc:ID>
+    <cbc:DocumentType>Drawing</cbc:DocumentType>
+    <cac:Attachment>
+      <cbc:EmbeddedDocumentBinaryObject mimeCode="application/pdf"
+        >UjBsR09EbGhjZ0dTQUxNQUFBUUNBRU1tQ1p0dU1GUXhEUzhi</cbc:EmbeddedDocumentBinaryObject>
+    </cac:Attachment>
+  </cac:AdditionalDocumentReference>
+  <cac:Contract>
+    <cbc:ID>34322</cbc:ID>
+    <cbc:ContractType>FrameworkAgreementID123</cbc:ContractType>
+  </cac:Contract>
+  <cac:BuyerCustomerParty>
+    <cac:Party>
+      <cbc:EndpointID schemeAgencyID="9" schemeID="GLN">7300072311115</cbc:EndpointID>
+      <cac:PartyIdentification>
+        <cbc:ID schemeAgencyID="9" schemeID="GLN">7300070011115</cbc:ID>
+      </cac:PartyIdentification>
+      <cac:PartyIdentification>
+        <cbc:ID>PartyID123</cbc:ID>
+      </cac:PartyIdentification>
+      <cac:PartyName>
+        <cbc:Name>Johnssons byggvaror</cbc:Name>
+      </cac:PartyName>
+      <cac:PostalAddress>
+        <cbc:ID schemeAgencyID="9" schemeID="GLN">1234567890123</cbc:ID>
+        <cbc:Postbox>PoBox123</cbc:Postbox>
+        <cbc:StreetName>Rådhusgatan</cbc:StreetName>
+        <cbc:AdditionalStreetName>2nd floor</cbc:AdditionalStreetName>
+        <cbc:BuildingNumber>5</cbc:BuildingNumber>
+        <cbc:Department>Purchasing department</cbc:Department>
+        <cbc:CityName>Stockholm</cbc:CityName>
+        <cbc:PostalZone>11000</cbc:PostalZone>
+        <cbc:CountrySubentity>RegionX</cbc:CountrySubentity>
+        <cac:Country>
+          <cbc:IdentificationCode>SE</cbc:IdentificationCode>
+        </cac:Country>
+      </cac:PostalAddress>
+      <cac:PartyTaxScheme>
+        <cbc:RegistrationName>Herra Johnssons byggvaror AS</cbc:RegistrationName>
+        <cbc:CompanyID>SE1234567801</cbc:CompanyID>
+        <cac:RegistrationAddress>
+          <cbc:CityName>Stockholm</cbc:CityName>
+          <cac:Country>
+            <cbc:IdentificationCode>SE</cbc:IdentificationCode>
+          </cac:Country>
+        </cac:RegistrationAddress>
+        <cac:TaxScheme>
+          <cbc:ID schemeID="UN/ECE 5153" schemeAgencyID="6">VAT</cbc:ID>
+        </cac:TaxScheme>
+      </cac:PartyTaxScheme>
+      <cac:PartyLegalEntity>
+        <cbc:RegistrationName>Johnssons Byggvaror AB</cbc:RegistrationName>
+        <cbc:CompanyID schemeID="SE:ORGNR">5532331183</cbc:CompanyID>
+        <cac:RegistrationAddress>
+          <cbc:CityName>Stockholm</cbc:CityName>
+          <cbc:CountrySubentity>RegionX</cbc:CountrySubentity>
+          <cac:Country>
+            <cbc:IdentificationCode>SE</cbc:IdentificationCode>
+          </cac:Country>
+        </cac:RegistrationAddress>
+      </cac:PartyLegalEntity>
+      <cac:Contact>
+        <cbc:Telephone>123456</cbc:Telephone>
+        <cbc:Telefax>123456</cbc:Telefax>
+        <cbc:ElectronicMail>pelle@johnsson.se</cbc:ElectronicMail>
+      </cac:Contact>
+      <cac:Person>
+        <cbc:FirstName>Pelle</cbc:FirstName>
+        <cbc:FamilyName>Svensson</cbc:FamilyName>
+        <cbc:MiddleName>X</cbc:MiddleName>
+        <cbc:JobTitle>Boss</cbc:JobTitle>
+      </cac:Person>
+    </cac:Party>
+    <cac:DeliveryContact>
+      <cbc:Name>Eva Johnsson</cbc:Name>
+      <cbc:Telephone>1234356</cbc:Telephone>
+      <cbc:Telefax>123455</cbc:Telefax>
+      <cbc:ElectronicMail>eva@johnsson.se</cbc:ElectronicMail>
+    </cac:DeliveryContact>
+  </cac:BuyerCustomerParty>
+  <cac:SellerSupplierParty>
+    <cac:Party>
+      <cbc:EndpointID schemeAgencyID="9" schemeID="GLN">7302347231111</cbc:EndpointID>
+      <cac:PartyIdentification>
+        <cbc:ID>SellerPartyID123</cbc:ID>
+      </cac:PartyIdentification>
+      <cac:PartyName>
+        <cbc:Name>Moderna Produkter AB</cbc:Name>
+      </cac:PartyName>
+      <cac:PostalAddress>
+        <cbc:ID schemeAgencyID="9" schemeID="GLN">0987654321123</cbc:ID>
+        <cbc:Postbox>321</cbc:Postbox>
+        <cbc:StreetName>Kungsgatan</cbc:StreetName>
+        <cbc:AdditionalStreetName>suite12</cbc:AdditionalStreetName>
+        <cbc:BuildingNumber>22</cbc:BuildingNumber>
+        <cbc:Department>Sales department</cbc:Department>
+        <cbc:CityName>Stockholm</cbc:CityName>
+        <cbc:PostalZone>11000</cbc:PostalZone>
+        <cbc:CountrySubentity>RegionX</cbc:CountrySubentity>
+        <cac:Country>
+          <cbc:IdentificationCode>SE</cbc:IdentificationCode>
+        </cac:Country>
+      </cac:PostalAddress>
+      <cac:PartyLegalEntity>
+        <cbc:RegistrationName>Moderna Produkter AB</cbc:RegistrationName>
+        <cbc:CompanyID schemeID="SE:ORGNR">5532332283</cbc:CompanyID>
+        <cac:RegistrationAddress>
+          <cbc:CityName>Stockholm</cbc:CityName>
+          <cbc:CountrySubentity>RegionX</cbc:CountrySubentity>
+          <cac:Country>
+            <cbc:IdentificationCode>SE</cbc:IdentificationCode>
+          </cac:Country>
+        </cac:RegistrationAddress>
+      </cac:PartyLegalEntity>
+      <cac:Contact>
+        <cbc:Telephone>34557</cbc:Telephone>
+        <cbc:Telefax>3456767</cbc:Telefax>
+        <cbc:ElectronicMail>lars@moderna.se</cbc:ElectronicMail>
+      </cac:Contact>
+      <cac:Person>
+        <cbc:FirstName>Lars</cbc:FirstName>
+        <cbc:FamilyName>Petersen</cbc:FamilyName>
+        <cbc:MiddleName>M</cbc:MiddleName>
+        <cbc:JobTitle>Sales manager</cbc:JobTitle>
+      </cac:Person>
+    </cac:Party>
+  </cac:SellerSupplierParty>
+  <cac:OriginatorCustomerParty>
+    <cac:Party>
+      <cac:PartyIdentification>
+        <cbc:ID schemeAgencyID="9" schemeID="GLN">0987678321123</cbc:ID>
+      </cac:PartyIdentification>
+      <cac:PartyName>
+        <cbc:Name>Moderna Produkter AB</cbc:Name>
+      </cac:PartyName>
+      <cac:Contact>
+        <cbc:Telephone>346788</cbc:Telephone>
+        <cbc:Telefax>8567443</cbc:Telefax>
+        <cbc:ElectronicMail>sven@moderna.se</cbc:ElectronicMail>
+      </cac:Contact>
+      <cac:Person>
+        <cbc:FirstName>Sven</cbc:FirstName>
+        <cbc:FamilyName>Pereson</cbc:FamilyName>
+        <cbc:MiddleName>N</cbc:MiddleName>
+        <cbc:JobTitle>Stuffuser</cbc:JobTitle>
+      </cac:Person>
+    </cac:Party>
+  </cac:OriginatorCustomerParty>
+  <cac:Delivery>
+    <cac:DeliveryLocation>
+      <cac:Address>
+        <cbc:ID schemeAgencyID="9" schemeID="GLN">1234567890123</cbc:ID>
+        <cbc:Postbox>123</cbc:Postbox>
+        <cbc:StreetName>Rådhusgatan</cbc:StreetName>
+        <cbc:AdditionalStreetName>2nd floor</cbc:AdditionalStreetName>
+        <cbc:BuildingNumber>5</cbc:BuildingNumber>
+        <cbc:Department>Purchasing department</cbc:Department>
+        <cbc:CityName>Stockholm</cbc:CityName>
+        <cbc:PostalZone>11000</cbc:PostalZone>
+        <cbc:CountrySubentity>RegionX</cbc:CountrySubentity>
+        <cac:Country>
+          <cbc:IdentificationCode>SE</cbc:IdentificationCode>
+        </cac:Country>
+      </cac:Address>
+    </cac:DeliveryLocation>
+    <cac:RequestedDeliveryPeriod>
+      <cbc:StartDate>2010-02-10</cbc:StartDate>
+      <cbc:EndDate>2010-02-25</cbc:EndDate>
+    </cac:RequestedDeliveryPeriod>
+    <cac:DeliveryParty>
+      <cac:PartyIdentification>
+        <cbc:ID schemeAgencyID="9" schemeID="GLN">67654328394567</cbc:ID>
+      </cac:PartyIdentification>
+      <cac:PartyName>
+        <cbc:Name>Swedish trucking</cbc:Name>
+      </cac:PartyName>
+      <cac:Contact>
+        <cbc:Name>Per</cbc:Name>
+        <cbc:Telephone>987098709</cbc:Telephone>
+        <cbc:Telefax>34673435</cbc:Telefax>
+        <cbc:ElectronicMail>bill@svetruck.se</cbc:ElectronicMail>
+      </cac:Contact>
+    </cac:DeliveryParty>
+  </cac:Delivery>
+  <cac:DeliveryTerms>
+    <cbc:ID schemeAgencyID="6" schemeID="IMCOTERM">FOT</cbc:ID>
+    <cbc:SpecialTerms>CAD</cbc:SpecialTerms>
+    <cac:DeliveryLocation>
+      <cbc:ID>STO</cbc:ID>
+    </cac:DeliveryLocation>
+  </cac:DeliveryTerms>
+  <cac:AllowanceCharge>
+    <cbc:ChargeIndicator>true</cbc:ChargeIndicator>
+    <cbc:AllowanceChargeReason>Transport documents</cbc:AllowanceChargeReason>
+    <cbc:Amount currencyID="SEK">100</cbc:Amount>
+  </cac:AllowanceCharge>
+  <cac:AllowanceCharge>
+    <cbc:ChargeIndicator>false</cbc:ChargeIndicator>
+    <cbc:AllowanceChargeReason>Total order value discount</cbc:AllowanceChargeReason>
+    <cbc:Amount currencyID="SEK">100</cbc:Amount>
+  </cac:AllowanceCharge>
+  <cac:TaxTotal>
+    <cbc:TaxAmount currencyID="SEK">100</cbc:TaxAmount>
+  </cac:TaxTotal>
+  <cac:AnticipatedMonetaryTotal>
+    <cbc:LineExtensionAmount currencyID="SEK">6225</cbc:LineExtensionAmount>
+    <cbc:AllowanceTotalAmount currencyID="SEK">100</cbc:AllowanceTotalAmount>
+    <cbc:ChargeTotalAmount currencyID="SEK">100</cbc:ChargeTotalAmount>
+    <cbc:PayableAmount currencyID="SEK">6225</cbc:PayableAmount>
+  </cac:AnticipatedMonetaryTotal>
+  <cac:OrderLine>
+    <cbc:Note>Freetext note on line 1</cbc:Note>
+    <cac:LineItem>
+      <cbc:ID>1</cbc:ID>
+      <cbc:Quantity unitCode="LTR">120</cbc:Quantity>
+      <cbc:LineExtensionAmount currencyID="SEK">6000</cbc:LineExtensionAmount>
+      <cbc:TotalTaxAmount currencyID="SEK">10</cbc:TotalTaxAmount>
+      <cbc:PartialDeliveryIndicator>false</cbc:PartialDeliveryIndicator>
+      <cbc:AccountingCostCode>ProjectID123</cbc:AccountingCostCode>
+      <cac:Delivery>
+        <cac:RequestedDeliveryPeriod>
+          <cbc:StartDate>2010-02-10</cbc:StartDate>
+          <cbc:EndDate>2010-02-25</cbc:EndDate>
+        </cac:RequestedDeliveryPeriod>
+      </cac:Delivery>
+      <cac:OriginatorParty>
+        <cac:PartyIdentification>
+          <cbc:ID schemeAgencyID="ZZZ" schemeID="ZZZ">EmployeeXXX</cbc:ID>
+        </cac:PartyIdentification>
+        <cac:PartyName>
+          <cbc:Name>Josef K.</cbc:Name>
+        </cac:PartyName>
+      </cac:OriginatorParty>
+      <cac:Price>
+        <cbc:PriceAmount currencyID="SEK">50</cbc:PriceAmount>
+        <cbc:BaseQuantity unitCode="LTR">1</cbc:BaseQuantity>
+      </cac:Price>
+      <cac:Item>
+        <cbc:Description>Red paint</cbc:Description>
+        <cbc:Name>Falu Rödfärg</cbc:Name>
+        <cac:SellersItemIdentification>
+          <cbc:ID>SItemNo001</cbc:ID>
+        </cac:SellersItemIdentification>
+        <cac:StandardItemIdentification>
+          <cbc:ID schemeAgencyID="6" schemeID="GTIN">1234567890123</cbc:ID>
+        </cac:StandardItemIdentification>
+        <cac:AdditionalItemProperty>
+          <cbc:Name>Paint type</cbc:Name>
+          <cbc:Value>Acrylic</cbc:Value>
+        </cac:AdditionalItemProperty>
+        <cac:AdditionalItemProperty>
+          <cbc:Name>Solvant</cbc:Name>
+          <cbc:Value>Water</cbc:Value>
+        </cac:AdditionalItemProperty>
+      </cac:Item>
+    </cac:LineItem>
+  </cac:OrderLine>
+  <cac:OrderLine>
+    <cbc:Note>Freetext note on line 2</cbc:Note>
+    <cac:LineItem>
+      <cbc:ID>2</cbc:ID>
+      <cbc:Quantity unitCode="C62">15</cbc:Quantity>
+      <cbc:LineExtensionAmount currencyID="SEK">225</cbc:LineExtensionAmount>
+      <cbc:TotalTaxAmount currencyID="SEK">10</cbc:TotalTaxAmount>
+      <cbc:PartialDeliveryIndicator>false</cbc:PartialDeliveryIndicator>
+      <cbc:AccountingCostCode>ProjectID123</cbc:AccountingCostCode>
+      <cac:Delivery>
+        <cac:RequestedDeliveryPeriod>
+          <cbc:StartDate>2010-02-10</cbc:StartDate>
+          <cbc:EndDate>2010-02-25</cbc:EndDate>
+        </cac:RequestedDeliveryPeriod>
+      </cac:Delivery>
+      <cac:OriginatorParty>
+        <cac:PartyIdentification>
+          <cbc:ID schemeAgencyID="ZZZ" schemeID="ZZZ">EmployeeXXX</cbc:ID>
+        </cac:PartyIdentification>
+        <cac:PartyName>
+          <cbc:Name>Josef K.</cbc:Name>
+        </cac:PartyName>
+      </cac:OriginatorParty>
+      <cac:Price>
+        <cbc:PriceAmount currencyID="SEK">15</cbc:PriceAmount>
+        <cbc:BaseQuantity unitCode="C62">1</cbc:BaseQuantity>
+      </cac:Price>
+      <cac:Item>
+        <cbc:Description>Very good pencils for red paint.</cbc:Description>
+        <cbc:Name>Pensel 20 mm</cbc:Name>
+        <cac:SellersItemIdentification>
+          <cbc:ID>SItemNo011</cbc:ID>
+        </cac:SellersItemIdentification>
+        <cac:StandardItemIdentification>
+          <cbc:ID schemeAgencyID="6" schemeID="GTIN">123452340123</cbc:ID>
+        </cac:StandardItemIdentification>
+        <cac:AdditionalItemProperty>
+          <cbc:Name>Hair color</cbc:Name>
+          <cbc:Value>Black</cbc:Value>
+        </cac:AdditionalItemProperty>
+        <cac:AdditionalItemProperty>
+          <cbc:Name>Width</cbc:Name>
+          <cbc:Value>20mm</cbc:Value>
+        </cac:AdditionalItemProperty>
+      </cac:Item>
+    </cac:LineItem>
+  </cac:OrderLine>
+</Order>

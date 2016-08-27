@@ -1,0 +1,194 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<openerp>
+<data noupdate="1">
+
+<!-- for tests/UBL-Order-2.1-Example.xml -->
+<record id="sek_pricelist" model="product.pricelist">
+    <field name="name">SEK pricelist</field>
+    <field name="type">sale</field>
+    <field name="currency_id" ref="base.SEK"/>
+</record>
+
+<record id="sek_pricelist_version0" model="product.pricelist.version">
+    <field name="pricelist_id" ref="sek_pricelist"/>
+    <field name="name">Unique Version</field>
+</record>
+
+<record id="sek_pricelist_item0" model="product.pricelist.item">
+    <field name="price_version_id" ref="sek_pricelist_version0"/>
+    <field name="base" ref="product.list_price"/>
+    <field name="name">Line 0</field>
+</record>
+
+<record id="johnssons" model="res.partner">
+    <field name="name">Johnssons byggvaror</field>
+    <field name="is_company" eval="True"/>
+    <field name="supplier" eval="False"/>
+    <field name="customer" eval="True"/>
+    <field name="email"></field>
+    <field name="street">5 Rådhusgatan</field>
+    <field name="street2">PoBox123</field>
+    <field name="zip">11000</field>
+    <field name="city">Stockholm</field>
+    <field name="country_id" ref="base.se"/>
+    <field name="property_product_pricelist" ref="sek_pricelist"/>
+</record>
+
+<record id="svensson" model="res.partner">
+    <field name="parent_id" ref="johnssons"/>
+    <field name="name">Pelle Svensson</field>
+    <field name="function">Boss</field>
+    <field name="email">pelle@johnsson.se</field>
+    <field name="customer" eval="True"/>
+    <field name="use_parent_address" eval="True"/>
+    <field name="property_product_pricelist" ref="sek_pricelist"/>
+</record>
+
+<record id="swedish_trucking" model="res.partner">
+    <field name="name">Swedish trucking</field>
+    <field name="is_company" eval="True"/>
+    <field name="supplier" eval="False"/>
+    <field name="customer" eval="False"/>
+    <field name="email">bill@svetruck.se</field>
+    <field name="street">5 Rådhusgatan</field>
+    <field name="street2">2nd floor</field>
+    <field name="zip">11000</field>
+    <field name="city">Stockholm</field>
+    <field name="country_id" ref="base.se"/>
+</record>
+
+<record id="product_red_paint" model="product.product">
+    <field name="name">Falu Rödfärg</field>
+    <field name="description_sale">Red paint</field>
+    <field name="default_code">SItemNo001</field>
+    <field name="list_price">55</field>
+    <field name="type">consu</field>
+    <field name="uom_id" ref="product.product_uom_litre"/>
+    <field name="uom_po_id" ref="product.product_uom_litre"/>
+</record>
+
+<record id="product_pencil" model="product.product">
+    <field name="name">Pensel 20 mm</field>
+    <field name="description_sale">Very good pencils for red paint</field>
+    <field name="default_code">SItemNo011</field>
+    <field name="list_price">18</field>
+    <field name="type">consu</field>
+</record>
+
+<!-- for tests/UBL-Order-2.0-Example.xml -->
+<record id="gbp_pricelist" model="product.pricelist">
+    <field name="name">IYT pricelist</field>
+    <field name="type">sale</field>
+    <field name="currency_id" ref="base.GBP"/>
+</record>
+
+<record id="gbp_pricelist_version0" model="product.pricelist.version">
+    <field name="pricelist_id" ref="gbp_pricelist"/>
+    <field name="name">Unique Version</field>
+</record>
+
+<record id="gbp_pricelist_item0" model="product.pricelist.item">
+    <field name="price_version_id" ref="gbp_pricelist_version0"/>
+    <field name="base" ref="product.list_price"/>
+    <field name="name">Line 0</field>
+</record>
+
+<record id="iyt" model="res.partner">
+    <field name="name">IYT Corporation</field>
+    <field name="is_company" eval="True"/>
+    <field name="supplier" eval="False"/>
+    <field name="customer" eval="True"/>
+    <field name="email"></field>
+    <field name="street">56A Avon Way</field>
+    <field name="street2">Thereabouts</field>
+    <field name="zip">ZZ99 1ZZ</field>
+    <field name="city">Bridgtow</field>
+    <field name="country_id" ref="base.uk"/>
+    <field name="property_product_pricelist" ref="gbp_pricelist"/>
+</record>
+
+<record id="fred_churchill" model="res.partner">
+    <field name="parent_id" ref="iyt"/>
+    <field name="name">Fred Churchill</field>
+    <field name="email">fred@iytcorporation.gov.uk</field>
+    <field name="customer" eval="True"/>
+    <field name="use_parent_address" eval="True"/>
+    <field name="property_product_pricelist" ref="gbp_pricelist"/>
+</record>
+
+<record id="product_beeswax" model="product.product">
+    <field name="name">Beeswax</field>
+    <field name="description_sale">Acme beeswax</field>
+    <field name="default_code">17589683</field>
+    <field name="list_price">42</field>
+    <field name="type">consu</field>
+    <field name="uom_id" ref="product.product_uom_kgm"/>
+    <field name="uom_po_id" ref="product.product_uom_kgm"/>
+</record>
+
+<!-- for tests/UBL-RequestForQuotation-2.0-Example.xml -->
+<record id="terminus" model="res.partner">
+    <field name="name">The Terminus</field>
+    <field name="is_company" eval="True"/>
+    <field name="supplier" eval="False"/>
+    <field name="customer" eval="True"/>
+    <field name="email"></field>
+    <field name="street">56A Avon Way</field>
+    <field name="street2">Thereabouts</field>
+    <field name="zip">ZZ99 1ZZ</field>
+    <field name="city">Bridgtow</field>
+    <field name="country_id" ref="base.uk"/>
+</record>
+
+<record id="s_massiah" model="res.partner">
+    <field name="parent_id" ref="terminus"/>
+    <field name="name">S Massiah</field>
+    <field name="email">smassiah@the-email.co.uk</field>
+    <field name="customer" eval="True"/>
+    <field name="use_parent_address" eval="True"/>
+</record>
+
+<!-- for tests/UBL-RequestForQuotation-2.1-Example.xml -->
+
+<record id="dkk_pricelist" model="product.pricelist">
+    <field name="name">DKK pricelist</field>
+    <field name="type">sale</field>
+    <field name="currency_id" ref="base.DKK"/>
+</record>
+
+<record id="dkk_pricelist_version0" model="product.pricelist.version">
+    <field name="pricelist_id" ref="dkk_pricelist"/>
+    <field name="name">Unique Version</field>
+</record>
+
+<record id="dkk_pricelist_item0" model="product.pricelist.item">
+    <field name="price_version_id" ref="dkk_pricelist_version0"/>
+    <field name="base" ref="product.list_price"/>
+    <field name="name">Line 0</field>
+</record>
+
+<record id="gentofte_kommune" model="res.partner">
+    <field name="name">Gentofte Kommune</field>
+    <field name="is_company" eval="True"/>
+    <field name="supplier" eval="False"/>
+    <field name="customer" eval="True"/>
+    <field name="email"></field>
+    <field name="street">161 Bernstorffsvej</field>
+    <field name="zip">2920</field>
+    <field name="city">Charlottenlund</field>
+    <field name="country_id" ref="base.dk"/>
+    <field name="property_product_pricelist" ref="dkk_pricelist"/>
+</record>
+
+<record id="delivery_gentofte_kommune" model="res.partner">
+    <field name="parent_id" ref="gentofte_kommune"/>
+    <field name="name">Joe Delivery</field>
+    <field name="customer" eval="True"/>
+    <field name="use_parent_address" eval="True"/>
+    <field name="type">delivery</field>
+</record>
+
+
+</data>
+</openerp>
