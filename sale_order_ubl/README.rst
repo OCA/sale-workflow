@@ -10,7 +10,7 @@ This module adds support for UBL, the `Universal Business Language (UBL) <http:/
 
 With this module, when you generate the sale order report:
 
-* on a draft/sent quotation, the PDF file will have an embedded XML Quotation file compliant with the UBL 2.1 standard.
+* on a draft/sent quotation, the PDF file will have an embedded XML *Quotation* file compliant with the UBL 2.1 standard.
 
 * on a confirmed sale order, the PDF file will have an embedded XML *Order Response Simple* file compliant with the UBL 2.1 standard.
 
