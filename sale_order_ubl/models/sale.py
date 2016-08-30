@@ -136,7 +136,7 @@ class SaleOrder(models.Model):
             xml_root, pretty_print=True, encoding='UTF-8',
             xml_declaration=True)
         self._check_xml_schema(
-            xml_string, 'sale_order_ubl/data/maindoc/' + xsd_filename)
+            xml_string, 'base_ubl/data/xsd-2.1/maindoc/' + xsd_filename)
         logger.debug(
             '%s UBL XML file generated for sale order ID %d (state %s)',
             doc_type, self.id, self.state)
