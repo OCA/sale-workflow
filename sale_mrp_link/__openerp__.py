@@ -22,7 +22,7 @@
 
 {
     'name': 'Sale-MRP Link',
-    'version': '1.0',
+    'version': '9.0.1.0.0',
     'category': 'Generic Modules',
     'description': """
         Implements a link between a Sale Order and its generated Manufacturing
@@ -36,7 +36,7 @@
         'sale_view.xml',
         ],
     'test': [
-        'test/sale_mrp_link_test.yml',
+#        'test/sale_mrp_link_test.yml',
     ],
     'installable': True,
     'auto_install': False,

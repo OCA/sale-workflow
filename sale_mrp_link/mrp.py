@@ -8,6 +8,10 @@
 #
 ##############################################################################
 
-from . import mrp
-from . import sale
-from . import procurement
+from openerp import models, fields
+
+
+class MrpProduction(models.Model):
+    _inherit = 'mrp.production'
+
+    sale_order_id = fields.Many2one('sale.order', 'Source Sale Order')
