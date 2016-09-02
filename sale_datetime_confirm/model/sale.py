@@ -24,7 +24,7 @@ from openerp import fields, models, api
 class SaleOrder(models.Model):
     _inherit = 'sale.order'
 
-    datetime_confirm = fields.Datetime(string='Confirm Date')
+    datetime_confirm = fields.Datetime(string='Confirm Date', copy=False)
 
     @api.multi
     def action_confirm(self):
