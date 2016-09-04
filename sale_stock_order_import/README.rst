@@ -2,17 +2,11 @@
    :target: http://www.gnu.org/licenses/agpl-3.0-standalone.html
    :alt: License: AGPL-3
 
-==============
-Sale Order UBL
-==============
+=======================
+Sale Stock Order Import
+=======================
 
-This module adds support for UBL, the `Universal Business Language (UBL) <http://ubl.xml.org/>`_ standard, on sale orders. The UBL standard became the `ISO/IEC 19845 <http://www.iso.org/iso/catalogue_detail.htm?csnumber=66370>`_ standard in December 2015 (cf the `official announce <http://www.prweb.com/releases/2016/01/prweb13186919.htm>_`).
-
-With this module, when you generate the sale order report:
-
-* on a draft/sent quotation, the PDF file will have an embedded XML *Quotation* file compliant with the UBL 2.1 standard.
-
-* on a confirmed sale order, the PDF file will have an embedded XML *Order Response Simple* file compliant with the UBL 2.1 standard.
+This is a technical module that acts as a glue between the modules *sale_order_import* and *sale_stock* (that's why this module is auto-installable). It adds support for setting the incoterm upon import of an electronic RFQ or sale order.
 
 Configuration
 =============
@@ -21,6 +15,8 @@ No configuration is needed.
 
 Usage
 =====
+
+Refer to the README.rst of the module *sale_order_import* for a detailed usage description.
 
 .. image:: https://odoo-community.org/website/image/ir.attachment/5784_f2813bd/datas
    :alt: Try me on Runbot
