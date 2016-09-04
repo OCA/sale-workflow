@@ -90,8 +90,6 @@ class SaleOrder(models.Model):
         self._ubl_add_delivery(self.partner_shipping_id, xml_root, ns)
         if hasattr(self, 'incoterm') and self.incoterm:
             self._ubl_add_delivery_terms(self.incoterm, xml_root, ns)
-        if self.payment_term:
-            self._ubl_add_payment_terms(self.payment_term, xml_root, ns)
         self._ubl_add_quoted_monetary_total(xml_root, ns)
 
         line_number = 0
