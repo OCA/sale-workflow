@@ -28,6 +28,9 @@ class SaleOrder(models.Model):
     def onchange_type_id(self):
         self.warehouse_id = self.type_id.warehouse_id
         self.picking_policy = self.type_id.picking_policy
+        self.payment_term = self.type_id.payment_term_id.id
+        self.pricelist_id = self.type_id.pricelist_id.id
+        self.incoterm = self.type_id.incoterm_id.id
 
     @api.model
     def create(self, vals):

@@ -23,12 +23,19 @@ class TestSaleOrderType(common.TransactionCase):
             [('type', '=', 'sale')], limit=1)
         self.warehouse = self.env.ref('stock.stock_warehouse_shop0')
         self.product = self.env.ref('product.product_product_4')
+        self.immediate_payment = self.env.ref(
+            'account.account_payment_term_immediate')
+        self.sale_pricelist = self.env.ref('product.pricelist_type_sale')
+        self.free_carrier = self.env.ref('stock.incoterm_FCA')
         self.sale_type = self.sale_type_model.create({
             'name': 'Test Sale Order Type',
             'sequence_id': self.sequence.id,
             'journal_id': self.journal.id,
             'warehouse_id': self.warehouse.id,
             'picking_policy': 'one',
+            'payment_term_id': self.immediate_payment.id,
+            'pricelist_id': self.sale_pricelist.id,
+            'incoterm_id': self.free_carrier.id,
         })
         self.partner.sale_type = self.sale_type
 
