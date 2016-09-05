@@ -4,7 +4,7 @@
 
 {
     "name": "Sale Order Unified Menu",
-    "summary": "Add a menu to show draft and confirmed orders",
+    "description": "Add a menu to show draft and confirmed orders",
     "version": "8.0.1.0.0",
     "category": "Sale",
     "website": "https://www.apuliasoftware.it",
@@ -14,8 +14,8 @@
     "installable": True,
     "depends": [
         "sale",
-        ],
+    ],
     "data": [
         "views/sale_view.xml",
-        ],
+    ],
 }
