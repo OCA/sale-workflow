@@ -9,11 +9,8 @@ from openerp import api, models, fields
 class AccountInvoice(models.Model):
     _inherit = 'account.invoice'
 
-    def _get_order_type(self):
-        return self.env['sale.order.type'].search([])[:1]
-
     sale_type_id = fields.Many2one(
-        comodel_name='sale.order.type', string='Type', default=_get_order_type)
+        comodel_name='sale.order.type', string='Sale Type')
 
     @api.multi
     def _prepare_refund(self, invoice, date=None, period_id=None,
