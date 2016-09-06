@@ -93,3 +93,9 @@ class TestSaleOrderType(common.TransactionCase):
         self.assertEqual(self.sale_type.payment_term_id,
                          invoice.payment_term)
         self.assertEqual(self.sale_type.journal_id, invoice.journal_id)
+
+    def test_invoice_onchange_partner(self):
+        onchange_partner = self.invoice_model.onchange_partner_id(
+            'out_invoice', self.partner.id)
+        self.assertEqual(self.sale_type.id,
+                         onchange_partner['value']['type_id'])
