@@ -28,7 +28,6 @@ class SaleOrder(models.Model):
 
     @api.multi
     def action_confirm(self):
-        res = super(SaleOrder, self).action_confirm()
         datetime_confirm = fields.Datetime.now()
         self.write({'datetime_confirm': datetime_confirm})
-        return res
+        return super(SaleOrder, self).action_confirm()
