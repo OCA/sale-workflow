@@ -13,8 +13,6 @@ class TestUblOrderImport(TransactionCase):
         buo = self.env['base.ubl']
         quotation_states = soo.get_quotation_states()
         order_states = soo.get_order_states()
-        quotation_filename = soo.get_ubl_filename('quotation')
-        order_filename = soo.get_ubl_filename('order')
         for i in range(7):
             i += 1
             order = self.env.ref('sale.sale_order_%d' % i)
@@ -23,6 +21,8 @@ class TestUblOrderImport(TransactionCase):
                 self.cr, self.uid, order.ids, 'sale.report_saleorder')
             res = buo.get_xml_files_from_pdf(pdf_file)
             if order.state in quotation_states:
-                self.assertTrue(quotation_filename in res)
+                filename = order.get_ubl_filename('quotation')
+                self.assertTrue(filename in res)
             elif order.state in order_states:
-                self.assertTrue(order_filename in res)
+                filename = order.get_ubl_filename('order')
+                self.assertTrue(filename in res)
