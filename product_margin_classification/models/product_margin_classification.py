@@ -9,6 +9,12 @@ import openerp.addons.decimal_precision as dp
 
 class ProductMarginClassification(models.Model):
     _name = 'product.margin.classification'
+    _inherit = 'ir.needaction_mixin'
+
+    # View Section
+    @api.model
+    def _needaction_count(self, domain=None, context=None):
+        return sum(self.search([]).mapped('template_different_price_qty'))
 
     # Default Section
     def _default_company_id(self):
