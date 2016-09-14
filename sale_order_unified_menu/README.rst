@@ -6,17 +6,7 @@
 Sale Order Unified Menu
 =======================
 
-Add a menu to show draft and confirmed orders
-
-Installation
-============
-
-Normal installation.
-
-Configuration
-=============
-
-No configuration is needed.
+Add a menu to show draft and confirmed orders all together
 
 Usage
 =====
