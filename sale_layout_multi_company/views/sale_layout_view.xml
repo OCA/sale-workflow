@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+        <record id="report_configuration_form_view_company" model="ir.ui.view">
+            <field name="name">report_configuration_form_view_company</field>
+            <field name="model">sale_layout.category</field>
+            <field name="inherit_id" ref="sale_layout.report_configuration_form_view"></field>
+            <field name="arch" type="xml">
+                <field name="sequence" position="after">
+                    <field name="company_id" groups="base.group_multi_company" widget="selection"></field>
+                </field>
+            </field>
+        </record>
+        <record id="report_configuration_tree_view_company" model="ir.ui.view">
+            <field name="name">report_configuration_tree_view_company</field>
+            <field name="model">sale_layout.category</field>
+            <field name="inherit_id" ref="sale_layout.report_configuration_tree_view"></field>
+            <field name="arch" type="xml">
+                <field name="sequence" position="after">
+                    <field name="company_id" groups="base.group_multi_company"></field>
+                </field>
+            </field>
+        </record>
+    </data>
+</openerp>
