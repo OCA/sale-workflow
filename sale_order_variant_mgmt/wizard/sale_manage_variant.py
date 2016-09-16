@@ -14,6 +14,16 @@ class SaleManageVariant(models.TransientModel):
     variant_line_ids = fields.Many2many(
         comodel_name='sale.manage.variant.line', string="Variant Lines")
 
+    # HACK https://github.com/OCA/server-tools/pull/492#issuecomment-237594285
+    @api.multi
+    def onchange(self, values, field_name, field_onchange):
+        if "variant_line_ids" in field_onchange:
+            for sub in ("product_id", "disabled", "value_x", "value_y",
+                        "value_x_label", "value_y_label", "product_uom_qty"):
+                field_onchange.setdefault("variant_line_ids." + sub, u"")
+        return super(SaleManageVariant, self).onchange(
+            values, field_name, field_onchange)
+
     @api.onchange('product_tmpl_id')
     def _onchange_product_tmpl_id(self):
         self.variant_line_ids = [(6, 0, [])]
