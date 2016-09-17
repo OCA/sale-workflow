@@ -16,13 +16,16 @@ class TestUblOrderImport(TransactionCase):
         for i in range(7):
             i += 1
             order = self.env.ref('sale.sale_order_%d' % i)
-            # I didn't manage to make it work with new api :-(
-            pdf_file = ro.get_pdf(
-                self.cr, self.uid, order.ids, 'sale.report_saleorder')
-            res = buo.get_xml_files_from_pdf(pdf_file)
-            if order.state in quotation_states:
-                filename = order.get_ubl_filename('quotation')
-                self.assertTrue(filename in res)
-            elif order.state in order_states:
-                filename = order.get_ubl_filename('order')
-                self.assertTrue(filename in res)
+            for version in ['2.0', '2.1']:
+                # I didn't manage to make it work with new api :-(
+                pdf_file = ro.get_pdf(
+                    self.cr, self.uid, order.ids, 'sale.report_saleorder',
+                    context={'ubl_version': version})
+                res = buo.get_xml_files_from_pdf(pdf_file)
+                if order.state in quotation_states:
+                    filename = order.get_ubl_filename(
+                        'quotation', version=version)
+                    self.assertTrue(filename in res)
+                elif order.state in order_states:
+                    filename = order.get_ubl_filename('order', version=version)
+                    self.assertTrue(filename in res)
