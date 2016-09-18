@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: sale-workflow (8.0)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-02-26 09:59+0000\n"
-"PO-Revision-Date: 2016-02-26 16:54+0000\n"
+"POT-Creation-Date: 2016-09-11 16:48+0000\n"
+"PO-Revision-Date: 2016-09-15 12:45+0000\n"
 "Last-Translator: OCA Transbot <transbot@odoo-community.org>\n"
 "Language-Team: Finnish (http://www.transifex.com/oca/OCA-sale-workflow-8-0/language/fi/)\n"
 "MIME-Version: 1.0\n"
@@ -37,6 +37,11 @@ msgid "Created on"
 msgstr "Luotu"
 
 #. module: sale_packaging_price
+#: field:product.packaging.material,display_name:0
+msgid "Display Name"
+msgstr "Nimi"
+
+#. module: sale_packaging_price
 #: view:product.packaging:sale_packaging_price.product_packaging_filter
 msgid "Group By..."
 msgstr ""
@@ -45,6 +50,11 @@ msgstr ""
 #: field:product.packaging.material,id:0
 msgid "ID"
 msgstr "ID"
+
+#. module: sale_packaging_price
+#: field:product.packaging.material,__last_update:0
+msgid "Last Modified on"
+msgstr "Viimeksi muokattu"
 
 #. module: sale_packaging_price
 #: field:product.packaging.material,write_uid:0
@@ -75,6 +85,7 @@ msgstr ""
 #. module: sale_packaging_price
 #: field:product.packaging,list_price:0
 #: view:sale.order:sale_packaging_price.view_order_form_inherit
+#: field:sale.order.line,packaging_price:0
 msgid "Package Price"
 msgstr ""
 
@@ -98,7 +109,7 @@ msgstr ""
 #. module: sale_packaging_price
 #: view:product.packaging:sale_packaging_price.product_packaging_filter
 msgid "Product"
-msgstr ""
+msgstr "Tuote"
 
 #. module: sale_packaging_price
 #: field:sale.report,product_packaging:0
@@ -133,7 +144,7 @@ msgid "Search Product Packaging"
 msgstr ""
 
 #. module: sale_packaging_price
-#: help:product.packaging,list_price:0
+#: help:product.packaging,list_price:0 help:sale.order.line,packaging_price:0
 msgid "This price will be considered as a price for complete package"
 msgstr ""
 

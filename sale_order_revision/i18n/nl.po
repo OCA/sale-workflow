@@ -3,11 +3,12 @@
 # * sale_order_revision
 # 
 # Translators:
+# Rudolf Schnapka <rs@techno-flex.de>, 2015
 msgid ""
 msgstr ""
 "Project-Id-Version: sale-workflow (8.0)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-10-23 08:14+0000\n"
+"POT-Creation-Date: 2016-09-11 16:48+0000\n"
 "PO-Revision-Date: 2015-09-03 07:09+0000\n"
 "Last-Translator: <>\n"
 "Language-Team: Dutch (http://www.transifex.com/oca/OCA-sale-workflow-8-0/language/nl/)\n"
@@ -20,7 +21,7 @@ msgstr ""
 #. module: sale_order_revision
 #: field:sale.order,active:0
 msgid "Active"
-msgstr ""
+msgstr "Actief"
 
 #. module: sale_order_revision
 #: field:sale.order,current_revision_id:0
@@ -28,7 +29,7 @@ msgid "Current revision"
 msgstr ""
 
 #. module: sale_order_revision
-#: code:addons/sale_order_revision/model/sale_order.py:65
+#: code:addons/sale_order_revision/model/sale_order.py:68
 #, python-format
 msgid "New revision created: %s"
 msgstr ""

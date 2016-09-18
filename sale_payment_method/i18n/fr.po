@@ -9,8 +9,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: sale-workflow (8.0)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-04-14 06:47+0000\n"
-"PO-Revision-Date: 2015-12-01 14:35+0000\n"
+"POT-Creation-Date: 2016-09-11 16:48+0000\n"
+"PO-Revision-Date: 2016-09-17 19:03+0000\n"
 "Last-Translator: OCA Transbot <transbot@odoo-community.org>\n"
 "Language-Team: French (http://www.transifex.com/oca/OCA-sale-workflow-8-0/language/fr/)\n"
 "MIME-Version: 1.0\n"
@@ -18,6 +18,11 @@ msgstr ""
 "Content-Transfer-Encoding: \n"
 "Language: fr\n"
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
+
+#. module: sale_payment_method
+#: field:sale.order,amount_paid:0
+msgid "Amount Paid"
+msgstr ""
 
 #. module: sale_payment_method
 #: code:addons/sale_payment_method/sale.py:86
@@ -34,6 +39,11 @@ msgid ""
 "An automatic payment should be created for the sale order %s but the payment"
 " method '%s' has no journal defined."
 msgstr "Un paiement automatique doit être généré pour la commande %s mais la méthode de paiement '%s' n'a aucun journal séléctionné."
+
+#. module: sale_payment_method
+#: field:sale.order,residual:0
+msgid "Balance"
+msgstr ""
 
 #. module: sale_payment_method
 #: code:addons/sale_payment_method/sale.py:70
@@ -75,6 +85,11 @@ msgid "Default payment term of a sale order using this method."
 msgstr "Condition de règlement par défaut pour les commandes utilisant cette méthode."
 
 #. module: sale_payment_method
+#: field:payment.method,display_name:0
+msgid "Display Name"
+msgstr "Nom à afficher"
+
+#. module: sale_payment_method
 #: view:payment.method:sale_payment_method.payment_method_view_form
 msgid ""
 "Even if the E-commerce backend receives a payment for a sale order,\n"
@@ -107,6 +122,11 @@ msgstr "Pièces comptables"
 #: view:payment.method:sale_payment_method.payment_method_view_form
 msgid "Journal for payment"
 msgstr "Journal pour le paiement"
+
+#. module: sale_payment_method
+#: field:payment.method,__last_update:0
+msgid "Last Modified on"
+msgstr "Dernière modification le"
 
 #. module: sale_payment_method
 #: field:payment.method,write_uid:0

@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: sale-workflow (8.0)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-09-09 12:27+0000\n"
-"PO-Revision-Date: 2015-09-03 09:19+0000\n"
+"POT-Creation-Date: 2016-09-11 16:48+0000\n"
+"PO-Revision-Date: 2016-09-15 12:45+0000\n"
 "Last-Translator: OCA Transbot <transbot@odoo-community.org>\n"
 "Language-Team: Finnish (http://www.transifex.com/oca/OCA-sale-workflow-8-0/language/fi/)\n"
 "MIME-Version: 1.0\n"
@@ -31,6 +31,11 @@ msgid "Billing Journal"
 msgstr ""
 
 #. module: sale_order_type
+#: field:sale.order.type,company_id:0
+msgid "Company"
+msgstr ""
+
+#. module: sale_order_type
 #: view:sale.order.type:sale_order_type.sot_sale_order_type_search_view
 #: field:sale.order.type,order_policy:0
 msgid "Create Invoice"
@@ -50,6 +55,11 @@ msgstr "Luotu"
 #: field:sale.order.type,description:0
 msgid "Description"
 msgstr ""
+
+#. module: sale_order_type
+#: field:sale.order.type,display_name:0
+msgid "Display Name"
+msgstr "Nimi"
 
 #. module: sale_order_type
 #: view:sale.order.type:sale_order_type.sot_sale_order_type_search_view
@@ -77,6 +87,11 @@ msgstr ""
 #: field:sale.order.type,invoice_state:0
 msgid "Invoice Control"
 msgstr ""
+
+#. module: sale_order_type
+#: field:sale.order.type,__last_update:0
+msgid "Last Modified on"
+msgstr "Viimeksi muokattu"
 
 #. module: sale_order_type
 #: field:sale.order.type,write_uid:0
@@ -136,6 +151,11 @@ msgid "Sales Order Types"
 msgstr ""
 
 #. module: sale_order_type
+#: field:sale.order.type,sequence:0
+msgid "Sequence"
+msgstr ""
+
+#. module: sale_order_type
 #: view:sale.order.type:sale_order_type.sot_sale_order_type_search_view
 #: field:sale.order.type,picking_policy:0
 msgid "Shipping Policy"
@@ -144,7 +164,7 @@ msgstr ""
 #. module: sale_order_type
 #: model:ir.model,name:sale_order_type.model_stock_move
 msgid "Stock Move"
-msgstr ""
+msgstr "Varastosiirto"
 
 #. module: sale_order_type
 #: field:sale.order,type_id:0
