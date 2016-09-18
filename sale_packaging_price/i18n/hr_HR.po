@@ -1,0 +1,163 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# * sale_packaging_price
+# 
+# Translators:
+# Bole <bole@dajmi5.com>, 2016
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 9.0c\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2016-09-10 02:47+0000\n"
+"PO-Revision-Date: 2016-09-10 02:47+0000\n"
+"Last-Translator: Bole <bole@dajmi5.com>, 2016\n"
+"Language-Team: Croatian (Croatia) (https://www.transifex.com/oca/teams/23907/hr_HR/)\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Language: hr_HR\n"
+"Plural-Forms: nplurals=3; plural=n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2;\n"
+
+#. module: sale_packaging_price
+#: model:ir.actions.act_window,help:sale_packaging_price.action_product_packaging_form
+msgid "Click to add a packaging for your products."
+msgstr ""
+
+#. module: sale_packaging_price
+#: model:ir.model.fields,field_description:sale_packaging_price.field_product_packaging_material_create_uid
+msgid "Created by"
+msgstr "Kreirao"
+
+#. module: sale_packaging_price
+#: model:ir.model.fields,field_description:sale_packaging_price.field_product_packaging_material_create_date
+msgid "Created on"
+msgstr "Kreirano"
+
+#. module: sale_packaging_price
+#: model:ir.model.fields,field_description:sale_packaging_price.field_product_packaging_material_display_name
+msgid "Display Name"
+msgstr "Naziv"
+
+#. module: sale_packaging_price
+#: model:ir.ui.view,arch_db:sale_packaging_price.product_packaging_filter
+msgid "Group By..."
+msgstr "Grupiraj po..."
+
+#. module: sale_packaging_price
+#: model:ir.model.fields,field_description:sale_packaging_price.field_product_packaging_material_id
+msgid "ID"
+msgstr "ID"
+
+#. module: sale_packaging_price
+#: model:ir.model.fields,field_description:sale_packaging_price.field_product_packaging_material___last_update
+msgid "Last Modified on"
+msgstr "Zadnje modificirano"
+
+#. module: sale_packaging_price
+#: model:ir.model.fields,field_description:sale_packaging_price.field_product_packaging_material_write_uid
+msgid "Last Updated by"
+msgstr "Zadnje ažurirao"
+
+#. module: sale_packaging_price
+#: model:ir.model.fields,field_description:sale_packaging_price.field_product_packaging_material_write_date
+msgid "Last Updated on"
+msgstr "Zadnje ažurirano"
+
+#. module: sale_packaging_price
+#: model:ir.ui.view,arch_db:sale_packaging_price.product_packaging_filter
+msgid "Logistic Unit"
+msgstr ""
+
+#. module: sale_packaging_price
+#: model:ir.ui.view,arch_db:sale_packaging_price.product_packaging_filter
+msgid "Pack Type"
+msgstr ""
+
+#. module: sale_packaging_price
+#: model:ir.model.fields,field_description:sale_packaging_price.field_product_packaging_material_name
+#: model:ir.model.fields,field_description:sale_packaging_price.field_product_packaging_package_material_id
+msgid "Package Material"
+msgstr ""
+
+#. module: sale_packaging_price
+#: model:ir.model.fields,field_description:sale_packaging_price.field_product_packaging_list_price
+#: model:ir.model.fields,field_description:sale_packaging_price.field_sale_order_line_packaging_price
+msgid "Package Price"
+msgstr ""
+
+#. module: sale_packaging_price
+#: model:ir.model.fields,field_description:sale_packaging_price.field_product_packaging_weight
+#: model:ir.model.fields,field_description:sale_packaging_price.field_sale_order_line_packaging_weight
+msgid "Package Weight"
+msgstr ""
+
+#. module: sale_packaging_price
+#: model:ir.model,name:sale_packaging_price.model_product_packaging
+msgid "Packaging"
+msgstr ""
+
+#. module: sale_packaging_price
+#: code:addons/sale_packaging_price/models/product_packaging.py:44
+#, python-format
+msgid "Problem with price"
+msgstr ""
+
+#. module: sale_packaging_price
+#: model:ir.ui.view,arch_db:sale_packaging_price.product_packaging_filter
+msgid "Product"
+msgstr "Proizvod"
+
+#. module: sale_packaging_price
+#: model:ir.model.fields,field_description:sale_packaging_price.field_sale_report_product_packaging
+msgid "Product Package"
+msgstr ""
+
+#. module: sale_packaging_price
+#: model:ir.actions.act_window,name:sale_packaging_price.action_product_packaging_form
+#: model:ir.ui.menu,name:sale_packaging_price.menu_product_packaging_action
+msgid "Product Packaging"
+msgstr ""
+
+#. module: sale_packaging_price
+#: model:ir.model.fields,field_description:sale_packaging_price.field_sale_report_qty_packaging
+msgid "Qty Package"
+msgstr ""
+
+#. module: sale_packaging_price
+#: model:ir.model,name:sale_packaging_price.model_sale_order_line
+msgid "Sales Order Line"
+msgstr ""
+
+#. module: sale_packaging_price
+#: model:ir.model,name:sale_packaging_price.model_sale_report
+msgid "Sales Orders Statistics"
+msgstr ""
+
+#. module: sale_packaging_price
+#: model:ir.ui.view,arch_db:sale_packaging_price.product_packaging_filter
+msgid "Search Product Packaging"
+msgstr ""
+
+#. module: sale_packaging_price
+#: model:ir.model.fields,help:sale_packaging_price.field_product_packaging_list_price
+#: model:ir.model.fields,help:sale_packaging_price.field_sale_order_line_packaging_price
+msgid "This price will be considered as a price for complete package"
+msgstr ""
+
+#. module: sale_packaging_price
+#: model:ir.model.fields,help:sale_packaging_price.field_product_packaging_weight
+msgid "Weight of the package itself, wighout counting inner products."
+msgstr ""
+
+#. module: sale_packaging_price
+#: code:addons/sale_packaging_price/models/product_packaging.py:45
+#, python-format
+msgid ""
+"With the current decimal precision, you can't get this price. (Approx. price"
+" suggested: %s)"
+msgstr ""
+
+#. module: sale_packaging_price
+#: model:ir.model,name:sale_packaging_price.model_product_packaging_material
+msgid "product.packaging.material"
+msgstr ""

@@ -1,21 +1,22 @@
 # Translation of Odoo Server.
 # This file contains the translation of the following modules:
-# 	* sale_packaging_price
-#
+# * sale_packaging_price
+# 
+# Translators:
+# OCA Transbot <transbot@odoo-community.org>, 2016
 msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 9.0c\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-07-07 15:02+0000\n"
-"PO-Revision-Date: 2016-07-07 17:06+0200\n"
-"Last-Translator: <>\n"
-"Language-Team: \n"
+"POT-Creation-Date: 2016-09-10 02:47+0000\n"
+"PO-Revision-Date: 2016-09-10 02:47+0000\n"
+"Last-Translator: OCA Transbot <transbot@odoo-community.org>, 2016\n"
+"Language-Team: Spanish (https://www.transifex.com/oca/teams/23907/es/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
-"Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: \n"
+"Content-Transfer-Encoding: \n"
 "Language: es\n"
-"X-Generator: Poedit 1.8.7.1\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
 #. module: sale_packaging_price
 #: model:ir.actions.act_window,help:sale_packaging_price.action_product_packaging_form
@@ -96,7 +97,7 @@ msgid "Packaging"
 msgstr "Empaquetado"
 
 #. module: sale_packaging_price
-#: code:addons/sale_packaging_price/models/product.py:44
+#: code:addons/sale_packaging_price/models/product_packaging.py:44
 #, python-format
 msgid "Problem with price"
 msgstr "Problema con el precio"
@@ -149,10 +150,14 @@ msgid "Weight of the package itself, wighout counting inner products."
 msgstr "Peso del paquete solo, sin contar los productos en su interior."
 
 #. module: sale_packaging_price
-#: code:addons/sale_packaging_price/models/product.py:45
+#: code:addons/sale_packaging_price/models/product_packaging.py:45
 #, python-format
-msgid "With the current decimal precision, you can't get this price. (Approx. price suggested: %s)"
-msgstr "Con la precisión decimal actual no puedes obtener este precio. (Precio sugerido aproximado: %s)"
+msgid ""
+"With the current decimal precision, you can't get this price. (Approx. price"
+" suggested: %s)"
+msgstr ""
+"Con la precisión decimal actual no puedes obtener este precio. (Precio "
+"sugerido aproximado: %s)"
 
 #. module: sale_packaging_price
 #: model:ir.model,name:sale_packaging_price.model_product_packaging_material
