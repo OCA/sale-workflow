@@ -8,8 +8,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 9.0c\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-06-24 02:45+0000\n"
-"PO-Revision-Date: 2016-06-24 02:45+0000\n"
+"POT-Creation-Date: 2016-09-10 02:47+0000\n"
+"PO-Revision-Date: 2016-09-10 02:47+0000\n"
 "Last-Translator: OCA Transbot <transbot@odoo-community.org>, 2016\n"
 "Language-Team: Slovenian (https://www.transifex.com/oca/teams/23907/sl/)\n"
 "MIME-Version: 1.0\n"
@@ -112,7 +112,7 @@ msgstr "Dobavi vsak proizvod, ko je na voljo"
 #: model:ir.model.fields,field_description:sale_automatic_workflow.field_automatic_workflow_job_display_name
 #: model:ir.model.fields,field_description:sale_automatic_workflow.field_sale_workflow_process_display_name
 msgid "Display Name"
-msgstr ""
+msgstr "Prikazni naziv"
 
 #. module: sale_automatic_workflow
 #: model:ir.model.fields,field_description:sale_automatic_workflow.field_sale_workflow_process_invoice_date_is_order_date
@@ -140,7 +140,7 @@ msgstr "Račun"
 #: model:ir.model.fields,field_description:sale_automatic_workflow.field_automatic_workflow_job___last_update
 #: model:ir.model.fields,field_description:sale_automatic_workflow.field_sale_workflow_process___last_update
 msgid "Last Modified on"
-msgstr ""
+msgstr "Zadnjič spremenjeno"
 
 #. module: sale_automatic_workflow
 #: model:ir.model.fields,field_description:sale_automatic_workflow.field_automatic_workflow_job_write_uid
