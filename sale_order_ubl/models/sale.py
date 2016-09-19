@@ -136,13 +136,20 @@ class SaleOrder(models.Model):
         self.ensure_one()
         assert doc_type in ('quotation', 'order'), 'wrong doc_type'
         logger.debug('Starting to generate UBL XML %s file', doc_type)
+        lang = self.get_ubl_lang()
+        # The aim of injecting lang in context
+        # is to have the content of the XML in the partner's lang
+        # but the problem is that the error messages will also be in
+        # that lang. But the error messages should almost never
+        # happen except the first days of use, so it's probably
+        # not worth the additionnal code to handle the 2 langs
         if doc_type == 'quotation':
-            xml_root = self.generate_quotation_ubl_xml_etree(
-                version=version)
+            xml_root = self.with_context(lang=lang).\
+                generate_quotation_ubl_xml_etree(version=version)
             document = 'Quotation'
         elif doc_type == 'order':
-            xml_root = self.generate_order_response_simple_ubl_xml_etree(
-                version=version)
+            xml_root = self.with_context(lang=lang).\
+                generate_order_response_simple_ubl_xml_etree(version=version)
             document = 'OrderResponseSimple'
         xml_string = etree.tostring(
             xml_root, pretty_print=True, encoding='UTF-8',
@@ -166,6 +173,10 @@ class SaleOrder(models.Model):
     def get_ubl_version(self):
         version = self._context.get('ubl_version') or '2.1'
         return version
+
+    @api.multi
+    def get_ubl_lang(self):
+        return self.partner_id.lang or 'en_US'
 
     @api.multi
     def embed_ubl_xml_in_pdf(self, pdf_content):
