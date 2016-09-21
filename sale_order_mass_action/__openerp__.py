@@ -1,4 +1,4 @@
-# -*- encoding: utf-8 -*-
+# -*- coding: utf-8 -*-
 ##############################################################################
 #
 #    Sale - Sale Order Mass Action module for Odoo
@@ -22,7 +22,7 @@
 
 {
     'name': 'Sale Orders Mass Action',
-    'version': '1.0',
+    'version': '7.0.0.1.0',
     'author': "GRAP,Odoo Community Association (OCA)",
     'website': 'http://www.grap.coop',
     'license': 'AGPL-3',
