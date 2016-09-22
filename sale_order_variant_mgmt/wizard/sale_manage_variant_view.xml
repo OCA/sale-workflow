@@ -9,17 +9,18 @@
             <form string="Manage Product Variants">
                 <group>
                     <field name="product_tmpl_id"
-                        domain="[('attribute_line_ids', '!=', False)]"
-                        options="{'no_create': True}"/>
+                           domain="[('attribute_line_ids', '!=', False)]"
+                           options="{'no_create': True}"
+                    />
                 </group>
                 <field name="variant_line_ids"
                        widget="x2many_2d_matrix"
                        field_x_axis="value_x"
-                       field_label_x_axis="value_x_label"
                        field_y_axis="value_y"
-                       field_label_y_axis="value_y_label"
                        field_value = "product_uom_qty"
                        field_att_disabled="disabled"
+                       x_axis_clickable="0"
+                       y_axis_clickable="0"
                 />
                 <footer>
                     <button name="button_transfer_to_order"

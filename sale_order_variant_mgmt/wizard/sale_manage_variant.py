@@ -14,12 +14,12 @@ class SaleManageVariant(models.TransientModel):
     variant_line_ids = fields.Many2many(
         comodel_name='sale.manage.variant.line', string="Variant Lines")
 
-    # HACK https://github.com/OCA/server-tools/pull/492#issuecomment-237594285
+    # HACK: https://github.com/OCA/server-tools/pull/492#issuecomment-237594285
     @api.multi
     def onchange(self, values, field_name, field_onchange):
         if "variant_line_ids" in field_onchange:
             for sub in ("product_id", "disabled", "value_x", "value_y",
-                        "value_x_label", "value_y_label", "product_uom_qty"):
+                        "product_uom_qty"):
                 field_onchange.setdefault("variant_line_ids." + sub, u"")
         return super(SaleManageVariant, self).onchange(
             values, field_name, field_onchange)
@@ -28,6 +28,13 @@ class SaleManageVariant(models.TransientModel):
     def _onchange_product_tmpl_id(self):
         self.variant_line_ids = [(6, 0, [])]
         template = self.product_tmpl_id
+        context = self.env.context
+        record = self.env[context['active_model']].browse(
+            context['active_id'])
+        if context['active_model'] == 'sale.order.line':
+            sale_order = record.order_id
+        else:
+            sale_order = record
         if template and len(template.attribute_line_ids) >= 2:
             line_x = template.attribute_line_ids[0]
             line_y = template.attribute_line_ids[1]
@@ -38,21 +45,25 @@ class SaleManageVariant(models.TransientModel):
                     product = template.product_variant_ids.filtered(
                         lambda x: (value_x in x.attribute_value_ids and
                                    value_y in x.attribute_value_ids))
+                    order_line = sale_order.order_line.filtered(
+                        lambda x: x.product_id == product)
                     lines.append((0, 0, {
                         'product_id': product,
                         'disabled': not bool(product),
                         'value_x': value_x,
-                        'value_x_label': value_x.name,
                         'value_y': value_y,
-                        'value_y_label': value_y.name,
-                        'product_uom_qty': 0,
+                        'product_uom_qty': order_line.product_uom_qty,
                     }))
             self.variant_line_ids = lines
 
     @api.multi
     def button_transfer_to_order(self):
         context = self.env.context
-        sale_order = self.env['sale.order'].browse(context.get('active_id'))
+        record = self.env[context['active_model']].browse(context['active_id'])
+        if context['active_model'] == 'sale.order.line':
+            sale_order = record.order_id
+        else:
+            sale_order = record
         OrderLine = self.env['sale.order.line']
         for line in self.variant_line_ids:
             order_line = sale_order.order_line.filtered(
@@ -69,7 +80,7 @@ class SaleManageVariant(models.TransientModel):
                     'order_id': sale_order.id,
                 })
                 order_line.product_id_change()
-                order_line_vals = order_line.convert_to_write(
+                order_line_vals = order_line._convert_to_write(
                     order_line._cache)
                 sale_order.order_line.create(order_line_vals)
 
@@ -82,9 +93,5 @@ class SaleManageVariantLine(models.TransientModel):
     disabled = fields.Boolean()
     value_x = fields.Many2one(comodel_name='product.attribute.value')
     value_y = fields.Many2one(comodel_name='product.attribute.value')
-    # Direct values as labels are not got from many2one fields and related
-    # fields are also not computed when drawing the widget
-    value_x_label = fields.Char()
-    value_y_label = fields.Char()
     product_uom_qty = fields.Float(
         string="Quantity", digits_compute=dp.get_precision('Product UoS'))
