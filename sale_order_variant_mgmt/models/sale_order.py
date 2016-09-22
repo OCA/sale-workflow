@@ -8,7 +8,7 @@ from openerp import models, fields
 class SaleOrderLine(models.Model):
     _inherit = 'sale.order.line'
 
-    # This field is for avoiding conflicting with sale_stock module that
+    # This field is for avoiding conflicts with sale_stock module, that
     # adds product_tmpl_id, and its possible modifications. This field name
     # for sure won't conflict
     product_tmpl_id_sale_order_variant_mgmt = fields.Many2one(
