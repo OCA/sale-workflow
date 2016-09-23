@@ -1,14 +1,8 @@
 # -*- coding: utf-8 -*-
-##############################################################################
-#
-#  License AGPL version 3 or later
-#  See license in __openerp__.py or http://www.gnu.org/licenses/agpl-3.0.txt
-#  Copyright (C) 2014 Akretion (http://www.akretion.com).
-#  @author Adrien CHAUSSENDE <adrien.chaussende@akretion.com>
-#
-##############################################################################
+# Copyright (C) 2016  Akretion
+# License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
-from openerp import models, api
+from openerp import models, api, exceptions, _
 
 
 class ProcurementOrder(models.Model):
@@ -19,7 +13,7 @@ class ProcurementOrder(models.Model):
         vals = super(ProcurementOrder, self)._prepare_mo_vals(procurement)
         if procurement.group_id:
             sales = self.env['sale.order'].search(
-                [('procurement_group_id', '=', self.group_id.id)])
+                [('procurement_group_id', '=', procurement.group_id.id)])
             if len(sales) > 1:
                 raise exceptions.ValidationError(
                     _("More than 1 sale order found for this group"))
