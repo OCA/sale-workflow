@@ -19,59 +19,31 @@ class TestSaleOrderType(common.TransactionCase):
             'prefix': 'TSO',
             'padding': 3,
         })
-        self.journal = self.env.ref('account.sales_journal')
-        self.refund_journal = self.env.ref('account.refund_sales_journal')
+        self.journal = self.env['account.journal'].search(
+            [('type', '=', 'sale')], limit=1)
         self.warehouse = self.env.ref('stock.stock_warehouse_shop0')
         self.product = self.env.ref('product.product_product_4')
         self.sale_type = self.sale_type_model.create({
             'name': 'Test Sale Order Type',
             'sequence_id': self.sequence.id,
             'journal_id': self.journal.id,
-            'refund_journal_id': self.refund_journal.id,
             'warehouse_id': self.warehouse.id,
             'picking_policy': 'one',
-            'order_policy': 'picking',
-            'invoice_state': '2binvoiced',
         })
         self.partner.sale_type = self.sale_type
 
-    def test_sale_order_onchange_partner(self):
-        onchange_partner = self.sale_order_model.onchange_partner_id(
-            self.partner.id)
-        self.assertEqual(self.sale_type.id,
-                         onchange_partner['value']['type_id'])
-
-    def test_sale_order_onchange_type(self):
-        sale_order = self.sale_order_model.new({'type_id': self.sale_type.id})
-        sale_order.onchange_type_id()
-        self.assertEqual(self.sale_type.warehouse_id,
-                         sale_order.warehouse_id)
-        self.assertEqual(self.sale_type.picking_policy,
-                         sale_order.picking_policy)
-        self.assertEqual(self.sale_type.order_policy, sale_order.order_policy)
-
     def test_sale_order_confirm(self):
-        sale_order_dict = self.sale_order_model.onchange_partner_id(
-            self.partner.id)['value']
-        sale_order_dict['partner_id'] = self.partner.id
         sale_line_dict = {
             'product_id': self.product.id,
             'name': self.product.name,
             'product_uom_qty': 1.0,
             'price_unit': self.product.lst_price,
         }
-        sale_order_dict['order_line'] = [(0, 0, sale_line_dict)]
-        sale_order = self.sale_order_model.create(sale_order_dict)
+        vals = {
+            'partner_id': self.partner.id,
+            'order_line': [(0, 0, sale_line_dict)]
+        }
+        sale_order = self.sale_order_model.create(vals)
         sale_order.onchange_type_id()
-        sale_order.action_button_confirm()
-        for picking in sale_order.picking_ids:
-            self.assertEqual(self.sale_type.invoice_state,
-                             picking.invoice_state)
-            for move in picking.move_lines:
-                self.assertEqual(self.sale_type.invoice_state,
-                                 move.invoice_state)
-            invoices = picking.action_invoice_create(
-                self.journal, group=False, type='out_invoice')
-            for invoice in self.invoice_model.browse(invoices):
-                self.assertEqual(
-                    self.sale_type.journal_id, invoice.journal_id)
+        sale_order.onchange_partner_id()
+        sale_order.action_confirm()
