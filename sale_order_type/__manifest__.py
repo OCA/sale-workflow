@@ -7,7 +7,7 @@
 
 {
     "name": "Sale Order Types",
-    "version": "8.0.1.0.1",
+    "version": "9.0.1.0.0",
     "category": "Sales Management",
     "author": "Grupo Vermon,"
               "AvanzOSC,"
@@ -17,10 +17,8 @@
     "website": "http://www.odoomrp.com",
     "license": "AGPL-3",
     "depends": [
-        "sale",
-        "stock",
-        "sale_stock",
-        "account",
+        'sale_stock',
+        'account',
     ],
     "demo": [
         "demo/sale_order_demo.xml",
@@ -32,5 +30,5 @@
         "views/res_partner_view.xml",
         "data/default_type.xml",
     ],
-    'installable': False,
+    'installable': True,
 }
