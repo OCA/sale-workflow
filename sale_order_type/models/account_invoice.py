@@ -9,22 +9,22 @@ from openerp import api, models
 class AccountInvoice(models.Model):
     _inherit = 'account.invoice'
 
-    @api.multi
-    def _prepare_refund(self, invoice, date=None, period_id=None,
-                        description=None, journal_id=None):
+    @api.model
+    def _prepare_refund(self, invoice, date_invoice=None,
+                        date=None, description=None, journal_id=None):
         values = super(AccountInvoice, self)._prepare_refund(
-            invoice, date, period_id, description, journal_id)
+            invoice, date_invoice, date, description, journal_id)
         if invoice.origin:
             orders = self.env['sale.order'].search(
-                [('name', '=', invoice.origin)])
+                [('name', '=', invoice.origin)], limit=1)
             journal = False
             if orders:
-                journal = orders[0].type_id.refund_journal_id
+                journal = orders.type_id.refund_journal_id
             else:
                 pickings = self.env['stock.picking'].search(
-                    [('name', '=', invoice.origin)])
+                    [('name', '=', invoice.origin)], limit=1)
                 if pickings:
-                    journal = pickings[0].sale_id.type_id.refund_journal_id
+                    journal = pickings.sale_id.type_id.refund_journal_id
             if journal:
                 values['journal_id'] = journal.id
         return values
