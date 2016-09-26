@@ -12,4 +12,15 @@
             </field>
         </record>
 
+        <record id="view_datetime_confirm_sale_tree" model="ir.ui.view">
+            <field name="model">sale.order</field>
+            <field name="inherit_id" ref="sale.view_order_tree" />
+            <field name="priority">5</field>
+            <field name="arch" type="xml">
+                <field name="date_order" position="after">
+                    <field name="datetime_confirm"/>
+                </field>
+            </field>
+        </record>
+
 </openerp>
