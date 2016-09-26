@@ -6,7 +6,7 @@
             <field name="inherit_id" ref="sale.view_order_form" />
             <field name="priority">5</field>
             <field name="arch" type="xml">
-                <field name="pricelist_id" position="after">
+                <field name="user_id" position="before">
                     <field name="datetime_confirm"/>
                 </field>
             </field>
