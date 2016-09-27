@@ -19,14 +19,14 @@ class TestSaleOrderType(common.TransactionCase):
             'prefix': 'TSO',
             'padding': 3,
         })
-        self.journal = self.env.ref('account.sales_journal')
-        self.refund_journal = self.env.ref('account.refund_sales_journal')
+        self.journal = self.env['account.journal'].search(
+            [('type', '=', 'general')], limit=1)
         self.warehouse = self.env.ref('stock.stock_warehouse_shop0')
         self.product = self.env.ref('product.product_product_4')
         self.sale_type = self.sale_type_model.create({
             'name': 'Test Sale Order Type',
             'sequence_id': self.sequence.id,
-            'journal_id': self.journal.id,
+            'journal_id': False,
             'refund_journal_id': self.refund_journal.id,
             'warehouse_id': self.warehouse.id,
             'picking_policy': 'one',
@@ -60,15 +60,4 @@ class TestSaleOrderType(common.TransactionCase):
         sale_order_dict['order_line'] = [(0, 0, sale_line_dict)]
         sale_order = self.sale_order_model.create(sale_order_dict)
         sale_order.onchange_type_id()
-        sale_order.action_button_confirm()
-        for picking in sale_order.picking_ids:
-            self.assertEqual(self.sale_type.invoice_state,
-                             picking.invoice_state)
-            for move in picking.move_lines:
-                self.assertEqual(self.sale_type.invoice_state,
-                                 move.invoice_state)
-            invoices = picking.action_invoice_create(
-                self.journal, group=False, type='out_invoice')
-            for invoice in self.invoice_model.browse(invoices):
-                self.assertEqual(
-                    self.sale_type.journal_id, invoice.journal_id)
+        sale_order.action_confirm()
