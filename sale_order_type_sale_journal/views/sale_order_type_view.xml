@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+
+        <record id="sot_sale_order_type_form_view_journal" model="ir.ui.view">
+            <field name="name">sale.order.type.form.view.journal</field>
+            <field name="model">sale.order.type</field>
+            <field name="inherit_id" ref="sale_order_type.sot_sale_order_type_form_view"></field>
+            <field name="arch" type="xml">
+                <field name="refund_journal_id" position="after">
+                    <field name="invoice_type_id"/>
+                </field>
+            </field>
+        </record>
+    </data>
+
+</openerp>
