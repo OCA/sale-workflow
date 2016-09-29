@@ -41,3 +41,14 @@ class SaleOrder(models.Model):
             warning = {'title': _('Workflow Warning'),
                        'message': workflow.warning}
             return {'warning': warning}
+
+    @api.multi
+    def action_invoice_create(self, grouped=False, final=False):
+        for order in self:
+            if not order.workflow_process_id.invoice_service_delivery:
+                continue
+            for line in order.order_line:
+                if line.qty_delivered_updateable and not line.qty_delivered:
+                    line.write({'qty_delivered': line.product_uom_qty})
+        return super(SaleOrder, self).action_invoice_create(grouped=grouped,
+                                                            final=final)
