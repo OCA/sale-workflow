@@ -61,6 +61,12 @@ class SaleWorkflowProcess(models.Model):
              "the same than the order's date"
     )
 
+    invoice_service_delivery = fields.Boolean(
+        string='Invoice Service on delivery',
+        help="If this box is checked, when the first invoice is created "
+             "The service sale order lines will be included and will be "
+             "marked as delivered"
+    )
     sale_done = fields.Boolean(string='Sale Done')
     sale_done_filter_domain = fields.Char(
         string='Sale Done Filter Domain',
