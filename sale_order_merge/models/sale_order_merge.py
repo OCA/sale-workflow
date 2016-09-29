@@ -56,6 +56,16 @@ class SaleOrderMerge(models.TransientModel):
         self.to_merge.write({'invoice_ids': [(6, 0, [])]})
 
     @api.multi
+    def _picking_can_merge(self, picking):
+        return (picking.state not in ('done', 'cancel') and
+                picking.location_dest_id.usage == 'customer')
+
+    @api.multi
+    def _get_picking_map_key(self, picking):
+        return (picking.picking_type_id, picking.location_id,
+                picking.location_dest_id, picking.partner_id)
+
+    @api.multi
     def merge_pickings(self):
         """ Assign all pickings to the target sale order and merge any
         pending pickings """
@@ -83,10 +93,8 @@ class SaleOrderMerge(models.TransientModel):
                 {'group_id': group.id})
         pick_map = {}
         for picking in self.sale_order.picking_ids:
-            if (picking.state not in ('done', 'cancel') and
-                    picking.location_dest_id.usage == 'customer'):
-                key = (picking.picking_type_id, picking.location_id,
-                       picking.location_dest_id, picking.partner_id)
+            if self._picking_can_merge(picking):
+                key = self._get_picking_map_key(picking)
                 if key not in pick_map:
                     pick_map[key] = self.env['stock.picking']
                 pick_map[key] += picking
@@ -94,7 +102,7 @@ class SaleOrderMerge(models.TransientModel):
             if len(pickings) > 1:
                 target = pickings[0]
                 pickings -= target
-                pickings.move_lines.write({'picking_id': target.id})
+                pickings.mapped('move_lines').write({'picking_id': target.id})
                 pickings.unlink()
         return True
 
