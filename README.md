@@ -36,6 +36,7 @@ addon | version | summary
 [sale_order_price_recalculation](sale_order_price_recalculation/) | 8.0.1.0.0 | Price recalculation in sales orders
 [sale_order_revision](sale_order_revision/) | 8.0.0.1.0 | Sale order revisions
 [sale_order_type](sale_order_type/) | 8.0.1.0.1 | Sale Order Types
+[sale_order_type_sale_journal](sale_order_type_sale_journal/) | 8.0.1.0.0 | Link module between sale_order_type and sale_journal
 [sale_order_unified_menu](sale_order_unified_menu/) | 8.0.1.0.0 | Sale Order Unified Menu
 [sale_owner_stock_sourcing](sale_owner_stock_sourcing/) | 8.0.0.1.0 | Manage stock ownership on sale order lines
 [sale_packaging_price](sale_packaging_price/) | 8.0.1.0.0 | Sale Packaging Price
