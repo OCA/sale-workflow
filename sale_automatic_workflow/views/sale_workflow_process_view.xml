@@ -65,7 +65,6 @@
                                 <field name="validate_invoice_filter_id" domain="[('model_id', '=', 'account.invoice')]" class="oe_inline" context="{'default_model_id': 'account.invoice', 'default_active': False, 'active_test': False}" can_create="true" can_write="true" />
                             </div>
                         </div>
-
                         <field name="sale_done" />
                         <label for="sale_done_filter_id" attrs="{'required':[('sale_done','=',True)], 'invisible':[('sale_done','!=',True)]}"/>
                         <div attrs="{'required':[('sale_done','=',True)], 'invisible':[('sale_done','!=',True)]}">
@@ -79,6 +78,7 @@
                     </group>
                     <group>
                         <field name="invoice_date_is_order_date"/>
+                        <field name="invoice_service_delivery" />
                         <field name="property_journal_id" groups="account.group_account_invoice"
                                domain="[('type', '=', 'sale')]"/>
                         <field name="warning"/>
