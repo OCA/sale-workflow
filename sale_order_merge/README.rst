@@ -23,6 +23,14 @@ Remove the orders that you do not want to merge, and click on the *Merge*
 button in the footer of the pop-up window. The main window will then refresh
 to the updated main sale order.
 
+The mergeability criteria are defined as follows:
+
+* Same customer, shipping address, warehouse and company.
+* Orders must be in status 'Draft Quotation', 'Quotation Sent', 'Waiting Shedule', 'Sale Order', 'Sale to Invoice'.
+* Once the order has already been confirmed, only draft orders or confirmed orders with the same invoice policy can be merged.
+
+The criteria can easily be extended in a custom module using method _get_merge_domain of model sale.order
+
 .. image:: https://odoo-community.org/website/image/ir.attachment/5784_f2813bd/datas
    :alt: Try me on Runbot
    :target: https://runbot.odoo-community.org/runbot/167/8.0

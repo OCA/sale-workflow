@@ -169,6 +169,7 @@ class TestSaleOrderMerge(TransactionCase):
         self.merge(order1, order2)
 
         self.assertIn(picking2, order1.picking_ids)
+        self.assertEqual(picking2.origin, order1.name)
         self.assertIn(invoice2, order1.invoice_ids)
         self.assertEqual(len(order1.order_line), 3)
         self.assertEqual(order1.amount_untaxed, 7)

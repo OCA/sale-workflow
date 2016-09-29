@@ -98,12 +98,15 @@ class SaleOrderMerge(models.TransientModel):
                 if key not in pick_map:
                     pick_map[key] = self.env['stock.picking']
                 pick_map[key] += picking
+            else:
+                picking.write({'origin': group.name})
         for pickings in pick_map.values():
+            target = pickings[0]
             if len(pickings) > 1:
-                target = pickings[0]
                 pickings -= target
                 pickings.mapped('move_lines').write({'picking_id': target.id})
                 pickings.unlink()
+            target.write({'origin': group.name})
         return True
 
     @api.multi
