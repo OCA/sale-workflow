@@ -33,9 +33,6 @@ class SaleOrderTypology(models.Model):
     journal_id = fields.Many2one(
         comodel_name='account.journal', string='Billing Journal',
         domain=[('type', '=', 'sale')])
-    refund_journal_id = fields.Many2one(
-        comodel_name='account.journal', string='Refund Billing Journal',
-        domain=[('type', '=', 'sale_refund')])
     warehouse_id = fields.Many2one(
         comodel_name='stock.warehouse', string='Warehouse', required=True)
     picking_policy = fields.Selection(

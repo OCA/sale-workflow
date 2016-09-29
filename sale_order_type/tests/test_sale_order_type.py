@@ -20,14 +20,13 @@ class TestSaleOrderType(common.TransactionCase):
             'padding': 3,
         })
         self.journal = self.env['account.journal'].search(
-            [('type', '=', 'general')], limit=1)
+            [('type', '=', 'sale')], limit=1)
         self.warehouse = self.env.ref('stock.stock_warehouse_shop0')
         self.product = self.env.ref('product.product_product_4')
         self.sale_type = self.sale_type_model.create({
             'name': 'Test Sale Order Type',
             'sequence_id': self.sequence.id,
-            'journal_id': False,
-            'refund_journal_id': self.refund_journal.id,
+            'journal_id': self.journal.id,
             'warehouse_id': self.warehouse.id,
             'picking_policy': 'one',
         })

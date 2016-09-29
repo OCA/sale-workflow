@@ -25,13 +25,13 @@ from openerp.osv import orm
 class sale_order(orm.Model):
     _inherit = 'sale.order'
 
-    def onchange_partner_id(self, cr, uid, ids, part, context=None):
-        vals = super(sale_order, self).onchange_partner_id(
-            cr, uid, ids, part, context=context)
-        if not part:
-            return vals
-        partner_obj = self.pool.get('res.partner')
-        partner = partner_obj.browse(cr, uid, part, context=context)
-        if partner.use_prepayment:
-            vals['value']['order_policy'] = 'prepaid'
-        return vals
+    # def onchange_partner_id(self, cr, uid, ids, part, context=None):
+    #     vals = super(sale_order, self).onchange_partner_id(
+    #         cr, uid, ids, part, context=context)
+    #     if not part:
+    #         return vals
+    #     partner_obj = self.pool.get('res.partner')
+    #     partner = partner_obj.browse(cr, uid, part, context=context)
+    #     if partner.use_prepayment:
+    #         vals['value']['order_policy'] = 'prepaid'
+    #     return vals
