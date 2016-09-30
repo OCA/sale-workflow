@@ -32,31 +32,16 @@ class TestSaleOrderType(common.TransactionCase):
         })
         self.partner.sale_type = self.sale_type
 
-    def test_sale_order_onchange_partner(self):
-        onchange_partner = self.sale_order_model.onchange_partner_id(
-            self.partner.id)
-        self.assertEqual(self.sale_type.id,
-                         onchange_partner['value']['type_id'])
-
-    def test_sale_order_onchange_type(self):
-        sale_order = self.sale_order_model.new({'type_id': self.sale_type.id})
-        sale_order.onchange_type_id()
-        self.assertEqual(self.sale_type.warehouse_id,
-                         sale_order.warehouse_id)
-        self.assertEqual(self.sale_type.picking_policy,
-                         sale_order.picking_policy)
-
     def test_sale_order_confirm(self):
-        sale_order_dict = self.sale_order_model.onchange_partner_id(
-            self.partner.id)['value']
-        sale_order_dict['partner_id'] = self.partner.id
         sale_line_dict = {
             'product_id': self.product.id,
             'name': self.product.name,
             'product_uom_qty': 1.0,
             'price_unit': self.product.lst_price,
         }
-        sale_order_dict['order_line'] = [(0, 0, sale_line_dict)]
-        sale_order = self.sale_order_model.create(sale_order_dict)
-        sale_order.onchange_type_id()
+        vals = {
+            'partner_id': self.partner.id,
+            'order_line': [(0, 0, sale_line_dict)]
+        }
+        sale_order = self.sale_order_model.create(vals)
         sale_order.action_confirm()

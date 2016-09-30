@@ -18,11 +18,10 @@ class SaleOrder(models.Model):
     @api.multi
     @api.onchange('partner_id')
     def onchange_partner_id(self):
-        res = super(SaleOrder, self).onchange_partner_id()
         if self.partner_id:
             self.type_id = \
                 self.partner_id.sale_type.id or self._get_order_type().id
-        return res
+        return super(SaleOrder, self).onchange_partner_id()
 
     @api.one
     @api.onchange('type_id')
