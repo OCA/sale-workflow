@@ -16,7 +16,7 @@ class SaleManageVariant(models.TransientModel):
 
     # HACK: https://github.com/OCA/server-tools/pull/492#issuecomment-237594285
     @api.multi
-    def onchange(self, values, field_name, field_onchange):
+    def onchange(self, values, field_name, field_onchange):  # pragma: no cover
         if "variant_line_ids" in field_onchange:
             for sub in ("product_id", "disabled", "value_x", "value_y",
                         "product_uom_qty"):
@@ -65,12 +65,14 @@ class SaleManageVariant(models.TransientModel):
         else:
             sale_order = record
         OrderLine = self.env['sale.order.line']
+        lines2unlink = OrderLine
         for line in self.variant_line_ids:
             order_line = sale_order.order_line.filtered(
                 lambda x: x.product_id == line.product_id)
             if order_line:
                 if not line.product_uom_qty:
-                    order_line.unlink()
+                    # Done this way because there's a side effect removing here
+                    lines2unlink |= order_line
                 else:
                     order_line.product_uom_qty = line.product_uom_qty
             elif line.product_uom_qty:
@@ -83,6 +85,7 @@ class SaleManageVariant(models.TransientModel):
                 order_line_vals = order_line._convert_to_write(
                     order_line._cache)
                 sale_order.order_line.create(order_line_vals)
+        lines2unlink.unlink()
 
 
 class SaleManageVariantLine(models.TransientModel):
