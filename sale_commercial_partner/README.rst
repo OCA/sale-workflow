@@ -11,7 +11,11 @@ This module adds a related stored field *Commercial Customer* on sale orders. It
 Usage
 =====
 
-In the search view of quotations/sale orders, you can group by *Commercial Customer*.
+You can group by *Commercial Customer*:
+
+* in *Sales > Sales > Quotations*,
+* in *Sales > Sales > Sales Orders*,
+* in *Reporting > Sales > Sales Analysis*.
 
 .. image:: https://odoo-community.org/website/image/ir.attachment/5784_f2813bd/datas
    :alt: Try me on Runbot
