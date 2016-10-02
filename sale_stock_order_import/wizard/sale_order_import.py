@@ -12,7 +12,7 @@ class SaleOrderImport(models.TransientModel):
     def _prepare_order(self, parsed_order, price_source):
         so_vals = super(SaleOrderImport, self)._prepare_order(
             parsed_order, price_source)
-        incoterm = self._match_incoterm(
+        incoterm = self.env['business.document.import']._match_incoterm(
             parsed_order.get('incoterm'), parsed_order['chatter_msg'])
         if incoterm:
             so_vals['incoterm'] = incoterm.id
@@ -22,7 +22,7 @@ class SaleOrderImport(models.TransientModel):
     def _prepare_update_order_vals(self, parsed_order, order, partner):
         so_vals = super(SaleOrderImport, self)._prepare_update_order_vals(
             parsed_order, order, partner)
-        incoterm = self._match_incoterm(
+        incoterm = self.env['business.document.import']._match_incoterm(
             parsed_order.get('incoterm'), parsed_order['chatter_msg'])
         if incoterm:
             so_vals['incoterm'] = incoterm.id

@@ -15,7 +15,6 @@ logger = logging.getLogger(__name__)
 
 class SaleOrderImport(models.TransientModel):
     _name = 'sale.order.import'
-    _inherit = ['business.document.import']
     _description = 'Sale Order Import from Files'
 
     state = fields.Selection([
@@ -155,10 +154,11 @@ class SaleOrderImport(models.TransientModel):
     @api.model
     def _prepare_order(self, parsed_order, price_source):
         soo = self.env['sale.order']
-        partner = self._match_partner(
+        bdio = self.env['business.document.import']
+        partner = bdio._match_partner(
             parsed_order['partner'], parsed_order['chatter_msg'],
             partner_type='customer')
-        currency = self._match_currency(
+        currency = bdio._match_currency(
             parsed_order.get('currency'), parsed_order['chatter_msg'])
         if partner.property_product_pricelist.currency_id != currency:
             raise UserError(_(
@@ -190,16 +190,16 @@ class SaleOrderImport(models.TransientModel):
             }
         so_vals.update(partner_change_res['value'])
         if parsed_order.get('ship_to'):
-            shipping_partner = self._match_shipping_partner(
+            shipping_partner = bdio._match_shipping_partner(
                 parsed_order['ship_to'], partner, parsed_order['chatter_msg'])
             so_vals['partner_shipping_id'] = shipping_partner.id
         if parsed_order.get('date'):
             so_vals['date_order'] = parsed_order['date']
         for line in parsed_order['lines']:
             # partner=False because we don't want to use product.supplierinfo
-            product = self._match_product(
+            product = bdio._match_product(
                 line['product'], parsed_order['chatter_msg'], seller=False)
-            uom = self._match_uom(
+            uom = bdio._match_uom(
                 line.get('uom'), parsed_order['chatter_msg'], product)
             line_vals = self._prepare_create_order_line(
                 product, uom, line, price_source)
@@ -211,9 +211,10 @@ class SaleOrderImport(models.TransientModel):
     @api.model
     def create_order(self, parsed_order, price_source):
         soo = self.env['sale.order']
+        bdio = self.env['business.document.import']
         so_vals = self._prepare_order(parsed_order, price_source)
         order = soo.create(so_vals)
-        self.post_create_or_update(parsed_order, order)
+        bdio.post_create_or_update(parsed_order, order)
         logger.info('Sale Order ID %d created', order.id)
         return order
 
@@ -256,18 +257,19 @@ class SaleOrderImport(models.TransientModel):
     @api.multi
     def import_order_button(self):
         self.ensure_one()
+        bdio = self.env['business.document.import']
         order_file_decoded = self.order_file.decode('base64')
         parsed_order = self.parse_order(
             order_file_decoded, self.order_filename, self.partner_id)
         if not parsed_order.get('lines'):
             raise UserError(_(
                 "This order doesn't have any line !"))
-        partner = self._match_partner(
+        partner = bdio._match_partner(
             parsed_order['partner'], [], partner_type='customer')
         commercial_partner = partner.commercial_partner_id
         partner_shipping_id = False
         if parsed_order.get('ship_to'):
-            partner_shipping_id = self._match_shipping_partner(
+            partner_shipping_id = bdio._match_shipping_partner(
                 parsed_order['ship_to'], partner, []).id
         existing_quotations = self.env['sale.order'].search([
             ('commercial_partner_id', '=', commercial_partner.id),
@@ -317,12 +319,13 @@ class SaleOrderImport(models.TransientModel):
 
     @api.model
     def _prepare_update_order_vals(self, parsed_order, order, partner):
-        partner = self._match_partner(
+        bdio = self.env['business.document.import']
+        partner = bdio._match_partner(
             parsed_order['partner'], parsed_order['chatter_msg'],
             partner_type='customer')
         vals = {'partner_id': partner.id}
         if parsed_order.get('ship_to'):
-            shipping_partner = self._match_shipping_partner(
+            shipping_partner = bdio._match_shipping_partner(
                 parsed_order['ship_to'], partner, parsed_order['chatter_msg'])
             vals['partner_shipping_id'] = shipping_partner.id
         if parsed_order.get('order_ref'):
@@ -346,6 +349,7 @@ class SaleOrderImport(models.TransientModel):
         chatter = parsed_order['chatter_msg']
         solo = self.env['sale.order.line']
         dpo = self.env['decimal.precision']
+        bdio = self.env['business.document.import']
         qty_prec = dpo.precision_get('Product UoS')
         price_prec = dpo.precision_get('Product Price')
         existing_lines = []
@@ -364,7 +368,7 @@ class SaleOrderImport(models.TransientModel):
                 'line': oline,
                 'price_unit': price_unit,
                 })
-        compare_res = self.compare_lines(
+        compare_res = bdio.compare_lines(
             existing_lines, parsed_order['lines'], chatter,
             qty_precision=qty_prec, seller=False)
         # NOW, we start to write/delete/create the order lines
@@ -426,13 +430,14 @@ class SaleOrderImport(models.TransientModel):
     @api.multi
     def update_order_button(self):
         self.ensure_one()
+        bdio = self.env['business.document.import']
         order = self.sale_id
         if not order:
             raise UserError(_('You must select a quotation to update.'))
         parsed_order = self.parse_order(
             self.order_file.decode('base64'), self.order_filename,
             self.partner_id)
-        currency = self._match_currency(
+        currency = bdio._match_currency(
             parsed_order.get('currency'), parsed_order['chatter_msg'])
         if currency != order.currency_id:
             raise UserError(_(
@@ -444,7 +449,7 @@ class SaleOrderImport(models.TransientModel):
         if vals:
             order.write(vals)
         self.update_order_lines(parsed_order, order)
-        self.post_create_or_update(parsed_order, order)
+        bdio.post_create_or_update(parsed_order, order)
         logger.info(
             'Quotation ID %d updated via import of file %s', order.id,
             self.order_filename)
