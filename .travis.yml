@@ -7,12 +7,19 @@ python:
 
 addons:
   apt:
+    sources:
+      - pov-wkhtmltopdf
     packages:
       - expect-dev  # provides unbuffer utility
       - python-lxml  # because pip installation is slow
       - python-simplejson
       - python-serial
       - python-yaml
+      - wkhtmltopdf # requires the before_install section below
+
+before_install:
+  - "export DISPLAY=:99.0"
+  - "sh -e /etc/init.d/xvfb start"
 
 env:
   global:
