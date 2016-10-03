@@ -44,4 +44,6 @@ class TestSaleOrderType(common.TransactionCase):
             'order_line': [(0, 0, sale_line_dict)]
         }
         sale_order = self.sale_order_model.create(vals)
+        sale_order.onchange_type_id()
+        sale_order.onchange_partner_id()
         sale_order.action_confirm()
