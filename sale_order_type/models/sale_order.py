@@ -42,4 +42,6 @@ class SaleOrder(models.Model):
         res = super(SaleOrder, self)._prepare_invoice()
         if self.type_id.journal_id:
             res['journal_id'] = self.type_id.journal_id.id
+        if self.type_id:
+            res['sale_type_id'] = self.type_id.id
         return res
