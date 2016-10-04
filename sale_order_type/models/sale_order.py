@@ -57,6 +57,8 @@ class SaleOrder(models.Model):
     @api.model
     def _prepare_invoice(self, order, line_ids):
         res = super(SaleOrder, self)._prepare_invoice(order, line_ids)
+        if order.type_id:
+            res['sale_type_id'] = order.type_id.id
         if order.type_id.journal_id:
             res['journal_id'] = order.type_id.journal_id.id
         return res
