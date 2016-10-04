@@ -19,5 +19,7 @@ class StockPicking(models.Model):
             elif (vals.get('type', '') == 'out_refund' and
                     sale.type_id.refund_journal_id):
                 vals['journal_id'] = sale.type_id.refund_journal_id.id
+            if sale.type_id:
+                vals['sale_type_id'] = sale.type_id.id
         return super(StockPicking, self)._create_invoice_from_picking(picking,
                                                                       vals)

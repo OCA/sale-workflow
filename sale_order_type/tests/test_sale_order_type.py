@@ -86,6 +86,8 @@ class TestSaleOrderType(common.TransactionCase):
             for invoice in self.invoice_model.browse(invoices):
                 self.assertEqual(
                     self.sale_type.journal_id, invoice.journal_id)
+                self.assertEqual(
+                    self.sale_type.id, invoice.sale_type_id.id)
 
     def test_invoice_onchange_type(self):
         invoice = self.invoice_model.new({'sale_type_id': self.sale_type.id})
