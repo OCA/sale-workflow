@@ -8,7 +8,7 @@ class SaleOrderLine(models.Model):
     _inherit = 'sale.order.line'
 
     @api.depends('product_id', 'order_id.partner_id')
-    def _get_product_customer_code(self):
+    def _compute_product_customer_code(self):
         product_customer_code_obj = self.env['product.customer.code']
         for line in self:
             partner = line.order_id.partner_id
@@ -21,6 +21,6 @@ class SaleOrderLine(models.Model):
                 if code_ids:
                     line.product_customer_code = code_ids[0].product_code or ''
 
-
-    product_customer_code = fields.Char(string='Product Customer Code',
-        compute='_get_product_customer_code', size=64)
+    product_customer_code = fields.Char(
+        string='Product Customer Code',
+        compute='_compute_product_customer_code', size=64)
