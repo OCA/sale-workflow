@@ -23,12 +23,19 @@ class TestSaleOrderType(common.TransactionCase):
             [('type', '=', 'sale')], limit=1)
         self.warehouse = self.env.ref('stock.stock_warehouse_shop0')
         self.product = self.env.ref('product.product_product_4')
+        self.immediate_payment = self.env.ref(
+            'account.account_payment_term_immediate')
+        self.sale_pricelist = self.env.ref('product.pricelist_type_sale')
+        self.free_carrier = self.env.ref('stock.incoterm_FCA')
         self.sale_type = self.sale_type_model.create({
             'name': 'Test Sale Order Type',
             'sequence_id': self.sequence.id,
             'journal_id': self.journal.id,
             'warehouse_id': self.warehouse.id,
             'picking_policy': 'one',
+            'payment_term_id': self.immediate_payment.id,
+            'pricelist_id': self.sale_pricelist.id,
+            'incoterm_id': self.free_carrier.id,
         })
         self.partner.sale_type = self.sale_type
 
@@ -47,3 +54,10 @@ class TestSaleOrderType(common.TransactionCase):
         sale_order.onchange_type_id()
         sale_order.onchange_partner_id()
         sale_order.action_confirm()
+
+    def test_invoice_onchange_type(self):
+        invoice = self.invoice_model.new({'sale_type_id': self.sale_type.id})
+        invoice.onchange_sale_type_id()
+        self.assertEqual(self.sale_type.payment_term_id,
+                         invoice.payment_term)
+        self.assertEqual(self.sale_type.journal_id, invoice.journal_id)
