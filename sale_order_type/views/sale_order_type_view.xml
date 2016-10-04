@@ -25,6 +25,9 @@
                             <group>
                                 <field name="journal_id" />
                                 <field name="picking_policy" />
+                                <field name="payment_term_id" />
+                                <field name="pricelist_id" />
+                                <field name="incoterm_id" />
                             </group>
                         </group>
                         <group>
@@ -60,6 +63,9 @@
                     <field name="sequence_id"/>
                     <field name="journal_id"/>
                     <field name="picking_policy" />
+                    <field name="payment_term_id" />
+                    <field name="pricelist_id" />
+                    <field name="incoterm_id" />
                     <group expand="0" string="Group By">
                         <filter string="Warehouse" domain="[]"
                                 context="{'group_by':'warehouse_id'}" />
@@ -69,6 +75,12 @@
                                 context="{'group_by':'journal_id'}" />
                         <filter string="Shipping Policy" domain="[]"
                                 context="{'group_by':'picking_policy'}" />
+                        <filter string="Payment Term" domain="[]"
+                                context="{'group_by':'payment_term_id'}" />
+                        <filter string="Price List" domain="[]"
+                                context="{'group_by':'pricelist_id'}" />
+                        <filter string="Incoterm" domain="[]"
+                                context="{'group_by':'incoterm_id'}" />
                     </group>
                 </search>
             </field>
