@@ -13,13 +13,15 @@ class SaleOrderLine(models.Model):
         for line in self:
             partner = line.order_id.partner_id
             product = line.product_id
+            code = ''
             if product and partner:
                 code_ids = product_customer_code_obj.search([
                     ('product_id', '=', product.id),
                     ('partner_id', '=', partner.id),
                 ], limit=1)
                 if code_ids:
-                    line.product_customer_code = code_ids[0].product_code or ''
+                    code = code_ids[0].product_code or ''
+            line.product_customer_code = code
 
     product_customer_code = fields.Char(
         string='Product Customer Code',
