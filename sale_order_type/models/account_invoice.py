@@ -13,14 +13,14 @@ class AccountInvoice(models.Model):
         return self.env['sale.order.type'].search([], limit=1)
 
     sale_type_id = fields.Many2one(
-        comodel_name='sale.order.type', string='Type', default=_get_order_type)
+        comodel_name='sale.order.type',
+        string='Sale Type', default=_get_order_type)
 
     @api.onchange('partner_id', 'company_id')
     def _onchange_partner_id(self):
         super(AccountInvoice, self)._onchange_partner_id()
         if self.partner_id:
             if self.partner_id.sale_type:
-                print 'asdasdasd'
                 self.sale_type_id = self.partner_id.sale_type.id
 
     @api.onchange('sale_type_id')
