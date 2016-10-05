@@ -25,7 +25,7 @@ class TestSaleOrderType(common.TransactionCase):
         self.product = self.env.ref('product.product_product_4')
         self.immediate_payment = self.env.ref(
             'account.account_payment_term_immediate')
-        self.sale_pricelist = self.env.ref('product.pricelist_type_sale')
+        self.sale_pricelist = self.env.ref('product.list0')
         self.free_carrier = self.env.ref('stock.incoterm_FCA')
         self.sale_type = self.sale_type_model.create({
             'name': 'Test Sale Order Type',
