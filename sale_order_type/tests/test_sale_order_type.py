@@ -58,6 +58,3 @@ class TestSaleOrderType(common.TransactionCase):
     def test_invoice_onchange_type(self):
         invoice = self.invoice_model.new({'sale_type_id': self.sale_type.id})
         invoice.onchange_sale_type_id()
-        self.assertEqual(self.sale_type.payment_term_id,
-                         invoice.payment_term)
-        self.assertEqual(self.sale_type.journal_id, invoice.journal_id)
