@@ -15,6 +15,6 @@
           'views/account_payment_mode_views.xml',
           'views/sale_workflow_process_view.xml',
           ],
- 'installable': True,
+ 'installable': False,
  'auto_install': True,
  }
