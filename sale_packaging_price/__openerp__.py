@@ -23,5 +23,5 @@
               'Odoo Community Association (OCA)',
     'website': 'http://www.tecnativa.com',
     'license': 'LGPL-3',
-    'installable': True,
+    'installable': False,
 }
