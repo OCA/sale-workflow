@@ -23,8 +23,8 @@ env:
   matrix:
   - LINT_CHECK="1"
   - TRANSIFEX="1"
-  - TESTS="1" ODOO_REPO="odoo/odoo" EXCLUDE="sale_quotation_sourcing,sale_sourced_by_line,sale_quotation_sourcing_stock_route_transit,sale_sourced_by_line_sale_transport_multi_address,sale_properties_dynamic_fields,sale_line_quantity_properties_based" LINT_CHECK="0"
-  - TESTS="1" ODOO_REPO="OCA/OCB" EXCLUDE="sale_quotation_sourcing,sale_sourced_by_line,sale_quotation_sourcing_stock_route_transit,sale_sourced_by_line_sale_transport_multi_address,sale_properties_dynamic_fields,sale_line_quantity_properties_based" LINT_CHECK="0"
+  - TESTS="1" ODOO_REPO="odoo/odoo" EXCLUDE="sale_quotation_sourcing,sale_sourced_by_line,sale_quotation_sourcing_stock_route_transit,sale_sourced_by_line_sale_transport_multi_address,sale_properties_dynamic_fields,sale_line_quantity_properties_based,sale_line_price_properties_based" LINT_CHECK="0"
+  - TESTS="1" ODOO_REPO="OCA/OCB" EXCLUDE="sale_quotation_sourcing,sale_sourced_by_line,sale_quotation_sourcing_stock_route_transit,sale_sourced_by_line_sale_transport_multi_address,sale_properties_dynamic_fields,sale_line_quantity_properties_based,sale_line_price_properties_based" LINT_CHECK="0"
   - TESTS="1" ODOO_REPO="odoo/odoo" INCLUDE="sale_sourced_by_line" LINT_CHECK="0"
   - TESTS="1" ODOO_REPO="OCA/OCB" INCLUDE="sale_sourced_by_line" LINT_CHECK="0"
   - TESTS="1" ODOO_REPO="odoo/odoo" INCLUDE="sale_quotation_sourcing" LINT_CHECK="0"
@@ -37,6 +37,8 @@ env:
   - TESTS="1" ODOO_REPO="OCA/OCB" INCLUDE="sale_properties_dynamic_fields" LINT_CHECK="0"
   - TESTS="1" ODOO_REPO="odoo/odoo" INCLUDE="sale_line_quantity_properties_based" LINT_CHECK="0"
   - TESTS="1" ODOO_REPO="OCA/OCB" INCLUDE="sale_line_quantity_properties_based" LINT_CHECK="0"
+  - TESTS="1" ODOO_REPO="odoo/odoo" INCLUDE="sale_line_price_properties_based" LINT_CHECK="0"
+  - TESTS="1" ODOO_REPO="OCA/OCB" INCLUDE="sale_line_price_properties_based" LINT_CHECK="0"
 
 virtualenv:
   system_site_packages: true
