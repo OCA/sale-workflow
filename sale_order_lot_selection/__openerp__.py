@@ -29,7 +29,7 @@
     'license': 'AGPL-3',
     'depends': ['sale_stock', 'procurement'],
     'data': ['view/sale_view.xml'],
-    'installable': True,
+    'installable': False,
     'active': False,
 }
 
