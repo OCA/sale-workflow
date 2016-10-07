@@ -113,11 +113,13 @@ class SaleOrder(models.Model):
             return super(SaleOrder, self).action_confirm()
 
     @api.multi
-    def action_cancel(self):
-        for order in self:
-            if order.ignore_exception:
-                order.ignore_exception = False
-        return super(SaleOrder, self).action_cancel()
+    def action_draft(self):
+        res = super(SaleOrder, self).action_draft()
+        orders = self.filtered(lambda s: s.ignore_exception)
+        orders.write({
+            'ignore_exception': False,
+        })
+        return res
 
     @api.multi
     def test_exceptions(self):
@@ -175,7 +177,7 @@ class SaleOrder(models.Model):
                       space,
                       mode='exec',
                       nocopy=True)  # nocopy allows to return 'result'
-        except Exception, e:
+        except Exception as e:
             raise UserError(
                 _('Error when evaluating the sale exception '
                   'rule:\n %s \n(%s)') % (rule.name, e))
