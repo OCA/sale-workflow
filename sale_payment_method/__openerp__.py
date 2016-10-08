@@ -20,7 +20,7 @@
 ##############################################################################
 
 {'name': 'Sale Payment Method',
- 'version': '0.2.1',
+ 'version': '8.0.0.2.1',
  'category': 'Generic Modules/Others',
  'license': 'AGPL-3',
  'author': "Akretion,Odoo Community Association (OCA)",

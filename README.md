@@ -42,11 +42,11 @@ addon | version | summary
 [sale_packaging_price](sale_packaging_price/) | 8.0.1.0.0 | Sale Packaging Price
 [sale_partner_incoterm](sale_partner_incoterm/) | 8.0.1.0.0 | Set the customer preferred incoterm on each sales order
 [sale_partner_order_policy](sale_partner_order_policy/) | 8.0.1.0.0 | Adds customer create invoice method on partner form
-[sale_payment_method](sale_payment_method/) | 0.2.1 | Sale Payment Method
+[sale_payment_method](sale_payment_method/) | 8.0.0.2.1 | Sale Payment Method
 [sale_payment_method_automatic_workflow](sale_payment_method_automatic_workflow/) | 8.0.1.0.0 | Sale Payment Method - Automatic Worflow (link module)
 [sale_payment_method_transaction_id](sale_payment_method_transaction_id/) | 8.0.1.0.0 | Sale Payment Method - Transaction ID Compatibility
 [sale_payment_term_interest](sale_payment_term_interest/) | 8.0.1.0.0 | Sales Payment Term Interests
-[sale_pricelist_discount](sale_pricelist_discount/) | 1.0 | Sale Pricelist Discount
+[sale_pricelist_discount](sale_pricelist_discount/) | 8.0.1.0.0 | Sale Pricelist Discount
 [sale_procurement_group_by_line](sale_procurement_group_by_line/) | 8.0.1.0.0 | Base module for multiple procurement group by Sale order
 [sale_product_set](sale_product_set/) | 8.0.1.0.0 | Sale product set
 [sale_product_set_layout](sale_product_set_layout/) | 8.0.1.0.0 | Sale product set layout
