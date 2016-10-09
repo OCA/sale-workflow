@@ -7,9 +7,9 @@ msgid ""
 msgstr ""
 "Project-Id-Version: sale-workflow (8.0)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-09-09 12:27+0000\n"
-"PO-Revision-Date: 2015-09-03 07:08+0000\n"
-"Last-Translator: <>\n"
+"POT-Creation-Date: 2016-10-04 13:41+0000\n"
+"PO-Revision-Date: 2016-10-04 09:43+0000\n"
+"Last-Translator: OCA Transbot <transbot@odoo-community.org>\n"
 "Language-Team: Chinese (China) (http://www.transifex.com/oca/OCA-sale-workflow-8-0/language/zh_CN/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -48,17 +48,23 @@ msgstr ""
 #. module: sale_exceptions
 #: field:sale.exception,create_uid:0 field:sale.exception.confirm,create_uid:0
 msgid "Created by"
-msgstr ""
+msgstr "创建者"
 
 #. module: sale_exceptions
 #: field:sale.exception,create_date:0
 #: field:sale.exception.confirm,create_date:0
 msgid "Created on"
-msgstr ""
+msgstr "创建时间"
 
 #. module: sale_exceptions
 #: field:sale.exception,description:0
 msgid "Description"
+msgstr ""
+
+#. module: sale_exceptions
+#: field:sale.exception,display_name:0
+#: field:sale.exception.confirm,display_name:0
+msgid "Display Name"
 msgstr ""
 
 #. module: sale_exceptions
@@ -115,7 +121,7 @@ msgstr ""
 #. module: sale_exceptions
 #: field:sale.exception,id:0 field:sale.exception.confirm,id:0
 msgid "ID"
-msgstr ""
+msgstr "ID"
 
 #. module: sale_exceptions
 #: field:sale.exception.confirm,ignore:0 field:sale.order,ignore_exceptions:0
@@ -123,14 +129,20 @@ msgid "Ignore Exceptions"
 msgstr ""
 
 #. module: sale_exceptions
+#: field:sale.exception,__last_update:0
+#: field:sale.exception.confirm,__last_update:0
+msgid "Last Modified on"
+msgstr ""
+
+#. module: sale_exceptions
 #: field:sale.exception,write_uid:0 field:sale.exception.confirm,write_uid:0
 msgid "Last Updated by"
-msgstr ""
+msgstr "最后更新者"
 
 #. module: sale_exceptions
 #: field:sale.exception,write_date:0 field:sale.exception.confirm,write_date:0
 msgid "Last Updated on"
-msgstr ""
+msgstr "上次更新日期"
 
 #. module: sale_exceptions
 #: field:sale.order,main_exception_id:0

@@ -3,12 +3,14 @@
 # * sale_order_type
 # 
 # Translators:
+# Matjaž Mozetič <m.mozetic@matmoz.si>, 2015
+# Rudolf Schnapka <rs@techno-flex.de>, 2015
 msgid ""
 msgstr ""
 "Project-Id-Version: sale-workflow (8.0)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-09-09 12:27+0000\n"
-"PO-Revision-Date: 2015-09-03 09:19+0000\n"
+"POT-Creation-Date: 2016-10-04 13:41+0000\n"
+"PO-Revision-Date: 2016-10-04 13:07+0000\n"
 "Last-Translator: OCA Transbot <transbot@odoo-community.org>\n"
 "Language-Team: Chinese (China) (http://www.transifex.com/oca/OCA-sale-workflow-8-0/language/zh_CN/)\n"
 "MIME-Version: 1.0\n"
@@ -31,6 +33,11 @@ msgid "Billing Journal"
 msgstr ""
 
 #. module: sale_order_type
+#: field:sale.order.type,company_id:0
+msgid "Company"
+msgstr ""
+
+#. module: sale_order_type
 #: view:sale.order.type:sale_order_type.sot_sale_order_type_search_view
 #: field:sale.order.type,order_policy:0
 msgid "Create Invoice"
@@ -39,16 +46,21 @@ msgstr ""
 #. module: sale_order_type
 #: field:sale.order.type,create_uid:0
 msgid "Created by"
-msgstr ""
+msgstr "创建者"
 
 #. module: sale_order_type
 #: field:sale.order.type,create_date:0
 msgid "Created on"
-msgstr ""
+msgstr "创建时间"
 
 #. module: sale_order_type
 #: field:sale.order.type,description:0
 msgid "Description"
+msgstr ""
+
+#. module: sale_order_type
+#: field:sale.order.type,display_name:0
+msgid "Display Name"
 msgstr ""
 
 #. module: sale_order_type
@@ -65,6 +77,12 @@ msgstr ""
 #. module: sale_order_type
 #: field:sale.order.type,id:0
 msgid "ID"
+msgstr "ID"
+
+#. module: sale_order_type
+#: view:sale.order.type:sale_order_type.sot_sale_order_type_search_view
+#: field:sale.order.type,incoterm_id:0
+msgid "Incoterm"
 msgstr ""
 
 #. module: sale_order_type
@@ -79,14 +97,19 @@ msgid "Invoice Control"
 msgstr ""
 
 #. module: sale_order_type
+#: field:sale.order.type,__last_update:0
+msgid "Last Modified on"
+msgstr ""
+
+#. module: sale_order_type
 #: field:sale.order.type,write_uid:0
 msgid "Last Updated by"
-msgstr ""
+msgstr "最后更新者"
 
 #. module: sale_order_type
 #: field:sale.order.type,write_date:0
 msgid "Last Updated on"
-msgstr ""
+msgstr "上次更新日期"
 
 #. module: sale_order_type
 #: field:sale.order.type,name:0
@@ -104,8 +127,24 @@ msgid "Partner"
 msgstr ""
 
 #. module: sale_order_type
+#: view:sale.order.type:sale_order_type.sot_sale_order_type_search_view
+#: field:sale.order.type,payment_term_id:0
+msgid "Payment Term"
+msgstr ""
+
+#. module: sale_order_type
 #: model:ir.model,name:sale_order_type.model_stock_picking
 msgid "Picking List"
+msgstr ""
+
+#. module: sale_order_type
+#: view:sale.order.type:sale_order_type.sot_sale_order_type_search_view
+msgid "Price List"
+msgstr ""
+
+#. module: sale_order_type
+#: field:sale.order.type,pricelist_id:0
+msgid "Pricelist"
 msgstr ""
 
 #. module: sale_order_type
@@ -117,6 +156,11 @@ msgstr ""
 #. module: sale_order_type
 #: field:res.partner,sale_type:0
 msgid "Sale Order Type"
+msgstr ""
+
+#. module: sale_order_type
+#: field:account.invoice,sale_type_id:0
+msgid "Sale Type"
 msgstr ""
 
 #. module: sale_order_type
@@ -133,6 +177,11 @@ msgstr ""
 #: model:ir.actions.act_window,name:sale_order_type.sot_sale_order_type_action
 #: model:ir.ui.menu,name:sale_order_type.sot_sale_order_type_menu
 msgid "Sales Order Types"
+msgstr ""
+
+#. module: sale_order_type
+#: field:sale.order.type,sequence:0
+msgid "Sequence"
 msgstr ""
 
 #. module: sale_order_type

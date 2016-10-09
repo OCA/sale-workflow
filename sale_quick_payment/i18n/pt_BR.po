@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: sale-workflow (8.0)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-09-11 16:48+0000\n"
+"POT-Creation-Date: 2016-10-04 13:41+0000\n"
 "PO-Revision-Date: 2016-03-11 10:09+0000\n"
 "Last-Translator: <>\n"
 "Language-Team: Portuguese (Brazil) (http://www.transifex.com/oca/OCA-sale-workflow-8-0/language/pt_BR/)\n"
@@ -46,12 +46,12 @@ msgstr ""
 #: view:pay.sale.order:sale_quick_payment.pay_sale_order_view
 #: field:pay.sale.order,description:0
 msgid "Description"
-msgstr ""
+msgstr "Descrição"
 
 #. module: sale_quick_payment
 #: field:pay.sale.order,display_name:0
 msgid "Display Name"
-msgstr ""
+msgstr "Nome para Mostrar"
 
 #. module: sale_quick_payment
 #: field:pay.sale.order,id:0
@@ -67,7 +67,7 @@ msgstr ""
 #. module: sale_quick_payment
 #: field:pay.sale.order,__last_update:0
 msgid "Last Modified on"
-msgstr ""
+msgstr "Última atualização em"
 
 #. module: sale_quick_payment
 #: field:pay.sale.order,write_uid:0

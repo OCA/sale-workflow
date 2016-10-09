@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: sale-workflow (8.0)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-09-11 16:48+0000\n"
-"PO-Revision-Date: 2016-09-08 13:36+0000\n"
+"POT-Creation-Date: 2016-10-04 13:41+0000\n"
+"PO-Revision-Date: 2016-10-04 09:43+0000\n"
 "Last-Translator: OCA Transbot <transbot@odoo-community.org>\n"
 "Language-Team: Portuguese (Brazil) (http://www.transifex.com/oca/OCA-sale-workflow-8-0/language/pt_BR/)\n"
 "MIME-Version: 1.0\n"
@@ -70,7 +70,7 @@ msgstr "Criado em"
 #: field:sale.order.cancel,display_name:0
 #: field:sale.order.cancel.reason,display_name:0
 msgid "Display Name"
-msgstr ""
+msgstr "Nome para Mostrar"
 
 #. module: sale_cancel_reason
 #: field:sale.order.cancel,id:0 field:sale.order.cancel.reason,id:0
@@ -86,7 +86,7 @@ msgstr ""
 #: field:sale.order.cancel,__last_update:0
 #: field:sale.order.cancel.reason,__last_update:0
 msgid "Last Modified on"
-msgstr ""
+msgstr "Última atualização em"
 
 #. module: sale_cancel_reason
 #: field:sale.order.cancel,write_uid:0

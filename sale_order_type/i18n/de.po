@@ -11,8 +11,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: sale-workflow (8.0)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-04-29 00:55+0000\n"
-"PO-Revision-Date: 2016-04-27 19:20+0000\n"
+"POT-Creation-Date: 2016-10-04 13:41+0000\n"
+"PO-Revision-Date: 2016-10-04 13:07+0000\n"
 "Last-Translator: OCA Transbot <transbot@odoo-community.org>\n"
 "Language-Team: German (http://www.transifex.com/oca/OCA-sale-workflow-8-0/language/de/)\n"
 "MIME-Version: 1.0\n"
@@ -63,7 +63,7 @@ msgstr "Beschreibung"
 #. module: sale_order_type
 #: field:sale.order.type,display_name:0
 msgid "Display Name"
-msgstr ""
+msgstr "Anzeigename"
 
 #. module: sale_order_type
 #: view:sale.order.type:sale_order_type.sot_sale_order_type_search_view
@@ -82,6 +82,12 @@ msgid "ID"
 msgstr "ID"
 
 #. module: sale_order_type
+#: view:sale.order.type:sale_order_type.sot_sale_order_type_search_view
+#: field:sale.order.type,incoterm_id:0
+msgid "Incoterm"
+msgstr "Transportbedingung"
+
+#. module: sale_order_type
 #: model:ir.model,name:sale_order_type.model_account_invoice
 msgid "Invoice"
 msgstr "Rechnung"
@@ -95,7 +101,7 @@ msgstr "Rechnungsprüfung"
 #. module: sale_order_type
 #: field:sale.order.type,__last_update:0
 msgid "Last Modified on"
-msgstr ""
+msgstr "Zuletzt geändert am"
 
 #. module: sale_order_type
 #: field:sale.order.type,write_uid:0
@@ -123,9 +129,25 @@ msgid "Partner"
 msgstr "Partner"
 
 #. module: sale_order_type
+#: view:sale.order.type:sale_order_type.sot_sale_order_type_search_view
+#: field:sale.order.type,payment_term_id:0
+msgid "Payment Term"
+msgstr "Zahlungsbedingung"
+
+#. module: sale_order_type
 #: model:ir.model,name:sale_order_type.model_stock_picking
 msgid "Picking List"
 msgstr "Kommissionierliste"
+
+#. module: sale_order_type
+#: view:sale.order.type:sale_order_type.sot_sale_order_type_search_view
+msgid "Price List"
+msgstr ""
+
+#. module: sale_order_type
+#: field:sale.order.type,pricelist_id:0
+msgid "Pricelist"
+msgstr "Preisliste"
 
 #. module: sale_order_type
 #: view:sale.order.type:sale_order_type.sot_sale_order_type_search_view
@@ -137,6 +159,11 @@ msgstr "Gutschrifts-Journal"
 #: field:res.partner,sale_type:0
 msgid "Sale Order Type"
 msgstr "Verkaufsauftragsart"
+
+#. module: sale_order_type
+#: field:account.invoice,sale_type_id:0
+msgid "Sale Type"
+msgstr ""
 
 #. module: sale_order_type
 #: model:ir.model,name:sale_order_type.model_sale_order

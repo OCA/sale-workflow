@@ -3,13 +3,14 @@
 # * sale_exceptions
 # 
 # Translators:
+# Hotellook, 2014
 msgid ""
 msgstr ""
 "Project-Id-Version: sale-workflow (8.0)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-12-05 23:35+0000\n"
-"PO-Revision-Date: 2015-09-03 07:08+0000\n"
-"Last-Translator: <>\n"
+"POT-Creation-Date: 2016-10-04 13:41+0000\n"
+"PO-Revision-Date: 2016-10-04 09:43+0000\n"
+"Last-Translator: OCA Transbot <transbot@odoo-community.org>\n"
 "Language-Team: Turkish (http://www.transifex.com/oca/OCA-sale-workflow-8-0/language/tr/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -59,6 +60,12 @@ msgstr "Oluşturuldu"
 #. module: sale_exceptions
 #: field:sale.exception,description:0
 msgid "Description"
+msgstr "Açıklama"
+
+#. module: sale_exceptions
+#: field:sale.exception,display_name:0
+#: field:sale.exception.confirm,display_name:0
+msgid "Display Name"
 msgstr ""
 
 #. module: sale_exceptions
@@ -120,6 +127,12 @@ msgstr "ID"
 #. module: sale_exceptions
 #: field:sale.exception.confirm,ignore:0 field:sale.order,ignore_exceptions:0
 msgid "Ignore Exceptions"
+msgstr ""
+
+#. module: sale_exceptions
+#: field:sale.exception,__last_update:0
+#: field:sale.exception.confirm,__last_update:0
+msgid "Last Modified on"
 msgstr ""
 
 #. module: sale_exceptions

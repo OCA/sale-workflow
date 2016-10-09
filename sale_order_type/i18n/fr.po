@@ -9,8 +9,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: sale-workflow (8.0)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-09-11 16:48+0000\n"
-"PO-Revision-Date: 2016-09-17 19:03+0000\n"
+"POT-Creation-Date: 2016-10-04 13:41+0000\n"
+"PO-Revision-Date: 2016-10-04 13:07+0000\n"
 "Last-Translator: OCA Transbot <transbot@odoo-community.org>\n"
 "Language-Team: French (http://www.transifex.com/oca/OCA-sale-workflow-8-0/language/fr/)\n"
 "MIME-Version: 1.0\n"
@@ -80,6 +80,12 @@ msgid "ID"
 msgstr "ID"
 
 #. module: sale_order_type
+#: view:sale.order.type:sale_order_type.sot_sale_order_type_search_view
+#: field:sale.order.type,incoterm_id:0
+msgid "Incoterm"
+msgstr "Incoterm"
+
+#. module: sale_order_type
 #: model:ir.model,name:sale_order_type.model_account_invoice
 msgid "Invoice"
 msgstr "Facture"
@@ -121,9 +127,25 @@ msgid "Partner"
 msgstr "Partenaire"
 
 #. module: sale_order_type
+#: view:sale.order.type:sale_order_type.sot_sale_order_type_search_view
+#: field:sale.order.type,payment_term_id:0
+msgid "Payment Term"
+msgstr "Condition de règlement"
+
+#. module: sale_order_type
 #: model:ir.model,name:sale_order_type.model_stock_picking
 msgid "Picking List"
 msgstr "Opération de manutention"
+
+#. module: sale_order_type
+#: view:sale.order.type:sale_order_type.sot_sale_order_type_search_view
+msgid "Price List"
+msgstr ""
+
+#. module: sale_order_type
+#: field:sale.order.type,pricelist_id:0
+msgid "Pricelist"
+msgstr "Liste de prix"
 
 #. module: sale_order_type
 #: view:sale.order.type:sale_order_type.sot_sale_order_type_search_view
@@ -134,6 +156,11 @@ msgstr ""
 #. module: sale_order_type
 #: field:res.partner,sale_type:0
 msgid "Sale Order Type"
+msgstr ""
+
+#. module: sale_order_type
+#: field:account.invoice,sale_type_id:0
+msgid "Sale Type"
 msgstr ""
 
 #. module: sale_order_type

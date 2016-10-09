@@ -11,8 +11,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: sale-workflow (8.0)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-07-10 15:38+0000\n"
-"PO-Revision-Date: 2016-07-21 19:09+0000\n"
+"POT-Creation-Date: 2016-10-04 13:41+0000\n"
+"PO-Revision-Date: 2016-10-04 09:43+0000\n"
 "Last-Translator: Paolo Valier\n"
 "Language-Team: Italian (http://www.transifex.com/oca/OCA-sale-workflow-8-0/language/it/)\n"
 "MIME-Version: 1.0\n"
@@ -343,7 +343,7 @@ msgstr ""
 #. module: sale_service_project
 #: model:ir.model,name:sale_service_project.model_project_task
 msgid "Task"
-msgstr ""
+msgstr "Attività"
 
 #. module: sale_service_project
 #: view:product.task.materials:sale_service_project.product_task_materials_form_view

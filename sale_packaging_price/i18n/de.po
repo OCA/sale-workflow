@@ -8,8 +8,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: sale-workflow (8.0)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-04-29 00:55+0000\n"
-"PO-Revision-Date: 2016-04-27 19:20+0000\n"
+"POT-Creation-Date: 2016-10-04 13:41+0000\n"
+"PO-Revision-Date: 2016-10-04 09:43+0000\n"
 "Last-Translator: OCA Transbot <transbot@odoo-community.org>\n"
 "Language-Team: German (http://www.transifex.com/oca/OCA-sale-workflow-8-0/language/de/)\n"
 "MIME-Version: 1.0\n"
@@ -40,7 +40,7 @@ msgstr "Angelegt am"
 #. module: sale_packaging_price
 #: field:product.packaging.material,display_name:0
 msgid "Display Name"
-msgstr ""
+msgstr "Anzeigename"
 
 #. module: sale_packaging_price
 #: view:product.packaging:sale_packaging_price.product_packaging_filter
@@ -55,7 +55,7 @@ msgstr "ID"
 #. module: sale_packaging_price
 #: field:product.packaging.material,__last_update:0
 msgid "Last Modified on"
-msgstr ""
+msgstr "Zuletzt geändert am"
 
 #. module: sale_packaging_price
 #: field:product.packaging.material,write_uid:0

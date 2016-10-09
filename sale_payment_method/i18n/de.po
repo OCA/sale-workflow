@@ -9,15 +9,20 @@ msgid ""
 msgstr ""
 "Project-Id-Version: sale-workflow (8.0)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-04-14 06:47+0000\n"
-"PO-Revision-Date: 2016-01-18 12:56+0000\n"
-"Last-Translator: Rudolf Schnapka <rs@techno-flex.de>\n"
+"POT-Creation-Date: 2016-10-04 13:41+0000\n"
+"PO-Revision-Date: 2016-10-04 09:43+0000\n"
+"Last-Translator: OCA Transbot <transbot@odoo-community.org>\n"
 "Language-Team: German (http://www.transifex.com/oca/OCA-sale-workflow-8-0/language/de/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
 "Language: de\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+#. module: sale_payment_method
+#: field:sale.order,amount_paid:0
+msgid "Amount Paid"
+msgstr ""
 
 #. module: sale_payment_method
 #: code:addons/sale_payment_method/sale.py:86
@@ -34,6 +39,11 @@ msgid ""
 "An automatic payment should be created for the sale order %s but the payment"
 " method '%s' has no journal defined."
 msgstr "Eine Automatische Zahlung soll für den Verkaufsauftrag %s angelegt werden, aber zur Zahlweise '%s' ist kein Journal festgelegt."
+
+#. module: sale_payment_method
+#: field:sale.order,residual:0
+msgid "Balance"
+msgstr ""
 
 #. module: sale_payment_method
 #: code:addons/sale_payment_method/sale.py:70
@@ -75,6 +85,11 @@ msgid "Default payment term of a sale order using this method."
 msgstr "Vorgabe-Zahlungsbedingung eines Verkaufsauftrags bei Verwendung dieser Methode."
 
 #. module: sale_payment_method
+#: field:payment.method,display_name:0
+msgid "Display Name"
+msgstr "Anzeigename"
+
+#. module: sale_payment_method
 #: view:payment.method:sale_payment_method.payment_method_view_form
 msgid ""
 "Even if the E-commerce backend receives a payment for a sale order,\n"
@@ -107,6 +122,11 @@ msgstr "Journal-Posten"
 #: view:payment.method:sale_payment_method.payment_method_view_form
 msgid "Journal for payment"
 msgstr "Journal für Zahlungen"
+
+#. module: sale_payment_method
+#: field:payment.method,__last_update:0
+msgid "Last Modified on"
+msgstr "Zuletzt geändert am"
 
 #. module: sale_payment_method
 #: field:payment.method,write_uid:0

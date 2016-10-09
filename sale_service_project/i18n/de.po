@@ -10,8 +10,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: sale-workflow (8.0)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-04-29 00:56+0000\n"
-"PO-Revision-Date: 2016-04-27 19:22+0000\n"
+"POT-Creation-Date: 2016-10-04 13:41+0000\n"
+"PO-Revision-Date: 2016-10-04 09:42+0000\n"
 "Last-Translator: OCA Transbot <transbot@odoo-community.org>\n"
 "Language-Team: German (http://www.transifex.com/oca/OCA-sale-workflow-8-0/language/de/)\n"
 "MIME-Version: 1.0\n"
@@ -110,7 +110,7 @@ msgstr "Angelegt am"
 #: field:sale.order.line.task.materials,display_name:0
 #: field:sale.order.line.task.work,display_name:0
 msgid "Display Name"
-msgstr ""
+msgstr "Anzeigename"
 
 #. module: sale_service_project
 #: code:addons/sale_service_project/models/hr_timesheet_invoice.py:57
@@ -185,7 +185,7 @@ msgstr ""
 #: field:sale.order.line.task.materials,__last_update:0
 #: field:sale.order.line.task.work,__last_update:0
 msgid "Last Modified on"
-msgstr ""
+msgstr "Zuletzt geändert am"
 
 #. module: sale_service_project
 #: field:product.price.service.wizard,write_uid:0
