@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: sale-workflow (9.0)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-06-24 02:45+0000\n"
+"POT-Creation-Date: 2016-09-29 03:03+0000\n"
 "PO-Revision-Date: 2016-04-12 07:49+0000\n"
 "Last-Translator: <>\n"
 "Language-Team: Turkish (http://www.transifex.com/oca/OCA-sale-workflow-9-0/language/tr/)\n"
@@ -58,7 +58,7 @@ msgstr "Oluşturuldu"
 #. module: sale_exception
 #: model:ir.model.fields,field_description:sale_exception.field_sale_exception_description
 msgid "Description"
-msgstr ""
+msgstr "Açıklama"
 
 #. module: sale_exception
 #: model:ir.model.fields,field_description:sale_exception.field_sale_exception_confirm_display_name
