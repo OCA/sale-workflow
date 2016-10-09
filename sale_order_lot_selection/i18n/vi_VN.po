@@ -4,20 +4,19 @@
 # 
 # Translators:
 # OCA Transbot <transbot@odoo-community.org>, 2016
-# Ivan BARAYEV <ivanbarayev@hotmail.com>, 2017
 msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 9.0c\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-01-07 06:07+0000\n"
-"PO-Revision-Date: 2017-01-07 06:07+0000\n"
-"Last-Translator: Ivan BARAYEV <ivanbarayev@hotmail.com>, 2017\n"
-"Language-Team: Turkish (https://www.transifex.com/oca/teams/23907/tr/)\n"
+"POT-Creation-Date: 2016-09-29 03:03+0000\n"
+"PO-Revision-Date: 2016-09-29 03:03+0000\n"
+"Last-Translator: OCA Transbot <transbot@odoo-community.org>, 2016\n"
+"Language-Team: Vietnamese (Viet Nam) (https://www.transifex.com/oca/teams/23907/vi_VN/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
-"Language: tr\n"
-"Plural-Forms: nplurals=2; plural=(n > 1);\n"
+"Language: vi_VN\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
 
 #. module: sale_order_lot_selection
 #: code:addons/sale_order_lot_selection/model/sale.py:84
@@ -35,24 +34,24 @@ msgstr ""
 #: model:ir.model.fields,field_description:sale_order_lot_selection.field_procurement_order_lot_id
 #: model:ir.model.fields,field_description:sale_order_lot_selection.field_sale_order_line_lot_id
 msgid "Lot"
-msgstr ""
+msgstr "Lô"
 
 #. module: sale_order_lot_selection
 #: model:ir.model,name:sale_order_lot_selection.model_procurement_order
 msgid "Procurement"
-msgstr ""
+msgstr "Mua sắm / Cung ứng"
 
 #. module: sale_order_lot_selection
 #: model:ir.model,name:sale_order_lot_selection.model_sale_order
 msgid "Sales Order"
-msgstr "Sipariş Emri"
+msgstr "Đơn hàng Bán"
 
 #. module: sale_order_lot_selection
 #: model:ir.model,name:sale_order_lot_selection.model_sale_order_line
 msgid "Sales Order Line"
-msgstr "Satış Siparişi Hattı"
+msgstr ""
 
 #. module: sale_order_lot_selection
 #: model:ir.model,name:sale_order_lot_selection.model_stock_move
 msgid "Stock Move"
-msgstr "Stok Taşı"
+msgstr "Dịch chuyển kho"
