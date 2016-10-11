@@ -24,7 +24,7 @@ addon | version | summary
 [sale_allotment](sale_allotment/) | 8.0.1.1.0 | Separate the shipment according to allotment partner
 [sale_automatic_workflow](sale_automatic_workflow/) | 8.0.0.3.0 | Sale Automatic Workflow
 [sale_automatic_workflow_exception](sale_automatic_workflow_exception/) | 8.0.1.0.0 | Sale Automatic Workflow Exception
-[sale_cancel_reason](sale_cancel_reason/) | 8.0.1.1 | Sale Cancel Reason
+[sale_cancel_reason](sale_cancel_reason/) | 8.0.1.1.0 | Sale Cancel Reason
 [sale_exception_nostock](sale_exception_nostock/) | 8.0.1.2.0 | Sale stock exception
 [sale_exceptions](sale_exceptions/) | 8.0.1.0.0 | Custom exceptions on sale order
 [sale_last_price_info](sale_last_price_info/) | 8.0.1.0.0 | Product Last Price Info - Sale
