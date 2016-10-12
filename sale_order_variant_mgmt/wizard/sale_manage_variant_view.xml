@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Copyright 2016 Pedro M. Baeza <pedro.baeza@tecnativa.com>
+     License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl). -->
+<odoo>
+
+    <record model="ir.ui.view" id="sale_manage_variant_form">
+        <field name="model">sale.manage.variant</field>
+        <field name="arch" type="xml">
+            <form string="Manage Product Variants">
+                <group>
+                    <field name="product_tmpl_id"
+                           domain="[('attribute_line_ids', '!=', False)]"
+                           options="{'no_create': True}"
+                    />
+                </group>
+                <field name="variant_line_ids"
+                       widget="x2many_2d_matrix"
+                       field_x_axis="value_x"
+                       field_y_axis="value_y"
+                       field_value = "product_uom_qty"
+                       field_att_disabled="disabled"
+                       x_axis_clickable="0"
+                       y_axis_clickable="0"
+                />
+                <footer>
+                    <button name="button_transfer_to_order"
+                            type="object"
+                            string="Transfer to order"
+                            class="oe_highlight"
+                    />
+                    <button class="oe_link"
+                            special="cancel"
+                            string="Cancel"
+                    />
+                </footer>
+            </form>
+        </field>
+    </record>
+
+    <record model="ir.actions.act_window" id="action_sale_manage_variant">
+        <field name="name">Manage variants</field>
+        <field name="res_model">sale.manage.variant</field>
+        <field name="view_mode">form</field>
+        <field name="view_type">form</field>
+        <field name="target">new</field>
+    </record>
+
+</odoo>
