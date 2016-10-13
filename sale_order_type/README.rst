@@ -5,7 +5,11 @@ Sales Order Types
 =================
 
 This module adds a typology for the sales orders. In each different type, you
-can define, invoicing and refunding journal, a warehouse and a sequence.
+can define, invoicing and refunding journal, a warehouse, a sequence,
+the shipping policy, the invoicing policy, a payment term, a pricelist
+and an incoterm.
+
+You can see sale types as lines of business.
 
 You are able to select a sales order type by partner so that when you add a
 partner to a sales order it will get the related info to it.
@@ -16,7 +20,7 @@ Usage
 
 .. image:: https://odoo-community.org/website/image/ir.attachment/5784_f2813bd/datas
    :alt: Try me on Runbot
-   :target: https://runbot.odoo-community.org/runbot/167/8.0
+   :target: https://runbot.odoo-community.org/runbot/167/9.0
 
 
 Bug Tracker
@@ -39,6 +43,8 @@ Contributors
 * Pedro M. Baeza <pedro.baeza@serviciosbaeza.com>
 * Ana Juaristi <anajuaristi@avanzosc.es>
 * Daniel Campos <danielcampos@avanzosc.es>
+* Ainara Galdona <ainaragaldona@avanzosc.es>
+* Lorenzo Battistini <lorenzo.battistini@agilebg.com>
 
 Maintainer
 ----------
