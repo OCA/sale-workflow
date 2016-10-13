@@ -63,7 +63,7 @@ class SaleOrder(models.Model):
         merge_ids = self.search([('merge_with', '=', self.id)]).ids
         wizard = self.env['sale.order.merge'].create({
             'sale_order': self.id,
-            'to_merge': [(6, 0, [merge_ids])],
+            'to_merge': [(6, 0, merge_ids)],
         })
         return {
             'name': _('Merge sale orders'),
