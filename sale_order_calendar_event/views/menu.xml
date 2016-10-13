@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<openerp>
+    <data>
+        <act_window
+            id="action_sale_calendar"
+            name="Sale order appointments"
+            res_model="calendar.event"
+            view_mode="calendar,tree,form,gantt"
+            domain="[('sale_order_id', '!=', False)]"
+        />
+        <menuitem
+            id="menu_sale_calendar"
+            action="action_sale_calendar"
+            parent="base.menu_sales"
+            sequence="100"
+        />
+    </data>
+</openerp>
