@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<openerp>
+    <data>
+        <record id="view_calendar_event_search" model="ir.ui.view">
+            <field name="model">calendar.event</field>
+            <field name="inherit_id" ref="calendar.view_calendar_event_search" />
+            <field name="arch" type="xml">
+                <xpath expr="." position="inside">
+                    <field name="sale_order_id" />
+                    <filter name="sale_orders" string="Sale orders" domain="[('sale_order_id', '!=', False)]" />
+                </xpath>
+            </field>
+        </record>
+        <record id="view_calendar_event_calendar" model="ir.ui.view">
+            <field name="model">calendar.event</field>
+            <field name="inherit_id" ref="calendar.view_calendar_event_calendar" />
+            <field name="arch" type="xml">
+                <xpath expr="." position="inside">
+                    <field name="sale_order_id" />
+                </xpath>
+            </field>
+        </record>
+        <record id="view_calendar_event_form" model="ir.ui.view">
+            <field name="model">calendar.event</field>
+            <field name="inherit_id" ref="calendar.view_calendar_event_form" />
+            <field name="arch" type="xml">
+                <page string="Misc" position="inside">
+                    <label for="sale_order_id" />
+                    <field name="sale_order_id" />
+                </page>
+            </field>
+        </record>
+        <record id="view_calendar_event_form_popup" model="ir.ui.view">
+            <field name="model">calendar.event</field>
+            <field name="inherit_id" ref="calendar.view_calendar_event_form_popup" />
+            <field name="arch" type="xml">
+                <xpath expr="//group" position="inside">
+                    <group name="sale_order_calendar_event">
+                        <field name="sale_order_id" />
+                    </group>
+                </xpath>
+            </field>
+        </record>
+    </data>
+</openerp>
