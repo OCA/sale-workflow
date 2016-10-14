@@ -22,6 +22,7 @@ addon | version | summary
 [sale_automatic_workflow_payment_mode](sale_automatic_workflow_payment_mode/) | 9.0.2.0.0 | Sale Automatic Workflow - Payment Mode
 [sale_exception](sale_exception/) | 9.0.1.0.0 | Custom exceptions on sale order
 [sale_order_lot_selection](sale_order_lot_selection/) | 9.0.1.0.0 | Sale Order Lot Selection
+[sale_order_type](sale_order_type/) | 9.0.1.0.0 | Sale Order Types
 [sale_order_variant_mgmt](sale_order_variant_mgmt/) | 9.0.1.0.0 | Handle the addition/removal of multiple variants from product template into the sales order
 [sale_packaging_price](sale_packaging_price/) | 9.0.1.0.0 | Sale Packaging Price
 
@@ -52,7 +53,6 @@ addon | version | summary
 [sale_order_line_description](sale_order_line_description/) | 8.0.1.0.0 (unported) | Sale order line description
 [sale_order_price_recalculation](sale_order_price_recalculation/) | 8.0.1.0.0 (unported) | Price recalculation in sales orders
 [sale_order_revision](sale_order_revision/) | 8.0.0.1.0 (unported) | Sale order revisions
-[sale_order_type](sale_order_type/) | 8.0.1.0.1 (unported) | Sale Order Types
 [sale_owner_stock_sourcing](sale_owner_stock_sourcing/) | 8.0.0.1.0 (unported) | Manage stock ownership on sale order lines
 [sale_partner_order_policy](sale_partner_order_policy/) | 8.0.1.0.0 (unported) | Adds customer create invoice method on partner form
 [sale_payment_term_interest](sale_payment_term_interest/) | 8.0.1.0.0 (unported) | Sales Payment Term Interests
