@@ -44,7 +44,6 @@ addon | version | summary
 [sale_delivery_term](sale_delivery_term/) | 0.1 (unported) | Delivery term for sale orders
 [sale_dropshipping](sale_dropshipping/) | 1.1.1 (unported) | Sale Dropshipping
 [sale_exception_nostock](sale_exception_nostock/) | 8.0.1.2.0 (unported) | Sale stock exception
-[sale_fiscal_position_update](sale_fiscal_position_update/) | 1.0 (unported) | Changing the fiscal position of a sale order will auto-update sale order lines
 [sale_jit_on_services](sale_jit_on_services/) | 1.0 (unported) | Sale Service Just In Time
 [sale_last_price_info](sale_last_price_info/) | 8.0.1.0.0 (unported) | Product Last Price Info - Sale
 [sale_multi_picking](sale_multi_picking/) | 0.1 (unported) | Multi Pickings from Sale Orders
