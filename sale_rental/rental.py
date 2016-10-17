@@ -45,7 +45,7 @@ class ProductProduct(models.Model):
         string='Related Rental Services')
 
     @api.one
-    @api.constrains('rented_product_id', 'must_have_dates')
+    @api.constrains('rented_product_id', 'must_have_dates', 'type', 'uom_id')
     def _check_rental(self):
         if self.rented_product_id and self.type != 'service':
             raise ValidationError(
@@ -178,7 +178,7 @@ class SaleOrderLine(models.Model):
                         self.number_of_days, self.rental_qty))
             if not self.must_have_dates:
                 raise ValidationError(
-                    _("On the rental sale order line with product %s"
+                    _("On the rental sale order line with product %s "
                         "the must have dates option should be enabled")
                     % self.product_id.name)
                 # the module sale_start_end_dates checks that, when we have
@@ -338,7 +338,7 @@ class SaleRental(models.Model):
             self.rented_product_id.name,
             self.start_date,
             self.end_date,
-            self.state)  # TODO : display label, not the technical key
+            self._fields['state'].convert_to_export(self.state, self.env))
 
     @api.one
     @api.depends(
@@ -363,8 +363,7 @@ class SaleRental(models.Model):
                 for move in procurement.move_ids:
                     if move.move_dest_id:
                         out_move = move
-                    else:
-                        in_move = move
+                        in_move = move.move_dest_id
             if (
                     self.sell_order_line_ids and
                     self.sell_order_line_ids[0].procurement_ids):
