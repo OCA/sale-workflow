@@ -1,38 +1,15 @@
 # -*- coding: utf-8 -*-
-#
-#
-#    Author: Guewen Baconnier, Yannick Vaucher
-#    Copyright 2013-2015 Camptocamp SA
-#
-#    This program is free software: you can redistribute it and/or modify
-#    it under the terms of the GNU Affero General Public License as
-#    published by the Free Software Foundation, either version 3 of the
-#    License, or (at your option) any later version.
-#
-#    This program is distributed in the hope that it will be useful,
-#    but WITHOUT ANY WARRANTY; without even the implied warranty of
-#    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-#    GNU Affero General Public License for more details.
-#
-#    You should have received a copy of the GNU Affero General Public License
-#    along with this program.  If not, see <http://www.gnu.org/licenses/>.
-#
-#
+# Copyright 2013-2014 Camptocamp SA - Guewen Baconnier, Yannick Vaucher
+# © 2015 Eficent Business and IT Consulting Services S.L.
+# - Jordi Ballester Alomar
+# © 2015 Serpent Consulting Services Pvt. Ltd. - Sudhir Arya
+# License LGPL-3.0 or later (https://www.gnu.org/licenses/lgpl.html).
 
-from openerp import models, api, fields
-from openerp.osv import orm
+from openerp import api, fields, models
 
 
 class SaleOrder(models.Model):
     _inherit = 'sale.order'
-
-    def _prepare_order_line_procurement(self, cr, uid, order, line,
-                                        group_id=False, context=None):
-        values = super(SaleOrder, self)._prepare_order_line_procurement(
-            cr, uid, order, line, group_id=group_id, context=context)
-        if line.warehouse_id:
-            values['warehouse_id'] = line.warehouse_id.id
-        return values
 
     @api.model
     def _prepare_procurement_group_by_line(self, line):
@@ -60,7 +37,7 @@ class SaleOrder(models.Model):
              "this warehouse is used as default. ")
 
 
-class SaleOrderLine(orm.Model):
+class SaleOrderLine(models.Model):
     _inherit = 'sale.order.line'
 
     warehouse_id = fields.Many2one(
@@ -70,6 +47,13 @@ class SaleOrderLine(orm.Model):
              "it will be used to define the route. "
              "Otherwise, it will get the warehouse of "
              "the sale order")
+
+    @api.multi
+    def _prepare_order_line_procurement(self, group_id=False):
+        values = super(SaleOrderLine, self)._prepare_order_line_procurement(group_id=group_id)
+        if self.warehouse_id:
+            values['warehouse_id'] = self.warehouse_id.id
+        return values
 
     @api.multi
     def _get_procurement_group_key(self):
