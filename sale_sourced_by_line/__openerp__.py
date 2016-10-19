@@ -10,8 +10,8 @@
     'summary': 'Multiple warehouse source locations for Sale order',
     'version': '9.0.1.0.0',
     "author": "Camptocamp,"
-              "Eficent Business and IT Consulting Services S.L.,"
-              "Serpent Consulting Services Pvt. Ltd.,"
+              "Eficent,"
+              "Serpent.,"
               "Odoo Community Association (OCA)",
     'category': 'Warehouse',
     'license': 'AGPL-3',
