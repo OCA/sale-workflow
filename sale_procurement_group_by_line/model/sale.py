@@ -18,8 +18,7 @@
 #    along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
 #
-from openerp import models, api, fields, osv
-from openerp.osv import orm
+from openerp import models, api, fields
 
 
 class SaleOrder(models.Model):
@@ -137,7 +136,10 @@ class SaleOrder(models.Model):
     ###
     # OVERRIDE to find sale.order.line's picking
     ###
-    def _get_picking_ids(self, cr, uid, ids, name, args, context=None):
+
+    @api.one
+    @api.depends('order_line.procurement_group_id.procurement_ids.state')
+    def _compute_get_picking_ids(self, cr, uid, ids, name, args, context=None):
         res = {}
         for sale in self.browse(cr, uid, ids, context=context):
             group_ids = set([line.procurement_group_id.id
@@ -151,12 +153,10 @@ class SaleOrder(models.Model):
                 context=context)
         return res
 
-    _columns = {
-        'picking_ids': osv.fields.function(
-            _get_picking_ids, method=True, type='one2many',
-            relation='stock.picking',
-            string='Picking associated to this sale'),
-    }
+    picking_ids = fields.One2many('stock.picking',
+                                  compute='_compute_get_picking_ids',
+                                  method=True,
+                                  string='Picking associated to this sale'),
 
     shipped = fields.Boolean(
         compute='_get_shipped',
@@ -164,7 +164,7 @@ class SaleOrder(models.Model):
         store=True)
 
 
-class SaleOrderLine(orm.Model):
+class SaleOrderLine(models.Model):
     _inherit = 'sale.order.line'
 
     @api.multi
