@@ -18,10 +18,10 @@
     'complexity': 'expert',
     'website': "http://www.camptocamp.com",
     'depends': ['sale_stock',
-            'sale_procurement_group_by_line',
-            ],
+                'sale_procurement_group_by_line',
+                ],
     'data': ['view/sale_view.xml',
-         ],
+             ],
     'auto_install': False,
     'installable': True,
- }
+}

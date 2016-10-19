@@ -8,14 +8,14 @@
 Redefine and override all sale_stock picking method to search procurement
 group on sale order line instead of on the sale order
 '''
-from openerp import fields, models
+from openerp import api, fields, models
 
 
 class StockPicking(models.Model):
     _inherit = "stock.picking"
 
     @api.depends('group_id')
-    def _get_sale_id(self, cr, uid, ids, name, args, context=None):
+    def _compute_get_sale_id(self):
         sale_line_obj = self.env['sale.order.line']
         for picking in self:
             if picking.group_id:
@@ -24,5 +24,5 @@ class StockPicking(models.Model):
                 if lines:
                     self.sale_id = lines[0].order_id
 
-    sale_id = fields.Many2one('sale.order', compute='_get_sale_id',
+    sale_id = fields.Many2one('sale.order', compute='_compute_get_sale_id',
                               string="Sale Order")
