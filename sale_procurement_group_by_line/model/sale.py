@@ -21,7 +21,7 @@ class SaleOrder(models.Model):
     # OVERRIDE to use sale.order.line's procurement_group_id from lines
     ###
 
-    @api.one
+    @api.multi
     @api.depends('order_line.procurement_group_id.procurement_ids.state')
     def _get_shipped(self):
         """ As procurement is per sale line basis, we check each line
@@ -36,6 +36,7 @@ class SaleOrder(models.Model):
             shipped.
 
         """
+        self.ensure_one()
         if not self.order_line:
             self.shipped = False
 
@@ -56,7 +57,7 @@ class SaleOrder(models.Model):
     # OVERRIDE to find sale.order.line's picking
     ###
 
-    @api.one
+    @api.multi
     @api.depends('order_line')
     def _compute_get_picking_ids(self):
         for sale in self:
