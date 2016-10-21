@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<openerp>
+    <data>
+        <record id="view_sale_order_merge_form" model="ir.ui.view">
+            <field name="model">sale.order.merge</field>
+            <field name="arch" type="xml">
+                <form string="Merge sale orders">
+                    <sheet>
+                        <group>
+                            <field name="to_merge" domain="[('id', 'in', mergeable[0][2])]"/>
+                            <field name="mergeable" invisible="1"/>
+                            <field name="sale_order" />
+                        </group>
+                    </sheet>
+                    <footer>
+                        <button name="merge" type="object" string="Merge" class="oe_highlight"
+                                attrs="{'invisible': [('to_merge', '=', [(6, False, [])])]}"/>
+                        or
+                        <button string="Cancel" class="oe_link" special="cancel" />
+                    </footer>
+                </form>
+            </field>
+        </record>
+    </data>
+</openerp>
