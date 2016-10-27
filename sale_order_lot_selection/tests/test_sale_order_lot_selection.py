@@ -46,6 +46,7 @@ class TestSaleOrderLotSelection(test_common.SingleTransactionCase):
             'stock.stock_location_suppliers')
         self.stock_location = self.env.ref('stock.stock_location_stock')
         self.product_model = self.env['product.product']
+        self.lot_model = self.env['stock.production.lot']
 
     def _stock_quantity(self, product, lot, location):
         return product.with_context({
@@ -250,3 +251,164 @@ class TestSaleOrderLotSelection(test_common.SingleTransactionCase):
         # lot11 has 1 availability and order4 has quantity 2
         with self.assertRaises(Warning):
             self.order4.action_confirm()
+
+    def test_sale_multi_lot_by_product(self):
+        product_vals = {
+            'name': 'Test multi_lot_by_product',
+            'tracking': 'lot',
+            'type': 'product',
+        }
+        self.productA = self.env['product.product'].create(product_vals)
+
+        # Make stock available for the new product
+        pickingIn = self.env['stock.picking'].create({
+            'partner_id': self.env.ref('base.res_partner_1').id,
+            'picking_type_id': self.env['ir.model.data'].xmlid_to_res_id(
+                'stock.picking_type_in'),
+            'location_id': self.supplier_location.id,
+            'location_dest_id': self.stock_location.id})
+        self.env['stock.move'].create({
+            'name': self.productA.name,
+            'product_id': self.productA.id,
+            'product_uom_qty': 6,
+            'product_uom': self.productA.uom_id.id,
+            'picking_id': pickingIn.id,
+            'location_id': self.supplier_location.id,
+            'location_dest_id': self.stock_location.id})
+        pickingIn.action_confirm()
+        operation = pickingIn.pack_operation_ids
+        # Create the lots we will use for the test
+        operation.write({
+            'pack_lot_ids': [(0, 0, {
+                'lot_name': '01',
+                'qty': 1,
+                'qty_todo': 1
+                }),
+                (0, 0, {
+                    'lot_name': '02',
+                    'qty': 1,
+                    'qty_todo': 1
+                }),
+                (0, 0, {
+                    'lot_name': '03',
+                    'qty': 1,
+                    'qty_todo': 1
+                    }),
+                (0, 0, {
+                    'lot_name': '04',
+                    'qty': 1,
+                    'qty_todo': 1
+                    }),
+                (0, 0, {
+                    'lot_name': '05',
+                    'qty': 1,
+                    'qty_todo': 1
+                    }),
+                (0, 0, {
+                    'lot_name': '06',
+                    'qty': 1,
+                    'qty_todo': 1
+                })],
+            'qty_done': operation.product_qty
+            })
+        pickingIn.do_new_transfer()
+
+        self.lot01 = self.lot_model.search(
+            [('name', '=', '01'),
+             ('product_id', '=', self.productA.id)])
+        self.lot02 = self.lot_model.search(
+            [('name', '=', '02'),
+             ('product_id', '=', self.productA.id)])
+        self.lot03 = self.lot_model.search(
+            [('name', '=', '03'),
+             ('product_id', '=', self.productA.id)])
+        self.lot04 = self.lot_model.search(
+            [('name', '=', '04'),
+             ('product_id', '=', self.productA.id)])
+        self.lot05 = self.lot_model.search(
+            [('name', '=', '05'),
+             ('product_id', '=', self.productA.id)])
+        self.lot06 = self.lot_model.search(
+            [('name', '=', '06'),
+             ('product_id', '=', self.productA.id)])
+
+        # Create the sale order
+        self.order = self.env['sale.order'].create(
+            {
+                'partner_id': self.env.ref('base.res_partner_1').id,
+            })
+        self.order_line2 = self.env['sale.order.line'].create({
+            'name': 'sol2',
+            'order_id': self.order.id,
+            'lot_id': self.lot02.id,
+            'product_id': self.productA.id,
+            'product_uom_qty': 1,
+        })
+        self.order_line4 = self.env['sale.order.line'].create({
+            'name': 'sol4',
+            'order_id': self.order.id,
+            'lot_id': self.lot04.id,
+            'product_id': self.productA.id,
+            'product_uom_qty': 1,
+        })
+        self.order_line5 = self.env['sale.order.line'].create({
+            'name': 'sol5',
+            'order_id': self.order.id,
+            'lot_id': self.lot05.id,
+            'product_id': self.productA.id,
+            'product_uom_qty': 1,
+        })
+        self.order_line1 = self.env['sale.order.line'].create({
+            'name': 'sol1',
+            'order_id': self.order.id,
+            'lot_id': self.lot01.id,
+            'product_id': self.productA.id,
+            'product_uom_qty': 1,
+        })
+        self.order_line3 = self.env['sale.order.line'].create({
+            'name': 'sol3',
+            'order_id': self.order.id,
+            'lot_id': self.lot03.id,
+            'product_id': self.productA.id,
+            'product_uom_qty': 1,
+        })
+        self.order_line6 = self.env['sale.order.line'].create({
+            'name': 'sol6',
+            'order_id': self.order.id,
+            'lot_id': self.lot06.id,
+            'product_id': self.productA.id,
+            'product_uom_qty': 1,
+        })
+
+        self.order.action_confirm()
+        self.picking = self.order.picking_ids
+        self.assertEqual(self.picking.state, 'assigned')
+        exped_operation = self.picking.pack_operation_ids
+
+        self.packlot02 = self.env['stock.pack.operation.lot'].search(
+            [('lot_id', '=', self.lot02.id),
+             ('operation_id', '=', exped_operation.id)])
+        self.packlot02.write({'qty': 1})
+        self.packlot01 = self.env['stock.pack.operation.lot'].search(
+            [('lot_id', '=', self.lot06.id),
+             ('operation_id', '=', exped_operation.id)])
+        self.packlot01.write({'qty': 1})
+        self.packlot03 = self.env['stock.pack.operation.lot'].search(
+            [('lot_id', '=', self.lot01.id),
+             ('operation_id', '=', exped_operation.id)])
+        self.packlot03.write({'qty': 1})
+        self.packlot06 = self.env['stock.pack.operation.lot'].search(
+            [('lot_id', '=', self.lot05.id),
+             ('operation_id', '=', exped_operation.id)])
+        self.packlot06.write({'qty': 1})
+        # We will do only a partial expedition
+        exped_operation.write({
+            'qty_done': 4
+            })
+        confirmation_wizard = self.env['stock.backorder.confirmation'].create(
+            {'pick_id': self.picking.id})
+        confirmation_wizard.process()
+        for move in self.picking.move_lines:
+            quants = move.quant_ids
+            self.assertEqual(len(quants), 1)
+            self.assertEqual(quants.lot_id.id, move.restrict_lot_id.id)
