@@ -6,7 +6,7 @@ from openerp import fields, models, api
 import openerp.addons.decimal_precision as dp
 
 
-class product_pack(models.Model):
+class ProductPack(models.Model):
     _name = 'product.pack.line'
     _rec_name = 'product_id'
 
@@ -15,23 +15,23 @@ class product_pack(models.Model):
         'Parent Product',
         ondelete='cascade',
         required=True
-        )
+    )
     quantity = fields.Float(
         'Quantity',
         required=True,
         default=1.0,
         digits=dp.get_precision('Product UoS'),
-        )
+    )
     product_id = fields.Many2one(
         'product.product',
         'Product',
         ondelete='cascade',
         required=True,
-        )
+    )
     discount = fields.Float(
         'Discount (%)',
         digits=dp.get_precision('Discount'),
-        )
+    )
 
     @api.multi
     def get_sale_order_line_vals(self, line, order):
@@ -40,16 +40,9 @@ class product_pack(models.Model):
         subproduct = self.product_id
         quantity = self.quantity * line.product_uom_qty
 
-        taxes = order.fiscal_position.map_tax(
+        taxes = order.fiscal_position_id.map_tax(
             subproduct.taxes_id)
         tax_id = [(6, 0, taxes.ids)]
-
-        if subproduct.uos_id:
-            uos_id = subproduct.uos_id.id
-            uos_qty = quantity * subproduct.uos_coeff
-        else:
-            uos_id = False
-            uos_qty = quantity
 
         # if pack is fixed price or totlice price we don want amount on
         # pack lines
@@ -87,8 +80,6 @@ class product_pack(models.Model):
             'address_allotment_id': False,
             'product_uom_qty': quantity,
             'product_uom': subproduct.uom_id.id,
-            'product_uos_qty': uos_qty,
-            'product_uos': uos_id,
             'product_packaging': False,
             'discount': discount,
             'number_packages': False,
@@ -98,5 +89,3 @@ class product_pack(models.Model):
             'pack_depth': line.pack_depth + 1,
         }
         return vals
-
-# vim:expandtab:smartindent:tabstop=4:softtabstop=4:shiftwidth=4:

@@ -4,11 +4,11 @@
 ##############################################################################
 from openerp import fields, models, api, _
 from openerp.osv import fields as old_fields
-from openerp.exceptions import Warning
+from openerp.exceptions import UserError
 import math
 
 
-class product_product(models.Model):
+class ProductProduct(models.Model):
     _inherit = 'product.product'
 
     pack_line_ids = fields.One2many(
@@ -16,13 +16,13 @@ class product_product(models.Model):
         'parent_product_id',
         'Pack Products',
         help='List of products that are part of this pack.'
-        )
+    )
     used_pack_line_ids = fields.One2many(
         'product.pack.line',
         'product_id',
         'On Packs',
         help='List of packs where product is used.'
-        )
+    )
 
     def _product_available(
             self, cr, uid, ids, field_names=None, arg=False, context=None):
@@ -33,7 +33,7 @@ class product_product(models.Model):
             ('pack', '=', True),
             ('id', 'in', ids),
         ])
-        res = super(product_product, self)._product_available(
+        res = super(ProductProduct, self)._product_available(
             cr, uid, list(set(ids) - set(pack_product_ids)),
             field_names, arg, context)
         for product in self.browse(cr, uid, pack_product_ids, context=context):
@@ -65,7 +65,7 @@ class product_product(models.Model):
         """
         We use original search function
         """
-        return super(product_product, self)._search_product_quantity(
+        return super(ProductProduct, self)._search_product_quantity(
             cr, uid, obj, name, domain, context)
 
     # overwrite ot this fields so that we can modify _product_available
@@ -94,13 +94,13 @@ class product_product(models.Model):
         pack_lines = self.pack_line_ids
         while pack_lines:
             if self in pack_lines.mapped('product_id'):
-                raise Warning(_(
+                raise UserError(_(
                     'Error! You cannot create recursive packs.\n'
                     'Product id: %s') % self.id)
             pack_lines = pack_lines.mapped('product_id.pack_line_ids')
 
 
-class product_template(models.Model):
+class ProductTemplate(models.Model):
     _inherit = 'product.template'
 
     # TODO rename a pack_type
@@ -120,17 +120,17 @@ class product_template(models.Model):
         " pack price (ignore line prices).\n"
         "* None Detailed - Assisted Price: Do not detail lines on sales "
         "order. Assist to get pack price using pack lines."
-        )
+    )
     pack = fields.Boolean(
         'Pack?',
         help='Is a Product Pack?',
-        )
+    )
     pack_line_ids = fields.One2many(
         related='product_variant_ids.pack_line_ids'
-        )
+    )
     used_pack_line_ids = fields.One2many(
         related='product_variant_ids.used_pack_line_ids'
-        )
+    )
 
     @api.constrains(
         'product_variant_ids', 'pack_price_type')
@@ -143,7 +143,7 @@ class product_template(models.Model):
             child_packs = self.mapped(
                 'pack_line_ids.product_id').filtered('pack')
             if child_packs:
-                raise Warning(_(
+                raise UserError(_(
                     'A "None Detailed - Assisted Price Pack" can not have a '
                     'pack as a child!'))
 
@@ -171,12 +171,12 @@ class product_template(models.Model):
         """
         for line in self.pack_line_ids:
             if line.product_id.company_id != self.company_id:
-                raise Warning(_(
+                raise UserError(_(
                     'Pack lines products company must be the same as the\
                     parent product company'))
         for line in self.used_pack_line_ids:
             if line.parent_product_id.company_id != self.company_id:
-                raise Warning(_(
+                raise UserError(_(
                     'Pack lines products company must be the same as the\
                     parent product company'))
 
@@ -188,11 +188,11 @@ class product_template(models.Model):
         if vals.get('pack_line_ids', False):
             self.product_variant_ids.write(
                 {'pack_line_ids': vals.pop('pack_line_ids')})
-        return super(product_template, self).write(vals)
+        return super(ProductTemplate, self).write(vals)
 
     @api.model
     def _price_get(self, products, ptype='list_price'):
-        res = super(product_template, self)._price_get(
+        res = super(ProductTemplate, self)._price_get(
             products, ptype=ptype)
         for product in products:
             if (
@@ -204,8 +204,8 @@ class product_template(models.Model):
                 pack_price = 0.0
                 for pack_line in product.pack_line_ids:
                     product_line_price = pack_line.product_id.price_get()[
-                            pack_line.product_id.id] * (
-                                1 - (pack_line.discount or 0.0) / 100.0)
+                        pack_line.product_id.id] * (
+                        1 - (pack_line.discount or 0.0) / 100.0)
                     product_line_price
                     pack_price += (product_line_price * pack_line.quantity)
                 res[product.id] = pack_price

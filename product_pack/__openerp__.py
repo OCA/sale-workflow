@@ -24,14 +24,7 @@
     'category': 'Product',
     'sequence': 14,
     'summary': '',
-    'description': """
-Product Pack
-============
-Withilist:
-----------
-* TODO calcular correctamente pack virtual available para negativos
-    """,
-    'author':  'NaN·tic, ADHOC',
+    'author': 'NaN·tic, ADHOC SA',
     'license': 'AGPL-3',
     'images': [
     ],
@@ -48,8 +41,7 @@ Withilist:
     ],
     'test': [
     ],
-    'installable': False,
+    'installable': True,
     'auto_install': False,
     'application': False,
 }
-# vim:expandtab:smartindent:tabstop=4:softtabstop=4:shiftwidth=4:

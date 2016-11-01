@@ -6,7 +6,7 @@ from openerp import fields, models, api
 import openerp.addons.decimal_precision as dp
 
 
-class sale_order_line_pack_line(models.Model):
+class SaleOrderLinePackLine(models.Model):
     _name = 'sale.order.line.pack.line'
     _description = 'Sale Order None Detailed Pack Lines'
 
@@ -15,31 +15,31 @@ class sale_order_line_pack_line(models.Model):
         'Order Line',
         ondelete='cascade',
         required=True
-        )
+    )
     product_id = fields.Many2one(
         'product.product',
         'Product',
         required=True
-        )
+    )
     price_unit = fields.Float(
         'Unit Price',
         required=True,
         digits=dp.get_precision('Product Price')
-        )
+    )
     discount = fields.Float(
         'Discount (%)',
         digits=dp.get_precision('Discount'),
-        )
+    )
     price_subtotal = fields.Float(
         compute="_amount_line",
         string='Subtotal',
         digits=dp.get_precision('Account')
-        )
+    )
     product_uom_qty = fields.Float(
         'Quantity',
         digits=dp.get_precision('Product UoS'),
         required=True
-        )
+    )
 
     @api.one
     @api.onchange('product_id')
