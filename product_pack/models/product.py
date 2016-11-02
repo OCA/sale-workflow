@@ -172,13 +172,13 @@ class ProductTemplate(models.Model):
         for line in self.pack_line_ids:
             if line.product_id.company_id != self.company_id:
                 raise UserError(_(
-                    'Pack lines products company must be the same as the\
-                    parent product company'))
+                    'Pack lines products company must be the same as the '
+                    'parent product company'))
         for line in self.used_pack_line_ids:
             if line.parent_product_id.company_id != self.company_id:
                 raise UserError(_(
-                    'Pack lines products company must be the same as the\
-                    parent product company'))
+                    'Pack lines products company must be the same as the '
+                    'parent product company'))
 
     @api.multi
     def write(self, vals):
@@ -206,7 +206,6 @@ class ProductTemplate(models.Model):
                     product_line_price = pack_line.product_id.price_get()[
                         pack_line.product_id.id] * (
                         1 - (pack_line.discount or 0.0) / 100.0)
-                    product_line_price
                     pack_price += (product_line_price * pack_line.quantity)
                 res[product.id] = pack_price
         return res
