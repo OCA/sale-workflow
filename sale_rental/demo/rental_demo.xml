@@ -56,5 +56,8 @@
     <function eval="[[('id', '=', ref('rental_inventory'))]]" model="stock.inventory" name="search"/>
 </function>
 
+<record id="base.user_demo" model="res.users">
+    <field name="groups_id" eval="[(4, ref('product.group_product_variant'))]"/>
+</record>
 
 </odoo>
