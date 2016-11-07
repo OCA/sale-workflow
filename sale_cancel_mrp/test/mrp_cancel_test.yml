@@ -1,0 +1,52 @@
+-
+  In order to test the module sale_cancel_mrp, I will create a sale order, 
+  confirm it, and then cancel it. I will check after cancelling that the 
+  related Manufacturing Orders are canceled too.
+  So, I create the product
+-
+ !record {model: product.product, id: product_product_2}:
+    name: Manufactured Product
+    sale_ok: True
+    purchase_ok: True
+    type: product
+    procure_method: make_to_order
+    supply_method: produce
+    list_price: 50.0
+-
+  I create his Bill of Materials for this product
+-
+  !record {model: mrp.bom, id: bom_product_2}:
+    product_id: product_product_2
+-
+  I create sale order with one line from previous created product
+-
+  !record {model: sale.order, id: sale_order_2}:
+    partner_id: base.res_partner_2
+    note: Invoice after delivery
+    payment_term: account.account_payment_term
+    order_line: 
+      - product_id: product_product_2
+        product_uom: 1
+        product_uom_qty: 8
+        price_unit: 100.0
+-
+  I confirm the sale order
+-
+  !function {model: sale.order, name: action_button_confirm}:
+      - eval: "[obj(ref('sale_order_2')).id]"
+        model: sale.order
+-
+  Then, I cancel it
+-
+  !function {model: sale.order, name: action_cancel}:
+      - eval: "[obj(ref('sale_order_2')).id]"
+        model: sale.order
+-
+  I check that the generated Manufacturing Orders.
+-
+  !python {model: mrp.production}: |
+    mo_ids = self.search(cr, uid, [('sale_order_id','=',ref('sale_order_2'))], context=context)
+    for mo in self.browse(cr, uid, mo_ids, context=context):
+      assert mo.state == 'cancel', "Manufacturing order %s is not canceled" % mo.name
+
+
