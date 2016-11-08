@@ -1,3 +1,8 @@
+.. image:: https://img.shields.io/badge/licence-AGPL--3-blue.svg
+   :target: http://www.gnu.org/licenses/agpl-3.0-standalone.html
+   :alt: License: AGPL-3
+
+===========
 Sale Rental
 ===========
 
@@ -47,7 +52,11 @@ a stock move from *Rental Out* to *Customers*.
 
 Please refer to `this screencast <https://www.youtube.com/watch?v=9o0QrGryBn8>`
 to get a demo of the installation, configuration and use of this module
-(note that this screencast is for Odoo v7, not v8).
+(note that this screencast is for Odoo v7).
+
+.. image:: https://odoo-community.org/website/image/ir.attachment/5784_f2813bd/datas
+   :alt: Try me on Runbot
+   :target: https://runbot.odoo-community.org/runbot/167/9.0
 
 Known issues / Roadmap
 ======================
@@ -56,6 +65,14 @@ This module has the following limitations:
 
  * No support for planning/agenda of the rented products
  * the unit of measure of the rental services must be *Day* (the rental per hours / per week / per month is not supported for the moment)
+
+Bug Tracker
+===========
+
+Bugs are tracked on `GitHub Issues
+<https://github.com/OCA/sale-workflow/issues>`_. In case of trouble, please
+check there if your issue has already been reported. If you spotted it first,
+help us smashing it by providing a detailed and welcomed feedback.
 
 Credits
 =======
@@ -68,12 +85,14 @@ Contributors
 Maintainer
 ----------
 
-.. image:: http://odoo-community.org/logo.png
+.. image:: https://odoo-community.org/logo.png
    :alt: Odoo Community Association
-   :target: http://odoo-community.org
+   :target: https://odoo-community.org
 
 This module is maintained by the OCA.
 
-OCA, or the Odoo Community Association, is a nonprofit organization whose mission is to support the collaborative development of Odoo features and promote its widespread use.
+OCA, or the Odoo Community Association, is a nonprofit organization whose
+mission is to support the collaborative development of Odoo features and
+promote its widespread use.
 
-To contribute to this module, please visit http://odoo-community.org.
+To contribute to this module, please visit https://odoo-community.org.
