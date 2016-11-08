@@ -1,14 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
-
 <!--
-    Copyright (C) 2014-2015 Akretion (http://www.akretion.com/)
-    @author Alexis de Lattre <alexis.delattre@akretion.com>
-    The licence is in the file __openerp__.py
+  © 2014-2016 Akretion (http://www.akretion.com/)
+  @author Alexis de Lattre <alexis.delattre@akretion.com>
+  License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 -->
 
 
-<openerp>
-<data noupdate="1">
+<odoo noupdate="1">
 
 <record id="rent_product_product_6" model="product.product">
     <field name="name">Rental of one iPad Mini</field>
@@ -54,33 +52,12 @@
     <field name="name">Inventory for rented products</field>
 </record>
 
-<record id="rental_inventory_line_1" model="stock.inventory.line">
-    <field name="product_id" ref="product.product_product_6"/>
-    <field name="product_uom_id" ref="product.product_uom_unit"/>
-    <field name="inventory_id" ref="rental_inventory"/>
-    <field name="product_qty">56.0</field>
-    <field name="location_id" ref="rental_in_stock_location"/>
-</record>
-
-<record id="rental_inventory_line_2" model="stock.inventory.line">
-    <field name="product_id" ref="product.product_product_8"/>
-    <field name="product_uom_id" ref="product.product_uom_unit"/>
-    <field name="inventory_id" ref="rental_inventory"/>
-    <field name="product_qty">46.0</field>
-    <field name="location_id" ref="rental_in_stock_location"/>
-</record>
-
-<record id="rental_inventory_line_3" model="stock.inventory.line">
-    <field name="product_id" ref="product.product_product_25"/>
-    <field name="product_uom_id" ref="product.product_uom_unit"/>
-    <field name="inventory_id" ref="rental_inventory"/>
-    <field name="product_qty">2.0</field>
-    <field name="location_id" ref="rental_in_stock_location"/>
-</record>
-
-<function model="stock.inventory" name="action_done">
+<function model="stock.inventory" name="create_demo_and_validate">
     <function eval="[[('id', '=', ref('rental_inventory'))]]" model="stock.inventory" name="search"/>
 </function>
 
-</data>
-</openerp>
+<record id="base.user_demo" model="res.users">
+    <field name="groups_id" eval="[(4, ref('product.group_product_variant'))]"/>
+</record>
+
+</odoo>
