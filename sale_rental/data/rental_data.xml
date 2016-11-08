@@ -5,7 +5,7 @@
   License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 -->
 
-<odoo noupdate="0">
+<odoo noupdate="1">
 
 <record id="route_warehouse0_rental" model="stock.location.route">
     <field name="name">Rent</field>
@@ -20,8 +20,7 @@
 </record>
 
 <record id="stock.warehouse0" model="stock.warehouse">
-    <field name="rental_allowed">1</field>
+    <field name="rental_allowed" eval="True"/>
 </record>
-
 
 </odoo>
