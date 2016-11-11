@@ -15,7 +15,8 @@ class AccountInvoice(models.Model):
     def _is_cancelled_by_refund(self):
         cancelled = False
         for move in self.payment_ids:
-            if move.invoice and move.invoice.type == 'out_refund':
+            if move.invoice and move.invoice.type == 'out_refund' and \
+                    move.invoice.origin == self.internal_number:
                 cancelled = True
                 break
         self.cancelled_by_refund = cancelled
