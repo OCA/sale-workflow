@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+        <record id="view_order_form_expected_date" model="ir.ui.view">
+            <field name="name">sale.order.expected.date.form</field>
+            <field name="model">sale.order</field>
+            <field name="inherit_id" ref="sale_stock.view_order_form_inherit"/>
+            <field name="arch" type="xml">
+                <data>
+                    <xpath expr="//field[@name='date_order']" position="after">
+                        <field name="expected_date"/>
+                    </xpath>
+                    <xpath expr="//page[@string='Order Lines']/field[@name='order_line']/form[@string='Sales Order Lines']/group/group/label[@for='delay']/following-sibling::div" position="replace"/>
+                    <xpath expr="//page[@string='Order Lines']/field[@name='order_line']/form[@string='Sales Order Lines']/group/group/label[@for='delay']" position="replace"/>
+                </data>
+            </field>
+        </record>
+    </data>
+</openerp>
