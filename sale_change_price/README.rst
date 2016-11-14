@@ -6,7 +6,8 @@
 Sale Change Price
 =================
 
-This module allows to change price unit and discount on sale order line of a confirmed sale order
+This module allows to change price unit and discount on sale order line of a
+confirmed sale order. Please note that invoiced lines are ignored by wizard.
 
 Installation
 ============

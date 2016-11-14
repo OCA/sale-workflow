@@ -16,7 +16,9 @@
                             </tree>
                         </field>
                     </group>
-
+                    <span>
+                        Note: Invoiced lines are excluded from this wizard.
+                    </span>
                     <footer>
                         <button string="Change Price" name="change_price"
                                 type="object" class="oe_highlight"/>
