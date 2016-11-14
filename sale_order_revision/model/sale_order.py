@@ -55,10 +55,6 @@ class sale_order(models.Model):
     def copy_quotation(self):
         self.ensure_one()
 
-        # store existing procurement group id, unset it on new revision
-        procurement_group_id = self.procurement_group_id.id
-        self.write({'procurement_group_id': None})
-
         revision_self = self.with_context(new_sale_revision=True)
         action = super(sale_order, revision_self).copy_quotation()
         old_revision = self.browse(action['res_id'])
@@ -73,9 +69,6 @@ class sale_order(models.Model):
         msg = _('New revision created: %s') % self.name
         self.message_post(body=msg)
         old_revision.message_post(body=msg)
-
-        # set stored procurement group id on old order
-        old_revision.write({'procurement_group_id': procurement_group_id})
 
         # swap order lines of old and new order
         so_line = self.env['sale.order.line']
