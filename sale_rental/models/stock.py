@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
-# © 2014-2016 Akretion (http://www.akretion.com)
+# Copyright 2014-2016 Akretion (http://www.akretion.com)
 # @author Alexis de Lattre <alexis.delattre@akretion.com>
+# Copyright 2016 Sodexis (http://sodexis.com)
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
 from openerp import models, fields, api, _
@@ -75,7 +76,6 @@ class StockWarehouse(models.Model):
             'location_from_id': self.rental_out_location_id.id,
             'location_dest_id': self.rental_in_location_id.id,
             'route_id': rental_route.id,
-            'auto': 'auto',
             'picking_type_id': self.in_type_id.id,
             'warehouse_id': self.id,
             }
