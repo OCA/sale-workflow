@@ -10,6 +10,7 @@ class sale_order(models.Model):
         self.ensure_one()
 
         domain = [
+            ('order_id.id', '!=', self.id),
             ('order_id.partner_id', '=', self.partner_id.id),
             ('order_id.state', 'in', ['sale', 'done'])]
         order_lines = self.env['sale.order.line'].search(domain)
@@ -49,7 +50,6 @@ class sale_order(models.Model):
         available_credit = self.partner_id.credit_limit - \
             self.partner_id.credit - \
             to_invoice_amount - draft_invoice_lines_amount
-
         if self.amount_total > available_credit:
             return False
         return True
