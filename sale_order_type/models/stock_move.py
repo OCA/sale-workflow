@@ -3,7 +3,7 @@
 # For copyright and license notices, see __openerp__.py file in root directory
 ##############################################################################
 
-from openerp import api, models
+from odoo import api, models
 
 
 class StockMove(models.Model):
@@ -14,5 +14,4 @@ class StockMove(models.Model):
         values = super(StockMove, self)._prepare_picking_assign(move)
         if move.procurement_id.sale_line_id:
             sale = move.procurement_id.sale_line_id.order_id
-            values['invoice_state'] = sale.type_id.invoice_state
         return values

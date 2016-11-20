@@ -22,11 +22,12 @@
 
 {
     "name": "Sale Order Types",
-    "version": "8.0.1.0.1",
+    "version": "10.0.1.0.1",
     "category": "Sales Management",
     "author": "OdooMRP team, "
               "Grupo Vermon, "
-              "AvanzOSC, "
+              "AvanzOSC,"
+              "Niboo, "
               "Serv. Tecnol. Avanzados - Pedro M. Baeza, "
               "Odoo Community Association (OCA)",
     "website": "http://www.odoomrp.com",
@@ -47,5 +48,5 @@
         "views/res_partner_view.xml",
         "data/default_type.xml",
     ],
-    'installable': False,
+    'installable': True,
 }

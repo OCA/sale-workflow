@@ -30,8 +30,6 @@ class TestSaleOrderType(common.TransactionCase):
             'refund_journal_id': self.refund_journal.id,
             'warehouse_id': self.warehouse.id,
             'picking_policy': 'one',
-            'order_policy': 'picking',
-            'invoice_state': '2binvoiced',
         })
         self.partner.sale_type = self.sale_type
 
@@ -48,7 +46,6 @@ class TestSaleOrderType(common.TransactionCase):
                          sale_order.warehouse_id)
         self.assertEqual(self.sale_type.picking_policy,
                          sale_order.picking_policy)
-        self.assertEqual(self.sale_type.order_policy, sale_order.order_policy)
 
     def test_sale_order_confirm(self):
         sale_order_dict = self.sale_order_model.onchange_partner_id(
@@ -65,11 +62,6 @@ class TestSaleOrderType(common.TransactionCase):
         sale_order.onchange_type_id()
         sale_order.action_button_confirm()
         for picking in sale_order.picking_ids:
-            self.assertEqual(self.sale_type.invoice_state,
-                             picking.invoice_state)
-            for move in picking.move_lines:
-                self.assertEqual(self.sale_type.invoice_state,
-                                 move.invoice_state)
             invoices = picking.action_invoice_create(
                 self.journal, group=False, type='out_invoice')
             for invoice in self.invoice_model.browse(invoices):

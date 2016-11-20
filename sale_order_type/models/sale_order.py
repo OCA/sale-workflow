@@ -3,7 +3,7 @@
 # For copyright and license notices, see __openerp__.py file in root directory
 ##############################################################################
 
-from openerp import api, fields, models
+from odoo import api, fields, models
 
 
 class SaleOrder(models.Model):
@@ -30,7 +30,6 @@ class SaleOrder(models.Model):
     def onchange_type_id(self):
         self.warehouse_id = self.type_id.warehouse_id
         self.picking_policy = self.type_id.picking_policy
-        self.order_policy = self.type_id.order_policy
 
     @api.model
     def create(self, vals):
@@ -45,7 +44,6 @@ class SaleOrder(models.Model):
     def _prepare_order_line_procurement(self, order, line, group_id=False):
         vals = super(SaleOrder, self)._prepare_order_line_procurement(
             order, line, group_id=group_id)
-        vals['invoice_state'] = order.type_id.invoice_state
         return vals
 
     @api.model
