@@ -16,28 +16,25 @@ class SaleOrder(models.Model):
         comodel_name='sale.order.type', string='Type', default=_get_order_type)
 
     @api.multi
-    def onchange_partner_id(self, part):
-        res = super(SaleOrder, self).onchange_partner_id(part)
-        if part:
-            partner = self.env['res.partner'].browse(part)
-            res['value'].update({
-                'type_id': partner.sale_type.id or self._get_order_type().id,
-            })
-        return res
+    @api.onchange('partner_id')
+    def onchange_partner_id(self):
+        super(SaleOrder, self).onchange_partner_id()
+        if self.partner_id:
+            self.type_id = self.partner_id.sale_type or self._get_order_type()
 
-    @api.one
+    @api.multi
     @api.onchange('type_id')
     def onchange_type_id(self):
-        self.warehouse_id = self.type_id.warehouse_id
-        self.picking_policy = self.type_id.picking_policy
+        for order in self:
+            order.warehouse_id = order.type_id.warehouse_id
+            order.picking_policy = order.type_id.picking_policy
 
     @api.model
     def create(self, vals):
         if vals.get('name', '/') == '/'and vals.get('type_id'):
             type = self.env['sale.order.type'].browse(vals['type_id'])
             if type.sequence_id:
-                sequence_obj = self.env['ir.sequence']
-                vals['name'] = sequence_obj.next_by_id(type.sequence_id.id)
+                vals['name'] = type.sequence_id.next_by_id()
         return super(SaleOrder, self).create(vals)
 
     @api.model
