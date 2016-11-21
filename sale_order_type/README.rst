@@ -39,6 +39,7 @@ Contributors
 * Pedro M. Baeza <pedro.baeza@serviciosbaeza.com>
 * Ana Juaristi <anajuaristi@avanzosc.es>
 * Daniel Campos <danielcampos@avanzosc.es>
+* Samuel Lefever <sam@niboo.be>
 
 Maintainer
 ----------

@@ -1,4 +1,4 @@
-# -*- encoding: utf-8 -*-
+# -*- coding: utf-8 -*-
 ##############################################################################
 #                                                                            #
 #  OpenERP, Open Source Management Solution.                                 #
@@ -26,7 +26,7 @@
     "category": "Sales Management",
     "author": "OdooMRP team, "
               "Grupo Vermon, "
-              "AvanzOSC,"
+              "AvanzOSC, "
               "Niboo, "
               "Serv. Tecnol. Avanzados - Pedro M. Baeza, "
               "Odoo Community Association (OCA)",
