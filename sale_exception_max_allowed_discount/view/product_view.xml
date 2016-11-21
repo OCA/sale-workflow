@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+
+        <record id="product_normal_form_view" model="ir.ui.view">
+            <field name="name">product.normal.form.inherit</field>
+            <field name="model">product.product</field>
+            <field name="inherit_id" ref="product.product_normal_form_view"/>
+            <field name="arch" type="xml">
+                <xpath expr="//group[@string='Sale Conditions']"
+                       position="inside">
+                    <field name="has_max_sale_discount"
+                           on_change="onchange_has_max_sale_discount(has_max_sale_discount)"/>
+                    <field name="max_sale_discount"
+                           on_change="onchange_max_sale_discount(max_sale_discount)"/>
+                </xpath>
+            </field>
+        </record>
+
+    </data>
+</openerp>

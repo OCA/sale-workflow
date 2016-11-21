@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+  <data noupdate="1">
+    <record id="discount_exceeds_max" model="sale.exception">
+      <field name="name">Discount for a line exceeds the maximum allowed</field>
+      <field name="description">The SO line has a discount that exceeds the maximum defined in the product.</field>
+      <field name="sequence">10</field>
+      <field name="model">sale.order.line</field>
+      <field name="code">if not object.discount_exceeds_max():
+    failed = True</field>
+      <field name="active" eval="True"/>
+    </record>
+  </data>
+</openerp>
