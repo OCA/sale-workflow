@@ -10,7 +10,7 @@ class SaleOrder(models.Model):
     _inherit = 'sale.order'
 
     def _get_order_type(self):
-        return self.env['sale.order.type'].search([])[:1]
+        return self.env['sale.order.type'].search([], limit=1)
 
     type_id = fields.Many2one(
         comodel_name='sale.order.type', string='Type', default=_get_order_type)
@@ -19,8 +19,10 @@ class SaleOrder(models.Model):
     @api.onchange('partner_id')
     def onchange_partner_id(self):
         super(SaleOrder, self).onchange_partner_id()
-        if self.partner_id:
-            self.type_id = self.partner_id.sale_type or self._get_order_type()
+        if self.partner_id and self.partner_id.sale_type_id:
+            self.type_id = self.partner_id.sale_type_id
+        else:
+            self.type_id = self._get_order_type()
 
     @api.multi
     @api.onchange('type_id')
