@@ -30,7 +30,7 @@
             <field name="description">Not Enough Virtual Stock</field>
             <field name="sequence">50</field>
             <field name="model">sale.order.line</field>
-            <field name="code">if line.product_id and line.product_id.type == 'product' and line.product_id.virtual_available &lt; line.product_uom_qty:
+            <field name="code">if line.product_id and line.product_id.type == 'product' and line.product_id.with_context(warehouse=line.order_id.warehouse_id.id).virtual_available &lt; line.product_uom_qty:
     failed=True</field>
             <field name="active" eval="False"/>
         </record>
