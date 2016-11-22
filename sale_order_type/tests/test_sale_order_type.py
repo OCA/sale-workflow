@@ -19,8 +19,30 @@ class TestSaleOrderType(common.TransactionCase):
             'prefix': 'TSO',
             'padding': 3,
         })
-        self.journal = self.env.ref('account.sales_journal')
-        self.refund_journal = self.env.ref('account.refund_sales_journal')
+        self.product_sale = self.env['account.account'].create({
+            'code': 'X2020',
+            'name': 'Product Sales - (test)',
+            'user_type_id': self.env.ref(
+                'account.data_account_type_revenue').id,
+            'tag_ids': [(6, 0,
+                         [self.env.ref('account.account_tag_operating').id])],
+        })
+        self.journal = self.env['account.journal'].create({
+            'name': 'Customer Invoices - Test',
+            'code': 'TINV',
+            'type': 'sale',
+            'default_debit_account_id': self.product_sale.id,
+            'default_credit_account_id': self.product_sale.id,
+            'refund_sequence': True,
+        })
+        self.refund_journal = self.env['account.journal'].create({
+            'name': 'Sales Credit Note Journal - (test)',
+            'code': 'TSCNJ',
+            'type': 'general',
+            'default_debit_account_id': self.product_sale.id,
+            'default_credit_account_id': self.product_sale.id,
+            'refund_sequence': True,
+        })
         self.warehouse = self.env.ref('stock.stock_warehouse_shop0')
         self.product = self.env.ref('product.product_product_4')
         self.sale_type = self.sale_type_model.create({
