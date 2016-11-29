@@ -1,0 +1,152 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# * sale_order_variant_mgmt
+# 
+# Translators:
+# OCA Transbot <transbot@odoo-community.org>, 2016
+# Pedro Castro Silva <pedrocs@sossia.pt>, 2016
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 9.0c\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2016-11-22 23:46+0000\n"
+"PO-Revision-Date: 2016-11-22 23:46+0000\n"
+"Last-Translator: Pedro Castro Silva <pedrocs@sossia.pt>, 2016\n"
+"Language-Team: Portuguese (https://www.transifex.com/oca/teams/23907/pt/)\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Language: pt\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+#. module: sale_order_variant_mgmt
+#: model:ir.ui.view,arch_db:sale_order_variant_mgmt.view_order_form
+msgid "Add or Modify Variants"
+msgstr ""
+
+#. module: sale_order_variant_mgmt
+#: model:ir.model.fields,field_description:sale_order_variant_mgmt.field_sale_order_line_product_attribute_value_ids
+msgid "Attributes"
+msgstr ""
+
+#. module: sale_order_variant_mgmt
+#: model:ir.ui.view,arch_db:sale_order_variant_mgmt.sale_manage_variant_form
+msgid "Cancel"
+msgstr "Cancelar"
+
+#. module: sale_order_variant_mgmt
+#: model:ir.model.fields,field_description:sale_order_variant_mgmt.field_sale_manage_variant_create_uid
+#: model:ir.model.fields,field_description:sale_order_variant_mgmt.field_sale_manage_variant_line_create_uid
+msgid "Created by"
+msgstr "Criado por"
+
+#. module: sale_order_variant_mgmt
+#: model:ir.model.fields,field_description:sale_order_variant_mgmt.field_sale_manage_variant_create_date
+#: model:ir.model.fields,field_description:sale_order_variant_mgmt.field_sale_manage_variant_line_create_date
+msgid "Created on"
+msgstr "Criado em"
+
+#. module: sale_order_variant_mgmt
+#: model:ir.model.fields,field_description:sale_order_variant_mgmt.field_sale_manage_variant_line_disabled
+msgid "Disabled"
+msgstr ""
+
+#. module: sale_order_variant_mgmt
+#: model:ir.model.fields,field_description:sale_order_variant_mgmt.field_sale_manage_variant_display_name
+#: model:ir.model.fields,field_description:sale_order_variant_mgmt.field_sale_manage_variant_line_display_name
+msgid "Display Name"
+msgstr "Nome a Apresentar"
+
+#. module: sale_order_variant_mgmt
+#: model:ir.model.fields,field_description:sale_order_variant_mgmt.field_sale_manage_variant_id
+#: model:ir.model.fields,field_description:sale_order_variant_mgmt.field_sale_manage_variant_line_id
+msgid "ID"
+msgstr "ID"
+
+#. module: sale_order_variant_mgmt
+#: model:ir.model.fields,field_description:sale_order_variant_mgmt.field_sale_manage_variant___last_update
+#: model:ir.model.fields,field_description:sale_order_variant_mgmt.field_sale_manage_variant_line___last_update
+msgid "Last Modified on"
+msgstr "Última Modificação Em"
+
+#. module: sale_order_variant_mgmt
+#: model:ir.model.fields,field_description:sale_order_variant_mgmt.field_sale_manage_variant_line_write_uid
+#: model:ir.model.fields,field_description:sale_order_variant_mgmt.field_sale_manage_variant_write_uid
+msgid "Last Updated by"
+msgstr "Atualizado pela última vez por"
+
+#. module: sale_order_variant_mgmt
+#: model:ir.model.fields,field_description:sale_order_variant_mgmt.field_sale_manage_variant_line_write_date
+#: model:ir.model.fields,field_description:sale_order_variant_mgmt.field_sale_manage_variant_write_date
+msgid "Last Updated on"
+msgstr "Atualizado pela última vez em"
+
+#. module: sale_order_variant_mgmt
+#: model:ir.ui.view,arch_db:sale_order_variant_mgmt.sale_manage_variant_form
+msgid "Manage Product Variants"
+msgstr ""
+
+#. module: sale_order_variant_mgmt
+#: model:ir.actions.act_window,name:sale_order_variant_mgmt.action_sale_manage_variant
+msgid "Manage variants"
+msgstr ""
+
+#. module: sale_order_variant_mgmt
+#: model:ir.ui.view,arch_db:sale_order_variant_mgmt.view_order_form
+msgid "Modify Variants"
+msgstr ""
+
+#. module: sale_order_variant_mgmt
+#: model:ir.model.fields,field_description:sale_order_variant_mgmt.field_sale_order_line_product_tmpl_id_sale_order_variant_mgmt
+msgid "Product Template"
+msgstr ""
+
+#. module: sale_order_variant_mgmt
+#: model:ir.model.fields,field_description:sale_order_variant_mgmt.field_sale_manage_variant_line_product_uom_qty
+msgid "Quantity"
+msgstr "Quantidade"
+
+#. module: sale_order_variant_mgmt
+#: model:ir.model,name:sale_order_variant_mgmt.model_sale_order_line
+msgid "Sales Order Line"
+msgstr ""
+
+#. module: sale_order_variant_mgmt
+#: model:ir.model.fields,field_description:sale_order_variant_mgmt.field_sale_manage_variant_product_tmpl_id
+msgid "Template"
+msgstr "Modelo"
+
+#. module: sale_order_variant_mgmt
+#: model:ir.ui.view,arch_db:sale_order_variant_mgmt.sale_manage_variant_form
+msgid "Transfer to order"
+msgstr ""
+
+#. module: sale_order_variant_mgmt
+#: model:ir.model.fields,field_description:sale_order_variant_mgmt.field_sale_manage_variant_line_value_x
+msgid "Value x"
+msgstr ""
+
+#. module: sale_order_variant_mgmt
+#: model:ir.model.fields,field_description:sale_order_variant_mgmt.field_sale_manage_variant_line_value_y
+msgid "Value y"
+msgstr ""
+
+#. module: sale_order_variant_mgmt
+#: model:ir.model.fields,field_description:sale_order_variant_mgmt.field_sale_manage_variant_line_product_id
+msgid "Variant"
+msgstr ""
+
+#. module: sale_order_variant_mgmt
+#: model:ir.model.fields,field_description:sale_order_variant_mgmt.field_sale_manage_variant_variant_line_ids
+msgid "Variant Lines"
+msgstr ""
+
+#. module: sale_order_variant_mgmt
+#: model:ir.model,name:sale_order_variant_mgmt.model_sale_manage_variant
+msgid "sale.manage.variant"
+msgstr ""
+
+#. module: sale_order_variant_mgmt
+#: model:ir.model,name:sale_order_variant_mgmt.model_sale_manage_variant_line
+msgid "sale.manage.variant.line"
+msgstr ""
