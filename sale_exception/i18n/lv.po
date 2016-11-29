@@ -10,12 +10,12 @@ msgstr ""
 "POT-Creation-Date: 2016-11-22 23:46+0000\n"
 "PO-Revision-Date: 2016-04-12 07:49+0000\n"
 "Last-Translator: <>\n"
-"Language-Team: Portuguese (http://www.transifex.com/oca/OCA-sale-workflow-9-0/language/pt/)\n"
+"Language-Team: Latvian (http://www.transifex.com/oca/OCA-sale-workflow-9-0/language/lv/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
-"Language: pt\n"
-"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"Language: lv\n"
+"Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n != 0 ? 1 : 2);\n"
 
 #. module: sale_exception
 #: model:ir.model.fields,field_description:sale_exception.field_sale_exception_active
@@ -47,24 +47,24 @@ msgstr ""
 #: model:ir.model.fields,field_description:sale_exception.field_sale_exception_confirm_create_uid
 #: model:ir.model.fields,field_description:sale_exception.field_sale_exception_create_uid
 msgid "Created by"
-msgstr "Criado por"
+msgstr "Izveidoja"
 
 #. module: sale_exception
 #: model:ir.model.fields,field_description:sale_exception.field_sale_exception_confirm_create_date
 #: model:ir.model.fields,field_description:sale_exception.field_sale_exception_create_date
 msgid "Created on"
-msgstr "Criado em"
+msgstr "Izveidots"
 
 #. module: sale_exception
 #: model:ir.model.fields,field_description:sale_exception.field_sale_exception_description
 msgid "Description"
-msgstr ""
+msgstr "Apraksts"
 
 #. module: sale_exception
 #: model:ir.model.fields,field_description:sale_exception.field_sale_exception_confirm_display_name
 #: model:ir.model.fields,field_description:sale_exception.field_sale_exception_display_name
 msgid "Display Name"
-msgstr "Nome"
+msgstr ""
 
 #. module: sale_exception
 #: code:addons/sale_exception/models/sale.py:182
@@ -127,19 +127,19 @@ msgstr ""
 #: model:ir.model.fields,field_description:sale_exception.field_sale_exception___last_update
 #: model:ir.model.fields,field_description:sale_exception.field_sale_exception_confirm___last_update
 msgid "Last Modified on"
-msgstr "Modificado a última vez por"
+msgstr ""
 
 #. module: sale_exception
 #: model:ir.model.fields,field_description:sale_exception.field_sale_exception_confirm_write_uid
 #: model:ir.model.fields,field_description:sale_exception.field_sale_exception_write_uid
 msgid "Last Updated by"
-msgstr "Atualizado pela última vez por"
+msgstr "Pēdējo reizi atjaunoja"
 
 #. module: sale_exception
 #: model:ir.model.fields,field_description:sale_exception.field_sale_exception_confirm_write_date
 #: model:ir.model.fields,field_description:sale_exception.field_sale_exception_write_date
 msgid "Last Updated on"
-msgstr "Atualizado pela última vez em"
+msgstr "Pēdējās izmaiņas"
 
 #. module: sale_exception
 #: model:ir.model.fields,field_description:sale_exception.field_sale_order_main_exception_id
@@ -214,7 +214,7 @@ msgstr ""
 #. module: sale_exception
 #: model:ir.model.fields,field_description:sale_exception.field_sale_exception_sequence
 msgid "Sequence"
-msgstr ""
+msgstr "Sērija"
 
 #. module: sale_exception
 #: model:ir.ui.view,arch_db:sale_exception.view_sale_exception_confirm
