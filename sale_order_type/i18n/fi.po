@@ -3,14 +3,16 @@
 # * sale_order_type
 # 
 # Translators:
+# OCA Transbot <transbot@odoo-community.org>, 2016
+# Jarmo Kortetjärvi <jarmo.kortetjarvi@gmail.com>, 2016
 msgid ""
 msgstr ""
-"Project-Id-Version: sale-workflow (8.0)\n"
+"Project-Id-Version: Odoo Server 9.0c\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-09-09 12:27+0000\n"
-"PO-Revision-Date: 2015-09-03 09:19+0000\n"
-"Last-Translator: OCA Transbot <transbot@odoo-community.org>\n"
-"Language-Team: Finnish (http://www.transifex.com/oca/OCA-sale-workflow-8-0/language/fi/)\n"
+"POT-Creation-Date: 2016-11-22 23:46+0000\n"
+"PO-Revision-Date: 2016-11-22 23:46+0000\n"
+"Last-Translator: Jarmo Kortetjärvi <jarmo.kortetjarvi@gmail.com>, 2016\n"
+"Language-Team: Finnish (https://www.transifex.com/oca/teams/23907/fi/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
@@ -18,80 +20,87 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
 #. module: sale_order_type
-#: model:ir.actions.act_window,help:sale_order_type.sot_sale_order_type_action
-msgid ""
-"<p class=\"oe_view_nocontent_create\">Click to set a new type for sale order.</p>\n"
-"            "
-msgstr ""
-
-#. module: sale_order_type
-#: view:sale.order.type:sale_order_type.sot_sale_order_type_search_view
-#: field:sale.order.type,journal_id:0
+#: model:ir.model.fields,field_description:sale_order_type.field_sale_order_type_journal_id
+#: model:ir.ui.view,arch_db:sale_order_type.sot_sale_order_type_search_view
 msgid "Billing Journal"
 msgstr ""
 
 #. module: sale_order_type
-#: view:sale.order.type:sale_order_type.sot_sale_order_type_search_view
-#: field:sale.order.type,order_policy:0
-msgid "Create Invoice"
+#: model:ir.actions.act_window,help:sale_order_type.sot_sale_order_type_action
+msgid "Click to set a new type for sale order."
 msgstr ""
 
 #. module: sale_order_type
-#: field:sale.order.type,create_uid:0
+#: model:ir.model.fields,field_description:sale_order_type.field_sale_order_type_company_id
+msgid "Company"
+msgstr "Yritys"
+
+#. module: sale_order_type
+#: model:ir.model.fields,field_description:sale_order_type.field_sale_order_type_create_uid
 msgid "Created by"
 msgstr "Luonut"
 
 #. module: sale_order_type
-#: field:sale.order.type,create_date:0
+#: model:ir.model.fields,field_description:sale_order_type.field_sale_order_type_create_date
 msgid "Created on"
 msgstr "Luotu"
 
 #. module: sale_order_type
-#: field:sale.order.type,description:0
+#: model:ir.model.fields,field_description:sale_order_type.field_sale_order_type_description
 msgid "Description"
-msgstr ""
+msgstr "Kuvaus"
 
 #. module: sale_order_type
-#: view:sale.order.type:sale_order_type.sot_sale_order_type_search_view
-#: field:sale.order.type,sequence_id:0
+#: model:ir.model.fields,field_description:sale_order_type.field_sale_order_type_display_name
+msgid "Display Name"
+msgstr "Nimi"
+
+#. module: sale_order_type
+#: model:ir.model.fields,field_description:sale_order_type.field_sale_order_type_sequence_id
+#: model:ir.ui.view,arch_db:sale_order_type.sot_sale_order_type_search_view
 msgid "Entry Sequence"
 msgstr ""
 
 #. module: sale_order_type
-#: view:sale.order.type:sale_order_type.sot_sale_order_type_search_view
+#: model:ir.ui.view,arch_db:sale_order_type.sot_sale_order_type_search_view
 msgid "Group By"
 msgstr ""
 
 #. module: sale_order_type
-#: field:sale.order.type,id:0
+#: model:ir.model.fields,field_description:sale_order_type.field_sale_order_type_id
 msgid "ID"
 msgstr "ID"
 
 #. module: sale_order_type
+#: model:ir.model.fields,field_description:sale_order_type.field_sale_order_type_incoterm_id
+#: model:ir.ui.view,arch_db:sale_order_type.sot_sale_order_type_search_view
+msgid "Incoterm"
+msgstr ""
+
+#. module: sale_order_type
 #: model:ir.model,name:sale_order_type.model_account_invoice
 msgid "Invoice"
-msgstr ""
+msgstr "Lasku"
 
 #. module: sale_order_type
-#: view:sale.order.type:sale_order_type.sot_sale_order_type_search_view
-#: field:sale.order.type,invoice_state:0
-msgid "Invoice Control"
-msgstr ""
+#: model:ir.model.fields,field_description:sale_order_type.field_sale_order_type___last_update
+msgid "Last Modified on"
+msgstr "Viimeksi muokattu"
 
 #. module: sale_order_type
-#: field:sale.order.type,write_uid:0
+#: model:ir.model.fields,field_description:sale_order_type.field_sale_order_type_write_uid
 msgid "Last Updated by"
 msgstr "Viimeksi päivittänyt"
 
 #. module: sale_order_type
-#: field:sale.order.type,write_date:0
+#: model:ir.model.fields,field_description:sale_order_type.field_sale_order_type_write_date
 msgid "Last Updated on"
 msgstr "Viimeksi päivitetty"
 
 #. module: sale_order_type
-#: field:sale.order.type,name:0
+#: model:ir.model.fields,field_description:sale_order_type.field_sale_order_type_name
 msgid "Name"
-msgstr ""
+msgstr "Nimi"
 
 #. module: sale_order_type
 #: model:sale.order.type,name:sale_order_type.normal_sale_type
@@ -101,22 +110,32 @@ msgstr ""
 #. module: sale_order_type
 #: model:ir.model,name:sale_order_type.model_res_partner
 msgid "Partner"
+msgstr "Kumppani"
+
+#. module: sale_order_type
+#: model:ir.model.fields,field_description:sale_order_type.field_sale_order_type_payment_term_id
+#: model:ir.ui.view,arch_db:sale_order_type.sot_sale_order_type_search_view
+msgid "Payment Term"
 msgstr ""
 
 #. module: sale_order_type
-#: model:ir.model,name:sale_order_type.model_stock_picking
-msgid "Picking List"
+#: model:ir.ui.view,arch_db:sale_order_type.sot_sale_order_type_search_view
+msgid "Price List"
 msgstr ""
 
 #. module: sale_order_type
-#: view:sale.order.type:sale_order_type.sot_sale_order_type_search_view
-#: field:sale.order.type,refund_journal_id:0
-msgid "Refund Billing Journal"
+#: model:ir.model.fields,field_description:sale_order_type.field_sale_order_type_pricelist_id
+msgid "Pricelist"
 msgstr ""
 
 #. module: sale_order_type
-#: field:res.partner,sale_type:0
+#: model:ir.model.fields,field_description:sale_order_type.field_res_partner_sale_type
 msgid "Sale Order Type"
+msgstr ""
+
+#. module: sale_order_type
+#: model:ir.model.fields,field_description:sale_order_type.field_account_invoice_sale_type_id
+msgid "Sale Type"
 msgstr ""
 
 #. module: sale_order_type
@@ -125,7 +144,7 @@ msgid "Sales Order"
 msgstr "Myyntitilaus"
 
 #. module: sale_order_type
-#: view:res.partner:sale_order_type.res_partner_sale_type_form_view
+#: model:ir.ui.view,arch_db:sale_order_type.res_partner_sale_type_form_view
 msgid "Sales Order Type"
 msgstr ""
 
@@ -136,23 +155,18 @@ msgid "Sales Order Types"
 msgstr ""
 
 #. module: sale_order_type
-#: view:sale.order.type:sale_order_type.sot_sale_order_type_search_view
-#: field:sale.order.type,picking_policy:0
+#: model:ir.model.fields,field_description:sale_order_type.field_sale_order_type_picking_policy
+#: model:ir.ui.view,arch_db:sale_order_type.sot_sale_order_type_search_view
 msgid "Shipping Policy"
 msgstr ""
 
 #. module: sale_order_type
-#: model:ir.model,name:sale_order_type.model_stock_move
-msgid "Stock Move"
-msgstr ""
-
-#. module: sale_order_type
-#: field:sale.order,type_id:0
-#: view:sale.order.type:sale_order_type.sot_sale_order_type_form_view
-#: view:sale.order.type:sale_order_type.sot_sale_order_type_search_view
-#: view:sale.order.type:sale_order_type.sot_sale_order_type_tree_view
+#: model:ir.model.fields,field_description:sale_order_type.field_sale_order_type_id_4668
+#: model:ir.ui.view,arch_db:sale_order_type.sot_sale_order_type_form_view
+#: model:ir.ui.view,arch_db:sale_order_type.sot_sale_order_type_search_view
+#: model:ir.ui.view,arch_db:sale_order_type.sot_sale_order_type_tree_view
 msgid "Type"
-msgstr ""
+msgstr "Tyyppi"
 
 #. module: sale_order_type
 #: model:ir.model,name:sale_order_type.model_sale_order_type
@@ -160,7 +174,7 @@ msgid "Type of sale order"
 msgstr ""
 
 #. module: sale_order_type
-#: view:sale.order.type:sale_order_type.sot_sale_order_type_search_view
-#: field:sale.order.type,warehouse_id:0
+#: model:ir.model.fields,field_description:sale_order_type.field_sale_order_type_warehouse_id
+#: model:ir.ui.view,arch_db:sale_order_type.sot_sale_order_type_search_view
 msgid "Warehouse"
 msgstr ""
