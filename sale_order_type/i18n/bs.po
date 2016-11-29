@@ -4,20 +4,19 @@
 # 
 # Translators:
 # OCA Transbot <transbot@odoo-community.org>, 2016
-# Jeffery Chen Fan <jeffery9@gmail.com>, 2016
 msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 9.0c\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2016-11-22 23:46+0000\n"
 "PO-Revision-Date: 2016-11-22 23:46+0000\n"
-"Last-Translator: Jeffery Chen Fan <jeffery9@gmail.com>, 2016\n"
-"Language-Team: Chinese (China) (https://www.transifex.com/oca/teams/23907/zh_CN/)\n"
+"Last-Translator: OCA Transbot <transbot@odoo-community.org>, 2016\n"
+"Language-Team: Bosnian (https://www.transifex.com/oca/teams/23907/bs/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
-"Language: zh_CN\n"
-"Plural-Forms: nplurals=1; plural=0;\n"
+"Language: bs\n"
+"Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
 
 #. module: sale_order_type
 #: model:ir.model.fields,field_description:sale_order_type.field_sale_order_type_journal_id
@@ -33,27 +32,27 @@ msgstr ""
 #. module: sale_order_type
 #: model:ir.model.fields,field_description:sale_order_type.field_sale_order_type_company_id
 msgid "Company"
-msgstr "公司"
+msgstr "Kompanija"
 
 #. module: sale_order_type
 #: model:ir.model.fields,field_description:sale_order_type.field_sale_order_type_create_uid
 msgid "Created by"
-msgstr "创建者"
+msgstr "Kreirao"
 
 #. module: sale_order_type
 #: model:ir.model.fields,field_description:sale_order_type.field_sale_order_type_create_date
 msgid "Created on"
-msgstr "创建时间"
+msgstr "Kreirano"
 
 #. module: sale_order_type
 #: model:ir.model.fields,field_description:sale_order_type.field_sale_order_type_description
 msgid "Description"
-msgstr "说明"
+msgstr "Opis"
 
 #. module: sale_order_type
 #: model:ir.model.fields,field_description:sale_order_type.field_sale_order_type_display_name
 msgid "Display Name"
-msgstr "显示名称"
+msgstr "Prikaži naziv"
 
 #. module: sale_order_type
 #: model:ir.model.fields,field_description:sale_order_type.field_sale_order_type_sequence_id
@@ -64,7 +63,7 @@ msgstr ""
 #. module: sale_order_type
 #: model:ir.ui.view,arch_db:sale_order_type.sot_sale_order_type_search_view
 msgid "Group By"
-msgstr "分组"
+msgstr "Grupiši po"
 
 #. module: sale_order_type
 #: model:ir.model.fields,field_description:sale_order_type.field_sale_order_type_id
@@ -80,27 +79,27 @@ msgstr ""
 #. module: sale_order_type
 #: model:ir.model,name:sale_order_type.model_account_invoice
 msgid "Invoice"
-msgstr "发票"
+msgstr "Faktura"
 
 #. module: sale_order_type
 #: model:ir.model.fields,field_description:sale_order_type.field_sale_order_type___last_update
 msgid "Last Modified on"
-msgstr "最后修改时间"
+msgstr "Zadnje mijenjano"
 
 #. module: sale_order_type
 #: model:ir.model.fields,field_description:sale_order_type.field_sale_order_type_write_uid
 msgid "Last Updated by"
-msgstr "最后更新者"
+msgstr "Zadnji ažurirao"
 
 #. module: sale_order_type
 #: model:ir.model.fields,field_description:sale_order_type.field_sale_order_type_write_date
 msgid "Last Updated on"
-msgstr "最后更新时间"
+msgstr "Zadnje ažurirano"
 
 #. module: sale_order_type
 #: model:ir.model.fields,field_description:sale_order_type.field_sale_order_type_name
 msgid "Name"
-msgstr "名称"
+msgstr "Ime"
 
 #. module: sale_order_type
 #: model:sale.order.type,name:sale_order_type.normal_sale_type
@@ -110,7 +109,7 @@ msgstr ""
 #. module: sale_order_type
 #: model:ir.model,name:sale_order_type.model_res_partner
 msgid "Partner"
-msgstr "业务伙伴"
+msgstr "Partner"
 
 #. module: sale_order_type
 #: model:ir.model.fields,field_description:sale_order_type.field_sale_order_type_payment_term_id
@@ -141,7 +140,7 @@ msgstr ""
 #. module: sale_order_type
 #: model:ir.model,name:sale_order_type.model_sale_order
 msgid "Sales Order"
-msgstr "销售订单"
+msgstr ""
 
 #. module: sale_order_type
 #: model:ir.ui.view,arch_db:sale_order_type.res_partner_sale_type_form_view
@@ -166,7 +165,7 @@ msgstr ""
 #: model:ir.ui.view,arch_db:sale_order_type.sot_sale_order_type_search_view
 #: model:ir.ui.view,arch_db:sale_order_type.sot_sale_order_type_tree_view
 msgid "Type"
-msgstr "类型"
+msgstr "Vrsta"
 
 #. module: sale_order_type
 #: model:ir.model,name:sale_order_type.model_sale_order_type
