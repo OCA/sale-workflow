@@ -9,8 +9,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: sale-workflow (8.0)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-10-04 13:41+0000\n"
-"PO-Revision-Date: 2016-10-04 09:43+0000\n"
+"POT-Creation-Date: 2016-11-22 23:35+0000\n"
+"PO-Revision-Date: 2016-11-25 14:55+0000\n"
 "Last-Translator: OCA Transbot <transbot@odoo-community.org>\n"
 "Language-Team: Spanish (http://www.transifex.com/oca/OCA-sale-workflow-8-0/language/es/)\n"
 "MIME-Version: 1.0\n"
@@ -37,7 +37,7 @@ msgstr "Aplicar en"
 #. module: sale_exceptions
 #: view:sale.order:sale_exceptions.view_sales_order_filter
 msgid "Blocked in draft"
-msgstr ""
+msgstr "Bloqueado en borrador"
 
 #. module: sale_exceptions
 #: code:addons/sale_exceptions/sale.py:114
@@ -45,7 +45,7 @@ msgstr ""
 #: view:sale.exception.confirm:sale_exceptions.view_sale_exception_confirm
 #, python-format
 msgid "Blocked in draft due to exceptions"
-msgstr ""
+msgstr "Bloqueado en borrador debido a excepciones"
 
 #. module: sale_exceptions
 #: field:sale.exception,create_uid:0 field:sale.exception.confirm,create_uid:0
@@ -82,7 +82,7 @@ msgid ""
 "Error when evaluating the sale exception rule:\n"
 " %s \n"
 "(%s)"
-msgstr ""
+msgstr "Error cuando se evaluaba la regla de excepción de venta:\n %s \n(%s)"
 
 #. module: sale_exceptions
 #: view:sale.order:sale_exceptions.view_order_form
@@ -222,4 +222,4 @@ msgstr "Secuencia"
 #. module: sale_exceptions
 #: view:sale.exception.confirm:sale_exceptions.view_sale_exception_confirm
 msgid "_Close"
-msgstr ""
+msgstr "_Cerrar"

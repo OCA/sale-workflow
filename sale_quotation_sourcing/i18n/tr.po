@@ -3,13 +3,17 @@
 # * sale_quotation_sourcing
 # 
 # Translators:
+# Accounts-Payable - Alkemics, 2015
+# Chen-Do LU <clu@alkemics.com>, 2015
+# François Breysse <fb@alkemics.com>, 2015
+# Rudolf Schnapka <rs@techno-flex.de>, 2015
 msgid ""
 msgstr ""
 "Project-Id-Version: sale-workflow (8.0)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-12-05 23:35+0000\n"
-"PO-Revision-Date: 2015-09-03 07:10+0000\n"
-"Last-Translator: <>\n"
+"POT-Creation-Date: 2016-11-22 23:35+0000\n"
+"PO-Revision-Date: 2016-11-25 14:57+0000\n"
+"Last-Translator: OCA Transbot <transbot@odoo-community.org>\n"
 "Language-Team: Turkish (http://www.transifex.com/oca/OCA-sale-workflow-8-0/language/tr/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -35,9 +39,21 @@ msgid "Created on"
 msgstr "Oluşturuldu"
 
 #. module: sale_quotation_sourcing
+#: field:sale.order.line.sourcing,display_name:0
+#: field:sale.order.sourcing,display_name:0
+msgid "Display Name"
+msgstr ""
+
+#. module: sale_quotation_sourcing
 #: field:sale.order.line.sourcing,id:0 field:sale.order.sourcing,id:0
 msgid "ID"
 msgstr "ID"
+
+#. module: sale_quotation_sourcing
+#: field:sale.order.line.sourcing,__last_update:0
+#: field:sale.order.sourcing,__last_update:0
+msgid "Last Modified on"
+msgstr ""
 
 #. module: sale_quotation_sourcing
 #: field:sale.order.line.sourcing,write_uid:0
@@ -70,6 +86,11 @@ msgstr ""
 #. module: sale_quotation_sourcing
 #: model:ir.model,name:sale_quotation_sourcing.model_procurement_order
 msgid "Procurement"
+msgstr ""
+
+#. module: sale_quotation_sourcing
+#: field:sale.order.line.sourcing,product_id:0
+msgid "Product"
 msgstr ""
 
 #. module: sale_quotation_sourcing
@@ -138,4 +159,4 @@ msgstr ""
 #. module: sale_quotation_sourcing
 #: view:sale.order.sourcing:sale_quotation_sourcing.sale_order_sourcing_wizard
 msgid "or"
-msgstr ""
+msgstr "ya da"

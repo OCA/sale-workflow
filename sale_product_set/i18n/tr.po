@@ -7,9 +7,9 @@ msgid ""
 msgstr ""
 "Project-Id-Version: sale-workflow (8.0)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-12-05 23:35+0000\n"
-"PO-Revision-Date: 2015-09-03 07:10+0000\n"
-"Last-Translator: <>\n"
+"POT-Creation-Date: 2016-11-22 23:35+0000\n"
+"PO-Revision-Date: 2016-11-25 14:57+0000\n"
+"Last-Translator: OCA Transbot <transbot@odoo-community.org>\n"
 "Language-Team: Turkish (http://www.transifex.com/oca/OCA-sale-workflow-8-0/language/tr/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -57,10 +57,22 @@ msgid "Created on"
 msgstr "Oluşturuldu"
 
 #. module: sale_product_set
+#: field:product.set,display_name:0 field:product.set.add,display_name:0
+#: field:product.set.line,display_name:0
+msgid "Display Name"
+msgstr ""
+
+#. module: sale_product_set
 #: field:product.set,id:0 field:product.set.add,id:0
 #: field:product.set.line,id:0
 msgid "ID"
 msgstr "ID"
+
+#. module: sale_product_set
+#: field:product.set,__last_update:0 field:product.set.add,__last_update:0
+#: field:product.set.line,__last_update:0
+msgid "Last Modified on"
+msgstr ""
 
 #. module: sale_product_set
 #: field:product.set,write_uid:0 field:product.set.add,write_uid:0
@@ -77,7 +89,7 @@ msgstr "Son güncelleme"
 #. module: sale_product_set
 #: field:product.set,name:0
 msgid "Name"
-msgstr ""
+msgstr "Adı"
 
 #. module: sale_product_set
 #: field:product.set.line,product_id:0
@@ -141,4 +153,4 @@ msgstr ""
 #. module: sale_product_set
 #: view:product.set.add:sale_product_set.product_set_add_form_view
 msgid "or"
-msgstr ""
+msgstr "ya da"

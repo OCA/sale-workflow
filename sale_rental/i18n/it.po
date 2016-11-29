@@ -3,16 +3,17 @@
 # * sale_rental
 # 
 # Translators:
-# Ahmet Altınışık <aaltinisik@altinkaya.com.tr>, 2015
-# Ahmet Altınışık <aaltinisik@altinkaya.com.tr>, 2015
+# Ahmet Altinisik <aaltinisik@altinkaya.com.tr>, 2015
+# Ahmet Altinisik <aaltinisik@altinkaya.com.tr>, 2015
+# Paolo Valier, 2016
 # Paolo Valier, 2016
 # Stefano <stefano.sforzi@agilebg.com>, 2015
 msgid ""
 msgstr ""
 "Project-Id-Version: sale-workflow (8.0)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-07-10 15:38+0000\n"
-"PO-Revision-Date: 2016-07-21 19:04+0000\n"
+"POT-Creation-Date: 2016-11-22 23:36+0000\n"
+"PO-Revision-Date: 2016-11-25 14:57+0000\n"
 "Last-Translator: Paolo Valier\n"
 "Language-Team: Italian (http://www.transifex.com/oca/OCA-sale-workflow-8-0/language/it/)\n"
 "MIME-Version: 1.0\n"
@@ -481,7 +482,7 @@ msgstr "Data di inizio"
 #. module: sale_rental
 #: field:sale.rental,state:0
 msgid "State"
-msgstr ""
+msgstr "Stato"
 
 #. module: sale_rental
 #: field:sale.rental,out_state:0

@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: sale-workflow (8.0)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-10-04 13:41+0000\n"
+"POT-Creation-Date: 2016-11-22 23:35+0000\n"
 "PO-Revision-Date: 2015-09-03 07:08+0000\n"
 "Last-Translator: <>\n"
 "Language-Team: Chinese (China) (http://www.transifex.com/oca/OCA-sale-workflow-8-0/language/zh_CN/)\n"
@@ -66,7 +66,7 @@ msgstr "创建时间"
 #: field:sale.add.variants,display_name:0
 #: field:sale.add.variants.line,display_name:0
 msgid "Display Name"
-msgstr ""
+msgstr "显示名称"
 
 #. module: sale_order_add_variants
 #: field:sale.add.variants,id:0 field:sale.add.variants.line,id:0
@@ -77,7 +77,7 @@ msgstr "ID"
 #: field:sale.add.variants,__last_update:0
 #: field:sale.add.variants.line,__last_update:0
 msgid "Last Modified on"
-msgstr ""
+msgstr "最后修改时间"
 
 #. module: sale_order_add_variants
 #: field:sale.add.variants,write_uid:0

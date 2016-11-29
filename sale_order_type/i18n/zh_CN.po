@@ -9,8 +9,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: sale-workflow (8.0)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-10-04 13:41+0000\n"
-"PO-Revision-Date: 2016-10-04 13:07+0000\n"
+"POT-Creation-Date: 2016-11-22 23:35+0000\n"
+"PO-Revision-Date: 2016-11-25 14:56+0000\n"
 "Last-Translator: OCA Transbot <transbot@odoo-community.org>\n"
 "Language-Team: Chinese (China) (http://www.transifex.com/oca/OCA-sale-workflow-8-0/language/zh_CN/)\n"
 "MIME-Version: 1.0\n"
@@ -56,12 +56,12 @@ msgstr "创建时间"
 #. module: sale_order_type
 #: field:sale.order.type,description:0
 msgid "Description"
-msgstr ""
+msgstr "说明"
 
 #. module: sale_order_type
 #: field:sale.order.type,display_name:0
 msgid "Display Name"
-msgstr ""
+msgstr "显示名称"
 
 #. module: sale_order_type
 #: view:sale.order.type:sale_order_type.sot_sale_order_type_search_view
@@ -72,7 +72,7 @@ msgstr ""
 #. module: sale_order_type
 #: view:sale.order.type:sale_order_type.sot_sale_order_type_search_view
 msgid "Group By"
-msgstr ""
+msgstr "分组"
 
 #. module: sale_order_type
 #: field:sale.order.type,id:0
@@ -99,7 +99,7 @@ msgstr ""
 #. module: sale_order_type
 #: field:sale.order.type,__last_update:0
 msgid "Last Modified on"
-msgstr ""
+msgstr "最后修改时间"
 
 #. module: sale_order_type
 #: field:sale.order.type,write_uid:0
@@ -114,7 +114,7 @@ msgstr "上次更新日期"
 #. module: sale_order_type
 #: field:sale.order.type,name:0
 msgid "Name"
-msgstr ""
+msgstr "名称"
 
 #. module: sale_order_type
 #: model:sale.order.type,name:sale_order_type.normal_sale_type
@@ -182,7 +182,7 @@ msgstr ""
 #. module: sale_order_type
 #: field:sale.order.type,sequence:0
 msgid "Sequence"
-msgstr ""
+msgstr "序号"
 
 #. module: sale_order_type
 #: view:sale.order.type:sale_order_type.sot_sale_order_type_search_view
@@ -201,7 +201,7 @@ msgstr ""
 #: view:sale.order.type:sale_order_type.sot_sale_order_type_search_view
 #: view:sale.order.type:sale_order_type.sot_sale_order_type_tree_view
 msgid "Type"
-msgstr ""
+msgstr "类型"
 
 #. module: sale_order_type
 #: model:ir.model,name:sale_order_type.model_sale_order_type

@@ -1,0 +1,221 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# * product_margin_classification
+# 
+# Translators:
+# OCA Transbot <transbot@odoo-community.org>, 2016
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 8.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2016-11-22 23:35+0000\n"
+"PO-Revision-Date: 2016-11-22 23:35+0000\n"
+"Last-Translator: OCA Transbot <transbot@odoo-community.org>, 2016\n"
+"Language-Team: Bosnian (https://www.transifex.com/oca/teams/23907/bs/)\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Language: bs\n"
+"Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
+
+#. module: product_margin_classification
+#: view:product.template:product_margin_classification.view_product_template_form
+msgid "Apply Margin"
+msgstr ""
+
+#. module: product_margin_classification
+#: view:product.margin.classification:product_margin_classification.view_product_margin_classification_form
+msgid "Apply Theoretical Price"
+msgstr ""
+
+#. module: product_margin_classification
+#: selection:product.template,margin_state:0
+msgid "Cheaper"
+msgstr ""
+
+#. module: product_margin_classification
+#: field:product.margin.classification,company_id:0
+msgid "Company"
+msgstr "Kompanija"
+
+#. module: product_margin_classification
+#: view:product.margin.classification:product_margin_classification.view_product_margin_classification_form
+msgid "Computation"
+msgstr ""
+
+#. module: product_margin_classification
+#: selection:product.template,margin_state:0
+msgid "Correct Margin"
+msgstr ""
+
+#. module: product_margin_classification
+#: field:product.margin.classification,create_uid:0
+msgid "Created by"
+msgstr "Kreirao"
+
+#. module: product_margin_classification
+#: field:product.margin.classification,create_date:0
+msgid "Created on"
+msgstr "Kreirano"
+
+#. module: product_margin_classification
+#: view:product.template:product_margin_classification.view_product_template_form
+msgid "Decrease the Sale Price down to Theoretical Price"
+msgstr ""
+
+#. module: product_margin_classification
+#: field:product.margin.classification,display_name:0
+msgid "Display Name"
+msgstr "Prikaži naziv"
+
+#. module: product_margin_classification
+#: view:product.margin.classification:product_margin_classification.view_product_margin_classification_form
+msgid "Down to Theoretical Price"
+msgstr ""
+
+#. module: product_margin_classification
+#: field:product.margin.classification,id:0
+msgid "ID"
+msgstr "ID"
+
+#. module: product_margin_classification
+#: view:product.template:product_margin_classification.view_product_template_form
+msgid "Increase the Sale Price up to Theoretical Price"
+msgstr ""
+
+#. module: product_margin_classification
+#: field:product.margin.classification,__last_update:0
+msgid "Last Modified on"
+msgstr "Zadnje mijenjano"
+
+#. module: product_margin_classification
+#: field:product.margin.classification,write_uid:0
+msgid "Last Updated by"
+msgstr "Zadnji ažurirao"
+
+#. module: product_margin_classification
+#: field:product.margin.classification,write_date:0
+msgid "Last Updated on"
+msgstr "Zadnje ažurirano"
+
+#. module: product_margin_classification
+#: field:product.margin.classification,margin:0
+msgid "Margin"
+msgstr ""
+
+#. module: product_margin_classification
+#: field:product.template,margin_classification_id:0
+msgid "Margin Classification"
+msgstr ""
+
+#. module: product_margin_classification
+#: model:ir.actions.act_window,name:product_margin_classification.action_product_margin_classification
+#: model:ir.ui.menu,name:product_margin_classification.menu_product_margin_classification
+#: view:product.template:product_margin_classification.view_product_template_search
+msgid "Margin Classifications"
+msgstr ""
+
+#. module: product_margin_classification
+#: field:product.margin.classification,name:0
+msgid "Name"
+msgstr "Ime"
+
+#. module: product_margin_classification
+#: field:product.margin.classification,price_round:0
+msgid "Price Rounding"
+msgstr ""
+
+#. module: product_margin_classification
+#: code:addons/product_margin_classification/models/product_margin_classification.py:99
+#, python-format
+msgid "Price Rounding can not be null."
+msgstr ""
+
+#. module: product_margin_classification
+#: field:product.margin.classification,price_surcharge:0
+msgid "Price Surcharge"
+msgstr ""
+
+#. module: product_margin_classification
+#: model:ir.model,name:product_margin_classification.model_product_template
+msgid "Product Template"
+msgstr ""
+
+#. module: product_margin_classification
+#: view:product.margin.classification:product_margin_classification.view_product_margin_classification_form
+#: field:product.margin.classification,template_ids:0
+msgid "Products"
+msgstr ""
+
+#. module: product_margin_classification
+#: field:product.margin.classification,template_cheap_qty:0
+msgid "Products Cheaper"
+msgstr ""
+
+#. module: product_margin_classification
+#: field:product.margin.classification,template_qty:0
+msgid "Products Quantity"
+msgstr ""
+
+#. module: product_margin_classification
+#: field:product.margin.classification,template_expensive_qty:0
+msgid "Products Too Expensive"
+msgstr ""
+
+#. module: product_margin_classification
+#: field:product.margin.classification,template_different_price_qty:0
+msgid "Products With Different Price"
+msgstr ""
+
+#. module: product_margin_classification
+#: help:product.margin.classification,price_round:0
+msgid ""
+"Sets the price so that it is a multiple of this value.\n"
+"Rounding is applied after the margin and before the surcharge.\n"
+"To have prices that end in 9.99, set rounding 10, surcharge -0.01"
+msgstr ""
+
+#. module: product_margin_classification
+#: help:product.margin.classification,price_surcharge:0
+msgid ""
+"Specify the fixed amount to add or substract(if negative) to the amount "
+"calculated with the discount."
+msgstr ""
+
+#. module: product_margin_classification
+#: field:product.template,theoretical_difference:0
+msgid "Theoretical Difference"
+msgstr ""
+
+#. module: product_margin_classification
+#: field:product.template,theoretical_price:0
+msgid "Theoretical Price"
+msgstr ""
+
+#. module: product_margin_classification
+#: field:product.template,margin_state:0
+msgid "Theoretical Price State"
+msgstr ""
+
+#. module: product_margin_classification
+#: selection:product.template,margin_state:0
+msgid "Too Expensive"
+msgstr ""
+
+#. module: product_margin_classification
+#: code:addons/product_margin_classification/models/product_template.py:53
+#, python-format
+msgid ""
+"Unimplemented Feature\n"
+"The Tax %s is not correctly set for computing prices with coefficients for the product %s"
+msgstr ""
+
+#. module: product_margin_classification
+#: view:product.margin.classification:product_margin_classification.view_product_margin_classification_form
+msgid "Up to Theoretical Price"
+msgstr ""
+
+#. module: product_margin_classification
+#: view:product.margin.classification:product_margin_classification.view_product_margin_classification_form
+msgid "Use Theoretical Price"
+msgstr ""

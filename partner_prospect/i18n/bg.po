@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: sale-workflow (8.0)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-10-04 13:41+0000\n"
+"POT-Creation-Date: 2016-11-22 23:35+0000\n"
 "PO-Revision-Date: 2015-09-21 21:52+0000\n"
 "Last-Translator: <>\n"
 "Language-Team: Bulgarian (http://www.transifex.com/oca/OCA-sale-workflow-8-0/language/bg/)\n"
@@ -25,7 +25,7 @@ msgstr ""
 #. module: partner_prospect
 #: view:res.partner:partner_prospect.res_partner_prospect_search_view
 msgid "Group By"
-msgstr ""
+msgstr "Групирай По"
 
 #. module: partner_prospect
 #: model:ir.model,name:partner_prospect.model_res_partner

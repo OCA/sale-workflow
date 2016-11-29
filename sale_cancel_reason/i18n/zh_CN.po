@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: sale-workflow (8.0)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-10-04 13:41+0000\n"
-"PO-Revision-Date: 2016-10-04 09:43+0000\n"
+"POT-Creation-Date: 2016-11-22 23:35+0000\n"
+"PO-Revision-Date: 2016-11-25 14:56+0000\n"
 "Last-Translator: OCA Transbot <transbot@odoo-community.org>\n"
 "Language-Team: Chinese (China) (http://www.transifex.com/oca/OCA-sale-workflow-8-0/language/zh_CN/)\n"
 "MIME-Version: 1.0\n"
@@ -25,7 +25,7 @@ msgstr ""
 #. module: sale_cancel_reason
 #: view:sale.order.cancel:sale_cancel_reason.view_sale_order_cancel
 msgid "Cancel"
-msgstr ""
+msgstr "取消"
 
 #. module: sale_cancel_reason
 #: view:sale.order:sale_cancel_reason.view_order_form
@@ -70,7 +70,7 @@ msgstr "创建时间"
 #: field:sale.order.cancel,display_name:0
 #: field:sale.order.cancel.reason,display_name:0
 msgid "Display Name"
-msgstr ""
+msgstr "显示名称"
 
 #. module: sale_cancel_reason
 #: field:sale.order.cancel,id:0 field:sale.order.cancel.reason,id:0
@@ -86,7 +86,7 @@ msgstr ""
 #: field:sale.order.cancel,__last_update:0
 #: field:sale.order.cancel.reason,__last_update:0
 msgid "Last Modified on"
-msgstr ""
+msgstr "最后修改时间"
 
 #. module: sale_cancel_reason
 #: field:sale.order.cancel,write_uid:0
@@ -152,4 +152,4 @@ msgstr ""
 #. module: sale_cancel_reason
 #: view:sale.order.cancel:sale_cancel_reason.view_sale_order_cancel
 msgid "or"
-msgstr ""
+msgstr "或"

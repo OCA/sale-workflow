@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: sale-workflow (8.0)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-09-11 16:48+0000\n"
+"POT-Creation-Date: 2016-11-22 23:35+0000\n"
 "PO-Revision-Date: 2016-03-11 10:09+0000\n"
 "Last-Translator: <>\n"
 "Language-Team: Estonian (http://www.transifex.com/oca/OCA-sale-workflow-8-0/language/et/)\n"
@@ -30,12 +30,12 @@ msgstr "Loobu"
 #. module: sale_quick_payment
 #: field:pay.sale.order,create_uid:0
 msgid "Created by"
-msgstr ""
+msgstr "Loonud"
 
 #. module: sale_quick_payment
 #: field:pay.sale.order,create_date:0
 msgid "Created on"
-msgstr ""
+msgstr "Loodud"
 
 #. module: sale_quick_payment
 #: view:pay.sale.order:sale_quick_payment.pay_sale_order_view
@@ -46,17 +46,17 @@ msgstr ""
 #: view:pay.sale.order:sale_quick_payment.pay_sale_order_view
 #: field:pay.sale.order,description:0
 msgid "Description"
-msgstr ""
+msgstr "Kirjeldus"
 
 #. module: sale_quick_payment
 #: field:pay.sale.order,display_name:0
 msgid "Display Name"
-msgstr ""
+msgstr "Näidatav nimi"
 
 #. module: sale_quick_payment
 #: field:pay.sale.order,id:0
 msgid "ID"
-msgstr ""
+msgstr "ID"
 
 #. module: sale_quick_payment
 #: view:pay.sale.order:sale_quick_payment.pay_sale_order_view
@@ -67,17 +67,17 @@ msgstr ""
 #. module: sale_quick_payment
 #: field:pay.sale.order,__last_update:0
 msgid "Last Modified on"
-msgstr ""
+msgstr "Viimati muudetud"
 
 #. module: sale_quick_payment
 #: field:pay.sale.order,write_uid:0
 msgid "Last Updated by"
-msgstr ""
+msgstr "Viimati uuendatud"
 
 #. module: sale_quick_payment
 #: field:pay.sale.order,write_date:0
 msgid "Last Updated on"
-msgstr ""
+msgstr "Viimati uuendatud"
 
 #. module: sale_quick_payment
 #: view:pay.sale.order:sale_quick_payment.pay_sale_order_view
@@ -128,4 +128,4 @@ msgstr ""
 #. module: sale_quick_payment
 #: view:pay.sale.order:sale_quick_payment.pay_sale_order_view
 msgid "or"
-msgstr ""
+msgstr "või"

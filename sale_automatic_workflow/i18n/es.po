@@ -6,13 +6,14 @@
 # Antonio Trueba, 2016
 # Antonio Trueba, 2016
 # Carles Antoli <carlesantoli@hotmail.com>, 2016
+# Pedro M. Baeza <pedro.baeza@gmail.com>, 2016
 msgid ""
 msgstr ""
 "Project-Id-Version: sale-workflow (8.0)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-06-09 02:44+0000\n"
-"PO-Revision-Date: 2016-05-30 20:15+0000\n"
-"Last-Translator: Carles Antoli <carlesantoli@hotmail.com>\n"
+"POT-Creation-Date: 2016-11-22 23:35+0000\n"
+"PO-Revision-Date: 2016-11-25 14:55+0000\n"
+"Last-Translator: Pedro M. Baeza <pedro.baeza@gmail.com>\n"
 "Language-Team: Spanish (http://www.transifex.com/oca/OCA-sale-workflow-8-0/language/es/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -23,7 +24,7 @@ msgstr ""
 #. module: sale_automatic_workflow
 #: selection:sale.workflow.process,create_invoice_on:0
 msgid "After Delivery"
-msgstr "Despues de envio"
+msgstr "Después del envío"
 
 #. module: sale_automatic_workflow
 #: model:ir.actions.act_window,name:sale_automatic_workflow.act_sale_workflow_process_form
@@ -32,7 +33,7 @@ msgstr "Despues de envio"
 #: view:sale.workflow.process:sale_automatic_workflow.sale_workflow_process_view_form
 #: view:sale.workflow.process:sale_automatic_workflow.sale_workflow_process_view_tree
 msgid "Automatic Workflow"
-msgstr "Workflow Automático"
+msgstr "Flujo automático"
 
 #. module: sale_automatic_workflow
 #: view:sale.order:sale_automatic_workflow.sale_order_view_form
@@ -44,12 +45,12 @@ msgstr "Información de automatización"
 msgid ""
 "Be careful, if you save the order with this setting, it could be auto-"
 "confirmed, even if you are editing it."
-msgstr "Sea cuidadoso si guarda la orden con este ajuste: puede auto-confirmarse incluso aunque lo esté editando."
+msgstr "Sea cuidadoso si guarda el pedido con este ajuste: puede auto-confirmarse incluso aunque lo esté editando."
 
 #. module: sale_automatic_workflow
 #: selection:sale.workflow.process,order_policy:0
 msgid "Before Delivery"
-msgstr "Antes de envío"
+msgstr "Antes del envío"
 
 #. module: sale_automatic_workflow
 #: field:sale.workflow.process,validate_picking:0
@@ -59,7 +60,7 @@ msgstr "Confirmar y cerrar albarán"
 #. module: sale_automatic_workflow
 #: field:sale.workflow.process,create_invoice_on:0
 msgid "Create Invoice"
-msgstr "Crea Factura"
+msgstr "Crear factura"
 
 #. module: sale_automatic_workflow
 #: field:automatic.workflow.job,create_uid:0
@@ -76,23 +77,23 @@ msgstr "Creado el"
 #. module: sale_automatic_workflow
 #: selection:sale.workflow.process,picking_policy:0
 msgid "Deliver all products at once"
-msgstr "Envio de todos los producto a la vez"
+msgstr "Enviar todos los productos a la vez"
 
 #. module: sale_automatic_workflow
 #: selection:sale.workflow.process,picking_policy:0
 msgid "Deliver each product when available"
-msgstr "Enviar cada producto cuando este disponible"
+msgstr "Enviar cada producto cuando esté disponible"
 
 #. module: sale_automatic_workflow
 #: field:automatic.workflow.job,display_name:0
 #: field:sale.workflow.process,display_name:0
 msgid "Display Name"
-msgstr "Mostrar nombre"
+msgstr "Nombre mostrado"
 
 #. module: sale_automatic_workflow
 #: field:sale.workflow.process,invoice_date_is_order_date:0
 msgid "Force Invoice Date"
-msgstr "Forzar Fecha Factura"
+msgstr "Forzar fecha de factura"
 
 #. module: sale_automatic_workflow
 #: field:automatic.workflow.job,id:0 field:sale.workflow.process,id:0
@@ -103,7 +104,7 @@ msgstr "ID"
 #: help:sale.workflow.process,warning:0
 msgid ""
 "If set, display the message when a user selects the process on a sale order"
-msgstr "Si se establece, muestra el mensaje cuando un usuario selecciona el proceso en un pedido de venta"
+msgstr "Si está establecido, se muestra el mensaje cuando un usuario selecciona el proceso en el pedido de venta"
 
 #. module: sale_automatic_workflow
 #: model:ir.model,name:sale_automatic_workflow.model_account_invoice
@@ -113,7 +114,7 @@ msgstr "Factura"
 #. module: sale_automatic_workflow
 #: field:sale.workflow.process,order_policy:0
 msgid "Invoice Policy"
-msgstr "Política Facturación"
+msgstr "Política de facturación"
 
 #. module: sale_automatic_workflow
 #: field:sale.workflow.process,invoice_quantity:0
@@ -151,27 +152,27 @@ msgstr "Factura no automática"
 #. module: sale_automatic_workflow
 #: selection:sale.workflow.process,order_policy:0
 msgid "On Delivery Order"
-msgstr "En Albarán"
+msgstr "En la orden de entrega"
 
 #. module: sale_automatic_workflow
 #: selection:sale.workflow.process,order_policy:0
 msgid "On Demand"
-msgstr "Bajo Demanda"
+msgstr "Bajo demanda"
 
 #. module: sale_automatic_workflow
 #: selection:sale.workflow.process,create_invoice_on:0
 msgid "On confirmation of Sale Order"
-msgstr "En confirmación de pedido de venta"
+msgstr "En la confirmación del pedido de venta"
 
 #. module: sale_automatic_workflow
 #: view:sale.workflow.process:sale_automatic_workflow.sale_workflow_process_view_form
 msgid "Order Configuration"
-msgstr "Configuración Venta"
+msgstr "Configuración de pedido"
 
 #. module: sale_automatic_workflow
 #: selection:sale.workflow.process,invoice_quantity:0
 msgid "Ordered Quantities"
-msgstr "Cantidades Ordenadas"
+msgstr "Cantidades pedidas"
 
 #. module: sale_automatic_workflow
 #: view:sale.order:sale_automatic_workflow.sale_order_view_form
@@ -181,19 +182,19 @@ msgstr "Otra información"
 #. module: sale_automatic_workflow
 #: model:ir.model,name:sale_automatic_workflow.model_stock_picking
 msgid "Picking List"
-msgstr "Lista Albaranes"
+msgstr "Lista de albaranes"
 
 #. module: sale_automatic_workflow
 #: field:account.invoice,sale_ids:0
 msgid "Sale Orders"
-msgstr "Pedidos de Venta"
+msgstr "Pedidos de venta"
 
 #. module: sale_automatic_workflow
 #: field:account.invoice,workflow_process_id:0
 #: model:ir.model,name:sale_automatic_workflow.model_sale_workflow_process
 #: field:stock.picking,workflow_process_id:0
 msgid "Sale Workflow Process"
-msgstr "Proceso Workflow Venta"
+msgstr "Proceso del flujo de venta"
 
 #. module: sale_automatic_workflow
 #: field:sale.workflow.process,property_journal_id:0
@@ -203,7 +204,7 @@ msgstr "Diario de ventas"
 #. module: sale_automatic_workflow
 #: model:ir.model,name:sale_automatic_workflow.model_sale_order
 msgid "Sales Order"
-msgstr "Pedidos de Venta"
+msgstr "Pedidos de venta"
 
 #. module: sale_automatic_workflow
 #: field:sale.workflow.process,section_id:0
@@ -213,7 +214,7 @@ msgstr "Equipo de ventas"
 #. module: sale_automatic_workflow
 #: help:sale.workflow.process,property_journal_id:0
 msgid "Set default journal to use on invoice"
-msgstr "Establecer como predeterminado el diario para utilizar en la factura"
+msgstr "Establezca el diario por defecto a usar en las facturas"
 
 #. module: sale_automatic_workflow
 #: field:sale.workflow.process,ship_only_available:0
@@ -223,27 +224,27 @@ msgstr "Envío solamente para artículos disponibles"
 #. module: sale_automatic_workflow
 #: selection:sale.workflow.process,invoice_quantity:0
 msgid "Shipped Quantities"
-msgstr "Cantidades Enviadas"
+msgstr "Cantidades enviadas"
 
 #. module: sale_automatic_workflow
 #: field:sale.workflow.process,picking_policy:0
 msgid "Shipping Policy"
-msgstr "Política Envios"
+msgstr "Política de envíos"
 
 #. module: sale_automatic_workflow
 #: model:ir.model,name:sale_automatic_workflow.model_stock_move
 msgid "Stock Move"
-msgstr "Movimiento de existencia"
+msgstr "Movimiento de existencias"
 
 #. module: sale_automatic_workflow
 #: field:sale.workflow.process,validate_invoice:0
 msgid "Validate Invoice"
-msgstr "Validar Factura"
+msgstr "Validar factura"
 
 #. module: sale_automatic_workflow
 #: field:sale.workflow.process,validate_order:0
 msgid "Validate Order"
-msgstr "Validar Venta"
+msgstr "Validar pedido"
 
 #. module: sale_automatic_workflow
 #: field:sale.workflow.process,warning:0
@@ -260,15 +261,15 @@ msgstr "Cuando se activa, la cantidad disponible es enviada, y si es así, se cr
 #. module: sale_automatic_workflow
 #: help:sale.workflow.process,invoice_date_is_order_date:0
 msgid "When checked, the invoice date will be the same than the order's date"
-msgstr "Cuando este marcado, la fecha de la factura sera la misma que la del pedido de venta"
+msgstr "Cuando está marcado, la fecha de la factura será la misma que la del pedido de venta"
 
 #. module: sale_automatic_workflow
 #: view:sale.workflow.process:sale_automatic_workflow.sale_workflow_process_view_form
 msgid "Workflow Options"
-msgstr "Opciones Workflow"
+msgstr "Opciones del flujo"
 
 #. module: sale_automatic_workflow
 #: code:addons/sale_automatic_workflow/sale.py:66
 #, python-format
 msgid "Workflow Warning"
-msgstr "Aviso de flujo de trabajo"
+msgstr "Aviso del flujo"

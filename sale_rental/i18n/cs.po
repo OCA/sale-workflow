@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: sale-workflow (8.0)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-09-11 16:48+0000\n"
+"POT-Creation-Date: 2016-11-22 23:36+0000\n"
 "PO-Revision-Date: 2015-09-03 07:10+0000\n"
 "Last-Translator: <>\n"
 "Language-Team: Czech (http://www.transifex.com/oca/OCA-sale-workflow-8-0/language/cs/)\n"
@@ -91,12 +91,12 @@ msgstr ""
 #. module: sale_rental
 #: field:create.rental.product,create_uid:0 field:sale.rental,create_uid:0
 msgid "Created by"
-msgstr ""
+msgstr "Vytvořil(a)"
 
 #. module: sale_rental
 #: field:create.rental.product,create_date:0 field:sale.rental,create_date:0
 msgid "Created on"
-msgstr ""
+msgstr "Vytvořeno"
 
 #. module: sale_rental
 #: field:create.rental.product,default_code:0
@@ -117,7 +117,7 @@ msgstr ""
 #. module: sale_rental
 #: field:create.rental.product,display_name:0 field:sale.rental,display_name:0
 msgid "Display Name"
-msgstr ""
+msgstr "Zobrazovaný název"
 
 #. module: sale_rental
 #: view:sale.rental:sale_rental.sale_rental_tree
@@ -139,7 +139,7 @@ msgstr ""
 #. module: sale_rental
 #: field:create.rental.product,id:0 field:sale.rental,id:0
 msgid "ID"
-msgstr ""
+msgstr "ID"
 
 #. module: sale_rental
 #: help:sale.order.line,rental_qty:0 help:sale.rental,rental_qty:0
@@ -150,17 +150,17 @@ msgstr ""
 #: field:create.rental.product,__last_update:0
 #: field:sale.rental,__last_update:0
 msgid "Last Modified on"
-msgstr ""
+msgstr "Naposled upraveno"
 
 #. module: sale_rental
 #: field:create.rental.product,write_uid:0 field:sale.rental,write_uid:0
 msgid "Last Updated by"
-msgstr ""
+msgstr "Naposled upraveno"
 
 #. module: sale_rental
 #: field:create.rental.product,write_date:0 field:sale.rental,write_date:0
 msgid "Last Updated on"
-msgstr ""
+msgstr "Naposled upraveno"
 
 #. module: sale_rental
 #: code:addons/sale_rental/rental.py:151
@@ -542,7 +542,7 @@ msgstr ""
 #. module: sale_rental
 #: view:sale.rental:sale_rental.sale_rental_form
 msgid "Total"
-msgstr ""
+msgstr "Celkem"
 
 #. module: sale_rental
 #: view:sale.rental:sale_rental.sale_rental_form
