@@ -3,15 +3,16 @@
 # * sale_order_type
 # 
 # Translators:
-# Matjaž Mozetič <m.mozetic@matmoz.si>, 2015
+# OCA Transbot <transbot@odoo-community.org>, 2016
+# Matjaž Mozetič <m.mozetic@matmoz.si>, 2016
 msgid ""
 msgstr ""
-"Project-Id-Version: sale-workflow (8.0)\n"
+"Project-Id-Version: Odoo Server 9.0c\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-09-09 12:27+0000\n"
-"PO-Revision-Date: 2015-09-07 14:31+0000\n"
-"Last-Translator: Matjaž Mozetič <m.mozetic@matmoz.si>\n"
-"Language-Team: Slovenian (http://www.transifex.com/oca/OCA-sale-workflow-8-0/language/sl/)\n"
+"POT-Creation-Date: 2016-11-22 23:46+0000\n"
+"PO-Revision-Date: 2016-11-22 23:46+0000\n"
+"Last-Translator: Matjaž Mozetič <m.mozetic@matmoz.si>, 2016\n"
+"Language-Team: Slovenian (https://www.transifex.com/oca/teams/23907/sl/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
@@ -19,54 +20,62 @@ msgstr ""
 "Plural-Forms: nplurals=4; plural=(n%100==1 ? 0 : n%100==2 ? 1 : n%100==3 || n%100==4 ? 2 : 3);\n"
 
 #. module: sale_order_type
-#: model:ir.actions.act_window,help:sale_order_type.sot_sale_order_type_action
-msgid ""
-"<p class=\"oe_view_nocontent_create\">Click to set a new type for sale order.</p>\n"
-"            "
-msgstr "<p class=\"oe_view_nocontent_create\">Kliknite za nastavitev novega tipa prodajnega naloga.</p>\n            "
-
-#. module: sale_order_type
-#: view:sale.order.type:sale_order_type.sot_sale_order_type_search_view
-#: field:sale.order.type,journal_id:0
+#: model:ir.model.fields,field_description:sale_order_type.field_sale_order_type_journal_id
+#: model:ir.ui.view,arch_db:sale_order_type.sot_sale_order_type_search_view
 msgid "Billing Journal"
 msgstr "Dnevnik obračuna"
 
 #. module: sale_order_type
-#: view:sale.order.type:sale_order_type.sot_sale_order_type_search_view
-#: field:sale.order.type,order_policy:0
-msgid "Create Invoice"
-msgstr "Ustvari račun"
+#: model:ir.actions.act_window,help:sale_order_type.sot_sale_order_type_action
+msgid "Click to set a new type for sale order."
+msgstr ""
 
 #. module: sale_order_type
-#: field:sale.order.type,create_uid:0
+#: model:ir.model.fields,field_description:sale_order_type.field_sale_order_type_company_id
+msgid "Company"
+msgstr "Družba"
+
+#. module: sale_order_type
+#: model:ir.model.fields,field_description:sale_order_type.field_sale_order_type_create_uid
 msgid "Created by"
 msgstr "Ustvaril"
 
 #. module: sale_order_type
-#: field:sale.order.type,create_date:0
+#: model:ir.model.fields,field_description:sale_order_type.field_sale_order_type_create_date
 msgid "Created on"
 msgstr "Ustvarjeno"
 
 #. module: sale_order_type
-#: field:sale.order.type,description:0
+#: model:ir.model.fields,field_description:sale_order_type.field_sale_order_type_description
 msgid "Description"
 msgstr "Opis"
 
 #. module: sale_order_type
-#: view:sale.order.type:sale_order_type.sot_sale_order_type_search_view
-#: field:sale.order.type,sequence_id:0
+#: model:ir.model.fields,field_description:sale_order_type.field_sale_order_type_display_name
+msgid "Display Name"
+msgstr "Prikazni naziv"
+
+#. module: sale_order_type
+#: model:ir.model.fields,field_description:sale_order_type.field_sale_order_type_sequence_id
+#: model:ir.ui.view,arch_db:sale_order_type.sot_sale_order_type_search_view
 msgid "Entry Sequence"
 msgstr "Zaporedje vnosa"
 
 #. module: sale_order_type
-#: view:sale.order.type:sale_order_type.sot_sale_order_type_search_view
+#: model:ir.ui.view,arch_db:sale_order_type.sot_sale_order_type_search_view
 msgid "Group By"
 msgstr "Združeno po"
 
 #. module: sale_order_type
-#: field:sale.order.type,id:0
+#: model:ir.model.fields,field_description:sale_order_type.field_sale_order_type_id
 msgid "ID"
 msgstr "ID"
+
+#. module: sale_order_type
+#: model:ir.model.fields,field_description:sale_order_type.field_sale_order_type_incoterm_id
+#: model:ir.ui.view,arch_db:sale_order_type.sot_sale_order_type_search_view
+msgid "Incoterm"
+msgstr "Incoterm"
 
 #. module: sale_order_type
 #: model:ir.model,name:sale_order_type.model_account_invoice
@@ -74,23 +83,22 @@ msgid "Invoice"
 msgstr "Račun"
 
 #. module: sale_order_type
-#: view:sale.order.type:sale_order_type.sot_sale_order_type_search_view
-#: field:sale.order.type,invoice_state:0
-msgid "Invoice Control"
-msgstr "Nadzor računov"
+#: model:ir.model.fields,field_description:sale_order_type.field_sale_order_type___last_update
+msgid "Last Modified on"
+msgstr "Zadnjič spremenjeno"
 
 #. module: sale_order_type
-#: field:sale.order.type,write_uid:0
+#: model:ir.model.fields,field_description:sale_order_type.field_sale_order_type_write_uid
 msgid "Last Updated by"
 msgstr "Zadnji posodobil"
 
 #. module: sale_order_type
-#: field:sale.order.type,write_date:0
+#: model:ir.model.fields,field_description:sale_order_type.field_sale_order_type_write_date
 msgid "Last Updated on"
 msgstr "Zadnjič posodobljeno"
 
 #. module: sale_order_type
-#: field:sale.order.type,name:0
+#: model:ir.model.fields,field_description:sale_order_type.field_sale_order_type_name
 msgid "Name"
 msgstr "Naziv"
 
@@ -105,20 +113,30 @@ msgid "Partner"
 msgstr "Partner"
 
 #. module: sale_order_type
-#: model:ir.model,name:sale_order_type.model_stock_picking
-msgid "Picking List"
-msgstr "Zbirnik"
+#: model:ir.model.fields,field_description:sale_order_type.field_sale_order_type_payment_term_id
+#: model:ir.ui.view,arch_db:sale_order_type.sot_sale_order_type_search_view
+msgid "Payment Term"
+msgstr "Plačilni pogoj"
 
 #. module: sale_order_type
-#: view:sale.order.type:sale_order_type.sot_sale_order_type_search_view
-#: field:sale.order.type,refund_journal_id:0
-msgid "Refund Billing Journal"
-msgstr "Dnevnik dobropisov"
+#: model:ir.ui.view,arch_db:sale_order_type.sot_sale_order_type_search_view
+msgid "Price List"
+msgstr "Cenik"
 
 #. module: sale_order_type
-#: field:res.partner,sale_type:0
+#: model:ir.model.fields,field_description:sale_order_type.field_sale_order_type_pricelist_id
+msgid "Pricelist"
+msgstr "Cenik"
+
+#. module: sale_order_type
+#: model:ir.model.fields,field_description:sale_order_type.field_res_partner_sale_type
 msgid "Sale Order Type"
 msgstr "Tip prodajnega naloga"
+
+#. module: sale_order_type
+#: model:ir.model.fields,field_description:sale_order_type.field_account_invoice_sale_type_id
+msgid "Sale Type"
+msgstr "Tip prodaje"
 
 #. module: sale_order_type
 #: model:ir.model,name:sale_order_type.model_sale_order
@@ -126,7 +144,7 @@ msgid "Sales Order"
 msgstr "Prodajni nalog"
 
 #. module: sale_order_type
-#: view:res.partner:sale_order_type.res_partner_sale_type_form_view
+#: model:ir.ui.view,arch_db:sale_order_type.res_partner_sale_type_form_view
 msgid "Sales Order Type"
 msgstr "Tip prodajnega naloga"
 
@@ -137,21 +155,16 @@ msgid "Sales Order Types"
 msgstr "Tipi prodajnega naloga"
 
 #. module: sale_order_type
-#: view:sale.order.type:sale_order_type.sot_sale_order_type_search_view
-#: field:sale.order.type,picking_policy:0
+#: model:ir.model.fields,field_description:sale_order_type.field_sale_order_type_picking_policy
+#: model:ir.ui.view,arch_db:sale_order_type.sot_sale_order_type_search_view
 msgid "Shipping Policy"
 msgstr "Pravila odpošiljanja"
 
 #. module: sale_order_type
-#: model:ir.model,name:sale_order_type.model_stock_move
-msgid "Stock Move"
-msgstr "Premik zaloge"
-
-#. module: sale_order_type
-#: field:sale.order,type_id:0
-#: view:sale.order.type:sale_order_type.sot_sale_order_type_form_view
-#: view:sale.order.type:sale_order_type.sot_sale_order_type_search_view
-#: view:sale.order.type:sale_order_type.sot_sale_order_type_tree_view
+#: model:ir.model.fields,field_description:sale_order_type.field_sale_order_type_id_4668
+#: model:ir.ui.view,arch_db:sale_order_type.sot_sale_order_type_form_view
+#: model:ir.ui.view,arch_db:sale_order_type.sot_sale_order_type_search_view
+#: model:ir.ui.view,arch_db:sale_order_type.sot_sale_order_type_tree_view
 msgid "Type"
 msgstr "Tip"
 
@@ -161,7 +174,7 @@ msgid "Type of sale order"
 msgstr "Tip prodajnega naloga"
 
 #. module: sale_order_type
-#: view:sale.order.type:sale_order_type.sot_sale_order_type_search_view
-#: field:sale.order.type,warehouse_id:0
+#: model:ir.model.fields,field_description:sale_order_type.field_sale_order_type_warehouse_id
+#: model:ir.ui.view,arch_db:sale_order_type.sot_sale_order_type_search_view
 msgid "Warehouse"
 msgstr "Skladišče"
