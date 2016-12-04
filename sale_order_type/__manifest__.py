@@ -3,6 +3,7 @@
 # Copyright 2015-2016 Oihane Crucelaegui <oihane@avanzosc.com>
 # Copyright 2015-2016 Pedro M. Baeza <pedro.baeza@tecnativa.com>
 # Copyright 2016 Lorenzo Battistini
+# Copyright 2016 Carlos Dauden <carlos.dauden@tecnativa.com>
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
 {
