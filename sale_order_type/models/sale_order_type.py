@@ -34,10 +34,10 @@ class SaleOrderTypology(models.Model):
         comodel_name='account.journal', string='Billing Journal',
         domain=[('type', '=', 'sale')])
     warehouse_id = fields.Many2one(
-        comodel_name='stock.warehouse', string='Warehouse', required=True)
+        comodel_name='stock.warehouse', string='Warehouse')
     picking_policy = fields.Selection(
         selection='_get_selection_picking_policy', string='Shipping Policy',
-        required=True, default=default_picking_policy)
+        default=default_picking_policy)
     company_id = fields.Many2one(
         'res.company',
         related='warehouse_id.company_id', store=True, readonly=True)
