@@ -24,4 +24,5 @@ class CustomProductProduct(models.Model):
             product.x_show_whitelist = return_value
 
     x_whitelist_blacklist = fields.Boolean("Blacklist")
-    x_show_whitelist = fields.Boolean(compute=get_whitelist_status, store=False)
+    x_show_whitelist = fields.Boolean(compute=get_whitelist_status,
+                                      store=False)

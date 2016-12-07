@@ -3,8 +3,8 @@
 # @author Karan Shah <admin@dreambits.in>
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
-from openerp import models, fields, api
 import logging
+from openerp import models, fields, api
 
 _logger = logging.getLogger(__name__)
 
@@ -24,4 +24,5 @@ class CustomResPartner(models.Model):
             partner.x_show_whitelist = return_value
 
     x_whitelist_blacklist = fields.Boolean("Blacklist")
-    x_show_whitelist = fields.Boolean(compute=get_whitelist_status, store=False)
+    x_show_whitelist = fields.Boolean(compute=get_whitelist_status,
+                                      store=False)

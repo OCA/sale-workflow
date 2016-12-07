@@ -4,6 +4,7 @@
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
 import logging
+
 from openerp import api, fields, models
 
 _logger = logging.getLogger(__name__)
@@ -24,7 +25,7 @@ class SaleConfigSettings(models.TransientModel):
             (1, "Stop only for Blacklisted Customer only"),
         ], "Stop Procurement without payment for Customer")
 
-   @api.multi
+    @api.multi
     def set_procurement_settings(self):
         self.ensure_one()
         conf = self.env['ir.config_parameter']
