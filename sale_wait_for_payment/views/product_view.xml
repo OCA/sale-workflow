@@ -1,41 +1,41 @@
 <?xml version="1.0" encoding="utf-8"?>
 <openerp>
-	<data>
-		<record id="view_sale_wait_for_payment" model="ir.ui.view">
-			<field name="name">product.product.procurement_stop</field>
-			<field name="model">product.product</field>
-			<field name="inherit_id" ref="product.product_normal_form_view"/>
-			<field name="arch" type="xml">
-				<xpath expr="//group[@name='group_standard_price']" position="after">
-					<group attrs="{'invisible':[('x_show_whitelist','=',False)]}" groups="sale_wait_for_payment.group_procurement_stop">
-						<separator colspan="2" string="Procurement Control"/>
-						<group name='group_procurement_control'>
-							<group name="group_visual_supporter">
-								<field name="x_show_whitelist" invisible="1"/>
-								<field name="x_whitelist_blacklist" string="Blacklist" attrs="{'invisible':[('x_show_whitelist','=',False)]}"/>
-							</group>
-						</group>
-					</group>
-				</xpath>
-			</field>
-		</record>
-		<record id="view_template_sale_wait_for_payment" model="ir.ui.view">
-			<field name="name">product.template.procurement_stop</field>
-			<field name="model">product.template</field>
-			<field name="inherit_id" ref="product.product_template_only_form_view"/>
-			<field name="arch" type="xml">
-				<xpath expr="//group[@name='group_standard_price']" position="after">
-					<group attrs="{'invisible':[('x_show_whitelist','=',False)]}" groups="sale_wait_for_payment.group_procurement_stop">
-						<separator colspan="2" string="Procurement Control"/>
-						<group name='group_procurement_control'>
-							<group name="group_visual_supporter">
-								<field name="x_show_whitelist" invisible="1"/>
-								<field name="x_whitelist_blacklist" string="Blacklist" attrs="{'invisible':[('x_show_whitelist','=',False)]}" groups="sale_wait_for_payment.group_procurement_stop"/>
-							</group>
-						</group>
-					</group>
-				</xpath>
-			</field>
-		</record>
-	</data>
+    <data>
+        <record id="view_sale_wait_for_payment" model="ir.ui.view">
+            <field name="name">product.product.procurement_stop</field>
+            <field name="model">product.product</field>
+            <field name="inherit_id" ref="product.product_normal_form_view"/>
+            <field name="arch" type="xml">
+                <xpath expr="//group[@name='group_standard_price']" position="after">
+                    <group attrs="{'invisible':[('x_show_whitelist','=',False)]}" groups="sale_wait_for_payment.group_procurement_stop">
+                        <separator colspan="2" string="Procurement Control"/>
+                        <group name='group_procurement_control'>
+                            <group name="group_visual_supporter">
+                                <field name="x_show_whitelist" invisible="1"/>
+                                <field name="x_whitelist_blacklist" string="Blacklist" attrs="{'invisible':[('x_show_whitelist','=',False)]}"/>
+                            </group>
+                        </group>
+                    </group>
+                </xpath>
+            </field>
+        </record>
+        <record id="view_template_sale_wait_for_payment" model="ir.ui.view">
+            <field name="name">product.template.procurement_stop</field>
+            <field name="model">product.template</field>
+            <field name="inherit_id" ref="product.product_template_only_form_view"/>
+            <field name="arch" type="xml">
+                <xpath expr="//group[@name='group_standard_price']" position="after">
+                    <group attrs="{'invisible':[('x_show_whitelist','=',False)]}" groups="sale_wait_for_payment.group_procurement_stop">
+                        <separator colspan="2" string="Procurement Control"/>
+                        <group name='group_procurement_control'>
+                            <group name="group_visual_supporter">
+                                <field name="x_show_whitelist" invisible="1"/>
+                                <field name="x_whitelist_blacklist" string="Blacklist" attrs="{'invisible':[('x_show_whitelist','=',False)]}" groups="sale_wait_for_payment.group_procurement_stop"/>
+                            </group>
+                        </group>
+                    </group>
+                </xpath>
+            </field>
+        </record>
+    </data>
 </openerp>

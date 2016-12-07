@@ -1,23 +1,23 @@
 <?xml version="1.0" encoding="utf-8"?>
 <openerp>
-	<data>
-		<record id="res_partnerview_sale_wait_for_payment" model="ir.ui.view">
-			<field name="name">res.partner.procurement_stop</field>
-			<field name="model">res.partner</field>
-			<field name="inherit_id" ref="base.view_partner_form"/>
-			<field name="arch" type="xml">
-				<xpath expr="//notebook" position="before">
-					<group attrs="{'invisible':[('x_show_whitelist','=',False)]}" groups="sale_wait_for_payment.group_procurement_stop">
-						<separator colspan="2" string="Procurement Control"/>
-						<group name='group_procurement_control'>
-							<group name="group_visual_supporter">
-								<field name="x_show_whitelist" invisible="1"/>
-								<field name="x_whitelist_blacklist" string="Blacklist" attrs="{'invisible':[('x_show_whitelist','=',False)]}"/>
-							</group>
-						</group>
-					</group>
-				</xpath>
-			</field>
-		</record>
-	</data>
+    <data>
+        <record id="res_partnerview_sale_wait_for_payment" model="ir.ui.view">
+            <field name="name">res.partner.procurement_stop</field>
+            <field name="model">res.partner</field>
+            <field name="inherit_id" ref="base.view_partner_form"/>
+            <field name="arch" type="xml">
+                <xpath expr="//notebook" position="before">
+                    <group attrs="{'invisible':[('x_show_whitelist','=',False)]}" groups="sale_wait_for_payment.group_procurement_stop">
+                        <separator colspan="2" string="Procurement Control"/>
+                        <group name='group_procurement_control'>
+                            <group name="group_visual_supporter">
+                                <field name="x_show_whitelist" invisible="1"/>
+                                <field name="x_whitelist_blacklist" string="Blacklist" attrs="{'invisible':[('x_show_whitelist','=',False)]}"/>
+                            </group>
+                        </group>
+                    </group>
+                </xpath>
+            </field>
+        </record>
+    </data>
 </openerp>

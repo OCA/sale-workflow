@@ -18,6 +18,9 @@ class CustomSaleOrderLine(models.Model):
         result = {}
         for sale_order_line in self:
 
+            original_result = super(CustomSaleOrderLine, self).\
+                _action_procurement_create()
+
             proc_product_value = self.env['ir.config_parameter'].\
                 get_param('procurement_product')
             proc_customer_value = self.env['ir.config_parameter'].\
@@ -52,8 +55,10 @@ class CustomSaleOrderLine(models.Model):
                     sale_order_line.invoice_status == "invoiced" and
                     self.full_payment_done(sale_order_line)
                 ):
-                    result = super(CustomSaleOrderLine, self)\
-                        ._action_procurement_create()
+                    result = original_result
+
+            else:
+                result = original_result
 
         return result
 
