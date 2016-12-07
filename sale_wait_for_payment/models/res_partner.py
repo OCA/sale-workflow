@@ -8,6 +8,7 @@ import logging
 
 _logger = logging.getLogger(__name__)
 
+
 class CustomResPartner(models.Model):
     _inherit = "res.partner"
 
@@ -15,11 +16,12 @@ class CustomResPartner(models.Model):
     @api.multi
     def get_whitelist_status(self):
         for partner in self:
-            control_product = partner.env['ir.config_parameter'].get_param('procurement_customer')
+            control_product = partner.env['ir.config_parameter'].\
+                get_param('procurement_customer')
             return_value = False
-            if control_product!=0:
+            if control_product != 0:
                 return_value = True
             partner.x_show_whitelist = return_value
 
     x_whitelist_blacklist = fields.Boolean("Blacklist")
-    x_show_whitelist = fields.Boolean(compute=get_whitelist_status,store=False)
+    x_show_whitelist = fields.Boolean(compute=get_whitelist_status, store=False)
