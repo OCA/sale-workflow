@@ -72,7 +72,6 @@ class SaleException(models.Model):
         default=lambda self: self.env['res.company']._company_default_get())
 
 
-
 class SaleOrder(models.Model):
     _inherit = 'sale.order'
 
