@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+        <record id="sale_change_price_view" model="ir.ui.view">
+            <field name="name">sale.change.price.view</field>
+            <field name="model">sale.change.price</field>
+            <field name="arch" type="xml">
+                <form string="Change Price" version="7.0">
+                    <group>
+                        <field name="item_ids" nolabel="1">
+                            <tree string="Order Lines" create="0" editable="bottom">
+                                <field name="sale_order_line_id" invisible="True"/>
+                                <field name="name"/>
+                                <field name="price_unit"/>
+                                <field name="discount" groups="sale.group_discount_per_so_line"/>
+                            </tree>
+                        </field>
+                    </group>
+                    <span>
+                        Note: Invoiced lines are excluded from this wizard.
+                    </span>
+                    <footer>
+                        <button string="Change Price" name="change_price"
+                                type="object" class="oe_highlight"/>
+                        or
+                        <button string="Cancel" class="oe_link" special="cancel"/>
+                    </footer>
+                </form>
+            </field>
+        </record>
+
+        <record id="open_sale_change_price" model="ir.actions.act_window">
+            <field name="name">Change price</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">sale.change.price</field>
+            <field name="view_type">form</field>
+            <field name="target">new</field>
+            <field name="view_id" ref="sale_change_price_view"/>
+        </record>
+    </data>
+</openerp>
