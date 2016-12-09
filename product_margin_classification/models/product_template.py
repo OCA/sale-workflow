@@ -49,7 +49,7 @@ class ProductTemplate(models.Model):
             if classification:
                 multi = 1 + (classification.margin / 100)
                 for tax in template.taxes_id:
-                    if tax.amount_type != 'percent' or not tax.price_include:
+                    if tax.type != 'percent' or not tax.price_include:
                         raise exceptions.UserError(_(
                             "Unimplemented Feature\n"
                             "The Tax %s is not correctly set for computing"
