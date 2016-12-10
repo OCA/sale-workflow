@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: sale-workflow (8.0)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-11-22 23:36+0000\n"
-"PO-Revision-Date: 2016-11-25 14:57+0000\n"
+"POT-Creation-Date: 2016-12-09 20:40+0000\n"
+"PO-Revision-Date: 2016-12-05 09:31+0000\n"
 "Last-Translator: OCA Transbot <transbot@odoo-community.org>\n"
 "Language-Team: Spanish (Mexico) (http://www.transifex.com/oca/OCA-sale-workflow-8-0/language/es_MX/)\n"
 "MIME-Version: 1.0\n"
@@ -30,7 +30,7 @@ msgstr ""
 #. module: sale_service_project
 #: model:ir.model,name:sale_service_project.model_account_analytic_line
 msgid "Analytic Line"
-msgstr ""
+msgstr "Línea analítica"
 
 #. module: sale_service_project
 #: view:product.price.service.wizard:sale_service_project.wiz_compute_task_price
@@ -67,7 +67,7 @@ msgstr ""
 msgid ""
 "Contract incomplete. Please fill in the Customer and Pricelist fields for "
 "%s."
-msgstr ""
+msgstr "Contrato incompleto. Por favor, llene los campos de Cliente y Precio de lista por %s."
 
 #. module: sale_service_project
 #: code:addons/sale_service_project/models/project.py:63
@@ -148,12 +148,12 @@ msgstr ""
 #. module: sale_service_project
 #: model:ir.model,name:sale_service_project.model_account_invoice
 msgid "Invoice"
-msgstr ""
+msgstr "Factura"
 
 #. module: sale_service_project
 #: model:ir.model,name:sale_service_project.model_account_invoice_line
 msgid "Invoice Line"
-msgstr ""
+msgstr "Línea de factura"
 
 #. module: sale_service_project
 #: field:project.task,invoice_exists:0
@@ -262,7 +262,7 @@ msgstr ""
 #. module: sale_service_project
 #: model:ir.model,name:sale_service_project.model_procurement_order
 msgid "Procurement"
-msgstr ""
+msgstr "Contratación"
 
 #. module: sale_service_project
 #: model:ir.model,name:sale_service_project.model_product_product
@@ -285,12 +285,12 @@ msgstr ""
 #. module: sale_service_project
 #: model:ir.model,name:sale_service_project.model_product_template
 msgid "Product Template"
-msgstr ""
+msgstr "Plantilla del producto"
 
 #. module: sale_service_project
 #: model:ir.model,name:sale_service_project.model_project_project
 msgid "Project"
-msgstr ""
+msgstr "Proyecto"
 
 #. module: sale_service_project
 #: view:project.task:sale_service_project.view_task_search_form_project_parent
@@ -392,7 +392,7 @@ msgstr ""
 #. module: sale_service_project
 #: model:ir.model,name:sale_service_project.model_hr_analytic_timesheet
 msgid "Timesheet Line"
-msgstr ""
+msgstr "Línea de plantilla horaria"
 
 #. module: sale_service_project
 #: field:sale.order.line,task_work_hours:0
@@ -415,7 +415,7 @@ msgstr ""
 #: code:addons/sale_service_project/models/hr_timesheet_invoice.py:75
 #, python-format
 msgid "Trying to invoice non invoiceable line for %s."
-msgstr ""
+msgstr "Intentando facturar línea no-facturable por %s."
 
 #. module: sale_service_project
 #: field:product.price.service.wizard,uom_id:0

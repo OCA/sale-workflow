@@ -1,0 +1,126 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# * sale_change_price
+# 
+# Translators:
+# OCA Transbot <transbot@odoo-community.org>, 2016
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 8.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2016-12-09 20:39+0000\n"
+"PO-Revision-Date: 2016-12-09 20:39+0000\n"
+"Last-Translator: OCA Transbot <transbot@odoo-community.org>, 2016\n"
+"Language-Team: Spanish (Costa Rica) (https://www.transifex.com/oca/teams/23907/es_CR/)\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Language: es_CR\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+#. module: sale_change_price
+#: view:sale.change.price:sale_change_price.sale_change_price_view
+msgid "Cancel"
+msgstr "Cancelar"
+
+#. module: sale_change_price
+#: view:sale.change.price:sale_change_price.sale_change_price_view
+#: view:sale.order:sale_change_price.sale_order_view_form_inherit_sale
+msgid "Change Price"
+msgstr ""
+
+#. module: sale_change_price
+#: model:ir.actions.act_window,name:sale_change_price.open_sale_change_price
+msgid "Change price"
+msgstr ""
+
+#. module: sale_change_price
+#: field:sale.change.price.item,change_price_id:0
+msgid "Change price id"
+msgstr ""
+
+#. module: sale_change_price
+#: field:sale.change.price,create_uid:0
+#: field:sale.change.price.item,create_uid:0
+msgid "Created by"
+msgstr "Creado por"
+
+#. module: sale_change_price
+#: field:sale.change.price,create_date:0
+#: field:sale.change.price.item,create_date:0
+msgid "Created on"
+msgstr "Creado en"
+
+#. module: sale_change_price
+#: field:sale.change.price.item,name:0
+msgid "Description"
+msgstr "Descripción"
+
+#. module: sale_change_price
+#: field:sale.change.price.item,discount:0
+msgid "Discount (%)"
+msgstr ""
+
+#. module: sale_change_price
+#: field:sale.change.price,display_name:0
+#: field:sale.change.price.item,display_name:0
+msgid "Display Name"
+msgstr ""
+
+#. module: sale_change_price
+#: field:sale.change.price,id:0 field:sale.change.price.item,id:0
+msgid "ID"
+msgstr "ID"
+
+#. module: sale_change_price
+#: field:sale.change.price,item_ids:0
+msgid "Items"
+msgstr ""
+
+#. module: sale_change_price
+#: field:sale.change.price,__last_update:0
+#: field:sale.change.price.item,__last_update:0
+msgid "Last Modified on"
+msgstr ""
+
+#. module: sale_change_price
+#: field:sale.change.price,write_uid:0
+#: field:sale.change.price.item,write_uid:0
+msgid "Last Updated by"
+msgstr "Ultima actualización por"
+
+#. module: sale_change_price
+#: field:sale.change.price,write_date:0
+#: field:sale.change.price.item,write_date:0
+msgid "Last Updated on"
+msgstr "Ultima actualización en"
+
+#. module: sale_change_price
+#: field:sale.change.price.item,sale_order_line_id:0
+msgid "Line"
+msgstr ""
+
+#. module: sale_change_price
+#: view:sale.change.price:sale_change_price.sale_change_price_view
+msgid "Note: Invoiced lines are excluded from this wizard."
+msgstr ""
+
+#. module: sale_change_price
+#: view:sale.change.price:sale_change_price.sale_change_price_view
+msgid "Order Lines"
+msgstr ""
+
+#. module: sale_change_price
+#: field:sale.change.price.item,price_unit:0
+msgid "Unit Price"
+msgstr ""
+
+#. module: sale_change_price
+#: model:ir.model,name:sale_change_price.model_sale_change_price
+msgid "Wizard to change price of sale order line"
+msgstr ""
+
+#. module: sale_change_price
+#: view:sale.change.price:sale_change_price.sale_change_price_view
+msgid "or"
+msgstr "o"
