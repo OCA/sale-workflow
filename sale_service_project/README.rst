@@ -42,6 +42,7 @@ To use this module, you need to:
    tasks or analytic lines.
 #. Confirm Sale Order. A new child project will be created and assigned to the
    Sale Order.
+#. Choose a project stage to check "consume materials", when a task go to this stage, it will consume the associated materials
 #. Manage the task/s created and invoice when task is closed.
 
 
