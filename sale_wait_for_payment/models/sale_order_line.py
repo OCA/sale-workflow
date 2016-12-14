@@ -16,10 +16,8 @@ class CustomSaleOrderLine(models.Model):
     @api.multi
     def _action_procurement_create(self):
         result = {}
-        for sale_order_line in self:
 
-            original_result = super(CustomSaleOrderLine, self).\
-                _action_procurement_create()
+        for sale_order_line in self:
 
             proc_product_value = self.env['ir.config_parameter'].\
                 get_param('procurement_product')
@@ -30,6 +28,7 @@ class CustomSaleOrderLine(models.Model):
             # 1 = stop blocklisted
 
             if proc_product_value != 0 or proc_customer_value != 0:
+                _logger.info("something will be stopped on blacklisted")
                 product_blacklist = customer_blacklist = False
 
                 if proc_product_value != 0:
@@ -42,11 +41,9 @@ class CustomSaleOrderLine(models.Model):
 
                 stop_proc = False
 
-                _logger.info(proc_product_value == "1" and product_blacklist)
                 if proc_product_value == "1" and product_blacklist:
                     stop_proc = True
 
-                _logger.info(proc_customer_value == "1" and customer_blacklist)
                 if proc_customer_value == "1" and customer_blacklist:
                     stop_proc = True
 
@@ -55,12 +52,15 @@ class CustomSaleOrderLine(models.Model):
                     sale_order_line.invoice_status == "invoiced" and
                     self.full_payment_done(sale_order_line)
                 ):
-                    result = original_result
+                    result = self.getCreateProcurement()
 
             else:
-                result = original_result
+                result = self.getCreateProcurement()
 
         return result
+
+    def getCreateProcurement(self):
+        return super(CustomSaleOrderLine, self)._action_procurement_create()
 
     @api.model
     def run_scheduler(self):

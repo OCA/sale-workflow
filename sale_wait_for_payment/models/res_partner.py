@@ -25,4 +25,5 @@ class CustomResPartner(models.Model):
 
     x_whitelist_blacklist = fields.Boolean("Blacklist")
     x_show_whitelist = fields.Boolean(compute=get_whitelist_status,
+                                      default=True,
                                       store=False)
