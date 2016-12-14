@@ -50,7 +50,7 @@
                   <field name="context">{'active_test': False}</field>
               </record>
 
-        <menuitem action="action_sale_test_tree" id="menu_sale_test" parent="base.menu_sale_general_settings" />
+        <menuitem action="action_sale_test_tree" id="menu_sale_test" parent="base.menu_sales_config" />
 
 
         <record id="view_order_form" model="ir.ui.view">
