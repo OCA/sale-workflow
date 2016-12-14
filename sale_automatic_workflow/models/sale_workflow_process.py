@@ -70,7 +70,8 @@ class SaleWorkflowProcess(models.Model):
     sale_done = fields.Boolean(string='Sale Done')
     sale_done_filter_domain = fields.Char(
         string='Sale Done Filter Domain',
-        default="[('state', '=', 'sale'),('invoice_status','=','invoiced')]"
+        default="[('state', '=', 'sale'),('invoice_status','=','invoiced'),"
+                "('all_qty_delivered', '=', True)]"
     )
     warning = fields.Text(
         'Warning Message', translate=True,
