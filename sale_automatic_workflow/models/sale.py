@@ -4,7 +4,8 @@
 # © 2016 Sodexis
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
-from odoo import _, api, fields, models
+from odoo import models, fields, api, _
+from odoo.tools import float_compare
 
 
 class SaleOrder(models.Model):
@@ -15,6 +16,24 @@ class SaleOrder(models.Model):
         string='Automatic Workflow',
         ondelete='restrict'
     )
+    all_qty_delivered = fields.Boolean(
+        compute='_compute_all_qty_delivered',
+        string='All quantities delivered',
+        store=True,  # for searchs
+    )
+
+    @api.depends('order_line.qty_delivered', 'order_line.product_uom_qty')
+    def _compute_all_qty_delivered(self):
+        precision = self.env['decimal.precision'].precision_get(
+            'Product Unit of Measure'
+        )
+        for order in self:
+            order.all_qty_delivered = all(
+                l.product_id.type not in ('product', 'consu') or
+                float_compare(l.qty_delivered, l.product_uom_qty,
+                              precision_digits=precision) == 0
+                for l in order.order_line
+            )
 
     def _prepare_invoice(self):
         invoice_vals = super(SaleOrder, self)._prepare_invoice()
