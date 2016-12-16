@@ -6,20 +6,22 @@
 Sale Commercial Partner
 =======================
 
-This module adds a related stored field *Commercial Customer* on sale orders. It is similar to the native field *Commercial Partner* on invoices.
+This module adds a related stored field *Commercial Entity* on sale orders.
+
+This module is the twin brother of the OCA module *purchase_commercial_partner* located in the `purchase-workflow project <https://github.com/OCA/purchase-workflow/>`_.
 
 Usage
 =====
 
-You can group by *Commercial Customer*:
+You can group by *Commercial Entity*:
 
 * in *Sales > Sales > Quotations*,
 * in *Sales > Sales > Sales Orders*,
-* in *Reporting > Sales > Sales Analysis*.
+* in *Sales > Reports > Sales* (it is a native feature in this menu)
 
 .. image:: https://odoo-community.org/website/image/ir.attachment/5784_f2813bd/datas
    :alt: Try me on Runbot
-   :target: https://runbot.odoo-community.org/runbot/167/8.0
+   :target: https://runbot.odoo-community.org/runbot/167/10.0
 
 Bug Tracker
 ===========
