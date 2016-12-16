@@ -4,16 +4,15 @@
 
 {
     'name': 'Sale Commercial Partner',
-    'version': '8.0.1.0.0',
+    'version': '10.0.1.0.0',
     'category': 'Sales Management',
     'license': 'AGPL-3',
-    'summary': "Add stored related field 'Commercial Customer' on sale orders",
+    'summary': "Add stored related field 'Commercial Entity' on sale orders",
     'author': 'Akretion,Odoo Community Association (OCA)',
     'website': 'http://www.akretion.com',
     'depends': ['sale'],
     'data': [
         'views/sale.xml',
-        'report/sale_report_view.xml',
     ],
     'installable': True,
 }
