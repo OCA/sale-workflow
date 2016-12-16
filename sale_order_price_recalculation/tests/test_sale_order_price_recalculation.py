@@ -1,5 +1,6 @@
 # -*- coding: utf-8 -*-
-# (c) 2015 Pedro M. Baeza <pedro.baeza@serviciosbaeza.com>
+# Copyright 2015 Pedro M. Baeza <pedro.baeza@serviciosbaeza.com>
+# Copyright 2016 Vicent Cubells <vicent.cubells@tecnativa.com>
 # License AGPL-3 - See http://www.gnu.org/licenses/agpl-3.0.html
 
 import openerp.tests.common as common
@@ -13,19 +14,18 @@ class TestSaleOrderPriceRecalculation(common.TransactionCase):
         self.sale_order_line_model = self.env['sale.order.line']
         self.partner = self.env.ref('base.res_partner_3')
         self.product = self.env.ref('product.product_product_4')
-        order_vals = self.sale_order_model.onchange_partner_id(
-            self.partner.id)['value']
-        order_vals['partner_id'] = self.partner.id
-        self.sale_order = self.sale_order_model.create(order_vals)
+        self.sale_order = self.sale_order_model.create({
+            'partner_id': self.partner.id,
+            'partner_invoice_id': self.partner.id,
+            'partner_shipping_id': self.partner.id,
+            'pricelist_id': self.env.ref('product.list0').id,
+        })
         self.product.uos_id = self.env.ref('product.product_uom_kgm')
-        self.product.uos_coeff = 12.0
         line_vals = {
             'product_id': self.product.id,
             'name': self.product.name,
             'product_uom_qty': 1.0,
             'product_uom': self.product.uom_id.id,
-            'product_uos_qty': 12.0,
-            'product_uos': self.product.uos_id.id,
             'price_unit': self.product.lst_price,
             'order_id': self.sale_order.id,
         }
@@ -45,7 +45,6 @@ class TestSaleOrderPriceRecalculation(common.TransactionCase):
             self.sale_order_line.price_unit, self.product.lst_price)
         # Check if quantities have changed
         self.assertEqual(self.sale_order_line.product_uom_qty, 1.0)
-        self.assertEqual(self.sale_order_line.product_uos_qty, 12.0)
         # Check the description still unchanged
         self.assertEqual(self.sale_order_line.name, u"My product description")
 
