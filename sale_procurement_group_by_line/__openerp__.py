@@ -10,7 +10,7 @@
     'version': '9.0.1.0.0',
     "author": "Camptocamp,"
               "Eficent,"
-              "Serpent.,"
+              "Serpent,"
               "Odoo Community Association (OCA)",
     'category': 'Warehouse',
     'license': 'AGPL-3',
