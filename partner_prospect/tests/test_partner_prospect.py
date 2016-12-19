@@ -28,42 +28,39 @@ class TestPartnerProspect(TransactionCase):
         self.product = self.env.ref('product.product_product_4')
         self.sale_order1 = self.sale_order_model.create({
             'partner_id': self.partner1.id,
-            'order_policy': 'manual',
             'order_line': [(0, 0, {'product_id': self.product.id, })],
         })
         self.sale_order2 = self.sale_order_model.create({
             'partner_id': self.partner2.id,
-            'order_policy': 'manual',
             'order_line': [(0, 0, {'product_id': self.product.id, })],
         })
         self.sale_order3 = self.sale_order_model.create({
             'partner_id': self.partner4.id,
-            'order_policy': 'manual',
             'order_line': [(0, 0, {'product_id': self.product.id, })],
         })
 
     def test_partner_child_check(self):
-        self.sale_order2.action_button_confirm()
+        self.sale_order2.action_confirm()
         self.assertFalse(self.partner1.prospect, 'Partner1 is a prospect')
         self.assertFalse(self.partner2.prospect, 'Partner2 is a prospect')
         self.assertFalse(self.partner3.prospect, 'Partner3 is a prospect')
 
     def test_partner_parent_check(self):
-        self.sale_order1.action_button_confirm()
+        self.sale_order1.action_confirm()
         self.assertFalse(self.partner1.prospect, 'Partner1 is a prospect')
         self.assertFalse(self.partner2.prospect, 'Partner2 is a prospect')
         self.assertFalse(self.partner3.prospect, 'Partner3 is a prospect')
 
     def test_partner_prospect(self):
         self.assertTrue(self.partner4.prospect, 'Partner4 is not a prospect')
-        self.sale_order3.action_button_confirm()
+        self.sale_order3.action_confirm()
         self.assertFalse(self.partner4.prospect, 'Partner4 is a prospect')
         self.sale_order3.action_cancel()
         self.assertTrue(self.partner4.prospect, 'Partner4 is not a prospect')
 
     def test_partner_child_check_invoice(self):
         type = 'out_invoice'
-        invoice_vals = self.invoice_model.onchange_partner_id(
+        invoice_vals = self.invoice_model._onchange_partner_id(
             type, self.partner2.id)
         self.invoice_model.create({
             'partner_id': self.partner2.id,
@@ -76,7 +73,7 @@ class TestPartnerProspect(TransactionCase):
 
     def test_partner_parent_check_invoice(self):
         type = 'out_refund'
-        invoice_vals = self.invoice_model.onchange_partner_id(
+        invoice_vals = self.invoice_model._onchange_partner_id(
             type, self.partner1.id)
         self.invoice_model.create({
             'partner_id': self.partner1.id,
