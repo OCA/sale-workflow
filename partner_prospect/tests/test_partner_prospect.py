@@ -60,8 +60,7 @@ class TestPartnerProspect(TransactionCase):
 
     def test_partner_child_check_invoice(self):
         type = 'out_invoice'
-        invoice_vals = self.invoice_model._onchange_partner_id(
-            type, self.partner2.id)
+        invoice_vals = self.invoice_model._onchange_partner_id()
         self.invoice_model.create({
             'partner_id': self.partner2.id,
             'type': type,
@@ -73,8 +72,7 @@ class TestPartnerProspect(TransactionCase):
 
     def test_partner_parent_check_invoice(self):
         type = 'out_refund'
-        invoice_vals = self.invoice_model._onchange_partner_id(
-            type, self.partner1.id)
+        invoice_vals = self.invoice_model._onchange_partner_id()
         self.invoice_model.create({
             'partner_id': self.partner1.id,
             'type': type,
