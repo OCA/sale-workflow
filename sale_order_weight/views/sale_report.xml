@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+     Copyright 2016 Andrea Cometa - Apulia Software
+     License AGPL-3.0 or later (http://www.gnu.org/licenses/gpl.html).
+ -->
+
+<openerp>
+    <data>
+        <template id="report_invoice_origin_group"
+                  inherit_id="sale.report_saleorder_document" >
+            <xpath expr="//table[@class='table table-condensed']/thead/tr/th[3]"
+                   position="after">
+                <th class="text-right">Weight</th>
+            </xpath>
+            <xpath expr="//table[@class='table table-condensed']/tbody/tr/td[3]"
+                   position="after">
+                <td class="text-right">
+                    <span t-field="l.product_id and (l.product_id.weight*l.product_uom_qty) or 0.0"/>
+                </td>
+            </xpath>
+            <xpath expr="//p[@t-field='o.note']"
+                   position="before">
+                <span><b>Total Weight:</b></span>
+                <span t-esc="o.total_weight()" />
+            </xpath>
+        </template>
+    </data>
+</openerp>
