@@ -42,6 +42,7 @@ addon | version | summary
 [sale_order_type](sale_order_type/) | 8.0.1.0.1 | Sale Order Types
 [sale_order_type_sale_journal](sale_order_type_sale_journal/) | 8.0.1.0.0 | Link module between sale_order_type and sale_journal
 [sale_order_unified_menu](sale_order_unified_menu/) | 8.0.1.0.0 | Sale Order Unified Menu
+[sale_order_weight](sale_order_weight/) | 8.0.1.0.0 | Sale Order Weight
 [sale_owner_stock_sourcing](sale_owner_stock_sourcing/) | 8.0.0.1.0 | Manage stock ownership on sale order lines
 [sale_packaging_price](sale_packaging_price/) | 8.0.1.0.0 | Sale Packaging Price
 [sale_partner_incoterm](sale_partner_incoterm/) | 8.0.1.0.0 | Set the customer preferred incoterm on each sales order
