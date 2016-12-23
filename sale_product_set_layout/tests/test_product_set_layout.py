@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-from openerp.tests import common
+from odoo.tests import common
 
 
 class test_product_set_layout(common.TransactionCase):
@@ -27,13 +27,14 @@ class test_product_set_layout(common.TransactionCase):
                  'quantity': 2})
         so_set.add_set()
         # checking our sale order
-        self.assertEquals(len(so.order_line), count_lines + 6)
+        self.assertEquals(len(so.order_line), count_lines + 5)
         for line in so.order_line:
             for set_line in product_set_with_section.set_line_ids:
                 if line.product_id.id == set_line.product_id.id:
                     self.assertEquals(
-                        line.sale_layout_cat_id.id,
-                        self.env.ref('sale_layout.sale_layout_cat_1').id)
+                        line.layout_category_id.id,
+                        self.env.ref(
+                            'sale.sale_layout_cat_1').id)
             for set_line in product_set_without_section.set_line_ids:
                 if line.product_id.id == set_line.product_id.id:
-                    self.assertFalse(line.sale_layout_cat_id)
+                    self.assertFalse(line.layout_category_id.id)
