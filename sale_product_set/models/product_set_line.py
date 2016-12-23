@@ -1,7 +1,8 @@
 # -*- coding: utf-8 -*-
-from openerp import fields, models, _
-
-import openerp.addons.decimal_precision as dp
+# Copyright 2015 Anybox S.A.S
+# Copyright 2016 Camptocamp SA
+from odoo import fields, models
+from odoo.addons import decimal_precision as dp
 
 
 class ProductSetLine(models.Model):
@@ -12,15 +13,20 @@ class ProductSetLine(models.Model):
 
     product_id = fields.Many2one(
         'product.product', domain=[('sale_ok', '=', True)],
-        string=_('Product'), required=True)
+        string='Product', required=True)
     quantity = fields.Float(
-        string=_('Quantity'),
+        string='Quantity',
         digits=dp.get_precision('Product Unit of Measure'),
-        required=True, default=1)
+        required=True,
+        default=1
+    )
     product_set_id = fields.Many2one(
-        'product.set', _('Set'), ondelete='cascade')
+        'product.set',
+        string='Set',
+        ondelete='cascade',
+    )
     sequence = fields.Integer(
-        string=_('Sequence'),
-        required=True, default=0,
-        help=_(u""),
+        string='Sequence',
+        required=True,
+        default=0,
     )
