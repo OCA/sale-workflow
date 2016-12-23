@@ -1,40 +1,32 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<openerp>
-    <data>
-        <record id="product_set_line_computer_1" model="product.set.line">
-            <field name="product_set_id" ref="product_set_i5_computer"/>
-            <field name="product_id" ref="product.product_product_5"/>
-            <field name="quantity">1</field>
-            <field name="sequence">30</field>
-        </record>
-        <record id="product_set_line_computer_2" model="product.set.line">
-            <field name="product_set_id" ref="product_set_i5_computer"/>
-            <field name="product_id" ref="product.product_product_21"/>
-            <field name="quantity">1</field>
-            <field name="sequence">10</field>
-        </record>
-        <record id="product_set_line_computer_3" model="product.set.line">
-            <field name="product_set_id" ref="product_set_i5_computer"/>
-            <field name="product_id" ref="product.product_product_22"/>
-            <field name="quantity">1</field>
-            <field name="sequence">50</field>
-        </record>
-        <record id="product_set_line_computer_4" model="product.set.line">
-            <field name="product_set_id" ref="product_set_i5_computer"/>
-            <field name="product_id" ref="product.product_product_13"/>
-            <field name="quantity">2</field>
-            <field name="sequence">20</field>
-        </record>
+<odoo>
+    <record id="product_set_line_computer_1" model="product.set.line">
+        <field name="product_set_id" ref="product_set_i5_computer"/>
+        <field name="product_id" ref="product.product_product_5"/>
+        <field name="quantity">1</field>
+        <field name="sequence">30</field>
+    </record>
+    <record id="product_set_line_computer_3" model="product.set.line">
+        <field name="product_set_id" ref="product_set_i5_computer"/>
+        <field name="product_id" ref="product.product_product_22"/>
+        <field name="quantity">1</field>
+        <field name="sequence">50</field>
+    </record>
+    <record id="product_set_line_computer_4" model="product.set.line">
+        <field name="product_set_id" ref="product_set_i5_computer"/>
+        <field name="product_id" ref="product.product_product_13"/>
+        <field name="quantity">2</field>
+        <field name="sequence">20</field>
+    </record>
 
-        <record id="product_set_line_services_1" model="product.set.line">
-            <field name="product_set_id" ref="product_set_services"/>
-            <field name="product_id" ref="product.product_product_2"/>
-            <field name="quantity">1</field>
-        </record>
-        <record id="product_set_line_services_2" model="product.set.line">
-            <field name="product_set_id" ref="product_set_services"/>
-            <field name="product_id" ref="product.product_product_1"/>
-            <field name="quantity">1</field>
-        </record>
-    </data>
-</openerp>
+    <record id="product_set_line_services_1" model="product.set.line">
+        <field name="product_set_id" ref="product_set_services"/>
+        <field name="product_id" ref="product.product_product_2"/>
+        <field name="quantity">1</field>
+    </record>
+    <record id="product_set_line_services_2" model="product.set.line">
+        <field name="product_set_id" ref="product_set_services"/>
+        <field name="product_id" ref="product.product_product_1"/>
+        <field name="quantity">1</field>
+    </record>
+</odoo>
