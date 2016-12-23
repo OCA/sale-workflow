@@ -1,5 +1,5 @@
 id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
-sale_product_set_manager,Read-Write-Create access on product.set to Sale Manager,model_product_set,base.group_sale_manager,1,1,1,1
+sale_product_set_manager,Read-Write-Create access on product.set to Sale Manager,model_product_set,sales_team.group_sale_manager,1,1,1,1
 sale_product_set_salesperson,Read access on product.set to Sale Persons,model_product_set,base.group_user,1,0,0,0
-sale_product_set_line_manager,Read-Write-Create access on product.set.line to Sale Manager,model_product_set_line,base.group_sale_manager,1,1,1,1
+sale_product_set_line_manager,Read-Write-Create access on product.set.line to Sale Manager,model_product_set_line,sales_team.group_sale_manager,1,1,1,1
 sale_product_set_line_user,Read access on product.set to users,model_product_set_line,base.group_user,1,0,0,0
