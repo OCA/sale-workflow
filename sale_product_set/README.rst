@@ -1,5 +1,6 @@
 .. image:: https://img.shields.io/badge/licence-AGPL--3-blue.svg
-    :alt: License: AGPL-3
+   :target: http://www.gnu.org/licenses/agpl-3.0-standalone.html
+   :alt: License: AGPL-3
 
 Sale Product set
 ================
@@ -64,11 +65,15 @@ If you spotted it first, help us smashing it by providing a detailed and welcome
 Credits
 =======
 
+* Odoo Community Association: `Icon <https://github.com/OCA/maintainer-tools/blob/master/template/module/static/description/icon.svg>`_.
+
+
 Contributors
 ------------
 
 * Clovis Nzouendjou <clovis@anybox.fr>
 * Pierre Verkest <pverkest@anybox.fr>
+* Denis Leemann <denis.leemann@camptocamp.com>
 
 Maintainer
 ----------

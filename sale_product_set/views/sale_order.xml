@@ -1,25 +1,22 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<openerp>
-    <data>
-        <record model="ir.ui.view" id="view_order_stock_form">
-            <field name="name">sale.order.form.inherit</field>
-            <field name="model">sale.order</field>
-            <field name="inherit_id" ref="sale.view_order_form"/>
-            <field name="arch" type="xml">
-                <xpath expr="//sheet/h1" position="before">
-                    <div class="oe_right oe_button_box">
-                        <button class="oe_inline oe_stat_button" 
-                                type="action" 
-                                name="%(act_open_wizard_product_set_add)d" 
-                                icon="fa-cubes" 
-                                attrs="{'invisible': [('state','not in',('draft','sent'))]}"
-                                groups="base.group_user">
-                            <div>Add set</div>
-                        </button>
-                    </div>
-                </xpath>
-            </field>
-        </record>
-
-    </data>
-</openerp>
+<odoo>
+    <record model="ir.ui.view" id="view_order_stock_form">
+        <field name="name">sale.order.form.inherit</field>
+        <field name="model">sale.order</field>
+        <field name="inherit_id" ref="sale.view_order_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//sheet/div[@class='oe_title']/h1" position="before">
+                <div class="oe_right oe_button_box">
+                    <button class="oe_inline oe_stat_button"
+                            type="action"
+                            name="%(act_open_wizard_product_set_add)d"
+                            icon="fa-cubes"
+                            attrs="{'invisible': [('state','not in',('draft','sent'))]}"
+                            groups="base.group_user">
+                        <div>Add set</div>
+                    </button>
+                </div>
+            </xpath>
+        </field>
+    </record>
+</odoo>
