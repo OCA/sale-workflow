@@ -10,17 +10,17 @@ msgstr ""
 "POT-Creation-Date: 2016-12-20 11:44+0000\n"
 "PO-Revision-Date: 2016-04-12 07:49+0000\n"
 "Last-Translator: <>\n"
-"Language-Team: Portuguese (Brazil) (http://www.transifex.com/oca/OCA-sale-workflow-9-0/language/pt_BR/)\n"
+"Language-Team: Estonian (http://www.transifex.com/oca/OCA-sale-workflow-9-0/language/et/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
-"Language: pt_BR\n"
-"Plural-Forms: nplurals=2; plural=(n > 1);\n"
+"Language: et\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
 #. module: sale_exception
 #: model:ir.model.fields,field_description:sale_exception.field_sale_exception_active
 msgid "Active"
-msgstr "Ativo"
+msgstr ""
 
 #. module: sale_exception
 #: model:ir.ui.view,arch_db:sale_exception.view_sale_exception_form
@@ -47,24 +47,24 @@ msgstr ""
 #: model:ir.model.fields,field_description:sale_exception.field_sale_exception_confirm_create_uid
 #: model:ir.model.fields,field_description:sale_exception.field_sale_exception_create_uid
 msgid "Created by"
-msgstr "Criado por"
+msgstr "Loonud"
 
 #. module: sale_exception
 #: model:ir.model.fields,field_description:sale_exception.field_sale_exception_confirm_create_date
 #: model:ir.model.fields,field_description:sale_exception.field_sale_exception_create_date
 msgid "Created on"
-msgstr "Criado em"
+msgstr "Loodud"
 
 #. module: sale_exception
 #: model:ir.model.fields,field_description:sale_exception.field_sale_exception_description
 msgid "Description"
-msgstr "Descrição"
+msgstr "Kirjeldus"
 
 #. module: sale_exception
 #: model:ir.model.fields,field_description:sale_exception.field_sale_exception_confirm_display_name
 #: model:ir.model.fields,field_description:sale_exception.field_sale_exception_display_name
 msgid "Display Name"
-msgstr "Nome para Mostrar"
+msgstr "Näidatav nimi"
 
 #. module: sale_exception
 #: code:addons/sale_exception/models/sale.py:182
@@ -115,7 +115,7 @@ msgstr ""
 #: model:ir.model.fields,field_description:sale_exception.field_sale_exception_confirm_id
 #: model:ir.model.fields,field_description:sale_exception.field_sale_exception_id
 msgid "ID"
-msgstr "Identificação"
+msgstr "ID"
 
 #. module: sale_exception
 #: model:ir.model.fields,field_description:sale_exception.field_sale_exception_confirm_ignore
@@ -127,19 +127,19 @@ msgstr ""
 #: model:ir.model.fields,field_description:sale_exception.field_sale_exception___last_update
 #: model:ir.model.fields,field_description:sale_exception.field_sale_exception_confirm___last_update
 msgid "Last Modified on"
-msgstr "Última atualização em"
+msgstr "Viimati muudetud"
 
 #. module: sale_exception
 #: model:ir.model.fields,field_description:sale_exception.field_sale_exception_confirm_write_uid
 #: model:ir.model.fields,field_description:sale_exception.field_sale_exception_write_uid
 msgid "Last Updated by"
-msgstr "Última atualização por"
+msgstr "Viimati uuendatud"
 
 #. module: sale_exception
 #: model:ir.model.fields,field_description:sale_exception.field_sale_exception_confirm_write_date
 #: model:ir.model.fields,field_description:sale_exception.field_sale_exception_write_date
 msgid "Last Updated on"
-msgstr "Última atualização em"
+msgstr "Viimati uuendatud"
 
 #. module: sale_exception
 #: model:ir.model.fields,field_description:sale_exception.field_sale_order_main_exception_id
@@ -161,7 +161,7 @@ msgstr ""
 #. module: sale_exception
 #: model:ir.model.fields,field_description:sale_exception.field_sale_exception_code
 msgid "Python Code"
-msgstr "Código Python"
+msgstr ""
 
 #. module: sale_exception
 #: model:ir.model.fields,help:sale_exception.field_sale_exception_code
@@ -209,12 +209,12 @@ msgstr ""
 #. module: sale_exception
 #: model:ir.model,name:sale_exception.model_sale_order
 msgid "Sales Order"
-msgstr "Pedido de Venda"
+msgstr ""
 
 #. module: sale_exception
 #: model:ir.model.fields,field_description:sale_exception.field_sale_exception_sequence
 msgid "Sequence"
-msgstr "Sequência"
+msgstr "Jada"
 
 #. module: sale_exception
 #: model:ir.ui.view,arch_db:sale_exception.view_sale_exception_confirm
