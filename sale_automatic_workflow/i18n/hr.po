@@ -4,14 +4,13 @@
 # 
 # Translators:
 # OCA Transbot <transbot@odoo-community.org>, 2016
-# Bole <bole@dajmi5.com>, 2016
 msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 9.0c\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-11-22 23:46+0000\n"
-"PO-Revision-Date: 2016-11-22 23:46+0000\n"
-"Last-Translator: Bole <bole@dajmi5.com>, 2016\n"
+"POT-Creation-Date: 2016-12-20 11:44+0000\n"
+"PO-Revision-Date: 2016-12-20 11:44+0000\n"
+"Last-Translator: OCA Transbot <transbot@odoo-community.org>, 2016\n"
 "Language-Team: Croatian (https://www.transifex.com/oca/teams/23907/hr/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -168,7 +167,7 @@ msgstr "Zadnje ažuriranje"
 #. module: sale_automatic_workflow
 #: model:ir.model.fields,field_description:sale_automatic_workflow.field_sale_workflow_process_name
 msgid "Name"
-msgstr ""
+msgstr "Naziv"
 
 #. module: sale_automatic_workflow
 #: model:ir.ui.view,arch_db:sale_automatic_workflow.sale_workflow_process_view_form
