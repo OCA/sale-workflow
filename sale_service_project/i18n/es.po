@@ -8,8 +8,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: sale-workflow (8.0)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-06-09 02:44+0000\n"
-"PO-Revision-Date: 2016-05-30 20:12+0000\n"
+"POT-Creation-Date: 2016-12-23 01:49+0000\n"
+"PO-Revision-Date: 2016-12-23 08:32+0000\n"
 "Last-Translator: OCA Transbot <transbot@odoo-community.org>\n"
 "Language-Team: Spanish (http://www.transifex.com/oca/OCA-sale-workflow-8-0/language/es/)\n"
 "MIME-Version: 1.0\n"
@@ -144,7 +144,7 @@ msgstr "ID (identificación)"
 msgid ""
 "If this option is active, the user will have to enter a Start Date and an "
 "End Date on the invoice lines that have this product."
-msgstr ""
+msgstr "Si está opción está activa, el usuario tendrá que introducir una fecha de inicio y final en las líneas de factura que tengan este producto."
 
 #. module: sale_service_project
 #: model:ir.model,name:sale_service_project.model_account_invoice
@@ -227,7 +227,7 @@ msgstr "Materiales"
 #. module: sale_service_project
 #: field:product.product,must_have_dates:0
 msgid "Must Have Start and End Dates"
-msgstr ""
+msgstr "Debe tener fechas de inicio y fin"
 
 #. module: sale_service_project
 #: field:product.task.work,name:0 field:sale.order.line.task.work,name:0

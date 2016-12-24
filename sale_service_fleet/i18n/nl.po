@@ -3,11 +3,14 @@
 # * sale_service_fleet
 # 
 # Translators:
+# Matjaž Mozetič <m.mozetic@matmoz.si>, 2015
+# Rudolf Schnapka <rs@techno-flex.de>, 2015
+# Stefano <stefano.sforzi@agilebg.com>, 2015
 msgid ""
 msgstr ""
 "Project-Id-Version: sale-workflow (8.0)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-03-12 01:52+0000\n"
+"POT-Creation-Date: 2016-12-23 01:49+0000\n"
 "PO-Revision-Date: 2016-03-03 02:11+0000\n"
 "Last-Translator: <>\n"
 "Language-Team: Dutch (http://www.transifex.com/oca/OCA-sale-workflow-8-0/language/nl/)\n"
@@ -45,7 +48,7 @@ msgstr "Verkooporder"
 #. module: sale_service_fleet
 #: model:ir.model,name:sale_service_fleet.model_project_task
 msgid "Task"
-msgstr ""
+msgstr "Taak"
 
 #. module: sale_service_fleet
 #: field:fleet.vehicle,task_ids:0

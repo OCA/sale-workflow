@@ -3,11 +3,15 @@
 # * sale_order_lot_selection
 # 
 # Translators:
+# Accounts-Payable - Alkemics, 2015
+# Chen-Do LU <clu@alkemics.com>, 2015
+# François Breysse <fb@alkemics.com>, 2015
+# Rudolf Schnapka <rs@techno-flex.de>, 2015
 msgid ""
 msgstr ""
 "Project-Id-Version: sale-workflow (8.0)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-02-26 09:59+0000\n"
+"POT-Creation-Date: 2016-12-23 01:48+0000\n"
 "PO-Revision-Date: 2016-02-26 10:01+0000\n"
 "Last-Translator: <>\n"
 "Language-Team: Chinese (China) (http://www.transifex.com/oca/OCA-sale-workflow-8-0/language/zh_CN/)\n"
@@ -18,14 +22,14 @@ msgstr ""
 "Plural-Forms: nplurals=1; plural=0;\n"
 
 #. module: sale_order_lot_selection
-#: code:addons/sale_order_lot_selection/model/sale.py:101
-#: code:addons/sale_order_lot_selection/model/sale.py:107
+#: code:addons/sale_order_lot_selection/model/sale.py:93
+#: code:addons/sale_order_lot_selection/model/sale.py:99
 #, python-format
 msgid "Can't reserve products for lot %s"
 msgstr ""
 
 #. module: sale_order_lot_selection
-#: code:addons/sale_order_lot_selection/model/sale.py:93
+#: code:addons/sale_order_lot_selection/model/sale.py:85
 #, python-format
 msgid "Can't retrieve lot on stock"
 msgstr ""
@@ -38,7 +42,7 @@ msgstr ""
 #. module: sale_order_lot_selection
 #: model:ir.model,name:sale_order_lot_selection.model_procurement_order
 msgid "Procurement"
-msgstr ""
+msgstr "补货"
 
 #. module: sale_order_lot_selection
 #: model:ir.model,name:sale_order_lot_selection.model_sale_order

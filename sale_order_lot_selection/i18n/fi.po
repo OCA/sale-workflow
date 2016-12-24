@@ -4,12 +4,13 @@
 # 
 # Translators:
 # Ahmet Altinisik <aaltinisik@altinkaya.com.tr>, 2015
+# Ahmet Altinisik <aaltinisik@altinkaya.com.tr>, 2015
 # Stefano <stefano.sforzi@agilebg.com>, 2015
 msgid ""
 msgstr ""
 "Project-Id-Version: sale-workflow (8.0)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-09-11 16:48+0000\n"
+"POT-Creation-Date: 2016-12-23 01:48+0000\n"
 "PO-Revision-Date: 2016-02-26 10:01+0000\n"
 "Last-Translator: <>\n"
 "Language-Team: Finnish (http://www.transifex.com/oca/OCA-sale-workflow-8-0/language/fi/)\n"
@@ -35,7 +36,7 @@ msgstr ""
 #. module: sale_order_lot_selection
 #: field:procurement.order,lot_id:0 field:sale.order.line,lot_id:0
 msgid "Lot"
-msgstr ""
+msgstr "Erä"
 
 #. module: sale_order_lot_selection
 #: model:ir.model,name:sale_order_lot_selection.model_procurement_order

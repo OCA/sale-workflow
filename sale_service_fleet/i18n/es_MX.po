@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: sale-workflow (8.0)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-12-09 20:40+0000\n"
+"POT-Creation-Date: 2016-12-23 01:49+0000\n"
 "PO-Revision-Date: 2016-03-03 02:11+0000\n"
 "Last-Translator: <>\n"
 "Language-Team: Spanish (Mexico) (http://www.transifex.com/oca/OCA-sale-workflow-8-0/language/es_MX/)\n"
@@ -45,7 +45,7 @@ msgstr ""
 #. module: sale_service_fleet
 #: model:ir.model,name:sale_service_fleet.model_project_task
 msgid "Task"
-msgstr ""
+msgstr "Tarea"
 
 #. module: sale_service_fleet
 #: field:fleet.vehicle,task_ids:0
