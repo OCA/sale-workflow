@@ -82,6 +82,7 @@ class SaleManageVariant(models.TransientModel):
             elif line.product_uom_qty:
                 order_line = OrderLine.new({
                     'product_id': line.product_id.id,
+                    'product_uom': line.product_id.uom_id,
                     'product_uom_qty': line.product_uom_qty,
                     'order_id': sale_order.id,
                 })
