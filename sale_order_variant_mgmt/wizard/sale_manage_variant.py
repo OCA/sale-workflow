@@ -35,26 +35,30 @@ class SaleManageVariant(models.TransientModel):
             sale_order = record.order_id
         else:
             sale_order = record
-        if template and len(template.attribute_line_ids) >= 2:
-            line_x = template.attribute_line_ids[0]
-            line_y = template.attribute_line_ids[1]
-            lines = []
-            for value_x in line_x.value_ids:
-                for value_y in line_y.value_ids:
-                    # Filter the corresponding product for that values
-                    product = template.product_variant_ids.filtered(
-                        lambda x: (value_x in x.attribute_value_ids and
-                                   value_y in x.attribute_value_ids))
-                    order_line = sale_order.order_line.filtered(
-                        lambda x: x.product_id == product)
-                    lines.append((0, 0, {
-                        'product_id': product,
-                        'disabled': not bool(product),
-                        'value_x': value_x,
-                        'value_y': value_y,
-                        'product_uom_qty': order_line.product_uom_qty,
-                    }))
-            self.variant_line_ids = lines
+        num_attrs = len(template.attribute_line_ids)
+        if not template or not num_attrs:
+            return
+        line_x = template.attribute_line_ids[0]
+        line_y = False if num_attrs == 1 else template.attribute_line_ids[1]
+        lines = []
+        for value_x in line_x.value_ids:
+            for value_y in line_y and line_y.value_ids or [False]:
+                # Filter the corresponding product for that values
+                values = value_x
+                if value_y:
+                    values += value_y
+                product = template.product_variant_ids.filtered(
+                    lambda x: not(values - x.attribute_value_ids))[:1]
+                order_line = sale_order.order_line.filtered(
+                    lambda x: x.product_id == product)[:1]
+                lines.append((0, 0, {
+                    'product_id': product,
+                    'disabled': not bool(product),
+                    'value_x': value_x,
+                    'value_y': value_y,
+                    'product_uom_qty': order_line.product_uom_qty,
+                }))
+        self.variant_line_ids = lines
 
     @api.multi
     def button_transfer_to_order(self):
