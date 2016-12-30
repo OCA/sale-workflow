@@ -7,7 +7,7 @@
     'summary': 'Handle the addition/removal of multiple variants from '
                'product template into the sales order',
     'version': '9.0.1.0.0',
-    'author': 'Tecnativa'
+    'author': 'Tecnativa,'
               'Odoo Community Association (OCA)',
     'category': 'Sale',
     'license': 'AGPL-3',
