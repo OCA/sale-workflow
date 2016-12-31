@@ -18,9 +18,9 @@ Available addons
 ----------------
 addon | version | summary
 --- | --- | ---
-[sale_automatic_workflow](sale_automatic_workflow/) | 9.0.1.0.0 | Sale Automatic Workflow
+[sale_automatic_workflow](sale_automatic_workflow/) | 9.0.1.1.0 | Sale Automatic Workflow
 [sale_automatic_workflow_payment_mode](sale_automatic_workflow_payment_mode/) | 9.0.2.0.0 | Sale Automatic Workflow - Payment Mode
-[sale_exception](sale_exception/) | 9.0.1.0.0 | Custom exceptions on sale order
+[sale_exception](sale_exception/) | 9.0.1.1.0 | Custom exceptions on sale order
 [sale_order_lot_selection](sale_order_lot_selection/) | 9.0.1.0.0 | Sale Order Lot Selection
 [sale_order_type](sale_order_type/) | 9.0.1.0.0 | Sale Order Types
 [sale_order_variant_mgmt](sale_order_variant_mgmt/) | 9.0.1.0.0 | Handle the addition/removal of multiple variants from product template into the sales order
