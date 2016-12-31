@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: sale-workflow (8.0)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-10-04 13:41+0000\n"
-"PO-Revision-Date: 2016-10-04 09:42+0000\n"
+"POT-Creation-Date: 2016-12-24 04:48+0000\n"
+"PO-Revision-Date: 2016-12-27 08:22+0000\n"
 "Last-Translator: OCA Transbot <transbot@odoo-community.org>\n"
 "Language-Team: Russian (http://www.transifex.com/oca/OCA-sale-workflow-8-0/language/ru/)\n"
 "MIME-Version: 1.0\n"
@@ -48,13 +48,13 @@ msgstr ""
 #. module: sale_exceptions
 #: field:sale.exception,create_uid:0 field:sale.exception.confirm,create_uid:0
 msgid "Created by"
-msgstr ""
+msgstr "Создано"
 
 #. module: sale_exceptions
 #: field:sale.exception,create_date:0
 #: field:sale.exception.confirm,create_date:0
 msgid "Created on"
-msgstr ""
+msgstr "Создан"
 
 #. module: sale_exceptions
 #: field:sale.exception,description:0
@@ -121,7 +121,7 @@ msgstr ""
 #. module: sale_exceptions
 #: field:sale.exception,id:0 field:sale.exception.confirm,id:0
 msgid "ID"
-msgstr ""
+msgstr "ID"
 
 #. module: sale_exceptions
 #: field:sale.exception.confirm,ignore:0 field:sale.order,ignore_exceptions:0
@@ -137,12 +137,12 @@ msgstr ""
 #. module: sale_exceptions
 #: field:sale.exception,write_uid:0 field:sale.exception.confirm,write_uid:0
 msgid "Last Updated by"
-msgstr ""
+msgstr "Последний раз обновлено"
 
 #. module: sale_exceptions
 #: field:sale.exception,write_date:0 field:sale.exception.confirm,write_date:0
 msgid "Last Updated on"
-msgstr ""
+msgstr "Последний раз обновлено"
 
 #. module: sale_exceptions
 #: field:sale.order,main_exception_id:0

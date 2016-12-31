@@ -9,8 +9,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 8.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-12-09 20:39+0000\n"
-"PO-Revision-Date: 2016-12-09 20:39+0000\n"
+"POT-Creation-Date: 2016-12-24 04:48+0000\n"
+"PO-Revision-Date: 2016-12-24 04:48+0000\n"
 "Last-Translator: Ahmet Altinisik <aaltinisik@altinkaya.com.tr>, 2016\n"
 "Language-Team: Turkish (https://www.transifex.com/oca/teams/23907/tr/)\n"
 "MIME-Version: 1.0\n"
@@ -66,7 +66,7 @@ msgstr ""
 #: field:sale.change.price,display_name:0
 #: field:sale.change.price.item,display_name:0
 msgid "Display Name"
-msgstr ""
+msgstr "Görünen İsim"
 
 #. module: sale_change_price
 #: field:sale.change.price,id:0 field:sale.change.price.item,id:0
@@ -82,7 +82,7 @@ msgstr ""
 #: field:sale.change.price,__last_update:0
 #: field:sale.change.price.item,__last_update:0
 msgid "Last Modified on"
-msgstr ""
+msgstr "Son değişiklik"
 
 #. module: sale_change_price
 #: field:sale.change.price,write_uid:0

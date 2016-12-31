@@ -1,0 +1,131 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# * sale_quick_payment
+# 
+# Translators:
+msgid ""
+msgstr ""
+"Project-Id-Version: sale-workflow (8.0)\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2016-12-24 04:49+0000\n"
+"PO-Revision-Date: 2016-03-11 10:09+0000\n"
+"Last-Translator: <>\n"
+"Language-Team: Vietnamese (Viet Nam) (http://www.transifex.com/oca/OCA-sale-workflow-8-0/language/vi_VN/)\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Language: vi_VN\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+
+#. module: sale_quick_payment
+#: field:pay.sale.order,amount:0
+msgid "Amount"
+msgstr ""
+
+#. module: sale_quick_payment
+#: view:pay.sale.order:sale_quick_payment.pay_sale_order_view
+msgid "Cancel"
+msgstr "Hủy"
+
+#. module: sale_quick_payment
+#: field:pay.sale.order,create_uid:0
+msgid "Created by"
+msgstr "Tạo bởi"
+
+#. module: sale_quick_payment
+#: field:pay.sale.order,create_date:0
+msgid "Created on"
+msgstr "Tạo vào"
+
+#. module: sale_quick_payment
+#: view:pay.sale.order:sale_quick_payment.pay_sale_order_view
+msgid "Date"
+msgstr ""
+
+#. module: sale_quick_payment
+#: view:pay.sale.order:sale_quick_payment.pay_sale_order_view
+#: field:pay.sale.order,description:0
+msgid "Description"
+msgstr ""
+
+#. module: sale_quick_payment
+#: field:pay.sale.order,display_name:0
+msgid "Display Name"
+msgstr ""
+
+#. module: sale_quick_payment
+#: field:pay.sale.order,id:0
+msgid "ID"
+msgstr "ID"
+
+#. module: sale_quick_payment
+#: view:pay.sale.order:sale_quick_payment.pay_sale_order_view
+#: field:pay.sale.order,journal_id:0
+msgid "Journal"
+msgstr ""
+
+#. module: sale_quick_payment
+#: field:pay.sale.order,__last_update:0
+msgid "Last Modified on"
+msgstr ""
+
+#. module: sale_quick_payment
+#: field:pay.sale.order,write_uid:0
+msgid "Last Updated by"
+msgstr "Cập nhật lần cuối bởi"
+
+#. module: sale_quick_payment
+#: field:pay.sale.order,write_date:0
+msgid "Last Updated on"
+msgstr "Cập nhật lần cuối vào"
+
+#. module: sale_quick_payment
+#: view:pay.sale.order:sale_quick_payment.pay_sale_order_view
+msgid "Paid Amount"
+msgstr ""
+
+#. module: sale_quick_payment
+#: view:pay.sale.order:sale_quick_payment.pay_sale_order_view
+msgid "Pay"
+msgstr ""
+
+#. module: sale_quick_payment
+#: view:pay.sale.order:sale_quick_payment.pay_sale_order_view
+msgid "Pay And Confirm Order"
+msgstr ""
+
+#. module: sale_quick_payment
+#: model:ir.actions.act_window,name:sale_quick_payment.open_pay_sale_order
+#: view:pay.sale.order:sale_quick_payment.pay_sale_order_view
+msgid "Pay Sale Order"
+msgstr ""
+
+#. module: sale_quick_payment
+#: field:pay.sale.order,date:0
+msgid "Payment Date"
+msgstr ""
+
+#. module: sale_quick_payment
+#: view:sale.order:sale_quick_payment.sale_order_view_form
+msgid "Register Payments"
+msgstr ""
+
+#. module: sale_quick_payment
+#: model:sale.exception,name:sale_quick_payment.must_be_paid
+msgid "Sale order must be paid before validation"
+msgstr ""
+
+#. module: sale_quick_payment
+#: model:sale.exception,description:sale_quick_payment.must_be_paid
+msgid "The sale order must be paid before the validation. Please fix it"
+msgstr ""
+
+#. module: sale_quick_payment
+#: model:ir.model,name:sale_quick_payment.model_pay_sale_order
+msgid "Wizard to generate a payment from the sale order"
+msgstr ""
+
+#. module: sale_quick_payment
+#: view:pay.sale.order:sale_quick_payment.pay_sale_order_view
+msgid "or"
+msgstr ""

@@ -8,9 +8,9 @@ msgid ""
 msgstr ""
 "Project-Id-Version: sale-workflow (8.0)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-12-23 01:48+0000\n"
-"PO-Revision-Date: 2016-12-23 08:32+0000\n"
-"Last-Translator: OCA Transbot <transbot@odoo-community.org>\n"
+"POT-Creation-Date: 2016-12-24 04:48+0000\n"
+"PO-Revision-Date: 2016-12-30 22:07+0000\n"
+"Last-Translator: Ahmet Altinisik <aaltinisik@altinkaya.com.tr>\n"
 "Language-Team: Turkish (http://www.transifex.com/oca/OCA-sale-workflow-8-0/language/tr/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -21,7 +21,7 @@ msgstr ""
 #. module: sale_exceptions
 #: field:sale.exception,active:0
 msgid "Active"
-msgstr ""
+msgstr "Aktif"
 
 #. module: sale_exceptions
 #: view:sale.exception:sale_exceptions.view_sale_exception_form
@@ -66,7 +66,7 @@ msgstr "Açıklama"
 #: field:sale.exception,display_name:0
 #: field:sale.exception.confirm,display_name:0
 msgid "Display Name"
-msgstr ""
+msgstr "Görünen İsim"
 
 #. module: sale_exceptions
 #: code:addons/sale_exceptions/sale.py:192
@@ -133,7 +133,7 @@ msgstr ""
 #: field:sale.exception,__last_update:0
 #: field:sale.exception.confirm,__last_update:0
 msgid "Last Modified on"
-msgstr ""
+msgstr "Son değişiklik"
 
 #. module: sale_exceptions
 #: field:sale.exception,write_uid:0 field:sale.exception.confirm,write_uid:0

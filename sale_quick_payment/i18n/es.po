@@ -8,8 +8,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: sale-workflow (8.0)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-09-11 16:48+0000\n"
-"PO-Revision-Date: 2016-09-16 21:45+0000\n"
+"POT-Creation-Date: 2016-12-24 04:49+0000\n"
+"PO-Revision-Date: 2016-12-27 13:11+0000\n"
 "Last-Translator: OCA Transbot <transbot@odoo-community.org>\n"
 "Language-Team: Spanish (http://www.transifex.com/oca/OCA-sale-workflow-8-0/language/es/)\n"
 "MIME-Version: 1.0\n"
@@ -104,7 +104,7 @@ msgstr ""
 #. module: sale_quick_payment
 #: field:pay.sale.order,date:0
 msgid "Payment Date"
-msgstr ""
+msgstr "Fecha de pago"
 
 #. module: sale_quick_payment
 #: view:sale.order:sale_quick_payment.sale_order_view_form

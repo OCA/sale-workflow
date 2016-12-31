@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: sale-workflow (8.0)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-09-09 12:27+0000\n"
+"POT-Creation-Date: 2016-12-24 04:48+0000\n"
 "PO-Revision-Date: 2015-09-03 07:08+0000\n"
 "Last-Translator: <>\n"
 "Language-Team: Chinese (China) (http://www.transifex.com/oca/OCA-sale-workflow-8-0/language/zh_CN/)\n"
@@ -20,7 +20,7 @@ msgstr ""
 #. module: partner_prepayment
 #: model:ir.model,name:partner_prepayment.model_res_partner
 msgid "Partner"
-msgstr ""
+msgstr "业务伙伴"
 
 #. module: partner_prepayment
 #: model:ir.model,name:partner_prepayment.model_sale_order

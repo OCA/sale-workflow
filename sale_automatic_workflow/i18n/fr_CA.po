@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: sale-workflow (8.0)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-11-22 23:35+0000\n"
-"PO-Revision-Date: 2016-11-22 12:24+0000\n"
+"POT-Creation-Date: 2016-12-24 04:48+0000\n"
+"PO-Revision-Date: 2016-12-27 08:25+0000\n"
 "Last-Translator: OCA Transbot <transbot@odoo-community.org>\n"
 "Language-Team: French (Canada) (http://www.transifex.com/oca/OCA-sale-workflow-8-0/language/fr_CA/)\n"
 "MIME-Version: 1.0\n"
@@ -62,13 +62,13 @@ msgstr ""
 #: field:automatic.workflow.job,create_uid:0
 #: field:sale.workflow.process,create_uid:0
 msgid "Created by"
-msgstr ""
+msgstr "Créé par"
 
 #. module: sale_automatic_workflow
 #: field:automatic.workflow.job,create_date:0
 #: field:sale.workflow.process,create_date:0
 msgid "Created on"
-msgstr ""
+msgstr "Créé le"
 
 #. module: sale_automatic_workflow
 #: selection:sale.workflow.process,picking_policy:0
@@ -84,7 +84,7 @@ msgstr ""
 #: field:automatic.workflow.job,display_name:0
 #: field:sale.workflow.process,display_name:0
 msgid "Display Name"
-msgstr ""
+msgstr "Afficher le nom"
 
 #. module: sale_automatic_workflow
 #: field:sale.workflow.process,invoice_date_is_order_date:0
@@ -94,7 +94,7 @@ msgstr ""
 #. module: sale_automatic_workflow
 #: field:automatic.workflow.job,id:0 field:sale.workflow.process,id:0
 msgid "ID"
-msgstr ""
+msgstr "Identifiant"
 
 #. module: sale_automatic_workflow
 #: help:sale.workflow.process,warning:0
@@ -105,7 +105,7 @@ msgstr ""
 #. module: sale_automatic_workflow
 #: model:ir.model,name:sale_automatic_workflow.model_account_invoice
 msgid "Invoice"
-msgstr ""
+msgstr "Facture"
 
 #. module: sale_automatic_workflow
 #: field:sale.workflow.process,order_policy:0
@@ -127,13 +127,13 @@ msgstr ""
 #: field:automatic.workflow.job,write_uid:0
 #: field:sale.workflow.process,write_uid:0
 msgid "Last Updated by"
-msgstr ""
+msgstr "Dernière mise à jour par"
 
 #. module: sale_automatic_workflow
 #: field:automatic.workflow.job,write_date:0
 #: field:sale.workflow.process,write_date:0
 msgid "Last Updated on"
-msgstr ""
+msgstr "Dernière mise à jour le"
 
 #. module: sale_automatic_workflow
 #: field:sale.workflow.process,name:0
