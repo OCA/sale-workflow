@@ -5,12 +5,13 @@
 # Translators:
 # Pierre Verkest <pverkest@anybox.fr>, 2015
 # yterrettaz, 2016
+# yterrettaz, 2016
 msgid ""
 msgstr ""
 "Project-Id-Version: sale-workflow (9.0)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-09-29 03:03+0000\n"
-"PO-Revision-Date: 2016-10-04 11:20+0000\n"
+"POT-Creation-Date: 2016-12-31 01:43+0000\n"
+"PO-Revision-Date: 2016-12-27 08:23+0000\n"
 "Last-Translator: yterrettaz\n"
 "Language-Team: French (http://www.transifex.com/oca/OCA-sale-workflow-9-0/language/fr/)\n"
 "MIME-Version: 1.0\n"
@@ -69,7 +70,7 @@ msgid "Display Name"
 msgstr "Nom à afficher"
 
 #. module: sale_exception
-#: code:addons/sale_exception/models/sale.py:180
+#: code:addons/sale_exception/models/sale.py:182
 #, python-format
 msgid ""
 "Error when evaluating the sale exception rule:\n"
@@ -100,6 +101,7 @@ msgstr "Règles de restriction"
 
 #. module: sale_exception
 #: model:ir.model.fields,field_description:sale_exception.field_sale_order_exception_ids
+#: model:ir.ui.menu,name:sale_exception.menu_sale_exception_parent
 msgid "Exceptions"
 msgstr "Restrictions"
 
