@@ -4,13 +4,14 @@
 # 
 # Translators:
 # OCA Transbot <transbot@odoo-community.org>, 2016
+# Ahmet Altinisik <aaltinisik@altinkaya.com.tr>, 2016
 msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 9.0c\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-11-22 23:46+0000\n"
-"PO-Revision-Date: 2016-11-22 23:46+0000\n"
-"Last-Translator: OCA Transbot <transbot@odoo-community.org>, 2016\n"
+"POT-Creation-Date: 2016-12-31 01:43+0000\n"
+"PO-Revision-Date: 2016-12-31 01:43+0000\n"
+"Last-Translator: Ahmet Altinisik <aaltinisik@altinkaya.com.tr>, 2016\n"
 "Language-Team: Turkish (https://www.transifex.com/oca/teams/23907/tr/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -22,6 +23,7 @@ msgstr ""
 #: model:ir.actions.act_window,name:sale_automatic_workflow.act_sale_workflow_process_form
 #: model:ir.model.fields,field_description:sale_automatic_workflow.field_sale_order_workflow_process_id
 #: model:ir.ui.menu,name:sale_automatic_workflow.menu_act_sale_workflow_process_form
+#: model:ir.ui.menu,name:sale_automatic_workflow.menu_sale_workflow_parent
 #: model:ir.ui.view,arch_db:sale_automatic_workflow.sale_workflow_process_view_form
 #: model:ir.ui.view,arch_db:sale_automatic_workflow.sale_workflow_process_view_tree
 msgid "Automatic Workflow"
@@ -110,7 +112,7 @@ msgstr ""
 #: model:ir.model.fields,field_description:sale_automatic_workflow.field_automatic_workflow_job_display_name
 #: model:ir.model.fields,field_description:sale_automatic_workflow.field_sale_workflow_process_display_name
 msgid "Display Name"
-msgstr ""
+msgstr "Görünen İsim"
 
 #. module: sale_automatic_workflow
 #: model:ir.model.fields,field_description:sale_automatic_workflow.field_sale_workflow_process_invoice_date_is_order_date
@@ -150,7 +152,7 @@ msgstr ""
 #: model:ir.model.fields,field_description:sale_automatic_workflow.field_automatic_workflow_job___last_update
 #: model:ir.model.fields,field_description:sale_automatic_workflow.field_sale_workflow_process___last_update
 msgid "Last Modified on"
-msgstr ""
+msgstr "Son değişiklik"
 
 #. module: sale_automatic_workflow
 #: model:ir.model.fields,field_description:sale_automatic_workflow.field_automatic_workflow_job_write_uid
