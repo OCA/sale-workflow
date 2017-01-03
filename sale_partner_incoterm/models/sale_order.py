@@ -20,13 +20,15 @@
 from openerp import models, api
 
 
-class Sale(models.Model):
+class SaleOrder(models.Model):
     _inherit = 'sale.order'
 
     @api.multi
-    def onchange_partner_id(self, partner_id):
-        res = super(Sale, self).onchange_partner_id(partner_id)
-        if partner_id:
-            res['value']['incoterm'] = self.env['res.partner'].browse(
-                partner_id).sale_incoterm_id.id
+    @api.onchange('partner_id')
+    def onchange_partner_id(self):
+        res = super(SaleOrder, self).onchange_partner_id()
+        if not self.partner_id:
+            self.incoterm = False
+            return res
+        self.incoterm = self.partner_id.sale_incoterm_id
         return res
