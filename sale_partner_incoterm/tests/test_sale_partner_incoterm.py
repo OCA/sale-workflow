@@ -28,5 +28,7 @@ sales order's onchange """
             [('customer', '=', True)], limit=1)
         incoterm = self.env['stock.incoterms'].search([], limit=1)
         customer.write({'sale_incoterm_id': incoterm.id})
-        res = self.env['sale.order'].onchange_partner_id(customer.id)['value']
-        self.assertEqual(res['incoterm'], incoterm.id)
+        sale_order = self.env['sale.order'].create({
+            'partner_id': customer.id})
+        sale_order.onchange_partner_id()
+        self.assertEqual(sale_order.incoterm, incoterm)
