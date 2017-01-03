@@ -3,17 +3,30 @@
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
 import openerp.addons.decimal_precision as dp
-from openerp import api, models, fields
+from openerp import _, api, models, fields, exceptions
 
 
 class SaleManageVariant(models.TransientModel):
     _name = 'sale.manage.variant'
 
     product_tmpl_id = fields.Many2one(
-        comodel_name='product.template', string="Template", required=True)
+        comodel_name='product.template', string="Template")
     variant_line_ids = fields.Many2many(
         comodel_name='sale.manage.variant.line', string="Variant Lines")
+    sale_order_line = fields.Many2many(
+        compute="_compute_sale_order_line",
+        comodel_name='sale.order.line',
+        readonly=True,
+        string="Sale Order View"
+    )
 
+    @api.multi
+    def _compute_sale_order_line(self):
+        self.ensure_one()
+        self.sale_order_line = self.env['sale.order.line'].search([
+            ('order_id', '=', self.env.context['active_id'])
+        ])
+        
     # HACK: https://github.com/OCA/server-tools/pull/492#issuecomment-237594285
     @api.multi
     def onchange(self, values, field_name, field_onchange):  # pragma: no cover
@@ -62,6 +75,10 @@ class SaleManageVariant(models.TransientModel):
 
     @api.multi
     def button_transfer_to_order(self):
+        self.ensure_one()
+        if not self.product_tmpl_id:
+            raise exceptions.Warning(
+                _('Please select a product for transfer to order'))
         context = self.env.context
         record = self.env[context['active_model']].browse(context['active_id'])
         if context['active_model'] == 'sale.order.line':
@@ -91,6 +108,28 @@ class SaleManageVariant(models.TransientModel):
                     order_line._cache)
                 sale_order.order_line.create(order_line_vals)
         lines2unlink.unlink()
+
+    @api.multi
+    def button_transfer_to_order_and_new(self):
+        self.ensure_one()
+        self.button_transfer_to_order()
+        view_id = self.env.ref(
+            'sale_order_variant_mgmt.sale_manage_variant_form')
+        return {
+            'context': self.env.context,
+            'view_type': 'form',
+            'view_mode': 'form',
+            'res_model': 'sale.manage.variant',
+            'res_id': self.id,
+            'view_id': view_id.id,
+            'type': 'ir.actions.act_window',
+            'target': 'new',
+        }
+    
+    @api.multi
+    def cancel(self):
+        self.ensure_one()
+        self.sale_order_line.unlink()
 
 
 class SaleManageVariantLine(models.TransientModel):
