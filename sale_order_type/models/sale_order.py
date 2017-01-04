@@ -35,6 +35,9 @@ class SaleOrder(models.Model):
             self.payment_term = self.type_id.payment_term_id.id
         if self.type_id.pricelist_id:
             self.pricelist_id = self.type_id.pricelist_id.id
+            res = self.onchange_pricelist_id(
+                self.pricelist_id.id, self.order_line.ids)
+            self.update(res.get('value', {}))
         if self.type_id.incoterm_id:
             self.incoterm = self.type_id.incoterm_id.id
 

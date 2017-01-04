@@ -59,6 +59,8 @@ class TestSaleOrderType(common.TransactionCase):
         self.assertEqual(self.sale_type.payment_term_id,
                          sale_order.payment_term)
         self.assertEqual(self.sale_type.pricelist_id, sale_order.pricelist_id)
+        self.assertEqual(
+            sale_order.pricelist_id.currency_id, sale_order.currency_id)
         self.assertEqual(self.sale_type.incoterm_id, sale_order.incoterm)
 
     def test_sale_order_confirm(self):
