@@ -37,7 +37,7 @@ class SaleOrder(models.Model):
             self.pricelist_id = self.type_id.pricelist_id.id
             res = self.onchange_pricelist_id(
                 self.pricelist_id.id, self.order_line.ids)
-            self.currency_id = res['value']['currency_id']
+            self.update(res.get('value', {}))
         if self.type_id.incoterm_id:
             self.incoterm = self.type_id.incoterm_id.id
 
