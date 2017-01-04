@@ -1,19 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<openerp>
-    <data>
-        <record model="ir.ui.view" id="res_partner_sale_type_form_view">
-            <field name="name">res.partner.sale_type.form</field>
-            <field name="model">res.partner</field>
-            <field name="inherit_id" ref="base.view_partner_form"/>
-            <field name="arch" type="xml">
-                <page name="sales_purchases" position="inside">
-                    <group colspan="2" col="2" attrs="{'invisible':[('customer', '=', False)]}">
-                        <separator string="Sales Order Type" colspan="2"/>
-                        <field name="sale_type"/>
-                    </group>
-                </page>
-            </field>
-        </record>
-
-    </data>
-</openerp>
+<odoo>
+    <record model="ir.ui.view" id="res_partner_sale_type_form_view">
+        <field name="name">res.partner.sale_type.form</field>
+        <field name="model">res.partner</field>
+        <field name="inherit_id" ref="base.view_partner_form"/>
+        <field name="arch" type="xml">
+            <page name="sales_purchases" position="inside">
+                <group colspan="2" col="2" attrs="{'invisible':[('customer', '=', False)]}">
+                    <separator string="Sales Order Type" colspan="2"/>
+                    <field name="sale_type"/>
+                </group>
+            </page>
+        </field>
+    </record>
+</odoo>
