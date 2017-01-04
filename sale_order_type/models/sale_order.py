@@ -1,9 +1,7 @@
-# -*- encoding: utf-8 -*-
-##############################################################################
-# For copyright and license notices, see __openerp__.py file in root directory
-##############################################################################
+# -*- coding: utf-8 -*-
+# License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
-from openerp import api, fields, models
+from odoo import api, fields, models
 
 
 class SaleOrder(models.Model):
@@ -18,31 +16,31 @@ class SaleOrder(models.Model):
     @api.multi
     @api.onchange('partner_id')
     def onchange_partner_id(self):
-        if self.partner_id:
-            self.type_id = \
-                self.partner_id.sale_type.id or self._get_order_type().id
-        return super(SaleOrder, self).onchange_partner_id()
+        super(SaleOrder, self).onchange_partner_id()
+        if self.partner_id.sale_type:
+            self.type_id = self.partner_id.sale_type
 
-    @api.one
+    @api.multi
     @api.onchange('type_id')
     def onchange_type_id(self):
-        if self.type_id.warehouse_id:
-            self.warehouse_id = self.type_id.warehouse_id
-        if self.type_id.picking_policy:
-            self.picking_policy = self.type_id.picking_policy
-        if self.type_id.payment_term_id:
-            self.payment_term_id = self.type_id.payment_term_id.id
-        if self.type_id.pricelist_id:
-            self.pricelist_id = self.type_id.pricelist_id.id
-        if self.type_id.incoterm_id:
-            self.incoterm = self.type_id.incoterm_id.id
+        for order in self:
+            if order.type_id.warehouse_id:
+                order.warehouse_id = order.type_id.warehouse_id
+            if order.type_id.picking_policy:
+                order.picking_policy = order.type_id.picking_policy
+            if order.type_id.payment_term_id:
+                order.payment_term_id = order.type_id.payment_term_id.id
+            if order.type_id.pricelist_id:
+                order.pricelist_id = order.type_id.pricelist_id.id
+            if order.type_id.incoterm_id:
+                order.incoterm = order.type_id.incoterm_id.id
 
     @api.model
     def create(self, vals):
         if vals.get('name', '/') == '/'and vals.get('type_id'):
-            type = self.env['sale.order.type'].browse(vals['type_id'])
-            if type.sequence_id:
-                vals['name'] = type.sequence_id.next_by_id()
+            sale_type = self.env['sale.order.type'].browse(vals['type_id'])
+            if sale_type.sequence_id:
+                vals['name'] = sale_type.sequence_id.next_by_id()
         return super(SaleOrder, self).create(vals)
 
     @api.multi
