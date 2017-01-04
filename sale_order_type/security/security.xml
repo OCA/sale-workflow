@@ -1,7 +1,5 @@
 <?xml version="1.0"?>
-<openerp>
-    <data noupdate="0">
-
+<odoo>
     <record model="ir.rule" id="sale_order_type_comp_rule">
         <field name="name">Sale Order Type multi-company</field>
         <field name="model_id" ref="sale_order_type.model_sale_order_type"/>
@@ -11,7 +9,4 @@
         <field name="perm_write" eval="1"/>
         <field name="perm_unlink" eval="1"/>
     </record>
-
-    </data>
-</openerp>
-
+</odoo>
