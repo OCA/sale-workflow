@@ -1,9 +1,7 @@
-# -*- encoding: utf-8 -*-
-##############################################################################
-# For copyright and license notices, see __openerp__.py file in root directory
-##############################################################################
+# -*- coding: utf-8 -*-
+# License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
-from openerp import api, fields, models
+from odoo import api, fields, models
 
 
 class SaleOrderTypology(models.Model):
@@ -13,8 +11,7 @@ class SaleOrderTypology(models.Model):
     @api.model
     def _get_domain_sequence_id(self):
         seq_type = self.env.ref('sale.seq_sale_order')
-        domain = [('code', '=', seq_type.code)]
-        return domain
+        return [('code', '=', seq_type.code)]
 
     @api.model
     def _get_selection_picking_policy(self):
