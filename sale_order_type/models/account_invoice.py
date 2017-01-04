@@ -1,9 +1,7 @@
-# -*- encoding: utf-8 -*-
-##############################################################################
-# For copyright and license notices, see __openerp__.py file in root directory
-##############################################################################
+# -*- coding: utf-8 -*-
+# License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
-from openerp import api, models, fields
+from odoo import api, fields, models
 
 
 class AccountInvoice(models.Model):

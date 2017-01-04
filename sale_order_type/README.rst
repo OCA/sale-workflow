@@ -1,8 +1,8 @@
 .. image:: https://img.shields.io/badge/licence-AGPL--3-blue.svg
     :alt: License: AGPL-3
 
-Sales Order Types
-=================
+Sales Order Type
+================
 
 This module adds a typology for the sales orders. In each different type, you
 can define, invoicing and refunding journal, a warehouse, a sequence,
@@ -14,13 +14,23 @@ You can see sale types as lines of business.
 You are able to select a sales order type by partner so that when you add a
 partner to a sales order it will get the related info to it.
 
+Configuration
+=============
+
+To configure Sale Order Types you need to:
+
+1. Go to **Sales > Configuration > Sales Orders Types**
+2. Create a new sale order type with all the settings you want
 
 Usage
 =====
 
+* Go to **Sales > Sales Orders** and create a new sale order. Select the new type you have created before and all settings will be propagated.
+* You can also define a type for a particular partner if you go to *Sales & Purchases* and set a sale order type.
+
 .. image:: https://odoo-community.org/website/image/ir.attachment/5784_f2813bd/datas
    :alt: Try me on Runbot
-   :target: https://runbot.odoo-community.org/runbot/167/9.0
+   :target: https://runbot.odoo-community.org/runbot/167/10.0
 
 
 Bug Tracker
@@ -45,6 +55,8 @@ Contributors
 * Daniel Campos <danielcampos@avanzosc.es>
 * Ainara Galdona <ainaragaldona@avanzosc.es>
 * Lorenzo Battistini <lorenzo.battistini@agilebg.com>
+* Samuel Lefever <sam@niboo.be>
+* Pierre Faniel <pierre@niboo.be>
 
 Maintainer
 ----------
