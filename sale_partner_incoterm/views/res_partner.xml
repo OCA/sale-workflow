@@ -1,4 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
+<!-- Copyright 2015 Opener B.V. (<https://opener.am>)
+     License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl). -->
+
 <odoo>
     <record id="view_partner_property_form" model="ir.ui.view">
         <field name="name">Add default sales incoterm to partner form</field>

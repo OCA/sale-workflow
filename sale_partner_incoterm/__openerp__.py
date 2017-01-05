@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
 # Copyright 2015 Opener B.V. (<https://opener.am>)
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
+
 {
     'name': 'Default sales incoterm per partner',
     'version': '9.0.1.0.0',
