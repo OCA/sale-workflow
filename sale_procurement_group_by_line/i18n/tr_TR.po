@@ -1,0 +1,34 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# * sale_procurement_group_by_line
+# 
+# Translators:
+# Ozge Altinisik <ozge@altinkaya.com.tr>, 2017
+msgid ""
+msgstr ""
+"Project-Id-Version: sale-workflow (8.0)\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2017-01-04 10:48+0000\n"
+"PO-Revision-Date: 2017-01-06 08:11+0000\n"
+"Last-Translator: Ozge Altinisik <ozge@altinkaya.com.tr>\n"
+"Language-Team: Turkish (Turkey) (http://www.transifex.com/oca/OCA-sale-workflow-8-0/language/tr_TR/)\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Language: tr_TR\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+
+#. module: sale_procurement_group_by_line
+#: field:sale.order.line,procurement_group_id:0
+msgid "Procurement group"
+msgstr "Satınalma grubu"
+
+#. module: sale_procurement_group_by_line
+#: model:ir.model,name:sale_procurement_group_by_line.model_sale_order
+msgid "Sales Order"
+msgstr "Satış emri"
+
+#. module: sale_procurement_group_by_line
+#: model:ir.model,name:sale_procurement_group_by_line.model_sale_order_line
+msgid "Sales Order Line"
+msgstr "Sipariş emri satırı "

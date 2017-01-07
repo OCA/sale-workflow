@@ -3,22 +3,19 @@
 # * sale_service_project
 # 
 # Translators:
-# Matjaž Mozetič <m.mozetic@matmoz.si>, 2015
-# oihane <oihanecruce@gmail.com>, 2015
-# oihane <oihanecruce@gmail.com>, 2015
 msgid ""
 msgstr ""
 "Project-Id-Version: sale-workflow (8.0)\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2017-01-04 10:48+0000\n"
-"PO-Revision-Date: 2017-01-06 06:31+0000\n"
+"PO-Revision-Date: 2017-01-04 14:44+0000\n"
 "Last-Translator: OCA Transbot <transbot@odoo-community.org>\n"
-"Language-Team: French (http://www.transifex.com/oca/OCA-sale-workflow-8-0/language/fr/)\n"
+"Language-Team: Turkish (Turkey) (http://www.transifex.com/oca/OCA-sale-workflow-8-0/language/tr_TR/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
-"Language: fr\n"
-"Plural-Forms: nplurals=2; plural=(n > 1);\n"
+"Language: tr_TR\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
 
 #. module: sale_service_project
 #: view:product.price.service.wizard:sale_service_project.wiz_compute_task_price
@@ -33,12 +30,12 @@ msgstr ""
 #. module: sale_service_project
 #: model:ir.model,name:sale_service_project.model_account_analytic_line
 msgid "Analytic Line"
-msgstr "Ligne analytique"
+msgstr ""
 
 #. module: sale_service_project
 #: view:product.price.service.wizard:sale_service_project.wiz_compute_task_price
 msgid "Cancel"
-msgstr "Annuler"
+msgstr "İptal et"
 
 #. module: sale_service_project
 #: model:product.template,name:sale_service_project.product_template_revision_1
@@ -78,7 +75,7 @@ msgstr ""
 #: view:sale.order:sale_service_project.view_order_form_service_project
 #, python-format
 msgid "Create Invoice"
-msgstr "Créer les factures"
+msgstr "Fatura oluştur"
 
 #. module: sale_service_project
 #: field:sale.order.line,auto_create_task:0
@@ -92,7 +89,7 @@ msgstr ""
 #: field:sale.order.line.task.materials,create_uid:0
 #: field:sale.order.line.task.work,create_uid:0
 msgid "Created by"
-msgstr "Créé par"
+msgstr "Oluşturan"
 
 #. module: sale_service_project
 #: field:product.price.service.wizard,create_date:0
@@ -101,7 +98,7 @@ msgstr "Créé par"
 #: field:sale.order.line.task.materials,create_date:0
 #: field:sale.order.line.task.work,create_date:0
 msgid "Created on"
-msgstr "Créé le"
+msgstr "Oluşturulma tarihi"
 
 #. module: sale_service_project
 #: field:product.price.service.wizard,display_name:0
@@ -110,7 +107,7 @@ msgstr "Créé le"
 #: field:sale.order.line.task.materials,display_name:0
 #: field:sale.order.line.task.work,display_name:0
 msgid "Display Name"
-msgstr "Nom à afficher"
+msgstr "Görünen ad"
 
 #. module: sale_service_project
 #: code:addons/sale_service_project/models/hr_timesheet_invoice.py:57
@@ -139,7 +136,7 @@ msgstr ""
 #: field:product.task.work,id:0 field:sale.order.line.task.materials,id:0
 #: field:sale.order.line.task.work,id:0
 msgid "ID"
-msgstr "ID"
+msgstr "Kimlik"
 
 #. module: sale_service_project
 #: help:product.product,must_have_dates:0
@@ -151,12 +148,12 @@ msgstr ""
 #. module: sale_service_project
 #: model:ir.model,name:sale_service_project.model_account_invoice
 msgid "Invoice"
-msgstr "Facture"
+msgstr "Fatura"
 
 #. module: sale_service_project
 #: model:ir.model,name:sale_service_project.model_account_invoice_line
 msgid "Invoice Line"
-msgstr "Ligne de facturation"
+msgstr "Fatura hizası"
 
 #. module: sale_service_project
 #: field:project.task,invoice_exists:0
@@ -185,7 +182,7 @@ msgstr ""
 #: field:sale.order.line.task.materials,__last_update:0
 #: field:sale.order.line.task.work,__last_update:0
 msgid "Last Modified on"
-msgstr "Dernière modification le"
+msgstr "En son güncelleme tarihi"
 
 #. module: sale_service_project
 #: field:product.price.service.wizard,write_uid:0
@@ -194,7 +191,7 @@ msgstr "Dernière modification le"
 #: field:sale.order.line.task.materials,write_uid:0
 #: field:sale.order.line.task.work,write_uid:0
 msgid "Last Updated by"
-msgstr "Modifié par"
+msgstr "En son güncelleyen "
 
 #. module: sale_service_project
 #: field:product.price.service.wizard,write_date:0
@@ -203,7 +200,7 @@ msgstr "Modifié par"
 #: field:sale.order.line.task.materials,write_date:0
 #: field:sale.order.line.task.work,write_date:0
 msgid "Last Updated on"
-msgstr "Modifié le"
+msgstr "En son güncelleme tarihi"
 
 #. module: sale_service_project
 #: field:product.task.materials,material_id:0
@@ -234,7 +231,7 @@ msgstr ""
 #. module: sale_service_project
 #: field:product.task.work,name:0 field:sale.order.line.task.work,name:0
 msgid "Name"
-msgstr "Nom"
+msgstr "Ad"
 
 #. module: sale_service_project
 #: field:sale.order.line.task.materials,order_line_id:0
@@ -265,7 +262,7 @@ msgstr ""
 #. module: sale_service_project
 #: model:ir.model,name:sale_service_project.model_procurement_order
 msgid "Procurement"
-msgstr "Procurement"
+msgstr "Satın alma"
 
 #. module: sale_service_project
 #: model:ir.model,name:sale_service_project.model_product_product
@@ -273,7 +270,7 @@ msgstr "Procurement"
 #: field:product.task.materials,product_id:0
 #: field:product.task.work,product_id:0
 msgid "Product"
-msgstr "Article"
+msgstr "Ürün"
 
 #. module: sale_service_project
 #: model:ir.actions.act_window,name:sale_service_project.act_view_product_task_materials
@@ -288,12 +285,12 @@ msgstr ""
 #. module: sale_service_project
 #: model:ir.model,name:sale_service_project.model_product_template
 msgid "Product Template"
-msgstr "Modèle d'article"
+msgstr "Ürün şablonu"
 
 #. module: sale_service_project
 #: model:ir.model,name:sale_service_project.model_project_project
 msgid "Project"
-msgstr "Projet"
+msgstr ""
 
 #. module: sale_service_project
 #: view:project.task:sale_service_project.view_task_search_form_project_parent
@@ -305,7 +302,7 @@ msgstr ""
 #: field:product.task.materials,quantity:0
 #: field:sale.order.line.task.materials,quantity:0
 msgid "Quantity"
-msgstr "Quantité"
+msgstr "Miktar"
 
 #. module: sale_service_project
 #: field:account.invoice.line,sale_order_lines:0
@@ -315,12 +312,12 @@ msgstr ""
 #. module: sale_service_project
 #: model:ir.model,name:sale_service_project.model_sale_order
 msgid "Sales Order"
-msgstr "Bon de commande"
+msgstr "Satış emri"
 
 #. module: sale_service_project
 #: model:ir.model,name:sale_service_project.model_sale_order_line
 msgid "Sales Order Line"
-msgstr "Ligne de commandes de vente"
+msgstr "Sipariş emri satırı "
 
 #. module: sale_service_project
 #: view:product.price.service.wizard:sale_service_project.wiz_compute_task_price
@@ -332,7 +329,7 @@ msgstr ""
 #: field:sale.order.line.task.materials,sequence:0
 #: field:sale.order.line.task.work,sequence:0
 msgid "Sequence"
-msgstr "Séquence"
+msgstr "Sıra"
 
 #. module: sale_service_project
 #: model:product.template,name:sale_service_project.product_product_oil_product_template
@@ -342,7 +339,7 @@ msgstr ""
 #. module: sale_service_project
 #: model:ir.model,name:sale_service_project.model_project_task
 msgid "Task"
-msgstr "Tâche"
+msgstr ""
 
 #. module: sale_service_project
 #: view:product.task.materials:sale_service_project.product_task_materials_form_view
@@ -383,7 +380,7 @@ msgstr ""
 #: view:sale.order:sale_service_project.view_sale_order_line_form
 #: field:sale.order,task_ids:0 field:sale.order.line,task_ids:0
 msgid "Tasks"
-msgstr "Tâches"
+msgstr ""
 
 #. module: sale_service_project
 #: help:sale.order.line,auto_create_task:0
@@ -395,7 +392,7 @@ msgstr ""
 #. module: sale_service_project
 #: model:ir.model,name:sale_service_project.model_hr_analytic_timesheet
 msgid "Timesheet Line"
-msgstr "Ligne de feuille de temps"
+msgstr ""
 
 #. module: sale_service_project
 #: field:sale.order.line,task_work_hours:0
@@ -464,4 +461,4 @@ msgstr ""
 #. module: sale_service_project
 #: view:product.price.service.wizard:sale_service_project.wiz_compute_task_price
 msgid "or"
-msgstr "ou"
+msgstr "ya da "
