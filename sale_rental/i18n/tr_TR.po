@@ -4,13 +4,14 @@
 # 
 # Translators:
 # OCA Transbot <transbot@odoo-community.org>, 2016
+# Ozge Altinisik <ozge@altinkaya.com.tr>, 2017
 msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 9.0c\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-11-22 23:46+0000\n"
-"PO-Revision-Date: 2016-11-22 23:46+0000\n"
-"Last-Translator: OCA Transbot <transbot@odoo-community.org>, 2016\n"
+"POT-Creation-Date: 2016-12-31 07:50+0000\n"
+"PO-Revision-Date: 2016-12-31 07:50+0000\n"
+"Last-Translator: Ozge Altinisik <ozge@altinkaya.com.tr>, 2017\n"
 "Language-Team: Turkish (Turkey) (https://www.transifex.com/oca/teams/23907/tr_TR/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -56,7 +57,7 @@ msgstr ""
 #. module: sale_rental
 #: model:ir.ui.view,arch_db:sale_rental.create_rental_product_form
 msgid "Cancel"
-msgstr ""
+msgstr "İptal et"
 
 #. module: sale_rental
 #: selection:sale.rental,state:0
@@ -100,13 +101,13 @@ msgstr ""
 #: model:ir.model.fields,field_description:sale_rental.field_create_rental_product_create_uid
 #: model:ir.model.fields,field_description:sale_rental.field_sale_rental_create_uid
 msgid "Created by"
-msgstr ""
+msgstr "Oluşturan"
 
 #. module: sale_rental
 #: model:ir.model.fields,field_description:sale_rental.field_create_rental_product_create_date
 #: model:ir.model.fields,field_description:sale_rental.field_sale_rental_create_date
 msgid "Created on"
-msgstr ""
+msgstr "Oluşturulma tarihi"
 
 #. module: sale_rental
 #: model:ir.model.fields,field_description:sale_rental.field_sale_rental_partner_id
@@ -134,7 +135,7 @@ msgstr ""
 #: model:ir.model.fields,field_description:sale_rental.field_create_rental_product_display_name
 #: model:ir.model.fields,field_description:sale_rental.field_sale_rental_display_name
 msgid "Display Name"
-msgstr ""
+msgstr "Görünen ad"
 
 #. module: sale_rental
 #: model:ir.ui.view,arch_db:sale_rental.sale_rental_tree
@@ -156,13 +157,13 @@ msgstr ""
 #. module: sale_rental
 #: model:ir.ui.view,arch_db:sale_rental.sale_rental_search
 msgid "Group By"
-msgstr ""
+msgstr "Grupla"
 
 #. module: sale_rental
 #: model:ir.model.fields,field_description:sale_rental.field_create_rental_product_id
 #: model:ir.model.fields,field_description:sale_rental.field_sale_rental_id
 msgid "ID"
-msgstr ""
+msgstr "Kimlik"
 
 #. module: sale_rental
 #: model:ir.model.fields,help:sale_rental.field_sale_order_line_rental_qty
@@ -179,19 +180,19 @@ msgstr ""
 #: model:ir.model.fields,field_description:sale_rental.field_create_rental_product___last_update
 #: model:ir.model.fields,field_description:sale_rental.field_sale_rental___last_update
 msgid "Last Modified on"
-msgstr ""
+msgstr "En son güncelleme tarihi"
 
 #. module: sale_rental
 #: model:ir.model.fields,field_description:sale_rental.field_create_rental_product_write_uid
 #: model:ir.model.fields,field_description:sale_rental.field_sale_rental_write_uid
 msgid "Last Updated by"
-msgstr ""
+msgstr "En son güncelleyen "
 
 #. module: sale_rental
 #: model:ir.model.fields,field_description:sale_rental.field_create_rental_product_write_date
 #: model:ir.model.fields,field_description:sale_rental.field_sale_rental_write_date
 msgid "Last Updated on"
-msgstr ""
+msgstr "En son güncelleme tarihi"
 
 #. module: sale_rental
 #: code:addons/sale_rental/models/sale_order.py:68
@@ -278,12 +279,12 @@ msgstr ""
 #. module: sale_rental
 #: model:ir.model.fields,field_description:sale_rental.field_sale_rental_procurement_id
 msgid "Procurement"
-msgstr ""
+msgstr "Satın alma"
 
 #. module: sale_rental
 #: model:ir.model,name:sale_rental.model_product_product
 msgid "Product"
-msgstr ""
+msgstr "Ürün"
 
 #. module: sale_rental
 #: model:ir.model.fields,field_description:sale_rental.field_create_rental_product_categ_id
@@ -465,12 +466,12 @@ msgstr ""
 #. module: sale_rental
 #: model:ir.model,name:sale_rental.model_sale_order
 msgid "Sales Order"
-msgstr ""
+msgstr "Satış emri"
 
 #. module: sale_rental
 #: model:ir.model,name:sale_rental.model_sale_order_line
 msgid "Sales Order Line"
-msgstr ""
+msgstr "Sipariş emri satırı "
 
 #. module: sale_rental
 #: model:ir.ui.view,arch_db:sale_rental.sale_rental_search
@@ -528,7 +529,7 @@ msgstr ""
 #: model:ir.model.fields,field_description:sale_rental.field_sale_rental_state
 #: model:ir.ui.view,arch_db:sale_rental.sale_rental_search
 msgid "State"
-msgstr ""
+msgstr "Hal"
 
 #. module: sale_rental
 #: model:ir.model.fields,field_description:sale_rental.field_sale_rental_out_state
@@ -598,7 +599,7 @@ msgstr ""
 #. module: sale_rental
 #: model:ir.model,name:sale_rental.model_stock_warehouse
 msgid "Warehouse"
-msgstr ""
+msgstr "Depo"
 
 #. module: sale_rental
 #: code:addons/sale_rental/models/sale_order.py:175
