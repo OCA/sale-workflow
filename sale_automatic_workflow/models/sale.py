@@ -4,7 +4,7 @@
 # © 2016 Sodexis
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
-from openerp import models, fields, api, _
+from odoo import _, api, fields, models
 
 
 class SaleOrder(models.Model):
@@ -29,7 +29,7 @@ class SaleOrder(models.Model):
         return invoice_vals
 
     @api.onchange('workflow_process_id')
-    def onchange_workflow_process_id(self):
+    def _onchange_workflow_process_id(self):
         if not self.workflow_process_id:
             return
         workflow = self.workflow_process_id
