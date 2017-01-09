@@ -6,8 +6,8 @@
 
 import logging
 from contextlib import contextmanager
-from openerp import models, api
-from openerp.tools.safe_eval import safe_eval
+from odoo import api, models
+from odoo.tools.safe_eval import safe_eval
 
 _logger = logging.getLogger(__name__)
 
@@ -62,7 +62,7 @@ class AutomaticWorkflowJob(models.Model):
         _logger.debug('Invoices to validate: %s', invoices.ids)
         for invoice in invoices:
             with commit(self.env.cr):
-                invoice.signal_workflow('invoice_open')
+                invoice.action_invoice_open()
 
     @api.model
     def _validate_pickings(self, picking_filter):
