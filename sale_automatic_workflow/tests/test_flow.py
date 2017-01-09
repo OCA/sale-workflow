@@ -1,28 +1,11 @@
 # -*- coding: utf-8 -*-
-##############################################################################
-#
-#    Author: Guewen Baconnier
-#    Copyright 2014 Camptocamp SA
-#
-#    This program is free software: you can redistribute it and/or modify
-#    it under the terms of the GNU Affero General Public License as
-#    published by the Free Software Foundation, either version 3 of the
-#    License, or (at your option) any later version.
-#
-#    This program is distributed in the hope that it will be useful,
-#    but WITHOUT ANY WARRANTY; without even the implied warranty of
-#    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-#    GNU Affero General Public License for more details.
-#
-#    You should have received a copy of the GNU Affero General Public License
-#    along with this program.  If not, see <http://www.gnu.org/licenses/>.
-#
-##############################################################################
+# Copyright 2014 Camptocamp SA (author: Guewen Baconnier)
+# License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
 from datetime import datetime, timedelta
 
-from openerp import fields
-from openerp.tests import common
+from odoo import fields
+from odoo.tests import common
 
 
 class TestAutomaticWorkflow(common.TransactionCase):
@@ -71,7 +54,7 @@ class TestAutomaticWorkflow(common.TransactionCase):
     def test_full_automatic(self):
         workflow = self._create_full_automatic()
         sale = self._create_sale_order(workflow)
-        sale.onchange_workflow_process_id()
+        sale._onchange_workflow_process_id()
         self.assertEqual(sale.state, 'draft')
         self.assertEqual(sale.workflow_process_id, workflow)
         self.progress()
@@ -87,7 +70,7 @@ class TestAutomaticWorkflow(common.TransactionCase):
     def test_onchange(self):
         workflow = self._create_full_automatic()
         sale = self._create_sale_order(workflow)
-        sale.onchange_workflow_process_id()
+        sale._onchange_workflow_process_id()
         self.assertEqual(sale.picking_policy, 'one')
         workflow2 = self._create_full_automatic(
             override={
@@ -95,7 +78,7 @@ class TestAutomaticWorkflow(common.TransactionCase):
             }
         )
         sale.workflow_process_id = workflow2.id
-        sale.onchange_workflow_process_id()
+        sale._onchange_workflow_process_id()
         self.assertEqual(sale.picking_policy, 'direct')
 
     def test_date_invoice_from_sale_order(self):
@@ -109,7 +92,7 @@ class TestAutomaticWorkflow(common.TransactionCase):
             'date_order': last_week_time,
         }
         sale = self._create_sale_order(workflow, override=override)
-        sale.onchange_workflow_process_id()
+        sale._onchange_workflow_process_id()
         self.assertEqual(sale.date_order, last_week_time)
         self.progress()
         self.assertTrue(sale.invoice_ids)
@@ -119,7 +102,7 @@ class TestAutomaticWorkflow(common.TransactionCase):
 
     def test_invoice_from_picking_with_service_product(self):
         workflow = self._create_full_automatic()
-        product_service = self.env.ref('product.product_product_0')
+        product_service = self.env.ref('product.service_order_01')
         product_uom_hour = self.env.ref('product.product_uom_hour')
         override = {
             'order_line': [(0, 0, {
@@ -130,7 +113,7 @@ class TestAutomaticWorkflow(common.TransactionCase):
             })],
         }
         sale = self._create_sale_order(workflow, override=override)
-        sale.onchange_workflow_process_id()
+        sale._onchange_workflow_process_id()
         self.progress()
         self.assertFalse(sale.picking_ids)
         self.assertTrue(sale.invoice_ids)
@@ -145,7 +128,7 @@ class TestAutomaticWorkflow(common.TransactionCase):
                                                                "type": "sale"})
         workflow = self._create_full_automatic()
         sale = self._create_sale_order(workflow)
-        sale.onchange_workflow_process_id()
+        sale._onchange_workflow_process_id()
         self.progress()
         self.assertTrue(sale.invoice_ids)
         invoice = sale.invoice_ids
@@ -155,7 +138,7 @@ class TestAutomaticWorkflow(common.TransactionCase):
             override={'property_journal_id': new_sale_journal.id},
         )
         sale = self._create_sale_order(workflow)
-        sale.onchange_workflow_process_id()
+        sale._onchange_workflow_process_id()
         self.progress()
         self.assertTrue(sale.invoice_ids)
         invoice = sale.invoice_ids
