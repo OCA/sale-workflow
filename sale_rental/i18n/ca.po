@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: sale-workflow (8.0)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-12-24 04:49+0000\n"
+"POT-Creation-Date: 2017-01-04 10:48+0000\n"
 "PO-Revision-Date: 2015-09-03 07:10+0000\n"
 "Last-Translator: <>\n"
 "Language-Team: Catalan (http://www.transifex.com/oca/OCA-sale-workflow-8-0/language/ca/)\n"
@@ -117,7 +117,7 @@ msgstr ""
 #. module: sale_rental
 #: field:create.rental.product,display_name:0 field:sale.rental,display_name:0
 msgid "Display Name"
-msgstr ""
+msgstr "Veure el nom"
 
 #. module: sale_rental
 #: view:sale.rental:sale_rental.sale_rental_tree
@@ -150,7 +150,7 @@ msgstr ""
 #: field:create.rental.product,__last_update:0
 #: field:sale.rental,__last_update:0
 msgid "Last Modified on"
-msgstr ""
+msgstr "Darrera modificació el"
 
 #. module: sale_rental
 #: field:create.rental.product,write_uid:0 field:sale.rental,write_uid:0
@@ -477,7 +477,7 @@ msgstr ""
 #. module: sale_rental
 #: field:sale.rental,state:0
 msgid "State"
-msgstr ""
+msgstr "Estat"
 
 #. module: sale_rental
 #: field:sale.rental,out_state:0

@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: sale-workflow (8.0)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-09-11 16:48+0000\n"
-"PO-Revision-Date: 2016-09-09 12:25+0000\n"
+"POT-Creation-Date: 2017-01-04 10:48+0000\n"
+"PO-Revision-Date: 2017-01-13 09:22+0000\n"
 "Last-Translator: OCA Transbot <transbot@odoo-community.org>\n"
 "Language-Team: Catalan (http://www.transifex.com/oca/OCA-sale-workflow-8-0/language/ca/)\n"
 "MIME-Version: 1.0\n"
@@ -41,7 +41,7 @@ msgstr ""
 #. module: sale_payment_method
 #: field:sale.order,residual:0
 msgid "Balance"
-msgstr ""
+msgstr "Balanç"
 
 #. module: sale_payment_method
 #: code:addons/sale_payment_method/sale.py:70
@@ -85,7 +85,7 @@ msgstr ""
 #. module: sale_payment_method
 #: field:payment.method,display_name:0
 msgid "Display Name"
-msgstr ""
+msgstr "Veure el nom"
 
 #. module: sale_payment_method
 #: view:payment.method:sale_payment_method.payment_method_view_form
@@ -124,7 +124,7 @@ msgstr ""
 #. module: sale_payment_method
 #: field:payment.method,__last_update:0
 msgid "Last Modified on"
-msgstr ""
+msgstr "Darrera modificació el"
 
 #. module: sale_payment_method
 #: field:payment.method,write_uid:0

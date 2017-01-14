@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: sale-workflow (8.0)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-12-24 04:49+0000\n"
-"PO-Revision-Date: 2016-12-30 22:07+0000\n"
+"POT-Creation-Date: 2017-01-04 10:48+0000\n"
+"PO-Revision-Date: 2017-01-13 09:22+0000\n"
 "Last-Translator: Ahmet Altinisik <aaltinisik@altinkaya.com.tr>\n"
 "Language-Team: Turkish (http://www.transifex.com/oca/OCA-sale-workflow-8-0/language/tr/)\n"
 "MIME-Version: 1.0\n"
@@ -94,7 +94,7 @@ msgstr "Adı"
 #. module: sale_product_set
 #: field:product.set.line,product_id:0
 msgid "Product"
-msgstr ""
+msgstr "Ürün"
 
 #. module: sale_product_set
 #: model:ir.actions.act_window,name:sale_product_set.act_open_product_set_view

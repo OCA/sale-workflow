@@ -8,8 +8,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: sale-workflow (8.0)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-12-24 04:48+0000\n"
-"PO-Revision-Date: 2016-12-30 22:07+0000\n"
+"POT-Creation-Date: 2017-01-04 10:48+0000\n"
+"PO-Revision-Date: 2017-01-13 09:22+0000\n"
 "Last-Translator: Ahmet Altinisik <aaltinisik@altinkaya.com.tr>\n"
 "Language-Team: Turkish (http://www.transifex.com/oca/OCA-sale-workflow-8-0/language/tr/)\n"
 "MIME-Version: 1.0\n"
@@ -110,7 +110,7 @@ msgstr ""
 #. module: sale_packaging_price
 #: view:product.packaging:sale_packaging_price.product_packaging_filter
 msgid "Product"
-msgstr ""
+msgstr "Ürün"
 
 #. module: sale_packaging_price
 #: field:sale.report,product_packaging:0
@@ -132,7 +132,7 @@ msgstr ""
 #. module: sale_packaging_price
 #: model:ir.model,name:sale_packaging_price.model_sale_order_line
 msgid "Sales Order Line"
-msgstr ""
+msgstr "Satış Siparişi Hattı"
 
 #. module: sale_packaging_price
 #: model:ir.model,name:sale_packaging_price.model_sale_report

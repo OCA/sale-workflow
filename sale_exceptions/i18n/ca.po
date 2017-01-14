@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: sale-workflow (8.0)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-09-11 16:48+0000\n"
-"PO-Revision-Date: 2016-09-09 12:25+0000\n"
+"POT-Creation-Date: 2017-01-04 10:47+0000\n"
+"PO-Revision-Date: 2017-01-13 09:22+0000\n"
 "Last-Translator: OCA Transbot <transbot@odoo-community.org>\n"
 "Language-Team: Catalan (http://www.transifex.com/oca/OCA-sale-workflow-8-0/language/ca/)\n"
 "MIME-Version: 1.0\n"
@@ -65,13 +65,13 @@ msgstr ""
 #: field:sale.exception,display_name:0
 #: field:sale.exception.confirm,display_name:0
 msgid "Display Name"
-msgstr ""
+msgstr "Veure el nom"
 
 #. module: sale_exceptions
 #: code:addons/sale_exceptions/sale.py:192
 #, python-format
 msgid "Error"
-msgstr ""
+msgstr "Error"
 
 #. module: sale_exceptions
 #: code:addons/sale_exceptions/sale.py:193
@@ -132,7 +132,7 @@ msgstr ""
 #: field:sale.exception,__last_update:0
 #: field:sale.exception.confirm,__last_update:0
 msgid "Last Modified on"
-msgstr ""
+msgstr "Darrera modificació el"
 
 #. module: sale_exceptions
 #: field:sale.exception,write_uid:0 field:sale.exception.confirm,write_uid:0
@@ -215,7 +215,7 @@ msgstr ""
 #. module: sale_exceptions
 #: field:sale.exception,sequence:0
 msgid "Sequence"
-msgstr ""
+msgstr "Seqüència"
 
 #. module: sale_exceptions
 #: view:sale.exception.confirm:sale_exceptions.view_sale_exception_confirm

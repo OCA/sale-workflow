@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: sale-workflow (8.0)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-12-24 04:48+0000\n"
-"PO-Revision-Date: 2016-12-30 22:07+0000\n"
+"POT-Creation-Date: 2017-01-04 10:47+0000\n"
+"PO-Revision-Date: 2017-01-13 09:22+0000\n"
 "Last-Translator: Ahmet Altinisik <aaltinisik@altinkaya.com.tr>\n"
 "Language-Team: Turkish (http://www.transifex.com/oca/OCA-sale-workflow-8-0/language/tr/)\n"
 "MIME-Version: 1.0\n"
@@ -133,7 +133,7 @@ msgstr ""
 #. module: sale_order_type
 #: model:ir.model,name:sale_order_type.model_stock_picking
 msgid "Picking List"
-msgstr ""
+msgstr "Toplama Listesi"
 
 #. module: sale_order_type
 #: view:sale.order.type:sale_order_type.sot_sale_order_type_search_view
@@ -143,7 +143,7 @@ msgstr ""
 #. module: sale_order_type
 #: field:sale.order.type,pricelist_id:0
 msgid "Pricelist"
-msgstr ""
+msgstr "Fiyat Listesi"
 
 #. module: sale_order_type
 #: view:sale.order.type:sale_order_type.sot_sale_order_type_search_view
@@ -191,7 +191,7 @@ msgstr ""
 #. module: sale_order_type
 #: model:ir.model,name:sale_order_type.model_stock_move
 msgid "Stock Move"
-msgstr ""
+msgstr "Stok Taşı"
 
 #. module: sale_order_type
 #: field:sale.order,type_id:0

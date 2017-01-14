@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: sale-workflow (8.0)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-12-24 04:49+0000\n"
-"PO-Revision-Date: 2016-12-30 22:07+0000\n"
+"POT-Creation-Date: 2017-01-04 10:48+0000\n"
+"PO-Revision-Date: 2017-01-13 09:22+0000\n"
 "Last-Translator: Ahmet Altinisik <aaltinisik@altinkaya.com.tr>\n"
 "Language-Team: Turkish (http://www.transifex.com/oca/OCA-sale-workflow-8-0/language/tr/)\n"
 "MIME-Version: 1.0\n"
@@ -20,7 +20,7 @@ msgstr ""
 #. module: sale_quick_payment
 #: field:pay.sale.order,amount:0
 msgid "Amount"
-msgstr ""
+msgstr "Tutar"
 
 #. module: sale_quick_payment
 #: view:pay.sale.order:sale_quick_payment.pay_sale_order_view
@@ -62,7 +62,7 @@ msgstr "ID"
 #: view:pay.sale.order:sale_quick_payment.pay_sale_order_view
 #: field:pay.sale.order,journal_id:0
 msgid "Journal"
-msgstr ""
+msgstr "Yevmiye Defteri"
 
 #. module: sale_quick_payment
 #: field:pay.sale.order,__last_update:0

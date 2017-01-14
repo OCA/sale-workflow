@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: sale-workflow (8.0)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-12-24 04:48+0000\n"
-"PO-Revision-Date: 2016-12-27 08:22+0000\n"
+"POT-Creation-Date: 2017-01-04 10:47+0000\n"
+"PO-Revision-Date: 2017-01-13 09:26+0000\n"
 "Last-Translator: OCA Transbot <transbot@odoo-community.org>\n"
 "Language-Team: Portuguese (http://www.transifex.com/oca/OCA-sale-workflow-8-0/language/pt/)\n"
 "MIME-Version: 1.0\n"
@@ -54,7 +54,7 @@ msgstr "Criado em"
 #. module: sale_order_type
 #: field:sale.order.type,description:0
 msgid "Description"
-msgstr ""
+msgstr "Descrição"
 
 #. module: sale_order_type
 #: field:sale.order.type,display_name:0
@@ -180,7 +180,7 @@ msgstr ""
 #. module: sale_order_type
 #: field:sale.order.type,sequence:0
 msgid "Sequence"
-msgstr ""
+msgstr "Sequência"
 
 #. module: sale_order_type
 #: view:sale.order.type:sale_order_type.sot_sale_order_type_search_view
@@ -191,7 +191,7 @@ msgstr ""
 #. module: sale_order_type
 #: model:ir.model,name:sale_order_type.model_stock_move
 msgid "Stock Move"
-msgstr ""
+msgstr "Movimento Stock"
 
 #. module: sale_order_type
 #: field:sale.order,type_id:0

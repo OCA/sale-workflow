@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: sale-workflow (8.0)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-12-23 01:49+0000\n"
+"POT-Creation-Date: 2017-01-04 10:48+0000\n"
 "PO-Revision-Date: 2016-03-03 02:11+0000\n"
 "Last-Translator: <>\n"
 "Language-Team: Portuguese (Portugal) (http://www.transifex.com/oca/OCA-sale-workflow-8-0/language/pt_PT/)\n"
@@ -35,7 +35,7 @@ msgstr ""
 #. module: sale_service_fleet
 #: model:ir.model,name:sale_service_fleet.model_procurement_order
 msgid "Procurement"
-msgstr ""
+msgstr "Aquisições"
 
 #. module: sale_service_fleet
 #: model:ir.model,name:sale_service_fleet.model_sale_order
