@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: sale-workflow (9.0)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-09-29 03:03+0000\n"
-"PO-Revision-Date: 2016-10-04 09:43+0000\n"
+"POT-Creation-Date: 2017-01-07 06:07+0000\n"
+"PO-Revision-Date: 2017-01-13 09:29+0000\n"
 "Last-Translator: OCA Transbot <transbot@odoo-community.org>\n"
 "Language-Team: Finnish (http://www.transifex.com/oca/OCA-sale-workflow-9-0/language/fi/)\n"
 "MIME-Version: 1.0\n"
@@ -67,7 +67,7 @@ msgid "Display Name"
 msgstr "Nimi"
 
 #. module: sale_exception
-#: code:addons/sale_exception/models/sale.py:180
+#: code:addons/sale_exception/models/sale.py:182
 #, python-format
 msgid ""
 "Error when evaluating the sale exception rule:\n"
@@ -98,6 +98,7 @@ msgstr ""
 
 #. module: sale_exception
 #: model:ir.model.fields,field_description:sale_exception.field_sale_order_exception_ids
+#: model:ir.ui.menu,name:sale_exception.menu_sale_exception_parent
 msgid "Exceptions"
 msgstr ""
 
@@ -214,7 +215,7 @@ msgstr "Myyntitilaus"
 #. module: sale_exception
 #: model:ir.model.fields,field_description:sale_exception.field_sale_exception_sequence
 msgid "Sequence"
-msgstr ""
+msgstr "Sekvenssi"
 
 #. module: sale_exception
 #: model:ir.ui.view,arch_db:sale_exception.view_sale_exception_confirm
