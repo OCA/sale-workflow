@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: sale-workflow (8.0)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-11-22 23:35+0000\n"
+"POT-Creation-Date: 2017-01-04 10:47+0000\n"
 "PO-Revision-Date: 2016-10-21 21:00+0000\n"
 "Last-Translator: <>\n"
 "Language-Team: Catalan (http://www.transifex.com/oca/OCA-sale-workflow-8-0/language/ca/)\n"
@@ -47,7 +47,7 @@ msgstr "Creat el"
 #. module: sale_order_merge
 #: field:sale.order.merge,display_name:0
 msgid "Display Name"
-msgstr ""
+msgstr "Veure el nom"
 
 #. module: sale_order_merge
 #: field:sale.order,merge_ok:0
@@ -62,7 +62,7 @@ msgstr "ID"
 #. module: sale_order_merge
 #: field:sale.order.merge,__last_update:0
 msgid "Last Modified on"
-msgstr ""
+msgstr "Darrera modificació el"
 
 #. module: sale_order_merge
 #: field:sale.order.merge,write_uid:0
