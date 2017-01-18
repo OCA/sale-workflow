@@ -16,6 +16,7 @@
     'data': [
         'views/crm_team_view.xml',
         'views/sale_order_view.xml',
+        'wizard/manual_proc_view.xml',
     ],
     'demo': [
     ],

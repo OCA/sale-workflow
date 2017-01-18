@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+
+  <record id='manual_procurement_wizard_form' model='ir.ui.view'>
+    <field name='manual_procurement_wizard_form'/>
+    <field name='model'>manual.procurement</field>
+    <field name='arch' type='xml'>
+
+      <form string="Create Manually Procurements" name="manual_procurment_form">
+        <sheet>
+          <field name='date_planned'/>
+          <field name='order_id'/>
+          <field name='carrier_id'/>
+          <field name='line_ids'>
+            <tree>
+              <field name='ordered_qty'/>
+              <field name='remaining'/>
+              <field name='product_qty'/>
+            </tree>
+          </field>
+        </sheet>
+        <footer>
+          <button name='record_picking'
+                  string='Create Picking'
+                  class='btn-primary'
+                  type='object'/>
+          or
+          <button string='Cancel'
+                  class='btn-default'
+                  special='candel'/>
+        </footer>
+      </form>
+
+    </field>
+  </record>
+
+  <act_window id='action_wizard_loan_books'
+              name='Manual Procurements'
+              res_model='manual.procurement'
+              view_mode='form'
+              target='new'/>
+  <menuitem id="menu_wizard_manual_proc"
+            parent="sales_team.menu_sales"
+            action="action_wizard_loan_books"
+            sequence="60"/>
+
+</odoo>
