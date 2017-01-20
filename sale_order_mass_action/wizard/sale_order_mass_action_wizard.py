@@ -27,14 +27,44 @@ from openerp.osv.orm import TransientModel
 class SaleOrderMassActionWizard(TransientModel):
     _name = 'sale.order.mass.action.wizard'
 
+    def _compute_confirmable_order_ids(self, cr, uid, context=None):
+        so_obj = self.pool['sale.order']
+        return so_obj.search(cr, uid, [
+            ('id', 'in', context.get('active_ids', [])),
+            ('state', '=', 'draft')], context=context)
+
+    def _compute_finishable_order_ids(self, cr, uid, context=None):
+        so_obj = self.pool['sale.order']
+        return so_obj.search(cr, uid, [
+            ('id', 'in', context.get('active_ids', [])),
+            ('state', '=', 'progress')], context=context)
+
+    def _default_confirmable_order_qty(self, cr, uid, context=None):
+        return len(
+            self._compute_confirmable_order_ids(cr, uid, context=context))
+
+    def _default_finishable_order_qty(self, cr, uid, context=None):
+        return len(
+            self._compute_finishable_order_ids(cr, uid, context=context))
+
     _columns = {
+        'confirmable_order_qty': fields.integer(
+            string='Confirmable Order Quantity', readonly=True),
         'confirm': fields.boolean(
             'Confirm', help="""check this box if you want to"""
             """ confirm all the selected quotations."""),
+        'finishable_order_qty': fields.integer(
+            string='Finishable Order Quantity', readonly=True),
+        'finish': fields.boolean(
+            'Manually Set To Done', help="""check this box if you manually"""
+            """ set to done selected orders."""),
     }
 
     _defaults = {
         'confirm': True,
+        'confirmable_order_qty': _default_confirmable_order_qty,
+        'finish': True,
+        'finishable_order_qty': _default_finishable_order_qty,
     }
 
     def apply_button(self, cr, uid, ids, context=None):
@@ -42,9 +72,11 @@ class SaleOrderMassActionWizard(TransientModel):
         so_obj = self.pool['sale.order']
         wizard = self.browse(cr, uid, ids[0], context=context)
         if wizard.confirm:
-            so_ids = so_obj.search(cr, uid, [
-                ('id', 'in', context.get('active_ids')),
-                ('state', '=', 'draft')], context=context)
-            for so_id in so_ids:
+            for so_id in self._compute_confirmable_order_ids(
+                    cr, uid, context=context):
                 so_obj.action_button_confirm(cr, uid, [so_id], context=context)
+        if wizard.finish:
+            so_ids = self._compute_finishable_order_ids(
+                cr, uid, context=context)
+            so_obj.write(cr, uid, so_ids, {'state': 'done'}, context=context)
         return True

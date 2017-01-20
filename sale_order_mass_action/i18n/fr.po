@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: OpenERP Server 7.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-05-06 12:08+0000\n"
-"PO-Revision-Date: 2015-05-06 12:08+0000\n"
+"POT-Creation-Date: 2016-06-20 14:13+0000\n"
+"PO-Revision-Date: 2016-06-20 14:13+0000\n"
 "Last-Translator: <>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -31,6 +31,21 @@ msgid "Confirm"
 msgstr "Confirmer"
 
 #. module: sale_order_mass_action
+#: field:sale.order.mass.action.wizard,confirmable_order_qty:0
+msgid "Confirmable Order Quantity"
+msgstr "Nombre de ventes à confirmer"
+
+#. module: sale_order_mass_action
+#: field:sale.order.mass.action.wizard,finishable_order_qty:0
+msgid "Finishable Order Quantity"
+msgstr "Nombre de ventes à terminer"
+
+#. module: sale_order_mass_action
+#: field:sale.order.mass.action.wizard,finish:0
+msgid "Manually Set To Done"
+msgstr "Terminer manuellement"
+
+#. module: sale_order_mass_action
 #: model:ir.actions.act_window,name:sale_order_mass_action.action_sale_order_mass_action
 msgid "Mass Action"
 msgstr "Action groupée"
@@ -41,9 +56,14 @@ msgid "Mass Action on Selected Quotations and Sale Orders"
 msgstr "Action groupée sur les devis et bons de commandes sélectionnés"
 
 #. module: sale_order_mass_action
+#: help:sale.order.mass.action.wizard,finish:0
+msgid "check this box if you manually set to done selected orders."
+msgstr "check this box if you manually set to done selected orders."
+
+#. module: sale_order_mass_action
 #: help:sale.order.mass.action.wizard,confirm:0
 msgid "check this box if you want to confirm all the selected quotations."
-msgstr "cochez cette case si vous souhaitez confirmer tous les devis sélectionnés."
+msgstr "Cochez cette case si vous souhaitez confirmer tous les devis sélectionnés."
 
 #. module: sale_order_mass_action
 #: view:sale.order.mass.action.wizard:0

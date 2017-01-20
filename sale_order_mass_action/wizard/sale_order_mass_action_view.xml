@@ -5,8 +5,11 @@
             <field name="model">sale.order.mass.action.wizard</field>
             <field name="arch" type="xml">
             <form string="Mass Action on Selected Quotations and Sale Orders" version="7.0">
-                <group>
-                    <field name="confirm"/>
+                <group col="4">
+                    <field name="confirm" attrs="{'invisible': [('confirmable_order_qty', '=', 0)]}"/>
+                    <field name="confirmable_order_qty" attrs="{'invisible': [('confirmable_order_qty', '=', 0)]}"/>
+                    <field name="finish" attrs="{'invisible': [('finishable_order_qty', '=', 0)]}"/>
+                    <field name="finishable_order_qty" attrs="{'invisible': [('finishable_order_qty', '=', 0)]}"/>
                 </group>
                 <footer>
                     <button name="apply_button" string="Apply" type="object" class="oe_highlight"/>
