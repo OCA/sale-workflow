@@ -11,6 +11,7 @@
       <field name="name">sale_automatic_workflow.sale_order.view_form</field>
       <field name="model">sale.order</field>
       <field name="inherit_id" ref="sale.view_order_form" />
+      <field name="groups_id" eval="[(4, ref('base.group_sale_manager'))]"/>
       <field name="arch" type="xml">
         <xpath expr="//page[2]" position="after">        
           <page name="automation_information" string="Automation Information">
