@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: sale-workflow (8.0)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-01-04 10:48+0000\n"
-"PO-Revision-Date: 2017-01-13 09:22+0000\n"
+"POT-Creation-Date: 2017-01-14 06:38+0000\n"
+"PO-Revision-Date: 2017-01-17 19:17+0000\n"
 "Last-Translator: OCA Transbot <transbot@odoo-community.org>\n"
 "Language-Team: Catalan (http://www.transifex.com/oca/OCA-sale-workflow-8-0/language/ca/)\n"
 "MIME-Version: 1.0\n"
@@ -89,12 +89,12 @@ msgstr "Darrera Actualització el"
 #. module: sale_product_set
 #: field:product.set,name:0
 msgid "Name"
-msgstr ""
+msgstr "Nom"
 
 #. module: sale_product_set
 #: field:product.set.line,product_id:0
 msgid "Product"
-msgstr ""
+msgstr "Producte"
 
 #. module: sale_product_set
 #: model:ir.actions.act_window,name:sale_product_set.act_open_product_set_view
@@ -138,7 +138,7 @@ msgstr ""
 #: field:product.set.add,quantity:0 field:product.set.line,quantity:0
 #, python-format
 msgid "Quantity"
-msgstr ""
+msgstr "Quantitat"
 
 #. module: sale_product_set
 #: field:product.set.line,sequence:0

@@ -4,14 +4,15 @@
 # 
 # Translators:
 # Accounts-Payable - Alkemics, 2015
+# Ahmet Altinisik <aaltinisik@altinkaya.com.tr>, 2017
 # Chen-Do LU <clu@alkemics.com>, 2015
 # François Breysse <fb@alkemics.com>, 2015
 msgid ""
 msgstr ""
 "Project-Id-Version: sale-workflow (8.0)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-01-04 10:48+0000\n"
-"PO-Revision-Date: 2017-01-13 09:22+0000\n"
+"POT-Creation-Date: 2017-01-14 06:38+0000\n"
+"PO-Revision-Date: 2017-01-16 19:28+0000\n"
 "Last-Translator: Ahmet Altinisik <aaltinisik@altinkaya.com.tr>\n"
 "Language-Team: Turkish (http://www.transifex.com/oca/OCA-sale-workflow-8-0/language/tr/)\n"
 "MIME-Version: 1.0\n"
@@ -66,7 +67,7 @@ msgstr "Sipariş Emri"
 #. module: sale_properties_dynamic_fields
 #: model:ir.model,name:sale_properties_dynamic_fields.model_sale_order_line
 msgid "Sales Order Line"
-msgstr "Satış Siparişi Hattı"
+msgstr "Sipariş Kalemi"
 
 #. module: sale_properties_dynamic_fields
 #: code:addons/sale_properties_dynamic_fields/sale_order.py:34

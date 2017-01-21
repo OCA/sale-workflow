@@ -3,12 +3,13 @@
 # * sale_order_type
 # 
 # Translators:
+# Ahmet Altinisik <aaltinisik@altinkaya.com.tr>, 2017
 msgid ""
 msgstr ""
 "Project-Id-Version: sale-workflow (8.0)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-01-04 10:47+0000\n"
-"PO-Revision-Date: 2017-01-13 09:22+0000\n"
+"POT-Creation-Date: 2017-01-14 06:38+0000\n"
+"PO-Revision-Date: 2017-01-16 19:29+0000\n"
 "Last-Translator: Ahmet Altinisik <aaltinisik@altinkaya.com.tr>\n"
 "Language-Team: Turkish (http://www.transifex.com/oca/OCA-sale-workflow-8-0/language/tr/)\n"
 "MIME-Version: 1.0\n"
@@ -191,7 +192,7 @@ msgstr ""
 #. module: sale_order_type
 #: model:ir.model,name:sale_order_type.model_stock_move
 msgid "Stock Move"
-msgstr "Stok Taşı"
+msgstr "Stok hareketi"
 
 #. module: sale_order_type
 #: field:sale.order,type_id:0

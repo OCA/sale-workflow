@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: sale-workflow (8.0)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-01-04 10:47+0000\n"
-"PO-Revision-Date: 2017-01-13 09:20+0000\n"
+"POT-Creation-Date: 2017-01-14 06:37+0000\n"
+"PO-Revision-Date: 2017-01-19 20:17+0000\n"
 "Last-Translator: OCA Transbot <transbot@odoo-community.org>\n"
 "Language-Team: Portuguese (Brazil) (http://www.transifex.com/oca/OCA-sale-workflow-8-0/language/pt_BR/)\n"
 "MIME-Version: 1.0\n"
@@ -205,7 +205,7 @@ msgstr "Pedido de Venda"
 #. module: sale_automatic_workflow
 #: field:sale.workflow.process,section_id:0
 msgid "Sales Team"
-msgstr ""
+msgstr "Equipe de Vendas"
 
 #. module: sale_automatic_workflow
 #: help:sale.workflow.process,property_journal_id:0

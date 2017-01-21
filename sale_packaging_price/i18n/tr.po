@@ -3,13 +3,14 @@
 # * sale_packaging_price
 # 
 # Translators:
+# Ahmet Altinisik <aaltinisik@altinkaya.com.tr>, 2017
 # Hotellook, 2014
 msgid ""
 msgstr ""
 "Project-Id-Version: sale-workflow (8.0)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-01-04 10:48+0000\n"
-"PO-Revision-Date: 2017-01-13 09:22+0000\n"
+"POT-Creation-Date: 2017-01-14 06:38+0000\n"
+"PO-Revision-Date: 2017-01-16 19:28+0000\n"
 "Last-Translator: Ahmet Altinisik <aaltinisik@altinkaya.com.tr>\n"
 "Language-Team: Turkish (http://www.transifex.com/oca/OCA-sale-workflow-8-0/language/tr/)\n"
 "MIME-Version: 1.0\n"
@@ -132,7 +133,7 @@ msgstr ""
 #. module: sale_packaging_price
 #: model:ir.model,name:sale_packaging_price.model_sale_order_line
 msgid "Sales Order Line"
-msgstr "Satış Siparişi Hattı"
+msgstr "Sipariş Kalemi"
 
 #. module: sale_packaging_price
 #: model:ir.model,name:sale_packaging_price.model_sale_report

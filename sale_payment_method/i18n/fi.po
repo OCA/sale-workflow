@@ -10,8 +10,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: sale-workflow (8.0)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-01-04 10:48+0000\n"
-"PO-Revision-Date: 2017-01-13 09:29+0000\n"
+"POT-Creation-Date: 2017-01-14 06:38+0000\n"
+"PO-Revision-Date: 2017-01-17 12:11+0000\n"
 "Last-Translator: OCA Transbot <transbot@odoo-community.org>\n"
 "Language-Team: Finnish (http://www.transifex.com/oca/OCA-sale-workflow-8-0/language/fi/)\n"
 "MIME-Version: 1.0\n"
@@ -58,7 +58,7 @@ msgstr ""
 #: view:payment.method:sale_payment_method.payment_method_view_form
 #: field:payment.method,company_id:0
 msgid "Company"
-msgstr ""
+msgstr "Yritys"
 
 #. module: sale_payment_method
 #: view:sale.order:sale_payment_method.sale_order_view_form

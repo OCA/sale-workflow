@@ -3,6 +3,7 @@
 # * sale_sourced_by_line
 # 
 # Translators:
+# Ahmet Altinisik <aaltinisik@altinkaya.com.tr>, 2015,2017
 # Ahmet Altinisik <aaltinisik@altinkaya.com.tr>, 2015
 # Pedro M. Baeza <pedro.baeza@gmail.com>, 2015
 # Stefano <stefano.sforzi@agilebg.com>, 2015
@@ -11,8 +12,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: sale-workflow (8.0)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-01-04 10:48+0000\n"
-"PO-Revision-Date: 2017-01-12 19:55+0000\n"
+"POT-Creation-Date: 2017-01-14 06:39+0000\n"
+"PO-Revision-Date: 2017-01-16 19:28+0000\n"
 "Last-Translator: Ahmet Altinisik <aaltinisik@altinkaya.com.tr>\n"
 "Language-Team: Turkish (http://www.transifex.com/oca/OCA-sale-workflow-8-0/language/tr/)\n"
 "MIME-Version: 1.0\n"
@@ -41,7 +42,7 @@ msgstr "Sipariş Emri"
 #. module: sale_sourced_by_line
 #: model:ir.model,name:sale_sourced_by_line.model_sale_order_line
 msgid "Sales Order Line"
-msgstr "Satış Siparişi Hattı"
+msgstr "Sipariş Kalemi"
 
 #. module: sale_sourced_by_line
 #: field:sale.order.line,warehouse_id:0

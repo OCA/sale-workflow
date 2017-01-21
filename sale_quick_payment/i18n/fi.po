@@ -9,8 +9,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: sale-workflow (8.0)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-01-04 10:48+0000\n"
-"PO-Revision-Date: 2017-01-13 09:29+0000\n"
+"POT-Creation-Date: 2017-01-14 06:38+0000\n"
+"PO-Revision-Date: 2017-01-17 12:13+0000\n"
 "Last-Translator: OCA Transbot <transbot@odoo-community.org>\n"
 "Language-Team: Finnish (http://www.transifex.com/oca/OCA-sale-workflow-8-0/language/fi/)\n"
 "MIME-Version: 1.0\n"
@@ -22,7 +22,7 @@ msgstr ""
 #. module: sale_quick_payment
 #: field:pay.sale.order,amount:0
 msgid "Amount"
-msgstr ""
+msgstr "Määrä"
 
 #. module: sale_quick_payment
 #: view:pay.sale.order:sale_quick_payment.pay_sale_order_view
@@ -105,7 +105,7 @@ msgstr ""
 #. module: sale_quick_payment
 #: field:pay.sale.order,date:0
 msgid "Payment Date"
-msgstr ""
+msgstr "Maksupäivä"
 
 #. module: sale_quick_payment
 #: view:sale.order:sale_quick_payment.sale_order_view_form

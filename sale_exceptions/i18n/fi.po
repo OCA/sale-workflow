@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: sale-workflow (8.0)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-01-04 10:47+0000\n"
-"PO-Revision-Date: 2017-01-13 09:29+0000\n"
+"POT-Creation-Date: 2017-01-14 06:38+0000\n"
+"PO-Revision-Date: 2017-01-17 12:12+0000\n"
 "Last-Translator: OCA Transbot <transbot@odoo-community.org>\n"
 "Language-Team: Finnish (http://www.transifex.com/oca/OCA-sale-workflow-8-0/language/fi/)\n"
 "MIME-Version: 1.0\n"
@@ -20,7 +20,7 @@ msgstr ""
 #. module: sale_exceptions
 #: field:sale.exception,active:0
 msgid "Active"
-msgstr ""
+msgstr "Aktiivinen"
 
 #. module: sale_exceptions
 #: view:sale.exception:sale_exceptions.view_sale_exception_form
@@ -71,7 +71,7 @@ msgstr "Nimi"
 #: code:addons/sale_exceptions/sale.py:192
 #, python-format
 msgid "Error"
-msgstr ""
+msgstr "Virhe"
 
 #. module: sale_exceptions
 #: code:addons/sale_exceptions/sale.py:193
@@ -85,7 +85,7 @@ msgstr ""
 #. module: sale_exceptions
 #: view:sale.order:sale_exceptions.view_order_form
 msgid "Error:"
-msgstr ""
+msgstr "Virhe:"
 
 #. module: sale_exceptions
 #: view:sale.order:sale_exceptions.view_order_form

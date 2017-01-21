@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: sale-workflow (8.0)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-01-04 10:48+0000\n"
+"POT-Creation-Date: 2017-01-14 06:38+0000\n"
 "PO-Revision-Date: 2015-09-03 07:10+0000\n"
 "Last-Translator: <>\n"
 "Language-Team: Catalan (http://www.transifex.com/oca/OCA-sale-workflow-8-0/language/ca/)\n"
@@ -64,7 +64,7 @@ msgstr ""
 #. module: sale_rental
 #: field:sale.rental,company_id:0
 msgid "Company"
-msgstr ""
+msgstr "Empresa"
 
 #. module: sale_rental
 #: field:create.rental.product,copy_image:0
@@ -249,7 +249,7 @@ msgstr ""
 #. module: sale_rental
 #: model:ir.model,name:sale_rental.model_product_product
 msgid "Product"
-msgstr ""
+msgstr "Producte"
 
 #. module: sale_rental
 #: field:create.rental.product,categ_id:0
@@ -423,12 +423,12 @@ msgstr ""
 #. module: sale_rental
 #: model:ir.model,name:sale_rental.model_sale_order
 msgid "Sales Order"
-msgstr ""
+msgstr "Comandes de venda"
 
 #. module: sale_rental
 #: model:ir.model,name:sale_rental.model_sale_order_line
 msgid "Sales Order Line"
-msgstr ""
+msgstr "Línia de comanda de vendes"
 
 #. module: sale_rental
 #: field:sale.rental,sell_picking_id:0
@@ -497,7 +497,7 @@ msgstr ""
 #. module: sale_rental
 #: model:ir.model,name:sale_rental.model_stock_move
 msgid "Stock Move"
-msgstr ""
+msgstr "Moure l'estoc"
 
 #. module: sale_rental
 #: code:addons/sale_rental/rental.py:541

@@ -3,14 +3,15 @@
 # * sale_start_end_dates
 # 
 # Translators:
+# Ahmet Altinisik <aaltinisik@altinkaya.com.tr>, 2017
 # Matjaž Mozetič <m.mozetic@matmoz.si>, 2015
 # Rudolf Schnapka <rs@techno-flex.de>, 2015
 msgid ""
 msgstr ""
 "Project-Id-Version: sale-workflow (8.0)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-01-04 10:48+0000\n"
-"PO-Revision-Date: 2017-01-12 19:55+0000\n"
+"POT-Creation-Date: 2017-01-14 06:39+0000\n"
+"PO-Revision-Date: 2017-01-16 19:28+0000\n"
 "Last-Translator: Ahmet Altinisik <aaltinisik@altinkaya.com.tr>\n"
 "Language-Team: Turkish (http://www.transifex.com/oca/OCA-sale-workflow-8-0/language/tr/)\n"
 "MIME-Version: 1.0\n"
@@ -95,7 +96,7 @@ msgstr "Sipariş Emri"
 #. module: sale_start_end_dates
 #: model:ir.model,name:sale_start_end_dates.model_sale_order_line
 msgid "Sales Order Line"
-msgstr "Satış Siparişi Hattı"
+msgstr "Sipariş Kalemi"
 
 #. module: sale_start_end_dates
 #: field:sale.order.line,start_date:0
