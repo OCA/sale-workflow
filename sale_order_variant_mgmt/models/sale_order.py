@@ -12,7 +12,9 @@ class SaleOrderLine(models.Model):
     # adds product_tmpl_id, and its possible modifications. This field name
     # for sure won't conflict
     product_tmpl_id_sale_order_variant_mgmt = fields.Many2one(
-        comodel_name="product.template", related="product_id.product_tmpl_id")
+        comodel_name="product.template", related="product_id.product_tmpl_id",
+        readonly=True)
     product_attribute_value_ids = fields.Many2many(
         comodel_name='product.attribute.value',
-        related="product_id.attribute_value_ids")
+        related="product_id.attribute_value_ids",
+        readonly=True)
