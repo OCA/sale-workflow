@@ -27,7 +27,7 @@
     'author': "Akretion,Odoo Community Association (OCA)",
     'website': 'http://www.akretion.com',
     'license': 'AGPL-3',
-    'depends': ['sale'],
+    'depends': ['sale_stock'],
     'data': [
         'view/sale_view.xml',
     ],
