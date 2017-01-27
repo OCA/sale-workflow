@@ -68,6 +68,7 @@ class sale_order(models.Model):
         msg = _('New revision created: %s') % self.name
         self.message_post(body=msg)
         old_revision.message_post(body=msg)
+        old_revision.order_line.write({'state': 'cancel'})
         return action
 
     @api.returns('self', lambda value: value.id)
