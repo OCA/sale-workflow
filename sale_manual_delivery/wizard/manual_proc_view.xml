@@ -24,24 +24,25 @@
                   string='Create Picking'
                   class='btn-primary'
                   type='object'/>
-          or
-          <button string='Cancel'
-                  class='btn-default'
-                  special='candel'/>
         </footer>
       </form>
 
     </field>
   </record>
 
-  <act_window id='action_wizard_loan_books'
+  <act_window id='action_wizard_manual_procurement'
               name='Manual Procurements'
               res_model='manual.procurement'
               view_mode='form'
               target='new'/>
-  <menuitem id="menu_wizard_manual_proc"
-            parent="sales_team.menu_sales"
-            action="action_wizard_loan_books"
-            sequence="60"/>
+
+  <record model="ir.values" id="sale_order_line_make_invoice">
+    <field name="model_id" ref="sale.model_sale_order_line" />
+    <field name="name">Manual Procurement</field>
+    <field name="key2">client_action_multi</field>
+    <field name="value" eval="'ir.actions.act_window,' + str(ref('action_wizard_manual_procurement'))" />
+    <field name="key">action</field>
+    <field name="model">sale.order</field>
+  </record>
 
 </odoo>
