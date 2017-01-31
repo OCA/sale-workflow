@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<openerp>
+<odoo>
 
         <record id="view_datetime_confirm_sale_form" model="ir.ui.view">
             <field name="model">sale.order</field>
@@ -23,4 +23,4 @@
             </field>
         </record>
 
-</openerp>
+</odoo>
