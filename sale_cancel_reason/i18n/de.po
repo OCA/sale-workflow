@@ -4,6 +4,7 @@
 # 
 # Translators:
 # Rudolf Schnapka <rs@techno-flex.de>, 2015
+# Sébastien Pulver <sp@jamotion.ch>, 2017
 msgid ""
 msgstr ""
 "Project-Id-Version: sale-workflow (8.0)\n"
@@ -24,6 +25,11 @@ msgid " Ask a reason for the sale order cancellation."
 msgstr "Begründung für die Auftragsstornierung erfragen."
 
 #. module: sale_cancel_reason
+#: field:sale.report,ordnbr:0
+msgid "# of Orders"
+msgstr "# Aufträge"
+
+#. module: sale_cancel_reason
 #: view:sale.order.cancel:sale_cancel_reason.view_sale_order_cancel
 msgid "Cancel"
 msgstr "Abbrechen"
@@ -31,12 +37,18 @@ msgstr "Abbrechen"
 #. module: sale_cancel_reason
 #: view:sale.order:sale_cancel_reason.view_order_form
 msgid "Cancel Order"
-msgstr "Auftrag stronieren"
+msgstr "Auftrag stornieren"
 
 #. module: sale_cancel_reason
 #: view:sale.order:sale_cancel_reason.view_order_form
 msgid "Cancel Quotation"
 msgstr "Angebot stornieren"
+
+#. module: sale_cancel_reason
+#: view:sale.order:sale_cancel_reason.view_sales_order_filter
+#: field:sale.report,cancel_reason_id:0
+msgid "Cancellation Reason"
+msgstr "Stornogrund"
 
 #. module: sale_cancel_reason
 #: view:sale.order:sale_cancel_reason.view_order_form
@@ -99,7 +111,12 @@ msgstr "Zuletzt akualisiert durch"
 #: field:sale.order.cancel,write_date:0
 #: field:sale.order.cancel.reason,write_date:0
 msgid "Last Updated on"
-msgstr "Zuletzt akualisiert am"
+msgstr "Zuletzt aktualisiert am"
+
+#. module: sale_cancel_reason
+#: view:sale.order:sale_cancel_reason.view_sales_order_filter
+msgid "Lost"
+msgstr "Verloren"
 
 #. module: sale_cancel_reason
 #: model:sale.order.cancel.reason,name:sale_cancel_reason.cancel_reason_other_provider

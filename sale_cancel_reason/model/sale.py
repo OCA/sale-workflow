@@ -26,10 +26,10 @@ class SaleOrder(models.Model):
     _inherit = 'sale.order'
 
     cancel_reason_id = fields.Many2one(
-        'sale.order.cancel.reason',
-        string="Reason for cancellation",
-        readonly=True,
-        ondelete="restrict")
+            'sale.order.cancel.reason',
+            string="Reason for cancellation",
+            readonly=True,
+            ondelete="restrict")
 
 
 class SaleOrderCancelReason(models.Model):
@@ -37,3 +37,35 @@ class SaleOrderCancelReason(models.Model):
     _description = 'Sale Order Cancel Reason'
 
     name = fields.Char('Reason', required=True, translate=True)
+
+
+class SaleReport(models.Model):
+    _inherit = 'sale.report'
+
+    cancel_reason_id = fields.Many2one(
+            comodel_name="sale.order.cancel.reason",
+            string="Cancellation Reason",
+            readonly=True,
+    )
+
+    ordnbr = fields.Float(
+            string="# of Orders",
+            readonly=True,
+    )
+
+    def _select(self):
+        select_str = super(SaleReport, self)._select()
+        select_str += """,
+            s.cancel_reason_id,
+            count(*) / (select count(*) from sale_order_line
+            where order_id = s.id)::FLOAT ordnbr
+        """
+        return select_str
+
+    def _group_by(self):
+        group_by_str = super(SaleReport, self)._group_by()
+        group_by_str += """,
+            s.cancel_reason_id,
+            s.id
+        """
+        return group_by_str

@@ -10,21 +10,51 @@
                     <attribute name="invisible">True</attribute>
                 </xpath>
                 <xpath expr="//button[@name='action_cancel']" position="before">
-                    <button name="%(action_sale_order_cancel)d" states="manual,progress" string="Cancel Order" type="action" groups="base.group_user"/>
+                    <button name="%(action_sale_order_cancel)d" states="manual,progress" string="Cancel Order"
+                            type="action" groups="base.group_user"/>
                 </xpath>
                 <xpath expr="//button[@name='cancel']" position="attributes">
                     <attribute name="invisible">True</attribute>
                 </xpath>
                 <xpath expr="//button[@name='cancel']" position="after">
-                    <button name="%(action_sale_order_cancel)d" type="action" states="draft,sent" string="Cancel Quotation" groups="base.group_user"/>
+                    <button name="%(action_sale_order_cancel)d" type="action" states="draft,sent"
+                            string="Cancel Quotation" groups="base.group_user"/>
                 </xpath>
                 <xpath expr="/form/sheet/h1[1]" position="after">
                     <h2 attrs="{'invisible': [('state', '!=', 'cancel')]}">
-                        <label for="cancel_reason_id" string="Cancellation reason:"/>
+                        <label for="cancel_reason_id" string="Cancellation Reason:"/>
                         <field name="cancel_reason_id" class="oe_inline"
-                          options='{"no_open": True}' />
+                               options='{"no_open": True}'/>
                     </h2>
                 </xpath>
+            </field>
+        </record>
+
+        <record id="view_sales_order_filter" model="ir.ui.view">
+            <field name="name">sale.order.list.select</field>
+            <field name="model">sale.order</field>
+            <field name="inherit_id" ref="sale.view_sales_order_filter"/>
+            <field name="arch" type="xml">
+                <filter string="To Invoice" position="after">
+                    <filter name="lost" string="Lost" domain="[('state', '=', 'cancel')]"/>
+                </filter>
+                <filter string="Order Month" position="after">
+                    <separator/>
+                    <filter string="Cancellation Reason" domain="[('state', '=', 'cancel')]"
+                            context="{'group_by': 'cancel_reason_id'}"/>
+                </filter>
+
+            </field>
+        </record>
+
+        <record id="view_order_product_search" model="ir.ui.view">
+            <field name="name">sale.report.view_search.inherit</field>
+            <field name="model">sale.report</field>
+            <field name="inherit_id" ref="sale.view_order_product_search"/>
+            <field name="arch" type="xml">
+                <filter name="Sales" position="after">
+                    <filter name="Lost" domain="[('state', '=', 'cancel')]"/>
+                </filter>
             </field>
         </record>
 
@@ -56,10 +86,10 @@
         </record>
 
         <menuitem id="menu_sale_order_cancel_reason"
-          parent="base.menu_base_config"
-          name="Sale Order Cancel Reasons"
-          action="action_sale_order_cancel_reason"
-          sequence="150"
-          groups="base.group_sale_manager"/>
+                  parent="base.menu_base_config"
+                  name="Sale Order Cancel Reasons"
+                  action="action_sale_order_cancel_reason"
+                  sequence="150"
+                  groups="base.group_sale_manager"/>
     </data>
 </openerp>
