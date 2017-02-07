@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+
+        <record id="action_sale_payment" model="ir.actions.act_window">
+            <field name="name">Register Payment</field>
+            <field name="res_model">account.payment</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">form</field>
+            <field name="view_id" ref="account.view_account_payment_invoice_form"/>
+            <field name="target">new</field>
+        </record>
+
+        <record id="view_quotation_sale_payment_form" model="ir.ui.view">
+            <field name="model">sale.order</field>
+            <field name="inherit_id" ref="sale.view_quotation_tree" />
+            <field name="arch" type="xml">
+                <field name="amount_total" position="after">
+                    <field name="amount_paid"/>
+                </field>
+            </field>
+        </record>
+
+        <record id="view_register_payment_sale_form" model="ir.ui.view">
+            <field name="model">sale.order</field>
+            <field name="inherit_id" ref="sale.view_order_form" />
+            <field name="arch" type="xml">
+                <button name="action_done" position="after">
+                    <field name="residual" invisible="1"/>
+                    <button name="%(action_sale_payment)d" type="action"
+                            attrs="{'invisible': ['|', ('state', 'not in', ('draft', 'sent')), ('residual', '=', 0.0)]}"
+                            string="Register Payment" class="oe_highlight"/>
+                </button>
+                <xpath expr="//page[2]" position="after">        
+                  <page name="payments" string="Payments">
+                    <field name="payment_ids" nolabel="1">
+                        <tree string="Payment">
+                            <field name="date"/>
+                            <field name="journal_id"/>
+                            <field name="partner_id"/>
+                            <field name="debit" sum="Total Debit"/>
+                            <field name="credit" sum="Total Credit"/>
+                        </tree>
+                    </field>
+                  </page>
+                </xpath>
+            </field>
+        </record>
+
+        <record id="view_sales_order_filter" model="ir.ui.view">
+            <field name="model">sale.order</field>
+            <field name="inherit_id" ref="sale.view_sales_order_filter"/>
+            <field name="arch" type="xml">
+                <filter name="my_sale_orders_filter" position="before">
+                    <filter string="With Payment" domain="[('payment_ids','!=',False)]" help="Order With Payment"  name="with_payment"/>
+                    <separator/>
+                </filter>
+            </field>
+        </record>
+
+    </data>
+</odoo>
