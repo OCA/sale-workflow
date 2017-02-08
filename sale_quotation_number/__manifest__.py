@@ -24,7 +24,7 @@
 
 {
     'name': 'Sale Quotation Numeration',
-    'version': '8.0.1.1.0',
+    'version': '10.0.1.1.0',
     'category': 'Sales Management',
     'summary': "Different sequence for sale quotations",
     'description': """
@@ -78,14 +78,17 @@ SQ004
 """,
     'author': 'Elico Corp,'
               'Agile Business Group,'
-              'Odoo Community Association (OCA)',
+              'Odoo Community Association (OCA),'
+              'Versada',
     'website': 'http://www.openerp.net.cn',
-    'depends': ['sale'],
+    'depends': [
+        'sale'
+    ],
     'data': [
         'data/data.xml',
     ],
     'demo': [],
     'test': [],
-    'installable': False,
-    'active': False,
+    'installable': True,
+    'application': False,
 }

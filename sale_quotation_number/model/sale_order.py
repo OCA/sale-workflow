@@ -19,13 +19,14 @@
 #
 #
 
-from openerp import models, api
+from odoo import models, api
 
 
 class SaleOrder(models.Model):
     _inherit = "sale.order"
 
     @api.one
+    @api.returns('self', lambda value: value.id)
     def copy(self, default=None):
         if default is None:
             default = {}
@@ -40,13 +41,11 @@ class SaleOrder(models.Model):
         return super(SaleOrder, self).create(vals)
 
     @api.multi
-    def action_wait(self):
-        if super(SaleOrder, self).action_wait():
-            for sale in self:
-                quo = sale.name
-                sale.write({
-                    'origin': quo,
-                    'name': self.env['ir.sequence'].next_by_code(
-                        'sale.order')
-                })
-        return True
+    def action_confirm(self):
+        for sale in self:
+            sale.write({
+                'origin': sale.name,
+                'name': self.env['ir.sequence'].next_by_code(
+                    'sale.order')
+            })
+        return super(SaleOrder, self).action_confirm()
