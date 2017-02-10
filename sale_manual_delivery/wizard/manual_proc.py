@@ -9,23 +9,23 @@ from odoo.tools import float_compare
 class ManualProcurement(models.TransientModel):
     """Creates procurements manually"""
     _name = "manual.procurement"
+    _order = 'create_date desc'
 
     def _set_order_id(self):
-        assert 'active_ids' in self._context
         return self.env['sale.order'].browse(self._context['active_ids'])
 
-    def _set_order_line_ids(self):
-        so = self._set_order_id()
-        ManualLine = self.env['manual.line']
-        lines = self.env['manual.line']
-        for line in so.order_line:
-            vals = {
-                'order_line_id': line.id,
-                'ordered_qty': line.product_uom_qty
-            }
-            manual_line = ManualLine.create(vals)
-            lines |= manual_line
-        return lines
+    @api.onchange('order_id')
+    def onchange_order_id(self):
+        lines = []
+        if self.order_id:
+            for line in self.order_id.order_line:
+
+                vals = {
+                    'order_line_id': line.id,
+                    'ordered_qty': line.product_uom_qty
+                }
+                lines.append((0, 0, vals))
+            self.update({'line_ids': lines})
 
     date_planned = fields.Date(
         string='Date Planned'
@@ -39,7 +39,6 @@ class ManualProcurement(models.TransientModel):
         'manual.line',
         'manual_proc_id',
         string='Lines to validate',
-        default=_set_order_line_ids
     )
     carrier_id = fields.Many2one(
         'delivery.carrier',
@@ -54,5 +53,5 @@ class ManualProcurement(models.TransientModel):
             for line in wizard.line_ids:
                 if float_compare(line.product_qty, 0, 2):
                     product_qty = line.product_qty
-                    line.order_line_id._action_manual_procurement_create(
+                    so_line = line.order_line_id._action_manual_procurement_create(
                         product_qty, date_planned, carrier_id)
