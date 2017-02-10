@@ -12,7 +12,9 @@
           <field name='order_id'/>
           <field name='carrier_id'/>
           <field name='line_ids'>
-            <tree>
+            <tree editable="bottom">
+              <field name='manual_proc_id'/>
+              <field name='order_line_id'/>
               <field name='ordered_qty'/>
               <field name='remaining'/>
               <field name='product_qty'/>
@@ -31,7 +33,7 @@
   </record>
 
   <act_window id='action_wizard_manual_procurement'
-              name='Manual Procurements'
+              name='Manual Delivery'
               res_model='manual.procurement'
               view_mode='form'
               target='new'/>

@@ -5,6 +5,10 @@
         <field name='model'>sale.order</field>
         <field name='inherit_id' ref="sale.view_order_form"/>
         <field name='arch' type="xml">
+<!--             <xpath expr="header" position="inside">
+                <button name="action_wizard_manual_procurement" string="Manual Delivery"
+                        class="btn btn-primary"/>
+            </xpath> -->
             <xpath expr="//field[@name='payment_term_id']" position="after">
                 <field name='manual_procurement'/>
             </xpath>

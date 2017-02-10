@@ -15,21 +15,22 @@ class ManualLine(models.TransientModel):
     order_line_id = fields.Many2one(
         'sale.order.line',
         string='Sale Order Line',
-        readonly=False,
     )
     ordered_qty = fields.Float(
         'Ordered Quantity',
+        readonly=True,
     )
     remaining = fields.Float(
         'Remaining',
-        compute='compute_remaining'
+        compute='compute_remaining',
+        readonly=True,
     )
     product_qty = fields.Float(
         'Quantity to Ship',
     )
 
     @api.multi
-    @api.depends('ordered_qty', 'product_qty')
+    @api.depends('product_qty')
     def compute_remaining(self):
         for line in self:
             line.remaining = line.ordered_qty - line.product_qty
