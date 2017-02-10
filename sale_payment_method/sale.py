@@ -183,6 +183,9 @@ class SaleOrder(models.Model):
             # the amount to the currency of the company and set
             # the journal's currency on the lines
             currency = journal.currency
+        if self.currency_id != company.currency_id:
+            currency = self.currency_id
+        if currency:
             company_amount = currency.compute(amount, company.currency_id)
             amount_currency, amount = amount, company_amount
 
