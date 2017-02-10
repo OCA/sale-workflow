@@ -138,12 +138,11 @@ class AccountInvoice(models.Model):
                 if lines and currency.is_zero(balance):
                     lines.reconcile()
             else:
-                balance = abs(res_invoice['total_amount_currency'] -
+                balance = abs(res_invoice['total_amount_currency'] +
                               res_payment['total_amount_currency'])
                 if lines and currency.is_zero(balance):
-                    kwargs = self._prepare_write_off(res_invoice, res_payment)
-                    ctx_vals = kwargs.pop('context_vals')
-                    lines.with_context(**ctx_vals).reconcile(**kwargs)
+                    lines.with_context(bs_move_id=res_payment[
+                        'lines'].move_id.id).reconcile()
 
     @api.multi
     def reconcile_invoice(self):
