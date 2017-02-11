@@ -4,6 +4,7 @@
 # 
 # Translators:
 # Ahmet Altinisik <aaltinisik@altinkaya.com.tr>, 2015
+# Ahmet Altinisik <aaltinisik@altinkaya.com.tr>, 2015
 # Pedro M. Baeza <pedro.baeza@gmail.com>, 2015
 # Stefano <stefano.sforzi@agilebg.com>, 2015
 # Thomas A. Jaeger, 2015
@@ -11,7 +12,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: sale-workflow (8.0)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-12-23 01:49+0000\n"
+"POT-Creation-Date: 2017-02-04 06:22+0000\n"
 "PO-Revision-Date: 2016-03-03 02:11+0000\n"
 "Last-Translator: <>\n"
 "Language-Team: German (http://www.transifex.com/oca/OCA-sale-workflow-8-0/language/de/)\n"
@@ -24,7 +25,7 @@ msgstr ""
 #. module: sale_service_fleet
 #: model:ir.model,name:sale_service_fleet.model_account_analytic_account
 msgid "Analytic Account"
-msgstr ""
+msgstr "Kostenstelle"
 
 #. module: sale_service_fleet
 #: field:fleet.vehicle,analytic_account_ids:0

@@ -10,8 +10,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: sale-workflow (8.0)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-01-04 10:48+0000\n"
-"PO-Revision-Date: 2017-01-10 08:59+0000\n"
+"POT-Creation-Date: 2017-02-04 06:22+0000\n"
+"PO-Revision-Date: 2017-02-09 11:36+0000\n"
 "Last-Translator: OCA Transbot <transbot@odoo-community.org>\n"
 "Language-Team: German (http://www.transifex.com/oca/OCA-sale-workflow-8-0/language/de/)\n"
 "MIME-Version: 1.0\n"
@@ -70,7 +70,7 @@ msgstr ""
 msgid ""
 "Contract incomplete. Please fill in the Customer and Pricelist fields for "
 "%s."
-msgstr ""
+msgstr "Vertrag unvollständig: Pflegen Sie bitte den Kunden und die Preisliste für %s."
 
 #. module: sale_service_project
 #: code:addons/sale_service_project/models/project.py:63
@@ -293,7 +293,7 @@ msgstr "Produktvorlage"
 #. module: sale_service_project
 #: model:ir.model,name:sale_service_project.model_project_project
 msgid "Project"
-msgstr ""
+msgstr "Projekt"
 
 #. module: sale_service_project
 #: view:project.task:sale_service_project.view_task_search_form_project_parent
@@ -395,7 +395,7 @@ msgstr ""
 #. module: sale_service_project
 #: model:ir.model,name:sale_service_project.model_hr_analytic_timesheet
 msgid "Timesheet Line"
-msgstr ""
+msgstr "Zeiterfassungsposition"
 
 #. module: sale_service_project
 #: field:sale.order.line,task_work_hours:0
@@ -418,7 +418,7 @@ msgstr ""
 #: code:addons/sale_service_project/models/hr_timesheet_invoice.py:75
 #, python-format
 msgid "Trying to invoice non invoiceable line for %s."
-msgstr ""
+msgstr "Versuche nicht-abrechenbare Position %s abzurechnen."
 
 #. module: sale_service_project
 #: field:product.price.service.wizard,uom_id:0
