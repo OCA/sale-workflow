@@ -47,7 +47,6 @@ addon | version | summary
 [sale_last_price_info](sale_last_price_info/) | 8.0.1.0.0 (unported) | Product Last Price Info - Sale
 [sale_multi_picking](sale_multi_picking/) | 0.1 (unported) | Multi Pickings from Sale Orders
 [sale_order_add_variants](sale_order_add_variants/) | 8.0.0.1.0 (unported) | Add variants from template into sale order
-[sale_order_back2draft](sale_order_back2draft/) | 8.0.1.0.0 (unported) | Back to draft on sales orders
 [sale_order_force_number](sale_order_force_number/) | 0.1 (unported) | Force sale orders numeration
 [sale_order_line_description](sale_order_line_description/) | 8.0.1.0.0 (unported) | Sale order line description
 [sale_order_lot_selection](sale_order_lot_selection/) | 9.0.1.0.0 (unported) | Sale Order Lot Selection
