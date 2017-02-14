@@ -1,32 +1,36 @@
 # Translation of Odoo Server.
 # This file contains the translation of the following modules:
 # * sale_order_variant_mgmt
-# 
+#
 # Translators:
 # OCA Transbot <transbot@odoo-community.org>, 2016
 msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 9.0c\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-11-22 23:46+0000\n"
-"PO-Revision-Date: 2016-11-22 23:46+0000\n"
-"Last-Translator: OCA Transbot <transbot@odoo-community.org>, 2016\n"
-"Language-Team: Spanish (Spain) (https://www.transifex.com/oca/teams/23907/es_ES/)\n"
+"POT-Creation-Date: 2017-01-03 10:50+0100\n"
+"PO-Revision-Date: 2017-01-03 10:51+0100\n"
+"Last-Translator: Sergio Teruel <sergio.teruel@tecnativa.com>\n"
+"Language-Team: Spanish (Spain) (https://www.transifex.com/oca/teams/23907/"
+"es_ES/)\n"
+"Language: es_ES\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
-"Content-Transfer-Encoding: \n"
-"Language: es_ES\n"
+"Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"X-Generator: Poedit 1.8.7.1\n"
 
 #. module: sale_order_variant_mgmt
 #: model:ir.ui.view,arch_db:sale_order_variant_mgmt.view_order_form
+#, fuzzy
 msgid "Add or Modify Variants"
-msgstr ""
+msgstr "Modificar"
 
 #. module: sale_order_variant_mgmt
 #: model:ir.model.fields,field_description:sale_order_variant_mgmt.field_sale_order_line_product_attribute_value_ids
+#, fuzzy
 msgid "Attributes"
-msgstr ""
+msgstr "Atributos"
 
 #. module: sale_order_variant_mgmt
 #: model:ir.ui.view,arch_db:sale_order_variant_mgmt.sale_manage_variant_form
@@ -46,15 +50,11 @@ msgid "Created on"
 msgstr "Creado en"
 
 #. module: sale_order_variant_mgmt
-#: model:ir.model.fields,field_description:sale_order_variant_mgmt.field_sale_manage_variant_line_disabled
-msgid "Disabled"
-msgstr ""
-
-#. module: sale_order_variant_mgmt
 #: model:ir.model.fields,field_description:sale_order_variant_mgmt.field_sale_manage_variant_display_name
 #: model:ir.model.fields,field_description:sale_order_variant_mgmt.field_sale_manage_variant_line_display_name
+#, fuzzy
 msgid "Display Name"
-msgstr ""
+msgstr "Nombre mostrado"
 
 #. module: sale_order_variant_mgmt
 #: model:ir.model.fields,field_description:sale_order_variant_mgmt.field_sale_manage_variant_id
@@ -65,8 +65,9 @@ msgstr "ID"
 #. module: sale_order_variant_mgmt
 #: model:ir.model.fields,field_description:sale_order_variant_mgmt.field_sale_manage_variant___last_update
 #: model:ir.model.fields,field_description:sale_order_variant_mgmt.field_sale_manage_variant_line___last_update
+#, fuzzy
 msgid "Last Modified on"
-msgstr ""
+msgstr "Última modificación en"
 
 #. module: sale_order_variant_mgmt
 #: model:ir.model.fields,field_description:sale_order_variant_mgmt.field_sale_manage_variant_line_write_uid
@@ -82,63 +83,213 @@ msgstr "Última actualización en"
 
 #. module: sale_order_variant_mgmt
 #: model:ir.ui.view,arch_db:sale_order_variant_mgmt.sale_manage_variant_form
+#, fuzzy
 msgid "Manage Product Variants"
-msgstr ""
+msgstr "Administrar Variantes de Productos"
 
 #. module: sale_order_variant_mgmt
 #: model:ir.actions.act_window,name:sale_order_variant_mgmt.action_sale_manage_variant
+#, fuzzy
 msgid "Manage variants"
-msgstr ""
+msgstr "Administrar Variantes de Productos"
 
 #. module: sale_order_variant_mgmt
 #: model:ir.ui.view,arch_db:sale_order_variant_mgmt.view_order_form
+#, fuzzy
 msgid "Modify Variants"
-msgstr ""
+msgstr "Modificar"
+
+#. module: sale_order_variant_mgmt
+#: code:addons/sale_order_variant_mgmt/wizard/sale_manage_variant.py:81
+#, python-format
+msgid "Please select a product for transfer to order"
+msgstr "Por favor, seleccione un producto para transferir al pedido"
 
 #. module: sale_order_variant_mgmt
 #: model:ir.model.fields,field_description:sale_order_variant_mgmt.field_sale_order_line_product_tmpl_id_sale_order_variant_mgmt
+#, fuzzy
 msgid "Product Template"
-msgstr ""
-
-#. module: sale_order_variant_mgmt
-#: model:ir.model.fields,field_description:sale_order_variant_mgmt.field_sale_manage_variant_line_product_uom_qty
-msgid "Quantity"
-msgstr ""
-
-#. module: sale_order_variant_mgmt
-#: model:ir.model,name:sale_order_variant_mgmt.model_sale_order_line
-msgid "Sales Order Line"
-msgstr ""
-
-#. module: sale_order_variant_mgmt
-#: model:ir.model.fields,field_description:sale_order_variant_mgmt.field_sale_manage_variant_product_tmpl_id
-msgid "Template"
-msgstr ""
+msgstr "Plantilla producto"
 
 #. module: sale_order_variant_mgmt
 #: model:ir.ui.view,arch_db:sale_order_variant_mgmt.sale_manage_variant_form
+#, fuzzy
+msgid "Products"
+msgstr "Productos"
+
+#. module: sale_order_variant_mgmt
+#: model:ir.ui.view,arch_db:sale_order_variant_mgmt.sale_manage_variant_form
+msgid "Products Selected"
+msgstr "Productos seleccionados"
+
+#. module: sale_order_variant_mgmt
+#: model:ir.model.fields,field_description:sale_order_variant_mgmt.field_sale_manage_variant_line_product_uom_qty
+#, fuzzy
+msgid "Quantity"
+msgstr "Cantidad"
+
+#. module: sale_order_variant_mgmt
+#: model:ir.model.fields,field_description:sale_order_variant_mgmt.field_sale_manage_variant_sale_order_line
+#, fuzzy
+msgid "Sale Order View"
+msgstr "Orden de pago"
+
+#. module: sale_order_variant_mgmt
+#: model:ir.model,name:sale_order_variant_mgmt.model_sale_order_line
+#, fuzzy
+msgid "Sales Order Line"
+msgstr "Línea pedido de venta"
+
+#. module: sale_order_variant_mgmt
+#: model:ir.model.fields,field_description:sale_order_variant_mgmt.field_sale_manage_variant_product_tmpl_id
+#, fuzzy
+msgid "Template"
+msgstr "Plantilla"
+
+#. module: sale_order_variant_mgmt
+#: model:ir.ui.view,arch_db:sale_order_variant_mgmt.sale_manage_variant_form
+#, fuzzy
+msgid "Transfer and new"
+msgstr "New Transfer"
+
+#. module: sale_order_variant_mgmt
+#: model:ir.ui.view,arch_db:sale_order_variant_mgmt.sale_manage_variant_form
+#, fuzzy
 msgid "Transfer to order"
-msgstr ""
+msgstr "on the sale order form to see Transfer Order"
 
 #. module: sale_order_variant_mgmt
 #: model:ir.model.fields,field_description:sale_order_variant_mgmt.field_sale_manage_variant_line_value_x
+#, fuzzy
 msgid "Value x"
-msgstr ""
+msgstr "Pasillo (X)"
 
 #. module: sale_order_variant_mgmt
 #: model:ir.model.fields,field_description:sale_order_variant_mgmt.field_sale_manage_variant_line_value_y
+#, fuzzy
 msgid "Value y"
 msgstr ""
+"2D matrix for x2many fields\n"
+"===========================\n"
+"\n"
+"This module allows to show an x2many field with 3-tuples\n"
+"($x_value, $y_value, $value) in a table\n"
+"\n"
+"          $x_value1   $x_value2 \n"
+"========= =========== ===========\n"
+"$y_value1 $value(1/1) $value(2/1)\n"
+"$y_value2 $value(1/2) $value(2/2)\n"
+"========= =========== ===========\n"
+"\n"
+"where `value(n/n)` is editable.\n"
+"\n"
+"An example use case would be: Select some projects and some employees so "
+"that\n"
+"a manager can easily fill in the planned_hours for one task per employee. "
+"The\n"
+"result could look like this:\n"
+"\n"
+".. image:: /web_widget_x2many_2d_matrix/static/description/screenshot."
+"png\n"
+"    :alt: Screenshot\n"
+"\n"
+"The beauty of this is that you have an arbitrary amount of columns with "
+"this widget, trying to get this in standard x2many lists involves some "
+"quite agly hacks.\n"
+"\n"
+"Usage\n"
+"=====\n"
+"\n"
+"Use this widget by saying::\n"
+"\n"
+"<field name=\"my_field\" widget=\"x2many_2d_matrix\" />\n"
+"\n"
+"This assumes that my_field refers to a model with the fields `x`, `y` "
+"and\n"
+"`value`. If your fields are named differently, pass the correct names as\n"
+"attributes::\n"
+"\n"
+"<field name=\"my_field\" widget=\"x2many_2d_matrix\" field_x_axis="
+"\"my_field1\" field_y_axis=\"my_field2\" field_value=\"my_field3\" />\n"
+"\n"
+"You can pass the following parameters:\n"
+"\n"
+"field_x_axis\n"
+"    The field that indicates the x value of a point\n"
+"field_y_axis\n"
+"    The field that indicates the y value of a point\n"
+"field_label_x_axis\n"
+"    Use another field to display in the table header\n"
+"field_label_y_axis\n"
+"    Use another field to display in the table header\n"
+"field_value\n"
+"    Show this field as value\n"
+"show_row_totals\n"
+"    If field_value is a numeric field, calculate row totals\n"
+"show_column_totals\n"
+"    If field_value is a numeric field, calculate column totals\n"
+"\n"
+"Known issues / Roadmap\n"
+"======================\n"
+"\n"
+"* it would be worth trying to instantiate the proper field widget and let "
+"it render the input\n"
+"\n"
+"\n"
+"Bug Tracker\n"
+"===========\n"
+"\n"
+"Bugs are tracked on `GitHub Issues <https://github.com/OCA/web/"
+"issues>`_.\n"
+"In case of trouble, please check there if your issue has already been "
+"reported.\n"
+"If you spotted it first, help us smashing it by providing a detailed and "
+"welcomed feedback\n"
+"`here <https://github.com/OCA/web/issues/new?body=module:"
+"%20web_widget_x2many_2d_matrix%0Aversion:%208.0%0A%0A**Steps%20to"
+"%20reproduce**%0A-%20...%0A%0A**Current%20behavior**%0A%0A**Expected"
+"%20behavior**>`_.\n"
+"\n"
+"\n"
+"Credits\n"
+"=======\n"
+"\n"
+"Contributors\n"
+"------------\n"
+"\n"
+"* Holger Brunn <hbrunn@therp.nl>\n"
+"\n"
+"Maintainer\n"
+"----------\n"
+"\n"
+".. image:: http://odoo-community.org/logo.png\n"
+"    :alt: Odoo Community Association\n"
+"    :target: http://odoo-community.org\n"
+"\n"
+"This module is maintained by the OCA.\n"
+"\n"
+"OCA, or the Odoo Community Association, is a nonprofit organization whose "
+"mission is to support the collaborative development of Odoo features and "
+"promote its widespread use.\n"
+"\n"
+"To contribute to this module, please visit http://odoo-community.org.\n"
 
 #. module: sale_order_variant_mgmt
 #: model:ir.model.fields,field_description:sale_order_variant_mgmt.field_sale_manage_variant_line_product_id
+#, fuzzy
 msgid "Variant"
-msgstr ""
+msgstr "Imagen de la variante"
 
 #. module: sale_order_variant_mgmt
 #: model:ir.model.fields,field_description:sale_order_variant_mgmt.field_sale_manage_variant_variant_line_ids
+#, fuzzy
 msgid "Variant Lines"
-msgstr ""
+msgstr "Es una variante de producto"
+
+#. module: sale_order_variant_mgmt
+#: model:ir.ui.view,arch_db:sale_order_variant_mgmt.sale_manage_variant_form
+msgid "or"
+msgstr "o"
 
 #. module: sale_order_variant_mgmt
 #: model:ir.model,name:sale_order_variant_mgmt.model_sale_manage_variant

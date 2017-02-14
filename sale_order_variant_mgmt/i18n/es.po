@@ -1,19 +1,21 @@
 # Translation of Odoo Server.
 # This file contains the translation of the following modules:
-#	* sale_order_variant_mgmt
+# 	* sale_order_variant_mgmt
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 9.0c\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-09-29 17:00+0000\n"
-"PO-Revision-Date: 2016-09-29 17:00+0000\n"
-"Last-Translator: <>\n"
+"POT-Creation-Date: 2017-01-03 11:05+0100\n"
+"PO-Revision-Date: 2017-01-03 11:05+0100\n"
+"Last-Translator: Sergio Teruel <sergio.teruel@tecnativa.com>\n"
 "Language-Team: \n"
+"Language: es\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
-"Content-Transfer-Encoding: \n"
+"Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: \n"
+"X-Generator: Poedit 1.8.7.1\n"
 
 #. module: sale_order_variant_mgmt
 #: model:ir.ui.view,arch_db:sale_order_variant_mgmt.view_order_form
@@ -93,14 +95,35 @@ msgid "Modify Variants"
 msgstr "Modificar variantes"
 
 #. module: sale_order_variant_mgmt
+#: code:addons/sale_order_variant_mgmt/wizard/sale_manage_variant.py:81
+#, python-format
+msgid "Please select a product for transfer to order"
+msgstr "Por favor, seleccione un producto para transferir al pedido"
+
+#. module: sale_order_variant_mgmt
 #: model:ir.model.fields,field_description:sale_order_variant_mgmt.field_sale_order_line_product_tmpl_id_sale_order_variant_mgmt
 msgid "Product Template"
 msgstr "Plantilla producto"
 
 #. module: sale_order_variant_mgmt
+#: model:ir.ui.view,arch_db:sale_order_variant_mgmt.sale_manage_variant_form
+msgid "Products"
+msgstr "Productos"
+
+#. module: sale_order_variant_mgmt
+#: model:ir.ui.view,arch_db:sale_order_variant_mgmt.sale_manage_variant_form
+msgid "Products Selected"
+msgstr "Productos seleccionados"
+
+#. module: sale_order_variant_mgmt
 #: model:ir.model.fields,field_description:sale_order_variant_mgmt.field_sale_manage_variant_line_product_uom_qty
 msgid "Quantity"
 msgstr "Cantidad"
+
+#. module: sale_order_variant_mgmt
+#: model:ir.model.fields,field_description:sale_order_variant_mgmt.field_sale_manage_variant_sale_order_line
+msgid "Sale Order View"
+msgstr "Línea pedido de venta"
 
 #. module: sale_order_variant_mgmt
 #: model:ir.model,name:sale_order_variant_mgmt.model_sale_order_line
@@ -111,6 +134,11 @@ msgstr "Línea pedido de venta"
 #: model:ir.model.fields,field_description:sale_order_variant_mgmt.field_sale_manage_variant_product_tmpl_id
 msgid "Template"
 msgstr "Plantilla"
+
+#. module: sale_order_variant_mgmt
+#: model:ir.ui.view,arch_db:sale_order_variant_mgmt.sale_manage_variant_form
+msgid "Transfer and new"
+msgstr "Transferir y nuevo"
 
 #. module: sale_order_variant_mgmt
 #: model:ir.ui.view,arch_db:sale_order_variant_mgmt.sale_manage_variant_form
@@ -138,6 +166,11 @@ msgid "Variant Lines"
 msgstr "Líneas de variantes"
 
 #. module: sale_order_variant_mgmt
+#: model:ir.ui.view,arch_db:sale_order_variant_mgmt.sale_manage_variant_form
+msgid "or"
+msgstr "o"
+
+#. module: sale_order_variant_mgmt
 #: model:ir.model,name:sale_order_variant_mgmt.model_sale_manage_variant
 msgid "sale.manage.variant"
 msgstr "sale.manage.variant"
@@ -146,4 +179,3 @@ msgstr "sale.manage.variant"
 #: model:ir.model,name:sale_order_variant_mgmt.model_sale_manage_variant_line
 msgid "sale.manage.variant.line"
 msgstr "sale.manage.variant.line"
-

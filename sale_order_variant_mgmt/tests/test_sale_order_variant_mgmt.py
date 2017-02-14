@@ -104,3 +104,34 @@ class TestSaleOrderVariantMgmt(common.SavepointCase):
         self.assertFalse(order_line1.exists(), "Order line not removed.")
         self.assertEqual(
             order_line2.product_uom_qty, 10, "Order line not change quantity.")
+        
+    def test_transfer_and_new(self):
+        wizard = self.Wizard.new({'product_tmpl_id': self.product_tmpl.id})
+        wizard._onchange_product_tmpl_id()
+        wizard = wizard.create(wizard._convert_to_write(wizard._cache))
+        self.assertEqual(len(wizard.variant_line_ids), 4)
+        wizard.variant_line_ids[0].product_uom_qty = 1
+        wizard.variant_line_ids[1].product_uom_qty = 2
+        wizard.variant_line_ids[2].product_uom_qty = 3
+        wizard.variant_line_ids[3].product_uom_qty = 4
+        wizard.button_transfer_to_order_and_new()
+        self.assertEqual(len(self.order.order_line), 4,
+                         "There should be 4 lines in the sale order")
+        self.assertEqual(self.order.order_line[0].product_uom_qty, 1)
+        self.assertEqual(self.order.order_line[1].product_uom_qty, 2)
+        self.assertEqual(self.order.order_line[2].product_uom_qty, 3)
+        self.assertEqual(self.order.order_line[3].product_uom_qty, 4)
+
+    def test_cancel_transfer(self):
+        wizard = self.Wizard.new({'product_tmpl_id': self.product_tmpl.id})
+        wizard._onchange_product_tmpl_id()
+        wizard = wizard.create(wizard._convert_to_write(wizard._cache))
+        self.assertEqual(len(wizard.variant_line_ids), 4)
+        wizard.variant_line_ids[0].product_uom_qty = 1
+        wizard.variant_line_ids[1].product_uom_qty = 2
+        wizard.variant_line_ids[2].product_uom_qty = 3
+        wizard.variant_line_ids[3].product_uom_qty = 4
+        wizard.button_transfer_to_order_and_new()
+        wizard.cancel()
+        self.assertEqual(len(self.order.order_line), 0,
+                         "There should be 0 lines in the sale order")
