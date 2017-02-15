@@ -53,5 +53,5 @@ class ManualProcurement(models.TransientModel):
             for line in wizard.line_ids:
                 if float_compare(line.product_qty, 0, 2):
                     product_qty = line.product_qty
-                    so_line = line.order_line_id._action_manual_procurement_create(
+                    line.order_line_id._action_manual_procurement_create(
                         product_qty, date_planned, carrier_id)

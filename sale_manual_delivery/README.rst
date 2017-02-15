@@ -2,14 +2,15 @@
    :target: http://www.gnu.org/licenses/agpl-3.0-standalone.html
    :alt: License: AGPL-3
 
-======================
-{Sale Manual Delivery}
-======================
+=====================
+Sale Manual Delivery
+=====================
 
 The goal of this module is to allow the manual creation of delivery slips. If activated,
 a sale order won't direcly impact directly the stock. It will not make a reservation on the stock.
 It allows the delivery and the impact on stock to be done manually when needed.
 The goal is to be used on long term projects where not all the material is shipped at once.
+As you make many shipments, every time you make a new delivery, you can choose an new carrier.
 
 
 Known issues / Roadmap
