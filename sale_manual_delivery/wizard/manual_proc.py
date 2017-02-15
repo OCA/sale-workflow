@@ -20,7 +20,8 @@ class ManualDelivery(models.TransientModel):
         lines = []
         if self.order_id:
             for line in self.order_id.order_line:
-                if not line.existing_qty == line.product_uom_qty:
+                if not line.existing_qty == line.product_uom_qty and \
+                line.product_id.type != 'service':
                     vals = {
                         'order_line_id': line.id,
                         'ordered_qty': line.product_uom_qty,
