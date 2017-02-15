@@ -2,6 +2,8 @@
 # Copyright 2017 Denis Leemann, Camptocamp SA
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
 from odoo import fields, models, api
+from odoo.exceptions import UserError
+from odoo.tools.translate import _
 
 
 class SaleOrder(models.Model):
@@ -29,3 +31,12 @@ class SaleOrder(models.Model):
         ).read()[0]
         action['res_id'] = wizard.id
         return action
+
+    @api.one
+    def toggle_manual(self):
+        if isinstance(self.id, int):  # if already saved
+            if self.state != 'draft':
+                raise UserError(_(
+                    'You can only change to/from manual delivery in a quote, \
+                    not a confirmed order'))
+            self.manual_delivery = not self.manual_delivery
