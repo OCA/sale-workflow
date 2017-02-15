@@ -5,32 +5,42 @@
 from odoo import models, fields, api
 
 
-class ManualLine(models.TransientModel):
-    _name = "manual.line"
+class ManualDeliveryLine(models.TransientModel):
+    _name = "manual.delivery.line"
 
-    manual_proc_id = fields.Many2one(
-        'manual.procurement',
+    manual_delivery_id = fields.Many2one(
+        'manual.delivery',
         string='Wizard manual procurement',
     )
     order_line_id = fields.Many2one(
         'sale.order.line',
         string='Sale Order Line',
+        readonly=True,
     )
     ordered_qty = fields.Float(
-        'Ordered Quantity',
+        'Ordered quantity',
+        help="Quantity ordered in the related Sale Order",
         readonly=True,
     )
-    remaining = fields.Float(
-        'Remaining',
-        compute='compute_remaining',
+    existing_qty = fields.Float(
+        'Existing quantity',
+        help="Quantity already planned or shipped (stock movements \
+            already created)",
         readonly=True,
     )
-    product_qty = fields.Float(
+    remaining_qty = fields.Float(
+        'Remaining quantity',
+        compute='_compute_remaining_qty',
+        help="Remaining quantity available to deliver",
+        readonly=True,
+    )
+    to_ship_qty = fields.Float(
         'Quantity to Ship',
     )
 
     @api.multi
-    @api.depends('product_qty')
-    def compute_remaining(self):
+    @api.depends('to_ship_qty')
+    def _compute_remaining_qty(self):
         for line in self:
-            line.remaining = line.ordered_qty - line.product_qty
+            line.remaining_qty = line.ordered_qty - line.existing_qty \
+                - line.to_ship_qty
