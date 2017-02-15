@@ -8,7 +8,7 @@ from odoo.tools import float_compare
 
 class ManualProcurement(models.TransientModel):
     """Creates procurements manually"""
-    _name = "manual.procurement"
+    _name = "manual.delivery"
     _order = 'create_date desc'
 
     def _set_order_id(self):
@@ -37,7 +37,7 @@ class ManualProcurement(models.TransientModel):
     )
     line_ids = fields.One2many(
         'manual.line',
-        'manual_proc_id',
+        'manual_delivery_id',
         string='Lines to validate',
     )
     carrier_id = fields.Many2one(
@@ -53,5 +53,5 @@ class ManualProcurement(models.TransientModel):
             for line in wizard.line_ids:
                 if float_compare(line.product_qty, 0, 2):
                     product_qty = line.product_qty
-                    line.order_line_id._action_manual_procurement_create(
+                    line.order_line_id._action_manual_delivery_create(
                         product_qty, date_planned, carrier_id)
