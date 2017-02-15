@@ -11,7 +11,10 @@ class SaleOrder(models.Model):
 
     manual_delivery = fields.Boolean(
         string='Manual Delivery',
-        default=False
+        default=False,
+        help="If Manual, the deliveries are not created at SO confirmation.\
+        You need to use the Create Delivery button in order to reserve and \
+        ship the goods."
     )
 
     @api.onchange('team_id')
@@ -24,6 +27,7 @@ class SaleOrder(models.Model):
         self.ensure_one()
         wizard = self.env['manual.delivery'].create({
             'order_id': self.id,
+            'carrier_id': self.carrier_id.id,
         })
         wizard.onchange_order_id()
         action = self.env.ref(
