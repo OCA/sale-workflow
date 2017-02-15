@@ -6,7 +6,7 @@
     'author': 'Camptocamp SA, Odoo Community Association (OCA)',
     'version': '10.0.1.0.0',
     'website': 'http://camptocamp.com',
-    'summary': "Sale product set",
+    'summary': "Sale manual delivery",
     'depends': [
         'delivery',
         'sale',

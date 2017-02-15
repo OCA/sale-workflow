@@ -10,14 +10,14 @@ class SaleOrderLine(models.Model):
     @api.multi
     def _action_procurement_create(self):
         for line in self:
-            if (line.order_id.manual_procurement and
+            if (line.order_id.manual_delivery and
                     line.product_id.type != 'service'):
                 return self.env['procurement.order'].browse()
             else:
                 return super(SaleOrderLine, self)._action_procurement_create()
 
     @api.multi
-    def _action_manual_procurement_create(self, product_qty, date_planned,
+    def _action_manual_delivery_create(self, product_qty, date_planned,
                                           carrier):
 
         new_procs = self.env['procurement.order']  # Empty recordset
