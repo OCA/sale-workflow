@@ -7,7 +7,7 @@ from odoo import fields, models
 class CrmTeam(models.Model):
     _inherit = 'crm.team'
 
-    manual_procurement = fields.Boolean(
-        string='Manual Procurement',
+    manual_delivery = fields.Boolean(
+        string='Manual Delivery',
         default=False
     )
