@@ -22,7 +22,7 @@
                 </xpath>
 
            <xpath expr="header" position="inside">
-                <button name="action_manual_delivery_wizard" string="Manual Delivery"
+                <button name="action_manual_delivery_wizard" string="Create Delivery"
                         type="object" class="btn btn-primary"
                         attrs="{'invisible': ['|',('manual_delivery', '=', False), ('state', '!=', 'sale')]}"
                         />
