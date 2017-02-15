@@ -6,7 +6,7 @@
         <field name='inherit_id' ref="sales_team.crm_team_view_form"/>
         <field name='arch' type="xml">
             <group name="left" position="inside">
-                <field name='manual_procurement'/>
+                <field name='manual_delivery'/>
             </group>
         </field>
     </record>
