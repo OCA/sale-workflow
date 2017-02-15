@@ -5,12 +5,27 @@
         <field name='model'>sale.order</field>
         <field name='inherit_id' ref="sale.view_order_form"/>
         <field name='arch' type="xml">
-            <xpath expr="header" position="inside">
-                <button name="action_manual_delivery_wizard" string="Manual Delivery"
-                        type="object" class="btn btn-primary"/>
-            </xpath>
-            <xpath expr="//field[@name='payment_term_id']" position="after">
+          <!--   <xpath expr="//field[@name='payment_term_id']" position="after">
                 <field name='manual_delivery'/>
+            </xpath> -->
+            <xpath expr="//button[@name='action_view_invoice']" position="after">
+                     <button name="toggle_manual" type="object"
+                            class="oe_stat_button" icon="fa-calendar">
+                        <field name="manual_delivery" widget="boolean_button"
+                            options='{"terminology": {
+                                    "string_true": "Manual",
+                                    "hover_true": "To Standard Delivery",
+                                    "string_false": "Standard",
+                                    "hover_false": "To Manual Delivery"
+                                }}'/>
+                    </button>
+                </xpath>
+
+           <xpath expr="header" position="inside">
+                <button name="action_manual_delivery_wizard" string="Create Delivery"
+                        type="object" class="btn btn-primary"
+                        attrs="{'invisible': ['|',('manual_delivery', '=', False), ('state', '!=', 'sale')]}"
+                        />
             </xpath>
         </field>
     </record>
