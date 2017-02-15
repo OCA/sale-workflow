@@ -12,34 +12,16 @@ class StockMove(models.Model):
         res = super(StockMove, self)._get_new_picking_values()
         if self.procurement_id.carrier_id:
             res['carrier_id'] = self.procurement_id.carrier_id.id
-        res = super(StockMove, self)._get_new_picking_values()
         return res
 
-    # Below comment is from Odoo sources
-    # TDE DECORATOR: remove that api.multi when action_confirm is migrated
     @api.multi
     def assign_picking(self):
-
-        Picking = self.env['stock.picking']
-        self.recompute()
-
+        res = super(StockMove, self).assign_picking()      
+        # If moves come from a manual delivery from SO, we
+        # Set the printed field to True in order to be sure no other moves
+        # will go in this delivery.
         for move in self:
-            picking = Picking.search([
-                ('group_id', '=', move.group_id.id),
-                ('location_id', '=', move.location_id.id),
-                ('location_dest_id', '=', move.location_dest_id.id),
-                ('picking_type_id', '=', move.picking_type_id.id),
-                ('printed', '=', False),
-                ('state', 'in', ['draft',
-                                 'confirmed',
-                                 'waiting',
-                                 'partially_available',
-                                 'assigned'])], limit=1)
-            if not picking:
-                picking = Picking.create(move._get_new_picking_values())
-            move.write({'picking_id': picking.id})
-        return True
-        # return super(StockMove, self).assign_picking()
-        # ELSE return super
-        #
-# move.procurement_id.sale_line_id.order_id.carrier_id
+            if move.picking_id.sale_id.manual_delivery:
+                if not move.picking_id.printed:
+                    move.picking_id.write({'printed':True})
+        return res
