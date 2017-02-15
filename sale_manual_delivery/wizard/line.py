@@ -8,8 +8,8 @@ from odoo import models, fields, api
 class ManualLine(models.TransientModel):
     _name = "manual.line"
 
-    manual_proc_id = fields.Many2one(
-        'manual.procurement',
+    manual_delivery_id = fields.Many2one(
+        'manual.delivery',
         string='Wizard manual procurement',
     )
     order_line_id = fields.Many2one(
