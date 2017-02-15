@@ -14,7 +14,8 @@ class SaleOrder(models.Model):
 
     @api.onchange('team_id')
     def _onchange_team_id(self):
-        self.manual_procurement = False  # "TODO copy sale team value"
+        self.manual_procurement = self.team_id.manual_procurement \
+            if self.team_id else False
 
     @api.multi
     def action_manual_procurement_wizard(self):
