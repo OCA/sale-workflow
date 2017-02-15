@@ -71,3 +71,7 @@ msgstr "Remplacé par"
 msgid "Superseeded on"
 msgstr "Remplacé le"
 
+#. module: sale_order_revision
+#: model:ir.ui.view,arch_db:sale_order_revision.sale_order_form
+msgid "New Copy of Quotation"
+msgstr "Nouvelle copie de la citation"
