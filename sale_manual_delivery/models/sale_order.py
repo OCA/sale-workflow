@@ -15,3 +15,16 @@ class SaleOrder(models.Model):
     @api.onchange('team_id')
     def _onchange_team_id(self):
         self.manual_procurement = False  # "TODO copy sale team value"
+
+    @api.multi
+    def action_manual_procurement_wizard(self):
+        self.ensure_one()
+        wizard = self.env['manual.procurement'].create({
+            'order_id': self.id,
+        })
+        wizard.onchange_order_id()
+        action = self.env.ref(
+            'sale_manual_delivery.action_wizard_manual_procurement'
+        ).read()[0]
+        action['res_id'] = wizard.id
+        return action
