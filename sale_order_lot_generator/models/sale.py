@@ -2,7 +2,7 @@
 #   @author Valentin CHEMIERE <valentin.chemiere@akretion.com>
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
 
-from openerp import api, models
+from odoo import api, models
 
 
 class SaleOrder(models.Model):
@@ -24,8 +24,8 @@ class SaleOrder(models.Model):
             index_lot = 1
             for line in rec.order_line:
                 line_vals = {}
-                if (line.product_id.auto_generate_prodlot and not 
-                        line.lot_id and
+                if (line.product_id.auto_generate_prodlot and
+                    not line.lot_id and
                         line.product_id.tracking != 'none'):
                     vals = rec._prepare_vals_lot_number(line, index_lot)
                     index_lot += 1
