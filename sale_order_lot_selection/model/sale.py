@@ -1,26 +1,10 @@
 # -*- coding: utf-8 -*-
-#########################################################################
-#                                                                       #
-# Copyright (C) 2015  Agile Business Group                              #
-#                                                                       #
-# This program is free software: you can redistribute it and/or modify  #
-# it under the terms of the GNU Affero General Public License as        #
-# published by the Free Software Foundation, either version 3 of the    #
-# License, or (at your option) any later version.                       #
-#                                                                       #
-# This program is distributed in the hope that it will be useful,       #
-# but WITHOUT ANY WARRANTY; without even the implied warranty of        #
-# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the         #
-# GNU Affero General Public Licensefor more details.                    #
-#                                                                       #
-# You should have received a copy of the                                #
-# GNU Affero General Public License                                     #
-# along with this program.  If not, see <http://www.gnu.org/licenses/>. #
-#                                                                       #
-#########################################################################
+# © 2015 Agile Business Group
+# License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
 
-from openerp import fields, models, api, _
-from openerp.exceptions import Warning
+
+from odoo import api, fields, models, _
+from odoo.exceptions import Warning
 
 
 class SaleOrderLine(models.Model):
@@ -39,7 +23,7 @@ class SaleOrderLine(models.Model):
                 ('location_id', 'child_of', location.id),
                 ('qty', '>', 0),
                 ('lot_id', '!=', False),
-                ], ['lot_id'], 'lot_id')
+            ], ['lot_id'], 'lot_id')
             available_lot_ids = [quant['lot_id'][0] for quant in quants]
         self.lot_id = False
         return {
