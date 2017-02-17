@@ -1,0 +1,66 @@
+-
+    In order to test the sale_line_quantity_properties_based,
+    I start by creating a new unit of measure category 'Surface'
+-
+    !record {model: product.uom.categ, id:  product_uom_categ_area}:
+        name: Surface
+-
+    I create the unit of measure square meter
+-
+    !record {model: product.uom, id:  product_uom_m2}:
+        name: m²
+        category_id: product_uom_categ_area
+-
+    I create the formula surface
+-
+    !record {model: mrp.property.formula, id:  sale_order_line_quantity_formula_surface}:
+        name: surface
+        formula_text: result = float(properties['length']) * float(properties['width']) * qty_uos
+-
+    I create a product 'shelf'
+-
+    !record {model: product.product, id:  product_product_shelf}:
+        categ_id: product.product_category_all
+        name: shelf
+        type: product
+        uom_id: product_uom_m2
+        list_price: 1.0
+        quantity_formula_id: sale_order_line_quantity_formula_surface
+-
+    I create a property group 'length'
+-
+    !record {model: mrp.property.group, id:  mrp_property_group_length}:
+        name: length
+-
+    I create a property group 'width'
+-
+    !record {model: mrp.property.group, id:  mrp_property_group_width}:
+        name: width
+-
+    I create a property 'length 4'
+-
+    !record {model: mrp.property, id:  mrp_property_length_4}:
+        name: length 4
+        group_id: mrp_property_group_length
+        value: 4
+-
+    I create a property 'width 0.5'
+-
+    !record {model: mrp.property, id:  mrp_property_length_width_05}:
+        name: width 0.5
+        group_id: mrp_property_group_width
+        value: 0.5
+-
+  I check the on_change
+-
+  !python {model: sale.order.line}: |
+    if context is None:
+        context = {}
+    context['property_ids'] = [(6, False, [
+        ref('mrp_property_length_4'),
+        ref('mrp_property_length_width_05'),
+        ])]
+    res = self.product_id_change(cr, uid, [], ref('product.list0'), ref('product_product_shelf'), qty_uos=6,
+        partner_id=ref('base.res_partner_1'), context=context)
+    if 'product_uom_qty' in res['value']:
+        assert res['value']['product_uom_qty'] == 4 * 0.5 * 6, "Quantity must be 12, %s found" % res['value']['product_uom_qty']
