@@ -9,8 +9,8 @@ class SaleOrderLine(models.Model):
 
     existing_qty = fields.Float(
         'Existing quantity',
-        compute='_get_existing_qty',
-        help = "Quantity already planned or shipped (stock movements \
+        compute='_compute_get_existing_qty',
+        help="Quantity already planned or shipped (stock movements \
             already created)",
         readonly=True,
     )
@@ -32,14 +32,14 @@ class SaleOrderLine(models.Model):
         for line in self:
             qty = 0.0
             for move in line.procurement_ids.mapped('move_ids').filtered(
-                    lambda r: r.state not in ('draft', 'cancel')
-                    and not r.scrapped):
+                    lambda r: r.state not in ('draft', 'cancel') and
+                    not r.scrapped):
                 if move.location_dest_id.usage == "customer":
                     qty += move.product_uom._compute_quantity(
-                        move.product_uom_qty, 
+                        move.product_uom_qty,
                         line.product_uom)
-                elif move.location_dest_id.usage == "internal" \
-                    and move.to_refund_so:
+                elif (move.location_dest_id.usage == "internal" and
+                        move.to_refund_so):
                     qty -= move.product_uom._compute_quantity(
                         move.product_uom_qty,
                         line.product_uom)
