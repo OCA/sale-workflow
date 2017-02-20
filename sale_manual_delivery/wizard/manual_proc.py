@@ -31,8 +31,7 @@ class ManualDelivery(models.TransientModel):
             self.update({'line_ids': lines})
 
     date_planned = fields.Date(
-        string='Date Planned',
-        required=True
+        string='Date Planned'
     )
     order_id = fields.Many2one(
         'sale.order',
@@ -51,16 +50,34 @@ class ManualDelivery(models.TransientModel):
 
     @api.multi
     def record_picking(self):
+        proc_order_obj = self.env['procurement.order']
+        proc_group_obj = self.env['procurement.group']
         for wizard in self:
             carrier_id = wizard.carrier_id if wizard.carrier_id else \
               wizard.order_id.carrier_id
             date_planned = wizard.date_planned
+            order = wizard.order_id
+            if not order.procurement_group_id:
+                vals = order._prepare_procurement_group()
+                order.procurement_group_id = proc_group_obj.create(vals)
+            new_procs = proc_order_obj
+
             for line in wizard.line_ids:
                 if line.to_ship_qty > line.ordered_qty - line.existing_qty:
                     raise UserError(_(
                     'You can not deliver more than the remaining quantity. If\
                     you need to do so, please edit the sale order first.'))
                 if float_compare(line.to_ship_qty, 0, 2):
-                    to_ship_qty = line.to_ship_qty
-                    line.order_line_id._action_manual_procurement_create(
-                        to_ship_qty, date_planned, carrier_id)
+                    vals = line.order_line_id._prepare_order_line_procurement(
+                        group_id=order.procurement_group_id.id)
+                    vals['date_planned'] = date_planned
+                    vals['product_qty'] = line.to_ship_qty
+                    vals['carrier_id'] = carrier_id.id
+                    new_proc = proc_order_obj.create(vals)
+                    new_proc.message_post_with_view(
+                        'mail.message_origin_link',
+                        values={'self': new_proc, 'origin': order},
+                        subtype_id=self.env.ref('mail.mt_note').id
+                    )
+                    new_procs |= new_proc
+            new_procs.run()
