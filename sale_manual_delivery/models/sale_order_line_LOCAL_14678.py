@@ -25,8 +25,37 @@ class SaleOrderLine(models.Model):
                 return super(SaleOrderLine, self)._action_procurement_create()
 
     @api.multi
-    def _compute_get_existing_qty(self):
-        """Computes the remai quantity on sale order lines, based on done
+    def _action_manual_procurement_create(self, product_qty, date_planned,
+                                          carrier):
+        new_procs = self.env['procurement.order']  # Empty recordset
+        for line in self:
+            qty = 0.0
+            for proc in line.procurement_ids:
+                qty += proc.product_qty
+
+            if not line.order_id.procurement_group_id:
+                vals = line.order_id._prepare_procurement_group()
+                line.order_id.procurement_group_id = self.env[
+                    "procurement.group"].create(vals)
+
+            vals = line._prepare_order_line_procurement(
+                group_id=line.order_id.procurement_group_id.id)
+            vals['date_planned'] = date_planned  # line added
+            vals['product_qty'] = product_qty  # line added
+            vals['carrier_id'] = carrier.id  # line added
+            new_proc = self.env["procurement.order"].create(vals)
+            new_proc.message_post_with_view('mail.message_origin_link',
+                                            values={'self': new_proc,
+                                                    'origin': line.order_id},
+                                            subtype_id=self.env.ref(
+                                                'mail.mt_note').id)
+            new_procs += new_proc
+        new_procs.run()
+        return new_procs
+
+    @api.multi
+    def _get_existing_qty(self):
+        """Computes the remai quantity on sale order lines, based on done 
         stock moves related to its procurements
         """
         for line in self:

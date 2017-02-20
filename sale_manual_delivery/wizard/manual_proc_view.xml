@@ -9,7 +9,7 @@
       <form string="Create Manually Delivery" name="manual_procurment_form">
         <sheet>
           <group>
-            <field name='date_planned'/>
+            <field name='date_planned' required="1"/>
             <field name='order_id' invisible="1"/>
           </group>
           <group>
