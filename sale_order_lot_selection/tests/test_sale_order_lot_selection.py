@@ -36,8 +36,8 @@ class TestSaleOrderLotSelection(test_common.SingleTransactionCase):
 
         """
         super(TestSaleOrderLotSelection, self).setUp()
-        self.product_57 = self.env.ref('product.product_product_57')
-        self.product_46 = self.env.ref('product.product_product_46')
+        self.product_57 = self.env.ref('product.product_product_6')
+        self.product_46 = self.env.ref('product.product_product_17')
         self.product_12 = self.env.ref('product.product_product_12')
         self.product_57.write({'tracking': 'lot', 'type': 'product'})
         self.product_46.write({'tracking': 'lot', 'type': 'product'})
