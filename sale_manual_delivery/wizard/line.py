@@ -17,6 +17,12 @@ class ManualDeliveryLine(models.TransientModel):
         string='Sale Order Line',
         readonly=True,
     )
+    product_id = fields.Many2one(
+        'product.product',
+        string='Product',
+        related='order_line_id.product_id',
+        readonly=True
+    )
     ordered_qty = fields.Float(
         'Ordered quantity',
         help = "Quantity ordered in the related Sale Order",
