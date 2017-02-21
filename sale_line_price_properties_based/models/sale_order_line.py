@@ -1,23 +1,6 @@
 # -*- coding: utf-8 -*-
-##############################################################################
-#
-#    Copyright (C) 2014-15 Agile Business Group sagl
-#    (<http://www.agilebg.com>)
-#
-#    This program is free software: you can redistribute it and/or modify
-#    it under the terms of the GNU Affero General Public License as published
-#    by the Free Software Foundation, either version 3 of the License, or
-#    (at your option) any later version.
-#
-#    This program is distributed in the hope that it will be useful,
-#    but WITHOUT ANY WARRANTY; without even the implied warranty of
-#    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-#    GNU Affero General Public License for more details.
-#
-#    You should have received a copy of the GNU Affero General Public License
-#    along with this program.  If not, see <http://www.gnu.org/licenses/>.
-#
-##############################################################################
+# Copyright 2014 -2017 Alex Comba - Agile Business Group
+# License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
 
 from openerp import models, api
 from openerp.tools.translate import _
@@ -73,10 +56,16 @@ class SaleOrderLine(models.Model):
             # get empty properties dynamic fields
             property_group_pool = self.pool['mrp.property.group']
             group_to_empty_ids = property_group_pool.search(
-                cr, uid, [('draw_dynamically', '=', True)], context=context)
+                cr, uid,
+                [('draw_dynamically', '=', True)], context=context)
             groups = property_group_pool.browse(
                 cr, uid, group_to_empty_ids, context=context
             )
             for group in groups:
-                res['value'][group.field_id.name] = None
+                if (
+                    group.field_id and
+                    group.field_id.name and
+                    group.field_id.name in res['value']
+                ):
+                    res['value'][group.field_id.name] = None
         return res
