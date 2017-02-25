@@ -9,8 +9,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 8.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-02-18 04:14+0000\n"
-"PO-Revision-Date: 2017-02-18 04:14+0000\n"
+"POT-Creation-Date: 2017-02-18 06:35+0000\n"
+"PO-Revision-Date: 2017-02-18 06:35+0000\n"
 "Last-Translator: Matjaž Mozetič <m.mozetic@matmoz.si>, 2017\n"
 "Language-Team: Slovenian (https://www.transifex.com/oca/teams/23907/sl/)\n"
 "MIME-Version: 1.0\n"
@@ -29,7 +29,7 @@ msgstr "Napaka"
 #: code:addons/sale_line_quantity_properties_based/sale_order_line.py:74
 #, python-format
 msgid "Evaluation error in formula %s: "
-msgstr ""
+msgstr "Napaka vrednotenja v formuli %s:"
 
 #. module: sale_line_quantity_properties_based
 #: model:ir.model,name:sale_line_quantity_properties_based.model_product_product
@@ -45,7 +45,7 @@ msgstr "Lastnost skupine %s je že prisotna"
 #. module: sale_line_quantity_properties_based
 #: field:product.product,quantity_formula_id:0
 msgid "Quantity formula"
-msgstr ""
+msgstr "Količinska formula"
 
 #. module: sale_line_quantity_properties_based
 #: model:ir.model,name:sale_line_quantity_properties_based.model_sale_order_line
@@ -69,3 +69,10 @@ msgid ""
 " - properties (dictionary of properties)\n"
 "You have to put the result in the 'result' variable"
 msgstr ""
+"Uporabljate lahko spremenljivke\n"
+" - self\n"
+" - cr\n"
+" - uid\n"
+" - product_id\n"
+" - properties (dictionary of properties)\n"
+"Rezultat vstavite v spremenljivko 'result'"

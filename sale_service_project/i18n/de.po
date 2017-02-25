@@ -10,8 +10,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: sale-workflow (8.0)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-02-04 06:22+0000\n"
-"PO-Revision-Date: 2017-02-09 11:36+0000\n"
+"POT-Creation-Date: 2017-02-18 06:36+0000\n"
+"PO-Revision-Date: 2017-02-25 00:44+0000\n"
 "Last-Translator: OCA Transbot <transbot@odoo-community.org>\n"
 "Language-Team: German (http://www.transifex.com/oca/OCA-sale-workflow-8-0/language/de/)\n"
 "MIME-Version: 1.0\n"
@@ -117,7 +117,7 @@ msgstr "Anzeigename"
 #: code:addons/sale_service_project/models/hr_timesheet_invoice.py:75
 #, python-format
 msgid "Error!"
-msgstr ""
+msgstr "Fehler!"
 
 #. module: sale_service_project
 #: model:product.template,name:sale_service_project.product_product_filter_product_template
