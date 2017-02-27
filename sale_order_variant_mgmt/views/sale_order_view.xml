@@ -17,6 +17,9 @@
                     />
                 </div>
             </xpath>
+            <xpath expr="//field[@name='order_line']//form" position="inside">
+                <field name="product_attribute_value_ids" invisible="1"/>
+            </xpath>
             <xpath expr="//field[@name='order_line']//tree" position="inside">
                 <field name="product_tmpl_id_sale_order_variant_mgmt" invisible="1"/>
                 <field name="product_attribute_value_ids" invisible="1"/>
@@ -31,6 +34,7 @@
                         attrs="{'invisible': ['|', ('state', 'not in', ('draft', 'sent')), ('product_attribute_value_ids', '=', [])]}"
                 />
             </xpath>
+
             <xpath expr="//field[@name='order_line']" position="attributes">
                 <attribute name="options">{'reload_on_button': true}</attribute>
             </xpath>
