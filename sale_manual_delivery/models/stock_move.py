@@ -29,15 +29,12 @@ class StockMove(models.Model):
                 ('printed', '=', False),
                 ('state', 'in', ['draft', 'confirmed', 'waiting',
                                  'partially_available', 'assigned'])]
-            if move.picking_id.sale_id.manual_delivery:
-                # Add additional criterias for manual deliveries
-                domain += [
-                    ('min_date', '=', move.date_expected),
-                    ('max_date', '=', move.date_expected),
-                    ('carrier_id', '=', move.procurement_id.carrier_id.id)]
-
             picking = Picking.search(domain, limit=1)
-            if not picking:
+            if not (picking.sale_id.manual_delivery
+                    and picking.min_date == move.date_expected
+                    and picking.max_date == move.date_expected
+                    and picking.carrier_id.id ==
+                    move.procurement_id.carrier_id.id):
                 picking = Picking.create(move._get_new_picking_values())
             move.write({'picking_id': picking.id})
         return True
