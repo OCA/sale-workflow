@@ -73,7 +73,8 @@ class ManualDelivery(models.TransientModel):
                     vals['date_planned'] = date_planned
                     vals['product_qty'] = line.to_ship_qty
                     vals['carrier_id'] = carrier_id.id
-                    new_proc = proc_order_obj.create(vals)
+                    new_proc = proc_order_obj.with_context(
+                        {'manual_delivery': True}).create(vals)
                     new_proc.message_post_with_view(
                         'mail.message_origin_link',
                         values={'self': new_proc, 'origin': order},
