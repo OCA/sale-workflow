@@ -23,6 +23,11 @@ class ManualDeliveryLine(models.TransientModel):
         related='order_line_id.product_id',
         readonly=True
     )
+    line_description = fields.Text(
+        string='Description',
+        related='order_line_id.name',
+        readonly=True
+    )
     ordered_qty = fields.Float(
         'Ordered quantity',
         help = "Quantity ordered in the related Sale Order",
