@@ -18,6 +18,8 @@ class StockMove(models.Model):
     def assign_picking(self):
         # Redefine method to filter on date_expected (allows to group moves
         # from the same manual delivery in one delivery)
+        if 'manual_delivery' not in self.env.context:
+            return super(StockMove, self).assign_picking()
         Picking = self.env['stock.picking']
         self.recompute()
 
@@ -28,17 +30,13 @@ class StockMove(models.Model):
                 ('location_dest_id', '=', move.location_dest_id.id),
                 ('picking_type_id', '=', move.picking_type_id.id),
                 ('printed', '=', False),
+                ('min_date', '=', move.date_expected),
+                ('max_date', '=', move.date_expected),
+                ('carrier_id', '=', move.procurement_id.carrier_id.id),
                 ('state', 'in', ['draft', 'confirmed', 'waiting',
                                  'partially_available', 'assigned'])]
-            if move.picking_id.sale_id.manual_delivery:
-                # Add additional criterias for manual deliveries
-                domain += [
-                    ('min_date', '=', move.date_expected),
-                    ('max_date', '=', move.date_expected),
-                    ('carrier_id', '=', move.procurement_id.carrier_id.id)]
-
             picking = Picking.search(domain, limit=1)
-            if not picking:
+            if not picking.sale_id.manual_delivery:
                 picking = Picking.create(move._get_new_picking_values())
             move.write({'picking_id': picking.id})
         return True
