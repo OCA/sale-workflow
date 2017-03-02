@@ -18,6 +18,8 @@ class StockMove(models.Model):
     def assign_picking(self):
         # Redefine method to filter on date_expected (allows to group moves
         # from the same manual delivery in one delivery)
+        if 'manual_delivery' not in self.env.context:
+            return super(StockMove, self).assign_picking()
         Picking = self.env['stock.picking']
         self.recompute()
         for move in self:
