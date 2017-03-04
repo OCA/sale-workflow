@@ -3,14 +3,16 @@
 # * sale_procurement_group_by_line
 # 
 # Translators:
+# OCA Transbot <transbot@odoo-community.org>, 2017
+# Rudolf Schnapka <rs@techno-flex.de>, 2017
 msgid ""
 msgstr ""
-"Project-Id-Version: sale-workflow (8.0)\n"
+"Project-Id-Version: Odoo Server 9.0c\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-10-08 20:48+0000\n"
-"PO-Revision-Date: 2015-09-03 07:09+0000\n"
-"Last-Translator: <>\n"
-"Language-Team: German (http://www.transifex.com/oca/OCA-sale-workflow-8-0/language/de/)\n"
+"POT-Creation-Date: 2017-02-28 03:43+0000\n"
+"PO-Revision-Date: 2017-02-28 03:43+0000\n"
+"Last-Translator: Rudolf Schnapka <rs@techno-flex.de>, 2017\n"
+"Language-Team: German (https://www.transifex.com/oca/teams/23907/de/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
@@ -18,9 +20,9 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
 #. module: sale_procurement_group_by_line
-#: field:sale.order.line,procurement_group_id:0
+#: model:ir.model.fields,field_description:sale_procurement_group_by_line.field_sale_order_line_procurement_group_id
 msgid "Procurement group"
-msgstr ""
+msgstr "Beschaffungsgruppe"
 
 #. module: sale_procurement_group_by_line
 #: model:ir.model,name:sale_procurement_group_by_line.model_sale_order
