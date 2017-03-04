@@ -3,11 +3,12 @@
 # * sale_sourced_by_line
 # 
 # Translators:
+# Matjaž Mozetič <m.mozetic@matmoz.si>, 2015
 msgid ""
 msgstr ""
 "Project-Id-Version: sale-workflow (8.0)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-09-09 12:27+0000\n"
+"POT-Creation-Date: 2017-02-18 06:36+0000\n"
 "PO-Revision-Date: 2015-09-03 07:10+0000\n"
 "Last-Translator: <>\n"
 "Language-Team: Finnish (http://www.transifex.com/oca/OCA-sale-workflow-8-0/language/fi/)\n"
@@ -27,7 +28,7 @@ msgstr ""
 #. module: sale_sourced_by_line
 #: model:ir.model,name:sale_sourced_by_line.model_stock_picking
 msgid "Picking List"
-msgstr ""
+msgstr "Keräilylista"
 
 #. module: sale_sourced_by_line
 #: model:ir.model,name:sale_sourced_by_line.model_sale_order
