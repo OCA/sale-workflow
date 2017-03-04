@@ -3,15 +3,15 @@
 # * sale_procurement_group_by_line
 # 
 # Translators:
-# Ozge Altinisik <ozge@altinkaya.com.tr>, 2017
+# OCA Transbot <transbot@odoo-community.org>, 2017
 msgid ""
 msgstr ""
-"Project-Id-Version: sale-workflow (8.0)\n"
+"Project-Id-Version: Odoo Server 9.0c\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-01-04 10:48+0000\n"
-"PO-Revision-Date: 2017-01-06 08:11+0000\n"
-"Last-Translator: Ozge Altinisik <ozge@altinkaya.com.tr>\n"
-"Language-Team: Turkish (Turkey) (http://www.transifex.com/oca/OCA-sale-workflow-8-0/language/tr_TR/)\n"
+"POT-Creation-Date: 2017-02-28 03:43+0000\n"
+"PO-Revision-Date: 2017-02-28 03:43+0000\n"
+"Last-Translator: OCA Transbot <transbot@odoo-community.org>, 2017\n"
+"Language-Team: Turkish (Turkey) (https://www.transifex.com/oca/teams/23907/tr_TR/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
@@ -19,7 +19,7 @@ msgstr ""
 "Plural-Forms: nplurals=1; plural=0;\n"
 
 #. module: sale_procurement_group_by_line
-#: field:sale.order.line,procurement_group_id:0
+#: model:ir.model.fields,field_description:sale_procurement_group_by_line.field_sale_order_line_procurement_group_id
 msgid "Procurement group"
 msgstr "Satınalma grubu"
 
