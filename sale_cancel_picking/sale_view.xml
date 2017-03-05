@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+
+        <record id="view_order_form" model="ir.ui.view">
+            <field name="model">sale.order</field>
+            <field name="inherit_id" ref="sale.view_order_form"/>
+            <field name="arch" type="xml">
+                <xpath expr="//h1" position="after">
+                    <h2>
+                        <group attrs="{'invisible': [('cancel_log', '=', False)]}">
+                            <separator string="Cancellation Logs" colspan="4"/>
+                            <field name="cancel_log" readonly="1" nolabel="1" colspan="4"/>
+                        </group>
+                    </h2>
+                </xpath>
+                <xpath expr="//form/header/button[@name='action_cancel']" position="attributes">
+                    <attribute name="confirm">
+                        Cancelling this Sale Order may cancel other related objects such as Delivery Orders, Manufacturing Orders, Purchases Orders etc. according to installed modules.
+
+                        Do you want to cancel this Sale Order ?
+                    </attribute>
+                </xpath>
+            </field>
+        </record>
+
+    </data>
+</openerp>

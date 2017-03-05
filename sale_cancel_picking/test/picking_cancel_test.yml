@@ -1,0 +1,42 @@
+-
+  In order to test the module sale_cancel_picking, I will create a sale order,
+  confirm it, and then cancel it. I will check after cancelling that the
+  related pickings are canceled too.
+
+  So, I create a product
+-
+  !record {model: product.product, id: product_product_1}:
+    name: Product 1
+    type: product
+    sale_ok: True
+-
+  I create a sale order with one line
+-
+  !record {model: sale.order, id: sale_order_1}:
+    partner_id: base.res_partner_2
+    note: Invoice after delivery
+    payment_term: account.account_payment_term
+    order_line:
+      - product_id: product_product_1
+        product_uom: 1
+        product_uom_qty: 2
+        price_unit: 10
+-
+  I confirm the sale order
+-
+  !function {model: sale.order, name: action_button_confirm}:
+      - eval: "[obj(ref('sale_order_1')).id]"
+        model: sale.order
+-
+  Then, I cancel it
+-
+  !function {model: sale.order, name: action_cancel}:
+      - eval: "[obj(ref('sale_order_1')).id]"
+        model: sale.order
+-
+  I check that the pickings are canceled
+-
+  !python {model: sale.order}: |
+    order = self.browse(cr, uid, ref('sale_order_1'), context=context)
+    for picking in order.picking_ids:
+      assert picking.state == 'cancel', "Picking state is not cancel"
