@@ -1,0 +1,149 @@
+# Translation of OpenERP Server.
+# This file contains the translation of the following modules:
+#	* sale_payment_method
+#
+# Rudolf Schnapka <schnapkar@golive-saar.de>, 2015.
+msgid ""
+msgstr ""
+"Project-Id-Version: OpenERP Server 7.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2013-05-02 07:06+0000\n"
+"PO-Revision-Date: 2015-01-02 16:46+0100\n"
+"Last-Translator: Rudolf Schnapka <schnapkar@golive-saar.de>\n"
+"Language-Team: German <kde-i18n-de@kde.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+"Language: de\n"
+"X-Generator: Lokalize 1.5\n"
+
+#. module: sale_payment_method
+#: view:sale.order:0
+msgid "Automation Information"
+msgstr "Information zur Bearbeitung"
+
+#. module: sale_payment_method
+#: help:payment.method,journal_id:0
+msgid ""
+"If a journal a selected, when a payment is recorded on a backend, payment "
+"entries will be created in this journal. "
+msgstr "Wenn ein Journal ausgewählt ist, wird, bei einem im Backend verbuchten Zahlungseingang, dieser auch in diesem Journal eingetragen."
+
+#. module: sale_payment_method
+#: view:payment.method:0
+msgid ""
+"Even if the E-commerce backend receives a payment for a sale order,\n"
+"                                no payment entries will be generated."
+msgstr "Auch wenn im E-Commerce-Backend ein Zahlungseingang verbucht wird, werden hier keine Buchungen zu Zahlungen angelegt."
+
+#. module: sale_payment_method
+#: view:payment.method:0
+msgid "Default Values"
+msgstr "Vorgabewerte"
+
+#. module: sale_payment_method
+#: model:ir.model,name:sale_payment_method.model_payment_method
+#: field:sale.order,payment_method_id:0
+msgid "Payment Method"
+msgstr "Zahlweise"
+
+#. module: sale_payment_method
+#: view:sale.order:0
+msgid "View Automatic Payment"
+msgstr "Automatische Zahlwege sichten"
+
+#. module: sale_payment_method
+#: help:sale.order,payment_exists:0
+msgid "It indicates that sales order has at least one payment."
+msgstr "Zeigt an, dass zum Verkaufsauftrag mindestens eine Zahlung besteht."
+
+#. module: sale_payment_method
+#: field:payment.method,journal_id:0
+msgid "Journal"
+msgstr "Journal"
+
+#. module: sale_payment_method
+#: model:ir.actions.act_window,name:sale_payment_method.act_payment_method_form
+#: model:ir.ui.menu,name:sale_payment_method.menu_action_paymetn_method_form
+msgid "Payment Methods "
+msgstr "Zahlweisen"
+
+#. module: sale_payment_method
+#: field:account.move,order_ids:0
+msgid "Sales Orders"
+msgstr "Verkaufsaufträge"
+
+#. module: sale_payment_method
+#: view:sale.order:0
+msgid "Other Information"
+msgstr "Andere Information"
+
+#. module: sale_payment_method
+#: view:payment.method:0
+msgid "Payment Methods"
+msgstr "Zahlweisen"
+
+#. module: sale_payment_method
+#: field:payment.method,name:0
+msgid "Name"
+msgstr "Name"
+
+#. module: sale_payment_method
+#: field:sale.order,payment_ids:0
+msgid "Payments Entries"
+msgstr "Zahlungsbuchungen"
+
+#. module: sale_payment_method
+#: view:payment.method:0
+msgid ""
+"When the E-commerce backend will receive a payment for a sale order,\n"
+"                                payment entries will be generated in the "
+"selected journal."
+msgstr ""
+"Wenn im E-Commerce-Backend ein Zahlungseingang verbucht wird, wird im ausgewählten Journal eine Buchung der Zahlung angelegt."
+
+#. module: sale_payment_method
+#: view:payment.method:0
+msgid "Journal for payment"
+msgstr "Journal für Zahlungen"
+
+#. module: sale_payment_method
+#: field:sale.order,residual:0
+msgid "Balance"
+msgstr "Saldo"
+
+#. module: sale_payment_method
+#: model:ir.model,name:sale_payment_method.model_account_move
+msgid "Account Entry"
+msgstr "Kontenbuchung"
+
+#. module: sale_payment_method
+#: help:payment.method,payment_term_id:0
+msgid "Default payment term of a sale order using this method."
+msgstr "Vorgabe Zahlungsbedingung eines Verkaufsauftrags mit dieser Zahlweise."
+
+#. module: sale_payment_method
+#: field:payment.method,payment_term_id:0
+msgid "Payment Term"
+msgstr "Zahlungsbedingung"
+
+#. module: sale_payment_method
+#: view:sale.order:0
+msgid "Create Invoice"
+msgstr "Rechnung anlegen"
+
+#. module: sale_payment_method
+#: help:payment.method,name:0
+msgid "The name of the method on the backend"
+msgstr "Bezeichnung der Zahlweise im Backend"
+
+#. module: sale_payment_method
+#: model:ir.model,name:sale_payment_method.model_sale_order
+msgid "Sales Order"
+msgstr "Verkaufsauftrag"
+
+#. module: sale_payment_method
+#: field:sale.order,payment_exists:0
+msgid "Has automatic payment"
+msgstr "Hat automatische Zahlweise"
