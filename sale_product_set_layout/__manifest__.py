@@ -12,6 +12,7 @@
     ],
     'data': [
         'views/product_set.xml',
+        'security/groups.xml',
     ],
     'demo': [
         'demo/product_set.xml',
