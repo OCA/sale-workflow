@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<openerp>
+<odoo>
     <data noupdate="0">
 
         <!-- res.partner -->
@@ -17,22 +17,21 @@
             <field name="active" eval="True"/>
         </record>
 
-        <!-- crm.case.section -->
-        <record model="crm.case.section" id="crm_case_section_invoice_partner">
+        <!-- crm.team -->
+        <record model="crm.team" id="crm_team_invoice_partner">
             <field name="name">With Invoice Partner</field>
-            <field name="section_partner_invoice_id" ref="base.akretion_customer"/>
-            <field name="code">IP</field>
+            <field name="team_partner_invoice_id" ref="base.akretion_customer"/>
             <field name="member_ids" eval="[(4, ref('base.user_root')),(4, ref('base.user_demo'))]"/>
         </record>
 
         <!-- sale.order -->
         <record model="sale.order" id="sale_with_sales_team_invoice_partner">
             <field name="partner_id" ref="base.res_partner_2"/>
-            <field name="partner_invoice_id" ref="base.res_partner_2"/>
+            <field name="team_partner_invoice_id" ref="base.res_partner_2"/>
             <field name="partner_shipping_id" ref="base.res_partner_2"/>
             <field name="user_id" ref="base.user_demo"/>
             <field name="pricelist_id" ref="product.list0"/>
-            <field name="section_id" ref="crm_case_section_invoice_partner"/>
+            <field name="team_id" ref="crm_team_invoice_partner"/>
             <field name="date_order" eval="(DateTime.today() - relativedelta(months=1)).strftime('%Y-%m-%d %H:%M')"/>
         </record>
 
@@ -47,4 +46,4 @@
         </record>
 
     </data>
-</openerp>
+</odoo>
