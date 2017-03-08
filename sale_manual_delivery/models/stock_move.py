@@ -29,14 +29,13 @@ class StockMove(models.Model):
                 ('location_dest_id', '=', move.location_dest_id.id),
                 ('picking_type_id', '=', move.picking_type_id.id),
                 ('printed', '=', False),
+                ('min_date', '=', move.date_expected),
+                ('max_date', '=', move.date_expected),
+                ('carrier_id', '=', move.procurement_id.carrier_id.id),
                 ('state', 'in', ['draft', 'confirmed', 'waiting',
                                  'partially_available', 'assigned'])]
             picking = Picking.search(domain, limit=1)
-            if not (picking.sale_id.manual_delivery
-                    and picking.min_date == move.date_expected
-                    and picking.max_date == move.date_expected
-                    and picking.carrier_id.id ==
-                    move.procurement_id.carrier_id.id):
+            if not picking.sale_id.manual_delivery:
                 picking = Picking.create(move._get_new_picking_values())
             move.write({'picking_id': picking.id})
         return True
