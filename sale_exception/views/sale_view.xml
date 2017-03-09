@@ -1,58 +1,18 @@
 <?xml version="1.0" ?>
 <odoo>
-
-        <record id="view_sale_exception_tree" model="ir.ui.view">
-            <field name="name">sale.exception.tree</field>
-            <field name="model">sale.exception</field>
-            <field name="arch" type="xml">
-                <tree string="Sale Exception">
-                    <field name="active"/>
-                    <field name="name"/>
-                    <field name="description"/>
-                    <field name="model"/>
-                    <field name="sequence"/>
-                </tree>
-            </field>
-        </record>
-
-        <record id="view_sale_exception_form" model="ir.ui.view">
-            <field name="name">sale.exception.form</field>
-            <field name="model">sale.exception</field>
-            <field name="arch" type="xml">
-                <form string="Sale Exception Setup" name="sale_exception">
-                    <group colspan="4" col="2">
-                        <field name="name"/>
-                        <field name="description"/>
-                    </group>
-                    <group colspan="4" groups="base.group_sale_manager">
-                        <field name="active"/>
-                        <field name="sequence"/>
-                    </group>
-                    <group colspan="4" col="2" groups="base.group_system">
-                        <field name="model"/>
-                        <field name="code"/>
-                    </group>
-                    <group colspan="4" col="2">
-                        <separator string="Affected Sales Orders"/>
-                        <newline/>
-                        <field name="sale_order_ids" nolabel="1" domain="[('state', '=', 'draft')]"/>
-                    </group>
-                </form>
-            </field>
-        </record>
-
         <record id="action_sale_test_tree" model="ir.actions.act_window">
-                  <field name="name">Exception Rules</field>
-                  <field name="res_model">sale.exception</field>
+                  <field name="name">Sale Exception Rules</field>
+                  <field name="res_model">exception.rule</field>
                   <field name="view_type">form</field>
                   <field name="view_mode">tree,form</field>
-                  <field name="view_id" ref="view_sale_exception_tree"/>
-                  <field name="context">{'active_test': False}</field>
+                  <field name="view_id" ref="base_exception.view_exception_rule_tree"/>
+                  <field name="domain">[('rule_group', '=', 'sale')]</field>
+                  <field name="context">{'active_test': False, 'default_rule_group' : 'sale'}</field>
               </record>
 
         <menuitem
                 id="menu_sale_exception_parent"
-                parent="base.menu_sale_config"
+                parent="sales_team.menu_sale_config"
                 sequence="20"
                 name="Exceptions"
         />
@@ -118,7 +78,7 @@
             <field name="model">sale.order</field>
             <field name="inherit_id" ref="sale.view_sales_order_filter" />
             <field name="arch" type="xml">
-                <filter name="sales" position="after">
+                <filter name="my_sale_orders_filter" position="after">
                     <separator orientation="vertical"/>
                     <filter icon="terp-emblem-important" name="tofix" string="Blocked in draft" domain="[('main_exception_id','!=',False)]"/>
                 </filter>
