@@ -4,15 +4,13 @@
 
 {'name': 'Sale Exception',
  'summary': 'Custom exceptions on sale order',
- 'version': '9.0.1.1.0',
+ 'version': '10.0.2.0.0',
  'category': 'Generic Modules/Sale',
  'author': "Akretion, Sodexis, Odoo Community Association (OCA)",
  'website': 'http://www.akretion.com',
- 'depends': ['sale'],
+ 'depends': ['sale', 'base_exception'],
  'license': 'AGPL-3',
  'data': [
-     'security/ir.model.access.csv',
-     'wizard/sale_exception_confirm_view.xml',
      'data/sale_exception_data.xml',
      'views/sale_view.xml',
  ],
