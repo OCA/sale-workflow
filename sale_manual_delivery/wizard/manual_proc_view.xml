@@ -20,7 +20,7 @@
               <field name='manual_delivery_id' invisible="1"/>
               <field name='order_line_id'/>
               <field name='ordered_qty'/>
-              <field name='existing_qty' string="Awaiting shipment"/>
+              <field name='existing_qty'/>
               <field name='remaining_qty'/>
               <field name='to_ship_qty'/>
             </tree>
