@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: sale-workflow (8.0)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-12-24 04:48+0000\n"
-"PO-Revision-Date: 2016-12-27 08:24+0000\n"
+"POT-Creation-Date: 2017-03-04 06:32+0000\n"
+"PO-Revision-Date: 2017-03-06 09:09+0000\n"
 "Last-Translator: OCA Transbot <transbot@odoo-community.org>\n"
 "Language-Team: Vietnamese (Viet Nam) (http://www.transifex.com/oca/OCA-sale-workflow-8-0/language/vi_VN/)\n"
 "MIME-Version: 1.0\n"
@@ -109,7 +109,7 @@ msgstr ""
 #. module: sale_packaging_price
 #: view:product.packaging:sale_packaging_price.product_packaging_filter
 msgid "Product"
-msgstr ""
+msgstr "Sản phẩm"
 
 #. module: sale_packaging_price
 #: field:sale.report,product_packaging:0

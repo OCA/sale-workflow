@@ -8,8 +8,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: sale-workflow (8.0)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-10-04 13:41+0000\n"
-"PO-Revision-Date: 2016-10-04 09:43+0000\n"
+"POT-Creation-Date: 2017-03-04 06:32+0000\n"
+"PO-Revision-Date: 2017-03-10 13:16+0000\n"
 "Last-Translator: OCA Transbot <transbot@odoo-community.org>\n"
 "Language-Team: German (http://www.transifex.com/oca/OCA-sale-workflow-8-0/language/de/)\n"
 "MIME-Version: 1.0\n"
@@ -75,13 +75,13 @@ msgstr "Logistische Einheit"
 #. module: sale_packaging_price
 #: view:product.packaging:sale_packaging_price.product_packaging_filter
 msgid "Pack Type"
-msgstr ""
+msgstr "Verpackungsart"
 
 #. module: sale_packaging_price
 #: field:product.packaging,package_material_id:0
 #: field:product.packaging.material,name:0
 msgid "Package Material"
-msgstr ""
+msgstr "Verpackungsmaterial"
 
 #. module: sale_packaging_price
 #: field:product.packaging,list_price:0

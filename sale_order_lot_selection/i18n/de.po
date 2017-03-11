@@ -9,7 +9,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: sale-workflow (8.0)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-02-18 06:35+0000\n"
+"POT-Creation-Date: 2017-03-04 06:31+0000\n"
 "PO-Revision-Date: 2016-02-26 10:01+0000\n"
 "Last-Translator: <>\n"
 "Language-Team: German (http://www.transifex.com/oca/OCA-sale-workflow-8-0/language/de/)\n"
@@ -24,13 +24,13 @@ msgstr ""
 #: code:addons/sale_order_lot_selection/model/sale.py:99
 #, python-format
 msgid "Can't reserve products for lot %s"
-msgstr ""
+msgstr "Kann im Los %s keine Produkte reservieren"
 
 #. module: sale_order_lot_selection
 #: code:addons/sale_order_lot_selection/model/sale.py:85
 #, python-format
 msgid "Can't retrieve lot on stock"
-msgstr ""
+msgstr "Kann Los nicht aus Bestand erhalten"
 
 #. module: sale_order_lot_selection
 #: field:procurement.order,lot_id:0 field:sale.order.line,lot_id:0

@@ -10,11 +10,11 @@ msgstr ""
 "POT-Creation-Date: 2017-03-04 06:32+0000\n"
 "PO-Revision-Date: 2017-03-06 09:09+0000\n"
 "Last-Translator: OCA Transbot <transbot@odoo-community.org>\n"
-"Language-Team: Greek (Greece) (http://www.transifex.com/oca/OCA-sale-workflow-8-0/language/el_GR/)\n"
+"Language-Team: Dutch (Netherlands) (http://www.transifex.com/oca/OCA-sale-workflow-8-0/language/nl_NL/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
-"Language: el_GR\n"
+"Language: nl_NL\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
 #. module: sale_product_set
@@ -42,19 +42,19 @@ msgstr ""
 #. module: sale_product_set
 #: view:product.set.add:sale_product_set.product_set_add_form_view
 msgid "Cancel"
-msgstr "Άκυρο"
+msgstr ""
 
 #. module: sale_product_set
 #: field:product.set,create_uid:0 field:product.set.add,create_uid:0
 #: field:product.set.line,create_uid:0
 msgid "Created by"
-msgstr "Δημιουργήθηκε από "
+msgstr ""
 
 #. module: sale_product_set
 #: field:product.set,create_date:0 field:product.set.add,create_date:0
 #: field:product.set.line,create_date:0
 msgid "Created on"
-msgstr "Δημιουργήθηκε στις"
+msgstr ""
 
 #. module: sale_product_set
 #: field:product.set,display_name:0 field:product.set.add,display_name:0
@@ -66,7 +66,7 @@ msgstr ""
 #: field:product.set,id:0 field:product.set.add,id:0
 #: field:product.set.line,id:0
 msgid "ID"
-msgstr "Κωδικός"
+msgstr ""
 
 #. module: sale_product_set
 #: field:product.set,__last_update:0 field:product.set.add,__last_update:0
@@ -78,13 +78,13 @@ msgstr ""
 #: field:product.set,write_uid:0 field:product.set.add,write_uid:0
 #: field:product.set.line,write_uid:0
 msgid "Last Updated by"
-msgstr "Τελευταία ενημέρωση από"
+msgstr ""
 
 #. module: sale_product_set
 #: field:product.set,write_date:0 field:product.set.add,write_date:0
 #: field:product.set.line,write_date:0
 msgid "Last Updated on"
-msgstr "Τελευταία ενημέρωση στις"
+msgstr ""
 
 #. module: sale_product_set
 #: field:product.set,name:0
@@ -94,7 +94,7 @@ msgstr ""
 #. module: sale_product_set
 #: field:product.set.line,product_id:0
 msgid "Product"
-msgstr "Προϊόν"
+msgstr "Product"
 
 #. module: sale_product_set
 #: model:ir.actions.act_window,name:sale_product_set.act_open_product_set_view

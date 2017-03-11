@@ -3,66 +3,65 @@
 # * sale_quotation_sourcing
 # 
 # Translators:
-# Antonio Trueba, 2016
 msgid ""
 msgstr ""
 "Project-Id-Version: sale-workflow (8.0)\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2017-03-04 06:32+0000\n"
-"PO-Revision-Date: 2017-03-06 09:10+0000\n"
-"Last-Translator: OCA Transbot <transbot@odoo-community.org>\n"
-"Language-Team: Dutch (http://www.transifex.com/oca/OCA-sale-workflow-8-0/language/nl/)\n"
+"PO-Revision-Date: 2015-09-03 07:10+0000\n"
+"Last-Translator: <>\n"
+"Language-Team: Dutch (Netherlands) (http://www.transifex.com/oca/OCA-sale-workflow-8-0/language/nl_NL/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
-"Language: nl\n"
+"Language: nl_NL\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
 #. module: sale_quotation_sourcing
 #: view:sale.order.sourcing:sale_quotation_sourcing.sale_order_sourcing_wizard
 msgid "Cancel"
-msgstr "Annuleren"
+msgstr ""
 
 #. module: sale_quotation_sourcing
 #: field:sale.order.line.sourcing,create_uid:0
 #: field:sale.order.sourcing,create_uid:0
 msgid "Created by"
-msgstr "Aangemaakt door"
+msgstr ""
 
 #. module: sale_quotation_sourcing
 #: field:sale.order.line.sourcing,create_date:0
 #: field:sale.order.sourcing,create_date:0
 msgid "Created on"
-msgstr "Aangemaakt op"
+msgstr ""
 
 #. module: sale_quotation_sourcing
 #: field:sale.order.line.sourcing,display_name:0
 #: field:sale.order.sourcing,display_name:0
 msgid "Display Name"
-msgstr "Te tonen naam"
+msgstr ""
 
 #. module: sale_quotation_sourcing
 #: field:sale.order.line.sourcing,id:0 field:sale.order.sourcing,id:0
 msgid "ID"
-msgstr "ID"
+msgstr ""
 
 #. module: sale_quotation_sourcing
 #: field:sale.order.line.sourcing,__last_update:0
 #: field:sale.order.sourcing,__last_update:0
 msgid "Last Modified on"
-msgstr "Laatst bijgewerkt op"
+msgstr ""
 
 #. module: sale_quotation_sourcing
 #: field:sale.order.line.sourcing,write_uid:0
 #: field:sale.order.sourcing,write_uid:0
 msgid "Last Updated by"
-msgstr "Laatst bijgewerkt door"
+msgstr ""
 
 #. module: sale_quotation_sourcing
 #: field:sale.order.line.sourcing,write_date:0
 #: field:sale.order.sourcing,write_date:0
 msgid "Last Updated on"
-msgstr "Laatst bijgewerkt op"
+msgstr ""
 
 #. module: sale_quotation_sourcing
 #: field:sale.order.sourcing,line_ids:0
@@ -118,7 +117,7 @@ msgstr ""
 #. module: sale_quotation_sourcing
 #: model:ir.model,name:sale_quotation_sourcing.model_sale_order
 msgid "Sales Order"
-msgstr "Verkooporder"
+msgstr ""
 
 #. module: sale_quotation_sourcing
 #: model:ir.model,name:sale_quotation_sourcing.model_sale_order_line
@@ -156,4 +155,4 @@ msgstr ""
 #. module: sale_quotation_sourcing
 #: view:sale.order.sourcing:sale_quotation_sourcing.sale_order_sourcing_wizard
 msgid "or"
-msgstr "of"
+msgstr ""
