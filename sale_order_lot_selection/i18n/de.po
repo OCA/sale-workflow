@@ -9,8 +9,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 9.0c\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-02-18 06:51+0000\n"
-"PO-Revision-Date: 2017-02-18 06:51+0000\n"
+"POT-Creation-Date: 2017-03-04 06:46+0000\n"
+"PO-Revision-Date: 2017-03-04 06:46+0000\n"
 "Last-Translator: Rudolf Schnapka <rs@techno-flex.de>, 2017\n"
 "Language-Team: German (https://www.transifex.com/oca/teams/23907/de/)\n"
 "MIME-Version: 1.0\n"
@@ -23,13 +23,13 @@ msgstr ""
 #: code:addons/sale_order_lot_selection/model/sale.py:84
 #, python-format
 msgid "Can't reserve products for lot %s"
-msgstr ""
+msgstr "Kann im Los %s keine Produkte reservieren"
 
 #. module: sale_order_lot_selection
 #: code:addons/sale_order_lot_selection/model/sale.py:73
 #, python-format
 msgid "Can't retrieve lot on stock"
-msgstr ""
+msgstr "Kann Los nicht aus Bestand erhalten"
 
 #. module: sale_order_lot_selection
 #: model:ir.model.fields,field_description:sale_order_lot_selection.field_procurement_order_lot_id

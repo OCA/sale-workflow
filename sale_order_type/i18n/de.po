@@ -4,13 +4,14 @@
 # 
 # Translators:
 # OCA Transbot <transbot@odoo-community.org>, 2016
+# Rudolf Schnapka <rs@techno-flex.de>, 2017
 msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 9.0c\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-01-17 16:49+0000\n"
-"PO-Revision-Date: 2017-01-17 16:49+0000\n"
-"Last-Translator: OCA Transbot <transbot@odoo-community.org>, 2016\n"
+"POT-Creation-Date: 2017-03-04 06:46+0000\n"
+"PO-Revision-Date: 2017-03-04 06:46+0000\n"
+"Last-Translator: Rudolf Schnapka <rs@techno-flex.de>, 2017\n"
 "Language-Team: German (https://www.transifex.com/oca/teams/23907/de/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -27,7 +28,7 @@ msgstr "Abrechnungs-Journal"
 #. module: sale_order_type
 #: model:ir.actions.act_window,help:sale_order_type.sot_sale_order_type_action
 msgid "Click to set a new type for sale order."
-msgstr ""
+msgstr "Legen Sie eine Auftragsart im Verkauf an."
 
 #. module: sale_order_type
 #: model:ir.model.fields,field_description:sale_order_type.field_sale_order_type_company_id
@@ -120,7 +121,7 @@ msgstr "Zahlungsbedingung"
 #. module: sale_order_type
 #: model:ir.ui.view,arch_db:sale_order_type.sot_sale_order_type_search_view
 msgid "Price List"
-msgstr ""
+msgstr "Preisliste"
 
 #. module: sale_order_type
 #: model:ir.model.fields,field_description:sale_order_type.field_sale_order_type_pricelist_id
@@ -135,7 +136,7 @@ msgstr "Verkaufsauftragsart"
 #. module: sale_order_type
 #: model:ir.model.fields,field_description:sale_order_type.field_account_invoice_sale_type_id
 msgid "Sale Type"
-msgstr ""
+msgstr "Auftragsart"
 
 #. module: sale_order_type
 #: model:ir.model,name:sale_order_type.model_sale_order
