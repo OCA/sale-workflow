@@ -15,7 +15,8 @@
                             </tree>
                         </field>
                         <newline/>
-                        <field name="ignore" groups='base.group_sale_manager'/>
+                        <field name="ignore" 
+                            groups='sales_team.group_sale_manager'/>
                     </group>
                     <footer>
                         <button name="action_confirm" string="_Close"
