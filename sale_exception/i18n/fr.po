@@ -1,5 +1,6 @@
 # Translation of Odoo Server.
 # This file contains the translation of the following modules:
+<<<<<<< HEAD
 # * sale_exceptions
 # 
 # Translators:
@@ -32,6 +33,22 @@ msgstr "Bons de commande affectés"
 #: field:sale.exception,model:0
 msgid "Apply on"
 msgstr "Appliquer sur"
+=======
+#	* sale_exception
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 10.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2017-03-22 11:05+0000\n"
+"PO-Revision-Date: 2017-03-22 11:05+0000\n"
+"Last-Translator: <>\n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+>>>>>>> 3b7edd8... [FIX] sale_exception misc
 
 #. module: sale_exceptions
 #: view:sale.order:sale_exceptions.view_sales_order_filter
@@ -46,6 +63,7 @@ msgstr "Bloqué à l'état brouillon"
 msgid "Blocked in draft due to exceptions"
 msgstr ""
 
+<<<<<<< HEAD
 #. module: sale_exceptions
 #: field:sale.exception,create_uid:0 field:sale.exception.confirm,create_uid:0
 msgid "Created by"
@@ -70,12 +88,32 @@ msgstr "Erreur"
 
 #. module: sale_exceptions
 #: code:addons/sale_exceptions/sale.py:193
+=======
+#. module: sale_exception
+#: model:ir.model.fields,field_description:sale_exception.field_sale_exception_confirm_create_uid
+msgid "Created by"
+msgstr "Créé par"
+
+#. module: sale_exception
+#: model:ir.model.fields,field_description:sale_exception.field_sale_exception_confirm_create_date
+msgid "Created on"
+msgstr "Créé le"
+
+#. module: sale_exception
+#: model:ir.model.fields,field_description:sale_exception.field_sale_exception_confirm_display_name
+msgid "Display Name"
+msgstr "Nom à Afficher"
+
+#. module: sale_exception
+#: code:addons/sale_exception/models/sale.py:180
+>>>>>>> 3b7edd8... [FIX] sale_exception misc
 #, python-format
-msgid ""
-"Error when evaluating the sale exception rule:\n"
+msgid "Error when evaluating the sale exception rule:\n"
 " %s \n"
 "(%s)"
-msgstr ""
+msgstr "Error when evaluating the sale exception rule:\n"
+" %s \n"
+"(%s)"
 
 #. module: sale_exceptions
 #: view:sale.order:sale_exceptions.view_order_form
@@ -87,6 +125,7 @@ msgstr "Erreur :"
 msgid "Exception"
 msgstr "Restriction"
 
+<<<<<<< HEAD
 #. module: sale_exceptions
 #: field:sale.exception,name:0
 msgid "Exception Name"
@@ -125,14 +164,44 @@ msgstr "Ignorer la restriction"
 
 #. module: sale_exceptions
 #: field:sale.exception,write_uid:0 field:sale.exception.confirm,write_uid:0
-msgid "Last Updated by"
-msgstr "Modifié par"
+=======
+#. module: sale_exception
+#: model:ir.model,name:sale_exception.model_exception_rule
+msgid "Exception Rules"
+msgstr "Règles de restriction"
 
+#. module: sale_exception
+#: model:ir.ui.menu,name:sale_exception.menu_sale_exception_parent
+msgid "Exceptions"
+msgstr "Restrictions"
+
+#. module: sale_exception
+#: model:ir.model.fields,field_description:sale_exception.field_sale_exception_confirm_id
+msgid "ID"
+msgstr "ID"
+
+#. module: sale_exception
+#: model:ir.model.fields,field_description:sale_exception.field_sale_exception_confirm___last_update
+msgid "Last Modified on"
+msgstr "Dernière Modification le"
+
+#. module: sale_exception
+#: model:ir.model.fields,field_description:sale_exception.field_sale_exception_confirm_write_uid
+>>>>>>> 3b7edd8... [FIX] sale_exception misc
+msgid "Last Updated by"
+msgstr "Dernière mise à jour par"
+
+<<<<<<< HEAD
 #. module: sale_exceptions
 #: field:sale.exception,write_date:0 field:sale.exception.confirm,write_date:0
+=======
+#. module: sale_exception
+#: model:ir.model.fields,field_description:sale_exception.field_sale_exception_confirm_write_date
+>>>>>>> 3b7edd8... [FIX] sale_exception misc
 msgid "Last Updated on"
-msgstr "Modifié le"
+msgstr "Dernière mise à jour le"
 
+<<<<<<< HEAD
 #. module: sale_exceptions
 #: field:sale.order,main_exception_id:0
 msgid "Main Exception"
@@ -140,9 +209,15 @@ msgstr "Restriction principale"
 
 #. module: sale_exceptions
 #: model:sale.exception,name:sale_exceptions.excep_no_zip
+=======
+#. module: sale_exception
+#: model:exception.rule,description:sale_exception.excep_no_zip
+#: model:exception.rule,name:sale_exception.excep_no_zip
+>>>>>>> 3b7edd8... [FIX] sale_exception misc
 msgid "No ZIP code on destination"
-msgstr "Code postal manquant sur la destination"
+msgstr "No ZIP code on destination"
 
+<<<<<<< HEAD
 #. module: sale_exceptions
 #: model:sale.exception,name:sale_exceptions.excep_no_stock
 msgid "Not Enough Virtual Stock"
@@ -162,9 +237,26 @@ msgstr "Code Python exécuté pour déterminer si la restriction s'applique. The
 
 #. module: sale_exceptions
 #: field:sale.exception.confirm,sale_id:0
-msgid "Sale"
-msgstr "Commande"
+=======
+#. module: sale_exception
+#: model:exception.rule,description:sale_exception.excep_no_stock
+#: model:exception.rule,name:sale_exception.excep_no_stock
+msgid "Not Enough Virtual Stock"
+msgstr "Not Enough Virtual Stock"
 
+#. module: sale_exception
+#: model:ir.model.fields,field_description:sale_exception.field_sale_order_rule_group
+msgid "Rule group"
+msgstr "Groupe de règles"
+
+#. module: sale_exception
+#: model:ir.model.fields,field_description:sale_exception.field_sale_exception_confirm_related_model_id
+#: selection:sale.order,rule_group:0
+>>>>>>> 3b7edd8... [FIX] sale_exception misc
+msgid "Sale"
+msgstr "Ventes"
+
+<<<<<<< HEAD
 #. module: sale_exceptions
 #: view:sale.exception:sale_exceptions.view_sale_exception_tree
 msgid "Sale Exception"
@@ -210,3 +302,31 @@ msgstr "Séquence"
 #: view:sale.exception.confirm:sale_exceptions.view_sale_exception_confirm
 msgid "_Close"
 msgstr ""
+=======
+#. module: sale_exception
+#: model:ir.actions.act_window,name:sale_exception.action_sale_test_tree
+#: model:ir.ui.menu,name:sale_exception.menu_sale_test
+msgid "Sale Exception Rules"
+msgstr "Règle de restriction sur les ventes"
+
+#. module: sale_exception
+#: model:ir.ui.view,arch_db:sale_exception.view_sale_exception_confirm
+msgid "Sale Exceptions"
+msgstr "Restrictions de vente"
+
+#. module: sale_exception
+#: model:ir.model,name:sale_exception.model_sale_order
+msgid "Sales Order"
+msgstr "Bon de commande"
+
+#. module: sale_exception
+#: model:ir.ui.view,arch_db:sale_exception.view_sale_exception_confirm
+msgid "_Close"
+msgstr "_Close"
+
+#. module: sale_exception
+#: model:ir.model,name:sale_exception.model_sale_exception_confirm
+msgid "sale.exception.confirm"
+msgstr "sale.exception.confirm"
+
+>>>>>>> 3b7edd8... [FIX] sale_exception misc
