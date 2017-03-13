@@ -2,27 +2,31 @@
 # © 2011 Raphaël Valyi, Renato Lima, Guewen Baconnier, Sodexis
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
 
-import time
-
-from openerp import api, models, fields, _
-from openerp.exceptions import UserError, ValidationError
-from openerp.tools.safe_eval import safe_eval
+from odoo import api, models, fields
 
 
 class ExceptionRule(models.Model):
     _inherit = 'exception.rule'
 
     rule_group = fields.Selection(
-        [('sale', 'Sale')],
-       )
+        selection_add=[('sale', 'Sale')],
+    )
     model = fields.Selection(
-        [('sale.order', 'Sale order'),
-        ('sale.order.line', 'Sale order line'), ])
+        selection_add=[
+            ('sale.order', 'Sale order'),
+            ('sale.order.line', 'Sale order line'),
+        ])
+
 
 class SaleOrder(models.Model):
     _inherit = ['sale.order', 'base.exception']
     _name = 'sale.order'
     _order = 'main_exception_id asc, date_order desc, name desc'
+
+    rule_group = fields.Selection(
+        selection_add=[('sale', 'Sale')],
+        default='sale',
+    )
 
     @api.model
     def test_all_draft_orders(self):
@@ -56,7 +60,11 @@ class SaleOrder(models.Model):
         })
         return res
 
-    @api.multi
     def _sale_get_lines(self):
         self.ensure_one()
         return self.order_line
+
+    @api.model
+    def _get_popup_action(self):
+        action = self.env.ref('sale_exception.action_sale_exception_confirm')
+        return action
