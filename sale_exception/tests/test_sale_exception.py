@@ -1,5 +1,7 @@
-from openerp.exceptions import ValidationError
-from openerp.addons.sale.tests.test_sale_order import TestSaleOrder
+# -*- coding: utf-8 -*-
+
+from odoo.exceptions import ValidationError
+from odoo.addons.sale.tests.test_sale_order import TestSaleOrder
 
 
 class TestSaleException(TestSaleOrder):
@@ -10,7 +12,7 @@ class TestSaleException(TestSaleOrder):
         partner = self.env.ref('base.res_partner_1')
         partner.zip = False
         p = self.env.ref('product.product_product_6')
-        so = self.env['sale.order'].create({
+        so1 = self.env['sale.order'].create({
             'partner_id': partner.id,
             'partner_invoice_id': partner.id,
             'partner_shipping_id': partner.id,
@@ -23,13 +25,26 @@ class TestSaleException(TestSaleOrder):
         })
 
         # confirm quotation
-        so.action_confirm()
-        self.assertTrue(so.state == 'draft')
-
+        so1.action_confirm()
+        self.assertTrue(so1.state == 'draft')
+        # test all draft so
+        so2 = self.env['sale.order'].create({
+            'partner_id': partner.id,
+            'partner_invoice_id': partner.id,
+            'partner_shipping_id': partner.id,
+            'order_line': [(0, 0, {'name': p.name,
+                                   'product_id': p.id,
+                                   'product_uom_qty': 3,
+                                   'product_uom': p.uom_id.id,
+                                   'price_unit': p.list_price})],
+            'pricelist_id': self.env.ref('product.list0').id,
+        })
+        self.env['sale.order'].test_all_draft_orders()
+        self.assertTrue(so2.state == 'draft')
         # Set ignore_exception flag  (Done after ignore is selected at wizard)
-        so.ignore_exception = True
-        so.action_confirm()
-        self.assertTrue(so.state == 'sale')
+        so1.ignore_exception = True
+        so1.action_confirm()
+        self.assertTrue(so1.state == 'sale')
 
         # Add a order line to test after SO is confirmed
         p = self.env.ref('product.product_product_7')
@@ -37,7 +52,7 @@ class TestSaleException(TestSaleOrder):
         # set ignore_exception = False  (Done by onchange of order_line)
         self.assertRaises(
             ValidationError,
-            so.write,
+            so1.write,
             {
                 'ignore_exception': False,
                 'order_line': [(0, 0, {'name': p.name,
@@ -51,7 +66,7 @@ class TestSaleException(TestSaleOrder):
         p = self.env.ref('product.product_product_7')
 
         # Set ignore exception True  (Done manually by user)
-        so.write({
+        so1.write({
             'ignore_exception': True,
             'order_line': [(0, 0, {'name': p.name,
                                    'product_id': p.id,
