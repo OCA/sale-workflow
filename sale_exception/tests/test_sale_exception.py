@@ -7,6 +7,7 @@ from odoo.addons.sale.tests.test_sale_order import TestSaleOrder
 class TestSaleException(TestSaleOrder):
 
     def test_sale_order_exception(self):
+        self.sale_exception_confirm = self.env['sale.exception.confirm']
         exception = self.env.ref('sale_exception.excep_no_zip')
         exception.active = True
         partner = self.env.ref('base.res_partner_1')
@@ -75,3 +76,17 @@ class TestSaleException(TestSaleOrder):
                                    'price_unit': p.list_price})]
         })
         exception.active = False
+        so1.action_cancel()
+        so1.action_draft()
+        self.assertTrue(not so1.ignore_exception)
+
+        # Simulation the opening of the wizard sale_exception_confirm and
+        # set ignore_exception to True
+        so_except_confirm = self.sale_exception_confirm.with_context(
+            {
+                'active_id': so1.id,
+                'active_ids': [so1.id],
+                'active_model': so1._name
+            }).create({'ignore': True})
+        so_except_confirm.action_confirm()
+        self.assertTrue(so1.ignore_exception)
