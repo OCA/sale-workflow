@@ -6,10 +6,11 @@
 Sale Automatic workflow exception
 =================================
 
-Auto installable Module for the compatibility
+* Auto installable Module for the compatibility
 with the Sale Automatic Workflow and Sale Exception.
-Order in exception are ignored by the cron to avoid useless testing
-every minutes. Please take care to active the cron "Test Draft Orders"
+* Order in exception are ignored by the cron to avoid useless testing
+every minutes.
+* Please take care to active the cron "Test Draft Orders"
 in order to retest some time the order with an exception.
 
 Installation
@@ -23,8 +24,8 @@ Configuration
 
 Activate the cron "Test Draft Orders":
 
-* Go to Setting > Technical > Automation > Scheduled Actions
-* Activate the cron "Test Draft Orders"
+#. Go to Setting > Technical > Automation > Scheduled Actions
+#. Activate the cron "Test Draft Orders"
 
 
 Usage
@@ -41,11 +42,7 @@ Bug Tracker
 Bugs are tracked on `GitHub Issues
 <https://github.com/OCA/sale-workflow/issues>`_. In case of trouble, please
 check there if your issue has already been reported. If you spotted it first,
-help us smashing it by providing a detailed and welcomed `feedback
-<https://github.com/OCA/
-sale-workflow/issues/new?body=module:%20
-sale_automatic_workflow_exception%0Aversion:%20
-8.0%0A%0A**Steps%20to%20reproduce**%0A-%20...%0A%0A**Current%20behavior**%0A%0A**Expected%20behavior**>`_.
+help us smash it by providing detailed and welcomed feedback.
 
 Credits
 =======
@@ -57,6 +54,7 @@ Images
 
 Contributors
 ------------
+
 * Sébastien Beau <sebastien.beau@akretion.com>
 
 Maintainer
