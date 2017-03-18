@@ -10,12 +10,12 @@ msgstr ""
 "POT-Creation-Date: 2017-03-12 12:30+0000\n"
 "PO-Revision-Date: 2015-09-03 07:10+0000\n"
 "Last-Translator: <>\n"
-"Language-Team: Catalan (http://www.transifex.com/oca/OCA-sale-workflow-8-0/language/ca/)\n"
+"Language-Team: French (Canada) (http://www.transifex.com/oca/OCA-sale-workflow-8-0/language/fr_CA/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
-"Language: ca\n"
-"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"Language: fr_CA\n"
+"Plural-Forms: nplurals=2; plural=(n > 1);\n"
 
 #. module: sale_rental
 #: help:sale.rental,in_state:0 help:sale.rental,out_state:0
@@ -53,7 +53,7 @@ msgstr ""
 #. module: sale_rental
 #: view:create.rental.product:sale_rental.create_rental_product_form
 msgid "Cancel"
-msgstr "Cancel·la"
+msgstr "Annuler"
 
 #. module: sale_rental
 #: code:addons/sale_rental/rental.py:118
@@ -64,7 +64,7 @@ msgstr ""
 #. module: sale_rental
 #: field:sale.rental,company_id:0
 msgid "Company"
-msgstr "Empresa"
+msgstr ""
 
 #. module: sale_rental
 #: field:create.rental.product,copy_image:0
@@ -91,12 +91,12 @@ msgstr ""
 #. module: sale_rental
 #: field:create.rental.product,create_uid:0 field:sale.rental,create_uid:0
 msgid "Created by"
-msgstr "Creat per"
+msgstr "Créé par"
 
 #. module: sale_rental
 #: field:create.rental.product,create_date:0 field:sale.rental,create_date:0
 msgid "Created on"
-msgstr "Creat el"
+msgstr "Créé le"
 
 #. module: sale_rental
 #: field:create.rental.product,default_code:0
@@ -117,7 +117,7 @@ msgstr ""
 #. module: sale_rental
 #: field:create.rental.product,display_name:0 field:sale.rental,display_name:0
 msgid "Display Name"
-msgstr "Veure el nom"
+msgstr "Afficher le nom"
 
 #. module: sale_rental
 #: view:sale.rental:sale_rental.sale_rental_tree
@@ -139,7 +139,7 @@ msgstr ""
 #. module: sale_rental
 #: field:create.rental.product,id:0 field:sale.rental,id:0
 msgid "ID"
-msgstr "ID"
+msgstr "Identifiant"
 
 #. module: sale_rental
 #: help:sale.order.line,rental_qty:0 help:sale.rental,rental_qty:0
@@ -150,17 +150,17 @@ msgstr ""
 #: field:create.rental.product,__last_update:0
 #: field:sale.rental,__last_update:0
 msgid "Last Modified on"
-msgstr "Darrera modificació el"
+msgstr ""
 
 #. module: sale_rental
 #: field:create.rental.product,write_uid:0 field:sale.rental,write_uid:0
 msgid "Last Updated by"
-msgstr "Darrera Actualització per"
+msgstr "Dernière mise à jour par"
 
 #. module: sale_rental
 #: field:create.rental.product,write_date:0 field:sale.rental,write_date:0
 msgid "Last Updated on"
-msgstr "Darrera Actualització el"
+msgstr "Dernière mise à jour le"
 
 #. module: sale_rental
 #: code:addons/sale_rental/rental.py:151
@@ -239,7 +239,7 @@ msgstr ""
 #. module: sale_rental
 #: field:sale.rental,partner_id:0
 msgid "Partner"
-msgstr "Empresa"
+msgstr "Partenaire"
 
 #. module: sale_rental
 #: field:sale.rental,procurement_id:0
@@ -249,7 +249,7 @@ msgstr ""
 #. module: sale_rental
 #: model:ir.model,name:sale_rental.model_product_product
 msgid "Product"
-msgstr "Producte"
+msgstr ""
 
 #. module: sale_rental
 #: field:create.rental.product,categ_id:0
@@ -423,12 +423,12 @@ msgstr ""
 #. module: sale_rental
 #: model:ir.model,name:sale_rental.model_sale_order
 msgid "Sales Order"
-msgstr "Comandes de venda"
+msgstr ""
 
 #. module: sale_rental
 #: model:ir.model,name:sale_rental.model_sale_order_line
 msgid "Sales Order Line"
-msgstr "Línia de comanda de vendes"
+msgstr ""
 
 #. module: sale_rental
 #: field:sale.rental,sell_picking_id:0
@@ -477,7 +477,7 @@ msgstr ""
 #. module: sale_rental
 #: field:sale.rental,state:0
 msgid "State"
-msgstr "Estat"
+msgstr ""
 
 #. module: sale_rental
 #: field:sale.rental,out_state:0
@@ -497,7 +497,7 @@ msgstr ""
 #. module: sale_rental
 #: model:ir.model,name:sale_rental.model_stock_move
 msgid "Stock Move"
-msgstr "Moure l'estoc"
+msgstr ""
 
 #. module: sale_rental
 #: code:addons/sale_rental/rental.py:541
@@ -542,12 +542,12 @@ msgstr ""
 #. module: sale_rental
 #: view:sale.rental:sale_rental.sale_rental_form
 msgid "Total"
-msgstr "Total"
+msgstr ""
 
 #. module: sale_rental
 #: view:sale.rental:sale_rental.sale_rental_form
 msgid "Unit of Measure"
-msgstr "Unitat de mesura"
+msgstr ""
 
 #. module: sale_rental
 #: model:ir.model,name:sale_rental.model_stock_warehouse
