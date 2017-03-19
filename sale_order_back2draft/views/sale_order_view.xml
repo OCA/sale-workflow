@@ -1,21 +1,21 @@
 <?xml version="1.0" encoding="utf-8"?>
-<openerp>
-    <data>
+<!-- Copyright 2014-2015 Serv. Tecnol. Av. (http://www.serviciosbaeza.com)
+                         Pedro M. Baeza Romero <pedro.baeza@serviciosbaeza.com>
+     License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl). -->
 
-        <record id="view_order_form_draft" model="ir.ui.view">
-            <field name="name">sale.order.form.draft</field>
-            <field name="model">sale.order</field>
-            <field name="inherit_id" ref="sale.view_order_form"/>
-            <field name="arch" type="xml">
-                <field name="state" position="before">
-                    <button name="button_draft"
-                            states="cancel"
-                            string="Back to draft"
-                            type="object"
-                            groups="base.group_user"/>
-                </field>
+<odoo>
+    <record id="view_order_form_draft" model="ir.ui.view">
+        <field name="name">sale.order.form.draft</field>
+        <field name="model">sale.order</field>
+        <field name="inherit_id" ref="sale.view_order_form"/>
+        <field name="arch" type="xml">
+            <field name="state" position="before">
+                <button name="button_draft"
+                        states="cancel"
+                        string="Back to draft"
+                        type="object"
+                        groups="base.group_user"/>
             </field>
-        </record>
-
-    </data>
-</openerp>
+        </field>
+    </record>
+</odoo>
