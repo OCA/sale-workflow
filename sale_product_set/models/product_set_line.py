@@ -1,5 +1,7 @@
 # -*- coding: utf-8 -*-
-from openerp import fields, models, _
+# License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
+
+from openerp import fields, models
 
 import openerp.addons.decimal_precision as dp
 
@@ -12,15 +14,11 @@ class ProductSetLine(models.Model):
 
     product_id = fields.Many2one(
         'product.product', domain=[('sale_ok', '=', True)],
-        string=_('Product'), required=True)
+        string='Product', required=True)
     quantity = fields.Float(
-        string=_('Quantity'),
         digits=dp.get_precision('Product Unit of Measure'),
         required=True, default=1)
     product_set_id = fields.Many2one(
-        'product.set', _('Set'), ondelete='cascade')
-    sequence = fields.Integer(
-        string=_('Sequence'),
-        required=True, default=0,
-        help=_(u""),
-    )
+        'product.set', string='Set', readonly=True, ondelete='cascade',
+        index=True, copy=False)
+    sequence = fields.Integer(required=True, default=0)
