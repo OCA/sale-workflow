@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<odoo noupdate="1">
+
+    <record id="sale_covenant_data" model="sale.covenant">
+        <field name="name">Main Market</field>
+        <field name="active">True</field>
+        <field name="comment">
+Here is miscellanous commitments for this market:
+- ...
+- ...
+        </field>
+        <field name="image" type="base64" file="sale_covenant/static/description/icon.png"/>
+    </record>
+
+</odoo>

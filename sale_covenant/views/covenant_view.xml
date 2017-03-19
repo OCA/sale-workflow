@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<odoo>
+
+    <record id="view_sale_covenant_tree" model="ir.ui.view">
+        <field name="model">sale.covenant</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="name"/>
+                <field name="active"/>
+                <field name="company_id" groups="base.group_multi_company" options="{'no_create': True}"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="view_sale_covenant_form_view" model="ir.ui.view">
+        <field name="model">sale.covenant</field>
+        <field name="arch" type="xml">
+            <form>
+              <sheet>
+                    <div>
+                    </div>
+                    <group>
+                        <div>
+                        <h1>
+                            <field name="name" placeholder="Name"/>
+                        </h1>
+                        </div>
+                        <field name="image" widget="image" nolabel="1" class="oe_avatar oe_right"/>
+                    </group>
+                    <group>
+                        <field name="active"/>
+                        <field name="company_id" groups="base.group_multi_company" options="{'no_create': True}"/>
+                        <field name="comment" string="Comments:" colspan="4"/>
+<!--                         <field name="setting_rule_ids" nolabel="1" colspan="2"
+                               context="{'default_model_ref_id': %(sale_covenant.model_sale_covenant)d}">
+                            <tree editable="bottom">
+                                <field name="name"/>
+                                <field name="model_ref_id"/>
+                                <field name="field_ref_id" attrs="{'readonly': [('readonly', '=', 1)]}"/>
+                                <field name="field_ref_value" attrs="{'readonly': [('readonly', '=', 1)]}"/>
+                                <field name="model_dest_id" attrs="{'readonly': [('readonly', '=', 1)]}"/>
+                                <field name="field_dest_id" attrs="{'readonly': [('readonly', '=', 1)]}"/>
+                                <field name="field_dest_value" attrs="{'readonly': [('readonly', '=', 1)]}"/>
+                                <field name="type"/>
+                                <field name="readonly" invisible="1"/>
+                            </tree>
+                        </field> -->
+                    </group>
+                    <group col="4">
+                        <group colspan="2">
+                        </group>
+                        <group colspan="2">
+                        </group>
+                </group>
+              </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="sale_covenant_action" model="ir.actions.act_window">
+        <field name="name">Sale Covenants</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">sale.covenant</field>
+        <field name="view_mode">tree,form</field>
+        <field name="domain">[]</field>
+        <field name="context">{}</field>
+    </record>
+
+    <menuitem action="sale_covenant_action" name="Covenants"
+              id="menu_sale_covenant_action"
+              parent="sale.menu_sales_config" sequence="10"/>
+
+</odoo>
