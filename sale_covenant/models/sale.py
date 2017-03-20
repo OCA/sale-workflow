@@ -32,7 +32,7 @@ class SaleOrder(models.Model):
         res = super(SaleOrder, self).fields_view_get(
             view_id=view_id, view_type=view_type, toolbar=toolbar,
             submenu=submenu)
-        return (self.env['record.setting.rule']
+        return (self.env['onchange.rule']
                 ._customize_view_according_to_setting_rule(
                     res, view_type, self))
 
@@ -40,6 +40,6 @@ class SaleOrder(models.Model):
     def onchange(self, values, field_name, field_onchange):
         res = super(SaleOrder, self).onchange(
             values, field_name, field_onchange)
-        res = self.env['record.setting.rule']._update_onchange_values(
+        res = self.env['onchange.rule']._update_onchange_values(
             self._name, values, res, field_name)
         return res

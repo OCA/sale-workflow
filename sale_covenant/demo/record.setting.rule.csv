@@ -1,4 +1,0 @@
-id,name,model_id/id,field_id/id,active,config
-market_one_setting,Main Market,sale.model_sale_order,sale_covenant.field_sale_order_covenant_id,1,"{
- 1: {'pricelist_id': {'value': 1, 'domain': False}},
-}"
