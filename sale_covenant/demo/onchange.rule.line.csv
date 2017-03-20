@@ -1,0 +1,2 @@
+id,onchange_rule_id/id,implied_record,model_id/id,field_id/id,m2o_value
+market_one_sale_pricelist,market_one_sale,"sale.covenant,1",sale.model_sale_order,sale.field_sale_order_pricelist_id,"product.pricelist,1"

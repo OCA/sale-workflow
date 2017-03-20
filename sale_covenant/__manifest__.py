@@ -18,6 +18,7 @@
         'security/ir.model.access.csv',
         'data/covenant_data.xml',
         'demo/onchange.rule.csv',
+        'demo/onchange.rule.line.csv',
         'views/covenant_view.xml',
         'views/partner_view.xml',
         'views/sale_view.xml',

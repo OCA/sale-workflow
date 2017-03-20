@@ -1,2 +1,2 @@
 id,name,model_id/id,field_id/id,active
-market_one_setting,Main Market,sale.model_sale_order,sale_covenant.field_sale_order_covenant_id,1
+market_one_sale,Main Market,sale.model_sale_order,sale_covenant.field_sale_order_covenant_id,1
