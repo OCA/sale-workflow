@@ -28,9 +28,9 @@ class SaleOrder(models.Model):
                              for line in sale.order_line
                              if line.procurement_group_id])
             if not any(group_ids):
-                self.picking_ids = []
+                sale.picking_ids = []
                 continue
-            self.picking_ids = self.env['stock.picking'].search(
+            sale.picking_ids = self.env['stock.picking'].search(
                 [('group_id', 'in', list(group_ids))])
 
     picking_ids = fields.One2many('stock.picking',
