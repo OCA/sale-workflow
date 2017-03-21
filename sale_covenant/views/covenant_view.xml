@@ -32,20 +32,6 @@
                         <field name="active"/>
                         <field name="company_id" groups="base.group_multi_company" options="{'no_create': True}"/>
                         <field name="comment" string="Comments:" colspan="4"/>
-<!--                         <field name="setting_rule_ids" nolabel="1" colspan="2"
-                               context="{'default_model_ref_id': %(sale_covenant.model_sale_covenant)d}">
-                            <tree editable="bottom">
-                                <field name="name"/>
-                                <field name="model_ref_id"/>
-                                <field name="field_ref_id" attrs="{'readonly': [('readonly', '=', 1)]}"/>
-                                <field name="field_ref_value" attrs="{'readonly': [('readonly', '=', 1)]}"/>
-                                <field name="model_dest_id" attrs="{'readonly': [('readonly', '=', 1)]}"/>
-                                <field name="field_dest_id" attrs="{'readonly': [('readonly', '=', 1)]}"/>
-                                <field name="field_dest_value" attrs="{'readonly': [('readonly', '=', 1)]}"/>
-                                <field name="type"/>
-                                <field name="readonly" invisible="1"/>
-                            </tree>
-                        </field> -->
                     </group>
                     <group col="4">
                         <group colspan="2">
