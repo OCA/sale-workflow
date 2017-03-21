@@ -7,7 +7,7 @@ from odoo import api, fields, models
 
 class SaleCovenant(models.Model):
     _name = "sale.covenant"
-    _description = "Sale Covenant"
+    _description = "Sale Covenant (commitment, engagement, pledge)"
 
     @api.model
     def _default_company(self):

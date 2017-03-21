@@ -6,7 +6,8 @@ from odoo import api, fields, models
 
 
 class SaleOrder(models.Model):
-    _inherit = "sale.order"
+    _inherit = ['onchange.mixin', 'sale.order']
+    _name = 'sale.order'
 
     covenant_id = fields.Many2one(
         comodel_name='sale.covenant', string='Covenant',
@@ -21,25 +22,7 @@ class SaleOrder(models.Model):
         if not self.partner_id:
             self.covenant_id = False,
         else:
-            self.covenant_id = self.partner_id.covenant_id.id
-        return res
-
-    @api.model
-    def fields_view_get(self, view_id=None, view_type='form',
-                        toolbar=False, submenu=False):
-        """ View is modified allowing to covenant_id value
-        """
-        res = super(SaleOrder, self).fields_view_get(
-            view_id=view_id, view_type=view_type, toolbar=toolbar,
-            submenu=submenu)
-        return (self.env['onchange.rule']
-                ._customize_view_according_to_setting_rule(
-                    res, view_type, self))
-
-    @api.multi
-    def onchange(self, values, field_name, field_onchange):
-        res = super(SaleOrder, self).onchange(
-            values, field_name, field_onchange)
-        res = self.env['onchange.rule']._update_onchange_values(
-            self._name, values, res, field_name)
+            # covenant can be defined on contact or parent
+            self.covenant_id = (self.partner_id.covenant_id or
+                                self.partner_id.parent_id.covenant_id)
         return res
