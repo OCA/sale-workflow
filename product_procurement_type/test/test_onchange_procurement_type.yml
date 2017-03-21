@@ -1,0 +1,56 @@
+-
+  Testing change of procurement type on product
+-
+  I create a product "Store" with type buy_stock
+-
+  !record {model: product.product, id: product1}:
+    name: Store
+    type: product
+    procurement_type: buy_stock
+-
+  I check if the product is MTS + buy
+-
+  !assert {model: product.product, id: product1}:
+    - procure_method == 'make_to_stock' 
+    - supply_method == 'buy' 
+-
+  I create a product "Curtain" with type produce_demand
+-
+  !record {model: product.product, id: product2}:
+    name: Curtain
+    type: product
+    procurement_type: produce_demand
+-
+  I check if the product is MTO + produce
+-
+  !assert {model: product.product, id: product2}:
+    - procure_method == 'make_to_order'
+    - supply_method == 'produce'
+
+-
+  I create a product "Curtain2" with type produce_stock
+-
+  !record {model: product.product, id: product3}:
+    name: Curtain2
+    type: product
+    procurement_type: produce_stock
+-
+  I check if the product is MTS + produce
+-
+  !assert {model: product.product, id: product3}:
+    - procure_method == 'make_to_stock' 
+    - supply_method == 'produce'
+
+-
+  I create a product "Store2" with type buy_demand
+-
+  !record {model: product.product, id: product4}:
+    name: Store2
+    type: product
+    procurement_type: buy_demand
+-
+  I check if the product is MTO + buy
+-
+  !assert {model: product.product, id: product4}:
+    - procure_method == 'make_to_order' 
+    - supply_method == 'buy' 
