@@ -1,0 +1,49 @@
+-
+  I will test the sale order id is correctly set in the Purchase Order Lines' 
+  attribute, sale_order_id.
+  I start by creating a product that will be bought.
+-
+  !record {model: product.product, id: product_product_4}:
+    name: Bought Product
+    sale_ok: True
+    purchase_ok: True
+    type: product
+    procure_method: make_to_order
+    supply_method: buy
+    list_price: 25.0
+-
+  I create a partner
+-
+  !record {model: res.partner, id: test_seller}:
+    name: "Supplier"
+-
+  I create supplier infos
+-
+  !record {model: product.supplierinfo, id: suppinfo_test1}:
+    name: test_seller
+    product_id: product_product_4_product_template
+    min_qty: 0
+-
+  I create a sale order with one line with previous product
+-
+  !record {model: sale.order, id: sale_order_4}:
+    partner_id: base.res_partner_2
+    note: Invoice after delivery
+    payment_term: account.account_payment_term
+    order_line:
+      - product_id: product_product_4
+        product_uom: 1
+        product_uom_qty: 5
+        price_unit: 50
+-
+  I confirm the Sale Order
+-
+  !function {model: sale.order, name: action_button_confirm}:
+    - eval: "[obj(ref('sale_order_4')).id]"
+      model: sale.order
+-
+  I check that the sale order id is set on Purchase Order Lines
+-
+  !python {model: purchase.order.line}: |
+    po_line_ids = self.search(cr, uid, [('sale_order_id','=',ref('sale_order_4'))], context=context)
+    assert len(po_line_ids) == 1, "Purchase Order Lines not found when searching on sale_order_id"

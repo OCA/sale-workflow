@@ -1,0 +1,53 @@
+# Translation of OpenERP Server.
+# This file contains the translation of the following modules:
+#	* sale_purchase_link
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: OpenERP Server 7.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2014-12-01 09:49+0000\n"
+"PO-Revision-Date: 2014-12-01 09:49+0000\n"
+"Last-Translator: <>\n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: sale_purchase_link
+#: code:_description:0
+#: model:ir.model,name:sale_purchase_link.model_procurement_order
+#, python-format
+msgid "Procurement"
+msgstr "Approvisionnement"
+
+#. module: sale_purchase_link
+#: code:_description:0
+#: model:ir.model,name:sale_purchase_link.model_purchase_order_line
+#, python-format
+msgid "Purchase Order Line"
+msgstr "Ligne de commande d'achat"
+
+#. module: sale_purchase_link
+#: model:ir.actions.act_window,name:sale_purchase_link.act_sale_order_purchase_order_open
+msgid "Purchase Orders Lines"
+msgstr "Lignes de commande d'achat"
+
+#. module: sale_purchase_link
+#: code:_description:0
+#: model:ir.model,name:sale_purchase_link.model_sale_order
+#, python-format
+msgid "Sales Order"
+msgstr "Bon de commande"
+
+#. module: sale_purchase_link
+#: field:purchase.order.line,sale_order_id:0
+msgid "Source Sale Order"
+msgstr "Bon de commande d'origine"
+
+#. module: sale_purchase_link
+#: view:sale.order:0
+msgid "See Purchase Orders"
+msgstr "Voir commande d'achats"
+

@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+
+        <act_window
+            context="{'search_default_sale_order_id': [active_id]}"
+            id="act_sale_order_purchase_order_open"
+            name="Purchase Orders Lines"
+            view_id="purchase.purchase_order_line_tree"
+            res_model="purchase.order.line"
+            src_model="sale.order"/>
+
+        <record id="view_order_form" model="ir.ui.view">
+            <field name="model">sale.order</field>
+            <field name="inherit_id" ref="sale.view_order_form"/>
+            <field name="arch" type="xml">
+                <xpath expr="//button[@name='action_cancel']" position="after">
+                    <button name="action_view_purchase_order" string="See Purchase Orders" type="object" groups="base.group_user"/>
+                </xpath>
+            </field>
+        </record>
+    </data>
+</openerp>
