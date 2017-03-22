@@ -22,7 +22,7 @@ class SaleOrder(models.Model):
     delivery_block_id = fields.Many2one(
         comodel_name='sale.delivery.block.reason',
         string='Delivery Block Reason', readonly=True,
-        states={'draft': [('readonly', False)]})
+        states={'draft': [('readonly', False)], 'sent': [('readonly', False)]})
 
     @api.multi
     def action_remove_delivery_block(self):

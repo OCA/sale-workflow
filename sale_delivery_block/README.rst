@@ -19,10 +19,6 @@ To configure this module, you need to:
    sales order.
 #. Add some users to the group 'Release Delivery Block in Sales Orders'.
 
-.. figure:: path/to/local/image.png
-   :alt: alternative description
-   :width: 600 px
-
 Usage
 =====
 
