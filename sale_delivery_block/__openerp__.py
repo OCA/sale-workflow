@@ -16,6 +16,7 @@
     "data": [
         'security/ir.model.access.csv',
         'security/sale_delivery_block_security.xml',
+        'data/sale_delivery_block_reason_data.xml',
         'views/sale_delivery_block_reason_view.xml',
         'views/sale_order_view.xml',
     ],
