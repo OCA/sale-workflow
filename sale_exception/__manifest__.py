@@ -6,7 +6,7 @@
  'summary': 'Custom exceptions on sale order',
  'version': '10.0.2.0.0',
  'category': 'Generic Modules/Sale',
- 'author': "Akretion, Sodexis, Odoo Community Association (OCA)",
+ 'author': "Akretion, Sodexis, Camptocamp, Odoo Community Association (OCA)",
  'website': 'http://www.akretion.com',
  'depends': ['sale', 'base_exception'],
  'license': 'AGPL-3',
