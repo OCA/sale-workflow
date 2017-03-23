@@ -38,6 +38,11 @@ class SaleOrderLine(models.Model):
     @api.multi
     def _action_procurement_create(self):
         new_procs = self.env['procurement.order']
+        # When module 'sale_procurement_group_by_line_is installed' we do not
+        #  want to use this method but call super. See module
+        # 'sale_delivery_block_proc_group_by_line
+        if 'group_by_line' in self.env.context:
+            return super(SaleOrderLine, self)._action_procurement_create()
         for line in self:
             if not line.order_id.delivery_block_id:
                 new_procs += super(SaleOrderLine,
