@@ -3,7 +3,7 @@
 #   (http://www.eficent.com)
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl.html).
 
-from openerp import api, fields, models, _
+from openerp import api, models
 
 
 class SaleOrderLine(models.Model):

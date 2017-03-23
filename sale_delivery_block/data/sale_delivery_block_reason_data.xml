@@ -2,9 +2,9 @@
 <!-- Copyright 2017 Eficent Business and IT Consulting Services S.L.
      License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl). -->
 
-<odoo>
+<odoo noupdate="1">
     <record id="my_data_record" model="sale.delivery.block.reason">
-        <field name="name">Pay Before Deliver</field>
+        <field name="name">Pay Before Delivery</field>
         <field name="description">Used to block the creation of deliveries until the customer pays.
 Since you are not creating any procurement nor move, no demand will be generated or stock assigned to fulfill this sales order.
         </field>
