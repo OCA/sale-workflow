@@ -164,7 +164,7 @@ class ProductTemplate(models.Model):
         #             ' of a "None Detailed - Assisted Price Pack"'))
 
     @api.one
-    @api.constrains('company_id', 'product_variant_ids', 'used_pack_line_ids')
+    @api.constrains('company_id', 'product_variant_ids')
     def check_pack_line_company(self):
         """
         Check packs are related to packs of same company
