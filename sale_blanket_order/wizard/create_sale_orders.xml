@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <record id="view_create_sale_order" model="ir.ui.view">
+        <field name="name">Create Sale Order</field>
+        <field name="model">sale.blanket.order.wizard</field>
+        <field name="arch" type="xml">
+            <form string="Create Sale Order">
+                <group>
+                    <field name="line_ids" nolabel="1">
+                        <tree create="false" editable="bottom">
+                            <field
+                                name="blanket_line_id"
+                                force_save="1"
+                                invisible="1"
+                            />
+                            <field name="product_id" />
+                            <field name="partner_id" />
+                            <field name="date_schedule" />
+                            <field name="price_unit" />
+                            <field name="remaining_uom_qty" />
+                            <field name="product_uom" groups="uom.group_uom" />
+                            <field name="qty" />
+                        </tree>
+                    </field>
+                </group>
+                <footer>
+                    <button
+                        name="create_sale_order"
+                        string="Create and View Order"
+                        type="object"
+                        class="btn-primary"
+                    />
+                    <button string="Cancel" class="btn-default" special="cancel" />
+                </footer>
+            </form>
+        </field>
+    </record>
+    <record id="action_create_sale_order" model="ir.actions.act_window">
+        <field name="name">Create Sale Order</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">sale.blanket.order.wizard</field>
+        <field name="view_mode">form</field>
+        <field name="target">new</field>
+        <field
+            name="binding_model_id"
+            ref="sale_blanket_order.model_sale_blanket_order_line"
+        />
+    </record>
+</odoo>
