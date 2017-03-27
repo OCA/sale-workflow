@@ -19,30 +19,30 @@ msgstr ""
 "Language: es\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
-#. module: sale_three_discounts
-#: model:ir.model.fields,field_description:sale_three_discounts.field_account_invoice_line_discount1
-#: model:ir.model.fields,field_description:sale_three_discounts.field_sale_order_line_discount1
+#. module: sale_triple_discount
+#: model:ir.model.fields,field_description:sale_triple_discount.field_account_invoice_line_discount1
+#: model:ir.model.fields,field_description:sale_triple_discount.field_sale_order_line_discount1
 msgid "Discount 1 (%)"
 msgstr "Descuento 1 (%)"
 
-#. module: sale_three_discounts
-#: model:ir.model.fields,field_description:sale_three_discounts.field_account_invoice_line_discount2
-#: model:ir.model.fields,field_description:sale_three_discounts.field_sale_order_line_discount2
+#. module: sale_triple_discount
+#: model:ir.model.fields,field_description:sale_triple_discount.field_account_invoice_line_discount2
+#: model:ir.model.fields,field_description:sale_triple_discount.field_sale_order_line_discount2
 msgid "Discount 2 (%)"
 msgstr "Descuento 2 (%)"
 
-#. module: sale_three_discounts
-#: model:ir.model.fields,field_description:sale_three_discounts.field_account_invoice_line_discount3
-#: model:ir.model.fields,field_description:sale_three_discounts.field_sale_order_line_discount3
+#. module: sale_triple_discount
+#: model:ir.model.fields,field_description:sale_triple_discount.field_account_invoice_line_discount3
+#: model:ir.model.fields,field_description:sale_triple_discount.field_sale_order_line_discount3
 msgid "Discount 3 (%)"
 msgstr "Descuento 3 (%)"
 
-#. module: sale_three_discounts
-#: model:ir.model,name:sale_three_discounts.model_account_invoice_line
+#. module: sale_triple_discount
+#: model:ir.model,name:sale_triple_discount.model_account_invoice_line
 msgid "Invoice Line"
 msgstr "Línea de Factura"
 
-#. module: sale_three_discounts
-#: model:ir.model,name:sale_three_discounts.model_sale_order_line
+#. module: sale_triple_discount
+#: model:ir.model,name:sale_triple_discount.model_sale_order_line
 msgid "Sales Order Line"
 msgstr "Línea de pedido de venta"
