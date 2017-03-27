@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<openerp>
+	<data>
+
+		<record model="ir.ui.view" id="sale_order_three_discounts_form_view_inh">
+			<field name="name">sale.order.three_discounts.form.inh</field>
+			<field name="model">sale.order</field>
+			<field name="inherit_id" ref="sale.view_order_form" />
+			<field name="arch" type="xml">
+				<!-- TODO modificar vista form tambien -->
+				<xpath expr="//field[@name='order_line']//tree//field[@name='discount']" position="attributes">
+					<attribute name="readonly">True</attribute>
+				</xpath>
+				<xpath expr="//field[@name='order_line']//tree//field[@name='discount']" position="before">
+					<field name="discount1" groups="sale.group_discount_per_so_line"/>
+					<field name="discount2" groups="sale.group_discount_per_so_line"/>
+					<field name="discount3" groups="sale.group_discount_per_so_line"/>
+				</xpath>
+			</field>
+		</record>
+
+	</data>
+</openerp>
