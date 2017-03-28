@@ -72,6 +72,7 @@ addon | version | summary
 [sale_start_end_dates](sale_start_end_dates/) | 8.0.0.1.0 | Adds start date and end date on sale order lines
 [sale_validity](sale_validity/) | 8.0.7.0.0 | Sales Quotation Validity Date
 
+
 Unported addons
 ---------------
 addon | version | summary
