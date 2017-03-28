@@ -32,6 +32,7 @@ addon | version | summary
 [sale_sourced_by_line](sale_sourced_by_line/) | 9.0.1.0.0 | Multiple warehouse source locations for Sale order
 [sale_start_end_dates](sale_start_end_dates/) | 9.0.1.0.0 | Adds start date and end date on sale order lines
 
+
 Unported addons
 ---------------
 addon | version | summary
