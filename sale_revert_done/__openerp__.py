@@ -5,12 +5,12 @@
 
 {
     "name": "Sale Revert Done",
-    "summary": "Allow you to revert the state of a sale order from 'done' to "
-               "'Sale Order' again.",
+    "summary": "This module extends the functionality of sales to allow you "
+               "to set a sales order done back to state 'Sale Order'.",
     "version": "9.0.1.0.0",
     "author": "Eficent, "
               "Odoo Community Association (OCA)",
-    "website": "https://github.com/OCA/sale-workflow",
+    "website": "https://odoo-community.org/",
     "category": "Sales",
     "depends": ["sale"],
     "data": [
