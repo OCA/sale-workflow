@@ -12,7 +12,7 @@
               "Odoo Community Association (OCA)",
     "website": "https://github.com/OCA/sale-workflow",
     "category": "Sales",
-    "depends": ["sale"],
+    "depends": ["sale_stock"],
     "data": [
         'security/ir.model.access.csv',
         'security/sale_delivery_block_security.xml',
