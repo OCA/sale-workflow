@@ -22,7 +22,7 @@
                     <h2 attrs="{'invisible': [('state', '!=', 'cancel')]}">
                         <label for="cancel_reason_id" string="Cancellation Reason:"/>
                         <field name="cancel_reason_id" class="oe_inline"
-                          options='{"no_open": True}'/>
+                          options='{"no_open": True}' />
                     </h2>
                 </xpath>
             </field>
