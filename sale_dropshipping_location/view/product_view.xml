@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+
+
+        <record id="view_template_property_form" model="ir.ui.view">
+            <field name="name">product.template.stock.property.form.inherit</field>
+            <field name="model">product.template</field>
+            <field name="inherit_id" ref="stock.view_template_property_form"/>
+            <field name="arch" type="xml">
+                <xpath expr="//page[@string='Properties']" position="inside">
+                    <group string="Drop Shipment Location">
+                        <field name="property_stock_drop_ship"/>
+                    </group>
+                </xpath>
+            </field>
+        </record>
+
+        <record id="view_normal_procurement_locations_form" model="ir.ui.view">
+            <field name="name">product.normal.procurement.locations.inherit</field>
+            <field name="model">product.product</field>
+            <field name="inherit_id" ref="product.product_normal_form_view"/>
+            <field name="arch" type="xml">
+                <xpath expr="//group[@name='store']" position="after">
+                    <group string="Drop Shipment Location">
+                        <field name="property_stock_drop_ship"/>
+                    </group>
+                </xpath>
+            </field>
+        </record>
+    </data>
+</openerp>
