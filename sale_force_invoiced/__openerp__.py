@@ -7,7 +7,7 @@
     'summary': 'Allows to force the invoice status of the sales order to '
                'Invoiced',
     'version': '9.0.1.0.0',
-    "author": "Eficent,"              
+    "author": "Eficent,"
               "Odoo Community Association (OCA)",
     'category': 'sale',
     'license': 'AGPL-3',
