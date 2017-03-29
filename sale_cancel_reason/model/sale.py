@@ -26,10 +26,10 @@ class SaleOrder(models.Model):
     _inherit = 'sale.order'
 
     cancel_reason_id = fields.Many2one(
-            'sale.order.cancel.reason',
-            string="Reason for cancellation",
-            readonly=True,
-            ondelete="restrict")
+        'sale.order.cancel.reason',
+        string="Reason for cancellation",
+        readonly=True,
+        ondelete="restrict")
 
 
 class SaleOrderCancelReason(models.Model):
