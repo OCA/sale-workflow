@@ -6,11 +6,19 @@
 Sale Layout Hidden
 ====================
 
-This module allows to Hide some sections in the printout of sale orders
+This can be used to add service products in a quotation with a price of 0 which
+will create a task in a project without showing them to the customer. This is
+very useful when used in conjunction with product sets (see sale_product_set_layout).
+
+The module also hides the lines from the invoice.
 
 
 Usage
 =====
+
+Installing this module does not enable sale layout. You need to activate it in the sales settings.
+
+Then you can check the hidden field on sale layout categories. These categories will not be displayed.
 
 .. image:: https://odoo-community.org/website/image/ir.attachment/5784_f2813bd/datas
    :alt: Try me on Runbot
