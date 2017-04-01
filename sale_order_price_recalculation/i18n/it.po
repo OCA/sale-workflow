@@ -3,13 +3,14 @@
 # * sale_order_price_recalculation
 # 
 # Translators:
+# Paolo Valier, 2016
 msgid ""
 msgstr ""
 "Project-Id-Version: sale-workflow (8.0)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-10-02 17:59+0000\n"
-"PO-Revision-Date: 2015-09-28 12:51+0000\n"
-"Last-Translator: OCA Transbot <transbot@odoo-community.org>\n"
+"POT-Creation-Date: 2016-04-29 00:55+0000\n"
+"PO-Revision-Date: 2016-04-27 20:00+0000\n"
+"Last-Translator: Paolo Valier\n"
 "Language-Team: Italian (http://www.transifex.com/oca/OCA-sale-workflow-8-0/language/it/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -20,7 +21,7 @@ msgstr ""
 #. module: sale_order_price_recalculation
 #: view:sale.order:sale_order_price_recalculation.sorp_view_order_form
 msgid "Recalculate prices"
-msgstr ""
+msgstr "Ricalcola prezzi"
 
 #. module: sale_order_price_recalculation
 #: view:sale.order:sale_order_price_recalculation.sorp_view_order_form
