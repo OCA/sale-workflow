@@ -9,6 +9,15 @@ from odoo.tools.translate import _
 
 class SaleOrder(models.Model):
     _inherit = "sale.order"
+
+    @api.depends('current_revision_id', 'old_revision_ids')
+    def _has_old_revisions(self):
+        for sale_order in self:
+            if sale_order.old_revision_ids:
+                sale_order.has_old_revisions = True
+            else:
+                sale_order.has_old_revisions = False
+
     current_revision_id = fields.Many2one('sale.order',
                                           'Current revision',
                                           readonly=True,
@@ -19,13 +28,16 @@ class SaleOrder(models.Model):
                                        readonly=True,
                                        context={'active_test': False})
     revision_number = fields.Integer('Revision',
-                                     copy=False)
+                                     copy=False,
+                                     default=0)
     unrevisioned_name = fields.Char('Order Reference',
                                     copy=True,
                                     readonly=True)
     active = fields.Boolean('Active',
-                            default=True,
-                            copy=True)
+                            default=True)
+
+    has_old_revisions = fields.Boolean('Has old revisions',
+                                       compute=_has_old_revisions)
 
     _sql_constraints = [
         ('revision_unique',
@@ -39,19 +51,31 @@ class SaleOrder(models.Model):
         if not defaults:
             defaults = {}
         if self.env.context.get('new_sale_revision'):
-            prev_name = self.name
-            revno = self.revision_number
-            self.write({'revision_number': revno + 1,
-                        'name': '%s-%02d' % (self.unrevisioned_name,
-                                             revno + 1)
+
+            new_rev_number = self.revision_number + 1
+            defaults.update({
+                'revision_number': new_rev_number,
+                'unrevisioned_name': self.unrevisioned_name,
+                'name': '%s-%02d' % (self.unrevisioned_name, new_rev_number),
+                'old_revision_ids': [(4, self.id, False)],
+            })
+            new_revision = super(SaleOrder, self).copy(defaults)
+            self.old_revision_ids.write({
+                'current_revision_id': new_revision.id,
+            })
+            self.write({'active': False,
+                        'state': 'cancel',
+                        'current_revision_id': new_revision.id,
                         })
-            defaults.update({'name': prev_name,
-                             'revision_number': revno,
-                             'active': False,
-                             'state': 'cancel',
-                             'current_revision_id': self.id,
-                             })
-        return super(SaleOrder, self).copy(defaults)
+            return new_revision
+
+        else:
+            if defaults.get('name', '/') == '/':
+                seq = self.env['ir.sequence']
+                defaults['name'] = seq.next_by_code('sale.order') or '/'
+                defaults['revision_number'] = 0
+                defaults['unrevisioned_name'] = defaults['name']
+            return super(SaleOrder, self).copy(defaults)
 
     @api.model
     def create(self, values):
@@ -63,34 +87,33 @@ class SaleOrder(models.Model):
         return super(SaleOrder, self).create(values)
 
     @api.multi
-    def copy_quotation(self):
-        # Adding Context
-        self = self.with_context(new_sale_revision=True)
+    def create_revision(self):
 
-        # Getting the sale order form
-        view_ref = self.env['ir.model.data'].get_object('sale',
-                                                        'view_order_form')
-
+        revision_ids = []
         # Looping over sale order records
         for sale_order_rec in self:
             # Calling  Copy method
-            copied_sale_rec = sale_order_rec.copy()
+            copied_sale_rec = sale_order_rec.with_context(
+                new_sale_revision=True).copy()
 
-            msg = _('New revision created: %s') % sale_order_rec.name
+            msg = _('New revision created: %s') % copied_sale_rec.name
             copied_sale_rec.message_post(body=msg)
             sale_order_rec.message_post(body=msg)
 
-            action = {
-                'type': 'ir.actions.act_window',
-                'name': _('Sales Order'),
-                'res_model': 'sale.order',
-                'res_id': sale_order_rec.id,
-                'view_type': 'form',
-                'view_mode': 'form',
-                'view_id': view_ref.id,
-                'target': 'current',
-                'nodestroy': True,
-            }
+            revision_ids.append(copied_sale_rec.id)
 
-            # Returning the new sale order view with new record.
-            return action
+        action = {
+            'type': 'ir.actions.act_window',
+            'name': _('New Sales Order Revisions'),
+            'res_model': 'sale.order',
+            'domain': "[('id', 'in', %s)]" % revision_ids,
+            'auto_search': True,
+            'views': [
+                (self.env.ref('sale.view_quotation_tree').id, 'tree'),
+                (self.env.ref('sale.view_order_form').id, 'form')],
+            'target': 'current',
+            'nodestroy': True,
+        }
+
+        # Returning the new sale order view with new record.
+        return action
