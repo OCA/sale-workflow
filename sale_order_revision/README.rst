@@ -26,6 +26,7 @@ Contributors
 * Raphael Valyi <rvalyi@akretion.com>
 * Alexandre Fayolle <alexandre.fayolle@camptocamp.com>
 * Serpent Consulting Services Pvt. Ltd. <jay.vora@serpentcs.com>
+* Akim Juillerat <akim.juillerat@camptocamp.com>
 
 Maintainer
 ----------
