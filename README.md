@@ -71,6 +71,7 @@ addon | version | summary
 [sale_sourced_by_line_sale_transport_multi_address](sale_sourced_by_line_sale_transport_multi_address/) | 8.0.1.0.0 | Make sale_sourced_by_line and sale_transport_multi_addresswork together
 [sale_start_end_dates](sale_start_end_dates/) | 8.0.0.1.0 | Adds start date and end date on sale order lines
 [sale_validity](sale_validity/) | 8.0.7.0.0 | Sales Quotation Validity Date
+[sales_team_security](sales_team_security/) | 8.0.1.0.0 | Sales teams security
 
 
 Unported addons
