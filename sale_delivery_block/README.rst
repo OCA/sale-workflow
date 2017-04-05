@@ -7,7 +7,7 @@ Sale Delivery Block
 ===================
 
 This module extends the functionality of sales to allow you to block the
-creation of deliveries from a sale order and give a reason.
+creation of deliveries from a sales order and give a reason.
 
 Configuration
 =============
@@ -19,6 +19,14 @@ To configure this module, you need to:
    sales order.
 #. Add some users to the group 'Release Delivery Block in Sales Orders'.
 
+Additionally, you can set a customer with a 'Default Delivery Block Reason'
+policy to add that delivery block to his sales by default:
+
+#. Go to 'Sales > Sales > Customers'.
+#. In the 'Sales & Purchases' add a 'Default Delivery Block Reason'.
+#. The 'Default Delivery Block Reason' will be added
+   automatically when creating a new sales order for the customer.
+
 Usage
 =====
 
@@ -27,7 +35,7 @@ To use this module, you need to:
 #. Create a new sales order and provide a 'Delivery Block Reason'.
 #. Confirm Sale (No delivery would be created).
 #. Release Delivery Block when it is time to create the deliveries for
-   the sale order.
+   the sales order.
 
 .. image:: https://odoo-community.org/website/image/ir.attachment/5784_f2813bd/datas
    :alt: Try me on Runbot
@@ -37,7 +45,7 @@ Bug Tracker
 ===========
 
 Bugs are tracked on `GitHub Issues
-<https://github.com/OCA/purchase-workflow/issues>`_. In case of trouble, please
+<https://github.com/OCA/sale-workflow/issues>`_. In case of trouble, please
 check there if your issue has already been reported. If you spotted it first,
 help us smash it by providing detailed and welcomed feedback.
 

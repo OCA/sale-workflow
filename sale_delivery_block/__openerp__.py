@@ -19,6 +19,7 @@
         'data/sale_delivery_block_reason_data.xml',
         'views/sale_delivery_block_reason_view.xml',
         'views/sale_order_view.xml',
+        'views/res_partner_view.xml',
     ],
     "license": "AGPL-3",
     'installable': True,

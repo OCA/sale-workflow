@@ -25,6 +25,16 @@ class SaleOrder(models.Model):
         states={'draft': [('readonly', False)], 'sent': [('readonly', False)]})
 
     @api.multi
+    @api.onchange('partner_id')
+    def onchange_partner_id(self):
+        """Add the 'Default Delivery Block Reason' if set in the partner."""
+        res = super(SaleOrder, self).onchange_partner_id()
+        for so in self:
+            if so.partner_id.default_delivery_block:
+                so.delivery_block_id = so.partner_id.default_delivery_block
+        return res
+
+    @api.multi
     def action_remove_delivery_block(self):
         """Remove the delivery block and create procurements as usual."""
         self.write({'delivery_block_id': False})
