@@ -8,11 +8,11 @@ Double validation for sale
 
 This module adds an option to enable two steps validation.
 
-When a minimal amount is reached on a Sale order, if a salesman confirm the sale.
+When a minimal amount is reached on a Sale order, if a salesperson confirm the sale.
 The sale order will be set to "To approve" state and will require a Sales manager
 to Approve it.
 
-This module is base on the purchase option for two levels validation in module `purchase`.
+This module is based on the purchase option for two levels validation in module `purchase`.
 
 
 Configuration
@@ -37,7 +37,7 @@ A sale order in "To approve" state will have a button "Approve" only visible to 
 
 .. image:: https://odoo-community.org/website/image/ir.attachment/5784_f2813bd/datas
    :alt: Try me on Runbot
-   :target: https://runbot.odoo-community.org/runbot/167/9.0
+   :target: https://runbot.odoo-community.org/runbot/167/10.0
 
 .. repo_id is available in https://github.com/OCA/maintainer-tools/blob/master/tools/repos_with_ids.txt
 .. branch is "8.0" for example
@@ -63,6 +63,7 @@ Contributors
 ------------
 
 *  Yannick Vaucher <yannick.vaucher@camptocamp.com>
+*  Denis Leemann <denis.leemann@camptocamp.com>
 
 Maintainer
 ----------

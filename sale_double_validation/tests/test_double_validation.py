@@ -2,10 +2,10 @@
 # Copyright 2017 Camptocamp SA
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl)
 
-from openerp.addons.sale.tests import test_sale_common
+from odoo.addons.sale.tests.test_sale_common import TestSale
 
 
-class TestSaleDoubleValidation(test_sale_common.TestSale):
+class TestSaleDoubleValidation(TestSale):
 
     def test_one_step(self):
         so = self.so

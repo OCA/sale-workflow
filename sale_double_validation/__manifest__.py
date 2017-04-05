@@ -4,13 +4,15 @@
 
 {'name': 'Double validation for Sales',
  'summary': "",
- 'version': '9.0.1.0.0',
+ 'version': '10.0.1.0.0',
  'author': 'Camptocamp,Odoo Community Association (OCA)',
  'maintainer': 'Camptocamp',
  'license': 'AGPL-3',
- 'category': 'category',
- 'complexity': "complexity",  # easy, normal, expert
- 'depends': ['sale'],
+ 'category': 'sale',
+ 'depends': [
+     'sale',
+     'sales_team',
+ ],
  'website': 'www.camptocamp.com',
  'data': ['views/company.xml',
           'views/sale.xml'],
