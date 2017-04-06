@@ -20,7 +20,7 @@ class SaleOrder(models.Model):
                   'active.'))
 
     delivery_block_id = fields.Many2one(
-        comodel_name='sale.delivery.block.reason',
+        comodel_name='sale.delivery.block.reason', track_visibility='always',
         string='Delivery Block Reason', readonly=True,
         states={'draft': [('readonly', False)], 'sent': [('readonly', False)]})
 
