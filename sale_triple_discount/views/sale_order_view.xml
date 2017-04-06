@@ -14,6 +14,11 @@
                 <field name="discount2" groups="sale.group_discount_per_so_line"/>
                 <field name="discount3" groups="sale.group_discount_per_so_line"/>
             </xpath>
+            <xpath expr="//field[@name='order_line']//form//label[@for='discount']" position="before">
+                <field name="discount1" groups="sale.group_discount_per_so_line"/>
+                <field name="discount2" groups="sale.group_discount_per_so_line"/>
+                <field name="discount3" groups="sale.group_discount_per_so_line"/>
+            </xpath>
         </field>
     </record>
 
