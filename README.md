@@ -19,6 +19,8 @@ Available addons
 ----------------
 addon | version | summary
 --- | --- | ---
+[sale_exception](sale_exception/) | 10.0.2.0.0 | Custom exceptions on sale order
+[sale_order_lot_selection](sale_order_lot_selection/) | 10.0.1.0.0 | Sale Order Lot Selection
 [sale_product_set](sale_product_set/) | 10.0.1.0.0 | Sale product set
 [sale_product_set_layout](sale_product_set_layout/) | 10.0.1.0.0 | Sale product set layout
 
@@ -42,7 +44,6 @@ addon | version | summary
 [sale_condition_text](sale_condition_text/) | 1.3 (unported) | Sale/invoice condition
 [sale_delivery_term](sale_delivery_term/) | 0.1 (unported) | Delivery term for sale orders
 [sale_dropshipping](sale_dropshipping/) | 1.1.1 (unported) | Sale Dropshipping
-[sale_exception](sale_exception/) | 9.0.1.0.0 (unported) | Custom exceptions on sale order
 [sale_exception_nostock](sale_exception_nostock/) | 8.0.1.2.0 (unported) | Sale stock exception
 [sale_fiscal_position_update](sale_fiscal_position_update/) | 1.0 (unported) | Changing the fiscal position of a sale order will auto-update sale order lines
 [sale_jit_on_services](sale_jit_on_services/) | 1.0 (unported) | Sale Service Just In Time
@@ -51,7 +52,6 @@ addon | version | summary
 [sale_order_add_variants](sale_order_add_variants/) | 8.0.0.1.0 (unported) | Add variants from template into sale order
 [sale_order_force_number](sale_order_force_number/) | 0.1 (unported) | Force sale orders numeration
 [sale_order_line_description](sale_order_line_description/) | 8.0.1.0.0 (unported) | Sale order line description
-[sale_order_lot_selection](sale_order_lot_selection/) | 9.0.1.0.0 (unported) | Sale Order Lot Selection
 [sale_order_price_recalculation](sale_order_price_recalculation/) | 8.0.1.0.0 (unported) | Price recalculation in sales orders
 [sale_order_revision](sale_order_revision/) | 8.0.0.1.0 (unported) | Sale order revisions
 [sale_order_type](sale_order_type/) | 8.0.1.0.1 (unported) | Sale Order Types
