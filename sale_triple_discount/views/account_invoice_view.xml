@@ -6,6 +6,9 @@
         <field name="model">account.invoice</field>
         <field name="inherit_id" ref="account.invoice_form"/>
         <field name="arch" type="xml">
+          <xpath expr="//field[@name='invoice_line_ids']" position="attributes">
+                <attribute name="context">{'partner_id': partner_id}</attribute>
+          </xpath>
             <xpath expr="//field[@name='invoice_line_ids']//tree//field[@name='discount']" position="attributes">
                 <attribute name="readonly">True</attribute>
             </xpath>
