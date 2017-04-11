@@ -6,17 +6,26 @@
 Default Quotation Validity
 ==========================
 
-With this module, you will be able to configure a default validity delay on quotations.
+With this module, you will be able to configure a default validity delay on
+quotations.
 
 Configuration
 =============
 
-Go to the menu *Sale > Configuration > Settings*, in the section *Quotations & Sales*, set the *Default Validity of Sale Orders* in days.
+* Go to 'Settings > Companies' and in the *Sales* section in the
+  *Configuration* tab you can set the 'Default Validity of Sale Orders'.
+
+.. image:: sale_validity/static/description/company_configuration.png
+   :alt: Company configuration
+   :width: 600 px
 
 Usage
 =====
 
-When you create a new quotation, the *Expiration Date* will be set by default to today's date plus the number of days configured in *Sale Settings* page. If you modify the *Order Date* field, the *Expiration Date* will be updated accordingly.
+When you create a new quotation, the *Expiration Date* will be set by default
+to today's date plus the number of days configured in *Sale Settings* page.
+If you modify the *Order Date* field, the *Expiration Date* will be updated
+accordingly.
 
 .. image:: https://odoo-community.org/website/image/ir.attachment/5784_f2813bd/datas
    :alt: Try me on Runbot
@@ -39,6 +48,7 @@ Contributors
 
 * Camptocamp
 * Alexis de Lattre <alexis.delattre@akretion.com>
+* Lois Rilo <lois.rilo@eficent.com>
 
 Maintainer
 ----------
