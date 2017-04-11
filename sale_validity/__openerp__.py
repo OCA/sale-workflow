@@ -5,13 +5,13 @@
 
 {
     'name': 'Default Quotation Validity',
-    'version': '10.0.1.0.0',
+    'version': '9.0.1.0.0',
     'category': 'Sales',
     'license': 'AGPL-3',
     'summary': 'Set a default validity delay on quotations',
     'depends': ['sale'],
-    'author': 'Camptocamp,Odoo Community Association (OCA)',
+    'author': 'Camptocamp, Odoo Community Association (OCA)',
     'website': 'http://www.camptocamp.com',
-    'data': ['views/sale_config_settings.xml'],
+    'data': ['views/res_company_view.xml'],
     'installable': True,
 }

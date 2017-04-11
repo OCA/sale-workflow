@@ -1,0 +1,17 @@
+<?xml version="1.0"?>
+<odoo>
+
+    <record id="view_company_form" model="ir.ui.view">
+        <field name="name">default.sale.order.validity.company.form</field>
+        <field name="model">res.company</field>
+        <field name="inherit_id" ref="sale.view_company_inherit_form2"/>
+        <field name="arch" type="xml">
+            <xpath expr="//group[@name='sale_grp']" position="inside">
+                <span colspan="1"/><!--Ugly fix to correctly display the
+                label an value of the field default_sale_order_validity_days-->
+                <field name="default_sale_order_validity_days"/>
+            </xpath>
+        </field>
+    </record>
+
+</odoo>
