@@ -55,7 +55,7 @@ class SaleOrder(models.Model):
             new_rev_number = self.revision_number + 1
             defaults.update({
                 'revision_number': new_rev_number,
-                'unrevisioned_name': self.name,
+                'unrevisioned_name': self.unrevisioned_name,
                 'name': '%s-%02d' % (self.unrevisioned_name, new_rev_number),
                 'old_revision_ids': [(4, self.id, False)],
             })
@@ -70,6 +70,11 @@ class SaleOrder(models.Model):
             return new_revision
 
         else:
+            if defaults.get('name', '/') == '/':
+                seq = self.env['ir.sequence']
+                defaults['name'] = seq.next_by_code('sale.order') or '/'
+                defaults['revision_number'] = 0
+                defaults['unrevisioned_name'] = defaults['name']
             return super(SaleOrder, self).copy(defaults)
 
     @api.model
