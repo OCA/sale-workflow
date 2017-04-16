@@ -1,0 +1,21 @@
+-
+  I create a sale order with an unmodified partner
+-
+  !record {model: sale.order, id: order1}:
+    partner_id: base.res_partner_1
+-
+  I check that the order discount is unchanged
+-
+  !assert {model: sale.order, id: order1, string: Discount should be zero}:
+    - discount == 0
+-
+  I add a line
+-
+  !record {model: sale.order.line, id: line1}:
+    name: line with no discount
+    order_id: order1
+-
+  I check that the line discount is unchanged
+-
+  !assert {model: sale.order.line, id: line1, string: Discount should be zero}:
+    - discount == 0
