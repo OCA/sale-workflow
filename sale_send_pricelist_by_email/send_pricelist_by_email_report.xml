@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+
+        <report
+            auto="False"
+            id="pricelist_version_report"
+            model="product.pricelist"
+            name="webkit.pricelist_version_report"
+            file="sale_send_pricelist_by_email/report/pricelist_version_report.mako"
+            string="Pricelist"
+            attachment_use="False"
+            webkit_header="base_headers_webkit.base_reports_portrait_header"
+            report_type="webkit"/>
+
+    </data>
+</openerp>
