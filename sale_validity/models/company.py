@@ -10,7 +10,7 @@ class ResCompany(models.Model):
     _inherit = "res.company"
 
     default_sale_order_validity_days = fields.Integer(
-        string="Default Validity of Sale Orders",
+        string="Default Validity of Sales Orders",
         help="By default, the validity date of sale orders will be "
              "the date of the sale order plus the number of days defined "
              "in this field. If the value of this field is 0, the sale orders "
