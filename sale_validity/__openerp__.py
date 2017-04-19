@@ -12,6 +12,9 @@
     'depends': ['sale'],
     'author': 'Camptocamp, Odoo Community Association (OCA)',
     'website': 'http://www.camptocamp.com',
-    'data': ['views/res_company_view.xml'],
+    'data': [
+        'views/res_company_view.xml',
+        'views/sale_order_view.xml'
+    ],
     'installable': True,
 }
