@@ -3,7 +3,7 @@
 #   (http://www.eficent.com)
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl.html).
 
-from openerp import fields, models
+from openerp import api, fields, models
 
 
 class ResPartner(models.Model):
@@ -14,3 +14,9 @@ class ResPartner(models.Model):
         string='Default Delivery Block Reason',
         help="Set a reason to block by default the deliveries in this "
              "customer sales orders.")
+
+    @api.model
+    def _commercial_fields(self):
+        commercial_fields = super(ResPartner, self)._commercial_fields()
+        commercial_fields.append('default_delivery_block')
+        return commercial_fields

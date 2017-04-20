@@ -30,8 +30,8 @@ class SaleOrder(models.Model):
         """Add the 'Default Delivery Block Reason' if set in the partner."""
         res = super(SaleOrder, self).onchange_partner_id()
         for so in self:
-            if so.partner_id.default_delivery_block:
-                so.delivery_block_id = so.partner_id.default_delivery_block
+            so.delivery_block_id = so.partner_id.default_delivery_block or \
+                False
         return res
 
     @api.multi
@@ -40,6 +40,15 @@ class SaleOrder(models.Model):
         self.write({'delivery_block_id': False})
         for order in self:
             order.order_line._action_procurement_create()
+
+    @api.multi
+    def copy(self, default=None):
+        new_so = super(SaleOrder, self).copy(default=default)
+        for so in new_so:
+            if (so.partner_id.default_delivery_block and not
+                    so.delivery_block_id):
+                so.delivery_block_id = so.partner_id.default_delivery_block
+        return new_so
 
 
 class SaleOrderLine(models.Model):
