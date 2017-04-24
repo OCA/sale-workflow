@@ -3,3 +3,5 @@ stock-logistics-workflow
 stock-logistics-transport
 account-closing
 server-tools
+
+dependency-repo https://github.com/Comunitea/web.git 10.0_mig_web_widget_x2many_2d_matrix
