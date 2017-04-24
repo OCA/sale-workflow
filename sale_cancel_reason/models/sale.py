@@ -3,6 +3,7 @@
 #
 #    Author: Guewen Baconnier
 #    Copyright 2013 Camptocamp SA
+#    Copyright 2016 Serpent Consulting Services Pvt. Ltd.
 #
 #    This program is free software: you can redistribute it and/or modify
 #    it under the terms of the GNU Affero General Public License as
@@ -19,4 +20,25 @@
 #
 #
 
-from . import sale
+from openerp import models, fields
+
+
+class SaleOrder(models.Model):
+    _inherit = 'sale.order'
+
+    cancel_reason_id = fields.Many2one(
+        'sale.order.cancel.reason',
+        string="Reason for cancellation",
+        readonly=True,
+        ondelete="restrict")
+
+
+class SaleOrderCancelReason(models.Model):
+    _name = 'sale.order.cancel.reason'
+    _description = 'Sale Order Cancel Reason'
+
+    name = fields.Char('Reason', required=True, translate=True)
+    active = fields.Boolean(
+        'Active', default=True,
+        help="By unchecking the active field, you may hide the record \
+        you will not use.")

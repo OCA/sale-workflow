@@ -3,6 +3,7 @@
 #
 #    Author: Guewen Baconnier
 #    Copyright 2013 Camptocamp SA
+#    Copyright 2016 Serpent Consulting Services Pvt. Ltd.
 #
 #    This program is free software: you can redistribute it and/or modify
 #    it under the terms of the GNU Affero General Public License as
@@ -19,32 +20,22 @@
 #
 #
 
-{'name': 'Sale Cancel Reason',
- 'version': '8.0.1.1',
- 'author': "Camptocamp,Odoo Community Association (OCA)",
- 'category': 'Sale',
- 'license': 'AGPL-3',
- 'complexity': 'normal',
- 'images': [],
- 'website': "http://www.camptocamp.com",
- 'description': """
-Sale Cancel Reason
-==================
-
-When a sale order is canceled, a reason must be given,
-it is chosen from a configured list.
-
-""",
- 'depends': ['sale',
+{
+    'name': 'Sale Cancel Reason',
+    'version': '9.0.1.0.0',
+    'author': 'Camptocamp, Odoo Community Association (OCA), '
+              'Serpent Consulting Services Pvt. Ltd.',
+    'category': 'Sale',
+    'license': 'AGPL-3',
+    'website': "http://www.camptocamp.com",
+    'depends': ['sale'],
+    'data': ['wizard/cancel_reason_view.xml',
+             'views/sale_view.xml',
+             'security/ir.model.access.csv',
+             'data/sale_order_cancel_reason.xml',
              ],
- 'demo': [],
- 'data': ['wizard/cancel_reason_view.xml',
-          'view/sale_view.xml',
-          'security/ir.model.access.csv',
-          'data/sale_order_cancel_reason.xml',
-          ],
- 'auto_install': False,
- 'test': ['test/sale_order_cancel.yml',
-          ],
- 'installable': False,
- }
+    'test': ['test/sale_order_cancel.yml'],
+    'installable': True,
+    'application': True,
+    'auto_install': False,
+}

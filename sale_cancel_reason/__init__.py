@@ -1,5 +1,4 @@
-# -*- coding: utf-8 -*-
-#
+#  -*- coding: utf-8 -*-
 #
 #    Author: Guewen Baconnier
 #    Copyright 2013 Camptocamp SA
@@ -20,4 +19,4 @@
 #
 
 from . import wizard
-from . import model
+from . import models

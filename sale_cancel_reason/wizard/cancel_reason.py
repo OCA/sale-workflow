@@ -3,6 +3,7 @@
 #
 #    Author: Guewen Baconnier
 #    Copyright 2013 Camptocamp SA
+#    Copyright 2016 Serpent Consulting Services Pvt. Ltd.
 #
 #    This program is free software: you can redistribute it and/or modify
 #    it under the terms of the GNU Affero General Public License as
@@ -19,9 +20,10 @@
 #
 #
 
-from openerp import models, fields, api
+from openerp import models, fields, api, _
+from openerp.exceptions import UserError
 
-QUOTATION_STATES = ['draft', 'sent']
+QUOTATION_STATES = ['draft', 'sent', 'sale']
 
 
 class SaleOrderCancel(models.TransientModel):
@@ -44,10 +46,12 @@ class SaleOrderCancel(models.TransientModel):
         assert len(sale_ids) == 1, "Only 1 sale ID expected"
         sale = self.env['sale.order'].browse(sale_ids)
         sale.cancel_reason_id = self.reason_id.id
-        # in the official addons, they call the signal on quotations
+        # in the official addons, they call the action_cancel()
         # but directly call action_cancel on sales orders
         if sale.state in QUOTATION_STATES:
-            sale.signal_workflow('cancel')
-        else:
             sale.action_cancel()
+        else:
+            raise UserError(
+                _("You cannot cancel the"
+                  " Quotation/Order in the current state!"))
         return act_close
