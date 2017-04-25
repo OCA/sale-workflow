@@ -32,6 +32,7 @@ addon | version | summary
 [sale_rental](sale_rental/) | 9.0.1.0.0 | Manage Rental of Products
 [sale_sourced_by_line](sale_sourced_by_line/) | 9.0.1.0.0 | Multiple warehouse source locations for Sale order
 [sale_start_end_dates](sale_start_end_dates/) | 9.0.1.0.0 | Adds start date and end date on sale order lines
+[sale_validity](sale_validity/) | 9.0.1.0.0 | Set a default validity delay on quotations
 
 
 Unported addons
@@ -68,7 +69,6 @@ addon | version | summary
 [sale_reason_to_export](sale_reason_to_export/) | 8.0.0.1.0 (unported) | Reason to export in Sales Order
 [sale_sourced_by_line_sale_transport_multi_address](sale_sourced_by_line_sale_transport_multi_address/) | 8.0.1.0.0 (unported) | Make sale_sourced_by_line and sale_transport_multi_addresswork together
 [sale_stock_global_delivery_lead_time](sale_stock_global_delivery_lead_time/) | 0.1 (unported) | Sale global delivery lead time
-[sale_validity](sale_validity/) | 8.0.7.0.0 (unported) | Sales Quotation Validity Date
 
 [//]: # (end addons)
 
