@@ -52,8 +52,8 @@ Known issues / Roadmap
 
   The corresponding OCB versions are in:
 
-  * https://github.com/OCA/OCB/pull/547
-  * https://github.com/OCA/OCB/pull/548
+  * https://github.com/OCA/OCB/pull/615
+  * https://github.com/OCA/OCB/pull/616
 
 Credits
 =======
