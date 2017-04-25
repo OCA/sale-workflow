@@ -23,6 +23,7 @@ addon | version | summary
 [sale_order_lot_selection](sale_order_lot_selection/) | 10.0.1.0.0 | Sale Order Lot Selection
 [sale_product_set](sale_product_set/) | 10.0.1.0.0 | Sale product set
 [sale_product_set_layout](sale_product_set_layout/) | 10.0.1.0.0 | Sale product set layout
+[sale_validity](sale_validity/) | 10.0.1.0.0 | Set a default validity delay on quotations
 
 
 Unported addons
@@ -69,7 +70,6 @@ addon | version | summary
 [sale_sourced_by_line_sale_transport_multi_address](sale_sourced_by_line_sale_transport_multi_address/) | 8.0.1.0.0 (unported) | Make sale_sourced_by_line and sale_transport_multi_addresswork together
 [sale_start_end_dates](sale_start_end_dates/) | 8.0.0.1.0 (unported) | Adds start date and end date on sale order lines
 [sale_stock_global_delivery_lead_time](sale_stock_global_delivery_lead_time/) | 0.1 (unported) | Sale global delivery lead time
-[sale_validity](sale_validity/) | 8.0.7.0.0 (unported) | Sales Quotation Validity Date
 
 [//]: # (end addons)
 
