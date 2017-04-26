@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="sale.act_res_partner_2_sale_order" model="ir.actions.act_window">
+        <field name="context">{'search_default_partner_id': active_id, 'search_default_sales': 1}</field>
+    </record>
+</odoo>
