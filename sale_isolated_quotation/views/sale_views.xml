@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
+    <!--  -->
     <record id="view_order_form" model="ir.ui.view">
         <field name="name">view.order.form</field>
         <field name="model">sale.order</field>
@@ -27,8 +28,8 @@
                 </header>
                 <header name="quotation" attrs="{'invisible': [('order_type','=','sale_order')]}">
 	            	<button name="action_button_convert_to_order" states="draft"
-	            			class="oe_highlight" type="object" string="Convert to Order" groups="base.group_user"/>
-                    <button name="cancel" states="draft" string="Cancel Quotation" groups="base.group_user"/>
+	            			class="oe_highlight" type="object" string="Convert to Order"/>
+                    <button name="action_cancel" states="draft" type="object" string="Cancel"/>
                     <field name="state2" widget="statusbar" statusbar_visible="draft,done" invisible="context.get('order_type', 'sale_order') == 'sale_order'"/>
                 </header>
             </xpath>
@@ -45,15 +46,13 @@
         </field>
     </record>
 
-    <!-- Split Quotation -->
+    <!-- Split sale.order -->
     <record id="sale.action_quotations" model="ir.actions.act_window">
-        <field name="context">{'hide_sale': True, 'order_type': 'quotation', }
-        </field>
-        <field name="domain">[('order_type', '=', 'quotation')]</field>
+        <field name="context">{'hide_sale': True, 'order_type': 'quotation', }</field>
+        <field name="domain">[('order_type', '=', 'quotation'), ]</field>
     </record>
     <record id="sale.action_orders" model="ir.actions.act_window">
-        <field name="context">{'order_type': 'sale_order', }
-        </field>
-        <field name="domain">[('order_type', '=', 'sale_order')]</field>
+        <field name="context">{'order_type': 'sale_order', }</field>
+        <field name="domain">[('order_type', '=', 'sale_order'), ]</field>
     </record>
 </odoo>

@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
     <data noupdate="1">
-
         <!-- Sequences for sale.order -->
         <record id="seq_sale_quotation" model="ir.sequence">
             <field name="name">Quotation</field>
@@ -15,6 +14,5 @@
         <record id="sale.seq_sale_order" model="ir.sequence">
             <field name="padding">8</field>
         </record>
-
     </data>
 </odoo>

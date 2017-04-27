@@ -3,7 +3,7 @@
 {
     'name': 'Sales - Separate Quote and Order',
     'version': '10.0.1.0.0',
-    'author': 'Ecosoft',
+    'author': 'Ecosoft,Odoo Community Association (OCA)',
     'category': 'Sales',
     'description': """
 This module separate quotation and sales order
@@ -16,10 +16,10 @@ Sales Order will also has a Force Done option.
     'depends': ['sale',
                 'sale_stock',
                 ],
+    'images': [],
     'data': [
-        "data/sale_sequence.xml",
-        "views/sale_view.xml",
-        "views/res_partner_view.xml",
+        "data/ir_sequence_data.xml",
+        "views/sale_views.xml",
     ],
     'installable': True,
     'auto_install': False,

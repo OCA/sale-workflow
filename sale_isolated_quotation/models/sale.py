@@ -45,8 +45,7 @@ class SaleOrder(models.Model):
             self._context.get('order_type', False)) == 'quotation' \
                 and vals.get('name', '/') == '/':
             vals['name'] = self.env['ir.sequence'].get('sale.quotation') or '/'
-        new_order = super(SaleOrder, self).create(vals)
-        return new_order
+        return super(SaleOrder, self).create(vals)
 
     @api.multi
     def action_button_convert_to_order(self):
@@ -59,7 +58,7 @@ class SaleOrder(models.Model):
             'client_order_ref': self.client_order_ref,
         })
         self.order_id = order.id  # Reference from this quotation to order
-        if self.state in ('draft', 'sent'):
+        if self.state == 'draft':
             self.action_done()
         return self.open_sale_order()
 
@@ -71,10 +70,7 @@ class SaleOrder(models.Model):
             'view_mode': 'form',
             'view_id': False,
             'res_model': 'sale.order',
-            'context': {
-                'search_default_my_sale_orders_filter': 1,
-                'order_type': 'sale_order',
-            },
+            'context': {'order_type': 'sale_order', },
             'type': 'ir.actions.act_window',
             'nodestroy': True,
             'target': 'current',
