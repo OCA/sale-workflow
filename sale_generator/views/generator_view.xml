@@ -57,7 +57,7 @@
                     <field name="warehouse_id"/>
                 </group>
                 <separator string="Customer"/>
-                <span>In order to add customer you have two possibility:
+                <span>In order to add customer you have two possibilities:
                     <ul>
                         <li>adding an existing customer by searching in your
                             database

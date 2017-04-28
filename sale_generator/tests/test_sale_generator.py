@@ -19,7 +19,7 @@ class TestProductProfile(TransactionCase):
         part2 = self.partner2
         vals = {
             'name': '/',
-            'partner_ids': [(4, part1.id, 0),(4, part2.id, 0)],
+            'partner_ids': [(4, part1.id, 0), (4, part2.id, 0)],
             'tmpl_sale_id': sale_tmpl.id,
             'warehouse_id': self.env.ref('stock.stock_warehouse_shop0').id,
             'state': 'draft',
@@ -38,6 +38,3 @@ class TestProductProfile(TransactionCase):
         sg.action_confirm()
         for sale in sales:
             self.assertEqual(sale.state, 'sale')
-
-
-

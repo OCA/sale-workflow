@@ -8,17 +8,32 @@ Sale Generator
 
 This module allows to generate multiple sales order at once.
 
-.. figure:: path/to/local/image.png
-   :alt: alternative description
-   :width: 600 px
+
 
 Usage
 =====
 
 To use this module, you need to:
-create a sale template and set wharehouse
 
 #. Go to Sales / Sales / Generator
+
+Create button then
+
+create a sale template
+
+.. image:: /sale_generator/static/img/sale_gen_tmpl.png
+   :alt: Create a sales template
+   :width: 600 px
+
+set wharehouse,
+    add Customers
+
+.. image:: /sale_generator/static/img/sale_generator.png
+   :alt: Create a generator for sales
+   :width: 600 px
+
+You can generate Quotations first
+then Confirm all in once..
 
 .. image:: https://odoo-community.org/website/image/ir.attachment/5784_f2813bd/datas
    :alt: Try me on Runbot

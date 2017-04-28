@@ -1,11 +1,10 @@
-# -*- encoding: utf-8 -*-
+# coding: utf-8
 #  @author Sébastien BEAU <sebastien.beau@akretion.com>
 #  @author Abdessamad HILALI <abdessamad.hilali@akretion.com>
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
 
 from odoo import api, fields, models, _
 from odoo.exceptions import UserError
-
 
 
 class SaleGenerator(models.Model):
@@ -97,9 +96,7 @@ class SaleGenerator(models.Model):
         return {'type': 'ir.actions.act_window',
                 'res_model': 'res.partner',
                 'name': u"New Customer",
-                # ressource associé à l id xml de l'action
                 'id': self.env.ref('base.view_partner_form').id,
-                # 'id': self.env.ref('sale_generator.action_partner_form').id,
                 'view_mode': 'form',
                 'target': 'new',
                 }
