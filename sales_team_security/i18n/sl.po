@@ -1,0 +1,308 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# * sales_team_security
+# 
+# Translators:
+# Matjaž Mozetič <m.mozetic@matmoz.si>, 2017
+# OCA Transbot <transbot@odoo-community.org>, 2017
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 8.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2017-04-04 03:01+0000\n"
+"PO-Revision-Date: 2017-04-04 03:01+0000\n"
+"Last-Translator: OCA Transbot <transbot@odoo-community.org>, 2017\n"
+"Language-Team: Slovenian (https://www.transifex.com/oca/teams/23907/sl/)\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Language: sl\n"
+"Plural-Forms: nplurals=4; plural=(n%100==1 ? 0 : n%100==2 ? 1 : n%100==3 || n%100==4 ? 2 : 3);\n"
+
+#. module: sales_team_security
+#: field:res.users,meeting_count:0
+msgid "# Meetings"
+msgstr "# sestankov"
+
+#. module: sales_team_security
+#: field:res.users,supplier_invoice_count:0
+msgid "# Supplier Invoices"
+msgstr "# prejetih računov"
+
+#. module: sales_team_security
+#: field:res.users,task_count:0
+msgid "# Tasks"
+msgstr "# Opravil"
+
+#. module: sales_team_security
+#: field:res.users,purchase_order_count:0
+msgid "# of Purchase Order"
+msgstr "# nabavnih nalogov"
+
+#. module: sales_team_security
+#: field:res.users,sale_order_count:0
+msgid "# of Sales Order"
+msgstr "# prodajnih nalogov"
+
+#. module: sales_team_security
+#: field:res.users,property_account_payable:0
+msgid "Account Payable"
+msgstr "Konto obveznosti"
+
+#. module: sales_team_security
+#: field:res.users,property_account_receivable:0
+msgid "Account Receivable"
+msgstr "Konto terjatev"
+
+#. module: sales_team_security
+#: help:res.users,vat_subjected:0
+msgid ""
+"Check this box if the partner is subjected to the VAT. It will be used for "
+"the VAT legal statement."
+msgstr "Označite, če je partner DDV zavezanec. Uporablja se za izkaz DDV."
+
+#. module: sales_team_security
+#: field:res.users,ref_companies:0
+msgid "Companies that refers to partner"
+msgstr "Družbe, ki so povezane s partnerjem"
+
+#. module: sales_team_security
+#: field:res.users,is_consignee:0
+msgid "Consignee"
+msgstr "Prejemnik"
+
+#. module: sales_team_security
+#: field:res.users,contract_ids:0 field:res.users,contracts_count:0
+msgid "Contracts"
+msgstr "Pogodbe"
+
+#. module: sales_team_security
+#: field:res.users,property_stock_customer:0
+msgid "Customer Location"
+msgstr "Lokacija kupca"
+
+#. module: sales_team_security
+#: field:res.users,property_payment_term:0
+msgid "Customer Payment Term"
+msgstr "Plačilni pogoji kupca"
+
+#. module: sales_team_security
+#: help:res.users,last_reconciliation_date:0
+msgid ""
+"Date on which the partner accounting entries were fully reconciled last "
+"time. It differs from the last date where a reconciliation has been made for"
+" this partner, as here we depict the fact that nothing more was to be "
+"reconciled at this date. This can be achieved in 2 different ways: either "
+"the last unreconciled debit/credit entry of this partner was reconciled, "
+"either the user pressed the button \"Nothing more to reconcile\" during the "
+"manual reconciliation process."
+msgstr ""
+"Datum zadnje polne uskladitve. Drugačen je od zadnjega datuma uskladitve za "
+"partnerja, saj opisuje stanje, ko ni ničesar za usklajevati na ta datum. To "
+"se lahko doseže na dva načina: zadnji neusklajeni breme/dobro vnos za "
+"partnerja je bil usklajen ali pa je uporabnik pritisnil gumb 'Ničesar več za"
+" usklajevanje' med procesom ročnega usklajevanja."
+
+#. module: sales_team_security
+#: field:res.users,property_account_position:0
+msgid "Fiscal Position"
+msgstr "Fiskalni položaj"
+
+#. module: sales_team_security
+#: field:res.users,invoice_ids:0
+msgid "Invoices"
+msgstr "Računi"
+
+#. module: sales_team_security
+#: field:res.users,journal_item_count:0
+msgid "Journal Items"
+msgstr "Dnevniške postavke"
+
+#. module: sales_team_security
+#: field:res.users,calendar_last_notif_ack:0
+msgid "Last notification marked as read from base Calendar"
+msgstr "Zadnje obvestilo iz osnovnega koledarja označeno kot prebrano"
+
+#. module: sales_team_security
+#: field:res.users,last_reconciliation_date:0
+msgid "Latest Full Reconciliation Date"
+msgstr "Datum zadnje uskladitve"
+
+#. module: sales_team_security
+#: field:res.users,opportunity_ids:0
+msgid "Leads and Opportunities"
+msgstr "Indici in priložnosti"
+
+#. module: sales_team_security
+#: field:res.users,meeting_ids:0
+msgid "Meetings"
+msgstr "Sestanki"
+
+#. module: sales_team_security
+#: field:res.users,opportunity_count:0
+msgid "Opportunity"
+msgstr "Priložnost"
+
+#. module: sales_team_security
+#: model:ir.model,name:sales_team_security.model_res_partner
+msgid "Partner"
+msgstr "Partner"
+
+#. module: sales_team_security
+#: field:res.users,debit_limit:0
+msgid "Payable Limit"
+msgstr "Plačilni limit"
+
+#. module: sales_team_security
+#: field:res.users,phonecall_count:0 field:res.users,phonecall_ids:0
+msgid "Phonecalls"
+msgstr "Telefonski klici"
+
+#. module: sales_team_security
+#: field:res.users,prospect:0
+msgid "Prospect"
+msgstr "Perspektiva"
+
+#. module: sales_team_security
+#: field:res.users,property_product_pricelist_purchase:0
+msgid "Purchase Pricelist"
+msgstr "Nabavni cenik"
+
+#. module: sales_team_security
+#: field:res.users,sale_order_ids:0
+msgid "Sales Order"
+msgstr "Prodajni nalog"
+
+#. module: sales_team_security
+#: model:ir.module.category,name:sales_team_security.module_category_sales_team
+msgid "Sales Teams"
+msgstr "Prodajne ekipe"
+
+#. module: sales_team_security
+#: field:res.users,sale_team_ids:0
+msgid "Sales teams"
+msgstr "Prodajne ekipe"
+
+#. module: sales_team_security
+#: model:res.groups,name:sales_team_security.group_see_only_own_team
+msgid "See only own team"
+msgstr "Vidi le lastno ekipo"
+
+#. module: sales_team_security
+#: field:res.users,property_stock_supplier:0
+msgid "Supplier Location"
+msgstr "Lokacija dobavitelja"
+
+#. module: sales_team_security
+#: field:res.users,property_supplier_payment_term:0
+msgid "Supplier Payment Term"
+msgstr "Plačilni pogoji dobavitelja"
+
+#. module: sales_team_security
+#: field:res.users,task_ids:0
+msgid "Tasks"
+msgstr "Opravila"
+
+#. module: sales_team_security
+#: help:res.users,property_account_position:0
+msgid ""
+"The fiscal position will determine taxes and accounts used for the partner."
+msgstr ""
+"Fiskalni položaj določi davke in konte, ki bodo uporabljeni za partnerja."
+
+#. module: sales_team_security
+#: help:res.users,property_account_payable:0
+msgid ""
+"This account will be used instead of the default one as the payable account "
+"for the current partner"
+msgstr ""
+"Ta konto bo uporabljen namesto privzetega kot konto obveznosti za trenutnega"
+" partnerja."
+
+#. module: sales_team_security
+#: help:res.users,property_account_receivable:0
+msgid ""
+"This account will be used instead of the default one as the receivable "
+"account for the current partner"
+msgstr ""
+"Ta konto se bo uporabljal namesto privzetega konta terjatev za tega "
+"partnerja"
+
+#. module: sales_team_security
+#: help:res.users,property_supplier_payment_term:0
+msgid ""
+"This payment term will be used instead of the default one for purchase "
+"orders and supplier invoices"
+msgstr ""
+"Plačilni pogoj, ki bo uporabljen namesto privzetega za nabavne naloge in "
+"prejete račune."
+
+#. module: sales_team_security
+#: help:res.users,property_payment_term:0
+msgid ""
+"This payment term will be used instead of the default one for sale orders "
+"and customer invoices"
+msgstr ""
+"Plačilni pogoj, ki bo uporabljen namesto privzetega za prodajne naloge in "
+"izdane račune."
+
+#. module: sales_team_security
+#: help:res.users,property_product_pricelist_purchase:0
+msgid ""
+"This pricelist will be used, instead of the default one, for purchases from "
+"the current partner"
+msgstr ""
+"Ta cenik bo uporabljen namesto privzetega za nabave pri trenutnemu partnerju"
+
+#. module: sales_team_security
+#: help:res.users,property_stock_customer:0
+msgid ""
+"This stock location will be used, instead of the default one, as the "
+"destination location for goods you send to this partner"
+msgstr ""
+"Lokacija zaloge, ki bo namesto privzete uporabljena kot ciljna lokacija "
+"blaga poslanega temu partnerju"
+
+#. module: sales_team_security
+#: help:res.users,property_stock_supplier:0
+msgid ""
+"This stock location will be used, instead of the default one, as the source "
+"location for goods you receive from the current partner"
+msgstr ""
+"Lokacija zaloge, ki bo namesto privzete uporabljena kot izvorna lokacija "
+"blaga prejetega od tega partnerja"
+
+#. module: sales_team_security
+#: field:res.users,total_invoiced:0
+msgid "Total Invoiced"
+msgstr "Skupaj obračunano"
+
+#. module: sales_team_security
+#: field:res.users,debit:0
+msgid "Total Payable"
+msgstr "Skupaj obveznosti"
+
+#. module: sales_team_security
+#: field:res.users,credit:0
+msgid "Total Receivable"
+msgstr "Skupaj terjatev"
+
+#. module: sales_team_security
+#: help:res.users,credit:0
+msgid "Total amount this customer owes you."
+msgstr "Skupni znesek, ki vam ga dolguje ta stranka."
+
+#. module: sales_team_security
+#: help:res.users,debit:0
+msgid "Total amount you have to pay to this supplier."
+msgstr "Skupni znesek za plačilo temu dobavitelju."
+
+#. module: sales_team_security
+#: model:ir.model,name:sales_team_security.model_res_users
+msgid "Users"
+msgstr "Uporabniki"
+
+#. module: sales_team_security
+#: field:res.users,vat_subjected:0
+msgid "VAT Legal Statement"
+msgstr "DDV izpisek"

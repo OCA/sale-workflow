@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: sale-workflow (8.0)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-01-14 06:38+0000\n"
+"POT-Creation-Date: 2017-04-04 03:00+0000\n"
 "PO-Revision-Date: 2015-12-01 14:37+0000\n"
 "Last-Translator: <>\n"
 "Language-Team: Catalan (http://www.transifex.com/oca/OCA-sale-workflow-8-0/language/ca/)\n"
@@ -30,7 +30,7 @@ msgstr "Factura"
 #. module: sale_payment_method_automatic_workflow
 #: model:ir.model,name:sale_payment_method_automatic_workflow.model_payment_method
 msgid "Payment Method"
-msgstr ""
+msgstr "Mètode de pagament"
 
 #. module: sale_payment_method_automatic_workflow
 #: model:ir.model,name:sale_payment_method_automatic_workflow.model_sale_order

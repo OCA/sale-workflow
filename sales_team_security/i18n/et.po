@@ -1,0 +1,288 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# * sales_team_security
+# 
+# Translators:
+# OCA Transbot <transbot@odoo-community.org>, 2017
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 8.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2017-04-04 03:01+0000\n"
+"PO-Revision-Date: 2017-04-04 03:01+0000\n"
+"Last-Translator: OCA Transbot <transbot@odoo-community.org>, 2017\n"
+"Language-Team: Estonian (https://www.transifex.com/oca/teams/23907/et/)\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Language: et\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+#. module: sales_team_security
+#: field:res.users,meeting_count:0
+msgid "# Meetings"
+msgstr ""
+
+#. module: sales_team_security
+#: field:res.users,supplier_invoice_count:0
+msgid "# Supplier Invoices"
+msgstr ""
+
+#. module: sales_team_security
+#: field:res.users,task_count:0
+msgid "# Tasks"
+msgstr ""
+
+#. module: sales_team_security
+#: field:res.users,purchase_order_count:0
+msgid "# of Purchase Order"
+msgstr ""
+
+#. module: sales_team_security
+#: field:res.users,sale_order_count:0
+msgid "# of Sales Order"
+msgstr ""
+
+#. module: sales_team_security
+#: field:res.users,property_account_payable:0
+msgid "Account Payable"
+msgstr ""
+
+#. module: sales_team_security
+#: field:res.users,property_account_receivable:0
+msgid "Account Receivable"
+msgstr ""
+
+#. module: sales_team_security
+#: help:res.users,vat_subjected:0
+msgid ""
+"Check this box if the partner is subjected to the VAT. It will be used for "
+"the VAT legal statement."
+msgstr ""
+
+#. module: sales_team_security
+#: field:res.users,ref_companies:0
+msgid "Companies that refers to partner"
+msgstr ""
+
+#. module: sales_team_security
+#: field:res.users,is_consignee:0
+msgid "Consignee"
+msgstr ""
+
+#. module: sales_team_security
+#: field:res.users,contract_ids:0 field:res.users,contracts_count:0
+msgid "Contracts"
+msgstr ""
+
+#. module: sales_team_security
+#: field:res.users,property_stock_customer:0
+msgid "Customer Location"
+msgstr ""
+
+#. module: sales_team_security
+#: field:res.users,property_payment_term:0
+msgid "Customer Payment Term"
+msgstr ""
+
+#. module: sales_team_security
+#: help:res.users,last_reconciliation_date:0
+msgid ""
+"Date on which the partner accounting entries were fully reconciled last "
+"time. It differs from the last date where a reconciliation has been made for"
+" this partner, as here we depict the fact that nothing more was to be "
+"reconciled at this date. This can be achieved in 2 different ways: either "
+"the last unreconciled debit/credit entry of this partner was reconciled, "
+"either the user pressed the button \"Nothing more to reconcile\" during the "
+"manual reconciliation process."
+msgstr ""
+
+#. module: sales_team_security
+#: field:res.users,property_account_position:0
+msgid "Fiscal Position"
+msgstr ""
+
+#. module: sales_team_security
+#: field:res.users,invoice_ids:0
+msgid "Invoices"
+msgstr ""
+
+#. module: sales_team_security
+#: field:res.users,journal_item_count:0
+msgid "Journal Items"
+msgstr ""
+
+#. module: sales_team_security
+#: field:res.users,calendar_last_notif_ack:0
+msgid "Last notification marked as read from base Calendar"
+msgstr ""
+
+#. module: sales_team_security
+#: field:res.users,last_reconciliation_date:0
+msgid "Latest Full Reconciliation Date"
+msgstr ""
+
+#. module: sales_team_security
+#: field:res.users,opportunity_ids:0
+msgid "Leads and Opportunities"
+msgstr ""
+
+#. module: sales_team_security
+#: field:res.users,meeting_ids:0
+msgid "Meetings"
+msgstr ""
+
+#. module: sales_team_security
+#: field:res.users,opportunity_count:0
+msgid "Opportunity"
+msgstr ""
+
+#. module: sales_team_security
+#: model:ir.model,name:sales_team_security.model_res_partner
+msgid "Partner"
+msgstr "Partner"
+
+#. module: sales_team_security
+#: field:res.users,debit_limit:0
+msgid "Payable Limit"
+msgstr ""
+
+#. module: sales_team_security
+#: field:res.users,phonecall_count:0 field:res.users,phonecall_ids:0
+msgid "Phonecalls"
+msgstr ""
+
+#. module: sales_team_security
+#: field:res.users,prospect:0
+msgid "Prospect"
+msgstr ""
+
+#. module: sales_team_security
+#: field:res.users,property_product_pricelist_purchase:0
+msgid "Purchase Pricelist"
+msgstr ""
+
+#. module: sales_team_security
+#: field:res.users,sale_order_ids:0
+msgid "Sales Order"
+msgstr ""
+
+#. module: sales_team_security
+#: model:ir.module.category,name:sales_team_security.module_category_sales_team
+msgid "Sales Teams"
+msgstr ""
+
+#. module: sales_team_security
+#: field:res.users,sale_team_ids:0
+msgid "Sales teams"
+msgstr ""
+
+#. module: sales_team_security
+#: model:res.groups,name:sales_team_security.group_see_only_own_team
+msgid "See only own team"
+msgstr ""
+
+#. module: sales_team_security
+#: field:res.users,property_stock_supplier:0
+msgid "Supplier Location"
+msgstr ""
+
+#. module: sales_team_security
+#: field:res.users,property_supplier_payment_term:0
+msgid "Supplier Payment Term"
+msgstr ""
+
+#. module: sales_team_security
+#: field:res.users,task_ids:0
+msgid "Tasks"
+msgstr ""
+
+#. module: sales_team_security
+#: help:res.users,property_account_position:0
+msgid ""
+"The fiscal position will determine taxes and accounts used for the partner."
+msgstr ""
+
+#. module: sales_team_security
+#: help:res.users,property_account_payable:0
+msgid ""
+"This account will be used instead of the default one as the payable account "
+"for the current partner"
+msgstr ""
+
+#. module: sales_team_security
+#: help:res.users,property_account_receivable:0
+msgid ""
+"This account will be used instead of the default one as the receivable "
+"account for the current partner"
+msgstr ""
+
+#. module: sales_team_security
+#: help:res.users,property_supplier_payment_term:0
+msgid ""
+"This payment term will be used instead of the default one for purchase "
+"orders and supplier invoices"
+msgstr ""
+
+#. module: sales_team_security
+#: help:res.users,property_payment_term:0
+msgid ""
+"This payment term will be used instead of the default one for sale orders "
+"and customer invoices"
+msgstr ""
+
+#. module: sales_team_security
+#: help:res.users,property_product_pricelist_purchase:0
+msgid ""
+"This pricelist will be used, instead of the default one, for purchases from "
+"the current partner"
+msgstr ""
+
+#. module: sales_team_security
+#: help:res.users,property_stock_customer:0
+msgid ""
+"This stock location will be used, instead of the default one, as the "
+"destination location for goods you send to this partner"
+msgstr ""
+
+#. module: sales_team_security
+#: help:res.users,property_stock_supplier:0
+msgid ""
+"This stock location will be used, instead of the default one, as the source "
+"location for goods you receive from the current partner"
+msgstr ""
+
+#. module: sales_team_security
+#: field:res.users,total_invoiced:0
+msgid "Total Invoiced"
+msgstr ""
+
+#. module: sales_team_security
+#: field:res.users,debit:0
+msgid "Total Payable"
+msgstr ""
+
+#. module: sales_team_security
+#: field:res.users,credit:0
+msgid "Total Receivable"
+msgstr ""
+
+#. module: sales_team_security
+#: help:res.users,credit:0
+msgid "Total amount this customer owes you."
+msgstr ""
+
+#. module: sales_team_security
+#: help:res.users,debit:0
+msgid "Total amount you have to pay to this supplier."
+msgstr ""
+
+#. module: sales_team_security
+#: model:ir.model,name:sales_team_security.model_res_users
+msgid "Users"
+msgstr ""
+
+#. module: sales_team_security
+#: field:res.users,vat_subjected:0
+msgid "VAT Legal Statement"
+msgstr ""

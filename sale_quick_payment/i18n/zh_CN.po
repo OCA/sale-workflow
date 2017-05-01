@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: sale-workflow (8.0)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-01-04 10:48+0000\n"
+"POT-Creation-Date: 2017-04-04 03:00+0000\n"
 "PO-Revision-Date: 2016-03-11 10:09+0000\n"
 "Last-Translator: <>\n"
 "Language-Team: Chinese (China) (http://www.transifex.com/oca/OCA-sale-workflow-8-0/language/zh_CN/)\n"
@@ -62,7 +62,7 @@ msgstr "ID"
 #: view:pay.sale.order:sale_quick_payment.pay_sale_order_view
 #: field:pay.sale.order,journal_id:0
 msgid "Journal"
-msgstr ""
+msgstr "凭证簿"
 
 #. module: sale_quick_payment
 #: field:pay.sale.order,__last_update:0

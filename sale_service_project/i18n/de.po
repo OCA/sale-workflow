@@ -10,8 +10,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: sale-workflow (8.0)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-03-04 06:32+0000\n"
-"PO-Revision-Date: 2017-03-10 13:16+0000\n"
+"POT-Creation-Date: 2017-04-04 03:01+0000\n"
+"PO-Revision-Date: 2017-04-20 12:24+0000\n"
 "Last-Translator: OCA Transbot <transbot@odoo-community.org>\n"
 "Language-Team: German (http://www.transifex.com/oca/OCA-sale-workflow-8-0/language/de/)\n"
 "MIME-Version: 1.0\n"
@@ -23,7 +23,7 @@ msgstr ""
 #. module: sale_service_project
 #: view:product.price.service.wizard:sale_service_project.wiz_compute_task_price
 msgid "Accept"
-msgstr ""
+msgstr "Annehmen"
 
 #. module: sale_service_project
 #: field:project.task,all_invoiced:0
@@ -423,7 +423,7 @@ msgstr "Versuche nicht-abrechenbare Position %s abzurechnen."
 #. module: sale_service_project
 #: field:product.price.service.wizard,uom_id:0
 msgid "Unit of measure"
-msgstr ""
+msgstr "Mengeneinheit"
 
 #. module: sale_service_project
 #: view:project.task:sale_service_project.view_sale_service_inherit_form2

@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: sale-workflow (8.0)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-12-23 01:49+0000\n"
+"POT-Creation-Date: 2017-04-04 03:01+0000\n"
 "PO-Revision-Date: 2016-03-03 02:11+0000\n"
 "Last-Translator: <>\n"
 "Language-Team: Portuguese (Brazil) (http://www.transifex.com/oca/OCA-sale-workflow-8-0/language/pt_BR/)\n"
@@ -20,7 +20,7 @@ msgstr ""
 #. module: sale_service_fleet
 #: model:ir.model,name:sale_service_fleet.model_account_analytic_account
 msgid "Analytic Account"
-msgstr ""
+msgstr "Conta analítica"
 
 #. module: sale_service_fleet
 #: field:fleet.vehicle,analytic_account_ids:0

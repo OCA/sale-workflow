@@ -9,8 +9,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 8.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-12-09 20:39+0000\n"
-"PO-Revision-Date: 2016-12-09 20:39+0000\n"
+"POT-Creation-Date: 2017-04-04 02:59+0000\n"
+"PO-Revision-Date: 2017-04-04 02:59+0000\n"
 "Last-Translator: Rudolf Schnapka <rs@techno-flex.de>, 2016\n"
 "Language-Team: German (https://www.transifex.com/oca/teams/23907/de/)\n"
 "MIME-Version: 1.0\n"
@@ -76,7 +76,7 @@ msgstr "ID"
 #. module: sale_change_price
 #: field:sale.change.price,item_ids:0
 msgid "Items"
-msgstr ""
+msgstr "Posten"
 
 #. module: sale_change_price
 #: field:sale.change.price,__last_update:0

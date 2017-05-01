@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: sale-workflow (8.0)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-01-14 06:38+0000\n"
-"PO-Revision-Date: 2017-01-17 19:25+0000\n"
+"POT-Creation-Date: 2017-04-04 03:00+0000\n"
+"PO-Revision-Date: 2017-04-25 10:39+0000\n"
 "Last-Translator: OCA Transbot <transbot@odoo-community.org>\n"
 "Language-Team: Catalan (http://www.transifex.com/oca/OCA-sale-workflow-8-0/language/ca/)\n"
 "MIME-Version: 1.0\n"
@@ -150,13 +150,13 @@ msgstr ""
 #: model:ir.model,name:sale_payment_method.model_payment_method
 #: field:sale.order,payment_method_id:0
 msgid "Payment Method"
-msgstr ""
+msgstr "Mètode de pagament"
 
 #. module: sale_payment_method
 #: view:payment.method:sale_payment_method.payment_method_view_form
 #: view:payment.method:sale_payment_method.payment_method_view_tree
 msgid "Payment Methods"
-msgstr ""
+msgstr "Mètodes de pagament"
 
 #. module: sale_payment_method
 #: model:ir.actions.act_window,name:sale_payment_method.act_payment_method_form
