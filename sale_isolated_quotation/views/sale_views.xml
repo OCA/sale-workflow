@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- Add quotation's header which in minimum compare to order's -->
+    <record id="view_order_form" model="ir.ui.view">
+        <field name="name">view.order.form</field>
+        <field name="model">sale.order</field>
+        <field name="inherit_id" ref="sale.view_order_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="/form/header" position="attributes">
+                <attribute name="invisible">context.get('order_type', 'sale_order') == 'quotation'</attribute>
+            </xpath>
+            <xpath expr="/form/header" position="after">
+                <header name="quotation" attrs="{'invisible': [('order_type','=','sale_order')]}">
+                    <button name="action_convert_to_order" states="draft" class="oe_highlight" type="object" string="Convert to Order"/>
+                    <button name="action_cancel" states="draft" type="object" string="Cancel"/>
+                    <field name="state2" widget="statusbar" statusbar_visible="draft,done" invisible="context.get('order_type', 'sale_order') == 'sale_order'"/>
+                </header>
+            </xpath>
+            <field name="partner_shipping_id" position="after">
+                <field name="order_type"/>
+                <field name="quote_id" attrs="{'invisible': [('order_type','=','quotation')]}" context="{'order_type': 'quotation'}"/>
+                <field name="order_id" attrs="{'invisible': [('order_type','=','sale_order')]}" context="{'order_type': 'sale_order'}"/>
+            </field>
+            <xpath expr="/form/sheet/notebook/page/field[@name='order_line']" position="attributes">
+                <attribute name="context">{'order_type': order_type}</attribute>
+            </xpath>
+        </field>
+    </record>
+    <!-- Assign order_type to context -->
+    <record id="sale.action_quotations" model="ir.actions.act_window">
+        <field name="context">{'hide_sale': True, 'order_type': 'quotation', }</field>
+        <field name="domain">[('order_type', '=', 'quotation'), ]</field>
+    </record>
+    <record id="sale.action_orders" model="ir.actions.act_window">
+        <field name="context">{'order_type': 'sale_order', }</field>
+        <field name="domain">[('order_type', '=', 'sale_order'), ]</field>
+    </record>
+</odoo>
