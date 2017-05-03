@@ -13,23 +13,6 @@ class SaleOrderLine(models.Model):
     lot_id = fields.Many2one(
         'stock.production.lot', 'Lot', copy=False)
 
-    @api.onchange('product_id')
-    def _onchange_product_id_set_lot_domain(self):
-        available_lot_ids = []
-        if self.order_id.warehouse_id and self.product_id:
-            location = self.order_id.warehouse_id.lot_stock_id
-            quants = self.env['stock.quant'].read_group([
-                ('product_id', '=', self.product_id.id),
-                ('location_id', 'child_of', location.id),
-                ('qty', '>', 0),
-                ('lot_id', '!=', False),
-            ], ['lot_id'], 'lot_id')
-            available_lot_ids = [quant['lot_id'][0] for quant in quants]
-        self.lot_id = False
-        return {
-            'domain': {'lot_id': [('id', 'in', available_lot_ids)]}
-        }
-
     @api.multi
     def _prepare_order_line_procurement(self, group_id=False):
         res = super(
@@ -64,7 +47,8 @@ class SaleOrder(models.Model):
             if move.state == 'confirmed':
                 move.action_assign()
                 move.refresh()
-            if move.state != 'assigned':
+            # state should be 'waiting' in case of make to order
+            if move.state not in ['assigned', 'waiting']:
                 raise Warning(_('Can\'t reserve products for lot %s') %
                               line.lot_id.name)
         return True

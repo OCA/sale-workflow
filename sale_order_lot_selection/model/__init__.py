@@ -20,5 +20,5 @@
 #########################################################################
 
 from . import sale
-from . import procurement
-from . import stock
+from . import procurement_order
+from . import stock_move
