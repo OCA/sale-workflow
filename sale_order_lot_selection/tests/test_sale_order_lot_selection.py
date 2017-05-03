@@ -223,22 +223,11 @@ class TestSaleOrderLotSelection(test_common.SingleTransactionCase):
                 self.assertEqual(pack.qty_done, 1)
                 self.assertEqual(pack.product_qty, 1)
 
-        onchange_res = self.sol3._onchange_product_id_set_lot_domain()
-        self.assertEqual(onchange_res['domain']['lot_id'], [('id', 'in', [])])
-        # put back the lot because it is removed by onchange
-        self.sol3.lot_id = self.lot10.id
-
         # I'll try to confirm it to check lot reservation:
         # lot10 was delivered by order1
         with self.assertRaises(Warning):
             self.order3.action_confirm()
 
-        # also test on_change for order2
-        onchange_res = self.sol2a._onchange_product_id_set_lot_domain()
-        self.assertEqual(
-            onchange_res['domain']['lot_id'], [('id', 'in', [self.lot11.id])])
-        # onchange remove lot_id, we put it back
-        self.sol2a.lot_id = self.lot11.id
         self.order2.action_confirm()
         picking = self.order2.picking_ids
         for pack_op in picking.pack_operation_ids:
