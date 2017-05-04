@@ -1,18 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
-<openerp>
-    <data noupdate="1">
+<odoo noupdate="1">
 
         <!-- Sequences for sale.order.generator -->
-        <record id="seq_type_generator_sequence" model="ir.sequence.type">
-            <field name="name">Generator Sequence</field>
-            <field name="code">sale.order.generator</field>
-        </record>
-
         <record id="seq_generator_sequence" model="ir.sequence">
             <field name="name">Generator Sequence</field>
             <field name="code">sale.order.generator</field>
             <field name="prefix">GEN-</field>
-            <field name="padding">5</field>
+            <field name="padding" eval="5"></field>
             <field name="company_id" eval="False"/>
         </record>
 
@@ -21,5 +15,4 @@
             <field name="active" eval="False"/>
         </record>
 
-    </data>
-</openerp>
+</odoo>

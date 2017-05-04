@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <record id="view_sale_order_form" model="ir.ui.view">
+        <field name="model">sale.order</field>
+        <field name="inherit_id" ref="sale.view_order_form"/>
+        <field name="priority" eval="32"/>
+        <field name="arch" type="xml">
+            <header position="attributes">
+                <attribute name="attrs">{'invisible': [('is_template', '=',
+                    True)]}
+                </attribute>
+            </header>
+            <field name="partner_id" position="after">
+                <field name="is_template" invisible="1"/>
+            </field>
+            <field name="name" position="attributes">
+                <attribute name="attrs">{'readonly': [('is_template', '=',
+                    False)]}
+                </attribute>
+                <attribute name="readonly">0</attribute>
+            </field>
+            <xpath expr="//field[@name='partner_id']/.." position="attributes">
+                <attribute name="attrs">{'invisible': [('is_template', '=',
+                    True)]}
+                </attribute>
+            </xpath>
+            <field name="date_order" position="attributes">
+                <attribute name="attrs">{'invisible': [('is_template', '=',
+                    True)]}
+                </attribute>
+            </field>
+            <field name="warehouse_id" position="attributes">
+                <attribute name="attrs">{'invisible': [('is_template', '=',
+                    True)]}
+                </attribute>
+            </field>
+            <field name="client_order_ref" position="attributes">
+                <attribute name="attrs">{'invisible': [('is_template', '=',
+                    True)]}
+                </attribute>
+            </field>
+        </field>
+    </record>
+
+    <record id="sale.action_orders" model="ir.actions.act_window">
+        <field name="domain">[('state', 'not in', ('draft', 'sent', 'cancel')),
+            ('is_template', '=', False)]
+        </field>
+    </record>
+
+    <record id="sale.action_quotations" model="ir.actions.act_window">
+        <field name="domain">[('state', 'in', ('draft', 'sent', 'cancel')),
+            ('is_template', '=', False)]
+        </field>
+    </record>
+
+</odoo>
