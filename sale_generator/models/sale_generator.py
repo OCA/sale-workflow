@@ -1,66 +1,74 @@
-from openerp import fields, models, api
+# coding: utf-8
+#  @author Sébastien BEAU <sebastien.beau@akretion.com>
+#  @author Abdessamad HILALI <abdessamad.hilali@akretion.com>
+# License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
 
-
-class SaleOrder(models.Model):
-        _inherit = 'sale.order'
-
-        generator_id = fields.Many2one('sale.generator', string="Generator")
-        is_template = fields.Boolean()
+from odoo import api, fields, models, _
+from odoo.exceptions import UserError
 
 
 class SaleGenerator(models.Model):
     _name = 'sale.generator'
 
-    name = fields.Char('Generator', default='/')
-    partner_ids = fields.Many2many('res.partner', string="Partner")
-    sale_ids = fields.One2many('sale.order', 'generator_id', string="Sales")
+    name = fields.Char(string='Generator', default='/')
+    partner_ids = fields.Many2many(
+        comodel_name='res.partner', string="Partner")
+    sale_ids = fields.One2many(
+        comodel_name='sale.order', inverse_name='generator_id', string="Sales")
     tmpl_sale_id = fields.Many2one(
-        'sale.order',
+        comodel_name='sale.order',
         string="Sale Template",
         required=True,
         domain=[('is_template', '=', True)])
     date_order = fields.Datetime(
-        'Date', oldname='date',
+        string='Date', oldname='date',
         default=fields.datetime.now())
     warehouse_id = fields.Many2one(
-        'stock.warehouse',
+        comodel_name='stock.warehouse',
         required=True,
         string="Warehouse")
     state = fields.Selection([
         ('draft', 'Draft'),
         ('generating', 'Generating Order'),
         ('done', 'Done'),
-        ], 'State', readonly=True, default='draft')
+    ], string='State', readonly=True, default='draft')
     company_id = fields.Many2one(
-        'res.company',
+        comodel_name='res.company',
         string="Company",
         related="warehouse_id.company_id",
         store=True)
 
     @api.multi
     def _prepare_copy_vals(self, partner):
-        vals = self.env['sale.order'].onchange_partner_id(partner.id)['value']
+        vals = {}
         vals.update({
             'partner_id': partner.id,
             'generator_id': self.id,
             'warehouse_id': self.warehouse_id.id,
             'company_id': self.warehouse_id.company_id.id,
             'is_template': False,
-            })
+        })
         return vals
 
-    @api.one
+    @api.multi
     def _create_order_for_partner(self, partner):
+        self.ensure_one()
         vals = self._prepare_copy_vals(partner)
         self.tmpl_sale_id.copy(default=vals)
 
-    @api.one
-    def button_confirm(self):
-        self.write({'state': 'generating'})
-        self._update_order()
+    @api.multi
+    def button_update_order(self):
+        for res in self:
+            if not res.partner_ids:
+                raise UserError(_(
+                    "Can't generate sale order without customer "))
+            else:
+                res.write({'state': 'generating'})
+                res._update_order()
 
-    @api.one
+    @api.multi
     def _update_order(self):
+        self.ensure_one()
         partner_ids_with_order = [sale.partner_id.id
                                   for sale in self.sale_ids]
         for partner in self.partner_ids:
@@ -70,11 +78,12 @@ class SaleGenerator(models.Model):
             if sale.partner_id not in self.partner_ids:
                 sale.unlink()
 
-    @api.one
-    def action_button_confirm(self):
-        self.write({'state': 'done'})
-        for sale in self.sale_ids:
-            sale.action_button_confirm()
+    @api.multi
+    def action_confirm(self):
+        for res in self:
+            res.write({'state': 'done'})
+            for sale in res.sale_ids:
+                sale.action_confirm()
 
     @api.multi
     def write(self, vals):
@@ -83,9 +92,18 @@ class SaleGenerator(models.Model):
             self._update_order()
         return res
 
+    def add_generated_partner(self):
+        return {'type': 'ir.actions.act_window',
+                'res_model': 'res.partner',
+                'name': u"New Customer",
+                'id': self.env.ref('base.view_partner_form').id,
+                'view_mode': 'form',
+                'target': 'new',
+                }
+
     @api.model
     def create(self, vals):
         if vals.get('name', '/') == '/':
-            vals['name'] = self.env['ir.sequence'].\
-                get('sale.order.generator') or '/'
+            vals['name'] = self.env['ir.sequence'].next_by_code(
+                'sale.order.generator') or '/'
         return super(SaleGenerator, self).create(vals)
