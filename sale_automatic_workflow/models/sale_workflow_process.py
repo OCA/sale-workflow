@@ -35,25 +35,24 @@ class SaleWorkflowProcess(models.Model):
         default='direct',
     )
     validate_order = fields.Boolean(string='Validate Order')
-    order_filter_domain = fields.Char(
+    order_filter_domain = fields.Text(
         string='Order Filter Domain',
-        default="[('state', '=', 'draft')]"
+        related='order_filter_id.domain',
     )
     create_invoice = fields.Boolean(string='Create Invoice')
-    create_invoice_filter_domain = fields.Char(
+    create_invoice_filter_domain = fields.Text(
         string='Create Invoice Filter Domain',
-        default="[('state','in',['sale','done']),"
-        "('invoice_status','=','to invoice')]"
+        related='create_invoice_filter_id.domain',
     )
     validate_invoice = fields.Boolean(string='Validate Invoice')
-    validate_invoice_filter_domain = fields.Char(
+    validate_invoice_filter_domain = fields.Text(
         string='Validate Invoice Filter Domain',
-        default="[('state', '=', 'draft')]"
+        related='validate_invoice_filter_id.domain',
     )
     validate_picking = fields.Boolean(string='Confirm and Transfer Picking')
-    picking_filter_domain = fields.Char(
+    picking_filter_domain = fields.Text(
         string='Picking Filter Domain',
-        default="[('state', 'in', ['draft', 'confirmed', 'assigned'])]"
+        related='picking_filter_id.domain',
     )
     invoice_date_is_order_date = fields.Boolean(
         string='Force Invoice Date',
@@ -68,10 +67,9 @@ class SaleWorkflowProcess(models.Model):
              "marked as delivered"
     )
     sale_done = fields.Boolean(string='Sale Done')
-    sale_done_filter_domain = fields.Char(
+    sale_done_filter_domain = fields.Text(
         string='Sale Done Filter Domain',
-        default="[('state', '=', 'sale'),('invoice_status','=','invoiced'),"
-                "('all_qty_delivered', '=', True)]"
+        related='sale_done_filter_id.domain',
     )
     warning = fields.Text(
         'Warning Message', translate=True,
@@ -123,30 +121,3 @@ class SaleWorkflowProcess(models.Model):
             'sale_automatic_workflow.automatic_workflow_sale_done_filter'
         )
     )
-
-    @api.onchange('order_filter_id')
-    def onchange_order_filter_id(self):
-        if self.order_filter_id:
-            self.order_filter_domain = self.order_filter_id.domain
-
-    @api.onchange('picking_filter_id')
-    def onchange_picking_filter_id(self):
-        if self.picking_filter_id:
-            self.picking_filter_domain = self.picking_filter_id.domain
-
-    @api.onchange('create_invoice_filter_id')
-    def onchange_create_invoice_filter_id(self):
-        domain = self.create_invoice_filter_id.domain
-        if self.create_invoice_filter_id:
-            self.create_invoice_filter_domain = domain
-
-    @api.onchange('validate_invoice_filter_id')
-    def onchange_validate_invoice_filter_id(self):
-        domain = self.validate_invoice_filter_id.domain
-        if self.validate_invoice_filter_id:
-            self.validate_invoice_filter_domain = domain
-
-    @api.onchange('sale_done_filter_id')
-    def onchange_sale_done_filter_id(self):
-        if self.sale_done_filter_id:
-            self.sale_done_filter_domain = self.sale_done_filter_id.domain
