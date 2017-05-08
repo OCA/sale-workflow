@@ -19,7 +19,7 @@ class SaleOrder(models.Model):
     all_qty_delivered = fields.Boolean(
         compute='_compute_all_qty_delivered',
         string='All quantities delivered',
-        store=True,  # for searchs
+        store=True,
     )
 
     @api.depends('order_line.qty_delivered', 'order_line.product_uom_qty')
