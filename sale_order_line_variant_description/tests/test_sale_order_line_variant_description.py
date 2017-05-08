@@ -31,18 +31,16 @@ class TestSaleOrderLineVariantDescription(common.TransactionCase):
         partner_id = self.res_partner_model.create(dict(name="A Boy"))
         tax_include_id = self.tax_model.create(
             dict(name="Include tax",
-            amount='21.00',
-            price_include=True,
-            type_tax_use='sale'))
-        tax_exclude_id = self.tax_model.create(
-            dict(name="Exclude tax",
-            amount='0.00',
-            type_tax_use='sale'))
+                 amount='21.00',
+                 price_include=True,
+                 type_tax_use='sale')
+        )
 
         product_tmpl_id = self.product_tmpl_model.create(
             dict(name="A Product",
-            list_price=121,
-            taxes_id=[(6, 0, [tax_include_id.id])]))
+                 list_price=121,
+                 taxes_id=[(6, 0, [tax_include_id.id])])
+        )
 
         product_id = self.product_model.create(
             dict(product_tmpl_id=product_tmpl_id.id,
