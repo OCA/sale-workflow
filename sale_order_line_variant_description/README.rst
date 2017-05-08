@@ -9,27 +9,12 @@ Sale order line variant description
 This module allows to specify different sale description values for each
 product variant and use them on the sale order lines as their names.
 
-Installation
-============
-
-To install this module you just need to select it from available modules.
-
-Configuration
-=============
-
-This modules does not require special configurations.
-
 Usage
 =====
 
 .. image:: https://odoo-community.org/website/image/ir.attachment/5784_f2813bd/datas
    :alt: Try me on Runbot
    :target: https://runbot.odoo-community.org/runbot/167/10.0
-
-Known issues / Roadmap
-======================
-
-* NA
 
 Bug Tracker
 ===========

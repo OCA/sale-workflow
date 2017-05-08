@@ -3,7 +3,6 @@
      License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html). -->
      
 <openerp>
-    <data>
 
         <record id="product_normal_form_view" model="ir.ui.view">
             <field name="name">product.product.form</field>
@@ -17,5 +16,4 @@
             </field>
         </record>
 
-    </data>
 </openerp>
