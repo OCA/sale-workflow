@@ -1,22 +1,6 @@
 # -*- coding: utf-8 -*-
-#
-#
-#    Copyright (C) 2012 Ecosoft (<http://www.ecosoft.co.th>)
-#
-#    This program is free software: you can redistribute it and/or modify
-#    it under the terms of the GNU Affero General Public License as published
-#    by the Free Software Foundation, either version 3 of the License, or
-#    (at your option) any later version.
-#
-#    This program is distributed in the hope that it will be useful,
-#    but WITHOUT ANY WARRANTY; without even the implied warranty of
-#    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-#    GNU General Public License for more details.
-#
-#    You should have received a copy of the GNU Affero General Public License
-#    along with this program.  If not, see <http://www.gnu.org/licenses/>.
-#
-#
+# © 2017 Ecosoft (ecosoft.co.th).
+# License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
 from odoo import models, fields, api, _
 from odoo.exceptions import UserError
 
@@ -24,13 +8,11 @@ from odoo.exceptions import UserError
 class SaleOrder(models.Model):
     _inherit = 'sale.order'
 
-    order_type = fields.Selection(
-        [('quotation', 'Quotation'),
-         ('sale_order', 'Sales Order'), ],
-        string='Order Type',
+    is_order = fields.Boolean(
+        string='Is Order',
         readonly=True,
         index=True,
-        default=lambda self: self._context.get('order_type', 'sale_order'),
+        default=lambda self: self._context.get('is_order', False),
     )
     quote_id = fields.Many2one(
         'sale.order',
@@ -61,9 +43,9 @@ class SaleOrder(models.Model):
 
     @api.model
     def create(self, vals):
-        order_type = vals.get('order_type', False) or \
-            self._context.get('order_type', False)
-        if order_type == 'quotation' and vals.get('name', '/') == '/':
+        is_order = vals.get('is_order', False) or \
+            self._context.get('is_order', False)
+        if not is_order and vals.get('name', '/') == '/':
             Seq = self.env['ir.sequence']
             vals['name'] = Seq.next_by_code('sale.quotation') or '/'
         return super(SaleOrder, self).create(vals)
@@ -71,13 +53,13 @@ class SaleOrder(models.Model):
     @api.multi
     def action_convert_to_order(self):
         self.ensure_one()
-        if self.order_type != 'quotation':
+        if self.is_order:
             raise UserError(
-                _('Only quotation is allowed to convert to order!'))
+                _('Only quotation can convert to order!'))
         Seq = self.env['ir.sequence']
         order = self.copy({
             'name': Seq.next_by_code('sale.order') or '/',
-            'order_type': 'sale_order',
+            'is_order': True,
             'quote_id': self.id,
             'client_order_ref': self.client_order_ref,
         })
@@ -94,12 +76,10 @@ class SaleOrder(models.Model):
             'view_mode': 'form',
             'view_id': False,
             'res_model': 'sale.order',
-            'context': {'order_type': 'sale_order', },
+            'context': {'is_order': True, },
             'type': 'ir.actions.act_window',
             'nodestroy': True,
             'target': 'current',
-            'domain': "[('order_type', '=', 'sale_order')]",
+            'domain': "[('is_order', '=', True)]",
             'res_id': self.order_id and self.order_id.id or False,
         }
-
-# vim:expandtab:smartindent:tabstop=4:softtabstop=4:shiftwidth=4:
