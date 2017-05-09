@@ -14,7 +14,7 @@
         'data/ir_sequence_data.xml',
         'views/sale_views.xml',
     ],
-    'test': [],
     'installable': True,
     'auto_install': False,
+    'post_init_hook': 'post_init_hook',
 }
