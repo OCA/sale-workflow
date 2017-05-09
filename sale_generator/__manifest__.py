@@ -15,6 +15,7 @@
         'data/data.xml',
         'views/generator_view.xml',
         'views/sale_view.xml',
+        'views/partner_view.xml',
         'security/ir.model.access.csv',
         'security/ir.rule.csv',
         ],

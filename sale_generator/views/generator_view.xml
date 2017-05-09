@@ -65,7 +65,7 @@
                             of the list.
                         </li>
                         <li>creating massively customer by launching the
-                            following wizard
+                            following wizard:
                             <button name="add_generated_partner"
                                     string="Create Customer"
                                     type="object"
