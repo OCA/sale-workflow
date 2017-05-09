@@ -7,32 +7,32 @@
         <field name="inherit_id" ref="sale.view_order_form"/>
         <field name="arch" type="xml">
             <xpath expr="/form/header" position="attributes">
-                <attribute name="invisible">context.get('order_type', 'sale_order') == 'quotation'</attribute>
+                <attribute name="invisible">not context.get('is_order', False)</attribute>
             </xpath>
             <xpath expr="/form/header" position="after">
-                <header name="quotation" attrs="{'invisible': [('order_type','=','sale_order')]}">
+                <header name="quotation" attrs="{'invisible': [('is_order','=',True)]}">
                     <button name="action_convert_to_order" states="draft" class="oe_highlight" type="object" string="Convert to Order"/>
                     <button name="action_cancel" states="draft" type="object" string="Cancel"/>
-                    <field name="state2" widget="statusbar" statusbar_visible="draft,done" invisible="context.get('order_type', 'sale_order') == 'sale_order'"/>
+                    <field name="state2" widget="statusbar" statusbar_visible="draft,done" invisible="context.get('is_order', False)"/>
                 </header>
             </xpath>
             <field name="partner_shipping_id" position="after">
-                <field name="order_type"/>
-                <field name="quote_id" attrs="{'invisible': [('order_type','=','quotation')]}" context="{'order_type': 'quotation'}"/>
-                <field name="order_id" attrs="{'invisible': [('order_type','=','sale_order')]}" context="{'order_type': 'sale_order'}"/>
+                <field name="is_order" invisible="1"/>
+                <field name="quote_id" attrs="{'invisible': [('is_order','=',False)]}" context="{'is_order': False}"/>
+                <field name="order_id" attrs="{'invisible': [('is_order','=',True)]}" context="{'is_order': True}"/>
             </field>
             <xpath expr="/form/sheet/notebook/page/field[@name='order_line']" position="attributes">
-                <attribute name="context">{'order_type': order_type}</attribute>
+                <attribute name="context">{'is_order': is_order}</attribute>
             </xpath>
         </field>
     </record>
-    <!-- Assign order_type to context -->
+    <!-- Assign is_order to context -->
     <record id="sale.action_quotations" model="ir.actions.act_window">
-        <field name="context">{'hide_sale': True, 'order_type': 'quotation', }</field>
-        <field name="domain">[('order_type', '=', 'quotation'), ]</field>
+        <field name="context">{'hide_sale': True, 'is_order': False, }</field>
+        <field name="domain">[('is_order', '=', False), ]</field>
     </record>
     <record id="sale.action_orders" model="ir.actions.act_window">
-        <field name="context">{'order_type': 'sale_order', }</field>
-        <field name="domain">[('order_type', '=', 'sale_order'), ]</field>
+        <field name="context">{'is_order': True, }</field>
+        <field name="domain">[('is_order', '=', True), ]</field>
     </record>
 </odoo>
