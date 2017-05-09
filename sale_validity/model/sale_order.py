@@ -26,7 +26,7 @@ class SaleOrder(models.Model):
     _inherit = 'sale.order'
 
     date_validity = fields.Date(
-        string='Valid Until', readonly=True,
+        string='Valid Until', readonly=True, copy=False,
         help="Define date until when quotation is valid",
         states={
             'draft': [('readonly', False)],
