@@ -27,7 +27,7 @@ class AccountInvoice(models.Model):
 
 
 class AccountInvoiceLine(models.Model):
-    _inherit = 'sale.order.line'
+    _inherit = 'account.invoice.line'
 
     @api.constrains('layout_category_id', 'price_unit')
     def _check_hidden_layout_category_price_unit(self):
