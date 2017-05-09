@@ -22,6 +22,12 @@
                             type="action"
                             class="oe_highlight"
                             invisible="not context.get('from_generator_id')"/>
+                        <button name="close_from_customer_wizard"
+                                string="close &amp; refresh generator"
+                                type="object"
+                                class="oe_highlight"
+                            <!--invisible="not context.get('from_generator_id')"-->
+                        />
                     </header>
                 </sheet>    
             </field>
