@@ -9,9 +9,9 @@ from odoo import models, api
 class ResPartner(models.Model):
     _inherit = 'res.partner'
 
-
     def close_from_customer_wizard(self):
-        action = self.env.ref('sale_generator.act_sale_generator_2_sale_order').read()
+        action = self.env.ref(
+            'sale_generator.act_sale_generator_2_sale_order').read()
         action['res_id'] = self.env.context.get('from_generator_id')
         return action
 

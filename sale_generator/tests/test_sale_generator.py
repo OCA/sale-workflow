@@ -26,7 +26,6 @@ class TestProductProfile(TransactionCase):
             'company_id': self.ref('base.main_company'),
         }
         sg = self.env['sale.generator'].create(vals)
-        # sg.write({'partner_ids': [(4, part1.id, 0),(4, part2.id, 0)]})
 
         sg.button_update_order()
 
