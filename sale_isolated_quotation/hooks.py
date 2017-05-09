@@ -1,7 +1,6 @@
 # -*- coding: utf-8 -*-
 # © 2017 Ecosoft (ecosoft.co.th).
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
-from odoo import api, SUPERUSER_ID
 
 
 def post_init_hook(cr, registry):
