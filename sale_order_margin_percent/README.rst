@@ -16,8 +16,8 @@ Installation
 
 To install this module, you need to:
 
-- First Add in the addons path the module and install in your Odoo.
-  And install the dependencies of the module
+- First Add in the addons path the module and install in your Odoo, And install
+  the dependencies of the module.
 
 =============
 Configuration
@@ -35,10 +35,9 @@ Usage
 
 To use this module, you need to:
 
-#. Go to sales and enter in sale order section,
-#. create a sale order then add products,
-#. You can get the percent because you have values in the field margin and
-amount untaxed.
+#. Go to sales and enter in sale order section.
+#. create a sale order then add products.
+#. You can get the percent because you have values in the field margin and amount untaxed.
 #. For the invoicing is the same enter an create a new one.
 
 ===========
@@ -46,7 +45,7 @@ Bug Tracker
 ===========
 
 Bugs are tracked on `GitHub Issues
-<https://github.com/OCA/sale-workflow/issues>`_. In case of trouble,
+<https://github.com/OCA/project_task_analytic_tag/issues>`_. In case of trouble,
 please check there if your issue has already been reported. If you spotted it
 first, help us smash it by providing detailed and welcomed feedback.
 
