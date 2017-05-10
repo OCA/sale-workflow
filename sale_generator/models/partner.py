@@ -10,8 +10,9 @@ class ResPartner(models.Model):
     _inherit = 'res.partner'
 
     def close_from_customer_wizard(self):
+        id = self.env.context.get('from_generator_id')
         action = self.env.ref('sale_generator.act_sale_generator_2_sale_order')
-        action['res_id'] = self.env.context.get('from_generator_id')
+        action['res_id'] = id
         return action
 
     @api.model
@@ -21,4 +22,15 @@ class ResPartner(models.Model):
         if generator_id:
             generator = self.env['sale.generator'].browse(generator_id)
             generator.write({'partner_ids': [(4, res.id, 0)]})
+
         return res
+
+    def add_new_generated_partner(self):
+
+        return {'type': 'ir.actions.act_window',
+                'res_model': 'res.partner',
+                'name': u"New Customer",
+                'id': self.env.ref('base.view_partner_form').id,
+                'view_mode': 'form',
+                'target': 'new',
+                }

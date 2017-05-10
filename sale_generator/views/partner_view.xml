@@ -16,9 +16,10 @@
 
                 <sheet position="before">
                     <header>
-                        <button name="%(action_partner_create_form)d"
+                        <button name="add_new_generated_partner"
                                 string="Confirm and create a new customer"
-                                type="action"
+                                type="object"
+                                context="context.get('from_generator_id')"
                                 class="oe_highlight"
                                 invisible="not context.get('from_generator_id')"/>
                         <button name="close_from_customer_wizard"
