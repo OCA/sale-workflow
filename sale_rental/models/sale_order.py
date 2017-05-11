@@ -4,12 +4,11 @@
 # Copyright 2016 Sodexis (http://sodexis.com)
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
-from openerp import models, fields, api, _
-from openerp.exceptions import ValidationError
-from openerp.exceptions import UserError
-from openerp.tools import float_compare
+from odoo import models, fields, api, _
+from odoo.exceptions import ValidationError, UserError
+from odoo.tools import float_compare
 from dateutil.relativedelta import relativedelta
-import openerp.addons.decimal_precision as dp
+import odoo.addons.decimal_precision as dp
 import logging
 
 logger = logging.getLogger(__name__)
@@ -131,9 +130,14 @@ class SaleOrderLine(models.Model):
         if (
                 self.product_id.rented_product_id and
                 self.rental_type == 'new_rental'):
+            # 'product_qty' is re-written after
+            # _prepare_order_line_procurement() in _action_procurement_create()
+            # So I add a key 'rental_product_qty' which is used in the
+            # inherit of create() of procurement.order
             res.update({
                 'product_id': self.product_id.rented_product_id.id,
                 'product_qty': self.rental_qty,
+                'rental_product_qty': self.rental_qty,
                 'product_uom': self.product_id.rented_product_id.uom_id.id,
                 'location_id':
                 self.order_id.warehouse_id.rental_out_location_id.id,
