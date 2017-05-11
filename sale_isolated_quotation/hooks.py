@@ -21,9 +21,7 @@ def uninstall_hook(cr, registry):
         for action_id in ['sale.action_quotations', 'sale.action_orders']:
             action = env.ref(action_id)
             ctx = ast.literal_eval(action.context)
-            print ctx
             del ctx['is_order']
             dom = ast.literal_eval(action.domain)
-            print dom
             dom = [x for x in dom if x[0] != 'is_order']
             action.write({'context': ctx, 'domain': dom})
