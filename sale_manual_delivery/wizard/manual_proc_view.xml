@@ -20,6 +20,7 @@
               <field name='manual_delivery_id' invisible="1"/>
               <field name='order_line_id' invisible="1"/>
               <field name='product_id'/>
+              <field name='line_description'/>
               <field name='ordered_qty'/>
               <field name='existing_qty'/>
               <field name='remaining_qty'/>
