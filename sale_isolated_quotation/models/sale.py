@@ -20,7 +20,7 @@ class SaleOrder(models.Model):
         readonly=True,
         ondelete='restrict',
         copy=False,
-        help="For Sales Order, this field reference to its Quotation",
+        help="For Sales Order, this field references to its Quotation",
     )
     order_id = fields.Many2one(
         'sale.order',
@@ -28,7 +28,7 @@ class SaleOrder(models.Model):
         readonly=True,
         ondelete='restrict',
         copy=False,
-        help="For Quotation, this field reference to its Sales Order",
+        help="For Quotation, this field references to its Sales Order",
     )
     state2 = fields.Selection(
         [('draft', 'Draft'),
@@ -55,7 +55,7 @@ class SaleOrder(models.Model):
         self.ensure_one()
         if self.is_order:
             raise UserError(
-                _('Only quotation can convert to order!'))
+                _('Only quotation can convert to order'))
         Seq = self.env['ir.sequence']
         order = self.copy({
             'name': Seq.next_by_code('sale.order') or '/',
