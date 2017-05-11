@@ -6,9 +6,16 @@
 Sales Isolated Quotation
 ========================
 
-This module separate quotation and sales order by adding order_type
-as 'quotation' or 'sale_order' in sale.order model.
+In some countries/companies, it is quite common to separate both documents.
+For tracking purposes, it is needed that the document running number
+of quotation and sales order has to be separated.
+There could be multiple quotations open to a customer, yet only one quotation
+get converted to the sales order.
 
+This module separate quotation and sales order by adding is_order flag in
+sale.order model.
+
+Each type of document will have separated sequence numbering.
 Quotation will have only 2 state, Draft and Done. Sales Order work as normal.
 
 Usage
