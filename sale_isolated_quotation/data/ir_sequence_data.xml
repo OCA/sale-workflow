@@ -5,7 +5,7 @@
         <record id="seq_sale_quotation" model="ir.sequence">
             <field name="name">Quotation</field>
             <field name="code">sale.quotation</field>
-            <field name="prefix">QO</field>
+            <field name="prefix">SQ</field>
             <field name="padding">8</field>
             <field name="company_id" eval="False"/>
         </record>
