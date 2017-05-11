@@ -114,7 +114,7 @@
 </record>
 
 <menuitem id="sale_rental_menu" parent="sales_team.menu_sales"
-    action="sale_rental_action" sequence="90"/>
+    action="sale_rental_action" sequence="12"/>
 
 
 </odoo>
