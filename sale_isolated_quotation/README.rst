@@ -6,11 +6,10 @@
 Sales Isolated Quotation
 ========================
 
-In some countries/companies, it is quite common to separate both documents.
-For tracking purposes, it is needed that the document running number
-of quotation and sales order has to be separated.
-There could be multiple quotations open to a customer, yet only one quotation
-get converted to the sales order.
+In some countries/companies, it is already common to separate these two documents.
+For filing purposes, the document sequence of quotation and sales order
+has to be separated. In practice, there could be multiple quotations open
+to a customer, yet only one quotation get converted to the sales order.
 
 This module separate quotation and sales order by adding is_order flag in
 sale.order model.
