@@ -1,1 +1,2 @@
-from . import wizard
+# -*- coding: utf-8 -*-
+from . import wizards
