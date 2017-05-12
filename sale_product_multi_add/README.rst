@@ -2,9 +2,9 @@
    :target: http://www.gnu.org/licenses/agpl-3.0-standalone.html
    :alt: License: AGPL-3
 
-==============
+======================
 Sale Product Multi Add
-==============
+======================
 
 This module extends the functionality of sale module
 and allow you to import multiple products into your current sale order.
@@ -17,15 +17,8 @@ A wizard opens and allows the user to search and select products.
 
 .. image:: https://odoo-community.org/website/image/ir.attachment/5784_f2813bd/datas
    :alt: Try me on Runbot
-   :target: https://runbot.odoo-community.org/runbot/{sale-workflow}/{8.0}
+   :target: https://runbot.odoo-community.org/runbot/{sale-workflow}/10.0
 
-.. repo_id is available in https://github.com/OCA/maintainer-tools/blob/master/tools/repos_with_ids.txt
-.. branch is "8.0" for example
-
-Known issues / Roadmap
-======================
-
-* ...
 
 Bug Tracker
 ===========
