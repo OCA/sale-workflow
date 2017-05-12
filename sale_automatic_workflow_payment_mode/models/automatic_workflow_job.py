@@ -3,10 +3,10 @@
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html)
 
 import logging
-from openerp import models, api, fields
-from openerp.tools.safe_eval import safe_eval
-from openerp.addons.sale_automatic_workflow.models.automatic_workflow_job \
-    import commit
+from odoo import models, api, fields
+from odoo.tools.safe_eval import safe_eval
+from odoo.addons.sale_automatic_workflow.models.automatic_workflow_job \
+    import savepoint
 
 _logger = logging.getLogger(__name__)
 
@@ -33,7 +33,7 @@ class AutomaticWorkflowJob(models.Model):
             partner_type = invoice.type in ('out_invoice', 'out_refund') and \
                 'customer' or 'supplier'
             payment_mode = invoice.payment_mode_id
-            with commit(self.env.cr):
+            with savepoint(self.env.cr):
                 payment = self.env['account.payment'].create({
                     'invoice_ids': [(6, 0, invoice.ids)],
                     'amount': invoice.residual,
