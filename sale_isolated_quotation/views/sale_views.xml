@@ -47,7 +47,6 @@
     </record>
     <record id="sale.action_orders" model="ir.actions.act_window">
         <field name="context">{'is_order': True}</field>
-        <field name="domain">[('state', 'not in', ('draft', 'sent', 'cancel')),
-                              ('is_order', '=', True)]</field>
+        <field name="domain">[('is_order', '=', True)]</field>
     </record>
 </odoo>
