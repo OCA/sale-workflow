@@ -9,8 +9,9 @@ class SaleAdvancePaymentInv(models.TransientModel):
     _inherit = "sale.advance.payment.inv"
 
     advance_payment_method = fields.Selection(
-        selection_add=[('all_auto', _('Invoice the whole sales order + '
-                        'Automatic Deliver'))])
+        selection_add=[
+            ('all_auto',
+             _('Invoice the whole sales order + Automatic Deliver'))])
 
     @api.model
     def _get_pickings(self, sale_ids):
@@ -27,12 +28,22 @@ class SaleAdvancePaymentInv(models.TransientModel):
             # if finalize is ok, set advance_payment_method to all
             # else raise exception
             sale_ids = self.env.context.get('active_ids', [])
-            pickings = self._get_pickings(sale_ids)
+            pickings = self._get_pickings(sale_ids).filtered(
+                lambda x: x.state != 'done')
             picking_not_done = True
             if pickings:
-                pickings.do_transfer()
-                picking_not_done = pickings.filtered(
-                    lambda x: x.state != 'done')
+                to_assign = pickings.filtered(lambda x: x.state != 'assigned')
+                if to_assign:
+                    to_assign.action_assign()
+                if all([pick.state == 'assigned' for pick in pickings]):
+                    for pick in pickings:
+                        wiz = self.env['stock.immediate.transfer'].create(
+                            {'pick_id': pick.id})
+                        wiz.process()
+                    picking_not_done = pickings.filtered(
+                        lambda x: x.state != 'done')
+                else:
+                    picking_not_done = True
             if picking_not_done:
                 raise exceptions.Warning(
                     _("You cannot automatic deliver this order, "

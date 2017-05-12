@@ -4,15 +4,13 @@
 
 {
     "name": "Sale Invoice Automatic Deliver",
-    "version": "8.0.1.0.0",
-    'author': "Acsone SA/NV,Odoo Community Association (OCA)",
+    "version": "10.0.1.0.0",
+    'author': "ACSONE SA/NV,Odoo Community Association (OCA)",
     "category": "Sales Management",
     "website": "http://www.acsone.eu",
     "depends": ["sale",
                 "sale_stock",
-                "stock",
-                ],
-    "data": ["views/sale_line_invoice_views.xml"],
+                "stock"],
     "license": "AGPL-3",
     "installable": True,
     "application": False,
