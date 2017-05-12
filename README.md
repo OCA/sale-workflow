@@ -20,6 +20,7 @@ Available addons
 addon | version | summary
 --- | --- | ---
 [sale_exception](sale_exception/) | 10.0.2.0.0 | Custom exceptions on sale order
+[sale_order_lot_generator](sale_order_lot_generator/) | 10.0.0.0.1 | sale_order_lot_generator
 [sale_order_lot_selection](sale_order_lot_selection/) | 10.0.1.0.0 | Sale Order Lot Selection
 [sale_product_set](sale_product_set/) | 10.0.1.0.0 | Sale product set
 [sale_product_set_layout](sale_product_set_layout/) | 10.0.1.0.0 | Sale product set layout
