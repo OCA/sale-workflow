@@ -15,7 +15,7 @@ _logger = logging.getLogger(__name__)
 @contextmanager
 def savepoint(cr):
     """ Open a savepoint on the cursor, then yield.
-    
+
     Warning: using this method, the exceptions are logged then discarded.
     """
     try:
