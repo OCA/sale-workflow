@@ -24,4 +24,6 @@ def uninstall_hook(cr, registry):
             del ctx['is_order']
             dom = ast.literal_eval(action.domain)
             dom = [x for x in dom if x[0] != 'is_order']
+            if action_id == 'sale.action_quotations':
+                dom.append(('state', 'not in', ('draft', 'sent', 'cancel')))
             action.write({'context': ctx, 'domain': dom})
