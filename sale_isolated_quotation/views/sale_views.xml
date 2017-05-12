@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- Add quotation's header which in minimum compare to order's -->
+    <record id="view_order_form" model="ir.ui.view">
+        <field name="name">view.order.form</field>
+        <field name="model">sale.order</field>
+        <field name="inherit_id" ref="sale.view_order_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="/form/header" position="attributes">
+                <attribute name="invisible">not context.get('is_order', False)</attribute>
+            </xpath>
+            <xpath expr="/form/header" position="after">
+                <header name="quotation"
+                  attrs="{'invisible': [('is_order','=',True)]}">
+                    <button name="action_convert_to_order"
+                      states="draft"
+                      class="oe_highlight"
+                      type="object"
+                      string="Convert to Order"/>
+                    <button name="action_cancel"
+                      states="draft" type="object"
+                      string="Cancel"/>
+                    <field name="state2"
+                      widget="statusbar"
+                      statusbar_visible="draft,done"
+                      invisible="context.get('is_order', False)"/>
+                </header>
+            </xpath>
+            <field name="partner_shipping_id" position="after">
+                <field name="is_order" invisible="1"/>
+                <field name="quote_id"
+                  attrs="{'invisible': [('is_order','=',False)]}"
+                  context="{'is_order': False}"/>
+                <field name="order_id"
+                  attrs="{'invisible': [('is_order','=',True)]}"
+                  context="{'is_order': True}"/>
+            </field>
+            <xpath expr="/form/sheet/notebook/page/field[@name='order_line']" position="attributes">
+                <attribute name="context">{'is_order': is_order}</attribute>
+            </xpath>
+        </field>
+    </record>
+    <!-- Assign is_order to context -->
+    <record id="sale.action_quotations" model="ir.actions.act_window">
+        <field name="context">{'hide_sale': True, 'is_order': False}</field>
+        <field name="domain">[('is_order', '=', False)]</field>
+    </record>
+    <record id="sale.action_orders" model="ir.actions.act_window">
+        <field name="context">{'is_order': True}</field>
+        <field name="domain">[('is_order', '=', True)]</field>
+    </record>
+</odoo>
