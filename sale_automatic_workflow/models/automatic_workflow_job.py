@@ -13,20 +13,16 @@ _logger = logging.getLogger(__name__)
 
 
 @contextmanager
-def commit(cr):
-    """
-    Commit the cursor after the ``yield``, or rollback it if an
-    exception occurs.
- is Pending
+def savepoint(cr):
+    """ Open a savepoint on the cursor, then yield.
+    
     Warning: using this method, the exceptions are logged then discarded.
     """
     try:
-        yield
+        with cr.savepoint():
+            yield
     except Exception:
-        cr.rollback()
         _logger.exception('Error during an automatic workflow action.')
-    else:
-        cr.commit()
 
 
 class AutomaticWorkflowJob(models.Model):
@@ -41,7 +37,7 @@ class AutomaticWorkflowJob(models.Model):
         sales = sale_obj.search(order_filter)
         _logger.debug('Sale Orders to validate: %s', sales.ids)
         for sale in sales:
-            with commit(self.env.cr):
+            with savepoint(self.env.cr):
                 sale.action_confirm()
 
     @api.model
@@ -50,7 +46,7 @@ class AutomaticWorkflowJob(models.Model):
         sales = sale_obj.search(create_filter)
         _logger.debug('Sale Orders to create Invoice: %s', sales.ids)
         for sale in sales:
-            with commit(self.env.cr):
+            with savepoint(self.env.cr):
                 payment = self.env['sale.advance.payment.inv'].create(
                     {'advance_payment_method': 'all'})
                 payment.with_context(active_ids=sale.ids).create_invoices()
@@ -61,7 +57,7 @@ class AutomaticWorkflowJob(models.Model):
         invoices = invoice_obj.search(validate_invoice_filter)
         _logger.debug('Invoices to validate: %s', invoices.ids)
         for invoice in invoices:
-            with commit(self.env.cr):
+            with savepoint(self.env.cr):
                 invoice.action_invoice_open()
 
     @api.model
@@ -70,7 +66,7 @@ class AutomaticWorkflowJob(models.Model):
         pickings = picking_obj.search(picking_filter)
         _logger.debug('Pickings to validate: %s', pickings.ids)
         if pickings:
-            with commit(self.env.cr):
+            with savepoint(self.env.cr):
                 pickings.validate_picking()
 
     @api.model
@@ -79,7 +75,7 @@ class AutomaticWorkflowJob(models.Model):
         sales = sale_obj.search(sale_done_filter)
         _logger.debug('Sale Orders to done: %s', sales.ids)
         for sale in sales:
-            with commit(self.env.cr):
+            with savepoint(self.env.cr):
                 sale.action_done()
 
     @api.model
