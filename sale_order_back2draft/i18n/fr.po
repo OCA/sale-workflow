@@ -3,11 +3,12 @@
 # * sale_order_back2draft
 # 
 # Translators:
+# Hotellook, 2014
 msgid ""
 msgstr ""
 "Project-Id-Version: sale-workflow (8.0)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-09-09 12:27+0000\n"
+"POT-Creation-Date: 2017-05-01 22:31+0000\n"
 "PO-Revision-Date: 2015-09-03 07:09+0000\n"
 "Last-Translator: <>\n"
 "Language-Team: French (http://www.transifex.com/oca/OCA-sale-workflow-8-0/language/fr/)\n"
@@ -20,7 +21,7 @@ msgstr ""
 #. module: sale_order_back2draft
 #: view:sale.order:sale_order_back2draft.view_order_form_draft
 msgid "Back to draft"
-msgstr ""
+msgstr "Back to draft"
 
 #. module: sale_order_back2draft
 #: model:ir.model,name:sale_order_back2draft.model_sale_order
