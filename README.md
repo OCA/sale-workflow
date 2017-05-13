@@ -19,7 +19,9 @@ Available addons
 ----------------
 addon | version | summary
 --- | --- | ---
+[sale_automatic_workflow](sale_automatic_workflow/) | 10.0.1.0.0 | Sale Automatic Workflow
 [sale_exception](sale_exception/) | 10.0.2.0.0 | Custom exceptions on sale order
+[sale_isolated_quotation](sale_isolated_quotation/) | 10.0.1.0.0 | Sales - Isolated Quotation
 [sale_order_lot_generator](sale_order_lot_generator/) | 10.0.0.0.1 | sale_order_lot_generator
 [sale_order_lot_selection](sale_order_lot_selection/) | 10.0.1.0.0 | Sale Order Lot Selection
 [sale_product_set](sale_product_set/) | 10.0.1.0.0 | Sale product set
@@ -40,7 +42,6 @@ addon | version | summary
 [product_special_type](product_special_type/) | 1.0 (unported) | Product Special Types
 [product_special_type_invoice](product_special_type_invoice/) | 1.0 (unported) | Product Special Type on Invoice
 [product_special_type_sale](product_special_type_sale/) | 1.0 (unported) | Product Special Type on Sale
-[sale_automatic_workflow](sale_automatic_workflow/) | 9.0.1.0.0 (unported) | Sale Automatic Workflow
 [sale_automatic_workflow_payment_mode](sale_automatic_workflow_payment_mode/) | 9.0.2.0.0 (unported) | Sale Automatic Workflow - Payment Mode
 [sale_cancel_reason](sale_cancel_reason/) | 8.0.1.1 (unported) | Sale Cancel Reason
 [sale_condition_text](sale_condition_text/) | 1.3 (unported) | Sale/invoice condition
