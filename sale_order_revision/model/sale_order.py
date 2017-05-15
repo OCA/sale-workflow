@@ -72,9 +72,9 @@ class sale_order(models.Model):
 
     @api.returns('self', lambda value: value.id)
     @api.multi
-    def copy(self, defaults=None):
-        if not defaults:
-            defaults = {}
+    def copy(self, default=None):
+        if default is None:
+            default = {}
         if self.env.context.get('new_sale_revision'):
             prev_name = self.name
             revno = self.revision_number
@@ -82,14 +82,15 @@ class sale_order(models.Model):
                         'name': '%s-%02d' % (self.unrevisioned_name,
                                              revno + 1)
                         })
-            defaults.update({'name': prev_name,
-                             'revision_number': revno,
-                             'active': False,
-                             'state': 'cancel',
-                             'current_revision_id': self.id,
-                             'unrevisioned_name': self.unrevisioned_name,
-                             })
-        return super(sale_order, self).copy(defaults)
+            default.update({
+                'name': prev_name,
+                'revision_number': revno,
+                'active': False,
+                'state': 'cancel',
+                'current_revision_id': self.id,
+                'unrevisioned_name': self.unrevisioned_name,
+            })
+        return super(sale_order, self).copy(default=default)
 
     @api.model
     def create(self, values):
