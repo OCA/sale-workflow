@@ -5,55 +5,15 @@
 from datetime import datetime, timedelta
 
 from odoo import fields
-from odoo.tests import common
+from odoo.addons.sale_automatic_workflow.tests.common import \
+    TestAutomaticWorkflowBase
 
 
-class TestAutomaticWorkflow(common.TransactionCase):
-
-    def _create_sale_order(self, workflow, override=None):
-        sale_obj = self.env['sale.order']
-        partner_values = {'name': 'Imperator Caius Julius Caesar Divus'}
-        partner = self.env['res.partner'].create(partner_values)
-        product_values = {'name': 'Bread',
-                          'list_price': 5,
-                          'type': 'product'}
-        product = self.env['product.product'].create(product_values)
-        self.product_uom_unit = self.env.ref('product.product_uom_unit')
-        values = {
-            'partner_id': partner.id,
-            'order_line': [(0, 0, {
-                'name': product.name,
-                'product_id': product.id,
-                'product_uom': self.product_uom_unit.id,
-                'price_unit': product.list_price,
-                'product_uom_qty': 1})],
-            'workflow_process_id': workflow.id,
-        }
-        if override:
-            values.update(override)
-        return sale_obj.create(values)
-
-    def _create_full_automatic(self, override=None):
-        workflow_obj = self.env['sale.workflow.process']
-        values = workflow_obj.create({
-            'name': 'Full Automatic',
-            'picking_policy': 'one',
-            'validate_order': True,
-            'validate_picking': True,
-            'create_invoice': True,
-            'validate_invoice': True,
-            'invoice_date_is_order_date': True,
-        })
-        if override:
-            values.update(override)
-        return values
-
-    def progress(self):
-        self.env['automatic.workflow.job'].run()
+class TestAutomaticWorkflow(TestAutomaticWorkflowBase):
 
     def test_full_automatic(self):
-        workflow = self._create_full_automatic()
-        sale = self._create_sale_order(workflow)
+        workflow = self.create_full_automatic()
+        sale = self.create_sale_order(workflow)
         sale._onchange_workflow_process_id()
         self.assertEqual(sale.state, 'draft')
         self.assertEqual(sale.workflow_process_id, workflow)
@@ -68,11 +28,11 @@ class TestAutomaticWorkflow(common.TransactionCase):
         self.assertEqual(picking.state, 'done')
 
     def test_onchange(self):
-        workflow = self._create_full_automatic()
-        sale = self._create_sale_order(workflow)
+        workflow = self.create_full_automatic()
+        sale = self.create_sale_order(workflow)
         sale._onchange_workflow_process_id()
         self.assertEqual(sale.picking_policy, 'one')
-        workflow2 = self._create_full_automatic(
+        workflow2 = self.create_full_automatic(
             override={
                 'picking_policy': 'direct',
             }
@@ -82,7 +42,7 @@ class TestAutomaticWorkflow(common.TransactionCase):
         self.assertEqual(sale.picking_policy, 'direct')
 
     def test_date_invoice_from_sale_order(self):
-        workflow = self._create_full_automatic()
+        workflow = self.create_full_automatic()
         # date_order on sale.order is date + time
         # date_invoice on account.invoice is date only
         last_week_time = datetime.now() - timedelta(days=7)
@@ -91,7 +51,7 @@ class TestAutomaticWorkflow(common.TransactionCase):
         override = {
             'date_order': last_week_time,
         }
-        sale = self._create_sale_order(workflow, override=override)
+        sale = self.create_sale_order(workflow, override=override)
         sale._onchange_workflow_process_id()
         self.assertEqual(sale.date_order, last_week_time)
         self.progress()
@@ -101,7 +61,7 @@ class TestAutomaticWorkflow(common.TransactionCase):
         self.assertEqual(invoice.workflow_process_id, sale.workflow_process_id)
 
     def test_invoice_from_picking_with_service_product(self):
-        workflow = self._create_full_automatic()
+        workflow = self.create_full_automatic()
         product_service = self.env.ref('product.service_order_01')
         product_uom_hour = self.env.ref('product.product_uom_hour')
         override = {
@@ -112,7 +72,7 @@ class TestAutomaticWorkflow(common.TransactionCase):
                 'product_uom': product_uom_hour.id,
             })],
         }
-        sale = self._create_sale_order(workflow, override=override)
+        sale = self.create_sale_order(workflow, override=override)
         sale._onchange_workflow_process_id()
         self.progress()
         self.assertFalse(sale.picking_ids)
@@ -126,18 +86,18 @@ class TestAutomaticWorkflow(common.TransactionCase):
         new_sale_journal = self.env['account.journal'].create({"name": "TTSA",
                                                                "code": "TTSA",
                                                                "type": "sale"})
-        workflow = self._create_full_automatic()
-        sale = self._create_sale_order(workflow)
+        workflow = self.create_full_automatic()
+        sale = self.create_sale_order(workflow)
         sale._onchange_workflow_process_id()
         self.progress()
         self.assertTrue(sale.invoice_ids)
         invoice = sale.invoice_ids
         self.assertEqual(invoice.journal_id.id, sale_journal.id)
 
-        workflow = self._create_full_automatic(
+        workflow = self.create_full_automatic(
             override={'property_journal_id': new_sale_journal.id},
         )
-        sale = self._create_sale_order(workflow)
+        sale = self.create_sale_order(workflow)
         sale._onchange_workflow_process_id()
         self.progress()
         self.assertTrue(sale.invoice_ids)
