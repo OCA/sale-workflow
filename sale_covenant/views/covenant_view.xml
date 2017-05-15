@@ -18,26 +18,31 @@
         <field name="arch" type="xml">
             <form>
               <sheet>
-                    <div>
-                    </div>
                     <group>
                         <div>
                         <h1>
                             <field name="name" placeholder="Name"/>
                         </h1>
                         </div>
+                        <div class="oe_right oe_button_box" name="button_box">
+                            <button name="toggle_active" type="object"
+                                    class="oe_stat_button" icon="fa-archive">
+                                <field name="active" widget="boolean_button"
+                                       options="{'terminology': 'archive'}"/>
+                            </button>
                         <field name="image" widget="image" nolabel="1" class="oe_avatar oe_right"/>
-                    </group>
-                    <group>
-                        <field name="active"/>
-                        <field name="company_id" groups="base.group_multi_company" options="{'no_create': True}"/>
-                        <field name="comment" string="Comments:" colspan="4"/>
+                        </div>
                     </group>
                     <group col="4">
-                        <group colspan="2">
-                        </group>
-                        <group colspan="2">
-                        </group>
+                        <field name="code"/>
+                        <field name="partner_id"/>
+                        <field name="company_id" groups="base.group_multi_company" options="{'no_create': True}"/>
+                    </group>
+                    <group col="4">
+                        <separator string="Comments"/>
+                        <field name="comment" nolabel="1"/>
+                        <separator string="Sales"/>
+                        <field name="sale_ids" nolabel="1"/>
                 </group>
               </sheet>
             </form>

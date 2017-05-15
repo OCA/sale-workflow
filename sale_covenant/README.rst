@@ -9,9 +9,11 @@ Sale Covenant
 Allowing to define settings in Sale fields (default values, allowed values, etc) according settings on a new object Sale Covenant (contract).
 Use this module to define specific use case to your market, i.e.:
 
-- specific market: department store,
-- deliver products with white mark
-- sale to several clients of the same market but invoice a unique partner
+- public or private markets.
+- deliver products with white mark: customers becomes the original producer from their customers point of view.
+- several covenant (markets) by customer are possible (i.e. public markets).
+- several customers share commercial conditions through the same covenant: department store or franchisee.
+- sale to several clients of the same market but invoice a unique partner.
 
 
 Usage
@@ -47,7 +49,8 @@ Images
 Contributors
 ------------
 
-* David BEAL <david.beal@akretion.com>
+* David Béal <david.beal@akretion.com>
+* ALexis De Lattre <alexis.delattre@akretion.com>
 
 Maintainer
 ----------
