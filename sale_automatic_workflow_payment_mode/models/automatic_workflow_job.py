@@ -33,6 +33,13 @@ class AutomaticWorkflowJob(models.Model):
             partner_type = invoice.type in ('out_invoice', 'out_refund') and \
                 'customer' or 'supplier'
             payment_mode = invoice.payment_mode_id
+
+            if not payment_mode.fixed_journal_id:
+                _logger.debug('Unable to Register Payment for invoice %s: '
+                              'Payment mode %s must have fixed journal',
+                              invoice.id, payment_mode.id)
+                return
+
             with savepoint(self.env.cr):
                 payment = self.env['account.payment'].create({
                     'invoice_ids': [(6, 0, invoice.ids)],
