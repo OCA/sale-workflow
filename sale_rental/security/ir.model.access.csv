@@ -1,4 +1,4 @@
 id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
-access_sale_rental_user,Read-Write-Create access on sale.rental to Sale User,model_sale_rental,base.group_sale_salesman,1,1,1,0
+access_sale_rental_user,Read-Write-Create access on sale.rental to Sale User,model_sale_rental,sales_team.group_sale_salesman,1,1,1,0
 access_sale_rental_stock_user,Read access on sale.rental to Stock User,model_sale_rental,stock.group_stock_user,1,0,0,0
-access_sale_rental_manager,Full access on sale.rental to Sale Manager,model_sale_rental,base.group_sale_manager,1,1,1,1
+access_sale_rental_manager,Full access on sale.rental to Sale Manager,model_sale_rental,sales_team.group_sale_manager,1,1,1,1
