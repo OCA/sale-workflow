@@ -5,8 +5,7 @@
 from datetime import datetime, timedelta
 
 from odoo import fields
-from odoo.addons.sale_automatic_workflow.tests.common import \
-    TestAutomaticWorkflowBase
+from .test_automatic_workflow_base import TestAutomaticWorkflowBase
 
 
 class TestAutomaticWorkflow(TestAutomaticWorkflowBase):
