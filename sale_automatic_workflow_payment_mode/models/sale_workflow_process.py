@@ -23,12 +23,8 @@ class SaleWorkflowProcess(models.Model):
         default=_default_payment_filter_id,
     )
     register_payment = fields.Boolean(string='Register Payment')
-    payment_filter_domain = fields.Char(
+    payment_filter_domain = fields.Text(
         string='Payment Filter Domain',
+        related='payment_filter_id.domain',
         default="[('state', '=', 'open')]"
     )
-
-    @api.onchange('payment_filter_id')
-    def onchange_payment_filter_id(self):
-        if self.payment_filter_id:
-            self.payment_filter_domain = self.payment_filter_id.domain
