@@ -1,1 +1,2 @@
-import test_flow_pm
+from . import test_automatic_workflow_payment_mode
+
