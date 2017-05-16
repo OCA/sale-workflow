@@ -3,11 +3,11 @@
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
 
-from odoo.addons.sale_automatic_workflow.tests.common import \
-    TestAutomaticWorkflowBase as tawb
+from odoo.addons.sale_automatic_workflow.tests.test_automatic_workflow_base \
+    import TestAutomaticWorkflowBase
 
 
-class TestAutomaticWorkflowPaymentMode(tawb):
+class TestAutomaticWorkflowPaymentMode(TestAutomaticWorkflowBase):
 
     def create_sale_order(self, workflow, override=None):
         new_order = super(TestAutomaticWorkflowPaymentMode, self).\
