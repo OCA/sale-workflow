@@ -26,6 +26,8 @@ addon | version | summary
 [sale_order_lot_selection](sale_order_lot_selection/) | 10.0.1.0.0 | Sale Order Lot Selection
 [sale_product_set](sale_product_set/) | 10.0.1.0.0 | Sale product set
 [sale_product_set_layout](sale_product_set_layout/) | 10.0.1.0.0 | Sale product set layout
+[sale_rental](sale_rental/) | 10.0.1.0.0 | Manage Rental of Products
+[sale_start_end_dates](sale_start_end_dates/) | 10.0.1.0.0 | Adds start date and end date on sale order lines
 [sale_validity](sale_validity/) | 10.0.1.0.0 | Set a default validity delay on quotations
 
 
@@ -67,10 +69,8 @@ addon | version | summary
 [sale_quotation_sourcing](sale_quotation_sourcing/) | 8.0.0.3.1 (unported) | manual sourcing of sale quotations
 [sale_quotation_sourcing_stock_route_transit](sale_quotation_sourcing_stock_route_transit/) | 8.0.0.1.0 (unported) | Link module for sale_quotation_sourcing + stock_route_transit
 [sale_reason_to_export](sale_reason_to_export/) | 8.0.0.1.0 (unported) | Reason to export in Sales Order
-[sale_rental](sale_rental/) | 8.0.0.1.0 (unported) | Manage Rental of Products
 [sale_sourced_by_line](sale_sourced_by_line/) | 8.0.1.1.0 (unported) | Multiple warehouse source locations for Sale order
 [sale_sourced_by_line_sale_transport_multi_address](sale_sourced_by_line_sale_transport_multi_address/) | 8.0.1.0.0 (unported) | Make sale_sourced_by_line and sale_transport_multi_addresswork together
-[sale_start_end_dates](sale_start_end_dates/) | 8.0.0.1.0 (unported) | Adds start date and end date on sale order lines
 [sale_stock_global_delivery_lead_time](sale_stock_global_delivery_lead_time/) | 0.1 (unported) | Sale global delivery lead time
 
 [//]: # (end addons)
