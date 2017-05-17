@@ -39,9 +39,9 @@
                         <field name="company_id" groups="base.group_multi_company" options="{'no_create': True}"/>
                     </group>
                     <group col="4">
-                        <separator string="Comments"/>
+                        <separator string="Comments" colspan="4"/>
                         <field name="comment" nolabel="1"/>
-                        <separator string="Sales"/>
+                        <separator string="Sales" colspan="4"/>
                         <field name="sale_ids" nolabel="1"/>
                 </group>
               </sheet>
