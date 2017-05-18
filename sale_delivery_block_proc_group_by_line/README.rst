@@ -2,36 +2,25 @@
    :target: http://www.gnu.org/licenses/agpl-3.0-standalone.html
    :alt: License: AGPL-3
 
-===================
-Sale Delivery Block
-===================
+=============================================
+Sale Delivery Block Procurement Group By Line
+=============================================
 
-This module extends the functionality of sales to allow you to block the
-creation of deliveries from a sale order and give a reason.
-
-Configuration
-=============
-
-To configure this module, you need to:
-
-#. Go to 'Sales > Configuration > Sales > Delivery Block Reason'.
-#. Create the different reasons that can lead to block the deliveries of a
-   sales order.
-#. Add some users to the group 'Release Delivery Block in Sales Orders'.
-
-Usage
-=====
-
-To use this module, you need to:
-
-#. Create a new sales order and provide a 'Delivery Block Reason'.
-#. Confirm Sale (No delivery would be created).
-#. Release Delivery Block when it is time to create the deliveries for
-   the sale order.
+This module make `sale_delivery_block` compatible with
+`sale_procurement_group_by_line`.
 
 .. image:: https://odoo-community.org/website/image/ir.attachment/5784_f2813bd/datas
    :alt: Try me on Runbot
    :target: https://runbot.odoo-community.org/runbot/167/9.0
+
+Installation
+============
+
+This module will be automatically installed in a database with the following
+modules installed:
+
+* Sale Delivery Block (sale_delivery_block).
+* Sale Procurement Group by line (sale_procurement_group_by_line).
 
 Bug Tracker
 ===========
@@ -53,6 +42,7 @@ Contributors
 ------------
 
 * Lois Rilo <lois.rilo@eficent.com>
+* Jordi Ballester <jordi.ballester@eficent.com>
 
 Maintainer
 ----------
