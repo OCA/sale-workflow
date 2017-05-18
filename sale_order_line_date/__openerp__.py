@@ -7,7 +7,7 @@
 
 {
     "name": "Sale Order Line Date",
-    "version": "8.0.1.0.0",
+    "version": "9.0.1.0.0",
     "author": "OdooMRP team,"
               "AvanzOSC,"
               "Serv. Tecnol. Avanzados - Pedro M. Baeza,"
