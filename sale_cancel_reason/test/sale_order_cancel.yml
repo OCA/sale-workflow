@@ -20,10 +20,8 @@
                'active_ids': [ref('sale_order_cancel_01')],
                }
     reason_id = ref('cancel_reason_test')
-    wizard_id = self.create(cr, uid,
-                            {'reason_id': reason_id},
-                            context=context)
-    self.confirm_cancel(cr, uid, wizard_id, context=context)
+    wizard = self.create({'reason_id': reason_id})
+    wizard.with_context(context).confirm_cancel()
 -
   Then the sale order should be canceled
   and the reason stored
