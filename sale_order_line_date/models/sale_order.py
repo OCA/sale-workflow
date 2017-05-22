@@ -5,7 +5,7 @@
 # © 2016 Eficent Business and IT Consulting Services, S.L.
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl.html).
 
-from openerp import models, fields, api
+from openerp import api, fields, models
 
 
 class SaleOrder(models.Model):
@@ -26,16 +26,31 @@ class SaleOrder(models.Model):
             result['value'] = {'order_line': lines}
         return result
 
-    @api.model
-    def _get_date_planned(self, order, line, start_date):
-        if line.requested_date:
-            return line.requested_date
-        else:
-            return super(SaleOrder, self)._get_date_planned(
-                order, line, start_date)
-
 
 class SaleOrderLine(models.Model):
     _inherit = 'sale.order.line'
 
-    requested_date = fields.Datetime(string='Requested Date')
+    requested_date = fields.Datetime()
+
+    @api.multi
+    def write(self, vals):
+        for line in self:
+            if not line.requested_date and line.order_id.requested_date:
+                vals.update({'requested_date': line.order_id.requested_date})
+        return super(SaleOrderLine, self).write(vals)
+
+    @api.model
+    def create(self, vals):
+        res = super(SaleOrderLine, self).create(vals)
+        if res.order_id.requested_date and not res.requested_date:
+            res.write({'requested_date': res.order_id.requested_date})
+        return res
+
+    @api.multi
+    def _prepare_order_line_procurement(self, group_id=False):
+        self.ensure_one()
+        vals = super(SaleOrderLine, self).\
+            _prepare_order_line_procurement(group_id)
+        if self.requested_date:
+            vals.update({'date_planned': self.requested_date})
+        return vals
