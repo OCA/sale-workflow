@@ -19,13 +19,15 @@ class TestSaleOrderLineDates(TransactionCase):
         """
         super(TestSaleOrderLineDates, self).setUp()
         customer = self.env.ref('base.res_partner_3')
+        self.product_ctg_model = self.env['product.category']
+        self.company = self.env.ref('base.main_company')
         price = 100.0
-        p1 = self._create_product(price)
         qty = 1000
+        p1 = self._create_product(price)
         self._update_qty(p1, qty)
         today = datetime.datetime.now()
-        dt1 = today + datetime.timedelta(days=1)
-        dt2 = today + datetime.timedelta(days=7)
+        dt1 = today + datetime.timedelta(days=9)
+        dt2 = today + datetime.timedelta(days=10)
         self.dt3 = today + datetime.timedelta(days=3)
         self.sale1 = self._create_sale_order(customer, dt2)
         self.sale_line1 = self._create_sale_order_line(
@@ -43,7 +45,6 @@ class TestSaleOrderLineDates(TransactionCase):
             'standard_price': price,
             'list_price': price,
             'categ_id': category.id,
-            'valuation': 'real_time',
         })
         return product
 
@@ -77,7 +78,7 @@ class TestSaleOrderLineDates(TransactionCase):
 
     def test_procurement_scheduled_date(self):
         """True when matches the requested date in the sale_order_line"""
-        self.sale1.action_button_confirm()
+        self.sale1.action_confirm()
         procurements = self.env['procurement.order'].search([
             ('origin', '=', self.sale1.name),
             ('date_planned', '=', self.sale_line1.requested_date)])
