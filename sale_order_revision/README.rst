@@ -4,7 +4,7 @@
 Revisions for sale orders (and quotations)
 ==========================================
 
-On cancelled orders, you can click on the "New copy of Quotation" button. This
+On cancelled orders, you can click on the "New Revision of Quotation" button. This
 will create a new revision of the quotation, with the same base number and a
 '-revno' suffix appended. A message is added in the chatter saying that a new
 revision was created.
@@ -24,6 +24,7 @@ Contributors
 * Lorenzo Battistini <lorenzo.battistini@agilebg.com>
 * Raphael Valyi <rvalyi@akretion.com>
 * Alexandre Fayolle <alexandre.fayolle@camptocamp.com>
+* Kitti U. <kittiu@ecosoft.co.th>
 
 Maintainer
 ----------
