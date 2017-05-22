@@ -4,7 +4,7 @@
         <record model="ir.ui.view" id="sale_order_requested_date_form_view">
             <field name="name">sale.order.requested.date.form</field>
             <field name="model">sale.order</field>
-            <field name="inherit_id" ref="sale_order_dates.view_sale_orderfor"/>
+            <field name="inherit_id" ref="sale_order_dates.view_order_form_inherit_sale_stock_inherit_sale_order_dates"/>
             <field name="arch" type="xml">
                 <field name="order_line" position="attributes">
                     <attribute name="context">{'default_requested_date':requested_date}</attribute>
@@ -22,7 +22,7 @@
             <field name="model">sale.order.line</field>
             <field name="inherit_id" ref="sale.view_order_line_tree" />
             <field name="arch" type="xml">
-                <field name="state" position="after">
+                <field name="name" position="after">
                     <field name="requested_date"/>
                 </field>
             </field>

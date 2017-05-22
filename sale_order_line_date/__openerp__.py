@@ -7,12 +7,12 @@
 
 {
     "name": "Sale Order Line Date",
-    "version": "8.0.1.0.0",
+    "version": "9.0.1.0.0",
     "author": "OdooMRP team,"
               "AvanzOSC,"
               "Serv. Tecnol. Avanzados - Pedro M. Baeza,"
               "Odoo Community Association (OCA)",
-    "website": "https://github.com/OCA/sale-workflow/",
+    "website": "https://odoo-community.org/",
     "category": "Sales Management",
     "license": "AGPL-3",
     "depends": [
