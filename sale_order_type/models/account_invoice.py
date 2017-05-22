@@ -17,7 +17,8 @@ class AccountInvoice(models.Model):
                         description=None, journal_id=None):
         values = super(AccountInvoice, self)._prepare_refund(
             invoice, date, period_id, description, journal_id)
-        if invoice.origin:
+        if invoice.type in ['out_invoice', 'out_refund'] and\
+                invoice.origin:
             orders = self.env['sale.order'].search(
                 [('name', '=', invoice.origin)])
             journal = False
