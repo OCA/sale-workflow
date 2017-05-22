@@ -14,12 +14,12 @@ of the lines change to match.
 Usage
 =====
 
-Create a Quotation or a Sales Order and fill the requested date in the sale
+Create a Quotation or a Sales Order and it fills the requested date in the sale
 order line
 
 .. image:: https://odoo-community.org/website/image/ir.attachment/5784_f2813bd/datas
    :alt: Try me on Runbot
-   :target: https://runbot.odoo-community.org/runbot/213/8.0
+   :target: https://runbot.odoo-community.org/runbot/167/9.0
 
 Bug Tracker
 ===========
@@ -45,6 +45,7 @@ Contributors
 * Ana Juaristi <anajuaristi@avanzosc.es>
 * Jordi Ballester <jordi.ballester@eficent.com>
 * Aaron Henriquez <ahenriquez@eficent.com>
+* Serpent Consulting Services Pvt. Ltd. <support@serpentcs.com>
 
 Maintainer
 ----------
