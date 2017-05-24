@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-# © 2013 Guewen Baconnier, Camptocamp SA
+# Copyright 2013 Guewen Baconnier, Camptocamp SA
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
 {'name': 'Sale Cancel Reason',
  'version': '10.0.1.0.0',
@@ -7,11 +7,9 @@
  'category': 'Sale',
  'license': 'AGPL-3',
  'complexity': 'normal',
- 'images': [],
  'website': "http://www.camptocamp.com",
  'depends': ['sale',
              ],
- 'demo': [],
  'data': ['wizard/cancel_reason_view.xml',
           'view/sale_view.xml',
           'security/ir.model.access.csv',
