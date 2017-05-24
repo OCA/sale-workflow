@@ -32,6 +32,9 @@ order lines. For that, you must add your user to one of these groups:
 * Manage Product Packaging
 * Properties on lines
 
+Upon module installation, all users are automatically added to the group
+*Properties on lines*.
+
 Usage
 =====
 
