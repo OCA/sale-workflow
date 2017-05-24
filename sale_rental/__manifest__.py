@@ -23,6 +23,7 @@
         'security/ir.model.access.csv',
         'security/sale_rental_security.xml',
     ],
+    'post_init_hook': 'add_users_to_group_mrp_properties',
     'demo': ['demo/rental_demo.xml'],
     'installable': True,
 }
