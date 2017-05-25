@@ -10,14 +10,15 @@ from openerp.exceptions import UserError
 class SaleOrder(models.Model):
     _inherit = "sale.order"
 
-    @api.model
+    @api.multi
     @api.constrains('delivery_block_id')
     def _check_not_auto_done(self):
-        if self.delivery_block_id and self.env['ir.values'].get_default(
-                'sale.config.settings', 'auto_done_setting'):
-            raise UserError(
-                _('You cannot block a sale order with "auto_done_setting" '
-                  'active.'))
+        for so in self:
+            if so.delivery_block_id and self.env['ir.values'].get_default(
+                    'sale.config.settings', 'auto_done_setting'):
+                raise UserError(
+                    _('You cannot block a sale order with "auto_done_setting" '
+                      'active.'))
 
     delivery_block_id = fields.Many2one(
         comodel_name='sale.delivery.block.reason', track_visibility='always',
