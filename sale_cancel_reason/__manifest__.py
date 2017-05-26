@@ -16,7 +16,5 @@
           'data/sale_order_cancel_reason.xml',
           ],
  'auto_install': False,
- 'test': ['test/sale_order_cancel.yml',
-          ],
  'installable': True,
  }
