@@ -9,6 +9,6 @@ from openerp import api, models
 class SaleOrder(models.Model):
     _inherit = "sale.order"
 
-    @api.one
+    @api.multi
     def action_revert_done(self):
-        self.state = 'sale'
+        self.write({'state': 'sale'})

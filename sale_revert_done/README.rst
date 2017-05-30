@@ -6,8 +6,8 @@
 Sale Revert Done
 ================
 
-This module extends the functionality of sales to allow you to set a sales
-order done back to state 'Sale Order'.
+This module extends the functionality of sales to allow you to set a done 
+sales order back to state 'Sale Order'.
 
 Usage
 =====
