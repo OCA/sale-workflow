@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+
+  <record id="edit_project_task_track" model="ir.ui.view">
+    <field name="name">project.task.form.track</field>
+    <field name="model">project.task</field>
+    <field name="inherit_id" ref="project.view_task_form2"/>
+    <field name="arch" type="xml">
+
+      <xpath expr="//field[@name='planned_hours']" position="after">
+        <field name="invoiceable" readonly="1"/>
+        <field name="fixed_price" invisible="1"/>
+      </xpath>
+
+      <div name="button_box" position="inside">
+        <button class="oe_stat_button" name="toggle_invoiceable" type="object" icon="fa-file" attrs="{'invisible': [('fixed_price', '=', False)]}">
+          <span>Invoiceable</span>
+        </button>
+      </div>
+
+    </field>
+  </record>
+
+</odoo>
