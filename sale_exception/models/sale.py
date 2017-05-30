@@ -36,8 +36,9 @@ class SaleOrder(models.Model):
 
     @api.constrains('ignore_exception', 'order_line', 'state')
     def sale_check_exception(self):
-        if self.state == 'sale':
-            self._check_exception()
+        orders = self.filtered(lambda s: s.state == 'sale')
+        if orders:
+            orders._check_exception()
 
     @api.onchange('order_line')
     def onchange_ignore_exception(self):
