@@ -130,9 +130,14 @@ class SaleOrderLine(models.Model):
         if (
                 self.product_id.rented_product_id and
                 self.rental_type == 'new_rental'):
+            # 'product_qty' is re-written after
+            # _prepare_order_line_procurement() in _action_procurement_create()
+            # So I add a key 'rental_product_qty' which is used in the
+            # inherit of create() of procurement.order
             res.update({
                 'product_id': self.product_id.rented_product_id.id,
                 'product_qty': self.rental_qty,
+                'rental_product_qty': self.rental_qty,
                 'product_uom': self.product_id.rented_product_id.uom_id.id,
                 'location_id':
                 self.order_id.warehouse_id.rental_out_location_id.id,
