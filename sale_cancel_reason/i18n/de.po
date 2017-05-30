@@ -3,15 +3,15 @@
 # * sale_cancel_reason
 # 
 # Translators:
-# Rudolf Schnapka <rs@techno-flex.de>, 2015
+# OCA Transbot <transbot@odoo-community.org>, 2017
 msgid ""
 msgstr ""
-"Project-Id-Version: sale-workflow (8.0)\n"
+"Project-Id-Version: Odoo Server 10.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-10-08 20:48+0000\n"
-"PO-Revision-Date: 2015-10-09 13:19+0000\n"
-"Last-Translator: Rudolf Schnapka <rs@techno-flex.de>\n"
-"Language-Team: German (http://www.transifex.com/oca/OCA-sale-workflow-8-0/language/de/)\n"
+"POT-Creation-Date: 2017-11-23 01:51+0000\n"
+"PO-Revision-Date: 2017-11-23 01:51+0000\n"
+"Last-Translator: OCA Transbot <transbot@odoo-community.org>, 2017\n"
+"Language-Team: German (https://www.transifex.com/oca/teams/23907/de/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
@@ -24,51 +24,53 @@ msgid " Ask a reason for the sale order cancellation."
 msgstr "Begründung für die Auftragsstornierung erfragen."
 
 #. module: sale_cancel_reason
-#: view:sale.order.cancel:sale_cancel_reason.view_sale_order_cancel
+#: model:ir.ui.view,arch_db:sale_cancel_reason.view_sale_order_cancel
 msgid "Cancel"
 msgstr "Abbrechen"
 
 #. module: sale_cancel_reason
-#: view:sale.order:sale_cancel_reason.view_order_form
+#: model:ir.ui.view,arch_db:sale_cancel_reason.view_order_form
 msgid "Cancel Order"
 msgstr "Auftrag stronieren"
 
 #. module: sale_cancel_reason
-#: view:sale.order:sale_cancel_reason.view_order_form
-msgid "Cancel Quotation"
-msgstr "Angebot stornieren"
-
-#. module: sale_cancel_reason
-#: view:sale.order:sale_cancel_reason.view_order_form
+#: model:ir.ui.view,arch_db:sale_cancel_reason.view_order_form
 msgid "Cancellation reason:"
 msgstr "Stornogrund:"
 
 #. module: sale_cancel_reason
-#: view:sale.order.cancel:sale_cancel_reason.view_sale_order_cancel
+#: model:ir.ui.view,arch_db:sale_cancel_reason.view_sale_order_cancel
 msgid ""
 "Choose the reason for the cancellation of the\n"
-"                    sale order."
-msgstr "Den Grund für die Stornierung des Auftrags wählen."
+"                sale order."
+msgstr ""
 
 #. module: sale_cancel_reason
-#: view:sale.order.cancel:sale_cancel_reason.view_sale_order_cancel
+#: model:ir.ui.view,arch_db:sale_cancel_reason.view_sale_order_cancel
 msgid "Confirm"
 msgstr "Bestätigen"
 
 #. module: sale_cancel_reason
-#: field:sale.order.cancel,create_uid:0
-#: field:sale.order.cancel.reason,create_uid:0
+#: model:ir.model.fields,field_description:sale_cancel_reason.field_sale_order_cancel_create_uid
+#: model:ir.model.fields,field_description:sale_cancel_reason.field_sale_order_cancel_reason_create_uid
 msgid "Created by"
 msgstr "Angelegt durch"
 
 #. module: sale_cancel_reason
-#: field:sale.order.cancel,create_date:0
-#: field:sale.order.cancel.reason,create_date:0
+#: model:ir.model.fields,field_description:sale_cancel_reason.field_sale_order_cancel_create_date
+#: model:ir.model.fields,field_description:sale_cancel_reason.field_sale_order_cancel_reason_create_date
 msgid "Created on"
 msgstr "Angelegt am"
 
 #. module: sale_cancel_reason
-#: field:sale.order.cancel,id:0 field:sale.order.cancel.reason,id:0
+#: model:ir.model.fields,field_description:sale_cancel_reason.field_sale_order_cancel_display_name
+#: model:ir.model.fields,field_description:sale_cancel_reason.field_sale_order_cancel_reason_display_name
+msgid "Display Name"
+msgstr "Anzeigename"
+
+#. module: sale_cancel_reason
+#: model:ir.model.fields,field_description:sale_cancel_reason.field_sale_order_cancel_id
+#: model:ir.model.fields,field_description:sale_cancel_reason.field_sale_order_cancel_reason_id_5527
 msgid "ID"
 msgstr "ID"
 
@@ -78,14 +80,20 @@ msgid "Just for Quotation"
 msgstr "Nur für Angebot"
 
 #. module: sale_cancel_reason
-#: field:sale.order.cancel,write_uid:0
-#: field:sale.order.cancel.reason,write_uid:0
+#: model:ir.model.fields,field_description:sale_cancel_reason.field_sale_order_cancel___last_update
+#: model:ir.model.fields,field_description:sale_cancel_reason.field_sale_order_cancel_reason___last_update
+msgid "Last Modified on"
+msgstr "Zuletzt geändert am"
+
+#. module: sale_cancel_reason
+#: model:ir.model.fields,field_description:sale_cancel_reason.field_sale_order_cancel_reason_write_uid
+#: model:ir.model.fields,field_description:sale_cancel_reason.field_sale_order_cancel_write_uid
 msgid "Last Updated by"
 msgstr "Zuletzt akualisiert durch"
 
 #. module: sale_cancel_reason
-#: field:sale.order.cancel,write_date:0
-#: field:sale.order.cancel.reason,write_date:0
+#: model:ir.model.fields,field_description:sale_cancel_reason.field_sale_order_cancel_reason_write_date
+#: model:ir.model.fields,field_description:sale_cancel_reason.field_sale_order_cancel_write_date
 msgid "Last Updated on"
 msgstr "Zuletzt akualisiert am"
 
@@ -95,18 +103,19 @@ msgid "Other Service Provider selected"
 msgstr "Anderen Dienstleister gewählt"
 
 #. module: sale_cancel_reason
-#: field:sale.order.cancel,reason_id:0 field:sale.order.cancel.reason,name:0
+#: model:ir.model.fields,field_description:sale_cancel_reason.field_sale_order_cancel_reason_id
+#: model:ir.model.fields,field_description:sale_cancel_reason.field_sale_order_cancel_reason_name
 msgid "Reason"
 msgstr "Grund"
 
 #. module: sale_cancel_reason
-#: field:sale.order,cancel_reason_id:0
+#: model:ir.model.fields,field_description:sale_cancel_reason.field_sale_order_cancel_reason_id_5519
 msgid "Reason for cancellation"
 msgstr "Grund für Stornierung"
 
 #. module: sale_cancel_reason
 #: model:ir.actions.act_window,name:sale_cancel_reason.action_sale_order_cancel
-#: view:sale.order.cancel:sale_cancel_reason.view_sale_order_cancel
+#: model:ir.ui.view,arch_db:sale_cancel_reason.view_sale_order_cancel
 msgid "Reason for the cancellation"
 msgstr "Grund für das Stornieren"
 
@@ -118,8 +127,8 @@ msgstr "Begründung der Auftragsstornierung"
 
 #. module: sale_cancel_reason
 #: model:ir.ui.menu,name:sale_cancel_reason.menu_sale_order_cancel_reason
-#: view:sale.order.cancel.reason:sale_cancel_reason.view_sale_order_cancel_reason_form
-#: view:sale.order.cancel.reason:sale_cancel_reason.view_sale_order_cancel_reason_tree
+#: model:ir.ui.view,arch_db:sale_cancel_reason.view_sale_order_cancel_reason_form
+#: model:ir.ui.view,arch_db:sale_cancel_reason.view_sale_order_cancel_reason_tree
 msgid "Sale Order Cancel Reasons"
 msgstr "Gründe für Auftragsstornierung"
 
@@ -134,11 +143,6 @@ msgid "Service no longer needed"
 msgstr "Dienst nicht mehr benötigt"
 
 #. module: sale_cancel_reason
-#: view:sale.order:sale_cancel_reason.view_order_form
-msgid "True"
-msgstr "Wahr"
-
-#. module: sale_cancel_reason
-#: view:sale.order.cancel:sale_cancel_reason.view_sale_order_cancel
+#: model:ir.ui.view,arch_db:sale_cancel_reason.view_sale_order_cancel
 msgid "or"
 msgstr "oder"
