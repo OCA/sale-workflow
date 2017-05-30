@@ -1,65 +1,56 @@
 <?xml version="1.0" encoding="utf-8"?>
-<openerp>
-    <data noupdate="0">
-        <record id="view_order_form" model="ir.ui.view">
-            <field name="name">sale.order.form</field>
-            <field name="model">sale.order</field>
-            <field name="inherit_id" ref="sale.view_order_form"/>
-            <field name="arch" type="xml">
-                <xpath expr="//button[@name='action_cancel']" position="attributes">
-                    <attribute name="invisible">True</attribute>
-                </xpath>
-                <xpath expr="//button[@name='action_cancel']" position="before">
-                    <button name="%(action_sale_order_cancel)d" states="manual,progress" string="Cancel Order" type="action" groups="base.group_user"/>
-                </xpath>
-                <xpath expr="//button[@name='cancel']" position="attributes">
-                    <attribute name="invisible">True</attribute>
-                </xpath>
-                <xpath expr="//button[@name='cancel']" position="after">
-                    <button name="%(action_sale_order_cancel)d" type="action" states="draft,sent" string="Cancel Quotation" groups="base.group_user"/>
-                </xpath>
-                <xpath expr="/form/sheet/h1[1]" position="after">
-                    <h2 attrs="{'invisible': [('state', '!=', 'cancel')]}">
-                        <label for="cancel_reason_id" string="Cancellation reason:"/>
-                        <field name="cancel_reason_id" class="oe_inline"
-                          options='{"no_open": True}' />
-                    </h2>
-                </xpath>
-            </field>
-        </record>
+<odoo>
+    <record id="view_order_form" model="ir.ui.view">
+        <field name="name">sale.order.form</field>
+        <field name="model">sale.order</field>
+        <field name="inherit_id" ref="sale.view_order_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//button[@name='action_cancel']" position="attributes">
+                <attribute name="invisible">True</attribute>
+            </xpath>
+            <xpath expr="//button[@name='action_cancel']" position="before">
+                <button name="%(action_sale_order_cancel)d" states="draft,sent,sale"
+                  string="Cancel Order" type="action" groups="base.group_user"/>
+            </xpath>
+            <xpath expr="/form/sheet/div/h1" position="after">
+                <h2 attrs="{'invisible': [('state', '!=', 'cancel')]}">
+                    <label for="cancel_reason_id" string="Cancellation reason:"/>
+                    <field name="cancel_reason_id" class="oe_inline" options='{"no_open": True}'/>
+                </h2>
+            </xpath>
+        </field>
+    </record>
 
-        <record model="ir.ui.view" id="view_sale_order_cancel_reason_form">
-            <field name="name">Sale Order Cancel Reason</field>
-            <field name="model">sale.order.cancel.reason</field>
-            <field name="arch" type="xml">
-                <form string="Sale Order Cancel Reasons">
-                    <field name="name"/>
-                </form>
-            </field>
-        </record>
+    <record model="ir.ui.view" id="view_sale_order_cancel_reason_form">
+        <field name="name">Sale Order Cancel Reason</field>
+        <field name="model">sale.order.cancel.reason</field>
+        <field name="arch" type="xml">
+            <form string="Sale Order Cancel Reasons">
+                <field name="name"/>
+            </form>
+        </field>
+    </record>
 
-        <record model="ir.ui.view" id="view_sale_order_cancel_reason_tree">
-            <field name="name">Sale Order Cancel Reason</field>
-            <field name="model">sale.order.cancel.reason</field>
-            <field name="arch" type="xml">
-                <tree string="Sale Order Cancel Reasons">
-                    <field name="name"/>
-                </tree>
-            </field>
-        </record>
+    <record model="ir.ui.view" id="view_sale_order_cancel_reason_tree">
+        <field name="name">Sale Order Cancel Reason</field>
+        <field name="model">sale.order.cancel.reason</field>
+        <field name="arch" type="xml">
+            <tree string="Sale Order Cancel Reasons">
+                <field name="name"/>
+            </tree>
+        </field>
+    </record>
 
-        <record model="ir.actions.act_window" id="action_sale_order_cancel_reason">
-            <field name="name">Sale Order Cancel Reason</field>
-            <field name="res_model">sale.order.cancel.reason</field>
-            <field name="view_type">form</field>
-            <field name="view_mode">tree,form</field>
-        </record>
+    <record model="ir.actions.act_window" id="action_sale_order_cancel_reason">
+        <field name="name">Sale Order Cancel Reason</field>
+        <field name="res_model">sale.order.cancel.reason</field>
+        <field name="view_type">form</field>
+        <field name="view_mode">tree,form</field>
+    </record>
 
-        <menuitem id="menu_sale_order_cancel_reason"
-          parent="base.menu_base_config"
-          name="Sale Order Cancel Reasons"
-          action="action_sale_order_cancel_reason"
-          sequence="150"
-          groups="base.group_sale_manager"/>
-    </data>
-</openerp>
+    <menuitem id="menu_sale_order_cancel_reason"
+      parent="sales_team.menu_sale_config"
+      name="Sale Order Cancel Reasons"
+      action="action_sale_order_cancel_reason"
+      sequence="150" groups="sales_team.group_sale_manager"/>
+</odoo>
