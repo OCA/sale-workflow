@@ -28,15 +28,16 @@ class SaleOrder(models.Model):
                              for line in sale.order_line
                              if line.procurement_group_id])
             if not any(group_ids):
-                self.picking_ids = []
+                sale.picking_ids = []
                 continue
-            self.picking_ids = self.env['stock.picking'].search(
+            sale.picking_ids = self.env['stock.picking'].search(
                 [('group_id', 'in', list(group_ids))])
+            sale.delivery_count = len(sale.picking_ids)
 
-    picking_ids = fields.One2many('stock.picking',
-                                  compute='_compute_get_picking_ids',
-                                  method=True,
-                                  string='Picking associated to this sale')
+    picking_ids = fields.Many2many('stock.picking',
+                                   compute='_compute_get_picking_ids',
+                                   method=True,
+                                   string='Picking associated to this sale')
 
 
 class SaleOrderLine(models.Model):
@@ -73,11 +74,16 @@ class SaleOrderLine(models.Model):
 
             # Group the sales order lines with same procurement group
             # according to the group key
-            group_id = groups.get(line._get_procurement_group_key())
+            group_id = line.procurement_group_id or False
+            for l in line.order_id.order_line:
+                g_id = l.procurement_group_id or False
+                if g_id:
+                    groups[l._get_procurement_group_key()] = g_id
+            if not group_id:
+                group_id = groups.get(line._get_procurement_group_key())
             if not group_id:
                 vals = line.order_id._prepare_procurement_group_by_line(line)
                 group_id = self.env["procurement.group"].create(vals)
-                groups[line._get_procurement_group_key()] = group_id
             line.procurement_group_id = group_id
 
             vals = line._prepare_order_line_procurement(
@@ -86,6 +92,7 @@ class SaleOrderLine(models.Model):
             new_proc = self.env["procurement.order"].create(vals)
             new_procs += new_proc
         new_procs.run()
+        super(SaleOrderLine, self)._action_procurement_create()
         return new_procs
 
     procurement_group_id = fields.Many2one('procurement.group',
