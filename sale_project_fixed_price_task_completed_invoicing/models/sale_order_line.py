@@ -13,14 +13,14 @@ class SaleOrderLine(models.Model):
     def create(self, vals):
         line = super(SaleOrderLine, self).create(vals)
         if (line.state == 'sale' and not line.order_id.project_id and
-           line.product_id.track_service in ('completed_task', )):
+                line.product_id.track_service in ('completed_task', )):
             line.order_id._create_analytic_account()
 
     @api.constrains('product_id')
     def _onchange_product_id(self):
         for line in self:
             if ('completed_task' == line.product_id.track_service and
-               line.product_uom_qty != 1.0):
+                    line.product_uom_qty != 1.0):
                 raise ValidationError(_("The quantity for 'Complete Task' "
                                         "products must be exactly one"))
 

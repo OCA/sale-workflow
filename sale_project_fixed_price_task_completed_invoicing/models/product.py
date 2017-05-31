@@ -20,6 +20,6 @@ class ProductProduct(models.Model):
     def _need_procurement(self):
         for product in self:
             if (product.type == 'service' and
-               product.track_service == 'completed_task'):
+                    product.track_service == 'completed_task'):
                 return True
         return super(ProductProduct, self)._need_procurement()

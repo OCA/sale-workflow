@@ -21,7 +21,7 @@ class ProjectTask(models.Model):
         for task in self:
             # We dont' want to modify when the related SOLine is invoiced
             if (not task.sale_line_id or
-               task.sale_line_id.state in ('done', 'cancel')):
+                    task.sale_line_id.state in ('done', 'cancel')):
                 raise UserError(_("You cannot modify the status if there is "
                                   "no Sale Order Line or if it has been "
                                   "invoiced."))
@@ -32,7 +32,7 @@ class ProjectTask(models.Model):
     def write(self, vals):
         for task in self:
             if (vals.get('sale_line_id') and
-               task.sale_line_id.state in ('done', 'cancel')):
+                    task.sale_line_id.state in ('done', 'cancel')):
                 raise ValidationError(_('You cannot modify the Sale Order '
                                         'Line of the task once it is invoiced')
                                       )
