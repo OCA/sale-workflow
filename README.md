@@ -21,7 +21,10 @@ addon | version | summary
 --- | --- | ---
 [sale_automatic_workflow](sale_automatic_workflow/) | 9.0.1.1.0 | Sale Automatic Workflow
 [sale_automatic_workflow_payment_mode](sale_automatic_workflow_payment_mode/) | 9.0.2.0.0 | Sale Automatic Workflow - Payment Mode
+[sale_delivery_block](sale_delivery_block/) | 9.0.1.0.0 | Allow you to block the creation of deliveries from a sale order.
+[sale_delivery_block_proc_group_by_line](sale_delivery_block_proc_group_by_line/) | 9.0.1.0.0 | Module that allows module sale_delivery_block to work with sale_procurement_group_by_line
 [sale_exception](sale_exception/) | 9.0.1.1.0 | Custom exceptions on sale order
+[sale_force_invoiced](sale_force_invoiced/) | 9.0.1.0.0 | Allows to force the invoice status of the sales order to Invoiced
 [sale_order_lot_selection](sale_order_lot_selection/) | 9.0.1.0.0 | Sale Order Lot Selection
 [sale_order_price_recalculation](sale_order_price_recalculation/) | 9.0.1.0.0 | Price recalculation in sales orders
 [sale_order_type](sale_order_type/) | 9.0.1.0.0 | Sale Order Types
