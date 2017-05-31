@@ -43,14 +43,14 @@ class SaleReport(models.Model):
     _inherit = 'sale.report'
 
     cancel_reason_id = fields.Many2one(
-            comodel_name="sale.order.cancel.reason",
-            string="Cancellation Reason",
-            readonly=True,
+        comodel_name="sale.order.cancel.reason",
+        string="Cancellation Reason",
+        readonly=True,
     )
 
     ordnbr = fields.Float(
-            string="# of Orders",
-            readonly=True,
+        string="# of Orders",
+        readonly=True,
     )
 
     def _select(self):
