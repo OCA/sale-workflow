@@ -15,6 +15,7 @@ class SaleOrderLine(models.Model):
         if (line.state == 'sale' and not line.order_id.project_id and
                 line.product_id.track_service in ('completed_task', )):
             line.order_id._create_analytic_account()
+        return line
 
     @api.constrains('product_id')
     def _onchange_product_id(self):

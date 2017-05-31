@@ -21,7 +21,9 @@ class ProjectTask(models.Model):
         for task in self:
             # We dont' want to modify when the related SOLine is invoiced
             if (not task.sale_line_id or
-                    task.sale_line_id.state in ('done', 'cancel')):
+                    task.sale_line_id.state in ('done', 'cancel') or
+                    task.sale_line_id.invoice_status in ('to invoice',
+                                                         'invoiced')):
                 raise UserError(_("You cannot modify the status if there is "
                                   "no Sale Order Line or if it has been "
                                   "invoiced."))
@@ -38,6 +40,7 @@ class ProjectTask(models.Model):
                                       )
         return super(ProjectTask, self).write(vals)
 
+    @api.model
     def create(self, vals):
         SOLine = self.env['sale.order.line']
         so_line = SOLine.browse(vals.get('sale_line_id'))
