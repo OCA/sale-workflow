@@ -71,9 +71,11 @@ class SaleGenerator(models.Model):
     def _update_order(self):
         self.ensure_one()
         partners_with_order = self.sale_ids.mapped('partner_id')
-        for partner in self.partner_ids.filtered(lambda record: record not in partners_with_order):
+        for partner in self.partner_ids.filtered(
+                lambda record: record not in partners_with_order):
             self._create_order_for_partner(partner)
-        for sale in self.sale_ids.filtered(lambda record: record.partner_id not in self.partner_ids):
+        for sale in self.sale_ids.filtered(
+                lambda record: record.partner_id not in self.partner_ids):
             sale.unlink()
 
     @api.multi
