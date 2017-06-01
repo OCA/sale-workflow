@@ -19,5 +19,4 @@
         'security/ir.model.access.csv',
         'security/ir.rule.csv',
         ],
-    'demo': [],
 }

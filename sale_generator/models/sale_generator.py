@@ -22,7 +22,7 @@ class SaleGenerator(models.Model):
         domain=[('is_template', '=', True)])
     date_order = fields.Datetime(
         string='Date', oldname='date',
-        default=fields.datetime.now())
+        default=fields.Datetime.now())
     warehouse_id = fields.Many2one(
         comodel_name='stock.warehouse',
         required=True,
@@ -40,14 +40,15 @@ class SaleGenerator(models.Model):
 
     @api.multi
     def _prepare_copy_vals(self, partner):
+        self.ensure_one()
         vals = {}
-        vals.update({
+        vals = {
             'partner_id': partner.id,
             'generator_id': self.id,
             'warehouse_id': self.warehouse_id.id,
             'company_id': self.warehouse_id.company_id.id,
             'is_template': False,
-        })
+        }
         return vals
 
     @api.multi
@@ -69,21 +70,17 @@ class SaleGenerator(models.Model):
     @api.multi
     def _update_order(self):
         self.ensure_one()
-        partner_ids_with_order = [sale.partner_id.id
-                                  for sale in self.sale_ids]
-        for partner in self.partner_ids:
-            if partner.id not in partner_ids_with_order:
-                self._create_order_for_partner(partner)
-        for sale in self.sale_ids:
-            if sale.partner_id not in self.partner_ids:
-                sale.unlink()
+        partners_with_order = self.sale_ids.mapped('partner_id')
+        for partner in self.partner_ids.filtered(lambda record: record not in partners_with_order):
+            self._create_order_for_partner(partner)
+        for sale in self.sale_ids.filtered(lambda record: record.partner_id not in self.partner_ids):
+            sale.unlink()
 
     @api.multi
     def action_confirm(self):
         for res in self:
             res.write({'state': 'done'})
-            for sale in res.sale_ids:
-                sale.action_confirm()
+            res.sale_ids.action_confirm()
 
     @api.multi
     def write(self, vals):

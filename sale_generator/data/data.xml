@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<odoo>
-    <data noupdate="1">
+<odoo noupdate="1">
 
         <!-- Sequences for sale.order.generator -->
         <record id="seq_generator_sequence" model="ir.sequence">
@@ -16,5 +15,4 @@
             <field name="active" eval="False"/>
         </record>
 
-    </data>
 </odoo>
