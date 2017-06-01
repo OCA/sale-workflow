@@ -22,11 +22,14 @@ addon | version | summary
 [sale_automatic_workflow](sale_automatic_workflow/) | 10.0.1.0.0 | Sale Automatic Workflow
 [sale_automatic_workflow_payment_mode](sale_automatic_workflow_payment_mode/) | 10.0.1.0.0 | Sale Automatic Workflow - Payment Mode
 [sale_cancel_reason](sale_cancel_reason/) | 10.0.1.0.0 | Sale Cancel Reason
+[sale_commercial_partner](sale_commercial_partner/) | 10.0.1.0.0 | Add stored related field 'Commercial Entity' on sale orders
 [sale_exception](sale_exception/) | 10.0.2.0.0 | Custom exceptions on sale order
 [sale_isolated_quotation](sale_isolated_quotation/) | 10.0.1.0.0 | Sales - Isolated Quotation
 [sale_layout_hidden](sale_layout_hidden/) | 10.0.1.0.0 | Sale Layout Hidden Sections
 [sale_order_lot_generator](sale_order_lot_generator/) | 10.0.0.0.1 | sale_order_lot_generator
 [sale_order_lot_selection](sale_order_lot_selection/) | 10.0.1.0.0 | Sale Order Lot Selection
+[sale_order_revision](sale_order_revision/) | 10.0.1.0.0 | Sale order revisions
+[sale_owner_stock_sourcing](sale_owner_stock_sourcing/) | 10.0.1.0.0 | Manage stock ownership on sale order lines
 [sale_product_set](sale_product_set/) | 10.0.1.0.0 | Sale product set
 [sale_product_set_layout](sale_product_set_layout/) | 10.0.1.0.0 | Sale product set layout
 [sale_rental](sale_rental/) | 10.0.1.0.0 | Manage Rental of Products
@@ -59,9 +62,7 @@ addon | version | summary
 [sale_order_force_number](sale_order_force_number/) | 0.1 (unported) | Force sale orders numeration
 [sale_order_line_description](sale_order_line_description/) | 8.0.1.0.0 (unported) | Sale order line description
 [sale_order_price_recalculation](sale_order_price_recalculation/) | 8.0.1.0.0 (unported) | Price recalculation in sales orders
-[sale_order_revision](sale_order_revision/) | 8.0.0.1.0 (unported) | Sale order revisions
 [sale_order_type](sale_order_type/) | 8.0.1.0.1 (unported) | Sale Order Types
-[sale_owner_stock_sourcing](sale_owner_stock_sourcing/) | 8.0.0.1.0 (unported) | Manage stock ownership on sale order lines
 [sale_packaging_price](sale_packaging_price/) | 9.0.1.0.0 (unported) | Sale Packaging Price
 [sale_partner_order_policy](sale_partner_order_policy/) | 8.0.1.0.0 (unported) | Adds customer create invoice method on partner form
 [sale_payment_term_interest](sale_payment_term_interest/) | 8.0.1.0.0 (unported) | Sales Payment Term Interests
