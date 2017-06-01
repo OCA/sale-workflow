@@ -1,10 +1,10 @@
 # Translation of OpenERP Server.
 # This file contains the translation of the following modules:
-#	* last_sale_price
+#	* sale_last_price_per_partner
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: OpenERP Server 7.0\n"
+"Project-Id-Version: ODOO Server 10.0\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-06-18 15:28+0000\n"
 "PO-Revision-Date: 2014-06-18 15:28+0000\n"
@@ -15,27 +15,27 @@ msgstr ""
 "Content-Transfer-Encoding: \n"
 "Plural-Forms: \n"
 
-#. module: last_sale_price:
+#. module: sale_last_price_per_partner:
 #: field:sale.order.line,last_sale_date:0
 msgid "Last Sale Date"
 msgstr ""
 
-#. module: last_sale_price
+#. module: sale_last_price_per_partner
 #: field:sale.order.line,last_sale_price:0
 msgid "Last Sale Price"
 msgstr ""
 
-#. module: last_sale_price
+#. module: sale_last_price_per_partner
 #: field:sale.order.line,last_sale_qty:0
 msgid "Last Sale Quantity"
 msgstr ""
 
-#. module: last_sale_price
+#. module: sale_last_price_per_partner
 #: model:ir.model,name:last_sale_price.model_sale_order_line
 msgid "Sale Order line"
 msgstr ""
 
-#. module: last_sale_price
+#. module: sale_last_price_per_partner
 #: code:_description:0
 #, python-format
 msgid "Sales Order Line"
