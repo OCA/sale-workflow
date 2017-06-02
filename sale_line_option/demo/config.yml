@@ -1,0 +1,12 @@
+-
+ Sale config
+-
+  !python {model: sale.config.settings}: |
+    config_obj = self.pool.get('sale.config.settings')
+    if config_obj:
+        vals = {
+            'group_mrp_properties': 'True',
+        }
+        config_id = config_obj.create(cr, uid, vals, context)
+        config = config_obj.browse(cr, uid, config_id)
+        config.execute()

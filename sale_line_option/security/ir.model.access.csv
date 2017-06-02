@@ -1,0 +1,3 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_sale_order_line_option,sale.order.line.option,model_sale_order_line_option,base.group_sale_salesman,1,1,1,1
+access_bom_line_option,mrp.bom.line.option,model_mrp_bom_line_option,base.group_sale_salesman,1,1,1,1

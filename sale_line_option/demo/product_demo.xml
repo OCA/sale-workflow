@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<openerp>
+<data>
+
+    <record id="product_pc_assmb_option1" model="product.product">
+        <field name="name">Config with opts1</field>
+        <field name="default_code">CFG1</field>
+    </record>
+    <record id="product_pc_assmb_option2" model="product.product">
+        <field name="name">Config with opts2</field>
+        <field name="default_code">CFG2</field>
+    </record>
+    <record id="product_assmb_option3" model="product.product">
+        <field name="name">Config with opts3</field>
+        <field name="default_code">CFG3</field>
+    </record>
+    <record id="option_type" model="mrp.bom.line.option">
+        <field name="name">Test</field>
+        <field name="type">select</field>
+    </record>
+
+    <record id="bom_pc_assmb_option1" model="mrp.bom">
+        <field name="name">Config with Option 1</field>
+        <field name="product_tmpl_id"
+               eval="ref('sale_line_option.product_pc_assmb_option1_product_template')"/>
+    </record>
+    <record id="bom_line_pc_assmb_option11" model="mrp.bom.line">
+        <field name="bom_id" eval="ref('sale_line_option.bom_pc_assmb_option1')"/>
+        <field name="product_id" eval="ref('product.product_product_14')"/>
+        <field name="default_qty">1</field>
+        <field name="option_id" eval="ref('sale_line_option.option_type')"/>
+    </record>
+    <record id="bom_line_pc_assmb_option12" model="mrp.bom.line">
+        <field name="bom_id" eval="ref('sale_line_option.bom_pc_assmb_option1')"/>
+        <field name="product_id" eval="ref('product.product_product_15')"/>
+        <field name="option_id" eval="ref('sale_line_option.option_type')"/>
+    </record>
+    <record id="bom_line_pc_assmb_option13" model="mrp.bom.line">
+        <field name="bom_id" eval="ref('sale_line_option.bom_pc_assmb_option1')"/>
+        <field name="product_id" eval="ref('product.product_product_13')"/>
+        <field name="default_qty">2</field>
+        <field name="option_id" eval="ref('sale_line_option.option_type')"/>
+    </record>
+    <record id="bom_line_pc_assmb_option14" model="mrp.bom.line">
+        <field name="bom_id" eval="ref('sale_line_option.bom_pc_assmb_option1')"/>
+        <field name="product_id" eval="ref('product.product_product_18')"/>
+        <field name="default_qty">1</field>
+        <field name="option_id" eval="ref('sale_line_option.option_type')"/>
+    </record>
+
+    <record id="bom_pc_assmb_option2" model="mrp.bom">
+        <field name="name">Config with Option 2</field>
+        <field name="product_tmpl_id"
+               eval="ref('sale_line_option.product_pc_assmb_option2_product_template')"/>
+    </record>
+    <record id="bom_line_pc_assmb_option21" model="mrp.bom.line">
+        <field name="bom_id" eval="ref('sale_line_option.bom_pc_assmb_option2')"/>
+        <field name="product_id" eval="ref('product.product_product_17')"/>
+        <field name="default_qty">2</field>
+        <field name="option_id" eval="ref('sale_line_option.option_type')"/>
+    </record>
+    <record id="bom_line_pc_assmb_option22" model="mrp.bom.line">
+        <field name="bom_id" eval="ref('sale_line_option.bom_pc_assmb_option2')"/>
+        <field name="product_id" eval="ref('product.product_product_13')"/>
+        <field name="default_qty">4</field>
+        <field name="option_id" eval="ref('sale_line_option.option_type')"/>
+    </record>
+
+    <record id="bom_assmb_option3" model="mrp.bom">
+        <field name="name">Config with Option 3</field>
+        <field name="product_tmpl_id"
+               eval="ref('sale_line_option.product_assmb_option3_product_template')"/>
+    </record>
+    <record id="bom_line_assmb_option31" model="mrp.bom.line">
+        <field name="bom_id" eval="ref('sale_line_option.bom_assmb_option3')"/>
+        <field name="product_id" eval="ref('stock.product_icecream')"/>
+        <field name="default_qty">2</field>
+        <field name="option_id" eval="ref('sale_line_option.option_type')"/>
+    </record>
+    <record id="bom_line_assmb_option32" model="mrp.bom.line">
+        <field name="bom_id" eval="ref('sale_line_option.bom_assmb_option3')"/>
+        <field name="product_id" eval="ref('product.product_product_39')"/>
+        <field name="default_qty">1</field>
+        <field name="option_id" eval="ref('sale_line_option.option_type')"/>
+    </record>
+
+    <record id="sale_order_option" model="sale.order">
+        <field name="partner_id" eval="ref('base.res_partner_17')"/>
+        <field name="picking_policy" eval="'direct'"/>
+    </record>
+
+    <record id="sale_order_line_option" model="sale.order.line">
+        <field name="order_id" eval="ref('sale_line_option.sale_order_option')"/>
+        <field name="product_id" eval="ref('sale_line_option.product_pc_assmb_option1')"/>
+    </record>
+
+    </data>
+</openerp>

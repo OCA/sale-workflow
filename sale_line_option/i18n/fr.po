@@ -1,0 +1,181 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+#	* sale_line_option
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 8.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2017-05-23 14:03+0000\n"
+"PO-Revision-Date: 2017-05-23 14:03+0000\n"
+"Last-Translator: <>\n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: sale_line_option
+#: field:sale.order.line,option_ids:0
+msgid "Available Options"
+msgstr "Options Disponibles"
+
+#. module: sale_line_option
+#: field:sale.order.line,base_price_unit:0
+msgid "Base Price Unit"
+msgstr "Prix de Base Unitaire"
+
+#. module: sale_line_option
+#: model:ir.model,name:sale_line_option.model_mrp_bom
+msgid "Bill of Material"
+msgstr "Nomenclature"
+
+#. module: sale_line_option
+#: model:ir.actions.act_window,name:sale_line_option.act_open_bom_option_view
+#: model:ir.ui.menu,name:sale_line_option.menu_bom_option
+#: view:mrp.bom.line.option:sale_line_option.view_bom_option_form
+#: view:mrp.bom.line.option:sale_line_option.view_bom_option_tree
+msgid "BoM Option"
+msgstr "Option de nomenclature"
+
+#. module: sale_line_option
+#: field:sale.order.line.option,bom_line_id:0
+msgid "Bom Line"
+msgstr "Ligne de nomenclature"
+
+#. module: sale_line_option
+#: view:mrp.bom.line:sale_line_option.view_mrp_bom_line_filter
+msgid "Component name"
+msgstr "Nom du composant"
+
+#. module: sale_line_option
+#: field:mrp.bom.line.option,create_uid:0
+#: field:sale.order.line.option,create_uid:0
+msgid "Created by"
+msgstr "Créé par"
+
+#. module: sale_line_option
+#: field:mrp.bom.line.option,create_date:0
+#: field:sale.order.line.option,create_date:0
+msgid "Created on"
+msgstr "Créé le"
+
+#. module: sale_line_option
+#: field:mrp.bom.line,default_qty:0
+msgid "Default Quantity"
+msgstr "Quantity par Défaut"
+
+#. module: sale_line_option
+#: field:mrp.bom.line.option,display_name:0
+#: field:sale.order.line.option,display_name:0
+msgid "Display Name"
+msgstr "Nom affiché"
+
+#. module: sale_line_option
+#: field:sale.order.line,display_option:0
+msgid "Display option"
+msgstr "Affichage option"
+
+#. module: sale_line_option
+#: field:mrp.bom.line.option,__last_update:0
+#: field:sale.order.line.option,__last_update:0
+msgid "Last Modified on"
+msgstr "Dernière modification"
+
+#. module: sale_line_option
+#: field:mrp.bom.line.option,write_uid:0
+#: field:sale.order.line.option,write_uid:0
+msgid "Last Updated by"
+msgstr "Mis à jour par"
+
+#. module: sale_line_option
+#: field:mrp.bom.line.option,write_date:0
+#: field:sale.order.line.option,write_date:0
+msgid "Last Updated on"
+msgstr "Mis à jour le"
+
+#. module: sale_line_option
+#: field:sale.order.line.option,line_price:0
+msgid "Line price"
+msgstr "Ligne de prix"
+
+#. module: sale_line_option
+#: model:ir.model,name:sale_line_option.model_stock_production_lot
+msgid "Lot/Serial"
+msgstr "Lot/N° série"
+
+#. module: sale_line_option
+#: field:mrp.bom.line,name:0
+#: field:mrp.bom.line.option,name:0
+msgid "Name"
+msgstr "Nom"
+
+#. module: sale_line_option
+#: model:ir.actions.client,name:sale_line_option.action_client_module_menu
+msgid "Open Menu"
+msgstr "Ouvrir le Menu"
+
+#. module: sale_line_option
+#: field:mrp.bom.line,option_id:0
+msgid "Option"
+msgstr "Option"
+
+#. module: sale_line_option
+#: field:stock.production.lot,option_ids:0
+msgid "Option lines"
+msgstr "Lignes d'options"
+
+#. module: sale_line_option
+#: help:sale.order.line,option_ids:0
+msgid "Options can be defined with product bom"
+msgstr "Les options peuvent être définies via les nomenclatures"
+
+#. module: sale_line_option
+#: field:sale.order.line,pricelist_id:0
+msgid "Pricelist"
+msgstr "Liste de prix"
+
+#. module: sale_line_option
+#: help:sale.order.line,pricelist_id:0
+msgid "Pricelist for current sales order."
+msgstr "Liste de prix pour les ventes courantes."
+
+#. module: sale_line_option
+#: field:sale.order.line.option,product_id:0
+msgid "Product"
+msgstr "Article"
+
+#. module: sale_line_option
+#: field:sale.order.line.option,qty:0
+msgid "Qty"
+msgstr "Qté"
+
+#. module: sale_line_option
+#: field:sale.order.line.option,sale_line_id:0
+msgid "Sale line id"
+msgstr "Id de ligne de vente"
+
+#. module: sale_line_option
+#: model:ir.model,name:sale_line_option.model_sale_order
+msgid "Sales Order"
+msgstr "Commande de ventes"
+
+#. module: sale_line_option
+#: model:ir.model,name:sale_line_option.model_sale_order_line
+msgid "Sales Order Line"
+msgstr "Ligne de commandes de vente"
+
+#. module: sale_line_option
+#: field:mrp.bom.line.option,sequence:0
+msgid "Sequence"
+msgstr "Séquence"
+
+#. module: sale_line_option
+#: help:sale.order.line,display_option:0
+msgid "Technical: allow conditional options field display"
+msgstr "Technical: allow conditional options field display"
+
+#. module: sale_line_option
+#: field:mrp.bom.line.option,type:0
+msgid "Type"
+msgstr "Type"
