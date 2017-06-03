@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: sale-workflow (8.0)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-05-13 06:44+0000\n"
-"PO-Revision-Date: 2017-05-18 09:21+0000\n"
+"POT-Creation-Date: 2017-05-31 01:49+0000\n"
+"PO-Revision-Date: 2017-05-31 21:52+0000\n"
 "Last-Translator: OCA Transbot <transbot@odoo-community.org>\n"
 "Language-Team: French (http://www.transifex.com/oca/OCA-sale-workflow-8-0/language/fr/)\n"
 "MIME-Version: 1.0\n"
@@ -108,7 +108,7 @@ msgstr ""
 #. module: sale_cancel_reason
 #: field:sale.order.cancel,reason_id:0 field:sale.order.cancel.reason,name:0
 msgid "Reason"
-msgstr ""
+msgstr "Motif"
 
 #. module: sale_cancel_reason
 #: field:sale.order,cancel_reason_id:0

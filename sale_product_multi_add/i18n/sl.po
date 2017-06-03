@@ -1,0 +1,126 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# * sale_product_multi_add
+# 
+# Translators:
+# OCA Transbot <transbot@odoo-community.org>, 2017
+# Matjaž Mozetič <m.mozetic@matmoz.si>, 2017
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 8.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2017-05-31 01:50+0000\n"
+"PO-Revision-Date: 2017-05-31 01:50+0000\n"
+"Last-Translator: Matjaž Mozetič <m.mozetic@matmoz.si>, 2017\n"
+"Language-Team: Slovenian (https://www.transifex.com/oca/teams/23907/sl/)\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Language: sl\n"
+"Plural-Forms: nplurals=4; plural=(n%100==1 ? 0 : n%100==2 ? 1 : n%100==3 || n%100==4 ? 2 : 3);\n"
+
+#. module: sale_product_multi_add
+#: view:sale.import.products:sale_product_multi_add.view_import_product_to_sale
+#: view:sale.import.products:sale_product_multi_add.view_import_product_to_sale2
+msgid "Cancel"
+msgstr "Preklic"
+
+#. module: sale_product_multi_add
+#: field:sale.import.products,create_uid:0
+#: field:sale.import.products.items,create_uid:0
+msgid "Created by"
+msgstr "Ustvaril"
+
+#. module: sale_product_multi_add
+#: field:sale.import.products,create_date:0
+#: field:sale.import.products.items,create_date:0
+msgid "Created on"
+msgstr "Ustvarjeno"
+
+#. module: sale_product_multi_add
+#: field:sale.import.products,display_name:0
+#: field:sale.import.products.items,display_name:0
+msgid "Display Name"
+msgstr "Prikazni naziv"
+
+#. module: sale_product_multi_add
+#: field:sale.import.products,id:0 field:sale.import.products.items,id:0
+msgid "ID"
+msgstr "ID"
+
+#. module: sale_product_multi_add
+#: model:ir.actions.act_window,name:sale_product_multi_add.action_import_product_to_sale
+msgid "Import Products"
+msgstr "Uvozi proizvode"
+
+#. module: sale_product_multi_add
+#: field:sale.import.products,items:0
+msgid "Items"
+msgstr "Predmeti"
+
+#. module: sale_product_multi_add
+#: field:sale.import.products,__last_update:0
+#: field:sale.import.products.items,__last_update:0
+msgid "Last Modified on"
+msgstr "Zadnjič spremenjeno"
+
+#. module: sale_product_multi_add
+#: field:sale.import.products,write_uid:0
+#: field:sale.import.products.items,write_uid:0
+msgid "Last Updated by"
+msgstr "Zadnji posodobil"
+
+#. module: sale_product_multi_add
+#: field:sale.import.products,write_date:0
+#: field:sale.import.products.items,write_date:0
+msgid "Last Updated on"
+msgstr "Zadnjič posodobljeno"
+
+#. module: sale_product_multi_add
+#: field:sale.import.products.items,product_id:0
+msgid "Product"
+msgstr "Proizvod"
+
+#. module: sale_product_multi_add
+#: view:sale.import.products:sale_product_multi_add.view_import_product_to_sale
+#: view:sale.import.products:sale_product_multi_add.view_import_product_to_sale2
+#: field:sale.import.products,products:0
+#: view:sale.order:sale_product_multi_add.sale_order_mass_import_form
+msgid "Products"
+msgstr "Proizvodi"
+
+#. module: sale_product_multi_add
+#: field:sale.import.products.items,quantity:0
+msgid "Quantity"
+msgstr "Količina"
+
+#. module: sale_product_multi_add
+#: model:ir.model,name:sale_product_multi_add.model_sale_import_products
+msgid "Sale Import Products"
+msgstr "Prodajni uvoz proizvodov"
+
+#. module: sale_product_multi_add
+#: view:sale.import.products:sale_product_multi_add.view_import_product_to_sale2
+msgid "Select"
+msgstr "Izbira"
+
+#. module: sale_product_multi_add
+#: view:sale.import.products:sale_product_multi_add.view_import_product_to_sale
+msgid "Set quantities"
+msgstr "Nastavi količine"
+
+#. module: sale_product_multi_add
+#: field:sale.import.products.items,wizard_id:0
+msgid "Wizard"
+msgstr "Čarovnik"
+
+#. module: sale_product_multi_add
+#: view:sale.import.products:sale_product_multi_add.view_import_product_to_sale
+#: view:sale.import.products:sale_product_multi_add.view_import_product_to_sale2
+msgid "or"
+msgstr "ali"
+
+#. module: sale_product_multi_add
+#: view:sale.order:sale_product_multi_add.sale_order_mass_import_form
+msgid "{'always_reload':true}"
+msgstr "{'always_reload':true}"

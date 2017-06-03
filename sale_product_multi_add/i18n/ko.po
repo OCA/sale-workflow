@@ -1,0 +1,125 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# * sale_product_multi_add
+# 
+# Translators:
+# OCA Transbot <transbot@odoo-community.org>, 2017
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 8.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2017-05-31 01:50+0000\n"
+"PO-Revision-Date: 2017-05-31 01:50+0000\n"
+"Last-Translator: OCA Transbot <transbot@odoo-community.org>, 2017\n"
+"Language-Team: Korean (https://www.transifex.com/oca/teams/23907/ko/)\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Language: ko\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+
+#. module: sale_product_multi_add
+#: view:sale.import.products:sale_product_multi_add.view_import_product_to_sale
+#: view:sale.import.products:sale_product_multi_add.view_import_product_to_sale2
+msgid "Cancel"
+msgstr "취소"
+
+#. module: sale_product_multi_add
+#: field:sale.import.products,create_uid:0
+#: field:sale.import.products.items,create_uid:0
+msgid "Created by"
+msgstr "작성자"
+
+#. module: sale_product_multi_add
+#: field:sale.import.products,create_date:0
+#: field:sale.import.products.items,create_date:0
+msgid "Created on"
+msgstr "작성일"
+
+#. module: sale_product_multi_add
+#: field:sale.import.products,display_name:0
+#: field:sale.import.products.items,display_name:0
+msgid "Display Name"
+msgstr "표시 이름"
+
+#. module: sale_product_multi_add
+#: field:sale.import.products,id:0 field:sale.import.products.items,id:0
+msgid "ID"
+msgstr "ID"
+
+#. module: sale_product_multi_add
+#: model:ir.actions.act_window,name:sale_product_multi_add.action_import_product_to_sale
+msgid "Import Products"
+msgstr ""
+
+#. module: sale_product_multi_add
+#: field:sale.import.products,items:0
+msgid "Items"
+msgstr ""
+
+#. module: sale_product_multi_add
+#: field:sale.import.products,__last_update:0
+#: field:sale.import.products.items,__last_update:0
+msgid "Last Modified on"
+msgstr "최근 수정"
+
+#. module: sale_product_multi_add
+#: field:sale.import.products,write_uid:0
+#: field:sale.import.products.items,write_uid:0
+msgid "Last Updated by"
+msgstr "최근 갱신한 사람"
+
+#. module: sale_product_multi_add
+#: field:sale.import.products,write_date:0
+#: field:sale.import.products.items,write_date:0
+msgid "Last Updated on"
+msgstr "최근 갱신 날짜"
+
+#. module: sale_product_multi_add
+#: field:sale.import.products.items,product_id:0
+msgid "Product"
+msgstr ""
+
+#. module: sale_product_multi_add
+#: view:sale.import.products:sale_product_multi_add.view_import_product_to_sale
+#: view:sale.import.products:sale_product_multi_add.view_import_product_to_sale2
+#: field:sale.import.products,products:0
+#: view:sale.order:sale_product_multi_add.sale_order_mass_import_form
+msgid "Products"
+msgstr ""
+
+#. module: sale_product_multi_add
+#: field:sale.import.products.items,quantity:0
+msgid "Quantity"
+msgstr ""
+
+#. module: sale_product_multi_add
+#: model:ir.model,name:sale_product_multi_add.model_sale_import_products
+msgid "Sale Import Products"
+msgstr ""
+
+#. module: sale_product_multi_add
+#: view:sale.import.products:sale_product_multi_add.view_import_product_to_sale2
+msgid "Select"
+msgstr ""
+
+#. module: sale_product_multi_add
+#: view:sale.import.products:sale_product_multi_add.view_import_product_to_sale
+msgid "Set quantities"
+msgstr ""
+
+#. module: sale_product_multi_add
+#: field:sale.import.products.items,wizard_id:0
+msgid "Wizard"
+msgstr ""
+
+#. module: sale_product_multi_add
+#: view:sale.import.products:sale_product_multi_add.view_import_product_to_sale
+#: view:sale.import.products:sale_product_multi_add.view_import_product_to_sale2
+msgid "or"
+msgstr "또는"
+
+#. module: sale_product_multi_add
+#: view:sale.order:sale_product_multi_add.sale_order_mass_import_form
+msgid "{'always_reload':true}"
+msgstr ""
