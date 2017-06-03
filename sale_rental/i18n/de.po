@@ -4,14 +4,13 @@
 # 
 # Translators:
 # OCA Transbot <transbot@odoo-community.org>, 2016
-# Rudolf Schnapka <rs@techno-flex.de>, 2017
 msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 9.0c\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-03-04 06:46+0000\n"
-"PO-Revision-Date: 2017-03-04 06:46+0000\n"
-"Last-Translator: Rudolf Schnapka <rs@techno-flex.de>, 2017\n"
+"POT-Creation-Date: 2017-05-31 04:21+0000\n"
+"PO-Revision-Date: 2017-05-31 04:21+0000\n"
+"Last-Translator: OCA Transbot <transbot@odoo-community.org>, 2016\n"
 "Language-Team: German (https://www.transifex.com/oca/teams/23907/de/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -214,7 +213,7 @@ msgid "New Rental"
 msgstr "Neue Vermietung"
 
 #. module: sale_rental
-#: code:addons/sale_rental/models/sale_order.py:174
+#: code:addons/sale_rental/models/sale_order.py:179
 #, python-format
 msgid "Not enough stock !"
 msgstr "Unzureichender Bestand!"
@@ -296,6 +295,7 @@ msgid "Parent Rental"
 msgstr "Übergeordnete Miete"
 
 #. module: sale_rental
+#: model:ir.model,name:sale_rental.model_procurement_order
 #: model:ir.model.fields,field_description:sale_rental.field_sale_rental_procurement_id
 msgid "Procurement"
 msgstr "Beschaffung"
@@ -578,7 +578,7 @@ msgid "The Rental Output stock location is not set on the warehouse %s"
 msgstr "Das Miet-Warenausgangslager ist für das Lager %s nicht festgelegt"
 
 #. module: sale_rental
-#: code:addons/sale_rental/models/sale_order.py:217
+#: code:addons/sale_rental/models/sale_order.py:222
 #, python-format
 msgid ""
 "The Rental Service of the Rental Extension you just selected is '%s' and "
@@ -626,7 +626,7 @@ msgid "Warehouse"
 msgstr "Lager"
 
 #. module: sale_rental
-#: code:addons/sale_rental/models/sale_order.py:175
+#: code:addons/sale_rental/models/sale_order.py:180
 #, python-format
 msgid ""
 "You want to rent %.2f %s but you only have %.2f %s currently available on "
