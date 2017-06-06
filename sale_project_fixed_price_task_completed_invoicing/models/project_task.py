@@ -22,8 +22,7 @@ class ProjectTask(models.Model):
             # We dont' want to modify when the related SOLine is invoiced
             if (not task.sale_line_id or
                     task.sale_line_id.state in ('done', 'cancel') or
-                    task.sale_line_id.invoice_status in ('to invoice',
-                                                         'invoiced')):
+                    task.sale_line_id.invoice_status in ('invoiced',)):
                 raise UserError(_("You cannot modify the status if there is "
                                   "no Sale Order Line or if it has been "
                                   "invoiced."))
@@ -49,10 +48,3 @@ class ProjectTask(models.Model):
             raise ValidationError(_('You cannot add a task to and invoiced '
                                     'Sale Order Line'))
         return super(ProjectTask, self).create(vals)
-
-    @api.onchange('invoiceable')
-    def _onchange_invoiceable(self):
-        for task in self:
-            if not task.invoiceable:
-                continue
-            task.sale_line_id._check_delivered_qty()

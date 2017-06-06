@@ -13,13 +13,18 @@ class SaleOrder(models.Model):
         res = super(SaleOrder, self).action_confirm()
         for order in self:
             if not order.project_project_id:
-                for line in order.order_line:
-                    if (line.product_id.track_service in ('completed_task',
-                                                          'timesheet')):
-                        if not order.project_id:
-                            order._create_analytic_account(
-                                prefix=line.product_id.default_code or None)
-                        order.project_id.project_create(
-                            {'name': order.project_id.name,
-                             'use_tasks': True})
+                order._create_analytic_and_tasks()
         return res
+
+    @api.multi
+    def _create_analytic_and_tasks(self):
+        for order in self:
+            for line in order.order_line:
+                if (line.product_id.track_service in ('completed_task',
+                                                      'timesheet')):
+                    if not order.project_id:
+                        order._create_analytic_account(
+                            prefix=line.product_id.default_code or None)
+                    order.project_id.project_create(
+                        {'name': order.project_id.name,
+                         'use_tasks': True})
