@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<openerp>
+    <data>
+        <record model="ir.ui.view" id="res_partner_comments_form">
+            <field name="name">res.partner.comments.form</field>
+            <field name="model">res.partner</field>
+            <field name="inherit_id" ref="base.view_partner_form" />
+            <field name="arch" type="xml">
+                <notebook position="inside">
+                    <page string="Sale observations"
+                        attrs="{'invisible':[('customer','=',False)]}">
+                        <group colspan="2" col="2">
+                            <separator string="Sale Orders"
+                                colspan="2" />
+                            <label for="sale_comment" string="Comments" />
+                            <field name="sale_comment" nolabel="1"
+                                placeholder="Internal comment displayed on sale orders" />
+                            <label for="sale_propagated_comment"
+                                string="Propagated comments" />
+                            <field name="sale_propagated_comment"
+                                nolabel="1"
+                                placeholder="Internal comment displayed on sale orders (it will be propagated)" />
+                        </group>
+                        <group colspan="2" col="2">
+                            <separator string="Pickings"
+                                colspan="2" />
+                            <label for="picking_comment" string="Comments" />
+                            <field name="picking_comment" nolabel="1"
+                                placeholder="Internal comment displayed on delivery orders" />
+                            <label for="picking_propagated_comment"
+                                string="Propagated comments" />
+                            <field name="picking_propagated_comment"
+                                nolabel="1"
+                                placeholder="Internal comment displayed on delivery orders (it will be propagated)" />
+                        </group>
+                        <group colspan="2" col="2">
+                            <separator string="Invoices"
+                                colspan="2" />
+                            <label for="invoice_comment" string="Comments" />
+                            <field name="invoice_comment" nolabel="1"
+                                placeholder="Internal comment displayed on customer invoices" />
+                        </group>
+                    </page>
+                </notebook>
+            </field>
+        </record>
+
+    </data>
+</openerp>
