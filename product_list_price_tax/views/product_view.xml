@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- © 2016 Sergio Teruel <sergio.teruel@tecnativa.com>
+     License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl-3). -->
+<odoo>
+
+<record id="product_template_form_view_price_tax"
+        model="ir.ui.view">
+    <field name="model">product.template</field>
+    <field name="inherit_id"
+           ref="product.product_template_form_view"/>
+    <field name="arch" type="xml">
+        <xpath expr="//field[@name='list_price']" position="before">
+            <field name="list_price_tax"
+                   widget='monetary'
+                   options="{'currency_field': 'currency_id'}"/>
+        </xpath>
+    </field>
+</record>
+
+</odoo>
