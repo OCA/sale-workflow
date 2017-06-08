@@ -38,7 +38,10 @@ class AutomaticWorkflowJob(models.Model):
         _logger.debug('Sale Orders to validate: %s', sales.ids)
         for sale in sales:
             with savepoint(self.env.cr):
+                user_company = self.env.user.company_id
+                self.env.user.company_id = sale.company_id
                 sale.action_confirm()
+                self.env.user.company_id = user_company
 
     @api.model
     def _create_invoices(self, create_filter):
@@ -47,9 +50,12 @@ class AutomaticWorkflowJob(models.Model):
         _logger.debug('Sale Orders to create Invoice: %s', sales.ids)
         for sale in sales:
             with savepoint(self.env.cr):
+                user_company = self.env.user.company_id
+                self.env.user.company_id = sale.company_id
                 payment = self.env['sale.advance.payment.inv'].create(
                     {'advance_payment_method': 'all'})
                 payment.with_context(active_ids=sale.ids).create_invoices()
+                self.env.user.company_id = user_company
 
     @api.model
     def _validate_invoices(self, validate_invoice_filter):
@@ -58,7 +64,10 @@ class AutomaticWorkflowJob(models.Model):
         _logger.debug('Invoices to validate: %s', invoices.ids)
         for invoice in invoices:
             with savepoint(self.env.cr):
+                user_company = self.env.user.company_id
+                self.env.user.company_id = invoice.company_id
                 invoice.action_invoice_open()
+                self.env.user.company_id = user_company
 
     @api.model
     def _validate_pickings(self, picking_filter):
@@ -76,7 +85,10 @@ class AutomaticWorkflowJob(models.Model):
         _logger.debug('Sale Orders to done: %s', sales.ids)
         for sale in sales:
             with savepoint(self.env.cr):
+                user_company = self.env.user.company_id
+                self.env.user.company_id = sale.company_id
                 sale.action_done()
+                self.env.user.company_id = user_company
 
     @api.model
     def run_with_workflow(self, sale_workflow):
