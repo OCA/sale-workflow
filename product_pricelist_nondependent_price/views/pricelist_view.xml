@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+	<data>
+		<record id="product_pricelist_item_form_view" model="ir.ui.view">
+			<field name="name">product.pricelist.item.ndp.form</field>
+			<field name="model">product.pricelist.item</field>
+			<field name="inherit_id" ref="product.product_pricelist_item_form_view"/>
+			<field name="arch" type="xml">
+				<xpath expr='//field[@name="price_discount"]/..' position="attributes">
+					<attribute name="attrs">{'invisible':[('base', '=', -3)]}</attribute>
+				</xpath>
+				<xpath expr='//field[@name="price_discount"]/..' position="after">
+					<group attrs="{'invisible':[('base', '!=', -3)]}">
+						<field name='non_dependent_price'/>
+					</group>
+				</xpath>
+			</field>
+		</record>
+	</data>
+</openerp>
