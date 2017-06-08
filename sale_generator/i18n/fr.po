@@ -1,0 +1,175 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+#   * sale_generator
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 8.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2015-09-07 01:44+0000\n"
+"PO-Revision-Date: 2015-09-07 01:44+0000\n"
+"Last-Translator: <>\n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: sale_generator
+#: field:sale.generator,company_id:0
+msgid "Company"
+msgstr "Société"
+
+#. module: sale_generator
+#: view:sale.generator:sale_generator.view_sale_generator_form
+msgid "Confirm All Sale Generated"
+msgstr "Confirmer toute les commandes"
+
+#. module: sale_generator
+#: view:res.partner:sale_generator.view_partner_form
+msgid "Confirm and create a new customer"
+msgstr "Valider et créer un nouveau client"
+
+#. module: sale_generator
+#: view:sale.generator:sale_generator.view_sale_generator_form
+msgid "Create Customer"
+msgstr "Créé un client"
+
+#. module: sale_generator
+#: field:sale.generator,create_uid:0
+msgid "Created by"
+msgstr "Créé par"
+
+#. module: sale_generator
+#: field:sale.generator,create_date:0
+msgid "Created on"
+msgstr "créé le"
+
+#. module: sale_generator
+#: view:sale.generator:sale_generator.view_sale_generator_form
+msgid "Customer"
+msgstr "Client"
+
+#. module: sale_generator
+#: model:ir.actions.act_window,name:sale_generator.action_partner_create_form
+msgid "Customers"
+msgstr "Clients"
+
+#. module: sale_generator
+#: field:sale.generator,date:0
+msgid "Date"
+msgstr "Date"
+
+#. module: sale_generator
+#: selection:sale.generator,state:0
+msgid "Done"
+msgstr "Terminé"
+
+#. module: sale_generator
+#: selection:sale.generator,state:0
+msgid "Draft"
+msgstr "Brouillon"
+
+#. module: sale_generator
+#: selection:sale.generator,state:0
+msgid "Generating Order"
+msgstr "Génération de commande"
+
+#. module: sale_generator
+#: model:ir.actions.act_window,name:sale_generator.action_sale_generator
+#: model:ir.ui.menu,name:sale_generator.choix_generator
+#: view:sale.generator:sale_generator.view_sale_generator_form
+#: field:sale.generator,name:0
+#: field:sale.order,generator_id:0
+msgid "Generator"
+msgstr "Générateur"
+
+#. module: sale_generator
+#: field:sale.generator,id:0
+msgid "ID"
+msgstr "ID"
+
+#. module: sale_generator
+#: view:sale.generator:sale_generator.view_sale_generator_form
+msgid "In order to add customer you have two possibility:"
+msgstr "Pour ajouter un client vous avez deux posibilités :"
+
+#. module: sale_generator
+#: field:sale.order,is_template:0
+msgid "Is template"
+msgstr "Est un modèle"
+
+#. module: sale_generator
+#: field:sale.generator,write_uid:0
+msgid "Last Updated by"
+msgstr "Dernière mise à jour par"
+
+#. module: sale_generator
+#: field:sale.generator,write_date:0
+msgid "Last Updated on"
+msgstr "Dernière mise à jour"
+
+#. module: sale_generator
+#: model:ir.model,name:sale_generator.model_res_partner
+#: view:sale.generator:sale_generator.sale_generator_xml_tree
+#: field:sale.generator,partner_ids:0
+msgid "Partner"
+msgstr "Partenaire"
+
+#. module: sale_generator
+#: view:sale.order:sale_generator.view_sale_order_form
+msgid "Quotation"
+msgstr "Devis"
+
+#. module: sale_generator
+#: model:ir.actions.act_window,name:sale_generator.act_sale_generator_2_sale_order
+msgid "Sale Order"
+msgstr "Commande"
+
+#. module: sale_generator
+#: field:sale.generator,tmpl_sale_id:0
+msgid "Sale Template"
+msgstr "Modèle de commande"
+
+#. module: sale_generator
+#: view:sale.generator:sale_generator.view_sale_generator_form
+#: field:sale.generator,sale_ids:0
+msgid "Sales"
+msgstr "Ventes"
+
+#. module: sale_generator
+#: model:ir.model,name:sale_generator.model_sale_order
+msgid "Sales Order"
+msgstr "Bon de commande"
+
+#. module: sale_generator
+#: view:sale.generator:sale_generator.view_sale_generator_form
+msgid "Start Generating Sale"
+msgstr "Commencer la génération de commande"
+
+#. module: sale_generator
+#: field:sale.generator,state:0
+msgid "State"
+msgstr "Etat"
+
+#. module: sale_generator
+#: view:sale.order:sale_generator.view_sale_order_form
+msgid "Template"
+msgstr "Modèle"
+
+#. module: sale_generator
+#: field:sale.generator,warehouse_id:0
+msgid "Warehouse"
+msgstr "Entrepot"
+
+#. module: sale_generator
+#: view:sale.generator:sale_generator.view_sale_generator_form
+msgid "adding an existing customer by searching in your database\n"
+"                                for that you have to click on add item at the end of the list."
+msgstr "ajouter un client existant en cherchant dans votre base\n"
+"                                pour cela cliqué sur 'ajouté un élément' en bas de la liste des clients."
+
+#. module: sale_generator
+#: view:sale.generator:sale_generator.view_sale_generator_form
+msgid "creating massively customer by launching the following wizard"
+msgstr "créer en masse des clients en lançant assistant de création rapide"
