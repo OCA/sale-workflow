@@ -4,3 +4,6 @@ account-closing
 bank-statement-reconcile
 server-tools
 project
+partner-contact
+community-data-files
+account-invoicing https://github.com/akretion/account-invoicing 8.0-add-pdf-invoice-import

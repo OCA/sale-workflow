@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  © 2016 Akretion (Alexis de Lattre <alexis.delattre@akretion.com>)
+  License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
+-->
+
+<openerp>
+<data>
+
+<record id="sale_order_import_form" model="ir.ui.view">
+    <field name="name">sale.order.import.form</field>
+    <field name="model">sale.order.import</field>
+    <field name="arch"  type="xml">
+        <form string="Import Sale Orders">
+            <group name="technical" invisible="1">
+                <field name="state"/>
+            </group>
+            <group name="help-import" states="import">
+              <div>
+                <p>Upload below the customer order or request for quotation as CSV, XML or PDF file. When you click on the Import button:</p>
+                <ol>
+                  <li>If it is a CSV file, you will have to manually select the customer. The CSV file should have 2 columns: the product reference or EAN13 (1st col) and then the product quantity (2nd col). It shouldn't have any header line and use semi-colon as field separator. The quantity shouldn't use any thousand separator ; if it is a decimal value, it should use dot as the decimal separator.</li>
+                  <li>If it is an XML file, Odoo will parse it if the module that adds support for this XML format is installed. For the <a href="http://ubl.xml.org/" target="_blank">Universal Business Language</a> format (UBL), you should install the module <em>sale_order_import_ubl</em>.</li>
+                  <li>If it is a PDF file, Odoo will try to find an XML file in the attachments of the PDF file and then use this XML file to create the quotation.</li>
+                </ol>
+              </div>
+            </group>
+            <group name="help-update" states="update">
+                <div>
+                    <p>Some quotations have been found for this customer ; one of them may correspond to the order or RFQ that you are importing. You can either select an existing quotation to update or create a new one.</p>
+                </div>
+            </group>
+            <group name="import" states="import">
+                <field name="order_file" filename="order_filename"/>
+                <field name="order_filename" invisible="1"/>
+                <field name="csv_import" invisible="1"/>
+                <field name="partner_id"
+                    attrs="{'invisible': [('csv_import', '=', False)], 'required': [('csv_import', '=', True)]}"/>
+            </group>
+            <group name="update" states="update">
+                <field name="commercial_partner_id"/>
+                <field name="partner_shipping_id"
+                    context="{'show_address': 1}" options="{'always_reload': 1}"/>
+                <field name="sale_id"
+                    domain="[('state', 'in', ('draft', 'sent')), ('commercial_partner_id', '=', commercial_partner_id)]"/>
+            </group>
+            <group name="common">
+                <field name="doc_type"/>
+                <field name="price_source"
+                    attrs="{'invisible': [('doc_type', '!=', 'order')], 'required': [('doc_type', '=', 'order')]}"/>
+            </group>
+            <footer>
+                <button name="import_order_button" type="object" states="import"
+                    class="oe_highlight" string="Import"/>
+                <button name="update_order_button" type="object" states="update"
+                    class="oe_highlight" string="Update Existing"/>
+                <button name="create_order_button" type="object" states="update"
+                    class="oe_highlight" string="Create New"/>
+                <button special="cancel" string="Cancel" class="oe_link"/>
+            </footer>
+        </form>
+    </field>
+</record>
+
+<record id="sale_order_import_action" model="ir.actions.act_window">
+    <field name="name">Import RFQ or Order</field>
+    <field name="res_model">sale.order.import</field>
+    <field name="view_mode">form</field>
+    <field name="target">new</field>
+    <field name="context">{'sale_order_show_amount': True}</field>
+</record>
+
+<menuitem id="sale_order_import_menu"
+    parent="base.menu_sales"
+    action="sale_order_import_action" sequence="25"/>
+
+</data>
+</openerp>

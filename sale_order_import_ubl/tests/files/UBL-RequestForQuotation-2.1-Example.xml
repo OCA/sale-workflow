@@ -1,0 +1,180 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<RequestForQuotation xmlns="urn:oasis:names:specification:ubl:schema:xsd:RequestForQuotation-2" xmlns:cac="urn:oasis:names:specification:ubl:schema:xsd:CommonAggregateComponents-2" xmlns:cbc="urn:oasis:names:specification:ubl:schema:xsd:CommonBasicComponents-2">
+
+  
+  <!-- The following TestInstance process instruction is for customization usage. It indicates that the instance is for testing purposes -->
+  
+  <cbc:UBLVersionID>2.1</cbc:UBLVersionID>
+  <cbc:CustomizationID>OIOUBL-2.1</cbc:CustomizationID>
+  <cbc:ProfileID schemeAgencyID="320" schemeID="urn:oioubl:id:profileid-1.2">Procurement-QuoSim-1.0</cbc:ProfileID>
+  <cbc:ID>G867B</cbc:ID>
+	<cbc:CopyIndicator>false</cbc:CopyIndicator>
+	<cbc:UUID>93T5G3G5-HYA3-7267-BVG3-GS46SW44WG53</cbc:UUID>
+	<cbc:IssueDate>2010-04-19</cbc:IssueDate>
+	<cbc:IssueTime>11:32:26.0Z</cbc:IssueTime>
+	<cbc:SubmissionDueDate>2008-04-24</cbc:SubmissionDueDate>
+	<cbc:Note>Bestilling af computere</cbc:Note>
+  <cbc:PricingCurrencyCode>DKK</cbc:PricingCurrencyCode>
+	<cac:OriginatorCustomerParty>
+		<cac:Party>
+      <cbc:EndpointID schemeAgencyID="9" schemeID="GLN">5798000416604</cbc:EndpointID>
+      <cac:PartyIdentification>
+        <cbc:ID schemeAgencyID="9" schemeID="GLN">5798000416604</cbc:ID>
+      </cac:PartyIdentification>
+      <cac:PartyName>
+				<cbc:Name>Gentofte Kommune</cbc:Name>
+			</cac:PartyName>
+			<cac:PostalAddress>
+        <cbc:AddressFormatCode listAgencyID="320" listID="urn:oioubl:codelist:addressformatcode-1.1">StructuredDK</cbc:AddressFormatCode>
+        <cbc:StreetName>Bernstorffsvej</cbc:StreetName>
+				<cbc:BuildingNumber>161</cbc:BuildingNumber>
+				<cbc:CityName>Charlottenlund</cbc:CityName>
+				<cbc:PostalZone>2920</cbc:PostalZone>
+				<cac:Country>
+					<cbc:IdentificationCode>DK</cbc:IdentificationCode>
+				</cac:Country>
+			</cac:PostalAddress>
+      <cac:PartyTaxScheme>
+        <cbc:CompanyID schemeID="DK:SE">DK12345678</cbc:CompanyID>
+        <cac:TaxScheme>
+          <cbc:ID schemeAgencyID="320" schemeID="urn:oioubl:id:taxschemeid-1.1">63</cbc:ID>
+          <cbc:Name>Moms</cbc:Name>
+        </cac:TaxScheme>
+      </cac:PartyTaxScheme>
+      <cac:PartyLegalEntity>
+        <cbc:RegistrationName>Gentofte Kommune</cbc:RegistrationName>
+        <cbc:CompanyID schemeID="DK:CVR">DK12345678</cbc:CompanyID>
+      </cac:PartyLegalEntity>
+      <cac:Contact>
+        <cbc:ID>12345678</cbc:ID>
+				<cbc:Name>Sille Schyberg</cbc:Name>
+			</cac:Contact>
+		</cac:Party>
+	</cac:OriginatorCustomerParty>
+	<cac:SellerSupplierParty>
+		<cbc:CustomerAssignedAccountID>LEV00123</cbc:CustomerAssignedAccountID>
+		<cac:Party>
+      <cbc:EndpointID schemeID="DK:CVR">DK18296799</cbc:EndpointID>
+      <cac:PartyIdentification>
+        <cbc:ID schemeID="DK:CVR">DK18296799</cbc:ID>
+      </cac:PartyIdentification>
+      <cac:PartyName>
+				<cbc:Name>Delcomputer A/S</cbc:Name>
+			</cac:PartyName>
+			<cac:PostalAddress>
+        <cbc:AddressFormatCode listAgencyID="320" listID="urn:oioubl:codelist:addressformatcode-1.1">StructuredDK</cbc:AddressFormatCode>
+        <cbc:StreetName>Arne Jacobsens Allé</cbc:StreetName>
+				<cbc:BuildingNumber>15</cbc:BuildingNumber>
+				<cbc:CityName>København S</cbc:CityName>
+				<cbc:PostalZone>2300</cbc:PostalZone>
+				<cac:Country>
+					<cbc:IdentificationCode>DK</cbc:IdentificationCode>
+				</cac:Country>
+			</cac:PostalAddress>
+      <cac:PartyTaxScheme>
+        <cbc:CompanyID schemeID="DK:SE">DK18296799</cbc:CompanyID>
+        <cac:TaxScheme>
+          <cbc:ID schemeAgencyID="320" schemeID="urn:oioubl:id:taxschemeid-1.1">63</cbc:ID>
+          <cbc:Name>Moms</cbc:Name>
+        </cac:TaxScheme>
+      </cac:PartyTaxScheme>
+      <cac:PartyLegalEntity>
+        <cbc:RegistrationName>Delcomputer A/S</cbc:RegistrationName>
+        <cbc:CompanyID schemeID="DK:CVR">DK18296799</cbc:CompanyID>
+      </cac:PartyLegalEntity>
+		</cac:Party>
+	</cac:SellerSupplierParty>
+	<cac:Delivery>
+		<cac:DeliveryAddress>
+      <cbc:AddressFormatCode listAgencyID="320" listID="urn:oioubl:codelist:addressformatcode-1.1">StructuredDK</cbc:AddressFormatCode>
+      <cbc:StreetName>Bernstorffsvej</cbc:StreetName>
+      <cbc:BuildingNumber>161</cbc:BuildingNumber>
+      <cbc:CityName>Charlottenlund</cbc:CityName>
+      <cbc:PostalZone>2920</cbc:PostalZone>
+      <cac:AddressLine>
+        <cbc:Line>1. sal</cbc:Line>
+      </cac:AddressLine>
+      <cac:AddressLine>
+        <cbc:Line>IT-afdelingen</cbc:Line>
+      </cac:AddressLine>
+      <cac:Country>
+				<cbc:IdentificationCode>DK</cbc:IdentificationCode>
+			</cac:Country>
+		</cac:DeliveryAddress>
+		<cac:RequestedDeliveryPeriod>
+			<cbc:StartDate>2008-05-06</cbc:StartDate>
+			<cbc:StartTime>09:30:47.0Z</cbc:StartTime>
+			<cbc:EndDate>2008-05-10</cbc:EndDate>
+			<cbc:EndTime>09:30:47.0Z</cbc:EndTime>
+		</cac:RequestedDeliveryPeriod>
+	</cac:Delivery>
+	<cac:DeliveryTerms>
+		<cbc:SpecialTerms>1% reduktion i kontraktsummen pr. dags forsinkelse jf. SKI kontrakt</cbc:SpecialTerms>
+	</cac:DeliveryTerms>
+	<cac:Contract>
+		<cac:ContractDocumentReference>
+			<cbc:ID>SKI123456</cbc:ID>
+			<cbc:IssueDate>2006-01-01</cbc:IssueDate>
+		</cac:ContractDocumentReference>
+	</cac:Contract>
+  <cac:RequestForQuotationLine>
+    <cbc:ID>1</cbc:ID>
+    <cbc:Note>Computer</cbc:Note>
+    <cac:LineItem>
+      <cbc:ID>DELL1052665</cbc:ID>
+      <cbc:Quantity unitCode="NIU">35</cbc:Quantity>
+      <cac:Item>
+        <cbc:Description>Stationær computer</cbc:Description>
+        <cbc:Name>Dell PrecisionTM  T3400</cbc:Name>
+        <cac:SellersItemIdentification>
+            <cbc:ID>LAP-E5</cbc:ID>
+        </cac:SellersItemIdentification>
+      </cac:Item>
+    </cac:LineItem>
+  </cac:RequestForQuotationLine>
+  <cac:RequestForQuotationLine>
+    <cbc:ID>2</cbc:ID>
+    <cbc:Note>Skærm</cbc:Note>
+    <cac:LineItem>
+      <cbc:ID>DELL2363463</cbc:ID>
+      <cbc:Quantity unitCode="NIU">35</cbc:Quantity>
+      <cac:Item>
+        <cbc:Description>Fladskærm</cbc:Description>
+        <cbc:Name>FP/BL 1908WFP</cbc:Name>
+        <cac:SellersItemIdentification>
+            <cbc:ID>CARD</cbc:ID>
+        </cac:SellersItemIdentification>
+      </cac:Item>
+    </cac:LineItem>
+  </cac:RequestForQuotationLine>
+  <cac:RequestForQuotationLine>
+    <cbc:ID>3</cbc:ID>
+    <cbc:Note>Mus</cbc:Note>
+    <cac:LineItem>
+      <cbc:ID>DELL2367452</cbc:ID>
+      <cbc:Quantity unitCode="NIU">35</cbc:Quantity>
+      <cac:Item>
+        <cbc:Description>Mus</cbc:Description>
+        <cbc:Name>Dell Quietkey USB-tastatur, sort - Dansk (QWERTY)</cbc:Name>
+        <cac:SellersItemIdentification>
+            <cbc:ID>AK789</cbc:ID>
+        </cac:SellersItemIdentification>
+      </cac:Item>
+    </cac:LineItem>
+  </cac:RequestForQuotationLine>
+  <cac:RequestForQuotationLine>
+    <cbc:ID>4</cbc:ID>
+    <cbc:Note>Tastatur</cbc:Note>
+    <cac:LineItem>
+      <cbc:ID>DELL8436783</cbc:ID>
+      <cbc:Quantity unitCode="NIU">35</cbc:Quantity>
+      <cac:Item>
+        <cbc:Description>Tastatur</cbc:Description>
+        <cbc:Name>Dell Quietkey USB-tastatur, sort - Dansk (QWERTY)</cbc:Name>
+        <cac:SellersItemIdentification>
+            <cbc:ID>AK789</cbc:ID>
+        </cac:SellersItemIdentification>
+      </cac:Item>
+    </cac:LineItem>
+  </cac:RequestForQuotationLine>
+</RequestForQuotation>

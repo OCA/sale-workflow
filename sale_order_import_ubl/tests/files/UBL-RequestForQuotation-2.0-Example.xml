@@ -1,0 +1,142 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<RequestForQuotation xmlns="urn:oasis:names:specification:ubl:schema:xsd:RequestForQuotation-2" xmlns:cac="urn:oasis:names:specification:ubl:schema:xsd:CommonAggregateComponents-2" xmlns:cbc="urn:oasis:names:specification:ubl:schema:xsd:CommonBasicComponents-2">
+	<cbc:UBLVersionID>2.0</cbc:UBLVersionID>
+	<cbc:CustomizationID>urn:oasis:names:specification:ubl:xpath:RequestForQuotation-2.0:sbs-1.0-draft</cbc:CustomizationID>
+	<cbc:ProfileID>bpid:urn:oasis:names:draft:bpss:ubl-2-sbs-request-for-quotation-draft</cbc:ProfileID>
+	<cbc:ID>G867B</cbc:ID>
+	<cbc:CopyIndicator>false</cbc:CopyIndicator>
+	<cbc:UUID>8D076867-AE6D-439F-8281-5AAFC7F4E3B1</cbc:UUID>
+	<cbc:IssueDate>2005-06-19</cbc:IssueDate>
+	<cbc:IssueTime>11:32:26.0Z</cbc:IssueTime>
+	<cbc:Note>sample</cbc:Note>
+	<cac:CatalogueDocumentReference>
+		<cbc:ID>2005-9A</cbc:ID>
+		<cbc:IssueDate>2005-11-03</cbc:IssueDate>
+	</cac:CatalogueDocumentReference>
+	<cac:OriginatorCustomerParty>
+		<cac:Party>
+			<cac:PartyName>
+				<cbc:Name>The Terminus</cbc:Name>
+			</cac:PartyName>
+			<cac:PostalAddress>
+				<cbc:StreetName>Avon Way</cbc:StreetName>
+				<cbc:BuildingName>Thereabouts</cbc:BuildingName>
+				<cbc:BuildingNumber>56A</cbc:BuildingNumber>
+				<cbc:CityName>Bridgtow</cbc:CityName>
+				<cbc:PostalZone>ZZ99 1ZZ</cbc:PostalZone>
+				<cbc:CountrySubentity>Avon</cbc:CountrySubentity>
+				<cac:AddressLine>
+					<cbc:Line>3rd Floor, Room 5</cbc:Line>
+				</cac:AddressLine>
+				<cac:Country>
+					<cbc:IdentificationCode>GB</cbc:IdentificationCode>
+				</cac:Country>
+			</cac:PostalAddress>
+			<cac:PartyTaxScheme>
+				<cbc:RegistrationName>Bridgtow District Council</cbc:RegistrationName>
+				<cbc:CompanyID>12356478</cbc:CompanyID>
+				<cbc:ExemptionReason>Local Authority</cbc:ExemptionReason>
+				<cac:TaxScheme>
+					<cbc:ID>UK VAT</cbc:ID>
+					<cbc:TaxTypeCode>VAT</cbc:TaxTypeCode>
+				</cac:TaxScheme>
+			</cac:PartyTaxScheme>
+			<cac:Contact>
+				<cbc:Name>S Massiah</cbc:Name>
+				<cbc:Telephone>0127 98876545</cbc:Telephone>
+				<cbc:Telefax>0127 98876546</cbc:Telefax>
+				<cbc:ElectronicMail>smassiah@the-email.co.uk</cbc:ElectronicMail>
+			</cac:Contact>
+		</cac:Party>
+	</cac:OriginatorCustomerParty>
+	<cac:SellerSupplierParty>
+		<cbc:CustomerAssignedAccountID>CO001</cbc:CustomerAssignedAccountID>
+		<cac:Party>
+			<cac:PartyName>
+				<cbc:Name>Consortial</cbc:Name>
+			</cac:PartyName>
+			<cac:PostalAddress>
+				<cbc:StreetName>Busy Street</cbc:StreetName>
+				<cbc:BuildingName>Thereabouts</cbc:BuildingName>
+				<cbc:BuildingNumber>56A</cbc:BuildingNumber>
+				<cbc:CityName>Farthing</cbc:CityName>
+				<cbc:PostalZone>AA99 1BB</cbc:PostalZone>
+				<cbc:CountrySubentity>Heremouthshire</cbc:CountrySubentity>
+				<cac:AddressLine>
+					<cbc:Line>The Roundabout</cbc:Line>
+				</cac:AddressLine>
+				<cac:Country>
+					<cbc:IdentificationCode>GB</cbc:IdentificationCode>
+				</cac:Country>
+			</cac:PostalAddress>
+			<cac:PartyTaxScheme>
+				<cbc:RegistrationName>Farthing Purchasing Consortium</cbc:RegistrationName>
+				<cbc:CompanyID>175 269 2355</cbc:CompanyID>
+				<cbc:ExemptionReason>N/A</cbc:ExemptionReason>
+				<cac:TaxScheme>
+					<cbc:ID>VAT</cbc:ID>
+					<cbc:TaxTypeCode>VAT</cbc:TaxTypeCode>
+				</cac:TaxScheme>
+			</cac:PartyTaxScheme>
+			<cac:Contact>
+				<cbc:Name>Mrs Bouquet</cbc:Name>
+				<cbc:Telephone>0158 1233714</cbc:Telephone>
+				<cbc:Telefax>0158 1233856</cbc:Telefax>
+				<cbc:ElectronicMail>bouquet@fpconsortial.co.uk</cbc:ElectronicMail>
+			</cac:Contact>
+		</cac:Party>
+	</cac:SellerSupplierParty>
+	<cac:Delivery>
+		<cac:DeliveryAddress>
+			<cbc:StreetName>Avon Way</cbc:StreetName>
+			<cbc:BuildingName>Thereabouts</cbc:BuildingName>
+			<cbc:BuildingNumber>56A</cbc:BuildingNumber>
+			<cbc:CityName>Bridgtow</cbc:CityName>
+			<cbc:PostalZone>ZZ99 1ZZ</cbc:PostalZone>
+			<cbc:CountrySubentity>Avon</cbc:CountrySubentity>
+			<cac:AddressLine>
+				<cbc:Line>3rd Floor, Room 5</cbc:Line>
+			</cac:AddressLine>
+			<cac:Country>
+				<cbc:IdentificationCode>GB</cbc:IdentificationCode>
+			</cac:Country>
+		</cac:DeliveryAddress>
+		<cac:RequestedDeliveryPeriod>
+			<cbc:StartDate>2005-06-29</cbc:StartDate>
+			<cbc:StartTime>09:30:47.0Z</cbc:StartTime>
+			<cbc:EndDate>2005-06-29</cbc:EndDate>
+			<cbc:EndTime>09:30:47.0Z</cbc:EndTime>
+		</cac:RequestedDeliveryPeriod>
+	</cac:Delivery>
+	<cac:DeliveryTerms>
+		<cbc:SpecialTerms>1% deduction for late delivery as per contract</cbc:SpecialTerms>
+	</cac:DeliveryTerms>
+	<cac:DestinationCountry>
+		<cbc:IdentificationCode>GB</cbc:IdentificationCode>
+		<cbc:Name>Great Britain</cbc:Name>
+	</cac:DestinationCountry>
+	<cac:Contract>
+		<cac:ContractDocumentReference>
+			<cbc:ID>GHJ76849</cbc:ID>
+			<cbc:IssueDate>2002-08-13</cbc:IssueDate>
+		</cac:ContractDocumentReference>
+	</cac:Contract>
+	<cac:RequestForQuotationLine>
+		<cbc:ID>1</cbc:ID>
+		<cbc:Note>sample</cbc:Note>
+		<cac:LineItem>
+			<cbc:ID>1</cbc:ID>
+			<cbc:Quantity unitCode="KGM">100</cbc:Quantity>
+			<cac:Item>
+				<cbc:Description>Acme beeswax</cbc:Description>
+				<cbc:Name>beeswax</cbc:Name>
+				<cac:BuyersItemIdentification>
+					<cbc:ID>6578489</cbc:ID>
+				</cac:BuyersItemIdentification>
+				<cac:SellersItemIdentification>
+					<cbc:ID>17589683</cbc:ID>
+				</cac:SellersItemIdentification>
+			</cac:Item>
+		</cac:LineItem>
+	</cac:RequestForQuotationLine>
+</RequestForQuotation>
