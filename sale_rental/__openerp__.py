@@ -23,11 +23,11 @@
 
 {
     'name': 'Rental',
-    'version': '8.0.0.1.0',
+    'version': '8.0.1.0.0',
     'category': 'Sales Management',
     'license': 'AGPL-3',
     'summary': 'Manage Rental of Products',
-    'author': 'Akretion',
+    'author': 'Akretion, Odoo Community Association (OCA)',
     'website': 'http://www.akretion.com',
     'depends': ['sale_start_end_dates', 'stock'],
     'data': [
