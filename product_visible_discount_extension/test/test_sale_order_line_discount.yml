@@ -1,0 +1,135 @@
+-
+   Create a user as 'Salesmanager'
+-
+  !record {model: res.users, id: res_users_salesman2, view: False}:
+    company_id: base.main_company
+    name: "Sales managers"
+    login: sm
+    password: sm
+    email: salesmanager@yourcompany.com
+-                                                                                                                                           
+  I added groups for Salesmanager.
+-
+  !record {model: res.users, id: res_users_salesman2}:
+    groups_id:
+      - base.group_sale_manager
+-
+   Create a partner
+-
+  !record {model: res.partner, id: test_partner1, view: False}:
+    name: "Partner"
+-                                                                                                                                           
+  Test the data with salesman,
+-
+  !context
+    uid: 'res_users_salesman2'
+-
+  In order to test process of the Sale Order, I create sale order
+-
+  !record {model: sale.order, id: sale_order_test3, view: false}:
+    partner_id: base.res_partner_2
+    note: Invoice after delivery
+    order_line:
+      - product_id: product.product_product_7
+        product_uom_qty: 8
+        discount: 0
+        visible_discount: 0
+        temp_price: False
+        temp_discount: False
+        price_unit: 79.0
+-
+  I reset the order line
+-
+  !python {model: sale.order}: |
+     sale_order = self.browse(cr, uid, ref("sale_order_test3")) 
+     sale_order.order_line[0]._cache['temp_price'] = False
+     sale_order.order_line[0]._cache['temp_discount'] = False
+     sale_order.order_line[0].price_unit = 79.0
+     sale_order.order_line[0].visible_discount = 0
+     sale_order.order_line[0].discount = 0
+-
+  Check that we can change value of price_unit 50%
+-
+  !python {model: sale.order}: |
+     sale_order = self.browse(cr, uid, ref("sale_order_test3")) 
+     sale_order.order_line[0].price_unit = 39.5
+
+     sale_order.order_line[0]._cache['temp_price'] = False
+     sale_order.order_line[0]._cache['temp_discount'] = False
+
+     vals = sale_order.order_line[0]._onchange_price()
+-
+  I verify that the onchange was correctly handled
+-
+  !assert {model: sale.order, id: sale_order_test3, string: The price_unit didn't get updated correctly 50% of list_price}:
+    - order_line[0].visible_discount == 50
+    - order_line[0].price_unit == 39.5
+-
+  Check that we can change value of price unit 100%
+-
+  !python {model: sale.order}: |
+     sale_order = self.browse(cr, uid, ref("sale_order_test3")) 
+     sale_order.order_line[0].price_unit = 79.0
+
+     sale_order.order_line[0]._cache['temp_price'] = False
+     sale_order.order_line[0]._cache['temp_discount'] = False
+
+     sale_order.order_line[0]._onchange_price()
+-
+  I verify that the onchange was correctly handled
+-
+  !assert {model: sale.order, id: sale_order_test3, string: The price_unit didn't get updated correctly 100% of list_price}:
+    - order_line[0].visible_discount == 0.0
+    - order_line[0].price_unit == 79.0
+-
+  Check that we can change value of price unit 75%
+-
+  !python {model: sale.order}: |
+     sale_order = self.browse(cr, uid, ref("sale_order_test3")) 
+     sale_order.order_line[0]._cache['temp_price'] = False
+     sale_order.order_line[0]._cache['temp_discount'] = False
+     sale_order.order_line[0].price_unit = 59.25
+     sale_order.order_line[0]._onchange_price()
+-
+  I verify that the onchange was correctly triggered
+-
+  !assert {model: sale.order, id: sale_order_test3, string: The price_unit didn't get updated correctly 75% of list_price}:
+    - order_line[0].visible_discount == 25
+    - order_line[0].price_unit == 59.25
+-
+  Check that we can change value of discount 25%
+-
+  !python {model: sale.order}: |
+     sale_order = self.browse(cr, uid, ref("sale_order_test3")) 
+     sale_order.order_line[0].visible_discount = 25
+
+     sale_order.order_line[0]._cache['temp_price'] = False
+     sale_order.order_line[0]._cache['temp_discount'] = False
+
+     sale_order.order_line[0]._onchange_visible_discount()
+-
+  I verify that the onchange was correctly triggered
+-
+  !assert {model: sale.order, id: sale_order_test3, string: The visible_discount didn't get updated correctly 25% discount}:
+    - order_line[0].visible_discount == 25
+    - order_line[0].price_unit == 59.25
+-
+  Check that we can change value of discount 75%
+-
+  !python {model: sale.order}: |
+     sale_order = self.browse(cr, uid, ref("sale_order_test3")) 
+
+     sale_order.order_line[0].visible_discount = 75
+
+     sale_order.order_line[0]._cache['temp_price'] = False
+     sale_order.order_line[0]._cache['temp_discount'] = False
+
+     sale_order.order_line[0]._onchange_visible_discount()
+-
+  I verify that the onchange was correctly triggered
+-
+  !assert {model: sale.order, id: sale_order_test3, string: The visible_discount didn't get updated correctly 75% discount}:
+    - order_line[0].visible_discount == 75
+    - order_line[0].temp_discount == 75
+    - order_line[0].temp_price == 19.75
+    - order_line[0].price_unit == 19.75
