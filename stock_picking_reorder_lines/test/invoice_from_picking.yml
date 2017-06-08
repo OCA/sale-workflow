@@ -1,0 +1,65 @@
+-
+  I first create a new product
+-
+    !record {model: product.product, id: move_product}:
+         name: move prod
+         type: product
+-
+  I will receive 15 products from the supplier
+-
+  !record {model: stock.move, id: move_test2}:
+    name: Move 15 Products
+    product_id: move_product
+    product_uom_qty: 15
+    product_uom: product.product_uom_unit
+    product_uos_qty: 15
+    product_uos: product.product_uom_unit
+    location_id: stock.stock_location_suppliers
+    location_dest_id: stock.stock_location_stock
+-
+  I confirm and validate the move
+-
+  !python {model: stock.move}: |
+    self.action_confirm(cr, uid, [ref('move_test2')], context=context)
+    self.action_done(cr, uid, [ref('move_test2')], context=context)
+
+-
+  I create a picking with 1 move of 2 products from stock to customer
+-
+  !record {model: stock.picking, id: outgoing_shipment_main_warehouse1}:
+    picking_type_id: stock.picking_type_out
+    invoice_state: '2binvoiced'
+    origin: 'outgoing shipment'
+    partner_id: base.res_partner_6
+    date: !eval "'%s-%s-15' %((datetime.now()-timedelta(days=60)).year, (datetime.now()-timedelta(days=60)).month)"
+    move_lines:
+      - product_id: product.product_product_6
+        product_uom: product.product_uom_unit
+        product_uom_qty: 10.0
+        picking_type_id: stock.picking_type_out
+        location_id: stock.stock_location_stock
+        location_dest_id: stock.stock_location_customers
+-
+  In order to test create invoice for purchase order line.
+-
+  !python {model: stock.picking}: |
+    picking = self.browse(cr, uid, ref("outgoing_shipment_main_warehouse1"))
+    for move in picking.move_lines:
+        assert move.sequence == 10, "Sequence should be 10"
+-
+  Create invoice from picking
+-
+  !python {model: stock.picking}: |
+    journal_obj = self.pool.get('account.journal')
+    invoice_obj = self.pool.get('account.invoice')
+    picking = self.browse(cr, uid, ref("outgoing_shipment_main_warehouse1"))
+    picking.do_transfer()
+    assert picking.state == 'done', "Picking state should be done"
+    invoice_ids = picking.action_invoice_create(
+          journal_id = journal_obj.search(cr, uid, [('type', '=', 'sale')])[0],
+          group = False,
+          type = 'out_invoice')
+    for invoice in invoice_obj.browse(cr, uid, invoice_ids, context=context):
+        for line in invoice.invoice_line:
+            assert line.sequence == 10, "Sequence should be 10"
+        

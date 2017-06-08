@@ -1,0 +1,42 @@
+# Translation of OpenERP Server.
+# This file contains the translation of the following modules:
+#	* stock_picking_reorder_lines
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: OpenERP Server 7.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2013-09-30 12:04+0000\n"
+"PO-Revision-Date: 2013-09-30 14:09+0200\n"
+"Last-Translator: <>\n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: stock_picking_reorder_lines
+#: model:ir.model,name:stock_picking_reorder_lines.model_stock_move
+msgid "Stock Move"
+msgstr "Mouvement de stock"
+
+#. module: stock_picking_reorder_lines
+#: field:stock.move,sequence:0
+msgid "Sequence"
+msgstr "Séquence"
+
+#. module: stock_picking_reorder_lines
+#: model:ir.model,name:stock_picking_reorder_lines.model_sale_order
+msgid "Sales Order"
+msgstr "Bon de commande"
+
+#. module: stock_picking_reorder_lines
+#: help:stock.move,sequence:0
+msgid "Gives the sequence of this line when displaying the picking."
+msgstr "Numéro d'ordre de la ligne lors de l'affichage de l'opération de manutention."
+
+#. module: stock_picking_reorder_lines
+#: model:ir.model,name:stock_picking_reorder_lines.model_stock_picking
+msgid "Picking List"
+msgstr "Opération de manutention"
+
