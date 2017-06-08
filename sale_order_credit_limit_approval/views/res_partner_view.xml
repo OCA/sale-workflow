@@ -1,0 +1,21 @@
+<?xml version="1.0"?>
+<openerp>
+    <data>
+        <record id="view_set_credit_limit_res_partner_form" model="ir.ui.view" >
+            <field name="name">set.credit.limit.res.partner.form</field>
+            <field name="model">res.partner</field>
+            <field name="inherit_id" ref="account.view_partner_property_form"/>
+            <field name="arch" type="xml">
+                <field name="credit_limit" position="before">
+                    <field name="set_credit_limit"/>
+                </field>
+                <field name="credit_limit" position="attributes">
+                    <attribute name="attrs">{'invisible': [('set_credit_limit', '=', False)]}</attribute>
+                </field>
+                <field name="credit_limit" position="after">
+                    <field name="available_credit" attrs="{'invisible': [('set_credit_limit', '=', False)]}"/>
+                </field>
+            </field>
+        </record>
+    </data>
+</openerp>

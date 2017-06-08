@@ -1,0 +1,78 @@
+<section class="oe_container">
+    <div class="oe_row oe_spaced">
+        <div class="oe_span12">
+            <h2 class="oe_slogan">Sale Order Credit Limit Approval</h2>
+            <p>This module was written to throw a warning when the credit limit of a customer is exceeded in a sale order, in addition to moving in this case the status to a new one named 'Waiting for approval'. If the credit limit of a customer is exceeded, only the sales manager will be able to approve the sale order.</p>
+            <p>The module also adds a new option to make optional the use of a credit limit, and shows the current state of this if it has been activated.</p>
+        </div>
+    </div>
+</section>
+
+<section class="oe_container oe_dark">
+    <div class="oe_row oe_spaced">
+        <div class="oe_span12">
+            <h2 class="oe_slogan">Installation</h2>
+        </div>
+        <div class="oe_span12">
+            <p class="oe_mt32">To install this module, you need to:
+                <ul>
+                    <li>Check that you have installed the module <strong>sale</strong>.</li>
+                </ul>
+            </p>
+        </div>
+    </div>
+</section>
+
+<section class="oe_container oe_dark">
+    <div class="oe_row oe_spaced">
+        <div class="oe_span12">
+            <h2 class="oe_slogan">Usage</h2>
+        </div>
+        <div class="oe_span6">
+            <p class="oe_mt32">To use this module, you need to:
+                <ul>
+                    <li>Go to <i>Sales > Sales > Customers</i>, and open any customer.</li>
+                    <li>Go to the <i>Accounting</i> tab, and check the new field <strong>Set credit limit</strong>.</li>
+                    <li>Fill in the <i>Credit limit</i> field with any quantity. You will be able to see how much credit has this customer still available.</li>
+                    <li>Save the new changes.</li>
+                    <li>Go to <i>Sales > Sales > Sales Orders</i>, and create a new sale order.</li>
+                    <li>Add new lines to the order and save it. If the total quantity is equal to or greater than the available credit of the selected customer, a message will appear at the top of the form.</li>
+                    <li>Then you will be able to confirm the sale order, but it will pass to the state <i>Waiting for approval</i>.</li>
+                    <li>When the order is waiting for approval, only a user belonging to the <i>Sales Manager</i> group will be able to approve the sale, clicking on the <i>Approve Sale</i> button.</li>
+                    <li>Once approved, the sale order will follow the standard workflow.</li>
+                </ul>
+            </p>
+        </div>
+        <div class="oe_span6">
+            <div class="oe_demo oe_picture oe_screenshot">
+                <img src="../img/screenshot1.png"/>
+            </div>
+            <div class="oe_demo oe_picture oe_screenshot">
+                <img src="../img/screenshot2.png"/>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="oe_container oe_dark">
+    <div class="oe_row">
+        <div class="oe_span12">
+            <h2 class="oe_slogan">Credits</h2>
+        </div>
+        <div class="oe_span12">
+            <h3>Contributors</h3>
+            <ul>
+                <li>Juan Formoso &lt;<a href="mailto:jfv@anubia.es">email.jfv@anubia.es</a>&gt;</li>
+            </ul>
+        </div>
+        <div class="oe_span12">
+            <h3>Maintainer</h3>
+            <p>
+                This module is maintained by the OCA.<br/>
+                OCA, or the Odoo Community Association, is a nonprofit organization whose mission is to support the collaborative development of Odoo features and promote its widespread use.<br/>
+                To contribute to this module, please visit <a href="http://odoo-community.org">http://odoo-community.org</a>.<br/>
+                <a href="http://odoo-community.org"><img class="oe_picture oe_centered" src="http://odoo-community.org/logo.png"></a>
+            </p>
+        </div>
+    </div>
+</section>
