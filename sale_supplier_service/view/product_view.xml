@@ -1,0 +1,19 @@
+<?xml version="1.0"?>
+<openerp>
+<data>
+
+<record id="view_template_service_rule_form" model="ir.ui.view">
+    <field name="name">template.service.rule.form</field>
+    <field name="model">product.template</field>
+    <field name="inherit_id" ref="stock.view_template_property_form"/>
+    <field name="arch" type="xml">
+        <group name="procurement_uom" position="after" >
+           <group string="Supply Chain Information" attrs="{'invisible': [('type', '!=', 'service')]}" groups="base.group_user">
+               <field name="buy_service_rule_id" domain="[('action', '=', 'buy')]"/>
+           </group>
+        </group>
+    </field>
+</record>
+
+</data>
+</openerp>
