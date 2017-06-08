@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+  <data>
+    <record id="view_order_form" model="ir.ui.view">
+      <field name="name">sale.order.form</field>
+      <field name="model">sale.order</field>
+      <field name="inherit_id" ref="sale.view_order_form" />
+      <field name="arch" type="xml">
+        <xpath expr="//field[@name='order_line']//tree[@string='Sales Order Lines']//field[@name='name']"
+          position="after">
+          <field name="qty_available"/>
+          <field name="is_available" invisible="1"/>
+        </xpath>
+
+        <xpath expr="//field[@name='order_line']//tree[@string='Sales Order Lines']"
+          position="attributes">
+          <attribute name="colors">red: is_available == False;</attribute>
+        </xpath>
+      </field>
+    </record>
+  </data>
+</openerp>
