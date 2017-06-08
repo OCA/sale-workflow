@@ -1,0 +1,42 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+#	* purchase_order_reorder_lines
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 8.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2015-07-10 13:13+0000\n"
+"PO-Revision-Date: 2015-07-10 13:13+0000\n"
+"Last-Translator: <>\n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: purchase_order_reorder_lines
+#: help:purchase.order.line,sequence:0
+msgid "Gives the sequence of this line when displaying the purchase order."
+msgstr "Gives the sequence of this line when displaying the purchase order."
+
+#. module: purchase_order_reorder_lines
+#: model:ir.model,name:purchase_order_reorder_lines.model_purchase_order_line_invoice
+msgid "Purchase Order Line Make Invoice"
+msgstr "Purchase Order Line Make Invoice"
+
+#. module: purchase_order_reorder_lines
+#: model:ir.model,name:purchase_order_reorder_lines.model_purchase_order_line
+msgid "Purchase Order line"
+msgstr "Purchase Order line"
+
+#. module: purchase_order_reorder_lines
+#: model:ir.model,name:purchase_order_reorder_lines.model_purchase_order
+msgid "Purchase order"
+msgstr "Purchase order"
+
+#. module: purchase_order_reorder_lines
+#: field:purchase.order.line,sequence:0
+msgid "Sequence"
+msgstr "Sequence"
+
