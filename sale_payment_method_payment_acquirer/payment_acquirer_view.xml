@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+  <data noupdate="0">
+    <record id="payment_acquirer_view_form" model="ir.ui.view">
+      <field name="name">paymennt.acquirer.extension_method.view_form</field>
+      <field name="model">payment.acquirer</field>
+      <field name="inherit_id" ref="payment.acquirer_form" />
+      <field name="arch" type="xml">
+        <field name="validation" position="after">
+          <field name="payment_method_id" />
+        </field>
+      </field>
+    </record>
+  </data>
+</openerp>
