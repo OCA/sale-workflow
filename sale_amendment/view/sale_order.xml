@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+  <data>
+
+    <record id="view_order_form" model="ir.ui.view">
+      <field name="name">sale.order.form.amendment</field>
+      <field name="model">sale.order</field>
+      <field name="inherit_id" ref="sale_stock.view_order_form_inherit"/>
+      <field name="arch" type="xml">
+         <button name="ship_recreate" position="before">
+           <button name="button_amend" states="shipping_except"
+             type="object" string="Amend"/>
+         </button>
+         <!-- move the state field to the right and show it -->
+         <xpath expr="//field[@name='order_line']/tree/field[@name='state']" position="replace"/>
+         <xpath expr="//field[@name='order_line']/tree" position="inside">
+            <field name="state"/>
+         </xpath>
+         <xpath expr="//field[@name='order_line']/tree" position="attributes">
+           <attribute name="colors">grey:state == 'cancel'</attribute>
+         </xpath>
+      </field>
+    </record>
+
+    <record id="action_order_line_grouped_tree" model="ir.actions.act_window">
+      <field name="context">{'group_by': ['state', 'order_id']}</field>
+      <field name="name">Sales Order Lines by State</field>
+      <field name="res_model">sale.order.line</field>
+      <field name="view_id" ref="sale.view_order_line_tree"/>
+    </record>
+
+    <menuitem action="action_order_line_grouped_tree"
+      id="menu_sale_order_line"
+      parent="base.menu_sales" sequence="10"
+      groups="base.group_sale_salesman,base.group_sale_manager"/>
+  </data>
+</openerp>

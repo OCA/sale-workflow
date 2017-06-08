@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<openerp>
+  <data>
+    <record id="view_sale_order_amendment" model="ir.ui.view">
+      <field name="name">Enter the amendment details</field>
+      <field name="model">sale.order.amendment</field>
+      <field name="arch" type="xml">
+        <form string="Amendment Details">
+          <field name="sale_id" invisible="True"/>
+          <p class="oe_grey">
+            Amendments are proposed based on the delivery moves.<br/>
+            Amendments are possible only for canceled moves.<br/>
+            For instance, for an ordered quantity of 1000 where 100 have
+            been canceled, the amendment must be between 900 and 1000
+            (where 1000 means that finally nothing has been canceled).
+          </p>
+          <group>
+            <field name="item_ids" nolabel="1">
+              <tree string="Details" create="false" editable="bottom">
+                <field name="sale_line_id" options="{'no_open': true}"/>
+                <field name="ordered_qty"/>
+                <field name="shipped_qty"/>
+                <field name="canceled_qty"/>
+                <field name="amend_qty" attrs="{'readonly': [('canceled_qty', '=', 0)]}"/>
+                <field name="product_uom_id" options="{'no_open': true}"/>
+              </tree>
+            </field>
+          </group>
+
+          <group string="Reason for amending">
+            <field name="reason" nolabel="1"/>
+          </group>
+
+          <footer>
+            <button name="do_amendment" string="_Apply" type="object" class="oe_highlight"/>
+            or
+            <button string="_Cancel" class="oe_link" special="cancel" />
+          </footer>
+        </form>
+      </field>
+    </record>
+
+  </data>
+</openerp>
+
