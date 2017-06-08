@@ -21,7 +21,7 @@
 #
 from openerp.osv import orm, fields
 from openerp.tools.translate import _
-import netsvc
+#import netsvc
 
 
 class sale_order_line(orm.Model):
