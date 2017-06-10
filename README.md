@@ -31,6 +31,7 @@ addon | version | summary
 [sale_exception_nostock](sale_exception_nostock/) | 8.0.1.2.0 | Sale stock exception
 [sale_exceptions](sale_exceptions/) | 8.0.1.0.0 | Custom exceptions on sale order
 [sale_last_price_info](sale_last_price_info/) | 8.0.1.0.0 | Product Last Price Info - Sale
+[sale_line_price_properties_based](sale_line_price_properties_based/) | 8.0.1.0.0 | Sale line price properties based
 [sale_line_quantity_properties_based](sale_line_quantity_properties_based/) | 8.0.1.0.0 | Sale line quantity properties based
 [sale_order_add_variants](sale_order_add_variants/) | 8.0.0.1.0 | Add variants from template into sale order
 [sale_order_back2draft](sale_order_back2draft/) | 8.0.1.0.0 | Back to draft on sales orders
