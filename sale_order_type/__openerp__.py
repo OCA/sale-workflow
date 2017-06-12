@@ -22,7 +22,7 @@
 
 {
     "name": "Sale Order Types",
-    "version": "8.0.1.0.1",
+    "version": "8.0.1.1.0",
     "category": "Sales Management",
     "author": "OdooMRP team, "
               "Grupo Vermon, "
