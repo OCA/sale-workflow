@@ -42,7 +42,7 @@ addon | version | summary
 [sale_order_merge](sale_order_merge/) | 8.0.1.0.0 | Merge sale orders that are confirmed, invoiced or delivered
 [sale_order_price_recalculation](sale_order_price_recalculation/) | 8.0.1.0.0 | Price recalculation in sales orders
 [sale_order_revision](sale_order_revision/) | 8.0.0.1.0 | Sale order revisions
-[sale_order_type](sale_order_type/) | 8.0.1.0.1 | Sale Order Types
+[sale_order_type](sale_order_type/) | 8.0.1.1.0 | Sale Order Types
 [sale_order_type_sale_journal](sale_order_type_sale_journal/) | 8.0.1.0.0 | Link module between sale_order_type and sale_journal
 [sale_order_unified_menu](sale_order_unified_menu/) | 8.0.1.0.0 | Sale Order Unified Menu
 [sale_order_weight](sale_order_weight/) | 8.0.1.0.0 | Sale Order Weight
