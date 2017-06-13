@@ -27,8 +27,10 @@ class TestSaleCancelReason(TransactionCase):
         self.reason = CancelReason.create({'name': 'Canceled for tests'})
         self.partner = self.env.ref('base.res_partner_2')
         self.product = self.env.ref('product.product_product_7')
+        self.uom = self.env.ref('product.product_uom_unit')
         self.sale_order = SaleOrder.create({
             'partner_id': self.partner.id,
             'order_line': [(0, 0, {'product_id': self.product.id,
-                                   'product_uom_qty': 8, })],
+                                   'product_uom_qty': 8,
+                                   'product_uom': self.uom.id})],
         })
