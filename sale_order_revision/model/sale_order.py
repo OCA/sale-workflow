@@ -85,12 +85,13 @@ class sale_order(models.Model):
             default.update({
                 'name': prev_name,
                 'revision_number': revno,
-                'active': False,
                 'state': 'cancel',
                 'current_revision_id': self.id,
                 'unrevisioned_name': self.unrevisioned_name,
             })
-        return super(sale_order, self).copy(default=default)
+        res = super(sale_order, self).copy(default=default)
+        res.write({'active': False})
+        return res
 
     @api.model
     def create(self, values):
