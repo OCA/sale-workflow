@@ -2,10 +2,10 @@
 # Copyright 2013-2014 Camptocamp SA - Guewen Baconnier
 # © 2016 Eficent Business and IT Consulting Services S.L.
 # © 2016 Serpent Consulting Services Pvt. Ltd.
-# License LGPL-3.0 or later (https://www.gnu.org/licenses/lgpl.html).
+# License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
-from openerp import models, api, fields
-from openerp.tools import float_compare
+from odoo import api, fields, models
+from odoo.tools.float_utils import float_compare
 
 
 class SaleOrder(models.Model):
@@ -16,9 +16,9 @@ class SaleOrder(models.Model):
         """ Hook to be able to use line data on procurement group """
         return self._prepare_procurement_group()
 
-    ###
+    ##
     # OVERRIDE to find sale.order.line's picking
-    ###
+    ##
 
     @api.multi
     @api.depends('order_line')
@@ -27,7 +27,7 @@ class SaleOrder(models.Model):
             group_ids = set([line.procurement_group_id.id
                              for line in sale.order_line
                              if line.procurement_group_id])
-            if not any(group_ids):
+            if not group_ids:
                 sale.picking_ids = []
                 continue
             sale.picking_ids = self.env['stock.picking'].search(
@@ -90,6 +90,10 @@ class SaleOrderLine(models.Model):
                 group_id=line.procurement_group_id.id)
             vals['product_qty'] = line.product_uom_qty - qty
             new_proc = self.env["procurement.order"].create(vals)
+            new_proc.message_post_with_view(
+                'mail.message_origin_link',
+                values={'self': new_proc, 'origin': line.order_id},
+                subtype_id=self.env.ref('mail.mt_note').id)
             new_procs += new_proc
         new_procs.run()
         super(SaleOrderLine, self)._action_procurement_create()
