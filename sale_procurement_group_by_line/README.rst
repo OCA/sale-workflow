@@ -1,4 +1,5 @@
 .. image:: https://img.shields.io/badge/licence-AGPL--3-blue.svg
+   :target: http://www.gnu.org/licenses/agpl
    :alt: License: AGPL-3
 
 ==============================
@@ -11,36 +12,24 @@ created from a Sale order.
 On itself, this module does nothing it is a requirement for modules which
 needs to create procurement group per sale order line basis.
 
-Installation
-============
-
-This module is only a base for other modules, see Usage.
-
-
-Configuration
-=============
-
-No special configuration is required.
-
 
 Usage
 =====
 
+To use this module, you need to install e.g.
+**Sale Sourced By Line** (`sale_sourced_by_line`)
+
 .. image:: https://odoo-community.org/website/image/ir.attachment/5784_f2813bd/datas
    :alt: Try me on Runbot
-   :target: https://runbot.odoo-community.org/runbot/167/9.0
-
-To use this module, you need to install
-**Sale Sourcing By Line** (`sale_sourcing_by_line`) and/or
-**Sale Quotation Sourcing** (`sale_quotation_sourcing`)
-
+   :target: https://runbot.odoo-community.org/runbot/167/10.0
 
 Bug Tracker
 ===========
 
-Bugs are tracked on `GitHub Issues <https://github.com/OCA/sale-workflow/issues>`_.
-In case of trouble, please check there if your issue has already been reported.
-If you spotted it first, help us smashing it by providing a detailed and welcomed feedback.
+Bugs are tracked on `GitHub Issues
+<https://github.com/OCA/sale-workflow/issues>`_. In case of trouble, please
+check there if your issue has already been reported. If you spotted it first,
+help us smash it by providing detailed and welcomed feedback.
 
 
 Credits
