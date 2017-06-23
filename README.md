@@ -32,6 +32,7 @@ addon | version | summary
 [sale_order_variant_mgmt](sale_order_variant_mgmt/) | 9.0.1.0.0 | Handle the addition/removal of multiple variants from product template into the sales order
 [sale_packaging_price](sale_packaging_price/) | 9.0.1.0.0 | Sale Packaging Price
 [sale_procurement_group_by_line](sale_procurement_group_by_line/) | 9.0.1.0.0 | Base module for multiple procurement group by Sale order
+[sale_procurement_group_by_requested_date](sale_procurement_group_by_requested_date/) | 9.0.1.0.0 | Groups pickings based on requested date of order line
 [sale_product_set](sale_product_set/) | 9.0.1.0.0 | Sale product set
 [sale_rental](sale_rental/) | 9.0.1.0.0 | Manage Rental of Products
 [sale_sourced_by_line](sale_sourced_by_line/) | 9.0.1.0.0 | Multiple warehouse source locations for Sale order
