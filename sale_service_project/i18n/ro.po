@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: sale-workflow (8.0)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-03-04 06:32+0000\n"
-"PO-Revision-Date: 2017-03-06 09:10+0000\n"
+"POT-Creation-Date: 2017-06-22 12:42+0000\n"
+"PO-Revision-Date: 2017-06-14 00:21+0000\n"
 "Last-Translator: OCA Transbot <transbot@odoo-community.org>\n"
 "Language-Team: Romanian (http://www.transifex.com/oca/OCA-sale-workflow-8-0/language/ro/)\n"
 "MIME-Version: 1.0\n"
@@ -312,12 +312,12 @@ msgstr ""
 #. module: sale_service_project
 #: model:ir.model,name:sale_service_project.model_sale_order
 msgid "Sales Order"
-msgstr ""
+msgstr "Comandă vânzare"
 
 #. module: sale_service_project
 #: model:ir.model,name:sale_service_project.model_sale_order_line
 msgid "Sales Order Line"
-msgstr ""
+msgstr "Linie comandă vânzare"
 
 #. module: sale_service_project
 #: view:product.price.service.wizard:sale_service_project.wiz_compute_task_price

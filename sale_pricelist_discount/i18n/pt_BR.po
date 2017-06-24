@@ -1,6 +1,6 @@
 # Translation of Odoo Server.
 # This file contains the translation of the following modules:
-# * sale_procurement_group_by_line
+# * sale_pricelist_discount
 # 
 # Translators:
 msgid ""
@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: sale-workflow (8.0)\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2017-06-22 12:41+0000\n"
-"PO-Revision-Date: 2015-09-03 07:09+0000\n"
+"PO-Revision-Date: 2015-11-06 11:39+0000\n"
 "Last-Translator: <>\n"
 "Language-Team: Portuguese (Brazil) (http://www.transifex.com/oca/OCA-sale-workflow-8-0/language/pt_BR/)\n"
 "MIME-Version: 1.0\n"
@@ -17,17 +17,22 @@ msgstr ""
 "Language: pt_BR\n"
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
 
-#. module: sale_procurement_group_by_line
-#: field:sale.order.line,procurement_group_id:0
-msgid "Procurement group"
+#. module: sale_pricelist_discount
+#: help:product.pricelist.item,discount:0
+msgid "Default discount applied on a sale order line."
 msgstr ""
 
-#. module: sale_procurement_group_by_line
-#: model:ir.model,name:sale_procurement_group_by_line.model_sale_order
-msgid "Sales Order"
-msgstr "Pedido de Venda"
+#. module: sale_pricelist_discount
+#: field:product.pricelist.item,discount:0
+msgid "Discount (%)"
+msgstr ""
 
-#. module: sale_procurement_group_by_line
-#: model:ir.model,name:sale_procurement_group_by_line.model_sale_order_line
+#. module: sale_pricelist_discount
+#: model:ir.model,name:sale_pricelist_discount.model_product_pricelist_item
+msgid "Pricelist item"
+msgstr ""
+
+#. module: sale_pricelist_discount
+#: model:ir.model,name:sale_pricelist_discount.model_sale_order_line
 msgid "Sales Order Line"
 msgstr "Linha pedido de venda"

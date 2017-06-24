@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: sale-workflow (8.0)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-03-04 06:31+0000\n"
+"POT-Creation-Date: 2017-06-22 12:40+0000\n"
 "PO-Revision-Date: 2016-02-26 10:00+0000\n"
 "Last-Translator: <>\n"
 "Language-Team: Romanian (http://www.transifex.com/oca/OCA-sale-workflow-8-0/language/ro/)\n"
@@ -32,7 +32,7 @@ msgstr "Produs"
 #. module: sale_order_line_variant_description
 #: model:ir.model,name:sale_order_line_variant_description.model_sale_order_line
 msgid "Sales Order Line"
-msgstr ""
+msgstr "Linie comandă vânzare"
 
 #. module: sale_order_line_variant_description
 #: field:product.product,variant_description_sale:0

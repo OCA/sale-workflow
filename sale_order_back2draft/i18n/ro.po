@@ -1,14 +1,14 @@
 # Translation of Odoo Server.
 # This file contains the translation of the following modules:
-# * sale_partner_incoterm
+# * sale_order_back2draft
 # 
 # Translators:
 msgid ""
 msgstr ""
 "Project-Id-Version: sale-workflow (8.0)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-06-22 12:41+0000\n"
-"PO-Revision-Date: 2015-10-23 08:15+0000\n"
+"POT-Creation-Date: 2017-06-22 12:40+0000\n"
+"PO-Revision-Date: 2015-09-03 07:09+0000\n"
 "Last-Translator: <>\n"
 "Language-Team: Romanian (http://www.transifex.com/oca/OCA-sale-workflow-8-0/language/ro/)\n"
 "MIME-Version: 1.0\n"
@@ -17,22 +17,18 @@ msgstr ""
 "Language: ro\n"
 "Plural-Forms: nplurals=3; plural=(n==1?0:(((n%100>19)||((n%100==0)&&(n!=0)))?2:1));\n"
 
-#. module: sale_partner_incoterm
-#: field:res.partner,sale_incoterm_id:0
-msgid "Default Sales Incoterm"
+#. module: sale_order_back2draft
+#: view:sale.order:sale_order_back2draft.view_order_form_draft
+msgid "Back to draft"
 msgstr ""
 
-#. module: sale_partner_incoterm
-#: model:ir.model,name:sale_partner_incoterm.model_res_partner
-msgid "Partner"
-msgstr "Partener"
-
-#. module: sale_partner_incoterm
-#: model:ir.model,name:sale_partner_incoterm.model_sale_order
+#. module: sale_order_back2draft
+#: model:ir.model,name:sale_order_back2draft.model_sale_order
 msgid "Sales Order"
 msgstr "Comandă vânzare"
 
-#. module: sale_partner_incoterm
-#: help:res.partner,sale_incoterm_id:0
-msgid "The default incoterm for new sales orders for this customer."
+#. module: sale_order_back2draft
+#: code:addons/sale_order_back2draft/models/sale_order.py:18
+#, python-format
+msgid "You can't back any order that it's not on cancel state. Order: %s"
 msgstr ""
