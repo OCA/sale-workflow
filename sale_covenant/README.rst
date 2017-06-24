@@ -13,7 +13,7 @@ Use this module to define specific use case to your market, i.e.:
 - deliver products with white mark: customers becomes the original producer from their customers point of view.
 - several covenant (markets) by customer are possible (i.e. public markets).
 - several customers share commercial conditions through the same covenant: department store or franchisee.
-- sale to several clients of the same market but invoice a unique partner.
+- sale to several customers of the same market but invoice a unique partner.
 
 
 Usage
@@ -23,7 +23,7 @@ Rendez-vous to Sales > Configuration > Sales > Covenants
 
 .. image:: https://odoo-community.org/website/image/ir.attachment/5784_f2813bd/datas
     :alt: Try me on Runbot
-    :target: https://runbot.odoo-community.org/runbot/149/10.0
+    :target: https://runbot.odoo-community.org/runbot/167/10.0
 
 
 Known issues / Roadmap
@@ -34,7 +34,7 @@ Bug Tracker
 ===========
 
 Bugs are tracked on `GitHub Issues
-<https://github.com/OCA/server-tools/issues>`_. In case of trouble, please
+<https://github.com/OCA/sale-workflow/issues>`_. In case of trouble, please
 check there if your issue has already been reported. If you spotted it first,
 help us smashing it by providing a detailed and welcomed feedback.
 
@@ -50,7 +50,7 @@ Contributors
 ------------
 
 * David Béal <david.beal@akretion.com>
-* ALexis De Lattre <alexis.delattre@akretion.com>
+* ALexis de Lattre <alexis.delattre@akretion.com>
 
 Maintainer
 ----------
