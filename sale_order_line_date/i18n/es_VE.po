@@ -11,11 +11,11 @@ msgstr ""
 "POT-Creation-Date: 2017-06-24 01:09+0000\n"
 "PO-Revision-Date: 2017-06-24 01:09+0000\n"
 "Last-Translator: OCA Transbot <transbot@odoo-community.org>, 2017\n"
-"Language-Team: Spanish (https://www.transifex.com/oca/teams/23907/es/)\n"
+"Language-Team: Spanish (Venezuela) (https://www.transifex.com/oca/teams/23907/es_VE/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
-"Language: es\n"
+"Language: es_VE\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
 #. module: sale_order_line_date
@@ -31,4 +31,4 @@ msgstr "Pedidos de venta"
 #. module: sale_order_line_date
 #: model:ir.model,name:sale_order_line_date.model_sale_order_line
 msgid "Sales Order Line"
-msgstr "Línea pedido de venta"
+msgstr "Línea de pedido de venta"
