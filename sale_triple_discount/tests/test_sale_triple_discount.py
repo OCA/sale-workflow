@@ -12,11 +12,40 @@ class TestSaleTripleDiscount(TransactionCase):
         self.so_line_model = self.env['sale.order.line']
         self.so = self.so_model.create({
             'partner_id': self.customer.id})
-        self.so_line = self.so_line_model.create({
-            'name': '/',
-            'order_id': self.so.id,
-            'product_id': self.product.id})
-        self.so_line.onchange_product_id()
+        # pass customer by context
+        self.so_line = self.so_line_model.with_context(
+            partner_id=self.customer.id).create({
+                'name': '/',
+                'order_id': self.so.id,
+                'product_id': self.product.id})
+
+    def create_invoice(self):
+        self.inv_model = self.env['account.invoice']
+        self.inv_line_model = self.env['account.invoice.line']
+        inv = self.inv_model.create({
+            'name': "Test Customer Invoice",
+            'journal_id': self.env['account.journal'].search(
+                [('type', '=', 'sale')])[0].id,
+            'partner_id': self.customer.id,
+            'account_id': self.env['account.account'].search(
+                [('user_type_id', '=', self.env.ref(
+                    'account.data_account_type_receivable').id)],
+                limit=1).id,
+        })
+        # pass customer by context
+        self.inv_line_model.with_context(
+            partner_id=self.customer.id).create({
+                'name': '/',
+                'invoice_id': inv.id,
+                'product_id': self.product.id,
+                'quantity': 1.0,
+                'account_id': self.env['account.account'].search(
+                    [('user_type_id', '=', self.env.ref(
+                        'account.data_account_type_revenue').id)],
+                    limit=1).id,
+                'price_unit': 450.00,
+            })
+        return inv
 
     def setUp(self):
         super(TestSaleTripleDiscount, self).setUp()
@@ -28,41 +57,30 @@ class TestSaleTripleDiscount(TransactionCase):
         self.customer.default_discount1 = 20.0
         self.customer.default_discount2 = 10.0
         self.customer.default_discount3 = 5.0
-        self.create_sale_order()
 
-    def test_so_line_onchange_product_id(self):
+    def test_so_line_default_discount(self):
+        self.create_sale_order()
         self.assertEqual(
             self.so_line.discount1, self.customer.default_discount1)
         self.assertEqual(
             self.so_line.discount2, self.customer.default_discount2)
         self.assertEqual(
             self.so_line.discount3, self.customer.default_discount3)
+
+    def test_so_line_get_discount(self):
+        self.create_sale_order()
         self.assertEqual(self.so_line.discount, 31.6)
 
-    def test_inv_line_onchange_product_id(self):
-        account_type_expenses = self.env.ref(
-            'account.data_account_type_expenses')
-        account = self.env['account.account'].search(
-            [('user_type_id', '=', account_type_expenses.id)], limit=1)
-        inv = self.env['account.invoice'].create({
-            'partner_id': self.customer.id})
-        inv_line = self.inv_line_model.create({
-            'name': '/',
-            'invoice_id': inv.id,
-            'account_id': account.id,
-            'product_id': self.product.id,
-            'quantity': 1.0,
-            'price_unit': 100.0})
-        inv_line.onchange_product_id()
-        self.assertEqual(
-            inv_line.discount1, self.customer.default_discount1)
-        self.assertEqual(
-            inv_line.discount2, self.customer.default_discount2)
-        self.assertEqual(
-            inv_line.discount3, self.customer.default_discount3)
-        self.assertEqual(inv_line.discount, 31.6)
+    def test_so_line_onchange_discount(self):
+        self.create_sale_order()
+        self.so_line.discount1 = 10.0
+        self.so_line.discount2 = 5.0
+        self.so_line.discount1 = 2.0
+        self.so_line._onchange_discount()
+        self.assertEqual(self.so_line.discount, 11.56)
 
-    def test_prepare_invoice_line(self):
+    def test_so_line_prepare_invoice_line(self):
+        self.create_sale_order()
         self.so.action_confirm()
         inv_id = self.so.action_invoice_create()
         self.assertEqual(
@@ -80,4 +98,19 @@ class TestSaleTripleDiscount(TransactionCase):
             inv_line.discount2, self.so_line.discount2)
         self.assertEqual(
             inv_line.discount3, self.so_line.discount3)
+        self.assertEqual(inv_line.discount, 31.6)
+
+    def test_inv_line_default_discount(self):
+        inv = self.create_invoice()
+        inv_line = inv.invoice_line_ids[0]
+        self.assertEqual(
+            inv_line.discount1, self.customer.default_discount1)
+        self.assertEqual(
+            inv_line.discount2, self.customer.default_discount2)
+        self.assertEqual(
+            inv_line.discount3, self.customer.default_discount3)
+
+    def test_inv_line_get_discount(self):
+        inv = self.create_invoice()
+        inv_line = inv.invoice_line_ids[0]
         self.assertEqual(inv_line.discount, 31.6)
