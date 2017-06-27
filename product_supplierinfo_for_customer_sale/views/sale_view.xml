@@ -3,7 +3,8 @@
   product customer code for OpenERP
   Copyright (C) 2013 Agile Business Group sagl (<http://www.agilebg.com>).
     Authors, Nicola Malcontenti, nicola.malcontenti@agilebg.com
-  The licence is in the file __openerp__.py
+  Copyright (C) 2017 Vauxoo (https://www.vauxoo.com) info@vauxoo.com
+  The licence is in the file __manifest__.py
 -->
 <odoo>
 
@@ -48,6 +49,25 @@
                     <separator />
                     <filter string="Type" domain="[]" name="gb_type"
                             context="{'group_by':'type'}"/>
+            </xpath>
+        </field>
+    </record>
+
+    <record id="sale_order_form_context_supplierinfo" model="ir.ui.view">
+        <field name="name">sale.order.form.context.supplierinfo</field>
+        <field name="model">sale.order</field>
+        <field name="inherit_id" ref="sale.view_order_form"/>
+        <field name="priority" eval="20"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='order_line']/form//field[@name='product_id']" position="attributes">
+                <attribute name="context">{'partner_id': parent.partner_id, 'quantity': product_uos_qty,
+                'pricelist': parent.pricelist_id, 'uom':product_uom, 'company_id': parent.company_id,
+                'supplierinfo_type': 'customer'}</attribute>
+            </xpath>
+            <xpath expr="//field[@name='order_line']/tree//field[@name='product_id']" position="attributes">
+                <attribute name="context">{'partner_id': parent.partner_id, 'quantity': product_uos_qty,
+                'pricelist': parent.pricelist_id, 'uom':product_uom, 'company_id': parent.company_id,
+                'supplierinfo_type': 'customer'}</attribute>
             </xpath>
         </field>
     </record>
