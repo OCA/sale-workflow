@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <template id="report_saleorder_document_sequence" inherit_id="sale.report_saleorder_document">
+        <xpath expr="//table[@class='table table-condensed']/thead/tr/th[1]" position="before">
+            <th><strong>Sequence</strong></th>
+        </xpath>
+        <xpath expr="//table[@class='table table-condensed']/tbody[@class='sale_tbody']/t[1]/t[2]/tr[1]/td[1]" position="before">
+             <td>
+                <span t-field="l.sequence2"/>
+             </td>
+        </xpath>
+    </template>
+</odoo>
