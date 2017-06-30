@@ -58,3 +58,22 @@ class TestProductNameSearch(TransactionCase):
         self.assertEquals(len(product_names), 1)
         self.assertEquals(self.product.id, product_names[0][0])
         self.assertEquals('[code_product] Name_product', product_names[0][1])
+
+        # Create a product_1 with default_code similar to customer_code of
+        # product, then name_search must find two products
+        self.product_1 = self.env['product.product'].create(
+            {'name': 'Name_test_1',
+             'default_code': 'code_test_1', }).with_context(
+                 {'partner_id': self.customer.id,
+                  'supplierinfo_type': 'customer'})
+
+        self.assertFalse(self.product_1.customer_ids)
+
+        # Search by product customer code
+        product_names = self.product.name_search(name='code_test')
+        self.assertEquals(len(product_names), 2)
+        product_names = product_names[0] + product_names[1]
+        self.assertIn(self.product.id, product_names)
+        self.assertIn(self.product_1.id, product_names)
+        self.assertIn('[code_test] Name_test', product_names)
+        self.assertIn('[code_test_1] Name_test_1', product_names)
