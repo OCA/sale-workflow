@@ -4,14 +4,14 @@
 # 
 # Translators:
 # OCA Transbot <transbot@odoo-community.org>, 2017
-# Mario Gielissen <mario@openworx.nl>, 2017
+# Peter Hageman <hageman.p@gmail.com>, 2017
 msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 9.0c\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-04-25 02:52+0000\n"
-"PO-Revision-Date: 2017-04-25 02:52+0000\n"
-"Last-Translator: Mario Gielissen <mario@openworx.nl>, 2017\n"
+"POT-Creation-Date: 2017-06-24 08:14+0000\n"
+"PO-Revision-Date: 2017-06-24 08:14+0000\n"
+"Last-Translator: Peter Hageman <hageman.p@gmail.com>, 2017\n"
 "Language-Team: Dutch (Netherlands) (https://www.transifex.com/oca/teams/23907/nl_NL/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -58,21 +58,21 @@ msgstr ""
 #: model:ir.model.fields,field_description:sale_product_set.field_product_set_display_name
 #: model:ir.model.fields,field_description:sale_product_set.field_product_set_line_display_name
 msgid "Display Name"
-msgstr ""
+msgstr "Weergavenaam"
 
 #. module: sale_product_set
 #: model:ir.model.fields,field_description:sale_product_set.field_product_set_add_id
 #: model:ir.model.fields,field_description:sale_product_set.field_product_set_id
 #: model:ir.model.fields,field_description:sale_product_set.field_product_set_line_id
 msgid "ID"
-msgstr ""
+msgstr "ID"
 
 #. module: sale_product_set
 #: model:ir.model.fields,field_description:sale_product_set.field_product_set___last_update
 #: model:ir.model.fields,field_description:sale_product_set.field_product_set_add___last_update
 #: model:ir.model.fields,field_description:sale_product_set.field_product_set_line___last_update
 msgid "Last Modified on"
-msgstr ""
+msgstr "Laatst gewijzigd op"
 
 #. module: sale_product_set
 #: model:ir.model.fields,field_description:sale_product_set.field_product_set_add_write_uid
