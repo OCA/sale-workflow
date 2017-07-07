@@ -12,7 +12,7 @@ class SaleOrder(models.Model):
         string='Is Order',
         readonly=True,
         index=True,
-        default=lambda self: self._context.get('is_order', False),
+        default=lambda self: self._context.get('is_order', True),
     )
     quote_id = fields.Many2one(
         'sale.order',

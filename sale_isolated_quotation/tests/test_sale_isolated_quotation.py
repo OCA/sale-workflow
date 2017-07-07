@@ -6,13 +6,6 @@ from odoo.tests.common import TransactionCase
 
 class TestSaleIsolatedQuotation(TransactionCase):
 
-    def create_orders(self):
-        vals = {'partner_id': self.partner.id,
-                'is_order': False}
-        self.quotation = self.env['sale.order'].create(vals)
-        vals.update({'is_order': True})
-        self.sale_order = self.env['sale.order'].create(vals)
-
     def quotation_assertions(self):
         self.assertEqual(self.quotation.state, 'done')
         self.sale_order = self.quotation.order_id
@@ -28,7 +21,6 @@ class TestSaleIsolatedQuotation(TransactionCase):
           - New sale.order of is_order = True created
         - Quotation can refer to Order and Order can refer to Quotation
         """
-        self.create_orders()
         self.quotation.action_convert_to_order()
         self.quotation_assertions()
 
@@ -38,7 +30,6 @@ class TestSaleIsolatedQuotation(TransactionCase):
         that the quotation is converted to an order.
         :return:
         """
-        self.create_orders()
         self.quotation.action_confirm()
         self.quotation_assertions()
 
@@ -47,7 +38,6 @@ class TestSaleIsolatedQuotation(TransactionCase):
         When a sales order is converted to an order we need to ensure that
         behaviour of sale module is unchanged
         """
-        self.create_orders()
         self.quotation.is_order = True
         self.quotation.action_confirm()
         self.assertFalse(self.quotation.quote_id)
@@ -60,7 +50,6 @@ class TestSaleIsolatedQuotation(TransactionCase):
         upstream function we test fully for any change to its behaviour.
         """
         # At start of search both orders are in draft state.
-        self.create_orders()
         sale_obj = self.env['sale.order']
         search = sale_obj.search
         web_search = self.env['sale.order'].with_context(website_id=1).search
@@ -96,3 +85,8 @@ class TestSaleIsolatedQuotation(TransactionCase):
     def setUp(self):
         super(TestSaleIsolatedQuotation, self).setUp()
         self.partner = self.env.ref('base.res_partner_2')
+        vals = {'partner_id': self.partner.id,
+                'is_order': False}
+        self.quotation = self.env['sale.order'].new(vals)
+        vals.update({'is_order': True})
+        self.sale_order = self.env['sale.order'].new(vals)
