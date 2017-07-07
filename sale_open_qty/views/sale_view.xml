@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+        <record id="view_order_form" model="ir.ui.view">
+            <field name="name">sale.order.form -- open qty fields</field>
+            <field name="model">sale.order</field>
+            <field name="inherit_id" ref="sale.view_order_form"/>
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='order_line']/tree/field[@name='qty_delivered']" position="after">
+                    <field name="qty_to_deliver" invisible="not context.get('show_sale', False)"
+                           attrs="{'readonly': [('qty_delivered_updateable', '=', False)]}"/>
+                </xpath>
+                <xpath expr="//field[@name='order_line']/tree/field[@name='qty_to_invoice']" position="attributes">
+                    <attribute name="invisible">0</attribute>
+                </xpath>
+            </field>
+        </record>
+
+        <record id="view_sales_order_filter" model="ir.ui.view">
+            <field name="name">sale.order.list.select -- open qty filters</field>
+            <field name="model">sale.order</field>
+            <field name="inherit_id" ref="sale.view_sales_order_filter"/>
+            <field name="arch" type="xml">
+                <filter name="sales" position="after">
+                    <separator/>
+                    <filter name="pending_qty_to_deliver" string="Pending Qty to Deliver" domain="[('qty_to_deliver','>',0.0)]"/>
+                    <filter name="pending_qty_to_invoice" string="Pending Qty to Invoice" domain="[('qty_to_invoice','>',0.0)]"/>
+                </filter>
+            </field>
+        </record>
+    </data>
+</openerp>
