@@ -22,8 +22,8 @@ class SaleOrder(models.Model):
 
     @api.multi
     def action_confirm(self):
-        self.ensure_one()
-        self.generate_prodlot()
+        for order in self:
+            order.generate_prodlot()
         return super(SaleOrder, self).action_confirm()
 
     @api.model

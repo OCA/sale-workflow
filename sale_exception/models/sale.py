@@ -47,10 +47,10 @@ class SaleOrder(models.Model):
 
     @api.multi
     def action_confirm(self):
-        if self.detect_exceptions():
-            return self._popup_exceptions()
-        else:
-            return super(SaleOrder, self).action_confirm()
+        for order in self:
+            if order.detect_exceptions():
+                return order._popup_exceptions()
+        return super(SaleOrder, self).action_confirm()
 
     @api.multi
     def action_draft(self):
