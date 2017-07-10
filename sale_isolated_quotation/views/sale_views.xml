@@ -12,17 +12,39 @@
             <xpath expr="/form/header" position="after">
                 <header name="quotation"
                   attrs="{'invisible': [('is_order','=',True)]}">
-                    <button name="action_convert_to_order"
+                    <button name="action_quotation_send"
+                      string="Send by Email"
+                      type="object"
                       states="draft"
-                      class="oe_highlight"
+                      class="btn-primary"/>
+                    <button name="print_quotation"
+                      string="Print"
+                      type="object"
+                      states="draft"
+                      class="btn-primary"/>
+                    <button name="action_convert_to_order"
+                      states="draft,sent"
+                      class="btn-primary"
                       type="object"
                       string="Convert to Order"/>
+                    <button name="print_quotation"
+                      string="Print"
+                      type="object"
+                      states="sent"/>
+                    <button name="action_quotation_send"
+                      string="Send by Email"
+                      type="object"
+                      states="sent"/>
                     <button name="action_cancel"
-                      states="draft" type="object"
+                      states="draft,sent" type="object"
                       string="Cancel"/>
+                    <button name="action_draft"
+                      states="cancel"
+                      type="object"
+                      string="Set to Quotation"/>
                     <field name="state2"
                       widget="statusbar"
-                      statusbar_visible="draft,done"
+                      statusbar_visible="draft,sent,done"
                       invisible="context.get('is_order', False)"/>
                 </header>
             </xpath>

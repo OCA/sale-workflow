@@ -12,7 +12,7 @@ class SaleOrder(models.Model):
         string='Is Order',
         readonly=True,
         index=True,
-        default=lambda self: self._context.get('is_order', False),
+        default=lambda self: self._context.get('is_order', True),
     )
     quote_id = fields.Many2one(
         'sale.order',
@@ -64,7 +64,7 @@ class SaleOrder(models.Model):
             'client_order_ref': self.client_order_ref,
         })
         self.order_id = order.id  # Reference from this quotation to order
-        if self.state == 'draft':
+        if self.state in ('draft', 'sent'):
             self.action_done()
         return self.open_sale_order()
 
@@ -83,3 +83,31 @@ class SaleOrder(models.Model):
             'domain': "[('is_order', '=', True)]",
             'res_id': self.order_id and self.order_id.id or False,
         }
+
+    # noinspection PyMethodFirstArgAssignment
+    @api.multi
+    def action_confirm(self):
+        for order in self:
+            # The accept workflow of website_sale_quote does nothing else so
+            # no return is suitable.  Other cases should not get here but
+            # if so, difficult at this level to determine where the call came
+            # from and what action is suitable.
+            if not order.is_order:
+                order.action_convert_to_order()
+                self -= order
+        if self:
+            return super(SaleOrder, self).action_confirm()
+        return True
+
+    @api.model
+    def search(self, args, offset=0, limit=None, order=None, count=False):
+        if 'website_id' in self._context:
+            # mangle state fields
+            # TODO Make this less fragile but only over alternative
+            # was a big cut and paste from web Controller
+            if args and args[-1] == ('state', 'in', ['sent', 'cancel']):
+                args.append(('is_order', '=', False))
+            elif args and args[-1] == ('state', 'in', ['sale', 'done']):
+                args.append(('is_order', '=', True))
+        return super(SaleOrder, self).search(args, offset=offset, limit=limit,
+                                             order=order, count=count)
