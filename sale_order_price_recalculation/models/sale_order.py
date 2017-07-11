@@ -3,9 +3,10 @@
 # Copyright 2015 Pedro M. Baeza <pedro.baeza@serviciosbaeza.com>
 # Copyright 2015 Oihane Crucelaegui <oihanecrucelaegi@avanzosc.es>
 # Copyright 2016 Vicent Cubells <vicent.cubells@tecnativa.com>
+# Copyright 2017 David Vidal <david.vidal@tecnativa.com>
 # License AGPL-3 - See http://www.gnu.org/licenses/agpl-3.0.html
 
-from openerp import models, api
+from odoo import api, models
 
 
 class SaleOrder(models.Model):
@@ -14,14 +15,22 @@ class SaleOrder(models.Model):
     @api.multi
     def recalculate_prices(self):
         for line in self.mapped('order_line'):
-            line.product_uom_change()
+            dict = line._convert_to_write(line.read()[0])
+            if 'product_tmpl_id' in line._fields:
+                dict['product_tmpl_id'] = line.product_tmpl_id
+            line2 = self.env['sale.order.line'].new(dict)
+            # we make this to isolate changed values:
+            line2.product_uom_change()
+            line.price_unit = line2.price_unit
         return True
 
     @api.multi
     def recalculate_names(self):
-        for line in self.mapped('order_line'):
-            name = line.product_id.name_get()[0][1]
-            if line.product_id.description_sale:
-                name += '\n' + line.product_id.description_sale
-            line.name = name
+        for line in self.mapped('order_line').filtered('product_id'):
+            # we make this to isolate changed values:
+            line2 = self.env['sale.order.line'].new({
+                'product_id': line.product_id,
+            })
+            line2.product_id_change()
+            line.name = line2.name
         return True
