@@ -1,9 +1,10 @@
 # -*- coding: utf-8 -*-
 # Copyright 2015 Pedro M. Baeza <pedro.baeza@serviciosbaeza.com>
 # Copyright 2016 Vicent Cubells <vicent.cubells@tecnativa.com>
+# Copyright 2017 David Vidal <david.vidal@tecnativa.com>
 # License AGPL-3 - See http://www.gnu.org/licenses/agpl-3.0.html
 
-import openerp.tests.common as common
+from odoo.tests import common
 
 
 class TestSaleOrderPriceRecalculation(common.TransactionCase):
@@ -12,8 +13,13 @@ class TestSaleOrderPriceRecalculation(common.TransactionCase):
         super(TestSaleOrderPriceRecalculation, self).setUp()
         self.sale_order_model = self.env['sale.order']
         self.sale_order_line_model = self.env['sale.order.line']
-        self.partner = self.env.ref('base.res_partner_3')
+        self.partner = self.env['res.partner'].create({
+            'name': 'Test partner',
+        })
         self.product = self.env.ref('product.product_product_4')
+        self.product = self.env['product.product'].create({
+            'name': 'Jacket - Color: Black - Size: XL',
+        })
         self.sale_order = self.sale_order_model.create({
             'partner_id': self.partner.id,
             'partner_invoice_id': self.partner.id,
@@ -49,14 +55,14 @@ class TestSaleOrderPriceRecalculation(common.TransactionCase):
         self.assertEqual(self.sale_order_line.name, u"My product description")
 
     def test_name_recalculation(self):
+        self.sale_order_line.price_unit = 150.0
         initial_price = self.sale_order_line.price_unit
         self.assertEqual(
             self.sale_order_line.name, self.product.name
         )
-        self.product.name = u"Test product"
-        self.product.description_sale = ''
+        self.sale_order_line.name = 'Custom Jacket'
         self.sale_order.recalculate_names()
-        self.assertEquals(u"[A2323] Test product (16 GB, White, 2.4 GHz)",
+        self.assertEquals(u"Jacket - Color: Black - Size: XL",
                           self.sale_order_line.name)
         # Check the price wasn't reset
         self.assertEquals(initial_price,
