@@ -29,7 +29,7 @@ custom descriptions.
 
 .. image:: https://odoo-community.org/website/image/ir.attachment/5784_f2813bd/datas
    :alt: Try me on Runbot
-   :target: https://runbot.odoo-community.org/runbot/167/9.0
+   :target: https://runbot.odoo-community.org/runbot/167/10.0
 
 Known issues / Roadmap
 ======================
@@ -57,6 +57,7 @@ Contributors
 * Oihane Crucelaegui <oihanecrucelaegi@avanzosc.es>
 * Pierre Verkest <pverkest@anybox.fr>
 * Vicent Cubells <vicent.cubells@tecnativa.com>
+* David Vidal <david.vidal@tecnativa.com>
 
 Maintainer
 ----------
