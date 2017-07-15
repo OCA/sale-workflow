@@ -3,13 +3,14 @@
 # * sale_isolated_quotation
 # 
 # Translators:
+# OCA Transbot <transbot@odoo-community.org>, 2017
 # Bole <bole@dajmi5.com>, 2017
 msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 10.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-05-13 01:19+0000\n"
-"PO-Revision-Date: 2017-05-13 01:19+0000\n"
+"POT-Creation-Date: 2017-07-08 00:49+0000\n"
+"PO-Revision-Date: 2017-07-08 00:49+0000\n"
 "Last-Translator: Bole <bole@dajmi5.com>, 2017\n"
 "Language-Team: Croatian (https://www.transifex.com/oca/teams/23907/hr/)\n"
 "MIME-Version: 1.0\n"
@@ -21,7 +22,7 @@ msgstr ""
 #. module: sale_isolated_quotation
 #: model:ir.model.fields,help:sale_isolated_quotation.field_sale_order_state2
 msgid "A dummy state used for quotation"
-msgstr ""
+msgstr "Privremeni status korišten za ponude"
 
 #. module: sale_isolated_quotation
 #: model:ir.ui.view,arch_db:sale_isolated_quotation.view_order_form
@@ -31,38 +32,38 @@ msgstr "Otkaži"
 #. module: sale_isolated_quotation
 #: model:ir.ui.view,arch_db:sale_isolated_quotation.view_order_form
 msgid "Convert to Order"
-msgstr ""
+msgstr "Pretvori u nalog"
 
 #. module: sale_isolated_quotation
 #: model:ir.model.fields,help:sale_isolated_quotation.field_sale_order_order_id
 msgid "For Quotation, this field references to its Sales Order"
-msgstr ""
+msgstr "Za ponudu ovo polje se referencira na nezin prodajni nalog"
 
 #. module: sale_isolated_quotation
 #: model:ir.model.fields,help:sale_isolated_quotation.field_sale_order_quote_id
 msgid "For Sales Order, this field references to its Quotation"
-msgstr ""
+msgstr "Za prodajni nalog ovo polje se referencira na njegovu ponudu."
 
 #. module: sale_isolated_quotation
 #: model:ir.model.fields,field_description:sale_isolated_quotation.field_sale_order_is_order
 msgid "Is Order"
-msgstr ""
+msgstr "Je nalog"
 
 #. module: sale_isolated_quotation
 #: code:addons/sale_isolated_quotation/models/sale.py:58
 #, python-format
 msgid "Only quotation can convert to order"
-msgstr ""
+msgstr "Samo ponude se mogu pretvoriti u prodajni nalog"
 
 #. module: sale_isolated_quotation
 #: model:ir.model.fields,field_description:sale_isolated_quotation.field_sale_order_order_id
 msgid "Order Reference"
-msgstr ""
+msgstr "Referenca naloga"
 
 #. module: sale_isolated_quotation
 #: model:ir.model.fields,field_description:sale_isolated_quotation.field_sale_order_quote_id
 msgid "Quotation Reference"
-msgstr ""
+msgstr "Referenca ponude"
 
 #. module: sale_isolated_quotation
 #: code:addons/sale_isolated_quotation/models/sale.py:74
@@ -74,4 +75,4 @@ msgstr "Prodajni nalog"
 #. module: sale_isolated_quotation
 #: model:ir.model.fields,field_description:sale_isolated_quotation.field_sale_order_state2
 msgid "Status"
-msgstr ""
+msgstr "Status"

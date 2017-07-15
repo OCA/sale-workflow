@@ -9,8 +9,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 10.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-06-01 02:53+0000\n"
-"PO-Revision-Date: 2017-06-01 02:53+0000\n"
+"POT-Creation-Date: 2017-07-08 00:49+0000\n"
+"PO-Revision-Date: 2017-07-08 00:49+0000\n"
 "Last-Translator: Bole <bole@dajmi5.com>, 2017\n"
 "Language-Team: Croatian (https://www.transifex.com/oca/teams/23907/hr/)\n"
 "MIME-Version: 1.0\n"
@@ -22,7 +22,7 @@ msgstr ""
 #. module: sale_cancel_reason
 #: model:ir.model,name:sale_cancel_reason.model_sale_order_cancel
 msgid " Ask a reason for the sale order cancellation."
-msgstr ""
+msgstr "Traži razlog otkazivanja prodajnog naloga."
 
 #. module: sale_cancel_reason
 #: model:ir.ui.view,arch_db:sale_cancel_reason.view_sale_order_cancel
@@ -32,12 +32,12 @@ msgstr "Otkaži"
 #. module: sale_cancel_reason
 #: model:ir.ui.view,arch_db:sale_cancel_reason.view_order_form
 msgid "Cancel Order"
-msgstr ""
+msgstr "Otkaži nalog"
 
 #. module: sale_cancel_reason
 #: model:ir.ui.view,arch_db:sale_cancel_reason.view_order_form
 msgid "Cancellation reason:"
-msgstr ""
+msgstr "Razlog otkazivanja:"
 
 #. module: sale_cancel_reason
 #: model:ir.ui.view,arch_db:sale_cancel_reason.view_sale_order_cancel
@@ -45,11 +45,13 @@ msgid ""
 "Choose the reason for the cancellation of the\n"
 "                sale order."
 msgstr ""
+"Odaberite razlog otkazivanja\n"
+"prodajnog naloga."
 
 #. module: sale_cancel_reason
 #: model:ir.ui.view,arch_db:sale_cancel_reason.view_sale_order_cancel
 msgid "Confirm"
-msgstr ""
+msgstr "Potvrdi"
 
 #. module: sale_cancel_reason
 #: model:ir.model.fields,field_description:sale_cancel_reason.field_sale_order_cancel_create_uid
@@ -78,7 +80,7 @@ msgstr "ID"
 #. module: sale_cancel_reason
 #: model:sale.order.cancel.reason,name:sale_cancel_reason.cancel_reason_only_quotation
 msgid "Just for Quotation"
-msgstr ""
+msgstr "Samo za ponudu"
 
 #. module: sale_cancel_reason
 #: model:ir.model.fields,field_description:sale_cancel_reason.field_sale_order_cancel___last_update
@@ -101,37 +103,37 @@ msgstr "Zadnje ažuriranje"
 #. module: sale_cancel_reason
 #: model:sale.order.cancel.reason,name:sale_cancel_reason.cancel_reason_other_provider
 msgid "Other Service Provider selected"
-msgstr ""
+msgstr "Odabran je drugi pružatelj usluge"
 
 #. module: sale_cancel_reason
 #: model:ir.model.fields,field_description:sale_cancel_reason.field_sale_order_cancel_reason_id
 #: model:ir.model.fields,field_description:sale_cancel_reason.field_sale_order_cancel_reason_name
 msgid "Reason"
-msgstr ""
+msgstr "Razlog"
 
 #. module: sale_cancel_reason
 #: model:ir.model.fields,field_description:sale_cancel_reason.field_sale_order_cancel_reason_id_4742
 msgid "Reason for cancellation"
-msgstr ""
+msgstr "Razlog otkazivanja"
 
 #. module: sale_cancel_reason
 #: model:ir.actions.act_window,name:sale_cancel_reason.action_sale_order_cancel
 #: model:ir.ui.view,arch_db:sale_cancel_reason.view_sale_order_cancel
 msgid "Reason for the cancellation"
-msgstr ""
+msgstr "Razlog otkazivanja"
 
 #. module: sale_cancel_reason
 #: model:ir.actions.act_window,name:sale_cancel_reason.action_sale_order_cancel_reason
 #: model:ir.model,name:sale_cancel_reason.model_sale_order_cancel_reason
 msgid "Sale Order Cancel Reason"
-msgstr ""
+msgstr "Razlog otkazivanja ponude"
 
 #. module: sale_cancel_reason
 #: model:ir.ui.menu,name:sale_cancel_reason.menu_sale_order_cancel_reason
 #: model:ir.ui.view,arch_db:sale_cancel_reason.view_sale_order_cancel_reason_form
 #: model:ir.ui.view,arch_db:sale_cancel_reason.view_sale_order_cancel_reason_tree
 msgid "Sale Order Cancel Reasons"
-msgstr ""
+msgstr "Razlozi otkazivanja ponude"
 
 #. module: sale_cancel_reason
 #: model:ir.model,name:sale_cancel_reason.model_sale_order
@@ -141,7 +143,7 @@ msgstr "Prodajni nalog"
 #. module: sale_cancel_reason
 #: model:sale.order.cancel.reason,name:sale_cancel_reason.cancel_reason_no_service_needed
 msgid "Service no longer needed"
-msgstr ""
+msgstr "Usluga više nije potrebna"
 
 #. module: sale_cancel_reason
 #: model:ir.ui.view,arch_db:sale_cancel_reason.view_sale_order_cancel
