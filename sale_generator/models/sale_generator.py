@@ -55,7 +55,7 @@ class SaleGenerator(models.Model):
     def _create_order_for_partner(self, partner):
         self.ensure_one()
         vals = self._prepare_copy_vals(partner)
-        self.tmpl_sale_id.copy(default=vals)
+        self.tmpl_sale_id.copy(vals)
 
     @api.multi
     def button_update_order(self):
