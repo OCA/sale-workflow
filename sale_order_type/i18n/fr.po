@@ -3,15 +3,15 @@
 # * sale_order_type
 # 
 # Translators:
-# OCA Transbot <transbot@odoo-community.org>, 2016
-# Maxime Chambreuil <mchambreuil@ursainfosystems.com>, 2016
+# OCA Transbot <transbot@odoo-community.org>, 2017
+# guillaume bauer <guillaume.bauer@syentys.com>, 2017
 msgid ""
 msgstr ""
-"Project-Id-Version: Odoo Server 9.0c\n"
+"Project-Id-Version: Odoo Server 10.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-11-22 23:46+0000\n"
-"PO-Revision-Date: 2016-11-22 23:46+0000\n"
-"Last-Translator: Maxime Chambreuil <mchambreuil@ursainfosystems.com>, 2016\n"
+"POT-Creation-Date: 2018-01-27 03:53+0000\n"
+"PO-Revision-Date: 2018-01-27 03:53+0000\n"
+"Last-Translator: guillaume bauer <guillaume.bauer@syentys.com>, 2017\n"
 "Language-Team: French (https://www.transifex.com/oca/teams/23907/fr/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -23,7 +23,7 @@ msgstr ""
 #: model:ir.model.fields,field_description:sale_order_type.field_sale_order_type_journal_id
 #: model:ir.ui.view,arch_db:sale_order_type.sot_sale_order_type_search_view
 msgid "Billing Journal"
-msgstr ""
+msgstr "Journal de facturation"
 
 #. module: sale_order_type
 #: model:ir.actions.act_window,help:sale_order_type.sot_sale_order_type_action
@@ -105,7 +105,7 @@ msgstr "Nom"
 #. module: sale_order_type
 #: model:sale.order.type,name:sale_order_type.normal_sale_type
 msgid "Normal Order"
-msgstr ""
+msgstr "Commande normale"
 
 #. module: sale_order_type
 #: model:ir.model,name:sale_order_type.model_res_partner
@@ -121,22 +121,23 @@ msgstr "Condition de règlement"
 #. module: sale_order_type
 #: model:ir.ui.view,arch_db:sale_order_type.sot_sale_order_type_search_view
 msgid "Price List"
-msgstr ""
+msgstr "Tarif"
 
 #. module: sale_order_type
 #: model:ir.model.fields,field_description:sale_order_type.field_sale_order_type_pricelist_id
 msgid "Pricelist"
-msgstr "Liste de prix"
+msgstr "Tarif"
 
 #. module: sale_order_type
 #: model:ir.model.fields,field_description:sale_order_type.field_res_partner_sale_type
+#: model:ir.model.fields,field_description:sale_order_type.field_res_users_sale_type
 msgid "Sale Order Type"
-msgstr ""
+msgstr "Type de bon de commande"
 
 #. module: sale_order_type
 #: model:ir.model.fields,field_description:sale_order_type.field_account_invoice_sale_type_id
 msgid "Sale Type"
-msgstr ""
+msgstr "Type de vente"
 
 #. module: sale_order_type
 #: model:ir.model,name:sale_order_type.model_sale_order
@@ -146,13 +147,13 @@ msgstr "Bon de commande"
 #. module: sale_order_type
 #: model:ir.ui.view,arch_db:sale_order_type.res_partner_sale_type_form_view
 msgid "Sales Order Type"
-msgstr ""
+msgstr "Type de bon de commande"
 
 #. module: sale_order_type
 #: model:ir.actions.act_window,name:sale_order_type.sot_sale_order_type_action
 #: model:ir.ui.menu,name:sale_order_type.sot_sale_order_type_menu
 msgid "Sales Order Types"
-msgstr ""
+msgstr "Types de bons de commande"
 
 #. module: sale_order_type
 #: model:ir.model.fields,field_description:sale_order_type.field_sale_order_type_picking_policy
@@ -161,7 +162,13 @@ msgid "Shipping Policy"
 msgstr "Politique d'expédition"
 
 #. module: sale_order_type
-#: model:ir.model.fields,field_description:sale_order_type.field_sale_order_type_id_4668
+#: model:ir.model.fields,help:sale_order_type.field_sale_order_type_company_id
+msgid "The company is automatically set from your user preferences."
+msgstr ""
+"La société est automatiquement définie selon vos préférences utilisateur."
+
+#. module: sale_order_type
+#: model:ir.model.fields,field_description:sale_order_type.field_sale_order_type_id_5962
 #: model:ir.ui.view,arch_db:sale_order_type.sot_sale_order_type_form_view
 #: model:ir.ui.view,arch_db:sale_order_type.sot_sale_order_type_search_view
 #: model:ir.ui.view,arch_db:sale_order_type.sot_sale_order_type_tree_view
@@ -171,7 +178,7 @@ msgstr "Type"
 #. module: sale_order_type
 #: model:ir.model,name:sale_order_type.model_sale_order_type
 msgid "Type of sale order"
-msgstr ""
+msgstr "Type de bon de commande"
 
 #. module: sale_order_type
 #: model:ir.model.fields,field_description:sale_order_type.field_sale_order_type_warehouse_id
