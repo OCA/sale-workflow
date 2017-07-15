@@ -1,0 +1,155 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# * sale_documents_comments
+# 
+# Translators:
+msgid ""
+msgstr ""
+"Project-Id-Version: odoomrp-wip (8.0)\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2015-10-07 10:44+0000\n"
+"PO-Revision-Date: 2015-10-09 03:43+0000\n"
+"Last-Translator: danimaribeiro <danimaribeiro@gmail.com>\n"
+"Language-Team: Portuguese (Brazil) (http://www.transifex.com/oca/odoomrp-wip-8-0/language/pt_BR/)\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Language: pt_BR\n"
+"Plural-Forms: nplurals=2; plural=(n > 1);\n"
+
+#. module: sale_documents_comments
+#: view:account.invoice:sale_documents_comments.account_invoice_comments_form
+#: view:res.partner:sale_documents_comments.res_partner_comments_form
+#: view:sale.order:sale_documents_comments.sale_order_comments_form
+#: view:stock.picking:sale_documents_comments.stock_picking_comments_form
+msgid "Comments"
+msgstr ""
+
+#. module: sale_documents_comments
+#: field:res.partner,invoice_comment:0
+msgid "Comments for invoices"
+msgstr ""
+
+#. module: sale_documents_comments
+#: field:res.partner,picking_comment:0
+msgid "Comments for pickings"
+msgstr ""
+
+#. module: sale_documents_comments
+#: field:res.partner,sale_comment:0
+msgid "Comments for sale orders"
+msgstr ""
+
+#. module: sale_documents_comments
+#: view:account.invoice:sale_documents_comments.account_invoice_comments_form
+#: view:sale.order:sale_documents_comments.sale_order_comments_form
+#: view:stock.picking:sale_documents_comments.stock_picking_comments_form
+msgid "Customer observations"
+msgstr ""
+
+#. module: sale_documents_comments
+#: view:res.partner:sale_documents_comments.res_partner_comments_form
+msgid "Internal comment displayed on customer invoices"
+msgstr ""
+
+#. module: sale_documents_comments
+#: view:res.partner:sale_documents_comments.res_partner_comments_form
+msgid "Internal comment displayed on delivery orders"
+msgstr ""
+
+#. module: sale_documents_comments
+#: view:res.partner:sale_documents_comments.res_partner_comments_form
+msgid "Internal comment displayed on delivery orders (it will be propagated)"
+msgstr ""
+
+#. module: sale_documents_comments
+#: view:res.partner:sale_documents_comments.res_partner_comments_form
+msgid "Internal comment displayed on sale orders"
+msgstr ""
+
+#. module: sale_documents_comments
+#: view:res.partner:sale_documents_comments.res_partner_comments_form
+msgid "Internal comment displayed on sale orders (it will be propagated)"
+msgstr ""
+
+#. module: sale_documents_comments
+#: field:account.invoice,sale_comment:0 field:sale.order,comment:0
+#: field:stock.picking,sale_comment:0
+msgid "Internal comments"
+msgstr ""
+
+#. module: sale_documents_comments
+#: view:sale.order:sale_documents_comments.sale_order_comments_form
+#: view:stock.picking:sale_documents_comments.stock_picking_comments_form
+msgid "Internal customer notes (it will be propagated), see in partner..."
+msgstr ""
+
+#. module: sale_documents_comments
+#: view:account.invoice:sale_documents_comments.account_invoice_comments_form
+#: view:sale.order:sale_documents_comments.sale_order_comments_form
+#: view:stock.picking:sale_documents_comments.stock_picking_comments_form
+msgid "Internal customer notes, see in partner..."
+msgstr ""
+
+#. module: sale_documents_comments
+#: model:ir.model,name:sale_documents_comments.model_account_invoice
+msgid "Invoice"
+msgstr "Fatura"
+
+#. module: sale_documents_comments
+#: view:res.partner:sale_documents_comments.res_partner_comments_form
+msgid "Invoices"
+msgstr ""
+
+#. module: sale_documents_comments
+#: model:ir.model,name:sale_documents_comments.model_res_partner
+msgid "Partner"
+msgstr "Parceiro"
+
+#. module: sale_documents_comments
+#: model:ir.model,name:sale_documents_comments.model_stock_picking
+msgid "Picking List"
+msgstr "Lista de separação"
+
+#. module: sale_documents_comments
+#: view:res.partner:sale_documents_comments.res_partner_comments_form
+msgid "Pickings"
+msgstr ""
+
+#. module: sale_documents_comments
+#: view:res.partner:sale_documents_comments.res_partner_comments_form
+#: view:sale.order:sale_documents_comments.sale_order_comments_form
+#: view:stock.picking:sale_documents_comments.stock_picking_comments_form
+msgid "Propagated comments"
+msgstr ""
+
+#. module: sale_documents_comments
+#: field:res.partner,picking_propagated_comment:0
+msgid "Propagated comments for pickings"
+msgstr ""
+
+#. module: sale_documents_comments
+#: field:res.partner,sale_propagated_comment:0
+msgid "Propagated comments for sale orders"
+msgstr ""
+
+#. module: sale_documents_comments
+#: field:sale.order,propagated_comment:0
+#: field:stock.picking,sale_propagated_comment:0
+msgid "Propagated internal comments"
+msgstr ""
+
+#. module: sale_documents_comments
+#: view:res.partner:sale_documents_comments.res_partner_comments_form
+msgid "Sale Orders"
+msgstr ""
+
+#. module: sale_documents_comments
+#: view:res.partner:sale_documents_comments.res_partner_comments_form
+msgid "Sale observations"
+msgstr ""
+
+#. module: sale_documents_comments
+#: model:ir.model,name:sale_documents_comments.model_sale_order
+msgid "Sales Order"
+msgstr "Pedido de venda"
