@@ -8,6 +8,9 @@ class sale_order(models.Model):
     @api.multi
     def check_credit_limit_ok(self):
         self.ensure_one()
+        # por compatibilidad con el modulo de sale_order_type_invoice_policy
+        if self._context.get('by_pass_credit_limit', False):
+            return True
 
         domain = [
             ('order_id.id', '!=', self.id),
