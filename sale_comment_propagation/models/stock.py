@@ -1,10 +1,10 @@
 # -*- coding: utf-8 -*-
-# © 2015 Ainara Galdona - AvanzOSC
-# © 2015 Oihane Crucelaegui - AvanzOSC
-# © 2015 Esther Martín <esthermartin@avanzosc.es> - Avanzosc S.L.
+# Copyright 2015 Ainara Galdona - AvanzOSC
+# Copyright 2015 Oihane Crucelaegui - AvanzOSC
+# Copyright 2015 Esther Martín <esthermartin@avanzosc.es> - Avanzosc S.L.
 # License AGPL-3 - See http://www.gnu.org/licenses/agpl-3.0.html
 
-from openerp import api, models, fields
+from odoo import api, fields, models
 
 
 class StockPicking(models.Model):
@@ -14,7 +14,7 @@ class StockPicking(models.Model):
     sale_propagated_comment = fields.Text(
         string='Propagated internal comments')
 
-    @api.one
+    @api.multi
     @api.onchange('partner_id')
     def onchange_partner_id(self):
         picking_com, picking_pcom = self.partner_id._get_picking_comments()

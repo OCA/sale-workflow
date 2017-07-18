@@ -15,7 +15,7 @@ Usage
 
 In sale order
 
-.. image:: /sale_documents_comments/images/sale_comments.png
+.. image:: /sale_comment_propagation/images/sale_comments.png
 
 use **Customer observations** tab to write comments.
 
@@ -23,7 +23,7 @@ use **Customer observations** tab to write comments.
 
 .. image:: https://odoo-community.org/website/image/ir.attachment/5784_f2813bd/datas
    :alt: Try me on Runbot
-   :target: https://runbot.odoo-community.org/runbot/167/8.0
+   :target: https://runbot.odoo-community.org/runbot/167/10.0
 
 Bug Tracker
 ===========
@@ -46,9 +46,11 @@ Contributors
 
 * Oihane Crucelaegui <oihanecrucelaegi@avanzosc.es>
 * Ainara Galdona <ainaragaldona@avanzosc.es>
-* Pedro M. Baeza <pedro.baeza@serviciosbaeza.com>
+* Pedro M. Baeza <pedro.baeza@tecnativa.com>
 * Ana Juaristi <anajuaristi@avanzosc.es>
 * Esther Martín <esthermartin@avanzosc.es>
+* Lorenzo Battistini <lorenzo.battistini@agilebg.com>
+* Nicola Malcontenti <nicola.malcontenti@agilebg.com>
 
 Maintainer
 ----------

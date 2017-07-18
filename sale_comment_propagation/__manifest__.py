@@ -1,13 +1,15 @@
 # -*- coding: utf-8 -*-
-# © 2015 Ainara Galdona - AvanzOSC
-# © 2015 Oihane Crucelaegui - AvanzOSC
-# © 2015 Esther Martín <esthermartin@avanzosc.es> - Avanzosc S.L.
-# © 2016 Lorenzo Battistini - Agile Business Group
+# Copyright 2015 Ainara Galdona - AvanzOSC
+# Copyright 2015 Oihane Crucelaegui - AvanzOSC
+# Copyright 2015 Esther Martín <esthermartin@avanzosc.es> - Avanzosc S.L.
+# Copyright 2016-2017 Lorenzo Battistini - Agile Business Group
+# Copyright 2017 Nicola Malcontenti - Agile Business Group
 # License AGPL-3 - See http://www.gnu.org/licenses/agpl-3.0.html
 
 {
     "name": "Comments for sale documents (order, picking and invoice)",
-    "version": "8.0.1.0.0",
+    "version": "10.0.1.0.0",
+    "license": 'AGPL-3',
     "depends": [
         "sale_stock",
         "sale",
@@ -17,10 +19,10 @@
     ],
     "author": "OdooMRP team, "
               "AvanzOSC, "
-              "Serv. Tecnol. Avanzados - Pedro M. Baeza, "
-              "Odoo Community Association (OCA)",
+              "Tecnativa,  "
+              "Odoo Community Association (OCA), "
+              "Agile Businnes Group",
     "category": "Sales",
-    "website": "http://www.odoomrp.com",
     "data": [
         "views/partner_view.xml",
         "views/sale_view.xml",
