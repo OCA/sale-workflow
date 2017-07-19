@@ -85,19 +85,20 @@ class ProductProduct(models.Model):
             fnct_search=_search_product_quantity),
     }
 
-    @api.one
+    @api.multi
     @api.constrains('pack_line_ids')
     def check_recursion(self):
         """
         Check recursion on packs
         """
-        pack_lines = self.pack_line_ids
-        while pack_lines:
-            if self in pack_lines.mapped('product_id'):
-                raise UserError(_(
-                    'Error! You cannot create recursive packs.\n'
-                    'Product id: %s') % self.id)
-            pack_lines = pack_lines.mapped('product_id.pack_line_ids')
+        for rec in self:
+            pack_lines = rec.pack_line_ids
+            while pack_lines:
+                if rec in pack_lines.mapped('product_id'):
+                    raise UserError(_(
+                        'Error! You cannot create recursive packs.\n'
+                        'Product id: %s') % rec.id)
+                pack_lines = pack_lines.mapped('product_id.pack_line_ids')
 
 
 class ProductTemplate(models.Model):
@@ -132,6 +133,7 @@ class ProductTemplate(models.Model):
         related='product_variant_ids.used_pack_line_ids'
     )
 
+    @api.multi
     @api.constrains(
         'product_variant_ids', 'pack_price_type')
     def check_relations(self):
@@ -139,13 +141,14 @@ class ProductTemplate(models.Model):
         Check assited packs dont have packs a childs
         """
         # check assited price has no packs child of them
-        if self.pack_price_type == 'none_detailed_assited_price':
-            child_packs = self.mapped(
-                'pack_line_ids.product_id').filtered('pack')
-            if child_packs:
-                raise UserError(_(
-                    'A "None Detailed - Assisted Price Pack" can not have a '
-                    'pack as a child!'))
+        for rec in self:
+            if rec.pack_price_type == 'none_detailed_assited_price':
+                child_packs = rec.mapped(
+                    'pack_line_ids.product_id').filtered('pack')
+                if child_packs:
+                    raise UserError(_(
+                        'A "None Detailed - Assisted Price Pack" can not have '
+                        'a pack as a child!'))
 
         # TODO we also should check this
         # check if we are configuring a pack for a product that is partof a
@@ -163,22 +166,23 @@ class ProductTemplate(models.Model):
         #             'You can not set this product as pack because it is part'
         #             ' of a "None Detailed - Assisted Price Pack"'))
 
-    @api.one
+    @api.multi
     @api.constrains('company_id', 'product_variant_ids')
     def check_pack_line_company(self):
         """
         Check packs are related to packs of same company
         """
-        for line in self.pack_line_ids:
-            if line.product_id.company_id != self.company_id:
-                raise UserError(_(
-                    'Pack lines products company must be the same as the '
-                    'parent product company'))
-        for line in self.used_pack_line_ids:
-            if line.parent_product_id.company_id != self.company_id:
-                raise UserError(_(
-                    'Pack lines products company must be the same as the '
-                    'parent product company'))
+        for rec in self:
+            for line in rec.pack_line_ids:
+                if line.product_id.company_id != rec.company_id:
+                    raise UserError(_(
+                        'Pack lines products company must be the same as the '
+                        'parent product company'))
+            for line in rec.used_pack_line_ids:
+                if line.parent_product_id.company_id != rec.company_id:
+                    raise UserError(_(
+                        'Pack lines products company must be the same as the '
+                        'parent product company'))
 
     @api.multi
     def write(self, vals):
