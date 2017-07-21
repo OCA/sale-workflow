@@ -8,8 +8,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 9.0c\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-11-14 22:16+0000\n"
-"PO-Revision-Date: 2016-11-14 22:16+0000\n"
+"POT-Creation-Date: 2017-07-20 14:43+0000\n"
+"PO-Revision-Date: 2017-07-20 14:43+0000\n"
 "Last-Translator: Juan José Scarafía <scarafia.juanjose@gmail.com>, 2016\n"
 "Language-Team: Lithuanian (https://www.transifex.com/adhoc/teams/46451/lt/)\n"
 "MIME-Version: 1.0\n"
@@ -22,8 +22,6 @@ msgstr ""
 #: model:ir.model.fields,help:product_pack.field_product_product_pack_price_type
 #: model:ir.model.fields,help:product_pack.field_product_template_pack_price_type
 #: model:ir.model.fields,help:product_pack.field_sale_order_line_pack_type
-#: help:product.product,pack_price_type:0
-#: help:product.template,pack_price_type:0 help:sale.order.line,pack_type:0
 msgid ""
 "* Detailed - Components Prices: Detail lines with prices on sales order.\n"
 "* Detailed - Totaliced Price: Detail lines on sales order totalicing lines prices on pack (don't show component prices).\n"
@@ -32,153 +30,46 @@ msgid ""
 msgstr ""
 
 #. module: product_pack
-#: model:ir.ui.view,arch_db:product_pack.view_order_stock_form
-msgid ""
-"<?xml version=\"1.0\"?>\n"
-"<!-- button to open line form -->\n"
-"            <xpath expr=\"//field[@name='order_line']/tree//field[@name='price_subtotal']\" position=\"after\">\n"
-"                <field name=\"pack_type\" invisible=\"1\"/>\n"
-"                <button name=\"action_pack_detail\" string=\"Detail\" attrs=\"{'invisible':[('pack_type', '!=', 'none_detailed_assited_price')]}\" type=\"object\"/>\n"
-"            </xpath> \n"
-"        "
-msgstr ""
-
-#. module: product_pack
-#: model:ir.ui.view,arch_db:product_pack.product_template_only_form_view
-msgid ""
-"<?xml version=\"1.0\"?>\n"
-"<data><field name=\"type\" position=\"after\">\n"
-"\t\t\t\t<field name=\"pack\"/>\n"
-"\t\t\t\t<field name=\"pack_price_type\" attrs=\"{'invisible':[('pack', '=', False)], 'required':[('pack','=',True)]}\" context=\"{'pack_price_type': pack_price_type}\"/>\n"
-"\t\t\t</field>\n"
-"\t\t\t<notebook position=\"inside\">\n"
-"\t\t\t\t<page string=\"Pack\" attrs=\"{'invisible': ['|', ('product_variant_count', '&gt;', 1), ('pack', '=', False)]}\">\n"
-"\t\t\t\t\t<field name=\"pack_line_ids\"/>\n"
-"\t\t\t\t</page>\n"
-"\t\t\t</notebook>\n"
-"\t\t</data>"
-msgstr ""
-
-#. module: product_pack
-#: model:ir.ui.view,arch_db:product_pack.nan_product_pack_form
-msgid ""
-"<?xml version=\"1.0\"?>\n"
-"<data><field name=\"type\" position=\"after\">\n"
-"\t\t\t\t<field name=\"pack\"/>\n"
-"\t\t\t\t<field name=\"pack_price_type\" attrs=\"{'invisible':[('pack', '=', False)], 'required':[('pack','=',True)]}\" context=\"{'pack_price_type': pack_price_type}\"/>\n"
-"\t\t\t</field>\n"
-"\t\t\t<notebook position=\"inside\">\n"
-"\t\t\t\t<page string=\"Pack\" attrs=\"{'invisible':[('pack', '=', False)]}\">\n"
-"\t\t\t\t\t<field name=\"pack_line_ids\"/>\n"
-"\t\t\t\t</page>\n"
-"\t\t\t</notebook>\n"
-"\t\t</data>"
-msgstr ""
-
-#. module: product_pack
-#: model:ir.ui.view,arch_db:product_pack.product_pack_line_form
-msgid ""
-"<?xml version=\"1.0\"?>\n"
-"<form string=\"Pack Product Line\">\n"
-"\t\t\t\t<group>\n"
-"\t\t\t\t\t<field name=\"product_id\"/>\n"
-"\t\t\t\t\t<field name=\"quantity\"/>\n"
-"\t\t\t\t\t<field name=\"discount\" groups=\"sale.group_discount_per_so_line\" invisible=\"context.get('pack_price_type') == 'fixed_price'\"/>\n"
-"\t\t\t\t</group>\n"
-"\t\t\t</form>\n"
-"\t\t"
-msgstr ""
-
-#. module: product_pack
-#: model:ir.ui.view,arch_db:product_pack.view_order_line_form2
-msgid ""
-"<?xml version=\"1.0\"?>\n"
-"<form string=\"Sales Order Lines\" create=\"false\">\n"
-"                <header>\n"
-"                    <field name=\"state\" widget=\"statusbar\" statusbar_visible=\"draft,confirmed,done\" statusbar_colors=\"{'exception':'red','cancel':'red'}\"/>\n"
-"                </header>\n"
-"                <sheet>\n"
-"                    <field name=\"pack_type\" invisible=\"1\"/>\n"
-"                    <div attrs=\"{'invisible':[('pack_type', '!=', 'none_detailed_assited_price')]}\">\n"
-"                        <div name=\"product_pack\">\n"
-"                            <label for=\"pack_line_ids\"/>\n"
-"                            <field name=\"pack_line_ids\"/>\n"
-"                        </div>\n"
-"\n"
-"                            <group class=\"oe_subtotal_footer oe_right\" colspan=\"2\" name=\"pack_total\">\n"
-"                                <field name=\"pack_total\" widget=\"monetary\" options=\"{'currency_field': 'currency_id'}\"/>\n"
-"                                <div class=\"oe_subtotal_footer_separator\" colspan=\"2\"/>\n"
-"                                <field name=\"price_unit\" widget=\"monetary\" options=\"{'currency_field': 'currency_id'}\"/>\n"
-"                        </group>\n"
-"                    </div>\n"
-"                </sheet>\n"
-"                <footer>\n"
-"                    <button class=\"oe_highlight\" name=\"button_save_data\" string=\"Save\" type=\"object\"/>\n"
-"                    or\n"
-"                    <button class=\"oe_link\" special=\"cancel\" string=\"Cancel\"/>\n"
-"                </footer>\n"
-"            </form>\n"
-"        "
-msgstr ""
-
-#. module: product_pack
-#: model:ir.ui.view,arch_db:product_pack.product_pack_line_tree
-msgid ""
-"<?xml version=\"1.0\"?>\n"
-"<tree string=\"Pack Product Lines\" editable=\"bottom\">\n"
-"\t\t\t\t<field name=\"product_id\"/>\n"
-"\t\t\t\t<field name=\"quantity\"/>\n"
-"\t\t\t\t<field name=\"discount\" groups=\"sale.group_discount_per_so_line\" invisible=\"context.get('pack_price_type') == 'fixed_price'\"/>\n"
-"\t\t\t</tree>\n"
-"\t\t"
-msgstr ""
-
-#. module: product_pack
-#: model:ir.ui.view,arch_db:product_pack.view_sale_line_pack_line_tree
-msgid ""
-"<?xml version=\"1.0\"?>\n"
-"<tree string=\"Sales Order Line Pack Lines\" editable=\"bottom\">\n"
-"                <field name=\"product_id\" groups=\"base.group_user\"/>\n"
-"                <field name=\"price_unit\"/>\n"
-"                <field name=\"product_uom_qty\"/>\n"
-"                <field name=\"discount\" groups=\"sale.group_discount_per_so_line\"/>\n"
-"                <field name=\"price_subtotal\"/>\n"
-"            </tree>\n"
-"        "
-msgstr ""
-
-#. module: product_pack
-#: code:addons/product_pack/models/product.py:146
+#: code:addons/product_pack/models/product.py:149
 #, python-format
 msgid "A \"None Detailed - Assisted Price Pack\" can not have a pack as a child!"
 msgstr ""
 
 #. module: product_pack
+#: model:ir.model.fields,field_description:product_pack.field_product_product_can_modify_prices
+msgid "Can modify prices"
+msgstr ""
+
+#. module: product_pack
+#: model:ir.ui.view,arch_db:product_pack.view_order_line_form2
+msgid "Cancel"
+msgstr ""
+
+#. module: product_pack
 #: model:ir.model.fields,field_description:product_pack.field_product_pack_line_create_uid
 #: model:ir.model.fields,field_description:product_pack.field_sale_order_line_pack_line_create_uid
-#: field:product.pack.line,create_uid:0
-#: field:sale.order.line.pack.line,create_uid:0
 msgid "Created by"
 msgstr ""
 
 #. module: product_pack
 #: model:ir.model.fields,field_description:product_pack.field_product_pack_line_create_date
 #: model:ir.model.fields,field_description:product_pack.field_sale_order_line_pack_line_create_date
-#: field:product.pack.line,create_date:0
-#: field:sale.order.line.pack.line,create_date:0
 msgid "Created on"
 msgstr ""
 
 #. module: product_pack
 #: model:ir.model.fields,field_description:product_pack.field_sale_order_line_pack_depth
-#: field:sale.order.line,pack_depth:0
 msgid "Depth"
 msgstr ""
 
 #. module: product_pack
 #: model:ir.model.fields,help:product_pack.field_sale_order_line_pack_depth
-#: help:sale.order.line,pack_depth:0
 msgid "Depth of the product if it is part of a pack."
+msgstr ""
+
+#. module: product_pack
+#: model:ir.ui.view,arch_db:product_pack.view_order_stock_form
+msgid "Detail"
 msgstr ""
 
 #. module: product_pack
@@ -205,21 +96,17 @@ msgstr ""
 #. module: product_pack
 #: model:ir.model.fields,field_description:product_pack.field_product_pack_line_discount
 #: model:ir.model.fields,field_description:product_pack.field_sale_order_line_pack_line_discount
-#: field:product.pack.line,discount:0
-#: field:sale.order.line.pack.line,discount:0
 msgid "Discount (%)"
 msgstr ""
 
 #. module: product_pack
 #: model:ir.model.fields,field_description:product_pack.field_product_pack_line_display_name
 #: model:ir.model.fields,field_description:product_pack.field_sale_order_line_pack_line_display_name
-#: field:product.pack.line,display_name:0
-#: field:sale.order.line.pack.line,display_name:0
 msgid "Display Name"
 msgstr ""
 
 #. module: product_pack
-#: code:addons/product_pack/models/product.py:97
+#: code:addons/product_pack/models/product.py:98
 #, python-format
 msgid ""
 "Error! You cannot create recursive packs.\n"
@@ -229,59 +116,54 @@ msgstr ""
 #. module: product_pack
 #: model:ir.model.fields,field_description:product_pack.field_product_pack_line_id
 #: model:ir.model.fields,field_description:product_pack.field_sale_order_line_pack_line_id
-#: field:product.pack.line,id:0 field:sale.order.line.pack.line,id:0
 msgid "ID"
+msgstr ""
+
+#. module: product_pack
+#: model:ir.model.fields,help:product_pack.field_product_product_can_modify_prices
+msgid ""
+"If checked all users can modify the        price of this product in a sale "
+"order or invoice."
 msgstr ""
 
 #. module: product_pack
 #: model:ir.model.fields,help:product_pack.field_product_product_pack
 #: model:ir.model.fields,help:product_pack.field_product_template_pack
-#: help:product.product,pack:0 help:product.template,pack:0
 msgid "Is a Product Pack?"
 msgstr ""
 
 #. module: product_pack
 #: model:ir.model.fields,field_description:product_pack.field_product_pack_line___last_update
 #: model:ir.model.fields,field_description:product_pack.field_sale_order_line_pack_line___last_update
-#: field:product.pack.line,__last_update:0
-#: field:sale.order.line.pack.line,__last_update:0
 msgid "Last Modified on"
 msgstr ""
 
 #. module: product_pack
 #: model:ir.model.fields,field_description:product_pack.field_product_pack_line_write_uid
 #: model:ir.model.fields,field_description:product_pack.field_sale_order_line_pack_line_write_uid
-#: field:product.pack.line,write_uid:0
-#: field:sale.order.line.pack.line,write_uid:0
 msgid "Last Updated by"
 msgstr ""
 
 #. module: product_pack
 #: model:ir.model.fields,field_description:product_pack.field_product_pack_line_write_date
 #: model:ir.model.fields,field_description:product_pack.field_sale_order_line_pack_line_write_date
-#: field:product.pack.line,write_date:0
-#: field:sale.order.line.pack.line,write_date:0
 msgid "Last Updated on"
 msgstr ""
 
 #. module: product_pack
 #: model:ir.model.fields,field_description:product_pack.field_sale_order_line_pack_child_line_ids
-#: field:sale.order.line,pack_child_line_ids:0
 msgid "Lines in pack"
 msgstr ""
 
 #. module: product_pack
 #: model:ir.model.fields,help:product_pack.field_product_product_used_pack_line_ids
 #: model:ir.model.fields,help:product_pack.field_product_template_used_pack_line_ids
-#: help:product.product,used_pack_line_ids:0
-#: help:product.template,used_pack_line_ids:0
 msgid "List of packs where product is used."
 msgstr ""
 
 #. module: product_pack
 #: model:ir.model.fields,help:product_pack.field_product_product_pack_line_ids
 #: model:ir.model.fields,help:product_pack.field_product_template_pack_line_ids
-#: help:product.product,pack_line_ids:0 help:product.template,pack_line_ids:0
 msgid "List of products that are part of this pack."
 msgstr ""
 
@@ -298,34 +180,39 @@ msgstr ""
 #. module: product_pack
 #: model:ir.model.fields,field_description:product_pack.field_product_product_used_pack_line_ids
 #: model:ir.model.fields,field_description:product_pack.field_product_template_used_pack_line_ids
-#: field:product.product,used_pack_line_ids:0
-#: field:product.template,used_pack_line_ids:0
 msgid "On Packs"
 msgstr ""
 
 #. module: product_pack
 #: model:ir.model.fields,field_description:product_pack.field_sale_order_line_pack_line_order_line_id
-#: field:sale.order.line.pack.line,order_line_id:0
 msgid "Order Line"
 msgstr ""
 
 #. module: product_pack
 #: model:ir.model.fields,field_description:product_pack.field_sale_order_line_pack_parent_line_id
-#: field:sale.order.line,pack_parent_line_id:0
+#: model:ir.ui.view,arch_db:product_pack.nan_product_pack_form
+#: model:ir.ui.view,arch_db:product_pack.product_template_only_form_view
 msgid "Pack"
 msgstr ""
 
 #. module: product_pack
 #: model:ir.model.fields,field_description:product_pack.field_sale_order_line_pack_line_ids
-#: field:sale.order.line,pack_line_ids:0
 msgid "Pack Lines"
+msgstr ""
+
+#. module: product_pack
+#: model:ir.ui.view,arch_db:product_pack.product_pack_line_form
+msgid "Pack Product Line"
+msgstr ""
+
+#. module: product_pack
+#: model:ir.ui.view,arch_db:product_pack.product_pack_line_tree
+msgid "Pack Product Lines"
 msgstr ""
 
 #. module: product_pack
 #: model:ir.model.fields,field_description:product_pack.field_product_product_pack_line_ids
 #: model:ir.model.fields,field_description:product_pack.field_product_template_pack_line_ids
-#: field:product.product,pack_line_ids:0
-#: field:product.template,pack_line_ids:0
 msgid "Pack Products"
 msgstr ""
 
@@ -333,14 +220,12 @@ msgstr ""
 #: model:ir.model.fields,field_description:product_pack.field_product_product_pack_price_type
 #: model:ir.model.fields,field_description:product_pack.field_product_template_pack_price_type
 #: model:ir.model.fields,field_description:product_pack.field_sale_order_line_pack_type
-#: field:product.product,pack_price_type:0
-#: field:product.template,pack_price_type:0 field:sale.order.line,pack_type:0
 msgid "Pack Type"
 msgstr ""
 
 #. module: product_pack
-#: code:addons/product_pack/models/product.py:174
-#: code:addons/product_pack/models/product.py:179
+#: code:addons/product_pack/models/product.py:178
+#: code:addons/product_pack/models/product.py:183
 #, python-format
 msgid ""
 "Pack lines products company must be the same as the parent product company"
@@ -348,20 +233,17 @@ msgstr ""
 
 #. module: product_pack
 #: model:ir.model.fields,field_description:product_pack.field_sale_order_line_pack_total
-#: field:sale.order.line,pack_total:0
 msgid "Pack total"
 msgstr ""
 
 #. module: product_pack
 #: model:ir.model.fields,field_description:product_pack.field_product_product_pack
 #: model:ir.model.fields,field_description:product_pack.field_product_template_pack
-#: field:product.product,pack:0 field:product.template,pack:0
 msgid "Pack?"
 msgstr ""
 
 #. module: product_pack
 #: model:ir.model.fields,field_description:product_pack.field_product_pack_line_parent_product_id
-#: field:product.pack.line,parent_product_id:0
 msgid "Parent Product"
 msgstr ""
 
@@ -369,8 +251,6 @@ msgstr ""
 #: model:ir.model,name:product_pack.model_product_product
 #: model:ir.model.fields,field_description:product_pack.field_product_pack_line_product_id
 #: model:ir.model.fields,field_description:product_pack.field_sale_order_line_pack_line_product_id
-#: field:product.pack.line,product_id:0
-#: field:sale.order.line.pack.line,product_id:0
 msgid "Product"
 msgstr "Produktas"
 
@@ -382,8 +262,6 @@ msgstr ""
 #. module: product_pack
 #: model:ir.model.fields,field_description:product_pack.field_product_pack_line_quantity
 #: model:ir.model.fields,field_description:product_pack.field_sale_order_line_pack_line_product_uom_qty
-#: field:product.pack.line,quantity:0
-#: field:sale.order.line.pack.line,product_uom_qty:0
 msgid "Quantity"
 msgstr ""
 
@@ -403,19 +281,41 @@ msgid "Sales Order Line"
 msgstr ""
 
 #. module: product_pack
+#: model:ir.ui.view,arch_db:product_pack.view_sale_line_pack_line_tree
+msgid "Sales Order Line Pack Lines"
+msgstr ""
+
+#. module: product_pack
+#: model:ir.ui.view,arch_db:product_pack.view_order_line_form2
+msgid "Sales Order Lines"
+msgstr ""
+
+#. module: product_pack
+#: model:ir.ui.view,arch_db:product_pack.view_order_line_form2
+msgid "Save"
+msgstr ""
+
+#. module: product_pack
 #: model:ir.model.fields,field_description:product_pack.field_sale_order_line_pack_line_price_subtotal
-#: field:sale.order.line.pack.line,price_subtotal:0
 msgid "Subtotal"
 msgstr ""
 
 #. module: product_pack
 #: model:ir.model.fields,help:product_pack.field_sale_order_line_pack_parent_line_id
-#: help:sale.order.line,pack_parent_line_id:0
 msgid "The pack that contains this product."
 msgstr ""
 
 #. module: product_pack
 #: model:ir.model.fields,field_description:product_pack.field_sale_order_line_pack_line_price_unit
-#: field:sale.order.line.pack.line,price_unit:0
 msgid "Unit Price"
+msgstr ""
+
+#. module: product_pack
+#: model:ir.ui.view,arch_db:product_pack.view_order_line_form2
+msgid "or"
+msgstr ""
+
+#. module: product_pack
+#: model:ir.model,name:product_pack.model_product_pack_line
+msgid "product.pack.line"
 msgstr ""
