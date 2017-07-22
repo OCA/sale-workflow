@@ -10,7 +10,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: sale-workflow (8.0)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-01-04 10:48+0000\n"
+"POT-Creation-Date: 2017-07-01 08:13+0000\n"
 "PO-Revision-Date: 2015-09-03 07:10+0000\n"
 "Last-Translator: <>\n"
 "Language-Team: Spanish (http://www.transifex.com/oca/OCA-sale-workflow-8-0/language/es/)\n"
@@ -257,7 +257,7 @@ msgstr "Producto"
 #. module: sale_rental
 #: field:create.rental.product,categ_id:0
 msgid "Product Category"
-msgstr ""
+msgstr "Categoría de producto"
 
 #. module: sale_rental
 #: field:create.rental.product,name:0

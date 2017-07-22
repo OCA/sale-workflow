@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: sale-workflow (8.0)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-06-22 12:41+0000\n"
+"POT-Creation-Date: 2017-07-01 08:13+0000\n"
 "PO-Revision-Date: 2015-09-03 07:10+0000\n"
 "Last-Translator: <>\n"
 "Language-Team: Romanian (http://www.transifex.com/oca/OCA-sale-workflow-8-0/language/ro/)\n"
@@ -82,7 +82,7 @@ msgstr ""
 #. module: sale_quotation_sourcing
 #: model:ir.model,name:sale_quotation_sourcing.model_procurement_order
 msgid "Procurement"
-msgstr ""
+msgstr "Aprovizionare"
 
 #. module: sale_quotation_sourcing
 #: field:sale.order.line.sourcing,product_id:0
@@ -92,7 +92,7 @@ msgstr "Produs"
 #. module: sale_quotation_sourcing
 #: model:ir.model,name:sale_quotation_sourcing.model_purchase_order_line
 msgid "Purchase Order Line"
-msgstr ""
+msgstr "Linie comandă achiziție"
 
 #. module: sale_quotation_sourcing
 #: view:sale.order.sourcing:sale_quotation_sourcing.sale_order_sourcing_wizard
