@@ -91,8 +91,7 @@ class sale_order(models.Model):
                 'unrevisioned_name': self.unrevisioned_name,
             })
             prev_order = super(sale_order, self).copy(default=default)
-            for line in prev_order.order_line:
-                line.write({'state': 'cancel'})
+            prev_order.order_line.write({'state': 'cancel'})
         return prev_order
 
     @api.model
