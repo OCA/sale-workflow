@@ -24,6 +24,7 @@ Contributors
 * Lorenzo Battistini <lorenzo.battistini@agilebg.com>
 * Raphael Valyi <rvalyi@akretion.com>
 * Alexandre Fayolle <alexandre.fayolle@camptocamp.com>
+* Juan Ignacio Úbeda <juani@aizean.com>
 
 Maintainer
 ----------

@@ -90,7 +90,10 @@ class sale_order(models.Model):
                 'current_revision_id': self.id,
                 'unrevisioned_name': self.unrevisioned_name,
             })
-        return super(sale_order, self).copy(default=default)
+            prev_order = super(sale_order, self).copy(default=default)
+            for line in prev_order.order_line:
+                line.write({'state': 'cancel'})
+        return prev_order
 
     @api.model
     def create(self, values):
