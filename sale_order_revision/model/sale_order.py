@@ -91,7 +91,8 @@ class sale_order(models.Model):
                 'unrevisioned_name': self.unrevisioned_name,
             })
         prev_order = super(sale_order, self).copy(default=default)
-        prev_order.order_line.write({'state': 'cancel'})
+        if self.env.context.get('new_sale_revision'):
+            prev_order.order_line.write({'state': 'cancel'})
         return prev_order
 
     @api.model
