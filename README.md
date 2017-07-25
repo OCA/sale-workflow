@@ -28,6 +28,7 @@ addon | version | summary
 [sale_automatic_workflow_exception](sale_automatic_workflow_exception/) | 8.0.1.0.0 | Sale Automatic Workflow Exception
 [sale_cancel_reason](sale_cancel_reason/) | 8.0.1.1.0 | Sale Cancel Reason
 [sale_change_price](sale_change_price/) | 8.0.1.0.0 | Sale Change Price
+[sale_comment_propagation](sale_comment_propagation/) | 8.0.1.0.0 | Comments for sale documents (order, picking and invoice)
 [sale_exception_nostock](sale_exception_nostock/) | 8.0.1.2.0 | Sale stock exception
 [sale_exceptions](sale_exceptions/) | 8.0.1.0.0 | Custom exceptions on sale order
 [sale_last_price_info](sale_last_price_info/) | 8.0.1.0.0 | Product Last Price Info - Sale
