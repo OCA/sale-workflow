@@ -1,3 +1,4 @@
+product-attribute
 stock-logistics-workflow
 stock-logistics-transport
 account-closing
