@@ -38,6 +38,7 @@ class ProductSetAdd(models.TransientModel):
         return {
             'order_id': sale_order_id,
             'product_id': set_line.product_id.id,
+            'product_uom': set_line.product_id.uom_id.id,
             'product_uom_qty': set_line.quantity * self.quantity,
             'sequence': max_sequence + set_line.sequence,
         }
