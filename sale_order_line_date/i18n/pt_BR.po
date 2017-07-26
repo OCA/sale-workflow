@@ -3,15 +3,15 @@
 # * sale_order_line_date
 # 
 # Translators:
-# OCA Transbot <transbot@odoo-community.org>, 2017
+# danimaribeiro <danimaribeiro@gmail.com>, 2015
 msgid ""
 msgstr ""
-"Project-Id-Version: Odoo Server 9.0c\n"
+"Project-Id-Version: odoomrp-wip (8.0)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-06-24 01:09+0000\n"
-"PO-Revision-Date: 2017-06-24 01:09+0000\n"
-"Last-Translator: OCA Transbot <transbot@odoo-community.org>, 2017\n"
-"Language-Team: Portuguese (Brazil) (https://www.transifex.com/oca/teams/23907/pt_BR/)\n"
+"POT-Creation-Date: 2015-10-07 10:45+0000\n"
+"PO-Revision-Date: 2015-10-09 03:29+0000\n"
+"Last-Translator: danimaribeiro <danimaribeiro@gmail.com>\n"
+"Language-Team: Portuguese (Brazil) (http://www.transifex.com/oca/odoomrp-wip-8-0/language/pt_BR/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
@@ -19,9 +19,9 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
 
 #. module: sale_order_line_date
-#: model:ir.model.fields,field_description:sale_order_line_date.field_sale_order_line_requested_date
-msgid "Requested date"
-msgstr ""
+#: field:sale.order.line,requested_date:0
+msgid "Requested Date"
+msgstr "Data requisitada"
 
 #. module: sale_order_line_date
 #: model:ir.model,name:sale_order_line_date.model_sale_order
@@ -32,3 +32,8 @@ msgstr "Pedido de venda"
 #: model:ir.model,name:sale_order_line_date.model_sale_order_line
 msgid "Sales Order Line"
 msgstr "Linha pedido de venda"
+
+#. module: sale_order_line_date
+#: view:sale.order:sale_order_line_date.sale_order_requested_date_form_view
+msgid "{'default_requested_date':requested_date}"
+msgstr "{'default_requested_date':requested_date}"
