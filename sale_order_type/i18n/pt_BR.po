@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: sale-workflow (8.0)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-01-04 10:47+0000\n"
-"PO-Revision-Date: 2017-01-11 15:39+0000\n"
+"POT-Creation-Date: 2017-07-25 03:02+0000\n"
+"PO-Revision-Date: 2017-07-24 17:06+0000\n"
 "Last-Translator: OCA Transbot <transbot@odoo-community.org>\n"
 "Language-Team: Portuguese (Brazil) (http://www.transifex.com/oca/OCA-sale-workflow-8-0/language/pt_BR/)\n"
 "MIME-Version: 1.0\n"
@@ -133,7 +133,7 @@ msgstr "Condições de pagamentos"
 #. module: sale_order_type
 #: model:ir.model,name:sale_order_type.model_stock_picking
 msgid "Picking List"
-msgstr ""
+msgstr "Lista de separação"
 
 #. module: sale_order_type
 #: view:sale.order.type:sale_order_type.sot_sale_order_type_search_view

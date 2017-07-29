@@ -3,6 +3,7 @@
 # * sale_comment_propagation
 # 
 # Translators:
+# Rudolf Schnapka <rs@techno-flex.de>, 2017
 # OCA Transbot <transbot@odoo-community.org>, 2017
 msgid ""
 msgstr ""
@@ -11,11 +12,11 @@ msgstr ""
 "POT-Creation-Date: 2017-07-25 03:01+0000\n"
 "PO-Revision-Date: 2017-07-25 03:01+0000\n"
 "Last-Translator: OCA Transbot <transbot@odoo-community.org>, 2017\n"
-"Language-Team: Spanish (https://www.transifex.com/oca/teams/23907/es/)\n"
+"Language-Team: German (https://www.transifex.com/oca/teams/23907/de/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
-"Language: es\n"
+"Language: de\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
 #. module: sale_comment_propagation
@@ -24,133 +25,135 @@ msgstr ""
 #: view:sale.order:sale_comment_propagation.sale_order_comments_form
 #: view:stock.picking:sale_comment_propagation.stock_picking_comments_form
 msgid "Comments"
-msgstr "Comentarios"
+msgstr "Bemerkungen"
 
 #. module: sale_comment_propagation
 #: field:res.partner,invoice_comment:0
 msgid "Comments for invoices"
-msgstr "Comentarios para facturas"
+msgstr "Vermerke zu Rechnungen"
 
 #. module: sale_comment_propagation
 #: field:res.partner,picking_comment:0
 msgid "Comments for pickings"
-msgstr ""
+msgstr "Vermerke zu Kommissionen"
 
 #. module: sale_comment_propagation
 #: field:res.partner,sale_comment:0
 msgid "Comments for sale orders"
-msgstr "Comentarios para pedidos de venta"
+msgstr "Vermerke zu Verkaufsaufträgen"
 
 #. module: sale_comment_propagation
 #: view:account.invoice:sale_comment_propagation.account_invoice_comments_form
 #: view:sale.order:sale_comment_propagation.sale_order_comments_form
 #: view:stock.picking:sale_comment_propagation.stock_picking_comments_form
 msgid "Customer observations"
-msgstr "Observaciones del cliente"
+msgstr "Kundenfeststellungen"
 
 #. module: sale_comment_propagation
 #: view:res.partner:sale_comment_propagation.res_partner_comments_form
 msgid "Internal comment displayed on customer invoices"
-msgstr "Comentario interno mostrado en las facturas de cliente"
+msgstr "Interner Vermerk, der auf Kundenrechnungen erscheint"
 
 #. module: sale_comment_propagation
 #: view:res.partner:sale_comment_propagation.res_partner_comments_form
 msgid "Internal comment displayed on delivery orders"
-msgstr "Comentario interno mostrado en ordenes de entrega"
+msgstr "Interner Vermerk, auf Lieferscheinen angezeigt"
 
 #. module: sale_comment_propagation
 #: view:res.partner:sale_comment_propagation.res_partner_comments_form
 msgid "Internal comment displayed on delivery orders (it will be propagated)"
-msgstr "Comentario interno mostrado en ordenes de entrega (se propagará)"
+msgstr ""
+"Interner Vermerk, auf Lieferaufträgen angezeigt (wird fortgeschrieben)"
 
 #. module: sale_comment_propagation
 #: view:res.partner:sale_comment_propagation.res_partner_comments_form
 msgid "Internal comment displayed on sale orders"
-msgstr "Comentario interno mostrado en pedido de venta"
+msgstr "Interner Vermerk, auf Verkaufsaufträgen angezeigt"
 
 #. module: sale_comment_propagation
 #: view:res.partner:sale_comment_propagation.res_partner_comments_form
 msgid "Internal comment displayed on sale orders (it will be propagated)"
-msgstr "Comentario interno mostrado en pedido de venta (se propagará)"
+msgstr ""
+"Interner Vermerk, angezeigt auf Verkaufsaufträgen (wird fortgeschrieben)"
 
 #. module: sale_comment_propagation
 #: field:account.invoice,sale_comment:0 field:sale.order,comment:0
 #: field:stock.picking,sale_comment:0
 msgid "Internal comments"
-msgstr "Comentarios internos"
+msgstr "Interne Vermerke"
 
 #. module: sale_comment_propagation
 #: view:sale.order:sale_comment_propagation.sale_order_comments_form
 #: view:stock.picking:sale_comment_propagation.stock_picking_comments_form
 msgid "Internal customer notes (it will be propagated), see in partner..."
-msgstr "Notas internas de cliente (se propagarán), ver en empresa..."
+msgstr "Interne Kundenvermerke (werden fortgeschrieben), siehe Partner..."
 
 #. module: sale_comment_propagation
 #: view:account.invoice:sale_comment_propagation.account_invoice_comments_form
 #: view:sale.order:sale_comment_propagation.sale_order_comments_form
 #: view:stock.picking:sale_comment_propagation.stock_picking_comments_form
 msgid "Internal customer notes, see in partner..."
-msgstr "Notas internas de cliente, ver en empresa..."
+msgstr "Interne Kundenvermerke, siehe Partner..."
 
 #. module: sale_comment_propagation
 #: model:ir.model,name:sale_comment_propagation.model_account_invoice
 msgid "Invoice"
-msgstr "Factura"
+msgstr "Rechnung"
 
 #. module: sale_comment_propagation
 #: view:res.partner:sale_comment_propagation.res_partner_comments_form
 msgid "Invoices"
-msgstr "Facturas"
+msgstr "Rechnungen"
 
 #. module: sale_comment_propagation
 #: model:ir.model,name:sale_comment_propagation.model_res_partner
 msgid "Partner"
-msgstr "Empresa"
+msgstr "Partner"
 
 #. module: sale_comment_propagation
 #: model:ir.model,name:sale_comment_propagation.model_stock_picking
 msgid "Picking List"
-msgstr "Albarán"
+msgstr "Pickliste"
 
 #. module: sale_comment_propagation
 #: view:res.partner:sale_comment_propagation.res_partner_comments_form
 msgid "Pickings"
-msgstr "Albaranes"
+msgstr "Kommissionen"
 
 #. module: sale_comment_propagation
 #: view:res.partner:sale_comment_propagation.res_partner_comments_form
 #: view:sale.order:sale_comment_propagation.sale_order_comments_form
 #: view:stock.picking:sale_comment_propagation.stock_picking_comments_form
 msgid "Propagated comments"
-msgstr "Comentarios propagados"
+msgstr "Fortgeschriebene Vermerke"
 
 #. module: sale_comment_propagation
 #: field:res.partner,picking_propagated_comment:0
 msgid "Propagated comments for pickings"
-msgstr "Comentarios propagados para albaranes"
+msgstr "Fortgeschriebene Vermerke zu Kommissionierungen"
 
 #. module: sale_comment_propagation
 #: field:res.partner,sale_propagated_comment:0
 msgid "Propagated comments for sale orders"
-msgstr "Comentarios propagados para pedidos de venta"
+msgstr "Fortgeschriebene Vermerke zu Verkaufsaufträgen"
 
 #. module: sale_comment_propagation
 #: field:sale.order,propagated_comment:0
 #: field:stock.picking,sale_propagated_comment:0
 msgid "Propagated internal comments"
-msgstr "Comentarios interno propagado"
+msgstr "Fortgeschriebene interne Vermerke"
 
 #. module: sale_comment_propagation
 #: view:res.partner:sale_comment_propagation.res_partner_comments_form
 msgid "Sale Orders"
-msgstr "Pedidos de venta"
+msgstr "Verkaufsaufträge"
 
 #. module: sale_comment_propagation
 #: view:res.partner:sale_comment_propagation.res_partner_comments_form
 msgid "Sale observations"
-msgstr "Observaciones de venta"
+msgstr "Verkaufsfeststellungen"
 
 #. module: sale_comment_propagation
 #: model:ir.model,name:sale_comment_propagation.model_sale_order
 msgid "Sales Order"
-msgstr "Pedido de venta"
+msgstr "Verkaufsauftrag"

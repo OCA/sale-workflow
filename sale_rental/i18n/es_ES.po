@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: sale-workflow (8.0)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-04-04 03:01+0000\n"
+"POT-Creation-Date: 2017-07-25 03:03+0000\n"
 "PO-Revision-Date: 2015-09-03 07:10+0000\n"
 "Last-Translator: <>\n"
 "Language-Team: Spanish (Spain) (http://www.transifex.com/oca/OCA-sale-workflow-8-0/language/es_ES/)\n"
@@ -254,7 +254,7 @@ msgstr "Producto"
 #. module: sale_rental
 #: field:create.rental.product,categ_id:0
 msgid "Product Category"
-msgstr ""
+msgstr "Categoría de producto"
 
 #. module: sale_rental
 #: field:create.rental.product,name:0
@@ -552,7 +552,7 @@ msgstr ""
 #. module: sale_rental
 #: model:ir.model,name:sale_rental.model_stock_warehouse
 msgid "Warehouse"
-msgstr ""
+msgstr "Almacén"
 
 #. module: sale_rental
 #: code:addons/sale_rental/rental.py:250
