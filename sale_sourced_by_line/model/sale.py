@@ -61,4 +61,6 @@ class SaleOrderLine(models.Model):
         # Check priority
         if key[0] >= priority:
             return key
-        return priority, self.warehouse_id.id
+        wh_id = self.warehouse_id.id if self.warehouse_id else \
+            self.order_id.warehouse_id.id
+        return priority, wh_id
