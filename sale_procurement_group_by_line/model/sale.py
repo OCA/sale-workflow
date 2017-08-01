@@ -49,6 +49,7 @@ class SaleOrderLine(models.Model):
         procurement groups
 
         """
+        self.ensure_one()
         return 8, self.order_id.id
 
     @api.multi
