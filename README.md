@@ -30,6 +30,7 @@ addon | version | summary
 [sale_order_lot_generator](sale_order_lot_generator/) | 10.0.0.0.1 | sale_order_lot_generator
 [sale_order_lot_selection](sale_order_lot_selection/) | 10.0.1.0.0 | Sale Order Lot Selection
 [sale_order_margin_percent](sale_order_margin_percent/) | 10.0.1.0.0 | Show Percent in sale order
+[sale_order_price_recalculation](sale_order_price_recalculation/) | 10.0.1.0.0 | Price recalculation in sales orders
 [sale_order_revision](sale_order_revision/) | 10.0.1.0.0 | Sale order revisions
 [sale_order_type](sale_order_type/) | 10.0.1.0.0 | Sale Order Type
 [sale_owner_stock_sourcing](sale_owner_stock_sourcing/) | 10.0.1.0.0 | Manage stock ownership on sale order lines
@@ -64,7 +65,6 @@ addon | version | summary
 [sale_order_add_variants](sale_order_add_variants/) | 8.0.0.1.0 (unported) | Add variants from template into sale order
 [sale_order_force_number](sale_order_force_number/) | 0.1 (unported) | Force sale orders numeration
 [sale_order_line_description](sale_order_line_description/) | 8.0.1.0.0 (unported) | Sale order line description
-[sale_order_price_recalculation](sale_order_price_recalculation/) | 8.0.1.0.0 (unported) | Price recalculation in sales orders
 [sale_packaging_price](sale_packaging_price/) | 9.0.1.0.0 (unported) | Sale Packaging Price
 [sale_partner_order_policy](sale_partner_order_policy/) | 8.0.1.0.0 (unported) | Adds customer create invoice method on partner form
 [sale_payment_term_interest](sale_payment_term_interest/) | 8.0.1.0.0 (unported) | Sales Payment Term Interests
