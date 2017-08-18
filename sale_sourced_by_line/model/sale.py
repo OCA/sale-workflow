@@ -5,7 +5,7 @@
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl.html).
 
 
-from openerp import api, fields, models
+from odoo import api, fields, models
 
 
 class SaleOrder(models.Model):
@@ -44,8 +44,8 @@ class SaleOrderLine(models.Model):
 
     @api.multi
     def _prepare_order_line_procurement(self, group_id=False):
-        values = super(SaleOrderLine,
-                       self)._prepare_order_line_procurement(group_id=group_id)
+        values = super(SaleOrderLine, self).\
+            _prepare_order_line_procurement(group_id=group_id)
         if self.warehouse_id:
             values['warehouse_id'] = self.warehouse_id.id
         return values
