@@ -1,24 +1,8 @@
 # -*- coding: utf-8 -*-
-#
-#
-#    Author: Yannick Vaucher
-#    Copyright 2014 Camptocamp SA
-#
-#    This program is free software: you can redistribute it and/or modify
-#    it under the terms of the GNU Affero General Public License as
-#    published by the Free Software Foundation, either version 3 of the
-#    License, or (at your option) any later version.
-#
-#    This program is distributed in the hope that it will be useful,
-#    but WITHOUT ANY WARRANTY; without even the implied warranty of
-#    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-#    GNU Affero General Public License for more details.
-#
-#    You should have received a copy of the GNU Affero General Public License
-#    along with this program.  If not, see <http://www.gnu.org/licenses/>.
-#
-#
-from openerp.tests.common import TransactionCase
+# Copyright 2014 Camptocamp SA - Yannick Vaucher
+# Copyright 2017 Eficent Business and IT Consulting Services S.L.
+# License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl.html).
+from odoo.tests.common import TransactionCase
 
 
 class TestSaleIsDelivered(TransactionCase):
@@ -83,26 +67,26 @@ class TestSaleIsDelivered(TransactionCase):
 
         """
         super(TestSaleIsDelivered, self).setUp()
-        SO = self.env['sale.order']
-        SOL = self.env['sale.order.line']
-        Product = self.env['product.product']
-        Procurement = self.env['procurement.order']
-        ProcurementGroup = self.env['procurement.group']
-        self.sale = SO.new()
-        self.sale_line1 = SOL.new()
-        self.sale_line2 = SOL.new()
+        so = self.env['sale.order']
+        sol = self.env['sale.order.line']
+        product = self.env['product.product']
+        procurement = self.env['procurement.order']
+        procurement_group = self.env['procurement.group']
+        self.sale = so.new()
+        self.sale_line1 = sol.new()
+        self.sale_line2 = sol.new()
         self.sale_line1.order_id = self.sale
         self.sale_line2.order_id = self.sale
 
-        self.sale.order_line = SOL.browse([self.sale_line1.id,
+        self.sale.order_line = sol.browse([self.sale_line1.id,
                                            self.sale_line2.id])
 
-        self.proc1 = Procurement.new()
-        self.proc_group1 = ProcurementGroup.new()
+        self.proc1 = procurement.new()
+        self.proc_group1 = procurement_group.new()
         self.proc_group1.procurement_ids = self.proc1
 
-        self.proc2 = Procurement.new()
-        self.proc_group2 = ProcurementGroup.new()
+        self.proc2 = procurement.new()
+        self.proc_group2 = procurement_group.new()
         self.proc_group2.procurement_ids = self.proc2
 
-        self.service_product = Product.new({'type': 'service'})
+        self.service_product = product.new({'type': 'service'})

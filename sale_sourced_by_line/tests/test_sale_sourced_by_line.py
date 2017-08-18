@@ -4,7 +4,7 @@
 # © 2016 Serpent Consulting Services Pvt. Ltd.
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl.html).
 
-from openerp.tests.common import TransactionCase
+from odoo.tests.common import TransactionCase
 
 
 class TestSaleSourcedByLine(TransactionCase):
@@ -17,7 +17,7 @@ class TestSaleSourcedByLine(TransactionCase):
 
         # Refs
         self.customer = self.env.ref('base.res_partner_2')
-        self.product_1 = self.env.ref('product.product_product_32')
+        self.product_1 = self.env.ref('product.product_product_27')
         self.product_2 = self.env.ref('product.product_product_24')
         self.warehouse_shop0 = self.env.ref('stock.stock_warehouse_shop0')
         self.warehouse0 = self.env.ref('stock.warehouse0')
