@@ -4,7 +4,7 @@
     'name': 'Sale product set',
     'category': 'Sale',
     'author': 'Anybox, Odoo Community Association (OCA)',
-    'version': '10.0.1.0.0',
+    'version': '10.0.1.0.1',
     'sequence': 150,
     'website': 'http://anybox.fr',
     'summary': "Sale product set",
