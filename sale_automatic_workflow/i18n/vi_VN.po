@@ -8,8 +8,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 9.0c\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-12-31 01:43+0000\n"
-"PO-Revision-Date: 2016-12-31 01:43+0000\n"
+"POT-Creation-Date: 2017-08-18 12:46+0000\n"
+"PO-Revision-Date: 2017-08-18 12:46+0000\n"
 "Last-Translator: OCA Transbot <transbot@odoo-community.org>, 2016\n"
 "Language-Team: Vietnamese (Viet Nam) (https://www.transifex.com/oca/teams/23907/vi_VN/)\n"
 "MIME-Version: 1.0\n"
@@ -17,6 +17,11 @@ msgstr ""
 "Content-Transfer-Encoding: \n"
 "Language: vi_VN\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
+
+#. module: sale_automatic_workflow
+#: model:ir.model.fields,field_description:sale_automatic_workflow.field_sale_order_all_qty_delivered
+msgid "All quantities delivered"
+msgstr ""
 
 #. module: sale_automatic_workflow
 #: model:ir.actions.act_window,name:sale_automatic_workflow.act_sale_workflow_process_form
@@ -168,7 +173,7 @@ msgstr "Cập nhật lần cuối vào"
 #. module: sale_automatic_workflow
 #: model:ir.model.fields,field_description:sale_automatic_workflow.field_sale_workflow_process_name
 msgid "Name"
-msgstr ""
+msgstr "Tên"
 
 #. module: sale_automatic_workflow
 #: model:ir.ui.view,arch_db:sale_automatic_workflow.sale_workflow_process_view_form
@@ -293,7 +298,7 @@ msgid "Workflow Options"
 msgstr ""
 
 #. module: sale_automatic_workflow
-#: code:addons/sale_automatic_workflow/models/sale.py:41
+#: code:addons/sale_automatic_workflow/models/sale.py:60
 #, python-format
 msgid "Workflow Warning"
 msgstr ""
