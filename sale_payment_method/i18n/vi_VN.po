@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: sale-workflow (8.0)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-12-24 04:48+0000\n"
-"PO-Revision-Date: 2016-12-27 08:24+0000\n"
+"POT-Creation-Date: 2017-07-29 07:54+0000\n"
+"PO-Revision-Date: 2017-08-11 11:56+0000\n"
 "Last-Translator: OCA Transbot <transbot@odoo-community.org>\n"
 "Language-Team: Vietnamese (Viet Nam) (http://www.transifex.com/oca/OCA-sale-workflow-8-0/language/vi_VN/)\n"
 "MIME-Version: 1.0\n"
@@ -139,7 +139,7 @@ msgstr "Cập nhật lần cuối vào"
 #. module: sale_payment_method
 #: field:payment.method,name:0
 msgid "Name"
-msgstr ""
+msgstr "Tên"
 
 #. module: sale_payment_method
 #: view:sale.order:sale_payment_method.view_sales_order_filter
