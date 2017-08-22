@@ -98,4 +98,4 @@ class StockProductionLot(models.Model):
     option_ids = fields.Many2many(
         comodel_name='sale.order.line.option',
         relation='option_lot_rel', column1='lot_id', column2='option_id',
-        string='Option lines', oldname='optional_bom_line_ids')
+        string='Option lines')

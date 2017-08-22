@@ -1,5 +1,6 @@
 # coding: utf-8
 # © 2015 Akretion, Valentin CHEMIERE <valentin.chemiere@akretion.com>
+# © 2017 David BEAL @ Akretion
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
 
 from openerp import fields, api, models
@@ -18,17 +19,31 @@ class SaleOrderLine(models.Model):
     display_option = fields.Boolean(
         help="Technical: allow conditional options field display")
 
+    @api.model
+    def create(self, vals):
+        if 'product_id' in vals:
+            product = self.env['product.product'].browse(vals['product_id'])
+            price_unit = vals.get('price_unit', 0.0)
+            vals.update(self._set_product(product, price_unit))
+        return super(SaleOrderLine, self).create(vals)
+
     @api.onchange('product_id')
     def product_id_change(self):
         res = super(SaleOrderLine, self).product_id_change()
-        display_option, option_lines = False, []
         if self.product_id:
-            display_option, option_lines = self._set_option_lines(
-                self.product_id)
-        self.base_price_unit = self.price_unit
-        self.display_option = display_option
-        self.option_ids = option_lines
+            implieds = self._set_product(self.product_id, self.price_unit)
+            for field in implieds:
+                self[field] = implieds[field]
         return res
+
+    @api.model
+    def _set_product(self, product, price_unit):
+        """ Shared code between onchange and create/write methods """
+        implied = {}
+        implied['display_option'], implied['option_ids'] = \
+            self._set_option_lines(product)
+        implied['base_price_unit'] = price_unit
+        return implied
 
     @api.model
     def _set_option_lines(self, product):
@@ -46,19 +61,6 @@ class SaleOrderLine(models.Model):
         if bline:
             display_option = True
         return (display_option, lines)
-
-    def _onchange_eval(self, field_name, onchange, result):
-        super(SaleOrderLine, self)._onchange_eval(field_name, onchange, result)
-        # As onchange is an old api version we have to hack to update
-        # the price unit with the option value
-        if 'product_id_change' in onchange:
-            self._onchange_option()
-
-        # For some strange reason changing the qty of the product in the
-        # option will not recompute the price unit
-        # in order to be sure to recompute the price for it here
-        if field_name == 'option_ids':
-            self._onchange_option()
 
     @api.onchange('option_ids', 'base_price_unit')
     def _onchange_option(self):
