@@ -43,26 +43,21 @@ class MrpBomLine(models.Model):
             name=name, args=new_domain, operator=operator, limit=limit)
         return res
 
-    # porting to new api when it'll be generalised in core (v10)
-    def search(self, cr, uid, domain, offset=0, limit=None,
-               order=None, context=None, count=False):
-        new_domain = self._filter_bom_lines_for_sale_line_option(
-            cr, uid, domain, context=context)
+    def search(self, domain, offset=0, limit=None, order=None, count=False):
+        new_domain = self._filter_bom_lines_for_sale_line_option(domain)
         return super(MrpBomLine, self).search(
-            cr, uid, new_domain, offset=offset, limit=limit, order=order,
-            context=context, count=count)
+            new_domain, offset=offset, limit=limit, order=order, count=count)
 
     @api.model
     def _filter_bom_lines_for_sale_line_option(self, domain):
-        product_id = self._context.get('filter_bom_with_product_id')
-        if product_id:
-            product = self.env['product.product'].browse(product_id)
+        product = self._context.get('filter_bom_with_product')
+        if product:
             new_domain = [
                 '|',
                 '&',
                 ('bom_id.product_tmpl_id', '=', product.product_tmpl_id.id),
                 ('bom_id.product_id', '=', False),
-                ('bom_id.product_id', '=', product_id),
+                ('bom_id.product_id', '=', product.id),
                 ('option_id', '!=', False)]
             domain += new_domain
         return domain

@@ -18,39 +18,25 @@ class SaleOrderLine(models.Model):
     display_option = fields.Boolean(
         help="Technical: allow conditional options field display")
 
-    def product_id_change(self, cr, uid, ids, pricelist, product,
-                          qty=0,
-                          uom=False,
-                          qty_uos=0,
-                          uos=False,
-                          name='',
-                          partner_id=False,
-                          lang=False,
-                          update_tax=True,
-                          date_order=False,
-                          packaging=False,
-                          fiscal_position=False,
-                          flag=False,
-                          context=None):
-        res = super(SaleOrderLine, self).product_id_change(
-            cr, uid, ids, pricelist, product, qty, uom, qty_uos, uos, name,
-            partner_id, lang, update_tax, date_order, packaging,
-            fiscal_position, flag, context)
-        if product:
-            res['value']['base_price_unit'] = res['value']['price_unit']
+    @api.onchange('product_id')
+    def product_id_change(self):
+        res = super(SaleOrderLine, self).product_id_change()
+        display_option, option_lines = False, []
+        if self.product_id:
             display_option, option_lines = self._set_option_lines(
-                cr, uid, product, context=context)
-            res['value']['display_option'] = display_option
-            res['value']['option_ids'] = option_lines
+                self.product_id)
+        self.base_price_unit = self.price_unit
+        self.display_option = display_option
+        self.option_ids = option_lines
         return res
 
     @api.model
-    def _set_option_lines(self, product_id):
+    def _set_option_lines(self, product):
         lines = []
         display_option = False
         bline = None
         bom_lines = self.env['mrp.bom.line'].with_context(
-            filter_bom_with_product_id=product_id).search([])
+            filter_bom_with_product=product).search([])
         for bline in bom_lines:
             if bline.default_qty:
                 vals = {'bom_line_id': bline.id,
@@ -61,7 +47,6 @@ class SaleOrderLine(models.Model):
             display_option = True
         return (display_option, lines)
 
-    @api.multi
     def _onchange_eval(self, field_name, onchange, result):
         super(SaleOrderLine, self)._onchange_eval(field_name, onchange, result)
         # As onchange is an old api version we have to hack to update
@@ -75,9 +60,7 @@ class SaleOrderLine(models.Model):
         if field_name == 'option_ids':
             self._onchange_option()
 
-    @api.onchange(
-        'option_ids',
-        'base_price_unit')
+    @api.onchange('option_ids', 'base_price_unit')
     def _onchange_option(self):
         final_options_price = 0
         for option in self.option_ids:
@@ -120,7 +103,7 @@ class SaleOrderLineOption(models.Model):
         line_product_id = self.env.context.get('line_product_id')
         if line_product_id:
             bom_lines = self.env['mrp.bom.line'].with_context(
-                filter_bom_with_product_id=line_product_id).search([])
+                filter_bom_with_product=line_product_id).search([])
             res['product_ids'] = [x.product_id.id for x in bom_lines]
         return res
 
@@ -129,11 +112,10 @@ class SaleOrderLineOption(models.Model):
         """ we need to store bom_line_id to compute option price """
         line_product_id = self.env.context.get('line_product_id')
         bom_line = self.env['mrp.bom.line'].with_context(
-            filter_bom_with_product_id=line_product_id).search([
+            filter_bom_with_product=line_product_id).search([
                 ('product_id', '=', self.product_id.id)], limit=1)
         self.bom_line_id = bom_line and bom_line.id
 
-    @api.multi
     def _compute_opt_products(self):
         """ required to set available options """
         prd_ids = [x.product_id.id
@@ -141,11 +123,10 @@ class SaleOrderLineOption(models.Model):
         for rec in self:
             rec.product_ids = prd_ids
 
-    @api.multi
     def _get_bom_line_price(self):
         self.ensure_one()
         pricelist = self.sale_line_id.pricelist_id.with_context({
-            'uom': self.bom_line_id.product_uom.id,
+            'uom': self.bom_line_id.product_uom_id.id,
             'date': self.sale_line_id.order_id.date_order,
         })
         price = pricelist.price_get(
@@ -154,7 +135,6 @@ class SaleOrderLineOption(models.Model):
             self.sale_line_id.order_id.partner_id.id)
         return price[pricelist.id] * self.bom_line_id.product_qty * self.qty
 
-    @api.multi
     @api.depends('qty', 'product_id')
     def _compute_price(self):
         for record in self:

@@ -33,7 +33,7 @@
         </field>
     </record>
 
-    <record model="ir.actions.act_window" id="act_open_bom_option_view">
+     <record model="ir.actions.act_window" id="act_open_bom_option_view">
         <field name="name">BoM Option</field>
         <field name="type">ir.actions.act_window</field>
         <field name="res_model">mrp.bom.line.option</field>
@@ -62,11 +62,11 @@
         sequence="20"
         action="act_open_bom_option_view"/>
 
-    <record id="view_bom_line_form" model="ir.ui.view">
+     <record id="view_bom_line_form" model="ir.ui.view">
         <field name="model">mrp.bom</field>
         <field name="inherit_id" ref="mrp.mrp_bom_form_view"/>
         <field name="arch" type="xml">
-            <xpath expr="//field[@name='bom_line_ids']/tree/field[@name='product_efficiency']" position="after">
+            <xpath expr="//field[@name='bom_line_ids']/tree/field[@name='product_uom_id']" position="after">
                 <field name="option_id"/>
                 <field name="default_qty"/>
             </xpath>
@@ -82,6 +82,7 @@
             </field>
         </field>
     </record>
+
 
 </data>
 </openerp>

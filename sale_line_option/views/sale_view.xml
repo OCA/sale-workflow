@@ -16,7 +16,8 @@
             </xpath>
             <xpath expr="//field[@name='order_line']/form/label[@for='name']" position="before">
                 <div>
-                    <field name="display_option" invisible="1"/>
+                    <!-- <field name="display_option" invisible="1"/> -->
+                    <field name="display_option"/>
                     <label for="option_ids" attrs="{'invisible': [('display_option', '=', False)]}"/>
                     <field name="option_ids" context="{'line_product_id': product_id}"
                            attrs="{'invisible': [('display_option', '=', False)]}">
@@ -37,7 +38,7 @@
         </field>
     </record>
 
-    <record id="view_order_line_form2" model="ir.ui.view">
+<!--     <record id="view_order_line_form2" model="ir.ui.view">
         <field name="model">sale.order.line</field>
         <field name="inherit_id" ref="sale.view_order_line_form2"/>
         <field name="arch" type="xml">
@@ -59,6 +60,6 @@
         </field>
     </record>
 
-
+ -->
 </data>
 </openerp>
