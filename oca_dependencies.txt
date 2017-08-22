@@ -3,3 +3,4 @@ stock-logistics-workflow
 stock-logistics-transport
 account-closing
 server-tools
+server-tools-ak https://github.com/akretion/server-tools.git 10-onchange-rule

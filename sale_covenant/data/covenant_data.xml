@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<odoo noupdate="1">
+
+    <record id="sale_covenant_data" model="sale.covenant">
+        <field name="name">Main Market</field>
+        <field name="code">HG785P</field>
+        <field name="partner_id" ref="base.res_partner_10"/>
+        <field name="comment">
+Here is miscellanous commitments for this market:
+- ...
+- ...
+        </field>
+        <field name="image" type="base64" file="sale_covenant/static/description/icon.png"/>
+    </record>
+
+</odoo>

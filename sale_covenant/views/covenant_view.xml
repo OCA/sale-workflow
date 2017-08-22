@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<odoo>
+
+    <record id="view_sale_covenant_tree" model="ir.ui.view">
+        <field name="model">sale.covenant</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="name"/>
+                <field name="active"/>
+                <field name="company_id" groups="base.group_multi_company" options="{'no_create': True}"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="view_sale_covenant_form_view" model="ir.ui.view">
+        <field name="model">sale.covenant</field>
+        <field name="arch" type="xml">
+            <form>
+              <sheet>
+                    <group>
+                        <div>
+                        <h1>
+                            <field name="name" placeholder="Name"/>
+                        </h1>
+                        </div>
+                        <div class="oe_right oe_button_box" name="button_box">
+                            <button name="toggle_active" type="object"
+                                    class="oe_stat_button" icon="fa-archive">
+                                <field name="active" widget="boolean_button"
+                                       options="{'terminology': 'archive'}"/>
+                            </button>
+                        <field name="image" widget="image" nolabel="1" class="oe_avatar oe_right"/>
+                        </div>
+                    </group>
+                    <group col="4">
+                        <field name="code"/>
+                        <field name="partner_id"/>
+                        <field name="company_id" groups="base.group_multi_company" options="{'no_create': True}"/>
+                    </group>
+                    <group col="4">
+                        <separator string="Comments" colspan="4"/>
+                        <field name="comment" nolabel="1"/>
+                        <separator string="Sales" colspan="4"/>
+                        <field name="sale_ids" nolabel="1"/>
+                </group>
+              </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="sale_covenant_action" model="ir.actions.act_window">
+        <field name="name">Sale Covenants</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">sale.covenant</field>
+        <field name="view_mode">tree,form</field>
+        <field name="domain">[]</field>
+        <field name="context">{}</field>
+    </record>
+
+    <menuitem action="sale_covenant_action" name="Covenants"
+              id="menu_sale_covenant_action"
+              parent="sale.menu_sales_config" sequence="10"/>
+
+</odoo>
