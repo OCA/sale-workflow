@@ -13,11 +13,6 @@
         <field name="name">Config with opts3</field>
         <field name="default_code">CFG3</field>
     </record>
-    <record id="option_type" model="mrp.bom.line.option">
-        <field name="name">Test</field>
-        <field name="type">select</field>
-    </record>
-
 
     <record id="bom_pc_assmb_option1" model="mrp.bom">
         <field name="product_tmpl_id"
@@ -28,24 +23,24 @@
         <field name="bom_id" ref="sale_line_option.bom_pc_assmb_option1"/>
         <field name="product_id" ref="product.product_product_20"/>
         <field name="default_qty">1</field>
-        <field name="option_id" ref="sale_line_option.option_type"/>
+        <field name="option_id" ref="sale_line_option.option_type_select"/>
     </record>
     <record id="bom_line_pc_assmb_option12" model="mrp.bom.line">
         <field name="bom_id" ref="sale_line_option.bom_pc_assmb_option1"/>
         <field name="product_id" ref="product.product_product_12"/>
-        <field name="option_id" ref="sale_line_option.option_type"/>
+        <field name="option_id" ref="sale_line_option.option_type_select"/>
     </record>
     <record id="bom_line_pc_assmb_option13" model="mrp.bom.line">
         <field name="bom_id" ref="sale_line_option.bom_pc_assmb_option1"/>
         <field name="product_id" ref="product.product_product_13"/>
         <field name="default_qty">2</field>
-        <field name="option_id" ref="sale_line_option.option_type"/>
+        <field name="option_id" ref="sale_line_option.option_type_select"/>
     </record>
     <record id="bom_line_pc_assmb_option14" model="mrp.bom.line">
         <field name="bom_id" ref="sale_line_option.bom_pc_assmb_option1"/>
         <field name="product_id" ref="product.product_product_10"/>
         <field name="default_qty">1</field>
-        <field name="option_id" ref="sale_line_option.option_type"/>
+        <field name="option_id" ref="sale_line_option.option_type_select"/>
     </record>
 
     <record id="bom_pc_assmb_option2" model="mrp.bom">
@@ -56,13 +51,13 @@
         <field name="bom_id" ref="sale_line_option.bom_pc_assmb_option2"/>
         <field name="product_id" ref="product.product_product_17"/>
         <field name="default_qty">2</field>
-        <field name="option_id" ref="sale_line_option.option_type"/>
+        <field name="option_id" ref="sale_line_option.option_type_select"/>
     </record>
     <record id="bom_line_pc_assmb_option22" model="mrp.bom.line">
         <field name="bom_id" ref="sale_line_option.bom_pc_assmb_option2"/>
         <field name="product_id" ref="product.product_product_13"/>
         <field name="default_qty">4</field>
-        <field name="option_id" ref="sale_line_option.option_type"/>
+        <field name="option_id" ref="sale_line_option.option_type_select"/>
     </record>
 
     <record id="bom_assmb_option3" model="mrp.bom">
@@ -73,13 +68,13 @@
         <field name="bom_id" ref="sale_line_option.bom_assmb_option3"/>
         <field name="product_id" ref="stock.product_icecream"/>
         <field name="default_qty">2</field>
-        <field name="option_id" ref="sale_line_option.option_type"/>
+        <field name="option_id" ref="sale_line_option.option_type_select"/>
     </record>
     <record id="bom_line_assmb_option32" model="mrp.bom.line">
         <field name="bom_id" ref="sale_line_option.bom_assmb_option3"/>
         <field name="product_id" ref="product.product_product_24"/>
         <field name="default_qty">1</field>
-        <field name="option_id" ref="sale_line_option.option_type"/>
+        <field name="option_id" ref="sale_line_option.option_type_select"/>
     </record>
 
     <record id="sale_order_option" model="sale.order">

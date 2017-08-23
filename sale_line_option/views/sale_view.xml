@@ -38,28 +38,6 @@
         </field>
     </record>
 
-<!--     <record id="view_order_line_form2" model="ir.ui.view">
-        <field name="model">sale.order.line</field>
-        <field name="inherit_id" ref="sale.view_order_line_form2"/>
-        <field name="arch" type="xml">
-            <xpath expr="//label[@for='name']" position="before">
-                <field name="display_option" invisible="1"/>
-                <label for="option_ids" attrs="{'invisible': [('display_option', '=', False)]}"/>
-                <field name="option_ids" context="{'line_product_id': product_id}"
-                       attrs="{'invisible': [('display_option', '=', False)]}">
-                    <tree editable="bottom">
-                        <field name="bom_line_id" invisible="1"/>
-                        <field name="product_ids" invisible="1"/>
-                        <field name="product_id"
-                               domain="[('id', 'in', product_ids[0][2]')]"/>
-                        <field name="qty"/>
-                        <field name="line_price"/>
-                    </tree>
-                </field>
-            </xpath>
-        </field>
-    </record>
 
- -->
 </data>
 </openerp>

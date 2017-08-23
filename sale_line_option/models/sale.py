@@ -31,9 +31,10 @@ class SaleOrderLine(models.Model):
     def product_id_change(self):
         res = super(SaleOrderLine, self).product_id_change()
         if self.product_id:
-            implieds = self._set_product(self.product_id, self.price_unit)
-            for field in implieds:
-                self[field] = implieds[field]
+            self.option_ids = False
+            values = self._set_product(self.product_id, self.price_unit)
+            for field in values:
+                self[field] = values[field]
         return res
 
     @api.model

@@ -11,8 +11,8 @@ class MrpBomLineOption(models.Model):
     @api.model
     def _get_type(self):
         selection = (
-            ('select', 'selection'),
-            ('multiselect', 'multi-selection'),
+            ('select', 'Selection'),
+            ('multiselect', 'Multi-selection'),
             ('required', 'Required'),
         )
         return selection
@@ -90,12 +90,3 @@ class MrpBom(models.Model):
             if option.bom_line_id == bom_line:
                 vals['product_qty'] = vals['product_qty'] * option.qty
         return vals
-
-
-class StockProductionLot(models.Model):
-    _inherit = 'stock.production.lot'
-
-    option_ids = fields.Many2many(
-        comodel_name='sale.order.line.option',
-        relation='option_lot_rel', column1='lot_id', column2='option_id',
-        string='Option lines')
