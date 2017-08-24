@@ -81,6 +81,12 @@ class TestMultiCompany(TransactionCase):
             'country_id': self.env.ref('base.ch').id
         })
 
+        self.company_fr_daughter = self.create_company({
+            'name': 'French company daughter',
+            'currency_id': self.env.ref('base.EUR').id,
+            'country_id': self.env.ref('base.fr').id
+        })
+
         self.env.user.company_ids |= self.company_ch
         self.env.user.company_ids |= self.company_fr
 
@@ -102,6 +108,18 @@ class TestMultiCompany(TransactionCase):
             'name': 'Henniez bottle',
             'list_price': 3.0,
             'property_account_income_id': accounting_ch['income']
+        })
+
+        self.env.user.company_id = self.company_fr_daughter.id
+        accounting_fr_daughter = self.configure_basic_accounting(
+            self.company_fr_daughter.id)
+        self.customer_fr_daughter = self.create_partner('Customer FR Daughter',
+                                                        accounting_fr_daughter)
+
+        self.product_fr_daughter = self.create_product({
+            'name': 'Contrex bottle',
+            'list_price': 1.5,
+            'property_account_income_id': accounting_fr_daughter['income']
         })
 
         self.auto_wkf = self.env.ref(
@@ -136,12 +154,18 @@ class TestMultiCompany(TransactionCase):
         order_ch = self.create_auto_wkf_order(self.company_ch,
                                               self.customer_ch,
                                               self.product_ch, 10)
+        order_fr_daughter = self.create_auto_wkf_order(
+            self.company_fr_daughter, self.customer_fr_daughter,
+            self.product_fr_daughter, 4)
 
         self.assertEquals(order_fr.state, 'draft')
         self.assertEquals(order_ch.state, 'draft')
+        self.assertEquals(order_fr_daughter.state, 'draft')
 
         self.env['automatic.workflow.job'].run()
         invoice_fr = order_fr.invoice_ids
         invoice_ch = order_ch.invoice_ids
+        invoice_fr_daughter = order_fr_daughter.invoice_ids
         self.assertEquals(invoice_fr.state, 'open')
         self.assertEquals(invoice_ch.state, 'open')
+        self.assertEquals(invoice_fr_daughter.state, 'open')
