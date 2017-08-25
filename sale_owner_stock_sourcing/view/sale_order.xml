@@ -1,11 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
-<openerp>
-  <data>
+<odoo>
 
     <record id="view_order_form_inherit" model="ir.ui.view">
       <field name="name">sale.order.form</field>
       <field name="model">sale.order</field>
-      <field name="inherit_id" ref="sale_stock.view_order_form_inherit"/>
+      <field name="inherit_id" ref="sale_stock.view_order_form_inherit_sale_stock"/>
       <field name="arch" type="xml">
         <xpath expr="//field[@name='order_line']/form//field[@name='route_id']" position="before">
           <field name="stock_owner_id"/>
@@ -13,5 +12,4 @@
       </field>
     </record>
 
-  </data>
-</openerp>
+</odoo>

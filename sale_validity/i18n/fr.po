@@ -3,15 +3,16 @@
 # * sale_validity
 # 
 # Translators:
-# Pierre Verkest <pverkest@anybox.fr>, 2015
+# OCA Transbot <transbot@odoo-community.org>, 2017
+# guillaume bauer <guillaume.bauer@syentys.com>, 2017
 msgid ""
 msgstr ""
-"Project-Id-Version: sale-workflow (8.0)\n"
+"Project-Id-Version: Odoo Server 10.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-10-02 17:59+0000\n"
-"PO-Revision-Date: 2015-09-24 21:19+0000\n"
-"Last-Translator: Pierre Verkest <pverkest@anybox.fr>\n"
-"Language-Team: French (http://www.transifex.com/oca/OCA-sale-workflow-8-0/language/fr/)\n"
+"POT-Creation-Date: 2017-07-15 07:48+0000\n"
+"PO-Revision-Date: 2017-07-15 07:48+0000\n"
+"Last-Translator: guillaume bauer <guillaume.bauer@syentys.com>, 2017\n"
+"Language-Team: French (https://www.transifex.com/oca/teams/23907/fr/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
@@ -19,12 +20,16 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
 
 #. module: sale_validity
-#: help:res.company,default_sale_order_validity_days:0
+#: model:ir.model.fields,help:sale_validity.field_res_company_default_sale_order_validity_days
+#: model:ir.model.fields,help:sale_validity.field_sale_config_settings_default_sale_order_validity_days
 msgid ""
 "By default, the validity date of sale orders will be the date of the sale "
 "order plus the number of days defined in this field. If the value of this "
 "field is 0, the sale orders will not have a validity date by default."
-msgstr "Par défaut, la date de validité des bons de commande est la date du bon de commande plus le nombre de jours défini par ce champ. Si la valeur est 0, le bon de commande n'aura pas de date de validité par défaut."
+msgstr ""
+"Par défaut, la date de validité des bons de commande est la date du bon de "
+"commande plus le nombre de jours défini par ce champ. Si la valeur est 0, le"
+" bon de commande n'aura pas de date de validité par défaut."
 
 #. module: sale_validity
 #: model:ir.model,name:sale_validity.model_res_company
@@ -32,14 +37,10 @@ msgid "Companies"
 msgstr "Sociétés"
 
 #. module: sale_validity
-#: field:res.company,default_sale_order_validity_days:0
-msgid "Default Validity of Sale Orders (in days)"
-msgstr "Validité par défaut des bons de commande (en jours)"
-
-#. module: sale_validity
-#: help:sale.order,date_validity:0
-msgid "Define date until when quotation is valid"
-msgstr "Défini la date de validité du devis "
+#: model:ir.model.fields,field_description:sale_validity.field_res_company_default_sale_order_validity_days
+#: model:ir.model.fields,field_description:sale_validity.field_sale_config_settings_default_sale_order_validity_days
+msgid "Default Validity of Sale Orders"
+msgstr "Validité par défaut du bon de commande"
 
 #. module: sale_validity
 #: model:ir.model,name:sale_validity.model_sale_order
@@ -51,9 +52,16 @@ msgstr "Bon de commande"
 msgid ""
 "The value of the field 'Default Validity Duration of Sale Orders' must be "
 "positive or 0."
-msgstr "La valeur du champ 'Validité par défaut des bons de commande' doit être supérieur ou égale à 0."
+msgstr ""
+"La valeur du champ 'Validité par défaut des bons de commande' doit être "
+"supérieur ou égale à 0."
 
 #. module: sale_validity
-#: field:sale.order,date_validity:0
-msgid "Valid Until"
-msgstr "Valide jusqu'au"
+#: model:ir.ui.view,arch_db:sale_validity.view_sales_config
+msgid "days"
+msgstr "jours"
+
+#. module: sale_validity
+#: model:ir.model,name:sale_validity.model_sale_config_settings
+msgid "sale.config.settings"
+msgstr ""

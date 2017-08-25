@@ -13,11 +13,10 @@ addons:
       - python-simplejson
       - python-serial
       - python-yaml
-      - wkhtmltopdf
 
 env:
   global:
-  - VERSION="10.0" TESTS="0" LINT_CHECK="0" TRANSIFEX="0"
+  - VERSION="10.0" TESTS="0" LINT_CHECK="0" TRANSIFEX="0" WKHTMLTOPDF_VERSION="0.12.4"
   - TRANSIFEX_USER='transbot@odoo-community.org'
   - secure: mTXYvzW7/+xP465dNW0p9H+Q8jVgQXmqm8zo+ntZC6ESkTudj6xUkrjJcfzp9LGomxoG6N+6TezjFuhfGKCAc4S2manxj9YQoHvZMHJvt73VsMZU2QLfE+IMAdFS/AeBpYLNE8VvdKIGhiFwvHyRqaF0vAGwmcsOdS2NQb/hoiY=
 

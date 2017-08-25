@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+  <record id="report_configuration_form_view" model="ir.ui.view">
+    <field name="name">report.configuration.form.view</field>
+    <field name="model">sale.layout_category</field>
+    <field name="inherit_id" ref="sale.report_configuration_form_view"/>
+    <field name="arch" type="xml">
+      <field name="subtotal" position="before">
+        <field name="hidden" widget="checkbox"/>
+      </field>
+      <field name="subtotal" position="attributes">
+        <attribute name="attrs">{'invisible': [('hidden', '=', True)]}</attribute>
+      </field>
+      <field name="pagebreak" position="attributes">
+        <attribute name="attrs">{'invisible': [('hidden', '=', True)]}</attribute>
+      </field>
+    </field>
+  </record>
+
+  <record id="report_configuration_tree_view" model="ir.ui.view">
+    <field name="name">report.configuration.tree.view</field>
+    <field name="model">sale.layout_category</field>
+    <field name="inherit_id" ref="sale.report_configuration_tree_view"/>
+    <field name="arch" type="xml">
+      <field name="subtotal" position="before">
+        <field name="hidden" widget="checkbox"/>
+      </field>
+    </field>
+  </record>
+
+  <record id="report_configuration_search_view" model="ir.ui.view" >
+    <field name="name">report.configuration.search.view</field>
+    <field name="model">sale.layout_category</field>
+    <field name="inherit_id" ref="sale.report_configuration_search_view"/>
+    <field name="arch" type="xml">
+      <group position="before">
+        <filter string="Hidden" name="hidden" domain="[('hidden', '=', 'True')]"/>
+      </group>
+    </field>
+  </record>
+
+</odoo>

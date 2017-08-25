@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<openerp>
-    <data>
+<odoo>
 
         <record id="sorp_view_order_form" model="ir.ui.view">
             <field name="name">sale.order.form</field>
@@ -8,17 +7,18 @@
             <field name="inherit_id" ref="sale.view_order_form"/>
             <field name="arch" type="xml">
                 <field name="order_line" position="after">
-                    <button name="recalculate_prices"
-                            string="Recalculate prices"
-                            attrs="{'invisible': [('state', 'not in', ['draft', 'sent'])]}"
-                            type="object" colspan="4" class="oe_inline"/>
-                    <button name="recalculate_names"
-                            string="Reset descriptions"
-                            attrs="{'invisible': [('state', 'not in', ['draft', 'sent'])]}"
-                            type="object" colspan="4" class="oe_inline"/>
+                    <div class="btn-group">
+                        <button name="recalculate_prices"
+                                string="Recalculate prices"
+                                attrs="{'invisible': [('state', 'not in', ['draft', 'sent'])]}"
+                                type="object" colspan="4" class="btn-default"/>
+                        <button name="recalculate_names"
+                                string="Reset descriptions"
+                                attrs="{'invisible': [('state', 'not in', ['draft', 'sent'])]}"
+                                type="object" colspan="4" class="btn-default"/>
+                    </div>
                 </field>
             </field>
         </record>
 
-    </data>
-</openerp>
+</odoo>

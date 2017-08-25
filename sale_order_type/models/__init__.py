@@ -1,11 +1,7 @@
-# -*- encoding: utf-8 -*-
-##############################################################################
-# For copyright and license notices, see __openerp__.py file in root directory
-##############################################################################
+# -*- coding: utf-8 -*-
+# License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
-from . import account_invoice
 from . import sale_order_type
 from . import sale_order
-from . import stock_picking
 from . import res_partner
-from . import stock_move
+from . import account_invoice
