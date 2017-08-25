@@ -1,35 +1,27 @@
-#
-#
-#    OpenERP, Open Source Management Solution
-#    Copyright (C) 2004-2009 Tiny SPRL (<http://tiny.be>).
-#    Copyright (C) 2013 Agile Business Group sagl (<http://www.agilebg.com>)
-#
-#    This program is free software: you can redistribute it and/or modify
-#    it under the terms of the GNU Affero General Public License as
-#    published by the Free Software Foundation, either version 3 of the
-#    License, or (at your option) any later version.
-#
-#    This program is distributed in the hope that it will be useful,
-#    but WITHOUT ANY WARRANTY; without even the implied warranty of
-#    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-#    GNU Affero General Public License for more details.
-#
-#    You should have received a copy of the GNU Affero General Public License
-#    along with this program.  If not, see <http://www.gnu.org/licenses/>.
-#
-#
+# -*- coding: utf-8 -*-
+# © 2010-2012 Andy Lu <andy.lu@elico-corp.com> (Elico Corp)
+# © 2013 Agile Business Group sagl (<http://www.agilebg.com>)
+# © 2017 valentin vinagre  <valentin.vinagre@qubiq.es> (QubiQ)
+# License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl)
 
-from openerp import models, api
+from openerp import models, api, fields
 
 
 class SaleOrder(models.Model):
     _inherit = "sale.order"
 
-    @api.one
+    keep_name_so = fields.Boolean(string="Name SO associated",
+                                  default=False, copy=False)
+
+    @api.multi
     def copy(self, default=None):
         if default is None:
             default = {}
         default['name'] = '/'
+        if self.origin and self.origin != '':
+            default['origin'] = self.origin + ', ' + self.name
+        else:
+            default['origin'] = self.name
         return super(SaleOrder, self).copy(default=default)
 
     @api.model
@@ -40,13 +32,18 @@ class SaleOrder(models.Model):
         return super(SaleOrder, self).create(vals)
 
     @api.multi
-    def action_wait(self):
-        if super(SaleOrder, self).action_wait():
-            for sale in self:
-                quo = sale.name
-                sale.write({
-                    'origin': quo,
-                    'name': self.env['ir.sequence'].next_by_code(
-                        'sale.order')
-                })
+    def action_confirm(self):
+        if super(SaleOrder, self).action_confirm():
+            for order in self:
+                if order.state == 'sale' and not order.keep_name_so:
+                    if order.origin and order.origin != '':
+                        quo = order.origin + ', ' + order.name
+                    else:
+                        quo = order.name
+                    order.write({
+                        'origin': quo,
+                        'name': self.env['ir.sequence'].next_by_code(
+                            'sale.order'),
+                        'keep_name_so': True
+                    })
         return True
