@@ -4,4 +4,4 @@
 # Copyright 2017 valentin vinagre  <valentin.vinagre@qubiq.es> (QubiQ)
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl)
 
-from . import models
+from . import sale_order
