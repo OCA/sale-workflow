@@ -4,9 +4,9 @@
     'name': 'Sale product set',
     'category': 'Sale',
     'author': 'Anybox, Odoo Community Association (OCA)',
-    'version': '10.0.1.0.0',
+    'version': '10.0.1.0.1',
     'sequence': 150,
-    'website': 'http://anybox.fr',
+    'website': 'https://github.com/OCA/sale-workflow',
     'summary': "Sale product set",
     'depends': [
         'sale',
