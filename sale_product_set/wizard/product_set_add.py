@@ -34,10 +34,13 @@ class ProductSetAd(models.TransientModel):
 
     def prepare_sale_order_line_data(self, sale_order_id, set, set_line,
                                      max_sequence=0):
-        return {
+        sale_line = self.env['sale.order.line'].new({
             'order_id': sale_order_id,
             'product_id': set_line.product_id.id,
             'product_uom_qty': set_line.quantity * self.quantity,
             'product_uom': set_line.product_id.uom_id.id,
             'sequence': max_sequence + set_line.sequence,
-        }
+        })
+        sale_line.product_id_change()
+        line_values = sale_line._convert_to_write(sale_line._cache)
+        return line_values
