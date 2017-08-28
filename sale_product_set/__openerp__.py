@@ -3,7 +3,7 @@
 {
     'name': 'Sale product set',
     'summary': "Sale product set",
-    'version': '9.0.1.0.0',
+    'version': '9.0.1.0.1',
     'category': 'Sales',
     "website": "https://odoo-community.org/",
     'author': 'Anybox, Odoo Community Association (OCA)',
