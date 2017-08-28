@@ -81,6 +81,12 @@ class TestMultiCompany(TransactionCase):
             'country_id': self.env.ref('base.ch').id
         })
 
+        self.company_be = self.create_company({
+            'name': 'Belgian company',
+            'currency_id': self.env.ref('base.EUR').id,
+            'country_id': self.env.ref('base.be').id
+        })
+
         self.company_fr_daughter = self.create_company({
             'name': 'French company daughter',
             'currency_id': self.env.ref('base.EUR').id,
@@ -89,6 +95,7 @@ class TestMultiCompany(TransactionCase):
 
         self.env.user.company_ids |= self.company_ch
         self.env.user.company_ids |= self.company_fr
+        self.env.user.company_ids |= self.company_be
 
         self.env.user.company_id = self.company_fr.id
         accounting_fr = self.configure_basic_accounting(self.company_fr.id)
@@ -109,6 +116,45 @@ class TestMultiCompany(TransactionCase):
             'list_price': 3.0,
             'property_account_income_id': accounting_ch['income']
         })
+
+        self.env.user.company_id = self.company_be.id
+        accounting_be = self.configure_basic_accounting(self.company_be.id)
+        self.customer_be = self.env['res.partner'].create({
+            'name': 'Customer BE'
+        })
+        self.product_be = self.env['product.template'].create({
+            'name': 'SPA bottle',
+            'list_price': 1.5,
+            'type': 'consu',
+            'invoice_policy': 'order',
+        }).product_variant_id
+
+        self.env['ir.property'].create({
+            'name': 'property_account_receivable_id',
+            'company_id': self.company_be.id,
+            'type': 'many2one',
+            'fields_id': self.env.ref(
+                'account.field_res_partner_property_account_receivable_id').id,
+            'value': accounting_be['receivable']
+        })
+        self.env['ir.property'].create({
+            'name': 'property_account_payable_id',
+            'company_id': self.company_be.id,
+            'type': 'many2one',
+            'fields_id': self.env.ref(
+                'account.field_res_partner_property_account_payable_id').id,
+            'value': accounting_be['payable']
+        })
+        self.env['ir.property'].create({
+            'name': 'property_account_income_id',
+            'company_id': self.company_be.id,
+            'type': 'many2one',
+            'fields_id': self.env.ref(
+                'account.field_product_category_'
+                'property_account_income_categ_id').id,
+            'value': accounting_be['income']
+        })
+
 
         self.env.user.company_id = self.company_fr_daughter.id
         accounting_fr_daughter = self.configure_basic_accounting(
@@ -154,18 +200,33 @@ class TestMultiCompany(TransactionCase):
         order_ch = self.create_auto_wkf_order(self.company_ch,
                                               self.customer_ch,
                                               self.product_ch, 10)
+        order_be = self.create_auto_wkf_order(self.company_be,
+                                              self.customer_be,
+                                              self.product_be, 10)
+
         order_fr_daughter = self.create_auto_wkf_order(
             self.company_fr_daughter, self.customer_fr_daughter,
             self.product_fr_daughter, 4)
 
         self.assertEquals(order_fr.state, 'draft')
         self.assertEquals(order_ch.state, 'draft')
+        self.assertEquals(order_be.state, 'draft')
         self.assertEquals(order_fr_daughter.state, 'draft')
 
         self.env['automatic.workflow.job'].run()
         invoice_fr = order_fr.invoice_ids
         invoice_ch = order_ch.invoice_ids
+        invoice_be = order_be.invoice_ids
         invoice_fr_daughter = order_fr_daughter.invoice_ids
         self.assertEquals(invoice_fr.state, 'open')
+        self.assertEquals(invoice_fr.journal_id.company_id,
+                          order_fr.company_id)
         self.assertEquals(invoice_ch.state, 'open')
+        self.assertEquals(invoice_ch.journal_id.company_id,
+                          order_ch.company_id)
+        self.assertEquals(invoice_be.state, 'open')
+        self.assertEquals(invoice_be.journal_id.company_id,
+                          order_be.company_id)
         self.assertEquals(invoice_fr_daughter.state, 'open')
+        self.assertEquals(invoice_fr_daughter.journal_id.company_id,
+                          order_fr_daughter.company_id)
