@@ -96,6 +96,7 @@ class TestMultiCompany(TransactionCase):
         self.env.user.company_ids |= self.company_ch
         self.env.user.company_ids |= self.company_fr
         self.env.user.company_ids |= self.company_be
+        self.env.user.company_ids |= self.company_fr_daughter
 
         self.env.user.company_id = self.company_fr.id
         accounting_fr = self.configure_basic_accounting(self.company_fr.id)
@@ -154,7 +155,6 @@ class TestMultiCompany(TransactionCase):
                 'property_account_income_categ_id').id,
             'value': accounting_be['income']
         })
-
 
         self.env.user.company_id = self.company_fr_daughter.id
         accounting_fr_daughter = self.configure_basic_accounting(
