@@ -15,6 +15,7 @@ class SaleOrder(models.Model):
 
     @api.multi
     def copy(self, default=None):
+        self.ensure_one()
         if default is None:
             default = {}
         default['name'] = '/'
