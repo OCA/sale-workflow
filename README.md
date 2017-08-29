@@ -36,7 +36,7 @@ addon | version | summary
 [sale_order_revision](sale_order_revision/) | 10.0.1.0.0 | Sale order revisions
 [sale_order_type](sale_order_type/) | 10.0.1.0.0 | Sale Order Type
 [sale_owner_stock_sourcing](sale_owner_stock_sourcing/) | 10.0.1.0.0 | Manage stock ownership on sale order lines
-[sale_product_set](sale_product_set/) | 10.0.1.0.0 | Sale product set
+[sale_product_set](sale_product_set/) | 10.0.1.0.1 | Sale product set
 [sale_product_set_layout](sale_product_set_layout/) | 10.0.1.0.0 | Sale product set layout
 [sale_rental](sale_rental/) | 10.0.1.0.0 | Manage Rental of Products
 [sale_start_end_dates](sale_start_end_dates/) | 10.0.1.0.0 | Adds start date and end date on sale order lines
