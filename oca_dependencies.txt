@@ -4,3 +4,4 @@ stock-logistics-transport
 account-closing
 server-tools
 web
+account-invoicing
