@@ -1,26 +1,24 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
+
     <record id="view_sale_order_cancel" model="ir.ui.view">
         <field name="name">Reason for the cancellation</field>
         <field name="model">sale.order.cancel</field>
         <field name="arch" type="xml">
-         <form string="Reason for the cancellation" version="7.0">
-            <p class="oe_grey">
-                Choose the reason for the cancellation of the
-                sale order.
-            </p>
-            <group>
-                <field name="reason_id" widget="selection"/>
-            </group>
-            <footer>
-                <button name="confirm_cancel"
-                    string="Confirm" type="object"
-                    class="oe_highlight"/>
-                or
-                <button string="Cancel" class="oe_link"
-                    special="cancel" />
-            </footer>
-        </form>
+            <form string="Reason for the cancellation">
+                <p class="oe_grey">
+                    Choose the reason for the cancellation of the sale order.
+                </p>
+                <group>
+                    <field name="reason_id" widget="selection"/>
+                </group>
+                <footer>
+                    <button name="confirm_cancel" string="Confirm" type="object"
+                            class="oe_highlight"/>
+                    or
+                    <button string="Cancel" class="oe_link" special="cancel"/>
+                </footer>
+            </form>
         </field>
     </record>
 
@@ -33,4 +31,5 @@
         <field name="view_id" ref="view_sale_order_cancel"/>
         <field name="target">new</field>
     </record>
+
 </odoo>

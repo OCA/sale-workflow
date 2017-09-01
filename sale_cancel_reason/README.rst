@@ -15,7 +15,7 @@ Configuration
 =============
 
 * To configure this module, you need to:
-#. You can configure cancel reason from Sale -> Configuration -> Sale Order Cancel Reason.
+#. You can configure cancel reason from Sale/Configuration/Sale Order Cancel Reason.
 
 Usage
 =====
@@ -39,7 +39,7 @@ Credits
 Images
 ------
 
-* Odoo Community Association: `Icon <https://github.com/OCA/sale-workflow/blob/9.0/sale_cancel_reason/static/description/icon.png>`_.
+* Odoo Community Association: `Icon <https://github.com/OCA/maintainer-tools/blob/master/template/module/static/description/icon.svg>`_.
 
 Contributors
 ------------
@@ -57,6 +57,8 @@ Maintainer
 
 This module is maintained by the OCA.
 
-OCA, or the Odoo Community Association, is a nonprofit organization whose mission is to support the collaborative development of Odoo features and promote its widespread use.
+OCA, or the Odoo Community Association, is a nonprofit organization whose
+mission is to support the collaborative development of Odoo features and
+promote its widespread use.
 
 To contribute to this module, please visit https://odoo-community.org.
