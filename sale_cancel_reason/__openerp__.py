@@ -36,7 +36,7 @@
         'data/sale_order_cancel_reason.xml',
         'wizard/cancel_reason_view.xml',
         'views/sale_view.xml',
-     ],
+    ],
     'installable': True,
     'application': True,
     'auto_install': False,
