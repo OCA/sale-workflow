@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: sale-workflow (9.0)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-06-24 08:14+0000\n"
+"POT-Creation-Date: 2017-08-29 03:28+0000\n"
 "PO-Revision-Date: 2016-04-12 07:49+0000\n"
 "Last-Translator: <>\n"
 "Language-Team: Dutch (Netherlands) (http://www.transifex.com/oca/OCA-sale-workflow-9-0/language/nl_NL/)\n"
@@ -47,18 +47,18 @@ msgstr ""
 #: model:ir.model.fields,field_description:sale_exception.field_sale_exception_confirm_create_uid
 #: model:ir.model.fields,field_description:sale_exception.field_sale_exception_create_uid
 msgid "Created by"
-msgstr ""
+msgstr "Aangemaakt door"
 
 #. module: sale_exception
 #: model:ir.model.fields,field_description:sale_exception.field_sale_exception_confirm_create_date
 #: model:ir.model.fields,field_description:sale_exception.field_sale_exception_create_date
 msgid "Created on"
-msgstr ""
+msgstr "Aangemaakt op"
 
 #. module: sale_exception
 #: model:ir.model.fields,field_description:sale_exception.field_sale_exception_description
 msgid "Description"
-msgstr ""
+msgstr "Omschrijving"
 
 #. module: sale_exception
 #: model:ir.model.fields,field_description:sale_exception.field_sale_exception_confirm_display_name
@@ -134,13 +134,13 @@ msgstr "Laatst gewijzigd op"
 #: model:ir.model.fields,field_description:sale_exception.field_sale_exception_confirm_write_uid
 #: model:ir.model.fields,field_description:sale_exception.field_sale_exception_write_uid
 msgid "Last Updated by"
-msgstr ""
+msgstr "Laatst bijgewerkt door"
 
 #. module: sale_exception
 #: model:ir.model.fields,field_description:sale_exception.field_sale_exception_confirm_write_date
 #: model:ir.model.fields,field_description:sale_exception.field_sale_exception_write_date
 msgid "Last Updated on"
-msgstr ""
+msgstr "Laatst bijgewerkt op"
 
 #. module: sale_exception
 #: model:ir.model.fields,field_description:sale_exception.field_sale_order_main_exception_id
@@ -210,7 +210,7 @@ msgstr ""
 #. module: sale_exception
 #: model:ir.model,name:sale_exception.model_sale_order
 msgid "Sales Order"
-msgstr ""
+msgstr "Verkooporder"
 
 #. module: sale_exception
 #: model:ir.model.fields,field_description:sale_exception.field_sale_exception_sequence

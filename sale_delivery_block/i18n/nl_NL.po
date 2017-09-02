@@ -3,13 +3,14 @@
 # * sale_delivery_block
 # 
 # Translators:
+# OCA Transbot <transbot@odoo-community.org>, 2017
 # Peter Hageman <hageman.p@gmail.com>, 2017
 msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 9.0c\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-06-24 08:13+0000\n"
-"PO-Revision-Date: 2017-06-24 08:13+0000\n"
+"POT-Creation-Date: 2017-08-29 03:28+0000\n"
+"PO-Revision-Date: 2017-08-29 03:28+0000\n"
 "Last-Translator: Peter Hageman <hageman.p@gmail.com>, 2017\n"
 "Language-Team: Dutch (Netherlands) (https://www.transifex.com/oca/teams/23907/nl_NL/)\n"
 "MIME-Version: 1.0\n"
@@ -35,12 +36,12 @@ msgstr ""
 #. module: sale_delivery_block
 #: model:ir.model.fields,field_description:sale_delivery_block.field_sale_delivery_block_reason_create_uid
 msgid "Created by"
-msgstr ""
+msgstr "Aangemaakt door"
 
 #. module: sale_delivery_block
 #: model:ir.model.fields,field_description:sale_delivery_block.field_sale_delivery_block_reason_create_date
 msgid "Created on"
-msgstr ""
+msgstr "Aangemaakt op"
 
 #. module: sale_delivery_block
 #: model:ir.model.fields,field_description:sale_delivery_block.field_res_partner_default_delivery_block
@@ -61,7 +62,7 @@ msgstr ""
 #. module: sale_delivery_block
 #: model:ir.model.fields,field_description:sale_delivery_block.field_sale_delivery_block_reason_description
 msgid "Description"
-msgstr ""
+msgstr "Omschrijving"
 
 #. module: sale_delivery_block
 #: model:ir.model.fields,field_description:sale_delivery_block.field_sale_delivery_block_reason_display_name
@@ -81,12 +82,12 @@ msgstr "Laatst gewijzigd op"
 #. module: sale_delivery_block
 #: model:ir.model.fields,field_description:sale_delivery_block.field_sale_delivery_block_reason_write_uid
 msgid "Last Updated by"
-msgstr ""
+msgstr "Laatst bijgewerkt door"
 
 #. module: sale_delivery_block
 #: model:ir.model.fields,field_description:sale_delivery_block.field_sale_delivery_block_reason_write_date
 msgid "Last Updated on"
-msgstr ""
+msgstr "Laatst bijgewerkt op"
 
 #. module: sale_delivery_block
 #: model:ir.model.fields,field_description:sale_delivery_block.field_sale_delivery_block_reason_name
@@ -126,12 +127,12 @@ msgstr ""
 #. module: sale_delivery_block
 #: model:ir.model,name:sale_delivery_block.model_sale_order
 msgid "Sales Order"
-msgstr ""
+msgstr "Verkooporder"
 
 #. module: sale_delivery_block
 #: model:ir.model,name:sale_delivery_block.model_sale_order_line
 msgid "Sales Order Line"
-msgstr ""
+msgstr "Verkooporderregel"
 
 #. module: sale_delivery_block
 #: model:ir.model.fields,help:sale_delivery_block.field_res_partner_default_delivery_block
