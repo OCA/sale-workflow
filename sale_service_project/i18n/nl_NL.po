@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: sale-workflow (8.0)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-06-24 07:46+0000\n"
-"PO-Revision-Date: 2017-06-30 08:53+0000\n"
+"POT-Creation-Date: 2017-08-29 03:52+0000\n"
+"PO-Revision-Date: 2017-08-29 08:01+0000\n"
 "Last-Translator: OCA Transbot <transbot@odoo-community.org>\n"
 "Language-Team: Dutch (Netherlands) (http://www.transifex.com/oca/OCA-sale-workflow-8-0/language/nl_NL/)\n"
 "MIME-Version: 1.0\n"
@@ -35,7 +35,7 @@ msgstr ""
 #. module: sale_service_project
 #: view:product.price.service.wizard:sale_service_project.wiz_compute_task_price
 msgid "Cancel"
-msgstr ""
+msgstr "Verwijderen"
 
 #. module: sale_service_project
 #: model:product.template,name:sale_service_project.product_template_revision_1
@@ -89,7 +89,7 @@ msgstr ""
 #: field:sale.order.line.task.materials,create_uid:0
 #: field:sale.order.line.task.work,create_uid:0
 msgid "Created by"
-msgstr ""
+msgstr "Aangemaakt door"
 
 #. module: sale_service_project
 #: field:product.price.service.wizard,create_date:0
@@ -98,7 +98,7 @@ msgstr ""
 #: field:sale.order.line.task.materials,create_date:0
 #: field:sale.order.line.task.work,create_date:0
 msgid "Created on"
-msgstr ""
+msgstr "Aangemaakt op"
 
 #. module: sale_service_project
 #: field:product.price.service.wizard,display_name:0
@@ -148,12 +148,12 @@ msgstr ""
 #. module: sale_service_project
 #: model:ir.model,name:sale_service_project.model_account_invoice
 msgid "Invoice"
-msgstr ""
+msgstr "Factuur"
 
 #. module: sale_service_project
 #: model:ir.model,name:sale_service_project.model_account_invoice_line
 msgid "Invoice Line"
-msgstr ""
+msgstr "Factuurregel"
 
 #. module: sale_service_project
 #: field:project.task,invoice_exists:0
@@ -191,7 +191,7 @@ msgstr "Laatst gewijzigd op"
 #: field:sale.order.line.task.materials,write_uid:0
 #: field:sale.order.line.task.work,write_uid:0
 msgid "Last Updated by"
-msgstr ""
+msgstr "Laatst bijgewerkt door"
 
 #. module: sale_service_project
 #: field:product.price.service.wizard,write_date:0
@@ -200,7 +200,7 @@ msgstr ""
 #: field:sale.order.line.task.materials,write_date:0
 #: field:sale.order.line.task.work,write_date:0
 msgid "Last Updated on"
-msgstr ""
+msgstr "Laatst bijgewerkt op"
 
 #. module: sale_service_project
 #: field:product.task.materials,material_id:0
@@ -312,12 +312,12 @@ msgstr ""
 #. module: sale_service_project
 #: model:ir.model,name:sale_service_project.model_sale_order
 msgid "Sales Order"
-msgstr ""
+msgstr "Verkooporder"
 
 #. module: sale_service_project
 #: model:ir.model,name:sale_service_project.model_sale_order_line
 msgid "Sales Order Line"
-msgstr ""
+msgstr "Verkooporderregel"
 
 #. module: sale_service_project
 #: view:product.price.service.wizard:sale_service_project.wiz_compute_task_price

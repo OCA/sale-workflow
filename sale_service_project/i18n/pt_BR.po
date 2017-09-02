@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: sale-workflow (8.0)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-06-22 12:42+0000\n"
-"PO-Revision-Date: 2017-06-14 00:21+0000\n"
+"POT-Creation-Date: 2017-08-29 03:52+0000\n"
+"PO-Revision-Date: 2017-08-28 14:46+0000\n"
 "Last-Translator: OCA Transbot <transbot@odoo-community.org>\n"
 "Language-Team: Portuguese (Brazil) (http://www.transifex.com/oca/OCA-sale-workflow-8-0/language/pt_BR/)\n"
 "MIME-Version: 1.0\n"
@@ -285,7 +285,7 @@ msgstr ""
 #. module: sale_service_project
 #: model:ir.model,name:sale_service_project.model_product_template
 msgid "Product Template"
-msgstr ""
+msgstr "Modelo Produto"
 
 #. module: sale_service_project
 #: model:ir.model,name:sale_service_project.model_project_project

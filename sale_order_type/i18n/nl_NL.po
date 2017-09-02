@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: sale-workflow (8.0)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-06-24 07:44+0000\n"
-"PO-Revision-Date: 2017-06-30 08:53+0000\n"
+"POT-Creation-Date: 2017-08-29 03:51+0000\n"
+"PO-Revision-Date: 2017-08-29 08:01+0000\n"
 "Last-Translator: OCA Transbot <transbot@odoo-community.org>\n"
 "Language-Team: Dutch (Netherlands) (http://www.transifex.com/oca/OCA-sale-workflow-8-0/language/nl_NL/)\n"
 "MIME-Version: 1.0\n"
@@ -44,17 +44,17 @@ msgstr ""
 #. module: sale_order_type
 #: field:sale.order.type,create_uid:0
 msgid "Created by"
-msgstr ""
+msgstr "Aangemaakt door"
 
 #. module: sale_order_type
 #: field:sale.order.type,create_date:0
 msgid "Created on"
-msgstr ""
+msgstr "Aangemaakt op"
 
 #. module: sale_order_type
 #: field:sale.order.type,description:0
 msgid "Description"
-msgstr ""
+msgstr "Omschrijving"
 
 #. module: sale_order_type
 #: field:sale.order.type,display_name:0
@@ -86,7 +86,7 @@ msgstr ""
 #. module: sale_order_type
 #: model:ir.model,name:sale_order_type.model_account_invoice
 msgid "Invoice"
-msgstr ""
+msgstr "Factuur"
 
 #. module: sale_order_type
 #: view:sale.order.type:sale_order_type.sot_sale_order_type_search_view
@@ -102,12 +102,12 @@ msgstr "Laatst gewijzigd op"
 #. module: sale_order_type
 #: field:sale.order.type,write_uid:0
 msgid "Last Updated by"
-msgstr ""
+msgstr "Laatst bijgewerkt door"
 
 #. module: sale_order_type
 #: field:sale.order.type,write_date:0
 msgid "Last Updated on"
-msgstr ""
+msgstr "Laatst bijgewerkt op"
 
 #. module: sale_order_type
 #: field:sale.order.type,name:0
@@ -128,7 +128,7 @@ msgstr ""
 #: view:sale.order.type:sale_order_type.sot_sale_order_type_search_view
 #: field:sale.order.type,payment_term_id:0
 msgid "Payment Term"
-msgstr ""
+msgstr "Betalingsconditie"
 
 #. module: sale_order_type
 #: model:ir.model,name:sale_order_type.model_stock_picking
@@ -164,7 +164,7 @@ msgstr ""
 #. module: sale_order_type
 #: model:ir.model,name:sale_order_type.model_sale_order
 msgid "Sales Order"
-msgstr ""
+msgstr "Verkooporder"
 
 #. module: sale_order_type
 #: view:res.partner:sale_order_type.res_partner_sale_type_form_view

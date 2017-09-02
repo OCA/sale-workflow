@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: sale-workflow (8.0)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-06-24 07:44+0000\n"
+"POT-Creation-Date: 2017-08-29 03:51+0000\n"
 "PO-Revision-Date: 2015-09-03 07:08+0000\n"
 "Last-Translator: <>\n"
 "Language-Team: Dutch (Netherlands) (http://www.transifex.com/oca/OCA-sale-workflow-8-0/language/nl_NL/)\n"
@@ -54,13 +54,13 @@ msgstr ""
 #: field:sale.add.variants,create_uid:0
 #: field:sale.add.variants.line,create_uid:0
 msgid "Created by"
-msgstr ""
+msgstr "Aangemaakt door"
 
 #. module: sale_order_add_variants
 #: field:sale.add.variants,create_date:0
 #: field:sale.add.variants.line,create_date:0
 msgid "Created on"
-msgstr ""
+msgstr "Aangemaakt op"
 
 #. module: sale_order_add_variants
 #: field:sale.add.variants,display_name:0
@@ -83,13 +83,13 @@ msgstr "Laatst gewijzigd op"
 #: field:sale.add.variants,write_uid:0
 #: field:sale.add.variants.line,write_uid:0
 msgid "Last Updated by"
-msgstr ""
+msgstr "Laatst bijgewerkt door"
 
 #. module: sale_order_add_variants
 #: field:sale.add.variants,write_date:0
 #: field:sale.add.variants.line,write_date:0
 msgid "Last Updated on"
-msgstr ""
+msgstr "Laatst bijgewerkt op"
 
 #. module: sale_order_add_variants
 #: field:sale.add.variants.line,product_uom_qty:0

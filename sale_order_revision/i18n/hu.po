@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: sale-workflow (8.0)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-12-10 05:55+0000\n"
+"POT-Creation-Date: 2017-08-29 03:51+0000\n"
 "PO-Revision-Date: 2015-09-03 07:09+0000\n"
 "Last-Translator: <>\n"
 "Language-Team: Hungarian (http://www.transifex.com/oca/OCA-sale-workflow-8-0/language/hu/)\n"
@@ -20,7 +20,7 @@ msgstr ""
 #. module: sale_order_revision
 #: field:sale.order,active:0
 msgid "Active"
-msgstr ""
+msgstr "Aktív"
 
 #. module: sale_order_revision
 #: field:sale.order,current_revision_id:0

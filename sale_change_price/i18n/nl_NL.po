@@ -3,14 +3,14 @@
 # * sale_change_price
 # 
 # Translators:
-# Mario Gielissen <mario@openworx.nl>, 2016
+# OCA Transbot <transbot@odoo-community.org>, 2016
 # Peter Hageman <hageman.p@gmail.com>, 2017
 msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 8.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-06-24 07:43+0000\n"
-"PO-Revision-Date: 2017-06-24 07:43+0000\n"
+"POT-Creation-Date: 2017-08-29 03:51+0000\n"
+"PO-Revision-Date: 2017-08-29 03:51+0000\n"
 "Last-Translator: Peter Hageman <hageman.p@gmail.com>, 2017\n"
 "Language-Team: Dutch (Netherlands) (https://www.transifex.com/oca/teams/23907/nl_NL/)\n"
 "MIME-Version: 1.0\n"
@@ -22,7 +22,7 @@ msgstr ""
 #. module: sale_change_price
 #: view:sale.change.price:sale_change_price.sale_change_price_view
 msgid "Cancel"
-msgstr ""
+msgstr "Verwijderen"
 
 #. module: sale_change_price
 #: view:sale.change.price:sale_change_price.sale_change_price_view
@@ -44,18 +44,18 @@ msgstr ""
 #: field:sale.change.price,create_uid:0
 #: field:sale.change.price.item,create_uid:0
 msgid "Created by"
-msgstr ""
+msgstr "Aangemaakt door"
 
 #. module: sale_change_price
 #: field:sale.change.price,create_date:0
 #: field:sale.change.price.item,create_date:0
 msgid "Created on"
-msgstr ""
+msgstr "Aangemaakt op"
 
 #. module: sale_change_price
 #: field:sale.change.price.item,name:0
 msgid "Description"
-msgstr ""
+msgstr "Omschrijving"
 
 #. module: sale_change_price
 #: field:sale.change.price.item,discount:0
@@ -88,13 +88,13 @@ msgstr "Laatst gewijzigd op"
 #: field:sale.change.price,write_uid:0
 #: field:sale.change.price.item,write_uid:0
 msgid "Last Updated by"
-msgstr ""
+msgstr "Laatst bijgewerkt door"
 
 #. module: sale_change_price
 #: field:sale.change.price,write_date:0
 #: field:sale.change.price.item,write_date:0
 msgid "Last Updated on"
-msgstr ""
+msgstr "Laatst bijgewerkt op"
 
 #. module: sale_change_price
 #: field:sale.change.price.item,sale_order_line_id:0

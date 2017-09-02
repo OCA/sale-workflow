@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: sale-workflow (8.0)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-06-24 07:44+0000\n"
-"PO-Revision-Date: 2017-06-30 08:53+0000\n"
+"POT-Creation-Date: 2017-08-29 03:51+0000\n"
+"PO-Revision-Date: 2017-08-29 08:01+0000\n"
 "Last-Translator: OCA Transbot <transbot@odoo-community.org>\n"
 "Language-Team: Dutch (Netherlands) (http://www.transifex.com/oca/OCA-sale-workflow-8-0/language/nl_NL/)\n"
 "MIME-Version: 1.0\n"
@@ -29,12 +29,12 @@ msgstr ""
 #. module: sale_packaging_price
 #: field:product.packaging.material,create_uid:0
 msgid "Created by"
-msgstr ""
+msgstr "Aangemaakt door"
 
 #. module: sale_packaging_price
 #: field:product.packaging.material,create_date:0
 msgid "Created on"
-msgstr ""
+msgstr "Aangemaakt op"
 
 #. module: sale_packaging_price
 #: field:product.packaging.material,display_name:0
@@ -59,12 +59,12 @@ msgstr "Laatst gewijzigd op"
 #. module: sale_packaging_price
 #: field:product.packaging.material,write_uid:0
 msgid "Last Updated by"
-msgstr ""
+msgstr "Laatst bijgewerkt door"
 
 #. module: sale_packaging_price
 #: field:product.packaging.material,write_date:0
 msgid "Last Updated on"
-msgstr ""
+msgstr "Laatst bijgewerkt op"
 
 #. module: sale_packaging_price
 #: view:product.packaging:sale_packaging_price.product_packaging_filter
@@ -131,7 +131,7 @@ msgstr ""
 #. module: sale_packaging_price
 #: model:ir.model,name:sale_packaging_price.model_sale_order_line
 msgid "Sales Order Line"
-msgstr ""
+msgstr "Verkooporderregel"
 
 #. module: sale_packaging_price
 #: model:ir.model,name:sale_packaging_price.model_sale_report

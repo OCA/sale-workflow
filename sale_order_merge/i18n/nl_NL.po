@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: sale-workflow (8.0)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-06-24 07:44+0000\n"
+"POT-Creation-Date: 2017-08-29 03:51+0000\n"
 "PO-Revision-Date: 2016-10-21 21:00+0000\n"
 "Last-Translator: <>\n"
 "Language-Team: Dutch (Netherlands) (http://www.transifex.com/oca/OCA-sale-workflow-8-0/language/nl_NL/)\n"
@@ -25,7 +25,7 @@ msgstr ""
 #. module: sale_order_merge
 #: view:sale.order.merge:sale_order_merge.view_sale_order_merge_form
 msgid "Cancel"
-msgstr ""
+msgstr "Verwijderen"
 
 #. module: sale_order_merge
 #: code:addons/sale_order_merge/models/sale_order_merge.py:149
@@ -37,12 +37,12 @@ msgstr ""
 #. module: sale_order_merge
 #: field:sale.order.merge,create_uid:0
 msgid "Created by"
-msgstr ""
+msgstr "Aangemaakt door"
 
 #. module: sale_order_merge
 #: field:sale.order.merge,create_date:0
 msgid "Created on"
-msgstr ""
+msgstr "Aangemaakt op"
 
 #. module: sale_order_merge
 #: field:sale.order.merge,display_name:0
@@ -67,12 +67,12 @@ msgstr "Laatst gewijzigd op"
 #. module: sale_order_merge
 #: field:sale.order.merge,write_uid:0
 msgid "Last Updated by"
-msgstr ""
+msgstr "Laatst bijgewerkt door"
 
 #. module: sale_order_merge
 #: field:sale.order.merge,write_date:0
 msgid "Last Updated on"
-msgstr ""
+msgstr "Laatst bijgewerkt op"
 
 #. module: sale_order_merge
 #: view:sale.order:sale_order_merge.sale_order_form
@@ -119,7 +119,7 @@ msgstr ""
 #. module: sale_order_merge
 #: model:ir.model,name:sale_order_merge.model_sale_order
 msgid "Sales Order"
-msgstr ""
+msgstr "Verkooporder"
 
 #. module: sale_order_merge
 #: view:sale.order.merge:sale_order_merge.view_sale_order_merge_form

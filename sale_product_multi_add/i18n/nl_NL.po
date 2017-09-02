@@ -4,14 +4,13 @@
 # 
 # Translators:
 # OCA Transbot <transbot@odoo-community.org>, 2017
-# Mario Gielissen <mario@openworx.nl>, 2017
 # Peter Hageman <hageman.p@gmail.com>, 2017
 msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 8.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-06-24 07:45+0000\n"
-"PO-Revision-Date: 2017-06-24 07:45+0000\n"
+"POT-Creation-Date: 2017-08-29 03:51+0000\n"
+"PO-Revision-Date: 2017-08-29 03:51+0000\n"
 "Last-Translator: Peter Hageman <hageman.p@gmail.com>, 2017\n"
 "Language-Team: Dutch (Netherlands) (https://www.transifex.com/oca/teams/23907/nl_NL/)\n"
 "MIME-Version: 1.0\n"
@@ -24,19 +23,19 @@ msgstr ""
 #: view:sale.import.products:sale_product_multi_add.view_import_product_to_sale
 #: view:sale.import.products:sale_product_multi_add.view_import_product_to_sale2
 msgid "Cancel"
-msgstr ""
+msgstr "Verwijderen"
 
 #. module: sale_product_multi_add
 #: field:sale.import.products,create_uid:0
 #: field:sale.import.products.items,create_uid:0
 msgid "Created by"
-msgstr ""
+msgstr "Aangemaakt door"
 
 #. module: sale_product_multi_add
 #: field:sale.import.products,create_date:0
 #: field:sale.import.products.items,create_date:0
 msgid "Created on"
-msgstr ""
+msgstr "Aangemaakt op"
 
 #. module: sale_product_multi_add
 #: field:sale.import.products,display_name:0
@@ -69,13 +68,13 @@ msgstr "Laatst gewijzigd op"
 #: field:sale.import.products,write_uid:0
 #: field:sale.import.products.items,write_uid:0
 msgid "Last Updated by"
-msgstr ""
+msgstr "Laatst bijgewerkt door"
 
 #. module: sale_product_multi_add
 #: field:sale.import.products,write_date:0
 #: field:sale.import.products.items,write_date:0
 msgid "Last Updated on"
-msgstr ""
+msgstr "Laatst bijgewerkt op"
 
 #. module: sale_product_multi_add
 #: field:sale.import.products.items,product_id:0

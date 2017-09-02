@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: sale-workflow (8.0)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-06-24 07:45+0000\n"
+"POT-Creation-Date: 2017-08-29 03:52+0000\n"
 "PO-Revision-Date: 2015-09-03 07:10+0000\n"
 "Last-Translator: <>\n"
 "Language-Team: Dutch (Netherlands) (http://www.transifex.com/oca/OCA-sale-workflow-8-0/language/nl_NL/)\n"
@@ -20,19 +20,19 @@ msgstr ""
 #. module: sale_quotation_sourcing
 #: view:sale.order.sourcing:sale_quotation_sourcing.sale_order_sourcing_wizard
 msgid "Cancel"
-msgstr ""
+msgstr "Verwijderen"
 
 #. module: sale_quotation_sourcing
 #: field:sale.order.line.sourcing,create_uid:0
 #: field:sale.order.sourcing,create_uid:0
 msgid "Created by"
-msgstr ""
+msgstr "Aangemaakt door"
 
 #. module: sale_quotation_sourcing
 #: field:sale.order.line.sourcing,create_date:0
 #: field:sale.order.sourcing,create_date:0
 msgid "Created on"
-msgstr ""
+msgstr "Aangemaakt op"
 
 #. module: sale_quotation_sourcing
 #: field:sale.order.line.sourcing,display_name:0
@@ -55,13 +55,13 @@ msgstr "Laatst gewijzigd op"
 #: field:sale.order.line.sourcing,write_uid:0
 #: field:sale.order.sourcing,write_uid:0
 msgid "Last Updated by"
-msgstr ""
+msgstr "Laatst bijgewerkt door"
 
 #. module: sale_quotation_sourcing
 #: field:sale.order.line.sourcing,write_date:0
 #: field:sale.order.sourcing,write_date:0
 msgid "Last Updated on"
-msgstr ""
+msgstr "Laatst bijgewerkt op"
 
 #. module: sale_quotation_sourcing
 #: field:sale.order.sourcing,line_ids:0
@@ -92,7 +92,7 @@ msgstr "Product"
 #. module: sale_quotation_sourcing
 #: model:ir.model,name:sale_quotation_sourcing.model_purchase_order_line
 msgid "Purchase Order Line"
-msgstr ""
+msgstr "Inkooporderregel"
 
 #. module: sale_quotation_sourcing
 #: view:sale.order.sourcing:sale_quotation_sourcing.sale_order_sourcing_wizard
@@ -117,12 +117,12 @@ msgstr ""
 #. module: sale_quotation_sourcing
 #: model:ir.model,name:sale_quotation_sourcing.model_sale_order
 msgid "Sales Order"
-msgstr ""
+msgstr "Verkooporder"
 
 #. module: sale_quotation_sourcing
 #: model:ir.model,name:sale_quotation_sourcing.model_sale_order_line
 msgid "Sales Order Line"
-msgstr ""
+msgstr "Verkooporderregel"
 
 #. module: sale_quotation_sourcing
 #: field:sale.order.line.sourcing,po_line_id:0

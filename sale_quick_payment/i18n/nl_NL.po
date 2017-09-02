@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: sale-workflow (8.0)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-06-24 07:45+0000\n"
+"POT-Creation-Date: 2017-08-29 03:52+0000\n"
 "PO-Revision-Date: 2016-03-11 10:09+0000\n"
 "Last-Translator: <>\n"
 "Language-Team: Dutch (Netherlands) (http://www.transifex.com/oca/OCA-sale-workflow-8-0/language/nl_NL/)\n"
@@ -25,17 +25,17 @@ msgstr ""
 #. module: sale_quick_payment
 #: view:pay.sale.order:sale_quick_payment.pay_sale_order_view
 msgid "Cancel"
-msgstr ""
+msgstr "Verwijderen"
 
 #. module: sale_quick_payment
 #: field:pay.sale.order,create_uid:0
 msgid "Created by"
-msgstr ""
+msgstr "Aangemaakt door"
 
 #. module: sale_quick_payment
 #: field:pay.sale.order,create_date:0
 msgid "Created on"
-msgstr ""
+msgstr "Aangemaakt op"
 
 #. module: sale_quick_payment
 #: view:pay.sale.order:sale_quick_payment.pay_sale_order_view
@@ -46,7 +46,7 @@ msgstr ""
 #: view:pay.sale.order:sale_quick_payment.pay_sale_order_view
 #: field:pay.sale.order,description:0
 msgid "Description"
-msgstr ""
+msgstr "Omschrijving"
 
 #. module: sale_quick_payment
 #: field:pay.sale.order,display_name:0
@@ -72,12 +72,12 @@ msgstr "Laatst gewijzigd op"
 #. module: sale_quick_payment
 #: field:pay.sale.order,write_uid:0
 msgid "Last Updated by"
-msgstr ""
+msgstr "Laatst bijgewerkt door"
 
 #. module: sale_quick_payment
 #: field:pay.sale.order,write_date:0
 msgid "Last Updated on"
-msgstr ""
+msgstr "Laatst bijgewerkt op"
 
 #. module: sale_quick_payment
 #: view:pay.sale.order:sale_quick_payment.pay_sale_order_view

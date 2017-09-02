@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: sale-workflow (8.0)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-06-24 07:43+0000\n"
-"PO-Revision-Date: 2017-06-30 08:53+0000\n"
+"POT-Creation-Date: 2017-08-29 03:50+0000\n"
+"PO-Revision-Date: 2017-08-29 08:01+0000\n"
 "Last-Translator: OCA Transbot <transbot@odoo-community.org>\n"
 "Language-Team: Dutch (Netherlands) (http://www.transifex.com/oca/OCA-sale-workflow-8-0/language/nl_NL/)\n"
 "MIME-Version: 1.0\n"
@@ -62,13 +62,13 @@ msgstr ""
 #: field:automatic.workflow.job,create_uid:0
 #: field:sale.workflow.process,create_uid:0
 msgid "Created by"
-msgstr ""
+msgstr "Aangemaakt door"
 
 #. module: sale_automatic_workflow
 #: field:automatic.workflow.job,create_date:0
 #: field:sale.workflow.process,create_date:0
 msgid "Created on"
-msgstr ""
+msgstr "Aangemaakt op"
 
 #. module: sale_automatic_workflow
 #: selection:sale.workflow.process,picking_policy:0
@@ -105,7 +105,7 @@ msgstr ""
 #. module: sale_automatic_workflow
 #: model:ir.model,name:sale_automatic_workflow.model_account_invoice
 msgid "Invoice"
-msgstr ""
+msgstr "Factuur"
 
 #. module: sale_automatic_workflow
 #: field:sale.workflow.process,order_policy:0
@@ -127,13 +127,13 @@ msgstr "Laatst gewijzigd op"
 #: field:automatic.workflow.job,write_uid:0
 #: field:sale.workflow.process,write_uid:0
 msgid "Last Updated by"
-msgstr ""
+msgstr "Laatst bijgewerkt door"
 
 #. module: sale_automatic_workflow
 #: field:automatic.workflow.job,write_date:0
 #: field:sale.workflow.process,write_date:0
 msgid "Last Updated on"
-msgstr ""
+msgstr "Laatst bijgewerkt op"
 
 #. module: sale_automatic_workflow
 #: field:sale.workflow.process,name:0
@@ -200,7 +200,7 @@ msgstr ""
 #. module: sale_automatic_workflow
 #: model:ir.model,name:sale_automatic_workflow.model_sale_order
 msgid "Sales Order"
-msgstr ""
+msgstr "Verkooporder"
 
 #. module: sale_automatic_workflow
 #: field:sale.workflow.process,section_id:0
