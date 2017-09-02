@@ -3,13 +3,14 @@
 # * product_margin_classification
 # 
 # Translators:
+# OCA Transbot <transbot@odoo-community.org>, 2017
 # Peter Hageman <hageman.p@gmail.com>, 2017
 msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 8.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-06-24 07:43+0000\n"
-"PO-Revision-Date: 2017-06-24 07:43+0000\n"
+"POT-Creation-Date: 2017-08-29 03:50+0000\n"
+"PO-Revision-Date: 2017-08-29 03:50+0000\n"
 "Last-Translator: Peter Hageman <hageman.p@gmail.com>, 2017\n"
 "Language-Team: Dutch (Netherlands) (https://www.transifex.com/oca/teams/23907/nl_NL/)\n"
 "MIME-Version: 1.0\n"
@@ -51,12 +52,12 @@ msgstr ""
 #. module: product_margin_classification
 #: field:product.margin.classification,create_uid:0
 msgid "Created by"
-msgstr ""
+msgstr "Aangemaakt door"
 
 #. module: product_margin_classification
 #: field:product.margin.classification,create_date:0
 msgid "Created on"
-msgstr ""
+msgstr "Aangemaakt op"
 
 #. module: product_margin_classification
 #: view:product.template:product_margin_classification.view_product_template_form
@@ -91,12 +92,12 @@ msgstr "Laatst gewijzigd op"
 #. module: product_margin_classification
 #: field:product.margin.classification,write_uid:0
 msgid "Last Updated by"
-msgstr ""
+msgstr "Laatst bijgewerkt door"
 
 #. module: product_margin_classification
 #: field:product.margin.classification,write_date:0
 msgid "Last Updated on"
-msgstr ""
+msgstr "Laatst bijgewerkt op"
 
 #. module: product_margin_classification
 #: field:product.margin.classification,margin:0
