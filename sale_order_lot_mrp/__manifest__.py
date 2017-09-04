@@ -8,7 +8,7 @@
     'version': '10.0.1.0.0',
     'category': 'Generic Modules',
     'author': 'Akretion, Odoo Community Association (OCA)',
-    'website': 'www.akretion.com',
+    'website': 'https://github.com/OCA/sale-workflow',
     'license': 'AGPL-3',
     'depends': [
         'mrp_production_note',
