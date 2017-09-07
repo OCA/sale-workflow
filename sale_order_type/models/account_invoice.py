@@ -47,7 +47,7 @@ class AccountInvoice(models.Model):
             partner = self.env['res.partner'].browse(partner_id)
             if partner.sale_type:
                 res['value'].update({
-                    'type_id': partner.sale_type.id,
+                    'sale_type_id': partner.sale_type.id,
                 })
         return res
 

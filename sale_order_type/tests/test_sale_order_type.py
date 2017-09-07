@@ -102,4 +102,4 @@ class TestSaleOrderType(common.TransactionCase):
         onchange_partner = self.invoice_model.onchange_partner_id(
             'out_invoice', self.partner.id)
         self.assertEqual(self.sale_type.id,
-                         onchange_partner['value']['type_id'])
+                         onchange_partner['value']['sale_type_id'])
