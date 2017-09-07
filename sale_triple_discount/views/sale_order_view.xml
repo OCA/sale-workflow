@@ -6,21 +6,23 @@
         <field name="model">sale.order</field>
         <field name="inherit_id" ref="sale.view_order_form" />
         <field name="arch" type="xml">
-            <xpath expr="//field[@name='order_line']" position="attributes">
-                <attribute name="context">{'partner_id': partner_id}</attribute>
+            <xpath expr="//field[@name='order_line']//tree//field[@name='discount']"
+                   position="after">
+                <field name="discount2"
+                       groups="sale.group_discount_per_so_line"/>
+                <field name="discount3"
+                       groups="sale.group_discount_per_so_line"/>
             </xpath>
-            <xpath expr="//field[@name='order_line']//tree//field[@name='discount']" position="attributes">
-                <attribute name="readonly">True</attribute>
-            </xpath>
-            <xpath expr="//field[@name='order_line']//tree//field[@name='discount']" position="before">
-                <field name="discount1" groups="sale.group_discount_per_so_line"/>
-                <field name="discount2" groups="sale.group_discount_per_so_line"/>
-                <field name="discount3" groups="sale.group_discount_per_so_line"/>
-            </xpath>
-            <xpath expr="//field[@name='order_line']//form//label[@for='discount']" position="before">
-                <field name="discount1" groups="sale.group_discount_per_so_line"/>
-                <field name="discount2" groups="sale.group_discount_per_so_line"/>
-                <field name="discount3" groups="sale.group_discount_per_so_line"/>
+            <xpath expr="//field[@name='order_line']//form//div[@name='discount']"
+                   position="after">
+                <label for="discount2" groups="sale.group_discount_per_so_line"/>
+                <div name="discount2" groups="sale.group_discount_per_so_line">
+                    <field name="discount2" class="oe_inline"/> %
+                </div>
+                <label for="discount3" groups="sale.group_discount_per_so_line"/>
+                <div name="discoun3" groups="sale.group_discount_per_so_line">
+                    <field name="discount3" class="oe_inline"/> %
+                </div>
             </xpath>
         </field>
     </record>
