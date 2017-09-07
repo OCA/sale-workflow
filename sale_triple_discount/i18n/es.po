@@ -1,46 +1,42 @@
 # Translation of Odoo Server.
 # This file contains the translation of the following modules:
-# * sale_three_discounts
-# 
+# * sale_triple_discount
+#
 # Translators:
-# Javier Diez <jd@adhoc.com.ar>, 2016
-# Juan José Scarafía <scarafia.juanjose@gmail.com>, 2016
+# OCA Transbot <transbot@odoo-community.org>, 2017
 msgid ""
 msgstr ""
-"Project-Id-Version: Odoo Server 9.0c\n"
+"Project-Id-Version: Odoo Server 10.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-11-11 16:37+0000\n"
-"PO-Revision-Date: 2016-11-11 16:37+0000\n"
-"Last-Translator: Juan José Scarafía <scarafia.juanjose@gmail.com>, 2016\n"
-"Language-Team: Spanish (https://www.transifex.com/adhoc/teams/46451/es/)\n"
+"POT-Creation-Date: 2017-11-23 01:52+0000\n"
+"PO-Revision-Date: 2017-11-23 01:52+0000\n"
+"Last-Translator: OCA Transbot <transbot@odoo-community.org>, 2017\n"
+"Language-Team: Spanish (https://www.transifex.com/oca/teams/23907/es/)\n"
+"Language: es\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
-"Language: es\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
 #. module: sale_triple_discount
-#: model:ir.model.fields,field_description:sale_triple_discount.field_account_invoice_line_discount1
-#: model:ir.model.fields,field_description:sale_triple_discount.field_sale_order_line_discount1
-msgid "Discount 1 (%)"
-msgstr "Descuento 1 (%)"
-
-#. module: sale_triple_discount
-#: model:ir.model.fields,field_description:sale_triple_discount.field_account_invoice_line_discount2
 #: model:ir.model.fields,field_description:sale_triple_discount.field_sale_order_line_discount2
-msgid "Discount 2 (%)"
-msgstr "Descuento 2 (%)"
+msgid "Disc. 2 (%)"
+msgstr ""
 
 #. module: sale_triple_discount
-#: model:ir.model.fields,field_description:sale_triple_discount.field_account_invoice_line_discount3
 #: model:ir.model.fields,field_description:sale_triple_discount.field_sale_order_line_discount3
-msgid "Discount 3 (%)"
-msgstr "Descuento 3 (%)"
+msgid "Disc. 3 (%)"
+msgstr ""
 
 #. module: sale_triple_discount
-#: model:ir.model,name:sale_triple_discount.model_account_invoice_line
-msgid "Invoice Line"
-msgstr "Línea de Factura"
+#: sql_constraint:sale.order.line:0
+msgid "Discount 2 must be lower than 100%."
+msgstr ""
+
+#. module: sale_triple_discount
+#: sql_constraint:sale.order.line:0
+msgid "Discount 3 must be lower than 100%."
+msgstr ""
 
 #. module: sale_triple_discount
 #: model:ir.model,name:sale_triple_discount.model_sale_order_line
