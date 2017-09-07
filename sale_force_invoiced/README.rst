@@ -1,4 +1,5 @@
 .. image:: https://img.shields.io/badge/licence-AGPL--3-blue.svg
+   :target: http://www.gnu.org/licenses/agpl
    :alt: License: AGPL-3
 
 ===================
@@ -6,8 +7,8 @@ Sale Force Invoiced
 ===================
 
 This module adds the possibility for users to force the invoice status of the
- sales orders to 'Invoiced', even when not all the quantities ordered or
- delivered have been invoiced.
+sales orders to 'Invoiced', even when not all the quantities ordered or
+delivered have been invoiced.
 
 This feature useful in the following scenario:
 
@@ -27,20 +28,21 @@ Usage
 #. Deliver the products/services.
 #. Create an invoice and reduce the invoiced quantity. The sales order
    invoicing status is 'To Invoice'.
-#. Change the status of the sales order to 'Done'.
+#. Lock the Sale Order, to change the status of it to 'Done'.
 #. Check the field 'Force Invoiced'
 
 .. image:: https://odoo-community.org/website/image/ir.attachment/5784_f2813bd/datas
    :alt: Try me on Runbot
-   :target: https://runbot.odoo-community.org/runbot/167/9.0
+   :target: https://runbot.odoo-community.org/runbot/167/10.0
 
 
 Bug Tracker
 ===========
 
-Bugs are tracked on `GitHub Issues <https://github.com/OCA/sale-workflow/issues>`_.
-In case of trouble, please check there if your issue has already been reported.
-If you spotted it first, help us smashing it by providing a detailed and welcomed feedback.
+Bugs are tracked on `GitHub Issues
+<https://github.com/OCA/sale-workflow/issues>`_. In case of trouble, please
+check there if your issue has already been reported. If you spotted it first,
+help us smash it by providing detailed and welcomed feedback.
 
 
 Credits
