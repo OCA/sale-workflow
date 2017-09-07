@@ -6,59 +6,36 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 10.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-03-28 15:17+0000\n"
-"PO-Revision-Date: 2017-03-28 17:25+0200\n"
-"Last-Translator: Alex Comba <alex.comba@agilebg.com>\n"
+"POT-Creation-Date: 2017-09-07 09:34+0000\n"
+"PO-Revision-Date: 2017-09-07 11:35+0200\n"
+"Last-Translator: David <david.vidal@tecnativa.com>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: \n"
 "Language: it\n"
-"X-Generator: Poedit 1.8.9\n"
+"X-Generator: Poedit 1.8.7.1\n"
 
 #. module: sale_triple_discount
-#: model:ir.model.fields,field_description:sale_triple_discount.field_res_partner_default_discount1
-msgid "Default Discount 1 (%)"
-msgstr "Default Sc.1 (%)"
-
-#. module: sale_triple_discount
-#: model:ir.model.fields,field_description:sale_triple_discount.field_res_partner_default_discount2
-msgid "Default Discount 2 (%)"
-msgstr "Default Sc.2 (%)"
-
-#. module: sale_triple_discount
-#: model:ir.model.fields,field_description:sale_triple_discount.field_res_partner_default_discount3
-msgid "Default Discount 3 (%)"
-msgstr "Default Sc.3 (%)"
-
-#. module: sale_triple_discount
-#: model:ir.model.fields,field_description:sale_triple_discount.field_account_invoice_line_discount1
-#: model:ir.model.fields,field_description:sale_triple_discount.field_sale_order_line_discount1
-msgid "Discount 1 (%)"
-msgstr "Sc.1 (%)"
-
-#. module: sale_triple_discount
-#: model:ir.model.fields,field_description:sale_triple_discount.field_account_invoice_line_discount2
 #: model:ir.model.fields,field_description:sale_triple_discount.field_sale_order_line_discount2
-msgid "Discount 2 (%)"
-msgstr "Sc.2 (%)"
+msgid "Disc. 2 (%)"
+msgstr "Sc. 2 (%)"
 
 #. module: sale_triple_discount
-#: model:ir.model.fields,field_description:sale_triple_discount.field_account_invoice_line_discount3
 #: model:ir.model.fields,field_description:sale_triple_discount.field_sale_order_line_discount3
-msgid "Discount 3 (%)"
-msgstr "Sc.3 (%)"
+msgid "Disc. 3 (%)"
+msgstr "Sc. 3 (%)"
 
 #. module: sale_triple_discount
-#: model:ir.model,name:sale_triple_discount.model_account_invoice_line
-msgid "Invoice Line"
-msgstr "Riga Fattura"
+#: sql_constraint:sale.order.line:0
+msgid "Discount 2 must be lower than 100%."
+msgstr "Discount 2 must be lower than 100%."
 
 #. module: sale_triple_discount
-#: model:ir.model,name:sale_triple_discount.model_res_partner
-msgid "Partner"
-msgstr "Partner"
+#: sql_constraint:sale.order.line:0
+msgid "Discount 3 must be lower than 100%."
+msgstr "Discount 3 must be lower than 100%."
 
 #. module: sale_triple_discount
 #: model:ir.model,name:sale_triple_discount.model_sale_order_line
