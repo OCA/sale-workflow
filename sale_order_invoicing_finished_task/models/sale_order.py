@@ -10,11 +10,11 @@ class SaleOrder(models.Model):
     _inherit = 'sale.order'
 
     @api.depends('state', 'order_line.invoice_status',
-                 'order_line.task_ids.stage_id.fold')
+                 'order_line.task_ids.invoiceable')
     def _get_invoiced(self):
         super(SaleOrder, self)._get_invoiced()
         for order in self.filtered(lambda x: x.picking_policy == 'one'):
-            if not all(order.tasks_ids.mapped('stage_id.fold')):
+            if not all(order.tasks_ids.mapped('invoiceable')):
                 order.update({
                     'invoice_status': 'no',
                 })
@@ -30,7 +30,7 @@ class SaleOrderLine(models.Model):
     )
 
     @api.depends('qty_invoiced', 'qty_delivered', 'product_uom_qty',
-                 'order_id.state', 'task_ids.stage_id.fold')
+                 'order_id.state', 'task_ids.invoiceable')
     def _get_to_invoice_qty(self):
         lines = self.filtered(
             lambda x: (x.product_id.type == 'service' and
@@ -38,7 +38,7 @@ class SaleOrderLine(models.Model):
                        x.product_id.track_service == 'task')
         )
         for line in lines:
-            if all(line.task_ids.mapped('stage_id.fold')):
+            if all(line.task_ids.mapped('invoiceable')):
                 super(SaleOrderLine, line)._get_to_invoice_qty()
             else:
                 line.qty_to_invoice = 0.0

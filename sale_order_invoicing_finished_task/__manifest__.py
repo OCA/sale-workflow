@@ -19,5 +19,6 @@
     ],
     "data": [
         "views/product_view.xml",
+        "views/project_view.xml",
     ],
 }
