@@ -39,7 +39,7 @@ class SaleOrderLine(models.Model):
         )
         for line in lines:
             if all(line.task_ids.mapped('invoiceable')):
-                super(SaleOrderLine, line)._get_to_invoice_qty()
+                line.qty_to_invoice = line.product_uom_qty - line.qty_invoiced
             else:
                 line.qty_to_invoice = 0.0
         super(SaleOrderLine, self - lines)._get_to_invoice_qty()
