@@ -40,6 +40,7 @@ addon | version | summary
 [sale_product_set_layout](sale_product_set_layout/) | 10.0.1.0.0 | Sale product set layout
 [sale_rental](sale_rental/) | 10.0.1.0.0 | Manage Rental of Products
 [sale_start_end_dates](sale_start_end_dates/) | 10.0.1.0.0 | Adds start date and end date on sale order lines
+[sale_triple_discount](sale_triple_discount/) | 10.0.1.0.0 | Manage triple discount on sale order lines
 [sale_validity](sale_validity/) | 10.0.1.0.0 | Set a default validity delay on quotations
 
 
