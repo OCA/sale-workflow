@@ -30,6 +30,8 @@ class ManualDelivery(models.TransientModel):
                     lines.append((0, 0, vals))
             self.update({'line_ids': lines})
 
+            self.partner_id = self.order_id.partner_id
+
     date_planned = fields.Date(
         string='Date Planned'
     )
@@ -47,6 +49,23 @@ class ManualDelivery(models.TransientModel):
         'delivery.carrier',
         string='Delivery Method'
     )
+    partner_id = fields.Many2one(
+        'res.partner',
+        string='Delivery Address'
+    )
+
+    @api.onchange('partner_id')
+    def onchange_partner_id(self):
+        return {
+            'domain': {
+                'partner_id': [
+                    '&', '|',
+                    ('id', '=', self.order_id.partner_id.id),
+                    ('parent_id', '=', self.order_id.partner_id.id),
+                    ('id', '!=', self.partner_id.id),
+                ],
+            },
+        }
 
     @api.multi
     def record_picking(self):
@@ -73,6 +92,7 @@ class ManualDelivery(models.TransientModel):
                     vals['date_planned'] = date_planned
                     vals['product_qty'] = line.to_ship_qty
                     vals['carrier_id'] = carrier_id.id
+                    vals['partner_dest_id'] = wizard.partner_id.id
                     new_proc = proc_order_obj.with_context(
                         {'manual_delivery': True}).create(vals)
                     new_proc.message_post_with_view(
