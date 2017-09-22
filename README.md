@@ -25,6 +25,7 @@ addon | version | summary
 [sale_cancel_reason](sale_cancel_reason/) | 10.0.1.0.0 | Sale Cancel Reason
 [sale_commercial_partner](sale_commercial_partner/) | 10.0.1.0.0 | Add stored related field 'Commercial Entity' on sale orders
 [sale_exception](sale_exception/) | 10.0.2.0.0 | Custom exceptions on sale order
+[sale_force_invoiced](sale_force_invoiced/) | 10.0.1.0.0 | Allows to force the invoice status of the sales order to Invoiced
 [sale_isolated_quotation](sale_isolated_quotation/) | 10.0.1.0.0 | Sales - Isolated Quotation
 [sale_layout_hidden](sale_layout_hidden/) | 10.0.1.0.0 | Sale Layout Hidden Sections
 [sale_order_line_sequence](sale_order_line_sequence/) | 10.0.1.0.0 | Propagates SO line sequence to invoices and stock picking.
@@ -36,6 +37,7 @@ addon | version | summary
 [sale_order_revision](sale_order_revision/) | 10.0.1.0.0 | Sale order revisions
 [sale_order_type](sale_order_type/) | 10.0.1.0.0 | Sale Order Type
 [sale_owner_stock_sourcing](sale_owner_stock_sourcing/) | 10.0.1.0.0 | Manage stock ownership on sale order lines
+[sale_procurement_group_by_line](sale_procurement_group_by_line/) | 10.0.1.0.0 | Base module for multiple procurement group by Sale order
 [sale_product_set](sale_product_set/) | 10.0.1.0.1 | Sale product set
 [sale_product_set_layout](sale_product_set_layout/) | 10.0.1.0.0 | Sale product set layout
 [sale_rental](sale_rental/) | 10.0.1.0.0 | Manage Rental of Products
@@ -71,7 +73,6 @@ addon | version | summary
 [sale_packaging_price](sale_packaging_price/) | 9.0.1.0.0 (unported) | Sale Packaging Price
 [sale_partner_order_policy](sale_partner_order_policy/) | 8.0.1.0.0 (unported) | Adds customer create invoice method on partner form
 [sale_payment_term_interest](sale_payment_term_interest/) | 8.0.1.0.0 (unported) | Sales Payment Term Interests
-[sale_procurement_group_by_line](sale_procurement_group_by_line/) | 8.0.1.0.0 (unported) | Base module for multiple procurement group by Sale order
 [sale_quotation_number](sale_quotation_number/) | 8.0.1.1.0 (unported) | Different sequence for sale quotations
 [sale_quotation_sourcing](sale_quotation_sourcing/) | 8.0.0.3.1 (unported) | manual sourcing of sale quotations
 [sale_quotation_sourcing_stock_route_transit](sale_quotation_sourcing_stock_route_transit/) | 8.0.0.1.0 (unported) | Link module for sale_quotation_sourcing + stock_route_transit
