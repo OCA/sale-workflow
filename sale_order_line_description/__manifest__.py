@@ -19,18 +19,18 @@
 #
 #
 {
-    'name': "Sale order line description",
-    'version': '8.0.1.0.0',
-    'category': 'Sales Management',
-    'author': "Agile Business Group, Odoo Community Association (OCA)",
-    'website': 'http://www.agilebg.com',
-    'license': 'AGPL-3',
+    "name": "Sale order line description",
+    "version": "10.0.1.0.0",
+    "category": "Sales Management",
+    "author": "Agile Business Group, Odoo Community Association (OCA)",
+    "installable": True,
+    "website": "http://www.agilebg.com",
+    "license": "AGPL-3",
     "depends": [
-        'sale',
+        "sale",
     ],
     "data": [
-        'security/sale_security.xml',
-        'views/res_config_view.xml',
-    ],
-    "installable": True
+        "security/sale_security.xml",
+        "views/res_config_view.xml",
+    ]
 }
