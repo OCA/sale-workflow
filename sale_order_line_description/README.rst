@@ -14,7 +14,8 @@ Configuration
 The user has to belong to group_use_product_description_per_so_line.
 This is possible by selecting the related option in the following menu:
 
-* Settings --> Users --> Select user --> Sale Features
+* Sales --> Settings --> Quotations & Sales -->
+  Allow using only the product sale description on the sales order lines
 
 
 Bug Tracker
