@@ -31,7 +31,7 @@ Credits
 Contributors
 ------------
 
-* Alex Comba <email.address@example.org>
+* Alex Comba <alex.comba@agilebg.com>
 * Daniel Campos <danielcampos@avanzosc.es>
 
 Maintainer
