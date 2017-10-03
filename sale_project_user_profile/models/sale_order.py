@@ -12,8 +12,6 @@ class SaleOrder(models.Model):
     @api.constrains(
         'state',
         'order_line',
-        'order_line.product_id',
-        'order_line.product_id.track_service',
     )
     def _check_state(self):
         if self.state == 'sale':
