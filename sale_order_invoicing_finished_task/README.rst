@@ -1,18 +1,19 @@
-.. image:: https://img.shields.io/badge/licence-LGPL--3-blue.svg
-   :target: http://www.gnu.org/licenses/lgpl-3.0-standalone.html
-   :alt: License: LGPL-3
+.. image:: https://img.shields.io/badge/licence-AGPL--3-blue.svg
+   :target: http://www.gnu.org/licenses/agpl-3.0-standalone.html
+   :alt: License: AGPL-3
 
 ==================================
 Sale Order Invoicing Finished Task
 ==================================
 
-The requirement of this module is to add in the task the possibility to indicate if it is invoiceable o not.
+The requirement of this module is to give the possibility in the task to indicate if a task is available to invoice or not. This means by default even the task is not finished you could set it as invoiceable.
+
+As an option you can relate to a Proyect Stage ( ``project.task.type`` ) this control. For example if you want to assign Invoiceable to stage ``Done`` always
 
 Usage
 =====
 
 To use this module, you need to:
-
 
 1. Go to Sales -> Product and create a service product
 
@@ -32,7 +33,9 @@ To use this module, you need to:
 
    .. image:: static/description/task_view_invoicefinishedtask.png
 
-You can try it in:
+6. Optional: if you want to use project stages to control this Go To Proyect -> Settings -> Stage -> You have to set true the field Invoiceable in the stages that you consider are invoiceable. Event to use stages for this functionality you can also set it manually in the task whenever you want.
+
+You can try it in:'
 
 .. image:: https://odoo-community.org/website/image/ir.attachment/5784_f2813bd/datas
    :alt: Try me on Runbot
