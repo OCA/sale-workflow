@@ -1,0 +1,142 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+#	* sale_project_user_profile
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 10.0+e\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2017-09-22 13:38+0000\n"
+"PO-Revision-Date: 2017-09-22 13:38+0000\n"
+"Last-Translator: <>\n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: sale_project_user_profile
+#: code:addons/odoo/local-src/sale_project_user_profile/models/project_user_task_sale_line_map.py:21
+#: code:addons/sale_project_user_profile/models/project_user_task_sale_line_map.py:21
+#, python-format
+msgid "A project user task mapping must be unique by project, user and task!"
+msgstr "Un mapping pour les utilisateurs/tâches d'un projet doit être unique pour un project, un utilisateur et une tâche!"
+
+#. module: sale_project_user_profile
+#: model:ir.model,name:sale_project_user_profile.model_account_analytic_line
+msgid "Analytic Line"
+msgstr "Ligne analytique"
+
+#. module: sale_project_user_profile
+#: model:ir.model.fields,field_description:sale_project_user_profile.field_project_user_task_sale_line_map_create_uid
+msgid "Created by"
+msgstr "Créé par"
+
+#. module: sale_project_user_profile
+#: model:ir.model.fields,field_description:sale_project_user_profile.field_project_user_task_sale_line_map_create_date
+msgid "Created on"
+msgstr "Créé le"
+
+#. module: sale_project_user_profile
+#: model:ir.model.fields,field_description:sale_project_user_profile.field_project_user_task_sale_line_map_display_name
+msgid "Display Name"
+msgstr "Nom affiché"
+
+#. module: sale_project_user_profile
+#: model:ir.model.fields,field_description:sale_project_user_profile.field_project_user_task_sale_line_map_id
+msgid "ID"
+msgstr "ID"
+
+#. module: sale_project_user_profile
+#: model:ir.model.fields,field_description:sale_project_user_profile.field_project_user_task_sale_line_map___last_update
+msgid "Last Modified on"
+msgstr "Dernière modification le"
+
+#. module: sale_project_user_profile
+#: model:ir.model.fields,field_description:sale_project_user_profile.field_project_user_task_sale_line_map_write_uid
+msgid "Last Updated by"
+msgstr "Dernière modification par"
+
+#. module: sale_project_user_profile
+#: model:ir.model.fields,field_description:sale_project_user_profile.field_project_user_task_sale_line_map_write_date
+msgid "Last Updated on"
+msgstr "Dernière mise à jour le"
+
+#. module: sale_project_user_profile
+#: model:ir.model.fields,field_description:sale_project_user_profile.field_project_user_task_sale_line_map_name
+msgid "Name"
+msgstr "Nom"
+
+#. module: sale_project_user_profile
+#: model:ir.model,name:sale_project_user_profile.model_product_template
+msgid "Product Template"
+msgstr "Modèle d'article"
+
+#. module: sale_project_user_profile
+#: model:ir.model,name:sale_project_user_profile.model_project_project
+#: model:ir.model.fields,field_description:sale_project_user_profile.field_project_user_task_sale_line_map_project_id
+msgid "Project"
+msgstr "Projet"
+
+#. module: sale_project_user_profile
+#: model:ir.model.fields,field_description:sale_project_user_profile.field_project_project_project_user_task_sale_line_map_ids
+#: model:ir.model.fields,field_description:sale_project_user_profile.field_project_task_project_user_task_sale_line_map_ids
+msgid "Project user task mapping"
+msgstr "Mapping pour les utilisateurs/tâches d'un projet"
+
+#. module: sale_project_user_profile
+#: model:ir.model.fields,field_description:sale_project_user_profile.field_project_project_project_uses_task_sale_line_map
+#: model:ir.model.fields,field_description:sale_project_user_profile.field_project_task_project_uses_task_sale_line_map
+msgid "Project uses user task mapping"
+msgstr "Le projet utilise le mapping pour les utilisateurs/tâches"
+
+#. module: sale_project_user_profile
+#: model:ir.model.fields,field_description:sale_project_user_profile.field_project_user_task_sale_line_map_sale_line_id
+msgid "Sale order line"
+msgstr "Ligne de vente"
+
+#. module: sale_project_user_profile
+#: model:ir.model,name:sale_project_user_profile.model_sale_order
+msgid "Sales Order"
+msgstr "Commande de ventes"
+
+#. module: sale_project_user_profile
+#: model:ir.model,name:sale_project_user_profile.model_project_task
+#: model:ir.model.fields,field_description:sale_project_user_profile.field_project_user_task_sale_line_map_task_id
+msgid "Task"
+msgstr "Tâche"
+
+#. module: sale_project_user_profile
+#: model:ir.model.fields,field_description:sale_project_user_profile.field_project_user_task_sale_line_map_user_id
+msgid "User"
+msgstr "Utilisateur"
+
+#. module: sale_project_user_profile
+#: model:ir.ui.view,arch_db:sale_project_user_profile.view_project_project_specific_form
+msgid "User task mapping"
+msgstr "Mapping utilisateurs/tâches"
+
+#. module: sale_project_user_profile
+#: model:ir.model,name:sale_project_user_profile.model_res_users
+msgid "Users"
+msgstr "Utilisateurs"
+
+#. module: sale_project_user_profile
+#: code:addons/odoo/local-src/sale_project_user_profile/models/sale_order.py:28
+#: code:addons/sale_project_user_profile/models/sale_order.py:28
+#, python-format
+msgid "With a service product of type 'User profile', all service products must have 'User profile' type."
+msgstr "Avec un produit service de type 'Profil utilisateur', tous les produits services doivent avoir le type 'Profil utilisateur'."
+
+#. module: sale_project_user_profile
+#: code:addons/odoo/local-src/sale_project_user_profile/models/account_analytic_line.py:45
+#: code:addons/sale_project_user_profile/models/account_analytic_line.py:45
+#, python-format
+msgid "You cannot timesheet on this task. Contact the project manager %s"
+msgstr "Vous ne pouvez pas saisir de feuille de temps sur cette tâche. Contacter le chef de projet %s"
+
+#. module: sale_project_user_profile
+#: model:ir.model,name:sale_project_user_profile.model_project_user_task_sale_line_map
+msgid "project.user.task.sale_line.map"
+msgstr "project.user.task.sale_line.map"
+
