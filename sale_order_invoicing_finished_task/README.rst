@@ -13,20 +13,24 @@ Usage
 
 To use this module, you need to:
 
-1. Go to Sales -> Product and create a service product
-2. In the product go to Invoicing tab and select (1) An invocing policy (2) Track
-service must be create a task and tack hours (3) Set Invoicing finished task
-checkbox and save
 
-.. image:: static/description/product_view_invoicefinishedtask.png
+1. Go to Sales -> Product and create a service product
+
+2. In the product go to Invoicing tab and select (1) An invocing policy (2) Track
+   service must be create a task and tack hours (3) Set Invoicing finished task
+   checkbox and save
+
+
+   .. image:: static/description/product_view_invoicefinishedtask.png
+
 
 3. Go to Sales -> Sale orders -> Create a new one. Add a customer y the product
-you have created
+   you have created
 4. Confirm the sales order, it will create you a proyect and a task
 5. Go to the task and you will find a smartbutton called Not invoiceable, when
-you press the button you will indicate that the task can be invoiced
+   you press the button you will indicate that the task can be invoiced
 
-.. image:: static/description/task_view_invoicefinishedtask.png
+   .. image:: static/description/task_view_invoicefinishedtask.png
 
 You can try it in:
 
