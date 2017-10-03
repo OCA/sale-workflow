@@ -6,16 +6,29 @@
 Sale Order Invoicing Finished Task
 ==================================
 
-This module extends sale_service module to allow invoice order lines only if
-his task has been finished.
+The requirement of this module is to add in the task the possibility to indicate if it is invoiceable o not.
 
 Usage
 =====
 
 To use this module, you need to:
 
-#. Go to
+1. Go to Sales -> Product and create a service product
+2. In the product go to Invoicing tab and select (1) An invocing policy (2) Track
+service must be create a task and tack hours (3) Set Invoicing finished task
+checkbox and save
 
+.. image:: static/description/product_view_invoicefinishedtask.png
+
+3. Go to Sales -> Sale orders -> Create a new one. Add a customer y the product
+you have created
+4. Confirm the sales order, it will create you a proyect and a task
+5. Go to the task and you will find a smartbutton called Not invoiceable, when
+you press the button you will indicate that the task can be invoiced
+
+.. image:: static/description/task_view_invoicefinishedtask.png
+
+You can try it in:
 
 .. image:: https://odoo-community.org/website/image/ir.attachment/5784_f2813bd/datas
    :alt: Try me on Runbot
@@ -42,6 +55,7 @@ Images
 Contributors
 ------------
 
+* Denis Leemann <denis.leemann@camptocamp.com> 
 * Sergio Teruel <sergio.teruel@tecnativa.com>
 * Carlos Dauden <carlos.dauden@tecnativa.com>
 
