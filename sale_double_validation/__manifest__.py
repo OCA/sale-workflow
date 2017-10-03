@@ -14,7 +14,7 @@
      'sales_team',
  ],
  'website': 'www.camptocamp.com',
- 'data': ['views/company.xml',
+ 'data': ['views/res_config.xml',
           'views/sale.xml'],
  'test': [],
  'installable': True,

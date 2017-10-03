@@ -1,0 +1,18 @@
+<?xml version="1.0" ?>
+<odoo>
+
+    <record id="view_sales_config" model="ir.ui.view">
+        <field name="model">sale.config.settings</field>
+        <field name="inherit_id" ref="sale.view_sales_config"/>
+        <field name="arch" type="xml">
+            <group id="sale" position="after">
+                <group string="Sale validation" id="sale_validation">
+                    <field name="company_currency_id" invisible="1" />
+                    <field name="so_double_validation" widget="radio"/>
+                    <field name="so_double_validation_amount" attrs="{'invisible': [('so_double_validation', '=', 'one_step')]}" />
+                </group>
+            </group>
+        </field>
+    </record>
+
+</odoo>
