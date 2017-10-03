@@ -25,6 +25,16 @@ def savepoint(cr):
         _logger.exception('Error during an automatic workflow action.')
 
 
+@contextmanager
+def force_company(env, company_id):
+    user_company = env.user.company_id
+    env.user.update({'company_id': company_id})
+    try:
+        yield
+    finally:
+        env.user.update({'company_id': user_company})
+
+
 class AutomaticWorkflowJob(models.Model):
     """ Scheduler that will play automatically the validation of
     invoices, pickings...  """
@@ -37,7 +47,8 @@ class AutomaticWorkflowJob(models.Model):
         sales = sale_obj.search(order_filter)
         _logger.debug('Sale Orders to validate: %s', sales.ids)
         for sale in sales:
-            with savepoint(self.env.cr):
+            with savepoint(self.env.cr), force_company(self.env,
+                                                       sale.company_id):
                 sale.action_confirm()
 
     @api.model
@@ -46,7 +57,8 @@ class AutomaticWorkflowJob(models.Model):
         sales = sale_obj.search(create_filter)
         _logger.debug('Sale Orders to create Invoice: %s', sales.ids)
         for sale in sales:
-            with savepoint(self.env.cr):
+            with savepoint(self.env.cr), force_company(self.env,
+                                                       sale.company_id):
                 payment = self.env['sale.advance.payment.inv'].create(
                     {'advance_payment_method': 'all'})
                 payment.with_context(active_ids=sale.ids).create_invoices()
@@ -57,7 +69,8 @@ class AutomaticWorkflowJob(models.Model):
         invoices = invoice_obj.search(validate_invoice_filter)
         _logger.debug('Invoices to validate: %s', invoices.ids)
         for invoice in invoices:
-            with savepoint(self.env.cr):
+            with savepoint(self.env.cr), force_company(self.env,
+                                                       invoice.company_id):
                 invoice.action_invoice_open()
 
     @api.model
@@ -75,7 +88,8 @@ class AutomaticWorkflowJob(models.Model):
         sales = sale_obj.search(sale_done_filter)
         _logger.debug('Sale Orders to done: %s', sales.ids)
         for sale in sales:
-            with savepoint(self.env.cr):
+            with savepoint(self.env.cr), force_company(self.env,
+                                                       sale.company_id):
                 sale.action_done()
 
     @api.model
