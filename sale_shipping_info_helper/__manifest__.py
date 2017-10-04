@@ -9,9 +9,8 @@
     'category': 'Sales',
     'license': 'AGPL-3',
     'summary': 'Add shipping amounts on sale order',
-    'depends': ['sale', 'delivery', 'sale_order_line_price_subtotal_gross'],
+    'depends': ['sale', 'delivery'],
     'author': 'akretion,Odoo Community Association (OCA)',
     'website': 'http://www.akretion.com',
-    'data': ['views/sale_view.xml'],
     'installable': True,
 }
