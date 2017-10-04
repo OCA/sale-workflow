@@ -46,10 +46,7 @@ class SaleOrder(models.Model):
             for line in record.order_line:
                 if line['is_delivery']:
                     record.shipping_amount_untaxed = line['price_subtotal']
-                    # TODO depends on sale order line gross subtotal module
-                    # Need to move this code to not depend on this module
-                    record.shipping_amount_total = line['price_subtotal_gross']
-                    record.shipping_amount_tax = \
-                        line['price_subtotal_gross'] - line['price_subtotal']
+                    record.shipping_amount_total = line['price_total']
+                    record.shipping_amount_tax = line['price_tax']
         for key in ['amount_total', 'amount_untaxed', 'amount_tax']:
             record['item_%s' % key] = record[key] - record['shipping_%s' % key]
