@@ -1,6 +1,6 @@
-# -*- coding: utf-8 -*-
-# © 2013-2017 Camptocamp SA (Jacques-Etienne Baudoux)
-# © 2014-2017 Akretion (Alexis de Lattre <alexis.delattre@akretion.com>)
+# © 2017-To Day Akretion
+# @author Sébastien BEAU <sebastien.beau@akretion.com>
+# @author: Mourad EL HADJ MIMOUNE <mourad.elhadj.mimoune@akretion.com>
 
 
 {
@@ -10,7 +10,7 @@
     'license': 'AGPL-3',
     'summary': 'Add shipping amounts on sale order',
     'depends': ['sale', 'delivery'],
-    'author': 'akretion,Odoo Community Association (OCA)',
-    'website': 'http://www.akretion.com',
+    'author': 'Akretion, Odoo Community Association (OCA)',
+    'website': 'https://github.com/OCA/sale-workflow',
     'installable': True,
 }
