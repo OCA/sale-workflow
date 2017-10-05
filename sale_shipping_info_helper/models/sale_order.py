@@ -48,5 +48,6 @@ class SaleOrder(models.Model):
                     record.shipping_amount_untaxed = line['price_subtotal']
                     record.shipping_amount_total = line['price_total']
                     record.shipping_amount_tax = line['price_tax']
-        for key in ['amount_total', 'amount_untaxed', 'amount_tax']:
-            record['item_%s' % key] = record[key] - record['shipping_%s' % key]
+            for key in ['amount_total', 'amount_untaxed', 'amount_tax']:
+                record['item_%s' % key] = record[key] -\
+                    record['shipping_%s' % key]
