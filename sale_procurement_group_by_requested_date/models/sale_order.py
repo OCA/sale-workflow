@@ -3,7 +3,7 @@
 # Copyright 2017 Serpent Consulting Services Pvt. Ltd.
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl.html).
 
-from openerp import api, fields, models
+from odoo import api, fields, models
 
 
 class SaleOrder(models.Model):
@@ -16,9 +16,11 @@ class SaleOrder(models.Model):
         req_datetime = fields.Datetime.from_string(line.requested_date)
         req_date = fields.Date.to_string(req_datetime)
         if line._get_procurement_group_key()[0] == 12:
-            if line.requested_date:
+            if line.requested_date and line.warehouse_id:
                 vals['name'] = '/'.join([vals['name'], line.warehouse_id.name,
                                          req_date])
+            elif line.requested_date and not line.warehouse_id:
+                vals['name'] = '/'.join([vals['name'], req_date])
         return vals
 
 
@@ -33,7 +35,7 @@ class SaleOrderLine(models.Model):
         if self.requested_date:
             req_datetime = fields.Datetime.from_string(self.requested_date)
             req_date = fields.Date.to_string(req_datetime)
-            values['requested_date'] = req_date
+            values['date_planned'] = req_date
         return values
 
     @api.multi
@@ -50,6 +52,10 @@ class SaleOrderLine(models.Model):
             return key
         req_datetime = fields.Datetime.from_string(self.requested_date)
         req_date = fields.Date.to_string(req_datetime)
+        if self.warehouse_id and not req_date:
+            return (priority, self.warehouse_id.id)
+        if req_date and not self.warehouse_id:
+            return (priority, str(req_date))
         if self.warehouse_id and req_date:
             key = '/'.join([str(self.warehouse_id.id), req_date])
         return (priority, key)
