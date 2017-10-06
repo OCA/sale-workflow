@@ -3,8 +3,8 @@
 # Copyright 2017 Serpent Consulting Services Pvt. Ltd.
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl.html).
 
-from openerp.tests.common import TransactionCase
-from openerp import fields
+from odoo.tests.common import TransactionCase
+from odoo import fields
 import datetime
 
 
@@ -26,49 +26,66 @@ class TestSaleMultiPickingByRequestedDate(TransactionCase):
         today = datetime.datetime.now()
         self.dt1 = today
         self.dt2 = today + datetime.timedelta(days=1)
+
         self.sale1 = sale_obj.create({'partner_id': 1})
-        self.sale_line1 = order_line.create({'product_id': p1,
-                                             'name': 'cool product',
-                                             'order_id': self.sale1.id,
-                                             'warehouse_id': self.wh1.id,
-                                             'requested_date': self.dt1})
-        self.sale_line2 = order_line.create({'product_id': p1,
-                                             'name': 'cool product',
-                                             'order_id': self.sale1.id,
-                                             'warehouse_id': self.wh1.id,
-                                             'requested_date': self.dt2})
-        self.sale_line3 = order_line.create({'product_id': p1,
-                                             'name': 'cool product',
-                                             'order_id': self.sale1.id,
-                                             'warehouse_id': self.wh2.id,
-                                             'requested_date': self.dt1})
-        self.sale_line4 = order_line.create({'product_id': p1,
-                                             'name': 'cool product',
-                                             'order_id': self.sale1.id,
-                                             'warehouse_id': self.wh2.id,
-                                             'requested_date': self.dt2})
+        self.sale_line1 = order_line.create({
+            'product_id': p1,
+            'name': 'cool product',
+            'order_id': self.sale1.id,
+            'warehouse_id': self.wh1.id,
+            'requested_date': self.dt1
+        })
+        self.sale_line2 = order_line.create({
+            'product_id': p1,
+            'name': 'cool product',
+            'order_id': self.sale1.id,
+            'warehouse_id': self.wh1.id,
+            'requested_date': self.dt2
+        })
+        self.sale_line3 = order_line.create({
+            'product_id': p1,
+            'name': 'cool product',
+            'order_id': self.sale1.id,
+            'warehouse_id': self.wh2.id,
+            'requested_date': self.dt1
+        })
+        self.sale_line4 = order_line.create({
+            'product_id': p1,
+            'name': 'cool product',
+            'order_id': self.sale1.id,
+            'warehouse_id': self.wh2.id,
+            'requested_date': self.dt2
+        })
 
         self.sale2 = sale_obj.create({'partner_id': 1})
-        self.sale_line5 = order_line.create({'product_id': p1,
-                                             'name': 'cool product',
-                                             'order_id': self.sale2.id,
-                                             'warehouse_id': self.wh1.id,
-                                             'requested_date': self.dt1})
-        self.sale_line6 = order_line.create({'product_id': p1,
-                                             'name': 'cool product',
-                                             'order_id': self.sale2.id,
-                                             'warehouse_id': self.wh1.id,
-                                             'requested_date': self.dt2})
-        self.sale_line7 = order_line.create({'product_id': p1,
-                                             'name': 'cool product',
-                                             'order_id': self.sale2.id,
-                                             'warehouse_id': self.wh1.id,
-                                             'requested_date': self.dt1})
-        self.sale_line8 = order_line.create({'product_id': p1,
-                                             'name': 'cool product',
-                                             'order_id': self.sale2.id,
-                                             'warehouse_id': self.wh1.id,
-                                             'requested_date': self.dt2})
+        self.sale_line5 = order_line.create({
+            'product_id': p1,
+            'name': 'cool product',
+            'order_id': self.sale2.id,
+            'warehouse_id': self.wh1.id,
+            'requested_date': self.dt1
+        })
+        self.sale_line6 = order_line.create({
+            'product_id': p1,
+            'name': 'cool product',
+            'order_id': self.sale2.id,
+            'warehouse_id': self.wh1.id,
+            'requested_date': self.dt2
+        })
+        self.sale_line7 = order_line.create({
+            'product_id': p1,
+            'name': 'cool product',
+            'order_id': self.sale2.id,
+            'warehouse_id': self.wh1.id,
+            'requested_date': self.dt1
+        })
+        self.sale_line8 = order_line.create({
+            'product_id': p1,
+            'name': 'cool product',
+            'order_id': self.sale2.id,
+            'warehouse_id': self.wh1.id,
+            'requested_date': self.dt2
+        })
 
     def test_number_of_groups(self):
         """True when the number of groups created matches the

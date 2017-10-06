@@ -6,7 +6,7 @@
 {
     "name": "Group procurements by requested date",
     "summary": "Groups pickings based on requested date of order line",
-    "version": "9.0.1.0.0",
+    "version": "10.0.1.0.0",
     "category": "Sales Management",
     "website": "http://www.eficent.com",
     "author": "Eficent , "
