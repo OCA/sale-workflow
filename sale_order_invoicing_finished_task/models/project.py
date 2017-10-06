@@ -31,7 +31,7 @@ class ProjectTask(models.Model):
     def _onchange_stage_id(self):
         for task in self:
             if task.invoicing_finished_task and \
-                    task.related_stage_id.invoiceable and\
+                    task.stage_id.invoiceable and\
                     not task.invoiceable:
                 task.invoiceable = True
 
@@ -55,7 +55,11 @@ class ProjectTask(models.Model):
                 raise ValidationError(_('You cannot modify the Sale Order '
                                         'Line of the task once it is invoiced')
                                       )
-        return super(ProjectTask, self).write(vals)
+        res = super(ProjectTask, self).write(vals)
+        # Onchange stage_id field is not triggered with statusbar widget
+        if 'stage_id' in vals:
+            self._onchange_stage_id()
+        return res
 
     @api.model
     def create(self, vals):
@@ -65,4 +69,10 @@ class ProjectTask(models.Model):
         if so_line and so_line.state in ('done', 'cancel'):
             raise ValidationError(_('You cannot add a task to and invoiced '
                                     'Sale Order Line'))
+        # Onchange stage_id field is not triggered with statusbar widget
+        if 'sale_line_id' in vals:
+            stage = self.env['project.task.type'].browse(vals['stage_id'])
+            if so_line.product_id.invoicing_finished_task and \
+                    stage.invoiceable:
+                vals['invoiceable'] = True
         return super(ProjectTask, self).create(vals)
