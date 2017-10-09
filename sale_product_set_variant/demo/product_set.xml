@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <record id="product_set_i5_computer" model="product.set">
+        <field name="name">i5 computer offer</field>
+    </record>
+
+    <record id="product_set_i3_computer" model="product.set">
+        <field name="name">i3 computer offer</field>
+    </record>
+
+    <record id="product_set_line_computer_1" model="product.set.line">
+        <field name="product_set_id" ref="product_set_i5_computer"/>
+        <field name="product_template_id" ref="product.product_product_4_product_template"/>
+        <field name="product_variant_ids" eval="[(4,ref('product.product_product_4b'))]"/>
+        <field name="quantity">1</field>
+        <field name="sequence">30</field>
+    </record>
+    <record id="product_set_line_computer_3" model="product.set.line">
+        <field name="product_set_id" ref="product_set_i5_computer"/>
+        <field name="product_template_id" ref="product.product_product_4_product_template"/>
+        <field name="product_variant_ids" eval="[(4,ref('product.product_product_4c'))]"/>
+        <field name="quantity">1</field>
+        <field name="sequence">50</field>
+    </record>
+
+    <record id="product_set_line_computer_2" model="product.set.line">
+        <field name="product_set_id" ref="product_set_i3_computer"/>
+        <field name="product_template_id" ref="product.product_product_4_product_template"/>
+        <field name="quantity">1</field>
+        <field name="sequence">30</field>
+    </record>
+</odoo>
