@@ -2,10 +2,43 @@
 # Copyright 2015 ADHOC SA  (http://www.adhoc.com.ar)
 # Copyright 2017 Alex Comba - Agile Business Group
 # Copyright 2017 Tecnativa - David Vidal
+# Copyright 2017 Tecnativa - Luis M. Ontalba
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
 from odoo import api, fields, models
 import odoo.addons.decimal_precision as dp
+
+
+class SaleOrder(models.Model):
+    _inherit = "sale.order"
+
+    @api.depends('order_line.price_total')
+    def _amount_all(self):
+        """
+        Compute the total amounts of the SO.
+        """
+        for order in self:
+            if not order.company_id.tax_calculation_rounding_method == (
+                    'round_globally'):
+                return super(SaleOrder, self)._amount_all()
+            amount_untaxed = amount_tax = 0.0
+            for line in order.order_line:
+                amount_untaxed += line.price_subtotal
+                taxes = line.tax_id.compute_all(
+                    line.price_reduce,
+                    line.order_id.currency_id,
+                    line.product_uom_qty,
+                    product=line.product_id,
+                    partner=order.partner_shipping_id,
+                )
+                amount_tax += sum(
+                    t.get('amount', 0.0) for t in taxes.get('taxes', []))
+            order.update({
+                'amount_untaxed': order.pricelist_id.currency_id.round(
+                    amount_untaxed),
+                'amount_tax': order.pricelist_id.currency_id.round(amount_tax),
+                'amount_total': amount_untaxed + amount_tax,
+            })
 
 
 class SaleOrderLine(models.Model):
