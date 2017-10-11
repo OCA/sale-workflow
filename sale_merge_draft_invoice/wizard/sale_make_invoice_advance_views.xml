@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<!--
+    Copyright 2017 Eficent Business and IT Consulting Services, S.L.
+    License LGPL-3.0 or later (https://www.gnu.org/licenses/lgpl.html).
+-->
+
+<odoo>
+
+        <record id="view_sale_advance_payment_inv" model="ir.ui.view">
+            <field name="name">Invoice Orders</field>
+            <field name="model">sale.advance.payment.inv</field>
+            <field name="inherit_id" ref="sale.view_sale_advance_payment_inv"/>
+            <field name="arch" type="xml">
+                <field name="deposit_taxes_id" position="after">
+                    <field name="merge_draft_invoice"
+                           groups="sale_merge_draft_invoice.group_sale_merge_draft_invoice"/>
+                </field>
+            </field>
+        </record>
+
+</odoo>
