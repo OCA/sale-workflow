@@ -10,6 +10,7 @@
     "author": "Agile Business Group,Odoo Community Association (OCA)",
     "website": "http://www.agilebg.com",
     "category": "Sales Management",
+    "license": "AGPL-3",
     "depends": [
         "product",
         "sale",
