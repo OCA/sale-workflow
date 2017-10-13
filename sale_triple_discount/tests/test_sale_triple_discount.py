@@ -1,6 +1,5 @@
 # -*- coding: utf-8 -*-
 # Copyright 2017 Tecnativa - David Vidal
-# Copyright 2017 Tecnativa - Luis M. Ontalba
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
 from odoo.tests import common
@@ -112,13 +111,3 @@ class TestSaleOrder(common.SavepointCase):
         self.assertEqual(self.so_line2.discount3,
                          invoice.invoice_line_ids[1].discount3)
         self.assertEqual(self.order.amount_total, invoice.amount_total)
-
-    def test_05_sale_order_triple_discount_globally_rounding(self):
-        self.order.company_id.tax_calculation_rounding_method == (
-            'round_globally')
-        self.so_line1.discount = 50.0
-        self.so_line1.discount2 = 50.0
-        self.so_line1.discount3 = 50.0
-        self.assertEqual(self.so_line1.price_subtotal, 75.0)
-        self.assertEqual(self.order.amount_untaxed, 675.0)
-        self.assertEqual(self.order.amount_tax, 101.25)
