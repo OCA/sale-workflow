@@ -28,6 +28,7 @@ addon | version | summary
 [sale_force_invoiced](sale_force_invoiced/) | 10.0.1.0.0 | Allows to force the invoice status of the sales order to Invoiced
 [sale_isolated_quotation](sale_isolated_quotation/) | 10.0.1.0.0 | Sales - Isolated Quotation
 [sale_layout_hidden](sale_layout_hidden/) | 10.0.1.0.0 | Sale Layout Hidden Sections
+[sale_order_invoicing_finished_task](sale_order_invoicing_finished_task/) | 10.0.1.0.0 | Control invoice order lines if his task has been finished
 [sale_order_line_sequence](sale_order_line_sequence/) | 10.0.1.0.0 | Propagates SO line sequence to invoices and stock picking.
 [sale_order_lot_generator](sale_order_lot_generator/) | 10.0.0.0.1 | sale_order_lot_generator
 [sale_order_lot_mrp](sale_order_lot_mrp/) | 10.0.1.0.0 | sale_order_lot_mrp
@@ -41,6 +42,7 @@ addon | version | summary
 [sale_product_set](sale_product_set/) | 10.0.1.0.1 | Sale product set
 [sale_product_set_layout](sale_product_set_layout/) | 10.0.1.0.0 | Sale product set layout
 [sale_rental](sale_rental/) | 10.0.1.0.0 | Manage Rental of Products
+[sale_shipping_info_helper](sale_shipping_info_helper/) | 10.0.1.0.0 | Add shipping amounts on sale order
 [sale_sourced_by_line](sale_sourced_by_line/) | 10.0.1.0.0 | Multiple warehouse source locations for Sale order
 [sale_start_end_dates](sale_start_end_dates/) | 10.0.1.0.0 | Adds start date and end date on sale order lines
 [sale_triple_discount](sale_triple_discount/) | 10.0.1.0.0 | Manage triple discount on sale order lines
