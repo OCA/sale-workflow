@@ -26,7 +26,8 @@ class TestSaleOrder(common.SavepointCase):
             'amount': 15.0,
         })
         cls.order = cls.env['sale.order'].create({
-            'partner_id': cls.partner.id
+            'partner_id': cls.partner.id,
+            'company_id': cls.env.user.company_id.id,
         })
         so_line = cls.env['sale.order.line']
         cls.so_line1 = so_line.create({
@@ -45,6 +46,8 @@ class TestSaleOrder(common.SavepointCase):
             'tax_id': [(6, 0, [cls.tax.id])],
             'price_unit': 60.0,
         })
+        cls.order.company_id.tax_calculation_rounding_method = (
+            'round_per_line')
 
     def test_01_sale_order_classic_discount(self):
         """ Tests with single discount """
@@ -111,3 +114,19 @@ class TestSaleOrder(common.SavepointCase):
         self.assertEqual(self.so_line2.discount3,
                          invoice.invoice_line_ids[1].discount3)
         self.assertEqual(self.order.amount_total, invoice.amount_total)
+
+    def test_05_sale_order_triple_discount_rounding_tax_method(self):
+        """ When the rounding tax method changes the result must be
+            the same """
+        self.order.company_id.tax_calculation_rounding_method = (
+            'round_globally')
+        self.so_line1.discount = 50.0
+        self.so_line1.discount2 = 50.0
+        self.so_line1.discount3 = 50.0
+        self.assertEqual(self.so_line1.price_subtotal, 75.0)
+        self.assertEqual(self.order.amount_untaxed, 675.0)
+        self.assertEqual(self.order.amount_tax, 101.25)
+        self.so_line2.discount3 = 50.0
+        self.assertEqual(self.so_line2.price_subtotal, 300.0)
+        self.assertEqual(self.order.amount_untaxed, 375.0)
+        self.assertEqual(self.order.amount_tax, 56.25)

@@ -18,22 +18,31 @@ class SaleOrder(models.Model):
         Compute the total amounts of the SO.
         """
         for order in self:
-            prev_price_unit = {}
+            if not order.company_id.tax_calculation_rounding_method == (
+                    'round_globally'):
+                return super(SaleOrder, self)._amount_all()
+            amount_untaxed = amount_tax = 0.0
             for line in order.order_line:
-                prev_price_unit['line.id'] = line.price_unit
-                prev_price_subtotal = line.price_subtotal
-                price_unit = line.price_unit * (
-                    1 - (line.discount2 or 0.0) / 100.0)
-                price_unit *= (1 - (line.discount3 or 0.0) / 100.0)
-                line.update({
-                    'price_unit': price_unit,
-                    'price_subtotal': prev_price_subtotal
-                })
-            super(SaleOrder, self)._amount_all()
-            for line in order.order_line:
-                line.update({
-                    'price_unit': prev_price_unit['line.id'],
-                })
+                amount_untaxed += line.price_subtotal
+                price = line.price_unit * (
+                    1 - (line.discount or 0.0) / 100.0) * (
+                    1 - (line.discount2 or 0.0) / 100.0) * (
+                    1 - (line.discount3 or 0.0) / 100.0)
+                taxes = line.tax_id.compute_all(
+                    price,
+                    line.order_id.currency_id,
+                    line.product_uom_qty,
+                    product=line.product_id,
+                    partner=order.partner_shipping_id,
+                )
+                amount_tax += sum(
+                    t.get('amount', 0.0) for t in taxes.get('taxes', []))
+            order.update({
+                'amount_untaxed': order.pricelist_id.currency_id.round(
+                    amount_untaxed),
+                'amount_tax': order.pricelist_id.currency_id.round(amount_tax),
+                'amount_total': amount_untaxed + amount_tax,
+            })
 
 
 class SaleOrderLine(models.Model):
