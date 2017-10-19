@@ -10,17 +10,24 @@ import openerp.addons.decimal_precision as dp
 class SaleOrderLine(models.Model):
     _inherit = 'sale.order.line'
 
-    @api.multi
-    @api.depends('order_id.state', 'product_uom_qty', 'qty_delivered')
+    @api.depends('order_id.state', 'procurement_ids.state', 'product_uom_qty')
     def _compute_qty_to_deliver(self):
         for line in self:
-            line.qty_to_deliver = line.product_uom_qty - line.qty_delivered
+            total = 0.0
+            for move in line.procurement_ids.mapped('move_ids').filtered(
+                    lambda m: m.state not in ('cancel', 'done')):
+                if move.product_uom != line.product_uom:
+                    total += move.product_uom._compute_quantity(
+                        move.product_uom_qty, line.product_uom)
+                else:
+                    total += move.product_uom_qty
+            line.qty_to_deliver = total
 
     qty_to_deliver = fields.Float(compute='_compute_qty_to_deliver',
                                   digits=dp.get_precision(
                                       'Product Unit of Measure'),
                                   copy=False,
-                                  string="To Deliver", store=True)
+                                  string="Qty to Deliver", store=True)
 
 
 class SaleOrder(models.Model):
