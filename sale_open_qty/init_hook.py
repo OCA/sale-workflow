@@ -29,14 +29,24 @@ def store_field_qty_to_deliver(cr):
             """
             ALTER TABLE sale_order_line ADD COLUMN qty_to_deliver float;
             COMMENT ON COLUMN sale_order_line.qty_to_deliver IS
-            'To Deliver';
+            'Qty to Deliver';
             """)
 
     logger.info('Computing values for field qty_to_deliver'
                 ' on sale_order_line')
     cr.execute(
         """
-        UPDATE sale_order_line sol
-        SET qty_to_deliver = sol.product_uom_qty - sol.qty_delivered
+        UPDATE sale_order_line
+        SET qty_to_deliver = sol.qty
+        FROM (SELECT smp.sale_line_id, sum(smp.product_uom_qty) as qty
+              FROM (SELECT sm.id, sm.state, sm.product_uom_qty,
+                        procurement_order.sale_line_id
+                    FROM stock_move sm
+                    LEFT JOIN procurement_order
+                    ON sm.procurement_id = procurement_order.id) as smp
+              WHERE smp.sale_line_id IS NOT NULL AND
+                  smp.state not in ('cancel', 'done')
+              GROUP BY sale_line_id) as sol
+        WHERE sale_order_line.id = sol.sale_line_id
         """
     )

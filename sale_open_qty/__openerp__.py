@@ -12,7 +12,7 @@
               "Odoo Community Association (OCA)",
     "website": "https://github.com/OCA/sale-workflow",
     "category": "Sales",
-    "depends": ["sale"],
+    "depends": ["sale_stock"],
     "data": [
         'views/sale_view.xml',
     ],
