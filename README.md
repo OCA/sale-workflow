@@ -29,6 +29,7 @@ addon | version | summary
 [sale_isolated_quotation](sale_isolated_quotation/) | 10.0.1.0.0 | Sales - Isolated Quotation
 [sale_layout_hidden](sale_layout_hidden/) | 10.0.1.0.0 | Sale Layout Hidden Sections
 [sale_order_invoicing_finished_task](sale_order_invoicing_finished_task/) | 10.0.1.0.0 | Control invoice order lines if his task has been finished
+[sale_order_line_description](sale_order_line_description/) | 10.0.1.0.0 | Sale order line description
 [sale_order_line_sequence](sale_order_line_sequence/) | 10.0.1.0.0 | Propagates SO line sequence to invoices and stock picking.
 [sale_order_lot_generator](sale_order_lot_generator/) | 10.0.0.0.1 | sale_order_lot_generator
 [sale_order_lot_mrp](sale_order_lot_mrp/) | 10.0.1.0.0 | sale_order_lot_mrp
@@ -72,7 +73,6 @@ addon | version | summary
 [sale_multi_picking](sale_multi_picking/) | 0.1 (unported) | Multi Pickings from Sale Orders
 [sale_order_add_variants](sale_order_add_variants/) | 8.0.0.1.0 (unported) | Add variants from template into sale order
 [sale_order_force_number](sale_order_force_number/) | 0.1 (unported) | Force sale orders numeration
-[sale_order_line_description](sale_order_line_description/) | 8.0.1.0.0 (unported) | Sale order line description
 [sale_packaging_price](sale_packaging_price/) | 9.0.1.0.0 (unported) | Sale Packaging Price
 [sale_partner_order_policy](sale_partner_order_policy/) | 8.0.1.0.0 (unported) | Adds customer create invoice method on partner form
 [sale_payment_term_interest](sale_payment_term_interest/) | 8.0.1.0.0 (unported) | Sales Payment Term Interests
