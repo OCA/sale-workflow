@@ -3,7 +3,7 @@
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html)
 
 import logging
-from openerp import models, api, fields
+from openerp import models, api
 from openerp.tools.safe_eval import safe_eval
 from openerp.addons.sale_automatic_workflow.models.automatic_workflow_job \
     import commit
