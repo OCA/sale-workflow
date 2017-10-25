@@ -12,7 +12,6 @@
                     <footer>
                         <button name="add_set" string="Add set"
                                 type="object" class="oe_highlight"/>
-                         or
                         <button special="cancel" string="Cancel" class="oe_link"/>
                     </footer>
                 </form>
