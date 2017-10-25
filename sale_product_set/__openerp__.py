@@ -1,11 +1,12 @@
 # -*- coding: utf-8 -*-
-
+# Copyright 2015 Anybox
+# License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
 {
     'name': 'Sale product set',
     'category': 'Sale',
+    'license': 'AGPL-3',
     'author': 'Anybox, Odoo Community Association (OCA)',
-    'version': '10.0.1.0.1',
-    'sequence': 150,
+    'version': '10.0.1.0.2',
     'website': 'https://github.com/OCA/sale-workflow',
     'summary': "Sale product set",
     'depends': [
@@ -22,6 +23,4 @@
         'demo/product_set_line.xml',
     ],
     'installable': True,
-    'application': False,
-    'auto_install': False,
 }
