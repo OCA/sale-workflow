@@ -3,25 +3,38 @@
 # For copyright and license notices, see __openerp__.py file in root directory
 ##############################################################################
 
-from openerp import models, fields, api
+from openerp import api, fields, models
 
 
 class ResPartner(models.Model):
     _inherit = 'res.partner'
 
-    @api.one
+    @api.multi
     @api.depends('commercial_partner_id',
                  'commercial_partner_id.sale_order_ids',
                  'commercial_partner_id.sale_order_ids.state',
                  'commercial_partner_id.child_ids',
                  'commercial_partner_id.child_ids.sale_order_ids',
-                 'commercial_partner_id.child_ids.sale_order_ids.state')
+                 'commercial_partner_id.child_ids.sale_order_ids.state',
+                 'commercial_partner_id.invoice_ids',
+                 'commercial_partner_id.child_ids.invoice_ids')
     def _compute_prospect(self):
-        sale_ids = (
-            self.commercial_partner_id.sale_order_ids +
-            self.commercial_partner_id.mapped('child_ids.sale_order_ids'))
-        self.prospect = not sale_ids.filtered(
-            lambda r: r.state not in ('draft', 'sent', 'cancel'))
+        for partner in self:
+            sale_ids = (
+                partner.commercial_partner_id.sale_order_ids +
+                partner.commercial_partner_id.mapped(
+                    'child_ids.sale_order_ids'))
+            invoice_ids = (
+                partner.commercial_partner_id.invoice_ids +
+                partner.commercial_partner_id.mapped(
+                    'child_ids.invoice_ids'))
+            partner.prospect = (
+                not sale_ids.filtered(
+                    lambda r: r.state not in
+                    ('draft', 'sent', 'cancel')) and
+                not invoice_ids.filtered(
+                    lambda r: r.type in ('out_invoice', 'out_refund')))
 
     prospect = fields.Boolean(
-        string='Prospect', compute='_compute_prospect', store=True)
+        string='Prospect', compute='_compute_prospect', default=False,
+        store=True)

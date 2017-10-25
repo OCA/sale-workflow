@@ -18,7 +18,8 @@
 
 {
     "name": "Partner Prospect",
-    "version": "8.0.1.0.0",
+    "version": "11.0.1.0.0",
+    "license": "AGPL-3",
     "author": "AvanzOSC, "
               "Serv. Tecnol. Avanzados - Pedro M. Baeza,"
               "Odoo Community Association (OCA)",
@@ -36,5 +37,5 @@
     "data": [
         "views/res_partner_view.xml",
     ],
-    'installable': False
+    "installable": True,
 }
