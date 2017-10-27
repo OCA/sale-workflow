@@ -1,0 +1,3 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_sale_invoice_group_method_user,access_sale_invoice_group_method user,model_sale_invoice_group_method,sales_team.group_sale_manager,1,0,0,0
+access_sale_invoice_group_method_manager,access_sale_invoice_group_method manager,model_sale_invoice_group_method,sales_team.group_sale_manager,1,1,1,1
