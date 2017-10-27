@@ -24,6 +24,7 @@ addon | version | summary
 [sale_automatic_workflow_payment_mode](sale_automatic_workflow_payment_mode/) | 10.0.1.0.0 | Sale Automatic Workflow - Payment Mode
 [sale_cancel_reason](sale_cancel_reason/) | 10.0.1.0.0 | Sale Cancel Reason
 [sale_commercial_partner](sale_commercial_partner/) | 10.0.1.0.0 | Add stored related field 'Commercial Entity' on sale orders
+[sale_company_currency](sale_company_currency/) | 10.0.1.0.0 | Company currency in sale orders
 [sale_exception](sale_exception/) | 10.0.2.0.0 | Custom exceptions on sale order
 [sale_force_invoiced](sale_force_invoiced/) | 10.0.1.0.0 | Allows to force the invoice status of the sales order to Invoiced
 [sale_isolated_quotation](sale_isolated_quotation/) | 10.0.1.0.0 | Sales - Isolated Quotation
