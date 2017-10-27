@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!--
+    Copyright 2017 Eficent Business and IT Consulting Services, S.L.
+    License LGPL-3.0 or later (http://www.gnu.org/licenses/lgpl.html).
+-->
+
+<odoo>
+
+    <record id="sale_invoice_group_method_form_view" model="ir.ui.view">
+        <field name="name">sale.invoice.group.method.form</field>
+        <field name="model">sale.invoice.group.method</field>
+        <field name="arch" type="xml">
+            <form string="Invoice Groups">
+                <sheet>
+                    <group>
+                        <field name="name"/>
+                        <field name="criteria_fields_ids" widget="many2many_tags"/>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="sale_invoice_group_method_tree_view" model="ir.ui.view">
+        <field name="name">sale.invoice.group.method.tree</field>
+        <field name="model">sale.invoice.group.method</field>
+        <field name="arch" type="xml">
+            <tree string="Invoice Group">
+                <field name="name"/>
+                <field name="criteria_fields_ids"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="sale_invoice_group_method_search_view" model="ir.ui.view">
+        <field name="name">sale.invoice.group.method.search</field>
+        <field name="model">sale.invoice.group.method</field>
+        <field name="arch" type="xml">
+            <search string="Medical Procedure Request">
+                <field name="name"/>
+                <newline />
+                <group expand="0" name="group_by" string="Group By...">
+                    <filter string="Name"
+                            domain="[]"
+                            context="{'group_by':'name'}" />
+                </group>
+            </search>
+        </field>
+    </record>
+
+    <record model="ir.actions.act_window" id="sale_invoice_group_method_action">
+        <field name="name">Sale Invoice Group Method</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">sale.invoice.group.method</field>
+        <field name="view_type">form</field>
+        <field name="view_mode">tree,form</field>
+        <field name="context">{'sale_invoice_group_method':1}</field>
+    </record>
+
+</odoo>
