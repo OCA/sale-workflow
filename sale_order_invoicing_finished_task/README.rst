@@ -6,9 +6,13 @@
 Sale Order Invoicing Finished Task
 ==================================
 
-The requirement of this module is to give the possibility in the task to indicate if a task is available to invoice or not. This means by default even the task is not finished you could set it as invoiceable.
+The requirement of this module is to give the possibility in the task to
+indicate if a task is available to invoice or not. This means by default even
+the task is not finished you could set it as invoiceable.
 
-As an option you can relate to a Proyect Stage ( ``project.task.type`` ) this control. For example if you want to assign Invoiceable to stage ``Done`` always
+As an option you can relate to a Proyect Stage ( ``project.task.type`` ) this
+control.
+For example if you want to assign Invoiceable to stage ``Done`` always.
 
 Usage
 =====
@@ -17,9 +21,9 @@ To use this module, you need to:
 
 1. Go to Sales -> Product and create a service product
 
-2. In the product go to Invoicing tab and select (1) An invocing policy (2) Track
-   service must be create a task and tack hours (3) Set Invoicing finished task
-   checkbox and save
+2. In the product go to Invoicing tab and select (1) An invocing policy (2)
+   Track service must be create a task and tack hours (3) Set Invoicing
+   finished task checkbox and save
 
 
    .. image:: static/description/product_view_invoicefinishedtask.png
@@ -33,7 +37,11 @@ To use this module, you need to:
 
    .. image:: static/description/task_view_invoicefinishedtask.png
 
-6. Optional: if you want to use project stages to control this Go To Proyect -> Settings -> Stage -> You have to set true the field Invoiceable in the stages that you consider are invoiceable. Event to use stages for this functionality you can also set it manually in the task whenever you want.
+6. Optional: if you want to use project stages to control this Go To
+   Proyect -> Settings -> Stage -> You have to set true the field Invoiceable
+   in the stages that you consider are invoiceable. Event to use stages for
+   this functionality you can also set it manually in the task whenever you
+   want.
 
 You can try it in:'
 
@@ -62,7 +70,7 @@ Images
 Contributors
 ------------
 
-* Denis Leemann <denis.leemann@camptocamp.com> 
+* Denis Leemann <denis.leemann@camptocamp.com>
 * Sergio Teruel <sergio.teruel@tecnativa.com>
 * Carlos Dauden <carlos.dauden@tecnativa.com>
 
