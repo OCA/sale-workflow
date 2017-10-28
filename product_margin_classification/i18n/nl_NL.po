@@ -9,8 +9,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 8.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-08-29 03:50+0000\n"
-"PO-Revision-Date: 2017-08-29 03:50+0000\n"
+"POT-Creation-Date: 2017-09-26 08:13+0000\n"
+"PO-Revision-Date: 2017-09-26 08:13+0000\n"
 "Last-Translator: Peter Hageman <hageman.p@gmail.com>, 2017\n"
 "Language-Team: Dutch (Netherlands) (https://www.transifex.com/oca/teams/23907/nl_NL/)\n"
 "MIME-Version: 1.0\n"
@@ -119,7 +119,7 @@ msgstr ""
 #. module: product_margin_classification
 #: field:product.margin.classification,name:0
 msgid "Name"
-msgstr ""
+msgstr "Naam"
 
 #. module: product_margin_classification
 #: field:product.margin.classification,price_round:0

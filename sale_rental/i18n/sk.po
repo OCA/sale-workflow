@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: sale-workflow (8.0)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-04-04 03:01+0000\n"
+"POT-Creation-Date: 2017-09-26 08:15+0000\n"
 "PO-Revision-Date: 2015-09-03 07:10+0000\n"
 "Last-Translator: <>\n"
 "Language-Team: Slovak (http://www.transifex.com/oca/OCA-sale-workflow-8-0/language/sk/)\n"
@@ -26,29 +26,29 @@ msgid ""
 "* Waiting Availability: This state is reached when the procurement resolution is not straight forward. It may need the scheduler to run, a component to me manufactured...\n"
 "* Available: When products are reserved, it is set to 'Available'.\n"
 "* Done: When the shipment is processed, the state is 'Done'."
-msgstr ""
+msgstr "* Nové: Skladový pohyb vytvorený a ešte nepotvrdený.\n* Čakanie na iný pohyb: je očakávaný iný pohyb, napr. v rámci zreťazenia.\n* Očakávanie dostupnosti: Stav keď nákupná požiadavka nie je realizovaná. Je potrebné spustiť proces alebo vyrobiť produkt...\n* Dostupné: ak je produkt rezervovaný.\n* Vybavené: dodávka zrealizovaná"
 
 #. module: sale_rental
 #: selection:sale.rental,state:0
 msgid "Back In"
-msgstr ""
+msgstr "Vrátenie"
 
 #. module: sale_rental
 #: field:sale.order.line,can_sell_rental:0
 msgid "Can Sell from Rental"
-msgstr ""
+msgstr "Možno predať z prenájmu"
 
 #. module: sale_rental
 #: code:addons/sale_rental/rental.py:525
 #, python-format
 msgid "Can't find any generic 'Rent' route."
-msgstr ""
+msgstr "Nemožno nájsť žiadnu preddefinovanú trasu 'Prenájom'"
 
 #. module: sale_rental
 #: code:addons/sale_rental/rental.py:537
 #, python-format
 msgid "Can't find any generic 'Sell Rented Product' route."
-msgstr ""
+msgstr "Nemožno nájsť preddefinovanú trasu predaja prenajímaných produktov."
 
 #. module: sale_rental
 #: view:create.rental.product:sale_rental.create_rental_product_form
@@ -59,7 +59,7 @@ msgstr "Zrušiť"
 #: code:addons/sale_rental/rental.py:118
 #, python-format
 msgid "Cannot sell the rental %s because it has not been delivered"
-msgstr ""
+msgstr "Nemožno predať prenájom %s lebo nebol dodaný"
 
 #. module: sale_rental
 #: field:sale.rental,company_id:0
@@ -69,24 +69,24 @@ msgstr "Spoločnosť"
 #. module: sale_rental
 #: field:create.rental.product,copy_image:0
 msgid "Copy Product Image"
-msgstr ""
+msgstr "Kopírovať obrázok produktu"
 
 #. module: sale_rental
 #: view:create.rental.product:sale_rental.create_rental_product_form
 msgid "Create"
-msgstr ""
+msgstr "Vytvoriť"
 
 #. module: sale_rental
 #: view:create.rental.product:sale_rental.create_rental_product_form
 #: model:ir.actions.act_window,name:sale_rental.create_rental_product_action
 #: view:product.product:sale_rental.product_normal_form_view
 msgid "Create Rental Service"
-msgstr ""
+msgstr "Vytvoriť prenájom"
 
 #. module: sale_rental
 #: model:ir.model,name:sale_rental.model_create_rental_product
 msgid "Create the Rental Service Product"
-msgstr ""
+msgstr "Vytvoriť službu prenájmu  produktu"
 
 #. module: sale_rental
 #: field:create.rental.product,create_uid:0 field:sale.rental,create_uid:0
@@ -101,18 +101,18 @@ msgstr "Vytvorené"
 #. module: sale_rental
 #: field:create.rental.product,default_code:0
 msgid "Default Code"
-msgstr ""
+msgstr "Predvolený kód"
 
 #. module: sale_rental
 #: view:sale.rental:sale_rental.sale_rental_form
 #: view:sale.rental:sale_rental.sale_rental_tree
 msgid "Delivery"
-msgstr ""
+msgstr "Dodávka"
 
 #. module: sale_rental
 #: field:sale.rental,out_picking_id:0
 msgid "Delivery Order"
-msgstr ""
+msgstr "Dodací list"
 
 #. module: sale_rental
 #: field:create.rental.product,display_name:0 field:sale.rental,display_name:0
@@ -122,19 +122,19 @@ msgstr "Zobraziť meno"
 #. module: sale_rental
 #: view:sale.rental:sale_rental.sale_rental_tree
 msgid "End Date"
-msgstr ""
+msgstr "Dátum ukončenia"
 
 #. module: sale_rental
 #: field:sale.rental,end_date:0
 msgid "End Date (extensions included)"
-msgstr ""
+msgstr "Dátum ukončenia vrátane predĺženia"
 
 #. module: sale_rental
 #: help:sale.rental,end_date:0
 msgid ""
 "End Date of the Rental, taking into account all the extensions sold to the "
 "customer."
-msgstr ""
+msgstr "Dátum ukončenia prenájmu, zúčtované všetky doplnky zákazníkovi"
 
 #. module: sale_rental
 #: field:create.rental.product,id:0 field:sale.rental,id:0
@@ -144,7 +144,7 @@ msgstr "ID"
 #. module: sale_rental
 #: help:sale.order.line,rental_qty:0 help:sale.rental,rental_qty:0
 msgid "Indicate the number of items that will be rented."
-msgstr ""
+msgstr "Indikuje počet prenajímaných položiek"
 
 #. module: sale_rental
 #: field:create.rental.product,__last_update:0
@@ -171,13 +171,13 @@ msgstr ""
 #. module: sale_rental
 #: selection:sale.order.line,rental_type:0
 msgid "New Rental"
-msgstr ""
+msgstr "Nový prenájom"
 
 #. module: sale_rental
 #: code:addons/sale_rental/rental.py:248
 #, python-format
 msgid "Not enough stock !"
-msgstr ""
+msgstr "Málo na sklade!"
 
 #. module: sale_rental
 #: code:addons/sale_rental/rental.py:167
@@ -185,7 +185,7 @@ msgstr ""
 msgid ""
 "On the 'new rental' sale order line with product '%s', we should have a "
 "rental service product !"
-msgstr ""
+msgstr "Na riadku 'nový prenájom' s produktom '%s' musí byť prenajímateľný produkt!"
 
 #. module: sale_rental
 #: code:addons/sale_rental/rental.py:180
@@ -202,7 +202,7 @@ msgid ""
 "On the sale order line with product %s you are trying to sell a rented "
 "product with a quantity (%s) that is different from the rented quantity "
 "(%s). This is not supported."
-msgstr ""
+msgstr "Na riadku objednávky s produktom %s sa pokúšate predať množstvo  (%s) ktoré je rozdielne ako prenajímané množstvo (%s). Nepodporované."
 
 #. module: sale_rental
 #: code:addons/sale_rental/rental.py:172
@@ -210,7 +210,7 @@ msgstr ""
 msgid ""
 "On the sale order line with product '%s' the Product Quantity (%s) should be"
 " the number of days (%s) multiplied by the Rental Quantity (%s)."
-msgstr ""
+msgstr "Na riadku objednávky s produktom '%s'  množstvo (%s) musí byť počet dní (%s)  krát Rental Quantity (%s)"
 
 #. module: sale_rental
 #: code:addons/sale_rental/rental.py:156
@@ -219,22 +219,22 @@ msgid ""
 "On the sale order line with rental service %s, you are trying to extend a "
 "rental with a rental quantity (%s) that is different from the quantity of "
 "the original rental (%s). This is not supported."
-msgstr ""
+msgstr "Na riadku predaja s prenájmom %s sa pokúšate rozšíriť prenájom o množstvo (%s), ktoré je odlišné ako pôvodné (%s). To nie je podporované."
 
 #. module: sale_rental
 #: selection:sale.rental,state:0
 msgid "Ordered"
-msgstr ""
+msgstr "Objednané"
 
 #. module: sale_rental
 #: selection:sale.rental,state:0
 msgid "Out"
-msgstr ""
+msgstr "Výstup"
 
 #. module: sale_rental
 #: field:sale.rental,out_move_id:0
 msgid "Outgoing Stock Move"
-msgstr ""
+msgstr "Výstup zo skladu"
 
 #. module: sale_rental
 #: field:sale.rental,partner_id:0
@@ -244,51 +244,51 @@ msgstr "Partner"
 #. module: sale_rental
 #: field:sale.rental,procurement_id:0
 msgid "Procurement"
-msgstr ""
+msgstr "Obstarávanie"
 
 #. module: sale_rental
 #: model:ir.model,name:sale_rental.model_product_product
 msgid "Product"
-msgstr ""
+msgstr "Produkt"
 
 #. module: sale_rental
 #: field:create.rental.product,categ_id:0
 msgid "Product Category"
-msgstr ""
+msgstr "Kategória produktu"
 
 #. module: sale_rental
 #: field:create.rental.product,name:0
 msgid "Product Name"
-msgstr ""
+msgstr "Názov produktu"
 
 #. module: sale_rental
 #: model:ir.model,name:sale_rental.model_stock_location_path
 msgid "Pushed Flows"
-msgstr ""
+msgstr "Tlačené toky"
 
 #. module: sale_rental
 #: code:addons/sale_rental/wizard/create_rental_product.py:46
 #, python-format
 msgid "RENT-%s"
-msgstr ""
+msgstr "Prenájom-%s"
 
 #. module: sale_rental
 #: view:product.product:sale_rental.product_normal_form_view
 #: field:product.product,rental_service_ids:0
 msgid "Related Rental Services"
-msgstr ""
+msgstr "Súvisiace služby prenájmu"
 
 #. module: sale_rental
 #: field:product.product,rented_product_id:0
 msgid "Related Rented Product"
-msgstr ""
+msgstr "Súvisiaci prenajímaný produkt"
 
 #. module: sale_rental
 #: code:addons/sale_rental/rental.py:522
 #: model:stock.location.route,name:sale_rental.route_warehouse0_rental
 #, python-format
 msgid "Rent"
-msgstr ""
+msgstr "Prenájom"
 
 #. module: sale_rental
 #: model:ir.model,name:sale_rental.model_sale_rental
@@ -296,149 +296,149 @@ msgstr ""
 #: field:sale.order.line,rental:0
 #: view:sale.rental:sale_rental.sale_rental_form
 msgid "Rental"
-msgstr ""
+msgstr "Prenájmy"
 
 #. module: sale_rental
 #: field:stock.warehouse,rental_allowed:0
 msgid "Rental Allowed"
-msgstr ""
+msgstr "Prenájom povolený"
 
 #. module: sale_rental
 #: selection:sale.order.line,rental_type:0
 msgid "Rental Extension"
-msgstr ""
+msgstr "Predĺženie prenájmu"
 
 #. module: sale_rental
 #: view:sale.rental:sale_rental.sale_rental_form
 #: field:sale.rental,extension_order_line_ids:0
 msgid "Rental Extensions"
-msgstr ""
+msgstr "Predĺženia prenájmu"
 
 #. module: sale_rental
 #: model:stock.location,name:sale_rental.rental_in_stock_location
 #: field:stock.warehouse,rental_in_location_id:0
 msgid "Rental In"
-msgstr ""
+msgstr "Vstup prenájmu"
 
 #. module: sale_rental
 #: model:stock.location,name:sale_rental.rental_out_stock_location
 #: field:stock.warehouse,rental_out_location_id:0
 msgid "Rental Out"
-msgstr ""
+msgstr "Výstup prenájmu"
 
 #. module: sale_rental
 #: field:create.rental.product,sale_price_per_day:0
 msgid "Rental Price per Day"
-msgstr ""
+msgstr "Cena prenájmu na deň"
 
 #. module: sale_rental
 #: field:sale.order.line,rental_qty:0 field:sale.rental,rental_qty:0
 msgid "Rental Quantity"
-msgstr ""
+msgstr "Množstvo na prenájom"
 
 #. module: sale_rental
 #: field:stock.warehouse,rental_route_id:0
 msgid "Rental Route"
-msgstr ""
+msgstr "Trasa prenájmu"
 
 #. module: sale_rental
 #: field:sale.rental,start_order_id:0
 msgid "Rental Sale Order"
-msgstr ""
+msgstr "Objednávka prenájmu"
 
 #. module: sale_rental
 #: field:sale.rental,start_order_line_id:0
 msgid "Rental Sale Order Line"
-msgstr ""
+msgstr "Riadok objednávky prenájmu"
 
 #. module: sale_rental
 #: field:sale.rental,rental_product_id:0
 msgid "Rental Service"
-msgstr ""
+msgstr "Služba prenájmu"
 
 #. module: sale_rental
 #: field:sale.order.line,rental_type:0
 msgid "Rental Type"
-msgstr ""
+msgstr "Druh prenájmu"
 
 #. module: sale_rental
 #: code:addons/sale_rental/wizard/create_rental_product.py:37
 #, python-format
 msgid "Rental of a %s"
-msgstr ""
+msgstr "Prenájom %s"
 
 #. module: sale_rental
 #: model:product.template,name:sale_rental.rent_product_product_25_product_template
 msgid "Rental of one Laptop E5023"
-msgstr ""
+msgstr "Prenájom Laptop E5023"
 
 #. module: sale_rental
 #: model:product.template,name:sale_rental.rent_product_product_8_product_template
 msgid "Rental of one iMac"
-msgstr ""
+msgstr "Prenájom iMac"
 
 #. module: sale_rental
 #: model:product.template,name:sale_rental.rent_product_product_6_product_template
 msgid "Rental of one iPad Mini"
-msgstr ""
+msgstr "Prenájom iPad Mini"
 
 #. module: sale_rental
 #: field:sale.order.line,extension_rental_id:0
 msgid "Rental to Extend"
-msgstr ""
+msgstr "Prenájom na predĺženie"
 
 #. module: sale_rental
 #: field:sale.order.line,sell_rental_id:0
 msgid "Rental to Sell"
-msgstr ""
+msgstr "Predaj prenajímaných produktov"
 
 #. module: sale_rental
 #: model:ir.actions.act_window,name:sale_rental.sale_rental_action
 #: model:ir.ui.menu,name:sale_rental.sale_rental_menu
 #: view:sale.rental:sale_rental.sale_rental_tree
 msgid "Rentals"
-msgstr ""
+msgstr "Prenájmy"
 
 #. module: sale_rental
 #: field:sale.rental,rented_product_id:0
 msgid "Rented Product"
-msgstr ""
+msgstr "Prenajímaný produkt"
 
 #. module: sale_rental
 #: view:sale.rental:sale_rental.sale_rental_form
 #: view:sale.rental:sale_rental.sale_rental_tree
 msgid "Return"
-msgstr ""
+msgstr "Vrátenie"
 
 #. module: sale_rental
 #: field:sale.rental,in_picking_id:0
 msgid "Return Picking"
-msgstr ""
+msgstr "Vrátenie"
 
 #. module: sale_rental
 #: field:sale.rental,in_move_id:0
 msgid "Return Stock Move"
-msgstr ""
+msgstr "Vrátenie na sklad"
 
 #. module: sale_rental
 #: model:ir.model,name:sale_rental.model_sale_order
 msgid "Sales Order"
-msgstr ""
+msgstr "Objednávka predaja"
 
 #. module: sale_rental
 #: model:ir.model,name:sale_rental.model_sale_order_line
 msgid "Sales Order Line"
-msgstr ""
+msgstr "Položky objednávky"
 
 #. module: sale_rental
 #: field:sale.rental,sell_picking_id:0
 msgid "Sell Delivery Order"
-msgstr ""
+msgstr "Dodací list predaja"
 
 #. module: sale_rental
 #: field:sale.rental,sell_procurement_id:0
 msgid "Sell Procurement"
-msgstr ""
+msgstr "Nákup"
 
 #. module: sale_rental
 #: code:addons/sale_rental/rental.py:531
@@ -447,52 +447,52 @@ msgstr ""
 #: model:stock.location.route,name:sale_rental.route_warehouse0_sell_rented_product
 #, python-format
 msgid "Sell Rented Product"
-msgstr ""
+msgstr "Predaj prenajímaného produktu"
 
 #. module: sale_rental
 #: field:stock.warehouse,sell_rented_product_route_id:0
 msgid "Sell Rented Product Route"
-msgstr ""
+msgstr "Trasa predaja prenajímaných produktov"
 
 #. module: sale_rental
 #: field:sale.rental,sell_move_id:0
 msgid "Sell Stock Move"
-msgstr ""
+msgstr "Skladový pohyb - predaj"
 
 #. module: sale_rental
 #: selection:sale.rental,state:0
 msgid "Sell in progress"
-msgstr ""
+msgstr "Predaj prebieha"
 
 #. module: sale_rental
 #: selection:sale.rental,state:0
 msgid "Sold"
-msgstr ""
+msgstr "Predané"
 
 #. module: sale_rental
 #: field:sale.rental,start_date:0
 msgid "Start Date"
-msgstr ""
+msgstr "Počiatočný dátum"
 
 #. module: sale_rental
 #: field:sale.rental,state:0
 msgid "State"
-msgstr ""
+msgstr "Stav"
 
 #. module: sale_rental
 #: field:sale.rental,out_state:0
 msgid "State of the Outgoing Stock Move"
-msgstr ""
+msgstr "Stav výstupného pohybu zo skladu"
 
 #. module: sale_rental
 #: field:sale.rental,in_state:0
 msgid "State of the Return Stock Move"
-msgstr ""
+msgstr "Stav návratého pohybu na sklad"
 
 #. module: sale_rental
 #: field:sale.rental,sell_state:0
 msgid "State of the Sell Stock Move"
-msgstr ""
+msgstr "Stav predaja zo skladu"
 
 #. module: sale_rental
 #: model:ir.model,name:sale_rental.model_stock_move
@@ -503,13 +503,13 @@ msgstr ""
 #: code:addons/sale_rental/rental.py:541
 #, python-format
 msgid "The Rental Input stock location is not set on the warehouse %s"
-msgstr ""
+msgstr "Skladové miesto vstupu nie je nastavené pre sklad %s"
 
 #. module: sale_rental
 #: code:addons/sale_rental/rental.py:545
 #, python-format
 msgid "The Rental Output stock location is not set on the warehouse %s"
-msgstr ""
+msgstr "Skladové miesto výstupu nie je nastavené pre sklad %s"
 
 #. module: sale_rental
 #: code:addons/sale_rental/rental.py:296
@@ -517,13 +517,13 @@ msgstr ""
 msgid ""
 "The Rental Service of the Rental Extension you just selected is '%s' and "
 "it's not the same as the Product currently selected in this Sale Order Line."
-msgstr ""
+msgstr "Služba rozšírenia prenájmu ktorú ste zvolili je  '%s' a nie je rovnaká ako produkt pôvodne vybratý v objednávke."
 
 #. module: sale_rental
 #: code:addons/sale_rental/rental.py:51
 #, python-format
 msgid "The rental product '%s' must be of type 'Service'."
-msgstr ""
+msgstr "Produkt prenájmu  '%s' musí byť typu 'Služba'."
 
 #. module: sale_rental
 #: code:addons/sale_rental/rental.py:55
@@ -531,13 +531,13 @@ msgstr ""
 msgid ""
 "The rental product '%s' must have the option 'Must Have Start and End Dates'"
 " checked."
-msgstr ""
+msgstr "Produkt prenájmu  '%s'  musí mať navolenú možnosť 'Dátum začiatku a ukončenia povinný'."
 
 #. module: sale_rental
 #: code:addons/sale_rental/rental.py:63
 #, python-format
 msgid "The unit of measure of the rental product '%s' must be 'Day'."
-msgstr ""
+msgstr "Merná jednotka prenájmu produktu '%s' musí byť 'Deň'."
 
 #. module: sale_rental
 #: view:sale.rental:sale_rental.sale_rental_form
@@ -547,12 +547,12 @@ msgstr "Celkom"
 #. module: sale_rental
 #: view:sale.rental:sale_rental.sale_rental_form
 msgid "Unit of Measure"
-msgstr ""
+msgstr "Merná jednotka"
 
 #. module: sale_rental
 #: model:ir.model,name:sale_rental.model_stock_warehouse
 msgid "Warehouse"
-msgstr ""
+msgstr "Sklad"
 
 #. module: sale_rental
 #: code:addons/sale_rental/rental.py:250
@@ -561,7 +561,7 @@ msgid ""
 "You want to rent %.2f %s but you only have %.2f %s currently available on "
 "the stock location '%s' ! Make sure that you get some units back in the mean"
 " time or re-supply the stock location '%s'."
-msgstr ""
+msgstr "Chcete prenajať %.2f %s ale máte k dispozícii len %.2f %s dostupné na sklade  '%s' !Zabezpečte medzičasom vrátenie niekoľkých kusov alebo doobjednajte na sklad '%s'."
 
 #. module: sale_rental
 #: view:sale.order:sale_rental.view_order_form_sale_stock

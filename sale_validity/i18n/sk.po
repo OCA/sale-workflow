@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: sale-workflow (8.0)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-04-04 03:01+0000\n"
+"POT-Creation-Date: 2017-09-26 08:15+0000\n"
 "PO-Revision-Date: 2015-09-03 07:11+0000\n"
 "Last-Translator: <>\n"
 "Language-Team: Slovak (http://www.transifex.com/oca/OCA-sale-workflow-8-0/language/sk/)\n"
@@ -43,7 +43,7 @@ msgstr ""
 #. module: sale_validity
 #: model:ir.model,name:sale_validity.model_sale_order
 msgid "Sales Order"
-msgstr ""
+msgstr "Objednávka predaja"
 
 #. module: sale_validity
 #: sql_constraint:res.company:0

@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: sale-workflow (8.0)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-08-29 03:51+0000\n"
-"PO-Revision-Date: 2017-08-29 08:01+0000\n"
+"POT-Creation-Date: 2017-09-26 08:14+0000\n"
+"PO-Revision-Date: 2017-09-22 14:32+0000\n"
 "Last-Translator: OCA Transbot <transbot@odoo-community.org>\n"
 "Language-Team: Dutch (Netherlands) (http://www.transifex.com/oca/OCA-sale-workflow-8-0/language/nl_NL/)\n"
 "MIME-Version: 1.0\n"
@@ -70,7 +70,7 @@ msgstr ""
 #. module: sale_order_type
 #: view:sale.order.type:sale_order_type.sot_sale_order_type_search_view
 msgid "Group By"
-msgstr ""
+msgstr "Groeperen op"
 
 #. module: sale_order_type
 #: field:sale.order.type,id:0
@@ -112,7 +112,7 @@ msgstr "Laatst bijgewerkt op"
 #. module: sale_order_type
 #: field:sale.order.type,name:0
 msgid "Name"
-msgstr ""
+msgstr "Naam"
 
 #. module: sale_order_type
 #: model:sale.order.type,name:sale_order_type.normal_sale_type
