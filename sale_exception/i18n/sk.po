@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: sale-workflow (9.0)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-12-20 11:44+0000\n"
+"POT-Creation-Date: 2017-09-02 13:18+0000\n"
 "PO-Revision-Date: 2016-04-12 07:49+0000\n"
 "Last-Translator: <>\n"
 "Language-Team: Slovak (http://www.transifex.com/oca/OCA-sale-workflow-9-0/language/sk/)\n"
@@ -98,6 +98,7 @@ msgstr ""
 
 #. module: sale_exception
 #: model:ir.model.fields,field_description:sale_exception.field_sale_order_exception_ids
+#: model:ir.ui.menu,name:sale_exception.menu_sale_exception_parent
 msgid "Exceptions"
 msgstr ""
 
@@ -209,7 +210,7 @@ msgstr ""
 #. module: sale_exception
 #: model:ir.model,name:sale_exception.model_sale_order
 msgid "Sales Order"
-msgstr ""
+msgstr "Objednávka predaja"
 
 #. module: sale_exception
 #: model:ir.model.fields,field_description:sale_exception.field_sale_exception_sequence

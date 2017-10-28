@@ -9,8 +9,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 9.0c\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-08-29 03:28+0000\n"
-"PO-Revision-Date: 2017-08-29 03:28+0000\n"
+"POT-Creation-Date: 2017-09-02 13:18+0000\n"
+"PO-Revision-Date: 2017-09-02 13:18+0000\n"
 "Last-Translator: Peter Hageman <hageman.p@gmail.com>, 2017\n"
 "Language-Team: Dutch (Netherlands) (https://www.transifex.com/oca/teams/23907/nl_NL/)\n"
 "MIME-Version: 1.0\n"
@@ -157,7 +157,7 @@ msgstr ""
 #. module: sale_rental
 #: model:ir.ui.view,arch_db:sale_rental.sale_rental_search
 msgid "Group By"
-msgstr ""
+msgstr "Groeperen op"
 
 #. module: sale_rental
 #: model:ir.model.fields,field_description:sale_rental.field_create_rental_product_id
@@ -530,7 +530,7 @@ msgstr ""
 #: model:ir.model.fields,field_description:sale_rental.field_sale_rental_state
 #: model:ir.ui.view,arch_db:sale_rental.sale_rental_search
 msgid "State"
-msgstr ""
+msgstr "Provincie"
 
 #. module: sale_rental
 #: model:ir.model.fields,field_description:sale_rental.field_sale_rental_out_state

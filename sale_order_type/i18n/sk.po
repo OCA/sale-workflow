@@ -4,13 +4,14 @@
 # 
 # Translators:
 # OCA Transbot <transbot@odoo-community.org>, 2016
+# Jan Prokop <jprokop@creativehome.sk>, 2017
 msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 9.0c\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-06-24 01:09+0000\n"
-"PO-Revision-Date: 2017-06-24 01:09+0000\n"
-"Last-Translator: OCA Transbot <transbot@odoo-community.org>, 2016\n"
+"POT-Creation-Date: 2017-09-02 13:18+0000\n"
+"PO-Revision-Date: 2017-09-02 13:18+0000\n"
+"Last-Translator: Jan Prokop <jprokop@creativehome.sk>, 2017\n"
 "Language-Team: Slovak (https://www.transifex.com/oca/teams/23907/sk/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -140,7 +141,7 @@ msgstr ""
 #. module: sale_order_type
 #: model:ir.model,name:sale_order_type.model_sale_order
 msgid "Sales Order"
-msgstr ""
+msgstr "Objednávka predaja"
 
 #. module: sale_order_type
 #: model:ir.ui.view,arch_db:sale_order_type.res_partner_sale_type_form_view
@@ -160,7 +161,7 @@ msgid "Shipping Policy"
 msgstr ""
 
 #. module: sale_order_type
-#: model:ir.model.fields,field_description:sale_order_type.field_sale_order_type_id_4715
+#: model:ir.model.fields,field_description:sale_order_type.field_sale_order_type_id_4716
 #: model:ir.ui.view,arch_db:sale_order_type.sot_sale_order_type_form_view
 #: model:ir.ui.view,arch_db:sale_order_type.sot_sale_order_type_search_view
 #: model:ir.ui.view,arch_db:sale_order_type.sot_sale_order_type_tree_view
@@ -176,4 +177,4 @@ msgstr ""
 #: model:ir.model.fields,field_description:sale_order_type.field_sale_order_type_warehouse_id
 #: model:ir.ui.view,arch_db:sale_order_type.sot_sale_order_type_search_view
 msgid "Warehouse"
-msgstr ""
+msgstr "Sklad"

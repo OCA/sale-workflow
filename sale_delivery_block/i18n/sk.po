@@ -4,13 +4,14 @@
 # 
 # Translators:
 # OCA Transbot <transbot@odoo-community.org>, 2017
+# Jan Prokop <jprokop@creativehome.sk>, 2017
 msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 9.0c\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-05-31 04:21+0000\n"
-"PO-Revision-Date: 2017-05-31 04:21+0000\n"
-"Last-Translator: OCA Transbot <transbot@odoo-community.org>, 2017\n"
+"POT-Creation-Date: 2017-09-02 13:18+0000\n"
+"PO-Revision-Date: 2017-09-02 13:18+0000\n"
+"Last-Translator: Jan Prokop <jprokop@creativehome.sk>, 2017\n"
 "Language-Team: Slovak (https://www.transifex.com/oca/teams/23907/sk/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -126,12 +127,12 @@ msgstr ""
 #. module: sale_delivery_block
 #: model:ir.model,name:sale_delivery_block.model_sale_order
 msgid "Sales Order"
-msgstr ""
+msgstr "Objednávka predaja"
 
 #. module: sale_delivery_block
 #: model:ir.model,name:sale_delivery_block.model_sale_order_line
 msgid "Sales Order Line"
-msgstr ""
+msgstr "Položky objednávky"
 
 #. module: sale_delivery_block
 #: model:ir.model.fields,help:sale_delivery_block.field_res_partner_default_delivery_block
