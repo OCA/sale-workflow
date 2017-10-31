@@ -46,6 +46,9 @@ class ProjectTask(models.Model):
                                   "no Sale Order Line or if it has been "
                                   "invoiced."))
             task.invoiceable = not task.invoiceable
+            if task.sale_line_id and task.sale_line_id.product_id.invoice_policy == 'order':
+                task.sale_line_id.qty_delivered = task.sale_line_id.product_uom_qty
+
 
     @api.multi
     def write(self, vals):
