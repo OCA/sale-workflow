@@ -47,19 +47,19 @@ class SaleOrder(models.Model):
 
     @api.returns('self', lambda value: value.id)
     @api.multi
-    def copy(self, defaults=None):
-        if not defaults:
-            defaults = {}
+    def copy(self, default=None):
+        if default is None:
+            default = {}
         if self.env.context.get('new_sale_revision'):
 
             new_rev_number = self.revision_number + 1
-            defaults.update({
+            default.update({
                 'revision_number': new_rev_number,
                 'unrevisioned_name': self.unrevisioned_name,
                 'name': '%s-%02d' % (self.unrevisioned_name, new_rev_number),
                 'old_revision_ids': [(4, self.id, False)],
             })
-            new_revision = super(SaleOrder, self).copy(defaults)
+            new_revision = super(SaleOrder, self).copy(default)
             self.old_revision_ids.write({
                 'current_revision_id': new_revision.id,
             })
@@ -70,12 +70,12 @@ class SaleOrder(models.Model):
             return new_revision
 
         else:
-            if defaults.get('name', '/') == '/':
+            if default.get('name', '/') == '/':
                 seq = self.env['ir.sequence']
-                defaults['name'] = seq.next_by_code('sale.order') or '/'
-                defaults['revision_number'] = 0
-                defaults['unrevisioned_name'] = defaults['name']
-            return super(SaleOrder, self).copy(defaults)
+                default['name'] = seq.next_by_code('sale.order') or '/'
+                default['revision_number'] = 0
+                default['unrevisioned_name'] = default['name']
+            return super(SaleOrder, self).copy(default=default)
 
     @api.model
     def create(self, values):
