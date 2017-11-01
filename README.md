@@ -37,7 +37,7 @@ addon | version | summary
 [sale_order_lot_selection](sale_order_lot_selection/) | 10.0.1.0.0 | Sale Order Lot Selection
 [sale_order_margin_percent](sale_order_margin_percent/) | 10.0.1.0.0 | Show Percent in sale order
 [sale_order_price_recalculation](sale_order_price_recalculation/) | 10.0.1.0.0 | Price recalculation in sales orders
-[sale_order_revision](sale_order_revision/) | 10.0.1.0.0 | Sale order revisions
+[sale_order_revision](sale_order_revision/) | 10.0.1.0.1 | Sale order revisions
 [sale_order_type](sale_order_type/) | 10.0.1.0.0 | Sale Order Type
 [sale_owner_stock_sourcing](sale_owner_stock_sourcing/) | 10.0.1.0.0 | Manage stock ownership on sale order lines
 [sale_procurement_group_by_line](sale_procurement_group_by_line/) | 10.0.1.0.0 | Base module for multiple procurement group by Sale order
