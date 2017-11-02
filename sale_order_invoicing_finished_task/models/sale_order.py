@@ -35,7 +35,7 @@ class SaleOrderLine(models.Model):
         lines = self.filtered(
             lambda x: (x.product_id.type == 'service' and
                        x.product_id.invoicing_finished_task and
-                       x.product_id.track_service == 'task')
+                       x.product_id.track_service in ['task', 'timesheet'])
         )
         for line in lines:
             if all(line.task_ids.mapped('invoiceable')):
