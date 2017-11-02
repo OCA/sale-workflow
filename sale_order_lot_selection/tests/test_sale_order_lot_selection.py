@@ -51,7 +51,7 @@ class TestSaleOrderLotSelection(test_common.SingleTransactionCase):
         return product.with_context({
             'lot_id': lot.id,
             'location': location.id,
-            })._product_available()
+        })._product_available()
 
     def test_sale_order_lot_selection(self):
         # make products enter
@@ -98,27 +98,27 @@ class TestSaleOrderLotSelection(test_common.SingleTransactionCase):
                         'lot_name': '0000010',
                         'qty': ops.product_qty,
                         'qty_todo': ops.product_qty
-                        })],
+                    })],
                     'qty_done': ops.product_qty
-                    })
+                })
             if ops.product_id == self.product_46:
                 ops.write({
                     'pack_lot_ids': [(0, 0, {
                         'lot_name': '0000011',
                         'qty': ops.product_qty,
                         'qty_todo': ops.product_qty
-                        })],
+                    })],
                     'qty_done': ops.product_qty
-                    })
+                })
             if ops.product_id == self.product_12:
                 ops.write({
                     'pack_lot_ids': [(0, 0, {
                         'lot_name': '0000012',
                         'qty': ops.product_qty,
                         'qty_todo': ops.product_qty
-                        })],
+                    })],
                     'qty_done': ops.product_qty
-                    })
+                })
         picking_in.do_new_transfer()
         lot_obj = self.env['stock.production.lot']
         self.lot10 = lot_obj.search([('name', '=', '0000010'),
@@ -201,11 +201,9 @@ class TestSaleOrderLotSelection(test_common.SingleTransactionCase):
             if pack.product_id.id == self.product_57.id:
                 self.assertEqual(pack.pack_lot_ids.lot_id, self.lot10)
 
-        # also test on_change for order3
-        onchange_res = self.sol3._onchange_product_id_set_lot_domain()
-        self.assertEqual(onchange_res['domain']['lot_id'], [('id', 'in', [])])
-        # put back the lot because it is removed by onchange
-        self.sol3.lot_id = self.lot10.id
+        # also test available_lot_ids
+        available_lot_ids = self.sol3.available_lot_ids
+        self.assertEqual(available_lot_ids, self.env['stock.production.lot'])
 
         # I'll try to confirm it to check lot reservation:
         # lot10 was delivered by order1
@@ -213,11 +211,9 @@ class TestSaleOrderLotSelection(test_common.SingleTransactionCase):
             self.order3.action_confirm()
 
         # also test on_change for order2
-        onchange_res = self.sol2a._onchange_product_id_set_lot_domain()
+        available_lot_ids2 = self.sol2a.available_lot_ids
         self.assertEqual(
-            onchange_res['domain']['lot_id'], [('id', 'in', [self.lot11.id])])
-        # onchange remove lot_id, we put it back
-        self.sol2a.lot_id = self.lot11.id
+            available_lot_ids2, self.lot11)
         self.order2.action_confirm()
         picking = self.order2.picking_ids
         picking.action_assign()
