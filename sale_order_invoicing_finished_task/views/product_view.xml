@@ -10,7 +10,7 @@
     <field name="arch" type="xml">
         <field name="project_id" position="before">
             <field name="invoicing_finished_task"
-                   attrs="{'invisible':['|', ('type','!=','service'), ('track_service', '!=', 'task')]}"/>
+                   attrs="{'invisible':['|', ('type','!=','service'), ('track_service', 'not in', ['task', 'timesheet'])]}"/>
         </field>
     </field>
 </record>
