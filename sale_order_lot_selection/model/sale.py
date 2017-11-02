@@ -29,22 +29,25 @@ class SaleOrderLine(models.Model):
     lot_id = fields.Many2one(
         'stock.production.lot', 'Lot', copy=False)
 
-    @api.onchange('product_id')
-    def _onchange_product_id_set_lot_domain(self):
-        available_lot_ids = []
-        if self.order_id.warehouse_id and self.product_id:
-            location = self.order_id.warehouse_id.lot_stock_id
+    available_lot_ids = fields.Many2many(
+        'stock.production.lot',
+        compute="_compute_available_lot_ids")
+
+    @api.multi
+    @api.depends('product_id')
+    def _compute_available_lot_ids(self):
+        for rec in self.filtered(
+                lambda x: x.product_id.tracking
+                in ['serial', 'lot'] and x.order_id.warehouse_id):
+            location = rec.order_id.warehouse_id.lot_stock_id
             quants = self.env['stock.quant'].read_group([
-                ('product_id', '=', self.product_id.id),
+                ('product_id', '=', rec.product_id.id),
                 ('location_id', 'child_of', location.id),
                 ('qty', '>', 0),
                 ('lot_id', '!=', False),
-                ], ['lot_id'], 'lot_id')
+            ], ['lot_id'], 'lot_id')
             available_lot_ids = [quant['lot_id'][0] for quant in quants]
-        self.lot_id = False
-        return {
-            'domain': {'lot_id': [('id', 'in', available_lot_ids)]}
-        }
+            rec.available_lot_ids = available_lot_ids
 
     @api.multi
     def _prepare_order_line_procurement(self, group_id=False):
@@ -53,6 +56,19 @@ class SaleOrderLine(models.Model):
             group_id=group_id)
         res['lot_id'] = self.lot_id.id
         return res
+
+    @api.multi
+    def onchange(self, values, field_name, field_onchange):
+        """
+         Idea obtained from here
+         https://github.com/odoo/odoo/issues/16072#issuecomment-289833419
+         by the change that was introduced in that same conversation.
+        """
+        for field in field_onchange.keys():
+            if field.startswith('available_lot_ids.'):
+                del field_onchange[field]
+        return super(SaleOrderLine, self).onchange(
+            values, field_name, field_onchange)
 
 
 class SaleOrder(models.Model):
