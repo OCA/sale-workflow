@@ -1,0 +1,37 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# * sale_procurement_group_by_line
+# 
+# Translators:
+# Ahmet Altinisik <aaltinisik@altinkaya.com.tr>, 2017
+# Hotellook, 2014
+# Matjaž Mozetič <m.mozetic@matmoz.si>, 2015
+# Thomas A. Jaeger, 2015
+msgid ""
+msgstr ""
+"Project-Id-Version: sale-workflow (8.0)\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2017-01-14 06:38+0000\n"
+"PO-Revision-Date: 2017-01-16 19:28+0000\n"
+"Last-Translator: Ahmet Altinisik <aaltinisik@altinkaya.com.tr>\n"
+"Language-Team: Turkish (http://www.transifex.com/oca/OCA-sale-workflow-8-0/language/tr/)\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Language: tr\n"
+"Plural-Forms: nplurals=2; plural=(n > 1);\n"
+
+#. module: sale_procurement_group_by_line
+#: field:sale.order.line,procurement_group_id:0
+msgid "Procurement group"
+msgstr ""
+
+#. module: sale_procurement_group_by_line
+#: model:ir.model,name:sale_procurement_group_by_line.model_sale_order
+msgid "Sales Order"
+msgstr "Sipariş Emri"
+
+#. module: sale_procurement_group_by_line
+#: model:ir.model,name:sale_procurement_group_by_line.model_sale_order_line
+msgid "Sales Order Line"
+msgstr "Sipariş Kalemi"

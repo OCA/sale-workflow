@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: sale-workflow (9.0)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-04-14 11:47+0000\n"
-"PO-Revision-Date: 2016-04-12 07:49+0000\n"
+"POT-Creation-Date: 2017-02-28 03:43+0000\n"
+"PO-Revision-Date: 2017-03-03 07:08+0000\n"
 "Last-Translator: OCA Transbot <transbot@odoo-community.org>\n"
 "Language-Team: Chinese (China) (http://www.transifex.com/oca/OCA-sale-workflow-9-0/language/zh_CN/)\n"
 "MIME-Version: 1.0\n"
@@ -20,7 +20,7 @@ msgstr ""
 #. module: sale_exception
 #: model:ir.model.fields,field_description:sale_exception.field_sale_exception_active
 msgid "Active"
-msgstr ""
+msgstr "有效"
 
 #. module: sale_exception
 #: model:ir.ui.view,arch_db:sale_exception.view_sale_exception_form
@@ -47,27 +47,27 @@ msgstr ""
 #: model:ir.model.fields,field_description:sale_exception.field_sale_exception_confirm_create_uid
 #: model:ir.model.fields,field_description:sale_exception.field_sale_exception_create_uid
 msgid "Created by"
-msgstr ""
+msgstr "创建者"
 
 #. module: sale_exception
 #: model:ir.model.fields,field_description:sale_exception.field_sale_exception_confirm_create_date
 #: model:ir.model.fields,field_description:sale_exception.field_sale_exception_create_date
 msgid "Created on"
-msgstr ""
+msgstr "创建时间"
 
 #. module: sale_exception
 #: model:ir.model.fields,field_description:sale_exception.field_sale_exception_description
 msgid "Description"
-msgstr ""
+msgstr "说明"
 
 #. module: sale_exception
 #: model:ir.model.fields,field_description:sale_exception.field_sale_exception_confirm_display_name
 #: model:ir.model.fields,field_description:sale_exception.field_sale_exception_display_name
 msgid "Display Name"
-msgstr ""
+msgstr "显示名称"
 
 #. module: sale_exception
-#: code:addons/sale_exception/models/sale.py:180
+#: code:addons/sale_exception/models/sale.py:182
 #, python-format
 msgid ""
 "Error when evaluating the sale exception rule:\n"
@@ -98,6 +98,7 @@ msgstr ""
 
 #. module: sale_exception
 #: model:ir.model.fields,field_description:sale_exception.field_sale_order_exception_ids
+#: model:ir.ui.menu,name:sale_exception.menu_sale_exception_parent
 msgid "Exceptions"
 msgstr ""
 
@@ -115,7 +116,7 @@ msgstr ""
 #: model:ir.model.fields,field_description:sale_exception.field_sale_exception_confirm_id
 #: model:ir.model.fields,field_description:sale_exception.field_sale_exception_id
 msgid "ID"
-msgstr ""
+msgstr "ID"
 
 #. module: sale_exception
 #: model:ir.model.fields,field_description:sale_exception.field_sale_exception_confirm_ignore
@@ -127,19 +128,19 @@ msgstr ""
 #: model:ir.model.fields,field_description:sale_exception.field_sale_exception___last_update
 #: model:ir.model.fields,field_description:sale_exception.field_sale_exception_confirm___last_update
 msgid "Last Modified on"
-msgstr ""
+msgstr "最后修改时间"
 
 #. module: sale_exception
 #: model:ir.model.fields,field_description:sale_exception.field_sale_exception_confirm_write_uid
 #: model:ir.model.fields,field_description:sale_exception.field_sale_exception_write_uid
 msgid "Last Updated by"
-msgstr ""
+msgstr "最后更新者"
 
 #. module: sale_exception
 #: model:ir.model.fields,field_description:sale_exception.field_sale_exception_confirm_write_date
 #: model:ir.model.fields,field_description:sale_exception.field_sale_exception_write_date
 msgid "Last Updated on"
-msgstr ""
+msgstr "上次更新日期"
 
 #. module: sale_exception
 #: model:ir.model.fields,field_description:sale_exception.field_sale_order_main_exception_id
@@ -214,7 +215,7 @@ msgstr "销售订单"
 #. module: sale_exception
 #: model:ir.model.fields,field_description:sale_exception.field_sale_exception_sequence
 msgid "Sequence"
-msgstr ""
+msgstr "序号"
 
 #. module: sale_exception
 #: model:ir.ui.view,arch_db:sale_exception.view_sale_exception_confirm

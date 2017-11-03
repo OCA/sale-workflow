@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- © 2016 Jairo Llopis <jairo.llopis@tecnativa.com>
+     License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl). -->
+
+<odoo>
+
+<record id="view_order_form_inherit_sale_stock" model="ir.ui.view">
+    <field name="name">Add packaging to sale order lines tree</field>
+    <field name="model">sale.order</field>
+    <field name="inherit_id"
+           ref="sale_stock.view_order_form_inherit_sale_stock"/>
+    <field name="arch" type="xml">
+        <xpath expr="//field[@name='order_line']/tree//field[@name='product_uom_qty']"
+               position="before">
+            <field name="product_packaging"
+                   context="{'default_product_tmpl_id': product_tmpl_id, 'partner_id': parent.partner_id, 'quantity': product_uom_qty, 'pricelist': parent.pricelist_id, 'uom': product_uom, 'company_id': parent.company_id}"
+                   domain="[('product_tmpl_id', '=', product_tmpl_id)]"
+                   groups="product.group_stock_packaging"/>
+        </xpath>
+       <xpath expr="//field[@name='order_line']/form//field[@name='product_packaging']"
+              position="after">
+           <field name="packaging_price"
+                  groups="product.group_stock_packaging"/>
+           <field name="packaging_weight"
+                  groups="product.group_stock_packaging"/>
+       </xpath>
+    </field>
+</record>
+
+</odoo>

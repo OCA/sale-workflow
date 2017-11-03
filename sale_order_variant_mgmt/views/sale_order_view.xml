@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Copyright 2016 Pedro M. Baeza <pedro.baeza@tecnativa.com>
+     License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl). -->
+<odoo>
+
+    <record id="view_order_form" model="ir.ui.view">
+        <field name="model">sale.order</field>
+        <field name="inherit_id" ref="sale.view_order_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='order_line']" position="before">
+                <div class="oe_button_box" name="button_box">
+                    <button name="%(action_sale_manage_variant)d"
+                            type="action"
+                            string="Add or Modify Variants"
+                            class="oe_edit_only"
+                            states="draft,sent"
+                    />
+                </div>
+            </xpath>
+            <xpath expr="//field[@name='order_line']//form" position="inside">
+                <field name="product_attribute_value_ids" invisible="1"/>
+            </xpath>
+            <xpath expr="//field[@name='order_line']//tree" position="inside">
+                <field name="product_tmpl_id_sale_order_variant_mgmt" invisible="1"/>
+                <field name="product_attribute_value_ids" invisible="1"/>
+                <!-- Not working until https://github.com/odoo/odoo/pull/13558 -->
+                <!-- Also https://github.com/odoo/odoo/pull/13635 is needed for correct template selection -->
+                <button name="%(action_sale_manage_variant)d"
+                        type="action"
+                        string="Modify Variants"
+                        icon="fa-th"
+                        class="oe_edit_only"
+                        context="{'default_product_tmpl_id': product_tmpl_id_sale_order_variant_mgmt}"
+                        attrs="{'invisible': ['|', ('state', 'not in', ('draft', 'sent')), ('product_attribute_value_ids', '=', [])]}"
+                />
+            </xpath>
+
+            <xpath expr="//field[@name='order_line']" position="attributes">
+                <attribute name="options">{'reload_on_button': true}</attribute>
+            </xpath>
+        </field>
+    </record>
+
+</odoo>

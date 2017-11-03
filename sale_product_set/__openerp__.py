@@ -1,13 +1,15 @@
 # -*- coding: utf-8 -*-
-
+# License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 {
     'name': 'Sale product set',
-    'category': 'Sale',
-    'author': 'Anybox, Odoo Community Association (OCA)',
-    'version': '8.0.1.0.0',
-    'sequence': 150,
-    'website': 'http://anybox.fr',
     'summary': "Sale product set",
+    'version': '9.0.1.0.1',
+    'category': 'Sales',
+    "website": "https://odoo-community.org/",
+    'author': 'Anybox, Odoo Community Association (OCA)',
+    "license": "AGPL-3",
+    "application": False,
+    "installable": True,
     'depends': [
         'sale',
     ],
@@ -21,7 +23,4 @@
         'demo/product_set.xml',
         'demo/product_set_line.xml',
     ],
-    'installable': False,
-    'application': False,
-    'auto_install': False,
 }

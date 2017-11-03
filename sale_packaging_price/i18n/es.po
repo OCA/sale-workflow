@@ -1,0 +1,166 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# * sale_packaging_price
+# 
+# Translators:
+# OCA Transbot <transbot@odoo-community.org>, 2016
+# Pedro M. Baeza <pedro.baeza@gmail.com>, 2016
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 9.0c\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2016-11-22 23:46+0000\n"
+"PO-Revision-Date: 2016-11-22 23:46+0000\n"
+"Last-Translator: Pedro M. Baeza <pedro.baeza@gmail.com>, 2016\n"
+"Language-Team: Spanish (https://www.transifex.com/oca/teams/23907/es/)\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Language: es\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+#. module: sale_packaging_price
+#: model:ir.actions.act_window,help:sale_packaging_price.action_product_packaging_form
+msgid "Click to add a packaging for your products."
+msgstr "Pulse para añadir un empaquetado para sus productos."
+
+#. module: sale_packaging_price
+#: model:ir.model.fields,field_description:sale_packaging_price.field_product_packaging_material_create_uid
+msgid "Created by"
+msgstr "Creado por"
+
+#. module: sale_packaging_price
+#: model:ir.model.fields,field_description:sale_packaging_price.field_product_packaging_material_create_date
+msgid "Created on"
+msgstr "Creado en"
+
+#. module: sale_packaging_price
+#: model:ir.model.fields,field_description:sale_packaging_price.field_product_packaging_material_display_name
+msgid "Display Name"
+msgstr "Nombre mostrado"
+
+#. module: sale_packaging_price
+#: model:ir.ui.view,arch_db:sale_packaging_price.product_packaging_filter
+msgid "Group By..."
+msgstr "Agrupar por..."
+
+#. module: sale_packaging_price
+#: model:ir.model.fields,field_description:sale_packaging_price.field_product_packaging_material_id
+msgid "ID"
+msgstr "ID"
+
+#. module: sale_packaging_price
+#: model:ir.model.fields,field_description:sale_packaging_price.field_product_packaging_material___last_update
+msgid "Last Modified on"
+msgstr "Última modificación en"
+
+#. module: sale_packaging_price
+#: model:ir.model.fields,field_description:sale_packaging_price.field_product_packaging_material_write_uid
+msgid "Last Updated by"
+msgstr "Última actualización de"
+
+#. module: sale_packaging_price
+#: model:ir.model.fields,field_description:sale_packaging_price.field_product_packaging_material_write_date
+msgid "Last Updated on"
+msgstr "Última actualización en"
+
+#. module: sale_packaging_price
+#: model:ir.ui.view,arch_db:sale_packaging_price.product_packaging_filter
+msgid "Logistic Unit"
+msgstr "Unidad logística"
+
+#. module: sale_packaging_price
+#: model:ir.ui.view,arch_db:sale_packaging_price.product_packaging_filter
+msgid "Pack Type"
+msgstr "Tipo de paquete"
+
+#. module: sale_packaging_price
+#: model:ir.model.fields,field_description:sale_packaging_price.field_product_packaging_material_name
+#: model:ir.model.fields,field_description:sale_packaging_price.field_product_packaging_package_material_id
+msgid "Package Material"
+msgstr "Material de empaquetado"
+
+#. module: sale_packaging_price
+#: model:ir.model.fields,field_description:sale_packaging_price.field_product_packaging_list_price
+#: model:ir.model.fields,field_description:sale_packaging_price.field_sale_order_line_packaging_price
+msgid "Package Price"
+msgstr "Precio del paquete"
+
+#. module: sale_packaging_price
+#: model:ir.model.fields,field_description:sale_packaging_price.field_product_packaging_weight
+#: model:ir.model.fields,field_description:sale_packaging_price.field_sale_order_line_packaging_weight
+msgid "Package Weight"
+msgstr "Peso del paquete"
+
+#. module: sale_packaging_price
+#: model:ir.model,name:sale_packaging_price.model_product_packaging
+msgid "Packaging"
+msgstr "Empaquetado"
+
+#. module: sale_packaging_price
+#: code:addons/sale_packaging_price/models/product_packaging.py:44
+#, python-format
+msgid "Problem with price"
+msgstr "Problema con el precio"
+
+#. module: sale_packaging_price
+#: model:ir.ui.view,arch_db:sale_packaging_price.product_packaging_filter
+msgid "Product"
+msgstr "Producto"
+
+#. module: sale_packaging_price
+#: model:ir.model.fields,field_description:sale_packaging_price.field_sale_report_product_packaging
+msgid "Product Package"
+msgstr "Paquete del producto"
+
+#. module: sale_packaging_price
+#: model:ir.actions.act_window,name:sale_packaging_price.action_product_packaging_form
+#: model:ir.ui.menu,name:sale_packaging_price.menu_product_packaging_action
+msgid "Product Packaging"
+msgstr "Empaquetado del producto"
+
+#. module: sale_packaging_price
+#: model:ir.model.fields,field_description:sale_packaging_price.field_sale_report_qty_packaging
+msgid "Qty Package"
+msgstr "Cant. del paquete"
+
+#. module: sale_packaging_price
+#: model:ir.model,name:sale_packaging_price.model_sale_order_line
+msgid "Sales Order Line"
+msgstr "Línea de pedido de venta"
+
+#. module: sale_packaging_price
+#: model:ir.model,name:sale_packaging_price.model_sale_report
+msgid "Sales Orders Statistics"
+msgstr "Estadísticas de pedidos de venta"
+
+#. module: sale_packaging_price
+#: model:ir.ui.view,arch_db:sale_packaging_price.product_packaging_filter
+msgid "Search Product Packaging"
+msgstr "Buscar empaquetado"
+
+#. module: sale_packaging_price
+#: model:ir.model.fields,help:sale_packaging_price.field_product_packaging_list_price
+#: model:ir.model.fields,help:sale_packaging_price.field_sale_order_line_packaging_price
+msgid "This price will be considered as a price for complete package"
+msgstr "Este precio será considerado como precio para el paquete completo"
+
+#. module: sale_packaging_price
+#: model:ir.model.fields,help:sale_packaging_price.field_product_packaging_weight
+msgid "Weight of the package itself, wighout counting inner products."
+msgstr "Peso del paquete solo, sin contar los productos en su interior."
+
+#. module: sale_packaging_price
+#: code:addons/sale_packaging_price/models/product_packaging.py:45
+#, python-format
+msgid ""
+"With the current decimal precision, you can't get this price. (Approx. price"
+" suggested: %s)"
+msgstr ""
+"Con la precisión decimal actual no puede obtener este precio. (Precio "
+"sugerido aproximado: %s)"
+
+#. module: sale_packaging_price
+#: model:ir.model,name:sale_packaging_price.model_product_packaging_material
+msgid "product.packaging.material"
+msgstr "product.packaging.material"
