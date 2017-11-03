@@ -79,13 +79,10 @@ SQ004
     'author': 'Elico Corp,'
               'Agile Business Group,'
               'Odoo Community Association (OCA)',
-    'website': 'http://www.openerp.net.cn',
+    'website': 'https://github.com/OCA/sale-workflow',
     'depends': ['sale'],
     'data': [
         'data/data.xml',
     ],
-    'demo': [],
-    'test': [],
-    'installable': False,
-    'active': False,
+    'installable': True,
 }
