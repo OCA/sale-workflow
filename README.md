@@ -29,7 +29,7 @@ addon | version | summary
 [sale_force_invoiced](sale_force_invoiced/) | 10.0.1.0.0 | Allows to force the invoice status of the sales order to Invoiced
 [sale_isolated_quotation](sale_isolated_quotation/) | 10.0.1.0.0 | Sales - Isolated Quotation
 [sale_layout_hidden](sale_layout_hidden/) | 10.0.1.0.0 | Sale Layout Hidden Sections
-[sale_order_invoicing_finished_task](sale_order_invoicing_finished_task/) | 10.0.1.0.0 | Control invoice order lines if his task has been finished
+[sale_order_invoicing_finished_task](sale_order_invoicing_finished_task/) | 10.0.1.0.1 | Control invoice order lines if his task has been finished
 [sale_order_line_description](sale_order_line_description/) | 10.0.1.0.0 | Sale order line description
 [sale_order_line_sequence](sale_order_line_sequence/) | 10.0.1.0.0 | Propagates SO line sequence to invoices and stock picking.
 [sale_order_lot_generator](sale_order_lot_generator/) | 10.0.0.0.1 | sale_order_lot_generator
