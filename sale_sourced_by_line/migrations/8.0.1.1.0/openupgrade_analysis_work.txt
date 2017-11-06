@@ -1,0 +1,6 @@
+---Fields in module 'sale_sourced_by_line'---
+sale_sourced_by_line / sale.order.line          / location_id (many2one)        : DEL relation: stock.location
+sale_sourced_by_line / sale.order.line          / warehouse_id (many2one)       : NEW relation: stock.warehouse
+# Done: Filled warehouse_id based on location_id
+
+---XML records in module 'sale_sourced_by_line'---
