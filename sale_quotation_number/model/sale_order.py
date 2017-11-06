@@ -43,7 +43,7 @@ class SaleOrder(models.Model):
     def action_confirm(self):
         if super(SaleOrder, self).action_confirm():
             for sale in self:
-                quotation_numer = sale.name
+                quotation_number = sale.name
                 sale.write({
                     'origin': quotation_number,
                     'name': self.env['ir.sequence'].next_by_code(
