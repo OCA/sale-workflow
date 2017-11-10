@@ -1,0 +1,57 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+#	* sale_proforma_quotation
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 10.0+e\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2017-11-13 09:10+0000\n"
+"PO-Revision-Date: 2017-11-13 09:10+0000\n"
+"Last-Translator: <Pierre Faniel>\n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: sale_proforma_quotation
+#: model:ir.ui.view,arch_db:sale_proforma_quotation.report_saleorder_document
+msgid "<span>Proforma Invoice</span>"
+msgstr "<span>Facture Proforma</span>"
+
+#. module: sale_proforma_quotation
+#: model:ir.ui.view,arch_db:sale_proforma_quotation.report_saleorder_document
+msgid "<strong>Date:</strong>"
+msgstr "<strong>Date :</strong>"
+
+#. module: sale_proforma_quotation
+#: model:ir.ui.view,arch_db:sale_proforma_quotation.report_saleorder_document
+msgid "Date Ordered:"
+msgstr "Date de commande :"
+
+#. module: sale_proforma_quotation
+#: model:ir.ui.view,arch_db:sale_proforma_quotation.report_saleorder_document
+msgid "Order #"
+msgstr "Commande #"
+
+#. module: sale_proforma_quotation
+#: model:ir.ui.view,arch_db:sale_proforma_quotation.view_order_form
+msgid "Print Proforma"
+msgstr "Imprimer Proforma"
+
+#. module: sale_proforma_quotation
+#: model:ir.actions.report.xml,name:sale_proforma_quotation.report_proforma_quotation
+msgid "Proforma Invoice"
+msgstr "Facture Proforma"
+
+#. module: sale_proforma_quotation
+#: model:ir.ui.view,arch_db:sale_proforma_quotation.report_saleorder_document
+msgid "Quotation #"
+msgstr "Devis #"
+
+#. module: sale_proforma_quotation
+#: model:ir.ui.view,arch_db:sale_proforma_quotation.report_saleorder_document
+msgid "Quotation Date:"
+msgstr "Date du devis:"
+

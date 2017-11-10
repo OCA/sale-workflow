@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <report
+        id="report_proforma_quotation"
+        string="Proforma Invoice"
+        model="sale.order"
+        report_type="qweb-pdf"
+        file="sale_proforma_quotation.report_proforma_document"
+        name="sale_proforma_quotation.report_proforma_document"
+    />
+
+    <template id="report_proforma_document">
+        <t t-call="report.html_container">
+            <t t-foreach="docs" t-as="doc">
+                <t t-call="sale.report_saleorder_document" t-lang="doc.partner_id.lang">
+                    <t t-set="proforma" t-value="True"/>
+                </t>
+            </t>
+        </t>
+    </template>
+
+    <template id="report_saleorder_document" inherit_id="sale.report_saleorder_document">
+        <xpath expr="//div[contains(@class, 'page')]//h2[1]" position="replace">
+            <h2>
+                <t t-if="proforma">
+                    <span>Proforma Invoice</span>
+                </t>
+                <t t-if="not proforma">
+                    <span t-if="doc.state not in ['draft','sent']">Order # </span>
+                    <span t-if="doc.state in ['draft','sent']">Quotation # </span>
+                    <span t-field="doc.name"/>
+                </t>
+            </h2>
+        </xpath>
+
+        <xpath expr="//p[@t-field='doc.date_order']/.." position="replace">
+            <t t-if="doc.date_order">
+                <div t-if="proforma" class="col-xs-3">
+                    <strong>Date:</strong>
+                    <p t-field="doc.date_order"/>
+                </div>
+                <div t-if="not proforma" class="col-xs-3">
+                    <strong t-if="doc.state not in ['draft','sent']">Date Ordered:</strong>
+                    <strong t-if="doc.state in ['draft','sent']">Quotation Date:</strong>
+                    <p t-field="doc.date_order"/>
+                </div>
+            </t>
+        </xpath>
+    </template>
+</odoo>
