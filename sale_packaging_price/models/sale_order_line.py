@@ -4,7 +4,7 @@
 # License LGPL-3 - See http://www.gnu.org/licenses/lgpl
 
 from openerp import api, fields, models
-from openerp.addons.decimal_precision import decimal_precision as dp
+from openerp.addons import decimal_precision as dp
 
 
 class SaleOrderLine(models.Model):
@@ -16,7 +16,7 @@ class SaleOrderLine(models.Model):
     product_packaging = fields.Many2one(ondelete='restrict')
     packaging_weight = fields.Float(
         string='Package Weight',
-        digits_compute=dp.get_precision('Stock Weight'))
+        digits=dp.get_precision('Stock Weight'))
 
     @api.multi
     def _check_package(self):
