@@ -3,8 +3,8 @@
 # (c) 2015 Antiun Ingeniería S.L. - Carlos Dauden
 # License LGPL-3 - See http://www.gnu.org/licenses/lgpl
 
-from openerp import _, api, fields, models
-from openerp.addons.decimal_precision import decimal_precision as dp
+from odoo import _, api, fields, models
+from odoo.addons import decimal_precision as dp
 
 
 class ProductPackagingMaterial(models.Model):
@@ -18,14 +18,14 @@ class ProductPackaging(models.Model):
 
     list_price = fields.Float(
         string='Package Price',
-        digits_compute=dp.get_precision('Product Price'),
+        digits=dp.get_precision('Product Price'),
         help="This price will be considered as a price for complete package")
     package_material_id = fields.Many2one(
         comodel_name='product.packaging.material',
         string='Package Material')
     weight = fields.Float(
         string='Package Weight',
-        digits_compute=dp.get_precision('Stock Weight'),
+        digits=dp.get_precision('Stock Weight'),
         help="Weight of the package itself, wighout counting inner products.")
 
     @api.onchange('list_price', 'qty')

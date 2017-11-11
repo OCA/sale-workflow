@@ -7,7 +7,7 @@
 {
     'name': "Sale Packaging Price",
     'category': 'Sales Management',
-    'version': '9.0.1.0.0',
+    'version': '10.0.1.0.0',
     'depends': ['sale_stock'],
     'data': [
         'views/product_view.xml',
@@ -21,7 +21,8 @@
               'Incaser Informatica S.L., '
               'Tecnativa, '
               'Odoo Community Association (OCA)',
+              'Martin Kaffanke (primewood.at)'
     'website': 'http://www.tecnativa.com',
     'license': 'LGPL-3',
-    'installable': False,
+    'installable': True,
 }
