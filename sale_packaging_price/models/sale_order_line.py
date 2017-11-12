@@ -6,7 +6,6 @@
 from openerp import api, fields, models
 from openerp.addons import decimal_precision as dp
 
-
 class SaleOrderLine(models.Model):
     _inherit = 'sale.order.line'
 
@@ -18,13 +17,19 @@ class SaleOrderLine(models.Model):
         string='Package Weight',
         digits=dp.get_precision('Stock Weight'))
 
+    @api.onchange('product_uom', 'product_uom_qty')
+    def product_uom_change(self):
+        if self.product_packaging.qty > 0.0:
+            self._check_package()
+        else:
+            super(SaleOrderLine, self).product_uom_change()
+
     @api.multi
     def _check_package(self):
         price_precision = self.env['decimal.precision'].precision_get(
             'Product Price')
-        qty = self.env['product.uom']._compute_qty_obj(
-            self.product_id.uom_id,
-            self.product_uom_qty,
+        qty = self.product_id.uom_id._compute_quantity(
+            self.product_packaging.qty,
             self.product_uom)
 
         self.price_unit = round(self.product_packaging.list_price / qty,
