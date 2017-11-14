@@ -1,5 +1,6 @@
 .. image:: https://img.shields.io/badge/licence-LGPL--3-blue.svg
-    :alt: License LGPL-3
+   :target: https://www.gnu.org/licenses/lgpl-3.0-standalone.html
+   :alt: License LGPL-3
 
 =====================================
 Sale Order Action Invoice Create Hook
@@ -22,11 +23,11 @@ Usage
    various Sales Orders.
 #. Change the _get_draft_invoices function in order to take into account
    existing draft invoices when creating new ones. This feature is already
-   implemented in the module 10.0-sale_merge_draft_invoice.
+   implemented in the module sale_merge_draft_invoice.
 
 .. image:: https://odoo-community.org/website/image/ir.attachment/5784_f2813bd/datas
    :alt: Try me on Runbot
-   :target: https://runbot.odoo-community.org/runbot/167/10.0
+   :target: https://runbot.odoo-community.org/runbot/167/11.0
 
 Bug Tracker
 ===========
@@ -38,6 +39,11 @@ help us smashing it by providing a detailed and welcomed feedback.
 
 Credits
 =======
+
+Images
+------
+
+* Odoo Community Association: `Icon <https://odoo-community.org/logo.png>`_.
 
 Contributors
 ------------
@@ -59,4 +65,3 @@ mission is to support the collaborative development of Odoo features and
 promote its widespread use.
 
 To contribute to this module, please visit https://odoo-community.org.
-
