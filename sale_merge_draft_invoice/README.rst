@@ -6,10 +6,10 @@
 Sale Merge Draft Invoice
 ========================
 
-This module merges new invoices with existing draft ones when creating them.
-
-The merge between invoices is done when the partner and the currency are the
-same.
+Odoo can merge sales orders into a single invoice, grouped by partner and
+currency, when the sales orders are selected and invoiced together. This module
+extends the grouping to also consider any pre-existing draft invoices and merge
+them.
 
 This feature is activated from Sales / Settings and assigned to the company
 settings.
@@ -17,6 +17,10 @@ settings.
 Users assigned to the group 'Change sale to invoice merge proposal'
 have the possibility to activate or deactivate this option at the moment of
 invoicing.
+
+If you also need to group on fields other than partner and currency, the OCA
+module sale_invoice_group_method allows you to specify alternative grouping
+methods and is fully compatible with this module.
 
 Configuration
 =============
@@ -60,7 +64,7 @@ Create Invoices from a group of Sales Orders
 
 .. image:: https://odoo-community.org/website/image/ir.attachment/5784_f2813bd/datas
    :alt: Try me on Runbot
-   :target: https://runbot.odoo-community.org/runbot/167/10.0
+   :target: https://runbot.odoo-community.org/runbot/167/11.0
 
 Bug Tracker
 ===========

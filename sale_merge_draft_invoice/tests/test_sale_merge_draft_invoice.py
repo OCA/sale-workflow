@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 # Copyright 2017 Eficent Business and IT Consulting Services S.L.
 # License LGPL-3.0 or later (https://www.gnu.org/licenses/lgpl.html).
 
@@ -121,8 +120,8 @@ class TestSaleMergeDraftInvoice(TransactionCase):
         group_sale_merge_draft_invoice from a company with the option
         of merging invoices activated creates two sales orders. """
 
-        self.company1.sale_merge_draft_invoice = 1
-        self.assertEquals(self.company1.sale_merge_draft_invoice, 1,
+        self.company1.sale_merge_draft_invoice = True
+        self.assertEquals(self.company1.sale_merge_draft_invoice, True,
                           "The selection should be to merge invoices")
         so1 = self._create_sale_order(self.user1_id)
         inv1 = self._create_invoice_from_sale(so1, self.user1_id)
@@ -140,8 +139,8 @@ class TestSaleMergeDraftInvoice(TransactionCase):
         group_sale_merge_draft_invoice from a company without the option
         of merging invoices activated creates two sales orders. """
 
-        self.company1.sale_merge_draft_invoice = 0
-        self.assertEquals(self.company1.sale_merge_draft_invoice, 0,
+        self.company1.sale_merge_draft_invoice = False
+        self.assertEquals(self.company1.sale_merge_draft_invoice, False,
                           "The selection should be not to merge invoices")
         so1 = self._create_sale_order(self.user1_id)
         inv1 = self._create_invoice_from_sale(so1, self.user1_id)
@@ -160,8 +159,8 @@ class TestSaleMergeDraftInvoice(TransactionCase):
         of merging invoices activated creates two sales orders.
         In this case, the user does not want to merge them. """
 
-        self.company1.sale_merge_draft_invoice = 1
-        self.assertEquals(self.company1.sale_merge_draft_invoice, 1,
+        self.company1.sale_merge_draft_invoice = True
+        self.assertEquals(self.company1.sale_merge_draft_invoice, True,
                           "The selection should be not to merge invoices")
         so1 = self._create_sale_order(self.user2_id)
         inv1 = self._create_invoice_from_sale(so1, self.user2_id, False, True)
@@ -180,8 +179,8 @@ class TestSaleMergeDraftInvoice(TransactionCase):
         of merging invoices activated creates two sales orders.
         In this case, the user wants to merge them. """
 
-        self.company1.sale_merge_draft_invoice = 0
-        self.assertEquals(self.company1.sale_merge_draft_invoice, 0,
+        self.company1.sale_merge_draft_invoice = False
+        self.assertEquals(self.company1.sale_merge_draft_invoice, False,
                           "The selection should be not to merge invoices")
         so1 = self._create_sale_order(self.user2_id)
         inv1 = self._create_invoice_from_sale(so1, self.user2_id, True, True)
