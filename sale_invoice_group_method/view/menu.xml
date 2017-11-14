@@ -2,7 +2,7 @@
 
 <!--
     Copyright 2017 Eficent Business and IT Consulting Services, S.L.
-    License LGPL-3.0 or later (http://www.gnu.org/licenses/lgpl.html).
+    License LGPL-3.0 or later (https://www.gnu.org/licenses/lgpl.html).
 -->
 
 <odoo>
@@ -10,7 +10,7 @@
     <menuitem action="sale_invoice_group_method_action"
               id="menu_invoice_group_method"
               name="Invoice Group Method"
-              parent="sales_team.menu_sale_config"
+              parent="sale.menu_sale_config"
               sequence="100"/>
 
 </odoo>

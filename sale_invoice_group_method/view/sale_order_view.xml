@@ -2,7 +2,7 @@
 
 <!--
     Copyright 2017 Eficent Business and IT Consulting Services, S.L.
-    License LGPL-3.0 or later (http://www.gnu.org/licenses/lgpl.html).
+    License LGPL-3.0 or later (https://www.gnu.org/licenses/lgpl.html).
 -->
 
 <odoo>
@@ -12,9 +12,10 @@
             <field name="model">sale.order</field>
             <field name="inherit_id" ref="sale.view_order_form"/>
             <field name="arch" type="xml">
-                <field name="project_id" position="after">
+                <xpath expr="//notebook/page//group[@name='sale_pay']//field[@name='invoice_status']"
+                       position="after">
                     <field name="invoice_group_method_id"/>
-                </field>
+                </xpath>
             </field>
         </record>
 
