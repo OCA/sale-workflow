@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 # Copyright 2017 Eficent Business and IT Consulting Services, S.L.
 # License LGPL-3.0 or later (https://www.gnu.org/licenses/lgpl.html).
 
@@ -10,7 +9,8 @@ class SaleAdvancePaymentInv(models.TransientModel):
 
     @api.model
     def _get_default_merge_draft_invoice(self):
-        return self.env.user.company_id.sale_merge_draft_invoice == 1
+        if self.env.user.company_id.sale_merge_draft_invoice:
+            return True
 
     merge_draft_invoice = fields.Boolean(
         string='Merge with draft invoices',
