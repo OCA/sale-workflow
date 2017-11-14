@@ -1,14 +1,15 @@
 .. image:: https://img.shields.io/badge/licence-LGPL--3-blue.svg
-    :alt: License LGPL-3
+   :target: https://www.gnu.org/licenses/lgpl-3.0-standalone.html
+   :alt: License LGPL-3
 
 =========================
 Sale Invoice Group Method
 =========================
 
 This module allows you to combine several Sales Orders into a single invoice,
-if they meet the split criteria defined by the 'Invoice Group Method'.
+if they meet the group criteria defined by the 'Invoice Group Method'.
 
-The split criteria is defined in the 'Invoice Group Method' by a combination
+The group criteria is defined in the 'Invoice Group Method' by a combination
 of fields of the Sales Order. 'Invoice Address', 'Currency' and 'Payment Term'
 are always included.
 
@@ -16,7 +17,7 @@ You can assign a default 'Invoice Group Method' to customers, so that it will
 be proposed on their orders.
 
 When no Invoice Group Method is defined in a Sales Order, the standard
-approach will be used, which groups by Sales Order.
+approach will be used, which groups by 'Invoice Address' and 'Currency'.
 
 Note: Existing draft invoices are not considered in the process of grouping.
 However, you can find the feature implemented in ``sale_merge_draft_invoice``
@@ -61,7 +62,7 @@ Create Invoices
 
 .. image:: https://odoo-community.org/website/image/ir.attachment/5784_f2813bd/datas
    :alt: Try me on Runbot
-   :target: https://runbot.odoo-community.org/runbot/167/10.0
+   :target: https://runbot.odoo-community.org/runbot/167/11.0
 
 Bug Tracker
 ===========
@@ -73,6 +74,11 @@ help us smashing it by providing a detailed and welcomed feedback.
 
 Credits
 =======
+
+Images
+------
+
+* Odoo Community Association: `Icon <https://odoo-community.org/logo.png>`_.
 
 Contributors
 ------------
