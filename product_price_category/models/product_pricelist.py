@@ -145,13 +145,15 @@ class ProductPricelist(models.Model):
                         continue
 
                 if rule.base == 'pricelist' and rule.base_pricelist_id:
-                    price_tmp = self._price_get_multi(
-                        rule.base_pricelist_id, [(product, qty, partner)]
+                    price_tmp = rule.base_pricelist_id.get_products_price(
+                        [product], [qty], [partner]
                     )[product.id]
-                    ptype_src = rule.base_pricelist_id.currency_id
-                    price = ptype_src.compute(price_tmp,
-                                              self.currency_id.id,
-                                              round=False)
+
+                    if price_tmp:
+                        ptype_src = rule.base_pricelist_id.currency_id
+                        price = ptype_src.compute(price_tmp,
+                                                  self.currency_id,
+                                                  round=False)
                 else:
                     # if base option is public price take sale price
                     # else cost price of product
