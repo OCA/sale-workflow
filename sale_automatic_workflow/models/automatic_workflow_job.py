@@ -78,9 +78,9 @@ class AutomaticWorkflowJob(models.Model):
         picking_obj = self.env['stock.picking']
         pickings = picking_obj.search(picking_filter)
         _logger.debug('Pickings to validate: %s', pickings.ids)
-        if pickings:
+        for picking in pickings:
             with savepoint(self.env.cr):
-                pickings.validate_picking()
+                picking.validate_picking()
 
     @api.model
     def _sale_done(self, sale_done_filter):
