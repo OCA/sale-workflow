@@ -3,6 +3,7 @@
 #
 #    Author: Guewen Baconnier
 #    Copyright 2013 Camptocamp SA
+#    Copyright 2016 Serpent Consulting Services Pvt. Ltd.
 #
 #    This program is free software: you can redistribute it and/or modify
 #    it under the terms of the GNU Affero General Public License as
@@ -19,7 +20,7 @@
 #
 #
 
-from openerp import models, fields
+from openerp import fields, models
 
 
 class SaleOrder(models.Model):
@@ -37,3 +38,7 @@ class SaleOrderCancelReason(models.Model):
     _description = 'Sale Order Cancel Reason'
 
     name = fields.Char('Reason', required=True, translate=True)
+    active = fields.Boolean(
+        'Active', default=True,
+        help="By unchecking the active field, you may hide the record \
+        you will not use.")

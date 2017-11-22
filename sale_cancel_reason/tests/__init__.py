@@ -17,27 +17,6 @@
 #
 #    You should have received a copy of the GNU Affero General Public License
 #    along with this program.  If not, see <http://www.gnu.org/licenses/>.
-#
-#
 
-{
-    'name': 'Sale Cancel Reason',
-    'version': '9.0.1.0.0',
-    'author': 'Camptocamp, Odoo Community Association (OCA), '
-              'Serpent Consulting Services Pvt. Ltd.',
-    'category': 'Sale',
-    'license': 'AGPL-3',
-    'website': "http://www.camptocamp.com",
-    'depends': [
-        'sale',
-    ],
-    'data': [
-        'security/ir.model.access.csv',
-        'data/sale_order_cancel_reason.xml',
-        'wizard/cancel_reason_view.xml',
-        'views/sale_view.xml',
-    ],
-    'installable': True,
-    'application': True,
-    'auto_install': False,
-}
+
+from . import test_sale

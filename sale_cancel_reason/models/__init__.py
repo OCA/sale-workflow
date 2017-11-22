@@ -3,6 +3,7 @@
 #
 #    Author: Guewen Baconnier
 #    Copyright 2013 Camptocamp SA
+#    Copyright 2016 Serpent Consulting Services Pvt. Ltd.
 #
 #    This program is free software: you can redistribute it and/or modify
 #    it under the terms of the GNU Affero General Public License as
