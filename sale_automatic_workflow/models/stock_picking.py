@@ -17,6 +17,7 @@ class StockPicking(models.Model):
 
     @api.multi
     def validate_picking(self):
-        self.force_assign()
-        self.do_transfer()
+        for picking in self:
+            picking.force_assign()
+            picking.do_transfer()
         return True
