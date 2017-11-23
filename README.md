@@ -21,6 +21,7 @@ addon | version | summary
 --- | --- | ---
 [sale_automatic_workflow](sale_automatic_workflow/) | 9.0.1.1.0 | Sale Automatic Workflow
 [sale_automatic_workflow_payment_mode](sale_automatic_workflow_payment_mode/) | 9.0.2.0.0 | Sale Automatic Workflow - Payment Mode
+[sale_cancel_reason](sale_cancel_reason/) | 9.0.1.0.0 | Sale Cancel Reason
 [sale_delivery_block](sale_delivery_block/) | 9.0.1.0.0 | Allow you to block the creation of deliveries from a sale order.
 [sale_delivery_block_proc_group_by_line](sale_delivery_block_proc_group_by_line/) | 9.0.1.0.0 | Module that allows module sale_delivery_block to work with sale_procurement_group_by_line
 [sale_exception](sale_exception/) | 9.0.1.1.0 | Custom exceptions on sale order
@@ -54,7 +55,6 @@ addon | version | summary
 [product_special_type](product_special_type/) | 1.0 (unported) | Product Special Types
 [product_special_type_invoice](product_special_type_invoice/) | 1.0 (unported) | Product Special Type on Invoice
 [product_special_type_sale](product_special_type_sale/) | 1.0 (unported) | Product Special Type on Sale
-[sale_cancel_reason](sale_cancel_reason/) | 8.0.1.1 (unported) | Sale Cancel Reason
 [sale_condition_text](sale_condition_text/) | 1.3 (unported) | Sale/invoice condition
 [sale_delivery_term](sale_delivery_term/) | 0.1 (unported) | Delivery term for sale orders
 [sale_dropshipping](sale_dropshipping/) | 1.1.1 (unported) | Sale Dropshipping
