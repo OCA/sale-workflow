@@ -3,8 +3,8 @@
 #   (http://www.eficent.com)
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl.html).
 
-from openerp import api, fields, models, _
-from openerp.exceptions import UserError
+from odoo import api, fields, models, _
+from odoo.exceptions import ValidationError
 
 
 class SaleOrder(models.Model):
@@ -13,12 +13,12 @@ class SaleOrder(models.Model):
     @api.multi
     @api.constrains('delivery_block_id')
     def _check_not_auto_done(self):
-        for so in self:
-            if so.delivery_block_id and self.env['ir.values'].get_default(
-                    'sale.config.settings', 'auto_done_setting'):
-                raise UserError(
-                    _('You cannot block a sale order with "auto_done_setting" '
-                      'active.'))
+        auto_done = self.env['ir.values'].get_default(
+            'sale.config.settings', 'auto_done_setting')
+        if auto_done and any(so.delivery_block_id for so in self):
+            raise ValidationError(
+                _('You cannot block a sale order with "auto_done_setting" '
+                  'active.'))
 
     delivery_block_id = fields.Many2one(
         comodel_name='sale.delivery.block.reason', track_visibility='always',
@@ -38,8 +38,9 @@ class SaleOrder(models.Model):
     @api.multi
     def action_remove_delivery_block(self):
         """Remove the delivery block and create procurements as usual."""
-        self.write({'delivery_block_id': False})
-        for order in self:
+        for order in self.filtered(
+                lambda s: s.state == 'sale' or not s.delivery_block_id):
+            order.write({'delivery_block_id': False})
             order.order_line._action_procurement_create()
 
     @api.multi
@@ -58,12 +59,6 @@ class SaleOrderLine(models.Model):
     @api.multi
     def _action_procurement_create(self):
         new_procs = self.env['procurement.order']
-        # When module 'sale_procurement_group_by_line' is installed we do not
-        # want to use this method but call super. See module
-        # 'sale_delivery_block_proc_group_by_line'. This solves a inheritance
-        # order issue.
-        if 'group_by_line' in self.env.context:
-            return super(SaleOrderLine, self)._action_procurement_create()
         for line in self:
             if not line.order_id.delivery_block_id:
                 new_procs += super(SaleOrderLine,

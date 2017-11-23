@@ -4,8 +4,8 @@
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl.html).
 
 
-from openerp.tests import common
-from openerp.exceptions import ValidationError
+from odoo.tests import common
+from odoo.exceptions import ValidationError
 
 
 class TestSaleDeliveryBlock(common.TransactionCase):
@@ -18,7 +18,7 @@ class TestSaleDeliveryBlock(common.TransactionCase):
         self.block_model = self.env['sale.delivery.block.reason']
         group_ids = [
             self.env.ref('sale_delivery_block.group_sale_delivery_block').id,
-            self.env.ref('base.group_sale_manager').id,
+            self.env.ref('sales_team.group_sale_manager').id,
         ]
         user_dict = {
             'name': 'User test',
