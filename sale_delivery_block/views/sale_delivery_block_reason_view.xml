@@ -48,7 +48,7 @@
 
     <menuitem id="menu_sale_delivery_block_reason"
               name="Delivery Block Reason"
-              parent="base.menu_sales_config"
+              parent="sale.menu_sales_config"
               action="action_sale_delivery_block_reason" />
 
 </odoo>
