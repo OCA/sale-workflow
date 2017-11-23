@@ -11,7 +11,7 @@ This module make `sale_delivery_block` compatible with
 
 .. image:: https://odoo-community.org/website/image/ir.attachment/5784_f2813bd/datas
    :alt: Try me on Runbot
-   :target: https://runbot.odoo-community.org/runbot/167/9.0
+   :target: https://runbot.odoo-community.org/runbot/167/10.0
 
 Installation
 ============
