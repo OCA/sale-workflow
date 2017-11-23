@@ -7,7 +7,7 @@
     "name": "Sale Delivery Block Procurement Group By Line",
     "summary": "Module that allows module sale_delivery_block to work with "
                "sale_procurement_group_by_line",
-    "version": "9.0.1.0.0",
+    "version": "10.0.1.0.0",
     "author": "Eficent, "
               "Odoo Community Association (OCA)",
     "website": "https://github.com/OCA/sale-workflow",
