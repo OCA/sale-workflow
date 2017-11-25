@@ -1,0 +1,53 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# * sale_company_currency
+# 
+# Translators:
+# OCA Transbot <transbot@odoo-community.org>, 2017
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 10.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2017-11-23 01:51+0000\n"
+"PO-Revision-Date: 2017-11-23 01:51+0000\n"
+"Last-Translator: OCA Transbot <transbot@odoo-community.org>, 2017\n"
+"Language-Team: Vietnamese (Viet Nam) (https://www.transifex.com/oca/teams/23907/vi_VN/)\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Language: vi_VN\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+
+#. module: sale_company_currency
+#: model:ir.model.fields,field_description:sale_company_currency.field_sale_order_company_currency_id
+msgid "Company Currency"
+msgstr ""
+
+#. module: sale_company_currency
+#: model:ir.model.fields,help:sale_company_currency.field_sale_order_amount_total_curr
+msgid "Sale Order Amount in the company Currency"
+msgstr ""
+
+#. module: sale_company_currency
+#: model:ir.model,name:sale_company_currency.model_sale_order
+msgid "Sales Order"
+msgstr "Đơn hàng Bán"
+
+#. module: sale_company_currency
+#: model:ir.ui.view,arch_db:sale_company_currency.view_order_form
+#: model:ir.ui.view,arch_db:sale_company_currency.view_order_tree
+#: model:ir.ui.view,arch_db:sale_company_currency.view_quotation_tree
+msgid "Total"
+msgstr ""
+
+#. module: sale_company_currency
+#: model:ir.ui.view,arch_db:sale_company_currency.view_order_form
+#: model:ir.ui.view,arch_db:sale_company_currency.view_order_tree
+#: model:ir.ui.view,arch_db:sale_company_currency.view_quotation_tree
+msgid "Total (Company Currency)"
+msgstr ""
+
+#. module: sale_company_currency
+#: model:ir.model.fields,field_description:sale_company_currency.field_sale_order_amount_total_curr
+msgid "Total Amount"
+msgstr ""
