@@ -9,8 +9,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 10.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-07-08 00:49+0000\n"
-"PO-Revision-Date: 2017-07-08 00:49+0000\n"
+"POT-Creation-Date: 2017-11-23 01:51+0000\n"
+"PO-Revision-Date: 2017-11-23 01:51+0000\n"
 "Last-Translator: Bole <bole@dajmi5.com>, 2017\n"
 "Language-Team: Croatian (https://www.transifex.com/oca/teams/23907/hr/)\n"
 "MIME-Version: 1.0\n"
@@ -101,7 +101,7 @@ msgstr "Kreirao"
 #: model:ir.model.fields,field_description:sale_automatic_workflow.field_automatic_workflow_job_create_date
 #: model:ir.model.fields,field_description:sale_automatic_workflow.field_sale_workflow_process_create_date
 msgid "Created on"
-msgstr "Kreirano"
+msgstr "Datum kreiranja"
 
 #. module: sale_automatic_workflow
 #: selection:sale.workflow.process,picking_policy:0
@@ -117,7 +117,7 @@ msgstr ""
 #: model:ir.model.fields,field_description:sale_automatic_workflow.field_automatic_workflow_job_display_name
 #: model:ir.model.fields,field_description:sale_automatic_workflow.field_sale_workflow_process_display_name
 msgid "Display Name"
-msgstr "Naziv "
+msgstr "Naziv za prikaz"
 
 #. module: sale_automatic_workflow
 #: model:ir.model.fields,field_description:sale_automatic_workflow.field_sale_workflow_process_invoice_date_is_order_date
@@ -157,19 +157,19 @@ msgstr ""
 #: model:ir.model.fields,field_description:sale_automatic_workflow.field_automatic_workflow_job___last_update
 #: model:ir.model.fields,field_description:sale_automatic_workflow.field_sale_workflow_process___last_update
 msgid "Last Modified on"
-msgstr "Zadnje modificirano"
+msgstr "Zadnja promjena"
 
 #. module: sale_automatic_workflow
 #: model:ir.model.fields,field_description:sale_automatic_workflow.field_automatic_workflow_job_write_uid
 #: model:ir.model.fields,field_description:sale_automatic_workflow.field_sale_workflow_process_write_uid
 msgid "Last Updated by"
-msgstr "Zadnji ažurirao"
+msgstr "Promijenio"
 
 #. module: sale_automatic_workflow
 #: model:ir.model.fields,field_description:sale_automatic_workflow.field_automatic_workflow_job_write_date
 #: model:ir.model.fields,field_description:sale_automatic_workflow.field_sale_workflow_process_write_date
 msgid "Last Updated on"
-msgstr "Zadnje ažuriranje"
+msgstr "Vrijeme promjene"
 
 #. module: sale_automatic_workflow
 #: model:ir.model.fields,field_description:sale_automatic_workflow.field_sale_workflow_process_name
