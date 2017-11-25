@@ -8,8 +8,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 10.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-04-25 02:44+0000\n"
-"PO-Revision-Date: 2017-04-25 02:44+0000\n"
+"POT-Creation-Date: 2017-11-23 01:51+0000\n"
+"PO-Revision-Date: 2017-11-23 01:51+0000\n"
 "Last-Translator: OCA Transbot <transbot@odoo-community.org>, 2017\n"
 "Language-Team: French (https://www.transifex.com/oca/teams/23907/fr/)\n"
 "MIME-Version: 1.0\n"
@@ -42,7 +42,7 @@ msgstr "Créé le"
 #. module: sale_exception
 #: model:ir.model.fields,field_description:sale_exception.field_sale_exception_confirm_display_name
 msgid "Display Name"
-msgstr "Nom à Afficher"
+msgstr "Afficher le nom"
 
 #. module: sale_exception
 #: model:ir.ui.view,arch_db:sale_exception.view_order_form
@@ -72,17 +72,17 @@ msgstr "ID"
 #. module: sale_exception
 #: model:ir.model.fields,field_description:sale_exception.field_sale_exception_confirm___last_update
 msgid "Last Modified on"
-msgstr "Dernière Modification le"
+msgstr "Dernière modification le"
 
 #. module: sale_exception
 #: model:ir.model.fields,field_description:sale_exception.field_sale_exception_confirm_write_uid
 msgid "Last Updated by"
-msgstr "Dernière mise à jour par"
+msgstr "Modifié par"
 
 #. module: sale_exception
 #: model:ir.model.fields,field_description:sale_exception.field_sale_exception_confirm_write_date
 msgid "Last Updated on"
-msgstr "Dernière mise à jour le"
+msgstr "Modifié le"
 
 #. module: sale_exception
 #: model:exception.rule,description:sale_exception.excep_no_zip

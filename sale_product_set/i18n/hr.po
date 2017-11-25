@@ -4,13 +4,14 @@
 # 
 # Translators:
 # Bole <bole@dajmi5.com>, 2017
+# OCA Transbot <transbot@odoo-community.org>, 2017
 msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 10.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-05-13 01:19+0000\n"
-"PO-Revision-Date: 2017-05-13 01:19+0000\n"
-"Last-Translator: Bole <bole@dajmi5.com>, 2017\n"
+"POT-Creation-Date: 2017-11-23 01:51+0000\n"
+"PO-Revision-Date: 2017-11-23 01:51+0000\n"
+"Last-Translator: OCA Transbot <transbot@odoo-community.org>, 2017\n"
 "Language-Team: Croatian (https://www.transifex.com/oca/teams/23907/hr/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -51,14 +52,14 @@ msgstr "Kreirao"
 #: model:ir.model.fields,field_description:sale_product_set.field_product_set_create_date
 #: model:ir.model.fields,field_description:sale_product_set.field_product_set_line_create_date
 msgid "Created on"
-msgstr "Kreirano"
+msgstr "Datum kreiranja"
 
 #. module: sale_product_set
 #: model:ir.model.fields,field_description:sale_product_set.field_product_set_add_display_name
 #: model:ir.model.fields,field_description:sale_product_set.field_product_set_display_name
 #: model:ir.model.fields,field_description:sale_product_set.field_product_set_line_display_name
 msgid "Display Name"
-msgstr "Naziv"
+msgstr "Naziv za prikaz"
 
 #. module: sale_product_set
 #: model:ir.model.fields,field_description:sale_product_set.field_product_set_add_id
@@ -72,21 +73,21 @@ msgstr "ID"
 #: model:ir.model.fields,field_description:sale_product_set.field_product_set_add___last_update
 #: model:ir.model.fields,field_description:sale_product_set.field_product_set_line___last_update
 msgid "Last Modified on"
-msgstr "Zadnja modifikacija"
+msgstr "Zadnja promjena"
 
 #. module: sale_product_set
 #: model:ir.model.fields,field_description:sale_product_set.field_product_set_add_write_uid
 #: model:ir.model.fields,field_description:sale_product_set.field_product_set_line_write_uid
 #: model:ir.model.fields,field_description:sale_product_set.field_product_set_write_uid
 msgid "Last Updated by"
-msgstr "Zadnje ažurirao"
+msgstr "Promijenio"
 
 #. module: sale_product_set
 #: model:ir.model.fields,field_description:sale_product_set.field_product_set_add_write_date
 #: model:ir.model.fields,field_description:sale_product_set.field_product_set_line_write_date
 #: model:ir.model.fields,field_description:sale_product_set.field_product_set_write_date
 msgid "Last Updated on"
-msgstr "Zadnje ažuriranje"
+msgstr "Vrijeme promjene"
 
 #. module: sale_product_set
 #: model:ir.model.fields,field_description:sale_product_set.field_product_set_name
@@ -149,8 +150,3 @@ msgstr "Set"
 #: model:ir.model,name:sale_product_set.model_product_set_add
 msgid "Wizard model to add product set into a quotation"
 msgstr "Model čarobnjaka za dodavanje setova u ponudu"
-
-#. module: sale_product_set
-#: model:ir.ui.view,arch_db:sale_product_set.product_set_add_form_view
-msgid "or"
-msgstr "ili"

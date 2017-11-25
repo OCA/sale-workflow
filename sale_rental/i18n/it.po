@@ -8,8 +8,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 10.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-07-08 00:50+0000\n"
-"PO-Revision-Date: 2017-07-08 00:50+0000\n"
+"POT-Creation-Date: 2017-11-23 01:51+0000\n"
+"PO-Revision-Date: 2017-11-23 01:51+0000\n"
 "Last-Translator: OCA Transbot <transbot@odoo-community.org>, 2017\n"
 "Language-Team: Italian (https://www.transifex.com/oca/teams/23907/it/)\n"
 "MIME-Version: 1.0\n"
@@ -319,12 +319,14 @@ msgid "RENT-%s"
 msgstr "NOLEGGIO - %s"
 
 #. module: sale_rental
+#: model:ir.model.fields,field_description:sale_rental.field_delivery_carrier_rental_service_ids
 #: model:ir.model.fields,field_description:sale_rental.field_product_product_rental_service_ids
 #: model:ir.ui.view,arch_db:sale_rental.product_normal_form_view
 msgid "Related Rental Services"
 msgstr "Servizio noleggio collegato"
 
 #. module: sale_rental
+#: model:ir.model.fields,field_description:sale_rental.field_delivery_carrier_rented_product_id
 #: model:ir.model.fields,field_description:sale_rental.field_product_product_rented_product_id
 msgid "Related Rented Product"
 msgstr "Prodotto noleggiabile collegato"

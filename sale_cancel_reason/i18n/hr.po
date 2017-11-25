@@ -9,8 +9,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 10.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-07-08 00:49+0000\n"
-"PO-Revision-Date: 2017-07-08 00:49+0000\n"
+"POT-Creation-Date: 2017-11-23 01:51+0000\n"
+"PO-Revision-Date: 2017-11-23 01:51+0000\n"
 "Last-Translator: Bole <bole@dajmi5.com>, 2017\n"
 "Language-Team: Croatian (https://www.transifex.com/oca/teams/23907/hr/)\n"
 "MIME-Version: 1.0\n"
@@ -63,17 +63,17 @@ msgstr "Kreirao"
 #: model:ir.model.fields,field_description:sale_cancel_reason.field_sale_order_cancel_create_date
 #: model:ir.model.fields,field_description:sale_cancel_reason.field_sale_order_cancel_reason_create_date
 msgid "Created on"
-msgstr "Kreirano"
+msgstr "Datum kreiranja"
 
 #. module: sale_cancel_reason
 #: model:ir.model.fields,field_description:sale_cancel_reason.field_sale_order_cancel_display_name
 #: model:ir.model.fields,field_description:sale_cancel_reason.field_sale_order_cancel_reason_display_name
 msgid "Display Name"
-msgstr "Naziv "
+msgstr "Naziv za prikaz"
 
 #. module: sale_cancel_reason
 #: model:ir.model.fields,field_description:sale_cancel_reason.field_sale_order_cancel_id
-#: model:ir.model.fields,field_description:sale_cancel_reason.field_sale_order_cancel_reason_id_4750
+#: model:ir.model.fields,field_description:sale_cancel_reason.field_sale_order_cancel_reason_id_5527
 msgid "ID"
 msgstr "ID"
 
@@ -86,19 +86,19 @@ msgstr "Samo za ponudu"
 #: model:ir.model.fields,field_description:sale_cancel_reason.field_sale_order_cancel___last_update
 #: model:ir.model.fields,field_description:sale_cancel_reason.field_sale_order_cancel_reason___last_update
 msgid "Last Modified on"
-msgstr "Zadnje modificirano"
+msgstr "Zadnja promjena"
 
 #. module: sale_cancel_reason
 #: model:ir.model.fields,field_description:sale_cancel_reason.field_sale_order_cancel_reason_write_uid
 #: model:ir.model.fields,field_description:sale_cancel_reason.field_sale_order_cancel_write_uid
 msgid "Last Updated by"
-msgstr "Zadnji ažurirao"
+msgstr "Promijenio"
 
 #. module: sale_cancel_reason
 #: model:ir.model.fields,field_description:sale_cancel_reason.field_sale_order_cancel_reason_write_date
 #: model:ir.model.fields,field_description:sale_cancel_reason.field_sale_order_cancel_write_date
 msgid "Last Updated on"
-msgstr "Zadnje ažuriranje"
+msgstr "Vrijeme promjene"
 
 #. module: sale_cancel_reason
 #: model:sale.order.cancel.reason,name:sale_cancel_reason.cancel_reason_other_provider
@@ -112,7 +112,7 @@ msgid "Reason"
 msgstr "Razlog"
 
 #. module: sale_cancel_reason
-#: model:ir.model.fields,field_description:sale_cancel_reason.field_sale_order_cancel_reason_id_4742
+#: model:ir.model.fields,field_description:sale_cancel_reason.field_sale_order_cancel_reason_id_5519
 msgid "Reason for cancellation"
 msgstr "Razlog otkazivanja"
 

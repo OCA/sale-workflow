@@ -3,15 +3,15 @@
 # * sale_order_lot_generator
 # 
 # Translators:
-# OCA Transbot <transbot@odoo-community.org>, 2017
 # Bole <bole@dajmi5.com>, 2017
+# OCA Transbot <transbot@odoo-community.org>, 2017
 msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 10.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-07-08 00:49+0000\n"
-"PO-Revision-Date: 2017-07-08 00:49+0000\n"
-"Last-Translator: Bole <bole@dajmi5.com>, 2017\n"
+"POT-Creation-Date: 2017-11-23 01:51+0000\n"
+"PO-Revision-Date: 2017-11-23 01:51+0000\n"
+"Last-Translator: OCA Transbot <transbot@odoo-community.org>, 2017\n"
 "Language-Team: Croatian (https://www.transifex.com/oca/teams/23907/hr/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -20,6 +20,7 @@ msgstr ""
 "Plural-Forms: nplurals=3; plural=n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2;\n"
 
 #. module: sale_order_lot_generator
+#: model:ir.model.fields,help:sale_order_lot_generator.field_delivery_carrier_auto_generate_prodlot
 #: model:ir.model.fields,help:sale_order_lot_generator.field_product_product_auto_generate_prodlot
 #: model:ir.model.fields,help:sale_order_lot_generator.field_product_template_auto_generate_prodlot
 msgid ""
@@ -30,6 +31,7 @@ msgstr ""
 " potvrđivanja prodajnog naloga."
 
 #. module: sale_order_lot_generator
+#: model:ir.model.fields,field_description:sale_order_lot_generator.field_delivery_carrier_auto_generate_prodlot
 #: model:ir.model.fields,field_description:sale_order_lot_generator.field_product_product_auto_generate_prodlot
 #: model:ir.model.fields,field_description:sale_order_lot_generator.field_product_template_auto_generate_prodlot
 msgid "Lot Generation Auto"

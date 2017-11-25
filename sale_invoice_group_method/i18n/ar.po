@@ -1,0 +1,118 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# * sale_invoice_group_method
+# 
+# Translators:
+# OCA Transbot <transbot@odoo-community.org>, 2017
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 10.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2017-11-23 01:51+0000\n"
+"PO-Revision-Date: 2017-11-23 01:51+0000\n"
+"Last-Translator: OCA Transbot <transbot@odoo-community.org>, 2017\n"
+"Language-Team: Arabic (https://www.transifex.com/oca/teams/23907/ar/)\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Language: ar\n"
+"Plural-Forms: nplurals=6; plural=n==0 ? 0 : n==1 ? 1 : n==2 ? 2 : n%100>=3 && n%100<=10 ? 3 : n%100>=11 && n%100<=99 ? 4 : 5;\n"
+
+#. module: sale_invoice_group_method
+#: model:ir.model.fields,field_description:sale_invoice_group_method.field_sale_invoice_group_method_create_uid
+msgid "Created by"
+msgstr "أنشئ بواسطة"
+
+#. module: sale_invoice_group_method
+#: model:ir.model.fields,field_description:sale_invoice_group_method.field_sale_invoice_group_method_create_date
+msgid "Created on"
+msgstr "أنشئ في"
+
+#. module: sale_invoice_group_method
+#: model:ir.model.fields,field_description:sale_invoice_group_method.field_sale_invoice_group_method_criteria_fields_ids
+msgid "Criteria fields"
+msgstr ""
+
+#. module: sale_invoice_group_method
+#: model:ir.model.fields,field_description:sale_invoice_group_method.field_res_partner_invoice_group_method_id
+#: model:ir.model.fields,field_description:sale_invoice_group_method.field_res_users_invoice_group_method_id
+msgid "Default Invoice Group Method"
+msgstr ""
+
+#. module: sale_invoice_group_method
+#: model:ir.model.fields,field_description:sale_invoice_group_method.field_sale_invoice_group_method_display_name
+msgid "Display Name"
+msgstr "اسم العرض"
+
+#. module: sale_invoice_group_method
+#: model:ir.model,name:sale_invoice_group_method.model_ir_model_fields
+msgid "Fields"
+msgstr ""
+
+#. module: sale_invoice_group_method
+#: model:ir.ui.view,arch_db:sale_invoice_group_method.sale_invoice_group_method_search_view
+msgid "Group By..."
+msgstr ""
+
+#. module: sale_invoice_group_method
+#: model:ir.model.fields,field_description:sale_invoice_group_method.field_sale_invoice_group_method_id
+msgid "ID"
+msgstr "المعرف"
+
+#. module: sale_invoice_group_method
+#: model:ir.model.fields,field_description:sale_invoice_group_method.field_sale_invoice_group_method_name
+#: model:ir.ui.view,arch_db:sale_invoice_group_method.sale_invoice_group_method_tree_view
+msgid "Invoice Group"
+msgstr ""
+
+#. module: sale_invoice_group_method
+#: model:ir.model.fields,field_description:sale_invoice_group_method.field_sale_order_invoice_group_method_id
+#: model:ir.ui.menu,name:sale_invoice_group_method.menu_invoice_group_method
+msgid "Invoice Group Method"
+msgstr ""
+
+#. module: sale_invoice_group_method
+#: model:ir.ui.view,arch_db:sale_invoice_group_method.sale_invoice_group_method_form_view
+msgid "Invoice Groups"
+msgstr ""
+
+#. module: sale_invoice_group_method
+#: model:ir.model.fields,field_description:sale_invoice_group_method.field_sale_invoice_group_method___last_update
+msgid "Last Modified on"
+msgstr "آخر تعديل في"
+
+#. module: sale_invoice_group_method
+#: model:ir.model.fields,field_description:sale_invoice_group_method.field_sale_invoice_group_method_write_uid
+msgid "Last Updated by"
+msgstr "آخر تحديث بواسطة"
+
+#. module: sale_invoice_group_method
+#: model:ir.model.fields,field_description:sale_invoice_group_method.field_sale_invoice_group_method_write_date
+msgid "Last Updated on"
+msgstr "آخر تحديث في"
+
+#. module: sale_invoice_group_method
+#: model:ir.ui.view,arch_db:sale_invoice_group_method.sale_invoice_group_method_search_view
+msgid "Medical Procedure Request"
+msgstr ""
+
+#. module: sale_invoice_group_method
+#: model:ir.ui.view,arch_db:sale_invoice_group_method.sale_invoice_group_method_search_view
+msgid "Name"
+msgstr "الاسم"
+
+#. module: sale_invoice_group_method
+#: model:ir.model,name:sale_invoice_group_method.model_res_partner
+msgid "Partner"
+msgstr "الشريك"
+
+#. module: sale_invoice_group_method
+#: model:ir.actions.act_window,name:sale_invoice_group_method.sale_invoice_group_method_action
+#: model:ir.model,name:sale_invoice_group_method.model_sale_invoice_group_method
+msgid "Sale Invoice Group Method"
+msgstr ""
+
+#. module: sale_invoice_group_method
+#: model:ir.model,name:sale_invoice_group_method.model_sale_order
+msgid "Sales Order"
+msgstr ""

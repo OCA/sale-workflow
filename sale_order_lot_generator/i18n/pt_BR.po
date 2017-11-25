@@ -8,8 +8,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 10.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-05-13 01:19+0000\n"
-"PO-Revision-Date: 2017-05-13 01:19+0000\n"
+"POT-Creation-Date: 2017-11-23 01:51+0000\n"
+"PO-Revision-Date: 2017-11-23 01:51+0000\n"
 "Last-Translator: OCA Transbot <transbot@odoo-community.org>, 2017\n"
 "Language-Team: Portuguese (Brazil) (https://www.transifex.com/oca/teams/23907/pt_BR/)\n"
 "MIME-Version: 1.0\n"
@@ -19,6 +19,7 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
 
 #. module: sale_order_lot_generator
+#: model:ir.model.fields,help:sale_order_lot_generator.field_delivery_carrier_auto_generate_prodlot
 #: model:ir.model.fields,help:sale_order_lot_generator.field_product_product_auto_generate_prodlot
 #: model:ir.model.fields,help:sale_order_lot_generator.field_product_template_auto_generate_prodlot
 msgid ""
@@ -27,6 +28,7 @@ msgid ""
 msgstr ""
 
 #. module: sale_order_lot_generator
+#: model:ir.model.fields,field_description:sale_order_lot_generator.field_delivery_carrier_auto_generate_prodlot
 #: model:ir.model.fields,field_description:sale_order_lot_generator.field_product_product_auto_generate_prodlot
 #: model:ir.model.fields,field_description:sale_order_lot_generator.field_product_template_auto_generate_prodlot
 msgid "Lot Generation Auto"
@@ -40,7 +42,7 @@ msgstr ""
 #. module: sale_order_lot_generator
 #: model:ir.model,name:sale_order_lot_generator.model_sale_order
 msgid "Sales Order"
-msgstr "Pedido de venda"
+msgstr "Pedido de Venda"
 
 #. module: sale_order_lot_generator
 #: model:ir.model,name:sale_order_lot_generator.model_sale_order_line

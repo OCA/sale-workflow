@@ -1,0 +1,54 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# * sale_order_lot_mrp
+# 
+# Translators:
+# OCA Transbot <transbot@odoo-community.org>, 2017
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 10.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2017-11-23 01:51+0000\n"
+"PO-Revision-Date: 2017-11-23 01:51+0000\n"
+"Last-Translator: OCA Transbot <transbot@odoo-community.org>, 2017\n"
+"Language-Team: Galician (https://www.transifex.com/oca/teams/23907/gl/)\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Language: gl\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+#. module: sale_order_lot_mrp
+#: model:ir.model.fields,field_description:sale_order_lot_mrp.field_mrp_production_lot_id
+msgid "Lot"
+msgstr "Lote"
+
+#. module: sale_order_lot_mrp
+#: model:ir.model,name:sale_order_lot_mrp.model_stock_production_lot
+msgid "Lot/Serial"
+msgstr ""
+
+#. module: sale_order_lot_mrp
+#: model:ir.model,name:sale_order_lot_mrp.model_mrp_production
+msgid "Manufacturing Order"
+msgstr ""
+
+#. module: sale_order_lot_mrp
+#: model:ir.model,name:sale_order_lot_mrp.model_procurement_order
+msgid "Procurement"
+msgstr ""
+
+#. module: sale_order_lot_mrp
+#: model:ir.model.fields,field_description:sale_order_lot_mrp.field_stock_production_lot_mrp_production_ids
+msgid "Production Order"
+msgstr ""
+
+#. module: sale_order_lot_mrp
+#: model:ir.model,name:sale_order_lot_mrp.model_mrp_product_produce
+msgid "Record Production"
+msgstr ""
+
+#. module: sale_order_lot_mrp
+#: model:ir.model,name:sale_order_lot_mrp.model_stock_move
+msgid "Stock Move"
+msgstr "Movemento de existencias"
