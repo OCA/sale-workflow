@@ -8,8 +8,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 10.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-05-13 01:19+0000\n"
-"PO-Revision-Date: 2017-05-13 01:19+0000\n"
+"POT-Creation-Date: 2017-11-23 01:51+0000\n"
+"PO-Revision-Date: 2017-11-23 01:51+0000\n"
 "Last-Translator: OCA Transbot <transbot@odoo-community.org>, 2017\n"
 "Language-Team: Spanish (https://www.transifex.com/oca/teams/23907/es/)\n"
 "MIME-Version: 1.0\n"
@@ -227,7 +227,7 @@ msgstr "Dominio del filtro para finalización de pedidos"
 #: model:ir.model.fields,field_description:sale_automatic_workflow.field_account_invoice_workflow_process_id
 #: model:ir.model.fields,field_description:sale_automatic_workflow.field_stock_picking_workflow_process_id
 msgid "Sale Workflow Process"
-msgstr "Proceso de flujo de venta"
+msgstr "Proceso del flujo de venta"
 
 #. module: sale_automatic_workflow
 #: model:ir.model.fields,field_description:sale_automatic_workflow.field_sale_workflow_process_property_journal_id
@@ -237,7 +237,7 @@ msgstr "Diario de ventas"
 #. module: sale_automatic_workflow
 #: model:ir.model,name:sale_automatic_workflow.model_sale_order
 msgid "Sales Order"
-msgstr "Pedidos de venta"
+msgstr "Pedido de venta"
 
 #. module: sale_automatic_workflow
 #: model:ir.model.fields,field_description:sale_automatic_workflow.field_sale_workflow_process_team_id
@@ -252,12 +252,12 @@ msgstr "Establezca el diario por defecto a usar en las facturas"
 #. module: sale_automatic_workflow
 #: model:ir.ui.view,arch_db:sale_automatic_workflow.sale_workflow_process_view_form
 msgid "Set selection based on a search filter:"
-msgstr "Establezca la selección basada en un filtro de búsqueda:"
+msgstr "Establecer selección basada en un filtro de búsqueda:"
 
 #. module: sale_automatic_workflow
 #: model:ir.model.fields,field_description:sale_automatic_workflow.field_sale_workflow_process_picking_policy
 msgid "Shipping Policy"
-msgstr "Política de envíos"
+msgstr "Política de envío"
 
 #. module: sale_automatic_workflow
 #: model:ir.model,name:sale_automatic_workflow.model_stock_move
