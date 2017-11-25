@@ -9,8 +9,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 10.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-07-08 00:50+0000\n"
-"PO-Revision-Date: 2017-07-08 00:50+0000\n"
+"POT-Creation-Date: 2017-11-23 01:51+0000\n"
+"PO-Revision-Date: 2017-11-23 01:51+0000\n"
 "Last-Translator: Bole <bole@dajmi5.com>, 2017\n"
 "Language-Team: Croatian (https://www.transifex.com/oca/teams/23907/hr/)\n"
 "MIME-Version: 1.0\n"
@@ -107,7 +107,7 @@ msgstr "Kreirao"
 #: model:ir.model.fields,field_description:sale_rental.field_create_rental_product_create_date
 #: model:ir.model.fields,field_description:sale_rental.field_sale_rental_create_date
 msgid "Created on"
-msgstr "Kreirano"
+msgstr "Datum kreiranja"
 
 #. module: sale_rental
 #: model:ir.model.fields,field_description:sale_rental.field_sale_rental_partner_id
@@ -135,7 +135,7 @@ msgstr ""
 #: model:ir.model.fields,field_description:sale_rental.field_create_rental_product_display_name
 #: model:ir.model.fields,field_description:sale_rental.field_sale_rental_display_name
 msgid "Display Name"
-msgstr "Naziv "
+msgstr "Naziv za prikaz"
 
 #. module: sale_rental
 #: model:ir.ui.view,arch_db:sale_rental.sale_rental_tree
@@ -180,19 +180,19 @@ msgstr ""
 #: model:ir.model.fields,field_description:sale_rental.field_create_rental_product___last_update
 #: model:ir.model.fields,field_description:sale_rental.field_sale_rental___last_update
 msgid "Last Modified on"
-msgstr "Zadnje modificirano"
+msgstr "Zadnja promjena"
 
 #. module: sale_rental
 #: model:ir.model.fields,field_description:sale_rental.field_create_rental_product_write_uid
 #: model:ir.model.fields,field_description:sale_rental.field_sale_rental_write_uid
 msgid "Last Updated by"
-msgstr "Zadnji ažurirao"
+msgstr "Promijenio"
 
 #. module: sale_rental
 #: model:ir.model.fields,field_description:sale_rental.field_create_rental_product_write_date
 #: model:ir.model.fields,field_description:sale_rental.field_sale_rental_write_date
 msgid "Last Updated on"
-msgstr "Zadnje ažuriranje"
+msgstr "Vrijeme promjene"
 
 #. module: sale_rental
 #: code:addons/sale_rental/models/sale_order.py:68
@@ -309,12 +309,14 @@ msgid "RENT-%s"
 msgstr ""
 
 #. module: sale_rental
+#: model:ir.model.fields,field_description:sale_rental.field_delivery_carrier_rental_service_ids
 #: model:ir.model.fields,field_description:sale_rental.field_product_product_rental_service_ids
 #: model:ir.ui.view,arch_db:sale_rental.product_normal_form_view
 msgid "Related Rental Services"
 msgstr ""
 
 #. module: sale_rental
+#: model:ir.model.fields,field_description:sale_rental.field_delivery_carrier_rented_product_id
 #: model:ir.model.fields,field_description:sale_rental.field_product_product_rented_product_id
 msgid "Related Rented Product"
 msgstr ""
