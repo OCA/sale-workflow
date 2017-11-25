@@ -3,15 +3,16 @@
 # * sale_payment_method
 # 
 # Translators:
+# Frederik Kramer <frederik.kramer@ovgu.de>, 2017
 # Hotellook, 2014
 # Rudolf Schnapka <rs@techno-flex.de>, 2016
 msgid ""
 msgstr ""
 "Project-Id-Version: sale-workflow (8.0)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-01-04 10:48+0000\n"
-"PO-Revision-Date: 2017-01-11 15:38+0000\n"
-"Last-Translator: OCA Transbot <transbot@odoo-community.org>\n"
+"POT-Creation-Date: 2017-11-18 08:29+0000\n"
+"PO-Revision-Date: 2017-11-23 23:28+0000\n"
+"Last-Translator: Frederik Kramer <frederik.kramer@ovgu.de>\n"
 "Language-Team: German (http://www.transifex.com/oca/OCA-sale-workflow-8-0/language/de/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -206,7 +207,7 @@ msgstr "Die Bezeichnung der Methode im Backend"
 #. module: sale_payment_method
 #: view:sale.order:sale_payment_method.sale_order_view_form
 msgid "View Automatic Payment"
-msgstr "Autmatische Zahlung anzeigen"
+msgstr "Automatische Zahlung anzeigen"
 
 #. module: sale_payment_method
 #: view:payment.method:sale_payment_method.payment_method_view_form
