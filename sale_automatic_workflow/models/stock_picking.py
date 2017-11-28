@@ -12,7 +12,8 @@ class StockPicking(models.Model):
 
     workflow_process_id = fields.Many2one(
         comodel_name='sale.workflow.process',
-        string='Sale Workflow Process'
+        string='Sale Workflow Process',
+        copy=False
     )
 
     @api.multi
