@@ -1,5 +1,5 @@
-# -*- coding: utf-8 -*-
-# © 2011 Raphaël Valyi, Renato Lima, Guewen Baconnier, Sodexis
+# Copyright 2011 Akretion, Camptocamp, Sodexis
+# Copyright 2018 Akretion, Camptocamp
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
 
 from odoo import api, models, fields
@@ -15,7 +15,8 @@ class ExceptionRule(models.Model):
         selection_add=[
             ('sale.order', 'Sale order'),
             ('sale.order.line', 'Sale order line'),
-        ])
+        ]
+    )
 
 
 class SaleOrder(models.Model):
