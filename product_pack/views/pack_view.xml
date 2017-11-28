@@ -14,7 +14,9 @@
 			</field>
 			<notebook position="inside">
 				<page string="Pack" attrs="{'invisible': ['|', ('product_variant_count', '>', 1), ('pack', '=', False)]}">
-					<field name="pack_line_ids"/>
+					<field name="id" invisible="1"/>
+					<p attrs="{'invisible': [('id', '!=', False)]}">You must save first to add pack lines</p>
+					<field name="pack_line_ids" attrs="{'readonly': [('id', '=', False)]}"/>
 				</page>
 			</notebook>
 		</field>

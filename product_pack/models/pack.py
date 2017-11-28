@@ -41,7 +41,8 @@ class ProductPack(models.Model):
         quantity = self.quantity * line.product_uom_qty
 
         taxes = order.fiscal_position_id.map_tax(
-            subproduct.taxes_id)
+            subproduct.taxes_id.filtered(
+                lambda r: r.company_id.id == order.company_id.id))
         tax_id = [(6, 0, taxes.ids)]
 
         # if pack is fixed price or totlice price we don want amount on
@@ -88,4 +89,9 @@ class ProductPack(models.Model):
             'pack_parent_line_id': line.id,
             'pack_depth': line.pack_depth + 1,
         }
+
+        tmp_line = self.env['sale.order.line'].new(vals)
+        tmp_line.product_id_change()
+        vals['name'] = '%s%s' % (
+            '> ' * (line.pack_depth + 1), tmp_line.name)
         return vals
