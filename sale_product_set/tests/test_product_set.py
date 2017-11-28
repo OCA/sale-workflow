@@ -1,4 +1,6 @@
-# -*- coding: utf-8 -*-
+# Copyright 2015 Anybox S.A.S
+# Copyright 2016-2018 Camptocamp SA
+# License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
 from odoo.tests import common
 
 
@@ -26,18 +28,18 @@ class TestProductSet(common.TransactionCase):
                                      'quantity': 2})
         so_set.add_set()
         # checking our sale order
-        self.assertEquals(len(so.order_line), count_lines + 3)
+        self.assertEqual(len(so.order_line), count_lines + 3)
         # untaxed_amount + ((147*1)+(2100*1)+(85*2)) * 2
-        self.assertEquals(so.amount_untaxed, untaxed_amount + 4834.0)
-        self.assertEquals(so.amount_tax, tax_amount + 0)  # without tax
-        self.assertEquals(so.amount_total, total_amount + 4834.0)
+        self.assertEqual(so.amount_untaxed, untaxed_amount + 4834.0)
+        self.assertEqual(so.amount_tax, tax_amount + 0)  # without tax
+        self.assertEqual(so.amount_total, total_amount + 4834.0)
         sequence = {}
         for line in so.order_line:
             sequence[line.product_id.id] = line.sequence
             for set_line in product_set.set_line_ids:
                 if line.product_id.id == set_line.product_id.id:
-                    self.assertEquals(line.product_id.name,
-                                      set_line.product_id.name)
+                    self.assertEqual(line.product_id.name,
+                                     set_line.product_id.name)
         # make sure sale order line sequence keep sequence set on set
         seq_line1 = sequence.pop(
             self.env.ref(
@@ -51,7 +53,7 @@ class TestProductSet(common.TransactionCase):
             self.env.ref(
                 "sale_product_set.product_set_line_computer_3"
             ).product_id.id)
-        self.assertTrue(max([v for k, v in sequence.iteritems()]) <
+        self.assertTrue(max([v for k, v in sequence.items()]) <
                         seq_line1 < seq_line2 < seq_line3)
 
     def test_add_set_on_empty_so(self):
@@ -63,4 +65,4 @@ class TestProductSet(common.TransactionCase):
             active_id=so.id).create({'product_set_id': product_set.id,
                                      'quantity': 2})
         so_set.add_set()
-        self.assertEquals(len(so.order_line), 3)
+        self.assertEqual(len(so.order_line), 3)
