@@ -4,18 +4,18 @@
 
         <record forcecreate="True" id="ir_cron_test_orders" model="ir.cron">
             <field name="name">Test Draft Orders</field>
-            <field eval="False" name="active"/>
+            <field name="active" eval="False"/>
             <field name="user_id" ref="base.user_root"/>
             <field name="interval_number">20</field>
             <field name="interval_type">minutes</field>
             <field name="numbercall">-1</field>
             <field eval="False" name="doall"/>
-            <field eval="'sale.order'" name="model"/>
-            <field eval="'test_all_draft_orders'" name="function"/>
-            <field eval="'()'" name="args"/>
+            <field name="model_id" ref="sale.model_sale_order"/>
+            <field name="state">code</field>
+            <field name="code">model.test_all_draft_orders()</field>
         </record>
 
-        <record id ="excep_no_zip" model="exception.rule">
+        <record id="excep_no_zip" model="exception.rule">
             <field name="name">No ZIP code on destination</field>
             <field name="description">No ZIP code on destination</field>
             <field name="sequence">50</field>
@@ -26,7 +26,7 @@
             <field name="active" eval="False"/>
         </record>
 
-        <record id ="excep_no_stock" model="exception.rule">
+        <record id="excep_no_stock" model="exception.rule">
             <field name="name">Not Enough Virtual Stock</field>
             <field name="description">Not Enough Virtual Stock</field>
             <field name="sequence">50</field>
