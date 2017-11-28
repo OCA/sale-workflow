@@ -11,11 +11,11 @@ list is defined by sales manager.
 This module aims to help salesman to quickly create several sale order lines
 at once in a quotation.
 
-After a *product set* is added to the sale order, each line can be update or
-remove as any other sale order lines.
+After a *product set* is added to the sale order, each line can be updated or
+removed as any other sale order lines.
 
-This is differ to packing products as you don't follow *product set* after it
-was added to the sale order.
+This differs from packing products as you don't follow *product set*
+are not linked to sale order lines once they are added.
 
 Usage
 =====
@@ -44,28 +44,28 @@ To use this module, you need to:
 .. image:: /sale_product_set/static/description/sale_order.png
     :alt: Sale order
 
-For further information, please visit:
 
-* https://www.odoo.com/forum/help-1
+.. image:: https://odoo-community.org/website/image/ir.attachment/5784_f2813bd/datas
+   :alt: Try me on Runbot
+   :target: https://runbot.odoo-community.org/runbot/167/11.0
 
-Known issues / Roadmap
-======================
 
-*
 
 Bug Tracker
 ===========
 
-Bugs are tracked on `GitHub Issues <https://github.com/OCA/sale-workflow/issues>`_.
-In case of trouble, please check there if your issue has already been reported.
-If you spotted it first, help us smashing it by providing a detailed and welcomed feedback
-`here <https://github.com/OCA/sale-workflow/issues/new?body=module:%20sale_product_set%0Aversion:%208.0%0A%0A**Steps%20to%20reproduce**%0A-%20...%0A%0A**Current%20behavior**%0A%0A**Expected%20behavior**>`_.
-
+Bugs are tracked on `GitHub Issues
+<https://github.com/OCA/sale-workflow/issues>`_. In case of trouble, please
+check there if your issue has already been reported. If you spotted it first,
+help us smash it by providing detailed and welcomed feedback.
 
 Credits
 =======
 
-* Odoo Community Association: `Icon <https://github.com/OCA/maintainer-tools/blob/master/template/module/static/description/icon.svg>`_.
+Images
+------
+
+* Odoo Community Association: `Icon <https://odoo-community.org/logo.png>`_.
 
 
 Contributors
@@ -74,6 +74,7 @@ Contributors
 * Clovis Nzouendjou <clovis@anybox.fr>
 * Pierre Verkest <pverkest@anybox.fr>
 * Denis Leemann <denis.leemann@camptocamp.com>
+* Simone Orsi <simone.orsi@camptocamp.com>
 
 Maintainer
 ----------
@@ -88,4 +89,4 @@ OCA, or the Odoo Community Association, is a nonprofit organization whose
 mission is to support the collaborative development of Odoo features and
 promote its widespread use.
 
-To contribute to this module, please visit http://odoo-community.org.
+To contribute to this module, please visit https://odoo-community.org.
