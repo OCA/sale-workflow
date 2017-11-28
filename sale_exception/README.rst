@@ -9,7 +9,7 @@ Sale Exception
 This module allows you attach several customizable exceptions to your
 sale order in a way that you can filter orders by exceptions type and fix them.
 
-This is especially useful in an scenario for mass sales order import such as 
+This is especially useful in an scenario for mass sales order import such as
 with the base_sale_multi_channels module, because it's likely some orders have
 errors when you import them (like product not found in Odoo, wrong line
 format etc.)
@@ -19,7 +19,7 @@ Usage
 
 .. image:: https://odoo-community.org/website/image/ir.attachment/5784_f2813bd/datas
    :alt: Try me on Runbot
-   :target: https://runbot.odoo-community.org/runbot/167/10.0
+   :target: https://runbot.odoo-community.org/runbot/167/11.0
 
 
 Bug Tracker
@@ -44,6 +44,7 @@ Contributors
 * Sébastien BEAU <sebastien.beau@akretion.com>
 * Guewen Baconnier <guewen.baconnier@camptocamp.com>
 * Yannick Vaucher <yannick.vaucher@camptocamp.com>
+* Simone Orsi <simone.orsi@camptocamp.com>
 * SodexisTeam <dev@sodexis.com>
 * Mourad EL HADJ MIMOUNE <mourad.elhadj.mimoune@akretion.com>
 

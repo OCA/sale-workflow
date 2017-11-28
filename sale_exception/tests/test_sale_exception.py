@@ -1,4 +1,5 @@
-# -*- coding: utf-8 -*-
+# Copyright 2011 Akretion, Camptocamp, Sodexis
+# Copyright 2018 Akretion, Camptocamp
 
 from odoo.exceptions import ValidationError
 from odoo.addons.sale.tests.test_sale_order import TestSaleOrder
