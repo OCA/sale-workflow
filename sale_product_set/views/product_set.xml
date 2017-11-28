@@ -72,8 +72,8 @@
         <field name="view_id" ref="view_product_set_tree"/>
     </record>
 
-    <menuitem id="menu_product_set"
-        parent="sales_team.menu_sales"
+    <menuitem id="menu_product_set_config"
+        parent="sale.menu_sales_config"
         groups="sales_team.group_sale_manager"
         sequence="20"
         action="act_open_product_set_view"/>
