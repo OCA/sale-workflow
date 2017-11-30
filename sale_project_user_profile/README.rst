@@ -11,7 +11,6 @@ The goal is to sell (at customer) services with different user profiles (Project
 The mapping allow to the project manager to decide which user profile is used in timesheet invoicing for given task.
 
 
-=====
 Usage
 =====
 

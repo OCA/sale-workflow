@@ -13,7 +13,6 @@ class ProjectTask(models.Model):
         inverse_name='task_id',
         string='Project user task mapping',
     )
-
     project_uses_task_sale_line_map = fields.Boolean(
         related='project_id.project_uses_task_sale_line_map',
         readonly=True,

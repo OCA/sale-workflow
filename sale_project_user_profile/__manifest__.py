@@ -7,7 +7,7 @@
     'author': 'Camptocamp SA,Odoo Community Association (OCA)',
     'license': 'AGPL-3',
     'category': 'Project',
-    'website': 'http://www.camptocamp.com',
+    'website': 'https://github.com/OCA/sale-workflow',
     'depends': [
         'hr_timesheet',
         'product',
@@ -16,9 +16,7 @@
         'sale_timesheet',
     ],
     'data': [
-        # Security
         'security/ir.model.access.csv',
-        # Views
         'views/project_project.xml',
     ],
     'installable': True,

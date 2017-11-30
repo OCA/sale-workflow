@@ -41,18 +41,15 @@ class ProjectUserTaskSalelineMap(models.Model):
         string='Project',
         required=True,
     )
-
     user_id = fields.Many2one(
         comodel_name='res.users',
         string='User',
         required=True,
     )
-
     task_id = fields.Many2one(
         comodel_name='project.task',
         string='Task',
     )
-
     sale_line_id = fields.Many2one(
         comodel_name='sale.order.line',
         string='Sale order line',
