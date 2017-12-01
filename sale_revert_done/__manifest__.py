@@ -7,7 +7,7 @@
     "name": "Sale Revert Done",
     "summary": "This module extends the functionality of sales to allow you "
                "to set a sales order done back to state 'Sale Order'.",
-    "version": "9.0.1.0.0",
+    "version": "10.0.1.0.0",
     "author": "Eficent, "
               "Odoo Community Association (OCA)",
     "website": "https://odoo-community.org/",
