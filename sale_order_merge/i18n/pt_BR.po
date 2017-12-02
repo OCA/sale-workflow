@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: sale-workflow (8.0)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-11-22 23:35+0000\n"
+"POT-Creation-Date: 2017-11-25 09:43+0000\n"
 "PO-Revision-Date: 2016-10-21 21:00+0000\n"
 "Last-Translator: <>\n"
 "Language-Team: Portuguese (Brazil) (http://www.transifex.com/oca/OCA-sale-workflow-8-0/language/pt_BR/)\n"
@@ -78,7 +78,7 @@ msgstr "Útima atualização em"
 #: view:sale.order:sale_order_merge.sale_order_form
 #: view:sale.order.merge:sale_order_merge.view_sale_order_merge_form
 msgid "Merge"
-msgstr ""
+msgstr "Mesclar"
 
 #. module: sale_order_merge
 #: field:sale.order.merge,sale_order:0
