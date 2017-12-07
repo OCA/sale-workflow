@@ -1,0 +1,199 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* sale_credit_point
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 10.0+e\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2018-01-11 13:46+0000\n"
+"PO-Revision-Date: 2018-01-11 15:51+0100\n"
+"Last-Translator: <>\n"
+"Language-Team: \n"
+"Language: fr\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: \n"
+"X-Generator: Poedit 1.8.7.1\n"
+
+#. module: sale_credit_point
+#: code:addons/sale_credit_point/wizards/manage_credit_point.py:39
+#, python-format
+msgid "A comment is needed to the update credit"
+msgstr "Un commentaire est nécessaire pour mettre à jour un crédit."
+
+#. module: sale_credit_point
+#: model:ir.ui.view,arch_db:sale_credit_point.wiz_manage_credit_point
+msgid "Cancel"
+msgstr "Annuler"
+
+#. module: sale_credit_point
+#: model:ir.model.fields,field_description:sale_credit_point.field_wiz_manage_credit_point_comment
+msgid "Comment"
+msgstr "Commentaires"
+
+#. module: sale_credit_point
+#: model:ir.model,name:sale_credit_point.model_res_partner
+msgid "Contact"
+msgstr "Contact"
+
+#. module: sale_credit_point
+#: model:ir.model.fields,field_description:sale_credit_point.field_wiz_manage_credit_point_create_uid
+msgid "Created by"
+msgstr "Créé par"
+
+#. module: sale_credit_point
+#: model:ir.model.fields,field_description:sale_credit_point.field_wiz_manage_credit_point_create_date
+msgid "Created on"
+msgstr "Créé le"
+
+#. module: sale_credit_point
+#: model:ir.model.fields,field_description:sale_credit_point.field_res_partner_credit_point_currency_id
+#: model:ir.model.fields,field_description:sale_credit_point.field_res_users_credit_point_currency_id
+msgid "Credit Point Currency"
+msgstr "Devise pour le crédit de point"
+
+#. module: sale_credit_point
+#: code:addons/sale_credit_point/models/partner.py:54
+#, python-format
+msgid "Credit updated to %s. Reason: %s"
+msgstr "Crédit mis à jour de %s. Raison: %s"
+
+#. module: sale_credit_point
+#: selection:wiz.manage.credit.point,operation:0
+msgid "Decrease"
+msgstr "Diminuer"
+
+#. module: sale_credit_point
+#: model:ir.model.fields,field_description:sale_credit_point.field_wiz_manage_credit_point_display_name
+msgid "Display Name"
+msgstr "Nom affiché"
+
+#. module: sale_credit_point
+#: model:ir.model.fields,field_description:sale_credit_point.field_wiz_manage_credit_point_id
+msgid "ID"
+msgstr "ID"
+
+#. module: sale_credit_point
+#: selection:wiz.manage.credit.point,operation:0
+msgid "Increase"
+msgstr "Augmenter"
+
+#. module: sale_credit_point
+#: model:ir.model.fields,field_description:sale_credit_point.field_wiz_manage_credit_point___last_update
+msgid "Last Modified on"
+msgstr "Dernière Modification le"
+
+#. module: sale_credit_point
+#: model:ir.model.fields,field_description:sale_credit_point.field_wiz_manage_credit_point_write_uid
+msgid "Last Updated by"
+msgstr "Dernière mise à jour par"
+
+#. module: sale_credit_point
+#: model:ir.model.fields,field_description:sale_credit_point.field_wiz_manage_credit_point_write_date
+msgid "Last Updated on"
+msgstr "Dernière mise à jour le"
+
+#. module: sale_credit_point
+#: model:res.groups,name:sale_credit_point.group_manage_credit_point
+msgid "Manage credit point"
+msgstr "Mise à jour credit"
+
+#. module: sale_credit_point
+#: model:ir.model.fields,field_description:sale_credit_point.field_wiz_manage_credit_point_partner_ids
+msgid "Partners"
+msgstr "Partenaires"
+
+#. module: sale_credit_point
+#: model:ir.model.fields,field_description:sale_credit_point.field_wiz_manage_credit_point_credit_point
+#: model:ir.ui.view,arch_db:sale_credit_point.view_partner_form_points
+msgid "Points"
+msgstr "Points"
+
+#. module: sale_credit_point
+#: model:ir.ui.view,arch_db:sale_credit_point.view_partner_search_points
+msgid "Points > 0"
+msgstr "Points > 0"
+
+#. module: sale_credit_point
+#: model:ir.model.fields,field_description:sale_credit_point.field_res_partner_credit_point
+#: model:ir.model.fields,field_description:sale_credit_point.field_res_users_credit_point
+msgid "Points Attribution"
+msgstr "Points Attribution"
+
+#. module: sale_credit_point
+#: model:ir.model,name:sale_credit_point.model_sale_order
+msgid "Quotation"
+msgstr "Devis"
+
+#. module: sale_credit_point
+#: model:ir.ui.view,arch_db:sale_credit_point.wiz_manage_credit_point
+msgid "Reason for the modification"
+msgstr "Raison de la modification"
+
+#. module: sale_credit_point
+#: selection:wiz.manage.credit.point,operation:0
+msgid "Replace"
+msgstr "Remplacer"
+
+#. module: sale_credit_point
+#: code:addons/sale_credit_point/models/sale_order.py:28
+#, python-format
+msgid "SO %s"
+msgstr ""
+
+#. module: sale_credit_point
+#: code:addons/sale_credit_point/models/sale_order.py:21
+#, python-format
+msgid "Sale Order amount total (%s) is higher than your available credit (%s)."
+msgstr "Le montant de la commande (%s) est supérieur à votre credit (%s)."
+
+#. module: sale_credit_point
+#: model:ir.ui.view,arch_db:sale_credit_point.wiz_manage_credit_point
+msgid "Selected partner(s) will be updated."
+msgstr "Les partenaires sélectionnés"
+
+#. module: sale_credit_point
+#: model:ir.model.fields,field_description:sale_credit_point.field_wiz_manage_credit_point_operation
+msgid "Type of operation"
+msgstr "Type d'opération"
+
+#. module: sale_credit_point
+#: model:ir.ui.view,arch_db:sale_credit_point.wiz_manage_credit_point
+msgid "Update Credit"
+msgstr "Mise à jour du crédit"
+
+#. module: sale_credit_point
+#: model:ir.actions.act_window,name:sale_credit_point.action_add_credit_point
+msgid "Update Credit Point"
+msgstr "Mise à jour credit"
+
+#. module: sale_credit_point
+#: code:addons/sale_credit_point/models/partner.py:35
+#, python-format
+msgid "You can't set a credit point lower than 0"
+msgstr "Il n'est pas possible d'affecter une attribution logistique plus petite que 0"
+
+#. module: sale_credit_point
+#: model:ir.model,name:sale_credit_point.model_wiz_manage_credit_point
+msgid "wiz.manage.credit.point"
+msgstr "Mise à jour credit"
+
+#~ msgid "Partner"
+#~ msgstr "Partenaire"
+
+#~ msgid "Partner currency id"
+#~ msgstr "Devise du partenaire"
+
+#~ msgid "Points to replace"
+#~ msgstr "Points to replace"
+
+#~ msgid "Sales Order"
+#~ msgstr "Bon de commande"
+
+#~ msgid "You must add a comment to the change of credit point"
+#~ msgstr "Il est nécessaire d'ajouter un commentaire"
+
+#~ msgid "points.attribution.wizard"
+#~ msgstr "points.attribution.wizard"

@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+  <record id="view_partner_form_points" model="ir.ui.view">
+    <field name="name">res.partner.form.points</field>
+    <field name="model">res.partner</field>
+    <field name="inherit_id" ref="base.view_partner_form"/>
+    <field name="arch" type="xml">
+      <div name="button_box" position="inside">
+        <button name="action_update_credit_point" type="object" class="oe_stat_button" icon="fa-money">
+          <field string="Points" name="credit_point" widget="statinfo"/>
+        </button>
+      </div>
+    </field>
+  </record>
+
+  <record id="view_partner_search_points" model="ir.ui.view">
+    <field name="name">res.partner.search.points</field>
+    <field name="model">res.partner</field>
+    <field name="inherit_id" ref="base.view_res_partner_filter"/>
+    <field name="arch" type="xml">
+      <field name="name" position="after">
+        <field name="credit_point"/>
+      </field>
+      <xpath expr="//filter[@name='type_company']" position="after">
+        <separator/>
+        <filter string="Points &gt; 0" name="credit_point" domain="[('credit_point','&gt;',0)]"/>
+      </xpath>
+    </field>
+  </record>
+
+</odoo>
