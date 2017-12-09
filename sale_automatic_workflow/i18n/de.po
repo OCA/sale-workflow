@@ -3,14 +3,15 @@
 # * sale_automatic_workflow
 # 
 # Translators:
+# Frederik Kramer <frederik.kramer@ovgu.de>, 2017
 # Rudolf Schnapka <rs@techno-flex.de>, 2015
 msgid ""
 msgstr ""
 "Project-Id-Version: sale-workflow (8.0)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-03-04 06:31+0000\n"
-"PO-Revision-Date: 2017-03-10 13:16+0000\n"
-"Last-Translator: OCA Transbot <transbot@odoo-community.org>\n"
+"POT-Creation-Date: 2017-12-02 10:35+0000\n"
+"PO-Revision-Date: 2017-12-07 15:12+0000\n"
+"Last-Translator: Frederik Kramer <frederik.kramer@ovgu.de>\n"
 "Language-Team: German (http://www.transifex.com/oca/OCA-sale-workflow-8-0/language/de/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -216,7 +217,7 @@ msgstr "Setze Vorgabe-Journal für Rechnung"
 #. module: sale_automatic_workflow
 #: field:sale.workflow.process,ship_only_available:0
 msgid "Ship only available goods"
-msgstr ""
+msgstr "Nur verfügbare Produkte versenden"
 
 #. module: sale_automatic_workflow
 #: selection:sale.workflow.process,invoice_quantity:0
@@ -253,7 +254,7 @@ msgstr "Hinweismeldung"
 msgid ""
 "When checked, the available quantity is shipped, and if so, a backorder is "
 "created with the rest."
-msgstr ""
+msgstr "Wenn diese Option aktiviert ist, wird die verfügbare Menge versandt, und falls dies der Fall ist, wird ein Bestellrückstand mit dem Rest erstellt."
 
 #. module: sale_automatic_workflow
 #: help:sale.workflow.process,invoice_date_is_order_date:0
