@@ -18,7 +18,6 @@
                 <group string="Order Configuration">
                     <field name="picking_policy"/>
                     <field name="team_id" />
-                    <!-- <field name="team_id" groups="base.group_multi_salesteams"/> -->
                 </group>
                 <group string="Workflow Options" col="4">
 
@@ -26,7 +25,7 @@
                     <label for="order_filter_id" attrs="{'required':[('validate_order','=',True)], 'invisible':[('validate_order','!=',True)]}"/>
                     <div attrs="{'required':[('validate_order','=',True)], 'invisible':[('validate_order','!=',True)]}">
                         <field name="order_filter_domain"
-                               widget="char_domain"
+                               widget="domain"
                                attrs="{'invisible': [('order_filter_id', '=', False)]}"
                                options="{'model': 'sale.order'}" />
                         <div class="oe_edit_only oe_inline">
@@ -45,7 +44,7 @@
                     <label for="picking_filter_id" attrs="{'required':[('validate_picking','=',True)], 'invisible':[('validate_picking','!=',True)]}"/>
                     <div attrs="{'required':[('validate_picking','=',True)], 'invisible':[('validate_picking','!=',True)]}">
                         <field name="picking_filter_domain"
-                               widget="char_domain"
+                               widget="domain"
                                attrs="{'invisible': [('picking_filter_id', '=', False)]}"
                                options="{'model': 'stock.picking'}" />
                         <div class="oe_edit_only oe_inline">
@@ -63,7 +62,7 @@
                     <label for="create_invoice_filter_id" attrs="{'required':[('create_invoice','=',True)], 'invisible':[('create_invoice','!=',True)]}"/>
                     <div attrs="{'required':[('create_invoice','=',True)], 'invisible':[('create_invoice','!=',True)]}">
                         <field name="create_invoice_filter_domain"
-                               widget="char_domain"
+                               widget="domain"
                                attrs="{'invisible': [('create_invoice_filter_id', '=', False)]}"
                                options="{'model': 'sale.order'}" />
                         <div class="oe_edit_only oe_inline">
@@ -82,7 +81,7 @@
                     <label for="validate_invoice_filter_id" attrs="{'required':[('validate_invoice','=',True)], 'invisible':[('validate_invoice','!=',True)]}"/>
                     <div attrs="{'required':[('validate_invoice','=',True)], 'invisible':[('validate_invoice','!=',True)]}">
                         <field name="validate_invoice_filter_domain"
-                               widget="char_domain"
+                               widget="domain"
                                attrs="{'invisible': [('validate_invoice_filter_id', '=', False)]}"
                                options="{'model': 'account.invoice'}" />
                         <div class="oe_edit_only oe_inline">
@@ -100,7 +99,7 @@
                     <label for="sale_done_filter_id" attrs="{'required':[('sale_done','=',True)], 'invisible':[('sale_done','!=',True)]}"/>
                     <div attrs="{'required':[('sale_done','=',True)], 'invisible':[('sale_done','!=',True)]}">
                         <field name="sale_done_filter_domain"
-                               widget="char_domain"
+                               widget="domain"
                                attrs="{'invisible': [('sale_done_filter_id', '=', False)]}"
                                options="{'model': 'sale.order'}" />
                         <div class="oe_edit_only oe_inline">
@@ -134,7 +133,6 @@
                 <field name="name"/>
                 <field name="picking_policy"/>
                 <field name="team_id"/>
-                <!-- <field name="team_id" groups="base.group_multi_salesteams"/> -->
                 <field name="validate_order"/>
                 <field name="validate_picking"/>
                 <field name="validate_invoice"/>
@@ -152,7 +150,7 @@
 
     <menuitem
             id="menu_sale_workflow_parent"
-            parent="sales_team.menu_sale_config"
+            parent="sale.menu_sale_config"
             sequence="20"
             name="Automatic Workflow"
     />
