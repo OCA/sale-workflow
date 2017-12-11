@@ -74,15 +74,15 @@
 
     <record forcecreate="True" id="ir_cron_automatic_workflow_job" model="ir.cron">
         <field name="name">Automatic Workflow Job</field>
+        <field ref="model_automatic_workflow_job" name="model_id"/>
+        <field name="state">code</field>
+        <field name="code">model.run()</field>
         <field eval="True" name="active"/>
         <field name="user_id" ref="base.user_root"/>
         <field name="interval_number">1</field>
         <field name="interval_type">minutes</field>
         <field name="numbercall">-1</field>
         <field eval="False" name="doall"/>
-        <field eval="'automatic.workflow.job'" name="model"/>
-        <field eval="'run'" name="function"/>
-        <field eval="'()'" name="args"/>
     </record>
 
 </odoo>
