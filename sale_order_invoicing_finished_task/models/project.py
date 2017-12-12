@@ -70,7 +70,7 @@ class ProjectTask(models.Model):
             raise ValidationError(_('You cannot add a task to and invoiced '
                                     'Sale Order Line'))
         # Onchange stage_id field is not triggered with statusbar widget
-        if 'sale_line_id' in vals:
+        if 'sale_line_id' in vals and 'stage_id' in vals:
             stage = self.env['project.task.type'].browse(vals['stage_id'])
             if so_line.product_id.invoicing_finished_task and \
                     stage.invoiceable:
