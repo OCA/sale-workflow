@@ -1,5 +1,6 @@
 # coding: utf-8
 from odoo.tests.common import TransactionCase
+from odoo.exceptions import ValidationError
 
 
 class TestSaleRevertDone(TransactionCase):
@@ -11,5 +12,7 @@ class TestSaleRevertDone(TransactionCase):
         self.assertEqual(order.state, 'done')
         order.action_revert_done()
         self.assertEqual(order.state, 'sale')
+        with self.assertRaisesRegexp(ValidationError, 'not in state'):
+            order.action_revert_done()
         order.action_done()
         self.assertEqual(order.state, 'done')
