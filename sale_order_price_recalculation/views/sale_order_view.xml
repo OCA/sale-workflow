@@ -1,24 +1,24 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
 
-        <record id="sorp_view_order_form" model="ir.ui.view">
-            <field name="name">sale.order.form</field>
-            <field name="model">sale.order</field>
-            <field name="inherit_id" ref="sale.view_order_form"/>
-            <field name="arch" type="xml">
-                <field name="order_line" position="after">
-                    <div class="btn-group">
-                        <button name="recalculate_prices"
-                                string="Recalculate prices"
-                                attrs="{'invisible': [('state', 'not in', ['draft', 'sent'])]}"
-                                type="object" colspan="4" class="btn-default"/>
-                        <button name="recalculate_names"
-                                string="Reset descriptions"
-                                attrs="{'invisible': [('state', 'not in', ['draft', 'sent'])]}"
-                                type="object" colspan="4" class="btn-default"/>
-                    </div>
-                </field>
+    <record id="sorp_view_order_form" model="ir.ui.view">
+        <field name="name">sale.order.form</field>
+        <field name="model">sale.order</field>
+        <field name="inherit_id" ref="sale.view_order_form"/>
+        <field name="arch" type="xml">
+            <field name="order_line" position="after">
+                <div class="btn-group">
+                    <button name="recalculate_prices"
+                            string="Recalculate prices"
+                            attrs="{'invisible': [('state', 'not in', ['draft', 'sent'])]}"
+                            type="object" colspan="4" class="btn-default"/>
+                    <button name="recalculate_names"
+                            string="Reset descriptions"
+                            attrs="{'invisible': [('state', 'not in', ['draft', 'sent'])]}"
+                            type="object" colspan="4" class="btn-default"/>
+                </div>
             </field>
-        </record>
+        </field>
+    </record>
 
 </odoo>
