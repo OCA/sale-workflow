@@ -1,14 +1,13 @@
-# -*- coding: utf-8 -*-
 # Copyright 2014 Carlos Sánchez Cifuentes <csanchez@grupovermon.com>
 # Copyright 2015 Pedro M. Baeza <pedro.baeza@serviciosbaeza.com>
 # Copyright 2015 Oihane Crucelaegui <oihanecrucelaegi@avanzosc.es>
 # Copyright 2016 Vicent Cubells <vicent.cubells@tecnativa.com>
 # Copyright 2017 David Vidal <david.vidal@tecnativa.com>
+# Copyright 2018 Duc Dao Dong <duc.dd@komit-consulting.com>
 # License AGPL-3 - See http://www.gnu.org/licenses/agpl-3.0.html
-
 {
     "name": "Price recalculation in sales orders",
-    "version": "10.0.1.0.0",
+    "version": "11.0.1.0.0",
     "category": "Sales Management",
     "website": "http://github.com/OCA/sale-workflow",
     "author": "AvanzOSC,"
