@@ -4,10 +4,8 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: Odoo Server 8.0\n"
+"Project-Id-Version: Odoo Server 11.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-09-28 10:17+0000\n"
-"PO-Revision-Date: 2015-09-28 10:17+0000\n"
 "Last-Translator: <>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -16,17 +14,17 @@ msgstr ""
 "Plural-Forms: \n"
 
 #. module: sale_order_price_recalculation
-#: view:sale.order:sale_order_price_recalculation.sorp_view_order_form
+#: model:ir.model,name:sale_order_price_recalculation.model_sale_order
+msgid "Quotation"
+msgstr ""
+
+#. module: sale_order_price_recalculation
+#: model:ir.ui.view,arch_db:sale_order_price_recalculation.sorp_view_order_form
 msgid "Recalculate prices"
 msgstr ""
 
 #. module: sale_order_price_recalculation
-#: view:sale.order:sale_order_price_recalculation.sorp_view_order_form
+#: model:ir.ui.view,arch_db:sale_order_price_recalculation.sorp_view_order_form
 msgid "Reset descriptions"
-msgstr ""
-
-#. module: sale_order_price_recalculation
-#: model:ir.model,name:sale_order_price_recalculation.model_sale_order
-msgid "Sales Order"
 msgstr ""
 
