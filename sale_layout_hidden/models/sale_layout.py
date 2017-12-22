@@ -20,7 +20,7 @@ class SaleLayoutCategory(models.Model):
             })
         return super(SaleLayoutCategory, self).create(values)
 
-    @api.model
+    @api.multi
     def write(self, values):
         if values.get('hidden'):
             values = values.copy()
