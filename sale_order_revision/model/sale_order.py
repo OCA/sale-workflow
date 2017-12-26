@@ -94,7 +94,7 @@ class sale_order(models.Model):
 
     @api.model
     def create(self, values):
-        if 'unrevisioned_name' not in values:
+        if not self.env.context.get('new_sale_revision'):
             if values.get('name', '/') == '/':
                 seq = self.env['ir.sequence']
                 values['name'] = seq.next_by_code('sale.order') or '/'
