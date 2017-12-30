@@ -1,0 +1,70 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# * sale_merge_draft_invoice
+#
+# Translators:
+# OCA Transbot <transbot@odoo-community.org>, 2018
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 11.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2018-03-02 10:22+0000\n"
+"PO-Revision-Date: 2018-03-02 10:22+0000\n"
+"Last-Translator: OCA Transbot <transbot@odoo-community.org>, 2018\n"
+"Language-Team: Turkish (https://www.transifex.com/oca/teams/23907/tr/)\n"
+"Language: tr\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: nplurals=2; plural=(n > 1);\n"
+
+#. module: sale_merge_draft_invoice
+#: code:addons/sale_merge_draft_invoice/wizard/sale_make_invoice_advance.py:18
+#: model:ir.model.fields,help:sale_merge_draft_invoice.field_sale_advance_payment_inv_merge_draft_invoice
+#, python-format
+msgid ""
+"Activate this option in order to merge the resulting invoice with existing "
+"draft invoices or deactivate it if you wish a separate invoice for this sale "
+"order."
+msgstr ""
+
+#. module: sale_merge_draft_invoice
+#: model:res.groups,name:sale_merge_draft_invoice.group_sale_merge_draft_invoice
+msgid "Change sale to invoice merge proposal"
+msgstr ""
+
+#. module: sale_merge_draft_invoice
+#: model:ir.model,name:sale_merge_draft_invoice.model_res_company
+msgid "Companies"
+msgstr ""
+
+#. module: sale_merge_draft_invoice
+#: model:ir.model.fields,field_description:sale_merge_draft_invoice.field_res_company_sale_merge_draft_invoice
+#: model:ir.model.fields,field_description:sale_merge_draft_invoice.field_res_config_settings_sale_merge_draft_invoice
+msgid "Invoices"
+msgstr ""
+
+#. module: sale_merge_draft_invoice
+#: model:ir.ui.view,arch_db:sale_merge_draft_invoice.res_config_settings_view_form
+msgid "Merge new invoices with existing draft ones"
+msgstr ""
+
+#. module: sale_merge_draft_invoice
+#: model:ir.model.fields,field_description:sale_merge_draft_invoice.field_sale_advance_payment_inv_merge_draft_invoice
+msgid "Merge with draft invoices"
+msgstr ""
+
+#. module: sale_merge_draft_invoice
+#: model:ir.model,name:sale_merge_draft_invoice.model_sale_order
+msgid "Quotation"
+msgstr "Quotation"
+
+#. module: sale_merge_draft_invoice
+#: model:ir.model,name:sale_merge_draft_invoice.model_sale_advance_payment_inv
+msgid "Sales Advance Payment Invoice"
+msgstr ""
+
+#. module: sale_merge_draft_invoice
+#: model:ir.model,name:sale_merge_draft_invoice.model_res_config_settings
+msgid "res.config.settings"
+msgstr ""
