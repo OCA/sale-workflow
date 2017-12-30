@@ -1,0 +1,75 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# * sale_merge_draft_invoice
+#
+# Translators:
+# Quentin THEURET <odoo@kerpeo.com>, 2018
+# Nicolas JEUDY <njeudy@panda-chi.io>, 2018
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 11.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2018-03-02 10:22+0000\n"
+"PO-Revision-Date: 2018-03-02 10:22+0000\n"
+"Last-Translator: Nicolas JEUDY <njeudy@panda-chi.io>, 2018\n"
+"Language-Team: French (https://www.transifex.com/oca/teams/23907/fr/)\n"
+"Language: fr\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: nplurals=2; plural=(n > 1);\n"
+
+#. module: sale_merge_draft_invoice
+#: code:addons/sale_merge_draft_invoice/wizard/sale_make_invoice_advance.py:18
+#: model:ir.model.fields,help:sale_merge_draft_invoice.field_sale_advance_payment_inv_merge_draft_invoice
+#, python-format
+msgid ""
+"Activate this option in order to merge the resulting invoice with existing "
+"draft invoices or deactivate it if you wish a separate invoice for this sale "
+"order."
+msgstr ""
+"Activez cette option pour fusionner la facture résultante avec les factures "
+"brouillon existantes ou désactivez-la si vous souhaitez une facture séparée "
+"pour cette commande de vente."
+
+#. module: sale_merge_draft_invoice
+#: model:res.groups,name:sale_merge_draft_invoice.group_sale_merge_draft_invoice
+msgid "Change sale to invoice merge proposal"
+msgstr "Fusionner les factures de vente"
+
+#. module: sale_merge_draft_invoice
+#: model:ir.model,name:sale_merge_draft_invoice.model_res_company
+msgid "Companies"
+msgstr "Sociétés"
+
+#. module: sale_merge_draft_invoice
+#: model:ir.model.fields,field_description:sale_merge_draft_invoice.field_res_company_sale_merge_draft_invoice
+#: model:ir.model.fields,field_description:sale_merge_draft_invoice.field_res_config_settings_sale_merge_draft_invoice
+msgid "Invoices"
+msgstr "Factures"
+
+#. module: sale_merge_draft_invoice
+#: model:ir.ui.view,arch_db:sale_merge_draft_invoice.res_config_settings_view_form
+msgid "Merge new invoices with existing draft ones"
+msgstr ""
+"Fusionner la nouvelle facture avec les factures brouillons selectionnées"
+
+#. module: sale_merge_draft_invoice
+#: model:ir.model.fields,field_description:sale_merge_draft_invoice.field_sale_advance_payment_inv_merge_draft_invoice
+msgid "Merge with draft invoices"
+msgstr "Fusionner avec les factures brouillon"
+
+#. module: sale_merge_draft_invoice
+#: model:ir.model,name:sale_merge_draft_invoice.model_sale_order
+msgid "Quotation"
+msgstr "Devis"
+
+#. module: sale_merge_draft_invoice
+#: model:ir.model,name:sale_merge_draft_invoice.model_sale_advance_payment_inv
+msgid "Sales Advance Payment Invoice"
+msgstr "Facture de paiement anticipé des ventes"
+
+#. module: sale_merge_draft_invoice
+#: model:ir.model,name:sale_merge_draft_invoice.model_res_config_settings
+msgid "res.config.settings"
+msgstr "res.config.settings"
