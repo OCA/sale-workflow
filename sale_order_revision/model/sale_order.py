@@ -54,6 +54,7 @@ class sale_order(models.Model):
     @api.multi
     def copy_quotation(self):
         self.ensure_one()
+
         revision_self = self.with_context(new_sale_revision=True)
         action = super(sale_order, revision_self).copy_quotation()
         old_revision = self.browse(action['res_id'])
@@ -68,6 +69,14 @@ class sale_order(models.Model):
         msg = _('New revision created: %s') % self.name
         self.message_post(body=msg)
         old_revision.message_post(body=msg)
+
+        # swap order lines of old and new order
+        so_line = self.env['sale.order.line']
+        old_lines = old_revision.order_line
+        new_lines = self.order_line
+        old_lines.write({'order_id': self.id})
+        new_lines.write({'order_id': old_revision.id})
+
         return action
 
     @api.returns('self', lambda value: value.id)
