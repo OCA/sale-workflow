@@ -60,6 +60,10 @@
                 <field name="pack_type" invisible="1"/>
                 <button name="action_pack_detail" string="Detail" attrs="{'invisible':[('pack_type', '!=', 'none_detailed_assited_price')]}" type="object"/>
             </xpath> 
+            <!-- no agregamos el boton ya que se edita después desde la tree pero si agregamos el campo porque si no da error al guardar al cargar productos tipo pop up -->
+            <xpath expr="//field[@name='order_line']/form" position="inside">
+                <field name="pack_type" invisible="1"/>
+            </xpath> 
         </field>
     </record>
 
