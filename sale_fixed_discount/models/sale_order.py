@@ -2,9 +2,9 @@
 # Copyright 2017 Eficent Business and IT Consulting Services S.L.
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
-from openerp import api, fields, models, _
-import openerp.addons.decimal_precision as dp
-from openerp.exceptions import ValidationError
+from odoo import api, fields, models, _
+import odoo.addons.decimal_precision as dp
+from odoo.exceptions import ValidationError
 
 
 class SaleOrder(models.Model):
