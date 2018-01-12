@@ -3,21 +3,21 @@
 # * sale_exception
 #
 # Translators:
-# OCA Transbot <transbot@odoo-community.org>, 2018
+# OCA Transbot <transbot@odoo-community.org>, 2017
 msgid ""
 msgstr ""
-"Project-Id-Version: Odoo Server 11.0\n"
+"Project-Id-Version: Odoo Server 10.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-03-02 10:22+0000\n"
-"PO-Revision-Date: 2018-03-02 10:22+0000\n"
-"Last-Translator: OCA Transbot <transbot@odoo-community.org>, 2018\n"
-"Language-Team: Chinese (China) (https://www.transifex.com/oca/teams/23907/"
-"zh_CN/)\n"
-"Language: zh_CN\n"
+"POT-Creation-Date: 2017-05-13 01:19+0000\n"
+"PO-Revision-Date: 2017-05-13 01:19+0000\n"
+"Last-Translator: OCA Transbot <transbot@odoo-community.org>, 2017\n"
+"Language-Team: Spanish (Dominican Republic) (https://www.transifex.com/oca/"
+"teams/23907/es_DO/)\n"
+"Language: es_DO\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
-"Plural-Forms: nplurals=1; plural=0;\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
 #. module: sale_exception
 #: model:ir.ui.view,arch_db:sale_exception.view_sales_order_filter
@@ -33,17 +33,17 @@ msgstr ""
 #. module: sale_exception
 #: model:ir.model.fields,field_description:sale_exception.field_sale_exception_confirm_create_uid
 msgid "Created by"
-msgstr "创建者"
+msgstr "Creado por"
 
 #. module: sale_exception
 #: model:ir.model.fields,field_description:sale_exception.field_sale_exception_confirm_create_date
 msgid "Created on"
-msgstr "创建时间"
+msgstr "Creado en"
 
 #. module: sale_exception
 #: model:ir.model.fields,field_description:sale_exception.field_sale_exception_confirm_display_name
 msgid "Display Name"
-msgstr "Display Name"
+msgstr "Nombre mostrado"
 
 #. module: sale_exception
 #: model:ir.ui.view,arch_db:sale_exception.view_order_form
@@ -73,17 +73,17 @@ msgstr "ID"
 #. module: sale_exception
 #: model:ir.model.fields,field_description:sale_exception.field_sale_exception_confirm___last_update
 msgid "Last Modified on"
-msgstr "Last Modified on"
+msgstr "Última modificación en"
 
 #. module: sale_exception
 #: model:ir.model.fields,field_description:sale_exception.field_sale_exception_confirm_write_uid
 msgid "Last Updated by"
-msgstr "最后更新者"
+msgstr "Última actualización de"
 
 #. module: sale_exception
 #: model:ir.model.fields,field_description:sale_exception.field_sale_exception_confirm_write_date
 msgid "Last Updated on"
-msgstr "上次更新日期"
+msgstr "Última actualización en"
 
 #. module: sale_exception
 #: model:exception.rule,description:sale_exception.excep_no_zip
@@ -100,7 +100,7 @@ msgstr ""
 #. module: sale_exception
 #: model:ir.model,name:sale_exception.model_sale_order
 msgid "Quotation"
-msgstr "Quotation"
+msgstr ""
 
 #. module: sale_exception
 #: model:ir.model.fields,field_description:sale_exception.field_sale_order_rule_group
