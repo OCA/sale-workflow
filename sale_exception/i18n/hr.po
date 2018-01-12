@@ -11,59 +11,59 @@ msgstr ""
 "POT-Creation-Date: 2018-03-02 10:22+0000\n"
 "PO-Revision-Date: 2018-03-02 10:22+0000\n"
 "Last-Translator: OCA Transbot <transbot@odoo-community.org>, 2018\n"
-"Language-Team: Chinese (China) (https://www.transifex.com/oca/teams/23907/"
-"zh_CN/)\n"
-"Language: zh_CN\n"
+"Language-Team: Croatian (https://www.transifex.com/oca/teams/23907/hr/)\n"
+"Language: hr\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
-"Plural-Forms: nplurals=1; plural=0;\n"
+"Plural-Forms: nplurals=3; plural=n%10==1 && n%100!=11 ? 0 : n%10>=2 && n"
+"%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2;\n"
 
 #. module: sale_exception
 #: model:ir.ui.view,arch_db:sale_exception.view_sales_order_filter
 msgid "Blocked in draft"
-msgstr ""
+msgstr "Blokirano u nacrtu"
 
 #. module: sale_exception
 #: model:ir.actions.act_window,name:sale_exception.action_sale_exception_confirm
 #: model:ir.ui.view,arch_db:sale_exception.view_sale_exception_confirm
 msgid "Blocked in draft due to exceptions"
-msgstr ""
+msgstr "Blokirano u nacrtu zbog izuzetaka"
 
 #. module: sale_exception
 #: model:ir.model.fields,field_description:sale_exception.field_sale_exception_confirm_create_uid
 msgid "Created by"
-msgstr "创建者"
+msgstr "Kreirao"
 
 #. module: sale_exception
 #: model:ir.model.fields,field_description:sale_exception.field_sale_exception_confirm_create_date
 msgid "Created on"
-msgstr "创建时间"
+msgstr "Datum kreiranja"
 
 #. module: sale_exception
 #: model:ir.model.fields,field_description:sale_exception.field_sale_exception_confirm_display_name
 msgid "Display Name"
-msgstr "Display Name"
+msgstr "Naziv za prikaz"
 
 #. module: sale_exception
 #: model:ir.ui.view,arch_db:sale_exception.view_order_form
 msgid "Error:"
-msgstr ""
+msgstr "Greška:"
 
 #. module: sale_exception
 #: model:ir.ui.view,arch_db:sale_exception.view_order_form
 msgid "Exception"
-msgstr ""
+msgstr "Izuzetak"
 
 #. module: sale_exception
 #: model:ir.model,name:sale_exception.model_exception_rule
 msgid "Exception Rules"
-msgstr ""
+msgstr "Pravila izuzetaka"
 
 #. module: sale_exception
 #: model:ir.ui.menu,name:sale_exception.menu_sale_exception_parent
 msgid "Exceptions"
-msgstr ""
+msgstr "Izuzeci"
 
 #. module: sale_exception
 #: model:ir.model.fields,field_description:sale_exception.field_sale_exception_confirm_id
@@ -73,29 +73,29 @@ msgstr "ID"
 #. module: sale_exception
 #: model:ir.model.fields,field_description:sale_exception.field_sale_exception_confirm___last_update
 msgid "Last Modified on"
-msgstr "Last Modified on"
+msgstr "Zadnja promjena"
 
 #. module: sale_exception
 #: model:ir.model.fields,field_description:sale_exception.field_sale_exception_confirm_write_uid
 msgid "Last Updated by"
-msgstr "最后更新者"
+msgstr "Promijenio"
 
 #. module: sale_exception
 #: model:ir.model.fields,field_description:sale_exception.field_sale_exception_confirm_write_date
 msgid "Last Updated on"
-msgstr "上次更新日期"
+msgstr "Vrijeme promjene"
 
 #. module: sale_exception
 #: model:exception.rule,description:sale_exception.excep_no_zip
 #: model:exception.rule,name:sale_exception.excep_no_zip
 msgid "No ZIP code on destination"
-msgstr ""
+msgstr "Nema PTT broja na odredištu"
 
 #. module: sale_exception
 #: model:exception.rule,description:sale_exception.excep_no_stock
 #: model:exception.rule,name:sale_exception.excep_no_stock
 msgid "Not Enough Virtual Stock"
-msgstr ""
+msgstr "Nije dovoljna virtualna zaliha"
 
 #. module: sale_exception
 #: model:ir.model,name:sale_exception.model_sale_order
@@ -111,18 +111,18 @@ msgstr ""
 #: model:ir.model.fields,field_description:sale_exception.field_sale_exception_confirm_related_model_id
 #: selection:sale.order,rule_group:0
 msgid "Sale"
-msgstr ""
+msgstr "Prodaja"
 
 #. module: sale_exception
 #: model:ir.actions.act_window,name:sale_exception.action_sale_test_tree
 #: model:ir.ui.menu,name:sale_exception.menu_sale_test
 msgid "Sale Exception Rules"
-msgstr ""
+msgstr "Pravila izuzetaka u prodaji"
 
 #. module: sale_exception
 #: model:ir.ui.view,arch_db:sale_exception.view_sale_exception_confirm
 msgid "Sale Exceptions"
-msgstr ""
+msgstr "Izuzeci u prodaji"
 
 #. module: sale_exception
 #: model:ir.actions.server,name:sale_exception.ir_cron_test_orders_ir_actions_server
@@ -134,9 +134,9 @@ msgstr ""
 #. module: sale_exception
 #: model:ir.ui.view,arch_db:sale_exception.view_sale_exception_confirm
 msgid "_Close"
-msgstr ""
+msgstr "_Zatvori"
 
 #. module: sale_exception
 #: model:ir.model,name:sale_exception.model_sale_exception_confirm
 msgid "sale.exception.confirm"
-msgstr ""
+msgstr "sale.exception.confirm"
