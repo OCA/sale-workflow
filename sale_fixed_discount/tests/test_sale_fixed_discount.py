@@ -2,8 +2,8 @@
 # Copyright 2017 Tecnativa - David Vidal
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
-from openerp.tests import SavepointCase
-from openerp.exceptions import ValidationError
+from odoo.tests import SavepointCase
+from odoo.exceptions import ValidationError
 
 
 class TestSaleFixedDiscount(SavepointCase):
