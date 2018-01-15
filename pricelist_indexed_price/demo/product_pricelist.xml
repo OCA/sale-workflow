@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <record id="demo_pricelist" model="product.pricelist">
+        <field name="name">Demo index</field>
+        <field name="is_index" eval="True" />
+        <field name="item_ids" eval="[(6, 0, [])]" />
+    </record>
+</odoo>

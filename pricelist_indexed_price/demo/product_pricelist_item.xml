@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<openerp>
+    <data>
+        <record id="item_index_price" model="product.pricelist.item">
+            <field name="pricelist_id" ref="product.list0" />
+            <field name="applied_on">2_product_category</field>
+            <field name="categ_id" ref="product.product_category_3" />
+            <field name="compute_price">index</field>
+            <field name="index_pricelist_id" ref="demo_pricelist" />
+        </record>
+    </data>
+</openerp>
