@@ -1,0 +1,6 @@
+done: create procurement groups for every sale_order_line_group. Assign procurements to that group
+
+---Fields in module 'sale_procurement_group_by_line'---
+sale_procurement_group_by_line / sale.order.line          / procurement_group_id (many2one): NEW relation: procurement.group
+sale_procurement_group_by_line / sale.order.line          / picking_group_id (many2one): DEL relation: sale.order.line.group
+---XML records in module 'sale_procurement_group_by_line'---

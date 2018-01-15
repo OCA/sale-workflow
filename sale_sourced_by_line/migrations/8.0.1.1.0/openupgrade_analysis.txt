@@ -1,0 +1,5 @@
+---Fields in module 'sale_sourced_by_line'---
+sale_sourced_by_line / sale.order.line          / warehouse_id (many2one)       : NEW relation: stock.warehouse
+---XML records in module 'sale_sourced_by_line'---
+NEW ir.ui.view: sale_sourced_by_line.view_order_form
+NEW ir.ui.view: sale_sourced_by_line.view_order_form_form
