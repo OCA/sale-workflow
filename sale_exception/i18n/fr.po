@@ -3,14 +3,15 @@
 # * sale_exception
 # 
 # Translators:
-# OCA Transbot <transbot@odoo-community.org>, 2017
+# OCA Transbot <transbot@odoo-community.org>, 2018
+# Quentin THEURET <odoo@kerpeo.com>, 2018
 msgid ""
 msgstr ""
-"Project-Id-Version: Odoo Server 10.0\n"
+"Project-Id-Version: Odoo Server 11.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-11-23 01:51+0000\n"
-"PO-Revision-Date: 2017-11-23 01:51+0000\n"
-"Last-Translator: OCA Transbot <transbot@odoo-community.org>, 2017\n"
+"POT-Creation-Date: 2018-01-23 03:41+0000\n"
+"PO-Revision-Date: 2018-01-23 03:41+0000\n"
+"Last-Translator: Quentin THEURET <odoo@kerpeo.com>, 2018\n"
 "Language-Team: French (https://www.transifex.com/oca/teams/23907/fr/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -97,9 +98,14 @@ msgid "Not Enough Virtual Stock"
 msgstr "Not Enough Virtual Stock"
 
 #. module: sale_exception
+#: model:ir.model,name:sale_exception.model_sale_order
+msgid "Quotation"
+msgstr "Devis"
+
+#. module: sale_exception
 #: model:ir.model.fields,field_description:sale_exception.field_sale_order_rule_group
-msgid "Rule group"
-msgstr "Groupe de règles"
+msgid "Rule Group"
+msgstr "Règle de groupe"
 
 #. module: sale_exception
 #: model:ir.model.fields,field_description:sale_exception.field_sale_exception_confirm_related_model_id
@@ -119,9 +125,11 @@ msgid "Sale Exceptions"
 msgstr "Restrictions de vente"
 
 #. module: sale_exception
-#: model:ir.model,name:sale_exception.model_sale_order
-msgid "Sales Order"
-msgstr "Bon de commande"
+#: model:ir.actions.server,name:sale_exception.ir_cron_test_orders_ir_actions_server
+#: model:ir.cron,cron_name:sale_exception.ir_cron_test_orders
+#: model:ir.cron,name:sale_exception.ir_cron_test_orders
+msgid "Test Draft Orders"
+msgstr "Tester les commandes brouillon"
 
 #. module: sale_exception
 #: model:ir.ui.view,arch_db:sale_exception.view_sale_exception_confirm
