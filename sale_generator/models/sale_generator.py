@@ -41,7 +41,6 @@ class SaleGenerator(models.Model):
     @api.multi
     def _prepare_copy_vals(self, partner):
         self.ensure_one()
-        vals = {}
         vals = {
             'partner_id': partner.id,
             'generator_id': self.id,
