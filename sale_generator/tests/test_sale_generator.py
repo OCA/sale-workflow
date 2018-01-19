@@ -5,9 +5,9 @@
 from odoo.tests.common import TransactionCase
 
 
-class TestProductProfile(TransactionCase):
+class TestSaleGenerator(TransactionCase):
     def setUp(self):
-        super(TestProductProfile, self).setUp()
+        super(TestSaleGenerator, self).setUp()
         self.partner1 = self.env.ref('base.res_partner_address_4')
         self.partner2 = self.env.ref('base.res_partner_address_27')
         self.sale = self.env.ref('sale.sale_order_4')
