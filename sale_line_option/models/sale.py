@@ -14,7 +14,7 @@ class SaleOrderLine(models.Model):
         related="order_id.pricelist_id", readonly=True)
     option_ids = fields.One2many(
         comodel_name='sale.order.line.option',
-        inverse_name='sale_line_id', string='Available Options', copy=True,
+        inverse_name='sale_line_id', string='Options', copy=True,
         help="Options can be defined with product bom")
     display_option = fields.Boolean(
         help="Technical: allow conditional options field display")

@@ -4,14 +4,22 @@
     <record id="product_pc_assmb_option1" model="product.product">
         <field name="name">Config with opts1</field>
         <field name="default_code">CFG1</field>
+        <field name="tracking">lot</field>
+        <field name="auto_generate_prodlot">True</field>
     </record>
     <record id="product_pc_assmb_option2" model="product.product">
         <field name="name">Config with opts2</field>
         <field name="default_code">CFG2</field>
+        <field name="tracking">lot</field>
+        <field name="auto_generate_prodlot">True</field>
     </record>
     <record id="product_assmb_option3" model="product.product">
         <field name="name">Config with opts3</field>
         <field name="default_code">CFG3</field>
+        <field name="tracking">lot</field>
+        <field name="auto_generate_prodlot">True</field>
+        <field name="route_ids"
+               eval="[(4, ref('mrp.route_warehouse0_manufacture')), (4, ref('stock.route_warehouse0_mto'))]"/>
     </record>
 
     <record id="bom_pc_assmb_option1" model="mrp.bom">

@@ -1,6 +1,7 @@
 -
- Sale config
+ Group config
 -
-  !python {model: sale.config.settings}: |
+  !python {model: res.groups}: |
     Admin = self.env.ref('base.user_root')
     Admin.groups_id |= self.env.ref('sale.group_mrp_properties')
+    Admin.groups_id |= self.env.ref('stock.group_production_lot')

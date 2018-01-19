@@ -16,8 +16,7 @@
             </xpath>
             <xpath expr="//field[@name='order_line']/form/label[@for='name']" position="before">
                 <div>
-                    <!-- <field name="display_option" invisible="1"/> -->
-                    <field name="display_option"/>
+                    <field name="display_option" invisible="1"/>
                     <label for="option_ids" attrs="{'invisible': [('display_option', '=', False)]}"/>
                     <field name="option_ids" context="{'line_product_id': product_id}"
                            attrs="{'invisible': [('display_option', '=', False)]}">

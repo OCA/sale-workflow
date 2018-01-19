@@ -16,6 +16,7 @@
     'data': [
         'views/sale_view.xml',
         'views/mrp_view.xml',
+        'views/stock_view.xml',
         'views/install.xml',
         'data/bom_option.xml',
         'security/ir.model.access.csv',
