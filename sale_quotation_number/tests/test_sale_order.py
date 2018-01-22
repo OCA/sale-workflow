@@ -10,6 +10,8 @@ class TestSaleOrder(TransactionCase):
     def setUp(self, *args, **kwargs):
         super(TestSaleOrder, self).setUp()
         self.sale_order_model = self.env['sale.order']
+        company = self.env['res.company']._company_default_get('sale.order')
+        company.keep_name_so = False
 
     def test_enumeration(self):
         order1 = self.sale_order_model.create({

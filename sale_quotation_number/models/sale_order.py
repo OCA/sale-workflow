@@ -7,11 +7,23 @@
 from odoo import models, api, fields
 
 
+class ResCompany(models.Model):
+    _inherit = 'res.company'
+
+    keep_name_so = fields.Boolean(
+        string="Use same enumeration",
+        help="If this is unchecked, quotations use a different sequence from "
+             "sale orders", default=True)
+
+
+class SaleConfigSettings(models.TransientModel):
+    _inherit = 'sale.config.settings'
+
+    keep_name_so = fields.Boolean(related='company_id.keep_name_so')
+
+
 class SaleOrder(models.Model):
     _inherit = "sale.order"
-
-    keep_name_so = fields.Boolean(string="Name SO associated",
-                                  default=False, copy=False)
 
     @api.multi
     def copy(self, default=None):
@@ -23,11 +35,12 @@ class SaleOrder(models.Model):
             default['origin'] = self.origin + ', ' + self.name
         else:
             default['origin'] = self.name
-        return super(SaleOrder, self).copy(default=default)
+        return super(SaleOrder, self).copy(default)
 
     @api.model
     def create(self, vals):
-        if vals.get('name', '/') == '/':
+        company = self.env['res.company']._company_default_get('sale.order')
+        if not company.keep_name_so:
             vals['name'] = self.env['ir.sequence'].next_by_code(
                 'sale.quotation') or '/'
         return super(SaleOrder, self).create(vals)
@@ -35,8 +48,10 @@ class SaleOrder(models.Model):
     @api.multi
     def action_confirm(self):
         if super(SaleOrder, self).action_confirm():
+            company = self.env['res.company']. \
+                _company_default_get('sale.order')
             for order in self:
-                if order.state == 'sale' and not order.keep_name_so:
+                if order.state == 'sale' and not company.keep_name_so:
                     if order.origin and order.origin != '':
                         quo = order.origin + ', ' + order.name
                     else:
@@ -44,7 +59,6 @@ class SaleOrder(models.Model):
                     order.write({
                         'origin': quo,
                         'name': self.env['ir.sequence'].next_by_code(
-                            'sale.order'),
-                        'keep_name_so': True
+                            'sale.order')
                     })
         return True
