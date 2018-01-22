@@ -50,6 +50,11 @@ sequence.  When you confirm a quotation, its orginal number is saved in the
 
     Sale Quotation 4 Confirmed = Number for Sale Order SO003 from Sale Quotation SQ004
 
+Configuration
+=============
+
+To configure this module you need to go to Sales -> Configuration and uncheck 'Use same enumeration for quotations and sale orders'.
+
 Usage
 =====
 
