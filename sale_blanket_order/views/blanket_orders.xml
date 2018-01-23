@@ -1,0 +1,122 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <record id="view_blanket_order_tree" model="ir.ui.view">
+        <field name="name">sale.blanket.order.tree</field>
+        <field name="model">sale.blanket.order</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="name"/>
+                <field name="partner_id"/>
+                <field name="validity_date"/>
+                <field name="state"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="view_blanket_order_form" model="ir.ui.view">
+        <field name="name">sale.blanket.order.form</field>
+        <field name="model">sale.blanket.order</field>
+        <field name="arch" type="xml">
+            <form string="Blanket Order" class="o_sale_order">
+                <header>
+                    <button name="%(action_create_sale_order)d" string="Create Sale Order"
+                        type="action" class="btn-primary"
+                        attrs="{'invisible': [('state', '!=', 'opened')]}"/>
+                    <button name="action_confirm" states="draft" string="Confirm" class="btn-primary o_sale_confirm" type="object" />
+                    <field name="state" widget="statusbar" statusbar_visible="draft,opened,expired"/>
+                </header>
+                <sheet>
+                    <div class="oe_button_box" name="button_box">
+                        <button name="action_view_sale_orders"
+                            type="object"
+                            class="oe_stat_button"
+                            icon="fa-pencil-square-o">
+                            <field name="sale_count" widget="statinfo" string="Sale Orders"/>
+                        </button>
+                    </div>
+                    <div class="oe_title">
+                        <h1>
+                            <field name="name" readonly="1"/>
+                        </h1>
+                    </div>
+                    <group>
+                        <group>
+                            <field name="partner_id" domain="[('customer','=',True)]" context="{'search_default_customer':1, 'show_address': 1}" options='{"always_reload": True}'/>
+                        </group>
+                        <group>
+                            <field name="validity_date" attrs="{'required': [('state', '=', 'draft')]}"/>
+                            <field name="payment_term_id"/>
+                        </group>
+                    </group>
+                    <notebook>
+                        <page string="Order Lines">
+                            <field name="lines_ids" mode="tree"
+                                attrs="{'readonly': [('state', 'in', ('opened','expired'))]}">
+                                <tree editable="bottom">
+                                    <field name="sequence" widget="handle"/>
+                                    <field name="product_id"
+                                        context="{'partner_id':parent.partner_id, 'quantity':original_qty, 'company_id': parent.company_id}"
+                                       />
+                                    <field name="product_uom"/>
+                                    <field name="price_unit"/>
+                                    <field name="original_qty"
+                                        string="Original Qty"
+                                        context="{'partner_id':parent.partner_id, 'quantity':original_qty, 'company_id': parent.company_id}"
+                                    />
+                                    <field name="ordered_qty"/>
+                                    <field name="invoiced_qty"/>
+                                    <field name="delivered_qty"/>
+                                    <field name="remaining_qty"/>
+                                </tree>
+                            </field>
+                            <field name="note" class="oe_inline" placeholder="Setup default terms and conditions in your company settings."/>
+                            <div class="oe_clear"/>
+                        </page>
+                        <page string="Other Information">
+                            <group>
+                                <group string="Sales Information" name="sales_person">
+                                    <field name="pricelist_id" attrs="{'required': [('state', '=', 'draft')]}"/>
+                                    <field name="user_id"/>
+                                    <field name="team_id" options="{'no_create': True}"/>
+                                    <field name="client_order_ref"/>
+                                    <field name="company_id" options="{'no_create': True}" groups="base.group_multi_company"/>
+                                </group>
+                            </group>
+                        </page>
+                    </notebook>
+                </sheet>
+                <div class="oe_chatter">
+                    <field name="message_follower_ids" widget="mail_followers"/>
+                    <field name="message_ids" widget="mail_thread"/>
+                </div>
+            </form>
+        </field>
+    </record>
+
+    <record id="view_blanket_order_search" model="ir.ui.view">
+        <field name="name">sale.blanket.order.search</field>
+        <field name="model">sale.blanket.order</field>
+        <field name="arch" type="xml">
+            <search string="Blanket Order">
+                <field name="name" select="True"/>
+            </search>
+        </field>
+    </record>
+
+    <record model="ir.actions.act_window" id="act_open_blanket_order_view">
+        <field name="name">Blanket Orders</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">sale.blanket.order</field>
+        <field name="view_type">form</field>
+        <field name="view_mode">tree,form</field>
+        <field name="search_view_id" ref="view_blanket_order_search"/>
+        <field name="domain">[]</field>
+        <field name="context">{}</field>
+    </record>
+
+    <menuitem id="menu_blanket_order_config"
+        parent="sales_team.menu_sales"
+        groups="sales_team.group_sale_manager"
+        sequence="20"
+        action="act_open_blanket_order_view"/>
+</odoo>
