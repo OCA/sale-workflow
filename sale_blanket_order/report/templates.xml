@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+<template id="report_blanketorder_document">
+    <t t-call="report.external_layout">
+        <t t-set="doc" t-value="doc.with_context({'lang':doc.partner_id.lang})" />
+        <div class="page">
+            <div class="oe_structure"/>
+            <div class="row">
+                <div class="col-xs-6">
+                    <div t-field="doc.partner_id"
+                        t-options='{"widget": "contact", "fields": ["address", "name", "phone", "fax"], "no_marker": True, "phone_icons": True}'/>
+                    <p t-if="doc.partner_id.vat">VAT: <span t-field="doc.partner_id.vat"/></p>
+                </div>
+            </div>
+
+            <h2>
+                <span>Blanket Order # </span>
+                <span t-field="doc.name"/>
+            </h2>
+
+            <div class="row mt32 mb32" id="informations">
+                <div t-if="doc.client_order_ref" class="col-xs-3">
+                    <strong>Your Reference:</strong>
+                    <p t-field="doc.client_order_ref"/>
+                </div>
+                <div class="col-xs-3">
+                    <strong>Validity Date:</strong>
+                    <p t-field="doc.validity_date"/>
+                </div>
+                <div t-if="doc.user_id.name" class="col-xs-3">
+                    <strong>Salesperson:</strong>
+                    <p t-field="doc.user_id"/>
+                </div>
+            </div>
+
+            <table class="table table-condensed">
+                <thead>
+                    <tr>
+                        <th>Product</th>
+                        <th class="text-right">Unit Price</th>
+                        <th class="text-right">Original Qty</th>
+                    </tr>
+               </thead>
+               <tbody class="sale_tbody">
+                    <t t-foreach="doc.lines_ids" t-as="l">
+                        <tr>
+                            <td><span t-field="l.product_id"/></td>
+                            <td class="text-right">
+                                <span t-field="l.price_unit"/>
+                            </td>
+                            <td class="text-right">
+                                <span t-field="l.original_qty"/>
+                                <!-- <span t-field="l.product_uom" groups="product.group_uom"/> -->
+                            </td>
+                        </tr>
+                    </t>
+                </tbody>
+            </table>
+
+            <p t-field="doc.note" />
+            <div class="oe_structure"/>
+        </div>
+    </t>
+</template>
+
+
+<template id="report_blanketorder">
+    <t t-call="report.html_container">
+        <t t-foreach="docs" t-as="doc">
+            <t t-call="sale_blanket_order.report_blanketorder_document" t-lang="doc.partner_id.lang"/>
+        </t>
+    </t>
+</template>
+</odoo>
