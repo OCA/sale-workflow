@@ -12,5 +12,6 @@ class SaleOrder(models.Model):
 
     @api.depends('margin', 'amount_untaxed')
     def _compute_percent(self):
-        if self.margin and self.amount_untaxed:
-            self.percent = (self.margin / self.amount_untaxed) * 100
+        for order in self:
+            if order.margin and order.amount_untaxed:
+                order.percent = (order.margin / order.amount_untaxed) * 100
