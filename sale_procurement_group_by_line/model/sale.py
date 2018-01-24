@@ -22,7 +22,8 @@ class SaleOrder(models.Model):
 
     @api.multi
     @api.depends('order_line')
-    def _compute_get_picking_ids(self):
+    def _compute_picking_ids(self):
+        super(SaleOrder, self)._compute_picking_ids()
         for sale in self:
             group_ids = set([line.procurement_group_id.id
                              for line in sale.order_line
@@ -33,11 +34,6 @@ class SaleOrder(models.Model):
             sale.picking_ids = self.env['stock.picking'].search(
                 [('group_id', 'in', list(group_ids))])
             sale.delivery_count = len(sale.picking_ids)
-
-    picking_ids = fields.Many2many('stock.picking',
-                                   compute='_compute_get_picking_ids',
-                                   method=True,
-                                   string='Picking associated to this sale')
 
 
 class SaleOrderLine(models.Model):
