@@ -7,7 +7,7 @@
 {
     'name': 'Sale Procurement Group by Line',
     'summary': 'Base module for multiple procurement group by Sale order',
-    'version': '10.0.1.0.0',
+    'version': '10.0.1.1.0',
     "author": "Camptocamp,"
               "Eficent,"
               "Serpent,"
