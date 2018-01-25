@@ -5,6 +5,8 @@
 import odoo.tests.common as common
 
 
+@common.at_install(False)
+@common.post_install(True)
 class TestSaleOrderLineDescriptionChange(common.TransactionCase):
     def setUp(self):
         super(TestSaleOrderLineDescriptionChange, self).setUp()
