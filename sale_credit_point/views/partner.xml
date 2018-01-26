@@ -8,7 +8,7 @@
     <field name="arch" type="xml">
       <div name="button_box" position="inside">
         <button name="action_update_credit_point" type="object" class="oe_stat_button" icon="fa-money">
-          <field string="Points" name="credit_point" widget="statinfo"/>
+            <span><field string="Points" name="credit_point" widget="statinfo"/> / <field name="yearly_point_increase" string=" " widget="statinfo"/></span>
         </button>
       </div>
     </field>

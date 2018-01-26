@@ -21,7 +21,8 @@ Features and usage
 ------------------
 
 Partner model has a new field `credit_point` which can be updated easily
-via a smart button on the partner form.
+via a smart button on the partner form. Smart button displays
+`current points / sum of all points increases this year`.
 
 A new currency is created `PT` (points) and is used by default
 for `credit_point` field.
@@ -36,6 +37,9 @@ is compared with partner's credit:
       but the context has key `skip_credit_check` -> order can be confirmed
 
 If the order is confirmed the credit is deducted from partner.
+
+History of all credit point allocations can be looked up
+in `sales -> configuration -> credit point history`.
 
 
 Bug Tracker
@@ -58,6 +62,7 @@ Contributors
 ------------
 
 * Simone Orsi <simone.orsi@camptocamp.com>
+* Mykhailo Panarin <m.panarin@mobilunity.com>
 
 Do not contact contributors directly about support or help with technical issues.
 

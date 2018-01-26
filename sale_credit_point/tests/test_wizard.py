@@ -1,5 +1,4 @@
-# -*- coding: utf-8 -*-
-# Copyright 2017 Camptocamp
+# Copyright 2018 Camptocamp SA
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
 from odoo.tests.common import SavepointCase
@@ -10,10 +9,10 @@ class TestWizard(SavepointCase):
 
     @classmethod
     def setUpClass(cls):
-        super(TestWizard, cls).setUpClass()
-        cls.partner = cls.env['res.partner'].create({
-            'name': 'John Wizard',
-        })
+        super().setUpClass()
+        cls.partner = cls.env['res.partner'].with_context(
+            tracking_disable=True
+        ).create({'name': 'John Wizard'})
         cls.wiz_model = cls.env['wiz.manage.credit.point']
 
     def _get_wiz(self, **kw):

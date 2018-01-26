@@ -1,5 +1,4 @@
-# -*- coding: utf-8 -*-
-# Copyright 2017 Camptocamp
+# Copyright 2018 Camptocamp SA
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
 from odoo import exceptions
@@ -9,7 +8,7 @@ from odoo.addons.sale.tests.test_sale_common import TestSale
 class TestSaleOrder(TestSale):
 
     def setUp(self):
-        super(TestSaleOrder, self).setUp()
+        super().setUp()
         self.product = self.products['prod_order']
         self.product.list_price = 10
         self.product.currency_id = \

@@ -1,8 +1,13 @@
-# -*- coding: utf-8 -*-
-# Copyright 2017 Camptocamp SA
+# Copyright 2018 Camptocamp SA
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
 
 from odoo import fields, models, api, exceptions, _
+
+POINT_OPERATIONS = [
+    ("replace", "Replace"),
+    ("increase", "Increase"),
+    ("decrease", "Decrease"),
+]
 
 
 class ResPartner(models.Model):
@@ -13,6 +18,16 @@ class ResPartner(models.Model):
         currency_field='credit_point_currency_id',
         readonly=True,
         default=0,
+    )
+    yearly_point_increase = fields.Monetary(
+        string='Yearly points increase',
+        currency_field='credit_point_currency_id',
+        readonly=True,
+        compute="_compute_yearly_point_increase"
+    )
+    credit_history_ids = fields.One2many(
+        comodel_name="credit.point.history",
+        inverse_name="partner_id",
     )
     credit_point_currency_id = fields.Many2one(
         comodel_name='res.currency',
@@ -63,3 +78,25 @@ class ResPartner(models.Model):
 
     def credit_point_decrease(self, amount, comment=''):
         self._credit_point_update(self.credit_point - amount, comment=comment)
+
+    def update_history(self, amount, operation, comment):
+        history_model = self.env["credit.point.history"]
+        vals = {
+            'partner_id': self.id,
+            'operation': operation,
+            'amount': amount,
+            'comment': comment,
+        }
+        return history_model.create(vals)
+
+    def _compute_yearly_point_increase(self):
+        self.env.cr.execute(
+            """select partner_id, sum(amount) from credit_point_history
+            where operation='increase' and partner_id in %s
+            and date_part('year', create_date)=date_part('year', CURRENT_DATE)
+            group by partner_id""",
+            (tuple(self.ids),),
+        )
+        amounts = dict(self.env.cr.fetchall())
+        for record in self:
+            record.yearly_point_increase = amounts.get(record.id, 0)

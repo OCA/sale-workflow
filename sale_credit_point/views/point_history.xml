@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="view_credit_point_history_tree" model="ir.ui.view">
+        <field name="name">view.credit.point.history.tree</field>
+        <field name="model">credit.point.history</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="partner_id" readonly="True"/>
+                <field name="operation" readonly="True"/>
+                <field name="amount" readonly="True"/>
+                <field name="credit_point_currency_id" readonly="True"/>
+                <field name="credit_point_currency_id" readonly="True" invisible="1" />
+                <field name="create_date" readonly="True"/>
+                <field name="comment" readonly="True"/>
+            </tree>
+        </field>
+    </record>
+
+        <record id="view_credit_point_history_search" model="ir.ui.view">
+            <field name="name">credit.point.history.search</field>
+            <field name="model">credit.point.history</field>
+            <field name="arch" type="xml">
+                <search string="Search Invoice">
+                    <field name="create_date"/>
+                    <field name="partner_id"/>
+                    <filter string="This Year" name="year" domain="[('create_date','&lt;=', time.strftime('%%Y-12-31')),('create_date','&gt;=',time.strftime('%%Y-01-01'))]"/>
+                    <group expand="1" string="Group By">
+                        <filter string="Partner" name="partner"
+                            context="{'group_by':'partner_id'}"/>
+                    </group>
+               </search>
+            </field>
+        </record>
+
+    <record id="credit_point_history_action" model="ir.actions.act_window">
+        <field name="name">Credit Points History</field>
+        <field name="res_model">credit.point.history</field>
+        <field name="search_view_id" ref="view_credit_point_history_search"/>
+        <field name="context">{'search_default_year': 1,'search_default_partner': 1 , 'group_by_no_leaf':1}</field>
+        <field name="view_type">form</field>
+        <field name="view_mode">tree</field>
+    </record>
+
+    <menuitem name="Credit point history" parent="sale.menu_sale_config"
+              sequence="99"
+              action="credit_point_history_action"
+              id="menu_credit_point_history"/>
+
+</odoo>
