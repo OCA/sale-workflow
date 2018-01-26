@@ -1,5 +1,4 @@
-# -*- coding: utf-8 -*-
-# Copyright 2017 Camptocamp
+# Copyright 2018 Camptocamp SA
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
 from odoo.tests.common import SavepointCase
@@ -10,10 +9,10 @@ class TestCredit(SavepointCase):
 
     @classmethod
     def setUpClass(cls):
-        super(TestCredit, cls).setUpClass()
-        cls.partner = cls.env['res.partner'].create({
-            'name': 'John Credit',
-        })
+        super().setUpClass()
+        cls.partner = cls.env['res.partner'].with_context(
+            tracking_disable=True
+        ).create({'name': 'John Wizard'})
         cls.currency = cls.env.ref('sale_credit_point.res_currency_pt')
 
     def test_default_currency(self):

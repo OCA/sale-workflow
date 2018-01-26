@@ -1,8 +1,8 @@
-# -*- coding: utf-8 -*-
-# Copyright 2017 Camptocamp SA
+# Copyright 2018 Camptocamp SA
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
 
 from odoo import fields, models, api, exceptions, _
+from ..models.partner import POINT_OPERATIONS
 
 
 class ManageCreditPoint(models.TransientModel):
@@ -23,11 +23,7 @@ class ManageCreditPoint(models.TransientModel):
     )
     operation = fields.Selection(
         string="Type of operation",
-        selection=[
-            ("replace", "Replace"),
-            ("increase", "Increase"),
-            ("decrease", "Decrease"),
-        ],
+        selection=POINT_OPERATIONS,
         required=True,
     )
 
@@ -41,3 +37,8 @@ class ManageCreditPoint(models.TransientModel):
         for partner in self.partner_ids:
             handler = getattr(partner, 'credit_point_' + self.operation)
             handler(self.credit_point, comment=self.comment)
+            partner.update_history(
+                self.credit_point,
+                self.operation,
+                self.comment
+            )

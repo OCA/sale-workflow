@@ -1,5 +1,4 @@
-# -*- coding: utf-8 -*-
-# Copyright 2017 Camptocamp SA
+# Copyright 2018 Camptocamp SA
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
 
 from odoo import api, models, _
@@ -34,4 +33,4 @@ class SaleOrder(models.Model):
             sale.credit_point_check()
             sale.partner_id.credit_point_decrease(
                 sale.amount_total, comment=self.credit_point_decrease_msg)
-        return super(SaleOrder, self).action_confirm()
+        return super().action_confirm()
