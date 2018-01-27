@@ -49,6 +49,7 @@ addon | version | summary
 [sale_product_set](sale_product_set/) | 10.0.1.0.2 | Sale product set
 [sale_product_set_layout](sale_product_set_layout/) | 10.0.1.0.0 | Sale product set layout
 [sale_rental](sale_rental/) | 10.0.1.0.0 | Manage Rental of Products
+[sale_revert_done](sale_revert_done/) | 10.0.1.0.0 | This module extends the functionality of sales to allow you to set a sales order done back to state 'Sale Order'.
 [sale_shipping_info_helper](sale_shipping_info_helper/) | 10.0.1.0.0 | Add shipping amounts on sale order
 [sale_sourced_by_line](sale_sourced_by_line/) | 10.0.1.0.0 | Multiple warehouse source locations for Sale order
 [sale_start_end_dates](sale_start_end_dates/) | 10.0.1.0.0 | Adds start date and end date on sale order lines
