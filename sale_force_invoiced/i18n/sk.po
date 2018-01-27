@@ -3,21 +3,20 @@
 # * sale_force_invoiced
 #
 # Translators:
-# OCA Transbot <transbot@odoo-community.org>, 2017
+# OCA Transbot <transbot@odoo-community.org>, 2018
 msgid ""
 msgstr ""
-"Project-Id-Version: Odoo Server 9.0c\n"
+"Project-Id-Version: Odoo Server 10.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-05-31 04:21+0000\n"
-"PO-Revision-Date: 2017-05-31 04:21+0000\n"
-"Last-Translator: OCA Transbot <transbot@odoo-community.org>, 2017\n"
-"Language-Team: Turkish (Turkey) (https://www.transifex.com/oca/teams/23907/"
-"tr_TR/)\n"
-"Language: tr_TR\n"
+"POT-Creation-Date: 2018-01-27 03:52+0000\n"
+"PO-Revision-Date: 2018-01-27 03:52+0000\n"
+"Last-Translator: OCA Transbot <transbot@odoo-community.org>, 2018\n"
+"Language-Team: Slovak (https://www.transifex.com/oca/teams/23907/sk/)\n"
+"Language: sk\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
-"Plural-Forms: nplurals=1; plural=0;\n"
+"Plural-Forms: nplurals=3; plural=(n==1) ? 0 : (n>=2 && n<=4) ? 1 : 2;\n"
 
 #. module: sale_force_invoiced
 #: model:ir.model.fields,field_description:sale_force_invoiced.field_sale_order_force_invoiced
@@ -27,7 +26,7 @@ msgstr ""
 #. module: sale_force_invoiced
 #: model:ir.model,name:sale_force_invoiced.model_sale_order
 msgid "Sales Order"
-msgstr "Satış emri"
+msgstr "Objednávka predaja"
 
 #. module: sale_force_invoiced
 #: model:ir.model.fields,help:sale_force_invoiced.field_sale_order_force_invoiced
