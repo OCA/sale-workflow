@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 # © 2016 OdooMRP team
 # © 2016 AvanzOSC
 # © 2016 Serv. Tecnol. Avanzados - Pedro M. Baeza
@@ -8,7 +7,7 @@
 
 {
     "name": "Sale Order Line Date",
-    "version": "10.0.1.0.0",
+    "version": "11.0.1.0.0",
     "author": "OdooMRP team,"
               "AvanzOSC,"
               "Serv. Tecnol. Avanzados - Pedro M. Baeza,"
