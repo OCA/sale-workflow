@@ -1,31 +1,19 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<openerp>
-    <data>
-        <record model="ir.ui.view" id="product.product_last_info_page_form_view">
-            <field name="name">product.last.info.page.form</field>
-            <field name="model">product.product</field>
-            <field name="inherit_id" ref="product.product_normal_form_view" />
-            <field name="arch" type="xml">
-                <notebook position="inside">
-                    <page string="Last Price Info"/>
-                </notebook>
-            </field>
-        </record>
+<odoo>
 
         <record model="ir.ui.view" id="product_last_sale_info_form_view">
             <field name="name">product.last.sale.info.form</field>
             <field name="model">product.product</field>
-            <field name="inherit_id" ref="product.product_last_info_page_form_view" />
+            <field name="inherit_id" ref="product.product_normal_form_view"/>
             <field name="arch" type="xml">
-                <page string="Last Price Info" position="inside">
+                <xpath expr="//notebook/page[@name='sales']" position="inside">
                     <group string="Sale" name="last_sale_info">
                         <field name="last_customer_id" />
                         <field name="last_sale_date" />
                         <field name="last_sale_price" />
                     </group>
-                </page>
+                 </xpath>
             </field>
         </record>
 
-    </data>
-</openerp>
+</odoo>
