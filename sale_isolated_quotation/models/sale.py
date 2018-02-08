@@ -45,9 +45,9 @@ class SaleOrder(models.Model):
     def create(self, vals):
         is_order = vals.get('is_order', False) or \
             self._context.get('is_order', False)
-        if not is_order and vals.get('name', '/') == '/':
+        if not is_order and vals.get('name', _('New')) == _('New'):
             Seq = self.env['ir.sequence']
-            vals['name'] = Seq.next_by_code('sale.quotation') or '/'
+            vals['name'] = Seq.next_by_code('sale.quotation') or _('New')
         return super(SaleOrder, self).create(vals)
 
     @api.multi
@@ -58,7 +58,7 @@ class SaleOrder(models.Model):
                 _('Only quotation can convert to order'))
         Seq = self.env['ir.sequence']
         order = self.copy({
-            'name': Seq.next_by_code('sale.order') or '/',
+            'name': Seq.next_by_code('sale.order') or _('New'),
             'is_order': True,
             'quote_id': self.id,
             'client_order_ref': self.client_order_ref,
