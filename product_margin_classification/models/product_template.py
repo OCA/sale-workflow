@@ -3,7 +3,8 @@
 # @author: Sylvain LE GAL (https://twitter.com/legalsylvain)
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
 
-from openerp import api, models, fields, exceptions, tools, _
+from openerp import _, api, fields, models, tools
+from openerp.exceptions import Warning as UserError
 import openerp.addons.decimal_precision as dp
 
 
@@ -40,22 +41,23 @@ class ProductTemplate(models.Model):
     @api.multi
     @api.depends(
         'standard_price', 'list_price',
-        'margin_classification_id.margin',
+        'margin_classification_id.markup',
         'margin_classification_id.price_round',
         'margin_classification_id.price_surcharge')
     def _compute_theoretical_multi(self):
         for template in self:
             classification = template.margin_classification_id
             if classification:
-                multi = 1 + (classification.margin / 100)
-                for tax in template.taxes_id:
-                    if tax.amount_type != 'percent' or not tax.price_include:
-                        raise exceptions.UserError(_(
-                            "Unimplemented Feature\n"
-                            "The Tax %s is not correctly set for computing"
-                            " prices with coefficients for the product %s") % (
-                            tax.name, template.name))
-                    multi *= 1 + (tax.amount / 100)
+                multi = 1 + classification.markup
+                if template.taxes_id.filtered(lambda x: x.type != 'percent'):
+                    raise UserError(_(
+                        "Unimplemented Feature\n"
+                        "The sale taxes are not correctly set for computing"
+                        " prices with coefficients for the product %s") % (
+                        template.name))
+                for tax in template.taxes_id.filtered(
+                        lambda x: x.price_include):
+                    multi *= 1 + tax.amount
                 template.theoretical_price = tools.float_round(
                     template.standard_price * multi,
                     precision_rounding=classification.price_round) +\

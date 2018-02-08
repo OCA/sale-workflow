@@ -7,12 +7,22 @@ License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
 
 <openerp><data>
 
+    <record id="action_view_product_template_by_margin_classfication" model="ir.actions.act_window">
+        <field name="name">Products</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">product.template</field>
+        <field name="view_mode">tree</field>
+        <field name="view_type">form</field>
+        <field name="view_id" ref="view_product_template_tree"/>
+        <field name="context">{'search_default_margin_classification_id': active_id}</field>
+    </record>
+
     <record id="view_product_margin_classification_tree" model="ir.ui.view">
         <field name="model">product.margin.classification</field>
         <field name="arch" type="xml">
             <tree>
                 <field name="name"/>
-                <field name="margin"/>
+                <field name="profit_margin"/>
                 <field name="template_cheap_qty"/>
                 <field name="template_expensive_qty"/>
                 <field name="template_different_price_qty" />
@@ -27,47 +37,43 @@ License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
         <field name="arch" type="xml">
             <form>
                 <header>
-                    <button name="apply_theoretical_price" type="object" string="Apply Theoretical Price"/>
-                    <button name="apply_theoretical_price_cheap" type="object" string="Up to Theoretical Price"/>
-                    <button name="apply_theoretical_price_expensive" type="object" string="Down to Theoretical Price"/>
+                    <button name="apply_theoretical_price" type="object" string="Apply Theoretical Price"
+                            attrs="{'invisible': [('template_different_price_qty', '=', 0)]}"/>
+                    <button name="apply_theoretical_price_cheap" type="object" string="Up to Theoretical Price"
+                            attrs="{'invisible': [('template_cheap_qty', '=', 0)]}"/>
+                    <button name="apply_theoretical_price_expensive" type="object" string="Down to Theoretical Price"
+                            attrs="{'invisible': [('template_expensive_qty', '=', 0)]}"/>
                 </header>
                 <sheet>
+                    <div class="oe_right oe_button_box" style="width: 300px;" name="buttons">
+                        <button name="%(action_view_product_template_by_margin_classfication)d" 
+                            type="action"
+                            class="oe_stat_button oe_inline"
+                            icon="fa-list">
+                            <field name="template_qty" widget="statinfo" string="Products"/>
+                        </button>
+                    </div>
                     <div class="oe_title">
                         <label for="name" class="oe_edit_only"/>
                         <h1><field name="name"/></h1>
                     </div>
-                    <div class="oe_right oe_button_box" />
                     <group col="4">
-                        <field name="template_qty"/>
+                        <field name="profit_margin"/>
                         <field name="company_id" groups="base.group_multi_company"/>
                     </group>
-                    <group col="4">
+                    <group col="4" string="Products">
                         <field name="template_different_price_qty"/>
                         <newline />
                         <field name="template_cheap_qty"/>
                         <field name="template_expensive_qty"/>
                     </group>
-                    <group col="4" string="Computation">
-                        <field name="margin"/>
-                        <newline />
-                        <field name="price_round"/>
-                        <field name="price_surcharge"/>
-                    </group>
                     <notebook>
-                        <page string="Products">
-                            <group>
-                                <field name="template_ids" nolabel="1">
-                                    <tree colors="black: margin_state == 'expensive'; red: margin_state == 'cheap'; gray: margin_state == 'ok'">
-                                        <field name="default_code" />
-                                        <field name="name" />
-                                        <field name="theoretical_price" />
-                                        <field name="list_price" />
-                                        <field name="margin_state"/>
-                                        <field name="theoretical_difference" />
-                                        <button name="use_theoretical_price" type="object" string="Use Theoretical Price"
-                                            attrs="{'invisible': [('margin_state', '=', 'ok')]}" icon="gtk-convert"/>
-                                    </tree>
-                                </field>
+                        <page string="Settings">
+                            <group col="4" string="Computation Method">
+                                <field name="markup"/>
+                                <newline />
+                                <field name="price_round"/>
+                                <field name="price_surcharge"/>
                             </group>
                         </page>
                     </notebook>
