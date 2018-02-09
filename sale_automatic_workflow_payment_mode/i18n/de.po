@@ -1,7 +1,7 @@
 # Translation of Odoo Server.
 # This file contains the translation of the following modules:
 # * sale_automatic_workflow_payment_mode
-# 
+#
 # Translators:
 # OCA Transbot <transbot@odoo-community.org>, 2016
 # Rudolf Schnapka <rs@techno-flex.de>, 2017
@@ -13,10 +13,10 @@ msgstr ""
 "PO-Revision-Date: 2017-03-04 06:46+0000\n"
 "Last-Translator: Rudolf Schnapka <rs@techno-flex.de>, 2017\n"
 "Language-Team: German (https://www.transifex.com/oca/teams/23907/de/)\n"
+"Language: de\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
-"Language: de\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
 #. module: sale_automatic_workflow_payment_mode
@@ -45,6 +45,11 @@ msgid "Payment Modes"
 msgstr "Zahlweise"
 
 #. module: sale_automatic_workflow_payment_mode
+#: model:ir.model,name:sale_automatic_workflow_payment_mode.model_sale_order
+msgid "Quotation"
+msgstr ""
+
+#. module: sale_automatic_workflow_payment_mode
 #: model:ir.model.fields,field_description:sale_automatic_workflow_payment_mode.field_sale_workflow_process_register_payment
 msgid "Register Payment"
 msgstr "Verbuche Zahlung"
@@ -55,11 +60,6 @@ msgid "Sale Workflow Process"
 msgstr "Verkaufs-Workflow"
 
 #. module: sale_automatic_workflow_payment_mode
-#: model:ir.model,name:sale_automatic_workflow_payment_mode.model_sale_order
-msgid "Sales Order"
-msgstr "Verkaufsauftrag"
-
-#. module: sale_automatic_workflow_payment_mode
 #: model:ir.ui.view,arch_db:sale_automatic_workflow_payment_mode.sale_workflow_process_view_form
 msgid "Set selection based on a search filter:"
 msgstr "Setze Auswahl gemäß Suchfilter:"
@@ -68,3 +68,6 @@ msgstr "Setze Auswahl gemäß Suchfilter:"
 #: model:ir.model,name:sale_automatic_workflow_payment_mode.model_automatic_workflow_job
 msgid "automatic.workflow.job"
 msgstr "automatic.workflow.job"
+
+#~ msgid "Sales Order"
+#~ msgstr "Verkaufsauftrag"
