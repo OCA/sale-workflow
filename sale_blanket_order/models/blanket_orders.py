@@ -31,7 +31,8 @@ class BlanketOrder(models.Model):
         'res.partner', string='Partner', readonly=True,
         states={'draft': [('readonly', False)]})
     lines_ids = fields.One2many(
-        'sale.blanket.order.line', 'order_id', string='Order lines')
+        'sale.blanket.order.line', 'order_id', string='Order lines',
+        copy=True)
     pricelist_id = fields.Many2one(
         'product.pricelist', string='Pricelist', required=True, readonly=True,
         states={'draft': [('readonly', False)]})
@@ -40,7 +41,7 @@ class BlanketOrder(models.Model):
     payment_term_id = fields.Many2one(
         'account.payment.term', string='Payment Terms', readonly=True,
         states={'draft': [('readonly', False)]})
-    confirmed = fields.Boolean()
+    confirmed = fields.Boolean(default=False)
     state = fields.Selection(selection=[
         ('draft', 'Draft'),
         ('opened', 'Opened'),
@@ -129,6 +130,13 @@ class BlanketOrder(models.Model):
         if self.partner_id.team_id:
             values['team_id'] = self.partner_id.team_id.id
         self.update(values)
+
+    @api.multi
+    def copy_data(self, default=None):
+        if default is None:
+            default = {}
+        default.update(self.default_get(['name', 'confirmed']))
+        return super(BlanketOrder, self).copy_data(default)
 
     @api.multi
     def _validate(self):
