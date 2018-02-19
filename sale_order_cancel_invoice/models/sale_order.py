@@ -16,7 +16,8 @@ class SaleOrder(models.Model):
 
     def cancel_draft_invoice(self):
         for invoice in self.invoice_ids:
-            if not invoice.number and (invoice.state == 'draft' or invoice.state == 'proforma' or invoice.state == 'proforma2'):
+            if not invoice.number and (
+                        invoice.state == 'draft' or invoice.state == 'proforma' or invoice.state == 'proforma2'):
                 invoice.action_invoice_cancel()
 
     @api.multi
