@@ -8,11 +8,7 @@
         <field name="arch" type="xml">
             <xpath expr="//tree/field[@name='product_id']" position="before">
               <field name="product_template_id" required="True"/>
-              <field name="product_variant_ids">
-                <tree>
-                  <field name="name"/>
-                </tree>
-              </field>
+              <field name="product_variant_ids" widget="many2many_tags" />
             </xpath>
             <xpath expr="//field[@name='product_id']" position="attributes">
                 <attribute name="invisible">True</attribute>
