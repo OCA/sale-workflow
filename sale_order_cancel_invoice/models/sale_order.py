@@ -24,5 +24,4 @@ class SaleOrder(models.Model):
         for order in self:
             if 'order_line' in values:
                 order.cancel_draft_invoice()
-        res = super(SaleOrder, self).write(values)
-        return res
+        return super(SaleOrder, self).write(values)
