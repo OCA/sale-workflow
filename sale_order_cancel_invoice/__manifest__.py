@@ -6,7 +6,7 @@
     'name': 'Sale order cancel',
     'version': '10.0.0.0.1',
     'license': 'AGPL-3',
-    'author': 'Noviat',
+    'author': 'Noviat,Odoo Community Association (OCA)',
     'category': 'Sale',
     'depends': [
         'sale',
