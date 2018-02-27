@@ -38,14 +38,17 @@ class ProjectTask(models.Model):
     @api.multi
     def toggle_invoiceable(self):
         for task in self:
+            sale_line = task.sale_line_id
             # We dont' want to modify when the related SOLine is invoiced
-            if (not task.sale_line_id or
-                    task.sale_line_id.state in ('done', 'cancel') or
-                    task.sale_line_id.invoice_status in ('invoiced',)):
+            if (not sale_line or
+                    sale_line.state in ('done', 'cancel') or
+                    sale_line.invoice_status in ('invoiced',)):
                 raise UserError(_("You cannot modify the status if there is "
                                   "no Sale Order Line or if it has been "
                                   "invoiced."))
             task.invoiceable = not task.invoiceable
+            if sale_line and sale_line.product_id.invoice_policy == 'order':
+                sale_line.qty_delivered = sale_line.product_uom_qty
 
     @api.multi
     def write(self, vals):
