@@ -48,3 +48,20 @@ class SaleOrderLine(models.Model):
             else:
                 line.qty_to_invoice = 0.0
         super(SaleOrderLine, self - lines)._get_to_invoice_qty()
+
+    @api.multi
+    def _compute_analytic(self, domain=None):
+        if not domain and self.ids:
+            domain = [
+                ('so_line', 'in', self.ids),
+                # don't update the qty on sale order lines which are not
+                # with a product invoiced on ordered qty +
+                # invoice_finished task = True
+                '|',
+                ('so_line.product_id.invoice_policy', '!=', 'order'),
+                ('so_line.product_id.invoicing_finished_task', '=', False),
+                '|',
+                ('amount', '<=', 0.0),
+                ('project_id', '!=', False),
+            ]
+        return super(SaleOrderLine, self)._compute_analytic(domain=domain)
