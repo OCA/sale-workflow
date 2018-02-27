@@ -36,6 +36,10 @@ To use this module, you need to:
 
    .. image:: static/description/task_view_invoicefinishedtask.png
 
+   If the product is configured with an invoicing policy = Order, then the
+   delivered quantity is set to the ordered quantity. Otherwise, the time spent
+   on the task is used.
+
 6. Optional: if you want to use project stages to control this Go To
    Project -> Settings -> Stage -> You have to set true the field Invoiceable
    in the stages that you consider are invoiceable. Event to use stages for
