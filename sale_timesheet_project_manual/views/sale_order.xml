@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Copyright 2018 ACSONE SA/NV
+     License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl). -->
+
+<odoo>
+
+    <record model="ir.ui.view" id="sale_order_form_view">
+        <field name="name">sale.order.form (in sale_order_project_manual)</field>
+        <field name="model">sale.order</field>
+        <field name="inherit_id" ref="sale.view_order_form"/>
+        <field name="arch" type="xml">
+
+            <button name="action_confirm" position="before">
+                <field name="action_project_manual_allowed" invisible="1"/>
+                <button name="action_project_manual" type="object"
+                        string="Generate Project/Task"
+                        attrs="{'invisible': [('action_project_manual_allowed', '=', False)]}"/>
+            </button>
+
+        </field>
+    </record>
+
+</odoo>
