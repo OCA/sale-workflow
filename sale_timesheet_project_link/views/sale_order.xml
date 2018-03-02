@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Copyright 2018 ACSONE SA/NV
+     License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl). -->
+
+<odoo>
+
+    <record model="ir.ui.view" id="sale_order_form_view">
+        <field name="name">sale.order.form (in sale_timesheet_project_link)</field>
+        <field name="model">sale.order</field>
+        <field name="inherit_id" ref="sale_timesheet.view_order_form_inherit_sale_timesheet"/>
+        <field name="arch" type="xml">
+
+            <xpath expr="//button[@name='action_view_task']" position="before">
+                <button name="action_view_projects_details" type="object"
+                        class="oe_stat_button" icon="fa-clipboard"
+                        attrs="{'invisible': [('linked_projects_count', '=', 0)]}"
+                        groups="project.group_project_user">
+                   <field name="linked_projects_count" widget="statinfo" string="Projects"/>
+               </button>
+            </xpath>
+
+        </field>
+    </record>
+
+</odoo>
