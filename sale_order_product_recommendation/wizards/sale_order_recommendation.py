@@ -59,7 +59,6 @@ class SaleOrderRecommendation(models.TransientModel):
             ],
             ["product_id", "qty_delivered"],
             ["product_id"],
-            limit=self.line_amount,
             lazy=False,
         )
         # Manual ordering that circumvents ORM limitations
@@ -73,7 +72,7 @@ class SaleOrderRecommendation(models.TransientModel):
             reverse=True,
         )
         # Add those recommendations too
-        for line in found_lines:
+        for i, line in enumerate(found_lines):
             new_line = self.env["sale.order.recommendation.line"].new({
                 "product_id": line["product_id"][0],
                 "times_delivered": line["__count"],
@@ -85,6 +84,10 @@ class SaleOrderRecommendation(models.TransientModel):
                     .filtered(lambda r: r.product_id == new_line.product_id)
                     .product_uom_qty)
             self.line_ids += new_line
+            # limit number of results. It has to be done here, as we need to
+            # populate all results first, for being able to select best matches
+            if (i + 1) == self.line_amount:
+                break
 
     @api.multi
     def action_accept(self):
