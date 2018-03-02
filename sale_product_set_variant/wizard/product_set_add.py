@@ -17,7 +17,12 @@ class ProductSetAddLine(models.TransientModel):
         'product.set.line',
     )
     product_variant_ids = fields.Many2many(
-        'product.product', domain=[('sale_ok', '=', True)],
+        'product.product',
+        domain="""[
+            '&',
+            ('sale_ok', '=', True),
+            ('product_tmpl_id', '=', product_template_id),
+        ]""",
         string='Product',
         required=False,
     )
@@ -42,6 +47,15 @@ class ProductSetAddLine(models.TransientModel):
         default=0,
     )
 
+    @api.onchange('product_template_id')
+    def _onhange_product_template_id(self):
+        for record in self:
+            variants = record.product_template_id.product_variant_ids
+            if len(variants) == 1:
+                record.product_variant_ids = [(6, 0, variants.ids)]
+            else:
+                record.product_variant_ids = [(5, 0, 0)]
+
 
 class ProductSetAdd(models.TransientModel):
     _inherit = 'product.set.add'
@@ -49,7 +63,7 @@ class ProductSetAdd(models.TransientModel):
     product_set_id = fields.Many2one(
         'product.set',
         'Product set',
-        required=True
+        required=True,
     )
     set_line_ids = fields.One2many(
         'product.set.add.line',
@@ -96,12 +110,25 @@ class ProductSetAdd(models.TransientModel):
         so_lines = []
         for set_line in self.set_line_ids:
             if not set_line.product_variant_ids:
-                raise UserError(_("Please select the "
-                                  "appropriate product variants"))
+                variants = set_line.product_template_id.product_variant_ids
+                if len(variants) == 1:
+                    set_line.product_variant_ids = [(6, 0, variants.ids)]
+                else:
+                    raise UserError(
+                        _("Please select the "
+                          "appropriate product variants "
+                          "for product {}").format(
+                              set_line.product_template_id.name))
             for variant in set_line.product_variant_ids:
-                so_lines.append((0, 0, self.prepare_sale_order_line_data(
-                    so_id, set_line, variant,
-                    max_sequence=max_sequence)))
+                so_lines.append(
+                    (0, 0,
+                     self.prepare_sale_order_line_data(
+                         so_id,
+                         set_line,
+                         variant,
+                         max_sequence=max_sequence
+                     ))
+                )
         if so_lines:
             so.write({
                 "order_line": so_lines
