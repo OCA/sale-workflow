@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: sale-workflow (8.0)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-04-04 03:00+0000\n"
-"PO-Revision-Date: 2017-04-25 10:41+0000\n"
+"POT-Creation-Date: 2018-01-01 15:30+0000\n"
+"PO-Revision-Date: 2018-02-02 14:11+0000\n"
 "Last-Translator: OCA Transbot <transbot@odoo-community.org>\n"
 "Language-Team: Catalan (Spain) (http://www.transifex.com/oca/OCA-sale-workflow-8-0/language/ca_ES/)\n"
 "MIME-Version: 1.0\n"
@@ -44,22 +44,22 @@ msgstr ""
 #. module: sale_order_type
 #: field:sale.order.type,create_uid:0
 msgid "Created by"
-msgstr ""
+msgstr "Creat per"
 
 #. module: sale_order_type
 #: field:sale.order.type,create_date:0
 msgid "Created on"
-msgstr ""
+msgstr "Creat a"
 
 #. module: sale_order_type
 #: field:sale.order.type,description:0
 msgid "Description"
-msgstr ""
+msgstr "Descripció"
 
 #. module: sale_order_type
 #: field:sale.order.type,display_name:0
 msgid "Display Name"
-msgstr ""
+msgstr "Nom visible"
 
 #. module: sale_order_type
 #: view:sale.order.type:sale_order_type.sot_sale_order_type_search_view
@@ -97,22 +97,22 @@ msgstr ""
 #. module: sale_order_type
 #: field:sale.order.type,__last_update:0
 msgid "Last Modified on"
-msgstr ""
+msgstr "Darrera modificació en"
 
 #. module: sale_order_type
 #: field:sale.order.type,write_uid:0
 msgid "Last Updated by"
-msgstr ""
+msgstr "Darrera actualització per"
 
 #. module: sale_order_type
 #: field:sale.order.type,write_date:0
 msgid "Last Updated on"
-msgstr ""
+msgstr "Darrera actualització el"
 
 #. module: sale_order_type
 #: field:sale.order.type,name:0
 msgid "Name"
-msgstr ""
+msgstr "Nom"
 
 #. module: sale_order_type
 #: model:sale.order.type,name:sale_order_type.normal_sale_type
@@ -199,7 +199,7 @@ msgstr ""
 #: view:sale.order.type:sale_order_type.sot_sale_order_type_search_view
 #: view:sale.order.type:sale_order_type.sot_sale_order_type_tree_view
 msgid "Type"
-msgstr ""
+msgstr "Tipus"
 
 #. module: sale_order_type
 #: model:ir.model,name:sale_order_type.model_sale_order_type

@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: sale-workflow (8.0)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-04-04 03:01+0000\n"
+"POT-Creation-Date: 2018-01-01 15:30+0000\n"
 "PO-Revision-Date: 2015-09-03 07:10+0000\n"
 "Last-Translator: <>\n"
 "Language-Team: Catalan (Spain) (http://www.transifex.com/oca/OCA-sale-workflow-8-0/language/ca_ES/)\n"
@@ -91,12 +91,12 @@ msgstr ""
 #. module: sale_rental
 #: field:create.rental.product,create_uid:0 field:sale.rental,create_uid:0
 msgid "Created by"
-msgstr ""
+msgstr "Creat per"
 
 #. module: sale_rental
 #: field:create.rental.product,create_date:0 field:sale.rental,create_date:0
 msgid "Created on"
-msgstr ""
+msgstr "Creat a"
 
 #. module: sale_rental
 #: field:create.rental.product,default_code:0
@@ -117,12 +117,12 @@ msgstr ""
 #. module: sale_rental
 #: field:create.rental.product,display_name:0 field:sale.rental,display_name:0
 msgid "Display Name"
-msgstr ""
+msgstr "Nom visible"
 
 #. module: sale_rental
 #: view:sale.rental:sale_rental.sale_rental_tree
 msgid "End Date"
-msgstr ""
+msgstr "Data final"
 
 #. module: sale_rental
 #: field:sale.rental,end_date:0
@@ -150,17 +150,17 @@ msgstr ""
 #: field:create.rental.product,__last_update:0
 #: field:sale.rental,__last_update:0
 msgid "Last Modified on"
-msgstr ""
+msgstr "Darrera modificació en"
 
 #. module: sale_rental
 #: field:create.rental.product,write_uid:0 field:sale.rental,write_uid:0
 msgid "Last Updated by"
-msgstr ""
+msgstr "Darrera actualització per"
 
 #. module: sale_rental
 #: field:create.rental.product,write_date:0 field:sale.rental,write_date:0
 msgid "Last Updated on"
-msgstr ""
+msgstr "Darrera actualització el"
 
 #. module: sale_rental
 #: code:addons/sale_rental/rental.py:151
@@ -472,7 +472,7 @@ msgstr ""
 #. module: sale_rental
 #: field:sale.rental,start_date:0
 msgid "Start Date"
-msgstr ""
+msgstr "Data d'inici"
 
 #. module: sale_rental
 #: field:sale.rental,state:0
