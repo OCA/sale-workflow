@@ -87,13 +87,14 @@ class RecommendationCase(SavepointCase):
         # Only 1 product if limited as such
         wizard.line_amount = 1
         wizard._generate_recommendations()
-        self.assertEqual(len(wizard.line_ids), 1)
+        self.assertEqual(len(wizard.line_ids), 2)
 
     def test_transfer(self):
         """Products get transferred to SO."""
         qty = 10
         wizard = self.wizard()
         wizard.line_ids[2].units_included = qty
+        wizard.line_ids[2]._onchange_units_included()
         wizard.action_accept()
         self.assertEqual(len(self.new_so.order_line), 1)
         self.assertEqual(self.new_so.order_line.product_id, self.product_12)
