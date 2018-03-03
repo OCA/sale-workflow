@@ -9,8 +9,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 10.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-11-23 01:51+0000\n"
-"PO-Revision-Date: 2017-11-23 01:51+0000\n"
+"POT-Creation-Date: 2018-02-28 01:48+0000\n"
+"PO-Revision-Date: 2018-02-28 01:48+0000\n"
 "Last-Translator: Bole <bole@dajmi5.com>, 2017\n"
 "Language-Team: Croatian (https://www.transifex.com/oca/teams/23907/hr/)\n"
 "MIME-Version: 1.0\n"
@@ -79,12 +79,12 @@ msgstr ""
 #. module: sale_automatic_workflow
 #: model:ir.model.fields,field_description:sale_automatic_workflow.field_sale_workflow_process_create_invoice
 msgid "Create Invoice"
-msgstr ""
+msgstr "Kreiraj račun"
 
 #. module: sale_automatic_workflow
 #: model:ir.model.fields,field_description:sale_automatic_workflow.field_sale_workflow_process_create_invoice_filter_id
 msgid "Create Invoice Filter"
-msgstr ""
+msgstr "Kreiraj filter računa"
 
 #. module: sale_automatic_workflow
 #: model:ir.model.fields,field_description:sale_automatic_workflow.field_sale_workflow_process_create_invoice_filter_domain
@@ -106,12 +106,12 @@ msgstr "Datum kreiranja"
 #. module: sale_automatic_workflow
 #: selection:sale.workflow.process,picking_policy:0
 msgid "Deliver all products at once"
-msgstr ""
+msgstr "Isporuči sve proizvode dojednom"
 
 #. module: sale_automatic_workflow
 #: selection:sale.workflow.process,picking_policy:0
 msgid "Deliver each product when available"
-msgstr ""
+msgstr "Isporuči proizvode kad su raspoloživi"
 
 #. module: sale_automatic_workflow
 #: model:ir.model.fields,field_description:sale_automatic_workflow.field_automatic_workflow_job_display_name
@@ -122,7 +122,7 @@ msgstr "Naziv za prikaz"
 #. module: sale_automatic_workflow
 #: model:ir.model.fields,field_description:sale_automatic_workflow.field_sale_workflow_process_invoice_date_is_order_date
 msgid "Force Invoice Date"
-msgstr ""
+msgstr "Forsiraj datum računa"
 
 #. module: sale_automatic_workflow
 #: model:ir.model.fields,field_description:sale_automatic_workflow.field_automatic_workflow_job_id
@@ -226,7 +226,7 @@ msgstr ""
 #. module: sale_automatic_workflow
 #: model:ir.model.fields,field_description:sale_automatic_workflow.field_sale_workflow_process_property_journal_id
 msgid "Sales Journal"
-msgstr ""
+msgstr "Dnevnik prodaje"
 
 #. module: sale_automatic_workflow
 #: model:ir.model,name:sale_automatic_workflow.model_sale_order
@@ -236,7 +236,7 @@ msgstr "Prodajni nalog"
 #. module: sale_automatic_workflow
 #: model:ir.model.fields,field_description:sale_automatic_workflow.field_sale_workflow_process_team_id
 msgid "Sales Team"
-msgstr ""
+msgstr "Prodajni tim"
 
 #. module: sale_automatic_workflow
 #: model:ir.model.fields,help:sale_automatic_workflow.field_sale_workflow_process_property_journal_id
@@ -266,7 +266,7 @@ msgstr ""
 #. module: sale_automatic_workflow
 #: model:ir.model.fields,field_description:sale_automatic_workflow.field_sale_workflow_process_validate_invoice
 msgid "Validate Invoice"
-msgstr ""
+msgstr "Ovjeri račun"
 
 #. module: sale_automatic_workflow
 #: model:ir.model.fields,field_description:sale_automatic_workflow.field_sale_workflow_process_validate_invoice_filter_id
@@ -281,12 +281,12 @@ msgstr ""
 #. module: sale_automatic_workflow
 #: model:ir.model.fields,field_description:sale_automatic_workflow.field_sale_workflow_process_validate_order
 msgid "Validate Order"
-msgstr ""
+msgstr "Ovjeri ponudu"
 
 #. module: sale_automatic_workflow
 #: model:ir.model.fields,field_description:sale_automatic_workflow.field_sale_workflow_process_warning
 msgid "Warning Message"
-msgstr ""
+msgstr "Poruka upozorenja"
 
 #. module: sale_automatic_workflow
 #: model:ir.model.fields,help:sale_automatic_workflow.field_sale_workflow_process_invoice_date_is_order_date
@@ -307,4 +307,4 @@ msgstr ""
 #. module: sale_automatic_workflow
 #: model:ir.model,name:sale_automatic_workflow.model_automatic_workflow_job
 msgid "automatic.workflow.job"
-msgstr ""
+msgstr "automatic.workflow.job"
