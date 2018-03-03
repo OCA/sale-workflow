@@ -20,6 +20,8 @@
                         <field name="line_ids" nolabel="1">
                             <tree create="0" delete="0" editable="top">
                                 <field name="currency_id" invisible="1"/>
+                                <field name="sale_line_id" invisible="1"/>
+                                <field name="is_modified" invisible="1"/>
                                 <field name="product_id"/>
                                 <field name="price_unit"/>
                                 <field name="times_delivered"/>
