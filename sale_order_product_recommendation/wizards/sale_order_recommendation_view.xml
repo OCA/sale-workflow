@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Copyright 2017 Jairo Llopis <jairo.llopis@tecnativa.com>
+     License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl). -->
+
+<odoo>
+
+    <record id="sale_order_recommendation_view_form"
+            model="ir.ui.view">
+        <field name="name">Recommended Products for this Customer</field>
+        <field name="model">sale.order.recommendation</field>
+        <field name="arch" type="xml">
+            <form>
+                <sheet>
+                    <group>
+                        <field name="order_id" invisible="1"/>
+                        <field name="months"/>
+                        <field name="line_amount"/>
+                    </group>
+                    <group>
+                        <field name="line_ids" nolabel="1">
+                            <tree create="0" delete="0" editable="top">
+                                <field name="currency_id" invisible="1"/>
+                                <field name="sale_line_id" invisible="1"/>
+                                <field name="is_modified" invisible="1"/>
+                                <field name="product_id"/>
+                                <field name="price_unit"/>
+                                <field name="times_delivered"/>
+                                <field name="units_delivered"/>
+                                <field name="units_included"/>
+                            </tree>
+                        </field>
+                    </group>
+                </sheet>
+                <footer>
+                    <button name="action_accept"
+                            type="object"
+                            string="Accept"
+                            class="oe_highlight"/>
+                    <button special="cancel"
+                            string="Cancel"/>
+                </footer>
+            </form>
+        </field>
+    </record>
+
+    <record id="sale_order_recommendation_action"
+            model="ir.actions.act_window">
+        <field name="name">Recommended Products for this Customer</field>
+        <field name="res_model">sale.order.recommendation</field>
+        <field name="view_type">form</field>
+        <field name="view_mode">form</field>
+        <field name="target">new</field>
+    </record>
+
+</odoo>

@@ -1,0 +1,45 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* sale_order_invoice_amount
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 15.0\n"
+"Report-Msgid-Bugs-To: \n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: sale_order_invoice_amount
+#. openerp-web
+#: code:addons/sale_order_invoice_amount/static/src/xml/tax_totals.xml:0
+#: model:ir.model.fields,field_description:sale_order_invoice_amount.field_sale_order__invoiced_amount
+#, python-format
+msgid "Invoiced Amount"
+msgstr ""
+
+#. module: sale_order_invoice_amount
+#: model_terms:ir.ui.view,arch_db:sale_order_invoice_amount.view_order_tree_invoiced_amount
+msgid "Invoiced Total"
+msgstr ""
+
+#. module: sale_order_invoice_amount
+#: model:ir.model,name:sale_order_invoice_amount.model_sale_order
+msgid "Sales Order"
+msgstr ""
+
+#. module: sale_order_invoice_amount
+#. openerp-web
+#: code:addons/sale_order_invoice_amount/static/src/xml/tax_totals.xml:0
+#: model:ir.model.fields,field_description:sale_order_invoice_amount.field_sale_order__uninvoiced_amount
+#, python-format
+msgid "Uninvoiced Amount"
+msgstr ""
+
+#. module: sale_order_invoice_amount
+#: model_terms:ir.ui.view,arch_db:sale_order_invoice_amount.view_order_tree_invoiced_amount
+msgid "Uninvoiced Total"
+msgstr ""
