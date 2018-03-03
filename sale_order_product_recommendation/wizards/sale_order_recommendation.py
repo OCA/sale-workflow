@@ -1,5 +1,6 @@
 # -*- coding: utf-8 -*-
 # Copyright 2017 Jairo Llopis <jairo.llopis@tecnativa.com>
+# Copyright 2018 Carlos Dauden <carlos.dauden@tecnativa.com>
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
 from datetime import datetime, timedelta
@@ -34,6 +35,7 @@ class SaleOrderRecommendation(models.TransientModel):
         required=True,
         help="The less, the faster they will be found.",
     )
+    last_compute = fields.Char()
 
     @api.model
     def _default_order_id(self):
@@ -43,84 +45,104 @@ class SaleOrderRecommendation(models.TransientModel):
     @api.onchange("order_id", "months", "line_amount")
     def _generate_recommendations(self):
         """Generate lines according to context sale order."""
+        last_compute = '{}-{}-{}'.format(
+            self.id, self.months, self.line_amount)
+        # Avoid execute onchange as times as fields in api.onchange
+        # ORM must control this?
+        if self.last_compute == last_compute:
+            return
+        self.last_compute = last_compute
         start = datetime.now() - timedelta(days=self.months * 30)
         start = fields.Datetime.to_string(start)
-        order_lines = self.order_id.order_line
-        existing_product_ids = set(order_lines.mapped("product_id").ids)
         self.line_ids = False
         # Search delivered products in previous months
+        sales = self.env["sale.order"].search([
+            ("partner_id", "child_of",
+             self.order_id.partner_id.commercial_partner_id.id),
+            ("date_order", ">=", start),
+        ])
         found_lines = self.env["sale.order.line"].read_group(
             [
-                ("order_partner_id", "child_of",
-                 self.order_id.partner_id.commercial_partner_id.id),
-                ("order_id.date_order", ">=", start),
-                "|", ("qty_delivered", "!=", 0.0),
+                ("order_id", "in", sales.ids),
+                '|', ("qty_delivered", "!=", 0.0),
                      ("order_id", "=", self.order_id.id),
             ],
             ["product_id", "qty_delivered"],
             ["product_id"],
-            lazy=False,
         )
         # Manual ordering that circumvents ORM limitations
         found_lines = sorted(
             found_lines,
             key=lambda res: (
-                res["product_id"][0] in existing_product_ids,
-                res["__count"],
+                res["product_id_count"],
                 res["qty_delivered"],
             ),
             reverse=True,
         )
+        found_dict = {l["product_id"][0]: l for l in found_lines}
+        RecomendationLine = self.env["sale.order.recommendation.line"]
+        existing_product_ids = []
+        # Add products from sale order lines
+        for line in self.order_id.order_line:
+            found_line = found_dict[line.product_id.id]
+            new_line = RecomendationLine.new({
+                "product_id": line.product_id.id,
+                "times_delivered": found_line["product_id_count"],
+                "units_delivered": found_line["qty_delivered"],
+                "units_included": line.product_uom_qty,
+                "sale_line_id": line.id,
+            })
+            self.line_ids += new_line
+            existing_product_ids.append(line.product_id.id)
         # Add those recommendations too
-        for i, line in enumerate(found_lines):
-            new_line = self.env["sale.order.recommendation.line"].new({
+        i = 0
+        for line in found_lines:
+            if line["product_id"][0] in existing_product_ids:
+                continue
+            new_line = RecomendationLine.new({
                 "product_id": line["product_id"][0],
-                "times_delivered": line["__count"],
+                "times_delivered": line["product_id_count"],
                 "units_delivered": line["qty_delivered"],
             })
-            if new_line.product_id.id in existing_product_ids:
-                new_line.units_included = (
-                    order_lines
-                    .filtered(lambda r: r.product_id == new_line.product_id)
-                    .product_uom_qty)
             self.line_ids += new_line
             # limit number of results. It has to be done here, as we need to
             # populate all results first, for being able to select best matches
-            if (i + 1) == self.line_amount:
+            i += 1
+            if i == self.line_amount:
                 break
+
+    @api.model
+    def create(self, vals):
+        if 'line_ids' in vals:
+            vals['line_ids'] = [
+                line for line in vals['line_ids'] if line[2]["is_modified"]]
+        return super(SaleOrderRecommendation, self).create(vals)
 
     @api.multi
     def action_accept(self):
         """Propagate recommendations to sale order."""
         so_lines = self.env["sale.order.line"]
-        existing_products = self.order_id.mapped("order_line.product_id")
-        for wiz_line in self.line_ids:
+        sequence = max(self.order_id.mapped('order_line.sequence') or [0])
+        for wiz_line in self.line_ids.filtered('is_modified'):
             # Use preexisting line if any
-            if wiz_line.product_id <= existing_products:
-                so_line = self.order_id.order_line.filtered(
-                    lambda r: r.product_id == wiz_line.product_id)
-                # Merge multiple if needed
-                if len(so_line) > 1:
-                    so_line[0].product_uom_qty += sum(
-                        so_line[1:].mapped("product_uom_qty"))
-                    so_line[1:].unlink()
-            # Use a new in-memory line otherwise
-            else:
-                so_line = so_lines.new({
-                    "order_id": self.order_id.id,
-                })
-            # Delete if needed
-            if not wiz_line.units_included:
-                so_line.unlink()
+            if wiz_line.sale_line_id:
+                if wiz_line.units_included:
+                    wiz_line.sale_line_id.update({
+                        "product_uom_qty": wiz_line.units_included,
+                    })
+                    wiz_line.sale_line_id.product_uom_change()
+                else:
+                    wiz_line.sale_line_id.unlink()
                 continue
-            # Apply changes
-            so_line.update({
-                "name": wiz_line.product_id.display_name,
+            sequence += 1
+            # Use a new in-memory line otherwise
+            so_line = so_lines.new({
+                "order_id": self.order_id.id,
                 "product_id": wiz_line.product_id.id,
-                "product_uom_qty": wiz_line.units_included,
-                "product_uom": wiz_line.product_id.uom_id.id,
+                "sequence": sequence,
             })
             so_line.product_id_change()
+            so_line.product_uom_qty = wiz_line.units_included
             so_line.product_uom_change()
             so_lines |= so_line
         self.order_id.order_line |= so_lines
@@ -165,6 +187,10 @@ class SaleOrderRecommendationLine(models.TransientModel):
         required=True,
         readonly=True,
     )
+    sale_line_id = fields.Many2one(
+        comodel_name="sale.order.line",
+    )
+    is_modified = fields.Boolean()
 
     @api.multi
     @api.depends("partner_id", "product_id", "pricelist_id", "units_included")
@@ -175,3 +201,7 @@ class SaleOrderRecommendationLine(models.TransientModel):
                 pricelist=one.pricelist_id.id,
                 quantity=one.units_included,
             ).price
+
+    @api.onchange("units_included")
+    def _onchange_units_included(self):
+        self.is_modified = bool(self.sale_line_id or self.units_included)
