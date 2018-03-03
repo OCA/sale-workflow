@@ -4,13 +4,14 @@
 # 
 # Translators:
 # OCA Transbot <transbot@odoo-community.org>, 2017
+# Carlos Hormigo, 2018
 msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 9.0c\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-11-23 03:53+0000\n"
-"PO-Revision-Date: 2017-11-23 03:53+0000\n"
-"Last-Translator: OCA Transbot <transbot@odoo-community.org>, 2017\n"
+"POT-Creation-Date: 2017-12-02 11:01+0000\n"
+"PO-Revision-Date: 2017-12-02 11:01+0000\n"
+"Last-Translator: Carlos Hormigo, 2018\n"
 "Language-Team: Catalan (Spain) (https://www.transifex.com/oca/teams/23907/ca_ES/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -64,19 +65,19 @@ msgstr ""
 #: model:ir.model.fields,field_description:sale_cancel_reason.field_sale_order_cancel_create_uid
 #: model:ir.model.fields,field_description:sale_cancel_reason.field_sale_order_cancel_reason_create_uid
 msgid "Created by"
-msgstr ""
+msgstr "Creat per"
 
 #. module: sale_cancel_reason
 #: model:ir.model.fields,field_description:sale_cancel_reason.field_sale_order_cancel_create_date
 #: model:ir.model.fields,field_description:sale_cancel_reason.field_sale_order_cancel_reason_create_date
 msgid "Created on"
-msgstr ""
+msgstr "Creat a"
 
 #. module: sale_cancel_reason
 #: model:ir.model.fields,field_description:sale_cancel_reason.field_sale_order_cancel_display_name
 #: model:ir.model.fields,field_description:sale_cancel_reason.field_sale_order_cancel_reason_display_name
 msgid "Display Name"
-msgstr ""
+msgstr "Nom visible"
 
 #. module: sale_cancel_reason
 #: model:ir.model.fields,field_description:sale_cancel_reason.field_sale_order_cancel_id
@@ -93,19 +94,19 @@ msgstr ""
 #: model:ir.model.fields,field_description:sale_cancel_reason.field_sale_order_cancel___last_update
 #: model:ir.model.fields,field_description:sale_cancel_reason.field_sale_order_cancel_reason___last_update
 msgid "Last Modified on"
-msgstr ""
+msgstr "Darrera modificació en"
 
 #. module: sale_cancel_reason
 #: model:ir.model.fields,field_description:sale_cancel_reason.field_sale_order_cancel_reason_write_uid
 #: model:ir.model.fields,field_description:sale_cancel_reason.field_sale_order_cancel_write_uid
 msgid "Last Updated by"
-msgstr ""
+msgstr "Darrera actualització per"
 
 #. module: sale_cancel_reason
 #: model:ir.model.fields,field_description:sale_cancel_reason.field_sale_order_cancel_reason_write_date
 #: model:ir.model.fields,field_description:sale_cancel_reason.field_sale_order_cancel_write_date
 msgid "Last Updated on"
-msgstr ""
+msgstr "Darrera actualització el"
 
 #. module: sale_cancel_reason
 #: model:sale.order.cancel.reason,name:sale_cancel_reason.cancel_reason_other_provider
