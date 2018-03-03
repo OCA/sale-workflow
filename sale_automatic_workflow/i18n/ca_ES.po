@@ -11,11 +11,11 @@ msgstr ""
 "POT-Creation-Date: 2018-03-02 10:22+0000\n"
 "PO-Revision-Date: 2018-03-02 10:22+0000\n"
 "Last-Translator: OCA Transbot <transbot@odoo-community.org>, 2018\n"
-"Language-Team: Catalan (https://www.transifex.com/oca/teams/23907/ca/)\n"
+"Language-Team: Catalan (Spain) (https://www.transifex.com/oca/teams/23907/ca_ES/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
-"Language: ca\n"
+"Language: ca_ES\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
 #. module: sale_automatic_workflow
@@ -101,13 +101,13 @@ msgstr ""
 #: model:ir.model.fields,field_description:sale_automatic_workflow.field_automatic_workflow_job_create_uid
 #: model:ir.model.fields,field_description:sale_automatic_workflow.field_sale_workflow_process_create_uid
 msgid "Created by"
-msgstr "Creat per"
+msgstr ""
 
 #. module: sale_automatic_workflow
 #: model:ir.model.fields,field_description:sale_automatic_workflow.field_automatic_workflow_job_create_date
 #: model:ir.model.fields,field_description:sale_automatic_workflow.field_sale_workflow_process_create_date
 msgid "Created on"
-msgstr "Creat el"
+msgstr ""
 
 #. module: sale_automatic_workflow
 #: selection:sale.workflow.process,picking_policy:0
@@ -134,7 +134,7 @@ msgstr ""
 #: model:ir.model.fields,field_description:sale_automatic_workflow.field_automatic_workflow_job_id
 #: model:ir.model.fields,field_description:sale_automatic_workflow.field_sale_workflow_process_id
 msgid "ID"
-msgstr "ID"
+msgstr ""
 
 #. module: sale_automatic_workflow
 #: model:ir.model.fields,help:sale_automatic_workflow.field_sale_workflow_process_warning
@@ -152,7 +152,7 @@ msgstr ""
 #. module: sale_automatic_workflow
 #: model:ir.model,name:sale_automatic_workflow.model_account_invoice
 msgid "Invoice"
-msgstr "Factura"
+msgstr ""
 
 #. module: sale_automatic_workflow
 #: model:ir.model.fields,field_description:sale_automatic_workflow.field_sale_workflow_process_invoice_service_delivery
@@ -169,18 +169,18 @@ msgstr ""
 #: model:ir.model.fields,field_description:sale_automatic_workflow.field_automatic_workflow_job_write_uid
 #: model:ir.model.fields,field_description:sale_automatic_workflow.field_sale_workflow_process_write_uid
 msgid "Last Updated by"
-msgstr "Darrera Actualització per"
+msgstr ""
 
 #. module: sale_automatic_workflow
 #: model:ir.model.fields,field_description:sale_automatic_workflow.field_automatic_workflow_job_write_date
 #: model:ir.model.fields,field_description:sale_automatic_workflow.field_sale_workflow_process_write_date
 msgid "Last Updated on"
-msgstr "Darrera Actualització el"
+msgstr ""
 
 #. module: sale_automatic_workflow
 #: model:ir.model.fields,field_description:sale_automatic_workflow.field_sale_workflow_process_name
 msgid "Name"
-msgstr "Nom"
+msgstr ""
 
 #. module: sale_automatic_workflow
 #: model:ir.ui.view,arch_db:sale_automatic_workflow.sale_workflow_process_view_form
@@ -210,7 +210,7 @@ msgstr ""
 #. module: sale_automatic_workflow
 #: model:ir.model,name:sale_automatic_workflow.model_sale_order
 msgid "Quotation"
-msgstr ""
+msgstr "Quotation"
 
 #. module: sale_automatic_workflow
 #: model:ir.model.fields,field_description:sale_automatic_workflow.field_sale_workflow_process_sale_done
@@ -262,7 +262,7 @@ msgstr ""
 #. module: sale_automatic_workflow
 #: model:ir.model,name:sale_automatic_workflow.model_stock_move
 msgid "Stock Move"
-msgstr "Moure l'estoc"
+msgstr ""
 
 #. module: sale_automatic_workflow
 #: model:ir.model,name:sale_automatic_workflow.model_stock_picking
