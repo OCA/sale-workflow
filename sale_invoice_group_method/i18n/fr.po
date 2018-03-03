@@ -5,13 +5,14 @@
 # Translators:
 # OCA Transbot <transbot@odoo-community.org>, 2018
 # Quentin THEURET <odoo@kerpeo.com>, 2018
+# Nicolas JEUDY <njeudy@panda-chi.io>, 2018
 msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 11.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-01-23 03:41+0000\n"
-"PO-Revision-Date: 2018-01-23 03:41+0000\n"
-"Last-Translator: Quentin THEURET <odoo@kerpeo.com>, 2018\n"
+"POT-Creation-Date: 2018-03-02 10:22+0000\n"
+"PO-Revision-Date: 2018-03-02 10:22+0000\n"
+"Last-Translator: Nicolas JEUDY <njeudy@panda-chi.io>, 2018\n"
 "Language-Team: French (https://www.transifex.com/oca/teams/23907/fr/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -22,7 +23,7 @@ msgstr ""
 #. module: sale_invoice_group_method
 #: model:ir.model,name:sale_invoice_group_method.model_res_partner
 msgid "Contact"
-msgstr ""
+msgstr "Contacte"
 
 #. module: sale_invoice_group_method
 #: model:ir.model.fields,field_description:sale_invoice_group_method.field_sale_invoice_group_method_create_uid
@@ -37,13 +38,13 @@ msgstr "Créé le"
 #. module: sale_invoice_group_method
 #: model:ir.model.fields,field_description:sale_invoice_group_method.field_sale_invoice_group_method_criteria_fields_ids
 msgid "Criteria fields"
-msgstr ""
+msgstr "Champs de critères"
 
 #. module: sale_invoice_group_method
 #: model:ir.model.fields,field_description:sale_invoice_group_method.field_res_partner_invoice_group_method_id
 #: model:ir.model.fields,field_description:sale_invoice_group_method.field_res_users_invoice_group_method_id
 msgid "Default Invoice Group Method"
-msgstr ""
+msgstr "Méthode de regroupement des factures par défaut"
 
 #. module: sale_invoice_group_method
 #: model:ir.model.fields,field_description:sale_invoice_group_method.field_sale_invoice_group_method_display_name
@@ -53,12 +54,12 @@ msgstr "Afficher le nom"
 #. module: sale_invoice_group_method
 #: model:ir.model,name:sale_invoice_group_method.model_ir_model_fields
 msgid "Fields"
-msgstr ""
+msgstr "Champs"
 
 #. module: sale_invoice_group_method
 #: model:ir.ui.view,arch_db:sale_invoice_group_method.sale_invoice_group_method_search_view
 msgid "Group By..."
-msgstr ""
+msgstr "Grouper par..."
 
 #. module: sale_invoice_group_method
 #: model:ir.model.fields,field_description:sale_invoice_group_method.field_sale_invoice_group_method_id
@@ -69,18 +70,18 @@ msgstr "ID"
 #: model:ir.model.fields,field_description:sale_invoice_group_method.field_sale_invoice_group_method_name
 #: model:ir.ui.view,arch_db:sale_invoice_group_method.sale_invoice_group_method_tree_view
 msgid "Invoice Group"
-msgstr ""
+msgstr "Groupe de facture"
 
 #. module: sale_invoice_group_method
 #: model:ir.model.fields,field_description:sale_invoice_group_method.field_sale_order_invoice_group_method_id
 #: model:ir.ui.menu,name:sale_invoice_group_method.menu_invoice_group_method
 msgid "Invoice Group Method"
-msgstr ""
+msgstr "Méthode de regroupement des factures"
 
 #. module: sale_invoice_group_method
 #: model:ir.ui.view,arch_db:sale_invoice_group_method.sale_invoice_group_method_form_view
 msgid "Invoice Groups"
-msgstr ""
+msgstr "Groupes de facture"
 
 #. module: sale_invoice_group_method
 #: model:ir.model.fields,field_description:sale_invoice_group_method.field_sale_invoice_group_method___last_update
@@ -100,7 +101,7 @@ msgstr "Modifié le"
 #. module: sale_invoice_group_method
 #: model:ir.ui.view,arch_db:sale_invoice_group_method.sale_invoice_group_method_search_view
 msgid "Medical Procedure Request"
-msgstr ""
+msgstr "Demande d'intervention médicale"
 
 #. module: sale_invoice_group_method
 #: model:ir.ui.view,arch_db:sale_invoice_group_method.sale_invoice_group_method_search_view
@@ -116,4 +117,4 @@ msgstr "Devis"
 #: model:ir.actions.act_window,name:sale_invoice_group_method.sale_invoice_group_method_action
 #: model:ir.model,name:sale_invoice_group_method.model_sale_invoice_group_method
 msgid "Sale Invoice Group Method"
-msgstr ""
+msgstr "Méthode de regroupement des factures de vente"
