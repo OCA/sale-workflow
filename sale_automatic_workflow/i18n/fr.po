@@ -3,15 +3,15 @@
 # * sale_automatic_workflow
 # 
 # Translators:
-# OCA Transbot <transbot@odoo-community.org>, 2017
-# guillaume bauer <guillaume.bauer@syentys.com>, 2017
+# OCA Transbot <transbot@odoo-community.org>, 2018
+# Quentin THEURET <odoo@kerpeo.com>, 2018
 msgid ""
 msgstr ""
-"Project-Id-Version: Odoo Server 10.0\n"
+"Project-Id-Version: Odoo Server 11.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-11-23 01:51+0000\n"
-"PO-Revision-Date: 2017-11-23 01:51+0000\n"
-"Last-Translator: guillaume bauer <guillaume.bauer@syentys.com>, 2017\n"
+"POT-Creation-Date: 2018-03-02 10:22+0000\n"
+"PO-Revision-Date: 2018-03-02 10:22+0000\n"
+"Last-Translator: Quentin THEURET <odoo@kerpeo.com>, 2018\n"
 "Language-Team: French (https://www.transifex.com/oca/teams/23907/fr/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -38,6 +38,13 @@ msgstr "Flux automatique"
 #: model:ir.filters,name:sale_automatic_workflow.automatic_workflow_create_invoice_filter
 msgid "Automatic Workflow Create Invoice Filter"
 msgstr "Flux de travail automatique Créant un filtre sur les factures "
+
+#. module: sale_automatic_workflow
+#: model:ir.actions.server,name:sale_automatic_workflow.ir_cron_automatic_workflow_job_ir_actions_server
+#: model:ir.cron,cron_name:sale_automatic_workflow.ir_cron_automatic_workflow_job
+#: model:ir.cron,name:sale_automatic_workflow.ir_cron_automatic_workflow_job
+msgid "Automatic Workflow Job"
+msgstr "Job du workflow automatique"
 
 #. module: sale_automatic_workflow
 #: model:ir.filters,name:sale_automatic_workflow.automatic_workflow_order_filter
@@ -210,6 +217,11 @@ msgid "Picking Filter Domain"
 msgstr "Domaine du filtre de préparation de commande"
 
 #. module: sale_automatic_workflow
+#: model:ir.model,name:sale_automatic_workflow.model_sale_order
+msgid "Quotation"
+msgstr "Quotation"
+
+#. module: sale_automatic_workflow
 #: model:ir.model.fields,field_description:sale_automatic_workflow.field_sale_workflow_process_sale_done
 msgid "Sale Done"
 msgstr "Ventes réalisées"
@@ -235,11 +247,6 @@ msgstr "Flux automatique de vente"
 #: model:ir.model.fields,field_description:sale_automatic_workflow.field_sale_workflow_process_property_journal_id
 msgid "Sales Journal"
 msgstr "Journal des ventes"
-
-#. module: sale_automatic_workflow
-#: model:ir.model,name:sale_automatic_workflow.model_sale_order
-msgid "Sales Order"
-msgstr "Bon de commande"
 
 #. module: sale_automatic_workflow
 #: model:ir.model.fields,field_description:sale_automatic_workflow.field_sale_workflow_process_team_id
@@ -308,7 +315,7 @@ msgid "Workflow Options"
 msgstr "Options du flux automatique"
 
 #. module: sale_automatic_workflow
-#: code:addons/sale_automatic_workflow/models/sale_order.py:60
+#: code:addons/sale_automatic_workflow/models/sale_order.py:59
 #, python-format
 msgid "Workflow Warning"
 msgstr "Message d'avertissement"
@@ -316,4 +323,4 @@ msgstr "Message d'avertissement"
 #. module: sale_automatic_workflow
 #: model:ir.model,name:sale_automatic_workflow.model_automatic_workflow_job
 msgid "automatic.workflow.job"
-msgstr ""
+msgstr "automatic.workflow.job"
