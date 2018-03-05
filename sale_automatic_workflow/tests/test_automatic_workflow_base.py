@@ -27,7 +27,25 @@ class TestAutomaticWorkflowBase(common.TransactionCase):
         }
         if override:
             values.update(override)
-        return sale_obj.create(values)
+        order = sale_obj.create(values)
+        # Create inventory for add stock qty to lines
+        # With this commit https://goo.gl/fRTLM3 the moves that where
+        # force-assigned are not transferred in the picking
+        for line in order.order_line:
+            if line.product_id.type == 'product':
+                inventory = self.env['stock.inventory'].create({
+                    'name': 'Inventory for move %s' % line.name,
+                    'filter': 'product',
+                    'product_id': line.product_id.id,
+                    'line_ids': [(0, 0, {
+                        'product_id': line.product_id.id,
+                        'product_qty': line.product_uom_qty,
+                        'location_id':
+                        self.env.ref('stock.stock_location_stock').id
+                    })]
+                })
+                inventory.action_done()
+        return order
 
     def create_full_automatic(self, override=None):
         workflow_obj = self.env['sale.workflow.process']
