@@ -6,20 +6,6 @@
 from odoo import api, fields, models
 
 
-class SaleOrder(models.Model):
-    _inherit = 'sale.order'
-
-    @api.depends('state', 'order_line.invoice_status',
-                 'order_line.task_ids.invoiceable')
-    def _get_invoiced(self):
-        super(SaleOrder, self)._get_invoiced()
-        for order in self:
-            if not all(order.tasks_ids.mapped('invoiceable')):
-                order.update({
-                    'invoice_status': 'no',
-                })
-
-
 class SaleOrderLine(models.Model):
     _inherit = 'sale.order.line'
 
