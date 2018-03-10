@@ -13,8 +13,10 @@ class SaleOrder(models.Model):
                  'order_line.task_ids.invoiceable')
     def _get_invoiced(self):
         super(SaleOrder, self)._get_invoiced()
-        for order in self:
-            if not all(order.tasks_ids.mapped('invoiceable')):
+        for order in self.filtered(lambda o: (
+                o.invoice_status != 'no' and o.picking_policy == 'one')):
+            if not all(t.invoiceable for t in order.mapped(
+                    'order_line.task_ids') if t.invoicing_finished_task):
                 order.update({
                     'invoice_status': 'no',
                 })
