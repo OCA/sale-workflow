@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+        <record id="action_partner_create_form" model="ir.actions.act_window">
+            <field name="name">Customers</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">res.partner</field>
+            <field name="view_mode">form</field>
+            <field name="view_id" ref="base.action_partner_form"/>
+            <field name="target">new</field>
+        </record>
+
+        <record id="view_partner_form" model="ir.ui.view">
+            <field name="model">res.partner</field>
+            <field name="inherit_id" ref="base.view_partner_form"/>
+            <field name="arch" type="xml">
+
+                <sheet position="before">
+                    <header>
+                        <button name="add_new_generated_partner"
+                                string="Confirm and create a new customer"
+                                type="object"
+                                context="context.get('from_generator_id')"
+                                class="oe_highlight"
+                                invisible="not context.get('from_generator_id')"/>
+                        <button name="close_from_customer_wizard"
+                                string="close &amp; refresh generator"
+                                type="object"
+                                class="oe_highlight"
+                                invisible="not context.get('from_generator_id')"
+                        />
+                    </header>
+                </sheet>
+            </field>
+
+
+        </record>
+
+</odoo>
