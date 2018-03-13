@@ -26,6 +26,7 @@ addon | version | summary
 [sale_delivery_block_proc_group_by_line](sale_delivery_block_proc_group_by_line/) | 9.0.1.0.0 | Module that allows module sale_delivery_block to work with sale_procurement_group_by_line
 [sale_exception](sale_exception/) | 9.0.1.1.0 | Custom exceptions on sale order
 [sale_force_invoiced](sale_force_invoiced/) | 9.0.1.0.0 | Allows to force the invoice status of the sales order to Invoiced
+[sale_order_digitized_signature](sale_order_digitized_signature/) | 9.0.1.0.0 | Sale Order Digitized Signature
 [sale_order_line_date](sale_order_line_date/) | 9.0.1.0.0 | Sale Order Line Date
 [sale_order_lot_selection](sale_order_lot_selection/) | 9.0.1.0.0 | Sale Order Lot Selection
 [sale_order_price_recalculation](sale_order_price_recalculation/) | 9.0.1.0.0 | Price recalculation in sales orders
