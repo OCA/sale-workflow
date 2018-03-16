@@ -72,7 +72,7 @@ class TestSaleProcurementGroupByLine(TransactionCase):
                          self.line1.product_uom_qty,
                          """The Procurement quantity should
                          match to the quantity ordered""")
-        self.sale._compute_get_picking_ids()
+        self.sale._compute_picking_ids()
         self.picking_ids = self.env['stock.picking'].\
             search([('group_id', 'in', self.line2.procurement_group_id.ids)])
         self.assertTrue(self.picking_ids,
