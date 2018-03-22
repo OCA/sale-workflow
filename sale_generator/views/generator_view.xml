@@ -41,7 +41,7 @@
             </header>
             <sheet>
                 <h1>
-                    <label string="Generator"/>
+                    <label string="Generator" name="generator_label"/>
                     <field name="name"
                            class="oe_inline"/>
                 </h1>
