@@ -1,6 +1,6 @@
 # -*- encoding: utf-8 -*-
 ##############################################################################
-# For copyright and license notices, see __openerp__.py file in root directory
+# For copyright and license notices, see __manifest__.py file in root directory
 ##############################################################################
 
 from . import pack
