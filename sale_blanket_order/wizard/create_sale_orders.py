@@ -2,7 +2,7 @@
 # Copyright 2018 ACSONE SA/NV
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 from odoo import fields, models, api, _
-from odoo.exceptions import Warning
+from odoo.exceptions import UserError
 
 
 class BlanketOrderWizard(models.TransientModel):
@@ -18,8 +18,8 @@ class BlanketOrderWizard(models.TransientModel):
         blanket_order = self.env['sale.blanket.order'].browse(
             self.env.context['active_id'])
         if blanket_order.state == 'expired':
-            raise Warning(_('You can\'t create a sale order from '
-                            'an expired blanket order!'))
+            raise UserError(_('You can\'t create a sale order from '
+                              'an expired blanket order!'))
         return blanket_order
 
     @api.model
@@ -50,7 +50,7 @@ class BlanketOrderWizard(models.TransientModel):
                 continue
 
             if line.qty > line.remaining_qty:
-                raise Warning(
+                raise UserError(
                     _('You can\'t order more than the remaining quantities'))
 
             vals = {
@@ -66,7 +66,7 @@ class BlanketOrderWizard(models.TransientModel):
             order_lines.append((0, 0, vals))
 
         if not order_lines:
-            raise Warning(_('An order can\'t be empty'))
+            raise UserError(_('An order can\'t be empty'))
 
         order_vals = {
             'partner_id': self.blanket_order_id.partner_id.id,
