@@ -2,8 +2,10 @@
 # Copyright 2018 ACSONE SA/NV
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 from odoo import fields, models, api, _
-from odoo.exceptions import Warning
+from odoo.exceptions import UserError
 from odoo.tools import float_is_zero
+
+import odoo.addons.decimal_precision as dp
 
 
 class BlanketOrder(models.Model):
@@ -41,10 +43,10 @@ class BlanketOrder(models.Model):
     payment_term_id = fields.Many2one(
         'account.payment.term', string='Payment Terms', readonly=True,
         states={'draft': [('readonly', False)]})
-    confirmed = fields.Boolean(default=False)
+    confirmed = fields.Boolean()
     state = fields.Selection(selection=[
         ('draft', 'Draft'),
-        ('opened', 'Opened'),
+        ('opened', 'Open'),
         ('expired', 'Expired'),
     ], compute='_compute_state', store=True)
     validity_date = fields.Date(
@@ -71,11 +73,7 @@ class BlanketOrder(models.Model):
 
     @api.multi
     def _get_sale_orders(self):
-        lines = self.mapped('lines_ids')
-        sale_lines = lines.mapped('sale_order_lines_ids')
-        sale_orders = sale_lines.mapped('order_id')
-        sale_orders_ids = list(set(sale_orders.ids))
-        return self.env['sale.order'].browse(sale_orders_ids)
+        return self.mapped('lines_ids.sale_order_lines_ids.order_id')
 
     @api.multi
     @api.depends('lines_ids.remaining_qty')
@@ -150,7 +148,7 @@ class BlanketOrder(models.Model):
                 assert len(order.lines_ids) > 0, _("Must have some lines")
                 order.lines_ids._validate()
         except AssertionError as e:
-            raise Warning(e.message)
+            raise UserError(e.message)
 
     @api.multi
     def action_confirm(self):
@@ -197,7 +195,8 @@ class BlanketOrderLine(models.Model):
         'product.uom', string='Unit of Measure', required=True)
     price_unit = fields.Float(string='Price', required=True)
     original_qty = fields.Float(
-        string='Original quantity', required=True, default=1)
+        string='Original quantity', required=True, default=1,
+        digits=dp.get_precision('Product Unit of Measure'))
     ordered_qty = fields.Float(
         string='Ordered quantity', compute='_compute_quantities', store=True)
     invoiced_qty = fields.Float(
@@ -209,7 +208,8 @@ class BlanketOrderLine(models.Model):
     sale_order_lines_ids = fields.One2many(
         'sale.order.line', 'blanket_line_id', string='Sale order lines')
     company_id = fields.Many2one(
-        'res.company', related='order_id.company_id', store=True)
+        'res.company', related='order_id.company_id', store=True,
+        readonly=True)
 
     def _get_real_price_currency(self, product, rule_id, qty, uom,
                                  pricelist_id):
@@ -326,4 +326,4 @@ class BlanketOrderLine(models.Model):
                 assert line.original_qty > 0.0, \
                     _("Quantity must be greater than zero")
         except AssertionError as e:
-            raise Warning(e.message)
+            raise UserError(e.message)

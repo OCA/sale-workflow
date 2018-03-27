@@ -9,7 +9,8 @@ class SaleOrder(models.Model):
 
     blanket_order_id = fields.Many2one(
         'sale.blanket.order', string='Origin blanket order',
-        related='order_line.blanket_line_id.order_id')
+        related='order_line.blanket_line_id.order_id',
+        readonly=True)
 
 
 class SaleOrderLine(models.Model):
