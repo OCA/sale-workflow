@@ -18,12 +18,11 @@
         'views/mrp_view.xml',
         'views/stock_view.xml',
         'views/install.xml',
-        'data/bom_option.xml',
         'security/ir.model.access.csv',
     ],
     'demo': [
         'demo/product_demo.xml',
-        'demo/config.yml',
+        # 'demo/config.yml',
     ],
     'installable': True,
 }

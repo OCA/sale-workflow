@@ -26,6 +26,7 @@
                             <field name="product_id"
                                    domain="[('id', 'in', product_ids[0][2]')]"/>
                             <field name="qty"/>
+                            <field name="opt_max_qty" string="Max Qty"/>
                             <field name="line_price"/>
                         </tree>
                     </field>

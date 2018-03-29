@@ -3,7 +3,7 @@
 # © 2017 David BEAL @ Akretion
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
 
-from openerp import fields, api, models
+from odoo import _, fields, api, models
 
 
 class SaleOrderLine(models.Model):
@@ -54,10 +54,10 @@ class SaleOrderLine(models.Model):
         bom_lines = self.env['mrp.bom.line'].with_context(
             filter_bom_with_product=product).search([])
         for bline in bom_lines:
-            if bline.default_qty:
+            if bline.option_qty:
                 vals = {'bom_line_id': bline.id,
                         'product_id': bline.product_id.id,
-                        'qty': bline.default_qty}
+                        'qty': bline.option_qty}
                 lines.append((0, 0, vals))  # create
         if bline:
             display_option = True
@@ -98,6 +98,10 @@ class SaleOrderLineOption(models.Model):
     product_id = fields.Many2one(
         comodel_name='product.product', string='Product', required=True)
     qty = fields.Integer(default=1)
+    opt_max_qty = fields.Integer(related='bom_line_id.opt_max_qty')
+    invalid_qty = fields.Boolean(
+        compute='_compute_invalid_qty',
+        store=True)
     line_price = fields.Float(compute='_compute_price', store=True)
 
     @api.model
@@ -128,10 +132,10 @@ class SaleOrderLineOption(models.Model):
 
     def _get_bom_line_price(self):
         self.ensure_one()
-        pricelist = self.sale_line_id.pricelist_id.with_context({
-            'uom': self.bom_line_id.product_uom_id.id,
-            'date': self.sale_line_id.order_id.date_order,
-        })
+        ctx = {'uom': self.bom_line_id.product_uom_id.id}
+        if self.sale_line_id.order_id.date_order:
+            ctx['date'] = self.sale_line_id.order_id.date_order
+        pricelist = self.sale_line_id.pricelist_id.with_context(ctx)
         price = pricelist.price_get(
             self.product_id.id,
             self.bom_line_id.product_qty or 1.0,
@@ -145,3 +149,28 @@ class SaleOrderLineOption(models.Model):
                 record.line_price = record._get_bom_line_price()
             else:
                 record.line_price = 0
+
+    @api.multi
+    @api.depends('qty')
+    def _compute_invalid_qty(self):
+        for record in self:
+            if record.bom_line_id and \
+                    record.qty > record.opt_max_qty:
+                record.invalid_qty = True
+            else:
+                record.invalid_qty = False
+
+    @api.multi
+    @api.onchange('qty')
+    def onchange_qty(self):
+        for record in self:
+            if self.bom_line_id and record.opt_max_qty < record.qty:
+                return {'warning': {
+                    'title': _('Error on quantity'),
+                    'message': _(
+                        "Maximal quantity of this option is %(max)s.\n"
+                        "You encoded %(qty)s.") % {
+                            'qty': record.qty,
+                            'max': record.opt_max_qty}
+                    }
+                }
