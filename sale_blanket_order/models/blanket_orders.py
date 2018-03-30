@@ -294,7 +294,7 @@ class BlanketOrderLine(models.Model):
         return max(base_price, final_price)
 
     @api.multi
-    @api.onchange('product_id')
+    @api.onchange('product_id', 'original_qty')
     def onchange_product(self):
         if self.product_id:
             self.product_uom = self.product_id.uom_id.id
