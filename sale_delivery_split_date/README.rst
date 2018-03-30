@@ -6,8 +6,10 @@
 Sale Delivery Split Date
 ========================
 
-When this module is installed, each Sale Order you confirm will generate one Delivery Order
-per requested date indicated in the Sale Order Lines.
+When this module is installed, each sale order you confirm will generate one delivery order
+per requested date indicated in the sale order lines.
+
+Furthermore, the delivery orders could may be searched by selecting the scheduled date, which is now displayed in the tree delivery tree view.
 
 Usage
 =====

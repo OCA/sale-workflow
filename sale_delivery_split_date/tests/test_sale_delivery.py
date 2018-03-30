@@ -46,6 +46,9 @@ class TestSaleDelivery(TransactionCase):
             len(self.so.picking_ids), 1,
             "There must be 1 picking for the SO when confirmed")
         self.assertEqual(
+            self.so.picking_ids[0].min_date[:10],
+            self.so.picking_ids[0].min_dt)
+        self.assertEqual(
             self.so.picking_ids[0].min_date, self.date_sooner,
             "The picking must be planned at the expected date")
         self.assertEqual(
@@ -67,8 +70,14 @@ class TestSaleDelivery(TransactionCase):
             "There must be 2 pickings for the SO when confirmed")
         sorted_pickings = self.so.picking_ids.sorted(lambda x: x.min_date)
         self.assertEqual(
+            self.so.picking_ids[0].min_date[:10],
+            self.so.picking_ids[0].min_dt)
+        self.assertEqual(
             sorted_pickings[0].min_date, self.date_sooner,
             "The first picking must be planned at the soonest date")
+        self.assertEqual(
+            self.so.picking_ids[1].min_date[:10],
+            self.so.picking_ids[1].min_dt)
         self.assertEqual(
             sorted_pickings[1].min_date, self.date_later,
             "The second picking must be planned at the latest date")
@@ -92,6 +101,9 @@ class TestSaleDelivery(TransactionCase):
         self.assertEqual(
             len(self.so.picking_ids), 1,
             "There must be only one picking for the SO when confirmed")
+        self.assertEqual(
+            self.so.picking_ids[0].min_date[:10],
+            self.so.picking_ids[0].min_dt)
         self.assertEqual(
             self.so.picking_ids.min_date, self.date_sooner,
             "The picking must be planned at the expected date")
