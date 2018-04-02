@@ -50,7 +50,6 @@ To use this module, you need to:
 Known issues / Roadmap
 ======================
 
-* ...
 
 Bug Tracker
 ===========
@@ -72,7 +71,7 @@ Contributors
 ------------
 
 * Valentin Chemiere <valentin.chemiere@akretion.com>
-* David Béal <valentin.chemiere@akretion.com>
+* David Béal <david.beal@akretion.com>
 
 
 Do not contact contributors directly about support or help with technical issues.

@@ -10,7 +10,17 @@ _logger = logging.getLogger(__name__)
 
 class TestOptionCase(TransactionCase):
 
-    def test_sale_line_change(self):
+    def test10_option_qty(self):
+        qties = {
+            x.product_id: x.option_qty
+            for x in self.env.ref(
+                'sale_line_option.bom_pc_assmb_option1').bom_line_ids}
+        for line in self.sale_line.option_ids:
+            self.assertTrue(
+                line.qty == qties[line.product_id],
+                "Option qty error on product %s" % line.product_id.name)
+
+    def test20_sale_line_change(self):
         "Check if all required options are refresh when we change the product"
         # We have 3 options
         self.assertTrue(len(self.sale_line.option_ids) == 3,
@@ -29,7 +39,7 @@ class TestOptionCase(TransactionCase):
         bom_opt = self.env.ref('sale_line_option.bom_pc_assmb_option2')
         bom_products = [x.product_id
                         for x in bom_opt.bom_line_ids
-                        if x.default_qty > 0]
+                        if x.option_qty > 0]
         _logger.debug('  >>> Bom product ids: %s',
                       [x.name for x in bom_products])
         self.assertTrue(len(bom_products) > 0,
@@ -38,7 +48,7 @@ class TestOptionCase(TransactionCase):
             self.assertEqual(set(bom_products), set(option_products),
                              "Bom and option products should be identical")
 
-    def test_check_option_line_when_bom_change(self):
+    def test30_check_option_line_when_bom_change(self):
         "Check if remove bom.line have no impact on option lines"
         bom_line = self.env.ref('sale_line_option.bom_line_pc_assmb_option13')
         product = bom_line.product_id

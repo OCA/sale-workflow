@@ -12,6 +12,7 @@
     'category': 'Sale',
     'depends': [
         'sale_order_lot_mrp',
+        'onchange_helper',
     ],
     'data': [
         'views/sale_view.xml',
@@ -21,8 +22,8 @@
         'security/ir.model.access.csv',
     ],
     'demo': [
+        'demo/config.yml',
         'demo/product_demo.xml',
-        # 'demo/config.yml',
     ],
     'installable': True,
 }

@@ -5,18 +5,21 @@
         <field name="name">Config with opts1</field>
         <field name="default_code">CFG1</field>
         <field name="tracking">lot</field>
+        <field name="lst_price">99</field>
         <field name="auto_generate_prodlot">True</field>
     </record>
     <record id="product_pc_assmb_option2" model="product.product">
         <field name="name">Config with opts2</field>
         <field name="default_code">CFG2</field>
         <field name="tracking">lot</field>
+        <field name="lst_price">100</field>
         <field name="auto_generate_prodlot">True</field>
     </record>
     <record id="product_assmb_option3" model="product.product">
         <field name="name">Config with opts3</field>
         <field name="default_code">CFG3</field>
         <field name="tracking">lot</field>
+        <field name="lst_price">101</field>
         <field name="auto_generate_prodlot">True</field>
         <field name="route_ids"
                eval="[(4, ref('mrp.route_warehouse0_manufacture')), (4, ref('stock.route_warehouse0_mto'))]"/>
@@ -34,7 +37,7 @@
         <field name="opt_max_qty">3</field>
     </record>
 
-<!--    <record id="bom_line_pc_assmb_option12" model="mrp.bom.line">
+   <record id="bom_line_pc_assmb_option12" model="mrp.bom.line">
         <field name="bom_id" ref="sale_line_option.bom_pc_assmb_option1"/>
         <field name="product_id" ref="product.product_product_12"/>
         <field name="opt_max_qty">2</field>
@@ -50,9 +53,9 @@
         <field name="product_id" ref="product.product_product_10"/>
         <field name="option_qty">1</field>
         <field name="opt_max_qty">2</field>
-    </record> -->
+    </record>
 
-<!--     <record id="bom_pc_assmb_option2" model="mrp.bom">
+     <record id="bom_pc_assmb_option2" model="mrp.bom">
         <field name="product_tmpl_id"
                ref="sale_line_option.product_pc_assmb_option2_product_template"/>
     </record>
@@ -87,12 +90,11 @@
     <record id="sale_order_option" model="sale.order">
         <field name="partner_id" ref="base.res_partner_10"/>
         <field name="picking_policy">direct</field>
-    </record> -->
-<!-- 
+    </record>
     <record id="sale_order_line_option" model="sale.order.line">
         <field name="order_id" ref="sale_line_option.sale_order_option"/>
         <field name="product_id" ref="sale_line_option.product_pc_assmb_option1"/>
         <field name="display_option">1</field>
-    </record> -->
+    </record>
 
 </odoo>

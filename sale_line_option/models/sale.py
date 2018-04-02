@@ -23,6 +23,7 @@ class SaleOrderLine(models.Model):
     def create(self, vals):
         if 'product_id' in vals:
             product = self.env['product.product'].browse(vals['product_id'])
+            vals = self.play_onchanges(vals, ['product_id', 'product_uom_qty'])
             price_unit = vals.get('price_unit', 0.0)
             vals.update(self._set_product(product, price_unit))
         return super(SaleOrderLine, self).create(vals)
@@ -37,7 +38,6 @@ class SaleOrderLine(models.Model):
                 self[field] = values[field]
         return res
 
-    @api.model
     def _set_product(self, product, price_unit):
         """ Shared code between onchange and create/write methods """
         implied = {}
@@ -98,10 +98,11 @@ class SaleOrderLineOption(models.Model):
     product_id = fields.Many2one(
         comodel_name='product.product', string='Product', required=True)
     qty = fields.Integer(default=1)
-    opt_max_qty = fields.Integer(related='bom_line_id.opt_max_qty')
+    opt_max_qty = fields.Integer(
+        related='bom_line_id.opt_max_qty', readonly=True)
     invalid_qty = fields.Boolean(
-        compute='_compute_invalid_qty',
-        store=True)
+        compute='_compute_invalid_qty', store=True,
+        help="Can be used to prevent confirmed sale order")
     line_price = fields.Float(compute='_compute_price', store=True)
 
     @api.model
@@ -112,6 +113,12 @@ class SaleOrderLineOption(models.Model):
             bom_lines = self.env['mrp.bom.line'].with_context(
                 filter_bom_with_product=line_product_id).search([])
             res['product_ids'] = [x.product_id.id for x in bom_lines]
+        return res
+
+    @api.model
+    def create(self, vals):
+        res = super(SaleOrderLineOption, self).create(vals)
+        res.sale_line_id._onchange_option()
         return res
 
     @api.onchange('product_id')
@@ -150,7 +157,6 @@ class SaleOrderLineOption(models.Model):
             else:
                 record.line_price = 0
 
-    @api.multi
     @api.depends('qty')
     def _compute_invalid_qty(self):
         for record in self:
@@ -160,17 +166,19 @@ class SaleOrderLineOption(models.Model):
             else:
                 record.invalid_qty = False
 
-    @api.multi
     @api.onchange('qty')
     def onchange_qty(self):
         for record in self:
-            if self.bom_line_id and record.opt_max_qty < record.qty:
+            if record.bom_line_id and record.opt_max_qty < record.qty:
+                max_val = record.qty
+                record.qty = record.opt_max_qty
                 return {'warning': {
                     'title': _('Error on quantity'),
                     'message': _(
                         "Maximal quantity of this option is %(max)s.\n"
-                        "You encoded %(qty)s.") % {
-                            'qty': record.qty,
+                        "You encoded %(qty)s.\n"
+                        "Quantity is set max value") % {
+                            'qty': max_val,
                             'max': record.opt_max_qty}
                     }
                 }
