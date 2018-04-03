@@ -1,0 +1,67 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+#	* payment_signal
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 9.0c\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2017-12-26 09:17+0000\n"
+"PO-Revision-Date: 2017-12-26 09:17+0000\n"
+"Last-Translator: <>\n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: payment_signal
+#: model:ir.model,name:payment_signal.model_res_company
+msgid "Companies"
+msgstr "Compañías"
+
+#. module: payment_signal
+#: code:addons/payment_signal/models/inherit_res_company.py:14
+#, python-format
+msgid "Error! The Percent Signal in S.O. can not be less than 0 nor more than 100."
+msgstr "¡Error! El Porcentage de Señal en Pedido de venta no puede ser menor de 0 ni mayor de 100."
+
+#. module: payment_signal
+#: code:addons/payment_signal/models/inherit_sale_order.py:28
+#: code:addons/payment_signal/models/inherit_sale_order.py:55
+#, python-format
+msgid "Error! The payment signal can not be less than 0 nor more than total."
+msgstr "¡Error! El pago de la señal no puede ser menor de 0 ni mayor que el total."
+
+#. module: payment_signal
+#: code:addons/payment_signal/models/inherit_sale_order.py:37
+#: code:addons/payment_signal/models/inherit_sale_order.py:60
+#, python-format
+msgid "Error! The rest to pay can not be less than 0 nor more than total."
+msgstr "¡Error! El resto a pagar no puede ser menor de 0 ni mayor que el total."
+
+#. module: payment_signal
+#: model:ir.model.fields,field_description:payment_signal.field_res_company_default_signal
+msgid "Percent Signal in S.O."
+msgstr "Porcentage de Señal en Pedido de venta"
+
+#. module: payment_signal
+#: model:ir.model.fields,field_description:payment_signal.field_sale_order_rest_pay
+msgid "Rest to pay"
+msgstr "Resto a pagar"
+
+#. module: payment_signal
+#: model:ir.model,name:payment_signal.model_sale_advance_payment_inv
+msgid "Sales Advance Payment Invoice"
+msgstr "Ventas. Anticipo pago factura"
+
+#. module: payment_signal
+#: model:ir.model,name:payment_signal.model_sale_order
+msgid "Sales Order"
+msgstr "Pedido de venta"
+
+#. module: payment_signal
+#: model:ir.model.fields,field_description:payment_signal.field_sale_order_payment_signal
+msgid "Signal Quotation"
+msgstr "Señal Presupuesto"
+
