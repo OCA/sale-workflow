@@ -6,7 +6,7 @@
 Payment Signal
 ==============
 
-Module to signal budgets and orders
+Module to signal quotations and orders
 
 Usage
 =====
