@@ -2,9 +2,9 @@
    :target: http://www.gnu.org/licenses/agpl
    :alt: License: AGPL-3
 
-======================
-Product Price Category
-======================
+==============
+Payment Signal
+==============
 
 This module adds a field Price Category on Product Template
 and allow Pricelist to be applied on this field.
