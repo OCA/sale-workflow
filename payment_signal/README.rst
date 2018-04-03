@@ -8,6 +8,7 @@ Payment Signal
 
 Module to signal quotations and orders
 
+
 Usage
 =====
 
@@ -16,26 +17,18 @@ which is automatically calculated by a percentage associated with the company.
 These amounts, automatically appear in Invoice Order.
 
 .. image:: static/payment-signal-01.png
+
 .. image:: static/payment-signal-02.png
+
 .. image:: static/payment-signal-03.png
 
-Bug Tracker
-===========
-
-Credits
-=======
-
-Images
-------
-
-* Odoo Community Association: `Icon <https://github.com/OCA/maintainer-tools/blob/master/template/module/static/description/icon.svg>`_.
 
 Contributors
 ------------
 
 * Amaro Pesquero <apesquero@gmail.com>
 
+
 Do not contact contributors directly about support or help with technical issues.
 
-Maintainer
-----------
+
