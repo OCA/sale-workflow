@@ -4,6 +4,7 @@ from odoo import models, fields, api, _
 from odoo.exceptions import ValidationError
 import math
 
+
 class SaleOrder(models.Model):
     _inherit = 'sale.order'
 
@@ -28,7 +29,8 @@ class SaleOrder(models.Model):
     def _compute_rest_pay(self):
         for order in self:
             if not 0 <= order.payment_signal <= order.amount_total:
-                raise ValidationError(_("Error! The payment signal can not be less than 0 nor more than total."))
+                raise ValidationError(_("Error! The payment signal can not be"
+                                        " less than 0 nor more than total."))
             rest_pay = order.amount_total - order.payment_signal
             order.update({'rest_pay': rest_pay, })
 
@@ -46,5 +48,5 @@ class SaleOrder(models.Model):
     @api.constrains('payment_signal')
     def _check_payment_signal(self):
         if not 0 <= self.payment_signal <= self.amount_total:
-            raise ValidationError(_("Error! The payment signal can not be less than 0 nor more than total."))
-
+            raise ValidationError(_("Error! The payment signal can not be"
+                                    " less than 0 nor more than total."))

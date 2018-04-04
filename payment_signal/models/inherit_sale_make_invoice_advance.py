@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
 
-from odoo import models, fields, api, _
+from odoo import models, fields, api
+
 
 class SaleAdvancePaymentInv(models.TransientModel):
     _inherit = "sale.advance.payment.inv"
@@ -33,4 +34,3 @@ class SaleAdvancePaymentInv(models.TransientModel):
         if self.advance_payment_method == 'fixed':
             self.amount = sale_obj.payment_signal
             return {}
-

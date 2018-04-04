@@ -29,4 +29,3 @@
     'depends': ['account', 'sale'],
     'application': True,
 }
-
