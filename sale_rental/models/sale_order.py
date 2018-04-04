@@ -61,7 +61,7 @@ class SaleOrderLine(models.Model):
     @api.one
     @api.constrains(
         'rental_type', 'extension_rental_id', 'start_date', 'end_date',
-        'rental_qty', 'product_uom_qty', 'product_id', 'must_have_dates')
+        'rental_qty', 'product_uom_qty', 'product_id')
     def _check_sale_line_rental(self):
         if self.rental_type == 'rental_extension':
             if not self.extension_rental_id:
@@ -92,15 +92,8 @@ class SaleOrderLine(models.Model):
                     "multiplied by the Rental Quantity (%s).") % (
                     self.product_id.name, self.product_uom_qty,
                     self.number_of_days, self.rental_qty))
-            # TODO: If we confirm self.must_have_dates in a related field
-            # we can remove this check
-            if not self.must_have_dates:
-                raise ValidationError(_(
-                    "On the rental sale order line with product %s "
-                    "the must have dates option should be enabled")
-                    % self.product_id.name)
-                # the module sale_start_end_dates checks that, when we have
-                # must_have_dates, we have start + end dates
+            # the module sale_start_end_dates checks that, when we have
+            # must_have_dates, we have start + end dates
         elif self.sell_rental_id:
             if self.product_uom_qty != self.sell_rental_id.rental_qty:
                 raise ValidationError(_(
