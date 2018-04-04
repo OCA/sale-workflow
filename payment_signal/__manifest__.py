@@ -22,8 +22,7 @@
     'version': '10.0.1.0.0',
     'author': 'Amaro Pesquero, Odoo Community Association (OCA)',
     'license': 'AGPL-3',
-    'data': [
-             'views/inherit_res_company.xml',
+    'data': ['views/inherit_res_company.xml',
              'views/inherit_sale_order.xml', ],
     'category': 'Sales',
     'depends': ['account', 'sale'],

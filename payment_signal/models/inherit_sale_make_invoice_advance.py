@@ -10,7 +10,8 @@ class SaleAdvancePaymentInv(models.TransientModel):
     def _get_advance_payment_method(self):
         res = super(SaleAdvancePaymentInv, self)._get_advance_payment_method()
 
-        state_obj = self.env['sale.order'].browse(self._context.get('active_ids')).state
+        state_obj = self.env['sale.order'].browse(
+            self._context.get('active_ids')).state
         if state_obj in ('draft', 'sent'):
             return 'fixed'
         return res
@@ -27,7 +28,8 @@ class SaleAdvancePaymentInv(models.TransientModel):
     @api.multi
     @api.onchange('advance_payment_method')
     def onchange_advance_payment_method(self):
-        sale_obj = self.env['sale.order'].browse(self._context.get('active_ids'))
+        sale_obj = self.env['sale.order'].browse(
+            self._context.get('active_ids'))
         if self.advance_payment_method == 'percentage':
             self.amount = sale_obj.user_id.company_id.default_signal
             return {}
