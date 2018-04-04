@@ -21,7 +21,6 @@
     'summary': 'Module to signal quotations and orders',
     'version': '10.0.1.0.0',
     'author': 'Amaro Pesquero, Odoo Community Association (OCA)',
-    'application': True,
     'license': 'AGPL-3',
     'data': [
              'views/inherit_res_company.xml',
