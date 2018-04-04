@@ -11,7 +11,7 @@ class SaleOrder(models.Model):
 
     rest_pay = fields.Monetary(string='Rest to pay',
                                store=True,
-                               compute='_rest_pay',
+                               compute='_compute_rest_pay',
                                compute_sudo=False)
 
     @api.onchange('amount_total')
@@ -21,10 +21,11 @@ class SaleOrder(models.Model):
             payment_signal = math.ceil(order.amount_total * percent / 100)
             rest_pay = order.amount_total - payment_signal
             order.update({'payment_signal': payment_signal,
-                          'rest_pay': rest_pay, })
+                          'rest_pay': rest_pay,
+                          })
 
     @api.depends('payment_signal')
-    def _rest_pay(self):
+    def _compute_rest_pay(self):
         for order in self:
             if not 0 <= order.payment_signal <= order.amount_total:
                 raise ValidationError(_("Error! The payment signal can not be less than 0 nor more than total."))
@@ -46,3 +47,4 @@ class SaleOrder(models.Model):
     def _check_payment_signal(self):
         if not 0 <= self.payment_signal <= self.amount_total:
             raise ValidationError(_("Error! The payment signal can not be less than 0 nor more than total."))
+
