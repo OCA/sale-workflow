@@ -1,4 +1,5 @@
 # -*- coding: utf-8 -*-
+
 from odoo import models, fields, api, _
 
 class SaleAdvancePaymentInv(models.TransientModel):
@@ -32,3 +33,4 @@ class SaleAdvancePaymentInv(models.TransientModel):
         if self.advance_payment_method == 'fixed':
             self.amount = sale_obj.payment_signal
             return {}
+
