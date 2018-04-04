@@ -1,9 +1,8 @@
-# -*- coding: utf-8 -*-
 # Copyright 2017 Sergio Teruel <sergio.teruel@tecnativa.com>
-# License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
+# License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
 
 from odoo.tests import common
-from odoo.exceptions import UserError, ValidationError
+from odoo.exceptions import ValidationError
 
 
 class TestInvoicefinishedTask(common.SavepointCase):
@@ -41,13 +40,13 @@ class TestInvoicefinishedTask(common.SavepointCase):
             'name': 'Product - Service - Policy delivery - Test',
             'invoice_policy': 'delivery',
         })
-        self.product_pocily_delivery = self.Product.create(
+        self.product_policy_delivery = self.Product.create(
             product_delivery_vals)
 
         self.sale_order = self.env['sale.order'].create(
             self._sale_order_vals(self.product))
         self.sale_order_policy_delivery = self.env['sale.order'].create(
-            self._sale_order_vals(self.product_pocily_delivery))
+            self._sale_order_vals(self.product_policy_delivery))
 
     def _prepare_stage_vals(self, invoiceable_stage=False):
         return {
@@ -79,7 +78,7 @@ class TestInvoicefinishedTask(common.SavepointCase):
             'list_price': 100.00,
             'standard_price': 50.00,
             'invoice_policy': 'order',
-            'track_service': 'task',
+            'service_tracking': 'task_global_project',
             'invoicing_finished_task': True,
             'project_id': self.project.id,
         }
@@ -89,6 +88,7 @@ class TestInvoicefinishedTask(common.SavepointCase):
             'name': 'Test Line',
             'project_id': self.project.id,
             'unit_amount': unit_amount,
+            'product_uom_id': task.sale_line_id.product_uom.id,
             'user_id': self.manager.id,
             'task_id': task.id,
         }
@@ -119,7 +119,7 @@ class TestInvoicefinishedTask(common.SavepointCase):
         self.sale_order.action_invoice_create()
 
         # Click on toggle_invoiceable method after the so is invoiced
-        with self.assertRaises(UserError):
+        with self.assertRaises(ValidationError):
             task.toggle_invoiceable()
 
         self.sale_order.action_done()
@@ -151,10 +151,10 @@ class TestInvoicefinishedTask(common.SavepointCase):
         task_delivery = self.sale_order_policy_delivery.order_line.task_ids
         self.env['account.analytic.line'].create(
             self._prepare_timesheet_vals(task_delivery, 10.0))
-        order = self.sale_order_policy_delivery
-        order.order_line.task_ids.write({
+        task_delivery.write({
             'stage_id': self.stage_invoiceable.id,
         })
+        task_delivery._onchange_stage_id()
         self.assertEqual(
             self.sale_order_policy_delivery.order_line.qty_to_invoice, 10.0)
 
@@ -165,6 +165,7 @@ class TestInvoicefinishedTask(common.SavepointCase):
             'user_id': self.manager.id,
             'project_id': self.project.id,
             'sale_line_id': self.sale_order.order_line.id,
-            'stage_id': self.stage_invoiceable.id,
         })
+        task.stage_id = self.stage_invoiceable
+        task._onchange_stage_id()
         self.assertTrue(task.invoiceable)

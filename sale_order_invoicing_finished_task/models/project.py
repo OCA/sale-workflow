@@ -1,11 +1,10 @@
-# -*- coding: utf-8 -*-
 # Copyright 2017 Camptocamp SA
 # Copyright 2017 Sergio Teruel <sergio.teruel@tecnativa.com>
 # Copyright 2017 Carlos Dauden <carlos.dauden@tecnativa.com>
-# License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
+# License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
 
 from odoo import _, api, fields, models
-from odoo.exceptions import ValidationError, UserError
+from odoo.exceptions import ValidationError
 
 
 class ProjectTaskType(models.Model):
@@ -29,53 +28,39 @@ class ProjectTask(models.Model):
 
     @api.onchange('stage_id')
     def _onchange_stage_id(self):
-        for task in self:
-            if task.invoicing_finished_task and \
-                    task.stage_id.invoiceable and\
-                    not task.invoiceable:
-                task.invoiceable = True
+        tasks = self.filtered(lambda t: (
+            t.invoicing_finished_task and t.stage_id.invoiceable and
+            not t.invoiceable))
+        tasks.toggle_invoiceable()
 
     @api.multi
     def toggle_invoiceable(self):
+        self._check_sale_line_state()
         for task in self:
-            sale_line = task.sale_line_id
-            # We dont' want to modify when the related SOLine is invoiced
-            if (not sale_line or
-                    sale_line.state in ('done', 'cancel') or
-                    sale_line.invoice_status in ('invoiced',)):
-                raise UserError(_("You cannot modify the status if there is "
-                                  "no Sale Order Line or if it has been "
-                                  "invoiced."))
             task.invoiceable = not task.invoiceable
-            if sale_line and sale_line.product_id.invoice_policy == 'order':
-                sale_line.qty_delivered = sale_line.product_uom_qty
 
     @api.multi
     def write(self, vals):
-        for task in self:
-            if (vals.get('sale_line_id') and
-                    task.sale_line_id.state in ('done', 'cancel')):
-                raise ValidationError(_('You cannot modify the Sale Order '
-                                        'Line of the task once it is invoiced')
-                                      )
+        if 'sale_line_id' in vals:
+            self._check_sale_line_state(vals['sale_line_id'])
         res = super(ProjectTask, self).write(vals)
-        # Onchange stage_id field is not triggered with statusbar widget
-        if 'stage_id' in vals:
-            self._onchange_stage_id()
+        if 'invoiceable' in vals:
+            self.mapped('sale_line_id')._analytic_compute_delivered_quantity()
         return res
 
     @api.model
     def create(self, vals):
-        SOLine = self.env['sale.order.line']
-        so_line = SOLine.browse(vals.get('sale_line_id'))
-        # We don't want to add a project.task to an already invoiced line
-        if so_line and so_line.state in ('done', 'cancel'):
-            raise ValidationError(_('You cannot add a task to and invoiced '
-                                    'Sale Order Line'))
-        # Onchange stage_id field is not triggered with statusbar widget
-        if 'sale_line_id' in vals and 'stage_id' in vals:
-            stage = self.env['project.task.type'].browse(vals['stage_id'])
-            if so_line.product_id.invoicing_finished_task and \
-                    stage.invoiceable:
-                vals['invoiceable'] = True
+        if 'sale_line_id' in vals:
+            self._check_sale_line_state(vals['sale_line_id'])
         return super(ProjectTask, self).create(vals)
+
+    def _check_sale_line_state(self, sale_line_id=False):
+        sale_lines = self.mapped('sale_line_id')
+        if sale_line_id:
+            sale_lines |= self.env['sale.order.line'].browse(sale_line_id)
+        for sale_line in sale_lines:
+            if (sale_line.state in ('done', 'cancel') or
+                    sale_line.invoice_status == 'invoiced'):
+                raise ValidationError(
+                    _('You cannot create/modify a task related with a '
+                      'invoiced, done or cancel sale order line '))
