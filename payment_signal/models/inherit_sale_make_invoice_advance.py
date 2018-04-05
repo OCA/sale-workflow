@@ -8,8 +8,10 @@ class SaleAdvancePaymentInv(models.TransientModel):
 
     @api.model
     def _get_advance_payment_method(self):
-        res = super(SaleAdvancePaymentInv, self)._get_advance_payment_method()
-
+        """We modified the method to add the 'fixed' option 
+        in case of being in 'draft' or 'sent'."""
+        res = super(SaleAdvancePaymentInv, self)\
+            ._get_advance_payment_method()
         state_obj = self.env['sale.order'].browse(
             self._context.get('active_ids')).state
         if state_obj in ('draft', 'sent'):
@@ -28,6 +30,9 @@ class SaleAdvancePaymentInv(models.TransientModel):
     @api.multi
     @api.onchange('advance_payment_method')
     def onchange_advance_payment_method(self):
+        """We extend the functionality of onchange_advance_payment_method"""
+        super(SaleAdvancePaymentInv, self)\
+            .onchange_advance_payment_method()
         sale_obj = self.env['sale.order'].browse(
             self._context.get('active_ids'))
         if self.advance_payment_method == 'percentage':

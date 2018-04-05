@@ -14,6 +14,7 @@ class ResCompany(models.Model):
     @api.constrains('default_signal')
     @api.onchange('default_signal')
     def _check_signal(self):
+        """Checking the values"""
         if not 0 <= self.default_signal <= 100:
             raise ValidationError(_("Error! The Percent Signal in S.O. "
                                     "can not be less than 0 "

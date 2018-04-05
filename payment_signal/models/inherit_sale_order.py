@@ -17,6 +17,8 @@ class SaleOrder(models.Model):
 
     @api.onchange('amount_total')
     def _pay_signal(self):
+        """Method to calculate payment_signal and rest_pay 
+        if you change amount_total"""
         for order in self:
             percent = self.env.user.company_id.default_signal
             payment_signal = math.ceil(order.amount_total * percent / 100)
@@ -27,6 +29,8 @@ class SaleOrder(models.Model):
 
     @api.depends('payment_signal')
     def _compute_rest_pay(self):
+        """Method to calculate rest_pay if we change payment_signal, 
+        and verify that we do not make mistakes"""
         for order in self:
             if not 0 <= order.payment_signal <= order.amount_total:
                 raise ValidationError(_("Error! The payment signal can not be"
@@ -36,6 +40,7 @@ class SaleOrder(models.Model):
 
     @api.multi
     def button_dummy(self):
+        """We expanded the buttton_dummy method"""
         res = super(SaleOrder, self).button_dummy()
         for order in self:
             percent = self.env.user.company_id.default_signal
@@ -47,6 +52,7 @@ class SaleOrder(models.Model):
 
     @api.constrains('payment_signal')
     def _check_payment_signal(self):
+        """Checking the values"""
         if not 0 <= self.payment_signal <= self.amount_total:
             raise ValidationError(_("Error! The payment signal can not be"
                                     " less than 0 nor more than total."))
