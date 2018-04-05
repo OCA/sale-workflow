@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 # Copyright 2015 ADHOC SA  (http://www.adhoc.com.ar)
 # Copyright 2017 Alex Comba - Agile Business Group
 # Copyright 2017 Tecnativa - David Vidal

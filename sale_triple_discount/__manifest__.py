@@ -1,4 +1,4 @@
-# -*- coding: utf-8 -*-
+# Copyright 2018 QubiQ (http://www.qubiq.es)
 # Copyright 2015 ADHOC SA  (http://www.adhoc.com.ar)
 # Copyright 2017 Alex Comba - Agile Business Group
 # Copyright 2017 Tecnativa - David Vidal
@@ -6,9 +6,10 @@
 
 {
     'name': 'Sale Triple Discount',
-    'version': '10.0.1.0.0',
+    'version': '11.0.1.0.0',
     'category': 'Sales Management',
-    'author': 'ADHOC SA, '
+    'author': 'QubiQ, '
+              'ADHOC SA, '
               'Agile Business Group, '
               'Tecnativa, '
               'Odoo Community Association (OCA)',
