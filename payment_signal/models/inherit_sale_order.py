@@ -17,7 +17,7 @@ class SaleOrder(models.Model):
 
     @api.onchange('amount_total')
     def _pay_signal(self):
-        """Method to calculate payment_signal and rest_pay 
+        """Method to calculate payment_signal and rest_pay
         if you change amount_total"""
         for order in self:
             percent = self.env.user.company_id.default_signal
@@ -29,7 +29,7 @@ class SaleOrder(models.Model):
 
     @api.depends('payment_signal')
     def _compute_rest_pay(self):
-        """Method to calculate rest_pay if we change payment_signal, 
+        """Method to calculate rest_pay if we change payment_signal,
         and verify that we do not make mistakes"""
         for order in self:
             if not 0 <= order.payment_signal <= order.amount_total:

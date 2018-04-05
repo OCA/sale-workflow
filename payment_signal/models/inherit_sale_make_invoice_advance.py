@@ -8,7 +8,7 @@ class SaleAdvancePaymentInv(models.TransientModel):
 
     @api.model
     def _get_advance_payment_method(self):
-        """We modified the method to add the 'fixed' option 
+        """We modified the method to add the 'fixed' option
         in case of being in 'draft' or 'sent'."""
         res = super(SaleAdvancePaymentInv, self)\
             ._get_advance_payment_method()
