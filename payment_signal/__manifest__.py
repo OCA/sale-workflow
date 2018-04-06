@@ -26,5 +26,6 @@
              'views/inherit_sale_order.xml', ],
     'category': 'Sales',
     'depends': ['account', 'sale'],
-    'application': True,
+    'installable': True,
+    'application': False,
 }

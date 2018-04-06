@@ -8,8 +8,7 @@ class ResCompany(models.Model):
     _inherit = 'res.company'
 
     default_signal = fields.Integer('Percent Signal in S.O.',
-                                    default=20,
-                                    store=True)
+                                    default=20)
 
     @api.constrains('default_signal')
     @api.onchange('default_signal')
