@@ -11,8 +11,8 @@ class StockMove(models.Model):
     _inherit = 'stock.move'
 
     @api.multi
-    def _prepare_procurement_from_move(self):
-        self.ensure_one()
-        vals = super(StockMove, self)._prepare_procurement_from_move()
-        vals['lot_id'] = self.restrict_lot_id.id
-        return vals
+    def _prepare_procurement_values(self):
+        res = super(
+            StockMove, self)._prepare_procurement_values()
+        res['lot_id'] = self.lot_id.id if self.lot_id else False
+        return res

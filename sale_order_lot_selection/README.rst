@@ -14,7 +14,7 @@ Usage
 
 .. image:: https://odoo-community.org/website/image/ir.attachment/5784_f2813bd/datas
    :alt: Try me on Runbot
-   :target: https://runbot.odoo-community.org/runbot/167/10.0
+   :target: https://runbot.odoo-community.org/runbot/167/11.0
 
 Known issues / Roadmap
 ======================
@@ -43,6 +43,7 @@ Contributors
 
 * Nicola Malcontenti <nicola.malcontenti@agilebg.com>
 * Lorenzo Battistini <lorenzo.battistini@agilebg.com>
+* Francesco Apruzzese <f.apruzzese@apuliasoftware.it>
 
 Maintainer
 ----------

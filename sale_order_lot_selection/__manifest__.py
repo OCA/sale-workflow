@@ -5,14 +5,18 @@
 
 {
     'name': 'Sale Order Lot Selection',
-    'version': '10.0.1.0.0',
+    'version': '11.0.1.0.0',
     'category': 'Sales Management',
     'author': "Odoo Community Association (OCA), Agile Business Group",
     'website': 'http://www.agilebg.com',
     'license': 'AGPL-3',
-    'depends': ['sale_stock', 'procurement'],
-    'data': ['view/sale_view.xml'],
+    'depends': [
+        'stock',
+        'sale_management',
+        'sale_stock',
+        ],
+    'data': [
+        'view/sale_view.xml',
+        ],
     'installable': True,
 }
-
-# vim:expandtab:smartindent:tabstop=4:softtabstop=4:shiftwidth=4:
