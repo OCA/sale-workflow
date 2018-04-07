@@ -8,10 +8,10 @@ class TestPaymentSignal(TransactionCase):
     def test_create(self):
         "Create a simple payment signal"
 
-        partner = self.env['res.partner'].create({
-            'name': 'TEST',
-            'customer': True,
-        })
+        # partner = self.env['res.partner'].create({
+        #     'name': 'TEST',
+        #     'customer': True,
+        # })
         # payment_term = self.env.ref('account.account_payment_term_net')
         # product = self.env['product.product'].create({
         #     'name': 'Demo',
@@ -35,11 +35,18 @@ class TestPaymentSignal(TransactionCase):
         # yesterday = date.today() - timedelta(days=1)
         # tomorrow = date.today() + timedelta(days=1)
 
-        payment_signal = self.env['sale.order'].create(
-            {'partner_id': partner.id}
-        )
+        # payment_signal = self.env['sale.order'].create({
+        #     'partner_id': partner.id,
+        #     # 'payment_signal': 100.0,
+        # })
 
-        payment_signal._pay_signal()
+        # payment_signal._pay_signal()
+
+        # compute_rest_pay = self.env['sale.order'].create({
+        #     'payment_signal': -10.0,
+        # })
+        #
+        # compute_rest_pay._compute_rest_pay()
 
         # pay_signal._pay_signal()
         # self.assertEqual(pay_signal.payment_signal, 20)
