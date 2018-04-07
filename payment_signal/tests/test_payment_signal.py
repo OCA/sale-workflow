@@ -4,6 +4,7 @@ from odoo.tests.common import TransactionCase
 
 class TestPaymentSignal(TransactionCase):
 
+
     def test_create(self):
         "Create a simple payment signal"
 
@@ -11,7 +12,7 @@ class TestPaymentSignal(TransactionCase):
             'name': 'TEST',
             'customer': True,
         })
-        payment_term = self.env.ref('account.account_payment_term_net')
+        # payment_term = self.env.ref('account.account_payment_term_net')
         product = self.env['product.product'].create({
             'name': 'Demo',
             'categ_id': self.env.ref('product.product_category_1').id,
@@ -21,20 +22,22 @@ class TestPaymentSignal(TransactionCase):
             'uom_id': self.env.ref('product.product_uom_unit').id,
             'default_code': 'PROD_DEL02',
         })
-        sale_pricelist = self.env['product.pricelist'].create({
-            'name': 'Sale pricelist',
-            'discount_policy': 'without_discount',
-            'item_ids': [(0, 0, {
-                'compute_price': 'fixed',
-                'fixed_price': 56.0,
-                'product_id': product.id,
-                'applied_on': '0_product_variant',
-            })]
-        })
-        yesterday = date.today() - timedelta(days=1)
-        tomorrow = date.today() + timedelta(days=1)
+        # sale_pricelist = self.env['product.pricelist'].create({
+        #     'name': 'Sale pricelist',
+        #     'discount_policy': 'without_discount',
+        #     'item_ids': [(0, 0, {
+        #         'compute_price': 'fixed',
+        #         'fixed_price': 56.0,
+        #         'product_id': product.id,
+        #         'applied_on': '0_product_variant',
+        #     })]
+        # })
+        # yesterday = date.today() - timedelta(days=1)
+        # tomorrow = date.today() + timedelta(days=1)
 
-        payment_signal = self.env['sale.order'].create({'partner_id': partner.id})
+        payment_signal = self.env['sale.order'].create(
+            {'partner_id': partner.id}
+        )
         payment_signal._pay_signal()
 
         # pay_signal._pay_signal()
