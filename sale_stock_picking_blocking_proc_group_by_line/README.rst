@@ -2,9 +2,9 @@
    :target: http://www.gnu.org/licenses/agpl-3.0-standalone.html
    :alt: License: AGPL-3
 
-=============================================
-Sale Delivery Block Procurement Group By Line
-=============================================
+=====================================================
+Sale Stock Picking Blocking Procurement Group By Line
+=====================================================
 
 This module make `sale_delivery_block` compatible with
 `sale_procurement_group_by_line`.
@@ -26,7 +26,7 @@ Bug Tracker
 ===========
 
 Bugs are tracked on `GitHub Issues
-<https://github.com/OCA/purchase-workflow/issues>`_. In case of trouble, please
+<https://github.com/OCA/sale-workflow/issues>`_. In case of trouble, please
 check there if your issue has already been reported. If you spotted it first,
 help us smash it by providing detailed and welcomed feedback.
 
