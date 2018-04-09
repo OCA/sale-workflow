@@ -1,6 +1,6 @@
 # Translation of Odoo Server.
 # This file contains the translation of the following modules:
-# * sale_delivery_block_proc_group_by_line
+# * sale_stock_picking_blocking_proc_group_by_line
 # 
 # Translators:
 # Jan Prokop <jprokop@creativehome.sk>, 2017
@@ -18,7 +18,7 @@ msgstr ""
 "Language: sk\n"
 "Plural-Forms: nplurals=3; plural=(n==1) ? 0 : (n>=2 && n<=4) ? 1 : 2;\n"
 
-#. module: sale_delivery_block_proc_group_by_line
-#: model:ir.model,name:sale_delivery_block_proc_group_by_line.model_sale_order_line
+#. module: sale_stock_picking_blocking_proc_group_by_line
+#: model:ir.model,name:sale_stock_picking_blocking_proc_group_by_line.model_sale_order_line
 msgid "Sales Order Line"
 msgstr "Položky objednávky"

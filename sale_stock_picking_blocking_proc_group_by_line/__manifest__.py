@@ -4,7 +4,7 @@
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl.html).
 
 {
-    "name": "Sale Delivery Block Procurement Group By Line",
+    "name": "Sale Stock Picking Blocking Procurement Group By Line",
     "summary": "Module that allows module sale_delivery_block to work with "
                "sale_procurement_group_by_line",
     "version": "10.0.1.0.0",
@@ -14,7 +14,7 @@
     "category": "Sales",
     "depends": [
         "sale_procurement_group_by_line",
-        "sale_delivery_block"
+        "sale_stock_picking_blocking",
     ],
     "auto_install": True,
     "license": "AGPL-3",
