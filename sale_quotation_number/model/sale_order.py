@@ -20,6 +20,7 @@
 #
 
 from openerp import models, api
+from openerp import fields
 
 
 class SaleOrder(models.Model):
@@ -47,6 +48,7 @@ class SaleOrder(models.Model):
                 sale.write({
                     'origin': quotation_number,
                     'name': self.env['ir.sequence'].next_by_code(
-                        'sale.order')
+                        'sale.order'),
+                    'date_order': fields.Datetime.now()
                 })
         return True
