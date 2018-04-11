@@ -10,7 +10,8 @@ class AccountInvoice(models.Model):
     _inherit = 'account.invoice'
 
     def _get_order_type(self):
-        return self.env['sale.order.type'].search([], limit=1)
+        if not self._context.get('type') in ('in_invoice', 'in_refund'):
+            return self.env['sale.order.type'].search([], limit=1)
 
     sale_type_id = fields.Many2one(
         comodel_name='sale.order.type',
