@@ -4,7 +4,7 @@
 {
     'name': "Sale Order Multiple Discount",
     'summary': "Express discounts on SO lines as mathematical expressions",
-    'author': 'Onestein',
+    'author': 'Onestein, Odoo Community Association (OCA)',
     'website': 'http://www.onestein.eu',
     'category': 'Sales',
     'license': 'AGPL-3',
