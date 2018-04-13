@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="invoice_form" model="ir.ui.view">
+        <field name="model">account.invoice</field>
+        <field name="inherit_id" ref="account.invoice_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='invoice_line_ids']/tree//field[@name='discount']" position="attributes">
+                <attribute name="invisible">1</attribute>
+            </xpath>
+            <xpath expr="//field[@name='invoice_line_ids']/tree//field[@name='discount']" position="after">
+                <field name="multiple_discount" groups="base.group_no_one"/>
+            </xpath>
+        </field>
+    </record>
+
+    <record id="invoice_supplier_form" model="ir.ui.view">
+        <field name="model">account.invoice</field>
+        <field name="inherit_id" ref="account.invoice_supplier_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='invoice_line_ids']/tree//field[@name='discount']" position="attributes">
+                <attribute name="invisible">1</attribute>
+            </xpath>
+            <xpath expr="//field[@name='invoice_line_ids']/tree//field[@name='discount']" position="after">
+                <field name="multiple_discount" groups="base.group_no_one"/>
+            </xpath>
+        </field>
+    </record>
+
+    <record id="view_invoice_line_tree" model="ir.ui.view">
+        <field name="model">account.invoice.line</field>
+        <field name="inherit_id" ref="account.view_invoice_line_tree"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='discount']" position="attributes">
+                <attribute name="invisible">1</attribute>
+            </xpath>
+            <xpath expr="//field[@name='discount']" position="after">
+                <field name="multiple_discount" groups="base.group_no_one"/>
+            </xpath>
+        </field>
+    </record>
+
+    <record id="view_invoice_line_form" model="ir.ui.view">
+        <field name="model">account.invoice.line</field>
+        <field name="inherit_id" ref="account.view_invoice_line_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='discount']" position="attributes">
+                <attribute name="invisible">1</attribute>
+            </xpath>
+            <xpath expr="//field[@name='discount']" position="after">
+                <field name="multiple_discount" groups="base.group_no_one"/>
+            </xpath>
+        </field>
+    </record>
+
+</odoo>
