@@ -54,17 +54,3 @@ class TestMultipleDiscount(common.TransactionCase):
         self.assertEqual(
             self.order.order_line[0].multiple_discount,
             invoice.invoice_line_ids[0].multiple_discount)
-
-        invoice.invoice_line_ids[0].write(
-            {'multiple_discount': '+7 - 10,5 + 15.1'})
-        self.assertEqual(invoice.invoice_line_ids[0].discount, 12.75)
-        self.assertEqual(
-            invoice.invoice_line_ids[0].multiple_discount,
-            '7-10.5+15.1')
-
-        invoice.invoice_line_ids[0].write({'multiple_discount': None})
-        self.assertEqual(invoice.invoice_line_ids[0].discount, 0.0)
-
-        with self.assertRaises(ValidationError):
-            invoice.invoice_line_ids[0].write(
-                {'multiple_discount': '+7 - 10,5 + 15.1a'})
