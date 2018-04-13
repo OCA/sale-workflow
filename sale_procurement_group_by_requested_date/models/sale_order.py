@@ -16,10 +16,7 @@ class SaleOrder(models.Model):
         req_datetime = fields.Datetime.from_string(line.requested_date)
         req_date = fields.Date.to_string(req_datetime)
         if line._get_procurement_group_key()[0] == 12:
-            if line.requested_date and line.warehouse_id:
-                vals['name'] = '/'.join([vals['name'], line.warehouse_id.name,
-                                         req_date])
-            elif line.requested_date and not line.warehouse_id:
+            if line.requested_date:
                 vals['name'] = '/'.join([vals['name'], req_date])
         return vals
 
@@ -31,7 +28,6 @@ class SaleOrderLine(models.Model):
     def _prepare_order_line_procurement(self, group_id=False):
         values = super(SaleOrderLine, self).\
             _prepare_order_line_procurement(group_id=group_id)
-        self.ensure_one()
         if self.requested_date:
             req_datetime = fields.Datetime.from_string(self.requested_date)
             req_date = fields.Date.to_string(req_datetime)
@@ -52,10 +48,6 @@ class SaleOrderLine(models.Model):
             return key
         req_datetime = fields.Datetime.from_string(self.requested_date)
         req_date = fields.Date.to_string(req_datetime)
-        if self.warehouse_id and not req_date:
-            return (priority, self.warehouse_id.id)
-        if req_date and not self.warehouse_id:
+        if req_date:
             return (priority, str(req_date))
-        if self.warehouse_id and req_date:
-            key = '/'.join([str(self.warehouse_id.id), req_date])
         return (priority, key)

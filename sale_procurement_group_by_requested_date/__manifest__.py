@@ -8,7 +8,7 @@
     "summary": "Groups pickings based on requested date of order line",
     "version": "10.0.1.0.0",
     "category": "Sales Management",
-    "website": "http://www.eficent.com",
+    'website': "https://github.com/OCA/sale-workflow",
     "author": "Eficent , "
               "SerpentCS,"
               "Odoo Community Association (OCA)",
@@ -16,7 +16,6 @@
     "depends": [
         "sale_order_line_date",
         "sale_procurement_group_by_line",
-        "sale_sourced_by_line"
     ],
     "installable": True,
 }
