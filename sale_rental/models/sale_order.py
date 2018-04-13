@@ -113,6 +113,30 @@ class SaleOrderLine(models.Model):
                     self.sell_rental_id.rental_qty))
 
     @api.multi
+    def _get_delivered_qty(self):
+        """Computes the delivered quantity on sale order lines,
+        based on done stock moves related to its procurements
+        """
+        self.ensure_one()
+
+        if not (self.rental_type == 'new_rental'):
+            return super(SaleOrderLine, self)._get_delivered_qty()
+
+        qty = 0.0
+        for move in self.procurement_ids.mapped('move_ids').filtered(
+                lambda r: r.state == 'done' and not r.scrapped):
+            if move.location_dest_id.usage == "customer":
+                if not move.origin_returned_move_id:
+                    qty += move.product_uom._compute_quantity(
+                        move.product_uom_qty,
+                        self.product_id.rented_product_id.uom_id)
+            elif move.location_dest_id.usage != "customer" and \
+                    move.to_refund_so:
+                qty -= move.product_uom.\
+                    _compute_quantity(move.product_uom_qty, self.product_uom)
+        return qty
+
+    @api.multi
     def _prepare_rental(self):
         self.ensure_one()
         return {'start_order_line_id': self.id}
