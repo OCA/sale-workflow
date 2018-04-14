@@ -31,7 +31,7 @@ addon | version | summary
 [sale_order_lot_selection](sale_order_lot_selection/) | 9.0.1.0.0 | Sale Order Lot Selection
 [sale_order_price_recalculation](sale_order_price_recalculation/) | 9.0.1.0.0 | Price recalculation in sales orders
 [sale_order_product_recommendation](sale_order_product_recommendation/) | 9.0.1.0.0 | Recommend products to sell to customer based on history
-[sale_order_type](sale_order_type/) | 9.0.1.1.0 | Sale Order Types
+[sale_order_type](sale_order_type/) | 9.0.1.2.0 | Sale Order Types
 [sale_order_variant_mgmt](sale_order_variant_mgmt/) | 9.0.1.0.0 | Handle the addition/removal of multiple variants from product template into the sales order
 [sale_packaging_price](sale_packaging_price/) | 9.0.1.0.0 | Sale Packaging Price
 [sale_procurement_group_by_line](sale_procurement_group_by_line/) | 9.0.1.0.0 | Base module for multiple procurement group by Sale order
