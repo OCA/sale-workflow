@@ -4,12 +4,13 @@
 # 
 # Translators:
 # Matjaž Mozetič <m.mozetic@matmoz.si>, 2015
+# Rudolf Schnapka <rs@techno-flex.de>, 2015
 msgid ""
 msgstr ""
 "Project-Id-Version: sale-workflow (8.0)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-09-09 12:27+0000\n"
-"PO-Revision-Date: 2015-09-07 14:32+0000\n"
+"POT-Creation-Date: 2016-04-29 00:56+0000\n"
+"PO-Revision-Date: 2016-04-30 06:25+0000\n"
 "Last-Translator: Matjaž Mozetič <m.mozetic@matmoz.si>\n"
 "Language-Team: Slovenian (http://www.transifex.com/oca/OCA-sale-workflow-8-0/language/sl/)\n"
 "MIME-Version: 1.0\n"
@@ -34,9 +35,19 @@ msgid "Created on"
 msgstr "Ustvarjeno"
 
 #. module: sale_reason_to_export
+#: field:sale.reason_to_export,display_name:0
+msgid "Display Name"
+msgstr "Prikazni naziv"
+
+#. module: sale_reason_to_export
 #: field:sale.reason_to_export,id:0
 msgid "ID"
 msgstr "ID"
+
+#. module: sale_reason_to_export
+#: field:sale.reason_to_export,__last_update:0
+msgid "Last Modified on"
+msgstr "Zadnjič spremenjeno"
 
 #. module: sale_reason_to_export
 #: field:sale.reason_to_export,write_uid:0
