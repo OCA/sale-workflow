@@ -19,7 +19,7 @@
 #
 #
 
-from openerp import models, api
+from odoo import models, api
 
 
 class SaleOrder(models.Model):
@@ -40,8 +40,8 @@ class SaleOrder(models.Model):
         return super(SaleOrder, self).create(vals)
 
     @api.multi
-    def action_wait(self):
-        if super(SaleOrder, self).action_wait():
+    def action_confirm(self):
+        if super(SaleOrder, self).action_confirm():
             for sale in self:
                 quo = sale.name
                 sale.write({
