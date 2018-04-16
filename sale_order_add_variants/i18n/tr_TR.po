@@ -3,22 +3,20 @@
 # * sale_order_add_variants
 # 
 # Translators:
-# FIRST AUTHOR <EMAIL@ADDRESS>, 2014
-# Pierre Verkest <pverkest@anybox.fr>, 2015
-# Rudolf Schnapka <rs@techno-flex.de>, 2015
+# Ozge Altinisik <ozge@altinkaya.com.tr>, 2017
 msgid ""
 msgstr ""
 "Project-Id-Version: sale-workflow (8.0)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-10-04 13:41+0000\n"
-"PO-Revision-Date: 2016-10-04 09:42+0000\n"
-"Last-Translator: OCA Transbot <transbot@odoo-community.org>\n"
-"Language-Team: German (http://www.transifex.com/oca/OCA-sale-workflow-8-0/language/de/)\n"
+"POT-Creation-Date: 2017-01-04 10:47+0000\n"
+"PO-Revision-Date: 2017-01-04 14:44+0000\n"
+"Last-Translator: Ozge Altinisik <ozge@altinkaya.com.tr>\n"
+"Language-Team: Turkish (Turkey) (http://www.transifex.com/oca/OCA-sale-workflow-8-0/language/tr_TR/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
-"Language: de\n"
-"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"Language: tr_TR\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
 
 #. module: sale_order_add_variants
 #: code:addons/sale_order_add_variants/wizard/sale_add_variants.py:75
@@ -26,105 +24,105 @@ msgstr ""
 #: view:sale.order:sale_order_add_variants.sale_order_add_variants_form
 #, python-format
 msgid "Add Variants"
-msgstr "Varianten hinzufügen"
+msgstr "Değişken ekle"
 
 #. module: sale_order_add_variants
 #: view:sale.add.variants:sale_order_add_variants.sale_add_variants_form
 msgid "Add to order"
-msgstr "Dem Auftrag hinzufügen"
+msgstr "Siparişe ekle "
 
 #. module: sale_order_add_variants
 #: view:sale.add.variants:sale_order_add_variants.sale_add_variants_form
 msgid "Add to order and add more"
-msgstr "Zum Auftrag hinzufügen und ergänzen"
+msgstr "Siparişe ekle ve daha fazlası"
 
 #. module: sale_order_add_variants
 #: model:ir.actions.act_window,name:sale_order_add_variants.action_sale_add_variants
 msgid "Add variants"
-msgstr "Varianten hinzufügen"
+msgstr "Değişken ekle"
 
 #. module: sale_order_add_variants
 #: model:res.groups,name:sale_order_add_variants.group_sale_add_variants
 msgid "Add variants to Sale Order from template"
-msgstr "Varianten aus Vorlage zum Auftrag hinzufügen"
+msgstr "Satış emrine şablondan değişkenler ekle"
 
 #. module: sale_order_add_variants
 #: field:sale.config.settings,group_sale_add_variants:0
 msgid "Allow to add variants from template in Sale order"
-msgstr "Varianten aus Vorlage in Auftrag hinzufügen erlauben"
+msgstr "Satış emrine şablondan değişkenler eklemeye izin ver"
 
 #. module: sale_order_add_variants
 #: field:sale.add.variants,create_uid:0
 #: field:sale.add.variants.line,create_uid:0
 msgid "Created by"
-msgstr "Angelegt durch"
+msgstr "Oluşturan"
 
 #. module: sale_order_add_variants
 #: field:sale.add.variants,create_date:0
 #: field:sale.add.variants.line,create_date:0
 msgid "Created on"
-msgstr "Angelegt am"
+msgstr "Oluşturulma tarihi"
 
 #. module: sale_order_add_variants
 #: field:sale.add.variants,display_name:0
 #: field:sale.add.variants.line,display_name:0
 msgid "Display Name"
-msgstr "Anzeigename"
+msgstr "Görünen ad"
 
 #. module: sale_order_add_variants
 #: field:sale.add.variants,id:0 field:sale.add.variants.line,id:0
 msgid "ID"
-msgstr "ID"
+msgstr "Kimlik"
 
 #. module: sale_order_add_variants
 #: field:sale.add.variants,__last_update:0
 #: field:sale.add.variants.line,__last_update:0
 msgid "Last Modified on"
-msgstr "Zuletzt geändert am"
+msgstr "En son güncelleme tarihi"
 
 #. module: sale_order_add_variants
 #: field:sale.add.variants,write_uid:0
 #: field:sale.add.variants.line,write_uid:0
 msgid "Last Updated by"
-msgstr "Zuletzt akualisiert durch"
+msgstr "En son güncelleyen "
 
 #. module: sale_order_add_variants
 #: field:sale.add.variants,write_date:0
 #: field:sale.add.variants.line,write_date:0
 msgid "Last Updated on"
-msgstr "Zuletzt akualisiert am"
+msgstr "En son güncelleme tarihi"
 
 #. module: sale_order_add_variants
 #: field:sale.add.variants.line,product_uom_qty:0
 msgid "Quantity"
-msgstr "Menge"
+msgstr "Miktar"
 
 #. module: sale_order_add_variants
 #: field:sale.add.variants,product_tmpl_id:0
 msgid "Template"
-msgstr "Vorlage"
+msgstr "Şablon"
 
 #. module: sale_order_add_variants
 #: field:sale.add.variants.line,product_uom:0
 msgid "Unit of Measure "
-msgstr "Mengeneinheit"
+msgstr "Ölçüm birimi"
 
 #. module: sale_order_add_variants
 #: field:sale.add.variants.line,product_id:0
 msgid "Variant"
-msgstr "Variante"
+msgstr "Değişken"
 
 #. module: sale_order_add_variants
 #: field:sale.add.variants,variant_line_ids:0
 msgid "Variant Lines"
-msgstr "Variantenposition"
+msgstr "Değişken satırları"
 
 #. module: sale_order_add_variants
 #: view:sale.add.variants:sale_order_add_variants.sale_add_variants_form
 msgid "Variants"
-msgstr "Varianten"
+msgstr "Değişkenler"
 
 #. module: sale_order_add_variants
 #: field:sale.add.variants.line,wizard_id:0
 msgid "Wizard id"
-msgstr "Assistent-ID"
+msgstr "Sihirbaz kimlik no"
