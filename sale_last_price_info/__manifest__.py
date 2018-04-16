@@ -18,19 +18,15 @@
 
 {
     "name": "Product Last Price Info - Sale",
-    "version": "8.0.1.0.0",
     "category": "Sales Management",
+    'version': '10.0.0.1.0',
+    'author': "DVIT.ME",
+    'website': "http://dvit.me",
+    'maintainer': 'Abdulrhman mohammed',
     "license": "AGPL-3",
-    "author": "OdooMRP team, "
-              "AvanzOSC, "
-              "Serv. Tecnol. Avanzados - Pedro M. Baeza, "
-              "Odoo Community Association (OCA)",
-    "website": "http://www.odoomrp.com",
     "contributors": [
-        "Alfredo de la Fuente <alfredodelafuente@avanzosc.es>",
-        "Oihane Crucelaegui <oihanecrucelaegi@avanzosc.es>",
-        "Pedro M. Baeza <pedro.baeza@serviciosbaeza.com>",
-        "Ana Juaristi <anajuaristi@avanzosc.es>",
+        "obeidgad@gmail.com",
+        "a.abdeldaiem@dvit.me",
     ],
     "depends": [
         "sale",
@@ -38,5 +34,5 @@
     "data": [
         "views/product_view.xml",
     ],
-    'installable': False,
+    "installable": True,
 }
