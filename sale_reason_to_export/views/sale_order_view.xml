@@ -1,5 +1,5 @@
 <?xml version="1.0"?>
-<openerp>
+<odoo>
     <data>
 
         <record id="view_sale_order_form" model="ir.ui.view">
@@ -9,15 +9,15 @@
             <field name="arch" type="xml">
                 <group name="sale_total" position="after">
                     <group col="4">
-                        <group>
+
                             <field name="reason_to_export_id"/>
-                        </group>
+
                         <!-- Need an empty group so that the reason_to_export_id field width does not stretch to the whole page -->
-                        <group></group>
+
                     </group>
                 </group>
             </field>
         </record>
         
     </data>
-</openerp>
+</odoo>

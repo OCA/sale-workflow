@@ -1,8 +1,8 @@
 # -*- coding: utf-8 -*-
 ##############################################################################
 #
-#    Author: Hugo Santos
-#    Copyright 2015 FactorLibre
+#    Author: DVIT.ME
+#    Copyright 2018 DVIT.ME
 #
 #    This program is free software: you can redistribute it and/or modify
 #    it under the terms of the GNU Affero General Public License as
@@ -20,12 +20,16 @@
 ##############################################################################
 {
     'name': 'Sale Order Add Variants',
-    'summary': 'Add variants from template into sale order',
-    'version': '8.0.0.1.0',
-    'author': 'FactorLibre,Odoo Community Association (OCA)',
-    'category': 'Sale',
+    'version': '10.0.0.1.0',
+    'author': "DVIT.ME",
+    'website': "http://dvit.me",
+    'maintainer': 'Abdulrhman mohammed',
     'license': 'AGPL-3',
-    'website': 'http://factorlibre.com',
+    "contributors": [
+        "obeidgad@gmail.com",
+        "a.abdeldaiem@dvit.me",
+    ],
+    'category': 'sale',
     'depends': [
         'sale'
     ],
@@ -36,5 +40,5 @@
         'view/sale_view.xml',
         'view/res_config_view.xml'
     ],
-    'installable': False
+    'installable': True
 }

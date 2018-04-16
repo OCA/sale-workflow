@@ -3,12 +3,13 @@
 # * sale_last_price_info
 # 
 # Translators:
+# Matjaž Mozetič <m.mozetic@matmoz.si>, 2016
 msgid ""
 msgstr ""
 "Project-Id-Version: sale-workflow (8.0)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-09-09 12:27+0000\n"
-"PO-Revision-Date: 2015-09-07 14:31+0000\n"
+"POT-Creation-Date: 2016-04-29 00:55+0000\n"
+"PO-Revision-Date: 2016-04-30 06:26+0000\n"
 "Last-Translator: Matjaž Mozetič <m.mozetic@matmoz.si>\n"
 "Language-Team: Slovenian (http://www.transifex.com/oca/OCA-sale-workflow-8-0/language/sl/)\n"
 "MIME-Version: 1.0\n"
@@ -18,9 +19,24 @@ msgstr ""
 "Plural-Forms: nplurals=4; plural=(n%100==1 ? 0 : n%100==2 ? 1 : n%100==3 || n%100==4 ? 2 : 3);\n"
 
 #. module: sale_last_price_info
+#: field:product.product,last_customer_id:0
+msgid "Last Customer"
+msgstr "Zadnji kupec"
+
+#. module: sale_last_price_info
 #: view:product.product:sale_last_price_info.product_last_sale_info_form_view
 msgid "Last Price Info"
 msgstr "Podatki o zadnji ceni"
+
+#. module: sale_last_price_info
+#: field:product.product,last_sale_date:0
+msgid "Last Sale Date"
+msgstr "Datum zadnje prodaje"
+
+#. module: sale_last_price_info
+#: field:product.product,last_sale_price:0
+msgid "Last Sale Price"
+msgstr "Cena zadnje prodaje"
 
 #. module: sale_last_price_info
 #: model:ir.model,name:sale_last_price_info.model_product_product
