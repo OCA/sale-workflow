@@ -22,12 +22,16 @@
 
 {
     'name': 'Sale Reason to Export',
-    'version': '8.0.0.1.0',
-    'author': 'Jean-Philippe Jobin',
-    'maintainer': 'Savoir-faire Linux',
-    'website': ' http://www.savoirfairelinux.com',
+    'version': '10.0.0.1.0',
+    'author': "DVIT.ME",
+    'website': "http://dvit.me",
+    'maintainer': 'Abdulrhman mohammed',
     'license': 'AGPL-3',
     'category': 'Sales',
+    'contributors': [
+        "obeidgad@gmail.com",
+        "a.abdeldaiem@dvit.me",
+    ],
     'summary': 'Reason to export in Sales Order',
     'depends': [
         'sale',
@@ -42,7 +46,7 @@
         'views/sale_reason_to_export_view.xml',
     ],
 
-    'installable': False,
+    'installable': True,
     'auto_install': False,
     'application': False,
 }
