@@ -23,7 +23,10 @@ class SaleOrderLine(models.Model):
     def create(self, vals):
         if 'product_id' in vals:
             product = self.env['product.product'].browse(vals['product_id'])
-            vals = self.play_onchanges(vals, ['product_id', 'product_uom_qty'])
+            if self.env.context.get('install_mode'):
+                # onchange are not played in install mode
+                vals = self.play_onchanges(
+                    vals, ['product_id', 'product_uom_qty'])
             price_unit = vals.get('price_unit', 0.0)
             vals.update(self._set_product(product, price_unit))
         return super(SaleOrderLine, self).create(vals)
@@ -70,16 +73,11 @@ class SaleOrderLine(models.Model):
             final_options_price += option.line_price
             self.price_unit = final_options_price + self.base_price_unit
 
-
-class SaleOrder(models.Model):
-    _inherit = "sale.order"
-
     @api.model
-    def _prepare_vals_lot_number(self, order_line, index_lot):
-        res = super(SaleOrder, self)._prepare_vals_lot_number(
-            order_line, index_lot)
+    def _prepare_vals_lot_number(self, index_lot):
+        res = super(SaleOrderLine, self)._prepare_vals_lot_number(index_lot)
         res['option_ids'] = [
-            (6, 0, [line.id for line in order_line.option_ids])
+            (6, 0, [line.id for line in self.option_ids])
         ]
         return res
 
@@ -105,6 +103,12 @@ class SaleOrderLineOption(models.Model):
         help="Can be used to prevent confirmed sale order")
     line_price = fields.Float(compute='_compute_price', store=True)
 
+    _sql_constraints = [
+        ('option_unique_per_line',
+         'unique(sale_line_id, product_id)',
+         'Option must be unique per Sale line. Check option lines'),
+    ]
+
     @api.model
     def default_get(self, fields):
         res = super(SaleOrderLineOption, self).default_get(fields)
@@ -124,10 +128,10 @@ class SaleOrderLineOption(models.Model):
     @api.onchange('product_id')
     def _onchange_product(self):
         """ we need to store bom_line_id to compute option price """
-        line_product_id = self.env.context.get('line_product_id')
-        bom_line = self.env['mrp.bom.line'].with_context(
-            filter_bom_with_product=line_product_id).search([
-                ('product_id', '=', self.product_id.id)], limit=1)
+        ctx = {'filter_bom_with_product': self.env.context.get(
+            'line_product_id')}
+        bom_line = self.env['mrp.bom.line'].with_context(ctx).search([
+            ('product_id', '=', self.product_id.id)], limit=1)
         self.bom_line_id = bom_line and bom_line.id
 
     def _compute_opt_products(self):

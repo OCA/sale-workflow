@@ -5,6 +5,26 @@
 from odoo import fields, api, models
 
 
+class MrpProduction(models.Model):
+    _inherit = 'mrp.production'
+
+    def _generate_raw_moves(self, exploded_lines):
+        options = {opt.product_id: opt.qty for opt in self.lot_id.option_ids}
+        moves = super(MrpProduction, self.with_context(
+            {'lot_options': options}))._generate_raw_moves(exploded_lines)
+        if options:
+            for move in moves:
+                move.write({'product_uom_qty': options[move.product_id]})
+        return moves
+
+    def _generate_raw_move(self, bom_line, line_data):
+        options = self.env.context.get('lot_options')
+        if options and bom_line.product_id not in options:
+            return self.env['stock.move']
+        return super(MrpProduction, self)._generate_raw_move(
+            bom_line, line_data)
+
+
 class MrpBomLine(models.Model):
     _inherit = "mrp.bom.line"
     _rec_name = 'name'
@@ -49,30 +69,3 @@ class MrpBomLine(models.Model):
                 ('bom_id.product_id', '=', product.id)]
             domain += new_domain
         return domain
-
-
-class MrpBom(models.Model):
-    _inherit = "mrp.bom"
-
-    @api.model
-    def _skip_bom_line(self, line, product):
-        res = super(MrpBom, self)._skip_bom_line(line, product)
-        prod_id = self.env.context['production_id']
-        prod = self.env['mrp.production'].browse(prod_id)
-        bom_lines = [option.bom_line_id
-                     for option in prod.lot_id.option_ids]
-        if line in bom_lines:
-            return res
-        else:
-            return True
-
-    @api.model
-    def _prepare_conssumed_line(self, bom_line, quantity, product_uos_qty):
-        vals = super(MrpBom, self)._prepare_conssumed_line(
-            bom_line, quantity, product_uos_qty)
-        prod = self.env['mrp.production'].browse(
-            self.env.context['production_id'])
-        for option in prod.lot_id.option_ids:
-            if option.bom_line_id == bom_line:
-                vals['product_qty'] = vals['product_qty'] * option.qty
-        return vals

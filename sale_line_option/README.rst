@@ -46,9 +46,14 @@ To use this module, you need to:
    :alt: Try me on Runbot
    :target: https://runbot.odoo-community.org/runbot/167/8.0
 
+* sale confirmation of produceable products adjust components to consume with choosen
+  options and not with original bill of materials content.
 
 Known issues / Roadmap
 ======================
+
+* Products which are not manufactured from sale are not managed at this time
+  by this module
 
 
 Bug Tracker
