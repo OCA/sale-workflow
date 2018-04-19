@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+
+    <record model="ir.ui.view" id="sale_order_form_view">
+        <field name="name">sale.order.form</field>
+        <field name="model">sale.order</field>
+        <field name="inherit_id" ref="sale.view_order_form"/>
+        <field name="arch" type="xml">
+            <field name="order_line" position="attributes">
+                <attribute name="context">{'default_requested_date':requested_date}</attribute>
+            </field>
+            <xpath expr="//field[@name='order_line']/form//field[@name='qty_delivered']" position="after">
+                <field name="returned_qty" />
+            </xpath>
+            <xpath expr="//field[@name='order_line']/tree/field[@name='qty_delivered']" position="after">
+                <field name="returned_qty"/>
+            </xpath>
+        </field>
+    </record>
+    <record id="sale_order_line_ext_tree_view" model="ir.ui.view">
+        <field name="name">sale.order.line.ext.tree</field>
+        <field name="model">sale.order.line</field>
+        <field name="inherit_id" ref="sale.view_order_line_tree" />
+        <field name="arch" type="xml">
+            <field name="qty_delivered" position="after">
+                <field name="returned_qty"/>
+            </field>
+        </field>
+    </record>
+
+</odoo>
