@@ -3,10 +3,7 @@
     <data noupdate="1">
 
         <!-- Sequences for sale.quotation -->
-        <record id="seq_type_sale_quotation" model="ir.sequence.type">
-            <field name="name">Sales Quotation</field>
-            <field name="code">sale.quotation</field>
-        </record>
+
 
         <record id="seq_sale_quotation" model="ir.sequence">
             <field name="name">Sales Quotation</field>
