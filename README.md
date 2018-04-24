@@ -22,7 +22,7 @@ addon | version | summary
 [product_price_category](product_price_category/) | 10.0.1.0.0 | Add Price Category field on product and allow to apply a pricelist on this field.
 [sale_automatic_workflow](sale_automatic_workflow/) | 10.0.1.0.1 | Sale Automatic Workflow
 [sale_automatic_workflow_exception](sale_automatic_workflow_exception/) | 10.0.1.0.0 | Sale Automatic Workflow Exception
-[sale_automatic_workflow_payment_mode](sale_automatic_workflow_payment_mode/) | 10.0.1.0.0 | Sale Automatic Workflow - Payment Mode
+[sale_automatic_workflow_payment_mode](sale_automatic_workflow_payment_mode/) | 10.0.1.0.1 | Sale Automatic Workflow - Payment Mode
 [sale_cancel_reason](sale_cancel_reason/) | 10.0.1.0.0 | Sale Cancel Reason
 [sale_commercial_partner](sale_commercial_partner/) | 10.0.1.0.0 | Add stored related field 'Commercial Entity' on sale orders
 [sale_company_currency](sale_company_currency/) | 10.0.1.0.0 | Company currency in sale orders
