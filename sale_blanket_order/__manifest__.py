@@ -14,6 +14,7 @@
         'web_action_conditionable',
     ],
     'data': [
+        'views/sale_config_settings.xml',
         'data/sequence.xml',
         'data/ir_cron.xml',
         'security/ir.model.access.csv',
