@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Copyright 2018 ACSONE SA/NV
+     License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl). -->
+
+<odoo>
+
+    <record model="ir.ui.view" id="sale_config_settings_form_view">
+        <field name="name">sale.config.settings.form (in sale_blanket_order)</field>
+        <field name="model">sale.config.settings</field>
+        <field name="inherit_id" ref="sale.view_sales_config"/>
+        <field name="arch" type="xml">
+            <xpath expr="//group[@name='quotations_sales']" position="after">
+                <group name="blanket_orders" string="Blanket Orders">
+                    <field name="group_blanket_disable_adding_lines"/>
+                </group>
+            </xpath>
+        </field>
+    </record>
+
+
+
+</odoo>

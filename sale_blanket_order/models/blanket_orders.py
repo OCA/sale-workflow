@@ -274,6 +274,7 @@ class BlanketOrderLine(models.Model):
     @api.multi
     def _get_display_price(self, product):
         # Copied and adapted from the sale module
+        self.ensure_one()
         pricelist = self.order_id.pricelist_id
         partner = self.order_id.partner_id
         if self.order_id.pricelist_id.discount_policy == 'with_discount':
