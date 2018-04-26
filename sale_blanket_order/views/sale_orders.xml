@@ -27,9 +27,6 @@
             </xpath>
 
             <!-- tree -->
-            <xpath expr="//field[@name='order_line']//tree" position="attributes">
-                <attribute name="create">blanket_order_id==False</attribute>
-            </xpath>
             <xpath expr="//field[@name='order_line']//tree" position="inside">
                 <field name="blanket_line_id" invisible="1"/>
             </xpath>
@@ -44,6 +41,18 @@
             </xpath>
             <xpath expr="//field[@name='order_line']//tree/field[@name='price_unit']" position="attributes">
                 <attribute name="attrs">{'readonly': [('blanket_line_id', '!=', False)]}</attribute>
+            </xpath>
+        </field>
+    </record>
+
+    <record id="view_order_form_disable_adding_lines" model="ir.ui.view">
+        <field name="name">sale.order.from.blanket.form - disable adding lines</field>
+        <field name="model">sale.order</field>
+        <field name="inherit_id" ref="sale.view_order_form"/>
+        <field name="groups_id" eval="[(6,0,[ref('sale_blanket_order.blanket_orders_disable_adding_lines')])]" />
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='order_line']//tree" position="attributes">
+                <attribute name="create">blanket_order_id==False</attribute>
             </xpath>
         </field>
     </record>
