@@ -5,7 +5,7 @@ from datetime import date, timedelta
 
 from odoo.tests import common
 from odoo import fields
-from odoo.exceptions import Warning
+from odoo.exceptions import UserError
 
 
 class TestBlanketOrders(common.TransactionCase):
@@ -58,7 +58,7 @@ class TestBlanketOrders(common.TransactionCase):
         self.assertEqual(blanket_order.lines_ids[0].price_unit, 56.0)
 
         # date in the past
-        with self.assertRaises(Warning):
+        with self.assertRaises(UserError):
             blanket_order.action_confirm()
 
         blanket_order.validity_date = fields.Date.to_string(tomorrow)
