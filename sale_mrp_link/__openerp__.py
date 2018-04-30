@@ -5,7 +5,7 @@
     'name': 'Sale MRP Link',
     'version': '9.0.1.0.0',
     'category': 'Generic Modules',
-    'author': 'Akretion',
+    'author': 'Akretion,Odoo Community Association (OCA)',
     'website': 'http://akretion.com',
     'license': 'AGPL-3',
     'depends': ['sale_stock', 'mrp'],
