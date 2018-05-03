@@ -36,6 +36,7 @@ setuptools.setup(
         'odoo10-addon-sale_order_type',
         'odoo10-addon-sale_owner_stock_sourcing',
         'odoo10-addon-sale_procurement_group_by_line',
+        'odoo10-addon-sale_product_multi_add',
         'odoo10-addon-sale_product_set',
         'odoo10-addon-sale_product_set_layout',
         'odoo10-addon-sale_rental',
