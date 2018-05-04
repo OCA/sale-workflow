@@ -2,7 +2,7 @@
 # Copyright 2017 ACSONE SA/NV (<http://acsone.eu>)
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
 
-from odoo import fields, models
+from odoo import api, fields, models
 
 
 class ProductTemplate(models.Model):
@@ -18,9 +18,14 @@ class ProductTemplate(models.Model):
              'delivered (time or deliveries).',
         default='order')
 
-    invoice_policy = fields.Selection(compute="_compute_invoice_policy",
-                                      store=False)
+    invoice_policy = fields.Selection(
+        compute="_compute_invoice_policy",
+        store=False,
+        search='_search_invoice_policy',
+    )
 
+    @api.multi
+    @api.depends('type')
     def _compute_invoice_policy(self):
         """
         Apply the invoice_policy given by context (if exist) otherwise use the
@@ -35,3 +40,7 @@ class ProductTemplate(models.Model):
                 tmpl.invoice_policy = invoice_policy
             else:
                 tmpl.invoice_policy = tmpl.default_invoice_policy
+
+    @api.model
+    def _search_invoice_policy(self, operator, value):
+        return [('default_invoice_policy', operator, value)]
