@@ -22,7 +22,13 @@ class ProductTemplate(models.Model):
         compute="_compute_invoice_policy",
         store=False,
         search='_search_invoice_policy',
+        inverse='_inverse_invoice_policy',
     )
+
+    @api.multi
+    def _inverse_invoice_policy(self):
+        for template in self.filtered('invoice_policy'):
+            template.default_invoice_policy = template.invoice_policy
 
     @api.multi
     @api.depends('type')
