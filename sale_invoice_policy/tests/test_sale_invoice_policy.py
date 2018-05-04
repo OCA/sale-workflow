@@ -182,3 +182,15 @@ class TestSaleOrderInvoicePolicy(common.TransactionCase):
         # This one is not a service so it must be impacted by the context
         self.assertEqual(product2.invoice_policy, invoice_policy)
         return True
+
+    def test_inverse_invoice_policy(self):
+        self.product.default_invoice_policy = 'order'
+        self.assertEquals(
+            'order',
+            self.product.default_invoice_policy
+        )
+        self.product.invoice_policy = 'delivery'
+        self.assertEquals(
+            'delivery',
+            self.product.default_invoice_policy
+        )
