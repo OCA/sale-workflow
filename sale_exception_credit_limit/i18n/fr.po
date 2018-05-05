@@ -3,14 +3,14 @@
 # * sale_exception_credit_limit
 # 
 # Translators:
-# Guillaume Masson <guillaume.masson@meta-it.fr>, 2017
+# Juan José Scarafía <scarafia.juanjose@gmail.com>, 2018
 msgid ""
 msgstr ""
-"Project-Id-Version: Odoo Server 9.0c\n"
+"Project-Id-Version: Odoo Server 11.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-09-28 19:33+0000\n"
-"PO-Revision-Date: 2017-09-28 19:33+0000\n"
-"Last-Translator: Guillaume Masson <guillaume.masson@meta-it.fr>, 2017\n"
+"POT-Creation-Date: 2018-09-17 13:18+0000\n"
+"PO-Revision-Date: 2018-09-17 13:18+0000\n"
+"Last-Translator: Juan José Scarafía <scarafia.juanjose@gmail.com>, 2018\n"
 "Language-Team: French (https://www.transifex.com/adhoc/teams/46451/fr/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -24,16 +24,16 @@ msgid "Config Credit Limit On partners"
 msgstr ""
 
 #. module: sale_exception_credit_limit
-#: model:sale.exception,name:sale_exception_credit_limit.credit_limit_exceeded
+#: model:exception.rule,name:sale_exception_credit_limit.credit_limit_exceeded
 msgid "Credit Limit Exceeded"
 msgstr "Limite de crédit dépassée"
 
 #. module: sale_exception_credit_limit
-#: model:sale.exception,description:sale_exception_credit_limit.credit_limit_exceeded
+#: model:exception.rule,description:sale_exception_credit_limit.credit_limit_exceeded
 msgid "Not enough credit on partner for this sales order."
 msgstr ""
 
 #. module: sale_exception_credit_limit
 #: model:ir.model,name:sale_exception_credit_limit.model_sale_order
-msgid "Sales Order"
-msgstr "Bon de commande"
+msgid "Quotation"
+msgstr ""

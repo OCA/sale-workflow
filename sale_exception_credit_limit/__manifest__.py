@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 ##############################################################################
 #
 #    Copyright (C) 2015  ADHOC SA  (http://www.adhoc.com.ar)
@@ -20,7 +19,7 @@
 ##############################################################################
 {
     'name': 'Sale Exception Credit Limit',
-    'version': '9.0.1.1.0',
+    'version': '11.0.1.0.0',
     'author': 'ADHOC SA',
     'website': 'www.adhoc.com.ar',
     'license': 'AGPL-3',
@@ -28,13 +27,12 @@
         'sale_exception',
     ],
     'data': [
-        'security/security.xml',
-        'data/data.xml',
-        'partner_view.xml',
+        'security/sale_exception_credit_limit_security.xml',
+        'data/exception_rule_data.xml',
+        'views/res_partner_views.xml',
     ],
     'demo': [
-        'partner_demo.xml'
+        'demo/res_partner_demo.xml'
     ],
-    'test': [],
     'installable': True,
 }

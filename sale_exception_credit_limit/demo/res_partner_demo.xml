@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo noupdate="1">
+
+    <!-- we add credit for test cases -->
+
+    <!-- austek -->
+    <record id="base.res_partner_1" model="res.partner">
+        <field name="credit_limit" eval="60000.00"/>
+    </record>
+
+    <!-- agrolait -->
+    <record id="base.res_partner_2" model="res.partner">
+        <field name="credit_limit" eval="60000.00"/>
+    </record>
+
+    <!-- China Export -->
+    <record id="base.res_partner_3" model="res.partner">
+        <field name="credit_limit" eval="60000.00"/>
+    </record>
+
+    <!-- Delta PC -->
+    <record id="base.res_partner_4" model="res.partner">
+        <field name="credit_limit" eval="60000.00"/>
+    </record>
+
+    <!-- Think Big Systems -->
+    <record id="base.res_partner_18" model="res.partner">
+        <field name="credit_limit" eval="60000.00"/>
+    </record>
+
+</odoo>

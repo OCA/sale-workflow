@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo noupdate="1">
+    <record id="credit_limit_exceeded" model="exception.rule">
+        <field name="name">Credit Limit Exceeded</field>
+        <field name="description">Not enough credit on partner for this sales order.</field>
+        <field name="sequence">10</field>
+        <field name="model">sale.order</field>
+        <field name="rule_group">sale</field>
+        <field name="code">if not object.check_credit_limit_ok():
+      failed = True</field>
+        <field name="active" eval="True"/>
+    </record>
+</odoo>
