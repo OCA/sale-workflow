@@ -21,6 +21,7 @@ class ProductTemplate(models.Model):
     invoice_policy = fields.Selection(
         compute="_compute_invoice_policy",
         store=False,
+        readonly=True,
         search='_search_invoice_policy',
         inverse='_inverse_invoice_policy',
     )
