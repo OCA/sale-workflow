@@ -62,6 +62,7 @@ class TestSaleOrderInvoicePolicy(common.TransactionCase):
         """
         so = self.env["sale.order"].create(
             {'partner_id': self.env.ref("base.res_partner_2").id,
+             'invoice_policy': 'delivery',
              'order_line': [(0, 0, {'product_id': self.product.id,
                                     'product_uom_qty': 2.0}),
                             (0, 0, {'product_id': self.product2.id,
