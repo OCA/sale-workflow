@@ -16,6 +16,7 @@
         'sale_stock',
     ],
     'data': [
+        'wizards/res_config_view.xml',
         'views/product_template_view.xml',
         'views/sale_view.xml',
     ],
