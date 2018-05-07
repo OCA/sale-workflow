@@ -12,8 +12,6 @@ class SaleOrder(models.Model):
     invoice_policy = fields.Selection(
         [('order', 'Ordered quantities'),
          ('delivery', 'Delivered quantities')],
-        default='delivery',
-        required=True,
         readonly=True,
         states={
             'draft': [('readonly', False)],
