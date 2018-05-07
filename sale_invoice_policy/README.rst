@@ -13,7 +13,9 @@ Usage
 =====
 
 * Create Sale Order
-* Select Invoicing Policy on Sale Order
+* Select Invoicing Policy on Sale Order or let it void
+* Either the policy selected on Sale Order would be used, either if not
+  filled in, the policy would be chosen from product configuration
 
 .. image:: https://odoo-community.org/website/image/ir.attachment/5784_f2813bd/datas
    :alt: Try me on Runbot
