@@ -7,7 +7,8 @@
         <field name="priority">50</field>
         <field name="arch" type="xml">
             <field name="payment_term_id" position="after">
-                 <field name="invoice_policy"/>
+                <field name="invoice_policy_required" invisible="1"/>
+                <field name="invoice_policy" attrs="{'required': [('invoice_policy_required', '=', True)]}"/>
             </field>
         </field>
     </record>
