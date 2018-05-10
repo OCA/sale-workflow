@@ -10,13 +10,19 @@
             </xpath>
             <xpath expr="//button[@name='action_cancel']" position="before">
                 <button name="%(action_sale_order_cancel)d" states="draft,sent,sale"
-                  string="Cancel Order" type="action" groups="base.group_user"/>
+                        string="Cancel Order" type="action" groups="base.group_user"/>
             </xpath>
             <xpath expr="/form/sheet/div/h1" position="after">
-                <h2 attrs="{'invisible': [('state', '!=', 'cancel')]}">
+                <div attrs="{'invisible': [('state', '!=', 'cancel')]}" style="font-size:12px">
                     <label for="cancel_reason_id" string="Cancellation reason:"/>
                     <field name="cancel_reason_id" class="oe_inline" options='{"no_open": True}'/>
-                </h2>
+                    <div>
+                        <label for="description" string="Description:"/>
+                    </div>
+                    <div>
+                        <field name="description" class="oe_inline"/>
+                    </div>
+                </div>
             </xpath>
         </field>
     </record>
@@ -49,8 +55,8 @@
     </record>
 
     <menuitem id="menu_sale_order_cancel_reason"
-      parent="sales_team.menu_sale_config"
-      name="Sale Order Cancel Reasons"
-      action="action_sale_order_cancel_reason"
-      sequence="150" groups="sales_team.group_sale_manager"/>
+              parent="sales_team.menu_sale_config"
+              name="Sale Order Cancel Reasons"
+              action="action_sale_order_cancel_reason"
+              sequence="150" groups="sales_team.group_sale_manager"/>
 </odoo>

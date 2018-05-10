@@ -7,12 +7,10 @@ from odoo import models, fields
 class SaleOrder(models.Model):
     _inherit = 'sale.order'
 
-    cancel_reason_id = fields.Many2one(
-        'sale.order.cancel.reason',
-        string="Reason for cancellation",
-        readonly=True,
+    cancel_reason_id = fields.Many2one('sale.order.cancel.reason', string="Reason for cancellation", readonly=True,
         ondelete="restrict")
-
+    description = fields.Text(string="Description", readonly=True,
+        ondelete="restrict")
 
 class SaleOrderCancelReason(models.Model):
     _name = 'sale.order.cancel.reason'

@@ -14,6 +14,7 @@ class SaleOrderCancel(models.TransientModel):
         'sale.order.cancel.reason',
         string='Reason',
         required=True)
+    description = fields.Text(string='Description', size=12)
 
     @api.multi
     def confirm_cancel(self):
@@ -25,5 +26,6 @@ class SaleOrderCancel(models.TransientModel):
         assert len(sale_ids) == 1, "Only 1 sale ID expected"
         sale = self.env['sale.order'].browse(sale_ids)
         sale.cancel_reason_id = self.reason_id.id
+        sale.description = self.description
         sale.action_cancel()
         return act_close
