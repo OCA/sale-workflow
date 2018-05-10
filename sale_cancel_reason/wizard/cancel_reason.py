@@ -14,7 +14,7 @@ class SaleOrderCancel(models.TransientModel):
         'sale.order.cancel.reason',
         string='Reason',
         required=True)
-    description = fields.Text(string='Description', size=12)
+    description = fields.Text(string='Description')
 
     @api.multi
     def confirm_cancel(self):
