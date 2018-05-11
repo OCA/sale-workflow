@@ -23,5 +23,6 @@ class StockPicking(models.Model):
         """
         for picking in self:
             picking.can_be_amended = all(
-                move.can_be_amended for move in picking.move_lines
+                move.can_be_amended for move in
+                picking.move_lines.filtered(lambda m: m.state != 'cancel')
             )
