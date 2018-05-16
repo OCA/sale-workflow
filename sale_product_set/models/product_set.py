@@ -19,3 +19,7 @@ class ProductSet(models.Model):
         'product_set_id',
         string="Products"
     )
+    image = fields.Binary(
+        string='Image',
+        help='Select an image to display for the product set'
+    )
