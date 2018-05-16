@@ -14,35 +14,38 @@ class SaleOrder(models.Model):
 
     @api.depends('order_line.price_total')
     def _amount_all(self):
-        """
-        Compute the total amounts of the SO.
-        """
+        extra_context = {'compute_triple_discount': True}
         for order in self:
-            if not order.company_id.tax_calculation_rounding_method == (
+            if (order.company_id.tax_calculation_rounding_method ==
                     'round_globally'):
+                return super(SaleOrder, self.with_context(**extra_context)
+                             )._amount_all()
+            else:
                 return super(SaleOrder, self)._amount_all()
-            amount_untaxed = amount_tax = 0.0
-            for line in order.order_line:
-                amount_untaxed += line.price_subtotal
-                price = line.price_unit * (
-                    1 - (line.discount or 0.0) / 100.0) * (
-                    1 - (line.discount2 or 0.0) / 100.0) * (
-                    1 - (line.discount3 or 0.0) / 100.0)
-                taxes = line.tax_id.compute_all(
-                    price,
-                    line.order_id.currency_id,
-                    line.product_uom_qty,
-                    product=line.product_id,
-                    partner=order.partner_shipping_id,
-                )
-                amount_tax += sum(
-                    t.get('amount', 0.0) for t in taxes.get('taxes', []))
-            order.update({
-                'amount_untaxed': order.pricelist_id.currency_id.round(
-                    amount_untaxed),
-                'amount_tax': order.pricelist_id.currency_id.round(amount_tax),
-                'amount_total': amount_untaxed + amount_tax,
-            })
+
+    def _get_amount_tax_with_triple_discount(self):
+        self.ensure_one()
+        amount_untaxed = amount_tax = 0.0
+        for line in self.order_line:
+            amount_untaxed += line.price_subtotal
+            price = line.price_unit * (1 - (line.discount or 0.0) / 100.0)
+            price *= (1 - (line.discount2 or 0.0) / 100.0)
+            price *= (1 - (line.discount3 or 0.0) / 100.0)
+            taxes = line.tax_id.compute_all(
+                price, line.order_id.currency_id, line.product_uom_qty,
+                product=line.product_id, partner=self.partner_shipping_id)
+            amount_tax += sum(
+                t.get('amount', 0.0) for t in taxes.get('taxes', []))
+        return amount_tax
+
+    @api.model
+    def update(self, vals):
+        if not self.env.context.get('compute_triple_discount'):
+            return super(SaleOrder, self).update(vals)
+        amount_tax = self._get_amount_tax_with_triple_discount()
+        vals['amount_tax'] = self.pricelist_id.currency_id.round(amount_tax)
+        vals['amount_total'] = vals['amount_untaxed'] + vals['amount_tax']
+        return super(SaleOrder, self).update(vals)
 
 
 class SaleOrderLine(models.Model):
