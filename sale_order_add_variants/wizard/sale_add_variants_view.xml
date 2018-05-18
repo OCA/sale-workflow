@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<openerp>
+<odoo>
     <data>
 
         <record model="ir.ui.view" id="sale_add_variants_form">
@@ -13,11 +13,11 @@
                             options="{'no_create': True}"/>
                     </group>
                     <group colspan="4">
-                        <field name="variant_line_ids" mode="tree" nolabel="1">
-                            <tree string="Variants" editable="top">
+                        <field name="variant_line_ids" nolabel="1">
+                            <tree string="Variants" editable="bottom">
                                 <field name="product_id"/>
                                 <field name="product_uom_qty"/>
-                                <field name="product_uom" groups="product.group_uom"/>
+                                <field name="product_uom"/>
                             </tree>
                         </field>
                     </group>
@@ -44,4 +44,4 @@
         </record>
 
     </data>
-</openerp>
+</odoo>

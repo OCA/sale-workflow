@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 ##############################################################################
 #
 #    Author: Hugo Santos
@@ -18,8 +17,8 @@
 #    along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
 ##############################################################################
-import openerp.addons.decimal_precision as dp
-from openerp import api, models, fields, _
+import odoo.addons.decimal_precision as dp
+from odoo import api, models, fields, _
 
 
 class SaleAddVariants(models.TransientModel):
@@ -40,13 +39,12 @@ class SaleAddVariants(models.TransientModel):
             variant_lines = []
             for variant in self.product_tmpl_id.product_variant_ids:
                 variant_lines.append([0, 0, {
-                    'product_id': variant.id,
                     'product_uom_qty': 0,
+                    'product_id': variant.id,
                     'product_uom': variant.uom_id.id
                 }])
             self.variant_line_ids = variant_lines
 
-    @api.multi
     def add_to_order(self):
         context = self.env.context
         sale_order = self.env['sale.order'].browse(context.get('active_id'))
@@ -86,7 +84,7 @@ class SaleAddVariantsLine(models.TransientModel):
 
     wizard_id = fields.Many2one('sale.add.variants')
     product_id = fields.Many2one('product.product', string="Variant",
-                                 required=True, readonly=True)
+                                 required=True)
     product_uom_qty = fields.Float(
         string="Quantity", digits_compute=dp.get_precision('Product UoS'))
     product_uom = fields.Many2one('product.uom', string='Unit of Measure ',

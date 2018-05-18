@@ -1,5 +1,4 @@
-# -*- coding: utf-8 -*-
-##############################################################################
+###############################################################################
 #
 #    Author: Hugo Santos
 #    Copyright 2015 FactorLibre
@@ -18,11 +17,11 @@
 #    along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
 ##############################################################################
-from openerp import models, fields
+from odoo import models, fields
 
 
 class SaleConfiguration(models.TransientModel):
-    _inherit = 'sale.config.settings'
+    _inherit = 'res.config.settings'
 
     group_sale_add_variants = fields.Boolean(
         string='Allow to add variants from template in Sale order',

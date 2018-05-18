@@ -14,6 +14,7 @@ Contributors
 ------------
 
 * Hugo Santos <hugo.santos@factorlibre.com>
+* Andreas Dian Sukarno Putro <andreasdian777@gmail.com>
 
 Maintainer
 ----------

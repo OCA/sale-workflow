@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 ##############################################################################
 #
 #    Author: Hugo Santos
@@ -21,13 +20,13 @@
 {
     'name': 'Sale Order Add Variants',
     'summary': 'Add variants from template into sale order',
-    'version': '8.0.0.1.0',
+    'version': '11.0.0.1.0',
     'author': 'FactorLibre,Odoo Community Association (OCA)',
     'category': 'Sale',
     'license': 'AGPL-3',
     'website': 'http://factorlibre.com',
     'depends': [
-        'sale'
+        'sale_management'
     ],
     'demo': [],
     'data': [
@@ -36,5 +35,5 @@
         'view/sale_view.xml',
         'view/res_config_view.xml'
     ],
-    'installable': False
+    'installable': True
 }
