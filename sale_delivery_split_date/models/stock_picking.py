@@ -2,7 +2,7 @@
 # Copyright 2018 Alex Comba - Agile Business Group
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
-from openerp import api, fields, models
+from odoo import api, fields, models
 
 
 class StockPicking(models.Model):
@@ -10,7 +10,7 @@ class StockPicking(models.Model):
     _inherit = 'stock.picking'
 
     min_dt = fields.Date(
-        strint='Scheduled Date (for filter purpose only)',
+        string='Scheduled Date (for filter purpose only)',
         compute='_compute_min_dt', store=True)
 
     @api.multi
