@@ -2,7 +2,7 @@
 # Copyright 2018 Alex Comba - Agile Business Group
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
-from openerp.tests.common import TransactionCase
+from odoo.tests.common import TransactionCase
 from odoo import fields
 import datetime
 
@@ -12,7 +12,7 @@ class TestSaleDelivery(TransactionCase):
     def setUp(self):
         super(TestSaleDelivery, self).setUp()
         customer = self.env.ref('base.res_partner_3')
-        p1 = self.env.ref('product.product_product_15')
+        p1 = self.env.ref('product.product_product_16')
         p2 = self.env.ref('product.product_product_25')
         today = datetime.datetime.now()
         self.dt1 = today + datetime.timedelta(days=9)
@@ -41,7 +41,7 @@ class TestSaleDelivery(TransactionCase):
         self.assertEqual(
             len(self.so.picking_ids), 0,
             "There must not be pickings for the SO when draft")
-        self.so.action_button_confirm()
+        self.so.action_confirm()
         self.assertEqual(
             len(self.so.picking_ids), 1,
             "There must be 1 picking for the SO when confirmed")
@@ -64,7 +64,7 @@ class TestSaleDelivery(TransactionCase):
         self.assertEqual(
             len(self.so.picking_ids), 0,
             "There must not be pickings for the SO when draft")
-        self.so.action_button_confirm()
+        self.so.action_confirm()
         self.assertEqual(
             len(self.so.picking_ids), 2,
             "There must be 2 pickings for the SO when confirmed")
@@ -97,7 +97,7 @@ class TestSaleDelivery(TransactionCase):
         self.assertEqual(
             len(self.so.picking_ids), 0,
             "There must not be pickings for the SO when draft")
-        self.so.action_button_confirm()
+        self.so.action_confirm()
         self.assertEqual(
             len(self.so.picking_ids), 1,
             "There must be only one picking for the SO when confirmed")
