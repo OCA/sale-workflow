@@ -1,6 +1,6 @@
-# -*- encoding: utf-8 -*-
 ##############################################################################
-# For copyright and license notices, see __manifest__.py file in root directory
+# For copyright and license notices, see __manifest__.py file in module root
+# directory
 ##############################################################################
 from odoo import models, api
 
@@ -8,7 +8,7 @@ from odoo import models, api
 class SaleOrder(models.Model):
     _inherit = 'sale.order'
 
-    @api.one
+    @api.multi
     def copy(self, default=None):
         sale_copy = super(SaleOrder, self).copy(default)
         # we unlink pack lines that should not be copied

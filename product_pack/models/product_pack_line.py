@@ -1,6 +1,6 @@
-# -*- encoding: utf-8 -*-
 ##############################################################################
-# For copyright and license notices, see __manifest__.py file in root directory
+# For copyright and license notices, see __manifest__.py file in module root
+# directory
 ##############################################################################
 from odoo import fields, models, api
 import odoo.addons.decimal_precision as dp
@@ -14,10 +14,10 @@ class ProductPack(models.Model):
         'product.product',
         'Parent Product',
         ondelete='cascade',
+        index=True,
         required=True
     )
     quantity = fields.Float(
-        'Quantity',
         required=True,
         default=1.0,
         digits=dp.get_precision('Product UoS'),
@@ -26,6 +26,7 @@ class ProductPack(models.Model):
         'product.product',
         'Product',
         ondelete='cascade',
+        index=True,
         required=True,
     )
     discount = fields.Float(
@@ -53,11 +54,14 @@ class ProductPack(models.Model):
             discount = 0.0
         else:
             pricelist = order.pricelist_id.id
-            price = self.env['product.pricelist'].price_get(
-                subproduct.id, quantity,
-                order.partner_id.id, context={
+            price = self.env['product.pricelist'].with_context(
+                context={
                     'uom': subproduct.uom_id.id,
-                    'date': order.date_order})[pricelist]
+                    'date': order.date_order,
+                }
+            ).price_get(
+                subproduct.id, quantity,
+                order.partner_id.id)[pricelist]
             discount = self.discount
 
         # Obtain product name in partner's language
@@ -89,9 +93,4 @@ class ProductPack(models.Model):
             'pack_parent_line_id': line.id,
             'pack_depth': line.pack_depth + 1,
         }
-
-        tmp_line = self.env['sale.order.line'].new(vals)
-        tmp_line.product_id_change()
-        vals['name'] = '%s%s' % (
-            '> ' * (line.pack_depth + 1), tmp_line.name)
         return vals

@@ -19,7 +19,7 @@
 ##############################################################################
 {
     'name': 'Product Pack',
-    'version': '9.0.1.3.0',
+    'version': '11.0.1.0.0',
     'category': 'Product',
     'sequence': 14,
     'summary': '',
@@ -32,15 +32,18 @@
     ],
     'data': [
         'security/ir.model.access.csv',
-        'views/pack_view.xml',
-        'views/sale_view.xml',
+        'views/product_pack_line_views.xml',
+        'views/product_product_views.xml',
+        'views/product_template_views.xml',
+        'views/sale_order_line_pack_line_views.xml',
+        'views/sale_order_line_views.xml',
+        'views/sale_order_views.xml',
     ],
     'demo': [
-        'demo/demo_data.xml',
+        'demo/product_product_demo.xml',
+        'demo/product_pack_line_demo.xml',
     ],
-    'test': [
-    ],
-    'installable': False,
+    'installable': True,
     'auto_install': False,
     'application': False,
 }

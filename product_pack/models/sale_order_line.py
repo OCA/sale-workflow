@@ -1,6 +1,6 @@
-# -*- encoding: utf-8 -*-
 ##############################################################################
-# For copyright and license notices, see __manifest__.py file in root directory
+# For copyright and license notices, see __manifest__.py file in module root
+# directory
 ##############################################################################
 from odoo import fields, models, api, _
 
@@ -10,8 +10,7 @@ class SaleOrderLine(models.Model):
 
     # Fields for sale order pack
     pack_total = fields.Float(
-        string='Pack total',
-        compute='_get_pack_total'
+        compute='_compute_pack_total'
     )
     pack_line_ids = fields.One2many(
         'sale.order.line.pack.line',
@@ -20,7 +19,7 @@ class SaleOrderLine(models.Model):
     )
     pack_type = fields.Selection(
         related='product_id.pack_price_type',
-        readonly=True
+        readonly=True,
     )
 
     # Fields for common packs
@@ -41,7 +40,6 @@ class SaleOrderLine(models.Model):
         'Lines in pack'
     )
 
-    @api.one
     @api.constrains('product_id', 'price_unit', 'product_uom_qty')
     def expand_pack_line(self):
         detailed_packs = ['components_price', 'totalice_price', 'fixed_price']
@@ -85,21 +83,21 @@ class SaleOrderLine(models.Model):
         }
         return view
 
-    @api.one
     @api.depends(
         'pack_line_ids',
         'pack_line_ids.price_subtotal',
     )
-    def _get_pack_total(self):
-        pack_total = 0.0
-        if self.pack_line_ids:
-            pack_total = sum(x.price_subtotal for x in self.pack_line_ids)
-        self.pack_total = pack_total
+    def _compute_pack_total(self):
+        for line in self:
+            pack_total = 0.0
+            if line.pack_line_ids:
+                pack_total = sum(x.price_subtotal for x in line.pack_line_ids)
+            line.pack_total = pack_total
 
-    @api.one
     @api.onchange('pack_total')
     def _onchange_pack_line_ids(self):
-        self.price_unit = self.pack_total
+        for line in self:
+            line.price_unit = line.pack_total
 
     @api.constrains('product_id')
     def expand_none_detailed_pack(self):
