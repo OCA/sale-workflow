@@ -8,7 +8,7 @@
     'author': "Akretion, Odoo Community Association (OCA)",
     'website': "http://www.Akretion.com",
     'category': 'sale',
-    'version': '10.0.1.0.0',
+    'version': '10.0.1.0.1',
     'license': 'AGPL-3',
     'depends': ['sale_stock'],
     'data': [
