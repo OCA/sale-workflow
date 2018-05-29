@@ -1,7 +1,7 @@
 # Translation of Odoo Server.
 # This file contains the translation of the following modules:
 # * sale_order_invoicing_finished_task
-# 
+#
 # Translators:
 # OCA Transbot <transbot@odoo-community.org>, 2017
 msgid ""
@@ -12,17 +12,17 @@ msgstr ""
 "PO-Revision-Date: 2017-11-23 01:51+0000\n"
 "Last-Translator: OCA Transbot <transbot@odoo-community.org>, 2017\n"
 "Language-Team: Finnish (https://www.transifex.com/oca/teams/23907/fi/)\n"
+"Language: fi\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
-"Language: fi\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
 #. module: sale_order_invoicing_finished_task
 #: model:ir.model.fields,help:sale_order_invoicing_finished_task.field_product_product_invoicing_finished_task
 #: model:ir.model.fields,help:sale_order_invoicing_finished_task.field_product_template_invoicing_finished_task
 #: model:ir.model.fields,help:sale_order_invoicing_finished_task.field_project_task_invoicing_finished_task
-msgid "Invoice the order lines only when the task is in folded stage"
+msgid "Invoice the order lines only when the task is set to invoiceable"
 msgstr ""
 
 #. module: sale_order_invoicing_finished_task
@@ -35,7 +35,7 @@ msgstr ""
 #: model:ir.model.fields,field_description:sale_order_invoicing_finished_task.field_product_product_invoicing_finished_task
 #: model:ir.model.fields,field_description:sale_order_invoicing_finished_task.field_product_template_invoicing_finished_task
 #: model:ir.model.fields,field_description:sale_order_invoicing_finished_task.field_project_task_invoicing_finished_task
-msgid "Invoicing finished task"
+msgid "Invoicing control by task"
 msgstr ""
 
 #. module: sale_order_invoicing_finished_task
@@ -45,8 +45,8 @@ msgstr ""
 
 #. module: sale_order_invoicing_finished_task
 #: model:ir.model,name:sale_order_invoicing_finished_task.model_sale_order
-msgid "Sales Order"
-msgstr "Myyntitilaus"
+msgid "Quotation"
+msgstr ""
 
 #. module: sale_order_invoicing_finished_task
 #: model:ir.model,name:sale_order_invoicing_finished_task.model_sale_order_line
@@ -69,21 +69,12 @@ msgid "Tasks"
 msgstr ""
 
 #. module: sale_order_invoicing_finished_task
-#: code:addons/sale_order_invoicing_finished_task/models/project.py:70
-#, python-format
-msgid "You cannot add a task to and invoiced Sale Order Line"
-msgstr ""
-
-#. module: sale_order_invoicing_finished_task
-#: code:addons/sale_order_invoicing_finished_task/models/project.py:55
-#, python-format
-msgid "You cannot modify the Sale Order Line of the task once it is invoiced"
-msgstr ""
-
-#. module: sale_order_invoicing_finished_task
-#: code:addons/sale_order_invoicing_finished_task/models/project.py:45
+#: code:addons/sale_order_invoicing_finished_task/models/project.py:65
 #, python-format
 msgid ""
-"You cannot modify the status if there is no Sale Order Line or if it has "
-"been invoiced."
+"You cannot create/modify a task related with a invoiced, done or cancel sale "
+"order line "
 msgstr ""
+
+#~ msgid "Sales Order"
+#~ msgstr "Myyntitilaus"
