@@ -31,11 +31,10 @@ class SaleOrder(models.Model):
     def action_confirm(self):
         """Check credit before confirmation, update credit if check passed."""
         install_module = tools.config.get('init')
-        """
-        At installation, odoo core demo data is calling  on SO.
-        It was leading to an error related to this module, as the demo partner
-        didn't had any credit point
-        """
+        # At installation, odoo core demo data is calling  on SO.
+        # It was leading to an error related to this module, as the demo
+        # partner didn't had any credit point
+
         if 'sale_credit_point' not in install_module:
             for sale in self:
                 sale.credit_point_check()
