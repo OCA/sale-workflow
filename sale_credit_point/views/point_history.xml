@@ -10,7 +10,6 @@
                 <field name="operation" readonly="True"/>
                 <field name="amount" readonly="True"/>
                 <field name="credit_point_currency_id" readonly="True"/>
-                <field name="credit_point_currency_id" readonly="True" invisible="1" />
                 <field name="create_date" readonly="True"/>
                 <field name="comment" readonly="True"/>
             </tree>
