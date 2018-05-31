@@ -60,3 +60,21 @@ class TestSaleOrder(TestSale):
         so.action_confirm()
         self.assertNotEqual(so.state, 'draft')
         self.assertEqual(so.partner_id.credit_point, -10)
+
+    def test_so_cancel_ok(self):
+        so = self._create_so()
+        so.partner_id.credit_point = 100
+        so.action_confirm()
+        self.assertEqual(so.state, 'sale')
+        self.assertEqual(so.partner_id.credit_point, 90)
+        so.action_cancel()
+        self.assertEqual(so.state, 'cancel')
+        self.assertEqual(so.partner_id.credit_point, 100)
+        # Test if SO is still in draft
+        so2 = self._create_so()
+        so2.partner_id.credit_point = 100
+        self.assertEqual(so2.state, 'draft')
+        self.assertEqual(so2.partner_id.credit_point, 100)
+        so2.action_cancel()
+        self.assertEqual(so2.state, 'cancel')
+        self.assertEqual(so2.partner_id.credit_point, 100)

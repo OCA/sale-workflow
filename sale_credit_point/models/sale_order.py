@@ -41,3 +41,13 @@ class SaleOrder(models.Model):
                 sale.partner_id.credit_point_decrease(
                     sale.amount_total, comment=self.credit_point_decrease_msg)
         return super().action_confirm()
+
+    @api.multi
+    def action_cancel(self):
+        for sale in self:
+            if sale.state == 'sale':
+                sale.partner_id.credit_point_increase(
+                    sale.amount_total, _("Sale Order canceled"))
+                sale.partner_id.update_history(
+                    sale.amount_total, "increase", _("Sale Order canceled"))
+            super(SaleOrder, sale).action_cancel()
