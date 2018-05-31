@@ -3,6 +3,7 @@
 
 from odoo import api, models, _
 from odoo.exceptions import UserError
+from odoo import tools
 
 
 class SaleOrder(models.Model):
@@ -29,8 +30,15 @@ class SaleOrder(models.Model):
     @api.multi
     def action_confirm(self):
         """Check credit before confirmation, update credit if check passed."""
-        for sale in self:
-            sale.credit_point_check()
-            sale.partner_id.credit_point_decrease(
-                sale.amount_total, comment=self.credit_point_decrease_msg)
+        install_module = tools.config.get('init')
+        """
+        At installation, odoo core demo data is calling  on SO.
+        It was leading to an error related to this module, as the demo partner
+        didn't had any credit point
+        """
+        if 'sale_credit_point' not in install_module:
+            for sale in self:
+                sale.credit_point_check()
+                sale.partner_id.credit_point_decrease(
+                    sale.amount_total, comment=self.credit_point_decrease_msg)
         return super().action_confirm()
