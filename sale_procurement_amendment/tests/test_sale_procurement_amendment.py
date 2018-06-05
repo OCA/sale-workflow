@@ -14,6 +14,24 @@ class TestSaleProcurementAmendment(common.TransactionCase):
         self.product1 = self.env.ref('product.product_product_12')
         self.agrolait = self.env.ref('base.res_partner_2')
 
+        # Create a MTO Rule on Stock - Avoid depending on purchase
+        # Create another Stock location
+        vals = {
+            'name': 'Stock MTO',
+            'location_id': self.env.ref('stock.stock_location_locations').id,
+            'usage': 'internal',
+        }
+        loc_mto = self.env['stock.location'].create(vals)
+
+        vals = {
+            'name': 'STOCK MTO -> Stock',
+            'action': 'move',
+            'picking_type_id': self.env.ref('stock.picking_type_internal').id,
+            'location_src_id': loc_mto.id,
+            'location_id': self.env.ref('stock.stock_location_stock').id,
+        }
+        self.env['procurement.rule'].create(vals)
+
     def _create_sale_order(self):
 
         vals = {
@@ -113,4 +131,89 @@ class TestSaleProcurementAmendment(common.TransactionCase):
         self.assertEquals(
             9.0,
             move_out.product_uom_qty,
+        )
+
+    def test_04_mto_rule(self):
+        """
+        Decrease Sale Order Line
+        :return:
+        """
+        self.product1.route_ids = self.env['stock.location.route'].browse()
+        self.product1.route_ids += self.env.ref('stock.route_warehouse0_mto')
+        self._create_sale_order()
+        self.order.action_confirm()
+
+        procurement_mto = self.env['procurement.order'].search([
+            ('group_id', '=', self.order.procurement_group_id.id),
+            ('location_id', '=', self.env.ref('stock.stock_location_stock').id)
+        ])
+        self.assertEquals(
+            1,
+            len(procurement_mto),
+        )
+        self.assertEquals(
+            10.0,
+            procurement_mto.product_qty,
+        )
+
+        # Decrease qty
+        self.sale_line.write({'product_uom_qty': 9.0})
+
+        self.assertEquals(
+            'cancel',
+            procurement_mto.state,
+        )
+        procurement_mto = self.env['procurement.order'].search([
+            ('state', '!=', 'cancel'),
+            ('group_id', '=', self.order.procurement_group_id.id),
+            ('location_id', '=', self.env.ref('stock.stock_location_stock').id)
+        ])
+        self.assertEquals(
+            1,
+            len(procurement_mto),
+        )
+        self.assertEquals(
+            9.0,
+            procurement_mto.product_qty,
+        )
+
+        # Decrease qty
+        self.sale_line.write({'product_uom_qty': 8.0})
+
+        self.assertEquals(
+            'cancel',
+            procurement_mto.state,
+        )
+        procurement_mto = self.env['procurement.order'].search([
+            ('state', '!=', 'cancel'),
+            ('group_id', '=', self.order.procurement_group_id.id),
+            ('location_id', '=', self.env.ref('stock.stock_location_stock').id)
+        ])
+        self.assertEquals(
+            1,
+            len(procurement_mto),
+        )
+        self.assertEquals(
+            8.0,
+            procurement_mto.product_qty,
+        )
+
+        # Increase qty
+        self.sale_line.write({'product_uom_qty': 11.0})
+        procurement_mto = self.env['procurement.order'].search([
+            ('state', '!=', 'cancel'),
+            ('group_id', '=', self.order.procurement_group_id.id),
+            ('location_id', '=', self.env.ref('stock.stock_location_stock').id)
+        ])
+        self.assertEquals(
+            2,
+            len(procurement_mto)
+        )
+        qty = 0.0
+        for proc in procurement_mto:
+            qty += proc.product_qty
+
+        self.assertEquals(
+            11.0,
+            qty,
         )
