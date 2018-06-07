@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 # © 2017-To Day Akretion
 # @author Sébastien BEAU <sebastien.beau@akretion.com>
 # @author: Mourad EL HADJ MIMOUNE <mourad.elhadj.mimoune@akretion.com>
