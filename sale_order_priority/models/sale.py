@@ -44,4 +44,6 @@ class SaleOrder(models.Model):
     @api.multi
     def _inverse_priority(self):
         for order in self:
-            order.order_line.write({'priority': order.priority})
+            priority = order.priority
+            for line in order.order_line:
+                line.priority = priority
