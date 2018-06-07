@@ -2,7 +2,7 @@
 # Copyright 2018 Simone Rubino - Agile Business Group
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
 
-from odoo import models, fields, api
+from odoo import api, fields, models
 from odoo.addons.procurement.models import procurement
 
 
@@ -25,16 +25,6 @@ class SaleOrderLine(models.Model):
 class SaleOrder(models.Model):
     _inherit = 'sale.order'
 
-    @api.depends('order_line.priority')
-    def _compute_priority(self):
-        for order in self:
-            order.priority = order.mapped('order_line') and \
-                max(order.mapped('order_line.priority')) or '1'
-
-    def _inverse_priority(self):
-        for order in self:
-            order.order_line.write({'priority': order.priority})
-
     priority = fields.Selection(
         procurement.PROCUREMENT_PRIORITIES, string='Priority',
         compute='_compute_priority', inverse='_inverse_priority', store=True,
@@ -43,3 +33,16 @@ class SaleOrder(models.Model):
         help="Priority for this sale order. "
              "Setting manually a value here would set it as priority "
              "for all the order lines")
+
+    @api.multi
+    @api.depends('order_line.priority')
+    def _compute_priority(self):
+        for order in self:
+            priority = order.mapped('order_line.priority')
+            order.priority = priority and max(priority) or '1'
+
+    @api.multi
+    def _inverse_priority(self):
+        for order in self:
+            order.order_line.write({'priority': order.priority})
+

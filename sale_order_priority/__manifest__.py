@@ -13,6 +13,7 @@
     "application": False,
     "installable": True,
     "depends": [
+        "procurement",
         "sale_stock"
     ],
     "data": [
