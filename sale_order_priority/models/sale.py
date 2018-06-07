@@ -45,4 +45,3 @@ class SaleOrder(models.Model):
     def _inverse_priority(self):
         for order in self:
             order.order_line.write({'priority': order.priority})
-

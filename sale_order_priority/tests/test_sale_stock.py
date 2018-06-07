@@ -21,7 +21,7 @@ class TestSaleStock(TestSale):
         })
         sale_order_line_priority = '2'
         for sol in self.sale_order.order_line:
-            # Test that the order's priority has been 
+            # Test that the order's priority has been
             # correctly assigned to the order lines
             self.assertEqual(
                 sol.priority, sale_order_priority,
@@ -29,7 +29,7 @@ class TestSaleStock(TestSale):
             sol.priority = sale_order_line_priority
         # Confirm the order and check the picking
         self.sale_order.action_confirm()
-        # Test that the lines' priority has been 
+        # Test that the lines' priority has been
         # correctly assigned to the generated pickings
         self.assertEqual(
             max(self.sale_order.picking_ids.mapped('priority')),
