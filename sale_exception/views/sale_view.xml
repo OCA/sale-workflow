@@ -108,7 +108,7 @@
             <field name="name">sale_exception.view_order_tree</field>
             <field name="model">sale.order</field>
             <field name="inherit_id" ref="sale.view_quotation_tree"/>
-            <field name="groups_id" eval="[(4, ref('base.group_user'))]"/>
+            <field name="groups_id" eval="[(4, ref('base.group_sale_salesman'))]"/>
             <field name="arch" type="xml">
                 <field name="state" position="after">
                     <field name="main_exception_id"/>
@@ -120,7 +120,7 @@
             <field name="name">sale_exception.view_sales_order_filter</field>
             <field name="model">sale.order</field>
             <field name="inherit_id" ref="sale.view_sales_order_filter" />
-            <field name="groups_id" eval="[(4, ref('base.group_user'))]"/>
+            <field name="groups_id" eval="[(4, ref('base.group_sale_salesman'))]"/>
             <field name="arch" type="xml">
                 <filter name="sales" position="after">
                     <separator orientation="vertical"/>
