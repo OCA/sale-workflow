@@ -13,9 +13,6 @@ class TestSaleOrder(TestSale):
         self.product.list_price = 10
         self.product.currency_id = \
             self.env['res.partner']._default_credit_point_currency_id()
-        self.env.user.groups_id = [(4, self.env.ref(
-            'sale_credit_point.group_manage_credit_point'
-        ).id)]
         self.portal_user = self.env.ref("base.demo_user0")
         self.portal_user.partner_id.credit_point = 0
 
@@ -86,9 +83,13 @@ class TestSaleOrder(TestSale):
 
     def test_so_credit_check_user(self):
         so = self._create_so()
+        self.env.user.groups_id = [(4, self.env.ref(
+            'sale_credit_point.group_manage_credit_point'
+        ).id)]
         so.partner_id.credit_point = 0
-        with self.assertRaises(exceptions.UserError):
+        with self.assertRaises(exceptions.AccessError):
             # portal user doesn't have the rights
+            # this is handled by record rules
             so.sudo(self.portal_user.id).credit_point_check()
         with self.assertRaises(exceptions.UserError):
             # nor can handle it via sudo with passing of the user
