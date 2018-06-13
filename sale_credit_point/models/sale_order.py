@@ -9,10 +9,15 @@ from odoo import tools
 class SaleOrder(models.Model):
     _inherit = 'sale.order'
 
-    def credit_point_check(self):
+    def credit_point_check(self, user=None):
         """Verify order amount against credit point budget."""
+        # Introduced this check as from website sale_orders are created
+        # from admin. If admin is in manage_credits group - all users will
+        # bypass check. This way, we can check specific user from request
+        if not user:
+            user = self.env.user
         self.ensure_one()
-        if not self.partner_id.credit_point_bypass_check():
+        if not self.partner_id.sudo(user.id).credit_point_bypass_check():
             if self.amount_total > self.partner_id.credit_point:
                 raise UserError(self.credit_point_check_failed_msg)
 
