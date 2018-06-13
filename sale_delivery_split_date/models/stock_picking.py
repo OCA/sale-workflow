@@ -10,7 +10,7 @@ class StockPicking(models.Model):
     _inherit = 'stock.picking'
 
     min_dt = fields.Date(
-        strint='Scheduled Date (for filter purpose only)',
+        string='Scheduled Date (for filter purpose only)',
         compute='_compute_min_dt', store=True)
 
     @api.multi
