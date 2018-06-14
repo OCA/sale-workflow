@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Copyright 2018 Simone Rubino - Agile Business Group
+     License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl). -->
+<odoo>
+    <record id="view_sales_config_quotation_number" model="ir.ui.view">
+        <field name="name">Quotation number configuration</field>
+        <field name="model">sale.config.settings</field>
+        <field name="inherit_id" ref="sale.view_sales_config"/>
+        <field name="arch" type="xml">
+            <xpath expr="//group[@name='quotations_sales']">
+                <field name="keep_name_so"/>
+            </xpath>
+        </field>
+    </record>
+</odoo>
