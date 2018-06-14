@@ -1,6 +1,6 @@
 # Translation of Odoo Server.
 # This file contains the translation of the following modules:
-#   * sale_credit_point
+#	* sale_credit_point
 #
 msgid ""
 msgstr ""
@@ -12,7 +12,7 @@ msgstr ""
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
-"Content-Transfer-Encoding: 8bit\n"
+"Content-Transfer-Encoding: \n"
 "Plural-Forms: \n"
 "Language: fr\n"
 "X-Generator: Poedit 1.8.7.1\n"
@@ -82,7 +82,7 @@ msgstr "Credit Points History"
 #. module: sale_credit_point
 #: model:ir.ui.menu,name:sale_credit_point.menu_credit_point_history
 msgid "Credit point history"
-msgstr "Credit point history"
+msgstr "Historique des crédits"
 
 #. module: sale_credit_point
 #: code:addons/odoo/external-src/odoo-sale-addons/sale_credit_point/models/partner.py:69
@@ -220,6 +220,10 @@ msgstr "Commande annulée"
 msgid "Search Invoice"
 msgstr "Chercher une facture"
 
+#: model:ir.ui.view,arch_db:sale_credit_point.view_credit_point_history_search
+msgid "Search Invoice"
+msgstr "Chercher une facture"
+
 #. module: sale_credit_point
 #: model:ir.ui.view,arch_db:sale_credit_point.wiz_manage_credit_point
 msgid "Selected partner(s) will be updated."
@@ -249,7 +253,7 @@ msgstr "Mise à jour credit"
 #: model:ir.model.fields,field_description:sale_credit_point.field_res_partner_yearly_point_increase
 #: model:ir.model.fields,field_description:sale_credit_point.field_res_users_yearly_point_increase
 msgid "Yearly points increase"
-msgstr "Augmentation de crédit annuelle"
+msgstr "Yearly points increase"
 
 #. module: sale_credit_point
 #: code:addons/odoo/external-src/odoo-sale-addons/sale_credit_point/models/partner.py:50
@@ -267,21 +271,3 @@ msgstr "credit.point.history"
 #: model:ir.model,name:sale_credit_point.model_wiz_manage_credit_point
 msgid "wiz.manage.credit.point"
 msgstr "Mise à jour credit"
-
-#~ msgid "Partner"
-#~ msgstr "Partenaire"
-
-#~ msgid "Partner currency id"
-#~ msgstr "Devise du partenaire"
-
-#~ msgid "Points to replace"
-#~ msgstr "Points to replace"
-
-#~ msgid "Sales Order"
-#~ msgstr "Bon de commande"
-
-#~ msgid "You must add a comment to the change of credit point"
-#~ msgstr "Il est nécessaire d'ajouter un commentaire"
-
-#~ msgid "points.attribution.wizard"
-#~ msgstr "points.attribution.wizard"
