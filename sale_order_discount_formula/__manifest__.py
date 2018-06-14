@@ -5,7 +5,7 @@
     'name': "Sale Order Discount Formula",
     'summary': "Express discounts on SO lines as mathematical formula",
     'author': 'Onestein, Odoo Community Association (OCA)',
-    'website': 'http://www.onestein.eu',
+    'website': 'https://github.com/OCA/sale-workflow',
     'category': 'Sales',
     'license': 'AGPL-3',
     'version': '11.0.1.0.0',

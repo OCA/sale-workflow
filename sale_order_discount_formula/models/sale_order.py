@@ -76,7 +76,6 @@ class SaleOrderLine(models.Model):
 
                 if normalized_discount != line.multiple_discount:
                     line.multiple_discount = normalized_discount
-
             else:
                 line.discount = 0
 
