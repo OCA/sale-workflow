@@ -51,6 +51,7 @@ addon | version | summary
 [sale_product_multi_add](sale_product_multi_add/) | 10.0.1.0.0 | Sale Product Multi Add
 [sale_product_set](sale_product_set/) | 10.0.1.0.2 | Sale product set
 [sale_product_set_layout](sale_product_set_layout/) | 10.0.1.0.0 | Sale product set layout
+[sale_quotation_number](sale_quotation_number/) | 10.0.1.1.0 | Different sequence for sale quotations
 [sale_rental](sale_rental/) | 10.0.1.0.0 | Manage Rental of Products
 [sale_revert_done](sale_revert_done/) | 10.0.1.0.0 | This module extends the functionality of sales to allow you to set a sales order done back to state 'Sale Order'.
 [sale_shipping_info_helper](sale_shipping_info_helper/) | 10.0.1.0.0 | Add shipping amounts on sale order
@@ -86,7 +87,6 @@ addon | version | summary
 [sale_order_force_number](sale_order_force_number/) | 0.1 (unported) | Force sale orders numeration
 [sale_packaging_price](sale_packaging_price/) | 9.0.1.0.0 (unported) | Sale Packaging Price
 [sale_payment_term_interest](sale_payment_term_interest/) | 8.0.1.0.0 (unported) | Sales Payment Term Interests
-[sale_quotation_number](sale_quotation_number/) | 8.0.1.1.0 (unported) | Different sequence for sale quotations
 [sale_quotation_sourcing](sale_quotation_sourcing/) | 8.0.0.3.1 (unported) | manual sourcing of sale quotations
 [sale_quotation_sourcing_stock_route_transit](sale_quotation_sourcing_stock_route_transit/) | 8.0.0.1.0 (unported) | Link module for sale_quotation_sourcing + stock_route_transit
 [sale_reason_to_export](sale_reason_to_export/) | 8.0.0.1.0 (unported) | Reason to export in Sales Order
