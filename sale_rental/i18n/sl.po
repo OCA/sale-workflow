@@ -1,7 +1,7 @@
 # Translation of Odoo Server.
 # This file contains the translation of the following modules:
 # * sale_rental
-# 
+#
 # Translators:
 # OCA Transbot <transbot@odoo-community.org>, 2017
 msgid ""
@@ -12,11 +12,12 @@ msgstr ""
 "PO-Revision-Date: 2017-11-23 01:51+0000\n"
 "Last-Translator: OCA Transbot <transbot@odoo-community.org>, 2017\n"
 "Language-Team: Slovenian (https://www.transifex.com/oca/teams/23907/sl/)\n"
+"Language: sl\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
-"Language: sl\n"
-"Plural-Forms: nplurals=4; plural=(n%100==1 ? 0 : n%100==2 ? 1 : n%100==3 || n%100==4 ? 2 : 3);\n"
+"Plural-Forms: nplurals=4; plural=(n%100==1 ? 0 : n%100==2 ? 1 : n%100==3 || n"
+"%100==4 ? 2 : 3);\n"
 
 #. module: sale_rental
 #: model:ir.model.fields,help:sale_rental.field_sale_rental_in_state
@@ -24,8 +25,11 @@ msgstr ""
 #: model:ir.model.fields,help:sale_rental.field_sale_rental_sell_state
 msgid ""
 "* New: When the stock move is created and not yet confirmed.\n"
-"* Waiting Another Move: This state can be seen when a move is waiting for another one, for example in a chained flow.\n"
-"* Waiting Availability: This state is reached when the procurement resolution is not straight forward. It may need the scheduler to run, a component to be manufactured...\n"
+"* Waiting Another Move: This state can be seen when a move is waiting for "
+"another one, for example in a chained flow.\n"
+"* Waiting Availability: This state is reached when the procurement "
+"resolution is not straight forward. It may need the scheduler to run, a "
+"component to be manufactured...\n"
 "* Available: When products are reserved, it is set to 'Available'.\n"
 "* Done: When the shipment is processed, the state is 'Done'."
 msgstr ""
@@ -206,7 +210,7 @@ msgid "New Rental"
 msgstr "Novo najemništvo"
 
 #. module: sale_rental
-#: code:addons/sale_rental/models/sale_order.py:179
+#: code:addons/sale_rental/models/sale_order.py:172
 #, python-format
 msgid "Not enough stock !"
 msgstr "Ni dovolj zaloge!"
@@ -218,19 +222,11 @@ msgid ""
 "On the 'new rental' sale order line with product '%s', we should have a "
 "rental service product !"
 msgstr ""
-"Na novi najemniški postavki prodajnega naloga s proizvodom '%s' morate imeti"
-" proizvod najemniške storitve!"
+"Na novi najemniški postavki prodajnega naloga s proizvodom '%s' morate imeti "
+"proizvod najemniške storitve!"
 
 #. module: sale_rental
-#: code:addons/sale_rental/models/sale_order.py:98
-#, python-format
-msgid ""
-"On the rental sale order line with product %s the must have dates option "
-"should be enabled"
-msgstr ""
-
-#. module: sale_rental
-#: code:addons/sale_rental/models/sale_order.py:106
+#: code:addons/sale_rental/models/sale_order.py:99
 #, python-format
 msgid ""
 "On the sale order line with product %s you are trying to sell a rented "
@@ -245,8 +241,8 @@ msgstr ""
 #: code:addons/sale_rental/models/sale_order.py:88
 #, python-format
 msgid ""
-"On the sale order line with product '%s' the Product Quantity (%s) should be"
-" the number of days (%s) multiplied by the Rental Quantity (%s)."
+"On the sale order line with product '%s' the Product Quantity (%s) should be "
+"the number of days (%s) multiplied by the Rental Quantity (%s)."
 msgstr ""
 "Na postavki prodajnega naloga s proizvodom %s mora biti količina proizvodov "
 "(%s) v številu dni (%s) pomnoženim z najemniško količino (%s)."
@@ -571,7 +567,7 @@ msgid "The Rental Output stock location is not set on the warehouse %s"
 msgstr "Lokacija izhodne najemne zaloge v skladišču %s ni nastavljena"
 
 #. module: sale_rental
-#: code:addons/sale_rental/models/sale_order.py:222
+#: code:addons/sale_rental/models/sale_order.py:215
 #, python-format
 msgid ""
 "The Rental Service of the Rental Extension you just selected is '%s' and "
@@ -590,8 +586,8 @@ msgstr "Najemniški proizvod '%s' mora biti tipa 'storitev'."
 #: code:addons/sale_rental/models/product.py:31
 #, python-format
 msgid ""
-"The rental product '%s' must have the option 'Must Have Start and End Dates'"
-" checked."
+"The rental product '%s' must have the option 'Must Have Start and End Dates' "
+"checked."
 msgstr ""
 "Najemniški proizvod '%s' mora imeti označeno opcijo 'zahteva se začetni in "
 "končni datum'."
@@ -618,12 +614,12 @@ msgid "Warehouse"
 msgstr "Skladišče"
 
 #. module: sale_rental
-#: code:addons/sale_rental/models/sale_order.py:180
+#: code:addons/sale_rental/models/sale_order.py:173
 #, python-format
 msgid ""
 "You want to rent %.2f %s but you only have %.2f %s currently available on "
-"the stock location '%s' ! Make sure that you get some units back in the mean"
-" time or re-supply the stock location '%s'."
+"the stock location '%s' ! Make sure that you get some units back in the mean "
+"time or re-supply the stock location '%s'."
 msgstr ""
 "Poskušate posoditi %.2f %s a imate le %.2f %s trenutno razpoložljive zaloge "
 "na lokaciji '%s' ! Prepričajte se, da dobite nekaj enot nazaj ali pa "
