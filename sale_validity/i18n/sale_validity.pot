@@ -1,13 +1,11 @@
-# Translation of OpenERP Server.
+# Translation of Odoo Server.
 # This file contains the translation of the following modules:
 #	* sale_validity
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: OpenERP Server 7.0\n"
+"Project-Id-Version: Odoo Server 10.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-01-15 11:51+0000\n"
-"PO-Revision-Date: 2014-01-15 11:51+0000\n"
 "Last-Translator: <>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -16,18 +14,9 @@ msgstr ""
 "Plural-Forms: \n"
 
 #. module: sale_validity
-#: view:sale.order:0
-msgid "date_order_change(date_order, date_validity, company_id, context)"
-msgstr ""
-
-#. module: sale_validity
-#: help:sale.order,date_validity:0
-msgid "Define date until when quotation is valid"
-msgstr ""
-
-#. module: sale_validity
-#: field:sale.order,date_validity:0
-msgid "Valid Until"
+#: model:ir.model.fields,help:sale_validity.field_res_company_default_sale_order_validity_days
+#: model:ir.model.fields,help:sale_validity.field_sale_config_settings_default_sale_order_validity_days
+msgid "By default, the validity date of sale orders will be the date of the sale order plus the number of days defined in this field. If the value of this field is 0, the sale orders will not have a validity date by default."
 msgstr ""
 
 #. module: sale_validity
@@ -36,13 +25,9 @@ msgid "Companies"
 msgstr ""
 
 #. module: sale_validity
-#: field:res.company,default_sale_order_validity_days:0
-msgid "Default Validity of Sale Orders (in days)"
-msgstr ""
-
-#. module: sale_validity
-#: help:res.company,default_sale_order_validity_days:0
-msgid "By default, the validity date of sale orders will be the date of the sale order plus the number of days defined in this field. If the value of this field is 0, the sale orders will not have a validity date by default."
+#: model:ir.model.fields,field_description:sale_validity.field_res_company_default_sale_order_validity_days
+#: model:ir.model.fields,field_description:sale_validity.field_sale_config_settings_default_sale_order_validity_days
+msgid "Default Validity of Sale Orders"
 msgstr ""
 
 #. module: sale_validity
@@ -53,5 +38,15 @@ msgstr ""
 #. module: sale_validity
 #: sql_constraint:res.company:0
 msgid "The value of the field 'Default Validity Duration of Sale Orders' must be positive or 0."
+msgstr ""
+
+#. module: sale_validity
+#: model:ir.ui.view,arch_db:sale_validity.view_sales_config
+msgid "days"
+msgstr ""
+
+#. module: sale_validity
+#: model:ir.model,name:sale_validity.model_sale_config_settings
+msgid "sale.config.settings"
 msgstr ""
 
