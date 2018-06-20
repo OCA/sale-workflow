@@ -1,7 +1,7 @@
 # Translation of Odoo Server.
 # This file contains the translation of the following modules:
 # * sale_rental
-# 
+#
 # Translators:
 # OCA Transbot <transbot@odoo-community.org>, 2017
 msgid ""
@@ -12,10 +12,10 @@ msgstr ""
 "PO-Revision-Date: 2017-07-08 00:50+0000\n"
 "Last-Translator: OCA Transbot <transbot@odoo-community.org>, 2017\n"
 "Language-Team: Finnish (https://www.transifex.com/oca/teams/23907/fi/)\n"
+"Language: fi\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
-"Language: fi\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
 #. module: sale_rental
@@ -24,8 +24,11 @@ msgstr ""
 #: model:ir.model.fields,help:sale_rental.field_sale_rental_sell_state
 msgid ""
 "* New: When the stock move is created and not yet confirmed.\n"
-"* Waiting Another Move: This state can be seen when a move is waiting for another one, for example in a chained flow.\n"
-"* Waiting Availability: This state is reached when the procurement resolution is not straight forward. It may need the scheduler to run, a component to be manufactured...\n"
+"* Waiting Another Move: This state can be seen when a move is waiting for "
+"another one, for example in a chained flow.\n"
+"* Waiting Availability: This state is reached when the procurement "
+"resolution is not straight forward. It may need the scheduler to run, a "
+"component to be manufactured...\n"
 "* Available: When products are reserved, it is set to 'Available'.\n"
 "* Done: When the shipment is processed, the state is 'Done'."
 msgstr ""
@@ -206,7 +209,7 @@ msgid "New Rental"
 msgstr ""
 
 #. module: sale_rental
-#: code:addons/sale_rental/models/sale_order.py:179
+#: code:addons/sale_rental/models/sale_order.py:172
 #, python-format
 msgid "Not enough stock !"
 msgstr ""
@@ -220,15 +223,7 @@ msgid ""
 msgstr ""
 
 #. module: sale_rental
-#: code:addons/sale_rental/models/sale_order.py:98
-#, python-format
-msgid ""
-"On the rental sale order line with product %s the must have dates option "
-"should be enabled"
-msgstr ""
-
-#. module: sale_rental
-#: code:addons/sale_rental/models/sale_order.py:106
+#: code:addons/sale_rental/models/sale_order.py:99
 #, python-format
 msgid ""
 "On the sale order line with product %s you are trying to sell a rented "
@@ -240,8 +235,8 @@ msgstr ""
 #: code:addons/sale_rental/models/sale_order.py:88
 #, python-format
 msgid ""
-"On the sale order line with product '%s' the Product Quantity (%s) should be"
-" the number of days (%s) multiplied by the Rental Quantity (%s)."
+"On the sale order line with product '%s' the Product Quantity (%s) should be "
+"the number of days (%s) multiplied by the Rental Quantity (%s)."
 msgstr ""
 
 #. module: sale_rental
@@ -308,12 +303,14 @@ msgid "RENT-%s"
 msgstr ""
 
 #. module: sale_rental
+#: model:ir.model.fields,field_description:sale_rental.field_delivery_carrier_rental_service_ids
 #: model:ir.model.fields,field_description:sale_rental.field_product_product_rental_service_ids
 #: model:ir.ui.view,arch_db:sale_rental.product_normal_form_view
 msgid "Related Rental Services"
 msgstr ""
 
 #. module: sale_rental
+#: model:ir.model.fields,field_description:sale_rental.field_delivery_carrier_rented_product_id
 #: model:ir.model.fields,field_description:sale_rental.field_product_product_rented_product_id
 msgid "Related Rented Product"
 msgstr ""
@@ -559,7 +556,7 @@ msgid "The Rental Output stock location is not set on the warehouse %s"
 msgstr ""
 
 #. module: sale_rental
-#: code:addons/sale_rental/models/sale_order.py:222
+#: code:addons/sale_rental/models/sale_order.py:215
 #, python-format
 msgid ""
 "The Rental Service of the Rental Extension you just selected is '%s' and "
@@ -576,8 +573,8 @@ msgstr ""
 #: code:addons/sale_rental/models/product.py:31
 #, python-format
 msgid ""
-"The rental product '%s' must have the option 'Must Have Start and End Dates'"
-" checked."
+"The rental product '%s' must have the option 'Must Have Start and End Dates' "
+"checked."
 msgstr ""
 
 #. module: sale_rental
@@ -602,10 +599,10 @@ msgid "Warehouse"
 msgstr ""
 
 #. module: sale_rental
-#: code:addons/sale_rental/models/sale_order.py:180
+#: code:addons/sale_rental/models/sale_order.py:173
 #, python-format
 msgid ""
 "You want to rent %.2f %s but you only have %.2f %s currently available on "
-"the stock location '%s' ! Make sure that you get some units back in the mean"
-" time or re-supply the stock location '%s'."
+"the stock location '%s' ! Make sure that you get some units back in the mean "
+"time or re-supply the stock location '%s'."
 msgstr ""
