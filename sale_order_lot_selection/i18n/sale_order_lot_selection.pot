@@ -1,23 +1,17 @@
 # Translation of Odoo Server.
 # This file contains the translation of the following modules:
-# * sale_order_lot_selection
+#	* sale_order_lot_selection
 #
-# Translators:
-# OCA Transbot <transbot@odoo-community.org>, 2016
 msgid ""
 msgstr ""
-"Project-Id-Version: Odoo Server 9.0c\n"
+"Project-Id-Version: Odoo Server 10.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-12-20 11:44+0000\n"
-"PO-Revision-Date: 2016-12-20 11:44+0000\n"
-"Last-Translator: OCA Transbot <transbot@odoo-community.org>, 2016\n"
-"Language-Team: Chinese (China) (https://www.transifex.com/oca/teams/23907/"
-"zh_CN/)\n"
-"Language: zh_CN\n"
+"Last-Translator: <>\n"
+"Language-Team: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
-"Plural-Forms: nplurals=1; plural=0;\n"
+"Plural-Forms: \n"
 
 #. module: sale_order_lot_selection
 #: code:addons/sale_order_lot_selection/model/sale.py:68
@@ -40,12 +34,12 @@ msgstr ""
 #. module: sale_order_lot_selection
 #: model:ir.model,name:sale_order_lot_selection.model_procurement_order
 msgid "Procurement"
-msgstr "补货"
+msgstr ""
 
 #. module: sale_order_lot_selection
 #: model:ir.model,name:sale_order_lot_selection.model_sale_order
 msgid "Sales Order"
-msgstr "销售订单"
+msgstr ""
 
 #. module: sale_order_lot_selection
 #: model:ir.model,name:sale_order_lot_selection.model_sale_order_line
@@ -56,3 +50,4 @@ msgstr ""
 #: model:ir.model,name:sale_order_lot_selection.model_stock_move
 msgid "Stock Move"
 msgstr ""
+
