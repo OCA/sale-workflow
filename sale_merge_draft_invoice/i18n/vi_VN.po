@@ -1,7 +1,7 @@
 # Translation of Odoo Server.
 # This file contains the translation of the following modules:
 # * sale_merge_draft_invoice
-# 
+#
 # Translators:
 # OCA Transbot <transbot@odoo-community.org>, 2017
 msgid ""
@@ -11,11 +11,12 @@ msgstr ""
 "POT-Creation-Date: 2017-11-23 01:51+0000\n"
 "PO-Revision-Date: 2017-11-23 01:51+0000\n"
 "Last-Translator: OCA Transbot <transbot@odoo-community.org>, 2017\n"
-"Language-Team: Vietnamese (Viet Nam) (https://www.transifex.com/oca/teams/23907/vi_VN/)\n"
+"Language-Team: Vietnamese (Viet Nam) (https://www.transifex.com/oca/"
+"teams/23907/vi_VN/)\n"
+"Language: vi_VN\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
-"Language: vi_VN\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
 
 #. module: sale_merge_draft_invoice
@@ -24,8 +25,8 @@ msgstr ""
 #, python-format
 msgid ""
 "Activate this option in order to merge the resulting invoice with existing "
-"draft invoices or deactivate it if you wish a separate invoice for this sale"
-" order."
+"draft invoices or deactivate it if you wish a separate invoice for this sale "
+"order."
 msgstr ""
 
 #. module: sale_merge_draft_invoice
