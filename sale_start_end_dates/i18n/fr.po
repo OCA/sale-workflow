@@ -1,7 +1,7 @@
 # Translation of Odoo Server.
 # This file contains the translation of the following modules:
 # * sale_start_end_dates
-# 
+#
 # Translators:
 # guillaume bauer <guillaume.bauer@syentys.com>, 2017
 # OCA Transbot <transbot@odoo-community.org>, 2017
@@ -13,10 +13,10 @@ msgstr ""
 "PO-Revision-Date: 2017-11-23 01:51+0000\n"
 "Last-Translator: OCA Transbot <transbot@odoo-community.org>, 2017\n"
 "Language-Team: French (https://www.transifex.com/oca/teams/23907/fr/)\n"
+"Language: fr\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
-"Language: fr\n"
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
 
 #. module: sale_start_end_dates
@@ -50,8 +50,8 @@ msgid ""
 "If this option is active, the user will have to enter a Start Date and an "
 "End Date on the invoice lines that have this product."
 msgstr ""
-"Si cette option est activée, l'utilisateur devra saisir une date de début et"
-" une date de fin sur les lignes de facture comportant ce produit."
+"Si cette option est activée, l'utilisateur devra saisir une date de début et "
+"une date de fin sur les lignes de facture comportant ce produit."
 
 #. module: sale_start_end_dates
 #: code:addons/sale_start_end_dates/models/sale.py:65
@@ -105,9 +105,9 @@ msgid ""
 "Start Date (%s) and the End Date (%s), but the number of days field has a "
 "value of %d days."
 msgstr ""
-"Bon de commande avec ligne article saisie'%s', il y a %d jours entre la date"
-" de début (%s) et la date de fin (%s), mais le nombre de jours de champ a "
-"une valeur de %d jours."
+"Bon de commande avec ligne article saisie'%s', il y a %d jours entre la date "
+"de début (%s) et la date de fin (%s), mais le nombre de jours de champ a une "
+"valeur de %d jours."
 
 #. module: sale_start_end_dates
 #: model:ir.model,name:sale_start_end_dates.model_sale_order
