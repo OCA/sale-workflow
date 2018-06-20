@@ -1,7 +1,7 @@
 # Translation of Odoo Server.
 # This file contains the translation of the following modules:
 # * sale_start_end_dates
-# 
+#
 # Translators:
 # OCA Transbot <transbot@odoo-community.org>, 2017
 msgid ""
@@ -12,11 +12,12 @@ msgstr ""
 "PO-Revision-Date: 2017-05-17 02:40+0000\n"
 "Last-Translator: OCA Transbot <transbot@odoo-community.org>, 2017\n"
 "Language-Team: Slovenian (https://www.transifex.com/oca/teams/23907/sl/)\n"
+"Language: sl\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
-"Language: sl\n"
-"Plural-Forms: nplurals=4; plural=(n%100==1 ? 0 : n%100==2 ? 1 : n%100==3 || n%100==4 ? 2 : 3);\n"
+"Plural-Forms: nplurals=4; plural=(n%100==1 ? 0 : n%100==2 ? 1 : n%100==3 || n"
+"%100==4 ? 2 : 3);\n"
 
 #. module: sale_start_end_dates
 #: model:ir.model.fields,field_description:sale_start_end_dates.field_sale_order_default_end_date
@@ -88,8 +89,8 @@ msgid ""
 "On sale order line with Product '%s', the number of days is negative ; this "
 "is not allowed."
 msgstr ""
-"Na postavki prodajnega naloga s proizvodom '%s' je število dni negativno; to"
-" ni dovoljeno."
+"Na postavki prodajnega naloga s proizvodom '%s' je število dni negativno; to "
+"ni dovoljeno."
 
 #. module: sale_start_end_dates
 #: code:addons/sale_start_end_dates/models/sale.py:90
@@ -125,5 +126,5 @@ msgid ""
 "Start Date should be before or be the same as End Date for sale order line "
 "with Product '%s'."
 msgstr ""
-"Začetni datum mora biti na postavki prodajnega naloga s proizvodom '%s' pred"
-" končnim datumom (ali enak)."
+"Začetni datum mora biti na postavki prodajnega naloga s proizvodom '%s' pred "
+"končnim datumom (ali enak)."
