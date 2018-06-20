@@ -175,7 +175,7 @@ msgstr "Aguardando disponibilidade"
 #. module: sale_rental
 #: model:ir.model,name:sale_rental.model_create_rental_product
 msgid "Create the Rental Service Product"
-msgstr "msgstr "Criar produto/serviço para locação""
+msgstr "Criar produto/serviço para locação"
 
 #. module: sale_rental
 #: field:stock.warehouse,rental_out_location_id:0
