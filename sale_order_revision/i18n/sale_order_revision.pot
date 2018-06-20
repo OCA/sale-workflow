@@ -4,10 +4,8 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: Odoo Server 8.0\n"
+"Project-Id-Version: Odoo Server 11.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-04-03 07:44+0000\n"
-"PO-Revision-Date: 2015-04-03 07:44+0000\n"
 "Last-Translator: <>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -16,28 +14,39 @@ msgstr ""
 "Plural-Forms: \n"
 
 #. module: sale_order_revision
-#: field:sale.order,active:0
-msgid "Active"
-msgstr ""
-
-#. module: sale_order_revision
-#: field:sale.order,current_revision_id:0
+#: model:ir.model.fields,field_description:sale_order_revision.field_sale_order_current_revision_id
 msgid "Current revision"
 msgstr ""
 
 #. module: sale_order_revision
-#: code:addons/sale_order_revision/model/sale_order.py:64
+#: model:ir.model.fields,field_description:sale_order_revision.field_sale_order_has_old_revisions
+msgid "Has old revisions"
+msgstr ""
+
+#. module: sale_order_revision
+#: model:ir.ui.view,arch_db:sale_order_revision.sale_order_form
+msgid "New Revision of Quotation"
+msgstr ""
+
+#. module: sale_order_revision
+#: code:addons/sale_order_revision/models/sale_order.py:104
+#, python-format
+msgid "New Sales Order Revisions"
+msgstr ""
+
+#. module: sale_order_revision
+#: code:addons/sale_order_revision/models/sale_order.py:96
 #, python-format
 msgid "New revision created: %s"
 msgstr ""
 
 #. module: sale_order_revision
-#: field:sale.order,old_revision_ids:0
+#: model:ir.model.fields,field_description:sale_order_revision.field_sale_order_old_revision_ids
 msgid "Old revisions"
 msgstr ""
 
 #. module: sale_order_revision
-#: field:sale.order,unrevisioned_name:0
+#: model:ir.model.fields,field_description:sale_order_revision.field_sale_order_unrevisioned_name
 msgid "Order Reference"
 msgstr ""
 
@@ -47,27 +56,27 @@ msgid "Order Reference and revision must be unique per Company."
 msgstr ""
 
 #. module: sale_order_revision
-#: field:sale.order,revision_number:0
+#: model:ir.model,name:sale_order_revision.model_sale_order
+msgid "Quotation"
+msgstr ""
+
+#. module: sale_order_revision
+#: model:ir.model.fields,field_description:sale_order_revision.field_sale_order_revision_number
 msgid "Revision"
 msgstr ""
 
 #. module: sale_order_revision
-#: view:sale.order:sale_order_revision.sale_order_form
+#: model:ir.ui.view,arch_db:sale_order_revision.sale_order_form
 msgid "Revisions"
 msgstr ""
 
 #. module: sale_order_revision
-#: model:ir.model,name:sale_order_revision.model_sale_order
-msgid "Sales Order"
-msgstr ""
-
-#. module: sale_order_revision
-#: view:sale.order:sale_order_revision.sale_order_form
+#: model:ir.ui.view,arch_db:sale_order_revision.sale_order_form
 msgid "Superseeded by"
 msgstr ""
 
 #. module: sale_order_revision
-#: view:sale.order:sale_order_revision.sale_order_form
+#: model:ir.ui.view,arch_db:sale_order_revision.sale_order_form
 msgid "Superseeded on"
 msgstr ""
 
