@@ -1,7 +1,7 @@
 # Translation of Odoo Server.
 # This file contains the translation of the following modules:
 # * sale_order_lot_selection
-# 
+#
 # Translators:
 # OCA Transbot <transbot@odoo-community.org>, 2016
 # Carles Antoli <carlesantoli@hotmail.com>, 2017
@@ -13,20 +13,20 @@ msgstr ""
 "PO-Revision-Date: 2017-01-17 16:49+0000\n"
 "Last-Translator: Carles Antoli <carlesantoli@hotmail.com>, 2017\n"
 "Language-Team: Catalan (https://www.transifex.com/oca/teams/23907/ca/)\n"
+"Language: ca\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
-"Language: ca\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
 #. module: sale_order_lot_selection
-#: code:addons/sale_order_lot_selection/model/sale.py:84
+#: code:addons/sale_order_lot_selection/model/sale.py:68
 #, python-format
 msgid "Can't reserve products for lot %s"
 msgstr ""
 
 #. module: sale_order_lot_selection
-#: code:addons/sale_order_lot_selection/model/sale.py:73
+#: code:addons/sale_order_lot_selection/model/sale.py:57
 #, python-format
 msgid "Can't retrieve lot on stock"
 msgstr ""
