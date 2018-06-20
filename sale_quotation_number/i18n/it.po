@@ -1,6 +1,6 @@
 # Translation of Odoo Server.
 # This file contains the translation of the following modules:
-#	* sale_quotation_number
+# 	* sale_quotation_number
 #
 msgid ""
 msgstr ""
@@ -10,6 +10,7 @@ msgstr ""
 "PO-Revision-Date: 2018-01-22 10:25+0000\n"
 "Last-Translator: Simone Rubino <simone.rubino@agilebg.com>\n"
 "Language-Team: \n"
+"Language: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
@@ -23,8 +24,11 @@ msgstr "Aziende"
 #. module: sale_quotation_number
 #: model:ir.model.fields,help:sale_quotation_number.field_res_company_keep_name_so
 #: model:ir.model.fields,help:sale_quotation_number.field_sale_config_settings_keep_name_so
-msgid "If this is unchecked, quotations use a different sequence from sale orders"
-msgstr "Se disattivato, i preventivi utilizzano una sequenza diversa dagli ordini di vendita"
+msgid ""
+"If this is unchecked, quotations use a different sequence from sale orders"
+msgstr ""
+"Se disattivato, i preventivi utilizzano una sequenza diversa dagli ordini di "
+"vendita"
 
 #. module: sale_quotation_number
 #: model:ir.model,name:sale_quotation_number.model_sale_order
@@ -34,7 +38,8 @@ msgstr "Ordine di vendita"
 #. module: sale_quotation_number
 #: model:ir.model.fields,field_description:sale_quotation_number.field_res_company_keep_name_so
 #: model:ir.model.fields,field_description:sale_quotation_number.field_sale_config_settings_keep_name_so
-msgid "Use same sequence"
+#, fuzzy
+msgid "Use same enumeration"
 msgstr "Utilizza la stessa sequenza"
 
 #. module: sale_quotation_number
