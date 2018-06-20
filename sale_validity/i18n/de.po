@@ -1,7 +1,7 @@
 # Translation of Odoo Server.
 # This file contains the translation of the following modules:
 # * sale_validity
-# 
+#
 # Translators:
 msgid ""
 msgstr ""
@@ -10,15 +10,17 @@ msgstr ""
 "POT-Creation-Date: 2015-09-09 12:27+0000\n"
 "PO-Revision-Date: 2015-09-03 07:11+0000\n"
 "Last-Translator: <>\n"
-"Language-Team: German (http://www.transifex.com/oca/OCA-sale-workflow-8-0/language/de/)\n"
+"Language-Team: German (http://www.transifex.com/oca/OCA-sale-workflow-8-0/"
+"language/de/)\n"
+"Language: de\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
-"Language: de\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
 #. module: sale_validity
-#: help:res.company,default_sale_order_validity_days:0
+#: model:ir.model.fields,help:sale_validity.field_res_company_default_sale_order_validity_days
+#: model:ir.model.fields,help:sale_validity.field_sale_config_settings_default_sale_order_validity_days
 msgid ""
 "By default, the validity date of sale orders will be the date of the sale "
 "order plus the number of days defined in this field. If the value of this "
@@ -31,13 +33,9 @@ msgid "Companies"
 msgstr ""
 
 #. module: sale_validity
-#: field:res.company,default_sale_order_validity_days:0
-msgid "Default Validity of Sale Orders (in days)"
-msgstr ""
-
-#. module: sale_validity
-#: help:sale.order,date_validity:0
-msgid "Define date until when quotation is valid"
+#: model:ir.model.fields,field_description:sale_validity.field_res_company_default_sale_order_validity_days
+#: model:ir.model.fields,field_description:sale_validity.field_sale_config_settings_default_sale_order_validity_days
+msgid "Default Validity of Sale Orders"
 msgstr ""
 
 #. module: sale_validity
@@ -53,6 +51,11 @@ msgid ""
 msgstr ""
 
 #. module: sale_validity
-#: field:sale.order,date_validity:0
-msgid "Valid Until"
+#: model:ir.ui.view,arch_db:sale_validity.view_sales_config
+msgid "days"
+msgstr ""
+
+#. module: sale_validity
+#: model:ir.model,name:sale_validity.model_sale_config_settings
+msgid "sale.config.settings"
 msgstr ""
