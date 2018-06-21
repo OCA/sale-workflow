@@ -1,7 +1,7 @@
 # Translation of Odoo Server.
 # This file contains the translation of the following modules:
 # * sale_order_type
-# 
+#
 # Translators:
 # OCA Transbot <transbot@odoo-community.org>, 2017
 msgid ""
@@ -12,10 +12,10 @@ msgstr ""
 "PO-Revision-Date: 2018-01-27 03:53+0000\n"
 "Last-Translator: OCA Transbot <transbot@odoo-community.org>, 2017\n"
 "Language-Team: Turkish (https://www.transifex.com/oca/teams/23907/tr/)\n"
+"Language: tr\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
-"Language: tr\n"
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
 
 #. module: sale_order_type
@@ -33,6 +33,11 @@ msgstr ""
 #: model:ir.model.fields,field_description:sale_order_type.field_sale_order_type_company_id
 msgid "Company"
 msgstr "Şirket"
+
+#. module: sale_order_type
+#: model:ir.model,name:sale_order_type.model_res_partner
+msgid "Contact"
+msgstr ""
 
 #. module: sale_order_type
 #: model:ir.model.fields,field_description:sale_order_type.field_sale_order_type_create_uid
@@ -107,11 +112,6 @@ msgid "Normal Order"
 msgstr ""
 
 #. module: sale_order_type
-#: model:ir.model,name:sale_order_type.model_res_partner
-msgid "Partner"
-msgstr "İş Ortağı"
-
-#. module: sale_order_type
 #: model:ir.model.fields,field_description:sale_order_type.field_sale_order_type_payment_term_id
 #: model:ir.ui.view,arch_db:sale_order_type.sot_sale_order_type_search_view
 msgid "Payment Term"
@@ -128,6 +128,11 @@ msgid "Pricelist"
 msgstr ""
 
 #. module: sale_order_type
+#: model:ir.model,name:sale_order_type.model_sale_order
+msgid "Quotation"
+msgstr ""
+
+#. module: sale_order_type
 #: model:ir.model.fields,field_description:sale_order_type.field_res_partner_sale_type
 #: model:ir.model.fields,field_description:sale_order_type.field_res_users_sale_type
 msgid "Sale Order Type"
@@ -137,11 +142,6 @@ msgstr ""
 #: model:ir.model.fields,field_description:sale_order_type.field_account_invoice_sale_type_id
 msgid "Sale Type"
 msgstr ""
-
-#. module: sale_order_type
-#: model:ir.model,name:sale_order_type.model_sale_order
-msgid "Sales Order"
-msgstr "Sipariş Emri"
 
 #. module: sale_order_type
 #: model:ir.ui.view,arch_db:sale_order_type.res_partner_sale_type_form_view
@@ -166,7 +166,7 @@ msgid "The company is automatically set from your user preferences."
 msgstr ""
 
 #. module: sale_order_type
-#: model:ir.model.fields,field_description:sale_order_type.field_sale_order_type_id_5962
+#: model:ir.model.fields,field_description:sale_order_type.field_sale_order_type_id_5572
 #: model:ir.ui.view,arch_db:sale_order_type.sot_sale_order_type_form_view
 #: model:ir.ui.view,arch_db:sale_order_type.sot_sale_order_type_search_view
 #: model:ir.ui.view,arch_db:sale_order_type.sot_sale_order_type_tree_view
@@ -183,3 +183,9 @@ msgstr ""
 #: model:ir.ui.view,arch_db:sale_order_type.sot_sale_order_type_search_view
 msgid "Warehouse"
 msgstr ""
+
+#~ msgid "Partner"
+#~ msgstr "İş Ortağı"
+
+#~ msgid "Sales Order"
+#~ msgstr "Sipariş Emri"
