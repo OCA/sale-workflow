@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: Odoo Server 10.0\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2017-11-23 01:52+0000\n"
-"PO-Revision-Date: 2018-06-21 16:50+0000\n"
+"PO-Revision-Date: 2018-06-22 17:01+0000\n"
 "Last-Translator: Thomas Pot <t.pot@open2bizz.nl>\n"
 "Language-Team: Dutch (Netherlands) (https://www.transifex.com/oca/teams/"
 "23907/nl_NL/)\n"
@@ -33,12 +33,12 @@ msgstr "Korting 3 (%)"
 #. module: sale_triple_discount
 #: sql_constraint:sale.order.line:0
 msgid "Discount 2 must be lower than 100%."
-msgstr "Korting 2 moet lager zijn dan 100%"
+msgstr "Korting 2 moet lager zijn dan 100%."
 
 #. module: sale_triple_discount
 #: sql_constraint:sale.order.line:0
 msgid "Discount 3 must be lower than 100%."
-msgstr "Korting 3 moet lager zijn dan 100%"
+msgstr "Korting 3 moet lager zijn dan 100%."
 
 #. module: sale_triple_discount
 #: model:ir.model,name:sale_triple_discount.model_sale_order_line
