@@ -1,22 +1,17 @@
 # Translation of Odoo Server.
 # This file contains the translation of the following modules:
-# * sale_automatic_workflow
+#	* sale_automatic_workflow
 #
-# Translators:
-# OCA Transbot <transbot@odoo-community.org>, 2016
 msgid ""
 msgstr ""
-"Project-Id-Version: Odoo Server 9.0c\n"
+"Project-Id-Version: Odoo Server 11.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-12-31 01:43+0000\n"
-"PO-Revision-Date: 2016-12-31 01:43+0000\n"
-"Last-Translator: OCA Transbot <transbot@odoo-community.org>, 2016\n"
-"Language-Team: Thai (https://www.transifex.com/oca/teams/23907/th/)\n"
-"Language: th\n"
+"Last-Translator: <>\n"
+"Language-Team: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
-"Plural-Forms: nplurals=1; plural=0;\n"
+"Plural-Forms: \n"
 
 #. module: sale_automatic_workflow
 #: model:ir.model.fields,field_description:sale_automatic_workflow.field_sale_order_all_qty_delivered
@@ -72,9 +67,7 @@ msgstr ""
 
 #. module: sale_automatic_workflow
 #: model:sale.workflow.process,warning:sale_automatic_workflow.automatic_validation
-msgid ""
-"Be careful, if you save the order with this setting, it could be auto-"
-"confirmed, even if you are editing it."
+msgid "Be careful, if you save the order with this setting, it could be auto-confirmed, even if you are editing it."
 msgstr ""
 
 #. module: sale_automatic_workflow
@@ -101,13 +94,13 @@ msgstr ""
 #: model:ir.model.fields,field_description:sale_automatic_workflow.field_automatic_workflow_job_create_uid
 #: model:ir.model.fields,field_description:sale_automatic_workflow.field_sale_workflow_process_create_uid
 msgid "Created by"
-msgstr "สร้างโดย"
+msgstr ""
 
 #. module: sale_automatic_workflow
 #: model:ir.model.fields,field_description:sale_automatic_workflow.field_automatic_workflow_job_create_date
 #: model:ir.model.fields,field_description:sale_automatic_workflow.field_sale_workflow_process_create_date
 msgid "Created on"
-msgstr "สร้างเมื่อ"
+msgstr ""
 
 #. module: sale_automatic_workflow
 #: selection:sale.workflow.process,picking_policy:0
@@ -123,7 +116,7 @@ msgstr ""
 #: model:ir.model.fields,field_description:sale_automatic_workflow.field_automatic_workflow_job_display_name
 #: model:ir.model.fields,field_description:sale_automatic_workflow.field_sale_workflow_process_display_name
 msgid "Display Name"
-msgstr "ชื่อที่ใช้แสดง"
+msgstr ""
 
 #. module: sale_automatic_workflow
 #: model:ir.model.fields,field_description:sale_automatic_workflow.field_sale_workflow_process_invoice_date_is_order_date
@@ -134,25 +127,22 @@ msgstr ""
 #: model:ir.model.fields,field_description:sale_automatic_workflow.field_automatic_workflow_job_id
 #: model:ir.model.fields,field_description:sale_automatic_workflow.field_sale_workflow_process_id
 msgid "ID"
-msgstr "รหัส"
+msgstr ""
 
 #. module: sale_automatic_workflow
 #: model:ir.model.fields,help:sale_automatic_workflow.field_sale_workflow_process_warning
-msgid ""
-"If set, displays the message when an userselects the process on a sale order"
+msgid "If set, displays the message when an userselects the process on a sale order"
 msgstr ""
 
 #. module: sale_automatic_workflow
 #: model:ir.model.fields,help:sale_automatic_workflow.field_sale_workflow_process_invoice_service_delivery
-msgid ""
-"If this box is checked, when the first invoice is created The service sale "
-"order lines will be included and will be marked as delivered"
+msgid "If this box is checked, when the first invoice is created The service sale order lines will be included and will be marked as delivered"
 msgstr ""
 
 #. module: sale_automatic_workflow
 #: model:ir.model,name:sale_automatic_workflow.model_account_invoice
 msgid "Invoice"
-msgstr "ใบแจ้งหนี้"
+msgstr ""
 
 #. module: sale_automatic_workflow
 #: model:ir.model.fields,field_description:sale_automatic_workflow.field_sale_workflow_process_invoice_service_delivery
@@ -163,24 +153,24 @@ msgstr ""
 #: model:ir.model.fields,field_description:sale_automatic_workflow.field_automatic_workflow_job___last_update
 #: model:ir.model.fields,field_description:sale_automatic_workflow.field_sale_workflow_process___last_update
 msgid "Last Modified on"
-msgstr "แก้ไขครั้งสุดท้ายเมื่อ"
+msgstr ""
 
 #. module: sale_automatic_workflow
 #: model:ir.model.fields,field_description:sale_automatic_workflow.field_automatic_workflow_job_write_uid
 #: model:ir.model.fields,field_description:sale_automatic_workflow.field_sale_workflow_process_write_uid
 msgid "Last Updated by"
-msgstr "อัพเดทครั้งสุดท้ายโดย"
+msgstr ""
 
 #. module: sale_automatic_workflow
 #: model:ir.model.fields,field_description:sale_automatic_workflow.field_automatic_workflow_job_write_date
 #: model:ir.model.fields,field_description:sale_automatic_workflow.field_sale_workflow_process_write_date
 msgid "Last Updated on"
-msgstr "อัพเดทครั้งสุดท้ายเมื่อ"
+msgstr ""
 
 #. module: sale_automatic_workflow
 #: model:ir.model.fields,field_description:sale_automatic_workflow.field_sale_workflow_process_name
 msgid "Name"
-msgstr "ชื่อ"
+msgstr ""
 
 #. module: sale_automatic_workflow
 #: model:ir.ui.view,arch_db:sale_automatic_workflow.sale_workflow_process_view_form
@@ -314,3 +304,4 @@ msgstr ""
 #: model:ir.model,name:sale_automatic_workflow.model_automatic_workflow_job
 msgid "automatic.workflow.job"
 msgstr ""
+
