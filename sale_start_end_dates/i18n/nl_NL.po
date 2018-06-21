@@ -9,15 +9,16 @@ msgstr ""
 "Project-Id-Version: Odoo Server 10.0\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2017-06-06 13:17+0000\n"
-"PO-Revision-Date: 2017-06-06 13:17+0000\n"
-"Last-Translator: Peter Hageman <hageman.p@gmail.com>, 2017\n"
-"Language-Team: Dutch (Netherlands) (https://www.transifex.com/oca/"
-"teams/23907/nl_NL/)\n"
+"PO-Revision-Date: 2018-06-21 16:45+0000\n"
+"Last-Translator: Thomas Pot <t.pot@open2bizz.nl>\n"
+"Language-Team: Dutch (Netherlands) (https://www.transifex.com/oca/teams/"
+"23907/nl_NL/)\n"
 "Language: nl_NL\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
-"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: Weblate 3.0.1\n"
 
 #. module: sale_start_end_dates
 #: model:ir.model.fields,field_description:sale_start_end_dates.field_sale_order_default_end_date
@@ -27,7 +28,7 @@ msgstr "Standaard Einddatum"
 #. module: sale_start_end_dates
 #: model:ir.model.fields,field_description:sale_start_end_dates.field_sale_order_default_start_date
 msgid "Default Start Date"
-msgstr ""
+msgstr "Standaard Startdatum"
 
 #. module: sale_start_end_dates
 #: code:addons/sale_start_end_dates/models/sale.py:26
@@ -36,6 +37,8 @@ msgid ""
 "Default Start Date should be before or be the same as Default End Date for "
 "sale order %s"
 msgstr ""
+"Standaard startdatum moet eerder of gelijk zijn als de standaard einddatum "
+"voor de verkooporder %s"
 
 #. module: sale_start_end_dates
 #: model:ir.model.fields,field_description:sale_start_end_dates.field_sale_order_line_end_date
@@ -48,34 +51,36 @@ msgid ""
 "If this option is active, the user will have to enter a Start Date and an "
 "End Date on the invoice lines that have this product."
 msgstr ""
+"Als deze optie actief is, moet de gebruiker een startdatum en een einddatum "
+"invoeren op de factuurregels die dit product bevatten."
 
 #. module: sale_start_end_dates
 #: code:addons/sale_start_end_dates/models/sale.py:65
 #, python-format
 msgid "Missing End Date for sale order line with Product '%s'."
-msgstr ""
+msgstr "Ontbrekende einddatum voor verkooporderregel met product '%s'."
 
 #. module: sale_start_end_dates
 #: code:addons/sale_start_end_dates/models/sale.py:69
 #, python-format
 msgid "Missing Start Date for sale order line with Product '%s'."
-msgstr ""
+msgstr "Ontbrekende begindatum voor verkooporderregel met product '%s'."
 
 #. module: sale_start_end_dates
 #: code:addons/sale_start_end_dates/models/sale.py:73
 #, python-format
 msgid "Missing number of days for sale order line with Product '%s'."
-msgstr ""
+msgstr "Ontbrekend aantal dagen voor verkooporderregel met product '%s'."
 
 #. module: sale_start_end_dates
 #: model:ir.model.fields,field_description:sale_start_end_dates.field_sale_order_line_must_have_dates
 msgid "Must Have Start and End Dates"
-msgstr ""
+msgstr "Moet begin- en einddatums hebben"
 
 #. module: sale_start_end_dates
 #: model:ir.model.fields,field_description:sale_start_end_dates.field_sale_order_line_number_of_days
 msgid "Number of Days"
-msgstr ""
+msgstr "Aantal dagen"
 
 #. module: sale_start_end_dates
 #: code:addons/sale_start_end_dates/models/sale.py:82
@@ -84,6 +89,8 @@ msgid ""
 "On sale order line with Product '%s', the number of days is negative ; this "
 "is not allowed."
 msgstr ""
+"Voor de kooporderregel met product '%s', is het aantal dagen negatief "
+"opgegeven; dit is niet toegestaan."
 
 #. module: sale_start_end_dates
 #: code:addons/sale_start_end_dates/models/sale.py:90
@@ -93,6 +100,9 @@ msgid ""
 "Start Date (%s) and the End Date (%s), but the number of days field has a "
 "value of %d days."
 msgstr ""
+"Op de verkooporderregel met Product '%s' zijn er %d dagen tussen de "
+"startdatum (%s) en de einddatum (%s), maar het veld aantal dagen heeft een "
+"waarde van %d dagen."
 
 #. module: sale_start_end_dates
 #: model:ir.model,name:sale_start_end_dates.model_sale_order
@@ -116,3 +126,5 @@ msgid ""
 "Start Date should be before or be the same as End Date for sale order line "
 "with Product '%s'."
 msgstr ""
+"Startdatum moet vóór of gelijk zijn aan einddatum voor de verkooporderregel "
+"met Product '%s'."
