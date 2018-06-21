@@ -1,7 +1,7 @@
 # Translation of Odoo Server.
 # This file contains the translation of the following modules:
 # * sale_product_set
-# 
+#
 # Translators:
 # OCA Transbot <transbot@odoo-community.org>, 2017
 msgid ""
@@ -11,11 +11,12 @@ msgstr ""
 "POT-Creation-Date: 2017-05-13 01:19+0000\n"
 "PO-Revision-Date: 2017-05-13 01:19+0000\n"
 "Last-Translator: OCA Transbot <transbot@odoo-community.org>, 2017\n"
-"Language-Team: Chinese (Taiwan) (https://www.transifex.com/oca/teams/23907/zh_TW/)\n"
+"Language-Team: Chinese (Taiwan) (https://www.transifex.com/oca/teams/23907/"
+"zh_TW/)\n"
+"Language: zh_TW\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
-"Language: zh_TW\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
 
 #. module: sale_product_set
@@ -102,7 +103,7 @@ msgstr ""
 #: model:ir.actions.act_window,name:sale_product_set.act_open_product_set_view
 #: model:ir.model,name:sale_product_set.model_product_set
 #: model:ir.model.fields,field_description:sale_product_set.field_product_set_add_product_set_id
-#: model:ir.ui.menu,name:sale_product_set.menu_product_set
+#: model:ir.ui.menu,name:sale_product_set.menu_product_set_config
 #: model:ir.ui.view,arch_db:sale_product_set.view_product_set_form
 #: model:ir.ui.view,arch_db:sale_product_set.view_product_set_search
 #: model:ir.ui.view,arch_db:sale_product_set.view_product_set_tree
@@ -148,9 +149,4 @@ msgstr ""
 #. module: sale_product_set
 #: model:ir.model,name:sale_product_set.model_product_set_add
 msgid "Wizard model to add product set into a quotation"
-msgstr ""
-
-#. module: sale_product_set
-#: model:ir.ui.view,arch_db:sale_product_set.product_set_add_form_view
-msgid "or"
 msgstr ""
