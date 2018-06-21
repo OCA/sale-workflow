@@ -1,7 +1,7 @@
 # Translation of Odoo Server.
 # This file contains the translation of the following modules:
 # * sale_automatic_workflow
-# 
+#
 # Translators:
 # OCA Transbot <transbot@odoo-community.org>, 2018
 # Quentin THEURET <odoo@kerpeo.com>, 2018
@@ -13,10 +13,10 @@ msgstr ""
 "PO-Revision-Date: 2018-03-02 10:22+0000\n"
 "Last-Translator: Quentin THEURET <odoo@kerpeo.com>, 2018\n"
 "Language-Team: French (https://www.transifex.com/oca/teams/23907/fr/)\n"
+"Language: fr\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
-"Language: fr\n"
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
 
 #. module: sale_automatic_workflow
@@ -65,8 +65,7 @@ msgstr "Flux de travail automatique Créant un filtre sur les ventes réalisées
 #. module: sale_automatic_workflow
 #: model:ir.filters,name:sale_automatic_workflow.automatic_workflow_validate_invoice_filter
 msgid "Automatic Workflow Validate Invoice Filter"
-msgstr ""
-"Flux de travail automatique Créant un filtre sur les factures validées"
+msgstr "Flux de travail automatique Créant un filtre sur les factures validées"
 
 #. module: sale_automatic_workflow
 #: model:ir.ui.view,arch_db:sale_automatic_workflow.sale_order_view_form
