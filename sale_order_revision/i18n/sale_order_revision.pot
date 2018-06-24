@@ -1,27 +1,22 @@
 # Translation of Odoo Server.
 # This file contains the translation of the following modules:
-# * sale_order_revision
+#	* sale_order_revision
 #
-# Translators:
 msgid ""
 msgstr ""
-"Project-Id-Version: sale-workflow (8.0)\n"
+"Project-Id-Version: Odoo Server 8.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-10-02 17:59+0000\n"
-"PO-Revision-Date: 2015-09-03 07:09+0000\n"
 "Last-Translator: <>\n"
-"Language-Team: Italian (http://www.transifex.com/oca/OCA-sale-workflow-8-0/"
-"language/it/)\n"
-"Language: it\n"
+"Language-Team: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
-"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"Plural-Forms: \n"
 
 #. module: sale_order_revision
 #: field:sale.order,active:0
 msgid "Active"
-msgstr "Attivo"
+msgstr ""
 
 #. module: sale_order_revision
 #: field:sale.order,current_revision_id:0
@@ -62,7 +57,7 @@ msgstr ""
 #. module: sale_order_revision
 #: model:ir.model,name:sale_order_revision.model_sale_order
 msgid "Sales Order"
-msgstr "Ordini vendita"
+msgstr ""
 
 #. module: sale_order_revision
 #: view:sale.order:sale_order_revision.sale_order_form
@@ -73,3 +68,4 @@ msgstr ""
 #: view:sale.order:sale_order_revision.sale_order_form
 msgid "Superseeded on"
 msgstr ""
+
