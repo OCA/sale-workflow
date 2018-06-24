@@ -1,22 +1,17 @@
 # Translation of Odoo Server.
 # This file contains the translation of the following modules:
-# * sale_order_calendar_event
+#	* sale_order_calendar_event
 #
-# Translators:
-# Daniel Reis <dreis.pt@gmail.com>, 2016
 msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 8.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-11-22 23:35+0000\n"
-"PO-Revision-Date: 2016-11-22 23:35+0000\n"
-"Last-Translator: Daniel Reis <dreis.pt@gmail.com>, 2016\n"
-"Language-Team: Portuguese (https://www.transifex.com/oca/teams/23907/pt/)\n"
-"Language: pt\n"
+"Last-Translator: <>\n"
+"Language-Team: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
-"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"Plural-Forms: \n"
 
 #. module: sale_order_calendar_event
 #: view:sale.order:sale_order_calendar_event.view_order_form
@@ -53,4 +48,5 @@ msgstr ""
 #. module: sale_order_calendar_event
 #: model:ir.model,name:sale_order_calendar_event.model_sale_order
 msgid "Sales Order"
-msgstr "Ordem de Venda"
+msgstr ""
+
