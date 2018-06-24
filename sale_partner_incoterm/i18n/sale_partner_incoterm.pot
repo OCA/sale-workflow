@@ -1,22 +1,17 @@
 # Translation of Odoo Server.
 # This file contains the translation of the following modules:
-# * sale_partner_incoterm
+#	* sale_partner_incoterm
 #
-# Translators:
 msgid ""
 msgstr ""
-"Project-Id-Version: sale-workflow (8.0)\n"
+"Project-Id-Version: Odoo Server 8.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-12-24 04:48+0000\n"
-"PO-Revision-Date: 2015-10-23 08:15+0000\n"
 "Last-Translator: <>\n"
-"Language-Team: Thai (http://www.transifex.com/oca/OCA-sale-workflow-8-0/"
-"language/th/)\n"
-"Language: th\n"
+"Language-Team: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
-"Plural-Forms: nplurals=1; plural=0;\n"
+"Plural-Forms: \n"
 
 #. module: sale_partner_incoterm
 #: field:res.partner,sale_incoterm_id:0
@@ -26,7 +21,7 @@ msgstr ""
 #. module: sale_partner_incoterm
 #: model:ir.model,name:sale_partner_incoterm.model_res_partner
 msgid "Partner"
-msgstr "พาร์ทเนอร์"
+msgstr ""
 
 #. module: sale_partner_incoterm
 #: model:ir.model,name:sale_partner_incoterm.model_sale_order
@@ -37,3 +32,4 @@ msgstr ""
 #: help:res.partner,sale_incoterm_id:0
 msgid "The default incoterm for new sales orders for this customer."
 msgstr ""
+
