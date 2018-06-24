@@ -1,7 +1,7 @@
 # Translation of Odoo Server.
 # This file contains the translation of the following modules:
 # * sale_quotation_sourcing
-# 
+#
 # Translators:
 # Accounts-Payable - Alkemics, 2015
 # Ahmet Altinisik <aaltinisik@altinkaya.com.tr>, 2017
@@ -15,11 +15,12 @@ msgstr ""
 "POT-Creation-Date: 2017-01-14 06:38+0000\n"
 "PO-Revision-Date: 2017-01-16 19:28+0000\n"
 "Last-Translator: Ahmet Altinisik <aaltinisik@altinkaya.com.tr>\n"
-"Language-Team: Turkish (http://www.transifex.com/oca/OCA-sale-workflow-8-0/language/tr/)\n"
+"Language-Team: Turkish (http://www.transifex.com/oca/OCA-sale-workflow-8-0/"
+"language/tr/)\n"
+"Language: tr\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
-"Language: tr\n"
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
 
 #. module: sale_quotation_sourcing
@@ -143,8 +144,7 @@ msgstr ""
 #: model:sale.exception,description:sale_quotation_sourcing.inconsistent_sourcing
 msgid ""
 "The chosen route is inconsistent with the destination of the purchase line "
-"that has been chosen. Please change the route or choose a different "
-"purchase."
+"that has been chosen. Please change the route or choose a different purchase."
 msgstr ""
 
 #. module: sale_quotation_sourcing
