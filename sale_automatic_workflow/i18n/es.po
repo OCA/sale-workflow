@@ -1,7 +1,7 @@
 # Translation of Odoo Server.
 # This file contains the translation of the following modules:
 # * sale_automatic_workflow
-# 
+#
 # Translators:
 # Antonio Trueba, 2016
 # Antonio Trueba, 2016
@@ -14,11 +14,12 @@ msgstr ""
 "POT-Creation-Date: 2016-11-22 23:35+0000\n"
 "PO-Revision-Date: 2016-11-25 14:55+0000\n"
 "Last-Translator: Pedro M. Baeza <pedro.baeza@gmail.com>\n"
-"Language-Team: Spanish (http://www.transifex.com/oca/OCA-sale-workflow-8-0/language/es/)\n"
+"Language-Team: Spanish (http://www.transifex.com/oca/OCA-sale-workflow-8-0/"
+"language/es/)\n"
+"Language: es\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
-"Language: es\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
 #. module: sale_automatic_workflow
@@ -45,7 +46,9 @@ msgstr "Información de automatización"
 msgid ""
 "Be careful, if you save the order with this setting, it could be auto-"
 "confirmed, even if you are editing it."
-msgstr "Sea cuidadoso si guarda el pedido con este ajuste: puede auto-confirmarse incluso aunque lo esté editando."
+msgstr ""
+"Sea cuidadoso si guarda el pedido con este ajuste: puede auto-confirmarse "
+"incluso aunque lo esté editando."
 
 #. module: sale_automatic_workflow
 #: selection:sale.workflow.process,order_policy:0
@@ -104,7 +107,9 @@ msgstr "ID"
 #: help:sale.workflow.process,warning:0
 msgid ""
 "If set, display the message when a user selects the process on a sale order"
-msgstr "Si está establecido, se muestra el mensaje cuando un usuario selecciona el proceso en el pedido de venta"
+msgstr ""
+"Si está establecido, se muestra el mensaje cuando un usuario selecciona el "
+"proceso en el pedido de venta"
 
 #. module: sale_automatic_workflow
 #: model:ir.model,name:sale_automatic_workflow.model_account_invoice
@@ -256,12 +261,16 @@ msgstr "Mensaje de advertencia"
 msgid ""
 "When checked, the available quantity is shipped, and if so, a backorder is "
 "created with the rest."
-msgstr "Cuando se activa, la cantidad disponible es enviada, y si es así, se crea un pedido pendiente con el resto."
+msgstr ""
+"Cuando se activa, la cantidad disponible es enviada, y si es así, se crea un "
+"pedido pendiente con el resto."
 
 #. module: sale_automatic_workflow
 #: help:sale.workflow.process,invoice_date_is_order_date:0
 msgid "When checked, the invoice date will be the same than the order's date"
-msgstr "Cuando está marcado, la fecha de la factura será la misma que la del pedido de venta"
+msgstr ""
+"Cuando está marcado, la fecha de la factura será la misma que la del pedido "
+"de venta"
 
 #. module: sale_automatic_workflow
 #: view:sale.workflow.process:sale_automatic_workflow.sale_workflow_process_view_form
