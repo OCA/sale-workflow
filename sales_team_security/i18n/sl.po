@@ -1,7 +1,7 @@
 # Translation of Odoo Server.
 # This file contains the translation of the following modules:
 # * sales_team_security
-# 
+#
 # Translators:
 # Matjaž Mozetič <m.mozetic@matmoz.si>, 2017
 # OCA Transbot <transbot@odoo-community.org>, 2017
@@ -13,11 +13,12 @@ msgstr ""
 "PO-Revision-Date: 2017-04-04 03:01+0000\n"
 "Last-Translator: OCA Transbot <transbot@odoo-community.org>, 2017\n"
 "Language-Team: Slovenian (https://www.transifex.com/oca/teams/23907/sl/)\n"
+"Language: sl\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
-"Language: sl\n"
-"Plural-Forms: nplurals=4; plural=(n%100==1 ? 0 : n%100==2 ? 1 : n%100==3 || n%100==4 ? 2 : 3);\n"
+"Plural-Forms: nplurals=4; plural=(n%100==1 ? 0 : n%100==2 ? 1 : n%100==3 || n"
+"%100==4 ? 2 : 3);\n"
 
 #. module: sales_team_security
 #: field:res.users,meeting_count:0
@@ -90,8 +91,8 @@ msgstr "Plačilni pogoji kupca"
 #: help:res.users,last_reconciliation_date:0
 msgid ""
 "Date on which the partner accounting entries were fully reconciled last "
-"time. It differs from the last date where a reconciliation has been made for"
-" this partner, as here we depict the fact that nothing more was to be "
+"time. It differs from the last date where a reconciliation has been made for "
+"this partner, as here we depict the fact that nothing more was to be "
 "reconciled at this date. This can be achieved in 2 different ways: either "
 "the last unreconciled debit/credit entry of this partner was reconciled, "
 "either the user pressed the button \"Nothing more to reconcile\" during the "
@@ -100,8 +101,8 @@ msgstr ""
 "Datum zadnje polne uskladitve. Drugačen je od zadnjega datuma uskladitve za "
 "partnerja, saj opisuje stanje, ko ni ničesar za usklajevati na ta datum. To "
 "se lahko doseže na dva načina: zadnji neusklajeni breme/dobro vnos za "
-"partnerja je bil usklajen ali pa je uporabnik pritisnil gumb 'Ničesar več za"
-" usklajevanje' med procesom ročnega usklajevanja."
+"partnerja je bil usklajen ali pa je uporabnik pritisnil gumb 'Ničesar več za "
+"usklajevanje' med procesom ročnega usklajevanja."
 
 #. module: sales_team_security
 #: field:res.users,property_account_position:0
@@ -216,8 +217,8 @@ msgid ""
 "This account will be used instead of the default one as the payable account "
 "for the current partner"
 msgstr ""
-"Ta konto bo uporabljen namesto privzetega kot konto obveznosti za trenutnega"
-" partnerja."
+"Ta konto bo uporabljen namesto privzetega kot konto obveznosti za trenutnega "
+"partnerja."
 
 #. module: sales_team_security
 #: help:res.users,property_account_receivable:0
@@ -225,8 +226,7 @@ msgid ""
 "This account will be used instead of the default one as the receivable "
 "account for the current partner"
 msgstr ""
-"Ta konto se bo uporabljal namesto privzetega konta terjatev za tega "
-"partnerja"
+"Ta konto se bo uporabljal namesto privzetega konta terjatev za tega partnerja"
 
 #. module: sales_team_security
 #: help:res.users,property_supplier_payment_term:0

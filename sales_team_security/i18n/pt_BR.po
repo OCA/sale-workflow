@@ -1,7 +1,7 @@
 # Translation of Odoo Server.
 # This file contains the translation of the following modules:
 # * sales_team_security
-# 
+#
 # Translators:
 # Alessandro Martini <alessandrofmartini@gmail.com>, 2017
 # Paulo Ricardo <ti@shoppingescritorio.com.br>, 2017
@@ -15,11 +15,12 @@ msgstr ""
 "POT-Creation-Date: 2017-04-04 03:01+0000\n"
 "PO-Revision-Date: 2017-04-04 03:01+0000\n"
 "Last-Translator: danimaribeiro <danimaribeiro@gmail.com>, 2017\n"
-"Language-Team: Portuguese (Brazil) (https://www.transifex.com/oca/teams/23907/pt_BR/)\n"
+"Language-Team: Portuguese (Brazil) (https://www.transifex.com/oca/"
+"teams/23907/pt_BR/)\n"
+"Language: pt_BR\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
-"Language: pt_BR\n"
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
 
 #. module: sales_team_security
@@ -95,8 +96,8 @@ msgstr "Forma  de Pagamento do Cliente"
 #: help:res.users,last_reconciliation_date:0
 msgid ""
 "Date on which the partner accounting entries were fully reconciled last "
-"time. It differs from the last date where a reconciliation has been made for"
-" this partner, as here we depict the fact that nothing more was to be "
+"time. It differs from the last date where a reconciliation has been made for "
+"this partner, as here we depict the fact that nothing more was to be "
 "reconciled at this date. This can be achieved in 2 different ways: either "
 "the last unreconciled debit/credit entry of this partner was reconciled, "
 "either the user pressed the button \"Nothing more to reconcile\" during the "
@@ -249,8 +250,8 @@ msgid ""
 "This payment term will be used instead of the default one for sale orders "
 "and customer invoices"
 msgstr ""
-"Este termo de pagamento será usado ao invés do padrão para pedidos de vendas"
-" e faturas de clientes"
+"Este termo de pagamento será usado ao invés do padrão para pedidos de vendas "
+"e faturas de clientes"
 
 #. module: sales_team_security
 #: help:res.users,property_product_pricelist_purchase:0
@@ -265,8 +266,8 @@ msgid ""
 "This stock location will be used, instead of the default one, as the "
 "destination location for goods you send to this partner"
 msgstr ""
-"Esta localização de estoque será usada, ao invés da padrão, como localização"
-" de destino para bens que você enviar à este parceiro"
+"Esta localização de estoque será usada, ao invés da padrão, como localização "
+"de destino para bens que você enviar à este parceiro"
 
 #. module: sales_team_security
 #: help:res.users,property_stock_supplier:0
