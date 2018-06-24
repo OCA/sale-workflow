@@ -1,6 +1,6 @@
 # Translation of Odoo Server.
 # This file contains the translation of the following modules:
-#	* sale_partner_order_policy
+# 	* sale_partner_order_policy
 #
 msgid ""
 msgstr ""
@@ -10,6 +10,7 @@ msgstr ""
 "PO-Revision-Date: 2014-11-19 09:23+0000\n"
 "Last-Translator: Alexis de Lattre <alexis.delattre@akretion.com>\n"
 "Language-Team: \n"
+"Language: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
@@ -47,6 +48,8 @@ msgstr "Commande de ventes"
 
 #. module: sale_partner_order_policy
 #: help:res.partner,customer_order_policy:0
-msgid "Select the default create invoice method for the sale orders of this customer"
-msgstr "Selectionnez la méthode de création de facture qui sera utilisée par défaut pour les bons de commande de ce client"
-
+msgid ""
+"Select the default create invoice method for the sale orders of this customer"
+msgstr ""
+"Selectionnez la méthode de création de facture qui sera utilisée par défaut "
+"pour les bons de commande de ce client"
