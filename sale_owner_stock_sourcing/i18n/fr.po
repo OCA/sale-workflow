@@ -1,6 +1,6 @@
 # Translation of Odoo Server.
 # This file contains the translation of the following modules:
-#	* sale_owner_stock_sourcing
+# 	* sale_owner_stock_sourcing
 #
 msgid ""
 msgstr ""
@@ -10,6 +10,7 @@ msgstr ""
 "PO-Revision-Date: 2015-01-15 10:18+0000\n"
 "Last-Translator: <>\n"
 "Language-Team: \n"
+"Language: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
@@ -29,4 +30,3 @@ msgstr "Sales Order Line"
 #: field:sale.order.line,stock_owner_id:0
 msgid "Stock Owner"
 msgstr "Stock Owner"
-
