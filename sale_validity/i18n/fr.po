@@ -1,7 +1,7 @@
 # Translation of Odoo Server.
 # This file contains the translation of the following modules:
 # * sale_validity
-# 
+#
 # Translators:
 # Pierre Verkest <pverkest@anybox.fr>, 2015
 msgid ""
@@ -11,11 +11,12 @@ msgstr ""
 "POT-Creation-Date: 2015-10-02 17:59+0000\n"
 "PO-Revision-Date: 2015-09-24 21:19+0000\n"
 "Last-Translator: Pierre Verkest <pverkest@anybox.fr>\n"
-"Language-Team: French (http://www.transifex.com/oca/OCA-sale-workflow-8-0/language/fr/)\n"
+"Language-Team: French (http://www.transifex.com/oca/OCA-sale-workflow-8-0/"
+"language/fr/)\n"
+"Language: fr\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
-"Language: fr\n"
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
 
 #. module: sale_validity
@@ -24,7 +25,10 @@ msgid ""
 "By default, the validity date of sale orders will be the date of the sale "
 "order plus the number of days defined in this field. If the value of this "
 "field is 0, the sale orders will not have a validity date by default."
-msgstr "Par défaut, la date de validité des bons de commande est la date du bon de commande plus le nombre de jours défini par ce champ. Si la valeur est 0, le bon de commande n'aura pas de date de validité par défaut."
+msgstr ""
+"Par défaut, la date de validité des bons de commande est la date du bon de "
+"commande plus le nombre de jours défini par ce champ. Si la valeur est 0, le "
+"bon de commande n'aura pas de date de validité par défaut."
 
 #. module: sale_validity
 #: model:ir.model,name:sale_validity.model_res_company
@@ -51,7 +55,9 @@ msgstr "Bon de commande"
 msgid ""
 "The value of the field 'Default Validity Duration of Sale Orders' must be "
 "positive or 0."
-msgstr "La valeur du champ 'Validité par défaut des bons de commande' doit être supérieur ou égale à 0."
+msgstr ""
+"La valeur du champ 'Validité par défaut des bons de commande' doit être "
+"supérieur ou égale à 0."
 
 #. module: sale_validity
 #: field:sale.order,date_validity:0

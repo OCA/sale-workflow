@@ -1,7 +1,7 @@
 # Translation of Odoo Server.
 # This file contains the translation of the following modules:
 # * sale_validity
-# 
+#
 # Translators:
 # oihane <oihanecruce@gmail.com>, 2015
 # oihane <oihanecruce@gmail.com>, 2015
@@ -14,11 +14,12 @@ msgstr ""
 "POT-Creation-Date: 2017-04-04 03:01+0000\n"
 "PO-Revision-Date: 2015-09-03 07:11+0000\n"
 "Last-Translator: <>\n"
-"Language-Team: Chinese (China) (http://www.transifex.com/oca/OCA-sale-workflow-8-0/language/zh_CN/)\n"
+"Language-Team: Chinese (China) (http://www.transifex.com/oca/OCA-sale-"
+"workflow-8-0/language/zh_CN/)\n"
+"Language: zh_CN\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
-"Language: zh_CN\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
 
 #. module: sale_validity
