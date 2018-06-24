@@ -1,28 +1,21 @@
 # Translation of Odoo Server.
 # This file contains the translation of the following modules:
-# * sale_order_type
+#	* sale_order_type
 #
-# Translators:
 msgid ""
 msgstr ""
-"Project-Id-Version: sale-workflow (8.0)\n"
+"Project-Id-Version: Odoo Server 8.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-12-24 04:48+0000\n"
-"PO-Revision-Date: 2016-12-27 08:20+0000\n"
-"Last-Translator: OCA Transbot <transbot@odoo-community.org>\n"
-"Language-Team: Vietnamese (http://www.transifex.com/oca/OCA-sale-"
-"workflow-8-0/language/vi/)\n"
-"Language: vi\n"
+"Last-Translator: <>\n"
+"Language-Team: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
-"Plural-Forms: nplurals=1; plural=0;\n"
+"Plural-Forms: \n"
 
 #. module: sale_order_type
 #: model:ir.actions.act_window,help:sale_order_type.sot_sale_order_type_action
-msgid ""
-"<p class=\"oe_view_nocontent_create\">Click to set a new type for sale order."
-"</p>\n"
+msgid "<p class=\"oe_view_nocontent_create\">Click to set a new type for sale order.</p>\n"
 "            "
 msgstr ""
 
@@ -46,22 +39,22 @@ msgstr ""
 #. module: sale_order_type
 #: field:sale.order.type,create_uid:0
 msgid "Created by"
-msgstr "Được tạo bởi"
+msgstr ""
 
 #. module: sale_order_type
 #: field:sale.order.type,create_date:0
 msgid "Created on"
-msgstr "Được tạo vào"
+msgstr ""
 
 #. module: sale_order_type
 #: field:sale.order.type,description:0
 msgid "Description"
-msgstr "Miêu tả"
+msgstr ""
 
 #. module: sale_order_type
 #: field:sale.order.type,display_name:0
 msgid "Display Name"
-msgstr "Tên hiển thị"
+msgstr ""
 
 #. module: sale_order_type
 #: view:sale.order.type:sale_order_type.sot_sale_order_type_search_view
@@ -72,12 +65,12 @@ msgstr ""
 #. module: sale_order_type
 #: view:sale.order.type:sale_order_type.sot_sale_order_type_search_view
 msgid "Group By"
-msgstr "Group By"
+msgstr ""
 
 #. module: sale_order_type
 #: field:sale.order.type,id:0
 msgid "ID"
-msgstr "ID"
+msgstr ""
 
 #. module: sale_order_type
 #: view:sale.order.type:sale_order_type.sot_sale_order_type_search_view
@@ -99,22 +92,22 @@ msgstr ""
 #. module: sale_order_type
 #: field:sale.order.type,__last_update:0
 msgid "Last Modified on"
-msgstr "Sửa lần cuối vào"
+msgstr ""
 
 #. module: sale_order_type
 #: field:sale.order.type,write_uid:0
 msgid "Last Updated by"
-msgstr "Last Updated by"
+msgstr ""
 
 #. module: sale_order_type
 #: field:sale.order.type,write_date:0
 msgid "Last Updated on"
-msgstr "Cập nhật lần cuối vào"
+msgstr ""
 
 #. module: sale_order_type
 #: field:sale.order.type,name:0
 msgid "Name"
-msgstr "Tên"
+msgstr ""
 
 #. module: sale_order_type
 #: model:sale.order.type,name:sale_order_type.normal_sale_type
@@ -124,7 +117,7 @@ msgstr ""
 #. module: sale_order_type
 #: model:ir.model,name:sale_order_type.model_res_partner
 msgid "Partner"
-msgstr "Đối tác"
+msgstr ""
 
 #. module: sale_order_type
 #: view:sale.order.type:sale_order_type.sot_sale_order_type_search_view
@@ -182,7 +175,7 @@ msgstr ""
 #. module: sale_order_type
 #: field:sale.order.type,sequence:0
 msgid "Sequence"
-msgstr "Trình tự"
+msgstr ""
 
 #. module: sale_order_type
 #: view:sale.order.type:sale_order_type.sot_sale_order_type_search_view
@@ -201,7 +194,7 @@ msgstr ""
 #: view:sale.order.type:sale_order_type.sot_sale_order_type_search_view
 #: view:sale.order.type:sale_order_type.sot_sale_order_type_tree_view
 msgid "Type"
-msgstr "Loại"
+msgstr ""
 
 #. module: sale_order_type
 #: model:ir.model,name:sale_order_type.model_sale_order_type
@@ -213,3 +206,4 @@ msgstr ""
 #: field:sale.order.type,warehouse_id:0
 msgid "Warehouse"
 msgstr ""
+
