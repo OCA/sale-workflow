@@ -1,33 +1,25 @@
 # Translation of Odoo Server.
 # This file contains the translation of the following modules:
-# * sale_rental
+#	* sale_rental
 #
-# Translators:
 msgid ""
 msgstr ""
-"Project-Id-Version: sale-workflow (8.0)\n"
+"Project-Id-Version: Odoo Server 8.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-07-29 07:54+0000\n"
-"PO-Revision-Date: 2015-09-03 07:10+0000\n"
 "Last-Translator: <>\n"
-"Language-Team: Hungarian (http://www.transifex.com/oca/OCA-sale-workflow-8-0/"
-"language/hu/)\n"
-"Language: hu\n"
+"Language-Team: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
-"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"Plural-Forms: \n"
 
 #. module: sale_rental
-#: help:sale.rental,in_state:0 help:sale.rental,out_state:0
+#: help:sale.rental,in_state:0
+#: help:sale.rental,out_state:0
 #: help:sale.rental,sell_state:0
-msgid ""
-"* New: When the stock move is created and not yet confirmed.\n"
-"* Waiting Another Move: This state can be seen when a move is waiting for "
-"another one, for example in a chained flow.\n"
-"* Waiting Availability: This state is reached when the procurement "
-"resolution is not straight forward. It may need the scheduler to run, a "
-"component to me manufactured...\n"
+msgid "* New: When the stock move is created and not yet confirmed.\n"
+"* Waiting Another Move: This state can be seen when a move is waiting for another one, for example in a chained flow.\n"
+"* Waiting Availability: This state is reached when the procurement resolution is not straight forward. It may need the scheduler to run, a component to me manufactured...\n"
 "* Available: When products are reserved, it is set to 'Available'.\n"
 "* Done: When the shipment is processed, the state is 'Done'."
 msgstr ""
@@ -57,7 +49,7 @@ msgstr ""
 #. module: sale_rental
 #: view:create.rental.product:sale_rental.create_rental_product_form
 msgid "Cancel"
-msgstr "Mégsem"
+msgstr ""
 
 #. module: sale_rental
 #: code:addons/sale_rental/rental.py:118
@@ -68,7 +60,7 @@ msgstr ""
 #. module: sale_rental
 #: field:sale.rental,company_id:0
 msgid "Company"
-msgstr "Vállalat"
+msgstr ""
 
 #. module: sale_rental
 #: field:create.rental.product,copy_image:0
@@ -93,14 +85,16 @@ msgid "Create the Rental Service Product"
 msgstr ""
 
 #. module: sale_rental
-#: field:create.rental.product,create_uid:0 field:sale.rental,create_uid:0
+#: field:create.rental.product,create_uid:0
+#: field:sale.rental,create_uid:0
 msgid "Created by"
-msgstr "Készítette"
+msgstr ""
 
 #. module: sale_rental
-#: field:create.rental.product,create_date:0 field:sale.rental,create_date:0
+#: field:create.rental.product,create_date:0
+#: field:sale.rental,create_date:0
 msgid "Created on"
-msgstr "Létrehozás dátuma"
+msgstr ""
 
 #. module: sale_rental
 #: field:create.rental.product,default_code:0
@@ -119,9 +113,10 @@ msgid "Delivery Order"
 msgstr ""
 
 #. module: sale_rental
-#: field:create.rental.product,display_name:0 field:sale.rental,display_name:0
+#: field:create.rental.product,display_name:0
+#: field:sale.rental,display_name:0
 msgid "Display Name"
-msgstr "Név megjelenítése"
+msgstr ""
 
 #. module: sale_rental
 #: view:sale.rental:sale_rental.sale_rental_tree
@@ -135,18 +130,18 @@ msgstr ""
 
 #. module: sale_rental
 #: help:sale.rental,end_date:0
-msgid ""
-"End Date of the Rental, taking into account all the extensions sold to the "
-"customer."
+msgid "End Date of the Rental, taking into account all the extensions sold to the customer."
 msgstr ""
 
 #. module: sale_rental
-#: field:create.rental.product,id:0 field:sale.rental,id:0
+#: field:create.rental.product,id:0
+#: field:sale.rental,id:0
 msgid "ID"
-msgstr "ID"
+msgstr ""
 
 #. module: sale_rental
-#: help:sale.order.line,rental_qty:0 help:sale.rental,rental_qty:0
+#: help:sale.order.line,rental_qty:0
+#: help:sale.rental,rental_qty:0
 msgid "Indicate the number of items that will be rented."
 msgstr ""
 
@@ -154,17 +149,19 @@ msgstr ""
 #: field:create.rental.product,__last_update:0
 #: field:sale.rental,__last_update:0
 msgid "Last Modified on"
-msgstr "Utolsó frissítés dátuma"
+msgstr ""
 
 #. module: sale_rental
-#: field:create.rental.product,write_uid:0 field:sale.rental,write_uid:0
+#: field:create.rental.product,write_uid:0
+#: field:sale.rental,write_uid:0
 msgid "Last Updated by"
-msgstr "Utoljára frissítve, által"
+msgstr ""
 
 #. module: sale_rental
-#: field:create.rental.product,write_date:0 field:sale.rental,write_date:0
+#: field:create.rental.product,write_date:0
+#: field:sale.rental,write_date:0
 msgid "Last Updated on"
-msgstr "Utoljára frissítve "
+msgstr ""
 
 #. module: sale_rental
 #: code:addons/sale_rental/rental.py:151
@@ -186,43 +183,31 @@ msgstr ""
 #. module: sale_rental
 #: code:addons/sale_rental/rental.py:167
 #, python-format
-msgid ""
-"On the 'new rental' sale order line with product '%s', we should have a "
-"rental service product !"
+msgid "On the 'new rental' sale order line with product '%s', we should have a rental service product !"
 msgstr ""
 
 #. module: sale_rental
 #: code:addons/sale_rental/rental.py:180
 #, python-format
-msgid ""
-"On the rental sale order line with product %sthe must have dates option "
-"should be enabled"
+msgid "On the rental sale order line with product %sthe must have dates option should be enabled"
 msgstr ""
 
 #. module: sale_rental
 #: code:addons/sale_rental/rental.py:188
 #, python-format
-msgid ""
-"On the sale order line with product %s you are trying to sell a rented "
-"product with a quantity (%s) that is different from the rented quantity "
-"(%s). This is not supported."
+msgid "On the sale order line with product %s you are trying to sell a rented product with a quantity (%s) that is different from the rented quantity (%s). This is not supported."
 msgstr ""
 
 #. module: sale_rental
 #: code:addons/sale_rental/rental.py:172
 #, python-format
-msgid ""
-"On the sale order line with product '%s' the Product Quantity (%s) should be "
-"the number of days (%s) multiplied by the Rental Quantity (%s)."
+msgid "On the sale order line with product '%s' the Product Quantity (%s) should be the number of days (%s) multiplied by the Rental Quantity (%s)."
 msgstr ""
 
 #. module: sale_rental
 #: code:addons/sale_rental/rental.py:156
 #, python-format
-msgid ""
-"On the sale order line with rental service %s, you are trying to extend a "
-"rental with a rental quantity (%s) that is different from the quantity of "
-"the original rental (%s). This is not supported."
+msgid "On the sale order line with rental service %s, you are trying to extend a rental with a rental quantity (%s) that is different from the quantity of the original rental (%s). This is not supported."
 msgstr ""
 
 #. module: sale_rental
@@ -243,7 +228,7 @@ msgstr ""
 #. module: sale_rental
 #: field:sale.rental,partner_id:0
 msgid "Partner"
-msgstr "Partner"
+msgstr ""
 
 #. module: sale_rental
 #: field:sale.rental,procurement_id:0
@@ -336,7 +321,8 @@ msgid "Rental Price per Day"
 msgstr ""
 
 #. module: sale_rental
-#: field:sale.order.line,rental_qty:0 field:sale.rental,rental_qty:0
+#: field:sale.order.line,rental_qty:0
+#: field:sale.rental,rental_qty:0
 msgid "Rental Quantity"
 msgstr ""
 
@@ -427,7 +413,7 @@ msgstr ""
 #. module: sale_rental
 #: model:ir.model,name:sale_rental.model_sale_order
 msgid "Sales Order"
-msgstr "Vevői megrendelés"
+msgstr ""
 
 #. module: sale_rental
 #: model:ir.model,name:sale_rental.model_sale_order_line
@@ -481,7 +467,7 @@ msgstr ""
 #. module: sale_rental
 #: field:sale.rental,state:0
 msgid "State"
-msgstr "Állapot"
+msgstr ""
 
 #. module: sale_rental
 #: field:sale.rental,out_state:0
@@ -518,9 +504,7 @@ msgstr ""
 #. module: sale_rental
 #: code:addons/sale_rental/rental.py:296
 #, python-format
-msgid ""
-"The Rental Service of the Rental Extension you just selected is '%s' and "
-"it's not the same as the Product currently selected in this Sale Order Line."
+msgid "The Rental Service of the Rental Extension you just selected is '%s' and it's not the same as the Product currently selected in this Sale Order Line."
 msgstr ""
 
 #. module: sale_rental
@@ -532,9 +516,7 @@ msgstr ""
 #. module: sale_rental
 #: code:addons/sale_rental/rental.py:55
 #, python-format
-msgid ""
-"The rental product '%s' must have the option 'Must Have Start and End Dates' "
-"checked."
+msgid "The rental product '%s' must have the option 'Must Have Start and End Dates' checked."
 msgstr ""
 
 #. module: sale_rental
@@ -546,7 +528,7 @@ msgstr ""
 #. module: sale_rental
 #: view:sale.rental:sale_rental.sale_rental_form
 msgid "Total"
-msgstr "Összesen"
+msgstr ""
 
 #. module: sale_rental
 #: view:sale.rental:sale_rental.sale_rental_form
@@ -561,27 +543,16 @@ msgstr ""
 #. module: sale_rental
 #: code:addons/sale_rental/rental.py:250
 #, python-format
-msgid ""
-"You want to rent %.2f %s but you only have %.2f %s currently available on "
-"the stock location '%s' ! Make sure that you get some units back in the mean "
-"time or re-supply the stock location '%s'."
+msgid "You want to rent %.2f %s but you only have %.2f %s currently available on the stock location '%s' ! Make sure that you get some units back in the mean time or re-supply the stock location '%s'."
 msgstr ""
 
 #. module: sale_rental
 #: view:sale.order:sale_rental.view_order_form_sale_stock
-msgid ""
-"product_id_change_with_wh_with_rental(parent.pricelist_id, product_id, "
-"product_uom_qty, product_uom, product_uos_qty, False, name, parent."
-"partner_id, False, True, parent.date_order, product_packaging, parent."
-"fiscal_position, False, parent.warehouse_id, rental_type, rental_qty, "
-"context)"
+msgid "product_id_change_with_wh_with_rental(parent.pricelist_id, product_id, product_uom_qty, product_uom, product_uos_qty, False, name, parent.partner_id, False, True, parent.date_order, product_packaging, parent.fiscal_position, False, parent.warehouse_id, rental_type, rental_qty, context)"
 msgstr ""
 
 #. module: sale_rental
 #: view:sale.order:sale_rental.view_order_form_sale_stock
-msgid ""
-"product_id_change_with_wh_with_rental(parent.pricelist_id,product_id,"
-"product_uom_qty,product_uom,product_uos_qty,False,name,parent.partner_id, "
-"False, False, parent.date_order, product_packaging, parent.fiscal_position, "
-"True, parent.warehouse_id, rental_type, rental_qty, context)"
+msgid "product_id_change_with_wh_with_rental(parent.pricelist_id,product_id,product_uom_qty,product_uom,product_uos_qty,False,name,parent.partner_id, False, False, parent.date_order, product_packaging, parent.fiscal_position, True, parent.warehouse_id, rental_type, rental_qty, context)"
 msgstr ""
+

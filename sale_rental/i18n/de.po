@@ -1,7 +1,7 @@
 # Translation of Odoo Server.
 # This file contains the translation of the following modules:
 # * sale_rental
-# 
+#
 # Translators:
 # Matjaž Mozetič <m.mozetic@matmoz.si>, 2015
 # Rudolf Schnapka <rs@techno-flex.de>, 2015
@@ -12,11 +12,12 @@ msgstr ""
 "POT-Creation-Date: 2017-03-04 06:32+0000\n"
 "PO-Revision-Date: 2017-03-10 13:16+0000\n"
 "Last-Translator: Rudolf Schnapka <rs@techno-flex.de>\n"
-"Language-Team: German (http://www.transifex.com/oca/OCA-sale-workflow-8-0/language/de/)\n"
+"Language-Team: German (http://www.transifex.com/oca/OCA-sale-workflow-8-0/"
+"language/de/)\n"
+"Language: de\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
-"Language: de\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
 #. module: sale_rental
@@ -24,11 +25,22 @@ msgstr ""
 #: help:sale.rental,sell_state:0
 msgid ""
 "* New: When the stock move is created and not yet confirmed.\n"
-"* Waiting Another Move: This state can be seen when a move is waiting for another one, for example in a chained flow.\n"
-"* Waiting Availability: This state is reached when the procurement resolution is not straight forward. It may need the scheduler to run, a component to me manufactured...\n"
+"* Waiting Another Move: This state can be seen when a move is waiting for "
+"another one, for example in a chained flow.\n"
+"* Waiting Availability: This state is reached when the procurement "
+"resolution is not straight forward. It may need the scheduler to run, a "
+"component to me manufactured...\n"
 "* Available: When products are reserved, it is set to 'Available'.\n"
 "* Done: When the shipment is processed, the state is 'Done'."
-msgstr "* Neu: Wenn die Lagerbuchung angelegt bzw. noch nicht freigegeben ist.\n* Warte auf andere Buchung: Dieser Status tritt auf, wenn diese Bewegung auf eine andere wartet, zum Beispiel in verkettetem Vorgängen.\n* Warte auf Verfügbarkeit: Dieser Status tritt ein, wenn die Beschaffung nicht einfach aufgelöst werden kann, evtl. muss der MRP-Lauf noch abgewartet werden oder eine Komponente hergesetllt werden...\n* Verfügbar: Wenn Produkte reserviert sind, sind sie 'Verfügbar'.\n* Erledigt: Wenn der Versand abgeschlossen ist, wird der Status 'Erledigt'."
+msgstr ""
+"* Neu: Wenn die Lagerbuchung angelegt bzw. noch nicht freigegeben ist.\n"
+"* Warte auf andere Buchung: Dieser Status tritt auf, wenn diese Bewegung auf "
+"eine andere wartet, zum Beispiel in verkettetem Vorgängen.\n"
+"* Warte auf Verfügbarkeit: Dieser Status tritt ein, wenn die Beschaffung "
+"nicht einfach aufgelöst werden kann, evtl. muss der MRP-Lauf noch abgewartet "
+"werden oder eine Komponente hergesetllt werden...\n"
+"* Verfügbar: Wenn Produkte reserviert sind, sind sie 'Verfügbar'.\n"
+"* Erledigt: Wenn der Versand abgeschlossen ist, wird der Status 'Erledigt'."
 
 #. module: sale_rental
 #: selection:sale.rental,state:0
@@ -136,7 +148,9 @@ msgstr "Enddatum (inkl. Verlängerungen)"
 msgid ""
 "End Date of the Rental, taking into account all the extensions sold to the "
 "customer."
-msgstr "Enddatum der Vermietung, unter Berücksichtigung aller dem Kunden verkauften Verlängerungen."
+msgstr ""
+"Enddatum der Vermietung, unter Berücksichtigung aller dem Kunden verkauften "
+"Verlängerungen."
 
 #. module: sale_rental
 #: field:create.rental.product,id:0 field:sale.rental,id:0
@@ -187,7 +201,9 @@ msgstr "Unzureichender Bestand!"
 msgid ""
 "On the 'new rental' sale order line with product '%s', we should have a "
 "rental service product !"
-msgstr "In der neuen Vermietauftragsposition mit Produkt '%s', benötigen wir ein Mietdienstleistungsprodukt"
+msgstr ""
+"In der neuen Vermietauftragsposition mit Produkt '%s', benötigen wir ein "
+"Mietdienstleistungsprodukt"
 
 #. module: sale_rental
 #: code:addons/sale_rental/rental.py:180
@@ -195,7 +211,9 @@ msgstr "In der neuen Vermietauftragsposition mit Produkt '%s', benötigen wir ei
 msgid ""
 "On the rental sale order line with product %sthe must have dates option "
 "should be enabled"
-msgstr "In der Mietauftragsposition mit Produkt '%s' muss die Option 'Muss Daten haben' eingeschaltet sein"
+msgstr ""
+"In der Mietauftragsposition mit Produkt '%s' muss die Option 'Muss Daten "
+"haben' eingeschaltet sein"
 
 #. module: sale_rental
 #: code:addons/sale_rental/rental.py:188
@@ -204,15 +222,20 @@ msgid ""
 "On the sale order line with product %s you are trying to sell a rented "
 "product with a quantity (%s) that is different from the rented quantity "
 "(%s). This is not supported."
-msgstr "In der Auftragsposition mit Produkt '%s' möchten Sie ein vermietetes Produkt mit einer Menge (%s) verkaufen, welche von der vermieteten Menge (%s) abweicht. Dies ist nicht zulässig."
+msgstr ""
+"In der Auftragsposition mit Produkt '%s' möchten Sie ein vermietetes Produkt "
+"mit einer Menge (%s) verkaufen, welche von der vermieteten Menge (%s) "
+"abweicht. Dies ist nicht zulässig."
 
 #. module: sale_rental
 #: code:addons/sale_rental/rental.py:172
 #, python-format
 msgid ""
-"On the sale order line with product '%s' the Product Quantity (%s) should be"
-" the number of days (%s) multiplied by the Rental Quantity (%s)."
-msgstr "In der Auftragsposition mit Produkt '%s' muss die Produktmenge (%s) der Anzahl Tage (%s) multipliziert mit der Vermietmenge (%s) entsprechen."
+"On the sale order line with product '%s' the Product Quantity (%s) should be "
+"the number of days (%s) multiplied by the Rental Quantity (%s)."
+msgstr ""
+"In der Auftragsposition mit Produkt '%s' muss die Produktmenge (%s) der "
+"Anzahl Tage (%s) multipliziert mit der Vermietmenge (%s) entsprechen."
 
 #. module: sale_rental
 #: code:addons/sale_rental/rental.py:156
@@ -221,7 +244,10 @@ msgid ""
 "On the sale order line with rental service %s, you are trying to extend a "
 "rental with a rental quantity (%s) that is different from the quantity of "
 "the original rental (%s). This is not supported."
-msgstr "In der Auftragsposition mit der Miet-Dienstleistung %s möchten Die eine Mietzeitverlängerung mit der Produktmenge (%s) erwirken, die sich von der ursprünglichen Menge (%s) unterscheidet. Dies ist nicht zulässig."
+msgstr ""
+"In der Auftragsposition mit der Miet-Dienstleistung %s möchten Die eine "
+"Mietzeitverlängerung mit der Produktmenge (%s) erwirken, die sich von der "
+"ursprünglichen Menge (%s) unterscheidet. Dies ist nicht zulässig."
 
 #. module: sale_rental
 #: selection:sale.rental,state:0
@@ -519,21 +545,26 @@ msgstr "Das Miet-Warenausgangslager ist für das Lager %s nicht festgelegt"
 msgid ""
 "The Rental Service of the Rental Extension you just selected is '%s' and "
 "it's not the same as the Product currently selected in this Sale Order Line."
-msgstr "Das Miet-Dienstleistungsprodukt '%s' in der gewählten Mietzeitverlängerung entspricht nicht dem gerade ausgewählten Produkt dieser Auftragsposition."
+msgstr ""
+"Das Miet-Dienstleistungsprodukt '%s' in der gewählten Mietzeitverlängerung "
+"entspricht nicht dem gerade ausgewählten Produkt dieser Auftragsposition."
 
 #. module: sale_rental
 #: code:addons/sale_rental/rental.py:51
 #, python-format
 msgid "The rental product '%s' must be of type 'Service'."
-msgstr "DAs Miet-Dienstleistungsprodukt '%s' muss von der Art 'Dienstleistung' sein"
+msgstr ""
+"DAs Miet-Dienstleistungsprodukt '%s' muss von der Art 'Dienstleistung' sein"
 
 #. module: sale_rental
 #: code:addons/sale_rental/rental.py:55
 #, python-format
 msgid ""
-"The rental product '%s' must have the option 'Must Have Start and End Dates'"
-" checked."
-msgstr "Beim Miet-Produkt '%s' muss die Option \"Muss Start- und Enddatum haben\" ausgewählt sein."
+"The rental product '%s' must have the option 'Must Have Start and End Dates' "
+"checked."
+msgstr ""
+"Beim Miet-Produkt '%s' muss die Option \"Muss Start- und Enddatum haben\" "
+"ausgewählt sein."
 
 #. module: sale_rental
 #: code:addons/sale_rental/rental.py:63
@@ -561,24 +592,28 @@ msgstr "Lager"
 #, python-format
 msgid ""
 "You want to rent %.2f %s but you only have %.2f %s currently available on "
-"the stock location '%s' ! Make sure that you get some units back in the mean"
-" time or re-supply the stock location '%s'."
-msgstr "Sie möchten %.2f %s vermieten, haben jedoch nur %.2f %s im freien Bestand des Lagers '%s'. Stellen Sie sicher, dass Sie einige Einheiten zurück erhalten oder den Bestand im Lager '%s' auf anderem Weg aufstocken."
+"the stock location '%s' ! Make sure that you get some units back in the mean "
+"time or re-supply the stock location '%s'."
+msgstr ""
+"Sie möchten %.2f %s vermieten, haben jedoch nur %.2f %s im freien Bestand "
+"des Lagers '%s'. Stellen Sie sicher, dass Sie einige Einheiten zurück "
+"erhalten oder den Bestand im Lager '%s' auf anderem Weg aufstocken."
 
 #. module: sale_rental
 #: view:sale.order:sale_rental.view_order_form_sale_stock
 msgid ""
 "product_id_change_with_wh_with_rental(parent.pricelist_id, product_id, "
-"product_uom_qty, product_uom, product_uos_qty, False, name, "
-"parent.partner_id, False, True, parent.date_order, product_packaging, "
-"parent.fiscal_position, False, parent.warehouse_id, rental_type, rental_qty,"
-" context)"
+"product_uom_qty, product_uom, product_uos_qty, False, name, parent."
+"partner_id, False, True, parent.date_order, product_packaging, parent."
+"fiscal_position, False, parent.warehouse_id, rental_type, rental_qty, "
+"context)"
 msgstr ""
 
 #. module: sale_rental
 #: view:sale.order:sale_rental.view_order_form_sale_stock
 msgid ""
-"product_id_change_with_wh_with_rental(parent.pricelist_id,product_id,product_uom_qty,product_uom,product_uos_qty,False,name,parent.partner_id,"
-" False, False, parent.date_order, product_packaging, parent.fiscal_position,"
-" True, parent.warehouse_id, rental_type, rental_qty, context)"
+"product_id_change_with_wh_with_rental(parent.pricelist_id,product_id,"
+"product_uom_qty,product_uom,product_uos_qty,False,name,parent.partner_id, "
+"False, False, parent.date_order, product_packaging, parent.fiscal_position, "
+"True, parent.warehouse_id, rental_type, rental_qty, context)"
 msgstr ""
