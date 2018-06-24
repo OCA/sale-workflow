@@ -1,7 +1,7 @@
 # Translation of Odoo Server.
 # This file contains the translation of the following modules:
 # * sale_start_end_dates
-# 
+#
 # Translators:
 # Rudolf Schnapka <rs@techno-flex.de>, 2015
 msgid ""
@@ -11,11 +11,12 @@ msgstr ""
 "POT-Creation-Date: 2015-10-08 20:48+0000\n"
 "PO-Revision-Date: 2015-10-09 13:14+0000\n"
 "Last-Translator: Rudolf Schnapka <rs@techno-flex.de>\n"
-"Language-Team: German (http://www.transifex.com/oca/OCA-sale-workflow-8-0/language/de/)\n"
+"Language-Team: German (http://www.transifex.com/oca/OCA-sale-workflow-8-0/"
+"language/de/)\n"
+"Language: de\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
-"Language: de\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
 #. module: sale_start_end_dates
@@ -75,7 +76,9 @@ msgstr "Anzahl Tage"
 msgid ""
 "On sale order line with Product '%s', the number of days is negative ; this "
 "is not allowed."
-msgstr "In Auftragsposition des Produkts '%s' ist die Anzahl Tage negativ; dies ist nicht zulässig."
+msgstr ""
+"In Auftragsposition des Produkts '%s' ist die Anzahl Tage negativ; dies ist "
+"nicht zulässig."
 
 #. module: sale_start_end_dates
 #: code:addons/sale_start_end_dates/sale.py:121
@@ -84,7 +87,9 @@ msgid ""
 "On the sale order line with Product '%s', there are %d days between the "
 "Start Date (%s) and the End Date (%s), but the number of days field has a "
 "value of %d days."
-msgstr "In Auftragsposition des Produkts '%s' liegen %d Tage zwischen Anfangs- (%s) und Enddatum (%s), das Anzahl Tage -Feld weist jedoch %d Tage aus."
+msgstr ""
+"In Auftragsposition des Produkts '%s' liegen %d Tage zwischen Anfangs- (%s) "
+"und Enddatum (%s), das Anzahl Tage -Feld weist jedoch %d Tage aus."
 
 #. module: sale_start_end_dates
 #: model:ir.model,name:sale_start_end_dates.model_sale_order
@@ -107,7 +112,9 @@ msgstr "Anfangsdatum"
 msgid ""
 "Start Date should be before or be the same as End Date for sale order line "
 "with Product '%s'."
-msgstr "In der Auftragsposition zum Produkt %s muss das Anfangsdatum vor oder am Enddatum liegen."
+msgstr ""
+"In der Auftragsposition zum Produkt %s muss das Anfangsdatum vor oder am "
+"Enddatum liegen."
 
 #. module: sale_start_end_dates
 #: view:sale.order:sale_start_end_dates.view_order_form

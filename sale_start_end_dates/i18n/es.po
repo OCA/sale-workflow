@@ -1,7 +1,7 @@
 # Translation of Odoo Server.
 # This file contains the translation of the following modules:
 # * sale_start_end_dates
-# 
+#
 # Translators:
 # Hotellook, 2014
 # Rudolf Schnapka <rs@techno-flex.de>, 2015
@@ -12,11 +12,12 @@ msgstr ""
 "POT-Creation-Date: 2016-12-23 01:49+0000\n"
 "PO-Revision-Date: 2015-09-03 07:11+0000\n"
 "Last-Translator: <>\n"
-"Language-Team: Spanish (http://www.transifex.com/oca/OCA-sale-workflow-8-0/language/es/)\n"
+"Language-Team: Spanish (http://www.transifex.com/oca/OCA-sale-workflow-8-0/"
+"language/es/)\n"
+"Language: es\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
-"Language: es\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
 #. module: sale_start_end_dates
@@ -35,7 +36,9 @@ msgstr "Fecha de inicio por defecto"
 msgid ""
 "Default Start Date should be before or be the same as Default End Date for "
 "sale order %s"
-msgstr "La fecha de inicio por defecto debe ser anterior a la fecha de fin por defecto para el pedido de venta %s."
+msgstr ""
+"La fecha de inicio por defecto debe ser anterior a la fecha de fin por "
+"defecto para el pedido de venta %s."
 
 #. module: sale_start_end_dates
 #: field:sale.order.line,end_date:0
@@ -46,19 +49,24 @@ msgstr "Fecha Final"
 #: code:addons/sale_start_end_dates/sale.py:93
 #, python-format
 msgid "Missing End Date for sale order line with Product '%s'."
-msgstr "Falta la fecha final para la línea de pedido de venta con el producto '%s'."
+msgstr ""
+"Falta la fecha final para la línea de pedido de venta con el producto '%s'."
 
 #. module: sale_start_end_dates
 #: code:addons/sale_start_end_dates/sale.py:98
 #, python-format
 msgid "Missing Start Date for sale order line with Product '%s'."
-msgstr "Falta la fecha de inicio para la línea de pedido de venta con el producto '%s'."
+msgstr ""
+"Falta la fecha de inicio para la línea de pedido de venta con el producto "
+"'%s'."
 
 #. module: sale_start_end_dates
 #: code:addons/sale_start_end_dates/sale.py:103
 #, python-format
 msgid "Missing number of days for sale order line with Product '%s'."
-msgstr "Falta el número de días para la línea de pedido de venta con el producto '%s'."
+msgstr ""
+"Falta el número de días para la línea de pedido de venta con el producto "
+"'%s'."
 
 #. module: sale_start_end_dates
 #: field:sale.order.line,must_have_dates:0
@@ -76,7 +84,9 @@ msgstr "Número de días"
 msgid ""
 "On sale order line with Product '%s', the number of days is negative ; this "
 "is not allowed."
-msgstr "En la línea de pedido de venta con el producto '%s', el número de días es negativo, lo que no está permitido."
+msgstr ""
+"En la línea de pedido de venta con el producto '%s', el número de días es "
+"negativo, lo que no está permitido."
 
 #. module: sale_start_end_dates
 #: code:addons/sale_start_end_dates/sale.py:121
@@ -85,7 +95,10 @@ msgid ""
 "On the sale order line with Product '%s', there are %d days between the "
 "Start Date (%s) and the End Date (%s), but the number of days field has a "
 "value of %d days."
-msgstr "En la línea de pedido de venta con el producto '%s', hay %d días entre la fecha de inicio (%s) y la fecha final (%s), pero el campo número de día tiene un valor de %d días."
+msgstr ""
+"En la línea de pedido de venta con el producto '%s', hay %d días entre la "
+"fecha de inicio (%s) y la fecha final (%s), pero el campo número de día "
+"tiene un valor de %d días."
 
 #. module: sale_start_end_dates
 #: model:ir.model,name:sale_start_end_dates.model_sale_order
@@ -108,7 +121,9 @@ msgstr "Fecha de inicio"
 msgid ""
 "Start Date should be before or be the same as End Date for sale order line "
 "with Product '%s'."
-msgstr "La fecha de inicio debe ser anterior o igual a la fecha final para la línea de pedido de venta con el producto '%s'."
+msgstr ""
+"La fecha de inicio debe ser anterior o igual a la fecha final para la línea "
+"de pedido de venta con el producto '%s'."
 
 #. module: sale_start_end_dates
 #: view:sale.order:sale_start_end_dates.view_order_form

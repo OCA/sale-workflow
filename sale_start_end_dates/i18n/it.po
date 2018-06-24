@@ -1,7 +1,7 @@
 # Translation of Odoo Server.
 # This file contains the translation of the following modules:
 # * sale_start_end_dates
-# 
+#
 # Translators:
 # Matjaž Mozetič <m.mozetic@matmoz.si>, 2015
 # Paolo Valier, 2016
@@ -13,11 +13,12 @@ msgstr ""
 "POT-Creation-Date: 2016-07-10 15:38+0000\n"
 "PO-Revision-Date: 2016-07-21 19:03+0000\n"
 "Last-Translator: Paolo Valier\n"
-"Language-Team: Italian (http://www.transifex.com/oca/OCA-sale-workflow-8-0/language/it/)\n"
+"Language-Team: Italian (http://www.transifex.com/oca/OCA-sale-workflow-8-0/"
+"language/it/)\n"
+"Language: it\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
-"Language: it\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
 #. module: sale_start_end_dates
@@ -36,7 +37,9 @@ msgstr "Default Data Inizio"
 msgid ""
 "Default Start Date should be before or be the same as Default End Date for "
 "sale order %s"
-msgstr "La data di inizio deve essere inferiore o uguale alla data di fine per l'ordine %s."
+msgstr ""
+"La data di inizio deve essere inferiore o uguale alla data di fine per "
+"l'ordine %s."
 
 #. module: sale_start_end_dates
 #: field:sale.order.line,end_date:0
@@ -77,7 +80,9 @@ msgstr "Numero di giorni"
 msgid ""
 "On sale order line with Product '%s', the number of days is negative ; this "
 "is not allowed."
-msgstr "L'ordine di vendita per il prodotto '%s' ha un numero di giorni negativo : questo no e' permesso."
+msgstr ""
+"L'ordine di vendita per il prodotto '%s' ha un numero di giorni negativo : "
+"questo no e' permesso."
 
 #. module: sale_start_end_dates
 #: code:addons/sale_start_end_dates/sale.py:121
@@ -86,7 +91,10 @@ msgid ""
 "On the sale order line with Product '%s', there are %d days between the "
 "Start Date (%s) and the End Date (%s), but the number of days field has a "
 "value of %d days."
-msgstr "L'ordine di vendita del prodotto '%s', ha un %d giorni tra la data di inizio (%s) e quella di fine (%s), ma il campo \"numero di giorni\" ha un valore di %d."
+msgstr ""
+"L'ordine di vendita del prodotto '%s', ha un %d giorni tra la data di inizio "
+"(%s) e quella di fine (%s), ma il campo \"numero di giorni\" ha un valore di "
+"%d."
 
 #. module: sale_start_end_dates
 #: model:ir.model,name:sale_start_end_dates.model_sale_order
@@ -109,7 +117,9 @@ msgstr "Data di inizio"
 msgid ""
 "Start Date should be before or be the same as End Date for sale order line "
 "with Product '%s'."
-msgstr "La data di inizio deve essere antecedente o uguale alla data di fine per il prodotto %s."
+msgstr ""
+"La data di inizio deve essere antecedente o uguale alla data di fine per il "
+"prodotto %s."
 
 #. module: sale_start_end_dates
 #: view:sale.order:sale_start_end_dates.view_order_form

@@ -10,11 +10,11 @@ msgstr ""
 "PO-Revision-Date: 2015-08-16 08:31+0200\n"
 "Last-Translator: Matjaz Mozetic <m.mozetic@matmoz.si>\n"
 "Language-Team: \n"
+"Language: sl\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: \n"
-"Language: sl\n"
 "X-Generator: Poedit 1.8.4\n"
 
 #. module: sale_start_end_dates
@@ -30,8 +30,12 @@ msgstr "Privzeti začetni datum"
 #. module: sale_start_end_dates
 #: code:addons/sale_start_end_dates/sale.py:42
 #, python-format
-msgid "Default Start Date should be before or be the same as Default End Date for sale order %s"
-msgstr "Privzeti začetni datum na prodajnem nalogu %s mora biti pred (ali enak) privzetim končnim datumom"
+msgid ""
+"Default Start Date should be before or be the same as Default End Date for "
+"sale order %s"
+msgstr ""
+"Privzeti začetni datum na prodajnem nalogu %s mora biti pred (ali enak) "
+"privzetim končnim datumom"
 
 #. module: sale_start_end_dates
 #: field:sale.order.line,end_date:0
@@ -42,19 +46,22 @@ msgstr "Končni datum"
 #: code:addons/sale_start_end_dates/sale.py:93
 #, python-format
 msgid "Missing End Date for sale order line with Product '%s'."
-msgstr "Manjkajoči končni datum na postavki prodajnega naloga s proizvodom '%s'."
+msgstr ""
+"Manjkajoči končni datum na postavki prodajnega naloga s proizvodom '%s'."
 
 #. module: sale_start_end_dates
 #: code:addons/sale_start_end_dates/sale.py:98
 #, python-format
 msgid "Missing Start Date for sale order line with Product '%s'."
-msgstr "Manjkajoči začetni datum na postavki prodajnega naloga s proizvodom '%s'."
+msgstr ""
+"Manjkajoči začetni datum na postavki prodajnega naloga s proizvodom '%s'."
 
 #. module: sale_start_end_dates
 #: code:addons/sale_start_end_dates/sale.py:103
 #, python-format
 msgid "Missing number of days for sale order line with Product '%s'."
-msgstr "Manjkajoče število dni na postavki prodajnega naloga s proizvodom '%s'."
+msgstr ""
+"Manjkajoče število dni na postavki prodajnega naloga s proizvodom '%s'."
 
 #. module: sale_start_end_dates
 #: field:sale.order.line,must_have_dates:0
@@ -69,14 +76,24 @@ msgstr "Število dni"
 #. module: sale_start_end_dates
 #: code:addons/sale_start_end_dates/sale.py:113
 #, python-format
-msgid "On sale order line with Product '%s', the number of days is negative ; this is not allowed."
-msgstr "Na postavki prodajnega naloga s proizvodom '%s' je število dni negativno; to ni dovoljeno."
+msgid ""
+"On sale order line with Product '%s', the number of days is negative ; this "
+"is not allowed."
+msgstr ""
+"Na postavki prodajnega naloga s proizvodom '%s' je število dni negativno; to "
+"ni dovoljeno."
 
 #. module: sale_start_end_dates
 #: code:addons/sale_start_end_dates/sale.py:121
 #, python-format
-msgid "On the sale order line with Product '%s', there are %d days between the Start Date (%s) and the End Date (%s), but the number of days field has a value of %d days."
-msgstr "Na postavki prodajnega naloga s proizvodom '%s' je %d dni med začetnim datumom (%s) in končnim datumom (%s), a polje število dni ima vrednost %d dni."
+msgid ""
+"On the sale order line with Product '%s', there are %d days between the "
+"Start Date (%s) and the End Date (%s), but the number of days field has a "
+"value of %d days."
+msgstr ""
+"Na postavki prodajnega naloga s proizvodom '%s' je %d dni med začetnim "
+"datumom (%s) in končnim datumom (%s), a polje število dni ima vrednost %d "
+"dni."
 
 #. module: sale_start_end_dates
 #: model:ir.model,name:sale_start_end_dates.model_sale_order
@@ -96,8 +113,12 @@ msgstr "Začetni datum"
 #. module: sale_start_end_dates
 #: code:addons/sale_start_end_dates/sale.py:108
 #, python-format
-msgid "Start Date should be before or be the same as End Date for sale order line with Product '%s'."
-msgstr "Začetni datum mora biti na postavki prodajnega naloga s proizvodom '%s' pred končnim datumom (ali enak)."
+msgid ""
+"Start Date should be before or be the same as End Date for sale order line "
+"with Product '%s'."
+msgstr ""
+"Začetni datum mora biti na postavki prodajnega naloga s proizvodom '%s' pred "
+"končnim datumom (ali enak)."
 
 #. module: sale_start_end_dates
 #: view:sale.order:sale_start_end_dates.view_order_form
