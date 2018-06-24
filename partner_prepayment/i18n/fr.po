@@ -1,7 +1,7 @@
 # Translation of Odoo Server.
 # This file contains the translation of the following modules:
 # * partner_prepayment
-# 
+#
 # Translators:
 # Pierre Verkest <pverkest@anybox.fr>, 2015
 # Quentin THEURET <quentin@theuret.net>, 2017
@@ -12,11 +12,12 @@ msgstr ""
 "POT-Creation-Date: 2017-02-04 06:21+0000\n"
 "PO-Revision-Date: 2017-02-06 10:08+0000\n"
 "Last-Translator: Quentin THEURET <quentin@theuret.net>\n"
-"Language-Team: French (http://www.transifex.com/oca/OCA-sale-workflow-8-0/language/fr/)\n"
+"Language-Team: French (http://www.transifex.com/oca/OCA-sale-workflow-8-0/"
+"language/fr/)\n"
+"Language: fr\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
-"Language: fr\n"
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
 
 #. module: partner_prepayment
@@ -39,4 +40,6 @@ msgstr "Utiliser le pré-paiement"
 msgid ""
 "When prepayment is activated, the sales order policy will be automatically "
 "defined to pay before delivery."
-msgstr "Quand le pré-paiement est activé, les bons de commande seront automatiquement définis avec l'option \"paiement avant la livraison\"."
+msgstr ""
+"Quand le pré-paiement est activé, les bons de commande seront "
+"automatiquement définis avec l'option \"paiement avant la livraison\"."

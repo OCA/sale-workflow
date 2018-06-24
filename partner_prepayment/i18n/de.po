@@ -1,7 +1,7 @@
 # Translation of Odoo Server.
 # This file contains the translation of the following modules:
 # * partner_prepayment
-# 
+#
 # Translators:
 # Rudolf Schnapka <rs@techno-flex.de>, 2015
 msgid ""
@@ -11,11 +11,12 @@ msgstr ""
 "POT-Creation-Date: 2015-10-08 20:48+0000\n"
 "PO-Revision-Date: 2015-10-09 13:22+0000\n"
 "Last-Translator: Rudolf Schnapka <rs@techno-flex.de>\n"
-"Language-Team: German (http://www.transifex.com/oca/OCA-sale-workflow-8-0/language/de/)\n"
+"Language-Team: German (http://www.transifex.com/oca/OCA-sale-workflow-8-0/"
+"language/de/)\n"
+"Language: de\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
-"Language: de\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
 #. module: partner_prepayment
@@ -38,4 +39,6 @@ msgstr "An-/Vorauszahlung nutzen"
 msgid ""
 "When prepayment is activated, the sales order policy will be automatically "
 "defined to pay before delivery."
-msgstr "Wenn Anzahlung ausgewählt ist, wird die Zahlweise des Auftrags automatisch auf \"Zahlung vor Auslieferung\" gesetzt."
+msgstr ""
+"Wenn Anzahlung ausgewählt ist, wird die Zahlweise des Auftrags automatisch "
+"auf \"Zahlung vor Auslieferung\" gesetzt."
