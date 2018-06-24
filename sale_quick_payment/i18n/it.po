@@ -1,7 +1,7 @@
 # Translation of Odoo Server.
 # This file contains the translation of the following modules:
 # * sale_quick_payment
-# 
+#
 # Translators:
 # Matjaž Mozetič <m.mozetic@matmoz.si>, 2015
 # Paolo Valier, 2016
@@ -13,11 +13,12 @@ msgstr ""
 "POT-Creation-Date: 2016-07-10 15:38+0000\n"
 "PO-Revision-Date: 2016-07-21 19:00+0000\n"
 "Last-Translator: Paolo Valier\n"
-"Language-Team: Italian (http://www.transifex.com/oca/OCA-sale-workflow-8-0/language/it/)\n"
+"Language-Team: Italian (http://www.transifex.com/oca/OCA-sale-workflow-8-0/"
+"language/it/)\n"
+"Language: it\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
-"Language: it\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
 #. module: sale_quick_payment
@@ -121,7 +122,9 @@ msgstr "L'Ordine di vendita deve essere pagato prima della conferma"
 #. module: sale_quick_payment
 #: model:sale.exception,description:sale_quick_payment.must_be_paid
 msgid "The sale order must be paid before the validation. Please fix it"
-msgstr "L'ordine di vendita deve essere pagato prima della conferma. Si prega di risolvere il problema"
+msgstr ""
+"L'ordine di vendita deve essere pagato prima della conferma. Si prega di "
+"risolvere il problema"
 
 #. module: sale_quick_payment
 #: model:ir.model,name:sale_quick_payment.model_pay_sale_order
