@@ -1,7 +1,7 @@
 # Translation of Odoo Server.
 # This file contains the translation of the following modules:
 # * sale_payment_method
-# 
+#
 # Translators:
 # Carles Antoli <carlesantoli@hotmail.com>, 2016
 # Jesús Ventosinos Mayor <jesus@comunitea.com>, 2016
@@ -13,11 +13,12 @@ msgstr ""
 "POT-Creation-Date: 2016-06-12 14:32+0000\n"
 "PO-Revision-Date: 2016-06-13 16:54+0000\n"
 "Last-Translator: Jesús Ventosinos Mayor <jesus@comunitea.com>\n"
-"Language-Team: Spanish (http://www.transifex.com/oca/OCA-sale-workflow-8-0/language/es/)\n"
+"Language-Team: Spanish (http://www.transifex.com/oca/OCA-sale-workflow-8-0/"
+"language/es/)\n"
+"Language: es\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
-"Language: es\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
 #. module: sale_payment_method
@@ -29,17 +30,21 @@ msgstr "Importe pagado"
 #: code:addons/sale_payment_method/sale.py:86
 #, python-format
 msgid ""
-"An automatic payment can not be created for the sale order %s because it has"
-" no payment method."
-msgstr "No se puede crear un pago automático para el pedido de venta %s porque no tiene forma de pago."
+"An automatic payment can not be created for the sale order %s because it has "
+"no payment method."
+msgstr ""
+"No se puede crear un pago automático para el pedido de venta %s porque no "
+"tiene forma de pago."
 
 #. module: sale_payment_method
 #: code:addons/sale_payment_method/sale.py:92
 #, python-format
 msgid ""
-"An automatic payment should be created for the sale order %s but the payment"
-" method '%s' has no journal defined."
-msgstr "Se debe crear un pago automático para el pedido de venta %s pero el método de pago '%s' no tiene definido un diario."
+"An automatic payment should be created for the sale order %s but the payment "
+"method '%s' has no journal defined."
+msgstr ""
+"Se debe crear un pago automático para el pedido de venta %s pero el método "
+"de pago '%s' no tiene definido un diario."
 
 #. module: sale_payment_method
 #: field:sale.order,residual:0
@@ -52,7 +57,9 @@ msgstr "Saldo"
 msgid ""
 "Cannot cancel this sales order because automatic payment entries are linked "
 "with it."
-msgstr "No se puede cancelar este pedido de venta porque las entradas de pago automático están vinculados con el pedido."
+msgstr ""
+"No se puede cancelar este pedido de venta porque las entradas de pago "
+"automático están vinculados con el pedido."
 
 #. module: sale_payment_method
 #: view:payment.method:sale_payment_method.payment_method_view_form
@@ -107,7 +114,9 @@ msgstr "ID"
 msgid ""
 "If a journal is selected, when a payment is recorded on a backend, payment "
 "entries will be created in this journal."
-msgstr "Si selecciona un diario, cuando se registra un pago en el portal, se crearan registros de pago en este diario."
+msgstr ""
+"Si selecciona un diario, cuando se registra un pago en el portal, se crearan "
+"registros de pago en este diario."
 
 #. module: sale_payment_method
 #: field:payment.method,journal_id:0
@@ -213,7 +222,8 @@ msgstr "Ver Pago Automático"
 #: view:payment.method:sale_payment_method.payment_method_view_form
 msgid ""
 "When the E-commerce backend will receive a payment for a sale order,\n"
-"                                payment entries will be generated in the selected journal."
+"                                payment entries will be generated in the "
+"selected journal."
 msgstr "Cuando el E-commerce backend recibe un pago para un pedido de venta,"
 
 #. module: sale_payment_method

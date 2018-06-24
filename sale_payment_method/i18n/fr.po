@@ -1,7 +1,7 @@
 # Translation of Odoo Server.
 # This file contains the translation of the following modules:
 # * sale_payment_method
-# 
+#
 # Translators:
 # Matjaž Mozetič <m.mozetic@matmoz.si>, 2015
 # Rudolf Schnapka <rs@techno-flex.de>, 2015
@@ -12,11 +12,12 @@ msgstr ""
 "POT-Creation-Date: 2017-01-04 10:48+0000\n"
 "PO-Revision-Date: 2017-01-13 09:23+0000\n"
 "Last-Translator: OCA Transbot <transbot@odoo-community.org>\n"
-"Language-Team: French (http://www.transifex.com/oca/OCA-sale-workflow-8-0/language/fr/)\n"
+"Language-Team: French (http://www.transifex.com/oca/OCA-sale-workflow-8-0/"
+"language/fr/)\n"
+"Language: fr\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
-"Language: fr\n"
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
 
 #. module: sale_payment_method
@@ -28,17 +29,21 @@ msgstr ""
 #: code:addons/sale_payment_method/sale.py:86
 #, python-format
 msgid ""
-"An automatic payment can not be created for the sale order %s because it has"
-" no payment method."
-msgstr "Aucun paiement automatique ne peut être créé pour la commande %s parce qu'elle n'a pas de méthode de paiement."
+"An automatic payment can not be created for the sale order %s because it has "
+"no payment method."
+msgstr ""
+"Aucun paiement automatique ne peut être créé pour la commande %s parce "
+"qu'elle n'a pas de méthode de paiement."
 
 #. module: sale_payment_method
 #: code:addons/sale_payment_method/sale.py:92
 #, python-format
 msgid ""
-"An automatic payment should be created for the sale order %s but the payment"
-" method '%s' has no journal defined."
-msgstr "Un paiement automatique doit être généré pour la commande %s mais la méthode de paiement '%s' n'a aucun journal séléctionné."
+"An automatic payment should be created for the sale order %s but the payment "
+"method '%s' has no journal defined."
+msgstr ""
+"Un paiement automatique doit être généré pour la commande %s mais la méthode "
+"de paiement '%s' n'a aucun journal séléctionné."
 
 #. module: sale_payment_method
 #: field:sale.order,residual:0
@@ -51,7 +56,9 @@ msgstr "Balance"
 msgid ""
 "Cannot cancel this sales order because automatic payment entries are linked "
 "with it."
-msgstr "Impossible d'annuler cette commande parce que des paiement automatiques y sont liés."
+msgstr ""
+"Impossible d'annuler cette commande parce que des paiement automatiques y "
+"sont liés."
 
 #. module: sale_payment_method
 #: view:payment.method:sale_payment_method.payment_method_view_form
@@ -82,7 +89,8 @@ msgstr "Valeurs par défaut"
 #. module: sale_payment_method
 #: help:payment.method,payment_term_id:0
 msgid "Default payment term of a sale order using this method."
-msgstr "Condition de règlement par défaut pour les commandes utilisant cette méthode."
+msgstr ""
+"Condition de règlement par défaut pour les commandes utilisant cette méthode."
 
 #. module: sale_payment_method
 #: field:payment.method,display_name:0
@@ -94,7 +102,9 @@ msgstr "Nom à afficher"
 msgid ""
 "Even if the E-commerce backend receives a payment for a sale order,\n"
 "                                no payment entries will be generated."
-msgstr "Même si le backend e-commerce reçoit un payment pour un bon de commande, aucune ligne de paiement ne sera générée."
+msgstr ""
+"Même si le backend e-commerce reçoit un payment pour un bon de commande, "
+"aucune ligne de paiement ne sera générée."
 
 #. module: sale_payment_method
 #: field:payment.method,id:0
@@ -106,7 +116,9 @@ msgstr "ID"
 msgid ""
 "If a journal is selected, when a payment is recorded on a backend, payment "
 "entries will be created in this journal."
-msgstr "Si un journal est sélectionné, lorsqu'un paiement est enregistré sur le backend, des lignes de paiement seront générées dans ce journal."
+msgstr ""
+"Si un journal est sélectionné, lorsqu'un paiement est enregistré sur le "
+"backend, des lignes de paiement seront générées dans ce journal."
 
 #. module: sale_payment_method
 #: field:payment.method,journal_id:0
@@ -212,8 +224,12 @@ msgstr "Voir les paiements automatiques"
 #: view:payment.method:sale_payment_method.payment_method_view_form
 msgid ""
 "When the E-commerce backend will receive a payment for a sale order,\n"
-"                                payment entries will be generated in the selected journal."
-msgstr "Lorsque le backend e-commerce reçoit un paiement pour la commande,\n                                des écritures de paiement sont générées dans le journal sélectionné."
+"                                payment entries will be generated in the "
+"selected journal."
+msgstr ""
+"Lorsque le backend e-commerce reçoit un paiement pour la commande,\n"
+"                                des écritures de paiement sont générées dans "
+"le journal sélectionné."
 
 #. module: sale_payment_method
 #: view:sale.order:sale_payment_method.view_sales_order_filter

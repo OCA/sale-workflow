@@ -1,7 +1,7 @@
 # Translation of Odoo Server.
 # This file contains the translation of the following modules:
 # * sale_payment_method
-# 
+#
 # Translators:
 # Paolo Valier, 2016
 # Paolo Valier, 2016
@@ -12,11 +12,12 @@ msgstr ""
 "POT-Creation-Date: 2016-08-15 22:30+0000\n"
 "PO-Revision-Date: 2016-08-20 13:32+0000\n"
 "Last-Translator: Paolo Valier\n"
-"Language-Team: Italian (http://www.transifex.com/oca/OCA-sale-workflow-8-0/language/it/)\n"
+"Language-Team: Italian (http://www.transifex.com/oca/OCA-sale-workflow-8-0/"
+"language/it/)\n"
+"Language: it\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
-"Language: it\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
 #. module: sale_payment_method
@@ -28,16 +29,16 @@ msgstr "Importo Pagato"
 #: code:addons/sale_payment_method/sale.py:86
 #, python-format
 msgid ""
-"An automatic payment can not be created for the sale order %s because it has"
-" no payment method."
+"An automatic payment can not be created for the sale order %s because it has "
+"no payment method."
 msgstr ""
 
 #. module: sale_payment_method
 #: code:addons/sale_payment_method/sale.py:92
 #, python-format
 msgid ""
-"An automatic payment should be created for the sale order %s but the payment"
-" method '%s' has no journal defined."
+"An automatic payment should be created for the sale order %s but the payment "
+"method '%s' has no journal defined."
 msgstr ""
 
 #. module: sale_payment_method
@@ -212,7 +213,8 @@ msgstr "Vedi Pagamento Automatico"
 #: view:payment.method:sale_payment_method.payment_method_view_form
 msgid ""
 "When the E-commerce backend will receive a payment for a sale order,\n"
-"                                payment entries will be generated in the selected journal."
+"                                payment entries will be generated in the "
+"selected journal."
 msgstr ""
 
 #. module: sale_payment_method

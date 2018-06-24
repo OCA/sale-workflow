@@ -1,7 +1,7 @@
 # Translation of Odoo Server.
 # This file contains the translation of the following modules:
 # * sale_payment_method
-# 
+#
 # Translators:
 # Matjaž Mozetič <m.mozetic@matmoz.si>, 2015-2016
 msgid ""
@@ -11,12 +11,14 @@ msgstr ""
 "POT-Creation-Date: 2016-04-29 00:56+0000\n"
 "PO-Revision-Date: 2016-04-30 06:25+0000\n"
 "Last-Translator: Matjaž Mozetič <m.mozetic@matmoz.si>\n"
-"Language-Team: Slovenian (http://www.transifex.com/oca/OCA-sale-workflow-8-0/language/sl/)\n"
+"Language-Team: Slovenian (http://www.transifex.com/oca/OCA-sale-workflow-8-0/"
+"language/sl/)\n"
+"Language: sl\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
-"Language: sl\n"
-"Plural-Forms: nplurals=4; plural=(n%100==1 ? 0 : n%100==2 ? 1 : n%100==3 || n%100==4 ? 2 : 3);\n"
+"Plural-Forms: nplurals=4; plural=(n%100==1 ? 0 : n%100==2 ? 1 : n%100==3 || n"
+"%100==4 ? 2 : 3);\n"
 
 #. module: sale_payment_method
 #: field:sale.order,amount_paid:0
@@ -27,17 +29,21 @@ msgstr "Plačani znesek"
 #: code:addons/sale_payment_method/sale.py:86
 #, python-format
 msgid ""
-"An automatic payment can not be created for the sale order %s because it has"
-" no payment method."
-msgstr "Za prodajni nalog %s ni mogoče ustvariti samodejnega plačila, ker nima določenega načina plačila."
+"An automatic payment can not be created for the sale order %s because it has "
+"no payment method."
+msgstr ""
+"Za prodajni nalog %s ni mogoče ustvariti samodejnega plačila, ker nima "
+"določenega načina plačila."
 
 #. module: sale_payment_method
 #: code:addons/sale_payment_method/sale.py:92
 #, python-format
 msgid ""
-"An automatic payment should be created for the sale order %s but the payment"
-" method '%s' has no journal defined."
-msgstr "Za prodajni nalog %s bi se moralo ustvariti samodejno plačilo, a način plačila '%s' nima določenega dnevnika."
+"An automatic payment should be created for the sale order %s but the payment "
+"method '%s' has no journal defined."
+msgstr ""
+"Za prodajni nalog %s bi se moralo ustvariti samodejno plačilo, a način "
+"plačila '%s' nima določenega dnevnika."
 
 #. module: sale_payment_method
 #: field:sale.order,residual:0
@@ -50,7 +56,9 @@ msgstr "Bilanca"
 msgid ""
 "Cannot cancel this sales order because automatic payment entries are linked "
 "with it."
-msgstr "Prodajnega naloga ni mogoče preklicati, ker so z njim povezani vnosi samodejnih plačil."
+msgstr ""
+"Prodajnega naloga ni mogoče preklicati, ker so z njim povezani vnosi "
+"samodejnih plačil."
 
 #. module: sale_payment_method
 #: view:payment.method:sale_payment_method.payment_method_view_form
@@ -93,7 +101,9 @@ msgstr "Prikazni naziv"
 msgid ""
 "Even if the E-commerce backend receives a payment for a sale order,\n"
 "                                no payment entries will be generated."
-msgstr "Čeprav ozadje E-trgovine prejema plačilo prodajnega naloga,\n                                ne bo ustvarjenih plačilnih vnosov."
+msgstr ""
+"Čeprav ozadje E-trgovine prejema plačilo prodajnega naloga,\n"
+"                                ne bo ustvarjenih plačilnih vnosov."
 
 #. module: sale_payment_method
 #: field:payment.method,id:0
@@ -105,7 +115,9 @@ msgstr "ID"
 msgid ""
 "If a journal is selected, when a payment is recorded on a backend, payment "
 "entries will be created in this journal."
-msgstr "Če je izbran dnevnik, bodo na tem dnevniku ob zapisu plačila v ozadju ustvarjeni plačilni vnosi."
+msgstr ""
+"Če je izbran dnevnik, bodo na tem dnevniku ob zapisu plačila v ozadju "
+"ustvarjeni plačilni vnosi."
 
 #. module: sale_payment_method
 #: field:payment.method,journal_id:0
@@ -211,8 +223,12 @@ msgstr "Prikaz samodejnega plačila"
 #: view:payment.method:sale_payment_method.payment_method_view_form
 msgid ""
 "When the E-commerce backend will receive a payment for a sale order,\n"
-"                                payment entries will be generated in the selected journal."
-msgstr "Ko ozadje E-trgovine prejme plačilo za prodajni nalog,\n                                se ustvarijo plačilni vnosi v izbranem dnevniku."
+"                                payment entries will be generated in the "
+"selected journal."
+msgstr ""
+"Ko ozadje E-trgovine prejme plačilo za prodajni nalog,\n"
+"                                se ustvarijo plačilni vnosi v izbranem "
+"dnevniku."
 
 #. module: sale_payment_method
 #: view:sale.order:sale_payment_method.view_sales_order_filter
