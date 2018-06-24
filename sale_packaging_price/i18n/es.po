@@ -1,7 +1,7 @@
 # Translation of Odoo Server.
 # This file contains the translation of the following modules:
 # * sale_packaging_price
-# 
+#
 # Translators:
 # OCA Transbot <transbot@odoo-community.org>, 2016
 # Pedro M. Baeza <pedro.baeza@gmail.com>, 2016
@@ -13,10 +13,10 @@ msgstr ""
 "PO-Revision-Date: 2016-11-22 23:46+0000\n"
 "Last-Translator: Pedro M. Baeza <pedro.baeza@gmail.com>, 2016\n"
 "Language-Team: Spanish (https://www.transifex.com/oca/teams/23907/es/)\n"
+"Language: es\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
-"Language: es\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
 #. module: sale_packaging_price
@@ -154,8 +154,8 @@ msgstr "Peso del paquete solo, sin contar los productos en su interior."
 #: code:addons/sale_packaging_price/models/product_packaging.py:45
 #, python-format
 msgid ""
-"With the current decimal precision, you can't get this price. (Approx. price"
-" suggested: %s)"
+"With the current decimal precision, you can't get this price. (Approx. price "
+"suggested: %s)"
 msgstr ""
 "Con la precisión decimal actual no puede obtener este precio. (Precio "
 "sugerido aproximado: %s)"
