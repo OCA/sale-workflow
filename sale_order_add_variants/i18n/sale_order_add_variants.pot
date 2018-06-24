@@ -1,22 +1,17 @@
 # Translation of Odoo Server.
 # This file contains the translation of the following modules:
-# * sale_order_add_variants
+#	* sale_order_add_variants
 #
-# Translators:
 msgid ""
 msgstr ""
-"Project-Id-Version: sale-workflow (8.0)\n"
+"Project-Id-Version: Odoo Server 8.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-11-22 23:35+0000\n"
-"PO-Revision-Date: 2015-09-03 07:08+0000\n"
 "Last-Translator: <>\n"
-"Language-Team: Spanish (Ecuador) (http://www.transifex.com/oca/OCA-sale-"
-"workflow-8-0/language/es_EC/)\n"
-"Language: es_EC\n"
+"Language-Team: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
-"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"Plural-Forms: \n"
 
 #. module: sale_order_add_variants
 #: code:addons/sale_order_add_variants/wizard/sale_add_variants.py:75
@@ -55,42 +50,43 @@ msgstr ""
 #: field:sale.add.variants,create_uid:0
 #: field:sale.add.variants.line,create_uid:0
 msgid "Created by"
-msgstr "Creado por"
+msgstr ""
 
 #. module: sale_order_add_variants
 #: field:sale.add.variants,create_date:0
 #: field:sale.add.variants.line,create_date:0
 msgid "Created on"
-msgstr "Creado en"
+msgstr ""
 
 #. module: sale_order_add_variants
 #: field:sale.add.variants,display_name:0
 #: field:sale.add.variants.line,display_name:0
 msgid "Display Name"
-msgstr "Nombre mostrado"
+msgstr ""
 
 #. module: sale_order_add_variants
-#: field:sale.add.variants,id:0 field:sale.add.variants.line,id:0
+#: field:sale.add.variants,id:0
+#: field:sale.add.variants.line,id:0
 msgid "ID"
-msgstr "ID (identificación)"
+msgstr ""
 
 #. module: sale_order_add_variants
 #: field:sale.add.variants,__last_update:0
 #: field:sale.add.variants.line,__last_update:0
 msgid "Last Modified on"
-msgstr "Última modificación en"
+msgstr ""
 
 #. module: sale_order_add_variants
 #: field:sale.add.variants,write_uid:0
 #: field:sale.add.variants.line,write_uid:0
 msgid "Last Updated by"
-msgstr "Última actualización de"
+msgstr ""
 
 #. module: sale_order_add_variants
 #: field:sale.add.variants,write_date:0
 #: field:sale.add.variants.line,write_date:0
 msgid "Last Updated on"
-msgstr "Última actualización en"
+msgstr ""
 
 #. module: sale_order_add_variants
 #: field:sale.add.variants.line,product_uom_qty:0
@@ -126,3 +122,4 @@ msgstr ""
 #: field:sale.add.variants.line,wizard_id:0
 msgid "Wizard id"
 msgstr ""
+

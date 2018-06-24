@@ -1,7 +1,7 @@
 # Translation of Odoo Server.
 # This file contains the translation of the following modules:
 # * sale_order_add_variants
-# 
+#
 # Translators:
 # Antonio Trueba, 2016
 msgid ""
@@ -11,11 +11,12 @@ msgstr ""
 "POT-Creation-Date: 2016-06-09 02:44+0000\n"
 "PO-Revision-Date: 2016-05-30 20:12+0000\n"
 "Last-Translator: OCA Transbot <transbot@odoo-community.org>\n"
-"Language-Team: Spanish (http://www.transifex.com/oca/OCA-sale-workflow-8-0/language/es/)\n"
+"Language-Team: Spanish (http://www.transifex.com/oca/OCA-sale-workflow-8-0/"
+"language/es/)\n"
+"Language: es\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
-"Language: es\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
 #. module: sale_order_add_variants
@@ -49,7 +50,8 @@ msgstr "Añadir variantes al pedido de venta desde una plantilla"
 #. module: sale_order_add_variants
 #: field:sale.config.settings,group_sale_add_variants:0
 msgid "Allow to add variants from template in Sale order"
-msgstr "Permitir añadir variantes al pedido de venta desde una plantilla de producto"
+msgstr ""
+"Permitir añadir variantes al pedido de venta desde una plantilla de producto"
 
 #. module: sale_order_add_variants
 #: field:sale.add.variants,create_uid:0
