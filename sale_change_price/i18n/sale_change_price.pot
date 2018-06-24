@@ -1,31 +1,22 @@
 # Translation of Odoo Server.
 # This file contains the translation of the following modules:
-# * sale_change_price
+#	* sale_change_price
 #
-# Translators:
-# OCA Transbot <transbot@odoo-community.org>, 2016
-# Martin Malorni <mm@microcom.ca>, 2016
-# Adriana Ierfino <adriana.ierfino@savoirfairelinux.com>, 2016
 msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 8.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-12-09 20:39+0000\n"
-"PO-Revision-Date: 2016-12-09 20:39+0000\n"
-"Last-Translator: Adriana Ierfino <adriana.ierfino@savoirfairelinux.com>, "
-"2016\n"
-"Language-Team: French (Canada) (https://www.transifex.com/oca/teams/23907/"
-"fr_CA/)\n"
-"Language: fr_CA\n"
+"Last-Translator: <>\n"
+"Language-Team: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
-"Plural-Forms: nplurals=2; plural=(n > 1);\n"
+"Plural-Forms: \n"
 
 #. module: sale_change_price
 #: view:sale.change.price:sale_change_price.sale_change_price_view
 msgid "Cancel"
-msgstr "Annuler"
+msgstr ""
 
 #. module: sale_change_price
 #: view:sale.change.price:sale_change_price.sale_change_price_view
@@ -47,18 +38,18 @@ msgstr ""
 #: field:sale.change.price,create_uid:0
 #: field:sale.change.price.item,create_uid:0
 msgid "Created by"
-msgstr "Créé par"
+msgstr ""
 
 #. module: sale_change_price
 #: field:sale.change.price,create_date:0
 #: field:sale.change.price.item,create_date:0
 msgid "Created on"
-msgstr "Créé le"
+msgstr ""
 
 #. module: sale_change_price
 #: field:sale.change.price.item,name:0
 msgid "Description"
-msgstr "Description"
+msgstr ""
 
 #. module: sale_change_price
 #: field:sale.change.price.item,discount:0
@@ -69,12 +60,13 @@ msgstr ""
 #: field:sale.change.price,display_name:0
 #: field:sale.change.price.item,display_name:0
 msgid "Display Name"
-msgstr "Afficher le nom"
+msgstr ""
 
 #. module: sale_change_price
-#: field:sale.change.price,id:0 field:sale.change.price.item,id:0
+#: field:sale.change.price,id:0
+#: field:sale.change.price.item,id:0
 msgid "ID"
-msgstr "Identifiant"
+msgstr ""
 
 #. module: sale_change_price
 #: field:sale.change.price,item_ids:0
@@ -91,13 +83,13 @@ msgstr ""
 #: field:sale.change.price,write_uid:0
 #: field:sale.change.price.item,write_uid:0
 msgid "Last Updated by"
-msgstr "Dernière mise à jour par"
+msgstr ""
 
 #. module: sale_change_price
 #: field:sale.change.price,write_date:0
 #: field:sale.change.price.item,write_date:0
 msgid "Last Updated on"
-msgstr "Dernière mise à jour le"
+msgstr ""
 
 #. module: sale_change_price
 #: field:sale.change.price.item,sale_order_line_id:0
@@ -127,4 +119,5 @@ msgstr ""
 #. module: sale_change_price
 #: view:sale.change.price:sale_change_price.sale_change_price_view
 msgid "or"
-msgstr "ou"
+msgstr ""
+
