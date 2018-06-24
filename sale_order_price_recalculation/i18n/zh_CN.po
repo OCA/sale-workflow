@@ -19,12 +19,12 @@ msgstr ""
 "Plural-Forms: nplurals=1; plural=0;\n"
 
 #. module: sale_order_price_recalculation
-#: view:sale.order:sale_order_price_recalculation.sorp_view_order_form
+#: model:ir.ui.view,arch_db:sale_order_price_recalculation.sorp_view_order_form
 msgid "Recalculate prices"
 msgstr ""
 
 #. module: sale_order_price_recalculation
-#: view:sale.order:sale_order_price_recalculation.sorp_view_order_form
+#: model:ir.ui.view,arch_db:sale_order_price_recalculation.sorp_view_order_form
 msgid "Reset descriptions"
 msgstr ""
 
