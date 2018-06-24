@@ -1,6 +1,6 @@
 # Translation of Odoo Server.
 # This file contains the translation of the following modules:
-#	* partner_prospect
+# 	* partner_prospect
 #
 msgid ""
 msgstr ""
@@ -10,6 +10,7 @@ msgstr ""
 "PO-Revision-Date: 2015-08-12 12:31+0000\n"
 "Last-Translator: <>\n"
 "Language-Team: \n"
+"Language: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
@@ -17,13 +18,13 @@ msgstr ""
 
 #. module: partner_prospect
 #: view:res.partner:partner_prospect.res_partner_prospect_search_view
-msgid "Group By"
-msgstr "Agrupar por"
+msgid "Actual Customer"
+msgstr "Cliente real"
 
 #. module: partner_prospect
 #: view:res.partner:partner_prospect.res_partner_prospect_search_view
-msgid "Actual Customer"
-msgstr "Cliente real"
+msgid "Group By"
+msgstr "Agrupar por"
 
 #. module: partner_prospect
 #: model:ir.model,name:partner_prospect.model_res_partner
@@ -40,4 +41,3 @@ msgstr "Cliente eventual"
 #: view:res.partner:partner_prospect.res_partner_prospect_search_view
 msgid "Suppliers"
 msgstr "Proveedores"
-
