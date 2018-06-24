@@ -1,31 +1,22 @@
 # Translation of Odoo Server.
 # This file contains the translation of the following modules:
-# * sale_delivery_block
+#	* sale_delivery_block
 #
-# Translators:
-# OCA Transbot <transbot@odoo-community.org>, 2017
-# Kostas Goutoudis <goutoudis@gmail.com>, 2017
 msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 9.0c\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-05-31 04:21+0000\n"
-"PO-Revision-Date: 2017-05-31 04:21+0000\n"
-"Last-Translator: Kostas Goutoudis <goutoudis@gmail.com>, 2017\n"
-"Language-Team: Greek (Greece) (https://www.transifex.com/oca/teams/23907/"
-"el_GR/)\n"
-"Language: el_GR\n"
+"Last-Translator: <>\n"
+"Language-Team: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
-"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"Plural-Forms: \n"
 
 #. module: sale_delivery_block
 #: model:res.groups,comment:sale_delivery_block.group_sale_delivery_block
-msgid ""
-"\n"
-"            The user will be able to release deliveries that have been "
-"blocked\n"
+msgid "\n"
+"            The user will be able to release deliveries that have been blocked\n"
 "            in a sale order.\n"
 "        "
 msgstr ""
@@ -38,12 +29,12 @@ msgstr ""
 #. module: sale_delivery_block
 #: model:ir.model.fields,field_description:sale_delivery_block.field_sale_delivery_block_reason_create_uid
 msgid "Created by"
-msgstr "Δημιουργήθηκε από "
+msgstr ""
 
 #. module: sale_delivery_block
 #: model:ir.model.fields,field_description:sale_delivery_block.field_sale_delivery_block_reason_create_date
 msgid "Created on"
-msgstr "Δημιουργήθηκε στις"
+msgstr ""
 
 #. module: sale_delivery_block
 #: model:ir.model.fields,field_description:sale_delivery_block.field_res_partner_default_delivery_block
@@ -64,7 +55,7 @@ msgstr ""
 #. module: sale_delivery_block
 #: model:ir.model.fields,field_description:sale_delivery_block.field_sale_delivery_block_reason_description
 msgid "Description"
-msgstr "Περιγραφή"
+msgstr ""
 
 #. module: sale_delivery_block
 #: model:ir.model.fields,field_description:sale_delivery_block.field_sale_delivery_block_reason_display_name
@@ -74,7 +65,7 @@ msgstr ""
 #. module: sale_delivery_block
 #: model:ir.model.fields,field_description:sale_delivery_block.field_sale_delivery_block_reason_id
 msgid "ID"
-msgstr "Κωδικός"
+msgstr ""
 
 #. module: sale_delivery_block
 #: model:ir.model.fields,field_description:sale_delivery_block.field_sale_delivery_block_reason___last_update
@@ -84,22 +75,22 @@ msgstr ""
 #. module: sale_delivery_block
 #: model:ir.model.fields,field_description:sale_delivery_block.field_sale_delivery_block_reason_write_uid
 msgid "Last Updated by"
-msgstr "Τελευταία ενημέρωση από"
+msgstr ""
 
 #. module: sale_delivery_block
 #: model:ir.model.fields,field_description:sale_delivery_block.field_sale_delivery_block_reason_write_date
 msgid "Last Updated on"
-msgstr "Τελευταία ενημέρωση στις"
+msgstr ""
 
 #. module: sale_delivery_block
 #: model:ir.model.fields,field_description:sale_delivery_block.field_sale_delivery_block_reason_name
 msgid "Name"
-msgstr "Ονομασία"
+msgstr ""
 
 #. module: sale_delivery_block
 #: model:ir.model,name:sale_delivery_block.model_res_partner
 msgid "Partner"
-msgstr "Συνεργάτης"
+msgstr ""
 
 #. module: sale_delivery_block
 #: model:ir.ui.view,arch_db:sale_delivery_block.view_order_form
@@ -129,7 +120,7 @@ msgstr ""
 #. module: sale_delivery_block
 #: model:ir.model,name:sale_delivery_block.model_sale_order
 msgid "Sales Order"
-msgstr "Εντολή Πώλησης"
+msgstr ""
 
 #. module: sale_delivery_block
 #: model:ir.model,name:sale_delivery_block.model_sale_order_line
@@ -138,9 +129,7 @@ msgstr ""
 
 #. module: sale_delivery_block
 #: model:ir.model.fields,help:sale_delivery_block.field_res_partner_default_delivery_block
-msgid ""
-"Set a reason to block by default the deliveries in this customer sales "
-"orders."
+msgid "Set a reason to block by default the deliveries in this customer sales orders."
 msgstr ""
 
 #. module: sale_delivery_block
@@ -153,3 +142,4 @@ msgstr ""
 #: model:ir.model,name:sale_delivery_block.model_sale_delivery_block_reason
 msgid "sale.delivery.block.reason"
 msgstr ""
+
