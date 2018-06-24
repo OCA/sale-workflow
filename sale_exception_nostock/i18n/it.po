@@ -1,7 +1,7 @@
 # Translation of Odoo Server.
 # This file contains the translation of the following modules:
 # * sale_exception_nostock
-# 
+#
 # Translators:
 # Paolo Valier, 2016
 # Stefano <stefano.sforzi@agilebg.com>, 2015
@@ -12,11 +12,12 @@ msgstr ""
 "POT-Creation-Date: 2016-07-10 15:37+0000\n"
 "PO-Revision-Date: 2016-07-21 19:06+0000\n"
 "Last-Translator: Paolo Valier\n"
-"Language-Team: Italian (http://www.transifex.com/oca/OCA-sale-workflow-8-0/language/it/)\n"
+"Language-Team: Italian (http://www.transifex.com/oca/OCA-sale-workflow-8-0/"
+"language/it/)\n"
+"Language: it\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
-"Language: it\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
 #. module: sale_exception_nostock
@@ -24,7 +25,9 @@ msgstr ""
 #: code:addons/sale_exception_nostock/model/sale.py:235
 #, python-format
 msgid "No rules specifies a location for this sale order line"
-msgstr "Nessuna regola che specifichi la location per questa riga di ordine di vendita"
+msgstr ""
+"Nessuna regola che specifichi la location per questa riga di ordine di "
+"vendita"
 
 #. module: sale_exception_nostock
 #: model:sale.exception,name:sale_exception_nostock.no_stock_at_date
@@ -36,13 +39,17 @@ msgstr "Non abbastanza stock alla data di consegna"
 msgid ""
 "Not enough stock at delivery date for this SO line\n"
 "to be delivered using MTS procument method"
-msgstr "Non vi è sufficiente stock alla data di consegna di questa\nriga dell'Ordine di Vendita da spedire utilizzando il metodo\ndi approvvigionamento MTS "
+msgstr ""
+"Non vi è sufficiente stock alla data di consegna di questa\n"
+"riga dell'Ordine di Vendita da spedire utilizzando il metodo\n"
+"di approvvigionamento MTS "
 
 #. module: sale_exception_nostock
 #: model:sale.exception,name:sale_exception_nostock.no_stock_in_future
 msgid ""
 "Not enough stock to satisfy existing placed orders planned in the future"
-msgstr "Non c'e' abbastanza stock per soddisfare gli ordini validati pianificati"
+msgstr ""
+"Non c'e' abbastanza stock per soddisfare gli ordini validati pianificati"
 
 #. module: sale_exception_nostock
 #: model:ir.model,name:sale_exception_nostock.model_sale_order_line
@@ -52,7 +59,12 @@ msgstr "Riga dell'Ordine di Vendita"
 #. module: sale_exception_nostock
 #: model:sale.exception,description:sale_exception_nostock.no_stock_in_future
 msgid ""
-"This order contains one or more lines procured on MTS that will prevent later order to be delivered on the estimated delivery date.\n"
-"      You shoud review and reschedule the deliveries or replennish the stock.\n"
+"This order contains one or more lines procured on MTS that will prevent "
+"later order to be delivered on the estimated delivery date.\n"
+"      You shoud review and reschedule the deliveries or replennish the "
+"stock.\n"
 "      "
-msgstr "Questo ordine contiene una o più righe procurato con MTS che impediranno di ricevere l'ordine alle date di consegna stimate.\nRivedere e riprogrammare le consegne o ripianifica lo stock."
+msgstr ""
+"Questo ordine contiene una o più righe procurato con MTS che impediranno di "
+"ricevere l'ordine alle date di consegna stimate.\n"
+"Rivedere e riprogrammare le consegne o ripianifica lo stock."
