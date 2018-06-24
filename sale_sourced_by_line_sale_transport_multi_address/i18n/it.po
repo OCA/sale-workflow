@@ -1,7 +1,7 @@
 # Translation of Odoo Server.
 # This file contains the translation of the following modules:
 # * sale_sourced_by_line_sale_transport_multi_address
-# 
+#
 # Translators:
 # Accounts-Payable - Alkemics, 2015
 # Chen-Do LU <clu@alkemics.com>, 2015
@@ -14,11 +14,12 @@ msgstr ""
 "POT-Creation-Date: 2016-07-10 15:38+0000\n"
 "PO-Revision-Date: 2016-07-21 19:03+0000\n"
 "Last-Translator: Paolo Valier\n"
-"Language-Team: Italian (http://www.transifex.com/oca/OCA-sale-workflow-8-0/language/it/)\n"
+"Language-Team: Italian (http://www.transifex.com/oca/OCA-sale-workflow-8-0/"
+"language/it/)\n"
+"Language: it\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
-"Language: it\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
 #. module: sale_sourced_by_line_sale_transport_multi_address
