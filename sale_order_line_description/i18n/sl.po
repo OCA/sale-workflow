@@ -10,22 +10,27 @@ msgstr ""
 "PO-Revision-Date: 2015-08-16 07:50+0200\n"
 "Last-Translator: Matjaz Mozetic <m.mozetic@matmoz.si>\n"
 "Language-Team: \n"
+"Language: sl\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: \n"
-"Language: sl\n"
 "X-Generator: Poedit 1.8.4\n"
 
 #. module: sale_order_line_description
 #: field:sale.config.settings,group_use_product_description_per_so_line:0
 msgid "Allow using only the product sale description on the sales order lines"
-msgstr "Omogoči, da se v postavkah prodajnega naloga uporabi le prodajni opis proizvoda"
+msgstr ""
+"Omogoči, da se v postavkah prodajnega naloga uporabi le prodajni opis "
+"proizvoda"
 
 #. module: sale_order_line_description
 #: help:sale.config.settings,group_use_product_description_per_so_line:0
-msgid "Allows you to use only product sale description on the sales order line."
-msgstr "Omogoči, da se v postavki prodajnega naloga uporabi le prodajni opis proizvoda."
+msgid ""
+"Allows you to use only product sale description on the sales order line."
+msgstr ""
+"Omogoči, da se v postavki prodajnega naloga uporabi le prodajni opis "
+"proizvoda."
 
 #. module: sale_order_line_description
 #: model:ir.model,name:sale_order_line_description.model_sale_order_line
