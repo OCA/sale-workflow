@@ -1,7 +1,7 @@
 # Translation of Odoo Server.
 # This file contains the translation of the following modules:
 # * sale_payment_term_interest
-# 
+#
 # Translators:
 # Matjaž Mozetič <m.mozetic@matmoz.si>, 2015
 # Stefano <stefano.sforzi@agilebg.com>, 2015
@@ -12,12 +12,14 @@ msgstr ""
 "POT-Creation-Date: 2016-07-04 06:37+0000\n"
 "PO-Revision-Date: 2015-09-07 14:31+0000\n"
 "Last-Translator: Matjaž Mozetič <m.mozetic@matmoz.si>\n"
-"Language-Team: Slovenian (http://www.transifex.com/oca/OCA-sale-workflow-8-0/language/sl/)\n"
+"Language-Team: Slovenian (http://www.transifex.com/oca/OCA-sale-workflow-8-0/"
+"language/sl/)\n"
+"Language: sl\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
-"Language: sl\n"
-"Plural-Forms: nplurals=4; plural=(n%100==1 ? 0 : n%100==2 ? 1 : n%100==3 || n%100==4 ? 2 : 3);\n"
+"Plural-Forms: nplurals=4; plural=(n%100==1 ? 0 : n%100==2 ? 1 : n%100==3 || n"
+"%100==4 ? 2 : 3);\n"
 
 #. module: sale_payment_term_interest
 #: view:sale.order:sale_payment_term_interest.view_order_form
@@ -33,9 +35,11 @@ msgstr "Obrestna mera"
 #: code:addons/sale_payment_term_interest/model/sale_order.py:106
 #, python-format
 msgid ""
-"Interest amount differs. Click on \"(update interests)\" next to the payment"
-" terms."
-msgstr "Znesek obresti se razlikuje. Kliknite na \"(posodobi obresti)\" ob plačilnih pogojih."
+"Interest amount differs. Click on \"(update interests)\" next to the payment "
+"terms."
+msgstr ""
+"Znesek obresti se razlikuje. Kliknite na \"(posodobi obresti)\" ob plačilnih "
+"pogojih."
 
 #. module: sale_payment_term_interest
 #: field:sale.order.line,interest_line:0
@@ -81,8 +85,12 @@ msgstr "Postavka prodajnega naloga"
 #: help:account.payment.term.line,interest_rate:0
 msgid ""
 "The annual interest rate applied on a sales order. Value between 0 and 100.\n"
-"The interest is computed as: 'Amount * (Interest Rate / 100 /  (12 months * 30 days)) * Term Days'"
-msgstr "Letna obrestna mera na tem prodajnem nalogu. Vrednosti med 0 in 100.\nObresti se izračunajo kot: 'Znesek * (Obrestna mera / 100 /  (12 mesecev * 30 dni)) * Dni v pogojih'"
+"The interest is computed as: 'Amount * (Interest Rate / 100 /  (12 months * "
+"30 days)) * Term Days'"
+msgstr ""
+"Letna obrestna mera na tem prodajnem nalogu. Vrednosti med 0 in 100.\n"
+"Obresti se izračunajo kot: 'Znesek * (Obrestna mera / 100 /  (12 mesecev * "
+"30 dni)) * Dni v pogojih'"
 
 #. module: sale_payment_term_interest
 #: help:account.payment.term,interest_min:0
