@@ -1,7 +1,7 @@
 # Translation of Odoo Server.
 # This file contains the translation of the following modules:
 # * sale_exceptions
-# 
+#
 # Translators:
 # FIRST AUTHOR <EMAIL@ADDRESS>, 2014
 # Pierre Verkest <pverkest@anybox.fr>, 2015
@@ -12,11 +12,12 @@ msgstr ""
 "POT-Creation-Date: 2016-11-22 23:35+0000\n"
 "PO-Revision-Date: 2016-11-25 14:55+0000\n"
 "Last-Translator: OCA Transbot <transbot@odoo-community.org>\n"
-"Language-Team: Spanish (http://www.transifex.com/oca/OCA-sale-workflow-8-0/language/es/)\n"
+"Language-Team: Spanish (http://www.transifex.com/oca/OCA-sale-workflow-8-0/"
+"language/es/)\n"
+"Language: es\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
-"Language: es\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
 #. module: sale_exceptions
@@ -82,7 +83,10 @@ msgid ""
 "Error when evaluating the sale exception rule:\n"
 " %s \n"
 "(%s)"
-msgstr "Error cuando se evaluaba la regla de excepción de venta:\n %s \n(%s)"
+msgstr ""
+"Error cuando se evaluaba la regla de excepción de venta:\n"
+" %s \n"
+"(%s)"
 
 #. module: sale_exceptions
 #: view:sale.order:sale_exceptions.view_order_form
@@ -171,7 +175,9 @@ msgstr "Código Python"
 msgid ""
 "Python code executed to check if the exception apply or not. The code must "
 "apply block = True to apply the exception."
-msgstr "Código python ejecutado para comprobar si hay que aplicar o no la excepción. El código debe dar como resultado True para aplicar la excepción"
+msgstr ""
+"Código python ejecutado para comprobar si hay que aplicar o no la excepción. "
+"El código debe dar como resultado True para aplicar la excepción"
 
 #. module: sale_exceptions
 #: field:sale.exception.confirm,sale_id:0
