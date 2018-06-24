@@ -1,7 +1,7 @@
 # Translation of Odoo Server.
 # This file contains the translation of the following modules:
 # * sale_service_project
-# 
+#
 # Translators:
 # Paolo Valier, 2016
 msgid ""
@@ -11,11 +11,12 @@ msgstr ""
 "POT-Creation-Date: 2017-01-04 10:48+0000\n"
 "PO-Revision-Date: 2017-01-13 09:29+0000\n"
 "Last-Translator: OCA Transbot <transbot@odoo-community.org>\n"
-"Language-Team: Finnish (http://www.transifex.com/oca/OCA-sale-workflow-8-0/language/fi/)\n"
+"Language-Team: Finnish (http://www.transifex.com/oca/OCA-sale-workflow-8-0/"
+"language/fi/)\n"
+"Language: fi\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
-"Language: fi\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
 #. module: sale_service_project
@@ -66,8 +67,7 @@ msgstr ""
 #: code:addons/sale_service_project/models/hr_timesheet_invoice.py:57
 #, python-format
 msgid ""
-"Contract incomplete. Please fill in the Customer and Pricelist fields for "
-"%s."
+"Contract incomplete. Please fill in the Customer and Pricelist fields for %s."
 msgstr ""
 
 #. module: sale_service_project

@@ -1,7 +1,7 @@
 # Translation of Odoo Server.
 # This file contains the translation of the following modules:
 # * sale_service_project
-# 
+#
 # Translators:
 # Paolo Valier, 2016
 msgid ""
@@ -11,11 +11,12 @@ msgstr ""
 "POT-Creation-Date: 2016-12-23 01:49+0000\n"
 "PO-Revision-Date: 2016-12-23 08:32+0000\n"
 "Last-Translator: OCA Transbot <transbot@odoo-community.org>\n"
-"Language-Team: Spanish (http://www.transifex.com/oca/OCA-sale-workflow-8-0/language/es/)\n"
+"Language-Team: Spanish (http://www.transifex.com/oca/OCA-sale-workflow-8-0/"
+"language/es/)\n"
+"Language: es\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
-"Language: es\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
 #. module: sale_service_project
@@ -66,8 +67,7 @@ msgstr "Calcular precio"
 #: code:addons/sale_service_project/models/hr_timesheet_invoice.py:57
 #, python-format
 msgid ""
-"Contract incomplete. Please fill in the Customer and Pricelist fields for "
-"%s."
+"Contract incomplete. Please fill in the Customer and Pricelist fields for %s."
 msgstr "Contrato incompleto. Por favor rellene el cliente y la tarifa para %s."
 
 #. module: sale_service_project
@@ -144,7 +144,9 @@ msgstr "ID (identificación)"
 msgid ""
 "If this option is active, the user will have to enter a Start Date and an "
 "End Date on the invoice lines that have this product."
-msgstr "Si está opción está activa, el usuario tendrá que introducir una fecha de inicio y final en las líneas de factura que tengan este producto."
+msgstr ""
+"Si está opción está activa, el usuario tendrá que introducir una fecha de "
+"inicio y final en las líneas de factura que tengan este producto."
 
 #. module: sale_service_project
 #: model:ir.model,name:sale_service_project.model_account_invoice
