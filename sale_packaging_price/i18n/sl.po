@@ -1,7 +1,7 @@
 # Translation of Odoo Server.
 # This file contains the translation of the following modules:
 # * sale_packaging_price
-# 
+#
 # Translators:
 # Matjaž Mozetič <m.mozetic@matmoz.si>, 2015-2016
 # Paolo Valier, 2016
@@ -12,12 +12,14 @@ msgstr ""
 "POT-Creation-Date: 2016-04-29 00:55+0000\n"
 "PO-Revision-Date: 2016-04-30 06:24+0000\n"
 "Last-Translator: Matjaž Mozetič <m.mozetic@matmoz.si>\n"
-"Language-Team: Slovenian (http://www.transifex.com/oca/OCA-sale-workflow-8-0/language/sl/)\n"
+"Language-Team: Slovenian (http://www.transifex.com/oca/OCA-sale-workflow-8-0/"
+"language/sl/)\n"
+"Language: sl\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
-"Language: sl\n"
-"Plural-Forms: nplurals=4; plural=(n%100==1 ? 0 : n%100==2 ? 1 : n%100==3 || n%100==4 ? 2 : 3);\n"
+"Plural-Forms: nplurals=4; plural=(n%100==1 ? 0 : n%100==2 ? 1 : n%100==3 || n"
+"%100==4 ? 2 : 3);\n"
 
 #. module: sale_packaging_price
 #: model:ir.actions.act_window,help:sale_packaging_price.action_product_packaging_form
@@ -26,7 +28,11 @@ msgid ""
 "                Click to add a packaging for your products.\n"
 "            </p>\n"
 "        "
-msgstr "<p class=\"oe_view_nocontent_create\">\n                Dodajanje pakiranja k proizvodom.\n            </p>\n        "
+msgstr ""
+"<p class=\"oe_view_nocontent_create\">\n"
+"                Dodajanje pakiranja k proizvodom.\n"
+"            </p>\n"
+"        "
 
 #. module: sale_packaging_price
 #: field:product.packaging.material,create_uid:0
@@ -154,9 +160,11 @@ msgstr "Ta cena bo upoštevana kot cena celotnega pakiranja"
 #: code:addons/sale_packaging_price/models/product.py:41
 #, python-format
 msgid ""
-"With the current decimal precision, you can't get this price. (Approx. price"
-" suggested: %s)"
-msgstr "S trenutno decimalno natančnostjo ne morete dobiti te cene (predlagana  približna cena: %s)"
+"With the current decimal precision, you can't get this price. (Approx. price "
+"suggested: %s)"
+msgstr ""
+"S trenutno decimalno natančnostjo ne morete dobiti te cene (predlagana  "
+"približna cena: %s)"
 
 #. module: sale_packaging_price
 #: view:product.packaging:sale_packaging_price.product_packaging_tree_inherit
