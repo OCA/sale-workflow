@@ -1,7 +1,7 @@
 # Translation of Odoo Server.
 # This file contains the translation of the following modules:
 # * sale_allotment
-# 
+#
 # Translators:
 # Matjaž Mozetič <m.mozetic@matmoz.si>, 2016
 msgid ""
@@ -11,12 +11,14 @@ msgstr ""
 "POT-Creation-Date: 2016-04-22 00:49+0000\n"
 "PO-Revision-Date: 2016-04-20 05:25+0000\n"
 "Last-Translator: Matjaž Mozetič <m.mozetic@matmoz.si>\n"
-"Language-Team: Slovenian (http://www.transifex.com/oca/OCA-sale-workflow-8-0/language/sl/)\n"
+"Language-Team: Slovenian (http://www.transifex.com/oca/OCA-sale-workflow-8-0/"
+"language/sl/)\n"
+"Language: sl\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
-"Language: sl\n"
-"Plural-Forms: nplurals=4; plural=(n%100==1 ? 0 : n%100==2 ? 1 : n%100==3 || n%100==4 ? 2 : 3);\n"
+"Plural-Forms: nplurals=4; plural=(n%100==1 ? 0 : n%100==2 ? 1 : n%100==3 || n"
+"%100==4 ? 2 : 3);\n"
 
 #. module: sale_allotment
 #: model:ir.model,name:sale_allotment.model_procurement_order
@@ -32,10 +34,18 @@ msgstr "Premik zaloge"
 #: view:sale.order:sale_allotment.view_order_form
 msgid ""
 "[\n"
-"                                ('parent_id','child_of', parent.partner_id),\n"
-"                                ('type', 'in', ['other', 'delivery', 'contact']),\n"
+"                                ('parent_id','child_of', parent."
+"partner_id),\n"
+"                                ('type', 'in', ['other', 'delivery', "
+"'contact']),\n"
 "                            ]"
-msgstr "[\n                                ('parent_id','child_of', parent.partner_id),\n                                ('type', 'in', ['other', 'delivery', 'contact']),\n                            ]"
+msgstr ""
+"[\n"
+"                                ('parent_id','child_of', parent."
+"partner_id),\n"
+"                                ('type', 'in', ['other', 'delivery', "
+"'contact']),\n"
+"                            ]"
 
 #. module: sale_allotment
 #: view:sale.order:sale_allotment.view_order_form
@@ -45,4 +55,9 @@ msgid ""
 "                                'default_use_parent_address': True,\n"
 "                                'default_type':'other',\n"
 "                            }"
-msgstr "{\n                                'default_parent_id': parent.partner_id,\n                                'default_use_parent_address': True,\n                                'default_type':'other',\n                            }"
+msgstr ""
+"{\n"
+"                                'default_parent_id': parent.partner_id,\n"
+"                                'default_use_parent_address': True,\n"
+"                                'default_type':'other',\n"
+"                            }"
