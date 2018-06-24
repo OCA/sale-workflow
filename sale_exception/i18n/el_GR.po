@@ -1,7 +1,7 @@
 # Translation of Odoo Server.
 # This file contains the translation of the following modules:
 # * sale_exception
-# 
+#
 # Translators:
 msgid ""
 msgstr ""
@@ -10,11 +10,12 @@ msgstr ""
 "POT-Creation-Date: 2016-11-22 23:46+0000\n"
 "PO-Revision-Date: 2016-04-12 07:49+0000\n"
 "Last-Translator: <>\n"
-"Language-Team: Greek (Greece) (http://www.transifex.com/oca/OCA-sale-workflow-9-0/language/el_GR/)\n"
+"Language-Team: Greek (Greece) (http://www.transifex.com/oca/OCA-sale-"
+"workflow-9-0/language/el_GR/)\n"
+"Language: el_GR\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
-"Language: el_GR\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
 #. module: sale_exception
@@ -98,6 +99,7 @@ msgstr ""
 
 #. module: sale_exception
 #: model:ir.model.fields,field_description:sale_exception.field_sale_order_exception_ids
+#: model:ir.ui.menu,name:sale_exception.menu_sale_exception_parent
 msgid "Exceptions"
 msgstr ""
 

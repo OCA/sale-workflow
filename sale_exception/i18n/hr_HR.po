@@ -1,7 +1,7 @@
 # Translation of Odoo Server.
 # This file contains the translation of the following modules:
 # * sale_exception
-# 
+#
 # Translators:
 msgid ""
 msgstr ""
@@ -10,12 +10,14 @@ msgstr ""
 "POT-Creation-Date: 2016-09-29 03:03+0000\n"
 "PO-Revision-Date: 2016-04-12 07:49+0000\n"
 "Last-Translator: <>\n"
-"Language-Team: Croatian (Croatia) (http://www.transifex.com/oca/OCA-sale-workflow-9-0/language/hr_HR/)\n"
+"Language-Team: Croatian (Croatia) (http://www.transifex.com/oca/OCA-sale-"
+"workflow-9-0/language/hr_HR/)\n"
+"Language: hr_HR\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
-"Language: hr_HR\n"
-"Plural-Forms: nplurals=3; plural=n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2;\n"
+"Plural-Forms: nplurals=3; plural=n%10==1 && n%100!=11 ? 0 : n%10>=2 && n"
+"%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2;\n"
 
 #. module: sale_exception
 #: model:ir.model.fields,field_description:sale_exception.field_sale_exception_active
@@ -67,7 +69,7 @@ msgid "Display Name"
 msgstr "Naziv"
 
 #. module: sale_exception
-#: code:addons/sale_exception/models/sale.py:180
+#: code:addons/sale_exception/models/sale.py:182
 #, python-format
 msgid ""
 "Error when evaluating the sale exception rule:\n"
@@ -98,6 +100,7 @@ msgstr ""
 
 #. module: sale_exception
 #: model:ir.model.fields,field_description:sale_exception.field_sale_order_exception_ids
+#: model:ir.ui.menu,name:sale_exception.menu_sale_exception_parent
 msgid "Exceptions"
 msgstr ""
 
