@@ -16,6 +16,10 @@ This module creates a field to enter the payment signal,
 which is automatically calculated by a percentage associated with the company.
 These amounts, automatically appear in Invoice Order.
 
+.. image:: https://odoo-community.org/website/image/ir.attachment/5784_f2813bd/datas
+   :alt: Try me on Runbot
+   :target: http://3330814-623-da5f75.runbot1.odoo-community.org/web/login
+
 .. image:: static/payment-signal-01.png
 
 .. image:: static/payment-signal-02.png
