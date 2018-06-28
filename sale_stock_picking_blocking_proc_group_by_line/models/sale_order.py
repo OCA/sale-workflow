@@ -12,9 +12,9 @@ class SaleOrderLine(models.Model):
     @api.multi
     def _action_procurement_create(self):
         new_procs = self.env['procurement.order']
-        for line in self:
-            if not line.order_id.delivery_block_id:
-                new_procs += super(
-                    SaleOrderLine, line.with_context(
-                        group_by_line=True))._action_procurement_create()
+        for line in self.filtered(
+                lambda sol: not sol.order_id.delivery_block_id):
+            new_procs += super(
+                SaleOrderLine, line.with_context(
+                    group_by_line=True))._action_procurement_create()
         return new_procs
