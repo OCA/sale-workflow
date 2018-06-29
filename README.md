@@ -47,7 +47,7 @@ addon | version | summary
 [sale_order_revision](sale_order_revision/) | 10.0.1.0.1 | Sale order revisions
 [sale_order_type](sale_order_type/) | 10.0.1.0.1 | Sale Order Type
 [sale_owner_stock_sourcing](sale_owner_stock_sourcing/) | 10.0.1.0.0 | Manage stock ownership on sale order lines
-[sale_procurement_group_by_line](sale_procurement_group_by_line/) | 10.0.1.0.0 | Base module for multiple procurement group by Sale order
+[sale_procurement_group_by_line](sale_procurement_group_by_line/) | 10.0.1.1.0 | Base module for multiple procurement group by Sale order
 [sale_product_multi_add](sale_product_multi_add/) | 10.0.1.0.0 | Sale Product Multi Add
 [sale_product_set](sale_product_set/) | 10.0.1.0.2 | Sale product set
 [sale_product_set_layout](sale_product_set_layout/) | 10.0.1.0.0 | Sale product set layout
@@ -58,6 +58,7 @@ addon | version | summary
 [sale_sourced_by_line](sale_sourced_by_line/) | 10.0.1.0.0 | Multiple warehouse source locations for Sale order
 [sale_start_end_dates](sale_start_end_dates/) | 10.0.1.0.0 | Adds start date and end date on sale order lines
 [sale_stock_picking_blocking](sale_stock_picking_blocking/) | 10.0.1.0.0 | Allow you to block the creation of deliveries from a sale order.
+[sale_stock_picking_blocking_proc_group_by_line](sale_stock_picking_blocking_proc_group_by_line/) | 10.0.1.0.0 | Module that allows module sale_delivery_block to work with sale_procurement_group_by_line
 [sale_triple_discount](sale_triple_discount/) | 10.0.1.0.0 | Manage triple discount on sale order lines
 [sale_validity](sale_validity/) | 10.0.1.0.0 | Set a default validity delay on quotations
 
