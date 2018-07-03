@@ -31,10 +31,9 @@ class SaleOrderLine(models.Model):
         return res
 
     @api.multi
-    def _prepare_order_line_procurement(self, group_id=False):
-        self.ensure_one()
+    def _prepare_procurement_values(self, group_id=False):
         vals = super(SaleOrderLine, self).\
-            _prepare_order_line_procurement(group_id)
+            _prepare_procurement_values(group_id)
         if self.requested_date:
             vals.update({'date_planned': self.requested_date})
         return vals
