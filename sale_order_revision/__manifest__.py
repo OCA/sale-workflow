@@ -10,7 +10,9 @@
               "Camptocamp,"
               "Akretion,"
               "Odoo Community Association (OCA), "
-              "Serpent Consulting Services Pvt. Ltd.",
+              "Serpent Consulting Services Pvt. Ltd."
+              "FreeDoo2018,",
+
     "website": "http://www.agilebg.com",
     "license": "AGPL-3",
     "depends": [
