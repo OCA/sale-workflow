@@ -8,7 +8,7 @@
     'author': "Akretion, Odoo Community Association (OCA)",
     'website': "http://www.Akretion.com",
     'category': 'sale',
-    'version': '10.0.1.0.1',
+    'version': '10.0.1.0.2',
     'license': 'AGPL-3',
     'depends': ['sale_stock'],
     'data': [
@@ -19,4 +19,5 @@
         'security/ir.model.access.csv',
         'security/ir.rule.csv',
         ],
+    'installable': False,  # to much trouble in the repository
 }
