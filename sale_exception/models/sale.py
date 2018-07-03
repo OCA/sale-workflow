@@ -92,7 +92,11 @@ class SaleOrder(models.Model):
         return action
 
     @api.one
-    @api.constrains('ignore_exception', 'order_line', 'state')
+    # there is no need to check state and ignore excepetion, only lines
+    # change. With this improvement exceptions are only tested once upon
+    # order validation instead of twice
+    # @api.constrains('ignore_exception', 'order_line', 'state')
+    @api.constrains('order_line')
     def check_sale_exception_constrains(self):
         if self.state == 'sale':
             exception_ids = self.detect_exceptions()
