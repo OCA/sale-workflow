@@ -7,8 +7,8 @@ from odoo import fields, models
 
 
 class SaleOrder(models.Model):
-        _inherit = 'sale.order'
+    _inherit = 'sale.order'
 
-        generator_id = fields.Many2one(
-            comodel_name='sale.generator', string="Generator")
-        is_template = fields.Boolean()
+    generator_id = fields.Many2one(
+        comodel_name='sale.generator', string="Generator")
+    is_template = fields.Boolean()
