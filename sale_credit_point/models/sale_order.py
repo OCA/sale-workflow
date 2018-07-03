@@ -53,6 +53,4 @@ class SaleOrder(models.Model):
             if sale.state == 'sale':
                 sale.partner_id.credit_point_increase(
                     sale.amount_total, _("Sale Order canceled"))
-                sale.partner_id.update_history(
-                    sale.amount_total, "increase", _("Sale Order canceled"))
             super(SaleOrder, sale).action_cancel()
