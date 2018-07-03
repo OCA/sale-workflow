@@ -2,8 +2,7 @@
 <odoo>
     <record id="view_sale_order_form" model="ir.ui.view">
         <field name="model">sale.order</field>
-        <field name="inherit_id" ref="sale.view_order_form"/>
-        <field name="priority" eval="32"/>
+        <field name="inherit_id" ref="sale_stock.view_order_form_inherit_sale_stock"/>
         <field name="arch" type="xml">
             <header position="attributes">
                 <attribute name="attrs">{'invisible': [('is_template', '=',
@@ -13,13 +12,13 @@
             <field name="partner_id" position="after">
                 <field name="is_template" invisible="1"/>
             </field>
-            <field name="name" position="attributes">
+            <xpath expr="//h1/field[@name='name']" position="attributes">
                 <attribute name="attrs">{'readonly': [('is_template', '=',
                     False)]}
                 </attribute>
                 <attribute name="readonly">0</attribute>
-            </field>
-            <xpath expr="//field[@name='partner_id']/.." position="attributes">
+            </xpath>
+            <xpath expr="//field[@name='partner_id']" position="attributes">
                 <attribute name="attrs">{'invisible': [('is_template', '=',
                     True)]}
                 </attribute>
