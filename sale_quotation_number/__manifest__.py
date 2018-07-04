@@ -7,7 +7,7 @@
 {
     'name': 'Sale Quotation Numeration',
     'summary': "Different sequence for sale quotations",
-    'version': '10.0.1.1.0',
+    'version': '11.0.1.1.0',
     'category': 'Sales Management',
     'website': 'https://odoo-community.org/',
     'author': 'Elico Corp, '
@@ -17,7 +17,7 @@
     "license": "AGPL-3",
     "application": False,
     "installable": True,
-    'depends': ['sale'],
+    'depends': ['sale_management'],
     'data': [
         'data/data.xml',
         'views/sales_config.xml'
