@@ -16,8 +16,8 @@ class ResCompany(models.Model):
              "sale orders", default=True)
 
 
-class SaleConfigSettings(models.TransientModel):
-    _inherit = 'sale.config.settings'
+class ResConfigSettings(models.TransientModel):
+    _inherit = 'res.config.settings'
 
     keep_name_so = fields.Boolean(related='company_id.keep_name_so')
 

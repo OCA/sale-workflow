@@ -60,7 +60,7 @@ Usage
 
 .. image:: https://odoo-community.org/website/image/ir.attachment/5784_f2813bd/datas
    :alt: Try me on Runbot
-   :target: https://runbot.odoo-community.org/runbot/167/10.0
+   :target: https://runbot.odoo-community.org/runbot/167/11.0
 
 Bug Tracker
 ===========
@@ -84,6 +84,7 @@ Contributors
 * Andy Lu <andy.lu@elico-corp.com>
 * Lorenzo Battistini <lorenzo.battistini@agilebg.com>
 * Valentin Vinagre Urteaga <valentin.vinagre@qubiq.es>
+* Serpent Consulting Services Pvt. Ltd. <support@serpentcs.com>
 
 Do not contact contributors directly about support or help with technical issues.
 
