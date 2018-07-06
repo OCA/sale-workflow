@@ -47,6 +47,7 @@ class SaleOrderLine(models.Model):
          'Discount 3 must be lower than 100%.'),
     ]
 
+    @api.multi
     def _prepare_invoice_line(self, qty):
         res = super(SaleOrderLine, self)._prepare_invoice_line(qty)
         res.update({

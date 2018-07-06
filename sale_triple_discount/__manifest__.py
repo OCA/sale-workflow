@@ -6,7 +6,7 @@
 
 {
     'name': 'Sale Triple Discount',
-    'version': '10.0.1.0.0',
+    'version': '11.0.1.0.0',
     'category': 'Sales Management',
     'author': 'ADHOC SA, '
               'Agile Business Group, '
@@ -16,7 +16,7 @@
     'license': 'AGPL-3',
     'summary': 'Manage triple discount on sale order lines',
     'depends': [
-        'sale',
+        'sale_management',
         'account_invoice_triple_discount',
     ],
     'data': [
