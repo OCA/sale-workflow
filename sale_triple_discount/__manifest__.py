@@ -1,4 +1,3 @@
-# Copyright 2018 QubiQ (http://www.qubiq.es)
 # Copyright 2015 ADHOC SA  (http://www.adhoc.com.ar)
 # Copyright 2017 Alex Comba - Agile Business Group
 # Copyright 2017 Tecnativa - David Vidal
@@ -8,16 +7,15 @@
     'name': 'Sale Triple Discount',
     'version': '11.0.1.0.0',
     'category': 'Sales Management',
-    'author': 'QubiQ, '
-              'ADHOC SA, '
+    'author': 'ADHOC SA, '
               'Agile Business Group, '
               'Tecnativa, '
               'Odoo Community Association (OCA)',
-    'website': 'https://odoo-community.org',
+    'website': 'https://github.com/OCA/sale-workflow',
     'license': 'AGPL-3',
     'summary': 'Manage triple discount on sale order lines',
     'depends': [
-        'sale',
+        'sale_management',
         'account_invoice_triple_discount',
     ],
     'data': [

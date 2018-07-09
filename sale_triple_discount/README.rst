@@ -39,7 +39,7 @@ Unit price: 600.00 ->
 
 .. image:: https://odoo-community.org/website/image/ir.attachment/5784_f2813bd/datas
    :alt: Try me on Runbot
-   :target: https://runbot.odoo-community.org/runbot/167/10.0
+   :target: https://runbot.odoo-community.org/runbot/167/11.0
 
 Bug Tracker
 ===========
@@ -60,6 +60,7 @@ Images
 Contributors
 ------------
 
+* Xavier Jiménez <xavier.jimenez@qubiq.es>
 * Nicolas Mac Rouillon <@nicomacr>
 * Juan José Scarafía <jjs@adhoc.com.ar>
 * Alex Comba <alex.comba@agilebg.com>
