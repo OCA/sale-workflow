@@ -30,7 +30,7 @@ msgid "Default Start Date"
 msgstr ""
 
 #. module: sale_start_end_dates
-#: code:addons/sale_start_end_dates/models/sale.py:26
+#: code:addons/sale_start_end_dates/models/sale.py:22
 #, python-format
 msgid ""
 "Default Start Date should be before or be the same as Default End Date for "
@@ -50,19 +50,19 @@ msgid ""
 msgstr ""
 
 #. module: sale_start_end_dates
-#: code:addons/sale_start_end_dates/models/sale.py:65
+#: code:addons/sale_start_end_dates/models/sale.py:58
 #, python-format
 msgid "Missing End Date for sale order line with Product '%s'."
 msgstr ""
 
 #. module: sale_start_end_dates
-#: code:addons/sale_start_end_dates/models/sale.py:69
+#: code:addons/sale_start_end_dates/models/sale.py:62
 #, python-format
 msgid "Missing Start Date for sale order line with Product '%s'."
 msgstr ""
 
 #. module: sale_start_end_dates
-#: code:addons/sale_start_end_dates/models/sale.py:73
+#: code:addons/sale_start_end_dates/models/sale.py:66
 #, python-format
 msgid "Missing number of days for sale order line with Product '%s'."
 msgstr ""
@@ -78,7 +78,7 @@ msgid "Number of Days"
 msgstr ""
 
 #. module: sale_start_end_dates
-#: code:addons/sale_start_end_dates/models/sale.py:82
+#: code:addons/sale_start_end_dates/models/sale.py:75
 #, python-format
 msgid ""
 "On sale order line with Product '%s', the number of days is negative ; this "
@@ -86,7 +86,7 @@ msgid ""
 msgstr ""
 
 #. module: sale_start_end_dates
-#: code:addons/sale_start_end_dates/models/sale.py:90
+#: code:addons/sale_start_end_dates/models/sale.py:83
 #, python-format
 msgid ""
 "On the sale order line with Product '%s', there are %d days between the "
@@ -96,8 +96,8 @@ msgstr ""
 
 #. module: sale_start_end_dates
 #: model:ir.model,name:sale_start_end_dates.model_sale_order
-msgid "Sales Order"
-msgstr "Pedido de venta"
+msgid "Quotation"
+msgstr ""
 
 #. module: sale_start_end_dates
 #: model:ir.model,name:sale_start_end_dates.model_sale_order_line
@@ -110,9 +110,12 @@ msgid "Start Date"
 msgstr ""
 
 #. module: sale_start_end_dates
-#: code:addons/sale_start_end_dates/models/sale.py:77
+#: code:addons/sale_start_end_dates/models/sale.py:70
 #, python-format
 msgid ""
 "Start Date should be before or be the same as End Date for sale order line "
 "with Product '%s'."
 msgstr ""
+
+#~ msgid "Sales Order"
+#~ msgstr "Pedido de venta"
