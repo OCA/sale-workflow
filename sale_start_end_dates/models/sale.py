@@ -1,10 +1,9 @@
-# -*- coding: utf-8 -*-
 # Copyright 2014-2016 Akretion (http://www.akretion.com)
 # @author Alexis de Lattre <alexis.delattre@akretion.com>
 # Copyright 2016 Sodexis (http://sodexis.com)
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
-from odoo import models, fields, api, _
+from odoo import api, fields, models, _
 from odoo.exceptions import ValidationError
 from dateutil.relativedelta import relativedelta
 
@@ -15,12 +14,9 @@ class SaleOrder(models.Model):
     default_start_date = fields.Date(string='Default Start Date')
     default_end_date = fields.Date(string='Default End Date')
 
-    @api.one
     @api.constrains('default_start_date', 'default_end_date')
     def _check_default_start_end_dates(self):
-        if (
-                self.default_start_date and
-                self.default_end_date and
+        if (self.default_start_date and self.default_end_date and
                 self.default_start_date > self.default_end_date):
             raise ValidationError(
                 _("Default Start Date should be before or be the "
@@ -29,17 +25,13 @@ class SaleOrder(models.Model):
 
     @api.onchange('default_start_date')
     def default_start_date_change(self):
-        if (
-                self.default_start_date and
-                self.default_end_date and
+        if (self.default_start_date and self.default_end_date and
                 self.default_start_date > self.default_end_date):
             self.default_end_date = self.default_start_date
 
     @api.onchange('default_end_date')
     def default_end_date_change(self):
-        if (
-                self.default_start_date and
-                self.default_end_date and
+        if (self.default_start_date and self.default_end_date and
                 self.default_start_date > self.default_end_date):
             self.default_start_date = self.default_end_date
 
@@ -55,12 +47,13 @@ class SaleOrderLine(models.Model):
         states={'draft': [('readonly', False)]})
     number_of_days = fields.Integer(string='Number of Days')
     must_have_dates = fields.Boolean(
-        related='product_id.must_have_dates', readonly=True)
+        related='product_id.must_have_dates',
+        readonly=True
+    )
 
-    @api.one
     @api.constrains('start_date', 'end_date', 'number_of_days')
     def _check_start_end_dates(self):
-        if self.product_id and self.must_have_dates:
+        if self.must_have_dates:
             if not self.end_date:
                 raise ValidationError(_(
                     "Missing End Date for sale order line with "
@@ -145,15 +138,11 @@ class SaleOrderLine(models.Model):
 
     @api.onchange('product_id')
     def start_end_dates_product_id_change(self):
-        if self.product_id:
-            if self.order_id.default_start_date:
-                self.start_date = self.order_id.default_start_date
-            else:
-                self.start_date = False
-            if self.order_id.default_end_date:
-                self.end_date = self.order_id.default_end_date
-            else:
-                self.end_date = False
+        if self.order_id.default_start_date:
+            self.start_date = self.order_id.default_start_date
         else:
             self.start_date = False
+        if self.order_id.default_end_date:
+            self.end_date = self.order_id.default_end_date
+        else:
             self.end_date = False
