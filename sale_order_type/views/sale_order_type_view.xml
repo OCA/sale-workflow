@@ -108,7 +108,7 @@
         <field name="act_window_id" ref="sot_sale_order_type_action"/>
     </record>
 
-    <menuitem id="sot_sale_order_type_menu" parent="sales_team.menu_sale_config"
+    <menuitem id="sot_sale_order_type_menu" parent="sale.menu_sale_config"
               action="sot_sale_order_type_action" sequence="20"/>
 
 </odoo>
