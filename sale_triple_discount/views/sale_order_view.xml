@@ -12,6 +12,8 @@
                        groups="sale.group_discount_per_so_line"/>
                 <field name="discount3"
                        groups="sale.group_discount_per_so_line"/>
+                <field name="discounting_type"
+                       groups="sale.group_discount_per_so_line"/>
             </xpath>
             <xpath expr="//field[@name='order_line']//form//div[@name='discount']"
                    position="after">
