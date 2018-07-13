@@ -1,6 +1,3 @@
-# -*- coding: utf-8 -*-
-##############################################################################
-# For copyright and license notices, see __openerp__.py file in root directory
-##############################################################################
+# License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
 
 from . import res_partner
