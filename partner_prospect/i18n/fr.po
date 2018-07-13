@@ -1,7 +1,7 @@
 # Translation of Odoo Server.
 # This file contains the translation of the following modules:
 # * partner_prospect
-# 
+#
 # Translators:
 msgid ""
 msgstr ""
@@ -10,35 +10,30 @@ msgstr ""
 "POT-Creation-Date: 2015-10-02 17:59+0000\n"
 "PO-Revision-Date: 2015-09-21 21:52+0000\n"
 "Last-Translator: <>\n"
-"Language-Team: French (http://www.transifex.com/oca/OCA-sale-workflow-8-0/language/fr/)\n"
+"Language-Team: French (http://www.transifex.com/oca/OCA-sale-workflow-8-0/"
+"language/fr/)\n"
+"Language: fr\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
-"Language: fr\n"
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
 
 #. module: partner_prospect
-#: view:res.partner:partner_prospect.res_partner_prospect_search_view
+#: model:ir.ui.view,arch_db:partner_prospect.res_partner_prospect_search_view
 msgid "Actual Customer"
 msgstr ""
 
 #. module: partner_prospect
-#: view:res.partner:partner_prospect.res_partner_prospect_search_view
-msgid "Group By"
+#: model:ir.model,name:partner_prospect.model_res_partner
+msgid "Contact"
 msgstr ""
 
 #. module: partner_prospect
-#: model:ir.model,name:partner_prospect.model_res_partner
-msgid "Partner"
-msgstr "Partenaire"
-
-#. module: partner_prospect
-#: view:res.partner:partner_prospect.res_partner_prospect_search_view
-#: field:res.partner,prospect:0
+#: model:ir.model.fields,field_description:partner_prospect.field_res_partner_prospect
+#: model:ir.model.fields,field_description:partner_prospect.field_res_users_prospect
+#: model:ir.ui.view,arch_db:partner_prospect.res_partner_prospect_search_view
 msgid "Prospect"
 msgstr ""
 
-#. module: partner_prospect
-#: view:res.partner:partner_prospect.res_partner_prospect_search_view
-msgid "Suppliers"
-msgstr ""
+#~ msgid "Partner"
+#~ msgstr "Partenaire"
