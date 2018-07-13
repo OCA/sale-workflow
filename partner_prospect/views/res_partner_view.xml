@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <odoo>
-<data>
     <record id="res_partner_prospect_form_view" model="ir.ui.view">
         <field name="name">res.partner.prospect.form</field>
         <field name="model">res.partner</field>
@@ -46,5 +45,4 @@
     <record id="base.action_partner_customer_form" model="ir.actions.act_window">
         <field name="context">{'default_customer':1, 'search_default_customer':1, 'search_default_noprospect': 1, 'default_company_type': 'company','default_is_company': 1}</field>
     </record>
-</data>
 </odoo>
