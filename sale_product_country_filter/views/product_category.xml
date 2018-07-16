@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Copyright 2018 ACSONE SA/NV
+     License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl). -->
+
+<odoo>
+
+    <record model="ir.ui.view" id="product_category_form_view">
+        <field name="name">product.category.form (in sale_product_country_filter)</field>
+        <field name="model">product.category</field>
+        <field name="inherit_id" ref="product.product_category_form_view"/>
+        <field name="arch" type="xml">
+            <xpath expr="//sheet" position="inside">
+                <group name="blacklist" string="Blacklisted countries">
+                    <field
+                        name="blacklisted_countries_ids"
+                        nolabel="1"
+                        />
+                </group>
+            </xpath>
+        </field>
+    </record>
+
+<!--
+    <record model="ir.ui.view" id="product_category_search_view">
+        <field name="name">product.category.search (in sale_product_country_filter)</field>
+        <field name="model">product.category</field>
+        <field name="inherit_id" ref="TODO othermodule.search_view"/>
+        <field name="arch" type="xml">
+        </field>
+    </record>
+-->
+
+
+</odoo>
