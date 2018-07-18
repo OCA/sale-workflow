@@ -24,7 +24,7 @@ class TestSaleProcurementGroupByLine(TransactionCase):
         # Create Products
         self.new_product1 = self._create_product('test_product1')
         self.new_product2 = self._create_product('test_product2')
-        self._create_sale_order()
+        self.sale = self._create_sale_order()
 
     def _create_product_category(self):
         product_ctg = self.product_ctg_model.create({
@@ -76,3 +76,12 @@ class TestSaleProcurementGroupByLine(TransactionCase):
         wiz.process()
         self.assertTrue(self.picking_ids,
                         'Procurement Group should have picking')
+
+    def test_action_launch_procurement_rule(self):
+        group_id = self.env['procurement.group'].create(
+            {'move_type': 'one',
+             'sale_id': self.sale.id,
+             'name': self.sale.name})
+        self.line1.procurement_group_id = group_id
+        self.line2.procurement_group_id = group_id
+        self.sale.action_confirm()

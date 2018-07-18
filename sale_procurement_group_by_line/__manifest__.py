@@ -9,12 +9,13 @@
     'version': '11.0.1.1.0',
     "author": "Camptocamp,"
               "Eficent,"
-              "Serpent,"
+              "Serpent Consulting Services Pvt. Ltd.,"
               "Odoo Community Association (OCA)",
     'category': 'Warehouse',
     'license': 'AGPL-3',
     'website': "https://github.com/OCA/sale-workflow",
-    'depends': ['sale_stock',
-                ],
+    'depends': [
+        'sale_stock',
+    ],
     'installable': True,
 }
