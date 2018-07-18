@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 # Copyright 2013-2014 Camptocamp SA - Guewen Baconnier
 # © 2016 Eficent Business and IT Consulting Services S.L.
 # © 2016 Serpent Consulting Services Pvt. Ltd.
@@ -52,13 +51,13 @@ class TestSaleProcurementGroupByLine(TransactionCase):
             'order_id': self.sale.id,
             'product_id': self.new_product1.id,
             'product_uom_qty': 10.0,
-            'name': 'Sale Order Line Demo',
+            'name': 'Sale Order Line Demo1',
         })
         self.line2 = self.order_line_model.create({
             'order_id': self.sale.id,
             'product_id': self.new_product2.id,
             'product_uom_qty': 5.0,
-            'name': 'Sale Order Line Demo',
+            'name': 'Sale Order Line Demo2',
         })
         return self.sale
 
@@ -68,12 +67,12 @@ class TestSaleProcurementGroupByLine(TransactionCase):
                          self.line1.procurement_group_id,
                          """Both Sale Order line should belong
                          to Procurement Group""")
-        self.assertEqual(self.line1.procurement_ids.product_qty,
-                         self.line1.product_uom_qty,
-                         """The Procurement quantity should
-                         match to the quantity ordered""")
-        self.sale._compute_picking_ids()
         self.picking_ids = self.env['stock.picking'].\
             search([('group_id', 'in', self.line2.procurement_group_id.ids)])
+        self.picking_ids.force_assign()
+        self.picking_ids.move_lines.write({'quantity_done': 5})
+        wiz_act = self.picking_ids.button_validate()
+        wiz = self.env[wiz_act['res_model']].browse(wiz_act['res_id'])
+        wiz.process()
         self.assertTrue(self.picking_ids,
                         'Procurement Group should have picking')

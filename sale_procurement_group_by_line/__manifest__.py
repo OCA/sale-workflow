@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 # Copyright 2013-2014 Camptocamp SA - Guewen Baconnier
 # © 2016 Eficent Business and IT Consulting Services S.L.
 # © 2016 Serpent Consulting Services Pvt. Ltd.
@@ -7,7 +6,7 @@
 {
     'name': 'Sale Procurement Group by Line',
     'summary': 'Base module for multiple procurement group by Sale order',
-    'version': '10.0.1.1.0',
+    'version': '11.0.1.1.0',
     "author": "Camptocamp,"
               "Eficent,"
               "Serpent,"
