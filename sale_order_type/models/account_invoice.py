@@ -16,9 +16,10 @@ class AccountInvoice(models.Model):
     @api.onchange('partner_id', 'company_id')
     def _onchange_partner_id(self):
         super(AccountInvoice, self)._onchange_partner_id()
-        if self.partner_id:
-            if self.partner_id.sale_type:
-                self.sale_type_id = self.partner_id.sale_type.id
+        sale_type = (self.partner_id.sale_type or
+                     self.partner_id.commercial_partner_id.sale_type)
+        if sale_type:
+            self.sale_type_id = sale_type
 
     @api.onchange('sale_type_id')
     def onchange_sale_type_id(self):
