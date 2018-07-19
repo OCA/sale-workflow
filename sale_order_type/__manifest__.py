@@ -1,6 +1,6 @@
 # Copyright 2015 Carlos Sánchez Cifuentes <csanchez@grupovermon.com>
 # Copyright 2015-2016 Oihane Crucelaegui <oihane@avanzosc.com>
-# Copyright 2015-2016 Pedro M. Baeza <pedro.baeza@tecnativa.com>
+# Copyright 2015-2018 Pedro M. Baeza <pedro.baeza@tecnativa.com>
 # Copyright 2016 Lorenzo Battistini
 # Copyright 2016 Carlos Dauden <carlos.dauden@tecnativa.com>
 # Copyright 2018 David Vidal <david.vidal@tecnativa.com>
@@ -8,7 +8,7 @@
 
 {
     "name": "Sale Order Type",
-    "version": "11.0.1.2.0",
+    "version": "11.0.1.2.1",
     "category": "Sales Management",
     "author": "Grupo Vermon,"
               "AvanzOSC,"
