@@ -13,6 +13,11 @@ class TestSaleOrderType(common.TransactionCase):
         self.sale_order_model = self.env['sale.order']
         self.invoice_model = self.env['account.invoice']
         self.partner = self.env.ref('base.res_partner_1')
+        self.partner_child_1 = self.env['res.partner'].create({
+            'name': 'Test child',
+            'parent_id': self.partner.id,
+            'sale_type': False,
+        })
         self.sequence = self.env['ir.sequence'].create({
             'name': 'Test Sales Order',
             'code': 'sale.order',
@@ -67,6 +72,16 @@ class TestSaleOrderType(common.TransactionCase):
 
         order.action_confirm()
 
+    def test_sale_order_onchange_partner(self):
+        order = self.sale_order_model.new({'partner_id': self.partner.id})
+        order.onchange_partner_id()
+        self.assertEqual(order.type_id, self.sale_type)
+        order = self.sale_order_model.new({
+            'partner_id': self.partner_child_1.id,
+        })
+        order.onchange_partner_id()
+        self.assertEqual(order.type_id, self.sale_type)
+
     def test_invoice_onchange_type(self):
         sale_type = self.sale_type
         invoice = self.invoice_model.new({'sale_type_id': sale_type.id})
@@ -75,9 +90,14 @@ class TestSaleOrderType(common.TransactionCase):
         self.assertTrue(invoice.journal_id == sale_type.journal_id)
 
     def test_invoice_onchange_partner(self):
-        invoice = self.invoice_model.create({'partner_id': self.partner.id})
+        invoice = self.invoice_model.new({'partner_id': self.partner.id})
         invoice._onchange_partner_id()
-        self.assertTrue(invoice.sale_type_id == self.sale_type)
+        self.assertEqual(invoice.sale_type_id, self.sale_type)
+        invoice = self.invoice_model.new({
+            'partner_id': self.partner_child_1.id,
+        })
+        invoice._onchange_partner_id()
+        self.assertEqual(invoice.sale_type_id, self.sale_type)
 
     def test_prepare_invoice(self):
         sale_type = self.sale_type
