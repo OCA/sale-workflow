@@ -16,8 +16,10 @@ class SaleOrder(models.Model):
     @api.onchange('partner_id')
     def onchange_partner_id(self):
         super(SaleOrder, self).onchange_partner_id()
-        if self.partner_id.sale_type:
-            self.type_id = self.partner_id.sale_type
+        sale_type = (self.partner_id.sale_type or
+                     self.partner_id.commercial_partner_id.sale_type)
+        if sale_type:
+            self.type_id = sale_type
 
     @api.multi
     @api.onchange('type_id')
