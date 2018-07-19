@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
 # Copyright 2018 ACSONE SA/NV
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
+import threading
 
 from odoo import api, fields, models, _
 from odoo.exceptions import ValidationError
@@ -24,6 +25,12 @@ class ProductTemplate(models.Model):
     @api.multi
     @api.constrains("tmpl_globally_allowed", "tmpl_blacklisted_countries_ids")
     def _blacklist_consistency(self):
+        test_mode = getattr(threading.currentThread(), 'testing', False)
+        testing_current_module = self.env.context.get(
+            'testing_sale_product_country_filter')
+        if test_mode and not testing_current_module:
+            return
+
         for template in self:
             if (
                     not template.tmpl_globally_allowed and

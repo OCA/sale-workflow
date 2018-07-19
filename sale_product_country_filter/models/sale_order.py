@@ -104,5 +104,9 @@ class SaleOrder(models.Model):
 
     @api.multi
     def action_confirm(self):
-        self.check_blacklist()
+        test_mode = getattr(threading.currentThread(), 'testing', False)
+        testing_current_module = self.env.context.get(
+            'testing_sale_product_country_filter')
+        if not test_mode or testing_current_module:
+            self.check_blacklist()
         return super(SaleOrder, self).action_confirm()

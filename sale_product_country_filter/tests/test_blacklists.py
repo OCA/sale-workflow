@@ -13,8 +13,9 @@ class TestBlacklists(TestSale):
 
     def test_global_flag(self):
         uom_unit = self.env.ref("product.product_uom_unit")
+        ctx = {'testing_sale_product_country_filter': True}
         with self.assertRaises(ValidationError):
-            self.env["product.product"].create(
+            self.env["product.product"].with_context(ctx).create(
                 {
                     "name": "Work",
                     "type": "service",
@@ -62,8 +63,9 @@ class TestBlacklists(TestSale):
         )
         self.partner.write({"country_id": blacklisted_country.id})
         so = self._create_sale_order(product)
+        ctx = {'testing_sale_product_country_filter': True}
         with self.assertRaises(ValidationError):
-            so.action_confirm()
+            so.with_context(ctx).action_confirm()
 
     def test_template_no_blacklist(self):
         uom_unit = self.env.ref("product.product_uom_unit")
@@ -82,8 +84,9 @@ class TestBlacklists(TestSale):
         )
         self.partner.write({"country_id": blacklisted_country.id})
         so = self._create_sale_order(product)
+        ctx = {'testing_sale_product_country_filter': True}
         # should NOT raise
-        so.action_confirm()
+        so.with_context(ctx).action_confirm()
 
     def test_category_blacklist(self):
         uom_unit = self.env.ref("product.product_uom_unit")
@@ -104,5 +107,6 @@ class TestBlacklists(TestSale):
         )
         self.partner.write({"country_id": blacklisted_country.id})
         so = self._create_sale_order(product)
+        ctx = {'testing_sale_product_country_filter': True}
         with self.assertRaises(ValidationError):
-            so.action_confirm()
+            so.with_context(ctx).action_confirm()
