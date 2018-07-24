@@ -110,3 +110,41 @@ class SaleOrder(models.Model):
         if not test_mode or testing_current_module:
             self.check_blacklist()
         return super(SaleOrder, self).action_confirm()
+
+
+class SaleOrderLine(models.Model):
+    _inherit = 'sale.order.line'
+
+    @api.onchange('product_id')
+    def onchange_product_check_blacklist(self):
+        if self.product_id and (self.order_id.partner_id or
+                                self.order_id.partner_shipping_id):
+            warning = {
+                'warning': _("This product cannot be sold to the selected "
+                             "country/countries)"),
+            }
+            prod = self.product_id
+            partner_countries = (
+                self.order_id.partner_id.country_id &
+                self.order_id.partner_shipping_id.country_id
+            )
+            blacklisted_template = (
+                not prod.tmpl_globally_allowed and
+                partner_countries & prod.tmpl_blacklisted_countries_ids
+            )
+            blacklisted_variant = (
+                partner_countries & prod.var_blacklisted_countries_ids
+            )
+
+            if blacklisted_template or blacklisted_variant:
+                return warning
+
+            flagged_categories = self.env["product.category"].search(
+                [
+                    ("id", "parent_of", prod.categ_id.id),
+                    ("blacklisted_countries_ids", "in",
+                     partner_countries.ids),
+                ], limit=1
+            )
+            if flagged_categories:
+                return warning
