@@ -9,6 +9,12 @@ Product Supplierinfo for customer sale
 Based on product_supplierinfo_for_customer, this module loads in every sale order the
 customer code defined in the product.
 
+Known issues
+============
+
+* Putting a minimum qty in a pricelist rule means the system will use the
+  option 'list price' instead of any option you chose.
+
 Bug Tracker
 ===========
 
