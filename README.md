@@ -20,6 +20,7 @@ Available addons
 addon | version | summary
 --- | --- | ---
 [product_price_category](product_price_category/) | 10.0.1.0.0 | Add Price Category field on product and allow to apply a pricelist on this field.
+[product_supplierinfo_for_customer_sale](product_supplierinfo_for_customer_sale/) | 10.0.1.0.0 | Loads in every sale order line the customer code defined in the product
 [sale_automatic_workflow](sale_automatic_workflow/) | 10.0.1.0.1 | Sale Automatic Workflow
 [sale_automatic_workflow_exception](sale_automatic_workflow_exception/) | 10.0.1.0.0 | Sale Automatic Workflow Exception
 [sale_automatic_workflow_payment_mode](sale_automatic_workflow_payment_mode/) | 10.0.1.0.1 | Sale Automatic Workflow - Payment Mode
@@ -28,7 +29,6 @@ addon | version | summary
 [sale_company_currency](sale_company_currency/) | 10.0.1.0.0 | Company currency in sale orders
 [sale_exception](sale_exception/) | 10.0.2.0.0 | Custom exceptions on sale order
 [sale_force_invoiced](sale_force_invoiced/) | 10.0.1.0.0 | Allows to force the invoice status of the sales order to Invoiced
-[sale_generator](sale_generator/) | 10.0.1.0.1 | Sale Generator
 [sale_invoice_group_method](sale_invoice_group_method/) | 10.0.1.0.0 | Sale Invoice Group Method
 [sale_isolated_quotation](sale_isolated_quotation/) | 10.0.1.0.0 | Sales - Isolated Quotation
 [sale_layout_hidden](sale_layout_hidden/) | 10.0.1.0.1 | Sale Layout Hidden Sections
@@ -72,7 +72,6 @@ addon | version | summary
 [partner_prepayment](partner_prepayment/) | 8.0.1.0.0 (unported) | Option on partner to set prepayment policy
 [partner_prospect](partner_prospect/) | 8.0.1.0.0 (unported) | Partner Prospect
 [pricelist_share_companies](pricelist_share_companies/) | 1.0 (unported) | Share pricelist between compagnies, not product
-[product_customer_code_sale](product_customer_code_sale/) | 1.0 (unported) | Product Customer code on sale
 [product_special_type](product_special_type/) | 1.0 (unported) | Product Special Types
 [product_special_type_invoice](product_special_type_invoice/) | 1.0 (unported) | Product Special Type on Invoice
 [product_special_type_sale](product_special_type_sale/) | 1.0 (unported) | Product Special Type on Sale
@@ -81,6 +80,7 @@ addon | version | summary
 [sale_dropshipping](sale_dropshipping/) | 1.1.1 (unported) | Sale Dropshipping
 [sale_exception_nostock](sale_exception_nostock/) | 8.0.1.2.0 (unported) | Sale stock exception
 [sale_fiscal_position_update](sale_fiscal_position_update/) | 1.0 (unported) | Changing the fiscal position of a sale order will auto-update sale order lines
+[sale_generator](sale_generator/) | 10.0.1.0.2 (unported) | Sale Generator
 [sale_jit_on_services](sale_jit_on_services/) | 1.0 (unported) | Sale Service Just In Time
 [sale_last_price_info](sale_last_price_info/) | 8.0.1.0.0 (unported) | Product Last Price Info - Sale
 [sale_multi_picking](sale_multi_picking/) | 0.1 (unported) | Multi Pickings from Sale Orders
