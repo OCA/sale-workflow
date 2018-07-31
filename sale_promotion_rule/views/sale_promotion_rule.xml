@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <data>
+
+        <record id="view_sale_promotion_rule_tree" model="ir.ui.view">
+            <field name="model">sale.promotion.rule</field>
+            <field name="arch" type="xml">
+                <tree string="Promotion Rule">
+                    <field name="sequence" widget="handle"/>
+                    <field name="name"/>
+                    <field name="code"/>
+                    <field name="discount_amount"/>
+                    <field name="date_from"/>
+                    <field name="date_to"/>
+                    <field name="restriction_amount"/>
+                    <field name="minimal_amount"/>
+                </tree>
+            </field>
+        </record>
+
+        <record id="view_sale_promotion_rule_form" model="ir.ui.view">
+            <field name="model">sale.promotion.rule</field>
+            <field name="arch" type="xml">
+                <form string="Promotion Rule">
+                    <header>
+                    </header>
+                    <sheet>
+                        <h1>
+                            <field name="name"/>
+                        </h1>
+                        <group col="2">
+                            <group name="type" string="Type">
+                                <field name="rule_type"/>
+                                <field name="code"
+                                       attrs="{'required': [('rule_type', '=', 'coupon')]}"/>
+                            </group>
+                            <group name="offer" string="Offer">
+                                <field name="usage_restriction"/>
+                                <field name="promo_type" widget="radio"/>
+                                <field name="discount_type"/>
+                                <field name="discount_amount"/>
+                                <field name="use_best_discount"/>
+                            </group>
+                            <group name="condition" string="Condition" col="3">
+                                <label for="date_from" string="Date début/fin"/>
+                                <field name="date_from" nolabel="1"/>
+                                <field name="date_to" nolabel="1"/>
+                                <label for="minimal_amount" string="Minimal amount"/>
+                                <field name="minimal_amount" nolabel="1"/>
+                                <field name="restriction_amount" nolabel="1"/>
+                                <field name="only_newsletter" colspan="3"/>
+                                <field name="restrict_pricelist_ids"
+                                    widget="many2many_tags"
+                                    colspan="3"/>
+                                <field name="restrict_partner_ids" nolabel="1" colspan="3"/>
+                            </group>
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <record id="action_sale_promotion_rule_form" model="ir.actions.act_window">
+            <field name="name">Promotion Rule</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">sale.promotion.rule</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+
+        <menuitem
+            action="action_sale_promotion_rule_form"
+            id="menu_action_sale_promotion_rule_form"
+            parent="sale.menu_sales_config"
+            sequence="50"/>
+
+    </data>
+</odoo>
