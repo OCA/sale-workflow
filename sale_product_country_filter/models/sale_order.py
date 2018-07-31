@@ -120,8 +120,9 @@ class SaleOrderLine(models.Model):
         if self.product_id and (self.order_id.partner_id or
                                 self.order_id.partner_shipping_id):
             warning = {
-                'warning': _("This product cannot be sold to the selected "
-                             "country/countries)"),
+                'warning': {'title': _('Country restriction'),
+                            'message': _("This product cannot be sold to the "
+                                         "selected country/countries)")},
             }
             prod = self.product_id
             partner_countries = (
@@ -129,8 +130,8 @@ class SaleOrderLine(models.Model):
                 self.order_id.partner_shipping_id.country_id
             )
             blacklisted_template = (
-                not prod.tmpl_globally_allowed and
-                partner_countries & prod.tmpl_blacklisted_countries_ids
+                not prod.tmpl_globally_allowed or
+                (partner_countries & prod.tmpl_blacklisted_countries_ids)
             )
             blacklisted_variant = (
                 partner_countries & prod.var_blacklisted_countries_ids
