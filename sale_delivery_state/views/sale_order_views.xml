@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <data>
+        <record id="view_order_form_inherit_delivery_state" model="ir.ui.view">
+            <field name="name">sale.order.form.sale.stock</field>
+            <field name="model">sale.order</field>
+            <field name="inherit_id" ref="sale.view_order_form"/>
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='confirmation_date']" position="before">
+                    <field name="picking_state" readonly="True"/>
+                </xpath>
+           </field>
+        </record>
+
+        <record id="view_order_tree_inherit_delivery_state" model="ir.ui.view">
+            <field name="name">sale.order.tree</field>
+            <field name="inherit_id" ref="sale.view_order_tree"/>
+            <field name="model">sale.order</field>
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='date_order']" position="after">
+                    <field name="picking_state"/>
+                </xpath>
+            </field>
+        </record>
+    </data>
+</odoo>
