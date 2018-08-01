@@ -18,13 +18,13 @@ msgstr ""
 "Plural-Forms: \n"
 
 #. module: product_margin_classification
-#: code:addons/product_margin_classification/models/product_margin_classification.py:90
+#: code:addons/product_margin_classification/models/product_margin_classification.py:92
 #, python-format
 msgid "-1 is not a valid Markup."
 msgstr "-1 n'est pas un taux de marge valide."
 
 #. module: product_margin_classification
-#: code:addons/product_margin_classification/models/product_margin_classification.py:100
+#: code:addons/product_margin_classification/models/product_margin_classification.py:102
 #, python-format
 msgid "1 is not a valid Profit Margin."
 msgstr "1 n'est pas un taux de marque valide."
@@ -77,6 +77,11 @@ msgid "Created on"
 msgstr "Créé le"
 
 #. module: product_margin_classification
+#: field:product.product,taxes_id:0
+msgid "Customer Taxes"
+msgstr "Taxes client"
+
+#. module: product_margin_classification
 #: view:product.template:product_margin_classification.view_product_template_form
 #: view:product.template:product_margin_classification.view_product_template_tree
 msgid "Decrease the Sale Price down to Theoretical Price"
@@ -93,9 +98,19 @@ msgid "Down to Theoretical Price"
 msgstr "Baisser jusqu'au prix théorique"
 
 #. module: product_margin_classification
+#: field:product.product,property_account_expense:0
+msgid "Expense Account"
+msgstr "Compte de dépense"
+
+#. module: product_margin_classification
 #: field:product.margin.classification,id:0
 msgid "ID"
 msgstr "ID"
+
+#. module: product_margin_classification
+#: field:product.product,property_account_income:0
+msgid "Income Account"
+msgstr "Compte de revenu"
 
 #. module: product_margin_classification
 #: view:product.template:product_margin_classification.view_product_template_form
@@ -119,6 +134,7 @@ msgid "Last Updated on"
 msgstr "Dernière modification le"
 
 #. module: product_margin_classification
+#: field:product.product,margin_classification_id:0
 #: field:product.template,margin_classification_id:0
 msgid "Margin Classification"
 msgstr "Catégorie de marge"
@@ -146,7 +162,7 @@ msgid "Price Rounding"
 msgstr "Méthode d'arrondi"
 
 #. module: product_margin_classification
-#: code:addons/product_margin_classification/models/product_margin_classification.py:139
+#: code:addons/product_margin_classification/models/product_margin_classification.py:141
 #, python-format
 msgid "Price Rounding can not be null."
 msgstr "La méthode d'arrondi ne peut être nulle"
@@ -155,6 +171,11 @@ msgstr "La méthode d'arrondi ne peut être nulle"
 #: field:product.margin.classification,price_surcharge:0
 msgid "Price Surcharge"
 msgstr "Prix fixe"
+
+#. module: product_margin_classification
+#: model:ir.model,name:product_margin_classification.model_product_product
+msgid "Product"
+msgstr "Article"
 
 #. module: product_margin_classification
 #: model:ir.model,name:product_margin_classification.model_product_template
@@ -184,11 +205,6 @@ msgid "Products Too Expensive"
 msgstr "Articles trop chers"
 
 #. module: product_margin_classification
-#: field:product.margin.classification,template_different_price_qty:0
-msgid "Products With Different Price"
-msgstr "Articles avec des prix différents"
-
-#. module: product_margin_classification
 #: field:product.margin.classification,profit_margin:0
 msgid "Profit Margin"
 msgstr "Taux de Marque"
@@ -197,10 +213,10 @@ msgstr "Taux de Marque"
 #: help:product.margin.classification,price_round:0
 msgid "Sets the price so that it is a multiple of this value.\n"
 "Rounding is applied after the margin and before the surcharge.\n"
-"To have prices that end in 9.99, set rounding 10, surcharge -0.01"
+"To have prices that end in 9.99, set rounding 1, surcharge -0.01"
 msgstr "Le prix de vente sera un multiple de cette valeur.\n"
 "L'arrondi est appliqué après la marge et avant le montant fixe.\n"
-"Pour avoir des prix qui se terminent par 9,99, mettre un arrondi à 10, et un "
+"Pour avoir des prix qui se terminent par 9,99, mettre un arrondi à 1, et un "
 "montant fixe à -0,01"
 
 #. module: product_margin_classification
@@ -214,16 +230,24 @@ msgid "Specify the fixed amount to add or substract(if negative) to the amount c
 msgstr "Indiquer le montant fixe à ajouter ou soustraire (si négatif) au montant calculé avec la remise."
 
 #. module: product_margin_classification
+#: field:product.product,supplier_taxes_id:0
+msgid "Supplier Taxes"
+msgstr "Taxes fournisseur"
+
+#. module: product_margin_classification
+#: field:product.product,theoretical_difference:0
 #: field:product.template,theoretical_difference:0
 msgid "Theoretical Difference"
 msgstr "Différence théorique"
 
 #. module: product_margin_classification
+#: field:product.product,theoretical_price:0
 #: field:product.template,theoretical_price:0
 msgid "Theoretical Price"
 msgstr "Prix théorique"
 
 #. module: product_margin_classification
+#: field:product.product,margin_state:0
 #: field:product.template,margin_state:0
 msgid "Theoretical Price State"
 msgstr "Etat de la marge"
@@ -244,12 +268,17 @@ msgid "Too Expensive Product"
 msgstr "Produit trop cher"
 
 #. module: product_margin_classification
+#: field:product.margin.classification,template_different_price_qty:0
+msgid "Total Products With Different Price"
+msgstr "Total des produits avec un prix différent"
+
+#. module: product_margin_classification
 #: code:addons/product_margin_classification/models/product_template.py:53
 #, python-format
 msgid "Unimplemented Feature\n"
-"The Tax %s is not correctly set for computing prices with coefficients for the product %s"
+"The sale taxes are not correctly set for computing prices with coefficients for the product %s"
 msgstr "Fonctionnalité non implémentée\n"
-"La taxe %s n'est pas correctment configuré pour calcule les prix avec des coéfficients pour l'article %s"
+"Les taxes à la vente %s ne sont pas correctment configuré pour calculer les prix avec des coéfficients pour l'article %s"
 
 #. module: product_margin_classification
 #: view:product.margin.classification:product_margin_classification.view_product_margin_classification_form
@@ -260,8 +289,8 @@ msgstr "Augmenter jusqu'au prix théorique"
 #: help:product.margin.classification,markup:0
 msgid "Value that help you to compute the sale price, based on your cost, as defined: Sale Price = (Cost * (1 + Markup))\n"
 "It is computed with the following formula Markup = (Sale Price - Cost) / Cost"
-msgstr "Valeur qui vous aide à calculer le prix de vente, en partant du coût, comme défini : Prix de vente = (Coût * (1 + taux de marge))\n."
-" Il est calculé avec la formule suivante : Taux de Marge = (Prix de vente HT - Coût HT) / Coût HT"
+msgstr "Valeur qui vous aide à calculer le prix de vente, en partant du coût, comme défini : Prix de vente = (Coût * (1 + taux de marge))\n"
+". Il est calculé avec la formule suivante : Taux de Marge = (Prix de vente HT - Coût HT) / Coût HT"
 
 #. module: product_margin_classification
 #: view:product.template:product_margin_classification.view_product_template_form
@@ -272,4 +301,3 @@ msgstr "⇒ Baisser le prix"
 #: view:product.template:product_margin_classification.view_product_template_form
 msgid "⇒ Increase Price"
 msgstr "⇒ Augmenter le prix"
-
