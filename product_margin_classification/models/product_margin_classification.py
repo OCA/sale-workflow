@@ -49,7 +49,7 @@ class ProductMarginClassification(models.Model):
         store=True)
 
     template_different_price_qty = fields.Integer(
-        string='Products With Different Price', multi='differente_price',
+        string='Total Products With Different Price', multi='differente_price',
         store=True, compute='_compute_template_different_price_qty')
 
     template_cheap_qty = fields.Integer(
@@ -66,7 +66,7 @@ class ProductMarginClassification(models.Model):
         default=lambda s: s._default_price_round(),
         help="Sets the price so that it is a multiple of this value.\n"
         "Rounding is applied after the margin and before the surcharge.\n"
-        "To have prices that end in 9.99, set rounding 10, surcharge -0.01")
+        "To have prices that end in 9.99, set rounding 1, surcharge -0.01")
 
     price_surcharge = fields.Float(
         string='Price Surcharge',
