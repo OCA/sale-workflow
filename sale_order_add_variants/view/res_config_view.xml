@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+
+        <record id="view_sales_config_sale_add_variants" model="ir.ui.view">
+            <field name="name">sale settings: Add Variants</field>
+            <field name="model">res.config.settings</field>
+            <field name="inherit_id" ref="sale.res_config_settings_view_form"/>
+            <field name="arch" type="xml">
+                <xpath expr="//div[@id='sale_ebay']" position="after">
+                    <h2>Group Sale Add Variants</h2>
+                    <div name="group_sale_add_variants">
+                        <field name="group_sale_add_variants" class="oe_inline"/>
+                        <label for="group_sale_add_variants"/>
+                    </div>
+                </xpath>
+            </field>
+        </record>
+
+    </data>
+</openerp>
