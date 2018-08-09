@@ -1,0 +1,19 @@
+<?xml version="1.0"?>
+<!-- Copyright 2018 Tecnativa - Sergio Teruel
+     License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl). -->
+
+<odoo>
+
+    <template id="report_saleorder_document" inherit_id="sale.report_saleorder_document">
+        <xpath expr="//div[@name='total']//table/tr" position="before">
+            <tr class="border-black" style="border-bottom:1px solid #dddddd;">
+                <td>Discount (<span t-field="doc.discount"/>%)</td>
+                <td class="text-right">
+                    <span t-field="doc.amount_discount"
+                        t-options='{"widget": "monetary", "display_currency": doc.pricelist_id.currency_id}'/>
+                </td>
+            </tr>
+        </xpath>
+    </template>
+
+</odoo>
