@@ -77,7 +77,9 @@ class SaleOrderLine(models.Model):
             # Check if procurement has to be created
             for line in lines_lower:
                 if not line.pickings_in_progress:
-                    line.procurement_ids.cancel()
+                    # LIMITATION - Don't take all procurement at once here
+                    for procurement in line.procurement_ids:
+                        procurement.cancel()
             self.filtered(
                 lambda line: line.state == 'sale' and
                 line.to_be_procured)._action_procurement_create()
