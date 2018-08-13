@@ -4,9 +4,13 @@
         <field name="name">sale.order.form</field>
         <field name="model">sale.order</field>
         <field name="inherit_id" ref="sale.view_order_form"></field>
+        <field name="priority">15</field>
         <field name="arch" type="xml">
+            <xpath expr="//header" postion='inside'>
+                <button name="create_revision"  states="cancel" string="New Revision of Quotation" type="object"/>
+            </xpath>
             <notebook position="inside">
-                <page string="Revisions" attrs="{'invisible': [('has_old_revisions', '=', False), ('current_revision_id', '=', False)]}">
+                <page string="Revisions" >
                     <field name="old_revision_ids" attrs="{'invisible': [('has_old_revisions', '=', False)]}">
                         <tree>
                             <field name='name'/>
@@ -21,9 +25,7 @@
                     </group>
                 </page>
             </notebook>
-            <xpath expr="//header/button[@name='action_draft']" postion='after'>
-                <button name="create_revision" states="cancel" string="New Revision of Quotation" type="object"/>
-            </xpath>
         </field>
     </record>
+
 </odoo>
