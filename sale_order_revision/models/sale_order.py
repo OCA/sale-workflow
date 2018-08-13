@@ -1,6 +1,6 @@
-# -*- coding: utf-8 -*-
 # Copyright 2013 Agile Business Group sagl (<http://www.agilebg.com>)
 # Copyright 2016 Serpent Consulting Services Pvt. Ltd.
+# Copyright 2018 Dreambits Technologies Pvt. Ltd. (<http://dreambits.in>)
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
 
 from odoo import api, fields, models
@@ -15,8 +15,6 @@ class SaleOrder(models.Model):
         for sale_order in self:
             if sale_order.old_revision_ids:
                 sale_order.has_old_revisions = True
-            else:
-                sale_order.has_old_revisions = False
 
     current_revision_id = fields.Many2one('sale.order',
                                           'Current revision',
@@ -37,7 +35,7 @@ class SaleOrder(models.Model):
                             default=True)
 
     has_old_revisions = fields.Boolean('Has old revisions',
-                                       compute=_has_old_revisions)
+                                       compute='_has_old_revisions')
 
     _sql_constraints = [
         ('revision_unique',
@@ -50,32 +48,32 @@ class SaleOrder(models.Model):
     def copy(self, default=None):
         if default is None:
             default = {}
-        if self.env.context.get('new_sale_revision'):
+        if default.get('name', '/') == '/':
+            seq = self.env['ir.sequence']
+            default['name'] = seq.next_by_code('sale.order') or '/'
+            default['revision_number'] = 0
+            default['unrevisioned_name'] = default['name']
+        return super(SaleOrder, self).copy(default=default)
 
-            new_rev_number = self.revision_number + 1
-            default.update({
-                'revision_number': new_rev_number,
-                'unrevisioned_name': self.unrevisioned_name,
-                'name': '%s-%02d' % (self.unrevisioned_name, new_rev_number),
-                'old_revision_ids': [(4, self.id, False)],
-            })
-            new_revision = super(SaleOrder, self).copy(default)
-            self.old_revision_ids.write({
-                'current_revision_id': new_revision.id,
-            })
-            self.write({'active': False,
-                        'state': 'cancel',
-                        'current_revision_id': new_revision.id,
-                        })
-            return new_revision
+    def copy_revision_with_context(self):
+        default_data = self.default_get([])
+        new_rev_number = self.revision_number + 1
+        default_data .update({
+            'revision_number': new_rev_number,
+            'unrevisioned_name': self.unrevisioned_name,
+            'name': '%s-%02d' % (self.unrevisioned_name, new_rev_number),
+            'old_revision_ids': [(4, self.id, False)],
+        })
+        new_revision = self.copy(default_data)
+        self.old_revision_ids.write({
+            'current_revision_id': new_revision.id,
+        })
+        self.write({'active': False,
+                    'state': 'cancel',
+                    'current_revision_id': new_revision.id,
+                    })
 
-        else:
-            if default.get('name', '/') == '/':
-                seq = self.env['ir.sequence']
-                default['name'] = seq.next_by_code('sale.order') or '/'
-                default['revision_number'] = 0
-                default['unrevisioned_name'] = default['name']
-            return super(SaleOrder, self).copy(default=default)
+        return new_revision
 
     @api.model
     def create(self, values):
@@ -93,8 +91,7 @@ class SaleOrder(models.Model):
         # Looping over sale order records
         for sale_order_rec in self:
             # Calling  Copy method
-            copied_sale_rec = sale_order_rec.with_context(
-                new_sale_revision=True).copy()
+            copied_sale_rec = sale_order_rec.copy_revision_with_context()
 
             msg = _('New revision created: %s') % copied_sale_rec.name
             copied_sale_rec.message_post(body=msg)
