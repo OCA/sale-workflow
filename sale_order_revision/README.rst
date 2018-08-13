@@ -22,6 +22,7 @@ Credits
 Contributors
 ------------
 
+* Devang Pipaliya <devang@dreambits.in>
 * Lorenzo Battistini <lorenzo.battistini@agilebg.com>
 * Raphael Valyi <rvalyi@akretion.com>
 * Alexandre Fayolle <alexandre.fayolle@camptocamp.com>
