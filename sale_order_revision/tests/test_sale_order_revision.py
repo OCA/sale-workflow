@@ -1,6 +1,6 @@
-# -*- coding: utf-8 -*-
 # Copyright 2013 Agile Business Group sagl (<http://www.agilebg.com>)
 # Copyright 2016 Serpent Consulting Services Pvt. Ltd.
+# Copyright 2018 Dreambits Technologies Pvt. Ltd. (<http://dreambits.in>)
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
 
 from odoo.tests import common
@@ -36,36 +36,39 @@ class TestSaleOrderRevision(common.TransactionCase):
 
     def test_order_revision(self):
         """Check revision process"""
-        self.assertEquals(self.sale_order_1.unrevisioned_name,
-                          self.sale_order_1.name)
-        self.assertEquals(self.sale_order_1.state, 'cancel')
+        self.assertEqual(self.sale_order_1.unrevisioned_name,
+                         self.sale_order_1.name)
+        self.assertEqual(self.sale_order_1.state, 'cancel')
         self.assertFalse(self.sale_order_1.active)
-        self.assertEquals(self.revision_1.unrevisioned_name,
-                          self.sale_order_1.name)
-        self.assertEquals(self.revision_1.state, 'draft')
+        self.assertEqual(self.revision_1.unrevisioned_name,
+                         self.sale_order_1.name)
+        self.assertEqual(self.revision_1.state, 'draft')
         self.assertTrue(self.revision_1.active)
-        self.assertEquals(self.revision_1.old_revision_ids,
-                          self.sale_order_1)
-        self.assertEquals(self.revision_1.revision_number, 1)
-        self.assertEquals(self.revision_1.name.endswith('-01'), True)
+        self.assertEqual(self.revision_1.old_revision_ids,
+                         self.sale_order_1)
+        self.assertEqual(self.revision_1.revision_number, 1)
+        self.assertEqual(self.revision_1.name.endswith('-01'), True)
+        self.assertEqual(self.revision_1.has_old_revisions, True)
 
         self._revision_sale_order(self.revision_1)
         revision_2 = self.revision_1.current_revision_id
 
-        self.assertEquals(revision_2, self.sale_order_1.current_revision_id)
-        self.assertEquals(self.revision_1.state, 'cancel')
+        self.assertEqual(revision_2.has_old_revisions, True)
+
+        self.assertEqual(revision_2, self.sale_order_1.current_revision_id)
+        self.assertEqual(self.revision_1.state, 'cancel')
         self.assertFalse(self.revision_1.active)
-        self.assertEquals(revision_2.unrevisioned_name,
-                          self.sale_order_1.name)
-        self.assertEquals(revision_2.state, 'draft')
+        self.assertEqual(revision_2.unrevisioned_name,
+                         self.sale_order_1.name)
+        self.assertEqual(revision_2.state, 'draft')
         self.assertTrue(revision_2.active)
-        self.assertEquals(revision_2.old_revision_ids,
-                          self.sale_order_1 + self.revision_1)
-        self.assertEquals(revision_2.revision_number, 2)
-        self.assertEquals(revision_2.name.endswith('-02'), True)
+        self.assertEqual(revision_2.old_revision_ids,
+                         self.sale_order_1 + self.revision_1)
+        self.assertEqual(revision_2.revision_number, 2)
+        self.assertEqual(revision_2.name.endswith('-02'), True)
 
     def test_simple_copy(self):
         sale_order_2 = self._create_sale_order()
-        self.assertEquals(sale_order_2.name, sale_order_2.unrevisioned_name)
+        self.assertEqual(sale_order_2.name, sale_order_2.unrevisioned_name)
         sale_order_3 = sale_order_2.copy()
-        self.assertEquals(sale_order_3.name, sale_order_3.unrevisioned_name)
+        self.assertEqual(sale_order_3.name, sale_order_3.unrevisioned_name)
