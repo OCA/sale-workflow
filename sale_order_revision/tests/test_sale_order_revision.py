@@ -37,15 +37,15 @@ class TestSaleOrderRevision(common.TransactionCase):
     def test_order_revision(self):
         """Check revision process"""
         self.assertEqual(self.sale_order_1.unrevisioned_name,
-                          self.sale_order_1.name)
+                         self.sale_order_1.name)
         self.assertEqual(self.sale_order_1.state, 'cancel')
         self.assertFalse(self.sale_order_1.active)
         self.assertEqual(self.revision_1.unrevisioned_name,
-                          self.sale_order_1.name)
+                         self.sale_order_1.name)
         self.assertEqual(self.revision_1.state, 'draft')
         self.assertTrue(self.revision_1.active)
         self.assertEqual(self.revision_1.old_revision_ids,
-                          self.sale_order_1)
+                         self.sale_order_1)
         self.assertEqual(self.revision_1.revision_number, 1)
         self.assertEqual(self.revision_1.name.endswith('-01'), True)
         self.assertEqual(self.revision_1.has_old_revisions, True)
@@ -59,11 +59,11 @@ class TestSaleOrderRevision(common.TransactionCase):
         self.assertEqual(self.revision_1.state, 'cancel')
         self.assertFalse(self.revision_1.active)
         self.assertEqual(revision_2.unrevisioned_name,
-                          self.sale_order_1.name)
+                         self.sale_order_1.name)
         self.assertEqual(revision_2.state, 'draft')
         self.assertTrue(revision_2.active)
         self.assertEqual(revision_2.old_revision_ids,
-                          self.sale_order_1 + self.revision_1)
+                         self.sale_order_1 + self.revision_1)
         self.assertEqual(revision_2.revision_number, 2)
         self.assertEqual(revision_2.name.endswith('-02'), True)
 
