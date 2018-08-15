@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 # © 2015 Agile Business Group
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
 
@@ -37,18 +36,9 @@ class TestSaleOrderLotSelection(test_common.SingleTransactionCase):
         }).qty_available
 
     def test_sale_order_lot_selection(self):
-        print('------------------------')
-        print('------------------------')
-        print('------------------------')
-        print('------------------------')
-        print('------------------------')
-        print('------------------------')
-        print('------------------------')
         # INIT stock of products to 0
         picking_out = self.env['stock.picking'].create({
             'picking_type_id': self.env.ref('stock.picking_type_out').id,
-            # 'location_id': self.stock_location.id,
-            # 'location_dest_id': self.customer_location.id,
         })
         self.env['stock.move'].create({
             'name': self.product_57.name,
@@ -117,34 +107,6 @@ class TestSaleOrderLotSelection(test_common.SingleTransactionCase):
         for move in picking_in.move_lines:
             self.assertEqual(
                 move.state, 'assigned', 'Wrong state of move line.')
-        # for ops in picking_in.pack_operation_ids:
-        #     if ops.product_id == self.product_57:
-        #         ops.write({
-        #             'pack_lot_ids': [(0, 0, {
-        #                 'lot_name': '0000010',
-        #                 'qty': ops.product_qty,
-        #                 'qty_todo': ops.product_qty
-        #             })],
-        #             'qty_done': ops.product_qty
-        #         })
-        #     if ops.product_id == self.product_46:
-        #         ops.write({
-        #             'pack_lot_ids': [(0, 0, {
-        #                 'lot_name': '0000011',
-        #                 'qty': ops.product_qty,
-        #                 'qty_todo': ops.product_qty
-        #             })],
-        #             'qty_done': ops.product_qty
-        #         })
-        #     if ops.product_id == self.product_12:
-        #         ops.write({
-        #             'pack_lot_ids': [(0, 0, {
-        #                 'lot_name': '0000012',
-        #                 'qty': ops.product_qty,
-        #                 'qty_todo': ops.product_qty
-        #             })],
-        #             'qty_done': ops.product_qty
-        #         })
         picking_in.do_new_transfer()
         lot_obj = self.env['stock.production.lot']
         self.lot10 = lot_obj.search([('name', '=', '0000010'),
@@ -277,7 +239,5 @@ class TestSaleOrderLotSelection(test_common.SingleTransactionCase):
         lot12_qty_available = self._stock_quantity(
             self.product_12, self.lot12, self.stock_location)
         self.assertEqual(lot12_qty_available, 0)
-        # I'll try to confirm it to check lot reservation:
-        # lot11 has 1 availability and order4 has quantity 2
         with self.assertRaises(Warning):
             self.order4.action_confirm()
