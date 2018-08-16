@@ -16,7 +16,7 @@
     "website": "http://www.agilebg.com",
     "license": "AGPL-3",
     "depends": [
-        "sale",
+        "sale_management",
     ],
     "data": [
         "view/sale_order.xml",
