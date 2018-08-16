@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 # Copyright 2013-2017 Agile Business Group sagl
 #     (<http://www.agilebg.com>)
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
@@ -18,7 +17,7 @@ class SaleOrderLine(models.Model):
             code_id = self.env['product.supplierinfo'].search([
                 '|', ('product_tmpl_id', '=', product.product_tmpl_id.id),
                 ('product_id', '=', product.id),
-                ('type', '=', 'customer'),
+                ('supplierinfo_type', '=', 'customer'),
                 ('name', '=', line.order_id.partner_id.id),
             ], limit=1)
             line.product_customer_code = code_id.product_code or ''
@@ -54,7 +53,7 @@ class SaleOrderLine(models.Model):
                 code_id = self.env['product.supplierinfo'].search([
                     '|', ('product_tmpl_id', '=', product.product_tmpl_id.id),
                     ('product_id', '=', product.id),
-                    ('type', '=', 'customer'),
+                    ('supplierinfo_type', '=', 'customer'),
                     ('name', '=', line.order_id.partner_id.id),
                 ], limit=1)
                 if code_id and code_id.min_qty:
