@@ -14,8 +14,7 @@ This module introduce the following features:
 Configuration
 =============
 
-* To configure this module, you need to:
-#. You can configure cancel reason from Sale/Configuration/Sale Order Cancel Reason.
+You can configure cancel reason from Sale/Configuration/Sale Order Cancel Reason.
 
 Usage
 =====
