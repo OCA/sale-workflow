@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 # Copyright 2017 Eficent Business and IT Consulting Services S.L.
 #   (http://www.eficent.com)
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl.html).
@@ -29,19 +28,19 @@ class TestProductSupplierinfoForCustomerSale(common.TransactionCase):
             'phone': 123456,
         })
 
-    def _create_supplierinfo(self, type, partner, product):
-        return self.env['product.supplierinfo'].create({
+    def _create_supplierinfo(self, supplierinfo_type, partner, product):
+        return self.supplierinfo_model.create({
             'name': partner.id,
             'product_id': product.id,
             'product_name': 'product4',
             'product_code': '00001',
-            'type': type,
+            'supplierinfo_type': supplierinfo_type,
             'price': 100.0,
             'min_qty': 15.0,
         })
 
     def _create_pricelist(self, name, product):
-        return self.env['product.pricelist'].create({
+        return self.pricelist_model.create({
             'name': name,
             'currency_id': self.env.ref('base.USD').id,
             'item_ids': [(0, 0, {
