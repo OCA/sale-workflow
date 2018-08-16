@@ -32,9 +32,9 @@
                 <attribute name="string">Supplierinfo</attribute>
             </xpath>
             <filter name="active" position="before">
-                <filter string="Customer" domain="[('type','=','customer')]"
+                <filter string="Customer" domain="[('supplierinfo_type','=','customer')]"
                         name="is_customer_filter"/>
-                <filter string="Supplier" domain="[('type','=','supplier')]"
+                <filter string="Supplier" domain="[('supplierinfo_type','=','supplier')]"
                         name="is_supplier_filter"/>
             </filter>
             <xpath expr="//search/group" position="attributes">
@@ -47,8 +47,8 @@
                             name="gb_product_template"
                             context="{'group_by':'product_tmpl_id'}"/>
                     <separator />
-                    <filter string="Type" domain="[]" name="gb_type"
-                            context="{'group_by':'type'}"/>
+                    <filter string="Type" domain="[]" name="gb_supplierinfo_type"
+                            context="{'group_by':'supplierinfo_type'}"/>
             </xpath>
         </field>
     </record>
@@ -60,14 +60,14 @@
         <field name="priority" eval="20"/>
         <field name="arch" type="xml">
             <xpath expr="//field[@name='order_line']/form//field[@name='product_id']" position="attributes">
-                <attribute name="context">{'partner_id': parent.partner_id, 'quantity': product_uos_qty,
-                'pricelist': parent.pricelist_id, 'uom':product_uom, 'company_id': parent.company_id,
+                <attribute name="context">{'partner_id': parent.partner_id, 'quantity': product_uom_qty,
+                'pricelist': parent.pricelist_id, 'uom': product_uom, 'company_id': parent.company_id,
                 'supplierinfo_type': 'customer'}</attribute>
             </xpath>
             <xpath expr="//field[@name='order_line']/tree//field[@name='product_id']" position="attributes">
-                <attribute name="context">{'partner_id': parent.partner_id, 'quantity': product_uos_qty,
-                'pricelist': parent.pricelist_id, 'uom':product_uom, 'company_id': parent.company_id,
-                'supplierinfo_type': 'customer'}</attribute>
+                <attribute name="context">{'partner_id': parent.partner_id, 'quantity': product_uom_qty,
+                'pricelist': parent.pricelist_id, 'uom': product_uom, 'company_id': parent.company_id,
+                'default_lst_price': price_unit, 'supplierinfo_type': 'customer'}</attribute>
             </xpath>
         </field>
     </record>
