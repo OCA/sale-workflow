@@ -35,7 +35,7 @@ class SaleOrder(models.Model):
                             default=True)
 
     has_old_revisions = fields.Boolean('Has old revisions',
-                                       compute=_has_old_revisions)
+                                       compute='_has_old_revisions')
 
     _sql_constraints = [
         ('revision_unique',
