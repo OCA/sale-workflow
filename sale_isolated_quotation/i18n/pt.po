@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: Odoo Server 10.0\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2017-05-13 01:19+0000\n"
-"PO-Revision-Date: 2018-08-19 12:37+0000\n"
+"PO-Revision-Date: 2018-08-20 12:41+0000\n"
 "Last-Translator: Pedro Castro Silva <pedrocs@exo.pt>\n"
 "Language-Team: Portuguese (https://www.transifex.com/oca/teams/23907/pt/)\n"
 "Language: pt\n"
@@ -70,7 +70,7 @@ msgstr "Referência do Orçamento"
 #: model:ir.model,name:sale_isolated_quotation.model_sale_order
 #, python-format
 msgid "Sales Order"
-msgstr "Encoemenda de Venda"
+msgstr "Encomenda de Venda"
 
 #. module: sale_isolated_quotation
 #: model:ir.model.fields,field_description:sale_isolated_quotation.field_sale_order_state2
