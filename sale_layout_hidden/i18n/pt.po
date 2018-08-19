@@ -9,20 +9,21 @@ msgstr ""
 "Project-Id-Version: Odoo Server 10.0\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2017-06-01 02:53+0000\n"
-"PO-Revision-Date: 2017-06-01 02:53+0000\n"
-"Last-Translator: OCA Transbot <transbot@odoo-community.org>, 2017\n"
+"PO-Revision-Date: 2018-08-20 13:40+0000\n"
+"Last-Translator: Pedro Castro Silva <pedrocs@exo.pt>\n"
 "Language-Team: Portuguese (https://www.transifex.com/oca/teams/23907/pt/)\n"
 "Language: pt\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"X-Generator: Weblate 3.1.1\n"
 
 #. module: sale_layout_hidden
 #: model:ir.model.fields,field_description:sale_layout_hidden.field_sale_layout_category_hidden
 #: model:ir.ui.view,arch_db:sale_layout_hidden.report_configuration_search_view
 msgid "Hidden"
-msgstr ""
+msgstr "Escondida"
 
 #. module: sale_layout_hidden
 #: model:ir.model,name:sale_layout_hidden.model_account_invoice
@@ -32,24 +33,24 @@ msgstr "Fatura"
 #. module: sale_layout_hidden
 #: model:ir.model,name:sale_layout_hidden.model_account_invoice_line
 msgid "Invoice Line"
-msgstr ""
+msgstr "Linha de Fatura"
 
 #. module: sale_layout_hidden
 #: code:addons/sale_layout_hidden/models/account_invoice.py:40
 #: code:addons/sale_layout_hidden/models/sale.py:40
 #, python-format
 msgid "Lines in hidden sections cannot have prices."
-msgstr ""
+msgstr "Linhas em secções escondidas não podem ter preços."
 
 #. module: sale_layout_hidden
 #: model:ir.model,name:sale_layout_hidden.model_sale_order
 msgid "Sales Order"
-msgstr "Ordem de Venda"
+msgstr "Encomenda de Venda"
 
 #. module: sale_layout_hidden
 #: model:ir.model,name:sale_layout_hidden.model_sale_order_line
 msgid "Sales Order Line"
-msgstr ""
+msgstr "Linha de Encomenda de Venda"
 
 #. module: sale_layout_hidden
 #: model:ir.model,name:sale_layout_hidden.model_sale_layout_category
