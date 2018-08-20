@@ -22,6 +22,12 @@ class SaleOrder(models.Model):
                     line.write({'discount': 0, 'promotion_rule_id': False})
 
     @api.multi
+    def clear_promotion(self):
+        for order in self:
+            order.promotion_rule_id = False
+        self.clear_promotion_line()
+
+    @api.multi
     def add_coupon(self, coupon_code):
         self.ensure_one()
         rule = self.env['sale.promotion.rule'].search([
