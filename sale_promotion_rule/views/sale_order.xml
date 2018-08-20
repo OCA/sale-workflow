@@ -15,6 +15,12 @@
                     string="(Apply discount)"
                     type="object"
                     class="oe_edit_only oe_link"/>
+                <button
+                    name="clear_promotion"
+                    attrs="{'invisible': [('promotion_rule_id', '=', False)]}"
+                    string="(Remove discount)"
+                    type="object"
+                    class="oe_edit_only oe_link"/>
             </div>
             <field name="promotion_rule_id" nolabel="1" string="Promo"/>
         </field>
