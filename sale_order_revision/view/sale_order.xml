@@ -10,7 +10,7 @@
                 <button name="create_revision"  states="cancel" string="New Revision of Quotation" type="object"/>
             </xpath>
             <notebook position="inside">
-                <page string="Revisions" >
+                <page string="Revisions" attrs="{'invisible': ['&amp;',('has_old_revisions', '=', False), ('current_revision_id', '=', False)]}">
                     <field name="old_revision_ids" attrs="{'invisible': [('has_old_revisions', '=', False)]}">
                         <tree>
                             <field name='name'/>
