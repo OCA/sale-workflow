@@ -20,6 +20,7 @@ setuptools.setup(
         'odoo11-addon-sale_order_line_date',
         'odoo11-addon-sale_order_line_input',
         'odoo11-addon-sale_order_price_recalculation',
+        'odoo11-addon-sale_order_revision',
         'odoo11-addon-sale_order_type',
         'odoo11-addon-sale_product_set',
         'odoo11-addon-sale_product_set_variant',
