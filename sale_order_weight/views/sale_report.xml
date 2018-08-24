@@ -15,7 +15,7 @@
             <xpath expr="//table[@class='table table-condensed']/tbody/tr/td[3]"
                    position="after">
                 <td class="text-right">
-                    <span t-field="l.product_id and (l.product_id.weight*l.product_uom_qty) or 0.0"/>
+                    <span t-esc="l.product_id and (l.product_id.weight*l.product_uom_qty) or 0.0"/>
                 </td>
             </xpath>
             <xpath expr="//p[@t-field='o.note']"
