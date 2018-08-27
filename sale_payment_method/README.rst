@@ -5,6 +5,7 @@ It adds a payment method on the sales orders and allow to register
 payments entries on sales orders.
 
 This module is low level and works well with the following modules:
+
 * **Sale Automatic Worflow** and **Sale Payment Method - Automatic Workflow**
   the payments created with this module will be automatically reconciled
   with the invoices of the sales orders.

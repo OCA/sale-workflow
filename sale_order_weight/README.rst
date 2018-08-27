@@ -21,9 +21,6 @@ To use this module, you need to:
 Bug Tracker
 ===========
 
-Bug Tracker
-===========
-
 Bugs are tracked on `GitHub Issues
 <https://github.com/OCA/sale-workflow/issues>`_. In case of trouble, please
 check there if your issue has already been reported. If you spotted it first,

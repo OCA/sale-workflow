@@ -1,6 +1,7 @@
 .. image:: https://img.shields.io/badge/licence-AGPL--3-blue.svg
     :alt: License: AGPL-3
 
+=======================
 Sale Pricelist Discount
 =======================
 
@@ -19,15 +20,14 @@ Configuration
 Pricelist configuration:
 
 * Add discount percentage value to pricelist items for which the
-discount should be visible on sale order lines
+  discount should be visible on sale order lines
 
 Usage
 =====
 
 * Select pricelist on sale order line
-
 * The discount defined on pricelist item will be populated as
-the sale order line discount percentage
+  the sale order line discount percentage
 
 Known issues / Roadmap
 ======================

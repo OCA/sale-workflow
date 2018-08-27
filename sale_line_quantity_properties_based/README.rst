@@ -10,11 +10,12 @@ formula that considers the properties specified by the user on the sale order
 line and on the quantity (UoS).
 
 Example
---------
+-------
 
 Provided the sale of a given number of pieces (shelves), that may be
 ’x’ meter long and ’y’ meter large, the formula enables the calculation of the
 total area sold expressed in square meters:
+
     10 [pcs of] (4 m x 0.5 m) shelves = 20 m² of wood
 
 In order to have this function working, it is necessary to have the user
@@ -42,12 +43,13 @@ Property 'width 0.5'
 After this, the formula 'surface' must be created and associated
 to the product:
 
-```
-result = float(properties['length']) * float(properties['width']) * qty_uos
-```
+
+.. code-block:: python
+
+  result = float(properties['length']) * float(properties['width']) * qty_uos
 
 Upon the registering of the order, the user will apply in the properties field
-the desired properties (in this example the ‘lenght 4’ and ‘width 2’), the
+the desired properties (in this example the ‘length 4’ and ‘width 2’), the
 needed formula (in this example 'surface') and last the quantity (UoS).
 
 Usage
