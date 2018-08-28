@@ -1,8 +1,6 @@
 # coding: utf-8
-# © 2017  Akretion
+# © 2018  Akretion
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
-
-from collections import defaultdict
 
 from odoo import models, api, fields, _
 from odoo.exceptions import UserError
@@ -14,23 +12,22 @@ class ProductPricelist(models.Model):
     price_include_taxes = fields.Boolean(
         string=u"Prix en TTC",
         help=u"Si coché les prix de cette liste de prix doivent être en TTC\n"
-             u"sinon en HT.\n")
+             u"sinon en HT.\n"
+             u"On ne peut modifier ce champ que s'il n'y a pas "
+             u"de règle de prix associée")
 
     @api.multi
     @api.constrains('price_include_taxes')
     def _constrains_pricelist_price_include(self):
-        map_price_type = self.env['product.price.type']._get_tax_price_type()
         for rec in self:
-            versions = self.env['product.pricelist.version'].search(
-                [('pricelist_id', '=', rec.id)])
             items = self.env['product.pricelist.item'].search(
-                [('price_version_id', 'in', versions._ids),
-                 ('base', '>', '0'),
-                 ('base', 'in', map_price_type[not rec.price_include_taxes])])
+                [('price_id', 'in', rec.id),
+                 ('base', '!=', 'list_price')])
             if items:
                 raise UserError(_(
-                    "There are price rules like %s which have base field\n"
-                    "not compatible with Tax defined on Pricelist" % items[0]))
+                    u"Il y a des règles de prix comme %s qui ont le champ \n"
+                    u"base incompatible avec la taxe défini sur la "
+                    u"liste de prix" % items[0]))
 
     @api.multi
     def name_get(self):
@@ -50,28 +47,10 @@ class ProductPricelistItem(models.Model):
     @api.multi
     @api.constrains('base')
     def _constrains_price_item_price_include(self):
-        map_price_type = self.env['product.price.type']._get_tax_price_type()
         for rec in self:
-            price_include_taxes = (
-                rec.price_version_id.pricelist_id.price_include_taxes)
-            if rec.base >= 1:
-                if rec.base not in map_price_type[price_include_taxes]:
-                    price_type_name = self.env['product.price.type'].browse(
-                        rec.base).name
-                    raise UserError(
-                        u"Points à vérifier"
-                        u"---------------------"
-                        u"1/ Votre liste de prix est elle bien "
-                        u"une grille tarifaire ?\n\n"
-                        u"2/ La règle de prix a le champ 'Base' "
-                        u"dont le paramétrage de taxe peut ne pas "
-                        u"correspondre\nà celui de la liste de prix.\n"
-                        u"Nom type prix : %s\n"
-                        u"Champ TTC de la liste de prix : \n%s" % (
-                            price_type_name, price_include_taxes))
-            elif rec.base == -1:
-                if (rec.base_pricelist_id.price_include_taxes !=
-                        price_include_taxes):
+            price_incl_tax = rec.pricelist_id.price_include_taxes
+            if rec.base in ('pricelist', 'standard') and price_incl_tax:
                     raise UserError(_(
-                        "You used a price based another pricelist which is "
-                        "incompatible with present pricelist (TTC checkbox)."))
+                        u"Vous avez utilisé un prix basé sur une autre "
+                        u"liste de prix qui est incompatible avec "
+                        u"celle-ci (case à cocher TTC)."))
