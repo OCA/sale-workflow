@@ -1,0 +1,1 @@
+The module is incompatible with `sale_sourced_by_line <https://github.com/OCA/sale-workflow/tree/10.0/sale_sourced_by_line>`_ and `sale_quotation_sourcing <https://github.com/OCA/sale-workflow/blob/10.0/sale_quotation_sourcing>`_ (please note this latter is not migrated yet).
