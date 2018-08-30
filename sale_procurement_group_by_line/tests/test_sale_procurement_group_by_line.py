@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 # Copyright 2013-2014 Camptocamp SA - Guewen Baconnier
 # © 2016 Eficent Business and IT Consulting Services S.L.
 # © 2016 Serpent Consulting Services Pvt. Ltd.
@@ -68,7 +67,7 @@ class TestSaleProcurementGroupByLine(TransactionCase):
                          self.line1.procurement_group_id,
                          """Both Sale Order line should belong
                          to Procurement Group""")
-        self.assertEqual(self.line1.procurement_ids.product_qty,
+        self.assertEqual(self.line1.move_ids.product_qty,
                          self.line1.product_uom_qty,
                          """The Procurement quantity should
                          match to the quantity ordered""")
