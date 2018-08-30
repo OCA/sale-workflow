@@ -27,22 +27,24 @@ class SaleOrder(models.Model):
     @api.model
     def fields_view_get(self, view_id=None, view_type='form', toolbar=False,
                         submenu=False):
-        """The purpose of this is write a context on order_line field
+        """The purpose of this is to write a context on "order_line" field
          respecting other contexts on this field.
-         There is PR (https://github.com/odoo/odoo/pull/26607) to odoo for
-         avoid this, only update field in xml view and remove this method"""
+         There is a PR (https://github.com/odoo/odoo/pull/26607) to odoo for
+         avoiding this. If merged, remove this method and add the attribute
+         in the field.
+         """
         res = super(SaleOrder, self).fields_view_get(
-            view_id, view_type, toolbar, submenu)
+            view_id=view_id, view_type=view_type, toolbar=toolbar,
+            submenu=submenu,
+        )
         if view_type == 'form':
             order_xml = etree.XML(res['arch'])
-            order_line_path = "//field[@name='order_line']"
-            order_line_fields = order_xml.xpath(order_line_path)
+            order_line_fields = order_xml.xpath("//field[@name='order_line']")
             if order_line_fields:
                 order_line_field = order_line_fields[0]
-                context = order_line_field.attrib.get("context", "{}")
-                context = context.replace(
-                    "{",
-                    "{'default_discount': general_discount, ", 1)
+                context = order_line_field.attrib.get("context", "{}").replace(
+                    "{", "{'default_discount': general_discount, ", 1,
+                )
                 order_line_field.attrib['context'] = context
                 res['arch'] = etree.tostring(order_xml)
         return res
