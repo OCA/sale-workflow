@@ -62,7 +62,8 @@ class SaleOrderLine(models.Model):
             if line.state != 'sale' or not line.product_id._need_procurement():
                 continue
             qty = 0.0
-            for proc in line.procurement_ids:
+            for proc in line.procurement_ids.filtered(
+                    lambda r: r.state != 'cancel'):
                 qty += proc.product_qty
             if float_compare(qty, line.product_uom_qty,
                              precision_digits=precision) >= 0:
@@ -85,7 +86,8 @@ class SaleOrderLine(models.Model):
             vals = line._prepare_order_line_procurement(
                 group_id=line.procurement_group_id.id)
             vals['product_qty'] = line.product_uom_qty - qty
-            new_proc = self.env["procurement.order"].create(vals)
+            new_proc = self.env["procurement.order"].with_context(
+                procurement_autorun_defer=True).create(vals)
             new_proc.message_post_with_view(
                 'mail.message_origin_link',
                 values={'self': new_proc, 'origin': line.order_id},
