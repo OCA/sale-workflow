@@ -16,6 +16,7 @@ setuptools.setup(
         'odoo11-addon-sale_invoice_group_method',
         'odoo11-addon-sale_merge_draft_invoice',
         'odoo11-addon-sale_order_action_invoice_create_hook',
+        'odoo11-addon-sale_order_general_discount',
         'odoo11-addon-sale_order_invoicing_finished_task',
         'odoo11-addon-sale_order_line_date',
         'odoo11-addon-sale_order_line_input',
