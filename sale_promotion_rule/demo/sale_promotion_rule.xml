@@ -1,26 +1,25 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <odoo>
-    <data>
 
-<record id="rule_1" model="sale.promotion.rule">
+<record id="rule_coupon" model="sale.promotion.rule">
     <field name="name">Best Promo</field>
     <field name="code">ELDONGHUT</field>
     <field name="rule_type">coupon</field>
     <field name="promo_type">discount</field>
-    <field name="discount_amount">10.00</field>
+    <field name="discount_amount">20.00</field>
     <field name="minimal_amount">50.00</field>
     <field name="restriction_amount">amount_untaxed</field>
+    <field name="multi_rule_strategy">use_best</field>
 </record>
 
-<record id="rule_2" model="sale.promotion.rule">
+<record id="rule_auto" model="sale.promotion.rule">
     <field name="name">Best Promo Automatic</field>
     <field name="rule_type">auto</field>
     <field name="promo_type">discount</field>
     <field name="discount_amount">10.00</field>
     <field name="minimal_amount">50.00</field>
     <field name="restriction_amount">amount_untaxed</field>
-    <field name="use_best_discount">True</field>
+    <field name="multi_rule_strategy">use_best</field>
 </record>
 
-    </data>
 </odoo>

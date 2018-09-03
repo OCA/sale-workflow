@@ -6,21 +6,19 @@
 from odoo import api, fields, models
 
 
-class SaleOrder(models.Model):
-    _inherit = 'sale.order'
+class SaleOrderLine(models.Model):
+    _inherit = 'sale.order.line'
 
     promotion_rule_ids = fields.Many2many(
         'sale.promotion.rule',
         string='Promotion rules',
-        domain=[('rule_type', '!=', 'coupon')],
-        readonly=True
+        domain=[('rule_type', '!=', 'coupon')]
     )
 
     coupon_promotion_rule_id = fields.Many2one(
         'sale.promotion.rule',
         string='Coupon promotion rule',
-        domain=[('rule_type', '=', 'coupon')],
-        readonly=True
+        domain=[('rule_type', '=', 'coupon')]
     )
     coupon_code = fields.Char(
         related='coupon_promotion_rule_id.code',
@@ -49,16 +47,4 @@ class SaleOrder(models.Model):
     def _compute_applied_promotion_rule_ids(self):
         for rec in self:
             rec.applied_promotion_rule_ids = (
-                rec.coupon_promotion_rule_id + rec.promotion_rule_ids)
-
-    @api.multi
-    def add_coupon(self, coupon_code):
-        self.env['sale.promotion.rule'].apply_coupon(self, coupon_code)
-
-    @api.multi
-    def apply_promotions(self):
-        self.env['sale.promotion.rule'].compute_promotions(self)
-
-    @api.multi
-    def clear_promotions(self):
-        self.env['sale.promotion.rule'].remove_promotions(self)
+                rec.coupon_promotion_rule_id | rec.promotion_rule_ids)
