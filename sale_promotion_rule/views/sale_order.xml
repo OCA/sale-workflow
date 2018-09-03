@@ -1,31 +1,73 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <odoo>
-    <data>
 
-<record id="view_order_form" model="ir.ui.view">
-    <field name="model">sale.order</field>
-    <field name="inherit_id" ref="sale.view_order_form"/>
-    <field name="arch" type="xml">
-        <field name="amount_untaxed" position="before">
-            <div class=" oe_inline">
-                <label for="promotion_rule_id" class="oe_form_label_help"/>
-                <button
-                    name="apply_promotion"
-                    states="draft,sent"
-                    string="(Apply discount)"
-                    type="object"
-                    class="oe_edit_only oe_link"/>
-                <button
-                    name="clear_promotion"
-                    attrs="{'invisible': [('promotion_rule_id', '=', False)]}"
-                    string="(Remove discount)"
-                    type="object"
-                    class="oe_edit_only oe_link"/>
-            </div>
-            <field name="promotion_rule_id" nolabel="1" string="Promo"/>
+    <record id="view_sale_order_applied_sale_promotion_rule_tree" model="ir.ui.view">
+        <field name="model">sale.promotion.rule</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="sequence" widget="handle"/>
+                <field name="name"/>
+                <field name="code"/>
+                <field name="discount_amount"/>
+                <field name="discount_type"/>
+                <field name="restriction_amount"/>
+                <field name="minimal_amount"/>
+            </tree>
         </field>
-    </field>
-</record>
+    </record>
+    
+    <record id="view_order_form" model="ir.ui.view">
+        <field name="model">sale.order</field>
+        <field name="inherit_id" ref="sale.view_order_form"/>
+        <field name="arch" type="xml">
+            <field name="note" position="before">
+                <div class="oe_edit_only oe_inline" colspan="2">
+                    <label class="oe_form_label_help" string="Promotions"/>
+                    <button
+                            name="apply_promotions"
+                            states="draft,sent"
+                            string="(Apply discount)"
+                            type="object"
+                            class="oe_edit_only oe_link"/>
+                    <button
+                            name="%(sale_order_add_coupon_act_window)d"
+                            states="draft,sent"
+                            string="(Add coupon)"
+                            type="action"
+                            class="oe_edit_only oe_link"/>
+                    <button
+                            name="clear_promotions"
+                            attrs="{'invisible': [('has_promotion_rules', '=', False)]}"
+                            string="(Remove discount)"
+                            type="object"
+                            class="oe_edit_only oe_link"/>
+                </div>
+            </field>
+            <xpath expr="//page[1]" position="after">
+                <page name="promotions" string="Applied Promotions">
+                    <group name="promotions">
+                        <group>
+                            <field name="has_promotion_rules" invisible="1"/>
+                            <field name="coupon_code"/>
+                        </group>
+                        <field name="applied_promotion_rule_ids"
+                           context="{'tree_view_ref': 'sale_promotion_rule.view_sale_order_applied_sale_promotion_rule_tree'}"
+                           nolabel="1"/>
+                    </group>
+                </page>
+            </xpath>
+            <xpath expr="//field[@name='order_line']/form//field[@name='state']" position="before">
+                <group name="promotions">
+                    <group>
+                        <field name="has_promotion_rules" invisible="1"/>
+                        <field name="coupon_code"/>
+                    </group>
+                    <field name="applied_promotion_rule_ids"
+                           context="{'tree_view_ref': 'sale_promotion_rule.view_sale_order_applied_sale_promotion_rule_tree'}"
+                           nolabel="1"/>
+                </group>
+            </xpath>
+        </field>
+    </record>
 
-    </data>
 </odoo>
