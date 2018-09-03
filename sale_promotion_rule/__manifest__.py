@@ -20,6 +20,7 @@
         "sale",
     ],
     "data": [
+        'wizards/sale_order_add_coupon.xml',
         'views/sale_order.xml',
         'views/sale_promotion_rule.xml',
         'security/ir.model.access.csv',
