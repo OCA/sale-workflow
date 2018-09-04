@@ -27,7 +27,8 @@ class BlanketOrder(models.Model):
 
     name = fields.Char(
         default='Draft',
-        readonly=True
+        readonly=True,
+        copy=False,
     )
     partner_id = fields.Many2one(
         'res.partner', string='Partner', readonly=True,
@@ -43,7 +44,8 @@ class BlanketOrder(models.Model):
     payment_term_id = fields.Many2one(
         'account.payment.term', string='Payment Terms', readonly=True,
         states={'draft': [('readonly', False)]})
-    confirmed = fields.Boolean()
+    confirmed = fields.Boolean(
+        copy=False)
     state = fields.Selection(selection=[
         ('draft', 'Draft'),
         ('opened', 'Open'),
@@ -115,12 +117,8 @@ class BlanketOrder(models.Model):
             return
 
         values = {
-            'pricelist_id': (self.partner_id.property_product_pricelist and
-                             self.partner_id.property_product_pricelist.id or
-                             False),
-            'payment_term_id': (self.partner_id.property_payment_term_id and
-                                self.partner_id.property_payment_term_id.id or
-                                False),
+            'pricelist_id': self.partner_id.property_product_pricelist.id,
+            'payment_term_id': self.partner_id.property_payment_term_id.id,
         }
 
         if self.partner_id.user_id:
@@ -128,13 +126,6 @@ class BlanketOrder(models.Model):
         if self.partner_id.team_id:
             values['team_id'] = self.partner_id.team_id.id
         self.update(values)
-
-    @api.multi
-    def copy_data(self, default=None):
-        if default is None:
-            default = {}
-        default.update(self.default_get(['name', 'confirmed']))
-        return super(BlanketOrder, self).copy_data(default)
 
     @api.multi
     def _validate(self):
@@ -165,8 +156,8 @@ class BlanketOrder(models.Model):
     @api.multi
     def action_view_sale_orders(self):
         sale_orders = self._get_sale_orders()
-        action = self.env.ref('sale.action_orders').read()[0]
-        if len(sale_orders) > 0:
+        if sale_orders:
+            action = self.env.ref('sale.action_orders').read()[0]
             action['domain'] = [('id', 'in', sale_orders.ids)]
         else:
             action = {'type': 'ir.actions.act_window_close'}
@@ -188,7 +179,8 @@ class BlanketOrderLine(models.Model):
     _description = 'Blanket Order Line'
 
     sequence = fields.Integer()
-    order_id = fields.Many2one('sale.blanket.order', required=True)
+    order_id = fields.Many2one(
+        'sale.blanket.order', required=True, ondelete='cascade')
     product_id = fields.Many2one(
         'product.product', string='Product', required=True)
     product_uom = fields.Many2one(
@@ -216,8 +208,7 @@ class BlanketOrderLine(models.Model):
         """Retrieve the price before applying the pricelist
             :param obj product: object of current product record
             :parem float qty: total quentity of product
-            :param tuple price_and_rule: tuple(price, suitable_rule) coming
-                   from pricelist computation
+            :param rule_id: product.pricelist.item
             :param obj uom: unit of measure of current order line
             :param integer pricelist_id: pricelist id of sale order"""
         # Copied and adapted from the sale module

@@ -3,7 +3,7 @@
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
 {
     'name': 'Blanket Orders',
-    'category': 'Sale',
+    'category': 'Sales',
     'license': 'AGPL-3',
     'author': 'Acsone SA/NV,Odoo Community Association (OCA)',
     'version': '10.0.1.0.0',
