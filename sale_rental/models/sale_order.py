@@ -58,52 +58,54 @@ class SaleOrderLine(models.Model):
     sell_rental_id = fields.Many2one(
         'sale.rental', string='Rental to Sell')
 
-    @api.one
     @api.constrains(
         'rental_type', 'extension_rental_id', 'start_date', 'end_date',
         'rental_qty', 'product_uom_qty', 'product_id')
     def _check_sale_line_rental(self):
-        if self.rental_type == 'rental_extension':
-            if not self.extension_rental_id:
-                raise ValidationError(_(
-                    "Missing 'Rental to Extend' on the sale order line with "
-                    "rental service %s")
-                    % self.product_id.name)
-            if self.rental_qty != self.extension_rental_id.rental_qty:
-                raise ValidationError(_(
-                    "On the sale order line with rental service %s, "
-                    "you are trying to extend a rental with a rental "
-                    "quantity (%s) that is different from the quantity "
-                    "of the original rental (%s). This is not supported.") % (
-                    self.product_id.name,
-                    self.rental_qty,
-                    self.extension_rental_id.rental_qty))
-        if self.rental_type in ('new_rental', 'rental_extension'):
-            if not self.product_id.rented_product_id:
-                raise ValidationError(_(
-                    "On the 'new rental' sale order line with product '%s', "
-                    "we should have a rental service product !") % (
-                    self.product_id.name))
-            if self.product_uom_qty != self.rental_qty * self.number_of_days:
-                raise ValidationError(_(
-                    "On the sale order line with product '%s' "
-                    "the Product Quantity (%s) should be the "
-                    "number of days (%s) "
-                    "multiplied by the Rental Quantity (%s).") % (
-                    self.product_id.name, self.product_uom_qty,
-                    self.number_of_days, self.rental_qty))
-            # the module sale_start_end_dates checks that, when we have
-            # must_have_dates, we have start + end dates
-        elif self.sell_rental_id:
-            if self.product_uom_qty != self.sell_rental_id.rental_qty:
-                raise ValidationError(_(
-                    "On the sale order line with product %s "
-                    "you are trying to sell a rented product with a "
-                    "quantity (%s) that is different from the rented "
-                    "quantity (%s). This is not supported.") % (
-                    self.product_id.name,
-                    self.product_uom_qty,
-                    self.sell_rental_id.rental_qty))
+        for line in self:
+            if line.rental_type == 'rental_extension':
+                if not line.extension_rental_id:
+                    raise ValidationError(_(
+                        "Missing 'Rental to Extend' on the sale order line "
+                        "with rental service %s")
+                        % line.product_id.name)
+                if line.rental_qty != line.extension_rental_id.rental_qty:
+                    raise ValidationError(_(
+                        "On the sale order line with rental service %s, "
+                        "you are trying to extend a rental with a rental "
+                        "quantity (%s) that is different from the quantity "
+                        "of the original rental (%s). This is not supported.")
+                        % (
+                        line.product_id.name,
+                        line.rental_qty,
+                        line.extension_rental_id.rental_qty))
+            if line.rental_type in ('new_rental', 'rental_extension'):
+                if not line.product_id.rented_product_id:
+                    raise ValidationError(_(
+                        "On the 'new rental' sale order line with product "
+                        "'%s', we should have a rental service product !") % (
+                        line.product_id.name))
+                if line.product_uom_qty != \
+                        line.rental_qty * line.number_of_days:
+                    raise ValidationError(_(
+                        "On the sale order line with product '%s' "
+                        "the Product Quantity (%s) should be the "
+                        "number of days (%s) "
+                        "multiplied by the Rental Quantity (%s).") % (
+                        line.product_id.name, line.product_uom_qty,
+                        line.number_of_days, line.rental_qty))
+                # the module sale_start_end_dates checks that, when we have
+                # must_have_dates, we have start + end dates
+            elif line.sell_rental_id:
+                if line.product_uom_qty != line.sell_rental_id.rental_qty:
+                    raise ValidationError(_(
+                        "On the sale order line with product %s "
+                        "you are trying to sell a rented product with a "
+                        "quantity (%s) that is different from the rented "
+                        "quantity (%s). This is not supported.") % (
+                        line.product_id.name,
+                        line.product_uom_qty,
+                        line.sell_rental_id.rental_qty))
 
     @api.multi
     def _prepare_rental(self):
