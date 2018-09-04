@@ -20,25 +20,25 @@ class ProductProduct(models.Model):
         'product.product', 'rented_product_id',
         string='Related Rental Services')
 
-    @api.one
     @api.constrains('rented_product_id', 'must_have_dates', 'type', 'uom_id')
     def _check_rental(self):
-        if self.rented_product_id and self.type != 'service':
-            raise ValidationError(_(
-                "The rental product '%s' must be of type 'Service'.")
-                % self.name)
-        if self.rented_product_id and not self.must_have_dates:
-            raise ValidationError(_(
-                "The rental product '%s' must have the option "
-                "'Must Have Start and End Dates' checked.")
-                % self.name)
-        # In the future, we would like to support all time UoMs
-        # but it is more complex and requires additionnal developments
-        day_uom = self.env.ref('product.product_uom_day')
-        if self.rented_product_id and self.uom_id != day_uom:
-            raise ValidationError(_(
-                "The unit of measure of the rental product '%s' must "
-                "be 'Day'.") % self.name)
+        for product in self:
+            if product.rented_product_id and product.type != 'service':
+                raise ValidationError(_(
+                    "The rental product '%s' must be of type 'Service'.")
+                    % product.name)
+            if product.rented_product_id and not product.must_have_dates:
+                raise ValidationError(_(
+                    "The rental product '%s' must have the option "
+                    "'Must Have Start and End Dates' checked.")
+                    % product.name)
+            # In the future, we would like to support all time UoMs
+            # but it is more complex and requires additionnal developments
+            day_uom = product.env.ref('product.product_uom_day')
+            if product.rented_product_id and product.uom_id != day_uom:
+                raise ValidationError(_(
+                    "The unit of measure of the rental product '%s' must "
+                    "be 'Day'.") % product.name)
 
     @api.multi
     def _need_procurement(self):
