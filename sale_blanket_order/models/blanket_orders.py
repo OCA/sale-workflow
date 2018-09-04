@@ -188,7 +188,8 @@ class BlanketOrderLine(models.Model):
     _description = 'Blanket Order Line'
 
     sequence = fields.Integer()
-    order_id = fields.Many2one('sale.blanket.order', required=True)
+    order_id = fields.Many2one(
+        'sale.blanket.order', required=True, ondelete='cascade')
     product_id = fields.Many2one(
         'product.product', string='Product', required=True)
     product_uom = fields.Many2one(
