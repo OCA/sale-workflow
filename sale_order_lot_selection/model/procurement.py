@@ -5,7 +5,7 @@
 from odoo import api, fields, models
 
 
-class procurement_order(models.Model):
+class ProcurementOrder(models.Model):
     _inherit = 'procurement.order'
 
     lot_id = fields.Many2one('stock.production.lot', 'Lot')
@@ -13,6 +13,6 @@ class procurement_order(models.Model):
     @api.model
     def _get_stock_move_values(self):
         res = super(
-            procurement_order, self)._get_stock_move_values()
+            ProcurementOrder, self)._get_stock_move_values()
         res['restrict_lot_id'] = self.lot_id.id
         return res
