@@ -2,20 +2,24 @@
 # Copyright 2018 ACSONE SA/NV
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
-from odoo.addons.sale.tests.test_sale_common import TestSale
+from odoo.tests import common
 from odoo.exceptions import ValidationError
 
 
-class TestBlacklists(TestSale):
+class TestBlacklists(common.TransactionCase):
 
     def setUp(self):
         super(TestBlacklists, self).setUp()
+        self.partner = self.env.ref('base.res_partner_3')
+        self.env['ir.config_parameter'].set_param(
+            'sale_product_country_filter.blacklist_global_mandatory',
+            repr(True),
+        )
 
     def test_global_flag(self):
         uom_unit = self.env.ref("product.product_uom_unit")
-        ctx = {'testing_sale_product_country_filter': True}
         with self.assertRaises(ValidationError):
-            self.env["product.product"].with_context(ctx).create(
+            self.env["product.product"].create(
                 {
                     "name": "Work",
                     "type": "service",
@@ -24,6 +28,21 @@ class TestBlacklists(TestSale):
                 }
             )
 
+    def test_global_flag_not_required(self):
+        self.env['ir.config_parameter'].set_param(
+            'sale_product_country_filter.blacklist_global_mandatory',
+            repr(False),
+        )
+        uom_unit = self.env.ref("product.product_uom_unit")
+        self.env["product.product"].create(
+            {
+                "name": "Work",
+                "type": "service",
+                "uom_id": uom_unit.id,
+                "uom_po_id": uom_unit.id,
+            }
+        )
+
     def _create_sale_order(self, product):
         return self.env["sale.order"].create(
             {
@@ -31,6 +50,51 @@ class TestBlacklists(TestSale):
                 "partner_invoice_id": self.partner.id,
                 "partner_shipping_id": self.partner.id,
                 "order_line": [
+                    (
+                        0,
+                        0,
+                        {
+                            "name": product.name,
+                            "product_id": product.id,
+                            "product_uom_qty": 2,
+                            "product_uom": product.uom_id.id,
+                            "price_unit": 55.0,
+                        },
+                    ),
+                    (
+                        0,
+                        0,
+                        {
+                            "name": product.name,
+                            "product_id": product.id,
+                            "product_uom_qty": 2,
+                            "product_uom": product.uom_id.id,
+                            "price_unit": 55.0,
+                        },
+                    )
+                ],
+                "pricelist_id": self.env.ref("product.list0").id,
+            }
+        )
+
+    def _new_sale_order(self, product):
+        return self.env["sale.order"].new(
+            {
+                "partner_id": self.partner.id,
+                "partner_invoice_id": self.partner.id,
+                "partner_shipping_id": self.partner.id,
+                "order_line": [
+                    (
+                        0,
+                        0,
+                        {
+                            "name": product.name,
+                            "product_id": product.id,
+                            "product_uom_qty": 2,
+                            "product_uom": product.uom_id.id,
+                            "price_unit": 55.0,
+                        },
+                    ),
                     (
                         0,
                         0,
@@ -63,9 +127,8 @@ class TestBlacklists(TestSale):
         )
         self.partner.write({"country_id": blacklisted_country.id})
         so = self._create_sale_order(product)
-        ctx = {'testing_sale_product_country_filter': True}
         with self.assertRaises(ValidationError):
-            so.with_context(ctx).action_confirm()
+            so.action_confirm()
 
     def test_template_no_blacklist(self):
         uom_unit = self.env.ref("product.product_uom_unit")
@@ -84,9 +147,8 @@ class TestBlacklists(TestSale):
         )
         self.partner.write({"country_id": blacklisted_country.id})
         so = self._create_sale_order(product)
-        ctx = {'testing_sale_product_country_filter': True}
         # should NOT raise
-        so.with_context(ctx).action_confirm()
+        so.action_confirm()
 
     def test_category_blacklist(self):
         uom_unit = self.env.ref("product.product_uom_unit")
@@ -107,6 +169,27 @@ class TestBlacklists(TestSale):
         )
         self.partner.write({"country_id": blacklisted_country.id})
         so = self._create_sale_order(product)
-        ctx = {'testing_sale_product_country_filter': True}
         with self.assertRaises(ValidationError):
-            so.with_context(ctx).action_confirm()
+            so.action_confirm()
+
+    def test_template_blacklist_onchange(self):
+        uom_unit = self.env.ref("product.product_uom_unit")
+        blacklisted_country = self.env.ref("base.pt")
+        product = self.env["product.product"].create(
+            {
+                "name": "Work",
+                "type": "service",
+                "uom_id": uom_unit.id,
+                "uom_po_id": uom_unit.id,
+                "tmpl_blacklisted_countries_ids": [
+                    (4, blacklisted_country.id)
+                ],
+            }
+        )
+        self.partner.write({"country_id": blacklisted_country.id})
+        so = self._create_sale_order(product)
+        res = so.order_line[0].onchange_product_check_blacklist()
+        self.assertIn(
+            'warning',
+            res,
+        )

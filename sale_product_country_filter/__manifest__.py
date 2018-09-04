@@ -10,10 +10,13 @@
     "license": "AGPL-3",
     "author": "ACSONE SA/NV,Odoo Community Association (OCA)",
     "website": "https://github.com/OCA/sale-workflow/",
-    "depends": ["sale"],
+    "depends": [
+        "sale"
+    ],
     "data": [
         "views/product_category.xml",
         "views/product_product.xml",
         "views/product_template.xml",
+        "views/sale_config_settings.xml",
     ],
 }
