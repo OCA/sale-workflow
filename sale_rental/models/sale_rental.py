@@ -17,19 +17,21 @@ class SaleRental(models.Model):
     _order = "id desc"
     _rec_name = "display_name"
 
-    @api.one
+    @api.multi
     @api.depends(
         'start_order_line_id', 'extension_order_line_ids.end_date',
         'extension_order_line_ids.state', 'start_order_line_id.end_date')
     def _compute_display_name_field(self):
-        self.display_name = u'[%s] %s - %s > %s (%s)' % (
-            self.partner_id.name,
-            self.rented_product_id.name,
-            self.start_date,
-            self.end_date,
-            self._fields['state'].convert_to_export(self.state, self))
+        for rental in self:
+            rental.display_name = u'[%s] %s - %s > %s (%s)' % (
+                rental.partner_id.name,
+                rental.rented_product_id.name,
+                rental.start_date,
+                rental.end_date,
+                rental._fields['state'].convert_to_export(rental.state, rental)
+            )
 
-    @api.one
+    @api.multi
     @api.depends(
         'start_order_line_id.order_id.state',
         'start_order_line_id.procurement_ids.move_ids.state',
@@ -37,65 +39,67 @@ class SaleRental(models.Model):
         'sell_order_line_ids.procurement_ids.move_ids.state',
         )
     def _compute_procurement_and_move(self):
-        procurement = False
-        in_move = False
-        out_move = False
-        sell_procurement = False
-        sell_move = False
-        state = False
-        if (
-                self.start_order_line_id and
-                self.start_order_line_id.procurement_ids):
-
-            procurement = self.start_order_line_id.procurement_ids[0]
-            if procurement.move_ids:
-                for move in procurement.move_ids:
-                    if move.move_dest_id:
-                        out_move = move
-                        in_move = move.move_dest_id
+        for rental in self:
+            procurement = False
+            in_move = False
+            out_move = False
+            sell_procurement = False
+            sell_move = False
+            state = False
             if (
-                    self.sell_order_line_ids and
-                    self.sell_order_line_ids[0].procurement_ids):
-                sell_procurement =\
-                    self.sell_order_line_ids[0].procurement_ids[0]
-                if sell_procurement.move_ids:
-                    sell_move = sell_procurement.move_ids[0]
-            state = 'ordered'
-            if out_move and in_move:
-                if out_move.state == 'done':
-                    state = 'out'
-                if out_move.state == 'done' and in_move.state == 'done':
-                    state = 'in'
-                if (
-                        out_move.state == 'done' and
-                        in_move.state == 'cancel' and
-                        sell_procurement):
-                    state = 'sell_progress'
-                    if sell_move and sell_move.state == 'done':
-                        state = 'sold'
-            if self.start_order_line_id.order_id.state == 'cancel':
-                state = 'cancel'
-        self.procurement_id = procurement
-        self.in_move_id = in_move
-        self.out_move_id = out_move
-        self.state = state
-        self.sell_procurement_id = sell_procurement
-        self.sell_move_id = sell_move
+                    rental.start_order_line_id and
+                    rental.start_order_line_id.procurement_ids):
 
-    @api.one
+                procurement = rental.start_order_line_id.procurement_ids[0]
+                if procurement.move_ids:
+                    for move in procurement.move_ids:
+                        if move.move_dest_id:
+                            out_move = move
+                            in_move = move.move_dest_id
+                if (
+                        rental.sell_order_line_ids and
+                        rental.sell_order_line_ids[0].procurement_ids):
+                    sell_procurement = \
+                        rental.sell_order_line_ids[0].procurement_ids[0]
+                    if sell_procurement.move_ids:
+                        sell_move = sell_procurement.move_ids[0]
+                state = 'ordered'
+                if out_move and in_move:
+                    if out_move.state == 'done':
+                        state = 'out'
+                    if out_move.state == 'done' and in_move.state == 'done':
+                        state = 'in'
+                    if (
+                            out_move.state == 'done' and
+                            in_move.state == 'cancel' and
+                            sell_procurement):
+                        state = 'sell_progress'
+                        if sell_move and sell_move.state == 'done':
+                            state = 'sold'
+                if rental.start_order_line_id.order_id.state == 'cancel':
+                    state = 'cancel'
+            rental.procurement_id = procurement
+            rental.in_move_id = in_move
+            rental.out_move_id = out_move
+            rental.state = state
+            rental.sell_procurement_id = sell_procurement
+            rental.sell_move_id = sell_move
+
+    @api.multi
     @api.depends(
         'extension_order_line_ids.end_date', 'extension_order_line_ids.state',
         'start_order_line_id.end_date')
     def _compute_end_date(self):
-        end_date = False
-        if self.extension_order_line_ids:
-            for extension in self.extension_order_line_ids:
-                if extension.state not in ('cancel', 'draft'):
-                    if extension.end_date > end_date:
-                        end_date = extension.end_date
-        if not end_date and self.start_order_line_id:
-            end_date = self.start_order_line_id.end_date
-        self.end_date = end_date
+        for rental in self:
+            end_date = False
+            if rental.extension_order_line_ids:
+                for extension in rental.extension_order_line_ids:
+                    if extension.state not in ('cancel', 'draft'):
+                        if extension.end_date > end_date:
+                            end_date = extension.end_date
+            if not end_date and rental.start_order_line_id:
+                end_date = rental.start_order_line_id.end_date
+            rental.end_date = end_date
 
     display_name = fields.Char(
         compute='_compute_display_name_field', string='Display Name',
