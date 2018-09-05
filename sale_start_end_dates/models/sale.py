@@ -15,17 +15,17 @@ class SaleOrder(models.Model):
     default_start_date = fields.Date(string='Default Start Date')
     default_end_date = fields.Date(string='Default End Date')
 
-    @api.one
     @api.constrains('default_start_date', 'default_end_date')
     def _check_default_start_end_dates(self):
-        if (
-                self.default_start_date and
-                self.default_end_date and
-                self.default_start_date > self.default_end_date):
-            raise ValidationError(
-                _("Default Start Date should be before or be the "
-                    "same as Default End Date for sale order %s")
-                % self.name)
+        for order in self:
+            if (
+                    order.default_start_date and
+                    order.default_end_date and
+                    order.default_start_date > order.default_end_date):
+                raise ValidationError(
+                    _("Default Start Date should be before or be the "
+                        "same as Default End Date for sale order %s")
+                    % order.name)
 
     @api.onchange('default_start_date')
     def default_start_date_change(self):
@@ -57,43 +57,43 @@ class SaleOrderLine(models.Model):
     must_have_dates = fields.Boolean(
         related='product_id.must_have_dates', readonly=True)
 
-    @api.one
     @api.constrains('start_date', 'end_date', 'number_of_days')
     def _check_start_end_dates(self):
-        if self.product_id and self.must_have_dates:
-            if not self.end_date:
-                raise ValidationError(_(
-                    "Missing End Date for sale order line with "
-                    "Product '%s'.") % (self.product_id.name))
-            if not self.start_date:
-                raise ValidationError(_(
-                    "Missing Start Date for sale order line with "
-                    "Product '%s'.") % (self.product_id.name))
-            if not self.number_of_days:
-                raise ValidationError(_(
-                    "Missing number of days for sale order line with "
-                    "Product '%s'.") % (self.product_id.name))
-            if self.start_date > self.end_date:
-                raise ValidationError(_(
-                    "Start Date should be before or be the same as "
-                    "End Date for sale order line with Product '%s'.")
-                    % (self.product_id.name))
-            if self.number_of_days < 0:
-                raise ValidationError(_(
-                    "On sale order line with Product '%s', the "
-                    "number of days is negative ; this is not allowed.")
-                    % (self.product_id.name))
-            days_delta = (
-                fields.Date.from_string(self.end_date) -
-                fields.Date.from_string(self.start_date)).days + 1
-            if self.number_of_days != days_delta:
-                raise ValidationError(_(
-                    "On the sale order line with Product '%s', "
-                    "there are %d days between the Start Date (%s) and "
-                    "the End Date (%s), but the number of days field "
-                    "has a value of %d days.")
-                    % (self.product_id.name, days_delta, self.start_date,
-                        self.end_date, self.number_of_days))
+        for line in self:
+            if line.product_id and line.must_have_dates:
+                if not line.end_date:
+                    raise ValidationError(_(
+                        "Missing End Date for sale order line with "
+                        "Product '%s'.") % (line.product_id.name))
+                if not line.start_date:
+                    raise ValidationError(_(
+                        "Missing Start Date for sale order line with "
+                        "Product '%s'.") % (line.product_id.name))
+                if not line.number_of_days:
+                    raise ValidationError(_(
+                        "Missing number of days for sale order line with "
+                        "Product '%s'.") % (line.product_id.name))
+                if line.start_date > line.end_date:
+                    raise ValidationError(_(
+                        "Start Date should be before or be the same as "
+                        "End Date for sale order line with Product '%s'.")
+                        % (line.product_id.name))
+                if line.number_of_days < 0:
+                    raise ValidationError(_(
+                        "On sale order line with Product '%s', the "
+                        "number of days is negative ; this is not allowed.")
+                        % (line.product_id.name))
+                days_delta = (
+                    fields.Date.from_string(line.end_date) -
+                    fields.Date.from_string(line.start_date)).days + 1
+                if line.number_of_days != days_delta:
+                    raise ValidationError(_(
+                        "On the sale order line with Product '%s', "
+                        "there are %d days between the Start Date (%s) and "
+                        "the End Date (%s), but the number of days field "
+                        "has a value of %d days.")
+                        % (line.product_id.name, days_delta, line.start_date,
+                           line.end_date, line.number_of_days))
 
     @api.multi
     def _prepare_invoice_line(self, qty):
