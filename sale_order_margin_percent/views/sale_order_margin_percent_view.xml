@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="view_sale_order_margin_percent_form" model="ir.ui.view">
+        <field name="name">view.sale.order.margin.percent.form</field>
+        <field name="model">sale.order</field>
+        <field name='inherit_id' ref='sale_margin.sale_margin_sale_order'/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='margin']" position="after">
+                <field name="percent" widget="progressbar"/>
+            </xpath>
+        </field>
+    </record>
+</odoo>
