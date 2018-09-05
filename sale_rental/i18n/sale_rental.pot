@@ -197,25 +197,25 @@ msgid "New Rental"
 msgstr ""
 
 #. module: sale_rental
-#: code:addons/sale_rental/models/sale_order.py:172
+#: code:addons/sale_rental/models/sale_order.py:174
 #, python-format
 msgid "Not enough stock !"
 msgstr ""
 
 #. module: sale_rental
-#: code:addons/sale_rental/models/sale_order.py:83
+#: code:addons/sale_rental/models/sale_order.py:84
 #, python-format
 msgid "On the 'new rental' sale order line with product '%s', we should have a rental service product !"
 msgstr ""
 
 #. module: sale_rental
-#: code:addons/sale_rental/models/sale_order.py:99
+#: code:addons/sale_rental/models/sale_order.py:101
 #, python-format
 msgid "On the sale order line with product %s you are trying to sell a rented product with a quantity (%s) that is different from the rented quantity (%s). This is not supported."
 msgstr ""
 
 #. module: sale_rental
-#: code:addons/sale_rental/models/sale_order.py:88
+#: code:addons/sale_rental/models/sale_order.py:90
 #, python-format
 msgid "On the sale order line with product '%s' the Product Quantity (%s) should be the number of days (%s) multiplied by the Rental Quantity (%s)."
 msgstr ""
@@ -534,7 +534,7 @@ msgid "The Rental Output stock location is not set on the warehouse %s"
 msgstr ""
 
 #. module: sale_rental
-#: code:addons/sale_rental/models/sale_order.py:215
+#: code:addons/sale_rental/models/sale_order.py:217
 #, python-format
 msgid "The Rental Service of the Rental Extension you just selected is '%s' and it's not the same as the Product currently selected in this Sale Order Line."
 msgstr ""
@@ -573,7 +573,7 @@ msgid "Warehouse"
 msgstr ""
 
 #. module: sale_rental
-#: code:addons/sale_rental/models/sale_order.py:173
+#: code:addons/sale_rental/models/sale_order.py:175
 #, python-format
 msgid "You want to rent %.2f %s but you only have %.2f %s currently available on the stock location '%s' ! Make sure that you get some units back in the mean time or re-supply the stock location '%s'."
 msgstr ""
