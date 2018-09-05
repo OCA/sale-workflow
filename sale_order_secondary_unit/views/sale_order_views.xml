@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Copyright 2018 Tecnativa - Carlos Dauden
+     License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl). -->
+<odoo>
+
+    <record id="view_order_form" model="ir.ui.view">
+        <field name="name">Sale Order Secondary Unit</field>
+        <field name="model">sale.order</field>
+        <field name="inherit_id" ref="sale.view_order_form"/>
+        <field name="groups_id" eval="[(4, ref('product.group_uom'))]"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='order_line']/form//field[@name='price_subtotal']" position="after">
+                <field name="secondary_uom_qty" class="oe_inline oe_no_button"
+                    attrs="{'readonly': [('state', 'in', ('done', 'cancel'))]}"/>
+                <field name="secondary_uom_id" class="oe_inline"
+                       attrs="{'readonly': [('state', 'in', ('done', 'cancel'))]}"/>
+            </xpath>
+            <xpath expr="//field[@name='order_line']/tree//field[@name='product_uom_qty']" position="before">
+                <field name="secondary_uom_qty"
+                       attrs="{'readonly': [('parent.state', 'in', ('done', 'cancel'))]}"/>
+                <field name="secondary_uom_id"
+                       domain="[('product_tmpl_id.product_variant_ids', 'in', [product_id])]"
+                       options="{'no_create': True}"
+                       attrs="{'readonly': [('parent.state', 'in', ('done', 'cancel'))]}"/>
+            </xpath>
+        </field>
+    </record>
+
+</odoo>
