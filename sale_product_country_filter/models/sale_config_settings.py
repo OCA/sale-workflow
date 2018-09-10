@@ -11,7 +11,8 @@ class SaleConfigSettings(models.TransientModel):
     _inherit = 'sale.config.settings'
 
     product_blacklist_global_mandatory = fields.Boolean(
-        help="If checked, products must have either globally available"
+        string="Products must have global settings defined",
+        help="If checked, products must have either globally available "
              "option enabled, either at least one blacklisted country."
     )
 

@@ -3,7 +3,7 @@
     <record id="view_sales_config" model="ir.ui.view">
         <field name="name">sale settings</field>
         <field name="model">sale.config.settings</field>
-        <field name="inherit_id" ref="sales_team.view_sale_config_settings"/>
+        <field name="inherit_id" ref="sale.view_sales_config"/>
         <field name="arch" type="xml">
             <xpath expr="//field[@name='deposit_product_id_setting']/parent::group" position="inside">
                 <label string="Country Filter"/>
