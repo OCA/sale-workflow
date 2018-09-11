@@ -4,7 +4,7 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: Odoo Server 9.0c\n"
+"Project-Id-Version: Odoo Server 11.0\n"
 "Report-Msgid-Bugs-To: \n"
 "Last-Translator: <>\n"
 "Language-Team: \n"
@@ -64,7 +64,12 @@ msgstr ""
 
 #. module: sale_order_product_recommendation
 #: model:ir.model.fields,field_description:sale_order_product_recommendation.field_sale_order_recommendation_line_is_modified
-msgid "Is modified"
+msgid "Is Modified"
+msgstr ""
+
+#. module: sale_order_product_recommendation
+#: model:ir.model.fields,field_description:sale_order_product_recommendation.field_sale_order_recommendation_last_compute
+msgid "Last Compute"
 msgstr ""
 
 #. module: sale_order_product_recommendation
@@ -86,11 +91,6 @@ msgid "Last Updated on"
 msgstr ""
 
 #. module: sale_order_product_recommendation
-#: model:ir.model.fields,field_description:sale_order_product_recommendation.field_sale_order_recommendation_last_compute
-msgid "Last compute"
-msgstr ""
-
-#. module: sale_order_product_recommendation
 #: model:ir.model.fields,field_description:sale_order_product_recommendation.field_sale_order_recommendation_months
 msgid "Months"
 msgstr ""
@@ -102,7 +102,7 @@ msgstr ""
 
 #. module: sale_order_product_recommendation
 #: model:ir.model.fields,field_description:sale_order_product_recommendation.field_sale_order_recommendation_line_price_unit
-msgid "Price unit"
+msgid "Price Unit"
 msgstr ""
 
 #. module: sale_order_product_recommendation
@@ -146,13 +146,13 @@ msgid "Recommended products for current sale order"
 msgstr ""
 
 #. module: sale_order_product_recommendation
-#: model:ir.model.fields,field_description:sale_order_product_recommendation.field_sale_order_recommendation_order_id
-msgid "Sale Order"
+#: model:ir.model.fields,field_description:sale_order_product_recommendation.field_sale_order_recommendation_line_sale_line_id
+msgid "Sale Line"
 msgstr ""
 
 #. module: sale_order_product_recommendation
-#: model:ir.model.fields,field_description:sale_order_product_recommendation.field_sale_order_recommendation_line_sale_line_id
-msgid "Sale line id"
+#: model:ir.model.fields,field_description:sale_order_product_recommendation.field_sale_order_recommendation_order_id
+msgid "Sale Order"
 msgstr ""
 
 #. module: sale_order_product_recommendation
@@ -162,17 +162,17 @@ msgstr ""
 
 #. module: sale_order_product_recommendation
 #: model:ir.model.fields,field_description:sale_order_product_recommendation.field_sale_order_recommendation_line_times_delivered
-msgid "Times delivered"
+msgid "Times Delivered"
 msgstr ""
 
 #. module: sale_order_product_recommendation
 #: model:ir.model.fields,field_description:sale_order_product_recommendation.field_sale_order_recommendation_line_units_delivered
-msgid "Units delivered"
+msgid "Units Delivered"
 msgstr ""
 
 #. module: sale_order_product_recommendation
 #: model:ir.model.fields,field_description:sale_order_product_recommendation.field_sale_order_recommendation_line_units_included
-msgid "Units included"
+msgid "Units Included"
 msgstr ""
 
 #. module: sale_order_product_recommendation
