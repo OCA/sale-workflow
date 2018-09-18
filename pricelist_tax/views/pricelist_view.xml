@@ -7,7 +7,6 @@
         <field name="arch" type="xml">
             <field name="company_id" position="before">
                 <field name="price_include_taxes" readonly="[('item_ids', '=', False)]"/>
-                <span readonly="[('item_ids', '=', False)]">Cette case à cocher ne peut être changé que s'il n'y a pas de règles de prix</span><span/>
             </field>
         </field>
     </record>

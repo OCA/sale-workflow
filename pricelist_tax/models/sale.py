@@ -15,7 +15,7 @@ class SaleOrderLine(models.Model):
 
     def _map_exclude_tax(self):
         """ return a dict
-            mtax[company_id][tax amount]['include'/'exclude']
+            mtax[company_id or 0][tax amount]['include'|'exclude'] = tax_id
         """
         mtax = defaultdict(dict)
         prev_cpny = False

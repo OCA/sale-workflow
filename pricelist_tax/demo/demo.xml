@@ -1,12 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <odoo>
 
-    <!-- <record id="demo" model="sale.config.settings">
-        <field name="group_product_variant" eval="1"/>
-        <field name="sale_pricelist_setting">formula</field>
-    </record>
-    <function model="sale.config.settings" name="execute" eval="[[ref('demo')]]"/> -->
-
     <record id="ak_product" model="product.product">
         <field name="taxes_id" eval="[(4, ref('l10n_fr.1_tva_normale_ttc'))]"/>
         <field name="name">ak product</field>
@@ -37,5 +31,5 @@
         <field name="product_id" eval="ref('ak_product')"/>
         <field name="pricelist_id" eval="ref('ttc_pricelist')"/>
     </record>
-    
+
 </odoo>
