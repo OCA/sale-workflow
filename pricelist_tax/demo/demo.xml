@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+
+    <!-- <record id="demo" model="sale.config.settings">
+        <field name="group_product_variant" eval="1"/>
+        <field name="sale_pricelist_setting">formula</field>
+    </record>
+    <function model="sale.config.settings" name="execute" eval="[[ref('demo')]]"/> -->
+
+    <record id="ak_product" model="product.product">
+        <field name="taxes_id" eval="[(4, ref('l10n_fr.1_tva_normale_ttc'))]"/>
+        <field name="name">ak product</field>
+        <field name="type">consu</field>
+        <field name="list_price">10</field>
+    </record>
+
+    <record id="ht_pricelist" model="product.pricelist">
+        <field name="name">Prix HT</field>
+        <field name="price_include_taxes">0</field>
+    </record>
+
+    <record id="ttc_pricelist" model="product.pricelist">
+        <field name="name">Prix TTC</field>
+    </record>
+
+    <record id="ht_item" model="product.pricelist.item">
+        <field name="applied_on">0_product_variant</field>
+        <field name="compute_price">fixed</field>
+        <field name="fixed_price">7</field>
+        <field name="product_id" eval="ref('ak_product')"/>
+        <field name="pricelist_id" eval="ref('ht_pricelist')"/>
+    </record>
+    <record id="ttc_item" model="product.pricelist.item">
+        <field name="applied_on">0_product_variant</field>
+        <field name="compute_price">fixed</field>
+        <field name="fixed_price">8</field>
+        <field name="product_id" eval="ref('ak_product')"/>
+        <field name="pricelist_id" eval="ref('ttc_pricelist')"/>
+    </record>
+    
+</odoo>

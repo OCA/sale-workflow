@@ -8,10 +8,15 @@
     'author': 'Akretion',
     'depends': [
         'sale',
+        'l10n_fr',
+        'onchange_helper',
     ],
     'website': 'http://www.akretion.com/',
     'data': [
         'views/pricelist_view.xml',
+    ],
+    'demo': [
+        'demo/demo.xml',
     ],
     'installable': True,
     'license': 'AGPL-3',

@@ -5,7 +5,3 @@
 =============
 Pricelist Tax
 =============
-
-add a boolean 'Tax include' checkbox in pricelist 
-to constraint pricelist items to the same on a field compatible with this tax.
-
