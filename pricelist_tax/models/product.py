@@ -10,7 +10,7 @@ class ProductPricelist(models.Model):
     _inherit = 'product.pricelist'
 
     price_include_taxes = fields.Boolean(
-        string=u"Prix en TTC",
+        string=u"Prix en TTC", default=True,
         help=u"Si coché les prix de cette liste de prix doivent être en TTC\n"
              u"sinon en HT.\n"
              u"On ne peut modifier ce champ que s'il n'y a pas "
@@ -21,7 +21,7 @@ class ProductPricelist(models.Model):
     def _constrains_pricelist_price_include(self):
         for rec in self:
             items = self.env['product.pricelist.item'].search(
-                [('price_id', 'in', rec.id),
+                [('pricelist_id', '=', rec.id),
                  ('base', '!=', 'list_price')])
             if items:
                 raise UserError(_(

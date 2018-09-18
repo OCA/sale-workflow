@@ -1,0 +1,3 @@
+- set your product in include tax
+- set exclude tax with pricelist of your choice
+- encode a sale with these settings
