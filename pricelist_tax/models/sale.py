@@ -42,11 +42,12 @@ class SaleOrderLine(models.Model):
         super(SaleOrderLine, self)._compute_tax_id()
         mtax = self._map_exclude_tax()
         for line in self:
+            # If company_id is set, always filter taxes by the company
+            taxes = line.product_id.taxes_id.filtered(
+                lambda r: not line.company_id or
+                r.company_id == line.company_id)
             if not line.order_id.pricelist_id.price_include_taxes:
                 # pricelist not include tax
-                taxes = line.product_id.taxes_id.filtered(
-                    lambda r: not line.company_id or
-                    r.company_id == line.company_id)
                 cpny = line.order_id.company_id.id or line.company_id.id or 0
                 mytaxes = []
                 for tax in taxes:
@@ -58,12 +59,6 @@ class SaleOrderLine(models.Model):
                     else:
                         mytaxes.append(tax.id)
                 taxes = self.env['account.tax'].browse(mytaxes)
-            else:
-                # The Odoo way
-                # If company_id is set, always filter taxes by the company
-                taxes = line.product_id.taxes_id.filtered(
-                    lambda r: not line.company_id or
-                    r.company_id == line.company_id)
             fpos = (line.order_id.fiscal_position_id or
                     line.order_id.partner_id.property_account_position_id)
             line.tax_id = (fpos.map_tax(
@@ -73,19 +68,18 @@ class SaleOrderLine(models.Model):
     @api.multi
     @api.onchange('product_id')
     def product_id_change(self):
+        self._upd_onchange_ctx()
+        return super(SaleOrderLine, self).product_id_change()
+
+    @api.onchange('product_uom', 'product_uom_qty')
+    def product_uom_change(self):
+        self._upd_onchange_ctx()
+        return super(SaleOrderLine, self).product_uom_change()
+
+    def _upd_onchange_ctx(self):
         """ Only to add 'pricelist' context """
         ctx = self.env.context.copy()
         ctx.update(dict(pricelist=self.order_id.pricelist_id.id))
         self.env.context = ctx
         # with_context() doesn't work here (loosing product_id record),
         # then directly update context
-        return super(SaleOrderLine, self).product_id_change()
-
-    @api.onchange('product_uom', 'product_uom_qty')
-    def product_uom_change(self):
-        """ Only to add 'pricelist' context """
-        ctx = self.env.context.copy()
-        ctx.update(dict(pricelist=self.order_id.pricelist_id.id))
-        self.env.context = ctx
-        # Same remark than in product_id_change()
-        return super(SaleOrderLine, self).product_uom_change()
