@@ -163,7 +163,6 @@ class SaleOrderRecommendationLine(models.TransientModel):
     product_id = fields.Many2one(
         "product.product",
         string="Product",
-        readonly=True,
     )
     price_unit = fields.Monetary(
         compute="_compute_price_unit",
