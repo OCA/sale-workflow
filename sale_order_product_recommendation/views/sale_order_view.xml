@@ -12,7 +12,7 @@
             <header>
                 <button
                     name="%(sale_order_recommendation_action)d"
-                    states="draft,sent"
+                    states="draft,sent,sale"
                     string="Recommended Products"
                     type="action"/>
             </header>
