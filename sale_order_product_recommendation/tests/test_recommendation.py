@@ -2,6 +2,7 @@
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
 from odoo.tests.common import SavepointCase
+from odoo.exceptions import UserError
 
 
 class RecommendationCase(SavepointCase):
@@ -98,3 +99,38 @@ class RecommendationCase(SavepointCase):
         self.assertEqual(len(self.new_so.order_line), 1)
         self.assertEqual(self.new_so.order_line.product_id, self.product_12)
         self.assertEqual(self.new_so.order_line.product_uom_qty, qty)
+        # No we confirm the SO
+        self.new_so.action_confirm()
+        wizard = self.wizard()
+        wiz_line = wizard.line_ids.filtered(
+            lambda x: x.product_id == self.product_12)
+        wiz_line.units_included = 0
+        wiz_line._onchange_units_included()
+        # The confirmed line can't be deleted
+        with self.assertRaises(UserError):
+            wizard.action_accept()
+        # Deliver items and invoice the order
+        self.new_so.order_line.qty_delivered = qty
+        adv_wiz = self.env['sale.advance.payment.inv'].with_context(
+            active_ids=[self.new_so.id]).create({
+                'advance_payment_method': 'all',
+            })
+        adv_wiz.with_context(open_invoices=True).create_invoices()
+        self.new_so.invoice_ids.action_invoice_open()
+        # Open the wizard and add more product qty
+        wizard = self.wizard()
+        wiz_line = wizard.line_ids.filtered(
+            lambda x: x.product_id == self.product_12)
+        wiz_line.units_included = qty + 2
+        wiz_line._onchange_units_included()
+        wizard.action_accept()
+        # Deliver extra qty and make a new invoice
+        self.new_so.order_line.qty_delivered = qty + 2
+        adv_wiz = self.env['sale.advance.payment.inv'].with_context(
+            active_ids=[self.new_so.id]).create({
+                'advance_payment_method': 'all',
+            })
+        adv_wiz.with_context(open_invoices=True).create_invoices()
+        self.assertEqual(2, len(self.new_so.invoice_ids))
+        self.assertEqual(2,
+                         self.new_so.invoice_ids[:1].invoice_line_ids.quantity)
