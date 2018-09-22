@@ -34,6 +34,7 @@ addon | version | summary
 [sale_isolated_quotation](sale_isolated_quotation/) | 10.0.1.0.0 | Sales - Isolated Quotation
 [sale_layout_hidden](sale_layout_hidden/) | 10.0.1.0.1 | Sale Layout Hidden Sections
 [sale_merge_draft_invoice](sale_merge_draft_invoice/) | 10.0.1.0.0 | Sale Merge Draft Invoice
+[sale_mrp_link](sale_mrp_link/) | 10.0.1.0.0 | Show manufacturing orders generated from sales order
 [sale_order_action_invoice_create_hook](sale_order_action_invoice_create_hook/) | 10.0.1.0.0 | Sale Order Action Invoice Create Hook
 [sale_order_invoicing_finished_task](sale_order_invoicing_finished_task/) | 10.0.1.0.3 | Control invoice order lines if his task has been finished
 [sale_order_line_date](sale_order_line_date/) | 10.0.1.0.0 | Sale Order Line Date
