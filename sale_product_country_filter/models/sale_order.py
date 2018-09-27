@@ -178,19 +178,19 @@ class SaleOrderLine(models.Model):
         res = {}
         if self.product_id and (self.order_id.partner_id or
                                 self.order_id.partner_shipping_id):
-            res = {
+            warning = {
                 'warning': {'title': _('Country restriction'),
                             'message': _("This product cannot be sold to the "
                                          "selected country/countries)")},
             }
             if self.product_id in\
                     self.order_id.country_blacklisted_product_ids:
-                return res
+                return warning
             partner_countries = self.order_id.partner_id.country_id | \
                 self.order_id.partner_shipping_id.country_id
             if self.env["product.category"].search([
                     ('id', 'parent_of', self.product_id.categ_id.id),
                     ("blacklisted_countries_ids", "in",
                      partner_countries.ids)]):
-                return res
+                return warning
         return res

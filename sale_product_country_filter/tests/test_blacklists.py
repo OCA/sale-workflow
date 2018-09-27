@@ -193,3 +193,23 @@ class TestBlacklists(common.TransactionCase):
             'warning',
             res,
         )
+
+    def test_template_no_blacklist_onchange(self):
+        uom_unit = self.env.ref("product.product_uom_unit")
+        blacklisted_country = self.env.ref("base.pt")
+        product = self.env["product.product"].create(
+            {
+                "name": "Work",
+                "type": "service",
+                "uom_id": uom_unit.id,
+                "uom_po_id": uom_unit.id,
+                'tmpl_globally_allowed': True,
+            }
+        )
+        self.partner.write({"country_id": blacklisted_country.id})
+        so = self._create_sale_order(product)
+        res = so.order_line[0].onchange_product_check_blacklist()
+        self.assertNotIn(
+            'warning',
+            res,
+        )
