@@ -41,7 +41,8 @@ class ProductTemplate(models.Model):
         config = safe_eval(icp.get_param(
             'sale_product_country_filter.blacklist_global_mandatory', 'False'))
         if config and any(
-                (not template.tmpl_globally_allowed and
+                (template.sale_ok and
+                 not template.tmpl_globally_allowed and
                  not template.tmpl_blacklisted_countries_ids)
                 for template in self):
             raise ValidationError(

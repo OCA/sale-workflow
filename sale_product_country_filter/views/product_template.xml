@@ -16,7 +16,7 @@
                         name="tmpl_blacklisted_countries_ids"
                         nolabel="1"
                         attrs="{'readonly': [('tmpl_globally_allowed', '=', True)],
-                                'required': [('tmpl_globally_allowed', '!=', True)]}"/>
+                                'required': [('tmpl_globally_allowed', '!=', True), ('sale_ok', '=', True)]}"/>
                 </group>
             </xpath>
         </field>
