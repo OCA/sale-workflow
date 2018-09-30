@@ -11,9 +11,12 @@
     "website": "www.akretion.com",
     "author": " Akretion",
     "license": "AGPL-3",
-    "depends": ["sale_stock"],
+    "depends": ["sale"],
     "data": [
         "views/sale_order_views.xml",
+    ],
+    "demo": [
+        "demo/sale_demo.xml",
     ],
     "installable": True,
 }
