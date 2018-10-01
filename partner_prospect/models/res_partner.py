@@ -37,4 +37,4 @@ class ResPartner(models.Model):
 
     prospect = fields.Boolean(
         string='Prospect', compute='_compute_prospect', default=False,
-        store=True)
+        store=True, compute_sudo=True)
