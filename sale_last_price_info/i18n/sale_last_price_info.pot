@@ -6,8 +6,6 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 11.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-01-19 07:32+0000\n"
-"PO-Revision-Date: 2018-01-19 07:32+0000\n"
 "Last-Translator: <>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -16,8 +14,18 @@ msgstr ""
 "Plural-Forms: \n"
 
 #. module: sale_last_price_info
-#: view:product.product:sale_last_price_info.product_last_sale_info_form_view
-msgid "Last Price Info"
+#: model:ir.model.fields,field_description:sale_last_price_info.field_product_product_last_customer_id
+msgid "Last Customer"
+msgstr ""
+
+#. module: sale_last_price_info
+#: model:ir.model.fields,field_description:sale_last_price_info.field_product_product_last_sale_date
+msgid "Last Sale Date"
+msgstr ""
+
+#. module: sale_last_price_info
+#: model:ir.model.fields,field_description:sale_last_price_info.field_product_product_last_sale_price
+msgid "Last Sale Price"
 msgstr ""
 
 #. module: sale_last_price_info
@@ -26,22 +34,7 @@ msgid "Product"
 msgstr ""
 
 #. module: sale_last_price_info
-#: view:product.product:sale_last_price_info.product_last_sale_info_form_view
+#: model:ir.ui.view,arch_db:sale_last_price_info.product_last_sale_info_form_view
 msgid "Sale"
-msgstr ""
-
-#. module: sale_last_price_info
-#: field:product.product,last_customer_id:0
-msgid "Last Customer"
-msgstr ""
-
-#. module: sale_last_price_info
-#: field:product.product,last_sale_price:0
-msgid "Last Sale Price"
-msgstr ""
-
-#. module: sale_last_price_info
-#: field:product.product,last_sale_date:0
-msgid "Last Sale Date"
 msgstr ""
 
