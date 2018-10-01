@@ -1,17 +1,17 @@
-# -*- coding: utf-8 -*-
 # © 2013-2017 Camptocamp SA (Jacques-Etienne Baudoux)
 # © 2014-2017 Akretion (Alexis de Lattre <alexis.delattre@akretion.com>)
+# License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
 
 {
     'name': 'Default Quotation Validity',
-    'version': '10.0.1.0.0',
+    'version': '11.0.1.0.0',
     'category': 'Sales',
     'license': 'AGPL-3',
     'summary': 'Set a default validity delay on quotations',
-    'depends': ['sale'],
+    'depends': ['sale_management'],
     'author': 'Camptocamp,Odoo Community Association (OCA)',
-    'website': 'http://www.camptocamp.com',
-    'data': ['views/sale_config_settings.xml'],
+    'website': 'https://github.com/OCA/sale-workflow',
+    'data': ['views/res_config_settings.xml'],
     'installable': True,
 }

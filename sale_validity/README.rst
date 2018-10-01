@@ -20,7 +20,7 @@ When you create a new quotation, the *Expiration Date* will be set by default to
 
 .. image:: https://odoo-community.org/website/image/ir.attachment/5784_f2813bd/datas
    :alt: Try me on Runbot
-   :target: https://runbot.odoo-community.org/runbot/167/10.0
+   :target: https://runbot.odoo-community.org/runbot/167/11.0
 
 
 Bug Tracker
@@ -39,6 +39,7 @@ Contributors
 
 * Camptocamp
 * Alexis de Lattre <alexis.delattre@akretion.com>
+* Serpent Consulting Services Pvt. Ltd. <support@serpentcs.com>
 
 Maintainer
 ----------
