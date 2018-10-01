@@ -14,11 +14,6 @@ msgstr ""
 "Plural-Forms: \n"
 
 #. module: sale_order_revision
-#: model:ir.model.fields,field_description:sale_order_revision.field_sale_order_active
-msgid "Active"
-msgstr ""
-
-#. module: sale_order_revision
 #: model:ir.model.fields,field_description:sale_order_revision.field_sale_order_current_revision_id
 msgid "Current revision"
 msgstr ""
