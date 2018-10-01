@@ -5,8 +5,7 @@
 Sale order line description
 ===========================
 
-This module allows to use only the product sale description on the sale order
-lines.
+This module sets to use only product's sale description field on the sale order lines, instead of "Ref+Name+Sale Description".
 
 Configuration
 =============
@@ -16,7 +15,6 @@ This is possible by selecting the related option in the following menu:
 
 * Sales --> Settings --> Quotations & Sales -->
   Allow using only the product sale description on the sales order lines
-
 
 Bug Tracker
 ===========
