@@ -1,0 +1,212 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+    License LGPL-3.0 or later (https://www.gnu.org/licenses/lgpl.html).
+-->
+<odoo>
+        <menuitem id="menu_stock_sale_forecast" name="Sales Forecasts"
+            parent="sale.sale_menu_root" sequence="2" groups="base.group_user"/>
+
+        <record model="ir.ui.view" id="sale_forecast_line_form_view">
+            <field name="name">sale.forecast.line.form</field>
+            <field name="model">sale.forecast.line</field>
+            <field name="priority" eval="50"/>
+            <field name="arch" type="xml">
+                <form string="Sale Forecast Line">
+                    <sheet>
+                        <group>
+                            <group colspan="4" col="4">
+                                <field name="forecast_id" colspan="4"/>
+                                <field name="partner_id" colspan="4"/>
+                                <field name="commercial_id" invisible="1" readonly="1"/>
+                                <field name="date" invisible="1"/>
+                            </group>
+                            <group colspan="4" col="6">
+                                <field name="product_id" colspan="3"/>
+                                <field name="product_category_id" colspan="3"/>
+                                <field name="qty"  colspan="2"/>
+                                <field name="actual_qty" colspan="2" />
+                                <field name="unit_price"  colspan="2"/>
+                                <field name="subtotal" colspan="2"/>
+                                <field name="currency_id" invisible="1" readonly="1"/>
+                            </group>
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <record model="ir.ui.view" id="sale_forecast_line_tree_view">
+            <field name="name">sale.forecast.line.tree</field>
+            <field name="model">sale.forecast.line</field>
+            <field name="priority" eval="50"/>
+            <field name="arch" type="xml">
+                <tree string="Sale Forecast Line" editable="bottom">
+                    <field name="forecast_id"/>
+                    <field name="product_id"/>
+                    <field name="product_category_id"/>
+                    <field name="partner_id"/>
+                    <field name="date_from" />
+                    <field name="date_to"/>
+                    <field name="unit_price"/>
+                    <field name="qty" sum="Total Qty"/>
+                    <field name="actual_qty" sum="Total Actual Qty" />
+                    <field name="subtotal" sum="Total"/>
+                    <field name="commercial_id" invisible="1"/>
+                    <field name="currency_id" invisible="1"/>
+                </tree>
+            </field>
+        </record>
+
+        <record model="ir.ui.view" id="sale_forecast_line_tree_editable_view">
+            <field name="name">sale.forecast.line.editable.tree</field>
+            <field name="model">sale.forecast.line</field>
+            <field name="arch" type="xml">
+                <tree string="Sale Forecast Line" editable="bottom">
+                    <field name="date" invisible="1"/>
+                    <field name="partner_id"/>
+                    <field name="commercial_id" invisible="1" readonly="1"/>
+                    <field name="product_id" attrs="{'readonly':[('product_category_id', '!=', False)], 'required':[('product_category_id', '=', False)]}"/>
+                    <field name="product_category_id" attrs="{'readonly':[('product_id', '!=', False)], 'required':[('product_id', '=', False)]}"/>
+                    <field name="qty" sum="Total Qty"/>
+                    <field name="actual_qty" sum="Total Actual Qty" />
+                    <field name="unit_price"/>
+                    <field name="subtotal" sum="Total"/>
+                    <field name="currency_id" invisible="1" readonly="1"/>
+                </tree>
+            </field>
+        </record>
+
+        <record model="ir.ui.view" id="sale_forecast_line_search_view">
+            <field name="name">sale.forecast.line.search</field>
+            <field name="model">sale.forecast.line</field>
+            <field name="arch" type="xml">
+                <search string="Sale Forecast Line Search">
+                    <field name="forecast_id" />
+                    <field name="partner_id" />
+                    <field name="date" invisible="1" />
+                    <field name="product_id" />
+                    <field name="product_category_id" />
+                    <group expand="0" string="Group By">
+                        <filter string="Forecast" name="forecast_id" context="{'group_by':'forecast_id'}" />
+                        <filter string="Partner" name="partner_id" context="{'group_by':'partner_id'}" />
+                        <filter string="Date" name= "date" context="{'group_by':'date'}" />
+                        <filter string="Product" name="product_id" context="{'group_by':'product_id'}" />
+                        <filter string="Product category" name="product_category_id" context="{'group_by':'product_category_id'}" />
+                    </group>
+                </search>
+            </field>
+        </record>
+
+        <record id="action_view_stock_sale_forecast_line_form" model="ir.actions.act_window">
+            <field name="name">Sales Forecast Lines</field>
+            <field name="res_model">sale.forecast.line</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,pivot</field>
+        </record>
+        <record id="view_stock_sale_forecast_line_tree" model="ir.actions.act_window.view">
+            <field eval="1" name="sequence"/>
+            <field name="view_mode">tree</field>
+            <field name="view_id" ref="sale_forecast_line_tree_view"/>
+            <field name="act_window_id" ref="action_view_stock_sale_forecast_line_form"/>
+        </record>
+        <record id="view_stock_sale_forecast_line_form" model="ir.actions.act_window.view">
+            <field eval="2" name="sequence"/>
+            <field name="view_mode">form</field>
+            <field name="view_id" ref="sale_forecast_line_form_view"/>
+            <field name="act_window_id" ref="action_view_stock_sale_forecast_line_form"/>
+        </record>
+        <record id="view_sale_forecast_line_pivot" model="ir.ui.view">
+        <field name="name">view.sale_forecast_line_pivot</field>
+        <field name="model">sale.forecast.line</field>
+        <field name="arch" type="xml">
+        <pivot string="Pivot view">
+          <field name="product_id" type="row" />
+          <field name="date_to" type="col" />
+          <field name="qty" type="measure" />
+          <field name="actual_qty" type="measure" />
+        </pivot>
+        </field>
+        </record>
+        <record model="ir.ui.view" id="sale_forecast_form_view">
+            <field name="name">sale.forecast.form</field>
+            <field name="model">sale.forecast</field>
+            <field name="arch" type="xml">
+                <form string="Sale Forecast">
+                    <header>
+                        <button name="%(action_sale_forecast_load_view)d" type="action" string="Load Sales"  groups="sales_team.group_sale_manager"/>
+                        <button name="%(action_load_sale_forecast_act_window)d" type="action" string="Load Sale Forecast"  groups="sales_team.group_sale_manager"/>
+
+                    </header>
+                    <sheet>
+                      <div class="oe_button_box" name="button_box">
+                      </div>
+                      <div class="oe_title">
+                        <h1>
+                          <field name="name" placeholder="Nombre"/>
+                        </h1>
+                      </div>
+
+                        <group>
+                            <group colspan="4" col="4">
+                                <field name="date_from" />
+                                <field name="date_to"/>
+                            </group>
+                            <group colspan="4" col="4" string="Lines">
+                                <field name="forecast_lines" colspan="4" nolabel="1"/>
+                                <button name="recalculate_actual_qty" string="Recalculate actual qty" type="object"/>
+                            </group>
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <record model="ir.ui.view" id="sale_forecast_tree_view">
+            <field name="name">sale.forecast.tree</field>
+            <field name="model">sale.forecast</field>
+            <field name="priority" eval="50"/>
+            <field name="arch" type="xml">
+                <tree string="Sale Forecast">
+                    <field name="name"/>
+                    <field name="date_from" />
+                    <field name="date_to"/>
+                </tree>
+            </field>
+        </record>
+
+        <record model="ir.ui.view" id="sale_forecast_search_view">
+            <field name="name">sale.forecast.search</field>
+            <field name="model">sale.forecast</field>
+            <field name="arch" type="xml">
+                <search string="Sale Forecast Search">
+                    <field name="name"/>
+                    <field name="date_from" />
+                    <field name="date_to" />
+                    <group expand="0" string="Group By">
+                        <filter string="Partner" domain="[]"
+                            name="partner_id"
+                            context="{'group_by':'partner_id'}" />
+                        <filter string="Date from "
+                            name="date_from"
+                            domain="[]" context="{'group_by':'date_from'}" />
+                    </group>
+                </search>
+            </field>
+        </record>
+
+        <record id="action_view_stock_sale_forecast_form" model="ir.actions.act_window">
+            <field name="name">Sales Forecast</field>
+            <field name="res_model">sale.forecast</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+
+
+        <menuitem id="menu_stock_sale_forecast_all" name="Sales Forecasts"
+            parent="menu_stock_sale_forecast" action="action_view_stock_sale_forecast_form"
+            groups="base.group_user"/>
+        <menuitem id="menu_stock_sale_forecast_lines" name="Sales Forecast Lines"
+            parent="menu_stock_sale_forecast" action="action_view_stock_sale_forecast_line_form"
+            groups="base.group_user"/>
+
+</odoo>
