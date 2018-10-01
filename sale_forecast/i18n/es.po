@@ -1,0 +1,351 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+#	* sale_forecast
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 11.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2018-09-05 10:58+0000\n"
+"PO-Revision-Date: 2018-09-05 10:58+0000\n"
+"Last-Translator: <>\n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: sale_forecast
+#: model:ir.model.fields,field_description:sale_forecast.field_sale_forecast_line_actual_qty
+msgid "Actual Qty"
+msgstr "Cantidad real"
+
+#. module: sale_forecast
+#: model:ir.ui.view,arch_db:sale_forecast.load_self_sale_forecast_wizard
+#: model:ir.ui.view,arch_db:sale_forecast.sale_forecast_load_form_view
+msgid "Cancel"
+msgstr "Cancelar"
+
+#. module: sale_forecast
+#: model:ir.model.fields,field_description:sale_forecast.field_sale_forecast_load_product_categ_id
+msgid "Category"
+msgstr "Categoría"
+
+#. module: sale_forecast
+#: model:ir.model.fields,field_description:sale_forecast.field_sale_forecast_line_commercial_id
+msgid "Commercial"
+msgstr "Comercial"
+
+#. module: sale_forecast
+#: model:ir.ui.view,arch_db:sale_forecast.load_self_sale_forecast_wizard
+msgid "Confirm"
+msgstr "Confirmar"
+
+#. module: sale_forecast
+#: model:ir.model.fields,field_description:sale_forecast.field_sale_forecast_create_uid
+#: model:ir.model.fields,field_description:sale_forecast.field_sale_forecast_line_create_uid
+#: model:ir.model.fields,field_description:sale_forecast.field_sale_forecast_load_create_uid
+#: model:ir.model.fields,field_description:sale_forecast.field_self_sale_forecast_load_create_uid
+msgid "Created by"
+msgstr "Creado por"
+
+#. module: sale_forecast
+#: model:ir.model.fields,field_description:sale_forecast.field_sale_forecast_create_date
+#: model:ir.model.fields,field_description:sale_forecast.field_sale_forecast_line_create_date
+#: model:ir.model.fields,field_description:sale_forecast.field_sale_forecast_load_create_date
+#: model:ir.model.fields,field_description:sale_forecast.field_self_sale_forecast_load_create_date
+msgid "Created on"
+msgstr "Creado en"
+
+#. module: sale_forecast
+#: model:ir.model.fields,field_description:sale_forecast.field_sale_forecast_line_currency_id
+msgid "Currency"
+msgstr "Moneda"
+
+#. module: sale_forecast
+#: model:ir.model.fields,field_description:sale_forecast.field_sale_forecast_line_date
+#: model:ir.ui.view,arch_db:sale_forecast.sale_forecast_line_search_view
+msgid "Date"
+msgstr "Fecha"
+
+#. module: sale_forecast
+#: model:ir.model.fields,field_description:sale_forecast.field_sale_forecast_date_from
+msgid "Date From"
+msgstr "Fecha desde"
+
+#. module: sale_forecast
+#: model:ir.model.fields,field_description:sale_forecast.field_sale_forecast_date_to
+msgid "Date To"
+msgstr "Fecha hasta"
+
+#. module: sale_forecast
+#: model:ir.model.fields,field_description:sale_forecast.field_sale_forecast_line_date_from
+#: model:ir.model.fields,field_description:sale_forecast.field_sale_forecast_load_date_from
+#: model:ir.ui.view,arch_db:sale_forecast.sale_forecast_search_view
+msgid "Date from"
+msgstr "Fecha desde"
+
+#. module: sale_forecast
+#: model:ir.model.fields,field_description:sale_forecast.field_sale_forecast_line_date_to
+#: model:ir.model.fields,field_description:sale_forecast.field_sale_forecast_load_date_to
+msgid "Date to"
+msgstr "Fecha hasta"
+
+#. module: sale_forecast
+#: model:ir.model.fields,field_description:sale_forecast.field_sale_forecast_display_name
+#: model:ir.model.fields,field_description:sale_forecast.field_sale_forecast_line_display_name
+#: model:ir.model.fields,field_description:sale_forecast.field_sale_forecast_load_display_name
+#: model:ir.model.fields,field_description:sale_forecast.field_self_sale_forecast_load_display_name
+msgid "Display Name"
+msgstr "Nombre mostrado"
+
+#. module: sale_forecast
+#: model:ir.model.fields,field_description:sale_forecast.field_sale_forecast_load_factor
+msgid "Factor"
+msgstr "Factor"
+
+#. module: sale_forecast
+#: model:ir.model.fields,field_description:sale_forecast.field_sale_forecast_line_forecast_id
+#: model:ir.model.fields,field_description:sale_forecast.field_sale_forecast_load_forecast_id
+#: model:ir.ui.view,arch_db:sale_forecast.sale_forecast_line_search_view
+msgid "Forecast"
+msgstr "Previsión"
+
+#. module: sale_forecast
+#: model:ir.model.fields,field_description:sale_forecast.field_sale_forecast_forecast_lines
+msgid "Forecast Lines"
+msgstr "Líneas de Previsión"
+
+#. module: sale_forecast
+#: model:ir.ui.view,arch_db:sale_forecast.sale_forecast_line_search_view
+#: model:ir.ui.view,arch_db:sale_forecast.sale_forecast_search_view
+msgid "Group By"
+msgstr "Agrupar por"
+
+#. module: sale_forecast
+#: model:ir.model.fields,field_description:sale_forecast.field_sale_forecast_id
+#: model:ir.model.fields,field_description:sale_forecast.field_sale_forecast_line_id
+#: model:ir.model.fields,field_description:sale_forecast.field_sale_forecast_load_id
+#: model:ir.model.fields,field_description:sale_forecast.field_self_sale_forecast_load_id
+msgid "ID"
+msgstr "ID"
+
+#. module: sale_forecast
+#: model:ir.model.fields,field_description:sale_forecast.field_sale_forecast___last_update
+#: model:ir.model.fields,field_description:sale_forecast.field_sale_forecast_line___last_update
+#: model:ir.model.fields,field_description:sale_forecast.field_sale_forecast_load___last_update
+#: model:ir.model.fields,field_description:sale_forecast.field_self_sale_forecast_load___last_update
+msgid "Last Modified on"
+msgstr "Última Modificación en"
+
+#. module: sale_forecast
+#: model:ir.model.fields,field_description:sale_forecast.field_sale_forecast_line_write_uid
+#: model:ir.model.fields,field_description:sale_forecast.field_sale_forecast_load_write_uid
+#: model:ir.model.fields,field_description:sale_forecast.field_sale_forecast_write_uid
+#: model:ir.model.fields,field_description:sale_forecast.field_self_sale_forecast_load_write_uid
+msgid "Last Updated by"
+msgstr "Última Actualización por"
+
+#. module: sale_forecast
+#: model:ir.model.fields,field_description:sale_forecast.field_sale_forecast_line_write_date
+#: model:ir.model.fields,field_description:sale_forecast.field_sale_forecast_load_write_date
+#: model:ir.model.fields,field_description:sale_forecast.field_sale_forecast_write_date
+#: model:ir.model.fields,field_description:sale_forecast.field_self_sale_forecast_load_write_date
+msgid "Last Updated on"
+msgstr "Última Actualización el"
+
+#. module: sale_forecast
+#: model:ir.ui.view,arch_db:sale_forecast.sale_forecast_form_view
+msgid "Lines"
+msgstr "Ventas"
+
+#. module: sale_forecast
+#: model:ir.ui.view,arch_db:sale_forecast.sale_forecast_load_form_view
+msgid "Load"
+msgstr "Cargar"
+
+#. module: sale_forecast
+#: model:ir.ui.view,arch_db:sale_forecast.sale_forecast_form_view
+msgid "Load Sale Forecast"
+msgstr "Cargar previsión de venta"
+
+#. module: sale_forecast
+#: model:ir.ui.view,arch_db:sale_forecast.sale_forecast_form_view
+#: model:ir.ui.view,arch_db:sale_forecast.sale_forecast_load_form_view
+msgid "Load Sales"
+msgstr "Cargar Ventas"
+
+#. module: sale_forecast
+#: model:ir.ui.view,arch_db:sale_forecast.load_self_sale_forecast_wizard
+msgid "Load from sale forecast"
+msgstr "Cargar previsión de venta"
+
+#. module: sale_forecast
+#: model:ir.actions.act_window,name:sale_forecast.action_load_sale_forecast_act_window
+msgid "Load sale forecast"
+msgstr "Cargar previsión de venta"
+
+#. module: sale_forecast
+#: model:ir.model,name:sale_forecast.model_self_sale_forecast_load
+msgid "Load sale forecast from existing sale forecast"
+msgstr "Cargar previsión de venta"
+
+#. module: sale_forecast
+#: model:ir.actions.act_window,name:sale_forecast.action_sale_forecast_load_view
+msgid "Load sales"
+msgstr "Cargar ventas"
+
+#. module: sale_forecast
+#: model:ir.model.fields,field_description:sale_forecast.field_sale_forecast_name
+msgid "Name"
+msgstr "Nombre"
+
+#. module: sale_forecast
+#: model:ir.ui.view,arch_db:sale_forecast.sale_forecast_form_view
+msgid "Nombre"
+msgstr "Nombre"
+
+#. module: sale_forecast
+#: model:ir.model.fields,field_description:sale_forecast.field_sale_forecast_line_partner_id
+#: model:ir.model.fields,field_description:sale_forecast.field_sale_forecast_load_partner_id
+#: model:ir.ui.view,arch_db:sale_forecast.sale_forecast_line_search_view
+#: model:ir.ui.view,arch_db:sale_forecast.sale_forecast_search_view
+msgid "Partner"
+msgstr "Cliente"
+
+#. module: sale_forecast
+#: model:ir.ui.view,arch_db:sale_forecast.view_sale_forecast_line_pivot
+msgid "Pivot view"
+msgstr "Pivot view"
+
+#. module: sale_forecast
+#: model:ir.model.fields,field_description:sale_forecast.field_sale_forecast_line_product_id
+#: model:ir.model.fields,field_description:sale_forecast.field_sale_forecast_load_product_id
+#: model:ir.ui.view,arch_db:sale_forecast.sale_forecast_line_search_view
+msgid "Product"
+msgstr "Producto"
+
+#. module: sale_forecast
+#: model:ir.model.fields,field_description:sale_forecast.field_sale_forecast_line_product_category_id
+msgid "Product Category"
+msgstr "Categoría de producto"
+
+#. module: sale_forecast
+#: model:ir.ui.view,arch_db:sale_forecast.sale_forecast_line_search_view
+msgid "Product category"
+msgstr "Categoría de producto"
+
+#. module: sale_forecast
+#: model:ir.model.fields,field_description:sale_forecast.field_sale_forecast_line_qty
+msgid "Quantity"
+msgstr "Cantidad Prevista"
+
+#. module: sale_forecast
+#: model:ir.ui.view,arch_db:sale_forecast.sale_forecast_form_view
+msgid "Recalculate actual qty"
+msgstr "Recalcular cantidad real"
+
+#. module: sale_forecast
+#: model:ir.model.fields,field_description:sale_forecast.field_sale_forecast_load_sale_id
+msgid "Sale"
+msgstr "Venta"
+
+#. module: sale_forecast
+#: model:ir.model.fields,field_description:sale_forecast.field_self_sale_forecast_load_forecast_id
+#: model:ir.model.fields,field_description:sale_forecast.field_self_sale_forecast_load_forecast_sales
+#: model:ir.ui.view,arch_db:sale_forecast.sale_forecast_form_view
+#: model:ir.ui.view,arch_db:sale_forecast.sale_forecast_tree_view
+msgid "Sale Forecast"
+msgstr "Previsión de venta"
+
+#. module: sale_forecast
+#: model:ir.ui.view,arch_db:sale_forecast.sale_forecast_line_form_view
+#: model:ir.ui.view,arch_db:sale_forecast.sale_forecast_line_tree_editable_view
+#: model:ir.ui.view,arch_db:sale_forecast.sale_forecast_line_tree_view
+msgid "Sale Forecast Line"
+msgstr "Línea de previsión de venta"
+
+#. module: sale_forecast
+#: model:ir.ui.view,arch_db:sale_forecast.sale_forecast_line_search_view
+msgid "Sale Forecast Line Search"
+msgstr "Búsqueda de línea de previsión de venta"
+
+#. module: sale_forecast
+#: model:ir.ui.view,arch_db:sale_forecast.sale_forecast_search_view
+msgid "Sale Forecast Search"
+msgstr "Búsqueda de previsión"
+
+#. module: sale_forecast
+#: model:ir.actions.act_window,name:sale_forecast.action_view_stock_sale_forecast_form
+msgid "Sales Forecast"
+msgstr "Previsión de ventas"
+
+#. module: sale_forecast
+#: model:ir.actions.act_window,name:sale_forecast.action_view_stock_sale_forecast_line_form
+#: model:ir.ui.menu,name:sale_forecast.menu_stock_sale_forecast_lines
+msgid "Sales Forecast Lines"
+msgstr "Líneas de previsión de ventas"
+
+#. module: sale_forecast
+#: model:ir.ui.menu,name:sale_forecast.menu_stock_sale_forecast
+#: model:ir.ui.menu,name:sale_forecast.menu_stock_sale_forecast_all
+msgid "Sales Forecasts"
+msgstr "Previsiones de ventas"
+
+#. module: sale_forecast
+#: model:ir.model.fields,field_description:sale_forecast.field_sale_forecast_line_subtotal
+msgid "Subtotal"
+msgstr "Subtotal"
+
+#. module: sale_forecast
+#: model:ir.model.fields,field_description:sale_forecast.field_sale_forecast_load_product_tmpl_id
+msgid "Template"
+msgstr "Plantilla"
+
+#. module: sale_forecast
+#: model:ir.model.fields,help:sale_forecast.field_sale_forecast_line_commercial_id
+msgid "The internal user that is in charge of communicating with this contact if any."
+msgstr "El usuario interno encargado de comunicarse con este contacto si lo hubiese."
+
+#. module: sale_forecast
+#: model:ir.ui.view,arch_db:sale_forecast.sale_forecast_line_tree_editable_view
+#: model:ir.ui.view,arch_db:sale_forecast.sale_forecast_line_tree_view
+msgid "Total"
+msgstr "Total"
+
+#. module: sale_forecast
+#: model:ir.ui.view,arch_db:sale_forecast.sale_forecast_line_tree_editable_view
+#: model:ir.ui.view,arch_db:sale_forecast.sale_forecast_line_tree_view
+msgid "Total Actual Qty"
+msgstr "Cantidad total real"
+
+#. module: sale_forecast
+#: model:ir.ui.view,arch_db:sale_forecast.sale_forecast_line_tree_editable_view
+#: model:ir.ui.view,arch_db:sale_forecast.sale_forecast_line_tree_view
+msgid "Total Qty"
+msgstr "Cantidad total"
+
+#. module: sale_forecast
+#: model:ir.model.fields,field_description:sale_forecast.field_sale_forecast_line_unit_price
+msgid "Unit Price"
+msgstr "Precio unitario"
+
+#. module: sale_forecast
+#: model:ir.ui.view,arch_db:sale_forecast.sale_forecast_load_form_view
+msgid "or"
+msgstr "o"
+
+#. module: sale_forecast
+#: model:ir.model,name:sale_forecast.model_sale_forecast
+msgid "sale.forecast"
+msgstr "sale.forecast"
+
+#. module: sale_forecast
+#: model:ir.model,name:sale_forecast.model_sale_forecast_line
+msgid "sale.forecast.line"
+msgstr "sale.forecast.line"
+
+#. module: sale_forecast
+#: model:ir.model,name:sale_forecast.model_sale_forecast_load
+msgid "sale.forecast.load"
+msgstr "Carga de ventas en prevision"
