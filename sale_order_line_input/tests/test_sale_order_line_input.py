@@ -20,7 +20,7 @@ class TestSaleOrderLineInput(SavepointCase):
             'order_partner_id': self.partner.id,
             'product_id': self.product.id,
             'price_unit': 190.50,
-            'product_uom': self.env.ref('product.product_uom_unit').id,
+            'product_uom': self.ref('product.decimal_product_uom'),
             'product_uom_qty': 8.0,
             'name': 'Test line description',
         })
