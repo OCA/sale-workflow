@@ -20,7 +20,7 @@ Usage
 Sales -> Sale Forecast
 
 Contributors
-------------
+============
 
 * Carlos Martínez <carlos@domatix.com>
 * Nacho Serra <nacho.serra@domatix.com>
