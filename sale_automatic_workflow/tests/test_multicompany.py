@@ -134,7 +134,9 @@ class TestMultiCompany(TransactionCase):
             'company_id': self.company_be.id,
             'type': 'many2one',
             'fields_id': self.env.ref(
-                'account.field_res_partner_property_account_receivable_id').id,
+                'stock_account'
+                '.field_account_chart_template__property_account_receivable_id'
+            ).id,
             'value': accounting_be['receivable']
         })
         self.env['ir.property'].create({
@@ -142,7 +144,9 @@ class TestMultiCompany(TransactionCase):
             'company_id': self.company_be.id,
             'type': 'many2one',
             'fields_id': self.env.ref(
-                'account.field_res_partner_property_account_payable_id').id,
+                'stock_account'
+                '.field_account_chart_template__property_account_receivable_id'
+            ).id,
             'value': accounting_be['payable']
         })
         self.env['ir.property'].create({
@@ -174,7 +178,7 @@ class TestMultiCompany(TransactionCase):
     def create_auto_wkf_order(self, company, customer, product, qty):
         SaleOrder = self.env['sale.order']
 
-        self.product_uom_unit = self.env.ref('product.product_uom_unit')
+        self.product_uom_unit = self.env.ref('uom.product_uom_unit')
 
         order = SaleOrder.create({
             'partner_id': customer.id,
