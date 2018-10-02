@@ -21,5 +21,6 @@ class ProductSet(models.Model):
     )
     image = fields.Binary(
         string='Image',
+        attachment=True,
         help='Select an image to display for the product set'
     )
