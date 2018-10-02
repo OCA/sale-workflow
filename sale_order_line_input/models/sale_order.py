@@ -15,14 +15,14 @@ class SaleOrderLine(models.Model):
     @api.model
     def create(self, vals):
         if not vals.get('order_id', False):
-            SaleOrder = self.env['sale.order']
-            new_so = SaleOrder.new({
+            sale_order = self.env['sale.order']
+            new_so = sale_order.new({
                 'partner_id': vals.pop('order_partner_id'),
             })
             for onchange_method in new_so._onchange_methods['partner_id']:
                 onchange_method(new_so)
             order_data = new_so._convert_to_write(new_so._cache)
-            vals['order_id'] = SaleOrder.create(order_data).id
+            vals['order_id'] = sale_order.create(order_data).id
         return super().create(vals)
 
     @api.multi
