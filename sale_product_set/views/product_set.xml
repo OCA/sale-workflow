@@ -18,18 +18,27 @@
         <field name="type">form</field>
         <field name="priority" eval="8"/>
         <field name="arch" type="xml">
-        <form string="Product set" version="7.0">
+        <form string="Product set">
             <sheet>
                 <group>
-                    <field name="name" select="1"/>
-                    <field name="set_line_ids">
-                        <tree string="Product set lines" editable="top">
-                            <field name="sequence" widget="handle"/>
-                            <field name="product_id"/>
-                            <field name="quantity"/>
-                        </tree>
-                    </field>
+                    <group>
+                        <field name="name" select="1"/>
+                    </group>
+                    <group>
+                        <field name="image" widget="image" class="oe_avatar oe_right" nolabel="1"/>
+                    </group>
                 </group>
+                <notebook>
+                    <page string="Product set lines">
+                        <field name="set_line_ids">
+                            <tree string="Product set lines" editable="top">
+                                <field name="sequence" widget="handle"/>
+                                <field name="product_id"/>
+                                <field name="quantity"/>
+                            </tree>
+                        </field>
+                    </page>
+                </notebook>
             </sheet>
         </form>
         </field>
