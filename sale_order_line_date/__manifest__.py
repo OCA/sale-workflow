@@ -18,7 +18,7 @@
     "license": "AGPL-3",
     # sale_order_dates became part of the sale module in 12.0
     "depends": [
-        "sale",
+        "sale_management",
     ],
     "data": [
         "views/sale_order_view.xml",
