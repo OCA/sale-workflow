@@ -60,8 +60,19 @@ class TestAutomaticWorkflow(TestAutomaticWorkflowBase):
 
     def test_invoice_from_picking_with_service_product(self):
         workflow = self.create_full_automatic()
-        product_service = self.env.ref('product.service_order_01')
-        product_uom_hour = self.env.ref('product.product_uom_hour')
+        product_service = self.env['product.product'].create({
+            'name': 'Remodeling Service',
+            'categ_id': self.env.ref('product.product_category_3').id,
+            'standard_price': 40.0,
+            'list_price': 90.0,
+            'type': 'service',
+            'uom_id': self.env.ref('uom.product_uom_hour').id,
+            'uom_po_id': self.env.ref('uom.product_uom_hour').id,
+            'description': 'Example of product to invoice on order',
+            'default_code': 'PRE-PAID',
+            'invoice_policy': 'order',
+        })
+        product_uom_hour = self.env.ref('uom.product_uom_hour')
         override = {
             'order_line': [(0, 0, {
                 'name': 'Prepaid Consulting',
