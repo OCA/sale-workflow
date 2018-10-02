@@ -63,6 +63,11 @@ msgid "ID"
 msgstr ""
 
 #. module: sale_product_set
+#: model:ir.model.fields,field_description:sale_product_set.field_product_set_image
+msgid "Image"
+msgstr ""
+
+#. module: sale_product_set
 #: model:ir.model.fields,field_description:sale_product_set.field_product_set___last_update
 #: model:ir.model.fields,field_description:sale_product_set.field_product_set_add___last_update
 #: model:ir.model.fields,field_description:sale_product_set.field_product_set_line___last_update
@@ -128,6 +133,11 @@ msgstr ""
 #: model:ir.model.fields,field_description:sale_product_set.field_product_set_add_quantity
 #: model:ir.model.fields,field_description:sale_product_set.field_product_set_line_quantity
 msgid "Quantity"
+msgstr ""
+
+#. module: sale_product_set
+#: model:ir.model.fields,help:sale_product_set.field_product_set_image
+msgid "Select an image to display for the product set"
 msgstr ""
 
 #. module: sale_product_set
