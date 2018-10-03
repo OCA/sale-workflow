@@ -27,6 +27,7 @@ addon | version | summary
 [sale_cancel_reason](sale_cancel_reason/) | 10.0.1.0.0 | Sale Cancel Reason
 [sale_commercial_partner](sale_commercial_partner/) | 10.0.1.0.1 | Add stored related field 'Commercial Entity' on sale orders
 [sale_company_currency](sale_company_currency/) | 10.0.1.0.0 | Company currency in sale orders
+[sale_delivery_split_date](sale_delivery_split_date/) | 10.0.1.0.0 | Sale Deliveries split by date
 [sale_discount_display_amount](sale_discount_display_amount/) | 10.0.1.0.0 | This addon intends to display the amount of the discount computed on sale_order_line and sale_order level
 [sale_exception](sale_exception/) | 10.0.2.0.0 | Custom exceptions on sale order
 [sale_force_invoiced](sale_force_invoiced/) | 10.0.1.0.0 | Allows to force the invoice status of the sales order to Invoiced
