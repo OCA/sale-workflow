@@ -16,6 +16,7 @@ setuptools.setup(
         'odoo10-addon-sale_cancel_reason',
         'odoo10-addon-sale_commercial_partner',
         'odoo10-addon-sale_company_currency',
+        'odoo10-addon-sale_delivery_split_date',
         'odoo10-addon-sale_discount_display_amount',
         'odoo10-addon-sale_exception',
         'odoo10-addon-sale_force_invoiced',
