@@ -1,0 +1,38 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* sale_stock_picking_note
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 11.0c\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2018-06-12 10:34+0200\n"
+"PO-Revision-Date: 2018-06-12 10:35+0200\n"
+"Last-Translator: Carlos Dauden <carlos.dauden@tecnativa.com>\n"
+"Language-Team: \n"
+"Language: es\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"X-Generator: Poedit 1.8.7.1\n"
+
+#. module: sale_stock_picking_note
+#: model:ir.ui.view,arch_db:sale_stock_picking_note.view_picking_form
+msgid "Notes"
+msgstr "Notas"
+
+#. module: sale_stock_picking_note
+#: model:ir.model.fields,field_description:sale_stock_picking_note.field_sale_order_picking_note
+msgid "Picking Note"
+msgstr "Nota albarán"
+
+#. module: sale_stock_picking_note
+#: model:ir.model,name:sale_stock_picking_note.model_sale_order
+msgid "Quotation"
+msgstr "Presupuesto"
+
+#. module: sale_stock_picking_note
+#: model:ir.model,name:sale_stock_picking_note.model_stock_move
+msgid "Stock Move"
+msgstr "Movimiento de existencias"
