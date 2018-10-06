@@ -31,6 +31,7 @@ setuptools.setup(
         'odoo11-addon-sale_product_set_variant',
         'odoo11-addon-sale_quotation_number',
         'odoo11-addon-sale_start_end_dates',
+        'odoo11-addon-sale_stock_picking_note',
     ],
     classifiers=[
         'Programming Language :: Python',
