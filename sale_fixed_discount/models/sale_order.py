@@ -1,5 +1,4 @@
-# -*- coding: utf-8 -*-
-# Copyright 2017 Eficent Business and IT Consulting Services S.L.
+# Copyright 2017-18 Eficent Business and IT Consulting Services S.L.
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
 from odoo import api, fields, models, _
@@ -48,12 +47,12 @@ class SaleOrderLine(models.Model):
         if self.discount_fixed:
             self.discount = 0.0
 
-    @api.one
     @api.constrains('discount', 'discount_fixed')
     def _check_only_one_discount(self):
-        if self.discount and self.discount_fixed:
-            raise ValidationError(
-                _("You can only set one type of discount per line."))
+        for line in self:
+            if line.discount and line.discount_fixed:
+                raise ValidationError(
+                    _("You can only set one type of discount per line."))
 
     @api.depends('product_uom_qty', 'discount', 'price_unit', 'tax_id',
                  'discount_fixed')
