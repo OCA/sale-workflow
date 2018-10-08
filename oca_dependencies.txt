@@ -1,3 +1,4 @@
 server-tools
 bank-payment
 account-invoicing https://github.com/espo-tony/account-invoicing 11_add_account_invoice_discount_formula
+account-closing
