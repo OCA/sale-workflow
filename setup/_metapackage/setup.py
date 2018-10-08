@@ -19,6 +19,7 @@ setuptools.setup(
         'odoo10-addon-sale_delivery_split_date',
         'odoo10-addon-sale_discount_display_amount',
         'odoo10-addon-sale_exception',
+        'odoo10-addon-sale_fixed_discount',
         'odoo10-addon-sale_force_invoiced',
         'odoo10-addon-sale_invoice_group_method',
         'odoo10-addon-sale_isolated_quotation',
