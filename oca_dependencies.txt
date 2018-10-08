@@ -2,3 +2,4 @@ server-tools
 bank-payment
 account-closing
 product-attribute
+account-invoicing
