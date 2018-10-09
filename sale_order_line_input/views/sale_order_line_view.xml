@@ -5,8 +5,10 @@
     <record id="view_sales_order_line_input_tree" model="ir.ui.view">
         <field name="name">sale.order.line.input.tree.</field>
         <field name="model">sale.order.line</field>
-        <field name="priority">20</field>
+        <field name="inherit_id" ref="sale.view_order_line_tree"/>
+        <field name="priority">1</field>
         <field name="arch" type="xml">
+          <tree position="replace">
             <tree string="Sales Orders Lines"
                   decoration-info="invoice_status=='to invoice'" decoration-warning="state=='draft'" decoration-muted="state=='cancel'" decoration-success="state=='done'"
                   editable="top" create="true">
@@ -22,6 +24,7 @@
                        options='{"always_reload": True}'
                        required="1"
                        attrs="{'readonly': [('order_partner_id', '!=', False), ('order_id', '!=', False)]}"/>
+                <field name="salesman_id" invisible="1"/>
                 <field name="product_id"
                        attrs="{'readonly': [('product_updatable', '=', False)]}"
                        force_save="1"
@@ -64,6 +67,7 @@
                 <field name="pricelist_id" invisible="1"/>
                 <field name="company_id" invisible="1"/>
             </tree>
+          </tree>
         </field>
     </record>
 
