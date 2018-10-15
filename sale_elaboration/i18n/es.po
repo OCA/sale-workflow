@@ -1,0 +1,160 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* sale_elaboration
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 11.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2018-10-18 11:57+0000\n"
+"PO-Revision-Date: 2018-10-18 13:58+0200\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"Language: es\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"X-Generator: Poedit 2.0.6\n"
+
+#. module: sale_elaboration
+#: model:ir.ui.view,arch_db:sale_elaboration.view_sales_order_line_filter
+msgid "After Date"
+msgstr ""
+
+#. module: sale_elaboration
+#: sql_constraint:product.elaboration:0
+msgid "Code must be unique!"
+msgstr "El código debe ser único."
+
+#. module: sale_elaboration
+#: model:ir.model.fields,field_description:sale_elaboration.field_product_elaboration_create_uid
+msgid "Created by"
+msgstr "Creado por"
+
+#. module: sale_elaboration
+#: model:ir.model.fields,field_description:sale_elaboration.field_product_elaboration_create_date
+msgid "Created on"
+msgstr "Creado el"
+
+#. module: sale_elaboration
+#: model:ir.model.fields,field_description:sale_elaboration.field_product_elaboration_display_name
+msgid "Display Name"
+msgstr "Nombre a mostrar"
+
+#. module: sale_elaboration
+#: model:ir.model.fields,field_description:sale_elaboration.field_sale_order_line_elaboration_id
+#: model:ir.ui.view,arch_db:sale_elaboration.elaboration_view_search
+#: model:ir.ui.view,arch_db:sale_elaboration.view_sales_order_line_filter
+msgid "Elaboration"
+msgstr "Elaboración"
+
+#. module: sale_elaboration
+#: model:ir.model.fields,field_description:sale_elaboration.field_sale_order_line_elaboration_note
+msgid "Elaboration Note"
+msgstr "Nota de elaboración"
+
+#. module: sale_elaboration
+#: model:ir.ui.view,arch_db:sale_elaboration.elaboration_view_form
+#: model:ir.ui.view,arch_db:sale_elaboration.elaboration_view_tree
+#: model:ir.ui.view,arch_db:sale_elaboration.report_elaboration_view_tree
+msgid "Elaborations"
+msgstr "Elaboraciones"
+
+#. module: sale_elaboration
+#: model:ir.ui.view,arch_db:sale_elaboration.elaboration_view_search
+msgid "Elaborations Search"
+msgstr "Buscar elaboración:"
+
+#. module: sale_elaboration
+#: model:ir.model.fields,field_description:sale_elaboration.field_product_elaboration_id
+msgid "ID"
+msgstr "ID (identificación)"
+
+#. module: sale_elaboration
+#: model:ir.model.fields,field_description:sale_elaboration.field_sale_order_line_is_elaboration
+#: model:ir.ui.view,arch_db:sale_elaboration.view_sales_order_line_filter
+msgid "Is Elaboration"
+msgstr "Es elaboración"
+
+#. module: sale_elaboration
+#: model:ir.model.fields,field_description:sale_elaboration.field_product_elaboration___last_update
+msgid "Last Modified on"
+msgstr "Última modificación el"
+
+#. module: sale_elaboration
+#: model:ir.model.fields,field_description:sale_elaboration.field_product_elaboration_write_uid
+msgid "Last Updated by"
+msgstr "Última modificación por"
+
+#. module: sale_elaboration
+#: model:ir.model.fields,field_description:sale_elaboration.field_product_elaboration_write_date
+msgid "Last Updated on"
+msgstr "Última actualización el"
+
+#. module: sale_elaboration
+#: model:ir.model.fields,field_description:sale_elaboration.field_product_elaboration_name
+msgid "Name"
+msgstr "Nombre"
+
+#. module: sale_elaboration
+#: sql_constraint:product.elaboration:0
+msgid "Name must be unique!"
+msgstr "¡El nombre debe ser único!"
+
+#. module: sale_elaboration
+#: model:ir.model,name:sale_elaboration.model_stock_move_line
+msgid "Packing Operation"
+msgstr ""
+
+#. module: sale_elaboration
+#: model:ir.model.fields,field_description:sale_elaboration.field_product_elaboration_product_id
+msgid "Product"
+msgstr "Producto"
+
+#. module: sale_elaboration
+#: model:ir.model,name:sale_elaboration.model_sale_order
+msgid "Quotation"
+msgstr "Presupuesto"
+
+#. module: sale_elaboration
+#: model:ir.actions.act_window,name:sale_elaboration.sale_elaboration_action_form
+#: model:ir.ui.menu,name:sale_elaboration.menu_sale_elaboration
+msgid "Sale Elaboration"
+msgstr "Elaboraciones de venta"
+
+#. module: sale_elaboration
+#: model:ir.actions.act_window,name:sale_elaboration.sale_elaboration_report_action
+#: model:ir.ui.menu,name:sale_elaboration.menu_sale_elaboration_report
+msgid "Sale Elaboration Report"
+msgstr "Informe de elaboraciones"
+
+#. module: sale_elaboration
+#: model:ir.model,name:sale_elaboration.model_sale_order_line
+msgid "Sales Order Line"
+msgstr "Líneas de pedido"
+
+#. module: sale_elaboration
+#: model:ir.model.fields,field_description:sale_elaboration.field_product_elaboration_code
+msgid "Short Code"
+msgstr "Nombre corto"
+
+#. module: sale_elaboration
+#: model:ir.model,name:sale_elaboration.model_stock_move
+msgid "Stock Move"
+msgstr ""
+
+#. module: sale_elaboration
+#: model:ir.model,name:sale_elaboration.model_stock_picking
+msgid "Transfer"
+msgstr "Transferir"
+
+#. module: sale_elaboration
+#: model:ir.model,name:sale_elaboration.model_elaboration
+msgid "elaboration"
+msgstr "Elaboración"
+
+#. module: sale_elaboration
+#: model:ir.model,name:sale_elaboration.model_product_elaboration
+msgid "product.elaboration"
+msgstr "Elaboración"
