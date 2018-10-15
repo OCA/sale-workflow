@@ -32,7 +32,7 @@ class SaleForecastLine(models.Model):
 
     @api.multi
     @api.depends('unit_price', 'qty')
-    def _get_subtotal(self):
+    def _compute_subtotal(self):
         for record in self:
             record.subtotal = record.unit_price * record.qty
 
@@ -48,7 +48,7 @@ class SaleForecastLine(models.Model):
                        digits=dp.get_precision('Product Unit of Measure'))
     unit_price = fields.Float('Unit Price',
                               digits=dp.get_precision('Product Price'))
-    subtotal = fields.Float('Subtotal', compute=_get_subtotal, store=True,
+    subtotal = fields.Float('Subtotal', compute=_compute_subtotal, store=True,
                             digits=dp.get_precision('Product Price'))
     partner_id = fields.Many2one("res.partner", string="Partner")
     commercial_id = fields.Many2one(comodel_name="res.users",

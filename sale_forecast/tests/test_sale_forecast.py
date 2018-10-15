@@ -15,6 +15,7 @@ class TestSaleForecastFlow(common.TransactionCase):
         self.so_model = self.env['sale.order']
         self.sf_model = self.env['sale.forecast']
         self.sf_line_model = self.env['sale.forecast.line']
+        self.sf_load_model = self.env['sale.forecast.load']
         self.po_line_model = self.env['sale.order.line']
         self.res_partner_model = self.env['res.partner']
         self.product_tmpl_model = self.env['product.template']
@@ -55,9 +56,10 @@ class TestSaleForecastFlow(common.TransactionCase):
 
     def test_sale_forecast_load_sales(self):
         """ Test sale forecast flow."""
-        uom_id = self.product_uom_model.search([('name', '=', 'Unit(s)')])[0]
+        uom_id = self.product_uom_model.search([
+            ('name', '=', 'Unit(s)')], limit=1)
         pricelist = self.pricelist_model.search([
-            ('name', '=', 'Public Pricelist')])[0]
+            ('name', '=', 'Public Pricelist')], limit=1)
 
         so_vals = {
             'partner_id': self.partner_agrolite.id,
@@ -140,7 +142,7 @@ class TestSaleForecastFlow(common.TransactionCase):
             "active_id": sf.id
             }
 
-        load_sales_wizard = self.env['sale.forecast.load'].with_context(
+        load_sales_wizard = self.sf_load_model.with_context(
             context).create(
             {
                 'factor': 3,
@@ -158,7 +160,7 @@ class TestSaleForecastFlow(common.TransactionCase):
             30,
             'Lines are not grouped proper.')
 
-        load_sales_wizard_partner = self.env['sale.forecast.load'].\
+        load_sales_wizard_partner = self.sf_load_model.\
             with_context(context).create(
                 {
                     'factor': 3,
