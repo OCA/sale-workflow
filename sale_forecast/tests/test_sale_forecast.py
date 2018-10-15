@@ -28,12 +28,12 @@ class TestSaleForecastFlow(common.TransactionCase):
         self.categ_id = self.categ_model.create({
             'name': 'Sale Forecast'
         })
-        self.productsf = self.env['product.product'].create({
+        self.productsf = self.product_model.create({
             'name': 'Product Sale Forecast',
             'type': 'product',
             'categ_id': self.categ_id.id,
         })
-        self.productsf2 = self.env['product.product'].create({
+        self.productsf2 = self.product_model.create({
             'name': 'Product Sale Forecast2',
             'type': 'product',
             'categ_id': self.categ_id.id,
@@ -42,12 +42,12 @@ class TestSaleForecastFlow(common.TransactionCase):
         self.categ_id2 = self.categ_model.create({
             'name': 'Sale Forecast 2'
         })
-        self.productsf3 = self.env['product.product'].create({
+        self.productsf3 = self.product_model.create({
             'name': 'Product Sale Forecast',
             'type': 'product',
             'categ_id': self.categ_id2.id,
         })
-        self.productsf4 = self.env['product.product'].create({
+        self.productsf4 = self.product_model.create({
             'name': 'Product Sale Forecast2',
             'type': 'product',
             'categ_id': self.categ_id2.id,
@@ -115,7 +115,6 @@ class TestSaleForecastFlow(common.TransactionCase):
             'name': 'Test 1',
             'date_from': date.today() + relativedelta(years=2),
             'date_to': date.today() + relativedelta(years=1),
-
         }
         with self.assertRaises(ValidationError):
             self.sf_model.create(sf_vals)
@@ -123,7 +122,6 @@ class TestSaleForecastFlow(common.TransactionCase):
             'name': 'Test 1',
             'date_from': date.today() + relativedelta(years=1),
             'date_to': date.today() + relativedelta(years=2),
-
         }
         self.sf_model.create(sf_vals)
 

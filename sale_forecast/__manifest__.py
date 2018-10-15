@@ -11,17 +11,17 @@
     "contributors": [
         "Oihane Crucelaegui <oihanecrucelaegi@avanzosc.es>",
         "Ainara Galdona <ainaragaldona@avanzosc.es>",
-        "Pedro M. Baeza <pedro.baeza@serviciosbaeza.com>",
+        "Pedro M. Baeza <pedro.baeza@tecnativa.com>",
         "Ana Juaristi <anajuaristi@avanzosc.es>",
         "Daniel Campos <danielcampos@avanzosc.es>",
     ],
     "depends": [
-        "product",
-        "sale_stock",
+        "base",
     ],
-    "data": ["security/ir.model.access.csv",
-             "wizard/sale_forecast_load_view.xml",
-             "views/sale_view.xml",
-             ],
+    "data": [
+        "security/ir.model.access.csv",
+        "wizard/sale_forecast_load_view.xml",
+        "views/sale_view.xml",
+    ],
     "installable": True,
 }
