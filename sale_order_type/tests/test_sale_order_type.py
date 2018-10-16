@@ -86,7 +86,7 @@ class TestSaleOrderType(common.TransactionCase):
         sale_type = self.sale_type
         invoice = self.invoice_model.new({'sale_type_id': sale_type.id})
         invoice.onchange_sale_type_id()
-        self.assertTrue(invoice.payment_term == sale_type.payment_term_id.id)
+        self.assertTrue(invoice.payment_term_id == sale_type.payment_term_id)
         self.assertTrue(invoice.journal_id == sale_type.journal_id)
 
     def test_invoice_onchange_partner(self):

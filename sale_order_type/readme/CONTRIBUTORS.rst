@@ -12,6 +12,7 @@
 * `Agile Business Group <https://www.agilebg.com>`_
 
   * Lorenzo Battistini <lorenzo.battistini@agilebg.com>
+  * Simone Rubino <simone.rubino@agilebg.com>
 
 * `Niboo <https://www.niboo.be/>`_
 

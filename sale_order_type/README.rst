@@ -26,7 +26,7 @@ Sale Order Type
 |badge1| |badge2| |badge3| |badge4| |badge5| 
 
 This module adds a typology for the sales orders. In each different type, you
-can define, invoicing and refunding journal, a warehouse, a sequence,
+can define: invoicing and refunding journal, a warehouse, a sequence,
 the shipping policy, the invoicing policy, a payment term, a pricelist
 and an incoterm.
 
@@ -34,6 +34,17 @@ You can see sale types as lines of business.
 
 You are able to select a sales order type by partner so that when you add a
 partner to a sales order it will get the related info to it.
+
+Rules can also be associated with sale order types.
+
+Inside each rule, you can select any number of products and/or product categories.
+
+When editing a sale order that has no type, if a product matches the product of any rule then the sale order type bound to the rule is associated to the sale order.
+If the rule does not match *by product*, product categories are checked.
+
+In the sale order form you can also find the matching order type by clicking on the button *Find by rule* placed near the *Type* field.
+
+The sale order types and the rules are inspected based on the value of their *sequence* field.
 
 **Table of contents**
 
@@ -45,16 +56,20 @@ Configuration
 
 To configure Sale Order Types you need to:
 
-#. Go to **Sales > Configuration > Sales Orders Types**
-#. Create a new sale order type with all the settings you want
+1. Go to **Sales > Configuration > Sales Orders Types**
+2. Create a new sale order type with all the settings you want
 
 Usage
 =====
 
-#. Go to **Sales > Sales Orders** and create a new sale order. Select the new
-   type you have created before and all settings will be propagated.
-#. You can also define a type for a particular partner if you go to *Sales &
-   Purchases* and set a sale order type.
+* Go to **Sales > Sales Orders** and create a new sale order. Select the new type you have created before and all settings will be propagated.
+* You can also define a type for a particular partner if you go to *Sales & Purchases* and set a sale order type.
+* You can also find the matching order type by clicking on the button *Find by rule* placed near the *Type* field
+
+Known issues / Roadmap
+======================
+
+* Manage the order of *sale.order.type.rule* similar to *product.pricelist.item* (see field *applied_on*) instead of using *sequence*.
 
 Bug Tracker
 ===========
@@ -95,6 +110,7 @@ Contributors
 * `Agile Business Group <https://www.agilebg.com>`_
 
   * Lorenzo Battistini <lorenzo.battistini@agilebg.com>
+  * Simone Rubino <simone.rubino@agilebg.com>
 
 * `Niboo <https://www.niboo.be/>`_
 

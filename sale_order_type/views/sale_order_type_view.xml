@@ -31,6 +31,11 @@
                     <group>
                         <field name="description" nolabel="1" />
                     </group>
+                    <notebook>
+                        <page string="Rules" name="rules">
+                            <field name="rule_ids" nolabel="1"/>
+                        </page>
+                    </notebook>
                 </sheet>
             </form>
         </field>
@@ -41,6 +46,7 @@
         <field name="model">sale.order.type</field>
         <field name="arch" type="xml">
             <tree string="Type">
+                <field name="sequence" widget="handle"/>
                 <field name="name"/>
                 <field name="warehouse_id"/>
                 <field name="sequence_id"/>
