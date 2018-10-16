@@ -8,7 +8,7 @@
 
 {
     "name": "Sale Order Type",
-    "version": "10.0.1.0.1",
+    "version": "10.0.1.1.0",
     "category": "Sales Management",
     "author": "Grupo Vermon,"
               "AvanzOSC,"
@@ -19,8 +19,7 @@
     "website": "https://github.com/OCA/sale-workflow",
     "license": "AGPL-3",
     "depends": [
-        'sale_stock',
-        'account',
+        'sale_stock'
     ],
     "demo": [
         "demo/sale_order_demo.xml",
@@ -30,6 +29,7 @@
         "security/security.xml",
         "views/sale_order_view.xml",
         "views/sale_order_type_view.xml",
+        "views/sale_order_type_rule_view.xml",
         "views/account_invoice_view.xml",
         "views/res_partner_view.xml",
         "data/default_type.xml",
