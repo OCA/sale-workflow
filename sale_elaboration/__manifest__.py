@@ -20,5 +20,6 @@
         'views/sale_elaboration_views.xml',
         'views/sale_order_views.xml',
         'views/sale_elaboration_report_views.xml',
+        'reports/report_deliveryslip.xml',
     ],
 }
