@@ -21,8 +21,6 @@ class SaleOrderLine(models.Model):
                 ('name', '=', line.order_id.partner_id.id),
             ], limit=1)
             line.product_customer_code = code_id.product_code or ''
-            if code_id.product_name:
-                line.name = code_id.product_name
 
     product_customer_code = fields.Char(
         compute='_compute_get_product_customer_code',
