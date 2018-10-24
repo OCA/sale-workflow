@@ -6,7 +6,7 @@
     "version": "11.0.1.0.0",
     "summary": "Loads in every sale order line the customer code defined "
                "in the product",
-    "author": "Agile Business Group,Odoo Community Association (OCA)",
+    "author": "Agile Business Group,Vauxoo,Odoo Community Association (OCA)",
     "website": "https://github.com/OCA/sale-workflow/tree/11.0/product_supplierinfo_for_customer_sale", # noqa
     "category": "Sales Management",
     "license": "AGPL-3",
