@@ -66,9 +66,6 @@ class TestProductSupplierinfoForCustomerSale(common.TransactionCase):
             line.product_customer_code, self.supplierinfo.product_code,
             "Error: Customer product code was not passed to sale order line")
         self.assertEqual(
-            line.name, self.supplierinfo.product_name,
-            "Error: Customer product name was not passed to sale order line")
-        self.assertEqual(
             line.product_uom_qty, self.supplierinfo.min_qty,
             "Error: Min qty was not passed to the sale order line")
         self.assertEqual(
