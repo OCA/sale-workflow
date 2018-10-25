@@ -60,11 +60,6 @@ msgid "Exception Rules"
 msgstr ""
 
 #. module: sale_exception
-#: model:ir.ui.menu,name:sale_exception.menu_sale_exception_parent
-msgid "Exceptions"
-msgstr ""
-
-#. module: sale_exception
 #: model:ir.model.fields,field_description:sale_exception.field_sale_exception_confirm_id
 msgid "ID"
 msgstr "מזהה"
