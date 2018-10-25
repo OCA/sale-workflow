@@ -10,7 +10,7 @@
     <menuitem action="sale_invoice_group_method_action"
               id="menu_invoice_group_method"
               name="Invoice Group Method"
-              parent="sale.menu_sale_config"
+              parent="sale.menu_sales_config"
               sequence="100"/>
 
 </odoo>
