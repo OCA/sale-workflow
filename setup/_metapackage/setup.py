@@ -9,6 +9,7 @@ setuptools.setup(
     version=version,
     install_requires=[
         'odoo11-addon-partner_prospect',
+        'odoo11-addon-product_supplierinfo_for_customer_sale',
         'odoo11-addon-sale_automatic_workflow',
         'odoo11-addon-sale_automatic_workflow_payment_mode',
         'odoo11-addon-sale_commercial_partner',
