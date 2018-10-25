@@ -11,19 +11,11 @@
               </record>
 
         <menuitem
-                id="menu_sale_exception_parent"
-                parent="sales_team.menu_sale_config"
-                sequence="20"
-                name="Exceptions"
-        />
-
-
-        <menuitem
                 action="action_sale_test_tree"
                 id="menu_sale_test"
-                parent="menu_sale_exception_parent"
+                sequence="90"
+                parent="sale.menu_sales_config"
         />
-
 
         <record id="view_order_form" model="ir.ui.view">
             <field name="name">sale_exception.view_order_form</field>
