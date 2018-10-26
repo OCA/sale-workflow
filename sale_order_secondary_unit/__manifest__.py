@@ -3,7 +3,7 @@
 {
     'name': 'Sale Order Secondary Unit',
     'summary': 'Sale product in a secondary unit',
-    'version': '11.0.1.0.0',
+    'version': '11.0.1.0.1',
     'development_status': 'Beta',
     'category': 'Sale',
     'website': 'https://github.com/OCA/sale-workflow',
@@ -17,6 +17,7 @@
         'product_secondary_unit',
     ],
     'data': [
+        'views/product_views.xml',
         'views/sale_order_views.xml',
     ],
 }
