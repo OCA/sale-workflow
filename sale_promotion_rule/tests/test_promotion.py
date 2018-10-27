@@ -9,12 +9,48 @@ from odoo.exceptions import UserError
 
 class AbstractCommonPromotionCase(object):
 
+    def _get_promotion_rule_coupon_values(self):
+        return {
+            "name": "Best Promo",
+            "code": "ELDONGHUT",
+            "rule_type": "coupon",
+            "promo_type": "discount",
+            "discount_amount": 20.00,
+            "minimal_amount": 50.00,
+            "restriction_amount": "amount_untaxed",
+            "multi_rule_strategy": "use_best"
+        }
+
+    def _get_promotion_rule_auto_values(self):
+        return {
+            "name": "Best Promo Automatic",
+            "rule_type": "auto",
+            "promo_type": "discount",
+            "discount_amount": 10.00,
+            "minimal_amount": 50.00,
+            "restriction_amount": "amount_untaxed",
+            "multi_rule_strategy": "use_best"
+        }
+
     def set_up(self, sale_xml_id):
         self.sale = self.env.ref(sale_xml_id)
-        self.promotion_rule_coupon = self.env.ref(
-            'sale_promotion_rule.rule_coupon')
-        self.promotion_rule_auto = self.env.ref(
-            'sale_promotion_rule.rule_auto')
+        self.sale_promotion_rule = self.env["sale.promotion.rule"]
+        data_coupon = self._get_promotion_rule_coupon_values()
+        self.promotion_rule_coupon = self.sale_promotion_rule.search([
+            ("name", "=", data_coupon["name"])
+        ])
+        if not self.promotion_rule_coupon:
+            self.promotion_rule_coupon = self.sale_promotion_rule.create(
+                data_coupon
+            )
+        data_auto = self._get_promotion_rule_auto_values()
+        self.promotion_rule_auto = self.sale_promotion_rule.search([
+            ("name", "=", data_auto["name"])
+        ])
+        if not self.promotion_rule_auto:
+            self.promotion_rule_auto = self.sale_promotion_rule.create(
+                data_auto
+            )
 
     def add_coupon_code(self, coupon_code):
         self.sale.add_coupon(coupon_code)
