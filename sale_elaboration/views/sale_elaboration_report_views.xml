@@ -10,6 +10,7 @@
             <tree string="Elaborations" create="false">
                 <field name="confirmation_date"/>
                 <field name="order_id"/>
+                <field name="salesman_id"/>
                 <field name="order_partner_id"/>
                 <field name="product_id"/>
                 <field name="elaboration_id"/>
