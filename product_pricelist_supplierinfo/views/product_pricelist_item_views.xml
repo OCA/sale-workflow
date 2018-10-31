@@ -6,14 +6,11 @@
         <field name="model">product.pricelist.item</field>
         <field name="inherit_id" ref="product.product_pricelist_item_form_view"/>
         <field name="arch" type="xml">
-            <field name="min_quantity" position="attributes">
-                <attribute name="attrs">{'readonly': [('no_min_quantity', '=', True)]}</attribute>
-            </field>
             <xpath expr="//field[@name='base']/../div" position="inside">
-                <span attrs="{'invisible':[('base', '!=', 'supplierinfo')]}">Prices based on supplier info  -  </span>
+                <span attrs="{'invisible':[('base', '!=', 'supplierinfo')]}">Supplier price  -  </span>
             </xpath>
-            <field name="base_pricelist_id" position="after">
-                <field name="no_min_quantity" attrs="{'invisible':[('base', '!=', 'supplierinfo')]}"/>
+            <field name="price_max_margin" position="after">
+                <field name="no_supplierinfo_min_quantity" attrs="{'invisible':[('base', '!=', 'supplierinfo')]}"/>
             </field>
         </field>
     </record>
