@@ -1,0 +1,47 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+#	* product_pricelist_supplierinfo
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 11.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2018-10-31 08:08+0000\n"
+"PO-Revision-Date: 2018-10-31 08:08+0000\n"
+"Last-Translator: <>\n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: product_pricelist_supplierinfo
+#: model:ir.ui.view,arch_db:product_pricelist_supplierinfo.product_pricelist_supplier_item_form_view
+msgid "<span attrs=\"{'invisible':[('base', '!=', 'supplierinfo')]}\">Prices based on supplier info  -  </span>"
+msgstr ""
+
+#. module: product_pricelist_supplierinfo
+#: model:ir.model.fields,field_description:product_pricelist_supplierinfo.field_product_pricelist_item_no_min_quantity
+msgid "Ignore Min. Quantity"
+msgstr ""
+
+#. module: product_pricelist_supplierinfo
+#: model:ir.model,name:product_pricelist_supplierinfo.model_product_pricelist
+msgid "Pricelist"
+msgstr ""
+
+#. module: product_pricelist_supplierinfo
+#: model:ir.model,name:product_pricelist_supplierinfo.model_product_pricelist_item
+msgid "Pricelist item"
+msgstr ""
+
+#. module: product_pricelist_supplierinfo
+#: model:ir.model,name:product_pricelist_supplierinfo.model_product_product
+msgid "Product"
+msgstr ""
+
+#. module: product_pricelist_supplierinfo
+#: model:ir.model,name:product_pricelist_supplierinfo.model_sale_order_line
+msgid "Sales Order Line"
+msgstr ""
+

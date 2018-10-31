@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="product_pricelist_supplier_item_form_view" model="ir.ui.view">
+        <field name="name">product.pricelist.item.form</field>
+        <field name="model">product.pricelist.item</field>
+        <field name="inherit_id" ref="product.product_pricelist_item_form_view"/>
+        <field name="arch" type="xml">
+            <field name="min_quantity" position="attributes">
+                <attribute name="attrs">{'readonly': [('no_min_quantity', '=', True)]}</attribute>
+            </field>
+            <xpath expr="//field[@name='base']/../div" position="inside">
+                <span attrs="{'invisible':[('base', '!=', 'supplierinfo')]}">Prices based on supplier info  -  </span>
+            </xpath>
+            <field name="base_pricelist_id" position="after">
+                <field name="no_min_quantity" attrs="{'invisible':[('base', '!=', 'supplierinfo')]}"/>
+            </field>
+        </field>
+    </record>
+
+</odoo>
