@@ -40,7 +40,6 @@ class TestSaleForceInvoiced(TransactionCase):
             'categ_id': product_ctg.id,
             'type': 'service',
             'invoice_policy': 'order',
-            'track_service': 'manual'
         })
         return product
 
