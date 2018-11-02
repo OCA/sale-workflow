@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+  <record id="view_order_form" model="ir.ui.view">
+  <field name="name">view.sale_order_substitute_product.form</field>
+  <field name="model">sale.order</field>
+  <field name='inherit_id' ref='sale.view_order_form'/>
+  <field name="arch" type="xml">
+  <xpath expr="//form/sheet/notebook/page[1]" position="after">
+    <page string="Substitute Products">
+        <field name="product_substitute_ids" context="{'kit': id}">
+          <tree string="Substitute Products" editable="bottom">
+            <field name="order_id" invisible="1" />
+            <field name="sale_order_line_id" force_save="1" domain="[('order_id','=',order_id)]" />
+            <field name="product_substitute_id" />
+            <field name="description" />
+            <field name="product_uom_qty" />
+            <field name="price_unit" />
+            <field name="price_subtotal" />
+            <field name="tax_id" widget="many2many_tags" />
+            <field name="price_total" />
+            <field name="price_difference" readonly="1" />
+            <button name="button_substitute_product" class="oe_link" icon="fa-shopping-cart" string="Add to change the product" type="object"/>
+          </tree>
+        </field>
+    </page>
+  </xpath>
+  </field>
+  </record>
+</odoo>
