@@ -36,7 +36,7 @@ class SaleOrderLine(models.Model):
     @api.depends('state', 'product_uom_qty', 'qty_delivered', 'qty_to_invoice',
                  'qty_invoiced', 'order_id.invoice_policy')
     def _compute_invoice_status(self):
-        invoice_policies = self.mapped('order_id.invoice_policy')
+        invoice_policies = set(self.mapped('order_id.invoice_policy'))
         line_by_id = {l.id: l for l in self}
         done_lines = self.env['sale.order.line'].browse()
         for invoice_policy in invoice_policies:
