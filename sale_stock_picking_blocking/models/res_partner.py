@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 # Copyright 2017 Eficent Business and IT Consulting Services S.L.
 #   (http://www.eficent.com)
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl.html).
@@ -6,7 +5,7 @@
 from odoo import api, fields, models
 
 
-class ResPartner(models.Model):
+class Partner(models.Model):
     _inherit = "res.partner"
 
     default_delivery_block = fields.Many2one(
@@ -17,6 +16,6 @@ class ResPartner(models.Model):
 
     @api.model
     def _commercial_fields(self):
-        commercial_fields = super(ResPartner, self)._commercial_fields()
+        commercial_fields = super(Partner, self)._commercial_fields()
         commercial_fields.append('default_delivery_block')
         return commercial_fields
