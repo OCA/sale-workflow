@@ -9,8 +9,8 @@
     'category': 'Sale',
     'depends': ['website_quote'],
     'data': [
-        'views/sale_order_view.xml',
         'security/ir.model.access.csv',
+        'views/sale_order_view.xml',
         'views/website_quote_templates.xml'
         ],
     'installable': True,
