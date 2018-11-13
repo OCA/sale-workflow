@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+
+    <record model="ir.ui.view" id="product_price_form_view">
+      <field name="name">product.price.form.view</field>
+      <field name="model">product.template</field>
+      <field name="inherit_id" ref="product.product_template_form_view"/>
+      <field name="arch" type="xml">
+        <field name="standard_price" position="after">
+          <button name="view_product_price_history" string="(Price history)" type="object" class="oe_link" colspan="2" groups="purchase.group_purchase_manager"/>
+        </field>
+        <field name="list_price" position="replace">
+          <label for="list_price" />
+          <div name="list_price_uom" >
+              <field name="list_price" class="oe_inline" widget="monetary" options="{'currency_field': 'currency_id', 'field_digits': True}"/>
+              <button name="view_product_lst_price_history" string="(Price history)" type="object" class="oe_link" colspan="2" groups="sales_team.group_sale_manager"/>
+          </div>
+        </field>
+      </field>
+    </record>
+
+</odoo>

@@ -1,0 +1,129 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+#	* product_price_history
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 11.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2018-11-08 15:30+0000\n"
+"PO-Revision-Date: 2018-11-08 15:30+0000\n"
+"Last-Translator: <>\n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: product_price_history
+#: model:ir.ui.view,arch_db:product_price_history.product_price_form_view
+msgid "(Price history)"
+msgstr "(Histórico de precios)"
+
+#. module: product_price_history
+#: model:ir.model.fields,field_description:product_price_history.field_product_lst_price_history_company_id
+msgid "Company"
+msgstr "Compañía"
+
+#. module: product_price_history
+#: code:addons/product_price_history/models/product.py:11
+#: code:addons/product_price_history/models/product.py:65
+#: model:ir.actions.act_window,name:product_price_history.product_price_history_action
+#: model:ir.ui.menu,name:product_price_history.product_price_history_menu
+#: model:ir.ui.view,arch_db:product_price_history.product_standard_price_history_from_product_view_tree
+msgid "Cost Price History"
+msgstr "Histórico de precios de coste"
+
+#. module: product_price_history
+#: model:ir.model.fields,field_description:product_price_history.field_product_lst_price_history_create_uid
+msgid "Created by"
+msgstr "Creado por"
+
+#. module: product_price_history
+#: model:ir.model.fields,field_description:product_price_history.field_product_lst_price_history_create_date
+msgid "Created on"
+msgstr "Creado en"
+
+#. module: product_price_history
+#: model:ir.model.fields,field_description:product_price_history.field_product_lst_price_history_datetime
+#: model:ir.ui.view,arch_db:product_price_history.product_lst_price_history_view_search
+#: model:ir.ui.view,arch_db:product_price_history.product_standard_price_history_view_search
+msgid "Date"
+msgstr "Fecha"
+
+#. module: product_price_history
+#: model:ir.model.fields,field_description:product_price_history.field_product_lst_price_history_display_name
+msgid "Display Name"
+msgstr "Nombre a Mostrar"
+
+#. module: product_price_history
+#: model:ir.ui.view,arch_db:product_price_history.product_lst_price_history_view_search
+#: model:ir.ui.view,arch_db:product_price_history.product_standard_price_history_view_search
+msgid "Group By"
+msgstr "Agrupar por"
+
+#. module: product_price_history
+#: model:ir.model.fields,field_description:product_price_history.field_product_lst_price_history_id
+msgid "ID"
+msgstr "ID (identificación)"
+
+#. module: product_price_history
+#: model:ir.model.fields,field_description:product_price_history.field_product_lst_price_history___last_update
+msgid "Last Modified on"
+msgstr "Última modificación en"
+
+#. module: product_price_history
+#: model:ir.model.fields,field_description:product_price_history.field_product_lst_price_history_write_uid
+msgid "Last Updated by"
+msgstr "Última actualización de"
+
+#. module: product_price_history
+#: model:ir.model.fields,field_description:product_price_history.field_product_lst_price_history_write_date
+msgid "Last Updated on"
+msgstr "Última actualización en"
+
+#. module: product_price_history
+#: model:ir.model,name:product_price_history.model_product_product
+#: model:ir.model.fields,field_description:product_price_history.field_product_lst_price_history_product_id
+msgid "Product"
+msgstr "Producto"
+
+#. module: product_price_history
+#: model:ir.model,name:product_price_history.model_product_template
+msgid "Product Template"
+msgstr "Plantilla de producto"
+
+#. module: product_price_history
+#: model:ir.ui.view,arch_db:product_price_history.product_lst_price_history_view_search
+#: model:ir.ui.view,arch_db:product_price_history.product_standard_price_history_view_search
+msgid "Product Variant"
+msgstr "Variantes de producto"
+
+#. module: product_price_history
+#: model:ir.model.fields,field_description:product_price_history.field_product_lst_price_history_lst_price
+msgid "Sale Price"
+msgstr "Precio de venta"
+
+#. module: product_price_history
+#: code:addons/product_price_history/models/product.py:22
+#: code:addons/product_price_history/models/product.py:75
+#: model:ir.actions.act_window,name:product_price_history.product_lst_price_history_action
+#: model:ir.ui.menu,name:product_price_history.product_lst_price_history_menu
+#: model:ir.ui.view,arch_db:product_price_history.product_lst_price_history_from_product_view_tree
+msgid "Sale Price History"
+msgstr "Histórico de precios de venta"
+
+#. module: product_price_history
+#: model:ir.ui.view,arch_db:product_price_history.product_standard_price_history_view_search
+msgid "Search Cost Price History"
+msgstr "Buscar histórico de precios de coste"
+
+#. module: product_price_history
+#: model:ir.ui.view,arch_db:product_price_history.product_lst_price_history_view_search
+msgid "Search Sale Price History"
+msgstr "Buscar histórico de precios de venta"
+
+#. module: product_price_history
+#: model:ir.model,name:product_price_history.model_product_lst_price_history
+msgid "product.lst.price.history"
+msgstr "product.lst.price.history"

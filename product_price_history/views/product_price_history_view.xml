@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+
+        <record id="product_price_history_view_tree" model="ir.ui.view">
+            <field name="name">product.standard.price.history.product.tree</field>
+            <field name="model">product.price.history</field>
+            <field name="arch" type="xml">
+                <tree string="Cost Price History" create="false">
+                    <field name="datetime" />
+                    <field name="write_uid" />
+                    <field name="company_id" groups="base.group_multi_company"
+                        invisible="1" />
+                    <field name="product_id" />
+                    <field name="cost" />
+                </tree>
+            </field>
+        </record>
+
+        <record id="product_standard_price_history_view_search" model="ir.ui.view">
+            <field name="name">product.standard.price.history.product.search</field>
+            <field name="model">product.price.history</field>
+            <field name="arch" type="xml">
+                <search string="Search Cost Price History">
+                    <field name="product_id" />
+                    <field name="company_id" groups="base.group_multi_company" />
+                    <group expand="0" name="group_by" string="Group By">
+                        <filter string="Date" name="groupby_date" domain="[]" context="{'group_by':'datetime'}" />
+                        <filter string="Product Variant" name="groupby_product_id" domain="[]" context="{'group_by':'product_id'}" />
+                    </group>
+                </search>
+            </field>
+        </record>
+
+        <record id="product_price_history_action" model="ir.actions.act_window">
+            <field name="name">Cost Price History</field>
+            <field name="res_model">product.price.history</field>
+            <field name="view_mode">tree</field>
+        </record>
+
+        <menuitem id="product_price_history_menu" parent="purchase.menu_procurement_management"
+                  action="product_price_history_action" groups="purchase.group_purchase_manager" sequence="1000" />
+
+</odoo>
