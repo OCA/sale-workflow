@@ -14,7 +14,6 @@ class StockPicking(models.Model):
     sale_propagated_comment = fields.Text(
         string='Propagated internal comments')
 
-    @api.multi
     @api.onchange('partner_id')
     def onchange_partner_id(self):
         picking_com, picking_pcom = self.partner_id._get_picking_comments()
