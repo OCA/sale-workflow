@@ -41,7 +41,9 @@ class SaleOrder(models.Model):
             return invoice_vals
         invoice_vals['workflow_process_id'] = workflow.id
         if workflow.invoice_date_is_order_date:
-            invoice_vals['date_invoice'] = self.date_order
+            invoice_vals['date_invoice'] = (
+                fields.Date.context_today(self, self.date_order)
+            )
         if workflow.property_journal_id:
             invoice_vals['journal_id'] = workflow.property_journal_id.id
         return invoice_vals
