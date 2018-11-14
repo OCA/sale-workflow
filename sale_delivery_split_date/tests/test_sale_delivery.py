@@ -45,6 +45,11 @@ class TestSaleDelivery(TransactionCase):
         self.assertEqual(
             len(self.so.picking_ids), 1,
             "There must be 1 picking for the SO when confirmed")
+        for picking in self.so.picking_ids:
+            self.assertEqual(
+                picking.sale_id, self.so,
+                "The sale order related to the picking must be the "
+                "previously confirmed SO")
         self.assertEqual(
             self.so.picking_ids[0].min_date[:10],
             self.so.picking_ids[0].min_dt)
@@ -68,6 +73,11 @@ class TestSaleDelivery(TransactionCase):
         self.assertEqual(
             len(self.so.picking_ids), 2,
             "There must be 2 pickings for the SO when confirmed")
+        for picking in self.so.picking_ids:
+            self.assertEqual(
+                picking.sale_id, self.so,
+                "The sale order related to the picking must be the "
+                "previously confirmed SO")
         sorted_pickings = self.so.picking_ids.sorted(lambda x: x.min_date)
         self.assertEqual(
             self.so.picking_ids[0].min_date[:10],
@@ -101,6 +111,11 @@ class TestSaleDelivery(TransactionCase):
         self.assertEqual(
             len(self.so.picking_ids), 1,
             "There must be only one picking for the SO when confirmed")
+        for picking in self.so.picking_ids:
+            self.assertEqual(
+                picking.sale_id, self.so,
+                "The sale order related to the picking must be the "
+                "previously confirmed SO")
         self.assertEqual(
             self.so.picking_ids[0].min_date[:10],
             self.so.picking_ids[0].min_dt)
