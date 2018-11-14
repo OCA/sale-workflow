@@ -61,7 +61,7 @@ class TestAutomaticWorkflowMixin:
                         self.env.ref('stock.stock_location_stock').id
                     })]
                 })
-                inventory.action_done()
+                inventory.post_inventory()
         return order
 
     def create_full_automatic(self, override=None):
