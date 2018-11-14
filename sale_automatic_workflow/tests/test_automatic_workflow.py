@@ -1,12 +1,14 @@
 # Copyright 2014 Camptocamp SA (author: Guewen Baconnier)
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
-from datetime import datetime, timedelta
+from datetime import timedelta
 
 from odoo import fields
 from .test_automatic_workflow_base import TestAutomaticWorkflowBase
+from odoo.tests import tagged
 
 
+@tagged('post_install', '-at_install')
 class TestAutomaticWorkflow(TestAutomaticWorkflowBase):
 
     def test_full_automatic(self):
@@ -43,9 +45,7 @@ class TestAutomaticWorkflow(TestAutomaticWorkflowBase):
         workflow = self.create_full_automatic()
         # date_order on sale.order is date + time
         # date_invoice on account.invoice is date only
-        last_week_time = datetime.now() - timedelta(days=7)
-        last_week_time = fields.Datetime.to_string(last_week_time)
-        last_week_date = last_week_time[:10]
+        last_week_time = fields.Datetime.now() - timedelta(days=7)
         override = {
             'date_order': last_week_time,
         }
@@ -55,7 +55,7 @@ class TestAutomaticWorkflow(TestAutomaticWorkflowBase):
         self.progress()
         self.assertTrue(sale.invoice_ids)
         invoice = sale.invoice_ids
-        self.assertEqual(invoice.date_invoice, last_week_date)
+        self.assertEqual(invoice.date_invoice, last_week_time.date())
         self.assertEqual(invoice.workflow_process_id, sale.workflow_process_id)
 
     def test_invoice_from_picking_with_service_product(self):
