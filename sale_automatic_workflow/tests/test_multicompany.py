@@ -2,60 +2,15 @@
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
 from odoo.tests.common import TransactionCase
+from odoo.tests import tagged
 
 
+@tagged('post_install', '-at_install')
 class TestMultiCompany(TransactionCase):
 
     def create_company(self, values):
         company = self.env['res.company'].create(values)
         return company
-
-    def configure_basic_accounting(self, company_id):
-        Account = self.env['account.account']
-        income = Account.create({
-            'name': 'Income',
-            'code': 'INC',
-            'user_type_id':
-                self.env.ref('account.data_account_type_revenue').id,
-            'company_id': company_id
-        })
-        receivable = Account.create({
-            'name': 'Receivable',
-            'code': 'REC',
-            'user_type_id':
-                self.env.ref('account.data_account_type_receivable').id,
-            'reconcile': True,
-            'company_id': company_id
-        })
-        payable = Account.create({
-            'name': 'Payable',
-            'code': 'PAY',
-            'user_type_id':
-                self.env.ref('account.data_account_type_payable').id,
-            'reconcile': True,
-            'company_id': company_id
-        })
-        Journal = self.env['account.journal']
-        sale_journal = Journal.create({
-            'name': 'Customer Invoices',
-            'type': 'sale',
-            'code': 'INV',
-            'company_id': company_id,
-            'default_debit_account_id': income.id,
-            'default_credit_account_id': income.id,
-        })
-        return {'company_id': company_id,
-                'income': income,
-                'payable': payable,
-                'receivable': receivable,
-                'sale_journal': sale_journal}
-
-    def create_partner(self, name, accounting_dict):
-        return self.env['res.partner'].create({
-            'name': name,
-            'property_account_receivable_id': accounting_dict['receivable'].id,
-            'property_account_payable_id': accounting_dict['payable'].id
-        })
 
     def create_product(self, values):
         values.update({
@@ -67,7 +22,7 @@ class TestMultiCompany(TransactionCase):
 
     def setUp(self):
         super(TestMultiCompany, self).setUp()
-
+        coa = self.env.user.company_id.chart_template_id
         self.company_fr = self.create_company({
             'name': 'French company',
             'currency_id': self.env.ref('base.EUR').id,
@@ -98,30 +53,40 @@ class TestMultiCompany(TransactionCase):
         self.env.user.company_ids |= self.company_fr_daughter
 
         self.env.user.company_id = self.company_fr.id
-        accounting_fr = self.configure_basic_accounting(self.company_fr.id)
-        self.customer_fr = self.create_partner('Customer FR', accounting_fr)
+        coa.try_loading_for_current_company()
+        self.customer_fr = self.env['res.partner'].create(
+            {
+                'name': 'Customer FR',
+            }
+        )
 
         self.product_fr = self.create_product({
             'name': 'Evian bottle',
             'list_price': 2.0,
-            'property_account_income_id': accounting_fr['income']
         })
 
         self.env.user.company_id = self.company_ch.id
-        accounting_ch = self.configure_basic_accounting(self.company_ch.id)
-        self.customer_ch = self.create_partner('Customer CH', accounting_ch)
+        coa.try_loading_for_current_company()
+        self.customer_ch = self.env['res.partner'].create(
+            {
+                'name': 'Customer CH',
+            }
+        )
 
         self.product_ch = self.create_product({
             'name': 'Henniez bottle',
             'list_price': 3.0,
-            'property_account_income_id': accounting_ch['income']
         })
 
         self.env.user.company_id = self.company_be.id
-        accounting_be = self.configure_basic_accounting(self.company_be.id)
-        self.customer_be = self.env['res.partner'].create({
-            'name': 'Customer BE'
-        })
+        coa.try_loading_for_current_company()
+
+        self.customer_be = self.env['res.partner'].create(
+            {
+                'name': 'Customer BE',
+            }
+        )
+
         self.product_be = self.env['product.template'].create({
             'name': 'SPA bottle',
             'list_price': 1.5,
@@ -129,50 +94,21 @@ class TestMultiCompany(TransactionCase):
             'invoice_policy': 'order',
         }).product_variant_id
 
-        self.env['ir.property'].create({
-            'name': 'property_account_receivable_id',
-            'company_id': self.company_be.id,
-            'type': 'many2one',
-            'fields_id': self.env.ref(
-                'stock_account'
-                '.field_account_chart_template__property_account_receivable_id'
-            ).id,
-            'value': accounting_be['receivable']
-        })
-        self.env['ir.property'].create({
-            'name': 'property_account_payable_id',
-            'company_id': self.company_be.id,
-            'type': 'many2one',
-            'fields_id': self.env.ref(
-                'stock_account'
-                '.field_account_chart_template__property_account_receivable_id'
-            ).id,
-            'value': accounting_be['payable']
-        })
-        self.env['ir.property'].create({
-            'name': 'property_account_income_id',
-            'company_id': self.company_be.id,
-            'type': 'many2one',
-            'fields_id': self.env.ref(
-                'account.field_product_category_'
-                'property_account_income_categ_id').id,
-            'value': accounting_be['income']
-        })
-
         self.env.user.company_id = self.company_fr_daughter.id
-        accounting_fr_daughter = self.configure_basic_accounting(
-            self.company_fr_daughter.id)
-        self.customer_fr_daughter = self.create_partner('Customer FR Daughter',
-                                                        accounting_fr_daughter)
-
+        coa.try_loading_for_current_company()
+        self.customer_fr_daughter = self.env['res.partner'].create(
+            {
+                'name': 'Customer FR Daughter',
+            }
+        )
         self.product_fr_daughter = self.create_product({
             'name': 'Contrex bottle',
             'list_price': 1.5,
-            'property_account_income_id': accounting_fr_daughter['income']
         })
 
         self.auto_wkf = self.env.ref(
-            'sale_automatic_workflow.automatic_validation')
+            'sale_automatic_workflow.automatic_validation'
+        )
         self.env.user.company_id = self.env.ref('base.main_company')
 
     def create_auto_wkf_order(self, company, customer, product, qty):
