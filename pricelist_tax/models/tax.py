@@ -45,9 +45,9 @@ class AccountTax(models.Model):
                     _("Tax product '%s' is price exclude. "
                       "Switch to include ones"
                       % prod_taxes_exclude[0].get('name')))
-        if  line_taxes:
+        if line_taxes:
             line_taxes_include = [x for x in line_taxes if x.price_include]
             if line_taxes_include:
                 raise UserError(
                     _("Tax with include price with pricelist b2b '%s' "
-                        "is not supported" % pricelist.name))
+                      "is not supported" % pricelist.name))
