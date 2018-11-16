@@ -40,7 +40,7 @@ class SaleOrderLine(models.Model):
     @api.multi
     def _compute_tax_id(self):
         super(SaleOrderLine, self)._compute_tax_id()
-        mtax = self._map_exclude_tax()
+        map_tax = self._map_exclude_tax()
         for line in self:
             # If company_id is set, always filter taxes by the company
             taxes = line.product_id.taxes_id.filtered(
@@ -48,22 +48,25 @@ class SaleOrderLine(models.Model):
                 r.company_id == line.company_id)
             if not line.order_id.pricelist_id.price_include_taxes:
                 # pricelist not include tax
-                cpny = line.order_id.company_id.id or line.company_id.id or 0
-                mytaxes = []
-                for tax in taxes:
-                    if mtax[cpny].get(tax.amount):
-                        if mtax[cpny][tax.amount].get('exclude'):
-                            mytaxes.append(mtax[cpny][tax.amount]['exclude'])
-                        else:
-                            mytaxes.append(tax.id)
-                    else:
-                        mytaxes.append(tax.id)
-                taxes = self.env['account.tax'].browse(mytaxes)
+                taxes = line._get_substitute_taxes(taxes, map_tax)
             fpos = (line.order_id.fiscal_position_id or
                     line.order_id.partner_id.property_account_position_id)
             line.tax_id = (fpos.map_tax(
                 taxes, line.product_id, line.order_id.partner_shipping_id)
                 if fpos else taxes)
+
+    def _get_substitute_taxes(self, taxes, map_tax):
+        cpny = self.order_id.company_id.id or self.company_id.id or 0
+        mytaxes = []
+        for tax in taxes:
+            if map_tax[cpny].get(tax.amount):
+                if map_tax[cpny][tax.amount].get('exclude'):
+                    mytaxes.append(map_tax[cpny][tax.amount]['exclude'])
+                else:
+                    mytaxes.append(tax.id)
+            else:
+                mytaxes.append(tax.id)
+        return self.env['account.tax'].browse(mytaxes)
 
     @api.multi
     @api.onchange('product_id')
