@@ -8,6 +8,7 @@ class ProductTemplate(models.Model):
 
     @api.multi
     def view_product_price_history(self):
+        self.ensure_one()
         return {
             'name': _('Cost Price History'),
             'view_type': 'form',
@@ -19,6 +20,7 @@ class ProductTemplate(models.Model):
 
     @api.multi
     def view_product_lst_price_history(self):
+        self.ensure_one()
         return {
             'name': _('Sale Price History'),
             'view_type': 'form',
@@ -45,8 +47,8 @@ class ProductTemplate(models.Model):
 
     @api.multi
     def _set_historical_lst_price(self):
-        ''' Store the lst price change in order to be able to retrieve the cost
-        of a product for a given date'''
+        ''' Store the lst price change in order to be able to retrieve the
+        sale price of a product for a given date'''
         PriceHistory = self.env['product.lst.price.history']
         for product in self:
             for variant in product.product_variant_ids:
@@ -61,7 +63,9 @@ class ProductTemplate(models.Model):
 class ProductProduct(models.Model):
     _inherit = 'product.product'
 
+    @api.multi
     def view_product_price_history(self):
+        self.ensure_one()
         return {
             'name': _('Cost Price History'),
             'view_type': 'form',
@@ -71,7 +75,9 @@ class ProductProduct(models.Model):
             'domain': [('product_id', '=', self.id)],
         }
 
+    @api.multi
     def view_product_lst_price_history(self):
+        self.ensure_one()
         return {
             'name': _('Sale Price History'),
             'view_type': 'form',

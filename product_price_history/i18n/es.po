@@ -26,8 +26,8 @@ msgid "Company"
 msgstr "Compañía"
 
 #. module: product_price_history
-#: code:addons/product_price_history/models/product.py:11
-#: code:addons/product_price_history/models/product.py:65
+#: code:addons/product_price_history/models/product.py:13
+#: code:addons/product_price_history/models/product.py:70
 #: model:ir.actions.act_window,name:product_price_history.product_price_history_action
 #: model:ir.ui.menu,name:product_price_history.product_price_history_menu
 #: model:ir.ui.view,arch_db:product_price_history.product_standard_price_history_from_product_view_tree
@@ -105,8 +105,8 @@ msgid "Sale Price"
 msgstr "Precio de venta"
 
 #. module: product_price_history
-#: code:addons/product_price_history/models/product.py:22
-#: code:addons/product_price_history/models/product.py:75
+#: code:addons/product_price_history/models/product.py:25
+#: code:addons/product_price_history/models/product.py:82
 #: model:ir.actions.act_window,name:product_price_history.product_lst_price_history_action
 #: model:ir.ui.menu,name:product_price_history.product_lst_price_history_menu
 #: model:ir.ui.view,arch_db:product_price_history.product_lst_price_history_from_product_view_tree
