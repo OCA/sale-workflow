@@ -6,10 +6,10 @@
         <field name="model">res.partner</field>
         <field name="inherit_id" ref="base.view_partner_form"/>
         <field name="arch" type="xml">
-            <field name="user_id" position="after">
+            <xpath expr="//group/field[@name='user_id']" position="after">
                 <field name="default_delivery_block"
                     attrs="{'invisible': ['|', ('customer', '!=', True), ('is_company', '=', False), ('parent_id', '!=', False)]}"/>
-            </field>
+            </xpath>
         </field>
     </record>
 
