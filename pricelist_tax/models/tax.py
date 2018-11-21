@@ -43,8 +43,8 @@ class AccountTax(models.Model):
             if prod_taxes_exclude:
                 raise UserError(
                     _("Tax product '%s' is price exclude. "
-                      "Switch to include ones"
-                      % prod_taxes_exclude[0].get('name')))
+                      "You must switch to include ones."
+                      % prod_taxes_exclude[0].name))
         if line_taxes:
             line_taxes_include = [x for x in line_taxes if x.price_include]
             if line_taxes_include:
