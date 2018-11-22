@@ -12,5 +12,19 @@ class SaleOrder(models.Model):
         return (order.partner_invoice_id.id, order.currency_id.id)
 
     @api.model
+    def _get_invoice_group_line_key(self, line):
+        return self._get_invoice_group_key(line.order_id)
+
+    @api.model
     def _get_draft_invoices(self, invoices, references):
         return invoices, references
+
+
+class SaleOrderLine(models.Model):
+    _inherit = 'sale.order.line'
+
+    def _prepare_invoice(self):
+        return self.order_id._prepare_invoice()
+
+    def _do_not_invoice(self):
+        return False
