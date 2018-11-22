@@ -96,16 +96,15 @@ def post_load_hook():
                     # Change to true if new lines are added
                     new_lines = True
                     # END HOOOK
-
-            if references.get(invoices.get(group_key)):
-                if order not in references[invoices[group_key]]:
-                    references[invoice] = references[invoice] | order
+                if references.get(invoices.get(group_key)):
+                    if order not in references[invoices[group_key]]:
+                        references[invoice] = references[invoice] | order
 
         # START HOOK
         # WAS: if not invoices:
         # Check if new lines have been added in order to determine whether
         # there are invoice lines or not
-        if not new_lines:
+        if not new_lines and not self.env.context.get('no_check_lines', False):
             raise UserError(_('There is no invoicable line.'))
         # END HOOK
 
