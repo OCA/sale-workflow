@@ -39,23 +39,29 @@ def post_load_hook():
         new_lines = False
         # END HOOK
         for order in self:
-            # START HOOK
-            # Add more flexibility in grouping key fields
-            # WAS: group_key = order.id if grouped
-            # else (order.partner_invoice_id.id, order.currency_id.id)
-            group_key = order.id if grouped else \
-                self._get_invoice_group_key(order)
-            # 'invoice' must be always instantiated respecting the old logic
-            if group_key in invoices:
-                invoice = invoices[group_key]
-            # END HOOK
             for line in order.order_line.sorted(
                     key=lambda l: l.qty_to_invoice < 0):
                 if float_is_zero(line.qty_to_invoice,
                                  precision_digits=precision):
                     continue
+                # START HOOK
+                # Allow to check if a line should not be invoiced
+                if line._do_not_invoice():
+                    continue
+                # END HOOK
+                # START HOOK
+                # Add more flexibility in grouping key fields
+                # WAS: group_key = order.id if grouped
+                # else (order.partner_invoice_id.id, order.currency_id.id)
+                group_key = order.id if grouped else \
+                    self._get_invoice_group_line_key(line)
+                # 'invoice' must be always instantiated
+                # respecting the old logic
+                if group_key in invoices:
+                    invoice = invoices[group_key]
+                    # END HOOK
                 if group_key not in invoices:
-                    inv_data = order._prepare_invoice()
+                    inv_data = line._prepare_invoice()
                     invoice = inv_obj.create(inv_data)
                     references[invoice] = order
                     invoices[group_key] = invoice
@@ -90,16 +96,15 @@ def post_load_hook():
                     # Change to true if new lines are added
                     new_lines = True
                     # END HOOOK
-
-            if references.get(invoices.get(group_key)):
-                if order not in references[invoices[group_key]]:
-                    references[invoice] = references[invoice] | order
+                if references.get(invoices.get(group_key)):
+                    if order not in references[invoices[group_key]]:
+                        references[invoice] = references[invoice] | order
 
         # START HOOK
         # WAS: if not invoices:
         # Check if new lines have been added in order to determine whether
         # there are invoice lines or not
-        if not new_lines:
+        if not new_lines and not self.env.context.get('no_check_lines', False):
             raise UserError(_('There is no invoicable line.'))
         # END HOOK
 
