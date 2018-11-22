@@ -4,7 +4,7 @@
 {
     "name": "Sale Order Action Invoice Create Hook",
     "author": "Eficent, Odoo Community Association (OCA)",
-    "version": "11.0.1.0.0",
+    "version": "11.0.1.0.1",
     "category": "Sale Workflow",
     "website": "https://github.com/OCA/sale-workflow",
     "depends": [
