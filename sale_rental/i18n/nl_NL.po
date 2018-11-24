@@ -11,8 +11,8 @@ msgstr ""
 "POT-Creation-Date: 2017-06-06 13:17+0000\n"
 "PO-Revision-Date: 2018-06-20 17:40+0000\n"
 "Last-Translator: Thomas Pot <t.pot@open2bizz.nl>\n"
-"Language-Team: Dutch (Netherlands) (https://www.transifex.com/oca/teams/"
-"23907/nl_NL/)\n"
+"Language-Team: Dutch (Netherlands) (https://www.transifex.com/oca/"
+"teams/23907/nl_NL/)\n"
 "Language: nl_NL\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -34,8 +34,8 @@ msgid ""
 "* Available: When products are reserved, it is set to 'Available'.\n"
 "* Done: When the shipment is processed, the state is 'Done'."
 msgstr ""
-"* Nieuw: wanneer de voorraadverplaatsing is gemaakt en nog niet is bevestigd."
-"\n"
+"* Nieuw: wanneer de voorraadverplaatsing is gemaakt en nog niet is "
+"bevestigd.\n"
 "* Wachten op andere bewerking: deze toestand is te zien wanneer een "
 "verplaatsing  op een andere wacht, bijvoorbeeld in een kettingstroom.\n"
 "* Wachten op beschikbaarheid: deze status wordt bereikt wanneer de "
@@ -225,13 +225,13 @@ msgid "New Rental"
 msgstr "Nieuwe verhuur"
 
 #. module: sale_rental
-#: code:addons/sale_rental/models/sale_order.py:172
+#: code:addons/sale_rental/models/sale_order.py:174
 #, python-format
 msgid "Not enough stock !"
 msgstr "Onvoldoende voorraad !"
 
 #. module: sale_rental
-#: code:addons/sale_rental/models/sale_order.py:83
+#: code:addons/sale_rental/models/sale_order.py:84
 #, python-format
 msgid ""
 "On the 'new rental' sale order line with product '%s', we should have a "
@@ -241,7 +241,7 @@ msgstr ""
 "huurserviceproduct moeten zijn!"
 
 #. module: sale_rental
-#: code:addons/sale_rental/models/sale_order.py:99
+#: code:addons/sale_rental/models/sale_order.py:101
 #, python-format
 msgid ""
 "On the sale order line with product %s you are trying to sell a rented "
@@ -253,7 +253,7 @@ msgstr ""
 "(%s). Dit wordt niet ondersteund."
 
 #. module: sale_rental
-#: code:addons/sale_rental/models/sale_order.py:88
+#: code:addons/sale_rental/models/sale_order.py:90
 #, python-format
 msgid ""
 "On the sale order line with product '%s' the Product Quantity (%s) should be "
@@ -586,14 +586,14 @@ msgstr ""
 "magazijn %s"
 
 #. module: sale_rental
-#: code:addons/sale_rental/models/sale_order.py:215
+#: code:addons/sale_rental/models/sale_order.py:217
 #, python-format
 msgid ""
 "The Rental Service of the Rental Extension you just selected is '%s' and "
 "it's not the same as the Product currently selected in this Sale Order Line."
 msgstr ""
-"De Verhuurservice van de verlenging die u zojuist heeft geselecteerd, is '%"
-"s' en is niet hetzelfde als het Product dat momenteel is geselecteerd op "
+"De Verhuurservice van de verlenging die u zojuist heeft geselecteerd, is "
+"'%s' en is niet hetzelfde als het Product dat momenteel is geselecteerd op "
 "deze verkooporderregel."
 
 #. module: sale_rental
@@ -634,7 +634,7 @@ msgid "Warehouse"
 msgstr "Magazijn"
 
 #. module: sale_rental
-#: code:addons/sale_rental/models/sale_order.py:173
+#: code:addons/sale_rental/models/sale_order.py:175
 #, python-format
 msgid ""
 "You want to rent %.2f %s but you only have %.2f %s currently available on "
