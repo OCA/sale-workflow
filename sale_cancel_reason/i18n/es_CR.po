@@ -71,7 +71,7 @@ msgstr ""
 
 #. module: sale_cancel_reason
 #: model:ir.model.fields,field_description:sale_cancel_reason.field_sale_order_cancel_id
-#: model:ir.model.fields,field_description:sale_cancel_reason.field_sale_order_cancel_reason_id_5528
+#: model:ir.model.fields,field_description:sale_cancel_reason.field_sale_order_cancel_reason_id_5529
 msgid "ID"
 msgstr "ID"
 
@@ -110,7 +110,7 @@ msgid "Reason"
 msgstr ""
 
 #. module: sale_cancel_reason
-#: model:ir.model.fields,field_description:sale_cancel_reason.field_sale_order_cancel_reason_id_5520
+#: model:ir.model.fields,field_description:sale_cancel_reason.field_sale_order_cancel_reason_id_5521
 msgid "Reason for cancellation"
 msgstr ""
 
