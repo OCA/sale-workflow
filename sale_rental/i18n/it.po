@@ -210,13 +210,13 @@ msgid "New Rental"
 msgstr "Nuovo noleggio"
 
 #. module: sale_rental
-#: code:addons/sale_rental/models/sale_order.py:172
+#: code:addons/sale_rental/models/sale_order.py:174
 #, python-format
 msgid "Not enough stock !"
 msgstr "Non abbastanza stock"
 
 #. module: sale_rental
-#: code:addons/sale_rental/models/sale_order.py:83
+#: code:addons/sale_rental/models/sale_order.py:84
 #, python-format
 msgid ""
 "On the 'new rental' sale order line with product '%s', we should have a "
@@ -226,7 +226,7 @@ msgstr ""
 "avere un prodotto di tipo \"servizio noleggio\" "
 
 #. module: sale_rental
-#: code:addons/sale_rental/models/sale_order.py:99
+#: code:addons/sale_rental/models/sale_order.py:101
 #, python-format
 msgid ""
 "On the sale order line with product %s you are trying to sell a rented "
@@ -238,7 +238,7 @@ msgstr ""
 "previsto"
 
 #. module: sale_rental
-#: code:addons/sale_rental/models/sale_order.py:88
+#: code:addons/sale_rental/models/sale_order.py:90
 #, python-format
 msgid ""
 "On the sale order line with product '%s' the Product Quantity (%s) should be "
@@ -567,7 +567,7 @@ msgid "The Rental Output stock location is not set on the warehouse %s"
 msgstr "La locazione \"Noleggio Out\" non fa parte del magazzino %s"
 
 #. module: sale_rental
-#: code:addons/sale_rental/models/sale_order.py:215
+#: code:addons/sale_rental/models/sale_order.py:217
 #, python-format
 msgid ""
 "The Rental Service of the Rental Extension you just selected is '%s' and "
@@ -614,7 +614,7 @@ msgid "Warehouse"
 msgstr "Magazzino"
 
 #. module: sale_rental
-#: code:addons/sale_rental/models/sale_order.py:173
+#: code:addons/sale_rental/models/sale_order.py:175
 #, python-format
 msgid ""
 "You want to rent %.2f %s but you only have %.2f %s currently available on "
