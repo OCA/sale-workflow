@@ -11,8 +11,8 @@ msgstr ""
 "POT-Creation-Date: 2017-06-06 13:17+0000\n"
 "PO-Revision-Date: 2018-06-21 16:48+0000\n"
 "Last-Translator: Thomas Pot <t.pot@open2bizz.nl>\n"
-"Language-Team: Dutch (Netherlands) (https://www.transifex.com/oca/teams/"
-"23907/nl_NL/)\n"
+"Language-Team: Dutch (Netherlands) (https://www.transifex.com/oca/"
+"teams/23907/nl_NL/)\n"
 "Language: nl_NL\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -68,6 +68,11 @@ msgstr "Weergavenaam"
 #: model:ir.model.fields,field_description:sale_product_set.field_product_set_line_id
 msgid "ID"
 msgstr "ID"
+
+#. module: sale_product_set
+#: model:ir.model.fields,field_description:sale_product_set.field_product_set_image
+msgid "Image"
+msgstr ""
 
 #. module: sale_product_set
 #: model:ir.model.fields,field_description:sale_product_set.field_product_set___last_update
@@ -136,6 +141,11 @@ msgstr "Producten"
 #: model:ir.model.fields,field_description:sale_product_set.field_product_set_line_quantity
 msgid "Quantity"
 msgstr "Aantal"
+
+#. module: sale_product_set
+#: model:ir.model.fields,help:sale_product_set.field_product_set_image
+msgid "Select an image to display for the product set"
+msgstr ""
 
 #. module: sale_product_set
 #: model:ir.model.fields,field_description:sale_product_set.field_product_set_line_sequence
