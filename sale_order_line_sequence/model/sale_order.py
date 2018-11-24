@@ -21,9 +21,11 @@ class SaleOrder(models.Model):
             sale.max_line_sequence = (
                 max(sale.mapped('order_line.sequence') or [0]) + 1)
 
-    max_line_sequence = fields.Integer(string='Max sequence in lines',
-                                       compute='_compute_max_line_sequence',
-                                       store=True)
+    max_line_sequence = fields.Integer(
+        string='Max sequence in lines',
+        compute='_compute_max_line_sequence',
+        store=True
+    )
 
     @api.multi
     def _reset_sequence(self):
@@ -49,15 +51,20 @@ class SaleOrderLine(models.Model):
     _inherit = 'sale.order.line'
 
     # re-defines the field to change the default
-    sequence = fields.Integer(help="Gives the sequence of this line when "
-                                   "displaying the sale order.",
-                              default=9999)
+    sequence = fields.Integer(
+        help="Gives the sequence of this line when displaying the sale order.",
+        default=9999,
+        string="Sequence"
+    )
 
     # displays sequence on the order line
-    sequence2 = fields.Integer(help="Shows the sequence of this line in "
-                               "the sale order.",
-                               related='sequence', readonly=True,
-                               store=True)
+    sequence2 = fields.Integer(
+        help="Shows the sequence of this line in the sale order.",
+        related='sequence',
+        string="Line Number",
+        readonly=True,
+        store=True
+    )
 
     @api.model
     def create(self, values):
