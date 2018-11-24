@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: Odoo Server 10.0\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2017-11-23 01:51+0000\n"
-"PO-Revision-Date: 2018-08-19 12:32+0000\n"
+"PO-Revision-Date: 2018-11-25 19:22+0000\n"
 "Last-Translator: Pedro Castro Silva <pedrocs@exo.pt>\n"
 "Language-Team: Portuguese (https://www.transifex.com/oca/teams/23907/pt/)\n"
 "Language: pt\n"
@@ -17,7 +17,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Generator: Weblate 3.1.1\n"
+"X-Generator: Weblate 3.2.2\n"
 
 #. module: sale_product_set
 #: model:ir.ui.view,arch_db:sale_product_set.product_set_add_form_view
@@ -71,7 +71,7 @@ msgstr "ID"
 #. module: sale_product_set
 #: model:ir.model.fields,field_description:sale_product_set.field_product_set_image
 msgid "Image"
-msgstr ""
+msgstr "Imagem"
 
 #. module: sale_product_set
 #: model:ir.model.fields,field_description:sale_product_set.field_product_set___last_update
@@ -144,7 +144,7 @@ msgstr "Quantidade"
 #. module: sale_product_set
 #: model:ir.model.fields,help:sale_product_set.field_product_set_image
 msgid "Select an image to display for the product set"
-msgstr ""
+msgstr "Selecione uma imagem a exibir para o conjunto de produtos"
 
 #. module: sale_product_set
 #: model:ir.model.fields,field_description:sale_product_set.field_product_set_line_sequence
