@@ -1,6 +1,5 @@
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
 
-from datetime import datetime
 import odoo.tests.common as common
 
 
@@ -17,16 +16,13 @@ class TestSaleLastPriceInfo(common.TransactionCase):
         self.price_unit = 100.0
 
     def test_sale_last_price_info_demo(self):
-        sale_lines = self.sale_line_model.search(
+        sale_line = self.sale_line_model.search(
             [('product_id', '=', self.product.id),
-             ('state', 'in', ['sale', 'done'])]).sorted(
-            key=lambda l: l.order_id.date_order, reverse=True)
+             ('state', 'in', ['sale', 'done'])], limit=1,
+            order="date_order_sale_last_price_info desc")
+        self.assertEqual(sale_line.date_order_sale_last_price_info.date(),
+                         self.product.last_sale_date)
         self.assertEqual(
-            datetime.strptime(
-                sale_lines[:1].order_id.date_order,
-                "%Y-%m-%d %H:%M:%S").date(),
-            datetime.strptime(self.product.last_sale_date, "%Y-%m-%d").date())
+            sale_line.price_unit, self.product.last_sale_price)
         self.assertEqual(
-            sale_lines[:1].price_unit, self.product.last_sale_price)
-        self.assertEqual(
-            sale_lines[:1].order_id.partner_id, self.product.last_customer_id)
+            sale_line.order_id.partner_id, self.product.last_customer_id)
