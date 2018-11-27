@@ -18,7 +18,7 @@
         <field name="type">form</field>
         <field name="priority" eval="8"/>
         <field name="arch" type="xml">
-        <form string="Product set" version="7.0">
+        <form string="Product set">
             <sheet>
                 <group>
                     <field name="name" select="1"/>
