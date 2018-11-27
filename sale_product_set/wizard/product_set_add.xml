@@ -5,7 +5,7 @@
       <field name="name">product.set.add.form.view</field>
       <field name="model">product.set.add</field>
       <field name="arch" type="xml">
-          <form string="Add set in sale order line" version="7.0">
+          <form string="Add set in sale order line">
               <group>
                   <field name="product_set_id"/>
                   <field name="quantity"/>
