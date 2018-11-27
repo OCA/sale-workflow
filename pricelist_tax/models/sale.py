@@ -40,7 +40,7 @@ class SaleOrderLine(models.Model):
     @api.multi
     def _compute_tax_id(self):
         super(SaleOrderLine, self)._compute_tax_id()
-        map_tax = self._map_exclude_tax()
+        map_tax = self.env['account.tax']._map_exclude_tax()
         for line in self:
             # If company_id is set, always filter taxes by the company
             taxes = line.product_id.taxes_id.filtered(
@@ -48,7 +48,8 @@ class SaleOrderLine(models.Model):
                 r.company_id == line.company_id)
             if not line.order_id.pricelist_id.price_include_taxes:
                 # pricelist not include tax
-                taxes = line._get_substitute_taxes(taxes, map_tax)
+                taxes = self.env['account.tax']._get_substitute_taxes(
+                    self, taxes, map_tax)
             fpos = (line.order_id.fiscal_position_id or
                     line.order_id.partner_id.property_account_position_id)
             line.tax_id = (fpos.map_tax(

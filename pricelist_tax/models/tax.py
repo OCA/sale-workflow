@@ -4,6 +4,7 @@
 
 import logging
 
+from collections import defaultdict
 from odoo import models, api, _
 from odoo.exceptions import UserError
 
@@ -51,3 +52,47 @@ class AccountTax(models.Model):
                 raise UserError(
                     _("Tax with include price with pricelist b2b '%s' "
                       "is not supported" % pricelist.name))
+
+    def _map_exclude_tax(self):
+        """ return a dict
+            mtax[company_id or 0][tax amount]['include'|'exclude'] = tax_id
+        """
+        mtax = defaultdict(dict)
+        prev_cpny = False
+        for tax in self.search(
+                [('type_tax_use', '=', 'sale')],
+                order='company_id ASC, price_include DESC'):
+            cpny = tax.company_id
+            if cpny != prev_cpny:
+                tamount = defaultdict(dict)
+            if tax.price_include:
+                tamount[tax.amount].update({'include': tax.id})
+            else:
+                tamount[tax.amount].update({'exclude': tax.id})
+            if tax.amount in mtax[tax.company_id.id or 0]:
+                mtax[tax.company_id.id or 0][tax.amount].update(
+                    tamount[tax.amount])
+            else:
+                mtax[tax.company_id.id or 0][tax.amount] = tamount[tax.amount]
+            prev_cpny = cpny
+        return mtax
+
+    def _get_substitute_taxes(self, record, taxes, map_tax):
+        # TODO shortify this code
+        if record._name == 'sale.order.line':
+            cpny = record.order_id.company_id.id or self.company_id.id or 0
+        elif record._name == 'account.invoice.line':
+            cpny = record.invoice_id.company_id.id or self.company_id.id or 0
+        else:
+            raise("No other model supported than sale and invoice")
+        # TODO end
+        mytaxes = []
+        for tax in taxes:
+            if map_tax[cpny].get(tax.amount):
+                if map_tax[cpny][tax.amount].get('exclude'):
+                    mytaxes.append(map_tax[cpny][tax.amount]['exclude'])
+                else:
+                    mytaxes.append(tax.id)
+            else:
+                mytaxes.append(tax.id)
+        return self.env['account.tax'].browse(mytaxes)

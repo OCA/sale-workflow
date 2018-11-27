@@ -8,6 +8,7 @@
     'author': 'Akretion',
     'depends': [
         'sale',
+        'account_invoice_pricelist',
         'l10n_fr',
         'onchange_helper',
     ],
