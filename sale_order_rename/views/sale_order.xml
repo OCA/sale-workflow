@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <!--
+        Copyright 2018 Brainbean Apps (https://brainbeanapps.com)
+        License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
+    -->
+
+    <record id="sale_order_form_view" model="ir.ui.view">
+        <field name="name">sale.order.form</field>
+        <field name="model">sale.order</field>
+        <field name="inherit_id" ref="sale.view_order_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='name']" position="attributes">
+                <attribute name="readonly">0</attribute>
+                <attribute name="attrs">{'readonly': [('state', 'not in', ['draft'])]}</attribute>
+            </xpath>
+            <xpath expr="//field[@name='name']/.." position="before">
+                <label for="name" class="oe_edit_only" attrs="{'invisible': [('state', 'in', ['draft'])]}"/>
+            </xpath>
+        </field>
+    </record>
+
+</odoo>
