@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Copyright 2018 ACSONE SA/NV
+     License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl). -->
+
+<odoo>
+
+    <record model="ir.ui.menu" id="sale_product_country_restriction_menu">
+        <field name="name">Product Country Restrictions</field>
+        <field name="parent_id" ref="sale.prod_config_main"/>
+        <field name="sequence" eval="20"/>
+    </record>
+
+    <record model="ir.ui.menu" id="sale_product_country_restriction">
+        <field name="name">Restrictions</field>
+        <field name="parent_id" ref="sale_product_country_restriction_menu"/>
+        <field name="action" ref="product_country_restriction.product_country_restriction_act_window"/>
+        <field name="sequence" eval="2"/>
+    </record>
+
+    <record model="ir.ui.menu" id="sale_product_country_restriction_item">
+        <field name="name">Restriction Items</field>
+        <field name="parent_id" ref="sale_product_country_restriction_menu"/>
+        <field name="action" ref="product_country_restriction.product_country_restriction_item_act_window"/>
+        <field name="sequence" eval="3"/>
+    </record>
+
+    <record model="ir.ui.menu" id="sale_product_country_restriction_rule">
+        <field name="name">Restriction Rules</field>
+        <field name="parent_id" ref="sale_product_country_restriction_menu"/>
+        <field name="action" ref="product_country_restriction.product_country_restriction_rule_act_window"/>
+        <field name="sequence" eval="4"/>
+    </record>
+
+</odoo>
