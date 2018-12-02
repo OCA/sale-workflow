@@ -34,6 +34,11 @@ msgid "Applied to"
 msgstr ""
 
 #. module: sale_stock_picking_blocking
+#: model:ir.model,name:sale_stock_picking_blocking.model_res_partner
+msgid "Contact"
+msgstr ""
+
+#. module: sale_stock_picking_blocking
 #: model:ir.model.fields,field_description:sale_stock_picking_blocking.field_sale_delivery_block_reason_create_uid
 msgid "Created by"
 msgstr "נוצר על ידי"
@@ -96,8 +101,8 @@ msgid "Name"
 msgstr "שם"
 
 #. module: sale_stock_picking_blocking
-#: model:ir.model,name:sale_stock_picking_blocking.model_res_partner
-msgid "Partner"
+#: model:ir.model,name:sale_stock_picking_blocking.model_sale_order
+msgid "Quotation"
 msgstr ""
 
 #. module: sale_stock_picking_blocking
@@ -126,11 +131,6 @@ msgid "Sale Orders"
 msgstr ""
 
 #. module: sale_stock_picking_blocking
-#: model:ir.model,name:sale_stock_picking_blocking.model_sale_order
-msgid "Sales Order"
-msgstr ""
-
-#. module: sale_stock_picking_blocking
 #: model:ir.model,name:sale_stock_picking_blocking.model_sale_order_line
 msgid "Sales Order Line"
 msgstr ""
@@ -144,7 +144,7 @@ msgid ""
 msgstr ""
 
 #. module: sale_stock_picking_blocking
-#: code:addons/sale_stock_picking_blocking/models/sale_order.py:20
+#: code:addons/sale_stock_picking_blocking/models/sale_order.py:19
 #, python-format
 msgid "You cannot block a sale order with \"auto_done_setting\" active."
 msgstr ""
