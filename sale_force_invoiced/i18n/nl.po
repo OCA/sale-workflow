@@ -25,8 +25,8 @@ msgstr ""
 
 #. module: sale_force_invoiced
 #: model:ir.model,name:sale_force_invoiced.model_sale_order
-msgid "Sales Order"
-msgstr "Verkooporder"
+msgid "Quotation"
+msgstr ""
 
 #. module: sale_force_invoiced
 #: model:ir.model.fields,help:sale_force_invoiced.field_sale_order_force_invoiced
@@ -35,3 +35,6 @@ msgid ""
 "invoiced, even when there may be ordered or delivered quantities pending to "
 "invoice."
 msgstr ""
+
+#~ msgid "Sales Order"
+#~ msgstr "Verkooporder"
