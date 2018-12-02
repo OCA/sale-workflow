@@ -20,11 +20,6 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
 
 #. module: sale_order_revision
-#: model:ir.model.fields,field_description:sale_order_revision.field_sale_order_active
-msgid "Active"
-msgstr "Actif"
-
-#. module: sale_order_revision
 #: model:ir.model.fields,field_description:sale_order_revision.field_sale_order_current_revision_id
 msgid "Current revision"
 msgstr "Dernière version"
@@ -40,13 +35,13 @@ msgid "New Revision of Quotation"
 msgstr "Nouvelle version du devis"
 
 #. module: sale_order_revision
-#: code:addons/sale_order_revision/models/sale_order.py:107
+#: code:addons/sale_order_revision/models/sale_order.py:104
 #, python-format
 msgid "New Sales Order Revisions"
 msgstr "Nouvelle version du bon de commande"
 
 #. module: sale_order_revision
-#: code:addons/sale_order_revision/models/sale_order.py:99
+#: code:addons/sale_order_revision/models/sale_order.py:96
 #, python-format
 msgid "New revision created: %s"
 msgstr "Nouvelle version créée : %s"
@@ -69,6 +64,11 @@ msgstr ""
 "sein d'une société."
 
 #. module: sale_order_revision
+#: model:ir.model,name:sale_order_revision.model_sale_order
+msgid "Quotation"
+msgstr ""
+
+#. module: sale_order_revision
 #: model:ir.model.fields,field_description:sale_order_revision.field_sale_order_revision_number
 msgid "Revision"
 msgstr "Version"
@@ -79,11 +79,6 @@ msgid "Revisions"
 msgstr "Versions"
 
 #. module: sale_order_revision
-#: model:ir.model,name:sale_order_revision.model_sale_order
-msgid "Sales Order"
-msgstr "Bon de commande"
-
-#. module: sale_order_revision
 #: model:ir.ui.view,arch_db:sale_order_revision.sale_order_form
 msgid "Superseeded by"
 msgstr "Remplacé par"
@@ -92,3 +87,9 @@ msgstr "Remplacé par"
 #: model:ir.ui.view,arch_db:sale_order_revision.sale_order_form
 msgid "Superseeded on"
 msgstr "Remplacé le"
+
+#~ msgid "Active"
+#~ msgstr "Actif"
+
+#~ msgid "Sales Order"
+#~ msgstr "Bon de commande"
