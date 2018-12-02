@@ -69,8 +69,13 @@ msgstr "ID"
 #. module: sale_order_product_recommendation
 #: model:ir.model.fields,field_description:sale_order_product_recommendation.field_sale_order_recommendation_line_is_modified
 #, fuzzy
-msgid "Is modified"
+msgid "Is Modified"
 msgstr "Última modificación en"
+
+#. module: sale_order_product_recommendation
+#: model:ir.model.fields,field_description:sale_order_product_recommendation.field_sale_order_recommendation_last_compute
+msgid "Last Compute"
+msgstr ""
 
 #. module: sale_order_product_recommendation
 #: model:ir.model.fields,field_description:sale_order_product_recommendation.field_sale_order_recommendation___last_update
@@ -91,11 +96,6 @@ msgid "Last Updated on"
 msgstr "Última actualización en"
 
 #. module: sale_order_product_recommendation
-#: model:ir.model.fields,field_description:sale_order_product_recommendation.field_sale_order_recommendation_last_compute
-msgid "Last compute"
-msgstr ""
-
-#. module: sale_order_product_recommendation
 #: model:ir.model.fields,field_description:sale_order_product_recommendation.field_sale_order_recommendation_months
 msgid "Months"
 msgstr "Meses"
@@ -107,7 +107,8 @@ msgstr "Número de recomendaciones"
 
 #. module: sale_order_product_recommendation
 #: model:ir.model.fields,field_description:sale_order_product_recommendation.field_sale_order_recommendation_line_price_unit
-msgid "Price unit"
+#, fuzzy
+msgid "Price Unit"
 msgstr "Precio unitario"
 
 #. module: sale_order_product_recommendation
@@ -151,14 +152,15 @@ msgid "Recommended products for current sale order"
 msgstr "Productos recomendados para el pedido de venta actual"
 
 #. module: sale_order_product_recommendation
-#: model:ir.model.fields,field_description:sale_order_product_recommendation.field_sale_order_recommendation_order_id
-msgid "Sale Order"
+#: model:ir.model.fields,field_description:sale_order_product_recommendation.field_sale_order_recommendation_line_sale_line_id
+#, fuzzy
+msgid "Sale Line"
 msgstr "Pedido de venta"
 
 #. module: sale_order_product_recommendation
-#: model:ir.model.fields,field_description:sale_order_product_recommendation.field_sale_order_recommendation_line_sale_line_id
-msgid "Sale line id"
-msgstr ""
+#: model:ir.model.fields,field_description:sale_order_product_recommendation.field_sale_order_recommendation_order_id
+msgid "Sale Order"
+msgstr "Pedido de venta"
 
 #. module: sale_order_product_recommendation
 #: model:ir.model.fields,help:sale_order_product_recommendation.field_sale_order_recommendation_line_amount
@@ -167,17 +169,20 @@ msgstr "Cuantos menos, más rápido se encontrarán."
 
 #. module: sale_order_product_recommendation
 #: model:ir.model.fields,field_description:sale_order_product_recommendation.field_sale_order_recommendation_line_times_delivered
-msgid "Times delivered"
+#, fuzzy
+msgid "Times Delivered"
 msgstr "Veces entregado"
 
 #. module: sale_order_product_recommendation
 #: model:ir.model.fields,field_description:sale_order_product_recommendation.field_sale_order_recommendation_line_units_delivered
-msgid "Units delivered"
+#, fuzzy
+msgid "Units Delivered"
 msgstr "Unidades entregadas"
 
 #. module: sale_order_product_recommendation
 #: model:ir.model.fields,field_description:sale_order_product_recommendation.field_sale_order_recommendation_line_units_included
-msgid "Units included"
+#, fuzzy
+msgid "Units Included"
 msgstr "Unidades incluidas"
 
 #. module: sale_order_product_recommendation
