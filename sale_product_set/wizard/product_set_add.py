@@ -32,12 +32,14 @@ class ProductSetAdd(models.TransientModel):
         for set_line in self.product_set_id.set_line_ids:
             sale_order_line |= sale_order_line_env.create(
                 self.prepare_sale_order_line_data(
-                    so_id, self.product_set_id, set_line,
+                    so_id, set_line,
                     max_sequence=max_sequence))
         return sale_order_line
 
-    def prepare_sale_order_line_data(self, sale_order_id, set, set_line,
+    @api.multi
+    def prepare_sale_order_line_data(self, sale_order_id, set_line,
                                      max_sequence=0):
+        self.ensure_one()
         sale_line = self.env['sale.order.line'].new({
             'order_id': sale_order_id,
             'product_id': set_line.product_id.id,
