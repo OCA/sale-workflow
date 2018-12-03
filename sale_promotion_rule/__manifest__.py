@@ -21,5 +21,6 @@
         'views/sale_order.xml',
         'views/sale_promotion_rule.xml',
         'security/ir.model.access.csv',
+        'data/sale_promotion_rule_data.xml'
     ]
 }

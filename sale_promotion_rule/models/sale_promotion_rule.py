@@ -5,10 +5,11 @@
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 import logging
 from collections import defaultdict
+from operator import attrgetter
 
 from odoo import api, fields, models, _
 from odoo.exceptions import UserError, ValidationError
-from odoo.tools import float_compare
+from odoo.tools import float_compare, float_is_zero
 import odoo.addons.decimal_precision as dp
 
 _logger = logging.getLogger(__name__)
@@ -42,7 +43,8 @@ class SalePromotionRule(models.Model):
     discount_type = fields.Selection(
         selection=[
             ('percentage', 'Percentage'),
-            # ('amount', 'Amount'), TODO implement
+            ('amount_tax_included', 'Amount (Taxes included)'),
+            ('amount_tax_excluded', 'Amount (Taxes excluded)'),
             ],
         required=True,
         default='percentage')
@@ -306,15 +308,132 @@ according to the strategy
                 _('Not supported promotion type %s') % self.promo_type
             )
 
+    def _compute_percent_amount_tax_exc(self, order, lines):
+        percent_discount = (
+            100.0 - (
+                (order.amount_untaxed - self.discount_amount)
+                / order.amount_untaxed
+                * 100.0
+            )
+        )
+        return dict.fromkeys(lines, percent_discount)
+
+    def _compute_percent_amount_tax_inc(self, order, lines):
+        average_discount = (
+            100.0 - (
+                (order.amount_total - self.discount_amount)
+                / order.amount_total
+                * 100.0
+            )
+        )
+        return dict.fromkeys(lines, average_discount)
+
+    def _compute_percent_discount_by_lines(self, order, lines):
+        self.ensure_one()
+        if not order == lines.mapped('order_id'):
+            raise Exception("All lines must come from the same order")
+
+        if self.discount_type == "amount_tax_excluded":
+            percent_by_line = self._compute_percent_amount_tax_exc(
+                order, lines
+            )
+        elif self.discount_type == "amount_tax_included":
+            percent_by_line = self._compute_percent_amount_tax_inc(
+                order, lines
+            )
+        elif self.discount_type == "percentage":
+            percent_by_line = dict.fromkeys(lines, self.discount_amount)
+        else:
+            raise ValidationError(
+                _('Discount promotion of type %s is not supported') %
+                self.discount_type
+            )
+        return percent_by_line
+
+    @api.multi
+    def _get_snapshot_before_apply_discount(self, order, lines):
+        """ Takes a snapshop of informations before applying the discount.
+        This snapshop is then passed to the `_finaly_apply_discount` method
+        once the rule is applied.
+        :param order:
+        :param lines:
+        :return: a dictionary of informations to preserve before applying the
+        discount.
+        """
+        self.ensure_one()
+        return {
+            'amount_total': order.amount_total,
+            'amount_untaxed': order.amount_untaxed
+        }
+
+    def _finalyse_apply_discount(self, order, lines, snapshop_info):
+        """ This method is called after the current promotion rule has been
+        applied.
+        :param order:
+        :param lines:
+        :param snapshop_info:
+        :return:
+        """
+        self.ensure_one()
+        # for disount based on amountwe must be sure that the final discount
+        # is the one expected since the amount can differ due to the rounding
+        # of the discount on each line
+        if self.discount_type not in (
+                "amount_tax_excluded", "amount_tax_included"):
+            return
+        if self.discount_type == "amount_tax_excluded":
+            applied_amount = (
+                    snapshop_info['amount_untaxed'] - order.amount_untaxed)
+        else:
+            applied_amount = (
+                    snapshop_info['amount_total'] - order.amount_total)
+        precision = self.env['decimal.precision'].precision_get('Discount')
+        applied_amount_diff = self.discount_amount - applied_amount
+        if float_is_zero(applied_amount_diff, precision_digits=precision):
+            return
+
+        # we must add an additional discount on one line to ensure that the
+        # applied discount is the amount expected
+        price_precision_digits = self.env[
+            'decimal.precision'].precision_get('Product Price')
+        for line in order.order_line:
+            # we iter on all line while we have a diff between the applied
+            # discount and the expected one
+            if float_is_zero(
+                    line.price_unit,
+                    precision_digits=price_precision_digits):
+                # we ignore line with price = 0
+                continue
+            line_amount_getter = attrgetter('price_total')
+            if self.discount_type == "amount_tax_excluded":
+                line_amount_getter = attrgetter('price_subtotal')
+            line_amount = line_amount_getter(line)
+            additional_discount = (
+                100.0 - (
+                    (line_amount - applied_amount_diff)
+                    / line_amount
+                    * 100.0
+                )
+            )
+            if not float_is_zero(
+                    additional_discount, precision_digits=precision):
+                # we've found a candidate line. We apply an additional discount
+                line.discount += additional_discount
+                new_line_amount = line_amount_getter(line)
+                # we compute the remaining amount to deduce once the discount
+                # has been changed
+                applied_amount_diff = new_line_amount - line_amount
+                if float_is_zero(
+                        applied_amount_diff,
+                        precision_digits=price_precision_digits):
+                    # no more amount to deduce
+                    return
+
     @api.multi
     def _apply_discount_to_order_lines(self, lines):
         self.ensure_one()
         if not self.promo_type == 'discount':
             return
-        if not self.discount_type == 'percentage':
-            raise ValidationError(
-                _('Discount promotion of type %s is not supported') %
-                self.discount_type)
 
         lines_by_order = defaultdict(self.env['sale.order.line'].browse)
         for line in lines:
@@ -323,12 +442,18 @@ according to the strategy
         # methods on each line updated. Indeed, update on a X2many field
         # is always done in norecompute on the parent...
         for order, _lines in lines_by_order.items():
+            #original_values = order.conver_to_read
+            discount_by_line = self._compute_percent_discount_by_lines(
+                order, lines)
+            snapshop_info = self._get_snapshot_before_apply_discount(
+                order, lines)
             vals = []
             for line in _lines:
+                percent_discount = discount_by_line[line]
                 discount = line.discount
                 if self.multi_rule_strategy != 'cumulate':
                     discount = 0.0
-                discount += self.discount_amount
+                discount += percent_discount
                 if self.rule_type == 'coupon':
                     v = {
                         'discount': discount,
@@ -342,3 +467,4 @@ according to the strategy
                 vals.append((1, line.id, v))
             if vals:
                 order.write({'order_line': vals})
+            self._finalyse_apply_discount(order, lines, snapshop_info)
