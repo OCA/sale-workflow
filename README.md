@@ -32,6 +32,7 @@ addon | version | summary
 [sale_exception](sale_exception/) | 10.0.2.0.0 | Custom exceptions on sale order
 [sale_fixed_discount](sale_fixed_discount/) | 10.0.1.0.0 | Allows to apply fixed amount discounts in sales orders.
 [sale_force_invoiced](sale_force_invoiced/) | 10.0.1.0.0 | Allows to force the invoice status of the sales order to Invoiced
+[sale_invoice_auto_deliver](sale_invoice_auto_deliver/) | 10.0.1.0.0 | Sale Invoice Automatic Deliver
 [sale_invoice_group_method](sale_invoice_group_method/) | 10.0.1.0.0 | Sale Invoice Group Method
 [sale_isolated_quotation](sale_isolated_quotation/) | 10.0.1.0.0 | Sales - Isolated Quotation
 [sale_layout_hidden](sale_layout_hidden/) | 10.0.1.0.1 | Sale Layout Hidden Sections
