@@ -1,0 +1,45 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+#	* sale_invoice_auto_deliver
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 8.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2016-03-21 12:23+0000\n"
+"PO-Revision-Date: 2016-03-21 12:23+0000\n"
+"Last-Translator: <>\n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: sale_invoice_auto_deliver
+#: model:ir.actions.act_window,name:sale_invoice_auto_deliver.action_view_sale_order_line_make_invoice_auto_deliver
+msgid "Create Invoice + Automatic Deliver"
+msgstr ""
+
+#. module: sale_invoice_auto_deliver
+#: code:addons/sale_invoice_auto_deliver/models/sale_make_invoice_advance.py:12
+#, python-format
+msgid "Invoice the whole sales order + Automatic Deliver"
+msgstr ""
+
+#. module: sale_invoice_auto_deliver
+#: model:ir.model,name:sale_invoice_auto_deliver.model_sale_advance_payment_inv
+msgid "Sales Advance Payment Invoice"
+msgstr ""
+
+#. module: sale_invoice_auto_deliver
+#: code:addons/sale_invoice_auto_deliver/models/sale_line_invoice.py:32
+#, python-format
+msgid "You cannot automatic deliver these order lines, some products are not available"
+msgstr ""
+
+#. module: sale_invoice_auto_deliver
+#: code:addons/sale_invoice_auto_deliver/models/sale_make_invoice_advance.py:38
+#, python-format
+msgid "You cannot automatic deliver this order, some products are not available"
+msgstr ""
+
