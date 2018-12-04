@@ -21,6 +21,7 @@ setuptools.setup(
         'odoo10-addon-sale_exception',
         'odoo10-addon-sale_fixed_discount',
         'odoo10-addon-sale_force_invoiced',
+        'odoo10-addon-sale_invoice_auto_deliver',
         'odoo10-addon-sale_invoice_group_method',
         'odoo10-addon-sale_isolated_quotation',
         'odoo10-addon-sale_layout_hidden',
