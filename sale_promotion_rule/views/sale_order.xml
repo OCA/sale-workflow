@@ -10,7 +10,7 @@
                 <field name="code"/>
                 <field name="discount_amount"/>
                 <field name="discount_type"/>
-                <field name="restriction_amount"/>
+                <field name="restriction_amount_field"/>
                 <field name="minimal_amount"/>
             </tree>
         </field>

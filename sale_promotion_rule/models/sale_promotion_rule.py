@@ -67,7 +67,7 @@ class SalePromotionRule(models.Model):
             ('no_restriction', 'No restriction')
         ], default='no_restriction',
         required=True)
-    restriction_amount = fields.Selection(
+    restriction_amount_field = fields.Selection(
         selection=[
             ('amount_total', 'Taxed amount'),
             ('amount_untaxed', 'Untaxed amount'),
@@ -117,7 +117,7 @@ according to the strategy
         precision = self.env['decimal.precision'].precision_get('Discount')
         return float_compare(
             self.minimal_amount,
-            order[self.restriction_amount],
+            order[self.restriction_amount_field],
             precision_digits=precision) < 0
 
     def _check_valid_usage(self, order):
