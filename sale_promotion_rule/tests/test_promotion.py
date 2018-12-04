@@ -17,7 +17,7 @@ class AbstractCommonPromotionCase(object):
             "promo_type": "discount",
             "discount_amount": 20.00,
             "minimal_amount": 50.00,
-            "restriction_amount": "amount_untaxed",
+            "restriction_amount_field": "amount_untaxed",
             "multi_rule_strategy": "use_best"
         }
 
@@ -28,7 +28,7 @@ class AbstractCommonPromotionCase(object):
             "promo_type": "discount",
             "discount_amount": 10.00,
             "minimal_amount": 50.00,
-            "restriction_amount": "amount_untaxed",
+            "restriction_amount_field": "amount_untaxed",
             "multi_rule_strategy": "use_best"
         }
 
