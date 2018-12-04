@@ -120,7 +120,7 @@ according to the strategy
 
     def _check_valid_usage(self, order):
         if self.usage_restriction == 'one_per_partner':
-            return not self.env['sale.order'].search([
+            return not self.env['sale.order'].search_count([
                 ('id', '!=', order.id),
                 ('partner_id', '=', order.partner_id.id),
                 ('promotion_rule_id', '=', self.id),
