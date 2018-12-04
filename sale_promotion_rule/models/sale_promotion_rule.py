@@ -75,8 +75,6 @@ class SalePromotionRule(models.Model):
         required=True)
     minimal_amount = fields.Float(
         digits=dp.get_precision('Discount'))
-    display_name = fields.Char(
-        compute='_compute_display_name')
     multi_rule_strategy = fields.Selection(
         selection=[
             ('use_best', 'Use the best promotion'),
@@ -173,16 +171,23 @@ according to the strategy
             return not line.discount
         return True
 
-    @api.depends('rule_type', 'code', 'name')
-    def _compute_display_name(self):
+    @api.multi
+    def name_get(self):
+        res = []
         for record in self:
             if record.rule_type == 'coupon':
-                record.display_name = '%s (%s)' % (record.name, record.code)
+                res.append(
+                    (record.id, u'%s (%s)' % (record.name, record.code))
+                )
             elif record.rule_type == 'auto':
-                record.display_name = '%s (%s)' % (record.name, _('Automatic'))
+                res.append(
+                    (record.id, u'%s (%s)' % (record.name, _('Automatic')))
+                )
             else:
-                super(SalePromotionRule, record)._compute_display_name()
-        return None
+                res.extend(
+                    super(SalePromotionRule, record)._name_get()
+                )
+        return res
 
     @api.model
     def compute_promotions(self, orders):
