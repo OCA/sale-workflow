@@ -3,7 +3,7 @@
    :alt: License: AGPL-3
 
 ================
-Partner prospect
+Partner Prospect
 ================
 
 With this module you can easily distinguish if a partner is currently customer
@@ -16,12 +16,7 @@ Usage
 
 .. image:: https://odoo-community.org/website/image/ir.attachment/5784_f2813bd/datas
    :alt: Try me on Runbot
-   :target: https://runbot.odoo-community.org/runbot/167/11.0
-
-For further information, please visit:
-
-* https://www.odoo.com/forum/help-1
-
+   :target: https://runbot.odoo-community.org/runbot/167/12.0
 
 Bug Tracker
 ===========
@@ -40,8 +35,7 @@ Contributors
 * Pedro M. Baeza <pedro.baeza@serviciosbaeza.com>
 * Ana Juaristi <anajuaristi@avanzosc.es>
 * Oihane Crucelaegui <oihanecrucelaegi@avanzosc.es>
-
-Do not contact contributors directly about support or help with technical issues.
+* Sudhir Arya <sudhir@erpharbor.com>
 
 Maintainer
 ----------
@@ -56,4 +50,4 @@ OCA, or the Odoo Community Association, is a nonprofit organization whose
 mission is to support the collaborative development of Odoo features and
 promote its widespread use.
 
-To contribute to this module, please visit http://odoo-community.org.
+To contribute to this module, please visit https://odoo-community.org.
