@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <odoo>
+
     <record id="res_partner_prospect_form_view" model="ir.ui.view">
         <field name="name">res.partner.prospect.form</field>
         <field name="model">res.partner</field>
@@ -28,13 +29,12 @@
         <field name="inherit_id" ref="base.view_res_partner_filter" />
         <field name="arch" type="xml">
             <filter name="supplier" position="after">
-                <separator/>
                 <filter string="Actual Customer" name="noprospect" domain="[('prospect','=',False)]"/>
                 <filter string="Prospect" name="prospect" domain="[('prospect','=',True)]"/>
             </filter>
-            <group name="group_by" position="inside">
-                <filter string="Prospect" domain="[]" context="{'group_by':'prospect'}"/>
-            </group>
+            <xpath expr="//group[@name='group_by']" position="inside">
+                <filter name="group_prospect" string="Prospect" context="{'group_by': 'prospect'}"/>
+            </xpath>
         </field>
     </record>
 
@@ -45,4 +45,5 @@
     <record id="base.action_partner_customer_form" model="ir.actions.act_window">
         <field name="context">{'default_customer':1, 'search_default_customer':1, 'search_default_noprospect': 1, 'default_company_type': 'company','default_is_company': 1}</field>
     </record>
+
 </odoo>
