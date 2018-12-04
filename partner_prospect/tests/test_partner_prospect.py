@@ -58,20 +58,20 @@ class TestPartnerProspect(TransactionCase):
         self.assertTrue(self.partner4.prospect, 'Partner4 is not a prospect')
 
     def test_partner_child_check_invoice(self):
-        type = 'out_invoice'
+        ttype = 'out_invoice'
         self.invoice_model.create({
             'partner_id': self.partner2.id,
-            'type': type,
+            'type': ttype,
         })._onchange_partner_id()
         self.assertFalse(self.partner1.prospect, 'Partner1 is a prospect')
         self.assertFalse(self.partner2.prospect, 'Partner2 is a prospect')
         self.assertFalse(self.partner3.prospect, 'Partner3 is a prospect')
 
     def test_partner_parent_check_invoice(self):
-        type = 'out_refund'
+        ttype = 'out_refund'
         self.invoice_model.create({
             'partner_id': self.partner1.id,
-            'type': type,
+            'type': ttype,
         })._onchange_partner_id()
         self.assertFalse(self.partner1.prospect, 'Partner1 is a prospect')
         self.assertFalse(self.partner2.prospect, 'Partner2 is a prospect')
