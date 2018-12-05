@@ -8,7 +8,9 @@
         <field name="inherit_id" ref="sale.view_sales_config"/>
         <field name="arch" type="xml">
             <group name="customers" position="inside">
-                <field name="default_country_restriction_id"/>
+                <field name="enable_sale_country_restriction"/>
+                <field name="default_country_restriction_id"
+                       attrs="{'invisible': [('enable_sale_country_restriction', '=', False)]}"/>
             </group>
         </field>
     </record>

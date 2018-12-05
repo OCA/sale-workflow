@@ -9,6 +9,10 @@ class SaleConfigSettings(models.TransientModel):
 
     _inherit = 'sale.config.settings'
 
+    enable_sale_country_restriction = fields.Boolean(
+        related='company_id.enable_sale_country_restriction',
+        help="Check this if you want to trigger country restrictions."
+    )
     default_country_restriction_id = fields.Many2one(
         comodel_name='product.country.restriction',
         string='Default Customer Country Restriction',
