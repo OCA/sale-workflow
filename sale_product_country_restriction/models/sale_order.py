@@ -71,13 +71,16 @@ class SaleOrder(models.Model):
 
     @api.multi
     def action_confirm(self):
-        self.check_country_restriction()
+        if self.env.user.company_id.enable_sale_country_restriction:
+            self.check_country_restriction()
         return super(SaleOrder, self).action_confirm()
 
     @api.multi
     @api.onchange("partner_shipping_id")
     def _onchange_partners_check_country(self):
         res = {}
+        if not self.env.user.company_id.enable_sale_country_restriction:
+            return res
         for partner in self.mapped('partner_shipping_id'):
             if partner and not partner.country_id:
                 warning = (

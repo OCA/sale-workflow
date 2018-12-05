@@ -23,3 +23,5 @@ class SaleCountryRestrictionCommon(CountryRestrictionCommon):
         }
 
         self.sale_order = self.env['sale.order'].create(vals)
+        # Enable restriction behaviour
+        self.env.user.company_id.enable_sale_country_restriction = True
