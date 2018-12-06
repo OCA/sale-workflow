@@ -55,20 +55,20 @@ Credits
 =======
 
 Authors
-~~~~~~~
+------------
 
 * Tecnativa
 
 Contributors
-~~~~~~~~~~~~
+------------
 
-* `Tecnativa <https://www.tecnativa.com>`_:
+* Tecnativa <https://www.tecnativa.com>
 * Carlos Dauden
 * David Vidal
 * Sudhir Arya <sudhir@erpharbor.com>
 
 Maintainers
-~~~~~~~~~~~
+------------
 
 This module is maintained by the OCA.
 
