@@ -9,14 +9,15 @@ msgstr ""
 "Project-Id-Version: Odoo Server 10.0\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2017-07-08 00:50+0000\n"
-"PO-Revision-Date: 2017-07-08 00:50+0000\n"
-"Last-Translator: OCA Transbot <transbot@odoo-community.org>, 2017\n"
+"PO-Revision-Date: 2018-12-07 15:46+0000\n"
+"Last-Translator: Ben Brich <b.brich@humanilog.org>\n"
 "Language-Team: German (https://www.transifex.com/oca/teams/23907/de/)\n"
 "Language: de\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
-"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: Weblate 3.3\n"
 
 #. module: sale_rental
 #: model:ir.model.fields,help:sale_rental.field_sale_rental_in_state
@@ -64,7 +65,7 @@ msgstr "Abbrechen"
 #. module: sale_rental
 #: selection:sale.rental,state:0
 msgid "Cancelled"
-msgstr ""
+msgstr "Abgebrochen"
 
 #. module: sale_rental
 #: code:addons/sale_rental/models/sale_order.py:34
@@ -80,24 +81,24 @@ msgstr "Unternehmen"
 #. module: sale_rental
 #: model:ir.model.fields,field_description:sale_rental.field_create_rental_product_copy_image
 msgid "Copy Product Image"
-msgstr ""
+msgstr "Produktbild kopieren"
 
 #. module: sale_rental
 #: model:ir.ui.view,arch_db:sale_rental.create_rental_product_form
 msgid "Create"
-msgstr ""
+msgstr "Anlegen"
 
 #. module: sale_rental
 #: model:ir.actions.act_window,name:sale_rental.create_rental_product_action
 #: model:ir.ui.view,arch_db:sale_rental.create_rental_product_form
 #: model:ir.ui.view,arch_db:sale_rental.product_normal_form_view
 msgid "Create Rental Service"
-msgstr ""
+msgstr "Mietservice anlegen"
 
 #. module: sale_rental
 #: model:ir.model,name:sale_rental.model_create_rental_product
 msgid "Create the Rental Service Product"
-msgstr ""
+msgstr "Mietserviceprodukt anlegen"
 
 #. module: sale_rental
 #: model:ir.model.fields,field_description:sale_rental.field_create_rental_product_create_uid
@@ -115,7 +116,7 @@ msgstr "Angelegt am"
 #: model:ir.model.fields,field_description:sale_rental.field_sale_rental_partner_id
 #: model:ir.ui.view,arch_db:sale_rental.sale_rental_search
 msgid "Customer"
-msgstr ""
+msgstr "Kunde"
 
 #. module: sale_rental
 #: model:ir.model.fields,field_description:sale_rental.field_create_rental_product_default_code
@@ -126,7 +127,7 @@ msgstr ""
 #: model:ir.ui.view,arch_db:sale_rental.sale_rental_form
 #: model:ir.ui.view,arch_db:sale_rental.sale_rental_tree
 msgid "Delivery"
-msgstr ""
+msgstr "Lieferung"
 
 #. module: sale_rental
 #: model:ir.model.fields,field_description:sale_rental.field_sale_rental_out_picking_id
@@ -171,7 +172,7 @@ msgstr "ID"
 #: model:ir.model.fields,help:sale_rental.field_sale_order_line_rental_qty
 #: model:ir.model.fields,help:sale_rental.field_sale_rental_rental_qty
 msgid "Indicate the number of items that will be rented."
-msgstr ""
+msgstr "Anzahl der zu vermietenden Produkte."
 
 #. module: sale_rental
 #: model:ir.model,name:sale_rental.model_stock_inventory
@@ -206,7 +207,7 @@ msgstr ""
 #. module: sale_rental
 #: selection:sale.order.line,rental_type:0
 msgid "New Rental"
-msgstr ""
+msgstr "Neue Vermietung"
 
 #. module: sale_rental
 #: code:addons/sale_rental/models/sale_order.py:174
@@ -221,6 +222,8 @@ msgid ""
 "On the 'new rental' sale order line with product '%s', we should have a "
 "rental service product !"
 msgstr ""
+"In der Mietservice-Angebotszeile mit dem Produkt '%s', sollte ein "
+"Mietserviceprodukt ausgewählt sein!"
 
 #. module: sale_rental
 #: code:addons/sale_rental/models/sale_order.py:101
@@ -230,6 +233,9 @@ msgid ""
 "product with a quantity (%s) that is different from the rented quantity "
 "(%s). This is not supported."
 msgstr ""
+"In der Auftragszeile mit dem Mietserviceprodukt %s versuchen Sie das Produkt "
+"in einer Menge (%s) zu verkaufen die von der vermieteten Menge (%s) "
+"abweicht. Diese Funktionalität wird nicht unterstützt."
 
 #. module: sale_rental
 #: code:addons/sale_rental/models/sale_order.py:90
