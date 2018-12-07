@@ -30,6 +30,16 @@ class SaleOrder(models.Model):
         readonly=True,
     )
 
+    @api.model
+    def _get_no_country_restriction_partner_message(self, partner):
+        return _(u"The country of the partner %s must be set") % partner
+
+    @api.model
+    def _get_no_restriction_partner_message(self, partner):
+        self.ensure_one()
+        return _(u"A country restriction of the partner %s must be set") % \
+            partner
+
     @api.multi
     def _check_partner_shipping_country_restriction(self):
         """
@@ -39,8 +49,11 @@ class SaleOrder(models.Model):
         for partner in self.mapped('partner_shipping_id'):
             if partner and not partner.country_restriction_id:
                 raise ValidationError(
-                    _("The Country Restriction of the partner %s must be set")
-                    % self.partner_shipping_id.display_name
+                    self._get_no_country_restriction_partner_message(partner)
+                )
+            if partner and not partner.country_id:
+                raise ValidationError(
+                    self._get_no_restriction_partner_message(partner)
                 )
 
     @api.multi
@@ -87,5 +100,17 @@ class SaleOrder(models.Model):
                     _(u"The country of the partner %s must be set")
                     % self.partner_shipping_id.display_name
                 )
+                res = _append_warning(res, warning)
+        return res
+
+    @api.multi
+    @api.onchange("partner_shipping_id")
+    def _onchange_partners_check_restriction(self):
+        res = {}
+        if not self.env.user.company_id.enable_sale_country_restriction:
+            return res
+        for partner in self.mapped('partner_shipping_id'):
+            if partner and not partner.country_restriction_id:
+                warning = (self._get_no_restriction_partner_message(partner))
                 res = _append_warning(res, warning)
         return res

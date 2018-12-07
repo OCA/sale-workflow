@@ -75,3 +75,7 @@ class TestSaleRestriction(SaleCountryRestrictionCommon):
         self.partner.country_id = self.kp
         res = self.sale_order._onchange_partners_check_country()
         self.assertNotIn('warning', res)
+
+        self.partner.restriction_id = False
+        self.sale_order._onchange_partners_check_restriction()
+        self.assertIn('warning', res)
