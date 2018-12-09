@@ -31,8 +31,8 @@ msgstr ""
 
 #. module: sale_order_line_sequence
 #: model:ir.model,name:sale_order_line_sequence.model_sale_order
-msgid "Sales Order"
-msgstr "Pedido de Venda"
+msgid "Quotation"
+msgstr ""
 
 #. module: sale_order_line_sequence
 #: model:ir.model,name:sale_order_line_sequence.model_sale_order_line
@@ -48,3 +48,6 @@ msgstr ""
 #: model:ir.model.fields,help:sale_order_line_sequence.field_sale_order_line_sequence2
 msgid "Shows the sequence of this line in the sale order."
 msgstr ""
+
+#~ msgid "Sales Order"
+#~ msgstr "Pedido de Venda"
