@@ -80,7 +80,7 @@ msgstr ""
 
 #. module: sale_cancel_reason
 #: model:ir.model.fields,field_description:sale_cancel_reason.field_sale_order_cancel_id
-#: model:ir.model.fields,field_description:sale_cancel_reason.field_sale_order_cancel_reason_id_4505
+#: model:ir.model.fields,field_description:sale_cancel_reason.field_sale_order_cancel_reason_id_4506
 msgid "ID"
 msgstr ""
 
@@ -119,7 +119,7 @@ msgid "Reason"
 msgstr ""
 
 #. module: sale_cancel_reason
-#: model:ir.model.fields,field_description:sale_cancel_reason.field_sale_order_cancel_reason_id_4496
+#: model:ir.model.fields,field_description:sale_cancel_reason.field_sale_order_cancel_reason_id_4497
 msgid "Reason for cancellation"
 msgstr ""
 
