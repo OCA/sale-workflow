@@ -19,18 +19,29 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
 #. module: sale_order_line_sequence
-#: model:ir.ui.view,arch_db:sale_order_line_sequence.report_saleorder_document_sequence
+#: model_terms:ir.ui.view,arch_db:sale_order_line_sequence.report_saleorder_document_sequence
 msgid "<strong>Sequence</strong>"
 msgstr ""
 
 #. module: sale_order_line_sequence
-#: model:ir.model.fields,field_description:sale_order_line_sequence.field_sale_order_max_line_sequence
+#: model:ir.model.fields,help:sale_order_line_sequence.field_sale_order_line__sequence
+msgid "Gives the sequence of this line when displaying the sale order."
+msgstr ""
+
+#. module: sale_order_line_sequence
+#: model:ir.model.fields,field_description:sale_order_line_sequence.field_sale_order_line__sequence2
+msgid "Line Number"
+msgstr ""
+
+#. module: sale_order_line_sequence
+#: model:ir.model.fields,field_description:sale_order_line_sequence.field_sale_order__max_line_sequence
 msgid "Max sequence in lines"
 msgstr ""
 
 #. module: sale_order_line_sequence
 #: model:ir.model,name:sale_order_line_sequence.model_sale_order
-msgid "Sales Order"
+#, fuzzy
+msgid "Sale Order"
 msgstr "Verkooporder"
 
 #. module: sale_order_line_sequence
@@ -39,11 +50,11 @@ msgid "Sales Order Line"
 msgstr ""
 
 #. module: sale_order_line_sequence
-#: model:ir.model.fields,field_description:sale_order_line_sequence.field_sale_order_line_sequence2
+#: model:ir.model.fields,field_description:sale_order_line_sequence.field_sale_order_line__sequence
 msgid "Sequence"
 msgstr ""
 
 #. module: sale_order_line_sequence
-#: model:ir.model.fields,help:sale_order_line_sequence.field_sale_order_line_sequence2
+#: model:ir.model.fields,help:sale_order_line_sequence.field_sale_order_line__sequence2
 msgid "Shows the sequence of this line in the sale order."
 msgstr ""
