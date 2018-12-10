@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 # Copyright 2017 Simone Rubino - Agile Business Group
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
 
@@ -49,7 +48,6 @@ class TestSaleOrderLineDescriptionChange(common.TransactionCase):
             'name': name,
             'login': name,
             'email': name + '@example.com',
-            'notify_email': 'none',
             'groups_id': groups_id})
 
     def test_check_sale_order_line_description(self):
