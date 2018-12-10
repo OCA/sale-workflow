@@ -62,4 +62,4 @@ class SaleOrderLine(models.Model):
 
     @api.onchange('product_id')
     def onchange_secondary_unit_product_id(self):
-        self.secondary_uom_id = self.product_id.sale_secondary_uom_id
+        self.secondary_uom_id = self.product_id.secondary_uom_ids[:1]
