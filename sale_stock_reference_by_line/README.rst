@@ -16,9 +16,6 @@ needs to create procurement group per sale order line basis.
 Usage
 =====
 
-To use this module, you need to install e.g.
-**Sale Sourced By Line** (`sale_sourced_by_line`)
-
 .. image:: https://odoo-community.org/website/image/ir.attachment/5784_f2813bd/datas
    :alt: Try me on Runbot
    :target: https://runbot.odoo-community.org/runbot/167/11.0

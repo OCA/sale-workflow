@@ -25,10 +25,13 @@ msgstr ""
 
 #. module: sale_procurement_group_by_line
 #: model:ir.model,name:sale_procurement_group_by_line.model_sale_order
-msgid "Sales Order"
-msgstr "Objednávka predaja"
+msgid "Quotation"
+msgstr ""
 
 #. module: sale_procurement_group_by_line
 #: model:ir.model,name:sale_procurement_group_by_line.model_sale_order_line
 msgid "Sales Order Line"
 msgstr ""
+
+#~ msgid "Sales Order"
+#~ msgstr "Objednávka predaja"
