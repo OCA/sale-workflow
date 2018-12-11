@@ -6,3 +6,4 @@ server-tools
 manufacture
 account-invoicing
 product-attribute
+partner-contact
