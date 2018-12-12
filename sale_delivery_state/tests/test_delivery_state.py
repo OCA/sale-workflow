@@ -27,6 +27,12 @@ class TestDeliveryState(TransactionCase):
         self.order.order_line[0].qty_delivered = 2
         self.assertEqual(self.order.delivery_state, 'partially')
 
+    def test_forced_delivery_cost(self):
+        self.order.action_confirm()
+        self.order.order_line[0].qty_delivered = 2
+        self.order.force_delivery_state = True
+        self.assertEqual(self.order.delivery_state, 'done')
+
     def test_delivery_done(self):
         self.order.action_confirm()
         for line in self.order.order_line:
@@ -88,6 +94,14 @@ class TestDeliveryState(TransactionCase):
         self.order.action_confirm()
         self.order.order_line[0].qty_delivered = 2
         self.assertEqual(self.order.delivery_state, 'partially')
+
+    def test_forced_delivery_cost(self):
+        self.add_delivery_cost_line()
+        self.mock_delivery()
+        self.order.action_confirm()
+        self.order.order_line[0].qty_delivered = 2
+        self.order.force_delivery_state = True
+        self.assertEqual(self.order.delivery_state, 'done')
 
     def test_delivery_done_delivery_cost(self):
         self.add_delivery_cost_line()
