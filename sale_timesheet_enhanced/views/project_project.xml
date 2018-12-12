@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <!--
+        Copyright 2018 Brainbean Apps
+        License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
+    -->
+
+    <record id="project_project_view_form" model="ir.ui.view">
+        <field name="name">project.project.form</field>
+        <field name="model">project.project</field>
+        <field name="inherit_id" ref="sale_timesheet.project_project_view_form"/>
+        <field name="arch" type="xml">
+            <field name="billable_type" position="after">
+                <field name="proxied_billable_type"/>
+            </field>
+            <field name="sale_line_id" position="attributes">
+                <attribute name="attrs">{'invisible': [('billable_type', '!=', 'task_rate')], 'required': [('billable_type', '=', 'task_rate')]}</attribute>
+            </field>
+            <field name="sale_line_employee_ids" position="attributes">
+                <attribute name="attrs">{'invisible': [('billable_type', '!=', 'employee_rate')]}</attribute>
+            </field>
+            <xpath expr='//field[@name="sale_line_employee_ids"]/tree/field[@name="price_unit"]' position="before">
+                <field name="currency_id" invisible="1"/>
+            </xpath>
+            <xpath expr='//field[@name="sale_line_employee_ids"]/tree/field[@name="price_unit"]' position="attributes">
+                <attribute name="widget">monetary</attribute>
+                <attribute name="options">{'currency_field': 'currency_id'}</attribute>
+            </xpath>
+        </field>
+    </record>
+
+</odoo>

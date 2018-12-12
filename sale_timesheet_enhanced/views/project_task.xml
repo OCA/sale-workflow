@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <!--
+        Copyright 2018 Brainbean Apps
+        License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
+    -->
+
+    <record id="view_sale_service_inherit_form2" model="ir.ui.view">
+        <field name="name">project.task.form</field>
+        <field name="model">project.task</field>
+        <field name="inherit_id" ref="sale_timesheet.view_sale_service_inherit_form2"/>
+        <field name="arch" type="xml">
+            <field name="sale_line_id" position="before">
+                <field name="exclude_from_sale_order"/>
+            </field>
+            <field name="sale_line_id" position="attributes">
+                <attribute name="attrs">{'invisible': ['|', ('partner_id', '=', False), ('billable_type', '!=', 'task_rate')]}</attribute>
+            </field>
+        </field>
+    </record>
+
+    <record id="project_task_view_form_inherit_sale_timesheet" model="ir.ui.view">
+        <field name="name">project.task.form.inherit.timesheet</field>
+        <field name="model">project.task</field>
+        <field name="inherit_id" ref="sale_timesheet.project_task_view_form_inherit_sale_timesheet"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='timesheet_ids']/tree/field[@name='name']" position="after">
+                <xpath expr="//field[@name='timesheet_ids']/tree/field[@name='so_line']" position="move"/>
+            </xpath>
+            <xpath expr="//field[@name='timesheet_ids']/tree/field[@name='so_line']" position="before">
+                <field name="exclude_from_sale_order"/>
+            </xpath>
+            <xpath expr="//field[@name='timesheet_ids']/tree/field[@name='so_line']" position="attributes">
+                <attribute name="attrs">{'column_invisible': [('parent.billable_type', '!=', 'employee_rate')]}</attribute>
+            </xpath>
+        </field>
+    </record>
+
+</odoo>
