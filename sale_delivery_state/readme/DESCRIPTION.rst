@@ -12,4 +12,4 @@ is set, it will trigger the computation of delivery state.
 
 This module also works with delivery.carrier fees that are added as a
 sale order line. Thoses line are special as they will never be considered delivered.
-Delivery fees lines are ignored in the computation of the delivery state.
+Delvery fees lines are ignored in the computation of the delivery state.
