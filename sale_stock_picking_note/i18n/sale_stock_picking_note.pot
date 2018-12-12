@@ -4,7 +4,7 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: Odoo Server 11.0\n"
+"Project-Id-Version: Odoo Server 12.0\n"
 "Report-Msgid-Bugs-To: \n"
 "Last-Translator: <>\n"
 "Language-Team: \n"
@@ -14,18 +14,13 @@ msgstr ""
 "Plural-Forms: \n"
 
 #. module: sale_stock_picking_note
-#: model:ir.ui.view,arch_db:sale_stock_picking_note.view_picking_form
-msgid "Notes"
-msgstr ""
-
-#. module: sale_stock_picking_note
-#: model:ir.model.fields,field_description:sale_stock_picking_note.field_sale_order_picking_note
+#: model:ir.model.fields,field_description:sale_stock_picking_note.field_sale_order__picking_note
 msgid "Picking Note"
 msgstr ""
 
 #. module: sale_stock_picking_note
 #: model:ir.model,name:sale_stock_picking_note.model_sale_order
-msgid "Quotation"
+msgid "Sale Order"
 msgstr ""
 
 #. module: sale_stock_picking_note

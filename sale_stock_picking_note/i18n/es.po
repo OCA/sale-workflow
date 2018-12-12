@@ -18,21 +18,22 @@ msgstr ""
 "X-Generator: Poedit 1.8.7.1\n"
 
 #. module: sale_stock_picking_note
-#: model:ir.ui.view,arch_db:sale_stock_picking_note.view_picking_form
-msgid "Notes"
-msgstr "Notas"
-
-#. module: sale_stock_picking_note
-#: model:ir.model.fields,field_description:sale_stock_picking_note.field_sale_order_picking_note
+#: model:ir.model.fields,field_description:sale_stock_picking_note.field_sale_order__picking_note
 msgid "Picking Note"
 msgstr "Nota albarán"
 
 #. module: sale_stock_picking_note
 #: model:ir.model,name:sale_stock_picking_note.model_sale_order
-msgid "Quotation"
-msgstr "Presupuesto"
+msgid "Sale Order"
+msgstr ""
 
 #. module: sale_stock_picking_note
 #: model:ir.model,name:sale_stock_picking_note.model_stock_move
 msgid "Stock Move"
 msgstr "Movimiento de existencias"
+
+#~ msgid "Notes"
+#~ msgstr "Notas"
+
+#~ msgid "Quotation"
+#~ msgstr "Presupuesto"
