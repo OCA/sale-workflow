@@ -21,6 +21,12 @@ class SaleOrder(models.Model):
         store=True
     )
 
+    force_delivery_state = fields.Boolean(
+        string='Force delivery state',
+        help=("Allow to enforce done state of delivery, for instance if some"
+              " quantities were cancelled")
+    )
+
     def _all_qty_delivered(self):
         """
         Returns True if all line have qty_delivered >= to ordered quantities
@@ -66,17 +72,25 @@ class SaleOrder(models.Model):
             for line in self.order_line
         )
 
-    @api.depends('order_line', 'order_line.qty_delivered', 'state')
+    @api.depends('order_line', 'order_line.qty_delivered',
+                 'state', 'force_delivery_state')
     def _compute_delivery_state(self):
         for order in self:
             if order.state in ('draft', 'cancel'):
                 order.delivery_state = 'no'
-            elif order._all_qty_delivered():
+            elif (order.force_delivery_state or
+                  order._all_qty_delivered()):
                 order.delivery_state = 'done'
             elif order._partially_delivered():
                 order.delivery_state = 'partially'
             else:
                 order.delivery_state = 'unprocessed'
+
+    def action_force_delivery_state(self):
+        self.write({'force_delivery_state': True})
+
+    def action_unforce_delivery_state(self):
+        self.write({'force_delivery_state': False})
 
 
 class SaleOrderLine(models.Model):
