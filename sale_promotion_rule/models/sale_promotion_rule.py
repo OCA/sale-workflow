@@ -129,7 +129,7 @@ according to the strategy
 
     def _check_valid_multi_rule_strategy(self, order):
         if self.multi_rule_strategy == 'exclusive':
-            return not order.promotion_rule_ids
+            return not order.applied_promotion_rule_ids
         return True
 
     def _check_valid_rule_type(self, order):
