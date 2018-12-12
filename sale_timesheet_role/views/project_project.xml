@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <!--
+        Copyright 2018 Brainbean Apps
+        License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
+    -->
+
+    <record id="project_project_view_form" model="ir.ui.view">
+        <field name="name">project.project.form</field>
+        <field name="model">project.project</field>
+        <field name="inherit_id" ref="sale_timesheet_enhanced.project_project_view_form"/>
+        <field name="arch" type="xml">
+            <field name="sale_line_employee_ids" position="after">
+                <field name="sale_line_employee_role_ids">
+                    <tree editable="top">
+                        <field name="employee_id" options="{'no_create': True}" attrs="{'required': [('role_id', '=', False)]}"/>
+                        <field name="role_id" options="{'no_create': True}"  attrs="{'required': [('employee_id', '=', False)]}"/>
+                        <field name="sale_line_id" options="{'no_create': True}" domain="[('order_id','=',parent.sale_order_id), ('is_service', '=', True)]"/>
+                        <field name="currency_id" invisible="1"/>
+                        <field name="price_unit" widget="monetary" options="{'currency_field': 'currency_id'}"/>
+                    </tree>
+                </field>
+            </field>
+        </field>
+    </record>
+
+</odoo>
