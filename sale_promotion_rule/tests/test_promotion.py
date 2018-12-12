@@ -108,3 +108,23 @@ class PromotionCase(TransactionCase, AbstractCommonPromotionCase):
         self.assertEqual(first_line.discount, 20)
         for line in self.sale.order_line:
             self.check_discount_rule_set(line, self.promotion_rule_coupon)
+
+    def test_exclusive_rule(self):
+        self.promotion_rule_coupon.multi_rule_strategy = "exclusive"
+        self.promotion_rule_coupon.sequence = 10
+        self.promotion_rule_auto.multi_rule_strategy = "exclusive"
+        self.promotion_rule_auto.sequence = 20
+        self.add_coupon_code('ELDONGHUT')
+        self.sale.apply_promotions()
+        self.assertEqual(
+            self.promotion_rule_coupon, self.sale.applied_promotion_rule_ids
+        )
+        self.sale.clear_promotions()
+        self.promotion_rule_coupon.sequence = 20
+        self.promotion_rule_auto.sequence = 10
+        self.add_coupon_code('ELDONGHUT')
+        self.sale.apply_promotions()
+        # coupon is always on top of applied promotion rules
+        self.assertEqual(
+            self.promotion_rule_coupon, self.sale.applied_promotion_rule_ids
+        )
