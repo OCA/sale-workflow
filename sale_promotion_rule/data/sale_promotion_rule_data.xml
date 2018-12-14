@@ -1,8 +1,0 @@
-<?xml version="1.0" encoding="utf-8"?>
-<!-- Copyright 2018 ACSONE SA/NV>
-     License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl). -->
-<odoo>
-    <record id="product.decimal_discount" model="decimal.precision">
-        <field name="digits">3</field>
-    </record>
-</odoo>

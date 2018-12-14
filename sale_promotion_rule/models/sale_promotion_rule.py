@@ -5,11 +5,10 @@
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 import logging
 from collections import defaultdict
-from operator import attrgetter
 
 from odoo import api, fields, models, _
 from odoo.exceptions import UserError, ValidationError
-from odoo.tools import float_compare, float_is_zero
+from odoo.tools import float_compare, float_round
 import odoo.addons.decimal_precision as dp
 
 _logger = logging.getLogger(__name__)
@@ -30,9 +29,6 @@ class SalePromotionRule(models.Model):
     name = fields.Char(required=True,
                        translate=True)
     code = fields.Char()
-    discount_amount = fields.Float(
-        digits=dp.get_precision('Discount'),
-        required=True)
     promo_type = fields.Selection(
         selection=[
             # ('gift', 'Gift'), TODO implement
@@ -40,6 +36,13 @@ class SalePromotionRule(models.Model):
             ],
         required=True,
         default='discount')
+    discount_amount = fields.Float(
+        digits=dp.get_precision('Discount'),
+        required=True)
+    discount_amount_currency_id = fields.Many2one(
+        "res.currency",
+        string="Discount Amount Currency",
+        default=lambda a: a._get_default_currency_id())
     discount_type = fields.Selection(
         selection=[
             ('percentage', 'Percentage'),
@@ -48,6 +51,11 @@ class SalePromotionRule(models.Model):
             ],
         required=True,
         default='percentage')
+    discount_product_id = fields.Many2one(
+        "product.product",
+        string="Product used to apply the promotion",
+        domain=[("type", "=", "service")]
+    )
     date_from = fields.Date()
     date_to = fields.Date()
     only_newsletter = fields.Boolean()
@@ -97,6 +105,38 @@ according to the strategy
 
     def _get_lines_excluded_from_total_amount(self, order):
         return self.env['sale.order.line'].browse()
+
+    @api.constrains("discount_product_id", "promo_type", "discount_type")
+    def _check_promotion_product_id(self):
+        for record in self:
+            if record.promo_type != "discount":
+                continue
+            if record.discount_type not in (
+                    "amount_tax_included", "amount_tax_excluded"):
+                continue
+            if not record.discount_product_id:
+                raise ValidationError(_(
+                    "You must specify a promotion product for discount rule "
+                    "applaying a specific amount"
+                ))
+
+    @api.constrains("promo_type", "discount_type",
+                    "discount_amount_currency_id")
+    def _check_discount_amount_currency_id(self):
+        for record in self:
+            if record.promo_type != "discount":
+                continue
+            if record.discount_type not in (
+                    "amount_tax_included", "amount_tax_excluded"):
+                continue
+            if not record.discount_amount_currency_id:
+                raise ValidationError(_(
+                    "You must specify a currency for discount rule applaying "
+                    "a specific amount"
+                ))
+
+    def _get_default_currency_id(self):
+        return self.env.user.company_id.currency_id.id
 
     def _check_valid_partner_list(self, order):
         self.ensure_one()
@@ -274,14 +314,15 @@ according to the strategy
         for order, _lines in lines_by_order.items():
             vals = []
             for line in _lines:
-                if not line.has_promotion_rules:
-                    continue
-                v = {
-                    'discount': 0.0,
-                    'coupon_promotion_rule_id': False,
-                    'promotion_rule_ids': [(5,)]
-                }
-                vals.append((1, line.id, v))
+                if line.has_promotion_rules:
+                    v = {
+                        'discount': 0.0,
+                        'coupon_promotion_rule_id': False,
+                        'promotion_rule_ids': [(5,)]
+                    }
+                    vals.append((1, line.id, v))
+                elif line.is_promotion_line:
+                    vals.append((2, line.id))
             if vals:
                 order.write({'order_line': vals})
 
@@ -308,126 +349,18 @@ according to the strategy
                 _('Not supported promotion type %s') % self.promo_type
             )
 
-    def _compute_percent_amount_tax_exc(self, order, lines):
-        percent_discount = (
-            100.0 - (
-                (order.amount_untaxed - self.discount_amount)
-                / order.amount_untaxed
-                * 100.0
-            )
-        )
-        return dict.fromkeys(lines, percent_discount)
-
-    def _compute_percent_amount_tax_inc(self, order, lines):
-        average_discount = (
-            100.0 - (
-                (order.amount_total - self.discount_amount)
-                / order.amount_total
-                * 100.0
-            )
-        )
-        return dict.fromkeys(lines, average_discount)
-
     def _compute_percent_discount_by_lines(self, order, lines):
         self.ensure_one()
         if not order == lines.mapped('order_id'):
             raise Exception("All lines must come from the same order")
-
-        if self.discount_type == "amount_tax_excluded":
-            percent_by_line = self._compute_percent_amount_tax_exc(
-                order, lines
-            )
-        elif self.discount_type == "amount_tax_included":
-            percent_by_line = self._compute_percent_amount_tax_inc(
-                order, lines
-            )
-        elif self.discount_type == "percentage":
+        if self.discount_type == "percentage":
             percent_by_line = dict.fromkeys(lines, self.discount_amount)
         else:
             raise ValidationError(
-                _('Discount promotion of type %s is not supported') %
+                _('Promotion of type %s is not a percentage discount') %
                 self.discount_type
             )
         return percent_by_line
-
-    @api.multi
-    def _get_snapshot_before_apply_discount(self, order, lines):
-        """ Takes a snapshop of informations before applying the discount.
-        This snapshop is then passed to the `_finaly_apply_discount` method
-        once the rule is applied.
-        :param order:
-        :param lines:
-        :return: a dictionary of informations to preserve before applying the
-        discount.
-        """
-        self.ensure_one()
-        return {
-            'amount_total': order.amount_total,
-            'amount_untaxed': order.amount_untaxed
-        }
-
-    def _finalyse_apply_discount(self, order, lines, snapshop_info):
-        """ This method is called after the current promotion rule has been
-        applied.
-        :param order:
-        :param lines:
-        :param snapshop_info:
-        :return:
-        """
-        self.ensure_one()
-        # for disount based on amountwe must be sure that the final discount
-        # is the one expected since the amount can differ due to the rounding
-        # of the discount on each line
-        if self.discount_type not in (
-                "amount_tax_excluded", "amount_tax_included"):
-            return
-        if self.discount_type == "amount_tax_excluded":
-            applied_amount = (
-                    snapshop_info['amount_untaxed'] - order.amount_untaxed)
-        else:
-            applied_amount = (
-                    snapshop_info['amount_total'] - order.amount_total)
-        precision = self.env['decimal.precision'].precision_get('Discount')
-        applied_amount_diff = self.discount_amount - applied_amount
-        if float_is_zero(applied_amount_diff, precision_digits=precision):
-            return
-
-        # we must add an additional discount on one line to ensure that the
-        # applied discount is the amount expected
-        price_precision_digits = self.env[
-            'decimal.precision'].precision_get('Product Price')
-        for line in order.order_line:
-            # we iter on all line while we have a diff between the applied
-            # discount and the expected one
-            if float_is_zero(
-                    line.price_unit,
-                    precision_digits=price_precision_digits):
-                # we ignore line with price = 0
-                continue
-            line_amount_getter = attrgetter('price_total')
-            if self.discount_type == "amount_tax_excluded":
-                line_amount_getter = attrgetter('price_subtotal')
-            line_amount = line_amount_getter(line)
-            additional_discount = (
-                100.0 - (
-                    (line_amount - applied_amount_diff)
-                    / line_amount
-                    * 100.0
-                )
-            )
-            if not float_is_zero(
-                    additional_discount, precision_digits=precision):
-                # we've found a candidate line. We apply an additional discount
-                line.discount += additional_discount
-                new_line_amount = line_amount_getter(line)
-                # we compute the remaining amount to deduce once the discount
-                # has been changed
-                applied_amount_diff = new_line_amount - line_amount
-                if float_is_zero(
-                        applied_amount_diff,
-                        precision_digits=price_precision_digits):
-                    # no more amount to deduce
-                    return
 
     @api.multi
     def _apply_discount_to_order_lines(self, lines):
@@ -442,14 +375,13 @@ according to the strategy
         # methods on each line updated. Indeed, update on a X2many field
         # is always done in norecompute on the parent...
         for order, _lines in lines_by_order.items():
-            #original_values = order.conver_to_read
-            discount_by_line = self._compute_percent_discount_by_lines(
-                order, lines)
-            snapshop_info = self._get_snapshot_before_apply_discount(
-                order, lines)
+            discount_by_line = {}
+            if self.discount_type == "percentage":
+                discount_by_line = self._compute_percent_discount_by_lines(
+                    order, lines)
             vals = []
             for line in _lines:
-                percent_discount = discount_by_line[line]
+                percent_discount = discount_by_line.get(line, 0.0)
                 discount = line.discount
                 if self.multi_rule_strategy != 'cumulate':
                     discount = 0.0
@@ -465,6 +397,94 @@ according to the strategy
                         'promotion_rule_ids': [(4, self.id)]
                     }
                 vals.append((1, line.id, v))
+            if self.discount_type in (
+                    "amount_tax_excluded", "amount_tax_included"):
+                order_line_discount = self._prepare_order_line_discount(
+                    order, lines)
+                vals.append((0, None, order_line_discount))
             if vals:
                 order.write({'order_line': vals})
-            self._finalyse_apply_discount(order, lines, snapshop_info)
+
+    @api.multi
+    def _prepare_order_line_discount(self, order, lines):
+        self.ensure_one()
+        # takes all applied taxes
+        taxes = self.discount_product_id.taxes_id
+        if order.fiscal_position_id:
+            taxes = order.fiscal_position_id.map_tax(taxes)
+        price = self.discount_amount_currency_id.compute(
+            from_amount=self.discount_amount,
+            to_currency=order.currency_id)
+        if taxes:
+            price_precision_digits = self.env[
+                'decimal.precision'].precision_get('Product Price')
+            amounts = taxes.compute_all(
+                price, order.currency_id, 1, product=self.discount_product_id,
+                partner=order.partner_shipping_id)
+
+            result_discount = amounts['total_included']
+            if self.discount_type == "amount_tax_excluded":
+                result_discount = amounts['total_excluded']
+            if float_compare(result_discount, price,
+                             precision_digits=price_precision_digits):
+                average_tax = 100.0 - (price / result_discount) * 100
+                price += (price * -average_tax) / 100
+            price = float_round(price, price_precision_digits)
+            price = self._fix_discount_amount_rounding(
+                price, taxes, price_precision_digits, order)
+        return {
+            'product_id': self.discount_product_id.id,
+            'price_unit': -price,
+            'product_uom_qty': 1,
+            'is_promotion_line': True,
+            'name': self.discount_product_id.name,
+            'product_uom': self.discount_product_id.uom_id.id,
+            'tax_id': [(4, tax.id, False) for tax in taxes]
+        }
+
+    def _fix_discount_amount_rounding(self, price, taxes,
+                                      precision_digits, order):
+        """
+        In this method we recompute the taxes for the given price to be sure
+        that we don't have rounding issue.
+        If the computed price to not match the expected discount amount, we try
+        to fix the rounding issue by adding/removing the most significative
+        amount according to the price decision while the computed price doesn't
+        match the expected amount or the sign of the difference changes
+        """
+        expected_discount = self.discount_amount_currency_id.compute(
+            from_amount=self.discount_amount,
+            to_currency=order.currency_id)
+        amount_type = 'total_included'
+        if self.discount_type == "amount_tax_excluded":
+            amount_type = 'total_excluded'
+        price_amounts = taxes.compute_all(
+            price,
+            order.currency_id,
+            1,
+            product=self.discount_product_id,
+            partner=order.partner_shipping_id)
+        diff = float_compare(
+            price_amounts[amount_type],
+            expected_discount,
+            precision_digits=precision_digits)
+        if not diff:
+            return price
+        while diff:
+            step = 1.0 / 10 ** precision_digits
+            price += step * -diff
+            price_amounts = taxes.compute_all(
+                price,
+                order.currency_id,
+                1,
+                product=self.discount_product_id,
+                partner=order.partner_shipping_id)
+            new_diff = float_compare(
+                price_amounts[amount_type],
+                expected_discount,
+                precision_digits=precision_digits)
+            if not new_diff:
+                return price
+            if new_diff != diff:
+                # not able to fix the rounding issue due to current precision
+                return price

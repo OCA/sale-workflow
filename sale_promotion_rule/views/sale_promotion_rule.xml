@@ -37,6 +37,15 @@
                             <field name="promo_type" widget="radio"/>
                             <field name="discount_type"/>
                             <field name="discount_amount"/>
+                            <field name="discount_amount_currency_id"
+                                   groups="base.group_multi_currency"
+                                   attrs="{'required':  [('promo_type', '=', 'discount'), ('discount_type', 'in', ('amount_tax_included', 'amount_tax_excluded'))],
+                                           'invisible': ['|', ('promo_type', '!=', 'discount'), ('discount_type', 'not in', ('amount_tax_included', 'amount_tax_excluded'))]}"
+                            />
+                            <field name="discount_product_id"
+                                   attrs="{'required':  [('promo_type', '=', 'discount'), ('discount_type', 'in', ('amount_tax_included', 'amount_tax_excluded'))],
+                                           'invisible': ['|', ('promo_type', '!=', 'discount'), ('discount_type', 'not in', ('amount_tax_included', 'amount_tax_excluded'))]}"
+                            />
                             <field name="multi_rule_strategy"/>
                         </group>
                         <group name="condition" string="Condition" col="3">
