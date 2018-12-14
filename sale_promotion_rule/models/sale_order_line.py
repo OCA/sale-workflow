@@ -35,6 +35,9 @@ class SaleOrderLine(models.Model):
     has_promotion_rules = fields.Boolean(
         compute='_compute_has_promotion_rules'
     )
+    is_promotion_line = fields.Boolean(
+        help="True if the line has been added by a promotion rule"
+    )
 
     @api.depends('promotion_rule_ids', 'coupon_promotion_rule_id')
     def _compute_has_promotion_rules(self):
