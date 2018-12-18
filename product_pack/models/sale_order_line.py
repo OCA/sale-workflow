@@ -118,3 +118,14 @@ class SaleOrderLine(models.Model):
                     'price_subtotal': price_unit * quantity,
                 }
                 self.pack_line_ids.create(vals)
+
+    def _get_real_price_currency(
+            self, product, rule_id, qty, uom, pricelist_id):
+        new_list_price, currency_id = super(
+            SaleOrderLine, self)._get_real_price_currency(
+                product, rule_id, qty, uom, pricelist_id)
+        if self.pack_parent_line_id and\
+            self.pack_parent_line_id.product_id.pack_price_type in [
+                'fixed_price', 'totalice_price']:
+            new_list_price = 0.0
+        return new_list_price, currency_id
