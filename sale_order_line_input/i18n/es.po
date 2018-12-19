@@ -20,62 +20,69 @@ msgstr ""
 "X-Generator: Poedit 1.8.7.1\n"
 
 #. module: sale_order_line_input
-#: model:ir.ui.view,arch_db:sale_order_line_input.view_sales_order_line_input_tree
+#: model_terms:ir.ui.view,arch_db:sale_order_line_input.view_sales_order_line_input_tree
 msgid "Delivered"
 msgstr "Entregado"
 
 #. module: sale_order_line_input
-#: model:ir.ui.view,arch_db:sale_order_line_input.view_sales_order_line_filter
+#: model_terms:ir.ui.view,arch_db:sale_order_line_input.view_sales_order_line_filter
 msgid "Invoice Related"
 msgstr "Con factura asociada"
 
 #. module: sale_order_line_input
-#: model:ir.ui.view,arch_db:sale_order_line_input.view_sales_order_line_filter
+#: model_terms:ir.ui.view,arch_db:sale_order_line_input.view_sales_order_line_filter
 msgid "Invoice Status"
 msgstr "Estado factura"
 
 #. module: sale_order_line_input
-#: model:ir.ui.view,arch_db:sale_order_line_input.view_sales_order_line_input_tree
+#: model_terms:ir.ui.view,arch_db:sale_order_line_input.view_sales_order_line_input_tree
 msgid "Invoiced"
 msgstr "Facturado"
 
 #. module: sale_order_line_input
-#: model:ir.ui.view,arch_db:sale_order_line_input.view_sales_order_line_input_tree
+#: model_terms:ir.ui.view,arch_db:sale_order_line_input.view_sales_order_line_input_tree
 msgid "New"
 msgstr "Nuevo"
 
 #. module: sale_order_line_input
-#: model:ir.ui.view,arch_db:sale_order_line_input.view_sales_order_line_filter
+#: model_terms:ir.ui.view,arch_db:sale_order_line_input.view_sales_order_line_filter
 msgid "Not Invoice Related"
 msgstr "Sin factura asociada"
 
 #. module: sale_order_line_input
-#: model:ir.ui.view,arch_db:sale_order_line_input.view_sales_order_line_input_tree
+#: model_terms:ir.ui.view,arch_db:sale_order_line_input.view_sales_order_line_input_tree
+#, fuzzy
+#| msgid "Sales Order Line"
+msgid "Open Sale Order"
+msgstr "Línea de pedido de venta"
+
+#. module: sale_order_line_input
+#: model_terms:ir.ui.view,arch_db:sale_order_line_input.view_sales_order_line_input_tree
 msgid "Order"
 msgstr "Pedido"
 
 #. module: sale_order_line_input
-#: model:ir.ui.view,arch_db:sale_order_line_input.view_sales_order_line_filter
+#: model_terms:ir.ui.view,arch_db:sale_order_line_input.view_sales_order_line_filter
 msgid "Order State"
 msgstr "Estado Pedido"
 
 #. module: sale_order_line_input
-#: model:ir.ui.view,arch_db:sale_order_line_input.view_sales_order_line_input_tree
+#: model_terms:ir.ui.view,arch_db:sale_order_line_input.view_sales_order_line_input_tree
 msgid "Ordered"
 msgstr "Pedido"
 
 #. module: sale_order_line_input
-#: model:ir.ui.view,arch_db:sale_order_line_input.view_sales_order_line_input_tree
+#: model_terms:ir.ui.view,arch_db:sale_order_line_input.view_sales_order_line_input_tree
 msgid "Ordered Qty"
 msgstr "Ctdad pedida"
 
 #. module: sale_order_line_input
-#: model:ir.model.fields,field_description:sale_order_line_input.field_sale_order_line_pricelist_id
+#: model:ir.model.fields,field_description:sale_order_line_input.field_sale_order_line__pricelist_id
 msgid "Pricelist"
 msgstr "Tarifa"
 
 #. module: sale_order_line_input
-#: model:ir.model.fields,help:sale_order_line_input.field_sale_order_line_pricelist_id
+#: model:ir.model.fields,help:sale_order_line_input.field_sale_order_line__pricelist_id
 msgid "Pricelist for current sales order."
 msgstr "Tarifa para el pedido de venta actual."
 
@@ -87,21 +94,18 @@ msgstr "Línea de pedido de venta"
 #. module: sale_order_line_input
 #: model:ir.actions.act_window,name:sale_order_line_input.action_sales_order_line_input
 #: model:ir.ui.menu,name:sale_order_line_input.menu_sales_order_line_input
-#: model:ir.ui.view,arch_db:sale_order_line_input.view_sales_order_line_input_tree
 msgid "Sales Orders Lines"
 msgstr "Líneas de pedidos"
 
 #. module: sale_order_line_input
-#: model:ir.ui.view,arch_db:sale_order_line_input.view_sales_order_line_input_tree
+#: model_terms:ir.ui.view,arch_db:sale_order_line_input.view_sales_order_line_input_tree
 msgid "To Invoice"
 msgstr "A facturar"
 
 #. module: sale_order_line_input
-#: model:ir.ui.view,arch_db:sale_order_line_input.view_sales_order_line_input_tree
-msgid "Total"
-msgstr "Total"
-
-#. module: sale_order_line_input
-#: model:ir.ui.view,arch_db:sale_order_line_input.view_sales_order_line_filter
+#: model_terms:ir.ui.view,arch_db:sale_order_line_input.view_sales_order_line_filter
 msgid "UoM"
 msgstr "UdM"
+
+#~ msgid "Total"
+#~ msgstr "Total"
