@@ -2,6 +2,7 @@
 # Copyright 2015 ADHOC SA  (http://www.adhoc.com.ar)
 # Copyright 2017 Alex Comba - Agile Business Group
 # Copyright 2017 Tecnativa - David Vidal
+# Copyright 2018 Simone Rubino - Agile Business Group
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
 from odoo import api, fields, models
@@ -13,21 +14,9 @@ class SaleOrderLine(models.Model):
 
     @api.depends('discount2', 'discount3')
     def _compute_amount(self):
-        for line in self:
-            prev_price_unit = line.price_unit
-            prev_discount = line.discount
-            price_unit = line.price_unit * (1 - (line.discount or 0.0) / 100.0)
-            price_unit *= (1 - (line.discount2 or 0.0) / 100.0)
-            price_unit *= (1 - (line.discount3 or 0.0) / 100.0)
-            line.update({
-                'price_unit': price_unit,
-                'discount': 0.0,
-            })
-            super(SaleOrderLine, line)._compute_amount()
-            line.update({
-                'price_unit': prev_price_unit,
-                'discount': prev_discount,
-            })
+        prev_values = self.triple_discount_preprocess()
+        super(SaleOrderLine, self)._compute_amount()
+        self.triple_discount_postprocess(prev_values)
 
     discount2 = fields.Float(
         'Disc. 2 (%)',
@@ -47,6 +36,14 @@ class SaleOrderLine(models.Model):
          'Discount 3 must be lower than 100%.'),
     ]
 
+    def _get_triple_discount(self):
+        """Get the discount that is equivalent to the subsequent application
+        of discount, discount2 and discount3"""
+        discount_factor = 1.0
+        for discount in [self.discount, self.discount2, self.discount3]:
+            discount_factor *= (100.0 - discount) / 100.0
+        return 100.0 - (discount_factor * 100.0)
+
     def _prepare_invoice_line(self, qty):
         res = super(SaleOrderLine, self)._prepare_invoice_line(qty)
         res.update({
@@ -57,9 +54,32 @@ class SaleOrderLine(models.Model):
 
     @api.depends('discount2', 'discount3')
     def _get_price_reduce(self):
+        prev_values = self.triple_discount_preprocess()
+        super(SaleOrderLine, self)._get_price_reduce()
+        self.triple_discount_postprocess(prev_values)
+
+    @api.multi
+    def triple_discount_preprocess(self):
+        """Save the values of the discounts in a dictionary,
+        to be restored in postprocess.
+        Resetting discount2 and discount3 to 0.0 avoids issues if
+        this method is called multiple times."""
+        prev_values = dict()
         for line in self:
-            super(SaleOrderLine, line)._get_price_reduce()
-            if line.discount2:
-                line.price_reduce *= (1 - line.discount2 / 100)
-            if line.discount3:
-                line.price_reduce *= (1 - line.discount3 / 100)
+            prev_values[line] = dict(
+                discount=line.discount,
+                discount2=line.discount2,
+                discount3=line.discount3,
+            )
+            line.update({
+                'discount': line._get_triple_discount(),
+                'discount2': 0.0,
+                'discount3': 0.0
+            })
+        return prev_values
+
+    @api.model
+    def triple_discount_postprocess(self, prev_values):
+        """Restore the discounts of the lines in the dictionary prev_values"""
+        for line, prev_vals_dict in prev_values.items():
+            line.update(prev_vals_dict)
