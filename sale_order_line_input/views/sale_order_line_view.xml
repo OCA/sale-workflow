@@ -7,8 +7,7 @@
     <field name="model">sale.order.line</field>
     <field name="priority">20</field>
     <field name="arch" type="xml">
-      <tree string="Sales Orders Lines"
-            decoration-info="invoice_status=='to invoice'" decoration-warning="state=='draft'" decoration-muted="state=='cancel'" decoration-success="state=='done'"
+      <tree decoration-info="invoice_status=='to invoice'" decoration-warning="state=='draft'" decoration-muted="state=='cancel'" decoration-success="state=='done'"
             editable="top" create="true">
         <field name="order_id" string="Order"
                required="0" placeholder="New"
@@ -16,7 +15,7 @@
                attrs="{'readonly': [('order_id', '!=', False)]}"
                force_save="1"
                options='{"no_open": True, "no_create": True}'/>
-        <button name="action_sale_order_form" type="object" icon="fa-external-link" class="oe_stat_button"/>
+        <button name="action_sale_order_form" string="Open Sale Order" type="object" icon="fa-external-link" class="oe_stat_button"/>
         <field name="order_partner_id"  domain="[('customer','=',True)]"
                context="{'search_default_customer':1, 'show_address': 1}"
                options='{"always_reload": True}'
@@ -39,7 +38,7 @@
         <field name="product_uom"
                attrs="{'readonly': [('state', 'in', ('sale','done', 'cancel'))]}"
                context="{'company_id': company_id}"
-               groups="product.group_uom" options='{"no_open": True}'/>
+               groups="uom.group_uom" options='{"no_open": True}'/>
         <field name="analytic_tag_ids"
                attrs="{'readonly': [('state', 'in', ('done', 'cancel'))]}"
                groups="analytic.group_analytic_accounting" widget="many2many_tags" options="{'color_field': 'color'}"/>
@@ -51,8 +50,8 @@
         <field name="discount"
                attrs="{'readonly': [('state', 'in', ('done', 'cancel'))]}"
                groups="sale.group_discount_per_so_line"/>
-        <field name="price_subtotal" sum="Total" widget="monetary" groups="sale.group_show_price_subtotal"/>
-        <field name="price_total" widget="monetary" groups="sale.group_show_price_total"/>
+        <field name="price_subtotal" widget="monetary" groups="account.group_show_line_subtotals_tax_excluded"/>
+        <field name="price_total" widget="monetary" groups="account.group_show_line_subtotals_tax_included"/>
         <field name="product_updatable" invisible="1"/>
         <field name="qty_delivered_method" invisible="1"/>
         <field name="state" invisible="1"/>
@@ -71,7 +70,7 @@
     <field name="arch" type="xml">
       <xpath expr="//field[@name='salesman_id']" position="after">
         <field name="name"/>
-        <field name="product_uom" groups="product.group_uom"/>
+        <field name="product_uom" groups="uom.group_uom"/>
         <field name="analytic_tag_ids" groups="analytic.group_analytic_accounting"/>
         <separator/>
         <filter name="not_invoice_related" string="Not Invoice Related" domain="[('invoice_lines', '=', False)]"/>
@@ -80,7 +79,7 @@
       <xpath expr="//filter[@name='product']/.." position="inside">
         <filter name="order_state" string="Order State" context="{'group_by': 'state'}"/>
         <filter name="invoice_status" string="Invoice Status" context="{'group_by': 'invoice_status'}"/>
-        <filter name="uom_filter" string="UoM" context="{'group_by': 'product_uom'}" groups="product.group_uom"/>
+        <filter name="uom_filter" string="UoM" context="{'group_by': 'product_uom'}" groups="uom.group_uom"/>
       </xpath>
     </field>
   </record>
