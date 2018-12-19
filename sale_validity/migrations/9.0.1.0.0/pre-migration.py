@@ -10,5 +10,4 @@ _field_renames = [
 
 @openupgrade.migrate(use_env=True)
 def migrate(env, version):
-    cr = env.cr
     openupgrade.rename_fields(env, _field_renames)
