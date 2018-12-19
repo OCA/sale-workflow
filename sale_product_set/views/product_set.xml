@@ -7,6 +7,7 @@
         <field name="priority" eval="8"/>
         <field name="arch" type="xml">
         <tree string="Product set">
+            <field name="ref"/>
             <field name="name"/>
         </tree>
         </field>
@@ -22,6 +23,7 @@
             <sheet>
                 <group>
                     <field name="name" select="1"/>
+                    <field name="ref"/>
                     <field name="set_line_ids">
                         <tree string="Product set lines" editable="top">
                             <field name="sequence" widget="handle"/>
@@ -43,6 +45,7 @@
         <field name="arch" type="xml">
             <search string="Product set">
                 <field name="name" select="True"/>
+                <field name="ref" select="True"/>
             </search>
         </field>
     </record>
