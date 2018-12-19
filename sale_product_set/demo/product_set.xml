@@ -2,8 +2,10 @@
 <odoo>
     <record id="product_set_i5_computer" model="product.set">
         <field name="name">i5 computer offer</field>
+        <field name="ref">i5 computer offer</field>
     </record>
     <record id="product_set_services"  model="product.set">
         <field name="name">Services</field>
+        <field name="ref">Services</field>
     </record>
 </odoo>
