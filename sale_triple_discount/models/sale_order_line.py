@@ -63,15 +63,19 @@ class SaleOrderLine(models.Model):
         """Save the values of the discounts in a dictionary,
         to be restored in postprocess.
         Resetting discount2 and discount3 to 0.0 avoids issues if
-        this method is called multiple times."""
+        this method is called multiple times.
+        Updating the cache provides consistency through recomputations."""
         prev_values = dict()
+        self.invalidate_cache(
+            fnames=['discount', 'discount2', 'discount3'],
+            ids=self.ids)
         for line in self:
             prev_values[line] = dict(
                 discount=line.discount,
                 discount2=line.discount2,
                 discount3=line.discount3,
             )
-            line.update({
+            line._cache.update({
                 'discount': line._get_triple_discount(),
                 'discount2': 0.0,
                 'discount3': 0.0
@@ -80,6 +84,10 @@ class SaleOrderLine(models.Model):
 
     @api.model
     def triple_discount_postprocess(self, prev_values):
-        """Restore the discounts of the lines in the dictionary prev_values"""
+        """Restore the discounts of the lines in the dictionary prev_values.
+        Updating the cache provides consistency through recomputations."""
+        self.invalidate_cache(
+            fnames=['discount', 'discount2', 'discount3'],
+            ids=[l.id for l in prev_values.keys()])
         for line, prev_vals_dict in prev_values.items():
-            line.update(prev_vals_dict)
+            line._cache.update(prev_vals_dict)
