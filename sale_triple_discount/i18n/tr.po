@@ -19,6 +19,11 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
 
 #. module: sale_triple_discount
+#: selection:sale.order.line,discounting_type:0
+msgid "Additive"
+msgstr ""
+
+#. module: sale_triple_discount
 #: model:ir.model.fields,field_description:sale_triple_discount.field_sale_order_line_discount2
 msgid "Disc. 2 (%)"
 msgstr ""
@@ -39,6 +44,37 @@ msgid "Discount 3 must be lower than 100%."
 msgstr ""
 
 #. module: sale_triple_discount
+#: model:ir.model.fields,field_description:sale_triple_discount.field_sale_order_line_discounting_type
+msgid "Discounting type"
+msgstr ""
+
+#. module: sale_triple_discount
+#: selection:sale.order.line,discounting_type:0
+msgid "Multiplicative"
+msgstr ""
+
+#. module: sale_triple_discount
+#: code:addons/sale_triple_discount/models/sale_order_line.py:23
+#, python-format
+msgid "Sale order line %s has unknown discounting type %s"
+msgstr ""
+
+#. module: sale_triple_discount
+#: model:ir.model,name:sale_triple_discount.model_sale_order
+#, fuzzy
+msgid "Sales Order"
+msgstr "Satış Siparişi Hattı"
+
+#. module: sale_triple_discount
 #: model:ir.model,name:sale_triple_discount.model_sale_order_line
 msgid "Sales Order Line"
 msgstr "Satış Siparişi Hattı"
+
+#. module: sale_triple_discount
+#: model:ir.model.fields,help:sale_triple_discount.field_sale_order_line_discounting_type
+msgid ""
+"Specifies whether discounts should be additive or multiplicative.\n"
+"Additive discounts are summed first and then applied.\n"
+"Multiplicative discounts are applied sequentially.\n"
+"Multiplicative discounts are default"
+msgstr ""
