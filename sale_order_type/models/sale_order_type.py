@@ -7,6 +7,7 @@ from odoo import api, fields, models
 class SaleOrderTypology(models.Model):
     _name = 'sale.order.type'
     _description = 'Type of sale order'
+    _order = 'sequence'
 
     @api.model
     def _get_domain_sequence_id(self):
@@ -41,3 +42,17 @@ class SaleOrderTypology(models.Model):
     payment_term_id = fields.Many2one('account.payment.term', 'Payment Term')
     pricelist_id = fields.Many2one('product.pricelist', 'Pricelist')
     incoterm_id = fields.Many2one('stock.incoterms', 'Incoterm')
+    sequence = fields.Integer(default=10)
+    rule_ids = fields.One2many(
+        comodel_name='sale.order.type.rule', inverse_name='order_type_id',
+        copy=True)
+
+    @api.multi
+    def matches_order(self, order):
+        self.ensure_one()
+        return any(rule.matches_order(order) for rule in self.rule_ids)
+
+    @api.multi
+    def matches_invoice(self, invoice):
+        self.ensure_one()
+        return any(rule.matches_invoice(invoice) for rule in self.rule_ids)
