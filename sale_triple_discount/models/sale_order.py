@@ -12,21 +12,6 @@ class SaleOrder(models.Model):
     def _amount_all(self):
         prev_values = dict()
         for order in self:
-            for line in order.order_line:
-                prev_values[line] = dict(
-                    discount=line.discount,
-                    discount2=line.discount2,
-                    discount3=line.discount3,
-                )
-                # Update, for some reason, does not work
-                line.write({
-                    'discount': line._get_triple_discount(),
-                    'discount2': 0.0,
-                    'discount3': 0.0
-                })
+            prev_values.update(order.order_line.triple_discount_preprocess())
         super(SaleOrder, self)._amount_all()
-
-        # Restore previous values
-        for line, prev_vals_dict in prev_values.items():
-            # Update, for some reason, does not work
-            line.write(prev_vals_dict)
+        self.env['sale.order.line'].triple_discount_postprocess(prev_values)
