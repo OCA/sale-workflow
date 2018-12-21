@@ -50,7 +50,7 @@ addon | version | summary
 [sale_order_price_recalculation](sale_order_price_recalculation/) | 10.0.1.0.0 | Price recalculation in sales orders
 [sale_order_priority](sale_order_priority/) | 10.0.1.0.0 | Define priority on sale orders
 [sale_order_revision](sale_order_revision/) | 10.0.1.0.1 | Sale order revisions
-[sale_order_type](sale_order_type/) | 10.0.1.0.1 | Sale Order Type
+[sale_order_type](sale_order_type/) | 10.0.1.1.0 | Sale Order Type
 [sale_owner_stock_sourcing](sale_owner_stock_sourcing/) | 10.0.1.0.0 | Manage stock ownership on sale order lines
 [sale_procurement_group_by_line](sale_procurement_group_by_line/) | 10.0.1.1.0 | Base module for multiple procurement group by Sale order
 [sale_product_multi_add](sale_product_multi_add/) | 10.0.1.0.0 | Sale Product Multi Add
