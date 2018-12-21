@@ -37,11 +37,13 @@ msgstr "Družba"
 
 #. module: sale_order_type
 #: model:ir.model.fields,field_description:sale_order_type.field_sale_order_type_create_uid
+#: model:ir.model.fields,field_description:sale_order_type.field_sale_order_type_rule_create_uid
 msgid "Created by"
 msgstr "Ustvaril"
 
 #. module: sale_order_type
 #: model:ir.model.fields,field_description:sale_order_type.field_sale_order_type_create_date
+#: model:ir.model.fields,field_description:sale_order_type.field_sale_order_type_rule_create_date
 msgid "Created on"
 msgstr "Ustvarjeno"
 
@@ -52,6 +54,7 @@ msgstr "Opis"
 
 #. module: sale_order_type
 #: model:ir.model.fields,field_description:sale_order_type.field_sale_order_type_display_name
+#: model:ir.model.fields,field_description:sale_order_type.field_sale_order_type_rule_display_name
 msgid "Display Name"
 msgstr "Prikazni naziv"
 
@@ -62,12 +65,19 @@ msgid "Entry Sequence"
 msgstr "Zaporedje vnosa"
 
 #. module: sale_order_type
+#: model:ir.ui.view,arch_db:sale_order_type.sot_invoice_form
+#: model:ir.ui.view,arch_db:sale_order_type.sot_view_order_form
+msgid "Find by rule"
+msgstr ""
+
+#. module: sale_order_type
 #: model:ir.ui.view,arch_db:sale_order_type.sot_sale_order_type_search_view
 msgid "Group By"
 msgstr "Združeno po"
 
 #. module: sale_order_type
 #: model:ir.model.fields,field_description:sale_order_type.field_sale_order_type_id
+#: model:ir.model.fields,field_description:sale_order_type.field_sale_order_type_rule_id
 msgid "ID"
 msgstr "ID"
 
@@ -84,21 +94,25 @@ msgstr "Račun"
 
 #. module: sale_order_type
 #: model:ir.model.fields,field_description:sale_order_type.field_sale_order_type___last_update
+#: model:ir.model.fields,field_description:sale_order_type.field_sale_order_type_rule___last_update
 msgid "Last Modified on"
 msgstr "Zadnjič spremenjeno"
 
 #. module: sale_order_type
+#: model:ir.model.fields,field_description:sale_order_type.field_sale_order_type_rule_write_uid
 #: model:ir.model.fields,field_description:sale_order_type.field_sale_order_type_write_uid
 msgid "Last Updated by"
 msgstr "Zadnji posodobil"
 
 #. module: sale_order_type
+#: model:ir.model.fields,field_description:sale_order_type.field_sale_order_type_rule_write_date
 #: model:ir.model.fields,field_description:sale_order_type.field_sale_order_type_write_date
 msgid "Last Updated on"
 msgstr "Zadnjič posodobljeno"
 
 #. module: sale_order_type
 #: model:ir.model.fields,field_description:sale_order_type.field_sale_order_type_name
+#: model:ir.model.fields,field_description:sale_order_type.field_sale_order_type_rule_name
 msgid "Name"
 msgstr "Naziv"
 
@@ -106,6 +120,12 @@ msgstr "Naziv"
 #: model:sale.order.type,name:sale_order_type.normal_sale_type
 msgid "Normal Order"
 msgstr "Običajni nalog"
+
+#. module: sale_order_type
+#: model:ir.model.fields,field_description:sale_order_type.field_sale_order_type_rule_order_type_id
+#, fuzzy
+msgid "Order type id"
+msgstr "Tip prodajnega naloga"
 
 #. module: sale_order_type
 #: model:ir.model,name:sale_order_type.model_res_partner
@@ -127,6 +147,26 @@ msgstr "Cenik"
 #: model:ir.model.fields,field_description:sale_order_type.field_sale_order_type_pricelist_id
 msgid "Pricelist"
 msgstr "Cenik"
+
+#. module: sale_order_type
+#: model:ir.model.fields,field_description:sale_order_type.field_sale_order_type_rule_product_category_ids
+msgid "Product categories"
+msgstr ""
+
+#. module: sale_order_type
+#: model:ir.model.fields,field_description:sale_order_type.field_sale_order_type_rule_product_ids
+msgid "Products"
+msgstr ""
+
+#. module: sale_order_type
+#: model:ir.model.fields,field_description:sale_order_type.field_sale_order_type_rule_ids
+msgid "Rule ids"
+msgstr ""
+
+#. module: sale_order_type
+#: model:ir.ui.view,arch_db:sale_order_type.sot_sale_order_type_form_view
+msgid "Rules"
+msgstr ""
 
 #. module: sale_order_type
 #: model:ir.model.fields,field_description:sale_order_type.field_res_partner_sale_type
@@ -156,6 +196,13 @@ msgid "Sales Order Types"
 msgstr "Tipi prodajnega naloga"
 
 #. module: sale_order_type
+#: model:ir.model.fields,field_description:sale_order_type.field_sale_order_type_rule_sequence
+#: model:ir.model.fields,field_description:sale_order_type.field_sale_order_type_sequence
+#, fuzzy
+msgid "Sequence"
+msgstr "Zaporedje vnosa"
+
+#. module: sale_order_type
 #: model:ir.model.fields,field_description:sale_order_type.field_sale_order_type_picking_policy
 #: model:ir.ui.view,arch_db:sale_order_type.sot_sale_order_type_search_view
 msgid "Shipping Policy"
@@ -167,7 +214,7 @@ msgid "The company is automatically set from your user preferences."
 msgstr ""
 
 #. module: sale_order_type
-#: model:ir.model.fields,field_description:sale_order_type.field_sale_order_type_id_6171
+#: model:ir.model.fields,field_description:sale_order_type.field_sale_order_type_id_6187
 #: model:ir.ui.view,arch_db:sale_order_type.sot_sale_order_type_form_view
 #: model:ir.ui.view,arch_db:sale_order_type.sot_sale_order_type_search_view
 #: model:ir.ui.view,arch_db:sale_order_type.sot_sale_order_type_tree_view
@@ -184,3 +231,8 @@ msgstr "Tip prodajnega naloga"
 #: model:ir.ui.view,arch_db:sale_order_type.sot_sale_order_type_search_view
 msgid "Warehouse"
 msgstr "Skladišče"
+
+#. module: sale_order_type
+#: model:ir.model,name:sale_order_type.model_sale_order_type_rule
+msgid "sale.order.type.rule"
+msgstr ""
