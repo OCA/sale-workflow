@@ -1,7 +1,7 @@
 # Copyright 2017 Eficent Business and IT Consulting Services, S.L.
 # License LGPL-3.0 or later (https://www.gnu.org/licenses/lgpl.html).
 
-from odoo import api, fields, models, _
+from odoo import api, fields, models
 
 
 class SaleAdvancePaymentInv(models.TransientModel):
@@ -15,9 +15,9 @@ class SaleAdvancePaymentInv(models.TransientModel):
     merge_draft_invoice = fields.Boolean(
         string='Merge with draft invoices',
         default=_get_default_merge_draft_invoice,
-        help=_('Activate this option in order to merge the resulting '
-               'invoice with existing draft invoices or deactivate it if you '
-               'wish a separate invoice for this sale order.')
+        help='''Activate this option in order to merge the resulting invoice
+        with existing draft invoices or deactivate it if you wish a separate
+        invoice for this sale order.'''
     )
 
     @api.multi
