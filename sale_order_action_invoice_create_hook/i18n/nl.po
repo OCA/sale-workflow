@@ -24,8 +24,13 @@ msgid "Quotation"
 msgstr "Quotation"
 
 #. module: sale_order_action_invoice_create_hook
-#: code:addons/sale_order_action_invoice_create_hook/hooks.py:103
+#: model:ir.model,name:sale_order_action_invoice_create_hook.model_sale_order_line
+msgid "Sales Order Line"
+msgstr ""
+
+#. module: sale_order_action_invoice_create_hook
 #: code:addons/sale_order_action_invoice_create_hook/hooks.py:108
+#: code:addons/sale_order_action_invoice_create_hook/hooks.py:113
 #, python-format
 msgid "There is no invoicable line."
 msgstr ""
