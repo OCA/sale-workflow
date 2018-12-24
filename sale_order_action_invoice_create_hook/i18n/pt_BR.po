@@ -1,0 +1,36 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# * sale_order_action_invoice_create_hook
+# 
+# Translators:
+# OCA Transbot <transbot@odoo-community.org>, 2018
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 11.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2018-03-02 10:22+0000\n"
+"PO-Revision-Date: 2018-03-02 10:22+0000\n"
+"Last-Translator: OCA Transbot <transbot@odoo-community.org>, 2018\n"
+"Language-Team: Portuguese (Brazil) (https://www.transifex.com/oca/teams/23907/pt_BR/)\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Language: pt_BR\n"
+"Plural-Forms: nplurals=2; plural=(n > 1);\n"
+
+#. module: sale_order_action_invoice_create_hook
+#: model:ir.model,name:sale_order_action_invoice_create_hook.model_sale_order
+msgid "Quotation"
+msgstr "Quotation"
+
+#. module: sale_order_action_invoice_create_hook
+#: model:ir.model,name:sale_order_action_invoice_create_hook.model_sale_order_line
+msgid "Sales Order Line"
+msgstr ""
+
+#. module: sale_order_action_invoice_create_hook
+#: code:addons/sale_order_action_invoice_create_hook/hooks.py:108
+#: code:addons/sale_order_action_invoice_create_hook/hooks.py:113
+#, python-format
+msgid "There is no invoicable line."
+msgstr ""
