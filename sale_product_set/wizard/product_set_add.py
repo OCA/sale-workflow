@@ -13,7 +13,6 @@ class ProductSetAdd(models.TransientModel):
     product_set_id = fields.Many2one(
         'product.set', 'Product set', required=True)
     quantity = fields.Float(
-        string='Quantity',
         digits=dp.get_precision('Product Unit of Measure'), required=True,
         default=1)
 
