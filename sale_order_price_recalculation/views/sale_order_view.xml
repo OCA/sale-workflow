@@ -6,17 +6,17 @@
         <field name="model">sale.order</field>
         <field name="inherit_id" ref="sale.view_order_form"/>
         <field name="arch" type="xml">
-            <field name="order_line" position="after">
+            <field name="note" position="after">
                 <group name="sorp">
                     <div class="btn-group">
                         <button name="recalculate_prices"
                                 string="Recalculate prices"
                                 attrs="{'invisible': [('state', 'not in', ['draft', 'sent'])]}"
-                                type="object" colspan="4" class="btn-default"/>
+                                type="object" colspan="4" class="ml-2 btn btn-default"/>
                         <button name="recalculate_names"
                                 string="Reset descriptions"
                                 attrs="{'invisible': [('state', 'not in', ['draft', 'sent'])]}"
-                                type="object" colspan="4" class="btn-default"/>
+                                type="object" colspan="4" class="ml-2 btn btn-default"/>
                     </div>
                 </group>
             </field>

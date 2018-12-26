@@ -20,19 +20,18 @@ msgstr ""
 "%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2;\n"
 
 #. module: sale_order_price_recalculation
-#: model:ir.model,name:sale_order_price_recalculation.model_sale_order
-msgid "Quotation"
-msgstr ""
-
-#. module: sale_order_price_recalculation
-#: model:ir.ui.view,arch_db:sale_order_price_recalculation.sorp_view_order_form
+#: model_terms:ir.ui.view,arch_db:sale_order_price_recalculation.sorp_view_order_form
 msgid "Recalculate prices"
 msgstr ""
 
 #. module: sale_order_price_recalculation
-#: model:ir.ui.view,arch_db:sale_order_price_recalculation.sorp_view_order_form
+#: model_terms:ir.ui.view,arch_db:sale_order_price_recalculation.sorp_view_order_form
 msgid "Reset descriptions"
 msgstr ""
 
-#~ msgid "Sales Order"
-#~ msgstr "Prodajni nalog"
+#. module: sale_order_price_recalculation
+#: model:ir.model,name:sale_order_price_recalculation.model_sale_order
+#, fuzzy
+#| msgid "Sales Order"
+msgid "Sale Order"
+msgstr "Prodajni nalog"
