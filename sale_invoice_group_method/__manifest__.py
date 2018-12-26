@@ -3,11 +3,17 @@
 
 {
     "name": "Sale Invoice Group Method",
+    "summary": "This module allows you to combine several"
+               "Sales Orders into a single invoice,"
+               "if they meet the group criteria defined by the "
+               "'Invoice Group Method'",
     "author": "Eficent, Odoo Community Association (OCA)",
-    "version": "11.0.1.1.1",
+    "version": "12.0.1.0.0",
     "category": "Sale Workflow",
     "website": "https://github.com/OCA/sale-workflow",
+    "license": 'LGPL-3',
     "depends": [
+        'account',
         'sale_order_action_invoice_create_hook',
     ],
     "data": [
@@ -17,6 +23,5 @@
         'view/sale_invoice_group_method_view.xml',
         'view/menu.xml',
     ],
-    "license": 'LGPL-3',
     "installable": True
 }
