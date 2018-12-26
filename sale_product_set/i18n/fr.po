@@ -68,6 +68,11 @@ msgid "ID"
 msgstr "ID"
 
 #. module: sale_product_set
+#: model:ir.model.fields,field_description:sale_product_set.field_product_set__ref
+msgid "Internal Reference"
+msgstr ""
+
+#. module: sale_product_set
 #: model:ir.model.fields,field_description:sale_product_set.field_product_set____last_update
 #: model:ir.model.fields,field_description:sale_product_set.field_product_set_add____last_update
 #: model:ir.model.fields,field_description:sale_product_set.field_product_set_line____last_update
@@ -108,6 +113,12 @@ msgstr "Article"
 #: model_terms:ir.ui.view,arch_db:sale_product_set.view_product_set_tree
 msgid "Product set"
 msgstr "Set de produit"
+
+#. module: sale_product_set
+#: model:ir.model.fields,help:sale_product_set.field_product_set__ref
+#, fuzzy
+msgid "Product set internal reference"
+msgstr "ligne du Set"
 
 #. module: sale_product_set
 #: model:ir.model,name:sale_product_set.model_product_set_line
