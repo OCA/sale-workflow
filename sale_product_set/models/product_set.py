@@ -8,7 +8,7 @@ class ProductSet(models.Model):
     _name = 'product.set'
     _description = 'Product set'
 
-    name = fields.Char(string='Name', help='Product set name', required=True)
+    name = fields.Char(help='Product set name', required=True)
     ref = fields.Char(
         string='Internal Reference',
         help='Product set internal reference',
