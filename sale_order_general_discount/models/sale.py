@@ -17,6 +17,7 @@ class SaleOrder(models.Model):
     def onchange_partner_id(self):
         super().onchange_partner_id()
         self.general_discount = self.partner_id.sale_discount
+        return
 
     @api.onchange('general_discount')
     def onchange_general_discount(self):
