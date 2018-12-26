@@ -13,7 +13,7 @@ class TestSaleOrderPriceRecalculation(common.TransactionCase):
         self.partner = self.env['res.partner'].create({
             'name': 'Test partner',
         })
-        uom_id = self.env.ref('product.product_uom_kgm')
+        uom_id = self.env.ref('uom.product_uom_kgm')
         self.product = self.env['product.product'].create({
             'name': 'Jacket - Color: Black - Size: XL',
             'uom_id': uom_id.id,
