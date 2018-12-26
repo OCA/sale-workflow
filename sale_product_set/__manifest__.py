@@ -13,10 +13,10 @@
         'sale',
     ],
     'data': [
+        'security/ir.model.access.csv',
         'views/product_set.xml',
         'wizard/product_set_add.xml',
         'views/sale_order.xml',
-        'security/ir.model.access.csv',
     ],
     'demo': [
         'demo/product_set.xml',
