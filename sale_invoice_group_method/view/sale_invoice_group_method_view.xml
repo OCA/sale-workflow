@@ -26,7 +26,7 @@
         <field name="name">sale.invoice.group.method.tree</field>
         <field name="model">sale.invoice.group.method</field>
         <field name="arch" type="xml">
-            <tree string="Invoice Group">
+            <tree>
                 <field name="name"/>
                 <field name="criteria_fields_ids"/>
             </tree>
@@ -39,11 +39,10 @@
         <field name="arch" type="xml">
             <search string="Medical Procedure Request">
                 <field name="name"/>
-                <newline />
+                <newline/>
                 <group expand="0" name="group_by" string="Group By...">
-                    <filter string="Name"
-                            domain="[]"
-                            context="{'group_by':'name'}" />
+                    <filter string="Name" name="group_by_name"
+                            context="{'group_by':'name'}"/>
                 </group>
             </search>
         </field>

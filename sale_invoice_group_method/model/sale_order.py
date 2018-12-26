@@ -23,6 +23,7 @@ class SaleOrder(models.Model):
                         self.partner_id.invoice_group_method_id.id,
                 }
             )
+        return
 
     @api.model
     def _get_invoice_group_key(self, order):
