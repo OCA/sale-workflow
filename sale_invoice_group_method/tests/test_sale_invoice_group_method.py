@@ -8,11 +8,16 @@ class TestSaleInvoiceGroupMethod(TransactionCase):
 
     def setUp(self):
         super(TestSaleInvoiceGroupMethod, self).setUp()
-        self.users_obj = self.env['res.users']
         self.sale_order_model = self.env['sale.order']
         self.sale_order_line_model = self.env['sale.order.line']
         self.account_payment_term = self.env['account.payment.term']
         self.sale_invoice_group_method = self.env['sale.invoice.group.method']
+        self.sale_advance_payment_inv = self.env['sale.advance.payment.inv']
+        self.fields_model = self.env['ir.model.fields']
+        self.partner_model = self.env['res.partner']
+        self.product_category_model = self.env['product.category']
+        self.product_model = self.env['product.product']
+        self.invoice_model = self.env['account.invoice']
 
         # company
         self.company1 = self.env.ref('base.main_company')
@@ -22,17 +27,15 @@ class TestSaleInvoiceGroupMethod(TransactionCase):
 
         # product
         product_ctg = self._create_product_category()
-        self.service_1 = self._create_product('test_product1',
-                                              product_ctg)
-        self.service_2 = self._create_product('test_product2',
-                                              product_ctg)
+        self.service_1 = self._create_product('test_product1', product_ctg)
+        self.service_2 = self._create_product('test_product2', product_ctg)
 
         # payment term
         self.payment_term_1 = self._create_payment_term('test1', self.company1)
         self.payment_term_2 = self._create_payment_term('test2', self.company1)
 
         # sale invoice group method
-        field_id = self.env['ir.model.fields'].search(
+        field_id = self.fields_model.search(
             [('name', '=', 'payment_term_id'),
              ('model_id', '=', 'sale.order')],
             limit=1).id
@@ -41,7 +44,7 @@ class TestSaleInvoiceGroupMethod(TransactionCase):
 
     def _create_customer(self, name):
         """Create a Partner."""
-        return self.env['res.partner'].create({
+        return self.partner_model.create({
             'name': name,
             'email': 'example@yourcompany.com',
             'customer': True,
@@ -50,13 +53,13 @@ class TestSaleInvoiceGroupMethod(TransactionCase):
         })
 
     def _create_product_category(self):
-        product_ctg = self.env['product.category'].create({
+        product_ctg = self.product_category_model.create({
             'name': 'test_product_ctg',
         })
         return product_ctg
 
     def _create_product(self, name, product_ctg):
-        product = self.env['product.product'].create({
+        product = self.product_model.create({
             'name': name,
             'categ_id': product_ctg.id,
             'type': 'service',
@@ -109,7 +112,7 @@ class TestSaleInvoiceGroupMethod(TransactionCase):
         return so
 
     def _create_sale_order_lines(self, so):
-        product_uom_hour = self.env.ref('product.product_uom_hour')
+        product_uom_hour = self.env.ref('uom.product_uom_hour')
         sol1 = self.sale_order_line_model.create({
             'product_id': self.service_1.id,
             'product_uom': product_uom_hour.id,
@@ -131,7 +134,7 @@ class TestSaleInvoiceGroupMethod(TransactionCase):
 
     def _create_invoice_from_sale(self, sale, multi):
         data = {'advance_payment_method': 'delivered'}
-        payment = self.env['sale.advance.payment.inv'].create(data)
+        payment = self.sale_advance_payment_inv.create(data)
         if multi:
             sale_context = {
                 'active_ids': sale.ids,
@@ -146,7 +149,7 @@ class TestSaleInvoiceGroupMethod(TransactionCase):
                 'open_invoices': True,
             }
         res = payment.with_context(sale_context).create_invoices()
-        invoice_id = self.env['account.invoice'].browse(res['res_id'])
+        invoice_id = self.invoice_model.browse(res['res_id'])
         return invoice_id
 
     def test_create_invoice_case_1(self):
@@ -159,7 +162,7 @@ class TestSaleInvoiceGroupMethod(TransactionCase):
         inv1 = self._create_invoice_from_sale(so1, False)
         inv2 = self._create_invoice_from_sale(so2, False)
         # The result is two different invoices (one for each sale order)
-        self.assertTrue(inv1 != inv2)
+        self.assertNotEqual(inv1, inv2)
 
     def test_create_invoice_case_2(self):
         """ A user that creates two sales orders and adds to both of them the
@@ -191,7 +194,7 @@ class TestSaleInvoiceGroupMethod(TransactionCase):
         inv1 = self._create_invoice_from_sale(so1, False)
         inv2 = self._create_invoice_from_sale(so2, False)
         # The result is two different invoices (one for each sale order)
-        self.assertTrue(inv1 != inv2)
+        self.assertNotEqual(inv1, inv2)
 
     def test_create_invoice_onchange_partner_case_4(self):
         """ A company has a Default Invoice Group Method and a user creates
@@ -222,7 +225,7 @@ class TestSaleInvoiceGroupMethod(TransactionCase):
         inv1 = self._create_invoice_from_sale(so1, False)
         inv2 = self._create_invoice_from_sale(so2, False)
         # The result is two different invoices (one for each sale order)
-        self.assertTrue(inv1 != inv2)
+        self.assertNotEqual(inv1, inv2)
 
     def test_create_invoice_onchange_partner_case_5(self):
         """ A company has a Default Invoice Group Method and a user creates
@@ -292,4 +295,4 @@ class TestSaleInvoiceGroupMethod(TransactionCase):
         inv1 = self._create_invoice_from_sale(so1, False)
         inv2 = self._create_invoice_from_sale(so2, False)
         # The result is two different invoices (one for each sale order)
-        self.assertTrue(inv1 != inv2)
+        self.assertNotEqual(inv1, inv2)
