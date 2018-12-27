@@ -19,8 +19,8 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
 
 #. module: sale_product_set
-#: model:ir.ui.view,arch_db:sale_product_set.product_set_add_form_view
-#: model:ir.ui.view,arch_db:sale_product_set.view_order_stock_form
+#: model_terms:ir.ui.view,arch_db:sale_product_set.product_set_add_form_view
+#: model_terms:ir.ui.view,arch_db:sale_product_set.view_order_stock_form
 msgid "Add set"
 msgstr ""
 
@@ -30,83 +30,93 @@ msgid "Add set in sale order"
 msgstr ""
 
 #. module: sale_product_set
-#: model:ir.ui.view,arch_db:sale_product_set.product_set_add_form_view
+#: model_terms:ir.ui.view,arch_db:sale_product_set.product_set_add_form_view
 msgid "Add set in sale order line"
 msgstr ""
 
 #. module: sale_product_set
-#: model:ir.ui.view,arch_db:sale_product_set.product_set_add_form_view
+#: model_terms:ir.ui.view,arch_db:sale_product_set.product_set_add_form_view
 msgid "Cancel"
 msgstr ""
 
 #. module: sale_product_set
-#: model:ir.model.fields,field_description:sale_product_set.field_product_set_add_create_uid
-#: model:ir.model.fields,field_description:sale_product_set.field_product_set_create_uid
-#: model:ir.model.fields,field_description:sale_product_set.field_product_set_line_create_uid
+#: model:ir.model.fields,field_description:sale_product_set.field_product_set__create_uid
+#: model:ir.model.fields,field_description:sale_product_set.field_product_set_add__create_uid
+#: model:ir.model.fields,field_description:sale_product_set.field_product_set_line__create_uid
 msgid "Created by"
 msgstr "Creado por"
 
 #. module: sale_product_set
-#: model:ir.model.fields,field_description:sale_product_set.field_product_set_add_create_date
-#: model:ir.model.fields,field_description:sale_product_set.field_product_set_create_date
-#: model:ir.model.fields,field_description:sale_product_set.field_product_set_line_create_date
+#: model:ir.model.fields,field_description:sale_product_set.field_product_set__create_date
+#: model:ir.model.fields,field_description:sale_product_set.field_product_set_add__create_date
+#: model:ir.model.fields,field_description:sale_product_set.field_product_set_line__create_date
 msgid "Created on"
 msgstr "Creado en"
 
 #. module: sale_product_set
-#: model:ir.model.fields,field_description:sale_product_set.field_product_set_add_display_name
-#: model:ir.model.fields,field_description:sale_product_set.field_product_set_display_name
-#: model:ir.model.fields,field_description:sale_product_set.field_product_set_line_display_name
+#: model:ir.model.fields,field_description:sale_product_set.field_product_set__display_name
+#: model:ir.model.fields,field_description:sale_product_set.field_product_set_add__display_name
+#: model:ir.model.fields,field_description:sale_product_set.field_product_set_line__display_name
 msgid "Display Name"
 msgstr ""
 
 #. module: sale_product_set
-#: model:ir.model.fields,field_description:sale_product_set.field_product_set_add_id
-#: model:ir.model.fields,field_description:sale_product_set.field_product_set_id
-#: model:ir.model.fields,field_description:sale_product_set.field_product_set_line_id
+#: model:ir.model.fields,field_description:sale_product_set.field_product_set__id
+#: model:ir.model.fields,field_description:sale_product_set.field_product_set_add__id
+#: model:ir.model.fields,field_description:sale_product_set.field_product_set_line__id
 msgid "ID"
 msgstr "ID"
 
 #. module: sale_product_set
-#: model:ir.model.fields,field_description:sale_product_set.field_product_set___last_update
-#: model:ir.model.fields,field_description:sale_product_set.field_product_set_add___last_update
-#: model:ir.model.fields,field_description:sale_product_set.field_product_set_line___last_update
+#: model:ir.model.fields,field_description:sale_product_set.field_product_set__ref
+msgid "Internal Reference"
+msgstr ""
+
+#. module: sale_product_set
+#: model:ir.model.fields,field_description:sale_product_set.field_product_set____last_update
+#: model:ir.model.fields,field_description:sale_product_set.field_product_set_add____last_update
+#: model:ir.model.fields,field_description:sale_product_set.field_product_set_line____last_update
 msgid "Last Modified on"
 msgstr ""
 
 #. module: sale_product_set
-#: model:ir.model.fields,field_description:sale_product_set.field_product_set_add_write_uid
-#: model:ir.model.fields,field_description:sale_product_set.field_product_set_line_write_uid
-#: model:ir.model.fields,field_description:sale_product_set.field_product_set_write_uid
+#: model:ir.model.fields,field_description:sale_product_set.field_product_set__write_uid
+#: model:ir.model.fields,field_description:sale_product_set.field_product_set_add__write_uid
+#: model:ir.model.fields,field_description:sale_product_set.field_product_set_line__write_uid
 msgid "Last Updated by"
 msgstr "Última actualización por"
 
 #. module: sale_product_set
-#: model:ir.model.fields,field_description:sale_product_set.field_product_set_add_write_date
-#: model:ir.model.fields,field_description:sale_product_set.field_product_set_line_write_date
-#: model:ir.model.fields,field_description:sale_product_set.field_product_set_write_date
+#: model:ir.model.fields,field_description:sale_product_set.field_product_set__write_date
+#: model:ir.model.fields,field_description:sale_product_set.field_product_set_add__write_date
+#: model:ir.model.fields,field_description:sale_product_set.field_product_set_line__write_date
 msgid "Last Updated on"
 msgstr "Última actualización en"
 
 #. module: sale_product_set
-#: model:ir.model.fields,field_description:sale_product_set.field_product_set_name
+#: model:ir.model.fields,field_description:sale_product_set.field_product_set__name
 msgid "Name"
 msgstr ""
 
 #. module: sale_product_set
-#: model:ir.model.fields,field_description:sale_product_set.field_product_set_line_product_id
+#: model:ir.model.fields,field_description:sale_product_set.field_product_set_line__product_id
 msgid "Product"
 msgstr ""
 
 #. module: sale_product_set
 #: model:ir.actions.act_window,name:sale_product_set.act_open_product_set_view
 #: model:ir.model,name:sale_product_set.model_product_set
-#: model:ir.model.fields,field_description:sale_product_set.field_product_set_add_product_set_id
+#: model:ir.model.fields,field_description:sale_product_set.field_product_set_add__product_set_id
 #: model:ir.ui.menu,name:sale_product_set.menu_product_set_config
-#: model:ir.ui.view,arch_db:sale_product_set.view_product_set_form
-#: model:ir.ui.view,arch_db:sale_product_set.view_product_set_search
-#: model:ir.ui.view,arch_db:sale_product_set.view_product_set_tree
+#: model_terms:ir.ui.view,arch_db:sale_product_set.view_product_set_form
+#: model_terms:ir.ui.view,arch_db:sale_product_set.view_product_set_search
+#: model_terms:ir.ui.view,arch_db:sale_product_set.view_product_set_tree
 msgid "Product set"
+msgstr ""
+
+#. module: sale_product_set
+#: model:ir.model.fields,help:sale_product_set.field_product_set__ref
+msgid "Product set internal reference"
 msgstr ""
 
 #. module: sale_product_set
@@ -115,33 +125,33 @@ msgid "Product set line"
 msgstr ""
 
 #. module: sale_product_set
-#: model:ir.ui.view,arch_db:sale_product_set.view_product_set_form
+#: model_terms:ir.ui.view,arch_db:sale_product_set.view_product_set_form
 msgid "Product set lines"
 msgstr ""
 
 #. module: sale_product_set
-#: model:ir.model.fields,help:sale_product_set.field_product_set_name
+#: model:ir.model.fields,help:sale_product_set.field_product_set__name
 msgid "Product set name"
 msgstr ""
 
 #. module: sale_product_set
-#: model:ir.model.fields,field_description:sale_product_set.field_product_set_set_line_ids
+#: model:ir.model.fields,field_description:sale_product_set.field_product_set__set_line_ids
 msgid "Products"
 msgstr ""
 
 #. module: sale_product_set
-#: model:ir.model.fields,field_description:sale_product_set.field_product_set_add_quantity
-#: model:ir.model.fields,field_description:sale_product_set.field_product_set_line_quantity
+#: model:ir.model.fields,field_description:sale_product_set.field_product_set_add__quantity
+#: model:ir.model.fields,field_description:sale_product_set.field_product_set_line__quantity
 msgid "Quantity"
 msgstr ""
 
 #. module: sale_product_set
-#: model:ir.model.fields,field_description:sale_product_set.field_product_set_line_sequence
+#: model:ir.model.fields,field_description:sale_product_set.field_product_set_line__sequence
 msgid "Sequence"
 msgstr ""
 
 #. module: sale_product_set
-#: model:ir.model.fields,field_description:sale_product_set.field_product_set_line_product_set_id
+#: model:ir.model.fields,field_description:sale_product_set.field_product_set_line__product_set_id
 msgid "Set"
 msgstr ""
 
