@@ -10,7 +10,7 @@
                 <field name="discount_amount"/>
                 <field name="date_from"/>
                 <field name="date_to"/>
-                <field name="restriction_amount_field"/>
+                <field name="is_minimal_amount_tax_incl"/>
                 <field name="minimal_amount"/>
             </tree>
         </field>
@@ -45,7 +45,7 @@
                             <field name="date_to" nolabel="1"/>
                             <label for="minimal_amount" string="Minimal amount"/>
                             <field name="minimal_amount" nolabel="1"/>
-                            <field name="restriction_amount_field" nolabel="1"/>
+                            <field name="is_minimal_amount_tax_incl" nolabel="1"/>
                             <field name="only_newsletter" colspan="3"/>
                             <field name="restrict_pricelist_ids"
                                    widget="many2many_tags"
