@@ -8,9 +8,10 @@
     "summary": "Show the delivery state on the sale order",
     "version": "10.0.1.0.0",
     "category": "Product",
-    "website": "www.akretion.com",
-    "author": " Akretion",
+    "website": "https://github.com/OCA/sale-workflow",
+    "author": "Akretion, Odoo Community Association (OCA)",
     "license": "AGPL-3",
+    "installable": True,
     "depends": ["sale"],
     "data": [
         "views/sale_order_views.xml",
@@ -18,5 +19,4 @@
     "demo": [
         "demo/sale_demo.xml",
     ],
-    "installable": True,
 }
