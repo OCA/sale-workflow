@@ -38,6 +38,7 @@ setuptools.setup(
         'odoo11-addon-sale_start_end_dates',
         'odoo11-addon-sale_stock_picking_blocking',
         'odoo11-addon-sale_stock_picking_note',
+        'odoo11-addon-sale_validity',
         'odoo11-addon-sales_team_security',
     ],
     classifiers=[
