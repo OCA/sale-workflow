@@ -43,13 +43,13 @@
                             <label for="date_from" string="Date début/fin"/>
                             <field name="date_from" nolabel="1"/>
                             <field name="date_to" nolabel="1"/>
-                            <label for="minimal_amount" string="Minimal amount"/>
-                            <field name="minimal_amount" nolabel="1"/>
-                            <field name="is_minimal_amount_tax_incl" nolabel="1"/>
+                            <field name="minimal_amount" colspan="3"/>
+                            <field name="is_minimal_amount_tax_incl" colspan="3"/>
                             <field name="only_newsletter" colspan="3"/>
                             <field name="restrict_pricelist_ids"
                                    widget="many2many_tags"
                                    colspan="3"/>
+                            <label for="restrict_partner_ids" colspan="3"/>
                             <field name="restrict_partner_ids" nolabel="1" colspan="3"/>
                         </group>
                     </group>
