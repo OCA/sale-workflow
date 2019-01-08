@@ -31,6 +31,21 @@ class SaleOrderLine(models.Model):
             vals.update(self._set_product(product, price_unit))
         return super(SaleOrderLine, self).create(vals)
 
+    @api.multi
+    def write(self, vals):
+        if 'option_ids' in vals:
+            option_ids_val = vals['option_ids']
+            # to fix issue of nesteed many2one we replace [5], [4] option of
+            # one2many fileds by [6] option (same as : https://github.com/odoo/odoo/issues/17618)
+            if option_ids_val and option_ids_val[0][0] == 5 and\
+                    len(option_ids_val) > 1 and option_ids_val[1][0] == 4:
+                opt_keep_ids = []
+                for opt_v in option_ids_val[1:]:
+                    if opt_v[0] == 4:
+                        opt_keep_ids.append(opt_v[1])
+                vals['option_ids'] = [(6, 0, opt_keep_ids)]
+        return super(SaleOrderLine, self).write(vals)
+
     @api.onchange('product_id')
     def product_id_change(self):
         res = super(SaleOrderLine, self).product_id_change()
