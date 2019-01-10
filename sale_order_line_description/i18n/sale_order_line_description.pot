@@ -4,7 +4,7 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: Odoo Server 10.0\n"
+"Project-Id-Version: Odoo Server 11.0\n"
 "Report-Msgid-Bugs-To: \n"
 "Last-Translator: <>\n"
 "Language-Team: \n"
@@ -14,12 +14,17 @@ msgstr ""
 "Plural-Forms: \n"
 
 #. module: sale_order_line_description
-#: model:ir.model.fields,field_description:sale_order_line_description.field_sale_config_settings_group_use_product_description_per_so_line
+#: model:ir.model.fields,field_description:sale_order_line_description.field_res_config_settings_group_use_product_description_per_so_line
 msgid "Allow using only the product sale description on the sales order lines"
 msgstr ""
 
 #. module: sale_order_line_description
-#: model:ir.model.fields,help:sale_order_line_description.field_sale_config_settings_group_use_product_description_per_so_line
+#: model:ir.ui.view,arch_db:sale_order_line_description.view_sales_config
+msgid "Allows you to use only product sale description on the sales order line"
+msgstr ""
+
+#. module: sale_order_line_description
+#: model:ir.model.fields,help:sale_order_line_description.field_res_config_settings_group_use_product_description_per_so_line
 msgid "Allows you to use only product sale description on the sales order line."
 msgstr ""
 
@@ -39,7 +44,7 @@ msgid "Use only product sale description on order lines"
 msgstr ""
 
 #. module: sale_order_line_description
-#: model:ir.model,name:sale_order_line_description.model_sale_config_settings
-msgid "sale.config.settings"
+#: model:ir.model,name:sale_order_line_description.model_res_config_settings
+msgid "res.config.settings"
 msgstr ""
 
