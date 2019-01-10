@@ -24,6 +24,7 @@ setuptools.setup(
         'odoo11-addon-sale_order_general_discount',
         'odoo11-addon-sale_order_invoicing_finished_task',
         'odoo11-addon-sale_order_line_date',
+        'odoo11-addon-sale_order_line_description',
         'odoo11-addon-sale_order_line_input',
         'odoo11-addon-sale_order_line_sequence',
         'odoo11-addon-sale_order_price_recalculation',
