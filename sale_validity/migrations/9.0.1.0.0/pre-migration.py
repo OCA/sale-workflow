@@ -3,11 +3,12 @@
 from openupgradelib import openupgrade
 
 
-_field_renames = [
-    ('sale.order', 'sale_order', 'date_validity', 'validity_date'),
-]
-
-
 @openupgrade.migrate(use_env=True)
 def migrate(env, version):
-    openupgrade.rename_fields(env, _field_renames)
+    openupgrade.logged_query(
+        env.cr, """
+        UPDATE sale_order
+        SET validity_date = date_validity
+        WHERE date_validity IS NOT NULL
+        """
+    )
