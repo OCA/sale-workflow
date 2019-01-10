@@ -51,8 +51,8 @@ Usage
    your user.
 #. Add or modify a sale description to any of your products.
 #. Create a sale order and add a sale order line with this product and check
-   out that now sale order line description only contains the description you
-   are created.
+   out that now sale order line description only contains the sale description
+   you entered.
 
 Bug Tracker
 ===========
