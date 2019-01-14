@@ -20,3 +20,11 @@ class SaleConfigSettings(models.TransientModel):
         help="This is the default Country Restriction set on partner when"
              "creating it."
     )
+    country_restriction_strategy = fields.Selection(
+        related='company_id.country_restriction_strategy',
+        help='Choose here how your country rules apply.'
+             '[Authorize]: Authorize all products but those for which strategy'
+             'apply.'
+             '[Restrict]: Restrict all products but those for which strategy '
+             'apply.'
+    )

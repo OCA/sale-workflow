@@ -11,6 +11,8 @@
                 <field name="enable_sale_country_restriction"/>
                 <field name="default_country_restriction_id"
                        attrs="{'invisible': [('enable_sale_country_restriction', '=', False)]}"/>
+                <field name="country_restriction_strategy"
+                       attrs="{'invisible': [('enable_sale_country_restriction', '=', False)]}"/>
             </group>
         </field>
     </record>

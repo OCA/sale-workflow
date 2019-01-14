@@ -26,6 +26,22 @@ class TestSaleRestriction(SaleCountryRestrictionCommon):
             with self.assertRaises(ValidationError):
                 self.sale_order.action_confirm()
 
+    def test_sale_restriction_inverse(self):
+        self.env.user.company_id.country_restriction_strategy = 'restrict'
+        line = self.line_obj.new({
+            'order_id': self.sale_order.id,
+            'product_id': self.product_2.id,
+        })
+        with mock.patch.object(fields.Date, 'today') as today:
+            today.return_value = '2018-03-20'
+            res = line._onchange_product_country_restriction()
+            self.assertFalse(res.get('warning'))
+
+            vals = line._convert_to_write(line._cache)
+            self.line_obj.create(vals)
+
+            self.sale_order.action_confirm()
+
     def test_sale_restriction_no_match(self):
         # Add a restriction that does not match shipping id
         self.partner.country_restriction_id = self.restriction_1
