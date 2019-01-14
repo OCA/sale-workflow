@@ -6,7 +6,7 @@
     'name': 'Sale Product Country Restriction',
     'summary': """
         Implements product country restrictions on sale workflow""",
-    'version': '10.0.1.0.0',
+    'version': '10.0.1.1.0',
     'license': 'AGPL-3',
     'author': 'ACSONE SA/NV,Odoo Community Association (OCA)',
     'website': 'https://github.com/OCA/sale-workflow',
