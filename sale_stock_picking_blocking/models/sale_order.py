@@ -1,4 +1,4 @@
-# Copyright 2017-18 Eficent Business and IT Consulting Services S.L.
+# Copyright 2019 Eficent Business and IT Consulting Services S.L.
 #   (http://www.eficent.com)
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl.html).
 
@@ -40,7 +40,8 @@ class SaleOrder(models.Model):
         for order in self.filtered(
                 lambda so: so.state == 'sale' or not so.delivery_block_id):
             order.write({'delivery_block_id': False})
-            order.order_line._action_launch_procurement_rule()
+            order.order_line._action_launch_stock_rule()
+        return True
 
     @api.multi
     def copy(self, default=None):
@@ -56,7 +57,7 @@ class SaleOrderLine(models.Model):
     _inherit = "sale.order.line"
 
     @api.multi
-    def _action_launch_procurement_rule(self):
+    def _action_launch_stock_rule(self):
         return super(SaleOrderLine, self.filtered(
             lambda line: not line.order_id.delivery_block_id)). \
-            _action_launch_procurement_rule()
+            _action_launch_stock_rule()
