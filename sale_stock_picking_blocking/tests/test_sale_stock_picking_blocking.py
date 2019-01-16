@@ -1,7 +1,6 @@
-# Copyright 2017-18 Eficent Business and IT Consulting Services S.L.
+# Copyright 2019 Eficent Business and IT Consulting Services S.L.
 #   (http://www.eficent.com)
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl.html).
-
 from odoo.tests import common
 from odoo.exceptions import ValidationError
 
