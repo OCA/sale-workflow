@@ -1,4 +1,4 @@
-# Copyright 2017 Eficent Business and IT Consulting Services S.L.
+# Copyright 2019 Eficent Business and IT Consulting Services S.L.
 #   (http://www.eficent.com)
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl.html).
 
@@ -17,5 +17,4 @@ class Partner(models.Model):
     @api.model
     def _commercial_fields(self):
         commercial_fields = super(Partner, self)._commercial_fields()
-        commercial_fields.append('default_delivery_block')
-        return commercial_fields
+        return commercial_fields.append('default_delivery_block')
