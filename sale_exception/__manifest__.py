@@ -7,7 +7,7 @@
  'version': '10.0.2.0.1',
  'category': 'Generic Modules/Sale',
  'author': "Akretion, Sodexis, Camptocamp, Odoo Community Association (OCA)",
- 'website': 'http://www.akretion.com',
+ 'website': 'https://github.com/OCA/sale-workflow',
  'depends': ['sale', 'base_exception'],
  'license': 'AGPL-3',
  'data': [
