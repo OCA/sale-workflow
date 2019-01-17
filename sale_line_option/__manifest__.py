@@ -5,7 +5,7 @@
 
 {
     'name': 'Sale Line Option',
-    'version': '10.0.0.0.2',
+    'version': '10.0.0.1.1',
     'author': 'Akretion, Odoo Community Association (OCA)',
     'website': 'www.akretion.com',
     'license': 'AGPL-3',
