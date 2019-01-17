@@ -30,12 +30,10 @@ class MrpBomLine(models.Model):
     _rec_name = 'name'
 
     name = fields.Char(compute='_compute_name', store=True, index=True)
-    option_qty = fields.Integer(
-        string="Option Qty", oldname='default_qty',
-        help="This is the default quantity set to the sale line option ")
     opt_max_qty = fields.Integer(
         string="Max Qty Opt", oldname='max_qty',
-        help="High limit authorised in the sale line option")
+        help="High limit authorised in the sale line option",
+        default=1)
 
     @api.multi
     @api.depends('product_id', 'product_id.product_tmpl_id.name')

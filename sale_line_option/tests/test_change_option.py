@@ -10,9 +10,9 @@ _logger = logging.getLogger(__name__)
 
 class TestOptionCase(TransactionCase):
 
-    def test10_option_qty(self):
+    def test10_product_qty(self):
         qties = {
-            x.product_id: x.option_qty
+            x.product_id: x.product_qty
             for x in self.env.ref(
                 'sale_line_option.bom_pc_assmb_option1').bom_line_ids}
         for line in self.sale_line.option_ids:
@@ -39,7 +39,7 @@ class TestOptionCase(TransactionCase):
         bom_opt = self.env.ref('sale_line_option.bom_pc_assmb_option2')
         bom_products = [x.product_id
                         for x in bom_opt.bom_line_ids
-                        if x.option_qty > 0]
+                        if x.product_qty > 0]
         _logger.debug('  >>> Bom product ids: %s',
                       [x.name for x in bom_products])
         self.assertTrue(len(bom_products) > 0,

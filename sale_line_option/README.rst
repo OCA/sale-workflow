@@ -6,8 +6,8 @@
 Sale Line Option
 ================
 
-This module provide an options system for sale order line.
-
+This module provide an option system for sale order lines.
+The options are taken from a Bill Of Materials (BOM).
 
 Configuration
 =============
@@ -77,6 +77,7 @@ Contributors
 
 * Valentin Chemiere <valentin.chemiere@akretion.com>
 * David Béal <david.beal@akretion.com>
+* Raphaël Reverdy <raphael.reverdy@akretion.com>
 
 
 Do not contact contributors directly about support or help with technical issues.

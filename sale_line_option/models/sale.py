@@ -72,10 +72,10 @@ class SaleOrderLine(models.Model):
         bom_lines = self.env['mrp.bom.line'].with_context(
             filter_bom_with_product=product).search([])
         for bline in bom_lines:
-            if bline.option_qty:
+            if bline.product_qty:
                 vals = {'bom_line_id': bline.id,
                         'product_id': bline.product_id.id,
-                        'qty': bline.option_qty}
+                        'qty': bline.product_qty}
                 lines.append((0, 0, vals))  # create
         if bline:
             display_option = True

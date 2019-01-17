@@ -6,7 +6,6 @@
         <field name="inherit_id" ref="mrp.mrp_bom_form_view"/>
         <field name="arch" type="xml">
             <xpath expr="//field[@name='bom_line_ids']/tree/field[@name='product_uom_id']" position="after">
-                <field name="option_qty"/>
                 <field name="opt_max_qty" string="Max Qty"/>
             </xpath>
         </field>

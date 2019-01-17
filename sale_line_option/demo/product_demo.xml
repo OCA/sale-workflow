@@ -34,7 +34,7 @@
      <record id="bom_line_pc_assmb_option11" model="mrp.bom.line">
         <field name="bom_id" ref="sale_line_option.bom_pc_assmb_option1"/>
         <field name="product_id" ref="product.product_product_20"/>
-        <field name="option_qty">1</field>
+        <field name="product_qty">1</field>
         <field name="opt_max_qty">3</field>
     </record>
 
@@ -46,13 +46,13 @@
     <record id="bom_line_pc_assmb_option13" model="mrp.bom.line">
         <field name="bom_id" ref="sale_line_option.bom_pc_assmb_option1"/>
         <field name="product_id" ref="product.product_product_13"/>
-        <field name="option_qty">2</field>
+        <field name="product_qty">2</field>
         <field name="opt_max_qty">4</field>
     </record>
     <record id="bom_line_pc_assmb_option14" model="mrp.bom.line">
         <field name="bom_id" ref="sale_line_option.bom_pc_assmb_option1"/>
         <field name="product_id" ref="product.product_product_10"/>
-        <field name="option_qty">1</field>
+        <field name="product_qty">1</field>
         <field name="opt_max_qty">2</field>
     </record>
 
@@ -63,13 +63,13 @@
     <record id="bom_line_pc_assmb_option21" model="mrp.bom.line">
         <field name="bom_id" ref="sale_line_option.bom_pc_assmb_option2"/>
         <field name="product_id" ref="product.product_product_17"/>
-        <field name="option_qty">2</field>
+        <field name="product_qty">2</field>
         <field name="opt_max_qty">2</field>
     </record>
     <record id="bom_line_pc_assmb_option22" model="mrp.bom.line">
         <field name="bom_id" ref="sale_line_option.bom_pc_assmb_option2"/>
         <field name="product_id" ref="product.product_product_13"/>
-        <field name="option_qty">4</field>
+        <field name="product_qty">4</field>
         <field name="opt_max_qty">8</field>
     </record>
 
@@ -80,12 +80,12 @@
     <record id="bom_line_assmb_option31" model="mrp.bom.line">
         <field name="bom_id" ref="sale_line_option.bom_assmb_option3"/>
         <field name="product_id" ref="stock.product_icecream"/>
-        <field name="option_qty">2</field>
+        <field name="product_qty">2</field>
     </record>
     <record id="bom_line_assmb_option32" model="mrp.bom.line">
         <field name="bom_id" ref="sale_line_option.bom_assmb_option3"/>
         <field name="product_id" ref="product.product_product_24"/>
-        <field name="option_qty">1</field>
+        <field name="product_qty">1</field>
     </record>
 
     <record id="sale_order_option" model="sale.order">
