@@ -20,13 +20,13 @@ msgstr ""
 #. module: sale_order_secondary_unit
 #: model:ir.model.fields,field_description:sale_order_secondary_unit.field_product_product_sale_secondary_uom_id
 #: model:ir.model.fields,field_description:sale_order_secondary_unit.field_product_template_sale_secondary_uom_id
-msgid "Default unit sale"
-msgstr ""
+msgid "Default secondary unit for sales"
+msgstr "Ud de venta secundaria por defecto"
 
 #. module: sale_order_secondary_unit
 #: model:ir.model,name:sale_order_secondary_unit.model_product_template
 msgid "Product Template"
-msgstr ""
+msgstr "Plantilla de producto"
 
 #. module: sale_order_secondary_unit
 #: model:ir.model,name:sale_order_secondary_unit.model_sale_order_line
