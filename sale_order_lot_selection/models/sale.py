@@ -1,10 +1,5 @@
-# -*- coding: utf-8 -*-
-# © 2015 Agile Business Group
-# License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
-
-
 from odoo import api, fields, models, _
-from odoo.exceptions import Warning
+from odoo.exceptions import UserError
 
 
 class SaleOrderLine(models.Model):
@@ -12,6 +7,12 @@ class SaleOrderLine(models.Model):
 
     lot_id = fields.Many2one(
         'stock.production.lot', 'Lot', copy=False)
+
+    @api.multi
+    @api.onchange('product_id')
+    def product_id_change(self):
+        super(SaleOrderLine, self).product_id_change()
+        self.lot_id = False
 
     @api.onchange('product_id')
     def _onchange_product_id_set_lot_domain(self):
@@ -21,7 +22,7 @@ class SaleOrderLine(models.Model):
             quants = self.env['stock.quant'].read_group([
                 ('product_id', '=', self.product_id.id),
                 ('location_id', 'child_of', location.id),
-                ('qty', '>', 0),
+                ('quantity', '>', 0),
                 ('lot_id', '!=', False),
             ], ['lot_id'], 'lot_id')
             available_lot_ids = [quant['lot_id'][0] for quant in quants]
@@ -29,14 +30,6 @@ class SaleOrderLine(models.Model):
         return {
             'domain': {'lot_id': [('id', 'in', available_lot_ids)]}
         }
-
-    @api.multi
-    def _prepare_order_line_procurement(self, group_id=False):
-        res = super(
-            SaleOrderLine, self)._prepare_order_line_procurement(
-            group_id=group_id)
-        res['lot_id'] = self.lot_id.id
-        return res
 
 
 class SaleOrder(models.Model):
@@ -49,12 +42,14 @@ class SaleOrder(models.Model):
         lot_count = 0
         for p in line.order_id.picking_ids:
             for m in p.move_lines:
-                if line.lot_id == m.restrict_lot_id:
+                move_line_id = m.move_line_ids.filtered(
+                    lambda line: line.lot_id)
+                if move_line_id and line.lot_id == move_line_id[:1].lot_id:
                     move = m
                     lot_count += 1
                     # if counter is 0 or > 1 means that something goes wrong
                     if lot_count != 1:
-                        raise Warning(_('Can\'t retrieve lot on stock'))
+                        raise UserError(_('Can\'t retrieve lot on stock'))
         return move
 
     @api.model
@@ -62,16 +57,27 @@ class SaleOrder(models.Model):
         if line.lot_id:
             move = self.get_move_from_line(line)
             if move.state == 'confirmed':
-                move.action_assign()
+                move._action_assign()
                 move.refresh()
             if move.state != 'assigned':
-                raise Warning(_('Can\'t reserve products for lot %s') %
-                              line.lot_id.name)
+                raise UserError(_('Can\'t reserve products for lot %s') %
+                                line.lot_id.name)
         return True
 
     @api.multi
     def action_confirm(self):
-        res = super(SaleOrder, self).action_confirm()
+        res = super(SaleOrder, self.with_context(sol_lot_id=True))\
+            .action_confirm()
         for line in self.order_line:
+            if line.lot_id:
+                unreserved_moves = line.move_ids.filtered(
+                    lambda move: move.product_uom_qty !=
+                    move.reserved_availability
+                )
+                if unreserved_moves:
+                    raise UserError(
+                        _('Can\'t reserve products for lot %s')
+                        % line.lot_id.name
+                    )
             self._check_move_state(line)
         return res
