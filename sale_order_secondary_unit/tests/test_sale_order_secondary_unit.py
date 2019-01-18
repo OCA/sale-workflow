@@ -65,7 +65,7 @@ class TestSaleOrderSecondaryUnit(SavepointCase):
             self.order.order_line.secondary_uom_qty, 5.0)
 
     def test_default_secondary_unit(self):
-        self.order.order_line.onchange_secondary_unit_product_id()
+        self.order.order_line.product_id_change()
         self.assertEqual(
             self.order.order_line.secondary_uom_id, self.secondary_unit)
 
