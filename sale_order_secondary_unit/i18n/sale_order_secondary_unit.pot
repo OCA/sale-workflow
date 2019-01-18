@@ -16,7 +16,7 @@ msgstr ""
 #. module: sale_order_secondary_unit
 #: model:ir.model.fields,field_description:sale_order_secondary_unit.field_product_product_sale_secondary_uom_id
 #: model:ir.model.fields,field_description:sale_order_secondary_unit.field_product_template_sale_secondary_uom_id
-msgid "Default unit sale"
+msgid "Default secondary unit for sales"
 msgstr ""
 
 #. module: sale_order_secondary_unit

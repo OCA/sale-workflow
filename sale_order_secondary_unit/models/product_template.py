@@ -8,5 +8,5 @@ class ProductTemplate(models.Model):
 
     sale_secondary_uom_id = fields.Many2one(
         comodel_name='product.secondary.unit',
-        string='Default unit sale',
+        string='Default secondary unit for sales',
     )
