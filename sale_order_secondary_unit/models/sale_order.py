@@ -61,5 +61,16 @@ class SaleOrderLine(models.Model):
             self.secondary_uom_qty = qty
 
     @api.onchange('product_id')
-    def onchange_secondary_unit_product_id(self):
+    def product_id_change(self):
+        """
+        If default sales secondary unit set on product, put on secondary
+        quantity 1 for being the default quantity. We override this method,
+        that is the one that sets by default 1 on the other quantity with that
+        purpose.
+        """
+        res = super(SaleOrderLine, self).product_id_change()
         self.secondary_uom_id = self.product_id.sale_secondary_uom_id
+        if self.secondary_uom_id:
+            self.secondary_uom_qty = 1.0
+            self.onchange_secondary_uom()
+        return res
