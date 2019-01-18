@@ -40,6 +40,7 @@ class SaleOrderLine(models.Model):
             line._onchange_helper_product_uom_for_secondary()
         return res
 
+<<<<<<< HEAD
     @api.onchange("product_id")
     def _onchange_product_id_warning(self):
         res = super()._onchange_product_id_warning()
@@ -62,3 +63,23 @@ class SaleOrderLine(models.Model):
                     line.secondary_uom_unit_price = 0
             else:
                 line.secondary_uom_unit_price = 0
+||||||| parent of 90d059d1c ([11.0][IMP] sale_secondary_unit: Set secondary uom quantity as 1.0 by default)
+    @api.onchange('product_id')
+    def onchange_secondary_unit_product_id(self):
+        self.secondary_uom_id = self.product_id.sale_secondary_uom_id
+=======
+    @api.onchange('product_id')
+    def product_id_change(self):
+        """
+        If default sales secondary unit set on product, put on secondary
+        quantity 1 for being the default quantity. We override this method,
+        that is the one that sets by default 1 on the other quantity with that
+        purpose.
+        """
+        res = super(SaleOrderLine, self).product_id_change()
+        self.secondary_uom_id = self.product_id.sale_secondary_uom_id
+        if self.secondary_uom_id:
+            self.secondary_uom_qty = 1.0
+            self.onchange_secondary_uom()
+        return res
+>>>>>>> 90d059d1c ([11.0][IMP] sale_secondary_unit: Set secondary uom quantity as 1.0 by default)

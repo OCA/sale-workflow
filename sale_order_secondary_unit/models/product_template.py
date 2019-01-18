@@ -7,6 +7,7 @@ class ProductTemplate(models.Model):
     _inherit = "product.template"
 
     sale_secondary_uom_id = fields.Many2one(
+<<<<<<< HEAD
         comodel_name="product.secondary.unit",
         string="Default secondary unit for sales",
         compute="_compute_sale_secondary_uom_id",
@@ -15,6 +16,13 @@ class ProductTemplate(models.Model):
         " in 'Secondary Unit of Measure'",
         domain="[('product_tmpl_id', '=', id), ('product_id', '=', False)]",
         store=True,
+||||||| parent of 90d059d1c ([11.0][IMP] sale_secondary_unit: Set secondary uom quantity as 1.0 by default)
+        comodel_name='product.secondary.unit',
+        string='Default unit sale',
+=======
+        comodel_name='product.secondary.unit',
+        string='Default secondary unit for sales',
+>>>>>>> 90d059d1c ([11.0][IMP] sale_secondary_unit: Set secondary uom quantity as 1.0 by default)
     )
 
     @api.depends("product_variant_ids", "product_variant_ids.sale_secondary_uom_id")

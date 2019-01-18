@@ -85,8 +85,18 @@ class TestSaleOrderSecondaryUnit(SavepointCase):
         self.assertEqual(self.order.order_line.secondary_uom_qty, 5.0)
 
     def test_default_secondary_unit(self):
+<<<<<<< HEAD
         self.order.order_line.onchange_secondary_unit_product_id()
         self.assertEqual(self.order.order_line.secondary_uom_id, self.secondary_unit)
+||||||| parent of 90d059d1c ([11.0][IMP] sale_secondary_unit: Set secondary uom quantity as 1.0 by default)
+        self.order.order_line.onchange_secondary_unit_product_id()
+        self.assertEqual(
+            self.order.order_line.secondary_uom_id, self.secondary_unit)
+=======
+        self.order.order_line.product_id_change()
+        self.assertEqual(
+            self.order.order_line.secondary_uom_id, self.secondary_unit)
+>>>>>>> 90d059d1c ([11.0][IMP] sale_secondary_unit: Set secondary uom quantity as 1.0 by default)
 
     def test_onchange_order_product_uom(self):
         self.order.order_line.update(
