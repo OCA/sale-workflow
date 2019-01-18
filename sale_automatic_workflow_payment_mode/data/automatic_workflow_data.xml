@@ -2,10 +2,10 @@
 <!--
     sale_automatic_workflow_payment_mode for Odoo
     Copyright (C) 2016 Sodexis
-    The licence is in the file __openerp__.py
+    The licence is in the file __manifest__.py
 -->
-<odoo>
-    <data noupdate="1">
+<odoo noupdate="1">
+
         <record id="automatic_workflow_payment_filter" model="ir.filters">
             <field name="name">Automatic Workflow Payment Filter</field>
             <field name="model_id">account.invoice</field>
@@ -20,5 +20,5 @@
             <field name="register_payment" eval="0" />
             <field name="payment_filter_id" ref="automatic_workflow_payment_filter" />
         </record>
-    </data>
+
 </odoo>
