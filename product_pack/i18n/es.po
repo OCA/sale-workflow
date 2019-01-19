@@ -4,13 +4,19 @@
 # 
 # Translators:
 # Juan José Scarafía <scarafia.juanjose@gmail.com>, 2018
+# Gonzalo Ruzafa <gr@ingadhoc.com>, 2019
+# emiquinodoz <eq@ingadhoc.com>, 2019
+# Valentino Defelice <vd@adhoc.com.ar>, 2019
+# Mariana Luz Torres <mt@adhoc.com.ar>, 2019
+# Santiago Crespo <sc@adhoc.com.ar>, 2019
+# 
 msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 11.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-09-25 13:51+0000\n"
-"PO-Revision-Date: 2018-09-25 13:51+0000\n"
-"Last-Translator: Juan José Scarafía <scarafia.juanjose@gmail.com>, 2018\n"
+"POT-Creation-Date: 2019-01-08 21:19+0000\n"
+"PO-Revision-Date: 2018-05-22 01:28+0000\n"
+"Last-Translator: Santiago Crespo <sc@adhoc.com.ar>, 2019\n"
 "Language-Team: Spanish (https://www.transifex.com/adhoc/teams/46451/es/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -44,7 +50,7 @@ msgstr ""
 #. module: product_pack
 #: model:ir.ui.view,arch_db:product_pack.view_order_line_form2
 msgid "Cancel"
-msgstr ""
+msgstr "Cancelar"
 
 #. module: product_pack
 #: model:ir.model.fields,field_description:product_pack.field_product_pack_line_create_uid
@@ -71,7 +77,7 @@ msgstr "Profundidad del producto si forma parte de un pack."
 #. module: product_pack
 #: model:ir.ui.view,arch_db:product_pack.view_order_stock_form
 msgid "Detail"
-msgstr ""
+msgstr "Detalle"
 
 #. module: product_pack
 #: selection:product.template,pack_price_type:0
@@ -195,31 +201,31 @@ msgstr "Pack"
 #: model:product.product,name:product_pack.product_pack_cpu_detailed_components
 #: model:product.template,name:product_pack.product_pack_cpu_detailed_components_product_template
 msgid "Pack CPU (Detailed Components Price)"
-msgstr ""
+msgstr "Pack PDC (Precio detallado de los componentes)"
 
 #. module: product_pack
 #: model:product.product,name:product_pack.product_pack_cpu_detailed_fixed
 #: model:product.template,name:product_pack.product_pack_cpu_detailed_fixed_product_template
 msgid "Pack CPU (Detailed Fixed Price)"
-msgstr ""
+msgstr "Pack PFD (precio fijo detallado)"
 
 #. module: product_pack
 #: model:product.product,name:product_pack.product_pack_cpu_detailed_totaliced
 #: model:product.template,name:product_pack.product_pack_cpu_detailed_totaliced_product_template
 msgid "Pack CPU (Detailed Totaliced Price)"
-msgstr ""
+msgstr "Pack PTD (Precio Totalizado Detallado)"
 
 #. module: product_pack
 #: model:product.product,name:product_pack.product_pack_cpu_none_detailed_assited
 #: model:product.template,name:product_pack.product_pack_cpu_none_detailed_assited_product_template
 msgid "Pack CPU (None Detailed Assisted Price)"
-msgstr ""
+msgstr "Pack NPD (Ningun Precio Detallado Asistido)"
 
 #. module: product_pack
 #: model:product.product,name:product_pack.product_pack_cpu_none_detailed_totaliced
 #: model:product.template,name:product_pack.product_pack_cpu_none_detailed_totaliced_product_template
 msgid "Pack CPU (None Detailed Totaliced Price)"
-msgstr ""
+msgstr "Pack CPU (Ningún Precio Totalizado Detallado)"
 
 #. module: product_pack
 #: model:ir.model.fields,field_description:product_pack.field_sale_order_line_pack_line_ids
@@ -230,29 +236,29 @@ msgstr "Línea de los Packs"
 #: model:product.product,name:product_pack.product_pack_pc_detailed_components
 #: model:product.template,name:product_pack.product_pack_pc_detailed_components_product_template
 msgid "Pack PC (Detailed Components Price)"
-msgstr ""
+msgstr "Paquete PC (Precio detallado de los componentes)"
 
 #. module: product_pack
 #: model:product.product,name:product_pack.product_pack_pc_detailed_fixed
 #: model:product.template,name:product_pack.product_pack_pc_detailed_fixed_product_template
 msgid "Pack PC (Detailed Fixed Price)"
-msgstr ""
+msgstr "Pack PC (precio fijo detallado)"
 
 #. module: product_pack
 #: model:product.product,name:product_pack.product_pack_pc_detailed_totaliced
 #: model:product.template,name:product_pack.product_pack_pc_detailed_totaliced_product_template
 msgid "Pack PC (Detailed Totaliced Price)"
-msgstr ""
+msgstr "Pack PC (Precio Totalizado Detallado)"
 
 #. module: product_pack
 #: model:ir.ui.view,arch_db:product_pack.product_pack_line_form
 msgid "Pack Product Line"
-msgstr ""
+msgstr "Linea de producto pack"
 
 #. module: product_pack
 #: model:ir.ui.view,arch_db:product_pack.product_pack_line_tree
 msgid "Pack Product Lines"
-msgstr ""
+msgstr "Lineas del producto pack"
 
 #. module: product_pack
 #: model:ir.model.fields,field_description:product_pack.field_product_product_pack_line_ids
@@ -263,7 +269,7 @@ msgstr "Productos del pack"
 #. module: product_pack
 #: model:ir.model.fields,field_description:product_pack.field_sale_order_line_pack_total
 msgid "Pack Total"
-msgstr ""
+msgstr "Pack Total"
 
 #. module: product_pack
 #: model:ir.model.fields,field_description:product_pack.field_product_product_pack_price_type
@@ -314,7 +320,7 @@ msgstr "Cantidad"
 #. module: product_pack
 #: model:ir.model,name:product_pack.model_sale_order
 msgid "Quotation"
-msgstr ""
+msgstr "Presupuesto"
 
 #. module: product_pack
 #: model:ir.model,name:product_pack.model_sale_order_line_pack_line
@@ -329,17 +335,17 @@ msgstr "Línea del Pedido de Venta"
 #. module: product_pack
 #: model:ir.ui.view,arch_db:product_pack.view_sale_line_pack_line_tree
 msgid "Sales Order Line Pack Lines"
-msgstr ""
+msgstr "Línea de orden de venta Líneas de pack"
 
 #. module: product_pack
 #: model:ir.ui.view,arch_db:product_pack.view_order_line_form2
 msgid "Sales Order Lines"
-msgstr ""
+msgstr "Líneas pedido de ventas"
 
 #. module: product_pack
 #: model:ir.ui.view,arch_db:product_pack.view_order_line_form2
 msgid "Save"
-msgstr ""
+msgstr "Guardar"
 
 #. module: product_pack
 #: model:ir.model.fields,field_description:product_pack.field_sale_order_line_pack_line_price_subtotal
@@ -359,14 +365,14 @@ msgstr "Precio unitario"
 #. module: product_pack
 #: model:ir.ui.view,arch_db:product_pack.product_template_only_form_view
 msgid "You must save first to add pack lines"
-msgstr ""
+msgstr "Debe guardar primero para agregar líneas de paquete"
 
 #. module: product_pack
 #: model:ir.ui.view,arch_db:product_pack.view_order_line_form2
 msgid "or"
-msgstr ""
+msgstr "O"
 
 #. module: product_pack
 #: model:ir.model,name:product_pack.model_product_pack_line
 msgid "product.pack.line"
-msgstr ""
+msgstr "product.pack.line"
