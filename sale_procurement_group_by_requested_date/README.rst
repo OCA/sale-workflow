@@ -28,6 +28,17 @@ Usage
    :target: https://runbot.odoo-community.org/runbot/167/10.0
 
 
+Known issues / Roadmap
+======================
+
+This module is compatible with sale_sourced_by_line module by installing
+sale_procurement_group_by_requested_date_sale_sourced_by_line. This module
+is not compatible with sale_delivery_split_date. A glue module will be needed
+to install sale_delivery_split_date and
+sale_procurement_group_by_requested_date. This is an already known issue:
+https://github.com/OCA/sale-workflow/issues/717#issuecomment-430231334
+
+
 Bug Tracker
 ===========
 
