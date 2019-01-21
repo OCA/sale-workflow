@@ -1,42 +1,21 @@
 .. image:: https://img.shields.io/badge/licence-AGPL--3-blue.svg
    :alt: License: AGPL-3
 
-========================================
-Sale Procurement Group by Requested date
-========================================
+=============================================================
+Sale Procurement Group by Requested date Sale Sourced by line
+=============================================================
 
-This module creates different procurements groups for different requested
-dates in a sale order line when the sale order is confirmed.
-It depends on sale_sourced_by_line so this module will group procurements 
-also by the warehouse in the sale order line.
-
-Installation
-============
-
-This module depends on the modules sale_procurement_group_by_line and
-sale_sourced_by_line.
+This is a glue module. It makes source_procurement_group_by_requested_date
+compatible with sale_sourced_by_line
 
 
 Usage
 =====
 
-#. Add a requested date for a sale order line.
-#. Confirm the sale order
 
 .. image:: https://odoo-community.org/website/image/ir.attachment/5784_f2813bd/datas
    :alt: Try me on Runbot
    :target: https://runbot.odoo-community.org/runbot/167/10.0
-
-
-Known issues / Roadmap
-======================
-
-This module is compatible with sale_sourced_by_line module by installing
-sale_procurement_group_by_requested_date_sale_sourced_by_line. This module
-is not compatible with sale_delivery_split_date. A glue module will be needed
-to install sale_delivery_split_date and
-sale_procurement_group_by_requested_date. This is an already known issue:
-https://github.com/OCA/sale-workflow/issues/717#issuecomment-430231334
 
 
 Bug Tracker
