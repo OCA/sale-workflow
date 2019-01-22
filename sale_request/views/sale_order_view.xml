@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <record model="ir.ui.view" id="view_sale_order_sale_request_form">
+        <field name="name">view.sale.order.sale.request.form</field>
+        <field name="model">sale.order</field>
+        <field name="inherit_id" ref="sale.view_order_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='partner_id']" position="before">
+                <field name="master_sale_order" invisible="1" readonly="1"/>
+            </xpath>
+            <xpath expr="//field[@name='order_line']/tree/field[@name='product_uom_qty']" position="after">
+                <field name="master_sale_order" invisible="1"/>
+                <field name="child_ids" invisible="1"/>
+                <field name="product_uom_qty_total" invisible="not context.get('is_master_order', False)"/>
+                <field name="remaining_product_qty" invisible="not context.get('is_master_order', False)"/>
+                <field name="qty_delivered_total" invisible="not context.get('is_master_order', False)"/>
+                <field name="qty_invoiced_total" invisible="not context.get('is_master_order', False)"/>
+                <field name="request_line_id" invisible="1"/>
+            </xpath>
+            <xpath expr="//field[@name='order_line']/tree/field[@name='qty_delivered']" position="attributes">
+                <attribute name="invisible">context.get('is_master_order', False)</attribute>
+            </xpath>
+            <xpath expr="//field[@name='order_line']/tree/field[@name='qty_invoiced']" position="attributes">
+                <attribute name="invisible">context.get('is_master_order', False)</attribute>
+            </xpath>
+            <xpath expr="//button[@id='action_confirm']" position="after">
+                <button name="button_link_sale_order" string="Link sale order" type="object" attrs="{'invisible':[('master_sale_order', '=', False)]}"/>
+            </xpath>
+            <xpath expr="//button[@name='action_view_invoice']" position="after">
+                <button class="oe_stat_button" name="button_child_sale_orders"
+                        string="Sale orders" type="object"
+                        icon="fa-bars" attrs="{'invisible':[('master_sale_order', '=', False)]}"/>
+            </xpath>
+        </field>
+    </record>
+    <record model="ir.ui.view" id="view_sale_order_inv_sale_request_form">
+        <field name="name">view.sale.order.inv.sale.request.form</field>
+        <field name="model">sale.order</field>
+        <field name="inherit_id" ref="sale_management.sale_order_view_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//button[@name='%(sale.action_view_sale_advance_payment_inv)d']" position="attributes">
+                <attribute name="invisible">context.get('is_master_order', False)</attribute>
+            </xpath> 
+        </field>
+    </record>
+     <record id="action_sale_order_master" model="ir.actions.act_window">
+        <field name="name">Master Sale Orders</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">sale.order</field>
+        <field name="view_type">form</field>
+        <field name="view_mode">tree,kanban,form,calendar,pivot,graph,activity</field>
+        <field name="domain">[('master_sale_order', '=', True)]</field>
+        <field name="context">{'default_master_sale_order': True, 'is_master_order': True}</field>
+    </record>
+    <record id="sale.action_quotations_with_onboarding" model="ir.actions.act_window">
+        <field name="domain">[('master_sale_order', '=', False)]</field>
+        <field name="context">{'default_master_sale_order': False, 'is_master_order': False, 'search_default_my_quotation': 1}</field>
+    </record>
+    <record id="sale.action_orders" model="ir.actions.act_window">
+        <field name="context">{'default_master_sale_order': False, 'is_master_order': False}</field>
+        <field name="domain">[('master_sale_order', '=', False)]</field>
+    </record>
+     <menuitem id="menu_sale_order_master" action="action_sale_order_master" parent="sale.sale_order_menu" sequence="1" groups="sales_team.group_sale_salesman"/>
+</odoo>

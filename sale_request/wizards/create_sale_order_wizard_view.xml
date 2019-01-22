@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="view_create_sale_order_wizard_form" model="ir.ui.view">
+        <field name="name">view.create.sale.order.wizard.form</field>
+        <field name="model">create.sale.order.wizard</field>
+        <field name="arch" type="xml">
+            <form>
+                <div class="alert alert-danger" role="alert" style="margin-bottom:0px;" attrs="{'invisible': [('has_lines', '=', True)]}">
+                    <bold>Sorry!</bold>, There are not any sale order line compatible with this request. Check your data.
+                </div>
+                <field name="has_lines" invisible="1"/>
+                <sheet>
+                    <group attrs="{'invisible': [('has_lines', '=', False)]}">
+                        <h2><strong>Please Select the Sale Order Lines From Master Sale Orders</strong></h2>
+                    </group>
+                    <group attrs="{'invisible': [('has_lines', '=', False)]}">
+                        <field name="request_line_id" invisible="1"/>
+                        <field name="product_id"/>
+                        <label for="remaining_product_qty"/>
+                        <div>
+                            <field name="remaining_product_qty" class="oe_inline"/>
+                            <span> / </span>
+                            <field name="product_qty" class="oe_inline"/>
+                            <field name="product_uom_id" class="oe_inline" groups="uom.group_uom"/>
+                        </div>
+                    </group>
+                    <group string="Lines" attrs="{'invisible': [('has_lines', '=', False)]}">
+                        <field name="line_ids" nolabel="1">
+                            <tree editable="top" create="0" delete="0">
+                                <field name="product_id"/>
+                                <field name="order_id"/>
+                                <field name="sale_line_id" invisible="1"/>
+                                <field name="name" readonly="1"/>
+                                <field name="product_uom_qty" readonly="1"/>
+                                <field name="remaining_product_qty" readonly="1"/>
+                                <field name="product_uom_id" readonly="1"/>
+                                <field name="qty_to_sale" required="1"/>
+                            </tree>
+                        </field>
+                    </group>
+                    <footer>
+                        <button name="create_sale_order" string='Confirm' type="object" class="oe_highlight" attrs="{'invisible': [('has_lines', '=', False)]}"/>
+                        <button name="create_sale_order_no_ref" string='Confirm' type="object" class="oe_highlight" attrs="{'invisible': [('has_lines', '=', True)]}" confirm="Are you sure you want to create a sale order with no customer purchase order?"/>
+                        <button string="Cancel" special="cancel"/>
+                    </footer>
+                </sheet>
+           </form>
+        </field>
+    </record>
+    <record id="action_create_sale_order" model="ir.actions.act_window">
+        <field name="name">Create Sale Orders From Sale Request</field>
+        <field name="res_model">create.sale.order.wizard</field>
+        <field name="view_type">form</field>
+        <field name="view_mode">form</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="target">new</field>
+    </record>
+</odoo>

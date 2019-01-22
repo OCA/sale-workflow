@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="view_link_sale_order_wizard_form" model="ir.ui.view">
+        <field name="name">view.link.sale.order.wizard.form</field>
+        <field name="model">link.sale.order.wizard</field>
+        <field name="arch" type="xml">
+            <form>
+                <sheet>
+                    <h2><strong>Please Select the Sale Order Lines to link to Master Sale Order</strong></h2>
+                    <group>
+                        <field name="partner_id" invisible="1"/>
+                        <field name="product_ids" invisible="1"/>
+                    </group>
+                    <group string="Master Sale Order Lines">
+                        <field name="line_ids" nolabel="1">
+                            <tree editable="top" create="0" delete="0">
+                                <field name="product_id"/>
+                                <field name="name"/>
+                                <field name="product_uom_qty"/>
+                                <field name="product_uom_id"/>
+                                <field name="remaining_product_qty"/>
+                            </tree>
+                        </field>
+                    </group>
+                    <group string="Unlinked sale order lines">
+                        <field name="sale_line_ids" nolabel="1" domain="[('product_id', 'in', product_ids), ('master_sale_order', '=', False), ('parent_id', '=', False)]" options="{'no_create': True}">
+                            <tree create="1">
+                                <field name="order_id"/>
+                                <field name="product_id"/>
+                                <field name="name"/>
+                                <field name="product_uom_qty"/>
+                            </tree>
+                        </field>
+                    </group>
+                    <footer>
+                        <button name="link_sale_order" string='Confirm' type="object" class="oe_highlight"/>
+                        <button string="Cancel" special="cancel"/>
+                    </footer>
+                </sheet>
+           </form>
+        </field>
+    </record>
+    <record id="action_create_sale_order" model="ir.actions.act_window">
+        <field name="name">Link Sale Orders to Master Sale Order</field>
+        <field name="res_model">create.sale.order.wizard</field>
+        <field name="view_type">form</field>
+        <field name="view_mode">form</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="target">new</field>
+    </record>
+</odoo>

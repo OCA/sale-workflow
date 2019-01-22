@@ -1,0 +1,221 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <!-- Sale Request Views -->
+    <record model='ir.ui.view' id='view_sale_request_tree'>
+        <field name='name'>view.sale.request.tree</field>
+        <field name='model'>sale.request</field>
+        <field name='arch' type='xml'>
+            <tree string='Sale Request'>
+                <field name='name'/>
+                <field name="date"/>
+                <field name="partner_id"/>
+                <field name="requested_by"/>
+                <field name="warehouse_id"/>
+                <field name="company_id" groups="base.group_multi_company" widget="selection"/>
+                <field name="state"/>
+            </tree>
+        </field>
+    </record>
+    <record model="ir.ui.view" id="view_sale_request_form">
+        <field name="name">view.sale.request.form</field>
+        <field name="model">sale.request</field>
+        <field name="arch" type="xml">
+            <form string="Sale Request">
+                <header>
+                    <button name="button_draft"
+                        states="cancel"
+                        string="Reset"
+                        type="object"
+                        groups="sale_request.group_sale_request_manager"/>
+                    <button name="button_confirm"
+                        states="draft"
+                        string="Confirm"
+                        type="object"
+                        class="oe_highlight"
+                        groups="sale_request.group_sale_request_manager"/>
+                    <field name="state" widget="statusbar" nolabel="1"/>
+                    <button name="button_cancel"
+                        states="draft,confirm"
+                        string="Cancel"
+                        type="object"
+                        groups="sale_request.group_sale_request_manager"/>
+                </header>
+                <sheet>
+                    <div class="oe_button_box" name="button_box">
+                        <field name="sale_ids" invisible="1"/>
+                        <button class="oe_stat_button" name="button_sale_orders"
+                                string="Sales" type="object"
+                                attrs="{'invisible':[('sale_ids','=',[])]}" icon="fa-usd"/>
+                        <button class="oe_stat_button" name="button_sale_request_lines"
+                                string="Request lines" type="object"
+                                icon="fa-bars"/>
+                    </div>
+                    <h1><field name="name"/></h1>
+                    <group>
+                        <group>
+                            <field name="partner_id" attrs="{'readonly': [('state', '!=', 'draft')]}"/>
+                        </group>
+                        <group>
+                            <field name="date" attrs="{'readonly': [('state', '!=', 'draft')]}"/>
+                            <field name="company_id" attrs="{'readonly': [('state', '!=', 'draft')]}" groups="base.group_multi_company" widget="selection"/>
+                            <field name="warehouse_id"/>
+                        </group>
+                    </group>
+                    <group>
+                        <group name="users">
+                            <field name="requested_by" attrs="{'readonly': [('state', '!=', 'draft')]}"/>
+                        </group>
+                    </group>
+                    <notebook>
+                        <page name="lines" string="Lines">
+                            <group>
+                                <field name="line_ids" nolabel="1" attrs="{'readonly': [('state', '!=', 'draft')]}">
+                                    <tree editable="top">
+                                        <field name="product_id"/>
+                                        <field name="description"/>
+                                        <field name="product_qty"/>
+                                        <field name="remaining_product_qty"/>
+                                        <field name="product_uom_id" groups="uom.group_uom"/>
+                                        <field name="category_uom_id" groups="uom.group_uom" invisible="1"/>
+                                    </tree>
+                                </field>
+                            </group>
+                        </page>
+                        <page name="description" string="Extra information">
+                            <group>
+                                <field name="description" nolabel="1" attrs="{'readonly': [('state', '!=', 'draft')]}"/>
+                            </group>
+                        </page>
+                    </notebook>
+                </sheet>
+                <div class="oe_chatter">
+                    <field name="message_follower_ids" widget="mail_followers"/>
+                    <field name="activity_ids" widget="mail_activity"/>
+                    <field name="message_ids" widget="mail_thread"/>
+                </div>
+            </form>
+        </field>
+    </record>
+    <record id="view_sale_request_search" model="ir.ui.view">
+        <field name="name">view.sale.request.search</field>
+        <field name="model">sale.request</field>
+        <field name="arch" type="xml">
+            <search>
+                <field name="name" string="name"/>
+                <field name="product_id" string="Product"/>
+                <filter name="requested_by" string="My requests" domain="[('requested_by','=', uid)]" help="Requested by me"/>
+                <separator/>
+                <filter name="state_draft" string="Draft" domain="[('state', '=', 'draft')]" help="Request is to be approved"/>
+                <filter name="state_confirm" string="Confirmed" domain="[('state', '=', 'confirm')]" help="Requests confirmed"/>
+                <filter name="state_cancel" string="Cancelled" domain="[('state', '=', 'cancel')]" help="Requests cancelled"/>
+                <separator/>
+                <filter string="My Activities" name="activities_my"
+                    domain="[('activity_ids.user_id', '=', uid)]"/>
+                <separator/>
+                <filter string="Late Activities" name="activities_overdue"
+                    domain="[('activity_ids.date_deadline', '&lt;', context_today().strftime('%Y-%m-%d'))]"
+                    help="Show all records which has next action date is before today"/>
+                <filter string="Today Activities" name="activities_today"
+                    domain="[('activity_ids.date_deadline', '=', context_today().strftime('%Y-%m-%d'))]"/>
+                <filter string="Future Activities" name="activities_upcoming_all"
+                    domain="[('activity_ids.date_deadline', '&gt;', context_today().strftime('%Y-%m-%d'))
+                ]"/>
+                <filter string="Order Date" name="date_groupby" domain="[]" context="{'group_by':'date'}"/>
+            </search>
+        </field>
+    </record>
+
+    <!-- Sale Request Line Views -->
+    <record model='ir.ui.view' id='view_sale_request_line_tree'>
+        <field name='name'>view.sale.request.line.tree</field>
+        <field name='model'>sale.request.line</field>
+        <field name='arch' type='xml'>
+            <tree string='Sale Request Line' decoration-info="request_state == 'confirm'" decoration-muted="request_state == 'cancel'" decoration-bf="request_state == 'cancel'">
+                <field name='request_id'/>
+                <field name="request_state"/>
+                <field name="product_id"/>
+                <field name="description"/>
+                <field name="product_qty"/>
+                <field name="product_uom_id" groups="uom.group_uom"/>
+                <field name="category_uom_id" groups="uom.group_uom"/>
+                <field name="state"/>
+            </tree>
+        </field>
+    </record>
+    <record model="ir.ui.view" id="view_sale_request_line_form">
+        <field name="name">view.sale.request.line.form</field>
+        <field name="model">sale.request.line</field>
+        <field name="arch" type="xml">
+            <form string="Sale Request Line">
+                <header>
+                    <button name="%(action_create_sale_order)d"
+                        class="oe_highlight"
+                        string="Create Sale Order"
+                        type="action"
+                        attrs="{'invisible': ['|', ('request_state', '!=', 'confirm'), ('remaining_product_qty', '=', 0)]}"/>
+                    <field name="state" widget="statusbar"/>
+                </header>
+                <sheet>
+                    <div class="oe_button_box" name="button_box">
+                        <button class="oe_stat_button" name="button_sale_orders"
+                                string="Sales" type="object"
+                                attrs="{'invisible':[('sale_line_ids','=',[])]}" icon="fa-usd"/>
+                    </div>
+                    <h1><span>Product - </span><field name="product_id"/></h1>
+                    <group>
+                        <group>
+                            <field name="sale_line_ids" invisible="1"/>
+                            <field name="request_state" invisible="1"/>
+                            <field name="request_id" attrs="{'readonly': [('request_state', '!=', 'draft')]}"/>
+                            <label for="product_qty"/>
+                            <div>
+                                <field name="product_qty" class="oe_inline" attrs="{'readonly': [('request_state', '!=', 'draft')]}"/>
+                                <field name="product_uom_id" class="oe_inline" groups="uom.group_uom" options="{'no_create_edit': True, 'no_open': True, }" attrs="{'readonly': [('request_state', '!=', 'draft')]}"/>
+                                <field name="category_uom_id" invisible="1"/>
+                            </div>
+                            <label for="remaining_product_qty"/>
+                            <div>
+                                <field name="remaining_product_qty" class="oe_inline"/>
+                                <field name="product_uom_id" class="oe_inline" groups="uom.group_uom" options="{'no_create_edit': True, 'no_open': True, }" attrs="{'readonly': [('request_state', '!=', 'draft')]}"/>
+                            </div>
+                        </group>
+                    </group>
+                    <group string="Description">
+                        <field name="description" attrs="{'readonly': [('request_state', '!=', 'draft')]}"/>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+    <record id="view_sale_request_line_search" model="ir.ui.view">
+        <field name="name">view.sale.request.line.search</field>
+        <field name="model">sale.request.line</field>
+        <field name="arch" type="xml">
+            <search>
+                <field name="product_id"/>
+                <field name="request_id" string="Request"/>
+                <separator/>
+                <filter string="Product" name="product_groupby" domain="[]" context="{'group_by':'product_id'}"/>
+                <filter string="Request" name="request_groupby" domain="[]" context="{'group_by':'request_id'}"/>
+            </search>
+        </field>
+    </record>
+    
+    <!-- Actions -->
+    <record id="action_sale_request" model="ir.actions.act_window">
+        <field name="name">Sale Request</field>
+        <field name="res_model">sale.request</field>
+        <field name="view_type">form</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+    <record id="action_sale_request_line" model="ir.actions.act_window">
+        <field name="name">Sale Request Lines</field>
+        <field name="res_model">sale.request.line</field>
+        <field name="view_type">form</field>
+        <field name="view_mode">tree,form</field>
+        <field name="context">{'create': False, 'edit': False, }</field>
+    </record>
+    <menuitem id="sale_request_main_menu" name="Sale Requests" parent="sale.sale_menu_root" sequence="3"/>
+    <menuitem id="sale_request_menu" name="Sale Requests" parent="sale_request_main_menu" action="action_sale_request" sequence="1"/>
+    <menuitem id="sale_request_line_menu" name="Sale Request Lines" parent="sale_request_main_menu" action="action_sale_request_line" sequence="2"/>
+</odoo>

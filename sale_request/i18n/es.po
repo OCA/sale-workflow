@@ -1,0 +1,798 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+#	* sale_request
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 12.0+e\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2019-01-27 21:45+0000\n"
+"PO-Revision-Date: 2019-01-27 21:45+0000\n"
+"Last-Translator: <>\n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: sale_request
+#: model_terms:ir.ui.view,arch_db:sale_request.view_create_sale_order_wizard_form
+msgid ", There are not any sale order line compatible with this request. Check your data."
+msgstr ", No existe ninguna línea de pedido de venta compatible con esta requisición. Verifique su información."
+
+#. module: sale_request
+#: model_terms:ir.ui.view,arch_db:sale_request.view_sale_request_line_form
+msgid "<span>Product - </span>"
+msgstr "<span>Producto - </span>"
+
+#. module: sale_request
+#: model_terms:ir.ui.view,arch_db:sale_request.view_create_sale_order_wizard_form
+msgid "<strong>Please Select the Sale Order Lines From Master Sale Orders</strong>"
+msgstr "<strong>Seleccione las líneas del pedido master</strong>"
+
+#. module: sale_request
+#: model_terms:ir.ui.view,arch_db:sale_request.view_link_sale_order_wizard_form
+msgid "<strong>Please Select the Sale Order Lines to link to Master Sale Order</strong>"
+msgstr "Selecciona las líneas de pedidos para vincular con pedido master."
+
+#. module: sale_request
+#: model:ir.model.fields,field_description:sale_request.field_sale_request__message_needaction
+msgid "Action Needed"
+msgstr "Acción Necesaria"
+
+#. module: sale_request
+#: model:ir.model.fields,field_description:sale_request.field_sale_request__activity_ids
+msgid "Activities"
+msgstr "Actividades"
+
+#. module: sale_request
+#: model:ir.model.fields,field_description:sale_request.field_sale_request__activity_state
+msgid "Activity State"
+msgstr "Estado de la actividad"
+
+#. module: sale_request
+#: model_terms:ir.ui.view,arch_db:sale_request.view_create_sale_order_wizard_form
+msgid "Are you sure you want to create a sale order with no customer purchase order?"
+msgstr "¿Estás seguro de que deseas crear un pedido de venta sin orden de compra de cliente?"
+
+#. module: sale_request
+#: model:ir.model.fields,field_description:sale_request.field_sale_request__message_attachment_count
+msgid "Attachment Count"
+msgstr "Conteo de archivos adjuntos"
+
+#. module: sale_request
+#: model_terms:ir.ui.view,arch_db:sale_request.view_create_sale_order_wizard_form
+#: model_terms:ir.ui.view,arch_db:sale_request.view_link_sale_order_wizard_form
+#: model_terms:ir.ui.view,arch_db:sale_request.view_sale_request_form
+#: selection:sale.request,state:0
+msgid "Cancel"
+msgstr "Cancelar"
+
+#. module: sale_request
+#: model_terms:ir.ui.view,arch_db:sale_request.view_sale_request_search
+msgid "Cancelled"
+msgstr "Cancelado"
+
+#. module: sale_request
+#: model:ir.model.fields,field_description:sale_request.field_sale_request_line__category_uom_id
+msgid "Category"
+msgstr "Categoría"
+
+#. module: sale_request
+#: model:ir.model.fields,field_description:sale_request.field_sale_order_line__child_ids
+msgid "Child Sale Order Lines"
+msgstr "Lineas de Pedido de Venta Hijas"
+
+#. module: sale_request
+#: model:ir.model.fields,field_description:sale_request.field_sale_request__company_id
+msgid "Company"
+msgstr "Compañía"
+
+#. module: sale_request
+#: model_terms:ir.ui.view,arch_db:sale_request.view_create_sale_order_wizard_form
+#: model_terms:ir.ui.view,arch_db:sale_request.view_link_sale_order_wizard_form
+#: model_terms:ir.ui.view,arch_db:sale_request.view_sale_request_form
+msgid "Confirm"
+msgstr "Confirmar"
+
+#. module: sale_request
+#: model_terms:ir.ui.view,arch_db:sale_request.view_sale_request_search
+#: selection:sale.request,state:0
+msgid "Confirmed"
+msgstr "Confirmado"
+
+#. module: sale_request
+#: model:ir.model.fields,help:sale_request.field_sale_request_line__category_uom_id
+msgid "Conversion between Units of Measure can only occur if they belong to the same category. The conversion will be made based on the ratios."
+msgstr "La conversión entre las unidades de medidas sólo pueden ocurrir si pertenecen a la misma categoría. La conversión se basará en los ratios establecidos."
+
+#. module: sale_request
+#: model_terms:ir.ui.view,arch_db:sale_request.view_sale_request_line_form
+msgid "Create Sale Order"
+msgstr "Crear Orden"
+
+#. module: sale_request
+#: model:ir.model,name:sale_request.model_create_sale_order_wizard
+msgid "Create Sale Orders From Sale Request"
+msgstr "Crear Ordenes desde Requisiciones de Venta"
+
+#. module: sale_request
+#: model:ir.model.fields,field_description:sale_request.field_create_sale_order_wizard__create_uid
+#: model:ir.model.fields,field_description:sale_request.field_create_sale_order_wizard_line__create_uid
+#: model:ir.model.fields,field_description:sale_request.field_link_master_sale_order_wizard_line__create_uid
+#: model:ir.model.fields,field_description:sale_request.field_link_sale_order_wizard__create_uid
+#: model:ir.model.fields,field_description:sale_request.field_sale_request__create_uid
+#: model:ir.model.fields,field_description:sale_request.field_sale_request_line__create_uid
+msgid "Created by"
+msgstr "Creado por"
+
+#. module: sale_request
+#: model:ir.model.fields,field_description:sale_request.field_create_sale_order_wizard__create_date
+#: model:ir.model.fields,field_description:sale_request.field_create_sale_order_wizard_line__create_date
+#: model:ir.model.fields,field_description:sale_request.field_link_master_sale_order_wizard_line__create_date
+#: model:ir.model.fields,field_description:sale_request.field_link_sale_order_wizard__create_date
+#: model:ir.model.fields,field_description:sale_request.field_sale_request__create_date
+#: model:ir.model.fields,field_description:sale_request.field_sale_request_line__create_date
+msgid "Created on"
+msgstr "Creado el"
+
+#. module: sale_request
+#: model:ir.model.fields,field_description:sale_request.field_link_sale_order_wizard__partner_id
+#: model:ir.model.fields,field_description:sale_request.field_sale_request__partner_id
+msgid "Customer"
+msgstr "Cliente"
+
+#. module: sale_request
+#: model:ir.model.fields,field_description:sale_request.field_sale_request__date
+msgid "Date"
+msgstr "Fecha"
+
+#. module: sale_request
+#: model:ir.model.fields,field_description:sale_request.field_create_sale_order_wizard_line__name
+#: model:ir.model.fields,field_description:sale_request.field_link_master_sale_order_wizard_line__name
+#: model:ir.model.fields,field_description:sale_request.field_sale_request__description
+#: model:ir.model.fields,field_description:sale_request.field_sale_request_line__description
+#: model_terms:ir.ui.view,arch_db:sale_request.view_sale_request_line_form
+msgid "Description"
+msgstr "Descripción"
+
+#. module: sale_request
+#: model:ir.model.fields,field_description:sale_request.field_create_sale_order_wizard__display_name
+#: model:ir.model.fields,field_description:sale_request.field_create_sale_order_wizard_line__display_name
+#: model:ir.model.fields,field_description:sale_request.field_link_master_sale_order_wizard_line__display_name
+#: model:ir.model.fields,field_description:sale_request.field_link_sale_order_wizard__display_name
+#: model:ir.model.fields,field_description:sale_request.field_sale_request__display_name
+#: model:ir.model.fields,field_description:sale_request.field_sale_request_line__display_name
+msgid "Display Name"
+msgstr "Nombre mostrado"
+
+#. module: sale_request
+#: selection:sale.request.line,state:0
+msgid "Done"
+msgstr "Hecho"
+
+#. module: sale_request
+#: model_terms:ir.ui.view,arch_db:sale_request.view_sale_request_search
+#: selection:sale.request,state:0
+msgid "Draft"
+msgstr "Borrador"
+
+#. module: sale_request
+#: code:addons/sale_request/wizards/create_sale_order_wizard.py:65
+#: code:addons/sale_request/wizards/create_sale_order_wizard.py:287
+#, python-format
+msgid "Error!"
+msgstr "¡Error!"
+
+#. module: sale_request
+#: code:addons/sale_request/wizards/create_sale_order_wizard.py:178
+#, python-format
+msgid "Error! The quantity to sale is greather than the requested quantity."
+msgstr "¡Error! La cantidad a vender es mathor que la cantidad requisitada."
+
+#. module: sale_request
+#: code:addons/sale_request/models/sale_order.py:42
+#, python-format
+msgid "Error!, You can not cancel a sale order when the sale order lines has child lines generated from sale requests."
+msgstr "¡Error!, No puede cancelar una orden cuando alguna de sus líneas tiene ligadas ordenes generadas desde requisiciones de venta."
+
+#. module: sale_request
+#: model_terms:ir.ui.view,arch_db:sale_request.view_sale_request_form
+msgid "Extra information"
+msgstr "Información Extra"
+
+#. module: sale_request
+#: model:ir.model.fields,help:sale_request.field_sale_request__product_id
+msgid "Field used to search sale requests by product"
+msgstr "Campo utilizado para buscar requisiciones de venta por producto"
+
+#. module: sale_request
+#: model:ir.model.fields,field_description:sale_request.field_sale_request__message_follower_ids
+msgid "Followers"
+msgstr "Seguidores"
+
+#. module: sale_request
+#: model:ir.model.fields,field_description:sale_request.field_sale_request__message_channel_ids
+msgid "Followers (Channels)"
+msgstr "Seguidores (Canales)"
+
+#. module: sale_request
+#: model:ir.model.fields,field_description:sale_request.field_sale_request__message_partner_ids
+msgid "Followers (Partners)"
+msgstr "Seguidores (Empresas)"
+
+#. module: sale_request
+#: model_terms:ir.ui.view,arch_db:sale_request.view_sale_request_search
+msgid "Future Activities"
+msgstr "Actividades futuras"
+
+#. module: sale_request
+#: model:ir.model.fields,field_description:sale_request.field_create_sale_order_wizard__has_lines
+msgid "Has Lines"
+msgstr "Tiene líneas"
+
+#. module: sale_request
+#: model:ir.model.fields,field_description:sale_request.field_create_sale_order_wizard__id
+#: model:ir.model.fields,field_description:sale_request.field_create_sale_order_wizard_line__id
+#: model:ir.model.fields,field_description:sale_request.field_link_master_sale_order_wizard_line__id
+#: model:ir.model.fields,field_description:sale_request.field_link_sale_order_wizard__id
+#: model:ir.model.fields,field_description:sale_request.field_sale_request__id
+#: model:ir.model.fields,field_description:sale_request.field_sale_request_line__id
+msgid "ID"
+msgstr "ID"
+
+#. module: sale_request
+#: model:ir.model.fields,help:sale_request.field_sale_request__message_unread
+msgid "If checked new messages require your attention."
+msgstr "Si está marcado, hay nuevos mensajes que requieren su atención"
+
+#. module: sale_request
+#: model:ir.model.fields,help:sale_request.field_sale_request__message_needaction
+msgid "If checked, new messages require your attention."
+msgstr "Si está marcado, hay nuevos mensajes que requieren su atención."
+
+#. module: sale_request
+#: model:ir.model.fields,help:sale_request.field_sale_request__message_has_error
+msgid "If checked, some messages have a delivery error."
+msgstr "Si se encuentra marcado, algunos mensajes tienen error de envío."
+
+#. module: sale_request
+#: model:ir.model.fields,help:sale_request.field_sale_order__master_sale_order
+#: model:ir.model.fields,help:sale_request.field_sale_order_line__master_sale_order
+msgid "If you check this field, this sale order do not run any procurement and will be selectionable when you request a product defined in this order."
+msgstr "Si marcas este campo, esta venta no va a generar ningún abastecimiento y será seleccionable cuando requieres un producto definido en esta orden."
+
+#. module: sale_request
+#: model:ir.model.fields,field_description:sale_request.field_sale_request__message_is_follower
+msgid "Is Follower"
+msgstr "Es un seguidor"
+
+#. module: sale_request
+#: model:ir.model.fields,field_description:sale_request.field_create_sale_order_wizard____last_update
+#: model:ir.model.fields,field_description:sale_request.field_create_sale_order_wizard_line____last_update
+#: model:ir.model.fields,field_description:sale_request.field_link_master_sale_order_wizard_line____last_update
+#: model:ir.model.fields,field_description:sale_request.field_link_sale_order_wizard____last_update
+#: model:ir.model.fields,field_description:sale_request.field_sale_request____last_update
+#: model:ir.model.fields,field_description:sale_request.field_sale_request_line____last_update
+msgid "Last Modified on"
+msgstr "Última modificación en"
+
+#. module: sale_request
+#: model:ir.model.fields,field_description:sale_request.field_create_sale_order_wizard__write_uid
+#: model:ir.model.fields,field_description:sale_request.field_create_sale_order_wizard_line__write_uid
+#: model:ir.model.fields,field_description:sale_request.field_link_master_sale_order_wizard_line__write_uid
+#: model:ir.model.fields,field_description:sale_request.field_link_sale_order_wizard__write_uid
+#: model:ir.model.fields,field_description:sale_request.field_sale_request__write_uid
+#: model:ir.model.fields,field_description:sale_request.field_sale_request_line__write_uid
+msgid "Last Updated by"
+msgstr "Última actualización por"
+
+#. module: sale_request
+#: model:ir.model.fields,field_description:sale_request.field_create_sale_order_wizard__write_date
+#: model:ir.model.fields,field_description:sale_request.field_create_sale_order_wizard_line__write_date
+#: model:ir.model.fields,field_description:sale_request.field_link_master_sale_order_wizard_line__write_date
+#: model:ir.model.fields,field_description:sale_request.field_link_sale_order_wizard__write_date
+#: model:ir.model.fields,field_description:sale_request.field_sale_request__write_date
+#: model:ir.model.fields,field_description:sale_request.field_sale_request_line__write_date
+msgid "Last Updated on"
+msgstr "Última actualización el"
+
+#. module: sale_request
+#: model_terms:ir.ui.view,arch_db:sale_request.view_sale_request_search
+msgid "Late Activities"
+msgstr "Actividades tardías"
+
+#. module: sale_request
+#: model:ir.model.fields,field_description:sale_request.field_sale_request__line_ids
+#: model_terms:ir.ui.view,arch_db:sale_request.view_create_sale_order_wizard_form
+#: model_terms:ir.ui.view,arch_db:sale_request.view_sale_request_form
+msgid "Lines"
+msgstr "Líneas"
+
+#. module: sale_request
+#: model:ir.model,name:sale_request.model_link_master_sale_order_wizard_line
+msgid "Lines of Master Sale Order"
+msgstr "Líneas del pedido master"
+
+#. module: sale_request
+#: model:ir.model,name:sale_request.model_create_sale_order_wizard_line
+msgid "Lines to Create Sale Orders From Sale Request"
+msgstr "Lineas para Crear Ordenes desde Requisicion de Venta"
+
+#. module: sale_request
+#: model:ir.model.fields,field_description:sale_request.field_link_sale_order_wizard__sale_line_ids
+msgid "Lines with no link"
+msgstr "Líneas sin víncular"
+
+#. module: sale_request
+#: model:ir.actions.act_window,name:sale_request.action_create_sale_order
+msgid "Link Sale Orders to Master Sale Order"
+msgstr "Vincular pedidos con el pedido master"
+
+#. module: sale_request
+#: model:ir.model,name:sale_request.model_link_sale_order_wizard
+msgid "Link Sale Orders with Master Sale Order"
+msgstr "Vincular pedidos con pedido master"
+
+#. module: sale_request
+#: code:addons/sale_request/models/sale_order.py:50
+#: model_terms:ir.ui.view,arch_db:sale_request.view_sale_order_sale_request_form
+#, python-format
+msgid "Link sale order"
+msgstr "Vincular pedido"
+
+#. module: sale_request
+#: model:ir.model.fields,field_description:sale_request.field_sale_request__message_main_attachment_id
+msgid "Main Attachment"
+msgstr "Adjuntos principales"
+
+#. module: sale_request
+#: model:res.groups,name:sale_request.group_sale_request_manager
+msgid "Manager"
+msgstr "Responsable"
+
+#. module: sale_request
+#: model:ir.model.fields,field_description:sale_request.field_sale_order__master_sale_order
+#: model:ir.model.fields,field_description:sale_request.field_sale_order_line__master_sale_order
+msgid "Master Sale Order"
+msgstr "Pedido Master"
+
+#. module: sale_request
+#: model_terms:ir.ui.view,arch_db:sale_request.view_link_sale_order_wizard_form
+msgid "Master Sale Order Lines"
+msgstr "Líneas de pedido master"
+
+#. module: sale_request
+#: model:ir.actions.act_window,name:sale_request.action_sale_order_master
+#: model:ir.ui.menu,name:sale_request.menu_sale_order_master
+msgid "Master Sale Orders"
+msgstr "Pedidos master"
+
+#. module: sale_request
+#: model:ir.model.fields,field_description:sale_request.field_sale_request__message_has_error
+msgid "Message Delivery error"
+msgstr "Error de Envío de Mensaje"
+
+#. module: sale_request
+#: model:ir.model.fields,field_description:sale_request.field_sale_request__message_ids
+msgid "Messages"
+msgstr "Mensajes"
+
+#. module: sale_request
+#: model_terms:ir.ui.view,arch_db:sale_request.view_sale_request_search
+msgid "My Activities"
+msgstr "Mis actividades"
+
+#. module: sale_request
+#: model_terms:ir.ui.view,arch_db:sale_request.view_sale_request_search
+msgid "My requests"
+msgstr "Mis Requisiciones"
+
+#. module: sale_request
+#: model:ir.model.fields,field_description:sale_request.field_sale_request__name
+msgid "Name"
+msgstr "Nombre"
+
+#. module: sale_request
+#: code:addons/sale_request/models/sale_order.py:30
+#: code:addons/sale_request/models/sale_order.py:33
+#, python-format
+msgid "New"
+msgstr "Nuevo"
+
+#. module: sale_request
+#: model:ir.model.fields,field_description:sale_request.field_sale_request__activity_date_deadline
+msgid "Next Activity Deadline"
+msgstr "Siguiente plazo de actividad"
+
+#. module: sale_request
+#: model:ir.model.fields,field_description:sale_request.field_sale_request__activity_summary
+msgid "Next Activity Summary"
+msgstr "Resumen de la siguiente actividad"
+
+#. module: sale_request
+#: model:ir.model.fields,field_description:sale_request.field_sale_request__activity_type_id
+msgid "Next Activity Type"
+msgstr "Siguiente tipo de actividad"
+
+#. module: sale_request
+#: model:ir.model.fields,field_description:sale_request.field_sale_request__message_needaction_counter
+msgid "Number of Actions"
+msgstr "Número de acciones"
+
+#. module: sale_request
+#: model:ir.model.fields,field_description:sale_request.field_sale_request__message_has_error_counter
+msgid "Number of error"
+msgstr "Número de error"
+
+#. module: sale_request
+#: model:ir.model.fields,help:sale_request.field_sale_request__message_needaction_counter
+msgid "Number of messages which requires an action"
+msgstr "Número de mensajes que requieren una acción"
+
+#. module: sale_request
+#: model:ir.model.fields,help:sale_request.field_sale_request__message_has_error_counter
+msgid "Number of messages with delivery error"
+msgstr "Número de mensajes con error de envío"
+
+#. module: sale_request
+#: model:ir.model.fields,help:sale_request.field_sale_request__message_unread_counter
+msgid "Number of unread messages"
+msgstr "Número de mensajes no leidos"
+
+#. module: sale_request
+#: model_terms:ir.ui.view,arch_db:sale_request.view_sale_request_search
+msgid "Order Date"
+msgstr "Fecha de pedido"
+
+#. module: sale_request
+#: model:ir.model.fields,field_description:sale_request.field_create_sale_order_wizard_line__product_uom_qty
+#: model:ir.model.fields,field_description:sale_request.field_link_master_sale_order_wizard_line__product_uom_qty
+msgid "Ordered Quantity"
+msgstr "Cantidad Pedida"
+
+#. module: sale_request
+#: selection:sale.request,activity_state:0
+msgid "Overdue"
+msgstr "Atrasada"
+
+#. module: sale_request
+#: model:ir.model.fields,field_description:sale_request.field_sale_order_line__parent_id
+msgid "Parent Sale Order Line"
+msgstr "Linea de Pedido de Venta Padre"
+
+#. module: sale_request
+#: model:ir.model.fields,help:sale_request.field_sale_order_line__parent_id
+msgid "Parent sale order line (master sale order)."
+msgstr "Línea padre de pedido de venta (pedido master)"
+
+#. module: sale_request
+#: selection:sale.request.line,state:0
+msgid "Pending"
+msgstr "Pendiente"
+
+#. module: sale_request
+#: selection:sale.request,activity_state:0
+msgid "Planned"
+msgstr "Planeada"
+
+#. module: sale_request
+#: model:ir.model.fields,field_description:sale_request.field_create_sale_order_wizard__product_id
+#: model:ir.model.fields,field_description:sale_request.field_create_sale_order_wizard_line__product_id
+#: model:ir.model.fields,field_description:sale_request.field_link_master_sale_order_wizard_line__product_id
+#: model:ir.model.fields,field_description:sale_request.field_sale_request__product_id
+#: model:ir.model.fields,field_description:sale_request.field_sale_request_line__product_id
+#: model_terms:ir.ui.view,arch_db:sale_request.view_sale_request_line_search
+#: model_terms:ir.ui.view,arch_db:sale_request.view_sale_request_search
+msgid "Product"
+msgstr "Producto"
+
+#. module: sale_request
+#: model:ir.model.fields,field_description:sale_request.field_link_sale_order_wizard__product_ids
+msgid "Products"
+msgstr "Productos"
+
+#. module: sale_request
+#: model:ir.model.fields,field_description:sale_request.field_create_sale_order_wizard__line_ids
+msgid "Proposition Sale Order Lines"
+msgstr "Lineas de Pedido de Venta Propuesta"
+
+#. module: sale_request
+#: model:ir.model.fields,field_description:sale_request.field_create_sale_order_wizard_line__qty_to_sale
+msgid "Quantity to Sale"
+msgstr "Cantidad a Vender"
+
+#. module: sale_request
+#: sql_constraint:sale.request:0
+msgid "Reference must be unique per Company!"
+msgstr "La Referencia debe ser única por Compañía"
+
+#. module: sale_request
+#: model:ir.model.fields,field_description:sale_request.field_sale_order_line__remaining_product_qty
+msgid "Remaining Product quantity"
+msgstr "Cantidad Restante"
+
+#. module: sale_request
+#: model:ir.model.fields,field_description:sale_request.field_create_sale_order_wizard__remaining_product_qty
+#: model:ir.model.fields,field_description:sale_request.field_create_sale_order_wizard_line__remaining_product_qty
+#: model:ir.model.fields,field_description:sale_request.field_link_master_sale_order_wizard_line__remaining_product_qty
+#: model:ir.model.fields,field_description:sale_request.field_sale_request_line__remaining_product_qty
+msgid "Remaining Quantity"
+msgstr "Cantidad Restante"
+
+#. module: sale_request
+#: model_terms:ir.ui.view,arch_db:sale_request.view_sale_request_line_search
+msgid "Request"
+msgstr "Requisición"
+
+#. module: sale_request
+#: model_terms:ir.ui.view,arch_db:sale_request.view_sale_request_search
+msgid "Request is to be approved"
+msgstr "Requisición para ser Aprobada"
+
+#. module: sale_request
+#: model_terms:ir.ui.view,arch_db:sale_request.view_sale_request_form
+msgid "Request lines"
+msgstr "Líneas de requisición"
+
+#. module: sale_request
+#: model:ir.model.fields,field_description:sale_request.field_sale_request_line__request_state
+msgid "Request state"
+msgstr "Estado de requisición"
+
+#. module: sale_request
+#: model:ir.model.fields,field_description:sale_request.field_sale_request__requested_by
+msgid "Requested by"
+msgstr "Requisitada por"
+
+#. module: sale_request
+#: model_terms:ir.ui.view,arch_db:sale_request.view_sale_request_search
+msgid "Requested by me"
+msgstr "Requisitada por mi"
+
+#. module: sale_request
+#: model_terms:ir.ui.view,arch_db:sale_request.view_sale_request_search
+msgid "Requests cancelled"
+msgstr "Requisiciones Canceladas"
+
+#. module: sale_request
+#: model_terms:ir.ui.view,arch_db:sale_request.view_sale_request_search
+msgid "Requests confirmed"
+msgstr "Requisiciones Confirmadas"
+
+#. module: sale_request
+#: model:ir.model.fields,field_description:sale_request.field_create_sale_order_wizard__product_qty
+#: model:ir.model.fields,field_description:sale_request.field_sale_request_line__product_qty
+msgid "Required Quantity"
+msgstr "Cantidad Requerida"
+
+#. module: sale_request
+#: model_terms:ir.ui.view,arch_db:sale_request.view_sale_request_form
+msgid "Reset"
+msgstr "Reiniciar"
+
+#. module: sale_request
+#: model:ir.model.fields,field_description:sale_request.field_sale_request__activity_user_id
+msgid "Responsible User"
+msgstr "Usuario responsable"
+
+#. module: sale_request
+#: code:addons/sale_request/wizards/create_sale_order_wizard.py:157
+#: code:addons/sale_request/wizards/create_sale_order_wizard.py:209
+#: code:addons/sale_request/wizards/create_sale_order_wizard.py:222
+#: code:addons/sale_request/wizards/link_sale_order_wizard.py:89
+#: model:ir.model,name:sale_request.model_sale_order
+#: model:ir.model.fields,field_description:sale_request.field_create_sale_order_wizard_line__order_id
+#, python-format
+msgid "Sale Order"
+msgstr "Pedido de venta"
+
+#. module: sale_request
+#: model:ir.model.fields,field_description:sale_request.field_create_sale_order_wizard_line__sale_line_id
+#: model:ir.model.fields,field_description:sale_request.field_link_master_sale_order_wizard_line__sale_line_id
+msgid "Sale Order Line"
+msgstr "Línea de Pedido de Venta"
+
+#. module: sale_request
+#: model:ir.model.fields,field_description:sale_request.field_sale_request_line__sale_line_ids
+msgid "Sale Order Lines"
+msgstr "Líneas de Pedido de Venta"
+
+#. module: sale_request
+#: model:ir.model.fields,help:sale_request.field_sale_order_line__child_ids
+msgid "Sale Order Lines generated by sale request linked to this line."
+msgstr "Líneas de Pedido de venta generadas desde requisiciones de venta ligadas a esta línea."
+
+#. module: sale_request
+#: code:addons/sale_request/models/sale_request.py:171
+#: code:addons/sale_request/models/sale_request.py:278
+#, python-format
+msgid "Sale Orders"
+msgstr "Ordenes de Venta"
+
+#. module: sale_request
+#: model:ir.actions.act_window,name:sale_request.action_sale_request
+#: model:ir.model,name:sale_request.model_sale_request
+#: model:ir.model.fields,field_description:sale_request.field_sale_order__request_id
+#: model:ir.model.fields,field_description:sale_request.field_sale_order_line__request_line_id
+#: model:ir.model.fields,field_description:sale_request.field_sale_request_line__request_id
+#: model:ir.module.category,name:sale_request.module_category_sale_request
+#: model_terms:ir.ui.view,arch_db:sale_request.view_sale_request_form
+#: model_terms:ir.ui.view,arch_db:sale_request.view_sale_request_tree
+msgid "Sale Request"
+msgstr "Requisición de Venta"
+
+#. module: sale_request
+#: model:ir.model,name:sale_request.model_sale_request_line
+#: model:ir.model.fields,field_description:sale_request.field_create_sale_order_wizard__request_line_id
+#: model_terms:ir.ui.view,arch_db:sale_request.view_sale_request_line_form
+#: model_terms:ir.ui.view,arch_db:sale_request.view_sale_request_line_tree
+msgid "Sale Request Line"
+msgstr "Línea de Requisición de Venta"
+
+#. module: sale_request
+#: model:ir.actions.act_window,name:sale_request.action_sale_request_line
+#: model:ir.ui.menu,name:sale_request.sale_request_line_menu
+msgid "Sale Request Lines"
+msgstr "Líneas de Requisición de Venta"
+
+#. module: sale_request
+#: model:ir.ui.menu,name:sale_request.sale_request_main_menu
+#: model:ir.ui.menu,name:sale_request.sale_request_menu
+msgid "Sale Requests"
+msgstr "Requisiciones de Venta"
+
+#. module: sale_request
+#: model:ir.model.fields,field_description:sale_request.field_link_sale_order_wizard__line_ids
+msgid "Sale order lines with no link"
+msgstr "Líneas de pedido sin vincular"
+
+#. module: sale_request
+#: code:addons/sale_request/models/sale_order.py:63
+#: model_terms:ir.ui.view,arch_db:sale_request.view_sale_order_sale_request_form
+#, python-format
+msgid "Sale orders"
+msgstr "Pedidos de venta"
+
+#. module: sale_request
+#: code:addons/sale_request/models/sale_request.py:154
+#, python-format
+msgid "Sale request lines"
+msgstr "Líneas de requisiciones de ventas"
+
+#. module: sale_request
+#: model:ir.model.fields,field_description:sale_request.field_sale_request__sale_ids
+#: model_terms:ir.ui.view,arch_db:sale_request.view_sale_request_form
+#: model_terms:ir.ui.view,arch_db:sale_request.view_sale_request_line_form
+msgid "Sales"
+msgstr "Ventas"
+
+#. module: sale_request
+#: model:ir.model,name:sale_request.model_sale_order_line
+msgid "Sales Order Line"
+msgstr "Línea de pedido de venta"
+
+#. module: sale_request
+#: model_terms:ir.ui.view,arch_db:sale_request.view_sale_request_search
+msgid "Show all records which has next action date is before today"
+msgstr "Mostrar todos los registros que tienen la próxima fecha de acción antes de hoy"
+
+#. module: sale_request
+#: model_terms:ir.ui.view,arch_db:sale_request.view_create_sale_order_wizard_form
+msgid "Sorry!"
+msgstr "Lo siento"
+
+#. module: sale_request
+#: model:ir.model.fields,field_description:sale_request.field_sale_request__state
+#: model:ir.model.fields,field_description:sale_request.field_sale_request_line__state
+msgid "State"
+msgstr "Estado"
+
+#. module: sale_request
+#: model:ir.model.fields,help:sale_request.field_sale_request__activity_state
+msgid "Status based on activities\n"
+"Overdue: Due date is already passed\n"
+"Today: Activity date is today\n"
+"Planned: Future activities."
+msgstr "Estado basado en actividades\n"
+"Vencida: la fecha tope ya ha pasado\n"
+"Hoy: La fecha tope es hoy\n"
+"Planificada: futuras actividades."
+
+#. module: sale_request
+#: selection:sale.request,activity_state:0
+msgid "Today"
+msgstr "Hoy"
+
+#. module: sale_request
+#: model_terms:ir.ui.view,arch_db:sale_request.view_sale_request_search
+msgid "Today Activities"
+msgstr "Actividades de Hoy"
+
+#. module: sale_request
+#: model:ir.model.fields,field_description:sale_request.field_sale_order_line__qty_delivered_total
+msgid "Total Delivered Quantity"
+msgstr "Cantidad Entregada Total"
+
+#. module: sale_request
+#: model:ir.model.fields,field_description:sale_request.field_sale_order_line__qty_invoiced_total
+msgid "Total Invoiced Quantity"
+msgstr "Cantidad Facturada Total"
+
+#. module: sale_request
+#: model:ir.model.fields,field_description:sale_request.field_sale_order_line__product_uom_qty_total
+msgid "Total Ordered Quantity"
+msgstr "Cantidad Ordenada Total"
+
+#. module: sale_request
+#: model:ir.model.fields,field_description:sale_request.field_create_sale_order_wizard__product_uom_id
+#: model:ir.model.fields,field_description:sale_request.field_create_sale_order_wizard_line__product_uom_id
+#: model:ir.model.fields,field_description:sale_request.field_link_master_sale_order_wizard_line__product_uom_id
+#: model:ir.model.fields,field_description:sale_request.field_sale_request_line__product_uom_id
+msgid "Unit of Measure"
+msgstr "Unidad de medida"
+
+#. module: sale_request
+#: model_terms:ir.ui.view,arch_db:sale_request.view_link_sale_order_wizard_form
+msgid "Unlinked sale order lines"
+msgstr "Líneas de pedido sin vincular"
+
+#. module: sale_request
+#: model:ir.model.fields,field_description:sale_request.field_sale_request__message_unread
+msgid "Unread Messages"
+msgstr "Mensajes por leer"
+
+#. module: sale_request
+#: model:ir.model.fields,field_description:sale_request.field_sale_request__message_unread_counter
+msgid "Unread Messages Counter"
+msgstr "Contador de mensajes sin leer"
+
+#. module: sale_request
+#: model:res.groups,name:sale_request.group_sale_request_user
+msgid "User"
+msgstr "Usuario"
+
+#. module: sale_request
+#: model:ir.model.fields,field_description:sale_request.field_sale_request__warehouse_id
+msgid "Warehouse"
+msgstr "Almacén"
+
+#. module: sale_request
+#: model:ir.model.fields,field_description:sale_request.field_sale_request__website_message_ids
+msgid "Website Messages"
+msgstr "Mensajes del sitio web"
+
+#. module: sale_request
+#: model:ir.model.fields,help:sale_request.field_sale_request__website_message_ids
+msgid "Website communication history"
+msgstr "Historial de comunicaciones del sitio web"
+
+#. module: sale_request
+#: model:ir.model.fields,field_description:sale_request.field_create_sale_order_wizard_line__wizard_id
+#: model:ir.model.fields,field_description:sale_request.field_link_master_sale_order_wizard_line__wizard_id
+msgid "Wizard"
+msgstr "Asistente"
+
+#. module: sale_request
+#: code:addons/sale_request/models/sale_request.py:142
+#, python-format
+msgid "You cannot reject a sale request related to confirmed sale orders."
+msgstr "No puede cancelar una requisición de venta ligada a ordenes de venta ya confirmadas."
+
+#. module: sale_request
+#: code:addons/sale_request/wizards/create_sale_order_wizard.py:66
+#, python-format
+msgid "You cannot request more than the initial demand of this sale request."
+msgstr "No puede solicitar más cantidad que la demanda inicial de esta requisición."
+
+#. module: sale_request
+#: code:addons/sale_request/wizards/create_sale_order_wizard.py:288
+#, python-format
+msgid "You cannot request more than the remaining qty of this master sale order."
+msgstr "No puedes requerir más que la cantidad restante de este pedido master"
+
+#. module: sale_request
+#: model_terms:ir.ui.view,arch_db:sale_request.view_sale_request_search
+msgid "name"
+msgstr "Nombre"
+

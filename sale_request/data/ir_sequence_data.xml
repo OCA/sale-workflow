@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo noupdate="1">
+    <record id="seq_sale_request" model="ir.sequence">
+        <field name="name">Sale Request</field>
+        <field name="code">sale.request</field>
+        <field name="prefix">SR/%(range_year)s/</field>
+        <field name="padding">5</field>
+        <field name="company_id" eval="False"/>
+    </record>
+    <record id="seq_master_sale_order" model="ir.sequence">
+        <field name="name">Master Sale Order</field>
+        <field name="code">master.sale.order</field>
+        <field name="prefix">MSO/%(range_year)s/</field>
+        <field name="padding">5</field>
+        <field name="company_id" eval="False"/>
+    </record>
+</odoo>
