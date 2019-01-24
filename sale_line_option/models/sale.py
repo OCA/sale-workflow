@@ -168,7 +168,7 @@ class SaleOrderLineOption(models.Model):
         pricelist = self.sale_line_id.pricelist_id.with_context(ctx)
         price = pricelist.price_get(
             self.product_id.id,
-            self.bom_line_id.product_qty or 1.0,
+            self.qty,
             self.sale_line_id.order_id.partner_id.id)
         return price[pricelist.id] * self.qty
 
@@ -183,8 +183,6 @@ class SaleOrderLineOption(models.Model):
     def _is_quantity_valid(self, record):
         """Ensure product_qty <= qty <= max_qty."""
         if not record.bom_line_id:
-            import pdb
-            pdb.set_trace()
             return True
         if record.qty < record.bom_line_id.opt_min_qty:
             return False
