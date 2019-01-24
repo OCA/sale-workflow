@@ -22,13 +22,10 @@ class SaleOrderLine(models.Model):
     @api.model
     def create(self, vals):
         if 'product_id' in vals:
-            product = self.env['product.product'].browse(vals['product_id'])
             if self.env.context.get('install_mode'):
                 # onchange are not played in install mode
                 vals = self.play_onchanges(
                     vals, ['product_id', 'product_uom_qty'])
-            price_unit = vals.get('price_unit', 0.0)
-            vals.update(self._set_product(product, price_unit))
         return super(SaleOrderLine, self).create(vals)
 
     @api.multi
