@@ -72,10 +72,10 @@ class SaleOrderLine(models.Model):
         bom_lines = self.env['mrp.bom.line'].with_context(
             filter_bom_with_product=product).search([])
         for bline in bom_lines:
-            if bline.product_qty:
+            if bline.opt_default_qty:  # TODO: changer pour bline.is_option?
                 vals = {'bom_line_id': bline.id,
                         'product_id': bline.product_id.id,
-                        'qty': bline.product_qty}
+                        'qty': bline.opt_default_qty}
                 lines.append((0, 0, vals))  # create
         if bline:
             display_option = True
@@ -110,8 +110,12 @@ class SaleOrderLineOption(models.Model):
         comodel_name='product.product', compute='_compute_opt_products')
     product_id = fields.Many2one(
         comodel_name='product.product', string='Product', required=True)
-    qty = fields.Integer(default=1)
-    opt_max_qty = fields.Integer(
+    qty = fields.Integer(default=lambda x: x.default_qty)
+    min_qty = fields.Integer(
+        related='bom_line_id.opt_min_qty', readonly=True)
+    default_qty = fields.Integer(
+        related='bom_line_id.opt_default_qty', readonly=True)
+    max_qty = fields.Integer(
         related='bom_line_id.opt_max_qty', readonly=True)
     invalid_qty = fields.Boolean(
         compute='_compute_invalid_qty', store=True,
@@ -166,7 +170,7 @@ class SaleOrderLineOption(models.Model):
             self.product_id.id,
             self.bom_line_id.product_qty or 1.0,
             self.sale_line_id.order_id.partner_id.id)
-        return price[pricelist.id] * self.bom_line_id.product_qty * self.qty
+        return price[pricelist.id] * self.qty
 
     @api.depends('qty', 'product_id')
     def _compute_price(self):
@@ -176,21 +180,29 @@ class SaleOrderLineOption(models.Model):
             else:
                 record.line_price = 0
 
+    def _is_quantity_valid(self, record):
+        """Ensure product_qty <= qty <= max_qty."""
+        if not record.bom_line_id:
+            import pdb
+            pdb.set_trace()
+            return True
+        if record.qty < record.bom_line_id.opt_min_qty:
+            return False
+        if record.qty > record.bom_line_id.opt_max_qty:
+            return False
+        return True
+
     @api.depends('qty')
     def _compute_invalid_qty(self):
         for record in self:
-            if record.bom_line_id and \
-                    record.qty > record.opt_max_qty:
-                record.invalid_qty = True
-            else:
-                record.invalid_qty = False
+            record.invalid_qty = not self._is_quantity_valid(record)
 
     @api.onchange('qty')
     def onchange_qty(self):
         for record in self:
-            if record.bom_line_id and record.opt_max_qty < record.qty:
+            if not self._is_quantity_valid(record):
                 max_val = record.qty
-                record.qty = record.opt_max_qty
+                record.qty = record.max_qty
                 return {'warning': {
                     'title': _('Error on quantity'),
                     'message': _(
@@ -198,6 +210,6 @@ class SaleOrderLineOption(models.Model):
                         "You encoded %(qty)s.\n"
                         "Quantity is set max value") % {
                             'qty': max_val,
-                            'max': record.opt_max_qty}
+                            'max': record.max_qty}
                     }
                 }

@@ -30,10 +30,24 @@ class MrpBomLine(models.Model):
     _rec_name = 'name'
 
     name = fields.Char(compute='_compute_name', store=True, index=True)
+    opt_min_qty = fields.Integer(
+        string="Min Qty", default=0)
+    opt_default_qty = fields.Integer(
+        string="Default Qty", oldname='default_qty', default=0,
+        help="This is the default quantity set to the sale line option ")
     opt_max_qty = fields.Integer(
-        string="Max Qty Opt", oldname='max_qty',
+        string="Max Qty",
         help="High limit authorised in the sale line option",
         default=1)
+
+    # _sql_constraints = [
+    #     ('bom_opt_qty_min', 'CHECK (opt_min_qty<=opt_default_qty)',
+    #         'Default qty could not be lower than min qty.\n'),
+    #     ('bom_opt_qty_max', 'CHECK (opt_default_qty<=opt_max_qty)',
+    #         'Default qty could not be greather than max qty.\n'),
+    #     ('bom_opt_qty_min_max', 'CHECK (opt_min_qty<=opt_max_qty)',
+    #         'Min qty could not be greather than min qty.\n'),
+    # ]
 
     @api.multi
     @api.depends('product_id', 'product_id.product_tmpl_id.name')
