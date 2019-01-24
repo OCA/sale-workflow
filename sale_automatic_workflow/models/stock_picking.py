@@ -4,7 +4,6 @@
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
 from odoo import api, fields, models
-from odoo.tools import float_compare
 
 
 class StockPicking(models.Model):
@@ -17,20 +16,21 @@ class StockPicking(models.Model):
     @api.multi
     def validate_picking(self):
         for picking in self:
-            picking.action_assign()
             for move in picking.move_lines:
-                rounding = move.product_id.uom_id.rounding
-                if (
-                    float_compare(
-                        move.quantity_done,
-                        move.product_qty,
-                        precision_rounding=rounding,
-                    )
-                    == -1
-                ):
-                    move.quantity_done = move.product_qty
-                    move.state = 'assigned'
-            self.env["stock.immediate.transfer"].create(
-                {"pick_ids": [(4, picking.id)]}
-            ).process()
+                total_move_qty = move.product_uom_qty
+                for move_line in move.move_line_ids:
+                    move_line.qty_done = move_line.product_uom_qty
+                    total_move_qty -= move_line.product_uom_qty
+                if total_move_qty > 0:
+                    move_line_vals = {
+                        'product_uom_id': move.product_uom.id,
+                        'picking_id': move.picking_id.id,
+                        'move_id': move.id,
+                        'product_id': move.product_id.id,
+                        'location_id': move.location_id.id,
+                        'location_dest_id': move.location_dest_id.id,
+                        'qty_done': total_move_qty,
+                    }
+                    self.env['stock.move.line'].create(move_line_vals)
+            picking.button_validate()
         return True
