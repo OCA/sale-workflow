@@ -34,6 +34,7 @@ class SaleOrder(models.Model):
 
     @api.multi
     def is_to_approve(self):
+        self.ensure_one()
         return (self.company_id.so_double_validation == 'two_step' and
                 self.is_amount_to_approve() and
                 not self.user_has_groups('sales_team.group_sale_manager'))
