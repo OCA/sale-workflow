@@ -36,9 +36,8 @@ class MrpBomLine(models.Model):
         string="Default Qty", oldname='default_qty', default=0,
         help="This is the default quantity set to the sale line option ")
     opt_max_qty = fields.Integer(
-        string="Max Qty",
-        help="High limit authorised in the sale line option",
-        default=1)
+        string="Max Qty", oldname='max_qty', default=1,
+        help="High limit authorised in the sale line option")
 
     # _sql_constraints = [
     #     ('bom_opt_qty_min', 'CHECK (opt_min_qty<=opt_default_qty)',
