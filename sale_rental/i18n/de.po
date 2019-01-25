@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: Odoo Server 10.0\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2017-07-08 00:50+0000\n"
-"PO-Revision-Date: 2019-01-11 18:41+0000\n"
+"PO-Revision-Date: 2019-01-25 16:41+0000\n"
 "Last-Translator: Ben Brich <b.brich@humanilog.org>\n"
 "Language-Team: German (https://www.transifex.com/oca/teams/23907/de/)\n"
 "Language: de\n"
@@ -43,7 +43,7 @@ msgstr "Zurück erhalten"
 #. module: sale_rental
 #: model:ir.model.fields,field_description:sale_rental.field_sale_order_line_can_sell_rental
 msgid "Can Sell from Rental"
-msgstr ""
+msgstr "Vermietetes Produkt verkaufbar"
 
 #. module: sale_rental
 #: code:addons/sale_rental/models/stock.py:39
@@ -260,13 +260,13 @@ msgstr ""
 #: model:ir.ui.view,arch_db:sale_rental.sale_rental_search
 #: selection:sale.rental,state:0
 msgid "Ordered"
-msgstr ""
+msgstr "Bestellt"
 
 #. module: sale_rental
 #: model:ir.ui.view,arch_db:sale_rental.sale_rental_search
 #: selection:sale.rental,state:0
 msgid "Out"
-msgstr ""
+msgstr "Vermietet"
 
 #. module: sale_rental
 #: model:ir.model.fields,field_description:sale_rental.field_sale_rental_out_move_id
@@ -373,13 +373,13 @@ msgstr ""
 #. module: sale_rental
 #: model:ir.model.fields,field_description:sale_rental.field_create_rental_product_sale_price_per_day
 msgid "Rental Price per Day"
-msgstr ""
+msgstr "Miete pro Tag"
 
 #. module: sale_rental
 #: model:ir.model.fields,field_description:sale_rental.field_sale_order_line_rental_qty
 #: model:ir.model.fields,field_description:sale_rental.field_sale_rental_rental_qty
 msgid "Rental Quantity"
-msgstr ""
+msgstr "Miet-Anzahl"
 
 #. module: sale_rental
 #: model:ir.model.fields,field_description:sale_rental.field_stock_warehouse_rental_route_id
@@ -399,7 +399,7 @@ msgstr ""
 #. module: sale_rental
 #: model:ir.model.fields,field_description:sale_rental.field_sale_rental_rental_product_id
 msgid "Rental Service"
-msgstr ""
+msgstr "Miet-Service"
 
 #. module: sale_rental
 #: model:ir.model.fields,field_description:sale_rental.field_sale_order_line_rental_type
@@ -422,13 +422,13 @@ msgstr ""
 #: model:product.product,name:sale_rental.rent_product_product_8
 #: model:product.template,name:sale_rental.rent_product_product_8_product_template
 msgid "Rental of one iMac"
-msgstr ""
+msgstr "iMac (Miete)"
 
 #. module: sale_rental
 #: model:product.product,name:sale_rental.rent_product_product_6
 #: model:product.template,name:sale_rental.rent_product_product_6_product_template
 msgid "Rental of one iPad Mini"
-msgstr ""
+msgstr "iPad Mini (Miete)"
 
 #. module: sale_rental
 #: model:ir.model.fields,field_description:sale_rental.field_sale_order_line_extension_rental_id
@@ -576,6 +576,8 @@ msgstr ""
 #, python-format
 msgid "The rental product '%s' must be of type 'Service'."
 msgstr ""
+"Im Mietserviceprodukt '%s' muss als Produktart 'Dienstleistung' ausgewählt "
+"sein."
 
 #. module: sale_rental
 #: code:addons/sale_rental/models/product.py:31
