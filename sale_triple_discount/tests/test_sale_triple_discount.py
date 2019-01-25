@@ -3,7 +3,7 @@
 # Copyright 2018 Simone Rubino - Agile Business Group
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
-from odoo.tests import common
+from openerp.tests import common
 
 
 class TestSaleOrder(common.SavepointCase):
@@ -21,10 +21,10 @@ class TestSaleOrder(common.SavepointCase):
             'name': 'Test Product 2',
         })
         cls.tax = cls.env['account.tax'].create({
-            'name': 'TAX 15%',
-            'amount_type': 'percent',
+            'name': 'test TAX 15%',
+            'type': 'percent',
             'type_tax_use': 'sale',
-            'amount': 15.0,
+            'amount': 0.15,
         })
         cls.order = cls.env['sale.order'].create({
             'partner_id': cls.partner.id
@@ -100,17 +100,41 @@ class TestSaleOrder(common.SavepointCase):
         self.so_line1.discount2 = 50.0
         self.so_line1.discount3 = 50.0
         self.so_line2.discount3 = 50.0
-        self.order.action_confirm()
+        self.order.action_button_confirm()
         self.order.action_invoice_create()
         invoice = self.order.invoice_ids[0]
         self.assertEqual(self.so_line1.discount,
-                         invoice.invoice_line_ids[0].discount)
+                         invoice.invoice_line[0].discount)
         self.assertEqual(self.so_line1.discount2,
-                         invoice.invoice_line_ids[0].discount2)
+                         invoice.invoice_line[0].discount2)
         self.assertEqual(self.so_line1.discount3,
-                         invoice.invoice_line_ids[0].discount3)
+                         invoice.invoice_line[0].discount3)
         self.assertEqual(self.so_line2.discount3,
-                         invoice.invoice_line_ids[1].discount3)
+                         invoice.invoice_line[1].discount3)
+        self.assertEqual(self.order.amount_total, invoice.amount_total)
+
+    def test_05_sale_order_triple_discount_invoicing_on_picking(self):
+        """ When a picking is invoiced, the resultant invoice
+            should inherit the discounts """
+        self.so_line1.discount = 50.0
+        self.so_line1.discount2 = 50.0
+        self.so_line1.discount3 = 50.0
+        self.so_line2.discount3 = 50.0
+        self.order.order_policy = 'picking'
+        self.order.action_button_confirm()
+        self.order.action_invoice_create()
+        picking = self.order.picking_ids[0]
+        picking.force_assign()
+        picking.do_transfer()
+        invoice = self.order.invoice_ids[0]
+        self.assertEqual(self.so_line1.discount,
+                         invoice.invoice_line[0].discount)
+        self.assertEqual(self.so_line1.discount2,
+                         invoice.invoice_line[0].discount2)
+        self.assertEqual(self.so_line1.discount3,
+                         invoice.invoice_line[0].discount3)
+        self.assertEqual(self.so_line2.discount3,
+                         invoice.invoice_line[1].discount3)
         self.assertEqual(self.order.amount_total, invoice.amount_total)
 
     def test_05_round_globally(self):

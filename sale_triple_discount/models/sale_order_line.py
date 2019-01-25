@@ -5,12 +5,21 @@
 # Copyright 2018 Simone Rubino - Agile Business Group
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
-from odoo import api, fields, models
-import odoo.addons.decimal_precision as dp
+from openerp import api, fields, models
+import openerp.addons.decimal_precision as dp
 
 
 class SaleOrderLine(models.Model):
     _inherit = "sale.order.line"
+
+    @api.model
+    def _calc_line_base_price(self, line):
+        res = super(SaleOrderLine, self)._calc_line_base_price(line)
+        if line.discount2:
+            res *= (1 - line.discount2 / 100)
+        if line.discount3:
+            res *= (1 - line.discount3 / 100)
+        return res
 
     @api.depends('discount2', 'discount3')
     def _compute_amount(self):
@@ -44,11 +53,13 @@ class SaleOrderLine(models.Model):
             discount_factor *= (100.0 - discount) / 100.0
         return 100.0 - (discount_factor * 100.0)
 
-    def _prepare_invoice_line(self, qty):
-        res = super(SaleOrderLine, self)._prepare_invoice_line(qty)
+    @api.model
+    def _prepare_order_line_invoice_line(self, line, account_id=False):
+        res = super(SaleOrderLine, self) \
+            ._prepare_order_line_invoice_line(line, account_id=account_id)
         res.update({
-            'discount2': self.discount2,
-            'discount3': self.discount3,
+            'discount2': line.discount2,
+            'discount3': line.discount3,
         })
         return res
 
