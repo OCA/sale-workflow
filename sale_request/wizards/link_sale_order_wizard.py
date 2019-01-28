@@ -47,7 +47,7 @@ class LinkSaleOrderWizard(models.TransientModel):
             sale_lines = self.sale_line_ids.filtered(
                 lambda l: l.product_id.id == wiz_line.product_id.id)
             for sale_line in sale_lines:
-                qty += sale_line.product_uom._compute_quantity(
+                qty += sale_line.product_uom_id._compute_quantity(
                     sale_line.product_uom_qty, wiz_line.product_uom_id)
             qty += sum(
                 wiz_line.sale_line_id.child_ids.mapped('product_uom_qty'))
@@ -116,6 +116,7 @@ class LinkSaleOrderWizardLine(models.TransientModel):
     product_id = fields.Many2one(
         comodel_name='product.product',
         string='Product',
+        readonly=True,
     )
     name = fields.Text(
         string="Description",
@@ -136,3 +137,22 @@ class LinkSaleOrderWizardLine(models.TransientModel):
         string='Unit of Measure',
         readonly=True,
     )
+
+    @api.model
+    def _prepare_line(self, line):
+        return {
+            'product_id': line.product_id.id,
+            'name': line.name,
+            'product_uom_qty': line.product_uom_qty,
+            'product_uom_id': line.product_uom.id,
+        }
+
+    @api.model
+    def create(self, vals):
+        """Method overrided to save the readonly fields values"""
+        sale_line_id = self.env['sale.order.line'].browse(
+            vals.get('sale_line_id'))
+        if sale_line_id:
+            vals.update(self._prepare_line(sale_line_id))
+        res = super().create(vals)
+        return res

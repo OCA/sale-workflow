@@ -55,7 +55,7 @@ class CreateSaleOrderWizard(models.TransientModel):
             remaining_product_qty = self.request_line_id.remaining_product_qty
             qty_to_sale = 0.0
             for line in self.line_ids:
-                qty_to_sale += line.product_uom._compute_quantity(
+                qty_to_sale += line.product_uom_id._compute_quantity(
                     line.qty_to_sale, self.product_uom_id)
             new_remaining_qty = remaining_product_qty - qty_to_sale
             if new_remaining_qty < 0:
@@ -131,6 +131,7 @@ class CreateSaleOrderWizard(models.TransientModel):
             'request_line_id': request_line.id,
             'parent_id': params['sale_line_id'],
             'order_id': order.id,
+            'price_unit': request_line.product_id.list_price,
         }
 
     @api.multi
@@ -171,7 +172,7 @@ class CreateSaleOrderWizard(models.TransientModel):
         self.ensure_one()
         qty_to_sale = 0.0
         for line in self.line_ids:
-            qty_to_sale += line.product_uom._compute_quantity(
+            qty_to_sale += line.product_uom_id._compute_quantity(
                 line.qty_to_sale, self.product_uom_id)
         if qty_to_sale > self.request_line_id.remaining_product_qty:
             raise UserError(
@@ -187,15 +188,15 @@ class CreateSaleOrderWizard(models.TransientModel):
                 request_line.request_id, item.sale_line_id))
             so_obj |= order
             sale_line = item.sale_line_id
-            line_remaining_qty = item.product_uom._compute_quantity(
+            line_remaining_qty = item.product_uom_id._compute_quantity(
                 sale_line.remaining_product_qty, request_line.product_uom_id)
             if (line_remaining_qty >= rqst_remaining_product_qty):
                 rqst_remaining_product_qty -= (
-                    item.product_uom._compute_quantity(
+                    item.product_uom_id._compute_quantity(
                         item.qty_to_sale, request_line.product_uom_id))
             params = {
                 'qty_to_sale': item.qty_to_sale,
-                'product_uom': item.product_uom.id,
+                'product_uom': item.product_uom_id.id,
                 'sale_line_id': item.sale_line_id.id,
             }
             values = self.prepare_sale_order_line(order, params)
