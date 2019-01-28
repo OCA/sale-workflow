@@ -9,4 +9,4 @@ class SaleOrder(models.Model):
 
     commercial_partner_id = fields.Many2one(
         'res.partner', related='partner_id.commercial_partner_id', store=True,
-        string='Commercial Entity', index=True)
+        string='Commercial Entity', index=True, readonly=True)
