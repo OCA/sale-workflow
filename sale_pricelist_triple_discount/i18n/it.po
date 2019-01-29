@@ -1,0 +1,46 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+#	* sale_pricelist_triple_discount
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 8.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2019-01-29 14:36+0000\n"
+"PO-Revision-Date: 2019-01-29 14:36+0000\n"
+"Last-Translator: Simone Rubino <simone.rubino@agilebg.com>\n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: sale_pricelist_triple_discount
+#: field:product.pricelist.item,discount2:0
+msgid "Discount 2 (%)"
+msgstr "Sconto 2 (%)"
+
+#. module: sale_pricelist_triple_discount
+#: field:product.pricelist.item,discount3:0
+msgid "Discount 3 (%)"
+msgstr "Sconto 3 (%)"
+
+#. module: sale_pricelist_triple_discount
+#: model:ir.model,name:sale_pricelist_triple_discount.model_product_pricelist_item
+msgid "Pricelist item"
+msgstr "Riga di listino"
+
+#. module: sale_pricelist_triple_discount
+#: model:ir.model,name:sale_pricelist_triple_discount.model_sale_order_line
+msgid "Sales Order Line"
+msgstr "Linea d'ordine di vendita"
+
+#. module: sale_pricelist_triple_discount
+#: help:product.pricelist.item,discount2:0
+msgid "Second discount applied on a sale order line."
+msgstr "Secondo sconto applicato alla riga dell'ordine di vendita."
+
+#. module: sale_pricelist_triple_discount
+#: help:product.pricelist.item,discount3:0
+msgid "Third discount applied on a sale order line."
+msgstr "Terzo sconto applicato alla riga dell'ordine di vendita."
