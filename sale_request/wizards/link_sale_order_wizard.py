@@ -47,7 +47,7 @@ class LinkSaleOrderWizard(models.TransientModel):
             sale_lines = self.sale_line_ids.filtered(
                 lambda l: l.product_id.id == wiz_line.product_id.id)
             for sale_line in sale_lines:
-                qty += sale_line.product_uom_id._compute_quantity(
+                qty += sale_line.product_uom._compute_quantity(
                     sale_line.product_uom_qty, wiz_line.product_uom_id)
             qty += sum(
                 wiz_line.sale_line_id.child_ids.mapped('product_uom_qty'))
