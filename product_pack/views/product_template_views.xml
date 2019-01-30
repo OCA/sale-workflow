@@ -9,6 +9,7 @@
             <field name="type" position="after">
                 <field name="pack"/>
                 <field name="pack_price_type" attrs="{'invisible':[('pack', '=', False)], 'required':[('pack','=',True)]}" context="{'pack_price_type': pack_price_type}"/>
+                <field name="allow_modify_pack" attrs="{'invisible':[('pack', '=', False), ('pack_price_type', '!=', 'components_price')]}"/>
             </field>
             <notebook position="inside">
                 <page string="Pack" attrs="{'invisible': ['|', ('product_variant_count', '>', 1), ('pack', '=', False)]}">

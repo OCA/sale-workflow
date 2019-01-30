@@ -67,14 +67,30 @@ class ProductProduct(models.Model):
                 pack_lines = pack_lines.mapped('product_id.pack_line_ids')
 
     @api.multi
-    def price_compute(self, price_type, uom=False, currency=False,
-                      company=False):
+    def separete_pack_products(self):
+        """ Divide the products and the pack products into two separate
+        recordsets.
+        :return: [packs, no_packs]
+        """
         packs = self.filtered(lambda p: p.pack and p.pack_price_type in [
             'totalice_price',
             'none_detailed_assited_price',
             'none_detailed_totaliced_price',
         ])
+
+        # for compatibility with website_sale
+        if self._context.get('website_id', False) and \
+           not self._context.get('from_cart', False):
+            packs |= self.filtered(
+                lambda p: p.pack and p.pack_price_type == 'components_price')
+
         no_packs = (self | self.mapped('pack_line_ids.product_id')) - packs
+        return packs, no_packs
+
+    @api.multi
+    def price_compute(self, price_type, uom=False, currency=False,
+                      company=False):
+        packs, no_packs = self.separete_pack_products()
         prices = super(ProductProduct, no_packs).price_compute(
             price_type, uom, currency, company)
         for product in packs:
@@ -86,3 +102,18 @@ class ProductProduct(models.Model):
                 pack_price += (product_line_price * pack_line.quantity)
             prices[product.id] = pack_price
         return prices
+
+    @api.depends('list_price', 'price_extra')
+    def _compute_product_lst_price(self):
+        packs, no_packs = self.separete_pack_products()
+        super(ProductProduct, no_packs)._compute_product_lst_price()
+
+        to_uom = None
+        if 'uom' in self._context:
+            to_uom = self.env['product.uom'].browse([self._context['uom']])
+        for product in packs:
+            list_price = product.price_compute('list_price').get(product.id)
+            if to_uom:
+                list_price = product.uom_id._compute_price(
+                    list_price, to_uom)
+            product.lst_price = list_price + product.price_extra

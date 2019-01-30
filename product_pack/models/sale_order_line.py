@@ -3,6 +3,7 @@
 # directory
 ##############################################################################
 from odoo import fields, models, api, _
+from odoo.exceptions import UserError
 
 
 class SaleOrderLine(models.Model):
@@ -129,3 +130,14 @@ class SaleOrderLine(models.Model):
                 'fixed_price', 'totalice_price']:
             new_list_price = 0.0
         return new_list_price, currency_id
+
+    @api.onchange('product_id', 'product_uom_qty', 'product_uom', 'price_unit',
+                  'discount', 'name', 'tax_id')
+    def check_pack_line_modify(self):
+        """ Do not let to edit a sale order line if this one belongs to pack
+        """
+        if self._origin.pack_parent_line_id and \
+           not self._origin.pack_parent_line_id.product_id.allow_modify_pack:
+            raise UserError(_(
+                'You can not change this line because is part of a pack'
+                ' included in this order'))

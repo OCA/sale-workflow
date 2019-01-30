@@ -39,6 +39,8 @@ class ProductTemplate(models.Model):
         related='product_variant_ids.used_pack_line_ids',
         readonly=True,
     )
+    allow_modify_pack = fields.Boolean(
+    )
 
     @api.constrains(
         'product_variant_ids', 'pack_price_type')
