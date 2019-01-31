@@ -245,7 +245,7 @@ class SaleRequestLine(models.Model):
     def _compute_remaining_product_qty(self):
         for rec in self:
             total_qty = 0.0
-            for line in self.sale_line_ids:
+            for line in rec.sale_line_ids:
                 total_qty += line.product_uom._compute_quantity(
                     line.product_uom_qty, rec.product_uom_id)
             rec.remaining_product_qty = rec.product_qty - total_qty
