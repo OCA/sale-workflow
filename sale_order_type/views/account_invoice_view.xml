@@ -6,7 +6,15 @@
         <field name="inherit_id" ref="account.invoice_form"/>
         <field name="arch" type="xml">
             <field name="payment_term_id" position="after">
-                <field name="sale_type_id"/>
+                <label for="sale_type_id"/>
+                <div name="sale_type" class="o_row">
+                    <field name="sale_type_id" required="1"/>
+                    <button class="oe_inline"
+                            icon="fa-gears"
+                            name="match_order_type"
+                            string="Find by rule"
+                            type="object"/>
+                </div>
             </field>
         </field>
     </record>

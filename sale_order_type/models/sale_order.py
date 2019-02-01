@@ -51,6 +51,16 @@ class SaleOrder(models.Model):
             line_vals.update({"route_id": order_type.route_id.id})
             order.order_line.update(line_vals)
 
+    @api.multi
+    def match_order_type(self):
+        order_types = self.env['sale.order.type'].search([])
+        for order in self:
+            for order_type in order_types:
+                if order_type.matches_order(order):
+                    order.type_id = order_type
+                    order.onchange_type_id()
+                    break
+
     @api.model
     def create(self, vals):
         if vals.get('name', '/') == '/'and vals.get('type_id'):
