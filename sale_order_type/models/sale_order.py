@@ -37,13 +37,6 @@ class SaleOrder(models.Model):
                 order.incoterm = order.type_id.incoterm_id.id
 
     @api.multi
-    @api.onchange('order_line')
-    def _onchange_order_line(self):
-        for order in self:
-            if not order.type_id:
-                order.match_order_type()
-
-    @api.multi
     def match_order_type(self):
         order_types = self.env['sale.order.type'].search([])
         for order in self:

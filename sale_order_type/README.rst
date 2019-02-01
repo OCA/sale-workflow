@@ -39,10 +39,8 @@ Rules can also be associated with sale order types.
 
 Inside each rule, you can select any number of products and/or product categories.
 
-When editing a sale order that has no type, if a product matches the product of any rule then the sale order type bound to the rule is associated to the sale order.
+In the sale order form you can find the matching order type by clicking on the button *Find by rule* placed near the *Type* field.
 If the rule does not match *by product*, product categories are checked.
-
-In the sale order form you can also find the matching order type by clicking on the button *Find by rule* placed near the *Type* field.
 
 The sale order types and the rules are inspected based on the value of their *sequence* field.
 
