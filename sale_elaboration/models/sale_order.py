@@ -24,7 +24,7 @@ class SaleOrder(models.Model):
         """
         SaleOrderLine = self.env['sale.order.line']
         sol_for_product = self.order_line.filtered(
-            lambda x: x.product_id == product)
+            lambda x: x.product_id == product)[:1]
         if sol_for_product:
             sol_for_product.product_uom_qty += qty
             return sol_for_product
