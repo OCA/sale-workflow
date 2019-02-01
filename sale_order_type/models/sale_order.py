@@ -36,6 +36,16 @@ class SaleOrder(models.Model):
             if order.type_id.incoterm_id:
                 order.incoterm = order.type_id.incoterm_id.id
 
+    @api.multi
+    def match_order_type(self):
+        order_types = self.env['sale.order.type'].search([])
+        for order in self:
+            for order_type in order_types:
+                if order_type.matches_order(order):
+                    order.type_id = order_type
+                    order.onchange_type_id()
+                    break
+
     @api.model
     def create(self, vals):
         if vals.get('name', '/') == '/'and vals.get('type_id'):
