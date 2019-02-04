@@ -56,6 +56,7 @@ addon | version | summary
 [sale_product_multi_add](sale_product_multi_add/) | 10.0.1.0.0 | Sale Product Multi Add
 [sale_product_set](sale_product_set/) | 10.0.1.0.2 | Sale product set
 [sale_product_set_layout](sale_product_set_layout/) | 10.0.1.0.0 | Sale product set layout
+[sale_promotion_rule](sale_promotion_rule/) | 10.0.1.0.0 | Module to manage promotion rule on sale order
 [sale_quotation_number](sale_quotation_number/) | 10.0.1.1.0 | Different sequence for sale quotations
 [sale_rental](sale_rental/) | 10.0.1.0.0 | Manage Rental of Products
 [sale_revert_done](sale_revert_done/) | 10.0.1.0.0 | This module extends the functionality of sales to allow you to set a sales order done back to state 'Sale Order'.
