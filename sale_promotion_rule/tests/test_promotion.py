@@ -4,7 +4,7 @@
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
 from odoo.tests.common import TransactionCase
-from odoo.exceptions import UserError
+from odoo.exceptions import UserError, ValidationError
 from odoo.tools import float_compare
 
 VALID_COUPON_CODE = "ELDONGHUT"
@@ -125,6 +125,12 @@ class PromotionCase(TransactionCase, AbstractCommonPromotionCase):
         super(PromotionCase, self).setUp(*args, **kwargs)
         self.set_up('sale.sale_order_3')
 
+    def test_name_get(self):
+        name = self.promotion_rule_auto.name_get()[0][1]
+        self.assertTrue(name.endswith('(Automatic)'))
+        name = self.promotion_rule_coupon.name_get()[0][1]
+        self.assertTrue(name.startswith(self.promotion_rule_coupon.name))
+
     def test_add_valid_discount_code_for_all_line(self):
         self.add_coupon_code(VALID_COUPON_CODE)
         for line in self.sale.order_line:
@@ -183,6 +189,10 @@ class PromotionCase(TransactionCase, AbstractCommonPromotionCase):
         # coupon is always on top of applied promotion rules
         self.assertEqual(
             self.promotion_rule_coupon, self.sale.applied_promotion_rule_ids)
+
+    def test_discount_amount_product_constrains(self):
+        with self.assertRaises(ValidationError):
+            self.promotion_rule_fixed_amount.discount_product_id = False
 
     def test_discount_amount_untaxed(self):
         """Test with line where the tax is excluded from the price
