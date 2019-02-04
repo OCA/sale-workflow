@@ -1,0 +1,246 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+#	* sale_promotion_rule
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 8.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2017-10-13 16:40+0000\n"
+"PO-Revision-Date: 2017-10-13 16:40+0000\n"
+"Last-Translator: <>\n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: sale_promotion_rule
+#: view:sale.order:sale_promotion_rule.view_order_form
+msgid "(Apply discount)"
+msgstr "(Appliquer promotion)"
+
+#. module: sale_promotion_rule
+#: field:sale.promotion.rule,code:0
+msgid "Code"
+msgstr "Code"
+
+#. module: sale_promotion_rule
+#: code:addons/sale_promotion_rule/models/sale_order.py:33
+#, python-format
+msgid "Code number %s is invalid"
+msgstr "Le code %s est invalide"
+
+#. module: sale_promotion_rule
+#: view:sale.promotion.rule:sale_promotion_rule.view_sale_promotion_rule_form
+msgid "Condition"
+msgstr "Condition"
+
+#. module: sale_promotion_rule
+#: selection:sale.promotion.rule,rule_type:0
+msgid "Coupon"
+msgstr "Coupon"
+
+#. module: sale_promotion_rule
+#: field:sale.promotion.rule,create_uid:0
+msgid "Created by"
+msgstr "Created by"
+
+#. module: sale_promotion_rule
+#: field:sale.promotion.rule,create_date:0
+msgid "Created on"
+msgstr "Created on"
+
+#. module: sale_promotion_rule
+#: view:sale.promotion.rule:sale_promotion_rule.view_sale_promotion_rule_form
+msgid "Date début/fin"
+msgstr "Date début/fin"
+
+#. module: sale_promotion_rule
+#: field:sale.promotion.rule,date_from:0
+msgid "Date from"
+msgstr "Date de début"
+
+#. module: sale_promotion_rule
+#: field:sale.promotion.rule,date_to:0
+msgid "Date to"
+msgstr "Date de fin"
+
+#. module: sale_promotion_rule
+#: field:sale.promotion.rule,discount_amount:0
+msgid "Discount amount"
+msgstr "Montant de réduction"
+
+#. module: sale_promotion_rule
+#: code:addons/sale_promotion_rule/models/sale_promotion_rule.py:83
+#: sql_constraint:sale.promotion.rule:0
+#, python-format
+msgid "Discount code must be unique !"
+msgstr "Le code doit être unique !"
+
+#. module: sale_promotion_rule
+#: selection:sale.promotion.rule,promo_type:0
+msgid "Discount on all"
+msgstr "Sur tous"
+
+#. module: sale_promotion_rule
+#: selection:sale.promotion.rule,promo_type:0
+msgid "Discount on product"
+msgstr "Sur les produits"
+
+#. module: sale_promotion_rule
+#: selection:sale.promotion.rule,promo_type:0
+msgid "Discount on shipping"
+msgstr "Sur les frais de ports"
+
+#. module: sale_promotion_rule
+#: field:sale.promotion.rule,discount_type:0
+msgid "Discount type"
+msgstr "type de réduction"
+
+#. module: sale_promotion_rule
+#: field:sale.promotion.rule,display_name:0
+msgid "Display name"
+msgstr "Display name"
+
+#. module: sale_promotion_rule
+#: field:sale.promotion.rule,id:0
+msgid "ID"
+msgstr "ID"
+
+#. module: sale_promotion_rule
+#: field:sale.promotion.rule,__last_update:0
+msgid "Last Modified on"
+msgstr "Last Modified on"
+
+#. module: sale_promotion_rule
+#: field:sale.promotion.rule,write_uid:0
+msgid "Last Updated by"
+msgstr "Last Updated by"
+
+#. module: sale_promotion_rule
+#: field:sale.promotion.rule,write_date:0
+msgid "Last Updated on"
+msgstr "Last Updated on"
+
+#. module: sale_promotion_rule
+#: view:sale.promotion.rule:sale_promotion_rule.view_sale_promotion_rule_form
+#: field:sale.promotion.rule,minimal_amount:0
+msgid "Minimal amount"
+msgstr "Montant minimum"
+
+#. module: sale_promotion_rule
+#: field:sale.promotion.rule,name:0
+msgid "Name"
+msgstr "Name"
+
+#. module: sale_promotion_rule
+#: selection:sale.promotion.rule,usage_restriction:0
+msgid "No restriction"
+msgstr "Aucune restriction"
+
+#. module: sale_promotion_rule
+#: view:sale.promotion.rule:sale_promotion_rule.view_sale_promotion_rule_form
+msgid "Offer"
+msgstr "Offres"
+
+#. module: sale_promotion_rule
+#: selection:sale.promotion.rule,usage_restriction:0
+msgid "One per partner"
+msgstr "Une fois par client"
+
+#. module: sale_promotion_rule
+#: field:sale.promotion.rule,only_newsletter:0
+msgid "Only newsletter"
+msgstr "Uniquement abonnée newsletter"
+
+#. module: sale_promotion_rule
+#: selection:sale.promotion.rule,discount_type:0
+msgid "Percentage"
+msgstr "Pourcentage"
+
+#. module: sale_promotion_rule
+#: field:sale.promotion.rule,promo_type:0
+msgid "Promo type"
+msgstr "Type de Promo"
+
+#. module: sale_promotion_rule
+#: model:ir.actions.act_window,name:sale_promotion_rule.action_sale_promotion_rule_form
+#: model:ir.ui.menu,name:sale_promotion_rule.menu_action_sale_promotion_rule_form
+#: field:sale.order.line,promotion_rule_id:0
+#: view:sale.promotion.rule:sale_promotion_rule.view_sale_promotion_rule_form
+#: view:sale.promotion.rule:sale_promotion_rule.view_sale_promotion_rule_tree
+msgid "Promotion Rule"
+msgstr "Règle de Promotion"
+
+#. module: sale_promotion_rule
+#: field:sale.order,promotion_rule_id:0
+msgid "Promotion rule"
+msgstr "Promotion rule"
+
+#. module: sale_promotion_rule
+#: field:sale.promotion.rule,restrict_partner_ids:0
+msgid "Restricted partners"
+msgstr "Partner"
+
+#. module: sale_promotion_rule
+#: field:sale.promotion.rule,restrict_pricelist_ids:0
+msgid "Restricted pricelists"
+msgstr "Uniquement les listes de prix"
+
+#. module: sale_promotion_rule
+#: field:sale.promotion.rule,restriction_amount:0
+msgid "Restriction amount"
+msgstr "Restriction amount"
+
+#. module: sale_promotion_rule
+#: field:sale.promotion.rule,rule_type:0
+msgid "Rule type"
+msgstr "Type de règle"
+
+#. module: sale_promotion_rule
+#: model:ir.model,name:sale_promotion_rule.model_sale_order
+msgid "Sale Order"
+msgstr "Commande client"
+
+#. module: sale_promotion_rule
+#: model:ir.model,name:sale_promotion_rule.model_sale_order_line
+msgid "Sale Order line"
+msgstr "Ligne de commande"
+
+#. module: sale_promotion_rule
+#: model:ir.model,name:sale_promotion_rule.model_sale_promotion_rule
+msgid "Sale Promotion Rule"
+msgstr "Sale Promotion Rule"
+
+#. module: sale_promotion_rule
+#: field:sale.promotion.rule,sequence:0
+msgid "Sequence"
+msgstr "Sequence"
+
+#. module: sale_promotion_rule
+#: selection:sale.promotion.rule,restriction_amount:0
+msgid "Taxed amount"
+msgstr "Total TTC"
+
+#. module: sale_promotion_rule
+#: code:addons/sale_promotion_rule/models/sale_order.py:47
+#, python-format
+msgid "The rule cannot be applied on the sale order"
+msgstr "Le coupon ne peut pas s'appliquer sur cette commande"
+
+#. module: sale_promotion_rule
+#: view:sale.promotion.rule:sale_promotion_rule.view_sale_promotion_rule_form
+msgid "Type"
+msgstr "Type"
+
+#. module: sale_promotion_rule
+#: selection:sale.promotion.rule,restriction_amount:0
+msgid "Untaxed amount"
+msgstr "Total HT"
+
+#. module: sale_promotion_rule
+#: field:sale.promotion.rule,usage_restriction:0
+msgid "Usage restriction"
+msgstr "Restriction d'utilisation"
+
