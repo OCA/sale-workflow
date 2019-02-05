@@ -96,8 +96,7 @@ class ProductProduct(models.Model):
         for product in packs:
             pack_price = 0.0
             for pack_line in product.pack_line_ids:
-                product_line_price = prices[
-                    pack_line.product_id.id] * (
+                product_line_price = pack_line.product_id.price * (
                     1 - (pack_line.discount or 0.0) / 100.0)
                 pack_price += (product_line_price * pack_line.quantity)
             prices[product.id] = pack_price
