@@ -182,11 +182,15 @@ according to the strategy
     def _check_valid_usage(self, order):
         self.ensure_one()
         if self.usage_restriction == 'one_per_partner':
-            return not self.env['sale.order'].search_count([
+            rule_is_used = self.env['sale.order'].search_count([
                 ('id', '!=', order.id),
                 ('partner_id', '=', order.partner_id.id),
-                ('promotion_rule_id', '=', self.id),
-                ('state', '!=', 'cancel')])
+                ('state', '!=', 'cancel'),
+                '|',
+                ('promotion_rule_ids', 'in', self.id),
+                ('coupon_promotion_rule_id', '=', self.id),
+                ])
+            return not rule_is_used
         return True
 
     def _check_valid_multi_rule_strategy(self, order):
