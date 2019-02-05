@@ -111,3 +111,47 @@ class TestSaleOrder(common.SavepointCase):
         self.assertEqual(self.so_line2.discount3,
                          invoice.invoice_line_ids[1].discount3)
         self.assertEqual(self.order.amount_total, invoice.amount_total)
+
+    def test_05_sale_order_complex_triple_discount_round_globally(self):
+        """ Tests on multiple lines but round globally """
+
+        # Change the rounding method on the company
+        self.order.company_id.tax_calculation_rounding_method = \
+            'round_globally'
+
+        self.so_line1.discount = 50.0
+        self.so_line1.discount2 = 50.0
+        self.so_line1.discount3 = 50.0
+        self.assertEqual(self.so_line1.price_subtotal, 75.0)
+        self.assertEqual(self.order.amount_untaxed, 675.0)
+        self.assertEqual(self.order.amount_tax, 101.25)
+        self.so_line2.discount3 = 50.0
+        self.assertEqual(self.so_line2.price_subtotal, 300.0)
+        self.assertEqual(self.order.amount_untaxed, 375.0)
+        self.assertEqual(self.order.amount_tax, 56.25)
+
+    def test_06_sale_order_triple_discount_invoicing_round_globally(self):
+        """ When a confirmed order is invoiced, the resultant invoice
+            should inherit the discounts. Test with the global rounding method
+        """
+
+        # Change the rounding method on the company
+        self.order.company_id.tax_calculation_rounding_method = \
+            'round_globally'
+
+        self.so_line1.discount = 50.0
+        self.so_line1.discount2 = 50.0
+        self.so_line1.discount3 = 50.0
+        self.so_line2.discount3 = 50.0
+        self.order.action_confirm()
+        self.order.action_invoice_create()
+        invoice = self.order.invoice_ids[0]
+        self.assertEqual(self.so_line1.discount,
+                         invoice.invoice_line_ids[0].discount)
+        self.assertEqual(self.so_line1.discount2,
+                         invoice.invoice_line_ids[0].discount2)
+        self.assertEqual(self.so_line1.discount3,
+                         invoice.invoice_line_ids[0].discount3)
+        self.assertEqual(self.so_line2.discount3,
+                         invoice.invoice_line_ids[1].discount3)
+        self.assertEqual(self.order.amount_total, invoice.amount_total)
