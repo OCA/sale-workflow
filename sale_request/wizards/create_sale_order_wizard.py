@@ -77,6 +77,7 @@ class CreateSaleOrderWizard(models.TransientModel):
             'product_uom_qty': line.product_uom_qty,
             'product_uom_id': line.product_uom.id,
             'order_id': line.order_id.id,
+            'client_order_ref': line.order_id.client_order_ref,
             'sale_line_id': line.id,
             'remaining_product_qty': line.remaining_product_qty,
             'qty_to_sale': 0,
@@ -237,6 +238,7 @@ class CreateSaleOrderWizardLine(models.TransientModel):
         string='Sale Order',
         readonly=True,
     )
+    client_order_ref = fields.Char(string='Customer Purchase Order')
     sale_line_id = fields.Many2one(
         comodel_name='sale.order.line',
         string='Sale Order Line',

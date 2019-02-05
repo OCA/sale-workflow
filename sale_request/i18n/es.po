@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 12.0+e\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-01-27 21:45+0000\n"
-"PO-Revision-Date: 2019-01-27 21:45+0000\n"
+"POT-Creation-Date: 2019-02-05 16:33+0000\n"
+"PO-Revision-Date: 2019-02-05 16:33+0000\n"
 "Last-Translator: <>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -143,6 +143,11 @@ msgid "Customer"
 msgstr "Cliente"
 
 #. module: sale_request
+#: model:ir.model.fields,field_description:sale_request.field_create_sale_order_wizard_line__client_order_ref
+msgid "Customer Purchase Order"
+msgstr "Orden de compra del cliente"
+
+#. module: sale_request
 #: model:ir.model.fields,field_description:sale_request.field_sale_request__date
 msgid "Date"
 msgstr "Fecha"
@@ -179,13 +184,13 @@ msgstr "Borrador"
 
 #. module: sale_request
 #: code:addons/sale_request/wizards/create_sale_order_wizard.py:65
-#: code:addons/sale_request/wizards/create_sale_order_wizard.py:287
+#: code:addons/sale_request/wizards/create_sale_order_wizard.py:281
 #, python-format
 msgid "Error!"
 msgstr "¡Error!"
 
 #. module: sale_request
-#: code:addons/sale_request/wizards/create_sale_order_wizard.py:178
+#: code:addons/sale_request/wizards/create_sale_order_wizard.py:180
 #, python-format
 msgid "Error! The quantity to sale is greather than the requested quantity."
 msgstr "¡Error! La cantidad a vender es mathor que la cantidad requisitada."
@@ -577,9 +582,8 @@ msgid "Responsible User"
 msgstr "Usuario responsable"
 
 #. module: sale_request
-#: code:addons/sale_request/wizards/create_sale_order_wizard.py:157
-#: code:addons/sale_request/wizards/create_sale_order_wizard.py:209
-#: code:addons/sale_request/wizards/create_sale_order_wizard.py:222
+#: code:addons/sale_request/wizards/create_sale_order_wizard.py:159
+#: code:addons/sale_request/wizards/create_sale_order_wizard.py:210
 #: code:addons/sale_request/wizards/link_sale_order_wizard.py:89
 #: model:ir.model,name:sale_request.model_sale_order
 #: model:ir.model.fields,field_description:sale_request.field_create_sale_order_wizard_line__order_id
@@ -786,7 +790,7 @@ msgid "You cannot request more than the initial demand of this sale request."
 msgstr "No puede solicitar más cantidad que la demanda inicial de esta requisición."
 
 #. module: sale_request
-#: code:addons/sale_request/wizards/create_sale_order_wizard.py:288
+#: code:addons/sale_request/wizards/create_sale_order_wizard.py:282
 #, python-format
 msgid "You cannot request more than the remaining qty of this master sale order."
 msgstr "No puedes requerir más que la cantidad restante de este pedido master"
