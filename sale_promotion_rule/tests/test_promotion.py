@@ -190,6 +190,32 @@ class PromotionCase(TransactionCase, AbstractCommonPromotionCase):
         self.assertEqual(
             self.promotion_rule_coupon, self.sale.applied_promotion_rule_ids)
 
+    def test_usage_restriction(self):
+        self.promotion_rule_coupon.usage_restriction = "one_per_partner"
+        self.promotion_rule_coupon.multi_rule_strategy = "exclusive"
+        self.promotion_rule_coupon.sequence = 10
+        self.add_coupon_code(VALID_COUPON_CODE)
+        self.sale.apply_promotions()
+        self.assertIn(
+            self.promotion_rule_coupon, self.sale.applied_promotion_rule_ids
+        )
+        # If create a new sale order for the same partner, the same promotion
+        # rule can't be used
+        new_sale = self.sale.copy()
+        new_sale.add_coupon(VALID_COUPON_CODE)
+        new_sale.apply_promotions()
+        self.assertNotIn(
+            self.promotion_rule_coupon, new_sale.applied_promotion_rule_ids
+        )
+        # if we change the usage restriction the promotion can be applied
+        self.promotion_rule_coupon.usage_restriction = "no_restriction"
+        new_sale = self.sale.copy()
+        new_sale.add_coupon(VALID_COUPON_CODE)
+        new_sale.apply_promotions()
+        self.assertIn(
+            self.promotion_rule_coupon, new_sale.applied_promotion_rule_ids
+        )
+
     def test_discount_amount_product_constrains(self):
         with self.assertRaises(ValidationError):
             self.promotion_rule_fixed_amount.discount_product_id = False
