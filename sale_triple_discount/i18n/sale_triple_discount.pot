@@ -34,6 +34,11 @@ msgid "Discount 3 must be lower than 100%."
 msgstr ""
 
 #. module: sale_triple_discount
+#: model:ir.model,name:sale_triple_discount.model_sale_order
+msgid "Sales Order"
+msgstr ""
+
+#. module: sale_triple_discount
 #: model:ir.model,name:sale_triple_discount.model_sale_order_line
 msgid "Sales Order Line"
 msgstr ""
