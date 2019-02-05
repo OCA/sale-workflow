@@ -13,6 +13,7 @@ class SaleOrder(models.Model):
         'sale.promotion.rule',
         string='Promotion rules',
         domain=[('rule_type', '!=', 'coupon')],
+        index=True,
         readonly=True
     )
 
@@ -20,6 +21,7 @@ class SaleOrder(models.Model):
         'sale.promotion.rule',
         string='Coupon promotion rule',
         domain=[('rule_type', '=', 'coupon')],
+        index=True,
         readonly=True
     )
     coupon_code = fields.Char(
@@ -31,7 +33,7 @@ class SaleOrder(models.Model):
     applied_promotion_rule_ids = fields.Many2many(
         'sale.promotion.rule',
         string='Promotion rules',
-        compute='_compute_applied_promotion_rule_ids'
+        compute='_compute_applied_promotion_rule_ids',
     )
 
     has_promotion_rules = fields.Boolean(
