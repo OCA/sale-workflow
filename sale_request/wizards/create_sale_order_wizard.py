@@ -205,32 +205,23 @@ class CreateSaleOrderWizard(models.TransientModel):
             sale_order.action_confirm()
         if request_line.remaining_product_qty == 0.0:
             request_line.state = 'done'
-        if len(so_obj) == 1:
-            return {
-                'name': _('Sale Order'),
-                'view_type': 'form',
-                'view_mode': 'form',
-                'res_model': 'sale.order',
-                'res_id': order.id,
-                'type': 'ir.actions.act_window',
-                'context': {
-                    'create': False,
-                    'delete': False,
-                }
+        res = {
+            'name': _('Sale Order'),
+            'view_type': 'form',
+            'view_mode': 'form',
+            'res_model': 'sale.order',
+            'res_id': order.id,
+            'type': 'ir.actions.act_window',
+            'context': {
+                'create': False,
+                'delete': False,
             }
-        else:
-            return {
-                'name': _('Sale Order'),
-                'view_type': 'form',
-                'view_mode': 'tree,form',
-                'res_model': 'sale.order',
-                'res_id': so_obj.ids,
-                'type': 'ir.actions.act_window',
-                'context': {
-                    'create': False,
-                    'delete': False,
-                }
-            }
+        }
+        if len(so_obj) > 1:
+            res['view_mode'] = 'tree,form'
+            res['domain'] = [('id', 'in', so_obj.ids)]
+            del res['res_id']
+        return res
 
 
 class CreateSaleOrderWizardLine(models.TransientModel):
