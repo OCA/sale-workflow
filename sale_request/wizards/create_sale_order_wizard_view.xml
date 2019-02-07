@@ -41,7 +41,7 @@
                     </group>
                     <footer>
                         <button name="create_sale_order" string='Confirm' type="object" class="oe_highlight" attrs="{'invisible': [('has_lines', '=', False)]}"/>
-                        <button name="create_sale_order_no_ref" string='Confirm' type="object" class="oe_highlight" attrs="{'invisible': [('has_lines', '=', True)]}" confirm="Are you sure you want to create a sale order with no customer purchase order?"/>
+                        <button name="create_sale_order_no_ref" string='Create SO' type="object" class="oe_highlight" attrs="{'invisible': [('has_lines', '=', True)]}" confirm="Are you sure you want to create a sale order with no customer purchase order?"/>
                         <button string="Cancel" special="cancel"/>
                     </footer>
                 </sheet>

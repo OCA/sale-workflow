@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 12.0+e\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-02-07 02:43+0000\n"
-"PO-Revision-Date: 2019-02-07 02:43+0000\n"
+"POT-Creation-Date: 2019-02-07 21:30+0000\n"
+"PO-Revision-Date: 2019-02-07 21:30+0000\n"
 "Last-Translator: <>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -107,6 +107,11 @@ msgid "Conversion between Units of Measure can only occur if they belong to the 
 msgstr "La conversión entre las unidades de medidas sólo pueden ocurrir si pertenecen a la misma categoría. La conversión se basará en los ratios establecidos."
 
 #. module: sale_request
+#: model_terms:ir.ui.view,arch_db:sale_request.view_create_sale_order_wizard_form
+msgid "Create SO"
+msgstr "Crear SO"
+
+#. module: sale_request
 #: model_terms:ir.ui.view,arch_db:sale_request.view_sale_request_line_form
 msgid "Create Sale Order"
 msgstr "Crear Orden"
@@ -184,13 +189,13 @@ msgstr "Borrador"
 
 #. module: sale_request
 #: code:addons/sale_request/wizards/create_sale_order_wizard.py:65
-#: code:addons/sale_request/wizards/create_sale_order_wizard.py:285
+#: code:addons/sale_request/wizards/create_sale_order_wizard.py:306
 #, python-format
 msgid "Error!"
-msgstr ""
+msgstr "¡Error!"
 
 #. module: sale_request
-#: code:addons/sale_request/wizards/create_sale_order_wizard.py:180
+#: code:addons/sale_request/wizards/create_sale_order_wizard.py:198
 #, python-format
 msgid "Error! The quantity to sale is greather than the requested quantity."
 msgstr "¡Error! La cantidad a vender es mathor que la cantidad requisitada."
@@ -582,8 +587,8 @@ msgid "Responsible User"
 msgstr "Usuario responsable"
 
 #. module: sale_request
-#: code:addons/sale_request/wizards/create_sale_order_wizard.py:159
-#: code:addons/sale_request/wizards/create_sale_order_wizard.py:214
+#: code:addons/sale_request/wizards/create_sale_order_wizard.py:177
+#: code:addons/sale_request/wizards/create_sale_order_wizard.py:235
 #: code:addons/sale_request/wizards/link_sale_order_wizard.py:89
 #: model:ir.model,name:sale_request.model_sale_order
 #: model:ir.model.fields,field_description:sale_request.field_create_sale_order_wizard_line__order_id
@@ -790,13 +795,13 @@ msgid "You cannot request more than the initial demand of this sale request."
 msgstr "No puede solicitar más cantidad que la demanda inicial de esta requisición."
 
 #. module: sale_request
-#: code:addons/sale_request/wizards/create_sale_order_wizard.py:286
+#: code:addons/sale_request/wizards/create_sale_order_wizard.py:307
 #, python-format
 msgid "You cannot request more than the remaining qty of this master sale order."
 msgstr "No puedes requerir más que la cantidad restante de este pedido master"
 
 #. module: sale_request
-#: code:addons/sale_request/wizards/create_sale_order_wizard.py:188
+#: code:addons/sale_request/wizards/create_sale_order_wizard.py:206
 #, python-format
 msgid "You have not defined the quantity to sale to any master order, please define it."
 msgstr "No ha definido la cantidad a vender a ningún pedido maestro, por favor defínalo."
