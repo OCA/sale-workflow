@@ -112,6 +112,11 @@ class CreateSaleOrderWizard(models.TransientModel):
         client_order_ref = False
         if sale_line_id:
             client_order_ref = sale_line_id.order_id.client_order_ref
+        partner = request_id.partner_id.id
+        fpos_id = self.env['account.fiscal.position'].get_fiscal_position(
+            partner)
+        pricelist_id = self.env['product.pricelist']._get_partner_pricelist(
+            partner, self.env.user.company_id.id)
         return {
             'partner_id': request_id.partner_id.id,
             'user_id': self.env.user.id,
@@ -121,11 +126,22 @@ class CreateSaleOrderWizard(models.TransientModel):
             'origin': request_id.name,
             'warehouse_id': request_id.warehouse_id.id,
             'request_id': request_id.id,
+            'fiscal_position_id': fpos_id,
+            'pricelist_id': pricelist_id,
         }
 
     @api.multi
     def prepare_sale_order_line(self,  order, params):
         request_line = self.request_line_id
+        product = request_line.product_id
+        taxes = product.taxes_id
+        if order.fiscal_position_id:
+            taxes = order.fiscal_position_id.map_tax(taxes, product)
+        price = order.pricelist_id.get_product_price(
+            product, params['qty_to_sale'], order.partner_id, order.date_order,
+            params['product_uom'])
+        price_unit = self.env['account.tax']._fix_tax_included_price_company(
+            price, taxes, taxes, self.env.user.company_id)
         return {
             'product_id': request_line.product_id.id,
             'product_uom_qty': params['qty_to_sale'],
@@ -133,7 +149,8 @@ class CreateSaleOrderWizard(models.TransientModel):
             'request_line_id': request_line.id,
             'parent_id': params['sale_line_id'],
             'order_id': order.id,
-            'price_unit': request_line.product_id.list_price,
+            'tax_id': [(6, 0, taxes.ids)],
+            'price_unit': price_unit,
         }
 
     @api.multi
