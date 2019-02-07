@@ -1,13 +1,13 @@
 # Translation of Odoo Server.
 # This file contains the translation of the following modules:
-#	* sale_request
+#   * sale_request
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 12.0+e\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-02-05 16:33+0000\n"
-"PO-Revision-Date: 2019-02-05 16:33+0000\n"
+"POT-Creation-Date: 2019-02-07 02:43+0000\n"
+"PO-Revision-Date: 2019-02-07 02:43+0000\n"
 "Last-Translator: <>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -184,10 +184,10 @@ msgstr "Borrador"
 
 #. module: sale_request
 #: code:addons/sale_request/wizards/create_sale_order_wizard.py:65
-#: code:addons/sale_request/wizards/create_sale_order_wizard.py:281
+#: code:addons/sale_request/wizards/create_sale_order_wizard.py:285
 #, python-format
 msgid "Error!"
-msgstr "¡Error!"
+msgstr ""
 
 #. module: sale_request
 #: code:addons/sale_request/wizards/create_sale_order_wizard.py:180
@@ -244,7 +244,7 @@ msgstr "Tiene líneas"
 #: model:ir.model.fields,field_description:sale_request.field_sale_request__id
 #: model:ir.model.fields,field_description:sale_request.field_sale_request_line__id
 msgid "ID"
-msgstr "ID"
+msgstr ""
 
 #. module: sale_request
 #: model:ir.model.fields,help:sale_request.field_sale_request__message_unread
@@ -403,7 +403,7 @@ msgstr "Nombre"
 #: code:addons/sale_request/models/sale_order.py:33
 #, python-format
 msgid "New"
-msgstr "Nuevo"
+msgstr ""
 
 #. module: sale_request
 #: model:ir.model.fields,field_description:sale_request.field_sale_request__activity_date_deadline
@@ -583,7 +583,7 @@ msgstr "Usuario responsable"
 
 #. module: sale_request
 #: code:addons/sale_request/wizards/create_sale_order_wizard.py:159
-#: code:addons/sale_request/wizards/create_sale_order_wizard.py:210
+#: code:addons/sale_request/wizards/create_sale_order_wizard.py:214
 #: code:addons/sale_request/wizards/link_sale_order_wizard.py:89
 #: model:ir.model,name:sale_request.model_sale_order
 #: model:ir.model.fields,field_description:sale_request.field_create_sale_order_wizard_line__order_id
@@ -790,10 +790,16 @@ msgid "You cannot request more than the initial demand of this sale request."
 msgstr "No puede solicitar más cantidad que la demanda inicial de esta requisición."
 
 #. module: sale_request
-#: code:addons/sale_request/wizards/create_sale_order_wizard.py:282
+#: code:addons/sale_request/wizards/create_sale_order_wizard.py:286
 #, python-format
 msgid "You cannot request more than the remaining qty of this master sale order."
 msgstr "No puedes requerir más que la cantidad restante de este pedido master"
+
+#. module: sale_request
+#: code:addons/sale_request/wizards/create_sale_order_wizard.py:188
+#, python-format
+msgid "You have not defined the quantity to sale to any master order, please define it."
+msgstr "No ha definido la cantidad a vender a ningún pedido maestro, por favor defínalo."
 
 #. module: sale_request
 #: model_terms:ir.ui.view,arch_db:sale_request.view_sale_request_search

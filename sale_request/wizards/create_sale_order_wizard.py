@@ -120,6 +120,7 @@ class CreateSaleOrderWizard(models.TransientModel):
             'client_order_ref': client_order_ref,
             'origin': request_id.name,
             'warehouse_id': request_id.warehouse_id.id,
+            'request_id': request_id.id,
         }
 
     @api.multi
@@ -183,10 +184,17 @@ class CreateSaleOrderWizard(models.TransientModel):
         sol_obj = self.env['sale.order.line']
         request_line = self.request_line_id
         items = self.line_ids.filtered('qty_to_sale')
+        if not items:
+            raise UserError(
+                _('You have not defined the quantity to sale to any master '
+                  'order, please define it.'))
         rqst_remaining_product_qty = request_line.remaining_product_qty
         for item in items:
-            order = so_obj.create(self.prepare_sale_order(
-                request_line.request_id, item.sale_line_id))
+            order = so_obj.search([
+                ('request_id', '=', request_line.request_id.id)])
+            if not order:
+                order = so_obj.create(self.prepare_sale_order(
+                    request_line.request_id, item.sale_line_id))
             so_obj |= order
             sale_line = item.sale_line_id
             line_remaining_qty = item.product_uom_id._compute_quantity(
