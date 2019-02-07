@@ -231,6 +231,10 @@ class CreateSaleOrderWizard(models.TransientModel):
             sale_order.action_confirm()
         if request_line.remaining_product_qty == 0.0:
             request_line.state = 'done'
+            request = request_line.request_id
+            if not request.line_ids.filtered(
+                    lambda l: l.state != 'done'):
+                request.state = 'done'
         res = {
             'name': _('Sale Order'),
             'view_type': 'form',

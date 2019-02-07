@@ -40,6 +40,7 @@ class SaleRequest(models.Model):
     state = fields.Selection([
         ('draft', 'Draft'),
         ('confirm', 'Confirmed'),
+        ('done', 'Done'),
         ('cancel', 'Cancel')],
         default='draft',
         required=True,
