@@ -13,8 +13,11 @@ class TestSaleOrderTypeRule(common.TransactionCase):
         self.sale_type_model = self.env['sale.order.type']
         self.sale_type_rule_model = self.env['sale.order.type.rule']
         self.product_model = self.env['product.product']
+        account_model = self.env['account.account']
 
-        self.account = self.env.ref('l10n_generic_coa.1_conf_a_recv')
+        self.account = account_model.search([
+            ('user_type_id', '=',
+             self.env.ref('account.data_account_type_revenue').id)], limit=1)
         self.partner = self.env.ref('base.res_partner_1')
         self.product1, self.product2 = self.product_model.search([], limit=2)
         self.product_category = self.product2.categ_id
