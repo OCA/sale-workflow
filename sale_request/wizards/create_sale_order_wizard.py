@@ -25,7 +25,7 @@ class CreateSaleOrderWizard(models.TransientModel):
         readonly=True,
     )
     product_qty = fields.Float(
-        string="Required Quantity",
+        string="Quantity",
         readonly=True,
         digits=dp.get_precision('Product Unit of Measure'),
     )
@@ -35,7 +35,7 @@ class CreateSaleOrderWizard(models.TransientModel):
         readonly=True,
     )
     remaining_product_qty = fields.Float(
-        string="Remaining Quantity",
+        string="Required Quantity",
         digits=dp.get_precision('Product Unit of Measure'),
         readonly=True,
     )

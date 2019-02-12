@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 12.0+e\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-02-12 21:09+0000\n"
-"PO-Revision-Date: 2019-02-12 21:09+0000\n"
+"POT-Creation-Date: 2019-02-12 21:24+0000\n"
+"PO-Revision-Date: 2019-02-12 21:24+0000\n"
 "Last-Translator: <>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -509,6 +509,11 @@ msgid "Proposition Sale Order Lines"
 msgstr "Lineas de Pedido de Venta Propuesta"
 
 #. module: sale_request
+#: model:ir.model.fields,field_description:sale_request.field_create_sale_order_wizard__product_qty
+msgid "Quantity"
+msgstr "Cantidad"
+
+#. module: sale_request
 #: model:ir.model.fields,field_description:sale_request.field_create_sale_order_wizard_line__qty_to_sale
 msgid "Quantity to Sale"
 msgstr "Cantidad a Vender"
@@ -524,7 +529,6 @@ msgid "Remaining Product quantity"
 msgstr "Cantidad Restante"
 
 #. module: sale_request
-#: model:ir.model.fields,field_description:sale_request.field_create_sale_order_wizard__remaining_product_qty
 #: model:ir.model.fields,field_description:sale_request.field_create_sale_order_wizard_line__remaining_product_qty
 #: model:ir.model.fields,field_description:sale_request.field_link_master_sale_order_wizard_line__remaining_product_qty
 #: model:ir.model.fields,field_description:sale_request.field_sale_request_line__remaining_product_qty
@@ -572,7 +576,7 @@ msgid "Requests confirmed"
 msgstr "Requisiciones Confirmadas"
 
 #. module: sale_request
-#: model:ir.model.fields,field_description:sale_request.field_create_sale_order_wizard__product_qty
+#: model:ir.model.fields,field_description:sale_request.field_create_sale_order_wizard__remaining_product_qty
 #: model:ir.model.fields,field_description:sale_request.field_sale_request_line__product_qty
 msgid "Required Quantity"
 msgstr "Cantidad Requerida"
