@@ -108,15 +108,17 @@ class CreateSaleOrderWizard(models.TransientModel):
         return res
 
     @api.model
-    def prepare_sale_order(self, request_id, sale_line_id):
+    def prepare_sale_order(self, request_id, sale_line_id, pricelist_id):
         client_order_ref = False
         if sale_line_id:
             client_order_ref = sale_line_id.order_id.client_order_ref
         partner = request_id.partner_id.id
         fpos_id = self.env['account.fiscal.position'].get_fiscal_position(
             partner)
-        pricelist_id = self.env['product.pricelist']._get_partner_pricelist(
-            partner, self.env.user.company_id.id)
+        if not pricelist_id:
+            pricelist_obj = self.env['product.pricelist']
+            pricelist_id = pricelist_obj._get_partner_pricelist(
+               partner, self.env.user.company_id.id)
         return {
             'partner_id': request_id.partner_id.id,
             'user_id': self.env.user.id,
@@ -129,6 +131,13 @@ class CreateSaleOrderWizard(models.TransientModel):
             'fiscal_position_id': fpos_id,
             'pricelist_id': pricelist_id,
         }
+
+    @api.model
+    def _get_product_pricelist_id(self, product):
+        pricelist_id = False
+        if product.item_ids:
+            pricelist_id = product.item_ids[0].pricelist_id.id
+        return pricelist_id
 
     @api.multi
     def prepare_sale_order_line(self,  order, params):
@@ -159,8 +168,10 @@ class CreateSaleOrderWizard(models.TransientModel):
         so_obj = self.env['sale.order']
         sol_obj = self.env['sale.order.line']
         request_line = self.request_line_id
+        product = request_line.product_id
+        pricelist_id = self._get_product_pricelist_id(product)
         order = so_obj.create(self.prepare_sale_order(
-            request_line.request_id, False))
+            request_line.request_id, False, pricelist_id))
         params = {
             'qty_to_sale': request_line.product_qty,
             'product_uom': request_line.product_uom_id.id,
@@ -200,6 +211,7 @@ class CreateSaleOrderWizard(models.TransientModel):
         so_obj = self.env['sale.order']
         sol_obj = self.env['sale.order.line']
         request_line = self.request_line_id
+        product = request_line.product_id
         items = self.line_ids.filtered('qty_to_sale')
         if not items:
             raise UserError(
@@ -207,11 +219,13 @@ class CreateSaleOrderWizard(models.TransientModel):
                   'order, please define it.'))
         rqst_remaining_product_qty = request_line.remaining_product_qty
         for item in items:
+            pricelist_id = self._get_product_pricelist_id(product)
             order = so_obj.search([
-                ('request_id', '=', request_line.request_id.id)])
+                ('request_id', '=', request_line.request_id.id),
+                ('pricelist_id', '=', pricelist_id)])
             if not order:
                 order = so_obj.create(self.prepare_sale_order(
-                    request_line.request_id, item.sale_line_id))
+                    request_line.request_id, item.sale_line_id, pricelist_id))
             so_obj |= order
             sale_line = item.sale_line_id
             line_remaining_qty = item.product_uom_id._compute_quantity(
