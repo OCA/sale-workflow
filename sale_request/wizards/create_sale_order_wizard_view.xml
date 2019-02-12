@@ -6,7 +6,7 @@
         <field name="arch" type="xml">
             <form>
                 <div class="alert alert-danger" role="alert" style="margin-bottom:0px;" attrs="{'invisible': [('has_lines', '=', True)]}">
-                    <bold>Sorry!</bold>, There are not any sale order line compatible with this request. Check your data.
+                    <bold>Sorry!</bold>, there is no master order for this product. You want to create requisition without order?
                 </div>
                 <field name="has_lines" invisible="1"/>
                 <sheet>
