@@ -43,6 +43,9 @@
             </xpath> 
         </field>
     </record>
+     <record id="sale.action_orders_to_invoice" model="ir.actions.act_window">
+          <field name="domain">[('invoice_status','=','to invoice'), ('master_sale_order', '=', False)]</field>
+     </record>
      <record id="action_sale_order_master" model="ir.actions.act_window">
         <field name="name">Master Sale Orders</field>
         <field name="type">ir.actions.act_window</field>
