@@ -40,7 +40,7 @@
            </form>
         </field>
     </record>
-    <record id="action_create_sale_order" model="ir.actions.act_window">
+    <record id="action_link_sale_order" model="ir.actions.act_window">
         <field name="name">Link Sale Orders to Master Sale Order</field>
         <field name="res_model">create.sale.order.wizard</field>
         <field name="view_type">form</field>
