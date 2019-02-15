@@ -23,12 +23,13 @@ class ProductProduct(models.Model):
         help='List of packs where product is used.'
     )
 
-    @api.depends('stock_quant_ids', 'stock_move_ids')
-    def _compute_quantities(self):
+    def _compute_quantities_dict(
+            self, lot_id, owner_id, package_id,
+            from_date=False, to_date=False):
+        res = super(ProductProduct, self)._compute_quantities_dict(
+            lot_id, owner_id, package_id, from_date=from_date, to_date=to_date)
         packs = self.filtered('pack')
-        no_packs = (self + packs.mapped('pack_line_ids.product_id')) - packs
-        super(ProductProduct, no_packs)._compute_quantities()
-        for product in packs:
+        for product in packs.with_context(prefetch_fields=False):
             pack_qty_available = []
             pack_virtual_available = []
             for subproduct in product.pack_line_ids:
@@ -40,7 +41,7 @@ class ProductProduct(models.Model):
                     pack_virtual_available.append(math.floor(
                         subproduct_stock.virtual_available / sub_qty))
             # TODO calcular correctamente pack virtual available para negativos
-            vals = {
+            res[product.id] = {
                 'qty_available': (
                     pack_qty_available and min(pack_qty_available) or False),
                 'incoming_qty': 0,
@@ -49,8 +50,7 @@ class ProductProduct(models.Model):
                     pack_virtual_available and
                     max(min(pack_virtual_available), 0) or False),
             }
-            product.update(vals)
-        # return res
+        return res
 
     @api.constrains('pack_line_ids')
     def check_recursion(self):
