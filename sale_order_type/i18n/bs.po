@@ -20,18 +20,18 @@ msgstr ""
 "%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
 
 #. module: sale_order_type
-#: model:ir.model.fields,field_description:sale_order_type.field_sale_order_type_journal_id
-#: model:ir.ui.view,arch_db:sale_order_type.sot_sale_order_type_search_view
+#: model:ir.model.fields,field_description:sale_order_type.field_sale_order_type__journal_id
+#: model_terms:ir.ui.view,arch_db:sale_order_type.sot_sale_order_type_search_view
 msgid "Billing Journal"
 msgstr ""
 
 #. module: sale_order_type
-#: model:ir.actions.act_window,help:sale_order_type.sot_sale_order_type_action
+#: model_terms:ir.actions.act_window,help:sale_order_type.sot_sale_order_type_action
 msgid "Click to set a new type for sale order."
 msgstr ""
 
 #. module: sale_order_type
-#: model:ir.model.fields,field_description:sale_order_type.field_sale_order_type_company_id
+#: model:ir.model.fields,field_description:sale_order_type.field_sale_order_type__company_id
 msgid "Company"
 msgstr "Kompanija"
 
@@ -41,44 +41,44 @@ msgid "Contact"
 msgstr ""
 
 #. module: sale_order_type
-#: model:ir.model.fields,field_description:sale_order_type.field_sale_order_type_create_uid
+#: model:ir.model.fields,field_description:sale_order_type.field_sale_order_type__create_uid
 msgid "Created by"
 msgstr "Kreirao"
 
 #. module: sale_order_type
-#: model:ir.model.fields,field_description:sale_order_type.field_sale_order_type_create_date
+#: model:ir.model.fields,field_description:sale_order_type.field_sale_order_type__create_date
 msgid "Created on"
 msgstr "Kreirano"
 
 #. module: sale_order_type
-#: model:ir.model.fields,field_description:sale_order_type.field_sale_order_type_description
+#: model:ir.model.fields,field_description:sale_order_type.field_sale_order_type__description
 msgid "Description"
 msgstr "Opis"
 
 #. module: sale_order_type
-#: model:ir.model.fields,field_description:sale_order_type.field_sale_order_type_display_name
+#: model:ir.model.fields,field_description:sale_order_type.field_sale_order_type__display_name
 msgid "Display Name"
 msgstr "Prikaži naziv"
 
 #. module: sale_order_type
-#: model:ir.model.fields,field_description:sale_order_type.field_sale_order_type_sequence_id
-#: model:ir.ui.view,arch_db:sale_order_type.sot_sale_order_type_search_view
+#: model:ir.model.fields,field_description:sale_order_type.field_sale_order_type__sequence_id
+#: model_terms:ir.ui.view,arch_db:sale_order_type.sot_sale_order_type_search_view
 msgid "Entry Sequence"
 msgstr ""
 
 #. module: sale_order_type
-#: model:ir.ui.view,arch_db:sale_order_type.sot_sale_order_type_search_view
+#: model_terms:ir.ui.view,arch_db:sale_order_type.sot_sale_order_type_search_view
 msgid "Group By"
 msgstr "Grupiši po"
 
 #. module: sale_order_type
-#: model:ir.model.fields,field_description:sale_order_type.field_sale_order_type_id
+#: model:ir.model.fields,field_description:sale_order_type.field_sale_order_type__id
 msgid "ID"
 msgstr "ID"
 
 #. module: sale_order_type
-#: model:ir.model.fields,field_description:sale_order_type.field_sale_order_type_incoterm_id
-#: model:ir.ui.view,arch_db:sale_order_type.sot_sale_order_type_search_view
+#: model:ir.model.fields,field_description:sale_order_type.field_sale_order_type__incoterm_id
+#: model_terms:ir.ui.view,arch_db:sale_order_type.sot_sale_order_type_search_view
 msgid "Incoterm"
 msgstr ""
 
@@ -88,22 +88,22 @@ msgid "Invoice"
 msgstr "Faktura"
 
 #. module: sale_order_type
-#: model:ir.model.fields,field_description:sale_order_type.field_sale_order_type___last_update
+#: model:ir.model.fields,field_description:sale_order_type.field_sale_order_type____last_update
 msgid "Last Modified on"
 msgstr "Zadnje mijenjano"
 
 #. module: sale_order_type
-#: model:ir.model.fields,field_description:sale_order_type.field_sale_order_type_write_uid
+#: model:ir.model.fields,field_description:sale_order_type.field_sale_order_type__write_uid
 msgid "Last Updated by"
 msgstr "Zadnji ažurirao"
 
 #. module: sale_order_type
-#: model:ir.model.fields,field_description:sale_order_type.field_sale_order_type_write_date
+#: model:ir.model.fields,field_description:sale_order_type.field_sale_order_type__write_date
 msgid "Last Updated on"
 msgstr "Zadnje ažurirano"
 
 #. module: sale_order_type
-#: model:ir.model.fields,field_description:sale_order_type.field_sale_order_type_name
+#: model:ir.model.fields,field_description:sale_order_type.field_sale_order_type__name
 msgid "Name"
 msgstr "Ime"
 
@@ -113,39 +113,39 @@ msgid "Normal Order"
 msgstr ""
 
 #. module: sale_order_type
-#: model:ir.model.fields,field_description:sale_order_type.field_sale_order_type_payment_term_id
-#: model:ir.ui.view,arch_db:sale_order_type.sot_sale_order_type_search_view
+#: model:ir.model.fields,field_description:sale_order_type.field_sale_order_type__payment_term_id
+#: model_terms:ir.ui.view,arch_db:sale_order_type.sot_sale_order_type_search_view
 msgid "Payment Term"
 msgstr ""
 
 #. module: sale_order_type
-#: model:ir.ui.view,arch_db:sale_order_type.sot_sale_order_type_search_view
+#: model_terms:ir.ui.view,arch_db:sale_order_type.sot_sale_order_type_search_view
 msgid "Price List"
 msgstr ""
 
 #. module: sale_order_type
-#: model:ir.model.fields,field_description:sale_order_type.field_sale_order_type_pricelist_id
+#: model:ir.model.fields,field_description:sale_order_type.field_sale_order_type__pricelist_id
 msgid "Pricelist"
 msgstr ""
 
 #. module: sale_order_type
 #: model:ir.model,name:sale_order_type.model_sale_order
-msgid "Quotation"
+msgid "Sale Order"
 msgstr ""
 
 #. module: sale_order_type
-#: model:ir.model.fields,field_description:sale_order_type.field_res_partner_sale_type
-#: model:ir.model.fields,field_description:sale_order_type.field_res_users_sale_type
+#: model:ir.model.fields,field_description:sale_order_type.field_res_partner__sale_type
+#: model:ir.model.fields,field_description:sale_order_type.field_res_users__sale_type
 msgid "Sale Order Type"
 msgstr ""
 
 #. module: sale_order_type
-#: model:ir.model.fields,field_description:sale_order_type.field_account_invoice_sale_type_id
+#: model:ir.model.fields,field_description:sale_order_type.field_account_invoice__sale_type_id
 msgid "Sale Type"
 msgstr ""
 
 #. module: sale_order_type
-#: model:ir.ui.view,arch_db:sale_order_type.res_partner_sale_type_form_view
+#: model_terms:ir.ui.view,arch_db:sale_order_type.res_partner_sale_type_form_view
 msgid "Sales Order Type"
 msgstr ""
 
@@ -156,21 +156,21 @@ msgid "Sales Order Types"
 msgstr ""
 
 #. module: sale_order_type
-#: model:ir.model.fields,field_description:sale_order_type.field_sale_order_type_picking_policy
-#: model:ir.ui.view,arch_db:sale_order_type.sot_sale_order_type_search_view
+#: model:ir.model.fields,field_description:sale_order_type.field_sale_order_type__picking_policy
+#: model_terms:ir.ui.view,arch_db:sale_order_type.sot_sale_order_type_search_view
 msgid "Shipping Policy"
 msgstr ""
 
 #. module: sale_order_type
-#: model:ir.model.fields,help:sale_order_type.field_sale_order_type_company_id
+#: model:ir.model.fields,help:sale_order_type.field_sale_order_type__company_id
 msgid "The company is automatically set from your user preferences."
 msgstr ""
 
 #. module: sale_order_type
-#: model:ir.model.fields,field_description:sale_order_type.field_sale_order_type_id_5572
-#: model:ir.ui.view,arch_db:sale_order_type.sot_sale_order_type_form_view
-#: model:ir.ui.view,arch_db:sale_order_type.sot_sale_order_type_search_view
-#: model:ir.ui.view,arch_db:sale_order_type.sot_sale_order_type_tree_view
+#: model:ir.model.fields,field_description:sale_order_type.field_sale_order__type_id
+#: model_terms:ir.ui.view,arch_db:sale_order_type.sot_sale_order_type_form_view
+#: model_terms:ir.ui.view,arch_db:sale_order_type.sot_sale_order_type_search_view
+#: model_terms:ir.ui.view,arch_db:sale_order_type.sot_sale_order_type_tree_view
 msgid "Type"
 msgstr "Vrsta"
 
@@ -180,8 +180,8 @@ msgid "Type of sale order"
 msgstr ""
 
 #. module: sale_order_type
-#: model:ir.model.fields,field_description:sale_order_type.field_sale_order_type_warehouse_id
-#: model:ir.ui.view,arch_db:sale_order_type.sot_sale_order_type_search_view
+#: model:ir.model.fields,field_description:sale_order_type.field_sale_order_type__warehouse_id
+#: model_terms:ir.ui.view,arch_db:sale_order_type.sot_sale_order_type_search_view
 msgid "Warehouse"
 msgstr ""
 
