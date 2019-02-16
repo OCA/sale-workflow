@@ -39,4 +39,4 @@ class SaleOrderTypology(models.Model):
         related='warehouse_id.company_id', store=True, readonly=True)
     payment_term_id = fields.Many2one('account.payment.term', 'Payment Term')
     pricelist_id = fields.Many2one('product.pricelist', 'Pricelist')
-    incoterm_id = fields.Many2one('stock.incoterms', 'Incoterm')
+    incoterm_id = fields.Many2one('account.incoterms', 'Incoterm')
