@@ -24,4 +24,9 @@
   * David Vidal
   * Carlos Dauden
 
+* `Pesol <https://www.pesol.es>`_
+
+  * Angel Moya Pardo <angel.moya@pesol.es>
+  * Antonio J Rubio Lorente <antonio.rubio@pesol.es>
+
 Do not contact contributors directly about support or help with technical issues.

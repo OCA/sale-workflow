@@ -65,19 +65,19 @@
                 <field name="pricelist_id" />
                 <field name="incoterm_id" />
                 <group expand="0" string="Group By">
-                    <filter string="Warehouse" domain="[]"
+                    <filter name="warehouse" string="Warehouse" domain="[]"
                             context="{'group_by':'warehouse_id'}" />
-                    <filter string="Entry Sequence" domain="[]"
+                    <filter name="entry_sequence" string="Entry Sequence" domain="[]"
                             context="{'group_by':'sequence_id'}" />
-                    <filter string="Billing Journal" domain="[]"
+                    <filter name="billing_journal" string="Billing Journal" domain="[]"
                             context="{'group_by':'journal_id'}" />
-                    <filter string="Shipping Policy" domain="[]"
+                    <filter name="shipping_policy" string="Shipping Policy" domain="[]"
                             context="{'group_by':'picking_policy'}" />
-                    <filter string="Payment Term" domain="[]"
+                    <filter name="payment_term" string="Payment Term" domain="[]"
                             context="{'group_by':'payment_term_id'}" />
-                    <filter string="Price List" domain="[]"
+                    <filter name="price_list" string="Price List" domain="[]"
                             context="{'group_by':'pricelist_id'}" />
-                    <filter string="Incoterm" domain="[]"
+                    <filter name="incoterm" string="Incoterm" domain="[]"
                             context="{'group_by':'incoterm_id'}" />
                 </group>
             </search>
