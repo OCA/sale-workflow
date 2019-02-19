@@ -13,16 +13,19 @@ class TestSaleElaboration(SavepointCase):
         cls.Elaboration = cls.env['product.elaboration']
         cls.product = cls.env['product.product'].create({
             'name': 'test',
+            'tracking': 'none',
         })
         cls.product_elaboration_A = cls.env['product.product'].create({
             'name': 'Product Elaboration A',
             'type': 'service',
             'list_price': 50.0,
+            'invoice_policy': 'order',
         })
         cls.product_elaboration_B = cls.env['product.product'].create({
             'name': 'Product Elaboration B',
             'type': 'service',
             'list_price': 25.0,
+            'invoice_policy': 'order',
         })
         cls.partner = cls.env['res.partner'].create({
             'name': 'test - partner',
@@ -87,3 +90,42 @@ class TestSaleElaboration(SavepointCase):
         elaboration_lines = self.order.order_line.filtered('is_elaboration')
         self.assertEqual(len(elaboration_lines), 1)
         self.assertEqual(elaboration_lines.product_uom_qty, 11.0)
+
+    def test_invoice_elaboration(self):
+        so = self.env['sale.order'].new({
+            'partner_id': self.partner.id,
+            'order_line': [
+                (0, 0, {
+                    'name': self.product_elaboration_A.name,
+                    'product_id': self.product_elaboration_A.id,
+                    'product_uom_qty': 1.0,
+                    'price_unit': 50.0,
+                    'is_elaboration': True,
+                }),
+                (0, 0, {
+                    'name': self.product_elaboration_B.name,
+                    'product_id': self.product_elaboration_B.id,
+                    'product_uom_qty': 1.0,
+                    'price_unit': 50.0,
+                    'is_elaboration': False,
+                }),
+            ],
+        })
+        so.onchange_partner_id()
+        self.order = self.env['sale.order'].create(
+            so._convert_to_write(so._cache))
+        self.order.action_confirm()
+        invoice_id = self.order.action_invoice_create()
+        invoice = self.env['account.invoice'].browse(invoice_id)
+        so_line_elaboration = self.order.order_line.filtered('is_elaboration')
+        so_line_no_elaboration = self.order.order_line - so_line_elaboration
+        inv_line_elaboration = invoice.invoice_line_ids.filtered(
+            lambda x: x.sale_line_ids == so_line_elaboration)
+        inv_line_no_elaboration = invoice.invoice_line_ids.filtered(
+            lambda x: x.sale_line_ids == so_line_no_elaboration)
+        self.assertEqual(
+            inv_line_elaboration.name,
+            '{} - {}'.format(self.order.name, so_line_elaboration.name))
+        self.assertNotEqual(
+            inv_line_no_elaboration.name,
+            '{} - {}'.format(self.order.name, so_line_no_elaboration.name))
