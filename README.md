@@ -52,6 +52,7 @@ addon | version | summary
 [sale_order_revision](sale_order_revision/) | 10.0.1.0.1 | Sale order revisions
 [sale_order_type](sale_order_type/) | 10.0.1.1.0 | Sale Order Type
 [sale_owner_stock_sourcing](sale_owner_stock_sourcing/) | 10.0.1.0.0 | Manage stock ownership on sale order lines
+[sale_partner_incoterm](sale_partner_incoterm/) | 10.0.1.0.0 | Set the customer preferred incoterm on each sales order
 [sale_procurement_group_by_line](sale_procurement_group_by_line/) | 10.0.1.1.0 | Base module for multiple procurement group by Sale order
 [sale_product_multi_add](sale_product_multi_add/) | 10.0.1.0.0 | Sale Product Multi Add
 [sale_product_set](sale_product_set/) | 10.0.1.0.2 | Sale product set
