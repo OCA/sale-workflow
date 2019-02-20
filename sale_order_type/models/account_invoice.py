@@ -55,5 +55,9 @@ class AccountInvoice(models.Model):
     def onchange_sale_type_id(self):
         if self.sale_type_id.payment_term_id:
             self.payment_term = self.sale_type_id.payment_term_id.id
-        if self.sale_type_id.journal_id:
-            self.journal_id = self.sale_type_id.journal_id.id
+        if (self.type == 'out_refund'):
+            if self.sale_type_id.refund_journal_id:
+                self.journal_id = self.sale_type_id.refund_journal_id.id
+            else:
+                if self.sale_type_id.journal_id:
+                    self.journal_id = self.sale_type_id.journal_id.id
