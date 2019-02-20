@@ -12,6 +12,7 @@ setuptools.setup(
         'odoo12-addon-sale_last_price_info',
         'odoo12-addon-sale_order_archive',
         'odoo12-addon-sale_order_line_sequence',
+        'odoo12-addon-sale_order_type',
         'odoo12-addon-sale_product_set',
     ],
     classifiers=[
