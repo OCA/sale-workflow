@@ -58,6 +58,6 @@ class AccountInvoice(models.Model):
         if (self.type == 'out_refund'):
             if self.sale_type_id.refund_journal_id:
                 self.journal_id = self.sale_type_id.refund_journal_id.id
-            else:
-                if self.sale_type_id.journal_id:
-                    self.journal_id = self.sale_type_id.journal_id.id
+        else:
+            if self.sale_type_id.journal_id:
+                self.journal_id = self.sale_type_id.journal_id.id
