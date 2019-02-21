@@ -19,11 +19,21 @@ class TestSaleOrderPriceRecalculation(common.TransactionCase):
             'uom_id': uom_id.id,
             'uom_po_id': uom_id.id,
         })
+        self.pricelist = self.env['product.pricelist'].create({
+            'name': 'Test pricelist',
+            'item_ids': [
+                (0, 0, {
+                    'applied_on': '3_global',
+                    'compute_price': 'formula',
+                    'base': 'list_price',
+                }),
+            ],
+        })
         self.sale_order = self.env['sale.order'].create({
             'partner_id': self.partner.id,
             'partner_invoice_id': self.partner.id,
             'partner_shipping_id': self.partner.id,
-            'pricelist_id': self.env.ref('product.list0').id,
+            'pricelist_id': self.pricelist.id,
         })
         line_vals = {
             'product_id': self.product.id,
