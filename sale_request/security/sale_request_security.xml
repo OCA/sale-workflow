@@ -20,6 +20,10 @@
         <field name="category_id" ref="module_category_sale_request"/>
     </record>
 
+    <record id="sale.sale_menu_root" model="ir.ui.menu">
+        <field name="groups_id" eval="[(4, ref('group_sale_request_user'))]"/>
+    </record>
+
     <record model="ir.rule" id="sale_request_comp_rule">
         <field name="name">Sale Request multi-company</field>
         <field name="model_id" ref="model_sale_request"/>
