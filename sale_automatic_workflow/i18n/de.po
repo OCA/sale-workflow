@@ -9,19 +9,20 @@ msgstr ""
 "Project-Id-Version: Odoo Server 10.0\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2017-05-26 14:21+0000\n"
-"PO-Revision-Date: 2017-05-26 14:21+0000\n"
-"Last-Translator: OCA Transbot <transbot@odoo-community.org>, 2017\n"
+"PO-Revision-Date: 2019-02-22 16:51+0000\n"
+"Last-Translator: Malin Kienke <malin.kienke@initos.com>\n"
 "Language-Team: German (https://www.transifex.com/oca/teams/23907/de/)\n"
 "Language: de\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
-"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: Weblate 3.4\n"
 
 #. module: sale_automatic_workflow
 #: model:ir.model.fields,field_description:sale_automatic_workflow.field_sale_order_all_qty_delivered
 msgid "All quantities delivered"
-msgstr ""
+msgstr "Alle Mengen geliefert"
 
 #. module: sale_automatic_workflow
 #: model:ir.actions.act_window,name:sale_automatic_workflow.act_sale_workflow_process_form
@@ -36,27 +37,27 @@ msgstr "Automatischer Workflow"
 #. module: sale_automatic_workflow
 #: model:ir.filters,name:sale_automatic_workflow.automatic_workflow_create_invoice_filter
 msgid "Automatic Workflow Create Invoice Filter"
-msgstr ""
+msgstr "Automatischer Workflow Filter für anzulegende Rechnungen"
 
 #. module: sale_automatic_workflow
 #: model:ir.filters,name:sale_automatic_workflow.automatic_workflow_order_filter
 msgid "Automatic Workflow Order Filter"
-msgstr ""
+msgstr "Automatischer Workflow Auftragsfilter"
 
 #. module: sale_automatic_workflow
 #: model:ir.filters,name:sale_automatic_workflow.automatic_workflow_picking_filter
 msgid "Automatic Workflow Picking Filter"
-msgstr ""
+msgstr "Automatischer Workflow Kommissionierfilter"
 
 #. module: sale_automatic_workflow
 #: model:ir.filters,name:sale_automatic_workflow.automatic_workflow_sale_done_filter
 msgid "Automatic Workflow Sale Done Filter"
-msgstr ""
+msgstr "Automatischer Workflow Filter für abgeschlossene Verkäufe"
 
 #. module: sale_automatic_workflow
 #: model:ir.filters,name:sale_automatic_workflow.automatic_workflow_validate_invoice_filter
 msgid "Automatic Workflow Validate Invoice Filter"
-msgstr ""
+msgstr "Automatischer Workflow Filter für zu prüfende Rechnungen"
 
 #. module: sale_automatic_workflow
 #: model:ir.ui.view,arch_db:sale_automatic_workflow.sale_order_view_form
@@ -75,7 +76,7 @@ msgstr ""
 #. module: sale_automatic_workflow
 #: model:ir.model.fields,field_description:sale_automatic_workflow.field_sale_workflow_process_validate_picking
 msgid "Confirm and Transfer Picking"
-msgstr ""
+msgstr "Bestätigen und Kommissionierung abschließen"
 
 #. module: sale_automatic_workflow
 #: model:ir.model.fields,field_description:sale_automatic_workflow.field_sale_workflow_process_create_invoice
@@ -85,7 +86,7 @@ msgstr "Rechnung anlegen"
 #. module: sale_automatic_workflow
 #: model:ir.model.fields,field_description:sale_automatic_workflow.field_sale_workflow_process_create_invoice_filter_id
 msgid "Create Invoice Filter"
-msgstr ""
+msgstr "Rechnungsfilter erstellen"
 
 #. module: sale_automatic_workflow
 #: model:ir.model.fields,field_description:sale_automatic_workflow.field_sale_workflow_process_create_invoice_filter_domain
@@ -136,6 +137,8 @@ msgstr "ID"
 msgid ""
 "If set, displays the message when an userselects the process on a sale order"
 msgstr ""
+"Zeigt diese Meldung, wenn ausgewählt und der Anwender den Prozess im "
+"Verkaufsauftrag wählt"
 
 #. module: sale_automatic_workflow
 #: model:ir.model.fields,help:sale_automatic_workflow.field_sale_workflow_process_invoice_service_delivery
@@ -143,6 +146,8 @@ msgid ""
 "If this box is checked, when the first invoice is created The service sale "
 "order lines will be included and will be marked as delivered"
 msgstr ""
+"Wenn dieses Kästchen angekreuzt ist, wenn die erste Rechnung angelegt wird, "
+"werden die Service-Auftrags-Zeilen eingefügt und als geliefert markiert"
 
 #. module: sale_automatic_workflow
 #: model:ir.model,name:sale_automatic_workflow.model_account_invoice
@@ -152,7 +157,7 @@ msgstr "Rechnung"
 #. module: sale_automatic_workflow
 #: model:ir.model.fields,field_description:sale_automatic_workflow.field_sale_workflow_process_invoice_service_delivery
 msgid "Invoice Service on delivery"
-msgstr ""
+msgstr "Rechnungsstellung bei Lieferung"
 
 #. module: sale_automatic_workflow
 #: model:ir.model.fields,field_description:sale_automatic_workflow.field_automatic_workflow_job___last_update
@@ -185,7 +190,7 @@ msgstr "Auftragskonfiguration"
 #. module: sale_automatic_workflow
 #: model:ir.model.fields,field_description:sale_automatic_workflow.field_sale_workflow_process_order_filter_id
 msgid "Order Filter"
-msgstr ""
+msgstr "Auftragsfilter"
 
 #. module: sale_automatic_workflow
 #: model:ir.model.fields,field_description:sale_automatic_workflow.field_sale_workflow_process_order_filter_domain
@@ -195,7 +200,7 @@ msgstr ""
 #. module: sale_automatic_workflow
 #: model:ir.model.fields,field_description:sale_automatic_workflow.field_sale_workflow_process_picking_filter_id
 msgid "Picking Filter"
-msgstr ""
+msgstr "Kommissionierfilter"
 
 #. module: sale_automatic_workflow
 #: model:ir.model.fields,field_description:sale_automatic_workflow.field_sale_workflow_process_picking_filter_domain
@@ -204,13 +209,15 @@ msgstr ""
 
 #. module: sale_automatic_workflow
 #: model:ir.model.fields,field_description:sale_automatic_workflow.field_sale_workflow_process_sale_done
+#, fuzzy
 msgid "Sale Done"
-msgstr ""
+msgstr "Verkauf abgeschlossen"
 
 #. module: sale_automatic_workflow
 #: model:ir.model.fields,field_description:sale_automatic_workflow.field_sale_workflow_process_sale_done_filter_id
+#, fuzzy
 msgid "Sale Done Filter"
-msgstr ""
+msgstr "Filter für abgeschlossene Verkäufe"
 
 #. module: sale_automatic_workflow
 #: model:ir.model.fields,field_description:sale_automatic_workflow.field_sale_workflow_process_sale_done_filter_domain
@@ -227,7 +234,7 @@ msgstr "Verkaufs-Workflow"
 #. module: sale_automatic_workflow
 #: model:ir.model.fields,field_description:sale_automatic_workflow.field_sale_workflow_process_property_journal_id
 msgid "Sales Journal"
-msgstr ""
+msgstr "Verkaufs-Journal"
 
 #. module: sale_automatic_workflow
 #: model:ir.model,name:sale_automatic_workflow.model_sale_order
@@ -242,7 +249,7 @@ msgstr "Verkaufsteam"
 #. module: sale_automatic_workflow
 #: model:ir.model.fields,help:sale_automatic_workflow.field_sale_workflow_process_property_journal_id
 msgid "Set default journal to use on invoice"
-msgstr ""
+msgstr "Setze Standard-Journal für Rechnungen"
 
 #. module: sale_automatic_workflow
 #: model:ir.ui.view,arch_db:sale_automatic_workflow.sale_workflow_process_view_form
@@ -262,7 +269,7 @@ msgstr "Lagerbuchung"
 #. module: sale_automatic_workflow
 #: model:ir.model,name:sale_automatic_workflow.model_stock_picking
 msgid "Transfer"
-msgstr ""
+msgstr "Transfer"
 
 #. module: sale_automatic_workflow
 #: model:ir.model.fields,field_description:sale_automatic_workflow.field_sale_workflow_process_validate_invoice
@@ -272,7 +279,7 @@ msgstr "KommissionierscheiPrüfe Rechnung"
 #. module: sale_automatic_workflow
 #: model:ir.model.fields,field_description:sale_automatic_workflow.field_sale_workflow_process_validate_invoice_filter_id
 msgid "Validate Invoice Filter"
-msgstr ""
+msgstr "Filter für Rechnungsprüfung"
 
 #. module: sale_automatic_workflow
 #: model:ir.model.fields,field_description:sale_automatic_workflow.field_sale_workflow_process_validate_invoice_filter_domain
