@@ -193,13 +193,19 @@ class CreateSaleOrderWizard(models.TransientModel):
                     ' the requested quantity.'))
         so_obj = self.env['sale.order']
         sol_obj = self.env['sale.order.line']
-        request_line = self.request_line_id
+        request_line = self.request_line_id.sudo()
         lines = self.line_ids.filtered('qty_to_sale')
         if self.line_ids and not lines:
             raise UserError(
                 _('You have not defined the quantity to sale to any master '
                   'order, please define it.'))
         if not self.line_ids:
+            sale_line = self.env['sale.order.line'].search([
+                ('request_line_id', '=', self.request_line_id.id)])
+            if sale_line:
+                raise UserError(
+                    _('Error! The quantity to sale is greather than'
+                        ' the requested quantity.'))
             order = self._get_sale_order(request_line)
             so_obj |= order
             params = {
