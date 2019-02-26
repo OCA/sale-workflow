@@ -37,60 +37,29 @@ class ProductPack(models.Model):
     @api.multi
     def get_sale_order_line_vals(self, line, order):
         self.ensure_one()
-        # pack_price = 0.0
-        subproduct = self.product_id
         quantity = self.quantity * line.product_uom_qty
-
-        taxes = order.fiscal_position_id.map_tax(
-            subproduct.taxes_id.filtered(
-                lambda r: r.company_id.id == order.company_id.id))
-        tax_id = [(6, 0, taxes.ids)]
-
-        # if pack is fixed price or totlice price we don want amount on
-        # pack lines
-        if line.product_id.pack_price_type in [
-                'fixed_price', 'totalice_price']:
-            price = 0.0
-            discount = 0.0
-        else:
-            pricelist = order.pricelist_id.id
-            price = self.env['product.pricelist'].with_context(
-                context={
-                    'uom': subproduct.uom_id.id,
-                    'date': order.date_order,
-                }
-            ).price_get(
-                subproduct.id, quantity,
-                order.partner_id.id)[pricelist]
-            discount = self.discount
-
-        # Obtain product name in partner's language
-        if order.partner_id.lang:
-            subproduct = subproduct.with_context(
-                lang=order.partner_id.lang)
-        subproduct_name = subproduct.name
-
-        vals = {
+        line_vals = {
             'order_id': order.id,
-            'name': '%s%s' % (
-                '> ' * (line.pack_depth + 1), subproduct_name
-            ),
-            # 'delay': subproduct.sale_delay or 0.0,
-            'product_id': subproduct.id,
-            # 'procurement_ids': (
-            #     [(4, x.id) for x in line.procurement_ids]
-            # ),
-            'price_unit': price,
-            'tax_id': tax_id,
-            'address_allotment_id': False,
-            'product_uom_qty': quantity,
-            'product_uom': subproduct.uom_id.id,
-            'product_packaging': False,
-            'discount': discount,
-            'number_packages': False,
-            'th_weight': False,
-            'state': 'draft',
+            'product_id': self.product_id.id or False,
             'pack_parent_line_id': line.id,
             'pack_depth': line.pack_depth + 1,
+            # 'sequence': sequence,
+            'company_id': order.company_id.id,
         }
+        sol = line.new(line_vals)
+        sol.product_id_change()
+        sol.product_uom_qty = quantity
+        sol.product_uom_change()
+        sol._onchange_discount()
+        vals = sol._convert_to_write(sol._cache)
+
+        discount = 100.0 - (
+            (100.0 - sol.discount) * (100.0 - self.discount) / 100.0)
+
+        vals.update({
+            'discount': discount,
+            'name': '%s%s' % (
+                '> ' * (line.pack_depth + 1), sol.name
+            ),
+        })
         return vals
