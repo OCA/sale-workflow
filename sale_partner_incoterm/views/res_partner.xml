@@ -8,11 +8,12 @@
         <field name="model">res.partner</field>
         <field name="inherit_id" ref="stock.view_partner_stock_form"/>
         <field name="arch" type="xml">
-            <field name="user_id" position="after">
-                <field name="sale_incoterm_id"
-                       attrs="{'invisible': [('customer', '!=', True)]}" />
+            <field name="property_payment_term_id" position="after">
+                <field name="sale_incoterm_id" string="Default Sales Incoterm"
+                       attrs="{'invisible': [('customer', '!=', True)]}"
+                       widget="selection"
+                       groups="sale_stock.group_display_incoterm"/>
             </field>
         </field>
     </record>
 </odoo>
-
