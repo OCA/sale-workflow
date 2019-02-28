@@ -1,4 +1,5 @@
 # Copyright 2018 Tecnativa - Sergio Teruel
+# Copyright 2019 Tecnativa - Pedro M. Baeza
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
 from odoo import api, fields, models
 
@@ -15,8 +16,7 @@ class SaleOrder(models.Model):
     _inherit = 'sale.order'
 
     def _create_elaboration_line(self, product, qty):
-        """
-        Create a sale order line from a elaboration product, search a line
+        """Create a sale order line from a elaboration product, search a line
         with the same elaboration product to add qty
         :param product:
         :param qty:
@@ -33,6 +33,7 @@ class SaleOrder(models.Model):
             'product_id': product.id,
             'is_elaboration': True,
         })
+        # TODO: Needed?
         sol._origin = SaleOrderLine
         _execute_onchanges(sol, 'product_id')
         sol.update({'product_uom_qty': qty})
@@ -40,8 +41,7 @@ class SaleOrder(models.Model):
         vals = sol._convert_to_write(sol._cache)
         if self.order_line:
             vals['sequence'] = self.order_line[-1].sequence + 1
-        sol = SaleOrderLine.sudo().create(vals)
-        return sol
+        return SaleOrderLine.sudo().create(vals)
 
 
 class SaleOrderLine(models.Model):
