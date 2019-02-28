@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!-- Copyright 2018 Tecnativa - Sergio Teruel
+     Copyright 2019 Tecnativa - Pedro M. Baeza
      License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl). -->
 <odoo>
 
@@ -33,8 +34,9 @@
                 />
                 <field name="elaboration_id"/>
                 <field name="elaboration_note"/>
-                <filter string="Is Elaboration" domain="[('elaboration_id', '!=', False)]"
-                        name="is_elaboration"/>
+                <filter string="Is Elaboration"
+                    domain="['|', ('elaboration_id', '!=', False), ('elaboration_note', '!=', False)]"
+                    name="is_elaboration"/>
                 <separator/>
             </field>
             <group position="inside">
