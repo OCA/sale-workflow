@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 12.0+e\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-02-13 05:04+0000\n"
-"PO-Revision-Date: 2019-02-13 05:04+0000\n"
+"POT-Creation-Date: 2019-03-01 13:23+0000\n"
+"PO-Revision-Date: 2019-03-01 13:23+0000\n"
 "Last-Translator: <>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -112,6 +112,7 @@ msgid "Create Sale Order"
 msgstr "Crear Orden"
 
 #. module: sale_request
+#: model:ir.actions.act_window,name:sale_request.action_create_sale_order
 #: model:ir.model,name:sale_request.model_create_sale_order_wizard
 msgid "Create Sale Orders From Sale Request"
 msgstr "Crear Ordenes desde Requisiciones de Venta"
@@ -139,6 +140,7 @@ msgstr "Creado el"
 #. module: sale_request
 #: model:ir.model.fields,field_description:sale_request.field_link_sale_order_wizard__partner_id
 #: model:ir.model.fields,field_description:sale_request.field_sale_request__partner_id
+#: model_terms:ir.ui.view,arch_db:sale_request.sale_order_line_search
 msgid "Customer"
 msgstr "Cliente"
 
@@ -185,13 +187,14 @@ msgstr "Borrador"
 
 #. module: sale_request
 #: code:addons/sale_request/wizards/create_sale_order_wizard.py:65
-#: code:addons/sale_request/wizards/create_sale_order_wizard.py:313
+#: code:addons/sale_request/wizards/create_sale_order_wizard.py:319
 #, python-format
 msgid "Error!"
-msgstr "¡Error!"
+msgstr ""
 
 #. module: sale_request
 #: code:addons/sale_request/wizards/create_sale_order_wizard.py:192
+#: code:addons/sale_request/wizards/create_sale_order_wizard.py:207
 #, python-format
 msgid "Error! The quantity to sale is greather than the requested quantity."
 msgstr "¡Error! La cantidad a vender es mathor que la cantidad requisitada."
@@ -231,6 +234,11 @@ msgstr "Seguidores (Empresas)"
 #: model_terms:ir.ui.view,arch_db:sale_request.view_sale_request_search
 msgid "Future Activities"
 msgstr "Actividades futuras"
+
+#. module: sale_request
+#: model_terms:ir.ui.view,arch_db:sale_request.sale_order_line_search
+msgid "Group By"
+msgstr "Agrupar por"
 
 #. module: sale_request
 #: model:ir.model.fields,field_description:sale_request.field_create_sale_order_wizard__has_lines
@@ -331,7 +339,7 @@ msgid "Lines with no link"
 msgstr "Líneas sin víncular"
 
 #. module: sale_request
-#: model:ir.actions.act_window,name:sale_request.action_create_sale_order
+#: model:ir.actions.act_window,name:sale_request.action_link_sale_order
 msgid "Link Sale Orders to Master Sale Order"
 msgstr "Vincular pedidos con el pedido master"
 
@@ -373,6 +381,12 @@ msgstr "Líneas de pedido master"
 #: model:ir.ui.menu,name:sale_request.menu_sale_order_master
 msgid "Master Sale Orders"
 msgstr "Pedidos master"
+
+#. module: sale_request
+#: model:ir.actions.act_window,name:sale_request.action_sale_order_line_master
+#: model:ir.ui.menu,name:sale_request.menu_sale_order_line_master
+msgid "Master Sale Orders Balance"
+msgstr "Saldo de Pedidos Master"
 
 #. module: sale_request
 #: model:ir.model.fields,field_description:sale_request.field_sale_request__message_has_error
@@ -445,6 +459,11 @@ msgstr "Número de mensajes con error de envío"
 #: model:ir.model.fields,help:sale_request.field_sale_request__message_unread_counter
 msgid "Number of unread messages"
 msgstr "Número de mensajes no leidos"
+
+#. module: sale_request
+#: model_terms:ir.ui.view,arch_db:sale_request.sale_order_line_search
+msgid "Order"
+msgstr "Pedido"
 
 #. module: sale_request
 #: model_terms:ir.ui.view,arch_db:sale_request.view_sale_request_search
@@ -587,7 +606,7 @@ msgid "Responsible User"
 msgstr "Usuario responsable"
 
 #. module: sale_request
-#: code:addons/sale_request/wizards/create_sale_order_wizard.py:242
+#: code:addons/sale_request/wizards/create_sale_order_wizard.py:248
 #: code:addons/sale_request/wizards/link_sale_order_wizard.py:89
 #: model:ir.model,name:sale_request.model_sale_order
 #: model:ir.model.fields,field_description:sale_request.field_create_sale_order_wizard_line__order_id
@@ -603,6 +622,7 @@ msgstr "Línea de Pedido de Venta"
 
 #. module: sale_request
 #: model:ir.model.fields,field_description:sale_request.field_sale_request_line__sale_line_ids
+#: model_terms:ir.ui.view,arch_db:sale_request.sale_order_line_search
 msgid "Sale Order Lines"
 msgstr "Líneas de Pedido de Venta"
 
@@ -794,7 +814,7 @@ msgid "You cannot request more than the initial demand of this sale request."
 msgstr "No puede solicitar más cantidad que la demanda inicial de esta requisición."
 
 #. module: sale_request
-#: code:addons/sale_request/wizards/create_sale_order_wizard.py:314
+#: code:addons/sale_request/wizards/create_sale_order_wizard.py:320
 #, python-format
 msgid "You cannot request more than the remaining qty of this master sale order."
 msgstr "No puedes requerir más que la cantidad restante de este pedido master"
