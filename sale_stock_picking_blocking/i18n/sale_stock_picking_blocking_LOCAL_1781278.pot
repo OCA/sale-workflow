@@ -111,11 +111,6 @@ msgid "Sale Delivery Block Reason"
 msgstr ""
 
 #. module: sale_stock_picking_blocking
-#: model:ir.model,name:sale_stock_picking_blocking.model_sale_order
-msgid "Sale Order"
-msgstr ""
-
-#. module: sale_stock_picking_blocking
 #: model_terms:ir.ui.view,arch_db:sale_stock_picking_blocking.sale_stock_picking_blocking_reason_tree_view
 msgid "Sale Order Delivery Block Reason"
 msgstr ""
@@ -138,7 +133,9 @@ msgstr ""
 #. module: sale_stock_picking_blocking
 #: model:ir.model.fields,help:sale_stock_picking_blocking.field_res_partner__default_delivery_block
 #: model:ir.model.fields,help:sale_stock_picking_blocking.field_res_users__default_delivery_block
-msgid "Set a reason to block by default the deliveries in this customer sales orders."
+msgid ""
+"Set a reason to block by default the deliveries in this customer sales "
+"orders."
 msgstr ""
 
 #. module: sale_stock_picking_blocking
