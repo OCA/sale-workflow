@@ -43,6 +43,8 @@ class SaleOrderLine(models.Model):
 
     @api.constrains('product_id', 'price_unit', 'product_uom_qty')
     def expand_pack_line(self):
+        if self._context.get('update_pricelist', False):
+            return
         detailed_packs = ['components_price', 'totalice_price', 'fixed_price']
         if (
                 self.state == 'draft' and
@@ -102,6 +104,8 @@ class SaleOrderLine(models.Model):
 
     @api.constrains('product_id')
     def expand_none_detailed_pack(self):
+        if self._context.get('update_pricelist', False):
+            return
         if self.product_id.pack_price_type == 'none_detailed_assited_price':
             # remove previus existing lines
             self.pack_line_ids.unlink()
@@ -137,7 +141,8 @@ class SaleOrderLine(models.Model):
         """ Do not let to edit a sale order line if this one belongs to pack
         """
         if self._origin.pack_parent_line_id and \
-           not self._origin.pack_parent_line_id.product_id.allow_modify_pack:
+           self._origin.pack_parent_line_id.product_id.allow_modify_pack \
+           not in ['only_backend', 'frontend_backend']:
             raise UserError(_(
                 'You can not change this line because is part of a pack'
                 ' included in this order'))

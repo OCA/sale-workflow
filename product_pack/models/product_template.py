@@ -39,8 +39,10 @@ class ProductTemplate(models.Model):
         related='product_variant_ids.used_pack_line_ids',
         readonly=True,
     )
-    allow_modify_pack = fields.Boolean(
-    )
+    allow_modify_pack = fields.Selection([
+        ('only_backend', 'Only backend'),
+        ('frontend_backend', 'E-commerce and Bankend'),
+    ])
 
     @api.onchange('pack_price_type')
     def onchange_allow_modify_pack(self):
