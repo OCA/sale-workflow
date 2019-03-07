@@ -31,7 +31,7 @@ msgid ""
 msgstr ""
 
 #. module: sale_stock_picking_blocking
-#: model:ir.ui.view,arch_db:sale_stock_picking_blocking.sale_stock_picking_blocking_reason_form_view
+#: model_terms:ir.ui.view,arch_db:sale_stock_picking_blocking.sale_stock_picking_blocking_reason_form_view
 msgid "Applied to"
 msgstr ""
 
@@ -41,74 +41,69 @@ msgid "Contact"
 msgstr ""
 
 #. module: sale_stock_picking_blocking
-#: model:ir.model.fields,field_description:sale_stock_picking_blocking.field_sale_delivery_block_reason_create_uid
+#: model:ir.model.fields,field_description:sale_stock_picking_blocking.field_sale_delivery_block_reason__create_uid
 msgid "Created by"
 msgstr "Utworzone przez"
 
 #. module: sale_stock_picking_blocking
-#: model:ir.model.fields,field_description:sale_stock_picking_blocking.field_sale_delivery_block_reason_create_date
+#: model:ir.model.fields,field_description:sale_stock_picking_blocking.field_sale_delivery_block_reason__create_date
 msgid "Created on"
 msgstr "Utworzono"
 
 #. module: sale_stock_picking_blocking
-#: model:ir.model.fields,field_description:sale_stock_picking_blocking.field_res_partner_default_delivery_block
-#: model:ir.model.fields,field_description:sale_stock_picking_blocking.field_res_users_default_delivery_block
+#: model:ir.model.fields,field_description:sale_stock_picking_blocking.field_res_partner__default_delivery_block
+#: model:ir.model.fields,field_description:sale_stock_picking_blocking.field_res_users__default_delivery_block
 msgid "Default Delivery Block Reason"
 msgstr ""
 
 #. module: sale_stock_picking_blocking
-#: model:ir.model.fields,field_description:sale_stock_picking_blocking.field_sale_order_delivery_block_id
+#: model:ir.model.fields,field_description:sale_stock_picking_blocking.field_sale_order__delivery_block_id
 #: model:ir.ui.menu,name:sale_stock_picking_blocking.menu_sale_stock_picking_blocking_reason
 msgid "Delivery Block Reason"
 msgstr ""
 
 #. module: sale_stock_picking_blocking
-#: model:ir.ui.view,arch_db:sale_stock_picking_blocking.view_sales_order_filter
+#: model_terms:ir.ui.view,arch_db:sale_stock_picking_blocking.view_sales_order_filter
 msgid "Delivery Blocked Sales"
 msgstr ""
 
 #. module: sale_stock_picking_blocking
-#: model:ir.model.fields,field_description:sale_stock_picking_blocking.field_sale_delivery_block_reason_description
+#: model:ir.model.fields,field_description:sale_stock_picking_blocking.field_sale_delivery_block_reason__description
 msgid "Description"
 msgstr "Opis"
 
 #. module: sale_stock_picking_blocking
-#: model:ir.model.fields,field_description:sale_stock_picking_blocking.field_sale_delivery_block_reason_display_name
+#: model:ir.model.fields,field_description:sale_stock_picking_blocking.field_sale_delivery_block_reason__display_name
 msgid "Display Name"
 msgstr "Wyświetlana nazwa "
 
 #. module: sale_stock_picking_blocking
-#: model:ir.model.fields,field_description:sale_stock_picking_blocking.field_sale_delivery_block_reason_id
+#: model:ir.model.fields,field_description:sale_stock_picking_blocking.field_sale_delivery_block_reason__id
 msgid "ID"
 msgstr "ID"
 
 #. module: sale_stock_picking_blocking
-#: model:ir.model.fields,field_description:sale_stock_picking_blocking.field_sale_delivery_block_reason___last_update
+#: model:ir.model.fields,field_description:sale_stock_picking_blocking.field_sale_delivery_block_reason____last_update
 msgid "Last Modified on"
 msgstr "Ostatnio modyfikowano"
 
 #. module: sale_stock_picking_blocking
-#: model:ir.model.fields,field_description:sale_stock_picking_blocking.field_sale_delivery_block_reason_write_uid
+#: model:ir.model.fields,field_description:sale_stock_picking_blocking.field_sale_delivery_block_reason__write_uid
 msgid "Last Updated by"
 msgstr "Ostatnio modyfikowane przez"
 
 #. module: sale_stock_picking_blocking
-#: model:ir.model.fields,field_description:sale_stock_picking_blocking.field_sale_delivery_block_reason_write_date
+#: model:ir.model.fields,field_description:sale_stock_picking_blocking.field_sale_delivery_block_reason__write_date
 msgid "Last Updated on"
 msgstr "Ostatnia zmiana"
 
 #. module: sale_stock_picking_blocking
-#: model:ir.model.fields,field_description:sale_stock_picking_blocking.field_sale_delivery_block_reason_name
+#: model:ir.model.fields,field_description:sale_stock_picking_blocking.field_sale_delivery_block_reason__name
 msgid "Name"
 msgstr "Nazwa"
 
 #. module: sale_stock_picking_blocking
-#: model:ir.model,name:sale_stock_picking_blocking.model_sale_order
-msgid "Quotation"
-msgstr ""
-
-#. module: sale_stock_picking_blocking
-#: model:ir.ui.view,arch_db:sale_stock_picking_blocking.view_order_form
+#: model_terms:ir.ui.view,arch_db:sale_stock_picking_blocking.view_order_form
 msgid "Release Delivery Block"
 msgstr ""
 
@@ -119,16 +114,22 @@ msgstr ""
 
 #. module: sale_stock_picking_blocking
 #: model:ir.actions.act_window,name:sale_stock_picking_blocking.action_sale_stock_picking_blocking_reason
+#: model:ir.model,name:sale_stock_picking_blocking.model_sale_delivery_block_reason
 msgid "Sale Delivery Block Reason"
 msgstr ""
 
 #. module: sale_stock_picking_blocking
-#: model:ir.ui.view,arch_db:sale_stock_picking_blocking.sale_stock_picking_blocking_reason_tree_view
+#: model:ir.model,name:sale_stock_picking_blocking.model_sale_order
+msgid "Sale Order"
+msgstr ""
+
+#. module: sale_stock_picking_blocking
+#: model_terms:ir.ui.view,arch_db:sale_stock_picking_blocking.sale_stock_picking_blocking_reason_tree_view
 msgid "Sale Order Delivery Block Reason"
 msgstr ""
 
 #. module: sale_stock_picking_blocking
-#: model:ir.model.fields,field_description:sale_stock_picking_blocking.field_sale_delivery_block_reason_sale_order_ids
+#: model:ir.model.fields,field_description:sale_stock_picking_blocking.field_sale_delivery_block_reason__sale_order_ids
 msgid "Sale Orders"
 msgstr ""
 
@@ -138,8 +139,8 @@ msgid "Sales Order Line"
 msgstr ""
 
 #. module: sale_stock_picking_blocking
-#: model:ir.model.fields,help:sale_stock_picking_blocking.field_res_partner_default_delivery_block
-#: model:ir.model.fields,help:sale_stock_picking_blocking.field_res_users_default_delivery_block
+#: model:ir.model.fields,help:sale_stock_picking_blocking.field_res_partner__default_delivery_block
+#: model:ir.model.fields,help:sale_stock_picking_blocking.field_res_users__default_delivery_block
 msgid ""
 "Set a reason to block by default the deliveries in this customer sales "
 "orders."
@@ -149,11 +150,6 @@ msgstr ""
 #: code:addons/sale_stock_picking_blocking/models/sale_order.py:19
 #, python-format
 msgid "You cannot block a sale order with \"auto_done_setting\" active."
-msgstr ""
-
-#. module: sale_stock_picking_blocking
-#: model:ir.model,name:sale_stock_picking_blocking.model_sale_delivery_block_reason
-msgid "sale.delivery.block.reason"
 msgstr ""
 
 #~ msgid "Partner"
