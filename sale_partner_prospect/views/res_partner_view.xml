@@ -33,7 +33,7 @@
                 <filter string="Prospect" name="prospect" domain="[('prospect','=',True)]"/>
             </filter>
             <group name="group_by" position="inside">
-                <filter string="Prospect" domain="[]" context="{'group_by':'prospect'}"/>
+                <filter name="Prospect" domain="[]" context="{'group_by':'prospect'}"/>
             </group>
         </field>
     </record>

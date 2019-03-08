@@ -2,11 +2,12 @@
 
 {
     "name": "Partner Prospect",
-    "version": "11.0.1.0.0",
+    "version": "12.0.1.0.0",
     "category": "Sales Management",
     "website": "https://github.com/OCA/sale-workflow",
     "author": "AvanzOSC, "
               "Serv. Tecnol. Avanzados - Pedro M. Baeza,"
+              "Randall Castro,"
               "Odoo Community Association (OCA)",
     "license": "AGPL-3",
     "installable": True,
