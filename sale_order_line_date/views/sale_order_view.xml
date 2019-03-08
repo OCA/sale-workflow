@@ -10,10 +10,10 @@
                 <attribute name="context">{'default_commitment_date':commitment_date}</attribute>
             </field>
             <xpath expr="//field[@name='order_line']/form//field[@name='tax_id']" position="after">
-                <field name="commitment_date"/>
+                <field name="commitment_date" groups="sale.group_sale_order_dates"/>
             </xpath>
             <xpath expr="//field[@name='order_line']/tree/field[@name='price_unit']" position="after">
-                <field name="commitment_date"/>
+                <field name="commitment_date" groups="sale.group_sale_order_dates"/>
             </xpath>
         </field>
     </record>
@@ -24,7 +24,7 @@
         <field name="inherit_id" ref="sale.view_order_line_tree" />
         <field name="arch" type="xml">
             <field name="name" position="after">
-                <field name="commitment_date"/>
+                <field name="commitment_date" groups="sale.group_sale_order_dates"/>
             </field>
         </field>
     </record>
