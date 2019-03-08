@@ -23,6 +23,6 @@ class SaleOrderLine(models.Model):
         vals = super()._prepare_procurement_values(group_id)
         if self.requested_date:
             vals.update({
-                'date_planned': self.requested_date,
+                'date_planned': self.commitment_date,
             })
         return vals
