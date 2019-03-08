@@ -16,11 +16,19 @@ class SaleOrderLine(models.Model):
 
     @api.multi
     def write(self, vals):
-        res = super(SaleOrderLine, self).write(vals)
-        for line in self:
-            if not line.commitment_date and line.order_id.commitment_date:
-                line.commitment_date = line.order_id.commitment_date
-        return res
+        # Force commitment date only if all lines are on the same sale order
+        if len(self.mapped('order_id')) == 1:
+            for line in self:
+                if (
+                    not line.commitment_date
+                    and line.order_id.commitment_date
+                    and 'commitment_date' not in vals
+                ):
+                    vals.update({
+                        'commitment_date': line.order_id.commitment_date
+                    })
+                    break
+        return super(SaleOrderLine, self).write(vals)
 
     @api.model
     def create(self, vals):
@@ -34,5 +42,7 @@ class SaleOrderLine(models.Model):
         vals = super(SaleOrderLine, self).\
             _prepare_procurement_values(group_id)
         if self.commitment_date:
-            vals.update({'date_planned': self.commitment_date})
+            vals.update({
+                'date_planned': self.commitment_date,
+            })
         return vals
