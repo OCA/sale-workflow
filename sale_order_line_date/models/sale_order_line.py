@@ -21,7 +21,7 @@ class SaleOrderLine(models.Model):
     @api.multi
     def _prepare_procurement_values(self, group_id=False):
         vals = super()._prepare_procurement_values(group_id)
-        if self.requested_date:
+        if self.commitment_date:
             vals.update({
                 'date_planned': self.commitment_date,
             })
