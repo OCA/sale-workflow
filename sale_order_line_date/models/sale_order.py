@@ -15,11 +15,10 @@ class SaleOrder(models.Model):
     @api.multi
     @api.onchange('commitment_date')
     def _onchange_commitment_date(self):
-        """Warn if the commitment dates is sooner than the commitment date"""
+        """Update order lines with commitment date from sale order"""
         result = super(SaleOrder, self)._onchange_commitment_date() or {}
         if not self:
             return result
-        self.ensure_one()
         if 'warning' not in result:
             result['value'] = {'order_line': [
                 (1, line.id, {'commitment_date': self.commitment_date})
