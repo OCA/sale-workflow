@@ -17,11 +17,10 @@ class SaleOrder(models.Model):
     # requested_date was renamed to commitment_date
     @api.onchange('commitment_date')
     def _onchange_commitment_date(self):
-        """Warn if the requested dates is sooner than the commitment date"""
+        """Update order lines with commitment date from sale order"""
         result = super()._onchange_commitment_date() or {}
         if not self:
             return result
-        self.ensure_one()
         if 'warning' not in result:
             lines = []
             for line in self.order_line:

@@ -13,10 +13,30 @@ from odoo import api, fields, models
 class SaleOrderLine(models.Model):
     _inherit = 'sale.order.line'
 
-    commitment_date = fields.Datetime(
-        related="order_id.commitment_date",
-        readonly=True,
-    )
+    commitment_date = fields.Datetime()
+
+    @api.multi
+    def write(self, vals):
+        # Force commitment date only if all the lines are on the same sale.order
+        if len(self.mapped('order_id')) == 1:
+            for line in self:
+                if (
+                    not line.commitment_date
+                    and line.order_id.commitment_date
+                    and 'commitment_date' not in vals
+                ):
+                    vals.update({
+                        'commitment_date': line.order_id.commitment_date
+                    })
+                    break
+        return super(SaleOrderLine, self).write(vals)
+
+    @api.model
+    def create(self, vals):
+        res = super(SaleOrderLine, self).create(vals)
+        if res.order_id.commitment_date and not res.commitment_date:
+            res.write({'commitment_date': res.order_id.commitment_date})
+        return res
 
     @api.multi
     def _prepare_procurement_values(self, group_id=False):
