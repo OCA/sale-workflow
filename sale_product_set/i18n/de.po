@@ -1,7 +1,7 @@
 # Translation of Odoo Server.
 # This file contains the translation of the following modules:
 # * sale_product_set
-# 
+#
 # Translators:
 # OCA Transbot <transbot@odoo-community.org>, 2017
 msgid ""
@@ -12,10 +12,10 @@ msgstr ""
 "PO-Revision-Date: 2017-11-23 01:51+0000\n"
 "Last-Translator: OCA Transbot <transbot@odoo-community.org>, 2017\n"
 "Language-Team: German (https://www.transifex.com/oca/teams/23907/de/)\n"
+"Language: de\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
-"Language: de\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
 #. module: sale_product_set
@@ -66,6 +66,11 @@ msgstr "Anzeigename"
 #: model:ir.model.fields,field_description:sale_product_set.field_product_set_line_id
 msgid "ID"
 msgstr "ID"
+
+#. module: sale_product_set
+#: model:ir.model.fields,field_description:sale_product_set.field_product_set_image
+msgid "Image"
+msgstr ""
 
 #. module: sale_product_set
 #: model:ir.model.fields,field_description:sale_product_set.field_product_set___last_update
@@ -134,6 +139,11 @@ msgstr ""
 #: model:ir.model.fields,field_description:sale_product_set.field_product_set_line_quantity
 msgid "Quantity"
 msgstr "Menge"
+
+#. module: sale_product_set
+#: model:ir.model.fields,help:sale_product_set.field_product_set_image
+msgid "Select an image to display for the product set"
+msgstr ""
 
 #. module: sale_product_set
 #: model:ir.model.fields,field_description:sale_product_set.field_product_set_line_sequence

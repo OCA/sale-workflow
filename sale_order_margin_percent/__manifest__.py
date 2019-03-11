@@ -8,7 +8,7 @@
     "version": "10.0.1.0.0",
     "category": "Sales",
     "website": "http://www.pesol.es",
-    "author": "PESOL",
+    "author": "PESOL, Odoo Community Association (OCA)",
     "license": "AGPL-3",
     "application": False,
     "installable": True,

@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo noupdate="1">
+
+        <!-- Sequences for sale.order.generator -->
+        <record id="seq_generator_sequence" model="ir.sequence">
+            <field name="name">Generator Sequence</field>
+            <field name="code">sale.order.generator</field>
+            <field name="prefix">GEN-</field>
+            <field name="padding" eval="5"></field>
+            <field name="company_id" eval="False"/>
+        </record>
+
+        <record model="res.partner" id="res_partner_for_sale_template">
+            <field name="name">Partner for Template Order</field>
+            <field name="active" eval="False"/>
+        </record>
+
+</odoo>

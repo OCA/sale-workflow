@@ -16,8 +16,7 @@ To use this module, you need to:
 
 #. Go to sales and enter in sale order section,
 #. create a sale order then add products,
-#. You can get the percent because you have values in the field margin and
-amount untaxed.
+#. You can get the percent because you have values in the field margin and amount untaxed.
 
 ===========
 Bug Tracker
@@ -35,8 +34,7 @@ Credits
 Images
 ------
 
-* Odoo Community Association: `Icon
-<https://github.com/OCA/maintainer-tools/blob/master/template/module/static/description/icon.svg>`_.
+* Odoo Community Association: `Icon <https://github.com/OCA/maintainer-tools/blob/master/template/module/static/description/icon.svg>`_.
 
 Contributors
 ------------

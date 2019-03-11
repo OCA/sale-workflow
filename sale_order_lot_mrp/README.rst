@@ -15,7 +15,7 @@ Usage
 =====
 
    #. First define a bom kit that is composed by components wich are tracked
-by lot and have the option "Lot Generation Auto" = True.
+      by lot and have the option "Lot Generation Auto" = True.
 
 .. image:: static/description/so_mrp_lot-1.png
     :width: 800 px
@@ -42,7 +42,7 @@ by lot and have the option "Lot Generation Auto" = True.
 |
 
    #. Create a sale order with for the KIT desk & laptop and confirm it.
-A lot number will be generated for this product.
+      A lot number will be generated for this product.
 
 |
 

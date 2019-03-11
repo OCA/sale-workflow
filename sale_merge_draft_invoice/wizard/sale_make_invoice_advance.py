@@ -15,6 +15,7 @@ class SaleAdvancePaymentInv(models.TransientModel):
     merge_draft_invoice = fields.Boolean(
         string='Merge with draft invoices',
         default=_get_default_merge_draft_invoice,
+        # pylint: disable=W8103
         help=_('Activate this option in order to merge the resulting '
                'invoice with existing draft invoices or deactivate it if you '
                'wish a separate invoice for this sale order.')

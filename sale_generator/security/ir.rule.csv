@@ -1,0 +1,2 @@
+id,name,model_id:id,groups:id,perm_read,perm_write,perm_create,perm_unlink,domain_force
+sale_generator_multicompany,Sales Generator multi-company,sale_generator.model_sale_generator,"sales_team.group_sale_salesman_all_leads",True,True,True,True,"['|', ('company_id','=',user.company_id.id), ('company_id', '=', False)]"

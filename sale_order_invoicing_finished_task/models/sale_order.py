@@ -13,8 +13,10 @@ class SaleOrder(models.Model):
                  'order_line.task_ids.invoiceable')
     def _get_invoiced(self):
         super(SaleOrder, self)._get_invoiced()
-        for order in self:
-            if not all(order.tasks_ids.mapped('invoiceable')):
+        for order in self.filtered(lambda o: (
+                o.invoice_status != 'no' and o.picking_policy == 'one')):
+            if not all(t.invoiceable for t in order.mapped(
+                    'order_line.task_ids') if t.invoicing_finished_task):
                 order.update({
                     'invoice_status': 'no',
                 })
@@ -48,3 +50,20 @@ class SaleOrderLine(models.Model):
             else:
                 line.qty_to_invoice = 0.0
         super(SaleOrderLine, self - lines)._get_to_invoice_qty()
+
+    @api.multi
+    def _compute_analytic(self, domain=None):
+        if not domain and self.ids:
+            domain = [
+                ('so_line', 'in', self.ids),
+                # don't update the qty on sale order lines which are not
+                # with a product invoiced on ordered qty +
+                # invoice_finished task = True
+                '|',
+                ('so_line.product_id.invoice_policy', '!=', 'order'),
+                ('so_line.product_id.invoicing_finished_task', '=', False),
+                '|',
+                ('amount', '<=', 0.0),
+                ('project_id', '!=', False),
+            ]
+        return super(SaleOrderLine, self)._compute_analytic(domain=domain)

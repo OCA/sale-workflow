@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <record model="ir.ui.view" id="sale_generator_xml_tree">
+        <field name="model">sale.generator</field>
+        <field name="type">tree</field>
+        <field name="arch" type="xml">
+            <tree name="Partner" colors="blue:state!='done'">
+                <field name="name"/>
+                <field name="date_order"/>
+                <field name="sale_ids"/>
+                <field name="state"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="act_sale_generator_2_sale_order" model="ir.actions.act_window">
+        <field name="name">Sale Order</field>
+        <field name="res_model">sale.order</field>
+        <field name="view_type">form</field>
+        <field name="view_mode">tree,form,graph</field>
+        <field name="context">{}</field>
+        <field name="domain">[('generator_id','=',active_id)]</field>
+    </record>
+
+    <record model="ir.ui.view" id="view_sale_generator_form">
+        <field name="model">sale.generator</field>
+        <field name="type">form</field>
+        <field name="arch" type="xml">
+            <header>
+                <button name="button_update_order"
+                        states="draft"
+                        string="Start Generating Sale"
+                        type="object"
+                        class="oe_highlight"/>
+                <button name="action_confirm"
+                        string="Confirm All Sale Generated"
+                        states="generating"
+                        type="object"
+                        class="oe_highlight"/>
+                <field name="state" widget="statusbar"/>
+            </header>
+            <sheet>
+                <h1>
+                    <label string="Generator" name="generator_label"/>
+                    <field name="name"
+                           class="oe_inline"/>
+                </h1>
+                <button class="oe_inline oe_stat_button oe_right"
+                        name="%(act_sale_generator_2_sale_order)d"
+                        type="action"
+                        icon="fa-strikethrough"
+                        string="Sales"/>
+                <group name="header" colspan="2">
+                    <field name="date_order"/>
+                    <field name="tmpl_sale_id"
+                           context="{'default_is_template': True, 'default_name': '', 'default_partner_id': %(sale_generator.res_partner_for_sale_template)d}"/>
+                    <field name="warehouse_id"/>
+                </group>
+                <separator string="Customer"/>
+                <span>In order to add customer you have two possibilities:
+                    <ul>
+                        <li>adding an existing customer by searching in your
+                            database
+                            for that you have to click on add item at the end
+                            of the list.
+                        </li>
+                        <li>creating massively customer by launching the
+                            following wizard:
+                            <button name="add_generated_partner"
+                                    string="Create Customer"
+                                    type="object"
+                                    context="{'from_generator_id': active_id'}"
+                                    states="draft,generating"/>
+                        </li>
+                    </ul>
+                </span>
+                <field name="partner_ids"/>
+            </sheet>
+        </field>
+    </record>
+
+
+    <record model="ir.actions.act_window" id="action_sale_generator">
+        <field name="name">Generator</field>
+        <field name="res_model">sale.generator</field>
+        <field name="view_type">form</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+
+    <menuitem name="Generator"
+              id="choix_generator"
+              parent="sales_team.menu_sales"
+              action="action_sale_generator"/>
+
+</odoo>

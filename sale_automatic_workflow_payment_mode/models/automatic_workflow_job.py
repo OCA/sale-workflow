@@ -51,6 +51,7 @@ class AutomaticWorkflowJob(models.Model):
                     'payment_type': payment_mode.payment_type,
                     'payment_method_id': payment_mode.payment_method_id.id,
                     'journal_id': payment_mode.fixed_journal_id.id,
+                    'currency_id': invoice.currency_id.id,
                 })
                 payment.post()
         return
