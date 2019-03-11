@@ -41,11 +41,13 @@ class SaleOrderLine(models.Model):
         'Lines in pack'
     )
 
-    @api.constrains('product_id', 'price_unit', 'product_uom_qty')
+    @api.constrains('product_id', 'product_uom_qty')
     def expand_pack_line(self):
-        if self._context.get('update_pricelist', False):
-            return
         detailed_packs = ['components_price', 'totalice_price', 'fixed_price']
+        # if we are using update_pricelist or checking out on ecommerce we
+        # only want to update prices
+        do_not_expand = self._context.get('update_prices') or \
+            self._context.get('update_pricelist', False)
         if (
                 self.state == 'draft' and
                 self.product_id.pack and
@@ -60,8 +62,10 @@ class SaleOrderLine(models.Model):
                 ], limit=1)
                 # if subline already exists we update, if not we create
                 if existing_subline:
+                    if do_not_expand:
+                        vals.pop('product_uom_qty')
                     existing_subline.write(vals)
-                else:
+                elif not do_not_expand:
                     self.create(vals)
 
     @api.multi

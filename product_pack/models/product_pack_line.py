@@ -34,6 +34,13 @@ class ProductPack(models.Model):
         digits=dp.get_precision('Discount'),
     )
 
+    # because on expand_pack_line we are searhing for existing product, we
+    # need to enforce this condition
+    _sql_constraints = [
+        ('product_uniq', 'unique(parent_product_id, product_id)',
+         'Product must be only once on a pack!'),
+    ]
+
     @api.multi
     def get_sale_order_line_vals(self, line, order):
         self.ensure_one()
