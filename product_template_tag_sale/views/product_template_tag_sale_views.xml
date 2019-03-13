@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 
      <odoo>
-        <record model="ir.ui.menu" id="product_template_tag_config_menu">
+        <record id="product_template_tag_menu" model="ir.ui.menu">
             <field name="name">Product Tags</field>
             <field name="parent_id" ref="sale.prod_config_main"/>
             <field name="sequence" eval="40"/>
