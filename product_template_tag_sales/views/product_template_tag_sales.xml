@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+     <odoo>
+        <record model="ir.ui.menu" id="product_template_tag_config_menu">
+            <field name="name">Product Tags</field>
+            <field name="parent_id" ref="sale.prod_config_main"/>
+            <field name="sequence" eval="40"/>
+            <field name="action" ref="product_template_tags.product_template_tag_act_window"/>
+        </record>
+     </odoo>
