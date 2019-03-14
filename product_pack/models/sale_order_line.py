@@ -150,3 +150,12 @@ class SaleOrderLine(models.Model):
             raise UserError(_(
                 'You can not change this line because is part of a pack'
                 ' included in this order'))
+
+    @api.multi
+    def _get_display_price(self, product):
+        # We do this to clean the price if the parent of the
+        # component it's that type
+        if self.pack_parent_line_id.product_id.pack_price_type in [
+                'fixed_price', 'totalice_price']:
+            return 0.0
+        return super(SaleOrderLine, self)._get_display_price(product)

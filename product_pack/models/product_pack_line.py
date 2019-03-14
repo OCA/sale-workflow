@@ -60,8 +60,11 @@ class ProductPack(models.Model):
         sol._onchange_discount()
         vals = sol._convert_to_write(sol._cache)
 
-        discount = 100.0 - (
-            (100.0 - sol.discount) * (100.0 - self.discount) / 100.0)
+        discount = 0.0
+        if line.product_id.pack_price_type not in [
+                'fixed_price', 'totalice_price']:
+            discount = 100.0 - (
+                (100.0 - sol.discount) * (100.0 - self.discount) / 100.0)
 
         vals.update({
             'discount': discount,
