@@ -1,11 +1,13 @@
 # Copyright 2017 Camptocamp SA
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl)
-from odoo import api, models, _
+from odoo import api, models, fields, _
 from odoo.tools import float_compare
 
 
 class SaleOrder(models.Model):
     _inherit = 'sale.order'
+
+    state = fields.Selection(default='to_approve')
 
     @api.model
     def _setup_fields(self):
@@ -17,6 +19,11 @@ class SaleOrder(models.Model):
                 exists = True
         if not exists:
             selection.insert(0, ('to_approve', _('To Approve')))
+        for field in self._fields:
+            act_field = self._fields.get(field)
+
+            if act_field.states and all(x in act_field.states.keys() for x in ['draft', 'sent']):
+                act_field.states = {'to_approve': [('readonly', False)]}
 
     @api.multi
     def is_amount_to_approve(self):
@@ -45,3 +52,9 @@ class SaleOrder(models.Model):
     @api.multi
     def action_approve(self):
         self.write({'state': 'draft'})
+
+    @api.multi
+    @api.depends('state')
+    def _compute_type_name(self):
+        for record in self:
+            record.type_name = _('Quotation') if record.state in ('to_approve', 'draft', 'sent', 'cancel') else _('Sales Order')

@@ -5,12 +5,29 @@
     <field name="model">sale.order</field>
     <field name="inherit_id" ref="sale.view_order_form"/>
     <field name="arch" type="xml">
-
       <button name="action_cancel" position="before">
         <button name="action_approve" type="object" states='to_approve' string="Approve Order" class="oe_highlight" groups="sales_team.group_sale_manager"/>
       </button>
-
+      <button name="action_cancel" position="attributes">
+        <attribute name="states">to_approve,draft,sent,sale</attribute>
+      </button>
     </field>
   </record>
+
+  <record id="sale_order_view_search_inherit_quotation" model="ir.ui.view">
+      <field name="name">sale.order.search.inherit.quotation</field>
+      <field name="model">sale.order</field>
+      <field name="inherit_id" ref="sale.sale_order_view_search_inherit_quotation"/>
+      <field name="mode">extension</field>
+      <field name="arch" type="xml">
+        <xpath expr="//filter[@name='draft']" position="attributes">
+          <attribute name="domain">[('state','in',('to_approve', 'draft', 'sent'))]</attribute>
+        </xpath>
+      </field>
+  </record>
+  <record id="sale.action_orders" model="ir.actions.act_window">
+      <field name="domain">[('state', 'not in', ('to_approve', 'draft', 'sent', 'cancel'))]</field>
+  </record>
+
 </odoo>
 
