@@ -8,6 +8,7 @@ from odoo.addons import decimal_precision as dp
 
 class ProductSetAddLine(models.TransientModel):
     _name = 'product.set.add.line'
+    _description = 'Product add line'
     _order = 'sequence'
 
     wiz_id = fields.Many2one(
@@ -23,8 +24,7 @@ class ProductSetAddLine(models.TransientModel):
             ('sale_ok', '=', True),
             ('product_tmpl_id', '=', product_template_id),
         ]""",
-        string='Product',
-        required=False,
+        string='Products',
     )
     quantity = fields.Float(
         string='Quantity',
@@ -38,7 +38,7 @@ class ProductSetAddLine(models.TransientModel):
     )
     product_template_id = fields.Many2one(
         'product.template',
-        string='Product',
+        string='Product Template',
         required=True,
     )
     sequence = fields.Integer(
@@ -48,7 +48,7 @@ class ProductSetAddLine(models.TransientModel):
     )
 
     @api.onchange('product_template_id')
-    def _onhange_product_template_id(self):
+    def _onchange_product_template_id(self):
         for record in self:
             variants = record.product_template_id.product_variant_ids
             if len(variants) == 1:
@@ -78,7 +78,7 @@ class ProductSetAdd(models.TransientModel):
             for line in self.product_set_id.set_line_ids:
                 if not line.product_template_id:
                     raise ValidationError(_(
-                        "No selected product_template_id in Product Set"
+                        "Product Template is not selected in Product Set"
                     ))
                 vals.append((0, 0, self._get_wiz_line_values(line)))
         self.update({

@@ -4,8 +4,10 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: Odoo Server 11.0\n"
+"Project-Id-Version: Odoo Server 12.0\n"
 "Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2019-03-16 09:55+0000\n"
+"PO-Revision-Date: 2019-03-16 09:55+0000\n"
 "Last-Translator: <>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -14,37 +16,37 @@ msgstr ""
 "Plural-Forms: \n"
 
 #. module: sale_product_set_variant
-#: model:ir.model.fields,field_description:sale_product_set_variant.field_product_set_add_line_create_uid
+#: model:ir.model.fields,field_description:sale_product_set_variant.field_product_set_add_line__create_uid
 msgid "Created by"
 msgstr ""
 
 #. module: sale_product_set_variant
-#: model:ir.model.fields,field_description:sale_product_set_variant.field_product_set_add_line_create_date
+#: model:ir.model.fields,field_description:sale_product_set_variant.field_product_set_add_line__create_date
 msgid "Created on"
 msgstr ""
 
 #. module: sale_product_set_variant
-#: model:ir.model.fields,field_description:sale_product_set_variant.field_product_set_add_line_display_name
+#: model:ir.model.fields,field_description:sale_product_set_variant.field_product_set_add_line__display_name
 msgid "Display Name"
 msgstr ""
 
 #. module: sale_product_set_variant
-#: model:ir.model.fields,field_description:sale_product_set_variant.field_product_set_add_line_id
+#: model:ir.model.fields,field_description:sale_product_set_variant.field_product_set_add_line__id
 msgid "ID"
 msgstr ""
 
 #. module: sale_product_set_variant
-#: model:ir.model.fields,field_description:sale_product_set_variant.field_product_set_add_line___last_update
+#: model:ir.model.fields,field_description:sale_product_set_variant.field_product_set_add_line____last_update
 msgid "Last Modified on"
 msgstr ""
 
 #. module: sale_product_set_variant
-#: model:ir.model.fields,field_description:sale_product_set_variant.field_product_set_add_line_write_uid
+#: model:ir.model.fields,field_description:sale_product_set_variant.field_product_set_add_line__write_uid
 msgid "Last Updated by"
 msgstr ""
 
 #. module: sale_product_set_variant
-#: model:ir.model.fields,field_description:sale_product_set_variant.field_product_set_add_line_write_date
+#: model:ir.model.fields,field_description:sale_product_set_variant.field_product_set_add_line__write_date
 msgid "Last Updated on"
 msgstr ""
 
@@ -61,10 +63,16 @@ msgid "Please select the appropriate product variants for product {}"
 msgstr ""
 
 #. module: sale_product_set_variant
-#: model:ir.model.fields,field_description:sale_product_set_variant.field_product_set_add_line_product_template_id
-#: model:ir.model.fields,field_description:sale_product_set_variant.field_product_set_add_line_product_variant_ids
-#: model:ir.model.fields,field_description:sale_product_set_variant.field_product_set_line_product_template_id
+#: model:ir.model.fields,field_description:sale_product_set_variant.field_product_set_add_line__product_template_id
+#: model:ir.model.fields,field_description:sale_product_set_variant.field_product_set_add_line__product_variant_ids
+#: model:ir.model.fields,field_description:sale_product_set_variant.field_product_set_line__product_id
+#: model:ir.model.fields,field_description:sale_product_set_variant.field_product_set_line__product_template_id
 msgid "Product"
+msgstr ""
+
+#. module: sale_product_set_variant
+#: model:ir.model.fields,field_description:sale_product_set_variant.field_product_set_add__product_set_id
+msgid "Product set"
 msgstr ""
 
 #. module: sale_product_set_variant
@@ -73,37 +81,37 @@ msgid "Product set line"
 msgstr ""
 
 #. module: sale_product_set_variant
-#: model:ir.model.fields,field_description:sale_product_set_variant.field_product_set_add_set_line_ids
+#: model:ir.model.fields,field_description:sale_product_set_variant.field_product_set_add__set_line_ids
 msgid "Products"
 msgstr ""
 
 #. module: sale_product_set_variant
-#: model:ir.model.fields,field_description:sale_product_set_variant.field_product_set_add_line_quantity
+#: model:ir.model.fields,field_description:sale_product_set_variant.field_product_set_add_line__quantity
 msgid "Quantity"
 msgstr ""
 
 #. module: sale_product_set_variant
-#: model:ir.model.fields,field_description:sale_product_set_variant.field_product_set_add_line_sequence
+#: model:ir.model.fields,field_description:sale_product_set_variant.field_product_set_add_line__sequence
 msgid "Sequence"
 msgstr ""
 
 #. module: sale_product_set_variant
-#: model:ir.model.fields,field_description:sale_product_set_variant.field_product_set_add_line_product_set_id
+#: model:ir.model.fields,field_description:sale_product_set_variant.field_product_set_add_line__product_set_id
 msgid "Set"
 msgstr ""
 
 #. module: sale_product_set_variant
-#: model:ir.model.fields,field_description:sale_product_set_variant.field_product_set_add_line_source_line_id
+#: model:ir.model.fields,field_description:sale_product_set_variant.field_product_set_add_line__source_line_id
 msgid "Source Line"
 msgstr ""
 
 #. module: sale_product_set_variant
-#: model:ir.model.fields,field_description:sale_product_set_variant.field_product_set_line_product_variant_ids
+#: model:ir.model.fields,field_description:sale_product_set_variant.field_product_set_line__product_variant_ids
 msgid "Variant"
 msgstr ""
 
 #. module: sale_product_set_variant
-#: model:ir.model.fields,field_description:sale_product_set_variant.field_product_set_add_line_wiz_id
+#: model:ir.model.fields,field_description:sale_product_set_variant.field_product_set_add_line__wiz_id
 msgid "Wiz"
 msgstr ""
 

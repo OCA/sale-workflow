@@ -9,7 +9,7 @@ class ProductSetLine(models.Model):
 
     product_template_id = fields.Many2one(
         'product.template',
-        string='Product',
+        string='Product Template',
         # made it required false here and required true in view,
         # as it was producing an error in runbot, because of
         # sale_product_set_layout creating
