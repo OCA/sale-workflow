@@ -32,5 +32,5 @@ class ResPartner(models.Model):
                     lambda r: r.type in ('out_invoice', 'out_refund')))
 
     prospect = fields.Boolean(
-        string='Prospect', compute='_compute_prospect', default=False,
+        'Prospect', compute='_compute_prospect',
         store=True)
