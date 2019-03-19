@@ -63,32 +63,48 @@ class TestSaleOrder(common.SavepointCase):
         """ Tests on a single line """
         self.so_line2.unlink()
         # Divide by two on every discount:
-        self.so_line1.discount = 50.0
-        self.so_line1.discount2 = 50.0
-        self.so_line1.discount3 = 50.0
+        self.so_line1.write({
+            'discount': 50.0,
+            'discount2': 50.0,
+            'discount3': 50.0
+        })
         self.assertEqual(self.so_line1.price_subtotal, 75.0)
         self.assertEqual(self.order.amount_untaxed, 75.0)
         self.assertEqual(self.order.amount_tax, 11.25)
         # Unset first discount:
-        self.so_line1.discount = 0.0
+        self.so_line1.write({
+            'discount': 0.0,
+            'discount2': 50.0,
+            'discount3': 50.0
+        })
         self.assertEqual(self.so_line1.price_subtotal, 150.0)
         self.assertEqual(self.order.amount_untaxed, 150.0)
         self.assertEqual(self.order.amount_tax, 22.5)
         # Set a charge instead:
-        self.so_line1.discount2 = -50.0
+        self.so_line1.write({
+            'discount': 0.0,
+            'discount2': -50.0,
+            'discount3': 50.0
+        })
         self.assertEqual(self.so_line1.price_subtotal, 450.0)
         self.assertEqual(self.order.amount_untaxed, 450.0)
         self.assertEqual(self.order.amount_tax, 67.5)
 
     def test_03_sale_order_complex_triple_discount(self):
         """ Tests on multiple lines """
-        self.so_line1.discount = 50.0
-        self.so_line1.discount2 = 50.0
-        self.so_line1.discount3 = 50.0
+        self.so_line1.write({
+            'discount': 50.0,
+            'discount2': 50.0,
+            'discount3': 50.0
+        })
         self.assertEqual(self.so_line1.price_subtotal, 75.0)
         self.assertEqual(self.order.amount_untaxed, 675.0)
         self.assertEqual(self.order.amount_tax, 101.25)
-        self.so_line2.discount3 = 50.0
+        self.so_line2.write({
+            'discount': 0.0,
+            'discount2': 0.0,
+            'discount3': 50.0
+        })
         self.assertEqual(self.so_line2.price_subtotal, 300.0)
         self.assertEqual(self.order.amount_untaxed, 375.0)
         self.assertEqual(self.order.amount_tax, 56.25)
@@ -96,10 +112,16 @@ class TestSaleOrder(common.SavepointCase):
     def test_04_sale_order_triple_discount_invoicing(self):
         """ When a confirmed order is invoiced, the resultant invoice
             should inherit the discounts """
-        self.so_line1.discount = 50.0
-        self.so_line1.discount2 = 50.0
-        self.so_line1.discount3 = 50.0
-        self.so_line2.discount3 = 50.0
+        self.so_line1.write({
+            'discount': 50.0,
+            'discount2': 50.0,
+            'discount3': 50.0
+        })
+        self.so_line2.write({
+            'discount': 0.0,
+            'discount2': 0.0,
+            'discount3': 50.0
+        })
         self.order.action_button_confirm()
         self.order.action_invoice_create()
         invoice = self.order.invoice_ids[0]
@@ -116,10 +138,16 @@ class TestSaleOrder(common.SavepointCase):
     def test_05_sale_order_triple_discount_invoicing_on_picking(self):
         """ When a picking is invoiced, the resultant invoice
             should inherit the discounts """
-        self.so_line1.discount = 50.0
-        self.so_line1.discount2 = 50.0
-        self.so_line1.discount3 = 50.0
-        self.so_line2.discount3 = 50.0
+        self.so_line1.write({
+            'discount': 50.0,
+            'discount2': 50.0,
+            'discount3': 50.0
+        })
+        self.so_line2.write({
+            'discount': 0.0,
+            'discount2': 0.0,
+            'discount3': 50.0
+        })
         self.order.order_policy = 'picking'
         self.order.action_button_confirm()
         self.order.action_invoice_create()
@@ -141,13 +169,19 @@ class TestSaleOrder(common.SavepointCase):
         """ Tests on multiple lines when 'round_globally' is active"""
         self.env.user.company_id. \
             tax_calculation_rounding_method = 'round_globally'
-        self.so_line1.discount = 50.0
-        self.so_line1.discount2 = 50.0
-        self.so_line1.discount3 = 50.0
+        self.so_line1.write({
+            'discount': 50.0,
+            'discount2': 50.0,
+            'discount3': 50.0
+        })
         self.assertEqual(self.so_line1.price_subtotal, 75.0)
         self.assertEqual(self.order.amount_untaxed, 675.0)
         self.assertEqual(self.order.amount_tax, 101.25)
-        self.so_line2.discount3 = 50.0
+        self.so_line2.write({
+            'discount': 0.0,
+            'discount2': 0.0,
+            'discount3': 50.0
+        })
         self.assertEqual(self.so_line2.price_subtotal, 300.0)
         self.assertEqual(self.order.amount_untaxed, 375.0)
         self.assertEqual(self.order.amount_tax, 56.25)
