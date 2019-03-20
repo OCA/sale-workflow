@@ -228,6 +228,8 @@ according to the strategy
 
     def _is_promotion_valid_for_line(self, line):
         precision = self.env['decimal.precision'].precision_get('Discount')
+        if line.is_promotion_line:
+            return False
         if self.multi_rule_strategy == 'cumulate':
             return True
         if line.discount and self.multi_rule_strategy == 'use_best':
