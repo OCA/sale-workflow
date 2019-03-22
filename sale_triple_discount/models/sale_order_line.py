@@ -66,9 +66,10 @@ class SaleOrderLine(models.Model):
         this method is called multiple times.
         Updating the cache provides consistency through recomputations."""
         prev_values = dict()
-        self.invalidate_cache(
-            fnames=['discount', 'discount2', 'discount3'],
-            ids=self.ids)
+        if not self.env.in_onchange:
+            self.invalidate_cache(
+                fnames=['discount', 'discount2', 'discount3'],
+                ids=self.ids)
         for line in self:
             prev_values[line] = dict(
                 discount=line.discount,
