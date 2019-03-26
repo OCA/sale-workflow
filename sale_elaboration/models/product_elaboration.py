@@ -18,7 +18,7 @@ class Elaboration(models.Model):
         comodel_name='product.product',
         string='Product',
         ondelete='restrict',
-        domain=[('type', '=', 'service')],
+        domain=[('type', '=', 'service'), ('is_elaboration', '=', True)],
         required=True,
     )
 
