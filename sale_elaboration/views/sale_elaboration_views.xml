@@ -12,7 +12,7 @@
                     <group>
                         <field name="code"/>
                         <field name="name"/>
-                        <field name="product_id"/>
+                        <field name="product_id" context="{'default_is_elaboration': True, 'default_type': 'service'}"/>
                     </group>
                 </sheet>
             </form>
@@ -26,7 +26,7 @@
             <tree string="Elaborations" editable="top">
                 <field name="code"/>
                 <field name="name"/>
-                <field name="product_id"/>
+                <field name="product_id" context="{'default_is_elaboration': True, 'default_type': 'service'}"/>
             </tree>
         </field>
     </record>
