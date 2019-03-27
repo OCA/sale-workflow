@@ -68,6 +68,3 @@ class TestProductSupplierinfoForCustomerSale(common.TransactionCase):
         self.assertEqual(
             line.product_uom_qty, self.supplierinfo.min_qty,
             "Error: Min qty was not passed to the sale order line")
-        self.assertEqual(
-            line.price_unit, self.supplierinfo.price,
-            "Error: Price was not computed as expected in the sale order line")
