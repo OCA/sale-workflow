@@ -27,8 +27,17 @@ class TestSaleElaboration(SavepointCase):
             'list_price': 25.0,
             'invoice_policy': 'order',
         })
+        cls.pricelist = cls.env['product.pricelist'].create({
+            'name': 'Test pricelist',
+            'item_ids': [(0, 0, {
+                'applied_on': '3_global',
+                'compute_price': 'formula',
+                'base': 'list_price',
+            })]
+        })
         cls.partner = cls.env['res.partner'].create({
             'name': 'test - partner',
+            'property_product_pricelist': cls.pricelist.id,
         })
         cls.elaboration_a = cls.Elaboration.create({
             'code': 'AA',
