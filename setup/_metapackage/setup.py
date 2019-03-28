@@ -8,6 +8,7 @@ setuptools.setup(
     description="Meta package for oca-sale-workflow Odoo addons",
     version=version,
     install_requires=[
+        'odoo12-addon-sale_cancel_reason',
         'odoo12-addon-sale_commercial_partner',
         'odoo12-addon-sale_double_validation',
         'odoo12-addon-sale_last_price_info',
