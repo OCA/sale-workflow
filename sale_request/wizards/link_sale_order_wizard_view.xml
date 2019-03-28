@@ -23,7 +23,7 @@
                         </field>
                     </group>
                     <group string="Unlinked sale order lines">
-                        <field name="sale_line_ids" nolabel="1" domain="[('product_id', 'in', product_ids), ('master_sale_order', '=', False), ('parent_id', '=', False)]" options="{'no_create': True}">
+                        <field name="sale_line_ids" nolabel="1" domain="[('product_id', 'in', product_ids), ('master_sale_order', '=', False), ('parent_id', '=', False), ('order_id.partner_id', '=', partner_id)]" options="{'no_create': True}">
                             <tree create="1">
                                 <field name="order_id"/>
                                 <field name="product_id"/>
