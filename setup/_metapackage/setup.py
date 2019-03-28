@@ -15,6 +15,7 @@ setuptools.setup(
         'odoo11-addon-sale_automatic_workflow_payment_mode',
         'odoo11-addon-sale_commercial_partner',
         'odoo11-addon-sale_disable_inventory_check',
+        'odoo11-addon-sale_elaboration',
         'odoo11-addon-sale_exception',
         'odoo11-addon-sale_fixed_discount',
         'odoo11-addon-sale_force_invoiced',
