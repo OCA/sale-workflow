@@ -13,54 +13,63 @@
     <field name="name">sale.rental.form</field>
     <field name="model">sale.rental</field>
     <field name="arch" type="xml">
-        <form string="Rental">
+        <form string="Sales Rentals" create="false" edit="false">
             <header>
-                <field name="state" widget="statusbar"/>
+                <field name="state" widget="statusbar" statusbar_visible="ordered,out,sell_progress,sold,in"/>
             </header>
-            <group name="main">
-                <field name="partner_id" />
-                <field name="rental_product_id" />
-                <field name="rented_product_id" />
-                <field name="start_date" />
-                <field name="end_date" />
-                <field name="rental_qty"/>
-                <field name="start_order_line_id" />
-                <field name="start_order_id" />
-                <field name="procurement_id"/>
-                <field name="company_id" groups="base.group_multi_company" />
-            </group>
-            <group name="extensions" string="Rental Extensions">
-                <field name="extension_order_line_ids" nolabel="1">
-                    <tree>
-                        <field name="order_id"/>
-                        <field name="order_partner_id"/>
-                        <field name="name"/>
-                        <field name="start_date"/>
-                        <field name="end_date"/>
-                        <field name="product_uom_qty"/>
-                        <field name="product_uom" string="Unit of Measure" groups="product.group_uom"/>
-                        <field name="price_subtotal" sum="Total"/>
-                        <field name="state"/>
-                    </tree>
-                </field>
-            </group>
-            <group name="stock-out" string="Delivery">
-                <field name="out_move_id" />
-                <field name="out_state" />
-                <field name="out_picking_id" />
-            </group>
-            <group name="stock-in" string="Return">
-                <field name="in_move_id" />
-                <field name="in_state" />
-                <field name="in_picking_id" />
-            </group>
-            <group name="sell" string="Sell Rented Product">
-                <field name="sell_order_line_ids" nolabel="1" colspan="2"/>
-                <field name="sell_procurement_id"/>
-                <field name="sell_move_id"/>
-                <field name="sell_state"/>
-                <field name="sell_picking_id"/>
-            </group>
+            <sheet>
+                <group name="main" colspan="2" col="4">
+                    <field name="partner_id" />
+                    <field name="start_date" />
+                    <field name="rental_product_id" />
+                    <field name="end_date" />
+                    <field name="rented_product_id" />
+                    <field name="start_order_line_id" />
+                    <field name="rental_qty"/>
+                    <field name="start_order_id" />
+                    <field name="company_id" groups="base.group_multi_company" />
+                </group>
+                <notebook>
+                    <page name="extensions" string="Rental Extensions">
+                        <field name="extension_order_line_ids" nolabel="1">
+                            <tree>
+                                <field name="order_id"/>
+                                <field name="order_partner_id"/>
+                                <field name="name"/>
+                                <field name="start_date"/>
+                                <field name="end_date"/>
+                                <field name="product_uom_qty"/>
+                                <field name="product_uom" string="Unit of Measure" groups="product.group_uom"/>
+                                <field name="price_subtotal" sum="Total"/>
+                                <field name="state"/>
+                            </tree>
+                        </field>
+                    </page>
+                    <page name="transfer" string="Transfer">
+                        <group >
+                            <group name="stock_out" string="Delivery">
+                                <field name="out_move_id"/>
+                                <field name="out_state" />
+                                <field name="out_picking_id" />
+                            </group>
+                            <group name="stock_in" string="Return">
+                                <field name="in_move_id" />
+                                <field name="in_state" />
+                                <field name="in_picking_id" />
+                            </group>
+                        </group>
+                    </page>
+                    <page name="sell" string="Sell Rented Product">
+                        <group name="sell_move_out">
+                            <field name="sell_move_id"/>
+                            <field name="sell_state"/>
+                            <field name="sell_picking_id"/>
+                        </group>
+                        <separator string="Selling Order Line"/>
+                        <field name="sell_order_line_ids" nolabel="1" colspan="2"/>
+                    </page>
+                </notebook>
+            </sheet>
         </form>
     </field>
 </record>
@@ -69,7 +78,7 @@
     <field name="name">sale.rental.tree</field>
     <field name="model">sale.rental</field>
     <field name="arch" type="xml">
-        <tree string="Rentals">
+        <tree string="Sales Rentals" create="false" edit="false">
             <field name="partner_id"/>
             <field name="rented_product_id"/>
             <field name="start_date"/>
@@ -112,9 +121,5 @@
     <field name="res_model">sale.rental</field>
     <field name="view_mode">tree,form</field>
 </record>
-
-<menuitem id="sale_rental_menu" parent="sales_team.menu_sales"
-    action="sale_rental_action" sequence="12"/>
-
 
 </odoo>
