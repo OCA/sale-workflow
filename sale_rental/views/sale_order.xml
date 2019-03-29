@@ -18,9 +18,11 @@
             <field name="rental_type"
                 attrs="{'invisible': [('rental', '=', False)], 'required': [('rental', '=', True)]}"/>
             <field name="extension_rental_id"
+                options="{'no_quick_create': True, 'no_create_edit': True}"
                 attrs="{'invisible': [('rental_type', '!=', 'rental_extension')], 'required': [('rental_type', '=', 'rental_extension')]}"
                 domain="[('rental_product_id', '=', product_id), ('state', 'in', ('ordered', 'out'))]" />
             <field name="sell_rental_id"
+                options="{'no_quick_create': True, 'no_create_edit': True}"
                 attrs="{'invisible': [('can_sell_rental', '=', False)]}"
                 domain="[('rented_product_id', '=', product_id), ('state', '=', 'out')]"/>
             <field name="rental" invisible="1"/>
