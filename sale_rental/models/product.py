@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 # Copyright 2014-2016 Akretion (http://www.akretion.com)
 # @author Alexis de Lattre <alexis.delattre@akretion.com>
 # Copyright 2016 Sodexis (http://sodexis.com)
@@ -39,14 +38,3 @@ class ProductProduct(models.Model):
                 raise ValidationError(_(
                     "The unit of measure of the rental product '%s' must "
                     "be 'Day'.") % product.name)
-
-    @api.multi
-    def _need_procurement(self):
-        # Missing self.ensure_one() in the native code !
-        res = super(ProductProduct, self)._need_procurement()
-        if not res:
-            for product in self:
-                if product.type == 'service' and product.rented_product_id:
-                    return True
-        # TODO find a replacement for soline.rental_type == 'new_rental')
-        return res

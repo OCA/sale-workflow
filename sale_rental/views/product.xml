@@ -25,7 +25,7 @@
                     string="Related Rental Services" col="1">
                     <field name="rental_service_ids" nolabel="1"/>
                     <button type="action"
-                        name="%(create_rental_product_action)d"
+                        name="%(sale_rental.create_rental_product_action)d"
                         string="Create Rental Service" />
                 </group>
             </page>
