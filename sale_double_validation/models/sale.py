@@ -45,8 +45,8 @@ class SaleOrder(models.Model):
     @api.model
     def create(self, vals):
         obj = super().create(vals)
-        if obj.is_to_approve():
-            obj.state = 'to_approve'
+        if not obj.is_to_approve():
+            obj.state = 'draft'
         return obj
 
     @api.multi
