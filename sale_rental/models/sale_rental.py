@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 # Copyright 2014-2016 Akretion (http://www.akretion.com)
 # @author Alexis de Lattre <alexis.delattre@akretion.com>
 # Copyright 2016 Sodexis (http://sodexis.com)
@@ -13,17 +12,16 @@ logger = logging.getLogger(__name__)
 
 class SaleRental(models.Model):
     _name = 'sale.rental'
-    _description = "Rental"
-    _order = "id desc"
-    _rec_name = "display_name"
+    _description = 'Rental'
+    _order = 'id desc'
+    _rec_name = 'display_name'
 
-    @api.multi
     @api.depends(
         'start_order_line_id', 'extension_order_line_ids.end_date',
         'extension_order_line_ids.state', 'start_order_line_id.end_date')
     def _compute_display_name_field(self):
         for rental in self:
-            rental.display_name = u'[%s] %s - %s > %s (%s)' % (
+            rental.display_name = '[%s] %s - %s > %s (%s)' % (
                 rental.partner_id.name,
                 rental.rented_product_id.name,
                 rental.start_date,
@@ -31,81 +29,72 @@ class SaleRental(models.Model):
                 rental._fields['state'].convert_to_export(rental.state, rental)
             )
 
-    @api.multi
     @api.depends(
+        'sell_order_line_ids.move_ids.state',
         'start_order_line_id.order_id.state',
-        'start_order_line_id.procurement_ids.move_ids.state',
-        'start_order_line_id.procurement_ids.move_ids.move_dest_id.state',
-        'sell_order_line_ids.procurement_ids.move_ids.state',
-        )
-    def _compute_procurement_and_move(self):
+        'start_order_line_id.move_ids.state',
+        'start_order_line_id.move_ids.move_dest_ids.state')
+    def _compute_move_and_state(self):
         for rental in self:
-            procurement = False
             in_move = False
             out_move = False
-            sell_procurement = False
             sell_move = False
             state = False
-            if (
-                    rental.start_order_line_id and
-                    rental.start_order_line_id.procurement_ids):
-
-                procurement = rental.start_order_line_id.procurement_ids[0]
-                if procurement.move_ids:
-                    for move in procurement.move_ids:
-                        if move.move_dest_id:
-                            out_move = move
-                            in_move = move.move_dest_id
-                if (
-                        rental.sell_order_line_ids and
-                        rental.sell_order_line_ids[0].procurement_ids):
-                    sell_procurement = \
-                        rental.sell_order_line_ids[0].procurement_ids[0]
-                    if sell_procurement.move_ids:
-                        sell_move = sell_procurement.move_ids[0]
+            if rental.start_order_line_id:
+                for move in rental.start_order_line_id.move_ids:
+                    if move.state != 'cancel':
+                        out_move = move
+                    if move.move_dest_ids:
+                        out_move = move
+                        in_move = move.move_dest_ids[0]
+                if rental.sell_order_line_ids and\
+                        rental.sell_order_line_ids[0].move_ids:
+                    sell_move = rental.sell_order_line_ids[0].move_ids[-1]
                 state = 'ordered'
-                if out_move and in_move:
-                    if out_move.state == 'done':
-                        state = 'out'
-                    if out_move.state == 'done' and in_move.state == 'done':
-                        state = 'in'
-                    if (
-                            out_move.state == 'done' and
-                            in_move.state == 'cancel' and
-                            sell_procurement):
+                if out_move and out_move.state == 'done':
+                    state = 'out'
+                    if in_move:
+                        if in_move.state == 'done':
+                            state = 'in'
+                        elif in_move.state == 'cancel' and sell_move:
+                            state = 'sell_progress'
+                            if sell_move.state == 'done':
+                                state = 'sold'
+                    elif sell_move:
                         state = 'sell_progress'
-                        if sell_move and sell_move.state == 'done':
+                        if sell_move.state == 'done':
                             state = 'sold'
+                        elif sell_move.state == 'cancel':
+                            state = 'out'
                 if rental.start_order_line_id.order_id.state == 'cancel':
                     state = 'cancel'
-            rental.procurement_id = procurement
             rental.in_move_id = in_move
             rental.out_move_id = out_move
             rental.state = state
-            rental.sell_procurement_id = sell_procurement
             rental.sell_move_id = sell_move
 
-    @api.multi
     @api.depends(
-        'extension_order_line_ids.end_date', 'extension_order_line_ids.state',
+        'extension_order_line_ids.end_date',
+        'extension_order_line_ids.state',
         'start_order_line_id.end_date')
     def _compute_end_date(self):
         for rental in self:
             end_date = False
-            if rental.extension_order_line_ids:
-                for extension in rental.extension_order_line_ids:
-                    if extension.state not in ('cancel', 'draft'):
-                        if extension.end_date > end_date:
-                            end_date = extension.end_date
-            if not end_date and rental.start_order_line_id:
+            if rental.start_order_line_id:
                 end_date = rental.start_order_line_id.end_date
-            rental.end_date = end_date
+
+            for extension in rental.extension_order_line_ids:
+                if extension.state not in ('cancel', 'draft') and end_date and\
+                        extension.end_date > end_date:
+                    end_date = extension.end_date
+            if end_date:
+                rental.end_date = end_date
 
     display_name = fields.Char(
         compute='_compute_display_name_field', string='Display Name',
         readonly=True)
     start_order_line_id = fields.Many2one(
-        'sale.order.line', string='Rental Sale Order Line', readonly=True)
+        'sale.order.line', string='Rental SO Line', readonly=True)
     start_date = fields.Date(
         related='start_order_line_id.start_date', readonly=True, store=True)
     rental_product_id = fields.Many2one(
@@ -119,57 +108,50 @@ class SaleRental(models.Model):
         related='start_order_line_id.rental_qty', readonly=True)
     start_order_id = fields.Many2one(
         'sale.order', related='start_order_line_id.order_id',
-        string='Rental Sale Order', readonly=True)
+        string='Rental SO', readonly=True)
     company_id = fields.Many2one(
         'res.company', related='start_order_line_id.order_id.company_id',
         string='Company', readonly=True)
     partner_id = fields.Many2one(
         'res.partner', related='start_order_line_id.order_id.partner_id',
         string='Customer', readonly=True, store=True)
-    procurement_id = fields.Many2one(
-        'procurement.order', string="Procurement", readonly=True,
-        compute='_compute_procurement_and_move', store=True)
     out_move_id = fields.Many2one(
-        'stock.move', compute='_compute_procurement_and_move',
-        string='Outgoing Stock Move', readonly=True, store=True)
+        'stock.move', compute='_compute_move_and_state',
+        string='Outgoing Move', readonly=True, store=True)
     in_move_id = fields.Many2one(
-        'stock.move', compute='_compute_procurement_and_move',
-        string='Return Stock Move', readonly=True, store=True)
+        'stock.move', compute='_compute_move_and_state',
+        string='Incoming Move', readonly=True, store=True)
     out_state = fields.Selection(
         related='out_move_id.state',
-        string='State of the Outgoing Stock Move', readonly=True)
+        string='Out Move State', readonly=True)
     in_state = fields.Selection(
         related='in_move_id.state',
-        string='State of the Return Stock Move', readonly=True)
+        string='In Move State', readonly=True)
     out_picking_id = fields.Many2one(
         'stock.picking', related='out_move_id.picking_id',
         string='Delivery Order', readonly=True)
     in_picking_id = fields.Many2one(
         'stock.picking', related='in_move_id.picking_id',
-        string='Return Picking', readonly=True)
+        string='Receipt', readonly=True)
     extension_order_line_ids = fields.One2many(
         'sale.order.line', 'extension_rental_id',
         string='Rental Extensions', readonly=True)
     sell_order_line_ids = fields.One2many(
         'sale.order.line', 'sell_rental_id',
         string='Sell Rented Product', readonly=True)
-    sell_procurement_id = fields.Many2one(
-        'procurement.order', string="Sell Procurement", readonly=True,
-        compute='_compute_procurement_and_move', store=True)
     sell_move_id = fields.Many2one(
-        'stock.move', compute='_compute_procurement_and_move',
-        string='Sell Stock Move', readonly=True, store=True)
+        'stock.move', compute='_compute_move_and_state',
+        string='Selling Move', readonly=True, store=True)
     sell_state = fields.Selection(
         related='sell_move_id.state',
-        string='State of the Sell Stock Move', readonly=True)
+        string='Sell Move State', readonly=True)
     sell_picking_id = fields.Many2one(
         'stock.picking', related='sell_move_id.picking_id',
         string='Sell Delivery Order', readonly=True)
     end_date = fields.Date(
-        compute='_compute_end_date', string='End Date (extensions included)',
-        readonly=True,
-        help="End Date of the Rental, taking into account all the "
-        "extensions sold to the customer.")
+        compute='_compute_end_date', string='End Date', store=True,
+        help="End Date of the Rental (extensions included), \
+        taking into account all the extensions sold to the customer.")
     state = fields.Selection([
         ('ordered', 'Ordered'),
         ('out', 'Out'),
@@ -177,5 +159,5 @@ class SaleRental(models.Model):
         ('sold', 'Sold'),
         ('in', 'Back In'),
         ('cancel', 'Cancelled'),
-        ], string='State', compute='_compute_procurement_and_move',
+    ], string='State', compute='_compute_move_and_state',
         readonly=True, store=True)

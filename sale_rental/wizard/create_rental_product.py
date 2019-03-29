@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 # Copyright 2014-2016 Akretion (http://www.akretion.com)
 # @author Alexis de Lattre <alexis.delattre@akretion.com>
 # Copyright 2016 Sodexis (http://sodexis.com)
@@ -65,7 +64,7 @@ class CreateRentalProduct(models.TransientModel):
             'must_have_dates': True,
             'categ_id': self.categ_id.id,
             'invoice_policy': 'order',
-            }
+        }
         if self.copy_image:
             vals['image'] = hw_product.image
         return vals
@@ -84,5 +83,5 @@ class CreateRentalProduct(models.TransientModel):
             'nodestroy': False,  # Close the wizard pop-up
             'target': 'current',
             'res_id': product.id,
-            }
+        }
         return action
