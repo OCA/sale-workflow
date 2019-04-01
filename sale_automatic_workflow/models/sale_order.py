@@ -68,7 +68,7 @@ class SaleOrder(models.Model):
             if not order.workflow_process_id.invoice_service_delivery:
                 continue
             for line in order.order_line:
-                if line.qty_delivered_updateable and not line.qty_delivered:
+                if line.qty_delivered_method == 'manual' and not line.qty_delivered:
                     line.write({'qty_delivered': line.product_uom_qty})
         return super(SaleOrder, self).action_invoice_create(grouped=grouped,
                                                             final=final)
