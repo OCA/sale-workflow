@@ -19,10 +19,11 @@ class SaleOrder(models.Model):
                 exists = True
         if not exists:
             selection.insert(0, ('to_approve', _('To Approve')))
-        for field in self._fields:
-            act_field = self._fields.get(field)
+        for act_field in self._fields.values():
 
-            if act_field.states and all(x in act_field.states.keys() for x in ['draft', 'sent']):
+            if act_field.states and all(
+                x in act_field.states.keys() for x in ['draft', 'sent']
+            ):
                 act_field.states = {'to_approve': [('readonly', False)]}
 
     @api.multi
@@ -57,4 +58,9 @@ class SaleOrder(models.Model):
     @api.depends('state')
     def _compute_type_name(self):
         for record in self:
-            record.type_name = _('Quotation') if record.state in ('to_approve', 'draft', 'sent', 'cancel') else _('Sales Order')
+            record.type_name = _('Quotation') if record.state in (
+                'to_approve',
+                'draft',
+                'sent',
+                'cancel'
+            ) else _('Sales Order')
