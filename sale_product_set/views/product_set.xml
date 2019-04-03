@@ -22,6 +22,13 @@
         <field name="arch" type="xml">
         <form string="Product set">
             <sheet>
+                <div class="oe_button_box" name="button_box">
+                    <button class="oe_stat_button" type="object"
+                            name="toggle_active" icon="fa-archive">
+                        <field name="active" widget="boolean_button"
+                               options="{&quot;terminology&quot;: &quot;archive&quot;}"/>
+                    </button>
+                </div>
                 <group>
                     <field name="name" select="1"/>
                     <field name="ref"/>
