@@ -28,6 +28,12 @@ class ProductSetLine(models.Model):
         string='Set',
         ondelete='cascade',
     )
+    active = fields.Boolean(
+        string="Active",
+        related="product_set_id.active",
+        store=True,
+        readonly=True,
+    )
     sequence = fields.Integer(
         string='Sequence',
         required=True,
