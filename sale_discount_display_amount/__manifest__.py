@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 # Copyright 2018 ACSONE SA/NV
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
@@ -7,12 +6,12 @@
     'summary': """
         This addon intends to display the amount of the discount computed on
         sale_order_line and sale_order level""",
-    'version': '10.0.1.0.0',
+    'version': '12.0.1.0.0',
     'license': 'AGPL-3',
     'author': 'ACSONE SA/NV,Odoo Community Association (OCA)',
-    'website': 'http://www.acsone.eu',
+    'website': 'https://github.com/OCA/sale-workflow',
     'depends': [
-        'sale'
+        'sale_management'
     ],
     'data': [
         'views/sale_view.xml'
