@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Copyright 2018 PlanetaTIC - Lluís Rovira <lrovira@planetatic.com>
+     License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl). -->
+<odoo>
+    <record id="view_order_form_inherit_palmatrend" model="ir.ui.view">
+        <field name="name">sale.order.form.inherit</field>
+        <field name="model">sale.order</field>
+        <field name="inherit_id" ref="sale.view_order_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='amount_total']" position="after">
+                <field name="amount_deposit" widget='monetary' options="{'currency_field': 'currency_id'}" attrs="{'invisible':[('amount_deposit','=',0)]}"/>
+                <div class="oe_subtotal_footer_separator oe_inline o_td_label" attrs="{'invisible':[('amount_deposit','=',0)]}">
+                    <label for="amount_total_pending" />
+                </div>
+                <field name="amount_total_pending" nolabel="1" class="oe_subtotal_footer_separator" widget='monetary' options="{'currency_field': 'currency_id'}" attrs="{'invisible':[('amount_deposit','=',0)]}"/>
+            </xpath>
+        </field>
+    </record>
+</odoo>

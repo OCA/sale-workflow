@@ -1,0 +1,42 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+#	* sale_order_pending_payment
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 10.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2019-04-04 23:33+0000\n"
+"PO-Revision-Date: 2019-04-04 23:33+0000\n"
+"Last-Translator: <>\n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: sale_order_pending_payment
+#: model:ir.ui.view,arch_db:sale_order_pending_payment.report_saleorder_document
+msgid "<strong>Deposit</strong>"
+msgstr "<strong>Depósito</strong>"
+
+#. module: sale_order_pending_payment
+#: model:ir.ui.view,arch_db:sale_order_pending_payment.report_saleorder_document
+msgid "<strong>Total Pending</strong>"
+msgstr "<strong>Total pendiente</strong>"
+
+#. module: sale_order_pending_payment
+#: model:ir.model.fields,field_description:sale_order_pending_payment.field_prestashop_sale_order_amount_deposit
+msgid "Deposit"
+msgstr "Depósito"
+
+#. module: sale_order_pending_payment
+#: model:ir.model,name:sale_order_pending_payment.model_sale_order
+msgid "Sales Order"
+msgstr "Pedido de venta"
+
+#. module: sale_order_pending_payment
+#: model:ir.model.fields,field_description:sale_order_pending_payment.field_prestashop_sale_order_amount_total_pending
+msgid "Total Pending"
+msgstr "Total pendiente"
+

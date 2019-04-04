@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Copyright 2018 PlanetaTIC - Lluís Rovira <lrovira@planetatic.com>
+     License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl). -->
+<odoo>
+<template id="report_saleorder_document" inherit_id="sale.report_saleorder_document">
+    <xpath expr="//div[@name='total']/div/table" position="inside">
+        <tr>
+            <td><strong>Deposit</strong></td>
+            <td class="text-right">
+            <span t-field="doc.amount_deposit"
+                t-options='{"widget": "monetary", "display_currency": doc.pricelist_id.currency_id}'/>
+            </td>
+        </tr>
+        <tr class="border-black">
+            <td><strong>Total Pending</strong></td>
+            <td class="text-right">
+                <span t-field="doc.amount_total_pending"
+                    t-options='{"widget": "monetary", "display_currency": doc.pricelist_id.currency_id}'/>
+            </td>
+        </tr>
+    </xpath>
+</template>
+</odoo>
