@@ -197,7 +197,7 @@ msgstr ""
 #: code:addons/sale_request/wizards/create_sale_order_wizard.py:207
 #, python-format
 msgid "Error! The quantity to sale is greather than the requested quantity."
-msgstr "¡Error! La cantidad a vender es mathor que la cantidad requisitada."
+msgstr "¡Error! La cantidad a vender es mayor que la cantidad requerida."
 
 #. module: sale_request
 #: code:addons/sale_request/models/sale_order.py:42
