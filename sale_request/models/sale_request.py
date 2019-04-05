@@ -204,6 +204,7 @@ class SaleRequestLine(models.Model):
         comodel_name='product.product',
         string='Product',
         required=True,
+        domain=[('sale_ok', '=', True)],
     )
     description = fields.Text()
     product_qty = fields.Float(
