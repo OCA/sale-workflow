@@ -136,6 +136,11 @@ class SaleOrderLine(models.Model):
         digits=dp.get_precision('Product Unit of Measure'),
     )
 
+    @api.onchange('product_uom_qty', 'product_uom', 'route_id')
+    def _onchange_product_id_check_availability(self):
+        if not self.order_id.master_sale_order:
+            return super()._onchange_product_id_check_availability()
+
     @api.multi
     @api.depends('child_ids.product_uom_qty')
     def _compute_product_uom_qty_total(self):
