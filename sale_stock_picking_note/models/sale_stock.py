@@ -16,8 +16,8 @@ class StockMove(models.Model):
     _inherit = 'stock.move'
 
     def _get_new_picking_values(self):
-        vals = super()._get_new_picking_values()
-        sale_note = self.sale_line_id.order_id.picking_note
+        vals = super(StockMove, self)._get_new_picking_values()
+        sale_note = self.procurement_id.sale_line_id.order_id.picking_note
         if sale_note:
             vals['note'] = sale_note
         return vals

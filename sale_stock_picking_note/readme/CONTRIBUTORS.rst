@@ -2,3 +2,7 @@
 
   * Carlos Dauden
   * David Vidal
+
+* `Eficent <https://www.eficent.com>`_:
+
+  * Lois Rilo
