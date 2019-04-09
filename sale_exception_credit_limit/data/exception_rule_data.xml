@@ -6,8 +6,7 @@
         <field name="sequence">10</field>
         <field name="model">sale.order</field>
         <field name="rule_group">sale</field>
-        <field name="code">if not object.check_credit_limit_ok():
-      failed = True</field>
+        <field name="code">if not object.check_credit_limit_ok(): failed = True</field>
         <field name="active" eval="True"/>
     </record>
 </odoo>
