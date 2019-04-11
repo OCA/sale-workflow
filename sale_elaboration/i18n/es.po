@@ -40,11 +40,6 @@ msgid "Code must be unique!"
 msgstr "El código debe ser único."
 
 #. module: sale_elaboration
-#: model:ir.model.fields,field_description:sale_elaboration.field_sale_order_line_confirmation_date
-msgid "Confirmation Date"
-msgstr "Fecha de confirmación"
-
-#. module: sale_elaboration
 #: model:ir.model.fields,field_description:sale_elaboration.field_product_elaboration_create_uid
 msgid "Created by"
 msgstr "Creado por"
@@ -53,6 +48,11 @@ msgstr "Creado por"
 #: model:ir.model.fields,field_description:sale_elaboration.field_product_elaboration_create_date
 msgid "Created on"
 msgstr "Creado el"
+
+#. module: sale_elaboration
+#: model:ir.model.fields,field_description:sale_elaboration.field_sale_order_line_confirmation_date
+msgid "Date"
+msgstr ""
 
 #. module: sale_elaboration
 #: model:ir.model.fields,help:sale_elaboration.field_sale_order_line_confirmation_date
@@ -176,3 +176,6 @@ msgstr "Transferir"
 #: model:ir.model,name:sale_elaboration.model_product_elaboration
 msgid "product.elaboration"
 msgstr "Elaboración"
+
+#~ msgid "Confirmation Date"
+#~ msgstr "Fecha de confirmación"
