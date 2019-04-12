@@ -18,7 +18,7 @@
     <field name="model">project.task</field>
     <field name="inherit_id" ref="project.view_task_form2"/>
     <field name="arch" type="xml">
-        <xpath expr="//field[@name='planned_hours']" position="after">
+        <xpath expr="/form" position="inside">
             <field name="invoicing_finished_task" invisible="1"/>
         </xpath>
 
