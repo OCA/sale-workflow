@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <record model="ir.ui.view" id="view_sale_order_sale_request_zone_hour_form">
+        <field name="name">view.sale.order.sale.request.zone.hour.form</field>
+        <field name="model">create.sale.order.wizard</field>
+        <field name="inherit_id" ref="view_create_sale_order_wizard_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//form/div" position="attributes">
+                <attribute name="attrs">{'invisible': [('has_lines', '=', True),('on_time', '=', True)]}</attribute>
+            </xpath>
+            <xpath expr="//field[@name='has_lines']" position="after">
+                <field name="on_time" invisible="1"/>
+            </xpath>
+            <xpath expr="//form/sheet/group[1]" position="attributes">
+                <attribute name="attrs">{'invisible': ['|',('has_lines', '=', False),('on_time','=',False)]}</attribute>
+            </xpath>
+            <xpath expr="//form/sheet/group[2]" position="attributes">
+                <attribute name="attrs">{'invisible': ['|',('has_lines', '=', False),('on_time','=',False)]}</attribute>
+            </xpath>
+            <xpath expr="//form/sheet/group[3]" position="attributes">
+                <attribute name="attrs">{'invisible': ['|',('has_lines', '=', False),('on_time','=',False)]}</attribute>
+            </xpath>
+        </field>
+    </record>
+</odoo>

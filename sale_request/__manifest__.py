@@ -15,10 +15,12 @@
     ],
     'data': [
         'data/ir_sequence_data.xml',
+        'data/ir_config_parameter_time_sale_request.xml',
         'security/sale_request_security.xml',
         'security/ir.model.access.csv',
         'wizards/create_sale_order_wizard_view.xml',
         'wizards/link_sale_order_wizard_view.xml',
+        'wizards/create_sale_order_wizard_zone_hour_view.xml',
         'views/sale_order_view.xml',
         'views/sale_request_view.xml',
     ],

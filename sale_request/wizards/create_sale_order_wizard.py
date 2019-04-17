@@ -4,6 +4,7 @@
 from odoo import _, api, fields, models
 from odoo.addons import decimal_precision as dp
 from odoo.exceptions import UserError
+import datetime
 
 
 class CreateSaleOrderWizard(models.TransientModel):
@@ -41,6 +42,40 @@ class CreateSaleOrderWizard(models.TransientModel):
     )
     has_lines = fields.Boolean(
         compute='_compute_has_lines',
+    )
+
+    def _calcule_on_time(self):
+        time = fields.datetime.now()
+        hour_zone = fields.Datetime.context_timestamp(self, time)
+        hour = hour_zone.hour
+        minute = hour_zone.minute
+
+        # get time start from system parameter
+        time_start = self.env.ref(
+            'sale_request.sale_request_time_start')
+        time_finish = self.env.ref(
+            'sale_request.sale_request_time_finish')
+
+        sale_r_time_start = int(
+            time_start.value)
+        sale_r_time_finish = int(
+            time_finish.value)
+
+        # convert time to minutes, that way is more easy
+        # use different time hours
+
+        # In this line code we need plus the minutes
+        # but in this case the minute also start as finish is 0
+        # for that reason i do not added
+        start_time = sale_r_time_start*60
+        end_time = sale_r_time_finish*60
+        current_time = hour*60 + minute
+        if start_time <= current_time and end_time >= current_time:
+            return True
+        return False
+
+    on_time = fields.Boolean(
+        default=_calcule_on_time,
     )
 
     @api.multi
@@ -183,6 +218,8 @@ class CreateSaleOrderWizard(models.TransientModel):
     @api.multi
     def create_sale_order(self):
         self.ensure_one()
+        if not self.on_time:
+            self.line_ids = False
         qty_to_sale = 0.0
         for line in self.line_ids:
             qty_to_sale += line.product_uom_id._compute_quantity(

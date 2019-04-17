@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo noupdate="1">
+    <record id="sale_request_time_start" model="ir.config_parameter">
+        <field name="key">sale_request_time_start</field>
+        <field name="value">8</field>
+    </record>
+
+    <record id="sale_request_time_finish" model="ir.config_parameter">
+        <field name="key">sale_request_time_finish</field>
+        <field name="value">20</field>
+    </record>
+
+</odoo>
