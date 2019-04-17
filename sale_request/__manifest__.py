@@ -15,6 +15,7 @@
     ],
     'data': [
         'data/ir_sequence_data.xml',
+        'data/ir_config_parameter.xml',
         'security/sale_request_security.xml',
         'security/ir.model.access.csv',
         'wizards/create_sale_order_wizard_view.xml',

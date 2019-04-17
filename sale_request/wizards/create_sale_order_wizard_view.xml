@@ -5,15 +5,16 @@
         <field name="model">create.sale.order.wizard</field>
         <field name="arch" type="xml">
             <form>
-                <div class="alert alert-danger" role="alert" style="margin-bottom:0px;" attrs="{'invisible': [('has_lines', '=', True)]}">
+                <div class="alert alert-danger" role="alert" style="margin-bottom:0px;" attrs="{'invisible': [('has_lines', '=', True),('on_time', '=', True)]}">
                     <bold>Sorry!</bold>, there is no master order for this product. You want to create requisition without order?
                 </div>
                 <field name="has_lines" invisible="1"/>
+                <field name="on_time" invisible="1"/>
                 <sheet>
-                    <group attrs="{'invisible': [('has_lines', '=', False)]}">
+                    <group attrs="{'invisible': ['|',('has_lines', '=', False),('on_time','=',False)]}">
                         <h2><strong>Please Select the Sale Order Lines From Master Sale Orders</strong></h2>
                     </group>
-                    <group attrs="{'invisible': [('has_lines', '=', False)]}">
+                    <group attrs="{'invisible': ['|',('has_lines', '=', False),('on_time','=',False)]}">
                         <field name="request_line_id" invisible="1"/>
                         <field name="product_id"/>
                         <label for="remaining_product_qty"/>
@@ -24,7 +25,7 @@
                             <field name="product_uom_id" class="oe_inline" groups="uom.group_uom"/>
                         </div>
                     </group>
-                    <group string="Lines" attrs="{'invisible': [('has_lines', '=', False)]}">
+                    <group string="Lines" attrs="{'invisible': ['|',('has_lines', '=', False),('on_time','=',False)]}">
                         <field name="line_ids" nolabel="1">
                             <tree editable="top" create="0" delete="0">
                                 <field name="product_id"/>
@@ -40,8 +41,8 @@
                         </field>
                     </group>
                     <footer>
-                        <button name="create_sale_order" string='Confirm' type="object" class="oe_highlight" attrs="{'invisible': [('has_lines', '=', False)]}"/>
-                        <button name="create_sale_order" string='Confirm' type="object" class="oe_highlight" attrs="{'invisible': [('has_lines', '=', True)]}" confirm="Are you sure you want to create a sale order with no customer purchase order?"/>
+                        <button name="create_sale_order" string='Confirm' type="object" class="oe_highlight" attrs="{'invisible': ['|',('has_lines', '=', False),('on_time','=',False)]}"/>
+                        <button name="create_sale_order" string='Confirm' type="object" class="oe_highlight" attrs="{'invisible': [('has_lines', '=', True),('on_time', '=', True)]}" confirm="Are you sure you want to create a sale order with no customer purchase order?"/>
                         <button string="Cancel" special="cancel"/>
                     </footer>
                 </sheet>

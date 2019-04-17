@@ -10,6 +10,22 @@ class CreateSaleOrderWizard(models.TransientModel):
     _name = 'create.sale.order.wizard'
     _description = 'Create Sale Orders From Sale Request'
 
+    def _compute_on_time(self):
+        time = fields.datetime.now()
+        hour_zone = fields.Datetime.context_timestamp(self, time)
+        hour = hour_zone.hour
+        minute = hour_zone.minute
+        # Time multiplied by 60 to get the minutes and perform all the
+        # logic with minutes.
+        current_time = hour * 60 + minute
+        time_start = int(self.env['ir.config_parameter'].get_param(
+            'sale_request_time_start')) * 60
+        time_end = int(self.env['ir.config_parameter'].get_param(
+            'sale_request_time_end')) * 60
+        if time_start <= current_time and time_end >= current_time:
+            return True
+        return False
+
     line_ids = fields.One2many(
         comodel_name='create.sale.order.wizard.line',
         inverse_name='wizard_id',
@@ -41,6 +57,9 @@ class CreateSaleOrderWizard(models.TransientModel):
     )
     has_lines = fields.Boolean(
         compute='_compute_has_lines',
+    )
+    on_time = fields.Boolean(
+        default=_compute_on_time,
     )
 
     @api.multi
@@ -183,6 +202,8 @@ class CreateSaleOrderWizard(models.TransientModel):
     @api.multi
     def create_sale_order(self):
         self.ensure_one()
+        if not self.on_time:
+            self.line_ids = False
         qty_to_sale = 0.0
         for line in self.line_ids:
             qty_to_sale += line.product_uom_id._compute_quantity(
