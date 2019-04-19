@@ -6,7 +6,7 @@
             <p>
                 <strong>Customer acceptance:</strong>
                 <span t-if="doc.customer_signature">
-                    <img class="image" t-att-src="'data:image/png;base64,%s' % doc.customer_signature" style="border:auto;"/>
+                    <img class="image" t-att-src="'data:image/png;base64,%s' % to_text(doc.customer_signature)" style="border:auto;"/>
                 </span>
             </p>
         </xpath>
