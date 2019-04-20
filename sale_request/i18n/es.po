@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 12.0+e\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-03-28 17:29+0000\n"
-"PO-Revision-Date: 2019-03-28 17:29+0000\n"
+"POT-Creation-Date: 2019-04-20 17:05+0000\n"
+"PO-Revision-Date: 2019-04-20 17:05+0000\n"
 "Last-Translator: <>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -208,7 +208,7 @@ msgstr "¡Error!, No puede cancelar una orden cuando alguna de sus líneas tiene
 #. module: sale_request
 #: model_terms:ir.ui.view,arch_db:sale_request.view_sale_request_form
 msgid "Extra information"
-msgstr "Información Extra"
+msgstr "Información extra"
 
 #. module: sale_request
 #: model:ir.model.fields,help:sale_request.field_sale_request__product_id
@@ -406,7 +406,7 @@ msgstr "Mis actividades"
 #. module: sale_request
 #: model_terms:ir.ui.view,arch_db:sale_request.view_sale_request_search
 msgid "My requests"
-msgstr "Mis Requisiciones"
+msgstr "Mis solicitudes"
 
 #. module: sale_request
 #: model:ir.model.fields,field_description:sale_request.field_sale_request__name
@@ -563,7 +563,7 @@ msgstr "Solicitud"
 #. module: sale_request
 #: model_terms:ir.ui.view,arch_db:sale_request.view_sale_request_search
 msgid "Request is to be approved"
-msgstr "Requisición para ser Aprobada"
+msgstr "La solicitud debe ser aprobada"
 
 #. module: sale_request
 #: model_terms:ir.ui.view,arch_db:sale_request.view_sale_request_form
@@ -583,7 +583,7 @@ msgstr "Requisitada por"
 #. module: sale_request
 #: model_terms:ir.ui.view,arch_db:sale_request.view_sale_request_search
 msgid "Requested by me"
-msgstr "Requisitada por mi"
+msgstr "Solicitado por mi"
 
 #. module: sale_request
 #: model_terms:ir.ui.view,arch_db:sale_request.view_sale_request_search
@@ -639,7 +639,7 @@ msgstr "Líneas de Pedido de venta generadas desde requisiciones de venta ligada
 
 #. module: sale_request
 #: code:addons/sale_request/models/sale_request.py:172
-#: code:addons/sale_request/models/sale_request.py:279
+#: code:addons/sale_request/models/sale_request.py:289
 #, python-format
 msgid "Sale Orders"
 msgstr "Ordenes de Venta"
@@ -806,6 +806,12 @@ msgstr "Historial de comunicaciones del sitio web"
 #: model:ir.model.fields,field_description:sale_request.field_link_master_sale_order_wizard_line__wizard_id
 msgid "Wizard"
 msgstr "Asistente"
+
+#. module: sale_request
+#: code:addons/sale_request/models/sale_request.py:249
+#, python-format
+msgid "You cannot delete a request line that is already linked to a Sale Order"
+msgstr "No puedes borrar una línea de requisición que está vinculada a un pedido de venta"
 
 #. module: sale_request
 #: code:addons/sale_request/models/sale_request.py:143

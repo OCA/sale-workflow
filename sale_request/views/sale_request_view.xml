@@ -69,14 +69,15 @@
                     <notebook>
                         <page name="lines" string="Lines">
                             <group>
-                                <field name="line_ids" nolabel="1" attrs="{'readonly': [('state', '!=', 'draft')]}">
+                                <field name="line_ids" nolabel="1">
                                     <tree editable="top">
-                                        <field name="product_id"/>
-                                        <field name="description"/>
-                                        <field name="product_qty"/>
+                                        <field name="product_id" attrs="{'readonly': [('request_state', '!=', 'draft')]}"/>
+                                        <field name="description" attrs="{'readonly': [('request_state', '!=', 'draft')]}"/>
+                                        <field name="product_qty" attrs="{'readonly': [('request_state', '!=', 'draft')]}"/>
                                         <field name="remaining_product_qty"/>
-                                        <field name="product_uom_id" groups="uom.group_uom"/>
+                                        <field name="product_uom_id" groups="uom.group_uom" attrs="{'readonly': [('request_state', '!=', 'draft')]}"/>
                                         <field name="category_uom_id" groups="uom.group_uom" invisible="1"/>
+                                        <field name="request_state" invisible="1"/>
                                     </tree>
                                 </field>
                             </group>

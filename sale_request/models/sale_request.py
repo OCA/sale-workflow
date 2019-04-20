@@ -242,6 +242,15 @@ class SaleRequestLine(models.Model):
         required=True,
     )
 
+    @api.multi
+    def unlink(self):
+        for rec in self:
+            if rec.sale_line_ids:
+                raise UserError(_(
+                    'You cannot delete a request line that is already linked '
+                    'to a Sale Order'))
+        return super().unlink()
+
     @api.depends('product_qty', 'sale_line_ids')
     @api.multi
     def _compute_remaining_product_qty(self):
