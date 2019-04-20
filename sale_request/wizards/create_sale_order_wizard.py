@@ -186,6 +186,9 @@ class CreateSaleOrderWizard(models.TransientModel):
         price = order.pricelist_id.get_product_price(
             product, params['qty_to_sale'], order.partner_id, order.date_order,
             params['product_uom'])
+        if not price and params['sale_line_id']:
+            price = self.env['sale.order.line'].browse(
+                params['sale_line_id']).price_unit
         price_unit = self.env['account.tax']._fix_tax_included_price_company(
             price, taxes, taxes, self.env.user.company_id)
         return {
