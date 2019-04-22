@@ -74,7 +74,7 @@ class AutomaticWorkflowJob(models.Model):
         for invoice in invoices:
             with savepoint(self.env.cr), force_company(self.env,
                                                        invoice.company_id):
-                invoice.action_invoice_open()
+                invoice.with_context(force_company=invoice.company_id.id).action_invoice_open()
 
     @api.model
     def _validate_pickings(self, picking_filter):
