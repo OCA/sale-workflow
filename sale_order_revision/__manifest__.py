@@ -5,7 +5,8 @@
 
 {
     "name": "Sale order revisions",
-    "version": "11.0.1.0.0",
+    "summary": "Create versioned copies of sales orders.",
+    "version": "12.0.1.0.0",
     "category": "Sale Management",
     "author": "Agile Business Group,"
               "Dreambits,"
