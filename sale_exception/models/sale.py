@@ -1,5 +1,6 @@
-# Copyright 2011 Akretion, Camptocamp, Sodexis
-# Copyright 2018 Akretion, Camptocamp
+# Copyright 2011 Akretion, Sodexis
+# Copyright 2018 Akretion
+# Copyright 2019 Camptocamp SA
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
 
 from odoo import api, models, fields
@@ -50,12 +51,11 @@ class SaleOrder(models.Model):
     def action_confirm(self):
         if self.detect_exceptions():
             return self._popup_exceptions()
-        else:
-            return super(SaleOrder, self).action_confirm()
+        return super().action_confirm()
 
     @api.multi
     def action_draft(self):
-        res = super(SaleOrder, self).action_draft()
+        res = super().action_draft()
         orders = self.filtered(lambda s: s.ignore_exception)
         orders.write({
             'ignore_exception': False,
@@ -68,5 +68,4 @@ class SaleOrder(models.Model):
 
     @api.model
     def _get_popup_action(self):
-        action = self.env.ref('sale_exception.action_sale_exception_confirm')
-        return action
+        return self.env.ref('sale_exception.action_sale_exception_confirm')
