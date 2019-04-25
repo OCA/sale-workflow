@@ -1,4 +1,5 @@
 <?xml version="1.0" ?>
+<!-- License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl). -->
 <odoo>
         <record id="action_sale_test_tree" model="ir.actions.act_window">
                   <field name="name">Sale Exception Rules</field>
@@ -23,7 +24,7 @@
             <field name="inherit_id" ref="sale.view_order_form"/>
             <field name="arch" type="xml">
                 <field name="name" position="after">
-                    <group>
+                    <group name="main_exception">
                     <field name="main_exception_id" options='{"no_open": True}'
                            class="oe_inline" string="Error:"
                            attrs="{'invisible':[('main_exception_id','=', False)]}"/>
