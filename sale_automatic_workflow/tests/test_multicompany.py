@@ -1,124 +1,132 @@
 # Copyright 2017 Camptocamp SA
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
-from odoo.tests.common import TransactionCase
+from odoo.tests.common import SavepointCase
 from odoo.tests import tagged
 
 
 @tagged('post_install', '-at_install')
-class TestMultiCompany(TransactionCase):
+class TestMultiCompany(SavepointCase):
 
-    def create_company(self, values):
-        company = self.env['res.company'].create(values)
+    @classmethod
+    def create_company(cls, values):
+        company = cls.env['res.company'].create(values)
         return company
 
-    def create_product(self, values):
+    @classmethod
+    def create_product(cls, values):
         values.update({
             'type': 'consu',
             'invoice_policy': 'order',
         })
-        product_template = self.env['product.template'].create(values)
+        product_template = cls.env['product.template'].create(values)
         return product_template.product_variant_id
 
-    def setUp(self):
-        super(TestMultiCompany, self).setUp()
-        coa = self.env.user.company_id.chart_template_id
-        self.company_fr = self.create_company({
+    @classmethod
+    def setUpClass(cls):
+        super().setUpClass()
+        cls.env = cls.env(context=dict(cls.env.context, tracking_disable=True))
+        coa = cls.env.user.company_id.chart_template_id
+        cls.company_fr = cls.create_company({
             'name': 'French company',
-            'currency_id': self.env.ref('base.EUR').id,
-            'country_id': self.env.ref('base.fr').id
+            'currency_id': cls.env.ref('base.EUR').id,
+            'country_id': cls.env.ref('base.fr').id
         })
 
-        self.company_ch = self.create_company({
+        cls.company_ch = cls.create_company({
             'name': 'Swiss company',
-            'currency_id': self.env.ref('base.CHF').id,
-            'country_id': self.env.ref('base.ch').id
+            'currency_id': cls.env.ref('base.CHF').id,
+            'country_id': cls.env.ref('base.ch').id
         })
 
-        self.company_be = self.create_company({
+        cls.company_be = cls.create_company({
             'name': 'Belgian company',
-            'currency_id': self.env.ref('base.EUR').id,
-            'country_id': self.env.ref('base.be').id
+            'currency_id': cls.env.ref('base.EUR').id,
+            'country_id': cls.env.ref('base.be').id
         })
 
-        self.company_fr_daughter = self.create_company({
+        cls.company_fr_daughter = cls.create_company({
             'name': 'French company daughter',
-            'currency_id': self.env.ref('base.EUR').id,
-            'country_id': self.env.ref('base.fr').id
+            'currency_id': cls.env.ref('base.EUR').id,
+            'country_id': cls.env.ref('base.fr').id
         })
 
-        self.env.user.company_ids |= self.company_ch
-        self.env.user.company_ids |= self.company_fr
-        self.env.user.company_ids |= self.company_be
-        self.env.user.company_ids |= self.company_fr_daughter
+        cls.env.user.company_ids |= cls.company_ch
+        cls.env.user.company_ids |= cls.company_fr
+        cls.env.user.company_ids |= cls.company_be
+        cls.env.user.company_ids |= cls.company_fr_daughter
 
-        self.env.user.company_id = self.company_fr.id
+        cls.env.user.company_id = cls.company_fr.id
         coa.try_loading_for_current_company()
-        self.customer_fr = self.env['res.partner'].create(
+        cls.customer_fr = cls.env['res.partner'].create(
             {
                 'name': 'Customer FR',
             }
         )
 
-        self.product_fr = self.create_product({
+        cls.product_fr = cls.create_product({
             'name': 'Evian bottle',
             'list_price': 2.0,
         })
 
-        self.env.user.company_id = self.company_ch.id
+        cls.env.user.company_id = cls.company_ch.id
         coa.try_loading_for_current_company()
-        self.customer_ch = self.env['res.partner'].create(
+        cls.customer_ch = cls.env['res.partner'].create(
             {
                 'name': 'Customer CH',
             }
         )
 
-        self.product_ch = self.create_product({
+        cls.product_ch = cls.create_product({
             'name': 'Henniez bottle',
             'list_price': 3.0,
         })
 
-        self.env.user.company_id = self.company_be.id
+        cls.env.user.company_id = cls.company_be.id
         coa.try_loading_for_current_company()
 
-        self.customer_be = self.env['res.partner'].create(
+        cls.customer_be = cls.env['res.partner'].create(
             {
                 'name': 'Customer BE',
             }
         )
 
-        self.product_be = self.env['product.template'].create({
+        cls.product_be = cls.env['product.template'].create({
             'name': 'SPA bottle',
             'list_price': 1.5,
             'type': 'consu',
             'invoice_policy': 'order',
         }).product_variant_id
 
-        self.env.user.company_id = self.company_fr_daughter.id
+        cls.env.user.company_id = cls.company_fr_daughter.id
         coa.try_loading_for_current_company()
-        self.customer_fr_daughter = self.env['res.partner'].create(
+        cls.customer_fr_daughter = cls.env['res.partner'].create(
             {
                 'name': 'Customer FR Daughter',
             }
         )
-        self.product_fr_daughter = self.create_product({
+        cls.product_fr_daughter = cls.create_product({
             'name': 'Contrex bottle',
             'list_price': 1.5,
         })
 
-        self.auto_wkf = self.env.ref(
+        cls.auto_wkf = cls.env.ref(
             'sale_automatic_workflow.automatic_validation'
         )
-        self.env.user.company_id = self.env.ref('base.main_company')
+        cls.auto_wkf.validate_picking = True
+        cls.env.user.company_id = cls.env.ref('base.main_company')
 
     def create_auto_wkf_order(self, company, customer, product, qty):
         SaleOrder = self.env['sale.order']
+        warehouse = self.env['stock.warehouse'].search(
+            [('company_id', '=', company.id)], limit=1)
 
         self.product_uom_unit = self.env.ref('uom.product_uom_unit')
 
         order = SaleOrder.create({
             'partner_id': customer.id,
             'company_id': company.id,
+            'warehouse_id': warehouse.id,
             'workflow_process_id': self.auto_wkf.id,
             'order_line': [(0, 0, {
                 'name': product.name,
@@ -128,6 +136,7 @@ class TestMultiCompany(TransactionCase):
                 'product_uom': self.product_uom_unit.id,
             })]
         })
+        order._onchange_workflow_process_id()
         return order
 
     def test_sale_order_multicompany(self):
@@ -153,6 +162,12 @@ class TestMultiCompany(TransactionCase):
         self.assertEquals(order_fr_daughter.state, 'draft')
 
         self.env['automatic.workflow.job'].run()
+        self.assertTrue(order_fr.picking_ids)
+        self.assertTrue(order_ch.picking_ids)
+        self.assertTrue(order_be.picking_ids)
+        self.assertEqual(order_fr.picking_ids.state, 'done')
+        self.assertEqual(order_ch.picking_ids.state, 'done')
+        self.assertEqual(order_be.picking_ids.state, 'done')
         invoice_fr = order_fr.invoice_ids
         invoice_ch = order_ch.invoice_ids
         invoice_be = order_be.invoice_ids
