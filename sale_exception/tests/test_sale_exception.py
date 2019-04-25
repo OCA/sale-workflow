@@ -1,11 +1,18 @@
-# Copyright 2011 Akretion, Camptocamp, Sodexis
-# Copyright 2018 Akretion, Camptocamp
+# Copyright 2011 Akretion, Sodexis
+# Copyright 2018 Akretion
+# Copyright 2019 Camptocamp SA
+# License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl)
 
 from odoo.exceptions import ValidationError
 from odoo.addons.sale.tests.test_sale_order import TestSaleOrder
 
 
 class TestSaleException(TestSaleOrder):
+
+    @classmethod
+    def setUpClass(cls):
+        super().setUpClass()
+        cls.env = cls.env(context=dict(cls.env.context, tracking_disable=True))
 
     def test_sale_order_exception(self):
         self.sale_exception_confirm = self.env['sale.exception.confirm']
