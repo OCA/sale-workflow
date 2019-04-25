@@ -76,7 +76,8 @@ class AutomaticWorkflowJob(models.Model):
                                                        invoice.company_id):
                 # FIX Why is this needed for certain invoices
                 # in enterprise in multicompany?
-                invoice.with_context(force_company=invoice.company_id.id).action_invoice_open()
+                invoice.with_context(
+                    force_company=invoice.company_id.id).action_invoice_open()
 
     @api.model
     def _validate_pickings(self, picking_filter):
