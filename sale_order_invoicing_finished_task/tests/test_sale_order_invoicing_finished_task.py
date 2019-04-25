@@ -9,17 +9,20 @@ class TestInvoicefinishedTask(common.SavepointCase):
 
     def setUp(self):
         super(TestInvoicefinishedTask, self).setUp()
-
+        self.hour_uom = self.env.ref('product.product_uom_hour')
+        self.env.user.company_id.project_time_mode_id = self.hour_uom.id
         group_manager = self.env.ref('sales_team.group_sale_manager')
         self.manager = self.env['res.users'].create({
             'name': 'Andrew Manager',
             'login': 'manager',
             'email': 'a.m@example.com',
             'signature': '--\nAndreww',
-            'notify_email': 'always',
             'groups_id': [(6, 0, [group_manager.id])]
         })
-
+        self.employee = self.env['hr.employee'].create({
+            'name': self.manager.name,
+            'user_id': self.manager.id,
+        })
         self.partner = self.env['res.partner'].create({
             'name': 'Customer - test',
             'customer': True,
@@ -81,6 +84,8 @@ class TestInvoicefinishedTask(common.SavepointCase):
             'service_tracking': 'task_global_project',
             'invoicing_finished_task': True,
             'project_id': self.project.id,
+            'uom_id': self.hour_uom.id,
+            'uom_po_id': self.hour_uom.id,
         }
 
     def _prepare_timesheet_vals(self, task, unit_amount):
