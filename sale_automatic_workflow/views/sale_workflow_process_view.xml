@@ -12,14 +12,14 @@
         <field name="model">sale.workflow.process</field>
         <field name="arch" type="xml">
             <form string="Automatic Workflow">
-                <group>
+                <group name="info">
                     <field name="name"/>
                 </group>
-                <group string="Order Configuration">
+                <group name="sale_order_confirm" string="Order Configuration">
                     <field name="picking_policy"/>
                     <field name="team_id" />
                 </group>
-                <group string="Workflow Options" col="4">
+                <group name="workflow_options" string="Workflow Options" col="4">
 
                     <field name="validate_order" />
                     <label for="order_filter_id" attrs="{'required':[('validate_order','=',True)], 'invisible':[('validate_order','!=',True)]}"/>
@@ -114,7 +114,7 @@
                         </div>
                     </div>
                 </group>
-                <group>
+                <group name="invoice_options">
                     <field name="invoice_date_is_order_date"/>
                     <field name="invoice_service_delivery" />
                     <field name="property_journal_id" groups="account.group_account_invoice"

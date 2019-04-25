@@ -11,7 +11,7 @@ class StockMove(models.Model):
 
     @api.multi
     def _get_new_picking_values(self):
-        values = super(StockMove, self)._get_new_picking_values()
+        values = super()._get_new_picking_values()
         sale = self.group_id.sale_id
         if sale:
             values['workflow_process_id'] = sale.workflow_process_id.id
