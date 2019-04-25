@@ -1,13 +1,13 @@
 # Translation of Odoo Server.
 # This file contains the translation of the following modules:
-#   * sale_request
+#	* sale_request
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 12.0+e\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-04-20 17:05+0000\n"
-"PO-Revision-Date: 2019-04-20 17:05+0000\n"
+"POT-Creation-Date: 2019-04-25 21:40+0000\n"
+"PO-Revision-Date: 2019-04-25 21:40+0000\n"
 "Last-Translator: <>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -186,15 +186,15 @@ msgid "Draft"
 msgstr "Borrador"
 
 #. module: sale_request
-#: code:addons/sale_request/wizards/create_sale_order_wizard.py:65
-#: code:addons/sale_request/wizards/create_sale_order_wizard.py:319
+#: code:addons/sale_request/wizards/create_sale_order_wizard.py:84
+#: code:addons/sale_request/wizards/create_sale_order_wizard.py:343
 #, python-format
 msgid "Error!"
 msgstr ""
 
 #. module: sale_request
-#: code:addons/sale_request/wizards/create_sale_order_wizard.py:192
-#: code:addons/sale_request/wizards/create_sale_order_wizard.py:207
+#: code:addons/sale_request/wizards/create_sale_order_wizard.py:216
+#: code:addons/sale_request/wizards/create_sale_order_wizard.py:231
 #, python-format
 msgid "Error! The quantity to sale is greather than the requested quantity."
 msgstr "¡Error! La cantidad a vender es mayor que la cantidad requerida."
@@ -208,7 +208,7 @@ msgstr "¡Error!, No puede cancelar una orden cuando alguna de sus líneas tiene
 #. module: sale_request
 #: model_terms:ir.ui.view,arch_db:sale_request.view_sale_request_form
 msgid "Extra information"
-msgstr "Información extra"
+msgstr "Información Extra"
 
 #. module: sale_request
 #: model:ir.model.fields,help:sale_request.field_sale_request__product_id
@@ -275,6 +275,11 @@ msgstr "Si se encuentra marcado, algunos mensajes tienen error de envío."
 #: model:ir.model.fields,help:sale_request.field_sale_order_line__master_sale_order
 msgid "If you check this field, this sale order do not run any procurement and will be selectionable when you request a product defined in this order."
 msgstr "Si marcas este campo, esta venta no va a generar ningún abastecimiento y será seleccionable cuando requieres un producto definido en esta orden."
+
+#. module: sale_request
+#: model:ir.model,name:sale_request.model_account_invoice_line
+msgid "Invoice Line"
+msgstr "Linea de Factura"
 
 #. module: sale_request
 #: model:ir.model.fields,field_description:sale_request.field_sale_request__message_is_follower
@@ -406,7 +411,7 @@ msgstr "Mis actividades"
 #. module: sale_request
 #: model_terms:ir.ui.view,arch_db:sale_request.view_sale_request_search
 msgid "My requests"
-msgstr "Mis solicitudes"
+msgstr "Mis Requisiciones"
 
 #. module: sale_request
 #: model:ir.model.fields,field_description:sale_request.field_sale_request__name
@@ -459,6 +464,11 @@ msgstr "Número de mensajes con error de envío"
 #: model:ir.model.fields,help:sale_request.field_sale_request__message_unread_counter
 msgid "Number of unread messages"
 msgstr "Número de mensajes no leidos"
+
+#. module: sale_request
+#: model:ir.model.fields,field_description:sale_request.field_create_sale_order_wizard__on_time
+msgid "On Time"
+msgstr ""
 
 #. module: sale_request
 #: model_terms:ir.ui.view,arch_db:sale_request.sale_order_line_search
@@ -563,7 +573,7 @@ msgstr "Solicitud"
 #. module: sale_request
 #: model_terms:ir.ui.view,arch_db:sale_request.view_sale_request_search
 msgid "Request is to be approved"
-msgstr "La solicitud debe ser aprobada"
+msgstr "Requisición para ser Aprobada"
 
 #. module: sale_request
 #: model_terms:ir.ui.view,arch_db:sale_request.view_sale_request_form
@@ -583,7 +593,7 @@ msgstr "Requisitada por"
 #. module: sale_request
 #: model_terms:ir.ui.view,arch_db:sale_request.view_sale_request_search
 msgid "Requested by me"
-msgstr "Solicitado por mi"
+msgstr "Requisitada por mi"
 
 #. module: sale_request
 #: model_terms:ir.ui.view,arch_db:sale_request.view_sale_request_search
@@ -612,7 +622,7 @@ msgid "Responsible User"
 msgstr "Usuario responsable"
 
 #. module: sale_request
-#: code:addons/sale_request/wizards/create_sale_order_wizard.py:248
+#: code:addons/sale_request/wizards/create_sale_order_wizard.py:272
 #: code:addons/sale_request/wizards/link_sale_order_wizard.py:89
 #: model:ir.model,name:sale_request.model_sale_order
 #: model:ir.model.fields,field_description:sale_request.field_create_sale_order_wizard_line__order_id
@@ -734,6 +744,13 @@ msgstr "Estado basado en actividades\n"
 "Planificada: futuras actividades."
 
 #. module: sale_request
+#: code:addons/sale_request/models/account_invoice.py:19
+#: code:addons/sale_request/models/sale_order.py:147
+#, python-format
+msgid "The user %s can not permission to edit the priceunit, quantity and taxes"
+msgstr "El usuario %s no tiene permisos para editar: Precio Unitario, Cantidad O Impuestos"
+
+#. module: sale_request
 #: selection:sale.request,activity_state:0
 msgid "Today"
 msgstr "Hoy"
@@ -811,7 +828,7 @@ msgstr "Asistente"
 #: code:addons/sale_request/models/sale_request.py:249
 #, python-format
 msgid "You cannot delete a request line that is already linked to a Sale Order"
-msgstr "No puedes borrar una línea de requisición que está vinculada a un pedido de venta"
+msgstr "No se puede eliminar una linea de la Requisición de Venta que ya esta enlazada a un Pedido de Venta"
 
 #. module: sale_request
 #: code:addons/sale_request/models/sale_request.py:143
@@ -820,19 +837,19 @@ msgid "You cannot reject a sale request related to confirmed sale orders."
 msgstr "No puede cancelar una requisición de venta ligada a ordenes de venta ya confirmadas."
 
 #. module: sale_request
-#: code:addons/sale_request/wizards/create_sale_order_wizard.py:66
+#: code:addons/sale_request/wizards/create_sale_order_wizard.py:85
 #, python-format
 msgid "You cannot request more than the initial demand of this sale request."
 msgstr "No puede solicitar más cantidad que la demanda inicial de esta requisición."
 
 #. module: sale_request
-#: code:addons/sale_request/wizards/create_sale_order_wizard.py:320
+#: code:addons/sale_request/wizards/create_sale_order_wizard.py:344
 #, python-format
 msgid "You cannot request more than the remaining qty of this master sale order."
 msgstr "No puedes requerir más que la cantidad restante de este pedido master"
 
 #. module: sale_request
-#: code:addons/sale_request/wizards/create_sale_order_wizard.py:200
+#: code:addons/sale_request/wizards/create_sale_order_wizard.py:224
 #, python-format
 msgid "You have not defined the quantity to sale to any master order, please define it."
 msgstr "No ha definido la cantidad a vender a ningún pedido maestro, por favor defínalo."
@@ -841,4 +858,3 @@ msgstr "No ha definido la cantidad a vender a ningún pedido maestro, por favor 
 #: model_terms:ir.ui.view,arch_db:sale_request.view_sale_request_search
 msgid "name"
 msgstr "Nombre"
-

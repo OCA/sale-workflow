@@ -136,6 +136,18 @@ class SaleOrderLine(models.Model):
         digits=dp.get_precision('Product Unit of Measure'),
     )
 
+    @api.multi
+    def write(self, values):
+        name_user = self.env.user.name
+        fields_blocked = ['product_uom_qty', 'price_unit', 'tax_id']
+        if self.user_has_groups('account.group_account_invoice'):
+            for rec in fields_blocked:
+                if rec in values:
+                    raise UserError(
+                        _('The user %s can not permission to edit the price'
+                            'unit, quantity and taxes') % name_user)
+        return super().write(values)
+
     @api.onchange('product_uom_qty', 'product_uom', 'route_id')
     def _onchange_product_id_check_availability(self):
         if not self.order_id.master_sale_order:
