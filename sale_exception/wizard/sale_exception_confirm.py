@@ -1,5 +1,6 @@
-# Copyright 2011 Akretion, Camptocamp, Sodexis
-# Copyright 2018 Akretion, Camptocamp
+# Copyright 2011 Akretion, Sodexis
+# Copyright 2018 Akretion
+# Copyright 2019 Camptocamp SA
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
 from odoo import api, fields, models
 
@@ -15,4 +16,4 @@ class SaleExceptionConfirm(models.TransientModel):
         self.ensure_one()
         if self.ignore:
             self.related_model_id.ignore_exception = True
-        return super(SaleExceptionConfirm, self).action_confirm()
+        return super().action_confirm()
