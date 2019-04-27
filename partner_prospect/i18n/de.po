@@ -1,0 +1,46 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# * partner_prospect
+#
+# Translators:
+# Rudolf Schnapka <rs@techno-flex.de>, 2015
+msgid ""
+msgstr ""
+"Project-Id-Version: sale-workflow (8.0)\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2015-10-08 20:48+0000\n"
+"PO-Revision-Date: 2015-10-09 13:23+0000\n"
+"Last-Translator: Rudolf Schnapka <rs@techno-flex.de>\n"
+"Language-Team: German (http://www.transifex.com/oca/OCA-sale-workflow-8-0/"
+"language/de/)\n"
+"Language: de\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+#. module: partner_prospect
+#: model:ir.ui.view,arch_db:partner_prospect.res_partner_prospect_search_view
+msgid "Actual Customer"
+msgstr "Aktueller Kunde"
+
+#. module: partner_prospect
+#: model:ir.model,name:partner_prospect.model_res_partner
+msgid "Contact"
+msgstr ""
+
+#. module: partner_prospect
+#: model:ir.model.fields,field_description:partner_prospect.field_res_partner_prospect
+#: model:ir.model.fields,field_description:partner_prospect.field_res_users_prospect
+#: model:ir.ui.view,arch_db:partner_prospect.res_partner_prospect_search_view
+msgid "Prospect"
+msgstr "Interessent"
+
+#~ msgid "Group By"
+#~ msgstr "Gruppierung"
+
+#~ msgid "Partner"
+#~ msgstr "Partner"
+
+#~ msgid "Suppliers"
+#~ msgstr "Lieferanten"
