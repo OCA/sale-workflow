@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <!--
+        Copyright 2019 Brainbean Apps (https://brainbeanapps.com)
+        License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
+    -->
+
+    <record id="view_sale_service_inherit_form2" model="ir.ui.view">
+        <field name="name">project.task.form</field>
+        <field name="model">project.task</field>
+        <field name="inherit_id" ref="sale_timesheet.view_sale_service_inherit_form2"/>
+        <field name="arch" type="xml">
+            <field name="sale_line_id" position="before">
+                <field name="exclude_from_sale_order"/>
+            </field>
+        </field>
+    </record>
+
+</odoo>
