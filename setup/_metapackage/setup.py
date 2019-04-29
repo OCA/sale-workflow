@@ -13,6 +13,7 @@ setuptools.setup(
         'odoo12-addon-sale_commercial_partner',
         'odoo12-addon-sale_double_validation',
         'odoo12-addon-sale_last_price_info',
+        'odoo12-addon-sale_order_action_invoice_create_hook',
         'odoo12-addon-sale_order_archive',
         'odoo12-addon-sale_order_general_discount',
         'odoo12-addon-sale_order_line_sequence',
