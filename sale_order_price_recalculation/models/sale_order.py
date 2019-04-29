@@ -19,7 +19,11 @@ class SaleOrder(models.Model):
             line2 = self.env['sale.order.line'].new(dict)
             # we make this to isolate changed values:
             line2.product_uom_change()
-            line.price_unit = line2.price_unit
+            line2._onchange_discount()
+            line.update({
+                'price_unit': line2.price_unit,
+                'discount': line2.discount,
+            })
         return True
 
     @api.multi
