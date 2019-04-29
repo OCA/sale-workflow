@@ -10,6 +10,9 @@ class TestSaleOrderPriceRecalculation(common.TransactionCase):
 
     def setUp(self):
         super(TestSaleOrderPriceRecalculation, self).setUp()
+        # Enable group_discount_per_so_line for admin user
+        group = self.env.ref('sale.group_discount_per_so_line')
+        group.users = [(4, self.env.user.id)]
         self.partner = self.env['res.partner'].create({
             'name': 'Test partner',
         })
@@ -26,6 +29,18 @@ class TestSaleOrderPriceRecalculation(common.TransactionCase):
                     'applied_on': '3_global',
                     'compute_price': 'formula',
                     'base': 'list_price',
+                }),
+            ],
+        })
+        self.pricelist_dto = self.env['product.pricelist'].create({
+            'name': 'Test pricelist discount policy',
+            'discount_policy': 'without_discount',
+            'item_ids': [
+                (0, 0, {
+                    'applied_on': '1_product',
+                    'compute_price': 'percentage',
+                    'percent_price': 50.0,
+                    'product_tmpl_id': self.product.product_tmpl_id.id,
                 }),
             ],
         })
@@ -61,6 +76,10 @@ class TestSaleOrderPriceRecalculation(common.TransactionCase):
         self.assertEqual(self.sale_order_line.product_uom_qty, 1.0)
         # Check the description still unchanged
         self.assertEqual(self.sale_order_line.name, "My product description")
+        # Apply listprice with a discount
+        self.sale_order.pricelist_id = self.pricelist_dto
+        self.sale_order.recalculate_prices()
+        self.assertEqual(self.sale_order_line.discount, 50.0)
 
     def test_name_recalculation(self):
         self.sale_order_line.price_unit = 150.0
