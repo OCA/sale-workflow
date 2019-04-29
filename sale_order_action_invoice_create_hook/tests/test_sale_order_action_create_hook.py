@@ -1,10 +1,10 @@
 # Copyright 2017 Eficent Business and IT Consulting Services S.L.
 # License LGPL-3.0 or later (https://www.gnu.org/licenses/lgpl.html).
 
-from odoo.tests.common import TransactionCase
-from .. import hooks
+from odoo.tests.common import TransactionCase, tagged
 
 
+@tagged('post_install', '-at_install')
 class TestSaleOrderActionCreateHook(TransactionCase):
 
     def setUp(self):
@@ -25,7 +25,6 @@ class TestSaleOrderActionCreateHook(TransactionCase):
                                               product_ctg)
         self.service_2 = self._create_product('test_product2',
                                               product_ctg)
-        hooks.post_load_hook()
 
     def _create_customer(self, name):
         """Create a Partner."""
