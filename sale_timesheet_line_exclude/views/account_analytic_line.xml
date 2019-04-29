@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <!--
+        Copyright 2018-2019 Brainbean Apps
+        License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
+    -->
+
+    <record id="account_analytic_line_tree_user" model="ir.ui.view">
+        <field name="name">account.analytic.line.tree.user</field>
+        <field name="model">account.analytic.line</field>
+        <field name="inherit_id" ref="hr_timesheet.timesheet_view_tree_user"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='task_id']" position="after">
+                <field name="exclude_from_sale_order"/>
+            </xpath>
+        </field>
+    </record>
+
+    <record id="account_analytic_line_search" model="ir.ui.view">
+        <field name="name">account.analytic.line.search</field>
+        <field name="model">account.analytic.line</field>
+        <field name="inherit_id" ref="sale_timesheet.timesheet_view_search"/>
+        <field name="arch" type="xml">
+            <field name="timesheet_invoice_type" position="after">
+                <field name="exclude_from_sale_order"/>
+            </field>
+            <xpath expr="//filter[@name='non_billable']" position="after">
+                <filter name="excluded_from_sale_order" string="Excluded From Sale Order" domain="[('exclude_from_sale_order', '=', True)]"/>
+            </xpath>
+        </field>
+    </record>
+
+</odoo>
