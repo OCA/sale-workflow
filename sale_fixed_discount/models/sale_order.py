@@ -39,8 +39,10 @@ class SaleOrderLine(models.Model):
 
     @api.onchange('discount')
     def _onchange_discount(self):
+        res = super(SaleOrderLine, self)._onchange_discount()
         if self.discount:
             self.discount_fixed = 0.0
+        return res
 
     @api.onchange('discount_fixed')
     def _onchange_discount_fixed(self):
