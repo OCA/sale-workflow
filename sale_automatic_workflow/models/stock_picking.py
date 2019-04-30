@@ -4,7 +4,7 @@
 # © 2016 Sodexis
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
-from openerp import models, fields, api
+from odoo import api, fields, models
 
 
 class StockPicking(models.Model):
@@ -17,6 +17,7 @@ class StockPicking(models.Model):
 
     @api.multi
     def validate_picking(self):
-        self.force_assign()
-        self.do_transfer()
+        for picking in self:
+            picking.force_assign()
+            picking.do_transfer()
         return True

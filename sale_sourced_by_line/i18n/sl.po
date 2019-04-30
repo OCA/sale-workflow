@@ -1,34 +1,30 @@
 # Translation of Odoo Server.
 # This file contains the translation of the following modules:
 # * sale_sourced_by_line
-# 
+#
 # Translators:
-# Matjaž Mozetič <m.mozetic@matmoz.si>, 2015
+# OCA Transbot <transbot@odoo-community.org>, 2017
 msgid ""
 msgstr ""
-"Project-Id-Version: sale-workflow (8.0)\n"
+"Project-Id-Version: Odoo Server 10.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-09-09 12:27+0000\n"
-"PO-Revision-Date: 2015-09-07 14:32+0000\n"
-"Last-Translator: Matjaž Mozetič <m.mozetic@matmoz.si>\n"
-"Language-Team: Slovenian (http://www.transifex.com/oca/OCA-sale-workflow-8-0/language/sl/)\n"
+"POT-Creation-Date: 2017-11-23 01:51+0000\n"
+"PO-Revision-Date: 2017-11-23 01:51+0000\n"
+"Last-Translator: OCA Transbot <transbot@odoo-community.org>, 2017\n"
+"Language-Team: Slovenian (https://www.transifex.com/oca/teams/23907/sl/)\n"
+"Language: sl\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
-"Language: sl\n"
-"Plural-Forms: nplurals=4; plural=(n%100==1 ? 0 : n%100==2 ? 1 : n%100==3 || n%100==4 ? 2 : 3);\n"
+"Plural-Forms: nplurals=4; plural=(n%100==1 ? 0 : n%100==2 ? 1 : n%100==3 || n"
+"%100==4 ? 2 : 3);\n"
 
 #. module: sale_sourced_by_line
-#: help:sale.order.line,warehouse_id:0
+#: model:ir.model.fields,help:sale_sourced_by_line.field_sale_order_line_warehouse_id
 msgid ""
 "If a source warehouse is selected, it will be used to define the route. "
 "Otherwise, it will get the warehouse of the sale order"
-msgstr "Ob izbiri izvornega skladišča, bo to uporabljeno za določitev proge. Drugače bo izbrano skladišče iz prodajnega naloga"
-
-#. module: sale_sourced_by_line
-#: model:ir.model,name:sale_sourced_by_line.model_stock_picking
-msgid "Picking List"
-msgstr "Zbirnik"
+msgstr ""
 
 #. module: sale_sourced_by_line
 #: model:ir.model,name:sale_sourced_by_line.model_sale_order
@@ -41,11 +37,6 @@ msgid "Sales Order Line"
 msgstr "Postavka prodajnega naloga"
 
 #. module: sale_sourced_by_line
-#: field:sale.order.line,warehouse_id:0
+#: model:ir.model.fields,field_description:sale_sourced_by_line.field_sale_order_line_warehouse_id
 msgid "Source Warehouse"
-msgstr "Izvorno skladišče"
-
-#. module: sale_sourced_by_line
-#: view:sale.order:sale_sourced_by_line.view_order_form_form
-msgid "{'default_warehouse_id': warehouse_id}"
-msgstr "{'default_warehouse_id': warehouse_id}"
+msgstr ""

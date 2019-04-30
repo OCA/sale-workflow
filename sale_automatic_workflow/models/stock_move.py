@@ -4,16 +4,16 @@
 # © 2016 Sodexis
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
-from openerp import models, api
+from odoo import api, models
 
 
 class StockMove(models.Model):
     _inherit = 'stock.move'
 
-    @api.model
-    def _prepare_picking_assign(self, move):
-        values = super(StockMove, self)._prepare_picking_assign(move)
-        if move.procurement_id.sale_line_id:
-            sale = move.procurement_id.sale_line_id.order_id
+    @api.multi
+    def _get_new_picking_values(self):
+        values = super(StockMove, self)._get_new_picking_values()
+        if self.procurement_id.sale_line_id:
+            sale = self.procurement_id.sale_line_id.order_id
             values['workflow_process_id'] = sale.workflow_process_id.id
         return values

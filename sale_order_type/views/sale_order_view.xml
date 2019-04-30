@@ -1,17 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
-<openerp>
-    <data>
-
-        <record id="sot_view_order_form" model="ir.ui.view">
-            <field name="name">sale.order.form</field>
-            <field name="model">sale.order</field>
-            <field name="inherit_id" ref="sale.view_order_form"/>
-            <field name="arch" type="xml">
-                <field name="currency_id" position="after">
+<odoo>
+    <record id="sot_view_order_form" model="ir.ui.view">
+        <field name="name">sale.order.form</field>
+        <field name="model">sale.order</field>
+        <field name="inherit_id" ref="sale.view_order_form"/>
+        <field name="arch" type="xml">
+            <field name="currency_id" position="after">
+                <label for="type_id"/>
+                <div name="order_type" class="o_row">
                     <field name="type_id" required="1"/>
-                </field>
+                    <button type="object" name="match_order_type"
+                            string="Find by rule" class="oe_inline" icon="fa-gears"/>
+                </div>
             </field>
-        </record>
-
-    </data>
-</openerp>
+        </field>
+    </record>
+</odoo>

@@ -6,27 +6,33 @@
 
 import logging
 from contextlib import contextmanager
-from openerp import models, api
-from openerp.tools.safe_eval import safe_eval
+from odoo import api, models
+from odoo.tools.safe_eval import safe_eval
 
 _logger = logging.getLogger(__name__)
 
 
 @contextmanager
-def commit(cr):
-    """
-    Commit the cursor after the ``yield``, or rollback it if an
-    exception occurs.
- is Pending
+def savepoint(cr):
+    """ Open a savepoint on the cursor, then yield.
+
     Warning: using this method, the exceptions are logged then discarded.
     """
     try:
-        yield
+        with cr.savepoint():
+            yield
     except Exception:
-        cr.rollback()
         _logger.exception('Error during an automatic workflow action.')
-    else:
-        cr.commit()
+
+
+@contextmanager
+def force_company(env, company_id):
+    user_company = env.user.company_id
+    env.user.update({'company_id': company_id})
+    try:
+        yield
+    finally:
+        env.user.update({'company_id': user_company})
 
 
 class AutomaticWorkflowJob(models.Model):
@@ -41,7 +47,8 @@ class AutomaticWorkflowJob(models.Model):
         sales = sale_obj.search(order_filter)
         _logger.debug('Sale Orders to validate: %s', sales.ids)
         for sale in sales:
-            with commit(self.env.cr):
+            with savepoint(self.env.cr), force_company(self.env,
+                                                       sale.company_id):
                 sale.action_confirm()
 
     @api.model
@@ -50,7 +57,8 @@ class AutomaticWorkflowJob(models.Model):
         sales = sale_obj.search(create_filter)
         _logger.debug('Sale Orders to create Invoice: %s', sales.ids)
         for sale in sales:
-            with commit(self.env.cr):
+            with savepoint(self.env.cr), force_company(self.env,
+                                                       sale.company_id):
                 payment = self.env['sale.advance.payment.inv'].create(
                     {'advance_payment_method': 'all'})
                 payment.with_context(active_ids=sale.ids).create_invoices()
@@ -61,17 +69,18 @@ class AutomaticWorkflowJob(models.Model):
         invoices = invoice_obj.search(validate_invoice_filter)
         _logger.debug('Invoices to validate: %s', invoices.ids)
         for invoice in invoices:
-            with commit(self.env.cr):
-                invoice.signal_workflow('invoice_open')
+            with savepoint(self.env.cr), force_company(self.env,
+                                                       invoice.company_id):
+                invoice.action_invoice_open()
 
     @api.model
     def _validate_pickings(self, picking_filter):
         picking_obj = self.env['stock.picking']
         pickings = picking_obj.search(picking_filter)
         _logger.debug('Pickings to validate: %s', pickings.ids)
-        if pickings:
-            with commit(self.env.cr):
-                pickings.validate_picking()
+        for picking in pickings:
+            with savepoint(self.env.cr):
+                picking.validate_picking()
 
     @api.model
     def _sale_done(self, sale_done_filter):
@@ -79,7 +88,8 @@ class AutomaticWorkflowJob(models.Model):
         sales = sale_obj.search(sale_done_filter)
         _logger.debug('Sale Orders to done: %s', sales.ids)
         for sale in sales:
-            with commit(self.env.cr):
+            with savepoint(self.env.cr), force_company(self.env,
+                                                       sale.company_id):
                 sale.action_done()
 
     @api.model

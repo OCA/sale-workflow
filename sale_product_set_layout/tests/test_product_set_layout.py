@@ -2,11 +2,11 @@
 from odoo.tests import common
 
 
-class test_product_set_layout(common.TransactionCase):
+class TestProductSetLayout(common.TransactionCase):
     """ Test Product set"""
 
     def setUp(self):
-        super(test_product_set_layout, self).setUp()
+        super(TestProductSetLayout, self).setUp()
         self.product_set_add = self.env['product.set.add']
 
     def test_add_set(self):
