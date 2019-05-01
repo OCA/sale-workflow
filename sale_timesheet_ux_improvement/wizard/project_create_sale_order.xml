@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <!--
+        Copyright 2018-2019 Brainbean Apps (https://brainbeanapps.com)
+        License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
+    -->
+
+    <record id="project_create_sale_order_view_form" model="ir.ui.view">
+        <field name="name">project.create.sale.order.wizard.form</field>
+        <field name="model">project.create.sale.order</field>
+        <field name="inherit_id" ref="sale_timesheet.project_create_sale_order_view_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//group/field[@name='product_id']/../.." position="attributes">
+                <attribute name="attrs">{'invisible': [('billable_type', '!=', 'project_rate')]}</attribute>
+            </xpath>
+            <xpath expr="//field[@name='line_ids']/.." position="attributes">
+                <attribute name="attrs">{'invisible': [('billable_type', '!=', 'employee_rate')]}</attribute>
+            </xpath>
+        </field>
+    </record>
+
+</odoo>
