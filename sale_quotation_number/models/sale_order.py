@@ -48,10 +48,9 @@ class SaleOrder(models.Model):
     @api.multi
     def action_confirm(self):
         if super(SaleOrder, self).action_confirm():
-            company = self.env['res.company']. \
-                _company_default_get('sale.order')
             for order in self:
-                if order.state == 'sale' and not company.keep_name_so:
+                if (order.state == 'sale' and not
+                        self.env.user.company_id.keep_name_so):
                     if order.origin and order.origin != '':
                         quo = order.origin + ', ' + order.name
                     else:
