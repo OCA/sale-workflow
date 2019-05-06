@@ -19,7 +19,6 @@ class SaleOrderLinePriceHistory(models.TransientModel):
     )
     product_id = fields.Many2one(
         related="sale_order_line_id.product_id",
-        readonly=True,
     )
     partner_id = fields.Many2one(
         comodel_name='res.partner',
@@ -29,7 +28,7 @@ class SaleOrderLinePriceHistory(models.TransientModel):
     line_ids = fields.One2many(
         comodel_name="sale.order.line.price.history.line",
         inverse_name="history_id",
-        string="History line",
+        string="History lines",
         readonly=True,
     )
     include_quotations = fields.Boolean(
@@ -90,23 +89,18 @@ class SaleOrderLinePriceHistoryline(models.TransientModel):
     )
     order_id = fields.Many2one(
         related="sale_order_line_id.order_id",
-        readonly=True,
     )
     partner_id = fields.Many2one(
         related="sale_order_line_id.order_partner_id",
-        readonly=True,
     )
     sale_order_date_order = fields.Datetime(
         related="sale_order_line_id.order_id.date_order",
-        readonly=True,
     )
     product_uom_qty = fields.Float(
         related="sale_order_line_id.product_uom_qty",
-        readonly=True,
     )
     price_unit = fields.Float(
         related="sale_order_line_id.price_unit",
-        readonly=True,
     )
 
     @api.multi
