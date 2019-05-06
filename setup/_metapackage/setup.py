@@ -17,6 +17,7 @@ setuptools.setup(
         'odoo12-addon-sale_order_archive',
         'odoo12-addon-sale_order_general_discount',
         'odoo12-addon-sale_order_line_sequence',
+        'odoo12-addon-sale_order_revision',
         'odoo12-addon-sale_order_type',
         'odoo12-addon-sale_partner_incoterm',
         'odoo12-addon-sale_product_set',
