@@ -3,39 +3,46 @@
 # Copyright 2018 Dreambits Technologies Pvt. Ltd. (<http://dreambits.in>)
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
 
-from odoo import api, fields, models
-from odoo.tools.translate import _
+from odoo import api, fields, models, _
 
 
 class SaleOrder(models.Model):
     _inherit = "sale.order"
 
     @api.depends('current_revision_id', 'old_revision_ids')
-    def _has_old_revisions(self):
+    def _compute_has_old_revisions(self):
         for sale_order in self:
             if sale_order.old_revision_ids:
                 sale_order.has_old_revisions = True
 
-    current_revision_id = fields.Many2one('sale.order',
-                                          'Current revision',
-                                          readonly=True,
-                                          copy=True)
-    old_revision_ids = fields.One2many('sale.order',
-                                       'current_revision_id',
-                                       'Old revisions',
-                                       readonly=True,
-                                       context={'active_test': False})
-    revision_number = fields.Integer('Revision',
-                                     copy=False,
-                                     default=0)
-    unrevisioned_name = fields.Char('Order Reference',
-                                    copy=True,
-                                    readonly=True)
-    active = fields.Boolean('Active',
-                            default=True)
-
-    has_old_revisions = fields.Boolean('Has old revisions',
-                                       compute='_has_old_revisions')
+    current_revision_id = fields.Many2one(
+        comodel_name='sale.order',
+        string='Current revision',
+        readonly=True,
+        copy=True
+    )
+    old_revision_ids = fields.One2many(
+        comodel_name='sale.order',
+        inverse_name='current_revision_id',
+        string='Old revisions',
+        readonly=True,
+        context={'active_test': False}
+    )
+    revision_number = fields.Integer(
+        string='Revision',
+        copy=False,
+        default=0
+    )
+    unrevisioned_name = fields.Char(
+        string='Original Order Reference',
+        copy=True,
+        readonly=True
+    )
+    active = fields.Boolean(
+        default=True
+    )
+    has_old_revisions = fields.Boolean(
+        compute='_compute_has_old_revisions')
 
     _sql_constraints = [
         ('revision_unique',
@@ -43,8 +50,8 @@ class SaleOrder(models.Model):
          'Order Reference and revision must be unique per Company.'),
     ]
 
-    @api.returns('self', lambda value: value.id)
     @api.multi
+    @api.returns('self', lambda value: value.id)
     def copy(self, default=None):
         if default is None:
             default = {}
