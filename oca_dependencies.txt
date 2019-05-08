@@ -1,5 +1,6 @@
 account-closing
 account-invoicing
+product-attribute
 partner-contact
 server-tools
 web
