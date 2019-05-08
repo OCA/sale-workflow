@@ -41,14 +41,13 @@
                 <attribute name="name">group_by</attribute>
             </xpath>
             <xpath expr="//search/group" position="inside">
-                    <filter string="Partner" icon="terp-partner"
+                    <filter name="partner" string="Partner" icon="terp-partner"
                             domain="[]" context="{'group_by':'name'}"/>
                     <filter string="Product Template" domain="[]"
                             name="gb_product_template"
                             context="{'group_by':'product_tmpl_id'}"/>
                     <separator />
-                    <filter string="Type" domain="[]" name="gb_supplierinfo_type"
-                            context="{'group_by':'supplierinfo_type'}"/>
+                    <filter string="Type" domain="[]" name="gb_supplierinfo_type" context="{'group_by':'supplierinfo_type'}"/>
             </xpath>
         </field>
     </record>
