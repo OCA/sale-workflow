@@ -1,54 +1,43 @@
 # Copyright 2017 Eficent Business and IT Consulting Services S.L.
 #   (http://www.eficent.com)
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl.html).
-import odoo.tests.common as common
+from odoo.tests.common import TransactionCase
 
 
-class TestProductSupplierinfoForCustomerSale(common.TransactionCase):
+class TestProductSupplierinfoForCustomerSale(TransactionCase):
 
     def setUp(self):
         super(TestProductSupplierinfoForCustomerSale, self).setUp()
-        self.supplierinfo_model = self.env['product.supplierinfo']
-        self.pricelist_item_model = self.env['product.pricelist.item']
         self.pricelist_model = self.env['product.pricelist']
-        self.customer = self._create_customer('customer1')
-        self.product = self.env.ref('product.product_product_4')
-        self.supplierinfo = self._create_supplierinfo(
-            'customer', self.customer, self.product)
-        self.pricelist = self._create_pricelist(
-            'Test Pricelist', self.product)
-        self.company = self.env.ref('base.main_company')
-
-    def _create_customer(self, name):
-        """Create a Partner."""
-        return self.env['res.partner'].create({
-            'name': name,
-            'email': 'example@yourcompany.com',
-            'customer': True,
-            'phone': 123456,
-        })
-
-    def _create_supplierinfo(self, supplierinfo_type, partner, product):
-        return self.supplierinfo_model.create({
-            'name': partner.id,
-            'product_id': product.id,
-            'product_name': 'product4',
-            'product_code': '00001',
-            'supplierinfo_type': supplierinfo_type,
+        self.supplierinfo = self.env['product.supplierinfo']
+        self.customer = self.env.ref('base.res_partner_1')
+        self.product = self.env['product.product'].create(
+            {'name': 'Name_product',
+             'default_code': 'code_product'}
+        ).with_context({'partner_id': self.customer.id,
+                        'supplierinfo_type': 'customer'})
+        self.supplierinforec = self.supplierinfo.create({
+            'product_code': 'code_test',
+            'product_name': 'Name_test',
+            'name': self.customer.id,
+            'product_tmpl_id': self.product.product_tmpl_id.id,
+            'supplierinfo_type': 'customer',
             'price': 100.0,
             'min_qty': 15.0,
         })
-
-    def _create_pricelist(self, name, product):
-        return self.pricelist_model.create({
-            'name': name,
+        self.pricelist = self.env['product.pricelist'].create({
+            'name': 'Test Pricelist',
             'currency_id': self.env.ref('base.USD').id,
-            'item_ids': [(0, 0, {
-                'applied_on': '0_product_variant',
-                'product_id': product.id,
-                'compute_price': 'formula',
-                'base': 'partner',
-            })],
+        })
+        self.company = self.env.ref('base.main_company')
+        self.pricelist_item = self.env['product.pricelist.item'].create({
+            'applied_on': '1_product',
+            'base': 'list_price',
+            'name': 'Test Pricelist Item',
+            'pricelist_id': self.pricelist.id,
+            'compute_price': 'fixed',
+            'fixed_price': 100.0,
+            'product_id': self.product.id,
         })
 
     def test_product_supplierinfo_for_customer_sale(self):
@@ -59,12 +48,12 @@ class TestProductSupplierinfoForCustomerSale(common.TransactionCase):
         line = self.env['sale.order.line'].create({
             'product_id': self.product.id,
             'order_id': so.id,
+            'product_uom_qty': 15.0
         })
         line.product_id_change()
-
         self.assertEqual(
-            line.product_customer_code, self.supplierinfo.product_code,
+            line.product_customer_code, self.supplierinforec.product_code,
             "Error: Customer product code was not passed to sale order line")
         self.assertEqual(
-            line.product_uom_qty, self.supplierinfo.min_qty,
+            line.product_uom_qty, self.supplierinforec.min_qty,
             "Error: Min qty was not passed to the sale order line")

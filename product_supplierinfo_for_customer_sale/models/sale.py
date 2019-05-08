@@ -10,7 +10,7 @@ class SaleOrderLine(models.Model):
 
     @api.multi
     @api.depends('product_id')
-    def _compute_get_product_customer_code(self):
+    def _compute_product_customer_code(self):
         for line in self.filtered(
                 lambda sol: sol.product_id.product_tmpl_id.customer_ids):
             product = line.product_id
@@ -23,9 +23,8 @@ class SaleOrderLine(models.Model):
             line.product_customer_code = code_id.product_code or ''
 
     product_customer_code = fields.Char(
-        compute='_compute_get_product_customer_code',
-        string='Product Customer Code',
-        size=64
+        compute='_compute_product_customer_code',
+        string='Product Customer Code'
     )
 
     @api.multi
@@ -33,8 +32,8 @@ class SaleOrderLine(models.Model):
     def product_id_change(self):
         result = super(SaleOrderLine, self).product_id_change()
         for line in self.filtered(
-                lambda sol: sol.product_id.product_tmpl_id.customer_ids
-                and sol.order_id.pricelist_id.item_ids):
+                lambda sol: sol.product_id.product_tmpl_id.customer_ids and
+                sol.order_id.pricelist_id.item_ids):
             product = line.product_id
             items = self.env['product.pricelist.item'].search([
                 ('pricelist_id', '=', line.order_id.pricelist_id.id),
