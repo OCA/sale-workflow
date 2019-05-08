@@ -1,8 +1,7 @@
-# coding: utf-8
 # Copyright 2017 Vauxoo (https://www.vauxoo.com) info@vauxoo.com
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html)
 
-from openerp.tests import TransactionCase
+from odoo.tests.common import TransactionCase
 
 
 class TestProductNameSearch(TransactionCase):
@@ -10,15 +9,16 @@ class TestProductNameSearch(TransactionCase):
         - Assign a configuration customer for product.
         - Test product name_search
     """
+
     def setUp(self):
         super(TestProductNameSearch, self).setUp()
         self.customer = self.env.ref('base.res_partner_1')
         self.customer_1 = self.env.ref('base.res_partner_2')
         self.product = self.env['product.product'].create(
             {'name': 'Name_product',
-             'default_code': 'code_product', }).with_context(
-                 {'partner_id': self.customer.id,
-                  'supplierinfo_type': 'customer'})
+             'default_code': 'code_product'}
+        ).with_context({'partner_id': self.customer.id,
+                        'supplierinfo_type': 'customer'})
         self.supplierinfo = self.env['product.supplierinfo']
 
         self.supplierinfo_dict = {
@@ -63,9 +63,9 @@ class TestProductNameSearch(TransactionCase):
         # product, then name_search must find two products
         self.product_1 = self.env['product.product'].create(
             {'name': 'Name_test_1',
-             'default_code': 'code_test_1', }).with_context(
-                 {'partner_id': self.customer.id,
-                  'supplierinfo_type': 'customer'})
+             'default_code': 'code_test_1'}
+        ).with_context({'partner_id': self.customer.id,
+                        'supplierinfo_type': 'customer'})
 
         self.assertFalse(self.product_1.customer_ids)
 

@@ -1,10 +1,10 @@
 # Copyright 2017 Eficent Business and IT Consulting Services S.L.
 #   (http://www.eficent.com)
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl.html).
-import odoo.tests.common as common
+from odoo.tests.common import TransactionCase
 
 
-class TestProductSupplierinfoForCustomerSale(common.TransactionCase):
+class TestProductSupplierinfoForCustomerSale(TransactionCase):
 
     def setUp(self):
         super(TestProductSupplierinfoForCustomerSale, self).setUp()
@@ -19,6 +19,8 @@ class TestProductSupplierinfoForCustomerSale(common.TransactionCase):
             'customer', self.customer, self.product)
         self.pricelist = self._create_pricelist(
             'Test Pricelist', self.product)
+        self.pricelist_item = self._create_pricelist_item(
+            'Test Pricelist Item', self.pricelist, self.product)
         self.company = self.env.ref('base.main_company')
         self._create_supplierinfo(
             'customer', self.customer, self.product_variant_1)
@@ -65,12 +67,16 @@ class TestProductSupplierinfoForCustomerSale(common.TransactionCase):
         return self.pricelist_model.create({
             'name': name,
             'currency_id': self.env.ref('base.USD').id,
-            'item_ids': [(0, 0, {
-                'applied_on': '0_product_variant',
-                'product_id': product.id,
-                'compute_price': 'formula',
-                'base': 'partner',
-            })],
+        })
+
+    def _create_pricelist_item(self, name, pricelist, product):
+        return self.pricelist_item_model.create({
+            'name': name,
+            'pricelist_id': pricelist.id,
+            'applied_on': '0_product_variant',
+            'product_id': product.id,
+            'compute_price': 'formula',
+            'base': 'partner',
         })
 
     def test_product_supplierinfo_for_customer_sale(self):
@@ -83,7 +89,6 @@ class TestProductSupplierinfoForCustomerSale(common.TransactionCase):
             'order_id': so.id,
         })
         line.product_id_change()
-
         self.assertEqual(
             line.product_customer_code, self.supplierinfo.product_code,
             "Error: Customer product code was not passed to sale order line")
