@@ -8,25 +8,18 @@ from odoo import api, fields, models
 class SaleOrderLine(models.Model):
     _inherit = 'sale.order.line'
 
-    @api.multi
-    @api.depends('product_id')
-    def _compute_get_product_customer_code(self):
-        for line in self.filtered(
-                lambda sol: sol.product_id.product_tmpl_id.customer_ids):
-            product = line.product_id
-            code_id = self.env['product.supplierinfo'].search([
-                '|', ('product_tmpl_id', '=', product.product_tmpl_id.id),
-                ('product_id', '=', product.id),
-                ('supplierinfo_type', '=', 'customer'),
-                ('name', '=', line.order_id.partner_id.id),
-            ], limit=1)
-            line.product_customer_code = code_id.product_code or ''
-
     product_customer_code = fields.Char(
-        compute='_compute_get_product_customer_code',
+        compute='_compute_product_customer_code',
         string='Product Customer Code',
         size=64
     )
+
+    @api.multi
+    @api.depends('product_id')
+    def _compute_product_customer_code(self):
+        for line in self.filtered(lambda sol: sol.product_id.customer_ids):
+            supplierinfo = self.get_customer_supplierinfo(line)
+            line.product_customer_code = supplierinfo.product_code
 
     @api.multi
     @api.onchange('product_id')
@@ -48,12 +41,32 @@ class SaleOrderLine(models.Model):
                 ('applied_on', '=', '0_product_variant'),
             ])
             if items:
-                code_id = self.env['product.supplierinfo'].search([
-                    '|', ('product_tmpl_id', '=', product.product_tmpl_id.id),
-                    ('product_id', '=', product.id),
-                    ('supplierinfo_type', '=', 'customer'),
-                    ('name', '=', line.order_id.partner_id.id),
-                ], limit=1)
-                if code_id and code_id.min_qty:
-                    line.product_uom_qty = code_id.min_qty
+                supplierinfo = self.get_customer_supplierinfo(line)
+                if supplierinfo and supplierinfo.min_qty:
+                    line.product_uom_qty = supplierinfo.min_qty
         return result
+
+    def _supplierinfo_domain(self, line):
+        """Common domain for product templates and variants"""
+        return [
+            ('supplierinfo_type', '=', 'customer'),
+            ('name', '=', line.order_partner_id.id),
+        ]
+
+    def get_customer_supplierinfo(self, line):
+        """
+        Search supplierinfo for variant first, if it has not been found then
+        search by product template
+        """
+        supplierinfo = self.env['product.supplierinfo'].search(
+            self._supplierinfo_domain(line) +
+            [
+                '|',
+                ('product_id', '=', line.product_id.id),
+                '&',
+                ('product_tmpl_id', '=', line.product_id.product_tmpl_id.id),
+                ('product_id', '=', False),
+            ],
+            limit=1,
+            order='product_id, sequence, min_qty desc, price')
+        return supplierinfo
