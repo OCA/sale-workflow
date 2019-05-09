@@ -30,6 +30,14 @@ customer code defined in the product and allows
 use the product codes and product name configured in each products in sale
 orders.
 
+**Table of contents**
+
+.. contents::
+   :local:
+
+Usage
+=====
+
 To use this module, you need:
 
 - Go to product and configure *Partner product name* and *Partner product code*
@@ -61,11 +69,6 @@ To use this module, you need:
 .. figure:: https://raw.githubusercontent.com/OCA/sale-workflow/11.0/product_supplierinfo_for_customer_sale/static/description/description_code_2.png
     :alt: Search by exist customer code
     :width: 600 px
-
-**Table of contents**
-
-.. contents::
-   :local:
 
 Known issues / Roadmap
 ======================
@@ -101,6 +104,7 @@ Contributors
 * Moisés López <moylop260@vauxoo.com>
 * Yennifer Santiago <yennifer@vauxoo.com>
 * Julio Serna Hernández <julio@vauxoo.com>
+* Sergio Teruel <sergio.teruel@tecnativa.com>
 
 Maintainers
 ~~~~~~~~~~~
