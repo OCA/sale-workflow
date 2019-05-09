@@ -4,3 +4,4 @@
 * Moisés López <moylop260@vauxoo.com>
 * Yennifer Santiago <yennifer@vauxoo.com>
 * Julio Serna Hernández <julio@vauxoo.com>
+* Sergio Teruel <sergio.teruel@tecnativa.com>
