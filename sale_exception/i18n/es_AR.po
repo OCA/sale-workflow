@@ -20,63 +20,88 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
 #. module: sale_exception
-#: model:ir.ui.view,arch_db:sale_exception.view_sales_order_filter
+#: model:ir.model.fields,field_description:sale_exception.field_exception_rule__model
+msgid "Apply on"
+msgstr ""
+
+#. module: sale_exception
+#: model_terms:ir.ui.view,arch_db:sale_exception.view_sales_order_filter
 msgid "Blocked in draft"
 msgstr ""
 
 #. module: sale_exception
 #: model:ir.actions.act_window,name:sale_exception.action_sale_exception_confirm
-#: model:ir.ui.view,arch_db:sale_exception.view_sale_exception_confirm
+#: model_terms:ir.ui.view,arch_db:sale_exception.view_sale_exception_confirm
 msgid "Blocked in draft due to exceptions"
 msgstr ""
 
 #. module: sale_exception
-#: model:ir.model.fields,field_description:sale_exception.field_sale_exception_confirm_create_uid
+#: model_terms:ir.ui.view,arch_db:sale_exception.view_sale_exception_confirm
+msgid "Cancel"
+msgstr ""
+
+#. module: sale_exception
+#: model_terms:ir.ui.view,arch_db:sale_exception.view_sale_exception_confirm
+msgid "Confirm"
+msgstr ""
+
+#. module: sale_exception
+#: model:ir.model.fields,field_description:sale_exception.field_sale_exception_confirm__create_uid
 msgid "Created by"
 msgstr "Creado por"
 
 #. module: sale_exception
-#: model:ir.model.fields,field_description:sale_exception.field_sale_exception_confirm_create_date
+#: model:ir.model.fields,field_description:sale_exception.field_sale_exception_confirm__create_date
 msgid "Created on"
 msgstr "Creado en"
 
 #. module: sale_exception
-#: model:ir.model.fields,field_description:sale_exception.field_sale_exception_confirm_display_name
+#: model:ir.model.fields,field_description:sale_exception.field_sale_exception_confirm__display_name
 msgid "Display Name"
 msgstr "Mostrar Nombre"
 
 #. module: sale_exception
-#: model:ir.ui.view,arch_db:sale_exception.view_order_form
+#: model_terms:ir.ui.view,arch_db:sale_exception.view_order_form
 msgid "Error:"
 msgstr ""
 
 #. module: sale_exception
-#: model:ir.ui.view,arch_db:sale_exception.view_order_form
+#: model_terms:ir.ui.view,arch_db:sale_exception.view_order_form
 msgid "Exception"
 msgstr ""
 
 #. module: sale_exception
 #: model:ir.model,name:sale_exception.model_exception_rule
-msgid "Exception Rules"
+msgid "Exception Rule"
 msgstr ""
 
 #. module: sale_exception
-#: model:ir.model.fields,field_description:sale_exception.field_sale_exception_confirm_id
+#: model:ir.model.fields,field_description:sale_exception.field_sale_exception_confirm__exception_ids
+msgid "Exceptions to resolve"
+msgstr ""
+
+#. module: sale_exception
+#: model:ir.model.fields,field_description:sale_exception.field_sale_exception_confirm__id
 msgid "ID"
 msgstr "ID"
 
 #. module: sale_exception
-#: model:ir.model.fields,field_description:sale_exception.field_sale_exception_confirm___last_update
+#: model:ir.model.fields,field_description:sale_exception.field_sale_exception_confirm__ignore
+msgid "Ignore Exceptions"
+msgstr ""
+
+#. module: sale_exception
+#: model:ir.model.fields,field_description:sale_exception.field_sale_exception_confirm____last_update
 msgid "Last Modified on"
 msgstr "Última modificación en"
 
 #. module: sale_exception
-#: model:ir.model.fields,field_description:sale_exception.field_sale_exception_confirm_write_uid
+#: model:ir.model.fields,field_description:sale_exception.field_sale_exception_confirm__write_uid
 msgid "Last Updated by"
 msgstr "Última actualización realizada por"
 
 #. module: sale_exception
-#: model:ir.model.fields,field_description:sale_exception.field_sale_exception_confirm_write_date
+#: model:ir.model.fields,field_description:sale_exception.field_sale_exception_confirm__write_date
 msgid "Last Updated on"
 msgstr "Última actualización el"
 
@@ -93,17 +118,21 @@ msgid "Not Enough Virtual Stock"
 msgstr ""
 
 #. module: sale_exception
-#: model:ir.model,name:sale_exception.model_sale_order
-msgid "Quotation"
-msgstr ""
-
-#. module: sale_exception
-#: model:ir.model.fields,field_description:sale_exception.field_sale_order_rule_group
+#: model:ir.model.fields,field_description:sale_exception.field_exception_rule__rule_group
+#: model:ir.model.fields,field_description:sale_exception.field_sale_order__rule_group
 msgid "Rule Group"
 msgstr ""
 
 #. module: sale_exception
-#: model:ir.model.fields,field_description:sale_exception.field_sale_exception_confirm_related_model_id
+#: model:ir.model.fields,help:sale_exception.field_exception_rule__rule_group
+msgid ""
+"Rule group is used to group the rules that must validated at same time for a "
+"target object. Ex: validate sale.order.line rules with sale order rules."
+msgstr ""
+
+#. module: sale_exception
+#: selection:exception.rule,rule_group:0
+#: model:ir.model.fields,field_description:sale_exception.field_sale_exception_confirm__related_model_id
 #: selection:sale.order,rule_group:0
 msgid "Sale"
 msgstr ""
@@ -115,8 +144,23 @@ msgid "Sale Exception Rules"
 msgstr ""
 
 #. module: sale_exception
-#: model:ir.ui.view,arch_db:sale_exception.view_sale_exception_confirm
+#: model_terms:ir.ui.view,arch_db:sale_exception.view_sale_exception_confirm
 msgid "Sale Exceptions"
+msgstr ""
+
+#. module: sale_exception
+#: model:ir.model,name:sale_exception.model_sale_order
+msgid "Sale Order"
+msgstr ""
+
+#. module: sale_exception
+#: selection:exception.rule,model:0
+msgid "Sale order"
+msgstr ""
+
+#. module: sale_exception
+#: selection:exception.rule,model:0
+msgid "Sale order line"
 msgstr ""
 
 #. module: sale_exception
@@ -124,11 +168,6 @@ msgstr ""
 #: model:ir.cron,cron_name:sale_exception.ir_cron_test_orders
 #: model:ir.cron,name:sale_exception.ir_cron_test_orders
 msgid "Test Draft Orders"
-msgstr ""
-
-#. module: sale_exception
-#: model:ir.ui.view,arch_db:sale_exception.view_sale_exception_confirm
-msgid "_Close"
 msgstr ""
 
 #. module: sale_exception
