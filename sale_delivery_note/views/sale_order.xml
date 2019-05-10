@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Copyright 2019 ACSONE SA/NV
+     License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl). -->
+<odoo>
+    <record model="ir.ui.view" id="sale_order_form_view">
+        <field name="name">sale.order.form (in shopinvader_delivery_note)</field>
+        <field name="model">sale.order</field>
+        <field name="inherit_id" ref="sale.view_order_form"/>
+        <field name="priority" eval="90"/>
+        <field name="arch" type="xml">
+            <field name="note" position="before">
+                <field name="delivery_note" class="oe_inline" placeholder="Delivery note"/>
+            </field>
+        </field>
+    </record>
+</odoo>

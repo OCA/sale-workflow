@@ -1,0 +1,1 @@
+This module add a field on sale orders, to save a delivery note set by the customer
