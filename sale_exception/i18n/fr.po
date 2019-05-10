@@ -20,63 +20,94 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
 
 #. module: sale_exception
-#: model:ir.ui.view,arch_db:sale_exception.view_sales_order_filter
+#: model:ir.model.fields,field_description:sale_exception.field_exception_rule__model
+msgid "Apply on"
+msgstr ""
+
+#. module: sale_exception
+#: model_terms:ir.ui.view,arch_db:sale_exception.view_sales_order_filter
 msgid "Blocked in draft"
 msgstr "Bloqué à l'état brouillon"
 
 #. module: sale_exception
 #: model:ir.actions.act_window,name:sale_exception.action_sale_exception_confirm
-#: model:ir.ui.view,arch_db:sale_exception.view_sale_exception_confirm
+#: model_terms:ir.ui.view,arch_db:sale_exception.view_sale_exception_confirm
 msgid "Blocked in draft due to exceptions"
 msgstr "Bloqué à l'état brouillon à cause d'une restriction"
 
 #. module: sale_exception
-#: model:ir.model.fields,field_description:sale_exception.field_sale_exception_confirm_create_uid
+#: model_terms:ir.ui.view,arch_db:sale_exception.view_sale_exception_confirm
+msgid "Cancel"
+msgstr ""
+
+#. module: sale_exception
+#: model_terms:ir.ui.view,arch_db:sale_exception.view_sale_exception_confirm
+msgid "Confirm"
+msgstr ""
+
+#. module: sale_exception
+#: model:ir.model.fields,field_description:sale_exception.field_sale_exception_confirm__create_uid
 msgid "Created by"
 msgstr "Créé par"
 
 #. module: sale_exception
-#: model:ir.model.fields,field_description:sale_exception.field_sale_exception_confirm_create_date
+#: model:ir.model.fields,field_description:sale_exception.field_sale_exception_confirm__create_date
 msgid "Created on"
 msgstr "Créé le"
 
 #. module: sale_exception
-#: model:ir.model.fields,field_description:sale_exception.field_sale_exception_confirm_display_name
+#: model:ir.model.fields,field_description:sale_exception.field_sale_exception_confirm__display_name
 msgid "Display Name"
 msgstr "Afficher le nom"
 
 #. module: sale_exception
-#: model:ir.ui.view,arch_db:sale_exception.view_order_form
+#: model_terms:ir.ui.view,arch_db:sale_exception.view_order_form
 msgid "Error:"
 msgstr "Erreur :"
 
 #. module: sale_exception
-#: model:ir.ui.view,arch_db:sale_exception.view_order_form
+#: model_terms:ir.ui.view,arch_db:sale_exception.view_order_form
 msgid "Exception"
 msgstr "Restriction"
 
 #. module: sale_exception
 #: model:ir.model,name:sale_exception.model_exception_rule
-msgid "Exception Rules"
+#, fuzzy
+#| msgid "Exception Rules"
+msgid "Exception Rule"
 msgstr "Règles de restriction"
 
 #. module: sale_exception
-#: model:ir.model.fields,field_description:sale_exception.field_sale_exception_confirm_id
+#: model:ir.model.fields,field_description:sale_exception.field_sale_exception_confirm__exception_ids
+#, fuzzy
+#| msgid "Exception Rules"
+msgid "Exceptions to resolve"
+msgstr "Règles de restriction"
+
+#. module: sale_exception
+#: model:ir.model.fields,field_description:sale_exception.field_sale_exception_confirm__id
 msgid "ID"
 msgstr "ID"
 
 #. module: sale_exception
-#: model:ir.model.fields,field_description:sale_exception.field_sale_exception_confirm___last_update
+#: model:ir.model.fields,field_description:sale_exception.field_sale_exception_confirm__ignore
+#, fuzzy
+#| msgid "Sale Exceptions"
+msgid "Ignore Exceptions"
+msgstr "Restrictions de vente"
+
+#. module: sale_exception
+#: model:ir.model.fields,field_description:sale_exception.field_sale_exception_confirm____last_update
 msgid "Last Modified on"
 msgstr "Dernière modification le"
 
 #. module: sale_exception
-#: model:ir.model.fields,field_description:sale_exception.field_sale_exception_confirm_write_uid
+#: model:ir.model.fields,field_description:sale_exception.field_sale_exception_confirm__write_uid
 msgid "Last Updated by"
 msgstr "Modifié par"
 
 #. module: sale_exception
-#: model:ir.model.fields,field_description:sale_exception.field_sale_exception_confirm_write_date
+#: model:ir.model.fields,field_description:sale_exception.field_sale_exception_confirm__write_date
 msgid "Last Updated on"
 msgstr "Modifié le"
 
@@ -93,17 +124,21 @@ msgid "Not Enough Virtual Stock"
 msgstr "Not Enough Virtual Stock"
 
 #. module: sale_exception
-#: model:ir.model,name:sale_exception.model_sale_order
-msgid "Quotation"
-msgstr "Devis"
-
-#. module: sale_exception
-#: model:ir.model.fields,field_description:sale_exception.field_sale_order_rule_group
+#: model:ir.model.fields,field_description:sale_exception.field_exception_rule__rule_group
+#: model:ir.model.fields,field_description:sale_exception.field_sale_order__rule_group
 msgid "Rule Group"
 msgstr "Règle de groupe"
 
 #. module: sale_exception
-#: model:ir.model.fields,field_description:sale_exception.field_sale_exception_confirm_related_model_id
+#: model:ir.model.fields,help:sale_exception.field_exception_rule__rule_group
+msgid ""
+"Rule group is used to group the rules that must validated at same time for a "
+"target object. Ex: validate sale.order.line rules with sale order rules."
+msgstr ""
+
+#. module: sale_exception
+#: selection:exception.rule,rule_group:0
+#: model:ir.model.fields,field_description:sale_exception.field_sale_exception_confirm__related_model_id
 #: selection:sale.order,rule_group:0
 msgid "Sale"
 msgstr "Ventes"
@@ -115,9 +150,24 @@ msgid "Sale Exception Rules"
 msgstr "Règle de restriction sur les ventes"
 
 #. module: sale_exception
-#: model:ir.ui.view,arch_db:sale_exception.view_sale_exception_confirm
+#: model_terms:ir.ui.view,arch_db:sale_exception.view_sale_exception_confirm
 msgid "Sale Exceptions"
 msgstr "Restrictions de vente"
+
+#. module: sale_exception
+#: model:ir.model,name:sale_exception.model_sale_order
+msgid "Sale Order"
+msgstr ""
+
+#. module: sale_exception
+#: selection:exception.rule,model:0
+msgid "Sale order"
+msgstr ""
+
+#. module: sale_exception
+#: selection:exception.rule,model:0
+msgid "Sale order line"
+msgstr ""
 
 #. module: sale_exception
 #: model:ir.actions.server,name:sale_exception.ir_cron_test_orders_ir_actions_server
@@ -127,14 +177,15 @@ msgid "Test Draft Orders"
 msgstr "Tester les commandes brouillon"
 
 #. module: sale_exception
-#: model:ir.ui.view,arch_db:sale_exception.view_sale_exception_confirm
-msgid "_Close"
-msgstr "_Close"
-
-#. module: sale_exception
 #: model:ir.model,name:sale_exception.model_sale_exception_confirm
 msgid "sale.exception.confirm"
 msgstr "sale.exception.confirm"
+
+#~ msgid "Quotation"
+#~ msgstr "Devis"
+
+#~ msgid "_Close"
+#~ msgstr "_Close"
 
 #~ msgid "Exceptions"
 #~ msgstr "Restrictions"
