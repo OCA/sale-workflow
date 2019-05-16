@@ -13,6 +13,7 @@ setuptools.setup(
         'odoo11-addon-product_supplierinfo_for_customer_sale',
         'odoo11-addon-sale_automatic_workflow',
         'odoo11-addon-sale_automatic_workflow_payment_mode',
+        'odoo11-addon-sale_blanket_order',
         'odoo11-addon-sale_commercial_partner',
         'odoo11-addon-sale_disable_inventory_check',
         'odoo11-addon-sale_elaboration',
