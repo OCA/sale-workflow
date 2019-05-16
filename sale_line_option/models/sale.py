@@ -1,6 +1,7 @@
 # coding: utf-8
 # © 2015 Akretion, Valentin CHEMIERE <valentin.chemiere@akretion.com>
 # © 2017 David BEAL @ Akretion
+# © 2019 Mourad EL HADJ MIMOUNE @ Akretion
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
 
 from odoo import _, fields, api, models
@@ -18,6 +19,12 @@ class SaleOrderLine(models.Model):
         help="Options can be defined with product bom")
     display_option = fields.Boolean(
         help="Technical: allow conditional options field display")
+
+    @api.model
+    def _add_missing_fields_get_onchange_fields(self):
+        onchange_fields = super(SaleOrderLine, self)._add_missing_fields_get_onchange_fields()
+        onchange_fields.append('option_ids')
+        return onchange_fields
 
     @api.model
     def create(self, vals):
