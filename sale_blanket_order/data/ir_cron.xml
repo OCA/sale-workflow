@@ -4,17 +4,16 @@
 
 <odoo noupdate="1">
 
-    <record forcecreate="True" id="expired_blanket_orders_cron"
-            model="ir.cron">
+    <record forcecreate="True" id="expired_blanket_orders_cron" model="ir.cron">
         <field name="name">Expire Blanket Orders</field>
         <field name="interval_number">1</field>
         <field name="interval_type">days</field>
-        <field name="nextcall" eval="(DateTime.now() + relativedelta(hour=00, minute=01, second=0)).strftime('%Y-%m-%d %H:%M:%S')" />
+        <field name="nextcall" eval="(DateTime.now() + relativedelta(hour=00, minute=1, second=0)).strftime('%Y-%m-%d %H:%M:%S')" />
         <field name="numbercall">-1</field>
         <field name="doall" eval="False"/>
-        <field name="model">sale.blanket.order</field>
-        <field name="function">expire_orders</field>
-        <field name="args">()</field>
+        <field name="model_id" ref="model_sale_blanket_order"/>
+        <field name="state">code</field>
+        <field name="code">model.expire_orders()</field>
     </record>
 
 </odoo>
