@@ -6,10 +6,14 @@
         <field name="arch" type="xml">
             <form string="Create Sale Order">
                 <group>
-                    <field name="lines_ids" nolabel="1">
+                    <field name="line_ids" nolabel="1">
                         <tree create="false" editable="bottom">
                             <field name="product_id"/>
-                            <field name="remaining_qty"/>
+                            <field name="partner_id"/>
+                            <field name="date_schedule"/>
+                            <field name="price_unit"/>
+                            <field name="remaining_uom_qty"/>
+                            <field name="product_uom" groups="product.group_uom"/>
                             <field name="qty"/>
                         </tree>
                     </field>
@@ -30,5 +34,6 @@
         <field name="view_type">form</field>
         <field name="view_mode">form</field>
         <field name="target">new</field>
+        <field name="binding_model_id" ref="sale_blanket_order.model_sale_blanket_order_line" />
     </record>
 </odoo>
