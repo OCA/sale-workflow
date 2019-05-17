@@ -3,20 +3,23 @@
 # * product_pack
 # 
 # Translators:
-# Juan José Scarafía <scarafia.juanjose@gmail.com>, 2018
+# Juan José Scarafía <scarafia.juanjose@gmail.com>, 2019
 # Gonzalo Ruzafa <gr@ingadhoc.com>, 2019
 # emiquinodoz <eq@ingadhoc.com>, 2019
+# Julián García <jg@adhoc.com.ar>, 2019
 # Valentino Defelice <vd@adhoc.com.ar>, 2019
-# Mariana Luz Torres <mt@adhoc.com.ar>, 2019
 # Santiago Crespo <sc@adhoc.com.ar>, 2019
+# Mariana Luz Torres <mt@adhoc.com.ar>, 2019
+# Nicolas Mac Rouillon <nmr@ingadhoc.com>, 2019
+# Katherine Zaoral <katherine.zaoral@gmail.com>, 2019
 # 
 msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 11.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-01-08 21:19+0000\n"
+"POT-Creation-Date: 2019-05-17 09:13+0000\n"
 "PO-Revision-Date: 2018-05-22 01:28+0000\n"
-"Last-Translator: Santiago Crespo <sc@adhoc.com.ar>, 2019\n"
+"Last-Translator: Katherine Zaoral <katherine.zaoral@gmail.com>, 2019\n"
 "Language-Team: Spanish (https://www.transifex.com/adhoc/teams/46451/es/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -40,12 +43,18 @@ msgstr ""
 "* No detallado - Precio asistido: No detalla las líneas en el pedido de venta. Asiste para obtener el precio del pack usando las líneas del pack."
 
 #. module: product_pack
-#: code:addons/product_pack/models/product_template.py:55
+#: code:addons/product_pack/models/product_template.py:67
 #, python-format
 msgid "A \"None Detailed - Assisted Price Pack\" can not have a pack as a child!"
 msgstr ""
 "¡Un Pack \"No detallado - Precio del Pack asistido\" no puede tener un Pack "
 "como hijo!"
+
+#. module: product_pack
+#: model:ir.model.fields,field_description:product_pack.field_product_product_allow_modify_pack
+#: model:ir.model.fields,field_description:product_pack.field_product_template_allow_modify_pack
+msgid "Allow Modify Pack"
+msgstr "Permitir Modificar Pack"
 
 #. module: product_pack
 #: model:ir.ui.view,arch_db:product_pack.view_order_line_form2
@@ -95,7 +104,7 @@ msgid "Detailed - Totaliced Price"
 msgstr "Detallado - Precio totalizado"
 
 #. module: product_pack
-#: code:addons/product_pack/models/sale_order_line.py:73
+#: code:addons/product_pack/models/sale_order_line.py:80
 #, python-format
 msgid "Details"
 msgstr "Detalles"
@@ -111,6 +120,11 @@ msgstr "Descuento (%)"
 #: model:ir.model.fields,field_description:product_pack.field_sale_order_line_pack_line_display_name
 msgid "Display Name"
 msgstr "Nombre mostrado"
+
+#. module: product_pack
+#: selection:product.template,allow_modify_pack:0
+msgid "E-commerce and Bankend"
+msgstr "Comercio Electrónico y Backend"
 
 #. module: product_pack
 #: code:addons/product_pack/models/product_product.py:64
@@ -184,6 +198,11 @@ msgstr "No detallado - Precio Totalizado"
 #: model:ir.model.fields,field_description:product_pack.field_product_template_used_pack_line_ids
 msgid "On Packs"
 msgstr "En Packs"
+
+#. module: product_pack
+#: selection:product.template,allow_modify_pack:0
+msgid "Only backend"
+msgstr "Solo en Backend"
 
 #. module: product_pack
 #: model:ir.model.fields,field_description:product_pack.field_sale_order_line_pack_line_order_line_id
@@ -279,8 +298,8 @@ msgid "Pack Type"
 msgstr "Tipo de Pack"
 
 #. module: product_pack
-#: code:addons/product_pack/models/product_template.py:83
-#: code:addons/product_pack/models/product_template.py:88
+#: code:addons/product_pack/models/product_template.py:95
+#: code:addons/product_pack/models/product_template.py:100
 #, python-format
 msgid ""
 "Pack lines products company must be the same as the parent product company"
@@ -310,6 +329,11 @@ msgstr "Producto"
 #: model:ir.model,name:product_pack.model_product_template
 msgid "Product Template"
 msgstr "Plantilla de producto"
+
+#. module: product_pack
+#: sql_constraint:product.pack.line:0
+msgid "Product must be only once on a pack!"
+msgstr "¡El producto debe estar solo una vez en un pack!"
 
 #. module: product_pack
 #: model:ir.model.fields,field_description:product_pack.field_product_pack_line_quantity
@@ -363,6 +387,26 @@ msgid "Unit Price"
 msgstr "Precio unitario"
 
 #. module: product_pack
+#: code:addons/product_pack/models/sale_order_line.py:150
+#, python-format
+msgid ""
+"You can not change this line because is part of a pack included in this "
+"order"
+msgstr ""
+"No puedes cambiar esta línea porque es parte de un pack incluido en este "
+"orden."
+
+#. module: product_pack
+#: code:addons/product_pack/models/sale_order.py:31
+#, python-format
+msgid ""
+"You can not delete this line because is part of a pack in this sale order. "
+"In order to delete this line you need to delete the pack itself"
+msgstr ""
+"No puede eliminar esta línea porque forma parte de un pack en esta orden de "
+"venta. Para eliminar esta línea necesitas eliminar el pack."
+
+#. module: product_pack
 #: model:ir.ui.view,arch_db:product_pack.product_template_only_form_view
 msgid "You must save first to add pack lines"
 msgstr "Debe guardar primero para agregar líneas de paquete"
@@ -370,7 +414,7 @@ msgstr "Debe guardar primero para agregar líneas de paquete"
 #. module: product_pack
 #: model:ir.ui.view,arch_db:product_pack.view_order_line_form2
 msgid "or"
-msgstr "O"
+msgstr "o"
 
 #. module: product_pack
 #: model:ir.model,name:product_pack.model_product_pack_line
