@@ -62,8 +62,7 @@ Configuration
 Usage
 =====
 
-Create an Invoice from a single Sale Order
-------------------------------------------
+*Create an Invoice from a single Sale Order
 
 #. Go to 'Sales / Sales / Sales Orders'.
 #. Select or click in a sale order.
@@ -76,8 +75,7 @@ Create an Invoice from a single Sale Order
    given. In this case, the result is a new draft invoice is created
    following the usual behaviour.
 
-Create Invoices from a group of Sales Orders
---------------------------------------------
+* Create Invoices from a group of Sales Orders
 
 #. Go to 'Sales / Sales / Sales Orders'.
 #. Select all the sales orders with status 'To invoice'.
