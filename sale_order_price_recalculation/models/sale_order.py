@@ -20,7 +20,7 @@ class SaleOrder(models.Model):
             # we make this to isolate changed values:
             line2.product_uom_change()
             line2._onchange_discount()
-            line.update({
+            line.write({
                 'price_unit': line2.price_unit,
                 'discount': line2.discount,
             })
