@@ -2,8 +2,8 @@
 # Copyright 2018 ACSONE SA/NV
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 import logging
-from odoo.api import Environment
-from odoo import SUPERUSER_ID
+from openerp.api import Environment
+from openerp import SUPERUSER_ID
 
 _logger = logging.getLogger(__name__)
 

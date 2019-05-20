@@ -2,7 +2,7 @@
 # Copyright 2018 ACSONE SA/NV
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
-from odoo import api, fields, models
+from openerp import api, fields, models
 
 
 class SaleOrderLine(models.Model):
@@ -12,12 +12,10 @@ class SaleOrderLine(models.Model):
     discount_total = fields.Monetary(
         compute='_compute_amount',
         string='Discount Subtotal',
-        readonly=True,
         store=True)
     price_total_no_discount = fields.Monetary(
         compute='_compute_amount',
         string='Subtotal Without Discount',
-        readonly=True,
         store=True)
 
     def _compute_discount(self):
