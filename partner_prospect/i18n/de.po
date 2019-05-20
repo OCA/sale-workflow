@@ -20,7 +20,7 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
 #. module: partner_prospect
-#: model:ir.ui.view,arch_db:partner_prospect.res_partner_prospect_search_view
+#: model_terms:ir.ui.view,arch_db:partner_prospect.res_partner_prospect_search_view
 msgid "Actual Customer"
 msgstr "Aktueller Kunde"
 
@@ -30,9 +30,9 @@ msgid "Contact"
 msgstr ""
 
 #. module: partner_prospect
-#: model:ir.model.fields,field_description:partner_prospect.field_res_partner_prospect
-#: model:ir.model.fields,field_description:partner_prospect.field_res_users_prospect
-#: model:ir.ui.view,arch_db:partner_prospect.res_partner_prospect_search_view
+#: model:ir.model.fields,field_description:partner_prospect.field_res_partner__prospect
+#: model:ir.model.fields,field_description:partner_prospect.field_res_users__prospect
+#: model_terms:ir.ui.view,arch_db:partner_prospect.res_partner_prospect_search_view
 msgid "Prospect"
 msgstr "Interessent"
 
