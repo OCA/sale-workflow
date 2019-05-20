@@ -26,22 +26,22 @@ msgid " Ask a reason for the sale order cancellation."
 msgstr "Traži razlog otkazivanja prodajnog naloga."
 
 #. module: sale_cancel_reason
-#: model:ir.ui.view,arch_db:sale_cancel_reason.view_sale_order_cancel
+#: model_terms:ir.ui.view,arch_db:sale_cancel_reason.view_sale_order_cancel
 msgid "Cancel"
 msgstr "Otkaži"
 
 #. module: sale_cancel_reason
-#: model:ir.ui.view,arch_db:sale_cancel_reason.view_order_form
+#: model_terms:ir.ui.view,arch_db:sale_cancel_reason.view_order_form
 msgid "Cancel Order"
 msgstr "Otkaži nalog"
 
 #. module: sale_cancel_reason
-#: model:ir.ui.view,arch_db:sale_cancel_reason.view_order_form
+#: model_terms:ir.ui.view,arch_db:sale_cancel_reason.view_order_form
 msgid "Cancellation reason:"
 msgstr "Razlog otkazivanja:"
 
 #. module: sale_cancel_reason
-#: model:ir.ui.view,arch_db:sale_cancel_reason.view_sale_order_cancel
+#: model_terms:ir.ui.view,arch_db:sale_cancel_reason.view_sale_order_cancel
 msgid ""
 "Choose the reason for the cancellation of the\n"
 "                sale order."
@@ -50,31 +50,31 @@ msgstr ""
 "prodajnog naloga."
 
 #. module: sale_cancel_reason
-#: model:ir.ui.view,arch_db:sale_cancel_reason.view_sale_order_cancel
+#: model_terms:ir.ui.view,arch_db:sale_cancel_reason.view_sale_order_cancel
 msgid "Confirm"
 msgstr "Potvrdi"
 
 #. module: sale_cancel_reason
-#: model:ir.model.fields,field_description:sale_cancel_reason.field_sale_order_cancel_create_uid
-#: model:ir.model.fields,field_description:sale_cancel_reason.field_sale_order_cancel_reason_create_uid
+#: model:ir.model.fields,field_description:sale_cancel_reason.field_sale_order_cancel__create_uid
+#: model:ir.model.fields,field_description:sale_cancel_reason.field_sale_order_cancel_reason__create_uid
 msgid "Created by"
 msgstr "Kreirao"
 
 #. module: sale_cancel_reason
-#: model:ir.model.fields,field_description:sale_cancel_reason.field_sale_order_cancel_create_date
-#: model:ir.model.fields,field_description:sale_cancel_reason.field_sale_order_cancel_reason_create_date
+#: model:ir.model.fields,field_description:sale_cancel_reason.field_sale_order_cancel__create_date
+#: model:ir.model.fields,field_description:sale_cancel_reason.field_sale_order_cancel_reason__create_date
 msgid "Created on"
 msgstr "Datum kreiranja"
 
 #. module: sale_cancel_reason
-#: model:ir.model.fields,field_description:sale_cancel_reason.field_sale_order_cancel_display_name
-#: model:ir.model.fields,field_description:sale_cancel_reason.field_sale_order_cancel_reason_display_name
+#: model:ir.model.fields,field_description:sale_cancel_reason.field_sale_order_cancel__display_name
+#: model:ir.model.fields,field_description:sale_cancel_reason.field_sale_order_cancel_reason__display_name
 msgid "Display Name"
 msgstr "Naziv za prikaz"
 
 #. module: sale_cancel_reason
-#: model:ir.model.fields,field_description:sale_cancel_reason.field_sale_order_cancel_id
-#: model:ir.model.fields,field_description:sale_cancel_reason.field_sale_order_cancel_reason_id_5534
+#: model:ir.model.fields,field_description:sale_cancel_reason.field_sale_order_cancel__id
+#: model:ir.model.fields,field_description:sale_cancel_reason.field_sale_order_cancel_reason__id
 msgid "ID"
 msgstr "ID"
 
@@ -84,20 +84,20 @@ msgid "Just for Quotation"
 msgstr "Samo za ponudu"
 
 #. module: sale_cancel_reason
-#: model:ir.model.fields,field_description:sale_cancel_reason.field_sale_order_cancel___last_update
-#: model:ir.model.fields,field_description:sale_cancel_reason.field_sale_order_cancel_reason___last_update
+#: model:ir.model.fields,field_description:sale_cancel_reason.field_sale_order_cancel____last_update
+#: model:ir.model.fields,field_description:sale_cancel_reason.field_sale_order_cancel_reason____last_update
 msgid "Last Modified on"
 msgstr "Zadnja promjena"
 
 #. module: sale_cancel_reason
-#: model:ir.model.fields,field_description:sale_cancel_reason.field_sale_order_cancel_reason_write_uid
-#: model:ir.model.fields,field_description:sale_cancel_reason.field_sale_order_cancel_write_uid
+#: model:ir.model.fields,field_description:sale_cancel_reason.field_sale_order_cancel__write_uid
+#: model:ir.model.fields,field_description:sale_cancel_reason.field_sale_order_cancel_reason__write_uid
 msgid "Last Updated by"
 msgstr "Promijenio"
 
 #. module: sale_cancel_reason
-#: model:ir.model.fields,field_description:sale_cancel_reason.field_sale_order_cancel_reason_write_date
-#: model:ir.model.fields,field_description:sale_cancel_reason.field_sale_order_cancel_write_date
+#: model:ir.model.fields,field_description:sale_cancel_reason.field_sale_order_cancel__write_date
+#: model:ir.model.fields,field_description:sale_cancel_reason.field_sale_order_cancel_reason__write_date
 msgid "Last Updated on"
 msgstr "Vrijeme promjene"
 
@@ -107,21 +107,28 @@ msgid "Other Service Provider selected"
 msgstr "Odabran je drugi pružatelj usluge"
 
 #. module: sale_cancel_reason
-#: model:ir.model.fields,field_description:sale_cancel_reason.field_sale_order_cancel_reason_id
-#: model:ir.model.fields,field_description:sale_cancel_reason.field_sale_order_cancel_reason_name
+#: model:ir.model.fields,field_description:sale_cancel_reason.field_sale_order_cancel__reason_id
+#: model:ir.model.fields,field_description:sale_cancel_reason.field_sale_order_cancel_reason__name
 msgid "Reason"
 msgstr "Razlog"
 
 #. module: sale_cancel_reason
-#: model:ir.model.fields,field_description:sale_cancel_reason.field_sale_order_cancel_reason_id_5526
+#: model:ir.model.fields,field_description:sale_cancel_reason.field_sale_order__cancel_reason_id
 msgid "Reason for cancellation"
 msgstr "Razlog otkazivanja"
 
 #. module: sale_cancel_reason
 #: model:ir.actions.act_window,name:sale_cancel_reason.action_sale_order_cancel
-#: model:ir.ui.view,arch_db:sale_cancel_reason.view_sale_order_cancel
+#: model_terms:ir.ui.view,arch_db:sale_cancel_reason.view_sale_order_cancel
 msgid "Reason for the cancellation"
 msgstr "Razlog otkazivanja"
+
+#. module: sale_cancel_reason
+#: model:ir.model,name:sale_cancel_reason.model_sale_order
+#, fuzzy
+#| msgid "Sales Order"
+msgid "Sale Order"
+msgstr "Prodajni nalog"
 
 #. module: sale_cancel_reason
 #: model:ir.actions.act_window,name:sale_cancel_reason.action_sale_order_cancel_reason
@@ -131,15 +138,10 @@ msgstr "Razlog otkazivanja ponude"
 
 #. module: sale_cancel_reason
 #: model:ir.ui.menu,name:sale_cancel_reason.menu_sale_order_cancel_reason
-#: model:ir.ui.view,arch_db:sale_cancel_reason.view_sale_order_cancel_reason_form
-#: model:ir.ui.view,arch_db:sale_cancel_reason.view_sale_order_cancel_reason_tree
+#: model_terms:ir.ui.view,arch_db:sale_cancel_reason.view_sale_order_cancel_reason_form
+#: model_terms:ir.ui.view,arch_db:sale_cancel_reason.view_sale_order_cancel_reason_tree
 msgid "Sale Order Cancel Reasons"
 msgstr "Razlozi otkazivanja ponude"
-
-#. module: sale_cancel_reason
-#: model:ir.model,name:sale_cancel_reason.model_sale_order
-msgid "Sales Order"
-msgstr "Prodajni nalog"
 
 #. module: sale_cancel_reason
 #: model:sale.order.cancel.reason,name:sale_cancel_reason.cancel_reason_no_service_needed
@@ -147,6 +149,6 @@ msgid "Service no longer needed"
 msgstr "Usluga više nije potrebna"
 
 #. module: sale_cancel_reason
-#: model:ir.ui.view,arch_db:sale_cancel_reason.view_sale_order_cancel
+#: model_terms:ir.ui.view,arch_db:sale_cancel_reason.view_sale_order_cancel
 msgid "or"
 msgstr "ili"
