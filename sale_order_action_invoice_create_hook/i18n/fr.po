@@ -21,8 +21,8 @@ msgstr ""
 
 #. module: sale_order_action_invoice_create_hook
 #: model:ir.model,name:sale_order_action_invoice_create_hook.model_sale_order
-msgid "Quotation"
-msgstr "Devis"
+msgid "Sale Order"
+msgstr ""
 
 #. module: sale_order_action_invoice_create_hook
 #: model:ir.model,name:sale_order_action_invoice_create_hook.model_sale_order_line
@@ -30,8 +30,11 @@ msgid "Sales Order Line"
 msgstr ""
 
 #. module: sale_order_action_invoice_create_hook
-#: code:addons/sale_order_action_invoice_create_hook/hooks.py:108
-#: code:addons/sale_order_action_invoice_create_hook/hooks.py:113
+#: code:addons/sale_order_action_invoice_create_hook/model/sale_order.py:133
+#: code:addons/sale_order_action_invoice_create_hook/model/sale_order.py:139
 #, python-format
 msgid "There is no invoicable line."
 msgstr "Il n'y a pas de ligne facturable."
+
+#~ msgid "Quotation"
+#~ msgstr "Devis"
