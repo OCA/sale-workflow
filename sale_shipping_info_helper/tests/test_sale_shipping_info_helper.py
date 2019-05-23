@@ -3,8 +3,8 @@
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
 
 
-from odoo.tests import common
-from odoo.tools import float_compare
+from openerp.tests import common
+from openerp.tools import float_compare
 
 
 class TestDeliveryCost(common.TransactionCase):

@@ -6,7 +6,7 @@
 
 {
     'name': 'Sale shipping info helper',
-    'version': '10.0.1.0.0',
+    'version': '9.0.1.0.0',
     'category': 'Sales',
     'license': 'AGPL-3',
     'summary': 'Add shipping amounts on sale order',
