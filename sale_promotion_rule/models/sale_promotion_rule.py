@@ -19,6 +19,13 @@ class SalePromotionRule(models.Model):
     _description = 'Sale Promotion Rule'
 
     sequence = fields.Integer(default=10)
+    company_id = fields.Many2one(
+        comodel_name="res.company",
+        string="Company",
+        help="Define on which company this promotion rule is available "
+             "(let it empty if available for every companies)",
+        index=True,
+    )
     rule_type = fields.Selection(
         selection=[
             ('coupon', 'Coupon'),
