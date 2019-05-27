@@ -18,6 +18,7 @@
         "views/sale_order.xml",
         "views/sale_promotion_rule.xml",
         "security/ir.model.access.csv",
+        "security/sale_promotion_rule.xml",
     ],
     "demo": ["demo/product.xml", "demo/sale_demo.xml"],
 }
