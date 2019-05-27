@@ -12,6 +12,7 @@
                 <field name="date_to" />
                 <field name="is_minimal_amount_tax_incl" />
                 <field name="minimal_amount" />
+                <field name="company_id" groups="base.group_multi_company" />
             </tree>
         </field>
     </record>
@@ -31,6 +32,11 @@
                             <field
                                 name="code"
                                 attrs="{'required': [('rule_type', '=', 'coupon')]}"
+                            />
+                            <field
+                                name="company_id"
+                                options="{'no_create': True}"
+                                groups="base.group_multi_company"
                             />
                         </group>
                         <group name="offer" string="Offer">
