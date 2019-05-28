@@ -14,13 +14,4 @@
 
     # any module necessary for this one to work correctly
     'depends': ['base', 'sales_team'],
-
-    # always loaded
-    'data': [
-        # 'security/ir.model.access.csv',
-    ],
-    # only loaded in demonstration mode
-    'demo': [
-        'demo/demo.xml',
-    ],
 }
