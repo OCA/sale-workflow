@@ -10,6 +10,7 @@
     # Categories can be used to filter modules in modules listing
     # for the full list
     'category': 'Sales',
+    "license": "AGPL-3",
     'version': '12.0.1.0.0',
 
     # any module necessary for this one to work correctly
