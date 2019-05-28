@@ -4,8 +4,8 @@
     'summary': """
         it allows to add a user to multiple teams or sales channels.""",
 
-    'author': "marco.martinez@Berrysoft, felipe.garcia@Berrysoft",
-    'website': "http://www.berrysoft.mx",
+    'author': "BerrySoft, Odoo Community Association (OCA)",
+    'website': "https://github.com/oca",
 
     # Categories can be used to filter modules in modules listing
     # for the full list
