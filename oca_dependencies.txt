@@ -1,5 +1,6 @@
 account-invoicing
 partner-contact
+product-attribute
 server-tools
 web
 bank-payment
