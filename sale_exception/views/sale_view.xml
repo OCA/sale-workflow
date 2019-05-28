@@ -7,8 +7,8 @@
      <field name="view_type">form</field>
      <field name="view_mode">tree,form</field>
      <field name="view_id" ref="base_exception.view_exception_rule_tree"/>
-     <field name="domain">[('rule_group', '=', 'sale')]</field>
-     <field name="context">{'active_test': False, 'default_rule_group' : 'sale'}</field>
+     <field name="domain">[('model', 'in', ['sale.order', 'sale.order.line'])]</field>
+     <field name="context">{'active_test': False, 'default_model' : 'sale.order'}</field>
   </record>
 
   <menuitem
