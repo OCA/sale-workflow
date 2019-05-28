@@ -1,0 +1,2 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_bca-11_0-crm-gen-multi_sales_team_bca-11_0-crm-gen-multi_sales_team,bca-11_0-crm-gen-multi_sales_team.bca-11_0-crm-gen-multi_sales_team,model_bca-11_0-crm-gen-multi_sales_team_bca-11_0-crm-gen-multi_sales_team,,1,0,0,0
