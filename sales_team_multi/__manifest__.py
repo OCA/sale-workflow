@@ -5,8 +5,7 @@
         it allows to add an user to multiple teams or sales channels.""",
 
     'description': """
-        it allows to add an user to multiple teams or sales channels.
-    """,
+        it allows to add an user to multiple teams or sales channels.""",
 
     'author': "marco.martinez@Berrysoft, felipe.garcia@Berrysoft",
     'website': "http://www.berrysoft.mx",
