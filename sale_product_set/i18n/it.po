@@ -40,6 +40,11 @@ msgid "Cancel"
 msgstr "Cancella"
 
 #. module: sale_product_set
+#: model:ir.model.fields,field_description:sale_product_set.field_product_set__company_id
+msgid "Company"
+msgstr ""
+
+#. module: sale_product_set
 #: model:ir.model.fields,field_description:sale_product_set.field_product_set__create_uid
 #: model:ir.model.fields,field_description:sale_product_set.field_product_set_add__create_uid
 #: model:ir.model.fields,field_description:sale_product_set.field_product_set_line__create_uid
