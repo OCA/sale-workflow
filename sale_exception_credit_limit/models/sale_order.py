@@ -7,16 +7,17 @@ class SaleOrder(models.Model):
     @api.multi
     def check_credit_limit_ok(self):
         self.ensure_one()
-        # por compatibilidad con el modulo de sale_order_type_invoice_policy
+
+        if not self.partner_id.credit_limit:
+            return True
+
+        # Compatibility with module sale_order_type_invoice_policy
         if self._context.get('by_pass_credit_limit', False):
             return True
 
         domain = [
             ('order_id.id', '!=', self.id),
             ('order_id.partner_id', '=', self.partner_id.id),
-            # buscamos las que estan a facturar o las no ya que nos interesa
-            # la cantidad total y no solo la facturada. Esta busqueda ayuda
-            # a que no busquemos en todo lo que ya fue facturado al dope
             ('invoice_status', 'in', ['to invoice', 'no']),
             ('order_id.state', 'in', ['sale', 'done']),
         ]
