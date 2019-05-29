@@ -11,7 +11,8 @@ class ResPartner(models.Model):
     @api.model
     def fields_view_get(self, view_id=None, view_type='form', toolbar=False,
                         submenu=False):
-        """Patch view to inject the default value for the team_id and user_id.
+        """
+        Patch view to inject the default value for the team_id and user_id.
         """
         # FIXME: Use base_view_inheritance_extension when available
         res = super().fields_view_get(
@@ -33,7 +34,8 @@ class ResPartner(models.Model):
 
     @api.onchange('parent_id')
     def _onchange_parent_id_sales_team_security(self):
-        """If assigning a parent partner and the contact doesn't have
+        """
+        If assigning a parent partner and the contact doesn't have
         team, we put the parent's one (if any).
         """
         if self.parent_id and self.parent_id.team_id and not self.team_id:
