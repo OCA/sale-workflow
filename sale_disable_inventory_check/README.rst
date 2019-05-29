@@ -30,6 +30,10 @@ Contributors
 
 * Nguyen Tan Phuc <phuc.nt@komit.consulting.com>
 
+* `Guadaltech <https://www.guadaltech.es>`__:
+
+  * Ramón Bajona
+
 Do not contact contributors directly about support or help with technical issues.
 
 Maintainer

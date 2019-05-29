@@ -12,7 +12,7 @@ class TestDisableInventoryCheck(common.TransactionCase):
         self.product_1 = self.env['product.product'].create({
             'name': 'Product 1',
             'type': 'product',
-            'uom_id': self.env.ref('product.product_uom_unit').id,
+            'uom_id': self.ref('uom.product_uom_unit'),
         })
 
     def test_disable_inventory_check(self):
@@ -29,6 +29,4 @@ class TestDisableInventoryCheck(common.TransactionCase):
             'product_uom': self.product_1.uom_id.id,
             'product_uom_qty': 15,
         })
-        res = order_line._onchange_product_id_check_availability()
-        self.assertEqual(res.get('warning', {}), {},
-                         "There should not be a warning!!!")
+        order_line._onchange_product_id_check_availability()
