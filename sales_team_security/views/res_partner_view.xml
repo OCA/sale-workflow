@@ -6,7 +6,7 @@
         <field name="model">res.partner</field>
         <field name="inherit_id" ref="base.view_partner_form"/>
         <field name="arch" type="xml">
-            <field name="user_id" position="after">
+            <field name="message_bounce" position="before">
                 <field name="team_id"/>
             </field>
             <xpath expr="//field[@name='child_ids']/form" position="inside">
