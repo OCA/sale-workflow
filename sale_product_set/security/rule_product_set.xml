@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="product_set_line_comp_rule" model="ir.rule">
+        <field name="name">Product Set Line multi company rule</field>
+        <field name="model_id" ref="model_product_set_line"/>
+        <field name="global" eval="True"/>
+        <field name="domain_force">
+            ['|',('product_set_id.company_id','=',False),('product_set_id.company_id','child_of',[user.company_id.id])]
+        </field>
+    </record>
+</odoo>
