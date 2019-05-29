@@ -17,6 +17,12 @@ class ProductSet(models.Model):
     set_line_ids = fields.One2many(
         'product.set.line', 'product_set_id', string="Products"
     )
+    company_id = fields.Many2one(
+        'res.company',
+        'Company',
+        default=lambda self: self.env.user.company_id,
+        ondelete='cascade',
+    )
 
     @api.multi
     def name_get(self):
