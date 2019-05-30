@@ -85,6 +85,10 @@ Contributors
   * Sergio Teruel
   * Pedro M. Baeza
 
+* `Guadaltech <https://www.guadaltech.es>`__:
+
+  * Ramón Bajona
+
 Maintainers
 ~~~~~~~~~~~
 

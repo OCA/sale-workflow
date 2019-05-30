@@ -53,7 +53,7 @@
 
     <menuitem id="menu_sale_elaboration"
               action="sale_elaboration_action_form"
-              parent="sale.prod_config_main"
+              parent="sale_management.menu_product_settings"
               sequence="60"/>
 
 </odoo>
