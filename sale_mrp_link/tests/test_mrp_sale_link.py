@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 # Copyright 2018 Alex Comba - Agile Business Group
 # Copyright 2016-2018 Akretion
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
@@ -38,21 +37,26 @@ class TestSaleMrpLink(TransactionCase):
             'type': 'product',
             'route_ids': route_ids})
 
-    def _create_sale_order(self, partner):
-        return self.env['sale.order'].create({'partner_id': partner.id})
+    def _create_sale_order(self, partner, client_ref):
+        return self.env['sale.order'].create({
+            'partner_id': partner.id,
+            'client_order_ref': client_ref
+        })
 
     def _create_sale_order_line(self, sale_order, product, qty, price):
         self.env['sale.order.line'].create({
             'order_id': sale_order.id,
             'product_id': product.id,
             'price_unit': price,
-            'product_uom_qty': qty})
+            'product_uom_qty': qty,
+
+        })
 
     def test_sale_to_only_one_mo(self):
         """Check manufactured order is linked to the sale order."""
         bom = self._create_bom(self.product_a.product_tmpl_id)
         self._create_bom_line(bom, self.product_c, 1)
-        so = self._create_sale_order(self.partner)
+        so = self._create_sale_order(self.partner, "SO1")
         self._create_sale_order_line(so, self.product_a, 1, 10.0)
         so.action_confirm()
         mo = self.env['mrp.production'].search(
@@ -61,6 +65,8 @@ class TestSaleMrpLink(TransactionCase):
         action = so.action_view_production()
         res_id = action['res_id']
         self.assertEqual(res_id, mo.id)
+        self.assertEqual(len(mo), so.production_count)
+        self.assertEqual(so.client_order_ref, mo.origin)
 
     def test_sale_to_several_mo(self):
         """Check manufactured orders are linked to the sale order."""
@@ -69,7 +75,7 @@ class TestSaleMrpLink(TransactionCase):
         bom_a = self._create_bom(self.product_a.product_tmpl_id)
         self._create_bom_line(bom_a, self.product_c, 1)
         self._create_bom_line(bom_a, self.product_b, 1)
-        so = self._create_sale_order(self.partner)
+        so = self._create_sale_order(self.partner, "SO2")
         self._create_sale_order_line(so, self.product_a, 1, 10.0)
         so.action_confirm()
         mo = self.env['mrp.production'].search(
@@ -78,3 +84,8 @@ class TestSaleMrpLink(TransactionCase):
         action = so.action_view_production()
         mo_ids = action.get('domain')[0][2]
         self.assertEqual(mo.ids, mo_ids)
+        self.assertEqual(len(mo), so.production_count)
+        # The first MO will be the one that comes from the SO, the other one
+        #  will have the first MO as it's origin.
+        self.assertEqual(so.client_order_ref, mo[0].origin)
+        self.assertEqual(mo[1].origin, mo[0].name)
