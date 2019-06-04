@@ -81,6 +81,7 @@ msgstr ""
 
 #. module: sale_exception
 #: model:ir.model.fields,field_description:sale_exception.field_sale_exception_confirm__ignore
+#: model:ir.model.fields,field_description:sale_exception.field_sale_order_line__ignore_exception
 msgid "Ignore Exceptions"
 msgstr ""
 
@@ -112,20 +113,7 @@ msgid "Not Enough Virtual Stock"
 msgstr ""
 
 #. module: sale_exception
-#: model:ir.model.fields,field_description:sale_exception.field_exception_rule__rule_group
-#: model:ir.model.fields,field_description:sale_exception.field_sale_order__rule_group
-msgid "Rule Group"
-msgstr ""
-
-#. module: sale_exception
-#: model:ir.model.fields,help:sale_exception.field_exception_rule__rule_group
-msgid "Rule group is used to group the rules that must validated at same time for a target object. Ex: validate sale.order.line rules with sale order rules."
-msgstr ""
-
-#. module: sale_exception
-#: selection:exception.rule,rule_group:0
 #: model:ir.model.fields,field_description:sale_exception.field_sale_exception_confirm__related_model_id
-#: selection:sale.order,rule_group:0
 msgid "Sale"
 msgstr ""
 
@@ -153,6 +141,16 @@ msgstr ""
 #. module: sale_exception
 #: selection:exception.rule,model:0
 msgid "Sale order line"
+msgstr ""
+
+#. module: sale_exception
+#: model:ir.model.fields,field_description:sale_exception.field_exception_rule__sale_ids
+msgid "Sales"
+msgstr ""
+
+#. module: sale_exception
+#: model:ir.model,name:sale_exception.model_sale_order_line
+msgid "Sales Order Line"
 msgstr ""
 
 #. module: sale_exception
