@@ -140,7 +140,8 @@ class SaleOrderLine(models.Model):
     def write(self, values):
         name_user = self.env.user.name
         fields_blocked = ['product_uom_qty', 'price_unit', 'tax_id']
-        if not self.user_has_groups('group_edit_sale_order_line_price'):
+        if not self.user_has_groups(
+                'sale_request.group_edit_sale_order_line_price'):
             for rec in fields_blocked:
                 if rec in values:
                     raise UserError(
