@@ -70,6 +70,13 @@ msgid "ID"
 msgstr "ID"
 
 #. module: sale_exception
+#: model:ir.model.fields,field_description:sale_exception.field_sale_order_line_ignore_exception
+#, fuzzy
+#| msgid "Sale Exceptions"
+msgid "Ignore Exceptions"
+msgstr "Restrictions de vente"
+
+#. module: sale_exception
 #: model:ir.model.fields,field_description:sale_exception.field_sale_exception_confirm___last_update
 msgid "Last Modified on"
 msgstr "Dernière modification le"
@@ -97,13 +104,7 @@ msgid "Not Enough Virtual Stock"
 msgstr "Not Enough Virtual Stock"
 
 #. module: sale_exception
-#: model:ir.model.fields,field_description:sale_exception.field_sale_order_rule_group
-msgid "Rule group"
-msgstr "Groupe de règles"
-
-#. module: sale_exception
 #: model:ir.model.fields,field_description:sale_exception.field_sale_exception_confirm_related_model_id
-#: selection:sale.order,rule_group:0
 msgid "Sale"
 msgstr "Ventes"
 
@@ -119,8 +120,22 @@ msgid "Sale Exceptions"
 msgstr "Restrictions de vente"
 
 #. module: sale_exception
+#: model:ir.model.fields,field_description:sale_exception.field_exception_rule_sale_ids
+#, fuzzy
+#| msgid "Sale"
+msgid "Sales"
+msgstr "Ventes"
+
+#. module: sale_exception
 #: model:ir.model,name:sale_exception.model_sale_order
 msgid "Sales Order"
+msgstr "Bon de commande"
+
+#. module: sale_exception
+#: model:ir.model,name:sale_exception.model_sale_order_line
+#, fuzzy
+#| msgid "Sales Order"
+msgid "Sales Order Line"
 msgstr "Bon de commande"
 
 #. module: sale_exception
@@ -132,3 +147,6 @@ msgstr "_Close"
 #: model:ir.model,name:sale_exception.model_sale_exception_confirm
 msgid "sale.exception.confirm"
 msgstr "sale.exception.confirm"
+
+#~ msgid "Rule group"
+#~ msgstr "Groupe de règles"
