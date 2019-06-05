@@ -1,19 +1,21 @@
 # Translation of Odoo Server.
 # This file contains the translation of the following modules:
-#	* sale_request
+#   * sale_request
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 12.0+e\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-04-25 21:40+0000\n"
-"PO-Revision-Date: 2019-04-25 21:40+0000\n"
+"POT-Creation-Date: 2019-06-05 23:15+0000\n"
+"PO-Revision-Date: 2019-06-05 18:18-0500\n"
 "Last-Translator: <>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
-"Content-Transfer-Encoding: \n"
+"Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: \n"
+"Language: es\n"
+"X-Generator: Poedit 2.2.3\n"
 
 #. module: sale_request
 #: model_terms:ir.ui.view,arch_db:sale_request.view_create_sale_order_wizard_form
@@ -174,8 +176,7 @@ msgid "Display Name"
 msgstr "Nombre mostrado"
 
 #. module: sale_request
-#: selection:sale.request,state:0
-#: selection:sale.request.line,state:0
+#: selection:sale.request,state:0 selection:sale.request.line,state:0
 msgid "Done"
 msgstr "Hecho"
 
@@ -184,6 +185,11 @@ msgstr "Hecho"
 #: selection:sale.request,state:0
 msgid "Draft"
 msgstr "Borrador"
+
+#. module: sale_request
+#: model:res.groups,name:sale_request.group_edit_sale_order_line_price
+msgid "Edit Sale Order Line Price"
+msgstr "Editar precio de la línea de Pedido de Venta"
 
 #. module: sale_request
 #: code:addons/sale_request/wizards/create_sale_order_wizard.py:84
@@ -275,11 +281,6 @@ msgstr "Si se encuentra marcado, algunos mensajes tienen error de envío."
 #: model:ir.model.fields,help:sale_request.field_sale_order_line__master_sale_order
 msgid "If you check this field, this sale order do not run any procurement and will be selectionable when you request a product defined in this order."
 msgstr "Si marcas este campo, esta venta no va a generar ningún abastecimiento y será seleccionable cuando requieres un producto definido en esta orden."
-
-#. module: sale_request
-#: model:ir.model,name:sale_request.model_account_invoice_line
-msgid "Invoice Line"
-msgstr "Linea de Factura"
 
 #. module: sale_request
 #: model:ir.model.fields,field_description:sale_request.field_sale_request__message_is_follower
@@ -423,7 +424,7 @@ msgstr "Nombre"
 #: code:addons/sale_request/models/sale_order.py:33
 #, python-format
 msgid "New"
-msgstr ""
+msgstr "Nuevo"
 
 #. module: sale_request
 #: model:ir.model.fields,field_description:sale_request.field_sale_request__activity_date_deadline
@@ -468,7 +469,7 @@ msgstr "Número de mensajes no leidos"
 #. module: sale_request
 #: model:ir.model.fields,field_description:sale_request.field_create_sale_order_wizard__on_time
 msgid "On Time"
-msgstr ""
+msgstr "En Tiempo"
 
 #. module: sale_request
 #: model_terms:ir.ui.view,arch_db:sale_request.sale_order_line_search
@@ -649,7 +650,7 @@ msgstr "Líneas de Pedido de venta generadas desde requisiciones de venta ligada
 
 #. module: sale_request
 #: code:addons/sale_request/models/sale_request.py:172
-#: code:addons/sale_request/models/sale_request.py:289
+#: code:addons/sale_request/models/sale_request.py:284
 #, python-format
 msgid "Sale Orders"
 msgstr "Ordenes de Venta"
@@ -724,7 +725,7 @@ msgstr "Mostrar todos los registros que tienen la próxima fecha de acción ante
 #. module: sale_request
 #: model_terms:ir.ui.view,arch_db:sale_request.view_create_sale_order_wizard_form
 msgid "Sorry!"
-msgstr "Lo siento"
+msgstr "¡Lo siento!"
 
 #. module: sale_request
 #: model:ir.model.fields,field_description:sale_request.field_sale_request__state
@@ -734,21 +735,28 @@ msgstr "Estado"
 
 #. module: sale_request
 #: model:ir.model.fields,help:sale_request.field_sale_request__activity_state
-msgid "Status based on activities\n"
+msgid ""
+"Status based on activities\n"
 "Overdue: Due date is already passed\n"
 "Today: Activity date is today\n"
 "Planned: Future activities."
-msgstr "Estado basado en actividades\n"
+msgstr ""
+"Estado basado en actividades\n"
 "Vencida: la fecha tope ya ha pasado\n"
 "Hoy: La fecha tope es hoy\n"
 "Planificada: futuras actividades."
 
 #. module: sale_request
 #: code:addons/sale_request/models/account_invoice.py:19
-#: code:addons/sale_request/models/sale_order.py:147
+#: code:addons/sale_request/models/sale_order.py:148
 #, python-format
 msgid "The user %s can not permission to edit the priceunit, quantity and taxes"
 msgstr "El usuario %s no tiene permisos para editar: Precio Unitario, Cantidad O Impuestos"
+
+#. module: sale_request
+#: model:res.groups,comment:sale_request.group_edit_sale_order_line_price
+msgid "The users with this group are allowed to edit the price in sale order line."
+msgstr "Los usuarios con este grupo tienen permitido editar el precio de una línea de pedido de venta."
 
 #. module: sale_request
 #: selection:sale.request,activity_state:0
@@ -825,7 +833,7 @@ msgid "Wizard"
 msgstr "Asistente"
 
 #. module: sale_request
-#: code:addons/sale_request/models/sale_request.py:249
+#: code:addons/sale_request/models/sale_request.py:244
 #, python-format
 msgid "You cannot delete a request line that is already linked to a Sale Order"
 msgstr "No se puede eliminar una linea de la Requisición de Venta que ya esta enlazada a un Pedido de Venta"
@@ -846,7 +854,7 @@ msgstr "No puede solicitar más cantidad que la demanda inicial de esta requisic
 #: code:addons/sale_request/wizards/create_sale_order_wizard.py:344
 #, python-format
 msgid "You cannot request more than the remaining qty of this master sale order."
-msgstr "No puedes requerir más que la cantidad restante de este pedido master"
+msgstr "No puedes requerir más que la cantidad restante de este pedido master."
 
 #. module: sale_request
 #: code:addons/sale_request/wizards/create_sale_order_wizard.py:224
@@ -857,4 +865,4 @@ msgstr "No ha definido la cantidad a vender a ningún pedido maestro, por favor 
 #. module: sale_request
 #: model_terms:ir.ui.view,arch_db:sale_request.view_sale_request_search
 msgid "name"
-msgstr "Nombre"
+msgstr "nombre"
