@@ -193,13 +193,8 @@ class SaleRequestLine(models.Model):
         copy=False,
         ondelete='cascade',
     )
-    request_state = fields.Selection([
-        ('draft', 'Draft'),
-        ('confirm', 'Confirmed'),
-        ('cancel', 'Cancel')],
-        related='request_id.state',
-        string='Request state'
-    )
+    request_state = fields.Selection(
+        string='Request state', related='request_id.state')
     product_id = fields.Many2one(
         comodel_name='product.product',
         string='Product',
