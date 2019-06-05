@@ -18,9 +18,9 @@ class CreateSaleOrderWizard(models.TransientModel):
         # Time multiplied by 60 to get the minutes and perform all the
         # logic with minutes.
         current_time = hour * 60 + minute
-        time_start = int(self.env['ir.config_parameter'].get_param(
+        time_start = int(self.env['ir.config_parameter'].sudo().get_param(
             'sale_request_time_start')) * 60
-        time_end = int(self.env['ir.config_parameter'].get_param(
+        time_end = int(self.env['ir.config_parameter'].sudo().get_param(
             'sale_request_time_end')) * 60
         if time_start <= current_time and time_end >= current_time:
             return True
