@@ -1,8 +1,9 @@
+# -*- coding: utf-8 -*-
 # Copyright 2018 Tecnativa - Sergio Teruel
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
 
-from odoo import fields, models
-from odoo.addons import decimal_precision as dp
+from openerp import fields, models
+from openerp.addons import decimal_precision as dp
 
 
 class ResPartner(models.Model):

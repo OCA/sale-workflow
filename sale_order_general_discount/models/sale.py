@@ -1,7 +1,8 @@
+# -*- coding: utf-8 -*-
 # Copyright 2018 Tecnativa - Sergio Teruel
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
-from odoo import api, fields, models
-from odoo.addons import decimal_precision as dp
+from openerp import api, fields, models
+from openerp.addons import decimal_precision as dp
 from lxml import etree
 
 
@@ -15,15 +16,14 @@ class SaleOrder(models.Model):
 
     @api.onchange('partner_id')
     def onchange_partner_id(self):
-        super().onchange_partner_id()
+        super(SaleOrder, self).onchange_partner_id()
         self.general_discount = self.partner_id.sale_discount
         return
 
     @api.onchange('general_discount')
     def onchange_general_discount(self):
-        self.mapped('order_line').update({
-            'discount': self.general_discount,
-        })
+        for order_line in self.order_line:
+            order_line.discount = self.general_discount
 
     @api.model
     def fields_view_get(self, view_id=None, view_type='form', toolbar=False,

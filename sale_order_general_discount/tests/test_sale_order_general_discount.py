@@ -1,6 +1,7 @@
+# -*- coding: utf-8 -*-
 # Copyright 2018 Tecnativa - Sergio Teruel
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
-from odoo.tests import SavepointCase
+from openerp.tests import SavepointCase
 from lxml import etree
 
 
@@ -8,7 +9,7 @@ class TestSaleOrderLineInput(SavepointCase):
 
     @classmethod
     def setUpClass(cls):
-        super().setUpClass()
+        super(TestSaleOrderLineInput, cls).setUpClass()
         cls.partner = cls.env['res.partner'].create({
             'name': 'Test',
             'sale_discount': 10.0,
