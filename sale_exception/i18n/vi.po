@@ -70,6 +70,11 @@ msgid "ID"
 msgstr "ID"
 
 #. module: sale_exception
+#: model:ir.model.fields,field_description:sale_exception.field_sale_order_line_ignore_exception
+msgid "Ignore Exceptions"
+msgstr ""
+
+#. module: sale_exception
 #: model:ir.model.fields,field_description:sale_exception.field_sale_exception_confirm___last_update
 msgid "Last Modified on"
 msgstr "Sửa lần cuối vào"
@@ -97,13 +102,7 @@ msgid "Not Enough Virtual Stock"
 msgstr ""
 
 #. module: sale_exception
-#: model:ir.model.fields,field_description:sale_exception.field_sale_order_rule_group
-msgid "Rule group"
-msgstr ""
-
-#. module: sale_exception
 #: model:ir.model.fields,field_description:sale_exception.field_sale_exception_confirm_related_model_id
-#: selection:sale.order,rule_group:0
 msgid "Sale"
 msgstr ""
 
@@ -119,8 +118,18 @@ msgid "Sale Exceptions"
 msgstr ""
 
 #. module: sale_exception
+#: model:ir.model.fields,field_description:sale_exception.field_exception_rule_sale_ids
+msgid "Sales"
+msgstr ""
+
+#. module: sale_exception
 #: model:ir.model,name:sale_exception.model_sale_order
 msgid "Sales Order"
+msgstr ""
+
+#. module: sale_exception
+#: model:ir.model,name:sale_exception.model_sale_order_line
+msgid "Sales Order Line"
 msgstr ""
 
 #. module: sale_exception
