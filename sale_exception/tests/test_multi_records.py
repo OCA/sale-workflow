@@ -83,7 +83,7 @@ class TestSaleExceptionMultiRecord(TestSaleOrder):
         # test subset of rules
         def new_rule_domain(self=False):
             return [
-                ('rule_group', '=', 'sale'),
+                ('model', '=', 'sale.order'),
                 ('id', '!=', exception_no_sol.id)
             ]
 
