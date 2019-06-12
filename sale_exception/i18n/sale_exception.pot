@@ -14,8 +14,18 @@ msgstr ""
 "Plural-Forms: \n"
 
 #. module: sale_exception
+#: model:exception.rule,description:sale_exception.excep_no_dumping
+msgid "A product is sold cheaper than his cost."
+msgstr ""
+
+#. module: sale_exception
 #: model:ir.model.fields,field_description:sale_exception.field_exception_rule__model
 msgid "Apply on"
+msgstr ""
+
+#. module: sale_exception
+#: model:exception.rule,description:sale_exception.excep_no_sol
+msgid "At least one order line should be present in the sale"
 msgstr ""
 
 #. module: sale_exception
@@ -107,6 +117,21 @@ msgid "No ZIP code on destination"
 msgstr ""
 
 #. module: sale_exception
+#: model:exception.rule,name:sale_exception.excep_no_dumping
+msgid "No dumping"
+msgstr ""
+
+#. module: sale_exception
+#: model:exception.rule,name:sale_exception.excep_no_free
+msgid "No free order"
+msgstr ""
+
+#. module: sale_exception
+#: model:exception.rule,name:sale_exception.excep_no_sol
+msgid "No order lines"
+msgstr ""
+
+#. module: sale_exception
 #: model:exception.rule,description:sale_exception.excep_no_stock
 #: model:exception.rule,name:sale_exception.excep_no_stock
 msgid "Not Enough Virtual Stock"
@@ -158,6 +183,11 @@ msgstr ""
 #: model:ir.cron,cron_name:sale_exception.ir_cron_test_orders
 #: model:ir.cron,name:sale_exception.ir_cron_test_orders
 msgid "Test Draft Orders"
+msgstr ""
+
+#. module: sale_exception
+#: model:exception.rule,description:sale_exception.excep_no_free
+msgid "The total can't be 0"
 msgstr ""
 
 #. module: sale_exception
