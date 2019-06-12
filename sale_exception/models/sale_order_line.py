@@ -47,6 +47,10 @@ class SaleOrderLine(models.Model):
     def _get_main_records(self):
         return self.mapped("order_id")
 
+    @api.multi
+    def _get_main_records(self):
+        return self.mapped('order_id')
+
     @api.model
     def _reverse_field(self):
         return "sale_ids"
