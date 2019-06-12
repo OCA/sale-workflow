@@ -89,16 +89,9 @@ class TestSaleExceptionMultiRecord(TestSaleOrder):
 
         orders._rule_domain = new_rule_domain
         # even if the rule is excluded from the search
-        # it should still be present
-        all_detected = orders.detect_exceptions()
+        # it should still be present on the sale order
+        orders.detect_exceptions()
+        all_detected = orders.mapped('exception_ids').ids
         self.assertTrue(exception_no_sol.id in all_detected)
-        self.assertTrue(exception_no_dumping.id in all_detected)
-        self.assertTrue(exception_no_free.id in all_detected)
-
-        # clear exception and retry
-        # exception_no_sol shoud not be found now
-        exception_no_sol.sale_ids = [(5, False, False)]
-        all_detected = orders.detect_exceptions()
-        self.assertFalse(exception_no_sol.id in all_detected)
         self.assertTrue(exception_no_dumping.id in all_detected)
         self.assertTrue(exception_no_free.id in all_detected)

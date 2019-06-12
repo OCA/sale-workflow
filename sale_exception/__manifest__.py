@@ -12,9 +12,11 @@
  'license': 'AGPL-3',
  'data': [
      'data/sale_exception_data.xml',
-     'demo/sale_exception_demo.xml',
      'wizard/sale_exception_confirm_view.xml',
      'views/sale_view.xml',
+ ],
+ 'demo': [
+     'demo/sale_exception_demo.xml',
  ],
  'images': [],
  'installable': True,
