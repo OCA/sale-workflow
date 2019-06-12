@@ -5,7 +5,7 @@
 {
     'name': 'Sale Exception',
     'summary': 'Custom exceptions on sale order',
-    'version': '12.0.1.0.0',
+    'version': '12.0.1.0.1',
     'category': 'Generic Modules/Sale',
     'author': "Akretion, "
               "Sodexis, "
@@ -19,4 +19,7 @@
         'wizard/sale_exception_confirm_view.xml',
         'views/sale_view.xml',
     ],
+    'demo': [
+        'demo/sale_exception_demo.xml',
+    ]
 }
