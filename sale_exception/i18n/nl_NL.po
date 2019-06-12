@@ -20,8 +20,18 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
 #. module: sale_exception
+#: model:exception.rule,description:sale_exception.excep_no_dumping
+msgid "A product is sold cheaper than his cost."
+msgstr ""
+
+#. module: sale_exception
 #: model:ir.model.fields,field_description:sale_exception.field_exception_rule__model
 msgid "Apply on"
+msgstr ""
+
+#. module: sale_exception
+#: model:exception.rule,description:sale_exception.excep_no_sol
+msgid "At least one order line should be present in the sale"
 msgstr ""
 
 #. module: sale_exception
@@ -91,6 +101,7 @@ msgstr "ID"
 
 #. module: sale_exception
 #: model:ir.model.fields,field_description:sale_exception.field_sale_exception_confirm__ignore
+#: model:ir.model.fields,field_description:sale_exception.field_sale_order_line__ignore_exception
 #, fuzzy
 #| msgid "Exception"
 msgid "Ignore Exceptions"
@@ -118,28 +129,28 @@ msgid "No ZIP code on destination"
 msgstr "Geen postcode op bestemming"
 
 #. module: sale_exception
+#: model:exception.rule,name:sale_exception.excep_no_dumping
+msgid "No dumping"
+msgstr ""
+
+#. module: sale_exception
+#: model:exception.rule,name:sale_exception.excep_no_free
+msgid "No free order"
+msgstr ""
+
+#. module: sale_exception
+#: model:exception.rule,name:sale_exception.excep_no_sol
+msgid "No order lines"
+msgstr ""
+
+#. module: sale_exception
 #: model:exception.rule,description:sale_exception.excep_no_stock
 #: model:exception.rule,name:sale_exception.excep_no_stock
 msgid "Not Enough Virtual Stock"
 msgstr ""
 
 #. module: sale_exception
-#: model:ir.model.fields,field_description:sale_exception.field_exception_rule__rule_group
-#: model:ir.model.fields,field_description:sale_exception.field_sale_order__rule_group
-msgid "Rule Group"
-msgstr ""
-
-#. module: sale_exception
-#: model:ir.model.fields,help:sale_exception.field_exception_rule__rule_group
-msgid ""
-"Rule group is used to group the rules that must validated at same time for a "
-"target object. Ex: validate sale.order.line rules with sale order rules."
-msgstr ""
-
-#. module: sale_exception
-#: selection:exception.rule,rule_group:0
 #: model:ir.model.fields,field_description:sale_exception.field_sale_exception_confirm__related_model_id
-#: selection:sale.order,rule_group:0
 msgid "Sale"
 msgstr ""
 
@@ -170,10 +181,25 @@ msgid "Sale order line"
 msgstr ""
 
 #. module: sale_exception
+#: model:ir.model.fields,field_description:sale_exception.field_exception_rule__sale_ids
+msgid "Sales"
+msgstr ""
+
+#. module: sale_exception
+#: model:ir.model,name:sale_exception.model_sale_order_line
+msgid "Sales Order Line"
+msgstr ""
+
+#. module: sale_exception
 #: model:ir.actions.server,name:sale_exception.ir_cron_test_orders_ir_actions_server
 #: model:ir.cron,cron_name:sale_exception.ir_cron_test_orders
 #: model:ir.cron,name:sale_exception.ir_cron_test_orders
 msgid "Test Draft Orders"
+msgstr ""
+
+#. module: sale_exception
+#: model:exception.rule,description:sale_exception.excep_no_free
+msgid "The total can't be 0"
 msgstr ""
 
 #. module: sale_exception
