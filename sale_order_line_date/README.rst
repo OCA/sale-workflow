@@ -47,6 +47,7 @@ Contributors
 * Aaron Henriquez <ahenriquez@eficent.com>
 * Serpent Consulting Services Pvt. Ltd. <support@serpentcs.com>
 * Francesco Apruzzese <f.apruzzese@apuliasoftware.it>
+* Open-Net Sàrl <jae@open-net.ch>
 
 Maintainer
 ----------
