@@ -21,7 +21,7 @@ class SaleOrder(models.Model):
         company = company_pool._company_default_get('sale.order')
         if company.default_sale_order_validity_days:
             today_str = fields.Date.context_today(self)
-            today = fields.Date.from_string(today_str)
+            today = fields.Date.to_date(today_str)
             validity_date = today + relativedelta(
                 days=company.default_sale_order_validity_days)
             validity_date_str = fields.Date.to_string(validity_date)
@@ -34,7 +34,7 @@ class SaleOrder(models.Model):
             company = self.company_id or company_pool._company_default_get(
                 'sale.order')
             if company.default_sale_order_validity_days:
-                date_order = fields.Datetime.from_string(self.date_order)
+                date_order = fields.Datetime.to_datetime(self.date_order)
                 validity_date = date_order + relativedelta(
                     days=company.default_sale_order_validity_days)
                 self.validity_date = fields.Date.to_string(validity_date)
