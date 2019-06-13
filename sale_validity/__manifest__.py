@@ -4,14 +4,18 @@
 
 
 {
-    'name': 'Default Quotation Validity',
-    'version': '11.0.1.0.0',
+    'name': 'Sale Validity',
+    'version': '12.0.1.0.0',
     'category': 'Sales',
     'license': 'AGPL-3',
     'summary': 'Set a default validity delay on quotations',
-    'depends': ['sale_management'],
-    'author': 'Camptocamp,Odoo Community Association (OCA)',
+    'depends': [
+        'sale_management',
+    ],
+    'author': 'Camptocamp, Odoo Community Association (OCA)',
     'website': 'https://github.com/OCA/sale-workflow',
-    'data': ['views/res_config_settings.xml'],
+    'data': [
+        'views/res_config_settings.xml',
+    ],
     'installable': True,
 }
