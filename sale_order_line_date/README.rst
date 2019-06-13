@@ -6,15 +6,15 @@
 Sale order line date
 ====================
 
-This module adds requested date to a sales order lines and propagate it to
+This module adds commitment date to a sales order lines and propagate it to
 stock moves and procurements.
-When the requested date of the whole sale order is modified the requested date
+When the commitment date of the whole sale order is modified the commitment date
 of the lines change to match.
 
 Usage
 =====
 
-Create a Quotation or a Sales Order and it fills the requested date in the sale
+Create a Quotation or a Sales Order and it fills the commitment date in the sale
 order line
 
 .. image:: https://odoo-community.org/website/image/ir.attachment/5784_f2813bd/datas
@@ -47,6 +47,7 @@ Contributors
 * Aaron Henriquez <ahenriquez@eficent.com>
 * Serpent Consulting Services Pvt. Ltd. <support@serpentcs.com>
 * Francesco Apruzzese <f.apruzzese@apuliasoftware.it>
+* Open-Net Sàrl <jae@open-net.ch>
 
 Maintainer
 ----------
