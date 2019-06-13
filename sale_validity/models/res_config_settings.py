@@ -8,5 +8,7 @@ from odoo import models, fields
 class ResConfigSettings(models.TransientModel):
     _inherit = 'res.config.settings'
 
-    default_sale_order_validity_days = fields.Integer(
-        related='company_id.default_sale_order_validity_days')
+    sale_order_default_validity_days = fields.Integer(
+        related='company_id.default_sale_order_validity_days',
+        readonly=False,
+    )
