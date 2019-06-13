@@ -7,7 +7,7 @@
 
 {
     "name": "Sale Order Line Date",
-    "version": "11.0.1.0.0",
+    "version": "12.0.0.0.0",
     "author": "OdooMRP team,"
               "AvanzOSC,"
               "Serv. Tecnol. Avanzados - Pedro M. Baeza,"
@@ -16,7 +16,7 @@
     "category": "Sales Management",
     "license": "AGPL-3",
     "depends": [
-        "sale_order_dates",
+        "sale",
     ],
     "data": [
         "views/sale_order_view.xml",

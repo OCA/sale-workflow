@@ -12,10 +12,10 @@ class SaleOrder(models.Model):
     _inherit = 'sale.order'
 
     @api.multi
-    @api.onchange('requested_date')
-    def onchange_requested_date(self):
-        """Warn if the requested dates is sooner than the commitment date"""
-        result = super(SaleOrder, self).onchange_requested_date()
+    @api.onchange('commitment_date')
+    def _onchange_commitment_date(self):
+        """Warn if the commitment dates is sooner than the commitment date"""
+        result = super(SaleOrder, self)._onchange_commitment_date()
         if not result:
             result = {}
         if not self:
@@ -24,7 +24,7 @@ class SaleOrder(models.Model):
         if 'warning' not in result:
             lines = []
             for line in self.order_line:
-                lines.append((1, line.id, {'requested_date':
-                                           self.requested_date}))
+                lines.append((1, line.id, {'commitment_date':
+                                           self.commitment_date}))
             result['value'] = {'order_line': lines}
         return result
