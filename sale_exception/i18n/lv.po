@@ -20,6 +20,16 @@ msgstr ""
 "2);\n"
 
 #. module: sale_exception
+#: model:exception.rule,description:sale_exception.excep_no_dumping
+msgid "A product is sold cheaper than his cost."
+msgstr ""
+
+#. module: sale_exception
+#: model:exception.rule,description:sale_exception.excep_no_sol
+msgid "At least one order line should be present in the sale"
+msgstr ""
+
+#. module: sale_exception
 #: model:ir.ui.view,arch_db:sale_exception.view_sales_order_filter
 msgid "Blocked in draft"
 msgstr ""
@@ -97,6 +107,21 @@ msgid "No ZIP code on destination"
 msgstr ""
 
 #. module: sale_exception
+#: model:exception.rule,name:sale_exception.excep_no_dumping
+msgid "No dumping"
+msgstr ""
+
+#. module: sale_exception
+#: model:exception.rule,name:sale_exception.excep_no_free
+msgid "No free order"
+msgstr ""
+
+#. module: sale_exception
+#: model:exception.rule,name:sale_exception.excep_no_sol
+msgid "No order lines"
+msgstr ""
+
+#. module: sale_exception
 #: model:exception.rule,description:sale_exception.excep_no_stock
 #: model:exception.rule,name:sale_exception.excep_no_stock
 msgid "Not Enough Virtual Stock"
@@ -131,6 +156,11 @@ msgstr ""
 #. module: sale_exception
 #: model:ir.model,name:sale_exception.model_sale_order_line
 msgid "Sales Order Line"
+msgstr ""
+
+#. module: sale_exception
+#: model:exception.rule,description:sale_exception.excep_no_free
+msgid "The total can't be 0"
 msgstr ""
 
 #. module: sale_exception
