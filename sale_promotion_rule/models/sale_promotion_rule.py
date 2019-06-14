@@ -335,13 +335,15 @@ according to the strategy
     @api.multi
     def _apply(self, orders):
         for rule in self:
-            orders = orders.filtered(
+            orders_valid = orders.filtered(
                 lambda o, r=rule: r._is_promotion_valid(o))
-            rule._apply_rule_to_order_lines(orders.mapped('order_line'))
+            if not orders_valid:
+                continue
+            rule._apply_rule_to_order_lines(orders_valid.mapped('order_line'))
             if rule.rule_type == 'coupon':
-                orders.write({'coupon_promotion_rule_id': rule.id})
+                orders_valid.write({'coupon_promotion_rule_id': rule.id})
             else:
-                orders.write({'promotion_rule_ids': [(4, rule.id)]})
+                orders_valid.write({'promotion_rule_ids': [(4, rule.id)]})
 
     @api.multi
     def _apply_rule_to_order_lines(self, lines):
