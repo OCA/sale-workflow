@@ -20,6 +20,7 @@
                     </div>
                     <div class="o_setting_right_pane">
                         <label for="sale_merge_draft_invoice"/>
+                        <span class="fa fa-lg fa-building-o" title="Values set here are company-specific."/>
                         <div class="text-muted">
                             Merge new invoices with existing draft ones
                         </div>
