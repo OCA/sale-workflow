@@ -20,22 +20,21 @@ msgstr ""
 "%100==4 ? 2 : 3);\n"
 
 #. module: sale_force_invoiced
-#: model:ir.model.fields,field_description:sale_force_invoiced.field_sale_order_force_invoiced
+#: model:ir.model.fields,field_description:sale_force_invoiced.field_sale_order__force_invoiced
 msgid "Force invoiced"
 msgstr ""
 
 #. module: sale_force_invoiced
 #: model:ir.model,name:sale_force_invoiced.model_sale_order
-msgid "Quotation"
-msgstr ""
+#, fuzzy
+#| msgid "Sales Order"
+msgid "Sale Order"
+msgstr "Prodajni nalog"
 
 #. module: sale_force_invoiced
-#: model:ir.model.fields,help:sale_force_invoiced.field_sale_order_force_invoiced
+#: model:ir.model.fields,help:sale_force_invoiced.field_sale_order__force_invoiced
 msgid ""
 "When you set this field, the sales order will be considered as fully "
 "invoiced, even when there may be ordered or delivered quantities pending to "
 "invoice."
 msgstr ""
-
-#~ msgid "Sales Order"
-#~ msgstr "Prodajni nalog"
