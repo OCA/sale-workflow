@@ -1,6 +1,6 @@
 # Translation of Odoo Server.
 # This file contains the translation of the following modules:
-#	* sale_discount_display_amount
+# 	* sale_discount_display_amount
 #
 msgid ""
 msgstr ""
@@ -15,14 +15,14 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
 
 #. module: sale_discount_display_amount
-#: model:ir.model.fields,field_description:sale_discount_display_amount.field_sale_order_discount_total
-#: model:ir.model.fields,field_description:sale_discount_display_amount.field_sale_order_line_discount_total
+#: model:ir.model.fields,field_description:sale_discount_display_amount.field_sale_order__discount_total
+#: model:ir.model.fields,field_description:sale_discount_display_amount.field_sale_order_line__discount_total
 msgid "Discount Subtotal"
 msgstr ""
 
 #. module: sale_discount_display_amount
 #: model:ir.model,name:sale_discount_display_amount.model_sale_order
-msgid "Sales Order"
+msgid "Sale Order"
 msgstr ""
 
 #. module: sale_discount_display_amount
@@ -31,7 +31,7 @@ msgid "Sales Order Line"
 msgstr ""
 
 #. module: sale_discount_display_amount
-#: model:ir.model.fields,field_description:sale_discount_display_amount.field_sale_order_line_price_total_no_discount
-#: model:ir.model.fields,field_description:sale_discount_display_amount.field_sale_order_price_total_no_discount
+#: model:ir.model.fields,field_description:sale_discount_display_amount.field_sale_order__price_total_no_discount
+#: model:ir.model.fields,field_description:sale_discount_display_amount.field_sale_order_line__price_total_no_discount
 msgid "Subtotal Without Discount"
 msgstr ""
