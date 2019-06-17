@@ -119,13 +119,19 @@ according to the strategy
     def _check_valid_total_amount(self, order):
         self.ensure_one()
         precision = self.env['decimal.precision'].precision_get('Discount')
-        amount = order.amount_total
-        line_price_field = 'price_total'
-        if not self.is_minimal_amount_tax_incl:
-            amount = order.amount_untaxed
-            line_price_field = 'price_subtotal'
-        lines = self._get_lines_excluded_from_total_amount(order)
-        amount -= sum([l[line_price_field] for l in lines])
+        excluded_lines = self._get_lines_excluded_from_total_amount(order)
+        included_lines = order.order_line - excluded_lines
+        amount = 0
+        for line in included_lines:
+            # we need to ignore already applied promotions
+            taxes = line.tax_id.compute_all(
+                line.price_unit, line.order_id.currency_id,
+                line.product_uom_qty, product=line.product_id,
+                partner=line.order_id.partner_shipping_id)
+            if self.is_minimal_amount_tax_incl:
+                amount += taxes['total_included']
+            else:
+                amount += taxes['total_excluded']
         return float_compare(
             self.minimal_amount,
             amount,

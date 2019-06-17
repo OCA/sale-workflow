@@ -45,7 +45,7 @@ msgid "Applied Promotions"
 msgstr "Sale Promotion Rule"
 
 #. module: sale_promotion_rule
-#: code:addons/sale_promotion_rule/models/sale_promotion_rule.py:184
+#: code:addons/sale_promotion_rule/models/sale_promotion_rule.py:206
 #: selection:sale.promotion.rule,rule_type:0
 #, python-format
 msgid "Automatic"
@@ -64,7 +64,7 @@ msgid "Code"
 msgstr "Code"
 
 #. module: sale_promotion_rule
-#: code:addons/sale_promotion_rule/models/sale_promotion_rule.py:218
+#: code:addons/sale_promotion_rule/models/sale_promotion_rule.py:240
 #, python-format
 msgid "Code number %s is invalid"
 msgstr "Le code %s est invalide"
@@ -130,14 +130,14 @@ msgid "Discount amount"
 msgstr "Montant de réduction"
 
 #. module: sale_promotion_rule
-#: code:addons/sale_promotion_rule/models/sale_promotion_rule.py:96
+#: code:addons/sale_promotion_rule/models/sale_promotion_rule.py:94
 #: sql_constraint:sale.promotion.rule:0
 #, python-format
 msgid "Discount code must be unique !"
 msgstr "Le code doit être unique !"
 
 #. module: sale_promotion_rule
-#: code:addons/sale_promotion_rule/models/sale_promotion_rule.py:294
+#: code:addons/sale_promotion_rule/models/sale_promotion_rule.py:316
 #, python-format
 msgid "Discount promotion of type %s is not supported"
 msgstr ""
@@ -197,7 +197,6 @@ msgstr "Last Updated on"
 
 #. module: sale_promotion_rule
 #: model:ir.model.fields,field_description:sale_promotion_rule.field_sale_promotion_rule_minimal_amount
-#: model:ir.ui.view,arch_db:sale_promotion_rule.view_sale_promotion_rule_form
 msgid "Minimal amount"
 msgstr "Montant minimum"
 
@@ -218,7 +217,7 @@ msgid "No restriction"
 msgstr "Aucune restriction"
 
 #. module: sale_promotion_rule
-#: code:addons/sale_promotion_rule/models/sale_promotion_rule.py:284
+#: code:addons/sale_promotion_rule/models/sale_promotion_rule.py:306
 #, python-format
 msgid "Not supported promotion type %s"
 msgstr ""
@@ -286,12 +285,6 @@ msgid "Restricted pricelists"
 msgstr "Uniquement les listes de prix"
 
 #. module: sale_promotion_rule
-#: model:ir.model.fields,field_description:sale_promotion_rule.field_sale_promotion_rule_restriction_amount_field
-#, fuzzy
-msgid "Restriction amount field"
-msgstr "Restriction amount"
-
-#. module: sale_promotion_rule
 #: model:ir.model.fields,field_description:sale_promotion_rule.field_sale_promotion_rule_rule_type
 msgid "Rule type"
 msgstr "Type de règle"
@@ -325,19 +318,14 @@ msgid "Sequence"
 msgstr "Sequence"
 
 #. module: sale_promotion_rule
-#: selection:sale.promotion.rule,restriction_amount_field:0
-msgid "Taxed amount"
-msgstr "Total TTC"
+#: model:ir.model.fields,field_description:sale_promotion_rule.field_sale_promotion_rule_is_minimal_amount_tax_incl
+msgid "Tax included into minimal amount?"
+msgstr ""
 
 #. module: sale_promotion_rule
 #: model:ir.ui.view,arch_db:sale_promotion_rule.view_sale_promotion_rule_form
 msgid "Type"
 msgstr "Type"
-
-#. module: sale_promotion_rule
-#: selection:sale.promotion.rule,restriction_amount_field:0
-msgid "Untaxed amount"
-msgstr "Total HT"
 
 #. module: sale_promotion_rule
 #: model:ir.model.fields,field_description:sale_promotion_rule.field_sale_promotion_rule_usage_restriction
@@ -354,6 +342,16 @@ msgstr "Restriction d'utilisation"
 #: model:ir.model,name:sale_promotion_rule.model_sale_order_add_coupon
 msgid "sale.order.add.coupon"
 msgstr ""
+
+#, fuzzy
+#~ msgid "Restriction amount field"
+#~ msgstr "Restriction amount"
+
+#~ msgid "Taxed amount"
+#~ msgstr "Total TTC"
+
+#~ msgid "Untaxed amount"
+#~ msgstr "Total HT"
 
 #~ msgid "Discount on all"
 #~ msgstr "Sur tous"
