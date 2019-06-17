@@ -22,9 +22,8 @@ class SaleOrder(models.Model):
             return result
         self.ensure_one()
         if 'warning' not in result:
-            lines = []
-            for line in self.order_line:
-                lines.append((1, line.id, {'commitment_date':
-                                           self.commitment_date}))
-            result['value'] = {'order_line': lines}
+            result['value'] = {'order_line': [
+                (1, line.id, {'commitment_date': self.commitment_date})
+                for line in self.order_line
+            ]}
         return result

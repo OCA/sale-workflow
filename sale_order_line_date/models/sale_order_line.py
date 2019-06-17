@@ -15,13 +15,11 @@ class SaleOrderLine(models.Model):
 
     @api.multi
     def write(self, vals):
+        res = super(SaleOrderLine, self).write(vals)
         for line in self:
-            if not line.commitment_date and line.order_id.commitment_date and\
-                    'commitment_date' not in vals:
-                vals.update({
-                    'commitment_date': line.order_id.commitment_date
-                })
-        return super(SaleOrderLine, self).write(vals)
+            if not line.commitment_date and line.order_id.commitment_date:
+                line.commitment_date = line.order_id.commitment_date
+        return res
 
     @api.model
     def create(self, vals):
