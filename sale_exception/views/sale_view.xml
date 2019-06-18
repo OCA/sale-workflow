@@ -39,17 +39,8 @@
                     </p>
                 </div>
             </sheet>
-
             <xpath expr="//field[@name='date_order']/.." position="inside">
                 <field name="ignore_exception" states="sale" />
-            </xpath>
-
-            <xpath expr="//group[@name='sales_person']/.." position="inside">
-                <newline />
-                <group name="exception" colspan="2" col="2">
-                    <separator string="Exception" colspan="2"/>
-                    <field name="exception_ids" colspan="2" nolabel="1"/>
-                </group>
             </xpath>
         </field>
     </record>
