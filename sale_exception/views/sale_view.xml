@@ -15,7 +15,9 @@
     action="action_sale_test_tree"
     id="menu_sale_test"
     sequence="90"
-    parent="sale.menu_sales_config"/>
+    parent="sale.menu_sales_config"
+    groups="base_exception.group_exception_rule_manager"
+  />
 
   <record id="view_order_form" model="ir.ui.view">
     <field name="name">sale_exception.view_order_form</field>
