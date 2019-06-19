@@ -29,8 +29,8 @@ class ProjectTask(models.Model):
     @api.onchange('stage_id')
     def _onchange_stage_id(self):
         tasks = self.filtered(lambda t: (
-            t.invoicing_finished_task and t.stage_id.invoiceable and
-            not t.invoiceable))
+            t.invoicing_finished_task and t.stage_id.invoiceable
+            and not t.invoiceable))
         tasks.toggle_invoiceable()
 
     @api.multi
@@ -45,7 +45,7 @@ class ProjectTask(models.Model):
             self._check_sale_line_state(vals['sale_line_id'])
         res = super(ProjectTask, self).write(vals)
         if 'invoiceable' in vals:
-            self.mapped('sale_line_id')._analytic_compute_delivered_quantity()
+            self.mapped('sale_line_id')._compute_qty_delivered()
         return res
 
     @api.model
@@ -59,8 +59,8 @@ class ProjectTask(models.Model):
         if sale_line_id:
             sale_lines |= self.env['sale.order.line'].browse(sale_line_id)
         for sale_line in sale_lines:
-            if (sale_line.state in ('done', 'cancel') or
-                    sale_line.invoice_status == 'invoiced'):
+            if (sale_line.state in ('done', 'cancel')
+                    or sale_line.invoice_status == 'invoiced'):
                 raise ValidationError(
                     _('You cannot create/modify a task related with a '
                       'invoiced, done or cancel sale order line '))
