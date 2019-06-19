@@ -7,7 +7,7 @@
     "name": "Sale Order Invoicing Finished Task",
     "summary": "Control invoice order lines if their related task has been "
                "set to invoiceable",
-    "version": "11.0.1.0.0",
+    "version": "12.0.1.0.0",
     "category": "Sales",
     "website": "https://github.com/OCA/sale-workflow",
     "author": "Tecnativa, "

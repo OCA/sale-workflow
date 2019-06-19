@@ -33,11 +33,11 @@ class SaleOrderLine(models.Model):
                  'order_id.state', 'task_ids.invoiceable')
     def _get_to_invoice_qty(self):
         lines = self.filtered(
-            lambda x: (x.product_id.type == 'service' and
-                       x.product_id.invoicing_finished_task and
-                       x.product_id.service_tracking in [
-                           'task_global_project', 'task_new_project'] and
-                       not all(x.task_ids.mapped('invoiceable'))
+            lambda x: (x.product_id.type == 'service'
+                       and x.product_id.invoicing_finished_task
+                       and x.product_id.service_tracking in [
+                           'task_global_project', 'task_new_project']
+                       and not all(x.task_ids.mapped('invoiceable'))
                        )
         )
         if lines:
@@ -45,18 +45,14 @@ class SaleOrderLine(models.Model):
         super(SaleOrderLine, self - lines)._get_to_invoice_qty()
 
     @api.multi
-    def _analytic_compute_delivered_quantity_domain(self):
-        # Overwrite until resolve https://github.com/odoo/odoo/issues/24038
-        # After fix extend _timesheet_compute_delivered_quantity_domain
-        return [
-            ('so_line', 'in', self.ids),
+    def _timesheet_compute_delivered_quantity_domain(self):
+        vals = super()._timesheet_compute_delivered_quantity_domain()
+        vals = ['|', ('amount', '<=', 0.0)] + vals + [
             # don't update the qty on sale order lines which are not
             # with a product invoiced on ordered qty +
             # invoice_finished task = True
             '|',
             ('so_line.product_id.invoice_policy', '=', 'delivery'),
             ('so_line.product_id.invoicing_finished_task', '=', False),
-            '|',
-            ('amount', '<=', 0.0),
-            ('project_id', '!=', False),
         ]
+        return vals
