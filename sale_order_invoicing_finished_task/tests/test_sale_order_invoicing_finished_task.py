@@ -7,62 +7,65 @@ from odoo.exceptions import ValidationError
 
 class TestInvoicefinishedTask(common.SavepointCase):
 
-    def setUp(self):
-        super(TestInvoicefinishedTask, self).setUp()
-        self.hour_uom = self.env.ref('product.product_uom_hour')
-        self.env.user.company_id.project_time_mode_id = self.hour_uom.id
-        group_manager = self.env.ref('sales_team.group_sale_manager')
-        self.manager = self.env['res.users'].create({
+    @classmethod
+    def setUpClass(cls):
+        super().setUpClass()
+        cls.hour_uom = cls.env.ref('uom.product_uom_hour')
+        cls.env.user.company_id.project_time_mode_id = cls.hour_uom.id
+        group_manager = cls.env.ref('sales_team.group_sale_manager')
+        cls.manager = cls.env['res.users'].create({
             'name': 'Andrew Manager',
             'login': 'manager',
             'email': 'a.m@example.com',
             'signature': '--\nAndreww',
             'groups_id': [(6, 0, [group_manager.id])]
         })
-        self.employee = self.env['hr.employee'].create({
-            'name': self.manager.name,
-            'user_id': self.manager.id,
+        cls.employee = cls.env['hr.employee'].create({
+            'name': cls.manager.name,
+            'user_id': cls.manager.id,
         })
-        self.partner = self.env['res.partner'].create({
+        cls.partner = cls.env['res.partner'].create({
             'name': 'Customer - test',
             'customer': True,
         })
-        self.project = self.env['project.project'].create({
+        cls.project = cls.env['project.project'].create({
             'name': "Some test project"
         })
-        self.stage_new = self.env['project.task.type'].create(
-            self._prepare_stage_vals())
-        self.stage_invoiceable = self.env['project.task.type'].create(
-            self._prepare_stage_vals(invoiceable_stage=True))
-        self.uom_unit = self.env.ref('product.product_uom_unit')
+        cls.stage_new = cls.env['project.task.type'].create(
+            cls._prepare_stage_vals())
+        cls.stage_invoiceable = cls.env['project.task.type'].create(
+            cls._prepare_stage_vals(invoiceable_stage=True))
+        cls.uom_unit = cls.env.ref('uom.product_uom_unit')
 
-        self.Product = self.env['product.product']
-        self.product = self.Product.create(self._prepare_product_vals())
-        product_delivery_vals = self._prepare_product_vals()
+        cls.Product = cls.env['product.product']
+        cls.product = cls.Product.create(cls._prepare_product_vals())
+        product_delivery_vals = cls._prepare_product_vals()
         product_delivery_vals.update({
             'name': 'Product - Service - Policy delivery - Test',
-            'invoice_policy': 'delivery',
+            'service_policy': 'delivered_timesheet',
         })
-        self.product_policy_delivery = self.Product.create(
+        cls.product_policy_delivery = cls.Product.create(
             product_delivery_vals)
 
-        self.sale_order = self.env['sale.order'].create(
-            self._sale_order_vals(self.product))
-        self.sale_order_policy_delivery = self.env['sale.order'].create(
-            self._sale_order_vals(self.product_policy_delivery))
+        cls.sale_order = cls.env['sale.order'].create(
+            cls._sale_order_vals(cls.product))
+        cls.sale_order_policy_delivery = cls.env['sale.order'].create(
+            cls._sale_order_vals(cls.product_policy_delivery))
 
-    def _prepare_stage_vals(self, invoiceable_stage=False):
+    @classmethod
+    def _prepare_stage_vals(cls, invoiceable_stage=False):
         return {
             'name': 'Test Invoiceable',
             'sequence': 5,
-            'project_ids': [(6, 0, self.project.ids)],
+            'project_ids': [(6, 0, cls.project.ids)],
             'invoiceable': invoiceable_stage,
         }
 
-    def _sale_order_vals(self, product):
+    @classmethod
+    def _sale_order_vals(cls, product):
         return {
-            'partner_id': self.partner.id,
-            'pricelist_id': self.partner.property_product_pricelist.id,
+            'partner_id': cls.partner.id,
+            'pricelist_id': cls.partner.property_product_pricelist.id,
             'order_line': [
                 (0, 0, {
                     'name': product.name,
@@ -74,18 +77,19 @@ class TestInvoicefinishedTask(common.SavepointCase):
             ],
         }
 
-    def _prepare_product_vals(self):
+    @classmethod
+    def _prepare_product_vals(cls):
         return {
             'name': 'Product - Service  - Test',
             'type': 'service',
             'list_price': 100.00,
             'standard_price': 50.00,
-            'invoice_policy': 'order',
+            'service_policy': 'ordered_timesheet',
             'service_tracking': 'task_global_project',
             'invoicing_finished_task': True,
-            'project_id': self.project.id,
-            'uom_id': self.hour_uom.id,
-            'uom_po_id': self.hour_uom.id,
+            'project_id': cls.project.id,
+            'uom_id': cls.hour_uom.id,
+            'uom_po_id': cls.hour_uom.id,
         }
 
     def _prepare_timesheet_vals(self, task, unit_amount):

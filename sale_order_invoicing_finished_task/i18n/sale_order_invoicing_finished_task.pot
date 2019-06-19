@@ -4,7 +4,7 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: Odoo Server 11.0\n"
+"Project-Id-Version: Odoo Server 12.0\n"
 "Report-Msgid-Bugs-To: \n"
 "Last-Translator: <>\n"
 "Language-Team: \n"
@@ -14,22 +14,22 @@ msgstr ""
 "Plural-Forms: \n"
 
 #. module: sale_order_invoicing_finished_task
-#: model:ir.model.fields,help:sale_order_invoicing_finished_task.field_product_product_invoicing_finished_task
-#: model:ir.model.fields,help:sale_order_invoicing_finished_task.field_product_template_invoicing_finished_task
-#: model:ir.model.fields,help:sale_order_invoicing_finished_task.field_project_task_invoicing_finished_task
+#: model:ir.model.fields,help:sale_order_invoicing_finished_task.field_product_product__invoicing_finished_task
+#: model:ir.model.fields,help:sale_order_invoicing_finished_task.field_product_template__invoicing_finished_task
+#: model:ir.model.fields,help:sale_order_invoicing_finished_task.field_project_task__invoicing_finished_task
 msgid "Invoice the order lines only when the task is set to invoiceable"
 msgstr ""
 
 #. module: sale_order_invoicing_finished_task
-#: model:ir.model.fields,field_description:sale_order_invoicing_finished_task.field_project_task_invoiceable
-#: model:ir.model.fields,field_description:sale_order_invoicing_finished_task.field_project_task_type_invoiceable
+#: model:ir.model.fields,field_description:sale_order_invoicing_finished_task.field_project_task__invoiceable
+#: model:ir.model.fields,field_description:sale_order_invoicing_finished_task.field_project_task_type__invoiceable
 msgid "Invoiceable"
 msgstr ""
 
 #. module: sale_order_invoicing_finished_task
-#: model:ir.model.fields,field_description:sale_order_invoicing_finished_task.field_product_product_invoicing_finished_task
-#: model:ir.model.fields,field_description:sale_order_invoicing_finished_task.field_product_template_invoicing_finished_task
-#: model:ir.model.fields,field_description:sale_order_invoicing_finished_task.field_project_task_invoicing_finished_task
+#: model:ir.model.fields,field_description:sale_order_invoicing_finished_task.field_product_product__invoicing_finished_task
+#: model:ir.model.fields,field_description:sale_order_invoicing_finished_task.field_product_template__invoicing_finished_task
+#: model:ir.model.fields,field_description:sale_order_invoicing_finished_task.field_project_task__invoicing_finished_task
 msgid "Invoicing control by task"
 msgstr ""
 
@@ -40,7 +40,7 @@ msgstr ""
 
 #. module: sale_order_invoicing_finished_task
 #: model:ir.model,name:sale_order_invoicing_finished_task.model_sale_order
-msgid "Quotation"
+msgid "Sale Order"
 msgstr ""
 
 #. module: sale_order_invoicing_finished_task
@@ -59,7 +59,7 @@ msgid "Task Stage"
 msgstr ""
 
 #. module: sale_order_invoicing_finished_task
-#: model:ir.model.fields,field_description:sale_order_invoicing_finished_task.field_sale_order_line_task_ids
+#: model:ir.model.fields,field_description:sale_order_invoicing_finished_task.field_sale_order_line__task_ids
 msgid "Tasks"
 msgstr ""
 
