@@ -17,7 +17,8 @@ class SaleOrderLine(models.Model):
 
     @api.multi
     def write(self, vals):
-        # Force commitment date only if all the lines are on the same sale.order
+        # Force commitment date only if all the lines 
+        # are on the same sale.order
         if len(self.mapped('order_id')) == 1:
             for line in self:
                 if (
