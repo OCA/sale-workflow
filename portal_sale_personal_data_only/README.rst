@@ -14,21 +14,21 @@ Portal Sale Personal Data Only
     :target: http://www.gnu.org/licenses/agpl-3.0-standalone.html
     :alt: License: AGPL-3
 .. |badge3| image:: https://img.shields.io/badge/github-OCA%2Fsale--workflow-lightgray.png?logo=github
-    :target: https://github.com/OCA/sale-workflow/tree/10.0/portal_sale_personal_data_only
+    :target: https://github.com/OCA/sale-workflow/tree/12.0/portal_sale_personal_data_only
     :alt: OCA/sale-workflow
 .. |badge4| image:: https://img.shields.io/badge/weblate-Translate%20me-F47D42.png
-    :target: https://translation.odoo-community.org/projects/sale-workflow-10-0/sale-workflow-10-0-portal_sale_personal_data_only
+    :target: https://translation.odoo-community.org/projects/sale-workflow-12-0/sale-workflow-12-0-portal_sale_personal_data_only
     :alt: Translate me on Weblate
 .. |badge5| image:: https://img.shields.io/badge/runbot-Try%20me-875A7B.png
-    :target: https://runbot.odoo-community.org/runbot/167/10.0
+    :target: https://runbot.odoo-community.org/runbot/167/12.0
     :alt: Try me on Runbot
 
 |badge1| |badge2| |badge3| |badge4| |badge5| 
 
-By default, portal users are allowed to see al the orders and invoices in wich
-a member of their organization are followers. That could cause a leaking of
-documents between members and departments and of the organization that should
-stay private.
+By default, portal users are allowed to see all the orders and invoices in
+which a member of their organization are followers. That could cause a leaking
+of  documents between members and departments and of the organization that
+should stay private.
 
 This module restricts that behaviour so the portal users only see their own
 documents.
@@ -44,8 +44,9 @@ Usage
 #. Create some portal users belonging to the same company.
 #. Place some orders for several of these users.
 #. Log in with each portal user credential.
-#. Only the orders and invoices belonging to the logged in user should be
-   accessible.
+#. Only the orders and invoices belonging to the logged in user's partner or
+   his descendants should be accessible.
+#. Invoices associated to a partner's sale order will be visible as well.
 
 Bug Tracker
 ===========
@@ -53,7 +54,7 @@ Bug Tracker
 Bugs are tracked on `GitHub Issues <https://github.com/OCA/sale-workflow/issues>`_.
 In case of trouble, please check there if your issue has already been reported.
 If you spotted it first, help us smashing it by providing a detailed and welcomed
-`feedback <https://github.com/OCA/sale-workflow/issues/new?body=module:%20portal_sale_personal_data_only%0Aversion:%2010.0%0A%0A**Steps%20to%20reproduce**%0A-%20...%0A%0A**Current%20behavior**%0A%0A**Expected%20behavior**>`_.
+`feedback <https://github.com/OCA/sale-workflow/issues/new?body=module:%20portal_sale_personal_data_only%0Aversion:%2012.0%0A%0A**Steps%20to%20reproduce**%0A-%20...%0A%0A**Current%20behavior**%0A%0A**Expected%20behavior**>`_.
 
 Do not contact contributors directly about support or help with technical issues.
 
@@ -83,6 +84,6 @@ OCA, or the Odoo Community Association, is a nonprofit organization whose
 mission is to support the collaborative development of Odoo features and
 promote its widespread use.
 
-This module is part of the `OCA/sale-workflow <https://github.com/OCA/sale-workflow/tree/10.0/portal_sale_personal_data_only>`_ project on GitHub.
+This module is part of the `OCA/sale-workflow <https://github.com/OCA/sale-workflow/tree/12.0/portal_sale_personal_data_only>`_ project on GitHub.
 
 You are welcome to contribute. To learn how please visit https://odoo-community.org/page/Contribute.
