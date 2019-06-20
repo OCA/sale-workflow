@@ -14,7 +14,7 @@
               "Serv. Tecnol. Avanzados - Pedro M. Baeza,"
               "Odoo Community Association (OCA)",
     "website": "https://odoo-community.org/",
-    "category": "Sales Management",
+    "category": "Sale",
     "license": "AGPL-3",
     # sale_order_dates became part of the sale module in 12.0
     "depends": [
