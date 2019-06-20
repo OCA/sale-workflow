@@ -58,9 +58,7 @@ class SaleOrderLine(models.Model):
 
     @api.multi
     def _action_procurement_create(self):
-        new_procs = self.env['procurement.order']
-        for line in self:
-            if not line.order_id.delivery_block_id:
-                new_procs += super(SaleOrderLine,
-                                   line)._action_procurement_create()
-        return new_procs
+        return super(
+            SaleOrderLine,
+            self.filtered(lambda line: not line.order_id.delivery_block_id)
+        )._action_procurement_create()
