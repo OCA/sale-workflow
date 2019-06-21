@@ -41,7 +41,7 @@ class TestInvoicefinishedTask(common.SavepointCase):
         product_delivery_vals = self._prepare_product_vals()
         product_delivery_vals.update({
             'name': 'Product - Service - Policy delivery - Test',
-            'invoice_policy': 'delivery',
+            'service_policy': 'delivered_timesheet',
         })
         self.product_policy_delivery = self.Product.create(
             product_delivery_vals)
@@ -80,7 +80,7 @@ class TestInvoicefinishedTask(common.SavepointCase):
             'type': 'service',
             'list_price': 100.00,
             'standard_price': 50.00,
-            'invoice_policy': 'order',
+            'service_policy': 'ordered_timesheet',
             'service_tracking': 'task_global_project',
             'invoicing_finished_task': True,
             'project_id': self.project.id,
