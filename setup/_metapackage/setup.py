@@ -9,6 +9,7 @@ setuptools.setup(
     version=version,
     install_requires=[
         'odoo12-addon-partner_prospect',
+        'odoo12-addon-portal_sale_personal_data_only',
         'odoo12-addon-sale_automatic_workflow',
         'odoo12-addon-sale_cancel_reason',
         'odoo12-addon-sale_commercial_partner',
