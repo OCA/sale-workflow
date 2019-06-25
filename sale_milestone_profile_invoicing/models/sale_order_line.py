@@ -108,11 +108,14 @@ class SaleOrderLine(models.Model):
         super()._compute_qty_delivered()
         for line in self:
             if line._is_linked_to_milestone_product():
-                line.qty_delivered = (
-                    line.product_uom_qty
-                    * line.amount_delivered_from_task
-                    / line.price_unit
-                )
+                if line.price_unit:
+                    line.qty_delivered = (
+                        line.product_uom_qty
+                        * line.amount_delivered_from_task
+                        / (line.price_unit)
+                    )
+                else:
+                    line.qty_delivered = 0.
 
     @api.multi
     @api.depends('amount_invoiced_from_task', 'product_uom_qty', 'price_unit')
@@ -121,11 +124,14 @@ class SaleOrderLine(models.Model):
         super()._get_invoice_qty()
         for line in self:
             if line._is_linked_to_milestone_product():
-                line.qty_invoiced = (
-                    line.product_uom_qty
-                    * line.amount_invoiced_from_task
-                    / line.price_unit
-                )
+                if line.price_unit:
+                    line.qty_invoiced = (
+                        line.product_uom_qty
+                        * line.amount_invoiced_from_task
+                        / line.price_unit
+                    )
+                else:
+                    line.qty_invoiced = 0.
 
     @api.multi
     def _is_linked_to_milestone_product(self):
