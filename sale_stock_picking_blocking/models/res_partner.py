@@ -16,5 +16,6 @@ class Partner(models.Model):
 
     @api.model
     def _commercial_fields(self):
-        commercial_fields = super(Partner, self)._commercial_fields()
-        return commercial_fields.append('default_delivery_block')
+        commercial_fields = super()._commercial_fields()
+        commercial_fields.append('default_delivery_block')
+        return commercial_fields
