@@ -21,7 +21,7 @@ msgstr ""
 
 #. module: sale_merge_draft_invoice
 #: code:addons/sale_merge_draft_invoice/wizard/sale_make_invoice_advance.py:18
-#: model:ir.model.fields,help:sale_merge_draft_invoice.field_sale_advance_payment_inv_merge_draft_invoice
+#: model:ir.model.fields,help:sale_merge_draft_invoice.field_sale_advance_payment_inv__merge_draft_invoice
 #, python-format
 msgid ""
 "Activate this option in order to merge the resulting invoice with existing "
@@ -43,33 +43,38 @@ msgid "Companies"
 msgstr "Sociétés"
 
 #. module: sale_merge_draft_invoice
-#: model:ir.model.fields,field_description:sale_merge_draft_invoice.field_res_company_sale_merge_draft_invoice
-#: model:ir.model.fields,field_description:sale_merge_draft_invoice.field_res_config_settings_sale_merge_draft_invoice
+#: model:ir.model,name:sale_merge_draft_invoice.model_res_config_settings
+#, fuzzy
+#| msgid "res.config.settings"
+msgid "Config Settings"
+msgstr "res.config.settings"
+
+#. module: sale_merge_draft_invoice
+#: model:ir.model.fields,field_description:sale_merge_draft_invoice.field_res_company__sale_merge_draft_invoice
+#: model:ir.model.fields,field_description:sale_merge_draft_invoice.field_res_config_settings__sale_merge_draft_invoice
 msgid "Invoices"
 msgstr "Factures"
 
 #. module: sale_merge_draft_invoice
-#: model:ir.ui.view,arch_db:sale_merge_draft_invoice.res_config_settings_view_form
+#: model_terms:ir.ui.view,arch_db:sale_merge_draft_invoice.res_config_settings_view_form
 msgid "Merge new invoices with existing draft ones"
 msgstr ""
 "Fusionner la nouvelle facture avec les factures brouillons selectionnées"
 
 #. module: sale_merge_draft_invoice
-#: model:ir.model.fields,field_description:sale_merge_draft_invoice.field_sale_advance_payment_inv_merge_draft_invoice
+#: model:ir.model.fields,field_description:sale_merge_draft_invoice.field_sale_advance_payment_inv__merge_draft_invoice
 msgid "Merge with draft invoices"
 msgstr "Fusionner avec les factures brouillon"
 
 #. module: sale_merge_draft_invoice
 #: model:ir.model,name:sale_merge_draft_invoice.model_sale_order
-msgid "Quotation"
-msgstr "Devis"
+msgid "Sale Order"
+msgstr ""
 
 #. module: sale_merge_draft_invoice
 #: model:ir.model,name:sale_merge_draft_invoice.model_sale_advance_payment_inv
 msgid "Sales Advance Payment Invoice"
 msgstr "Facture de paiement anticipé des ventes"
 
-#. module: sale_merge_draft_invoice
-#: model:ir.model,name:sale_merge_draft_invoice.model_res_config_settings
-msgid "res.config.settings"
-msgstr "res.config.settings"
+#~ msgid "Quotation"
+#~ msgstr "Devis"
