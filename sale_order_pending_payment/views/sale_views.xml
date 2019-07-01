@@ -8,11 +8,12 @@
         <field name="inherit_id" ref="sale.view_order_form"/>
         <field name="arch" type="xml">
             <xpath expr="//field[@name='amount_total']" position="after">
-                <field name="amount_deposit" widget='monetary' options="{'currency_field': 'currency_id'}" attrs="{'invisible':[('amount_deposit','=',0)]}"/>
-                <div class="oe_subtotal_footer_separator oe_inline o_td_label" attrs="{'invisible':[('amount_deposit','=',0)]}">
+                <field name="amount_deposit" widget='monetary' options="{'currency_field': 'currency_id'}" attrs="{'invisible':[('amount_deposit','==',0)]}"/>
+                <field name="amount_paid" widget='monetary' options="{'currency_field': 'currency_id'}" attrs="{'invisible':[('amount_paid','==',0)]}"/>
+                <div class="oe_subtotal_footer_separator oe_inline o_td_label" attrs="{'invisible':[('amount_deposit','==',0),('amount_paid','==',0)]}">
                     <label for="amount_total_pending" />
                 </div>
-                <field name="amount_total_pending" nolabel="1" class="oe_subtotal_footer_separator" widget='monetary' options="{'currency_field': 'currency_id'}" attrs="{'invisible':[('amount_deposit','=',0)]}"/>
+                <field name="amount_total_pending" nolabel="1" class="oe_subtotal_footer_separator" widget='monetary' options="{'currency_field': 'currency_id'}" attrs="{'invisible':[('amount_deposit','==',0),('amount_paid','==',0)]}"/>
             </xpath>
         </field>
     </record>
