@@ -4,14 +4,21 @@
 <odoo>
 <template id="report_saleorder_document" inherit_id="sale.report_saleorder_document">
     <xpath expr="//div[@name='total']/div/table" position="inside">
-        <tr t-if="doc.amount_total_pending != 0">
+        <tr t-if="doc.amount_deposit != 0">
             <td><strong>Deposit</strong></td>
             <td class="text-right">
             <span t-field="doc.amount_deposit"
                 t-options='{"widget": "monetary", "display_currency": doc.pricelist_id.currency_id}'/>
             </td>
         </tr>
-        <tr class="border-black" t-if="doc.amount_total_pending != 0">
+        <tr t-if="doc.amount_paid != 0">
+            <td><strong>Paid</strong></td>
+            <td class="text-right">
+            <span t-field="doc.amount_paid"
+                t-options='{"widget": "monetary", "display_currency": doc.pricelist_id.currency_id}'/>
+            </td>
+        </tr>
+        <tr class="border-black" t-if="doc.amount_deposit != 0 or doc.amount_paid != 0">
             <td><strong>Total Pending</strong></td>
             <td class="text-right">
                 <span t-field="doc.amount_total_pending"
