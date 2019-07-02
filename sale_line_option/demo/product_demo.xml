@@ -60,6 +60,8 @@
      <record id="bom_pc_assmb_option2" model="mrp.bom">
         <field name="product_tmpl_id"
                ref="sale_line_option.product_pc_assmb_option2_product_template"/>
+        <field name="product_id"
+            ref="sale_line_option.product_pc_assmb_option2"/>
         <field name="with_option" eval="True"/>
     </record>
     <record id="bom_line_pc_assmb_option21" model="mrp.bom.line">
@@ -84,6 +86,7 @@
     <record id="bom_line_assmb_option31" model="mrp.bom.line">
         <field name="bom_id" ref="sale_line_option.bom_assmb_option3"/>
         <field name="product_id" ref="stock.product_icecream"/>
+        <field name="opt_max_qty">4</field>
         <field name="opt_default_qty">2</field>
         <field name="opt_min_qty">1</field>
     </record>

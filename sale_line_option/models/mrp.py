@@ -29,6 +29,10 @@ class MrpBom(models.Model):
     _inherit = 'mrp.bom'
 
     with_option = fields.Boolean()
+    # optionnal_bom_line_ids is exactly the same as bom_line_ids
+    # this field is only here to be able to have a better view when activating
+    # the with option parameter.
+    # copy is set to false as bom_line_ids is already set to true
     optionnal_bom_line_ids = fields.One2many(
         'mrp.bom.line', 'bom_id', 'BoM Lines', copy=False)
 
@@ -44,17 +48,10 @@ class MrpBomLine(models.Model):
     opt_max_qty = fields.Integer(
         string="Max Qty", oldname='max_qty', default=1,
         help="High limit authorised in the sale line option")
-    # optionnal_bom_line_ids is exactly the same as bom_line_ids
-    # this field is only here to be able to have a better view when activating
-    # the with option parameter.
-    # copy is set to false as bom_line_ids is already set to true
 
-    # _sql_constraints = [
-    #     ('bom_opt_qty_min', 'CHECK (opt_min_qty<=opt_default_qty)',
-    #         'Default qty could not be lower than min qty.\n'),
-    #     ('bom_opt_qty_max', 'CHECK (opt_default_qty<=opt_max_qty)',
-    #         'Default qty could not be greather than max qty.\n'),
-    #     ('bom_opt_qty_min_max', 'CHECK (opt_min_qty<=opt_max_qty)',
-    #         'Min qty could not be greather than min qty.\n'),
-    # ]
-
+    _sql_constraints = [
+        ('bom_opt_qty_min', 'CHECK (opt_min_qty<=opt_default_qty)',
+            'Default qty could not be lower than min qty.\n'),
+        ('bom_opt_qty_max', 'CHECK (opt_default_qty<=opt_max_qty)',
+            'Default qty could not be greather than max qty.\n'),
+    ]
