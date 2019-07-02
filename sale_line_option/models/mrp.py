@@ -35,9 +35,7 @@ class MrpBom(models.Model):
 
 class MrpBomLine(models.Model):
     _inherit = "mrp.bom.line"
-    _rec_name = 'name'
 
-    name = fields.Char(compute='_compute_name', store=True, index=True)
     opt_min_qty = fields.Integer(
         string="Min Qty", default=0)
     opt_default_qty = fields.Integer(
@@ -59,12 +57,6 @@ class MrpBomLine(models.Model):
     #     ('bom_opt_qty_min_max', 'CHECK (opt_min_qty<=opt_max_qty)',
     #         'Min qty could not be greather than min qty.\n'),
     # ]
-
-    @api.multi
-    @api.depends('product_id', 'product_id.product_tmpl_id.name')
-    def _compute_name(self):
-        for rec in self:
-            rec.name = rec.product_id.name
 
     @api.model
     def name_search(self, name='', args=None, operator='ilike', limit=100):

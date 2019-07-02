@@ -31,14 +31,4 @@
         </field>
     </record>
 
-    <record id="view_mrp_bom_line_filter" model="ir.ui.view">
-        <field name="model">mrp.bom.line</field>
-        <field name="inherit_id" ref="mrp.view_mrp_bom_line_filter"/>
-        <field name="arch" type="xml">
-            <field name="bom_id" position="before">
-                <field name="name" string="Component name"/>
-            </field>
-        </field>
-    </record>
-
 </odoo>
