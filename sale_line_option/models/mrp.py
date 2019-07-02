@@ -25,6 +25,14 @@ class MrpProduction(models.Model):
             bom_line, line_data)
 
 
+class MrpBom(models.Model):
+    _inherit = 'mrp.bom'
+
+    with_option = fields.Boolean()
+    optionnal_bom_line_ids = fields.One2many(
+        'mrp.bom.line', 'bom_id', 'BoM Lines', copy=False)
+
+
 class MrpBomLine(models.Model):
     _inherit = "mrp.bom.line"
     _rec_name = 'name'
@@ -38,6 +46,10 @@ class MrpBomLine(models.Model):
     opt_max_qty = fields.Integer(
         string="Max Qty", oldname='max_qty', default=1,
         help="High limit authorised in the sale line option")
+    # optionnal_bom_line_ids is exactly the same as bom_line_ids
+    # this field is only here to be able to have a better view when activating
+    # the with option parameter.
+    # copy is set to false as bom_line_ids is already set to true
 
     # _sql_constraints = [
     #     ('bom_opt_qty_min', 'CHECK (opt_min_qty<=opt_default_qty)',
@@ -66,6 +78,9 @@ class MrpBomLine(models.Model):
         return super(MrpBomLine, self).search(
             new_domain, offset=offset, limit=limit, order=order, count=count)
 
+    # TODO remove this hack
+    # instead of passing a context we can just create a method that
+    # call the search with the right domain
     @api.model
     def _filter_bom_lines_for_sale_line_option(self, domain):
         product = self.env.context.get('filter_bom_with_product')

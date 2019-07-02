@@ -5,11 +5,29 @@
         <field name="model">mrp.bom</field>
         <field name="inherit_id" ref="mrp.mrp_bom_form_view"/>
         <field name="arch" type="xml">
-            <xpath expr="//field[@name='bom_line_ids']/tree/field[@name='product_qty']" position="after">
-                <field name="opt_min_qty"/>
-                <field name="opt_default_qty" />
-                <field name="opt_max_qty"/>
-            </xpath>
+            <field name="type" position="after">
+                <field name="with_option"/>
+            </field>
+            <field name="bom_line_ids" position="after">
+                <field name="optionnal_bom_line_ids" attrs="{'invisible': [('with_option', '=', False)]}">
+                    <tree>
+                        <field name="sequence" widget="handle"/>
+                        <field name="product_id" context="{'default_type': 'product'}"/>
+                        <field name="has_attachments" invisible="1"/>
+                        <field name="has_attachments" invisible="1"/>
+                        <button name="action_see_attachments" type="object" icon="fa-files-o" attrs="{'invisible': [('has_attachments', '=', False)]}"/>
+                        <button name="action_see_attachments" type="object" icon="fa-file" attrs="{'invisible': [('has_attachments', '=', True)]}"/>
+                        <field name="opt_min_qty"/>
+                        <field name="opt_default_qty"/>
+                        <field name="opt_max_qty"/>
+                        <field name="product_uom_id" options="{'no_open':True,'no_create':True}" groups="product.group_uom"/>
+                        <field name="operation_id" groups="mrp.group_mrp_routings" domain="[('routing_id', '=', parent.routing_id)]" options="{'no_quick_create':True,'no_create_edit':True}"/>
+                    </tree>
+                </field>
+            </field>
+            <field name="bom_line_ids" position="attributes">
+                <attribute name="attrs">{'invisible': [('with_option', '=', True)]}</attribute>
+            </field>
         </field>
     </record>
 

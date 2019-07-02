@@ -12,7 +12,6 @@
     'category': 'Sale',
     'depends': [
         'sale_order_lot_mrp',
-        'onchange_helper',
     ],
     'data': [
         'views/sale_view.xml',

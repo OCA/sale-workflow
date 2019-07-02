@@ -9,20 +9,19 @@
                 <attribute name="context">{'default_pricelist_id': pricelist_id}</attribute>
             </xpath>
             <xpath expr="//field[@name='order_line']/form/group/group/field[@name='price_unit']" position="after">
-                <field name="base_price_unit"/>
                 <field name="pricelist_id" invisible="True"/>
             </xpath>
             <xpath expr="//field[@name='order_line']/form/label[@for='name']" position="before">
                 <div>
-                    <field name="display_option" invisible="1"/>
-                    <label for="option_ids" attrs="{'invisible': [('display_option', '=', False)]}"/>
+                    <field name="bom_with_option" invisible="1"/>
+                    <label for="option_ids" attrs="{'invisible': [('bom_with_option', '=', False)]}"/>
                     <field name="option_ids" context="{'line_product_id': product_id}"
-                           attrs="{'invisible': [('display_option', '=', False)]}">
+                           attrs="{'invisible': [('bom_with_option', '=', False)]}">
                         <tree editable="bottom">
                             <field name="bom_line_id" invisible="1"/>
-                            <field name="product_ids" invisible="1"/>
                             <field name="product_id"
-                                   domain="[('id', 'in', product_ids[0][2]')]"/>
+                                   options="{'no_create': True}"
+                                   domain="[('component_of_product_ids', '=', parent.product_id)]"/>
                             <field name="qty" string="Desired qty" />
                             <field name="min_qty"/>
                             <field name="max_qty"/>

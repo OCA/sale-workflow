@@ -7,90 +7,81 @@
 from odoo import _, fields, api, models
 
 
+class SaleOrder(models.Model):
+    _inherit = 'sale.order'
+
+    @api.multi
+    def onchange(self, values, field_name, field_onchange):
+        res = super(SaleOrder, self).onchange(
+            values, field_name, field_onchange)
+        idx = 0
+        # hack for issue : https://github.com/odoo/odoo/issues/17618
+        # Restore options that have been dropped
+        if 'order_line' in res['value']:
+            for data in res['value']['order_line']:
+                if data == (5,):
+                    continue
+                act, _, line = data
+                if act in [0, 1] and 'option_ids' in line:
+                    original_line = values['order_line'][idx][2]
+                    if original_line:
+                        line['option_ids'] = original_line['option_ids']
+                idx += 1
+        return res
+
+
 class SaleOrderLine(models.Model):
     _inherit = "sale.order.line"
 
-    base_price_unit = fields.Float(string='Base Price Unit')
     pricelist_id = fields.Many2one(
         related="order_id.pricelist_id", readonly=True)
     option_ids = fields.One2many(
         comodel_name='sale.order.line.option',
         inverse_name='sale_line_id', string='Options', copy=True,
         help="Options can be defined with product bom")
-    display_option = fields.Boolean(
-        help="Technical: allow conditional options field display")
-
-    @api.model
-    def _add_missing_fields_get_onchange_fields(self):
-        onchange_fields = super(SaleOrderLine, self)._add_missing_fields_get_onchange_fields()
-        onchange_fields.append('option_ids')
-        return onchange_fields
-
-    @api.model
-    def create(self, vals):
-        if 'product_id' in vals:
-            if self.env.context.get('install_mode'):
-                # onchange are not played in install mode
-                vals = self.play_onchanges(
-                    vals, ['product_id', 'product_uom_qty'])
-        return super(SaleOrderLine, self).create(vals)
+    bom_with_option = fields.Boolean(
+        related='product_id.bom_with_option',
+        help="Technical: allow conditional options field display",
+        store=True)
 
     @api.multi
     def write(self, vals):
-        if 'option_ids' in vals:
-            option_ids_val = vals['option_ids']
+        if vals.get('option_ids'):
             # to fix issue of nesteed many2one we replace [5], [4] option of
             # one2many fileds by [6] option (same as : https://github.com/odoo/odoo/issues/17618)
-            if option_ids_val and option_ids_val[0][0] == 5 and\
-                    len(option_ids_val) > 1 and option_ids_val[1][0] == 4:
-                opt_keep_ids = []
-                for opt_v in option_ids_val[1:]:
+            if vals['option_ids'][0][0] == 5:
+                ids = []
+                for opt_v in vals['option_ids'][1:]:
                     if opt_v[0] == 4:
-                        opt_keep_ids.append(opt_v[1])
-                vals['option_ids'] = [(6, 0, opt_keep_ids)]
+                        ids.append(opt_v[1])
+                vals['option_ids'] = [(6, 0, ids)]
         return super(SaleOrderLine, self).write(vals)
+
+    def _prepare_sale_line_option(self, bline):
+        return {
+            'bom_line_id': bline.id,
+            'product_id': bline.product_id.id,
+            'qty': bline.opt_default_qty,
+            }
 
     @api.onchange('product_id')
     def product_id_change(self):
         res = super(SaleOrderLine, self).product_id_change()
-        if self.product_id:
-            self.option_ids = False
-            values = self._set_product(self.product_id, self.price_unit)
-            for field in values:
-                self[field] = values[field]
+        self.option_ids = False
+        if self.product_id.bom_with_option:
+            options = []
+            bom_lines = self.env['mrp.bom.line'].with_context(
+                filter_bom_with_product=self.product_id).search([])
+            for bline in bom_lines:
+                if bline.opt_default_qty:
+                    options.append(
+                        (0, 0, self._prepare_sale_line_option(bline)))
+            self.option_ids = options
         return res
 
-    def _set_product(self, product, price_unit):
-        """ Shared code between onchange and create/write methods """
-        implied = {}
-        implied['display_option'], implied['option_ids'] = \
-            self._set_option_lines(product)
-        implied['base_price_unit'] = price_unit
-        return implied
-
-    @api.model
-    def _set_option_lines(self, product):
-        lines = []
-        display_option = False
-        bline = None
-        bom_lines = self.env['mrp.bom.line'].with_context(
-            filter_bom_with_product=product).search([])
-        for bline in bom_lines:
-            if bline.opt_default_qty:  # TODO: changer pour bline.is_option?
-                vals = {'bom_line_id': bline.id,
-                        'product_id': bline.product_id.id,
-                        'qty': bline.opt_default_qty}
-                lines.append((0, 0, vals))  # create
-        if bline:
-            display_option = True
-        return (display_option, lines)
-
-    @api.onchange('option_ids', 'base_price_unit')
+    @api.onchange('option_ids')
     def _onchange_option(self):
-        final_options_price = 0
-        for option in self.option_ids:
-            final_options_price += option.line_price
-            self.price_unit = final_options_price + self.base_price_unit
+        self.price_unit = sum(self.option_ids.mapped('line_price'))
 
     @api.model
     def _prepare_vals_lot_number(self, index_lot):
@@ -110,8 +101,6 @@ class SaleOrderLineOption(models.Model):
         ondelete='cascade')
     bom_line_id = fields.Many2one(
         comodel_name='mrp.bom.line', string='Bom Line', ondelete="set null")
-    product_ids = fields.Many2many(
-        comodel_name='product.product', compute='_compute_opt_products')
     product_id = fields.Many2one(
         comodel_name='product.product', string='Product', required=True)
     qty = fields.Integer(default=lambda x: x.default_qty)
@@ -133,16 +122,6 @@ class SaleOrderLineOption(models.Model):
     ]
 
     @api.model
-    def default_get(self, fields):
-        res = super(SaleOrderLineOption, self).default_get(fields)
-        line_product_id = self.env.context.get('line_product_id')
-        if line_product_id:
-            bom_lines = self.env['mrp.bom.line'].with_context(
-                filter_bom_with_product=line_product_id).search([])
-            res['product_ids'] = [x.product_id.id for x in bom_lines]
-        return res
-
-    @api.model
     def create(self, vals):
         res = super(SaleOrderLineOption, self).create(vals)
         res.sale_line_id._onchange_option()
@@ -156,13 +135,6 @@ class SaleOrderLineOption(models.Model):
         bom_line = self.env['mrp.bom.line'].with_context(ctx).search([
             ('product_id', '=', self.product_id.id)], limit=1)
         self.bom_line_id = bom_line and bom_line.id
-
-    def _compute_opt_products(self):
-        """ required to set available options """
-        prd_ids = [x.product_id.id
-                   for x in self[0].bom_line_id.bom_id.bom_line_ids]
-        for rec in self:
-            rec.product_ids = prd_ids
 
     def _get_bom_line_price(self):
         self.ensure_one()
@@ -203,6 +175,7 @@ class SaleOrderLineOption(models.Model):
     def onchange_qty(self):
         for record in self:
             if not self._is_quantity_valid(record):
+                # Wrong message if qty is inferior
                 max_val = record.qty
                 record.qty = record.max_qty
                 return {'warning': {

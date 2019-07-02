@@ -29,6 +29,7 @@
     <record id="bom_pc_assmb_option1" model="mrp.bom">
         <field name="product_tmpl_id"
                ref="sale_line_option.product_pc_assmb_option1_product_template"/>
+        <field name="with_option" eval="True"/>
     </record>
 
      <record id="bom_line_pc_assmb_option11" model="mrp.bom.line">
@@ -59,6 +60,7 @@
      <record id="bom_pc_assmb_option2" model="mrp.bom">
         <field name="product_tmpl_id"
                ref="sale_line_option.product_pc_assmb_option2_product_template"/>
+        <field name="with_option" eval="True"/>
     </record>
     <record id="bom_line_pc_assmb_option21" model="mrp.bom.line">
         <field name="bom_id" ref="sale_line_option.bom_pc_assmb_option2"/>
@@ -77,6 +79,7 @@
     <record id="bom_assmb_option3" model="mrp.bom">
         <field name="product_tmpl_id"
                ref="sale_line_option.product_assmb_option3_product_template"/>
+        <field name="with_option" eval="True"/>
     </record>
     <record id="bom_line_assmb_option31" model="mrp.bom.line">
         <field name="bom_id" ref="sale_line_option.bom_assmb_option3"/>
