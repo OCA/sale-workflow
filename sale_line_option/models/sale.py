@@ -100,7 +100,11 @@ class SaleOrderLineOption(models.Model):
         required=True,
         ondelete='cascade')
     bom_line_id = fields.Many2one(
-        comodel_name='mrp.bom.line', string='Bom Line', ondelete="set null")
+        comodel_name='mrp.bom.line',
+        string='Bom Line',
+        ondelete="set null",
+        compute="_compute_bom_line_id",
+        store=True)
     product_id = fields.Many2one(
         comodel_name='product.product', string='Product', required=True)
     qty = fields.Integer(default=lambda x: x.default_qty)
@@ -127,14 +131,14 @@ class SaleOrderLineOption(models.Model):
         res.sale_line_id._onchange_option()
         return res
 
-    @api.onchange('product_id')
-    def _onchange_product(self):
-        """ we need to store bom_line_id to compute option price """
-        ctx = {'filter_bom_with_product': self.env.context.get(
-            'line_product_id')}
-        bom_line = self.env['mrp.bom.line'].with_context(ctx).search([
-            ('product_id', '=', self.product_id.id)], limit=1)
-        self.bom_line_id = bom_line and bom_line.id
+    @api.depends('product_id')
+    def _compute_bom_line_id(self):
+        for record in self:
+            ctx = {'filter_bom_with_product': self.env.context.get(
+                'line_product_id')}
+            bom_line = self.env['mrp.bom.line'].with_context(ctx).search([
+                ('product_id', '=', record.product_id.id)], limit=1)
+            record.bom_line_id = bom_line and bom_line.id
 
     def _get_bom_line_price(self):
         self.ensure_one()
@@ -169,7 +173,7 @@ class SaleOrderLineOption(models.Model):
     @api.depends('qty')
     def _compute_invalid_qty(self):
         for record in self:
-            record.invalid_qty = not self._is_quantity_valid(record)
+            record.invalid_qty = not record._is_quantity_valid(record)
 
     @api.onchange('qty')
     def onchange_qty(self):

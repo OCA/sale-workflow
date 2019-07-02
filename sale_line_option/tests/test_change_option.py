@@ -23,7 +23,6 @@ class TestOptionCase(TransactionCase):
         self.product_no_config = self.env.ref(
             'product.product_delivery_01')
 
-
     def test_default_product_qty(self):
         qties = {
             x.product_id: x.opt_default_qty
@@ -33,8 +32,10 @@ class TestOptionCase(TransactionCase):
                 line.qty, qties[line.product_id],
                 "Option qty error on product %s" % line.product_id.name)
 
-    def test_number_of_option(self):
+    def test_option(self):
         self.assertEqual(len(self.sale_line.option_ids), 3)
+        for option in self.sale_line.option_ids:
+            self.assertEqual(option.product_id, option.bom_line_id.product_id)
 
     def test_change_product_with_option_refresh_option(self):
         self.sale_line.product_id = self.product_config_2
@@ -79,6 +80,19 @@ class TestOptionCase(TransactionCase):
         product = self.env.ref('product.product_product_20')
         product.component_of_product_ids
         self.assertEqual(len(product.component_of_product_ids), 2)
+
+    def test_confirm_sale_order(self):
+        sale = self.sale_line.order_id
+        sale.action_confirm()
+        production = self.env['mrp.production'].search([
+            ('lot_id', '=', self.sale_line.lot_id.id)
+            ])
+        self.assertEqual(len(production.move_raw_ids), 3)
+        options = self.sale_line.option_ids
+        lines = production.move_raw_ids
+        for idx in [0, 1, 2]:
+            self.assertEqual(lines[idx].product_id, options[idx].product_id)
+            self.assertEqual(lines[idx].product_qty, options[idx].qty)
 
     # Test for fixing broken one2many
     # See issue here https://github.com/odoo/odoo/issues/17618
