@@ -10,15 +10,19 @@ class ProductProduct(models.Model):
     _inherit = 'product.product'
 
     bom_with_option = fields.Boolean(compute='_compute_bom_with_option')
-
-    def _compute_bom_with_option(self):
-        for record in self:
-            bom = self.env['mrp.bom']._bom_find(product=record)
-            record.bom_with_option = bom.with_option
     component_of_product_ids = fields.Many2many(
         comodel_name='product.product',
         compute='_compute_component_of_product_ids',
         search='_search_component_of_product_ids')
+
+    def _bom_find(self):
+        self.ensure_one()
+        return self.env['mrp.bom']._bom_find(product=self)
+
+    def _compute_bom_with_option(self):
+        for record in self:
+            bom = record._bom_find()
+            record.bom_with_option = bom.with_option
 
     def _compute_component_of_product_ids(self):
         for record in self:
@@ -39,5 +43,5 @@ class ProductProduct(models.Model):
             raise UserError(_("Operator %s not supported") % operator)
         else:
             product = self.env['product.product'].browse(value)
-            bom = self.env['mrp.bom']._bom_find(product=product)
+            bom = product._bom_find()
             return [('id', 'in', bom.mapped('bom_line_ids.product_id').ids)]

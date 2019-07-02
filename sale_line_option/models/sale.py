@@ -70,9 +70,8 @@ class SaleOrderLine(models.Model):
         self.option_ids = False
         if self.product_id.bom_with_option:
             options = []
-            bom_lines = self.env['mrp.bom.line'].with_context(
-                filter_bom_with_product=self.product_id).search([])
-            for bline in bom_lines:
+            bom = self.product_id._bom_find()
+            for bline in bom.bom_line_ids:
                 if bline.opt_default_qty:
                     options.append(
                         (0, 0, self._prepare_sale_line_option(bline)))
@@ -134,11 +133,11 @@ class SaleOrderLineOption(models.Model):
     @api.depends('product_id')
     def _compute_bom_line_id(self):
         for record in self:
-            ctx = {'filter_bom_with_product': self.env.context.get(
-                'line_product_id')}
-            bom_line = self.env['mrp.bom.line'].with_context(ctx).search([
-                ('product_id', '=', record.product_id.id)], limit=1)
-            record.bom_line_id = bom_line and bom_line.id
+            bom = record.sale_line_id.product_id._bom_find()
+            for line in bom.bom_line_ids:
+                if line.product_id == record.product_id:
+                    record.bom_line_id = line
+                    break
 
     def _get_bom_line_price(self):
         self.ensure_one()

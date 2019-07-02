@@ -58,32 +58,3 @@ class MrpBomLine(models.Model):
     #         'Min qty could not be greather than min qty.\n'),
     # ]
 
-    @api.model
-    def name_search(self, name='', args=None, operator='ilike', limit=100):
-        new_domain = self._filter_bom_lines_for_sale_line_option(args)
-        res = super(MrpBomLine, self).name_search(
-            name=name, args=new_domain, operator=operator, limit=limit)
-        return res
-
-    def search(self, domain, offset=0, limit=None, order=None, count=False):
-        new_domain = self._filter_bom_lines_for_sale_line_option(domain)
-        return super(MrpBomLine, self).search(
-            new_domain, offset=offset, limit=limit, order=order, count=count)
-
-    # TODO remove this hack
-    # instead of passing a context we can just create a method that
-    # call the search with the right domain
-    @api.model
-    def _filter_bom_lines_for_sale_line_option(self, domain):
-        product = self.env.context.get('filter_bom_with_product')
-        if isinstance(product, int):
-            product = self.env['product.product'].browse(product)
-        if product:
-            new_domain = [
-                '|',
-                '&',
-                ('bom_id.product_tmpl_id', '=', product.product_tmpl_id.id),
-                ('bom_id.product_id', '=', False),
-                ('bom_id.product_id', '=', product.id)]
-            domain += new_domain
-        return domain
