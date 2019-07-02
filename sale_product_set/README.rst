@@ -50,6 +50,7 @@ To use this module, you need to:
 * Define a *product set* as sale manager:
     - choose products
     - for each products, define a quantity.
+    - for each products (if Discounts setting is active), define a discount or leave default value
     - Sort *set* lines, this order will be the default when added into the
       quotation
 
@@ -95,6 +96,7 @@ Contributors
 * Denis Leemann <denis.leemann@camptocamp.com>
 * Simone Orsi <simone.orsi@camptocamp.com>
 * Souheil Bejaoui <souheil.bejaoui@acsone.eu>
+* Adria Gil Sorribes <adria.gil@eficent.com>
 
 Maintainers
 ~~~~~~~~~~~
