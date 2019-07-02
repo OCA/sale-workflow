@@ -1,4 +1,3 @@
-<?xml version="1.0" ?>
 <odoo>
 
     <record id="view_order_form_signature" model="ir.ui.view">
@@ -8,7 +7,9 @@
         <field name="arch" type="xml">
             <xpath expr="//field[@name='note']" position="after">
                 <div class="oe_clear"/>
-                <label for="customer_signature" class="oe_edit_only"/>
+                <label for="customer_signature"
+                       string="Customer Signature"
+                       class="oe_edit_only"/>
                 <field name="customer_signature" widget="signature"/>
             </xpath>
         </field>

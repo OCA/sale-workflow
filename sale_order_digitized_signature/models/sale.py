@@ -7,9 +7,7 @@ from odoo import api, fields, models
 class SaleOrder(models.Model):
     _inherit = 'sale.order'
 
-    customer_signature = fields.Binary(
-        string='Customer acceptance',
-    )
+    customer_signature = fields.Binary(string='Customer acceptance')
 
     @api.model
     def create(self, values):

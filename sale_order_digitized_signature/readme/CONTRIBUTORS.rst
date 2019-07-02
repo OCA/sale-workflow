@@ -1,4 +1,4 @@
 * Lorenzo Battistini <lorenzo.battistini@agilebg.com>
-* `Tecnativa <https://www.tecnatica.com>`_:
-
-  * Vicent Cubells
+* Vicent Cubells <vicent.cubells@tecnativa.com>
+* Mayank Gosai <mgosai@opensourceintegrators.com>
+* Maxime Chambreuil <mchambreuil@opensourceintegrators.com>
