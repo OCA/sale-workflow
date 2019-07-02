@@ -148,7 +148,9 @@ class CreateSaleOrderWizard(models.TransientModel):
         }
 
     @api.model
-    def _get_pricelist_id(self, request_line):
+    def _get_pricelist_id(self, request_line, sale_line):
+        if sale_line:
+            return sale_line.order_id.pricelist_id.id
         product = request_line.product_id
         partner = request_line.request_id.partner_id.id
         pricelist_id = False
@@ -162,7 +164,7 @@ class CreateSaleOrderWizard(models.TransientModel):
 
     @api.model
     def _get_sale_order(self, request_line, sale_line=False):
-        pricelist_id = self._get_pricelist_id(request_line)
+        pricelist_id = self._get_pricelist_id(request_line, sale_line)
         so_obj = self.env['sale.order']
         domain = [
             ('request_id', '=', request_line.request_id.id),
