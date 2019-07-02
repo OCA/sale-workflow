@@ -9,7 +9,7 @@ class SaleOrder(models.Model):
 
     customer_signature = fields.Binary(
         string='Customer acceptance',
-    )
+        attachment=True)
 
     @api.model
     def create(self, values):
