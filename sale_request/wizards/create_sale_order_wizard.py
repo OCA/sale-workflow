@@ -145,6 +145,7 @@ class CreateSaleOrderWizard(models.TransientModel):
             'request_id': request.id,
             'fiscal_position_id': fpos_id,
             'pricelist_id': pricelist_id,
+            'payment_term_id': request.partner_id.property_payment_term_id.id,
         }
 
     @api.model
