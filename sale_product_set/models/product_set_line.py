@@ -39,3 +39,8 @@ class ProductSetLine(models.Model):
         required=True,
         default=0,
     )
+    discount = fields.Float(
+        string='Discount (%)',
+        digits=dp.get_precision('Discount'),
+        default=0.0
+    )

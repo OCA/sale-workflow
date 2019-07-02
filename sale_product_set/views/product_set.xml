@@ -38,6 +38,7 @@
                             <field name="sequence" widget="handle"/>
                             <field name="product_id"/>
                             <field name="quantity"/>
+                            <field name="discount" groups="sale.group_discount_per_so_line"/>
                         </tree>
                     </field>
                 </group>
