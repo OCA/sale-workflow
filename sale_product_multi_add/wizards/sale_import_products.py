@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 # Copyright 2016 Cédric Pigeon, ACSONE SA/NV (<http://acsone.eu>)
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
 
@@ -12,7 +11,7 @@ class SaleImportProducts(models.TransientModel):
 
     products = fields.Many2many(comodel_name='product.product')
     items = fields.One2many(comodel_name='sale.import.products.items',
-                            inverse_name='wizard_id')
+                            inverse_name='wizard_id', ondelete='cascade')
 
     @api.multi
     def create_items(self):
