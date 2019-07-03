@@ -94,6 +94,27 @@ class TestOptionCase(TransactionCase):
             self.assertEqual(lines[idx].product_id, options[idx].product_id)
             self.assertEqual(lines[idx].product_qty, options[idx].qty)
 
+    def test_max_qty(self):
+        option = self.sale_line.option_ids[0]
+        option.qty = 20
+        res = option.onchange_qty()
+        self.assertIn('warning', res)
+        self.assertEqual(res['warning']['title'], u'Error on quantity')
+
+    def test_min_qty(self):
+        option = self.sale_line.option_ids[0]
+        option.bom_line_id.opt_min_qty = 1
+        option.qty = 0
+        res = option.onchange_qty()
+        self.assertIn('warning', res)
+        self.assertEqual(res['warning']['title'], u'Error on quantity')
+
+    def test_onchange_sale_line_qty(self):
+        # calling product_uom_change should keep the same price unit
+        price_unit = self.sale_line.price_unit
+        self.sale_line.product_uom_change()
+        self.assertEqual(self.sale_line.price_unit, price_unit)
+
     # Test for fixing broken one2many
     # See issue here https://github.com/odoo/odoo/issues/17618
 

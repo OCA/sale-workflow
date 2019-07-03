@@ -17,7 +17,7 @@
                     <label for="option_ids" attrs="{'invisible': [('bom_with_option', '=', False)]}"/>
                     <field name="option_ids" context="{'line_product_id': product_id}"
                            attrs="{'invisible': [('bom_with_option', '=', False)]}">
-                        <tree editable="bottom">
+                        <tree editable="bottom" decoration-danger="invalid_qty == True">
                             <field name="bom_line_id" invisible="1"/>
                             <field name="product_id"
                                    options="{'no_create': True}"
@@ -26,6 +26,7 @@
                             <field name="min_qty"/>
                             <field name="max_qty"/>
                             <field name="line_price"/>
+                            <field name="invalid_qty" invisible="True"/>
                         </tree>
                     </field>
                 </div>

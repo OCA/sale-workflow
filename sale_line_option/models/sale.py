@@ -78,9 +78,19 @@ class SaleOrderLine(models.Model):
             self.option_ids = options
         return res
 
-    @api.onchange('option_ids')
+    @api.onchange('option_ids.line_price')
     def _onchange_option(self):
         self.price_unit = sum(self.option_ids.mapped('line_price'))
+
+    @api.onchange('product_uom', 'product_uom_qty')
+    def product_uom_change(self):
+        res = super(SaleOrderLine, self).product_uom_change()
+        if self.product_id.bom_with_option:
+            # Odoo play the onchange without specific order
+            # we must first be sure to recompute the price
+            self.option_ids._compute_price()
+            self._onchange_option()
+        return res
 
     @api.model
     def _prepare_vals_lot_number(self, index_lot):
@@ -147,11 +157,11 @@ class SaleOrderLineOption(models.Model):
         pricelist = self.sale_line_id.pricelist_id.with_context(ctx)
         price = pricelist.price_get(
             self.product_id.id,
-            self.qty,
+            self.qty * self.sale_line_id.product_qty,
             self.sale_line_id.order_id.partner_id.id)
         return price[pricelist.id] * self.qty
 
-    @api.depends('qty', 'product_id')
+    @api.depends('qty', 'product_id', 'sale_line_id.product_qty')
     def _compute_price(self):
         for record in self:
             if record.product_id and record.sale_line_id.pricelist_id:
@@ -177,17 +187,11 @@ class SaleOrderLineOption(models.Model):
     @api.onchange('qty')
     def onchange_qty(self):
         for record in self:
-            if not self._is_quantity_valid(record):
-                # Wrong message if qty is inferior
-                max_val = record.qty
-                record.qty = record.max_qty
+            if record.invalid_qty:
                 return {'warning': {
                     'title': _('Error on quantity'),
                     'message': _(
-                        "Maximal quantity of this option is %(max)s.\n"
-                        "You encoded %(qty)s.\n"
-                        "Quantity is set max value") % {
-                            'qty': max_val,
-                            'max': record.max_qty}
+                        "The quantity is not between the max and the min"
+                        )
                     }
                 }
