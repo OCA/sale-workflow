@@ -5,11 +5,11 @@
         <field name="model">sale.order</field>
         <field name="inherit_id" ref="sale.view_order_form"/>
         <field name="arch" type="xml">
-            <div name="button_box" position="inside">
-                <button class="oe_inline oe_stat_button oe_right" name="%(action_import_product_to_sale)d" string="Products" Help="Select Products to Import"
-                       type="action" attrs="{'invisible':[('state','not in', ['draft', 'sent'])]}" icon="fa-bars" widget="statinfo"/>
-            </div>
-
+            <field name="order_line" position="before">
+                <button name="%(action_import_product_to_sale)d" class="btn-primary" style="margin:12px 0px 2px 0px;"
+                        string="Add multiple products" Help="Select Products to Import"
+                        type="action" attrs="{'invisible':[('state','not in', ['draft', 'sent'])]}"/>
+            </field>
             <field name="order_line" position="attributes">
                 <attribute translation="off" name="options">{'always_reload':true}</attribute>
             </field>
