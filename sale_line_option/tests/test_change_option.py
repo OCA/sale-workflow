@@ -78,7 +78,6 @@ class TestOptionCase(TransactionCase):
 
     def test_compute_component_of_product(self):
         product = self.env.ref('product.product_product_20')
-        product.component_of_product_ids
         self.assertEqual(len(product.component_of_product_ids), 2)
 
     def test_confirm_sale_order(self):

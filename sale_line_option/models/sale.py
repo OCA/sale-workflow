@@ -79,7 +79,7 @@ class SaleOrderLine(models.Model):
             self.option_ids = options
         return res
 
-    @api.onchange('option_ids.line_price')
+    @api.onchange('option_ids')
     def _onchange_option(self):
         self.price_unit = sum(self.option_ids.mapped('line_price'))
 
