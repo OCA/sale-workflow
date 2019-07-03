@@ -1,0 +1,38 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+#	* hr_timesheet_limit_sale_date
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 11.0+e\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2019-05-14 07:53+0000\n"
+"PO-Revision-Date: 2019-05-14 07:53+0000\n"
+"Last-Translator: <>\n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: hr_timesheet_limit_sale_date
+#: model:ir.model,name:hr_timesheet_limit_sale_date.model_sale_order
+msgid "Quotation"
+msgstr ""
+
+#. module: hr_timesheet_limit_sale_date
+#: model:ir.model,name:hr_timesheet_limit_sale_date.model_sale_order_line
+msgid "Sales Order Line"
+msgstr ""
+
+#. module: hr_timesheet_limit_sale_date
+#: model:ir.model.fields,field_description:hr_timesheet_limit_sale_date.field_sale_order_timesheet_limit_date
+msgid "Timesheet Limit Date"
+msgstr ""
+
+#. module: hr_timesheet_limit_sale_date
+#: code:addons/hr_timesheet_limit_sale_date/models/sale_order_line.py:21
+#, python-format
+msgid "You cannot apply the TS limit date on multiple orders."
+msgstr ""
+
