@@ -48,7 +48,8 @@ class SaleOrderLine(models.Model):
     def write(self, vals):
         if vals.get('option_ids'):
             # to fix issue of nesteed many2one we replace [5], [4] option of
-            # one2many fileds by [6] option (same as : https://github.com/odoo/odoo/issues/17618)
+            # one2many fileds by [6] option
+            # same as : https://github.com/odoo/odoo/issues/17618
             if vals['option_ids'][0][0] == 5:
                 ids = []
                 for opt_v in vals['option_ids'][1:]:
