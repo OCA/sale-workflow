@@ -1,21 +1,19 @@
 # Translation of Odoo Server.
 # This file contains the translation of the following modules:
-#   * sale_request
+#	* sale_request
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 12.0+e\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-06-05 23:15+0000\n"
-"PO-Revision-Date: 2019-06-05 18:18-0500\n"
+"POT-Creation-Date: 2019-07-03 22:04+0000\n"
+"PO-Revision-Date: 2019-07-03 22:04+0000\n"
 "Last-Translator: <>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
-"Content-Transfer-Encoding: 8bit\n"
+"Content-Transfer-Encoding: \n"
 "Plural-Forms: \n"
-"Language: es\n"
-"X-Generator: Poedit 2.2.3\n"
 
 #. module: sale_request
 #: model_terms:ir.ui.view,arch_db:sale_request.view_create_sale_order_wizard_form
@@ -173,10 +171,11 @@ msgstr "Descripción"
 #: model:ir.model.fields,field_description:sale_request.field_sale_request__display_name
 #: model:ir.model.fields,field_description:sale_request.field_sale_request_line__display_name
 msgid "Display Name"
-msgstr "Nombre mostrado"
+msgstr "Nombre a mostrar"
 
 #. module: sale_request
-#: selection:sale.request,state:0 selection:sale.request.line,state:0
+#: selection:sale.request,state:0
+#: selection:sale.request.line,state:0
 msgid "Done"
 msgstr "Hecho"
 
@@ -193,14 +192,14 @@ msgstr "Editar precio de la línea de Pedido de Venta"
 
 #. module: sale_request
 #: code:addons/sale_request/wizards/create_sale_order_wizard.py:84
-#: code:addons/sale_request/wizards/create_sale_order_wizard.py:343
+#: code:addons/sale_request/wizards/create_sale_order_wizard.py:352
 #, python-format
 msgid "Error!"
 msgstr ""
 
 #. module: sale_request
-#: code:addons/sale_request/wizards/create_sale_order_wizard.py:216
-#: code:addons/sale_request/wizards/create_sale_order_wizard.py:231
+#: code:addons/sale_request/wizards/create_sale_order_wizard.py:225
+#: code:addons/sale_request/wizards/create_sale_order_wizard.py:240
 #, python-format
 msgid "Error! The quantity to sale is greather than the requested quantity."
 msgstr "¡Error! La cantidad a vender es mayor que la cantidad requerida."
@@ -214,7 +213,7 @@ msgstr "¡Error!, No puede cancelar una orden cuando alguna de sus líneas tiene
 #. module: sale_request
 #: model_terms:ir.ui.view,arch_db:sale_request.view_sale_request_form
 msgid "Extra information"
-msgstr "Información Extra"
+msgstr "Información extra"
 
 #. module: sale_request
 #: model:ir.model.fields,help:sale_request.field_sale_request__product_id
@@ -412,7 +411,7 @@ msgstr "Mis actividades"
 #. module: sale_request
 #: model_terms:ir.ui.view,arch_db:sale_request.view_sale_request_search
 msgid "My requests"
-msgstr "Mis Requisiciones"
+msgstr "Mis solicitudes"
 
 #. module: sale_request
 #: model:ir.model.fields,field_description:sale_request.field_sale_request__name
@@ -424,7 +423,7 @@ msgstr "Nombre"
 #: code:addons/sale_request/models/sale_order.py:33
 #, python-format
 msgid "New"
-msgstr "Nuevo"
+msgstr ""
 
 #. module: sale_request
 #: model:ir.model.fields,field_description:sale_request.field_sale_request__activity_date_deadline
@@ -574,7 +573,7 @@ msgstr "Solicitud"
 #. module: sale_request
 #: model_terms:ir.ui.view,arch_db:sale_request.view_sale_request_search
 msgid "Request is to be approved"
-msgstr "Requisición para ser Aprobada"
+msgstr "La solicitud debe ser aprobada"
 
 #. module: sale_request
 #: model_terms:ir.ui.view,arch_db:sale_request.view_sale_request_form
@@ -594,7 +593,7 @@ msgstr "Requisitada por"
 #. module: sale_request
 #: model_terms:ir.ui.view,arch_db:sale_request.view_sale_request_search
 msgid "Requested by me"
-msgstr "Requisitada por mi"
+msgstr "Solicitado por mi"
 
 #. module: sale_request
 #: model_terms:ir.ui.view,arch_db:sale_request.view_sale_request_search
@@ -623,7 +622,7 @@ msgid "Responsible User"
 msgstr "Usuario responsable"
 
 #. module: sale_request
-#: code:addons/sale_request/wizards/create_sale_order_wizard.py:272
+#: code:addons/sale_request/wizards/create_sale_order_wizard.py:281
 #: code:addons/sale_request/wizards/link_sale_order_wizard.py:89
 #: model:ir.model,name:sale_request.model_sale_order
 #: model:ir.model.fields,field_description:sale_request.field_create_sale_order_wizard_line__order_id
@@ -735,13 +734,11 @@ msgstr "Estado"
 
 #. module: sale_request
 #: model:ir.model.fields,help:sale_request.field_sale_request__activity_state
-msgid ""
-"Status based on activities\n"
+msgid "Status based on activities\n"
 "Overdue: Due date is already passed\n"
 "Today: Activity date is today\n"
 "Planned: Future activities."
-msgstr ""
-"Estado basado en actividades\n"
+msgstr "Estado basado en actividades\n"
 "Vencida: la fecha tope ya ha pasado\n"
 "Hoy: La fecha tope es hoy\n"
 "Planificada: futuras actividades."
@@ -851,13 +848,13 @@ msgid "You cannot request more than the initial demand of this sale request."
 msgstr "No puede solicitar más cantidad que la demanda inicial de esta requisición."
 
 #. module: sale_request
-#: code:addons/sale_request/wizards/create_sale_order_wizard.py:344
+#: code:addons/sale_request/wizards/create_sale_order_wizard.py:353
 #, python-format
 msgid "You cannot request more than the remaining qty of this master sale order."
 msgstr "No puedes requerir más que la cantidad restante de este pedido master."
 
 #. module: sale_request
-#: code:addons/sale_request/wizards/create_sale_order_wizard.py:224
+#: code:addons/sale_request/wizards/create_sale_order_wizard.py:233
 #, python-format
 msgid "You have not defined the quantity to sale to any master order, please define it."
 msgstr "No ha definido la cantidad a vender a ningún pedido maestro, por favor defínalo."
@@ -866,3 +863,9 @@ msgstr "No ha definido la cantidad a vender a ningún pedido maestro, por favor 
 #: model_terms:ir.ui.view,arch_db:sale_request.view_sale_request_search
 msgid "name"
 msgstr "nombre"
+
+#. module: sale_request
+#: code:addons/sale_request/wizards/create_sale_order_wizard.py:158
+#, python-format
+msgid "you can not invoice because the product %s do not have a pricelist defined"
+msgstr "No puedes Facturar debido a que el producto %s no tiene una Lista de Precios Definida"

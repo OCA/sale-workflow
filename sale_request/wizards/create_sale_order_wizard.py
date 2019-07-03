@@ -153,14 +153,14 @@ class CreateSaleOrderWizard(models.TransientModel):
         if sale_line:
             return sale_line.order_id.pricelist_id.id
         product = request_line.product_id
-        partner = request_line.request_id.partner_id.id
-        pricelist_id = False
-        if product.item_ids:
-            pricelist_id = product.item_ids[0].pricelist_id.id
-        if not pricelist_id:
-            pricelist_obj = self.env['product.pricelist']
-            pricelist_id = pricelist_obj._get_partner_pricelist(
-               partner, self.env.user.company_id.id)
+        if not product.item_ids:
+            raise UserError(
+                _(
+                    'you can not invoice because the product '
+                    '%s do not have a pricelist defined'
+                ) % product.name
+            )
+        pricelist_id = product.item_ids[0].pricelist_id.id
         return pricelist_id
 
     @api.model
@@ -173,6 +173,9 @@ class CreateSaleOrderWizard(models.TransientModel):
         if sale_line:
             domain.append(
                 ('client_order_ref', '=', sale_line.order_id.client_order_ref))
+        else:
+            domain.append(
+                ('client_order_ref', '=', False))
         order = so_obj.search(domain)
         if not order:
             order = so_obj.create(self._prepare_sale_order(
@@ -180,7 +183,7 @@ class CreateSaleOrderWizard(models.TransientModel):
         return order
 
     @api.multi
-    def _prepare_sale_order_line(self,  order, params):
+    def _prepare_sale_order_line(self, order, params):
         request_line = self.request_line_id
         product = request_line.product_id
         taxes = product.taxes_id
@@ -214,10 +217,13 @@ class CreateSaleOrderWizard(models.TransientModel):
         for line in self.line_ids:
             qty_to_sale += line.product_uom_id._compute_quantity(
                 line.qty_to_sale, self.product_uom_id)
-        if qty_to_sale > self.request_line_id.remaining_product_qty:
-            raise UserError(
-                _('Error! The quantity to sale is greather than'
-                    ' the requested quantity.'))
+        # I add this conditional because of when dont have master request but 
+        # the quantity to invoice is not full has a bug
+        if self.line_ids:
+            if qty_to_sale > self.request_line_id.remaining_product_qty:
+                raise UserError(
+                    _('Error! The quantity to sale is greather than'
+                        ' the requested quantity.'))
         so_obj = self.env['sale.order']
         sol_obj = self.env['sale.order.line']
         request_line = self.request_line_id.sudo()
