@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 # © 2016  Cédric Pigeon, Acsone SA/NV (http://www.acsone.eu)
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
 import odoo.tests.common as common
