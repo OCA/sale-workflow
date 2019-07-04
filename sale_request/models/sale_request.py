@@ -3,6 +3,7 @@
 
 from odoo import _, api, fields, models
 from odoo.addons import decimal_precision as dp
+from odoo.tools import float_compare
 from odoo.exceptions import UserError
 
 
@@ -269,12 +270,120 @@ class SaleRequestLine(models.Model):
     def _onchange_product_id(self):
         if self.product_id:
             sol_obj = self.env['sale.order.line']
+            self._onchange_product_id_check_availability()
+
             self.update({
                 'product_uom_id': self.product_id.uom_id,
                 'description': (
                     sol_obj.get_sale_order_line_multiline_description_sale(
                         self.product_id)),
             })
+
+    @api.onchange('product_id')
+    def _onchange_product_id_uom_check_availability(self):
+        self._onchange_product_id_check_availability()
+
+    # This is a copy from original method that belong to sale.order.line
+    # this method is adapted to sale.request.line model
+    @api.onchange('product_qty')
+    def _onchange_product_id_check_availability(self):
+        if not self.product_id or not self.product_qty:
+            return {}
+        if self.product_id.type == 'product':
+            precision = self.env['decimal.precision'].precision_get(
+                'Product Unit of Measure')
+            product = self.product_id.with_context(
+                warehouse=self.request_id.warehouse_id.id,
+                lang=self.request_id.partner_id.lang or
+                self.env.user.lang or 'en_US'
+            )
+            product_qty = self.product_id.uom_id._compute_quantity(
+                self.product_qty, self.product_id.uom_id)
+            if float_compare(
+                product.virtual_available,
+                product_qty,
+                precision_digits=precision
+            ) == -1:
+                is_available = self._check_routing()
+                if not is_available:
+                    message = (
+                        _('You plan to sell %s %s of %s but you only have'
+                            '%s %s available in %s warehouse.')
+                        % (
+                            self.product_qty,
+                            self.product_id.uom_id.name,
+                            self.product_id.name,
+                            product.virtual_available,
+                            product.uom_id.name,
+                            self.request_id.warehouse_id.name
+                        )
+                    )
+                    # We check if some products are available in other warehouses.
+                    if float_compare(
+                        product.virtual_available,
+                        self.product_id.virtual_available,
+                        precision_digits=precision
+                    ) == -1:
+                        message += (
+                            _('\nThere are %s %s available across all'
+                                'warehouses.\n\n')
+                            % (
+                                self.product_id.virtual_available,
+                                product.uom_id.name)
+                        )
+                        for warehouse in self.env['stock.warehouse'].search(
+                            []
+                        ):
+                            quantity = self.product_id.with_context(
+                                warehouse=warehouse.id).virtual_available
+                            if quantity > 0:
+                                message += (
+                                    "%s: %s %s\n"
+                                    % (
+                                        warehouse.name,
+                                        quantity,
+                                        self.product_id.uom_id.name
+                                    )
+                                )
+                    # I will use the raise excepcion because do not return
+                    # a warning message
+                    raise UserError(_(
+                        'Not enough inventory! \n %s') % message)
+        return {}
+
+    def _check_routing(self):
+        """ Verify the route of the product based on the warehouse
+            return True if the product availibility in stock does not need to be verified,
+            which is the case in MTO, Cross-Dock or Drop-Shipping
+        """
+        is_available = False
+        product_routes = self.product_id.route_ids + self.product_id.categ_id.total_route_ids
+
+        # Check MTO
+        wh_mto_route = self.request_id.warehouse_id.mto_pull_id.route_id
+        if wh_mto_route and wh_mto_route <= product_routes:
+            is_available = True
+        else:
+            mto_route = False
+            try:
+                mto_route = self.env['stock.warehouse']._find_global_route('stock.route_warehouse0_mto', _('Make To Order'))
+            except UserError:
+                # if route MTO not found in ir_model_data, we treat the product as in MTS
+                pass
+            if mto_route and mto_route in product_routes:
+                is_available = True
+
+        # Check Drop-Shipping
+        if not is_available:
+            for pull_rule in product_routes.mapped('rule_ids'):
+                if pull_rule.picking_type_id.sudo(
+                    ).default_location_src_id.usage == 'supplier' and\
+                        pull_rule.picking_type_id.sudo(
+                            ).default_location_dest_id.usage == 'customer':
+                    is_available = True
+                    break
+
+        return is_available
 
     @api.multi
     def button_sale_orders(self):
