@@ -192,7 +192,7 @@ class CreateSaleOrderWizard(models.TransientModel):
         price = order.pricelist_id.get_product_price(
             product, params['qty_to_sale'], order.partner_id, order.date_order,
             params['product_uom'])
-        if not price and params['sale_line_id']:
+        if params.get('sale_line_id'):
             price = self.env['sale.order.line'].browse(
                 params['sale_line_id']).price_unit
         price_unit = self.env['account.tax']._fix_tax_included_price_company(
@@ -217,7 +217,7 @@ class CreateSaleOrderWizard(models.TransientModel):
         for line in self.line_ids:
             qty_to_sale += line.product_uom_id._compute_quantity(
                 line.qty_to_sale, self.product_uom_id)
-        # I add this conditional because of when dont have master request but 
+        # I add this conditional because of when dont have master request but
         # the quantity to invoice is not full has a bug
         if self.line_ids:
             if qty_to_sale > self.request_line_id.remaining_product_qty:
