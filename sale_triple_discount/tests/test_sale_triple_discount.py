@@ -129,8 +129,12 @@ class TestSaleOrder(common.SavepointCase):
                                invoice.invoice_line_ids[0].discount2)
         self.assertAlmostEqual(self.so_line1.discount3,
                                invoice.invoice_line_ids[0].discount3)
+        self.assertAlmostEqual(self.so_line1.price_subtotal,
+                               invoice.invoice_line_ids[0].price_subtotal)
         self.assertAlmostEqual(self.so_line2.discount3,
                                invoice.invoice_line_ids[1].discount3)
+        self.assertAlmostEqual(self.so_line2.price_subtotal,
+                               invoice.invoice_line_ids[1].price_subtotal)
         self.assertAlmostEqual(self.order.amount_total, invoice.amount_total)
 
     def test_05_round_globally(self):
