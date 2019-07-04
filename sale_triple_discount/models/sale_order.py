@@ -38,3 +38,13 @@ class SaleOrder(models.Model):
         res = sorted(res.items(), key=lambda l: l[0].sequence)
         res = map(lambda l: (l[0].name, l[1]), res)
         return res
+
+    @api.multi
+    def action_invoice_create(self, grouped=False, final=False):
+        invoice_ids = super(SaleOrder, self).action_invoice_create(
+            grouped=grouped, final=final
+        )
+        invoices = self.env['account.invoice'].browse(invoice_ids)
+        for inv in invoices:
+            inv._onchange_invoice_line_ids()
+        return invoice_ids
