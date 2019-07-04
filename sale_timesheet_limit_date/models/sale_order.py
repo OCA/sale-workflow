@@ -6,7 +6,6 @@ from odoo import api, fields, models
 
 class SaleOrder(models.Model):
     _inherit = 'sale.order'
-    _name = 'sale.order'
 
     timesheet_limit_date = fields.Date(
         string='Timesheet Limit Date',
@@ -14,30 +13,26 @@ class SaleOrder(models.Model):
         ' the date set',
     )
 
-    @api.model
-    def create(self, vals):
-        rec = super().create(vals)
-        if 'timesheet_limit_date' in vals:
-            rec._update_delivered_quantity(vals['timesheet_limit_date'])
-        return rec
-
     @api.multi
-    def write(self, vals):
-        res = super().write(vals)
-        if 'timesheet_limit_date' in vals:
-            self._update_delivered_quantity(vals['timesheet_limit_date'])
-        return res
-
-    def _update_delivered_quantity(self, limit_date):
-        lines = (
-            self.mapped('order_line')
-            .with_context(
-                timesheet_limit_date=limit_date,
-                sale_analytic_force_recompute=True,
-            )
-            .sudo()
-        )
-        lines._analytic_compute_delivered_quantity()
+    @api.depends('timesheet_limit_date')
+    def _compute_timesheet_ids(self):
+        # this method copy of base method, it injects date in domain
+        for order in self:
+            if order.analytic_account_id:
+                domain = [
+                    ('so_line', 'in', order.order_line.ids),
+                    ('amount', '<=', 0.0),
+                    ('project_id', '!=', False),
+                ]
+                if order.timesheet_limit_date:
+                    domain.append(
+                        ('date', '<=', order.timesheet_limit_date)
+                    )
+                order.timesheet_ids = self.env[
+                    'account.analytic.line'].search(domain)
+            else:
+                order.timesheet_ids = []
+            order.timesheet_count = len(order.timesheet_ids)
 
     @api.multi
     def action_invoice_create(self, grouped=False, final=False):
@@ -49,7 +44,7 @@ class SaleOrder(models.Model):
 
     @api.multi
     def _prepare_invoice(self):
-        # set apropriate limit date to new created invoice
+        # set appropriate limit date to new created invoice
         res = super()._prepare_invoice()
         if self.timesheet_limit_date:
             res['timesheet_limit_date'] = self.timesheet_limit_date

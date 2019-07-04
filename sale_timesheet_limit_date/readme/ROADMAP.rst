@@ -1,0 +1,1 @@
+Test compatibility with sale_milestone_profile_invoicing.

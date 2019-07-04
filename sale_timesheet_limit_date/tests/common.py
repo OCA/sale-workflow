@@ -1,6 +1,7 @@
 # Copyright 2019 Camptocamp SA
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 from odoo.tests.common import SavepointCase
+from odoo import fields
 
 
 class TestCommonMixin(SavepointCase):
@@ -29,8 +30,8 @@ class TestCommonMixin(SavepointCase):
                 'list_price': 20,
                 'type': 'service',
                 'invoice_policy': 'delivery',
-                'uom_id': cls.env.ref('product.product_uom_hour').id,
-                'uom_po_id': cls.env.ref('product.product_uom_hour').id,
+                'uom_id': cls.env.ref('uom.product_uom_hour').id,
+                'uom_po_id': cls.env.ref('uom.product_uom_hour').id,
                 'default_code': 'SERV-DELI2',
                 'service_type': 'timesheet',
                 'service_tracking': 'task_global_project',
@@ -62,6 +63,9 @@ class TestCommonMixin(SavepointCase):
         cls.task = cls.project_task_model.search(
             [('sale_line_id', '=', cls.so_line.id)]
         )
+        cls.date_08 = fields.Date.from_string('2019-05-08')
+        cls.date_09 = fields.Date.from_string('2019-05-09')
+        cls.date_10 = fields.Date.from_string('2019-05-10')
         cls.lines = cls.create_analytic_line(unit_amount=1, date='2019-05-10')
         cls.lines += cls.create_analytic_line(unit_amount=1, date='2019-05-09')
         cls.lines += cls.create_analytic_line(unit_amount=1, date='2019-05-08')
@@ -69,10 +73,10 @@ class TestCommonMixin(SavepointCase):
     @classmethod
     def create_analytic_line(cls, **kw):
         values = {
+            'name': cls.project.name + cls.task.name,
             'project_id': cls.project.id,
             'unit_amount': 0,
             'task_id': cls.task.id,
         }
         values.update(kw)
         return cls.aal_model.create(values)
-

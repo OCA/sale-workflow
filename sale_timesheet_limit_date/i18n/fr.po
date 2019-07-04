@@ -49,4 +49,4 @@ msgstr "Date limite Timesheet"
 #: code:addons/hr_timesheet_limit_sale_date/models/sale_order_line.py:21
 #, python-format
 msgid "You cannot apply the TS limit date on multiple orders."
-msgstr "Vous ne pouvez pas appliquer la date limite des timesheet sur plusieurs bons de commande."
+msgstr "Vous ne pouvez pas appliquer la date limite des timesheets sur plusieurs bons de commande."
