@@ -1,13 +1,13 @@
 # Translation of Odoo Server.
 # This file contains the translation of the following modules:
-#	* sale_request
+#   * sale_request
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 12.0+e\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-07-03 22:04+0000\n"
-"PO-Revision-Date: 2019-07-03 22:04+0000\n"
+"POT-Creation-Date: 2019-07-04 14:31+0000\n"
+"PO-Revision-Date: 2019-07-04 14:31+0000\n"
 "Last-Translator: <>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -96,6 +96,11 @@ msgid "Confirm"
 msgstr "Confirmar"
 
 #. module: sale_request
+#: model:ir.model.fields,field_description:sale_request.field_create_sale_order_wizard__confirm_without_master
+msgid "Confirm without Master Sale Order"
+msgstr "Confirmar sin un Pedido Master"
+
+#. module: sale_request
 #: model_terms:ir.ui.view,arch_db:sale_request.view_sale_request_search
 #: selection:sale.request,state:0
 msgid "Confirmed"
@@ -171,7 +176,7 @@ msgstr "Descripción"
 #: model:ir.model.fields,field_description:sale_request.field_sale_request__display_name
 #: model:ir.model.fields,field_description:sale_request.field_sale_request_line__display_name
 msgid "Display Name"
-msgstr "Nombre a mostrar"
+msgstr "Nombre mostrado"
 
 #. module: sale_request
 #: selection:sale.request,state:0
@@ -191,15 +196,15 @@ msgid "Edit Sale Order Line Price"
 msgstr "Editar precio de la línea de Pedido de Venta"
 
 #. module: sale_request
-#: code:addons/sale_request/wizards/create_sale_order_wizard.py:84
-#: code:addons/sale_request/wizards/create_sale_order_wizard.py:352
+#: code:addons/sale_request/wizards/create_sale_order_wizard.py:87
+#: code:addons/sale_request/wizards/create_sale_order_wizard.py:359
 #, python-format
 msgid "Error!"
 msgstr ""
 
 #. module: sale_request
-#: code:addons/sale_request/wizards/create_sale_order_wizard.py:225
-#: code:addons/sale_request/wizards/create_sale_order_wizard.py:240
+#: code:addons/sale_request/wizards/create_sale_order_wizard.py:232
+#: code:addons/sale_request/wizards/create_sale_order_wizard.py:247
 #, python-format
 msgid "Error! The quantity to sale is greather than the requested quantity."
 msgstr "¡Error! La cantidad a vender es mayor que la cantidad requerida."
@@ -622,7 +627,7 @@ msgid "Responsible User"
 msgstr "Usuario responsable"
 
 #. module: sale_request
-#: code:addons/sale_request/wizards/create_sale_order_wizard.py:281
+#: code:addons/sale_request/wizards/create_sale_order_wizard.py:288
 #: code:addons/sale_request/wizards/link_sale_order_wizard.py:89
 #: model:ir.model,name:sale_request.model_sale_order
 #: model:ir.model.fields,field_description:sale_request.field_create_sale_order_wizard_line__order_id
@@ -842,19 +847,20 @@ msgid "You cannot reject a sale request related to confirmed sale orders."
 msgstr "No puede cancelar una requisición de venta ligada a ordenes de venta ya confirmadas."
 
 #. module: sale_request
-#: code:addons/sale_request/wizards/create_sale_order_wizard.py:85
+#: code:addons/sale_request/wizards/create_sale_order_wizard.py:88
 #, python-format
 msgid "You cannot request more than the initial demand of this sale request."
 msgstr "No puede solicitar más cantidad que la demanda inicial de esta requisición."
 
 #. module: sale_request
-#: code:addons/sale_request/wizards/create_sale_order_wizard.py:353
+#: code:addons/sale_request/wizards/create_sale_order_wizard.py:222
+#: code:addons/sale_request/wizards/create_sale_order_wizard.py:360
 #, python-format
 msgid "You cannot request more than the remaining qty of this master sale order."
 msgstr "No puedes requerir más que la cantidad restante de este pedido master."
 
 #. module: sale_request
-#: code:addons/sale_request/wizards/create_sale_order_wizard.py:233
+#: code:addons/sale_request/wizards/create_sale_order_wizard.py:240
 #, python-format
 msgid "You have not defined the quantity to sale to any master order, please define it."
 msgstr "No ha definido la cantidad a vender a ningún pedido maestro, por favor defínalo."
@@ -865,7 +871,8 @@ msgid "name"
 msgstr "nombre"
 
 #. module: sale_request
-#: code:addons/sale_request/wizards/create_sale_order_wizard.py:158
+#: code:addons/sale_request/wizards/create_sale_order_wizard.py:161
 #, python-format
 msgid "you can not invoice because the product %s do not have a pricelist defined"
 msgstr "No puedes Facturar debido a que el producto %s no tiene una Lista de Precios Definida"
+

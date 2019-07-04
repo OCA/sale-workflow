@@ -61,6 +61,9 @@ class CreateSaleOrderWizard(models.TransientModel):
     on_time = fields.Boolean(
         default=_compute_on_time,
     )
+    confirm_without_master = fields.Boolean(
+        string='Confirm without Master Sale Order',
+    )
 
     @api.multi
     @api.depends('request_line_id')
@@ -215,7 +218,7 @@ class CreateSaleOrderWizard(models.TransientModel):
             self.line_ids = False
         qty_to_sale = 0.0
         for line in self.line_ids:
-            if line.qty_to_sale > line.remaining_product_qty:
+            if line.qty_to_sale > line.sale_line_id.remaining_product_qty:
                 raise UserError(_(
                     'You cannot request more than the remaining qty of this'
                     ' master sale order.'))
@@ -232,11 +235,11 @@ class CreateSaleOrderWizard(models.TransientModel):
         sol_obj = self.env['sale.order.line']
         request_line = self.request_line_id.sudo()
         lines = self.line_ids.filtered('qty_to_sale')
-        if self.line_ids and not lines:
+        if not self.confirm_without_master and self.line_ids and not lines:
             raise UserError(
                 _('You have not defined the quantity to sale to any master '
                   'order, please define it.'))
-        if not self.line_ids:
+        if not self.line_ids or self.confirm_without_master:
             sale_line = self.env['sale.order.line'].search([
                 ('request_line_id', '=', self.request_line_id.id)])
             if sale_line:

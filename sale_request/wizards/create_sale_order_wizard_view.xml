@@ -25,7 +25,10 @@
                             <field name="product_uom_id" class="oe_inline" groups="uom.group_uom"/>
                         </div>
                     </group>
-                    <group string="Lines" attrs="{'invisible': ['|',('has_lines', '=', False),('on_time','=',False)]}">
+                    <group attrs="{'invisible': ['|', '|',('has_lines', '=', False),('on_time','=',False)]}">
+                        <field name="confirm_without_master"/>
+                    </group>
+                    <group string="Lines" attrs="{'invisible': ['|', '|',('has_lines', '=', False),('on_time','=',False), ('confirm_without_master', '=', True)]}">
                         <field name="line_ids" nolabel="1">
                             <tree editable="top" create="0" delete="0">
                                 <field name="product_id"/>
