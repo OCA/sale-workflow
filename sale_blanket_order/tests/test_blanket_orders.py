@@ -27,7 +27,7 @@ class TestSaleBlanketOrders(common.TransactionCase):
 
         # UoM
         self.categ_unit = self.env.ref('product.product_uom_categ_unit')
-        self.uom_dozen = self.env['product.uom'].create({
+        self.uom_dozen = self.env['uom.uom'].create({
             'name': 'Test-DozenA',
             'category_id': self.categ_unit.id,
             'factor_inv': 12,

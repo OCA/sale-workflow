@@ -1,4 +1,5 @@
 # Copyright 2018 ACSONE SA/NV
+# Copyright 2019 Elico Corp
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 from datetime import datetime
 
@@ -372,7 +373,7 @@ class BlanketOrderLine(models.Model):
         'product.product', string='Product', required=True,
         domain=[('sale_ok', '=', True)])
     product_uom = fields.Many2one(
-        'product.uom', string='Unit of Measure', required=True)
+        'uom.uom', string='Unit of Measure', required=True)
     price_unit = fields.Float(string='Price', required=True,
                               digits=dp.get_precision('Product Price'))
     taxes_id = fields.Many2many('account.tax', string='Taxes',

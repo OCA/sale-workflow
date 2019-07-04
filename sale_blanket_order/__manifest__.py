@@ -1,11 +1,12 @@
 # Copyright 2018 Acsone
+# Copyright 2019 Elico Corp
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
 {
     'name': 'Sale Blanket Orders',
     'category': 'Sale',
     'license': 'AGPL-3',
-    'author': 'Acsone SA/NV, Odoo Community Association (OCA)',
-    'version': '11.0.1.0.0',
+    'author': 'Acsone SA/NV, Elico Corp, Odoo Community Association (OCA)',
+    'version': '12.0.1.0.0',
     'website': 'https://github.com/OCA/sale-workflow',
     'summary': "Blanket Orders",
     'depends': [

@@ -1,4 +1,5 @@
 # Copyright 2018 ACSONE SA/NV
+# Copyright 2019 Elico Corp
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 from odoo import fields, models, api, _
 from odoo.tools import float_is_zero
@@ -181,7 +182,7 @@ class BlanketOrderWizardLine(models.TransientModel):
         related='blanket_line_id.product_id',
         string='Product', readonly=True)
     product_uom = fields.Many2one(
-        'product.uom',
+        'uom.uom',
         related='blanket_line_id.product_uom',
         string='Unit of Measure', readonly=True)
     date_schedule = fields.Date(

@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!-- Copyright 2018 ACSONE SA/NV
+     Copyright 2019 Elico Corp
      License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl). -->
 
 <odoo>
@@ -14,7 +15,7 @@
                 <div class="row mt16 o_settings_container">
                     <div class="col-xs-12 col-md-6 o_setting_box">
                         <div class="o_setting_left_pane">
-                            <field name="module_website_quote"/>
+                            <field name="group_blanket_disable_adding_lines"/>
                         </div>
                         <div class="o_setting_right_pane">
                             <label for="group_blanket_disable_adding_lines"/>
@@ -27,7 +28,5 @@
             </xpath>
         </field>
     </record>
-
-
 
 </odoo>
