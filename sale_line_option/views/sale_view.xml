@@ -31,9 +31,6 @@
                     </field>
                 </div>
             </xpath>
-            <xpath expr="//field[@name='order_line']/tree/field[@name='product_uom_qty']" position="before">
-                <field name="option_ids"/>
-            </xpath>
         </field>
     </record>
 
