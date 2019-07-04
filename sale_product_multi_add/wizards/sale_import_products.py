@@ -34,14 +34,17 @@ class SaleImportProducts(models.TransientModel):
 
     @api.model
     def _get_line_values(self, sale, item):
-        return {
+        sale_line = self.env['sale.order.line'].new({
             'order_id': sale.id,
             'name': item.product_id.name,
             'product_id': item.product_id.id,
             'product_uom_qty': item.quantity,
             'product_uom': item.product_id.uom_id.id,
             'price_unit': item.product_id.list_price
-        }
+        })
+        sale_line.product_id_change()
+        line_values = sale_line._convert_to_write(sale_line._cache)
+        return line_values
 
     @api.multi
     def select_products(self):
