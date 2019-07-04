@@ -5,25 +5,28 @@
         <field name="name">sale.order.triple.discount.form</field>
         <field name="model">sale.order</field>
         <field name="inherit_id" ref="sale.view_order_form" />
+        <field name="groups_id"
+               eval="[(4, ref('sale.group_discount_per_so_line'))]"/>
         <field name="arch" type="xml">
             <xpath expr="//field[@name='order_line']//tree//field[@name='discount']"
                    position="after">
-                <field name="discount2"
-                       groups="sale.group_discount_per_so_line"/>
-                <field name="discount3"
-                       groups="sale.group_discount_per_so_line"/>
-                <field name="discounting_type"
-                       groups="sale.group_discount_per_so_line"/>
+                <field name="discount2" />
+                <field name="discount3" />
+                <field name="discounting_type" />
             </xpath>
             <xpath expr="//field[@name='order_line']//form//div[@name='discount']"
                    position="after">
-                <label for="discount2" groups="sale.group_discount_per_so_line"/>
-                <div name="discount2" groups="sale.group_discount_per_so_line">
+                <label for="discount2" />
+                <div name="discount2">
                     <field name="discount2" class="oe_inline"/> %
                 </div>
-                <label for="discount3" groups="sale.group_discount_per_so_line"/>
-                <div name="discoun3" groups="sale.group_discount_per_so_line">
+                <label for="discount3" />
+                <div name="discoun3">
                     <field name="discount3" class="oe_inline"/> %
+                </div>
+                <label for="discounting_type" />
+                <div name="discounting_type">
+                    <field name="discounting_type" class="oe_inline"/> %
                 </div>
             </xpath>
         </field>
