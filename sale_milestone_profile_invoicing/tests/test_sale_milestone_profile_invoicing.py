@@ -168,7 +168,7 @@ class TestProjectMilestoneProfileInvoicing(SingleTransactionCase):
     def test_step_1(self):
         """ Timesheet on milestones.
 
-        On bothe milestones by two different employees profile.
+        On both milestones by two different employees profile.
         """
         self.aal_model.create(
             {
