@@ -39,6 +39,7 @@ setuptools.setup(
         'odoo11-addon-sale_order_secondary_unit',
         'odoo11-addon-sale_order_type',
         'odoo11-addon-sale_procurement_group_by_line',
+        'odoo11-addon-sale_product_multi_add',
         'odoo11-addon-sale_product_set',
         'odoo11-addon-sale_product_set_variant',
         'odoo11-addon-sale_quotation_number',
