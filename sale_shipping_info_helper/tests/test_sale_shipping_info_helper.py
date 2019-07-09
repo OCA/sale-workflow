@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 # © 2017 Akretion (Mourad EL HADJ MIMOUNE <mourad.elhadj.mimoune@akretion.com>)
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
 
@@ -18,7 +17,7 @@ class TestDeliveryCost(common.TransactionCase):
         self.partner_18 = self.env.ref('base.res_partner_18')
         self.pricelist = self.env.ref('product.list0')
         self.product_4 = self.env.ref('product.product_product_4')
-        self.product_uom_unit = self.env.ref('product.product_uom_unit')
+        self.product_uom_unit = self.env.ref('uom.product_uom_unit')
         self.normal_delivery = self.env.ref('delivery.normal_delivery_carrier')
 
     def test_00_shipping_info(self):
@@ -47,9 +46,10 @@ class TestDeliveryCost(common.TransactionCase):
         })
 
         # I add delivery cost in Sale order
-        self.sale.delivery_set()
+        self.sale.get_delivery_price()
+        self.sale.set_delivery_line()
 
-        # I check sale order compuded field after added delivery cost
+        # I check sale order computed field after added delivery cost
 
         line = self.SaleOrderLine.search([
             ('order_id', '=', self.sale.id),
