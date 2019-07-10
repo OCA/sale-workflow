@@ -22,7 +22,7 @@ addon | version | summary
 [account_invoice_reorder_lines](account_invoice_reorder_lines/) | 8.0.1.0.0 | Provide a new field on the invoice line form, allowing to manage the lines order.
 [partner_prepayment](partner_prepayment/) | 8.0.1.0.0 | Option on partner to set prepayment policy
 [partner_prospect](partner_prospect/) | 8.0.1.0.0 | Partner Prospect
-[product_margin_classification](product_margin_classification/) | 8.0.2.0.0 | Product Margin Classification
+[product_margin_classification](product_margin_classification/) | 8.0.2.1.0 | Product Margin Classification
 [sale_allotment](sale_allotment/) | 8.0.1.1.0 | Separate the shipment according to allotment partner
 [sale_automatic_workflow](sale_automatic_workflow/) | 8.0.0.3.0 | Sale Automatic Workflow
 [sale_automatic_workflow_exception](sale_automatic_workflow_exception/) | 8.0.1.0.0 | Sale Automatic Workflow Exception
