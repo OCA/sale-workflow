@@ -74,7 +74,7 @@ class SaleOrderLine(models.Model):
         'task_id.timesheet_ids.unit_amount',
     )
     def _compute_amount_delivered_from_task(self):
-        for line in self:
+        for line in self.filtered(lambda l: l.task_id):
             total = 0
             for ts in line._get_timesheet_for_amount_calculation():
                 rate_line = ts.project_id.sale_line_employee_ids.filtered(
@@ -89,7 +89,7 @@ class SaleOrderLine(models.Model):
     @api.multi
     @api.depends('task_id', 'task_id.timesheet_ids.timesheet_invoice_id')
     def _compute_amount_invoiced_from_task(self):
-        for line in self:
+        for line in self.filtered(lambda l: l.task_id):
             total = 0
             for ts in line._get_timesheet_for_amount_calculation(True):
                 rate_line = ts.project_id.sale_line_employee_ids.filtered(
