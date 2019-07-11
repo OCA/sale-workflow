@@ -79,7 +79,8 @@ class LinkSaleOrderWizard(models.TransientModel):
             list_order.extend(orders.ids)
             for order in orders:
                 ref = wiz_line.sale_line_id.order_id.client_order_ref
-                if order.client_order_ref:
+                if (order.client_order_ref and
+                        order.client_order_ref != ref):
                     ref = '%s | %s' % (order.client_order_ref, ref)
                 order.client_order_ref = ref
             sale_lines.write({
