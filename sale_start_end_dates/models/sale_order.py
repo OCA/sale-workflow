@@ -1,6 +1,6 @@
-# Copyright 2014-2016 Akretion (http://www.akretion.com)
+# Copyright 2014-2019 Akretion (http://www.akretion.com)
 # @author Alexis de Lattre <alexis.delattre@akretion.com>
-# Copyright 2016 Sodexis (http://sodexis.com)
+# Copyright 2016-2019 Sodexis (http://sodexis.com)
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
 from odoo import api, fields, models, _
@@ -18,10 +18,10 @@ class SaleOrder(models.Model):
     def _check_default_start_end_dates(self):
         if (self.default_start_date and self.default_end_date and
                 self.default_start_date > self.default_end_date):
-            raise ValidationError(
-                _("Default Start Date should be before or be the "
-                    "same as Default End Date for sale order %s")
-                % self.name)
+            raise ValidationError(_(
+                "Default Start Date should be before or be the "
+                "same as Default End Date for sale order '%s'.")
+                % self.display_name)
 
     @api.onchange('default_start_date')
     def default_start_date_change(self):
@@ -45,13 +45,41 @@ class SaleOrderLine(models.Model):
     end_date = fields.Date(
         string='End Date', readonly=True,
         states={'draft': [('readonly', False)]})
-    number_of_days = fields.Integer(string='Number of Days')
-    must_have_dates = fields.Boolean(
-        related='product_id.must_have_dates',
-        readonly=True
-    )
+    number_of_days = fields.Integer(
+        compute='_compute_number_of_days',
+        inverse='_inverse_number_of_days',
+        string='Number of Days', readonly=False, store=True)
+    must_have_dates = fields.Boolean(related='product_id.must_have_dates')
 
-    @api.constrains('start_date', 'end_date', 'number_of_days')
+    @api.depends('start_date', 'end_date')
+    def _compute_number_of_days(self):
+        for line in self:
+            days = False
+            if line.start_date and line.end_date:
+                days = (self.end_date - self.start_date).days + 1
+            line.number_of_days = days
+
+    @api.onchange('number_of_days')
+    def _inverse_number_of_days(self):
+        res = {'warning': {}}
+        for line in self:
+            if line.number_of_days < 0:
+                res['warning']['title'] = _('Wrong number of days')
+                res['warning']['message'] = _(
+                    "On sale order line with product '%s', the "
+                    "number of days is negative (%d) ; this is not "
+                    "allowed. The number of days has been forced to 1.") % (
+                        line.product_id.display_name, line.number_of_days)
+                line.number_of_days = 1
+            if line.start_date:
+                line.end_date = line.start_date +\
+                    relativedelta(days=line.number_of_days - 1)
+            elif line.end_date:
+                line.start_date = line.end_date -\
+                    relativedelta(days=line.number_of_days - 1)
+        return res
+
+    @api.constrains('start_date', 'end_date')
     def _check_start_end_dates(self):
         if self.must_have_dates:
             if not self.end_date:
@@ -62,33 +90,12 @@ class SaleOrderLine(models.Model):
                 raise ValidationError(_(
                     "Missing Start Date for sale order line with "
                     "Product '%s'.") % (self.product_id.name))
-            if not self.number_of_days:
-                raise ValidationError(_(
-                    "Missing number of days for sale order line with "
-                    "Product '%s'.") % (self.product_id.name))
             if self.start_date > self.end_date:
                 raise ValidationError(_(
                     "Start Date should be before or be the same as "
                     "End Date for sale order line with Product '%s'.")
                     % (self.product_id.name))
-            if self.number_of_days < 0:
-                raise ValidationError(_(
-                    "On sale order line with Product '%s', the "
-                    "number of days is negative ; this is not allowed.")
-                    % (self.product_id.name))
-            days_delta = (
-                fields.Date.from_string(self.end_date) -
-                fields.Date.from_string(self.start_date)).days + 1
-            if self.number_of_days != days_delta:
-                raise ValidationError(_(
-                    "On the sale order line with Product '%s', "
-                    "there are %d days between the Start Date (%s) and "
-                    "the End Date (%s), but the number of days field "
-                    "has a value of %d days.")
-                    % (self.product_id.name, days_delta, self.start_date,
-                        self.end_date, self.number_of_days))
 
-    @api.multi
     def _prepare_invoice_line(self, qty):
         self.ensure_one()
         res = super(SaleOrderLine, self)._prepare_invoice_line(qty)
@@ -104,45 +111,24 @@ class SaleOrderLine(models.Model):
         if self.end_date:
             if self.start_date and self.start_date > self.end_date:
                 self.start_date = self.end_date
-            if self.start_date:
-                number_of_days = (
-                    fields.Date.from_string(self.end_date) -
-                    fields.Date.from_string(self.start_date)).days + 1
-                if self.number_of_days != number_of_days:
-                    self.number_of_days = number_of_days
 
     @api.onchange('start_date')
     def start_date_change(self):
         if self.start_date:
             if self.end_date and self.start_date > self.end_date:
                 self.end_date = self.start_date
-            if self.end_date:
-                number_of_days = (
-                    fields.Date.from_string(self.end_date) -
-                    fields.Date.from_string(self.start_date)).days + 1
-                if self.number_of_days != number_of_days:
-                    self.number_of_days = number_of_days
-
-    @api.onchange('number_of_days')
-    def number_of_days_change(self):
-        if self.number_of_days:
-            if self.start_date:
-                end_date_dt = fields.Date.from_string(self.start_date) +\
-                    relativedelta(days=self.number_of_days - 1)
-                end_date = fields.Date.to_string(end_date_dt)
-                if self.end_date != end_date:
-                    self.end_date = end_date
-            elif self.end_date:
-                self.start_date = fields.Date.from_string(self.end_date) -\
-                    relativedelta(days=self.number_of_days - 1)
 
     @api.onchange('product_id')
     def start_end_dates_product_id_change(self):
-        if self.order_id.default_start_date:
-            self.start_date = self.order_id.default_start_date
+        if self.product_id.must_have_dates:
+            if self.order_id.default_start_date:
+                self.start_date = self.order_id.default_start_date
+            else:
+                self.start_date = False
+            if self.order_id.default_end_date:
+                self.end_date = self.order_id.default_end_date
+            else:
+                self.end_date = False
         else:
             self.start_date = False
-        if self.order_id.default_end_date:
-            self.end_date = self.order_id.default_end_date
-        else:
             self.end_date = False
