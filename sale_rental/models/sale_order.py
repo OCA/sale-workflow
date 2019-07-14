@@ -1,54 +1,22 @@
-# Copyright 2014-2016 Akretion (http://www.akretion.com)
+# Copyright 2014-2019 Akretion (http://www.akretion.com)
 # @author Alexis de Lattre <alexis.delattre@akretion.com>
-# Copyright 2016 Sodexis (http://sodexis.com)
+# Copyright 2016-2019 Sodexis (http://sodexis.com)
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
-from odoo import models, fields, api, _
-from odoo.exceptions import ValidationError, UserError
+from odoo import api, fields, models, _
+from odoo.exceptions import UserError, ValidationError
 from odoo.tools import float_compare
 from dateutil.relativedelta import relativedelta
-from odoo.tools import DEFAULT_SERVER_DATETIME_FORMAT,\
-    DEFAULT_SERVER_DATE_FORMAT
-from datetime import datetime
 import odoo.addons.decimal_precision as dp
 import logging
 
 
 logger = logging.getLogger(__name__)
-# TODO : block if we sell a rented product already sold => state
 
 
 class SaleOrder(models.Model):
     _inherit = 'sale.order'
 
-    @api.multi
-    def action_confirm(self):
-        res = super(SaleOrder, self).action_confirm()
-        for order in self:
-            for line in order.order_line:
-                if line.rental_type == 'new_rental':
-                    self.env['sale.rental'].create(line._prepare_rental())
-                    # Check availability of picking moves
-                    # and changing picking status also
-                    line.move_ids._action_assign()
-                elif line.rental_type == 'rental_extension':
-                    if not line.extension_rental_id or\
-                            not line.extension_rental_id.in_move_id:
-                        continue
-                    line.extension_rental_id.in_move_id.date_expected =\
-                        line.end_date
-                    line.extension_rental_id.in_move_id.date = line.end_date
-                elif line.sell_rental_id:
-                    if line.sell_rental_id.out_move_id.state != 'done':
-                        raise UserError(_(
-                            'Cannot sell the rental %s because it has '
-                            'not been delivered')
-                            % line.sell_rental_id.display_name)
-                    line.sell_rental_id.sell_move_id._action_assign()
-                    line.sell_rental_id.in_move_id._action_cancel()
-        return res
-
-    @api.multi
     def action_cancel(self):
         """
             In case cancelling a SO which sells rental product.
@@ -56,17 +24,14 @@ class SaleOrder(models.Model):
         """
         res = super(SaleOrder, self).action_cancel()
         for order in self:
-            for line in order.order_line:
-                if line.rental_type == 'new_rental':
-                    sale_rental = self.env['sale.rental'].search(
-                        [('start_order_line_id', '=', line.id)], limit=1)
-                    sale_rental.out_move_id._action_cancel()
-                    sale_rental.in_move_id._action_cancel()
-                elif line.rental_type == 'rental_extension':
-                    line.extension_rental_id.in_move_id.date_expected = \
-                        line.extension_rental_id.end_date
-                    line.extension_rental_id.in_move_id.date = \
-                        line.extension_rental_id.end_date
+            for line in order.order_line.filtered(
+                    lambda l: l.rental_type == 'rental_extension' and
+                    l.extension_rental_id):
+                initial_end_date = line.extension_rental_id.end_date
+                line.extension_rental_id.in_move_id.write({
+                    'date_expected': initial_end_date,
+                    'date': initial_end_date,
+                    })
         return res
 
 
@@ -87,6 +52,12 @@ class SaleOrderLine(models.Model):
         help="Indicate the number of items that will be rented.")
     sell_rental_id = fields.Many2one(
         'sale.rental', string='Rental to Sell')
+
+    _sql_constraints = [(
+        'rental_qty_positive',
+        'CHECK(rental_qty >= 0)',
+        'The rental quantity must be positive or null.'
+        )]
 
     @api.constrains(
         'rental_type', 'extension_rental_id', 'start_date', 'end_date',
@@ -137,60 +108,76 @@ class SaleOrderLine(models.Model):
                         line.product_uom_qty,
                         line.sell_rental_id.rental_qty))
 
-    @api.multi
     def _prepare_rental(self):
         self.ensure_one()
         return {'start_order_line_id': self.id}
 
-    @api.multi
-    def _get_rental_date_planned(self):
-        self.ensure_one()
-        start_date = datetime.strptime(
-            self.start_date, DEFAULT_SERVER_DATE_FORMAT)
-        return start_date.strftime(DEFAULT_SERVER_DATETIME_FORMAT)
+    def _prepare_new_rental_procurement_values(self, group=False):
+        vals = {
+            'company_id': self.order_id.company_id,
+            'group_id': group,
+            'sale_line_id': self.id,
+            'date_planned': self.start_date,
+            'route_ids': self.order_id.warehouse_id.rental_route_id,
+            'warehouse_id': self.order_id.warehouse_id or False,
+            'partner_id': self.order_id.partner_shipping_id.id,
+            }
+        return vals
 
-    @api.multi
-    def _action_launch_procurement_rule(self):
-        res = super(SaleOrderLine, self)._action_launch_procurement_rule()
+    def _action_launch_stock_rule(self):
         errors = []
         for line in self:
-            if not line.product_id.rented_product_id or\
-                    line.rental_type == 'rental_extension':
-                continue
+            if (
+                    line.rental_type == 'new_rental' and
+                    line.product_id.rented_product_id):
+                group = line.order_id.procurement_group_id
+                if not group:
+                    group = self.env['procurement.group'].create({
+                        'name': line.order_id.name,
+                        'move_type': line.order_id.picking_policy,
+                        'sale_id': line.order_id.id,
+                        'partner_id': line.order_id.partner_shipping_id.id,
+                    })
+                    line.order_id.procurement_group_id = group
 
-            procurement_group = line.order_id.procurement_group_id
-            if not procurement_group:
-                procurement_group = self.env['procurement.group'].create({
-                    'name': line.order_id.name,
-                    'move_type': line.order_id.picking_policy,
-                    'sale_id': line.order_id.id,
-                    'partner_id': line.order_id.partner_shipping_id.id,
-                })
-                line.order_id.procurement_group_id = procurement_group
+                vals = line._prepare_new_rental_procurement_values(group)
+                try:
+                    self.env['procurement.group'].run(
+                        line.product_id.rented_product_id, line.rental_qty,
+                        line.product_id.rented_product_id.uom_id,
+                        line.order_id.warehouse_id.rental_out_location_id,
+                        line.name, line.order_id.name, vals)
+                except UserError as error:
+                    errors.append(error.name)
 
-            if line.rental_type == 'new_rental':
-                vals = {
-                    'company_id': line.order_id.company_id,
-                    'group_id': procurement_group,
-                    'sale_line_id': line.id,
-                    'date_planned': line._get_rental_date_planned(),
-                    'route_ids': line.order_id.warehouse_id.rental_route_id,
-                    'warehouse_id': line.order_id.warehouse_id or False,
-                    'partner_dest_id': line.order_id.partner_shipping_id
-                }
-            try:
-                self.env['procurement.group'].run(
-                    line.product_id.rented_product_id, line.rental_qty,
-                    line.product_id.rented_product_id.uom_id,
-                    line.order_id.warehouse_id.rental_out_location_id,
-                    line.name, line.order_id.name, vals)
-            except UserError as error:
-                errors.append(error.name)
+                self.env['sale.rental'].create(line._prepare_rental())
+
+            elif (
+                    line.rental_type == 'rental_extension' and
+                    line.product_id.rented_product_id and
+                    line.extension_rental_id and
+                    line.extension_rental_id.in_move_id):
+                end_datetime = fields.Datetime.to_datetime(
+                    line.end_date)
+                line.extension_rental_id.in_move_id.write({
+                    'date_expected': end_datetime,
+                    'date': end_datetime,
+                    })
+            elif line.sell_rental_id:
+                if line.sell_rental_id.out_move_id.state != 'done':
+                    raise UserError(_(
+                        'Cannot sell the rental %s because it has '
+                        'not been delivered')
+                        % line.sell_rental_id.display_name)
+                line.sell_rental_id.in_move_id._action_cancel()
+
         if errors:
             raise UserError('\n'.join(errors))
+
+        # call super() at the end, to make procurement_jit work
+        res = super(SaleOrderLine, self)._action_launch_stock_rule()
         return res
 
-    @api.multi
     def _prepare_procurement_values(self, group_id=False):
         """
             Overriding this function to changethe route
@@ -278,8 +265,7 @@ class SaleOrderLine(models.Model):
                     "selected is '%s' and it's not the same as the "
                     "Product currently selected in this Sale Order Line.")
                     % self.extension_rental_id.rental_product_id.name)
-            initial_end_date = fields.Date.from_string(
-                self.extension_rental_id.end_date)
+            initial_end_date = self.extension_rental_id.end_date
             self.start_date = initial_end_date + relativedelta(days=1)
             self.rental_qty = self.extension_rental_id.rental_qty
 
