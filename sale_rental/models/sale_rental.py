@@ -1,13 +1,12 @@
-# Copyright 2014-2016 Akretion (http://www.akretion.com)
+# Copyright 2014-2019 Akretion France (http://www.akretion.com)
 # @author Alexis de Lattre <alexis.delattre@akretion.com>
-# Copyright 2016 Sodexis (http://sodexis.com)
+# Copyright 2016-2019 Sodexis (http://sodexis.com)
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
 from odoo import models, fields, api
 import logging
 
 logger = logging.getLogger(__name__)
-# TODO : block if we sell a rented product already sold => state
 
 
 class SaleRental(models.Model):
@@ -99,16 +98,16 @@ class SaleRental(models.Model):
         related='start_order_line_id.start_date', readonly=True, store=True)
     rental_product_id = fields.Many2one(
         'product.product', related='start_order_line_id.product_id',
-        string="Rental Service", readonly=True)
+        string="Rental Service", readonly=True, store=True)
     rented_product_id = fields.Many2one(
         'product.product',
         related='start_order_line_id.product_id.rented_product_id',
-        string="Rented Product", readonly=True)
+        string="Rented Product", readonly=True, store=True)
     rental_qty = fields.Float(
-        related='start_order_line_id.rental_qty', readonly=True)
+        related='start_order_line_id.rental_qty', readonly=True, store=True)
     start_order_id = fields.Many2one(
         'sale.order', related='start_order_line_id.order_id',
-        string='Rental SO', readonly=True)
+        string='Rental SO', readonly=True, store=True)
     company_id = fields.Many2one(
         'res.company', related='start_order_line_id.order_id.company_id',
         string='Company', readonly=True)
@@ -159,5 +158,5 @@ class SaleRental(models.Model):
         ('sold', 'Sold'),
         ('in', 'Back In'),
         ('cancel', 'Cancelled'),
-    ], string='State', compute='_compute_move_and_state',
+        ], string='State', compute='_compute_move_and_state',
         readonly=True, store=True)
