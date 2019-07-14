@@ -35,7 +35,7 @@ class TestSaleStartEndDates(TransactionCase):
         for so_lines in self.so.order_line:
             so_lines.write({'start_date': self.default_start_date,
                             'end_date': self.default_end_date,
-                            'number_of_days': 10})
+                            })
 
     def test_default_start_date_change(self):
         with self.assertRaises(ValidationError):
@@ -54,17 +54,11 @@ class TestSaleStartEndDates(TransactionCase):
             self.so.order_line.start_end_dates_product_id_change()
             self.so.order_line.start_date_change()
             self.so.order_line.end_date_change()
-            self.so.order_line.number_of_days_change()
 
     def test_start_end_dates_product_id(self):
         self.product_id.must_have_dates = False
         self.so.default_start_date = self.so.default_end_date = False
         self.so.order_line.start_end_dates_product_id_change()
-
-    def test_number_of_days_change(self):
-        self.product_id.must_have_dates = False
-        self.so.order_line.start_date = False
-        self.so.order_line.number_of_days_change()
 
     def test_end_date_change(self):
         self.product_id.must_have_dates = False
@@ -86,19 +80,16 @@ class TestSaleStartEndDates(TransactionCase):
         with self.assertRaises(ValidationError):
             self.so.order_line.start_date = False
 
-    def test_constrains_number_of_days(self):
-        with self.assertRaises(ValidationError):
-            self.so.order_line.number_of_days = 0.0
-
-    def test_constrains_neg_number_of_days(self):
-        with self.assertRaises(ValidationError):
-            self.so.order_line.number_of_days = -1.0
-
-    def test_constrains_not_equal_days(self):
-        with self.assertRaises(ValidationError):
-            self.so.order_line.number_of_days = 12
-
     def test_constrains_greater_st_date(self):
         with self.assertRaises(ValidationError):
             self.so.order_line.write({'start_date': self.default_end_date,
                                       'end_date': self.default_start_date})
+
+    def test_compute_number_of_days(self):
+        self.assertEqual(self.so.order_line[0].number_of_days, 10)
+
+    def test_inverse_number_of_days(self):
+        self.so.order_line[0].number_of_days = 1
+        self.assertEqual(
+            self.so.order_line[0].start_date,
+            self.so.order_line[0].end_date)
