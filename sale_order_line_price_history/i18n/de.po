@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 11.0\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2019-07-15 13:43+0000\n"
+"PO-Revision-Date: 2019-07-15 16:43+0000\n"
 "Last-Translator: Maria Sparenberg <maria.sparenberg@gmx.net>\n"
 "Language-Team: none\n"
 "Language: de\n"
@@ -109,7 +109,7 @@ msgstr "Auftragsdatum"
 #. module: sale_order_line_price_history
 #: model:ir.model.fields,field_description:sale_order_line_price_history.field_sale_order_line_price_history_line_order_id
 msgid "Order Reference"
-msgstr "Auftragsnummer"
+msgstr "Auftragsreferenz"
 
 #. module: sale_order_line_price_history
 #: model:ir.ui.view,arch_db:sale_order_line_price_history.view_order_form
