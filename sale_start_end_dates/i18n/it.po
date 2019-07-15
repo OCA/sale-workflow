@@ -19,91 +19,81 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
 #. module: sale_start_end_dates
-#: model:ir.model.fields,field_description:sale_start_end_dates.field_sale_order_default_end_date
+#: model:ir.model.fields,field_description:sale_start_end_dates.field_sale_order__default_end_date
 msgid "Default End Date"
 msgstr "Default Data Fine"
 
 #. module: sale_start_end_dates
-#: model:ir.model.fields,field_description:sale_start_end_dates.field_sale_order_default_start_date
+#: model:ir.model.fields,field_description:sale_start_end_dates.field_sale_order__default_start_date
 msgid "Default Start Date"
 msgstr "Default Data Inizio"
 
 #. module: sale_start_end_dates
-#: code:addons/sale_start_end_dates/models/sale.py:22
-#, python-format
+#: code:addons/sale_start_end_dates/models/sale_order.py:21
+#, fuzzy, python-format
+#| msgid ""
+#| "Default Start Date should be before or be the same as Default End Date "
+#| "for sale order %s"
 msgid ""
 "Default Start Date should be before or be the same as Default End Date for "
-"sale order %s"
+"sale order '%s'."
 msgstr ""
 "La data di inizio deve essere inferiore o uguale alla data di fine per "
 "l'ordine %s."
 
 #. module: sale_start_end_dates
-#: model:ir.model.fields,field_description:sale_start_end_dates.field_sale_order_line_end_date
+#: model:ir.model.fields,field_description:sale_start_end_dates.field_sale_order_line__end_date
 msgid "End Date"
 msgstr "Data fine"
 
 #. module: sale_start_end_dates
-#: model:ir.model.fields,help:sale_start_end_dates.field_sale_order_line_must_have_dates
+#: model:ir.model.fields,help:sale_start_end_dates.field_sale_order_line__must_have_dates
 msgid ""
 "If this option is active, the user will have to enter a Start Date and an "
 "End Date on the invoice lines that have this product."
 msgstr ""
 
 #. module: sale_start_end_dates
-#: code:addons/sale_start_end_dates/models/sale.py:58
+#: code:addons/sale_start_end_dates/models/sale_order.py:86
 #, python-format
 msgid "Missing End Date for sale order line with Product '%s'."
 msgstr "Manca la data di fine nell'ordine di vendita per il prodotto '%s'"
 
 #. module: sale_start_end_dates
-#: code:addons/sale_start_end_dates/models/sale.py:62
+#: code:addons/sale_start_end_dates/models/sale_order.py:90
 #, python-format
 msgid "Missing Start Date for sale order line with Product '%s'."
 msgstr "Manca la data di Inizio per il prodotto '%s'"
 
 #. module: sale_start_end_dates
-#: code:addons/sale_start_end_dates/models/sale.py:66
-#, python-format
-msgid "Missing number of days for sale order line with Product '%s'."
-msgstr "Mancano i numeri di giorni nell'ordine di vendita per il prodotto '%s'"
-
-#. module: sale_start_end_dates
-#: model:ir.model.fields,field_description:sale_start_end_dates.field_sale_order_line_must_have_dates
+#: model:ir.model.fields,field_description:sale_start_end_dates.field_sale_order_line__must_have_dates
 msgid "Must Have Start and End Dates"
 msgstr "Necessario Data Inizio e Fine"
 
 #. module: sale_start_end_dates
-#: model:ir.model.fields,field_description:sale_start_end_dates.field_sale_order_line_number_of_days
+#: model:ir.model.fields,field_description:sale_start_end_dates.field_sale_order_line__number_of_days
 msgid "Number of Days"
 msgstr "Numero di giorni"
 
 #. module: sale_start_end_dates
-#: code:addons/sale_start_end_dates/models/sale.py:75
-#, python-format
+#: code:addons/sale_start_end_dates/models/sale_order.py:68
+#, fuzzy, python-format
+#| msgid ""
+#| "On sale order line with Product '%s', the number of days is negative ; "
+#| "this is not allowed."
 msgid ""
-"On sale order line with Product '%s', the number of days is negative ; this "
-"is not allowed."
+"On sale order line with product '%s', the number of days is negative (%d) ; "
+"this is not allowed. The number of days has been forced to 1."
 msgstr ""
 "L'ordine di vendita per il prodotto '%s' ha un numero di giorni negativo : "
 "questo no e' permesso."
 
 #. module: sale_start_end_dates
-#: code:addons/sale_start_end_dates/models/sale.py:83
-#, python-format
-msgid ""
-"On the sale order line with Product '%s', there are %d days between the "
-"Start Date (%s) and the End Date (%s), but the number of days field has a "
-"value of %d days."
-msgstr ""
-"L'ordine di vendita del prodotto '%s', ha un %d giorni tra la data di inizio "
-"(%s) e quella di fine (%s), ma il campo \"numero di giorni\" ha un valore di "
-"%d."
-
-#. module: sale_start_end_dates
 #: model:ir.model,name:sale_start_end_dates.model_sale_order
-msgid "Quotation"
-msgstr ""
+#, fuzzy
+#| msgid "Sales Order"
+msgid "Sale Order"
+msgstr "Ordini vendita"
 
 #. module: sale_start_end_dates
 #: model:ir.model,name:sale_start_end_dates.model_sale_order_line
@@ -111,12 +101,12 @@ msgid "Sales Order Line"
 msgstr "Linea d'ordine di vendita"
 
 #. module: sale_start_end_dates
-#: model:ir.model.fields,field_description:sale_start_end_dates.field_sale_order_line_start_date
+#: model:ir.model.fields,field_description:sale_start_end_dates.field_sale_order_line__start_date
 msgid "Start Date"
 msgstr "Data di inizio"
 
 #. module: sale_start_end_dates
-#: code:addons/sale_start_end_dates/models/sale.py:70
+#: code:addons/sale_start_end_dates/models/sale_order.py:94
 #, python-format
 msgid ""
 "Start Date should be before or be the same as End Date for sale order line "
@@ -125,5 +115,22 @@ msgstr ""
 "La data di inizio deve essere antecedente o uguale alla data di fine per il "
 "prodotto %s."
 
-#~ msgid "Sales Order"
-#~ msgstr "Ordini vendita"
+#. module: sale_start_end_dates
+#: code:addons/sale_start_end_dates/models/sale_order.py:67
+#, fuzzy, python-format
+#| msgid "Number of Days"
+msgid "Wrong number of days"
+msgstr "Numero di giorni"
+
+#~ msgid "Missing number of days for sale order line with Product '%s'."
+#~ msgstr ""
+#~ "Mancano i numeri di giorni nell'ordine di vendita per il prodotto '%s'"
+
+#~ msgid ""
+#~ "On the sale order line with Product '%s', there are %d days between the "
+#~ "Start Date (%s) and the End Date (%s), but the number of days field has a "
+#~ "value of %d days."
+#~ msgstr ""
+#~ "L'ordine di vendita del prodotto '%s', ha un %d giorni tra la data di "
+#~ "inizio (%s) e quella di fine (%s), ma il campo \"numero di giorni\" ha un "
+#~ "valore di %d."
