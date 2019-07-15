@@ -56,7 +56,7 @@ class SaleOrderLine(models.Model):
         for line in self:
             days = False
             if line.start_date and line.end_date:
-                days = (self.end_date - self.start_date).days + 1
+                days = (line.end_date - line.start_date).days + 1
             line.number_of_days = days
 
     @api.onchange('number_of_days')
