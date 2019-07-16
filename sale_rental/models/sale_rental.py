@@ -13,20 +13,22 @@ class SaleRental(models.Model):
     _name = 'sale.rental'
     _description = 'Rental'
     _order = 'id desc'
-    _rec_name = 'display_name'
 
     @api.depends(
         'start_order_line_id', 'extension_order_line_ids.end_date',
         'extension_order_line_ids.state', 'start_order_line_id.end_date')
-    def _compute_display_name_field(self):
+    def name_get(self):
+        res = []
         for rental in self:
-            rental.display_name = '[%s] %s - %s > %s (%s)' % (
+            name = '[%s] %s - %s > %s (%s)' % (
                 rental.partner_id.name,
                 rental.rented_product_id.name,
                 rental.start_date,
                 rental.end_date,
                 rental._fields['state'].convert_to_export(rental.state, rental)
             )
+            res.append((rental.id, name))
+        return res
 
     @api.depends(
         'sell_order_line_ids.move_ids.state',
@@ -65,7 +67,7 @@ class SaleRental(models.Model):
                             state = 'sold'
                         elif sell_move.state == 'cancel':
                             state = 'out'
-                if rental.start_order_line_id.order_id.state == 'cancel':
+                if rental.start_order_line_id.state == 'cancel':
                     state = 'cancel'
             rental.in_move_id = in_move
             rental.out_move_id = out_move
@@ -83,15 +85,14 @@ class SaleRental(models.Model):
                 end_date = rental.start_order_line_id.end_date
 
             for extension in rental.extension_order_line_ids:
-                if extension.state not in ('cancel', 'draft') and end_date and\
-                        extension.end_date > end_date:
+                if (
+                        extension.state in ('sale', 'done') and
+                        end_date and
+                        extension.end_date and
+                        extension.end_date > end_date):
                     end_date = extension.end_date
-            if end_date:
-                rental.end_date = end_date
+            rental.end_date = end_date
 
-    display_name = fields.Char(
-        compute='_compute_display_name_field', string='Display Name',
-        readonly=True)
     start_order_line_id = fields.Many2one(
         'sale.order.line', string='Rental SO Line', readonly=True)
     start_date = fields.Date(
