@@ -6,13 +6,15 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 11.0\n"
 "Report-Msgid-Bugs-To: \n"
-"Last-Translator: Automatically generated\n"
+"PO-Revision-Date: 2019-07-17 11:43+0000\n"
+"Last-Translator: Maria Sparenberg <maria.sparenberg@gmx.net>\n"
 "Language-Team: none\n"
 "Language: de\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: Weblate 3.7.1\n"
 
 #. module: product_supplierinfo_for_customer_sale
 #: model:ir.ui.view,arch_db:product_supplierinfo_for_customer_sale.product_supplierinfo_search_view
@@ -27,7 +29,7 @@ msgstr ""
 #. module: product_supplierinfo_for_customer_sale
 #: model:ir.model,name:product_supplierinfo_for_customer_sale.model_product_product
 msgid "Product"
-msgstr ""
+msgstr "Produkt"
 
 #. module: product_supplierinfo_for_customer_sale
 #: model:ir.model.fields,field_description:product_supplierinfo_for_customer_sale.field_sale_order_line_product_customer_code
