@@ -242,14 +242,17 @@ class CreateSaleOrderWizard(models.TransientModel):
         if not self.line_ids or self.confirm_without_master:
             sale_line = self.env['sale.order.line'].search([
                 ('request_line_id', '=', self.request_line_id.id)])
+            required_qty = self.request_line_id.product_qty
+            remaining_qty = self.request_line_id.remaining_product_qty
             if sale_line:
-                raise UserError(
-                    _('Error! The quantity to sale is greather than'
-                        ' the requested quantity.'))
+                if not required_qty > remaining_qty:
+                    raise UserError(
+                        _('Error! The quantity to sale is greather than'
+                            ' the requested quantity.'))
             order = self._get_sale_order(request_line)
             so_obj |= order
             params = {
-                'qty_to_sale': request_line.product_qty,
+                'qty_to_sale': remaining_qty,
                 'product_uom': request_line.product_uom_id.id,
                 'sale_line_id': False,
             }
