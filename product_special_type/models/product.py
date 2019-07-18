@@ -4,15 +4,15 @@
 from odoo import fields, models
 
 
-class product_template(models.Model):
+class ProductTemplate(models.Model):
 
     _inherit = 'product.template'
 
-	special_type = fields.selection([
-		('discount', 'Global Discount'),
-      	('advance', 'Advance'),
-		('delivery', 'Delivery Costs')],
-		string='Special Type',
-		help="""Special products will not be displayed on invoices printed
-		reports but will be summed in the totals.""")
+    special_type = fields.selection([('discount', 'Global Discount'),
+                                     ('advance', 'Advance'),
+                                     ('delivery', 'Delivery Costs')],
+                                    string='Special Type',
+                                    help="""Special products will not be
+                                    displayed on invoices printed reports
+                                    but will be summed in the totals.""")
 
