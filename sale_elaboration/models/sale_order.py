@@ -70,3 +70,9 @@ class SaleOrderLine(models.Model):
         if self.is_elaboration:
             vals['name'] = '{} - {}'.format(self.order_id.name, self.name)
         return vals
+
+    @api.onchange('product_id')
+    def product_id_change(self):
+        result = super().product_id_change()
+        self.is_elaboration = self.product_id.is_elaboration
+        return result
