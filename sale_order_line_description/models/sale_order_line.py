@@ -17,7 +17,10 @@ class SaleOrderLine(models.Model):
                 'sale_order_line_description.'
                 'group_use_product_description_per_so_line') and
                 self.product_id.description_sale):
-            self.name = self.product_id.with_context(
-                lang=self.order_id.partner_id.lang,
-            ).description_sale
+            product = self.product_id
+            if self.order_id.partner_id:
+                product = product.with_context(
+                    lang=self.order_id.partner_id.lang,
+                )
+            self.name = product.description_sale
         return res
