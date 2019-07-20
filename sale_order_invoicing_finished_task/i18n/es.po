@@ -20,22 +20,24 @@ msgstr ""
 "X-Generator: Poedit 1.8.7.1\n"
 
 #. module: sale_order_invoicing_finished_task
-#: model:ir.model.fields,help:sale_order_invoicing_finished_task.field_product_product_invoicing_finished_task
-#: model:ir.model.fields,help:sale_order_invoicing_finished_task.field_product_template_invoicing_finished_task
-#: model:ir.model.fields,help:sale_order_invoicing_finished_task.field_project_task_invoicing_finished_task
+#: model:ir.model.fields,help:sale_order_invoicing_finished_task.field_product_product__invoicing_finished_task
+#: model:ir.model.fields,help:sale_order_invoicing_finished_task.field_product_template__invoicing_finished_task
+#: model:ir.model.fields,help:sale_order_invoicing_finished_task.field_project_task__invoicing_finished_task
 msgid "Invoice the order lines only when the task is set to invoiceable"
-msgstr "Se facturan las lineas de pedido solo cuando la tarea esta marcada como facturable"
+msgstr ""
+"Se facturan las lineas de pedido solo cuando la tarea esta marcada como "
+"facturable"
 
 #. module: sale_order_invoicing_finished_task
-#: model:ir.model.fields,field_description:sale_order_invoicing_finished_task.field_project_task_invoiceable
-#: model:ir.model.fields,field_description:sale_order_invoicing_finished_task.field_project_task_type_invoiceable
+#: model:ir.model.fields,field_description:sale_order_invoicing_finished_task.field_project_task__invoiceable
+#: model:ir.model.fields,field_description:sale_order_invoicing_finished_task.field_project_task_type__invoiceable
 msgid "Invoiceable"
 msgstr "Facturable"
 
 #. module: sale_order_invoicing_finished_task
-#: model:ir.model.fields,field_description:sale_order_invoicing_finished_task.field_product_product_invoicing_finished_task
-#: model:ir.model.fields,field_description:sale_order_invoicing_finished_task.field_product_template_invoicing_finished_task
-#: model:ir.model.fields,field_description:sale_order_invoicing_finished_task.field_project_task_invoicing_finished_task
+#: model:ir.model.fields,field_description:sale_order_invoicing_finished_task.field_product_product__invoicing_finished_task
+#: model:ir.model.fields,field_description:sale_order_invoicing_finished_task.field_product_template__invoicing_finished_task
+#: model:ir.model.fields,field_description:sale_order_invoicing_finished_task.field_project_task__invoicing_finished_task
 msgid "Invoicing control by task"
 msgstr "Control de facturación por tarea"
 
@@ -46,8 +48,10 @@ msgstr "Plantilla de producto"
 
 #. module: sale_order_invoicing_finished_task
 #: model:ir.model,name:sale_order_invoicing_finished_task.model_sale_order
-msgid "Quotation"
-msgstr "Presupuesto"
+#, fuzzy
+#| msgid "Sales Order Line"
+msgid "Sale Order"
+msgstr "Línea de pedido de venta"
 
 #. module: sale_order_invoicing_finished_task
 #: model:ir.model,name:sale_order_invoicing_finished_task.model_sale_order_line
@@ -65,12 +69,19 @@ msgid "Task Stage"
 msgstr "Etapa de la tarea"
 
 #. module: sale_order_invoicing_finished_task
-#: model:ir.model.fields,field_description:sale_order_invoicing_finished_task.field_sale_order_line_task_ids
+#: model:ir.model.fields,field_description:sale_order_invoicing_finished_task.field_sale_order_line__task_ids
 msgid "Tasks"
 msgstr "Tareas"
 
 #. module: sale_order_invoicing_finished_task
 #: code:addons/sale_order_invoicing_finished_task/models/project.py:65
 #, python-format
-msgid "You cannot create/modify a task related with a invoiced, done or cancel sale order line "
-msgstr "No puede crear/modificar una tarea relacionada con una línea de pedido facturada, realizada o cancelada"
+msgid ""
+"You cannot create/modify a task related with a invoiced, done or cancel sale "
+"order line "
+msgstr ""
+"No puede crear/modificar una tarea relacionada con una línea de pedido "
+"facturada, realizada o cancelada"
+
+#~ msgid "Quotation"
+#~ msgstr "Presupuesto"
