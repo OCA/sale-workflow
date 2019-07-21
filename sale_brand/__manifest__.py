@@ -15,7 +15,6 @@
     ],
     "data": [
         "views/sale_views.xml",
-        "views/report_template.xml",
     ],
     "installable": True,
     "development_status": "Beta",
