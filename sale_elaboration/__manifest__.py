@@ -3,7 +3,7 @@
 {
     'name': 'Sale Elaboration',
     'summary': 'Set an elaboration for any sale line',
-    'version': '11.0.1.0.0',
+    'version': '11.0.1.0.1',
     'development_status': 'Beta',
     'category': 'Sale',
     'website': 'https://github.com/OCA/sale-workflow',
