@@ -20,12 +20,14 @@ class TestSaleElaboration(SavepointCase):
             'type': 'service',
             'list_price': 50.0,
             'invoice_policy': 'order',
+            'is_elaboration': True,
         })
         cls.product_elaboration_B = cls.env['product.product'].create({
             'name': 'Product Elaboration B',
             'type': 'service',
             'list_price': 25.0,
             'invoice_policy': 'order',
+            'is_elaboration': True,
         })
         cls.pricelist = cls.env['product.pricelist'].create({
             'name': 'Test pricelist',
