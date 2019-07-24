@@ -289,6 +289,8 @@ class SaleRequestLine(models.Model):
     def _onchange_product_id_check_availability(self):
         if not self.product_id or not self.product_qty:
             return {}
+        if self.user_has_groups('sale_request.group_allow_request_no_stock'):
+            return {}
         if self.product_id.type == 'product':
             precision = self.env['decimal.precision'].precision_get(
                 'Product Unit of Measure')
