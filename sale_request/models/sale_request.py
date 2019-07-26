@@ -402,11 +402,12 @@ class SaleRequestLine(models.Model):
                     parent_ids = self._recursive_search_of_components(
                         component.product_id.bom_ids, products)
                 if not component.product_id.bom_ids:
-                    dict_component = {
-                        'product_id':component.product_id,
-                        'product_qty': component.product_qty,
-                    }
-                    products.append(dict_component)
+                    if component.product_id.type == 'product':
+                        dict_component = {
+                            'product_id': component.product_id,
+                            'product_qty': component.product_qty,
+                        }
+                        products.append(dict_component)
             return products
 
     def _check_routing(self):
