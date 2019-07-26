@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 12.0+e\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-07-04 20:25+0000\n"
-"PO-Revision-Date: 2019-07-04 20:25+0000\n"
+"POT-Creation-Date: 2019-07-26 14:27+0000\n"
+"PO-Revision-Date: 2019-07-26 14:27+0000\n"
 "Last-Translator: <>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -16,7 +16,15 @@ msgstr ""
 "Plural-Forms: \n"
 
 #. module: sale_request
-#: code:addons/sale_request/models/sale_request.py:328
+#: code:addons/sale_request/models/sale_request.py:390
+#, python-format
+msgid "\n"
+"Name: %s, Available: %s, Demand: %s"
+msgstr "\n"
+"Nombre: %s, Disponibilidad: %s, Demanda: %s"
+
+#. module: sale_request
+#: code:addons/sale_request/models/sale_request.py:341
 #, python-format
 msgid "\n"
 "There are %s %s available across allwarehouses.\n"
@@ -209,14 +217,14 @@ msgstr "Editar precio de la línea de Pedido de Venta"
 
 #. module: sale_request
 #: code:addons/sale_request/wizards/create_sale_order_wizard.py:87
-#: code:addons/sale_request/wizards/create_sale_order_wizard.py:359
+#: code:addons/sale_request/wizards/create_sale_order_wizard.py:362
 #, python-format
 msgid "Error!"
 msgstr ""
 
 #. module: sale_request
 #: code:addons/sale_request/wizards/create_sale_order_wizard.py:232
-#: code:addons/sale_request/wizards/create_sale_order_wizard.py:247
+#: code:addons/sale_request/wizards/create_sale_order_wizard.py:250
 #, python-format
 msgid "Error! The quantity to sale is greather than the requested quantity."
 msgstr "¡Error! La cantidad a vender es mayor que la cantidad requerida."
@@ -383,10 +391,10 @@ msgid "Main Attachment"
 msgstr "Adjuntos principales"
 
 #. module: sale_request
-#: code:addons/sale_request/models/sale_request.py:369
+#: code:addons/sale_request/models/sale_request.py:427
 #, python-format
 msgid "Make To Order"
-msgstr "Fabricacion"
+msgstr "Bajo Pedido"
 
 #. module: sale_request
 #: model:res.groups,name:sale_request.group_sale_request_manager
@@ -464,7 +472,7 @@ msgid "Next Activity Type"
 msgstr "Siguiente tipo de actividad"
 
 #. module: sale_request
-#: code:addons/sale_request/models/sale_request.py:350
+#: code:addons/sale_request/models/sale_request.py:363
 #, python-format
 msgid "Not enough inventory! \n"
 " %s"
@@ -653,8 +661,8 @@ msgid "Responsible User"
 msgstr "Usuario responsable"
 
 #. module: sale_request
-#: code:addons/sale_request/wizards/create_sale_order_wizard.py:288
-#: code:addons/sale_request/wizards/link_sale_order_wizard.py:89
+#: code:addons/sale_request/wizards/create_sale_order_wizard.py:291
+#: code:addons/sale_request/wizards/link_sale_order_wizard.py:90
 #: model:ir.model,name:sale_request.model_sale_order
 #: model:ir.model.fields,field_description:sale_request.field_create_sale_order_wizard_line__order_id
 #, python-format
@@ -680,7 +688,7 @@ msgstr "Líneas de Pedido de venta generadas desde requisiciones de venta ligada
 
 #. module: sale_request
 #: code:addons/sale_request/models/sale_request.py:173
-#: code:addons/sale_request/models/sale_request.py:393
+#: code:addons/sale_request/models/sale_request.py:451
 #, python-format
 msgid "Sale Orders"
 msgstr "Ordenes de Venta"
@@ -880,10 +888,18 @@ msgstr "No puede solicitar más cantidad que la demanda inicial de esta requisic
 
 #. module: sale_request
 #: code:addons/sale_request/wizards/create_sale_order_wizard.py:222
-#: code:addons/sale_request/wizards/create_sale_order_wizard.py:360
+#: code:addons/sale_request/wizards/create_sale_order_wizard.py:363
 #, python-format
 msgid "You cannot request more than the remaining qty of this master sale order."
 msgstr "No puedes requerir más que la cantidad restante de este pedido master."
+
+#. module: sale_request
+#: code:addons/sale_request/models/sale_request.py:394
+#, python-format
+msgid "You do not have enougth stock of these components:\n"
+" %s"
+msgstr "No tienes sufieciente stock en los siguientes componentes:\n"
+" %s"
 
 #. module: sale_request
 #: code:addons/sale_request/wizards/create_sale_order_wizard.py:240
@@ -892,7 +908,7 @@ msgid "You have not defined the quantity to sale to any master order, please def
 msgstr "No ha definido la cantidad a vender a ningún pedido maestro, por favor defínalo."
 
 #. module: sale_request
-#: code:addons/sale_request/models/sale_request.py:310
+#: code:addons/sale_request/models/sale_request.py:323
 #, python-format
 msgid "You plan to sell %s %s of %s but you only have%s %s available in %s warehouse."
 msgstr "Planeas vender %s %s de %s pero tu solo tienes %s %s disponible en el %s Almacen."
