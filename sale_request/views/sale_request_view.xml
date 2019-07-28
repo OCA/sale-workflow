@@ -54,12 +54,13 @@
                     <group>
                         <group>
                             <field name="partner_id" attrs="{'readonly': [('state', '!=', 'draft')]}"/>
+                            <field name="partner_shipping_id" attrs="{'readonly': [('state', '!=', 'draft')]}"/>
                         </group>
                         <group>
                             <field name="date" attrs="{'readonly': [('state', '!=', 'draft')]}"/>
                             <field name="company_id" attrs="{'readonly': [('state', '!=', 'draft')]}" groups="base.group_multi_company" widget="selection"/>
-                            <field name="warehouse_id"/>
-                            <field name="route_id" groups="sale_request.group_allow_request_no_stock"/>
+                            <field name="warehouse_id" attrs="{'readonly': [('state', '!=', 'draft')]}"/>
+                            <field name="route_id" groups="sale_request.group_allow_request_no_stock" attrs="{'readonly': [('state', '!=', 'draft')]}"/>
                         </group>
                     </group>
                     <group>

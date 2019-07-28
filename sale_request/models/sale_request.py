@@ -36,7 +36,7 @@ class SaleRequest(models.Model):
         comodel_name='res.partner',
         string='Customer',
         required=True,
-        domain=[('customer', '=', True)],
+        domain=[('customer', '=', True), ('parent_id', '=', False)],
     )
     state = fields.Selection([
         ('draft', 'Draft'),
@@ -91,11 +91,24 @@ class SaleRequest(models.Model):
         domain=[('sale_selectable', '=', True)],
         ondelete='restrict',
     )
+    partner_shipping_id = fields.Many2one(
+        comodel_name='res.partner',
+        required=True,
+        string='Shipping Address',
+    )
 
     _sql_constraints = [
         ('name_uniq', 'unique(name, company_id)',
          'Reference must be unique per Company!'),
     ]
+
+    @api.onchange('partner_id')
+    def _onchange_partner_id(self):
+        partner_shipping = self.partner_id
+        if self.partner_id.child_ids:
+            partner_shipping = self.partner_id.child_ids.filtered(
+                lambda p: p.type == 'delivery')[0]
+        self.partner_shipping_id = partner_shipping
 
     @api.multi
     def _compute_sale_ids(self):
