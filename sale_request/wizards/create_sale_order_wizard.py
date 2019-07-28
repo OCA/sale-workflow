@@ -189,6 +189,9 @@ class CreateSaleOrderWizard(models.TransientModel):
     def _prepare_sale_order_line(self, order, params):
         request_line = self.request_line_id
         product = request_line.product_id
+        route_id = False
+        if request_line.request_id.route_id:
+            route_id = request_line.request_id.route_id.id
         taxes = product.taxes_id
         if order.fiscal_position_id:
             taxes = order.fiscal_position_id.map_tax(taxes, product)
@@ -205,6 +208,7 @@ class CreateSaleOrderWizard(models.TransientModel):
             'product_uom_qty': params['qty_to_sale'],
             'product_uom': params['product_uom'],
             'request_line_id': request_line.id,
+            'route_id': route_id,
             'parent_id': params['sale_line_id'],
             'order_id': order.id,
             'tax_id': [(6, 0, taxes.ids)],

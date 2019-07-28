@@ -86,6 +86,11 @@ class SaleRequest(models.Model):
         string='Warehouse',
         required=True,
     )
+    route_id = fields.Many2one(
+        comodel_name='stock.location.route',
+        domain=[('sale_selectable', '=', True)],
+        ondelete='restrict',
+    )
 
     _sql_constraints = [
         ('name_uniq', 'unique(name, company_id)',
@@ -289,7 +294,7 @@ class SaleRequestLine(models.Model):
     def _onchange_product_id_check_availability(self):
         if not self.product_id or not self.product_qty:
             return {}
-        if self.user_has_groups('sale_request.group_allow_request_no_stock'):
+        if self.request_id.route_id:
             return {}
         if self.product_id.type == 'product':
             products = []
