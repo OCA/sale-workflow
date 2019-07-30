@@ -54,6 +54,11 @@ msgid "Created on"
 msgstr "Được tạo vào"
 
 #. module: sale_product_set
+#: model:ir.model.fields,field_description:sale_product_set.field_product_set_line_discount
+msgid "Discount (%)"
+msgstr ""
+
+#. module: sale_product_set
 #: model:ir.model.fields,field_description:sale_product_set.field_product_set_add_display_name
 #: model:ir.model.fields,field_description:sale_product_set.field_product_set_display_name
 #: model:ir.model.fields,field_description:sale_product_set.field_product_set_line_display_name
