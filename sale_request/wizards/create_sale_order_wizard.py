@@ -77,8 +77,7 @@ class CreateSaleOrderWizard(models.TransientModel):
             remaining_product_qty = self.request_line_id.remaining_product_qty
             qty_to_sale = 0.0
             for line in self.line_ids:
-                qty_to_sale += line.product_uom_id._compute_quantity(
-                    line.qty_to_sale, self.product_uom_id)
+                qty_to_sale += line.qty_to_sale
             new_remaining_qty = remaining_product_qty - qty_to_sale
             if new_remaining_qty < 0:
                 self.remaining_product_qty = remaining_product_qty
@@ -227,8 +226,7 @@ class CreateSaleOrderWizard(models.TransientModel):
                 raise UserError(_(
                     'You cannot request more than the remaining qty of this'
                     ' master sale order.'))
-            qty_to_sale += line.product_uom_id._compute_quantity(
-                line.qty_to_sale, self.product_uom_id)
+            qty_to_sale += line.qty_to_sale
         # I add this conditional because of when dont have master request but
         # the quantity to invoice is not full has a bug
         if self.line_ids:
