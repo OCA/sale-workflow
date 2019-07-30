@@ -42,6 +42,7 @@ class ProductSetAd(models.TransientModel):
             'product_uom_qty': set_line.quantity * self.quantity,
             'product_uom': set_line.product_id.uom_id.id,
             'sequence': max_sequence + set_line.sequence,
+            'discount': set_line.discount,
         })
         sale_line.product_id_change()
         line_values = sale_line._convert_to_write(sale_line._cache)
