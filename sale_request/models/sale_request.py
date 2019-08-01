@@ -413,10 +413,10 @@ class SaleRequestLine(models.Model):
 
     @api.multi
     def _recursive_search_of_components(self, boms, products):
-        if boms.type == 'phantom':
+        if 'phantom' in boms.mapped('type'):
             for component in boms.bom_line_ids:
-                if component.product_id.bom_ids.mapped('type') in ['phantom']:
-                    parent_ids = self._recursive_search_of_components(
+                if 'phantom' in component.product_id.bom_ids.mapped('type'):
+                    self._recursive_search_of_components(
                         component.product_id.bom_ids, products)
                 elif component.product_id.type == 'product':
                     dict_component = {
