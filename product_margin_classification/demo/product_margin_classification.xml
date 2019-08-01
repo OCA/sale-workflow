@@ -5,7 +5,7 @@ Copyright (C) 2016-Today GRAP (http://www.grap.coop)
 License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
 -->
 
-<openerp><data>
+<odoo>
 
     <record id="classification_normal_margin" model="product.margin.classification">
         <field name="name">Normal Margin</field>
@@ -21,4 +21,4 @@ License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
         <field name="price_surcharge">-0.05</field>
     </record>
 
-</data></openerp>
+</odoo>

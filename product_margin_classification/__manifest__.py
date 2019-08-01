@@ -5,11 +5,26 @@
 
 {
     'name': 'Product Margin Classification',
-    'version': '8.0.2.1.0',
+    'version': '10.0.1.0.0',
     'category': 'Account',
     'author': 'GRAP,Odoo Community Association (OCA)',
-    'website': 'http://www.grap.coop',
+    'website': 'https://github.com/OCA/sale-workflow',
     'license': 'AGPL-3',
+    'description': """
+This module is designed to extend Sale Price computation in Odoo.
+
+This module add a new model 'Margin Classifications' linked to Product
+Templates.
+
+A margin classification has a 'Profit Margin' field and extra fields to manage
+computation method, like in Pricelist Item model
+(Markup Rate, Rounding and Surcharge fields)
+
+If product has a margin classification defined and the theoretical price is
+not the same as the sale price, an extra field 'Theoretical Price' is
+displayed, based on the Margin Classification and a button is available to
+change sale price.
+""",
     'depends': [
         'account',
     ],
@@ -23,7 +38,7 @@
         'views/view_product_margin_classification.xml',
     ],
     'demo': [
-        'demo/res_groups.yml',
+        'demo/res_groups.xml',
         'demo/product_margin_classification.xml',
         'demo/product_template.xml',
     ],

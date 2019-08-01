@@ -5,7 +5,7 @@ Copyright (C) 2016-Today GRAP (http://www.grap.coop)
 License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
 -->
 
-<openerp><data>
+<odoo>
 
     <record id="view_product_template_tree" model="ir.ui.view">
         <field name="model">product.template</field>
@@ -35,10 +35,6 @@ License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
             <field name="categ_id" position="after">
                 <field name="margin_classification_id" />
             </field>
-            <xpath expr="//filter[@string='Type']" position="after">
-                <filter name="group_by_margin_classification_id" string="Margin Classifications"
-                    context="{'group_by': 'margin_classification_id'}" />
-            </xpath>
         </field>
     </record>
 
@@ -65,4 +61,4 @@ License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
         </field>
     </record>
 
-</data></openerp>
+</odoo>

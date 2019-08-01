@@ -5,7 +5,7 @@ Copyright (C) 2016-Today GRAP (http://www.grap.coop)
 License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
 -->
 
-<openerp><data>
+<odoo>
 
     <record id="rule_product_margin_classification" model="ir.rule">
         <field name="name">Product Margin Classification Rule</field>
@@ -14,4 +14,4 @@ License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
         <field name="domain_force">['|', ('company_id', '=', user.company_id.id), ('company_id','=',False)]</field>
     </record>
 
-</data></openerp>
+</odoo>

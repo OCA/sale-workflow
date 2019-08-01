@@ -5,11 +5,13 @@ Copyright (C) 2016-Today GRAP (http://www.grap.coop)
 License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
 -->
 
-<openerp><data>
+<odoo>
+<data noupdate="1">
 
     <record forcecreate="True" id="decimal_margin" model="decimal.precision">
         <field name="name">Margin Rate</field>
         <field name="digits">4</field>
     </record>
 
-</data></openerp>
+</data>
+</odoo>

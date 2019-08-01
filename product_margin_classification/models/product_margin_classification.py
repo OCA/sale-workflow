@@ -3,9 +3,9 @@
 # @author: Sylvain LE GAL (https://twitter.com/legalsylvain)
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
 
-from openerp import _, api, fields, models
-from openerp.exceptions import Warning as UserError
-import openerp.addons.decimal_precision as dp
+from odoo import _, api, fields, models
+from odoo.exceptions import Warning as UserError
+import odoo.addons.decimal_precision as dp
 
 
 class ProductMarginClassification(models.Model):

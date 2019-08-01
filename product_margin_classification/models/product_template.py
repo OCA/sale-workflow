@@ -3,9 +3,9 @@
 # @author: Sylvain LE GAL (https://twitter.com/legalsylvain)
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
 
-from openerp import _, api, fields, models, tools
-from openerp.exceptions import Warning as UserError
-import openerp.addons.decimal_precision as dp
+from odoo import _, api, fields, models, tools
+from odoo.exceptions import Warning as UserError
+import odoo.addons.decimal_precision as dp
 
 
 class ProductTemplate(models.Model):
@@ -49,7 +49,8 @@ class ProductTemplate(models.Model):
             classification = template.margin_classification_id
             if classification:
                 multi = 1 + classification.markup
-                if template.taxes_id.filtered(lambda x: x.type != 'percent'):
+                if template.taxes_id.filtered(
+                        lambda x: x.amount_type != 'percent'):
                     raise UserError(_(
                         "Unimplemented Feature\n"
                         "The sale taxes are not correctly set for computing"
@@ -57,7 +58,7 @@ class ProductTemplate(models.Model):
                         template.name))
                 for tax in template.taxes_id.filtered(
                         lambda x: x.price_include):
-                    multi *= 1 + tax.amount
+                    multi *= 1 + tax.amount / 100.0
                 template.theoretical_price = tools.float_round(
                     template.standard_price * multi,
                     precision_rounding=classification.price_round) +\
