@@ -10,7 +10,7 @@ not the same as the sale price, an extra field 'Theoretical Price' is
 displayed, based on the Margin Classification and a button is available to
 change sale price.
 
-.. image:: /product_margin_classification/static/description/product_template_form.png
+.. image:: ../static/description/product_template_form.png
 
 On the Margin classification Form, user can change computation fields.
 (Margin, Rounding method, ...) 
@@ -19,11 +19,11 @@ Three buttons are available to apply theoretical prices:
 * only for products that are too expensive
 * only for products that are too cheap
 
-.. image:: /product_margin_classification/static/description/margin_classification_form.png
+.. image:: ../static/description/margin_classification_form.png
 
 User can so see easily products with incorrect margins in the tree views, and in the menu:
 
-.. image:: /product_margin_classification/static/description/margin_classification_tree.png
+.. image:: ../static/description/margin_classification_tree.png
 
 This module use both [Markup](https://en.wikipedia.org/wiki/Markup_(business))
 and [Profit Margin](https://en.wikipedia.org/wiki/Profit_margin) concepts.

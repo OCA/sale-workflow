@@ -62,7 +62,7 @@ class ProductMarginClassification(models.Model):
 
     price_round = fields.Float(
         string='Price Rounding',
-        digits_compute=dp.get_precision('Product Price'),
+        digits=dp.get_precision('Product Price'),
         default=lambda s: s._default_price_round(),
         help="Sets the price so that it is a multiple of this value.\n"
         "Rounding is applied after the margin and before the surcharge.\n"
@@ -70,7 +70,7 @@ class ProductMarginClassification(models.Model):
 
     price_surcharge = fields.Float(
         string='Price Surcharge',
-        digits_compute=dp.get_precision('Product Price'),
+        digits=dp.get_precision('Product Price'),
         help="Specify the fixed amount to add or substract(if negative) to"
         " the amount calculated with the discount.")
 
