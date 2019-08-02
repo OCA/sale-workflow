@@ -8,15 +8,15 @@ License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
 <odoo>
 
     <record id="classification_normal_margin" model="product.margin.classification">
-        <field name="name">Normal Margin</field>
-        <field name="markup">0.3</field>
+        <field name="markup">50</field>
+        <field name="name">Normal Margin (33%)</field>
         <field name="price_round">0.05</field>
         
     </record>
 
     <record id="classification_big_margin" model="product.margin.classification">
-        <field name="name">Big Margin (with 95 cents)</field>
-        <field name="markup">0.5</field>
+        <field name="markup">100</field>
+        <field name="name">Big Margin (50%, with 95 cents)</field>
         <field name="price_round">1</field>
         <field name="price_surcharge">-0.05</field>
     </record>

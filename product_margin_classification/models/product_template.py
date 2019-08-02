@@ -12,9 +12,9 @@ class ProductTemplate(models.Model):
     _inherit = 'product.template'
 
     MARGIN_STATE_SELECTION = [
-        ('ok', 'Correct Margin'),
-        ('cheap', 'Cheaper'),
-        ('expensive', 'Too Expensive'),
+        ('correct', 'Correct Margin'),
+        ('too_cheap', 'Too Cheap'),
+        ('too_expensive', 'Too Expensive'),
     ]
 
     # Columns Section
@@ -25,17 +25,17 @@ class ProductTemplate(models.Model):
     theoretical_price = fields.Float(
         string='Theoretical Price', store=True,
         digits=dp.get_precision('Product Price'),
-        compute='_compute_theoretical_multi', multi='theoretical_multi')
+        compute='_compute_theoretical_multi')
 
     theoretical_difference = fields.Float(
         string='Theoretical Difference', store=True,
         digits=dp.get_precision('Product Price'),
-        compute='_compute_theoretical_multi', multi='theoretical_multi')
+        compute='_compute_theoretical_multi')
 
     margin_state = fields.Selection(
         string='Theoretical Price State', store=True,
         selection=MARGIN_STATE_SELECTION,
-        compute='_compute_theoretical_multi', multi='theoretical_multi')
+        compute='_compute_theoretical_multi')
 
     # Compute Section
     @api.multi
@@ -48,7 +48,7 @@ class ProductTemplate(models.Model):
         for template in self:
             classification = template.margin_classification_id
             if classification:
-                multi = 1 + classification.markup
+                multi = (100 + classification.markup) / 100
                 if template.taxes_id.filtered(
                         lambda x: x.amount_type != 'percent'):
                     raise UserError(_(
@@ -58,7 +58,7 @@ class ProductTemplate(models.Model):
                         template.name))
                 for tax in template.taxes_id.filtered(
                         lambda x: x.price_include):
-                    multi *= 1 + tax.amount / 100.0
+                    multi *= (100 + tax.amount) / 100.0
                 template.theoretical_price = tools.float_round(
                     template.standard_price * multi,
                     precision_rounding=classification.price_round) +\
@@ -70,11 +70,11 @@ class ProductTemplate(models.Model):
                 difference = 0
             template.theoretical_difference = difference
             if difference < 0:
-                template.margin_state = 'cheap'
+                template.margin_state = 'too_cheap'
             elif difference > 0:
-                template.margin_state = 'expensive'
+                template.margin_state = 'too_expensive'
             else:
-                template.margin_state = 'ok'
+                template.margin_state = 'correct'
 
     # Custom Section
     @api.multi

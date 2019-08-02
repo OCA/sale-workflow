@@ -5,13 +5,12 @@
 
 {
     'name': 'Product Margin Classification',
-    'version': '10.0.1.0.0',
+    'version': '10.0.2.0.0',
     'category': 'Account',
     'author': 'GRAP,Odoo Community Association (OCA)',
     'website': 'https://github.com/OCA/sale-workflow',
     'license': 'AGPL-3',
     'depends': [
-        'account',
         'sale',
         'sales_team',
     ],
@@ -19,8 +18,6 @@
         'security/ir_rule.xml',
         'security/ir.model.access.csv',
         'data/decimal_precision.xml',
-        'views/action.xml',
-        'views/menu.xml',
         'views/view_product_template.xml',
         'views/view_product_margin_classification.xml',
     ],

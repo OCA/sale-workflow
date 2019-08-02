@@ -15,18 +15,18 @@ class ProductMarginClassification(models.Model):
     # View Section
     @api.model
     def _needaction_count(self, domain=None, context=None):
-        return sum(self.search([]).mapped('template_different_price_qty'))
+        return sum(self.search([]).mapped('template_incorrect_price_qty'))
 
     # Column Section
     name = fields.Char(string='Name', required=True)
 
     markup = fields.Float(
-        string='Markup', required=True, old_name='margin',
+        string='Markup', old_name='margin', required=True,
         digits=dp.get_precision('Margin Rate'),
         help="Value that help you to compute the sale price, based on your"
-        " cost, as defined: Sale Price = (Cost * (1 + Markup))\n"
+        " cost, as defined: Sale Price = (Cost * (100 + Markup)) / 100\n"
         "It is computed with the following formula"
-        " Markup = (Sale Price - Cost) / Cost")
+        " Markup = 100 * (Sale Price - Cost) / Cost")
 
     profit_margin = fields.Float(
         string='Profit Margin', compute='_compute_profit_margin',
@@ -34,7 +34,7 @@ class ProductMarginClassification(models.Model):
         digits=dp.get_precision('Margin Rate'),
         help="Also called 'Net margin' or 'Net Profit Ratio'.\n"
         "It is computed with the following formula"
-        " Profit Margin = (Sale Price - Cost) / Sale Price")
+        " Profit Margin = 100 * (Sale Price - Cost) / Sale Price")
 
     company_id = fields.Many2one(
         comodel_name='res.company', string='Company',
@@ -42,22 +42,26 @@ class ProductMarginClassification(models.Model):
 
     template_ids = fields.One2many(
         string='Products', comodel_name='product.template',
-        inverse_name='margin_classification_id', readonly=True)
+        inverse_name='margin_classification_id')
 
     template_qty = fields.Integer(
         string='Products Quantity', compute='_compute_template_qty',
         store=True)
 
-    template_different_price_qty = fields.Integer(
-        string='Total Products With Different Price', multi='differente_price',
+    template_correct_price_qty = fields.Integer(
+        string='Total Products With Correct Price',
         store=True, compute='_compute_template_different_price_qty')
 
-    template_cheap_qty = fields.Integer(
-        string='Products Cheaper', multi='differente_price',
+    template_incorrect_price_qty = fields.Integer(
+        string='Total Products With Incorrect Price',
         store=True, compute='_compute_template_different_price_qty')
 
-    template_expensive_qty = fields.Integer(
-        string='Products Too Expensive', multi='differente_price',
+    template_too_cheap_qty = fields.Integer(
+        string='Total Products Too Cheap',
+        store=True, compute='_compute_template_different_price_qty')
+
+    template_too_expensive_qty = fields.Integer(
+        string='Total Products Too Expensive',
         store=True, compute='_compute_template_different_price_qty')
 
     price_round = fields.Float(
@@ -88,8 +92,8 @@ class ProductMarginClassification(models.Model):
     @api.constrains('markup')
     def _check_markup(self):
         for classification in self:
-            if classification.markup == -1:
-                raise UserError(_("-1 is not a valid Markup."))
+            if classification.markup == -100:
+                raise UserError(_("-100 is not a valid Markup."))
 
     @api.multi
     def _inverse_profit_margin(self):
@@ -98,32 +102,37 @@ class ProductMarginClassification(models.Model):
     @api.onchange('profit_margin')
     def _onchange_profit_margin(self):
         for classification in self:
-            if classification.profit_margin == 1:
-                raise UserError(_("1 is not a valid Profit Margin."))
-            classification.markup = 1 * (classification.profit_margin / (
-                1 - classification.profit_margin))
+            if classification.profit_margin == 100:
+                raise UserError(_("100 is not a valid Profit Margin."))
+            classification.markup = 100 * (classification.profit_margin / (
+                100 - classification.profit_margin))
 
     # Compute Section
     @api.multi
     @api.depends('markup')
     def _compute_profit_margin(self):
         for classification in self:
-            classification.profit_margin = 1 -\
-                (1 / (classification.markup + 1))
+            if classification.markup != -100:
+                classification.profit_margin = (
+                    1 -
+                    (1 / (classification.markup / 100 + 1))) * 100
 
     @api.multi
     @api.depends('template_ids.theoretical_difference')
     def _compute_template_different_price_qty(self):
         for classification in self:
-            classification.template_cheap_qty =\
+            classification.template_too_cheap_qty =\
                 classification.template_ids.mapped(
-                    'margin_state').count('cheap')
-            classification.template_expensive_qty =\
+                    'margin_state').count('too_cheap')
+            classification.template_too_expensive_qty =\
                 classification.template_ids.mapped(
-                    'margin_state').count('expensive')
-            classification.template_different_price_qty =\
-                classification.template_expensive_qty +\
-                classification.template_cheap_qty
+                    'margin_state').count('too_expensive')
+            classification.template_correct_price_qty =\
+                classification.template_ids.mapped(
+                    'margin_state').count('correct')
+            classification.template_incorrect_price_qty =\
+                classification.template_too_expensive_qty +\
+                classification.template_too_cheap_qty
 
     @api.multi
     @api.depends('template_ids.margin_classification_id')
@@ -143,21 +152,18 @@ class ProductMarginClassification(models.Model):
     # Custom Section
     @api.multi
     def _apply_theoretical_price(self, state_list):
-        template_obj = self.env['product.template']
-        for classification in self:
-            templates = template_obj.search([
-                ('margin_classification_id', '=', classification.id),
-                ('margin_state', 'in', state_list)])
-            templates.use_theoretical_price()
+        templates = self.mapped('template_ids').filtered(
+            lambda x: x.margin_state in state_list)
+        templates.use_theoretical_price()
 
     @api.multi
     def apply_theoretical_price(self):
-        self._apply_theoretical_price(['cheap', 'expensive'])
+        self._apply_theoretical_price(['too_cheap', 'too_expensive'])
 
     @api.multi
-    def apply_theoretical_price_cheap(self):
-        self._apply_theoretical_price(['cheap'])
+    def apply_theoretical_price_too_cheap(self):
+        self._apply_theoretical_price(['too_cheap'])
 
     @api.multi
-    def apply_theoretical_price_expensive(self):
-        self._apply_theoretical_price(['expensive'])
+    def apply_theoretical_price_too_expensive(self):
+        self._apply_theoretical_price(['too_expensive'])
