@@ -16,23 +16,23 @@ msgstr ""
 "Plural-Forms: \n"
 
 #. module: product_margin_classification
-#: code:addons/product_margin_classification/models/product_margin_classification.py:92
+#: code:addons/product_margin_classification/models/product_margin_classification.py:96
 #, python-format
-msgid "-1 is not a valid Markup."
-msgstr "-1 no es una Tasa de Margen."
+msgid "-100 is not a valid Markup."
+msgstr "-100 no es una Tasa de Margen."
 
 #. module: product_margin_classification
-#: code:addons/product_margin_classification/models/product_margin_classification.py:102
+#: code:addons/product_margin_classification/models/product_margin_classification.py:106
 #, python-format
-msgid "1 is not a valid Profit Margin."
-msgstr "1 no es un Marge Neto válido."
+msgid "100 is not a valid Profit Margin."
+msgstr "100 no es un Marge Neto válido."
 
 #. module: product_margin_classification
 #: model:ir.model.fields,help:product_margin_classification.field_product_margin_classification_profit_margin
 msgid "Also called 'Net margin' or 'Net Profit Ratio'.\n"
-"It is computed with the following formula Profit Margin = (Sale Price - Cost) / Sale Price"
+"It is computed with the following formula Profit Margin = 100 * (Sale Price - Cost) / Sale Price"
 msgstr "También llamado Ratio de Beneficio Neto.\n"
-"Se calcula con la siguiente fórmula Margen Neto = (Precio de Venta - Precio de Coste) / Precio de Venta"
+"Se calcula con la siguiente fórmula Margen Neto = 100 (Precio de Venta - Precio de Coste / Precio de Venta)"
 
 #. module: product_margin_classification
 #: model:ir.ui.view,arch_db:product_margin_classification.view_product_template_tree
@@ -45,11 +45,6 @@ msgid "Apply Theoretical Price"
 msgstr "Aplicar Precio Teórico"
 
 #. module: product_margin_classification
-#: selection:product.template,margin_state:0
-msgid "Cheaper"
-msgstr "Más barato"
-
-#. module: product_margin_classification
 #: model:ir.model.fields,field_description:product_margin_classification.field_product_margin_classification_company_id
 msgid "Company"
 msgstr "Compañía"
@@ -60,6 +55,12 @@ msgid "Computation Method"
 msgstr "Método calculado"
 
 #. module: product_margin_classification
+#: model:ir.ui.view,arch_db:product_margin_classification.view_product_margin_classification_form
+msgid "Correct"
+msgstr "Correcto"
+
+#. module: product_margin_classification
+#: model:ir.ui.view,arch_db:product_margin_classification.view_product_template_search
 #: selection:product.template,margin_state:0
 msgid "Correct Margin"
 msgstr "Corregir Margen"
@@ -94,6 +95,16 @@ msgstr "Bajar hasta el Precio Teórico"
 #: model:ir.model.fields,field_description:product_margin_classification.field_product_margin_classification_id
 msgid "ID"
 msgstr "ID"
+
+#. module: product_margin_classification
+#: model:ir.ui.view,arch_db:product_margin_classification.view_product_margin_classification_form
+msgid "Incorrect"
+msgstr "Incorrecto"
+
+#. module: product_margin_classification
+#: model:ir.ui.view,arch_db:product_margin_classification.view_product_template_search
+msgid "Incorrect Margin"
+msgstr "Margen Incorrecto"
 
 #. module: product_margin_classification
 #: model:ir.ui.view,arch_db:product_margin_classification.view_product_template_form
@@ -148,7 +159,7 @@ msgid "Price Rounding"
 msgstr "Redondeo precio"
 
 #. module: product_margin_classification
-#: code:addons/product_margin_classification/models/product_margin_classification.py:141
+#: code:addons/product_margin_classification/models/product_margin_classification.py:150
 #, python-format
 msgid "Price Rounding can not be null."
 msgstr "El Precio redondeado no puede ser nulo."
@@ -169,26 +180,16 @@ msgid "Product Template"
 msgstr "Plantilla de producto"
 
 #. module: product_margin_classification
-#: model:ir.actions.act_window,name:product_margin_classification.action_view_product_template_by_margin_classfication
+#: model:ir.actions.act_window,name:product_margin_classification.action_view_product_template_by_margin_classification
 #: model:ir.model.fields,field_description:product_margin_classification.field_product_margin_classification_template_ids
 #: model:ir.ui.view,arch_db:product_margin_classification.view_product_margin_classification_form
 msgid "Products"
 msgstr "Productos"
 
 #. module: product_margin_classification
-#: model:ir.model.fields,field_description:product_margin_classification.field_product_margin_classification_template_cheap_qty
-msgid "Products Cheaper"
-msgstr "Productos más Baratos"
-
-#. module: product_margin_classification
 #: model:ir.model.fields,field_description:product_margin_classification.field_product_margin_classification_template_qty
 msgid "Products Quantity"
 msgstr "Cantidades de Productos"
-
-#. module: product_margin_classification
-#: model:ir.model.fields,field_description:product_margin_classification.field_product_margin_classification_template_expensive_qty
-msgid "Products Too Expensive"
-msgstr "Productos demasiado caros"
 
 #. module: product_margin_classification
 #: model:ir.model.fields,field_description:product_margin_classification.field_product_margin_classification_profit_margin
@@ -245,14 +246,42 @@ msgid "Theoretical Price State"
 msgstr "Estado del Precio Teórico"
 
 #. module: product_margin_classification
+#: model:ir.ui.view,arch_db:product_margin_classification.view_product_margin_classification_form
+#: model:ir.ui.view,arch_db:product_margin_classification.view_product_template_search
+#: selection:product.template,margin_state:0
+msgid "Too Cheap"
+msgstr "Demasiado Barato"
+
+#. module: product_margin_classification
+#: model:ir.ui.view,arch_db:product_margin_classification.view_product_template_search
 #: selection:product.template,margin_state:0
 msgid "Too Expensive"
 msgstr "Demasiado caro"
 
 #. module: product_margin_classification
-#: model:ir.model.fields,field_description:product_margin_classification.field_product_margin_classification_template_different_price_qty
-msgid "Total Products With Different Price"
-msgstr "Total de productos con diferencias de precio"
+#: model:ir.ui.view,arch_db:product_margin_classification.view_product_margin_classification_form
+msgid "Too Priced"
+msgstr "Demasiado caro"
+
+#. module: product_margin_classification
+#: model:ir.model.fields,field_description:product_margin_classification.field_product_margin_classification_template_too_cheap_qty
+msgid "Total Products Too Cheap"
+msgstr "Cantidad Productos Demasiado baratos"
+
+#. module: product_margin_classification
+#: model:ir.model.fields,field_description:product_margin_classification.field_product_margin_classification_template_too_expensive_qty
+msgid "Total Products Too Expensive"
+msgstr "Cantidad Productos Demasiado caros"
+
+#. module: product_margin_classification
+#: model:ir.model.fields,field_description:product_margin_classification.field_product_margin_classification_template_correct_price_qty
+msgid "Total Products With Correct Price"
+msgstr "Cantidad de productos con el precio correcto"
+
+#. module: product_margin_classification
+#: model:ir.model.fields,field_description:product_margin_classification.field_product_margin_classification_template_incorrect_price_qty
+msgid "Total Products With Incorrect Price"
+msgstr "Cantidad de productos con el precio incorrecto"
 
 #. module: product_margin_classification
 #: code:addons/product_margin_classification/models/product_template.py:54
@@ -269,10 +298,10 @@ msgstr "Subir hasta el Precio Teórico"
 
 #. module: product_margin_classification
 #: model:ir.model.fields,help:product_margin_classification.field_product_margin_classification_markup
-msgid "Value that help you to compute the sale price, based on your cost, as defined: Sale Price = (Cost * (1 + Markup))\n"
-"It is computed with the following formula Markup = (Sale Price - Cost) / Cost"
-msgstr "Valor que ayuda a calcular el Precio de Venta, basado en el precio de coste, definido como: Precio de Ventas = (Precio de Coste * (1 + Tasa de Margen))\n"
-"Se calcula con la siguiente fórmula: Tasa de Margen = (Precio de Venta - Precio de Coste) / Precio de Coste"
+msgid "Value that help you to compute the sale price, based on your cost, as defined: Sale Price = (Cost * (100 + Markup)) / 100\n"
+"It is computed with the following formula Markup = 100 * (Sale Price - Cost) / Cost"
+msgstr "Valor que ayuda a calcular el Precio de Venta, basado en el precio de coste, definido como: Precio de Ventas = (Precio de Coste * (100 + Tasa de Margen)) / 100\n"
+"Se calcula con la siguiente fórmula: Tasa de Margen = 100 * (Precio de Venta - Precio de Coste) / Precio de Coste"
 
 #. module: product_margin_classification
 #: model:ir.model,name:product_margin_classification.model_product_margin_classification
@@ -288,3 +317,4 @@ msgstr "⇒ Decrementar el Precio"
 #: model:ir.ui.view,arch_db:product_margin_classification.view_product_template_form
 msgid "⇒ Increase Price"
 msgstr "⇒ Incrementar el Precio"
+

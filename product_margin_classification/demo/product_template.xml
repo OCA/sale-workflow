@@ -32,7 +32,7 @@ License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
     </record>
 
     <record id="too_expensive_product" model="product.template">
-        <field name="default_code">CHEAP-PRODUCT</field>
+        <field name="default_code">EXPENSIVE-PRODUCT</field>
         <field name="name">Too Expensive Product</field>
         <field name="standard_price">100</field>
         <field name="list_price">300</field>

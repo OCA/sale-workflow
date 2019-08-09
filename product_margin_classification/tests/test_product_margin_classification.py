@@ -18,19 +18,20 @@ class TestProductMarginClassification(common.TransactionCase):
             'product_margin_classification.classification_big_margin')
 
     def test_01_product_use_theoretical_price(self):
-        """Apply a 50% Markup (with rounding method) for a product with
-        a standard price of 100. The result should be 149.95
-        ((100 * 1 + (50 / 100)) - 0.05)"""
+        """Apply a 100% Markup (with rounding method) for a product with
+        a standard price of 100. The result should be 199.95
+        ((100 * (100 + 100) / 100) - 0.05)
+        ((100 * (standard_price + markup) / 100) + price_surcharge)"""
         self.too_expensive_product.use_theoretical_price()
 
         new_price = round(
             self.too_expensive_product.list_price, self.price_precision)
 
-        self.assertEquals(new_price, 149.95)
+        self.assertEquals(new_price, 199.95)
 
     def test_02_margin_apply_theoretical_price(self):
         """ Apply a margin for all the products of margin classification"""
         self.classification_big_margin.apply_theoretical_price()
 
         self.assertEquals(
-            self.classification_big_margin.template_different_price_qty, 0)
+            self.classification_big_margin.template_incorrect_price_qty, 0)
