@@ -63,6 +63,7 @@ Do not contact contributors directly about support or help with technical issues
 
 Credits
 =======
+* Open Source Integrators
 
 Authors
 ~~~~~~~
@@ -76,6 +77,7 @@ Contributors
 * `Tecnativa <https://www.tecnatica.com>`_:
 
   * Vicent Cubells
+* Mayank Gosai <mgosai@opensourceintegrators.com>
 
 Maintainers
 ~~~~~~~~~~~
