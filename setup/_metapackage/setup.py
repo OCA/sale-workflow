@@ -22,6 +22,7 @@ setuptools.setup(
         'odoo12-addon-sale_milestone_profile_invoicing',
         'odoo12-addon-sale_order_action_invoice_create_hook',
         'odoo12-addon-sale_order_archive',
+        'odoo12-addon-sale_order_digitized_signature',
         'odoo12-addon-sale_order_general_discount',
         'odoo12-addon-sale_order_invoicing_finished_task',
         'odoo12-addon-sale_order_line_input',
