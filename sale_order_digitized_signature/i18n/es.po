@@ -17,19 +17,25 @@ msgstr ""
 "Plural-Forms: \n"
 
 #. module: sale_order_digitized_signature
-#: model:ir.ui.view,arch_db:sale_order_digitized_signature.report_saleorder_document
+#: model_terms:ir.ui.view,arch_db:sale_order_digitized_signature.report_saleorder_document
 msgid "<strong>Customer acceptance:</strong>"
 msgstr "<strong>Aceptación del cliente:</strong>"
 
 #. module: sale_order_digitized_signature
-#: model:ir.model.fields,field_description:sale_order_digitized_signature.field_sale_order_customer_signature
+#: model_terms:ir.ui.view,arch_db:sale_order_digitized_signature.view_order_form_signature
+#, fuzzy
+#| msgid "Customer acceptance"
+msgid "Customer Signature"
+msgstr "Aceptación del cliente"
+
+#. module: sale_order_digitized_signature
+#: model:ir.model.fields,field_description:sale_order_digitized_signature.field_sale_order__customer_signature
 msgid "Customer acceptance"
 msgstr "Aceptación del cliente"
 
 #. module: sale_order_digitized_signature
 #: model:ir.model,name:sale_order_digitized_signature.model_sale_order
-msgid "Quotation"
-msgstr ""
-
-#~ msgid "Sales Order"
-#~ msgstr "Pedido"
+#, fuzzy
+#| msgid "Sales Order"
+msgid "Sale Order"
+msgstr "Pedido"
