@@ -9,8 +9,8 @@ msgstr ""
 "Project-Id-Version: Odoo Server 11.0\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2018-03-02 10:22+0000\n"
-"PO-Revision-Date: 2018-03-02 10:22+0000\n"
-"Last-Translator: OCA Transbot <transbot@odoo-community.org>, 2018\n"
+"PO-Revision-Date: 2019-09-01 09:03+0000\n"
+"Last-Translator: 黎伟杰 <674416404@qq.com>\n"
 "Language-Team: Chinese (China) (https://www.transifex.com/oca/teams/23907/"
 "zh_CN/)\n"
 "Language: zh_CN\n"
@@ -18,42 +18,43 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
 "Plural-Forms: nplurals=1; plural=0;\n"
+"X-Generator: Weblate 3.8\n"
 
 #. module: sale_exception
 #: model:exception.rule,description:sale_exception.excep_no_dumping
 msgid "A product is sold cheaper than his cost."
-msgstr ""
+msgstr "产品的销售价格低于他的成本。"
 
 #. module: sale_exception
 #: model:ir.model.fields,field_description:sale_exception.field_exception_rule__model
 msgid "Apply on"
-msgstr ""
+msgstr "应用于"
 
 #. module: sale_exception
 #: model:exception.rule,description:sale_exception.excep_no_sol
 msgid "At least one order line should be present in the sale"
-msgstr ""
+msgstr "销售中应至少有一个订单行"
 
 #. module: sale_exception
 #: model_terms:ir.ui.view,arch_db:sale_exception.view_sales_order_filter
 msgid "Blocked in draft"
-msgstr ""
+msgstr "在草稿中阻止"
 
 #. module: sale_exception
 #: model:ir.actions.act_window,name:sale_exception.action_sale_exception_confirm
 #: model_terms:ir.ui.view,arch_db:sale_exception.view_sale_exception_confirm
 msgid "Blocked in draft due to exceptions"
-msgstr ""
+msgstr "由于异常在草稿中被阻止"
 
 #. module: sale_exception
 #: model_terms:ir.ui.view,arch_db:sale_exception.view_sale_exception_confirm
 msgid "Cancel"
-msgstr ""
+msgstr "取消"
 
 #. module: sale_exception
 #: model_terms:ir.ui.view,arch_db:sale_exception.view_sale_exception_confirm
 msgid "Confirm"
-msgstr ""
+msgstr "确认"
 
 #. module: sale_exception
 #: model:ir.model.fields,field_description:sale_exception.field_sale_exception_confirm__create_uid
@@ -68,27 +69,27 @@ msgstr "创建时间"
 #. module: sale_exception
 #: model:ir.model.fields,field_description:sale_exception.field_sale_exception_confirm__display_name
 msgid "Display Name"
-msgstr "Display Name"
+msgstr "显示名称"
 
 #. module: sale_exception
 #: model_terms:ir.ui.view,arch_db:sale_exception.view_order_form
 msgid "Error:"
-msgstr ""
+msgstr "错误："
 
 #. module: sale_exception
 #: model_terms:ir.ui.view,arch_db:sale_exception.view_order_form
 msgid "Exception"
-msgstr ""
+msgstr "异常"
 
 #. module: sale_exception
 #: model:ir.model,name:sale_exception.model_exception_rule
 msgid "Exception Rule"
-msgstr ""
+msgstr "异常规则"
 
 #. module: sale_exception
 #: model:ir.model.fields,field_description:sale_exception.field_sale_exception_confirm__exception_ids
 msgid "Exceptions to resolve"
-msgstr ""
+msgstr "解决的异常情况"
 
 #. module: sale_exception
 #: model:ir.model.fields,field_description:sale_exception.field_sale_exception_confirm__id
@@ -99,12 +100,12 @@ msgstr "ID"
 #: model:ir.model.fields,field_description:sale_exception.field_sale_exception_confirm__ignore
 #: model:ir.model.fields,field_description:sale_exception.field_sale_order_line__ignore_exception
 msgid "Ignore Exceptions"
-msgstr ""
+msgstr "忽略异常"
 
 #. module: sale_exception
 #: model:ir.model.fields,field_description:sale_exception.field_sale_exception_confirm____last_update
 msgid "Last Modified on"
-msgstr "Last Modified on"
+msgstr "最后修改时间"
 
 #. module: sale_exception
 #: model:ir.model.fields,field_description:sale_exception.field_sale_exception_confirm__write_uid
@@ -114,92 +115,92 @@ msgstr "最后更新者"
 #. module: sale_exception
 #: model:ir.model.fields,field_description:sale_exception.field_sale_exception_confirm__write_date
 msgid "Last Updated on"
-msgstr "上次更新日期"
+msgstr "最后更新时间"
 
 #. module: sale_exception
 #: model:exception.rule,description:sale_exception.excep_no_zip
 #: model:exception.rule,name:sale_exception.excep_no_zip
 msgid "No ZIP code on destination"
-msgstr ""
+msgstr "没有目的地邮政编码"
 
 #. module: sale_exception
 #: model:exception.rule,name:sale_exception.excep_no_dumping
 msgid "No dumping"
-msgstr ""
+msgstr "不能销售"
 
 #. module: sale_exception
 #: model:exception.rule,name:sale_exception.excep_no_free
 msgid "No free order"
-msgstr ""
+msgstr "没有免费的订单"
 
 #. module: sale_exception
 #: model:exception.rule,name:sale_exception.excep_no_sol
 msgid "No order lines"
-msgstr ""
+msgstr "没有订单行"
 
 #. module: sale_exception
 #: model:exception.rule,description:sale_exception.excep_no_stock
 #: model:exception.rule,name:sale_exception.excep_no_stock
 msgid "Not Enough Virtual Stock"
-msgstr ""
+msgstr "没有足够的虚拟库存"
 
 #. module: sale_exception
 #: model:ir.model.fields,field_description:sale_exception.field_sale_exception_confirm__related_model_id
 msgid "Sale"
-msgstr ""
+msgstr "销售"
 
 #. module: sale_exception
 #: model:ir.actions.act_window,name:sale_exception.action_sale_test_tree
 #: model:ir.ui.menu,name:sale_exception.menu_sale_test
 msgid "Sale Exception Rules"
-msgstr ""
+msgstr "销售异常规则"
 
 #. module: sale_exception
 #: model_terms:ir.ui.view,arch_db:sale_exception.view_sale_exception_confirm
 msgid "Sale Exceptions"
-msgstr ""
+msgstr "销售异常"
 
 #. module: sale_exception
 #: model:ir.model,name:sale_exception.model_sale_order
 msgid "Sale Order"
-msgstr ""
+msgstr "销售订单"
 
 #. module: sale_exception
 #: selection:exception.rule,model:0
 msgid "Sale order"
-msgstr ""
+msgstr "销售订单"
 
 #. module: sale_exception
 #: selection:exception.rule,model:0
 msgid "Sale order line"
-msgstr ""
+msgstr "销售订单行"
 
 #. module: sale_exception
 #: model:ir.model.fields,field_description:sale_exception.field_exception_rule__sale_ids
 msgid "Sales"
-msgstr ""
+msgstr "销售"
 
 #. module: sale_exception
 #: model:ir.model,name:sale_exception.model_sale_order_line
 msgid "Sales Order Line"
-msgstr ""
+msgstr "销售订单行"
 
 #. module: sale_exception
 #: model:ir.actions.server,name:sale_exception.ir_cron_test_orders_ir_actions_server
 #: model:ir.cron,cron_name:sale_exception.ir_cron_test_orders
 #: model:ir.cron,name:sale_exception.ir_cron_test_orders
 msgid "Test Draft Orders"
-msgstr ""
+msgstr "测试草稿订单"
 
 #. module: sale_exception
 #: model:exception.rule,description:sale_exception.excep_no_free
 msgid "The total can't be 0"
-msgstr ""
+msgstr "总数不能为0"
 
 #. module: sale_exception
 #: model:ir.model,name:sale_exception.model_sale_exception_confirm
 msgid "sale.exception.confirm"
-msgstr ""
+msgstr "sale.exception.confirm"
 
 #~ msgid "Quotation"
 #~ msgstr "Quotation"

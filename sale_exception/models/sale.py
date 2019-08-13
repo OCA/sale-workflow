@@ -48,7 +48,31 @@ class SaleOrder(models.Model):
         order_set.detect_exceptions()
         return True
 
-    @api.constrains('ignore_exception', 'order_line', 'state')
+    def _fields_trigger_check_exception(self):
+        return ['ignore_exception', 'order_line', 'state']
+
+    @api.model
+    def create(self, vals):
+        record = super(SaleOrder, self).create(vals)
+        check_exceptions = any(
+            field in vals for field
+            in self._fields_trigger_check_exception()
+        )
+        if check_exceptions:
+            record.sale_check_exception()
+        return record
+
+    @api.multi
+    def write(self, vals):
+        result = super(SaleOrder, self).write(vals)
+        check_exceptions = any(
+            field in vals for field
+            in self._fields_trigger_check_exception()
+        )
+        if check_exceptions:
+            self.sale_check_exception()
+        return result
+
     def sale_check_exception(self):
         orders = self.filtered(lambda s: s.state == 'sale')
         if orders:
