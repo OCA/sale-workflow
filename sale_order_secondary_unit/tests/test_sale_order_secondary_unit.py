@@ -41,6 +41,7 @@ class TestSaleOrderSecondaryUnit(SavepointCase):
                 'price_unit': 1000.00,
             })],
             'pricelist_id': cls.env.ref('product.list0').id,
+            'picking_policy': 'direct',
         })
         so.onchange_partner_id()
         cls.order = cls.env['sale.order'].create(
