@@ -19,7 +19,7 @@ Available addons
 ----------------
 addon | version | summary
 --- | --- | ---
-[sale_automatic_workflow](sale_automatic_workflow/) | 9.0.1.1.0 | Sale Automatic Workflow
+[sale_automatic_workflow](sale_automatic_workflow/) | 9.0.1.1.1 | Sale Automatic Workflow
 [sale_automatic_workflow_payment_mode](sale_automatic_workflow_payment_mode/) | 9.0.2.0.0 | Sale Automatic Workflow - Payment Mode
 [sale_cancel_reason](sale_cancel_reason/) | 9.0.1.0.0 | Sale Cancel Reason
 [sale_delivery_block](sale_delivery_block/) | 9.0.1.0.0 | Allow you to block the creation of deliveries from a sale order.
