@@ -1,5 +1,0 @@
-id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
-access_product_pack_line_employee,product.pack.line (se module README on why sale user is used here),model_product_pack_line,base.group_user,1,1,1,1
-access_product_pack_line_all,product.pack.line,model_product_pack_line,,1,0,0,0
-access_sale_order_line_pack_line_user,sale_order_line_pack_line_user,model_sale_order_line_pack_line,base.group_user,1,1,1,1
-access_sale_order_line_pack_line_all,sale_order_line_pack_line_all,model_sale_order_line_pack_line,,1,0,0,0

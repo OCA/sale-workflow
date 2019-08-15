@@ -1,7 +1,5 @@
-##############################################################################
-# For copyright and license notices, see __manifest__.py file in module root
-# directory
-##############################################################################
+# Copyright 2019 Tecnativa - Ernesto Tejeda
+# License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
 from odoo import models, api, _
 from odoo.exceptions import UserError
 
@@ -11,7 +9,7 @@ class SaleOrder(models.Model):
 
     @api.multi
     def copy(self, default=None):
-        sale_copy = super(SaleOrder, self).copy(default)
+        sale_copy = super().copy(default)
         # we unlink pack lines that should not be copied
         pack_copied_lines = sale_copy.order_line.filtered(
             lambda l: l.pack_parent_line_id.order_id == self)
@@ -26,8 +24,7 @@ class SaleOrder(models.Model):
         """
         if self._origin.order_line.filtered(
             lambda x: x.pack_parent_line_id and
-            x.pack_parent_line_id.product_id.allow_modify_pack not in [
-                'only_backend', 'frontend_backend']):
+                not x.pack_parent_line_id.product_id.pack_modifiable):
             raise UserError(_(
                 'You can not delete this line because is part of a pack in'
                 ' this sale order. In order to delete this line you need to'

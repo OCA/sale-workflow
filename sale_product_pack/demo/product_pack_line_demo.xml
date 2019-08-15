@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Copyright 2019 Tecnativa - Ernesto Tejeda
+     License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl). -->
+
+<odoo noupdate="1">
+    <record id="product_pack.pack_cpu_detailed_components_1" model="product.pack.line">
+        <field name="sale_discount" eval="10.0"/>
+    </record>
+     <record id="product_pack.pack_cpu_detailed_components_3" model="product.pack.line">
+        <field name="sale_discount" eval="10.0"/>
+    </record>
+    <record id="product_pack.pack_cpu_detailed_totalized_1" model="product.pack.line">
+        <field name="sale_discount" eval="10.0"/>
+    </record>
+    <record id="product_pack.pack_cpu_detailed_totalized_3" model="product.pack.line">
+        <field name="sale_discount" eval="10.0"/>
+    </record>
+    <record id="product_pack.pack_cpu_none_detailed_totalized_1" model="product.pack.line">
+        <field name="sale_discount" eval="10.0"/>
+    </record>
+    <record id="product_pack.pack_cpu_none_detailed_totalized_3" model="product.pack.line">
+        <field name="sale_discount" eval="10.0"/>
+    </record>
+</odoo>

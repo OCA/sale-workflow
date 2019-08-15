@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Copyright 2019 Tecnativa - Ernesto Tejeda
+     License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl). -->
+
+<odoo>
+    <record id="product_pack_line_form" model="ir.ui.view">
+        <field name="name">product.pack.line.sale.form</field>
+        <field name="model">product.pack.line</field>
+        <field name="inherit_id" ref="product_pack.product_pack_line_form"/>
+        <field name="arch" type="xml">
+            <field name="quantity" position="after">
+                <field name="sale_discount" groups="sale.group_discount_per_so_line" invisible="context.get('pack_type') == 'fixed_price'"/>
+            </field>
+        </field>
+    </record>
+
+    <record id="product_pack_line_tree" model="ir.ui.view">
+        <field name="name">product.pack.line.sale.tree</field>
+        <field name="model">product.pack.line</field>
+        <field name="inherit_id" ref="product_pack.product_pack_line_tree"/>
+        <field name="arch" type="xml">
+            <field name="quantity" position="after">
+                <field name="sale_discount" groups="sale.group_discount_per_so_line" invisible="context.get('pack_type') == 'fixed_price'"/>
+            </field>
+        </field>
+    </record>
+</odoo>
