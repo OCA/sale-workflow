@@ -20,7 +20,7 @@ msgstr ""
 "Plural-Forms: nplurals=1; plural=0;\n"
 
 #. module: sale_automatic_workflow_payment_mode
-#: model:ir.model.fields,field_description:sale_automatic_workflow_payment_mode.field_account_payment_mode_workflow_process_id
+#: model:ir.model.fields,field_description:sale_automatic_workflow_payment_mode.field_account_payment_mode__workflow_process_id
 msgid "Automatic Workflow"
 msgstr "Otomatik iş akışı"
 
@@ -30,12 +30,7 @@ msgid "Automatic Workflow Payment Filter"
 msgstr ""
 
 #. module: sale_automatic_workflow_payment_mode
-#: model:ir.model.fields,field_description:sale_automatic_workflow_payment_mode.field_sale_workflow_process_payment_filter_id
-msgid "Payment Filter"
-msgstr ""
-
-#. module: sale_automatic_workflow_payment_mode
-#: model:ir.model.fields,field_description:sale_automatic_workflow_payment_mode.field_sale_workflow_process_payment_filter_domain
+#: model:ir.model.fields,field_description:sale_automatic_workflow_payment_mode.field_sale_workflow_process__payment_filter_domain
 msgid "Payment Filter Domain"
 msgstr ""
 
@@ -45,14 +40,21 @@ msgid "Payment Modes"
 msgstr ""
 
 #. module: sale_automatic_workflow_payment_mode
-#: model:ir.model,name:sale_automatic_workflow_payment_mode.model_sale_order
-msgid "Quotation"
+#: model:ir.model.fields,field_description:sale_automatic_workflow_payment_mode.field_sale_workflow_process__register_payment
+msgid "Register Payment"
 msgstr ""
 
 #. module: sale_automatic_workflow_payment_mode
-#: model:ir.model.fields,field_description:sale_automatic_workflow_payment_mode.field_sale_workflow_process_register_payment
-msgid "Register Payment"
+#: model:ir.model.fields,field_description:sale_automatic_workflow_payment_mode.field_sale_workflow_process__payment_filter_id
+msgid "Register Payment Invoice Filter"
 msgstr ""
+
+#. module: sale_automatic_workflow_payment_mode
+#: model:ir.model,name:sale_automatic_workflow_payment_mode.model_sale_order
+#, fuzzy
+#| msgid "Sales Order"
+msgid "Sale Order"
+msgstr "Satış emri"
 
 #. module: sale_automatic_workflow_payment_mode
 #: model:ir.model,name:sale_automatic_workflow_payment_mode.model_sale_workflow_process
@@ -60,14 +62,13 @@ msgid "Sale Workflow Process"
 msgstr "Satış iş akışı süreci"
 
 #. module: sale_automatic_workflow_payment_mode
-#: model:ir.ui.view,arch_db:sale_automatic_workflow_payment_mode.sale_workflow_process_view_form
-msgid "Set selection based on a search filter:"
+#: model:ir.model,name:sale_automatic_workflow_payment_mode.model_automatic_workflow_job
+msgid ""
+"Scheduler that will play automatically the validation of invoices, "
+"pickings..."
 msgstr ""
 
 #. module: sale_automatic_workflow_payment_mode
-#: model:ir.model,name:sale_automatic_workflow_payment_mode.model_automatic_workflow_job
-msgid "automatic.workflow.job"
+#: model_terms:ir.ui.view,arch_db:sale_automatic_workflow_payment_mode.sale_workflow_process_view_form
+msgid "Set selection based on a search filter:"
 msgstr ""
-
-#~ msgid "Sales Order"
-#~ msgstr "Satış emri"
