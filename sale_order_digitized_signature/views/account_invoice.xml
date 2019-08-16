@@ -1,0 +1,34 @@
+<?xml version="1.0" ?>
+<odoo>
+
+	<!-- Customer Invoice Form View -->
+    <record id="view_invoice_form_signature" model="ir.ui.view">
+        <field name="name">view_invoice_form_signature</field>
+        <field name="model">account.invoice</field>
+        <field name="inherit_id" ref="account.invoice_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='comment']" position="after">
+                <div class="oe_clear"/>
+                <label for="customer_signature" string='Customer Signature'
+                       class="oe_edit_only"/>
+                <field name="customer_signature" widget="signature"/>
+            </xpath>
+        </field>
+    </record>
+
+	<!-- Vendor Bill Form View -->
+    <record id="view_invoice_supplier_form_signature" model="ir.ui.view">
+        <field name="name">view_invoice_supplier_form_signature</field>
+        <field name="model">account.invoice</field>
+        <field name="inherit_id" ref="account.invoice_supplier_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='comment']" position="after">
+                <div class="oe_clear"/>
+                <label for="customer_signature" string='Customer Signature'
+                       class="oe_edit_only"/>
+                <field name="customer_signature" widget="signature"/>
+            </xpath>
+        </field>
+    </record>
+
+</odoo>

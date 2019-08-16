@@ -1,0 +1,18 @@
+<?xml version="1.0"?>
+<odoo>
+
+    <template id="report_invoice_document"
+              inherit_id="account.report_invoice_document">
+        <xpath expr="//p[@name='note']" position="after">
+            <p>
+                <strong>Customer acceptance:</strong>
+                <span t-if="o.customer_signature">
+                    <img class="image"
+                         t-att-src="'data:image/png;base64,%s' % to_text(o.customer_signature)"
+                         style="border:auto;"/>
+                </span>
+            </p>
+        </xpath>
+    </template>
+
+</odoo>
