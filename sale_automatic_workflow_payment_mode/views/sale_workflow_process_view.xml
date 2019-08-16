@@ -17,7 +17,7 @@ The licence is in the file __openerp__.py -->
                 <div
                     attrs="{'required':[('register_payment','=',True)], 'invisible':[('register_payment','!=',True)]}">
                     <field name="payment_filter_domain"
-                           widget="char_domain"
+                           widget="domain"
                            attrs="{'invisible': [('payment_filter_id', '=', False)]}"
                            options="{'model': 'account.invoice'}" />
                     <div class="oe_edit_only oe_inline">
