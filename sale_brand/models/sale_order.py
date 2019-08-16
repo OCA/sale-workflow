@@ -8,7 +8,7 @@ class SaleOrder(models.Model):
     _inherit = 'sale.order'
 
     brand_id = fields.Many2one(
-        'res.partner', string='Brand', domain="[('type', '=', 'brand')]",
+        'res.brand', string='Brand',
         help="Brand to use for this sale")
 
     @api.multi
