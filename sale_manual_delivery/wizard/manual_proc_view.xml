@@ -45,17 +45,10 @@
 
   <act_window id='action_wizard_manual_delivery'
               name='Create Manual Delivery'
+              src_model='sale.order'
               res_model='manual.delivery'
               view_mode='form'
+              key2='client_action_multi'
               target='new'/>
-
-  <record model="ir.values" id="sale_order_line_make_invoice">
-    <field name="model_id" ref="sale.model_sale_order_line" />
-    <field name="name">Create Manual Delivery</field>
-    <field name="key2">client_action_multi</field>
-    <field name="value" eval="'ir.actions.act_window,' + str(ref('action_wizard_manual_delivery'))" />
-    <field name="key">action</field>
-    <field name="model">sale.order</field>
-  </record>
 
 </odoo>
