@@ -1,17 +1,21 @@
-# -*- coding: utf-8 -*-
 # Copyright 2017 Denis Leemann, Camptocamp SA
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
 
-from odoo import models, api
+from odoo import models, fields, api
 
 
 class StockMove(models.Model):
     _inherit = "stock.move"
 
+    carrier_id = fields.Many2one(
+        "delivery.carrier",
+        string="Delivery Method",
+    )
+
     def _get_new_picking_values(self):
         res = super(StockMove, self)._get_new_picking_values()
-        if self.procurement_id.carrier_id:
-            res['carrier_id'] = self.procurement_id.carrier_id.id
+        if self.carrier_id:
+            res['carrier_id'] = self.carrier_id.id
         return res
 
     @api.multi
@@ -32,7 +36,7 @@ class StockMove(models.Model):
                 ('printed', '=', False),
                 ('min_date', '=', move.date_expected),
                 ('max_date', '=', move.date_expected),
-                ('carrier_id', '=', move.procurement_id.carrier_id.id),
+                ('carrier_id', '=', move.carrier_id.id),
                 ('state', 'in', ['draft', 'confirmed', 'waiting',
                                  'partially_available', 'assigned'])]
             picking = Picking.search(domain, limit=1)
