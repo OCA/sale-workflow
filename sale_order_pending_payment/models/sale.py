@@ -27,8 +27,12 @@ class SaleOrder(models.Model):
                                 line.price_unit * line.qty_invoiced
             for invoice in order.invoice_ids:
                 if invoice.state not in ('draft', 'cancel'):
-                    amount_invoiced += invoice.amount_total
-                    amount_residual += invoice.residual
+                    if invoice.type == 'out_invoice':
+                        amount_invoiced += invoice.amount_total
+                        amount_residual += invoice.residual
+                    elif invoice.type == 'out_refund':
+                        amount_invoiced -= invoice.amount_total
+                        amount_residual -= invoice.residual
             if amount_invoiced == order.amount_total:
                 total_pending = amount_residual
             else:
