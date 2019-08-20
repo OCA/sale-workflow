@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 # Copyright 2017 Denis Leemann, Camptocamp SA
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
 from odoo import fields, models, api
@@ -36,8 +35,9 @@ class SaleOrder(models.Model):
         action['res_id'] = wizard.id
         return action
 
-    @api.one
+    @api.multi
     def toggle_manual(self):
+        self.ensure_one()
         if isinstance(self.id, int):  # if already saved
             if self.state != 'draft':
                 raise UserError(_(
