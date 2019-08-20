@@ -4,7 +4,8 @@
     'name': 'Sale Manual Delivery',
     'category': 'Sale',
     'author': 'Camptocamp SA, Odoo Community Association (OCA)',
-    'version': '10.0.1.0.0',
+    "license": "AGPL-3",
+    'version': '11.0.1.0.0',
     'website': 'http://camptocamp.com',
     'summary': "Create manually your deliveries",
     'depends': [
