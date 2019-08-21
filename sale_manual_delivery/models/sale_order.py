@@ -6,41 +6,43 @@ from odoo.tools.translate import _
 
 
 class SaleOrder(models.Model):
-    _inherit = 'sale.order'
+    _inherit = "sale.order"
 
     manual_delivery = fields.Boolean(
-        string='Manual Delivery',
+        string="Manual Delivery",
         default=False,
         help="If Manual, the deliveries are not created at SO confirmation.\
         You need to use the Create Delivery button in order to reserve and \
-        ship the goods."
+        ship the goods.",
     )
 
-    @api.onchange('team_id')
+    @api.onchange("team_id")
     def _onchange_team_id(self):
-        self.manual_delivery = self.team_id.manual_delivery \
-            if self.team_id else False
+        self.manual_delivery = self.team_id.manual_delivery if self.team_id \
+            else False
 
     @api.multi
     def action_manual_delivery_wizard(self):
         self.ensure_one()
-        wizard = self.env['manual.delivery'].create({
-            'order_id': self.id,
-            'carrier_id': self.carrier_id.id,
-        })
+        wizard = self.env["manual.delivery"].create(
+            {"order_id": self.id, "carrier_id": self.carrier_id.id}
+        )
         wizard.onchange_order_id()
         action = self.env.ref(
-            'sale_manual_delivery.action_wizard_manual_delivery'
+            "sale_manual_delivery.action_wizard_manual_delivery"
         ).read()[0]
-        action['res_id'] = wizard.id
+        action["res_id"] = wizard.id
         return action
 
     @api.multi
     def toggle_manual(self):
         self.ensure_one()
         if isinstance(self.id, int):  # if already saved
-            if self.state != 'draft':
-                raise UserError(_(
-                    'You can only change to/from manual delivery in a quote, \
-                    not a confirmed order'))
+            if self.state != "draft":
+                raise UserError(
+                    _(
+                        "You can only change to/from manual delivery"
+                        " in a quote, not a confirmed order"
+                    )
+                )
             self.manual_delivery = not self.manual_delivery
