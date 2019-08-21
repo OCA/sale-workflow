@@ -35,8 +35,9 @@ class SaleOrder(models.Model):
         action['res_id'] = wizard.id
         return action
 
-    @api.one
+    @api.multi
     def toggle_manual(self):
+        self.ensure_one()
         if isinstance(self.id, int):  # if already saved
             if self.state != 'draft':
                 raise UserError(_(
