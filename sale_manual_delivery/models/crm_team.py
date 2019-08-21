@@ -4,12 +4,12 @@ from odoo import fields, models
 
 
 class CrmTeam(models.Model):
-    _inherit = 'crm.team'
+    _inherit = "crm.team"
 
     manual_delivery = fields.Boolean(
-        string='Manual Delivery',
+        string="Manual Delivery",
         default=False,
         help="If Manual, the deliveries are not created at SO confirmation.\
         You need to use the Create Delivery button in order to reserve and \
-        ship the goods."
+        ship the goods.",
     )
