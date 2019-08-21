@@ -3,10 +3,12 @@
 from odoo import models, fields
 
 
-class ProcurementOrder(models.Model):
-    _inherit = 'procurement.order'
+class ProcurementGroup(models.Model):
+    _inherit = 'procurement.group'
 
-    carrier_id = fields.Many2one(
-        "delivery.carrier",
-        string="Delivery Method",
-    )
+    def _get_stock_move_values(self, product_id, product_qty, product_uom, location_id, name, origin, values, group_id):
+        res = super()._get_stock_move_values(product_id, product_qty, product_uom, location_id, name, origin, values, group_id)
+        if values.get('carrier_id'): 
+            res['carrier_id'] = values['carrier_id']
+        return res
+
