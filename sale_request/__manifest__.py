@@ -12,6 +12,7 @@
     'depends': [
         'sale_management',
         'sale_stock',
+        'sale_enterprise',
     ],
     'data': [
         'data/ir_sequence_data.xml',
@@ -22,5 +23,6 @@
         'wizards/link_sale_order_wizard_view.xml',
         'views/sale_order_view.xml',
         'views/sale_request_view.xml',
+        'views/sale_order_report_view.xml',
     ],
 }

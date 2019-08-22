@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="sale_enterprise.sale_report_action_dashboard" model="ir.actions.act_window">
+        <field name="context">{'search_default_master_sale_order_filter':1, 'search_default_Sales':1, 'group_by_no_leaf':1,'group_by':[]}}</field>
+    </record>
+    <record id="view_master_sale_order_search_inherit" model="ir.ui.view">
+        <field name="name">sale.report.search.inherit</field>
+        <field name="model">sale.report</field>
+        <field name="inherit_id" ref="sale.view_order_product_search"/>
+        <field name="arch" type="xml">
+            <xpath expr="." position="inside">
+                <filter string="Master sale order is False" domain="[('master_sale_order','=',False)]" name="master_sale_order_filter"/>
+            </xpath>
+        </field>
+    </record>
+</odoo>

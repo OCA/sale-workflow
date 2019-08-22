@@ -87,17 +87,17 @@ class LinkSaleOrderWizard(models.TransientModel):
                 'parent_id': wiz_line.sale_line_id.id,
             })
         return {
-                'name': _('Sale Order'),
-                'view_type': 'form',
-                'view_mode': 'tree,form',
-                'res_model': 'sale.order',
-                'domain': [('id', 'in', list_order)],
-                'type': 'ir.actions.act_window',
-                'context': {
-                    'create': False,
-                    'delete': False,
-                }
+            'name': _('Sale Order'),
+            'view_type': 'form',
+            'view_mode': 'tree,form',
+            'res_model': 'sale.order',
+            'domain': [('id', 'in', list_order)],
+            'type': 'ir.actions.act_window',
+            'context': {
+                'create': False,
+                'delete': False,
             }
+        }
 
 
 class LinkSaleOrderWizardLine(models.TransientModel):

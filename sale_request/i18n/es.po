@@ -1,13 +1,13 @@
 # Translation of Odoo Server.
 # This file contains the translation of the following modules:
-#   * sale_request
+#	* sale_request
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 12.0+e\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-07-28 18:09+0000\n"
-"PO-Revision-Date: 2019-07-28 18:09+0000\n"
+"POT-Creation-Date: 2019-08-22 15:32+0000\n"
+"PO-Revision-Date: 2019-08-22 15:32+0000\n"
 "Last-Translator: <>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -16,7 +16,7 @@ msgstr ""
 "Plural-Forms: \n"
 
 #. module: sale_request
-#: code:addons/sale_request/models/sale_request.py:408
+#: code:addons/sale_request/models/sale_request.py:407
 #, python-format
 msgid "\n"
 "Name: %s, Available: %s, Demand: %s"
@@ -24,7 +24,7 @@ msgstr "\n"
 "Nombre: %s, Disponibilidad: %s, Demanda: %s"
 
 #. module: sale_request
-#: code:addons/sale_request/models/sale_request.py:359
+#: code:addons/sale_request/models/sale_request.py:358
 #, python-format
 msgid "\n"
 "There are %s %s available across allwarehouses.\n"
@@ -58,7 +58,7 @@ msgstr "Selecciona las líneas de pedidos para vincular con pedido master."
 #. module: sale_request
 #: model:ir.model.fields,field_description:sale_request.field_sale_request__message_needaction
 msgid "Action Needed"
-msgstr "Acción Necesaria"
+msgstr "Acción requerida"
 
 #. module: sale_request
 #: model:ir.model.fields,field_description:sale_request.field_sale_request__activity_ids
@@ -221,15 +221,15 @@ msgid "Edit Sale Order Line Price"
 msgstr "Editar precio de la línea de Pedido de Venta"
 
 #. module: sale_request
-#: code:addons/sale_request/wizards/create_sale_order_wizard.py:87
-#: code:addons/sale_request/wizards/create_sale_order_wizard.py:367
+#: code:addons/sale_request/wizards/create_sale_order_wizard.py:86
+#: code:addons/sale_request/wizards/create_sale_order_wizard.py:365
 #, python-format
 msgid "Error!"
 msgstr ""
 
 #. module: sale_request
-#: code:addons/sale_request/wizards/create_sale_order_wizard.py:237
-#: code:addons/sale_request/wizards/create_sale_order_wizard.py:255
+#: code:addons/sale_request/wizards/create_sale_order_wizard.py:235
+#: code:addons/sale_request/wizards/create_sale_order_wizard.py:253
 #, python-format
 msgid "Error! The quantity to sale is greather than the requested quantity."
 msgstr "¡Error! La cantidad a vender es mayor que la cantidad requerida."
@@ -396,7 +396,7 @@ msgid "Main Attachment"
 msgstr "Adjuntos principales"
 
 #. module: sale_request
-#: code:addons/sale_request/models/sale_request.py:446
+#: code:addons/sale_request/models/sale_request.py:444
 #, python-format
 msgid "Make To Order"
 msgstr "Fabricacion"
@@ -409,6 +409,7 @@ msgstr "Responsable"
 #. module: sale_request
 #: model:ir.model.fields,field_description:sale_request.field_sale_order__master_sale_order
 #: model:ir.model.fields,field_description:sale_request.field_sale_order_line__master_sale_order
+#: model:ir.model.fields,field_description:sale_request.field_sale_report__master_sale_order
 msgid "Master Sale Order"
 msgstr "Pedido Master"
 
@@ -428,6 +429,11 @@ msgstr "Pedidos master"
 #: model:ir.ui.menu,name:sale_request.menu_sale_order_line_master
 msgid "Master Sale Orders Balance"
 msgstr "Saldo de Pedidos Master"
+
+#. module: sale_request
+#: model_terms:ir.ui.view,arch_db:sale_request.view_master_sale_order_search_inherit
+msgid "Master sale order is False"
+msgstr "Pedido master es falso"
 
 #. module: sale_request
 #: model:ir.model.fields,field_description:sale_request.field_sale_request__message_has_error
@@ -459,7 +465,7 @@ msgstr "Nombre"
 #: code:addons/sale_request/models/sale_order.py:33
 #, python-format
 msgid "New"
-msgstr "Nuevo"
+msgstr ""
 
 #. module: sale_request
 #: model:ir.model.fields,field_description:sale_request.field_sale_request__activity_date_deadline
@@ -477,7 +483,7 @@ msgid "Next Activity Type"
 msgstr "Siguiente tipo de actividad"
 
 #. module: sale_request
-#: code:addons/sale_request/models/sale_request.py:381
+#: code:addons/sale_request/models/sale_request.py:380
 #, python-format
 msgid "Not enough inventory! \n"
 " %s"
@@ -671,7 +677,7 @@ msgid "Route"
 msgstr "Ruta"
 
 #. module: sale_request
-#: code:addons/sale_request/wizards/create_sale_order_wizard.py:296
+#: code:addons/sale_request/wizards/create_sale_order_wizard.py:294
 #: code:addons/sale_request/wizards/link_sale_order_wizard.py:90
 #: model:ir.model,name:sale_request.model_sale_order
 #: model:ir.model.fields,field_description:sale_request.field_create_sale_order_wizard_line__order_id
@@ -683,7 +689,7 @@ msgstr "Pedido de venta"
 #: model:ir.model.fields,field_description:sale_request.field_create_sale_order_wizard_line__sale_line_id
 #: model:ir.model.fields,field_description:sale_request.field_link_master_sale_order_wizard_line__sale_line_id
 msgid "Sale Order Line"
-msgstr "Línea pedido de venta"
+msgstr "Línea de Pedido de Venta"
 
 #. module: sale_request
 #: model:ir.model.fields,field_description:sale_request.field_sale_request_line__sale_line_ids
@@ -697,8 +703,8 @@ msgid "Sale Order Lines generated by sale request linked to this line."
 msgstr "Líneas de Pedido de venta generadas desde requisiciones de venta ligadas a esta línea."
 
 #. module: sale_request
-#: code:addons/sale_request/models/sale_request.py:191
-#: code:addons/sale_request/models/sale_request.py:470
+#: code:addons/sale_request/models/sale_request.py:190
+#: code:addons/sale_request/models/sale_request.py:468
 #, python-format
 msgid "Sale Orders"
 msgstr "Ordenes de Venta"
@@ -748,7 +754,7 @@ msgid "Sale orders"
 msgstr "Pedidos de venta"
 
 #. module: sale_request
-#: code:addons/sale_request/models/sale_request.py:174
+#: code:addons/sale_request/models/sale_request.py:173
 #, python-format
 msgid "Sale request lines"
 msgstr "Líneas de requisiciones de ventas"
@@ -759,6 +765,11 @@ msgstr "Líneas de requisiciones de ventas"
 #: model_terms:ir.ui.view,arch_db:sale_request.view_sale_request_line_form
 msgid "Sales"
 msgstr "Ventas"
+
+#. module: sale_request
+#: model:ir.model,name:sale_request.model_sale_report
+msgid "Sales Analysis Report"
+msgstr "Informe de análisis de ventas"
 
 #. module: sale_request
 #: model:ir.model,name:sale_request.model_sale_order_line
@@ -802,7 +813,7 @@ msgstr "Estado basado en actividades\n"
 #: code:addons/sale_request/models/sale_order.py:148
 #, python-format
 msgid "The user %s can not permission to edit the priceunit, quantity and taxes"
-msgstr "El usuario %s no tiene permisos de editar el precio, cantidad e impuestos"
+msgstr ""
 
 #. module: sale_request
 #: model:res.groups,comment:sale_request.group_edit_sale_order_line_price
@@ -884,32 +895,32 @@ msgid "Wizard"
 msgstr "Asistente"
 
 #. module: sale_request
-#: code:addons/sale_request/models/sale_request.py:263
+#: code:addons/sale_request/models/sale_request.py:262
 #, python-format
 msgid "You cannot delete a request line that is already linked to a Sale Order"
 msgstr "No se puede eliminar una linea de la Requisición de Venta que ya esta enlazada a un Pedido de Venta"
 
 #. module: sale_request
-#: code:addons/sale_request/models/sale_request.py:162
+#: code:addons/sale_request/models/sale_request.py:161
 #, python-format
 msgid "You cannot reject a sale request related to confirmed sale orders."
 msgstr "No puede cancelar una requisición de venta ligada a ordenes de venta ya confirmadas."
 
 #. module: sale_request
-#: code:addons/sale_request/wizards/create_sale_order_wizard.py:88
+#: code:addons/sale_request/wizards/create_sale_order_wizard.py:87
 #, python-format
 msgid "You cannot request more than the initial demand of this sale request."
 msgstr "No puede solicitar más cantidad que la demanda inicial de esta requisición."
 
 #. module: sale_request
-#: code:addons/sale_request/wizards/create_sale_order_wizard.py:227
-#: code:addons/sale_request/wizards/create_sale_order_wizard.py:368
+#: code:addons/sale_request/wizards/create_sale_order_wizard.py:226
+#: code:addons/sale_request/wizards/create_sale_order_wizard.py:366
 #, python-format
 msgid "You cannot request more than the remaining qty of this master sale order."
 msgstr "No puedes requerir más que la cantidad restante de este pedido master."
 
 #. module: sale_request
-#: code:addons/sale_request/models/sale_request.py:412
+#: code:addons/sale_request/models/sale_request.py:411
 #, python-format
 msgid "You do not have enougth stock of these components:\n"
 " %s"
@@ -917,13 +928,13 @@ msgstr "No tienes sufieciente stock en los siguientes componentes:\n"
 " %s"
 
 #. module: sale_request
-#: code:addons/sale_request/wizards/create_sale_order_wizard.py:245
+#: code:addons/sale_request/wizards/create_sale_order_wizard.py:243
 #, python-format
 msgid "You have not defined the quantity to sale to any master order, please define it."
 msgstr "No ha definido la cantidad a vender a ningún pedido maestro, por favor defínalo."
 
 #. module: sale_request
-#: code:addons/sale_request/models/sale_request.py:341
+#: code:addons/sale_request/models/sale_request.py:340
 #, python-format
 msgid "You plan to sell %s %s of %s but you only have%s %s available in %s warehouse."
 msgstr "Planeas vender %s %s de %s pero tu solo tienes %s %s disponible en el %s Almacen."
@@ -934,8 +945,7 @@ msgid "name"
 msgstr "nombre"
 
 #. module: sale_request
-#: code:addons/sale_request/wizards/create_sale_order_wizard.py:162
+#: code:addons/sale_request/wizards/create_sale_order_wizard.py:161
 #, python-format
 msgid "you can not invoice because the product %s do not have a pricelist defined"
 msgstr "No puedes Facturar debido a que el producto %s no tiene una Lista de Precios Definida"
-

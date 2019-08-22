@@ -321,7 +321,7 @@ class SaleRequestLine(models.Model):
 
     def _check_availability_normal_bom(self, product):
         precision = self.env['decimal.precision'].precision_get(
-                'Product Unit of Measure')
+            'Product Unit of Measure')
         product = self.product_id.with_context(
             warehouse=self.request_id.warehouse_id.id,
             lang=self.request_id.partner_id.lang or
@@ -385,7 +385,7 @@ class SaleRequestLine(models.Model):
         products_fail = []
         for rec in products_to_check:
             precision = self.env['decimal.precision'].precision_get(
-                    'Product Unit of Measure')
+                'Product Unit of Measure')
             product_id = rec['product_id']
             product = product_id.with_context(
                 warehouse=self.request_id.warehouse_id.id,
@@ -405,7 +405,8 @@ class SaleRequestLine(models.Model):
                     products_fail.append(product)
                     products_raise += (
                         _('\nName: %s, Available: %s, Demand: %s')
-                        % (product.name, product.virtual_available, rec['stock_demand']))
+                        % (product.name, product.virtual_available,
+                            rec['stock_demand']))
         if products_fail:
             raise UserError(
                 _('You do not have enougth stock of these components:\n %s')
@@ -428,11 +429,14 @@ class SaleRequestLine(models.Model):
 
     def _check_routing(self):
         """ Verify the route of the product based on the warehouse
-            return True if the product availibility in stock does not need to be verified,
+            return True if the product availibility in stock does
+            not need to be verified,
             which is the case in MTO, Cross-Dock or Drop-Shipping
         """
         is_available = False
-        product_routes = self.product_id.route_ids + self.product_id.categ_id.total_route_ids
+        product_routes = (
+            self.product_id.route_ids +
+            self.product_id.categ_id.total_route_ids)
 
         # Check MTO
         wh_mto_route = self.request_id.warehouse_id.mto_pull_id.route_id
@@ -441,9 +445,12 @@ class SaleRequestLine(models.Model):
         else:
             mto_route = False
             try:
-                mto_route = self.env['stock.warehouse']._find_global_route('stock.route_warehouse0_mto', _('Make To Order'))
+                mto_route = (
+                    self.env['stock.warehouse']._find_global_route(
+                        'stock.route_warehouse0_mto', _('Make To Order')))
             except UserError:
-                # if route MTO not found in ir_model_data, we treat the product as in MTS
+                # if route MTO not found in ir_model_data,
+                # we treat the product as in MTS
                 pass
             if mto_route and mto_route in product_routes:
                 is_available = True
@@ -451,10 +458,11 @@ class SaleRequestLine(models.Model):
         # Check Drop-Shipping
         if not is_available:
             for pull_rule in product_routes.mapped('rule_ids'):
-                if pull_rule.picking_type_id.sudo(
-                    ).default_location_src_id.usage == 'supplier' and\
-                        pull_rule.picking_type_id.sudo(
-                            ).default_location_dest_id.usage == 'customer':
+                if (
+                    pull_rule.picking_type_id.sudo().
+                    default_location_src_id.usage == 'supplier' and
+                        pull_rule.picking_type_id.sudo().
+                        default_location_dest_id.usage == 'customer'):
                     is_available = True
                     break
 

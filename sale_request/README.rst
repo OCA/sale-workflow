@@ -46,6 +46,7 @@ Contributors
 ------------
 
 * Oscar Garza <oscar.garza@jarsa.com.mx>
+* Isabel Esparza <isabel.esparza@jarsa.com.mx>
 
 Maintainer
 ----------
