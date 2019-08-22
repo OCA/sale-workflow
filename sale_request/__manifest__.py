@@ -12,7 +12,6 @@
     'depends': [
         'sale_management',
         'sale_stock',
-        'sale_enterprise',
     ],
     'data': [
         'data/ir_sequence_data.xml',

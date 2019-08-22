@@ -10,7 +10,6 @@ class SaleReport(models.Model):
     master_sale_order = fields.Boolean('Master Sale Order', readonly=True)
 
     def _query(self, with_clause='', fields=None, groupby='', from_clause=''):
-        import ipdb; ipdb.set_trace()
         if fields is None:
             fields = {}
         fields['master_sale_order'] = (
