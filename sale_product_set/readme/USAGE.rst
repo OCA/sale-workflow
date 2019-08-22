@@ -1,3 +1,4 @@
+
 To use this module, you need to:
 
 * Define a *product set* as sale manager:
@@ -7,7 +8,7 @@ To use this module, you need to:
       quotation
 
 .. image:: /sale_product_set/static/description/product_set.png
-    :alt: Set a product set
+    :alt: Set a product sets
 
 * On quotation any salesman can click on "Add set" button
   which will open wizard where users can chose a *product set* and quantity
