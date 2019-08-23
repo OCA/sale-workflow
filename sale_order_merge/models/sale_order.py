@@ -20,8 +20,16 @@ class SaleOrder(models.Model):
 
     @api.multi
     def _compute_merge_with(self):
+        """ Computing the eligible orders to merge this order with by executing
+        the inverse search function for this order. In case there are a lot of
+        orders from the same customer (e.g. when using one and the same dummy
+        customer for anonymous orders) this can lead to severe delays due to a
+        large number of sale orders in the environment's prefetch dictionary,
+        so we reset it. """
+        prefetch_before = set(self.env.prefetch[self._name])
         for sale in self:
             sale.merge_with = self.search([('merge_with', '=', sale.id)])
+        self.env.prefetch[self._name] = prefetch_before
 
     @api.multi
     def _can_merge(self):
