@@ -11,6 +11,12 @@ class TestSaleStock(TestSale):
         """
         self.partner = self.env.ref("base.res_partner_1")
         self.product = self.env.ref("product.product_delivery_01")
+        self.env['stock.change.product.qty'].create(
+            {
+                'product_id': self.product.id,
+                'new_quantity': 10,
+            },
+        ).change_product_qty()
         so_vals = {
             "partner_id": self.partner.id,
             "partner_invoice_id": self.partner.id,
@@ -97,9 +103,10 @@ class TestSaleStock(TestSale):
 
         # deliver completely
         pick = self.so.picking_ids
-        pick.force_assign()
-        pick.pack_operation_product_ids.write({"qty_done": 5})
-        pick.do_new_transfer()
+        pick.action_assign()
+        pick.invalidate_cache()
+        pick.move_line_ids.write({"qty_done": 5})
+        pick.action_done()
 
         # Check quantity delivered
         del_qty = sum(sol.qty_delivered for sol in self.so.order_line)
@@ -117,6 +124,12 @@ class TestSaleStock(TestSale):
         """
         self.partner = self.env.ref("base.res_partner_1")
         self.product = self.env.ref("product.product_delivery_01")
+        self.env['stock.change.product.qty'].create(
+            {
+                'product_id': self.product.id,
+                'new_quantity': 10,
+            },
+        ).change_product_qty()
         so_vals = {
             "partner_id": self.partner.id,
             "partner_invoice_id": self.partner.id,
@@ -149,9 +162,10 @@ class TestSaleStock(TestSale):
 
         # deliver completely
         pick = self.so.picking_ids
-        pick.force_assign()
-        pick.pack_operation_product_ids.write({"qty_done": 5})
-        pick.do_new_transfer()
+        pick.action_assign()
+        pick.invalidate_cache()
+        pick.move_line_ids.write({"qty_done": 5})
+        pick.action_done()
 
         # Check quantity delivered
         del_qty = sum(sol.qty_delivered for sol in self.so.order_line)
@@ -169,6 +183,12 @@ class TestSaleStock(TestSale):
         """
         self.partner = self.env.ref("base.res_partner_1")
         self.product = self.env.ref("product.product_delivery_01")
+        self.env['stock.change.product.qty'].create(
+            {
+                'product_id': self.product.id,
+                'new_quantity': 10,
+            },
+        ).change_product_qty()
         so_vals = {
             "partner_id": self.partner.id,
             "partner_invoice_id": self.partner.id,
@@ -226,9 +246,10 @@ class TestSaleStock(TestSale):
 
         # deliver completely
         pick = self.so.picking_ids
-        pick.force_assign()
-        pick.pack_operation_product_ids.write({"qty_done": 2})
-        pick.do_new_transfer()
+        pick.action_assign()
+        pick.invalidate_cache()
+        pick.move_line_ids.write({"qty_done": 2})
+        pick.action_done()
 
         # Check quantity delivered
         del_qty = sum(sol.qty_delivered for sol in self.so.order_line)
@@ -269,9 +290,10 @@ class TestSaleStock(TestSale):
         # deliver completely last one
         for pick in self.so.picking_ids:
             if pick.state != "done":
-                pick.force_assign()
-                pick.pack_operation_product_ids.write({"qty_done": 3})
-                pick.do_new_transfer()
+                pick.action_assign()
+                pick.invalidate_cache()
+                pick.move_line_ids.write({"qty_done": 3})
+                pick.action_done()
 
         # Check quantity delivered
         del_qty = sum(sol.qty_delivered for sol in self.so.order_line)
