@@ -69,3 +69,21 @@ class TestSaleOrderLineInput(SavepointCase):
         res = self.order.fields_view_get(view_id=view.id, view_type='form')
         ctx = self._get_ctx_from_view(res)
         self.assertTrue('default_discount' in ctx)
+
+    def test_sale_order_line_wo_form_view(self):
+        self.order.general_discount = 10
+        vals = {
+            'name': self.product.name,
+            'product_id': self.product.id,
+            'product_uom_qty': 1,
+            'product_uom': self.product.uom_id.id,
+            'price_unit': 1000.00,
+            'order_id': self.order.id,
+        }
+        order_line = self.env['sale.order.line'].create(vals)
+        self.assertEqual(order_line.price_subtotal, 900.00)
+        self.assertEqual(order_line.discount, 10)
+        vals['discount'] = 20
+        order_line2 = self.env['sale.order.line'].create(vals)
+        self.assertEqual(order_line2.price_subtotal, 800.00)
+        self.assertEqual(order_line2.discount, 20)
