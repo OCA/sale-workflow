@@ -49,3 +49,18 @@ class SaleOrder(models.Model):
                 order_line_field.attrib['context'] = context
                 res['arch'] = etree.tostring(order_xml)
         return res
+
+
+class SaleOrderLine(models.Model):
+    _inherit = 'sale.order.line'
+
+    @api.model
+    def create(self, vals):
+        """Apply general discount for sale order lines which are not created
+        from sale order form view.
+        """
+        if 'discount' not in vals and 'order_id' in vals:
+            sale_order = self.env['sale.order'].browse(vals['order_id'])
+            if sale_order.general_discount:
+                vals['discount'] = sale_order.general_discount
+        return super().create(vals)
