@@ -1,6 +1,6 @@
 # Translation of Odoo Server.
 # This file contains the translation of the following modules:
-#	* sale_order_general_discount
+# 	* sale_order_general_discount
 #
 msgid ""
 msgstr ""
@@ -32,3 +32,8 @@ msgstr "Rabatt (%)"
 #: model:ir.model,name:sale_order_general_discount.model_sale_order
 msgid "Quotation"
 msgstr "Angebot"
+
+#. module: sale_order_general_discount
+#: model:ir.model,name:sale_order_general_discount.model_sale_order_line
+msgid "Sales Order Line"
+msgstr ""

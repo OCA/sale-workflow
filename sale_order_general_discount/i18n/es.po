@@ -34,5 +34,7 @@ msgstr "Descuento (%)"
 msgid "Quotation"
 msgstr "Presupuesto"
 
-#~ msgid "Sales Order Line"
-#~ msgstr "Líneas de pedido"
+#. module: sale_order_general_discount
+#: model:ir.model,name:sale_order_general_discount.model_sale_order_line
+msgid "Sales Order Line"
+msgstr "Líneas de pedido"
