@@ -19,6 +19,12 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
 #. module: sale_product_set
+#: model:ir.model.fields,field_description:sale_product_set.field_product_set__active
+#: model:ir.model.fields,field_description:sale_product_set.field_product_set_line__active
+msgid "Active"
+msgstr ""
+
+#. module: sale_product_set
 #: model_terms:ir.ui.view,arch_db:sale_product_set.product_set_add_form_view
 #: model_terms:ir.ui.view,arch_db:sale_product_set.view_order_stock_form
 msgid "Add set"
@@ -57,6 +63,11 @@ msgstr "Creato da"
 #: model:ir.model.fields,field_description:sale_product_set.field_product_set_line__create_date
 msgid "Created on"
 msgstr "Creato il"
+
+#. module: sale_product_set
+#: model:ir.model.fields,field_description:sale_product_set.field_product_set_line__discount
+msgid "Discount (%)"
+msgstr ""
 
 #. module: sale_product_set
 #: model:ir.model.fields,field_description:sale_product_set.field_product_set__display_name
