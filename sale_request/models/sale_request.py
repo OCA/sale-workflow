@@ -105,8 +105,10 @@ class SaleRequest(models.Model):
     def _onchange_partner_id(self):
         partner_shipping = self.partner_id
         if self.partner_id.child_ids:
-            partner_shipping = self.partner_id.child_ids.filtered(
-                lambda p: p.type == 'delivery')[0]
+            shipping_address = self.partner_id.child_ids.filtered(
+                lambda p: p.type == 'delivery')
+            if shipping_address:
+                partner_shipping = shipping_address[0]
         self.partner_shipping_id = partner_shipping
 
     @api.multi
