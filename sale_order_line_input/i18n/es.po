@@ -52,7 +52,6 @@ msgstr "Sin factura asociada"
 #. module: sale_order_line_input
 #: model_terms:ir.ui.view,arch_db:sale_order_line_input.view_sales_order_line_input_tree
 #, fuzzy
-#| msgid "Sales Order Line"
 msgid "Open Sale Order"
 msgstr "Línea de pedido de venta"
 
