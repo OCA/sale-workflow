@@ -3,7 +3,7 @@
      License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl). -->
 <odoo>
 
-    <template id="report_invoice_document"
+    <template id="report_saleorder_document"
               inherit_id="sale.report_saleorder_document">
 
         <xpath expr="//t[@t-set='display_discount']" position="after">
@@ -12,13 +12,15 @@
         </xpath>
 
         <xpath expr="//th[@t-if='display_discount']" position="after">
-            <th t-if="display_discount_fixed" class="text-right"
-                groups="sale.group_discount_per_so_line">Disc. Fixed Amount</th>
+            <th t-if="display_discount_fixed" class="text-right" groups="sale.group_discount_per_so_line">
+                <span>Disc. Fixed Amount</span>
+                <t t-set="colspan" t-value="colspan+1"/>
+            </th>
         </xpath>
 
         <xpath expr="//td[@t-if='display_discount']" position="after">
             <td t-if="display_discount_fixed" class="text-right" groups="sale.group_discount_per_so_line">
-                <span t-field="l.discount_fixed"/>
+                <span t-field="line.discount_fixed"/>
             </td>
         </xpath>
 
