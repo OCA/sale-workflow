@@ -37,6 +37,7 @@ setuptools.setup(
         'odoo12-addon-sale_partner_incoterm',
         'odoo12-addon-sale_product_set',
         'odoo12-addon-sale_stock_picking_blocking',
+        'odoo12-addon-sale_validity',
     ],
     classifiers=[
         'Programming Language :: Python',
