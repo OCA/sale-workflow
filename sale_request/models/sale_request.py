@@ -152,6 +152,11 @@ class SaleRequest(models.Model):
 
     @api.multi
     def button_confirm(self):
+        if self.state != 'draft':
+            raise UserError(
+                _('You can confirm only draft sale requests!'
+                  ' Please check if this sale request is'
+                  ' open in another window of your web browser.'))
         self.write({'state': 'confirm'})
         return True
 
