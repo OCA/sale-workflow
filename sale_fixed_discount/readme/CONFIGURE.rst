@@ -1,4 +1,4 @@
 To configure this module, you need to:
 
-#. Go to *Sale > Configuration >Settings*.
-#. In the *Discount* option select *Allow discounts on sales order lines*.
+#. Go to *Sales > Configuration > Settings*.
+#. In the *Pricing* section select *Discounts* option to grant discounts on sales order lines.

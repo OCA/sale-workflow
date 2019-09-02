@@ -38,7 +38,9 @@ class SaleOrderLine(models.Model):
         help="Fixed amount discount.")
 
     @api.onchange('discount')
-    def _onchange_discount(self):
+    def _onchange_discount_percent(self):
+        # _onchange_discount method already exists in core,
+        # but discount is not in the onchange definition
         if self.discount:
             self.discount_fixed = 0.0
 
