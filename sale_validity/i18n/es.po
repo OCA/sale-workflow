@@ -19,7 +19,7 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
 #. module: sale_validity
-#: model:ir.ui.view,arch_db:sale_validity.res_config_settings_view_form_sale_order_validity
+#: model_terms:ir.ui.view,arch_db:sale_validity.res_config_settings_view_form_sale_order_validity
 msgid ""
 "By default, the validity date of sale orders will be the date of the sale "
 "order plus the number of days defined in this field.\n"
@@ -28,8 +28,8 @@ msgid ""
 msgstr ""
 
 #. module: sale_validity
-#: model:ir.model.fields,help:sale_validity.field_res_company_default_sale_order_validity_days
-#: model:ir.model.fields,help:sale_validity.field_res_config_settings_default_sale_order_validity_days
+#: model:ir.model.fields,help:sale_validity.field_res_company__default_sale_order_validity_days
+#: model:ir.model.fields,help:sale_validity.field_res_config_settings__sale_order_default_validity_days
 msgid ""
 "By default, the validity date of sale orders will be the date of the sale "
 "order plus the number of days defined in this field. If the value of this "
@@ -42,20 +42,27 @@ msgid "Companies"
 msgstr ""
 
 #. module: sale_validity
-#: model:ir.ui.view,arch_db:sale_validity.res_config_settings_view_form_sale_order_validity
+#: model:ir.model,name:sale_validity.model_res_config_settings
+msgid "Config Settings"
+msgstr ""
+
+#. module: sale_validity
+#: model_terms:ir.ui.view,arch_db:sale_validity.res_config_settings_view_form_sale_order_validity
 msgid "Days"
 msgstr ""
 
 #. module: sale_validity
-#: model:ir.model.fields,field_description:sale_validity.field_res_company_default_sale_order_validity_days
-#: model:ir.model.fields,field_description:sale_validity.field_res_config_settings_default_sale_order_validity_days
+#: model:ir.model.fields,field_description:sale_validity.field_res_company__default_sale_order_validity_days
+#: model:ir.model.fields,field_description:sale_validity.field_res_config_settings__sale_order_default_validity_days
 msgid "Default Validity of Sale Orders"
 msgstr ""
 
 #. module: sale_validity
 #: model:ir.model,name:sale_validity.model_sale_order
-msgid "Quotation"
-msgstr ""
+#, fuzzy
+#| msgid "Sales Order"
+msgid "Sale Order"
+msgstr "Pedido de venta"
 
 #. module: sale_validity
 #: sql_constraint:res.company:0
@@ -65,9 +72,13 @@ msgid ""
 msgstr ""
 
 #. module: sale_validity
-#: model:ir.model,name:sale_validity.model_res_config_settings
-msgid "res.config.settings"
+#: model:ir.model.fields,field_description:sale_validity.field_sale_order__validity_date
+msgid "Validity"
 msgstr ""
 
-#~ msgid "Sales Order"
-#~ msgstr "Pedido de venta"
+#. module: sale_validity
+#: model:ir.model.fields,help:sale_validity.field_sale_order__validity_date
+msgid ""
+"Validity date of the quotation, after this date, the customer won't be able "
+"to validate the quotation online."
+msgstr ""
