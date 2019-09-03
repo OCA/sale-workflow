@@ -6,29 +6,6 @@ import odoo.addons.decimal_precision as dp
 from odoo.exceptions import ValidationError
 
 
-class SaleOrder(models.Model):
-    _inherit = "sale.order"
-
-    @api.depends('order_line.price_total')
-    def _amount_all(self):
-        vals = {}
-        for line in self.mapped('order_line').filtered(
-                lambda l: l.discount_fixed):
-            vals[line] = {
-                'price_unit': line.price_unit,
-                'discount_fixed': line.discount_fixed,
-            }
-            price_unit = line.price_unit - line.discount_fixed
-            line.update({
-                'price_unit': price_unit,
-                'discount_fixed': 0.0,
-            })
-        res = super(SaleOrder, self)._amount_all()
-        for line in vals.keys():
-            line.update(vals[line])
-        return res
-
-
 class SaleOrderLine(models.Model):
     _inherit = "sale.order.line"
 
@@ -61,14 +38,14 @@ class SaleOrderLine(models.Model):
     def _compute_amount(self):
         vals = {}
         for line in self.filtered(lambda l: l.discount_fixed):
+            real_price = line.price_unit * (1 - (line.discount or 0.0) / 100.0
+                                            ) - (line.discount_fixed or 0.0)
+            twicked_price = real_price / (1 - (line.discount or 0.0) / 100.0)
             vals[line] = {
                 'price_unit': line.price_unit,
-                'discount_fixed': line.discount_fixed,
             }
-            price_unit = line.price_unit - line.discount_fixed
             line.update({
-                'price_unit': price_unit,
-                'discount_fixed': 0.0,
+                'price_unit': twicked_price,
             })
         res = super(SaleOrderLine, self)._compute_amount()
         for line in vals.keys():
