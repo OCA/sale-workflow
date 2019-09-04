@@ -25,10 +25,10 @@ Portal Sale Personal Data Only
 
 |badge1| |badge2| |badge3| |badge4| |badge5| 
 
-By default, portal users are allowed to see al the orders and invoices in wich
-a member of their organization are followers. That could cause a leaking of
-documents between members and departments and of the organization that should
-stay private.
+By default, portal users are allowed to see all the orders and invoices in
+which a member of their organization are followers. That could cause a leaking
+of  documents between members and departments and of the organization that
+should stay private.
 
 This module restricts that behaviour so the portal users only see their own
 documents.
@@ -44,8 +44,9 @@ Usage
 #. Create some portal users belonging to the same company.
 #. Place some orders for several of these users.
 #. Log in with each portal user credential.
-#. Only the orders and invoices belonging to the logged in user should be
-   accessible.
+#. Only the orders and invoices belonging to the logged in user's partner or
+   his descendants should be accessible.
+#. Invoices associated to a partner's sale order will be visible as well.
 
 Bug Tracker
 ===========
