@@ -56,6 +56,7 @@ setuptools.setup(
         'odoo10-addon-sale_start_end_dates',
         'odoo10-addon-sale_stock_picking_blocking',
         'odoo10-addon-sale_stock_picking_blocking_proc_group_by_line',
+        'odoo10-addon-sale_stock_picking_note',
         'odoo10-addon-sale_triple_discount',
         'odoo10-addon-sale_validity',
     ],
