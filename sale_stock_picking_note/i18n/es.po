@@ -29,10 +29,18 @@ msgstr "Nota albarán"
 
 #. module: sale_stock_picking_note
 #: model:ir.model,name:sale_stock_picking_note.model_sale_order
-msgid "Quotation"
-msgstr "Presupuesto"
+msgid "Sales Order"
+msgstr ""
 
 #. module: sale_stock_picking_note
 #: model:ir.model,name:sale_stock_picking_note.model_stock_move
 msgid "Stock Move"
 msgstr "Movimiento de existencias"
+
+#. module: sale_stock_picking_note
+#: model:ir.ui.view,arch_db:sale_stock_picking_note.view_order_form_inherit_sale_stock
+msgid "This note will be carried over to the picking."
+msgstr ""
+
+#~ msgid "Quotation"
+#~ msgstr "Presupuesto"
