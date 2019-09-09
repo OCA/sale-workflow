@@ -271,12 +271,18 @@ class SaleRequestLine(models.Model):
                     'to a Sale Order'))
         return super().unlink()
 
-    @api.depends('product_qty', 'sale_line_ids')
+    @api.depends(
+        'product_qty',
+        'sale_line_ids',
+        'sale_line_ids.order_id.state'
+        )
     @api.multi
     def _compute_remaining_product_qty(self):
         for rec in self:
             total_qty = 0.0
-            for line in rec.sale_line_ids:
+            for line in rec.sale_line_ids.filtered(
+                lambda l: l.order_id.state != 'cancel'
+                    ):
                 total_qty += line.product_uom._compute_quantity(
                     line.product_uom_qty, rec.product_uom_id)
             rec.remaining_product_qty = rec.product_qty - total_qty
