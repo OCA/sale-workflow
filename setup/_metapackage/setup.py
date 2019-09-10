@@ -11,6 +11,7 @@ setuptools.setup(
         'odoo12-addon-partner_prospect',
         'odoo12-addon-portal_sale_personal_data_only',
         'odoo12-addon-sale_automatic_workflow',
+        'odoo12-addon-sale_automatic_workflow_payment_mode',
         'odoo12-addon-sale_cancel_reason',
         'odoo12-addon-sale_commercial_partner',
         'odoo12-addon-sale_discount_display_amount',
