@@ -155,10 +155,11 @@ class SaleOrderLine(models.Model):
             return super()._onchange_product_id_check_availability()
 
     @api.multi
-    @api.depends('child_ids.product_uom_qty')
+    @api.depends('child_ids.product_uom_qty', 'child_ids.order_id.state')
     def _compute_product_uom_qty_total(self):
         for rec in self:
-            rec.product_uom_qty_total = sum(rec.child_ids.mapped(
+            rec.product_uom_qty_total = sum(rec.child_ids.filtered(
+                lambda l: l.order_id.state not in 'cancel').mapped(
                 'product_uom_qty'))
 
     @api.multi
@@ -169,17 +170,19 @@ class SaleOrderLine(models.Model):
                 rec.product_uom_qty - rec.product_uom_qty_total)
 
     @api.multi
-    @api.depends('child_ids.qty_delivered')
+    @api.depends('child_ids.qty_delivered', 'child_ids.order_id.state')
     def _compute_qty_delivered_total(self):
         for rec in self:
-            rec.qty_delivered_total = sum(rec.child_ids.mapped(
+            rec.qty_delivered_total = sum(rec.child_ids.filtered(
+                lambda l: l.order_id.state not in 'cancel').mapped(
                 'qty_delivered'))
 
     @api.multi
-    @api.depends('child_ids.qty_invoiced')
+    @api.depends('child_ids.qty_invoiced', 'child_ids.order_id.state')
     def _compute_qty_invoiced_total(self):
         for rec in self:
-            rec.qty_invoiced_total = sum(rec.child_ids.mapped(
+            rec.qty_invoiced_total = sum(rec.child_ids.filtered(
+                lambda l: l.order_id.state not in 'cancel').mapped(
                 'qty_invoiced'))
 
     @api.multi
