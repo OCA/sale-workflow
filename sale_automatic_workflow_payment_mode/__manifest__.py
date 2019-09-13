@@ -16,6 +16,7 @@
         'data/automatic_workflow_data.xml',
         'views/account_payment_mode_views.xml',
         'views/sale_workflow_process_view.xml',
+        'views/account_invoice.xml',
     ],
     'installable': True,
     'auto_install': True,
