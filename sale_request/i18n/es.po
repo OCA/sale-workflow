@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 12.0+e\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-09-02 21:36+0000\n"
-"PO-Revision-Date: 2019-09-02 21:36+0000\n"
+"POT-Creation-Date: 2019-09-13 22:42+0000\n"
+"PO-Revision-Date: 2019-09-13 22:42+0000\n"
 "Last-Translator: <>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -16,7 +16,7 @@ msgstr ""
 "Plural-Forms: \n"
 
 #. module: sale_request
-#: code:addons/sale_request/models/sale_request.py:414
+#: code:addons/sale_request/models/sale_request.py:420
 #, python-format
 msgid "\n"
 "Name: %s, Available: %s, Demand: %s"
@@ -24,7 +24,7 @@ msgstr "\n"
 "Nombre: %s, Disponibilidad: %s, Demanda: %s"
 
 #. module: sale_request
-#: code:addons/sale_request/models/sale_request.py:365
+#: code:addons/sale_request/models/sale_request.py:371
 #, python-format
 msgid "\n"
 "There are %s %s available across allwarehouses.\n"
@@ -324,7 +324,7 @@ msgstr "Es un seguidor"
 #: model:ir.model.fields,field_description:sale_request.field_sale_request____last_update
 #: model:ir.model.fields,field_description:sale_request.field_sale_request_line____last_update
 msgid "Last Modified on"
-msgstr "Ultima modificacion realizada"
+msgstr "Última modificación en"
 
 #. module: sale_request
 #: model:ir.model.fields,field_description:sale_request.field_create_sale_order_wizard__write_uid
@@ -334,7 +334,7 @@ msgstr "Ultima modificacion realizada"
 #: model:ir.model.fields,field_description:sale_request.field_sale_request__write_uid
 #: model:ir.model.fields,field_description:sale_request.field_sale_request_line__write_uid
 msgid "Last Updated by"
-msgstr "Ultima actualizacion por"
+msgstr "Última actualización por"
 
 #. module: sale_request
 #: model:ir.model.fields,field_description:sale_request.field_create_sale_order_wizard__write_date
@@ -344,7 +344,7 @@ msgstr "Ultima actualizacion por"
 #: model:ir.model.fields,field_description:sale_request.field_sale_request__write_date
 #: model:ir.model.fields,field_description:sale_request.field_sale_request_line__write_date
 msgid "Last Updated on"
-msgstr "Ultima actualización realizada"
+msgstr "Última actualización el"
 
 #. module: sale_request
 #: model_terms:ir.ui.view,arch_db:sale_request.view_sale_request_search
@@ -396,7 +396,7 @@ msgid "Main Attachment"
 msgstr "Adjuntos principales"
 
 #. module: sale_request
-#: code:addons/sale_request/models/sale_request.py:457
+#: code:addons/sale_request/models/sale_request.py:463
 #, python-format
 msgid "Make To Order"
 msgstr "Fabricacion"
@@ -483,7 +483,7 @@ msgid "Next Activity Type"
 msgstr "Siguiente tipo de actividad"
 
 #. module: sale_request
-#: code:addons/sale_request/models/sale_request.py:387
+#: code:addons/sale_request/models/sale_request.py:393
 #, python-format
 msgid "Not enough inventory! \n"
 " %s"
@@ -678,7 +678,7 @@ msgstr "Ruta"
 
 #. module: sale_request
 #: code:addons/sale_request/wizards/create_sale_order_wizard.py:294
-#: code:addons/sale_request/wizards/link_sale_order_wizard.py:90
+#: code:addons/sale_request/wizards/link_sale_order_wizard.py:102
 #: model:ir.model,name:sale_request.model_sale_order
 #: model:ir.model.fields,field_description:sale_request.field_create_sale_order_wizard_line__order_id
 #, python-format
@@ -704,7 +704,7 @@ msgstr "Líneas de Pedido de venta generadas desde requisiciones de venta ligada
 
 #. module: sale_request
 #: code:addons/sale_request/models/sale_request.py:197
-#: code:addons/sale_request/models/sale_request.py:483
+#: code:addons/sale_request/models/sale_request.py:489
 #, python-format
 msgid "Sale Orders"
 msgstr "Ordenes de Venta"
@@ -769,7 +769,7 @@ msgstr "Ventas"
 #. module: sale_request
 #: model:ir.model,name:sale_request.model_sale_report
 msgid "Sales Analysis Report"
-msgstr "Informe de análisis de ventas"
+msgstr "Reporte de Análisis de ventas"
 
 #. module: sale_request
 #: model:ir.model,name:sale_request.model_sale_order_line
@@ -861,7 +861,7 @@ msgstr "Líneas de pedido sin vincular"
 #. module: sale_request
 #: model:ir.model.fields,field_description:sale_request.field_sale_request__message_unread
 msgid "Unread Messages"
-msgstr "Mensajes por leer"
+msgstr "Mensajes sin leer"
 
 #. module: sale_request
 #: model:ir.model.fields,field_description:sale_request.field_sale_request__message_unread_counter
@@ -926,7 +926,13 @@ msgid "You cannot request more than the remaining qty of this master sale order.
 msgstr "No puedes requerir más que la cantidad restante de este pedido master."
 
 #. module: sale_request
-#: code:addons/sale_request/models/sale_request.py:419
+#: code:addons/sale_request/wizards/link_sale_order_wizard.py:85
+#, python-format
+msgid "You cannot request to link more than the remaining qty of this master sale order. You are requesting to link %s more than the initial requested. Please select the lines with less quantity than the remaining quantity"
+msgstr "No puedes solicitar el vincular más cantidad que la cantidad que tienes como restante en esta remisión maestra. Estás pidiendo vincular %s más que la cantidad inicial. Por favor, selecciona lineas que tengan menos cantidad de la que tienes como restante."
+
+#. module: sale_request
+#: code:addons/sale_request/models/sale_request.py:425
 #, python-format
 msgid "You do not have enougth stock of these components:\n"
 " %s"
@@ -940,7 +946,7 @@ msgid "You have not defined the quantity to sale to any master order, please def
 msgstr "No ha definido la cantidad a vender a ningún pedido maestro, por favor defínalo."
 
 #. module: sale_request
-#: code:addons/sale_request/models/sale_request.py:347
+#: code:addons/sale_request/models/sale_request.py:353
 #, python-format
 msgid "You plan to sell %s %s of %s but you only have%s %s available in %s warehouse."
 msgstr "Planeas vender %s %s de %s pero tu solo tienes %s %s disponible en el %s Almacen."

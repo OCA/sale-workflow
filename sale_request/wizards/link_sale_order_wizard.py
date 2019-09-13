@@ -3,6 +3,7 @@
 
 from odoo import _, api, fields, models
 from odoo.addons import decimal_precision as dp
+from odoo.exceptions import UserError
 
 
 class LinkSaleOrderWizard(models.TransientModel):
@@ -76,6 +77,17 @@ class LinkSaleOrderWizard(models.TransientModel):
             sale_lines = self.sale_line_ids.filtered(
                 lambda l: l.product_id.id == wiz_line.product_id.id)
             orders = sale_lines.mapped('order_id')
+            total = wiz_line.sale_line_id.product_uom_qty_total + sum(
+                sale_lines.mapped('product_uom_qty'))
+            requested_qty_line = wiz_line.sale_line_id.product_uom_qty
+            upsell = total - requested_qty_line
+            if total > requested_qty_line:
+                raise UserError(_(
+                    'You cannot request to link more than the remaining qty of'
+                    ' this master sale order. You are requesting to link '
+                    '%s more than the initial requested. Please select the'
+                    ' lines with less quantity than the remaining'
+                    ' quantity') % upsell)
             list_order.extend(orders.ids)
             for order in orders:
                 ref = wiz_line.sale_line_id.order_id.client_order_ref
