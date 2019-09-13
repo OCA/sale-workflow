@@ -38,7 +38,7 @@ class SaleOrder(models.Model):
     def toggle_manual(self):
         self.ensure_one()
         if isinstance(self.id, int):  # if already saved
-            if self.state != "draft":
+            if self.state not in ("draft", "sent"):
                 raise UserError(
                     _(
                         "You can only change to/from manual delivery"
