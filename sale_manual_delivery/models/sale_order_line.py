@@ -38,7 +38,7 @@ class SaleOrderLine(models.Model):
                         move.product_uom_qty, line.product_uom
                     )
                 elif move.location_dest_id.usage == "internal" \
-                        and move.to_refund_so:
+                        and move.to_refund:
                     qty -= move.product_uom._compute_quantity(
                         move.product_uom_qty, line.product_uom
                     )
