@@ -25,28 +25,28 @@ msgid "Contact"
 msgstr ""
 
 #. module: sale_invoice_group_method
-#: model:ir.model.fields,field_description:sale_invoice_group_method.field_sale_invoice_group_method_create_uid
+#: model:ir.model.fields,field_description:sale_invoice_group_method.field_sale_invoice_group_method__create_uid
 msgid "Created by"
 msgstr "Aangemaakt door"
 
 #. module: sale_invoice_group_method
-#: model:ir.model.fields,field_description:sale_invoice_group_method.field_sale_invoice_group_method_create_date
+#: model:ir.model.fields,field_description:sale_invoice_group_method.field_sale_invoice_group_method__create_date
 msgid "Created on"
 msgstr "Aangemaakt op"
 
 #. module: sale_invoice_group_method
-#: model:ir.model.fields,field_description:sale_invoice_group_method.field_sale_invoice_group_method_criteria_fields_ids
+#: model:ir.model.fields,field_description:sale_invoice_group_method.field_sale_invoice_group_method__criteria_fields_ids
 msgid "Criteria fields"
 msgstr ""
 
 #. module: sale_invoice_group_method
-#: model:ir.model.fields,field_description:sale_invoice_group_method.field_res_partner_invoice_group_method_id
-#: model:ir.model.fields,field_description:sale_invoice_group_method.field_res_users_invoice_group_method_id
+#: model:ir.model.fields,field_description:sale_invoice_group_method.field_res_partner__invoice_group_method_id
+#: model:ir.model.fields,field_description:sale_invoice_group_method.field_res_users__invoice_group_method_id
 msgid "Default Invoice Group Method"
 msgstr ""
 
 #. module: sale_invoice_group_method
-#: model:ir.model.fields,field_description:sale_invoice_group_method.field_sale_invoice_group_method_display_name
+#: model:ir.model.fields,field_description:sale_invoice_group_method.field_sale_invoice_group_method__display_name
 msgid "Display Name"
 msgstr "Weergavenaam"
 
@@ -56,64 +56,63 @@ msgid "Fields"
 msgstr ""
 
 #. module: sale_invoice_group_method
-#: model:ir.ui.view,arch_db:sale_invoice_group_method.sale_invoice_group_method_search_view
+#: model_terms:ir.ui.view,arch_db:sale_invoice_group_method.sale_invoice_group_method_search_view
 msgid "Group By..."
 msgstr ""
 
 #. module: sale_invoice_group_method
-#: model:ir.model.fields,field_description:sale_invoice_group_method.field_sale_invoice_group_method_id
+#: model:ir.model.fields,field_description:sale_invoice_group_method.field_sale_invoice_group_method__id
 msgid "ID"
 msgstr "ID"
 
 #. module: sale_invoice_group_method
-#: model:ir.model.fields,field_description:sale_invoice_group_method.field_sale_invoice_group_method_name
-#: model:ir.ui.view,arch_db:sale_invoice_group_method.sale_invoice_group_method_tree_view
+#: model:ir.model.fields,field_description:sale_invoice_group_method.field_sale_invoice_group_method__name
 msgid "Invoice Group"
 msgstr ""
 
 #. module: sale_invoice_group_method
-#: model:ir.model.fields,field_description:sale_invoice_group_method.field_sale_order_invoice_group_method_id
+#: model:ir.model.fields,field_description:sale_invoice_group_method.field_sale_order__invoice_group_method_id
 #: model:ir.ui.menu,name:sale_invoice_group_method.menu_invoice_group_method
 msgid "Invoice Group Method"
 msgstr ""
 
 #. module: sale_invoice_group_method
-#: model:ir.ui.view,arch_db:sale_invoice_group_method.sale_invoice_group_method_form_view
+#: model_terms:ir.ui.view,arch_db:sale_invoice_group_method.sale_invoice_group_method_form_view
 msgid "Invoice Groups"
 msgstr ""
 
 #. module: sale_invoice_group_method
-#: model:ir.model.fields,field_description:sale_invoice_group_method.field_sale_invoice_group_method___last_update
+#: model:ir.model.fields,field_description:sale_invoice_group_method.field_sale_invoice_group_method____last_update
 msgid "Last Modified on"
 msgstr "Laatst gewijzigd op"
 
 #. module: sale_invoice_group_method
-#: model:ir.model.fields,field_description:sale_invoice_group_method.field_sale_invoice_group_method_write_uid
+#: model:ir.model.fields,field_description:sale_invoice_group_method.field_sale_invoice_group_method__write_uid
 msgid "Last Updated by"
 msgstr "Laatst aangepast door"
 
 #. module: sale_invoice_group_method
-#: model:ir.model.fields,field_description:sale_invoice_group_method.field_sale_invoice_group_method_write_date
+#: model:ir.model.fields,field_description:sale_invoice_group_method.field_sale_invoice_group_method__write_date
 msgid "Last Updated on"
 msgstr "Laatst aangepast op"
 
 #. module: sale_invoice_group_method
-#: model:ir.ui.view,arch_db:sale_invoice_group_method.sale_invoice_group_method_search_view
+#: model_terms:ir.ui.view,arch_db:sale_invoice_group_method.sale_invoice_group_method_search_view
 msgid "Medical Procedure Request"
 msgstr ""
 
 #. module: sale_invoice_group_method
-#: model:ir.ui.view,arch_db:sale_invoice_group_method.sale_invoice_group_method_search_view
+#: model_terms:ir.ui.view,arch_db:sale_invoice_group_method.sale_invoice_group_method_search_view
 msgid "Name"
 msgstr "Naam"
-
-#. module: sale_invoice_group_method
-#: model:ir.model,name:sale_invoice_group_method.model_sale_order
-msgid "Quotation"
-msgstr ""
 
 #. module: sale_invoice_group_method
 #: model:ir.actions.act_window,name:sale_invoice_group_method.sale_invoice_group_method_action
 #: model:ir.model,name:sale_invoice_group_method.model_sale_invoice_group_method
 msgid "Sale Invoice Group Method"
+msgstr ""
+
+#. module: sale_invoice_group_method
+#: model:ir.model,name:sale_invoice_group_method.model_sale_order
+msgid "Sale Order"
 msgstr ""
