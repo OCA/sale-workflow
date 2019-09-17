@@ -33,7 +33,7 @@ msgstr "自动工作流程付款筛选器"
 #. module: sale_automatic_workflow_payment_mode
 #: model:ir.model.fields,field_description:sale_automatic_workflow_payment_mode.field_sale_workflow_process__payment_filter_domain
 msgid "Payment Filter Domain"
-msgstr ""
+msgstr "付款筛选域"
 
 #. module: sale_automatic_workflow_payment_mode
 #: model:ir.model,name:sale_automatic_workflow_payment_mode.model_account_payment_mode
