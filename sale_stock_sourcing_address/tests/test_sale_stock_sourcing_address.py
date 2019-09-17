@@ -21,6 +21,7 @@ class TestStockSourcingAddress(TransactionCase):
             'name': 'Test product',
             'type': 'product'
         })
+        self.product.product_tmpl_id.invoice_policy = 'order'
         self.warehouse = self.env.ref('stock.warehouse0')
         self.warehouse_2 = self.warehouse_model.create({
             'code': 'WH-T',
@@ -37,14 +38,14 @@ class TestStockSourcingAddress(TransactionCase):
             'location_id': self.env.ref(
                 'stock.stock_location_customers').id,
             'location_src_id': self.warehouse_2.lot_stock_id.id,
-            'action': 'move',
+            'action': 'pull',
             'warehouse_id': self.warehouse.id,
             'picking_type_id': self.env.ref('stock.picking_type_out').id,
             'name': 'wh2 rule',
             'route_id': self.wh2_route.id,
             'propagate_warehouse_id': self.warehouse_2.id,
         }
-        self.wh2_rule = self.env['procurement.rule'].create(rule_vals)
+        self.wh2_rule = self.env['stock.rule'].create(rule_vals)
 
         self.so = self.env['sale.order'].create({
             'partner_id': self.partner.id,
