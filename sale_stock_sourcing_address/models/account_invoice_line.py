@@ -10,3 +10,8 @@ class AccountInvoiceLine(models.Model):
     sourcing_address_id = fields.Many2one(
         'res.partner', string='Sourcing Address',
         related='sale_line_ids.sourcing_address_id')
+
+    warehouse_id = fields.Many2one(
+        'stock.warehouse', string='Order\'s Warehouse',
+        related='sale_line_ids.warehouse_id'
+    )
