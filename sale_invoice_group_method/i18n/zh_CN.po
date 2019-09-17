@@ -26,28 +26,28 @@ msgid "Contact"
 msgstr "联系人"
 
 #. module: sale_invoice_group_method
-#: model:ir.model.fields,field_description:sale_invoice_group_method.field_sale_invoice_group_method_create_uid
+#: model:ir.model.fields,field_description:sale_invoice_group_method.field_sale_invoice_group_method__create_uid
 msgid "Created by"
 msgstr "创建者"
 
 #. module: sale_invoice_group_method
-#: model:ir.model.fields,field_description:sale_invoice_group_method.field_sale_invoice_group_method_create_date
+#: model:ir.model.fields,field_description:sale_invoice_group_method.field_sale_invoice_group_method__create_date
 msgid "Created on"
 msgstr "创建时间"
 
 #. module: sale_invoice_group_method
-#: model:ir.model.fields,field_description:sale_invoice_group_method.field_sale_invoice_group_method_criteria_fields_ids
+#: model:ir.model.fields,field_description:sale_invoice_group_method.field_sale_invoice_group_method__criteria_fields_ids
 msgid "Criteria fields"
 msgstr "标准字段"
 
 #. module: sale_invoice_group_method
-#: model:ir.model.fields,field_description:sale_invoice_group_method.field_res_partner_invoice_group_method_id
-#: model:ir.model.fields,field_description:sale_invoice_group_method.field_res_users_invoice_group_method_id
+#: model:ir.model.fields,field_description:sale_invoice_group_method.field_res_partner__invoice_group_method_id
+#: model:ir.model.fields,field_description:sale_invoice_group_method.field_res_users__invoice_group_method_id
 msgid "Default Invoice Group Method"
 msgstr "默认发票组方法"
 
 #. module: sale_invoice_group_method
-#: model:ir.model.fields,field_description:sale_invoice_group_method.field_sale_invoice_group_method_display_name
+#: model:ir.model.fields,field_description:sale_invoice_group_method.field_sale_invoice_group_method__display_name
 msgid "Display Name"
 msgstr "显示名称"
 
@@ -57,64 +57,66 @@ msgid "Fields"
 msgstr "字段"
 
 #. module: sale_invoice_group_method
-#: model:ir.ui.view,arch_db:sale_invoice_group_method.sale_invoice_group_method_search_view
+#: model_terms:ir.ui.view,arch_db:sale_invoice_group_method.sale_invoice_group_method_search_view
 msgid "Group By..."
 msgstr "分组..."
 
 #. module: sale_invoice_group_method
-#: model:ir.model.fields,field_description:sale_invoice_group_method.field_sale_invoice_group_method_id
+#: model:ir.model.fields,field_description:sale_invoice_group_method.field_sale_invoice_group_method__id
 msgid "ID"
 msgstr "ID"
 
 #. module: sale_invoice_group_method
-#: model:ir.model.fields,field_description:sale_invoice_group_method.field_sale_invoice_group_method_name
-#: model:ir.ui.view,arch_db:sale_invoice_group_method.sale_invoice_group_method_tree_view
+#: model:ir.model.fields,field_description:sale_invoice_group_method.field_sale_invoice_group_method__name
 msgid "Invoice Group"
 msgstr "发票组"
 
 #. module: sale_invoice_group_method
-#: model:ir.model.fields,field_description:sale_invoice_group_method.field_sale_order_invoice_group_method_id
+#: model:ir.model.fields,field_description:sale_invoice_group_method.field_sale_order__invoice_group_method_id
 #: model:ir.ui.menu,name:sale_invoice_group_method.menu_invoice_group_method
 msgid "Invoice Group Method"
 msgstr "发票组方法"
 
 #. module: sale_invoice_group_method
-#: model:ir.ui.view,arch_db:sale_invoice_group_method.sale_invoice_group_method_form_view
+#: model_terms:ir.ui.view,arch_db:sale_invoice_group_method.sale_invoice_group_method_form_view
 msgid "Invoice Groups"
 msgstr "发票组"
 
 #. module: sale_invoice_group_method
-#: model:ir.model.fields,field_description:sale_invoice_group_method.field_sale_invoice_group_method___last_update
+#: model:ir.model.fields,field_description:sale_invoice_group_method.field_sale_invoice_group_method____last_update
 msgid "Last Modified on"
 msgstr "最后修改时间"
 
 #. module: sale_invoice_group_method
-#: model:ir.model.fields,field_description:sale_invoice_group_method.field_sale_invoice_group_method_write_uid
+#: model:ir.model.fields,field_description:sale_invoice_group_method.field_sale_invoice_group_method__write_uid
 msgid "Last Updated by"
 msgstr "最后更新者"
 
 #. module: sale_invoice_group_method
-#: model:ir.model.fields,field_description:sale_invoice_group_method.field_sale_invoice_group_method_write_date
+#: model:ir.model.fields,field_description:sale_invoice_group_method.field_sale_invoice_group_method__write_date
 msgid "Last Updated on"
 msgstr "上次更新日期"
 
 #. module: sale_invoice_group_method
-#: model:ir.ui.view,arch_db:sale_invoice_group_method.sale_invoice_group_method_search_view
+#: model_terms:ir.ui.view,arch_db:sale_invoice_group_method.sale_invoice_group_method_search_view
 msgid "Medical Procedure Request"
 msgstr "医疗程序请求"
 
 #. module: sale_invoice_group_method
-#: model:ir.ui.view,arch_db:sale_invoice_group_method.sale_invoice_group_method_search_view
+#: model_terms:ir.ui.view,arch_db:sale_invoice_group_method.sale_invoice_group_method_search_view
 msgid "Name"
 msgstr "名称"
-
-#. module: sale_invoice_group_method
-#: model:ir.model,name:sale_invoice_group_method.model_sale_order
-msgid "Quotation"
-msgstr "报价单"
 
 #. module: sale_invoice_group_method
 #: model:ir.actions.act_window,name:sale_invoice_group_method.sale_invoice_group_method_action
 #: model:ir.model,name:sale_invoice_group_method.model_sale_invoice_group_method
 msgid "Sale Invoice Group Method"
 msgstr "销售发票组方法"
+
+#. module: sale_invoice_group_method
+#: model:ir.model,name:sale_invoice_group_method.model_sale_order
+msgid "Sale Order"
+msgstr ""
+
+#~ msgid "Quotation"
+#~ msgstr "报价单"
