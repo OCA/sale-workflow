@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: Odoo Server 9.0c\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2016-08-24 02:46+0000\n"
-"PO-Revision-Date: 2019-09-17 16:36+0000\n"
+"PO-Revision-Date: 2019-09-17 16:58+0000\n"
 "Last-Translator: 黎伟杰 <674416404@qq.com>\n"
 "Language-Team: Chinese (China) (https://www.transifex.com/oca/teams/23907/"
 "zh_CN/)\n"
@@ -43,33 +43,31 @@ msgstr "付款方式"
 #. module: sale_automatic_workflow_payment_mode
 #: model:ir.model.fields,field_description:sale_automatic_workflow_payment_mode.field_sale_workflow_process__register_payment
 msgid "Register Payment"
-msgstr ""
+msgstr "注册付款"
 
 #. module: sale_automatic_workflow_payment_mode
 #: model:ir.model.fields,field_description:sale_automatic_workflow_payment_mode.field_sale_workflow_process__payment_filter_id
 msgid "Register Payment Invoice Filter"
-msgstr ""
+msgstr "注册付款发票筛选器"
 
 #. module: sale_automatic_workflow_payment_mode
 #: model:ir.model,name:sale_automatic_workflow_payment_mode.model_sale_order
-#, fuzzy
-#| msgid "Sales Order"
 msgid "Sale Order"
 msgstr "销售订单"
 
 #. module: sale_automatic_workflow_payment_mode
 #: model:ir.model,name:sale_automatic_workflow_payment_mode.model_sale_workflow_process
 msgid "Sale Workflow Process"
-msgstr ""
+msgstr "销售工作流程"
 
 #. module: sale_automatic_workflow_payment_mode
 #: model:ir.model,name:sale_automatic_workflow_payment_mode.model_automatic_workflow_job
 msgid ""
 "Scheduler that will play automatically the validation of invoices, "
 "pickings..."
-msgstr ""
+msgstr "调度程序将自动验证发票，验证拣货......"
 
 #. module: sale_automatic_workflow_payment_mode
 #: model_terms:ir.ui.view,arch_db:sale_automatic_workflow_payment_mode.sale_workflow_process_view_form
 msgid "Set selection based on a search filter:"
-msgstr ""
+msgstr "根据搜索筛选器设置选择："
