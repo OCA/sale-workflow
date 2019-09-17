@@ -3,6 +3,7 @@
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
 
 from odoo import models, fields, api
+import odoo.addons.decimal_precision as dp
 
 
 class ManualDeliveryLine(models.TransientModel):
@@ -30,28 +31,32 @@ class ManualDeliveryLine(models.TransientModel):
     )
     ordered_qty = fields.Float(
         'Ordered quantity',
-        help = "Quantity ordered in the related Sale Order",
+        help="Quantity ordered in the related Sale Order",
         readonly=True,
+        digits=dp.get_precision('Product Unit of Measure')
     )
     existing_qty = fields.Float(
         'Existing quantity',
-        help = "Quantity already planned or shipped (stock movements \
+        help="Quantity already planned or shipped (stock movements \
             already created)",
         readonly=True,
+        digits=dp.get_precision('Product Unit of Measure')
     )
     remaining_qty = fields.Float(
         'Remaining quantity',
-        compute='compute_remaining_qty',
-        help = "Remaining quantity available to deliver",
+        compute='_compute_remaining_qty',
+        help="Remaining quantity available to deliver",
         readonly=True,
+        digits=dp.get_precision('Product Unit of Measure')
     )
     to_ship_qty = fields.Float(
         'Quantity to Ship',
+        digits=dp.get_precision('Product Unit of Measure')
     )
 
     @api.multi
     @api.depends('to_ship_qty')
-    def compute_remaining_qty(self):
+    def _compute_remaining_qty(self):
         for line in self:
             line.remaining_qty = line.ordered_qty - line.existing_qty \
                 - line.to_ship_qty

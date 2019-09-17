@@ -1,61 +1,54 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <odoo>
 
-  <record id='manual_delivery_wizard_form' model='ir.ui.view'>
-    <field name='manual_delivery_wizard_form'/>
-    <field name='model'>manual.delivery</field>
-    <field name='arch' type='xml'>
+    <record id='manual_delivery_wizard_form' model='ir.ui.view'>
+        <field name="name">manual.delivery.wizard.form</field>
+        <field name="model">manual.delivery</field>
+        <field name='arch' type='xml'>
+            <form string="Create Manually Delivery" name="manual_procurment_form">
+                <sheet>
+                    <group>
+                        <field name='sale_line_ids' invisible="1"/>
+                    </group>
+                    <field name='line_ids'>
+                        <tree editable="bottom" create="0">
+                            <field name='manual_delivery_id' invisible="1"/>
+                            <field name='order_line_id' invisible="1"/>
+                            <field name='product_id'/>
+                            <field name='line_description'/>
+                            <field name='ordered_qty'/>
+                            <field name='existing_qty'/>
+                            <field name='remaining_qty'/>
+                            <field name='to_ship_qty'/>
+                        </tree>
+                    </field>
+                </sheet>
+                <footer>
+                    <button name='record_picking'
+                            string='Create Picking'
+                            class='btn-primary'
+                            type='object'/>
+                    <button string="Cancel" class="btn-default" special="cancel" />
+                </footer>
+            </form>
 
-      <form string="Create Manually Delivery" name="manual_procurment_form">
-        <sheet>
-          <group>
-            <field name='date_planned' required="1"/>
-            <field name='order_id' invisible="1"/>
-          </group>
-          <group>
-            <field name='carrier_id'/>
-          </group>
-          <group>
-            <field name='partner_id' required="1"/>
-          </group>
-          <field name='line_ids'>
-            <tree editable="bottom" create="0">
-              <field name='manual_delivery_id' invisible="1"/>
-              <field name='order_line_id' invisible="1"/>
-              <field name='product_id'/>
-              <field name='line_description'/>
-              <field name='ordered_qty'/>
-              <field name='existing_qty'/>
-              <field name='remaining_qty'/>
-              <field name='to_ship_qty'/>
-            </tree>
-          </field>
-        </sheet>
-        <footer>
-          <button name='record_picking'
-                  string='Create Picking'
-                  class='btn-primary'
-                  type='object'/>
-          <button string="Cancel" class="btn-default" special="cancel" />
-        </footer>
-      </form>
+        </field>
+    </record>
 
-    </field>
-  </record>
+    <act_window id='action_wizard_manual_delivery'
+                name='Create Manual Delivery'
+                res_model='manual.delivery'
+                view_mode='form'
+                target='new'/>
 
-  <act_window id='action_wizard_manual_delivery'
-              name='Create Manual Delivery'
-              res_model='manual.delivery'
-              view_mode='form'
-              target='new'/>
+    <record model="ir.values" id="sale_order_line_make_invoice">
+      <field name="model_id" ref="sale.model_sale_order_line" />
+      <field name="name">Create Manual Delivery</field>
+      <field name="key2">client_action_multi</field>
+      <field name="value" eval="'ir.actions.act_window,' + str(ref('action_wizard_manual_delivery'))" />
+      <field name="key">action</field>
+      <field name="model">sale.order.line</field>
+    </record>
 
-  <record model="ir.values" id="sale_order_line_make_invoice">
-    <field name="model_id" ref="sale.model_sale_order_line" />
-    <field name="name">Create Manual Delivery</field>
-    <field name="key2">client_action_multi</field>
-    <field name="value" eval="'ir.actions.act_window,' + str(ref('action_wizard_manual_delivery'))" />
-    <field name="key">action</field>
-    <field name="model">sale.order</field>
-  </record>
 
 </odoo>
