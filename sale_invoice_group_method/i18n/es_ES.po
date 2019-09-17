@@ -1,0 +1,119 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# * sale_invoice_group_method
+#
+# Translators:
+# OCA Transbot <transbot@odoo-community.org>, 2018
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 11.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2018-01-16 03:41+0000\n"
+"PO-Revision-Date: 2018-01-16 03:41+0000\n"
+"Last-Translator: OCA Transbot <transbot@odoo-community.org>, 2018\n"
+"Language-Team: Spanish (Spain) (https://www.transifex.com/oca/teams/23907/"
+"es_ES/)\n"
+"Language: es_ES\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+#. module: sale_invoice_group_method
+#: model:ir.model,name:sale_invoice_group_method.model_res_partner
+msgid "Contact"
+msgstr ""
+
+#. module: sale_invoice_group_method
+#: model:ir.model.fields,field_description:sale_invoice_group_method.field_sale_invoice_group_method_create_uid
+msgid "Created by"
+msgstr "Creado por"
+
+#. module: sale_invoice_group_method
+#: model:ir.model.fields,field_description:sale_invoice_group_method.field_sale_invoice_group_method_create_date
+msgid "Created on"
+msgstr "Creado en"
+
+#. module: sale_invoice_group_method
+#: model:ir.model.fields,field_description:sale_invoice_group_method.field_sale_invoice_group_method_criteria_fields_ids
+msgid "Criteria fields"
+msgstr ""
+
+#. module: sale_invoice_group_method
+#: model:ir.model.fields,field_description:sale_invoice_group_method.field_res_partner_invoice_group_method_id
+#: model:ir.model.fields,field_description:sale_invoice_group_method.field_res_users_invoice_group_method_id
+msgid "Default Invoice Group Method"
+msgstr ""
+
+#. module: sale_invoice_group_method
+#: model:ir.model.fields,field_description:sale_invoice_group_method.field_sale_invoice_group_method_display_name
+msgid "Display Name"
+msgstr ""
+
+#. module: sale_invoice_group_method
+#: model:ir.model,name:sale_invoice_group_method.model_ir_model_fields
+msgid "Fields"
+msgstr ""
+
+#. module: sale_invoice_group_method
+#: model:ir.ui.view,arch_db:sale_invoice_group_method.sale_invoice_group_method_search_view
+msgid "Group By..."
+msgstr ""
+
+#. module: sale_invoice_group_method
+#: model:ir.model.fields,field_description:sale_invoice_group_method.field_sale_invoice_group_method_id
+msgid "ID"
+msgstr "ID"
+
+#. module: sale_invoice_group_method
+#: model:ir.model.fields,field_description:sale_invoice_group_method.field_sale_invoice_group_method_name
+#: model:ir.ui.view,arch_db:sale_invoice_group_method.sale_invoice_group_method_tree_view
+msgid "Invoice Group"
+msgstr ""
+
+#. module: sale_invoice_group_method
+#: model:ir.model.fields,field_description:sale_invoice_group_method.field_sale_order_invoice_group_method_id
+#: model:ir.ui.menu,name:sale_invoice_group_method.menu_invoice_group_method
+msgid "Invoice Group Method"
+msgstr ""
+
+#. module: sale_invoice_group_method
+#: model:ir.ui.view,arch_db:sale_invoice_group_method.sale_invoice_group_method_form_view
+msgid "Invoice Groups"
+msgstr ""
+
+#. module: sale_invoice_group_method
+#: model:ir.model.fields,field_description:sale_invoice_group_method.field_sale_invoice_group_method___last_update
+msgid "Last Modified on"
+msgstr ""
+
+#. module: sale_invoice_group_method
+#: model:ir.model.fields,field_description:sale_invoice_group_method.field_sale_invoice_group_method_write_uid
+msgid "Last Updated by"
+msgstr "Última actualización por"
+
+#. module: sale_invoice_group_method
+#: model:ir.model.fields,field_description:sale_invoice_group_method.field_sale_invoice_group_method_write_date
+msgid "Last Updated on"
+msgstr "Última actualización en"
+
+#. module: sale_invoice_group_method
+#: model:ir.ui.view,arch_db:sale_invoice_group_method.sale_invoice_group_method_search_view
+msgid "Medical Procedure Request"
+msgstr ""
+
+#. module: sale_invoice_group_method
+#: model:ir.ui.view,arch_db:sale_invoice_group_method.sale_invoice_group_method_search_view
+msgid "Name"
+msgstr ""
+
+#. module: sale_invoice_group_method
+#: model:ir.model,name:sale_invoice_group_method.model_sale_order
+msgid "Quotation"
+msgstr ""
+
+#. module: sale_invoice_group_method
+#: model:ir.actions.act_window,name:sale_invoice_group_method.sale_invoice_group_method_action
+#: model:ir.model,name:sale_invoice_group_method.model_sale_invoice_group_method
+msgid "Sale Invoice Group Method"
+msgstr ""
