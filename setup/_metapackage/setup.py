@@ -18,6 +18,7 @@ setuptools.setup(
         'odoo12-addon-sale_double_validation',
         'odoo12-addon-sale_exception',
         'odoo12-addon-sale_force_invoiced',
+        'odoo12-addon-sale_invoice_group_method',
         'odoo12-addon-sale_invoice_plan',
         'odoo12-addon-sale_last_price_info',
         'odoo12-addon-sale_merge_draft_invoice',
