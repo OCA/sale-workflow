@@ -38,7 +38,7 @@ msgstr "付款筛选域"
 #. module: sale_automatic_workflow_payment_mode
 #: model:ir.model,name:sale_automatic_workflow_payment_mode.model_account_payment_mode
 msgid "Payment Modes"
-msgstr ""
+msgstr "付款方式"
 
 #. module: sale_automatic_workflow_payment_mode
 #: model:ir.model.fields,field_description:sale_automatic_workflow_payment_mode.field_sale_workflow_process__register_payment
