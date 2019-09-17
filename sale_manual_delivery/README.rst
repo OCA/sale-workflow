@@ -14,11 +14,15 @@ As you make many shipments, every time you make a new delivery, you can choose a
 as a planned date. A wizard helps you to chose what to deliver by showing you how much you already 
 planned to ship.
 
+In many cases, is the warehouse user the one that goes to the SO and ship. This
+usually is a pain because there are many shipments and finding the proper one
+is complicated. For those reasons it is very useful to have a menu in Inventory
+to create the delivery directly and also do it at sale order line level. 
+
 
 Known issues / Roadmap
 ======================
 * Add Screenshots
-* Add tests
 
 
 Bug Tracker
@@ -33,7 +37,7 @@ help us smash it by providing detailed and welcomed feedback.
 Credits
 =======
 
-* Odoo Community Association: `Icon <https://github.com/OCA/maintainer-tools/blob/master/template/module/static/description/icon.svg>`_.
+* Odoo Community Association: `Icon <https://odoo-community.org/logo.png>`_.
 
 
 Contributors

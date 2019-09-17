@@ -8,21 +8,17 @@ from odoo import models, api
 class StockMove(models.Model):
     _inherit = "stock.move"
 
-    def _get_new_picking_values(self):
-        res = super(StockMove, self)._get_new_picking_values()
-        if self.procurement_id.carrier_id:
-            res['carrier_id'] = self.procurement_id.carrier_id.id
-        return res
-
     @api.multi
     def assign_picking(self):
         # Redefine method to filter on date_expected (allows to group moves
         # from the same manual delivery in one delivery)
-        if 'manual_delivery' not in self.env.context:
-            return super(StockMove, self).assign_picking()
         Picking = self.env['stock.picking']
         self.recompute()
+        res = True
         for move in self:
+            if not move.procurement_id.manual_delivery:
+                res = super(StockMove, move).assign_picking()
+                continue
             domain = [
                 ('group_id', '=', move.group_id.id),
                 ('location_id', '=', move.location_id.id),
@@ -31,11 +27,10 @@ class StockMove(models.Model):
                 ('printed', '=', False),
                 ('min_date', '=', move.date_expected),
                 ('max_date', '=', move.date_expected),
-                ('carrier_id', '=', move.procurement_id.carrier_id.id),
                 ('state', 'in', ['draft', 'confirmed', 'waiting',
                                  'partially_available', 'assigned'])]
             picking = Picking.search(domain, limit=1)
             if not picking.sale_id.manual_delivery:
                 picking = Picking.create(move._get_new_picking_values())
             move.write({'picking_id': picking.id})
-        return True
+        return res
