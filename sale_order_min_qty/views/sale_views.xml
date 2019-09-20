@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Copyright 2019 Tecnativa - Ernesto Tejeda
+     License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl). -->
+<odoo>
+    <record id="view_order_form" model="ir.ui.view">
+        <field name="model">sale.order</field>
+        <field name="inherit_id" ref="sale.view_order_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='order_line']/form//field[@name='price_unit']" position="after">
+                <field name="sale_min_qty"/>
+                <field name="is_qty_less_min_qty" invisible="0"/>
+                <field name="force_sale_min_qty" invisible="0"/>
+                 <label colspan="2"
+            string="Min Quantity Recommended"
+                     attrs="{'invisible': [('|', '&amp;', ('is_qty_less_min_qty','=', False),
+                     ('is_qty_less_min_qty','=', True), ('force_sale_min_qty','=', True,)]}" style="background-color:red"/>
+                 <label colspan="2"
+            string="Min Quantity Required"
+                     attrs="{'invisible': [('|', '&amp;', ('is_qty_less_min_qty','=', False),
+                     ('is_qty_less_min_qty','=', True), ('force_sale_min_qty','=', False,)]}" style="background-color:yellow"/>
+           </xpath>
+           <xpath expr="//field[@name='order_line']/tree/field[@name='product_uom_qty']" position="after">
+               <field name="sale_min_qty"/>
+               <field name="is_qty_less_min_qty" invisible="1"/>
+               <field name="force_sale_min_qty" invisible="1"/>
+           </xpath>
+
+            <xpath expr="//field[@name='order_line']/tree" position="attributes">>
+                <attribute name="decoration-danger">is_qty_less_min_qty ==  True and force_sale_min_qty == True</attribute>
+                <attribute name="decoration-warning">is_qty_less_min_qty ==  True and force_sale_min_qty == False</attribute>
+            </xpath>
+        </field>
+    </record>
+</odoo>

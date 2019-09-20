@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+	<record id="min_order_qty_product_product_form_view"
+            model="ir.ui.view">
+		<field name="name">product.product.form</field>
+		<field name="model">product.product</field>
+		<field name="inherit_id" ref = "product.product_normal_form_view"/>	
+		<field name="arch" type="xml">
+            <group name="pricelists" position="before">
+                <group name="sale_min_qty">
+                    <field name ="sale_min_qty"/>
+                    <field name ="force_sale_min_qty"/>
+                </group>			
+			</group>			
+		</field>
+	</record>
+</odoo>
