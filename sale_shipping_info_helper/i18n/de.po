@@ -19,36 +19,38 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
 #. module: sale_shipping_info_helper
-#: model:ir.model.fields,field_description:sale_shipping_info_helper.field_sale_order_item_amount_tax
-msgid "Item amount tax"
+#: model:ir.model.fields,field_description:sale_shipping_info_helper.field_sale_order__item_amount_tax
+msgid "Item Amount Tax"
 msgstr ""
 
 #. module: sale_shipping_info_helper
-#: model:ir.model.fields,field_description:sale_shipping_info_helper.field_sale_order_item_amount_total
-msgid "Item amount total"
+#: model:ir.model.fields,field_description:sale_shipping_info_helper.field_sale_order__item_amount_total
+msgid "Item Amount Total"
 msgstr ""
 
 #. module: sale_shipping_info_helper
-#: model:ir.model.fields,field_description:sale_shipping_info_helper.field_sale_order_item_amount_untaxed
-msgid "Item amount untaxed"
+#: model:ir.model.fields,field_description:sale_shipping_info_helper.field_sale_order__item_amount_untaxed
+msgid "Item Amount Untaxed"
 msgstr ""
 
 #. module: sale_shipping_info_helper
 #: model:ir.model,name:sale_shipping_info_helper.model_sale_order
-msgid "Sales Order"
+#, fuzzy
+#| msgid "Sales Order"
+msgid "Sale Order"
 msgstr "Verkaufsauftrag"
 
 #. module: sale_shipping_info_helper
-#: model:ir.model.fields,field_description:sale_shipping_info_helper.field_sale_order_shipping_amount_tax
-msgid "Shipping amount tax"
+#: model:ir.model.fields,field_description:sale_shipping_info_helper.field_sale_order__shipping_amount_tax
+msgid "Shipping Amount Tax"
 msgstr ""
 
 #. module: sale_shipping_info_helper
-#: model:ir.model.fields,field_description:sale_shipping_info_helper.field_sale_order_shipping_amount_total
-msgid "Shipping amount total"
+#: model:ir.model.fields,field_description:sale_shipping_info_helper.field_sale_order__shipping_amount_total
+msgid "Shipping Amount Total"
 msgstr ""
 
 #. module: sale_shipping_info_helper
-#: model:ir.model.fields,field_description:sale_shipping_info_helper.field_sale_order_shipping_amount_untaxed
-msgid "Shipping amount untaxed"
+#: model:ir.model.fields,field_description:sale_shipping_info_helper.field_sale_order__shipping_amount_untaxed
+msgid "Shipping Amount Untaxed"
 msgstr ""
