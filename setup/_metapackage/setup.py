@@ -47,6 +47,7 @@ setuptools.setup(
         'odoo11-addon-sale_stock_picking_blocking',
         'odoo11-addon-sale_stock_picking_note',
         'odoo11-addon-sale_stock_secondary_unit',
+        'odoo11-addon-sale_stock_sourcing_address',
         'odoo11-addon-sale_validity',
         'odoo11-addon-sales_team_security',
     ],
