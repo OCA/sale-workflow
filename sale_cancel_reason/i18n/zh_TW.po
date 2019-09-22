@@ -81,7 +81,7 @@ msgstr "顯示名稱"
 
 #. module: sale_cancel_reason
 #: model:ir.model.fields,field_description:sale_cancel_reason.field_sale_order_cancel_id
-#: model:ir.model.fields,field_description:sale_cancel_reason.field_sale_order_cancel_reason_id_4506
+#: model:ir.model.fields,field_description:sale_cancel_reason.field_sale_order_cancel_reason_id_4502
 msgid "ID"
 msgstr "編號"
 
@@ -120,7 +120,7 @@ msgid "Reason"
 msgstr "原因"
 
 #. module: sale_cancel_reason
-#: model:ir.model.fields,field_description:sale_cancel_reason.field_sale_order_cancel_reason_id_4497
+#: model:ir.model.fields,field_description:sale_cancel_reason.field_sale_order_cancel_reason_id_4493
 msgid "Reason for cancellation"
 msgstr ""
 
