@@ -8,16 +8,16 @@
         <field name="arch" type="xml">
             <xpath expr="//field[@name='order_line']/form//field[@name='price_unit']" position="after">
                 <field name="sale_min_qty"/>
-                <field name="is_qty_less_min_qty" invisible="0"/>
-                <field name="force_sale_min_qty" invisible="0"/>
+                <field name="is_qty_less_min_qty" invisible="1"/>
+                <field name="force_sale_min_qty" invisible="1"/>
                  <label colspan="2"
             string="Min Quantity Recommended"
-                     attrs="{'invisible': [('|', '&amp;', ('is_qty_less_min_qty','=', False),
-                     ('is_qty_less_min_qty','=', True), ('force_sale_min_qty','=', True,)]}" style="background-color:red"/>
+                     attrs="{'invisible': ['|',  ('is_qty_less_min_qty','=', False),
+                     '&amp;', ('is_qty_less_min_qty','=', True), ('force_sale_min_qty','=', False,)]}"   style="background-color:yellow"/>
                  <label colspan="2"
             string="Min Quantity Required"
-                     attrs="{'invisible': [('|', '&amp;', ('is_qty_less_min_qty','=', False),
-                     ('is_qty_less_min_qty','=', True), ('force_sale_min_qty','=', False,)]}" style="background-color:yellow"/>
+                   attrs="{'invisible': ['|',  ('is_qty_less_min_qty','=', False),
+                     '&amp;', ('is_qty_less_min_qty','=', True), ('force_sale_min_qty','=', True,)]}" style="background-color:red"/>
            </xpath>
            <xpath expr="//field[@name='order_line']/tree/field[@name='product_uom_qty']" position="after">
                <field name="sale_min_qty"/>
@@ -26,8 +26,8 @@
            </xpath>
 
             <xpath expr="//field[@name='order_line']/tree" position="attributes">>
-                <attribute name="decoration-danger">is_qty_less_min_qty ==  True and force_sale_min_qty == True</attribute>
-                <attribute name="decoration-warning">is_qty_less_min_qty ==  True and force_sale_min_qty == False</attribute>
+                <attribute name="decoration-danger">is_qty_less_min_qty ==  True and force_sale_min_qty == False</attribute>
+                <attribute name="decoration-warning">is_qty_less_min_qty ==  True and force_sale_min_qty == True</attribute>
             </xpath>
         </field>
     </record>

@@ -8,7 +8,7 @@ class SaleOrder(models.Model):
     _inherit = "sale.order"
 
     @api.constrains('order_line')
-    def check_constraint_quantity(self):
+    def check_constraint_min_qty(self):
         for order in self:
             invaild_lines = []
             line_to_test = order.order_line.filtered(
@@ -19,8 +19,9 @@ class SaleOrder(models.Model):
 
             if invaild_lines:
                 msg = _('Check minimum order quantity for this products: * \n') +\
-                        '\n '.join(list)
-                msg += _('* If you want you can check "force min quatity" on product')
+                        '\n '.join(invaild_lines)
+                msg += _('\n* If you want sell quantity less then Min Quantity'
+                        ',Check "force min quatity" on product')
                 raise ValidationError(msg)  
 
 
