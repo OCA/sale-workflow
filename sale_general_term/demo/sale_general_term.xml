@@ -1,0 +1,28 @@
+<!-- Copyright 2019 Open Source Integrators
+     License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl). -->
+
+<odoo noupdate="1">
+
+    <record model="sale.general.term" id="sale_general_term_demo_uk_us">
+        <field name="name">US and UK Terms</field>
+        <field name="is_enabled" eval="True" />
+        <field name="country_ids" eval="[(6, 0 , [ref('base.uk'), ref('base.us')])]" />
+        <field name="terms">*** These are the general terms for UK and US ***</field>
+    </record>
+
+    <record model="sale.general.term" id="sale_general_term_demo_us">
+        <field name="name">Specific Terms for US</field>
+        <field name="is_enabled" eval="True" />
+        <field name="country_ids" eval="[(6, 0, [ref('base.us')])]" />
+        <field name="lang">en_US</field>
+        <field name="terms">*** These are the English terms for US ***</field>
+    </record>
+
+    <record model="sale.general.term" id="sale_general_term_demo_fr_be">
+        <field name="name">French Terms</field>
+        <field name="is_enabled" eval="True" />
+        <field name="country_ids" eval="[(6, 0 , [ref('base.fr'), ref('base.be')])]" />
+        <field name="terms">*** These are the French terms for France and Belgium ***</field>
+    </record>
+
+</odoo>

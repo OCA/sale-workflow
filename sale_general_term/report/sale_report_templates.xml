@@ -1,0 +1,11 @@
+<odoo>
+<template id="report_saleorder_document_inherit" inherit_id="sale.report_saleorder_document">
+    <div name="signature" position="after">
+        <div style="display:block; clear:both; page-break-before:always;">
+        <div t-if="doc.general_term_id" name="general_term_id">
+            <span><t t-raw="doc.general_term_id.terms"/></span>
+        </div>
+        </div>
+    </div>
+</template>
+</odoo>

@@ -1,0 +1,16 @@
+<!-- Copyright 2019 Open Source Integrators
+     License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl). -->
+<odoo>
+
+    <record model="ir.ui.view" id="sale_order_form_view">
+        <field name="name">sale.order.form (in sale_general_term)</field>
+        <field name="model">sale.order</field>
+        <field name="inherit_id" ref="sale.view_order_form"/>
+        <field name="arch" type="xml">
+            <field name="payment_term_id" position="before">
+                <field name="general_term_id"/>
+            </field>
+        </field>
+    </record>
+
+</odoo>

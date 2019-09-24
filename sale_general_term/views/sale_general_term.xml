@@ -1,0 +1,75 @@
+<!-- Copyright 2019 Open Source Integrators
+     License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl). -->
+
+<odoo>
+
+    <record model="ir.ui.view" id="sale_general_term_form_view">
+        <field name="name">sale.general.term.form (in sale_general_term)</field>
+        <field name="model">sale.general.term</field>
+        <field name="arch" type="xml">
+            <form>
+                <sheet>
+                    <h1>
+                        <field name="name"/>
+                    </h1>
+                    <group>
+                        <group>
+                            <field name="country_ids" widget="many2many_tags"/>
+                            <field name="lang"/>
+                        </group>
+                        <group>
+                            <field name="is_enabled"/>
+                            <field name="active" groups="base.group_system"/>
+                        </group>
+                    </group>
+                    <separator string="General Terms" />
+                    <field name="terms" />
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record model="ir.ui.view" id="sale_general_term_search_view">
+        <field name="name">sale.general.term.search (in sale_general_term)</field>
+        <field name="model">sale.general.term</field>
+        <field name="arch" type="xml">
+            <search>
+                <field name="country_ids" />
+                <field name="lang" />
+                <filter name="filter_enabled" 
+                        string="Enabled"
+                        domain="[('is_enabled', '=', True)]" />
+            </search>
+        </field>
+    </record>
+
+    <record model="ir.ui.view" id="sale_general_term_tree_view">
+        <field name="name">sale.general.term.tree (in sale_general_term)</field>
+        <field name="model">sale.general.term</field>
+        <field name="arch" type="xml">
+            <tree decoration-primary="is_enabled" decoration-muted="not active">
+                <field name="name"/>
+                <field name="country_ids" widget="many2many_tags"/>
+                <field name="lang"/>
+                <field name="is_enabled"/>
+                <field name="active" invisible="1"/>
+            </tree>
+        </field>
+    </record>
+
+    <record model="ir.actions.act_window" id="sale_general_term_act_window">
+        <field name="name">Sale General Terms</field>
+        <field name="res_model">sale.general.term</field>
+        <field name="view_mode">tree,form</field>
+        <field name="domain">[]</field>
+        <field name="context">{'default_filter_filter_is_enabled': True}</field>
+    </record>
+
+    <record model="ir.ui.menu" id="sale_general_term_menu">
+        <field name="name">Sale General Terms</field>
+        <field name="parent_id" ref="sale.menu_sales_config"/>
+        <field name="action" ref="sale_general_term_act_window"/>
+        <field name="sequence" eval="16"/>
+    </record>
+
+</odoo>

@@ -1,0 +1,26 @@
+<!-- Copyright 2019 Open Source Integrators
+     License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl). -->
+
+<odoo>
+
+    <record model="ir.model.access" id="sale_general_term_access_sale_salesman">
+        <field name="name">sale.general.term access Sale Saleman</field>
+        <field name="model_id" ref="model_sale_general_term"/>
+        <field name="group_id" ref="sales_team.group_sale_salesman"/>
+        <field name="perm_read" eval="1"/>
+        <field name="perm_create" eval="0"/>
+        <field name="perm_write" eval="0"/>
+        <field name="perm_unlink" eval="0"/>
+    </record>
+
+    <record model="ir.model.access" id="sale_general_term_access_sale_manager">
+        <field name="name">sale.general.term access Sale manager</field>
+        <field name="model_id" ref="model_sale_general_term"/>
+        <field name="group_id" ref="sales_team.group_sale_manager"/>
+        <field name="perm_read" eval="1"/>
+        <field name="perm_create" eval="1"/>
+        <field name="perm_write" eval="1"/>
+        <field name="perm_unlink" eval="1"/>
+    </record>
+
+</odoo>
