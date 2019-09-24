@@ -32,6 +32,7 @@ class SaleOrder(models.Model):
             # we make this to isolate changed values:
             line2 = self.env['sale.order.line'].new({
                 'product_id': line.product_id,
+                'order_id': self
             })
             line2.product_id_change()
             line.name = line2.name
