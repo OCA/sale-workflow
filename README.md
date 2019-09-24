@@ -19,6 +19,7 @@ Available addons
 ----------------
 addon | version | summary
 --- | --- | ---
+[portal_sale_personal_data_only](portal_sale_personal_data_only/) | 10.0.1.0.0 | Portal Sale Personal Data Only
 [product_price_category](product_price_category/) | 10.0.1.0.0 | Add Price Category field on product and allow to apply a pricelist on this field.
 [product_supplierinfo_for_customer_sale](product_supplierinfo_for_customer_sale/) | 10.0.1.0.0 | Loads in every sale order line the customer code defined in the product
 [sale_automatic_workflow](sale_automatic_workflow/) | 10.0.1.0.1 | Sale Automatic Workflow
@@ -29,7 +30,7 @@ addon | version | summary
 [sale_company_currency](sale_company_currency/) | 10.0.1.0.0 | Company currency in sale orders
 [sale_delivery_split_date](sale_delivery_split_date/) | 10.0.1.0.0 | Sale Deliveries split by date
 [sale_discount_display_amount](sale_discount_display_amount/) | 10.0.1.0.0 | This addon intends to display the amount of the discount computed on sale_order_line and sale_order level
-[sale_exception](sale_exception/) | 10.0.2.0.0 | Custom exceptions on sale order
+[sale_exception](sale_exception/) | 10.0.2.0.1 | Custom exceptions on sale order
 [sale_fixed_discount](sale_fixed_discount/) | 10.0.1.0.0 | Allows to apply fixed amount discounts in sales orders.
 [sale_force_invoiced](sale_force_invoiced/) | 10.0.1.0.0 | Allows to force the invoice status of the sales order to Invoiced
 [sale_invoice_auto_deliver](sale_invoice_auto_deliver/) | 10.0.1.0.0 | Sale Invoice Automatic Deliver
@@ -54,6 +55,8 @@ addon | version | summary
 [sale_owner_stock_sourcing](sale_owner_stock_sourcing/) | 10.0.1.0.0 | Manage stock ownership on sale order lines
 [sale_partner_incoterm](sale_partner_incoterm/) | 10.0.1.0.0 | Set the customer preferred incoterm on each sales order
 [sale_procurement_group_by_line](sale_procurement_group_by_line/) | 10.0.1.1.0 | Base module for multiple procurement group by Sale order
+[sale_procurement_group_by_requested_date](sale_procurement_group_by_requested_date/) | 10.0.1.0.0 | Groups pickings based on requested date of order line
+[sale_procurement_group_by_requested_date_sale_sourced_by_line](sale_procurement_group_by_requested_date_sale_sourced_by_line/) | 10.0.1.0.0 | Integrates sale_source_by_line and sale procurement group
 [sale_product_multi_add](sale_product_multi_add/) | 10.0.1.0.0 | Sale Product Multi Add
 [sale_product_set](sale_product_set/) | 10.0.1.0.2 | Sale product set
 [sale_product_set_layout](sale_product_set_layout/) | 10.0.1.0.0 | Sale product set layout
@@ -66,6 +69,7 @@ addon | version | summary
 [sale_start_end_dates](sale_start_end_dates/) | 10.0.1.0.0 | Adds start date and end date on sale order lines
 [sale_stock_picking_blocking](sale_stock_picking_blocking/) | 10.0.1.0.0 | Allow you to block the creation of deliveries from a sale order.
 [sale_stock_picking_blocking_proc_group_by_line](sale_stock_picking_blocking_proc_group_by_line/) | 10.0.1.0.0 | Module that allows module sale_delivery_block to work with sale_procurement_group_by_line
+[sale_stock_picking_note](sale_stock_picking_note/) | 10.0.1.0.0 | Add picking note in sale and purchase order
 [sale_triple_discount](sale_triple_discount/) | 10.0.1.0.1 | Manage triple discount on sale order lines
 [sale_validity](sale_validity/) | 10.0.1.0.0 | Set a default validity delay on quotations
 

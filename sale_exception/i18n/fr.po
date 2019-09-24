@@ -19,6 +19,16 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
 
 #. module: sale_exception
+#: model:exception.rule,description:sale_exception.excep_no_dumping
+msgid "A product is sold cheaper than his cost."
+msgstr ""
+
+#. module: sale_exception
+#: model:exception.rule,description:sale_exception.excep_no_sol
+msgid "At least one order line should be present in the sale"
+msgstr ""
+
+#. module: sale_exception
 #: model:ir.ui.view,arch_db:sale_exception.view_sales_order_filter
 msgid "Blocked in draft"
 msgstr "Bloqué à l'état brouillon"
@@ -70,6 +80,13 @@ msgid "ID"
 msgstr "ID"
 
 #. module: sale_exception
+#: model:ir.model.fields,field_description:sale_exception.field_sale_order_line_ignore_exception
+#, fuzzy
+#| msgid "Sale Exceptions"
+msgid "Ignore Exceptions"
+msgstr "Restrictions de vente"
+
+#. module: sale_exception
 #: model:ir.model.fields,field_description:sale_exception.field_sale_exception_confirm___last_update
 msgid "Last Modified on"
 msgstr "Dernière modification le"
@@ -91,19 +108,30 @@ msgid "No ZIP code on destination"
 msgstr "No ZIP code on destination"
 
 #. module: sale_exception
+#: model:exception.rule,name:sale_exception.excep_no_dumping
+msgid "No dumping"
+msgstr ""
+
+#. module: sale_exception
+#: model:exception.rule,name:sale_exception.excep_no_free
+msgid "No free order"
+msgstr ""
+
+#. module: sale_exception
+#: model:exception.rule,name:sale_exception.excep_no_sol
+#, fuzzy
+#| msgid "Sales Order"
+msgid "No order lines"
+msgstr "Bon de commande"
+
+#. module: sale_exception
 #: model:exception.rule,description:sale_exception.excep_no_stock
 #: model:exception.rule,name:sale_exception.excep_no_stock
 msgid "Not Enough Virtual Stock"
 msgstr "Not Enough Virtual Stock"
 
 #. module: sale_exception
-#: model:ir.model.fields,field_description:sale_exception.field_sale_order_rule_group
-msgid "Rule group"
-msgstr "Groupe de règles"
-
-#. module: sale_exception
 #: model:ir.model.fields,field_description:sale_exception.field_sale_exception_confirm_related_model_id
-#: selection:sale.order,rule_group:0
 msgid "Sale"
 msgstr "Ventes"
 
@@ -119,9 +147,28 @@ msgid "Sale Exceptions"
 msgstr "Restrictions de vente"
 
 #. module: sale_exception
+#: model:ir.model.fields,field_description:sale_exception.field_exception_rule_sale_ids
+#, fuzzy
+#| msgid "Sale"
+msgid "Sales"
+msgstr "Ventes"
+
+#. module: sale_exception
 #: model:ir.model,name:sale_exception.model_sale_order
 msgid "Sales Order"
 msgstr "Bon de commande"
+
+#. module: sale_exception
+#: model:ir.model,name:sale_exception.model_sale_order_line
+#, fuzzy
+#| msgid "Sales Order"
+msgid "Sales Order Line"
+msgstr "Bon de commande"
+
+#. module: sale_exception
+#: model:exception.rule,description:sale_exception.excep_no_free
+msgid "The total can't be 0"
+msgstr ""
 
 #. module: sale_exception
 #: model:ir.ui.view,arch_db:sale_exception.view_sale_exception_confirm
@@ -132,3 +179,6 @@ msgstr "_Close"
 #: model:ir.model,name:sale_exception.model_sale_exception_confirm
 msgid "sale.exception.confirm"
 msgstr "sale.exception.confirm"
+
+#~ msgid "Rule group"
+#~ msgstr "Groupe de règles"
