@@ -6,6 +6,12 @@ from datetime import datetime, timedelta
 from odoo import api, fields, models
 
 
+def _onchange_method(record, field_list):
+    for field in field_list:
+        for onchange_method in record._onchange_methods[field]:
+            onchange_method(record)
+
+
 class SaleOrderRecommendation(models.TransientModel):
     _name = "sale.order.recommendation"
     _description = "Recommended products for current sale order"
@@ -110,13 +116,6 @@ class SaleOrderRecommendation(models.TransientModel):
             if i == self.line_amount:
                 break
 
-    @api.model
-    def create(self, vals):
-        if 'line_ids' in vals:
-            vals['line_ids'] = [
-                line for line in vals['line_ids'] if line[2]["is_modified"]]
-        return super(SaleOrderRecommendation, self).create(vals)
-
     @api.multi
     def action_accept(self):
         """Propagate recommendations to sale order."""
@@ -140,9 +139,9 @@ class SaleOrderRecommendation(models.TransientModel):
                 "product_id": wiz_line.product_id.id,
                 "sequence": sequence,
             })
-            so_line.product_id_change()
+            _onchange_method(so_line, ['product_id'])
             so_line.product_uom_qty = wiz_line.units_included
-            so_line.product_uom_change()
+            _onchange_method(so_line, ['product_uom'])
             so_lines |= so_line
         self.order_id.order_line |= so_lines
 
@@ -163,7 +162,6 @@ class SaleOrderRecommendationLine(models.TransientModel):
     product_id = fields.Many2one(
         "product.product",
         string="Product",
-        readonly=True,
     )
     price_unit = fields.Monetary(
         compute="_compute_price_unit",

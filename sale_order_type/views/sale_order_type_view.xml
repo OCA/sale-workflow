@@ -31,6 +31,11 @@
                     <group>
                         <field name="description" nolabel="1" />
                     </group>
+                    <notebook>
+                        <page string="Rules" name="rules">
+                            <field name="rule_ids" nolabel="1"/>
+                        </page>
+                    </notebook>
                 </sheet>
             </form>
         </field>
@@ -41,6 +46,7 @@
         <field name="model">sale.order.type</field>
         <field name="arch" type="xml">
             <tree string="Type">
+                <field name="sequence" widget="handle"/>
                 <field name="name"/>
                 <field name="warehouse_id"/>
                 <field name="sequence_id"/>
@@ -108,7 +114,7 @@
         <field name="act_window_id" ref="sot_sale_order_type_action"/>
     </record>
 
-    <menuitem id="sot_sale_order_type_menu" parent="sale.menu_sale_config"
+    <menuitem id="sot_sale_order_type_menu" parent="sale.menu_sales_config"
               action="sot_sale_order_type_action" sequence="20"/>
 
 </odoo>

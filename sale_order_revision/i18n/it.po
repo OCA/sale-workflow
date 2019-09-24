@@ -19,11 +19,6 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
 #. module: sale_order_revision
-#: model:ir.model.fields,field_description:sale_order_revision.field_sale_order_active
-msgid "Active"
-msgstr "Attivo"
-
-#. module: sale_order_revision
 #: model:ir.model.fields,field_description:sale_order_revision.field_sale_order_current_revision_id
 msgid "Current revision"
 msgstr ""
@@ -39,13 +34,13 @@ msgid "New Revision of Quotation"
 msgstr ""
 
 #. module: sale_order_revision
-#: code:addons/sale_order_revision/models/sale_order.py:107
+#: code:addons/sale_order_revision/models/sale_order.py:104
 #, python-format
 msgid "New Sales Order Revisions"
 msgstr ""
 
 #. module: sale_order_revision
-#: code:addons/sale_order_revision/models/sale_order.py:99
+#: code:addons/sale_order_revision/models/sale_order.py:96
 #, python-format
 msgid "New revision created: %s"
 msgstr ""
@@ -66,6 +61,11 @@ msgid "Order Reference and revision must be unique per Company."
 msgstr ""
 
 #. module: sale_order_revision
+#: model:ir.model,name:sale_order_revision.model_sale_order
+msgid "Quotation"
+msgstr ""
+
+#. module: sale_order_revision
 #: model:ir.model.fields,field_description:sale_order_revision.field_sale_order_revision_number
 msgid "Revision"
 msgstr ""
@@ -76,11 +76,6 @@ msgid "Revisions"
 msgstr ""
 
 #. module: sale_order_revision
-#: model:ir.model,name:sale_order_revision.model_sale_order
-msgid "Sales Order"
-msgstr "Ordini vendita"
-
-#. module: sale_order_revision
 #: model:ir.ui.view,arch_db:sale_order_revision.sale_order_form
 msgid "Superseeded by"
 msgstr ""
@@ -89,3 +84,9 @@ msgstr ""
 #: model:ir.ui.view,arch_db:sale_order_revision.sale_order_form
 msgid "Superseeded on"
 msgstr ""
+
+#~ msgid "Active"
+#~ msgstr "Attivo"
+
+#~ msgid "Sales Order"
+#~ msgstr "Ordini vendita"

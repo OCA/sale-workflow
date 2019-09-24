@@ -20,11 +20,6 @@ msgstr ""
 "%100==4 ? 2 : 3);\n"
 
 #. module: sale_order_revision
-#: model:ir.model.fields,field_description:sale_order_revision.field_sale_order_active
-msgid "Active"
-msgstr "Aktivno"
-
-#. module: sale_order_revision
 #: model:ir.model.fields,field_description:sale_order_revision.field_sale_order_current_revision_id
 msgid "Current revision"
 msgstr "Tekoča revizija"
@@ -40,13 +35,13 @@ msgid "New Revision of Quotation"
 msgstr ""
 
 #. module: sale_order_revision
-#: code:addons/sale_order_revision/models/sale_order.py:107
+#: code:addons/sale_order_revision/models/sale_order.py:104
 #, python-format
 msgid "New Sales Order Revisions"
 msgstr ""
 
 #. module: sale_order_revision
-#: code:addons/sale_order_revision/models/sale_order.py:99
+#: code:addons/sale_order_revision/models/sale_order.py:96
 #, python-format
 msgid "New revision created: %s"
 msgstr "Ustvarjena je nova revizija: %s"
@@ -67,6 +62,11 @@ msgid "Order Reference and revision must be unique per Company."
 msgstr "Sklic naloga in revizija morata biti unikatna za vsako družbo."
 
 #. module: sale_order_revision
+#: model:ir.model,name:sale_order_revision.model_sale_order
+msgid "Quotation"
+msgstr ""
+
+#. module: sale_order_revision
 #: model:ir.model.fields,field_description:sale_order_revision.field_sale_order_revision_number
 msgid "Revision"
 msgstr "Revizija"
@@ -77,11 +77,6 @@ msgid "Revisions"
 msgstr "Revizije"
 
 #. module: sale_order_revision
-#: model:ir.model,name:sale_order_revision.model_sale_order
-msgid "Sales Order"
-msgstr "Prodajni nalog"
-
-#. module: sale_order_revision
 #: model:ir.ui.view,arch_db:sale_order_revision.sale_order_form
 msgid "Superseeded by"
 msgstr "Nadomeščeno z"
@@ -90,3 +85,9 @@ msgstr "Nadomeščeno z"
 #: model:ir.ui.view,arch_db:sale_order_revision.sale_order_form
 msgid "Superseeded on"
 msgstr "Nadomeščeno na"
+
+#~ msgid "Active"
+#~ msgstr "Aktivno"
+
+#~ msgid "Sales Order"
+#~ msgstr "Prodajni nalog"

@@ -9,24 +9,25 @@ msgstr ""
 "Project-Id-Version: Odoo Server 9.0c\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2017-05-31 04:21+0000\n"
-"PO-Revision-Date: 2017-05-31 04:21+0000\n"
-"Last-Translator: OCA Transbot <transbot@odoo-community.org>, 2017\n"
+"PO-Revision-Date: 2019-09-09 14:23+0000\n"
+"Last-Translator: Jesús Ventosinos Mayor <jesus@comunitea.com>\n"
 "Language-Team: Spanish (https://www.transifex.com/oca/teams/23907/es/)\n"
 "Language: es\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
-"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: Weblate 3.8\n"
 
 #. module: sale_force_invoiced
 #: model:ir.model.fields,field_description:sale_force_invoiced.field_sale_order_force_invoiced
 msgid "Force invoiced"
-msgstr ""
+msgstr "Forzar facturado"
 
 #. module: sale_force_invoiced
 #: model:ir.model,name:sale_force_invoiced.model_sale_order
-msgid "Sales Order"
-msgstr "Pedido de venta"
+msgid "Quotation"
+msgstr ""
 
 #. module: sale_force_invoiced
 #: model:ir.model.fields,help:sale_force_invoiced.field_sale_order_force_invoiced
@@ -35,3 +36,9 @@ msgid ""
 "invoiced, even when there may be ordered or delivered quantities pending to "
 "invoice."
 msgstr ""
+"Cuando se marque este campo, el pedido de venta se considerará facturado "
+"completamente, incluso si quedan cantidades pedidas o enviadas pendientes de "
+"facturar."
+
+#~ msgid "Sales Order"
+#~ msgstr "Pedido de venta"

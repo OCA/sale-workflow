@@ -9,14 +9,15 @@ msgstr ""
 "Project-Id-Version: Odoo Server 10.0\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2017-05-17 02:40+0000\n"
-"PO-Revision-Date: 2017-05-17 02:40+0000\n"
-"Last-Translator: OCA Transbot <transbot@odoo-community.org>, 2017\n"
+"PO-Revision-Date: 2019-07-17 11:43+0000\n"
+"Last-Translator: Maria Sparenberg <maria.sparenberg@gmx.net>\n"
 "Language-Team: German (https://www.transifex.com/oca/teams/23907/de/)\n"
 "Language: de\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
-"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: Weblate 3.7.1\n"
 
 #. module: sale_start_end_dates
 #: model:ir.model.fields,field_description:sale_start_end_dates.field_sale_order_default_end_date
@@ -29,7 +30,7 @@ msgid "Default Start Date"
 msgstr "Vorgabe-Anfangsdatum"
 
 #. module: sale_start_end_dates
-#: code:addons/sale_start_end_dates/models/sale.py:26
+#: code:addons/sale_start_end_dates/models/sale.py:22
 #, python-format
 msgid ""
 "Default Start Date should be before or be the same as Default End Date for "
@@ -49,19 +50,19 @@ msgid ""
 msgstr ""
 
 #. module: sale_start_end_dates
-#: code:addons/sale_start_end_dates/models/sale.py:65
+#: code:addons/sale_start_end_dates/models/sale.py:58
 #, python-format
 msgid "Missing End Date for sale order line with Product '%s'."
 msgstr "Fehlendes Enddatum in Auftragsposition des Produkts '%s'."
 
 #. module: sale_start_end_dates
-#: code:addons/sale_start_end_dates/models/sale.py:69
+#: code:addons/sale_start_end_dates/models/sale.py:62
 #, python-format
 msgid "Missing Start Date for sale order line with Product '%s'."
 msgstr "Fehlendes Anfangsdatum in Auftragsposition des Produkts '%s'."
 
 #. module: sale_start_end_dates
-#: code:addons/sale_start_end_dates/models/sale.py:73
+#: code:addons/sale_start_end_dates/models/sale.py:66
 #, python-format
 msgid "Missing number of days for sale order line with Product '%s'."
 msgstr "Fehlende Anzahl Tage in Auftragsposition des Produkts '%s'."
@@ -77,7 +78,7 @@ msgid "Number of Days"
 msgstr "Anzahl Tage"
 
 #. module: sale_start_end_dates
-#: code:addons/sale_start_end_dates/models/sale.py:82
+#: code:addons/sale_start_end_dates/models/sale.py:75
 #, python-format
 msgid ""
 "On sale order line with Product '%s', the number of days is negative ; this "
@@ -87,7 +88,7 @@ msgstr ""
 "nicht zulässig."
 
 #. module: sale_start_end_dates
-#: code:addons/sale_start_end_dates/models/sale.py:90
+#: code:addons/sale_start_end_dates/models/sale.py:83
 #, python-format
 msgid ""
 "On the sale order line with Product '%s', there are %d days between the "
@@ -99,8 +100,8 @@ msgstr ""
 
 #. module: sale_start_end_dates
 #: model:ir.model,name:sale_start_end_dates.model_sale_order
-msgid "Sales Order"
-msgstr "Verkaufsauftrag"
+msgid "Quotation"
+msgstr "Angebot"
 
 #. module: sale_start_end_dates
 #: model:ir.model,name:sale_start_end_dates.model_sale_order_line
@@ -113,7 +114,7 @@ msgid "Start Date"
 msgstr "Anfangsdatum"
 
 #. module: sale_start_end_dates
-#: code:addons/sale_start_end_dates/models/sale.py:77
+#: code:addons/sale_start_end_dates/models/sale.py:70
 #, python-format
 msgid ""
 "Start Date should be before or be the same as End Date for sale order line "
@@ -121,3 +122,6 @@ msgid ""
 msgstr ""
 "In der Auftragsposition zum Produkt %s muss das Anfangsdatum vor oder am "
 "Enddatum liegen."
+
+#~ msgid "Sales Order"
+#~ msgstr "Verkaufsauftrag"

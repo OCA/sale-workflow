@@ -9,17 +9,20 @@ class TestInvoicefinishedTask(common.SavepointCase):
 
     def setUp(self):
         super(TestInvoicefinishedTask, self).setUp()
-
+        self.hour_uom = self.env.ref('product.product_uom_hour')
+        self.env.user.company_id.project_time_mode_id = self.hour_uom.id
         group_manager = self.env.ref('sales_team.group_sale_manager')
         self.manager = self.env['res.users'].create({
             'name': 'Andrew Manager',
             'login': 'manager',
             'email': 'a.m@example.com',
             'signature': '--\nAndreww',
-            'notify_email': 'always',
             'groups_id': [(6, 0, [group_manager.id])]
         })
-
+        self.employee = self.env['hr.employee'].create({
+            'name': self.manager.name,
+            'user_id': self.manager.id,
+        })
         self.partner = self.env['res.partner'].create({
             'name': 'Customer - test',
             'customer': True,
@@ -38,7 +41,7 @@ class TestInvoicefinishedTask(common.SavepointCase):
         product_delivery_vals = self._prepare_product_vals()
         product_delivery_vals.update({
             'name': 'Product - Service - Policy delivery - Test',
-            'invoice_policy': 'delivery',
+            'service_policy': 'delivered_timesheet',
         })
         self.product_policy_delivery = self.Product.create(
             product_delivery_vals)
@@ -77,10 +80,12 @@ class TestInvoicefinishedTask(common.SavepointCase):
             'type': 'service',
             'list_price': 100.00,
             'standard_price': 50.00,
-            'invoice_policy': 'order',
+            'service_policy': 'ordered_timesheet',
             'service_tracking': 'task_global_project',
             'invoicing_finished_task': True,
             'project_id': self.project.id,
+            'uom_id': self.hour_uom.id,
+            'uom_po_id': self.hour_uom.id,
         }
 
     def _prepare_timesheet_vals(self, task, unit_amount):

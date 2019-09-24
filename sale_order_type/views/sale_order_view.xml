@@ -6,7 +6,12 @@
         <field name="inherit_id" ref="sale.view_order_form"/>
         <field name="arch" type="xml">
             <field name="currency_id" position="after">
-                <field name="type_id" required="1"/>
+                <label for="type_id"/>
+                <div name="order_type" class="o_row">
+                    <field name="type_id" required="1"/>
+                    <button type="object" name="match_order_type"
+                            string="Find by rule" class="oe_inline" icon="fa-gears"/>
+                </div>
             </field>
         </field>
     </record>

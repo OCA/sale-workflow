@@ -49,8 +49,5 @@ class TestAutomaticWorkflowPaymentMode(TestAutomaticWorkflowBase):
         self.assertEqual(sale.state, 'sale')
         self.assertTrue(sale.picking_ids)
         self.assertTrue(sale.invoice_ids)
-        invoice = sale.invoice_ids
-        self.assertEqual(invoice.state, 'paid')
-        picking = sale.picking_ids
-        self.progress()
-        self.assertEqual(picking.state, 'done')
+        self.assertEqual(sale.invoice_ids.state, 'paid')
+        self.assertEqual(sale.picking_ids.state, 'done')
