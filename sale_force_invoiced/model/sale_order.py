@@ -13,7 +13,9 @@ class SaleOrder(models.Model):
                                          'order will be considered as fully '
                                          'invoiced, even when there may be '
                                          'ordered or delivered quantities '
-                                         'pending to invoice.',
+                                         'pending to invoice. To use this '
+                                         'field, the invoice must be in '
+                                         '"locked" state.',
                                     readonly=True,
                                     states={'done': [('readonly', False)]},
                                     copy=False,

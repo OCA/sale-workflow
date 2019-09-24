@@ -21,6 +21,16 @@ msgstr ""
 "%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2;\n"
 
 #. module: sale_exception
+#: model:exception.rule,description:sale_exception.excep_no_dumping
+msgid "A product is sold cheaper than his cost."
+msgstr ""
+
+#. module: sale_exception
+#: model:exception.rule,description:sale_exception.excep_no_sol
+msgid "At least one order line should be present in the sale"
+msgstr ""
+
+#. module: sale_exception
 #: model:ir.ui.view,arch_db:sale_exception.view_sales_order_filter
 msgid "Blocked in draft"
 msgstr "Blokirano u nacrtu"
@@ -72,6 +82,13 @@ msgid "ID"
 msgstr "ID"
 
 #. module: sale_exception
+#: model:ir.model.fields,field_description:sale_exception.field_sale_order_line_ignore_exception
+#, fuzzy
+#| msgid "Sale Exceptions"
+msgid "Ignore Exceptions"
+msgstr "Izuzeci u prodaji"
+
+#. module: sale_exception
 #: model:ir.model.fields,field_description:sale_exception.field_sale_exception_confirm___last_update
 msgid "Last Modified on"
 msgstr "Zadnja promjena"
@@ -93,19 +110,30 @@ msgid "No ZIP code on destination"
 msgstr "Nema PTT broja na odredištu"
 
 #. module: sale_exception
+#: model:exception.rule,name:sale_exception.excep_no_dumping
+msgid "No dumping"
+msgstr ""
+
+#. module: sale_exception
+#: model:exception.rule,name:sale_exception.excep_no_free
+msgid "No free order"
+msgstr ""
+
+#. module: sale_exception
+#: model:exception.rule,name:sale_exception.excep_no_sol
+#, fuzzy
+#| msgid "Sales Order"
+msgid "No order lines"
+msgstr "Prodajni nalog"
+
+#. module: sale_exception
 #: model:exception.rule,description:sale_exception.excep_no_stock
 #: model:exception.rule,name:sale_exception.excep_no_stock
 msgid "Not Enough Virtual Stock"
 msgstr "Nije dovoljna virtualna zaliha"
 
 #. module: sale_exception
-#: model:ir.model.fields,field_description:sale_exception.field_sale_order_rule_group
-msgid "Rule group"
-msgstr "Grupa pravila"
-
-#. module: sale_exception
 #: model:ir.model.fields,field_description:sale_exception.field_sale_exception_confirm_related_model_id
-#: selection:sale.order,rule_group:0
 msgid "Sale"
 msgstr "Prodaja"
 
@@ -121,9 +149,28 @@ msgid "Sale Exceptions"
 msgstr "Izuzeci u prodaji"
 
 #. module: sale_exception
+#: model:ir.model.fields,field_description:sale_exception.field_exception_rule_sale_ids
+#, fuzzy
+#| msgid "Sale"
+msgid "Sales"
+msgstr "Prodaja"
+
+#. module: sale_exception
 #: model:ir.model,name:sale_exception.model_sale_order
 msgid "Sales Order"
 msgstr "Prodajni nalog"
+
+#. module: sale_exception
+#: model:ir.model,name:sale_exception.model_sale_order_line
+#, fuzzy
+#| msgid "Sales Order"
+msgid "Sales Order Line"
+msgstr "Prodajni nalog"
+
+#. module: sale_exception
+#: model:exception.rule,description:sale_exception.excep_no_free
+msgid "The total can't be 0"
+msgstr ""
 
 #. module: sale_exception
 #: model:ir.ui.view,arch_db:sale_exception.view_sale_exception_confirm
@@ -134,3 +181,6 @@ msgstr "_Zatvori"
 #: model:ir.model,name:sale_exception.model_sale_exception_confirm
 msgid "sale.exception.confirm"
 msgstr "sale.exception.confirm"
+
+#~ msgid "Rule group"
+#~ msgstr "Grupa pravila"
