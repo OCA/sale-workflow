@@ -7,10 +7,6 @@ from odoo.exceptions import ValidationError
 from odoo.tools import float_compare
 
 
-class SaleOrder(models.Model):
-    _inherit = "sale.order"
-
-
 class SaleOrderLine(models.Model):
     _inherit = "sale.order.line"
 
@@ -62,7 +58,7 @@ class SaleOrderLine(models.Model):
     @api.depends("product_uom_qty", "sale_min_qty")
     def _compute_is_qty_less_min_qty(self):
         for line in self:
-            rounding = self.product_uom.rounding
+            rounding = line.product_uom.rounding
             line.is_qty_less_min_qty = (
                 float_compare(
                     line.product_uom_qty,
