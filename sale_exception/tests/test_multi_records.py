@@ -1,9 +1,9 @@
 # -*- coding: utf-8 -*-
 
-from odoo.addons.sale.tests.test_sale_order import TestSaleOrder
+from odoo.addons.sale.tests.test_sale_common import TestSale
 
 
-class TestSaleExceptionMultiRecord(TestSaleOrder):
+class TestSaleExceptionMultiRecord(TestSale):
 
     def test_sale_order_exception(self):
         exception_no_sol = self.env.ref('sale_exception.excep_no_sol')

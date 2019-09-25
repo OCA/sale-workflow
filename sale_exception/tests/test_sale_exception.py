@@ -1,10 +1,10 @@
 # -*- coding: utf-8 -*-
 
 from odoo.exceptions import ValidationError
-from odoo.addons.sale.tests.test_sale_order import TestSaleOrder
+from odoo.addons.sale.tests.test_sale_common import TestSale
 
 
-class TestSaleException(TestSaleOrder):
+class TestSaleException(TestSale):
 
     def test_sale_order_exception(self):
         self.sale_exception_confirm = self.env['sale.exception.confirm']
@@ -51,18 +51,15 @@ class TestSaleException(TestSaleOrder):
         p = self.env.ref('product.product_product_7')
 
         # set ignore_exception = False  (Done by onchange of order_line)
-        self.assertRaises(
-            ValidationError,
-            so1.write,
-            {
+        with self.assertRaises(ValidationError), self.env.cr.savepoint():
+            so1.write({
                 'ignore_exception': False,
                 'order_line': [(0, 0, {'name': p.name,
                                        'product_id': p.id,
                                        'product_uom_qty': 2,
                                        'product_uom': p.uom_id.id,
                                        'price_unit': p.list_price})]
-            },
-        )
+            })
 
         p = self.env.ref('product.product_product_7')
 
