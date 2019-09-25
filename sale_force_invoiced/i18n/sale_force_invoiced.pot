@@ -25,6 +25,6 @@ msgstr ""
 
 #. module: sale_force_invoiced
 #: model:ir.model.fields,help:sale_force_invoiced.field_sale_order_force_invoiced
-msgid "When you set this field, the sales order will be considered as fully invoiced, even when there may be ordered or delivered quantities pending to invoice."
+msgid "When you set this field, the sales order will be considered as fully invoiced, even when there may be ordered or delivered quantities pending to invoice. To use this field, the invoice must be in \"locked\" state."
 msgstr ""
 
