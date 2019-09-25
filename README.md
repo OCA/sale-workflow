@@ -30,7 +30,7 @@ addon | version | summary
 [sale_company_currency](sale_company_currency/) | 10.0.1.0.0 | Company currency in sale orders
 [sale_delivery_split_date](sale_delivery_split_date/) | 10.0.1.0.0 | Sale Deliveries split by date
 [sale_discount_display_amount](sale_discount_display_amount/) | 10.0.1.0.0 | This addon intends to display the amount of the discount computed on sale_order_line and sale_order level
-[sale_exception](sale_exception/) | 10.0.2.0.1 | Custom exceptions on sale order
+[sale_exception](sale_exception/) | 10.0.2.0.2 | Custom exceptions on sale order
 [sale_fixed_discount](sale_fixed_discount/) | 10.0.1.0.0 | Allows to apply fixed amount discounts in sales orders.
 [sale_force_invoiced](sale_force_invoiced/) | 10.0.1.0.0 | Allows to force the invoice status of the sales order to Invoiced
 [sale_invoice_auto_deliver](sale_invoice_auto_deliver/) | 10.0.1.0.0 | Sale Invoice Automatic Deliver
