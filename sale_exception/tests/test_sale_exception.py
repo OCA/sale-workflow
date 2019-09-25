@@ -1,10 +1,10 @@
 # -*- coding: utf-8 -*-
 
 from odoo.exceptions import ValidationError
-from odoo.addons.sale.tests.test_sale_order import TestSaleOrder
+from odoo.addons.sale.tests.test_sale_common import TestSale
 
 
-class TestSaleException(TestSaleOrder):
+class TestSaleException(TestSale):
 
     def test_sale_order_exception(self):
         self.sale_exception_confirm = self.env['sale.exception.confirm']
