@@ -38,7 +38,7 @@ class AutomaticWorkflowJob(models.Model):
                 _logger.debug('Unable to Register Payment for invoice %s: '
                               'Payment mode %s must have fixed journal',
                               invoice.id, payment_mode.id)
-                return
+                continue
 
             with savepoint(self.env.cr):
                 payment = self.env['account.payment'].create({
