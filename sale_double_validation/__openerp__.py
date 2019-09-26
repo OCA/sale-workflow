@@ -11,7 +11,7 @@
  'category': 'category',
  'complexity': "complexity",  # easy, normal, expert
  'depends': ['sale'],
- 'website': 'www.camptocamp.com',
+ 'website': 'https://github.com/OCA/sale-workflow',
  'data': ['views/company.xml',
           'views/sale.xml'],
  'test': [],
