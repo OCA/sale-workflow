@@ -50,6 +50,7 @@ setuptools.setup(
         'odoo10-addon-sale_product_set',
         'odoo10-addon-sale_product_set_layout',
         'odoo10-addon-sale_promotion_rule',
+        'odoo10-addon-sale_promotion_rule_delivery',
         'odoo10-addon-sale_quotation_number',
         'odoo10-addon-sale_rental',
         'odoo10-addon-sale_revert_done',
