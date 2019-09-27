@@ -154,13 +154,20 @@ msgid "Sales Order Types"
 msgstr "Tipos de pedido de venta"
 
 #. module: sale_order_type
+#: model:ir.model.fields,field_description:sale_order_type.field_sale_order_type_sequence
+#, fuzzy
+#| msgid "Entry Sequence"
+msgid "Sequence"
+msgstr "Secuencia de entrada"
+
+#. module: sale_order_type
 #: model:ir.model.fields,field_description:sale_order_type.field_sale_order_type_picking_policy
 #: model:ir.ui.view,arch_db:sale_order_type.sot_sale_order_type_search_view
 msgid "Shipping Policy"
 msgstr "Política de envío"
 
 #. module: sale_order_type
-#: model:ir.model.fields,field_description:sale_order_type.field_sale_order_type_id_4773
+#: model:ir.model.fields,field_description:sale_order_type.field_sale_order_type_id_4774
 #: model:ir.ui.view,arch_db:sale_order_type.sot_sale_order_type_form_view
 #: model:ir.ui.view,arch_db:sale_order_type.sot_sale_order_type_search_view
 #: model:ir.ui.view,arch_db:sale_order_type.sot_sale_order_type_tree_view
