@@ -1,6 +1,6 @@
 # Translation of Odoo Server.
 # This file contains the translation of the following modules:
-#	* sale_product_multi_add
+# 	* sale_product_multi_add
 #
 msgid ""
 msgstr ""
@@ -17,37 +17,37 @@ msgstr ""
 "X-Generator: Weblate 3.7.1\n"
 
 #. module: sale_product_multi_add
-#: model:ir.ui.view,arch_db:sale_product_multi_add.sale_order_mass_import_form
+#: model_terms:ir.ui.view,arch_db:sale_product_multi_add.sale_order_mass_import_form
 msgid "Add multiple products"
 msgstr ""
 
 #. module: sale_product_multi_add
-#: model:ir.ui.view,arch_db:sale_product_multi_add.view_import_product_to_sale
-#: model:ir.ui.view,arch_db:sale_product_multi_add.view_import_product_to_sale2
+#: model_terms:ir.ui.view,arch_db:sale_product_multi_add.view_import_product_to_sale
+#: model_terms:ir.ui.view,arch_db:sale_product_multi_add.view_import_product_to_sale2
 msgid "Cancel"
 msgstr ""
 
 #. module: sale_product_multi_add
-#: model:ir.model.fields,field_description:sale_product_multi_add.field_sale_import_products_create_uid
-#: model:ir.model.fields,field_description:sale_product_multi_add.field_sale_import_products_items_create_uid
+#: model:ir.model.fields,field_description:sale_product_multi_add.field_sale_import_products__create_uid
+#: model:ir.model.fields,field_description:sale_product_multi_add.field_sale_import_products_items__create_uid
 msgid "Created by"
 msgstr "Erstellt von"
 
 #. module: sale_product_multi_add
-#: model:ir.model.fields,field_description:sale_product_multi_add.field_sale_import_products_create_date
-#: model:ir.model.fields,field_description:sale_product_multi_add.field_sale_import_products_items_create_date
+#: model:ir.model.fields,field_description:sale_product_multi_add.field_sale_import_products__create_date
+#: model:ir.model.fields,field_description:sale_product_multi_add.field_sale_import_products_items__create_date
 msgid "Created on"
 msgstr "Erstellt am"
 
 #. module: sale_product_multi_add
-#: model:ir.model.fields,field_description:sale_product_multi_add.field_sale_import_products_display_name
-#: model:ir.model.fields,field_description:sale_product_multi_add.field_sale_import_products_items_display_name
+#: model:ir.model.fields,field_description:sale_product_multi_add.field_sale_import_products__display_name
+#: model:ir.model.fields,field_description:sale_product_multi_add.field_sale_import_products_items__display_name
 msgid "Display Name"
 msgstr "Anzeigename"
 
 #. module: sale_product_multi_add
-#: model:ir.model.fields,field_description:sale_product_multi_add.field_sale_import_products_id
-#: model:ir.model.fields,field_description:sale_product_multi_add.field_sale_import_products_items_id
+#: model:ir.model.fields,field_description:sale_product_multi_add.field_sale_import_products__id
+#: model:ir.model.fields,field_description:sale_product_multi_add.field_sale_import_products_items__id
 msgid "ID"
 msgstr "ID"
 
@@ -57,42 +57,42 @@ msgid "Import Products"
 msgstr ""
 
 #. module: sale_product_multi_add
-#: model:ir.model.fields,field_description:sale_product_multi_add.field_sale_import_products_items
+#: model:ir.model.fields,field_description:sale_product_multi_add.field_sale_import_products__items
 msgid "Items"
 msgstr ""
 
 #. module: sale_product_multi_add
-#: model:ir.model.fields,field_description:sale_product_multi_add.field_sale_import_products___last_update
-#: model:ir.model.fields,field_description:sale_product_multi_add.field_sale_import_products_items___last_update
+#: model:ir.model.fields,field_description:sale_product_multi_add.field_sale_import_products____last_update
+#: model:ir.model.fields,field_description:sale_product_multi_add.field_sale_import_products_items____last_update
 msgid "Last Modified on"
 msgstr "Zuletzt geändert am"
 
 #. module: sale_product_multi_add
-#: model:ir.model.fields,field_description:sale_product_multi_add.field_sale_import_products_items_write_uid
-#: model:ir.model.fields,field_description:sale_product_multi_add.field_sale_import_products_write_uid
+#: model:ir.model.fields,field_description:sale_product_multi_add.field_sale_import_products__write_uid
+#: model:ir.model.fields,field_description:sale_product_multi_add.field_sale_import_products_items__write_uid
 msgid "Last Updated by"
 msgstr "Zuletzt aktualisiert von"
 
 #. module: sale_product_multi_add
-#: model:ir.model.fields,field_description:sale_product_multi_add.field_sale_import_products_items_write_date
-#: model:ir.model.fields,field_description:sale_product_multi_add.field_sale_import_products_write_date
+#: model:ir.model.fields,field_description:sale_product_multi_add.field_sale_import_products__write_date
+#: model:ir.model.fields,field_description:sale_product_multi_add.field_sale_import_products_items__write_date
 msgid "Last Updated on"
 msgstr "Zuletzt aktualisiert am"
 
 #. module: sale_product_multi_add
-#: model:ir.model.fields,field_description:sale_product_multi_add.field_sale_import_products_items_product_id
+#: model:ir.model.fields,field_description:sale_product_multi_add.field_sale_import_products_items__product_id
 msgid "Product"
 msgstr "Produkt"
 
 #. module: sale_product_multi_add
-#: model:ir.model.fields,field_description:sale_product_multi_add.field_sale_import_products_products
-#: model:ir.ui.view,arch_db:sale_product_multi_add.view_import_product_to_sale
-#: model:ir.ui.view,arch_db:sale_product_multi_add.view_import_product_to_sale2
+#: model:ir.model.fields,field_description:sale_product_multi_add.field_sale_import_products__products
+#: model_terms:ir.ui.view,arch_db:sale_product_multi_add.view_import_product_to_sale
+#: model_terms:ir.ui.view,arch_db:sale_product_multi_add.view_import_product_to_sale2
 msgid "Products"
 msgstr "Produkte"
 
 #. module: sale_product_multi_add
-#: model:ir.model.fields,field_description:sale_product_multi_add.field_sale_import_products_items_quantity
+#: model:ir.model.fields,field_description:sale_product_multi_add.field_sale_import_products_items__quantity
 msgid "Quantity"
 msgstr "Menge"
 
@@ -102,27 +102,27 @@ msgid "Sale Import Products"
 msgstr ""
 
 #. module: sale_product_multi_add
-#: model:ir.ui.view,arch_db:sale_product_multi_add.view_import_product_to_sale2
+#: model:ir.model,name:sale_product_multi_add.model_sale_import_products_items
+msgid "Sale Import Products Items"
+msgstr ""
+
+#. module: sale_product_multi_add
+#: model_terms:ir.ui.view,arch_db:sale_product_multi_add.view_import_product_to_sale2
 msgid "Select"
 msgstr ""
 
 #. module: sale_product_multi_add
-#: model:ir.ui.view,arch_db:sale_product_multi_add.view_import_product_to_sale
+#: model_terms:ir.ui.view,arch_db:sale_product_multi_add.view_import_product_to_sale
 msgid "Set quantities"
 msgstr ""
 
 #. module: sale_product_multi_add
-#: model:ir.model.fields,field_description:sale_product_multi_add.field_sale_import_products_items_wizard_id
+#: model:ir.model.fields,field_description:sale_product_multi_add.field_sale_import_products_items__wizard_id
 msgid "Wizard"
 msgstr ""
 
 #. module: sale_product_multi_add
-#: model:ir.ui.view,arch_db:sale_product_multi_add.view_import_product_to_sale
-#: model:ir.ui.view,arch_db:sale_product_multi_add.view_import_product_to_sale2
+#: model_terms:ir.ui.view,arch_db:sale_product_multi_add.view_import_product_to_sale
+#: model_terms:ir.ui.view,arch_db:sale_product_multi_add.view_import_product_to_sale2
 msgid "or"
-msgstr ""
-
-#. module: sale_product_multi_add
-#: model:ir.model,name:sale_product_multi_add.model_sale_import_products_items
-msgid "sale.import.products.items"
 msgstr ""
