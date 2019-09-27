@@ -10,6 +10,7 @@ setuptools.setup(
     install_requires=[
         'odoo12-addon-partner_prospect',
         'odoo12-addon-portal_sale_personal_data_only',
+        'odoo12-addon-product_form_sale_link',
         'odoo12-addon-sale_automatic_workflow',
         'odoo12-addon-sale_automatic_workflow_payment_mode',
         'odoo12-addon-sale_cancel_reason',
