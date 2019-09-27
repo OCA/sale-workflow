@@ -178,17 +178,19 @@ class StockWarehouse(models.Model):
 class StockLocationPath(models.Model):
     _inherit = 'stock.location.path'
 
-    @api.model
-    def _prepare_push_apply(self, rule, move):
+    def _prepare_move_copy_values(self, move_to_copy, new_date):
         '''Inherit to write the end date of the rental on the return move'''
-        vals = super(StockLocationPath, self)._prepare_push_apply(rule, move)
+        vals = super(StockLocationPath, self)._prepare_move_copy_values(
+            move_to_copy, new_date)
         if (
-                move.procurement_id and
-                move.procurement_id.location_id ==
-                move.procurement_id.warehouse_id.rental_out_location_id and
-                move.procurement_id.sale_line_id and
-                move.procurement_id.sale_line_id.rental_type == 'new_rental'):
-            rental_end_date = move.procurement_id.sale_line_id.end_date
+            move_to_copy.procurement_id and
+            move_to_copy.procurement_id.location_id ==
+            move_to_copy.procurement_id.warehouse_id.rental_out_location_id and
+            move_to_copy.procurement_id.sale_line_id and
+            move_to_copy.procurement_id.sale_line_id.rental_type == 'new_'
+                                                                    'rental'
+        ):
+            rental_end_date = move_to_copy.procurement_id.sale_line_id.end_date
             vals['date'] = vals['date_expected'] = rental_end_date
         return vals
 
