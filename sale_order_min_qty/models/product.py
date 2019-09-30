@@ -10,7 +10,7 @@ class ProductProduct(models.Model):
 
     sale_min_qty = fields.Float(
         string="Min Sale Qty",
-        default=1,
+        default=0,
         digits=dp.get_precision("Product Unit of Measure"),
     )
     force_sale_min_qty = fields.Boolean(
