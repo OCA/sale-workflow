@@ -12,10 +12,3 @@ class SaleOrder(models.Model):
         string="Reason for cancellation",
         readonly=True,
         ondelete="restrict")
-
-
-class SaleOrderCancelReason(models.Model):
-    _name = 'sale.order.cancel.reason'
-    _description = 'Sale Order Cancel Reason'
-
-    name = fields.Char('Reason', required=True, translate=True)

@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record model="ir.ui.view" id="view_sale_order_cancel_reason_form">
+        <field name="name">Sale Order Cancel Reason</field>
+        <field name="model">sale.order.cancel.reason</field>
+        <field name="arch" type="xml">
+            <form string="Sale Order Cancel Reasons">
+                <field name="name"/>
+            </form>
+        </field>
+    </record>
+
+    <record model="ir.ui.view" id="view_sale_order_cancel_reason_tree">
+        <field name="name">Sale Order Cancel Reason</field>
+        <field name="model">sale.order.cancel.reason</field>
+        <field name="arch" type="xml">
+            <tree string="Sale Order Cancel Reasons">
+                <field name="name"/>
+            </tree>
+        </field>
+    </record>
+
+    <record model="ir.actions.act_window" id="action_sale_order_cancel_reason">
+        <field name="name">Sale Order Cancel Reason</field>
+        <field name="res_model">sale.order.cancel.reason</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+
+    <menuitem id="menu_sale_order_cancel_reason"
+      parent="sales_team.menu_sale_config"
+      name="Sale Order Cancel Reasons"
+      action="action_sale_order_cancel_reason"
+      sequence="150" groups="sales_team.group_sale_manager"/>
+</odoo>
