@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 # Copyright 2013 Guewen Baconnier, Camptocamp SA
 # Copyright 2019 Victor M.M. Torres, Tecnativa SL
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
@@ -14,7 +13,8 @@
     'depends': ['sale'],
     'data': [
         'wizard/cancel_reason_view.xml',
-        'view/sale_view.xml',
+        'view/sale_order_view.xml',
+        'view/sale_order_cancel_reason_view.xml',
         'security/ir.model.access.csv',
         'data/sale_order_cancel_reason.xml',
     ],
