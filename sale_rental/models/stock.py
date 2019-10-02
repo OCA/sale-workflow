@@ -31,7 +31,7 @@ class StockWarehouse(models.Model):
         route_obj = self.env['stock.location.route']
         try:
             rental_route = self.env.ref('sale_rental.route_warehouse0_rental')
-        except:
+        except Exception:
             rental_routes = route_obj.search([('name', '=', _('Rent'))])
             rental_route = rental_routes and rental_routes[0] or False
         if not rental_route:
@@ -39,7 +39,7 @@ class StockWarehouse(models.Model):
         try:
             sell_rented_product_route = self.env.ref(
                 'sale_rental.route_warehouse0_sell_rented_product')
-        except:
+        except Exception:
             sell_rented_product_routes = route_obj.search(
                 [('name', '=', _('Sell Rented Product'))])
             sell_rented_product_route =\

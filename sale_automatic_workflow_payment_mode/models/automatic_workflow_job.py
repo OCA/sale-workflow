@@ -3,7 +3,7 @@
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html)
 
 import logging
-from openerp import models, api, fields
+from openerp import models, api
 from openerp.tools.safe_eval import safe_eval
 from openerp.addons.sale_automatic_workflow.models.automatic_workflow_job \
     import commit
@@ -37,7 +37,7 @@ class AutomaticWorkflowJob(models.Model):
                 payment = self.env['account.payment'].create({
                     'invoice_ids': [(6, 0, invoice.ids)],
                     'amount': invoice.residual,
-                    'payment_date': fields.Date.context_today(self),
+                    'payment_date': invoice.date_invoice,
                     'communication': invoice.reference or invoice.number,
                     'partner_id': invoice.partner_id.id,
                     'partner_type': partner_type,
