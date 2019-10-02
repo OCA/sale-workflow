@@ -21,6 +21,7 @@ setuptools.setup(
         'odoo11-addon-sale_fixed_discount',
         'odoo11-addon-sale_force_invoiced',
         'odoo11-addon-sale_invoice_group_method',
+        'odoo11-addon-sale_isolated_quotation',
         'odoo11-addon-sale_last_price_info',
         'odoo11-addon-sale_merge_draft_invoice',
         'odoo11-addon-sale_order_action_invoice_create_hook',
