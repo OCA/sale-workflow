@@ -49,7 +49,7 @@ msgid "Is Order"
 msgstr ""
 
 #. module: sale_isolated_quotation
-#: code:addons/sale_isolated_quotation/models/sale.py:58
+#: code:addons/sale_isolated_quotation/models/sale.py:57
 #, python-format
 msgid "Only quotation can convert to order"
 msgstr ""
@@ -60,13 +60,17 @@ msgid "Order Reference"
 msgstr ""
 
 #. module: sale_isolated_quotation
+#: model:ir.model,name:sale_isolated_quotation.model_sale_order
+msgid "Quotation"
+msgstr ""
+
+#. module: sale_isolated_quotation
 #: model:ir.model.fields,field_description:sale_isolated_quotation.field_sale_order_quote_id
 msgid "Quotation Reference"
 msgstr ""
 
 #. module: sale_isolated_quotation
-#: code:addons/sale_isolated_quotation/models/sale.py:74
-#: model:ir.model,name:sale_isolated_quotation.model_sale_order
+#: code:addons/sale_isolated_quotation/models/sale.py:73
 #, python-format
 msgid "Sales Order"
 msgstr "Verkooporder"
