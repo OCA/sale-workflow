@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 # Copyright 2018 Simone Rubino - Agile Business Group
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
 from odoo.addons.sale.tests.test_sale_common import TestSale
@@ -17,7 +16,7 @@ class TestSaleStock(TestSale):
                 'product_uom_qty': 2,
                 'product_uom': p.uom_id.id,
                 'price_unit': p.list_price})
-                for (_, p) in self.products.iteritems()],
+                for (_, p) in self.products.items()],
         })
         sale_order_line_priority = '2'
         for sol in self.sale_order.order_line:
