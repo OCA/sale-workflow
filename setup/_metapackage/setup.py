@@ -19,6 +19,7 @@ setuptools.setup(
         'odoo12-addon-sale_discount_display_amount',
         'odoo12-addon-sale_double_validation',
         'odoo12-addon-sale_exception',
+        'odoo12-addon-sale_fixed_discount',
         'odoo12-addon-sale_force_invoiced',
         'odoo12-addon-sale_invoice_group_method',
         'odoo12-addon-sale_invoice_plan',
