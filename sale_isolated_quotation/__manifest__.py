@@ -5,7 +5,7 @@
     'version': '11.0.1.0.0',
     'author': 'Ecosoft,Odoo Community Association (OCA)',
     'category': 'Sales',
-    'website': 'https://github.com/OCA/sale-workflow/tree/11.0/sale_isolated_quotation',
+    'website': 'https://github.com/OCA/sale-workflow',
     'depends': ['sale'],
     'license': 'AGPL-3',
     'images': [],
