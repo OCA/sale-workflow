@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <record id="sale_quotation_synchronizer_form_view" model="ir.ui.view">
+        <field name="name">sale quotation synchronizer</field>
+        <field name="model">sale.quotation.synchronizer</field>
+        <field name="arch" type="xml">
+            <form string="Sale quotation Synchronization">
+                <group name="config">
+                    <group name="target_models" string="Target">
+                        <field name="sync_sale_order_line" />
+                        <field name="sync_sale_quote_line" />
+                        <field name="sync_sale_quote_option" />
+                    </group>
+                    <group name="operations" string="Operations">
+                        <field name="sync_price_unit" />
+                    </group>
+                    <field name="product_ids">
+                        <tree>
+                            <field name="name" />
+                            <field name="lst_price" />
+                        </tree>
+                    </field>
+                </group>
+                <footer>
+                    <button string="Update" type="object" name="execute" class="btn-primary" />
+                    <button string="Cancel" special="cancel" class="btn-default"/>
+                </footer>
+            </form>
+        </field>
+    </record>
+
+    <act_window id="sale_quotation_synchronizer_action"
+                name="Quotations synchronization"
+                target="new"
+                res_model="sale.quotation.synchronizer"
+                view_type="form"
+                view_mode="form"
+                view_id="sale_quotation_synchronizer_form_view" />
+
+    <menuitem id="sale_quotation_synchronizer_menu" action="sale_quotation_synchronizer_action" parent="sale.menu_sales_config" name="Quotations synchronization" groups="sales_team.group_sale_salesman,sales_team.group_sale_manager"/>
+</odoo>
