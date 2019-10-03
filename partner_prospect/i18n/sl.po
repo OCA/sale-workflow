@@ -1,0 +1,47 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# * partner_prospect
+#
+# Translators:
+# Matjaž Mozetič <m.mozetic@matmoz.si>, 2015
+msgid ""
+msgstr ""
+"Project-Id-Version: sale-workflow (8.0)\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2015-10-02 17:59+0000\n"
+"PO-Revision-Date: 2015-09-24 11:45+0000\n"
+"Last-Translator: Matjaž Mozetič <m.mozetic@matmoz.si>\n"
+"Language-Team: Slovenian (http://www.transifex.com/oca/OCA-sale-workflow-8-0/"
+"language/sl/)\n"
+"Language: sl\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: nplurals=4; plural=(n%100==1 ? 0 : n%100==2 ? 1 : n%100==3 || n"
+"%100==4 ? 2 : 3);\n"
+
+#. module: partner_prospect
+#: model_terms:ir.ui.view,arch_db:partner_prospect.res_partner_prospect_search_view
+msgid "Actual Customer"
+msgstr "Dejanski kupec"
+
+#. module: partner_prospect
+#: model:ir.model,name:partner_prospect.model_res_partner
+msgid "Contact"
+msgstr ""
+
+#. module: partner_prospect
+#: model:ir.model.fields,field_description:partner_prospect.field_res_partner__prospect
+#: model:ir.model.fields,field_description:partner_prospect.field_res_users__prospect
+#: model_terms:ir.ui.view,arch_db:partner_prospect.res_partner_prospect_search_view
+msgid "Prospect"
+msgstr "Perspektiva"
+
+#~ msgid "Group By"
+#~ msgstr "Združeno po"
+
+#~ msgid "Partner"
+#~ msgstr "Partner"
+
+#~ msgid "Suppliers"
+#~ msgstr "Dobavitelji"
