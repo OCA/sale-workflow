@@ -6,4 +6,4 @@ server-tools
 manufacture
 account-invoicing
 product-attribute
-partner-contact https://github.com/akretion/partner-contact 10-partner-history
+partner-contact
