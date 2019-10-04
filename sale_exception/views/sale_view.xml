@@ -27,16 +27,12 @@
         <field name="arch" type="xml">
             <sheet position="before">
                 <div class="alert alert-danger" role="alert" style="margin-bottom:0px;"
-                     attrs="{'invisible': [('exception_ids_formatted','=',False)]}">
-                    <p>
-                        <strong>There are exceptions blocking the confirmation of this Sale Order:</strong><br/>
-                        <field name="exception_ids_formatted"/>
-                    </p>
-                    <p>
-                        <button name="action_ignore_exceptions" type="object" class="btn-danger"
+                     attrs="{'invisible': [('exceptions_summary','=',False)]}">
+                    <p><strong>There are exceptions blocking the confirmation of this Sale Order:</strong></p>
+                    <field name="exceptions_summary"/>
+                    <button name="action_ignore_exceptions" type="object" class="btn-danger"
                             string="Ignore Exceptions" help="Click here to be able to confirm this Sale Orders regardless of the exceptions."
                             groups="base_exception.group_exception_rule_manager"/>
-                    </p>
                 </div>
             </sheet>
             <xpath expr="//field[@name='date_order']/.." position="inside">
