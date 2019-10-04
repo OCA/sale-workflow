@@ -6,9 +6,9 @@
         <field name="model">res.partner</field>
         <field name="inherit_id" ref="base.view_partner_form" />
         <field name="arch" type="xml">
-            <label for="street" position="before">
+            <field name="type" position="after">
                 <field name="prospect" />
-            </label>
+            </field>
         </field>
     </record>
 
