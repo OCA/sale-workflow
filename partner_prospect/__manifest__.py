@@ -3,7 +3,7 @@
 {
     "name": "Partner Prospect",
     "version": "13.0.1.0.0",
-    "category": "Sales Management",
+    "category": "Sales",
     "website": "https://github.com/OCA/sale-workflow",
     "author": "AvanzOSC, "
               "Serv. Tecnol. Avanzados - Pedro M. Baeza,"
