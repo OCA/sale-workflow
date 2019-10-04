@@ -140,3 +140,11 @@ class TestSaleElaboration(SavepointCase):
         self.assertNotEqual(
             inv_line_no_elaboration.name,
             '{} - {}'.format(self.order.name, so_line_no_elaboration.name))
+
+    def test_sale_elaboration_change_product(self):
+        self.order.order_line.product_id = self.product_elaboration_A
+        self.order.order_line.product_id_change()
+        self.assertTrue(self.order.order_line.is_elaboration)
+        self.order.order_line.product_id = self.product
+        self.order.order_line.product_id_change()
+        self.assertFalse(self.order.order_line.is_elaboration)
