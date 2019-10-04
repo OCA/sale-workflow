@@ -5,7 +5,6 @@ from odoo import api, fields, models
 class ResPartner(models.Model):
     _inherit = 'res.partner'
 
-    @api.multi
     @api.depends('commercial_partner_id',
                  'commercial_partner_id.sale_order_ids',
                  'commercial_partner_id.sale_order_ids.state',

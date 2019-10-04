@@ -9,7 +9,7 @@ class TestPartnerProspect(TransactionCase):
         super(TestPartnerProspect, self).setUp()
         self.sale_order_model = self.env['sale.order']
         self.partner_model = self.env['res.partner']
-        self.invoice_model = self.env['account.invoice']
+        self.invoice_model = self.env['account.move']
         self.partner1 = self.partner_model.create({
             'name': 'Partner1',
         })
