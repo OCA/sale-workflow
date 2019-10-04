@@ -10,10 +10,12 @@
         <field name="inherit_id" ref="sale.view_order_form"/>
         <field name="arch" type="xml">
             <xpath expr="//field[@name='order_line']/form//field[@name='name']" position="after">
+                <field name="is_elaboration" invisible="1" force_save="1"/>
                 <field name="elaboration_id"  attrs="{'readonly': [('state', 'in', ('done', 'cancel'))]}"/>
                 <field name="elaboration_note"  attrs="{'readonly': [('state', 'in', ('done', 'cancel'))]}"/>
             </xpath>
             <xpath expr="//field[@name='order_line']/tree//field[@name='price_unit']" position="after">
+                <field name="is_elaboration" invisible="1" force_save="1"/>
                 <field name="elaboration_id"  attrs="{'readonly': [('state', 'in', ('done', 'cancel'))]}"/>
                 <field name="elaboration_note"  attrs="{'readonly': [('state', 'in', ('done', 'cancel'))]}"/>
             </xpath>
