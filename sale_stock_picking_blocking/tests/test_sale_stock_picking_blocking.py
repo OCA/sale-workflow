@@ -37,7 +37,8 @@ class TestSaleDeliveryBlock(common.TransactionCase):
         so_dict = {
             'partner_id': self.env.ref('base.res_partner_1').id,
         }
-        self.sale_order = self.so_model.with_user(self.user_test).create(so_dict)
+        self.sale_order = self.so_model.with_user(self.user_test).create(
+            so_dict)
         sol_dict = {
             'order_id': self.sale_order.id,
             'product_id': product.id,
