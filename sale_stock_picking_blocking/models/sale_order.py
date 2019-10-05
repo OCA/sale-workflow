@@ -9,11 +9,10 @@ from odoo.exceptions import ValidationError
 class SaleOrder(models.Model):
     _inherit = "sale.order"
 
-    @api.multi
     @api.constrains('delivery_block_id')
     def _check_not_auto_done(self):
         auto_done = self.env['ir.default'].get(
-            'res.config.settings', 'auto_done_setting')
+            'res.config.settings', 'group_auto_done_setting')
         if auto_done and any(so.delivery_block_id for so in self):
             raise ValidationError(
                 _('You cannot block a sale order with "auto_done_setting" '
@@ -24,7 +23,6 @@ class SaleOrder(models.Model):
         string='Delivery Block Reason', readonly=True,
         states={'draft': [('readonly', False)], 'sent': [('readonly', False)]})
 
-    @api.multi
     @api.onchange('partner_id')
     def onchange_partner_id(self):
         """Add the 'Default Delivery Block Reason' if set in the partner."""
@@ -34,7 +32,6 @@ class SaleOrder(models.Model):
                 False
         return res
 
-    @api.multi
     def action_remove_delivery_block(self):
         """Remove the delivery block and create procurements as usual."""
         for order in self.filtered(
@@ -43,7 +40,7 @@ class SaleOrder(models.Model):
             order.order_line._action_launch_stock_rule()
         return True
 
-    @api.multi
+    @api.returns('self', lambda value: value.id)
     def copy(self, default=None):
         new_so = super(SaleOrder, self).copy(default=default)
         for so in new_so:
@@ -56,7 +53,6 @@ class SaleOrder(models.Model):
 class SaleOrderLine(models.Model):
     _inherit = "sale.order.line"
 
-    @api.multi
     def _action_launch_stock_rule(self):
         return super(SaleOrderLine, self.filtered(
             lambda line: not line.order_id.delivery_block_id)). \

@@ -10,7 +10,7 @@
         <field name="arch" type="xml">
             <group name="sale" position="inside">
                     <field name="default_delivery_block"
-                        attrs="{'invisible': ['|', ('customer', '!=', True), ('is_company', '=', False), ('parent_id', '!=', False)]}"/>
+                        attrs="{'invisible': ['|', ('is_company', '=', False), ('parent_id', '!=', False)]}"/>
             </group>
         </field>
     </record>
