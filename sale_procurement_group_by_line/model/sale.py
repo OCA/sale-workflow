@@ -170,6 +170,13 @@ class SaleOrder(models.Model):
         string='Delivered',
         store=True)
 
+    def __init__(self, pool, cr):
+        super(SaleOrder, self).__init__(pool, cr)
+        for model, store in pool._store_function.iteritems():
+            pool._store_function[model] = [
+                x for x in store
+                if x[0] != 'sale.order' and x[1] != 'shipped']
+
 
 class SaleOrderLine(orm.Model):
     _inherit = 'sale.order.line'
