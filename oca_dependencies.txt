@@ -7,3 +7,4 @@ manufacture
 account-invoicing
 product-attribute
 partner-contact
+web
