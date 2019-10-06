@@ -6,23 +6,18 @@ python:
   - "2.7"
 
 addons:
+  postgresql: "9.6"
   apt:
     packages:
       - expect-dev  # provides unbuffer utility
-      - python-lxml  # because pip installation is slow
-      - python-simplejson
-      - python-serial
-      - python-yaml
 
 env:
   global:
-  - VERSION="8.0" TESTS="0" LINT_CHECK="0" TRANSIFEX="0"
-  - TRANSIFEX_USER='transbot@odoo-community.org'
-  - secure: mTXYvzW7/+xP465dNW0p9H+Q8jVgQXmqm8zo+ntZC6ESkTudj6xUkrjJcfzp9LGomxoG6N+6TezjFuhfGKCAc4S2manxj9YQoHvZMHJvt73VsMZU2QLfE+IMAdFS/AeBpYLNE8VvdKIGhiFwvHyRqaF0vAGwmcsOdS2NQb/hoiY=
+  - VERSION="8.0" TESTS="0" LINT_CHECK="0" MAKEPOT="0"
 
   matrix:
   - LINT_CHECK="1"
-  - TRANSIFEX="1"
+  - MAKEPOT="1"
   - TESTS="1" ODOO_REPO="odoo/odoo" EXCLUDE="sale_quotation_sourcing,sale_sourced_by_line,sale_quotation_sourcing_stock_route_transit,sale_sourced_by_line_sale_transport_multi_address,sale_properties_dynamic_fields,sale_line_quantity_properties_based,sale_line_price_properties_based" LINT_CHECK="0"
   - TESTS="1" ODOO_REPO="OCA/OCB" EXCLUDE="sale_quotation_sourcing,sale_sourced_by_line,sale_quotation_sourcing_stock_route_transit,sale_sourced_by_line_sale_transport_multi_address,sale_properties_dynamic_fields,sale_line_quantity_properties_based,sale_line_price_properties_based" LINT_CHECK="0"
   - TESTS="1" ODOO_REPO="odoo/odoo" INCLUDE="sale_sourced_by_line" LINT_CHECK="0"
@@ -39,9 +34,6 @@ env:
   - TESTS="1" ODOO_REPO="OCA/OCB" INCLUDE="sale_line_quantity_properties_based" LINT_CHECK="0"
   - TESTS="1" ODOO_REPO="odoo/odoo" INCLUDE="sale_line_price_properties_based" LINT_CHECK="0"
   - TESTS="1" ODOO_REPO="OCA/OCB" INCLUDE="sale_line_price_properties_based" LINT_CHECK="0"
-
-virtualenv:
-  system_site_packages: true
 
 install:
   - git clone --depth=1 https://github.com/OCA/maintainer-quality-tools.git ${HOME}/maintainer-quality-tools
