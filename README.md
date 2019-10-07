@@ -58,7 +58,7 @@ addon | version | summary
 [sale_payment_method_transaction_id](sale_payment_method_transaction_id/) | 8.0.1.0.0 | Sale Payment Method - Transaction ID Compatibility
 [sale_payment_term_interest](sale_payment_term_interest/) | 8.0.1.0.0 | Sales Payment Term Interests
 [sale_pricelist_discount](sale_pricelist_discount/) | 8.0.1.0.0 | Sale Pricelist Discount
-[sale_procurement_group_by_line](sale_procurement_group_by_line/) | 8.0.1.0.0 | Base module for multiple procurement group by Sale order
+[sale_procurement_group_by_line](sale_procurement_group_by_line/) | 8.0.1.0.1 | Base module for multiple procurement group by Sale order
 [sale_product_multi_add](sale_product_multi_add/) | 8.0.1.0.0 | Sale Product Multi Add
 [sale_product_set](sale_product_set/) | 8.0.1.0.0 | Sale product set
 [sale_product_set_layout](sale_product_set_layout/) | 8.0.1.0.0 | Sale product set layout
@@ -75,6 +75,7 @@ addon | version | summary
 [sale_sourced_by_line](sale_sourced_by_line/) | 8.0.1.1.0 | Multiple warehouse source locations for Sale order
 [sale_sourced_by_line_sale_transport_multi_address](sale_sourced_by_line_sale_transport_multi_address/) | 8.0.1.0.0 | Make sale_sourced_by_line and sale_transport_multi_addresswork together
 [sale_start_end_dates](sale_start_end_dates/) | 8.0.0.1.0 | Adds start date and end date on sale order lines
+[sale_triple_discount](sale_triple_discount/) | 8.0.1.0.0 | Manage triple discount on sale order lines
 [sale_validity](sale_validity/) | 8.0.7.0.0 | Sales Quotation Validity Date
 [sales_team_security](sales_team_security/) | 8.0.1.0.0 | Sales teams security
 
