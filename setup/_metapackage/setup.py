@@ -64,6 +64,7 @@ setuptools.setup(
         'odoo8-addon-sale_sourced_by_line',
         'odoo8-addon-sale_sourced_by_line_sale_transport_multi_address',
         'odoo8-addon-sale_start_end_dates',
+        'odoo8-addon-sale_triple_discount',
         'odoo8-addon-sale_validity',
         'odoo8-addon-sales_team_security',
     ],
