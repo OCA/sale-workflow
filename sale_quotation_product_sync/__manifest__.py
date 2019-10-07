@@ -14,7 +14,6 @@
         "website_quote",
     ],
     "data": [
-        # "security/ir.model.access.csv",
         "wizards/sale_quotation_synchronizer.xml",
     ],
 }
