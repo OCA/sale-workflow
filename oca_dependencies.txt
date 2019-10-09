@@ -1,3 +1,4 @@
+account-closing
 account-invoicing
 partner-contact
 server-tools
