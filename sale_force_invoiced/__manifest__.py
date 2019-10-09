@@ -5,13 +5,13 @@
     'name': 'Sale Force Invoiced',
     'summary': 'Allows to force the invoice status of the sales order to '
                'Invoiced',
-    'version': '12.0.1.0.1',
+    'version': '13.0.1.0.0',
     "author": "Eficent,"
               "Odoo Community Association (OCA)",
     'category': 'sale',
     'license': 'AGPL-3',
     'website': "https://github.com/OCA/sale-workflow",
-    'depends': ['sale'],
+    'depends': ['sale', 'account'],
     'data': [
         'view/sale_view.xml'
     ],

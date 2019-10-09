@@ -2,6 +2,7 @@
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl.html).
 
 from odoo.tests.common import TransactionCase
+from odoo.tests import Form
 
 
 class TestSaleForceInvoiced(TransactionCase):
@@ -24,8 +25,6 @@ class TestSaleForceInvoiced(TransactionCase):
         return self.env['res.partner'].create({
             'name': name,
             'email': 'example@yourcompany.com',
-            'customer': True,
-            'phone': 123456,
         })
 
     def _create_product_category(self):
@@ -81,13 +80,20 @@ class TestSaleForceInvoiced(TransactionCase):
         self.assertEquals(so.invoice_status, 'to invoice',
                           "The invoice status should be To Invoice")
 
-        self._create_invoice_from_sale(so)
+        invoice = self._create_invoice_from_sale(so)
+        invoice_ids = self.env['account.move'].browse(invoice)
+
         self.assertEquals(so.invoice_status, 'invoiced',
                           "The invoice status should be Invoiced")
 
         # Reduce the invoiced qty
-        for line in sol2.invoice_lines:
-            line.quantity = 1
+        move_form = Form(invoice_ids)
+        with move_form.invoice_line_ids.edit(0) as line_form:
+            line_form.quantity = 1
+        with move_form.invoice_line_ids.edit(1) as line_form:
+            line_form.quantity = 1
+
+        move_form.save()
 
         self.assertEquals(so.invoice_status, 'to invoice',
                           "The invoice status should be To Invoice")
