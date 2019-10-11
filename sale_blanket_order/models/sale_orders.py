@@ -8,7 +8,7 @@ class SaleOrder(models.Model):
     _inherit = 'sale.order'
 
     blanket_order_id = fields.Many2one(
-        'sale.blanket.order', string='Origin blanket order',
+        'sale.blanket.order', string='Origin Blanket Order',
         related='order_line.blanket_line_id.order_id',
         readonly=True)
 

@@ -36,6 +36,9 @@ class BlanketOrder(models.Model):
     lines_ids = fields.One2many(
         'sale.blanket.order.line', 'order_id', string='Order lines',
         copy=True)
+    planned_order_ids = fields.One2many(
+        'sale.blanket.planned.order', 'blanket_order_id',
+        string='planned Orders', copy=False)
     pricelist_id = fields.Many2one(
         'product.pricelist', string='Pricelist', required=True, readonly=True,
         states={'draft': [('readonly', False)]})
@@ -136,7 +139,7 @@ class BlanketOrder(models.Model):
                 assert order.validity_date > today, \
                     _("Validity date must be in the future")
                 assert order.partner_id, _("Partner is mandatory")
-                assert len(order.lines_ids) > 0, _("Must have some lines")
+                assert order.lines_ids, _("Must have some lines")
                 order.lines_ids._validate()
         except AssertionError as e:
             raise UserError(e.message)
@@ -181,22 +184,32 @@ class BlanketOrderLine(models.Model):
     sequence = fields.Integer()
     order_id = fields.Many2one(
         'sale.blanket.order', required=True, ondelete='cascade')
+    planned_line_ids = fields.One2many(
+        'sale.blanket.planned.order.line', 'blanket_order_line_id',
+        string='Planned Order Lines')
     product_id = fields.Many2one(
         'product.product', string='Product', required=True)
     product_uom = fields.Many2one(
         'product.uom', string='Unit of Measure', required=True)
     price_unit = fields.Float(string='Price', required=True)
+    next_order_qty = fields.Float(string='Next Planned Order Qty',
+                                  compute='_compute_next_planned_order',
+                                  store=True)
+    next_order_date = fields.Date(compute='_compute_next_planned_order',
+                                  store=True)
     original_qty = fields.Float(
-        string='Original quantity', required=True, default=1,
+        string='Original Quantity', required=True, default=1,
         digits=dp.get_precision('Product Unit of Measure'))
     ordered_qty = fields.Float(
         string='Ordered quantity', compute='_compute_quantities', store=True)
+    planned_qty = fields.Float(
+        string='Planned Quantity', compute='_compute_quantities', store=True)
     invoiced_qty = fields.Float(
-        string='Invoiced quantity', compute='_compute_quantities', store=True)
+        string='Invoiced Quantity', compute='_compute_quantities', store=True)
     remaining_qty = fields.Float(
-        string='Remaining quantity', compute='_compute_quantities', store=True)
+        string='Remaining Quantity', compute='_compute_quantities', store=True)
     delivered_qty = fields.Float(
-        string='Delivered quantity', compute='_compute_quantities', store=True)
+        string='Delivered Quantity', compute='_compute_quantities', store=True)
     sale_order_lines_ids = fields.One2many(
         'sale.order.line', 'blanket_line_id', string='Sale order lines')
     company_id = fields.Many2one(
@@ -299,6 +312,7 @@ class BlanketOrderLine(models.Model):
         'sale_order_lines_ids.product_uom_qty',
         'sale_order_lines_ids.qty_delivered',
         'sale_order_lines_ids.qty_invoiced',
+        'order_id.planned_order_ids',
         'original_qty'
     )
     def _compute_quantities(self):
@@ -307,7 +321,22 @@ class BlanketOrderLine(models.Model):
             line.ordered_qty = sum(l.product_uom_qty for l in sale_lines)
             line.invoiced_qty = sum(l.qty_invoiced for l in sale_lines)
             line.delivered_qty = sum(l.qty_delivered for l in sale_lines)
-            line.remaining_qty = line.original_qty - line.ordered_qty
+            line.planned_qty = sum(
+                l.next_order_qty for l in line.planned_line_ids)
+            line.remaining_qty = \
+                line.original_qty - line.ordered_qty - line.planned_qty
+
+    @api.depends(
+        'order_id.planned_order_ids',
+    )
+    def _compute_next_planned_order(self):
+        for line in self:
+            planned_lines = line.planned_line_ids
+            if planned_lines:
+                next_planned_line = planned_lines.sorted(
+                    key=lambda r: r.next_order_date)[0]
+                line.next_order_date = next_planned_line.next_order_date
+                line.next_order_qty = next_planned_line.next_order_qty
 
     @api.multi
     def _validate(self):

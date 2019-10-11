@@ -5,6 +5,11 @@
         <field name="model">sale.blanket.order.wizard</field>
         <field name="arch" type="xml">
             <form string="Create Sale Order">
+                <field name="mode" invisible="1"/>
+                <label for="planned_date" string="Date"/>
+                <field name="planned_date"
+                    attrs="{'invisible': [('mode', '!=', 'planned')],
+                            'required': [('mode', '=', 'planned')]}"/>
                 <group>
                     <field name="lines_ids" nolabel="1">
                         <tree create="false" editable="bottom">
@@ -16,7 +21,11 @@
                 </group>
                 <footer>
                     <button name="create_sale_order" string="Create and View Order" type="object"
-                        class="btn-primary"/>
+                        class="btn-primary"
+                        attrs="{'invisible': [('mode', '!=', 'instant')]}"/>
+                    <button name="create_planned_sale_order" string="Plan Sale Order" type="object"
+                        class="btn-primary"
+                        attrs="{'invisible': [('mode', '!=', 'planned')]}"/>
                     <button string="Cancel" class="btn-default" special="cancel"/>
                 </footer>
             </form>
@@ -30,5 +39,16 @@
         <field name="view_type">form</field>
         <field name="view_mode">form</field>
         <field name="target">new</field>
+        <field name="context">{'default_mode': 'instant'}</field>
+    </record>
+
+    <record id="action_create_planned_sale_order" model="ir.actions.act_window">
+        <field name="name">Create Planned Sale Order</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">sale.blanket.order.wizard</field>
+        <field name="view_type">form</field>
+        <field name="view_mode">form</field>
+        <field name="target">new</field>
+        <field name="context">{'default_mode': 'planned'}</field>
     </record>
 </odoo>

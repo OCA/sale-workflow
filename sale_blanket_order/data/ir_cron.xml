@@ -17,4 +17,16 @@
         <field name="args">()</field>
     </record>
 
+    <record forcecreate="True" id="create_sale_order_from_planned_blanket_order" model="ir.cron">
+        <field name="name">Blanket order: create planned orders</field>
+        <field name="active" eval="True"/>
+        <field name="interval_number">1</field>
+        <field name="interval_type">days</field>
+        <field name="numbercall">-1</field>
+        <field name="doall" eval="False"/>
+        <field name="model">sale.blanket.planned.order</field>
+        <field name="function">_scheduler_create_order</field>
+        <field name="args">()</field>
+    </record>
+
 </odoo>

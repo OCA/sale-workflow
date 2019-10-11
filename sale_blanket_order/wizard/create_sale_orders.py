@@ -2,6 +2,7 @@
 # Copyright 2018 ACSONE SA/NV
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 from odoo import fields, models, api, _
+from odoo.tools import float_compare
 from odoo.exceptions import UserError
 
 
@@ -33,20 +34,23 @@ class BlanketOrderWizard(models.TransientModel):
         }) for l in blanket_order.lines_ids]
         return lines
 
+    mode = fields.Char()
     blanket_order_id = fields.Many2one(
         'sale.blanket.order', default=_default_order, readonly=True)
     lines_ids = fields.One2many(
         'sale.blanket.order.wizard.line', 'wizard_id',
         string='Lines', default=_default_lines)
+    planned_date = fields.Date()
 
     @api.multi
     def create_sale_order(self):
         self.ensure_one()
-
         line_obj = self.env['sale.order.line']
         order_lines = []
         for line in self.lines_ids:
-            if line.qty == 0.0:
+            if float_compare(
+                    line.qty, 0,
+                    precision_rounding=line.product_id.uom_id.rounding) == 0:
                 continue
 
             if line.qty > line.remaining_qty:
@@ -93,6 +97,51 @@ class BlanketOrderWizard(models.TransientModel):
             'view_mode': 'form',
             'res_model': 'sale.order',
             'res_id': sale_order.id,
+        }
+
+    @api.multi
+    def create_planned_sale_order(self):
+        self.ensure_one()
+        order_lines = []
+        if self.planned_date > self.blanket_order_id.validity_date:
+            raise UserError(_
+                            ('planned date must be before '
+                             'the validity date of the blanker order: %s') %
+                            self.blanket_order_id.validity_date)
+
+        for line in self.lines_ids:
+            if float_compare(
+                    line.qty, 0,
+                    precision_rounding=line.product_id.uom_id.rounding) == 0:
+                continue
+
+            if line.qty > line.remaining_qty:
+                raise UserError(
+                    _('You can\'t order more than the remaining quantities'))
+
+            vals = {
+                'next_order_qty': line.qty,
+                'blanket_order_line_id': line.blanket_line_id.id
+            }
+
+            order_lines.append((0, 0, vals))
+
+        if not order_lines:
+            raise UserError(_('An order can\'t be empty'))
+
+        planned_order_obj = self.env['sale.blanket.planned.order']
+        planned_order_vals = {
+            'next_order_date': self.planned_date,
+            'blanket_order_id': self.blanket_order_id.id,
+            'line_ids': order_lines
+        }
+        planned_order = planned_order_obj.create(planned_order_vals)
+        self.blanket_order_id.update(
+            {'planned_order_ids': [(4, planned_order.id)]}
+        )
+        return {
+            'type': 'ir.actions.client',
+            'tag': 'reload',
         }
 
 

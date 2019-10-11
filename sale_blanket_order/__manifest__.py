@@ -21,6 +21,7 @@
         'security/security.xml',
         'wizard/create_sale_orders.xml',
         'views/blanket_orders.xml',
+        'views/planned_blanket_orders.xml',
         'views/sale_orders.xml',
         'report/templates.xml',
         'report/report.xml',

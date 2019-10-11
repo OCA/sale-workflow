@@ -83,3 +83,71 @@ class TestBlanketOrders(common.TransactionCase):
         view_action = blanket_order.action_view_sale_orders()
         domain_ids = view_action['domain'][0][2]
         self.assertEqual(len(domain_ids), 2)
+
+    def test_create_planned_sale_orders(self):
+        partner = self.env['res.partner'].create({
+            'name': 'TEST',
+            'customer': True,
+        })
+        payment_term = self.env.ref('account.account_payment_term_net')
+        product = self.env['product.product'].create({
+            'name': 'Demo',
+            'categ_id': self.env.ref('product.product_category_1').id,
+            'standard_price': 35.0,
+            'list_price': 40.0,
+            'type': 'consu',
+            'uom_id': self.env.ref('product.product_uom_unit').id,
+            'default_code': 'PROD_DEL02',
+        })
+        sale_pricelist = self.env['product.pricelist'].create({
+            'name': 'Sale pricelist',
+            'discount_policy': 'without_discount',
+            'item_ids': [(0, 0, {
+                'compute_price': 'fixed',
+                'fixed_price': 56.0,
+                'product_id': product.id,
+                'applied_on': '0_product_variant',
+            })]
+        })
+        validity_date = date.today() + timedelta(days=10)
+        blanket_order = self.env['sale.blanket.order'].create({
+            'partner_id': partner.id,
+            'validity_date': fields.Date.to_string(validity_date),
+            'payment_term_id': payment_term.id,
+            'pricelist_id': sale_pricelist.id,
+            'lines_ids': [(0, 0, {
+                'product_id': product.id,
+                'product_uom': product.uom_id.id,
+                'original_qty': 20.0,
+                'price_unit': 1.0,  # will be updated by pricelist
+            })],
+        })
+        blanket_order.pricelist_id = sale_pricelist
+        blanket_order.lines_ids[0].onchange_product()
+        blanket_order.action_confirm()
+        wizard1 = self.env['sale.blanket.order.wizard'].with_context(
+            active_id=blanket_order.id).create({})
+        after_validity_date = validity_date + timedelta(days=1)
+        wizard1.planned_date = after_validity_date
+        wizard1.lines_ids[0].write({'qty': 1})
+        # planned date > validity date
+        with self.assertRaises(UserError):
+            wizard1.create_planned_sale_order()
+        wizard1.planned_date = date.today()
+        wizard1.lines_ids[0].write({'qty': 0})
+        # no qty set for planned order
+        with self.assertRaises(UserError):
+            wizard1.create_planned_sale_order()
+        wizard1.lines_ids[0].write({'qty': 10.0})
+        wizard1.create_planned_sale_order()
+        self.assertEqual(len(blanket_order.planned_order_ids), 1)
+        order_line = blanket_order.lines_ids[0]
+        self.assertEqual(order_line.next_order_date, wizard1.planned_date)
+        self.assertEqual(order_line.planned_qty, 10)
+        self.assertEqual(order_line.remaining_qty, 10)
+        # create order from planned order (normally done by a queue job)
+        self.env['sale.blanket.planned.order']._scheduler_create_order()
+        self.assertFalse(order_line.next_order_date)
+        self.assertEqual(blanket_order.sale_count, 1)
+        self.assertEqual(order_line.planned_qty, 0)
+        self.assertEqual(order_line.remaining_qty, 10)

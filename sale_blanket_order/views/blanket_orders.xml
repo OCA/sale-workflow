@@ -22,6 +22,9 @@
                     <button name="%(action_create_sale_order)d" string="Create Sale Order"
                         type="action" class="btn-primary"
                         attrs="{'invisible': [('state', '!=', 'opened')]}"/>
+                    <button name="%(action_create_planned_sale_order)d" string="Plan Sale Order"
+                        type="action" class="btn-primary"
+                        attrs="{'invisible': [('state', '!=', 'opened')]}"/>
                     <button name="action_confirm" states="draft" string="Confirm" class="btn-primary o_sale_confirm" type="object" />
                     <field name="state" widget="statusbar" statusbar_visible="draft,opened,expired"/>
                 </header>
@@ -66,11 +69,21 @@
                                     <field name="ordered_qty"/>
                                     <field name="invoiced_qty"/>
                                     <field name="delivered_qty"/>
+                                    <field name="planned_qty"/>
+                                    <field name="next_order_qty"/>
+                                    <field name="next_order_date"/>
                                     <field name="remaining_qty"/>
                                 </tree>
                             </field>
                             <field name="note" class="oe_inline" placeholder="Setup default terms and conditions in your company settings."/>
                             <div class="oe_clear"/>
+                        </page>
+                        <page string="Planned Orders">
+                            <field name="planned_order_ids" mode="tree" create="0">
+                                <tree>
+                                    <field name="next_order_date"/>
+                                </tree>
+                            </field>
                         </page>
                         <page string="Other Information">
                             <group>

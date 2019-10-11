@@ -10,6 +10,8 @@ A blanket order is a pre-agreement to sell a certain number of quantities of
 products at a specific price. From a confirmed blanket order, the users can
 create new sale orders at such price, until the blanket order expires, either
 due to reaching the validity date or exhausting all the quantities of products.
+It is also possible to create a planned sale order for the blanket order to
+automatically create a sell order on the planned date with the chosen quantity.
 
 Usage
 =====
@@ -43,6 +45,7 @@ Contributors
 ------------
 
 * André Pereira <github@andreparames.com> (https://www.acsone.eu/)
+* Laurent Corron <laurent.corron@acsone.eu> (https://www.acsone.eu/)
 
 Do not contact contributors directly about support or help with technical issues.
 
