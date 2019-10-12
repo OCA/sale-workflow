@@ -20,32 +20,35 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
 
 #. module: sale_start_end_dates
-#: model:ir.model.fields,field_description:sale_start_end_dates.field_sale_order_default_end_date
+#: model:ir.model.fields,field_description:sale_start_end_dates.field_sale_order__default_end_date
 msgid "Default End Date"
 msgstr "Date de fin par défaut"
 
 #. module: sale_start_end_dates
-#: model:ir.model.fields,field_description:sale_start_end_dates.field_sale_order_default_start_date
+#: model:ir.model.fields,field_description:sale_start_end_dates.field_sale_order__default_start_date
 msgid "Default Start Date"
 msgstr "Date de début par défaut"
 
 #. module: sale_start_end_dates
-#: code:addons/sale_start_end_dates/models/sale.py:22
-#, python-format
+#: code:addons/sale_start_end_dates/models/sale_order.py:21
+#, fuzzy, python-format
+#| msgid ""
+#| "Default Start Date should be before or be the same as Default End Date "
+#| "for sale order %s"
 msgid ""
 "Default Start Date should be before or be the same as Default End Date for "
-"sale order %s"
+"sale order '%s'."
 msgstr ""
 "La date de début par défaut doit être antérieure ou identique à la date de "
 "fin par défaut du bon de commande %s"
 
 #. module: sale_start_end_dates
-#: model:ir.model.fields,field_description:sale_start_end_dates.field_sale_order_line_end_date
+#: model:ir.model.fields,field_description:sale_start_end_dates.field_sale_order_line__end_date
 msgid "End Date"
 msgstr "Date de fin"
 
 #. module: sale_start_end_dates
-#: model:ir.model.fields,help:sale_start_end_dates.field_sale_order_line_must_have_dates
+#: model:ir.model.fields,help:sale_start_end_dates.field_sale_order_line__must_have_dates
 msgid ""
 "If this option is active, the user will have to enter a Start Date and an "
 "End Date on the invoice lines that have this product."
@@ -54,7 +57,7 @@ msgstr ""
 "une date de fin sur les lignes de facture comportant ce produit."
 
 #. module: sale_start_end_dates
-#: code:addons/sale_start_end_dates/models/sale.py:58
+#: code:addons/sale_start_end_dates/models/sale_order.py:86
 #, python-format
 msgid "Missing End Date for sale order line with Product '%s'."
 msgstr ""
@@ -62,7 +65,7 @@ msgstr ""
 "'%s'."
 
 #. module: sale_start_end_dates
-#: code:addons/sale_start_end_dates/models/sale.py:62
+#: code:addons/sale_start_end_dates/models/sale_order.py:90
 #, python-format
 msgid "Missing Start Date for sale order line with Product '%s'."
 msgstr ""
@@ -70,49 +73,34 @@ msgstr ""
 "début '%s'."
 
 #. module: sale_start_end_dates
-#: code:addons/sale_start_end_dates/models/sale.py:66
-#, python-format
-msgid "Missing number of days for sale order line with Product '%s'."
-msgstr ""
-"Un bon de commande avec ligne article saisie doit comporter un nombre de "
-"jours '%s'."
-
-#. module: sale_start_end_dates
-#: model:ir.model.fields,field_description:sale_start_end_dates.field_sale_order_line_must_have_dates
+#: model:ir.model.fields,field_description:sale_start_end_dates.field_sale_order_line__must_have_dates
 msgid "Must Have Start and End Dates"
 msgstr "Doit comporter une date de début et de fin"
 
 #. module: sale_start_end_dates
-#: model:ir.model.fields,field_description:sale_start_end_dates.field_sale_order_line_number_of_days
+#: model:ir.model.fields,field_description:sale_start_end_dates.field_sale_order_line__number_of_days
 msgid "Number of Days"
 msgstr "Nombre de jours"
 
 #. module: sale_start_end_dates
-#: code:addons/sale_start_end_dates/models/sale.py:75
-#, python-format
+#: code:addons/sale_start_end_dates/models/sale_order.py:68
+#, fuzzy, python-format
+#| msgid ""
+#| "On sale order line with Product '%s', the number of days is negative ; "
+#| "this is not allowed."
 msgid ""
-"On sale order line with Product '%s', the number of days is negative ; this "
-"is not allowed."
+"On sale order line with product '%s', the number of days is negative (%d) ; "
+"this is not allowed. The number of days has been forced to 1."
 msgstr ""
 "Bon de commande avec ligne article saisie '%s', le nombre de jours est "
 "négatif; Ceci n'est pas autorisé."
 
 #. module: sale_start_end_dates
-#: code:addons/sale_start_end_dates/models/sale.py:83
-#, python-format
-msgid ""
-"On the sale order line with Product '%s', there are %d days between the "
-"Start Date (%s) and the End Date (%s), but the number of days field has a "
-"value of %d days."
-msgstr ""
-"Bon de commande avec ligne article saisie'%s', il y a %d jours entre la date "
-"de début (%s) et la date de fin (%s), mais le nombre de jours de champ a une "
-"valeur de %d jours."
-
-#. module: sale_start_end_dates
 #: model:ir.model,name:sale_start_end_dates.model_sale_order
-msgid "Quotation"
-msgstr ""
+#, fuzzy
+#| msgid "Sales Order"
+msgid "Sale Order"
+msgstr "Bon de commande"
 
 #. module: sale_start_end_dates
 #: model:ir.model,name:sale_start_end_dates.model_sale_order_line
@@ -120,17 +108,35 @@ msgid "Sales Order Line"
 msgstr "Sales Order Line"
 
 #. module: sale_start_end_dates
-#: model:ir.model.fields,field_description:sale_start_end_dates.field_sale_order_line_start_date
+#: model:ir.model.fields,field_description:sale_start_end_dates.field_sale_order_line__start_date
 msgid "Start Date"
 msgstr "Date de début"
 
 #. module: sale_start_end_dates
-#: code:addons/sale_start_end_dates/models/sale.py:70
+#: code:addons/sale_start_end_dates/models/sale_order.py:94
 #, python-format
 msgid ""
 "Start Date should be before or be the same as End Date for sale order line "
 "with Product '%s'."
 msgstr ""
 
-#~ msgid "Sales Order"
-#~ msgstr "Bon de commande"
+#. module: sale_start_end_dates
+#: code:addons/sale_start_end_dates/models/sale_order.py:67
+#, fuzzy, python-format
+#| msgid "Number of Days"
+msgid "Wrong number of days"
+msgstr "Nombre de jours"
+
+#~ msgid "Missing number of days for sale order line with Product '%s'."
+#~ msgstr ""
+#~ "Un bon de commande avec ligne article saisie doit comporter un nombre de "
+#~ "jours '%s'."
+
+#~ msgid ""
+#~ "On the sale order line with Product '%s', there are %d days between the "
+#~ "Start Date (%s) and the End Date (%s), but the number of days field has a "
+#~ "value of %d days."
+#~ msgstr ""
+#~ "Bon de commande avec ligne article saisie'%s', il y a %d jours entre la "
+#~ "date de début (%s) et la date de fin (%s), mais le nombre de jours de "
+#~ "champ a une valeur de %d jours."
