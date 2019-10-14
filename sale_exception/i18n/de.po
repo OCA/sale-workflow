@@ -39,6 +39,13 @@ msgstr ""
 "blockieren:</strong>"
 
 #. module: sale_exception
+#: model_terms:ir.ui.view,arch_db:sale_exception.view_order_form
+msgid ""
+"<strong>There are exceptions blocking the confirmation of this Sale Order:</"
+"strong>"
+msgstr ""
+
+#. module: sale_exception
 #: model:exception.rule,description:sale_exception.excep_no_dumping
 msgid "A product is sold cheaper than his cost."
 msgstr "Ein Produkt wird günstiger als dessen Anschaffungskosten verkauft."
@@ -76,6 +83,13 @@ msgid ""
 "Click here to be able to confirm this Sale Orders regardless of the "
 "exceptions."
 msgstr "Bitte hier klicken, um den Auftrag trotz der Fehler zu bestätigen."
+
+#. module: sale_exception
+#: model_terms:ir.ui.view,arch_db:sale_exception.view_order_form
+msgid ""
+"Click here to be able to confirm this Sale Orders regardless of the "
+"exceptions."
+msgstr ""
 
 #. module: sale_exception
 #: model_terms:ir.ui.view,arch_db:sale_exception.view_sale_exception_confirm
