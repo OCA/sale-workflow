@@ -20,6 +20,13 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
 #. module: sale_exception
+#: model_terms:ir.ui.view,arch_db:sale_exception.view_order_form
+msgid ""
+"<strong>There are exceptions blocking the confirmation of this Sale Order:</"
+"strong>"
+msgstr ""
+
+#. module: sale_exception
 #: model:exception.rule,description:sale_exception.excep_no_dumping
 msgid "A product is sold cheaper than his cost."
 msgstr ""
@@ -51,6 +58,13 @@ msgid "Cancel"
 msgstr ""
 
 #. module: sale_exception
+#: model_terms:ir.ui.view,arch_db:sale_exception.view_order_form
+msgid ""
+"Click here to be able to confirm this Sale Orders regardless of the "
+"exceptions."
+msgstr ""
+
+#. module: sale_exception
 #: model_terms:ir.ui.view,arch_db:sale_exception.view_sale_exception_confirm
 msgid "Confirm"
 msgstr ""
@@ -71,16 +85,6 @@ msgid "Display Name"
 msgstr ""
 
 #. module: sale_exception
-#: model_terms:ir.ui.view,arch_db:sale_exception.view_order_form
-msgid "Error:"
-msgstr ""
-
-#. module: sale_exception
-#: model_terms:ir.ui.view,arch_db:sale_exception.view_order_form
-msgid "Exception"
-msgstr ""
-
-#. module: sale_exception
 #: model:ir.model,name:sale_exception.model_exception_rule
 msgid "Exception Rule"
 msgstr ""
@@ -98,6 +102,7 @@ msgstr "ID"
 #. module: sale_exception
 #: model:ir.model.fields,field_description:sale_exception.field_sale_exception_confirm__ignore
 #: model:ir.model.fields,field_description:sale_exception.field_sale_order_line__ignore_exception
+#: model_terms:ir.ui.view,arch_db:sale_exception.view_order_form
 msgid "Ignore Exceptions"
 msgstr ""
 
