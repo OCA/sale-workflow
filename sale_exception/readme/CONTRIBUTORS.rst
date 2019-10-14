@@ -8,3 +8,4 @@
 * Mourad EL HADJ MIMOUNE <mourad.elhadj.mimoune@akretion.com>
 * Raphaël Reverdy <raphael.reverdy@akretion.com>
 * Florian da Costa <florian.dacosta@akretion.com>
+* Iván Todorovich <ivan.todorovich@druidoo.io>
