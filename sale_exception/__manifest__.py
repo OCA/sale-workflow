@@ -10,7 +10,6 @@
     'author': "Akretion, "
               "Sodexis, "
               "Camptocamp, "
-              "Druidoo, "
               "Odoo Community Association (OCA)",
     'website': 'https://github.com/OCA/sale-workflow',
     'depends': ['sale', 'base_exception'],
