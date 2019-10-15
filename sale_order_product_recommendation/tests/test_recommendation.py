@@ -71,7 +71,7 @@ class RecommendationCase(SavepointCase):
         self.assertEqual(wizard.order_id, self.new_so)
         # Product 12 is first recommendation because it's in the SO already
         self.assertEqual(wizard.line_ids[0].product_id, self.product_12)
-        self.assertEqual(wizard.line_ids[0].times_delivered, 2)
+        self.assertEqual(wizard.line_ids[0].times_delivered, 1)
         self.assertEqual(wizard.line_ids[0].units_delivered, 25)
         self.assertEqual(wizard.line_ids[0].units_included, 3)
         # Product 46 appears second
@@ -88,6 +88,19 @@ class RecommendationCase(SavepointCase):
         wizard.line_amount = 1
         wizard._generate_recommendations()
         self.assertEqual(len(wizard.line_ids), 2)
+
+    def test_recommendations_archived_product(self):
+        self.env["sale.order"].create({
+            "partner_id": self.camptocamp.id,
+        })
+        self.product_12.active = False
+        self.product_10.sale_ok = False
+        wizard = self.wizard()
+        wizard._generate_recommendations()
+        self.assertFalse(
+            self.product_12 in wizard.line_ids.mapped('product_id'))
+        self.assertFalse(
+            self.product_10 in wizard.line_ids.mapped('product_id'))
 
     def test_transfer(self):
         """Products get transferred to SO."""
