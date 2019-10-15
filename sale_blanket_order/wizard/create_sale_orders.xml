@@ -13,7 +13,7 @@
                             <field name="date_schedule"/>
                             <field name="price_unit"/>
                             <field name="remaining_uom_qty"/>
-                            <field name="product_uom" groups="product.group_uom"/>
+                            <field name="product_uom" groups="uom.group_uom"/>
                             <field name="qty"/>
                         </tree>
                     </field>
