@@ -167,28 +167,27 @@ class StockWarehouse(models.Model):
                     'rental_route_id': rental_route.id,
                     'sell_rented_product_route_id': sell_rented_route.id,
                     })
-                for rule_vals in self._get_rental_push_pull_rules():
-                    self.env['stock.rule'].create(rule_vals)
+                rental_rules = self.env['stock.rule'].search(
+                    [('route_id', 'in',
+                      [rental_route.id, sell_rented_route.id]),
+                     ('active', '=', False)
+                     ])
+                if rental_rules:
+                    rental_rules.write({'active': True})
+                else:
+                    for rule_vals in self._get_rental_push_pull_rules():
+                        self.env['stock.rule'].create(rule_vals)
             else:
                 for wh in self:
-                    pull_rules_to_delete = self.env['stock.rule'].search(
+                    rules_to_archive = self.env['stock.rule'].search(
                         [
                             ('route_id', 'in', (
                                 wh.rental_route_id.id,
-                                wh.sell_rented_product_route_id.id)),
-                            ('location_src_id', 'in', (
-                                wh.rental_out_location_id.id,
-                                wh.rental_in_location_id.id)),
-                            ('action', '=', 'move')])
-                    pull_rules_to_delete.unlink()
-                    push_rule_to_delete =\
-                        self.env['stock.rule'].search([
-                            ('route_id', '=', wh.rental_route_id.id),
-                            ('location_from_id', '=',
-                                wh.rental_out_location_id.id),
-                            ('location_dest_id', '=',
-                                wh.rental_in_location_id.id)])
-                    push_rule_to_delete.unlink()
+                                wh.sell_rented_product_route_id.id)
+                             )
+                        ]
+                    )
+                    rules_to_archive.write({'active': False})
                     wh.write({
                         'route_ids': [(3, rental_route.id)],
                         'rental_route_id': False,
