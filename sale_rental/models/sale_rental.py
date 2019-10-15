@@ -110,7 +110,7 @@ class SaleRental(models.Model):
         'sale.order', related='start_order_line_id.order_id',
         string='Rental SO', readonly=True, store=True)
     company_id = fields.Many2one(
-        'res.company', related='start_order_line_id.order_id.company_id',
+        'res.company', related='start_order_line_id.company_id',
         string='Company', readonly=True)
     partner_id = fields.Many2one(
         'res.partner', related='start_order_line_id.order_id.partner_id',
