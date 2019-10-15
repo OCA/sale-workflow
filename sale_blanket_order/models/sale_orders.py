@@ -11,8 +11,7 @@ class SaleOrder(models.Model):
 
     blanket_order_id = fields.Many2one(
         'sale.blanket.order', string='Origin blanket order',
-        related='order_line.blanket_order_line.order_id',
-        readonly=True)
+        related='order_line.blanket_order_line.order_id')
 
     @api.model
     def _check_exchausted_blanket_order_line(self):
@@ -21,7 +20,7 @@ class SaleOrder(models.Model):
 
     @api.multi
     def button_confirm(self):
-        res = super(SaleOrder, self).button_confirm()
+        res = super().button_confirm()
         for order in self:
             if order._check_exchausted_blanket_order_line():
                 raise ValidationError(
@@ -56,7 +55,7 @@ class SaleOrderLine(models.Model):
         date_planned = date.today()
         date_delta = timedelta(days=365)
         for line in bo_lines.filtered(lambda l: l.date_schedule):
-            date_schedule = fields.Date.from_string(line.date_schedule)
+            date_schedule = line.date_schedule
             if date_schedule and \
                     abs(date_schedule - date_planned) < date_delta:
                 assigned_bo_line = line
@@ -108,7 +107,7 @@ class SaleOrderLine(models.Model):
 
     @api.onchange('product_uom_qty', 'product_uom')
     def product_uom_change(self):
-        res = super(SaleOrderLine, self).product_uom_change()
+        res = super().product_uom_change()
         if self.product_id and not self.env.context.get(
                 'skip_blanket_find', False):
             return self.get_assigned_bo_line()
@@ -133,11 +132,12 @@ class SaleOrderLine(models.Model):
 
     @api.constrains('product_id')
     def check_product_id(self):
-        if self.blanket_order_line and \
-                self.product_id != self.blanket_order_line.product_id:
-            raise ValidationError(_(
-                'The product in the blanket order and in the '
-                'sales order must match'))
+        for line in self:
+            if line.blanket_order_line and \
+                    line.product_id != line.blanket_order_line.product_id:
+                raise ValidationError(_(
+                    'The product in the blanket order and in the '
+                    'sales order must match'))
 
     @api.constrains('currency_id')
     def check_currency(self):
