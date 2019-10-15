@@ -10,24 +10,25 @@ from odoo.exceptions import UserError
 class TestSaleBlanketOrders(common.TransactionCase):
 
     def setUp(self):
-        super(TestSaleBlanketOrders, self).setUp()
+        super().setUp()
         self.blanket_order_obj = self.env['sale.blanket.order']
         self.blanket_order_line_obj = self.env['sale.blanket.order.line']
         self.blanket_order_wiz_obj = self.env['sale.blanket.order.wizard']
 
-        self.partner = self.env['res.partner'].create({
-            'name': 'TEST CUSTOMER',
-            'supplier': True,
-        })
         self.payment_term = self.env.ref('account.account_payment_term_net')
         self.sale_pricelist = self.env['product.pricelist'].create({
             'name': 'Test Pricelist',
             'currency_id': self.env.ref('base.USD').id,
         })
+        self.partner = self.env['res.partner'].create({
+            'name': 'TEST CUSTOMER',
+            'supplier': True,
+            'property_product_pricelist': self.sale_pricelist.id,
+        })
 
         # UoM
-        self.categ_unit = self.env.ref('product.product_uom_categ_unit')
-        self.uom_dozen = self.env['product.uom'].create({
+        self.categ_unit = self.env.ref('uom.product_uom_categ_unit')
+        self.uom_dozen = self.env['uom.uom'].create({
             'name': 'Test-DozenA',
             'category_id': self.categ_unit.id,
             'factor_inv': 12,
@@ -46,7 +47,7 @@ class TestSaleBlanketOrders(common.TransactionCase):
             'standard_price': 35.0,
             'seller_ids': [(6, 0, [seller.id])],
             'type': 'consu',
-            'uom_id': self.env.ref('product.product_uom_unit').id,
+            'uom_id': self.env.ref('uom.product_uom_unit').id,
             'default_code': 'PROD_DEL01',
         })
         self.product2 = self.env['product.product'].create({
@@ -54,7 +55,7 @@ class TestSaleBlanketOrders(common.TransactionCase):
             'categ_id': self.env.ref('product.product_category_1').id,
             'standard_price': 50.0,
             'type': 'consu',
-            'uom_id': self.env.ref('product.product_uom_unit').id,
+            'uom_id': self.env.ref('uom.product_uom_unit').id,
             'default_code': 'PROD_DEL02',
         })
 
