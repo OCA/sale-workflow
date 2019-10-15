@@ -78,7 +78,7 @@
                                         string="Original Qty"
                                         context="{'partner_id':parent.partner_id, 'quantity':original_uom_qty, 'company_id': parent.company_id}"
                                     />
-                                    <field name="product_uom" groups="product.group_uom"/>
+                                    <field name="product_uom" groups="uom.group_uom"/>
                                     <field name="price_unit"/>
                                     <field name="date_schedule"/>
                                     <field name="ordered_uom_qty"/>
@@ -227,7 +227,7 @@
                                 <field name="original_uom_qty"
                                        class="oe_inline" readonly="1"/>
                                 <field name="product_uom"
-                                       groups="product.group_uom"
+                                       groups="uom.group_uom"
                                        class="oe_inline" readonly="1"/>
                             </div>
                             <label for="ordered_uom_qty"/>
@@ -235,7 +235,7 @@
                                 <field name="ordered_uom_qty"
                                        class="oe_inline" readonly="1"/>
                                 <field name="product_uom"
-                                       groups="product.group_uom"
+                                       groups="uom.group_uom"
                                        class="oe_inline" readonly="1"/>
                             </div>
                             <label for="invoiced_uom_qty"/>
@@ -243,7 +243,7 @@
                                 <field name="invoiced_uom_qty"
                                        class="oe_inline" readonly="1"/>
                                 <field name="product_uom"
-                                       groups="product.group_uom"
+                                       groups="uom.group_uom"
                                        class="oe_inline" readonly="1"/>
                             </div>
                             <label for="remaining_uom_qty"/>
@@ -251,7 +251,7 @@
                                 <field name="remaining_uom_qty"
                                        class="oe_inline" readonly="1"/>
                                 <field name="product_uom"
-                                       groups="product.group_uom"
+                                       groups="uom.group_uom"
                                        class="oe_inline" readonly="1"/>
                             </div>
                             <label for="remaining_qty"/>
