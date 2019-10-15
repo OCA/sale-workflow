@@ -59,7 +59,7 @@
                             </td>
                             <td class="text-right">
                                 <span t-field="l.original_uom_qty"/>
-                                <span t-field="l.product_uom" groups="product.group_uom"/>
+                                <span t-field="l.product_uom" groups="uom.group_uom"/>
                             </td>
                             <td class="text-right">
                                 <span t-field="l.price_subtotal"
