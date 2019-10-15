@@ -8,7 +8,7 @@ from odoo.exceptions import UserError
 
 class BlanketOrderWizard(models.TransientModel):
     _name = 'sale.blanket.order.wizard'
-    _description = 'Blanket Order Wizard'
+    _description = 'Blanket order wizard'
 
     @api.model
     def _default_order(self):
@@ -87,20 +87,15 @@ class BlanketOrderWizard(models.TransientModel):
 
     @api.multi
     def create_sale_order(self):
-
         order_lines_by_customer = defaultdict(list)
         currency_id = 0
         pricelist_id = 0
         user_id = 0
         payment_term_id = 0
-        for line in self.line_ids:
-            if line.qty == 0.0:
-                continue
-
+        for line in self.line_ids.filtered(lambda l: l.qty != 0.0):
             if line.qty > line.remaining_uom_qty:
                 raise UserError(
                     _('You can\'t order more than the remaining quantities'))
-
             vals = {'product_id': line.product_id.id,
                     'name': line.product_id.name,
                     'product_uom': line.product_uom.id,
@@ -142,20 +137,13 @@ class BlanketOrderWizard(models.TransientModel):
         for customer in order_lines_by_customer:
             order_vals = {
                 'partner_id': customer,
-            }
-            if self.blanket_order_id:
-                order_vals.update({
-                    'origin': self.blanket_order_id.name,
-                })
-            order_vals.update({
-                'user_id': user_id if user_id else False,
-                'currency_id': currency_id if currency_id else False,
-                'pricelist_id': pricelist_id if pricelist_id else False,
-                'payment_term_id': (payment_term_id
-                                    if payment_term_id
-                                    else False),
+                'origin': self.blanket_order_id.name,
+                'user_id': user_id,
+                'currency_id': currency_id,
+                'pricelist_id': pricelist_id,
+                'payment_term_id': payment_term_id,
                 'order_line': order_lines_by_customer[customer],
-            })
+            }
             sale_order = self.env['sale.order'].create(order_vals)
             res.append(sale_order.id)
         return {
@@ -164,7 +152,6 @@ class BlanketOrderWizard(models.TransientModel):
             'view_type': 'form',
             'view_mode': 'tree,form',
             'res_model': 'sale.order',
-            'view_id': False,
             'context': {'from_sale_order': True},
             'type': 'ir.actions.act_window'
         }
@@ -172,6 +159,7 @@ class BlanketOrderWizard(models.TransientModel):
 
 class BlanketOrderWizardLine(models.TransientModel):
     _name = 'sale.blanket.order.wizard.line'
+    _description = 'Blanket order wizard line'
 
     wizard_id = fields.Many2one('sale.blanket.order.wizard')
     blanket_line_id = fields.Many2one(
@@ -179,26 +167,23 @@ class BlanketOrderWizardLine(models.TransientModel):
     product_id = fields.Many2one(
         'product.product',
         related='blanket_line_id.product_id',
-        string='Product', readonly=True)
+        string='Product')
     product_uom = fields.Many2one(
-        'product.uom',
+        'uom.uom',
         related='blanket_line_id.product_uom',
-        string='Unit of Measure', readonly=True)
+        string='Unit of Measure')
     date_schedule = fields.Date(
-        related='blanket_line_id.date_schedule', readonly=True)
+        related='blanket_line_id.date_schedule')
     remaining_uom_qty = fields.Float(
-        related='blanket_line_id.remaining_uom_qty', readonly=True)
+        related='blanket_line_id.remaining_uom_qty')
     qty = fields.Float(string='Quantity to Order', required=True)
     price_unit = fields.Float(
-        related='blanket_line_id.price_unit', readonly=True)
+        related='blanket_line_id.price_unit')
     currency_id = fields.Many2one(
-        'res.currency', related='blanket_line_id.currency_id'
-    )
+        'res.currency', related='blanket_line_id.currency_id')
     partner_id = fields.Many2one(
         'res.partner',
         related='blanket_line_id.partner_id',
-        string='Vendor', readonly=True,
-    )
+        string='Vendor')
     taxes_id = fields.Many2many(
-        'account.tax', related="blanket_line_id.taxes_id",
-        readonly=True)
+        'account.tax', related="blanket_line_id.taxes_id")
