@@ -40,6 +40,22 @@ class SaleOrderRecommendation(models.TransientModel):
     def _default_order_id(self):
         return self.env.context.get("active_id", False)
 
+    def _recomendable_sale_order_lines_domain(self):
+        """Domain to find recent SO lines."""
+        start = datetime.now() - timedelta(days=self.months * 30)
+        start = fields.Datetime.to_string(start)
+        other_sales = self.env["sale.order"].search([
+            ("partner_id", "child_of",
+             self.order_id.partner_id.commercial_partner_id.id),
+            ("date_order", ">=", start),
+        ])
+        return [
+            ("order_id", "in", (other_sales - self.order_id).ids),
+            ("product_id.active", "=", True),
+            ("product_id.sale_ok", "=", True),
+            ("qty_delivered", "!=", 0.0),
+        ]
+
     @api.onchange("order_id", "months", "line_amount")
     def _generate_recommendations(self):
         """Generate lines according to context sale order."""
@@ -50,20 +66,9 @@ class SaleOrderRecommendation(models.TransientModel):
         if self.last_compute == last_compute:
             return
         self.last_compute = last_compute
-        start = datetime.now() - timedelta(days=self.months * 30)
-        self.line_ids = False
         # Search delivered products in previous months
-        sales = self.env["sale.order"].search([
-            ("partner_id", "child_of",
-             self.order_id.partner_id.commercial_partner_id.id),
-            ("date_order", ">=", start),
-        ])
         found_lines = self.env["sale.order.line"].read_group(
-            [
-                ("order_id", "in", sales.ids),
-                '|', ("qty_delivered", "!=", 0.0),
-                     ("order_id", "=", self.order_id.id),
-            ],
+            self._recomendable_sale_order_lines_domain(),
             ["product_id", "qty_delivered"],
             ["product_id"],
         )
@@ -77,36 +82,37 @@ class SaleOrderRecommendation(models.TransientModel):
             reverse=True,
         )
         found_dict = {l["product_id"][0]: l for l in found_lines}
-        RecomendationLine = self.env["sale.order.recommendation.line"]
-        existing_product_ids = []
-        # Add products from sale order lines
+        recommendation_lines = self.env["sale.order.recommendation.line"]
+        existing_product_ids = set()
+        # Always recommend all products already present in the linked SO
         for line in self.order_id.order_line:
-            found_line = found_dict[line.product_id.id]
-            new_line = RecomendationLine.new({
+            found_line = found_dict.get(line.product_id.id, {})
+            new_line = recommendation_lines.new({
                 "product_id": line.product_id.id,
-                "times_delivered": found_line["product_id_count"],
-                "units_delivered": found_line["qty_delivered"],
+                "times_delivered": found_line.get("product_id_count", 0),
+                "units_delivered": found_line.get("qty_delivered", 0),
                 "units_included": line.product_uom_qty,
                 "sale_line_id": line.id,
             })
-            self.line_ids += new_line
-            existing_product_ids.append(line.product_id.id)
-        # Add those recommendations too
+            recommendation_lines += new_line
+            existing_product_ids.add(line.product_id.id)
+        # Add recent SO recommendations too
         i = 0
         for line in found_lines:
             if line["product_id"][0] in existing_product_ids:
                 continue
-            new_line = RecomendationLine.new({
+            new_line = recommendation_lines.new({
                 "product_id": line["product_id"][0],
                 "times_delivered": line["product_id_count"],
                 "units_delivered": line["qty_delivered"],
             })
-            self.line_ids += new_line
+            recommendation_lines += new_line
             # limit number of results. It has to be done here, as we need to
             # populate all results first, for being able to select best matches
             i += 1
-            if i == self.line_amount:
+            if i >= self.line_amount:
                 break
+        self.line_ids = recommendation_lines
 
     def action_accept(self):
         """Propagate recommendations to sale order."""
