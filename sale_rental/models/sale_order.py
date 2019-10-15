@@ -38,7 +38,7 @@ class SaleOrder(models.Model):
 class SaleOrderLine(models.Model):
     _inherit = 'sale.order.line'
 
-    rental = fields.Boolean(string='Rental')
+    rental = fields.Boolean(string='Rental', default=False)
     can_sell_rental = fields.Boolean(string='Can Sell from Rental')
     rental_type = fields.Selection([
         ('new_rental', 'New Rental'),
