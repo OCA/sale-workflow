@@ -26,7 +26,7 @@ class StockWarehouse(models.Model):
         'stock.location.route', string='Sell Rented Product Route')
 
     @api.onchange('rental_allowed')
-    def _onchange_rrental_allowed(self):
+    def _onchange_rental_allowed(self):
         if not self.rental_allowed:
             self.rental_view_location_id = False
             self.rental_in_location_id = False
@@ -114,11 +114,12 @@ class StockWarehouse(models.Model):
                     ('location_id', '=', wh.view_location_id.id),
                     ('usage', '=', 'view')], limit=1)
                 if not view_loc:
-                    view_loc = slo.create({
-                        'name': _('Rental'),
+                    view_loc = slo.with_context(lang='en_US').create({
+                        'name': 'Rental',
                         'location_id': wh.view_location_id.id,
                         'usage': 'view',
                     })
+                    slo.browse(view_loc.id).name = _('Rental')
                     logger.debug(
                         'New view rental stock location created ID %d',
                         view_loc.id)
@@ -129,10 +130,11 @@ class StockWarehouse(models.Model):
                     ('location_id', '=', wh.rental_view_location_id.id),
                     ], limit=1)
                 if not in_loc:
-                    in_loc = slo.create({
-                        'name': _('Rental In'),
+                    in_loc = slo.with_context(lang='en_US').create({
+                        'name': 'Rental In',
                         'location_id': wh.rental_view_location_id.id,
                         })
+                    slo.browse(in_loc.id).name = _('Rental In')
                     logger.debug(
                         'New in rental stock location created ID %d',
                         in_loc.id)
@@ -143,10 +145,11 @@ class StockWarehouse(models.Model):
                     ('location_id', '=', wh.rental_view_location_id.id),
                     ], limit=1)
                 if not out_loc:
-                    out_loc = slo.create({
-                        'name': _('Rental Out'),
+                    out_loc = slo.with_context(lang='en_US').create({
+                        'name': 'Rental Out',
                         'location_id': wh.rental_view_location_id.id,
                         })
+                    slo.browse(out_loc.id).name = _('Rental Out')
                     logger.debug(
                         'New out rental stock location created ID %d',
                         out_loc.id)
