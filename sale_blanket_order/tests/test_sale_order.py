@@ -6,10 +6,10 @@ from odoo.tests import common
 from odoo import fields
 
 
-class TestPurchaseOrder(common.TransactionCase):
+class TestSaleOrder(common.TransactionCase):
 
     def setUp(self):
-        super(TestPurchaseOrder, self).setUp()
+        super().setUp()
         self.blanket_order_obj = self.env['sale.blanket.order']
         self.blanket_order_line_obj = self.env['sale.blanket.order.line']
         self.sale_order_obj = self.env['sale.order']
@@ -30,7 +30,7 @@ class TestPurchaseOrder(common.TransactionCase):
             'categ_id': self.env.ref('product.product_category_1').id,
             'standard_price': 40.0,
             'type': 'consu',
-            'uom_id': self.env.ref('product.product_uom_unit').id,
+            'uom_id': self.env.ref('uom.product_uom_unit').id,
             'default_code': 'PROD_DEL01',
         })
         self.product_2 = self.env['product.product'].create({
@@ -38,7 +38,7 @@ class TestPurchaseOrder(common.TransactionCase):
             'categ_id': self.env.ref('product.product_category_1').id,
             'standard_price': 35.0,
             'type': 'consu',
-            'uom_id': self.env.ref('product.product_uom_unit').id,
+            'uom_id': self.env.ref('uom.product_uom_unit').id,
             'default_code': 'PROD_DEL02',
         })
         self.validity = date.today() + timedelta(days=365)

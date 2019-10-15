@@ -1,10 +1,10 @@
 # Copyright 2018 ACSONE SA/NV
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
-from datetime import datetime
 
 from odoo import fields, models, api, SUPERUSER_ID, _
 from odoo.exceptions import UserError
 from odoo.tools import float_is_zero
+from odoo.tools.misc import format_date
 
 import odoo.addons.decimal_precision as dp
 
@@ -27,7 +27,7 @@ class BlanketOrder(models.Model):
         return self.env.user.company_id
 
     @api.depends('line_ids.price_total')
-    def _amount_all(self):
+    def _compute_amount_all(self):
         for order in self:
             amount_untaxed = amount_tax = 0.0
             for line in order.line_ids:
@@ -41,7 +41,8 @@ class BlanketOrder(models.Model):
 
     name = fields.Char(
         default='Draft',
-        readonly=True
+        readonly=True,
+        copy=False
     )
     partner_id = fields.Many2one(
         'res.partner', string='Partner', readonly=True,
@@ -63,11 +64,11 @@ class BlanketOrder(models.Model):
         'product.pricelist', string='Pricelist', required=True, readonly=True,
         states={'draft': [('readonly', False)]})
     currency_id = fields.Many2one(
-        'res.currency', related='pricelist_id.currency_id', readonly=True)
+        'res.currency', related='pricelist_id.currency_id')
     payment_term_id = fields.Many2one(
         'account.payment.term', string='Payment Terms', readonly=True,
         states={'draft': [('readonly', False)]})
-    confirmed = fields.Boolean()
+    confirmed = fields.Boolean(copy=False)
     state = fields.Selection(selection=[
         ('draft', 'Draft'),
         ('open', 'Open'),
@@ -100,12 +101,13 @@ class BlanketOrder(models.Model):
                                          string='Fiscal Position')
 
     amount_untaxed = fields.Monetary(string='Untaxed Amount', store=True,
-                                     readonly=True, compute='_amount_all',
+                                     readonly=True,
+                                     compute='_compute_amount_all',
                                      track_visibility='always')
     amount_tax = fields.Monetary(string='Taxes', store=True, readonly=True,
-                                 compute='_amount_all')
+                                 compute='_compute_amount_all')
     amount_total = fields.Monetary(string='Total', store=True, readonly=True,
-                                   compute='_amount_all')
+                                   compute='_compute_amount_all')
 
     # Fields use to filter in tree view
     original_uom_qty = fields.Float(
@@ -206,14 +208,7 @@ class BlanketOrder(models.Model):
                 raise UserError(_(
                     'You can not delete an open blanket order! '
                     'Try to cancel it before.'))
-        return super(BlanketOrder, self).unlink()
-
-    @api.multi
-    def copy_data(self, default=None):
-        if default is None:
-            default = {}
-        default.update(self.default_get(['name', 'confirmed']))
-        return super(BlanketOrder, self).copy_data(default)
+        return super().unlink()
 
     @api.multi
     def _validate(self):
@@ -372,7 +367,7 @@ class BlanketOrderLine(models.Model):
         'product.product', string='Product', required=True,
         domain=[('sale_ok', '=', True)])
     product_uom = fields.Many2one(
-        'product.uom', string='Unit of Measure', required=True)
+        'uom.uom', string='Unit of Measure', required=True)
     price_unit = fields.Float(string='Price', required=True,
                               digits=dp.get_precision('Product Price'))
     taxes_id = fields.Many2many('account.tax', string='Taxes',
@@ -401,23 +396,18 @@ class BlanketOrderLine(models.Model):
         'sale.order.line', 'blanket_order_line', string='Sale order lines',
         readonly=True, copy=False)
     company_id = fields.Many2one(
-        'res.company', related='order_id.company_id', store=True,
-        readonly=True)
+        'res.company', related='order_id.company_id', store=True)
     currency_id = fields.Many2one(
-        'res.currency', related='order_id.currency_id', readonly=True)
+        'res.currency', related='order_id.currency_id')
     partner_id = fields.Many2one(
         related='order_id.partner_id',
-        string='Customer',
-        readonly=True)
+        string='Customer')
     user_id = fields.Many2one(
-        related='order_id.user_id', string='Responsible',
-        readonly=True)
+        related='order_id.user_id', string='Responsible')
     payment_term_id = fields.Many2one(
-        related='order_id.payment_term_id', string='Payment Terms',
-        readonly=True)
+        related='order_id.payment_term_id', string='Payment Terms')
     pricelist_id = fields.Many2one(
-        related='order_id.pricelist_id', string='Pricelist',
-        readonly=True)
+        related='order_id.pricelist_id', string='Pricelist')
 
     price_subtotal = fields.Monetary(compute='_compute_amount',
                                      string='Subtotal', store=True)
@@ -426,21 +416,14 @@ class BlanketOrderLine(models.Model):
     price_tax = fields.Float(compute='_compute_amount', string='Tax',
                              store=True)
 
-    def _format_date(self, date):
-        # format date following user language
-        lang_model = self.env['res.lang']
-        lang = lang_model._lang_get(self.env.user.lang)
-        date_format = lang.date_format
-        return datetime.strftime(
-            fields.Date.from_string(date), date_format)
-
     def name_get(self):
         result = []
         if self.env.context.get('from_sale_order'):
             for record in self:
                 res = "[%s]" % record.order_id.name
                 if record.date_schedule:
-                    formatted_date = self._format_date(record.date_schedule)
+                    formatted_date = format_date(
+                        record.env, record.date_schedule)
                     res += ' - %s: %s' % (
                         _('Date Scheduled'), formatted_date)
                 res += ' (%s: %s %s)' % (_('remaining'),
@@ -448,7 +431,7 @@ class BlanketOrderLine(models.Model):
                                          record.product_uom.name)
                 result.append((record.id, res))
             return result
-        return super(BlanketOrderLine, self).name_get()
+        return super().name_get()
 
     def _get_real_price_currency(self, product, rule_id, qty, uom,
                                  pricelist_id):
