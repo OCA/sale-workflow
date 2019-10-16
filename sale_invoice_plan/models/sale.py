@@ -15,15 +15,11 @@ class SaleOder(models.Model):
         inverse_name='sale_id',
         string='Inovice Plan',
         copy=False,
-        readonly=True,
-        states={'draft': [('readonly', False)]},
     )
     use_invoice_plan = fields.Boolean(
         string='Use Invoice Plan',
         default=False,
         copy=False,
-        readonly=True,
-        states={'draft': [('readonly', False)]},
     )
     ip_invoice_plan = fields.Boolean(
         string='Invoice Plan In Process',
@@ -113,6 +109,7 @@ class SaleOder(models.Model):
             invoices = self.env['account.invoice'].browse(inv_ids)
             invoices.ensure_one()  # Expect 1 invoice for 1 invoice plan
             plan._compute_new_invoice_quantity(invoices[0])
+            invoices[0].date_invoice = plan.plan_date
             plan.invoice_ids += invoices
         return inv_ids
 
@@ -128,6 +125,24 @@ class SaleInvoicePlan(models.Model):
         index=True,
         readonly=True,
         ondelete='cascade',
+    )
+    partner_id = fields.Many2one(
+        comodel_name='res.partner',
+        string='Customer',
+        related='sale_id.partner_id',
+        store=True,
+        index=True,
+    )
+    state = fields.Selection(
+        [('draft', 'Quotation'),
+         ('sent', 'Quotation Sent'),
+         ('sale', 'Sales Order'),
+         ('done', 'Locked'),
+         ('cancel', 'Cancelled'), ],
+        string='Status',
+        related='sale_id.state',
+        store=True,
+        index=True,
     )
     installment = fields.Integer(
         string='Installment',
