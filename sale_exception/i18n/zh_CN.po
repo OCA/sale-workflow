@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: Odoo Server 11.0\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2018-03-02 10:22+0000\n"
-"PO-Revision-Date: 2019-09-01 09:03+0000\n"
+"PO-Revision-Date: 2019-10-16 18:32+0000\n"
 "Last-Translator: 黎伟杰 <674416404@qq.com>\n"
 "Language-Team: Chinese (China) (https://www.transifex.com/oca/teams/23907/"
 "zh_CN/)\n"
@@ -25,7 +25,7 @@ msgstr ""
 msgid ""
 "<strong>There are exceptions blocking the confirmation of this Sale Order:</"
 "strong>"
-msgstr ""
+msgstr "<strong>有一些例外情况会阻止此销售订单的确认：</strong>"
 
 #. module: sale_exception
 #: model:exception.rule,description:sale_exception.excep_no_dumping
@@ -63,7 +63,7 @@ msgstr "取消"
 msgid ""
 "Click here to be able to confirm this Sale Orders regardless of the "
 "exceptions."
-msgstr ""
+msgstr "点击此处以确认此销售订单，无论是否有例外。"
 
 #. module: sale_exception
 #: model_terms:ir.ui.view,arch_db:sale_exception.view_sale_exception_confirm
