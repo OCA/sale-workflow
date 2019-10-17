@@ -12,7 +12,7 @@ class ExceptionRule(models.Model):
 
 
 class SaleOrder(models.Model):
-    _inherit = ["sale.order", "baase.substate.mixin"]
+    _inherit = ["sale.order", "base.substate.mixin"]
     _name = "sale.order"
 
     @api.constrains("substate_id", "state")
