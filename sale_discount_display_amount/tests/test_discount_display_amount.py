@@ -5,21 +5,17 @@ from odoo.tests.common import TransactionCase
 
 
 class TestDiscountDisplay(TransactionCase):
-
     def test_sale_discount_value(self):
-        product1 = self.env['product.product'].create(
-            {'name': 'Product TEST',
-             'type': 'consu'})
-        customer = self.env['res.partner'].create(
-            {"name": "Customer TEST",
-             "is_company": False,
-             "email": "test@tes.ttest"})
-        so = self.env["sale.order"].create(
-            {"partner_id": customer.id})
-        self.env['sale.order.line'].create(
-            {'order_id': so.id,
-             'product_id': product1.id,
-             'price_unit': 30.75})
+        product1 = self.env["product.product"].create(
+            {"name": "Product TEST", "type": "consu"}
+        )
+        customer = self.env["res.partner"].create(
+            {"name": "Customer TEST", "is_company": False, "email": "test@tes.ttest"}
+        )
+        so = self.env["sale.order"].create({"partner_id": customer.id})
+        self.env["sale.order.line"].create(
+            {"order_id": so.id, "product_id": product1.id, "price_unit": 30.75}
+        )
 
         first_line = so.order_line[0]
         first_line.discount = 10
