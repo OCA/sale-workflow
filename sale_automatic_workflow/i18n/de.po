@@ -276,7 +276,7 @@ msgstr ""
 #. module: sale_automatic_workflow
 #: model:ir.model.fields,field_description:sale_automatic_workflow.field_sale_workflow_process_validate_invoice
 msgid "Validate Invoice"
-msgstr "KommissionierscheiPrüfe Rechnung"
+msgstr "Prüfe Rechnung"
 
 #. module: sale_automatic_workflow
 #: model:ir.model.fields,field_description:sale_automatic_workflow.field_sale_workflow_process_validate_invoice_filter_id
