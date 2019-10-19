@@ -84,7 +84,7 @@ msgstr ""
 #. module: sale_automatic_workflow
 #: model:ir.model.fields,field_description:sale_automatic_workflow.field_sale_workflow_process_validate_picking
 msgid "Confirm and Transfer Picking"
-msgstr ""
+msgstr "Lieferung bestätigen und übertragen"
 
 #. module: sale_automatic_workflow
 #: model:ir.model.fields,field_description:sale_automatic_workflow.field_sale_workflow_process_create_invoice
