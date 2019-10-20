@@ -1,6 +1,6 @@
 # Translation of Odoo Server.
 # This file contains the translation of the following modules:
-#	* sale_order_secondary_unit
+# 	* sale_order_secondary_unit
 #
 msgid ""
 msgstr ""
@@ -15,8 +15,8 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
 
 #. module: sale_order_secondary_unit
-#: model:ir.model.fields,field_description:sale_order_secondary_unit.field_product_product_sale_secondary_uom_id
-#: model:ir.model.fields,field_description:sale_order_secondary_unit.field_product_template_sale_secondary_uom_id
+#: model:ir.model.fields,field_description:sale_order_secondary_unit.field_product_product__sale_secondary_uom_id
+#: model:ir.model.fields,field_description:sale_order_secondary_unit.field_product_template__sale_secondary_uom_id
 msgid "Default secondary unit for sales"
 msgstr ""
 
@@ -31,16 +31,16 @@ msgid "Sales Order Line"
 msgstr ""
 
 #. module: sale_order_secondary_unit
-#: model:ir.ui.view,arch_db:sale_order_secondary_unit.report_saleorder_document
+#: model_terms:ir.ui.view,arch_db:sale_order_secondary_unit.report_saleorder_document
 msgid "Second. Qty"
 msgstr ""
 
 #. module: sale_order_secondary_unit
-#: model:ir.model.fields,field_description:sale_order_secondary_unit.field_sale_order_line_secondary_uom_qty
+#: model:ir.model.fields,field_description:sale_order_secondary_unit.field_sale_order_line__secondary_uom_qty
 msgid "Secondary Qty"
 msgstr ""
 
 #. module: sale_order_secondary_unit
-#: model:ir.model.fields,field_description:sale_order_secondary_unit.field_sale_order_line_secondary_uom_id
+#: model:ir.model.fields,field_description:sale_order_secondary_unit.field_sale_order_line__secondary_uom_id
 msgid "Secondary uom"
 msgstr ""
