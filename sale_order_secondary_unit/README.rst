@@ -21,14 +21,36 @@ Sale Order Secondary Unit
     :target: http://www.gnu.org/licenses/agpl-3.0-standalone.html
     :alt: License: AGPL-3
 .. |badge3| image:: https://img.shields.io/badge/github-OCA%2Fsale--workflow-lightgray.png?logo=github
+<<<<<<< HEAD
     :target: https://github.com/OCA/sale-workflow/tree/18.0/sale_order_secondary_unit
+||||||| parent of b0bae09dd ([MIG] sale_order_secondary_unit: Migration to 12.0)
+    :target: https://github.com/OCA/sale-workflow/tree/11.0/sale_order_secondary_unit
+=======
+    :target: https://github.com/OCA/sale-workflow/tree/12.0/sale_order_secondary_unit
+>>>>>>> b0bae09dd ([MIG] sale_order_secondary_unit: Migration to 12.0)
     :alt: OCA/sale-workflow
 .. |badge4| image:: https://img.shields.io/badge/weblate-Translate%20me-F47D42.png
+<<<<<<< HEAD
     :target: https://translation.odoo-community.org/projects/sale-workflow-18-0/sale-workflow-18-0-sale_order_secondary_unit
+||||||| parent of b0bae09dd ([MIG] sale_order_secondary_unit: Migration to 12.0)
+    :target: https://translation.odoo-community.org/projects/sale-workflow-11-0/sale-workflow-11-0-sale_order_secondary_unit
+=======
+    :target: https://translation.odoo-community.org/projects/sale-workflow-12-0/sale-workflow-12-0-sale_order_secondary_unit
+>>>>>>> b0bae09dd ([MIG] sale_order_secondary_unit: Migration to 12.0)
     :alt: Translate me on Weblate
+<<<<<<< HEAD
 .. |badge5| image:: https://img.shields.io/badge/runboat-Try%20me-875A7B.png
     :target: https://runboat.odoo-community.org/builds?repo=OCA/sale-workflow&target_branch=18.0
     :alt: Try me on Runboat
+||||||| parent of b0bae09dd ([MIG] sale_order_secondary_unit: Migration to 12.0)
+.. |badge5| image:: https://img.shields.io/badge/runbot-Try%20me-875A7B.png
+    :target: https://runbot.odoo-community.org/runbot/167/11.0
+    :alt: Try me on Runbot
+=======
+.. |badge5| image:: https://img.shields.io/badge/runbot-Try%20me-875A7B.png
+    :target: https://runbot.odoo-community.org/runbot/167/12.0
+    :alt: Try me on Runbot
+>>>>>>> b0bae09dd ([MIG] sale_order_secondary_unit: Migration to 12.0)
 
 |badge1| |badge2| |badge3| |badge4| |badge5|
 
@@ -65,8 +87,16 @@ Bug Tracker
 
 Bugs are tracked on `GitHub Issues <https://github.com/OCA/sale-workflow/issues>`_.
 In case of trouble, please check there if your issue has already been reported.
+<<<<<<< HEAD
 If you spotted it first, help us to smash it by providing a detailed and welcomed
 `feedback <https://github.com/OCA/sale-workflow/issues/new?body=module:%20sale_order_secondary_unit%0Aversion:%2018.0%0A%0A**Steps%20to%20reproduce**%0A-%20...%0A%0A**Current%20behavior**%0A%0A**Expected%20behavior**>`_.
+||||||| parent of b0bae09dd ([MIG] sale_order_secondary_unit: Migration to 12.0)
+If you spotted it first, help us smashing it by providing a detailed and welcomed
+`feedback <https://github.com/OCA/sale-workflow/issues/new?body=module:%20sale_order_secondary_unit%0Aversion:%2011.0%0A%0A**Steps%20to%20reproduce**%0A-%20...%0A%0A**Current%20behavior**%0A%0A**Expected%20behavior**>`_.
+=======
+If you spotted it first, help us smashing it by providing a detailed and welcomed
+`feedback <https://github.com/OCA/sale-workflow/issues/new?body=module:%20sale_order_secondary_unit%0Aversion:%2012.0%0A%0A**Steps%20to%20reproduce**%0A-%20...%0A%0A**Current%20behavior**%0A%0A**Expected%20behavior**>`_.
+>>>>>>> b0bae09dd ([MIG] sale_order_secondary_unit: Migration to 12.0)
 
 Do not contact contributors directly about support or help with technical issues.
 
@@ -81,6 +111,7 @@ Authors
 Contributors
 ------------
 
+<<<<<<< HEAD
 - Tony Gu <tony@openerp.cn>
 - Alexei Rivera <arivera@archeti.com>
 - Kevin Roche <kevin.roche@akretion.com>
@@ -91,6 +122,14 @@ Contributors
   - Ernesto Tejeda
   - Pedro M. Baeza
   - Pilar Vargas
+||||||| parent of b0bae09dd ([MIG] sale_order_secondary_unit: Migration to 12.0)
+* Carlos Dauden <carlos.dauden@tecnativa.com>
+* Sergio Teruel <sergio.teruel@tecnativa.com>
+=======
+* Carlos Dauden <carlos.dauden@tecnativa.com>
+* Sergio Teruel <sergio.teruel@tecnativa.com>
+* Tony Gu <tony@openerp.cn>
+>>>>>>> b0bae09dd ([MIG] sale_order_secondary_unit: Migration to 12.0)
 
 Maintainers
 -----------
@@ -105,6 +144,12 @@ OCA, or the Odoo Community Association, is a nonprofit organization whose
 mission is to support the collaborative development of Odoo features and
 promote its widespread use.
 
+<<<<<<< HEAD
 This module is part of the `OCA/sale-workflow <https://github.com/OCA/sale-workflow/tree/18.0/sale_order_secondary_unit>`_ project on GitHub.
+||||||| parent of b0bae09dd ([MIG] sale_order_secondary_unit: Migration to 12.0)
+This module is part of the `OCA/sale-workflow <https://github.com/OCA/sale-workflow/tree/11.0/sale_order_secondary_unit>`_ project on GitHub.
+=======
+This module is part of the `OCA/sale-workflow <https://github.com/OCA/sale-workflow/tree/12.0/sale_order_secondary_unit>`_ project on GitHub.
+>>>>>>> b0bae09dd ([MIG] sale_order_secondary_unit: Migration to 12.0)
 
 You are welcome to contribute. To learn how please visit https://odoo-community.org/page/Contribute.

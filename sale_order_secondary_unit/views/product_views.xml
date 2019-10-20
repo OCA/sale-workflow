@@ -5,15 +5,8 @@
     <record id="product_template_form_view" model="ir.ui.view">
         <field name="name">Product template Secondary Unit</field>
         <field name="model">product.template</field>
-<<<<<<< HEAD
-        <field name="inherit_id" ref="product.product_template_form_view" />
-||||||| parent of 1601d2459 ([11.0][IMP] sale_order_secondary_unit: Add security group)
         <field name="inherit_id" ref="product.product_template_form_view"/>
-        <field name="groups_id" eval="[(4, ref('product.group_uom'))]"/>
-=======
-        <field name="inherit_id" ref="product.product_template_form_view"/>
-        <field name="groups_id" eval="[(4, ref('product_secondary_unit.group_secondary_unit'))]"/>
->>>>>>> 1601d2459 ([11.0][IMP] sale_order_secondary_unit: Add security group)
+        <field name="groups_id" eval="[(4, ref('uom.group_uom'))]"/>
         <field name="arch" type="xml">
             <div name="list_price_uom" position="after">
                 <field
