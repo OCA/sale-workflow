@@ -1,18 +1,17 @@
 # Copyright 2018 Tecnativa - Carlos Dauden
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
-from odoo.tests import SavepointCase
+from odoo.tests import SavepointCase, tagged
 
 
+@tagged('post_install', '-at_install')
 class TestSaleOrderSecondaryUnit(SavepointCase):
-    at_install = False
-    post_install = True
 
     @classmethod
     def setUpClass(cls):
         super().setUpClass()
-        cls.product_uom_kg = cls.env.ref('product.product_uom_kgm')
-        cls.product_uom_gram = cls.env.ref('product.product_uom_gram')
-        cls.product_uom_unit = cls.env.ref('product.product_uom_unit')
+        cls.product_uom_kg = cls.env.ref('uom.product_uom_kgm')
+        cls.product_uom_gram = cls.env.ref('uom.product_uom_gram')
+        cls.product_uom_unit = cls.env.ref('uom.product_uom_unit')
         cls.product = cls.env['product.product'].create({
             'name': 'test',
             'uom_id': cls.product_uom_kg.id,
