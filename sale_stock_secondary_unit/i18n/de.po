@@ -1,6 +1,6 @@
 # Translation of Odoo Server.
 # This file contains the translation of the following modules:
-#	* sale_stock_secondary_unit
+# 	* sale_stock_secondary_unit
 #
 msgid ""
 msgstr ""
@@ -15,6 +15,6 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
 
 #. module: sale_stock_secondary_unit
-#: model:ir.model,name:sale_stock_secondary_unit.model_procurement_rule
-msgid "Procurement Rule"
+#: model:ir.model,name:sale_stock_secondary_unit.model_stock_rule
+msgid "Stock Rule"
 msgstr ""
