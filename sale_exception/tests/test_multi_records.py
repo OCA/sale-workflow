@@ -67,8 +67,9 @@ class TestSaleExceptionMultiRecord(TestSaleOrder):
         self.assertTrue(len(so1.exception_ids) == 0)
 
         self.assertTrue(so2.state == 'draft')
-        # TODO: Fix tests
-        return
+
+    def code_to_restore_test(self):
+        # TODO: Fix tests for adding this code again to the main test
         self.assertTrue(exception_no_sol in so2.exception_ids)
         self.assertTrue(exception_no_free in so2.exception_ids)
 
