@@ -33,11 +33,13 @@ class SalePromotionRule(models.Model):
         return product_obj.search([])
 
     def _get_promotions_valid_order_lines(self, order=False, line=False):
-        promotion_product_ids = self._get_promotion_rule_products()
         if order:
             order_lines = order.order_line
         elif line:
             order_lines = line
+        if not self.filter_id:
+            return order_lines
+        promotion_product_ids = self._get_promotion_rule_products()
         order_line_ids = order_lines.filtered(
             lambda order_line, product_ids=promotion_product_ids:
             order_line.product_id.id in product_ids.ids)
