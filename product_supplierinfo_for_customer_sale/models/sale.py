@@ -12,11 +12,14 @@ class SaleOrderLine(models.Model):
         compute='_compute_product_customer_code',
         string='Product Customer Code',
     )
+    partner_is_customer = fields.Boolean(
+        related='order_id.partner_id.customer',
+    )
 
     @api.multi
     @api.depends('product_id')
     def _compute_product_customer_code(self):
-        for line in self.filtered(lambda sol: sol.product_id.customer_ids):
+        for line in self.filtered(lambda sol: sol.order_partner_id.customer):
             supplierinfo = self.get_customer_supplierinfo(line)
             line.product_customer_code = supplierinfo.product_code
 
@@ -45,20 +48,13 @@ class SaleOrderLine(models.Model):
                     line.product_uom_qty = supplierinfo.min_qty
         return result
 
-    def _supplierinfo_domain(self, line):
-        """Common domain for product templates and variants"""
-        return [
-            ('supplierinfo_type', '=', 'customer'),
-            ('name', '=', line.order_partner_id.id),
-        ]
-
     def get_customer_supplierinfo(self, line):
         """
-        Search supplierinfo for variant first, if it has not been found then
+        Search customerinfo for variant first, if it has not been found then
         search by product template
         """
-        supplierinfo = self.env['product.supplierinfo'].search(
-            self._supplierinfo_domain(line) +
+        customerinfo = self.env['product.customerinfo'].search(
+            [('name', '=', line.order_partner_id.id)] +
             [
                 '|',
                 ('product_id', '=', line.product_id.id),
@@ -68,4 +64,4 @@ class SaleOrderLine(models.Model):
             ],
             limit=1,
             order='product_id, sequence, min_qty desc, price')
-        return supplierinfo
+        return customerinfo
