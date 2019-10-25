@@ -5,7 +5,7 @@ from odoo import _, api, fields, models
 from odoo.exceptions import ValidationError
 
 
-class ExceptionRule(models.Model):
+class BaseSubstateType(models.Model):
     _inherit = "base.substate.type"
 
     model = fields.Selection(selection_add=[("sale.order", "Sale order")])
@@ -22,7 +22,7 @@ class SaleOrder(models.Model):
             target_state = (
                 order.substate_id.target_state_value_id.target_state_value
             )
-            if order.state != target_state:
+            if order.substate_id and order.state != target_state:
                 raise ValidationError(
                     _(
                         'The substate "%s" is not define for the state "%s" but for "%s" '
@@ -33,3 +33,16 @@ class SaleOrder(models.Model):
                         _(sale_states[target_state]),
                     )
                 )
+
+    @api.multi
+    def _track_template(self, tracking):
+        res = super(SaleOrder, self)._track_template(tracking)
+        first_sale = self[0]
+        changes, tracking_value_ids = tracking[first_sale.id]
+        if 'substate_id' in changes and first_sale.substate_id.mail_template_id:
+            res['substate_id'] = (first_sale.substate_id.mail_template_id, {
+            'auto_delete_message': True,
+            'subtype_id': self.env['ir.model.data'].xmlid_to_res_id('mail.mt_note'),
+            'notif_layout': 'mail.mail_notification_light'
+            })
+        return res
