@@ -37,6 +37,7 @@ setuptools.setup(
         'odoo12-addon-sale_order_line_sequence',
         'odoo12-addon-sale_order_price_recalculation',
         'odoo12-addon-sale_order_revision',
+        'odoo12-addon-sale_order_secondary_unit',
         'odoo12-addon-sale_order_type',
         'odoo12-addon-sale_partner_incoterm',
         'odoo12-addon-sale_product_multi_add',
