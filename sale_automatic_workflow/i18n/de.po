@@ -10,7 +10,7 @@ msgstr ""
 "Project-Id-Version: Odoo Server 11.0\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2018-03-02 10:22+0000\n"
-"PO-Revision-Date: 2019-07-17 11:43+0000\n"
+"PO-Revision-Date: 2019-10-25 14:33+0000\n"
 "Last-Translator: Maria Sparenberg <maria.sparenberg@gmx.net>\n"
 "Language-Team: German (https://www.transifex.com/oca/teams/23907/de/)\n"
 "Language: de\n"
@@ -18,7 +18,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 3.7.1\n"
+"X-Generator: Weblate 3.8\n"
 
 #. module: sale_automatic_workflow
 #: model:ir.model.fields,field_description:sale_automatic_workflow.field_sale_order_all_qty_delivered
@@ -84,7 +84,7 @@ msgstr ""
 #. module: sale_automatic_workflow
 #: model:ir.model.fields,field_description:sale_automatic_workflow.field_sale_workflow_process_validate_picking
 msgid "Confirm and Transfer Picking"
-msgstr ""
+msgstr "Lieferung bestätigen und übertragen"
 
 #. module: sale_automatic_workflow
 #: model:ir.model.fields,field_description:sale_automatic_workflow.field_sale_workflow_process_create_invoice
@@ -276,7 +276,7 @@ msgstr ""
 #. module: sale_automatic_workflow
 #: model:ir.model.fields,field_description:sale_automatic_workflow.field_sale_workflow_process_validate_invoice
 msgid "Validate Invoice"
-msgstr "KommissionierscheiPrüfe Rechnung"
+msgstr "Rechnung prüfen"
 
 #. module: sale_automatic_workflow
 #: model:ir.model.fields,field_description:sale_automatic_workflow.field_sale_workflow_process_validate_invoice_filter_id
