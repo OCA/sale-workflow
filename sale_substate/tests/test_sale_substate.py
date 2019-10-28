@@ -12,10 +12,10 @@ class TestBaseSubstate(TransactionCase):
         self.substate_test_sale = self.env['sale.order']
         self.substate_test_sale_line = self.env['sale.order.line']
 
-        self.substate_under_nego =  self.env.ref(
+        self.substate_under_nego = self.env.ref(
             'sale_substate.base_substate_under_nego')
-        self.substate_won =  self.env.ref('sale_substate.base_substate_won')
-        self.substate_wait_docs =  self.env.ref(
+        self.substate_won = self.env.ref('sale_substate.base_substate_won')
+        self.substate_wait_docs = self.env.ref(
             'sale_substate.base_substate_wait_docs')
         self.substate_valid_docs = self.env.ref(
             'sale_substate.base_substate_valid_docs')
