@@ -12,11 +12,15 @@ class TestBaseSubstate(TransactionCase):
         self.substate_test_sale = self.env['sale.order']
         self.substate_test_sale_line = self.env['sale.order.line']
 
-        self.substate_under_nego =  self.env.ref('sale_substate.base_substate_under_nego')
+        self.substate_under_nego =  self.env.ref(
+            'sale_substate.base_substate_under_nego')
         self.substate_won =  self.env.ref('sale_substate.base_substate_won')
-        self.substate_wait_docs =  self.env.ref('sale_substate.base_substate_wait_docs')
-        self.substate_valid_docs = self.env.ref('sale_substate.base_substate_valid_docs')
-        self.substate_in_delivery = self.env.ref('sale_substate.base_substate_in_delivery')
+        self.substate_wait_docs =  self.env.ref(
+            'sale_substate.base_substate_wait_docs')
+        self.substate_valid_docs = self.env.ref(
+            'sale_substate.base_substate_valid_docs')
+        self.substate_in_delivery = self.env.ref(
+            'sale_substate.base_substate_in_delivery')
 
     def test_sale_order_substate(self):
         partner = self.env.ref('base.res_partner_1')
@@ -44,6 +48,5 @@ class TestBaseSubstate(TransactionCase):
         # Test that substate_id is set to false if
         # there is not substate corresponding to state
         so_test1.action_cancel()
-        import pdb; pdb.set_trace()
         self.assertTrue(so_test1.state == 'cancel')
         self.assertTrue(not so_test1.substate_id)
