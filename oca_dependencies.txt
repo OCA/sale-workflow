@@ -4,3 +4,4 @@ partner-contact
 server-tools
 web
 bank-payment
+stock-logistics-warehouse
