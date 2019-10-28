@@ -3,3 +3,4 @@ partner-contact
 server-tools
 web
 bank-payment
+server-tools-substate https://github.com/akretion/server-tools.git 12_Add_base_substate
