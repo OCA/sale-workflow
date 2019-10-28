@@ -13,6 +13,7 @@ class TestSaleProcurementGroupByLine(TransactionCase):
         # Required Models
         self.product_model = self.env['product.product']
         self.product_ctg_model = self.env['product.category']
+        self.proc_group_model = self.env['procurement.group']
         self.sale_model = self.env['sale.order']
         self.order_line_model = self.env['sale.order.line']
         # Customer
@@ -69,7 +70,6 @@ class TestSaleProcurementGroupByLine(TransactionCase):
                          to Procurement Group""")
         self.picking_ids = self.env['stock.picking'].\
             search([('group_id', 'in', self.line2.procurement_group_id.ids)])
-        self.picking_ids.force_assign()
         self.picking_ids.move_lines.write({'quantity_done': 5})
         wiz_act = self.picking_ids.button_validate()
         wiz = self.env[wiz_act['res_model']].browse(wiz_act['res_id'])
@@ -77,11 +77,38 @@ class TestSaleProcurementGroupByLine(TransactionCase):
         self.assertTrue(self.picking_ids,
                         'Procurement Group should have picking')
 
-    def test_action_launch_procurement_rule(self):
-        group_id = self.env['procurement.group'].create(
+    def test_action_launch_procurement_rule_1(self):
+        group_id = self.proc_group_model.create(
             {'move_type': 'one',
              'sale_id': self.sale.id,
              'name': self.sale.name})
         self.line1.procurement_group_id = group_id
         self.line2.procurement_group_id = group_id
         self.sale.action_confirm()
+        self.assertEquals(self.sale.state, 'sale')
+        self.assertEquals(len(self.line1.move_ids), 1)
+        self.assertEquals(self.line1.move_ids.name, self.line1.name)
+        self.assertEquals(len(self.line2.move_ids), 1)
+        self.assertEquals(self.line2.move_ids.name, self.line2.name)
+
+    def test_action_launch_procurement_rule_2(self):
+        group_id = self.proc_group_model.create(
+            {'move_type': 'one',
+             'sale_id': self.sale.id,
+             'name': self.sale.name})
+        self.line1.procurement_group_id = group_id
+        self.line2.procurement_group_id = False
+        self.sale.action_confirm()
+        self.assertEquals(self.line2.procurement_group_id, group_id)
+
+    def test_action_launch_procurement_rule_3(self):
+        group_id = self.proc_group_model.create(
+            {'move_type': 'one',
+             'sale_id': self.sale.id,
+             'name': self.sale.name})
+        self.line1.procurement_group_id = False
+        self.line2.procurement_group_id = False
+        self.sale.action_confirm()
+        self.assertNotEquals(self.line1.procurement_group_id, group_id)
+        self.assertEquals(self.line1.procurement_group_id,
+                          self.line2.procurement_group_id)
