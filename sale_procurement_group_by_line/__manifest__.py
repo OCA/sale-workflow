@@ -6,7 +6,7 @@
 {
     'name': 'Sale Procurement Group by Line',
     'summary': 'Base module for multiple procurement group by Sale order',
-    'version': '11.0.1.1.0',
+    'version': '12.0.1.0.0',
     "author": "Camptocamp,"
               "Eficent,"
               "Serpent Consulting Services Pvt. Ltd.,"
