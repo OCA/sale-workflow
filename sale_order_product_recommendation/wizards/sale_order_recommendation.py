@@ -130,20 +130,16 @@ class SaleOrderRecommendation(models.TransientModel):
             # Use preexisting line if any
             if wiz_line.sale_line_id:
                 if wiz_line.units_included:
-                    wiz_line.sale_line_id.update({
-                        "product_uom_qty": wiz_line.units_included,
-                    })
+                    wiz_line.sale_line_id.update(
+                        wiz_line._prepare_update_so_line())
                     wiz_line.sale_line_id.product_uom_change()
                 else:
                     wiz_line.sale_line_id.unlink()
                 continue
             sequence += 1
             # Use a new in-memory line otherwise
-            so_line = so_lines.new({
-                "order_id": self.order_id.id,
-                "product_id": wiz_line.product_id.id,
-                "sequence": sequence,
-            })
+            so_line = so_lines.new(
+                wiz_line._prepare_new_so_line(sequence))
             _onchange_method(so_line, ['product_id'])
             so_line.product_uom_qty = wiz_line.units_included
             _onchange_method(so_line, ['product_uom'])
@@ -207,3 +203,17 @@ class SaleOrderRecommendationLine(models.TransientModel):
     @api.onchange("units_included")
     def _onchange_units_included(self):
         self.is_modified = bool(self.sale_line_id or self.units_included)
+
+    def _prepare_update_so_line(self):
+        """So we can extend PO update"""
+        return {
+            "product_uom_qty": self.units_included,
+        }
+
+    def _prepare_new_so_line(self, sequence):
+        """So we can extend PO create"""
+        return {
+            "order_id": self.wizard_id.order_id.id,
+            "product_id": self.product_id.id,
+            "sequence": sequence,
+        }
