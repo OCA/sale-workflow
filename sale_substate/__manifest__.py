@@ -10,11 +10,11 @@
     "license": "AGPL-3",
     "depends": ["base_substate", "sale_management"],
     "data": ["views/sale_views.xml",
-        'data/sale_substate_mail_template_data.xml',
-        'data/sale_substate_data.xml',
-        ],
+             'data/sale_substate_mail_template_data.xml',
+             'data/sale_substate_data.xml',
+             ],
     "demo": [
         'data/sale_substate_demo.xml',
-        ],
+    ],
     "installable": True,
 }
