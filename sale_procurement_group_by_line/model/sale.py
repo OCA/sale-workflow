@@ -29,11 +29,9 @@ class SaleOrderLine(models.Model):
         return 8, self.order_id.id
 
     @api.multi
-    def _action_launch_procurement_rule(self):
+    def _action_launch_stock_rule(self):
         """
-        Create procurements based on quantity ordered.
-        If the quantity is increased, new procurements are created.
-        If the quantity is decreased, no automated action is taken.
+        Launch procurement group run method.
         """
         precision = self.env['decimal.precision'].\
             precision_get('Product Unit of Measure')
@@ -102,7 +100,7 @@ class SaleOrderLine(models.Model):
                 errors.append(error.name)
         if errors:
             raise UserError('\n'.join(errors))
-        return super(SaleOrderLine, self)._action_launch_procurement_rule()
+        return super(SaleOrderLine, self)._action_launch_stock_rule()
 
     procurement_group_id = fields.Many2one('procurement.group',
                                            'Procurement group', copy=False)

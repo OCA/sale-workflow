@@ -1,13 +1,13 @@
-.. image:: https://img.shields.io/badge/licence-AGPL--3-blue.svg
-   :target: http://www.gnu.org/licenses/agpl
+.. image:: https://img.shields.io/badge/license-AGPL--3-blue.png
+   :target: https://www.gnu.org/licenses/agpl
    :alt: License: AGPL-3
 
 ==============================
-Sale Procurement Group by line
+Sale Procurement Group by Line
 ==============================
 
 This module was written to extend the functionality of procurement groups
-created from a Sale order.
+created from a sale order.
 
 On itself, this module does nothing it is a requirement for modules which
 needs to create procurement group per sale order line basis.
@@ -18,7 +18,7 @@ Usage
 
 .. image:: https://odoo-community.org/website/image/ir.attachment/5784_f2813bd/datas
    :alt: Try me on Runbot
-   :target: https://runbot.odoo-community.org/runbot/167/11.0
+   :target: https://runbot.odoo-community.org/runbot/167/12.0
 
 Bug Tracker
 ===========
@@ -35,7 +35,7 @@ Credits
 Images
 ------
 
-* Odoo Community Association: `Icon <https://github.com/OCA/maintainer-tools/blob/master/template/module/static/description/icon.svg>`_.
+* Odoo Community Association: `Icon <https://odoo-community.org/logo.png>`_.
 
 Contributors
 ------------
