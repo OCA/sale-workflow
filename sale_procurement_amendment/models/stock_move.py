@@ -12,7 +12,6 @@ class StockMove(models.Model):
 
     can_be_amended = fields.Boolean(
         compute='_compute_can_be_amended',
-        readonly=True,
     )
 
     @api.multi
