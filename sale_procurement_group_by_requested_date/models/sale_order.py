@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 # Copyright 2017 Eficent Business and IT Consulting Services S.L.
 # Copyright 2017 Serpent Consulting Services Pvt. Ltd.
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl.html).
@@ -13,10 +12,10 @@ class SaleOrder(models.Model):
     def _prepare_procurement_group_by_line(self, line):
         vals = super(SaleOrder, self)._prepare_procurement_group_by_line(line)
         # for compatibility with sale_quotation_sourcing
-        req_datetime = fields.Datetime.from_string(line.requested_date)
+        req_datetime = fields.Datetime.to_datetime(line.commitment_date)
         req_date = fields.Date.to_string(req_datetime)
         if line._get_procurement_group_key()[0] == 12:
-            if line.requested_date:
+            if line.commitment_date:
                 vals['name'] = '/'.join([vals['name'], req_date])
         return vals
 
@@ -28,8 +27,8 @@ class SaleOrderLine(models.Model):
     def _prepare_order_line_procurement(self, group_id=False):
         values = super(SaleOrderLine, self).\
             _prepare_order_line_procurement(group_id=group_id)
-        if self.requested_date:
-            req_datetime = fields.Datetime.from_string(self.requested_date)
+        if self.commitment_date:
+            req_datetime = fields.Datetime.to_datetime(self.commitment_date)
             req_date = fields.Date.to_string(req_datetime)
             values['date_planned'] = req_date
         return values
@@ -46,7 +45,7 @@ class SaleOrderLine(models.Model):
         # Check priority
         if key[0] >= priority:
             return key
-        req_datetime = fields.Datetime.from_string(self.requested_date)
+        req_datetime = fields.Datetime.to_datetime(self.commitment_date)
         req_date = fields.Date.to_string(req_datetime)
         if req_date:
             return (priority, str(req_date))

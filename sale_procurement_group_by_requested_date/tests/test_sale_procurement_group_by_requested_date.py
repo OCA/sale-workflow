@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 # Copyright 2017 Eficent Business and IT Consulting Services S.L.
 # Copyright 2017 Serpent Consulting Services Pvt. Ltd.
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl.html).
@@ -17,7 +16,7 @@ class TestSaleMultiPickingByRequestedDate(TransactionCase):
         """
         super(TestSaleMultiPickingByRequestedDate, self).setUp()
         sale_obj = self.env['sale.order']
-        self.proc_obj = self.env['procurement.order']
+        self.move_ob = self.env['stock.move']
         self.proc_group_obj = self.env['procurement.group']
         order_line = self.env['sale.order.line']
         Product = self.env['product.product']
@@ -31,25 +30,25 @@ class TestSaleMultiPickingByRequestedDate(TransactionCase):
             'product_id': p1,
             'name': 'cool product',
             'order_id': self.sale1.id,
-            'requested_date': self.dt1
+            'commitment_date': self.dt1
         })
         self.sale_line2 = order_line.create({
             'product_id': p1,
             'name': 'cool product',
             'order_id': self.sale1.id,
-            'requested_date': self.dt2
+            'commitment_date': self.dt2
         })
         self.sale_line3 = order_line.create({
             'product_id': p1,
             'name': 'cool product',
             'order_id': self.sale1.id,
-            'requested_date': self.dt1
+            'commitment_date': self.dt1
         })
         self.sale_line4 = order_line.create({
             'product_id': p1,
             'name': 'cool product',
             'order_id': self.sale1.id,
-            'requested_date': self.dt2
+            'commitment_date': self.dt2
         })
 
         self.sale2 = sale_obj.create({'partner_id': 1})
@@ -57,25 +56,42 @@ class TestSaleMultiPickingByRequestedDate(TransactionCase):
             'product_id': p1,
             'name': 'cool product',
             'order_id': self.sale2.id,
-            'requested_date': self.dt1
+            'commitment_date': self.dt1
         })
         self.sale_line6 = order_line.create({
             'product_id': p1,
             'name': 'cool product',
             'order_id': self.sale2.id,
-            'requested_date': self.dt1
+            'commitment_date': self.dt1
         })
         self.sale_line7 = order_line.create({
             'product_id': p1,
             'name': 'cool product',
             'order_id': self.sale2.id,
-            'requested_date': self.dt1
+            'commitment_date': self.dt1
         })
         self.sale_line8 = order_line.create({
             'product_id': p1,
             'name': 'cool product',
             'order_id': self.sale2.id,
-            'requested_date': self.dt1
+            'commitment_date': self.dt1
+        })
+
+        self.route = self.env['stock.location.route'].create({
+            'sale_selectable': True,
+            'name': 'test_route',
+            'warehouse_ids': [(4, self.sale1.warehouse_id.id)],
+        })
+        self.env['stock.rule'].create({
+            'name': 'test_rule',
+            'action': 'pull',
+            'location_id':
+                self.sale1.partner_shipping_id.property_stock_customer.id,
+            'location_src_id':
+                self.sale1.warehouse_id.view_location_id.id,
+            'route_id': self.route.id,
+            'picking_type_id': self.sale1.warehouse_id.out_type_id.id,
+            'warehouse_id': self.sale1.warehouse_id.id,
         })
 
     def test_number_of_groups(self):
@@ -89,7 +105,7 @@ class TestSaleMultiPickingByRequestedDate(TransactionCase):
 
         for group in groups:
             if group.name == g_name:
-                procurements = self.proc_obj.search([
+                procurements = self.move_ob.search([
                     ('group_id', '=', group.id)])
                 self.assertEqual(len(procurements), 2)
         self.assertEqual(len(groups), 1)
@@ -100,7 +116,7 @@ class TestSaleMultiPickingByRequestedDate(TransactionCase):
 
         for group in groups:
             if group.name == g_name:
-                procurements = self.proc_obj.search([
+                procurements = self.move_ob.search([
                     ('group_id', '=', group.id)])
                 self.assertEqual(len(procurements), 2)
         self.assertEqual(len(groups), 1)
@@ -110,7 +126,7 @@ class TestSaleMultiPickingByRequestedDate(TransactionCase):
         groups = self.proc_group_obj.search([('name', '=', g_name)])
         for group in groups:
             if group.name == g_name:
-                procurements = self.proc_obj.search([
+                procurements = self.move_ob.search([
                     ('group_id', '=', group.id)])
                 self.assertEqual(len(procurements), 4)
         self.assertEqual(len(groups), 1)
