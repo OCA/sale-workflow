@@ -49,9 +49,16 @@ class SaleOrderLine(models.Model):
 
     @api.depends('discount2', 'discount3', 'discounting_type')
     def _compute_amount(self):
-        prev_values = self.triple_discount_preprocess()
-        super(SaleOrderLine, self)._compute_amount()
-        self.triple_discount_postprocess(prev_values)
+        # we iterate and work line by line, because _compute_amount calls
+        # update, which can invalidate the cache, depending on the presence of
+        # other fields depending on the ones computed by that method. In that
+        # case the work done in preprocess would be lost as soon as the 1st
+        # line is updated, causing the following lines to ignore the discount2
+        # and discount3 fields.
+        for line in self:
+            prev_values = line.triple_discount_preprocess()
+            super(SaleOrderLine, line)._compute_amount()
+            line.triple_discount_postprocess(prev_values)
 
     discount2 = fields.Float(
         'Disc. 2 (%)',
