@@ -17,6 +17,8 @@ class SaleOrderLine(models.Model):
 
     def _compute_discount(self):
         for line in self:
+            line.price_total_no_discount = 0
+            line.discount_total = 0
             if not line.discount:
                 line.price_total_no_discount = line.price_total
                 continue
