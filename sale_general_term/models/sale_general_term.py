@@ -36,12 +36,12 @@ class SaleGeneralTerm(models.Model):
 
     name = fields.Char(required=True)
     active = fields.Boolean(
-        'Active?',
+        'Active',
         help="Uncheck to archive, making it unavailable for selection.",
         default=True,
     )
     is_enabled = fields.Boolean(
-        'Enabled?',
+        'Enabled',
         help="Is enabled, will be printed in the Customer Sales Order.",
     )
     country_ids = fields.Many2many(
