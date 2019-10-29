@@ -12,7 +12,6 @@ class SaleOrderLine(models.Model):
 
     to_be_procured = fields.Boolean(
         compute='_compute_to_be_procured',
-        readonly=True,
     )
     pickings_in_progress = fields.Boolean(
         compute='_compute_pickings_in_progress'

@@ -193,9 +193,19 @@ class TestSaleProcurementAmendment(common.TransactionCase):
             1,
             len(procurement_mto),
         )
+        # Check procurement qty
         self.assertEquals(
             8.0,
             procurement_mto.product_qty,
+        )
+        # Check move out qty
+        move_out = self.order.picking_ids.mapped('move_lines').filtered(
+            lambda m: m.state != 'cancel' and
+            m.picking_id.location_dest_id.usage == 'customer')
+
+        self.assertEquals(
+            8.0,
+            move_out.product_uom_qty,
         )
 
         # Increase qty
@@ -209,10 +219,22 @@ class TestSaleProcurementAmendment(common.TransactionCase):
             2,
             len(procurement_mto)
         )
+        # Check procurement qty
         qty = 0.0
         for proc in procurement_mto:
             qty += proc.product_qty
 
+        self.assertEquals(
+            11.0,
+            qty,
+        )
+        # Check move out qty
+        moves_out = self.order.picking_ids.mapped('move_lines').filtered(
+            lambda m: m.state != 'cancel' and
+            m.picking_id.location_dest_id.usage == 'customer')
+        qty = 0.0
+        for move in moves_out:
+            qty += move.product_uom_qty
         self.assertEquals(
             11.0,
             qty,
