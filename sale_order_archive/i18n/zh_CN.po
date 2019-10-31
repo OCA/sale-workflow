@@ -1,6 +1,6 @@
 # Translation of Odoo Server.
 # This file contains the translation of the following modules:
-#	* sale_order_archive
+# 	* sale_order_archive
 #
 msgid ""
 msgstr ""
@@ -27,6 +27,14 @@ msgid "Archived"
 msgstr "已归档"
 
 #. module: sale_order_archive
+#: code:addons/sale_order_archive/models/sale_order.py:0
+#, python-format
+msgid "Only 'Locked' or 'Canceled' orders can be archived"
+msgstr ""
+
+#. module: sale_order_archive
 #: model:ir.model,name:sale_order_archive.model_sale_order
-msgid "Sale Order"
+#, fuzzy
+#| msgid "Sale Order"
+msgid "Sales Order"
 msgstr "销售订单"
