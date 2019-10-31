@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<!-- Copyright 2017-2018 Onestein (<http://www.onestein.eu>)
+<!-- Copyright 2017-2019 Onestein (<http://www.onestein.eu>)
      License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl). -->
 <odoo>
 
@@ -7,13 +7,11 @@
         <field name="model">sale.order</field>
         <field name="inherit_id" ref="sale.view_order_form"/>
         <field name="arch" type="xml">
-            <xpath expr="//div[@name='button_box']" position="inside">
-                <button name="toggle_active" type="object"
-                        attrs="{'invisible': [('state','not in',['done','cancel'])]}"
-                        class="oe_stat_button" icon="fa-archive">
-                    <field name="active" widget="boolean_button"
-                        options='{"terminology": "archive"}'/>
-                </button>
+            <xpath expr="//div[@name='button_box']" position="after">
+                <widget name="web_ribbon" text="Archived" bg_color="bg-danger" attrs="{'invisible': [('active', '=', True)]}"/>
+            </xpath>
+            <xpath expr="//sheet">
+                <field name="active" invisible="1"/>
             </xpath>
         </field>
     </record>
