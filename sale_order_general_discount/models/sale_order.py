@@ -4,27 +4,22 @@ from lxml import etree
 
 from odoo import api, fields, models
 
-from odoo.addons import decimal_precision as dp
-
 
 class SaleOrder(models.Model):
     _inherit = "sale.order"
 
     general_discount = fields.Float(
-        digits=dp.get_precision("Discount"), string="Discount (%)",
+        string="Discount (%)",
+        compute="_compute_general_discount",
+        store=True,
+        readonly=False,
+        digits="Discount",
     )
 
-    @api.onchange("partner_id")
-    def onchange_partner_id(self):
-        super().onchange_partner_id()
-        self.general_discount = self.partner_id.sale_discount
-        return
-
-    @api.onchange("general_discount")
-    def onchange_general_discount(self):
-        self.mapped("order_line").update(
-            {"discount": self.general_discount,}
-        )
+    @api.depends("partner_id")
+    def _compute_general_discount(self):
+        for so in self:
+            so.general_discount = so.partner_id.sale_discount
 
     @api.model
     def fields_view_get(
@@ -50,18 +45,3 @@ class SaleOrder(models.Model):
                 order_line_field.attrib["context"] = context
                 res["arch"] = etree.tostring(order_xml)
         return res
-
-
-class SaleOrderLine(models.Model):
-    _inherit = "sale.order.line"
-
-    @api.model
-    def create(self, vals):
-        """Apply general discount for sale order lines which are not created
-        from sale order form view.
-        """
-        if "discount" not in vals and "order_id" in vals:
-            sale_order = self.env["sale.order"].browse(vals["order_id"])
-            if sale_order.general_discount:
-                vals["discount"] = sale_order.general_discount
-        return super().create(vals)
