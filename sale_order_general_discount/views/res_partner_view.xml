@@ -10,7 +10,10 @@
                 expr="//page[@name='sales_purchases']//field[@name='user_id']"
                 position="after"
             >
-                <field name="sale_discount" />
+                <label for="sale_discount" />
+                <div>
+                    <field name="sale_discount" class="oe_inline" /> %
+                </div>
             </xpath>
         </field>
     </record>

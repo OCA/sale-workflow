@@ -10,10 +10,10 @@ class TestSaleOrderLineInput(SavepointCase):
     def setUpClass(cls):
         super().setUpClass()
         cls.partner = cls.env["res.partner"].create(
-            {"name": "Test", "sale_discount": 10.0,}
+            {"name": "Test", "sale_discount": 10.0}
         )
         cls.product = cls.env["product.product"].create(
-            {"name": "test_product", "type": "service",}
+            {"name": "test_product", "type": "service"}
         )
         cls.order = cls.env["sale.order"].create(
             {
@@ -37,12 +37,10 @@ class TestSaleOrderLineInput(SavepointCase):
         cls.View = cls.env["ir.ui.view"]
 
     def test_default_partner_discount(self):
-        self.order.onchange_partner_id()
         self.assertEqual(self.order.general_discount, self.partner.sale_discount)
 
     def test_sale_order_values(self):
         self.order.general_discount = 10
-        self.order.onchange_general_discount()
         self.assertEqual(self.order.order_line.price_reduce, 900.00)
 
     def _get_ctx_from_view(self, res):
