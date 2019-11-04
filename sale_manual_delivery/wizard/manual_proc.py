@@ -84,7 +84,11 @@ class ManualDelivery(models.TransientModel):
                 proc_group_to_use = self.env['procurement.group'].search(
                     [
                         ('sale_id', '=', order.id),
-                        ('scheduled_date', '=', date_planned),
+                        (
+                            'scheduled_date',
+                            '=',
+                            fields.Date.from_string(date_planned)
+                         ),
                     ], limit=1
                 )
                 if not proc_group_to_use:
