@@ -29,18 +29,17 @@ class BlanketOrderWizard(models.TransientModel):
             'Product Unit of Measure')
         company_id = False
 
-        for line in bo_lines:
+        if all(float_is_zero(
+                line.remaining_uom_qty, precision_digits=precision)
+               for line in bo_lines):
+            raise UserError(
+                _('The sale has already been completed.'))
 
+        for line in bo_lines:
             if line.order_id.state != 'open':
                 raise UserError(
                     _('Sale Blanket Order %s is not open') %
                     line.order_id.name)
-
-            if float_is_zero(
-                    line.remaining_uom_qty, precision_digits=precision):
-                raise UserError(
-                    _('The sale has already been completed.'))
-
             line_company_id = line.company_id and line.company_id.id or False
             if company_id is not False \
                     and line_company_id != company_id:
@@ -72,7 +71,7 @@ class BlanketOrderWizard(models.TransientModel):
             'product_uom': l.product_uom,
             'qty': l.remaining_uom_qty,
             'partner_id': l.partner_id,
-        }) for l in bo_lines]
+        }) for l in bo_lines.filtered(lambda l: l.remaining_uom_qty != 0.0)]
         return lines
 
     blanket_order_id = fields.Many2one(
