@@ -6,10 +6,10 @@ from odoo.addons import decimal_precision as dp
 
 
 class ResPartner(models.Model):
-    _inherit = 'res.partner'
+    _inherit = "res.partner"
 
     sale_discount = fields.Float(
-        digits=dp.get_precision('Discount'),
-        string='Discount (%)',
+        digits=dp.get_precision("Discount"),
+        string="Discount (%)",
         company_dependent=True,
     )
