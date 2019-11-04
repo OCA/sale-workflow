@@ -6,11 +6,12 @@
     'category': 'Sales',
     'author': 'Camptocamp SA, Odoo Community Association (OCA)',
     "license": "AGPL-3",
-    'version': '10.0.1.0.0',
+    'version': '10.0.2.0.0',
     'website': 'https://github.com/OCA/sale-workflow',
     'summary': "Create manually your deliveries",
     'depends': [
         'sale_stock',
+        'delivery',
     ],
     'data': [
         'views/crm_team_view.xml',

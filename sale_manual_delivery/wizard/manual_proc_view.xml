@@ -7,7 +7,13 @@
         <field name='arch' type='xml'>
             <form string="Create Manually Delivery" name="manual_procurment_form">
                 <sheet>
-                    <group>
+                    <group name="date">
+                        <field name='date_planned' required="1"/>
+                    </group>
+                    <group name="carrier">
+                        <field name='carrier_id'/>
+                    </group>
+                    <group name="sol">
                         <field name='sale_line_ids' invisible="1"/>
                     </group>
                     <field name='line_ids'>
