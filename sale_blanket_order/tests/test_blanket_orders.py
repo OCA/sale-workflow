@@ -259,3 +259,62 @@ class TestSaleBlanketOrders(common.TransactionCase):
         sale_order.order_line[0].onchange_blanket_order_line()
         self.assertEqual(blanket_order.line_ids[0].remaining_qty, 12.0)
         self.assertEqual(sale_order.order_line[0].price_unit, 20.0)
+
+    def test_06_create_sale_orders_from_blanket_order(self):
+        """ We create a blanket order and create three sale orders
+            where the first two consume the first blanket order line
+        """
+        blanket_order = self.blanket_order_obj.create({
+            'partner_id': self.partner.id,
+            'validity_date': fields.Date.to_string(self.tomorrow),
+            'payment_term_id': self.payment_term.id,
+            'pricelist_id': self.sale_pricelist.id,
+            'line_ids': [
+                (0, 0, {
+                    'product_id': self.product.id,
+                    'product_uom': self.product.uom_id.id,
+                    'original_uom_qty': 30.0,
+                    'price_unit': 30.0,
+                }), (0, 0, {
+                    'product_id': self.product2.id,
+                    'product_uom': self.product2.uom_id.id,
+                    'original_uom_qty': 20.0,
+                    'price_unit': 60.0,
+                })
+            ],
+        })
+        blanket_order.sudo().onchange_partner_id()
+        blanket_order.sudo().action_confirm()
+
+        wizard1 = self.blanket_order_wiz_obj.with_context(
+            active_id=blanket_order.id,
+            active_model='sale.blanket.order').create({})
+        wizard1.line_ids.filtered(
+            lambda l:  l.product_id == self.product).write({'qty': 10.0})
+        wizard1.line_ids.filtered(
+            lambda l:  l.product_id == self.product2).write({'qty': 10.0})
+        wizard1.sudo().create_sale_order()
+
+        wizard2 = self.blanket_order_wiz_obj.with_context(
+            active_id=blanket_order.id,
+            active_model='sale.blanket.order').create({})
+        wizard2.line_ids.filtered(
+            lambda l:  l.product_id == self.product).write({'qty': 20.0})
+        wizard2.line_ids.filtered(
+            lambda l:  l.product_id == self.product2).write({'qty': 0})
+        wizard2.sudo().create_sale_order()
+
+        wizard3 = self.blanket_order_wiz_obj.with_context(
+            active_id=blanket_order.id,
+            active_model='sale.blanket.order').create({})
+        wizard3.line_ids.filtered(
+            lambda l:  l.product_id == self.product2).write({'qty': 10.0})
+        wizard3.sudo().create_sale_order()
+
+        self.assertEqual(blanket_order.state, 'done')
+
+        self.assertEqual(blanket_order.sale_count, 3)
+
+        view_action = blanket_order.action_view_sale_orders()
+        domain_ids = view_action['domain'][0][2]
+        self.assertEqual(len(domain_ids), 3)
