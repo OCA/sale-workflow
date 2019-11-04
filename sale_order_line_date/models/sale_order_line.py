@@ -12,7 +12,7 @@ from odoo import api, fields, models
 class SaleOrderLine(models.Model):
     _inherit = 'sale.order.line'
 
-    commitment_date = fields.Datetime(old_name='requested_date')
+    commitment_date = fields.Datetime(oldname='requested_date')
 
     @api.multi
     def write(self, vals):
@@ -41,6 +41,7 @@ class SaleOrderLine(models.Model):
     def _prepare_procurement_values(self, group_id=False):
         vals = super(SaleOrderLine, self).\
             _prepare_procurement_values(group_id)
+        # has ensure_one already
         if self.commitment_date:
             vals.update({
                 'date_planned': self.commitment_date,
