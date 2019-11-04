@@ -12,4 +12,15 @@
         </field>
     </record>
 
+    <record id="procurement_group_form_view_inherited" model="ir.ui.view">
+        <field name="name">procurement.group.view.form.inherit.picking</field>
+        <field name="model">procurement.group</field>
+        <field name="inherit_id" ref="procurement.procurement_group_form_view"/>
+        <field name="arch" type="xml">
+            <field name="name" position="after">
+                <field name="date_planned" readonly="1"/>
+            </field>
+        </field>
+    </record>
+
 </odoo>

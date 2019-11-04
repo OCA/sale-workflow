@@ -12,9 +12,9 @@ class SaleOrder(models.Model):
     manual_delivery = fields.Boolean(
         string='Manual Delivery',
         default=False,
-        help="If Manual, the deliveries are not created at SO confirmation.\
-        You need to use the Create Delivery button in order to reserve and \
-        ship the goods."
+        help="If Manual, the deliveries are not created at SO confirmation. "
+             "You need to use the Create Delivery button in order to reserve "
+             "and ship the goods."
     )
 
     @api.onchange('team_id')
@@ -45,6 +45,21 @@ class SaleOrder(models.Model):
             if not isinstance(so.id, models.NewId):  # if already saved
                 if so.state != 'draft':
                     raise UserError(_(
-                        'You can only change to/from manual delivery in a quote, \
-                        not a confirmed order'))
+                        'You can only change to/from manual delivery in a '
+                        'quote, not a confirmed order'))
             so.manual_delivery = not so.manual_delivery
+
+    @api.multi
+    @api.depends('procurement_group_id')
+    def _compute_picking_ids(self):
+        super(SaleOrder, self)._compute_picking_ids()
+        for order in self:
+            proc_group = self.env['procurement.group'].search(
+                [
+                    ('procurement_ids.sale_line_id.order_id', '=',
+                     order.id),
+                ]
+            )
+            order.picking_ids = self.env['stock.picking'].search(
+                [('group_id', '=', proc_group.ids)]) if proc_group else []
+            order.delivery_count = len(order.picking_ids)

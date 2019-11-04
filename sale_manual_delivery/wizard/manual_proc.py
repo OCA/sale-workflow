@@ -69,12 +69,28 @@ class ManualDelivery(models.TransientModel):
         proc_order_obj = self.env['procurement.order']
         proc_group_obj = self.env['procurement.group']
         for wizard in self:
+            date_planned = wizard.date_planned
             for order in self.line_ids.mapped('order_line_id.order_id'):
                 if not order.procurement_group_id:
                     vals = order._prepare_procurement_group()
-                    order.procurement_group_id = proc_group_obj.create(vals)
+                    if date_planned:
+                        vals['date_planned'] = date_planned
+                    proc_group_to_use = \
+                        order.procurement_group_id = proc_group_obj.create(
+                            vals)
+                else:
+                    proc_group_to_use = self.env['procurement.group'].search(
+                        [
+                            ('procurement_ids.sale_line_id.order_id', '=',
+                             order.id),
+                            ('date_planned', '=', date_planned),
+                        ], limit=1
+                    )
+                    if not proc_group_to_use:
+                        proc_group_to_use = order.procurement_group_id.copy({
+                            'date_planned': date_planned,
+                        })
             new_procs = proc_order_obj
-            date_planned = wizard.date_planned
             for line in wizard.line_ids:
                 rounding = line.order_line_id.company_id.currency_id.rounding
                 carrier_id = wizard.carrier_id if wizard.carrier_id else \
@@ -87,8 +103,7 @@ class ManualDelivery(models.TransientModel):
                                       'so, please edit the sale order first.'))
                 if float_compare(line.to_ship_qty, 0, 2):
                     vals = line.order_line_id._prepare_order_line_procurement(
-                        group_id=line.order_line_id.order_id.
-                        procurement_group_id.id)
+                        group_id=proc_group_to_use.id)
                     if date_planned:
                         vals['date_planned'] = date_planned
                     vals['product_qty'] = line.to_ship_qty
