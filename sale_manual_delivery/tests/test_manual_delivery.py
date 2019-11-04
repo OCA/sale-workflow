@@ -221,7 +221,6 @@ class TestSaleStock(TestSale):
             should be created after "manual delivery" wizard call',
         )
 
-
         # deliver completely
         pick = self.so.picking_ids
         pick.action_assign()
