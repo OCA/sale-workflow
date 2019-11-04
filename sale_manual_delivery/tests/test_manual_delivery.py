@@ -104,7 +104,6 @@ class TestSaleStock(TestSale):
         # deliver completely
         pick = self.so.picking_ids
         pick.action_assign()
-        pick.invalidate_cache()
         pick.move_line_ids.write({"qty_done": 5})
         pick.action_done()
 
@@ -163,7 +162,6 @@ class TestSaleStock(TestSale):
         # deliver completely
         pick = self.so.picking_ids
         pick.action_assign()
-        pick.invalidate_cache()
         pick.move_line_ids.write({"qty_done": 5})
         pick.action_done()
 
@@ -247,7 +245,6 @@ class TestSaleStock(TestSale):
         # deliver completely
         pick = self.so.picking_ids
         pick.action_assign()
-        pick.invalidate_cache()
         pick.move_line_ids.write({"qty_done": 2})
         pick.action_done()
 
@@ -291,7 +288,6 @@ class TestSaleStock(TestSale):
         for pick in self.so.picking_ids:
             if pick.state != "done":
                 pick.action_assign()
-                pick.invalidate_cache()
                 pick.move_line_ids.write({"qty_done": 3})
                 pick.action_done()
 
