@@ -25,15 +25,22 @@ Sale Order Line Date
 
 |badge1| |badge2| |badge3| |badge4| |badge5| 
 
-This module adds requested date to a sales order lines and propagate it to
-stock moves and procurements.
-When the requested date of the whole sale order is modified the requested date
-of the lines change to match.
+This module adds a commitment date to each sale order line and propagate it to
+stock moves and pickings.
+When the commitment date of the whole sale order is modified, the commitment date
+of the lines change to match if necessary.
 
 **Table of contents**
 
 .. contents::
    :local:
+
+Configuration
+=============
+
+To configure this module, you need to:
+
+#. Go to 'Configuration > Sales > Shipping' and check "Delivery Date".
 
 Usage
 =====
@@ -64,6 +71,7 @@ Credits
 * Francesco Apruzzese <f.apruzzese@apuliasoftware.it>
 * Mykhailo Panarin <m.panarin@mobilunity.com>
 * Open-Net Sàrl <jae@open-net.ch>
+* Miquel Raïch <miquel.raich@eficent.com>
 
 Maintainers
 ~~~~~~~~~~~
