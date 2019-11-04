@@ -6,7 +6,7 @@
 # Copyright 2018 Camptocamp SA
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl)
 
-from odoo import api, models, fields
+from odoo import api, models
 
 
 class SaleOrder(models.Model):
@@ -23,5 +23,9 @@ class SaleOrder(models.Model):
             result['value'] = {'order_line': [
                 (1, line.id, {'commitment_date': self.commitment_date})
                 for line in self.order_line
+                if not line.commitment_date or (
+                    self.expected_date and
+                    line.commitment_date < self.expected_date
+                )
             ]}
         return result
