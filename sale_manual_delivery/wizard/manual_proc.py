@@ -69,15 +69,32 @@ class ManualDelivery(models.TransientModel):
                 else wizard.order_id.carrier_id
             date_planned = wizard.date_planned
             order = wizard.order_id
+            # Use a procurement group according to date planned
             if not order.procurement_group_id:
                 vals = {
                     "name": order.name,
                     "move_type": order.picking_policy,
                     "sale_id": order.id,
                     "partner_id": order.partner_shipping_id.id,
+                    "scheduled_date": date_planned,
                 }
                 order.procurement_group_id = proc_group_obj.create(vals)
-
+                proc_group_to_use = order.procurement_group_id
+            else:
+                proc_group_to_use = self.env['procurement.group'].search(
+                    [
+                        ('sale_id', '=', order.id),
+                        (
+                            'scheduled_date',
+                            '=',
+                            fields.Date.from_string(date_planned)
+                         ),
+                    ], limit=1
+                )
+                if not proc_group_to_use:
+                    proc_group_to_use = order.procurement_group_id.copy({
+                        'scheduled_date': date_planned,
+                    })
             for line in wizard.line_ids:
                 if line.to_ship_qty > line.ordered_qty - line.existing_qty:
                     raise UserError(
@@ -89,7 +106,7 @@ class ManualDelivery(models.TransientModel):
                     )
                 if float_compare(line.to_ship_qty, 0, 2):
                     vals = line.order_line_id._prepare_procurement_values(
-                        group_id=order.procurement_group_id
+                        group_id=proc_group_to_use
                     )
                     vals["date_planned"] = date_planned
                     vals["carrier_id"] = carrier_id.id

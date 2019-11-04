@@ -2,7 +2,7 @@
 <odoo>
 
   <record id='manual_delivery_wizard_form' model='ir.ui.view'>
-    <field name='manual_delivery_wizard_form'/>
+    <field name='name'>manual_delivery_wizard_form</field>
     <field name='model'>manual.delivery</field>
     <field name='arch' type='xml'>
 
