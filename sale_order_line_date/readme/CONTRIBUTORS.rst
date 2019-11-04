@@ -8,3 +8,4 @@
 * Francesco Apruzzese <f.apruzzese@apuliasoftware.it>
 * Mykhailo Panarin <m.panarin@mobilunity.com>
 * Open-Net Sàrl <jae@open-net.ch>
+* Miquel Raïch <miquel.raich@eficent.com>
