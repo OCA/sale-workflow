@@ -30,6 +30,7 @@ class SaleOrder(models.Model):
         self.ensure_one()
         wizard = self.env['manual.delivery'].create({
             'order_id': self.id,
+            'carrier_id': self.carrier_id.id,
         })
         wizard.onchange_line_ids()
         action = self.env.ref(

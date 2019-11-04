@@ -45,11 +45,23 @@ class ManualDelivery(models.TransientModel):
                 lines.append((0, 0, vals))
         self.update({'line_ids': lines})
 
+    date_planned = fields.Date(
+        string='Date Planned'
+    )
+
     sale_line_ids = fields.Many2many('sale.order.line')
     line_ids = fields.One2many(
         'manual.delivery.line',
         'manual_delivery_id',
         string='Lines to validate',
+    )
+    carrier_id = fields.Many2one(
+        'delivery.carrier',
+        string='Delivery Method'
+    )
+    partner_id = fields.Many2one(
+        'res.partner',
+        string='Delivery Address'
     )
 
     @api.multi
@@ -62,9 +74,11 @@ class ManualDelivery(models.TransientModel):
                     vals = order._prepare_procurement_group()
                     order.procurement_group_id = proc_group_obj.create(vals)
             new_procs = proc_order_obj
-
+            date_planned = wizard.date_planned
             for line in wizard.line_ids:
                 rounding = line.order_line_id.company_id.currency_id.rounding
+                carrier_id = wizard.carrier_id if wizard.carrier_id else \
+                    line.order_line_id.order_id.carrier_id
                 if float_compare(line.to_ship_qty,
                                  line.ordered_qty - line.existing_qty,
                                  precision_rounding=rounding) > 0.0:
@@ -75,7 +89,11 @@ class ManualDelivery(models.TransientModel):
                     vals = line.order_line_id._prepare_order_line_procurement(
                         group_id=line.order_line_id.order_id.
                         procurement_group_id.id)
+                    if date_planned:
+                        vals['date_planned'] = date_planned
                     vals['product_qty'] = line.to_ship_qty
+                    if carrier_id:
+                        vals['carrier_id'] = carrier_id.id
                     vals['manual_delivery'] = True
                     new_proc = proc_order_obj.create(vals)
                     new_proc.message_post_with_view(

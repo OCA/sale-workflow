@@ -7,6 +7,11 @@ from odoo import fields, models
 class ProcurementOrder(models.Model):
     _inherit = 'procurement.order'
 
+    carrier_id = fields.Many2one(
+        "delivery.carrier",
+        string="Delivery Method",
+    )
+
     manual_delivery = fields.Boolean(
         string='Manual Delivery',
         default=False,
