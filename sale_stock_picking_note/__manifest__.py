@@ -15,6 +15,5 @@
     ],
     'data': [
         'views/sale_order_view.xml',
-        'views/stock_picking_view.xml',
     ],
 }
