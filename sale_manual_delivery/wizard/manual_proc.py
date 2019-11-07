@@ -68,53 +68,63 @@ class ManualDelivery(models.TransientModel):
     def record_picking(self):
         proc_order_obj = self.env['procurement.order']
         proc_group_obj = self.env['procurement.group']
+        proc_group_dict = {}
         for wizard in self:
             date_planned = wizard.date_planned
-            for order in self.line_ids.mapped('order_line_id.order_id'):
+            for line in wizard.mapped('line_ids.order_line_id'):
+                order = line.order_id
                 if not order.procurement_group_id:
                     vals = order._prepare_procurement_group()
-                    if date_planned:
+                    if wizard.date_planned:
                         vals['date_planned'] = date_planned
-                    proc_group_to_use = \
+                    order_proc_group_to_use = \
                         order.procurement_group_id = proc_group_obj.create(
                             vals)
                 else:
-                    proc_group_to_use = self.env['procurement.group'].search(
+                    order_proc_group_to_use = self.env[
+                        'procurement.group'].search(
                         [
                             ('procurement_ids.sale_line_id.order_id', '=',
                              order.id),
                             ('date_planned', '=', date_planned),
                         ], limit=1
                     )
-                    if not proc_group_to_use:
-                        proc_group_to_use = order.procurement_group_id.copy({
-                            'date_planned': date_planned,
-                        })
+                    if not order_proc_group_to_use:
+                        order_proc_group_to_use = order.procurement_group_id.\
+                            copy({
+                                'date_planned': date_planned, }
+                            )
+                proc_group_dict[order.id] = order_proc_group_to_use
             new_procs = proc_order_obj
-            for line in wizard.line_ids:
-                rounding = line.order_line_id.company_id.currency_id.rounding
+            for wiz_line in wizard.line_ids:
+                rounding = wiz_line.order_line_id.company_id.\
+                    currency_id.rounding
                 carrier_id = wizard.carrier_id if wizard.carrier_id else \
-                    line.order_line_id.order_id.carrier_id
-                if float_compare(line.to_ship_qty,
-                                 line.ordered_qty - line.existing_qty,
+                    wiz_line.order_line_id.order_id.carrier_id
+                if float_compare(wiz_line.to_ship_qty,
+                                 wiz_line.ordered_qty - wiz_line.existing_qty,
                                  precision_rounding=rounding) > 0.0:
                     raise UserError(_('You can not deliver more than the '
                                       'remaining quantity. If you need to do '
                                       'so, please edit the sale order first.'))
-                if float_compare(line.to_ship_qty, 0, 2):
-                    vals = line.order_line_id._prepare_order_line_procurement(
-                        group_id=proc_group_to_use.id)
+                if float_compare(wiz_line.to_ship_qty, 0, 2):
+                    so_id = wiz_line.order_line_id.order_id
+                    proc_group_to_use = proc_group_dict[so_id.id]
+                    vals = wiz_line.order_line_id.\
+                        _prepare_order_line_procurement(
+                            group_id=proc_group_to_use.id)
                     if date_planned:
                         vals['date_planned'] = date_planned
-                    vals['product_qty'] = line.to_ship_qty
+                    vals['product_qty'] = wiz_line.to_ship_qty
                     if carrier_id:
                         vals['carrier_id'] = carrier_id.id
+                    vals["partner_dest_id"] = wizard.partner_id.id
                     vals['manual_delivery'] = True
                     new_proc = proc_order_obj.create(vals)
                     new_proc.message_post_with_view(
                         'mail.message_origin_link',
                         values={'self': new_proc,
-                                'origin': line.order_line_id.order_id},
+                                'origin': wiz_line.order_line_id.order_id},
                         subtype_id=self.env.ref('mail.mt_note').id)
                     new_procs |= new_proc
             new_procs.run()
