@@ -18,16 +18,18 @@ class SaleOrder(models.Model):
 
     @api.onchange("team_id")
     def _onchange_team_id(self):
-        self.manual_delivery = self.team_id.manual_delivery if self.team_id \
-            else False
+        for so in self:
+            if so.team_id:
+                so.manual_delivery = so.team_id.manual_delivery
+            else:
+                so.manual_delivery = False
 
     @api.multi
     def action_manual_delivery_wizard(self):
         self.ensure_one()
         wizard = self.env["manual.delivery"].create(
-            {"order_id": self.id, "carrier_id": self.carrier_id.id}
+            {"carrier_id": self.carrier_id.id}
         )
-        wizard.onchange_order_id()
         action = self.env.ref(
             "sale_manual_delivery.action_wizard_manual_delivery"
         ).read()[0]
