@@ -188,7 +188,8 @@ class PromotionCase(TransactionCase, AbstractCommonPromotionCase):
         self.sale.apply_promotions()
         # coupon is always on top of applied promotion rules
         self.assertEqual(
-            self.promotion_rule_coupon, self.sale.applied_promotion_rule_ids)
+            self.promotion_rule_coupon, self.sale.applied_promotion_rule_ids
+        )
 
     def test_usage_restriction(self):
         self.promotion_rule_coupon.usage_restriction = "one_per_partner"
