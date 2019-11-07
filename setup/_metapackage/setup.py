@@ -14,6 +14,7 @@ setuptools.setup(
         'odoo12-addon-product_form_sale_link',
         'odoo12-addon-sale_automatic_workflow',
         'odoo12-addon-sale_automatic_workflow_payment_mode',
+        'odoo12-addon-sale_blanket_order',
         'odoo12-addon-sale_cancel_reason',
         'odoo12-addon-sale_commercial_partner',
         'odoo12-addon-sale_disable_inventory_check',
