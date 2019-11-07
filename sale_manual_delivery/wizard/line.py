@@ -6,38 +6,36 @@ from odoo import models, fields, api
 
 class ManualDeliveryLine(models.TransientModel):
     _name = "manual.delivery.line"
+    _description = "Manual Delivery Line"
 
     manual_delivery_id = fields.Many2one(
         "manual.delivery", string="Wizard manual procurement"
     )
     order_line_id = fields.Many2one(
-        "sale.order.line", string="Sale Order Line", readonly=True
+        "sale.order.line", string="Sale Order Line",
     )
     product_id = fields.Many2one(
         "product.product",
         string="Product",
         related="order_line_id.product_id",
-        readonly=True,
     )
     line_description = fields.Text(
-        string="Description", related="order_line_id.name", readonly=True
+        string="Description", related="order_line_id.name",
     )
     ordered_qty = fields.Float(
         "Ordered quantity",
+        related='order_line_id.product_uom_qty',
         help="Quantity ordered in the related Sale Order",
-        readonly=True,
     )
     existing_qty = fields.Float(
         "Existing quantity",
         help="Quantity already planned or shipped (stock movements \
-            already created)",
-        readonly=True,
+            already created)"
     )
     remaining_qty = fields.Float(
         "Remaining quantity",
         compute="_compute_remaining_qty",
         help="Remaining quantity available to deliver",
-        readonly=True,
     )
     to_ship_qty = fields.Float("Quantity to Ship")
 
