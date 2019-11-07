@@ -11,7 +11,7 @@
     "depends": [
         "delivery",
         "sale",
-        "sales_team"
+        "sales_team",
     ],
     "data": [
         "views/crm_team_view.xml",
