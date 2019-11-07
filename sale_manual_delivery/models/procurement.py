@@ -6,7 +6,7 @@ from odoo import models, fields
 class ProcurementGroup(models.Model):
     _inherit = "procurement.group"
 
-    scheduled_date = fields.Date()
+    date_planned = fields.Date()
 
     def _get_stock_move_values(
         self,
