@@ -11,16 +11,18 @@ class StockMove(models.Model):
 
     def _get_new_picking_values(self):
         res = super(StockMove, self)._get_new_picking_values()
-        if self.carrier_id:
-            res["carrier_id"] = self.carrier_id.id
+        if self.env.context.get('vals'):
+            vals = self.env.context.get('vals')
+            if vals.get('carrier_id'):
+                res["carrier_id"] = vals.get('carrier_id')
         return res
 
     @api.multi
-    def assign_picking(self):
+    def _assign_picking(self):
         # Redefine method to filter on date_expected (allows to group moves
         # from the same manual delivery in one delivery)
         if "manual_delivery" not in self.env.context:
-            return super(StockMove, self).assign_picking()
+            return super(StockMove, self)._assign_picking()
         Picking = self.env["stock.picking"]
         self.recompute()
 
