@@ -39,6 +39,16 @@ msgid "Add Coupon"
 msgstr "Coupon"
 
 #. module: sale_promotion_rule
+#: selection:sale.promotion.rule,discount_type:0
+msgid "Amount (Taxes excluded)"
+msgstr ""
+
+#. module: sale_promotion_rule
+#: selection:sale.promotion.rule,discount_type:0
+msgid "Amount (Taxes included)"
+msgstr ""
+
+#. module: sale_promotion_rule
 #: model:ir.ui.view,arch_db:sale_promotion_rule.view_order_form
 #, fuzzy
 msgid "Applied Promotions"
@@ -46,6 +56,7 @@ msgstr "Sale Promotion Rule"
 
 #. module: sale_promotion_rule
 #: code:addons/sale_promotion_rule/models/sale_promotion_rule.py:206
+#: code:addons/sale_promotion_rule/models/sale_promotion_rule.py:254
 #: selection:sale.promotion.rule,rule_type:0
 #, python-format
 msgid "Automatic"
@@ -65,6 +76,7 @@ msgstr "Code"
 
 #. module: sale_promotion_rule
 #: code:addons/sale_promotion_rule/models/sale_promotion_rule.py:240
+#: code:addons/sale_promotion_rule/models/sale_promotion_rule.py:288
 #, python-format
 msgid "Code number %s is invalid"
 msgstr "Le code %s est invalide"
@@ -125,12 +137,20 @@ msgid "Discount"
 msgstr "type de réduction"
 
 #. module: sale_promotion_rule
+#: model:ir.model.fields,field_description:sale_promotion_rule.field_sale_promotion_rule_discount_amount_currency_id
+#, fuzzy
+#| msgid "Discount amount"
+msgid "Discount Amount Currency"
+msgstr "Montant de réduction"
+
+#. module: sale_promotion_rule
 #: model:ir.model.fields,field_description:sale_promotion_rule.field_sale_promotion_rule_discount_amount
 msgid "Discount amount"
 msgstr "Montant de réduction"
 
 #. module: sale_promotion_rule
 #: code:addons/sale_promotion_rule/models/sale_promotion_rule.py:94
+#: code:addons/sale_promotion_rule/models/sale_promotion_rule.py:104
 #: sql_constraint:sale.promotion.rule:0
 #, python-format
 msgid "Discount code must be unique !"
@@ -171,6 +191,12 @@ msgstr "Promotion rule"
 #: model:ir.model.fields,field_description:sale_promotion_rule.field_sale_promotion_rule_id
 msgid "ID"
 msgstr "ID"
+
+#. module: sale_promotion_rule
+#: model:ir.model.fields,field_description:sale_promotion_rule.field_sale_order_line_is_promotion_line
+#, fuzzy
+msgid "Is promotion line"
+msgstr "Promotion rule"
 
 #. module: sale_promotion_rule
 #: selection:sale.promotion.rule,multi_rule_strategy:0
@@ -218,6 +244,7 @@ msgstr "Aucune restriction"
 
 #. module: sale_promotion_rule
 #: code:addons/sale_promotion_rule/models/sale_promotion_rule.py:306
+#: code:addons/sale_promotion_rule/models/sale_promotion_rule.py:355
 #, python-format
 msgid "Not supported promotion type %s"
 msgstr ""
@@ -248,6 +275,11 @@ msgid "Percentage"
 msgstr "Pourcentage"
 
 #. module: sale_promotion_rule
+#: model:ir.model.fields,field_description:sale_promotion_rule.field_sale_promotion_rule_discount_product_id
+msgid "Product used to apply the promotion"
+msgstr ""
+
+#. module: sale_promotion_rule
 #: model:ir.model.fields,field_description:sale_promotion_rule.field_sale_promotion_rule_promo_type
 msgid "Promo type"
 msgstr "Type de Promo"
@@ -258,6 +290,12 @@ msgstr "Type de Promo"
 #: model:ir.ui.view,arch_db:sale_promotion_rule.view_sale_promotion_rule_form
 msgid "Promotion Rule"
 msgstr "Règle de Promotion"
+
+#. module: sale_promotion_rule
+#: code:addons/sale_promotion_rule/models/sale_promotion_rule.py:366
+#, python-format
+msgid "Promotion of type %s is not a percentage discount"
+msgstr ""
 
 #. module: sale_promotion_rule
 #: model:ir.model.fields,field_description:sale_promotion_rule.field_sale_order_applied_promotion_rule_ids
@@ -323,6 +361,11 @@ msgid "Tax included into minimal amount?"
 msgstr ""
 
 #. module: sale_promotion_rule
+#: model:ir.model.fields,help:sale_promotion_rule.field_sale_order_line_is_promotion_line
+msgid "True if the line has been added by a promotion rule"
+msgstr ""
+
+#. module: sale_promotion_rule
 #: model:ir.ui.view,arch_db:sale_promotion_rule.view_sale_promotion_rule_form
 msgid "Type"
 msgstr "Type"
@@ -337,6 +380,21 @@ msgstr "Restriction d'utilisation"
 #, fuzzy
 msgid "Use the best promotion"
 msgstr "Restriction d'utilisation"
+
+#. module: sale_promotion_rule
+#: code:addons/sale_promotion_rule/models/sale_promotion_rule.py:133
+#, python-format
+msgid ""
+"You must specify a currency for discount rule applaying a specific amount"
+msgstr ""
+
+#. module: sale_promotion_rule
+#: code:addons/sale_promotion_rule/models/sale_promotion_rule.py:118
+#, python-format
+msgid ""
+"You must specify a promotion product for discount rule applaying a specific "
+"amount"
+msgstr ""
 
 #. module: sale_promotion_rule
 #: model:ir.model,name:sale_promotion_rule.model_sale_order_add_coupon
