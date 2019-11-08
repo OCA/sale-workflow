@@ -2,7 +2,6 @@
 from odoo.addons.sale.tests.test_sale_common import TestSale
 from datetime import datetime
 from dateutil.relativedelta import relativedelta
-from odoo.tools import DEFAULT_SERVER_DATETIME_FORMAT as DF
 
 
 class TestSaleStock(TestSale):
@@ -496,7 +495,7 @@ class TestSaleStock(TestSale):
         )
         first_picking = self.so.picking_ids
         self.assertEqual(
-            datetime.strptime(first_picking.scheduled_date, DF).replace(
+            first_picking.scheduled_date.replace(
                 hour=0, minute=0, second=0, microsecond=0
             ),
             date_now,
@@ -531,7 +530,7 @@ class TestSaleStock(TestSale):
         )
         second_picking = self.so.picking_ids - first_picking
         self.assertEqual(
-            datetime.strptime(second_picking.scheduled_date, DF).replace(
+            second_picking.scheduled_date.replace(
                 hour=0, minute=0, second=0, microsecond=0
             ),
             date_next_week,
