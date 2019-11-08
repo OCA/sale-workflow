@@ -22,13 +22,13 @@ class SaleOrderLine(models.Model):
         string='There is Pending qty to add to a delivery')
 
     @api.multi
-    def _action_launch_procurement_rule(self):
+    def _action_launch_stock_rule(self):
         for line in self:
             if line.order_id.manual_delivery \
                     and line.product_id.type != "service":
                 return False
             else:
-                return super()._action_launch_procurement_rule()
+                return super()._action_launch_stock_rule()
 
     @api.depends('move_ids', 'move_ids.state', 'move_ids.location_id',
                  'move_ids.location_dest_id')

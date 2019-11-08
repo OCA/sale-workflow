@@ -2,7 +2,7 @@
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
 
 from odoo import models, fields, api
-from odoo.tools import DEFAULT_SERVER_DATETIME_FORMAT, float_compare
+from odoo.tools import float_compare
 from odoo.exceptions import UserError
 from odoo.tools.translate import _
 
@@ -43,7 +43,7 @@ class ManualDelivery(models.TransientModel):
 
         for line in sale_lines:
             if (not line.existing_qty == line.product_uom_qty and
-               line.product_id.type != 'service'):
+                    line.product_id.type != 'service'):
                 vals = {
                     'product_id': line.product_id.id,
                     'line_description': line.product_id.name,
@@ -63,16 +63,23 @@ class ManualDelivery(models.TransientModel):
     )
     carrier_id = fields.Many2one("delivery.carrier", string="Delivery Method")
     partner_id = fields.Many2one("res.partner", string="Delivery Address")
+    route_id = fields.Many2one(
+        'stock.location.route', string='Use specific Route',
+        domain=[('sale_selectable', '=', True)],
+        ondelete='restrict',
+        help="Leave it blank to use the same route that is in the sale line")
 
-    @api.onchange("partner_id")
+    @api.onchange("partner_id", "date_planned")
     def onchange_partner_id(self):
         return {
             "domain": {
                 "partner_id": [
                     "&",
                     "|",
-                    ("id", "=", self.order_id.partner_id.id),
-                    ("parent_id", "=", self.order_id.partner_id.id),
+                    ("id", "=", self.mapped(
+                        'line_ids.order_line_id.order_id.partner_id.id')),
+                    ("parent_id", "=", self.mapped(
+                        'line_ids.order_line_id.order_id.partner_id.id')),
                     ("id", "!=", self.partner_id.id),
                 ]
             }
@@ -86,6 +93,7 @@ class ManualDelivery(models.TransientModel):
             date_planned = wizard.date_planned
             for line in wizard.mapped('line_ids.order_line_id'):
                 order = line.order_id
+
                 if not order.procurement_group_id:
                     vals = line._prepare_procurement_values()
                     if wizard.date_planned:
@@ -105,7 +113,7 @@ class ManualDelivery(models.TransientModel):
                     if not order_proc_group_to_use:
                         order_proc_group_to_use = order.procurement_group_id.\
                             copy({
-                            'date_planned': date_planned,
+                                'date_planned': date_planned,
                             })
                 proc_group_dict[order.id] = order_proc_group_to_use
 
@@ -130,8 +138,9 @@ class ManualDelivery(models.TransientModel):
                     vals["date_planned"] = date_planned
                     vals["carrier_id"] = carrier_id.id
                     vals["partner_dest_id"] = wizard.partner_id.id
-
-                    proc_group_obj.run(
+                    if wizard.route_id:
+                        vals["route_ids"] = wizard.route_id
+                    proc_group_obj.with_context(vals=vals).run(
                         wiz_line.order_line_id.product_id,
                         wiz_line.to_ship_qty,
                         wiz_line.order_line_id.product_uom,
