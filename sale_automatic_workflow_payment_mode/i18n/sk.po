@@ -29,6 +29,11 @@ msgid "Automatic Workflow Payment Filter"
 msgstr ""
 
 #. module: sale_automatic_workflow_payment_mode
+#: model:ir.model,name:sale_automatic_workflow_payment_mode.model_account_invoice
+msgid "Invoice"
+msgstr ""
+
+#. module: sale_automatic_workflow_payment_mode
 #: model:ir.model.fields,field_description:sale_automatic_workflow_payment_mode.field_sale_workflow_process_payment_filter_id
 msgid "Payment Filter"
 msgstr ""
