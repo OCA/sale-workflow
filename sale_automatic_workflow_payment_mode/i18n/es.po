@@ -9,14 +9,15 @@ msgstr ""
 "Project-Id-Version: Odoo Server 9.0c\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2016-11-22 23:46+0000\n"
-"PO-Revision-Date: 2016-11-22 23:46+0000\n"
-"Last-Translator: Pedro M. Baeza <pedro.baeza@gmail.com>, 2016\n"
+"PO-Revision-Date: 2019-11-10 19:34+0000\n"
+"Last-Translator: Galoperd <jvcsan@gmail.com>\n"
 "Language-Team: Spanish (https://www.transifex.com/oca/teams/23907/es/)\n"
 "Language: es\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
-"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: Weblate 3.8\n"
 
 #. module: sale_automatic_workflow_payment_mode
 #: model:ir.model.fields,field_description:sale_automatic_workflow_payment_mode.field_account_payment_mode__workflow_process_id
@@ -45,17 +46,13 @@ msgstr "Registrar pago"
 
 #. module: sale_automatic_workflow_payment_mode
 #: model:ir.model.fields,field_description:sale_automatic_workflow_payment_mode.field_sale_workflow_process__payment_filter_id
-#, fuzzy
-#| msgid "Register Payment"
 msgid "Register Payment Invoice Filter"
-msgstr "Registrar pago"
+msgstr "Registrar filtro de pago de facturas"
 
 #. module: sale_automatic_workflow_payment_mode
 #: model:ir.model,name:sale_automatic_workflow_payment_mode.model_sale_order
-#, fuzzy
-#| msgid "Sales Order"
 msgid "Sale Order"
-msgstr "Pedido de venta"
+msgstr "Pedidos de venta"
 
 #. module: sale_automatic_workflow_payment_mode
 #: model:ir.model,name:sale_automatic_workflow_payment_mode.model_sale_workflow_process
