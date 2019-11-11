@@ -9,19 +9,20 @@ msgstr ""
 "Project-Id-Version: Odoo Server 9.0c\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2017-05-31 04:21+0000\n"
-"PO-Revision-Date: 2017-05-31 04:21+0000\n"
-"Last-Translator: OCA Transbot <transbot@odoo-community.org>, 2017\n"
+"PO-Revision-Date: 2019-11-11 15:34+0000\n"
+"Last-Translator: Jarmo Kortetjärvi <jarmo.kortetjarvi@gmail.com>\n"
 "Language-Team: Finnish (https://www.transifex.com/oca/teams/23907/fi/)\n"
 "Language: fi\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
-"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: Weblate 3.8\n"
 
 #. module: sale_force_invoiced
 #: model:ir.model.fields,field_description:sale_force_invoiced.field_sale_order_force_invoiced
 msgid "Force invoiced"
-msgstr ""
+msgstr "Merkitse laskutetuksi"
 
 #. module: sale_force_invoiced
 #: model:ir.model,name:sale_force_invoiced.model_sale_order
@@ -35,3 +36,6 @@ msgid ""
 "invoiced, even when there may be ordered or delivered quantities pending to "
 "invoice. To use this field, the invoice must be in \"locked\" state."
 msgstr ""
+"Kun asetat tämän kentän, myyntitilaus tulkitaan kokonaan laskutetuksi vaikka "
+"siinä olisi tilattuja tai toimitettuja rivejä jotka odottavat laskutusta. "
+"Tämän kentän voi valita vain jos lasku on \"lukittu\"-tilassa."
