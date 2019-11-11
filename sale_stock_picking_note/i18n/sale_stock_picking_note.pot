@@ -14,11 +14,6 @@ msgstr ""
 "Plural-Forms: \n"
 
 #. module: sale_stock_picking_note
-#: model:ir.ui.view,arch_db:sale_stock_picking_note.view_picking_form
-msgid "Notes"
-msgstr ""
-
-#. module: sale_stock_picking_note
 #: model:ir.model.fields,field_description:sale_stock_picking_note.field_sale_order_picking_note
 msgid "Picking Note"
 msgstr ""
