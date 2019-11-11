@@ -3,7 +3,7 @@
 {
     'name': 'Sale Stock Picking Note',
     'summary': 'Add picking note in sale and purchase order',
-    'version': '10.0.1.0.0',
+    'version': '10.0.1.1.0',
     'category': 'Sales',
     'website': 'https://github.com/OCA/sale-workflow',
     'author': 'Tecnativa, '
