@@ -74,7 +74,7 @@ addon | version | summary
 [sale_start_end_dates](sale_start_end_dates/) | 10.0.1.0.0 | Adds start date and end date on sale order lines
 [sale_stock_picking_blocking](sale_stock_picking_blocking/) | 10.0.1.0.0 | Allow you to block the creation of deliveries from a sale order.
 [sale_stock_picking_blocking_proc_group_by_line](sale_stock_picking_blocking_proc_group_by_line/) | 10.0.1.0.0 | Module that allows module sale_delivery_block to work with sale_procurement_group_by_line
-[sale_stock_picking_note](sale_stock_picking_note/) | 10.0.1.0.0 | Add picking note in sale and purchase order
+[sale_stock_picking_note](sale_stock_picking_note/) | 10.0.1.1.0 | Add picking note in sale and purchase order
 [sale_triple_discount](sale_triple_discount/) | 10.0.1.0.1 | Manage triple discount on sale order lines
 [sale_validity](sale_validity/) | 10.0.1.0.0 | Set a default validity delay on quotations
 
