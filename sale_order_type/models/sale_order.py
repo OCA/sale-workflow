@@ -52,3 +52,12 @@ class SaleOrder(models.Model):
         if self.type_id:
             res['sale_type_id'] = self.type_id.id
         return res
+
+    def _finalize_invoices(self, invoices, references):
+        """Make sure sale type is kept when onchanges are called upstream."""
+        sale_types = {x: x.sale_type_id for x in invoices.values()}
+        res = super()._finalize_invoices(invoices, references)
+        for invoice in invoices.values():
+            if invoice.sale_type_id != sale_types[invoice]:
+                invoice.sale_type_id = sale_types[invoice]
+        return res
