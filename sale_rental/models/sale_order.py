@@ -57,12 +57,7 @@ class SaleOrder(models.Model):
         res = super(SaleOrder, self).action_cancel()
         for order in self:
             for line in order.order_line:
-                if line.rental_type == 'new_rental':
-                    sale_rental = self.env['sale.rental'].search(
-                        [('start_order_line_id', '=', line.id)], limit=1)
-                    sale_rental.out_move_id._action_cancel()
-                    sale_rental.in_move_id._action_cancel()
-                elif line.rental_type == 'rental_extension':
+                if line.rental_type == 'rental_extension':
                     line.extension_rental_id.in_move_id.date_expected = \
                         line.extension_rental_id.end_date
                     line.extension_rental_id.in_move_id.date = \
@@ -169,15 +164,7 @@ class SaleOrderLine(models.Model):
                 line.order_id.procurement_group_id = procurement_group
 
             if line.rental_type == 'new_rental':
-                vals = {
-                    'company_id': line.order_id.company_id,
-                    'group_id': procurement_group,
-                    'sale_line_id': line.id,
-                    'date_planned': line._get_rental_date_planned(),
-                    'route_ids': line.order_id.warehouse_id.rental_route_id,
-                    'warehouse_id': line.order_id.warehouse_id or False,
-                    'partner_dest_id': line.order_id.partner_shipping_id
-                }
+                vals = self.prepare_rental_values(procurement_group)
             try:
                 self.env['procurement.group'].run(
                     line.product_id.rented_product_id, line.rental_qty,
@@ -189,6 +176,19 @@ class SaleOrderLine(models.Model):
         if errors:
             raise UserError('\n'.join(errors))
         return res
+
+    @api.multi
+    def prepare_rental_values(self, group_id=False):
+        self.ensure_one()
+        return {
+            'company_id': self.order_id.company_id,
+            'group_id': group_id,
+            'sale_line_id': self.id,
+            'date_planned': self._get_rental_date_planned(),
+            'route_ids': self.order_id.warehouse_id.rental_route_id,
+            'warehouse_id': self.order_id.warehouse_id or False,
+            'partner_dest_id': self.order_id.partner_shipping_id
+        }
 
     @api.multi
     def _prepare_procurement_values(self, group_id=False):
