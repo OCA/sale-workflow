@@ -36,6 +36,7 @@ setuptools.setup(
         'odoo11-addon-sale_order_line_sequence',
         'odoo11-addon-sale_order_price_recalculation',
         'odoo11-addon-sale_order_product_recommendation',
+        'odoo11-addon-sale_order_product_recommendation_secondary_unit',
         'odoo11-addon-sale_order_revision',
         'odoo11-addon-sale_order_secondary_unit',
         'odoo11-addon-sale_order_type',
