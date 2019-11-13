@@ -2,7 +2,7 @@
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
 
 from odoo import models, fields, api
-from odoo.tools import DEFAULT_SERVER_DATETIME_FORMAT, float_compare
+from odoo.tools import float_compare
 from odoo.exceptions import UserError
 from odoo.tools.translate import _
 
@@ -105,7 +105,7 @@ class ManualDelivery(models.TransientModel):
                     if not order_proc_group_to_use:
                         order_proc_group_to_use = order.procurement_group_id.\
                             copy({
-                            'date_planned': date_planned,
+                                'date_planned': date_planned,
                             })
                 proc_group_dict[order.id] = order_proc_group_to_use
 
