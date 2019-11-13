@@ -61,6 +61,16 @@ Do not contact contributors directly about support or help with technical issues
 Credits
 =======
 
+Authors
+~~~~~~~
+
+* OdooMRP team
+* AvanzOSC
+* Serv. Tecnol. Avanzados - Pedro M. Baeza
+
+Contributors
+~~~~~~~~~~~~
+
 * Oihane Crucelaegui <oihanecrucelaegi@avanzosc.es>
 * Esther Martín <esthermartin@avanzosc.es>
 * Pedro M. Baeza <pedro.baeza@tecnativa.com>
