@@ -2,6 +2,7 @@
 # Copyright 2016-2018 Camptocamp SA
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
 from odoo.tests import common
+from odoo import exceptions
 
 
 class TestProductSet(common.TransactionCase):
@@ -65,6 +66,20 @@ class TestProductSet(common.TransactionCase):
         so_set.add_set()
         self.assertEqual(len(so.order_line), 3)
 
+    def test_add_set_non_matching_partner(self):
+        so = self.sale_order.create({
+            'partner_id': self.ref('base.res_partner_1')})
+        product_set = self.env.ref(
+            'sale_product_set.product_set_i5_computer')
+        product_set.partner_id = self.ref('base.res_partner_2')
+        so_set = self.product_set_add.with_context(
+            active_id=so.id).create({'product_set_id': product_set.id,
+                                     'quantity': 2})
+        with self.assertRaises(exceptions.ValidationError):
+            so_set._onchange_product_set_id()
+        with self.assertRaises(exceptions.ValidationError):
+            so_set.add_set()
+
     def test_name(self):
         product_set = self.env.ref(
             'sale_product_set.product_set_i5_computer')
@@ -80,4 +95,11 @@ class TestProductSet(common.TransactionCase):
         self.assertEqual(
             product_set.name_get(),
             [(product_set.id, '[123] Foo')]
+        )
+        # with partner
+        partner = self.env.ref('base.res_partner_1')
+        product_set.partner_id = partner
+        self.assertEqual(
+            product_set.name_get(),
+            [(product_set.id, '[123] Foo @ %s' % partner.name)]
         )
