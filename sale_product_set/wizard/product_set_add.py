@@ -10,6 +10,10 @@ class ProductSetAdd(models.TransientModel):
     _rec_name = 'product_set_id'
     _description = "Wizard model to add product set into a quotation"
 
+    order_id = fields.Many2one(
+        'sale.order', 'Sale Order', required=True,
+        default=lambda self: self.env.context.get('active_id')
+    )
     product_set_id = fields.Many2one(
         'product.set', 'Product set', required=True)
     quantity = fields.Float(
@@ -19,28 +23,29 @@ class ProductSetAdd(models.TransientModel):
     @api.multi
     def add_set(self):
         """ Add product set, multiplied by quantity in sale order line """
-        so_id = self._context['active_id']
-        if not so_id:
-            return
-        so = self.env['sale.order'].browse(so_id)
         max_sequence = 0
-        if so.order_line:
-            max_sequence = max([line.sequence for line in so.order_line])
-        sale_order_line_env = self.env['sale.order.line']
-        sale_order_line = self.env['sale.order.line']
-        for set_line in self.product_set_id.set_line_ids:
-            sale_order_line |= sale_order_line_env.create(
+        if self.order_id.order_line:
+            max_sequence = max([
+                line.sequence for line in self.order_id.order_line
+            ])
+        order_lines = self.env['sale.order.line'].browse()
+        for set_line in self._get_lines():
+            order_lines |= self.env['sale.order.line'].create(
                 self.prepare_sale_order_line_data(
-                    so_id, set_line,
+                    set_line,
                     max_sequence=max_sequence))
-        return sale_order_line
+        return order_lines
+
+    def _get_lines(self):
+        # hook here to take control on used lines
+        return self.product_set_id.set_line_ids
 
     @api.multi
-    def prepare_sale_order_line_data(self, sale_order_id, set_line,
+    def prepare_sale_order_line_data(self, set_line,
                                      max_sequence=0):
         self.ensure_one()
         sale_line = self.env['sale.order.line'].new({
-            'order_id': sale_order_id,
+            'order_id': self.order_id.id,
             'product_id': set_line.product_id.id,
             'product_uom_qty': set_line.quantity * self.quantity,
             'product_uom': set_line.product_id.uom_id.id,
