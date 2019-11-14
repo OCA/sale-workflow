@@ -9,6 +9,7 @@
         <tree string="Product set">
             <field name="ref"/>
             <field name="name"/>
+            <field name="partner_id"/>
             <field name="company_id" groups="base.group_multi_company"/>
         </tree>
         </field>
@@ -29,11 +30,17 @@
                                options="{&quot;terminology&quot;: &quot;archive&quot;}"/>
                     </button>
                 </div>
-                <group>
-                    <field name="name" select="1"/>
-                    <field name="ref"/>
-                    <field name="company_id" groups="base.group_multi_company"/>
-                    <field name="set_line_ids">
+                <group name="main">
+                    <group name="name">
+                        <field name="name" select="1"/>
+                        <field name="ref"/>
+                    </group>
+                    <group name="partner">
+                        <field name="partner_id"/>
+                        <field name="company_id" groups="base.group_multi_company"/>
+                    </group>
+                    <label for="set_line_ids" />
+                    <field name="set_line_ids" nolabel="1">
                         <tree string="Product set lines" editable="top">
                             <field name="sequence" widget="handle"/>
                             <field name="product_id"/>
@@ -56,6 +63,8 @@
             <search string="Product set">
                 <field name="name" select="True"/>
                 <field name="ref" select="True"/>
+                <field name="partner_id"/>
+                <filter name="group_by_partner_id" string="Partner" domain="[]" context="{'group_by':'partner_id'}"/>
             </search>
         </field>
     </record>
