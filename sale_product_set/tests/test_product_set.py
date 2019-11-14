@@ -15,10 +15,6 @@ class TestProductSet(common.TransactionCase):
     def test_add_set(self):
         so = self.env.ref('sale.sale_order_6')
         count_lines = len(so.order_line)
-        untaxed_amount = so.amount_untaxed
-        tax_amount = so.amount_tax
-        total_amount = so.amount_total
-
         product_set = self.env.ref(
             'sale_product_set.product_set_i5_computer')
         # Simulation the opening of the wizard and adding a set on the
@@ -29,18 +25,19 @@ class TestProductSet(common.TransactionCase):
         so_set.add_set()
         # checking our sale order
         self.assertEqual(len(so.order_line), count_lines + 3)
-        # untaxed_amount + ((147*1*0.75)+(2100*1)+(85*2)) * 2
-        # 0.75 due to a 25% discount on Custom Computer (kit) product
-        self.assertEqual(so.amount_untaxed, untaxed_amount + 4760.5)
-        self.assertEqual(so.amount_tax, tax_amount + 0)  # without tax
-        self.assertEqual(so.amount_total, total_amount + 4760.5)
+        # check all lines are included
+        for line in product_set.set_line_ids:
+            order_line = so.order_line.filtered(
+                lambda x: x.product_id == line.product_id
+            )
+            order_line.ensure_one()
+            self.assertEqual(
+                order_line.product_uom_qty, line.quantity * so_set.quantity
+            )
+
         sequence = {}
         for line in so.order_line:
             sequence[line.product_id.id] = line.sequence
-            for set_line in product_set.set_line_ids:
-                if line.product_id.id == set_line.product_id.id:
-                    self.assertEqual(line.product_id.name,
-                                     set_line.product_id.name)
         # make sure sale order line sequence keep sequence set on set
         seq_line1 = sequence.pop(
             self.env.ref(
@@ -67,3 +64,20 @@ class TestProductSet(common.TransactionCase):
                                      'quantity': 2})
         so_set.add_set()
         self.assertEqual(len(so.order_line), 3)
+
+    def test_name(self):
+        product_set = self.env.ref(
+            'sale_product_set.product_set_i5_computer')
+        # no ref
+        product_set.name = 'Foo'
+        product_set.ref = ''
+        self.assertEqual(
+            product_set.name_get(),
+            [(product_set.id, 'Foo')]
+        )
+        # with ref
+        product_set.ref = '123'
+        self.assertEqual(
+            product_set.name_get(),
+            [(product_set.id, '[123] Foo')]
+        )
