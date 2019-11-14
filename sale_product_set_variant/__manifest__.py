@@ -17,5 +17,6 @@
     ],
     'demo': [
         'demo/product_set.xml',
+        'demo/product_product_demo.xml',
     ],
 }
