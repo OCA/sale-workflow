@@ -36,18 +36,31 @@ class ProductSetAdd(models.TransientModel):
     def add_set(self):
         """ Add product set, multiplied by quantity in sale order line """
         self._check_partner()
+        order_lines = self._prepare_order_lines()
+        if order_lines:
+            self.order_id.write({
+                "order_line": order_lines
+            })
+        return order_lines
+
+    def _prepare_order_lines(self):
+        max_sequence = self._get_max_sequence()
+        order_lines = []
+        for set_line in self._get_lines():
+            order_lines.append(
+                (0, 0,
+                 self.prepare_sale_order_line_data(
+                     set_line, max_sequence=max_sequence))
+            )
+        return order_lines
+
+    def _get_max_sequence(self):
         max_sequence = 0
         if self.order_id.order_line:
             max_sequence = max([
                 line.sequence for line in self.order_id.order_line
             ])
-        order_lines = self.env['sale.order.line'].browse()
-        for set_line in self._get_lines():
-            order_lines |= self.env['sale.order.line'].create(
-                self.prepare_sale_order_line_data(
-                    set_line,
-                    max_sequence=max_sequence))
-        return order_lines
+        return max_sequence
 
     def _get_lines(self):
         # hook here to take control on used lines
