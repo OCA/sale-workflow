@@ -1,7 +1,7 @@
 # Copyright 2015 Anybox S.A.S
 # Copyright 2016-2018 Camptocamp SA
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
-from odoo import models, fields, api
+from odoo import models, fields, api, exceptions, _
 import odoo.addons.decimal_precision as dp
 
 
@@ -20,9 +20,22 @@ class ProductSetAdd(models.TransientModel):
         digits=dp.get_precision('Product Unit of Measure'), required=True,
         default=1)
 
+    def _check_partner(self):
+        if self.product_set_id.partner_id:
+            if self.product_set_id.partner_id != self.order_id.partner_id:
+                raise exceptions.ValidationError(_(
+                    "Select a product set assigned to "
+                    "the same partner of the order."
+                ))
+
+    @api.onchange('product_set_id')
+    def _onchange_product_set_id(self):
+        self._check_partner()
+
     @api.multi
     def add_set(self):
         """ Add product set, multiplied by quantity in sale order line """
+        self._check_partner()
         max_sequence = 0
         if self.order_id.order_line:
             max_sequence = max([
