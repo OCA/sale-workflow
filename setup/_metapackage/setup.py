@@ -45,6 +45,7 @@ setuptools.setup(
         'odoo12-addon-sale_partner_incoterm',
         'odoo12-addon-sale_product_multi_add',
         'odoo12-addon-sale_product_set',
+        'odoo12-addon-sale_product_set_variant',
         'odoo12-addon-sale_shipping_info_helper',
         'odoo12-addon-sale_start_end_dates',
         'odoo12-addon-sale_stock_picking_blocking',
