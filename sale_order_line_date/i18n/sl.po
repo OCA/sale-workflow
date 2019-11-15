@@ -20,19 +20,19 @@ msgstr ""
 "%100==4 ? 2 : 3);\n"
 
 #. module: sale_order_line_date
-#: model:ir.model,name:sale_order_line_date.model_sale_order
-msgid "Quotation"
+#: model:ir.model.fields,field_description:sale_order_line_date.field_sale_order_line__commitment_date
+#: model_terms:ir.ui.view,arch_db:sale_order_line_date.report_saleorder_document
+msgid "Commitment Date"
 msgstr ""
 
 #. module: sale_order_line_date
-#: model:ir.model.fields,field_description:sale_order_line_date.field_sale_order_line_requested_date
-msgid "Requested Date"
-msgstr ""
+#: model:ir.model,name:sale_order_line_date.model_sale_order
+#, fuzzy
+#| msgid "Sales Order"
+msgid "Sale Order"
+msgstr "Prodajni nalog"
 
 #. module: sale_order_line_date
 #: model:ir.model,name:sale_order_line_date.model_sale_order_line
 msgid "Sales Order Line"
 msgstr "Postavka prodajnega naloga"
-
-#~ msgid "Sales Order"
-#~ msgstr "Prodajni nalog"
