@@ -15,7 +15,6 @@
     'data': [
         'security/ir.model.access.csv',
         'security/rule_product_set.xml',
-        'security/rule_product_set_line.xml',
         'views/product_set.xml',
         'wizard/product_set_add.xml',
         'views/sale_order.xml',
