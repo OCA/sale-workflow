@@ -5,13 +5,14 @@ from odoo.tests import common
 from odoo import exceptions
 
 
-class TestProductSet(common.TransactionCase):
+class TestProductSet(common.SavepointCase):
     """ Test Product set"""
 
-    def setUp(self):
-        super(TestProductSet, self).setUp()
-        self.sale_order = self.env['sale.order']
-        self.product_set_add = self.env['product.set.add']
+    @classmethod
+    def setUpClass(cls):
+        super().setUpClass()
+        cls.sale_order = cls.env['sale.order']
+        cls.product_set_add = cls.env['product.set.add']
 
     def test_add_set(self):
         so = self.env.ref('sale.sale_order_6')
@@ -76,9 +77,25 @@ class TestProductSet(common.TransactionCase):
             active_id=so.id).create({'product_set_id': product_set.id,
                                      'quantity': 2})
         with self.assertRaises(exceptions.ValidationError):
-            so_set._onchange_product_set_id()
-        with self.assertRaises(exceptions.ValidationError):
             so_set.add_set()
+
+    def test_add_set_no_update_existing_products(self):
+        so = self.sale_order.create({
+            'partner_id': self.ref('base.res_partner_1')})
+        product_set = self.env.ref(
+            'sale_product_set.product_set_i5_computer')
+        so_set = self.product_set_add.with_context(
+            active_id=so.id).create({'product_set_id': product_set.id,
+                                     'quantity': 2})
+        so_set.add_set()
+        self.assertEqual(len(so.order_line), 3)
+        # if we run it again by default the wizard sums up quantities
+        so_set.add_set()
+        self.assertEqual(len(so.order_line), 6)
+        # but we can turn it off
+        so_set.skip_existing_products = True
+        so_set.add_set()
+        self.assertEqual(len(so.order_line), 6)
 
     def test_name(self):
         product_set = self.env.ref(
