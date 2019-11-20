@@ -14,11 +14,17 @@ class ProductSetAdd(models.TransientModel):
         'sale.order', 'Sale Order', required=True,
         default=lambda self: self.env.context.get('active_id')
     )
+    partner_id = fields.Many2one(related='order_id.partner_id')
     product_set_id = fields.Many2one(
         'product.set', 'Product set', required=True)
     quantity = fields.Float(
         digits=dp.get_precision('Product Unit of Measure'), required=True,
         default=1)
+    skip_existing_products = fields.Boolean(
+        default=False,
+        help='Enable this to not add new lines '
+        'for products already included in SO lines.'
+    )
 
     def _check_partner(self):
         if self.product_set_id.partner_id:
@@ -27,10 +33,6 @@ class ProductSetAdd(models.TransientModel):
                     "Select a product set assigned to "
                     "the same partner of the order."
                 ))
-
-    @api.onchange('product_set_id')
-    def _onchange_product_set_id(self):
-        self._check_partner()
 
     @api.multi
     def add_set(self):
@@ -64,7 +66,12 @@ class ProductSetAdd(models.TransientModel):
 
     def _get_lines(self):
         # hook here to take control on used lines
-        return self.product_set_id.set_line_ids
+        so_product_ids = self.order_id.order_line.mapped('product_id').ids
+        for set_line in self.product_set_id.set_line_ids:
+            if (self.skip_existing_products
+                    and set_line.product_id.id in so_product_ids):
+                continue
+            yield set_line
 
     @api.multi
     def prepare_sale_order_line_data(self, set_line,
