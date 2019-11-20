@@ -7,8 +7,10 @@
       <field name="arch" type="xml">
           <form string="Add set in sale order line">
               <group>
-                  <field name="product_set_id"/>
+                  <field name="partner_id" invisible="1" />
+                  <field name="product_set_id" domain="['|',('partner_id', '=', False),('partner_id', '=', partner_id)]"/>
                   <field name="quantity"/>
+                  <field name="skip_existing_products"/>
               </group>
               <footer>
                   <button name="add_set" string="Add set"
