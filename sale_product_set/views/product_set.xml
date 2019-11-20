@@ -95,7 +95,7 @@
     </record>
 
     <menuitem id="menu_product_set_config"
-        parent="sale.menu_sales_config"
+        parent="sale.product_menu_catalog"
         groups="sales_team.group_sale_manager"
         sequence="20"
         action="act_open_product_set_view"/>
