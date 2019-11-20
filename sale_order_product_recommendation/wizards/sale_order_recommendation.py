@@ -40,7 +40,6 @@ class SaleOrderRecommendation(models.TransientModel):
     def _default_order_id(self):
         return self.env.context.get("active_id", False)
 
-    @api.multi
     @api.onchange("order_id", "months", "line_amount")
     def _generate_recommendations(self):
         """Generate lines according to context sale order."""
@@ -52,7 +51,6 @@ class SaleOrderRecommendation(models.TransientModel):
             return
         self.last_compute = last_compute
         start = datetime.now() - timedelta(days=self.months * 30)
-        start = fields.Datetime.to_string(start)
         self.line_ids = False
         # Search delivered products in previous months
         sales = self.env["sale.order"].search([
@@ -110,10 +108,10 @@ class SaleOrderRecommendation(models.TransientModel):
             if i == self.line_amount:
                 break
 
-    @api.multi
     def action_accept(self):
         """Propagate recommendations to sale order."""
-        so_lines = self.env["sale.order.line"]
+        so_line_obj = self.env["sale.order.line"]
+        so_line_ids = []
         sequence = max(self.order_id.mapped('order_line.sequence') or [0])
         for wiz_line in self.line_ids.filtered('is_modified'):
             # Use preexisting line if any
@@ -128,7 +126,7 @@ class SaleOrderRecommendation(models.TransientModel):
                 continue
             sequence += 1
             # Use a new in-memory line otherwise
-            so_line = so_lines.new({
+            so_line = so_line_obj.new({
                 "order_id": self.order_id.id,
                 "product_id": wiz_line.product_id.id,
                 "sequence": sequence,
@@ -136,8 +134,8 @@ class SaleOrderRecommendation(models.TransientModel):
             so_line.product_id_change()
             so_line.product_uom_qty = wiz_line.units_included
             so_line.product_uom_change()
-            so_lines |= so_line
-        self.order_id.order_line |= so_lines
+            so_line_ids.append(so_line.id)
+        self.order_id.order_line += so_line_obj.browse(so_line_ids)
 
 
 class SaleOrderRecommendationLine(models.TransientModel):
@@ -183,7 +181,6 @@ class SaleOrderRecommendationLine(models.TransientModel):
     )
     is_modified = fields.Boolean()
 
-    @api.multi
     @api.depends("partner_id", "product_id", "pricelist_id", "units_included")
     def _compute_price_unit(self):
         for one in self:
