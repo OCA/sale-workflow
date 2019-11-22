@@ -1,6 +1,5 @@
-# -*- coding: utf-8 -*-
 # Copyright 2015 ADHOC SA  (http://www.adhoc.com.ar)
-# Copyright 2017 Alex Comba - Agile Business Group
+# Copyright 2017 - 2019 Alex Comba - Agile Business Group
 # Copyright 2017 Tecnativa - David Vidal
 # Copyright 2018 Simone Rubino - Agile Business Group
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
@@ -136,6 +135,6 @@ class SaleOrderLine(models.Model):
         Updating the cache provides consistency through recomputations."""
         self.invalidate_cache(
             fnames=['discount', 'discount2', 'discount3'],
-            ids=[l.id for l in prev_values.keys()])
-        for line, prev_vals_dict in prev_values.items():
+            ids=[l.id for l in list(prev_values.keys())])
+        for line, prev_vals_dict in list(prev_values.items()):
             line._cache.update(prev_vals_dict)
