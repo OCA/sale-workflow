@@ -1,6 +1,6 @@
-# -*- coding: utf-8 -*-
 # Copyright 2018 Simone Rubino - Agile Business Group
 # Copyright 2018 Jacques-Etienne Baudoux (BCIM sprl) <je@bcim.be>
+# Copyright 2017 - 2019 Alex Comba - Agile Business Group
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
 from odoo import api, models
@@ -35,8 +35,8 @@ class SaleOrder(models.Model):
                     if (t['id'] == tax.id or
                             t['id'] in tax.children_tax_ids.ids):
                         res[group] += t['amount']
-        res = sorted(res.items(), key=lambda l: l[0].sequence)
-        res = map(lambda l: (l[0].name, l[1]), res)
+        res = sorted(list(res.items()), key=lambda l: l[0].sequence)
+        res = [(l[0].name, l[1]) for l in res]
         return res
 
     @api.multi
