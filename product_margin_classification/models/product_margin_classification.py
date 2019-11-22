@@ -121,15 +121,13 @@ class ProductMarginClassification(models.Model):
     @api.depends('template_ids.theoretical_difference')
     def _compute_template_different_price_qty(self):
         for classification in self:
-            classification.template_too_cheap_qty =\
-                classification.template_ids.mapped(
-                    'margin_state').count('too_cheap')
-            classification.template_too_expensive_qty =\
-                classification.template_ids.mapped(
-                    'margin_state').count('too_expensive')
-            classification.template_correct_price_qty =\
-                classification.template_ids.mapped(
-                    'margin_state').count('correct')
+            template_vals = classification.template_ids.read(['margin_state'])
+            classification.template_too_cheap_qty = len(filter(
+                lambda v: v['margin_state'] == 'too_cheap', template_vals))
+            classification.template_too_expensive_qty = len(filter(
+                lambda v: v['margin_state'] == 'too_expensive', template_vals))
+            classification.template_correct_price_qty = len(filter(
+                lambda v: v['margin_state'] == 'correct', template_vals))
             classification.template_incorrect_price_qty =\
                 classification.template_too_expensive_qty +\
                 classification.template_too_cheap_qty
