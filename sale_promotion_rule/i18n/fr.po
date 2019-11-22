@@ -235,6 +235,7 @@ msgstr "Aucune restriction"
 
 #. module: sale_promotion_rule
 #: code:addons/sale_promotion_rule/models/sale_promotion_rule.py:355
+#: code:addons/sale_promotion_rule/models/sale_promotion_rule.py:357
 #, python-format
 msgid "Not supported promotion type %s"
 msgstr ""
@@ -283,6 +284,7 @@ msgstr "Règle de Promotion"
 
 #. module: sale_promotion_rule
 #: code:addons/sale_promotion_rule/models/sale_promotion_rule.py:366
+#: code:addons/sale_promotion_rule/models/sale_promotion_rule.py:368
 #, python-format
 msgid "Promotion of type %s is not a percentage discount"
 msgstr ""
