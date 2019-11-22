@@ -9,19 +9,20 @@ msgstr ""
 "Project-Id-Version: Odoo Server 11.0\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2018-03-02 10:22+0000\n"
-"PO-Revision-Date: 2018-03-02 10:22+0000\n"
-"Last-Translator: OCA Transbot <transbot@odoo-community.org>, 2018\n"
+"PO-Revision-Date: 2019-11-21 16:31+0000\n"
+"Last-Translator: Roodin <santi@comunitea.com>\n"
 "Language-Team: Spanish (https://www.transifex.com/oca/teams/23907/es/)\n"
 "Language: es\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
-"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: Weblate 3.8\n"
 
 #. module: sale_invoice_group_method
 #: model:ir.model,name:sale_invoice_group_method.model_res_partner
 msgid "Contact"
-msgstr ""
+msgstr "Contacto"
 
 #. module: sale_invoice_group_method
 #: model:ir.model.fields,field_description:sale_invoice_group_method.field_sale_invoice_group_method__create_uid
@@ -36,13 +37,13 @@ msgstr "Creado el"
 #. module: sale_invoice_group_method
 #: model:ir.model.fields,field_description:sale_invoice_group_method.field_sale_invoice_group_method__criteria_fields_ids
 msgid "Criteria fields"
-msgstr ""
+msgstr "Campos criterio"
 
 #. module: sale_invoice_group_method
 #: model:ir.model.fields,field_description:sale_invoice_group_method.field_res_partner__invoice_group_method_id
 #: model:ir.model.fields,field_description:sale_invoice_group_method.field_res_users__invoice_group_method_id
 msgid "Default Invoice Group Method"
-msgstr ""
+msgstr "Método de agrupación de facturas por defecto"
 
 #. module: sale_invoice_group_method
 #: model:ir.model.fields,field_description:sale_invoice_group_method.field_sale_invoice_group_method__display_name
@@ -52,12 +53,12 @@ msgstr "Nombre mostrado"
 #. module: sale_invoice_group_method
 #: model:ir.model,name:sale_invoice_group_method.model_ir_model_fields
 msgid "Fields"
-msgstr ""
+msgstr "Campos"
 
 #. module: sale_invoice_group_method
 #: model_terms:ir.ui.view,arch_db:sale_invoice_group_method.sale_invoice_group_method_search_view
 msgid "Group By..."
-msgstr ""
+msgstr "Agrupar por..."
 
 #. module: sale_invoice_group_method
 #: model:ir.model.fields,field_description:sale_invoice_group_method.field_sale_invoice_group_method__id
@@ -67,18 +68,18 @@ msgstr "ID"
 #. module: sale_invoice_group_method
 #: model:ir.model.fields,field_description:sale_invoice_group_method.field_sale_invoice_group_method__name
 msgid "Invoice Group"
-msgstr ""
+msgstr "Agrupación de facturas"
 
 #. module: sale_invoice_group_method
 #: model:ir.model.fields,field_description:sale_invoice_group_method.field_sale_order__invoice_group_method_id
 #: model:ir.ui.menu,name:sale_invoice_group_method.menu_invoice_group_method
 msgid "Invoice Group Method"
-msgstr ""
+msgstr "Método de agrupación de facturas"
 
 #. module: sale_invoice_group_method
 #: model_terms:ir.ui.view,arch_db:sale_invoice_group_method.sale_invoice_group_method_form_view
 msgid "Invoice Groups"
-msgstr ""
+msgstr "Agrupación de facturas"
 
 #. module: sale_invoice_group_method
 #: model:ir.model.fields,field_description:sale_invoice_group_method.field_sale_invoice_group_method____last_update
@@ -109,12 +110,12 @@ msgstr "Nombre"
 #: model:ir.actions.act_window,name:sale_invoice_group_method.sale_invoice_group_method_action
 #: model:ir.model,name:sale_invoice_group_method.model_sale_invoice_group_method
 msgid "Sale Invoice Group Method"
-msgstr ""
+msgstr "Método de agrupación de facturas de venta"
 
 #. module: sale_invoice_group_method
 #: model:ir.model,name:sale_invoice_group_method.model_sale_order
 msgid "Sale Order"
-msgstr ""
+msgstr "Venta"
 
 #~ msgid "Quotation"
 #~ msgstr "Quotation"

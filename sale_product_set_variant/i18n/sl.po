@@ -1,0 +1,140 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# * sale_product_set_variant
+#
+# Translators:
+# OCA Transbot <transbot@odoo-community.org>, 2018
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 11.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2018-01-23 03:41+0000\n"
+"PO-Revision-Date: 2018-01-23 03:41+0000\n"
+"Last-Translator: OCA Transbot <transbot@odoo-community.org>, 2018\n"
+"Language-Team: Slovenian (https://www.transifex.com/oca/teams/23907/sl/)\n"
+"Language: sl\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: nplurals=4; plural=(n%100==1 ? 0 : n%100==2 ? 1 : n%100==3 || n"
+"%100==4 ? 2 : 3);\n"
+
+#. module: sale_product_set_variant
+#: model:ir.model.fields,field_description:sale_product_set_variant.field_product_set_add_line__create_uid
+msgid "Created by"
+msgstr "Ustvaril"
+
+#. module: sale_product_set_variant
+#: model:ir.model.fields,field_description:sale_product_set_variant.field_product_set_add_line__create_date
+msgid "Created on"
+msgstr "Ustvarjeno"
+
+#. module: sale_product_set_variant
+#: model:ir.model.fields,field_description:sale_product_set_variant.field_product_set_add_line__display_name
+msgid "Display Name"
+msgstr "Prikazni naziv"
+
+#. module: sale_product_set_variant
+#: model:ir.model.fields,field_description:sale_product_set_variant.field_product_set_add_line__id
+msgid "ID"
+msgstr "ID"
+
+#. module: sale_product_set_variant
+#: model:ir.model.fields,field_description:sale_product_set_variant.field_product_set_add_line____last_update
+msgid "Last Modified on"
+msgstr "Zadnjič spremenjeno"
+
+#. module: sale_product_set_variant
+#: model:ir.model.fields,field_description:sale_product_set_variant.field_product_set_add_line__write_uid
+msgid "Last Updated by"
+msgstr "Zadnji posodobil"
+
+#. module: sale_product_set_variant
+#: model:ir.model.fields,field_description:sale_product_set_variant.field_product_set_add_line__write_date
+msgid "Last Updated on"
+msgstr "Zadnjič posodobljeno"
+
+#. module: sale_product_set_variant
+#: code:addons/sale_product_set_variant/wizard/product_set_add.py:118
+#, python-format
+msgid "Please select the appropriate product variants for product {}"
+msgstr ""
+
+#. module: sale_product_set_variant
+#: model:ir.model.fields,field_description:sale_product_set_variant.field_product_set_line__product_id
+msgid "Product"
+msgstr "Proizvod"
+
+#. module: sale_product_set_variant
+#: model:ir.model.fields,field_description:sale_product_set_variant.field_product_set_add_line__product_template_id
+#: model:ir.model.fields,field_description:sale_product_set_variant.field_product_set_line__product_template_id
+#, fuzzy
+#| msgid "Product set line"
+msgid "Product Template"
+msgstr "Postavka sklopa proizvodov"
+
+#. module: sale_product_set_variant
+#: code:addons/sale_product_set_variant/wizard/product_set_add.py:80
+#, python-format
+msgid "Product Template is not selected in Product Set"
+msgstr ""
+
+#. module: sale_product_set_variant
+#: model:ir.model,name:sale_product_set_variant.model_product_set_add_line
+#, fuzzy
+#| msgid "Product set line"
+msgid "Product add line"
+msgstr "Postavka sklopa proizvodov"
+
+#. module: sale_product_set_variant
+#: model:ir.model.fields,field_description:sale_product_set_variant.field_product_set_add__product_set_id
+#, fuzzy
+#| msgid "Products"
+msgid "Product set"
+msgstr "Proizvodi"
+
+#. module: sale_product_set_variant
+#: model:ir.model,name:sale_product_set_variant.model_product_set_line
+msgid "Product set line"
+msgstr "Postavka sklopa proizvodov"
+
+#. module: sale_product_set_variant
+#: model:ir.model.fields,field_description:sale_product_set_variant.field_product_set_add__set_line_ids
+#: model:ir.model.fields,field_description:sale_product_set_variant.field_product_set_add_line__product_variant_ids
+msgid "Products"
+msgstr "Proizvodi"
+
+#. module: sale_product_set_variant
+#: model:ir.model.fields,field_description:sale_product_set_variant.field_product_set_add_line__quantity
+msgid "Quantity"
+msgstr "Količina"
+
+#. module: sale_product_set_variant
+#: model:ir.model.fields,field_description:sale_product_set_variant.field_product_set_add_line__sequence
+msgid "Sequence"
+msgstr "Zaporedje"
+
+#. module: sale_product_set_variant
+#: model:ir.model.fields,field_description:sale_product_set_variant.field_product_set_add_line__product_set_id
+msgid "Set"
+msgstr "Sklop"
+
+#. module: sale_product_set_variant
+#: model:ir.model.fields,field_description:sale_product_set_variant.field_product_set_add_line__source_line_id
+msgid "Source Line"
+msgstr ""
+
+#. module: sale_product_set_variant
+#: model:ir.model.fields,field_description:sale_product_set_variant.field_product_set_line__product_variant_ids
+msgid "Variant"
+msgstr ""
+
+#. module: sale_product_set_variant
+#: model:ir.model.fields,field_description:sale_product_set_variant.field_product_set_add_line__wiz_id
+msgid "Wiz"
+msgstr ""
+
+#. module: sale_product_set_variant
+#: model:ir.model,name:sale_product_set_variant.model_product_set_add
+msgid "Wizard model to add product set into a quotation"
+msgstr ""
