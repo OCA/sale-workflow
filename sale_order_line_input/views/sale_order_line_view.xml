@@ -16,8 +16,8 @@
                force_save="1"
                options='{"no_open": True, "no_create": True}'/>
         <button name="action_sale_order_form" string="Open Sale Order" type="object" icon="fa-external-link" class="oe_stat_button"/>
-        <field name="order_partner_id"  domain="[('customer','=',True)]"
-               context="{'search_default_customer':1, 'show_address': 1}"
+        <field name="order_partner_id"
+               context="{'show_address': 1}"
                options='{"always_reload": True}'
                required="1"
                attrs="{'readonly': [('order_partner_id', '!=', False), ('order_id', '!=', False)]}"/>
@@ -27,31 +27,37 @@
                context="{'partner_id':order_partner_id, 'quantity':product_uom_qty, 'pricelist':pricelist_id, 'uom':product_uom, 'company_id': company_id}"
         />
         <field name="name"
-               attrs="{'readonly': [('state', 'in', ('done', 'cancel'))]}"/>
-        <field name="product_uom_qty" sum="Ordered"
+               optional="show"
+               attrs="{'readonly': [('state', 'in', ('done', 'cancel'))]}" />
+        <field name="product_uom_qty"
+               sum="Ordered"
                string="Ordered Qty"
                context="{'partner_id':order_partner_id, 'quantity':product_uom_qty, 'pricelist':pricelist_id, 'uom':product_uom, 'company_id': company_id}"
                attrs="{'readonly': [('state', 'in', ('done', 'cancel'))]}"/>
-        <field name="qty_delivered" sum="Delivered" attrs="{'readonly': [('qty_delivered_method', '!=', 'manual')]}"/>
-        <field name="qty_invoiced" sum="Invoiced"/>
-        <field name="qty_to_invoice" sum="To Invoice"/>
+        <field name="qty_delivered" optional="show" sum="Delivered" attrs="{'readonly': [('qty_delivered_method', '!=', 'manual')]}"/>
+        <field name="qty_invoiced" optional="show" sum="Invoiced"/>
+        <field name="qty_to_invoice" optional="show" sum="To Invoice"/>
         <field name="product_uom"
+               optional="show"
                attrs="{'readonly': [('state', 'in', ('sale','done', 'cancel'))]}"
                context="{'company_id': company_id}"
                groups="uom.group_uom" options='{"no_open": True}'/>
         <field name="analytic_tag_ids"
+               optional="show"
                attrs="{'readonly': [('state', 'in', ('done', 'cancel'))]}"
                groups="analytic.group_analytic_accounting" widget="many2many_tags" options="{'color_field': 'color'}"/>
         <field name="price_unit"
                attrs="{'readonly': ['|', ('qty_invoiced', '&gt;', 0), ('state', 'in', ('done', 'cancel'))]}"/>
         <field name="tax_id" widget="many2many_tags" options="{'no_create': True}" domain="[('type_tax_use','=','sale'),('company_id','=',company_id)]"
+               optional="show"
                invisible="context.get('tax_hide', False)"
                attrs="{'readonly': ['|', ('qty_invoiced', '&gt;', 0), ('state', 'in', ('done', 'cancel'))]}"/>
         <field name="discount"
+               optional="show"
                attrs="{'readonly': [('state', 'in', ('done', 'cancel'))]}"
                groups="sale.group_discount_per_so_line"/>
-        <field name="price_subtotal" widget="monetary" groups="account.group_show_line_subtotals_tax_excluded"/>
-        <field name="price_total" widget="monetary" groups="account.group_show_line_subtotals_tax_included"/>
+        <field name="price_subtotal" widget="monetary" optional="show" groups="account.group_show_line_subtotals_tax_excluded"/>
+        <field name="price_total" widget="monetary" optional="show" groups="account.group_show_line_subtotals_tax_included"/>
         <field name="product_updatable" invisible="1"/>
         <field name="qty_delivered_method" invisible="1"/>
         <field name="state" invisible="1"/>
@@ -60,6 +66,7 @@
         <field name="currency_id" invisible="1"/>
         <field name="pricelist_id" invisible="1"/>
         <field name="company_id" invisible="1"/>
+        <field name="product_uom_category_id" invisible="1"/>
       </tree>
     </field>
   </record>
@@ -88,7 +95,6 @@
     <field name="name">Sales Orders Lines</field>
     <field name="type">ir.actions.act_window</field>
     <field name="res_model">sale.order.line</field>
-    <field name="view_type">form</field>
     <field name="view_mode">tree,form,pivot,graph</field>
     <field name="view_id" ref="view_sales_order_line_input_tree"/>
   </record>
