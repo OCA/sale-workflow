@@ -43,6 +43,7 @@ setuptools.setup(
         'odoo12-addon-sale_order_secondary_unit',
         'odoo12-addon-sale_order_type',
         'odoo12-addon-sale_partner_incoterm',
+        'odoo12-addon-sale_procurement_group_by_line',
         'odoo12-addon-sale_product_multi_add',
         'odoo12-addon-sale_product_set',
         'odoo12-addon-sale_product_set_variant',
