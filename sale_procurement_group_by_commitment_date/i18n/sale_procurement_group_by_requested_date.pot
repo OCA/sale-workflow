@@ -1,6 +1,6 @@
 # Translation of Odoo Server.
 # This file contains the translation of the following modules:
-#	* sale_procurement_group_by_requested_date
+#	* sale_procurement_group_by_commitment_date
 #
 msgid ""
 msgstr ""
@@ -13,13 +13,13 @@ msgstr ""
 "Content-Transfer-Encoding: \n"
 "Plural-Forms: \n"
 
-#. module: sale_procurement_group_by_requested_date
-#: model:ir.model,name:sale_procurement_group_by_requested_date.model_sale_order
+#. module: sale_procurement_group_by_commitment_date
+#: model:ir.model,name:sale_procurement_group_by_commitment_date.model_sale_order
 msgid "Sales Order"
 msgstr ""
 
-#. module: sale_procurement_group_by_requested_date
-#: model:ir.model,name:sale_procurement_group_by_requested_date.model_sale_order_line
+#. module: sale_procurement_group_by_commitment_date
+#: model:ir.model,name:sale_procurement_group_by_commitment_date.model_sale_order_line
 msgid "Sales Order Line"
 msgstr ""
 

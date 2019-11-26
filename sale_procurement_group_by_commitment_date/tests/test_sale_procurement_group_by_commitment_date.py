@@ -7,14 +7,14 @@ from odoo import fields
 import datetime
 
 
-class TestSaleMultiPickingByRequestedDate(TransactionCase):
+class TestSaleMultiPickingByCommitmentDate(TransactionCase):
     """Check the _get_shipped method of Sale Order. """
 
     def setUp(self):
         """Setup a Sale Order with 4 lines.
         And prepare procurements
         """
-        super(TestSaleMultiPickingByRequestedDate, self).setUp()
+        super(TestSaleMultiPickingByCommitmentDate, self).setUp()
         sale_obj = self.env['sale.order']
         self.move_ob = self.env['stock.move']
         self.proc_group_obj = self.env['procurement.group']
@@ -97,10 +97,10 @@ class TestSaleMultiPickingByRequestedDate(TransactionCase):
     def test_number_of_groups(self):
         """True when the number of groups created matches the
         result of multiply the different warehouses with the different
-        requested dates"""
+        commitment dates"""
         self.sale1.action_confirm()
-        req_date = fields.Date.to_string(self.dt1)
-        g_name = self.sale1.name + '/' + req_date
+        com_date = fields.Date.to_string(self.dt1)
+        g_name = self.sale1.name + '/' + com_date
         groups = self.proc_group_obj.search([('name', '=', g_name)])
 
         for group in groups:
@@ -110,8 +110,8 @@ class TestSaleMultiPickingByRequestedDate(TransactionCase):
                 self.assertEqual(len(procurements), 2)
         self.assertEqual(len(groups), 1)
 
-        req_date2 = fields.Date.to_string(self.dt2)
-        g_name = self.sale1.name + '/' + req_date2
+        com_date2 = fields.Date.to_string(self.dt2)
+        g_name = self.sale1.name + '/' + com_date2
         groups = self.proc_group_obj.search([('name', '=', g_name)])
 
         for group in groups:
@@ -122,7 +122,7 @@ class TestSaleMultiPickingByRequestedDate(TransactionCase):
         self.assertEqual(len(groups), 1)
 
         self.sale2.action_confirm()
-        g_name = self.sale2.name + '/' + req_date
+        g_name = self.sale2.name + '/' + com_date
         groups = self.proc_group_obj.search([('name', '=', g_name)])
         for group in groups:
             if group.name == g_name:

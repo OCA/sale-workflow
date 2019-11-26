@@ -2,11 +2,11 @@
    :target: https://www.gnu.org/licenses/agpl
    :alt: License: AGPL-3
 
-========================================
-Sale Procurement Group by Requested Date
-========================================
+=========================================
+Sale Procurement Group by Commitment Date
+=========================================
 
-This module creates different procurements groups for different requested
+This module creates different procurements groups for different commitment
 dates in a sale order line when the sale order is confirmed.
 
 Installation
@@ -30,7 +30,7 @@ Known issues / Roadmap
 ======================
 
 This module is not compatible with sale_delivery_split_date. A glue module will be needed
-to install sale_delivery_split_date and sale_procurement_group_by_requested_date.
+to install sale_delivery_split_date and sale_procurement_group_by_commitment_date.
 This is an already known issue:
 https://github.com/OCA/sale-workflow/issues/717#issuecomment-430231334
 
