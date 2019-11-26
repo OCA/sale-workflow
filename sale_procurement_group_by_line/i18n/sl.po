@@ -20,19 +20,18 @@ msgstr ""
 "%100==4 ? 2 : 3);\n"
 
 #. module: sale_procurement_group_by_line
-#: model:ir.model.fields,field_description:sale_procurement_group_by_line.field_sale_order_line_procurement_group_id
+#: model:ir.model.fields,field_description:sale_procurement_group_by_line.field_sale_order_line__procurement_group_id
 msgid "Procurement group"
 msgstr ""
 
 #. module: sale_procurement_group_by_line
 #: model:ir.model,name:sale_procurement_group_by_line.model_sale_order
-msgid "Quotation"
-msgstr ""
+#, fuzzy
+#| msgid "Sales Order"
+msgid "Sale Order"
+msgstr "Prodajni nalog"
 
 #. module: sale_procurement_group_by_line
 #: model:ir.model,name:sale_procurement_group_by_line.model_sale_order_line
 msgid "Sales Order Line"
 msgstr "Postavka prodajnega naloga"
-
-#~ msgid "Sales Order"
-#~ msgstr "Prodajni nalog"
