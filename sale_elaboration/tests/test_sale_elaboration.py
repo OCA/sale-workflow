@@ -1,11 +1,10 @@
 # Copyright 2018 Tecnativa - Sergio Teruel
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
-from odoo.tests import SavepointCase
+from odoo.tests import SavepointCase, tagged
 
 
+@tagged('post_install', '-at_install')
 class TestSaleElaboration(SavepointCase):
-    at_install = False
-    post_install = True
 
     @classmethod
     def setUpClass(cls):
