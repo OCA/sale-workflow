@@ -4,7 +4,7 @@
     'name': 'Sale Elaboration',
     'summary': 'Set an elaboration for any sale line',
     'version': '12.0.1.0.0',
-    'development_status': 'Beta',
+    'development_status': 'Production/Stable',
     'category': 'Sale',
     'website': 'https://github.com/OCA/sale-workflow',
     'author': 'Tecnativa, Odoo Community Association (OCA)',
