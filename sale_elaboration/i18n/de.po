@@ -1,6 +1,6 @@
 # Translation of Odoo Server.
 # This file contains the translation of the following modules:
-#	* sale_elaboration
+# 	* sale_elaboration
 #
 msgid ""
 msgstr ""
@@ -17,17 +17,17 @@ msgstr ""
 "X-Generator: Weblate 3.7.1\n"
 
 #. module: sale_elaboration
-#: model:ir.ui.view,arch_db:sale_elaboration.report_delivery_document
+#: model_terms:ir.ui.view,arch_db:sale_elaboration.report_delivery_document
 msgid "<strong>Elab.</strong>"
 msgstr ""
 
 #. module: sale_elaboration
-#: model:ir.ui.view,arch_db:sale_elaboration.report_delivery_document
+#: model_terms:ir.ui.view,arch_db:sale_elaboration.report_delivery_document
 msgid "<strong>Elaboration</strong>"
 msgstr ""
 
 #. module: sale_elaboration
-#: model:ir.ui.view,arch_db:sale_elaboration.view_sales_order_line_filter
+#: model_terms:ir.ui.view,arch_db:sale_elaboration.view_sales_order_line_filter
 msgid "After Date"
 msgstr ""
 
@@ -37,88 +37,88 @@ msgid "Code must be unique!"
 msgstr ""
 
 #. module: sale_elaboration
-#: model:ir.model.fields,field_description:sale_elaboration.field_product_elaboration_create_uid
+#: model:ir.model.fields,field_description:sale_elaboration.field_product_elaboration__create_uid
 msgid "Created by"
 msgstr "Erstellt von"
 
 #. module: sale_elaboration
-#: model:ir.model.fields,field_description:sale_elaboration.field_product_elaboration_create_date
+#: model:ir.model.fields,field_description:sale_elaboration.field_product_elaboration__create_date
 msgid "Created on"
 msgstr "Erstellt am"
 
 #. module: sale_elaboration
-#: model:ir.model.fields,field_description:sale_elaboration.field_sale_order_line_confirmation_date
+#: model:ir.model.fields,field_description:sale_elaboration.field_sale_order_line__confirmation_date
 msgid "Date"
 msgstr ""
 
 #. module: sale_elaboration
-#: model:ir.model.fields,help:sale_elaboration.field_sale_order_line_confirmation_date
+#: model:ir.model.fields,help:sale_elaboration.field_sale_order_line__confirmation_date
 msgid "Date on which the sales order is confirmed."
 msgstr ""
 
 #. module: sale_elaboration
-#: model:ir.model.fields,field_description:sale_elaboration.field_product_elaboration_display_name
+#: model:ir.model.fields,field_description:sale_elaboration.field_product_elaboration__display_name
 msgid "Display Name"
 msgstr "Anzeigename"
 
 #. module: sale_elaboration
-#: model:ir.model.fields,field_description:sale_elaboration.field_sale_order_line_elaboration_id
-#: model:ir.ui.view,arch_db:sale_elaboration.elaboration_view_search
-#: model:ir.ui.view,arch_db:sale_elaboration.view_sales_order_line_filter
+#: model:ir.model.fields,field_description:sale_elaboration.field_sale_order_line__elaboration_id
+#: model_terms:ir.ui.view,arch_db:sale_elaboration.elaboration_view_search
+#: model_terms:ir.ui.view,arch_db:sale_elaboration.view_sales_order_line_filter
 msgid "Elaboration"
 msgstr ""
 
 #. module: sale_elaboration
-#: model:ir.model.fields,field_description:sale_elaboration.field_sale_order_line_elaboration_note
+#: model:ir.model.fields,field_description:sale_elaboration.field_sale_order_line__elaboration_note
 msgid "Elaboration Note"
 msgstr ""
 
 #. module: sale_elaboration
-#: model:ir.ui.view,arch_db:sale_elaboration.elaboration_view_form
-#: model:ir.ui.view,arch_db:sale_elaboration.elaboration_view_tree
-#: model:ir.ui.view,arch_db:sale_elaboration.report_elaboration_view_tree
+#: model_terms:ir.ui.view,arch_db:sale_elaboration.elaboration_view_form
+#: model_terms:ir.ui.view,arch_db:sale_elaboration.elaboration_view_tree
+#: model_terms:ir.ui.view,arch_db:sale_elaboration.report_elaboration_view_tree
 msgid "Elaborations"
 msgstr ""
 
 #. module: sale_elaboration
-#: model:ir.ui.view,arch_db:sale_elaboration.elaboration_view_search
+#: model_terms:ir.ui.view,arch_db:sale_elaboration.elaboration_view_search
 msgid "Elaborations Search"
 msgstr ""
 
 #. module: sale_elaboration
-#: model:ir.model.fields,field_description:sale_elaboration.field_product_elaboration_id
+#: model:ir.model.fields,field_description:sale_elaboration.field_product_elaboration__id
 msgid "ID"
 msgstr "ID"
 
 #. module: sale_elaboration
-#: model:ir.model.fields,field_description:sale_elaboration.field_sale_order_line_is_elaboration
-#: model:ir.ui.view,arch_db:sale_elaboration.view_sales_order_line_filter
+#: model:ir.model.fields,field_description:sale_elaboration.field_sale_order_line__is_elaboration
+#: model_terms:ir.ui.view,arch_db:sale_elaboration.view_sales_order_line_filter
 msgid "Is Elaboration"
 msgstr ""
 
 #. module: sale_elaboration
-#: model:ir.model.fields,field_description:sale_elaboration.field_product_product_is_elaboration
-#: model:ir.model.fields,field_description:sale_elaboration.field_product_template_is_elaboration
+#: model:ir.model.fields,field_description:sale_elaboration.field_product_product__is_elaboration
+#: model:ir.model.fields,field_description:sale_elaboration.field_product_template__is_elaboration
 msgid "Is elaboration"
 msgstr ""
 
 #. module: sale_elaboration
-#: model:ir.model.fields,field_description:sale_elaboration.field_product_elaboration___last_update
+#: model:ir.model.fields,field_description:sale_elaboration.field_product_elaboration____last_update
 msgid "Last Modified on"
 msgstr "Zuletzt geändert am"
 
 #. module: sale_elaboration
-#: model:ir.model.fields,field_description:sale_elaboration.field_product_elaboration_write_uid
+#: model:ir.model.fields,field_description:sale_elaboration.field_product_elaboration__write_uid
 msgid "Last Updated by"
 msgstr "Zuletzt aktualisiert von"
 
 #. module: sale_elaboration
-#: model:ir.model.fields,field_description:sale_elaboration.field_product_elaboration_write_date
+#: model:ir.model.fields,field_description:sale_elaboration.field_product_elaboration__write_date
 msgid "Last Updated on"
 msgstr "Zuletzt aktualisiert am"
 
 #. module: sale_elaboration
-#: model:ir.model.fields,field_description:sale_elaboration.field_product_elaboration_name
+#: model:ir.model.fields,field_description:sale_elaboration.field_product_elaboration__name
 msgid "Name"
 msgstr "Bezeichnung"
 
@@ -128,7 +128,7 @@ msgid "Name must be unique!"
 msgstr ""
 
 #. module: sale_elaboration
-#: model:ir.model.fields,field_description:sale_elaboration.field_product_elaboration_product_id
+#: model:ir.model.fields,field_description:sale_elaboration.field_product_elaboration__product_id
 msgid "Product"
 msgstr "Produkt"
 
@@ -138,9 +138,11 @@ msgid "Product Template"
 msgstr "Produktvorlage"
 
 #. module: sale_elaboration
-#: model:ir.model,name:sale_elaboration.model_sale_order
-msgid "Quotation"
-msgstr "Angebot"
+#: model:ir.model,name:sale_elaboration.model_product_elaboration
+#, fuzzy
+#| msgid "Product Template"
+msgid "Product elaborations"
+msgstr "Produktvorlage"
 
 #. module: sale_elaboration
 #: model:ir.actions.act_window,name:sale_elaboration.sale_elaboration_action_form
@@ -155,12 +157,17 @@ msgid "Sale Elaboration Report"
 msgstr ""
 
 #. module: sale_elaboration
+#: model:ir.model,name:sale_elaboration.model_sale_order
+msgid "Sale Order"
+msgstr ""
+
+#. module: sale_elaboration
 #: model:ir.model,name:sale_elaboration.model_sale_order_line
 msgid "Sales Order Line"
 msgstr ""
 
 #. module: sale_elaboration
-#: model:ir.model.fields,field_description:sale_elaboration.field_product_elaboration_code
+#: model:ir.model.fields,field_description:sale_elaboration.field_product_elaboration__code
 msgid "Short Code"
 msgstr ""
 
@@ -169,7 +176,5 @@ msgstr ""
 msgid "Transfer"
 msgstr ""
 
-#. module: sale_elaboration
-#: model:ir.model,name:sale_elaboration.model_product_elaboration
-msgid "product.elaboration"
-msgstr ""
+#~ msgid "Quotation"
+#~ msgstr "Angebot"
