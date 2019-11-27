@@ -40,7 +40,7 @@
                 <separator/>
             </field>
             <group position="inside">
-                <filter string="Elaboration" context="{'group_by':'elaboration_id'}"/>
+                <filter string="Elaboration" context="{'group_by':'elaboration_id'}" name="elaboration_grouped"/>
             </group>
         </field>
     </record>
