@@ -64,7 +64,6 @@ class SaleOrderLine(models.Model):
     def onchange_elaboration_id(self):
         self.elaboration_note = self.elaboration_id.name
 
-    @api.multi
     def _prepare_invoice_line(self, qty):
         vals = super()._prepare_invoice_line(qty)
         if self.is_elaboration:
