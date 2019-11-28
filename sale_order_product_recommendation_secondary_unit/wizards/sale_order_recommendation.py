@@ -6,30 +6,6 @@ from odoo.addons import decimal_precision as dp
 from odoo.tools.float_utils import float_compare, float_round
 
 
-class SaleOrderRecommendation(models.TransientModel):
-    _inherit = 'sale.order.recommendation'
-
-    @api.model
-    def _prepare_wizard_line(self, vals, order_line=False):
-        res = super()._prepare_wizard_line(vals, order_line)
-        secondary_uom_id = (
-            order_line and order_line.secondary_uom_id or
-            vals.get('product_id') and
-            vals['product_id'].sale_secondary_uom_id)
-        secondary_uom_qty = False
-        if not order_line and secondary_uom_id:
-            factor = secondary_uom_id.factor
-            secondary_uom_qty = (
-                res.get('units_included', 0) / (factor or 1.0))
-            res['units_included'] = secondary_uom_qty * secondary_uom_id.factor
-        res.update({
-            'secondary_uom_id': secondary_uom_id and secondary_uom_id.id,
-            'secondary_uom_qty': (order_line and order_line.secondary_uom_qty
-                                  or secondary_uom_qty),
-        })
-        return res
-
-
 class SaleOrderRecommendationLine(models.TransientModel):
     _inherit = 'sale.order.recommendation.line'
 
@@ -92,3 +68,14 @@ class SaleOrderRecommendationLine(models.TransientModel):
                 'secondary_uom_qty': self.secondary_uom_qty,
             })
         return res
+
+    def _trigger_so_line_onchanges(self, so_line):
+        """We need to recompute secondary uom qty from the units in the line"""
+        secondary_uom_id = self.secondary_uom_id
+        so_line = super()._trigger_so_line_onchanges(so_line)
+        if secondary_uom_id and self.secondary_uom_qty:
+            # Prevent product defaults
+            if so_line.secondary_uom_id != secondary_uom_id:
+                so_line.secondary_uom_id = secondary_uom_id
+            so_line.onchange_secondary_unit_product_uom_qty()
+        return so_line
