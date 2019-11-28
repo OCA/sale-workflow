@@ -16,7 +16,9 @@ class ProductSetAdd(models.TransientModel):
     )
     partner_id = fields.Many2one(related='order_id.partner_id')
     product_set_id = fields.Many2one(
-        'product.set', 'Product set', required=True)
+        'product.set', 'Product set',
+        required=True,
+        ondelete='cascade')
     quantity = fields.Float(
         digits=dp.get_precision('Product Unit of Measure'), required=True,
         default=1)
