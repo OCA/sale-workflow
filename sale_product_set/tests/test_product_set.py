@@ -56,6 +56,18 @@ class TestProductSet(common.SavepointCase):
         self.assertTrue(max([v for k, v in sequence.items()]) <
                         seq_line1 < seq_line2 < seq_line3)
 
+    def test_delete_set(self):
+        so = self.env.ref('sale.sale_order_6')
+        product_set = self.env.ref(
+            'sale_product_set.product_set_i5_computer')
+        # Simulation the opening of the wizard and adding a set on the
+        # current sale order
+        so_set = self.product_set_add.with_context(
+            active_id=so.id).create({'product_set_id': product_set.id,
+                                     'quantity': 2})
+        product_set.unlink()
+        self.assertFalse(so_set.exists())
+
     def test_add_set_on_empty_so(self):
         so = self.sale_order.create({
             'partner_id': self.ref('base.res_partner_1')})
