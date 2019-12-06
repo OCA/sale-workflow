@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="view_order_form" model="ir.ui.view">
+        <field name="name">sale.order.form - open qty fields</field>
+        <field name="model">sale.order</field>
+        <field name="inherit_id" ref="sale.view_order_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='order_line']/tree/field[@name='qty_delivered']" position="after">
+                <field name="qty_to_deliver" invisible="not context.get('show_sale', False)"/>
+            </xpath>
+        </field>
+    </record>
+
+    <record id="view_sale_order_filter_todeliver" model="ir.ui.view">
+        <field name="name">request.quotation.select - open qty filters</field>
+        <field name="model">sale.order</field>
+        <field name="inherit_id" ref="sale.sale_order_view_search_inherit_sale"/>
+        <field name="arch" type="xml">
+            <filter name="sales" position="after">
+                <filter name="qty_to_deliver"
+                        string="To deliver"
+                        domain="[('qty_to_deliver','>',0.0)]"/>
+            </filter>
+        </field>
+    </record>
+
+    <record id="view_sale_order_filter_delivered" model="ir.ui.view">
+        <field name="name">request.quotation.select - delivered qty filters</field>
+        <field name="model">sale.order</field>
+        <field name="inherit_id" ref="sale.sale_order_view_search_inherit_sale"/>
+        <field name="arch" type="xml">
+            <filter name="sales" position="after">
+                <filter name="qty_delivered"
+                        string="Delivered"
+                        domain="[('qty_to_deliver','=',0.0)]"/>
+            </filter>
+        </field>
+    </record>
+
+    <record id="view_sales_order_line_filter_todeliver" model="ir.ui.view">
+        <field name="name">sale.order.line.search - open qty filters</field>
+        <field name="model">sale.order.line</field>
+        <field name="inherit_id" ref="sale.view_sales_order_line_filter"/>
+        <field name="arch" type="xml">
+            <filter name="invoice_related" position="after">
+                <filter name="qty_to_deliver"
+                        string="To deliver"
+                        domain="[('qty_to_deliver','>',0.0)]"/>
+            </filter>
+        </field>
+    </record>
+
+    <record id="view_sales_order_line_filter_delivered" model="ir.ui.view">
+        <field name="name">sale.order.line.search - delivered qty filters</field>
+        <field name="model">sale.order.line</field>
+        <field name="inherit_id" ref="sale.view_sales_order_line_filter"/>
+        <field name="arch" type="xml">
+            <filter name="invoice_related" position="after">
+                <filter name="qty_delivered"
+                        string="Delivered"
+                        domain="[('qty_delivered','>',0.0)]"/>
+            </filter>
+        </field>
+    </record>
+
+</odoo>
