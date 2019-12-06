@@ -394,7 +394,8 @@ according to the strategy
                 if self.multi_rule_strategy != 'cumulate':
                     discount = 0.0
                 discount += percent_discount
-                if self.rule_type == 'coupon':
+                if self.rule_type == 'coupon' and \
+                        self.discount_type == 'percentage':
                     v = {
                         'discount': discount,
                         'coupon_promotion_rule_id': self.id

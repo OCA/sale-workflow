@@ -407,3 +407,30 @@ class PromotionCase(TransactionCase, AbstractCommonPromotionCase):
         for line in self.sale.order_line:
             self.check_discount_rule_set(line, promo_copy)
         return
+
+    def test_promotion_fixed_plus_discount(self):
+        """
+        Apply a manual discount on a line and apply a coupon code with
+        fixed amount and combine strategy. Both should apply.
+        """
+        self.promotion_rule_auto.minimal_amount = 999999999  # disable
+        self.promotion_rule_fixed_amount.discount_type = "amount_tax_included"
+        self.promotion_rule_fixed_amount.multi_rule_strategy = "cumulate"
+        so_line = self.sale.order_line[0]
+        so_line.discount = 20.0
+        so_line.price_unit = 80.0
+        self.assertEquals(
+            710.0,
+            self.sale.amount_total
+        )
+        self.add_coupon_code(FIXED_AMOUNT_CODE)
+        self.sale.apply_promotions()
+        self.assertEquals(
+            20.0,
+            so_line.discount,
+        )
+        self.assertEquals(
+            690.0,
+            self.sale.amount_total
+        )
+        self.assertFalse(so_line.coupon_promotion_rule_id)
