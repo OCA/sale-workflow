@@ -12,13 +12,18 @@ class ProductSetAdd(models.TransientModel):
 
     order_id = fields.Many2one(
         'sale.order', 'Sale Order', required=True,
-        default=lambda self: self.env.context.get('active_id')
+        default=lambda self: self.env.context.get('active_id'),
+        ondelete='cascade'
     )
-    partner_id = fields.Many2one(related='order_id.partner_id')
+    partner_id = fields.Many2one(
+        related='order_id.partner_id',
+        ondelete='cascade'
+    )
     product_set_id = fields.Many2one(
         'product.set', 'Product set',
         required=True,
-        ondelete='cascade')
+        ondelete='cascade'
+    )
     quantity = fields.Float(
         digits=dp.get_precision('Product Unit of Measure'), required=True,
         default=1)
