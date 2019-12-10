@@ -30,6 +30,5 @@ class StockPicking(models.Model):
                     == -1
                 ):
                     move.quantity_done = move.product_qty
-            picking.with_context(
-                skip_overprocessed_check=True).button_validate()
+            picking.with_context(skip_overprocessed_check=True).button_validate()
         return True
