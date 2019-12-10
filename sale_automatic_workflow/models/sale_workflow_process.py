@@ -16,6 +16,7 @@ class SaleWorkflowProcess(models.Model):
     A workflow process may be linked with a Sales payment method, so
     each time a payment method is used, the workflow will be applied.
     """
+
     _name = "sale.workflow.process"
     _description = "Sale Workflow Process"
 
@@ -24,99 +25,94 @@ class SaleWorkflowProcess(models.Model):
         record = self.env.ref(xmlid, raise_if_not_found=False)
         if record:
             return record
-        return self.env['ir.filters'].browse()
+        return self.env["ir.filters"].browse()
 
     name = fields.Char()
     picking_policy = fields.Selection(
-        selection=[('direct', 'Deliver each product when available'),
-                   ('one', 'Deliver all products at once')],
-        string='Shipping Policy',
-        default='direct',
+        selection=[
+            ("direct", "Deliver each product when available"),
+            ("one", "Deliver all products at once"),
+        ],
+        string="Shipping Policy",
+        default="direct",
     )
-    validate_order = fields.Boolean(string='Validate Order')
+    validate_order = fields.Boolean(string="Validate Order")
     order_filter_domain = fields.Text(
-        string='Order Filter Domain',
-        related='order_filter_id.domain',
+        string="Order Filter Domain", related="order_filter_id.domain"
     )
-    create_invoice = fields.Boolean(string='Create Invoice')
+    create_invoice = fields.Boolean(string="Create Invoice")
     create_invoice_filter_domain = fields.Text(
-        string='Create Invoice Filter Domain',
-        related='create_invoice_filter_id.domain',
+        string="Create Invoice Filter Domain", related="create_invoice_filter_id.domain"
     )
-    validate_invoice = fields.Boolean(string='Validate Invoice')
+    validate_invoice = fields.Boolean(string="Validate Invoice")
     validate_invoice_filter_domain = fields.Text(
-        string='Validate Invoice Filter Domain',
-        related='validate_invoice_filter_id.domain',
+        string="Validate Invoice Filter Domain",
+        related="validate_invoice_filter_id.domain",
     )
-    validate_picking = fields.Boolean(string='Confirm and Transfer Picking')
+    validate_picking = fields.Boolean(string="Confirm and Transfer Picking")
     picking_filter_domain = fields.Text(
-        string='Picking Filter Domain',
-        related='picking_filter_id.domain',
+        string="Picking Filter Domain", related="picking_filter_id.domain"
     )
     invoice_date_is_order_date = fields.Boolean(
-        string='Force Invoice Date',
-        help="When checked, the invoice date will be "
-             "the same than the order's date"
+        string="Force Invoice Date",
+        help="When checked, the invoice date will be " "the same than the order's date",
     )
 
     invoice_service_delivery = fields.Boolean(
-        string='Invoice Service on delivery',
+        string="Invoice Service on delivery",
         help="If this box is checked, when the first invoice is created "
-             "The service sale order lines will be included and will be "
-             "marked as delivered"
+        "The service sale order lines will be included and will be "
+        "marked as delivered",
     )
-    sale_done = fields.Boolean(string='Sale Done')
+    sale_done = fields.Boolean(string="Sale Done")
     sale_done_filter_domain = fields.Text(
-        string='Sale Done Filter Domain',
-        related='sale_done_filter_id.domain',
+        string="Sale Done Filter Domain", related="sale_done_filter_id.domain"
     )
     warning = fields.Text(
-        'Warning Message', translate=True,
-        help='If set, displays the message when an user'
-        'selects the process on a sale order')
-    team_id = fields.Many2one(
-        comodel_name='crm.team',
-        string='Sales Team'
+        "Warning Message",
+        translate=True,
+        help="If set, displays the message when an user"
+        "selects the process on a sale order",
     )
+    team_id = fields.Many2one(comodel_name="crm.team", string="Sales Team")
     property_journal_id = fields.Many2one(
-        comodel_name='account.journal',
+        comodel_name="account.journal",
         company_dependent=True,
-        string='Sales Journal',
-        help='Set default journal to use on invoice'
+        string="Sales Journal",
+        help="Set default journal to use on invoice",
     )
     order_filter_id = fields.Many2one(
-        'ir.filters',
-        string='Order Filter',
+        "ir.filters",
+        string="Order Filter",
         default=lambda self: self._default_filter(
-            'sale_automatic_workflow.automatic_workflow_order_filter'
-        )
+            "sale_automatic_workflow.automatic_workflow_order_filter"
+        ),
     )
     picking_filter_id = fields.Many2one(
-        'ir.filters',
-        string='Picking Filter',
+        "ir.filters",
+        string="Picking Filter",
         default=lambda self: self._default_filter(
-            'sale_automatic_workflow.automatic_workflow_picking_filter'
-        )
+            "sale_automatic_workflow.automatic_workflow_picking_filter"
+        ),
     )
     create_invoice_filter_id = fields.Many2one(
-        'ir.filters',
-        string='Create Invoice Filter',
+        "ir.filters",
+        string="Create Invoice Filter",
         default=lambda self: self._default_filter(
-            'sale_automatic_workflow.automatic_workflow_create_invoice_filter'
-        )
+            "sale_automatic_workflow.automatic_workflow_create_invoice_filter"
+        ),
     )
     validate_invoice_filter_id = fields.Many2one(
-        'ir.filters',
-        string='Validate Invoice Filter',
+        "ir.filters",
+        string="Validate Invoice Filter",
         default=lambda self: self._default_filter(
-            'sale_automatic_workflow.'
-            'automatic_workflow_validate_invoice_filter'
-        )
+            "sale_automatic_workflow." "automatic_workflow_validate_invoice_filter"
+        ),
     )
     sale_done_filter_id = fields.Many2one(
-        'ir.filters',
-        string='Sale Done Filter',
+        "ir.filters",
+        string="Sale Done Filter",
         default=lambda self: self._default_filter(
-            'sale_automatic_workflow.automatic_workflow_sale_done_filter'
-        )
+            "sale_automatic_workflow.automatic_workflow_sale_done_filter"
+        ),
     )
