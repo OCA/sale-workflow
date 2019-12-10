@@ -56,6 +56,7 @@ setuptools.setup(
         'odoo12-addon-sale_stock_picking_note',
         'odoo12-addon-sale_stock_secondary_unit',
         'odoo12-addon-sale_stock_sourcing_address',
+        'odoo12-addon-sale_triple_discount',
         'odoo12-addon-sale_validity',
         'odoo12-addon-sales_team_security',
     ],
