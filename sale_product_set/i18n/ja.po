@@ -65,6 +65,11 @@ msgid "Created on"
 msgstr "作成日"
 
 #. module: sale_product_set
+#: model:ir.model.fields,field_description:sale_product_set.field_product_set_add__partner_id
+msgid "Customer"
+msgstr ""
+
+#. module: sale_product_set
 #: model:ir.model.fields,field_description:sale_product_set.field_product_set_line__discount
 msgid "Discount (%)"
 msgstr ""
@@ -75,6 +80,12 @@ msgstr ""
 #: model:ir.model.fields,field_description:sale_product_set.field_product_set_line__display_name
 msgid "Display Name"
 msgstr "表示名"
+
+#. module: sale_product_set
+#: model:ir.model.fields,help:sale_product_set.field_product_set_add__skip_existing_products
+msgid ""
+"Enable this to not add new lines for products already included in SO lines."
+msgstr ""
 
 #. module: sale_product_set
 #: model:ir.model.fields,field_description:sale_product_set.field_product_set__id
@@ -113,6 +124,12 @@ msgstr "最終更新日"
 #: model:ir.model.fields,field_description:sale_product_set.field_product_set__name
 msgid "Name"
 msgstr "名称"
+
+#. module: sale_product_set
+#: model:ir.model.fields,field_description:sale_product_set.field_product_set__partner_id
+#: model_terms:ir.ui.view,arch_db:sale_product_set.view_product_set_search
+msgid "Partner"
+msgstr ""
 
 #. module: sale_product_set
 #: model:ir.model.fields,field_description:sale_product_set.field_product_set_line__product_id
@@ -162,6 +179,17 @@ msgid "Quantity"
 msgstr ""
 
 #. module: sale_product_set
+#: model:ir.model.fields,field_description:sale_product_set.field_product_set_add__order_id
+msgid "Sale Order"
+msgstr ""
+
+#. module: sale_product_set
+#: code:addons/sale_product_set/wizard/product_set_add.py:39
+#, python-format
+msgid "Select a product set assigned to the same partner of the order."
+msgstr ""
+
+#. module: sale_product_set
 #: model:ir.model.fields,field_description:sale_product_set.field_product_set_line__sequence
 msgid "Sequence"
 msgstr ""
@@ -172,6 +200,23 @@ msgid "Set"
 msgstr ""
 
 #. module: sale_product_set
+#: model:ir.model.fields,field_description:sale_product_set.field_product_set_add__skip_existing_products
+msgid "Skip Existing Products"
+msgstr ""
+
+#. module: sale_product_set
 #: model:ir.model,name:sale_product_set.model_product_set_add
 msgid "Wizard model to add product set into a quotation"
+msgstr ""
+
+#. module: sale_product_set
+#: model:ir.model.fields,help:sale_product_set.field_product_set__partner_id
+msgid ""
+"You can attache the set to a specific partner or no one. If you don't "
+"specify one, it's going to be available for all of them."
+msgstr ""
+
+#. module: sale_product_set
+#: model:ir.model.fields,help:sale_product_set.field_product_set_add__partner_id
+msgid "You can find a customer by its Name, TIN, Email or Internal Reference."
 msgstr ""
