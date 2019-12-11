@@ -5,7 +5,7 @@
     'category': 'Sale',
     'license': 'AGPL-3',
     'author': 'Camptocamp, Odoo Community Association (OCA)',
-    'version': '12.0.1.0.0',
+    'version': '12.0.1.1.0',
     'website': 'https://github.com/OCA/sale-workflow',
     'summary': "Add variant management to sale product set.",
     'depends': [
@@ -17,5 +17,6 @@
     ],
     'demo': [
         'demo/product_set.xml',
+        'demo/product_product_demo.xml',
     ],
 }

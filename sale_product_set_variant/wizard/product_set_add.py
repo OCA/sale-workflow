@@ -96,19 +96,10 @@ class ProductSetAdd(models.TransientModel):
             'sequence': set_line.sequence
         }
 
-    @api.multi
-    def add_set(self):
-        """Add product set, multiplied by quantity in sale order line."""
-        self.ensure_one()
-        so_id = self.env.context.get('active_id')
-        if not so_id:
-            return
-        so = self.env['sale.order'].browse(so_id)
-        max_sequence = 0
-        if so.order_line:
-            max_sequence = max([line.sequence for line in so.order_line])
-        so_lines = []
-        for set_line in self.set_line_ids:
+    def _prepare_order_lines(self):
+        max_sequence = self._get_max_sequence()
+        order_lines = []
+        for set_line in self._get_lines():
             if not set_line.product_variant_ids:
                 variants = set_line.product_template_id.product_variant_ids
                 if len(variants) == 1:
@@ -120,24 +111,24 @@ class ProductSetAdd(models.TransientModel):
                           "for product {}").format(
                               set_line.product_template_id.name))
             for variant in set_line.product_variant_ids:
-                so_lines.append(
+                order_lines.append(
                     (0, 0,
                      self.prepare_sale_order_line_data(
-                         so_id,
                          set_line,
                          variant,
                          max_sequence=max_sequence
                      ))
                 )
-        if so_lines:
-            so.write({
-                "order_line": so_lines
-            })
+        return order_lines
 
-    def prepare_sale_order_line_data(self, sale_order_id, set_line, variant,
+    def _get_lines(self):
+        # hook here to take control on used lines
+        return self.set_line_ids
+
+    def prepare_sale_order_line_data(self, set_line, variant,
                                      max_sequence=0):
         sale_line = self.env['sale.order.line'].new({
-            'order_id': sale_order_id,
+            'order_id': self.order_id.id,
             'product_id': variant.id,
             'product_uom_qty': set_line.quantity * self.quantity,
             'product_uom': variant.uom_id.id,
