@@ -55,7 +55,7 @@ msgid "Last Updated on"
 msgstr "Laatst aangepast op"
 
 #. module: sale_product_set_variant
-#: code:addons/sale_product_set_variant/wizard/product_set_add.py:118
+#: code:addons/sale_product_set_variant/wizard/product_set_add.py:109
 #, python-format
 msgid "Please select the appropriate product variants for product {}"
 msgstr ""
@@ -120,8 +120,20 @@ msgid "Set"
 msgstr ""
 
 #. module: sale_product_set_variant
+#: model:product.product,name:sale_product_set_variant.product_product_single_variant
+#: model:product.template,name:sale_product_set_variant.product_product_single_variant_product_template
+msgid "Single Variant"
+msgstr ""
+
+#. module: sale_product_set_variant
 #: model:ir.model.fields,field_description:sale_product_set_variant.field_product_set_add_line__source_line_id
 msgid "Source Line"
+msgstr ""
+
+#. module: sale_product_set_variant
+#: model:product.product,uom_name:sale_product_set_variant.product_product_single_variant
+#: model:product.template,uom_name:sale_product_set_variant.product_product_single_variant_product_template
+msgid "Unit(s)"
 msgstr ""
 
 #. module: sale_product_set_variant
@@ -137,4 +149,10 @@ msgstr ""
 #. module: sale_product_set_variant
 #: model:ir.model,name:sale_product_set_variant.model_product_set_add
 msgid "Wizard model to add product set into a quotation"
+msgstr ""
+
+#. module: sale_product_set_variant
+#: model:product.product,weight_uom_name:sale_product_set_variant.product_product_single_variant
+#: model:product.template,weight_uom_name:sale_product_set_variant.product_product_single_variant_product_template
+msgid "kg"
 msgstr ""
