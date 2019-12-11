@@ -58,6 +58,7 @@ setuptools.setup(
         'odoo12-addon-sale_stock_sourcing_address',
         'odoo12-addon-sale_triple_discount',
         'odoo12-addon-sale_validity',
+        'odoo12-addon-sale_wishlist',
         'odoo12-addon-sales_team_security',
     ],
     classifiers=[
