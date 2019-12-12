@@ -3,11 +3,8 @@
 
 {
     "name": "Product Last Price Info - Sale",
-    "version": "12.0.2.0.0",
-    "author": "OdooMRP team, "
-              "AvanzOSC, "
-              "Serv. Tecnol. Avanzados - Pedro M. Baeza, "
-              "Odoo Community Association (OCA)",
+    "version": "13.0.1.0.0",
+    "author": "AvanzOSC, Tecnativa, Odoo Community Association (OCA)",
     "website": "https://github.com/OCA/sale-workflow",
     "category": "Sales",
     "license": "AGPL-3",
@@ -20,5 +17,5 @@
     ],
     "depends": ["sale_management"],
     "data": ["views/product_view.xml"],
-    'installable': True,
+    "installable": True,
 }
