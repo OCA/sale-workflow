@@ -81,6 +81,7 @@ Contributors
 
 *  Yannick Vaucher <yannick.vaucher@camptocamp.com>
 *  Timon Tschanz <timon.tschanz@camptocamp.com>
+* Serpent Consulting Services Pvt. Ltd. <support@serpentcs.com>
 
 Maintainers
 ~~~~~~~~~~~
