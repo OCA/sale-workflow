@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Copyright 2019 ACSONE SA/NV
+     License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl). -->
+
+<odoo>
+
+    <record model="ir.ui.view" id="payment_acquirer_form_view">
+        <field name="name">payment.acquirer.form (in sale_automatic_workflow_payment)</field>
+        <field name="model">payment.acquirer</field>
+        <field name="inherit_id" ref="payment.acquirer_form"/>
+        <field name="arch" type="xml">
+            <group name="payment_followup" position="after">
+                <group string="Automatic workflow" name="automatic_workflow">
+                    <field name="workflow_process_id"/>
+                </group>
+            </group>
+        </field>
+    </record>
+
+    <record model="ir.ui.view" id="payment_acquirer_search_view">
+        <field name="name">payment.acquirer.search (in sale_automatic_workflow_payment)</field>
+        <field name="model">payment.acquirer</field>
+        <field name="inherit_id" ref="payment.acquirer_search"/>
+        <field name="arch" type="xml">
+            <field name="provider" position="after">
+                <field name="workflow_process_id"/>
+            </field>
+        </field>
+    </record>
+
+    <record model="ir.ui.view" id="payment_acquirer_tree_view">
+        <field name="name">payment.acquirer.tree (in sale_automatic_workflow_payment)</field>
+        <field name="model">payment.acquirer</field>
+        <field name="inherit_id" ref="payment.acquirer_list"/>
+        <field name="arch" type="xml">
+            <field name="company_id" position="after">
+                <field name="workflow_process_id"/>
+            </field>
+        </field>
+    </record>
+
+</odoo>
