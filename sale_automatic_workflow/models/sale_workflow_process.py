@@ -36,15 +36,15 @@ class SaleWorkflowProcess(models.Model):
         string="Shipping Policy",
         default="direct",
     )
-    validate_order = fields.Boolean(string="Validate Order")
+    validate_order = fields.Boolean()
     order_filter_domain = fields.Text(
         string="Order Filter Domain", related="order_filter_id.domain"
     )
-    create_invoice = fields.Boolean(string="Create Invoice")
+    create_invoice = fields.Boolean()
     create_invoice_filter_domain = fields.Text(
         string="Create Invoice Filter Domain", related="create_invoice_filter_id.domain"
     )
-    validate_invoice = fields.Boolean(string="Validate Invoice")
+    validate_invoice = fields.Boolean()
     validate_invoice_filter_domain = fields.Text(
         string="Validate Invoice Filter Domain",
         related="validate_invoice_filter_id.domain",
@@ -64,7 +64,7 @@ class SaleWorkflowProcess(models.Model):
         "The service sale order lines will be included and will be "
         "marked as delivered",
     )
-    sale_done = fields.Boolean(string="Sale Done")
+    sale_done = fields.Boolean()
     sale_done_filter_domain = fields.Text(
         string="Sale Done Filter Domain", related="sale_done_filter_id.domain"
     )
@@ -83,7 +83,6 @@ class SaleWorkflowProcess(models.Model):
     )
     order_filter_id = fields.Many2one(
         "ir.filters",
-        string="Order Filter",
         default=lambda self: self._default_filter(
             "sale_automatic_workflow.automatic_workflow_order_filter"
         ),

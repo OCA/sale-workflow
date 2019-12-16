@@ -6,8 +6,8 @@
 from odoo import fields, models
 
 
-class AccountInvoice(models.Model):
-    _inherit = "account.invoice"
+class AccountMove(models.Model):
+    _inherit = "account.move"
 
     workflow_process_id = fields.Many2one(
         comodel_name="sale.workflow.process", string="Sale Workflow Process"
