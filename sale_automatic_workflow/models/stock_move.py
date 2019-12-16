@@ -3,13 +3,12 @@
 # Copyright 2016 Sodexis
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
-from odoo import api, models
+from odoo import models
 
 
 class StockMove(models.Model):
     _inherit = "stock.move"
 
-    @api.multi
     def _get_new_picking_values(self):
         values = super()._get_new_picking_values()
         sale = self.group_id.sale_id
