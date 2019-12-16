@@ -83,14 +83,14 @@
                         <field name="validate_invoice_filter_domain"
                                widget="domain"
                                attrs="{'invisible': [('validate_invoice_filter_id', '=', False)]}"
-                               options="{'model': 'account.invoice'}" />
+                               options="{'model': 'account.move'}" />
                         <div class="oe_edit_only oe_inline">
                             Set selection based on a search filter:
 
                             <field name="validate_invoice_filter_id"
-                                   domain="[('model_id', '=', 'account.invoice')]"
+                                   domain="[('model_id', '=', 'account.move')]"
                                    class="oe_inline"
-                                   context="{'default_model_id': 'account.invoice', 'default_active': False, 'active_test': False}"
+                                   context="{'default_model_id': 'account.move', 'default_active': False, 'active_test': False}"
                                    can_create="true"
                                    can_write="true" />
                         </div>
@@ -129,7 +129,7 @@
         <field name="name">sale_automic_workflow.sale_workflow_process.view_tree</field>
         <field name="model">sale.workflow.process</field>
         <field name="arch" type="xml">
-            <tree string="Automatic Workflow">
+            <tree>
                 <field name="name"/>
                 <field name="picking_policy"/>
                 <field name="team_id"/>
@@ -144,7 +144,6 @@
     <record id="act_sale_workflow_process_form" model="ir.actions.act_window">
         <field name="name">Automatic Workflow</field>
         <field name="res_model">sale.workflow.process</field>
-        <field name="view_type">form</field>
         <field name="view_mode">tree,form</field>
     </record>
 
