@@ -9,8 +9,7 @@ from odoo.tests.common import SavepointCase
 class TestMultiCompany(SavepointCase):
     @classmethod
     def create_company(cls, values):
-        company = cls.env["res.company"].create(values)
-        return company
+        return cls.env["res.company"].create(values)
 
     @classmethod
     def create_product(cls, values):
@@ -55,30 +54,26 @@ class TestMultiCompany(SavepointCase):
             }
         )
 
-        cls.env.user.company_ids |= cls.company_ch
         cls.env.user.company_ids |= cls.company_fr
+        cls.env.user.company_ids |= cls.company_ch
         cls.env.user.company_ids |= cls.company_be
         cls.env.user.company_ids |= cls.company_fr_daughter
 
         cls.env.user.company_id = cls.company_fr.id
         coa.try_loading_for_current_company()
         cls.customer_fr = cls.env["res.partner"].create({"name": "Customer FR"})
-
         cls.product_fr = cls.create_product({"name": "Evian bottle", "list_price": 2.0})
 
         cls.env.user.company_id = cls.company_ch.id
         coa.try_loading_for_current_company()
         cls.customer_ch = cls.env["res.partner"].create({"name": "Customer CH"})
-
         cls.product_ch = cls.create_product(
             {"name": "Henniez bottle", "list_price": 3.0}
         )
 
         cls.env.user.company_id = cls.company_be.id
         coa.try_loading_for_current_company()
-
         cls.customer_be = cls.env["res.partner"].create({"name": "Customer BE"})
-
         cls.product_be = (
             cls.env["product.template"]
             .create(
@@ -149,7 +144,6 @@ class TestMultiCompany(SavepointCase):
         order_be = self.create_auto_wkf_order(
             self.company_be, self.customer_be, self.product_be, 10
         )
-
         order_fr_daughter = self.create_auto_wkf_order(
             self.company_fr_daughter,
             self.customer_fr_daughter,
@@ -173,13 +167,13 @@ class TestMultiCompany(SavepointCase):
         invoice_ch = order_ch.invoice_ids
         invoice_be = order_be.invoice_ids
         invoice_fr_daughter = order_fr_daughter.invoice_ids
-        self.assertEquals(invoice_fr.state, "open")
+        self.assertEquals(invoice_fr.state, "posted")
         self.assertEquals(invoice_fr.journal_id.company_id, order_fr.company_id)
-        self.assertEquals(invoice_ch.state, "open")
+        self.assertEquals(invoice_ch.state, "posted")
         self.assertEquals(invoice_ch.journal_id.company_id, order_ch.company_id)
-        self.assertEquals(invoice_be.state, "open")
+        self.assertEquals(invoice_be.state, "posted")
         self.assertEquals(invoice_be.journal_id.company_id, order_be.company_id)
-        self.assertEquals(invoice_fr_daughter.state, "open")
+        self.assertEquals(invoice_fr_daughter.state, "posted")
         self.assertEquals(
             invoice_fr_daughter.journal_id.company_id, order_fr_daughter.company_id
         )
