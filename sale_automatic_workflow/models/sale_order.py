@@ -43,7 +43,7 @@ class SaleOrder(models.Model):
             return invoice_vals
         invoice_vals["workflow_process_id"] = workflow.id
         if workflow.invoice_date_is_order_date:
-            invoice_vals["date_invoice"] = fields.Date.context_today(
+            invoice_vals["invoice_date"] = fields.Date.context_today(
                 self, self.date_order
             )
         if workflow.property_journal_id:
@@ -63,7 +63,6 @@ class SaleOrder(models.Model):
             warning = {"title": _("Workflow Warning"), "message": workflow.warning}
             return {"warning": warning}
 
-    @api.multi
     def action_invoice_create(self, grouped=False, final=False):
         for order in self:
             if not order.workflow_process_id.invoice_service_delivery:
@@ -72,3 +71,16 @@ class SaleOrder(models.Model):
                 if line.qty_delivered_method == "manual" and not line.qty_delivered:
                     line.write({"qty_delivered": line.product_uom_qty})
         return super().action_invoice_create(grouped=grouped, final=final)
+
+    def write(self, vals):
+        if vals.get("state") == "sale" and vals.get("date_order"):
+            sales_keep_order_date = self.filtered(
+                lambda sale: sale.workflow_process_id.invoice_date_is_order_date
+            )
+            if sales_keep_order_date:
+                new_vals = vals.copy()
+                del new_vals["date_order"]
+                res = super(SaleOrder, sales_keep_order_date).write(new_vals)
+                res |= super(SaleOrder, self - sales_keep_order_date).write(vals)
+                return res
+        return super(SaleOrder, self).write(vals)

@@ -22,7 +22,7 @@ class TestAutomaticWorkflow(TestAutomaticWorkflowBase):
         self.assertTrue(sale.picking_ids)
         self.assertTrue(sale.invoice_ids)
         invoice = sale.invoice_ids
-        self.assertEqual(invoice.state, "open")
+        self.assertEqual(invoice.state, "posted")
         picking = sale.picking_ids
         self.progress()
         self.assertEqual(picking.state, "done")
@@ -40,7 +40,7 @@ class TestAutomaticWorkflow(TestAutomaticWorkflowBase):
     def test_date_invoice_from_sale_order(self):
         workflow = self.create_full_automatic()
         # date_order on sale.order is date + time
-        # date_invoice on account.invoice is date only
+        # invoice_date on account.move is date only
         last_week_time = fields.Datetime.now() - timedelta(days=7)
         override = {"date_order": last_week_time}
         sale = self.create_sale_order(workflow, override=override)
@@ -49,7 +49,7 @@ class TestAutomaticWorkflow(TestAutomaticWorkflowBase):
         self.progress()
         self.assertTrue(sale.invoice_ids)
         invoice = sale.invoice_ids
-        self.assertEqual(invoice.date_invoice, last_week_time.date())
+        self.assertEqual(invoice.invoice_date, last_week_time.date())
         self.assertEqual(invoice.workflow_process_id, sale.workflow_process_id)
 
     def test_invoice_from_picking_with_service_product(self):
@@ -98,6 +98,7 @@ class TestAutomaticWorkflow(TestAutomaticWorkflowBase):
         new_sale_journal = self.env["account.journal"].create(
             {"name": "TTSA", "code": "TTSA", "type": "sale"}
         )
+
         workflow = self.create_full_automatic()
         sale = self.create_sale_order(workflow)
         sale._onchange_workflow_process_id()
