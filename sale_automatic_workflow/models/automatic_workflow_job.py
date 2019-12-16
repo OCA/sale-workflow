@@ -61,23 +61,19 @@ class AutomaticWorkflowJob(models.Model):
         _logger.debug("Sale Orders to create Invoice: %s", sales.ids)
         for sale in sales:
             with savepoint(self.env.cr), force_company(self.env, sale.company_id):
-                payment = self.env["sale.advance.payment.inv"].create(
-                    {"advance_payment_method": "all"}
-                )
+                payment = self.env["sale.advance.payment.inv"].create({})
                 payment.with_context(active_ids=sale.ids).create_invoices()
 
     @api.model
     def _validate_invoices(self, validate_invoice_filter):
-        invoice_obj = self.env["account.invoice"]
-        invoices = invoice_obj.search(validate_invoice_filter)
+        move_obj = self.env["account.move"]
+        invoices = move_obj.search(validate_invoice_filter)
         _logger.debug("Invoices to validate: %s", invoices.ids)
         for invoice in invoices:
             with savepoint(self.env.cr), force_company(self.env, invoice.company_id):
-                # FIX Why is this needed for certain invoices
+                # FIX Why is this needed or certain invoices
                 # in enterprise in multicompany?
-                invoice.with_context(
-                    force_company=invoice.company_id.id
-                ).action_invoice_open()
+                invoice.with_context(force_company=invoice.company_id.id).post()
 
     @api.model
     def _validate_pickings(self, picking_filter):
