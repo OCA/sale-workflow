@@ -7,8 +7,10 @@ from odoo.tests import common
 class TestAutomaticWorkflowBase(common.TransactionCase):
     def create_sale_order(self, workflow, override=None):
         sale_obj = self.env["sale.order"]
+
         partner_values = {"name": "Imperator Caius Julius Caesar Divus"}
         partner = self.env["res.partner"].create(partner_values)
+
         product_values = {"name": "Bread", "list_price": 5, "type": "product"}
         product = self.env["product.product"].create(product_values)
         self.product_uom_unit = self.env.ref("uom.product_uom_unit")
@@ -40,8 +42,6 @@ class TestAutomaticWorkflowBase(common.TransactionCase):
                 inventory = self.env["stock.inventory"].create(
                     {
                         "name": "Inventory for move %s" % line.name,
-                        "filter": "product",
-                        "product_id": line.product_id.id,
                         "line_ids": [
                             (
                                 0,
@@ -57,7 +57,8 @@ class TestAutomaticWorkflowBase(common.TransactionCase):
                         ],
                     }
                 )
-                inventory.post_inventory()
+                inventory.action_start()
+                inventory.action_validate()
         return order
 
     def create_full_automatic(self, override=None):
