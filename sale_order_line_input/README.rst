@@ -70,6 +70,8 @@ Contributors
 
   * Carlos Dauden
 
+* Serpent Consulting Services Pvt. Ltd. <support@serpentcs.com>
+
 Maintainers
 ~~~~~~~~~~~
 

@@ -1,4 +1,3 @@
-<?xml version="1.0"?>
 <!-- Copyright 2018 Tecnativa - Carlos Dauden
      License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl). -->
 <odoo>
@@ -16,7 +15,7 @@
                force_save="1"
                options='{"no_open": True, "no_create": True}'/>
         <button name="action_sale_order_form" string="Open Sale Order" type="object" icon="fa-external-link" class="oe_stat_button"/>
-        <field name="order_partner_id"  domain="[('customer','=',True)]"
+        <field name="order_partner_id"
                context="{'search_default_customer':1, 'show_address': 1}"
                options='{"always_reload": True}'
                required="1"
@@ -26,6 +25,7 @@
                force_save="1"
                context="{'partner_id':order_partner_id, 'quantity':product_uom_qty, 'pricelist':pricelist_id, 'uom':product_uom, 'company_id': company_id}"
         />
+        <field name="product_uom_category_id" invisible="1"/>
         <field name="name"
                attrs="{'readonly': [('state', 'in', ('done', 'cancel'))]}"/>
         <field name="product_uom_qty" sum="Ordered"
@@ -35,6 +35,7 @@
         <field name="qty_delivered" sum="Delivered" attrs="{'readonly': [('qty_delivered_method', '!=', 'manual')]}"/>
         <field name="qty_invoiced" sum="Invoiced"/>
         <field name="qty_to_invoice" sum="To Invoice"/>
+
         <field name="product_uom"
                attrs="{'readonly': [('state', 'in', ('sale','done', 'cancel'))]}"
                context="{'company_id': company_id}"
@@ -49,7 +50,7 @@
                attrs="{'readonly': ['|', ('qty_invoiced', '&gt;', 0), ('state', 'in', ('done', 'cancel'))]}"/>
         <field name="discount"
                attrs="{'readonly': [('state', 'in', ('done', 'cancel'))]}"
-               groups="sale.group_discount_per_so_line"/>
+               groups="product.group_discount_per_so_line"/>
         <field name="price_subtotal" widget="monetary" groups="account.group_show_line_subtotals_tax_excluded"/>
         <field name="price_total" widget="monetary" groups="account.group_show_line_subtotals_tax_included"/>
         <field name="product_updatable" invisible="1"/>
@@ -88,7 +89,7 @@
     <field name="name">Sales Orders Lines</field>
     <field name="type">ir.actions.act_window</field>
     <field name="res_model">sale.order.line</field>
-    <field name="view_type">form</field>
+    <field name="binding_view_types">list</field>
     <field name="view_mode">tree,form,pivot,graph</field>
     <field name="view_id" ref="view_sales_order_line_input_tree"/>
   </record>
