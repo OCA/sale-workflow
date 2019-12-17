@@ -11,7 +11,7 @@ class IrModelFields(models.Model):
     def name_get(self):
         res = []
         context = self._context
-        if context.get('sale_invoice_group_method', True):
+        if context.get('sale_invoice_group_method'):
             for field in self:
                 res.append((field.id, '%s' % field.field_description))
             return res
