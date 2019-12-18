@@ -11,9 +11,12 @@ class TestProductSet(common.TransactionCase):
         super(TestProductSet, self).setUp()
         self.sale_order = self.env['sale.order']
         self.product_set_add = self.env['product.set.add']
+        self.pricelist = self.env['product.pricelist'].create({
+            'name': 'Test pricelist'})
 
     def test_add_set(self):
         so = self.env.ref('sale.sale_order_6')
+        so.pricelist_id = self.pricelist.id
         count_lines = len(so.order_line)
         untaxed_amount = so.amount_untaxed
         tax_amount = so.amount_tax
