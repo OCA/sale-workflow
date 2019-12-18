@@ -19,7 +19,9 @@ class TestSaleOrderRevision(common.SavepointCase):
         new_sale = self.sale_order_model.create(
             {
                 "partner_id": self.partner_id,
-                "order_line": [(0, 0, {"product_id": self.product_id1, "product_uom_qty": "15.0"})],
+                "order_line": [
+                    (0, 0, {"product_id": self.product_id1, "product_uom_qty": "15.0"})
+                ],
             }
         )
         return new_sale

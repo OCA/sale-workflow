@@ -3,7 +3,7 @@
 # Copyright 2018 Dreambits Technologies Pvt. Ltd. (<http://dreambits.in>)
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
 
-from odoo import api, fields, models, _
+from odoo import _, api, fields, models
 
 
 class SaleOrder(models.Model):
@@ -26,10 +26,12 @@ class SaleOrder(models.Model):
         string="Old revisions",
         readonly=True,
         domain=["|", ("active", "=", False), ("active", "=", True)],
-        context={"search_default_all": 1},
+        context={"active_test": False},
     )
     revision_number = fields.Integer(string="Revision", copy=False, default=0)
-    unrevisioned_name = fields.Char(string="Original Order Reference", copy=True, readonly=True)
+    unrevisioned_name = fields.Char(
+        string="Original Order Reference", copy=True, readonly=True
+    )
     active = fields.Boolean(default=True)
     has_old_revisions = fields.Boolean(compute="_compute_has_old_revisions")
 
@@ -65,7 +67,9 @@ class SaleOrder(models.Model):
         )
         new_revision = self.copy(default_data)
         self.old_revision_ids.write({"current_revision_id": new_revision.id})
-        self.write({"active": False, "state": "cancel", "current_revision_id": new_revision.id})
+        self.write(
+            {"active": False, "state": "cancel", "current_revision_id": new_revision.id}
+        )
         return new_revision
 
     @api.model
