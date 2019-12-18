@@ -6,22 +6,18 @@
 {
     "name": "Sale order revisions",
     "summary": "Keep track of revised quotations",
-    "version": "12.0.1.0.0",
+    "version": "13.0.1.0.0",
     "category": "Sale Management",
     "author": "Agile Business Group,"
-              "Dreambits,"
-              "Camptocamp,"
-              "Akretion,"
-              "Odoo Community Association (OCA), "
-              "Serpent Consulting Services Pvt. Ltd.",
+    "Dreambits,"
+    "Camptocamp,"
+    "Akretion,"
+    "Odoo Community Association (OCA), "
+    "Serpent Consulting Services Pvt. Ltd.",
     "website": "https://github.com/OCA/sale-workflow",
     "license": "AGPL-3",
-    "depends": [
-        "sale_management",
-    ],
-    "data": [
-        "view/sale_order.xml",
-    ],
+    "depends": ["sale_management"],
+    "data": ["view/sale_order.xml"],
     "installable": True,
     "post_init_hook": "populate_unrevisioned_name",
 }
