@@ -21,7 +21,7 @@ class TestSaleOrderLineDescriptionChange(common.TransactionCase):
 
         # Create two different users
         self.group_only_sale_description = self.env.ref(
-            "sale_order_line_description" ".group_use_product_description_per_so_line"
+            "sale_order_line_description.group_use_product_description_per_so_line"
         )
         self.user_1 = self._create_user("TestUser1")
         self.user_2 = self._create_user("TestUser2", self.group_only_sale_description)
@@ -52,22 +52,18 @@ class TestSaleOrderLineDescriptionChange(common.TransactionCase):
 
     def test_check_sale_order_line_description(self):
         line_values = {"order_id": self.sale_order.id, "product_id": self.product.id}
-
         # Create sale order line with TestUser1
-        sale_order_line = self.sale_order_line_model.sudo(self.user_1).create(
-            line_values.copy()
+        sale_order_line = self.sale_order_line_model.with_user(self.user_1).create(
+            line_values
         )
-        self.assertEqual(
-            sale_order_line.name,
-            "\n".join([self.product.name, self.product.description_sale]),
-            "Standard behavior does not concatenate "
-            "product description and product sale description",
-        )
-
+        sale_order_line.product_id_change()
+        self.assertNotEqual(sale_order_line.name, self.product.description_sale)
         # Create sale order line with TestUser2
-        sale_order_line = self.sale_order_line_model.sudo(self.user_2).create(
-            line_values.copy()
+        sale_order_line = self.sale_order_line_model.with_user(self.user_2).create(
+            line_values
         )
+        sale_order_line.product_id_change()
+        self.assertEqual(sale_order_line.name, self.product.description_sale)
         self.assertEqual(
             sale_order_line.name,
             self.product.description_sale,
