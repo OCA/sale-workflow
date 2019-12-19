@@ -1,11 +1,13 @@
-<?xml version="1.0" encoding="utf-8" ?>
 <odoo>
     <record id="view_sales_config" model="ir.ui.view">
         <field name="name">sale settings</field>
         <field name="model">res.config.settings</field>
         <field name="inherit_id" ref="sale.res_config_settings_view_form" />
         <field name="arch" type="xml">
-            <xpath expr="//field[@name='auto_done_setting']/../.." position="after">
+            <xpath
+                expr="//field[@name='group_auto_done_setting']/../.."
+                position="after"
+            >
                 <div class="col-xs-12 col-md-6 o_setting_box">
                     <div class="o_setting_left_pane">
                         <field name="group_use_product_description_per_so_line" />
