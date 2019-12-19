@@ -25,7 +25,9 @@ msgstr "Entidade Comercial"
 
 #. module: sale_commercial_partner
 #: model:ir.model,name:sale_commercial_partner.model_sale_order
-msgid "Sale Order"
+#, fuzzy
+#| msgid "Sale Order"
+msgid "Sales Order"
 msgstr "Ordem de Venda"
 
 #~ msgid "Quotation"
