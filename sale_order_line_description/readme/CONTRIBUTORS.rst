@@ -4,3 +4,5 @@
 * `Tecnativa <https://www.tecnativa.com>`_ :
 
   * Vicent Cubells
+
+ * Rataapong Chokmasermkul <rattapongc@ecosoft.co.th>
