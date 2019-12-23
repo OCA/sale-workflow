@@ -3,8 +3,6 @@
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
 from odoo import fields, models
 
-from odoo.addons import decimal_precision as dp
-
 
 class ProductSetLine(models.Model):
     _name = "product.set.line"
@@ -19,16 +17,11 @@ class ProductSetLine(models.Model):
         required=True,
     )
     quantity = fields.Float(
-        string="Quantity",
-        digits=dp.get_precision("Product Unit of Measure"),
-        required=True,
-        default=1,
+        string="Quantity", digits="Product Unit of Measure", required=True, default=1.0
     )
     product_set_id = fields.Many2one("product.set", string="Set", ondelete="cascade")
     active = fields.Boolean(
         string="Active", related="product_set_id.active", store=True, readonly=True
     )
     sequence = fields.Integer(string="Sequence", required=True, default=0)
-    discount = fields.Float(
-        string="Discount (%)", digits=dp.get_precision("Discount"), default=0.0
-    )
+    discount = fields.Float(string="Discount (%)", digits="Discount", default=0.0)
