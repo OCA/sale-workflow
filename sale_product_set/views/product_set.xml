@@ -45,7 +45,7 @@
                             <field name="sequence" widget="handle"/>
                             <field name="product_id"/>
                             <field name="quantity"/>
-                            <field name="discount" groups="sale.group_discount_per_so_line"/>
+                            <field name="discount" groups="product.group_discount_per_so_line"/>
                         </tree>
                     </field>
                 </group>
@@ -73,7 +73,6 @@
         <field name="name">Product set</field>
         <field name="type">ir.actions.act_window</field>
         <field name="res_model">product.set</field>
-        <field name="view_type">form</field>
         <field name="view_mode">tree,form</field>
         <field name="search_view_id" ref="view_product_set_search"/>
         <field name="domain">[]</field>
