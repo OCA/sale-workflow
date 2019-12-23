@@ -3,8 +3,6 @@
 
 from odoo import api, fields, models
 
-import odoo.addons.decimal_precision as dp
-
 
 class SaleImportProducts(models.TransientModel):
     _name = "sale.import.products"
@@ -17,7 +15,6 @@ class SaleImportProducts(models.TransientModel):
         ondelete="cascade",
     )
 
-    @api.multi
     def create_items(self):
         for wizard in self:
             for product in wizard.products:
@@ -52,7 +49,6 @@ class SaleImportProducts(models.TransientModel):
         line_values = sale_line._convert_to_write(sale_line._cache)
         return line_values
 
-    @api.multi
     def select_products(self):
         so_obj = self.env["sale.order"]
         for wizard in self:
@@ -76,5 +72,5 @@ class SaleImportProductsItem(models.TransientModel):
         string="Product", comodel_name="product.product", required=True
     )
     quantity = fields.Float(
-        digits=dp.get_precision("Product Unit of Measure"), default=1.0, required=True
+        digits="Product Unit of Measure", default=1.0, required=True
     )
