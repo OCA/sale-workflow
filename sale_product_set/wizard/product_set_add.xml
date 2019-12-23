@@ -24,7 +24,6 @@
   <record id="act_open_wizard_product_set_add" model="ir.actions.act_window">
       <field name="name">Add set in sale order</field>
       <field name="res_model">product.set.add</field>
-      <field name="view_type">form</field>
       <field name="view_mode">form</field>
       <field name="view_id" ref="product_set_add_form_view"/>
       <field name="domain">[]</field>
