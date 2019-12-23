@@ -186,7 +186,7 @@ msgid "Sale Order"
 msgstr ""
 
 #. module: sale_product_set
-#: code:addons/sale_product_set/wizard/product_set_add.py:39
+#: code:addons/sale_product_set/wizard/product_set_add.py:0
 #, python-format
 msgid "Select a product set assigned to the same partner of the order."
 msgstr ""
@@ -216,9 +216,4 @@ msgstr "Assistent zum Hinzufügen eines Produktsets zu einem Angebot"
 msgid ""
 "You can attache the set to a specific partner or no one. If you don't "
 "specify one, it's going to be available for all of them."
-msgstr ""
-
-#. module: sale_product_set
-#: model:ir.model.fields,help:sale_product_set.field_product_set_add__partner_id
-msgid "You can find a customer by its Name, TIN, Email or Internal Reference."
 msgstr ""
