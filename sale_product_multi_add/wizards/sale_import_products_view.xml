@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
-    
+
     <record id="view_import_product_to_sale" model="ir.ui.view">
         <field name="name">import.products.to.sale.form</field>
         <field name="model">sale.import.products</field>
