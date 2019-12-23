@@ -6,8 +6,8 @@
         <field name="inherit_id" ref="sale.view_order_form"/>
         <field name="arch" type="xml">
             <field name="order_line" position="before">
-                <button name="%(action_import_product_to_sale)d" class="btn-primary" style="margin:12px 0px 2px 0px;"
-                        string="Add multiple products" Help="Select Products to Import"
+                <button name="%(action_import_product_to_sale)d" class="btn-primary" style="margin:12px 0px 12px 0px;"
+                        string="Add multiple products" icon="fa-plus-circle" Help="Select Products to Import"
                         type="action" attrs="{'invisible':[('state','not in', ['draft', 'sent'])]}"/>
             </field>
             <field name="order_line" position="attributes">
