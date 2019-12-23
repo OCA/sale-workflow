@@ -1,9 +1,7 @@
 # Copyright 2015 Anybox S.A.S
 # Copyright 2016-2018 Camptocamp SA
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
-from odoo import _, api, exceptions, fields, models
-
-import odoo.addons.decimal_precision as dp
+from odoo import _, exceptions, fields, models
 
 
 class ProductSetAdd(models.TransientModel):
@@ -23,7 +21,7 @@ class ProductSetAdd(models.TransientModel):
         "product.set", "Product set", required=True, ondelete="cascade"
     )
     quantity = fields.Float(
-        digits=dp.get_precision("Product Unit of Measure"), required=True, default=1
+        digits="Product Unit of Measure", required=True, default=1.0
     )
     skip_existing_products = fields.Boolean(
         default=False,
@@ -41,7 +39,6 @@ class ProductSetAdd(models.TransientModel):
                     )
                 )
 
-    @api.multi
     def add_set(self):
         """ Add product set, multiplied by quantity in sale order line """
         self._check_partner()
@@ -79,7 +76,6 @@ class ProductSetAdd(models.TransientModel):
                 continue
             yield set_line
 
-    @api.multi
     def prepare_sale_order_line_data(self, set_line, max_sequence=0):
         self.ensure_one()
         sale_line = self.env["sale.order.line"].new(
