@@ -164,7 +164,7 @@ class SaleOrderLine(models.Model):
                 line.order_id.procurement_group_id = procurement_group
 
             if line.rental_type == 'new_rental':
-                vals = self.prepare_rental_values(procurement_group)
+                vals = line.prepare_rental_values(procurement_group)
             try:
                 self.env['procurement.group'].run(
                     line.product_id.rented_product_id, line.rental_qty,
