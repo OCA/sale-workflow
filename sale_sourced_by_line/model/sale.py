@@ -43,11 +43,15 @@ class SaleOrderLine(models.Model):
              "the sale order")
 
     @api.multi
-    def _prepare_order_line_procurement(self, group_id=False):
-        values = super(SaleOrderLine, self).\
-            _prepare_order_line_procurement(group_id=group_id)
+    def _prepare_procurement_values(self, group_id=False):
+        """ Prepare specific key for moves or other components that will be created from a stock rule
+        comming from a sale order line. This method could be override in order to add other custom key that could
+        be used in move/po creation.
+        """
+        values = super(SaleOrderLine, self)._prepare_procurement_values(group_id)
+        self.ensure_one()
         if self.warehouse_id:
-            values['warehouse_id'] = self.warehouse_id.id
+            values['warehouse_id'] = self.warehouse_id
         return values
 
     @api.multi
