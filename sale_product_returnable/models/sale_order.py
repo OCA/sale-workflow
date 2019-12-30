@@ -38,8 +38,8 @@ class SaleOrder(models.Model):
         """Action Confirm.
         Create return pickings when confirming sale orders.
         """
+        res = super(SaleOrder, self).action_confirm()
         for order in self:
-            res = super(SaleOrder, order).action_confirm()
             pickings = order.picking_ids.filtered(
                 lambda picking: picking.location_dest_id ==
                 order.partner_id.property_stock_customer)
@@ -67,4 +67,4 @@ class SaleOrder(models.Model):
                         subtype_id=self.env.ref('mail.mt_note').id)
                     new_picking.action_confirm()
                     new_picking.action_assign()
-            return res
+        return res
