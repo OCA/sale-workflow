@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 # Copyright 2017 ACSONE SA/NV (<http://acsone.eu>)
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
 
@@ -23,15 +22,15 @@ class SaleOrder(models.Model):
              'delivered (time or deliveries).')
     invoice_policy_required = fields.Boolean(
         compute='_compute_invoice_policy_required',
-        default=lambda self: self.env['ir.values'].get_default(
-            'sale.config.settings', 'sale_invoice_policy_required'),
+        default=lambda self: self.env['ir.default'].get(
+            'res.config.settings', 'sale_invoice_policy_required'),
     )
 
     @api.model
     def default_get(self, fields_list):
         res = super(SaleOrder, self).default_get(fields_list)
-        default_sale_invoice_policy = self.env['ir.values'].get_default(
-            'sale.config.settings', 'sale_default_invoice_policy')
+        default_sale_invoice_policy = self.env['ir.default'].get(
+            'res.config.settings', 'sale_default_invoice_policy')
         if 'invoice_policy' not in res:
             res.update({
                 'invoice_policy': default_sale_invoice_policy
@@ -39,9 +38,9 @@ class SaleOrder(models.Model):
         return res
 
     @api.multi
-    @api.depends()
+    @api.depends('partner_id')
     def _compute_invoice_policy_required(self):
-        invoice_policy_required = self.env['ir.values'].get_default(
-            'sale.config.settings', 'sale_invoice_policy_required')
+        invoice_policy_required = self.env['ir.default'].get(
+            'res.config.settings', 'sale_invoice_policy_required')
         for sale in self:
             sale.invoice_policy_required = invoice_policy_required
