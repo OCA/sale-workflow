@@ -16,18 +16,31 @@ Sale Product Returnable
 .. |badge3| image:: https://img.shields.io/badge/github-OCA%2Fsale--workflow-lightgray.png?logo=github
     :target: https://github.com/OCA/sale-workflow/tree/12.0/sale_product_returnable
     :alt: OCA/sale-workflow
-.. |badge4| image:: https://img.shields.io/badge/runbot-Try%20me-875A7B.png
+.. |badge4| image:: https://img.shields.io/badge/weblate-Translate%20me-F47D42.png
+    :target: https://translation.odoo-community.org/projects/sale-workflow-12-0/sale-workflow-12-0-sale_product_returnable
+    :alt: Translate me on Weblate
+.. |badge5| image:: https://img.shields.io/badge/runbot-Try%20me-875A7B.png
     :target: https://runbot.odoo-community.org/runbot/167/12.0
     :alt: Try me on Runbot
 
-|badge1| |badge2| |badge3| |badge4|
+|badge1| |badge2| |badge3| |badge4| |badge5| 
 
-This module allows you to set some product as returnable and create a reception when the sales order is confirmed.
+This module allows you to set some product as returnable and creates a
+return when the sales order is confirmed.
 
 **Table of contents**
 
 .. contents::
    :local:
+
+Configuration
+=============
+
+* Go to Inventory > Master Data > Products
+* Create or select a product (like Bottle of Water)
+* Go to the Inventory tab
+* Edit the product to check the box "Can be returned?"
+* Select the product to be returned (Empty Bottle)
 
 Bug Tracker
 ===========
@@ -45,13 +58,19 @@ Credits
 Authors
 ~~~~~~~
 
+* Serpent Consulting Services
 * Open Source Integrators
 
 Contributors
 ~~~~~~~~~~~~
 
-* Maxime Chambreuil <mchambreuil@opensourceintegrators.com>
-* Nikita Vaghela <nikita.vaghela.serpentcs@gmail.com>
+* Open Source Integrators <https://www.@opensourceintegrators.com>
+
+  * Maxime Chambreuil <mchambreuil@opensourceintegrators.com>
+
+* Serpent Consulting Services Pvt. Ltd. <https://www.serpentcs.com>
+
+  * Nikita Vaghela <nikita.vaghela.serpentcs@gmail.com>
 
 Maintainers
 ~~~~~~~~~~~
@@ -65,6 +84,14 @@ This module is maintained by the OCA.
 OCA, or the Odoo Community Association, is a nonprofit organization whose
 mission is to support the collaborative development of Odoo features and
 promote its widespread use.
+
+.. |maintainer-max3903| image:: https://github.com/max3903.png?size=40px
+    :target: https://github.com/max3903
+    :alt: max3903
+
+Current `maintainer <https://odoo-community.org/page/maintainer-role>`__:
+
+|maintainer-max3903| 
 
 This module is part of the `OCA/sale-workflow <https://github.com/OCA/sale-workflow/tree/12.0/sale_product_returnable>`_ project on GitHub.
 
