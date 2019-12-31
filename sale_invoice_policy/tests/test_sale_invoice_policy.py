@@ -1,4 +1,4 @@
-# -*- coding: utf-8 -*-
+
 # © 2017 Acsone SA/NV (http://www.acsone.eu)
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
 import odoo.tests.common as common
@@ -84,11 +84,10 @@ class TestSaleOrderInvoicePolicy(common.TransactionCase):
         self.assertEqual(so_line.qty_to_invoice, 0)
         self.assertEqual(so_line.invoice_status, 'no')
 
-        for picking in so.picking_ids:
-            wiz_act = picking.do_new_transfer()
-            wiz = self.env[wiz_act['res_model']].browse(wiz_act['res_id'])
-            wiz.process()
-            self.assertEqual(picking.state, 'done')
+        for mv in picking.move_lines:
+            mv.quantity_done = mv.product_uom_qty
+        picking.button_validate()
+        self.assertEqual(picking.state, 'done')
 
         so_line = so.order_line[0]
         self.assertEqual(so_line.qty_to_invoice, 2)
@@ -195,3 +194,14 @@ class TestSaleOrderInvoicePolicy(common.TransactionCase):
             'delivery',
             self.product.default_invoice_policy
         )
+
+    def test_settings(self):
+        settings = self.env['res.config.settings'].create({})
+        settings.sale_default_invoice_policy = 'delivery'
+        settings.sale_invoice_policy_required = True
+        settings.execute()
+        so = self.env["sale.order"].create({
+            'partner_id': self.env.ref("base.res_partner_2").id,
+        })
+        self.assertEqual(so.invoice_policy, 'delivery')
+        self.assertTrue(so.invoice_policy_required)
