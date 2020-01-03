@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<odoo>
-    <data noupdate="1">
+<odoo noupdate="1">
         <!-- Sample Sale substate -related template -->
         <record id="mail_template_data_sale_substate_wait_docs" model="mail.template">
             <field name="name">Waiting for legal documents</field>
@@ -39,5 +38,4 @@
             <field name="auto_delete" eval="True"/>
             <field name="user_signature" eval="True"/>
         </record>
-    </data>
 </odoo>
