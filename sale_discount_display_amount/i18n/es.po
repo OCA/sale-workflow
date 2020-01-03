@@ -26,7 +26,7 @@ msgstr "Descuento total"
 #: model:ir.model,name:sale_discount_display_amount.model_sale_order
 #, fuzzy
 #| msgid "Sales Order"
-msgid "Sale Order"
+msgid "Sales Order"
 msgstr "Pedido de venta"
 
 #. module: sale_discount_display_amount
