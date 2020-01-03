@@ -10,6 +10,7 @@ setuptools.setup(
     install_requires=[
         'odoo13-addon-sale_discount_display_amount',
         'odoo13-addon-sale_order_archive',
+        'odoo13-addon-sale_product_multi_add',
     ],
     classifiers=[
         'Programming Language :: Python',
