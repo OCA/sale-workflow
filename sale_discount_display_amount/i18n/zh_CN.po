@@ -1,6 +1,6 @@
 # Translation of Odoo Server.
 # This file contains the translation of the following modules:
-#	* sale_discount_display_amount
+# 	* sale_discount_display_amount
 #
 msgid ""
 msgstr ""
@@ -24,7 +24,9 @@ msgstr "折扣小计"
 
 #. module: sale_discount_display_amount
 #: model:ir.model,name:sale_discount_display_amount.model_sale_order
-msgid "Sale Order"
+#, fuzzy
+#| msgid "Sale Order"
+msgid "Sales Order"
 msgstr "销售订单"
 
 #. module: sale_discount_display_amount
