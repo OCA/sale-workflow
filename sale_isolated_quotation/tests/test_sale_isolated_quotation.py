@@ -13,17 +13,17 @@ class TestSaleIsolatedQuotation(TransactionCase):
         - Quotation can refer to Order and Order can refer to Quotation
         """
         self.quotation.action_convert_to_order()
-        self.assertEqual(self.quotation.state, 'done')
+        self.assertEqual(self.quotation.state, "done")
         self.sale_order = self.quotation.order_id
         self.assertTrue(self.sale_order.is_order)
-        self.assertEqual(self.sale_order.state, 'draft')
+        self.assertEqual(self.sale_order.state, "draft")
         self.assertEqual(self.sale_order.partner_id, self.partner)
         self.assertEqual(self.sale_order.quote_id, self.quotation)
 
     def setUp(self):
         super().setUp()
-        self.partner = self.env.ref('base.res_partner_2')
-        vals = {'partner_id': self.partner.id,
-                'is_order': False,
+        self.partner = self.env.ref("base.res_partner_2")
+        vals = {"partner_id": self.partner.id,
+                "is_order": False,
                 }
-        self.quotation = self.env['sale.order'].create(vals)
+        self.quotation = self.env["sale.order"].create(vals)
