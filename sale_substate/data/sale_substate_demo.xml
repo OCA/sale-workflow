@@ -30,13 +30,13 @@
 </record>
 <record id="base_substate_in_delivery" model="base.substate">
     <field name="name">In delivering</field>
-    <field name="sequence">4</field>
+    <field name="sequence">6</field>
     <field name="target_state_value_id" ref="target_state_value_sale"/>
     <field name="mail_template_id" ref="sale_substate.mail_template_data_sale_substate_delivery"/>
 </record>
  <record id="base_substate_delivered" model="base.substate">
      <field name="name">Delivered</field>
-    <field name="sequence">5</field>
+    <field name="sequence">7</field>
     <field name="target_state_value_id" ref="target_state_value_sale"/>
 </record>
 </odoo>
