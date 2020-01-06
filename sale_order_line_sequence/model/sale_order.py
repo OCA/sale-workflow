@@ -6,10 +6,10 @@ from odoo import api, fields, models
 
 
 class SaleOrder(models.Model):
-    _inherit = 'sale.order'
+    _inherit = "sale.order"
 
     @api.multi
-    @api.depends('order_line')
+    @api.depends("order_line")
     def _compute_max_line_sequence(self):
         """Allow to know the highest sequence entered in sale order lines.
         Then we add 1 to this value for the next sequence.
@@ -18,13 +18,10 @@ class SaleOrder(models.Model):
         added as :  max_sequence + 1
         """
         for sale in self:
-            sale.max_line_sequence = (
-                max(sale.mapped('order_line.sequence') or [0]) + 1)
+            sale.max_line_sequence = max(sale.mapped("order_line.sequence") or [0]) + 1
 
     max_line_sequence = fields.Integer(
-        string='Max sequence in lines',
-        compute='_compute_max_line_sequence',
-        store=True
+        string="Max sequence in lines", compute="_compute_max_line_sequence", store=True
     )
 
     @api.multi
@@ -43,33 +40,34 @@ class SaleOrder(models.Model):
 
     @api.multi
     def copy(self, default=None):
-        return super(SaleOrder,
-                     self.with_context(keep_line_sequence=True)).copy(default)
+        return super(SaleOrder, self.with_context(keep_line_sequence=True)).copy(
+            default
+        )
 
 
 class SaleOrderLine(models.Model):
-    _inherit = 'sale.order.line'
+    _inherit = "sale.order.line"
 
     # re-defines the field to change the default
     sequence = fields.Integer(
         help="Gives the sequence of this line when displaying the sale order.",
         default=9999,
-        string="Sequence"
+        string="Sequence",
     )
 
     # displays sequence on the order line
     sequence2 = fields.Integer(
         help="Shows the sequence of this line in the sale order.",
-        related='sequence',
+        related="sequence",
         string="Line Number",
         readonly=True,
-        store=True
+        store=True,
     )
 
     @api.model
     def create(self, values):
         line = super(SaleOrderLine, self).create(values)
         # We do not reset the sequence if we are copying a complete sale order
-        if self.env.context.get('keep_line_sequence'):
+        if self.env.context.get("keep_line_sequence"):
             line.order_id._reset_sequence()
         return line
