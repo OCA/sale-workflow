@@ -8,7 +8,6 @@ from odoo import api, fields, models
 class SaleOrder(models.Model):
     _inherit = "sale.order"
 
-    @api.multi
     @api.depends("order_line")
     def _compute_max_line_sequence(self):
         """Allow to know the highest sequence entered in sale order lines.
@@ -24,7 +23,6 @@ class SaleOrder(models.Model):
         string="Max sequence in lines", compute="_compute_max_line_sequence", store=True
     )
 
-    @api.multi
     def _reset_sequence(self):
         for rec in self:
             current_sequence = 1
@@ -32,13 +30,11 @@ class SaleOrder(models.Model):
                 line.sequence = current_sequence
                 current_sequence += 1
 
-    @api.multi
     def write(self, line_values):
         res = super(SaleOrder, self).write(line_values)
         self._reset_sequence()
         return res
 
-    @api.multi
     def copy(self, default=None):
         return super(SaleOrder, self.with_context(keep_line_sequence=True)).copy(
             default
