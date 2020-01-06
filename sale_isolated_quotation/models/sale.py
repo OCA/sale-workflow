@@ -11,11 +11,11 @@ class SaleOrder(models.Model):
         string='Is Order',
         readonly=True,
         index=True,
-        default=lambda self: self._context.get('is_order', False),
+        default=lambda self: self.env.context.get('is_order'),
     )
     quote_id = fields.Many2one(
         'sale.order',
-        string='Quotation Reference',
+        string='Quotation',
         readonly=True,
         ondelete='restrict',
         copy=False,
@@ -23,7 +23,7 @@ class SaleOrder(models.Model):
     )
     order_id = fields.Many2one(
         'sale.order',
-        string='Order Reference',
+        string='Order',
         readonly=True,
         ondelete='restrict',
         copy=False,
@@ -42,22 +42,20 @@ class SaleOrder(models.Model):
 
     @api.model
     def create(self, vals):
-        is_order = vals.get('is_order', False) or \
-            self._context.get('is_order', False)
+        is_order = vals.get('is_order') or \
+            self.env.context.get('is_order')
         if not is_order and vals.get('name', '/') == '/':
             Seq = self.env['ir.sequence']
             vals['name'] = Seq.next_by_code('sale.quotation') or '/'
-        return super(SaleOrder, self).create(vals)
+        return super().create(vals)
 
-    @api.multi
     def action_convert_to_order(self):
         self.ensure_one()
         if self.is_order:
             raise UserError(
                 _('Only quotation can convert to order'))
-        Seq = self.env['ir.sequence']
         order = self.copy({
-            'name': Seq.next_by_code('sale.order') or '/',
+            'name': self.env['ir.sequence'].next_by_code('sale.order') or '/',
             'is_order': True,
             'quote_id': self.id,
             'client_order_ref': self.client_order_ref,
@@ -71,7 +69,6 @@ class SaleOrder(models.Model):
     def open_sale_order(self):
         return {
             'name': _('Sales Order'),
-            'view_type': 'form',
             'view_mode': 'form',
             'view_id': False,
             'res_model': 'sale.order',
