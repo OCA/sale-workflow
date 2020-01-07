@@ -4,7 +4,7 @@
 {
     'name': 'Sale Product Returnable',
     'summary': "Get returnable products from your customers",
-    'version': '12.0.1.0.0',
+    'version': '12.0.1.0.1',
     'license': 'AGPL-3',
     'category': 'Sales',
     'author': 'Serpent Consulting Services, '
