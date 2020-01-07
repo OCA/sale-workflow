@@ -5,6 +5,7 @@
 
 from odoo import api, fields, models
 from odoo.tools.translate import _
+from odoo.tools import DEFAULT_SERVER_DATE_FORMAT
 
 
 class SaleOrder(models.Model):
@@ -82,7 +83,13 @@ class SaleOrder(models.Model):
         if 'unrevisioned_name' not in values:
             if values.get('name', '/') == '/':
                 seq = self.env['ir.sequence']
-                values['name'] = seq.next_by_code('sale.order') or '/'
+                date_order = values.get('date_order', False)
+                if date_order:
+                    date_order = fields.Date.from_string(date_order).strftime(
+                        DEFAULT_SERVER_DATE_FORMAT)
+                values['name'] = seq.with_context(
+                    ir_sequence_date=date_order or self.date_order
+                ).next_by_code('sale.order') or '/'
             values['unrevisioned_name'] = values['name']
         return super(SaleOrder, self).create(values)
 
