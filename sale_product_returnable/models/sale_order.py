@@ -66,5 +66,7 @@ class SaleOrder(models.Model):
                             'self': new_picking, 'origin': self},
                         subtype_id=self.env.ref('mail.mt_note').id)
                     new_picking.action_confirm()
-                    new_picking.action_assign()
+                    if self.env['res.config.settings'].\
+                            module_procurement_jit == 1:
+                        new_picking.action_assign()
         return res
