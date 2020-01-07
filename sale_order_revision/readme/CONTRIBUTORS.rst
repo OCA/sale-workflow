@@ -5,3 +5,4 @@
 * Serpent Consulting Services Pvt. Ltd. <jay.vora@serpentcs.com>
 * Akim Juillerat <akim.juillerat@camptocamp.com>
 * Raf Ven <raf.ven@dynapps.be>
+* Sergio Corato <https://github.com/sergiocorato>
