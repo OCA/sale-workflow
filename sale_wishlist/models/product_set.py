@@ -6,12 +6,8 @@ from odoo import fields, models
 
 class ProductSet(models.Model):
 
-    _inherit = 'product.set'
+    _inherit = "product.set"
 
     typology = fields.Selection(
-        selection=[
-            ("set", "Default"),
-            ("wishlist", "Wishlist"),
-        ],
-        default="set",
+        selection=[("set", "Default"), ("wishlist", "Wishlist")], default="set"
     )
