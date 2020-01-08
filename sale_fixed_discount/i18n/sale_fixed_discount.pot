@@ -39,7 +39,6 @@ msgid "Sales Order Line"
 msgstr ""
 
 #. module: sale_fixed_discount
-#: code:addons/sale_fixed_discount/models/sale_order.py:56
 #: code:addons/sale_fixed_discount/models/sale_order.py:57
 #, python-format
 msgid "You can only set one type of discount per line."
