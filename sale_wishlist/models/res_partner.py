@@ -1,7 +1,7 @@
 # Copyright 2019 Camptocamp SA
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
-from odoo import api, fields, models, _
+from odoo import _, fields, models
 
 
 class ResPartner(models.Model):
@@ -26,7 +26,6 @@ class ResPartner(models.Model):
     def _wishlist_domain(self):
         return [("partner_id", "in", self.ids), ("typology", "=", "wishlist")]
 
-    @api.multi
     def action_view_wishlists(self):
         self.ensure_one()
         action = self.env.ref("sale_product_set.act_open_product_set_view")
