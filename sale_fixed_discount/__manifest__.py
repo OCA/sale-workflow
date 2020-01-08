@@ -4,7 +4,7 @@
 {
     "name": "Sale Fixed Discount",
     "summary": "Allows to apply fixed amount discounts in sales orders.",
-    "version": "10.0.1.0.0",
+    "version": "10.0.1.0.1",
     "category": "Sales",
     "website": "https://github.com/OCA/sale-workflow",
     "author": "Eficent, Odoo Community Association (OCA)",
