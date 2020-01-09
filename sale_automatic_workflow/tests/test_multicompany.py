@@ -2,11 +2,12 @@
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
 from odoo.tests import tagged
-from odoo.tests.common import SavepointCase
+
+from .common import TestCommon
 
 
 @tagged("post_install", "-at_install")
-class TestMultiCompany(SavepointCase):
+class TestMultiCompany(TestCommon):
     @classmethod
     def create_company(cls, values):
         return cls.env["res.company"].create(values)
@@ -20,7 +21,6 @@ class TestMultiCompany(SavepointCase):
     @classmethod
     def setUpClass(cls):
         super().setUpClass()
-        cls.env = cls.env(context=dict(cls.env.context, tracking_disable=True))
         coa = cls.env.user.company_id.chart_template_id
         cls.company_fr = cls.create_company(
             {
