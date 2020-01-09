@@ -16,11 +16,11 @@ class SaleOrder(models.Model):
     @api.onchange('partner_id')
     def onchange_partner_id(self):
         super(SaleOrder, self).onchange_partner_id()
-        if self.partner_id.invoice_group_method_id:
+        if self.partner_id._get_invoice_group_method_id():
             self.update(
                 {
                     'invoice_group_method_id':
-                        self.partner_id.invoice_group_method_id.id,
+                        self.partner_id._get_invoice_group_method_id().id,
                 }
             )
         return

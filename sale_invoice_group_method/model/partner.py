@@ -11,3 +11,9 @@ class ResPartner(models.Model):
         string='Default Invoice Group Method',
         comodel_name='sale.invoice.group.method'
     )
+
+    def _get_invoice_group_method_id(self):
+        if self.invoice_group_method_id:
+            return self.invoice_group_method_id
+        else:
+            return self.commercial_partner_id.invoice_group_method_id
