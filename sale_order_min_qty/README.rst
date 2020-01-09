@@ -23,14 +23,14 @@ Sale order min quantity
     :target: https://runbot.odoo-community.org/runbot/167/12.0
     :alt: Try me on Runbot
 
-|badge1| |badge2| |badge3| |badge4| |badge5|
+|badge1| |badge2| |badge3| |badge4| |badge5| 
 
 This module allows to define minimum order quantity on product.
 Minimum order quantity is either required or recommanded.
 If you check "Force min Qty" on product the min qty do not block sale
 order.
 This can be used if the available stock is less then the min qty
-or if you want to sell sample products.
+or if you want to sell sample products.  
 
 **Table of contents**
 
@@ -47,7 +47,6 @@ Usage
     if Qty is less then "Min Qty" A message in displayed "Min Qty Required"
     Or "Min Qty Recommanded". Check if Min qty is required you can't
     validate order.
-
 
 Bug Tracker
 ===========
