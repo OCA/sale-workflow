@@ -11,6 +11,7 @@ class TestSaleOrderPriceRecalculation(common.TransactionCase):
 
     def setUp(self):
         super(TestSaleOrderPriceRecalculation, self).setUp()
+        self.pricelist = self.env.ref('product.list0')
         self.sale_order_model = self.env['sale.order']
         self.sale_order_line_model = self.env['sale.order.line']
         self.partner = self.env['res.partner'].create({
@@ -24,7 +25,7 @@ class TestSaleOrderPriceRecalculation(common.TransactionCase):
             'partner_id': self.partner.id,
             'partner_invoice_id': self.partner.id,
             'partner_shipping_id': self.partner.id,
-            'pricelist_id': self.env.ref('product.list0').id,
+            'pricelist_id': self.pricelist.id,
         })
         self.product.uos_id = self.env.ref('product.product_uom_kgm')
         line_vals = {
@@ -53,6 +54,29 @@ class TestSaleOrderPriceRecalculation(common.TransactionCase):
         self.assertEqual(self.sale_order_line.product_uom_qty, 1.0)
         # Check the description still unchanged
         self.assertEqual(self.sale_order_line.name, u"My product description")
+
+    def test_price_recalculation_discount(self):
+        goup_discount_id = self.ref('sale.group_discount_per_so_line')
+        self.env.user.write({'groups_id': [(4, goup_discount_id, 0)]})
+        self.assertEqual(
+            self.sale_order_line.price_unit, self.product.lst_price)
+        self.pricelist.discount_policy = 'without_discount'
+        self.env['product.pricelist.item'].create({
+            'pricelist_id': self.pricelist.id,
+            'applied_on': '1_product',
+            'product_id': self.product.id,
+            'compute_price': 'percentage',
+            'percent_price': '10'
+        })
+        # Change price
+        self.product.lst_price = 500
+        # Launch recalculation
+        self.sale_order.recalculate_prices()
+        # Check if the price has been updated
+        self.assertEqual(
+            self.sale_order_line.price_unit, self.product.lst_price)
+        self.assertEqual(
+            self.sale_order_line.discount, 10)
 
     def test_name_recalculation(self):
         self.sale_order_line.price_unit = 150.0
