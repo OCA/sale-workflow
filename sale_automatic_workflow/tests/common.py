@@ -1,10 +1,18 @@
 # Copyright 2014 Camptocamp SA (author: Guewen Baconnier)
+# Copyright 2020 Camptocamp SA (author: Simone Orsi)
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
-from odoo.tests import common
+from odoo.tests.common import SavepointCase
 
 
-class TestAutomaticWorkflowBase(common.TransactionCase):
+class TestCommon(SavepointCase):
+    @classmethod
+    def setUpClass(cls):
+        super().setUpClass()
+        cls.env = cls.env(context=dict(cls.env.context, tracking_disable=True))
+
+
+class TestAutomaticWorkflowMixin(object):
     def create_sale_order(self, workflow, override=None):
         sale_obj = self.env["sale.order"]
 
@@ -78,5 +86,5 @@ class TestAutomaticWorkflowBase(common.TransactionCase):
             values.update(override)
         return values
 
-    def progress(self):
+    def run_job(self):
         self.env["automatic.workflow.job"].run()
