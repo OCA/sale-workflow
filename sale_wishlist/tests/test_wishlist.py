@@ -31,3 +31,23 @@ class TestWishlist(common.SavepointCase):
             prod_set.copy(default=vals)
         self.assertEqual(self.partner1.wishlists_count, 2)
         self.assertEqual(self.partner2.wishlists_count, 4)
+
+    def test_action(self):
+        action = self.partner1.action_view_wishlists()
+        self.assertEqual(
+            action["context"],
+            {"default_partner_id": self.partner1.id, "default_typology": "wishlist"},
+        )
+        self.assertEqual(
+            action["domain"],
+            [("partner_id", "in", [self.partner1.id]), ("typology", "=", "wishlist")],
+        )
+        action = self.partner2.action_view_wishlists()
+        self.assertEqual(
+            action["context"],
+            {"default_partner_id": self.partner2.id, "default_typology": "wishlist"},
+        )
+        self.assertEqual(
+            action["domain"],
+            [("partner_id", "in", [self.partner2.id]), ("typology", "=", "wishlist")],
+        )
