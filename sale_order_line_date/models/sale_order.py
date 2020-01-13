@@ -10,22 +10,24 @@ from odoo import api, models
 
 
 class SaleOrder(models.Model):
-    _inherit = 'sale.order'
+    _inherit = "sale.order"
 
     @api.multi
-    @api.onchange('commitment_date')
+    @api.onchange("commitment_date")
     def _onchange_commitment_date(self):
         """Update order lines with commitment date from sale order"""
         result = super(SaleOrder, self)._onchange_commitment_date() or {}
         if not self:
             return result
-        if 'warning' not in result:
-            result['value'] = {'order_line': [
-                (1, line.id, {'commitment_date': self.commitment_date})
-                for line in self.order_line
-                if not line.commitment_date or (
-                    self.expected_date and
-                    line.commitment_date < self.expected_date
-                )
-            ]}
+        if "warning" not in result:
+            result["value"] = {
+                "order_line": [
+                    (1, line.id, {"commitment_date": self.commitment_date})
+                    for line in self.order_line
+                    if not line.commitment_date
+                    or (
+                        self.expected_date and line.commitment_date < self.expected_date
+                    )
+                ]
+            }
         return result
