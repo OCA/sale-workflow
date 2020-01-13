@@ -47,6 +47,11 @@ Usage
 * Create Quotation as normal
 * As user click "Convert to Order", the isolated sales order will be created
 
+Known issues / Roadmap
+======================
+
+Provide a way to purge old quotes to avoid that database grow up excessively
+
 Bug Tracker
 ===========
 
@@ -70,6 +75,7 @@ Contributors
 
 * Kitti U. <kittiu@ecosoft.co.th>
 * Robert J Sullivan <robertjonsullivan@gmail.com>
+* David Béal <david.beal@akretion.com>
 
 Maintainers
 ~~~~~~~~~~~
