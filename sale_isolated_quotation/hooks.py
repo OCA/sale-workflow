@@ -5,10 +5,10 @@ from odoo import api, SUPERUSER_ID
 
 
 def post_init_hook(cr, registry):
-    """ Set value for is_order on old records """
+    """ Set value for order_sequence on old records """
     cr.execute("""
         update sale_order
-        set is_order = true
+        set order_sequence = true
         where state not in ('draft', 'cancel')
     """)
 
@@ -20,9 +20,9 @@ def uninstall_hook(cr, registry):
         for action_id in ['sale.action_quotations', 'sale.action_orders']:
             action = env.ref(action_id)
             ctx = ast.literal_eval(action.context)
-            del ctx['is_order']
+            del ctx['order_sequence']
             dom = ast.literal_eval(action.domain)
-            dom = [x for x in dom if x[0] != 'is_order']
+            dom = [x for x in dom if x[0] != 'order_sequence']
             if action_id == 'sale.action_quotations':
                 dom.append(('state', 'not in', ('draft', 'sent', 'cancel')))
             action.write({'context': ctx, 'domain': dom})
