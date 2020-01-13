@@ -23,7 +23,7 @@ Sale Order Line Date
     :target: https://runbot.odoo-community.org/runbot/167/12.0
     :alt: Try me on Runbot
 
-|badge1| |badge2| |badge3| |badge4| |badge5| 
+|badge1| |badge2| |badge3| |badge4| |badge5|
 
 This module adds a commitment date to each sale order line and propagate it to
 stock moves and pickings.
@@ -34,13 +34,6 @@ of the lines change to match if necessary.
 
 .. contents::
    :local:
-
-Configuration
-=============
-
-To configure this module, you need to:
-
-#. Go to 'Configuration > Sales > Shipping' and check "Delivery Date".
 
 Usage
 =====
