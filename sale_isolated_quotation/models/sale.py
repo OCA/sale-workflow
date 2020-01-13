@@ -7,11 +7,10 @@ from odoo.exceptions import UserError
 class SaleOrder(models.Model):
     _inherit = "sale.order"
 
-    is_order = fields.Boolean(
-        string="Is Order",
+    order_sequence = fields.Boolean(
+        string="Order Sequence",
         readonly=True,
         index=True,
-        default=lambda self: self.env.context.get("is_order"),
     )
     quote_id = fields.Many2one(
         "sale.order",
@@ -29,53 +28,56 @@ class SaleOrder(models.Model):
         copy=False,
         help="For Quotation, this field references to its Sales Order",
     )
-    state2 = fields.Selection(
+    quotation_state = fields.Selection(
         [("draft", "Draft"),
          ("sent", "Mail Sent"),
          ("cancel", "Cancelled"),
          ("done", "Done"), ],
-        string="Status",
+        string="Quotation Status",
         readonly=True,
         related="state",
-        help="A dummy state used for quotation",
+        help="Only relative quotation states",
     )
 
     @api.model
     def create(self, vals):
-        is_order = vals.get("is_order") or \
-            self.env.context.get("is_order")
-        if not is_order and vals.get("name", "/") == "/":
-            Seq = self.env["ir.sequence"]
-            vals["name"] = Seq.next_by_code("sale.quotation") or "/"
+        order_sequence = vals.get("order_sequence") or \
+            self.env.context.get("order_sequence")
+        if not order_sequence and vals.get("name", "/") == "/":
+            vals["name"] = self.env["ir.sequence"].next_by_code(
+                "sale.quotation") or "/"
         return super().create(vals)
+
+    def _prepare_order_from_quotation(self):
+        return {
+            "name": self.env["ir.sequence"].next_by_code("sale.order") or "/",
+            "order_sequence": True,
+            "quote_id": self.id,
+            "client_order_ref": self.client_order_ref,
+        }
 
     def action_convert_to_order(self):
         self.ensure_one()
-        if self.is_order:
+        if self.order_sequence:
             raise UserError(
                 _("Only quotation can convert to order"))
-        order = self.copy({
-            "name": self.env["ir.sequence"].next_by_code("sale.order") or "/",
-            "is_order": True,
-            "quote_id": self.id,
-            "client_order_ref": self.client_order_ref,
-        })
+        order = self.copy(self._prepare_order_from_quotation())
         self.order_id = order.id  # Reference from this quotation to order
         if self.state == "draft":
             self.action_done()
-        return self.open_sale_order()
+        return self.open_duplicated_sale_order()
 
     @api.model
-    def open_sale_order(self):
+    def open_duplicated_sale_order(self):
         return {
             "name": _("Sales Order"),
             "view_mode": "form",
             "view_id": False,
             "res_model": "sale.order",
-            "context": {"is_order": True, },
+            "context": {"default_order_sequence": True, "order_sequence": True, },
             "type": "ir.actions.act_window",
             "nodestroy": True,
             "target": "current",
-            "domain": "[("is_order", "=", True)]",
+            "domain": "[('order_sequence', '=', True)]",
             "res_id": self.order_id and self.order_id.id or False,
         }
