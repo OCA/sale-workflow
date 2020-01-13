@@ -10,23 +10,21 @@ from odoo import api, fields, models
 
 
 class SaleOrderLine(models.Model):
-    _inherit = 'sale.order.line'
+    _inherit = "sale.order.line"
 
-    commitment_date = fields.Datetime(oldname='requested_date')
+    commitment_date = fields.Datetime(oldname="requested_date")
 
     @api.multi
     def write(self, vals):
         # Force commitment date only if all lines are on the same sale order
-        if len(self.mapped('order_id')) == 1:
+        if len(self.mapped("order_id")) == 1:
             for line in self:
                 if (
                     not line.commitment_date
                     and line.order_id.commitment_date
-                    and 'commitment_date' not in vals
+                    and "commitment_date" not in vals
                 ):
-                    vals.update({
-                        'commitment_date': line.order_id.commitment_date
-                    })
+                    vals.update({"commitment_date": line.order_id.commitment_date})
                     break
         return super(SaleOrderLine, self).write(vals)
 
@@ -34,16 +32,13 @@ class SaleOrderLine(models.Model):
     def create(self, vals):
         res = super(SaleOrderLine, self).create(vals)
         if res.order_id.commitment_date and not res.commitment_date:
-            res.write({'commitment_date': res.order_id.commitment_date})
+            res.write({"commitment_date": res.order_id.commitment_date})
         return res
 
     @api.multi
     def _prepare_procurement_values(self, group_id=False):
-        vals = super(SaleOrderLine, self).\
-            _prepare_procurement_values(group_id)
+        vals = super(SaleOrderLine, self)._prepare_procurement_values(group_id)
         # has ensure_one already
         if self.commitment_date:
-            vals.update({
-                'date_planned': self.commitment_date,
-            })
+            vals.update({"date_planned": self.commitment_date})
         return vals
