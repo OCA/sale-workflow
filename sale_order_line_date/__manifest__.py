@@ -11,17 +11,12 @@
     "version": "12.0.1.0.0",
     "summary": "Adds a commitment date to each sale order line.",
     "author": "OdooMRP team,"
-              "AvanzOSC,"
-              "Serv. Tecnol. Avanzados - Pedro M. Baeza,"
-              "Odoo Community Association (OCA)",
+    "AvanzOSC,"
+    "Serv. Tecnol. Avanzados - Pedro M. Baeza,"
+    "Odoo Community Association (OCA)",
     "website": "https://odoo-community.org/",
     "category": "Sale",
     "license": "AGPL-3",
-    "depends": [
-        "sale_stock",
-    ],
-    "data": [
-        "views/sale_order_view.xml",
-        "reports/sale_order_report.xml",
-    ],
+    "depends": ["sale_stock"],
+    "data": ["views/sale_order_view.xml", "reports/sale_order_report.xml"],
 }
