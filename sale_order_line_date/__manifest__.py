@@ -8,7 +8,7 @@
 
 {
     "name": "Sale Order Line Date",
-    "version": "12.0.1.0.0",
+    "version": "13.0.1.0.0",
     "summary": "Adds a commitment date to each sale order line.",
     "author": "OdooMRP team,"
     "AvanzOSC,"
