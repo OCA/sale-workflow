@@ -3,8 +3,7 @@
 from openupgradelib import openupgrade
 
 _field_renames = [
-    ('sale.order.line', 'sale_order_line', 'requested_date',
-     'commitment_date'),
+    ("sale.order.line", "sale_order_line", "requested_date", "commitment_date")
 ]
 
 
