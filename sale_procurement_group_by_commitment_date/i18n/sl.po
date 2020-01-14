@@ -19,12 +19,13 @@ msgstr ""
 "Plural-Forms: nplurals=4; plural=(n%100==1 ? 0 : n%100==2 ? 1 : n%100==3 || n"
 "%100==4 ? 2 : 3);\n"
 
-#. module: sale_procurement_group_by_requested_date
-#: model:ir.model,name:sale_procurement_group_by_requested_date.model_sale_order
-msgid "Sales Order"
+#. module: sale_procurement_group_by_commitment_date
+#: model:ir.model,name:sale_procurement_group_by_commitment_date.model_sale_order
+#, fuzzy
+msgid "Sale Order"
 msgstr "Prodajni nalog"
 
-#. module: sale_procurement_group_by_requested_date
-#: model:ir.model,name:sale_procurement_group_by_requested_date.model_sale_order_line
+#. module: sale_procurement_group_by_commitment_date
+#: model:ir.model,name:sale_procurement_group_by_commitment_date.model_sale_order_line
 msgid "Sales Order Line"
 msgstr "Postavka prodajnega naloga"
