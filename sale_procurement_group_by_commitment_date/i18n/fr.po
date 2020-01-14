@@ -18,12 +18,13 @@ msgstr ""
 "Content-Transfer-Encoding: \n"
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
 
-#. module: sale_procurement_group_by_requested_date
-#: model:ir.model,name:sale_procurement_group_by_requested_date.model_sale_order
-msgid "Sales Order"
+#. module: sale_procurement_group_by_commitment_date
+#: model:ir.model,name:sale_procurement_group_by_commitment_date.model_sale_order
+#, fuzzy
+msgid "Sale Order"
 msgstr "Bon de commande"
 
-#. module: sale_procurement_group_by_requested_date
-#: model:ir.model,name:sale_procurement_group_by_requested_date.model_sale_order_line
+#. module: sale_procurement_group_by_commitment_date
+#: model:ir.model,name:sale_procurement_group_by_commitment_date.model_sale_order_line
 msgid "Sales Order Line"
 msgstr "Sales Order Line"
