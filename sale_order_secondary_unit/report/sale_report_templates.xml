@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <odoo>
+<<<<<<< HEAD
     <template
         id="report_saleorder_document"
         inherit_id="sale.report_saleorder_document"
@@ -23,4 +24,43 @@
             </td>
         </xpath>
     </template>
+||||||| parent of 331900273 ([MIG] migrate sale_order_secondary_unit from 12.0 to 13.0)
+
+<template id="report_saleorder_document" inherit_id="sale.report_saleorder_document">
+    <xpath expr="//table[hasclass('table','table-sm','o_main_table')]//th[2]" position="before">
+        <th class="text-right" groups="uom.group_uom">Second. Qty</th>
+    </xpath>
+    <xpath expr="//span[@t-field='line.product_uom_qty']/.." position="before">
+        <td class="text-right" groups="uom.group_uom">
+            <t t-if="line.secondary_uom_id">
+                <span t-field="line.secondary_uom_qty"/>
+                <span t-esc="' {}-{}-{}'.format(line.secondary_uom_id.name, line.secondary_uom_id.factor, line.secondary_uom_id.product_tmpl_id.uom_id.name)"/>
+            </t>
+        </td>
+    </xpath>
+</template>
+
+=======
+    <template
+        id="report_saleorder_document"
+        inherit_id="sale.report_saleorder_document"
+    >
+        <xpath
+            expr="//table[hasclass('table','table-sm','o_main_table')]//th[2]"
+            position="before"
+        >
+            <th class="text-right" groups="uom.group_uom">Second. Qty</th>
+        </xpath>
+        <xpath expr="//span[@t-field='line.product_uom_qty']/.." position="before">
+            <td class="text-right" groups="uom.group_uom">
+                <t t-if="line.secondary_uom_id">
+                    <span t-field="line.secondary_uom_qty" />
+                    <span
+                        t-esc="' {}-{}-{}'.format(line.secondary_uom_id.name, line.secondary_uom_id.factor, line.secondary_uom_id.product_tmpl_id.uom_id.name)"
+                    />
+                </t>
+            </td>
+        </xpath>
+    </template>
+>>>>>>> 331900273 ([MIG] migrate sale_order_secondary_unit from 12.0 to 13.0)
 </odoo>

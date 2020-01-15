@@ -22,14 +22,21 @@ Sale Order Secondary Unit
     :alt: License: AGPL-3
 .. |badge3| image:: https://img.shields.io/badge/github-OCA%2Fsale--workflow-lightgray.png?logo=github
 <<<<<<< HEAD
+<<<<<<< HEAD
     :target: https://github.com/OCA/sale-workflow/tree/18.0/sale_order_secondary_unit
 ||||||| parent of b0bae09dd ([MIG] sale_order_secondary_unit: Migration to 12.0)
     :target: https://github.com/OCA/sale-workflow/tree/11.0/sale_order_secondary_unit
 =======
     :target: https://github.com/OCA/sale-workflow/tree/12.0/sale_order_secondary_unit
 >>>>>>> b0bae09dd ([MIG] sale_order_secondary_unit: Migration to 12.0)
+||||||| parent of 331900273 ([MIG] migrate sale_order_secondary_unit from 12.0 to 13.0)
+    :target: https://github.com/OCA/sale-workflow/tree/12.0/sale_order_secondary_unit
+=======
+    :target: https://github.com/OCA/sale-workflow/tree/13.0/sale_order_secondary_unit
+>>>>>>> 331900273 ([MIG] migrate sale_order_secondary_unit from 12.0 to 13.0)
     :alt: OCA/sale-workflow
 .. |badge4| image:: https://img.shields.io/badge/weblate-Translate%20me-F47D42.png
+<<<<<<< HEAD
 <<<<<<< HEAD
     :target: https://translation.odoo-community.org/projects/sale-workflow-18-0/sale-workflow-18-0-sale_order_secondary_unit
 ||||||| parent of b0bae09dd ([MIG] sale_order_secondary_unit: Migration to 12.0)
@@ -37,6 +44,11 @@ Sale Order Secondary Unit
 =======
     :target: https://translation.odoo-community.org/projects/sale-workflow-12-0/sale-workflow-12-0-sale_order_secondary_unit
 >>>>>>> b0bae09dd ([MIG] sale_order_secondary_unit: Migration to 12.0)
+||||||| parent of 331900273 ([MIG] migrate sale_order_secondary_unit from 12.0 to 13.0)
+    :target: https://translation.odoo-community.org/projects/sale-workflow-12-0/sale-workflow-12-0-sale_order_secondary_unit
+=======
+    :target: https://translation.odoo-community.org/projects/sale-workflow-13-0/sale-workflow-13-0-sale_order_secondary_unit
+>>>>>>> 331900273 ([MIG] migrate sale_order_secondary_unit from 12.0 to 13.0)
     :alt: Translate me on Weblate
 <<<<<<< HEAD
 .. |badge5| image:: https://img.shields.io/badge/runboat-Try%20me-875A7B.png
@@ -48,7 +60,7 @@ Sale Order Secondary Unit
     :alt: Try me on Runbot
 =======
 .. |badge5| image:: https://img.shields.io/badge/runbot-Try%20me-875A7B.png
-    :target: https://runbot.odoo-community.org/runbot/167/12.0
+    :target: https://runbot.odoo-community.org/runbot/167/13.0
     :alt: Try me on Runbot
 >>>>>>> b0bae09dd ([MIG] sale_order_secondary_unit: Migration to 12.0)
 
@@ -95,8 +107,14 @@ If you spotted it first, help us smashing it by providing a detailed and welcome
 `feedback <https://github.com/OCA/sale-workflow/issues/new?body=module:%20sale_order_secondary_unit%0Aversion:%2011.0%0A%0A**Steps%20to%20reproduce**%0A-%20...%0A%0A**Current%20behavior**%0A%0A**Expected%20behavior**>`_.
 =======
 If you spotted it first, help us smashing it by providing a detailed and welcomed
+<<<<<<< HEAD
 `feedback <https://github.com/OCA/sale-workflow/issues/new?body=module:%20sale_order_secondary_unit%0Aversion:%2012.0%0A%0A**Steps%20to%20reproduce**%0A-%20...%0A%0A**Current%20behavior**%0A%0A**Expected%20behavior**>`_.
 >>>>>>> b0bae09dd ([MIG] sale_order_secondary_unit: Migration to 12.0)
+||||||| parent of 331900273 ([MIG] migrate sale_order_secondary_unit from 12.0 to 13.0)
+`feedback <https://github.com/OCA/sale-workflow/issues/new?body=module:%20sale_order_secondary_unit%0Aversion:%2012.0%0A%0A**Steps%20to%20reproduce**%0A-%20...%0A%0A**Current%20behavior**%0A%0A**Expected%20behavior**>`_.
+=======
+`feedback <https://github.com/OCA/sale-workflow/issues/new?body=module:%20sale_order_secondary_unit%0Aversion:%2013.0%0A%0A**Steps%20to%20reproduce**%0A-%20...%0A%0A**Current%20behavior**%0A%0A**Expected%20behavior**>`_.
+>>>>>>> 331900273 ([MIG] migrate sale_order_secondary_unit from 12.0 to 13.0)
 
 Do not contact contributors directly about support or help with technical issues.
 
@@ -145,11 +163,17 @@ mission is to support the collaborative development of Odoo features and
 promote its widespread use.
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 This module is part of the `OCA/sale-workflow <https://github.com/OCA/sale-workflow/tree/18.0/sale_order_secondary_unit>`_ project on GitHub.
 ||||||| parent of b0bae09dd ([MIG] sale_order_secondary_unit: Migration to 12.0)
 This module is part of the `OCA/sale-workflow <https://github.com/OCA/sale-workflow/tree/11.0/sale_order_secondary_unit>`_ project on GitHub.
 =======
 This module is part of the `OCA/sale-workflow <https://github.com/OCA/sale-workflow/tree/12.0/sale_order_secondary_unit>`_ project on GitHub.
 >>>>>>> b0bae09dd ([MIG] sale_order_secondary_unit: Migration to 12.0)
+||||||| parent of 331900273 ([MIG] migrate sale_order_secondary_unit from 12.0 to 13.0)
+This module is part of the `OCA/sale-workflow <https://github.com/OCA/sale-workflow/tree/12.0/sale_order_secondary_unit>`_ project on GitHub.
+=======
+This module is part of the `OCA/sale-workflow <https://github.com/OCA/sale-workflow/tree/13.0/sale_order_secondary_unit>`_ project on GitHub.
+>>>>>>> 331900273 ([MIG] migrate sale_order_secondary_unit from 12.0 to 13.0)
 
 You are welcome to contribute. To learn how please visit https://odoo-community.org/page/Contribute.
