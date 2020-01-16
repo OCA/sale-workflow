@@ -1,8 +1,8 @@
-# © 2017 Akretion (Mourad EL HADJ MIMOUNE <mourad.elhadj.mimoune@akretion.com>)
+# Copyright 2017 Akretion (Mourad EL HADJ MIMOUNE <mourad.elhadj.mimoune@akretion.com>)
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
 
 
-from odoo.tests import common
+from odoo.tests import Form, common
 from odoo.tools import float_compare
 
 
@@ -54,12 +54,19 @@ class TestDeliveryCost(common.TransactionCase):
             }
         )
 
-        # I add delivery cost in Sale order
-        self.sale.get_delivery_price()
-        self.sale.set_delivery_line()
+        # set delivery cost in Sales order
+        delivery_wizard = Form(
+            self.env["choose.delivery.carrier"].with_context(
+                {
+                    "default_order_id": self.sale.id,
+                    "default_carrier_id": self.normal_delivery.id,
+                }
+            )
+        )
+        choose_delivery_carrier = delivery_wizard.save()
+        choose_delivery_carrier.button_confirm()
 
-        # I check sale order computed field after added delivery cost
-
+        # check sale order computed field after added delivery cost
         line = self.SaleOrderLine.search(
             [
                 ("order_id", "=", self.sale.id),
