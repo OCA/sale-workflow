@@ -1,11 +1,11 @@
-# © 2017-To Day Akretion
+# Copyright 2017-To Day Akretion
 # @author Sébastien BEAU <sebastien.beau@akretion.com>
 # @author: Mourad EL HADJ MIMOUNE <mourad.elhadj.mimoune@akretion.com>
 
 
 {
     "name": "Sale shipping info helper",
-    "version": "12.0.1.0.0",
+    "version": "13.0.1.0.0",
     "category": "Sales",
     "license": "AGPL-3",
     "development_status": "Production/Stable",
