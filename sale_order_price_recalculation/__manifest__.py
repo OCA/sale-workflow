@@ -8,20 +8,13 @@
 {
     "name": "Price recalculation in sales orders",
     "summary": "Recalculate prices / Reset descriptions on sale order lines",
-    "version": "12.0.1.0.0",
+    "version": "13.0.1.0.0",
     "category": "Sales Management",
     "website": "http://github.com/OCA/sale-workflow",
-    "author": "AvanzOSC,"
-              "Grupo Vermon,"
-              "Tecnativa,"
-              "Odoo Community Association (OCA)",
+    "author": "AvanzOSC," "Grupo Vermon," "Tecnativa," "Odoo Community Association (OCA)",
     "license": "AGPL-3",
     "application": False,
     "installable": True,
-    "depends": [
-        "sale",
-    ],
-    "data": [
-        "views/sale_order_view.xml",
-    ],
+    "depends": ["sale"],
+    "data": ["views/sale_order_view.xml"],
 }
