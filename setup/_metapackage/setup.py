@@ -22,6 +22,7 @@ setuptools.setup(
         'odoo12-addon-sale_disable_inventory_check',
         'odoo12-addon-sale_discount_display_amount',
         'odoo12-addon-sale_double_validation',
+        'odoo12-addon-sale_elaboration',
         'odoo12-addon-sale_exception',
         'odoo12-addon-sale_fixed_discount',
         'odoo12-addon-sale_force_invoiced',
