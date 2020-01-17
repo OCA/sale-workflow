@@ -17,50 +17,63 @@ msgstr ""
 "Plural-Forms: \n"
 
 #. module: sale_invoice_policy
-#: model:ir.model.fields,field_description:sale_invoice_policy.field_sale_config_settings_sale_default_invoice_policy
-msgid "Default Invoicing"
+#: model:ir.model,name:sale_invoice_policy.model_res_config_settings
+msgid "Config Settings"
 msgstr ""
 
 #. module: sale_invoice_policy
-#: model:ir.ui.view,arch_db:sale_invoice_policy.view_sales_config
+#: model:ir.model.fields,field_description:sale_invoice_policy.field_product_product__default_invoice_policy
+#: model:ir.model.fields,field_description:sale_invoice_policy.field_product_template__default_invoice_policy
+#, fuzzy
+#| msgid "Invoicing Policy"
+msgid "Default Invoicing Policy"
+msgstr "Politique de facturation"
+
+#. module: sale_invoice_policy
+#: model:ir.model.fields,field_description:sale_invoice_policy.field_res_config_settings__sale_default_invoice_policy
+#, fuzzy
+msgid "Default Sale Invoice Policy"
+msgstr "Politique de facturation"
+
+#. module: sale_invoice_policy
+#: model_terms:ir.ui.view,arch_db:sale_invoice_policy.view_sales_config
 msgid "Default Sale Order Invoice Policy"
 msgstr ""
 
 #. module: sale_invoice_policy
 #: selection:product.template,default_invoice_policy:0
+#: selection:product.template,invoice_policy:0
 #: selection:sale.order,invoice_policy:0
 msgid "Delivered quantities"
 msgstr "Quantités Livrées"
 
 #. module: sale_invoice_policy
-#: model:ir.ui.view,arch_db:sale_invoice_policy.view_sales_config
+#: model:ir.model.fields,field_description:sale_invoice_policy.field_sale_order__invoice_policy
+#, fuzzy
+msgid "Invoice Policy"
+msgstr "Politique de facturation"
+
+#. module: sale_invoice_policy
+#: model:ir.model.fields,field_description:sale_invoice_policy.field_sale_order__invoice_policy_required
+#, fuzzy
+msgid "Invoice Policy Required"
+msgstr "Politique de facturation"
+
+#. module: sale_invoice_policy
+#: model_terms:ir.ui.view,arch_db:sale_invoice_policy.view_sales_config
 msgid "Invoice Policy required in Sale Orders"
 msgstr ""
 
 #. module: sale_invoice_policy
-#: model:ir.model.fields,field_description:sale_invoice_policy.field_sale_order_invoice_policy
-#, fuzzy
-msgid "Invoice policy"
-msgstr "Politique de facturation"
-
-#. module: sale_invoice_policy
-#: model:ir.model.fields,field_description:sale_invoice_policy.field_sale_order_invoice_policy_required
-#, fuzzy
-msgid "Invoice policy required"
-msgstr "Politique de facturation"
-
-#. module: sale_invoice_policy
-#: model:ir.model.fields,field_description:sale_invoice_policy.field_delivery_carrier_default_invoice_policy
-#: model:ir.model.fields,field_description:sale_invoice_policy.field_product_product_default_invoice_policy
-#: model:ir.model.fields,field_description:sale_invoice_policy.field_product_template_default_invoice_policy
+#: model:ir.model.fields,field_description:sale_invoice_policy.field_product_product__invoice_policy
+#: model:ir.model.fields,field_description:sale_invoice_policy.field_product_template__invoice_policy
 msgid "Invoicing Policy"
 msgstr "Politique de facturation"
 
 #. module: sale_invoice_policy
-#: model:ir.model.fields,help:sale_invoice_policy.field_delivery_carrier_default_invoice_policy
-#: model:ir.model.fields,help:sale_invoice_policy.field_product_product_default_invoice_policy
-#: model:ir.model.fields,help:sale_invoice_policy.field_product_template_default_invoice_policy
-#: model:ir.model.fields,help:sale_invoice_policy.field_sale_order_invoice_policy
+#: model:ir.model.fields,help:sale_invoice_policy.field_product_product__default_invoice_policy
+#: model:ir.model.fields,help:sale_invoice_policy.field_product_template__default_invoice_policy
+#: model:ir.model.fields,help:sale_invoice_policy.field_sale_order__invoice_policy
 msgid ""
 "Ordered Quantity: Invoice based on the quantity the customer ordered.\n"
 "Delivered Quantity: Invoiced based on the quantity the vendor delivered "
@@ -72,7 +85,25 @@ msgstr ""
 "livré (temps passé dans le cas de prestations)."
 
 #. module: sale_invoice_policy
+#: model:ir.model.fields,help:sale_invoice_policy.field_product_product__invoice_policy
+#: model:ir.model.fields,help:sale_invoice_policy.field_product_template__invoice_policy
+#, fuzzy
+#| msgid ""
+#| "Ordered Quantity: Invoice based on the quantity the customer ordered.\n"
+#| "Delivered Quantity: Invoiced based on the quantity the vendor delivered "
+#| "(time or deliveries)."
+msgid ""
+"Ordered Quantity: Invoice quantities ordered by the customer.\n"
+"Delivered Quantity: Invoice quantities delivered to the customer."
+msgstr ""
+"Quantités commandées : facturation basée sur les quantités commandées par le "
+"client.\n"
+"Quantités livrées : facturation basée sur les quantités que le fournisseur a "
+"livré (temps passé dans le cas de prestations)."
+
+#. module: sale_invoice_policy
 #: selection:product.template,default_invoice_policy:0
+#: selection:product.template,invoice_policy:0
 #: selection:sale.order,invoice_policy:0
 msgid "Ordered quantities"
 msgstr "Quantités Commandées"
@@ -84,13 +115,16 @@ msgid "Product Template"
 msgstr "Product Template (Multi-Company)"
 
 #. module: sale_invoice_policy
-#: model:ir.model.fields,field_description:sale_invoice_policy.field_sale_config_settings_sale_invoice_policy_required
-msgid "Sale invoice policy required"
-msgstr ""
+#: model:ir.model.fields,field_description:sale_invoice_policy.field_res_config_settings__sale_invoice_policy_required
+#, fuzzy
+msgid "Sale Invoice Policy Required"
+msgstr "Politique de facturation"
 
 #. module: sale_invoice_policy
 #: model:ir.model,name:sale_invoice_policy.model_sale_order
-msgid "Sales Order"
+#, fuzzy
+#| msgid "Sales Order"
+msgid "Sale Order"
 msgstr "Commande de vente"
 
 #. module: sale_invoice_policy
@@ -99,11 +133,6 @@ msgid "Sales Order Line"
 msgstr "Ligne de bon de commande"
 
 #. module: sale_invoice_policy
-#: model:ir.model.fields,help:sale_invoice_policy.field_sale_config_settings_sale_invoice_policy_required
+#: model:ir.model.fields,help:sale_invoice_policy.field_res_config_settings__sale_invoice_policy_required
 msgid "This makes Invoice Policy required on Sale Orders"
-msgstr ""
-
-#. module: sale_invoice_policy
-#: model:ir.model,name:sale_invoice_policy.model_sale_config_settings
-msgid "sale.config.settings"
 msgstr ""
