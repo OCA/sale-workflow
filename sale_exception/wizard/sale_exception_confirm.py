@@ -11,7 +11,6 @@ class SaleExceptionConfirm(models.TransientModel):
 
     related_model_id = fields.Many2one('sale.order', 'Sale')
 
-    @api.multi
     def action_confirm(self):
         self.ensure_one()
         if self.ignore:
