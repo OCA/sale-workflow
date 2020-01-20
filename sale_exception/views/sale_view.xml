@@ -5,7 +5,6 @@
     <record id="action_sale_test_tree" model="ir.actions.act_window">
         <field name="name">Sale Exception Rules</field>
         <field name="res_model">exception.rule</field>
-        <field name="view_type">form</field>
         <field name="view_mode">tree,form</field>
         <field name="view_id" ref="base_exception.view_exception_rule_tree"/>
         <field name="domain">[('model', 'in', ['sale.order', 'sale.order.line'])]</field>
