@@ -28,7 +28,6 @@
     <field name="name">Blocked in draft due to exceptions</field>
     <field name="type">ir.actions.act_window</field>
     <field name="res_model">sale.exception.confirm</field>
-    <field name="view_type">form</field>
     <field name="view_mode">form</field>
     <field name="view_id" ref="view_sale_exception_confirm"/>
     <field name="target">new</field>
