@@ -47,7 +47,6 @@ class SaleOrderLine(models.Model):
     def _get_main_records(self):
         return self.mapped("order_id")
 
-    @api.multi
     def _get_main_records(self):
         return self.mapped('order_id')
 
