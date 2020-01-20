@@ -1,0 +1,50 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+#	* sale_milestone_profile_invoicing
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 12.0\n"
+"Report-Msgid-Bugs-To: \n"
+"Last-Translator: Automatically generated\n"
+"Language-Team: none\n"
+"Language: de\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+
+#. module: sale_milestone_profile_invoicing
+#: model:ir.model.fields,field_description:sale_milestone_profile_invoicing.field_sale_order_line__company_currency_id
+msgid "Company currency"
+msgstr ""
+
+#. module: sale_milestone_profile_invoicing
+#: model:ir.model.fields,field_description:sale_milestone_profile_invoicing.field_sale_order_line__amount_delivered_from_task
+msgid "Delivered from task"
+msgstr ""
+
+#. module: sale_milestone_profile_invoicing
+#: model:ir.model.fields,field_description:sale_milestone_profile_invoicing.field_sale_order_line__amount_delivered_from_task_company_currency
+msgid "Delivered from task (company currency)"
+msgstr ""
+
+#. module: sale_milestone_profile_invoicing
+#: model:ir.model.fields,field_description:sale_milestone_profile_invoicing.field_sale_order_line__amount_invoiced_from_task
+msgid "Invoiced from task"
+msgstr ""
+
+#. module: sale_milestone_profile_invoicing
+#: model:ir.model.fields,field_description:sale_milestone_profile_invoicing.field_sale_order_line__amount_invoiced_from_task_company_currency
+msgid "Invoiced from task (company currency)"
+msgstr ""
+
+#. module: sale_milestone_profile_invoicing
+#: model:ir.model.fields,field_description:sale_milestone_profile_invoicing.field_sale_order_line__is_company_currency
+msgid "Is Company Currency"
+msgstr ""
+
+#. module: sale_milestone_profile_invoicing
+#: model:ir.model,name:sale_milestone_profile_invoicing.model_sale_order_line
+msgid "Sales Order Line"
+msgstr ""

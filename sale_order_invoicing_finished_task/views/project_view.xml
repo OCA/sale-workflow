@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Copyright 2017 Sergio Teruel <sergio.teruel@tecnativa.com>
+     License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl). -->
+<odoo>
+
+<record id="task_type_edit" model="ir.ui.view">
+    <field name="model">project.task.type</field>
+    <field name="inherit_id" ref="project.task_type_edit"/>
+    <field name="arch" type="xml">
+        <field name="fold" position="after">
+            <field name="invoiceable"/>
+        </field>
+    </field>
+</record>
+
+<record id="edit_project_task_track" model="ir.ui.view">
+    <field name="name">project.task.form.track</field>
+    <field name="model">project.task</field>
+    <field name="inherit_id" ref="project.view_task_form2"/>
+    <field name="arch" type="xml">
+        <xpath expr="/form" position="inside">
+            <field name="invoicing_finished_task" invisible="1"/>
+        </xpath>
+
+        <div name="button_box" position="inside">
+            <button name="toggle_invoiceable" type="object"
+                    attrs="{'invisible': [('invoicing_finished_task','=', False)]}"
+                    class="oe_stat_button" icon="fa-file">
+                <field name="invoiceable" widget="boolean_button"
+                    options='{"terminology": {
+                                    "string_true": "Invoiceable",
+                                    "hover_true": "Not Invoiceable",
+                                    "string_false": "Not Invoiceable",
+                                    "hover_false": "Invoiceable"
+                                }}'/>
+            </button>
+        </div>
+    </field>
+</record>
+
+</odoo>

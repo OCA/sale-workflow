@@ -28,8 +28,19 @@ class ProductSetLine(models.Model):
         string='Set',
         ondelete='cascade',
     )
+    active = fields.Boolean(
+        string="Active",
+        related="product_set_id.active",
+        store=True,
+        readonly=True,
+    )
     sequence = fields.Integer(
         string='Sequence',
         required=True,
         default=0,
+    )
+    discount = fields.Float(
+        string='Discount (%)',
+        digits=dp.get_precision('Discount'),
+        default=0.0
     )

@@ -9,6 +9,7 @@ class ProductSet(models.Model):
     _description = 'Product set'
 
     name = fields.Char(help='Product set name', required=True)
+    active = fields.Boolean(string="Active", default=True)
     ref = fields.Char(
         string='Internal Reference',
         help='Product set internal reference',
@@ -23,17 +24,25 @@ class ProductSet(models.Model):
         default=lambda self: self.env.user.company_id,
         ondelete='cascade',
     )
+    partner_id = fields.Many2one(
+        comodel_name="res.partner",
+        required=False,
+        ondelete="cascade",
+        index=True,
+        help="You can attache the set to a specific partner "
+             "or no one. If you don't specify one, "
+             "it's going to be available for all of them."
+    )
 
     @api.multi
     def name_get(self):
-        return [
-            (
-                product_set.id,
-                '%s%s'
-                % (
-                    product_set.ref and '[%s] ' % product_set.ref or '',
-                    product_set.name,
-                ),
-            )
-            for product_set in self
-        ]
+        return [(rec.id, rec._name_get()) for rec in self]
+
+    def _name_get(self):
+        parts = []
+        if self.ref:
+            parts.append('[%s]' % self.ref)
+        parts.append(self.name)
+        if self.partner_id:
+            parts.append('@ %s' % self.partner_id.name)
+        return ' '.join(parts)

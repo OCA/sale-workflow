@@ -1,0 +1,55 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# * sale_order_line_description
+#
+# Translators:
+# OCA Transbot <transbot@odoo-community.org>, 2017
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 10.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2017-11-23 01:51+0000\n"
+"PO-Revision-Date: 2017-11-23 01:51+0000\n"
+"Last-Translator: OCA Transbot <transbot@odoo-community.org>, 2017\n"
+"Language-Team: Italian (https://www.transifex.com/oca/teams/23907/it/)\n"
+"Language: it\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+#. module: sale_order_line_description
+#: model:ir.model.fields,field_description:sale_order_line_description.field_res_config_settings__group_use_product_description_per_so_line
+msgid "Allow using only the product sale description on the sales order lines"
+msgstr ""
+
+#. module: sale_order_line_description
+#: model_terms:ir.ui.view,arch_db:sale_order_line_description.view_sales_config
+msgid "Allows you to use only product sale description on the sales order line"
+msgstr ""
+
+#. module: sale_order_line_description
+#: model:ir.model.fields,help:sale_order_line_description.field_res_config_settings__group_use_product_description_per_so_line
+msgid ""
+"Allows you to use only product sale description on the sales order line."
+msgstr ""
+
+#. module: sale_order_line_description
+#: model:ir.model,name:sale_order_line_description.model_res_config_settings
+msgid "Config Settings"
+msgstr ""
+
+#. module: sale_order_line_description
+#: model_terms:ir.ui.view,arch_db:sale_order_line_description.view_sales_config
+msgid "Product sale description"
+msgstr ""
+
+#. module: sale_order_line_description
+#: model:ir.model,name:sale_order_line_description.model_sale_order_line
+msgid "Sales Order Line"
+msgstr "Linea d'ordine di vendita"
+
+#. module: sale_order_line_description
+#: model:res.groups,name:sale_order_line_description.group_use_product_description_per_so_line
+msgid "Use only product sale description on order lines"
+msgstr ""

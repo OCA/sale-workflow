@@ -1,0 +1,68 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+#	* sale_double_validation
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 12.0\n"
+"Report-Msgid-Bugs-To: \n"
+"PO-Revision-Date: 2019-09-01 09:03+0000\n"
+"Last-Translator: 黎伟杰 <674416404@qq.com>\n"
+"Language-Team: none\n"
+"Language: zh_CN\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+"X-Generator: Weblate 3.8\n"
+
+#. module: sale_double_validation
+#: model_terms:ir.ui.view,arch_db:sale_double_validation.view_order_form
+msgid "Approve Order"
+msgstr "批准订单"
+
+#. module: sale_double_validation
+#: model:ir.model,name:sale_double_validation.model_res_company
+msgid "Companies"
+msgstr "公司"
+
+#. module: sale_double_validation
+#: selection:res.company,so_double_validation:0
+msgid "Confirm sale orders in one step"
+msgstr "一步确认销售订单"
+
+#. module: sale_double_validation
+#: model:ir.model.fields,field_description:sale_double_validation.field_res_company__so_double_validation_amount
+msgid "Double validation amount"
+msgstr "双重验证金额"
+
+#. module: sale_double_validation
+#: selection:res.company,so_double_validation:0
+msgid "Get 2 levels of approvals to confirm a sale order"
+msgstr "获得2级批准以确认销售订单"
+
+#. module: sale_double_validation
+#: model:ir.model.fields,field_description:sale_double_validation.field_res_company__so_double_validation
+msgid "Levels of Approvals"
+msgstr "批准级别"
+
+#. module: sale_double_validation
+#: model:ir.model.fields,help:sale_double_validation.field_res_company__so_double_validation_amount
+msgid "Minimum amount for which a double validation is required"
+msgstr "需要双重验证的最小金额"
+
+#. module: sale_double_validation
+#: model:ir.model.fields,help:sale_double_validation.field_res_company__so_double_validation
+msgid "Provide a double validation mechanism for purchases"
+msgstr "为采购提供双重验证机制"
+
+#. module: sale_double_validation
+#: model:ir.model,name:sale_double_validation.model_sale_order
+msgid "Sale Order"
+msgstr "销售订单"
+
+#. module: sale_double_validation
+#: code:addons/sale_double_validation/models/sale.py:19
+#, python-format
+msgid "To Approve"
+msgstr "批准"

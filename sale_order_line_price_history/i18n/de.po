@@ -1,0 +1,175 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+#	* sale_order_line_price_history
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 12.0\n"
+"Report-Msgid-Bugs-To: \n"
+"PO-Revision-Date: 2019-07-15 13:43+0000\n"
+"Last-Translator: Maria Sparenberg <maria.sparenberg@gmx.net>\n"
+"Language-Team: none\n"
+"Language: de\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: Weblate 3.7.1\n"
+
+#. module: sale_order_line_price_history
+#: model_terms:ir.ui.view,arch_db:sale_order_line_price_history.sale_order_line_price_history_view_form
+msgid "Close"
+msgstr "Schließen"
+
+#. module: sale_order_line_price_history
+#: model:ir.model.fields,field_description:sale_order_line_price_history.field_sale_order_line_price_history__create_uid
+#: model:ir.model.fields,field_description:sale_order_line_price_history.field_sale_order_line_price_history_line__create_uid
+msgid "Created by"
+msgstr "Erstellt von"
+
+#. module: sale_order_line_price_history
+#: model:ir.model.fields,field_description:sale_order_line_price_history.field_sale_order_line_price_history__create_date
+#: model:ir.model.fields,field_description:sale_order_line_price_history.field_sale_order_line_price_history_line__create_date
+msgid "Created on"
+msgstr "Erstellt am"
+
+#. module: sale_order_line_price_history
+#: model:ir.model.fields,field_description:sale_order_line_price_history.field_sale_order_line_price_history__partner_id
+#: model:ir.model.fields,field_description:sale_order_line_price_history.field_sale_order_line_price_history_line__partner_id
+msgid "Customer"
+msgstr "Kunde"
+
+#. module: sale_order_line_price_history
+#: model:ir.model.fields,field_description:sale_order_line_price_history.field_sale_order_line_price_history__display_name
+#: model:ir.model.fields,field_description:sale_order_line_price_history.field_sale_order_line_price_history_line__display_name
+msgid "Display Name"
+msgstr "Anzeigename"
+
+#. module: sale_order_line_price_history
+#: model:ir.model.fields,field_description:sale_order_line_price_history.field_sale_order_line_price_history_line__history_id
+msgid "History"
+msgstr "Historie"
+
+#. module: sale_order_line_price_history
+#: model:ir.model.fields,field_description:sale_order_line_price_history.field_sale_order_line_price_history__line_ids
+msgid "History lines"
+msgstr "Historienzeilen"
+
+#. module: sale_order_line_price_history
+#: model:ir.model.fields,field_description:sale_order_line_price_history.field_sale_order_line_price_history__id
+#: model:ir.model.fields,field_description:sale_order_line_price_history.field_sale_order_line_price_history_line__id
+msgid "ID"
+msgstr "ID"
+
+#. module: sale_order_line_price_history
+#: model:ir.model.fields,field_description:sale_order_line_price_history.field_sale_order_line_price_history__include_commercial_partner
+msgid "Include commercial entity"
+msgstr ""
+
+#. module: sale_order_line_price_history
+#: model:ir.model.fields,help:sale_order_line_price_history.field_sale_order_line_price_history__include_commercial_partner
+msgid "Include commercial entity and its contacts in the sale history"
+msgstr ""
+
+#. module: sale_order_line_price_history
+#: model:ir.model.fields,field_description:sale_order_line_price_history.field_sale_order_line_price_history__include_quotations
+msgid "Include quotations"
+msgstr "Angebote berücksichtigen"
+
+#. module: sale_order_line_price_history
+#: model:ir.model.fields,help:sale_order_line_price_history.field_sale_order_line_price_history__include_quotations
+msgid "Include quotations lines in the sale history"
+msgstr ""
+"Wenn der Haken gesetzt ist, werden auch die Positionen aus Angeboten "
+"angezeigt."
+
+#. module: sale_order_line_price_history
+#: model:ir.model.fields,field_description:sale_order_line_price_history.field_sale_order_line_price_history____last_update
+#: model:ir.model.fields,field_description:sale_order_line_price_history.field_sale_order_line_price_history_line____last_update
+msgid "Last Modified on"
+msgstr "Zuletzt geändert am"
+
+#. module: sale_order_line_price_history
+#: model:ir.model.fields,field_description:sale_order_line_price_history.field_sale_order_line_price_history__write_uid
+#: model:ir.model.fields,field_description:sale_order_line_price_history.field_sale_order_line_price_history_line__write_uid
+msgid "Last Updated by"
+msgstr "Zuletzt aktualisiert von"
+
+#. module: sale_order_line_price_history
+#: model:ir.model.fields,field_description:sale_order_line_price_history.field_sale_order_line_price_history__write_date
+#: model:ir.model.fields,field_description:sale_order_line_price_history.field_sale_order_line_price_history_line__write_date
+msgid "Last Updated on"
+msgstr "Zuletzt aktualisiert am"
+
+#. module: sale_order_line_price_history
+#: model:ir.model.fields,field_description:sale_order_line_price_history.field_sale_order_line_price_history_line__sale_order_date_order
+msgid "Order Date"
+msgstr "Auftragsdatum"
+
+#. module: sale_order_line_price_history
+#: model:ir.model.fields,field_description:sale_order_line_price_history.field_sale_order_line_price_history_line__order_id
+msgid "Order Reference"
+msgstr "Auftragsnummer"
+
+#. module: sale_order_line_price_history
+#: model:ir.model.fields,field_description:sale_order_line_price_history.field_sale_order_line_price_history_line__product_uom_qty
+msgid "Ordered Quantity"
+msgstr "Auftragsmenge"
+
+#. module: sale_order_line_price_history
+#: model_terms:ir.ui.view,arch_db:sale_order_line_price_history.view_order_form
+msgid "Price history"
+msgstr "Preishistorie"
+
+#. module: sale_order_line_price_history
+#: model:ir.actions.act_window,name:sale_order_line_price_history.sale_order_line_price_history_action
+msgid "Price history per customer"
+msgstr "Preishistorie pro Kunde"
+
+#. module: sale_order_line_price_history
+#: model:ir.model.fields,field_description:sale_order_line_price_history.field_sale_order_line_price_history__product_id
+msgid "Product"
+msgstr "Produkt"
+
+#. module: sale_order_line_price_history
+#: model_terms:ir.ui.view,arch_db:sale_order_line_price_history.sale_order_line_price_history_view_form
+msgid "Sale history"
+msgstr "Verkaufshistorie"
+
+#. module: sale_order_line_price_history
+#: model:ir.model.fields,field_description:sale_order_line_price_history.field_sale_order_line_price_history__sale_order_line_id
+#: model:ir.model.fields,field_description:sale_order_line_price_history.field_sale_order_line_price_history_line__sale_order_line_id
+msgid "Sale order line"
+msgstr "Auftragszeile"
+
+#. module: sale_order_line_price_history
+#: model:ir.model,name:sale_order_line_price_history.model_sale_order_line_price_history
+msgid "Sale order line price history"
+msgstr "Preishistorie der Auftragszeile"
+
+#. module: sale_order_line_price_history
+#: model:ir.model,name:sale_order_line_price_history.model_sale_order_line_price_history_line
+msgid "Sale order line price history line"
+msgstr "Preishistorienzeile der Auftragszeile"
+
+#. module: sale_order_line_price_history
+#: model_terms:ir.ui.view,arch_db:sale_order_line_price_history.sale_order_line_price_history_view_form
+msgid "Set price"
+msgstr "Preis verwenden"
+
+#. module: sale_order_line_price_history
+#: model:ir.model.fields,field_description:sale_order_line_price_history.field_sale_order_line_price_history_line__price_unit
+msgid "Unit Price"
+msgstr "Preis pro ME"
+
+#. module: sale_order_line_price_history
+#: model:ir.model.fields,help:sale_order_line_price_history.field_sale_order_line_price_history_line__partner_id
+msgid "You can find a customer by its Name, TIN, Email or Internal Reference."
+msgstr ""
+"Ein Kunde kann anhand seines Namens, seiner Steuer-ID, Emailadresse oder "
+"internen Referenz gefunden werden."
+
+#. module: sale_order_line_price_history
+#: model:ir.model.fields,field_description:sale_order_line_price_history.field_sale_order_line_price_history_line__history_sale_order_line_id
+msgid "history sale order line"
+msgstr "Historie der Auftragszeile"

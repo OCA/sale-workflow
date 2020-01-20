@@ -1,0 +1,79 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# * sale_order_invoicing_finished_task
+#
+# Translators:
+# OCA Transbot <transbot@odoo-community.org>, 2017
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 10.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2017-11-23 01:51+0000\n"
+"PO-Revision-Date: 2017-11-23 01:51+0000\n"
+"Last-Translator: OCA Transbot <transbot@odoo-community.org>, 2017\n"
+"Language-Team: Dutch (https://www.transifex.com/oca/teams/23907/nl/)\n"
+"Language: nl\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+#. module: sale_order_invoicing_finished_task
+#: model:ir.model.fields,help:sale_order_invoicing_finished_task.field_product_product__invoicing_finished_task
+#: model:ir.model.fields,help:sale_order_invoicing_finished_task.field_product_template__invoicing_finished_task
+#: model:ir.model.fields,help:sale_order_invoicing_finished_task.field_project_task__invoicing_finished_task
+msgid "Invoice the order lines only when the task is set to invoiceable"
+msgstr ""
+
+#. module: sale_order_invoicing_finished_task
+#: model:ir.model.fields,field_description:sale_order_invoicing_finished_task.field_project_task__invoiceable
+#: model:ir.model.fields,field_description:sale_order_invoicing_finished_task.field_project_task_type__invoiceable
+msgid "Invoiceable"
+msgstr ""
+
+#. module: sale_order_invoicing_finished_task
+#: model:ir.model.fields,field_description:sale_order_invoicing_finished_task.field_product_product__invoicing_finished_task
+#: model:ir.model.fields,field_description:sale_order_invoicing_finished_task.field_product_template__invoicing_finished_task
+#: model:ir.model.fields,field_description:sale_order_invoicing_finished_task.field_project_task__invoicing_finished_task
+msgid "Invoicing control by task"
+msgstr ""
+
+#. module: sale_order_invoicing_finished_task
+#: model:ir.model,name:sale_order_invoicing_finished_task.model_product_template
+msgid "Product Template"
+msgstr ""
+
+#. module: sale_order_invoicing_finished_task
+#: model:ir.model,name:sale_order_invoicing_finished_task.model_sale_order
+#, fuzzy
+#| msgid "Sales Order"
+msgid "Sale Order"
+msgstr "Verkooporder"
+
+#. module: sale_order_invoicing_finished_task
+#: model:ir.model,name:sale_order_invoicing_finished_task.model_sale_order_line
+msgid "Sales Order Line"
+msgstr ""
+
+#. module: sale_order_invoicing_finished_task
+#: model:ir.model,name:sale_order_invoicing_finished_task.model_project_task
+msgid "Task"
+msgstr ""
+
+#. module: sale_order_invoicing_finished_task
+#: model:ir.model,name:sale_order_invoicing_finished_task.model_project_task_type
+msgid "Task Stage"
+msgstr ""
+
+#. module: sale_order_invoicing_finished_task
+#: model:ir.model.fields,field_description:sale_order_invoicing_finished_task.field_sale_order_line__task_ids
+msgid "Tasks"
+msgstr ""
+
+#. module: sale_order_invoicing_finished_task
+#: code:addons/sale_order_invoicing_finished_task/models/project.py:65
+#, python-format
+msgid ""
+"You cannot create/modify a task related with a invoiced, done or cancel sale "
+"order line "
+msgstr ""
