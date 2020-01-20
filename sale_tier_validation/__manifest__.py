@@ -13,6 +13,7 @@
     "installable": True,
     "depends": [
         "sale",
+        "server-ux",
         "base_tier_validation",
     ],
     "data": [
