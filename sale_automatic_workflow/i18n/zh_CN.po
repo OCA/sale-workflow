@@ -31,7 +31,6 @@ msgstr "交付的所有数量"
 #: model:ir.ui.menu,name:sale_automatic_workflow.menu_act_sale_workflow_process_form
 #: model:ir.ui.menu,name:sale_automatic_workflow.menu_sale_workflow_parent
 #: model_terms:ir.ui.view,arch_db:sale_automatic_workflow.sale_workflow_process_view_form
-#: model_terms:ir.ui.view,arch_db:sale_automatic_workflow.sale_workflow_process_view_tree
 msgid "Automatic Workflow"
 msgstr "自动工作流程"
 
@@ -112,12 +111,12 @@ msgid "Created on"
 msgstr "创建时间"
 
 #. module: sale_automatic_workflow
-#: selection:sale.workflow.process,picking_policy:0
+#: model:ir.model.fields.selection,name:sale_automatic_workflow.selection__sale_workflow_process__picking_policy__one
 msgid "Deliver all products at once"
 msgstr "一次交付所有产品"
 
 #. module: sale_automatic_workflow
-#: selection:sale.workflow.process,picking_policy:0
+#: model:ir.model.fields.selection,name:sale_automatic_workflow.selection__sale_workflow_process__picking_policy__direct
 msgid "Deliver each product when available"
 msgstr "交付每个可用的产品"
 
@@ -149,17 +148,18 @@ msgstr "如果设置，则在用户选择销售订单上的流程时显示消息
 msgid ""
 "If this box is checked, when the first invoice is created The service sale "
 "order lines will be included and will be marked as delivered"
-msgstr "如果选中此框，则在创建第一张发票时将包含服务销售订单行，并将其标记为已交付"
-
-#. module: sale_automatic_workflow
-#: model:ir.model,name:sale_automatic_workflow.model_account_invoice
-msgid "Invoice"
-msgstr "发票"
+msgstr ""
+"如果选中此框，则在创建第一张发票时将包含服务销售订单行，并将其标记为已交付"
 
 #. module: sale_automatic_workflow
 #: model:ir.model.fields,field_description:sale_automatic_workflow.field_sale_workflow_process__invoice_service_delivery
 msgid "Invoice Service on delivery"
 msgstr "发货时发票服务"
+
+#. module: sale_automatic_workflow
+#: model:ir.model,name:sale_automatic_workflow.model_account_move
+msgid "Journal Entries"
+msgstr ""
 
 #. module: sale_automatic_workflow
 #: model:ir.model.fields,field_description:sale_automatic_workflow.field_automatic_workflow_job____last_update
@@ -225,13 +225,8 @@ msgid "Sale Done Filter Domain"
 msgstr "销售完成筛选域"
 
 #. module: sale_automatic_workflow
-#: model:ir.model,name:sale_automatic_workflow.model_sale_order
-msgid "Sale Order"
-msgstr "销售订单"
-
-#. module: sale_automatic_workflow
 #: model:ir.model,name:sale_automatic_workflow.model_sale_workflow_process
-#: model:ir.model.fields,field_description:sale_automatic_workflow.field_account_invoice__workflow_process_id
+#: model:ir.model.fields,field_description:sale_automatic_workflow.field_account_move__workflow_process_id
 #: model:ir.model.fields,field_description:sale_automatic_workflow.field_stock_picking__workflow_process_id
 msgid "Sale Workflow Process"
 msgstr "销售工作流程"
@@ -240,6 +235,13 @@ msgstr "销售工作流程"
 #: model:ir.model.fields,field_description:sale_automatic_workflow.field_sale_workflow_process__property_journal_id
 msgid "Sales Journal"
 msgstr "销售日记账"
+
+#. module: sale_automatic_workflow
+#: model:ir.model,name:sale_automatic_workflow.model_sale_order
+#, fuzzy
+#| msgid "Sale Order"
+msgid "Sales Order"
+msgstr "销售订单"
 
 #. module: sale_automatic_workflow
 #: model:ir.model.fields,field_description:sale_automatic_workflow.field_sale_workflow_process__team_id
@@ -314,10 +316,13 @@ msgid "Workflow Options"
 msgstr "工作流程选项"
 
 #. module: sale_automatic_workflow
-#: code:addons/sale_automatic_workflow/models/sale_order.py:61
+#: code:addons/sale_automatic_workflow/models/sale_order.py:0
 #, python-format
 msgid "Workflow Warning"
 msgstr "工作流程警告"
+
+#~ msgid "Invoice"
+#~ msgstr "发票"
 
 #~ msgid "Quotation"
 #~ msgstr "Quotation"
