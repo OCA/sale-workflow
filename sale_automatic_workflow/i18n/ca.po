@@ -29,7 +29,6 @@ msgstr ""
 #: model:ir.ui.menu,name:sale_automatic_workflow.menu_act_sale_workflow_process_form
 #: model:ir.ui.menu,name:sale_automatic_workflow.menu_sale_workflow_parent
 #: model_terms:ir.ui.view,arch_db:sale_automatic_workflow.sale_workflow_process_view_form
-#: model_terms:ir.ui.view,arch_db:sale_automatic_workflow.sale_workflow_process_view_tree
 msgid "Automatic Workflow"
 msgstr ""
 
@@ -110,12 +109,12 @@ msgid "Created on"
 msgstr "Creat el"
 
 #. module: sale_automatic_workflow
-#: selection:sale.workflow.process,picking_policy:0
+#: model:ir.model.fields.selection,name:sale_automatic_workflow.selection__sale_workflow_process__picking_policy__one
 msgid "Deliver all products at once"
 msgstr ""
 
 #. module: sale_automatic_workflow
-#: selection:sale.workflow.process,picking_policy:0
+#: model:ir.model.fields.selection,name:sale_automatic_workflow.selection__sale_workflow_process__picking_policy__direct
 msgid "Deliver each product when available"
 msgstr ""
 
@@ -150,13 +149,13 @@ msgid ""
 msgstr ""
 
 #. module: sale_automatic_workflow
-#: model:ir.model,name:sale_automatic_workflow.model_account_invoice
-msgid "Invoice"
-msgstr "Factura"
-
-#. module: sale_automatic_workflow
 #: model:ir.model.fields,field_description:sale_automatic_workflow.field_sale_workflow_process__invoice_service_delivery
 msgid "Invoice Service on delivery"
+msgstr ""
+
+#. module: sale_automatic_workflow
+#: model:ir.model,name:sale_automatic_workflow.model_account_move
+msgid "Journal Entries"
 msgstr ""
 
 #. module: sale_automatic_workflow
@@ -223,13 +222,8 @@ msgid "Sale Done Filter Domain"
 msgstr ""
 
 #. module: sale_automatic_workflow
-#: model:ir.model,name:sale_automatic_workflow.model_sale_order
-msgid "Sale Order"
-msgstr ""
-
-#. module: sale_automatic_workflow
 #: model:ir.model,name:sale_automatic_workflow.model_sale_workflow_process
-#: model:ir.model.fields,field_description:sale_automatic_workflow.field_account_invoice__workflow_process_id
+#: model:ir.model.fields,field_description:sale_automatic_workflow.field_account_move__workflow_process_id
 #: model:ir.model.fields,field_description:sale_automatic_workflow.field_stock_picking__workflow_process_id
 msgid "Sale Workflow Process"
 msgstr ""
@@ -237,6 +231,11 @@ msgstr ""
 #. module: sale_automatic_workflow
 #: model:ir.model.fields,field_description:sale_automatic_workflow.field_sale_workflow_process__property_journal_id
 msgid "Sales Journal"
+msgstr ""
+
+#. module: sale_automatic_workflow
+#: model:ir.model,name:sale_automatic_workflow.model_sale_order
+msgid "Sales Order"
 msgstr ""
 
 #. module: sale_automatic_workflow
@@ -312,7 +311,10 @@ msgid "Workflow Options"
 msgstr ""
 
 #. module: sale_automatic_workflow
-#: code:addons/sale_automatic_workflow/models/sale_order.py:61
+#: code:addons/sale_automatic_workflow/models/sale_order.py:0
 #, python-format
 msgid "Workflow Warning"
 msgstr ""
+
+#~ msgid "Invoice"
+#~ msgstr "Factura"
