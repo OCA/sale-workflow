@@ -30,7 +30,6 @@ msgstr "Commande livrée complétement"
 #: model:ir.ui.menu,name:sale_automatic_workflow.menu_act_sale_workflow_process_form
 #: model:ir.ui.menu,name:sale_automatic_workflow.menu_sale_workflow_parent
 #: model_terms:ir.ui.view,arch_db:sale_automatic_workflow.sale_workflow_process_view_form
-#: model_terms:ir.ui.view,arch_db:sale_automatic_workflow.sale_workflow_process_view_tree
 msgid "Automatic Workflow"
 msgstr "Flux automatique"
 
@@ -114,12 +113,12 @@ msgid "Created on"
 msgstr "Créé le"
 
 #. module: sale_automatic_workflow
-#: selection:sale.workflow.process,picking_policy:0
+#: model:ir.model.fields.selection,name:sale_automatic_workflow.selection__sale_workflow_process__picking_policy__one
 msgid "Deliver all products at once"
 msgstr "Livrer tous les articles en une fois"
 
 #. module: sale_automatic_workflow
-#: selection:sale.workflow.process,picking_policy:0
+#: model:ir.model.fields.selection,name:sale_automatic_workflow.selection__sale_workflow_process__picking_policy__direct
 msgid "Deliver each product when available"
 msgstr "Livrer chaque article dès disponibilité"
 
@@ -158,14 +157,14 @@ msgstr ""
 "articles du bon de commande seront incluses et marquées comme livrées"
 
 #. module: sale_automatic_workflow
-#: model:ir.model,name:sale_automatic_workflow.model_account_invoice
-msgid "Invoice"
-msgstr "Facture"
-
-#. module: sale_automatic_workflow
 #: model:ir.model.fields,field_description:sale_automatic_workflow.field_sale_workflow_process__invoice_service_delivery
 msgid "Invoice Service on delivery"
 msgstr "Comptabilisation de la facture à la livraison"
+
+#. module: sale_automatic_workflow
+#: model:ir.model,name:sale_automatic_workflow.model_account_move
+msgid "Journal Entries"
+msgstr ""
 
 #. module: sale_automatic_workflow
 #: model:ir.model.fields,field_description:sale_automatic_workflow.field_automatic_workflow_job____last_update
@@ -231,15 +230,8 @@ msgid "Sale Done Filter Domain"
 msgstr "Domaine du filtre des ventes réalisées"
 
 #. module: sale_automatic_workflow
-#: model:ir.model,name:sale_automatic_workflow.model_sale_order
-#, fuzzy
-#| msgid "Validate Order"
-msgid "Sale Order"
-msgstr "Confirmer les commandes"
-
-#. module: sale_automatic_workflow
 #: model:ir.model,name:sale_automatic_workflow.model_sale_workflow_process
-#: model:ir.model.fields,field_description:sale_automatic_workflow.field_account_invoice__workflow_process_id
+#: model:ir.model.fields,field_description:sale_automatic_workflow.field_account_move__workflow_process_id
 #: model:ir.model.fields,field_description:sale_automatic_workflow.field_stock_picking__workflow_process_id
 msgid "Sale Workflow Process"
 msgstr "Flux automatique de vente"
@@ -248,6 +240,13 @@ msgstr "Flux automatique de vente"
 #: model:ir.model.fields,field_description:sale_automatic_workflow.field_sale_workflow_process__property_journal_id
 msgid "Sales Journal"
 msgstr "Journal des ventes"
+
+#. module: sale_automatic_workflow
+#: model:ir.model,name:sale_automatic_workflow.model_sale_order
+#, fuzzy
+#| msgid "Validate Order"
+msgid "Sales Order"
+msgstr "Confirmer les commandes"
 
 #. module: sale_automatic_workflow
 #: model:ir.model.fields,field_description:sale_automatic_workflow.field_sale_workflow_process__team_id
@@ -323,10 +322,13 @@ msgid "Workflow Options"
 msgstr "Options du flux automatique"
 
 #. module: sale_automatic_workflow
-#: code:addons/sale_automatic_workflow/models/sale_order.py:61
+#: code:addons/sale_automatic_workflow/models/sale_order.py:0
 #, python-format
 msgid "Workflow Warning"
 msgstr "Message d'avertissement"
+
+#~ msgid "Invoice"
+#~ msgstr "Facture"
 
 #~ msgid "Quotation"
 #~ msgstr "Quotation"
