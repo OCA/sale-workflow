@@ -1,6 +1,6 @@
 # Translation of Odoo Server.
 # This file contains the translation of the following modules:
-#	* sale_last_price_info
+# 	* sale_last_price_info
 #
 msgid ""
 msgstr ""
@@ -15,6 +15,13 @@ msgstr ""
 "Content-Transfer-Encoding: \n"
 "Plural-Forms: nplurals=1; plural=0;\n"
 "X-Generator: Weblate 3.8\n"
+
+#. module: sale_last_price_info
+#: model:ir.model.fields,help:sale_last_price_info.field_sale_order_line__date_order_sale_last_price_info
+msgid ""
+"Creation date of draft/sent orders,\n"
+"Confirmation date of confirmed orders."
+msgstr ""
 
 #. module: sale_last_price_info
 #: model:ir.model.fields,field_description:sale_last_price_info.field_product_product__last_customer_id

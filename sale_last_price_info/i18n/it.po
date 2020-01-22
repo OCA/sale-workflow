@@ -17,6 +17,13 @@ msgstr ""
 "Plural-Forms: \n"
 
 #. module: sale_last_price_info
+#: model:ir.model.fields,help:sale_last_price_info.field_sale_order_line__date_order_sale_last_price_info
+msgid ""
+"Creation date of draft/sent orders,\n"
+"Confirmation date of confirmed orders."
+msgstr ""
+
+#. module: sale_last_price_info
 #: model:ir.model.fields,field_description:sale_last_price_info.field_product_product__last_customer_id
 msgid "Last Customer"
 msgstr "Last Customer"
