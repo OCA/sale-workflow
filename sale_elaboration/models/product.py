@@ -4,6 +4,6 @@ from odoo import fields, models
 
 
 class ProductTemplate(models.Model):
-    _inherit = 'product.template'
+    _inherit = "product.template"
 
-    is_elaboration = fields.Boolean(string='Is elaboration')
+    is_elaboration = fields.Boolean(string="Is elaboration")
