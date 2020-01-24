@@ -13,5 +13,6 @@ class SaleOrder(models.Model):
         comodel_name='res.partner',
         string='End User',
         index=True,
+        domain=[('type', '=', 'end_user')],
         ondelete='restrict',
     )
