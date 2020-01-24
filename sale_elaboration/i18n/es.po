@@ -43,11 +43,6 @@ msgid "Code must be unique!"
 msgstr "El código debe ser único!"
 
 #. module: sale_elaboration
-#: model:ir.model.fields,field_description:sale_elaboration.field_sale_order_line__confirmation_date
-msgid "Confirmation Date"
-msgstr "Fecha de confirmación"
-
-#. module: sale_elaboration
 #: model:ir.model.fields,field_description:sale_elaboration.field_product_elaboration__create_uid
 msgid "Created by"
 msgstr "Creado por"
@@ -56,6 +51,11 @@ msgstr "Creado por"
 #: model:ir.model.fields,field_description:sale_elaboration.field_product_elaboration__create_date
 msgid "Created on"
 msgstr "Creado el"
+
+#. module: sale_elaboration
+#: model:ir.model.fields,field_description:sale_elaboration.field_sale_order_line__confirmation_date
+msgid "Date"
+msgstr "Fecha"
 
 #. module: sale_elaboration
 #: model:ir.model.fields,help:sale_elaboration.field_sale_order_line__confirmation_date
@@ -101,8 +101,7 @@ msgstr "ID (identificación)"
 msgid ""
 "If unchecked, it will allow you to hide the product elaborations without "
 "removing it."
-msgstr ""
-"Si no está marcado, permitirá ocultar la elaboración sin eliminarla."
+msgstr "Si no está marcado, permitirá ocultar la elaboración sin eliminarla."
 
 #. module: sale_elaboration
 #: model:ir.model.fields,field_description:sale_elaboration.field_sale_order_line__is_elaboration
@@ -188,8 +187,8 @@ msgstr "Nombre corto"
 msgid "Transfer"
 msgstr "Transferir"
 
-#~ msgid "Date"
-#~ msgstr "Fecha"
+#~ msgid "Confirmation Date"
+#~ msgstr "Fecha de confirmación"
 
 #~ msgid "Quotation"
 #~ msgstr "Presupuesto"

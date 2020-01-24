@@ -27,6 +27,11 @@ msgid "<strong>Elaboration</strong>"
 msgstr ""
 
 #. module: sale_elaboration
+#: model:ir.model.fields,field_description:sale_elaboration.field_product_elaboration__active
+msgid "Active"
+msgstr ""
+
+#. module: sale_elaboration
 #: model_terms:ir.ui.view,arch_db:sale_elaboration.view_sales_order_line_filter
 msgid "After Date"
 msgstr ""
@@ -89,6 +94,13 @@ msgstr ""
 #: model:ir.model.fields,field_description:sale_elaboration.field_product_elaboration__id
 msgid "ID"
 msgstr "ID"
+
+#. module: sale_elaboration
+#: model:ir.model.fields,help:sale_elaboration.field_product_elaboration__active
+msgid ""
+"If unchecked, it will allow you to hide the product elaborations without "
+"removing it."
+msgstr ""
 
 #. module: sale_elaboration
 #: model:ir.model.fields,field_description:sale_elaboration.field_sale_order_line__is_elaboration
