@@ -94,7 +94,6 @@ class TestSaleElaboration(SavepointCase):
 
     def test_sale_elaboration_change(self):
         self.order.order_line.elaboration_id = self.elaboration_b.id
-        self.order.order_line.onchange_elaboration_id()
         self.assertEqual(self.order.order_line.elaboration_note, "Elaboration B")
 
     def test_sale_elaboration(self):
@@ -155,8 +154,7 @@ class TestSaleElaboration(SavepointCase):
         so.onchange_partner_id()
         self.order = self.env["sale.order"].create(so._convert_to_write(so._cache))
         self.order.action_confirm()
-        invoice_id = self.order.action_invoice_create()
-        invoice = self.env["account.invoice"].browse(invoice_id)
+        invoice = self.order._create_invoices()
         so_line_elaboration = self.order.order_line.filtered("is_elaboration")
         so_line_no_elaboration = self.order.order_line - so_line_elaboration
         inv_line_elaboration = invoice.invoice_line_ids.filtered(
