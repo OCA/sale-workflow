@@ -17,6 +17,12 @@ class Elaboration(models.Model):
         domain=[("type", "=", "service"), ("is_elaboration", "=", True)],
         required=True,
     )
+    active = fields.Boolean(
+        string="Active",
+        default=True,
+        help="If unchecked, it will allow you to hide the product "
+        "elaborations without removing it.",
+    )
 
     _sql_constraints = [
         ("name_uniq", "unique(name)", "Name must be unique!"),

@@ -9,7 +9,7 @@
         <field name="model">sale.order.line</field>
         <field name="arch" type="xml">
             <tree string="Elaborations" create="false">
-                <field name="confirmation_date"/>
+                <field name="date_order"/>
                 <field name="order_id"/>
                 <field name="salesman_id"/>
                 <field name="order_partner_id"/>
@@ -28,8 +28,8 @@
         <field name="arch" type="xml">
             <field name="product_id" position="after">
                 <separator/>
-                <field name="confirmation_date"
-                       filter_domain="[('confirmation_date','&gt;=', self)]"
+                <field name="date_order"
+                       filter_domain="[('date_order','&gt;=', self)]"
                        string="After Date"
                 />
                 <field name="elaboration_id"/>
@@ -49,7 +49,6 @@
         <field name="name">Sale Elaboration Report</field>
         <field name="type">ir.actions.act_window</field>
         <field name="res_model">sale.order.line</field>
-        <field name="view_type">form</field>
         <field name="view_mode">tree,pivot</field>
         <field name="domain">[('state', '=', 'sale')]</field>
         <field name="context">{'search_default_is_elaboration':1}</field>

@@ -27,6 +27,7 @@
                 <field name="code"/>
                 <field name="name"/>
                 <field name="product_id" context="{'default_is_elaboration': True, 'default_type': 'service'}"/>
+                <field name="active" invisible="1"/>
             </tree>
         </field>
     </record>
@@ -46,7 +47,6 @@
         <field name="name">Sale Elaboration</field>
         <field name="type">ir.actions.act_window</field>
         <field name="res_model">product.elaboration</field>
-        <field name="view_type">form</field>
         <field name="view_mode">tree</field>
         <field name="search_view_id" ref="elaboration_view_search"/>
     </record>
