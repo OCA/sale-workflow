@@ -8,7 +8,6 @@ def _execute_onchanges(records, field_name):
     """Helper methods that executes all onchanges associated to a field."""
     for onchange in records._onchange_methods.get(field_name, []):
         for record in records:
-            record._origin = record.env["sale.order.line"]
             onchange(record)
 
 
@@ -32,8 +31,6 @@ class SaleOrder(models.Model):
         sol = SaleOrderLine.new(
             {"order_id": self.id, "product_id": product.id, "is_elaboration": True}
         )
-        # TODO: Needed?
-        sol._origin = SaleOrderLine
         _execute_onchanges(sol, "product_id")
         sol.update({"product_uom_qty": qty})
         _execute_onchanges(sol, "product_uom_qty")
@@ -49,24 +46,32 @@ class SaleOrderLine(models.Model):
     elaboration_id = fields.Many2one(
         comodel_name="product.elaboration", string="Elaboration", ondelete="restrict"
     )
-    elaboration_note = fields.Char(string="Elaboration Note")
-    is_elaboration = fields.Boolean(string="Is Elaboration")
-    confirmation_date = fields.Datetime(
-        related="order_id.confirmation_date", string="Date", readonly=True
+    elaboration_note = fields.Char(
+        string="Elaboration Note",
+        store=True,
+        compute="_compute_elaboration_note",
+        readonly=False,
     )
+    is_elaboration = fields.Boolean(
+        string="Is Elaboration",
+        store=True,
+        compute="_compute_is_elaboration",
+        readonly=False,
+    )
+    date_order = fields.Datetime(related="order_id.date_order", string="Date")
 
-    @api.onchange("elaboration_id")
-    def onchange_elaboration_id(self):
-        self.elaboration_note = self.elaboration_id.name
+    @api.depends("elaboration_id")
+    def _compute_elaboration_note(self):
+        for line in self:
+            line.elaboration_note = line.elaboration_id.name
 
-    def _prepare_invoice_line(self, qty):
-        vals = super()._prepare_invoice_line(qty)
+    def _prepare_invoice_line(self):
+        vals = super()._prepare_invoice_line()
         if self.is_elaboration:
             vals["name"] = "{} - {}".format(self.order_id.name, self.name)
         return vals
 
-    @api.onchange("product_id")
-    def product_id_change(self):
-        result = super().product_id_change()
-        self.is_elaboration = self.product_id.is_elaboration
-        return result
+    @api.depends("product_id")
+    def _compute_is_elaboration(self):
+        for line in self:
+            line.is_elaboration = line.product_id.is_elaboration
