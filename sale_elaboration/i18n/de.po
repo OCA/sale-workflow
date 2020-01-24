@@ -47,12 +47,12 @@ msgid "Created on"
 msgstr "Erstellt am"
 
 #. module: sale_elaboration
-#: model:ir.model.fields,field_description:sale_elaboration.field_sale_order_line__confirmation_date
+#: model:ir.model.fields,field_description:sale_elaboration.field_sale_order_line__date_order
 msgid "Date"
 msgstr ""
 
 #. module: sale_elaboration
-#: model:ir.model.fields,help:sale_elaboration.field_sale_order_line__confirmation_date
+#: model:ir.model.fields,help:sale_elaboration.field_sale_order_line__date_order
 msgid "Date on which the sales order is confirmed."
 msgstr ""
 
