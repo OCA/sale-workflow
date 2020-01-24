@@ -27,12 +27,17 @@ msgid "<strong>Elaboration</strong>"
 msgstr ""
 
 #. module: sale_elaboration
+#: model:ir.model.fields,field_description:sale_elaboration.field_product_elaboration__active
+msgid "Active"
+msgstr ""
+
+#. module: sale_elaboration
 #: model_terms:ir.ui.view,arch_db:sale_elaboration.view_sales_order_line_filter
 msgid "After Date"
 msgstr ""
 
 #. module: sale_elaboration
-#: sql_constraint:product.elaboration:0
+#: model:ir.model.constraint,message:sale_elaboration.constraint_product_elaboration_code_uniq
 msgid "Code must be unique!"
 msgstr ""
 
@@ -47,13 +52,15 @@ msgid "Created on"
 msgstr "Erstellt am"
 
 #. module: sale_elaboration
-#: model:ir.model.fields,field_description:sale_elaboration.field_sale_order_line__confirmation_date
-msgid "Date"
+#: model:ir.model.fields,help:sale_elaboration.field_sale_order_line__date_order
+msgid ""
+"Creation date of draft/sent orders,\n"
+"Confirmation date of confirmed orders."
 msgstr ""
 
 #. module: sale_elaboration
-#: model:ir.model.fields,help:sale_elaboration.field_sale_order_line__confirmation_date
-msgid "Date on which the sales order is confirmed."
+#: model:ir.model.fields,field_description:sale_elaboration.field_sale_order_line__date_order
+msgid "Date"
 msgstr ""
 
 #. module: sale_elaboration
@@ -91,6 +98,13 @@ msgid "ID"
 msgstr "ID"
 
 #. module: sale_elaboration
+#: model:ir.model.fields,help:sale_elaboration.field_product_elaboration__active
+msgid ""
+"If unchecked, it will allow you to hide the product elaborations without "
+"removing it."
+msgstr ""
+
+#. module: sale_elaboration
 #: model:ir.model.fields,field_description:sale_elaboration.field_sale_order_line__is_elaboration
 #: model_terms:ir.ui.view,arch_db:sale_elaboration.view_sales_order_line_filter
 msgid "Is Elaboration"
@@ -123,7 +137,7 @@ msgid "Name"
 msgstr "Bezeichnung"
 
 #. module: sale_elaboration
-#: sql_constraint:product.elaboration:0
+#: model:ir.model.constraint,message:sale_elaboration.constraint_product_elaboration_name_uniq
 msgid "Name must be unique!"
 msgstr ""
 
@@ -140,7 +154,6 @@ msgstr "Produktvorlage"
 #. module: sale_elaboration
 #: model:ir.model,name:sale_elaboration.model_product_elaboration
 #, fuzzy
-#| msgid "Product Template"
 msgid "Product elaborations"
 msgstr "Produktvorlage"
 
@@ -158,7 +171,7 @@ msgstr ""
 
 #. module: sale_elaboration
 #: model:ir.model,name:sale_elaboration.model_sale_order
-msgid "Sale Order"
+msgid "Sales Order"
 msgstr ""
 
 #. module: sale_elaboration
