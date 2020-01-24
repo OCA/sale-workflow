@@ -1,6 +1,6 @@
 # Translation of Odoo Server.
 # This file contains the translation of the following modules:
-#	* sale_elaboration
+# 	* sale_elaboration
 #
 msgid ""
 msgstr ""
@@ -24,6 +24,11 @@ msgstr ""
 #. module: sale_elaboration
 #: model:ir.ui.view,arch_db:sale_elaboration.report_delivery_document
 msgid "<strong>Elaboration</strong>"
+msgstr ""
+
+#. module: sale_elaboration
+#: model:ir.model.fields,field_description:sale_elaboration.field_product_elaboration_active
+msgid "Active"
 msgstr ""
 
 #. module: sale_elaboration
@@ -89,6 +94,13 @@ msgstr ""
 #: model:ir.model.fields,field_description:sale_elaboration.field_product_elaboration_id
 msgid "ID"
 msgstr "ID"
+
+#. module: sale_elaboration
+#: model:ir.model.fields,help:sale_elaboration.field_product_elaboration_active
+msgid ""
+"If unchecked, it will allow you to hide the product elaborations without "
+"removing it."
+msgstr ""
 
 #. module: sale_elaboration
 #: model:ir.model.fields,field_description:sale_elaboration.field_sale_order_line_is_elaboration
