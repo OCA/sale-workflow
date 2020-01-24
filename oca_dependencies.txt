@@ -6,6 +6,7 @@ server-tools
 manufacture
 account-invoicing
 product-attribute
-partner-contact
+# partner-contact
 web
 bank-statement-reconcile
+partner-contact https://github.com/acsone/partner-contact 10.0-add-partner_contact_type_end_user-dro
