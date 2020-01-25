@@ -11,6 +11,7 @@ setuptools.setup(
         'odoo13-addon-sale_automatic_workflow',
         'odoo13-addon-sale_automatic_workflow_payment',
         'odoo13-addon-sale_discount_display_amount',
+        'odoo13-addon-sale_elaboration',
         'odoo13-addon-sale_last_price_info',
         'odoo13-addon-sale_order_archive',
         'odoo13-addon-sale_order_secondary_unit',
