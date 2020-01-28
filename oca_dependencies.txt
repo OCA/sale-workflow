@@ -1,1 +1,2 @@
 product-attribute
+stock-logistics-warehouse
