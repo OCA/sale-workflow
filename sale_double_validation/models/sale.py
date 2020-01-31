@@ -37,11 +37,18 @@ class SaleOrder(models.Model):
             precision_rounding=self.currency_id.rounding) <= 0
 
     @api.multi
+    def can_skip(self):
+        self.ensure_one()
+        if self.company_id.so_double_validation_manager_skip:
+            if self.user_has_groups('sales_team.group_sale_manager'):
+                return True
+        return False
+
+    @api.multi
     def is_to_approve(self):
         self.ensure_one()
         return (self.company_id.so_double_validation == 'two_step' and
-                self.is_amount_to_approve() and
-                not self.user_has_groups('sales_team.group_sale_manager'))
+                self.is_amount_to_approve() and not self.can_skip())
 
     @api.model
     def create(self, vals):

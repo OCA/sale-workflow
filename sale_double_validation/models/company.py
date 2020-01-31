@@ -22,3 +22,8 @@ class Company(models.Model):
         default=5000,
         help="Minimum amount for which a double validation is required"
     )
+
+    so_double_validation_manager_skip = fields.Boolean(
+        string='Allow skip of validation by managers.',
+        default=False,
+    )

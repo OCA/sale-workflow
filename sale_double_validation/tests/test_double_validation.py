@@ -4,6 +4,7 @@
 from odoo.addons.sale.tests import test_sale_common
 from datetime import date
 
+
 class TestSaleDoubleValidation(test_sale_common.TestCommonSaleNoChart):
 
     def test_one_step(self):
@@ -44,9 +45,12 @@ class TestSaleDoubleValidation(test_sale_common.TestCommonSaleNoChart):
         # confirm quotation
         self.assertEquals(so.state, 'draft')
 
-    def test_two_steps_manager(self):
-        self.user_employee.company_id.sudo().so_double_validation = 'two_step'
-        self.user_employee.company_id.sudo().so_double_validation_amount = 10
+    def test_two_steps_manager_with_skip(self):
+        company = self.user_employee.company_id.sudo()
+        company.so_double_validation = 'two_step'
+        company.so_double_validation_amount = 10
+        company.so_double_validation_manager_skip = True
+
         so = self.env['sale.order'].sudo(self.user_manager).create({
             'partner_id': self.partner_customer_usd.id,
             'partner_invoice_id': self.partner_customer_usd.id,
@@ -63,6 +67,28 @@ class TestSaleDoubleValidation(test_sale_common.TestCommonSaleNoChart):
         })
         # confirm quotation
         self.assertEquals(so.state, 'draft')
+
+    def test_two_steps_manager_without_skip(self):
+        company = self.user_employee.company_id.sudo()
+        company.so_double_validation = 'two_step'
+        company.so_double_validation_amount = 10
+
+        so = self.env['sale.order'].sudo(self.user_manager).create({
+            'partner_id': self.partner_customer_usd.id,
+            'partner_invoice_id': self.partner_customer_usd.id,
+            'partner_shipping_id': self.partner_customer_usd.id,
+            'order_line': [
+                (0, 0, {'name': p.name,
+                        'product_id': p.id,
+                        'product_uom_qty': 2,
+                        'product_uom': p.uom_id.id,
+                        'price_unit': p.list_price})
+                for (_, p) in self.product_map.items()
+            ],
+            'pricelist_id': self.env.ref('product.list0').id,
+        })
+        # confirm quotation
+        self.assertEquals(so.state, 'to_approve')
 
     def test_two_steps_limit(self):
         self.user_employee.company_id.sudo().so_double_validation = 'two_step'
