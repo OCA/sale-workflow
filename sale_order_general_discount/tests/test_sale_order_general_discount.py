@@ -31,7 +31,6 @@ class TestSaleOrderLineInput(SavepointCase):
         cls.View = cls.env["ir.ui.view"]
 
     def test_default_partner_discount(self):
-        self.order.onchange_partner_id()
         self.assertEqual(
             self.order.general_discount, self.partner.sale_discount)
 
