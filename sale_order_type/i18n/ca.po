@@ -9,25 +9,26 @@ msgstr ""
 "Project-Id-Version: Odoo Server 10.0\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2018-01-27 03:53+0000\n"
-"PO-Revision-Date: 2018-01-27 03:53+0000\n"
-"Last-Translator: OCA Transbot <transbot@odoo-community.org>, 2017\n"
+"PO-Revision-Date: 2020-02-03 16:13+0000\n"
+"Last-Translator: georginaf <georgina.fornes@qubiq.es>\n"
 "Language-Team: Catalan (https://www.transifex.com/oca/teams/23907/ca/)\n"
 "Language: ca\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
-"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: Weblate 3.10\n"
 
 #. module: sale_order_type
 #: model:ir.model.fields,field_description:sale_order_type.field_sale_order_type_journal_id
 #: model:ir.ui.view,arch_db:sale_order_type.sot_sale_order_type_search_view
 msgid "Billing Journal"
-msgstr ""
+msgstr "Diari de facturació"
 
 #. module: sale_order_type
 #: model:ir.actions.act_window,help:sale_order_type.sot_sale_order_type_action
 msgid "Click to set a new type for sale order."
-msgstr ""
+msgstr "Clica per posar un nou tipus de comanda de venda."
 
 #. module: sale_order_type
 #: model:ir.model.fields,field_description:sale_order_type.field_sale_order_type_company_id
@@ -55,19 +56,19 @@ msgstr "Descripció"
 #: model:ir.model.fields,field_description:sale_order_type.field_sale_order_type_display_name
 #: model:ir.model.fields,field_description:sale_order_type.field_sale_order_type_rule_display_name
 msgid "Display Name"
-msgstr ""
+msgstr "Mostra nom"
 
 #. module: sale_order_type
 #: model:ir.model.fields,field_description:sale_order_type.field_sale_order_type_sequence_id
 #: model:ir.ui.view,arch_db:sale_order_type.sot_sale_order_type_search_view
 msgid "Entry Sequence"
-msgstr ""
+msgstr "Entra la seqüència"
 
 #. module: sale_order_type
 #: model:ir.ui.view,arch_db:sale_order_type.sot_invoice_form
 #: model:ir.ui.view,arch_db:sale_order_type.sot_view_order_form
 msgid "Find by rule"
-msgstr ""
+msgstr "Troba per regla"
 
 #. module: sale_order_type
 #: model:ir.ui.view,arch_db:sale_order_type.sot_sale_order_type_search_view
@@ -84,7 +85,7 @@ msgstr "ID"
 #: model:ir.model.fields,field_description:sale_order_type.field_sale_order_type_incoterm_id
 #: model:ir.ui.view,arch_db:sale_order_type.sot_sale_order_type_search_view
 msgid "Incoterm"
-msgstr ""
+msgstr "Incoterm"
 
 #. module: sale_order_type
 #: model:ir.model,name:sale_order_type.model_account_invoice
@@ -95,7 +96,7 @@ msgstr "Factura"
 #: model:ir.model.fields,field_description:sale_order_type.field_sale_order_type___last_update
 #: model:ir.model.fields,field_description:sale_order_type.field_sale_order_type_rule___last_update
 msgid "Last Modified on"
-msgstr ""
+msgstr "Última modificació a"
 
 #. module: sale_order_type
 #: model:ir.model.fields,field_description:sale_order_type.field_sale_order_type_rule_write_uid
@@ -118,12 +119,12 @@ msgstr "Nom"
 #. module: sale_order_type
 #: model:sale.order.type,name:sale_order_type.normal_sale_type
 msgid "Normal Order"
-msgstr ""
+msgstr "Comanda Normal"
 
 #. module: sale_order_type
 #: model:ir.model.fields,field_description:sale_order_type.field_sale_order_type_rule_order_type_id
 msgid "Order type id"
-msgstr ""
+msgstr "Id tipus de comanda"
 
 #. module: sale_order_type
 #: model:ir.model,name:sale_order_type.model_res_partner
@@ -134,81 +135,82 @@ msgstr "Empresa"
 #: model:ir.model.fields,field_description:sale_order_type.field_sale_order_type_payment_term_id
 #: model:ir.ui.view,arch_db:sale_order_type.sot_sale_order_type_search_view
 msgid "Payment Term"
-msgstr ""
+msgstr "Terme de pagament"
 
 #. module: sale_order_type
 #: model:ir.ui.view,arch_db:sale_order_type.sot_sale_order_type_search_view
 msgid "Price List"
-msgstr ""
+msgstr "Llistat de preus"
 
 #. module: sale_order_type
 #: model:ir.model.fields,field_description:sale_order_type.field_sale_order_type_pricelist_id
 msgid "Pricelist"
-msgstr ""
+msgstr "Llistat de preus"
 
 #. module: sale_order_type
 #: model:ir.model.fields,field_description:sale_order_type.field_sale_order_type_rule_product_category_ids
 msgid "Product categories"
-msgstr ""
+msgstr "Categories de producte"
 
 #. module: sale_order_type
 #: model:ir.model.fields,field_description:sale_order_type.field_sale_order_type_rule_product_ids
 msgid "Products"
-msgstr ""
+msgstr "Productes"
 
 #. module: sale_order_type
 #: model:ir.model.fields,field_description:sale_order_type.field_sale_order_type_rule_ids
 msgid "Rule ids"
-msgstr ""
+msgstr "Ids de regles"
 
 #. module: sale_order_type
 #: model:ir.ui.view,arch_db:sale_order_type.sot_sale_order_type_form_view
 msgid "Rules"
-msgstr ""
+msgstr "Regles"
 
 #. module: sale_order_type
 #: model:ir.model.fields,field_description:sale_order_type.field_res_partner_sale_type
 #: model:ir.model.fields,field_description:sale_order_type.field_res_users_sale_type
 msgid "Sale Order Type"
-msgstr ""
+msgstr "Tipus de comanda de compra"
 
 #. module: sale_order_type
 #: model:ir.model.fields,field_description:sale_order_type.field_account_invoice_sale_type_id
 msgid "Sale Type"
-msgstr ""
+msgstr "Tipus de venda"
 
 #. module: sale_order_type
 #: model:ir.model,name:sale_order_type.model_sale_order
 msgid "Sales Order"
-msgstr "Comandes de venda"
+msgstr "Comanda de venda"
 
 #. module: sale_order_type
 #: model:ir.ui.view,arch_db:sale_order_type.res_partner_sale_type_form_view
 msgid "Sales Order Type"
-msgstr ""
+msgstr "Tipus de comanda de venda"
 
 #. module: sale_order_type
 #: model:ir.actions.act_window,name:sale_order_type.sot_sale_order_type_action
 #: model:ir.ui.menu,name:sale_order_type.sot_sale_order_type_menu
 msgid "Sales Order Types"
-msgstr ""
+msgstr "Tipus de comandes de venda"
 
 #. module: sale_order_type
 #: model:ir.model.fields,field_description:sale_order_type.field_sale_order_type_rule_sequence
 #: model:ir.model.fields,field_description:sale_order_type.field_sale_order_type_sequence
 msgid "Sequence"
-msgstr ""
+msgstr "Seqüència"
 
 #. module: sale_order_type
 #: model:ir.model.fields,field_description:sale_order_type.field_sale_order_type_picking_policy
 #: model:ir.ui.view,arch_db:sale_order_type.sot_sale_order_type_search_view
 msgid "Shipping Policy"
-msgstr ""
+msgstr "Política d'enviament"
 
 #. module: sale_order_type
 #: model:ir.model.fields,help:sale_order_type.field_sale_order_type_company_id
 msgid "The company is automatically set from your user preferences."
 msgstr ""
+"L'empresa és automàticament configurada de les vostres preferències d'usuari."
 
 #. module: sale_order_type
 #: model:ir.model.fields,field_description:sale_order_type.field_sale_order_type_id_6280
@@ -221,13 +223,13 @@ msgstr "Tipus"
 #. module: sale_order_type
 #: model:ir.model,name:sale_order_type.model_sale_order_type
 msgid "Type of sale order"
-msgstr ""
+msgstr "Tipus de comanda de venda"
 
 #. module: sale_order_type
 #: model:ir.model.fields,field_description:sale_order_type.field_sale_order_type_warehouse_id
 #: model:ir.ui.view,arch_db:sale_order_type.sot_sale_order_type_search_view
 msgid "Warehouse"
-msgstr ""
+msgstr "Magatzem"
 
 #. module: sale_order_type
 #: model:ir.model,name:sale_order_type.model_sale_order_type_rule
