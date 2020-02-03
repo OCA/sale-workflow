@@ -1,7 +1,6 @@
 # Copyright 2018 Tecnativa - Sergio Teruel
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
 from odoo import api, fields, models
-from odoo.addons import decimal_precision as dp
 from lxml import etree
 
 
@@ -9,14 +8,14 @@ class SaleOrder(models.Model):
     _inherit = "sale.order"
 
     general_discount = fields.Float(
-        digits=dp.get_precision("Discount"), string="Discount (%)"
+        compute='_compute_general_discount', store=True, readonly=False,
+        digits='Discount', string="Discount (%)"
     )
 
-    @api.onchange("partner_id")
-    def onchange_partner_id(self):
-        super().onchange_partner_id()
-        self.general_discount = self.partner_id.sale_discount
-        return
+    @api.depends("partner_id")
+    def _compute_general_discount(self):
+        for so in self:
+            so.general_discount = so.partner_id.sale_discount
 
     @api.onchange("general_discount")
     def onchange_general_discount(self):
@@ -48,3 +47,17 @@ class SaleOrder(models.Model):
                 order_line_field.attrib['context'] = context
                 res["arch"] = etree.tostring(order_xml)
         return res
+
+
+class SaleOrderLine(models.Model):
+    _inherit = "sale.order.line"
+
+    discount = fields.Float(
+        compute='_compute_general_discount', store=True, readonly=False,
+        string='Discount (%)', digits='Discount', default=0.0
+    )
+
+    @api.depends("order_id")
+    def _compute_general_discount(self):
+        for line in self:
+            line.discount = line.order_id.general_discount
