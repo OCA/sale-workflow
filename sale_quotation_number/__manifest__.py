@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 # Copyright 2010-2012 Andy Lu <andy.lu@elico-corp.com> (Elico Corp)
 # Copyright 2013 Agile Business Group sagl (<http://www.agilebg.com>)
 # Copyright 2017 valentin vinagre  <valentin.vinagre@qubiq.es> (QubiQ)

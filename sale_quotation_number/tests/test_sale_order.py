@@ -47,21 +47,3 @@ class TestSaleOrder(TransactionCase):
 
         self.assertRegexpMatches(order1.name, 'SO')
         self.assertEqual(order1.origin, ', '.join([origin, quotation1_name]))
-
-    def test_copy_no_origin(self):
-        order1 = self.sale_order_model.create({
-            'partner_id': self.env.ref('base.res_partner_1').id
-        })
-        order_copy = order1.copy()
-
-        self.assertEqual(order1.name, order_copy.origin)
-
-    def test_copy_with_origin(self):
-        origin = 'origin'
-        order1 = self.sale_order_model.create({
-            'origin': origin,
-            'partner_id': self.env.ref('base.res_partner_1').id
-        })
-        order_copy = order1.copy()
-
-        self.assertEqual(', '.join([origin, order1.name]), order_copy.origin)

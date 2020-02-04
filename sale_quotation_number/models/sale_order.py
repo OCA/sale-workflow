@@ -10,18 +10,6 @@ from odoo import models, api, fields, _
 class SaleOrder(models.Model):
     _inherit = "sale.order"
 
-    @api.multi
-    def copy(self, default=None):
-        self.ensure_one()
-        if default is None:
-            default = {}
-        default['name'] = _('New')
-        if self.origin and self.origin != '':
-            default['origin'] = self.origin + ', ' + self.name
-        else:
-            default['origin'] = self.name
-        return super().copy(default)
-
     @api.model
     def create(self, vals):
         company = self.env['res.company']._company_default_get('sale.order')
