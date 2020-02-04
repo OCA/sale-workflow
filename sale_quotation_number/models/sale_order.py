@@ -4,7 +4,7 @@
 # Richard deMeester <richard.demeester@willdooit.com> (Willdoo IT)
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl)
 
-from odoo import models, api, fields, _
+from odoo import models, api, _
 
 
 class SaleOrder(models.Model):
