@@ -21,12 +21,12 @@ msgstr ""
 "X-Generator: Weblate 3.0.1\n"
 
 #. module: sale_triple_discount
-#: model:ir.model.fields,field_description:sale_triple_discount.field_sale_order_line_discount2
+#: field:sale.order.line,discount2:0
 msgid "Disc. 2 (%)"
 msgstr "Korting 2 (%)"
 
 #. module: sale_triple_discount
-#: model:ir.model.fields,field_description:sale_triple_discount.field_sale_order_line_discount3
+#: field:sale.order.line,discount3:0
 msgid "Disc. 3 (%)"
 msgstr "Korting 3 (%)"
 
@@ -50,3 +50,8 @@ msgstr "Verkooporderregel"
 #: model:ir.model,name:sale_triple_discount.model_sale_order_line
 msgid "Sales Order Line"
 msgstr "Verkooporderregel"
+
+#. module: sale_triple_discount
+#: model:ir.model,name:sale_triple_discount.model_stock_move
+msgid "Stock Move"
+msgstr ""

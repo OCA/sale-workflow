@@ -20,12 +20,12 @@ msgstr ""
 "%100==4 ? 2 : 3);\n"
 
 #. module: sale_triple_discount
-#: model:ir.model.fields,field_description:sale_triple_discount.field_sale_order_line_discount2
+#: field:sale.order.line,discount2:0
 msgid "Disc. 2 (%)"
 msgstr ""
 
 #. module: sale_triple_discount
-#: model:ir.model.fields,field_description:sale_triple_discount.field_sale_order_line_discount3
+#: field:sale.order.line,discount3:0
 msgid "Disc. 3 (%)"
 msgstr ""
 
@@ -49,3 +49,8 @@ msgstr "Postavka prodajnega naloga"
 #: model:ir.model,name:sale_triple_discount.model_sale_order_line
 msgid "Sales Order Line"
 msgstr "Postavka prodajnega naloga"
+
+#. module: sale_triple_discount
+#: model:ir.model,name:sale_triple_discount.model_stock_move
+msgid "Stock Move"
+msgstr ""

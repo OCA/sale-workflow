@@ -1,6 +1,6 @@
 # Translation of Odoo Server.
 # This file contains the translation of the following modules:
-#	* sale_triple_discount
+# 	* sale_triple_discount
 #
 msgid ""
 msgstr ""
@@ -10,6 +10,7 @@ msgstr ""
 "PO-Revision-Date: 2019-01-29 14:33+0000\n"
 "Last-Translator: Simone Rubino <simone.rubino@agilebg.com>\n"
 "Language-Team: \n"
+"Language: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
@@ -36,11 +37,6 @@ msgid "Discount 3 must be lower than 100%."
 msgstr "Sconto 3 deve essere minore di 100%."
 
 #. module: sale_triple_discount
-#: model:ir.model,name:sale_triple_discount.model_product_pricelist_item
-msgid "Pricelist item"
-msgstr "Riga di listino"
-
-#. module: sale_triple_discount
 #: model:ir.model,name:sale_triple_discount.model_sale_order
 #, fuzzy
 msgid "Sales Order"
@@ -50,3 +46,11 @@ msgstr "Linea d'ordine di vendita"
 #: model:ir.model,name:sale_triple_discount.model_sale_order_line
 msgid "Sales Order Line"
 msgstr "Linea d'ordine di vendita"
+
+#. module: sale_triple_discount
+#: model:ir.model,name:sale_triple_discount.model_stock_move
+msgid "Stock Move"
+msgstr ""
+
+#~ msgid "Pricelist item"
+#~ msgstr "Riga di listino"
