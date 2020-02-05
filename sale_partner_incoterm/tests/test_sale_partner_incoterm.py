@@ -10,7 +10,7 @@ class TestSalePartnerIncoterm(TransactionCase):
         Check that the customer's default incoterm is retrieved in the
         sales order's onchange
         """
-        customer = self.env["res.partner"].search([("customer_rank", ">", 1)], limit=1)
+        customer = self.env.ref("base.res_partner_3")
         incoterm = self.env["account.incoterms"].search([], limit=1)
         customer.write({"sale_incoterm_id": incoterm.id})
         sale_order = self.env["sale.order"].create({"partner_id": customer.id})
