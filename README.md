@@ -58,6 +58,7 @@ addon | version | summary
 [sale_payment_method_transaction_id](sale_payment_method_transaction_id/) | 8.0.1.0.0 | Sale Payment Method - Transaction ID Compatibility
 [sale_payment_term_interest](sale_payment_term_interest/) | 8.0.1.0.0 | Sales Payment Term Interests
 [sale_pricelist_discount](sale_pricelist_discount/) | 8.0.1.0.0 | Sale Pricelist Discount
+[sale_pricelist_triple_discount](sale_pricelist_triple_discount/) | 8.0.1.0.0 | Sale Pricelist Triple Discount
 [sale_procurement_group_by_line](sale_procurement_group_by_line/) | 8.0.1.0.1 | Base module for multiple procurement group by Sale order
 [sale_product_multi_add](sale_product_multi_add/) | 8.0.1.0.0 | Sale Product Multi Add
 [sale_product_set](sale_product_set/) | 8.0.1.0.0 | Sale product set
