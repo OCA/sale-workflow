@@ -7,7 +7,6 @@ from odoo import api, models
 class SaleOrder(models.Model):
     _inherit = "sale.order"
 
-    @api.multi
     @api.onchange("partner_id")
     def onchange_partner_id(self):
         res = super().onchange_partner_id()
