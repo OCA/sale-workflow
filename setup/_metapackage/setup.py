@@ -47,6 +47,7 @@ setuptools.setup(
         'odoo8-addon-sale_payment_method_transaction_id',
         'odoo8-addon-sale_payment_term_interest',
         'odoo8-addon-sale_pricelist_discount',
+        'odoo8-addon-sale_pricelist_triple_discount',
         'odoo8-addon-sale_procurement_group_by_line',
         'odoo8-addon-sale_product_multi_add',
         'odoo8-addon-sale_product_set',
