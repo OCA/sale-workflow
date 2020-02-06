@@ -13,14 +13,12 @@
                     <group name="carrier">
                         <field name='carrier_id'/>
                     </group>
-                    <group>
-                        <field name='partner_id' required="1"/>
+                    <group name="address">
+                        <field name="commercial_partner_id" invisible="1"/>
+                        <field name='partner_id'/>
                     </group>
                     <group name="route">
                         <field name='route_id' groups="sale_stock.group_route_so_lines"/>
-                    </group>
-                    <group name="sol">
-                        <field name='sale_line_ids' invisible="1"/>
                     </group>
                     <field name='line_ids'>
                         <tree editable="bottom" create="0">
