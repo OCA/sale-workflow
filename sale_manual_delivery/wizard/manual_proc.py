@@ -7,6 +7,12 @@ from odoo.exceptions import UserError
 from odoo.tools.translate import _
 
 
+PARTNER_DOMAIN = """[
+    "|", ("id", "=", commercial_partner_id),
+    ("parent_id", "=", commercial_partner_id),
+]"""
+
+
 class ManualDelivery(models.TransientModel):
     """Creates procurements manually"""
 
@@ -18,9 +24,7 @@ class ManualDelivery(models.TransientModel):
     def default_get(self, fields):
         if 'line_ids' not in fields:
             return {}
-        res = super(ManualDelivery, self).default_get(
-            fields)
-
+        res = super(ManualDelivery, self).default_get(fields)
         active_model = self.env.context['active_model']
         if active_model == 'sale.order.line':
             sale_ids = self.env.context['active_ids'] or []
@@ -29,12 +33,13 @@ class ManualDelivery(models.TransientModel):
         elif active_model == 'sale.order':
             sale_ids = self.env.context['active_ids'] or []
             sale_lines = self.env['sale.order'].browse(sale_ids).mapped(
-                'order_line').filtered(
-                lambda s: s.pending_qty_to_deliver)
+                'order_line').filtered(lambda s: s.pending_qty_to_deliver)
         if len(sale_lines.mapped('order_id.partner_id')) > 1:
             raise UserError(_('Please select one partner at a time'))
         res['line_ids'] = self.fill_lines(sale_lines)
-        res['partner_id'] = sale_lines.mapped('order_id.partner_id').id
+        partner = sale_lines.mapped('order_id.partner_id')
+        res['partner_id'] = partner.id
+        res['commercial_partner_id'] = partner.commercial_partner_id.id
         return res
 
     @api.multi
@@ -62,28 +67,15 @@ class ManualDelivery(models.TransientModel):
         string='Lines to validate',
     )
     carrier_id = fields.Many2one("delivery.carrier", string="Delivery Method")
-    partner_id = fields.Many2one("res.partner", string="Delivery Address")
     route_id = fields.Many2one(
         'stock.location.route', string='Use specific Route',
         domain=[('sale_selectable', '=', True)],
         ondelete='restrict',
         help="Leave it blank to use the same route that is in the sale line")
 
-    @api.onchange("partner_id", "date_planned")
-    def onchange_partner_id(self):
-        return {
-            "domain": {
-                "partner_id": [
-                    "&",
-                    "|",
-                    ("id", "=", self.mapped(
-                        'line_ids.order_line_id.order_id.partner_id.id')),
-                    ("parent_id", "=", self.mapped(
-                        'line_ids.order_line_id.order_id.partner_id.id')),
-                    ("id", "!=", self.partner_id.id),
-                ]
-            }
-        }
+    partner_id = fields.Many2one(
+        "res.partner", domain=PARTNER_DOMAIN, string="Delivery Address")
+    commercial_partner_id = fields.Many2one("res.partner")
 
     @api.multi
     def record_picking(self):
