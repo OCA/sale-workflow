@@ -30,12 +30,28 @@ class ManualDelivery(models.TransientModel):
         res['sale_line_ids'] = [(6, 0, lines.ids)]
         return res
 
+    @api.onchange("partner_id", "date_planned")
+    def onchange_partner_id(self):
+        return {
+            "domain": {
+                "partner_id": [
+                    "&",
+                    "|",
+                    ("id", "=", self.mapped(
+                        'line_ids.order_line_id.order_id.partner_id.id')),
+                    ("parent_id", "=", self.mapped(
+                        'line_ids.order_line_id.order_id.partner_id.id')),
+                    ("id", "!=", self.partner_id.id),
+                ]
+            }
+        }
+
     @api.onchange('line_ids')
     def onchange_line_ids(self):
         lines = []
         for line in self.sale_line_ids:
             if (not line.existing_qty == line.product_uom_qty and
-               line.product_id.type != 'service'):
+                    line.product_id.type != 'service'):
                 vals = {
                     'order_line_id': line.id,
                     'ordered_qty': line.product_uom_qty,

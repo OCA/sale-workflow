@@ -13,6 +13,9 @@
                     <group name="carrier">
                         <field name='carrier_id'/>
                     </group>
+                    <group>
+                        <field name='partner_id' required="1"/>
+                    </group>
                     <group name="sol">
                         <field name='sale_line_ids' invisible="1"/>
                     </group>
