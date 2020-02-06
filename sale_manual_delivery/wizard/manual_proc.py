@@ -79,6 +79,11 @@ class ManualDelivery(models.TransientModel):
         'res.partner',
         string='Delivery Address'
     )
+    route_id = fields.Many2one(
+        'stock.location.route', string='Use specific Route',
+        domain=[('sale_selectable', '=', True)],
+        ondelete='restrict',
+        help="Leave it blank to use the same route that is in the sale line")
 
     @api.multi
     def record_picking(self):
@@ -131,6 +136,8 @@ class ManualDelivery(models.TransientModel):
                             group_id=proc_group_to_use.id)
                     if date_planned:
                         vals['date_planned'] = date_planned
+                    if wizard.route_id:
+                        vals["route_ids"] = [(6, 0, [wizard.route_id.id])]
                     vals['product_qty'] = wiz_line.to_ship_qty
                     if carrier_id:
                         vals['carrier_id'] = carrier_id.id
