@@ -8,6 +8,12 @@ from odoo.exceptions import UserError
 from odoo.tools.translate import _
 
 
+PARTNER_DOMAIN = """[
+    "|", ("id", "=", commercial_partner_id),
+    ("parent_id", "=", commercial_partner_id),
+]"""
+
+
 class ManualDelivery(models.TransientModel):
     """Creates procurements manually"""
     _name = "manual.delivery"
@@ -17,6 +23,9 @@ class ManualDelivery(models.TransientModel):
     def default_get(self, fields):
         res = super(ManualDelivery, self).default_get(
             fields)
+        if 'line_ids' not in fields:
+            return {}
+        res = super(ManualDelivery, self).default_get(fields)
         active_model = self.env.context['active_model']
         if active_model == 'sale.order.line':
             sale_ids = self.env.context['active_ids'] or []
@@ -28,23 +37,31 @@ class ManualDelivery(models.TransientModel):
                 'order_line').filtered(
                 lambda s: s.pending_qty_to_deliver)
         res['sale_line_ids'] = [(6, 0, lines.ids)]
+        if len(lines.mapped('order_id.partner_id')) > 1:
+            raise UserError(_('Please select one partner at a time'))
+        res['line_ids'] = self.fill_lines(lines)
+        partner = lines.mapped('order_id.partner_id')
+        res['partner_id'] = partner.id
+        res['commercial_partner_id'] = partner.commercial_partner_id.id
         return res
 
-    @api.onchange("partner_id", "date_planned")
-    def onchange_partner_id(self):
-        return {
-            "domain": {
-                "partner_id": [
-                    "&",
-                    "|",
-                    ("id", "=", self.mapped(
-                        'line_ids.order_line_id.order_id.partner_id.id')),
-                    ("parent_id", "=", self.mapped(
-                        'line_ids.order_line_id.order_id.partner_id.id')),
-                    ("id", "!=", self.partner_id.id),
-                ]
-            }
-        }
+    @api.multi
+    def fill_lines(self, sale_lines):
+        lines = []
+
+        for line in sale_lines:
+            if (not line.existing_qty == line.product_uom_qty and
+                    line.product_id.type != 'service'):
+                vals = {
+                    'product_id': line.product_id.id,
+                    'line_description': line.product_id.name,
+                    'order_line_id': line.id,
+                    'ordered_qty': line.product_uom_qty,
+                    'existing_qty': line.existing_qty,
+                    'to_ship_qty': line.product_uom_qty - line.existing_qty
+                }
+                lines.append((0, 0, vals))
+        return lines
 
     @api.onchange('line_ids')
     def onchange_line_ids(self):
@@ -71,19 +88,15 @@ class ManualDelivery(models.TransientModel):
         'manual_delivery_id',
         string='Lines to validate',
     )
-    carrier_id = fields.Many2one(
-        'delivery.carrier',
-        string='Delivery Method'
-    )
-    partner_id = fields.Many2one(
-        'res.partner',
-        string='Delivery Address'
-    )
     route_id = fields.Many2one(
         'stock.location.route', string='Use specific Route',
         domain=[('sale_selectable', '=', True)],
         ondelete='restrict',
         help="Leave it blank to use the same route that is in the sale line")
+    carrier_id = fields.Many2one("delivery.carrier", string="Delivery Method")
+    partner_id = fields.Many2one(
+        "res.partner", domain=PARTNER_DOMAIN, string="Delivery Address")
+    commercial_partner_id = fields.Many2one("res.partner")
 
     @api.multi
     def record_picking(self):
