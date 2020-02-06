@@ -16,6 +16,9 @@
                     <group>
                         <field name='partner_id' required="1"/>
                     </group>
+                    <group name="route">
+                        <field name='route_id' groups="sale_stock.group_route_so_lines"/>
+                    </group>
                     <group name="sol">
                         <field name='sale_line_ids' invisible="1"/>
                     </group>
