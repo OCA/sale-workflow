@@ -120,11 +120,18 @@ jobs:
             include: "sale_promotion_rule_assortment"
             name: test with OCB
           - container: ghcr.io/oca/oca-ci/py2.7-odoo10.0:latest
-            exclude: "sale_procurement_group_by_requested_date_sale_sourced_by_line,sale_procurement_group_by_requested_date,sale_delivery_split_date,sale_stock_picking_blocking_proc_group_by_line,sale_sourced_by_line,sale_procurement_group_by_line,sale_order_action_invoice_create_hook,sale_invoice_group_method,sale_merge_draft_invoice,sale_promotion_rule,sale_promotion_rule_delivery,sale_promotion_rule_assortment"
+            include: "sale_manual_delivery,sale_stock_picking_blocking_sale_manual_delivery"
             makepot: "true"
             name: test with Odoo
           - container: ghcr.io/oca/oca-ci/py2.7-ocb10.0:latest
-            exclude: "sale_procurement_group_by_requested_date_sale_sourced_by_line,sale_procurement_group_by_requested_date,sale_delivery_split_date,sale_stock_picking_blocking_proc_group_by_line,sale_sourced_by_line,sale_procurement_group_by_line,sale_order_action_invoice_create_hook,sale_invoice_group_method,sale_merge_draft_invoice,sale_promotion_rule,sale_promotion_rule_delivery,sale_promotion_rule_assortment"
+            include: "sale_manual_delivery,sale_stock_picking_blocking_sale_manual_delivery"
+            name: test with OCB
+          - container: ghcr.io/oca/oca-ci/py2.7-odoo10.0:latest
+            exclude: "sale_procurement_group_by_requested_date_sale_sourced_by_line,sale_procurement_group_by_requested_date,sale_delivery_split_date,sale_stock_picking_blocking_proc_group_by_line,sale_sourced_by_line,sale_procurement_group_by_line,sale_order_action_invoice_create_hook,sale_invoice_group_method,sale_merge_draft_invoice,sale_promotion_rule,sale_promotion_rule_delivery,sale_promotion_rule_assortment,sale_manual_delivery,sale_stock_picking_blocking_sale_manual_delivery"
+            makepot: "true"
+            name: test with Odoo
+          - container: ghcr.io/oca/oca-ci/py2.7-ocb10.0:latest
+            exclude: "sale_procurement_group_by_requested_date_sale_sourced_by_line,sale_procurement_group_by_requested_date,sale_delivery_split_date,sale_stock_picking_blocking_proc_group_by_line,sale_sourced_by_line,sale_procurement_group_by_line,sale_order_action_invoice_create_hook,sale_invoice_group_method,sale_merge_draft_invoice,sale_promotion_rule,sale_promotion_rule_delivery,sale_promotion_rule_assortment,sale_manual_delivery,sale_stock_picking_blocking_sale_manual_delivery"
             name: test with OCB
     services:
       postgres:
