@@ -20,31 +20,28 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
 
 #. module: sale_order_lot_selection
-#: code:addons/sale_order_lot_selection/model/sale.py:67
-#: code:addons/sale_order_lot_selection/model/sale.py:73
+#: code:addons/sale_order_lot_selection/models/sale.py:63
+#: code:addons/sale_order_lot_selection/models/sale.py:79
 #, python-format
 msgid "Can't reserve products for lot %s"
 msgstr "Impossible de réserver de produits pour le lot %s"
 
 #. module: sale_order_lot_selection
-#: code:addons/sale_order_lot_selection/model/sale.py:56
+#: code:addons/sale_order_lot_selection/models/sale.py:52
 #, python-format
 msgid "Can't retrieve lot on stock"
 msgstr "Impossible de récupérer le lot en stock"
 
 #. module: sale_order_lot_selection
-#: model:ir.model.fields,field_description:sale_order_lot_selection.field_sale_order_line_lot_id
+#: model:ir.model.fields,field_description:sale_order_lot_selection.field_sale_order_line__lot_id
 msgid "Lot"
 msgstr "Lot"
 
 #. module: sale_order_lot_selection
-#: model:ir.model,name:sale_order_lot_selection.model_procurement_group
-msgid "Procurement Group"
-msgstr ""
-
-#. module: sale_order_lot_selection
 #: model:ir.model,name:sale_order_lot_selection.model_sale_order
-msgid "Sales Order"
+#, fuzzy
+#| msgid "Sales Order"
+msgid "Sale Order"
 msgstr "Bon de commande"
 
 #. module: sale_order_lot_selection
