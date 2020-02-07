@@ -20,35 +20,29 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
 #. module: sale_order_lot_selection
-#: code:addons/sale_order_lot_selection/model/sale.py:67
-#: code:addons/sale_order_lot_selection/model/sale.py:73
+#: code:addons/sale_order_lot_selection/models/sale.py:63
+#: code:addons/sale_order_lot_selection/models/sale.py:79
 #, python-format
 msgid "Can't reserve products for lot %s"
 msgstr ""
 
 #. module: sale_order_lot_selection
-#: code:addons/sale_order_lot_selection/model/sale.py:56
+#: code:addons/sale_order_lot_selection/models/sale.py:52
 #, python-format
 msgid "Can't retrieve lot on stock"
 msgstr ""
 
 #. module: sale_order_lot_selection
-#: model:ir.model.fields,field_description:sale_order_lot_selection.field_sale_order_line_lot_id
+#: model:ir.model.fields,field_description:sale_order_lot_selection.field_sale_order_line__lot_id
 msgid "Lot"
 msgstr ""
 
 #. module: sale_order_lot_selection
-#: model:ir.model,name:sale_order_lot_selection.model_procurement_group
-msgid "Procurement Group"
-msgstr ""
-
-#. module: sale_order_lot_selection
 #: model:ir.model,name:sale_order_lot_selection.model_sale_order
-msgid "Sales Order"
+#, fuzzy
+#| msgid "Sales Order"
+msgid "Sale Order"
 msgstr "Comandes de venda"
-
-
-
 
 #. module: sale_order_lot_selection
 #: model:ir.model,name:sale_order_lot_selection.model_sale_order_line
