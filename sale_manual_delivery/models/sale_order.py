@@ -61,5 +61,5 @@ class SaleOrder(models.Model):
                 ]
             )
             order.picking_ids = self.env['stock.picking'].search(
-                [('group_id', '=', proc_group.ids)]) if proc_group else []
+                [('group_id', 'in', proc_group.ids)]) if proc_group else []
             order.delivery_count = len(order.picking_ids)
