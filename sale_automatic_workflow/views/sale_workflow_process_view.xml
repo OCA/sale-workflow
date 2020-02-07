@@ -18,6 +18,7 @@
                 <group name="sale_order_confirm" string="Order Configuration">
                     <field name="picking_policy"/>
                     <field name="team_id" />
+                    <field name="default" />
                 </group>
                 <group name="workflow_options" string="Workflow Options" col="4">
 
