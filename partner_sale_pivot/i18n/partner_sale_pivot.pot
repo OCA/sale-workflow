@@ -15,7 +15,7 @@ msgstr ""
 
 #. module: partner_sale_pivot
 #: model_terms:ir.ui.view,arch_db:partner_sale_pivot.view_order_product_search
-msgid "Confirmed in"
+msgid "Date"
 msgstr ""
 
 #. module: partner_sale_pivot
