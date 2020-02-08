@@ -9,11 +9,6 @@
     "author": "Tecnativa, Odoo Community Association (OCA)",
     "maintainers": ["ernestotejeda"],
     "license": "AGPL-3",
-    "depends": [
-        "sale",
-    ],
-    "data": [
-        "views/sale_report_views.xml",
-        "views/res_partner_views.xml",
-    ],
+    "depends": ["sale"],
+    "data": ["views/sale_report_views.xml", "views/res_partner_views.xml"],
 }
