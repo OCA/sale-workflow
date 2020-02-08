@@ -18,8 +18,8 @@ msgstr ""
 
 #. module: partner_sale_pivot
 #: model_terms:ir.ui.view,arch_db:partner_sale_pivot.view_order_product_search
-msgid "Confirmed in"
-msgstr "Confirmada en"
+msgid "Date"
+msgstr "Fecha"
 
 #. module: partner_sale_pivot
 #: model:ir.actions.act_window,name:partner_sale_pivot.sale_report_action
