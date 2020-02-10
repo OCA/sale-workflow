@@ -3,6 +3,7 @@
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
 from datetime import datetime, timedelta
+
 from odoo import api, fields, models
 
 
@@ -24,9 +25,7 @@ class SaleOrderRecommendation(models.TransientModel):
         help="Consider these months backwards to generate recommendations.",
     )
     line_ids = fields.One2many(
-        "sale.order.recommendation.line",
-        "wizard_id",
-        "Products",
+        "sale.order.recommendation.line", "wizard_id", "Products"
     )
     line_amount = fields.Integer(
         "Number of recommendations",
@@ -43,8 +42,7 @@ class SaleOrderRecommendation(models.TransientModel):
     @api.onchange("order_id", "months", "line_amount")
     def _generate_recommendations(self):
         """Generate lines according to context sale order."""
-        last_compute = '{}-{}-{}'.format(
-            self.id, self.months, self.line_amount)
+        last_compute = "{}-{}-{}".format(self.id, self.months, self.line_amount)
         # Avoid execute onchange as times as fields in api.onchange
         # ORM must control this?
         if self.last_compute == last_compute:
@@ -53,16 +51,22 @@ class SaleOrderRecommendation(models.TransientModel):
         start = datetime.now() - timedelta(days=self.months * 30)
         self.line_ids = False
         # Search delivered products in previous months
-        sales = self.env["sale.order"].search([
-            ("partner_id", "child_of",
-             self.order_id.partner_id.commercial_partner_id.id),
-            ("date_order", ">=", start),
-        ])
+        sales = self.env["sale.order"].search(
+            [
+                (
+                    "partner_id",
+                    "child_of",
+                    self.order_id.partner_id.commercial_partner_id.id,
+                ),
+                ("date_order", ">=", start),
+            ]
+        )
         found_lines = self.env["sale.order.line"].read_group(
             [
                 ("order_id", "in", sales.ids),
-                '|', ("qty_delivered", "!=", 0.0),
-                     ("order_id", "=", self.order_id.id),
+                "|",
+                ("qty_delivered", "!=", 0.0),
+                ("order_id", "=", self.order_id.id),
             ],
             ["product_id", "qty_delivered"],
             ["product_id"],
@@ -70,10 +74,7 @@ class SaleOrderRecommendation(models.TransientModel):
         # Manual ordering that circumvents ORM limitations
         found_lines = sorted(
             found_lines,
-            key=lambda res: (
-                res["product_id_count"],
-                res["qty_delivered"],
-            ),
+            key=lambda res: (res["product_id_count"], res["qty_delivered"]),
             reverse=True,
         )
         found_dict = {l["product_id"][0]: l for l in found_lines}
@@ -82,13 +83,15 @@ class SaleOrderRecommendation(models.TransientModel):
         # Add products from sale order lines
         for line in self.order_id.order_line:
             found_line = found_dict[line.product_id.id]
-            new_line = RecomendationLine.new({
-                "product_id": line.product_id.id,
-                "times_delivered": found_line["product_id_count"],
-                "units_delivered": found_line["qty_delivered"],
-                "units_included": line.product_uom_qty,
-                "sale_line_id": line.id,
-            })
+            new_line = RecomendationLine.new(
+                {
+                    "product_id": line.product_id.id,
+                    "times_delivered": found_line["product_id_count"],
+                    "units_delivered": found_line["qty_delivered"],
+                    "units_included": line.product_uom_qty,
+                    "sale_line_id": line.id,
+                }
+            )
             self.line_ids += new_line
             existing_product_ids.append(line.product_id.id)
         # Add those recommendations too
@@ -96,11 +99,13 @@ class SaleOrderRecommendation(models.TransientModel):
         for line in found_lines:
             if line["product_id"][0] in existing_product_ids:
                 continue
-            new_line = RecomendationLine.new({
-                "product_id": line["product_id"][0],
-                "times_delivered": line["product_id_count"],
-                "units_delivered": line["qty_delivered"],
-            })
+            new_line = RecomendationLine.new(
+                {
+                    "product_id": line["product_id"][0],
+                    "times_delivered": line["product_id_count"],
+                    "units_delivered": line["qty_delivered"],
+                }
+            )
             self.line_ids += new_line
             # limit number of results. It has to be done here, as we need to
             # populate all results first, for being able to select best matches
@@ -112,21 +117,19 @@ class SaleOrderRecommendation(models.TransientModel):
         """Propagate recommendations to sale order."""
         so_line_obj = self.env["sale.order.line"]
         so_line_ids = []
-        sequence = max(self.order_id.mapped('order_line.sequence') or [0])
-        for wiz_line in self.line_ids.filtered('is_modified'):
+        sequence = max(self.order_id.mapped("order_line.sequence") or [0])
+        for wiz_line in self.line_ids.filtered("is_modified"):
             # Use preexisting line if any
             if wiz_line.sale_line_id:
                 if wiz_line.units_included:
-                    wiz_line.sale_line_id.update(
-                        wiz_line._prepare_update_so_line())
+                    wiz_line.sale_line_id.update(wiz_line._prepare_update_so_line())
                     wiz_line.sale_line_id.product_uom_change()
                 else:
                     wiz_line.sale_line_id.unlink()
                 continue
             sequence += 1
             # Use a new in-memory line otherwise
-            so_line = so_line_obj.new(
-                wiz_line._prepare_new_so_line(sequence))
+            so_line = so_line_obj.new(wiz_line._prepare_new_so_line(sequence))
             so_line = wiz_line._trigger_so_line_onchanges(so_line)
             so_line_ids.append(so_line.id)
         self.order_id.order_line += so_line_obj.browse(so_line_ids)
@@ -137,31 +140,15 @@ class SaleOrderRecommendationLine(models.TransientModel):
     _description = "Recommended product for current sale order"
     _order = "id"
 
-    currency_id = fields.Many2one(
-        related="product_id.currency_id",
-        readonly=True,
-    )
-    partner_id = fields.Many2one(
-        related="wizard_id.order_id.partner_id",
-        readonly=True,
-    )
-    product_id = fields.Many2one(
-        "product.product",
-        string="Product",
-    )
-    price_unit = fields.Monetary(
-        compute="_compute_price_unit",
-    )
+    currency_id = fields.Many2one(related="product_id.currency_id", readonly=True)
+    partner_id = fields.Many2one(related="wizard_id.order_id.partner_id", readonly=True)
+    product_id = fields.Many2one("product.product", string="Product")
+    price_unit = fields.Monetary(compute="_compute_price_unit")
     pricelist_id = fields.Many2one(
-        related="wizard_id.order_id.pricelist_id",
-        readonly=True,
+        related="wizard_id.order_id.pricelist_id", readonly=True
     )
-    times_delivered = fields.Integer(
-        readonly=True,
-    )
-    units_delivered = fields.Float(
-        readonly=True,
-    )
+    times_delivered = fields.Integer(readonly=True)
+    units_delivered = fields.Float(readonly=True)
     units_included = fields.Float()
     wizard_id = fields.Many2one(
         "sale.order.recommendation",
@@ -170,9 +157,7 @@ class SaleOrderRecommendationLine(models.TransientModel):
         required=True,
         readonly=True,
     )
-    sale_line_id = fields.Many2one(
-        comodel_name="sale.order.line",
-    )
+    sale_line_id = fields.Many2one(comodel_name="sale.order.line")
     is_modified = fields.Boolean()
 
     @api.depends("partner_id", "product_id", "pricelist_id", "units_included")
@@ -190,9 +175,7 @@ class SaleOrderRecommendationLine(models.TransientModel):
 
     def _prepare_update_so_line(self):
         """So we can extend PO update"""
-        return {
-            "product_uom_qty": self.units_included,
-        }
+        return {"product_uom_qty": self.units_included}
 
     def _prepare_new_so_line(self, sequence):
         """So we can extend PO create"""
