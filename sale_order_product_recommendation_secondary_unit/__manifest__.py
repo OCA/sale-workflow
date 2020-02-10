@@ -3,7 +3,7 @@
 {
     "name": "Sale Order Product Recommendation Secondary Unit",
     "summary": "Add secondary unit to recommend products wizard",
-    "version": "12.0.1.0.0",
+    "version": "13.0.1.0.0",
     "category": "Sales",
     "website": "https://github.com/OCA/sale-workflow",
     "author": "Tecnativa, Odoo Community Association (OCA)",
@@ -11,11 +11,6 @@
     "application": False,
     "installable": True,
     "auto_install": True,
-    "depends": [
-        "sale_order_product_recommendation",
-        "sale_order_secondary_unit",
-    ],
-    "data": [
-        "wizards/sale_order_recommendation_view.xml",
-    ],
+    "depends": ["sale_order_product_recommendation", "sale_order_secondary_unit"],
+    "data": ["wizards/sale_order_recommendation_view.xml"],
 }
