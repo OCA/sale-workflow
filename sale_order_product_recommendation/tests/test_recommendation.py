@@ -69,10 +69,10 @@ class RecommendationCaseTests(RecommendationCase):
         adv_wiz = (
             self.env["sale.advance.payment.inv"]
             .with_context(active_ids=[self.new_so.id])
-            .create({"advance_payment_method": "all"})
+            .create({"advance_payment_method": "delivered"})
         )
         adv_wiz.with_context(open_invoices=True).create_invoices()
-        self.new_so.invoice_ids.action_invoice_open()
+        self.new_so.invoice_ids.post()
         # Open the wizard and add more product qty
         wizard = self.wizard()
         wiz_line = wizard.line_ids.filtered(lambda x: x.product_id == self.prod_1)
@@ -84,8 +84,8 @@ class RecommendationCaseTests(RecommendationCase):
         adv_wiz = (
             self.env["sale.advance.payment.inv"]
             .with_context(active_ids=[self.new_so.id])
-            .create({"advance_payment_method": "all"})
+            .create({"advance_payment_method": "delivered"})
         )
         adv_wiz.with_context(open_invoices=True).create_invoices()
         self.assertEqual(2, len(self.new_so.invoice_ids))
-        self.assertEqual(2, self.new_so.invoice_ids[:1].invoice_line_ids.quantity)
+        self.assertEqual(qty, self.new_so.invoice_ids[:1].invoice_line_ids.quantity)
