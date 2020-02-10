@@ -4,8 +4,6 @@
 from odoo import api, fields, models
 from odoo.tools.float_utils import float_compare, float_round
 
-from odoo.addons import decimal_precision as dp
-
 
 class SaleOrderRecommendationLine(models.TransientModel):
     _inherit = "sale.order.recommendation.line"
@@ -15,7 +13,7 @@ class SaleOrderRecommendationLine(models.TransientModel):
         related="product_id.sale_secondary_uom_id",
     )
     secondary_uom_qty = fields.Float(
-        string="Secondary Qty", digits=dp.get_precision("Product Unit of Measure")
+        string="Secondary Qty", digits="Product Unit of Measure"
     )
     product_tmpl_id = fields.Many2one(
         related="product_id.product_tmpl_id",
