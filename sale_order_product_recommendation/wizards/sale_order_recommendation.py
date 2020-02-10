@@ -63,8 +63,9 @@ class SaleOrderRecommendation(models.TransientModel):
         )
         found_lines = self.env["sale.order.line"].read_group(
             [
-                ("order_id", "in", sales.ids),
                 "|",
+                ("order_id", "in", sales.ids),
+                "&",
                 ("qty_delivered", "!=", 0.0),
                 ("order_id", "=", self.order_id.id),
             ],
@@ -140,13 +141,11 @@ class SaleOrderRecommendationLine(models.TransientModel):
     _description = "Recommended product for current sale order"
     _order = "id"
 
-    currency_id = fields.Many2one(related="product_id.currency_id", readonly=True)
-    partner_id = fields.Many2one(related="wizard_id.order_id.partner_id", readonly=True)
+    currency_id = fields.Many2one(related="product_id.currency_id")
+    partner_id = fields.Many2one(related="wizard_id.order_id.partner_id")
     product_id = fields.Many2one("product.product", string="Product")
     price_unit = fields.Monetary(compute="_compute_price_unit")
-    pricelist_id = fields.Many2one(
-        related="wizard_id.order_id.pricelist_id", readonly=True
-    )
+    pricelist_id = fields.Many2one(related="wizard_id.order_id.pricelist_id")
     times_delivered = fields.Integer(readonly=True)
     units_delivered = fields.Float(readonly=True)
     units_included = fields.Float()
