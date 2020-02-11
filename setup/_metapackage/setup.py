@@ -14,6 +14,7 @@ setuptools.setup(
         'odoo13-addon-sale_elaboration',
         'odoo13-addon-sale_last_price_info',
         'odoo13-addon-sale_order_archive',
+        'odoo13-addon-sale_order_line_date',
         'odoo13-addon-sale_order_secondary_unit',
         'odoo13-addon-sale_product_multi_add',
         'odoo13-addon-sale_product_set',
