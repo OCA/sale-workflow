@@ -28,11 +28,7 @@ class SaleOrder(models.Model):
     @api.multi
     def action_manual_delivery_wizard(self):
         self.ensure_one()
-        wizard = self.env['manual.delivery'].create({
-            'order_id': self.id,
-            'carrier_id': self.carrier_id.id,
-        })
-        wizard.onchange_line_ids()
+        wizard = self.env['manual.delivery'].create({})
         action = self.env.ref(
             'sale_manual_delivery.action_wizard_manual_delivery'
         ).read()[0]
