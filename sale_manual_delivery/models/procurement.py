@@ -8,6 +8,10 @@ class ProcurementGroup(models.Model):
 
     date_planned = fields.Date()
 
+
+class ProcurementRule(models.Model):
+    _inherit = "procurement.rule"
+
     def _get_stock_move_values(
         self,
         product_id,
@@ -31,4 +35,6 @@ class ProcurementGroup(models.Model):
         )
         if values.get("carrier_id"):
             res["carrier_id"] = values["carrier_id"]
+        if values.get("partner_dest_id"):
+            res["partner_id"] = values["partner_dest_id"]
         return res
