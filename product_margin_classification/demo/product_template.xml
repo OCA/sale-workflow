@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+Copyright (C) 2016-Today GRAP (http://www.grap.coop)
+@author: Sylvain LE GAL (https://twitter.com/legalsylvain)
+License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
+-->
+
+<odoo>
+
+    <record id="product.product_product_7_product_template" model="product.template">
+        <field name="margin_classification_id" ref="classification_normal_margin" />
+    </record>
+
+    <record id="product.product_product_25_product_template" model="product.template">
+        <field name="margin_classification_id" ref="classification_normal_margin" />
+    </record>
+
+    <record id="product.product_product_27_product_template" model="product.template">
+        <field name="margin_classification_id" ref="classification_normal_margin" />
+    </record>
+
+    <record id="product.product_product_9_product_template" model="product.template">
+        <field name="margin_classification_id" ref="classification_big_margin" />
+    </record>
+
+    <record id="too_cheap_product" model="product.template">
+        <field name="default_code">CHEAP-PRODUCT</field>
+        <field name="name">Too Cheap Product</field>
+        <field name="standard_price">20</field>
+        <field name="list_price">30</field>
+        <field name="margin_classification_id" ref="classification_big_margin" />
+    </record>
+
+    <record id="too_expensive_product" model="product.template">
+        <field name="default_code">EXPENSIVE-PRODUCT</field>
+        <field name="name">Too Expensive Product</field>
+        <field name="standard_price">100</field>
+        <field name="list_price">300</field>
+        <field name="margin_classification_id" ref="classification_big_margin" />
+    </record>
+
+</odoo>

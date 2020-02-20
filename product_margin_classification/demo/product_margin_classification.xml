@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+Copyright (C) 2016-Today GRAP (http://www.grap.coop)
+@author: Sylvain LE GAL (https://twitter.com/legalsylvain)
+License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
+-->
+
+<odoo>
+
+    <record id="classification_normal_margin" model="product.margin.classification">
+        <field name="markup">50</field>
+        <field name="name">Normal Margin (33%)</field>
+        <field name="price_round">0.05</field>
+        
+    </record>
+
+    <record id="classification_big_margin" model="product.margin.classification">
+        <field name="markup">100</field>
+        <field name="name">Big Margin (50%, with 95 cents)</field>
+        <field name="price_round">1</field>
+        <field name="price_surcharge">-0.05</field>
+    </record>
+
+</odoo>

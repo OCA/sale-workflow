@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+Copyright (C) 2016-Today GRAP (http://www.grap.coop)
+@author: Sylvain LE GAL (https://twitter.com/legalsylvain)
+License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
+-->
+
+<odoo>
+
+    <record id="view_product_template_tree" model="ir.ui.view">
+        <field name="model">product.template</field>
+        <field name="arch" type="xml">
+            <tree colors="brown: margin_state == 'too_expensive'; red: margin_state == 'too_cheap';"
+                    editable="bottom">
+                <field name="default_code" readonly="1"/>
+                <field name="name" readonly="1"/>
+                <field name="theoretical_price" />
+                <field name="list_price" />
+                <field name="margin_state"/>
+                <button name="use_theoretical_price" type="object" string="Apply Margin" icon="fa-arrow-up"
+                    attrs="{'invisible': [('margin_state', '!=', 'too_cheap')]}"
+                    help="Increase the Sale Price up to Theoretical Price"/>
+                <button name="use_theoretical_price" type="object" string="Apply Margin" icon="fa-arrow-down"
+                    attrs="{'invisible': [('margin_state', '!=', 'too_expensive')]}"
+                    help="Decrease the Sale Price down to Theoretical Price"/>
+                <field name="theoretical_difference" />
+            </tree>
+        </field>
+    </record>
+
+    <record id="view_product_template_search" model="ir.ui.view">
+        <field name="model">product.template</field>
+        <field name="inherit_id" ref="product.product_template_search_view" />
+        <field name="arch" type="xml">
+            <field name="categ_id" position="after">
+                <field name="margin_classification_id" />
+                <field name="margin_state"/>
+                <filter string="Incorrect Margin" name="filter_margin_incorrect" domain="[('margin_state','in', ['too_cheap', 'too_expensive'])]"/>
+                <filter string="Correct Margin" name="filter_margin_correct" domain="[('margin_state','=','correct')]" invisible="1"/>
+                <filter string="Too Cheap" name="filter_margin_too_cheap" domain="[('margin_state','=', 'too_cheap')]" invisible="1"/>
+                <filter string="Too Expensive" name="filter_margin_too_expensive" domain="[('margin_state','=', 'too_expensive')]" invisible="1"/>
+            </field>
+        </field>
+    </record>
+
+    <record id="view_product_template_form" model="ir.ui.view">
+        <field name="model">product.template</field>
+        <field name="inherit_id" ref="product.product_template_form_view" />
+        <field name="arch" type="xml">
+            <field name="list_price" position="before">
+                <field name="margin_classification_id"/>
+                <label for="theoretical_price" attrs="{'invisible': [('margin_state', '=', 'correct')]}"/>
+                <div attrs="{'invisible': [('margin_state', '=', 'correct')]}">
+                    <field name="theoretical_price" class="oe_inline"/>
+                    <button name="use_theoretical_price" string="⇒ Increase Price"
+                            type="object" class="oe_link"
+                            attrs="{'invisible': [('margin_state', '!=', 'too_cheap')]}"
+                            help="Increase the Sale Price up to Theoretical Price"/>
+                    <button name="use_theoretical_price" string="⇒ Decrease Price"
+                            type="object" class="oe_link"
+                            attrs="{'invisible': [('margin_state', '!=', 'too_expensive')]}"
+                            help="Decrease the Sale Price down to Theoretical Price"/>
+                </div>
+                <field name="margin_state" invisible="1" />
+            </field>
+        </field>
+    </record>
+
+</odoo>

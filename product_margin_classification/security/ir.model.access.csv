@@ -1,0 +1,3 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+product_margin_classification_user,product_margin_classification user,model_product_margin_classification,base.group_user,1,0,0,0
+product_margin_classification_manager,product_margin_classification manager,model_product_margin_classification,sales_team.group_sale_manager,1,1,1,1
