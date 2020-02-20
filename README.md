@@ -20,6 +20,7 @@ Available addons
 addon | version | summary
 --- | --- | ---
 [portal_sale_personal_data_only](portal_sale_personal_data_only/) | 10.0.1.0.0 | Portal Sale Personal Data Only
+[product_margin_classification](product_margin_classification/) | 10.0.2.0.0 | Product Margin Classification
 [product_price_category](product_price_category/) | 10.0.1.0.0 | Add Price Category field on product and allow to apply a pricelist on this field.
 [product_supplierinfo_for_customer_sale](product_supplierinfo_for_customer_sale/) | 10.0.1.0.0 | Loads in every sale order line the customer code defined in the product
 [sale_automatic_workflow](sale_automatic_workflow/) | 10.0.1.0.1 | Sale Automatic Workflow
