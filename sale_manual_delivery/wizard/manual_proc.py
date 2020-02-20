@@ -117,11 +117,11 @@ class ManualDelivery(models.TransientModel):
                 if float_compare(wiz_line.to_ship_qty,
                                  wiz_line.ordered_qty -
                                  wiz_line.existing_qty,
-                                 precision_rounding=rounding) > 0.0:
+                                 precision_rounding=rounding) > 0.:
                     raise UserError(_('You can not deliver more than the '
                                       'remaining quantity. If you need to do '
                                       'so, please edit the sale order first.'))
-                if float_compare(wiz_line.to_ship_qty, 0, 2):
+                if float_compare(wiz_line.to_ship_qty, 0, 2) > 0.:
                     so_id = wiz_line.order_line_id.order_id
                     proc_group_to_use = proc_group_dict[so_id.id]
                     vals = wiz_line.order_line_id.\
@@ -136,7 +136,7 @@ class ManualDelivery(models.TransientModel):
                         wiz_line.order_line_id.product_id,
                         wiz_line.to_ship_qty,
                         wiz_line.order_line_id.product_uom,
-                        so_id.partner_shipping_id.property_stock_customer,
+                        wizard.partner_id.property_stock_customer,
                         wiz_line.order_line_id.name,
                         so_id.name,
                         vals,
