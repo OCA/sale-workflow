@@ -9,6 +9,7 @@ setuptools.setup(
     version=version,
     install_requires=[
         'odoo10-addon-portal_sale_personal_data_only',
+        'odoo10-addon-product_margin_classification',
         'odoo10-addon-product_price_category',
         'odoo10-addon-product_supplierinfo_for_customer_sale',
         'odoo10-addon-sale_automatic_workflow',
