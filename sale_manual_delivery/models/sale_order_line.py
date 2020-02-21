@@ -38,7 +38,7 @@ class SaleOrderLine(models.Model):
         done stock moves.
         """
         for line in self:
-            rounding = line.company_id.currency_id.rounding
+            uom_rounding = line.product_id.product_uom.rounding
             qty = 0.0
             for move in line.move_ids.filtered(
                 lambda r: r.state not in ("draft", "cancel") and not r.scrapped
@@ -55,7 +55,7 @@ class SaleOrderLine(models.Model):
             line.existing_qty = qty
             if float_compare(
                     line.product_uom_qty,
-                    line.existing_qty, precision_rounding=rounding):
+                    line.existing_qty, precision_rounding=uom_rounding):
                 line.pending_qty_to_deliver = True
             else:
                 line.pending_qty_to_deliver = False
