@@ -8,10 +8,6 @@ class ProcurementGroup(models.Model):
 
     date_planned = fields.Date()
 
-
-class ProcurementRule(models.Model):
-    _inherit = "procurement.rule"
-
     def _get_stock_move_values(
         self,
         product_id,
