@@ -7,25 +7,22 @@ from odoo import api, fields, models
 class SaleOrder(models.Model):
     _inherit = 'sale.order'
 
+    production_ids = fields.One2many('mrp.production', 'sale_order_id')
     production_count = fields.Integer(
-        compute='_compute_production_count')
+        compute='_compute_production_count', store=True)
 
-    @api.multi
+    @api.depends("production_ids")
     def _compute_production_count(self):
-        mrp_production_model = self.env['mrp.production']
         for sale in self:
-            domain = [('sale_order_id', '=', sale.id)]
-            sale.production_count = mrp_production_model.search_count(domain)
+            sale.production_count = len(sale.production_ids)
 
     @api.multi
     def action_view_production(self):
         action = self.env.ref('mrp.mrp_production_action').read()[0]
-        productions = self.env['mrp.production'].search(
-            [('sale_order_id', 'in', self.ids)])
-        if len(productions) > 1:
-            action['domain'] = [('id', 'in', productions.ids)]
+        if self.production_count > 1:
+            action['domain'] = [('id', 'in', self.production_ids.ids)]
         else:
             action['views'] = [
                 (self.env.ref('mrp.mrp_production_form_view').id, 'form')]
-            action['res_id'] = productions.id
+            action['res_id'] = self.production_ids.id
         return action
