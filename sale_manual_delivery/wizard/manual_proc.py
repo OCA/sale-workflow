@@ -2,7 +2,7 @@
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
 
 from odoo import models, fields, api
-from odoo.tools import float_compare
+from odoo.tools import float_compare, float_is_zero
 from odoo.exceptions import UserError
 from odoo.tools.translate import _
 
@@ -103,18 +103,19 @@ class ManualDelivery(models.TransientModel):
                 proc_group_dict[order.id] = order_proc_group_to_use
 
             for wiz_line in wizard.line_ids:
-                rounding = wiz_line.order_line_id.company_id.\
-                    currency_id.rounding
+                uom_rounding = wiz_line.product_id.uom_id.rounding
                 carrier_id = wizard.carrier_id if wizard.carrier_id else \
                     wiz_line.order_line_id.order_id.carrier_id
                 if float_compare(wiz_line.to_ship_qty,
                                  wiz_line.ordered_qty -
                                  wiz_line.existing_qty,
-                                 precision_rounding=rounding) > 0.0:
+                                 precision_rounding=uom_rounding) > 0.:
                     raise UserError(_('You can not deliver more than the '
                                       'remaining quantity. If you need to do '
                                       'so, please edit the sale order first.'))
-                if float_compare(wiz_line.to_ship_qty, 0, 2):
+                if not float_is_zero(
+                    wiz_line.to_ship_qty, precision_rounding=uom_rounding
+                ):
                     so_id = wiz_line.order_line_id.order_id
                     proc_group_to_use = proc_group_dict[so_id.id]
                     vals = wiz_line.order_line_id.\
@@ -128,7 +129,7 @@ class ManualDelivery(models.TransientModel):
                         wiz_line.order_line_id.product_id,
                         wiz_line.to_ship_qty,
                         wiz_line.order_line_id.product_uom,
-                        so_id.partner_shipping_id.property_stock_customer,
+                        wizard.partner_id.property_stock_customer,
                         wiz_line.order_line_id.name,
                         so_id.name,
                         vals,
