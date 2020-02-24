@@ -38,7 +38,7 @@ class SaleOrderLine(models.Model):
         done stock moves.
         """
         for line in self:
-            uom_rounding = line.product_id.product_uom.rounding
+            uom_rounding = line.product_id.uom_id.rounding
             qty = 0.0
             for move in line.move_ids.filtered(
                 lambda r: r.state not in ("draft", "cancel") and not r.scrapped
