@@ -13,8 +13,8 @@
                 <sheet>
                     <group>
                         <field name="order_id" invisible="1"/>
-                        <field name="months"/>
-                        <field name="line_amount"/>
+                        <field name="months" widget="numeric_step"/>
+                        <field name="line_amount" widget="numeric_step"/>
                     </group>
                     <group>
                         <field name="line_ids" nolabel="1">
@@ -26,7 +26,7 @@
                                 <field name="price_unit"/>
                                 <field name="times_delivered"/>
                                 <field name="units_delivered"/>
-                                <field name="units_included"/>
+                                <field name="units_included" widget="numeric_step"/>
                             </tree>
                         </field>
                     </group>
