@@ -1,4 +1,3 @@
-# coding: utf-8
 # 2017 EBII Monsieurb <monsieurb@saaslys.com>
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
 
@@ -14,7 +13,6 @@ class TestSaleGenerator(TransactionCase):
 
     def test_partner_create(self):
         sale_tmpl = self.sale
-        sale_tmpl.is_template = True
         part1 = self.partner1
         part2 = self.partner2
         vals = {

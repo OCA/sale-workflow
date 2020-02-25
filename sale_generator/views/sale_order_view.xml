@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+
+    <record model="ir.actions.act_window" id="action_sale_order_template">
+        <field name="name">Sale Order</field>
+        <field name="res_model">sale.order</field>
+        <field name="view_type">form</field>
+        <field name="view_mode">tree,form</field>
+        <field name="context">{'default_active': False, 'default_is_template': True, 'tmpl_mode': True}</field>
+        <field name="domain">[('is_template', '=', True), ('active', '=', False)]</field>
+    </record>
+
+    <menuitem name="Sale Order Templates"
+              id="menuitem_sale_order_template"
+              parent="sale.menu_sale_config"
+              action="action_sale_order_template"/>
+
+</odoo>

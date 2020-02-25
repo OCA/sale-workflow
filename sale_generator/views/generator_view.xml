@@ -29,11 +29,11 @@
             <header>
                 <button name="button_update_order"
                         states="draft"
-                        string="Start Generating Sale"
+                        string="Generate Sales"
                         type="object"
                         class="oe_highlight"/>
                 <button name="action_confirm"
-                        string="Confirm All Sale Generated"
+                        string="Confirm All Generated Sales"
                         states="generating"
                         type="object"
                         class="oe_highlight"/>
@@ -45,40 +45,43 @@
                     <field name="name"
                            class="oe_inline"/>
                 </h1>
-                <button class="oe_inline oe_stat_button oe_right"
-                        name="%(act_sale_generator_2_sale_order)d"
-                        type="action"
-                        icon="fa-strikethrough"
-                        string="Sales"/>
+
+                <div class="oe_button_box" name="button_box">
+                    <button class="oe_stat_button"
+                            name="%(act_sale_generator_2_sale_order)d"
+                            type="action"
+                            icon="fa-strikethrough"
+                            string="Sales"/>
+                </div>
                 <group name="header" colspan="2">
                     <field name="date_order"/>
                     <field name="tmpl_sale_id"
-                           context="{'default_is_template': True, 'default_name': '', 'default_partner_id': %(sale_generator.res_partner_for_sale_template)d}"/>
+                           context="{'default_is_template': True, 'default_active': False, 'tmpl_mode': True, 'default_partner_id': 1}"
+                           domain="[('is_template', '=', True), ('active', '=', False)]"/>
                     <field name="warehouse_id"/>
                 </group>
-                <separator string="Customer"/>
-                <span>In order to add customer you have two possibilities:
+                <separator string="Customers"/>
+                <span attrs="{'invisible': [('state', '!=', 'draft')]}">In order to add customers, you have two possibilities:
                     <ul>
-                        <li>adding an existing customer by searching in your
-                            database
-                            for that you have to click on add item at the end
+                        <li>add an existing customer by searching in your
+                            database, for that you can click on add item at the end
                             of the list.
                         </li>
-                        <li>creating massively customer by launching the
+                        <li>create multiple customers simultaneously by launching the
                             following wizard:
                             <button name="add_generated_partner"
                                     string="Create Customer"
                                     type="object"
-                                    context="{'from_generator_id': active_id'}"
-                                    states="draft,generating"/>
+                                    context="{'from_generator_id': active_id}"/>
                         </li>
                     </ul>
                 </span>
                 <field name="partner_ids"/>
+                <separator string="Generated Sale Orders"/>
+                <field name="sale_ids" attrs="{'readonly': 1}"/>
             </sheet>
         </field>
     </record>
-
 
     <record model="ir.actions.act_window" id="action_sale_generator">
         <field name="name">Generator</field>
@@ -87,9 +90,9 @@
         <field name="view_mode">tree,form</field>
     </record>
 
-    <menuitem name="Generator"
-              id="choix_generator"
-              parent="sales_team.menu_sales"
+    <menuitem name="Generators"
+              id="menuitem_sale_generator"
+              parent="sale.menu_sale_config"
               action="action_sale_generator"/>
 
 </odoo>

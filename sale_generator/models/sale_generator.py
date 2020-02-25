@@ -1,4 +1,3 @@
-# coding: utf-8
 #  @author Sébastien BEAU <sebastien.beau@akretion.com>
 #  @author Abdessamad HILALI <abdessamad.hilali@akretion.com>
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
@@ -9,6 +8,7 @@ from odoo.exceptions import UserError
 
 class SaleGenerator(models.Model):
     _name = "sale.generator"
+    _description = "Sale order generator"
 
     name = fields.Char(string="Generator", default="/")
     partner_ids = fields.Many2many(
@@ -18,10 +18,7 @@ class SaleGenerator(models.Model):
         comodel_name="sale.order", inverse_name="generator_id", string="Sales"
     )
     tmpl_sale_id = fields.Many2one(
-        comodel_name="sale.order",
-        string="Sale Template",
-        required=True,
-        domain=[("is_template", "=", True)],
+        comodel_name="sale.order", string="Sale Template", required=True,
     )
     date_order = fields.Datetime(
         string="Date", oldname="date", default=fields.Datetime.now()
@@ -46,7 +43,6 @@ class SaleGenerator(models.Model):
         store=True,
     )
 
-    @api.multi
     def _prepare_copy_vals(self, partner):
         self.ensure_one()
         vals = {
@@ -54,28 +50,28 @@ class SaleGenerator(models.Model):
             "generator_id": self.id,
             "warehouse_id": self.warehouse_id.id,
             "company_id": self.warehouse_id.company_id.id,
-            "is_template": False,
         }
         return vals
 
-    @api.multi
     def _create_order_for_partner(self, partner):
         self.ensure_one()
         vals = self._prepare_copy_vals(partner)
+        vals["active"] = True
         self.tmpl_sale_id.copy(vals)
 
-    @api.multi
     def button_update_order(self):
         for res in self:
             if not res.partner_ids:
                 raise UserError(
-                    _("Can't generate sale order without customer ")
+                    _(
+                        "Can't generate sale order without selecting any "
+                        "customer"
+                    )
                 )
             else:
                 res.write({"state": "generating"})
                 res._update_order()
 
-    @api.multi
     def _update_order(self):
         self.ensure_one()
         partners_with_order = self.sale_ids.mapped("partner_id")
@@ -88,13 +84,14 @@ class SaleGenerator(models.Model):
         ):
             sale.unlink()
 
-    @api.multi
     def action_confirm(self):
-        for res in self:
-            res.write({"state": "done"})
-            res.sale_ids.action_confirm()
+        for rec in self:
+            rec.write({"state": "done"})
+            # need single record action_confirm or else it crashes with
+            # sale_timesheet: sale_order.py:54 see self.company_id
+            for sale in rec.sale_ids:
+                sale.action_confirm()
 
-    @api.multi
     def write(self, vals):
         res = super(SaleGenerator, self).write(vals)
         if "partner_ids" in vals and self.state == "generating":
@@ -106,7 +103,6 @@ class SaleGenerator(models.Model):
             "type": "ir.actions.act_window",
             "res_model": "res.partner",
             "name": u"New Customer",
-            "id": self.env.ref("base.view_partner_form").id,
             "view_mode": "form",
             "target": "new",
         }
