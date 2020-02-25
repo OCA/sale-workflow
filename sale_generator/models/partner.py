@@ -1,4 +1,3 @@
-# coding: utf-8
 #  @author Sébastien BEAU <sebastien.beau@akretion.com>
 #  @author Abdessamad HILALI <abdessamad.hilali@akretion.com>
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
@@ -22,16 +21,14 @@ class ResPartner(models.Model):
         if generator_id:
             generator = self.env["sale.generator"].browse(generator_id)
             generator.partner_ids += res
-
         return res
 
     def add_new_generated_partner(self):
-
         return {
             "type": "ir.actions.act_window",
             "res_model": "res.partner",
             "name": u"New Customer",
-            "id": self.env.ref("base.view_partner_form").id,
+            "view_id": self.env.ref("base.view_partner_form").id,
             "view_mode": "form",
             "target": "new",
         }
