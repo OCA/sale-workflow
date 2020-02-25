@@ -18,33 +18,12 @@ class SaleOrder(models.Model):
     @api.model
     def create(self, vals):
         if self.env.context.get("tmpl_mode"):
-            vals["name"] = self.env["ir.sequence"].next_by_code(
-                "sale.order.tmpl"
-            ) or _("New template")
-            if not vals.get("partner_id"):
-                # in tmpl_mode we hide partner_id and don't care about its value
-                vals["partner_id"] = (
-                    self.env["res.partner"].search([], limit=1).id
+            if vals.get("name", _("New")) == _("New"):
+                vals["name"] = self.env["ir.sequence"].next_by_code(
+                    "sale.order.tmpl"
                 )
+            if not vals.get("partner_id"):
+                vals["partner_id"] = self.env.ref(
+                    "sale_generator.dummy_so_generator_partner"
+                ).id
         return super().create(vals)
-
-    @api.model
-    def fields_view_get(
-        self, view_id=None, view_type="form", toolbar=False, submenu=False
-    ):
-        res = super(SaleOrder, self).fields_view_get(
-            view_id=view_id,
-            view_type=view_type,
-            toolbar=toolbar,
-            submenu=submenu,
-        )
-        doc = etree.XML(res["arch"])
-        if view_type == "form":
-            for node in doc.xpath("//button"):
-                node.getparent().remove(node)
-            for node in doc.xpath("//field[@name='sale_order_template_id']"):
-                node.getparent().remove(node)
-            for node in doc.xpath("//field[@name='state']"):
-                node.set("statusbar_visible", "quotation")
-        res["arch"] = etree.tostring(doc, encoding="unicode")
-        return res

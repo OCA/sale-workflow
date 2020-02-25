@@ -27,7 +27,7 @@
         <field name="type">form</field>
         <field name="arch" type="xml">
             <header>
-                <button name="button_update_order"
+                <button name="button_generate_sale_orders"
                         states="draft"
                         string="Generate Sales"
                         type="object"
@@ -56,12 +56,14 @@
                 <group name="header" colspan="2">
                     <field name="date_order"/>
                     <field name="tmpl_sale_id"
-                           context="{'default_is_template': True, 'default_active': False, 'tmpl_mode': True, 'default_partner_id': 1}"
+                           context="{'default_is_template': True, 'default_active': False, 'tmpl_mode': True,
+                           'default_partner_id': %(dummy_so_generator_partner)d}"
                            domain="[('is_template', '=', True), ('active', '=', False)]"/>
                     <field name="warehouse_id"/>
                 </group>
                 <separator string="Customers"/>
-                <span attrs="{'invisible': [('state', '!=', 'draft')]}">In order to add customers, you have two possibilities:
+                <span attrs="{'invisible': [('state', '!=', 'draft')]}">In order to add customers, you have two
+                    possibilities:
                     <ul>
                         <li>add an existing customer by searching in your
                             database, for that you can click on add item at the end
@@ -76,7 +78,7 @@
                         </li>
                     </ul>
                 </span>
-                <field name="partner_ids"/>
+                <field name="partner_ids" attrs="{'readonly': [('state', '=', 'done')]}"/>
                 <separator string="Generated Sale Orders"/>
                 <field name="sale_ids" attrs="{'readonly': 1}"/>
             </sheet>
@@ -90,9 +92,13 @@
         <field name="view_mode">tree,form</field>
     </record>
 
-    <menuitem name="Generators"
-              id="menuitem_sale_generator"
-              parent="sale.menu_sale_config"
+    <menuitem name="Batch generation"
+              id="menuitem_batch_generation"
+              parent="sale.sale_order_menu"
               action="action_sale_generator"/>
 
+    <menuitem name="Generators"
+              id="menuitem_sale_generator"
+              parent="sale_generator.menuitem_batch_generation"
+              action="action_sale_generator"/>
 </odoo>

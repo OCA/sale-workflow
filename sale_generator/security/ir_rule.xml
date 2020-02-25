@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo noupdate="1">
+
+    <record id="sale_generator_multicompany" model="ir.rule">
+        <field name="name">Sale generator multicompany</field>
+        <field name="model_id" ref="sale_generator.model_sale_generator"/>
+        <field name="domain_force">
+            ['|', ('company_id','=',False), ('company_id', 'child_of', [user.company_id.id])]
+        </field>
+    </record>
+
+</odoo>

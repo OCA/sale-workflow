@@ -20,9 +20,7 @@ class SaleGenerator(models.Model):
     tmpl_sale_id = fields.Many2one(
         comodel_name="sale.order", string="Sale Template", required=True,
     )
-    date_order = fields.Datetime(
-        string="Date", default=fields.Datetime.now()
-    )
+    date_order = fields.Datetime(string="Date", default=fields.Datetime.now())
     warehouse_id = fields.Many2one(
         comodel_name="stock.warehouse", required=True, string="Warehouse"
     )
@@ -57,9 +55,10 @@ class SaleGenerator(models.Model):
         self.ensure_one()
         vals = self._prepare_copy_vals(partner)
         vals["active"] = True
+        vals["is_template"] = False
         self.tmpl_sale_id.copy(vals)
 
-    def button_update_order(self):
+    def button_generate_sale_orders(self):
         for res in self:
             if not res.partner_ids:
                 raise UserError(
@@ -70,9 +69,9 @@ class SaleGenerator(models.Model):
                 )
             else:
                 res.write({"state": "generating"})
-                res._update_order()
+                res._sync_orders_with_partners()
 
-    def _update_order(self):
+    def _sync_orders_with_partners(self):
         self.ensure_one()
         partners_with_order = self.sale_ids.mapped("partner_id")
         for partner in self.partner_ids.filtered(
@@ -95,7 +94,7 @@ class SaleGenerator(models.Model):
     def write(self, vals):
         res = super().write(vals)
         if "partner_ids" in vals and self.state == "generating":
-            self._update_order()
+            self._sync_orders_with_partners()
         return res
 
     def add_generated_partner(self):
