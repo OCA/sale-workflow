@@ -9,10 +9,35 @@ class TestSaleGenerator(TransactionCase):
         super().setUp()
         self.partner1 = self.env.ref("base.res_partner_address_4")
         self.partner2 = self.env.ref("base.res_partner_address_27")
-        self.sale = self.env.ref("sale.sale_order_4")
+        self.demo_sale_order = self.env.ref("sale.sale_order_4")
+        self.some_fields_to_compare_so = [
+            "validity_date",
+            "payment_term_id",
+            "state",
+        ]
+        self.some_fields_to_compare_so_line = [
+            "product_id",
+            "name",
+            "product_uom_qty",
+            "price_unit",
+            "tax_id",
+        ]
+        self.constant_values_for_generated_sos = {
+            "active": True,
+            "is_template": False,
+        }
 
-    def test_partner_create(self):
-        sale_tmpl = self.sale
+    def _helper_test_order_line_equality(self, so1, so2):
+        self.assertEqual(len(so1.order_line.ids), len(so2.order_line.ids))
+        len_lines = len(so1.order_line.ids)
+        for itr in range(len_lines):
+            for field in self.some_fields_to_compare_so_line:
+                line1 = so1.order_line[itr]
+                line2 = so2.order_line[itr]
+                self.assertEqual(getattr(line1, field), getattr(line2, field))
+
+    def test_basic_generation(self):
+        sale_tmpl = self.demo_sale_order
         part1 = self.partner1
         part2 = self.partner2
         vals = {
@@ -25,13 +50,22 @@ class TestSaleGenerator(TransactionCase):
         }
         sg = self.env["sale.generator"].create(vals)
 
-        sg.button_update_order()
+        sg.button_generate_sale_orders()
 
-        sales = self.env["sale.order"].search([("generator_id", "=", sg.id)])
-        self.assertEqual(len(sales), 2)
-        for sale in sales:
+        sales_generated = self.env["sale.order"].search(
+            [("generator_id", "=", sg.id)]
+        )
+        self.assertEqual(len(sales_generated), 2)
+        for sale in sales_generated:
             self.assertEqual(sale.state, "draft")
 
         sg.action_confirm()
-        for sale in sales:
-            self.assertEqual(sale.state, "sale")
+
+        for sale in sales_generated:
+            for field in self.some_fields_to_compare_so:
+                self.assertEqual(
+                    getattr(self.demo_sale_order, field), getattr(sale, field)
+                )
+            for field, val in self.constant_values_for_generated_sos.items():
+                self.assertEqual(getattr(sale, field), val)
+            self._helper_test_order_line_equality(self.demo_sale_order, sale)

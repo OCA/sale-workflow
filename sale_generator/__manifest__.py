@@ -16,6 +16,7 @@
         "views/partner_view.xml",
         "views/sale_order_view.xml",
         "security/ir.model.access.csv",
+        "security/ir_rule.xml",
     ],
     "installable": True,
     "maintainers": ["sebastienbeau", "kevinkhao"],
