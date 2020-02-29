@@ -65,7 +65,7 @@ class SaleOrderLinePriceHistory(models.TransientModel):
                     False,
                     {
                         "sale_order_line_id": order_line.id,
-                        "history_sale_order_line_id": self.sale_order_line_id,
+                        "history_sale_order_line_id": self.sale_order_line_id.id,
                     },
                 )
             )
@@ -93,7 +93,6 @@ class SaleOrderLinePriceHistoryline(models.TransientModel):
     product_uom_qty = fields.Float(related="sale_order_line_id.product_uom_qty")
     price_unit = fields.Float(related="sale_order_line_id.price_unit")
 
-    @api.multi
     def action_set_price(self):
         self.ensure_one()
         self.history_sale_order_line_id.price_unit = self.price_unit
