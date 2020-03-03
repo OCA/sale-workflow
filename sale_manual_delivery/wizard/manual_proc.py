@@ -122,8 +122,8 @@ class ManualDelivery(models.TransientModel):
                         _prepare_procurement_values(
                             group_id=proc_group_to_use)
                     vals["date_planned"] = date_planned
-                    vals["carrier_id"] = carrier_id.id
-                    vals["partner_dest_id"] = wizard.partner_id.id
+                    vals["carrier_id"] = carrier_id
+                    vals["partner_dest_id"] = wizard.partner_id
 
                     proc_group_obj.run(
                         wiz_line.order_line_id.product_id,
