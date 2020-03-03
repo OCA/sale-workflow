@@ -7,10 +7,11 @@ class SaleOrder(models.Model):
     _inherit = 'sale.order'
 
     def _get_order_type(self):
+        """Keep the method to default in case the partner doesn't have any"""
         return self.env['sale.order.type'].search([], limit=1)
 
     type_id = fields.Many2one(
-        comodel_name='sale.order.type', string='Type', default=_get_order_type)
+        comodel_name='sale.order.type', string='Type')
 
     @api.multi
     @api.onchange('partner_id')
@@ -20,6 +21,8 @@ class SaleOrder(models.Model):
                      self.partner_id.commercial_partner_id.sale_type)
         if sale_type:
             self.type_id = sale_type
+        else:
+            self.type_id = self._get_order_type()
 
     @api.multi
     @api.onchange('type_id')
@@ -48,11 +51,28 @@ class SaleOrder(models.Model):
 
     @api.model
     def create(self, vals):
-        if vals.get('name', '/') == '/'and vals.get('type_id'):
+        """We trigger onchanges on create to ensure the type mechanics is
+           applied even if the creation of the order isn't invoked from ui
+           as is the case for website orders. We also ensure this way that
+           a contact will be getting his commercial partner type if no
+           type is set on his record"""
+        fields_from_sale_type = [
+            'type_id', 'warehouse_id', 'picking_policy',
+            'payment_term_id', 'incoterm', 'pricelist_id',
+        ]
+        if not vals.get('type_id'):
+            sale = self.new(vals)
+            sale.onchange_partner_id()
+            sale.onchange_type_id()
+            for field in fields_from_sale_type:
+                vals[field] = sale._fields[field].convert_to_write(
+                    sale[field], sale,
+                )
+        if vals.get('name', '/') == '/' and vals.get('type_id'):
             sale_type = self.env['sale.order.type'].browse(vals['type_id'])
             if sale_type.sequence_id:
                 vals['name'] = sale_type.sequence_id.next_by_id()
-        return super(SaleOrder, self).create(vals)
+        return super().create(vals)
 
     @api.multi
     def _prepare_invoice(self):
