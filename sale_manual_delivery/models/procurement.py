@@ -34,7 +34,7 @@ class ProcurementRule(models.Model):
             group_id,
         )
         if values.get("carrier_id"):
-            res["carrier_id"] = values["carrier_id"]
+            res["carrier_id"] = values["carrier_id"].id
         if values.get("partner_dest_id"):
-            res["partner_id"] = values["partner_dest_id"]
+            res["partner_id"] = values["partner_dest_id"].id
         return res
