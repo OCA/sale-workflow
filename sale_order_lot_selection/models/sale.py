@@ -42,7 +42,8 @@ class SaleOrder(models.Model):
         lot_count = 0
         for p in line.order_id.picking_ids:
             for m in p.move_lines:
-                move_line_id = m.move_line_ids.filtered(lambda line: line.lot_id)
+                move_line_id = \
+                    m.move_line_ids.filtered(lambda line: line.lot_id)
                 if move_line_id and line.lot_id == move_line_id[:1].lot_id:
                     move = m
                     lot_count += 1
@@ -65,15 +66,18 @@ class SaleOrder(models.Model):
         return True
 
     def action_confirm(self):
-        res = super(SaleOrder, self.with_context(sol_lot_id=True)).action_confirm()
+        res = super(SaleOrder, self.with_context(
+            sol_lot_id=True)).action_confirm()
         for line in self.order_line:
             if line.lot_id:
                 unreserved_moves = line.move_ids.filtered(
-                    lambda move: move.product_uom_qty != move.reserved_availability
+                    lambda move: move.product_uom_qty !=
+                    move.reserved_availability
                 )
                 if unreserved_moves:
                     raise UserError(
-                        _("Can't reserve products for lot %s") % line.lot_id.name
+                        _("Can't reserve products for lot %s")
+                        % line.lot_id.name
                     )
             self._check_move_state(line)
         return res
