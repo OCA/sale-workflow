@@ -14,29 +14,44 @@ msgstr ""
 "Plural-Forms: \n"
 
 #. module: sale_tier_validation
-#: model_terms:ir.ui.view,arch_db:sale_tier_validation.sale_order_form
+#: model_terms:ir.ui.view,arch_db:sale_tier_validation.sale_order_form_tier
 msgid "<i class=\"fa fa-info-circle\"/>This SO needs to be\n"
 "                        validated."
 msgstr ""
 
 #. module: sale_tier_validation
-#: model_terms:ir.ui.view,arch_db:sale_tier_validation.sale_order_form
+#: model_terms:ir.ui.view,arch_db:sale_tier_validation.sale_order_form_tier
 msgid "<i class=\"fa fa-thumbs-down\"/> Operation has been <b>rejected</b>."
 msgstr ""
 
 #. module: sale_tier_validation
-#: model_terms:ir.ui.view,arch_db:sale_tier_validation.sale_order_form
+#: model_terms:ir.ui.view,arch_db:sale_tier_validation.sale_order_form_tier
 msgid "<i class=\"fa fa-thumbs-up\"/> Operation has been <b>validated</b>!"
 msgstr ""
 
 #. module: sale_tier_validation
 #: model_terms:ir.ui.view,arch_db:sale_tier_validation.view_sale_order_filter
-msgid "My Purchases to review"
+msgid "My Sales to review"
 msgstr ""
 
 #. module: sale_tier_validation
 #: model_terms:ir.ui.view,arch_db:sale_tier_validation.view_sale_order_filter
 msgid "Needs my Review"
+msgstr ""
+
+#. module: sale_tier_validation
+#: model_terms:ir.ui.view,arch_db:sale_tier_validation.sale_order_form_tier
+msgid "Reject"
+msgstr ""
+
+#. module: sale_tier_validation
+#: model_terms:ir.ui.view,arch_db:sale_tier_validation.sale_order_form_tier
+msgid "Request Validation"
+msgstr ""
+
+#. module: sale_tier_validation
+#: model_terms:ir.ui.view,arch_db:sale_tier_validation.sale_order_form_tier
+msgid "Restart Validation"
 msgstr ""
 
 #. module: sale_tier_validation
@@ -50,27 +65,12 @@ msgid "Sale Order"
 msgstr ""
 
 #. module: sale_tier_validation
-#: model_terms:ir.ui.view,arch_db:sale_tier_validation.sale_order_form
-msgid "Reject"
-msgstr ""
-
-#. module: sale_tier_validation
-#: model_terms:ir.ui.view,arch_db:sale_tier_validation.sale_order_form
-msgid "Request Validation"
-msgstr ""
-
-#. module: sale_tier_validation
-#: model_terms:ir.ui.view,arch_db:sale_tier_validation.sale_order_form
-msgid "Restart Validation"
-msgstr ""
-
-#. module: sale_tier_validation
 #: model:ir.model,name:sale_tier_validation.model_tier_definition
 msgid "Tier Definition"
 msgstr ""
 
 #. module: sale_tier_validation
-#: model_terms:ir.ui.view,arch_db:sale_tier_validation.sale_order_form
+#: model_terms:ir.ui.view,arch_db:sale_tier_validation.sale_order_form_tier
 msgid "Validate"
 msgstr ""
 
