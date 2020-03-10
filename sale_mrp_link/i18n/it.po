@@ -18,6 +18,7 @@ msgstr ""
 "X-Generator: Poedit 1.8.7.1\n"
 
 #. module: sale_mrp_link
+#: model:ir.model.fields,field_description:sale_mrp_link.field_sale_order__production_ids
 #: model_terms:ir.ui.view,arch_db:sale_mrp_link.view_order_form
 msgid "Production"
 msgstr "Produzione"
@@ -25,21 +26,18 @@ msgstr "Produzione"
 #. module: sale_mrp_link
 #: model:ir.model.fields,field_description:sale_mrp_link.field_sale_order__production_count
 #, fuzzy
-#| msgid "Production count"
 msgid "Production Count"
 msgstr "Numero ordini di produzione"
 
 #. module: sale_mrp_link
 #: model:ir.model,name:sale_mrp_link.model_mrp_production
 #, fuzzy
-#| msgid "Production"
 msgid "Production Order"
 msgstr "Produzione"
 
 #. module: sale_mrp_link
 #: model:ir.model,name:sale_mrp_link.model_sale_order
 #, fuzzy
-#| msgid "Sales Order"
 msgid "Sale Order"
 msgstr "Ordine di vendita"
 
