@@ -24,6 +24,7 @@ setuptools.setup(
         'odoo11-addon-sale_isolated_quotation',
         'odoo11-addon-sale_last_price_info',
         'odoo11-addon-sale_merge_draft_invoice',
+        'odoo11-addon-sale_mrp_link',
         'odoo11-addon-sale_order_action_invoice_create_hook',
         'odoo11-addon-sale_order_archive',
         'odoo11-addon-sale_order_digitized_signature',
