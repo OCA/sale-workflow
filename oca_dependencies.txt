@@ -3,6 +3,7 @@ account-invoicing
 product-attribute
 partner-contact
 server-tools
+server-ux
 web
 bank-payment
 stock-logistics-warehouse
