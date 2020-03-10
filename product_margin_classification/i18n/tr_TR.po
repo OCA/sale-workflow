@@ -21,145 +21,156 @@ msgstr ""
 "Plural-Forms: nplurals=1; plural=0;\n"
 
 #. module: product_margin_classification
-#: code:addons/product_margin_classification/models/product_margin_classification.py:92
+#: code:addons/product_margin_classification/models/product_margin_classification.py:96
 #, python-format
-msgid "-1 is not a valid Markup."
+msgid "-100 is not a valid Markup."
 msgstr ""
 
 #. module: product_margin_classification
-#: code:addons/product_margin_classification/models/product_margin_classification.py:102
+#: code:addons/product_margin_classification/models/product_margin_classification.py:106
 #, python-format
-msgid "1 is not a valid Profit Margin."
+msgid "100 is not a valid Profit Margin."
 msgstr ""
 
 #. module: product_margin_classification
-#: help:product.margin.classification,profit_margin:0
+#: model:ir.model.fields,help:product_margin_classification.field_product_margin_classification_profit_margin
 msgid ""
 "Also called 'Net margin' or 'Net Profit Ratio'.\n"
-"It is computed with the following formula Profit Margin = (Sale Price - "
-"Cost) / Sale Price"
+"It is computed with the following formula Profit Margin = 100 * (Sale Price "
+"- Cost) / Sale Price"
 msgstr ""
 
 #. module: product_margin_classification
-#: view:product.template:product_margin_classification.view_product_template_tree
+#: model:ir.ui.view,arch_db:product_margin_classification.view_product_template_tree
 msgid "Apply Margin"
 msgstr ""
 
 #. module: product_margin_classification
-#: view:product.margin.classification:product_margin_classification.view_product_margin_classification_form
+#: model:ir.ui.view,arch_db:product_margin_classification.view_product_margin_classification_form
 msgid "Apply Theoretical Price"
 msgstr ""
 
 #. module: product_margin_classification
-#: selection:product.template,margin_state:0
-msgid "Cheaper"
-msgstr "Ucuz"
-
-#. module: product_margin_classification
-#: field:product.margin.classification,company_id:0
+#: model:ir.model.fields,field_description:product_margin_classification.field_product_margin_classification_company_id
 msgid "Company"
 msgstr "Firma"
 
 #. module: product_margin_classification
-#: view:product.margin.classification:product_margin_classification.view_product_margin_classification_form
+#: model:ir.ui.view,arch_db:product_margin_classification.view_product_margin_classification_form
 #, fuzzy
 #| msgid "Computation"
 msgid "Computation Method"
 msgstr "Hesaplama"
 
 #. module: product_margin_classification
+#: model:ir.ui.view,arch_db:product_margin_classification.view_product_margin_classification_form
+msgid "Correct"
+msgstr ""
+
+#. module: product_margin_classification
+#: model:ir.ui.view,arch_db:product_margin_classification.view_product_template_search
 #: selection:product.template,margin_state:0
 msgid "Correct Margin"
 msgstr ""
 
 #. module: product_margin_classification
-#: field:product.margin.classification,create_uid:0
+#: model:ir.model.fields,field_description:product_margin_classification.field_product_margin_classification_create_uid
 msgid "Created by"
 msgstr "Oluşturan"
 
 #. module: product_margin_classification
-#: field:product.margin.classification,create_date:0
+#: model:ir.model.fields,field_description:product_margin_classification.field_product_margin_classification_create_date
 msgid "Created on"
 msgstr "Oluşturulma tarihi"
 
 #. module: product_margin_classification
-#: view:product.template:product_margin_classification.view_product_template_form
-#: view:product.template:product_margin_classification.view_product_template_tree
+#: model:ir.ui.view,arch_db:product_margin_classification.view_product_template_form
+#: model:ir.ui.view,arch_db:product_margin_classification.view_product_template_tree
 msgid "Decrease the Sale Price down to Theoretical Price"
 msgstr "Satış fiyatını teorik fiyata düşür"
 
 #. module: product_margin_classification
-#: field:product.margin.classification,display_name:0
+#: model:ir.model.fields,field_description:product_margin_classification.field_product_margin_classification_display_name
 msgid "Display Name"
 msgstr "Görünen ad"
 
 #. module: product_margin_classification
-#: view:product.margin.classification:product_margin_classification.view_product_margin_classification_form
+#: model:ir.ui.view,arch_db:product_margin_classification.view_product_margin_classification_form
 msgid "Down to Theoretical Price"
 msgstr "Teorik fiyata düşür"
 
 #. module: product_margin_classification
-#: field:product.margin.classification,id:0
+#: model:ir.model.fields,field_description:product_margin_classification.field_product_margin_classification_id
 msgid "ID"
 msgstr "Kimlik"
 
 #. module: product_margin_classification
-#: view:product.template:product_margin_classification.view_product_template_form
-#: view:product.template:product_margin_classification.view_product_template_tree
+#: model:ir.ui.view,arch_db:product_margin_classification.view_product_margin_classification_form
+msgid "Incorrect"
+msgstr ""
+
+#. module: product_margin_classification
+#: model:ir.ui.view,arch_db:product_margin_classification.view_product_template_search
+msgid "Incorrect Margin"
+msgstr ""
+
+#. module: product_margin_classification
+#: model:ir.ui.view,arch_db:product_margin_classification.view_product_template_form
+#: model:ir.ui.view,arch_db:product_margin_classification.view_product_template_tree
 msgid "Increase the Sale Price up to Theoretical Price"
 msgstr "Satış fiyatını teorik fiyata çıkar"
 
 #. module: product_margin_classification
-#: field:product.margin.classification,__last_update:0
+#: model:ir.model.fields,field_description:product_margin_classification.field_product_margin_classification___last_update
 msgid "Last Modified on"
 msgstr "En son güncelleme tarihi"
 
 #. module: product_margin_classification
-#: field:product.margin.classification,write_uid:0
+#: model:ir.model.fields,field_description:product_margin_classification.field_product_margin_classification_write_uid
 msgid "Last Updated by"
 msgstr "En son güncelleyen "
 
 #. module: product_margin_classification
-#: field:product.margin.classification,write_date:0
+#: model:ir.model.fields,field_description:product_margin_classification.field_product_margin_classification_write_date
 msgid "Last Updated on"
 msgstr "En son güncelleme tarihi"
 
 #. module: product_margin_classification
-#: field:product.product,margin_classification_id:0
-#: field:product.template,margin_classification_id:0
+#: model:ir.model.fields,field_description:product_margin_classification.field_delivery_carrier_margin_classification_id
+#: model:ir.model.fields,field_description:product_margin_classification.field_product_product_margin_classification_id
+#: model:ir.model.fields,field_description:product_margin_classification.field_product_template_margin_classification_id
 msgid "Margin Classification"
 msgstr ""
 
 #. module: product_margin_classification
 #: model:ir.actions.act_window,name:product_margin_classification.action_product_margin_classification
 #: model:ir.ui.menu,name:product_margin_classification.menu_product_margin_classification
-#: view:product.template:product_margin_classification.view_product_template_search
 msgid "Margin Classifications"
 msgstr ""
 
 #. module: product_margin_classification
-#: field:product.margin.classification,markup:0
+#: model:ir.model.fields,field_description:product_margin_classification.field_product_margin_classification_markup
 msgid "Markup"
 msgstr ""
 
 #. module: product_margin_classification
-#: field:product.margin.classification,name:0
+#: model:ir.model.fields,field_description:product_margin_classification.field_product_margin_classification_name
 msgid "Name"
 msgstr "Ad"
 
 #. module: product_margin_classification
-#: field:product.margin.classification,price_round:0
+#: model:ir.model.fields,field_description:product_margin_classification.field_product_margin_classification_price_round
 msgid "Price Rounding"
 msgstr "Fiyat yuvarlama"
 
 #. module: product_margin_classification
-#: code:addons/product_margin_classification/models/product_margin_classification.py:141
+#: code:addons/product_margin_classification/models/product_margin_classification.py:148
 #, python-format
 msgid "Price Rounding can not be null."
 msgstr "Fiyat yuvarlama sıfır olamaz. "
 
 #. module: product_margin_classification
-#: field:product.margin.classification,price_surcharge:0
+#: model:ir.model.fields,field_description:product_margin_classification.field_product_margin_classification_price_surcharge
 msgid "Price Surcharge"
 msgstr "Fazla fiyat"
 
@@ -176,34 +187,24 @@ msgid "Product Template"
 msgstr "Ürün şablonu"
 
 #. module: product_margin_classification
-#: model:ir.actions.act_window,name:product_margin_classification.action_view_product_template_by_margin_classfication
-#: view:product.margin.classification:product_margin_classification.view_product_margin_classification_form
-#: field:product.margin.classification,template_ids:0
+#: model:ir.actions.act_window,name:product_margin_classification.action_view_product_template_by_margin_classification
+#: model:ir.model.fields,field_description:product_margin_classification.field_product_margin_classification_template_ids
+#: model:ir.ui.view,arch_db:product_margin_classification.view_product_margin_classification_form
 msgid "Products"
 msgstr "Ürünler"
 
 #. module: product_margin_classification
-#: field:product.margin.classification,template_cheap_qty:0
-msgid "Products Cheaper"
-msgstr "Ucuz ürünler"
-
-#. module: product_margin_classification
-#: field:product.margin.classification,template_qty:0
+#: model:ir.model.fields,field_description:product_margin_classification.field_product_margin_classification_template_qty
 msgid "Products Quantity"
 msgstr "Ürün miktarı"
 
 #. module: product_margin_classification
-#: field:product.margin.classification,template_expensive_qty:0
-msgid "Products Too Expensive"
-msgstr "Fazla pahalı ürünler"
-
-#. module: product_margin_classification
-#: field:product.margin.classification,profit_margin:0
+#: model:ir.model.fields,field_description:product_margin_classification.field_product_margin_classification_profit_margin
 msgid "Profit Margin"
 msgstr ""
 
 #. module: product_margin_classification
-#: help:product.margin.classification,price_round:0
+#: model:ir.model.fields,help:product_margin_classification.field_product_margin_classification_price_round
 msgid ""
 "Sets the price so that it is a multiple of this value.\n"
 "Rounding is applied after the margin and before the surcharge.\n"
@@ -211,33 +212,46 @@ msgid ""
 msgstr ""
 
 #. module: product_margin_classification
-#: view:product.margin.classification:product_margin_classification.view_product_margin_classification_form
+#: model:ir.ui.view,arch_db:product_margin_classification.view_product_margin_classification_form
 msgid "Settings"
 msgstr ""
 
 #. module: product_margin_classification
-#: help:product.margin.classification,price_surcharge:0
+#: model:ir.model.fields,help:product_margin_classification.field_product_margin_classification_price_surcharge
 msgid ""
 "Specify the fixed amount to add or substract(if negative) to the amount "
 "calculated with the discount."
 msgstr ""
 
 #. module: product_margin_classification
-#: field:product.product,theoretical_difference:0
-#: field:product.template,theoretical_difference:0
+#: model:ir.model.fields,field_description:product_margin_classification.field_delivery_carrier_theoretical_difference
+#: model:ir.model.fields,field_description:product_margin_classification.field_product_product_theoretical_difference
+#: model:ir.model.fields,field_description:product_margin_classification.field_product_template_theoretical_difference
 msgid "Theoretical Difference"
 msgstr "Teorik fark"
 
 #. module: product_margin_classification
-#: field:product.product,theoretical_price:0
-#: field:product.template,theoretical_price:0
+#: model:ir.model.fields,field_description:product_margin_classification.field_delivery_carrier_theoretical_price
+#: model:ir.model.fields,field_description:product_margin_classification.field_product_product_theoretical_price
+#: model:ir.model.fields,field_description:product_margin_classification.field_product_template_theoretical_price
 msgid "Theoretical Price"
 msgstr "Teorik Fiyat"
 
 #. module: product_margin_classification
-#: field:product.product,margin_state:0 field:product.template,margin_state:0
+#: model:ir.model.fields,field_description:product_margin_classification.field_delivery_carrier_margin_state
+#: model:ir.model.fields,field_description:product_margin_classification.field_product_product_margin_state
+#: model:ir.model.fields,field_description:product_margin_classification.field_product_template_margin_state
 msgid "Theoretical Price State"
 msgstr "Teorik fiyat durumu"
+
+#. module: product_margin_classification
+#: model:ir.ui.view,arch_db:product_margin_classification.view_product_margin_classification_form
+#: model:ir.ui.view,arch_db:product_margin_classification.view_product_template_search
+#: selection:product.template,margin_state:0
+#, fuzzy
+#| msgid "Cheaper"
+msgid "Too Cheap"
+msgstr "Ucuz"
 
 #. module: product_margin_classification
 #: model:product.template,name:product_margin_classification.too_cheap_product
@@ -245,6 +259,7 @@ msgid "Too Cheap Product"
 msgstr ""
 
 #. module: product_margin_classification
+#: model:ir.ui.view,arch_db:product_margin_classification.view_product_template_search
 #: selection:product.template,margin_state:0
 msgid "Too Expensive"
 msgstr "Fazla pahalı"
@@ -257,14 +272,40 @@ msgid "Too Expensive Product"
 msgstr "Fazla pahalı"
 
 #. module: product_margin_classification
-#: field:product.margin.classification,template_different_price_qty:0
+#: model:ir.ui.view,arch_db:product_margin_classification.view_product_margin_classification_form
+msgid "Too Priced"
+msgstr ""
+
+#. module: product_margin_classification
+#: model:ir.model.fields,field_description:product_margin_classification.field_product_margin_classification_template_too_cheap_qty
+#, fuzzy
+#| msgid "Products Cheaper"
+msgid "Total Products Too Cheap"
+msgstr "Ucuz ürünler"
+
+#. module: product_margin_classification
+#: model:ir.model.fields,field_description:product_margin_classification.field_product_margin_classification_template_too_expensive_qty
+#, fuzzy
+#| msgid "Products Too Expensive"
+msgid "Total Products Too Expensive"
+msgstr "Fazla pahalı ürünler"
+
+#. module: product_margin_classification
+#: model:ir.model.fields,field_description:product_margin_classification.field_product_margin_classification_template_correct_price_qty
 #, fuzzy
 #| msgid "Products With Different Price"
-msgid "Total Products With Different Price"
+msgid "Total Products With Correct Price"
 msgstr "Farklı fiyatlı ürünler"
 
 #. module: product_margin_classification
-#: code:addons/product_margin_classification/models/product_template.py:53
+#: model:ir.model.fields,field_description:product_margin_classification.field_product_margin_classification_template_incorrect_price_qty
+#, fuzzy
+#| msgid "Products With Different Price"
+msgid "Total Products With Incorrect Price"
+msgstr "Farklı fiyatlı ürünler"
+
+#. module: product_margin_classification
+#: code:addons/product_margin_classification/models/product_template.py:54
 #, python-format
 msgid ""
 "Unimplemented Feature\n"
@@ -273,25 +314,31 @@ msgid ""
 msgstr ""
 
 #. module: product_margin_classification
-#: view:product.margin.classification:product_margin_classification.view_product_margin_classification_form
+#: model:ir.ui.view,arch_db:product_margin_classification.view_product_margin_classification_form
 msgid "Up to Theoretical Price"
 msgstr "Teorik fiyata doğru yukarı"
 
 #. module: product_margin_classification
-#: help:product.margin.classification,markup:0
+#: model:ir.model.fields,help:product_margin_classification.field_product_margin_classification_markup
 msgid ""
 "Value that help you to compute the sale price, based on your cost, as "
-"defined: Sale Price = (Cost * (1 + Markup))\n"
-"It is computed with the following formula Markup = (Sale Price - Cost) / Cost"
+"defined: Sale Price = (Cost * (100 + Markup)) / 100\n"
+"It is computed with the following formula Markup = 100 * (Sale Price - "
+"Cost) / Cost"
 msgstr ""
 
 #. module: product_margin_classification
-#: view:product.template:product_margin_classification.view_product_template_form
+#: model:ir.model,name:product_margin_classification.model_product_margin_classification
+msgid "product.margin.classification"
+msgstr ""
+
+#. module: product_margin_classification
+#: model:ir.ui.view,arch_db:product_margin_classification.view_product_template_form
 msgid "⇒ Decrease Price"
 msgstr ""
 
 #. module: product_margin_classification
-#: view:product.template:product_margin_classification.view_product_template_form
+#: model:ir.ui.view,arch_db:product_margin_classification.view_product_template_form
 msgid "⇒ Increase Price"
 msgstr ""
 

@@ -21,145 +21,160 @@ msgstr ""
 "%100==4 ? 2 : 3);\n"
 
 #. module: product_margin_classification
-#: code:addons/product_margin_classification/models/product_margin_classification.py:92
+#: code:addons/product_margin_classification/models/product_margin_classification.py:96
 #, python-format
-msgid "-1 is not a valid Markup."
+msgid "-100 is not a valid Markup."
 msgstr ""
 
 #. module: product_margin_classification
-#: code:addons/product_margin_classification/models/product_margin_classification.py:102
+#: code:addons/product_margin_classification/models/product_margin_classification.py:106
 #, python-format
-msgid "1 is not a valid Profit Margin."
+msgid "100 is not a valid Profit Margin."
 msgstr ""
 
 #. module: product_margin_classification
-#: help:product.margin.classification,profit_margin:0
+#: model:ir.model.fields,help:product_margin_classification.field_product_margin_classification_profit_margin
 msgid ""
 "Also called 'Net margin' or 'Net Profit Ratio'.\n"
-"It is computed with the following formula Profit Margin = (Sale Price - "
-"Cost) / Sale Price"
+"It is computed with the following formula Profit Margin = 100 * (Sale Price "
+"- Cost) / Sale Price"
 msgstr ""
 
 #. module: product_margin_classification
-#: view:product.template:product_margin_classification.view_product_template_tree
+#: model:ir.ui.view,arch_db:product_margin_classification.view_product_template_tree
 msgid "Apply Margin"
 msgstr "Uveljavi maržo"
 
 #. module: product_margin_classification
-#: view:product.margin.classification:product_margin_classification.view_product_margin_classification_form
+#: model:ir.ui.view,arch_db:product_margin_classification.view_product_margin_classification_form
 msgid "Apply Theoretical Price"
 msgstr "Uveljavi teoretično ceno"
 
 #. module: product_margin_classification
-#: selection:product.template,margin_state:0
-msgid "Cheaper"
-msgstr "Ceneje"
-
-#. module: product_margin_classification
-#: field:product.margin.classification,company_id:0
+#: model:ir.model.fields,field_description:product_margin_classification.field_product_margin_classification_company_id
 msgid "Company"
 msgstr "Družba"
 
 #. module: product_margin_classification
-#: view:product.margin.classification:product_margin_classification.view_product_margin_classification_form
+#: model:ir.ui.view,arch_db:product_margin_classification.view_product_margin_classification_form
 #, fuzzy
 #| msgid "Computation"
 msgid "Computation Method"
 msgstr "Obdelava"
 
 #. module: product_margin_classification
+#: model:ir.ui.view,arch_db:product_margin_classification.view_product_margin_classification_form
+#, fuzzy
+#| msgid "Correct Margin"
+msgid "Correct"
+msgstr "Popravek marže"
+
+#. module: product_margin_classification
+#: model:ir.ui.view,arch_db:product_margin_classification.view_product_template_search
 #: selection:product.template,margin_state:0
 msgid "Correct Margin"
 msgstr "Popravek marže"
 
 #. module: product_margin_classification
-#: field:product.margin.classification,create_uid:0
+#: model:ir.model.fields,field_description:product_margin_classification.field_product_margin_classification_create_uid
 msgid "Created by"
 msgstr "Ustvaril"
 
 #. module: product_margin_classification
-#: field:product.margin.classification,create_date:0
+#: model:ir.model.fields,field_description:product_margin_classification.field_product_margin_classification_create_date
 msgid "Created on"
 msgstr "Ustvarjeno"
 
 #. module: product_margin_classification
-#: view:product.template:product_margin_classification.view_product_template_form
-#: view:product.template:product_margin_classification.view_product_template_tree
+#: model:ir.ui.view,arch_db:product_margin_classification.view_product_template_form
+#: model:ir.ui.view,arch_db:product_margin_classification.view_product_template_tree
 msgid "Decrease the Sale Price down to Theoretical Price"
 msgstr "Znižaj prodajno ceno do teoretične cene"
 
 #. module: product_margin_classification
-#: field:product.margin.classification,display_name:0
+#: model:ir.model.fields,field_description:product_margin_classification.field_product_margin_classification_display_name
 msgid "Display Name"
 msgstr "Prikazni naziv"
 
 #. module: product_margin_classification
-#: view:product.margin.classification:product_margin_classification.view_product_margin_classification_form
+#: model:ir.ui.view,arch_db:product_margin_classification.view_product_margin_classification_form
 msgid "Down to Theoretical Price"
 msgstr "Znižanje na teoretično ceno"
 
 #. module: product_margin_classification
-#: field:product.margin.classification,id:0
+#: model:ir.model.fields,field_description:product_margin_classification.field_product_margin_classification_id
 msgid "ID"
 msgstr "ID"
 
 #. module: product_margin_classification
-#: view:product.template:product_margin_classification.view_product_template_form
-#: view:product.template:product_margin_classification.view_product_template_tree
+#: model:ir.ui.view,arch_db:product_margin_classification.view_product_margin_classification_form
+msgid "Incorrect"
+msgstr ""
+
+#. module: product_margin_classification
+#: model:ir.ui.view,arch_db:product_margin_classification.view_product_template_search
+#, fuzzy
+#| msgid "Correct Margin"
+msgid "Incorrect Margin"
+msgstr "Popravek marže"
+
+#. module: product_margin_classification
+#: model:ir.ui.view,arch_db:product_margin_classification.view_product_template_form
+#: model:ir.ui.view,arch_db:product_margin_classification.view_product_template_tree
 msgid "Increase the Sale Price up to Theoretical Price"
 msgstr "Zvišanje prodajne cene do teoretične cene"
 
 #. module: product_margin_classification
-#: field:product.margin.classification,__last_update:0
+#: model:ir.model.fields,field_description:product_margin_classification.field_product_margin_classification___last_update
 msgid "Last Modified on"
 msgstr "Zadnjič spremenjeno"
 
 #. module: product_margin_classification
-#: field:product.margin.classification,write_uid:0
+#: model:ir.model.fields,field_description:product_margin_classification.field_product_margin_classification_write_uid
 msgid "Last Updated by"
 msgstr "Zadnji posodobil"
 
 #. module: product_margin_classification
-#: field:product.margin.classification,write_date:0
+#: model:ir.model.fields,field_description:product_margin_classification.field_product_margin_classification_write_date
 msgid "Last Updated on"
 msgstr "Zadnjič posodobljeno"
 
 #. module: product_margin_classification
-#: field:product.product,margin_classification_id:0
-#: field:product.template,margin_classification_id:0
+#: model:ir.model.fields,field_description:product_margin_classification.field_delivery_carrier_margin_classification_id
+#: model:ir.model.fields,field_description:product_margin_classification.field_product_product_margin_classification_id
+#: model:ir.model.fields,field_description:product_margin_classification.field_product_template_margin_classification_id
 msgid "Margin Classification"
 msgstr "Klasifikacija marž"
 
 #. module: product_margin_classification
 #: model:ir.actions.act_window,name:product_margin_classification.action_product_margin_classification
 #: model:ir.ui.menu,name:product_margin_classification.menu_product_margin_classification
-#: view:product.template:product_margin_classification.view_product_template_search
 msgid "Margin Classifications"
 msgstr "Klasifikacije marž"
 
 #. module: product_margin_classification
-#: field:product.margin.classification,markup:0
+#: model:ir.model.fields,field_description:product_margin_classification.field_product_margin_classification_markup
 msgid "Markup"
 msgstr ""
 
 #. module: product_margin_classification
-#: field:product.margin.classification,name:0
+#: model:ir.model.fields,field_description:product_margin_classification.field_product_margin_classification_name
 msgid "Name"
 msgstr "Naziv"
 
 #. module: product_margin_classification
-#: field:product.margin.classification,price_round:0
+#: model:ir.model.fields,field_description:product_margin_classification.field_product_margin_classification_price_round
 msgid "Price Rounding"
 msgstr "Zaokroževanje cen"
 
 #. module: product_margin_classification
-#: code:addons/product_margin_classification/models/product_margin_classification.py:141
+#: code:addons/product_margin_classification/models/product_margin_classification.py:148
 #, python-format
 msgid "Price Rounding can not be null."
 msgstr "Zaokroževanje cen ne more bit nično."
 
 #. module: product_margin_classification
-#: field:product.margin.classification,price_surcharge:0
+#: model:ir.model.fields,field_description:product_margin_classification.field_product_margin_classification_price_surcharge
 msgid "Price Surcharge"
 msgstr "Doplačilo k ceni"
 
@@ -176,36 +191,26 @@ msgid "Product Template"
 msgstr "Predloga proizvoda"
 
 #. module: product_margin_classification
-#: model:ir.actions.act_window,name:product_margin_classification.action_view_product_template_by_margin_classfication
-#: view:product.margin.classification:product_margin_classification.view_product_margin_classification_form
-#: field:product.margin.classification,template_ids:0
+#: model:ir.actions.act_window,name:product_margin_classification.action_view_product_template_by_margin_classification
+#: model:ir.model.fields,field_description:product_margin_classification.field_product_margin_classification_template_ids
+#: model:ir.ui.view,arch_db:product_margin_classification.view_product_margin_classification_form
 msgid "Products"
 msgstr "Proizvodi"
 
 #. module: product_margin_classification
-#: field:product.margin.classification,template_cheap_qty:0
-msgid "Products Cheaper"
-msgstr "Cenejši proizvodi"
-
-#. module: product_margin_classification
-#: field:product.margin.classification,template_qty:0
+#: model:ir.model.fields,field_description:product_margin_classification.field_product_margin_classification_template_qty
 msgid "Products Quantity"
 msgstr "Količina proizvodov"
 
 #. module: product_margin_classification
-#: field:product.margin.classification,template_expensive_qty:0
-msgid "Products Too Expensive"
-msgstr "Predragi proizvodi"
-
-#. module: product_margin_classification
-#: field:product.margin.classification,profit_margin:0
+#: model:ir.model.fields,field_description:product_margin_classification.field_product_margin_classification_profit_margin
 #, fuzzy
 #| msgid "Correct Margin"
 msgid "Profit Margin"
 msgstr "Popravek marže"
 
 #. module: product_margin_classification
-#: help:product.margin.classification,price_round:0
+#: model:ir.model.fields,help:product_margin_classification.field_product_margin_classification_price_round
 #, fuzzy
 #| msgid ""
 #| "Sets the price so that it is a multiple of this value.\n"
@@ -221,12 +226,12 @@ msgstr ""
 "Za cene, ki se končujejo pri 9.99, nastavite zaokrožitev 10, doplačilo -0.01"
 
 #. module: product_margin_classification
-#: view:product.margin.classification:product_margin_classification.view_product_margin_classification_form
+#: model:ir.ui.view,arch_db:product_margin_classification.view_product_margin_classification_form
 msgid "Settings"
 msgstr ""
 
 #. module: product_margin_classification
-#: help:product.margin.classification,price_surcharge:0
+#: model:ir.model.fields,help:product_margin_classification.field_product_margin_classification_price_surcharge
 msgid ""
 "Specify the fixed amount to add or substract(if negative) to the amount "
 "calculated with the discount."
@@ -235,21 +240,34 @@ msgstr ""
 "izračunanega s popustom."
 
 #. module: product_margin_classification
-#: field:product.product,theoretical_difference:0
-#: field:product.template,theoretical_difference:0
+#: model:ir.model.fields,field_description:product_margin_classification.field_delivery_carrier_theoretical_difference
+#: model:ir.model.fields,field_description:product_margin_classification.field_product_product_theoretical_difference
+#: model:ir.model.fields,field_description:product_margin_classification.field_product_template_theoretical_difference
 msgid "Theoretical Difference"
 msgstr "Teoretična razlika"
 
 #. module: product_margin_classification
-#: field:product.product,theoretical_price:0
-#: field:product.template,theoretical_price:0
+#: model:ir.model.fields,field_description:product_margin_classification.field_delivery_carrier_theoretical_price
+#: model:ir.model.fields,field_description:product_margin_classification.field_product_product_theoretical_price
+#: model:ir.model.fields,field_description:product_margin_classification.field_product_template_theoretical_price
 msgid "Theoretical Price"
 msgstr "Teoretična cena"
 
 #. module: product_margin_classification
-#: field:product.product,margin_state:0 field:product.template,margin_state:0
+#: model:ir.model.fields,field_description:product_margin_classification.field_delivery_carrier_margin_state
+#: model:ir.model.fields,field_description:product_margin_classification.field_product_product_margin_state
+#: model:ir.model.fields,field_description:product_margin_classification.field_product_template_margin_state
 msgid "Theoretical Price State"
 msgstr "Teoretično stanje cene"
+
+#. module: product_margin_classification
+#: model:ir.ui.view,arch_db:product_margin_classification.view_product_margin_classification_form
+#: model:ir.ui.view,arch_db:product_margin_classification.view_product_template_search
+#: selection:product.template,margin_state:0
+#, fuzzy
+#| msgid "Cheaper"
+msgid "Too Cheap"
+msgstr "Ceneje"
 
 #. module: product_margin_classification
 #: model:product.template,name:product_margin_classification.too_cheap_product
@@ -257,6 +275,7 @@ msgid "Too Cheap Product"
 msgstr ""
 
 #. module: product_margin_classification
+#: model:ir.ui.view,arch_db:product_margin_classification.view_product_template_search
 #: selection:product.template,margin_state:0
 msgid "Too Expensive"
 msgstr "Predrago"
@@ -269,14 +288,40 @@ msgid "Too Expensive Product"
 msgstr "Predrago"
 
 #. module: product_margin_classification
-#: field:product.margin.classification,template_different_price_qty:0
+#: model:ir.ui.view,arch_db:product_margin_classification.view_product_margin_classification_form
+msgid "Too Priced"
+msgstr ""
+
+#. module: product_margin_classification
+#: model:ir.model.fields,field_description:product_margin_classification.field_product_margin_classification_template_too_cheap_qty
+#, fuzzy
+#| msgid "Products Cheaper"
+msgid "Total Products Too Cheap"
+msgstr "Cenejši proizvodi"
+
+#. module: product_margin_classification
+#: model:ir.model.fields,field_description:product_margin_classification.field_product_margin_classification_template_too_expensive_qty
+#, fuzzy
+#| msgid "Products Too Expensive"
+msgid "Total Products Too Expensive"
+msgstr "Predragi proizvodi"
+
+#. module: product_margin_classification
+#: model:ir.model.fields,field_description:product_margin_classification.field_product_margin_classification_template_correct_price_qty
 #, fuzzy
 #| msgid "Products With Different Price"
-msgid "Total Products With Different Price"
+msgid "Total Products With Correct Price"
 msgstr "Proizvodi z drugačno ceno"
 
 #. module: product_margin_classification
-#: code:addons/product_margin_classification/models/product_template.py:53
+#: model:ir.model.fields,field_description:product_margin_classification.field_product_margin_classification_template_incorrect_price_qty
+#, fuzzy
+#| msgid "Products With Different Price"
+msgid "Total Products With Incorrect Price"
+msgstr "Proizvodi z drugačno ceno"
+
+#. module: product_margin_classification
+#: code:addons/product_margin_classification/models/product_template.py:54
 #, fuzzy, python-format
 #| msgid ""
 #| "Unimplemented Feature\n"
@@ -291,25 +336,33 @@ msgstr ""
 "Davek %s ni pravilno nastavljen za obdelavo cen s koeficienti za proizvod %s"
 
 #. module: product_margin_classification
-#: view:product.margin.classification:product_margin_classification.view_product_margin_classification_form
+#: model:ir.ui.view,arch_db:product_margin_classification.view_product_margin_classification_form
 msgid "Up to Theoretical Price"
 msgstr "Zvišanje na teoretično ceno"
 
 #. module: product_margin_classification
-#: help:product.margin.classification,markup:0
+#: model:ir.model.fields,help:product_margin_classification.field_product_margin_classification_markup
 msgid ""
 "Value that help you to compute the sale price, based on your cost, as "
-"defined: Sale Price = (Cost * (1 + Markup))\n"
-"It is computed with the following formula Markup = (Sale Price - Cost) / Cost"
+"defined: Sale Price = (Cost * (100 + Markup)) / 100\n"
+"It is computed with the following formula Markup = 100 * (Sale Price - "
+"Cost) / Cost"
 msgstr ""
 
 #. module: product_margin_classification
-#: view:product.template:product_margin_classification.view_product_template_form
+#: model:ir.model,name:product_margin_classification.model_product_margin_classification
+#, fuzzy
+#| msgid "Margin Classification"
+msgid "product.margin.classification"
+msgstr "Klasifikacija marž"
+
+#. module: product_margin_classification
+#: model:ir.ui.view,arch_db:product_margin_classification.view_product_template_form
 msgid "⇒ Decrease Price"
 msgstr ""
 
 #. module: product_margin_classification
-#: view:product.template:product_margin_classification.view_product_template_form
+#: model:ir.ui.view,arch_db:product_margin_classification.view_product_template_form
 msgid "⇒ Increase Price"
 msgstr ""
 

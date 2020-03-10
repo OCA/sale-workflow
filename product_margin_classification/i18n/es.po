@@ -10,6 +10,7 @@ msgstr ""
 "PO-Revision-Date: 2019-08-01 07:49+0000\n"
 "Last-Translator: <>\n"
 "Language-Team: \n"
+"Language: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
@@ -29,10 +30,14 @@ msgstr "100 no es un Marge Neto válido."
 
 #. module: product_margin_classification
 #: model:ir.model.fields,help:product_margin_classification.field_product_margin_classification_profit_margin
-msgid "Also called 'Net margin' or 'Net Profit Ratio'.\n"
-"It is computed with the following formula Profit Margin = 100 * (Sale Price - Cost) / Sale Price"
-msgstr "También llamado Ratio de Beneficio Neto.\n"
-"Se calcula con la siguiente fórmula Margen Neto = 100 (Precio de Venta - Precio de Coste / Precio de Venta)"
+msgid ""
+"Also called 'Net margin' or 'Net Profit Ratio'.\n"
+"It is computed with the following formula Profit Margin = 100 * (Sale Price "
+"- Cost) / Sale Price"
+msgstr ""
+"También llamado Ratio de Beneficio Neto.\n"
+"Se calcula con la siguiente fórmula Margen Neto = 100 (Precio de Venta - "
+"Precio de Coste / Precio de Venta)"
 
 #. module: product_margin_classification
 #: model:ir.ui.view,arch_db:product_margin_classification.view_product_template_tree
@@ -129,9 +134,6 @@ msgstr "Última actualización el"
 
 #. module: product_margin_classification
 #: model:ir.model.fields,field_description:product_margin_classification.field_delivery_carrier_margin_classification_id
-#: model:ir.model.fields,field_description:product_margin_classification.field_prestashop_delivery_carrier_margin_classification_id
-#: model:ir.model.fields,field_description:product_margin_classification.field_prestashop_product_combination_margin_classification_id
-#: model:ir.model.fields,field_description:product_margin_classification.field_prestashop_product_template_margin_classification_id
 #: model:ir.model.fields,field_description:product_margin_classification.field_product_product_margin_classification_id
 #: model:ir.model.fields,field_description:product_margin_classification.field_product_template_margin_classification_id
 msgid "Margin Classification"
@@ -159,7 +161,7 @@ msgid "Price Rounding"
 msgstr "Redondeo precio"
 
 #. module: product_margin_classification
-#: code:addons/product_margin_classification/models/product_margin_classification.py:150
+#: code:addons/product_margin_classification/models/product_margin_classification.py:148
 #, python-format
 msgid "Price Rounding can not be null."
 msgstr "El Precio redondeado no puede ser nulo."
@@ -198,10 +200,12 @@ msgstr "Margen Neto"
 
 #. module: product_margin_classification
 #: model:ir.model.fields,help:product_margin_classification.field_product_margin_classification_price_round
-msgid "Sets the price so that it is a multiple of this value.\n"
+msgid ""
+"Sets the price so that it is a multiple of this value.\n"
 "Rounding is applied after the margin and before the surcharge.\n"
 "To have prices that end in 9.99, set rounding 1, surcharge -0.01"
-msgstr "Establece el precio para que sea un múltiplo de este valor.\n"
+msgstr ""
+"Establece el precio para que sea un múltiplo de este valor.\n"
 "El redondeo es aplicado después del margen y antes del recargo.\n"
 "Para tener precios terminados en 9.99, el redondeo debe ser 1, recargo -0.01"
 
@@ -212,14 +216,15 @@ msgstr "Configuración"
 
 #. module: product_margin_classification
 #: model:ir.model.fields,help:product_margin_classification.field_product_margin_classification_price_surcharge
-msgid "Specify the fixed amount to add or substract(if negative) to the amount calculated with the discount."
-msgstr "Especifica el importe fijo a añadir o a quitar (si es negativo) al importe calculado con el descuento."
+msgid ""
+"Specify the fixed amount to add or substract(if negative) to the amount "
+"calculated with the discount."
+msgstr ""
+"Especifica el importe fijo a añadir o a quitar (si es negativo) al importe "
+"calculado con el descuento."
 
 #. module: product_margin_classification
 #: model:ir.model.fields,field_description:product_margin_classification.field_delivery_carrier_theoretical_difference
-#: model:ir.model.fields,field_description:product_margin_classification.field_prestashop_delivery_carrier_theoretical_difference
-#: model:ir.model.fields,field_description:product_margin_classification.field_prestashop_product_combination_theoretical_difference
-#: model:ir.model.fields,field_description:product_margin_classification.field_prestashop_product_template_theoretical_difference
 #: model:ir.model.fields,field_description:product_margin_classification.field_product_product_theoretical_difference
 #: model:ir.model.fields,field_description:product_margin_classification.field_product_template_theoretical_difference
 msgid "Theoretical Difference"
@@ -227,9 +232,6 @@ msgstr "Diferencia Teórica"
 
 #. module: product_margin_classification
 #: model:ir.model.fields,field_description:product_margin_classification.field_delivery_carrier_theoretical_price
-#: model:ir.model.fields,field_description:product_margin_classification.field_prestashop_delivery_carrier_theoretical_price
-#: model:ir.model.fields,field_description:product_margin_classification.field_prestashop_product_combination_theoretical_price
-#: model:ir.model.fields,field_description:product_margin_classification.field_prestashop_product_template_theoretical_price
 #: model:ir.model.fields,field_description:product_margin_classification.field_product_product_theoretical_price
 #: model:ir.model.fields,field_description:product_margin_classification.field_product_template_theoretical_price
 msgid "Theoretical Price"
@@ -237,9 +239,6 @@ msgstr "Precio Teórico"
 
 #. module: product_margin_classification
 #: model:ir.model.fields,field_description:product_margin_classification.field_delivery_carrier_margin_state
-#: model:ir.model.fields,field_description:product_margin_classification.field_prestashop_delivery_carrier_margin_state
-#: model:ir.model.fields,field_description:product_margin_classification.field_prestashop_product_combination_margin_state
-#: model:ir.model.fields,field_description:product_margin_classification.field_prestashop_product_template_margin_state
 #: model:ir.model.fields,field_description:product_margin_classification.field_product_product_margin_state
 #: model:ir.model.fields,field_description:product_margin_classification.field_product_template_margin_state
 msgid "Theoretical Price State"
@@ -253,9 +252,23 @@ msgid "Too Cheap"
 msgstr "Demasiado Barato"
 
 #. module: product_margin_classification
+#: model:product.template,name:product_margin_classification.too_cheap_product
+#, fuzzy
+#| msgid "Too Cheap"
+msgid "Too Cheap Product"
+msgstr "Demasiado Barato"
+
+#. module: product_margin_classification
 #: model:ir.ui.view,arch_db:product_margin_classification.view_product_template_search
 #: selection:product.template,margin_state:0
 msgid "Too Expensive"
+msgstr "Demasiado caro"
+
+#. module: product_margin_classification
+#: model:product.template,name:product_margin_classification.too_expensive_product
+#, fuzzy
+#| msgid "Too Expensive"
+msgid "Too Expensive Product"
 msgstr "Demasiado caro"
 
 #. module: product_margin_classification
@@ -286,10 +299,14 @@ msgstr "Cantidad de productos con el precio incorrecto"
 #. module: product_margin_classification
 #: code:addons/product_margin_classification/models/product_template.py:54
 #, python-format
-msgid "Unimplemented Feature\n"
-"The sale taxes are not correctly set for computing prices with coefficients for the product %s"
-msgstr "Característica no implementada\n"
-"Los impuestos de ventas no están correctamente establecidos para calcular los coeficientes por el producto %s"
+msgid ""
+"Unimplemented Feature\n"
+"The sale taxes are not correctly set for computing prices with coefficients "
+"for the product %s"
+msgstr ""
+"Característica no implementada\n"
+"Los impuestos de ventas no están correctamente establecidos para calcular "
+"los coeficientes por el producto %s"
 
 #. module: product_margin_classification
 #: model:ir.ui.view,arch_db:product_margin_classification.view_product_margin_classification_form
@@ -298,10 +315,17 @@ msgstr "Subir hasta el Precio Teórico"
 
 #. module: product_margin_classification
 #: model:ir.model.fields,help:product_margin_classification.field_product_margin_classification_markup
-msgid "Value that help you to compute the sale price, based on your cost, as defined: Sale Price = (Cost * (100 + Markup)) / 100\n"
-"It is computed with the following formula Markup = 100 * (Sale Price - Cost) / Cost"
-msgstr "Valor que ayuda a calcular el Precio de Venta, basado en el precio de coste, definido como: Precio de Ventas = (Precio de Coste * (100 + Tasa de Margen)) / 100\n"
-"Se calcula con la siguiente fórmula: Tasa de Margen = 100 * (Precio de Venta - Precio de Coste) / Precio de Coste"
+msgid ""
+"Value that help you to compute the sale price, based on your cost, as "
+"defined: Sale Price = (Cost * (100 + Markup)) / 100\n"
+"It is computed with the following formula Markup = 100 * (Sale Price - "
+"Cost) / Cost"
+msgstr ""
+"Valor que ayuda a calcular el Precio de Venta, basado en el precio de coste, "
+"definido como: Precio de Ventas = (Precio de Coste * (100 + Tasa de "
+"Margen)) / 100\n"
+"Se calcula con la siguiente fórmula: Tasa de Margen = 100 * (Precio de Venta "
+"- Precio de Coste) / Precio de Coste"
 
 #. module: product_margin_classification
 #: model:ir.model,name:product_margin_classification.model_product_margin_classification
@@ -317,4 +341,3 @@ msgstr "⇒ Decrementar el Precio"
 #: model:ir.ui.view,arch_db:product_margin_classification.view_product_template_form
 msgid "⇒ Increase Price"
 msgstr "⇒ Incrementar el Precio"
-
