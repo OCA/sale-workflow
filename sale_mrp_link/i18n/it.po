@@ -23,32 +23,32 @@ msgid "Manufacturing Order"
 msgstr "Ordine di produzione"
 
 #. module: sale_mrp_link
-#: code:addons/sale_mrp_link/models/procurement_order.py:20
-#, python-format
-msgid "More than 1 sale order found for this group"
-msgstr "Trovato più di un ordine di vendita per questo gruppo"
-
-#. module: sale_mrp_link
-#: model:ir.model,name:sale_mrp_link.model_procurement_order
-msgid "Procurement"
-msgstr "Approvvigionamento"
-
-#. module: sale_mrp_link
 #: model:ir.ui.view,arch_db:sale_mrp_link.view_order_form
 msgid "Production"
 msgstr "Produzione"
 
 #. module: sale_mrp_link
 #: model:ir.model.fields,field_description:sale_mrp_link.field_sale_order_production_count
-msgid "Production count"
+#, fuzzy
+#| msgid "Production count"
+msgid "Production Count"
 msgstr "Numero ordini di produzione"
 
 #. module: sale_mrp_link
 #: model:ir.model,name:sale_mrp_link.model_sale_order
-msgid "Sales Order"
-msgstr "Ordine di vendita"
+msgid "Quotation"
+msgstr ""
 
 #. module: sale_mrp_link
 #: model:ir.model.fields,field_description:sale_mrp_link.field_mrp_production_sale_order_id
 msgid "Source Sale Order"
 msgstr "SO Origine"
+
+#~ msgid "More than 1 sale order found for this group"
+#~ msgstr "Trovato più di un ordine di vendita per questo gruppo"
+
+#~ msgid "Procurement"
+#~ msgstr "Approvvigionamento"
+
+#~ msgid "Sales Order"
+#~ msgstr "Ordine di vendita"
