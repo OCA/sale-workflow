@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+  <record id="product_template_single_variant" model="product.template">
+      <field name="name">Single Variant</field>
+      <field name="categ_id" ref="product.product_category_5"/>
+      <field name="standard_price">100.0</field>
+      <field name="list_price">100.0</field>
+      <field name="type">consu</field>
+      <field name="uom_id" ref="uom.product_uom_unit"/>
+      <field name="uom_po_id" ref="uom.product_uom_unit"/>
+  </record>
+  <record id="product_product_single_variant" model="product.product">
+      <field name="default_code">SV001</field>
+      <field name="standard_price">100.0</field>
+      <field name="attribute_value_ids" eval="[(6,0,[ref('product.product_attribute_value_1')])]"/>
+      <field name="product_tmpl_id" ref="product_template_single_variant"/>
+  </record>
+  <record id="product_template_attribute_line_1" model="product.template.attribute.line">
+      <field name="product_tmpl_id" ref="product_template_single_variant"/>
+      <field name="attribute_id" ref="product.product_attribute_1"/>
+      <field name="value_ids" eval="[(6,0,[ref('product.product_attribute_value_1')])]"/>
+  </record>
+</odoo>

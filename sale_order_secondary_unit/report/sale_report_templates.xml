@@ -2,7 +2,7 @@
 <odoo>
 
 <template id="report_saleorder_document" inherit_id="sale.report_saleorder_document">
-    <xpath expr="//table[hasclass('table','table-sm','o_main_table')]//th[2]" position="before">
+    <xpath expr="//table[hasclass('table','table-sm','o_main_table')]//th[count(//span[@t-field='line.name']/../preceding-sibling::*) + 1]" position="after">
         <th class="text-right" groups="uom.group_uom">Second. Qty</th>
     </xpath>
     <xpath expr="//span[@t-field='line.product_uom_qty']/.." position="before">

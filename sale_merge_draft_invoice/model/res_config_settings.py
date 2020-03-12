@@ -10,4 +10,5 @@ class ResConfigSettings(models.TransientModel):
     sale_merge_draft_invoice = fields.Boolean(
         string="Invoices",
         related='company_id.sale_merge_draft_invoice',
+        readonly=False
     )
