@@ -1,7 +1,9 @@
 # Copyright 2018 Tecnativa - David Vidal
+# Copyright 2020 Open Source Integrators - Daniel Reis
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
 from odoo.tests import common
+from odoo.exceptions import UserError
 
 
 class TestSaleStockPickingNote(common.SavepointCase):
@@ -30,3 +32,9 @@ class TestSaleStockPickingNote(common.SavepointCase):
         self.order.action_confirm()
         self.assertEqual(self.order.picking_ids[:1].note,
                          self.order.picking_note)
+
+    def test_02_cant_update_picking_note(self):
+        """ Can't update picking note after DO is created """
+        self.order.action_confirm()
+        with self.assertRaises(UserError):
+            self.order.picking_note = "This note goes to the picking..."
