@@ -1,6 +1,6 @@
 # Translation of Odoo Server.
 # This file contains the translation of the following modules:
-#	* sale_invoice_plan
+# 	* sale_invoice_plan
 #
 msgid ""
 msgstr ""
@@ -79,6 +79,12 @@ msgid "Created on"
 msgstr "Créé le"
 
 #. module: sale_invoice_plan
+#: model:ir.model.fields,field_description:sale_invoice_plan.field_sale_invoice_plan__partner_id
+#: model_terms:ir.ui.view,arch_db:sale_invoice_plan.view_sale_invoice_plan_filter
+msgid "Customer"
+msgstr ""
+
+#. module: sale_invoice_plan
 #: selection:sale.create.invoice.plan,interval_type:0
 msgid "Day"
 msgstr "Jour"
@@ -94,6 +100,11 @@ msgstr "Nom affiché"
 #: model:ir.model,name:sale_invoice_plan.model_sale_create_invoice_plan
 msgid "Fillig invoice planning criteria"
 msgstr "Compléter les critères de planification de la facturation"
+
+#. module: sale_invoice_plan
+#: model_terms:ir.ui.view,arch_db:sale_invoice_plan.view_sale_invoice_plan_filter
+msgid "Group By"
+msgstr ""
 
 #. module: sale_invoice_plan
 #: model:ir.model.fields,field_description:sale_invoice_plan.field_sale_create_invoice_plan__id
@@ -119,6 +130,7 @@ msgstr "Plan de facturation"
 
 #. module: sale_invoice_plan
 #: model:ir.model.fields,field_description:sale_invoice_plan.field_sale_invoice_plan__installment
+#: model_terms:ir.ui.view,arch_db:sale_invoice_plan.view_sale_invoice_plan_filter
 #: selection:sale.invoice.plan,invoice_type:0
 msgid "Installment"
 msgstr "Tranche"
@@ -175,7 +187,8 @@ msgstr "Factures"
 
 #. module: sale_invoice_plan
 #: model_terms:ir.ui.view,arch_db:sale_invoice_plan.view_sale_make_planned_invoice
-msgid "Invoices will be created in draft for this installment\n"
+msgid ""
+"Invoices will be created in draft for this installment\n"
 "                        so that you can review them before validation."
 msgstr ""
 "Les factures seront crées en brouillon pour cette tranche\n"
@@ -246,21 +259,27 @@ msgid "Plan Date"
 msgstr "Date planifiée"
 
 #. module: sale_invoice_plan
-#: code:addons/sale_invoice_plan/models/sale.py:220
+#: code:addons/sale_invoice_plan/models/sale.py:235
 #, python-format
-msgid "Plan quantity: %s, exceed invoiceable quantity: %s\n"
+msgid ""
+"Plan quantity: %s, exceed invoiceable quantity: %s\n"
 "Product should be delivered before invoice"
 msgstr ""
 "La quantité planifiée: %s, excède la quantité facturable: %s\n"
 "L'article devrait être livré avant d'être facturé"
 
 #. module: sale_invoice_plan
-#: code:addons/sale_invoice_plan/models/sale.py:47
+#: code:addons/sale_invoice_plan/models/sale.py:43
 #, python-format
 msgid "Please fill percentage for all invoice plan lines"
 msgstr ""
 "Veuillez renseigner le pourcentage pour toutes les lignes du plan de "
 "facturation"
+
+#. module: sale_invoice_plan
+#: model_terms:ir.ui.view,arch_db:sale_invoice_plan.view_sale_invoice_plan_filter
+msgid "Quotations"
+msgstr ""
 
 #. module: sale_invoice_plan
 #: model_terms:ir.ui.view,arch_db:sale_invoice_plan.view_sale_invoice_plan_form
@@ -278,14 +297,48 @@ msgid "Sales Advance Payment Invoice"
 msgstr "Facture de paiement d'avance"
 
 #. module: sale_invoice_plan
+#: model:ir.actions.act_window,name:sale_invoice_plan.action_sale_invoice_plan
+#: model:ir.ui.menu,name:sale_invoice_plan.menu_sale_invoice_plan
+#, fuzzy
+#| msgid "Use Invoice Plan"
+msgid "Sales Invoice Plan"
+msgstr "Utiliser un plan de facturation"
+
+#. module: sale_invoice_plan
 #: model:ir.model.fields,field_description:sale_invoice_plan.field_sale_invoice_plan__sale_id
+#: model_terms:ir.ui.view,arch_db:sale_invoice_plan.view_sale_invoice_plan_filter
 msgid "Sales Order"
 msgstr "Commandes de vente"
+
+#. module: sale_invoice_plan
+#: model_terms:ir.ui.view,arch_db:sale_invoice_plan.view_sale_invoice_plan_filter
+#, fuzzy
+#| msgid "Sales Order"
+msgid "Sales Orders"
+msgstr "Commandes de vente"
+
+#. module: sale_invoice_plan
+#: model_terms:ir.ui.view,arch_db:sale_invoice_plan.view_sale_invoice_plan_filter
+#, fuzzy
+#| msgid "Create Invoice Plan"
+msgid "Search Sales Invoice Plan Lines"
+msgstr "Créer le Plan de facturation"
+
+#. module: sale_invoice_plan
+#: model:ir.model.fields,field_description:sale_invoice_plan.field_sale_invoice_plan__state
+#: model_terms:ir.ui.view,arch_db:sale_invoice_plan.view_sale_invoice_plan_filter
+msgid "Status"
+msgstr ""
 
 #. module: sale_invoice_plan
 #: model:ir.model.fields,help:sale_invoice_plan.field_sale_invoice_plan__percent
 msgid "This percent will be used to calculate new quantity"
 msgstr "Ce pourcentage sera utilisé pour calculer la nouvelle quantité"
+
+#. module: sale_invoice_plan
+#: model_terms:ir.actions.act_window,help:sale_invoice_plan.action_sale_invoice_plan
+msgid "This view show all available invoice plan line for reporting purposes"
+msgstr ""
 
 #. module: sale_invoice_plan
 #: model_terms:ir.ui.view,arch_db:sale_invoice_plan.view_sale_create_invoice_plan
@@ -303,11 +356,20 @@ msgid "Use Invoice Plan"
 msgstr "Utiliser un plan de facturation"
 
 #. module: sale_invoice_plan
-#: code:addons/sale_invoice_plan/models/sale.py:54
+#: code:addons/sale_invoice_plan/models/sale.py:50
 #, python-format
 msgid "Use Invoice Plan selected, but no plan created"
 msgstr ""
 "Utiliser un plan de facturation est sélectionné, mais aucun plan n'est créé"
+
+#. module: sale_invoice_plan
+#: model_terms:ir.actions.act_window,help:sale_invoice_plan.action_sale_invoice_plan
+#, fuzzy
+#| msgid "Please fill percentage for all invoice plan lines"
+msgid "View sales invoice plan lines"
+msgstr ""
+"Veuillez renseigner le pourcentage pour toutes les lignes du plan de "
+"facturation"
 
 #. module: sale_invoice_plan
 #: model:ir.model,name:sale_invoice_plan.model_sale_make_planned_invoice
@@ -318,6 +380,11 @@ msgstr "Assistant lors de la création d'une facture par plan"
 #: selection:sale.create.invoice.plan,interval_type:0
 msgid "Year"
 msgstr "Année"
+
+#. module: sale_invoice_plan
+#: model:ir.model.fields,help:sale_invoice_plan.field_sale_invoice_plan__partner_id
+msgid "You can find a customer by its Name, TIN, Email or Internal Reference."
+msgstr ""
 
 #. module: sale_invoice_plan
 #: model_terms:ir.ui.view,arch_db:sale_invoice_plan.view_order_form_invoice_plan
