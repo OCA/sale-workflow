@@ -42,8 +42,13 @@ class SaleOrderTypology(models.Model):
         default=default_picking_policy,
     )
     company_id = fields.Many2one(
-        "res.company", related="warehouse_id.company_id", store=True, readonly=True
+        comodel_name="res.company",
+        related="warehouse_id.company_id",
+        store=True,
+        readonly=True,
     )
-    payment_term_id = fields.Many2one("account.payment.term", "Payment Term")
-    pricelist_id = fields.Many2one("product.pricelist", "Pricelist")
-    incoterm_id = fields.Many2one("account.incoterms", "Incoterm")
+    payment_term_id = fields.Many2one(
+        comodel_name="account.payment.term", string="Payment Term"
+    )
+    pricelist_id = fields.Many2one(comodel_name="product.pricelist", strint="Pricelist")
+    incoterm_id = fields.Many2one(comodel_name="account.incoterms", string="Incoterm")
