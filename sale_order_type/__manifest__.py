@@ -11,21 +11,15 @@
     "version": "12.0.1.0.1",
     "category": "Sales Management",
     "author": "Grupo Vermon,"
-              "AvanzOSC,"
-              "Tecnativa,"
-              "Agile Business Group,"
-              "Niboo,"
-              "Odoo Community Association (OCA)",
+    "AvanzOSC,"
+    "Tecnativa,"
+    "Agile Business Group,"
+    "Niboo,"
+    "Odoo Community Association (OCA)",
     "website": "https://github.com/OCA/sale-workflow",
     "license": "AGPL-3",
-    "depends": [
-        'sale_stock',
-        'account',
-        'sale_management',
-    ],
-    "demo": [
-        "demo/sale_order_demo.xml",
-    ],
+    "depends": ["sale_stock", "account", "sale_management"],
+    "demo": ["demo/sale_order_demo.xml"],
     "data": [
         "security/ir.model.access.csv",
         "security/security.xml",
@@ -35,5 +29,5 @@
         "views/res_partner_view.xml",
         "data/default_type.xml",
     ],
-    'installable': True,
+    "installable": True,
 }
