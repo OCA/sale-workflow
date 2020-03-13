@@ -1,8 +1,7 @@
-<?xml version="1.0" encoding="UTF-8"?>
 <odoo noupdate="1">
     <record id="normal_sale_type" model="sale.order.type">
         <field name="name">Normal Order</field>
-        <field name="warehouse_id" ref="stock.warehouse0"/>
-        <field name="sequence_id" ref="sale.seq_sale_order"/>
+        <field name="warehouse_id" ref="stock.warehouse0" />
+        <field name="sequence_id" ref="sale.seq_sale_order" />
     </record>
 </odoo>
