@@ -1,5 +1,5 @@
 # Copyright 2013-2014 Camptocamp SA - Guewen Baconnier
-# © 2016 Eficent Business and IT Consulting Services S.L.
+# © 2016-20 ForgeFlow S.L. (https://www.forgeflow.com)
 # © 2016 Serpent Consulting Services Pvt. Ltd.
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
@@ -20,7 +20,6 @@ class SaleOrder(models.Model):
 class SaleOrderLine(models.Model):
     _inherit = "sale.order.line"
 
-    @api.multi
     def _get_procurement_group_key(self):
         """ Return a key with priority to be used to regroup lines in multiple
         procurement groups
@@ -28,8 +27,7 @@ class SaleOrderLine(models.Model):
         """
         return 8, self.order_id.id
 
-    @api.multi
-    def _action_launch_stock_rule(self):
+    def _action_launch_stock_rule(self, previous_product_uom_qty=False):
         """
         Launch procurement group run method.
         """
@@ -41,7 +39,7 @@ class SaleOrderLine(models.Model):
         for line in self:
             if line.state != "sale" or line.product_id.type not in ("consu", "product"):
                 continue
-            qty = line._get_qty_procurement()
+            qty = line._get_qty_procurement(previous_product_uom_qty)
             if (
                 float_compare(qty, line.product_uom_qty, precision_digits=precision)
                 >= 0
@@ -99,20 +97,27 @@ class SaleOrderLine(models.Model):
                 procurement_uom = quant_uom
 
             try:
-                self.env["procurement.group"].run(
-                    line.product_id,
-                    product_qty,
-                    procurement_uom,
-                    line.order_id.partner_shipping_id.property_stock_customer,
-                    line.name,
-                    line.order_id.name,
-                    values,
+                procurements = []
+                procurements.append(
+                    self.env["procurement.group"].Procurement(
+                        line.product_id,
+                        product_qty,
+                        procurement_uom,
+                        line.order_id.partner_shipping_id.property_stock_customer,
+                        line.name,
+                        line.order_id.name,
+                        self.env.company,
+                        values,
+                    )
                 )
+                self.env["procurement.group"].run(procurements)
             except UserError as error:
                 errors.append(error.name)
         if errors:
             raise UserError("\n".join(errors))
-        return super(SaleOrderLine, self)._action_launch_stock_rule()
+        return super()._action_launch_stock_rule(
+            previous_product_uom_qty=previous_product_uom_qty
+        )
 
     procurement_group_id = fields.Many2one(
         "procurement.group", "Procurement group", copy=False
