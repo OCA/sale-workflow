@@ -4,21 +4,21 @@
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
 from odoo import api, fields, models
-from odoo.tools.float_utils import float_compare
 from odoo.exceptions import UserError
+from odoo.tools.float_utils import float_compare
 
 
 class SaleOrder(models.Model):
-    _inherit = 'sale.order'
+    _inherit = "sale.order"
 
     @api.model
     def _prepare_procurement_group_by_line(self, line):
         """ Hook to be able to use line data on procurement group """
-        return {'name': line.order_id.name}
+        return {"name": line.order_id.name}
 
 
 class SaleOrderLine(models.Model):
-    _inherit = 'sale.order.line'
+    _inherit = "sale.order.line"
 
     @api.multi
     def _get_procurement_group_key(self):
@@ -33,17 +33,19 @@ class SaleOrderLine(models.Model):
         """
         Launch procurement group run method.
         """
-        precision = self.env['decimal.precision'].\
-            precision_get('Product Unit of Measure')
+        precision = self.env["decimal.precision"].precision_get(
+            "Product Unit of Measure"
+        )
         errors = []
         groups = {}
         for line in self:
-            if line.state != 'sale' or line.product_id.type not in (
-                    'consu', 'product'):
+            if line.state != "sale" or line.product_id.type not in ("consu", "product"):
                 continue
             qty = line._get_qty_procurement()
-            if float_compare(qty, line.product_uom_qty,
-                             precision_digits=precision) >= 0:
+            if (
+                float_compare(qty, line.product_uom_qty, precision_digits=precision)
+                >= 0
+            ):
                 continue
 
             # Group the sales order lines with same procurement group
@@ -58,12 +60,14 @@ class SaleOrderLine(models.Model):
 
             if not group_id:
                 vals = line.order_id._prepare_procurement_group_by_line(line)
-                vals.update({
-                    'move_type': line.order_id.picking_policy,
-                    'sale_id': line.order_id.id,
-                    'partner_id': line.order_id.partner_shipping_id.id,
-                })
-                group_id = self.env['procurement.group'].create(vals)
+                vals.update(
+                    {
+                        "move_type": line.order_id.picking_policy,
+                        "sale_id": line.order_id.id,
+                        "partner_id": line.order_id.partner_shipping_id.id,
+                    }
+                )
+                group_id = self.env["procurement.group"].create(vals)
             else:
                 # In case the procurement group is already created and the
                 # order was cancelled, we need to update certain values
@@ -71,10 +75,10 @@ class SaleOrderLine(models.Model):
                 updated_vals = {}
                 if group_id.partner_id != line.order_id.partner_shipping_id:
                     updated_vals.update(
-                        {'partner_id': line.order_id.partner_shipping_id.id})
+                        {"partner_id": line.order_id.partner_shipping_id.id}
+                    )
                 if group_id.move_type != line.order_id.picking_policy:
-                    updated_vals.update(
-                        {'move_type': line.order_id.picking_policy})
+                    updated_vals.update({"move_type": line.order_id.picking_policy})
                 if updated_vals:
                     group_id.write(updated_vals)
             line.procurement_group_id = group_id
@@ -84,23 +88,32 @@ class SaleOrderLine(models.Model):
 
             procurement_uom = line.product_uom
             quant_uom = line.product_id.uom_id
-            get_param = self.env['ir.config_parameter'].sudo().get_param
-            if procurement_uom.id != quant_uom.id and get_param(
-                    'stock.propagate_uom') != '1':
+            get_param = self.env["ir.config_parameter"].sudo().get_param
+            if (
+                procurement_uom.id != quant_uom.id
+                and get_param("stock.propagate_uom") != "1"
+            ):
                 product_qty = line.product_uom._compute_quantity(
-                    product_qty, quant_uom, rounding_method='HALF-UP')
+                    product_qty, quant_uom, rounding_method="HALF-UP"
+                )
                 procurement_uom = quant_uom
 
             try:
-                self.env['procurement.group'].run(
-                    line.product_id, product_qty, procurement_uom,
+                self.env["procurement.group"].run(
+                    line.product_id,
+                    product_qty,
+                    procurement_uom,
                     line.order_id.partner_shipping_id.property_stock_customer,
-                    line.name, line.order_id.name, values)
+                    line.name,
+                    line.order_id.name,
+                    values,
+                )
             except UserError as error:
                 errors.append(error.name)
         if errors:
-            raise UserError('\n'.join(errors))
+            raise UserError("\n".join(errors))
         return super(SaleOrderLine, self)._action_launch_stock_rule()
 
-    procurement_group_id = fields.Many2one('procurement.group',
-                                           'Procurement group', copy=False)
+    procurement_group_id = fields.Many2one(
+        "procurement.group", "Procurement group", copy=False
+    )
