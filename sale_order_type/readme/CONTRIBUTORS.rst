@@ -29,4 +29,6 @@
   * Angel Moya Pardo <angel.moya@pesol.es>
   * Antonio J Rubio Lorente <antonio.rubio@pesol.es>
 
+* Rattapong Chokmasermkul <rattapongc@ecosoft.co.th>
+
 Do not contact contributors directly about support or help with technical issues.
