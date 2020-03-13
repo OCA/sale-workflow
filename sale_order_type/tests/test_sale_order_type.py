@@ -6,55 +6,53 @@ import odoo.tests.common as common
 
 
 class TestSaleOrderType(common.TransactionCase):
-
     def setUp(self):
         super(TestSaleOrderType, self).setUp()
-        self.sale_type_model = self.env['sale.order.type']
-        self.sale_order_model = self.env['sale.order']
-        self.invoice_model = self.env['account.invoice']
-        self.partner = self.env.ref('base.res_partner_1')
-        self.partner_child_1 = self.env['res.partner'].create({
-            'name': 'Test child',
-            'parent_id': self.partner.id,
-            'sale_type': False,
-        })
-        self.sequence = self.env['ir.sequence'].create({
-            'name': 'Test Sales Order',
-            'code': 'sale.order',
-            'prefix': 'TSO',
-            'padding': 3,
-        })
-        self.journal = self.env['account.journal'].search(
-            [('type', '=', 'sale')], limit=1)
-        self.warehouse = self.env.ref('stock.stock_warehouse_shop0')
-        self.product = self.env.ref('product.product_product_4')
-        self.immediate_payment = self.env.ref(
-            'account.account_payment_term_immediate')
-        self.sale_pricelist = self.env.ref('product.list0')
-        self.free_carrier = self.env.ref('account.incoterm_FCA')
-        self.sale_type = self.sale_type_model.create({
-            'name': 'Test Sale Order Type',
-            'sequence_id': self.sequence.id,
-            'journal_id': self.journal.id,
-            'warehouse_id': self.warehouse.id,
-            'picking_policy': 'one',
-            'payment_term_id': self.immediate_payment.id,
-            'pricelist_id': self.sale_pricelist.id,
-            'incoterm_id': self.free_carrier.id,
-        })
+        self.sale_type_model = self.env["sale.order.type"]
+        self.sale_order_model = self.env["sale.order"]
+        self.invoice_model = self.env["account.invoice"]
+        self.partner = self.env.ref("base.res_partner_1")
+        self.partner_child_1 = self.env["res.partner"].create(
+            {"name": "Test child", "parent_id": self.partner.id, "sale_type": False}
+        )
+        self.sequence = self.env["ir.sequence"].create(
+            {
+                "name": "Test Sales Order",
+                "code": "sale.order",
+                "prefix": "TSO",
+                "padding": 3,
+            }
+        )
+        self.journal = self.env["account.journal"].search(
+            [("type", "=", "sale")], limit=1
+        )
+        self.warehouse = self.env.ref("stock.stock_warehouse_shop0")
+        self.product = self.env.ref("product.product_product_4")
+        self.immediate_payment = self.env.ref("account.account_payment_term_immediate")
+        self.sale_pricelist = self.env.ref("product.list0")
+        self.free_carrier = self.env.ref("account.incoterm_FCA")
+        self.sale_type = self.sale_type_model.create(
+            {
+                "name": "Test Sale Order Type",
+                "sequence_id": self.sequence.id,
+                "journal_id": self.journal.id,
+                "warehouse_id": self.warehouse.id,
+                "picking_policy": "one",
+                "payment_term_id": self.immediate_payment.id,
+                "pricelist_id": self.sale_pricelist.id,
+                "incoterm_id": self.free_carrier.id,
+            }
+        )
         self.partner.sale_type = self.sale_type
 
     def get_sale_order_vals(self):
         sale_line_dict = {
-            'product_id': self.product.id,
-            'name': self.product.name,
-            'product_uom_qty': 1.0,
-            'price_unit': self.product.lst_price,
+            "product_id": self.product.id,
+            "name": self.product.name,
+            "product_uom_qty": 1.0,
+            "price_unit": self.product.lst_price,
         }
-        return {
-            'partner_id': self.partner.id,
-            'order_line': [(0, 0, sale_line_dict)]
-        }
+        return {"partner_id": self.partner.id, "order_line": [(0, 0, sale_line_dict)]}
 
     def test_sale_order_confirm(self):
         sale_type = self.sale_type
@@ -73,37 +71,33 @@ class TestSaleOrderType(common.TransactionCase):
         order.action_confirm()
 
     def test_sale_order_onchange_partner(self):
-        order = self.sale_order_model.new({'partner_id': self.partner.id})
+        order = self.sale_order_model.new({"partner_id": self.partner.id})
         order.onchange_partner_id()
         self.assertEqual(order.type_id, self.sale_type)
-        order = self.sale_order_model.new({
-            'partner_id': self.partner_child_1.id,
-        })
+        order = self.sale_order_model.new({"partner_id": self.partner_child_1.id})
         order.onchange_partner_id()
         self.assertEqual(order.type_id, self.sale_type)
 
     def test_invoice_onchange_type(self):
         sale_type = self.sale_type
-        invoice = self.invoice_model.new({'sale_type_id': sale_type.id})
+        invoice = self.invoice_model.new({"sale_type_id": sale_type.id})
         invoice.onchange_sale_type_id()
         self.assertEqual(invoice.payment_term, sale_type.payment_term_id.id)
         self.assertEqual(invoice.journal_id, sale_type.journal_id)
 
     def test_invoice_onchange_partner(self):
-        invoice = self.invoice_model.new({'partner_id': self.partner.id})
+        invoice = self.invoice_model.new({"partner_id": self.partner.id})
         invoice._onchange_partner_id()
         self.assertEqual(invoice.sale_type_id, self.sale_type)
-        invoice = self.invoice_model.new({
-            'partner_id': self.partner_child_1.id,
-        })
+        invoice = self.invoice_model.new({"partner_id": self.partner_child_1.id})
         invoice._onchange_partner_id()
         self.assertEqual(invoice.sale_type_id, self.sale_type)
 
     def test_prepare_invoice(self):
         sale_type = self.sale_type
         order_vals = self.get_sale_order_vals()
-        order_vals['type_id'] = sale_type.id
+        order_vals["type_id"] = sale_type.id
         order = self.sale_order_model.create(order_vals)
         invoice_vals = order._prepare_invoice()
-        self.assertEqual(invoice_vals['sale_type_id'], sale_type.id)
-        self.assertEqual(invoice_vals['journal_id'], sale_type.journal_id.id)
+        self.assertEqual(invoice_vals["sale_type_id"], sale_type.id)
+        self.assertEqual(invoice_vals["journal_id"], sale_type.journal_id.id)
