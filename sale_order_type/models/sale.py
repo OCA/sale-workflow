@@ -13,7 +13,6 @@ class SaleOrder(models.Model):
         comodel_name="sale.order.type", string="Type", default=_get_order_type
     )
 
-    @api.multi
     @api.onchange("partner_id")
     def onchange_partner_id(self):
         super(SaleOrder, self).onchange_partner_id()
@@ -23,20 +22,24 @@ class SaleOrder(models.Model):
         if sale_type:
             self.type_id = sale_type
 
-    @api.multi
     @api.onchange("type_id")
     def onchange_type_id(self):
+        vals = {}
         for order in self:
-            if order.type_id.warehouse_id:
-                order.warehouse_id = order.type_id.warehouse_id
-            if order.type_id.picking_policy:
-                order.picking_policy = order.type_id.picking_policy
-            if order.type_id.payment_term_id:
-                order.payment_term_id = order.type_id.payment_term_id.id
-            if order.type_id.pricelist_id:
-                order.pricelist_id = order.type_id.pricelist_id.id
-            if order.type_id.incoterm_id:
-                order.incoterm = order.type_id.incoterm_id.id
+            vals = {}
+            order_type = order.type_id
+            if order_type.warehouse_id:
+                vals.update({"warehouse_id": order_type.warehouse_id})
+            if order_type.picking_policy:
+                vals.update({"picking_policy": order_type.picking_policy})
+            if order_type.payment_term_id:
+                vals.update({"payment_term_id": order_type.payment_term_id})
+            if order_type.pricelist_id:
+                vals.update({"pricelist_id": order_type.pricelist_id})
+            if order_type.incoterm_id:
+                vals.update({"incoterm": order_type.incoterm_id})
+            if vals:
+                order.update(vals)
 
     @api.model
     def create(self, vals):
@@ -46,7 +49,6 @@ class SaleOrder(models.Model):
                 vals["name"] = sale_type.sequence_id.next_by_id()
         return super(SaleOrder, self).create(vals)
 
-    @api.multi
     def _prepare_invoice(self):
         res = super(SaleOrder, self)._prepare_invoice()
         if self.type_id.journal_id:

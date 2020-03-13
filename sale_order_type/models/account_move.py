@@ -3,8 +3,8 @@
 from odoo import api, fields, models
 
 
-class AccountInvoice(models.Model):
-    _inherit = "account.invoice"
+class AccountMove(models.Model):
+    _inherit = "account.move"
 
     def _get_order_type(self):
         return self.env["sale.order.type"].search([], limit=1)
@@ -15,7 +15,7 @@ class AccountInvoice(models.Model):
 
     @api.onchange("partner_id", "company_id")
     def _onchange_partner_id(self):
-        res = super(AccountInvoice, self)._onchange_partner_id()
+        res = super(AccountMove, self)._onchange_partner_id()
         sale_type = (
             self.partner_id.sale_type or self.partner_id.commercial_partner_id.sale_type
         )
