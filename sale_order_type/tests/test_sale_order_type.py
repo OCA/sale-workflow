@@ -10,7 +10,7 @@ class TestSaleOrderType(common.TransactionCase):
         super(TestSaleOrderType, self).setUp()
         self.sale_type_model = self.env["sale.order.type"]
         self.sale_order_model = self.env["sale.order"]
-        self.invoice_model = self.env["account.invoice"]
+        self.invoice_model = self.env["account.move"]
         self.partner = self.env.ref("base.res_partner_1")
         self.partner_child_1 = self.env["res.partner"].create(
             {"name": "Test child", "parent_id": self.partner.id, "sale_type": False}
@@ -26,7 +26,9 @@ class TestSaleOrderType(common.TransactionCase):
         self.journal = self.env["account.journal"].search(
             [("type", "=", "sale")], limit=1
         )
-        self.warehouse = self.env.ref("stock.stock_warehouse_shop0")
+        self.warehouse = self.env["stock.warehouse"].create(
+            {"name": "Warehouse Test", "code": "WT"}
+        )
         self.product = self.env.ref("product.product_product_4")
         self.immediate_payment = self.env.ref("account.account_payment_term_immediate")
         self.sale_pricelist = self.env.ref("product.list0")
@@ -60,7 +62,6 @@ class TestSaleOrderType(common.TransactionCase):
         order = self.sale_order_model.create(order_vals)
         order.onchange_partner_id()
         self.assertEqual(order.type_id, sale_type)
-
         order.onchange_type_id()
         self.assertEqual(order.warehouse_id, sale_type.warehouse_id)
         self.assertEqual(order.picking_policy, sale_type.picking_policy)
