@@ -1,20 +1,26 @@
-<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8" ?>
 <odoo>
-  <record id="res_partner_view_form" model="ir.ui.view">
-    <field name="name">res.partner.form.sign.inherit</field>
-    <field name="model">res.partner</field>
-    <field name="inherit_id" ref="base.view_partner_form"/>
-    <field name="arch" type="xml">
-      <div name="button_box" position="inside">
-        <button name="action_view_wishlists" type="object" class="oe_stat_button" icon="fa-pencil" attrs="{'invisible': [('wishlists_count', '=', 0)]}">
-          <div class="o_field_widget o_stat_info">
-            <span class="o_stat_value">
-              <field name="wishlists_count"/>
-            </span>
-            <span class="o_stat_text">Wishlists</span>
-          </div>
-        </button>
-      </div>
-    </field>
-  </record>
+    <record id="res_partner_view_form" model="ir.ui.view">
+        <field name="name">res.partner.form.sign.inherit</field>
+        <field name="model">res.partner</field>
+        <field name="inherit_id" ref="base.view_partner_form" />
+        <field name="arch" type="xml">
+            <div name="button_box" position="inside">
+                <button
+                    name="action_view_wishlists"
+                    type="object"
+                    class="oe_stat_button"
+                    icon="fa-pencil"
+                    attrs="{'invisible': [('wishlists_count', '=', 0)]}"
+                >
+                    <div class="o_field_widget o_stat_info">
+                        <span class="o_stat_value">
+                            <field name="wishlists_count" />
+                        </span>
+                        <span class="o_stat_text">Wishlists</span>
+                    </div>
+                </button>
+            </div>
+        </field>
+    </record>
 </odoo>
