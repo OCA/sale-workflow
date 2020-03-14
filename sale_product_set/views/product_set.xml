@@ -1,101 +1,115 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="UTF-8" ?>
 <odoo>
     <record id="view_product_set_tree" model="ir.ui.view">
         <field name="name">product.set.tree</field>
         <field name="model">product.set</field>
         <field name="type">tree</field>
-        <field name="priority" eval="8"/>
+        <field name="priority" eval="8" />
         <field name="arch" type="xml">
-        <tree string="Product set">
-            <field name="ref"/>
-            <field name="name"/>
-            <field name="partner_id"/>
-            <field name="company_id" groups="base.group_multi_company"/>
-        </tree>
+            <tree string="Product set">
+                <field name="ref" />
+                <field name="name" />
+                <field name="partner_id" />
+                <field name="company_id" groups="base.group_multi_company" />
+            </tree>
         </field>
     </record>
-
     <record id="view_product_set_form" model="ir.ui.view">
         <field name="name">product.set.form</field>
         <field name="model">product.set</field>
         <field name="type">form</field>
-        <field name="priority" eval="8"/>
+        <field name="priority" eval="8" />
         <field name="arch" type="xml">
-        <form string="Product set">
-            <sheet>
-                <div class="oe_button_box" name="button_box">
-                    <button class="oe_stat_button" type="object"
-                            name="toggle_active" icon="fa-archive">
-                        <field name="active" widget="boolean_button"
-                               options="{&quot;terminology&quot;: &quot;archive&quot;}"/>
-                    </button>
-                </div>
-                <group name="main">
-                    <group name="name">
-                        <field name="name" select="1"/>
-                        <field name="ref"/>
+            <form string="Product set">
+                <sheet>
+                    <div class="oe_button_box" name="button_box">
+                        <button
+                            class="oe_stat_button"
+                            type="object"
+                            name="toggle_active"
+                            icon="fa-archive"
+                        >
+                            <field
+                                name="active"
+                                widget="boolean_button"
+                                options="{&quot;terminology&quot;: &quot;archive&quot;}"
+                            />
+                        </button>
+                    </div>
+                    <group name="main">
+                        <group name="name">
+                            <field name="name" select="1" />
+                            <field name="ref" />
+                        </group>
+                        <group name="partner">
+                            <field name="partner_id" />
+                            <field
+                                name="company_id"
+                                groups="base.group_multi_company"
+                            />
+                        </group>
+                        <label for="set_line_ids" />
+                        <field name="set_line_ids" nolabel="1">
+                            <tree string="Product set lines" editable="top">
+                                <field name="sequence" widget="handle" />
+                                <field name="product_id" />
+                                <field name="quantity" />
+                                <field
+                                    name="discount"
+                                    groups="product.group_discount_per_so_line"
+                                />
+                            </tree>
+                        </field>
                     </group>
-                    <group name="partner">
-                        <field name="partner_id"/>
-                        <field name="company_id" groups="base.group_multi_company"/>
-                    </group>
-                    <label for="set_line_ids" />
-                    <field name="set_line_ids" nolabel="1">
-                        <tree string="Product set lines" editable="top">
-                            <field name="sequence" widget="handle"/>
-                            <field name="product_id"/>
-                            <field name="quantity"/>
-                            <field name="discount" groups="product.group_discount_per_so_line"/>
-                        </tree>
-                    </field>
-                </group>
-            </sheet>
-        </form>
+                </sheet>
+            </form>
         </field>
     </record>
-
     <record id="view_product_set_search" model="ir.ui.view">
         <field name="name">product.set.search</field>
         <field name="model">product.set</field>
         <field name="type">search</field>
-        <field name="priority" eval="8"/>
+        <field name="priority" eval="8" />
         <field name="arch" type="xml">
             <search string="Product set">
-                <field name="name" select="True"/>
-                <field name="ref" select="True"/>
-                <field name="partner_id"/>
-                <filter name="group_by_partner_id" string="Partner" domain="[]" context="{'group_by':'partner_id'}"/>
+                <field name="name" select="True" />
+                <field name="ref" select="True" />
+                <field name="partner_id" />
+                <filter
+                    name="group_by_partner_id"
+                    string="Partner"
+                    domain="[]"
+                    context="{'group_by':'partner_id'}"
+                />
             </search>
         </field>
     </record>
-
     <record model="ir.actions.act_window" id="act_open_product_set_view">
         <field name="name">Product set</field>
         <field name="type">ir.actions.act_window</field>
         <field name="res_model">product.set</field>
         <field name="view_mode">tree,form</field>
-        <field name="search_view_id" ref="view_product_set_search"/>
+        <field name="search_view_id" ref="view_product_set_search" />
         <field name="domain">[]</field>
         <field name="context">{}</field>
     </record>
-
     <record model="ir.actions.act_window.view" id="act_open_product_set_view_form">
-        <field name="act_window_id" ref="act_open_product_set_view"/>
-        <field name="sequence" eval="20"/>
+        <field name="act_window_id" ref="act_open_product_set_view" />
+        <field name="sequence" eval="20" />
         <field name="view_mode">form</field>
-        <field name="view_id" ref="view_product_set_form"/>
+        <field name="view_id" ref="view_product_set_form" />
     </record>
-
     <record model="ir.actions.act_window.view" id="act_open_product_set_view_tree">
-        <field name="act_window_id" ref="act_open_product_set_view"/>
-        <field name="sequence" eval="10"/>
+        <field name="act_window_id" ref="act_open_product_set_view" />
+        <field name="sequence" eval="10" />
         <field name="view_mode">tree</field>
-        <field name="view_id" ref="view_product_set_tree"/>
+        <field name="view_id" ref="view_product_set_tree" />
     </record>
-
-    <menuitem id="menu_product_set_config"
+    <menuitem
+        id="menu_product_set_config"
         parent="sale.product_menu_catalog"
         groups="sales_team.group_sale_manager"
         sequence="20"
-        action="act_open_product_set_view"/>
+        action="act_open_product_set_view"
+    />
 </odoo>
