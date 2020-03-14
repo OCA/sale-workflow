@@ -1,43 +1,43 @@
-<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8" ?>
 <!-- Copyright 2019 Camptocamp SA
      License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl). -->
-
 <odoo>
-
-  <record id="view_product_set_form" model="ir.ui.view">
-    <field name="name">sale_wishlist: product.set.form</field>
-    <field name="model">product.set</field>
-    <field name="inherit_id" ref="sale_product_set.view_product_set_form"/>
-    <field name="arch" type="xml">
-      <field name="name" position="before">
-        <field name="typology"/>
-      </field>
-    </field>
-  </record>
-
-  <record id="view_product_set_tree" model="ir.ui.view">
-    <field name="name">sale_wishlist: product.set.tree</field>
-    <field name="model">product.set</field>
-    <field name="inherit_id" ref="sale_product_set.view_product_set_tree"/>
-    <field name="arch" type="xml">
-      <field name="name" position="before">
-        <field name="typology"/>
-      </field>
-    </field>
-  </record>
-
-  <record id="view_product_set_search" model="ir.ui.view">
-    <field name="name">sale_wishlist: product.set.search</field>
-    <field name="model">product.set</field>
-    <field name="inherit_id" ref="sale_product_set.view_product_set_search"/>
-    <field name="arch" type="xml">
-      <field name="name" position="before">
-        <field name="typology"/>
-      </field>
-      <filter name="group_by_partner_id" position="after">
-          <filter name="group_by_typology" string="Typology" domain="[]" context="{'group_by':'typology'}"/>
-      </filter>
-    </field>
-  </record>
-
+    <record id="view_product_set_form" model="ir.ui.view">
+        <field name="name">sale_wishlist: product.set.form</field>
+        <field name="model">product.set</field>
+        <field name="inherit_id" ref="sale_product_set.view_product_set_form" />
+        <field name="arch" type="xml">
+            <field name="name" position="before">
+                <field name="typology" />
+            </field>
+        </field>
+    </record>
+    <record id="view_product_set_tree" model="ir.ui.view">
+        <field name="name">sale_wishlist: product.set.tree</field>
+        <field name="model">product.set</field>
+        <field name="inherit_id" ref="sale_product_set.view_product_set_tree" />
+        <field name="arch" type="xml">
+            <field name="name" position="before">
+                <field name="typology" />
+            </field>
+        </field>
+    </record>
+    <record id="view_product_set_search" model="ir.ui.view">
+        <field name="name">sale_wishlist: product.set.search</field>
+        <field name="model">product.set</field>
+        <field name="inherit_id" ref="sale_product_set.view_product_set_search" />
+        <field name="arch" type="xml">
+            <field name="name" position="before">
+                <field name="typology" />
+            </field>
+            <filter name="group_by_partner_id" position="after">
+                <filter
+                    name="group_by_typology"
+                    string="Typology"
+                    domain="[]"
+                    context="{'group_by':'typology'}"
+                />
+            </filter>
+        </field>
+    </record>
 </odoo>
