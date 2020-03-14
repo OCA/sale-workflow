@@ -1,32 +1,37 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="UTF-8" ?>
 <odoo>
-
-    <record id="sale_order_commitment_date_form_view" model="ir.ui.view" >
+    <record id="sale_order_commitment_date_form_view" model="ir.ui.view">
         <field name="name">sale.order.commitment.date.form</field>
         <field name="model">sale.order</field>
-        <field name="inherit_id" ref="sale.view_order_form"/>
+        <field name="inherit_id" ref="sale.view_order_form" />
         <field name="arch" type="xml">
             <field name="order_line" position="attributes">
-                <attribute name="context">{'default_commitment_date':commitment_date}</attribute>
+                <attribute
+                    name="context"
+                >{'default_commitment_date':commitment_date}</attribute>
             </field>
-            <xpath expr="//field[@name='order_line']/form//field[@name='tax_id']" position="after">
-                <field name="commitment_date"/>
+            <xpath
+                expr="//field[@name='order_line']/form//field[@name='tax_id']"
+                position="after"
+            >
+                <field name="commitment_date" />
             </xpath>
-            <xpath expr="//field[@name='order_line']/tree/field[@name='price_unit']" position="after">
-                <field name="commitment_date"/>
+            <xpath
+                expr="//field[@name='order_line']/tree/field[@name='price_unit']"
+                position="after"
+            >
+                <field name="commitment_date" />
             </xpath>
         </field>
     </record>
-
     <record id="sale_order_line_ext_tree_view" model="ir.ui.view">
         <field name="name">sale.order.line.ext.tree</field>
         <field name="model">sale.order.line</field>
         <field name="inherit_id" ref="sale.view_order_line_tree" />
         <field name="arch" type="xml">
             <field name="name" position="after">
-                <field name="commitment_date"/>
+                <field name="commitment_date" />
             </field>
         </field>
     </record>
-
 </odoo>
