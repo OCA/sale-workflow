@@ -2,8 +2,8 @@
 # License LGPL-3.0 or later (https://www.gnu.org/licenses/lgpl.html).
 
 {
-    "name": "Sale Stock Sourcing Address",
-    "version": "11.0.1.0.0",
+    "name": "Sale Stock Delivery Address",
+    "version": "12.0.1.0.0",
     "author": "ForgeFlow, Odoo Community Association (OCA)",
     "website": "https://github.com/OCA/sale-workflow/",
     "category": "Sales Management",
