@@ -14,7 +14,7 @@ class ProcurementGroup(models.Model):
         if sale_line_id:
             sale_line = self.env["sale.order.line"].browse(sale_line_id)
             if sale_line.dest_address_id:
-                values["partner_dest_id"] = sale_line.dest_address_id
+                values["partner_id"] = sale_line.dest_address_id.id
                 group = values.get("group_id")
                 group.partner_id = sale_line.dest_address_id
                 location_id = sale_line.dest_address_id.property_stock_customer
