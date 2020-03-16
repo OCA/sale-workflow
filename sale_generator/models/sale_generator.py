@@ -93,7 +93,7 @@ class SaleGenerator(models.Model):
                 sale.action_confirm()
 
     def write(self, vals):
-        res = super(SaleGenerator, self).write(vals)
+        res = super().write(vals)
         if "partner_ids" in vals and self.state == "generating":
             self._update_order()
         return res
