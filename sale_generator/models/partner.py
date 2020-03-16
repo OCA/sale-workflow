@@ -16,7 +16,7 @@ class ResPartner(models.Model):
 
     @api.model
     def create(self, vals):
-        res = super(ResPartner, self).create(vals)
+        res = super().create(vals)
         generator_id = self.env.context.get("from_generator_id")
         if generator_id:
             generator = self.env["sale.generator"].browse(generator_id)
