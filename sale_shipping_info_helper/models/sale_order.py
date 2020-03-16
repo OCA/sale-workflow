@@ -6,29 +6,27 @@
 
 from odoo import api, fields, models
 
-import odoo.addons.decimal_precision as dp
-
 
 class SaleOrder(models.Model):
     _inherit = "sale.order"
 
     shipping_amount_total = fields.Float(
-        compute="_compute_shipping", dp=dp.get_precision("Account"), store=True
+        compute="_compute_shipping", digits="Account", store=True
     )
     shipping_amount_untaxed = fields.Float(
-        compute="_compute_shipping", dp=dp.get_precision("Account"), store=True
+        compute="_compute_shipping", digits="Account", store=True
     )
     shipping_amount_tax = fields.Float(
-        compute="_compute_shipping", dp=dp.get_precision("Account"), store=True
+        compute="_compute_shipping", digits="Account", store=True
     )
     item_amount_total = fields.Float(
-        compute="_compute_shipping", dp=dp.get_precision("Account"), store=True
+        compute="_compute_shipping", digits="Account", store=True
     )
     item_amount_untaxed = fields.Float(
-        compute="_compute_shipping", dp=dp.get_precision("Account"), store=True
+        compute="_compute_shipping", digits="Account", store=True
     )
     item_amount_tax = fields.Float(
-        compute="_compute_shipping", dp=dp.get_precision("Account"), store=True
+        compute="_compute_shipping", digits="Account", store=True
     )
 
     @api.depends("amount_total", "amount_untaxed")
