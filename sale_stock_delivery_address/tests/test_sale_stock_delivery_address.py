@@ -44,10 +44,10 @@ class TestStockSourcingAddress(TransactionCase):
             "name": "Ship to customer sec location",
             "warehouse_ids": [(6, 0, self.warehouse.ids)],
         })
-        self.wh2_rule = self.env["procurement.rule"].create({
+        self.wh2_rule = self.env["stock.rule"].create({
             "location_id": self.customer_loc_secondary.id,
             "location_src_id": self.warehouse.lot_stock_id.id,
-            "action": "move",
+            "action": "pull_push",
             "warehouse_id": self.warehouse.id,
             "picking_type_id": self.env.ref("stock.picking_type_out").id,
             "name": "Stock -> Customers 2",
