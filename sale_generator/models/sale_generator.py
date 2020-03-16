@@ -114,4 +114,4 @@ class SaleGenerator(models.Model):
                 self.env["ir.sequence"].next_by_code("sale.order.generator")
                 or "/"
             )
-        return super(SaleGenerator, self).create(vals)
+        return super().create(vals)
