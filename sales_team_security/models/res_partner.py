@@ -29,7 +29,7 @@ class ResPartner(models.Model):
                     .get("context", "{}")
                     .replace(
                         "{",
-                        "{'default_team_id': team_id, 'default_user_id': user_id,",
+                        "{'default_team_id': team_id, 'default_user_id': user_id, ",
                         1,
                     )
                 )

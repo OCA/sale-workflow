@@ -1,4 +1,3 @@
-#. Go to *Configuration > Users & Companies > Users*.
+#. Go to *Settings > Users & Companies > Users*.
 #. Open or create a user.
-#. On the section "Application Accesses", select "Channel Manager" option in
-   "Sales" part.
+#. Select "Channel Manager" option in "Sales" part.

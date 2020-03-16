@@ -13,6 +13,6 @@
     "development_status": "Production/Stable",
     "maintainers": ["pedrobaeza"],
     "depends": ["crm", "sale"],
-    "data": ["security/sales_team_security.xml", "views/res_partner_view.xml"],
+    "data": ["security/sales_team_security.xml", "views/res_partner_views.xml"],
     "post_init_hook": "post_init_hook",
 }
