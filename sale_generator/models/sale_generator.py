@@ -21,7 +21,7 @@ class SaleGenerator(models.Model):
         comodel_name="sale.order", string="Sale Template", required=True,
     )
     date_order = fields.Datetime(
-        string="Date", oldname="date", default=fields.Datetime.now()
+        string="Date", default=fields.Datetime.now()
     )
     warehouse_id = fields.Many2one(
         comodel_name="stock.warehouse", required=True, string="Warehouse"
