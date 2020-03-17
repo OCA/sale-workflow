@@ -11,9 +11,9 @@ class SaleOrderLine(models.Model):
         comodel_name="res.partner",
         string="Destination Address",
         help="If set this address will be the delivery address instead of the "
-             "one specified in the Sales Order header.",
+        "one specified in the Sales Order header.",
         domain="['|', ('id', '=', order_partner_id), "
-               "('parent_id', '=', order_partner_id)]",
+        "('parent_id', '=', order_partner_id)]",
     )
 
     @api.multi
