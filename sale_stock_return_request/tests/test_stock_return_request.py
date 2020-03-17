@@ -13,7 +13,7 @@ class SaleReturnRequestCase(StockReturnRequestCase):
             'property_stock_supplier': cls.supplier_loc.id,
             'property_stock_customer': cls.customer_loc.id,
         })
-        cls.wh1.delivery_route_id.pull_ids.location_id = cls.customer_loc.id
+        cls.wh1.delivery_route_id.rule_ids.location_id = cls.customer_loc.id
         cls.so_1 = cls.env["sale.order"].create({
             "partner_id": cls.partner_customer_2.id,
             'warehouse_id': cls.wh1.id,
