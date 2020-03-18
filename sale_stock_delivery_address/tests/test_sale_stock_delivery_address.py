@@ -16,14 +16,14 @@ class TestStockSourcingAddress(TransactionCase):
         self.warehouse = self.env.ref("stock.warehouse0")
         self.customer_loc_default = self.env.ref("stock.stock_location_customers")
         self.customer_loc_secondary = self.location_model.create(
-            {"name": "Test customer location", "usage": "customer",}
+            {"name": "Test customer location", "usage": "customer"}
         )
         self.partner = self.partner_model.create({"name": "Test partner"})
         self.address_1 = self.partner_model.create(
-            {"name": "Address 1", "parent_id": self.partner.id, "type": "delivery",}
+            {"name": "Address 1", "parent_id": self.partner.id, "type": "delivery"}
         )
         self.address_2 = self.partner_model.create(
-            {"name": "Address 2", "parent_id": self.partner.id, "type": "delivery",}
+            {"name": "Address 2", "parent_id": self.partner.id, "type": "delivery"}
         )
         self.product = self.product_model.create(
             {"name": "Test product", "type": "product"}
