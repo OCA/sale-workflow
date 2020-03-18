@@ -8,17 +8,30 @@ class ProcurementGroup(models.Model):
     _inherit = "procurement.group"
 
     @api.model
-    def run(
-        self, product_id, product_qty, product_uom, location_id, name, origin, values
-    ):
-        sale_line_id = values.get("sale_line_id")
-        if sale_line_id:
-            sale_line = self.env["sale.order.line"].browse(sale_line_id)
-            if sale_line.dest_address_id:
-                values["partner_id"] = sale_line.dest_address_id.id
-                group = values.get("group_id")
-                group.partner_id = sale_line.dest_address_id
-                location_id = sale_line.dest_address_id.property_stock_customer
-        return super(ProcurementGroup, self).run(
-            product_id, product_qty, product_uom, location_id, name, origin, values,
-        )
+    def run(self, procurements):
+        new_procs = []
+        Proc = self.env["procurement.group"].Procurement
+        for procurement in procurements:
+            sale_line_id = procurement.values.get("sale_line_id")
+            if sale_line_id:
+                sale_line = self.env["sale.order.line"].browse(sale_line_id)
+                if sale_line.dest_address_id:
+                    procurement.values["partner_id"] = sale_line.dest_address_id.id
+                    group = procurement.values.get("group_id")
+                    group.partner_id = sale_line.dest_address_id
+                    new_location_id = sale_line.dest_address_id.property_stock_customer
+                else:
+                    new_location_id = procurement.location_id
+                new_procs.append(
+                    Proc(
+                        procurement.product_id,
+                        procurement.product_qty,
+                        procurement.product_uom,
+                        new_location_id,
+                        procurement.name,
+                        procurement.origin,
+                        procurement.company_id,
+                        procurement.values,
+                    )
+                )
+        return super(ProcurementGroup, self).run(new_procs)
