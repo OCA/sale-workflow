@@ -12,11 +12,8 @@ class SaleOrderLine(models.Model):
         string="Destination Address",
         help="If set this address will be the delivery address instead of the "
         "one specified in the Sales Order header.",
-        domain="['|', ('id', '=', order_partner_id), "
-        "('parent_id', '=', order_partner_id)]",
     )
 
-    @api.multi
     def _get_procurement_group_key(self):
         """ Return a key with priority to be used to regroup lines in multiple
         procurement groups. The higher the priority number is the more
@@ -30,3 +27,19 @@ class SaleOrderLine(models.Model):
         if self.dest_address_id:
             return (priority, self.dest_address_id)
         return (priority, key)
+
+    @api.onchange("dest_address_id")
+    def _onchange_dest_address_id(self):
+        if self.order_id.partner_id:
+            domain = {
+                "dest_address_id": [
+                    "|",
+                    ("id", "=", self.order_id.partner_id.id),
+                    ("parent_id", "=", self.order_id.partner_id.id),
+                ],
+            }
+        else:
+            domain = {
+                "dest_address_id": [],
+            }
+        return {"domain": domain}
