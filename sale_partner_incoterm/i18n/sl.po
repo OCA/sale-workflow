@@ -35,7 +35,7 @@ msgstr "Privzeti prodajni Incoterm"
 #. module: sale_partner_incoterm
 #: model:ir.model,name:sale_partner_incoterm.model_sale_order
 #, fuzzy
-msgid "Sale Order"
+msgid "Sales Order"
 msgstr "Prodajni nalog"
 
 #. module: sale_partner_incoterm
