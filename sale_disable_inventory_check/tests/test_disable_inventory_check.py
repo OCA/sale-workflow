@@ -19,7 +19,7 @@ class TestDisableInventoryCheck(common.TransactionCase):
     def test_disable_inventory_check(self):
         # Create an empty sale order
         order = self.env["sale.order"].new(
-            {"partner_id": 1, "warehouse_id": 1, "state": "draft",}
+            {"partner_id": 1, "warehouse_id": 1, "state": "draft"}
         )
         # Sale product_1 with quantity is 15
         order_line = self.env["sale.order.line"].new(
@@ -30,4 +30,4 @@ class TestDisableInventoryCheck(common.TransactionCase):
                 "product_uom_qty": 15,
             }
         )
-        order_line._onchange_product_id_check_availability()
+        order_line._onchange_product_uom_qty()

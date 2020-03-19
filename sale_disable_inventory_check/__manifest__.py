@@ -4,7 +4,7 @@
     "name": "Sale Disable Inventory Check",
     "summary": "Disable warning 'Not enough inventory' when there isn't enough"
     " product stock",
-    "version": "12.0.1.0.0",
+    "version": "13.0.1.0.0",
     "category": "Sale",
     "website": "https://github.com/OCA/sale-workflow",
     "author": "Nguyen Tan Phuc (komit-consulting.com), "
@@ -12,5 +12,5 @@
     "license": "AGPL-3",
     "application": False,
     "installable": True,
-    "depends": ["sale_stock",],
+    "depends": ["sale_stock"],
 }
