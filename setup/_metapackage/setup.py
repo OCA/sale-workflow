@@ -17,6 +17,7 @@ setuptools.setup(
         'odoo13-addon-sale_order_line_date',
         'odoo13-addon-sale_order_secondary_unit',
         'odoo13-addon-sale_partner_incoterm',
+        'odoo13-addon-sale_procurement_group_by_line',
         'odoo13-addon-sale_product_multi_add',
         'odoo13-addon-sale_product_set',
         'odoo13-addon-sale_shipping_info_helper',
