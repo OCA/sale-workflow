@@ -10,7 +10,7 @@ class SaleGeneralTerm(models.Model):
     _name = 'sale.general.term'
     _description = 'Sale General Term'
 
-    @api.constrains('is_enabled', 'country_ids')
+    @api.constrains('is_enabled', 'country_ids', 'lang')
     def _check_is_enabled_country_ids(self):
         for term in self:
             enabled_terms = self.search([
