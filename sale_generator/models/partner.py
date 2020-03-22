@@ -2,7 +2,7 @@
 #  @author Abdessamad HILALI <abdessamad.hilali@akretion.com>
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
 
-from odoo import models, api
+from odoo import models, api, _
 
 
 class ResPartner(models.Model):
@@ -27,7 +27,7 @@ class ResPartner(models.Model):
         return {
             "type": "ir.actions.act_window",
             "res_model": "res.partner",
-            "name": u"New Customer",
+            "name": _("New Customer"),
             "view_id": self.env.ref("base.view_partner_form").id,
             "view_mode": "form",
             "target": "new",
