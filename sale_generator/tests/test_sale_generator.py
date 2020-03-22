@@ -14,7 +14,6 @@ class TestSaleGenerator(TransactionCase):
         self.some_fields_to_compare_so = [
             "validity_date",
             "payment_term_id",
-            "state",
         ]
         self.some_fields_to_compare_so_line = [
             "product_id",
@@ -40,9 +39,7 @@ class TestSaleGenerator(TransactionCase):
     def _helper_test_so_equality(self, base_SO, sale_orders):
         for sale in sale_orders:
             for field in self.some_fields_to_compare_so:
-                self.assertEqual(
-                    getattr(base_SO, field), getattr(sale, field)
-                )
+                self.assertEqual(getattr(base_SO, field), getattr(sale, field))
             for field, val in self.constant_values_for_generated_sos.items():
                 self.assertEqual(getattr(sale, field), val)
             self._helper_test_order_line_equality(base_SO, sale)
@@ -77,6 +74,8 @@ class TestSaleGenerator(TransactionCase):
             [("generator_id", "=", sale_generator.id)]
         )
         self.assertEqual(len(sales_generated), 3)
+        for sale in sales_generated:
+            self.assertEqual(sale.state, "draft")
         self._helper_test_so_equality(self.demo_sale_order, sales_generated)
 
         sale_generator.action_confirm()
@@ -96,10 +95,20 @@ class TestSaleGenerator(TransactionCase):
         }
         sale_generator = self.env["sale.generator"].create(vals)
 
-        # test special generator context: partner create, window closing
-        test_partner = self.env['res.partner'].with_context({'from_generator_id': sale_generator.id}).create({
-            'name': 'test partner'
-        })
-        self.assertEqual(test_partner.generator_id, sale_generator)
-        close_action = self.env['res.partner'].close_from_customer_wizard()
-        self.assertEqual(test_partner.generator_id, close_action['res_id'])
+        # test special generator context: partner create
+        test_partner = (
+            self.env["res.partner"]
+            .with_context({"from_generator_id": sale_generator.id})
+            .create({"name": "test partner"})
+        )
+        self.assertEqual(
+            sorted(sale_generator.partner_ids.ids),
+            sorted((part1 + part2 + test_partner).ids),
+        )
+        # test special generator context: action
+        close_action = (
+            self.env["res.partner"]
+            .with_context({"from_generator_id": sale_generator.id})
+            .close_from_customer_wizard()
+        )
+        self.assertEqual(sale_generator.id, close_action["res_id"])
