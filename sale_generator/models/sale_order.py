@@ -3,7 +3,6 @@
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
 
 from odoo import fields, models, api, _
-from lxml import etree
 
 
 class SaleOrder(models.Model):
