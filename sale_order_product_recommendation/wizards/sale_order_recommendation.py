@@ -179,6 +179,7 @@ class SaleOrderRecommendationLine(models.TransientModel):
     sale_line_id = fields.Many2one(
         comodel_name="sale.order.line",
     )
+    sale_uom_id = fields.Many2one(related="sale_line_id.product_uom")
     is_modified = fields.Boolean()
 
     @api.depends("partner_id", "product_id", "pricelist_id", "units_included")
