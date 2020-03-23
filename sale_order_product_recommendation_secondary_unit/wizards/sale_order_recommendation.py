@@ -13,6 +13,9 @@ class SaleOrderRecommendationLine(models.TransientModel):
         comodel_name='product.secondary.unit',
         related='product_id.sale_secondary_uom_id',
     )
+    secondary_uom_name = fields.Char(
+        related='secondary_uom_id.name',
+    )
     secondary_uom_qty = fields.Float(
         string='Secondary Qty',
         digits=dp.get_precision('Product Unit of Measure'),
