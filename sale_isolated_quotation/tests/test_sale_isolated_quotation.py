@@ -4,7 +4,6 @@ from odoo.tests.common import TransactionCase
 
 
 class TestSaleIsolatedQuotation(TransactionCase):
-
     def test_quotation_convert_to_order(self):
         """
         - When quotation is converted to order
@@ -23,7 +22,8 @@ class TestSaleIsolatedQuotation(TransactionCase):
     def setUp(self):
         super().setUp()
         self.partner = self.env.ref("base.res_partner_2")
-        vals = {"partner_id": self.partner.id,
-                "order_sequence": False,
-                }
+        vals = {
+            "partner_id": self.partner.id,
+            "order_sequence": False,
+        }
         self.quotation = self.env["sale.order"].create(vals)
