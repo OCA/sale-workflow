@@ -1,17 +1,13 @@
 # © 2017 Ecosoft (ecosoft.co.th).
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
-from odoo import models, fields, api, _
+from odoo import _, api, fields, models
 from odoo.exceptions import UserError
 
 
 class SaleOrder(models.Model):
     _inherit = "sale.order"
 
-    order_sequence = fields.Boolean(
-        string="Order Sequence",
-        readonly=True,
-        index=True,
-    )
+    order_sequence = fields.Boolean(string="Order Sequence", readonly=True, index=True)
     quote_id = fields.Many2one(
         "sale.order",
         string="Quotation",
@@ -29,10 +25,12 @@ class SaleOrder(models.Model):
         help="For Quotation, this field references to its Sales Order",
     )
     quotation_state = fields.Selection(
-        [("draft", "Draft"),
-         ("sent", "Mail Sent"),
-         ("cancel", "Cancelled"),
-         ("done", "Done"), ],
+        [
+            ("draft", "Draft"),
+            ("sent", "Mail Sent"),
+            ("cancel", "Cancelled"),
+            ("done", "Done"),
+        ],
         string="Quotation Status",
         readonly=True,
         related="state",
@@ -41,11 +39,11 @@ class SaleOrder(models.Model):
 
     @api.model
     def create(self, vals):
-        order_sequence = vals.get("order_sequence") or \
-            self.env.context.get("order_sequence")
+        order_sequence = vals.get("order_sequence") or self.env.context.get(
+            "order_sequence"
+        )
         if not order_sequence and vals.get("name", "/") == "/":
-            vals["name"] = self.env["ir.sequence"].next_by_code(
-                "sale.quotation") or "/"
+            vals["name"] = self.env["ir.sequence"].next_by_code("sale.quotation") or "/"
         return super().create(vals)
 
     def _prepare_order_from_quotation(self):
@@ -59,8 +57,7 @@ class SaleOrder(models.Model):
     def action_convert_to_order(self):
         self.ensure_one()
         if self.order_sequence:
-            raise UserError(
-                _("Only quotation can convert to order"))
+            raise UserError(_("Only quotation can convert to order"))
         order = self.copy(self._prepare_order_from_quotation())
         self.order_id = order.id  # Reference from this quotation to order
         if self.state == "draft":
@@ -74,7 +71,7 @@ class SaleOrder(models.Model):
             "view_mode": "form",
             "view_id": False,
             "res_model": "sale.order",
-            "context": {"default_order_sequence": True, "order_sequence": True, },
+            "context": {"default_order_sequence": True, "order_sequence": True},
             "type": "ir.actions.act_window",
             "nodestroy": True,
             "target": "current",
