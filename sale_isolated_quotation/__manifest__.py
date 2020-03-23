@@ -3,7 +3,7 @@
 {
     "name": "Sale Isolated Quotation",
     "version": "13.0.1.0.0",
-    "author": "Ecosoft,Odoo Community Association (OCA)",
+    "author": "Ecosoft, Odoo Community Association (OCA)",
     "category": "Sales",
     "website": "https://github.com/OCA/sale-workflow",
     "depends": ["sale_management"],

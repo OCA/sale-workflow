@@ -9,7 +9,7 @@ class SaleOrder(models.Model):
 
     order_sequence = fields.Boolean(string="Order Sequence", readonly=True, index=True)
     quote_id = fields.Many2one(
-        "sale.order",
+        comodel_name="sale.order",
         string="Quotation",
         readonly=True,
         ondelete="restrict",
@@ -17,7 +17,7 @@ class SaleOrder(models.Model):
         help="For Sales Order, this field references to its Quotation",
     )
     order_id = fields.Many2one(
-        "sale.order",
+        comodel_name="sale.order",
         string="Order",
         readonly=True,
         ondelete="restrict",
@@ -25,7 +25,7 @@ class SaleOrder(models.Model):
         help="For Quotation, this field references to its Sales Order",
     )
     quotation_state = fields.Selection(
-        [
+        selection=[
             ("draft", "Draft"),
             ("sent", "Mail Sent"),
             ("cancel", "Cancelled"),
