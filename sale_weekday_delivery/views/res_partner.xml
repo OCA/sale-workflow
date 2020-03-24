@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <record id="view_partner_form_inherit" model="ir.ui.view">
+        <field name="name">res.partner.form.inherit</field>
+        <field name="model">res.partner</field>
+        <field name="inherit_id" ref="base.view_partner_form" />
+        <field name="arch" type="xml">
+            <xpath
+                expr="//page[@name='sales_purchases']//group[@name='sale']"
+                position="inside"
+            >
+                <field name="delivery_schedule_preference" />
+                <div
+                    attrs="{'invisible': [('delivery_schedule_preference', '!=', 'fix_weekdays')]}"
+                    colspan="2"
+                    style="text-align: center;"
+                >
+                    <table class="table table-sm mt8">
+                        <tr>
+                            <th>
+                                <label for="delivery_schedule_monday" />
+                            </th>
+                            <th>
+                                <label for="delivery_schedule_tuesday" />
+                            </th>
+                            <th>
+                                <label for="delivery_schedule_wednesday" />
+                            </th>
+                            <th>
+                                <label for="delivery_schedule_thursday" />
+                            </th>
+                            <th>
+                                <label for="delivery_schedule_friday" />
+                            </th>
+                            <th>
+                                <label for="delivery_schedule_saturday" />
+                            </th>
+                            <th>
+                                <label for="delivery_schedule_sunday" />
+                            </th>
+                        </tr>
+                        <tr>
+                            <td>
+                                <field name="delivery_schedule_monday" />
+                            </td>
+                            <td>
+                                <field name="delivery_schedule_tuesday" />
+                            </td>
+                            <td>
+                                <field name="delivery_schedule_wednesday" />
+                            </td>
+                            <td>
+                                <field name="delivery_schedule_thursday" />
+                            </td>
+                            <td>
+                                <field name="delivery_schedule_friday" />
+                            </td>
+                            <td>
+                                <field name="delivery_schedule_saturday" />
+                            </td>
+                            <td>
+                                <field name="delivery_schedule_sunday" />
+                            </td>
+                        </tr>
+                    </table>
+                    <i>Define above preferred weekdays to postpone deliveries to.</i>
+                </div>
+            </xpath>
+        </field>
+    </record>
+</odoo>
