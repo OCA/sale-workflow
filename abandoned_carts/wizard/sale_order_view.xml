@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<odoo>
+        <record id="sale_order_wizard_form_view" model="ir.ui.view">
+            <field name="name">sale.order.wizard.form.view</field>
+            <field name="model">sale.order.wizard</field>
+            <field name="arch" type="xml">
+                <form string="Sale Order">
+                    <div>
+                        <h3>
+                            <label for="max_delete_limit" string='User can delete Maximum' style="padding-top: 0px; padding-right: 0px !important; padding-bottom: 0px !important;padding-left: 0px !important;"/>
+                            <field name="max_delete_limit" class="oe_inline" readonly="1"/>
+                            <label for="max_delete_limit" style="padding-left: 5px;" string=' abandoned items at a time' class="oe_inline"/>
+                        </h3>
+                    </div>
+                    <group>
+                        <field name="sale_order_ids" nolabel="1" widget="one2many_list"> 
+                        <tree string="Sale Order" name="sale_order" create='false' edit='false'>
+                                <field name="name"/>
+                                <field name="date_order"/>
+                                <field name="partner_id"/>
+                                <field name="user_id"/>
+                                <field name="amount_total"/>
+                                <field name="state"/>
+                            </tree>
+                        </field>
+                    </group>
+                    <footer>
+                        <button name="action_remove_sale_order" string="Remove" type="object" class="oe_highlight"/>
+                        <button string="Cancel" class="btn-default" special="cancel"/>
+                    </footer>
+                </form>
+            </field>
+        </record>
+        
+        <record id="action_show_sale_order" model="ir.actions.act_window">
+            <field name="name">Abandoned Order</field>
+            <field name="res_model">sale.order.wizard</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form</field>
+            <field name="view_id" ref="sale_order_wizard_form_view"/>
+            <field name="context">{}</field>
+            <field name="target">new</field>
+        </record>
+        
+        <menuitem id="menu_action_show_sale_order" 
+              action="action_show_sale_order" 
+              name="Abandoned Order" 
+                  parent="abandoned_carts.menu_main_abandoned_log"/>
+        
+        
+</odoo>

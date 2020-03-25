@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<odoo noupdate="1">
+        <!-- Cron job for automatically remove abandoned cart orders and customers.-->
+        <record id="ir_cron_remove_abandoned_cart_orders" model="ir.cron">
+            <field name="name">Remove Abandoned cart orders and Customers</field>
+            <field name="user_id" ref="base.user_root" />
+            <field name="interval_number">1</field>
+            <field name="interval_type">days</field>
+            <field name="numbercall">-1</field>
+            <field name="model_id" ref="abandoned_carts.model_sale_order_wizard"/>
+            <field eval="False" name="doall" />
+            <field name="state">code</field>
+            <field name="code">model._cron_remove_abandoned_cart_order()</field>
+            <field eval="False" name="active" />
+        </record>
+        
+</odoo>

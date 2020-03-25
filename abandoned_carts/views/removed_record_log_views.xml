@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<odoo>
+        <record id="removed_record_log_form_view" model="ir.ui.view">
+            <field name="name">removed.record.log.form.view</field>
+            <field name="model">removed.record.log</field>
+            <field name="arch" type="xml">
+                <form create='0' edit='0' delete='0'>
+                    <sheet>
+                        <group>
+                            <group>
+                                <field name="name"/>
+                                <field name="date"/>
+                                <field name="user_id"/>
+                            </group>
+                            <group>
+                                <field name="res_model"/>
+                                <field name='res_id' />
+                            </group>
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+        
+        <record id="removed_record_log_tree_view" model="ir.ui.view">
+            <field name="name">removed.record.log.tree.view</field>
+            <field name="model">removed.record.log</field>
+            <field name="arch" type="xml">
+                <tree create='0' edit='0' delete='0'>
+                    <field name="name"/>
+                    <field name="date"/>
+                    <field name="res_model"/>
+                    <field name="user_id"/>
+                </tree>
+            </field>
+        </record>
+        
+        <record id="action_removed_record_log" model="ir.actions.act_window">
+            <field name="name">Removed Log</field>
+            <field name="res_model">removed.record.log</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+        
+        
+        <menuitem id="menu_main_abandoned_log" 
+            name="Abandoned Log"
+            sequence='4'
+            groups="sales_team.group_sale_manager" 
+            parent="sale.sale_menu_root"/>
+            
+        <menuitem id="menu_removed_record_log" 
+            action="action_removed_record_log" 
+            name="Removed Log" 
+            parent="menu_main_abandoned_log"/>
+
+</odoo>

@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<odoo>
+        <record id="view_sales_config_abandoned_carts" model="ir.ui.view">
+            <field name="name">sale.settings.abandoned.carts</field>
+            <field name="model">res.config.settings</field>
+            <field name="inherit_id" ref="sale.res_config_settings_view_form"/>
+            <field name="arch" type="xml">
+                <xpath expr="//div[@data-key='sale_management']/div[3]" position="after">
+                    <h2>Retention Period</h2>
+                    <div class="row mt16 o_settings_container">
+                        <div class="col-12 col-lg-8 o_setting_box">
+                            <div class="o_setting_left_pane">
+                                
+                            </div>
+                            <div class="o_setting_right_pane">
+                                <div class="content-group" >
+                                    <div class="mt16">
+                                        <span class="col-lg-4">Delete Quotation older than <field style="width:10%;" name="order_retention_period" /> hours</span>
+                                    </div>
+                                </div>
+                                <div class="content-group" >
+                                    <div class="mt16">
+                                        <span class="col-lg-4">Maximum <field style="width:10%;" name="max_delete_batch_limit" /> abandoned items(Quotation/Customer) to be deleted at a time</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </xpath>
+                
+            </field>
+        </record>
+</odoo>

@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<odoo>
+        <record id="customer_wizard_form_view" model="ir.ui.view">
+            <field name="name">customer.wizard.form.view</field>
+            <field name="model">customer.wizard</field>
+            <field name="arch" type="xml">
+                <form string="Customer">
+                    <div>
+                        <h3>
+                <label for="max_delete_limit" string='User can delete Maximum' style="padding-top: 0px; padding-right: 0px !important; padding-bottom: 0px !important;padding-left: 0px !important;"/>
+                            <field name="max_delete_limit" class="oe_inline" readonly="1"/>
+                            <label for="max_delete_limit" style="padding-left: 5px;" string=' abandoned items at a time' class="oe_inline"/>
+                        </h3>
+                    </div>
+                    <group>
+                        <field name="customer_ids" nolabel="1" widget="one2many_list">
+                            <tree string="Customer" create='false' edit='false'>
+                                <field name="name"/>
+                                <field name="phone"/>
+                                <field name="email"/>
+                            </tree>
+                        </field>
+                    </group>
+                    <footer>
+                        <button name="action_remove_customer" string="Remove" type="object" class="oe_highlight"/>
+                        <button string="Cancel" class="btn-default" special="cancel"/>
+                    </footer>
+                </form>
+            </field>
+        </record>
+        
+        <record id="action_show_customer" model="ir.actions.act_window">
+            <field name="name">Abandoned Customer</field>
+            <field name="res_model">customer.wizard</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form</field>
+            <field name="view_id" ref="customer_wizard_form_view"/>
+            <field name="target">new</field>
+        </record>
+        
+        <menuitem id="menu_action_show_customer" 
+                  action="action_show_customer" 
+                  name="Abandoned Customer" 
+                  parent="abandoned_carts.menu_main_abandoned_log"/>
+        
+</odoo>
