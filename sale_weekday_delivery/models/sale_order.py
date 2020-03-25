@@ -24,18 +24,8 @@ class SaleOrder(models.Model):
         "partner_shipping_id.delivery_schedule_sunday",
     )
     def _compute_expected_date(self):
-        """Postpone expected_date to next preferred weekday"""
-        super()._compute_expected_date()
-        for order in self:
-            if order.partner_shipping_id.delivery_schedule == "direct":
-                continue
-            ops = order.partner_shipping_id
-            next_preferred_date = ops._next_delivery_schedule_preferred_date(
-                order.expected_date
-            )
-            if next_preferred_date == order.expected_date:
-                continue
-            order.expected_date = next_preferred_date
+        """Add dependencies to consider fixed weekdays delivery schedule"""
+        return super()._compute_expected_date()
 
     @api.onchange("commitment_date")
     def _onchange_commitment_date(self):
@@ -116,7 +106,14 @@ class SaleOrderLine(models.Model):
             res["date_planned"] = fields.Datetime.to_string(next_preferred_date)
         return res
 
-    @api.depends('product_id', 'customer_lead', 'product_uom_qty', 'order_id.warehouse_id', 'order_id.commitment_date', 'order_id.expected_date')
+    @api.depends(
+        "product_id",
+        "customer_lead",
+        "product_uom_qty",
+        "order_id.warehouse_id",
+        "order_id.commitment_date",
+        "order_id.expected_date"
+    )
     def _compute_qty_at_date(self):
-        # TODO check how computation must be adapted
+        """Trigger computation of qty_at_date when expected_date is updated"""
         return super()._compute_qty_at_date()
