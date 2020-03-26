@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <record id="view_warehouse_inherit" model="ir.ui.view">
+        <field name="name">stock.warehouse.inherit</field>
+        <field name="model">stock.warehouse</field>
+        <field name="inherit_id" ref="stock.view_warehouse" />
+        <field name="arch" type="xml">
+            <field name="partner_id" position="after">
+                <label
+                    string="Cut-off time for delivery orders"
+                    for="order_delivery_cutoff_hours"
+                />
+                <div class="o_row">
+                    <field
+                        class="oe_inline"
+                        name="order_delivery_cutoff_hours"
+                    />:<field class="oe_inline" name="order_delivery_cutoff_minutes" />
+                </div>
+            </field>
+        </field>
+    </record>
+</odoo>
