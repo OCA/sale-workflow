@@ -5,7 +5,7 @@ from odoo import api, fields, models
 
 class CutoffTimeMixin(models.AbstractModel):
 
-    _name = "cutoff.time.mixin"
+    _name = "sale.cutoff.time.mixin"
 
     order_delivery_cutoff_hours = fields.Selection(
         selection="_selection_order_delivery_cutoff_hours", required=True, default="12"
