@@ -25,21 +25,21 @@ Sale Check Preparation Time
 
 |badge1| |badge2| |badge3| |badge4| |badge5| 
 
-This module allows to check preparation time of sale order
+This module allows you to know if the time to prepare a sales order has been respected, based on an order limit time defined on the company.
 
 **Table of contents**
 
 .. contents::
    :local:
 
-Usage
-=====
+Configuration
+=============
 
-To use this module, you need to:
+To configure this module, you need to:
 
 * Go to *Settings > Users & Companies > Companies*.
 * Click on your company.
-* In the General Information of your company, fill in the fields 'Order limit hour' and 'timezone'.
+* In the General Information of your company, fill in the fields 'Order limit hour' and 'Timezone'.
 
 Bug Tracker
 ===========
