@@ -11,9 +11,12 @@ class StockPicking(models.Model):
     @api.multi
     def action_done(self):
         res = super(StockPicking, self).action_done()
-        for picking in filter(lambda x: x.picking_type_id.code == 'outgoing',
-                              self):
-            local_tz = pytz.timezone(picking.company_id.tz)
+        for picking in filter(lambda x: x.picking_type_id.code == 'outgoing' and
+                              x.sale_id, self):
+            if picking.company_id.tz:
+                local_tz = pytz.timezone(picking.company_id.tz)
+            else:
+                local_tz = pytz.timezone('UTC')
             confirmation_date = local_tz.localize(
                 picking.sale_id.confirmation_date)
             order_hour = confirmation_date.hour
