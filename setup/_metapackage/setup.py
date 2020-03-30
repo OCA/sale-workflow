@@ -62,6 +62,7 @@ setuptools.setup(
         'odoo12-addon-sale_product_set_variant',
         'odoo12-addon-sale_shipping_info_helper',
         'odoo12-addon-sale_start_end_dates',
+        'odoo12-addon-sale_stock_delivery_address',
         'odoo12-addon-sale_stock_picking_blocking',
         'odoo12-addon-sale_stock_picking_note',
         'odoo12-addon-sale_stock_secondary_unit',
