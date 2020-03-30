@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <record model="ir.ui.view" id="sale_generator_xml_tree">
+        <field name="model">sale.generator</field>
+        <field name="type">tree</field>
+        <field name="arch" type="xml">
+            <tree name="Partner" colors="blue:state!='done'">
+                <field name="name"/>
+                <field name="date_order"/>
+                <field name="sale_ids"/>
+                <field name="state"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="act_sale_generator_2_sale_order" model="ir.actions.act_window">
+        <field name="name">Sale Order</field>
+        <field name="res_model">sale.order</field>
+        <field name="view_type">form</field>
+        <field name="view_mode">tree,form,graph</field>
+        <field name="context">{}</field>
+        <field name="domain">[('generator_id','=',active_id)]</field>
+    </record>
+
+    <record model="ir.ui.view" id="view_sale_generator_form">
+        <field name="model">sale.generator</field>
+        <field name="type">form</field>
+        <field name="arch" type="xml">
+            <header>
+                <button name="button_generate_sale_orders"
+                        states="draft"
+                        string="Generate Sales"
+                        type="object"
+                        class="oe_highlight"/>
+                <button name="action_confirm"
+                        string="Confirm All Generated Sales"
+                        states="generating"
+                        type="object"
+                        class="oe_highlight"/>
+                <field name="state" widget="statusbar"/>
+            </header>
+            <sheet>
+                <h1>
+                    <label string="Generator" name="generator_label"/>
+                    <field name="name"
+                           class="oe_inline"/>
+                </h1>
+
+                <div class="oe_button_box" name="button_box">
+                    <button class="oe_stat_button"
+                            name="%(act_sale_generator_2_sale_order)d"
+                            type="action"
+                            icon="fa-strikethrough"
+                            string="Sales"/>
+                </div>
+                <group name="header" colspan="2">
+                    <field name="date_order"/>
+                    <field name="tmpl_sale_id"
+                           context="{'default_is_template': True, 'default_active': False, 'tmpl_mode': True,
+                           'default_partner_id': %(dummy_so_generator_partner)d}"
+                           domain="[('is_template', '=', True), ('active', '=', False)]"/>
+                    <field name="warehouse_id"/>
+                </group>
+                <separator string="Customers"/>
+                <span attrs="{'invisible': [('state', '!=', 'draft')]}">In order to add customers, you have two
+                    possibilities:
+                    <ul>
+                        <li>add an existing customer by searching in your
+                            database, for that you can click on add item at the end
+                            of the list.
+                        </li>
+                        <li>create multiple customers simultaneously by launching the
+                            following wizard:
+                            <button name="add_generated_partner"
+                                    string="Create Customer"
+                                    type="object"
+                                    context="{'from_generator_id': active_id}"/>
+                        </li>
+                    </ul>
+                </span>
+                <field name="partner_ids" attrs="{'readonly': [('state', '=', 'done')]}"/>
+                <separator string="Generated Sale Orders"/>
+                <field name="sale_ids" attrs="{'readonly': 1}"/>
+            </sheet>
+        </field>
+    </record>
+
+    <record model="ir.actions.act_window" id="action_sale_generator">
+        <field name="name">Generator</field>
+        <field name="res_model">sale.generator</field>
+        <field name="view_type">form</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+
+    <menuitem name="Batch generation"
+              id="menuitem_batch_generation"
+              parent="sale.sale_order_menu"
+              action="action_sale_generator"/>
+
+    <menuitem name="Generators"
+              id="menuitem_sale_generator"
+              parent="sale_generator.menuitem_batch_generation"
+              action="action_sale_generator"/>
+</odoo>

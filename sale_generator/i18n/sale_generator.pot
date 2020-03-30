@@ -1,0 +1,196 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+#	* sale_generator
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 10.0\n"
+"Report-Msgid-Bugs-To: \n"
+"Last-Translator: <>\n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: sale_generator
+#: code:addons/sale_generator/models/sale_generator.py:63
+#, python-format
+msgid "Can't generate sale order without customer "
+msgstr ""
+
+#. module: sale_generator
+#: model:ir.model.fields,field_description:sale_generator.field_sale_generator_company_id
+msgid "Company"
+msgstr ""
+
+#. module: sale_generator
+#: model:ir.ui.view,arch_db:sale_generator.view_sale_generator_form
+msgid "Confirm All Sale Generated"
+msgstr ""
+
+#. module: sale_generator
+#: model:ir.ui.view,arch_db:sale_generator.view_partner_form
+msgid "Confirm and create a new customer"
+msgstr ""
+
+#. module: sale_generator
+#: model:ir.ui.view,arch_db:sale_generator.view_sale_generator_form
+msgid "Create Customer"
+msgstr ""
+
+#. module: sale_generator
+#: model:ir.model.fields,field_description:sale_generator.field_sale_generator_create_uid
+msgid "Created by"
+msgstr ""
+
+#. module: sale_generator
+#: model:ir.model.fields,field_description:sale_generator.field_sale_generator_create_date
+msgid "Created on"
+msgstr ""
+
+#. module: sale_generator
+#: model:ir.ui.view,arch_db:sale_generator.view_sale_generator_form
+msgid "Customer"
+msgstr ""
+
+#. module: sale_generator
+#: model:ir.actions.act_window,name:sale_generator.action_partner_create_form
+msgid "Customers"
+msgstr ""
+
+#. module: sale_generator
+#: model:ir.model.fields,field_description:sale_generator.field_sale_generator_date_order
+msgid "Date"
+msgstr ""
+
+#. module: sale_generator
+#: model:ir.model.fields,field_description:sale_generator.field_sale_generator_display_name
+msgid "Display Name"
+msgstr ""
+
+#. module: sale_generator
+#: selection:sale.generator,state:0
+msgid "Done"
+msgstr ""
+
+#. module: sale_generator
+#: selection:sale.generator,state:0
+msgid "Draft"
+msgstr ""
+
+#. module: sale_generator
+#: selection:sale.generator,state:0
+msgid "Generating Order"
+msgstr ""
+
+#. module: sale_generator
+#: model:ir.actions.act_window,name:sale_generator.action_sale_generator
+#: model:ir.model.fields,field_description:sale_generator.field_sale_generator_name
+#: model:ir.model.fields,field_description:sale_generator.field_sale_order_generator_id
+#: model:ir.ui.menu,name:sale_generator.choix_generator
+#: model:ir.ui.view,arch_db:sale_generator.view_sale_generator_form
+msgid "Generator"
+msgstr ""
+
+#. module: sale_generator
+#: model:ir.model.fields,field_description:sale_generator.field_sale_generator_id
+msgid "ID"
+msgstr ""
+
+#. module: sale_generator
+#: model:ir.ui.view,arch_db:sale_generator.view_sale_generator_form
+msgid "In order to add customer you have two possibilities:"
+msgstr ""
+
+#. module: sale_generator
+#: model:ir.model.fields,field_description:sale_generator.field_sale_order_is_template
+msgid "Is template"
+msgstr ""
+
+#. module: sale_generator
+#: model:ir.model.fields,field_description:sale_generator.field_sale_generator___last_update
+msgid "Last Modified on"
+msgstr ""
+
+#. module: sale_generator
+#: model:ir.model.fields,field_description:sale_generator.field_sale_generator_write_uid
+msgid "Last Updated by"
+msgstr ""
+
+#. module: sale_generator
+#: model:ir.model.fields,field_description:sale_generator.field_sale_generator_write_date
+msgid "Last Updated on"
+msgstr ""
+
+#. module: sale_generator
+#: model:ir.model,name:sale_generator.model_res_partner
+#: model:ir.model.fields,field_description:sale_generator.field_sale_generator_partner_ids
+msgid "Partner"
+msgstr ""
+
+#. module: sale_generator
+#: model:ir.actions.act_window,name:sale_generator.act_sale_generator_2_sale_order
+msgid "Sale Order"
+msgstr ""
+
+#. module: sale_generator
+#: model:ir.model.fields,field_description:sale_generator.field_sale_generator_tmpl_sale_id
+msgid "Sale Template"
+msgstr ""
+
+#. module: sale_generator
+#: model:ir.model.fields,field_description:sale_generator.field_sale_generator_sale_ids
+#: model:ir.ui.view,arch_db:sale_generator.view_sale_generator_form
+msgid "Sales"
+msgstr ""
+
+#. module: sale_generator
+#: model:ir.model,name:sale_generator.model_sale_order
+msgid "Sales Order"
+msgstr ""
+
+#. module: sale_generator
+#: model:ir.ui.view,arch_db:sale_generator.view_sale_generator_form
+msgid "Start Generating Sale"
+msgstr ""
+
+#. module: sale_generator
+#: model:ir.model.fields,field_description:sale_generator.field_sale_generator_state
+msgid "State"
+msgstr ""
+
+#. module: sale_generator
+#: model:ir.model.fields,help:sale_generator.field_sale_generator_company_id
+msgid "The company is automatically set from your user preferences."
+msgstr ""
+
+#. module: sale_generator
+#: model:ir.model.fields,field_description:sale_generator.field_sale_generator_warehouse_id
+msgid "Warehouse"
+msgstr ""
+
+#. module: sale_generator
+#: model:ir.ui.view,arch_db:sale_generator.view_sale_generator_form
+msgid "adding an existing customer by searching in your\n"
+"                            database\n"
+"                            for that you have to click on add item at the end\n"
+"                            of the list."
+msgstr ""
+
+#. module: sale_generator
+#: model:ir.ui.view,arch_db:sale_generator.view_partner_form
+msgid "close & refresh generator"
+msgstr ""
+
+#. module: sale_generator
+#: model:ir.ui.view,arch_db:sale_generator.view_sale_generator_form
+msgid "creating massively customer by launching the\n"
+"                            following wizard:"
+msgstr ""
+
+#. module: sale_generator
+#: model:ir.model,name:sale_generator.model_sale_generator
+msgid "sale.generator"
+msgstr ""
+

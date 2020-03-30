@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+
+    <record id="view_sale_order_tmpl_hide_sale_order_template_id" model="ir.ui.view">
+        <field name="model">sale.order</field>
+        <field name="inherit_id" ref="sale_management.sale_order_form_quote"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='sale_order_template_id']" position="attributes">
+                <attribute name="attrs">{'invisible': 1}</attribute>
+            </xpath>
+        </field>
+    </record>
+
+    <record id="view_sale_order_tmpl_form" model="ir.ui.view">
+        <field name="model">sale.order</field>
+        <field name="inherit_id" ref="sale_stock.view_order_form_inherit_sale_stock"/>
+        <field name="arch" type="xml">
+            <field name="partner_id" position="after">
+                <field name="is_template" invisible="1"/>
+            </field>
+            <!--Hide irrelevant sections-->
+            <header position="attributes">
+                <attribute name="attrs">{'invisible': [('is_template', '=',
+                    True)]}
+                </attribute>
+            </header>
+            <xpath expr="//h1/field[@name='name']" position="attributes">
+                <attribute name="attrs">{'readonly': [('is_template', '=',
+                    False)]}
+                </attribute>
+                <attribute name="readonly">0</attribute>
+            </xpath>
+            <field name="date_order" position="attributes">
+                <attribute name="attrs">{'invisible': [('is_template', '=',
+                    True)]}
+                </attribute>
+            </field>
+            <field name="warehouse_id" position="attributes">
+                <attribute name="attrs">{'invisible': [('is_template', '=',
+                    True)]}
+                </attribute>
+            </field>
+            <field name="client_order_ref" position="attributes">
+                <attribute name="attrs">{'invisible': [('is_template', '=',
+                    True)]}
+                </attribute>
+            </field>
+            <xpath expr="//field[@name='partner_id']" position="attributes">
+                <attribute name="attrs">{'invisible': [('is_template', '=',
+                    True)]}
+                </attribute>
+            </xpath>
+        </field>
+    </record>
+
+    <record model="ir.actions.act_window" id="action_sale_order_template">
+        <field name="name">Sale Order Templates</field>
+        <field name="res_model">sale.order</field>
+        <field name="view_type">form</field>
+        <field name="view_mode">tree,form</field>
+        <field name="context" eval="{'default_active': False, 'default_is_template': True,
+            'tmpl_mode': True, 'default_partner_id': ref('sale_generator.dummy_so_generator_partner')}"/>
+        <field name="domain">[('is_template', '=', True), ('active', '=', False)]</field>
+    </record>
+
+    <menuitem name="Sale Order Templates"
+              id="menuitem_sale_order_template"
+              parent="sale_generator.menuitem_batch_generation"
+              action="action_sale_order_template"/>
+
+</odoo>
