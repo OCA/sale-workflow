@@ -14,7 +14,7 @@ class SaleOrder(models.Model):
         help=u'True if the 1st delivery meets the announced deadline')
     check_preparation_time = fields.Boolean(
         string='Check preparation time',
-        related='company_id.check_preparation_time', readonly=True, store=True)
+        related='company_id.check_preparation_time', readonly=True)
 
     @api.depends('effective_date')
     def _compute_timely_delivery(self):
