@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    
+    <record id="sale_delivery_date_config_settings" model="res.config.settings">
+        <field name="group_sale_order_dates" eval="True"/>
+    </record>
+    
+    <function model="res.config.settings" name="execute">
+        <value model="res.config.settings"
+               search="[('id', '=', ref('sale_delivery_date_config_settings'))]"/>
+    </function>
+    
+</odoo>

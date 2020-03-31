@@ -6,8 +6,11 @@
        <field name="arch" type="xml">
             <xpath expr="//notebook/page[1]/group[1]/group[@name='social_media']" position="after">
                 <group name='sales' string='Sales'>
-                    <field name="order_limit_hour" widget='float_time'/>
-                    <field name="tz" widget="timezone_mismatch"/>
+                    <field name="check_preparation_time"/>
+                    <field name="order_limit_hour" widget='float_time'
+                           attrs="{'required': [('check_preparation_time', '=', True)], 'invisible': [('check_preparation_time', '!=', True)]}"/>
+                    <field name="tz" widget="timezone_mismatch"
+                           attrs="{'required': [('check_preparation_time', '=', True)], 'invisible': [('check_preparation_time', '!=', True)]}"/>
                 </group>
             </xpath>
        </field>
