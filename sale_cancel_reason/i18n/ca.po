@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: Odoo Server 10.0\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2017-11-23 01:51+0000\n"
-"PO-Revision-Date: 2020-03-17 09:13+0000\n"
+"PO-Revision-Date: 2020-03-31 18:14+0000\n"
 "Last-Translator: mtbochaca <mtbochaca@gmail.com>\n"
 "Language-Team: Catalan (https://www.transifex.com/oca/teams/23907/ca/)\n"
 "Language: ca\n"
@@ -133,7 +133,7 @@ msgstr "Motiu de Cancel·lació de la Comanda de Venda"
 #: model:ir.ui.view,arch_db:sale_cancel_reason.view_sale_order_cancel_reason_form
 #: model:ir.ui.view,arch_db:sale_cancel_reason.view_sale_order_cancel_reason_tree
 msgid "Sale Order Cancel Reasons"
-msgstr "Motius de cancel·lació de la comanda de venda"
+msgstr "Motius Cancel·lació Comandes Venda"
 
 #. module: sale_cancel_reason
 #: model:ir.model,name:sale_cancel_reason.model_sale_order
