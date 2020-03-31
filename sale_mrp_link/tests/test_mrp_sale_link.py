@@ -76,11 +76,11 @@ class TestSaleMrpLink(TransactionCase):
         so = self._create_sale_order(self.partner, "SO2")
         self._create_sale_order_line(so, self.product_a, 1, 10.0)
         so.action_confirm()
-        mo = self.env["mrp.production"].search([("sale_order_id", "=", so.id)])
+        mo = self.env["mrp.production"].search([("sale_order_id", "=", so.id)]).sorted("id")
         self.assertEqual(len(mo), 2)
         action = so.action_view_production()
         mo_ids = action.get("domain")[0][2]
-        self.assertEqual(mo.ids, mo_ids)
+        self.assertEqual(mo.ids.sort(), mo_ids.sort())
         self.assertEqual(len(mo), so.production_count)
         # The first MO will be the one that comes from the SO, the other one
         #  will have the first MO as it's origin.
