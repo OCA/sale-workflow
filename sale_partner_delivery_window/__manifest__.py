@@ -1,8 +1,8 @@
 # Copyright 2020 Camptocamp SA
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl)
 {
-    "name": "Sale weekday delivery",
-    "summary": "Schedule deliver orders according to weekdays preferences",
+    "name": "Sale Partner Delivery Window",
+    "summary": "Schedule delivery orders according to delivery window preferences",
     "version": "13.0.1.0.0",
     "development_status": "Alpha",
     "category": "Warehouse Management",
@@ -11,6 +11,6 @@
     "license": "AGPL-3",
     "application": False,
     "installable": True,
-    "depends": ["sale_stock"],
-    "data": ["views/res_partner.xml"],
+    "depends": ["sale_stock", "stock_partner_delivery_window"],
+    "data": [],
 }
