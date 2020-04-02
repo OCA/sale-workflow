@@ -10,23 +10,8 @@
                 position="inside"
             >
                 <field name="order_delivery_cutoff_preference" />
-                <div
-                    attrs="{'invisible': [('order_delivery_cutoff_preference', '!=', 'partner_cutoff')]}"
-                >
-                    <label
-                        string="Cut-off time for delivery orders"
-                        for="order_delivery_cutoff_hours"
-                    />
-                    <div class="o_row">
-                        <field
-                            class="oe_inline"
-                            name="order_delivery_cutoff_hours"
-                        />:<field
-                            class="oe_inline"
-                            name="order_delivery_cutoff_minutes"
-                        />
-                    </div>
-                </div>
+                <field name="cutoff_time" attrs="{'invisible': [('order_delivery_cutoff_preference', '!=', 'partner_cutoff')]}" />
+                <field name="tz" attrs="{'invisible': [('order_delivery_cutoff_preference', '!=', 'partner_cutoff')]}" />
             </xpath>
         </field>
     </record>

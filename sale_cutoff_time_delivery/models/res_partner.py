@@ -5,7 +5,7 @@ from odoo import fields, models
 
 class ResPartner(models.Model):
     _name = "res.partner"
-    _inherit = ["res.partner", "sale.cutoff.time.mixin"]
+    _inherit = ["res.partner", "time.cutoff.mixin"]
 
     order_delivery_cutoff_preference = fields.Selection(
         [
