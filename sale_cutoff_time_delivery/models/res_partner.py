@@ -25,3 +25,8 @@ class ResPartner(models.Model):
         "order confirmed after 09:00 will have its delivery order postponed "
         "to 09:00 on the following day.",
     )
+
+    def get_cutoff_time(self):
+        res = super().get_cutoff_time()
+        res['tz'] = self.tz
+        return res

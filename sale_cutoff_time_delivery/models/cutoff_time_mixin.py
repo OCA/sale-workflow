@@ -17,7 +17,6 @@ class TimeCutoffMixin(models.AbstractModel):
         return {
             "hour": hour,
             "minute": minute,
-            "tz": self.tz,
         }
 
     @api.model

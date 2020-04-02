@@ -12,3 +12,8 @@ class StockWarehouse(models.Model):
     tz = fields.Selection(
         _tz_get, string='Timezone'
     )
+
+    def get_cutoff_time(self):
+        res = super().get_cutoff_time()
+        res['tz'] = self.tz
+        return res
