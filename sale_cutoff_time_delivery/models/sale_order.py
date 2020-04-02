@@ -12,12 +12,15 @@ class SaleOrder(models.Model):
     def get_cutoff_time(self):
         self.ensure_one()
         partner = self.partner_shipping_id
-        if partner.order_delivery_cutoff_preference == "warehouse_cutoff":
+        if (
+            partner.order_delivery_cutoff_preference == "warehouse_cutoff"
+            and self.warehouse_id.apply_cutoff
+        ):
             return self.warehouse_id.get_cutoff_time()
         elif partner.order_delivery_cutoff_preference == "partner_cutoff":
             return self.partner_shipping_id.get_cutoff_time()
         else:
-            raise exceptions.UserError(_("Invalid cutoff settings"))
+            return {}
 
 
 class SaleOrderLine(models.Model):
@@ -28,13 +31,15 @@ class SaleOrderLine(models.Model):
         res = super()._prepare_procurement_values(group_id=group_id)
         if self.order_id.commitment_date:
             return res
-        date_planned = res.get("date_planned")
         cutoff = self.order_id.get_cutoff_time()
+        if not cutoff:
+            return res
         tz = cutoff.get('tz')
+        date_planned = res.get("date_planned")
         if tz and tz != 'UTC':
             cutoff_time = time(hour=cutoff.get('hour'), minute=cutoff.get('minute'))
             # Convert here to naive datetime in UTC
-            tz_loc = pytz.timezone(self.tz)
+            tz_loc = pytz.timezone(tz)
             utc_loc = pytz.timezone('UTC')
             tz_date_planned = date_planned.astimezone(tz_loc)
             tz_cutoff_datetime = datetime.combine(tz_date_planned, cutoff_time)

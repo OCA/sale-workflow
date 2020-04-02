@@ -6,3 +6,5 @@ from odoo import fields, models
 class StockWarehouse(models.Model):
     _name = "stock.warehouse"
     _inherit = ["stock.warehouse", "time.cutoff.mixin"]
+
+    apply_cutoff = fields.Boolean()

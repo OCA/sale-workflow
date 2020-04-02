@@ -6,8 +6,9 @@
         <field name="inherit_id" ref="stock.view_warehouse" />
         <field name="arch" type="xml">
             <field name="partner_id" position="after">
-                <field name="cutoff_time" />
-                <field name="tz" />
+                <field name="apply_cutoff" />
+                <field name="cutoff_time" attrs="{'invisible': [('apply_cutoff', '!=', True)]}" />
+                <field name="tz" attrs="{'invisible': [('apply_cutoff', '!=', True)]}" />
             </field>
         </field>
     </record>
