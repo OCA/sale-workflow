@@ -44,9 +44,12 @@ class SaleOrderLine(models.Model):
             tz_date_planned = date_planned.astimezone(tz_loc)
             tz_cutoff_datetime = datetime.combine(tz_date_planned, cutoff_time)
             utc_cutoff_datetime = tz_loc.localize(tz_cutoff_datetime).astimezone(utc_loc).replace(
-                tzinfo=None)
+                tzinfo=None
+            )
         else:
-            utc_cutoff_datetime = date_planned.replace(hour=cutoff.get('hour'), minute=cutoff.get('minute'))
+            utc_cutoff_datetime = date_planned.replace(
+                hour=cutoff.get('hour'), minute=cutoff.get('minute')
+            )
         if date_planned <= utc_cutoff_datetime:
             # Postpone delivery for date planned before cutoff to cutoff time
             new_date_planned = date_planned.replace(

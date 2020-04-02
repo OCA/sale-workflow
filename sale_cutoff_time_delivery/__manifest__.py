@@ -11,6 +11,6 @@
     "license": "AGPL-3",
     "application": False,
     "installable": True,
-    "depends": ["sale_stock"],
+    "depends": ["sale_stock", "partner_tz"],
     "data": ["views/res_partner.xml", "views/stock_warehouse.xml"],
 }

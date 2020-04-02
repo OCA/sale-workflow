@@ -4,7 +4,6 @@ import math
 from datetime import time
 
 from odoo import api, fields, models
-from odoo.addons.base.models.res_partner import _tz_get
 
 
 class TimeCutoffMixin(models.AbstractModel):
@@ -12,9 +11,6 @@ class TimeCutoffMixin(models.AbstractModel):
     _name = "time.cutoff.mixin"
 
     cutoff_time = fields.Float()
-    tz = fields.Selection(
-        _tz_get, string='Timezone'
-    )
 
     def get_cutoff_time(self):
         hour, minute = self._get_hour_min_from_value(self.cutoff_time)
