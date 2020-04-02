@@ -48,17 +48,17 @@ class SaleOrderLine(models.Model):
             )
         else:
             utc_cutoff_datetime = date_planned.replace(
-                hour=cutoff.get('hour'), minute=cutoff.get('minute')
+                hour=cutoff.get('hour'), minute=cutoff.get('minute'), second=0
             )
         if date_planned <= utc_cutoff_datetime:
             # Postpone delivery for date planned before cutoff to cutoff time
             new_date_planned = date_planned.replace(
-                hour=utc_cutoff_datetime.hour, minute=utc_cutoff_datetime.minute
+                hour=utc_cutoff_datetime.hour, minute=utc_cutoff_datetime.minute, second=0
             )
         # Postpone delivery for order confirmed after cutoff to day after
         elif date_planned > utc_cutoff_datetime:
             new_date_planned = date_planned.replace(
-                hour=utc_cutoff_datetime.hour, minute=utc_cutoff_datetime.minute
+                hour=utc_cutoff_datetime.hour, minute=utc_cutoff_datetime.minute, second=0
             ) + timedelta(days=1)
         res["date_planned"] = new_date_planned
         return res
