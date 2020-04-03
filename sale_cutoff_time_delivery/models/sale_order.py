@@ -73,10 +73,13 @@ class SaleOrderLine(models.Model):
         """Postpone expected_date to next cut-off"""
         expected_date = super()._expected_date()
         cutoff = self.order_id.get_cutoff_time()
+        if not cutoff:
+            return expected_date
         utc_cutoff_time = tz_utils.tz_to_utc_time(
             cutoff.get('tz'),
-            time(hour=cutoff.get('hour'), minute=cutoff.get('minute'))
+            time(hour=cutoff.get('hour'), minute=cutoff.get('minute')),
+            base_date=expected_date
         )
-        if datetime.now().time() <= utc_cutoff_time:
+        if expected_date <= utc_cutoff_time:
             return expected_date
         return expected_date + timedelta(days=1)
