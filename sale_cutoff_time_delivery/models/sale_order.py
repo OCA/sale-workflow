@@ -80,6 +80,6 @@ class SaleOrderLine(models.Model):
             time(hour=cutoff.get('hour'), minute=cutoff.get('minute')),
             base_date=expected_date
         )
-        if expected_date <= utc_cutoff_time:
+        if expected_date.time() <= utc_cutoff_time:
             return expected_date
         return expected_date + timedelta(days=1)
