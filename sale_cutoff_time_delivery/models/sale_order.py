@@ -75,11 +75,16 @@ class SaleOrderLine(models.Model):
         cutoff = self.order_id.get_cutoff_time()
         if not cutoff:
             return expected_date
-        utc_cutoff_time = tz_utils.tz_to_utc_time(
-            cutoff.get('tz'),
-            time(hour=cutoff.get('hour'), minute=cutoff.get('minute')),
-            base_date=expected_date
-        )
+        cutoff_tz = cutoff.get('tz')
+        cutoff_time = time(hour=cutoff.get('hour'), minute=cutoff.get('minute'))
+        if cutoff_tz:
+            utc_cutoff_time = tz_utils.tz_to_utc_time(
+                cutoff_tz,
+                cutoff_time,
+                base_date=expected_date
+            )
+        else:
+            utc_cutoff_time = cutoff_time
         if expected_date.time() <= utc_cutoff_time:
             return expected_date
         return expected_date + timedelta(days=1)
