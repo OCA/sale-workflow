@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <template id="report_saleorder_document" inherit_id="sale.report_saleorder_document">
+        <xpath expr="//div[@name='total']/div/table/tr[1]" position="before">
+            <t t-if="doc.global_discount_ids">
+                <tr>
+                    <td><strong>Subtl. before disc.</strong></td>
+                    <td class="text-right">
+                        <span t-field="doc.amount_untaxed_before_global_discounts"
+                            t-options='{"widget": "monetary", "display_currency": doc.pricelist_id.currency_id}'/>
+                    </td>
+                </tr>
+                <tr style="border-bottom:1px solid #dddddd;">
+                    <td><strong>Global Discounts</strong><br />
+                    <t t-esc="'→'.join(['{:.2f}%'.format(x.discount) for x in doc.global_discount_ids])"/></td>
+                    <td class="text-right">
+                        <span t-field="doc.amount_global_discount"
+                            t-options='{"widget": "monetary", "display_currency": doc.pricelist_id.currency_id}'/>
+                    </td>
+                </tr>
+            </t>
+        </xpath>
+    </template>
+
+</odoo>
