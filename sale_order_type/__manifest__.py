@@ -1,6 +1,6 @@
 # Copyright 2015 Carlos Sánchez Cifuentes <csanchez@grupovermon.com>
 # Copyright 2015-2016 Oihane Crucelaegui <oihane@avanzosc.com>
-# Copyright 2015-2018 Pedro M. Baeza <pedro.baeza@tecnativa.com>
+# Copyright 2015-2020 Tecnativa - Pedro M. Baeza
 # Copyright 2016 Lorenzo Battistini
 # Copyright 2016 Carlos Dauden <carlos.dauden@tecnativa.com>
 # Copyright 2018 David Vidal <david.vidal@tecnativa.com>
