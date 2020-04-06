@@ -1,4 +1,5 @@
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
+# Copyright 2020 Tecnativa - Pedro M. Baeza
 
 from odoo import api, fields, models
 
@@ -6,24 +7,34 @@ from odoo import api, fields, models
 class SaleOrder(models.Model):
     _inherit = "sale.order"
 
-    def _get_order_type(self):
-        return self.env["sale.order.type"].search([], limit=1)
-
     type_id = fields.Many2one(
-        comodel_name="sale.order.type", string="Type", default=_get_order_type
+        comodel_name="sale.order.type",
+        string="Type",
+        compute="_compute_sale_type_id",
+        readonly=False,
+        store=True,
     )
 
-    @api.onchange("partner_id")
-    def onchange_partner_id(self):
-        super(SaleOrder, self).onchange_partner_id()
-        sale_type = (
-            self.partner_id.sale_type or self.partner_id.commercial_partner_id.sale_type
-        )
-        if sale_type:
-            self.type_id = sale_type
+    @api.depends("partner_id", "company_id")
+    def _compute_sale_type_id(self):
+        for record in self:
+            if not record.partner_id:
+                record.sale_type_id = self.env["sale.order.type"].search([], limit=1)
+            else:
+                sale_type = (
+                    record.partner_id.with_context(
+                        force_company=record.company_id.id
+                    ).sale_type
+                    or self.partner_id.commercial_partner_id.with_context(
+                        force_company=record.company_id.id
+                    ).sale_type
+                )
+                if sale_type:
+                    record.type_id = sale_type
 
     @api.onchange("type_id")
     def onchange_type_id(self):
+        # TODO: To be changed to computed stored readonly=False if possible in v14?
         vals = {}
         for order in self:
             vals = {}
