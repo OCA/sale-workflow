@@ -1,7 +1,7 @@
 # Copyright 2020 Akretion France (http://www.akretion.com)
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
-from openerp import fields, models, api
+from openerp import fields, models
 import pytz
 
 
@@ -24,8 +24,3 @@ class ResCompany(models.Model):
         string='Check preparation time',
         help=u'True if you want check the preparation time '
              u'of the customer order')
-
-    @api.onchange('check_preparation_time')
-    def _onchange_check_preparation_time(self):
-        if self.check_preparation_time and not self.tz:
-            self.tz = self.env.context.get('tz' or '')

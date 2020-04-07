@@ -6,7 +6,7 @@
         <field name="arch" type="xml">
             <xpath expr="//field[@name='effective_date']" position="after">
                 <field name="check_preparation_time" invisible="1"/>
-                <field name="timely_delivery" attrs="{'invisible': [('check_preparation_time', '!=', True)]}"/>
+                <field name="on_time_delivery" attrs="{'invisible': [('check_preparation_time', '!=', True)]}"/>
             </xpath>
         </field>
     </record>

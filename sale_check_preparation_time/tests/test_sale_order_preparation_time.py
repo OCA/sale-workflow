@@ -1,21 +1,22 @@
 # Copyright 2020 Akretion France (http://www.akretion.com)
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
-from odoo.tests.common import TransactionCase
+from odoo.tests.common import SavepointCase
 from datetime import datetime
 
 
-class TestSaleOrderPreparationTime(TransactionCase):
+class TestSaleOrderPreparationTime(SavepointCase):
 
-    def setUp(self):
-        super(TestSaleOrderPreparationTime, self).setUp()
-        self.sale1 = self.env.ref('sale.sale_order_1')
-        self.sale3 = self.env.ref('sale.sale_order_3')
-        self.sale5 = self.env.ref('sale.sale_order_5')
-        self.company = self.env.ref('base.main_company')
-        self.company.check_preparation_time = True
-        self.company.order_limit_hour = 11.0
-        self.company.tz = 'Europe/Brussels'
+    @classmethod
+    def setUpClass(cls):
+        super(TestSaleOrderPreparationTime, cls).setUpClass()
+        cls.sale1 = cls.env.ref('sale.sale_order_1')
+        cls.sale3 = cls.env.ref('sale.sale_order_3')
+        cls.sale5 = cls.env.ref('sale.sale_order_5')
+        cls.company = cls.env.ref('base.main_company')
+        cls.company.check_preparation_time = True
+        cls.company.order_limit_hour = 11.0
+        cls.company.tz = 'Europe/Brussels'
 
     def test_sale_confirmed_before_time_limit(self):
         self.sale1.action_confirm()
@@ -23,7 +24,7 @@ class TestSaleOrderPreparationTime(TransactionCase):
             hour=10)
         self.sale1.picking_ids.move_line_ids.write({'qty_done': 1})
         self.sale1.picking_ids.action_done()
-        self.assertEquals(self.sale1.timely_delivery, True)
+        self.assertEquals(self.sale1.on_time_delivery, True)
 
     def test_sale_confirmed_after_time_limit(self):
         self.sale3.action_confirm()
@@ -31,7 +32,7 @@ class TestSaleOrderPreparationTime(TransactionCase):
             hour=15)
         self.sale3.picking_ids.move_line_ids.write({'qty_done': 1})
         self.sale3.picking_ids.action_done()
-        self.assertNotEquals(self.sale3.timely_delivery, True)
+        self.assertNotEquals(self.sale3.on_time_delivery, True)
 
     def test_late_delivery(self):
         self.sale5.action_confirm()
@@ -39,4 +40,4 @@ class TestSaleOrderPreparationTime(TransactionCase):
             day=(datetime.now().day - 3))
         self.sale5.picking_ids.move_line_ids.write({'qty_done': 1})
         self.sale5.picking_ids.action_done()
-        self.assertNotEquals(self.sale5.timely_delivery, True)
+        self.assertNotEquals(self.sale5.on_time_delivery, True)

@@ -11,9 +11,8 @@
     'license': 'AGPL-3',
     'depends': ['sale_management', 'sale_stock'],
     'data': [
-        'data/res_config_data.xml',
         'views/sale_order.xml',
-        'views/res_company.xml',
+        'views/res_config_settings.xml',
     ],
     'installable': True,
 }
