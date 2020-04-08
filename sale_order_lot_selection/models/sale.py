@@ -9,7 +9,7 @@ class SaleOrderLine(models.Model):
 
     @api.onchange("product_id")
     def product_id_change(self):
-        super(SaleOrderLine, self).product_id_change()
+        super().product_id_change()
         self.lot_id = False
 
     @api.onchange("product_id")
@@ -53,6 +53,8 @@ class SaleOrder(models.Model):
 
     @api.model
     def _check_move_state(self, line):
+        if self.env.context.get("skip_check_lot_selection_move", False):
+            return True
         if line.lot_id:
             move = self.get_move_from_line(line)
             if move.state == "confirmed":
@@ -66,6 +68,12 @@ class SaleOrder(models.Model):
 
     def action_confirm(self):
         res = super(SaleOrder, self.with_context(sol_lot_id=True)).action_confirm()
+        self._check_related_moves()
+        return res
+
+    def _check_related_moves(self):
+        if self.env.context.get("skip_check_lot_selection_qty", False):
+            return True
         for line in self.order_line:
             if line.lot_id:
                 unreserved_moves = line.move_ids.filtered(
@@ -76,4 +84,4 @@ class SaleOrder(models.Model):
                         _("Can't reserve products for lot %s") % line.lot_id.name
                     )
             self._check_move_state(line)
-        return res
+        return True
