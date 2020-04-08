@@ -7,7 +7,6 @@ class SaleOrderLine(models.Model):
 
     lot_id = fields.Many2one("stock.production.lot", "Lot", copy=False)
 
-    @api.multi
     @api.onchange("product_id")
     def product_id_change(self):
         super(SaleOrderLine, self).product_id_change()
@@ -65,7 +64,6 @@ class SaleOrder(models.Model):
                 )
         return True
 
-    @api.multi
     def action_confirm(self):
         res = super(SaleOrder, self.with_context(sol_lot_id=True)).action_confirm()
         for line in self.order_line:
