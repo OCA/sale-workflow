@@ -1,9 +1,7 @@
 # © 2015 Agile Business Group
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
-
-import openerp.tests.common as test_common
-
-from odoo.exceptions import Warning
+import odoo.tests.common as test_common
+from odoo.exceptions import UserError
 
 
 class TestSaleOrderLotSelection(test_common.SingleTransactionCase):
@@ -31,7 +29,7 @@ class TestSaleOrderLotSelection(test_common.SingleTransactionCase):
 
     def _stock_quantity(self, product, lot, location):
         return product.with_context(
-            {"lot_id": lot.id, "location": location.id,}
+            {"lot_id": lot.id, "location": location.id}
         ).qty_available
 
     def test_sale_order_lot_selection(self):
@@ -141,6 +139,7 @@ class TestSaleOrderLotSelection(test_common.SingleTransactionCase):
                         "name": "0000010",
                         "product_id": self.product_57.id,
                         "product_qty": ops.product_qty,
+                        "company_id": self.env.company.id,
                     }
                 )
                 ops.move_line_ids.write(
@@ -152,6 +151,7 @@ class TestSaleOrderLotSelection(test_common.SingleTransactionCase):
                         "name": "0000011",
                         "product_id": self.product_46.id,
                         "product_qty": ops.product_qty,
+                        "company_id": self.env.company.id,
                     }
                 )
                 ops.move_line_ids.write(
@@ -163,6 +163,7 @@ class TestSaleOrderLotSelection(test_common.SingleTransactionCase):
                         "name": "0000012",
                         "product_id": self.product_12.id,
                         "product_qty": ops.product_qty,
+                        "company_id": self.env.company.id,
                     }
                 )
                 ops.move_line_ids.write(
@@ -186,7 +187,7 @@ class TestSaleOrderLotSelection(test_common.SingleTransactionCase):
 
         # create order
         self.order1 = self.env["sale.order"].create(
-            {"partner_id": self.env.ref("base.res_partner_1").id,}
+            {"partner_id": self.env.ref("base.res_partner_1").id}
         )
         self.sol1 = self.env["sale.order.line"].create(
             {
@@ -198,7 +199,7 @@ class TestSaleOrderLotSelection(test_common.SingleTransactionCase):
             }
         )
         self.order2 = self.env["sale.order"].create(
-            {"partner_id": self.env.ref("base.res_partner_1").id,}
+            {"partner_id": self.env.ref("base.res_partner_1").id}
         )
         self.sol2a = self.env["sale.order.line"].create(
             {
@@ -219,7 +220,7 @@ class TestSaleOrderLotSelection(test_common.SingleTransactionCase):
             }
         )
         self.order3 = self.env["sale.order"].create(
-            {"partner_id": self.env.ref("base.res_partner_1").id,}
+            {"partner_id": self.env.ref("base.res_partner_1").id}
         )
         self.sol3 = self.env["sale.order.line"].create(
             {
@@ -231,7 +232,7 @@ class TestSaleOrderLotSelection(test_common.SingleTransactionCase):
             }
         )
         self.order4 = self.env["sale.order"].create(
-            {"partner_id": self.env.ref("base.res_partner_1").id,}
+            {"partner_id": self.env.ref("base.res_partner_1").id}
         )
         self.sol4 = self.env["sale.order.line"].create(
             {
@@ -258,7 +259,7 @@ class TestSaleOrderLotSelection(test_common.SingleTransactionCase):
         self.sol3.lot_id = lot10.id
         # I'll try to confirm it to check lot reservation:
         # lot10 was delivered by order1
-        with self.assertRaises(Warning):
+        with self.assertRaises(UserError):
             self.order3.action_confirm()
 
         # also test on_change for order2
@@ -288,5 +289,5 @@ class TestSaleOrderLotSelection(test_common.SingleTransactionCase):
         self.assertEqual(lot12_qty_available, 0)
         # I'll try to confirm it to check lot reservation:
         # lot11 has 1 availability and order4 has quantity 2
-        with self.assertRaises(Warning):
+        with self.assertRaises(UserError):
             self.order4.action_confirm()
