@@ -21,14 +21,13 @@ msgstr ""
 "%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2;\n"
 
 #. module: sale_order_lot_selection
-#: code:addons/sale_order_lot_selection/models/sale.py:63
-#: code:addons/sale_order_lot_selection/models/sale.py:79
+#: code:addons/sale_order_lot_selection/models/sale_order.py:0
 #, python-format
 msgid "Can't reserve products for lot %s"
 msgstr "Nije moguće rezervirati proizvode za lot %s"
 
 #. module: sale_order_lot_selection
-#: code:addons/sale_order_lot_selection/models/sale.py:52
+#: code:addons/sale_order_lot_selection/models/sale_order.py:0
 #, python-format
 msgid "Can't retrieve lot on stock"
 msgstr "Nije moguće dohvatiti lot na skladištu"
@@ -41,8 +40,7 @@ msgstr "Lot"
 #. module: sale_order_lot_selection
 #: model:ir.model,name:sale_order_lot_selection.model_sale_order
 #, fuzzy
-#| msgid "Sales Order"
-msgid "Sale Order"
+msgid "Sales Order"
 msgstr "Prodajni nalog"
 
 #. module: sale_order_lot_selection
