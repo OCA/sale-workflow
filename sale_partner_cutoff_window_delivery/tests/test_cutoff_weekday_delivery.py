@@ -6,7 +6,7 @@ from odoo import fields
 from odoo.tests import SavepointCase
 
 
-class TestSaleCutoffWeekdayDelivery(SavepointCase):
+class TestSaleCutoffDeliveryWindow(SavepointCase):
     @classmethod
     def setUpClass(cls):
         super().setUpClass()
