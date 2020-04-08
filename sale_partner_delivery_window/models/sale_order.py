@@ -1,7 +1,11 @@
 # Copyright 2020 Camptocamp SA
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl)
+import logging
+
 from odoo import _, api, fields, models
 from odoo.tools.misc import format_datetime
+
+_logger = logging.getLogger(__name__)
 
 
 class SaleOrder(models.Model):
@@ -79,6 +83,10 @@ class SaleOrderLine(models.Model):
             # time and delivery week days must have been considered
             or self.order_id.commitment_date
         ):
+            _logger.debug(
+                "Commitment date set on order %s. Delivery window not applied "
+                "on line." % self.order_id
+            )
             return res
         # If no commitment date is set, we must consider next preferred delivery
         #  weekday to postpone date_planned
@@ -88,7 +96,18 @@ class SaleOrderLine(models.Model):
             from_date=date_planned
         )
         if next_preferred_date != date_planned:
+            _logger.debug(
+                "Delivery window applied for order %s. Date planned for line %s"
+                " rescheduled from %s to %s"
+                % (self.order_id, self, date_planned, next_preferred_date)
+            )
             res["date_planned"] = next_preferred_date
+        else:
+            _logger.debug(
+                "Delivery window not applied for order %s. Date planned for line %s"
+                " already in delivery window"
+                % (self.order_id, self)
+            )
         return res
 
     @api.depends(
