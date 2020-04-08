@@ -1,10 +1,14 @@
 # Copyright 2020 Camptocamp SA
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl)
+import logging
 import pytz
 from datetime import datetime, time, timedelta
 
 from odoo import _, api, exceptions, fields, models
 from odoo.addons.partner_tz.tools import tz_utils
+
+_logger = logging.getLogger(__name__)
+
 
 
 class SaleOrder(models.Model):
@@ -39,9 +43,31 @@ class SaleOrderLine(models.Model):
         """Postpone delivery according to cutoff time"""
         res = super()._prepare_procurement_values(group_id=group_id)
         if self.order_id.commitment_date:
+            _logger.debug(
+                "Commitment date set on order %s. Cutoff time not applied "
+                "on line." % self.order_id
+            )
             return res
         cutoff = self.order_id.get_cutoff_time()
+        partner = self.order_id.partner_shipping_id
         if not cutoff:
+            if not self.order_id.warehouse_id.apply_cutoff:
+                _logger.debug(
+                    "No cutoff applied on order %s as partner %s is set to use "
+                    "%s and warehouse %s doesn't apply cutoff." % (
+                        self.order_id,
+                        partner,
+                        partner.order_delivery_cutoff_preference,
+                        self.order_id.warehouse_id
+                    )
+                )
+            else:
+                _logger.warning(
+                    "No cutoff applied on order %s. %s time not applied"
+                    "on line %s." % (
+                        self.order_id, partner.order_delivery_cutoff_preference, self
+                    )
+                )
             return res
         tz = cutoff.get('tz')
         date_planned = res.get("date_planned")
@@ -66,6 +92,13 @@ class SaleOrderLine(models.Model):
             new_date_planned = date_planned.replace(
                 hour=utc_cutoff_datetime.hour, minute=utc_cutoff_datetime.minute, second=0
             ) + timedelta(days=1)
+        _logger.debug(
+            "%s applied on order %s. Date planned for line %s"
+            " rescheduled from %s to %s" % (
+                partner.order_delivery_cutoff_preference, self.order_id,
+                self, date_planned, new_date_planned
+            )
+        )
         res["date_planned"] = new_date_planned
         return res
 
