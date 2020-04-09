@@ -14,9 +14,21 @@ class TestSaleOrderPreparationTime(SavepointCase):
         cls.sale3 = cls.env.ref('sale.sale_order_3')
         cls.sale5 = cls.env.ref('sale.sale_order_5')
         cls.company = cls.env.ref('base.main_company')
-        cls.company.check_preparation_time = True
-        cls.company.order_limit_hour = 11.0
-        cls.company.tz = 'Europe/Brussels'
+        cls.company.check_preparation_time = False
+        cls.company.order_limit_hour = 0.0
+        cls.company.tz = ''
+        cls.env.user.tz = 'Europe/Brussels'
+        cls.config_settings = cls.env['res.config.settings'].create({
+            'group_sale_order_dates': True,
+            'check_preparation_time': True,
+            'order_limit_hour': 11.0})
+        cls.config_settings.get_values()
+        cls.config_settings.set_values()
+
+    def test_settings_on_company(self):
+        self.assertEquals(self.company.check_preparation_time, True)
+        self.assertEquals(self.company.order_limit_hour, 11.0)
+        self.assertEquals(self.company.tz, 'Europe/Brussels')
 
     def test_sale_confirmed_before_time_limit(self):
         self.sale1.action_confirm()
