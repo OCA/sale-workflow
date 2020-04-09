@@ -82,9 +82,9 @@ msgid "Incoterm"
 msgstr ""
 
 #. module: sale_order_type
-#: model:ir.model,name:sale_order_type.model_account_invoice
-msgid "Invoice"
-msgstr "Factuur"
+#: model:ir.model,name:sale_order_type.model_account_move
+msgid "Journal Entries"
+msgstr ""
 
 #. module: sale_order_type
 #: model:ir.model.fields,field_description:sale_order_type.field_sale_order_type____last_update
@@ -128,21 +128,21 @@ msgid "Pricelist"
 msgstr ""
 
 #. module: sale_order_type
-#: model:ir.model,name:sale_order_type.model_sale_order
-#, fuzzy
-msgid "Sale Order"
-msgstr "Verkooporder"
-
-#. module: sale_order_type
 #: model:ir.model.fields,field_description:sale_order_type.field_res_partner__sale_type
 #: model:ir.model.fields,field_description:sale_order_type.field_res_users__sale_type
 msgid "Sale Order Type"
 msgstr ""
 
 #. module: sale_order_type
-#: model:ir.model.fields,field_description:sale_order_type.field_account_invoice__sale_type_id
+#: model:ir.model.fields,field_description:sale_order_type.field_account_move__sale_type_id
 msgid "Sale Type"
 msgstr ""
+
+#. module: sale_order_type
+#: model:ir.model,name:sale_order_type.model_sale_order
+#, fuzzy
+msgid "Sales Order"
+msgstr "Verkooporder"
 
 #. module: sale_order_type
 #: model_terms:ir.ui.view,arch_db:sale_order_type.res_partner_sale_type_form_view
@@ -184,6 +184,9 @@ msgstr ""
 #: model_terms:ir.ui.view,arch_db:sale_order_type.sot_sale_order_type_search_view
 msgid "Warehouse"
 msgstr "Magazijn"
+
+#~ msgid "Invoice"
+#~ msgstr "Factuur"
 
 #~ msgid "Partner"
 #~ msgstr "Relatie"
