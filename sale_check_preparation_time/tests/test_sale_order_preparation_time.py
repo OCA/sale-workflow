@@ -17,11 +17,11 @@ class TestSaleOrderPreparationTime(SavepointCase):
         cls.company.check_preparation_time = False
         cls.company.order_limit_hour = 0.0
         cls.company.tz = ''
-        cls.env.user.tz = 'Europe/Brussels'
         cls.config_settings = cls.env['res.config.settings'].create({
             'group_sale_order_dates': True,
             'check_preparation_time': True,
-            'order_limit_hour': 11.0})
+            'order_limit_hour': 11.0,
+            'tz': 'Europe/Brussels'})
         cls.config_settings.get_values()
         cls.config_settings.set_values()
 
