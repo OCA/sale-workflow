@@ -37,12 +37,13 @@ class ResConfigSettings(models.TransientModel):
         res = super(ResConfigSettings, self).get_values()
         res.update({
             'check_preparation_time': ast.literal_eval(
-                str(self.env['ir.config_parameter'].sudo().
-            get_param('sale_check_preparation_time.check_preparation_time'))),
-            'order_limit_hour': float(self.env['ir.config_parameter'].sudo().
-            get_param('sale_check_preparation_time.order_limit_hour')),
-            'tz': self.env['ir.config_parameter'].sudo().
-            get_param('sale_check_preparation_time.tz')})
+                str(self.env['ir.config_parameter'].sudo().get_param(
+                    'sale_check_preparation_time.check_preparation_time'))),
+            'order_limit_hour': float(
+                self.env['ir.config_parameter'].sudo().get_param(
+                    'sale_check_preparation_time.order_limit_hour')),
+            'tz': self.env['ir.config_parameter'].sudo().get_param(
+                'sale_check_preparation_time.tz')})
         return res
 
     @api.multi
