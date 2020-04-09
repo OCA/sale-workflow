@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <record id="view_order_tree_lot" model="ir.ui.view">
+        <field name="model">sale.order</field>
+        <field name="inherit_id" ref="sale.view_order_form" />
+        <field name="arch" type="xml">
+            <xpath
+                expr="//field[@name='order_line']/tree/field[@name='product_id']"
+                position="after"
+            >
+                <field
+                    name="lot_id"
+                    domain="[('product_id','=', product_id)]"
+                    context="{'default_product_id': product_id}"
+                    groups="stock.group_production_lot"
+                />
+            </xpath>
+            <xpath
+                expr="//field[@name='order_line']/form/group/group/field[@name='product_id']"
+                position="after"
+            >
+                <field
+                    name="lot_id"
+                    domain="[('product_id','=', product_id)]"
+                    context="{'default_product_id': product_id}"
+                    groups="stock.group_production_lot"
+                />
+            </xpath>
+        </field>
+    </record>
+</odoo>
