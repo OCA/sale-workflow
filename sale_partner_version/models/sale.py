@@ -10,7 +10,7 @@ class SaleOrder(models.Model):
 
     @api.multi
     def action_confirm(self):
-        address_fields = ['partner_shipping_id', 'partner_invoice_id']
+        address_fields = ["partner_shipping_id", "partner_invoice_id"]
         for order in self:
             for field in address_fields:
                 order[field] = order[field].get_address_version()

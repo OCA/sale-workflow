@@ -6,10 +6,9 @@ from odoo.tests.common import TransactionCase
 
 
 class TestSalePartnerVersion(TransactionCase):
-
     def setUp(self):
         super(TestSalePartnerVersion, self).setUp()
-        self.sale = self.env.ref('sale.sale_order_1')
+        self.sale = self.env.ref("sale.sale_order_1")
 
     def test_sale_version_partner(self):
         self.assertFalse(self.sale.partner_invoice_id.version_hash)
