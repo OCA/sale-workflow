@@ -29,7 +29,7 @@ class SaleOrder(models.Model):
 
     applied_promotion_rule_ids = fields.Many2many(
         "sale.promotion.rule",
-        string="Promotion rules",
+        string="Applied Promotion rules",
         compute="_compute_applied_promotion_rule_ids",
     )
 
