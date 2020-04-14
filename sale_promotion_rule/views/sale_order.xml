@@ -18,9 +18,9 @@
         <field name="model">sale.order</field>
         <field name="inherit_id" ref="sale.view_order_form" />
         <field name="arch" type="xml">
-            <field name="note" position="before">
+            <group name="sale_total" position="after">
                 <div class="oe_edit_only oe_inline" colspan="2">
-                    <label class="oe_form_label_help" string="Promotions" />
+                    <label for="applied_promotion_rule_ids" class="oe_form_label_help" string="Promotions"/>
                     <button
                         name="apply_promotions"
                         states="draft,sent"
@@ -43,7 +43,7 @@
                         class="oe_edit_only oe_link"
                     />
                 </div>
-            </field>
+            </group>
             <xpath expr="//page[1]" position="after">
                 <page name="promotions" string="Applied Promotions">
                     <group name="promotions">
