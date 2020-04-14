@@ -4,7 +4,7 @@
 {
     "name": "Sale Promotion Rule",
     "summary": "Module to manage promotion rule on sale order",
-    "version": "10.0.2.0.2",
+    "version": "12.0.1.0.0",
     "development_status": "Beta",
     "category": "Sale",
     "website": "https://github.com/OCA/sale-workflow",
@@ -12,11 +12,12 @@
     "license": "AGPL-3",
     "application": False,
     "installable": True,
-    "depends": ["sale",],
+    "depends": ["sale"],
     "data": [
         "wizards/sale_order_add_coupon.xml",
         "views/sale_order.xml",
         "views/sale_promotion_rule.xml",
         "security/ir.model.access.csv",
     ],
+    "demo": ["demo/product.xml"],
 }

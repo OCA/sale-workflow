@@ -5,8 +5,8 @@ from odoo import api, fields, models
 
 
 class SaleOrderAddCoupon(models.TransientModel):
-
     _name = "sale.order.add.coupon"
+    _description = "Wizard to add coupon to a sale order"
 
     name = fields.Char(required=True)
 
