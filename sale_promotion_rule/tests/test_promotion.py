@@ -47,7 +47,6 @@ class AbstractCommonPromotionCase(object):
             "discount_product_id": self.discount_product_id.id,
             "discount_amount_currency_id": self.env.user.company_id.currency_id.id,
             "minimal_amount": 50.00,
-            "restriction_amount_field": "amount_untaxed",
             "multi_rule_strategy": "use_best",
         }
 
@@ -57,7 +56,7 @@ class AbstractCommonPromotionCase(object):
             "Product Price"
         )
         self.sale_promotion_rule = self.env["sale.promotion.rule"]
-        self.discount_product_id = self.env.ref("product.membership_0")
+        self.discount_product_id = self.env.ref("sale_promotion_rule.coupon")
         data_coupon = self._get_promotion_rule_coupon_values()
         self.promotion_rule_coupon = self.sale_promotion_rule.search(
             [("name", "=", data_coupon["name"])]
@@ -197,6 +196,7 @@ class PromotionCase(TransactionCase, AbstractCommonPromotionCase):
         )
 
     def test_usage_restriction(self):
+        self.promotion_rule_auto.minimal_amount = 999999999  # disable
         self.promotion_rule_coupon.usage_restriction = "one_per_partner"
         self.promotion_rule_coupon.multi_rule_strategy = "exclusive"
         self.promotion_rule_coupon.sequence = 10
