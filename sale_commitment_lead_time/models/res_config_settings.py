@@ -38,12 +38,12 @@ class ResConfigSettings(models.TransientModel):
         res.update({
             'check_preparation_time': ast.literal_eval(
                 str(self.env['ir.config_parameter'].sudo().get_param(
-                    'sale_check_preparation_time.check_preparation_time'))),
+                    'sale_commitment_lead_time.check_preparation_time'))),
             'order_limit_hour': float(
                 self.env['ir.config_parameter'].sudo().get_param(
-                    'sale_check_preparation_time.order_limit_hour')),
+                    'sale_commitment_lead_time.order_limit_hour')),
             'tz': self.env['ir.config_parameter'].sudo().get_param(
-                'sale_check_preparation_time.tz')})
+                'sale_commitment_lead_time.tz')})
         return res
 
     @api.multi
@@ -52,13 +52,13 @@ class ResConfigSettings(models.TransientModel):
         if not self.group_sale_order_dates and self.check_preparation_time:
             self.check_preparation_time = False
         self.env['ir.config_parameter'].sudo().set_param(
-            'sale_check_preparation_time.check_preparation_time',
+            'sale_commitment_lead_time.check_preparation_time',
             self.check_preparation_time)
         self.env['ir.config_parameter'].sudo().set_param(
-            'sale_check_preparation_time.order_limit_hour',
+            'sale_commitment_lead_time.order_limit_hour',
             self.order_limit_hour)
         self.env['ir.config_parameter'].sudo().set_param(
-            'sale_check_preparation_time.tz',
+            'sale_commitment_lead_time.tz',
             self.tz)
         if self.company_id.check_preparation_time != self.check_preparation_time:
             self.company_id.check_preparation_time = self.check_preparation_time
