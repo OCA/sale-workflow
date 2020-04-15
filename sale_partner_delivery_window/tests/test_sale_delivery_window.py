@@ -19,16 +19,30 @@ class TestSaleDeliveryWindow(SavepointCase):
                 "name": "Delivery address",
                 "parent_id": cls.customer.id,
                 "delivery_time_preference": "time_windows",
-                "delivery_time_window_ids": [(0, 0, {
-                    'time_window_start': 8.0,
-                    'time_window_end': 18.00,
-                    'time_window_weekday_ids': [
-                        (6, 0, [
-                            cls.env.ref('base_time_window.time_weekday_thursday').id,
-                            cls.env.ref('base_time_window.time_weekday_saturday').id
-                        ])
-                     ]
-                })]
+                "delivery_time_window_ids": [
+                    (
+                        0,
+                        0,
+                        {
+                            "time_window_start": 8.0,
+                            "time_window_end": 18.00,
+                            "time_window_weekday_ids": [
+                                (
+                                    6,
+                                    0,
+                                    [
+                                        cls.env.ref(
+                                            "base_time_window.time_weekday_thursday"
+                                        ).id,
+                                        cls.env.ref(
+                                            "base_time_window.time_weekday_saturday"
+                                        ).id,
+                                    ],
+                                )
+                            ],
+                        },
+                    )
+                ],
             }
         )
         cls.product = cls.env.ref("product.product_product_9")
@@ -61,7 +75,9 @@ class TestSaleDeliveryWindow(SavepointCase):
     def test_delivery_schedule_expected_date(self):
         order = self._create_order()
         # We're tuesday and next delivery window is thursday
-        self.assertEqual(order.expected_date, fields.Datetime.to_datetime("2020-03-26 08:00:00"))
+        self.assertEqual(
+            order.expected_date, fields.Datetime.to_datetime("2020-03-26 08:00:00")
+        )
         # Ensure product customer lead time is considered
         # We're tuesday so + 3 days is friday, and next delivery window
         #  is saturday 2020-03-28
@@ -121,13 +137,13 @@ class TestSaleDeliveryWindow(SavepointCase):
             picking_2 = order_2.picking_ids
             self.assertEqual(
                 picking_2.scheduled_date,
-                fields.Datetime.to_datetime("2020-03-26 08:00:00")
+                fields.Datetime.to_datetime("2020-03-26 08:00:00"),
             )
         self.customer_shipping.delivery_time_window_ids.write(
             {
-                "time_window_weekday_ids": [(6, 0, [
-                    self.env.ref('base_time_window.time_weekday_thursday').id
-                ])]
+                "time_window_weekday_ids": [
+                    (6, 0, [self.env.ref("base_time_window.time_weekday_thursday").id])
+                ]
             }
         )
         # If we're before a window, picking is postponed to this window
@@ -137,7 +153,7 @@ class TestSaleDeliveryWindow(SavepointCase):
             picking_3 = order_3.picking_ids
             self.assertEqual(
                 picking_3.scheduled_date,
-                fields.Datetime.to_datetime("2020-03-26 08:00:00")
+                fields.Datetime.to_datetime("2020-03-26 08:00:00"),
             )
         # If we're already in a window, picking is not postponed
         with freeze_time("2020-03-26 12:00:00"):
@@ -146,7 +162,7 @@ class TestSaleDeliveryWindow(SavepointCase):
             picking_3 = order_3.picking_ids
             self.assertEqual(
                 picking_3.scheduled_date,
-                fields.Datetime.to_datetime("2020-03-26 12:00:00")
+                fields.Datetime.to_datetime("2020-03-26 12:00:00"),
             )
         # If we're after delivery window on the only preferred weekday, picking
         # is postponed to next week
@@ -156,7 +172,7 @@ class TestSaleDeliveryWindow(SavepointCase):
             picking_3 = order_3.picking_ids
             self.assertEqual(
                 picking_3.scheduled_date,
-                fields.Datetime.to_datetime("2020-04-02 08:00:00")
+                fields.Datetime.to_datetime("2020-04-02 08:00:00"),
             )
         # If we introduce a security lead time at company level, it must be
         #  considered to compute delivery date and schedule picking accordingly
@@ -167,7 +183,7 @@ class TestSaleDeliveryWindow(SavepointCase):
             picking_3 = order_3.picking_ids
             self.assertEqual(
                 picking_3.scheduled_date,
-                fields.Datetime.to_datetime("2020-03-29 08:00:00")
+                fields.Datetime.to_datetime("2020-03-29 08:00:00"),
             )
 
     @freeze_time("2020-03-24 01:00:00")  # Tuesday

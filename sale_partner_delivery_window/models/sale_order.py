@@ -48,11 +48,10 @@ class SaleOrder(models.Model):
                             "time windows:\n%s"
                             % (
                                 format_datetime(self.env, self.commitment_date),
-                                '\n'.join(
+                                "\n".join(
                                     [
                                         "  * %s" % w.display_name
-                                        for w
-                                        in ps.get_delivery_windows().get(ps.id)
+                                        for w in ps.get_delivery_windows().get(ps.id)
                                     ]
                                 ),
                             )
@@ -71,9 +70,7 @@ class SaleOrderLine(models.Model):
         partner = self.order_id.partner_shipping_id
         if partner.delivery_time_preference == "anytime":
             return expected_date
-        return partner.next_delivery_window_start_datetime(
-            from_date=expected_date
-        )
+        return partner.next_delivery_window_start_datetime(from_date=expected_date)
 
     def _prepare_procurement_values(self, group_id=False):
         """Consider delivery_schedule in procurement"""
@@ -115,14 +112,11 @@ class SaleOrderLine(models.Model):
         else:
             _logger.debug(
                 "Delivery window not applied for order %s. Date planned for line %s"
-                " already in delivery window"
-                % (self.order_id, self)
+                " already in delivery window" % (self.order_id, self)
             )
         return res
 
-    @api.depends(
-        "order_id.expected_date"
-    )
+    @api.depends("order_id.expected_date")
     def _compute_qty_at_date(self):
         """Trigger computation of qty_at_date when expected_date is updated"""
         return super()._compute_qty_at_date()

@@ -55,7 +55,7 @@ class ResPartner(models.Model):
             # one for the weekday
             this_weekday_windows = self.delivery_time_window_ids.filtered(
                 lambda w: this_weekday in w.time_window_weekday_ids
-            ).sorted('time_window_start')
+            ).sorted("time_window_start")
             for win in this_weekday_windows:
                 this_weekday_start_datetime = datetime.combine(
                     this_datetime, win.get_time_window_start_time()
