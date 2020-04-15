@@ -7,8 +7,15 @@
         <field name="arch" type="xml">
             <field name="partner_id" position="after">
                 <field name="apply_cutoff" />
-                <field name="cutoff_time" attrs="{'invisible': [('apply_cutoff', '!=', True)]}" widget="float_time" />
-                <field name="tz" attrs="{'invisible': [('apply_cutoff', '!=', True)]}" />
+                <field
+                    name="cutoff_time"
+                    attrs="{'invisible': [('apply_cutoff', '!=', True)]}"
+                    widget="float_time"
+                />
+                <field
+                    name="tz"
+                    attrs="{'invisible': [('apply_cutoff', '!=', True)]}"
+                />
             </field>
         </field>
     </record>

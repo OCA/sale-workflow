@@ -14,22 +14,18 @@ class TestSaleWeekdayDelivery(SavepointCase):
             {
                 "name": "Partner cutoff",
                 "order_delivery_cutoff_preference": "partner_cutoff",
-                "cutoff_time": 9.0
+                "cutoff_time": 9.0,
             }
         )
         cls.customer_warehouse = cls.env["res.partner"].create(
             {
                 "name": "Partner warehouse cutoff",
                 "order_delivery_cutoff_preference": "warehouse_cutoff",
-                "cutoff_time": 9.0
+                "cutoff_time": 9.0,
             }
         )
         cls.warehouse = cls.env.ref("stock.warehouse0")
-        cls.warehouse.write(
-            {
-                "cutoff_time": 10.0
-            }
-        )
+        cls.warehouse.write({"cutoff_time": 10.0})
         cls.product = cls.env.ref("product.product_product_9")
 
     def _create_order(self, partner=None):

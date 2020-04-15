@@ -28,5 +28,5 @@ class ResPartner(models.Model):
 
     def get_cutoff_time(self):
         res = super().get_cutoff_time()
-        res['tz'] = self.tz
+        res["tz"] = self.tz
         return res

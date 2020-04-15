@@ -10,7 +10,11 @@
                 position="inside"
             >
                 <field name="order_delivery_cutoff_preference" />
-                <field name="cutoff_time" attrs="{'invisible': [('order_delivery_cutoff_preference', '!=', 'partner_cutoff')]}" widget="float_time" />
+                <field
+                    name="cutoff_time"
+                    attrs="{'invisible': [('order_delivery_cutoff_preference', '!=', 'partner_cutoff')]}"
+                    widget="float_time"
+                />
             </xpath>
         </field>
     </record>
