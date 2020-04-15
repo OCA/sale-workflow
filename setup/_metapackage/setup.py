@@ -66,6 +66,7 @@ setuptools.setup(
         'odoo12-addon-sale_stock_delivery_address',
         'odoo12-addon-sale_stock_picking_blocking',
         'odoo12-addon-sale_stock_picking_note',
+        'odoo12-addon-sale_stock_return_request',
         'odoo12-addon-sale_stock_secondary_unit',
         'odoo12-addon-sale_stock_sourcing_address',
         'odoo12-addon-sale_tier_validation',
