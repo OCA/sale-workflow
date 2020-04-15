@@ -4,4 +4,5 @@ account-closing
 product-attribute
 account-invoicing
 stock-logistics-warehouse
+stock-logistics-workflow
 web
