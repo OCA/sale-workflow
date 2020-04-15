@@ -1,6 +1,7 @@
 # Copyright 2020 Camptocamp SA
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl)
 import logging
+from datetime import timedelta
 
 from odoo import _, api, fields, models
 from odoo.tools.misc import format_datetime
@@ -20,12 +21,12 @@ class SaleOrder(models.Model):
         "partner_shipping_id.delivery_time_window_ids.time_window_weekday_ids",
     )
     def _compute_expected_date(self):
-        """Add dependencies to consider fixed weekdays delivery schedule"""
+        """Add dependencies to consider fixed delivery windows"""
         return super()._compute_expected_date()
 
     @api.onchange("commitment_date")
     def _onchange_commitment_date(self):
-        """Warns if commitment date is not a preferred weekday for delivery"""
+        """Warns if commitment date is not a preferred window for delivery"""
         res = super()._onchange_commitment_date()
         if res:
             return res
@@ -65,7 +66,7 @@ class SaleOrderLine(models.Model):
     _inherit = "sale.order.line"
 
     def _expected_date(self):
-        """Postpone expected_date to next preferred weekday"""
+        """Postpone expected_date to next preferred delivery window"""
         expected_date = super()._expected_date()
         partner = self.order_id.partner_shipping_id
         if partner.delivery_time_preference == "anytime":
@@ -80,7 +81,7 @@ class SaleOrderLine(models.Model):
         if (
             self.order_id.partner_shipping_id.delivery_time_preference != "time_windows"
             # if a commitment_date is set we don't change the result as lead
-            # time and delivery week days must have been considered
+            # time and delivery windows must have been considered
             or self.order_id.commitment_date
         ):
             _logger.debug(
@@ -89,19 +90,28 @@ class SaleOrderLine(models.Model):
             )
             return res
         # If no commitment date is set, we must consider next preferred delivery
-        #  weekday to postpone date_planned
+        #  window to postpone date_planned
         date_planned = fields.Datetime.to_datetime(res.get("date_planned"))
+        # Remove security lead time to ensure the delivery date (and not the
+        # date planned of the picking) will match delivery windows
+        date_planned_without_sec_lead = date_planned + timedelta(
+            days=self.order_id.company_id.security_lead
+        )
         ops = self.order_id.partner_shipping_id
         next_preferred_date = ops.next_delivery_window_start_datetime(
-            from_date=date_planned
+            from_date=date_planned_without_sec_lead
         )
-        if next_preferred_date != date_planned:
+        # Add back security lead time
+        next_preferred_date_with_sec_lead = next_preferred_date - timedelta(
+            days=self.order_id.company_id.security_lead
+        )
+        if date_planned != next_preferred_date_with_sec_lead:
             _logger.debug(
                 "Delivery window applied for order %s. Date planned for line %s"
                 " rescheduled from %s to %s"
-                % (self.order_id, self, date_planned, next_preferred_date)
+                % (self.order_id, self, date_planned, next_preferred_date_with_sec_lead)
             )
-            res["date_planned"] = next_preferred_date
+            res["date_planned"] = next_preferred_date_with_sec_lead
         else:
             _logger.debug(
                 "Delivery window not applied for order %s. Date planned for line %s"

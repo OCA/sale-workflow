@@ -6,7 +6,7 @@ from odoo import fields
 from odoo.tests import SavepointCase
 
 
-class TestSaleWeekdayDelivery(SavepointCase):
+class TestSaleDeliveryWindow(SavepointCase):
     @classmethod
     def setUpClass(cls):
         super().setUpClass()
@@ -60,10 +60,10 @@ class TestSaleWeekdayDelivery(SavepointCase):
     @freeze_time("2020-03-24")  # Tuesday
     def test_delivery_schedule_expected_date(self):
         order = self._create_order()
-        # We're tuesday and next weekday for delivery is thursday
+        # We're tuesday and next delivery window is thursday
         self.assertEqual(order.expected_date, fields.Datetime.to_datetime("2020-03-26 08:00:00"))
         # Ensure product customer lead time is considered
-        # We're tuesday so + 3 days is friday, and next weekday for delivery
+        # We're tuesday so + 3 days is friday, and next delivery window
         #  is saturday 2020-03-28
         self.product.sale_delay = 3
         order_2 = self._create_order()
@@ -72,7 +72,7 @@ class TestSaleWeekdayDelivery(SavepointCase):
         )
         # Change the customer lead time directly on the line must also be
         #  considered
-        # We're tuesday so + 5 days is sunday, and next weekday for delivery
+        # We're tuesday so + 5 days is sunday, and next delivery window
         #  is thursday 2020-04-02
         order_2.order_line.customer_lead = 5
         self.assertEqual(
@@ -106,7 +106,7 @@ class TestSaleWeekdayDelivery(SavepointCase):
     @freeze_time("2020-03-24 01:00:00")  # Tuesday
     def test_prepare_procurement_values(self):
         # Without setting a commitment date, picking is scheduled for next
-        #  preferred weekday start time
+        #  preferred delivery window start time
         order = self._create_order()
         order.action_confirm()
         picking = order.picking_ids
@@ -114,7 +114,7 @@ class TestSaleWeekdayDelivery(SavepointCase):
             picking.scheduled_date, fields.Datetime.to_datetime("2020-03-26 08:00:00")
         )
         # As long as we're not in a window, picking is scheduled for next
-        #  preferred weekday start time
+        #  preferred delivery window start time
         with freeze_time("2020-03-24 09:00:00"):
             order_2 = self._create_order()
             order_2.action_confirm()
@@ -130,7 +130,7 @@ class TestSaleWeekdayDelivery(SavepointCase):
                 ])]
             }
         )
-        # If we're before a window, picking is to this window postponed
+        # If we're before a window, picking is postponed to this window
         with freeze_time("2020-03-26 06:00:00"):
             order_3 = self._create_order()
             order_3.action_confirm()
@@ -157,6 +157,17 @@ class TestSaleWeekdayDelivery(SavepointCase):
             self.assertEqual(
                 picking_3.scheduled_date,
                 fields.Datetime.to_datetime("2020-04-02 08:00:00")
+            )
+        # If we introduce a security lead time at company level, it must be
+        #  considered to compute delivery date and schedule picking accordingly
+        self.env.user.company_id.security_lead = 4
+        with freeze_time("2020-03-26 20:00:00"):
+            order_3 = self._create_order()
+            order_3.action_confirm()
+            picking_3 = order_3.picking_ids
+            self.assertEqual(
+                picking_3.scheduled_date,
+                fields.Datetime.to_datetime("2020-03-29 08:00:00")
             )
 
     @freeze_time("2020-03-24 01:00:00")  # Tuesday

@@ -1,1 +1,1 @@
-from . import test_sale_weekday_delivery
+from . import test_sale_delivery_window
