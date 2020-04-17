@@ -13,11 +13,11 @@ class PaymentTransaction(models.Model):
         Update the Sale Order with payment acquirer workflow
         """
         for transaction in self.filtered(lambda t: t.acquirer_id.workflow_process_id):
-            transaction.sale_order_ids.write(
-                {"workflow_process_id": transaction.acquirer_id.workflow_process_id}
+            transaction.sale_order_id.write(
+                {"workflow_process_id": transaction.acquirer_id.workflow_process_id.id}
             )
 
-    @api.model_create_multi
+    @api.model
     def create(self, vals_list):
         transactions = super().create(vals_list)
         transactions._update_sale_order_workflow()
