@@ -20,6 +20,7 @@ setuptools.setup(
         'odoo11-addon-sale_exception',
         'odoo11-addon-sale_fixed_discount',
         'odoo11-addon-sale_force_invoiced',
+        'odoo11-addon-sale_global_discount',
         'odoo11-addon-sale_invoice_group_method',
         'odoo11-addon-sale_isolated_quotation',
         'odoo11-addon-sale_last_price_info',
