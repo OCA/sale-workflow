@@ -14,7 +14,7 @@ class TestAutomaticPayment(common.TransactionCase):
         partner = self.env["res.partner"].create(partner_values)
         product_values = {"name": "Bread", "list_price": 5, "type": "product"}
         product = self.env["product.product"].create(product_values)
-        self.product_uom_unit = self.env.ref("uom.product_uom_unit")
+        self.product_uom_unit = self.env.ref("product.product_uom_unit")
         values = {
             "partner_id": partner.id,
             "order_line": [
