@@ -3,6 +3,7 @@ bank-payment
 account-closing
 product-attribute
 account-invoicing
+server-backend
 stock-logistics-warehouse
 stock-logistics-workflow
 web
