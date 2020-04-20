@@ -61,7 +61,7 @@ class TestAutomaticPayment(common.TransactionCase):
             "amount": sale.amount_total,
             "currency_id": sale.currency_id.id,
             "reference": sale.name,
-            "sale_order_ids": [(4, self.order.id)],
+            "sale_order_id": self.order.id,
         }
         self.env["payment.transaction"].create(vals)
 
