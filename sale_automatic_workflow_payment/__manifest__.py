@@ -13,6 +13,6 @@
     "maintainers": ["rousseldenis"],
     "author": "ACSONE SA/NV,Odoo Community Association (OCA)",
     "website": "https://github.com/OCA/sale-workflow",
-    "depends": ["sale_automatic_workflow", "payment"],
+    "depends": ["sale_automatic_workflow", "sale_payment"],
     "data": ["views/payment_acquirer.xml"],
 }
