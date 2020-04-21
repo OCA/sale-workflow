@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <record id="view_order_form_inherit_sale_stock" model="ir.ui.view">
+        <field name="model">sale.order</field>
+        <field name="inherit_id" ref="sale_stock.view_order_form_inherit_sale_stock"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='effective_date']" position="after">
+                <field name="check_preparation_time" invisible="1"/>
+                <field name="on_time_delivery" attrs="{'invisible': [('check_preparation_time', '!=', True)]}"/>
+            </xpath>
+        </field>
+    </record>
+</odoo>

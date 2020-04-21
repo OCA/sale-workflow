@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <record id="res_config_settings_view_form" model="ir.ui.view">
+       <field name="model">res.config.settings</field>
+       <field name="inherit_id" ref="sale.res_config_settings_view_form"/>
+       <field name="arch" type="xml">
+            <xpath expr="//div[@id='sale_order_dates']" position="inside">
+                <div class="col-12 col-lg-12 o_setting_box"
+                     attrs="{'invisible': [('group_sale_order_dates', '!=', True)]}"
+                     id="check_preparation_time">
+                    <div class="o_setting_left_pane"
+                         title="This option allows to check the preparation time of customer orders.">
+                        <field name="check_preparation_time"/>
+                    </div>
+                    <div class="o_setting_right_pane">
+                        <label for="check_preparation_time"/>
+                        <div class="text-muted">
+                            Allows to check the preparation time of customer orders
+                        </div>
+                    </div>     
+                    <div class="o_setting_left_pane"
+                         attrs="{'invisible': [('check_preparation_time', '!=', True)]}"/>
+                    <div class="o_setting_right_pane"
+                         title="Prepared the same day if ordered before the hour entered."
+                         attrs="{'invisible': [('check_preparation_time', '!=', True)]}">
+                        <span class="o_form_label">Order limit hour (HH:00)</span>
+                        <div class="text-muted">
+                            Prepared the same day if ordered before the hour entered
+                        </div>
+                        <div class="text-muted">
+                            <field name="order_limit_hour" widget='float_time'
+                                   attrs="{'required': [('check_preparation_time', '=', True)]}"/>
+                        </div>
+                    </div>
+                    <div class="o_setting_left_pane" 
+                         attrs="{'invisible': [('check_preparation_time', '!=', True)]}"/>
+                    <div class="o_setting_right_pane"
+                         title="Timezone used for the confirmation date in the sale order."
+                         attrs="{'invisible': [('check_preparation_time', '!=', True)]}">
+                        <span class="o_form_label">Timezone</span>
+                        <div class="text-muted">
+                            Timezone used for the confirmation date in the sale order
+                        </div>
+                        <div class="text-muted">
+                            <field name="tz" widget="timezone_mismatch"
+                                   attrs="{'required': [('check_preparation_time', '=', True)]}"/>
+                        </div>
+                    </div>         
+                </div>
+            </xpath>
+       </field>
+   </record>
+</odoo>
