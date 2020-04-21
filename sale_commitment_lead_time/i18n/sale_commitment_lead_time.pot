@@ -1,0 +1,110 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+#	* sale_commitment_lead_time
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 12.0\n"
+"Report-Msgid-Bugs-To: \n"
+"Last-Translator: <>\n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: sale_commitment_lead_time
+#: model_terms:ir.ui.view,arch_db:sale_commitment_lead_time.res_config_settings_view_form
+msgid "<span class=\"o_form_label\">Order limit hour (HH:00)</span>"
+msgstr ""
+
+#. module: sale_commitment_lead_time
+#: model_terms:ir.ui.view,arch_db:sale_commitment_lead_time.res_config_settings_view_form
+msgid "<span class=\"o_form_label\">Timezone</span>"
+msgstr ""
+
+#. module: sale_commitment_lead_time
+#: model_terms:ir.ui.view,arch_db:sale_commitment_lead_time.res_config_settings_view_form
+msgid "Allows to check the preparation time of customer orders"
+msgstr ""
+
+#. module: sale_commitment_lead_time
+#: model:ir.model.fields,field_description:sale_commitment_lead_time.field_res_company__check_preparation_time
+#: model:ir.model.fields,field_description:sale_commitment_lead_time.field_res_config_settings__check_preparation_time
+#: model:ir.model.fields,field_description:sale_commitment_lead_time.field_sale_order__check_preparation_time
+msgid "Check preparation time"
+msgstr ""
+
+#. module: sale_commitment_lead_time
+#: model:ir.model,name:sale_commitment_lead_time.model_res_company
+msgid "Companies"
+msgstr ""
+
+#. module: sale_commitment_lead_time
+#: model:ir.model,name:sale_commitment_lead_time.model_res_config_settings
+msgid "Config Settings"
+msgstr ""
+
+#. module: sale_commitment_lead_time
+#: model:ir.model.fields,field_description:sale_commitment_lead_time.field_sale_order__on_time_delivery
+msgid "On time delivery"
+msgstr ""
+
+#. module: sale_commitment_lead_time
+#: model:ir.model.fields,field_description:sale_commitment_lead_time.field_res_company__order_limit_hour
+#: model:ir.model.fields,field_description:sale_commitment_lead_time.field_res_config_settings__order_limit_hour
+msgid "Order limit hour (HH:00)"
+msgstr ""
+
+#. module: sale_commitment_lead_time
+#: model:ir.model.fields,help:sale_commitment_lead_time.field_res_company__order_limit_hour
+#: model:ir.model.fields,help:sale_commitment_lead_time.field_res_config_settings__order_limit_hour
+#: model_terms:ir.ui.view,arch_db:sale_commitment_lead_time.res_config_settings_view_form
+msgid "Prepared the same day if ordered before the hour entered"
+msgstr ""
+
+#. module: sale_commitment_lead_time
+#: model_terms:ir.ui.view,arch_db:sale_commitment_lead_time.res_config_settings_view_form
+msgid "Prepared the same day if ordered before the hour entered."
+msgstr ""
+
+#. module: sale_commitment_lead_time
+#: model:ir.model,name:sale_commitment_lead_time.model_sale_order
+msgid "Sale Order"
+msgstr ""
+
+#. module: sale_commitment_lead_time
+#: model_terms:ir.ui.view,arch_db:sale_commitment_lead_time.res_config_settings_view_form
+msgid "This option allows to check the preparation time of customer orders."
+msgstr ""
+
+#. module: sale_commitment_lead_time
+#: model:ir.model.fields,field_description:sale_commitment_lead_time.field_res_company__tz
+#: model:ir.model.fields,field_description:sale_commitment_lead_time.field_res_config_settings__tz
+msgid "Timezone"
+msgstr ""
+
+#. module: sale_commitment_lead_time
+#: model:ir.model.fields,help:sale_commitment_lead_time.field_res_company__tz
+#: model:ir.model.fields,help:sale_commitment_lead_time.field_res_config_settings__tz
+#: model_terms:ir.ui.view,arch_db:sale_commitment_lead_time.res_config_settings_view_form
+msgid "Timezone used for the confirmation date in the sale order"
+msgstr ""
+
+#. module: sale_commitment_lead_time
+#: model_terms:ir.ui.view,arch_db:sale_commitment_lead_time.res_config_settings_view_form
+msgid "Timezone used for the confirmation date in the sale order."
+msgstr ""
+
+#. module: sale_commitment_lead_time
+#: model:ir.model.fields,help:sale_commitment_lead_time.field_sale_order__on_time_delivery
+msgid "True if the 1st delivery meets the announced deadline"
+msgstr ""
+
+#. module: sale_commitment_lead_time
+#: model:ir.model.fields,help:sale_commitment_lead_time.field_res_company__check_preparation_time
+#: model:ir.model.fields,help:sale_commitment_lead_time.field_res_config_settings__check_preparation_time
+#: model:ir.model.fields,help:sale_commitment_lead_time.field_sale_order__check_preparation_time
+msgid "True if you want check the preparation time of the customer order"
+msgstr ""
+
