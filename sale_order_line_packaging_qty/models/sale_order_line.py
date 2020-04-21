@@ -14,10 +14,16 @@ class SaleOrderLine(models.Model):
         inverse="_inverse_product_packaging_qty",
     )
 
-    @api.depends("product_uom_qty", "product_uom", "product_packaging", "product_packaging.qty")
+    @api.depends(
+        "product_uom_qty", "product_uom", "product_packaging", "product_packaging.qty"
+    )
     def _compute_product_packaging_qty(self):
         for sol in self:
-            if not sol.product_packaging or sol.product_uom_qty == 0 or sol.product_packaging.qty == 0:
+            if (
+                not sol.product_packaging
+                or sol.product_uom_qty == 0
+                or sol.product_packaging.qty == 0
+            ):
                 sol.product_packaging_qty = 0
                 continue
             # Consider uom
@@ -44,12 +50,13 @@ class SaleOrderLine(models.Model):
                 )
             sol.write(
                 {
-                    "product_uom_qty": sol.product_packaging.qty * sol.product_packaging_qty,
+                    "product_uom_qty": sol.product_packaging.qty
+                    * sol.product_packaging_qty,
                     "product_uom": sol.product_packaging.product_uom_id.id,
                 }
             )
 
-    @api.onchange('product_packaging')
+    @api.onchange("product_packaging")
     def _onchange_product_packaging(self):
         if self.product_packaging:
             self.update(
@@ -60,31 +67,10 @@ class SaleOrderLine(models.Model):
                 }
             )
         else:
-            self.update(
-                {
-                    "product_packaging_qty": 0,
-                }
-            )
+            self.update({"product_packaging_qty": 0})
         return super()._onchange_product_packaging()
 
-    @api.onchange('product_packaging_qty')
-    def _onchange_product_packaging_qty(self):
-        if self.product_packaging_qty and not self.product_packaging:
-            raise UserError(
-                _(
-                    "You must define a package before setting a quantity "
-                    "of said package."
-                )
-            )
-        else:
-            self.update(
-                {
-                    "product_uom_qty": self.product_packaging_qty * self.product_packaging.qty,
-                    "product_uom": self.product_id.uom_id,
-                }
-            )
-
-    @api.onchange('product_uom_qty')
+    @api.onchange("product_uom_qty")
     def _onchange_product_uom_qty(self):
         """
         Ensure a warning is raised when changing the package if the qty

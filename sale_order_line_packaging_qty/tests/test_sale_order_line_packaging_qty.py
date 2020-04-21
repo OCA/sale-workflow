@@ -11,11 +11,7 @@ class TestSaleOrderLinePackagingQty(SavepointCase):
         cls.partner = cls.env.ref("base.res_partner_12")
         cls.product = cls.env.ref("product.product_product_9")
         cls.packaging = cls.env["product.packaging"].create(
-            {
-                "name": "Test packaging",
-                "product_id": cls.product.id,
-                "qty": 5.0
-            }
+            {"name": "Test packaging", "product_id": cls.product.id, "qty": 5.0}
         )
 
     def test_product_packaging_qty(self):
@@ -25,10 +21,11 @@ class TestSaleOrderLinePackagingQty(SavepointCase):
                 "order_id": order.id,
                 "product_id": self.product.id,
                 "product_uom": self.product.uom_id.id,
-                "product_uom_qty": 3.0
+                "product_uom_qty": 3.0,
             }
         )
         order_line.write({"product_packaging": self.packaging})
+        order_line._onchange_product_packaging()
         self.assertEqual(order_line.product_uom_qty, 5.0)
         self.assertEqual(order_line.product_packaging_qty, 1.0)
         order_line.write({"product_packaging_qty": 3.0})
