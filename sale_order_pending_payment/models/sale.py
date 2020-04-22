@@ -15,13 +15,13 @@ class SaleOrder(models.Model):
                 amount_residual = amount_deposit_paid = 0.0
             for line in order.order_line:
                 if line.product_id.id == order.env['ir.values'].get_default(
-                            'sale.config.settings',
-                            'deposit_product_id_setting') and \
+                        'sale.config.settings',
+                        'deposit_product_id_setting') and \
                         line.product_uom_qty == 0:
                     amount_deposit += line.price_unit * line.qty_invoiced
                     for invoice_line in line.invoice_lines:
                         if invoice_line.invoice_id.residual == 0 and \
-                            invoice_line.invoice_id.state not in \
+                                invoice_line.invoice_id.state not in \
                                 ('draft', 'cancel'):
                             amount_deposit_paid += \
                                 line.price_unit * line.qty_invoiced
