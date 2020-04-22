@@ -1,7 +1,7 @@
 This module adds a typology for the sales orders. In each different type, you
-can define, invoicing and refunding journal, a warehouse, a sequence,
-the shipping policy, the invoicing policy, a payment term, a pricelist
-and an incoterm.
+can define, invoicing and refunding journal, a warehouse, a stock route,
+a sequence, the shipping policy, the invoicing policy, a payment term,
+a pricelist and an incoterm.
 
 You can see sale types as lines of business.
 

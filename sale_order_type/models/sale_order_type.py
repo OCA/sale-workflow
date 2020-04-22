@@ -22,8 +22,8 @@ class SaleOrderTypology(models.Model):
         default_dict = self.env["sale.order"].default_get(["picking_policy"])
         return default_dict.get("picking_policy")
 
-    name = fields.Char(string="Name", required=True, translate=True)
-    description = fields.Text(string="Description", translate=True)
+    name = fields.Char(required=True, translate=True)
+    description = fields.Text(translate=True)
     sequence_id = fields.Many2one(
         comodel_name="ir.sequence",
         string="Entry Sequence",
@@ -52,3 +52,10 @@ class SaleOrderTypology(models.Model):
     )
     pricelist_id = fields.Many2one(comodel_name="product.pricelist", strint="Pricelist")
     incoterm_id = fields.Many2one(comodel_name="account.incoterms", string="Incoterm")
+    route_id = fields.Many2one(
+        "stock.location.route",
+        string="Route",
+        domain=[("sale_selectable", "=", True)],
+        ondelete="restrict",
+        check_company=True,
+    )
