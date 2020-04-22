@@ -37,8 +37,9 @@ class SaleOrder(models.Model):
         # TODO: To be changed to computed stored readonly=False if possible in v14?
         vals = {}
         for order in self:
-            vals = {}
             order_type = order.type_id
+            # Order values
+            vals = {}
             if order_type.warehouse_id:
                 vals.update({"warehouse_id": order_type.warehouse_id})
             if order_type.picking_policy:
@@ -51,6 +52,10 @@ class SaleOrder(models.Model):
                 vals.update({"incoterm": order_type.incoterm_id})
             if vals:
                 order.update(vals)
+            # Order line values
+            line_vals = {}
+            line_vals.update({"route_id": order_type.route_id.id})
+            order.order_line.update(line_vals)
 
     @api.model
     def create(self, vals):
@@ -66,4 +71,15 @@ class SaleOrder(models.Model):
             res["journal_id"] = self.type_id.journal_id.id
         if self.type_id:
             res["sale_type_id"] = self.type_id.id
+        return res
+
+
+class SaleOrderLine(models.Model):
+    _inherit = "sale.order.line"
+
+    @api.onchange("product_id")
+    def product_id_change(self):
+        res = super(SaleOrderLine, self).product_id_change()
+        if self.order_id.type_id.route_id:
+            self.update({"route_id": self.order_id.type_id.route_id})
         return res
