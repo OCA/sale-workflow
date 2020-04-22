@@ -31,4 +31,8 @@
 
 * Rattapong Chokmasermkul <rattapongc@ecosoft.co.th>
 
+* `Druidoo <https://www.druidoo.io>`_
+
+  * Iván Todorovich <ivan.todorovich@druidoo.io>
+
 Do not contact contributors directly about support or help with technical issues.
