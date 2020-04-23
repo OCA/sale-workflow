@@ -8,6 +8,9 @@
     "author": "PlanetaTIC, Odoo Community Association (OCA)",
     "website": "https://www.planetatic.com",
     "license": "AGPL-3",
+    "description": """
+        Show amount total pending in sale order form and template when an
+        advance invoice has already been paid.""",
     "category": "Sales Management",
     "depends": [
         "sale",
