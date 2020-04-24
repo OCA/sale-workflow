@@ -41,7 +41,6 @@ class TestSaleOrderLineInput(SavepointCase):
 
     def test_sale_order_values(self):
         self.order.general_discount = 10
-        self.order.onchange_general_discount()
         self.assertEqual(self.order.order_line.price_reduce, 900.00)
 
     def _get_ctx_from_view(self, res):

@@ -21,10 +21,6 @@ class SaleOrder(models.Model):
         for so in self:
             so.general_discount = so.partner_id.sale_discount
 
-    @api.onchange("general_discount")
-    def onchange_general_discount(self):
-        self.mapped("order_line").update({"discount": self.general_discount})
-
     @api.model
     def fields_view_get(
         self, view_id=None, view_type="form", toolbar=False, submenu=False

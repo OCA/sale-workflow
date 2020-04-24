@@ -6,16 +6,11 @@ from odoo import api, fields, models
 class SaleOrderLine(models.Model):
     _inherit = "sale.order.line"
 
-    discount = fields.Float(
-        compute="_compute_general_discount",
-        store=True,
-        readonly=False,
-        string="Discount (%)",
-        digits="Discount",
-        default=0.0,
-    )
+    discount = fields.Float(compute="_compute_discount", store=True, readonly=False,)
 
-    @api.depends("order_id")
-    def _compute_general_discount(self):
+    @api.depends("order_id", "order_id.general_discount")
+    def _compute_discount(self):
+        if hasattr(super(), "_compute_discount"):
+            super()._compute_discount()
         for line in self:
             line.discount = line.order_id.general_discount
