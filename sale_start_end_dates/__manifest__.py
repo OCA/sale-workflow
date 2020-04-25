@@ -10,6 +10,7 @@
     "license": "AGPL-3",
     "summary": "Adds start date and end date on sale order lines",
     "author": "Akretion, Sodexis, Odoo Community Association (OCA)",
+    "maintainers": ["alexis-via"],
     "website": "https://github.com/OCA/sale-workflow",
     "depends": ["account_invoice_start_end_dates", "sale"],
     "data": ["views/sale_order.xml"],
