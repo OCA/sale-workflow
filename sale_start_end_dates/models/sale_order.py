@@ -123,9 +123,7 @@ class SaleOrderLine(models.Model):
         self.ensure_one()
         res = super()._prepare_invoice_line()
         if self.must_have_dates:
-            res.update(
-                {"start_date": self.start_date, "end_date": self.end_date,}
-            )
+            res.update({"start_date": self.start_date, "end_date": self.end_date})
         return res
 
     @api.onchange("end_date")
