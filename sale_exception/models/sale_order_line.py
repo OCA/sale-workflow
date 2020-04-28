@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 # © 2019 Akretion
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
 
@@ -6,26 +5,25 @@ from odoo import api, fields, models
 
 
 class SaleOrderLine(models.Model):
-    _inherit = ['sale.order.line', 'base.exception.method']
-    _name = 'sale.order.line'
+    _inherit = ["sale.order.line", "base.exception.method"]
+    _name = "sale.order.line"
 
     ignore_exception = fields.Boolean(
-        related='order_id.ignore_exception',
-        store=True,
-        string="Ignore Exceptions")
+        related="order_id.ignore_exception", store=True, string="Ignore Exceptions"
+    )
 
     @api.multi
     def _get_main_records(self):
-        return self.mapped('order_id')
+        return self.mapped("order_id")
 
     @api.model
     def _reverse_field(self):
-        return 'sale_ids'
+        return "sale_ids"
 
     @api.multi
     def _detect_exceptions(self, rule):
         records = super(SaleOrderLine, self)._detect_exceptions(rule)
-        return records.mapped('order_id')
+        return records.mapped("order_id")
 
     @api.model
     def _exception_rule_eval_context(self, rec):
@@ -34,5 +32,5 @@ class SaleOrderLine(models.Model):
         # code during v13 migration. The record is already available in obj and
         # object variables and it is more than enough.
         res = super(SaleOrderLine, self)._exception_rule_eval_context(rec)
-        res['sale_line'] = rec
+        res["sale_line"] = rec
         return res
