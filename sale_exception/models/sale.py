@@ -85,9 +85,7 @@ class SaleOrder(models.Model):
     def action_draft(self):
         res = super().action_draft()
         orders = self.filtered(lambda s: s.ignore_exception)
-        orders.write(
-            {"ignore_exception": False,}
-        )
+        orders.write({"ignore_exception": False})
         return res
 
     def _sale_get_lines(self):

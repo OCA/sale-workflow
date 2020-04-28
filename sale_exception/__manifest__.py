@@ -19,5 +19,5 @@
         "wizard/sale_exception_confirm_view.xml",
         "views/sale_view.xml",
     ],
-    "demo": ["demo/sale_exception_demo.xml",],
+    "demo": ["demo/sale_exception_demo.xml"],
 }
