@@ -33,7 +33,6 @@ class SaleOrder(models.Model):
     def _reverse_field(self):
         return "sale_ids"
 
-    @api.multi
     def detect_exceptions(self):
         all_exceptions = super(SaleOrder, self).detect_exceptions()
         lines = self.mapped("order_line")
@@ -59,7 +58,6 @@ class SaleOrder(models.Model):
             record.sale_check_exception()
         return record
 
-    @api.multi
     def write(self, vals):
         result = super(SaleOrder, self).write(vals)
         check_exceptions = any(
@@ -79,13 +77,11 @@ class SaleOrder(models.Model):
         if self.state == "sale":
             self.ignore_exception = False
 
-    @api.multi
     def action_confirm(self):
         if self.detect_exceptions():
             return self._popup_exceptions()
         return super().action_confirm()
 
-    @api.multi
     def action_draft(self):
         res = super().action_draft()
         orders = self.filtered(lambda s: s.ignore_exception)
