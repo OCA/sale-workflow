@@ -23,7 +23,6 @@ class SaleOrder(models.Model):
 class SaleOrderLine(models.Model):
     _inherit = "sale.order.line"
 
-    @api.multi
     def _prepare_order_line_procurement(self, group_id=False):
         values = super(SaleOrderLine, self)._prepare_order_line_procurement(
             group_id=group_id
@@ -34,7 +33,6 @@ class SaleOrderLine(models.Model):
             values["date_planned"] = com_date
         return values
 
-    @api.multi
     def _get_procurement_group_key(self):
         """ Return a key with priority to be used to regroup lines in multiple
         procurement groups. The higher the priority number is the more
