@@ -6,7 +6,7 @@ from odoo import api, fields, models
 
 
 class SaleOrder(models.Model):
-    _inherit = 'sale.order'
+    _inherit = "sale.order"
 
     @api.model
     def _prepare_procurement_group_by_line(self, line):
@@ -16,21 +16,22 @@ class SaleOrder(models.Model):
         com_date = fields.Date.to_string(com_datetime)
         if line._get_procurement_group_key()[0] == 12:
             if line.commitment_date:
-                vals['name'] = '/'.join([vals['name'], com_date])
+                vals["name"] = "/".join([vals["name"], com_date])
         return vals
 
 
 class SaleOrderLine(models.Model):
-    _inherit = 'sale.order.line'
+    _inherit = "sale.order.line"
 
     @api.multi
     def _prepare_order_line_procurement(self, group_id=False):
-        values = super(SaleOrderLine, self).\
-            _prepare_order_line_procurement(group_id=group_id)
+        values = super(SaleOrderLine, self)._prepare_order_line_procurement(
+            group_id=group_id
+        )
         if self.commitment_date:
             com_datetime = self.commitment_date
             com_date = fields.Date.to_string(com_datetime)
-            values['date_planned'] = com_date
+            values["date_planned"] = com_date
         return values
 
     @api.multi
