@@ -12,6 +12,7 @@ class SaleOrderLine(models.Model):
         string="Package quantity",
         compute="_compute_product_packaging_qty",
         inverse="_inverse_product_packaging_qty",
+        digits="Product Unit of Measure",
     )
 
     @api.depends(
@@ -35,6 +36,12 @@ class SaleOrderLine(models.Model):
                 product_qty = sol.product_uom_qty
             sol.product_packaging_qty = product_qty / sol.product_packaging.qty
 
+    def _prepare_product_packaging_qty_values(self):
+        return {
+            "product_uom_qty": self.product_packaging.qty * self.product_packaging_qty,
+            "product_uom": self.product_packaging.product_uom_id.id,
+        }
+
     def _inverse_product_packaging_qty(self):
         for sol in self:
             if not sol.product_packaging:
@@ -48,13 +55,12 @@ class SaleOrderLine(models.Model):
                 raise UserError(
                     _("Please select a packaging with a quantity bigger than 0")
                 )
-            sol.write(
-                {
-                    "product_uom_qty": sol.product_packaging.qty
-                    * sol.product_packaging_qty,
-                    "product_uom": sol.product_packaging.product_uom_id.id,
-                }
-            )
+            sol.write(sol._prepare_product_packaging_qty_values())
+
+    @api.onchange("product_packaging_qty")
+    def _onchange_product_packaging_qty(self):
+        if self.product_packaging and self.product_packaging.qty:
+            self.update(self._prepare_product_packaging_qty_values())
 
     @api.onchange("product_packaging")
     def _onchange_product_packaging(self):
