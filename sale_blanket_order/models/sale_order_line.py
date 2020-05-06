@@ -6,40 +6,6 @@ from datetime import date, timedelta
 from odoo.exceptions import ValidationError
 
 
-class SaleOrder(models.Model):
-    _inherit = 'sale.order'
-
-    blanket_order_id = fields.Many2one(
-        'sale.blanket.order', string='Origin blanket order',
-        related='order_line.blanket_order_line.order_id')
-
-    @api.model
-    def _check_exchausted_blanket_order_line(self):
-        return any(line.blanket_order_line.remaining_qty < 0.0 for
-                   line in self.order_line)
-
-    @api.multi
-    def button_confirm(self):
-        res = super().button_confirm()
-        for order in self:
-            if order._check_exchausted_blanket_order_line():
-                raise ValidationError(
-                    _('Cannot confirm order %s as one of the lines refers '
-                      'to a blanket order that has no remaining quantity.')
-                    % order.name)
-        return res
-
-    @api.constrains('partner_id')
-    def check_partner_id(self):
-        for line in self.order_line:
-            if line.blanket_order_line:
-                if line.blanket_order_line.partner_id != \
-                        self.partner_id:
-                    raise ValidationError(_(
-                        'The customer must be equal to the '
-                        'blanket order lines customer'))
-
-
 class SaleOrderLine(models.Model):
     _inherit = 'sale.order.line'
 
@@ -108,8 +74,8 @@ class SaleOrderLine(models.Model):
     @api.onchange('product_uom_qty', 'product_uom')
     def product_uom_change(self):
         res = super().product_uom_change()
-        if self.product_id and not self.env.context.get(
-                'skip_blanket_find', False):
+        if self.product_id and not \
+                self.env.context.get('skip_blanket_find', False):
             return self.get_assigned_bo_line()
         return res
 
