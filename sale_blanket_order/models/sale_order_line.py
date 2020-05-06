@@ -60,7 +60,6 @@ class SaleOrderLine(models.Model):
                     self._get_assigned_bo_line(eligible_bo_lines)
         else:
             self.blanket_order_line = False
-        self.onchange_blanket_order_line()
         return {'domain': {'blanket_order_line': [
             ('id', 'in', eligible_bo_lines.ids)]}}
 
@@ -74,8 +73,7 @@ class SaleOrderLine(models.Model):
     @api.onchange('product_uom_qty', 'product_uom')
     def product_uom_change(self):
         res = super().product_uom_change()
-        if self.product_id and not \
-                self.env.context.get('skip_blanket_find', False):
+        if self.product_id and self.env.context.get('find_blanket', False):
             return self.get_assigned_bo_line()
         return res
 
@@ -94,7 +92,7 @@ class SaleOrderLine(models.Model):
                 self.tax_id = bol.taxes_id
         else:
             self._compute_tax_id()
-            self.with_context(skip_blanket_find=True).product_uom_change()
+            self.with_context(find_blanket=True).product_uom_change()
 
     @api.constrains('product_id')
     def check_product_id(self):
