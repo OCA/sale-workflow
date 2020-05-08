@@ -6,45 +6,42 @@ from odoo.tests import common
 
 
 class TestSaleOrder(common.SavepointCase):
-
     @classmethod
     def setUpClass(cls):
         super(TestSaleOrder, cls).setUpClass()
-        cls.partner = cls.env['res.partner'].create({
-            'name': 'Mr. Odoo',
-        })
-        cls.product1 = cls.env['product.product'].create({
-            'name': 'Test Product 1',
-        })
-        cls.product2 = cls.env['product.product'].create({
-            'name': 'Test Product 2',
-        })
-        cls.tax = cls.env['account.tax'].create({
-            'name': 'TAX 15%',
-            'amount_type': 'percent',
-            'type_tax_use': 'sale',
-            'amount': 15.0,
-        })
-        cls.order = cls.env['sale.order'].create({
-            'partner_id': cls.partner.id
-        })
-        so_line = cls.env['sale.order.line']
-        cls.so_line1 = so_line.create({
-            'order_id': cls.order.id,
-            'product_id': cls.product1.id,
-            'name': 'Line 1',
-            'product_uom_qty': 1.0,
-            'tax_id': [(6, 0, [cls.tax.id])],
-            'price_unit': 600.0,
-        })
-        cls.so_line2 = so_line.create({
-            'order_id': cls.order.id,
-            'product_id': cls.product2.id,
-            'name': 'Line 2',
-            'product_uom_qty': 10.0,
-            'tax_id': [(6, 0, [cls.tax.id])],
-            'price_unit': 60.0,
-        })
+        cls.partner = cls.env["res.partner"].create({"name": "Mr. Odoo"})
+        cls.product1 = cls.env["product.product"].create({"name": "Test Product 1"})
+        cls.product2 = cls.env["product.product"].create({"name": "Test Product 2"})
+        cls.tax = cls.env["account.tax"].create(
+            {
+                "name": "TAX 15%",
+                "amount_type": "percent",
+                "type_tax_use": "sale",
+                "amount": 15.0,
+            }
+        )
+        cls.order = cls.env["sale.order"].create({"partner_id": cls.partner.id})
+        so_line = cls.env["sale.order.line"]
+        cls.so_line1 = so_line.create(
+            {
+                "order_id": cls.order.id,
+                "product_id": cls.product1.id,
+                "name": "Line 1",
+                "product_uom_qty": 1.0,
+                "tax_id": [(6, 0, [cls.tax.id])],
+                "price_unit": 600.0,
+            }
+        )
+        cls.so_line2 = so_line.create(
+            {
+                "order_id": cls.order.id,
+                "product_id": cls.product2.id,
+                "name": "Line 2",
+                "product_uom_qty": 10.0,
+                "tax_id": [(6, 0, [cls.tax.id])],
+                "price_unit": 60.0,
+            }
+        )
 
     def test_01_sale_order_classic_discount(self):
         """ Tests with single discount """
@@ -122,24 +119,29 @@ class TestSaleOrder(common.SavepointCase):
         self.order.action_confirm()
         self.order.action_invoice_create()
         invoice = self.order.invoice_ids[0]
-        self.assertAlmostEqual(self.so_line1.discount,
-                               invoice.invoice_line_ids[0].discount)
-        self.assertAlmostEqual(self.so_line1.discount2,
-                               invoice.invoice_line_ids[0].discount2)
-        self.assertAlmostEqual(self.so_line1.discount3,
-                               invoice.invoice_line_ids[0].discount3)
-        self.assertAlmostEqual(self.so_line1.price_subtotal,
-                               invoice.invoice_line_ids[0].price_subtotal)
-        self.assertAlmostEqual(self.so_line2.discount3,
-                               invoice.invoice_line_ids[1].discount3)
-        self.assertAlmostEqual(self.so_line2.price_subtotal,
-                               invoice.invoice_line_ids[1].price_subtotal)
+        self.assertAlmostEqual(
+            self.so_line1.discount, invoice.invoice_line_ids[0].discount
+        )
+        self.assertAlmostEqual(
+            self.so_line1.discount2, invoice.invoice_line_ids[0].discount2
+        )
+        self.assertAlmostEqual(
+            self.so_line1.discount3, invoice.invoice_line_ids[0].discount3
+        )
+        self.assertAlmostEqual(
+            self.so_line1.price_subtotal, invoice.invoice_line_ids[0].price_subtotal
+        )
+        self.assertAlmostEqual(
+            self.so_line2.discount3, invoice.invoice_line_ids[1].discount3
+        )
+        self.assertAlmostEqual(
+            self.so_line2.price_subtotal, invoice.invoice_line_ids[1].price_subtotal
+        )
         self.assertAlmostEqual(self.order.amount_total, invoice.amount_total)
 
     def test_05_round_globally(self):
         """ Tests on multiple lines when 'round_globally' is active"""
-        self.env.user.company_id. \
-            tax_calculation_rounding_method = 'round_globally'
+        self.env.user.company_id.tax_calculation_rounding_method = "round_globally"
         self.so_line1.discount = 50.0
         self.so_line1.discount2 = 50.0
         self.so_line1.discount3 = 50.0

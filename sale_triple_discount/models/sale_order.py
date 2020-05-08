@@ -7,15 +7,15 @@ from odoo import api, models
 
 
 class SaleOrder(models.Model):
-    _inherit = 'sale.order'
+    _inherit = "sale.order"
 
-    @api.depends('order_line.price_total')
+    @api.depends("order_line.price_total")
     def _amount_all(self):
         prev_values = dict()
         for order in self:
             prev_values.update(order.order_line.triple_discount_preprocess())
         super(SaleOrder, self)._amount_all()
-        self.env['sale.order.line'].triple_discount_postprocess(prev_values)
+        self.env["sale.order.line"].triple_discount_postprocess(prev_values)
 
     @api.multi
     def _get_tax_amount_by_group(self):
@@ -25,16 +25,17 @@ class SaleOrder(models.Model):
         for line in self.order_line:
             price_reduce = line.price_reduce  # changed
             taxes = line.tax_id.compute_all(
-                price_reduce, quantity=line.product_uom_qty,
+                price_reduce,
+                quantity=line.product_uom_qty,
                 product=line.product_id,
-                partner=self.partner_shipping_id)['taxes']
+                partner=self.partner_shipping_id,
+            )["taxes"]
             for tax in line.tax_id:
                 group = tax.tax_group_id
                 res.setdefault(group, 0.0)
                 for t in taxes:
-                    if (t['id'] == tax.id or
-                            t['id'] in tax.children_tax_ids.ids):
-                        res[group] += t['amount']
+                    if t["id"] == tax.id or t["id"] in tax.children_tax_ids.ids:
+                        res[group] += t["amount"]
         res = sorted(list(res.items()), key=lambda l: l[0].sequence)
         res = [(l[0].name, l[1]) for l in res]
         return res
@@ -44,7 +45,7 @@ class SaleOrder(models.Model):
         invoice_ids = super(SaleOrder, self).action_invoice_create(
             grouped=grouped, final=final
         )
-        invoices = self.env['account.invoice'].browse(invoice_ids)
+        invoices = self.env["account.invoice"].browse(invoice_ids)
         for inv in invoices:
             inv._onchange_invoice_line_ids()
         return invoice_ids
