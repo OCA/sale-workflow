@@ -6,6 +6,7 @@
 
 from odoo import _, api, fields, models
 from odoo.exceptions import ValidationError
+
 import odoo.addons.decimal_precision as dp
 
 
@@ -19,15 +20,14 @@ class SaleOrderLine(models.Model):
         elif self.discounting_type == "multiplicative":
             return self._multiplicative_discount()
         else:
-            raise ValidationError(_(
-                "Sale order line %s has unknown discounting type %s"
-            ) % (self.name, self.discounting_type))
+            raise ValidationError(
+                _("Sale order line %s has unknown discounting type %s")
+                % (self.name, self.discounting_type)
+            )
 
     def _additive_discount(self):
         self.ensure_one()
-        discount = sum(
-            [getattr(self, x) or 0.0 for x in self._discount_fields()]
-        )
+        discount = sum([getattr(self, x) or 0.0 for x in self._discount_fields()])
         if discount <= 0:
             return 0
         elif discount >= 100:
@@ -36,38 +36,30 @@ class SaleOrderLine(models.Model):
 
     def _multiplicative_discount(self):
         self.ensure_one()
-        discounts = [1 - (self[x] or 0.0) / 100
-                     for x in self._discount_fields()]
+        discounts = [1 - (self[x] or 0.0) / 100 for x in self._discount_fields()]
         final_discount = 1
         for discount in discounts:
             final_discount *= discount
         return 100 - final_discount * 100
 
     def _discount_fields(self):
-        return ['discount', 'discount2', 'discount3']
+        return ["discount", "discount2", "discount3"]
 
-    @api.depends('discount2', 'discount3', 'discounting_type')
+    @api.depends("discount2", "discount3", "discounting_type")
     def _compute_amount(self):
         prev_values = self.triple_discount_preprocess()
         super(SaleOrderLine, self)._compute_amount()
         self.triple_discount_postprocess(prev_values)
 
     discount2 = fields.Float(
-        'Disc. 2 (%)',
-        digits=dp.get_precision('Discount'),
-        default=0.0,
+        string="Disc. 2 (%)", digits=dp.get_precision("Discount"), default=0.0,
     )
     discount3 = fields.Float(
-        'Disc. 3 (%)',
-        digits=dp.get_precision('Discount'),
-        default=0.0,
+        string="Disc. 3 (%)", digits=dp.get_precision("Discount"), default=0.0,
     )
     discounting_type = fields.Selection(
         string="Discounting type",
-        selection=[
-            ('additive', 'Additive'),
-            ('multiplicative', 'Multiplicative'),
-        ],
+        selection=[("additive", "Additive"), ("multiplicative", "Multiplicative")],
         default="multiplicative",
         required=True,
         help="Specifies whether discounts should be additive "
@@ -77,10 +69,16 @@ class SaleOrderLine(models.Model):
     )
 
     _sql_constraints = [
-        ('discount2_limit', 'CHECK (discount2 <= 100.0)',
-         'Discount 2 must be lower than 100%.'),
-        ('discount3_limit', 'CHECK (discount3 <= 100.0)',
-         'Discount 3 must be lower than 100%.'),
+        (
+            "discount2_limit",
+            "CHECK (discount2 <= 100.0)",
+            "Discount 2 must be lower than 100%.",
+        ),
+        (
+            "discount3_limit",
+            "CHECK (discount3 <= 100.0)",
+            "Discount 3 must be lower than 100%.",
+        ),
     ]
 
     def _get_triple_discount(self):
@@ -93,13 +91,10 @@ class SaleOrderLine(models.Model):
 
     def _prepare_invoice_line(self, qty):
         res = super(SaleOrderLine, self)._prepare_invoice_line(qty)
-        res.update({
-            'discount2': self.discount2,
-            'discount3': self.discount3,
-        })
+        res.update({"discount2": self.discount2, "discount3": self.discount3})
         return res
 
-    @api.depends('discount2', 'discount3')
+    @api.depends("discount2", "discount3")
     def _get_price_reduce(self):
         prev_values = self.triple_discount_preprocess()
         super(SaleOrderLine, self)._get_price_reduce()
@@ -114,19 +109,21 @@ class SaleOrderLine(models.Model):
         Updating the cache provides consistency through recomputations."""
         prev_values = dict()
         self.invalidate_cache(
-            fnames=['discount', 'discount2', 'discount3'],
-            ids=self.ids)
+            fnames=["discount", "discount2", "discount3"], ids=self.ids
+        )
         for line in self:
             prev_values[line] = dict(
                 discount=line.discount,
                 discount2=line.discount2,
                 discount3=line.discount3,
             )
-            line._cache.update({
-                'discount': line._get_final_discount(),
-                'discount2': 0.0,
-                'discount3': 0.0
-            })
+            line._cache.update(
+                {
+                    "discount": line._get_final_discount(),
+                    "discount2": 0.0,
+                    "discount3": 0.0,
+                }
+            )
         return prev_values
 
     @api.model
@@ -134,7 +131,8 @@ class SaleOrderLine(models.Model):
         """Restore the discounts of the lines in the dictionary prev_values.
         Updating the cache provides consistency through recomputations."""
         self.invalidate_cache(
-            fnames=['discount', 'discount2', 'discount3'],
-            ids=[l.id for l in list(prev_values.keys())])
+            fnames=["discount", "discount2", "discount3"],
+            ids=[l.id for l in list(prev_values.keys())],
+        )
         for line, prev_vals_dict in list(prev_values.items()):
             line._cache.update(prev_vals_dict)
