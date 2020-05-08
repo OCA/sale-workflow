@@ -1,61 +1,14 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <odoo>
     <!-- Update account invoice !-->
-    <record id="invoice_form" model="ir.ui.view">
-        <field name="name">Account Invoice</field>
-        <field name="model">account.invoice</field>
-        <field name="inherit_id" ref="account_invoice_fixed_discount.invoice_form" />
+    <record id="view_move_form" model="ir.ui.view">
+        <field name="name">account.move - </field>
+        <field name="model">account.move</field>
+        <field name="inherit_id" ref="account_invoice_fixed_discount.view_move_form" />
         <field name="arch" type="xml">
-            <data>
-                <field name="discount_fixed" position="attributes">
-                    <attribute name="groups">sale.group_discount_per_so_line</attribute>
-                </field>
-            </data>
-        </field>
-    </record>
-    <record id="account_invoice_line_tree" model="ir.ui.view">
-        <field name="name">account.invoice.line.tree</field>
-        <field name="model">account.invoice.line</field>
-        <field
-            name="inherit_id"
-            ref="account_invoice_fixed_discount.view_invoice_line_tree"
-        />
-        <field name="arch" type="xml">
-            <data>
-                <field name="discount_fixed" position="attributes">
-                    <attribute name="groups">sale.group_discount_per_so_line</attribute>
-                </field>
-            </data>
-        </field>
-    </record>
-    <record id="account_invoice_line_form" model="ir.ui.view">
-        <field name="name">account.invoice.line.form</field>
-        <field name="model">account.invoice.line</field>
-        <field
-            name="inherit_id"
-            ref="account_invoice_fixed_discount.view_invoice_line_form"
-        />
-        <field name="arch" type="xml">
-            <data>
-                <field name="discount_fixed" position="attributes">
-                    <attribute name="groups">sale.group_discount_per_so_line</attribute>
-                </field>
-            </data>
-        </field>
-    </record>
-    <record id="account_invoice_supplier_form" model="ir.ui.view">
-        <field name="name">account.invoice.supplier.form</field>
-        <field name="model">account.invoice</field>
-        <field
-            name="inherit_id"
-            ref="account_invoice_fixed_discount.account_invoice_supplier_form"
-        />
-        <field name="arch" type="xml">
-            <data>
-                <field name="discount_fixed" position="attributes">
-                    <attribute name="groups">sale.group_discount_per_so_line</attribute>
-                </field>
-            </data>
+            <field name="discount_fixed" position="attributes">
+                <attribute name="groups">product.group_discount_per_so_line</attribute>
+            </field>
         </field>
     </record>
 </odoo>
