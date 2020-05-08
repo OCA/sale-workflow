@@ -10,9 +10,7 @@
     "license": "AGPL-3",
     "application": False,
     "installable": True,
-    "depends": [
-        "sale", "account_invoice_fixed_discount"
-    ],
+    "depends": ["sale", "account_invoice_fixed_discount"],
     "data": [
         "views/sale_order_views.xml",
         "views/account_invoice_views.xml",
