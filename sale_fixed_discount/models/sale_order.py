@@ -1,10 +1,8 @@
-# Copyright 2017-18 Eficent Business and IT Consulting Services S.L.
+# Copyright 2017-20 ForgeFlow S.L.
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
 from odoo import _, api, fields, models
 from odoo.exceptions import ValidationError
-
-import odoo.addons.decimal_precision as dp
 
 
 class SaleOrderLine(models.Model):
@@ -12,7 +10,7 @@ class SaleOrderLine(models.Model):
 
     discount_fixed = fields.Float(
         string="Discount (Fixed)",
-        digits=dp.get_precision("Product Price"),
+        digits="Product Price",
         help="Fixed amount discount.",
     )
 
@@ -55,7 +53,7 @@ class SaleOrderLine(models.Model):
             line.update(vals[line])
         return res
 
-    def _prepare_invoice_line(self, qty):
-        res = super(SaleOrderLine, self)._prepare_invoice_line(qty)
+    def _prepare_invoice_line(self):
+        res = super(SaleOrderLine, self)._prepare_invoice_line()
         res.update({"discount_fixed": self.discount_fixed})
         return res
