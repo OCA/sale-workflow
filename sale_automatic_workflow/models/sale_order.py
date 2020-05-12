@@ -28,12 +28,12 @@ class SaleOrder(models.Model):
         )
         for order in self:
             order.all_qty_delivered = all(
-                l.product_id.type not in ("product", "consu")
+                line.product_id.type not in ("product", "consu")
                 or float_compare(
-                    l.qty_delivered, l.product_uom_qty, precision_digits=precision
+                    line.qty_delivered, line.product_uom_qty, precision_digits=precision
                 )
                 == 0
-                for l in order.order_line
+                for line in order.order_line
             )
 
     def _prepare_invoice(self):
