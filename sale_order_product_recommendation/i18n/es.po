@@ -67,6 +67,11 @@ msgid "ID"
 msgstr "ID"
 
 #. module: sale_order_product_recommendation
+#: model:ir.model.fields,help:sale_order_product_recommendation.field_sale_order_recommendation_line__pricelist_id
+msgid "If you change the pricelist, only newly added lines will be affected."
+msgstr ""
+
+#. module: sale_order_product_recommendation
 #: model:ir.model.fields,field_description:sale_order_product_recommendation.field_sale_order_recommendation_line__is_modified
 #, fuzzy
 msgid "Is Modified"
@@ -115,11 +120,6 @@ msgstr "Precio unitario"
 #: model:ir.model.fields,field_description:sale_order_product_recommendation.field_sale_order_recommendation_line__pricelist_id
 msgid "Pricelist"
 msgstr "Tarifa"
-
-#. module: sale_order_product_recommendation
-#: model:ir.model.fields,help:sale_order_product_recommendation.field_sale_order_recommendation_line__pricelist_id
-msgid "Pricelist for current sales order."
-msgstr "Tarifa del pedido de ventas actual."
 
 #. module: sale_order_product_recommendation
 #: model:ir.model.fields,field_description:sale_order_product_recommendation.field_sale_order_recommendation_line__product_id
@@ -190,7 +190,5 @@ msgstr "Unidades incluidas"
 msgid "Wizard"
 msgstr "Asistente"
 
-#. module: sale_order_product_recommendation
-#: model:ir.model.fields,help:sale_order_product_recommendation.field_sale_order_recommendation_line__partner_id
-msgid "You can find a customer by its Name, TIN, Email or Internal Reference."
-msgstr ""
+#~ msgid "Pricelist for current sales order."
+#~ msgstr "Tarifa del pedido de ventas actual."
