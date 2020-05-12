@@ -78,7 +78,7 @@ class SaleOrderRecommendation(models.TransientModel):
             key=lambda res: (res["product_id_count"], res["qty_delivered"]),
             reverse=True,
         )
-        found_dict = {l["product_id"][0]: l for l in found_lines}
+        found_dict = {line["product_id"][0]: line for line in found_lines}
         RecomendationLine = self.env["sale.order.recommendation.line"]
         existing_product_ids = []
         # Add products from sale order lines
