@@ -49,10 +49,10 @@ class SaleOrderLine(models.Model):
             # Group the sales order lines with same procurement group
             # according to the group key
             group_id = line.procurement_group_id or False
-            for l in line.order_id.order_line:
-                g_id = l.procurement_group_id or False
+            for order_line in line.order_id.order_line:
+                g_id = order_line.procurement_group_id or False
                 if g_id:
-                    groups[l._get_procurement_group_key()] = g_id
+                    groups[order_line._get_procurement_group_key()] = g_id
             if not group_id:
                 group_id = groups.get(line._get_procurement_group_key())
 
