@@ -5,21 +5,22 @@ from odoo import api, fields, models
 
 
 class SaleOrder(models.Model):
-    _inherit = 'sale.order'
+    _inherit = "sale.order"
 
     force_invoiced = fields.Boolean(
-        string='Force invoiced',
-        help='When you set this field, the sales order will be considered as '
-             'fully invoiced, even when there may be ordered or delivered '
-             'quantities pending to invoice.',
+        string="Force invoiced",
+        help="When you set this field, the sales order will be considered as "
+        "fully invoiced, even when there may be ordered or delivered "
+        "quantities pending to invoice.",
         readonly=True,
-        states={'done': [('readonly', False)]},
+        states={"done": [("readonly", False)]},
         copy=False,
     )
 
-    @api.depends('force_invoiced')
+    @api.depends("force_invoiced")
     def _get_invoiced(self):
         super(SaleOrder, self)._get_invoiced()
-        for order in self.filtered(lambda so: so.force_invoiced and
-                                   so.invoice_status == 'to invoice'):
-            order.invoice_status = 'invoiced'
+        for order in self.filtered(
+            lambda so: so.force_invoiced and so.invoice_status == "to invoice"
+        ):
+            order.invoice_status = "invoiced"
