@@ -1,4 +1,4 @@
-# Copyright 2017 Eficent Business and IT Consulting Services S.L.
+# Copyright 2017 ForgeFlow S.L.
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl.html).
 
 from odoo.tests.common import TransactionCase
@@ -19,12 +19,7 @@ class TestSaleForceInvoiced(TransactionCase):
     def _create_customer(self, name):
         """Create a Partner."""
         return self.env["res.partner"].create(
-            {
-                "name": name,
-                "email": "example@yourcompany.com",
-                "customer": True,
-                "phone": 123456,
-            }
+            {"name": name, "email": "example@yourcompany.com", "phone": 123456}
         )
 
     def _create_product_category(self):
@@ -81,7 +76,7 @@ class TestSaleForceInvoiced(TransactionCase):
         )
 
         # Reduce the invoiced qty
-        for line in sol2.invoice_lines:
+        for line in sol2.invoice_lines.with_context(check_move_validity=False):
             line.quantity = 1
 
         self.assertEquals(

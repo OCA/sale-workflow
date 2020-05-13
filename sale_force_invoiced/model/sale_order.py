@@ -1,4 +1,4 @@
-# Copyright 2017 Eficent Business and IT Consulting Services S.L.
+# Copyright 2017 ForgeFlow S.L.
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl.html).
 
 from odoo import api, fields, models
@@ -18,8 +18,8 @@ class SaleOrder(models.Model):
     )
 
     @api.depends("force_invoiced")
-    def _get_invoiced(self):
-        super(SaleOrder, self)._get_invoiced()
+    def _get_invoice_status(self):
+        super(SaleOrder, self)._get_invoice_status()
         for order in self.filtered(
             lambda so: so.force_invoiced and so.invoice_status == "to invoice"
         ):
