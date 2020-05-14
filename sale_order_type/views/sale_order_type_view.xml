@@ -15,14 +15,19 @@
                     </group>
                     <group>
                         <group>
-                            <field name="warehouse_id" />
+                            <field
+                                name="warehouse_id"
+                                groups="stock.group_stock_multi_warehouses"
+                            />
                             <field
                                 name="company_id"
                                 attrs="{'invisible': [('warehouse_id', '=', False)]}"
+                                groups="base.group_multi_company"
                             />
                             <field
                                 name="route_id"
                                 attrs="{'invisible': [('warehouse_id', '=', False)]}"
+                                groups="stock.group_adv_location"
                             />
                             <field name="sequence_id" />
                         </group>
@@ -30,8 +35,14 @@
                             <field name="journal_id" />
                             <field name="picking_policy" />
                             <field name="payment_term_id" />
-                            <field name="pricelist_id" />
-                            <field name="incoterm_id" />
+                            <field
+                                name="pricelist_id"
+                                groups="product.group_product_pricelist"
+                            />
+                            <field
+                                name="incoterm_id"
+                                groups="sale_stock.group_display_incoterm"
+                            />
                         </group>
                     </group>
                     <group>
@@ -47,10 +58,18 @@
         <field name="arch" type="xml">
             <tree>
                 <field name="name" />
-                <field name="warehouse_id" />
+                <field
+                    name="warehouse_id"
+                    groups="stock.group_stock_multi_warehouses"
+                />
+                <field name="route_id" groups="stock.group_adv_location" />
                 <field name="sequence_id" />
                 <field name="journal_id" />
                 <field name="picking_policy" />
+                <field name="payment_term_id" />
+                <field name="pricelist_id" groups="product.group_product_pricelist" />
+                <field name="incoterm_id" groups="sale_stock.group_display_incoterm" />
+                <field name="company_id" groups="base.group_multi_company" />
                 <field name="description" />
             </tree>
         </field>
@@ -61,19 +80,25 @@
         <field name="arch" type="xml">
             <search string="Type">
                 <field name="name" />
-                <field name="warehouse_id" />
+                <field
+                    name="warehouse_id"
+                    groups="stock.group_stock_multi_warehouses"
+                />
+                <field name="route_id" groups="stock.group_adv_location" />
                 <field name="sequence_id" />
                 <field name="journal_id" />
                 <field name="picking_policy" />
                 <field name="payment_term_id" />
-                <field name="pricelist_id" />
-                <field name="incoterm_id" />
+                <field name="pricelist_id" groups="product.group_product_pricelist" />
+                <field name="incoterm_id" groups="sale_stock.group_display_incoterm" />
+                <field name="company_id" groups="base.group_multi_company" />
                 <group expand="0" string="Group By">
                     <filter
                         name="warehouse"
                         string="Warehouse"
                         domain="[]"
                         context="{'group_by':'warehouse_id'}"
+                        groups="stock.group_stock_multi_warehouses"
                     />
                     <filter
                         name="entry_sequence"
@@ -104,12 +129,14 @@
                         string="Price List"
                         domain="[]"
                         context="{'group_by':'pricelist_id'}"
+                        groups="product.group_product_pricelist"
                     />
                     <filter
                         name="incoterm"
                         string="Incoterm"
                         domain="[]"
                         context="{'group_by':'incoterm_id'}"
+                        groups="sale_stock.group_display_incoterm"
                     />
                 </group>
             </search>
