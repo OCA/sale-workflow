@@ -98,7 +98,6 @@ class TestSaleOrderType(common.TransactionCase):
         sale_type = self.sale_type
         order = self.sale_order_model.create(self.get_sale_order_vals())
         self.assertEqual(order.type_id, sale_type)
-        order.onchange_type_id()
         self.assertEqual(order.warehouse_id, sale_type.warehouse_id)
         self.assertEqual(order.picking_policy, sale_type.picking_policy)
         self.assertEqual(order.payment_term_id, sale_type.payment_term_id)
@@ -110,28 +109,32 @@ class TestSaleOrderType(common.TransactionCase):
         self.assertEqual(invoice.journal_id, sale_type.journal_id)
 
     def test_sale_order_change_partner(self):
-        order = self.sale_order_model.new({"partner_id": self.partner.id})
+        order = self.sale_order_model.create({"partner_id": self.partner.id})
         self.assertEqual(order.type_id, self.sale_type)
-        order = self.sale_order_model.new({"partner_id": self.partner_child_1.id})
+        order = self.sale_order_model.create({"partner_id": self.partner_child_1.id})
         self.assertEqual(order.type_id, self.sale_type)
 
-    def test_invoice_onchange_type(self):
+    def test_invoice_flow(self):
         sale_type = self.sale_type
-        invoice = self.invoice_model.new({"sale_type_id": sale_type.id})
-        invoice.onchange_sale_type_id()
+        invoice = self.invoice_model.create(
+            {"partner_id": self.partner.id, "type": "out_invoice"}
+        )
         self.assertEqual(invoice.invoice_payment_term_id, sale_type.payment_term_id)
         self.assertEqual(invoice.journal_id, sale_type.journal_id)
 
     def test_invoice_change_partner(self):
-        invoice = self.invoice_model.new({"partner_id": self.partner.id})
+        invoice = self.invoice_model.create(
+            {"partner_id": self.partner.id, "type": "out_invoice"}
+        )
         self.assertEqual(invoice.sale_type_id, self.sale_type)
-        invoice = self.invoice_model.new({"partner_id": self.partner_child_1.id})
+        invoice = self.invoice_model.create(
+            {"partner_id": self.partner_child_1.id, "type": "out_invoice"}
+        )
         self.assertEqual(invoice.sale_type_id, self.sale_type)
 
     def test_sale_order_flow_route(self):
         order = self.sale_order_model.create(self.get_sale_order_vals())
         order.type_id = self.sale_type_route.id
-        order.onchange_type_id()
         self.assertEqual(order.type_id.route_id, order.order_line[0].route_id)
         sale_line_dict = {
             "product_id": self.product.id,
@@ -140,5 +143,4 @@ class TestSaleOrderType(common.TransactionCase):
             "price_unit": self.product.lst_price,
         }
         order.write({"order_line": [(0, 0, sale_line_dict)]})
-        order.onchange_type_id()
         self.assertEqual(order.type_id.route_id, order.order_line[1].route_id)

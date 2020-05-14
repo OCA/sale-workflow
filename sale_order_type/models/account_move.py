@@ -14,10 +14,18 @@ class AccountMove(models.Model):
         readonly=False,
         store=True,
     )
+    invoice_payment_term_id = fields.Many2one(
+        compute="_compute_invoice_payment_term_id", store=True, readonly=False,
+    )
+    journal_id = fields.Many2one(
+        compute="_compute_journal_id", store=True, readonly=False,
+    )
 
     @api.depends("partner_id", "company_id")
     def _compute_sale_type_id(self):
         for record in self:
+            if not record.is_invoice():
+                continue
             if not record.partner_id:
                 record.sale_type_id = self.env["sale.order.type"].search([], limit=1)
             else:
@@ -32,10 +40,18 @@ class AccountMove(models.Model):
                 if sale_type:
                     record.sale_type_id = sale_type
 
-    @api.onchange("sale_type_id")
-    def onchange_sale_type_id(self):
-        # TODO: To be changed to computed stored readonly=False if possible in v14?
-        if self.sale_type_id.payment_term_id:
-            self.invoice_payment_term_id = self.sale_type_id.payment_term_id.id
-        if self.sale_type_id.journal_id:
-            self.journal_id = self.sale_type_id.journal_id.id
+    @api.depends("sale_type_id")
+    def _compute_invoice_payment_term_id(self):
+        if hasattr(super(), "_compute_invoice_payment_term_id"):
+            super()._compute_invoice_payment_term_id()
+        for rec in self:
+            if rec.sale_type_id:
+                rec.invoice_payment_term_id = rec.sale_type_id.payment_term_id
+
+    @api.depends("sale_type_id")
+    def _compute_journal_id(self):
+        if hasattr(super(), "_compute_journal_id"):
+            super()._compute_journal_id()
+        for rec in self:
+            if rec.sale_type_id.journal_id:
+                rec.journal_id = rec.sale_type_id.journal_id

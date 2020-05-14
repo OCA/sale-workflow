@@ -1,5 +1,6 @@
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 # Copyright 2020 Tecnativa - Pedro M. Baeza
+# Copyright 2020 Druidoo - Iván Todorovich
 
 from odoo import api, fields, models
 
@@ -10,13 +11,26 @@ class SaleOrder(models.Model):
     type_id = fields.Many2one(
         comodel_name="sale.order.type",
         string="Type",
-        compute="_compute_sale_type_id",
+        compute="_compute_type_id",
         readonly=False,
         store=True,
     )
+    warehouse_id = fields.Many2one(
+        compute="_compute_warehouse_id", store=True, readonly=False,
+    )
+    picking_policy = fields.Selection(
+        compute="_compute_picking_policy", store=True, readonly=False,
+    )
+    payment_term_id = fields.Many2one(
+        compute="_compute_payment_term_id", store=True, readonly=False,
+    )
+    pricelist_id = fields.Many2one(
+        compute="_compute_pricelist_id", store=True, readonly=False,
+    )
+    incoterm = fields.Many2one(compute="_compute_incoterm", store=True, readonly=False)
 
     @api.depends("partner_id", "company_id")
-    def _compute_sale_type_id(self):
+    def _compute_type_id(self):
         for record in self:
             if not record.partner_id:
                 record.sale_type_id = self.env["sale.order.type"].search([], limit=1)
@@ -32,30 +46,45 @@ class SaleOrder(models.Model):
                 if sale_type:
                     record.type_id = sale_type
 
-    @api.onchange("type_id")
-    def onchange_type_id(self):
-        # TODO: To be changed to computed stored readonly=False if possible in v14?
-        vals = {}
-        for order in self:
-            order_type = order.type_id
-            # Order values
-            vals = {}
-            if order_type.warehouse_id:
-                vals.update({"warehouse_id": order_type.warehouse_id})
-            if order_type.picking_policy:
-                vals.update({"picking_policy": order_type.picking_policy})
-            if order_type.payment_term_id:
-                vals.update({"payment_term_id": order_type.payment_term_id})
-            if order_type.pricelist_id:
-                vals.update({"pricelist_id": order_type.pricelist_id})
-            if order_type.incoterm_id:
-                vals.update({"incoterm": order_type.incoterm_id})
-            if vals:
-                order.update(vals)
-            # Order line values
-            line_vals = {}
-            line_vals.update({"route_id": order_type.route_id.id})
-            order.order_line.update(line_vals)
+    @api.depends("type_id")
+    def _compute_warehouse_id(self):
+        if hasattr(super(), "_compute_warehouse_id"):
+            super()._compute_warehouse_id()
+        for rec in self:
+            if rec.type_id.warehouse_id:
+                rec.warehouse_id = rec.type_id.warehouse_id
+
+    @api.depends("type_id")
+    def _compute_picking_policy(self):
+        if hasattr(super(), "_compute_picking_policy"):
+            super()._compute_picking_policy()
+        for rec in self:
+            if rec.type_id.picking_policy:
+                rec.picking_policy = rec.type_id.picking_policy
+
+    @api.depends("type_id")
+    def _compute_payment_term_id(self):
+        if hasattr(super(), "_compute_payment_term_id"):
+            super()._compute_payment_term_id()
+        for rec in self:
+            if rec.type_id.payment_term_id:
+                rec.payment_term_id = rec.type_id.payment_term_id
+
+    @api.depends("type_id")
+    def _compute_pricelist_id(self):
+        if hasattr(super(), "_compute_pricelist_id"):
+            super()._compute_pricelist_id()
+        for rec in self:
+            if rec.type_id.pricelist_id:
+                rec.pricelist_id = rec.type_id.pricelist_id
+
+    @api.depends("type_id")
+    def _compute_incoterm(self):
+        if hasattr(super(), "_compute_incoterm"):
+            super()._compute_incoterm()
+        for rec in self:
+            if rec.type_id.incoterm_id:
+                rec.incoterm = rec.type_id.incoterm_id
 
     @api.model
     def create(self, vals):
@@ -77,9 +106,11 @@ class SaleOrder(models.Model):
 class SaleOrderLine(models.Model):
     _inherit = "sale.order.line"
 
-    @api.onchange("product_id")
-    def product_id_change(self):
-        res = super(SaleOrderLine, self).product_id_change()
-        if self.order_id.type_id.route_id:
-            self.update({"route_id": self.order_id.type_id.route_id})
-        return res
+    route_id = fields.Many2one(compute="_compute_route_id", store=True, readonly=False)
+
+    @api.depends("order_id.type_id")
+    def _compute_route_id(self):
+        if hasattr(super(), "_compute_route_id"):
+            super()._compute_route_id()
+        for rec in self:
+            rec.route_id = rec.order_id.type_id.route_id
