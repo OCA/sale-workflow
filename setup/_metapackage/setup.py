@@ -10,6 +10,7 @@ setuptools.setup(
     install_requires=[
         'odoo13-addon-sale_automatic_workflow',
         'odoo13-addon-sale_automatic_workflow_payment',
+        'odoo13-addon-sale_commercial_partner',
         'odoo13-addon-sale_discount_display_amount',
         'odoo13-addon-sale_elaboration',
         'odoo13-addon-sale_last_price_info',
