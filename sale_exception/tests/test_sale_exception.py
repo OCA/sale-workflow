@@ -4,10 +4,10 @@
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl)
 
 from odoo.exceptions import ValidationError
-from odoo.addons.sale.tests.test_sale_order import TestSaleOrder
+from odoo.tests import SavepointCase
 
 
-class TestSaleException(TestSaleOrder):
+class TestSaleException(SavepointCase):
 
     @classmethod
     def setUpClass(cls):
