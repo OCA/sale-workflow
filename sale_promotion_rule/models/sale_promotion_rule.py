@@ -17,6 +17,7 @@ _logger = logging.getLogger(__name__)
 class SalePromotionRule(models.Model):
     _name = 'sale.promotion.rule'
     _description = 'Sale Promotion Rule'
+    _order = "sequence, id"
 
     sequence = fields.Integer(default=10)
     rule_type = fields.Selection(
