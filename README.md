@@ -64,7 +64,7 @@ addon | version | summary
 [sale_product_multi_add](sale_product_multi_add/) | 10.0.1.0.0 | Sale Product Multi Add
 [sale_product_set](sale_product_set/) | 10.0.1.0.2 | Sale product set
 [sale_product_set_layout](sale_product_set_layout/) | 10.0.1.0.0 | Sale product set layout
-[sale_promotion_rule](sale_promotion_rule/) | 10.0.2.0.2 | Module to manage promotion rule on sale order
+[sale_promotion_rule](sale_promotion_rule/) | 10.0.2.1.0 | Module to manage promotion rule on sale order
 [sale_promotion_rule_assortment](sale_promotion_rule_assortment/) | 10.0.1.0.0 | This addon allows to reduce the appliance of a promotion rule to a set of products
 [sale_promotion_rule_delivery](sale_promotion_rule_delivery/) | 10.0.1.0.0 | Manage promotion rule with delivery
 [sale_quotation_number](sale_quotation_number/) | 10.0.1.1.0 | Different sequence for sale quotations
