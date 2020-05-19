@@ -24,7 +24,7 @@ msgstr "Commercial Entity"
 
 #. module: sale_commercial_partner
 #: model:ir.model,name:sale_commercial_partner.model_sale_order
-msgid "Sale Order"
+msgid "Sales Order"
 msgstr ""
 
 #~ msgid "Quotation"
