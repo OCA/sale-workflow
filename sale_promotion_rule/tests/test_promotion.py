@@ -434,3 +434,25 @@ class PromotionCase(TransactionCase, AbstractCommonPromotionCase):
             self.sale.amount_total
         )
         self.assertFalse(so_line.coupon_promotion_rule_id)
+
+    def test_multi_promotion_rules_exclusive_sequence(self):
+        """
+        Ensure it's working in case of multi available promotions.
+        So the first promotion rule > 100 should not be applied
+        :return:
+        """
+        promo_copy = self.promotion_rule_auto.copy({
+            'name': '> 100',
+            'minimal_amount': 199,
+            'multi_rule_strategy': 'exclusive',
+            'sequence': 10,
+        })
+        self.promotion_rule_auto.write({
+            'minimal_amount': 100,
+            'multi_rule_strategy': 'exclusive',
+            'sequence': 20,
+        })
+        self.sale.apply_promotions()
+        for line in self.sale.order_line:
+            self.check_discount_rule_set(line, promo_copy)
+        return
