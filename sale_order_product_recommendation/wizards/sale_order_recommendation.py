@@ -7,6 +7,12 @@ from datetime import datetime, timedelta
 from odoo import api, fields, models
 
 
+def _onchange_method(record, field_list):
+    for field in field_list:
+        for onchange_method in record._onchange_methods[field]:
+            onchange_method(record)
+
+
 class SaleOrderRecommendation(models.TransientModel):
     _name = "sale.order.recommendation"
     _description = "Recommended products for current sale order"
@@ -185,8 +191,8 @@ class SaleOrderRecommendationLine(models.TransientModel):
         }
 
     def _trigger_so_line_onchanges(self, so_line):
-        """Extensible method for trigger needed onchanges of the so ling"""
-        so_line.product_id_change()
+        """Extensible method for trigger needed onchanges of the so line"""
+        _onchange_method(so_line, ["product_id"])
         so_line.product_uom_qty = self.units_included
-        so_line.product_uom_change()
+        _onchange_method(so_line, ["product_uom"])
         return so_line
