@@ -104,6 +104,7 @@ class TestSaleElaboration(SavepointCase):
     def test_invoice_elaboration(self):
         so = self.env['sale.order'].new({
             'partner_id': self.partner.id,
+            'company_id': self.env.user.company_id.id,
             'order_line': [
                 (0, 0, {
                     'name': self.product_elaboration_A.name,
