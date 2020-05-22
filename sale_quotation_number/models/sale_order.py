@@ -36,3 +36,11 @@ class SaleOrder(models.Model):
                         'sale.order')
                 })
         return super().action_confirm()
+
+    @api.multi
+    @api.returns('self', lambda value: value.id)
+    def copy(self, default=None):
+        default = dict(default or {})
+        if not 'origin' in default:
+            default['origin'] = False
+        return super().copy(default)
