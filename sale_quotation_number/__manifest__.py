@@ -7,7 +7,7 @@
 {
     'name': 'Sale Quotation Numeration',
     'summary': "Different sequence for sale quotations",
-    'version': '12.0.1.1.0',
+    'version': '12.0.1.2.0',
     'category': 'Sales Management',
     'website': 'https://odoo-community.org/',
     'author': 'Elico Corp, '

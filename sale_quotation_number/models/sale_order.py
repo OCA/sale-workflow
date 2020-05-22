@@ -20,18 +20,19 @@ class SaleOrder(models.Model):
 
     @api.multi
     def action_confirm(self):
-        if super().action_confirm():
-            company = self.env['res.company']. \
-                _company_default_get('sale.order')
-            for order in self:
-                if order.state == 'sale' and not company.keep_name_so:
-                    if order.origin and order.origin != '':
-                        quo = order.origin + ', ' + order.name
-                    else:
-                        quo = order.name
-                    order.write({
-                        'origin': quo,
-                        'name': self.env['ir.sequence'].next_by_code(
-                            'sale.order')
-                    })
-        return True
+        # allocate new number before confirm - as reference on MTO orders
+        # should be the sale number, not the quote number
+        company = self.env['res.company']. \
+            _company_default_get('sale.order')
+        for order in self:
+            if order.state in ('draft', 'sent') and not company.keep_name_so:
+                if order.origin and order.origin != '':
+                    quo = order.origin + ', ' + order.name
+                else:
+                    quo = order.name
+                order.write({
+                    'origin': quo,
+                    'name': self.env['ir.sequence'].next_by_code(
+                        'sale.order')
+                })
+        return super().action_confirm()
