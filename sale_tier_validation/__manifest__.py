@@ -3,7 +3,7 @@
 {
     "name": "Sale Tier Validation",
     "summary": "Extends the functionality of Sale Orders to "
-               "support a tier validation process.",
+    "support a tier validation process.",
     "version": "12.0.1.0.0",
     "category": "Sale",
     "website": "https://github.com/OCA/sale-workflow",
@@ -11,11 +11,6 @@
     "license": "AGPL-3",
     "application": False,
     "installable": True,
-    "depends": [
-        "sale",
-        "base_tier_validation",
-    ],
-    "data": [
-        "views/sale_order_view.xml",
-    ],
+    "depends": ["sale", "base_tier_validation",],
+    "data": ["views/sale_order_view.xml",],
 }
