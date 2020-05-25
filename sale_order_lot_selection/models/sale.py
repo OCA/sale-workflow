@@ -47,9 +47,10 @@ class SaleOrder(models.Model):
                 if move_line_id and line.lot_id == move_line_id[:1].lot_id:
                     move = m
                     lot_count += 1
-                    # if counter is 0 or > 1 means that something goes wrong
-                    if lot_count != 1:
-                        raise UserError(_('Can\'t retrieve lot on stock'))
+                    # if counter is 0 means that something goes wrong
+                    if lot_count == 0:
+                        raise UserError(_('Can\'t retrieve product stock %s, for lot %s') %
+                                (line.product_id.name, line.lot_id.name))
         return move
 
     @api.model
