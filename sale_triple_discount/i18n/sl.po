@@ -61,12 +61,6 @@ msgid "Sale Order"
 msgstr "Postavka prodajnega naloga"
 
 #. module: sale_triple_discount
-#: code:addons/sale_triple_discount/models/sale_order_line.py:22
-#, python-format
-msgid "Sale order line %s has unknown discounting type %s"
-msgstr ""
-
-#. module: sale_triple_discount
 #: model:ir.model,name:sale_triple_discount.model_sale_order_line
 msgid "Sales Order Line"
 msgstr "Postavka prodajnega naloga"
