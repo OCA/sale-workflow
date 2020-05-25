@@ -18,10 +18,6 @@ class SaleOrderLine(models.Model):
             return self._additive_discount()
         elif self.discounting_type == "multiplicative":
             return self._multiplicative_discount()
-        else:
-            raise ValidationError(_(
-                "Sale order line %s has unknown discounting type %s"
-            ) % (self.name, self.discounting_type))
 
     def _additive_discount(self):
         self.ensure_one()
