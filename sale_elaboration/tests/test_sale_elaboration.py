@@ -100,7 +100,6 @@ class TestSaleElaboration(SavepointCase):
         self.order.action_confirm()
         invoice_id = self.order.action_invoice_create()
         invoice = self.env['account.invoice'].browse(invoice_id)
-        inv_line_elaboration = invoice.invoice_line_ids
         self.assertIn("TEST01 - ", invoice.invoice_line_ids.name)
 
     def test_invoice_no_elaboration(self):
@@ -109,7 +108,6 @@ class TestSaleElaboration(SavepointCase):
         self.order.action_confirm()
         invoice_id = self.order.action_invoice_create()
         invoice = self.env['account.invoice'].browse(invoice_id)
-        inv_line_elaboration = invoice.invoice_line_ids
         self.assertNotIn("TEST01 - ", invoice.invoice_line_ids.name)
 
     def test_sale_elaboration_change_product(self):
