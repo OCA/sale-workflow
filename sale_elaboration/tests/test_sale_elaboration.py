@@ -1,6 +1,6 @@
 # Copyright 2018 Tecnativa - Sergio Teruel
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
-from odoo.tests import SavepointCase, tagged
+from odoo.tests import Form, SavepointCase, tagged
 
 
 @tagged('post_install', '-at_install')
@@ -50,21 +50,14 @@ class TestSaleElaboration(SavepointCase):
             'name': 'Elaboration B',
             'product_id': cls.product_elaboration_B.id,
         })
-        so = cls.env['sale.order'].new({
-            'partner_id': cls.partner.id,
-            'order_line': [(0, 0, {
-                'name': cls.product.name,
-                'product_id': cls.product.id,
-                'product_uom_qty': 10.0,
-                'product_uom': cls.product.uom_id.id,
-                'price_unit': 1000.00,
-                'elaboration_id': cls.elaboration_a.id,
-                'elaboration_note': 'elaboration A',
-            })],
-        })
-        so.onchange_partner_id()
-        cls.order = cls.env['sale.order'].create(
-            so._convert_to_write(so._cache))
+        sale_form = Form(cls.env['sale.order'])
+        sale_form.partner_id = cls.partner
+        with sale_form.order_line.new() as order_line:
+            order_line.product_id = cls.product
+            order_line.product_uom_qty = 10
+            order_line.price_unit = 1000
+            order_line.elaboration_id = cls.elaboration_a
+        cls.order = sale_form.save()
 
     def test_search_elaboration(self):
         elaboration = self.Elaboration.name_search('Elaboration')
@@ -102,43 +95,22 @@ class TestSaleElaboration(SavepointCase):
         self.assertEqual(elaboration_lines.product_uom_qty, 11.0)
 
     def test_invoice_elaboration(self):
-        so = self.env['sale.order'].new({
-            'partner_id': self.partner.id,
-            'order_line': [
-                (0, 0, {
-                    'name': self.product_elaboration_A.name,
-                    'product_id': self.product_elaboration_A.id,
-                    'product_uom_qty': 1.0,
-                    'price_unit': 50.0,
-                    'is_elaboration': True,
-                }),
-                (0, 0, {
-                    'name': self.product_elaboration_B.name,
-                    'product_id': self.product_elaboration_B.id,
-                    'product_uom_qty': 1.0,
-                    'price_unit': 50.0,
-                    'is_elaboration': False,
-                }),
-            ],
-        })
-        so.onchange_partner_id()
-        self.order = self.env['sale.order'].create(
-            so._convert_to_write(so._cache))
+        self.order.order_line.is_elaboration = True
+        self.order.name = "TEST01"
         self.order.action_confirm()
         invoice_id = self.order.action_invoice_create()
         invoice = self.env['account.invoice'].browse(invoice_id)
-        so_line_elaboration = self.order.order_line.filtered('is_elaboration')
-        so_line_no_elaboration = self.order.order_line - so_line_elaboration
-        inv_line_elaboration = invoice.invoice_line_ids.filtered(
-            lambda x: x.sale_line_ids == so_line_elaboration)
-        inv_line_no_elaboration = invoice.invoice_line_ids.filtered(
-            lambda x: x.sale_line_ids == so_line_no_elaboration)
-        self.assertEqual(
-            inv_line_elaboration.name,
-            '{} - {}'.format(self.order.name, so_line_elaboration.name))
-        self.assertNotEqual(
-            inv_line_no_elaboration.name,
-            '{} - {}'.format(self.order.name, so_line_no_elaboration.name))
+        inv_line_elaboration = invoice.invoice_line_ids
+        self.assertIn("TEST01 - ", invoice.invoice_line_ids.name)
+
+    def test_invoice_no_elaboration(self):
+        self.order.order_line.is_elaboration = False
+        self.order.name = "TEST01"
+        self.order.action_confirm()
+        invoice_id = self.order.action_invoice_create()
+        invoice = self.env['account.invoice'].browse(invoice_id)
+        inv_line_elaboration = invoice.invoice_line_ids
+        self.assertNotIn("TEST01 - ", invoice.invoice_line_ids.name)
 
     def test_sale_elaboration_change_product(self):
         self.order.order_line.product_id = self.product_elaboration_A
