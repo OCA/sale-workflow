@@ -3,4 +3,4 @@ Minimum order quantity is either required or recommanded.
 If you check "Force min Qty" on product the min qty do not block sale
 order.
 This can be used if the available stock is less then the min qty
-or if you want to sell sample products.  
+or if you want to sell sample products.

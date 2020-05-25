@@ -26,33 +26,26 @@ class SaleOrderLine(models.Model):
 
     @api.constrains("product_uom_qty")
     def check_constraint_min_qty(self):
-        for line in self:
-            invaild_lines = []
-            rounding = line.product_uom.rounding
-            line_to_test = line.filtered(
-                lambda l: not l.product_id.force_sale_min_qty
-                and float_compare(
-                    l.product_uom_qty,
-                    l.product_id.sale_min_qty,
-                    precision_rounding=rounding,
-                )
-                < 0
+        invaild_lines = []
+        rounding = line.product_uom.rounding
+        line_to_test = self.filtered(
+            lambda l: not l.product_id.force_sale_min_qty and l.is_qty_less_min_qty
+        )
+        for line in line_to_test:
+            invaild_lines.append(
+                _('Product "%s": Min Quantity %s.')
+                % (line.product_id.name, line.product_id.sale_min_qty)
             )
-            for line in line_to_test:
-                invaild_lines.append(
-                    _('Product "%s": Min Quantity %s.')
-                    % (line.product_id.name, line.product_id.sale_min_qty)
-                )
 
-            if invaild_lines:
-                msg = _(
-                    "Check minimum order quantity for this products: * \n"
-                ) + "\n ".join(invaild_lines)
-                msg += _(
-                    "\n* If you want sell quantity less than Min Quantity"
-                    ',Check "force min quatity" on product'
-                )
-                raise ValidationError(msg)
+        if invaild_lines:
+            msg = _(
+                "Check minimum order quantity for this products: * \n"
+            ) + "\n ".join(invaild_lines)
+            msg += _(
+                "\n* If you want sell quantity less than Min Quantity"
+                ',Check "force min quatity" on product'
+            )
+            raise ValidationError(msg)
 
     @api.multi
     @api.depends("product_uom_qty", "sale_min_qty")
@@ -61,9 +54,7 @@ class SaleOrderLine(models.Model):
             rounding = line.product_uom.rounding
             line.is_qty_less_min_qty = (
                 float_compare(
-                    line.product_uom_qty,
-                    line.sale_min_qty,
-                    precision_rounding=rounding,
+                    line.product_uom_qty, line.sale_min_qty, precision_rounding=rounding
                 )
                 < 0
             )

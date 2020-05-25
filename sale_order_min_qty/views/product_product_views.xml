@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <odoo>
 
     <record id="min_order_qty_product_product_form_view"
@@ -10,7 +10,11 @@
             <group name="pricelists" position="before">
                 <group name="sale_min_qty">
                     <field name ="sale_min_qty"/>
+                    <field name ="manual_sale_min_qty" class="oe_edit_only"/>
                     <field name ="force_sale_min_qty"/>
+                    <field name ="manual_force_sale_min_qty" class="oe_edit_only"/>
+                    <field name ="sale_multiple_qty"/>
+                    <field name ="manual_sale_multiple_qty" class="oe_edit_only"/>
                 </group>
             </group>
         </field>
