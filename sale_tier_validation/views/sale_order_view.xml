@@ -1,83 +1,106 @@
-<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8" ?>
 <!-- Copyright 2019 Open Source Integrators
      License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl). -->
 <odoo>
-
     <record id="sale_order_form_tier" model="ir.ui.view">
         <field name="name">sale.order.form - test</field>
         <field name="model">sale.order</field>
-        <field name="inherit_id" ref="sale.view_order_form"/>
+        <field name="inherit_id" ref="sale.view_order_form" />
         <field name="arch" type="xml">
             <button name="action_confirm" position="before">
-                <button name="request_validation"
+                <button
+                    name="request_validation"
                     string="Request Validation"
                     attrs="{'invisible': ['|','|',('need_validation', '!=', True),('rejected','=',True),('state','not in',['draft','sent','to approve'])]}"
-                    type="object"/>
-                <button name="restart_validation"
+                    type="object"
+                />
+                <button
+                    name="restart_validation"
                     string="Restart Validation"
                     attrs="{'invisible': ['|',('review_ids', '=', []),('state','not in',['draft','sent','to approve'])]}"
-                    type="object"/>
+                    type="object"
+                />
             </button>
             <header position="after">
-                <field name="need_validation" invisible="1"/>
-                <field name="validated" invisible="1"/>
-                <field name="rejected" invisible="1"/>
-                <div class="alert alert-warning"
-                     role="alert"
-                     attrs="{'invisible': ['|', '|', '|',
+                <field name="need_validation" invisible="1" />
+                <field name="validated" invisible="1" />
+                <field name="rejected" invisible="1" />
+                <div
+                    class="alert alert-warning"
+                    role="alert"
+                    attrs="{'invisible': ['|', '|', '|',
                      ('validated', '=', True), ('state', 'not in', ['draft','sent','to approve']),
                      ('rejected', '=', True), ('review_ids', '=', [])]}"
-                     style="margin-bottom:0px;">
-                    <p><i class="fa fa-info-circle"/>This SO needs to be
+                    style="margin-bottom:0px;"
+                >
+                    <p><i class="fa fa-info-circle" />This SO needs to be
                         validated.
-                        <field name="can_review" invisible="1"/>
-                        <button name="validate_tier"
-                                string="Validate"
-                                attrs="{'invisible': [('can_review', '=', False)]}"
-                                type="object"
-                                class="oe_inline oe_button btn-success"
-                                icon="fa-thumbs-up"/>
-                        <button name="reject_tier"
-                                string="Reject"
-                                attrs="{'invisible': [('can_review', '=', False)]}"
-                                type="object"
-                                class="btn-icon btn-danger"
-                                icon="fa-thumbs-down"/>
+                        <field name="can_review" invisible="1" />
+                        <button
+                            name="validate_tier"
+                            string="Validate"
+                            attrs="{'invisible': [('can_review', '=', False)]}"
+                            type="object"
+                            class="oe_inline oe_button btn-success"
+                            icon="fa-thumbs-up"
+                        />
+                        <button
+                            name="reject_tier"
+                            string="Reject"
+                            attrs="{'invisible': [('can_review', '=', False)]}"
+                            type="object"
+                            class="btn-icon btn-danger"
+                            icon="fa-thumbs-down"
+                        />
                     </p>
                 </div>
-                <div class="alert alert-success"
-                     role="alert"
-                     attrs="{'invisible': ['|', '|', ('validated', '!=', True), ('state', 'not in', ['draft','sent','to approve']), ('review_ids', '=', [])]}"
-                     style="margin-bottom:0px;">
-                    <p><i class="fa fa-thumbs-up"/> Operation has been <b>validated</b>!</p>
+                <div
+                    class="alert alert-success"
+                    role="alert"
+                    attrs="{'invisible': ['|', '|', ('validated', '!=', True), ('state', 'not in', ['draft','sent','to approve']), ('review_ids', '=', [])]}"
+                    style="margin-bottom:0px;"
+                >
+                    <p><i class="fa fa-thumbs-up" /> Operation has been <b
+                        >validated</b>!</p>
                 </div>
-                <div class="alert alert-danger"
-                     role="alert"
-                     attrs="{'invisible': ['|', '|', ('rejected', '!=', True), ('state', 'not in', ['draft','sent','to approve']), ('review_ids', '=', [])]}"
-                     style="margin-bottom:0px;">
-                    <p><i class="fa fa-thumbs-down"/> Operation has been <b>rejected</b>.</p>
+                <div
+                    class="alert alert-danger"
+                    role="alert"
+                    attrs="{'invisible': ['|', '|', ('rejected', '!=', True), ('state', 'not in', ['draft','sent','to approve']), ('review_ids', '=', [])]}"
+                    style="margin-bottom:0px;"
+                >
+                    <p><i class="fa fa-thumbs-down" /> Operation has been <b
+                        >rejected</b>.</p>
                 </div>
             </header>
             <xpath expr="//form/div[hasclass('oe_chatter')]" position="before">
-                <field name="review_ids" widget="tier_validation" attrs="{'invisible':[('review_ids', '=', [])]}"/>
+                <field
+                    name="review_ids"
+                    widget="tier_validation"
+                    attrs="{'invisible':[('review_ids', '=', [])]}"
+                />
             </xpath>
         </field>
     </record>
-
     <record id="view_sale_order_filter" model="ir.ui.view">
         <field name="name">sale.order.select - sale_tier_validation</field>
         <field name="model">sale.order</field>
-        <field name="inherit_id" ref="sale.view_sales_order_filter"/>
+        <field name="inherit_id" ref="sale.view_sales_order_filter" />
         <field name="arch" type="xml">
             <filter name="my_sale_orders_filter" position="after">
-                <filter name="needs_review" string="Needs my Review"
-                        domain="[('reviewer_ids','in',uid), ('state', 'not in', ['done', 'cancel','to approve'])]"
-                        help="My Sales to review"/>
-                <filter name="tier_validated" string="Validated"
-                        domain="[('validated', '=', True)]"
-                        help="SOs validated and ready to be confirmed"/>
+                <filter
+                    name="needs_review"
+                    string="Needs my Review"
+                    domain="[('reviewer_ids','in',uid), ('state', 'not in', ['done', 'cancel','to approve'])]"
+                    help="My Sales to review"
+                />
+                <filter
+                    name="tier_validated"
+                    string="Validated"
+                    domain="[('validated', '=', True)]"
+                    help="SOs validated and ready to be confirmed"
+                />
             </filter>
         </field>
     </record>
-
 </odoo>
