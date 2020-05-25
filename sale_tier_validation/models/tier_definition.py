@@ -9,6 +9,6 @@ class TierDefinition(models.Model):
 
     @api.model
     def _get_tier_validation_model_names(self):
-        res = super(TierDefinition, self)._get_tier_validation_model_names()
+        res = super()._get_tier_validation_model_names()
         res.append("sale.order")
         return res
