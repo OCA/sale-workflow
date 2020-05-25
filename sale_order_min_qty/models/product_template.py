@@ -18,7 +18,8 @@ class ProductTemplate(models.Model):
         digits=dp.get_precision("Stock Threshold"),
     )
     manual_sale_multiple_qty_tmpl = fields.Float(
-        string="multiple Sale Qty", digits=dp.get_precision("Product Unit of Measure")
+        string="multiple Sale Qty",
+        digits=dp.get_precision("Product Unit of Measure")
     )
     sale_min_qty_tmpl = fields.Float(
         compute="_compute_sale_min_qty_tmpl",
@@ -45,11 +46,13 @@ class ProductTemplate(models.Model):
         "is only indicative value.",
     )
 
-    @api.depends("categ_id.force_sale_min_qty", "manual_force_sale_min_qty_tmpl")
+    @api.depends("categ_id.force_sale_min_qty",
+                 "manual_force_sale_min_qty_tmpl")
     def _compute_force_sale_min_qty_tmpl(self):
         for rec in self:
             rec.sale_min_qty_tmpl = (
-                rec.manual_force_sale_min_qty_tmpl or rec.categ_id.force_sale_min_qty
+                rec.manual_force_sale_min_qty_tmpl or
+                rec.categ_id.force_sale_min_qty
             )
 
     @api.depends("categ_id.sale_min_qty", "manual_sale_min_qty_tmpl")
@@ -63,5 +66,6 @@ class ProductTemplate(models.Model):
     def _compute_sale_multiple_qty_tmpl(self):
         for rec in self:
             rec.sale_multiple_qty_tmpl = (
-                rec.manual_sale_multiple_qty_tmpl or rec.categ_id.sale_multiple_qty
+                rec.manual_sale_multiple_qty_tmpl or
+                rec.categ_id.sale_multiple_qty
             )

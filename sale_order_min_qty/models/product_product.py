@@ -20,7 +20,8 @@ class ProductProduct(models.Model):
         digits=dp.get_precision("Product Unit of Measure"),
     )
     manual_sale_multiple_qty = fields.Float(
-        string="multiple Sale Qty", digits=dp.get_precision("Product Unit of Measure")
+        string="multiple Sale Qty",
+        digits=dp.get_precision("Product Unit of Measure")
     )
     sale_min_qty = fields.Float(
         compute="_compute_sale_min_qty",
@@ -33,7 +34,8 @@ class ProductProduct(models.Model):
         digits=dp.get_precision("Product Unit of Measure"),
     )
     manual_sale_min_qty = fields.Float(
-        string="Min Sale Qty", digits=dp.get_precision("Product Unit of Measure")
+        string="Min Sale Qty",
+        digits=dp.get_precision("Product Unit of Measure")
     )
     force_sale_min_qty = fields.Boolean(
         compute="_compute_force_sale_min_qty",

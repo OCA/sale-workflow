@@ -17,7 +17,8 @@ class ProductCategory(models.Model):
         digits=dp.get_precision("Product Unit of Measure"),
     )
     manual_sale_multiple_qty = fields.Float(
-        string="multiple Sale Qty", digits=dp.get_precision("Product Unit of Measure")
+        string="multiple Sale Qty",
+        digits=dp.get_precision("Product Unit of Measure")
     )
     sale_min_qty = fields.Float(
         compute="_compute_sale_min_qty",
@@ -28,7 +29,8 @@ class ProductCategory(models.Model):
         digits=dp.get_precision("Product Unit of Measure"),
     )
     manual_sale_min_qty = fields.Float(
-        string="Min Sale Qty", digits=dp.get_precision("Product Unit of Measure")
+        string="Min Sale Qty",
+        digits=dp.get_precision("Product Unit of Measure")
     )
     force_sale_min_qty = fields.Float(
         compute="_compute_force_sale_min_qty",
@@ -48,17 +50,21 @@ class ProductCategory(models.Model):
     def _compute_force_sale_min_qty(self):
         for rec in self:
             rec.sale_min_qty = (
-                rec.manual_force_sale_min_qty or rec.parent_id.force_sale_min_qty
+                rec.manual_force_sale_min_qty
+                or rec.parent_id.force_sale_min_qty
             )
 
     @api.depends("parent_id.sale_min_qty", "manual_sale_min_qty")
     def _compute_sale_min_qty(self):
         for rec in self:
-            rec.sale_min_qty = rec.manual_sale_min_qty or rec.parent_id.sale_min_qty
+            rec.sale_min_qty = (
+                rec.manual_sale_min_qty
+                or rec.parent_id.sale_min_qty)
 
     @api.depends("parent_id.sale_multiple_qty", "manual_sale_multiple_qty")
     def _compute_sale_multiple_qty(self):
         for rec in self:
             rec.sale_multiple_qty = (
-                rec.manual_sale_multiple_qty or rec.parent_id.sale_multiple_qty
+                rec.manual_sale_multiple_qty
+                or rec.parent_id.sale_multiple_qty
             )

@@ -27,9 +27,9 @@ class SaleOrderLine(models.Model):
     @api.constrains("product_uom_qty")
     def check_constraint_min_qty(self):
         invaild_lines = []
-        rounding = line.product_uom.rounding
         line_to_test = self.filtered(
-            lambda l: not l.product_id.force_sale_min_qty and l.is_qty_less_min_qty
+            lambda l: not l.product_id.force_sale_min_qty
+            and l.is_qty_less_min_qty
         )
         for line in line_to_test:
             invaild_lines.append(
@@ -54,7 +54,8 @@ class SaleOrderLine(models.Model):
             rounding = line.product_uom.rounding
             line.is_qty_less_min_qty = (
                 float_compare(
-                    line.product_uom_qty, line.sale_min_qty, precision_rounding=rounding
+                    line.product_uom_qty, line.sale_min_qty,
+                    precision_rounding=rounding
                 )
                 < 0
             )
