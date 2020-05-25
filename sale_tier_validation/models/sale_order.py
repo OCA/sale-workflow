@@ -6,6 +6,6 @@ from odoo import models
 
 class SaleOrder(models.Model):
     _name = "sale.order"
-    _inherit = ['sale.order', 'tier.validation']
-    _state_from = ['draft', 'sent', 'to approve']
-    _state_to = ['sale', 'approved']
+    _inherit = ["sale.order", "tier.validation"]
+    _state_from = ["draft", "sent", "to approve"]
+    _state_to = ["sale", "approved"]
