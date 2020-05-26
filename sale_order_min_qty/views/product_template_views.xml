@@ -7,10 +7,10 @@
         <field name="arch" type="xml">
             <group name="description" position="before">
                 <group string="Sale min qty" name="sale_min_qty">
-                    <field name="sale_min_qty_tmpl"/>
-                    <field name="manual_sale_min_qty_tmpl" class="oe_edit_only"/>
-                    <field name="sale_multiple_qty_tmpl"/>
-                    <field name="manual_sale_multiple_qty_tmpl" class="oe_edit_only"/>
+                    <field name="sale_min_qty"/>
+                    <field name="manual_sale_min_qty" class="oe_edit_only"/>
+                    <field name="sale_multiple_qty"/>
+                    <field name="manual_sale_multiple_qty" class="oe_edit_only"/>
                 </group>
             </group>
         </field>

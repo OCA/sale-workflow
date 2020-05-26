@@ -7,61 +7,27 @@ from odoo.addons import decimal_precision as dp
 
 
 class ProductTemplate(models.Model):
-    _inherit = "product.template"
+    _name = "product.template"
+    _inherit = ["product.template", "product.min.multiple.mixin"]
 
-    sale_multiple_qty_tmpl = fields.Float(
-        compute="_compute_sale_multiple_qty_tmpl",
-        store=True,
-        help="Define sale multiple qty"
-        " 'If not set', Odoo will"
-        " use the value defined in the product category.",
-        digits=dp.get_precision("Stock Threshold"),
-    )
-    manual_sale_multiple_qty_tmpl = fields.Float(
-        string="multiple Sale Qty", digits=dp.get_precision("Product Unit of Measure")
-    )
-    sale_min_qty_tmpl = fields.Float(
-        compute="_compute_sale_min_qty_tmpl",
-        store=True,
-        help="Define sale min qty"
-        " 'If not set', Odoo will"
-        " use the value defined in the product category.",
-        digits=dp.get_precision("Stock Threshold"),
-    )
-    manual_sale_min_qty_tmpl = fields.Float(
-        string="Min Se Qty", digits=dp.get_precision("Product Unit of Measure")
-    )
-    force_sale_min_qty_tmpl = fields.Boolean(
-        compute="_compute_force_sale_min_qty_tmpl",
-        string="Force Min Qty",
-        store=True,
-        help="Define if user can force sale min qty"
-        " 'If not set, Odoo will"
-        " use the value defined in the product category.",
-    )
-    manual_force_sale_min_qty_tmpl = fields.Boolean(
-        string="Manual Force Min Qty",
-        help="If force min qty is checked, the min quantity "
-        "is only indicative value.",
-    )
+    def _get_sale_min_multiple_qty(self):
+        res = super(ProductTemplate, self)._get_sale_min_multiple_qty()
+        res.update(
+            {
+                "sale_min_qty": self.manual_sale_min_qty or self.categ_id.sale_min_qty,
+                "force_sale_min_qty": self.manual_force_sale_min_qty
+                or self.categ_id.force_sale_min_qty,
+                "sale_multiple_qty": self.manual_sale_multiple_qty
+                or self.categ_id.sale_multiple_qty,
+            }
+        )
+        return res
 
-    @api.depends("categ_id.force_sale_min_qty", "manual_force_sale_min_qty_tmpl")
-    def _compute_force_sale_min_qty_tmpl(self):
+    @api.depends(
+        "categ_id.force_sale_min_qty",
+        "categ_id.sale_min_qty",
+        "categ_id.sale_multiple_qty",
+    )
+    def _compute_sale_min_multiple_qty(self):
         for rec in self:
-            rec.force_sale_min_qty_tmpl = (
-                rec.manual_force_sale_min_qty_tmpl or rec.categ_id.force_sale_min_qty
-            )
-
-    @api.depends("categ_id.sale_min_qty", "manual_sale_min_qty_tmpl")
-    def _compute_sale_min_qty_tmpl(self):
-        for rec in self:
-            rec.sale_min_qty_tmpl = (
-                rec.manual_sale_min_qty_tmpl or rec.categ_id.sale_min_qty
-            )
-
-    @api.depends("categ_id.sale_multiple_qty", "manual_sale_multiple_qty_tmpl")
-    def _compute_sale_multiple_qty_tmpl(self):
-        for rec in self:
-            rec.sale_multiple_qty_tmpl = (
-                rec.manual_sale_multiple_qty_tmpl or rec.categ_id.sale_multiple_qty
-            )
+            rec.update(rec._get_sale_min_multiple_qty())

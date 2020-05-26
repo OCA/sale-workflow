@@ -24,14 +24,14 @@ class SaleOrderLine(models.Model):
         string="Qty < Min Qty", compute="_compute_is_qty_less_min_qty"
     )
     sale_multiple_qty = fields.Float(
-        string="Min Qty",
+        string="Multiple Qty",
         related="product_id.sale_multiple_qty",
         readonly=True,
         store=True,
         digits=dp.get_precision("Product Unit of Measure"),
     )
     is_qty_not_multiple_qty = fields.Boolean(
-        string="Qty < Min Qty", compute="_compute_is_qty_not_multiple_qty"
+        string="Not Multiple Qty", compute="_compute_is_qty_not_multiple_qty"
     )
 
     @api.constrains("product_uom_qty")
