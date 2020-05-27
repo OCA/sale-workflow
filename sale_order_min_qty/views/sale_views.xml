@@ -34,7 +34,7 @@
             <xpath expr="//field[@name='order_line']/tree" position="attributes">>
                 <attribute name="decoration-danger">is_qty_less_min_qty ==  True and force_sale_min_qty == False</attribute>
                 <attribute name="decoration-warning">is_qty_less_min_qty ==  True and force_sale_min_qty == True</attribute>
-                <attribute name="decoration-danger">is_qty_not_multiple_qty ==  True</attribute>
+                <attribute name="decoration-danger">is_qty_not_multiple_qty == True</attribute>
             </xpath>
         </field>
     </record>

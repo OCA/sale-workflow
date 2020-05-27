@@ -17,7 +17,7 @@ class ProductMinMultipleMixin(models.AbstractModel):
         digits=dp.get_precision("Product Unit of Measure"),
     )
     manual_sale_multiple_qty = fields.Float(
-        string="multiple Sale Qty", digits=dp.get_precision("Product Unit of Measure")
+        string="Multiple Sale Qty", digits=dp.get_precision("Product Unit of Measure")
     )
     sale_min_qty = fields.Float(
         compute="_compute_sale_min_multiple_qty",

@@ -10,7 +10,7 @@ class ProductCategory(models.Model):
     _inherit = ["product.category", "product.min.multiple.mixin"]
 
     def _get_sale_min_multiple_qty(self):
-        res = super(ProductCategory, self)._get_sale_min_multiple_qty()
+        res = super()._get_sale_min_multiple_qty()
         res.update(
             {
                 "sale_min_qty": self.manual_sale_min_qty or self.parent_id.sale_min_qty,

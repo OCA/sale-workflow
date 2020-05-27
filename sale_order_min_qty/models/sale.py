@@ -77,7 +77,6 @@ class SaleOrderLine(models.Model):
         if msg:
             raise ValidationError(msg)
 
-    @api.multi
     @api.depends("product_uom_qty", "sale_min_qty")
     def _compute_is_qty_less_min_qty(self):
         for line in self:
@@ -92,7 +91,6 @@ class SaleOrderLine(models.Model):
                 < 0
             )
 
-    @api.multi
     @api.depends("product_uom_qty", "sale_multiple_qty")
     def _compute_is_qty_not_multiple_qty(self):
         for line in self:
