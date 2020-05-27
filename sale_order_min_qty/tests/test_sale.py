@@ -62,7 +62,7 @@ class TestSaleOrderLineMinQty(common.TransactionCase):
         line_values = {"product_id": self.product.id, "product_uom_qty": 5.0}
         self.product.manual_sale_min_qty = 10
         # Set Force min Qty to true
-        self.product.force_sale_min_qty = True
+        self.product.manual_force_sale_min_qty = 'force'
 
         # Create sale order line with Qty less than min Qty
         self.sale_order = self.sale_order_model.create(
@@ -99,14 +99,16 @@ class TestSaleOrderLineMinQty(common.TransactionCase):
 
         self.assertEqual(self.product.sale_min_qty, 10)
         self.assertEqual(self.product.sale_multiple_qty, 5)
-        self.categ_parent.manual_force_sale_min_qty = True
+        self.categ_parent.manual_force_sale_min_qty = 'force'
         self.assertEqual(self.product.manual_force_sale_min_qty, False)
         self.assertEqual(self.product.force_sale_min_qty, True)
         # Check min and  multiple Qty from category
         self.categ.manual_sale_min_qty = 15
         self.categ.manual_sale_multiple_qty = 10
+        self.categ.manual_force_sale_min_qty = 'not_force'
         self.assertEqual(self.product.sale_min_qty, 15)
         self.assertEqual(self.product.sale_multiple_qty, 10)
+        self.assertEqual(self.product.force_sale_min_qty, False)
 
     def test_check_min_multiple_qty_tmpl_hierarchy(self):
         # Check min and  multiple Qty from product template

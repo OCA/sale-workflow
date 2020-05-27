@@ -13,7 +13,9 @@ class ProductMinMultipleMixin(models.AbstractModel):
         store=True,
         help="Define sale multiple qty"
         " 'If not set', Odoo will"
-        " use the value defined in the parent category.",
+        " use the value defined in the parent object."
+        "Hierarchy is in this order :"
+        "Product/product Template/product category/parent categoroies ",
         digits=dp.get_precision("Product Unit of Measure"),
     )
     manual_sale_multiple_qty = fields.Float(
@@ -24,7 +26,9 @@ class ProductMinMultipleMixin(models.AbstractModel):
         store=True,
         help="Define sale min qty"
         " 'If not set, Odoo will"
-        " use the value defined in the parent category.",
+        " use the value defined in the parent object."
+        "Hierarchy is in this order :"
+        "Product/product Template/product category/parent categoroies ",
         digits=dp.get_precision("Product Unit of Measure"),
     )
     manual_sale_min_qty = fields.Float(
@@ -36,25 +40,31 @@ class ProductMinMultipleMixin(models.AbstractModel):
         store=True,
         help="Define if user can force sale min qty"
         " 'If not set', Odoo will"
-        " use the value defined in the parent category.",
+        " use the value defined in the parent object."
+        "Hierarchy is in this order :"
+        "Product/product Template/product category/parent categoroies ",
     )
-    manual_force_sale_min_qty = fields.Boolean(
+    manual_force_sale_min_qty = fields.Selection([
+        ('force', 'Yes'),
+        ('not_force', 'No'),
+        ],
         string="Manual Force Min Qty",
         help="If force min qty is checked, the min quantity "
-        "is only indicative value.",
+        "is only indicative value."
+        "If is not test we check parent value",
     )
-    
+
     def _get_sale_min_multiple_qty(self):
         self.ensure_one()
-        res = { 
+        res = {
             "sale_min_qty": self.manual_sale_min_qty,
-            "force_sale_min_qty": self.manual_force_sale_min_qty,
+            "force_sale_min_qty": self.manual_force_sale_min_qty == 'force',
             "sale_multiple_qty": self.manual_sale_multiple_qty,
         }
         return res
 
     @api.depends("manual_force_sale_min_qty", "manual_sale_min_qty",
-        "manual_sale_multiple_qty")
+                 "manual_sale_multiple_qty")
     def _compute_sale_min_multiple_qty(self):
         for rec in self:
             rec.update(rec._get_sale_min_multiple_qty())
