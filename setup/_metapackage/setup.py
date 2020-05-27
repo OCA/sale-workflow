@@ -13,6 +13,7 @@ setuptools.setup(
         'odoo13-addon-sale_commercial_partner',
         'odoo13-addon-sale_discount_display_amount',
         'odoo13-addon-sale_elaboration',
+        'odoo13-addon-sale_force_invoiced',
         'odoo13-addon-sale_last_price_info',
         'odoo13-addon-sale_order_archive',
         'odoo13-addon-sale_order_line_date',
