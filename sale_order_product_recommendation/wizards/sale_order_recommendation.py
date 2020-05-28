@@ -5,6 +5,7 @@
 
 from datetime import datetime, timedelta
 from odoo import api, fields, models
+from odoo.tests import Form
 
 
 class SaleOrderRecommendation(models.TransientModel):
@@ -128,28 +129,29 @@ class SaleOrderRecommendation(models.TransientModel):
 
     def action_accept(self):
         """Propagate recommendations to sale order."""
-        so_line_obj = self.env["sale.order.line"]
-        so_line_ids = []
         sequence = max(self.order_id.mapped('order_line.sequence') or [0])
+        order_form = Form(self.order_id)
+        to_remove = []
         for wiz_line in self.line_ids.filtered(
             lambda x: x.sale_line_id or x.units_included
         ):
-            # Use preexisting line if any
             if wiz_line.sale_line_id:
+                index = self.order_id.order_line.ids.index(
+                    wiz_line.sale_line_id.id)
                 if wiz_line.units_included:
-                    wiz_line.sale_line_id.update(
-                        wiz_line._prepare_update_so_line())
-                    wiz_line.sale_line_id.product_uom_change()
+                    with order_form.order_line.edit(index) as line_form:
+                        wiz_line._prepare_update_so_line(line_form)
                 else:
-                    wiz_line.sale_line_id.unlink()
-                continue
-            sequence += 1
-            # Use a new in-memory line otherwise
-            so_line = so_line_obj.new(
-                wiz_line._prepare_new_so_line(sequence))
-            so_line = wiz_line._trigger_so_line_onchanges(so_line)
-            so_line_ids.append(so_line.id)
-        self.order_id.order_line += so_line_obj.browse(so_line_ids)
+                    to_remove.append(index)
+            else:
+                sequence += 1
+                with order_form.order_line.new() as line_form:
+                    wiz_line._prepare_new_so_line(line_form, sequence)
+        # Remove at the end and in reverse order for not having problems
+        to_remove.reverse()
+        for index in to_remove:
+            order_form.order_line.remove(index)
+        order_form.save()
 
 
 class SaleOrderRecommendationLine(models.TransientModel):
@@ -204,23 +206,12 @@ class SaleOrderRecommendationLine(models.TransientModel):
                 quantity=one.units_included,
             ).price
 
-    def _prepare_update_so_line(self):
-        """So we can extend PO update"""
-        return {
-            "product_uom_qty": self.units_included,
-        }
+    def _prepare_update_so_line(self, line_form):
+        """So we can extend SO update"""
+        line_form.product_uom_qty = self.units_included
 
-    def _prepare_new_so_line(self, sequence):
-        """So we can extend PO create"""
-        return {
-            "order_id": self.wizard_id.order_id.id,
-            "product_id": self.product_id.id,
-            "sequence": sequence,
-        }
-
-    def _trigger_so_line_onchanges(self, so_line):
-        """Extensible method for trigger needed onchanges of the so ling"""
-        so_line.product_id_change()
-        so_line.product_uom_qty = self.units_included
-        so_line.product_uom_change()
-        return so_line
+    def _prepare_new_so_line(self, line_form, sequence):
+        """So we can extend SO create"""
+        line_form.product_id = self.product_id
+        line_form.sequence = sequence
+        line_form.product_uom_qty = self.units_included
