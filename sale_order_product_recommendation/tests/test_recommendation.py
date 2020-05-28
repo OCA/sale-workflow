@@ -84,15 +84,9 @@ class RecommendationCaseTests(RecommendationCase):
         # Open the wizard and add more product qty
         wizard = self.wizard()
         wiz_line = wizard.line_ids.filtered(lambda x: x.product_id == self.prod_1)
-        wiz_line.units_included = qty + 2
+        qty += 2
+        wiz_line.units_included = qty
         wizard.action_accept()
-        # Deliver extra qty and make a new invoice
-        self.new_so.order_line.qty_delivered = qty + 2
-        adv_wiz = (
-            self.env["sale.advance.payment.inv"]
-            .with_context(active_ids=[self.new_so.id])
-            .create({"advance_payment_method": "delivered"})
-        )
-        adv_wiz.with_context(open_invoices=True).create_invoices()
-        self.assertEqual(2, len(self.new_so.invoice_ids))
-        self.assertEqual(qty, self.new_so.invoice_ids[:1].invoice_line_ids.quantity)
+        line = self.new_so.order_line.filtered(lambda x: x.product_id == self.prod_1)
+        self.assertTrue(line)
+        self.assertEqual(line.product_uom_qty, qty)

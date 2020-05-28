@@ -7,6 +7,8 @@ class RecommendationCase(SavepointCase):
     @classmethod
     def setUpClass(cls):
         super().setUpClass()
+        # Make sure user has UoM activated for Forms to work
+        cls.env.user.groups_id = [(4, cls.env.ref("uom.group_uom").id)]
         cls.partner = cls.env["res.partner"].create({"name": "Mr. Odoo"})
         cls.product_obj = cls.env["product.product"]
         cls.prod_1 = cls.product_obj.create(
