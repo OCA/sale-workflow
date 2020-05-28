@@ -27,7 +27,7 @@ msgstr "Forçar Faturada"
 #: model:ir.model,name:sale_force_invoiced.model_sale_order
 #, fuzzy
 #| msgid "Sales Order"
-msgid "Sale Order"
+msgid "Sales Order"
 msgstr "Encomenda de Venda"
 
 #. module: sale_force_invoiced
