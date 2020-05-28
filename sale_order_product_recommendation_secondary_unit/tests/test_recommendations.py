@@ -1,4 +1,5 @@
 # Copyright 2019 Tecnativa - David Vidal
+# Copyright 2020 Tecnativa - Pedro M. Baeza
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 from odoo.addons.sale_order_product_recommendation.tests import (
     test_recommendation_common,
@@ -78,11 +79,9 @@ class RecommendationCaseTests(test_recommendation_common.RecommendationCase):
         wl_prod2 = wizard.line_ids.filtered(lambda x: x.product_id == self.prod_2)
         wl_prod1.secondary_uom_qty = 2  # 20 units
         wl_prod1._onchange_secondary_uom()
-        wl_prod1._onchange_units_included()
         wl_prod2.secondary_uom_id = self.secondary_unit_p2
         wl_prod2.secondary_uom_qty = 2  # 48 units
         wl_prod2._onchange_secondary_uom()
-        wl_prod2._onchange_units_included()
         wizard.action_accept()
         self.assertEqual(len(self.new_so.order_line), 2)
         sl_p1 = self.new_so.order_line.filtered(lambda x: x.product_id == self.prod_1)
@@ -98,7 +97,6 @@ class RecommendationCaseTests(test_recommendation_common.RecommendationCase):
         wl_prod1 = wizard.line_ids.filtered(lambda x: x.product_id == self.prod_1)
         wl_prod1.secondary_uom_qty = 1  # 10 units
         wl_prod1._onchange_secondary_uom()
-        wl_prod1._onchange_units_included()
         wizard.action_accept()
         sl_p1 = self.new_so.order_line.filtered(lambda x: x.product_id == self.prod_1)
         self.assertEqual(sl_p1.secondary_uom_qty, 1)
