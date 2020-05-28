@@ -1,4 +1,5 @@
 # Copyright 2017 Tecnativa - Jairo Llopis
+# Copyright 2020 Tecnativa - Pedro M. Baeza
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 from .test_recommendation_common import RecommendationCase
 from odoo.exceptions import UserError
@@ -58,7 +59,6 @@ class RecommendationCaseTests(RecommendationCase):
         wiz_line_prod1 = wizard.line_ids.filtered(
             lambda x: x.product_id == self.prod_1)
         wiz_line_prod1.units_included = qty
-        wiz_line_prod1._onchange_units_included()
         wizard.action_accept()
         self.assertEqual(len(self.new_so.order_line), 1)
         self.assertEqual(self.new_so.order_line.product_id, self.prod_1)
@@ -69,7 +69,6 @@ class RecommendationCaseTests(RecommendationCase):
         wiz_line = wizard.line_ids.filtered(
             lambda x: x.product_id == self.prod_1)
         wiz_line.units_included = 0
-        wiz_line._onchange_units_included()
         # The confirmed line can't be deleted
         with self.assertRaises(UserError):
             wizard.action_accept()
@@ -86,7 +85,6 @@ class RecommendationCaseTests(RecommendationCase):
         wiz_line = wizard.line_ids.filtered(
             lambda x: x.product_id == self.prod_1)
         wiz_line.units_included = qty + 2
-        wiz_line._onchange_units_included()
         wizard.action_accept()
         # Deliver extra qty and make a new invoice
         self.new_so.order_line.qty_delivered = qty + 2
