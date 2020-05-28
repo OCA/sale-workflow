@@ -123,7 +123,9 @@ class SaleOrderRecommendation(models.TransientModel):
         so_line_obj = self.env["sale.order.line"]
         so_line_ids = []
         sequence = max(self.order_id.mapped("order_line.sequence") or [0])
-        for wiz_line in self.line_ids.filtered("is_modified"):
+        for wiz_line in self.line_ids.filtered(
+            lambda x: x.sale_line_id or x.units_included
+        ):
             # Use preexisting line if any
             if wiz_line.sale_line_id:
                 if wiz_line.units_included:
@@ -162,7 +164,6 @@ class SaleOrderRecommendationLine(models.TransientModel):
     )
     sale_line_id = fields.Many2one(comodel_name="sale.order.line")
     sale_uom_id = fields.Many2one(related="sale_line_id.product_uom")
-    is_modified = fields.Boolean()
 
     @api.depends("partner_id", "product_id", "pricelist_id", "units_included")
     def _compute_price_unit(self):
@@ -172,10 +173,6 @@ class SaleOrderRecommendationLine(models.TransientModel):
                 pricelist=one.pricelist_id.id,
                 quantity=one.units_included,
             ).price
-
-    @api.onchange("units_included")
-    def _onchange_units_included(self):
-        self.is_modified = bool(self.sale_line_id or self.units_included)
 
     def _prepare_update_so_line(self):
         """So we can extend PO update"""
