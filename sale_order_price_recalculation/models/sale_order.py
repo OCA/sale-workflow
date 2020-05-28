@@ -4,13 +4,12 @@
 # Copyright 2016 Vicent Cubells <vicent.cubells@tecnativa.com>
 # Copyright 2017 David Vidal <david.vidal@tecnativa.com>
 # License AGPL-3 - See http://www.gnu.org/licenses/agpl-3.0.html
-from odoo import api, models
+from odoo import models
 
 
 class SaleOrder(models.Model):
     _inherit = "sale.order"
 
-    @api.multi
     def recalculate_prices(self):
         for line in self.mapped("order_line"):
             vals = line._convert_to_write(line.read()[0])
@@ -23,7 +22,6 @@ class SaleOrder(models.Model):
             line.write({"price_unit": line2.price_unit, "discount": line2.discount})
         return True
 
-    @api.multi
     def recalculate_names(self):
         for line in self.mapped("order_line").filtered("product_id"):
             # we make this to isolate changed values:
