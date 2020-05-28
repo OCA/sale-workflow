@@ -1,4 +1,5 @@
 # Copyright 2020 Tecnativa - David Vidal
+# Xtendoo - Manuel Calero
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
 from odoo import api, fields, models
 
@@ -26,7 +27,7 @@ class SaleOrder(models.Model):
         readonly=True,
     )
     amount_total_before_global_discounts = fields.Monetary(
-        string='Amount Untaxed Before Discounts',
+        string='Amount Total Before Discounts',
         compute='_amount_all',
         currency_field='currency_id',
         readonly=True,
@@ -101,9 +102,30 @@ class SaleOrder(models.Model):
         invoices._set_global_discounts()
         return res
 
+    @api.multi
+    def _get_tax_by_group(self):
+        # Copy/paste from standard method in sale
+        self.ensure_one()
+        res = {}
+        for line in self.order_line:
+            price_reduce = line.price_reduce  # changed
+            taxes = line.tax_id.compute_all(price_reduce,
+                quantity=line.product_uom_qty, product=line.product_id,
+                partner=self.partner_shipping_id)['taxes']
+            for tax in line.tax_id:
+                group = tax.tax_group_id
+                res.setdefault(group, {'amount': 0.0, 'base': 0.0})
+                for t in taxes:
+                    if t['id'] == tax.id or t['id'] in tax.children_tax_ids.ids:
+                        res[group]['amount'] += t['amount']
+                        res[group]['base'] += t['base']
+        res = sorted(res.items(), key=lambda l: l[0].sequence)
+        res = [(l[0].name, l[1]['amount'], l[1]['base'], len(res)) for l in res]
+        return res
+
     def _get_tax_amount_by_group(self):
         """We can apply discounts directly by tax groups"""
-        tax_groups = super()._get_tax_amount_by_group()
+        tax_groups = self._get_tax_by_group()
         discounts = self.global_discount_ids.mapped('discount')
         if not discounts:
             return tax_groups
