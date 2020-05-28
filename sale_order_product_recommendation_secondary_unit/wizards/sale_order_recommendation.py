@@ -74,35 +74,16 @@ class SaleOrderRecommendationLine(models.TransientModel):
         ):
             self.secondary_uom_qty = qty
 
-    def _prepare_update_so_line(self):
-        res = super()._prepare_update_so_line()
-        if self.secondary_uom_id and self.secondary_uom_qty:
-            res.update(
-                {
-                    "secondary_uom_id": self.secondary_uom_id.id,
-                    "secondary_uom_qty": self.secondary_uom_qty,
-                }
-            )
+    def _prepare_update_so_line(self, line_form):
+        res = super()._prepare_update_so_line(line_form)
+        if self.secondary_uom_id:
+            line_form.secondary_uom_id = self.secondary_uom_id
+            line_form.secondary_uom_qty = self.secondary_uom_qty
         return res
 
-    def _prepare_new_so_line(self, sequence):
-        res = super()._prepare_new_so_line(sequence)
-        if self.secondary_uom_id and self.secondary_uom_qty:
-            res.update(
-                {
-                    "secondary_uom_id": self.secondary_uom_id.id,
-                    "secondary_uom_qty": self.secondary_uom_qty,
-                }
-            )
+    def _prepare_new_so_line(self, line_form, sequence):
+        res = super()._prepare_new_so_line(line_form, sequence)
+        if self.secondary_uom_id:
+            line_form.secondary_uom_id = self.secondary_uom_id
+            line_form.secondary_uom_qty = self.secondary_uom_qty
         return res
-
-    def _trigger_so_line_onchanges(self, so_line):
-        """We need to recompute secondary uom qty from the units in the line"""
-        secondary_uom_id = self.secondary_uom_id
-        so_line = super()._trigger_so_line_onchanges(so_line)
-        if secondary_uom_id and self.secondary_uom_qty:
-            # Prevent product defaults
-            if so_line.secondary_uom_id != secondary_uom_id:
-                so_line.secondary_uom_id = secondary_uom_id
-            so_line.onchange_secondary_unit_product_uom_qty()
-        return so_line
