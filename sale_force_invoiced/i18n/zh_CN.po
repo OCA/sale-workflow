@@ -27,7 +27,9 @@ msgstr "强制开具发票"
 
 #. module: sale_force_invoiced
 #: model:ir.model,name:sale_force_invoiced.model_sale_order
-msgid "Sale Order"
+#, fuzzy
+#| msgid "Sale Order"
+msgid "Sales Order"
 msgstr "销售订单"
 
 #. module: sale_force_invoiced
@@ -36,4 +38,5 @@ msgid ""
 "When you set this field, the sales order will be considered as fully "
 "invoiced, even when there may be ordered or delivered quantities pending to "
 "invoice."
-msgstr "设置此字段时，即使订单或已交付的数量等待发票，销售订单也将被视为完全开票。"
+msgstr ""
+"设置此字段时，即使订单或已交付的数量等待发票，销售订单也将被视为完全开票。"
