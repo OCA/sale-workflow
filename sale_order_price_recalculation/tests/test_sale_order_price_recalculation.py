@@ -10,7 +10,7 @@ class TestSaleOrderPriceRecalculation(common.TransactionCase):
     def setUp(self):
         super(TestSaleOrderPriceRecalculation, self).setUp()
         # Enable group_discount_per_so_line for admin user
-        group = self.env.ref("sale.group_discount_per_so_line")
+        group = self.env.ref("product.group_discount_per_so_line")
         group.users = [(4, self.env.user.id)]
         self.partner = self.env["res.partner"].create({"name": "Test partner"})
         uom_id = self.env.ref("uom.product_uom_kgm")
