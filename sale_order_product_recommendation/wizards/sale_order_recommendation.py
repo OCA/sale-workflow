@@ -1,5 +1,6 @@
 # Copyright 2017 Jairo Llopis <jairo.llopis@tecnativa.com>
 # Copyright 2018 Carlos Dauden <carlos.dauden@tecnativa.com>
+# Copyright 2020 Tecnativa - Pedro M. Baeza
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
 from datetime import datetime, timedelta
@@ -56,6 +57,21 @@ class SaleOrderRecommendation(models.TransientModel):
             ("qty_delivered", "!=", 0.0),
         ]
 
+    def _prepare_recommendation_line_vals(self, group_line, so_line=False):
+        """Return the vals dictionary for creating a new recommendation line.
+        @param group_line: Dictionary returned by the read_group operation.
+        @param so_line: Optional sales order line
+        """
+        vals = {
+            "product_id": group_line["product_id"][0],
+            "times_delivered": group_line.get("product_id_count", 0),
+            "units_delivered": group_line.get("qty_delivered", 0),
+        }
+        if so_line:
+            vals["units_included"] = so_line.product_uom_qty
+            vals["sale_line_id"] = so_line.id
+        return vals
+
     @api.onchange("order_id", "months", "line_amount")
     def _generate_recommendations(self):
         """Generate lines according to context sale order."""
@@ -86,14 +102,12 @@ class SaleOrderRecommendation(models.TransientModel):
         existing_product_ids = set()
         # Always recommend all products already present in the linked SO
         for line in self.order_id.order_line:
-            found_line = found_dict.get(line.product_id.id, {})
-            new_line = recommendation_lines.new({
-                "product_id": line.product_id.id,
-                "times_delivered": found_line.get("product_id_count", 0),
-                "units_delivered": found_line.get("qty_delivered", 0),
-                "units_included": line.product_uom_qty,
-                "sale_line_id": line.id,
+            found_line = found_dict.get(line.product_id.id, {
+                "product_id": (line.product_id.id, False),
             })
+            new_line = recommendation_lines.new(
+                self._prepare_recommendation_line_vals(found_line, line)
+            )
             recommendation_lines += new_line
             existing_product_ids.add(line.product_id.id)
         # Add recent SO recommendations too
@@ -101,11 +115,9 @@ class SaleOrderRecommendation(models.TransientModel):
         for line in found_lines:
             if line["product_id"][0] in existing_product_ids:
                 continue
-            new_line = recommendation_lines.new({
-                "product_id": line["product_id"][0],
-                "times_delivered": line["product_id_count"],
-                "units_delivered": line["qty_delivered"],
-            })
+            new_line = recommendation_lines.new(
+                self._prepare_recommendation_line_vals(line)
+            )
             recommendation_lines += new_line
             # limit number of results. It has to be done here, as we need to
             # populate all results first, for being able to select best matches
