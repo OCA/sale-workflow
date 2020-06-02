@@ -1,6 +1,6 @@
 # Translation of Odoo Server.
 # This file contains the translation of the following modules:
-#	* sale_order_product_recommendation_secondary_unit
+# 	* sale_order_product_recommendation_secondary_unit
 #
 msgid ""
 msgstr ""
@@ -17,9 +17,9 @@ msgstr ""
 "X-Generator: Weblate 3.10\n"
 
 #. module: sale_order_product_recommendation_secondary_unit
-#: model:ir.model.fields,field_description:sale_order_product_recommendation_secondary_unit.field_sale_order_recommendation_line__secondary_uom_id
-msgid "Default secondary unit for sales"
-msgstr "Unità di misura secondaria predefinita per la vendita"
+#: model:ir.model.fields,field_description:sale_order_product_recommendation_secondary_unit.field_sale_order_recommendation_line__secondary_uom_name
+msgid "Name"
+msgstr ""
 
 #. module: sale_order_product_recommendation_secondary_unit
 #: model:ir.model.fields,field_description:sale_order_product_recommendation_secondary_unit.field_sale_order_recommendation_line__product_tmpl_id
@@ -32,11 +32,28 @@ msgid "Recommended product for current sale order"
 msgstr "Prodotto consigliato per questo ordine di vendita"
 
 #. module: sale_order_product_recommendation_secondary_unit
+#: model:ir.model,name:sale_order_product_recommendation_secondary_unit.model_sale_order_recommendation
+#, fuzzy
+#| msgid "Recommended product for current sale order"
+msgid "Recommended products for current sale order"
+msgstr "Prodotto consigliato per questo ordine di vendita"
+
+#. module: sale_order_product_recommendation_secondary_unit
 #: model:ir.model.fields,field_description:sale_order_product_recommendation_secondary_unit.field_sale_order_recommendation_line__secondary_uom_qty
 msgid "Secondary Qty"
+msgstr "Qty Secondaria"
+
+#. module: sale_order_product_recommendation_secondary_unit
+#: model:ir.model.fields,field_description:sale_order_product_recommendation_secondary_unit.field_sale_order_recommendation_line__secondary_uom_id
+#, fuzzy
+#| msgid "Secondary Qty"
+msgid "Secondary Uom"
 msgstr "Qty Secondaria"
 
 #. module: sale_order_product_recommendation_secondary_unit
 #: model:ir.model.fields,help:sale_order_product_recommendation_secondary_unit.field_sale_order_recommendation_line__product_tmpl_id
 msgid "To filter secondary uom available"
 msgstr "Filtrare UdM secondarie disponibili"
+
+#~ msgid "Default secondary unit for sales"
+#~ msgstr "Unità di misura secondaria predefinita per la vendita"
