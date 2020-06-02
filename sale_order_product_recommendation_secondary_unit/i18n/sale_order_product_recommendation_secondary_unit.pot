@@ -14,8 +14,8 @@ msgstr ""
 "Plural-Forms: \n"
 
 #. module: sale_order_product_recommendation_secondary_unit
-#: model:ir.model.fields,field_description:sale_order_product_recommendation_secondary_unit.field_sale_order_recommendation_line__secondary_uom_id
-msgid "Default secondary unit for sales"
+#: model:ir.model.fields,field_description:sale_order_product_recommendation_secondary_unit.field_sale_order_recommendation_line__secondary_uom_name
+msgid "Name"
 msgstr ""
 
 #. module: sale_order_product_recommendation_secondary_unit
@@ -29,8 +29,18 @@ msgid "Recommended product for current sale order"
 msgstr ""
 
 #. module: sale_order_product_recommendation_secondary_unit
+#: model:ir.model,name:sale_order_product_recommendation_secondary_unit.model_sale_order_recommendation
+msgid "Recommended products for current sale order"
+msgstr ""
+
+#. module: sale_order_product_recommendation_secondary_unit
 #: model:ir.model.fields,field_description:sale_order_product_recommendation_secondary_unit.field_sale_order_recommendation_line__secondary_uom_qty
 msgid "Secondary Qty"
+msgstr ""
+
+#. module: sale_order_product_recommendation_secondary_unit
+#: model:ir.model.fields,field_description:sale_order_product_recommendation_secondary_unit.field_sale_order_recommendation_line__secondary_uom_id
+msgid "Secondary Uom"
 msgstr ""
 
 #. module: sale_order_product_recommendation_secondary_unit
