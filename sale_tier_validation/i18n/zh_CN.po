@@ -67,7 +67,9 @@ msgstr "采购订单已验证，待确认"
 
 #. module: sale_tier_validation
 #: model:ir.model,name:sale_tier_validation.model_sale_order
-msgid "Sale Order"
+#, fuzzy
+#| msgid "Sale Order"
+msgid "Sales Order"
 msgstr "采购订单"
 
 #. module: sale_tier_validation
