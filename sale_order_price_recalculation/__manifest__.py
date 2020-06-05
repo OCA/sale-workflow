@@ -18,6 +18,6 @@
     "license": "AGPL-3",
     "application": False,
     "installable": True,
-    "depends": ["sale"],
+    "depends": ["sale", "product", "onchange_helper"],
     "data": ["views/sale_order_view.xml"],
 }
