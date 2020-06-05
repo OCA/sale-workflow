@@ -130,7 +130,7 @@ class SaleOrderRecommendation(models.TransientModel):
     def action_accept(self):
         """Propagate recommendations to sale order."""
         sequence = max(self.order_id.mapped('order_line.sequence') or [0])
-        order_form = Form(self.order_id)
+        order_form = Form(self.order_id.sudo())
         to_remove = []
         for wiz_line in self.line_ids.filtered(
             lambda x: x.sale_line_id or x.units_included
