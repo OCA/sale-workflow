@@ -15,6 +15,11 @@ msgstr ""
 
 #. module: sale_order_product_recommendation
 #: model_terms:ir.ui.view,arch_db:sale_order_product_recommendation.sale_order_recommendation_view_form
+msgid "<span>To be included:</span>"
+msgstr ""
+
+#. module: sale_order_product_recommendation
+#: model_terms:ir.ui.view,arch_db:sale_order_product_recommendation.sale_order_recommendation_view_form
 msgid "Accept"
 msgstr ""
 
@@ -51,6 +56,11 @@ msgid "Customer"
 msgstr ""
 
 #. module: sale_order_product_recommendation
+#: model_terms:ir.ui.view,arch_db:sale_order_product_recommendation.sale_order_recommendation_view_form
+msgid "Delivered:"
+msgstr ""
+
+#. module: sale_order_product_recommendation
 #: model:ir.model.fields,field_description:sale_order_product_recommendation.field_sale_order_recommendation__display_name
 #: model:ir.model.fields,field_description:sale_order_product_recommendation.field_sale_order_recommendation_line__display_name
 msgid "Display Name"
@@ -65,11 +75,6 @@ msgstr ""
 #. module: sale_order_product_recommendation
 #: model:ir.model.fields,help:sale_order_product_recommendation.field_sale_order_recommendation_line__pricelist_id
 msgid "If you change the pricelist, only newly added lines will be affected."
-msgstr ""
-
-#. module: sale_order_product_recommendation
-#: model:ir.model.fields,field_description:sale_order_product_recommendation.field_sale_order_recommendation_line__is_modified
-msgid "Is Modified"
 msgstr ""
 
 #. module: sale_order_product_recommendation
@@ -111,12 +116,18 @@ msgid "Price Unit"
 msgstr ""
 
 #. module: sale_order_product_recommendation
+#: model_terms:ir.ui.view,arch_db:sale_order_product_recommendation.sale_order_recommendation_view_form
+msgid "Price:"
+msgstr ""
+
+#. module: sale_order_product_recommendation
 #: model:ir.model.fields,field_description:sale_order_product_recommendation.field_sale_order_recommendation_line__pricelist_id
 msgid "Pricelist"
 msgstr ""
 
 #. module: sale_order_product_recommendation
 #: model:ir.model.fields,field_description:sale_order_product_recommendation.field_sale_order_recommendation_line__product_id
+#: model_terms:ir.ui.view,arch_db:sale_order_product_recommendation.sale_order_recommendation_view_form
 msgid "Product"
 msgstr ""
 
@@ -166,6 +177,11 @@ msgid "Times Delivered"
 msgstr ""
 
 #. module: sale_order_product_recommendation
+#: model:ir.model.fields,field_description:sale_order_product_recommendation.field_sale_order_recommendation_line__sale_uom_id
+msgid "Unit of Measure"
+msgstr ""
+
+#. module: sale_order_product_recommendation
 #: model:ir.model.fields,field_description:sale_order_product_recommendation.field_sale_order_recommendation_line__units_delivered
 msgid "Units Delivered"
 msgstr ""
@@ -178,4 +194,9 @@ msgstr ""
 #. module: sale_order_product_recommendation
 #: model:ir.model.fields,field_description:sale_order_product_recommendation.field_sale_order_recommendation_line__wizard_id
 msgid "Wizard"
+msgstr ""
+
+#. module: sale_order_product_recommendation
+#: model_terms:ir.ui.view,arch_db:sale_order_product_recommendation.sale_order_recommendation_view_form
+msgid "times -"
 msgstr ""
