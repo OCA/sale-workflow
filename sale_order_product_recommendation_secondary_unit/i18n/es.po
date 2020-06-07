@@ -17,9 +17,9 @@ msgstr ""
 "Plural-Forms: \n"
 
 #. module: sale_order_product_recommendation_secondary_unit
-#: model:ir.model.fields,field_description:sale_order_product_recommendation_secondary_unit.field_sale_order_recommendation_line__secondary_uom_id
-msgid "Default secondary unit for sales"
-msgstr "Ud. de venta secundaria por defecto"
+#: model:ir.model.fields,field_description:sale_order_product_recommendation_secondary_unit.field_sale_order_recommendation_line__secondary_uom_name
+msgid "Name"
+msgstr ""
 
 #. module: sale_order_product_recommendation_secondary_unit
 #: model:ir.model.fields,field_description:sale_order_product_recommendation_secondary_unit.field_sale_order_recommendation_line__product_tmpl_id
@@ -32,8 +32,20 @@ msgid "Recommended product for current sale order"
 msgstr "Producto recomendado para el pedido de venta actual"
 
 #. module: sale_order_product_recommendation_secondary_unit
+#: model:ir.model,name:sale_order_product_recommendation_secondary_unit.model_sale_order_recommendation
+msgid "Recommended products for current sale order"
+msgstr "Productos recomendados para el pedido de venta actual"
+
+#. module: sale_order_product_recommendation_secondary_unit
 #: model:ir.model.fields,field_description:sale_order_product_recommendation_secondary_unit.field_sale_order_recommendation_line__secondary_uom_qty
 msgid "Secondary Qty"
+msgstr "Cta. Ud. secundaria"
+
+#. module: sale_order_product_recommendation_secondary_unit
+#: model:ir.model.fields,field_description:sale_order_product_recommendation_secondary_unit.field_sale_order_recommendation_line__secondary_uom_id
+#, fuzzy
+#| msgid "Secondary Qty"
+msgid "Secondary Uom"
 msgstr "Cta. Ud. secundaria"
 
 #. module: sale_order_product_recommendation_secondary_unit
@@ -43,5 +55,5 @@ msgstr "Cta. Ud. secundaria"
 msgid "To filter secondary uom available"
 msgstr "Ud. de venta secundaria por defecto"
 
-#~ msgid "Recommended products for current sale order"
-#~ msgstr "Productos recomendados para el pedido de venta actual"
+#~ msgid "Default secondary unit for sales"
+#~ msgstr "Ud. de venta secundaria por defecto"
