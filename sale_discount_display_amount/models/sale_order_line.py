@@ -15,7 +15,7 @@ class SaleOrderLine(models.Model):
         compute="_compute_amount", string="Subtotal Without Discount", store=True
     )
 
-    def _compute_discount(self):
+    def _update_discount_display_fields(self):
         for line in self:
             line.price_total_no_discount = 0
             line.discount_total = 0
@@ -44,5 +44,5 @@ class SaleOrderLine(models.Model):
     @api.depends("product_uom_qty", "discount", "price_unit", "tax_id")
     def _compute_amount(self):
         res = super(SaleOrderLine, self)._compute_amount()
-        self._compute_discount()
+        self._update_discount_display_fields()
         return res
