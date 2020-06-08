@@ -68,7 +68,7 @@ class SaleOrderLine(models.Model):
         """Postpone expected_date to next preferred delivery window"""
         expected_date = super()._expected_date()
         partner = self.order_id.partner_shipping_id
-        if partner.delivery_time_preference == "anytime":
+        if not partner or partner.delivery_time_preference == "anytime":
             return expected_date
         return partner.next_delivery_window_start_datetime(from_date=expected_date)
 
