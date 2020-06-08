@@ -44,22 +44,23 @@ class SaleOrderLine(models.Model):
 
     def _inverse_product_packaging_qty(self):
         for sol in self:
-            if not sol.product_packaging:
+            if sol.product_packaging_qty and not sol.product_packaging:
                 raise UserError(
                     _(
                         "You must define a package before setting a quantity "
                         "of said package."
                     )
                 )
-            if sol.product_packaging.qty == 0:
+            if sol.product_packaging and sol.product_packaging.qty == 0:
                 raise UserError(
                     _("Please select a packaging with a quantity bigger than 0")
                 )
-            sol.write(sol._prepare_product_packaging_qty_values())
+            if sol.product_packaging and sol.product_packaging_qty:
+                sol.write(sol._prepare_product_packaging_qty_values())
 
     @api.onchange("product_packaging_qty")
     def _onchange_product_packaging_qty(self):
-        if self.product_packaging and self.product_packaging.qty:
+        if self.product_packaging and self.product_packaging_qty:
             self.update(self._prepare_product_packaging_qty_values())
 
     @api.onchange("product_packaging")
