@@ -1,7 +1,7 @@
 # Copyright 2020 ForgeFlow S.L.
 # License LGPL-3.0 or later (https://www.gnu.org/licenses/lgpl.html).
 
-from odoo import api, fields, models
+from odoo import fields, models
 
 
 class SaleOrderLine(models.Model):
@@ -27,19 +27,3 @@ class SaleOrderLine(models.Model):
         if self.dest_address_id:
             return (priority, self.dest_address_id)
         return (priority, key)
-
-    @api.onchange("dest_address_id")
-    def _onchange_dest_address_id(self):
-        if self.order_id.partner_id:
-            domain = {
-                "dest_address_id": [
-                    "|",
-                    ("id", "=", self.order_id.partner_id.id),
-                    ("parent_id", "=", self.order_id.partner_id.id),
-                ],
-            }
-        else:
-            domain = {
-                "dest_address_id": [],
-            }
-        return {"domain": domain}
