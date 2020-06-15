@@ -8,6 +8,9 @@ from .common import TestCommon
 
 @tagged("post_install", "-at_install")
 class TestMultiCompany(TestCommon):
+    def setUp(self):
+        super().setUp()
+
     @classmethod
     def create_company(cls, values):
         return cls.env["res.company"].create(values)
@@ -21,6 +24,16 @@ class TestMultiCompany(TestCommon):
     @classmethod
     def setUpClass(cls):
         super().setUpClass()
+        cls.env = cls.env(
+            context=dict(
+                cls.env.context,
+                tracking_disable=True,
+                # Compatibility with sale_automatic_workflow_job: even if
+                # the module is installed, ensure we don't delay a job.
+                # Thus, we test the usual flow.
+                _job_force_sync=True,
+            )
+        )
         coa = cls.env.user.company_id.chart_template_id
         cls.company_fr = cls.create_company(
             {
