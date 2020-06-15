@@ -8,6 +8,9 @@ from odoo.tests import tagged
 @tagged('post_install', '-at_install')
 class TestMultiCompany(SavepointCase):
 
+    def setUp(self):
+        super().setUp()
+
     @classmethod
     def create_company(cls, values):
         company = cls.env['res.company'].create(values)
@@ -25,7 +28,15 @@ class TestMultiCompany(SavepointCase):
     @classmethod
     def setUpClass(cls):
         super().setUpClass()
-        cls.env = cls.env(context=dict(cls.env.context, tracking_disable=True))
+        cls.env = cls.env(
+            context=dict(
+                cls.env.context, tracking_disable=True,
+                # Compatibility with sale_automatic_workflow_job: even if
+                # the module is installed, ensure we don't delay a job.
+                # Thus, we test the usual flow.
+                _job_force_sync=True,
+            )
+        )
         coa = cls.env.user.company_id.chart_template_id
         cls.company_fr = cls.create_company({
             'name': 'French company',
