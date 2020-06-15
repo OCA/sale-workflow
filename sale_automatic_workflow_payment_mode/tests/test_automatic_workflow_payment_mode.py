@@ -8,6 +8,18 @@ from odoo.addons.sale_automatic_workflow.tests.test_automatic_workflow_base \
 
 class TestAutomaticWorkflowPaymentMode(TestAutomaticWorkflowBase):
 
+    def setUp(self):
+        super().setUp()
+        self.env = self.env(
+            context=dict(
+                self.env.context, tracking_disable=True,
+                # Compatibility with sale_automatic_workflow_job: even if
+                # the module is installed, ensure we don't delay a job.
+                # Thus, we test the usual flow.
+                _job_force_sync=True,
+            )
+        )
+
     def create_sale_order(self, workflow, override=None):
         new_order = super(TestAutomaticWorkflowPaymentMode, self).\
             create_sale_order(workflow, override)
