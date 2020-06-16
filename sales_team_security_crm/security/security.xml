@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo noupdate="1">
+    <record id="crm_lead_team_rule" model="ir.rule">
+        <field name="name">Team Leads/Opportunities</field>
+        <field name="model_id" ref="crm.model_crm_lead" />
+        <field
+            name="domain_force"
+        >['|', '|', ('user_id', '=', user.id), ('user_id', '=', False), '|', ('team_id', '=', user.sale_team_id.id),
+            ('team_id', '=', False)]
+        </field>
+        <field
+            name="groups"
+            eval="[(4, ref('sales_team_security.group_sale_team_manager'))]"
+        />
+    </record>
+    <record id="crm_activity_report_team" model="ir.rule">
+        <field name="name">Team Activities Analysis</field>
+        <field name="model_id" ref="crm.model_crm_activity_report" />
+        <field
+            name="domain_force"
+        >['|', '|', ('user_id', '=', user.id), ('user_id', '=', False), '|', ('team_id', '=', user.sale_team_id.id),
+            ('team_id', '=', False)]
+        </field>
+        <field
+            name="groups"
+            eval="[(4, ref('sales_team_security.group_sale_team_manager'))]"
+        />
+    </record>
+    <record id="sales_team_team_rule" model="ir.rule">
+        <field name="name">Own Sale Teams</field>
+        <field name="model_id" ref="sales_team.model_crm_team" />
+        <field name="domain_force">[('id', '=', user.sale_team_id.id)]</field>
+        <field
+            name="groups"
+            eval="[(4, ref('sales_team_security.group_sale_team_manager'))]"
+        />
+    </record>
+
+</odoo>

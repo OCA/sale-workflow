@@ -1,0 +1,39 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* sale_partner_selectable_option
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 13.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2021-12-02 15:52+0000\n"
+"PO-Revision-Date: 2021-12-02 16:52+0100\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"Language: es\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: \n"
+"X-Generator: Poedit 2.3\n"
+
+#. module: sale_partner_selectable_option
+#: model:ir.model,name:sale_partner_selectable_option.model_res_partner
+msgid "Contact"
+msgstr "Contacto"
+
+#. module: sale_partner_selectable_option
+#: model:ir.model,name:sale_partner_selectable_option.model_sale_order
+msgid "Sales Order"
+msgstr ""
+
+#. module: sale_partner_selectable_option
+#: model_terms:ir.ui.view,arch_db:sale_partner_selectable_option.view_partner_form
+msgid "Selectable in orders"
+msgstr "Seleccionable en pedidos"
+
+#. module: sale_partner_selectable_option
+#: model:ir.model.fields,field_description:sale_partner_selectable_option.field_res_partner__sale_selectable
+#: model:ir.model.fields,field_description:sale_partner_selectable_option.field_res_users__sale_selectable
+msgid "Selectable in sale orders"
+msgstr "Seleccionable en pedidos de venta"
