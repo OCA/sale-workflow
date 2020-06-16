@@ -1,6 +1,6 @@
 # Translation of Odoo Server.
 # This file contains the translation of the following modules:
-#	* sale_order_line_price_history
+# 	* sale_order_line_price_history
 #
 msgid ""
 msgstr ""
@@ -38,6 +38,11 @@ msgstr "创建时间"
 #: model:ir.model.fields,field_description:sale_order_line_price_history.field_sale_order_line_price_history_line__partner_id
 msgid "Customer"
 msgstr "客户"
+
+#. module: sale_order_line_price_history
+#: model:ir.model.fields,field_description:sale_order_line_price_history.field_sale_order_line_price_history_line__discount
+msgid "Discount (%)"
+msgstr ""
 
 #. module: sale_order_line_price_history
 #: model:ir.model.fields,field_description:sale_order_line_price_history.field_sale_order_line_price_history__display_name
