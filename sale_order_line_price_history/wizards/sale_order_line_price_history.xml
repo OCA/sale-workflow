@@ -31,6 +31,10 @@
                                 <field name="sale_order_date_order"/>
                                 <field name="product_uom_qty"/>
                                 <field name="price_unit"/>
+                                <label for="discount" groups="sale.group_discount_per_so_line"/>
+                                <div name="discount" groups="sale.group_discount_per_so_line">
+                                    <field name="discount" class="oe_inline"/> %%
+                                </div>
                             </group>
                         </form>
                         <tree>
@@ -39,6 +43,7 @@
                             <field name="sale_order_date_order"/>
                             <field name="product_uom_qty"/>
                             <field name="price_unit"/>
+                            <field name="discount" groups="sale.group_discount_per_so_line"/>
                         </tree>
                     </field>
                 </group>
