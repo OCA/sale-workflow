@@ -39,7 +39,8 @@
                         </form>
                         <tree>
                             <field name="order_id"/>
-                            <field name="partner_id"/>
+                            <field name="partner_id"
+                                   attrs="{'column_invisible': [('parent.partner_id', '!=', False)]}"/>
                             <field name="sale_order_date_order"/>
                             <field name="product_uom_qty"/>
                             <field name="price_unit"/>
