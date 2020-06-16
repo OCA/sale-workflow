@@ -102,6 +102,9 @@ class SaleOrderLinePriceHistoryline(models.TransientModel):
     price_unit = fields.Float(
         related="sale_order_line_id.price_unit",
     )
+    discount = fields.Float(
+        related="sale_order_line_id.discount",
+    )
 
     @api.multi
     def action_set_price(self):
