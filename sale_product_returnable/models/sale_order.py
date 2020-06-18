@@ -48,16 +48,18 @@ class SaleOrder(models.Model):
                 new_picking_vals = \
                     order._prepare_return_picking_values(picking)
                 has_return = False
+                move_vals = []
                 for line in order.order_line:
                     if line.product_id and line.product_id.returnable:
-                        new_move_vals = self._prepare_return_move_values(line)
-                        new_picking_vals.update({
-                            'move_ids_without_package':
-                                [(0, 0, new_move_vals)]
-                        })
+                        move_vals.append(
+                            (0, 0, self._prepare_return_move_values(line)))
                         has_return = True
+                new_picking_vals.update({
+                    'move_ids_without_package': move_vals})
                 # if we have at least one returnable item, create the return
                 if has_return:
+                    # TODO: Create the return for the whole route, not just
+                    # the last leg
                     new_picking = \
                         self.env['stock.picking'].create(new_picking_vals)
                     new_picking.message_post_with_view(
