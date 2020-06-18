@@ -7,10 +7,10 @@ from odoo import api, models
 
 class ProductTemplate(models.Model):
     _name = "product.template"
-    _inherit = ["product.template", "product.min.multiple.mixin"]
+    _inherit = ["product.template", "product.restricted.qty.mixin"]
 
-    def _get_sale_min_multiple_qty(self):
-        res = super()._get_sale_min_multiple_qty()
+    def _get_sale_restricted_qty(self):
+        res = super()._get_sale_restricted_qty()
         force_sale_min_qty = False
         if self.manual_force_sale_min_qty == 'force':
             force_sale_min_qty = True
@@ -18,10 +18,19 @@ class ProductTemplate(models.Model):
             force_sale_min_qty = False
         if not self.manual_force_sale_min_qty:
             force_sale_min_qty = self.categ_id.force_sale_min_qty
+        force_sale_max_qty = False
+        if self.manual_force_sale_max_qty == 'force':
+            force_sale_max_qty = True
+        if self.manual_force_sale_max_qty == 'not_force':
+            force_sale_max_qty = False
+        if not self.manual_force_sale_max_qty:
+            force_sale_max_qty = self.categ_id.force_sale_max_qty
         res.update(
             {
                 "sale_min_qty": self.manual_sale_min_qty or self.categ_id.sale_min_qty,
                 "force_sale_min_qty": force_sale_min_qty,
+                "sale_max_qty": self.manual_sale_max_qty or self.categ_id.sale_max_qty,
+                "force_sale_max_qty": force_sale_max_qty,
                 "sale_multiple_qty": self.manual_sale_multiple_qty
                 or self.categ_id.sale_multiple_qty,
             }
@@ -31,8 +40,10 @@ class ProductTemplate(models.Model):
     @api.depends(
         "categ_id.force_sale_min_qty",
         "categ_id.sale_min_qty",
+        "categ_id.force_sale_max_qty",
+        "categ_id.sale_max_qty",
         "categ_id.sale_multiple_qty",
     )
-    def _compute_sale_min_multiple_qty(self):
+    def _compute_sale_restricted_qty(self):
         for rec in self:
-            rec.update(rec._get_sale_min_multiple_qty())
+            rec.update(rec._get_sale_restricted_qty())

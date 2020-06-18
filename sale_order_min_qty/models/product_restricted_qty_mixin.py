@@ -6,10 +6,10 @@ from odoo.addons import decimal_precision as dp
 
 
 class ProductMinMultipleMixin(models.AbstractModel):
-    _name = "product.min.multiple.mixin"
+    _name = "product.restricted.qty.mixin"
 
     sale_multiple_qty = fields.Float(
-        compute="_compute_sale_min_multiple_qty",
+        compute="_compute_sale_restricted_qty",
         store=True,
         help="Define sale multiple qty"
         " 'If not set', Odoo will"
@@ -22,7 +22,7 @@ class ProductMinMultipleMixin(models.AbstractModel):
         string="Multiple Sale Qty", digits=dp.get_precision("Product Unit of Measure")
     )
     sale_min_qty = fields.Float(
-        compute="_compute_sale_min_multiple_qty",
+        compute="_compute_sale_restricted_qty",
         store=True,
         help="Define sale min qty"
         " 'If not set, Odoo will"
@@ -35,7 +35,7 @@ class ProductMinMultipleMixin(models.AbstractModel):
         string="Min Sale Qty", digits=dp.get_precision("Product Unit of Measure")
     )
     force_sale_min_qty = fields.Boolean(
-        compute="_compute_sale_min_multiple_qty",
+        compute="_compute_sale_restricted_qty",
         string="Force Min Qty",
         store=True,
         help="Define if user can force sale min qty"
@@ -53,18 +53,53 @@ class ProductMinMultipleMixin(models.AbstractModel):
         "is only indicative value."
         "If is not test we check parent value",
     )
+    sale_max_qty = fields.Float(
+        compute="_compute_sale_restricted_qty",
+        store=True,
+        help="Define sale max qty"
+        " 'If not set, Odoo will"
+        " use the value defined in the parent object."
+        "Hierarchy is in this order :"
+        "Product/product Template/product category/parent categoroies ",
+        digits=dp.get_precision("Product Unit of Measure"),
+    )
+    manual_sale_max_qty = fields.Float(
+        string="Max Sale Qty", digits=dp.get_precision("Product Unit of Measure")
+    )
+    force_sale_max_qty = fields.Boolean(
+        compute="_compute_sale_restricted_qty",
+        string="Force Max Qty",
+        store=True,
+        help="Define if user can force sale max qty"
+        " 'If not set', Odoo will"
+        " use the value defined in the parent object."
+        "Hierarchy is in this order :"
+        "Product/product Template/product category/parent categoroies ",
+    )
+    manual_force_sale_max_qty = fields.Selection([
+        ('force', 'Yes'),
+        ('not_force', 'No'),
+        ],
+        string="Manual Force Max Qty",
+        help="If force max qty is checked, the max quantity "
+        "is only indicative value."
+        "If is not test we check parent value",
+    )
 
-    def _get_sale_min_multiple_qty(self):
+    def _get_sale_restricted_qty(self):
         self.ensure_one()
         res = {
             "sale_min_qty": self.manual_sale_min_qty,
             "force_sale_min_qty": self.manual_force_sale_min_qty == 'force',
+            "sale_max_qty": self.manual_sale_max_qty,
+            "force_sale_max_qty": self.manual_force_sale_max_qty == 'force',
             "sale_multiple_qty": self.manual_sale_multiple_qty,
         }
         return res
 
     @api.depends("manual_force_sale_min_qty", "manual_sale_min_qty",
+                 "manual_force_sale_max_qty", "manual_sale_max_qty",
                  "manual_sale_multiple_qty")
-    def _compute_sale_min_multiple_qty(self):
+    def _compute_sale_restricted_qty(self):
         for rec in self:
-            rec.update(rec._get_sale_min_multiple_qty())
+            rec.update(rec._get_sale_restricted_qty())

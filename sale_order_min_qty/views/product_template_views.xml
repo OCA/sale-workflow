@@ -6,9 +6,14 @@
         <field name="inherit_id" ref="product.product_template_form_view"/>
         <field name="arch" type="xml">
             <group name="description" position="before">
-                <group string="Sale min qty" name="sale_min_qty">
-                    <field name="sale_min_qty"/>
-                    <field name="manual_sale_min_qty" class="oe_edit_only"/>
+                <group name="sale_restricted_qty" string="Sale restricted qty" colspan="4">
+                    <field name ="sale_min_qty"/>
+                    <field name ="manual_sale_min_qty" class="oe_edit_only"/>
+                    <field name ="force_sale_min_qty"/>
+                    <field name ="manual_force_sale_min_qty" class="oe_edit_only"/>
+                    <field name ="sale_max_qty"/>
+                    <field name ="manual_sale_max_qty" class="oe_edit_only"/>
+                    <field name ="force_sale_max_qty"/>
                     <field name="sale_multiple_qty"/>
                     <field name="manual_sale_multiple_qty" class="oe_edit_only"/>
                 </group>

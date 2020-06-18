@@ -23,6 +23,20 @@ class SaleOrderLine(models.Model):
     is_qty_less_min_qty = fields.Boolean(
         string="Qty < Min Qty", compute="_compute_is_qty_less_min_qty"
     )
+
+    sale_max_qty = fields.Float(
+        string="Max Qty",
+        related="product_id.sale_max_qty",
+        readonly=True,
+        store=True,
+        digits=dp.get_precision("Product Unit of Measure"),
+    )
+    force_sale_max_qty = fields.Boolean(
+        related="product_id.force_sale_max_qty", readonly=True, store=True
+    )
+    is_qty_bigger_max_qty = fields.Boolean(
+        string="Qty > max Qty", compute="_compute_is_qty_bigger_max_qty"
+    )
     sale_multiple_qty = fields.Float(
         string="Multiple Qty",
         related="product_id.sale_multiple_qty",
@@ -35,9 +49,9 @@ class SaleOrderLine(models.Model):
     )
 
     @api.constrains("product_uom_qty")
-    def check_constraint_min_qty(self):
-        invaild_min_lines = []
+    def check_constraint_restricted_qty(self):
         msg = ""
+        invaild_min_lines = []
         line_to_test = self.filtered(
             lambda l: not l.product_id.force_sale_min_qty and l.is_qty_less_min_qty
         )
@@ -55,7 +69,24 @@ class SaleOrderLine(models.Model):
                 "\n* If you want sell quantity less than Min Quantity"
                 ',Check "force min quatity" on product'
             )
+        invaild_max_lines = []
+        line_to_test = self.filtered(
+            lambda l: not l.product_id.force_sale_max_qty and l.is_qty_bigger_max_qty
+        )
+        for line in line_to_test:
+            invaild_max_lines.append(
+                _('Product "%s": max Quantity %s.')
+                % (line.product_id.name, line.product_id.sale_max_qty)
+            )
 
+        if invaild_max_lines:
+            msg += _(
+                "Check maximum order quantity for this products: * \n"
+            ) + "\n ".join(invaild_max_lines)
+            msg += _(
+                "\n* If you want sell quantity bigger than max Quantity"
+                ',Check "force max quatity" on product'
+            )
         invaild_multiple_lines = []
         line_to_test = self.filtered(lambda l: l.is_qty_not_multiple_qty)
         for line in line_to_test:
@@ -87,6 +118,20 @@ class SaleOrderLine(models.Model):
             line.is_qty_less_min_qty = (
                 float_compare(
                     product_qty, line.sale_min_qty, precision_rounding=rounding
+                )
+                < 0
+            )
+
+    @api.depends("product_uom_qty", "sale_max_qty")
+    def _compute_is_qty_bigger_max_qty(self):
+        for line in self:
+            rounding = line.product_uom.rounding
+            product_qty = line.product_uom._compute_quantity(
+                line.product_uom_qty, line.product_id.uom_id
+            )
+            line.is_qty_bigger_max_qty = (
+                float_compare(
+                    product_qty, line.sale_max_qty, precision_rounding=rounding
                 )
                 < 0
             )
