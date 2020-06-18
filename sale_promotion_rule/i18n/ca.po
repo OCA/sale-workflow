@@ -1,6 +1,6 @@
 # Translation of Odoo Server.
 # This file contains the translation of the following modules:
-#	* sale_promotion_rule
+# 	* sale_promotion_rule
 #
 msgid ""
 msgstr ""
@@ -50,7 +50,7 @@ msgid "Applied Promotions"
 msgstr ""
 
 #. module: sale_promotion_rule
-#: code:addons/sale_promotion_rule/models/sale_promotion_rule.py:254
+#: code:addons/sale_promotion_rule/models/sale_promotion_rule.py:255
 #: selection:sale.promotion.rule,rule_type:0
 #, python-format
 msgid "Automatic"
@@ -69,7 +69,7 @@ msgid "Code"
 msgstr ""
 
 #. module: sale_promotion_rule
-#: code:addons/sale_promotion_rule/models/sale_promotion_rule.py:288
+#: code:addons/sale_promotion_rule/models/sale_promotion_rule.py:289
 #, python-format
 msgid "Code number %s is invalid"
 msgstr ""
@@ -138,7 +138,7 @@ msgid "Discount amount"
 msgstr ""
 
 #. module: sale_promotion_rule
-#: code:addons/sale_promotion_rule/models/sale_promotion_rule.py:104
+#: code:addons/sale_promotion_rule/models/sale_promotion_rule.py:105
 #: sql_constraint:sale.promotion.rule:0
 #, python-format
 msgid "Discount code must be unique !"
@@ -222,7 +222,7 @@ msgid "No restriction"
 msgstr ""
 
 #. module: sale_promotion_rule
-#: code:addons/sale_promotion_rule/models/sale_promotion_rule.py:357
+#: code:addons/sale_promotion_rule/models/sale_promotion_rule.py:358
 #, python-format
 msgid "Not supported promotion type %s"
 msgstr ""
@@ -270,7 +270,7 @@ msgid "Promotion Rule"
 msgstr ""
 
 #. module: sale_promotion_rule
-#: code:addons/sale_promotion_rule/models/sale_promotion_rule.py:368
+#: code:addons/sale_promotion_rule/models/sale_promotion_rule.py:369
 #, python-format
 msgid "Promotion of type %s is not a percentage discount"
 msgstr ""
@@ -354,15 +354,18 @@ msgid "Use the best promotion"
 msgstr ""
 
 #. module: sale_promotion_rule
-#: code:addons/sale_promotion_rule/models/sale_promotion_rule.py:133
+#: code:addons/sale_promotion_rule/models/sale_promotion_rule.py:134
 #, python-format
-msgid "You must specify a currency for discount rule applaying a specific amount"
+msgid ""
+"You must specify a currency for discount rule applaying a specific amount"
 msgstr ""
 
 #. module: sale_promotion_rule
-#: code:addons/sale_promotion_rule/models/sale_promotion_rule.py:118
+#: code:addons/sale_promotion_rule/models/sale_promotion_rule.py:119
 #, python-format
-msgid "You must specify a promotion product for discount rule applaying a specific amount"
+msgid ""
+"You must specify a promotion product for discount rule applaying a specific "
+"amount"
 msgstr ""
 
 #. module: sale_promotion_rule
