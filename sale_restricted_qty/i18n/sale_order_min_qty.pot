@@ -1,0 +1,82 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+#	* sale_order_min_qty
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 12.0\n"
+"Report-Msgid-Bugs-To: \n"
+"Last-Translator: <>\n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: sale_order_min_qty
+#: code:addons/sale_order_min_qty/models/sale.py:51
+#, python-format
+msgid "\n"
+"* If you want sell quantity less than Min Quantity,Check \"force min quatity\" on product"
+msgstr ""
+
+#. module: sale_order_min_qty
+#: code:addons/sale_order_min_qty/models/sale.py:48
+#, python-format
+msgid "Check minimum order quantity for this products: * \n"
+""
+msgstr ""
+
+#. module: sale_order_min_qty
+#: model:ir.model.fields,field_description:sale_order_min_qty.field_product_product__force_sale_min_qty
+#: model:ir.model.fields,field_description:sale_order_min_qty.field_sale_order_line__force_sale_min_qty
+msgid "Force Min Qty"
+msgstr ""
+
+#. module: sale_order_min_qty
+#: model:ir.model.fields,help:sale_order_min_qty.field_product_product__force_sale_min_qty
+#: model:ir.model.fields,help:sale_order_min_qty.field_sale_order_line__force_sale_min_qty
+msgid "If force min qty is checked, the min quantity is only indicative value."
+msgstr ""
+
+#. module: sale_order_min_qty
+#: model:ir.model.fields,field_description:sale_order_min_qty.field_sale_order_line__sale_min_qty
+msgid "Min Qty"
+msgstr ""
+
+#. module: sale_order_min_qty
+#: model_terms:ir.ui.view,arch_db:sale_order_min_qty.view_order_form
+msgid "Min Quantity Recommended"
+msgstr ""
+
+#. module: sale_order_min_qty
+#: model_terms:ir.ui.view,arch_db:sale_order_min_qty.view_order_form
+msgid "Min Quantity Required"
+msgstr ""
+
+#. module: sale_order_min_qty
+#: model:ir.model.fields,field_description:sale_order_min_qty.field_product_product__sale_min_qty
+msgid "Min Sale Qty"
+msgstr ""
+
+#. module: sale_order_min_qty
+#: model:ir.model,name:sale_order_min_qty.model_product_product
+msgid "Product"
+msgstr ""
+
+#. module: sale_order_min_qty
+#: code:addons/sale_order_min_qty/models/sale.py:43
+#, python-format
+msgid "Product \"%s\": Min Quantity %s."
+msgstr ""
+
+#. module: sale_order_min_qty
+#: model:ir.model.fields,field_description:sale_order_min_qty.field_sale_order_line__is_qty_less_min_qty
+msgid "Qty < Min Qty"
+msgstr ""
+
+#. module: sale_order_min_qty
+#: model:ir.model,name:sale_order_min_qty.model_sale_order_line
+msgid "Sales Order Line"
+msgstr ""
+
