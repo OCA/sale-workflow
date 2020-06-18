@@ -45,10 +45,13 @@ class ProductMinMultipleMixin(models.AbstractModel):
         "Product/product Template/product category/parent categoroies ",
     )
     manual_force_sale_min_qty = fields.Selection([
+        ('use_parent', 'Use Parent Setting'),
         ('force', 'Yes'),
         ('not_force', 'No'),
         ],
         string="Manual Force Min Qty",
+        required=True,
+        default="use_parent",
         help="If force min qty is checked, the min quantity "
         "is only indicative value."
         "If is not test we check parent value",
@@ -77,9 +80,12 @@ class ProductMinMultipleMixin(models.AbstractModel):
         "Product/product Template/product category/parent categoroies ",
     )
     manual_force_sale_max_qty = fields.Selection([
+        ('use_parent', 'Use Parent Setting'),
         ('force', 'Yes'),
         ('not_force', 'No'),
         ],
+        required=True,
+        default="use_parent",
         string="Manual Force Max Qty",
         help="If force max qty is checked, the max quantity "
         "is only indicative value."

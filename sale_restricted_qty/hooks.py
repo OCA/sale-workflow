@@ -16,4 +16,4 @@ def rename_module(cr):
         cr,
         [("sale_order_min_qty", "sale_restricted_qty")],
         merge_modules=True,
-    )  
+    )

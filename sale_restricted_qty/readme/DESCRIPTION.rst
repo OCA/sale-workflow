@@ -1,9 +1,11 @@
-This module allows to define minimum and multiple order quantity on product.
-Minimum order quantity is either required or recommanded.
-If you check "Force min Qty" on product the min qty do not block sale
+This module allows to define min, max and multiple order quantity on product.
+Min and Max order quantity is either required or recommanded.
+If you check "Force mini/max Qty" on product the min/max qty do not block sale
 order.
 This can be used if the available stock is less then the min qty
 or if you want to sell sample products.
+Max qty can be used if we dont want to sale more than available qty
+(end of series product)
 
 Setings are defined on product, if values are not set we use settings from
 product template.
