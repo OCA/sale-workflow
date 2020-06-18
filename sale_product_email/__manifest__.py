@@ -14,6 +14,7 @@
     ],
     'depends': [
         'product',
+        'base_automation',
     ],
     'installable': True,
 }
