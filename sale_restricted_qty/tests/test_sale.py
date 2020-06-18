@@ -24,9 +24,9 @@ class TestSaleOrderLineMinQty(common.TransactionCase):
             {
                 "name": "Test Parent categ",
                 "manual_sale_min_qty": 10.0,
-                "manual_force_sale_min_qty": False,
+                "manual_force_sale_min_qty": "use_parent",
                 "manual_sale_max_qty": 100.0,
-                "manual_force_sale_max_qty": False,
+                "manual_force_sale_max_qty": "use_parent",
                 "manual_sale_multiple_qty": 5.0,
             }
         )
@@ -35,15 +35,15 @@ class TestSaleOrderLineMinQty(common.TransactionCase):
             {
                 "name": "Test categ",
                 "parent_id": self.categ_parent.id,
-                "manual_force_sale_min_qty": False,
-                "manual_force_sale_max_qty": False,
+                "manual_force_sale_min_qty": "use_parent",
+                "manual_force_sale_max_qty": "use_parent",
             }
         )
 
         self.product = self.product_model.create({
             "name": "Test product",
-             "force_sale_min_qty": False,
-             "force_sale_max_qty": False,
+            "force_sale_min_qty": False,
+            "force_sale_max_qty": False,
         })
 
     def test_check_sale_order_min_qty_required(self):
@@ -137,7 +137,7 @@ class TestSaleOrderLineMinQty(common.TransactionCase):
         self.assertEqual(self.product.sale_max_qty, 100)
         self.assertEqual(self.product.sale_multiple_qty, 5)
         self.categ_parent.manual_force_sale_min_qty = 'force'
-        self.assertEqual(self.product.manual_force_sale_min_qty, False)
+        self.assertEqual(self.product.manual_force_sale_min_qty, "use_parent")
         self.assertEqual(self.product.force_sale_min_qty, True)
         # Check Restricted Qty from category
         self.categ.manual_sale_min_qty = 15
