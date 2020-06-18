@@ -15,5 +15,6 @@
         "views/product_product_views.xml",
         "views/sale_views.xml",
     ],
+    "pre_init_hook": "rename_module",
     "installable": True,
 }
