@@ -14,16 +14,16 @@ class ProductProduct(models.Model):
         force_sale_min_qty = False
         if self.manual_force_sale_min_qty == 'force':
             force_sale_min_qty = True
-        if self.manual_force_sale_min_qty == 'not_force':
+        elif self.manual_force_sale_min_qty == 'not_force':
             force_sale_min_qty = False
-        if not self.manual_force_sale_min_qty:
+        else:
             force_sale_min_qty = self.product_tmpl_id.force_sale_min_qty
         force_sale_max_qty = False
         if self.manual_force_sale_max_qty == 'force':
             force_sale_max_qty = True
-        if self.manual_force_sale_max_qty == 'not_force':
+        elif self.manual_force_sale_max_qty == 'not_force':
             force_sale_max_qty = False
-        if not self.manual_force_sale_max_qty:
+        else:
             force_sale_max_qty = self.product_tmpl_id.force_sale_max_qty
         res.update(
             {
