@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <record id="view_product_category_form" model="ir.ui.view">
+        <field name="model">product.category</field>
+        <field name="inherit_id" ref="product.product_category_form_view"/>
+        <field name="arch" type="xml">
+            <xpath expr="//group[@name='first']" position="after">
+                <group name="sale_restricted_qty" string="Sale restricted qty" colspan="4">
+                    <field name ="sale_min_qty"/>
+                    <field name ="manual_sale_min_qty" class="oe_edit_only"/>
+                    <field name ="force_sale_min_qty"/>
+                    <field name ="manual_force_sale_min_qty" class="oe_edit_only"/>
+                    <field name ="sale_max_qty"/>
+                    <field name ="manual_sale_max_qty" class="oe_edit_only"/>
+                    <field name ="force_sale_max_qty"/>
+                    <field name ="manual_force_sale_max_qty" class="oe_edit_only"/>
+                    <field name ="sale_multiple_qty"/>
+                    <field name ="manual_sale_multiple_qty" class="oe_edit_only"/>
+                </group>
+            </xpath>
+        </field>
+    </record>
+</odoo>
