@@ -18,6 +18,5 @@ class SaleOrder(models.Model):
                         'product_tmpl': product_tmpl,
                         'default_composition_mode': 'comment',
                         'default_partner_ids': order.partner_id.ids,
-                        'custom_layout': ('sale.mail_template_data'
-                                          '_notification_email_sale_order'),
+                        'custom_layout': 'sale.email_template_edi_sale',
                     }).message_post_with_template(mail_template.id)

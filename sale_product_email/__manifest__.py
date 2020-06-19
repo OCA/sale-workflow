@@ -13,7 +13,7 @@
         'views/product_template.xml',
     ],
     'depends': [
-        'product',
+        'sale',
         'base_automation',
     ],
     'installable': True,
