@@ -9,15 +9,27 @@
         <field name="arch" type="xml">
             <group name="pricelists" position="before">
                 <group name="sale_restricted_qty" string="Sale restricted qty" colspan="4">
-                    <field name ="sale_min_qty"/>
-                    <field name ="manual_sale_min_qty" class="oe_edit_only"/>
-                    <field name ="force_sale_min_qty"/>
-                    <field name ="manual_force_sale_min_qty" class="oe_edit_only"/>
-                    <field name ="sale_max_qty"/>
-                    <field name ="manual_sale_max_qty" class="oe_edit_only"/>
-                    <field name ="force_sale_max_qty"/>
-                    <field name ="sale_multiple_qty"/>
-                    <field name ="manual_sale_multiple_qty" class="oe_edit_only"/>
+                    <group name="sale_min_qty_gr" string="Sale Min qty">
+                        <field name ="sale_min_qty"/>
+                        <label for="manual_sale_min_qty" class="oe_edit_only"/>
+                        <field name ="manual_sale_min_qty" class="oe_edit_only" nolabel="1"/>
+                        <field name ="force_sale_min_qty"/>
+                        <label for="manual_force_sale_min_qty" class="oe_edit_only"/>
+                        <field name ="manual_force_sale_min_qty" class="oe_edit_only" nolabel="1"/>
+                    </group>
+                    <group name="sale_max_qty_gr" string="Sale Max qty">
+                        <field name ="sale_max_qty"/>
+                        <label for="manual_sale_max_qty" class="oe_edit_only"/>
+                        <field name ="manual_sale_max_qty" class="oe_edit_only" nolabel="1"/>
+                        <field name ="force_sale_max_qty"/>
+                        <label for="manual_force_sale_max_qty" class="oe_edit_only"/>
+                        <field name ="manual_force_sale_max_qty" class="oe_edit_only" nolabel="1"/>
+                    </group>
+                        <group name="sale_multiple_qty_gr" string="Sale Miltiple qty">
+                        <field name ="sale_multiple_qty"/>
+                        <label for="manual_sale_multiple_qty" class="oe_edit_only"/>
+                        <field name ="manual_sale_multiple_qty" class="oe_edit_only" nolabel="1"/>
+                    </group>
                 </group>
             </group>
         </field>
