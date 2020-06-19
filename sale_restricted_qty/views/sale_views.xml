@@ -11,6 +11,9 @@
                 <field name="sale_multiple_qty"/>
                 <field name="is_qty_less_min_qty" invisible="1"/>
                 <field name="force_sale_min_qty" invisible="1"/>
+                <field name="sale_max_qty"/>
+                <field name="is_qty_bigger_max_qty" invisible="1"/>
+                <field name="force_sale_max_qty" invisible="1"/>
                <field name="is_qty_not_multiple_qty" invisible="1"/>
                  <label colspan="2"
             string="Min Quantity Recommended"
@@ -23,17 +26,30 @@
                  <label colspan="2"
             string="Multiple Quantity Required"
                    attrs="{'invisible': [('is_qty_not_multiple_qty','=', False)]}" style="background-color:red"/>
+                 <label colspan="2"
+            string="Max Quantity Recommended"
+                     attrs="{'invisible': ['|',  ('is_qty_bigger_max_qty','=', False),
+                     '&amp;', ('is_qty_bigger_max_qty','=', True), ('force_sale_max_qty','=', False,)]}"   style="background-color:yellow"/>
+                 <label colspan="2"
+            string="Max Quantity Exceeded"
+                   attrs="{'invisible': ['|',  ('is_qty_bigger_max_qty','=', True),
+                     '&amp;', ('is_qty_bigger_max_qty','=', True), ('force_sale_max_qty','=', True,)]}"  style="background-color:red"/>
            </xpath>
            <xpath expr="//field[@name='order_line']/tree/field[@name='product_uom_qty']" position="after">
                <field name="sale_min_qty"/>
                <field name="is_qty_less_min_qty" invisible="1"/>
                <field name="force_sale_min_qty" invisible="1"/>
+               <field name="sale_max_qty"/>
+               <field name="is_qty_bigger_max_qty" invisible="1"/>
+               <field name="force_sale_max_qty" invisible="1"/>
                <field name="is_qty_not_multiple_qty" invisible="1"/>
            </xpath>
 
             <xpath expr="//field[@name='order_line']/tree" position="attributes">>
                 <attribute name="decoration-danger">is_qty_less_min_qty ==  True and force_sale_min_qty == False</attribute>
                 <attribute name="decoration-warning">is_qty_less_min_qty ==  True and force_sale_min_qty == True</attribute>
+                <attribute name="decoration-danger">is_qty_bigger_max_qty ==  True and force_sale_max_qty == False</attribute>
+                <attribute name="decoration-warning">is_qty_bigger_max_qty ==  True and force_sale_max_qty == True</attribute>
                 <attribute name="decoration-danger">is_qty_not_multiple_qty == True</attribute>
             </xpath>
         </field>
