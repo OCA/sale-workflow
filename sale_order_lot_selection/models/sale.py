@@ -66,8 +66,7 @@ class SaleOrder(models.Model):
 
     @api.multi
     def action_confirm(self):
-        res = super(SaleOrder, self.with_context(sol_lot_id=True))\
-            .action_confirm()
+        res = super().action_confirm()
         for line in self.order_line:
             if line.lot_id:
                 unreserved_moves = line.move_ids.filtered(
