@@ -46,19 +46,32 @@ class TestSaleOrderLineMinQty(common.TransactionCase):
             "force_sale_max_qty": False,
         })
 
+    def refrech_sale_values(self, sale_order):
+        sale_order.order_line._compute_sale_restricted_qty()
+        sale_order.order_line.product_id_change()
+        sale_order.order_line._compute_is_qty_less_min_qty()
+        sale_order.order_line._compute_is_qty_bigger_max_qty()
+        sale_values = sale_order._convert_to_write(sale_order._cache)
+        return sale_values
+
     def test_check_sale_order_min_qty_required(self):
         line_values = {"product_id": self.product.id, "product_uom_qty": 5.0}
         self.product.manual_sale_min_qty = 10
         # Create sale order line with Qty less than min Qty
         with self.assertRaises(ValidationError):
-            self.sale_order = self.sale_order_model.create(
-                {"partner_id": self.partner.id, "order_line": [(0, 0, line_values)]}
+            sale_order = self.sale_order_model.new(
+                {"partner_id": self.partner.id,
+                    "order_line": [(0, 0, line_values)]}
             )
+            sale_values = self.refrech_sale_values(sale_order)
+            self.sale_order_model.create(sale_values)
         line_values["product_uom_qty"] = 12.0
         # Create sale order line with Qty great then min Qty
         self.sale_order = self.sale_order_model.create(
-            {"partner_id": self.partner.id, "order_line": [(0, 0, line_values)]}
+            {"partner_id": self.partner.id,
+                "order_line": [(0, 0, line_values)]}
         )
+        self.sale_order.order_line._compute_sale_restricted_qty()
         self.assertFalse(self.sale_order.order_line.is_qty_less_min_qty)
 
         self.assertEqual(self.sale_order.order_line.product_uom_qty, 12.0)
@@ -71,42 +84,51 @@ class TestSaleOrderLineMinQty(common.TransactionCase):
 
         # Create sale order line with Qty less than min Qty
         self.sale_order = self.sale_order_model.create(
-            {"partner_id": self.partner.id, "order_line": [(0, 0, line_values)]}
+            {"partner_id": self.partner.id,
+                "order_line": [(0, 0, line_values)]}
         )
+        self.sale_order.order_line._compute_sale_restricted_qty()
         self.assertTrue(self.sale_order.order_line.is_qty_less_min_qty)
 
         self.assertEqual(self.sale_order.order_line.product_uom_qty, 5.0)
 
     def test_check_sale_order_max_qty_required(self):
-        line_values = {"product_id": self.product.id, "product_uom_qty": 5.0}
+        line_values = {"product_id": self.product.id, "product_uom_qty": 15.0}
         self.product.manual_sale_max_qty = 10
         # Create sale order line with Qty bigger than max Qty
         with self.assertRaises(ValidationError):
-            self.sale_order = self.sale_order_model.create(
-                {"partner_id": self.partner.id, "order_line": [(0, 0, line_values)]}
+            sale_order = self.sale_order_model.create(
+                {"partner_id": self.partner.id,
+                    "order_line": [(0, 0, line_values)]}
             )
-        line_values["product_uom_qty"] = 12.0
+            sale_values = self.refrech_sale_values(sale_order)
+            self.sale_order_model.create(sale_values)
+        line_values["product_uom_qty"] = 2.0
         # Create sale order line with Qty great then max Qty
         self.sale_order = self.sale_order_model.create(
-            {"partner_id": self.partner.id, "order_line": [(0, 0, line_values)]}
+            {"partner_id": self.partner.id,
+                "order_line": [(0, 0, line_values)]}
         )
+        self.sale_order.order_line._compute_sale_restricted_qty()
         self.assertFalse(self.sale_order.order_line.is_qty_bigger_max_qty)
 
-        self.assertEqual(self.sale_order.order_line.product_uom_qty, 12.0)
+        self.assertEqual(self.sale_order.order_line.product_uom_qty, 2.0)
 
     def test_check_sale_order_max_qty_recommended(self):
-        line_values = {"product_id": self.product.id, "product_uom_qty": 5.0}
+        line_values = {"product_id": self.product.id, "product_uom_qty": 15.0}
         self.product.manual_sale_max_qty = 10
         # Set Force max Qty to true
         self.product.manual_force_sale_max_qty = 'force'
 
         # Create sale order line with Qty bigger than max Qty
         self.sale_order = self.sale_order_model.create(
-            {"partner_id": self.partner.id, "order_line": [(0, 0, line_values)]}
+            {"partner_id": self.partner.id,
+                "order_line": [(0, 0, line_values)]}
         )
+        self.sale_order.order_line._compute_sale_restricted_qty()
         self.assertTrue(self.sale_order.order_line.is_qty_bigger_max_qty)
 
-        self.assertEqual(self.sale_order.order_line.product_uom_qty, 5.0)
+        self.assertEqual(self.sale_order.order_line.product_uom_qty, 15.0)
 
     def test_check_sale_order_multiple_qty_required(self):
         line_values = {"product_id": self.product.id, "product_uom_qty": 15.0}
@@ -114,14 +136,19 @@ class TestSaleOrderLineMinQty(common.TransactionCase):
         self.product.manual_sale_multiple_qty = 10
         # Create sale order line with Qty not multiple Qty
         with self.assertRaises(ValidationError):
-            self.sale_order = self.sale_order_model.create(
-                {"partner_id": self.partner.id, "order_line": [(0, 0, line_values)]}
+            sale_order = self.sale_order_model.create(
+                {"partner_id": self.partner.id,
+                    "order_line": [(0, 0, line_values)]}
             )
+            sale_values = self.refrech_sale_values(sale_order)
+            self.sale_order_model.create(sale_values)
         line_values["product_uom_qty"] = 20
         # Create sale order line with Qty multiple Qty
         self.sale_order = self.sale_order_model.create(
-            {"partner_id": self.partner.id, "order_line": [(0, 0, line_values)]}
+            {"partner_id": self.partner.id,
+                "order_line": [(0, 0, line_values)]}
         )
+        self.sale_order.order_line._compute_sale_restricted_qty()
         self.assertFalse(self.sale_order.order_line.is_qty_not_multiple_qty)
 
         self.assertEqual(self.sale_order.order_line.product_uom_qty, 20)
