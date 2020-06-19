@@ -21,7 +21,7 @@ msgstr ""
 
 #. module: sale_order_lot_selection
 #: code:addons/sale_order_lot_selection/models/sale.py:63
-#: code:addons/sale_order_lot_selection/models/sale.py:79
+#: code:addons/sale_order_lot_selection/models/sale.py:78
 #, python-format
 msgid "Can't reserve products for lot %s"
 msgstr "Ni mogoče rezervirati proizvodov za lot %s"
