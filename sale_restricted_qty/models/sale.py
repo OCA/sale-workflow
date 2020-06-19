@@ -12,13 +12,13 @@ class SaleOrderLine(models.Model):
 
     sale_min_qty = fields.Float(
         string="Min Qty",
-        related="product_id.sale_min_qty",
-        readonly=True,
+        compute="_get_sale_restricted_qty",
         store=True,
         digits=dp.get_precision("Product Unit of Measure"),
     )
     force_sale_min_qty = fields.Boolean(
-        related="product_id.force_sale_min_qty", readonly=True, store=True
+        compute="_get_sale_restricted_qty",
+        readonly=True, store=True
     )
     is_qty_less_min_qty = fields.Boolean(
         string="Qty < Min Qty", compute="_compute_is_qty_less_min_qty"
@@ -26,21 +26,20 @@ class SaleOrderLine(models.Model):
 
     sale_max_qty = fields.Float(
         string="Max Qty",
-        related="product_id.sale_max_qty",
-        readonly=True,
+        compute="_get_sale_restricted_qty",
         store=True,
         digits=dp.get_precision("Product Unit of Measure"),
     )
     force_sale_max_qty = fields.Boolean(
-        related="product_id.force_sale_max_qty", readonly=True, store=True
+        compute="_get_sale_restricted_qty",
+        readonly=True, store=True
     )
     is_qty_bigger_max_qty = fields.Boolean(
         string="Qty > max Qty", compute="_compute_is_qty_bigger_max_qty"
     )
     sale_multiple_qty = fields.Float(
         string="Multiple Qty",
-        related="product_id.sale_multiple_qty",
-        readonly=True,
+        compute="_get_sale_restricted_qty",
         store=True,
         digits=dp.get_precision("Product Unit of Measure"),
     )
@@ -48,8 +47,10 @@ class SaleOrderLine(models.Model):
         string="Not Multiple Qty", compute="_compute_is_qty_not_multiple_qty"
     )
 
-    @api.constrains("product_uom_qty")
+    @api.constrains(
+        "product_uom_qty", "sale_min_qty", "sale_max_qty", "sale_multiple_qty")
     def check_constraint_restricted_qty(self):
+
         msg = ""
         invaild_min_lines = []
         line_to_test = self.filtered(
@@ -143,5 +144,28 @@ class SaleOrderLine(models.Model):
                 line.product_uom_qty, line.product_id.uom_id
             )
             line.is_qty_not_multiple_qty = (
-                line.sale_multiple_qty > 0 and product_qty % line.sale_multiple_qty != 0
+                line.sale_multiple_qty > 0
+                and product_qty % line.sale_multiple_qty != 0
             )
+
+    def _get_sale_restricted_qty(self):
+        """Overridable function to change qty values (ex: form stock)"""
+        self.ensure_one()
+        res = {
+            "sale_min_qty": (self.product_id and
+                             self.product_id.sale_min_qty or 0),
+            "force_sale_min_qty": (self.product_id and
+                                   self.product_id.force_sale_min_qty or False),
+            "sale_max_qty": (self.product_id and
+                             self.product_id.sale_max_qty or 0),
+            "force_sale_max_qty": (self.product_id and
+                                   self.product_id.force_sale_max_qty or False),
+            "sale_multiple_qty": (self.product_id and
+                                  self.product_id.sale_multiple_qty or 0),
+        }
+        return res
+
+    @api.depends("product_id")
+    def _compute_sale_restricted_qty(self):
+        for rec in self:
+            rec.update(rec._get_sale_restricted_qty())
