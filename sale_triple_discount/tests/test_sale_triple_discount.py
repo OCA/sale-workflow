@@ -117,7 +117,7 @@ class TestSaleOrder(common.SavepointCase):
         self.so_line1.discount3 = 50.0
         self.so_line2.discount3 = 50.0
         self.order.action_confirm()
-        self.order.action_invoice_create()
+        self.order._create_invoices()
         invoice = self.order.invoice_ids[0]
         self.assertAlmostEqual(
             self.so_line1.discount, invoice.invoice_line_ids[0].discount
