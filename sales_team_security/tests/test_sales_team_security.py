@@ -1,4 +1,4 @@
-# Copyright 2016-2018 Tecnativa - Pedro M. Baeza
+# Copyright 2016-2020 Tecnativa - Pedro M. Baeza
 # License AGPL-3 - See http://www.gnu.org/licenses/agpl-3.0.html
 
 from odoo.tests import common
@@ -13,9 +13,26 @@ class TestSalesTeamSecurity(common.SavepointCase):
         cls.team = cls.env['crm.team'].create({
             'name': 'Test channel',
         })
+        cls.team2 = cls.env['crm.team'].create({
+            'name': 'Test channel 2',
+        })
         cls.partner = cls.env['res.partner'].create({
             'name': 'Test partner',
             'team_id': cls.team.id,
+        })
+        cls.user = cls.env["res.users"].create({
+            "login": "sales_team_security",
+            "name": "Test sales_team_security user",
+            "groups_id": [
+                (4, cls.env.ref("sales_team.group_sale_salesman").id)],
+            "sale_team_id": cls.team.id,
+        })
+        cls.user2 = cls.env["res.users"].create({
+            "login": "sales_team_security2",
+            "name": "Test sales_team_security user 2",
+            "groups_id": [
+                (4, cls.env.ref("sales_team.group_sale_salesman").id)],
+            "sale_team_id": cls.team.id,
         })
 
     def test_onchange_parent_id(self):
@@ -44,3 +61,58 @@ class TestSalesTeamSecurity(common.SavepointCase):
         xml_fields = eview.xpath("//field[@name='child_ids']")
         self.assertTrue(xml_fields)
         self.assertTrue('default_team_id' in xml_fields[0].get('context', ''))
+
+    def _check_permission(self, salesman, team, expected):
+        self.partner.write({
+            "user_id": salesman.id if salesman else salesman,
+            "team_id": team.id if team else team,
+        })
+        domain = [("id", "in", self.partner.ids)]
+        Partner = self.env["res.partner"].sudo(self.user)
+        self.assertEqual(bool(Partner.search(domain)), expected)
+
+    def test_partner_permissions(self):
+        self._check_permission(False, False, True)
+        self._check_permission(self.user, False, True)
+        self._check_permission(self.user2, False, False)
+        self._check_permission(False, self.team, True)
+        self._check_permission(False, self.team2, False)
+        self._check_permission(self.user, self.team, True)
+        self._check_permission(self.user, self.team2, True)
+        self._check_permission(self.user2, self.team2, False)
+        self._check_permission(self.user2, self.team, False)
+        # Add to group "Team manager"
+        self.user.groups_id = [
+            (4, self.env.ref("sales_team_security.group_sale_team_manager").id)]
+        self._check_permission(False, False, True)
+        self._check_permission(self.user, False, True)
+        self._check_permission(self.user2, False, True)
+        self._check_permission(False, self.team, True)
+        self._check_permission(False, self.team2, False)
+        self._check_permission(self.user, self.team, True)
+        self._check_permission(self.user, self.team2, False)
+        self._check_permission(self.user2, self.team2, False)
+        self._check_permission(self.user2, self.team, True)
+        # Add to group "See all leads"
+        self.user.groups_id = [
+            (4, self.env.ref("sales_team.group_sale_salesman_all_leads").id)]
+        self._check_permission(False, False, True)
+        self._check_permission(self.user, False, True)
+        self._check_permission(self.user2, False, True)
+        self._check_permission(False, self.team, True)
+        self._check_permission(False, self.team2, True)
+        self._check_permission(self.user, self.team, True)
+        self._check_permission(self.user, self.team2, True)
+        self._check_permission(self.user2, self.team2, True)
+        self._check_permission(self.user2, self.team, True)
+        # Regular internal user
+        self.user.groups_id = [(6, 0, [self.env.ref("base.group_user").id])]
+        self._check_permission(False, False, True)
+        self._check_permission(self.user, False, True)
+        self._check_permission(self.user2, False, True)
+        self._check_permission(False, self.team, True)
+        self._check_permission(False, self.team2, True)
+        self._check_permission(self.user, self.team, True)
+        self._check_permission(self.user, self.team2, True)
+        self._check_permission(self.user2, self.team2, True)
+        self._check_permission(self.user2, self.team, True)
