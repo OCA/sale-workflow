@@ -4,15 +4,18 @@
         <field name="name">sale.order.triple.discount.form</field>
         <field name="model">sale.order</field>
         <field name="inherit_id" ref="sale.view_order_form" />
-        <field name="groups_id" eval="[(4, ref('sale.group_discount_per_so_line'))]" />
+        <field
+            name="groups_id"
+            eval="[(4, ref('product.group_discount_per_so_line'))]"
+        />
         <field name="arch" type="xml">
             <xpath
                 expr="//field[@name='order_line']//tree//field[@name='discount']"
                 position="after"
             >
-                <field name="discount2" />
-                <field name="discount3" />
-                <field name="discounting_type" />
+                <field name="discount2" optional="show" />
+                <field name="discount3" optional="show" />
+                <field name="discounting_type" optional="hide" />
             </xpath>
             <xpath
                 expr="//field[@name='order_line']//form//div[@name='discount']"
