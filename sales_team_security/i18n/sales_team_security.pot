@@ -24,6 +24,11 @@ msgid "Contact"
 msgstr ""
 
 #. module: sales_team_security
+#: model:ir.model,name:sales_team_security.model_ir_rule
+msgid "Record Rule"
+msgstr ""
+
+#. module: sales_team_security
 #: model:res.groups,comment:sales_team_security.group_sale_team_manager
 msgid "the user will have an access to the documents of the sales channel he/she belongs to."
 msgstr ""

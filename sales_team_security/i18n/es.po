@@ -27,6 +27,11 @@ msgid "Contact"
 msgstr "Contacto"
 
 #. module: sales_team_security
+#: model:ir.model,name:sales_team_security.model_ir_rule
+msgid "Record Rule"
+msgstr ""
+
+#. module: sales_team_security
 #: model:res.groups,comment:sales_team_security.group_sale_team_manager
 #, fuzzy
 msgid ""
