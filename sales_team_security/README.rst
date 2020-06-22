@@ -27,10 +27,11 @@ Sales documents permissions by channels (teams)
 
 This module adds a new group called "Channel manager", that includes
 the proper permissions for showing only the information related to that
-channel:
+channel (having assigned that channel/team or no channel at all, independently
+from the assigned salesman):
 
 * Leads/Opportunities
-* Customers
+* Contacts.
 * Quotations/Sales Orders
 
 It also handles the propagation of the sales team from commercial partners to
@@ -38,10 +39,12 @@ the contacts, which standard doesn't do.
 
 And finally, there are rules for partners to be restricted to the own ones for
 the group "User: Own Documents Only" for being coherent with the permission
-scheme.
+scheme. Someone with this permission will see:
 
-REMARK: partner restrictions won't work unless you touch in the DB an existing
-record rule. See more details in Know issues section.
+- Contacts without salesman nor channel assigned.
+- Contacts without salesman assigned, but the same channel.
+- Contacts with them as salesman, independently from the channel.
+- Contacts with them as follower.
 
 **Table of contents**
 
@@ -66,21 +69,8 @@ Configuration
 Known issues / Roadmap
 ======================
 
-* For restricting partners access, you have to disable or edit the existing
-  rule "res.partner.rule.private.employee" to something similar to:
-
-  .. code-block:: python
-
-    [('message_follower_ids', 'in', user.partner_id.ids),
-    '|', ('type', '!=', 'private'), ('type', '=', False)]
-
 * This module modifies sales security groups hierarchy, so any other module
   doing something similar might conflict with this one.
-* This module is designed for supporting only sales part, so someone that has
-  access to other Odoo parts (for example, an accountant), shouldn't have this
-  new permission, or some access errors will be found when seeing invoices and
-  other documents. A `sales_team_security_account` bridge module can be done
-  for fixing this case, but not in the case of other parts like warehouse.
 * Split the module in 2 as now `crm` is independent.
 
 Bug Tracker
