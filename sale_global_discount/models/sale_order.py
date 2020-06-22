@@ -35,13 +35,14 @@ class SaleOrder(models.Model):
 
     @api.model
     def get_discounted_global(self, price=0, discounts=None):
-        """Compute discounts successively"""
-        discounts = discounts or []
-        if not discounts:
-            return price
-        discount = discounts.pop(0)
-        price *= 1 - (discount / 100)
-        return self.get_discounted_global(price, discounts)
+        """Compute discounts successively
+        discounts is a list of discount rates, or None
+        """
+        if discounts is None:
+            discounts = []
+        for discount in discounts:
+            price *= 1 - (discount / 100)
+        return price
 
     @api.depends('order_line.price_total', 'global_discount_ids')
     def _amount_all(self):
@@ -50,10 +51,11 @@ class SaleOrder(models.Model):
             amount_untaxed_before_global_discounts = order.amount_untaxed
             amount_total_before_global_discounts = order.amount_total
             discounts = order.global_discount_ids.mapped('discount')
-            amount_discounted_untaxed = amount_discounted_tax = 0
+            amount_discounted_untaxed = 0
+            amount_discounted_tax = 0
             for line in order.order_line:
                 discounted_subtotal = self.get_discounted_global(
-                    line.price_subtotal, discounts.copy())
+                    line.price_subtotal, discounts)
                 amount_discounted_untaxed += discounted_subtotal
                 discounted_tax = line.tax_id.compute_all(
                     discounted_subtotal, line.order_id.currency_id,
@@ -83,7 +85,7 @@ class SaleOrder(models.Model):
         if self.partner_id.customer_global_discount_ids:
             self.global_discount_ids = (
                 self.partner_id.customer_global_discount_ids or
-                self.parnter_id.commercial_partner_id
+                self.partner_id.commercial_partner_id
                 .customer_global_discount_ids)
         return res
 
@@ -133,8 +135,8 @@ class SaleOrder(models.Model):
         res = []
         for tax in tax_groups:
             tax_amount = round_curr(
-                self.get_discounted_global(tax[1], discounts.copy()))
+                self.get_discounted_global(tax[1], discounts))
             tax_base = round_curr(
-                self.get_discounted_global(tax[2], discounts.copy()))
+                self.get_discounted_global(tax[2], discounts)
             res.append((tax[0], tax_amount, tax_base, tax[3]))
         return res
