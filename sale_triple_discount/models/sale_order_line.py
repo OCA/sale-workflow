@@ -7,8 +7,6 @@
 from odoo import _, api, fields, models
 from odoo.exceptions import ValidationError
 
-import odoo.addons.decimal_precision as dp
-
 
 class SaleOrderLine(models.Model):
     _inherit = "sale.order.line"
@@ -48,15 +46,11 @@ class SaleOrderLine(models.Model):
     @api.depends("discount2", "discount3", "discounting_type")
     def _compute_amount(self):
         prev_values = self.triple_discount_preprocess()
-        super(SaleOrderLine, self)._compute_amount()
+        super()._compute_amount()
         self.triple_discount_postprocess(prev_values)
 
-    discount2 = fields.Float(
-        string="Disc. 2 (%)", digits=dp.get_precision("Discount"), default=0.0,
-    )
-    discount3 = fields.Float(
-        string="Disc. 3 (%)", digits=dp.get_precision("Discount"), default=0.0,
-    )
+    discount2 = fields.Float(string="Disc. 2 (%)", digits="Discount", default=0.0,)
+    discount3 = fields.Float(string="Disc. 3 (%)", digits="Discount", default=0.0,)
     discounting_type = fields.Selection(
         string="Discounting type",
         selection=[("additive", "Additive"), ("multiplicative", "Multiplicative")],
@@ -89,18 +83,17 @@ class SaleOrderLine(models.Model):
             discount_factor *= (100.0 - discount) / 100.0
         return 100.0 - (discount_factor * 100.0)
 
-    def _prepare_invoice_line(self, qty):
-        res = super(SaleOrderLine, self)._prepare_invoice_line(qty)
+    def _prepare_invoice_line(self):
+        res = super()._prepare_invoice_line()
         res.update({"discount2": self.discount2, "discount3": self.discount3})
         return res
 
     @api.depends("discount2", "discount3")
     def _get_price_reduce(self):
         prev_values = self.triple_discount_preprocess()
-        super(SaleOrderLine, self)._get_price_reduce()
+        super()._get_price_reduce()
         self.triple_discount_postprocess(prev_values)
 
-    @api.multi
     def triple_discount_preprocess(self):
         """Save the values of the discounts in a dictionary,
         to be restored in postprocess.
