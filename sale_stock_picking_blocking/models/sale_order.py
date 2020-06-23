@@ -9,7 +9,6 @@ from odoo.exceptions import ValidationError
 class SaleOrder(models.Model):
     _inherit = "sale.order"
 
-    @api.multi
     @api.constrains("delivery_block_id")
     def _check_not_auto_done(self):
         auto_done = self.env["ir.default"].get(
@@ -28,7 +27,6 @@ class SaleOrder(models.Model):
         states={"draft": [("readonly", False)], "sent": [("readonly", False)]},
     )
 
-    @api.multi
     @api.onchange("partner_id")
     def onchange_partner_id(self):
         """Add the 'Default Delivery Block Reason' if set in the partner."""
@@ -37,7 +35,6 @@ class SaleOrder(models.Model):
             so.delivery_block_id = so.partner_id.default_delivery_block or False
         return res
 
-    @api.multi
     def action_remove_delivery_block(self):
         """Remove the delivery block and create procurements as usual."""
         for order in self.filtered(
@@ -47,7 +44,6 @@ class SaleOrder(models.Model):
             order.order_line._action_launch_stock_rule()
         return True
 
-    @api.multi
     def copy(self, default=None):
         new_so = super(SaleOrder, self).copy(default=default)
         for so in new_so:
@@ -59,7 +55,6 @@ class SaleOrder(models.Model):
 class SaleOrderLine(models.Model):
     _inherit = "sale.order.line"
 
-    @api.multi
     def _action_launch_stock_rule(self):
         return super(
             SaleOrderLine,

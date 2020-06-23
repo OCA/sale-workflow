@@ -29,12 +29,14 @@ class TestSaleDeliveryBlock(common.TransactionCase):
             "name": "test product",
             "type": "product",
         }
-        product = self.env["product.product"].sudo(self.user_test).create(prod_dict)
+        product = (
+            self.env["product.product"].with_user(self.user_test).create(prod_dict)
+        )
         # Create Sales order and lines:
         so_dict = {
             "partner_id": self.env.ref("base.res_partner_1").id,
         }
-        self.sale_order = self.so_model.sudo(self.user_test).create(so_dict)
+        self.sale_order = self.so_model.with_user(self.user_test).create(so_dict)
         sol_dict = {
             "order_id": self.sale_order.id,
             "product_id": product.id,
@@ -45,15 +47,13 @@ class TestSaleDeliveryBlock(common.TransactionCase):
     def test_check_auto_done(self):
         # Set active auto done configuration
         self.env["ir.default"].set("res.config.settings", "auto_done_setting", 1)
-        block_reason = self.block_model.sudo(self.user_test).create(
+        block_reason = self.block_model.with_user(self.user_test).create(
             {"name": "Test Block."}
         )
         so = self.sale_order
         # Check settings constraints
         with self.assertRaises(ValidationError):
-            so.write(
-                {"delivery_block_id": block_reason.id,}
-            )
+            so.write({"delivery_block_id": block_reason.id})
 
     def _picking_comp(self, so):
         """count created pickings"""
@@ -69,13 +69,11 @@ class TestSaleDeliveryBlock(common.TransactionCase):
 
     def test_sale_stock_picking_blocking(self):
         # Create Sales order block reason:
-        block_reason = self.block_model.sudo(self.user_test).create(
+        block_reason = self.block_model.with_user(self.user_test).create(
             {"name": "Test Block."}
         )
         so = self.sale_order
-        so.write(
-            {"delivery_block_id": block_reason.id,}
-        )
+        so.write({"delivery_block_id": block_reason.id})
         so.action_confirm()
         self._picking_comp(so)
         pick = self._picking_comp(so)
