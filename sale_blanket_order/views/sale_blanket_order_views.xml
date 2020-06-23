@@ -89,7 +89,7 @@
                         <group name="group_left">
                             <field
                                 name="partner_id"
-                                domain="[('customer','=',True)]"
+                                domain="[('customer_rank','>',0)]"
                                 attrs="{'required': [('state', '=', 'draft')]}"
                                 context="{'search_default_customer':1, 'show_address': 1}"
                                 options='{"always_reload": True}'
@@ -258,7 +258,6 @@
         <field name="name">Blanket Orders</field>
         <field name="type">ir.actions.act_window</field>
         <field name="res_model">sale.blanket.order</field>
-        <field name="view_type">form</field>
         <field name="view_mode">tree,form</field>
         <field name="search_view_id" ref="view_blanket_order_search" />
         <field name="domain">[]</field>
@@ -423,7 +422,6 @@
         <field name="name">Blanket Order Lines</field>
         <field name="type">ir.actions.act_window</field>
         <field name="res_model">sale.blanket.order.line</field>
-        <field name="view_type">form</field>
         <field name="view_mode">tree,form</field>
         <field name="search_view_id" ref="sale_blanket_order_line_search" />
     </record>

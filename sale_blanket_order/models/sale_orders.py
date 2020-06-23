@@ -22,7 +22,6 @@ class SaleOrder(models.Model):
             line.blanket_order_line.remaining_qty < 0.0 for line in self.order_line
         )
 
-    @api.multi
     def button_confirm(self):
         res = super().button_confirm()
         for order in self:
@@ -91,7 +90,6 @@ class SaleOrderLine(models.Model):
         filters = self._get_eligible_bo_lines_domain(base_qty)
         return self.env["sale.blanket.order.line"].search(filters)
 
-    @api.multi
     def get_assigned_bo_line(self):
         self.ensure_one()
         eligible_bo_lines = self._get_eligible_bo_lines()

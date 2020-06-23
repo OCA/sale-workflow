@@ -5,10 +5,10 @@
     "category": "Sale",
     "license": "AGPL-3",
     "author": "Acsone SA/NV, Odoo Community Association (OCA)",
-    "version": "12.0.1.0.1",
+    "version": "13.0.1.0.0",
     "website": "https://github.com/OCA/sale-workflow",
     "summary": "Blanket Orders",
-    "depends": ["uom", "sale_management", "web_action_conditionable",],
+    "depends": ["uom", "sale_management", "web_action_conditionable"],
     "data": [
         "security/security.xml",
         "security/ir.model.access.csv",

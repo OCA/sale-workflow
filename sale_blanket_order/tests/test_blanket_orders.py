@@ -14,14 +14,14 @@ class TestSaleBlanketOrders(common.TransactionCase):
         self.blanket_order_line_obj = self.env["sale.blanket.order.line"]
         self.blanket_order_wiz_obj = self.env["sale.blanket.order.wizard"]
 
-        self.payment_term = self.env.ref("account.account_payment_term_net")
+        self.payment_term = self.env.ref("account.account_payment_term_30days")
         self.sale_pricelist = self.env["product.pricelist"].create(
-            {"name": "Test Pricelist", "currency_id": self.env.ref("base.USD").id,}
+            {"name": "Test Pricelist", "currency_id": self.env.ref("base.USD").id}
         )
         self.partner = self.env["res.partner"].create(
             {
                 "name": "TEST CUSTOMER",
-                "supplier": True,
+                "supplier_rank": 1,
                 "property_product_pricelist": self.sale_pricelist.id,
             }
         )
@@ -40,7 +40,7 @@ class TestSaleBlanketOrders(common.TransactionCase):
 
         # Seller IDS
         seller = self.env["product.supplierinfo"].create(
-            {"name": self.partner.id, "price": 30.0,}
+            {"name": self.partner.id, "price": 30.0}
         )
 
         self.product = self.env["product.product"].create(

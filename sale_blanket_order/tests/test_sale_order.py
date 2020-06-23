@@ -3,7 +3,7 @@
 from datetime import date, timedelta
 
 from odoo import fields
-from odoo.tests import common
+from odoo.tests import Form, common
 
 
 class TestSaleOrder(common.TransactionCase):
@@ -15,11 +15,11 @@ class TestSaleOrder(common.TransactionCase):
         self.sale_order_line_obj = self.env["sale.order.line"]
 
         self.partner = self.env["res.partner"].create(
-            {"name": "TEST SUPPLIER", "customer": True,}
+            {"name": "TEST SUPPLIER", "customer_rank": 1}
         )
-        self.payment_term = self.env.ref("account.account_payment_term_net")
+        self.payment_term = self.env.ref("account.account_payment_term_30days")
         self.sale_pricelist = self.env["product.pricelist"].create(
-            {"name": "Test Pricelist", "currency_id": self.env.ref("base.USD").id,}
+            {"name": "Test Pricelist", "currency_id": self.env.ref("base.USD").id}
         )
 
         self.product = self.env["product.product"].create(
@@ -124,31 +124,20 @@ class TestSaleOrder(common.TransactionCase):
         blanket_order = self.create_blanket_order_01()
         blanket_order.sudo().action_confirm()
         bo_lines = self.blanket_order_line_obj.search(
-            [("order_id", "=", blanket_order.id),]
+            [("order_id", "=", blanket_order.id)]
         )
         self.assertEqual(len(bo_lines), 2)
 
-        so = self.sale_order_obj.create(
-            {
-                "partner_id": self.partner.id,
-                "order_line": [
-                    (
-                        0,
-                        0,
-                        {
-                            "name": self.product.name,
-                            "product_id": self.product.id,
-                            "product_uom_qty": 5.0,
-                            "product_uom": self.product.uom_po_id.id,
-                            "price_unit": 10.0,
-                        },
-                    )
-                ],
-            }
-        )
+        with Form(self.sale_order_obj) as so_form:
+            so_form.partner_id = self.partner
+            with so_form.order_line.new() as line_form:
+                line_form.name = self.product.name
+                line_form.product_id = self.product
+                line_form.product_uom_qty = 5.0
+                line_form.product_uom = self.product.uom_po_id
+                line_form.price_unit = 10
+        so = so_form.save()
         so_line = so.order_line[0]
-        so_line.with_context(from_sale_order=True).name_get()
-        so_line.onchange_product_id()
         self.assertEqual(so_line._get_eligible_bo_lines(), bo_lines)
         bo_line_assigned = self.blanket_order_line_obj.search(
             [("date_schedule", "=", fields.Date.to_string(self.date_schedule_1))]
@@ -159,31 +148,20 @@ class TestSaleOrder(common.TransactionCase):
         blanket_order = self.create_blanket_order_02()
         blanket_order.sudo().action_confirm()
         bo_lines = self.blanket_order_line_obj.search(
-            [("order_id", "=", blanket_order.id),]
+            [("order_id", "=", blanket_order.id)]
         )
         self.assertEqual(len(bo_lines), 2)
 
-        so = self.sale_order_obj.create(
-            {
-                "partner_id": self.partner.id,
-                "order_line": [
-                    (
-                        0,
-                        0,
-                        {
-                            "name": self.product.name,
-                            "product_id": self.product.id,
-                            "product_uom_qty": 5.0,
-                            "product_uom": self.product.uom_po_id.id,
-                            "price_unit": 10.0,
-                        },
-                    )
-                ],
-            }
-        )
+        with Form(self.sale_order_obj) as so_form:
+            so_form.partner_id = self.partner
+            with so_form.order_line.new() as line_form:
+                line_form.name = self.product.name
+                line_form.product_id = self.product
+                line_form.product_uom_qty = 5.0
+                line_form.product_uom = self.product.uom_po_id
+                line_form.price_unit = 10.0
+        so = so_form.save()
         so_line = so.order_line[0]
-        so_line.with_context(from_sale_order=True).name_get()
-        so_line.onchange_product_id()
         self.assertEqual(
             so_line._get_eligible_bo_lines(),
             bo_lines.filtered(lambda l: l.product_id == self.product),

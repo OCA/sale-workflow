@@ -6,8 +6,6 @@ from odoo.exceptions import UserError
 from odoo.tools import float_is_zero
 from odoo.tools.misc import format_date
 
-import odoo.addons.decimal_precision as dp
-
 
 class BlanketOrder(models.Model):
     _name = "sale.blanket.order"
@@ -33,10 +31,11 @@ class BlanketOrder(models.Model):
             for line in order.line_ids:
                 amount_untaxed += line.price_subtotal
                 amount_tax += line.price_tax
+            currency = order.currency_id or self.env.user.company_id.currency_id
             order.update(
                 {
-                    "amount_untaxed": order.currency_id.round(amount_untaxed),
-                    "amount_tax": order.currency_id.round(amount_tax),
+                    "amount_untaxed": currency.round(amount_untaxed),
+                    "amount_tax": currency.round(amount_tax),
                     "amount_total": amount_untaxed + amount_tax,
                 }
             )
@@ -125,7 +124,7 @@ class BlanketOrder(models.Model):
         store=True,
         readonly=True,
         compute="_compute_amount_all",
-        track_visibility="always",
+        tracking=True,
     )
     amount_tax = fields.Monetary(
         string="Taxes", store=True, readonly=True, compute="_compute_amount_all"
@@ -166,20 +165,18 @@ class BlanketOrder(models.Model):
         default=0.0,
     )
 
-    @api.multi
     def _get_sale_orders(self):
         return self.mapped("line_ids.sale_lines.order_id")
 
     @api.depends("line_ids")
     def _compute_line_count(self):
-        self.line_count = len(self.mapped("line_ids"))
+        for rec in self:
+            rec.line_count = len(rec.line_ids)
 
-    @api.multi
     def _compute_sale_count(self):
         for blanket_order in self:
             blanket_order.sale_count = len(blanket_order._get_sale_orders())
 
-    @api.multi
     @api.depends(
         "line_ids.remaining_uom_qty", "validity_date", "confirmed",
     )
@@ -203,13 +200,16 @@ class BlanketOrder(models.Model):
 
     def _compute_uom_qty(self):
         for bo in self:
-            bo.original_uom_qty = sum(bo.mapped("order_id.original_uom_qty"))
-            bo.ordered_uom_qty = sum(bo.mapped("order_id.ordered_uom_qty"))
-            bo.invoiced_uom_qty = sum(bo.mapped("order_id.invoiced_uom_qty"))
-            bo.delivered_uom_qty = sum(bo.mapped("order_id.delivered_uom_qty"))
-            bo.remaining_uom_qty = sum(bo.mapped("order_id.remaining_uom_qty"))
+            bo.update(
+                {
+                    "original_uom_qty": sum(bo.mapped("order_id.original_uom_qty")),
+                    "ordered_uom_qty": sum(bo.mapped("order_id.ordered_uom_qty")),
+                    "invoiced_uom_qty": sum(bo.mapped("order_id.invoiced_uom_qty")),
+                    "delivered_uom_qty": sum(bo.mapped("order_id.delivered_uom_qty")),
+                    "remaining_uom_qty": sum(bo.mapped("order_id.remaining_uom_qty")),
+                }
+            )
 
-    @api.multi
     @api.onchange("partner_id")
     def onchange_partner_id(self):
         """
@@ -245,7 +245,6 @@ class BlanketOrder(models.Model):
             values["team_id"] = self.partner_id.team_id.id
         self.update(values)
 
-    @api.multi
     def unlink(self):
         for order in self:
             if order.state not in ("draft", "cancel"):
@@ -257,7 +256,6 @@ class BlanketOrder(models.Model):
                 )
         return super().unlink()
 
-    @api.multi
     def _validate(self):
         try:
             today = fields.Date.today()
@@ -272,13 +270,10 @@ class BlanketOrder(models.Model):
         except AssertionError as e:
             raise UserError(e)
 
-    @api.multi
     def set_to_draft(self):
-        for order in self:
-            order.write({"state": "draft"})
+        self.write({"state": "draft"})
         return True
 
-    @api.multi
     def action_confirm(self):
         self._validate()
         for order in self:
@@ -291,7 +286,6 @@ class BlanketOrder(models.Model):
             order.write({"confirmed": True, "name": name})
         return True
 
-    @api.multi
     def action_cancel(self):
         for order in self:
             if order.sale_count > 0:
@@ -307,7 +301,6 @@ class BlanketOrder(models.Model):
             order.write({"state": "expired"})
         return True
 
-    @api.multi
     def action_view_sale_orders(self):
         sale_orders = self._get_sale_orders()
         action = self.env.ref("sale.action_orders").read()[0]
@@ -318,7 +311,6 @@ class BlanketOrder(models.Model):
             action = {"type": "ir.actions.act_window_close"}
         return action
 
-    @api.multi
     def action_view_sale_blanket_order_line(self):
         action = self.env.ref(
             "sale_blanket_order" ".act_open_sale_blanket_order_lines_view_tree"
@@ -332,7 +324,7 @@ class BlanketOrder(models.Model):
     def expire_orders(self):
         today = fields.Date.today()
         expired_orders = self.search(
-            [("state", "=", "open"), ("validity_date", "<=", today),]
+            [("state", "=", "open"), ("validity_date", "<=", today)]
         )
         expired_orders.modified(["validity_date"])
         expired_orders.recompute()
@@ -426,9 +418,7 @@ class BlanketOrderLine(models.Model):
         domain=[("sale_ok", "=", True)],
     )
     product_uom = fields.Many2one("uom.uom", string="Unit of Measure", required=True)
-    price_unit = fields.Float(
-        string="Price", required=True, digits=dp.get_precision("Product Price")
-    )
+    price_unit = fields.Float(string="Price", required=True, digits="Product Price")
     taxes_id = fields.Many2many(
         "account.tax",
         string="Taxes",
@@ -439,7 +429,7 @@ class BlanketOrderLine(models.Model):
         string="Original quantity",
         required=True,
         default=1,
-        digits=dp.get_precision("Product Unit of Measure"),
+        digits="Product Unit of Measure",
     )
     ordered_uom_qty = fields.Float(
         string="Ordered quantity", compute="_compute_quantities", store=True
@@ -491,9 +481,7 @@ class BlanketOrderLine(models.Model):
                     formatted_date = format_date(record.env, record.date_schedule)
                     res += " - {}: {}".format(_("Date Scheduled"), formatted_date)
                 res += " ({}: {} {})".format(
-                    _("remaining"),
-                    record.remaining_uom_qty,
-                    record.product_uom.name,
+                    _("remaining"), record.remaining_uom_qty, record.product_uom.name,
                 )
                 result.append((record.id, res))
             return result
@@ -510,8 +498,8 @@ class BlanketOrderLine(models.Model):
         # Copied and adapted from the sale module
         PricelistItem = self.env["product.pricelist.item"]
         field_name = "lst_price"
-        currency_id = None
-        product_currency = None
+        currency_id = self.env["res.currency"]
+        product_currency = self.env["res.currency"]
         if rule_id:
             pricelist_item = PricelistItem.browse(rule_id)
             if pricelist_item.pricelist_id.discount_policy == "without_discount":
@@ -541,19 +529,13 @@ class BlanketOrderLine(models.Model):
             or (product.company_id and product.company_id.currency_id)
             or self.env.user.company_id.currency_id
         )
-        if not currency_id:
+        if (currency_id or product_currency) == product_currency:
             currency_id = product_currency
             cur_factor = 1.0
         else:
-            if currency_id.id == product_currency.id:
-                cur_factor = 1.0
-            else:
-                cur_factor = currency_id._get_conversion_rate(
-                    product_currency, currency_id
-                )
+            cur_factor = currency_id._get_conversion_rate(product_currency, currency_id)
 
-        product_uom = product.uom_id.id
-        if uom and uom.id != product_uom:
+        if uom != product.uom_id:
             # the unit price is in a different uom
             uom_factor = uom._compute_price(1.0, product.uom_id)
         else:
@@ -561,7 +543,6 @@ class BlanketOrderLine(models.Model):
 
         return product[field_name] * uom_factor * cur_factor, currency_id.id
 
-    @api.multi
     def _get_display_price(self, product):
         # Copied and adapted from the sale module
         self.ensure_one()
@@ -592,7 +573,6 @@ class BlanketOrderLine(models.Model):
         # negative discounts (= surcharge) are included in the display price
         return max(base_price, final_price)
 
-    @api.multi
     @api.onchange("product_id", "original_uom_qty")
     def onchange_product(self):
         precision = self.env["decimal.precision"].precision_get(
@@ -623,7 +603,6 @@ class BlanketOrderLine(models.Model):
             else:
                 self.taxes_id = fpos.map_tax(self.product_id.supplier_taxes_id)
 
-    @api.multi
     @api.depends(
         "sale_lines.order_id.state",
         "sale_lines.blanket_order_line",
@@ -657,7 +636,6 @@ class BlanketOrderLine(models.Model):
                 line.remaining_uom_qty, line.product_id.uom_id
             )
 
-    @api.multi
     def _validate(self):
         try:
             for line in self:

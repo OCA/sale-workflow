@@ -93,7 +93,6 @@ class BlanketOrderWizard(models.TransientModel):
         default=_default_lines,
     )
 
-    @api.multi
     def create_sale_order(self):
         order_lines_by_customer = defaultdict(list)
         currency_id = 0
@@ -162,7 +161,6 @@ class BlanketOrderWizard(models.TransientModel):
         return {
             "domain": [("id", "in", res)],
             "name": _("Sales Orders"),
-            "view_type": "form",
             "view_mode": "tree,form",
             "res_model": "sale.order",
             "context": {"from_sale_order": True},
