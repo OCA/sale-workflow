@@ -46,7 +46,7 @@ class TestSaleDeliveryBlock(common.TransactionCase):
 
     def test_check_auto_done(self):
         # Set active auto done configuration
-        self.env["ir.default"].set("res.config.settings", "auto_done_setting", 1)
+        self.env["ir.default"].set("res.config.settings", "group_auto_done_setting", 1)
         block_reason = self.block_model.with_user(self.user_test).create(
             {"name": "Test Block."}
         )

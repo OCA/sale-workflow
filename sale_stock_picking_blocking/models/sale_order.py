@@ -12,11 +12,11 @@ class SaleOrder(models.Model):
     @api.constrains("delivery_block_id")
     def _check_not_auto_done(self):
         auto_done = self.env["ir.default"].get(
-            "res.config.settings", "auto_done_setting"
+            "res.config.settings", "group_auto_done_setting"
         )
         if auto_done and any(so.delivery_block_id for so in self):
             raise ValidationError(
-                _('You cannot block a sale order with "auto_done_setting" ' "active.")
+                _('You cannot block a sale order with "group_auto_done_setting" ' "active.")
             )
 
     delivery_block_id = fields.Many2one(
