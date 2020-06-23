@@ -12,12 +12,12 @@ class SaleOrderLine(models.Model):
 
     sale_min_qty = fields.Float(
         string="Min Qty",
-        compute="_get_sale_restricted_qty",
+        compute="_compute_sale_restricted_qty",
         store=True,
         digits=dp.get_precision("Product Unit of Measure"),
     )
     force_sale_min_qty = fields.Boolean(
-        compute="_get_sale_restricted_qty",
+        compute="_compute_sale_restricted_qty",
         readonly=True, store=True
     )
     is_qty_less_min_qty = fields.Boolean(
@@ -26,12 +26,12 @@ class SaleOrderLine(models.Model):
 
     sale_max_qty = fields.Float(
         string="Max Qty",
-        compute="_get_sale_restricted_qty",
+        compute="_compute_sale_restricted_qty",
         store=True,
         digits=dp.get_precision("Product Unit of Measure"),
     )
     force_sale_max_qty = fields.Boolean(
-        compute="_get_sale_restricted_qty",
+        compute="_compute_sale_restricted_qty",
         readonly=True, store=True
     )
     is_qty_bigger_max_qty = fields.Boolean(
@@ -39,7 +39,7 @@ class SaleOrderLine(models.Model):
     )
     sale_multiple_qty = fields.Float(
         string="Multiple Qty",
-        compute="_get_sale_restricted_qty",
+        compute="_compute_sale_restricted_qty",
         store=True,
         digits=dp.get_precision("Product Unit of Measure"),
     )
@@ -54,7 +54,8 @@ class SaleOrderLine(models.Model):
         msg = ""
         invaild_min_lines = []
         line_to_test = self.filtered(
-            lambda l: not l.product_id.force_sale_min_qty and l.is_qty_less_min_qty
+            lambda sl: not sl.product_id.force_sale_min_qty and
+            sl.is_qty_less_min_qty
         )
         for line in line_to_test:
             invaild_min_lines.append(
@@ -72,7 +73,8 @@ class SaleOrderLine(models.Model):
             )
         invaild_max_lines = []
         line_to_test = self.filtered(
-            lambda l: not l.product_id.force_sale_max_qty and l.is_qty_bigger_max_qty
+            lambda sl: not sl.product_id.force_sale_max_qty and
+            sl.is_qty_bigger_max_qty
         )
         for line in line_to_test:
             invaild_max_lines.append(
@@ -89,7 +91,7 @@ class SaleOrderLine(models.Model):
                 ',Check "force max quatity" on product'
             )
         invaild_multiple_lines = []
-        line_to_test = self.filtered(lambda l: l.is_qty_not_multiple_qty)
+        line_to_test = self.filtered(lambda sl: sl.is_qty_not_multiple_qty)
         for line in line_to_test:
             invaild_multiple_lines.append(
                 _('Product "%s": multiple Quantity %s.')
