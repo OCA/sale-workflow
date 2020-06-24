@@ -7,5 +7,6 @@
     'license': 'AGPL-3',
     'depends': ['sale_stock'],
     'data': ['view/sale_view.xml'],
+    'demo': ['demo/sale_demo.xml'],
     'installable': True,
 }
