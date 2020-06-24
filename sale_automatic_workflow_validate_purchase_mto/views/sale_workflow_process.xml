@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Copyright 2017 ACSONE SA/NV
+     License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl). -->
+
+<odoo>
+<data>
+    <record model="ir.ui.view" id="sale_workflow_process_form_view">
+        <field name="name">sale.workflow.process.form (in sale_automatic_workflow_validate_purchase_mto)</field>
+        <field name="model">sale.workflow.process</field>
+        <field name="inherit_id" ref="sale_automatic_workflow.sale_workflow_process_view_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//group[field[@name='validate_order']]" position="inside">
+                <field name="validate_purchase_mto" />
+                <label for="purchase_order_mto_filter_id" attrs="{'required':[('validate_purchase_mto','=',True)], 'invisible':[('validate_purchase_mto','!=',True)]}"/>
+                <div attrs="{'required':[('validate_purchase_mto','=',True)], 'invisible':[('validate_purchase_mto','!=',True)]}">
+                    <bold>Sale Order Filter</bold>
+                    <field name="purchase_order_mto_domain" widget="char_domain" options="{'model': 'sale.order'}"/>
+                    <div class="oe_edit_only oe_inline">
+                        Set selection based on a search filter:
+                                        
+                        <field name="purchase_order_mto_filter_id" domain="[('model_id', '=', 'sale.order')]" class="oe_inline" context="{'default_model_id': 'sale.order', 'default_active': False, 'active_test': False}" can_create="true" can_write="true" />
+                    </div>
+                    <bold>Purchase Order Filter</bold>
+                    <field name="purchase_order_mto_purchase_domain" widget="char_domain" options="{'model': 'purchase.order'}"/>
+                    <div class="oe_edit_only oe_inline">
+                        Set selection based on a search filter:
+                                        
+                        <field name="purchase_order_mto_purchase_filter_id" domain="[('model_id', '=', 'purchase.order')]" class="oe_inline" context="{'default_model_id': 'purchase.order', 'default_active': False, 'active_test': False}" can_create="true" can_write="true" />
+                    </div>
+                </div>
+            </xpath>
+        </field>
+    </record>
+</data>
+</odoo>
