@@ -15,6 +15,7 @@ setuptools.setup(
         'odoo10-addon-sale_automatic_workflow',
         'odoo10-addon-sale_automatic_workflow_exception',
         'odoo10-addon-sale_automatic_workflow_payment_mode',
+        'odoo10-addon-sale_automatic_workflow_validate_purchase_mto',
         'odoo10-addon-sale_blanket_order',
         'odoo10-addon-sale_cancel_reason',
         'odoo10-addon-sale_commercial_partner',
