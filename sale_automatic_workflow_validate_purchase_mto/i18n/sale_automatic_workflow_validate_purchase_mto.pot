@@ -1,0 +1,72 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+#	* sale_automatic_workflow_validate_purchase_mto
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 10.0\n"
+"Report-Msgid-Bugs-To: \n"
+"Last-Translator: <>\n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: sale_automatic_workflow_validate_purchase_mto
+#: model:ir.filters,name:sale_automatic_workflow_validate_purchase_mto.automatic_workflow_po_mto_filter
+msgid "Automatic Workflow Purchase Order Filter"
+msgstr ""
+
+#. module: sale_automatic_workflow_validate_purchase_mto
+#: model:ir.filters,name:sale_automatic_workflow_validate_purchase_mto.automatic_workflow_po_mto_purchase_filter
+msgid "Automatic Workflow Purchase Order Purchase Filter"
+msgstr ""
+
+#. module: sale_automatic_workflow_validate_purchase_mto
+#: model:ir.model.fields,field_description:sale_automatic_workflow_validate_purchase_mto.field_sale_workflow_process_purchase_order_mto_domain
+#: model:ir.model.fields,field_description:sale_automatic_workflow_validate_purchase_mto.field_sale_workflow_process_purchase_order_mto_purchase_domain
+msgid "Purchase Order Domain"
+msgstr ""
+
+#. module: sale_automatic_workflow_validate_purchase_mto
+#: model:ir.ui.view,arch_db:sale_automatic_workflow_validate_purchase_mto.sale_workflow_process_form_view
+msgid "Purchase Order Filter"
+msgstr ""
+
+#. module: sale_automatic_workflow_validate_purchase_mto
+#: model:ir.ui.view,arch_db:sale_automatic_workflow_validate_purchase_mto.sale_workflow_process_form_view
+msgid "Sale Order Filter"
+msgstr ""
+
+#. module: sale_automatic_workflow_validate_purchase_mto
+#: model:ir.model,name:sale_automatic_workflow_validate_purchase_mto.model_sale_workflow_process
+msgid "Sale Workflow Process"
+msgstr ""
+
+#. module: sale_automatic_workflow_validate_purchase_mto
+#: model:ir.model.fields,help:sale_automatic_workflow_validate_purchase_mto.field_sale_workflow_process_validate_purchase_mto
+msgid "Select this to validate purchase orders that are generateddirectly by sale orders"
+msgstr ""
+
+#. module: sale_automatic_workflow_validate_purchase_mto
+#: model:ir.ui.view,arch_db:sale_automatic_workflow_validate_purchase_mto.sale_workflow_process_form_view
+msgid "Set selection based on a search filter:"
+msgstr ""
+
+#. module: sale_automatic_workflow_validate_purchase_mto
+#: model:ir.model.fields,field_description:sale_automatic_workflow_validate_purchase_mto.field_sale_workflow_process_purchase_order_mto_filter_id
+#: model:ir.model.fields,field_description:sale_automatic_workflow_validate_purchase_mto.field_sale_workflow_process_purchase_order_mto_purchase_filter_id
+msgid "Validate Purchase Order MTO Filter"
+msgstr ""
+
+#. module: sale_automatic_workflow_validate_purchase_mto
+#: model:ir.model.fields,field_description:sale_automatic_workflow_validate_purchase_mto.field_sale_workflow_process_validate_purchase_mto
+msgid "Validate Purchase Orders MTO"
+msgstr ""
+
+#. module: sale_automatic_workflow_validate_purchase_mto
+#: model:ir.model,name:sale_automatic_workflow_validate_purchase_mto.model_automatic_workflow_job
+msgid "automatic.workflow.job"
+msgstr ""
+
