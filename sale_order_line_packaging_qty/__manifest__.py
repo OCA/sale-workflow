@@ -11,6 +11,10 @@
     "license": "AGPL-3",
     "application": False,
     "installable": True,
-    "depends": ["sale_stock"],
-    "data": ["views/sale_order.xml"],
+    "depends": ["sale_stock", "product", "product_packaging_type"],
+    "data": [
+        "views/product_packaging_type.xml",
+        "views/product_template.xml",
+        "views/sale_order.xml",
+    ],
 }
