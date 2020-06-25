@@ -39,7 +39,9 @@ class SaleOrderLine(models.Model):
     )
     def _compute_amount(self):
         vals = {}
-        for line in self.filtered(lambda l: l.discount_fixed):
+        for line in self.filtered(
+            lambda l: l.discount_fixed and l.order_id.state not in ["done", "cancel"]
+        ):
             real_price = line.price_unit * (1 - (line.discount or 0.0) / 100.0) - (
                 line.discount_fixed or 0.0
             )
