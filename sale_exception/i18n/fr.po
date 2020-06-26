@@ -10,8 +10,8 @@ msgstr ""
 "Project-Id-Version: Odoo Server 11.0\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2018-01-23 03:41+0000\n"
-"PO-Revision-Date: 2020-02-26 12:13+0000\n"
-"Last-Translator: David Halgand <dhalgand@teclib.com>\n"
+"PO-Revision-Date: 2020-06-26 10:19+0000\n"
+"Last-Translator: Quentin Dupont <perso@quentindupont.fr>\n"
 "Language-Team: French (https://www.transifex.com/oca/teams/23907/fr/)\n"
 "Language: fr\n"
 "MIME-Version: 1.0\n"
@@ -30,17 +30,17 @@ msgstr "<strong>Restrictions bloquant la confirmation du devis :</strong>"
 #. module: sale_exception
 #: model:exception.rule,description:sale_exception.excep_no_dumping
 msgid "A product is sold cheaper than his cost."
-msgstr ""
+msgstr "Un produit est vendu moins cher que son prix de revient."
 
 #. module: sale_exception
 #: model:ir.model.fields,field_description:sale_exception.field_exception_rule__model
 msgid "Apply on"
-msgstr ""
+msgstr "Appliquer sur"
 
 #. module: sale_exception
 #: model:exception.rule,description:sale_exception.excep_no_sol
 msgid "At least one order line should be present in the sale"
-msgstr ""
+msgstr "Au moins une ligne de commande doit être présente dans la vente"
 
 #. module: sale_exception
 #: model_terms:ir.ui.view,arch_db:sale_exception.view_sales_order_filter
@@ -56,7 +56,7 @@ msgstr "Bloqué à l'état brouillon à cause d'une restriction"
 #. module: sale_exception
 #: model_terms:ir.ui.view,arch_db:sale_exception.view_sale_exception_confirm
 msgid "Cancel"
-msgstr ""
+msgstr "Annuler"
 
 #. module: sale_exception
 #: model_terms:ir.ui.view,arch_db:sale_exception.view_order_form
@@ -64,11 +64,13 @@ msgid ""
 "Click here to be able to confirm this Sale Orders regardless of the "
 "exceptions."
 msgstr ""
+"Cliquez ici pour pouvoir confirmer ces ventes sans tenir compte des "
+"exceptions."
 
 #. module: sale_exception
 #: model_terms:ir.ui.view,arch_db:sale_exception.view_sale_exception_confirm
 msgid "Confirm"
-msgstr ""
+msgstr "Confirmer"
 
 #. module: sale_exception
 #: model:ir.model.fields,field_description:sale_exception.field_sale_exception_confirm__create_uid
@@ -87,10 +89,8 @@ msgstr "Afficher le nom"
 
 #. module: sale_exception
 #: model:ir.model,name:sale_exception.model_exception_rule
-#, fuzzy
-#| msgid "Exception Rules"
 msgid "Exception Rule"
-msgstr "Règles de restriction"
+msgstr "Règle d'exception"
 
 #. module: sale_exception
 #: model:ir.model.fields,field_description:sale_exception.field_sale_exception_confirm__exception_ids
