@@ -60,7 +60,7 @@ class SaleOrderLine(models.Model):
         for line in line_to_test:
             invaild_min_lines.append(
                 _('Product "%s": Min Quantity %s.')
-                % (line.product_id.name, line.product_id.sale_min_qty)
+                % (line.product_id.name, line.sale_min_qty)
             )
 
         if invaild_min_lines:
@@ -79,7 +79,7 @@ class SaleOrderLine(models.Model):
         for line in line_to_test:
             invaild_max_lines.append(
                 _('Product "%s": max Quantity %s.')
-                % (line.product_id.name, line.product_id.sale_max_qty)
+                % (line.product_id.name, line.sale_max_qty)
             )
 
         if invaild_max_lines:
@@ -95,7 +95,7 @@ class SaleOrderLine(models.Model):
         for line in line_to_test:
             invaild_multiple_lines.append(
                 _('Product "%s": multiple Quantity %s.')
-                % (line.product_id.name, line.product_id.sale_multiple_qty)
+                % (line.product_id.name, line.sale_multiple_qty)
             )
 
         if invaild_multiple_lines:
