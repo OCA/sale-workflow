@@ -8,10 +8,14 @@ from odoo import api, fields, models
 class SaleOrder(models.Model):
     _inherit = "sale.order"
 
+    def _default_type_id(self):
+        return self.env["sale.order.type"].search([], limit=1)
+
     type_id = fields.Many2one(
         comodel_name="sale.order.type",
         string="Type",
         compute="_compute_type_id",
+        default=lambda x: x._default_type_id(),
         readonly=False,
         store=True,
     )
@@ -32,19 +36,16 @@ class SaleOrder(models.Model):
     @api.depends("partner_id", "company_id")
     def _compute_type_id(self):
         for record in self:
-            if not record.partner_id:
-                record.sale_type_id = self.env["sale.order.type"].search([], limit=1)
-            else:
-                sale_type = (
-                    record.partner_id.with_context(
-                        force_company=record.company_id.id
-                    ).sale_type
-                    or self.partner_id.commercial_partner_id.with_context(
-                        force_company=record.company_id.id
-                    ).sale_type
-                )
-                if sale_type:
-                    record.type_id = sale_type
+            sale_type = (
+                record.partner_id.with_context(
+                    force_company=record.company_id.id
+                ).sale_type
+                or self.partner_id.commercial_partner_id.with_context(
+                    force_company=record.company_id.id
+                ).sale_type
+            )
+            if sale_type:
+                record.type_id = sale_type
 
     @api.depends("type_id")
     def _compute_warehouse_id(self):

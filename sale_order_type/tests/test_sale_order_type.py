@@ -34,7 +34,9 @@ class TestSaleOrderType(common.TransactionCase):
             {"type": "service", "invoice_policy": "order", "name": "Test product"}
         )
         self.immediate_payment = self.env.ref("account.account_payment_term_immediate")
-        self.sale_pricelist = self.env.ref("product.list0")
+        self.sale_pricelist = self.env["product.pricelist"].create(
+            {"name": "Test pricelist", "sequence": 999}
+        )
         self.free_carrier = self.env.ref("account.incoterm_FCA")
         self.sale_type = self.sale_type_model.create(
             {
@@ -48,7 +50,7 @@ class TestSaleOrderType(common.TransactionCase):
                 "incoterm_id": self.free_carrier.id,
             }
         )
-        self.partner.sale_type = self.sale_type
+        self.partner.sale_type = self.sale_type.id
         self.sale_route = self.env["stock.location.route"].create(
             {
                 "name": "SO -> Customer",
@@ -71,32 +73,22 @@ class TestSaleOrderType(common.TransactionCase):
                 ],
             }
         )
-        self.sale_type_route = self.sale_type_model.create(
-            {
-                "name": "Test Sale Order Type-1",
-                "sequence_id": self.sequence.id,
-                "journal_id": self.journal.id,
-                "warehouse_id": self.warehouse.id,
-                "picking_policy": "one",
-                "payment_term_id": self.immediate_payment.id,
-                "pricelist_id": self.sale_pricelist.id,
-                "incoterm_id": self.free_carrier.id,
-                "route_id": self.sale_route.id,
-            }
+        self.sale_type_route = self.sale_type.copy(
+            {"name": "Test Sale Order Type-1", "route_id": self.sale_route.id}
         )
 
-    def get_sale_order_vals(self):
-        sale_line_dict = {
-            "product_id": self.product.id,
-            "name": self.product.name,
-            "product_uom_qty": 1.0,
-            "price_unit": self.product.lst_price,
-        }
-        return {"partner_id": self.partner.id, "order_line": [(0, 0, sale_line_dict)]}
+    def _get_sale_order_form(self):
+        """Prepare a common SSF for using it across several tests."""
+        sale_form = common.Form(self.env["sale.order"])
+        sale_form.partner_id = self.partner
+        with sale_form.order_line.new() as line_form:
+            line_form.product_id = self.product
+        return sale_form
 
     def test_sale_order_flow(self):
         sale_type = self.sale_type
-        order = self.sale_order_model.create(self.get_sale_order_vals())
+        sale_form = self._get_sale_order_form()
+        order = sale_form.save()
         self.assertEqual(order.type_id, sale_type)
         self.assertEqual(order.warehouse_id, sale_type.warehouse_id)
         self.assertEqual(order.picking_policy, sale_type.picking_policy)
@@ -109,16 +101,19 @@ class TestSaleOrderType(common.TransactionCase):
         self.assertEqual(invoice.journal_id, sale_type.journal_id)
 
     def test_sale_order_change_partner(self):
-        order = self.sale_order_model.create({"partner_id": self.partner.id})
-        self.assertEqual(order.type_id, self.sale_type)
-        order = self.sale_order_model.create({"partner_id": self.partner_child_1.id})
-        self.assertEqual(order.type_id, self.sale_type)
+        sale_form = self._get_sale_order_form()
+        sale_form.type_id = self.env["sale.order.type"]
+        sale_form.partner_id = self.partner_child_1
+        self.assertEqual(sale_form.type_id, self.sale_type)
 
     def test_invoice_flow(self):
-        sale_type = self.sale_type
-        invoice = self.invoice_model.create(
-            {"partner_id": self.partner.id, "type": "out_invoice"}
+        invoice_form = common.Form(
+            self.env["account.move"].with_context(default_type="out_invoice")
         )
+        invoice_form.partner_id = self.partner
+        invoice = invoice_form.save()
+        sale_type = self.sale_type
+        self.assertEqual(invoice.sale_type_id, sale_type)
         self.assertEqual(invoice.invoice_payment_term_id, sale_type.payment_term_id)
         self.assertEqual(invoice.journal_id, sale_type.journal_id)
 
@@ -133,8 +128,9 @@ class TestSaleOrderType(common.TransactionCase):
         self.assertEqual(invoice.sale_type_id, self.sale_type)
 
     def test_sale_order_flow_route(self):
-        order = self.sale_order_model.create(self.get_sale_order_vals())
-        order.type_id = self.sale_type_route.id
+        sale_form = self._get_sale_order_form()
+        sale_form.type_id = self.sale_type_route
+        order = sale_form.save()
         self.assertEqual(order.type_id.route_id, order.order_line[0].route_id)
         sale_line_dict = {
             "product_id": self.product.id,
