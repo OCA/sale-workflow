@@ -11,7 +11,14 @@ class SaleOrder(models.Model):
         return self.env['sale.order.type'].search([], limit=1)
 
     type_id = fields.Many2one(
-        comodel_name='sale.order.type', string='Type')
+        comodel_name='sale.order.type',
+        string='Type',
+        readonly=True,
+        states={
+            'draft': [('readonly', False)],
+            'sent': [('readonly', False)],
+        },
+    )
 
     @api.multi
     @api.onchange('partner_id')

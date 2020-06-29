@@ -10,7 +10,8 @@
                 <div name="order_type" class="o_row">
                     <field name="type_id" required="1"/>
                     <button type="object" name="match_order_type"
-                            string="Find by rule" class="oe_inline" icon="fa-gears"/>
+                            string="Find by rule" class="oe_inline" icon="fa-gears"
+                            states="draft,sent"/>
                 </div>
             </field>
         </field>

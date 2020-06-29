@@ -13,7 +13,8 @@
                             icon="fa-gears"
                             name="match_order_type"
                             string="Find by rule"
-                            type="object"/>
+                            type="object"
+                            states="draft"/>
                 </div>
             </field>
         </field>
