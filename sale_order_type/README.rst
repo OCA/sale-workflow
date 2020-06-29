@@ -26,9 +26,9 @@ Sale Order Type
 |badge1| |badge2| |badge3| |badge4| |badge5| 
 
 This module adds a typology for the sales orders. In each different type, you
-can define, invoicing and refunding journal, a warehouse, a sequence,
-the shipping policy, the invoicing policy, a payment term, a pricelist
-and an incoterm.
+can define, invoicing and refunding journal, a warehouse, a stock route,
+a sequence, the shipping policy, the invoicing policy, a payment term,
+a pricelist and an incoterm.
 
 You can see sale types as lines of business.
 
@@ -113,6 +113,10 @@ Contributors
   * Antonio J Rubio Lorente <antonio.rubio@pesol.es>
 
 * Rattapong Chokmasermkul <rattapongc@ecosoft.co.th>
+
+* `Druidoo <https://www.druidoo.io>`_
+
+  * Iván Todorovich <ivan.todorovich@druidoo.io>
 
 Do not contact contributors directly about support or help with technical issues.
 
