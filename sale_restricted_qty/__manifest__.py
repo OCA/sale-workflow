@@ -8,6 +8,9 @@
     "author": "Akretion, " "Odoo Community Association (OCA)",
     "website": "https://github.com/OCA/sale-workflow/",
     "license": "AGPL-3",
+    "external_dependencies": {
+        'python' : ['openupgradelib'],
+    },
     "depends": ["sale_management"],
     "data": [
         "views/product_category_views.xml",
