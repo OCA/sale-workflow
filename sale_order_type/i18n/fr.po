@@ -10,14 +10,15 @@ msgstr ""
 "Project-Id-Version: Odoo Server 10.0\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2018-01-27 03:53+0000\n"
-"PO-Revision-Date: 2018-01-27 03:53+0000\n"
-"Last-Translator: guillaume bauer <guillaume.bauer@syentys.com>, 2017\n"
+"PO-Revision-Date: 2020-06-29 14:24+0000\n"
+"Last-Translator: Houzéfa Abbasbhay <houzefa.abba@xcg-consulting.fr>\n"
 "Language-Team: French (https://www.transifex.com/oca/teams/23907/fr/)\n"
 "Language: fr\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
-"Plural-Forms: nplurals=2; plural=(n > 1);\n"
+"Plural-Forms: nplurals=2; plural=n > 1;\n"
+"X-Generator: Weblate 3.10\n"
 
 #. module: sale_order_type
 #: model:ir.model.fields,field_description:sale_order_type.field_sale_order_type_journal_id
@@ -28,7 +29,7 @@ msgstr "Journal de facturation"
 #. module: sale_order_type
 #: model:ir.actions.act_window,help:sale_order_type.sot_sale_order_type_action
 msgid "Click to set a new type for sale order."
-msgstr ""
+msgstr "Cliquer pour définir un nouveau type sur cette commande de vente."
 
 #. module: sale_order_type
 #: model:ir.model.fields,field_description:sale_order_type.field_sale_order_type_company_id
@@ -38,7 +39,7 @@ msgstr "Société"
 #. module: sale_order_type
 #: model:ir.model,name:sale_order_type.model_res_partner
 msgid "Contact"
-msgstr ""
+msgstr "Contact"
 
 #. module: sale_order_type
 #: model:ir.model.fields,field_description:sale_order_type.field_sale_order_type_create_uid
@@ -61,19 +62,19 @@ msgstr "Description"
 #: model:ir.model.fields,field_description:sale_order_type.field_sale_order_type_display_name
 #: model:ir.model.fields,field_description:sale_order_type.field_sale_order_type_rule_display_name
 msgid "Display Name"
-msgstr "Afficher le nom"
+msgstr "Nom affiché"
 
 #. module: sale_order_type
 #: model:ir.model.fields,field_description:sale_order_type.field_sale_order_type_sequence_id
 #: model:ir.ui.view,arch_db:sale_order_type.sot_sale_order_type_search_view
 msgid "Entry Sequence"
-msgstr ""
+msgstr "Séquence des commandes"
 
 #. module: sale_order_type
 #: model:ir.ui.view,arch_db:sale_order_type.sot_invoice_form
 #: model:ir.ui.view,arch_db:sale_order_type.sot_view_order_form
 msgid "Find by rule"
-msgstr ""
+msgstr "Rechercher par règle"
 
 #. module: sale_order_type
 #: model:ir.ui.view,arch_db:sale_order_type.sot_sale_order_type_search_view
@@ -128,9 +129,8 @@ msgstr "Commande normale"
 
 #. module: sale_order_type
 #: model:ir.model.fields,field_description:sale_order_type.field_sale_order_type_rule_order_type_id
-#, fuzzy
 msgid "Order Type"
-msgstr "Type de bon de commande"
+msgstr "Type de commande"
 
 #. module: sale_order_type
 #: model:ir.model.fields,field_description:sale_order_type.field_sale_order_type_payment_term_id
@@ -141,37 +141,37 @@ msgstr "Condition de règlement"
 #. module: sale_order_type
 #: model:ir.ui.view,arch_db:sale_order_type.sot_sale_order_type_search_view
 msgid "Price List"
-msgstr "Tarif"
+msgstr "Liste de prix"
 
 #. module: sale_order_type
 #: model:ir.model.fields,field_description:sale_order_type.field_sale_order_type_pricelist_id
 msgid "Pricelist"
-msgstr "Tarif"
+msgstr "Liste de prix"
 
 #. module: sale_order_type
 #: model:ir.model.fields,field_description:sale_order_type.field_sale_order_type_rule_product_category_ids
 msgid "Product categories"
-msgstr ""
+msgstr "Catégories d'articles"
 
 #. module: sale_order_type
 #: model:ir.model.fields,field_description:sale_order_type.field_sale_order_type_rule_product_ids
 msgid "Products"
-msgstr ""
+msgstr "Articles"
 
 #. module: sale_order_type
 #: model:ir.model,name:sale_order_type.model_sale_order
 msgid "Quotation"
-msgstr ""
+msgstr "Devis"
 
 #. module: sale_order_type
 #: model:ir.model.fields,field_description:sale_order_type.field_sale_order_type_rule_ids
 msgid "Rule"
-msgstr ""
+msgstr "Règle"
 
 #. module: sale_order_type
 #: model:ir.ui.view,arch_db:sale_order_type.sot_sale_order_type_form_view
 msgid "Rules"
-msgstr ""
+msgstr "Règles"
 
 #. module: sale_order_type
 #: model:ir.model.fields,field_description:sale_order_type.field_res_partner_sale_type
@@ -199,7 +199,7 @@ msgstr "Types de bons de commande"
 #: model:ir.model.fields,field_description:sale_order_type.field_sale_order_type_rule_sequence
 #: model:ir.model.fields,field_description:sale_order_type.field_sale_order_type_sequence
 msgid "Sequence"
-msgstr ""
+msgstr "Séquence"
 
 #. module: sale_order_type
 #: model:ir.model.fields,field_description:sale_order_type.field_sale_order_type_picking_policy
@@ -235,7 +235,7 @@ msgstr "Entrepôt"
 #. module: sale_order_type
 #: model:ir.model,name:sale_order_type.model_sale_order_type_rule
 msgid "sale.order.type.rule"
-msgstr ""
+msgstr "sale.order.type.rule"
 
 #~ msgid "Partner"
 #~ msgstr "Partenaire"
