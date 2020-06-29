@@ -130,6 +130,11 @@ msgid "Pricelist"
 msgstr "价格表"
 
 #. module: sale_order_type
+#: model:ir.model.fields,field_description:sale_order_type.field_sale_order_type__route_id
+msgid "Route"
+msgstr ""
+
+#. module: sale_order_type
 #: model:ir.model.fields,field_description:sale_order_type.field_res_partner__sale_type
 #: model:ir.model.fields,field_description:sale_order_type.field_res_users__sale_type
 msgid "Sale Order Type"
@@ -148,9 +153,11 @@ msgid "Sales Order"
 msgstr "销售订单"
 
 #. module: sale_order_type
-#: model_terms:ir.ui.view,arch_db:sale_order_type.res_partner_sale_type_form_view
-msgid "Sales Order Type"
-msgstr "销售订单类型"
+#: model:ir.model,name:sale_order_type.model_sale_order_line
+#, fuzzy
+#| msgid "Sale Order"
+msgid "Sales Order Line"
+msgstr "销售订单"
 
 #. module: sale_order_type
 #: model:ir.actions.act_window,name:sale_order_type.sot_sale_order_type_action
@@ -173,7 +180,6 @@ msgstr "公司将根据您的用户首选项自动设置。"
 #: model:ir.model.fields,field_description:sale_order_type.field_sale_order__type_id
 #: model_terms:ir.ui.view,arch_db:sale_order_type.sot_sale_order_type_form_view
 #: model_terms:ir.ui.view,arch_db:sale_order_type.sot_sale_order_type_search_view
-#: model_terms:ir.ui.view,arch_db:sale_order_type.sot_sale_order_type_tree_view
 msgid "Type"
 msgstr "类型"
 
@@ -187,6 +193,9 @@ msgstr "销售订单类型"
 #: model_terms:ir.ui.view,arch_db:sale_order_type.sot_sale_order_type_search_view
 msgid "Warehouse"
 msgstr "仓库"
+
+#~ msgid "Sales Order Type"
+#~ msgstr "销售订单类型"
 
 #~ msgid "Invoice"
 #~ msgstr "发票"
