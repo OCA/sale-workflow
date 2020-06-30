@@ -82,7 +82,7 @@ class SaleOrder(models.Model):
         if self.partner_id.customer_global_discount_ids:
             self.global_discount_ids = (
                 self.partner_id.customer_global_discount_ids or
-                self.parnter_id.commercial_partner_id
+                self.partner_id.commercial_partner_id
                 .customer_global_discount_ids)
         return res
 
