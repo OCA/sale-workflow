@@ -2,10 +2,10 @@
 # Copyright 2018 Akretion, Camptocamp
 
 from odoo.exceptions import ValidationError
-from odoo.addons.sale.tests.test_sale_order import TestSaleOrder
+from odoo.tests import SavepointCase
 
 
-class TestSaleException(TestSaleOrder):
+class TestSaleException(SavepointCase):
 
     def test_sale_order_exception(self):
         self.sale_exception_confirm = self.env['sale.exception.confirm']
