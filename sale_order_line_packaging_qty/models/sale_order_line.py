@@ -94,7 +94,9 @@ class SaleOrderLine(models.Model):
     def product_id_change(self):
         res = super().product_id_change()
         if self.product_id.sell_only_by_packaging:
-            self.product_uom_qty = min(self.product_id.packaging_ids.mapped("qty"))
+            quantites = self.product_id.packaging_ids.mapped("qty")
+            if quantites:
+                self.product_uom_qty = min(quantites)
         return res
 
     def _check_qty_is_pack_multiple(self):
