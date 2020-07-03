@@ -6,11 +6,11 @@ from odoo import fields, models
 
 
 class ProductTemplate(models.Model):
-    _inherit = 'product.template'
+    _inherit = "product.template"
 
     auto_generate_prodlot = fields.Boolean(
-        string='Lot Generation Auto',
+        string="Lot Generation Auto",
         help="Forces to specifiy a Serial Number for all "
-             "lines containing this product since the confirmation "
-             "of the Sale Order"
+        "lines containing this product since the confirmation "
+        "of the Sale Order",
     )
