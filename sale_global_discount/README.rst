@@ -64,6 +64,13 @@ To use this module, you need to:
 #. When you create an invoice from the order, the proper global discounts will
    be applied on it.
 
+Known issues / Roadmap
+======================
+
+* Not all the taxes combination can be compatible with global discounts. An
+  error is raised in that cases.
+* Currently, taxes in invoice lines are mandatory with global discounts.
+
 Bug Tracker
 ===========
 
