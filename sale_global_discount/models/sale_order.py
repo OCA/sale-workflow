@@ -1,6 +1,6 @@
 # Copyright 2020 Tecnativa - David Vidal
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
-from odoo import api, fields, models
+from odoo import _, api, exceptions, fields, models
 
 
 class SaleOrder(models.Model):
@@ -42,10 +42,34 @@ class SaleOrder(models.Model):
         price *= 1 - (discount / 100)
         return self.get_discounted_global(price, discounts)
 
+    def _check_global_discounts_sanity(self):
+        """Perform a sanity check for discarding cases that will lead to
+        incorrect data in discounts.
+        """
+        self.ensure_one()
+        if not self.global_discount_ids:
+            return True
+        taxes_keys = {}
+        for line in self.order_line:
+            if not line.tax_id:
+                raise exceptions.UserError(_(
+                    "With global discounts, taxes in lines are required."
+                ))
+            for key in taxes_keys:
+                if key == line.tax_id:
+                    break
+                elif key & line.tax_id:
+                    raise exceptions.UserError(_(
+                        "Incompatible taxes found for global discounts."
+                    ))
+            else:
+                taxes_keys[line.tax_id] = True
+
     @api.depends('order_line.price_total', 'global_discount_ids')
     def _amount_all(self):
         res = super()._amount_all()
         for order in self:
+            order._check_global_discounts_sanity()
             amount_untaxed_before_global_discounts = order.amount_untaxed
             amount_total_before_global_discounts = order.amount_total
             discounts = order.global_discount_ids.mapped('discount')
@@ -79,11 +103,10 @@ class SaleOrder(models.Model):
     @api.onchange('partner_id')
     def onchange_partner_id(self):
         res = super().onchange_partner_id()
-        if self.partner_id.customer_global_discount_ids:
-            self.global_discount_ids = (
-                self.partner_id.customer_global_discount_ids or
-                self.partner_id.commercial_partner_id
-                .customer_global_discount_ids)
+        self.global_discount_ids = (
+            self.partner_id.customer_global_discount_ids or
+            self.partner_id.commercial_partner_id
+            .customer_global_discount_ids)
         return res
 
     def _prepare_invoice(self):
