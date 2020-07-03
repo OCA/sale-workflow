@@ -2,7 +2,7 @@
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
 {
     'name': 'Sale Global Discount',
-    'version': '11.0.1.0.2',
+    'version': '11.0.1.0.3',
     'category': 'Sales Management',
     'author': 'Tecnativa,'
               'Odoo Community Association (OCA)',
