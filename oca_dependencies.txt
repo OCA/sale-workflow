@@ -1,3 +1,4 @@
 product-attribute
 stock-logistics-warehouse
 bank-payment
+account-invoicing

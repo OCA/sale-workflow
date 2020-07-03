@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!-- Copyright 2019 Tecnativa - David Vidal
+     License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl). -->
+<odoo>
+    <record id="sale_order_recommendation_view_form" model="ir.ui.view">
+        <field name="model">sale.order.recommendation</field>
+        <field
+            name="inherit_id"
+            ref="sale_order_product_recommendation.sale_order_recommendation_view_form"
+        />
+        <field name="arch" type="xml">
+            <xpath
+                expr="//field[@name='line_ids']/tree//field[@name='units_included']"
+                position="before"
+            >
+                <field name="product_tmpl_id" invisible="1" />
+                <field
+                    name="secondary_uom_id"
+                    domain="[('product_tmpl_id', '=', product_tmpl_id)]"
+                />
+                <field
+                    name="secondary_uom_qty"
+                    attrs="{'invisible': [('secondary_uom_id', '=', False)]}"
+                />
+            </xpath>
+            <xpath
+                expr="//field[@name='line_ids']/kanban//field[@name='units_included']"
+                position="before"
+            >
+                <field name="secondary_uom_qty" />
+                <field name="secondary_uom_id" />
+                <field name="secondary_uom_name" />
+            </xpath>
+            <xpath
+                expr="//field[@name='line_ids']/kanban//t[@t-name='kanban-box']//field[@name='units_included']"
+                position="before"
+            >
+                <t t-if="record.secondary_uom_id.value">
+                    <field name="secondary_uom_qty" />
+                    <span />
+                    <field name="secondary_uom_name" />
+                    <span> - </span>
+                </t>
+            </xpath>
+            <xpath
+                expr="//field[@name='line_ids']/form//field[@name='units_included']"
+                position="before"
+            >
+                <field
+                    name="secondary_uom_id"
+                    attrs="{'invisible': [('secondary_uom_id', '=', False)]}"
+                />
+                <field
+                    name="secondary_uom_qty"
+                    attrs="{'invisible': [('secondary_uom_id', '=', False)]}"
+                    widget="numeric_step"
+                />
+            </xpath>
+        </field>
+    </record>
+</odoo>
