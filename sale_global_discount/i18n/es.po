@@ -34,6 +34,12 @@ msgid "Amount Untaxed Before Discounts"
 msgstr "Base Imponible sin Descuentos"
 
 #. module: sale_global_discount
+#: code:addons/sale_global_discount/models/sale_order.py:62
+#, python-format
+msgid "Incompatible taxes found for global discounts."
+msgstr ""
+
+#. module: sale_global_discount
 #: model:ir.model,name:sale_global_discount.model_sale_order
 msgid "Quotation"
 msgstr "Presupuesto"
@@ -47,6 +53,12 @@ msgstr "Descuentos de venta globales"
 #: model:ir.model.fields,field_description:sale_global_discount.field_sale_order_amount_global_discount
 msgid "Total Global Discounts"
 msgstr "Total Descuentos Globales"
+
+#. module: sale_global_discount
+#: code:addons/sale_global_discount/models/sale_order.py:55
+#, python-format
+msgid "With global discounts, taxes in lines are required."
+msgstr ""
 
 #~ msgid "<strong>Global Discount</strong>"
 #~ msgstr "<strong>Descuento Global</strong>"
