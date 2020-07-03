@@ -55,10 +55,12 @@ class SaleOrderLine(models.Model):
         # case the work done in preprocess would be lost as soon as the 1st
         # line is updated, causing the following lines to ignore the discount2
         # and discount3 fields.
+        prev_values = self._get_triple_discount_preprocess_values()
+        to_process_values = self._get_triple_discount_process_values()
         for line in self:
-            prev_values = line.triple_discount_preprocess()
+            line._cache.update(to_process_values[line])
             super(SaleOrderLine, line)._compute_amount()
-            line.triple_discount_postprocess(prev_values)
+            line.triple_discount_postprocess({line: prev_values[line]})
 
     discount2 = fields.Float(
         'Disc. 2 (%)',
@@ -120,22 +122,39 @@ class SaleOrderLine(models.Model):
         Resetting discount2 and discount3 to 0.0 avoids issues if
         this method is called multiple times.
         Updating the cache provides consistency through recomputations."""
+        prev_values = self._get_triple_discount_preprocess_values()
+        to_process_values = self._get_triple_discount_process_values()
+        for line in self:
+            line._cache.update(to_process_values[line])
+        return prev_values
+
+    @api.multi
+    def _get_triple_discount_preprocess_values(self):
+        """ Collect the values of fields 'discount', 'discount2', 'discount3'
+         before the the processing of these fields
+        """
         prev_values = dict()
+        discount_fields = ['discount', 'discount2', 'discount3']
         self.invalidate_cache(
-            fnames=['discount', 'discount2', 'discount3'],
+            fnames=discount_fields,
             ids=self.ids)
         for line in self:
-            prev_values[line] = dict(
-                discount=line.discount,
-                discount2=line.discount2,
-                discount3=line.discount3,
-            )
-            line._cache.update({
+            prev_values[line] = {name: line[name] for name in discount_fields}
+        return prev_values
+
+    @api.multi
+    def _get_triple_discount_process_values(self):
+        """ Get the values of the fields 'discount', 'discount2', 'discount3'
+         to use to call the `_compute_amount` method
+        """
+        to_process_values = dict()
+        for line in self:
+            to_process_values[line] = {
                 'discount': line._get_final_discount(),
                 'discount2': 0.0,
                 'discount3': 0.0
-            })
-        return prev_values
+            }
+        return to_process_values
 
     @api.model
     def triple_discount_postprocess(self, prev_values):
