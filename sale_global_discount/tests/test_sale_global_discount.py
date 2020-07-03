@@ -1,5 +1,6 @@
 # Copyright 2020 Tecnativa - David Vidal
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
+from odoo import exceptions
 from odoo.tests import common
 
 
@@ -90,14 +91,14 @@ class TestSaleGlobalDiscount(common.SavepointCase):
                 'product_id': cls.product_2.id,
                 'product_uom_qty': 3,
                 'price_unit': 33.33,
-                'tax_id': [(6, 0, cls.tax_1.ids)]
+                'tax_id': [(6, 0, [cls.tax_1.id, cls.tax_2.id])]
             })],
         })
 
     def test_01_global_sale_succesive_discounts(self):
         """Add global discounts to the sale order"""
-        self.assertAlmostEqual(self.sale.amount_total, 294.99)
-        self.assertAlmostEqual(self.sale.amount_tax, 45)
+        self.assertAlmostEqual(self.sale.amount_total, 299.99)
+        self.assertAlmostEqual(self.sale.amount_tax, 50)
         self.assertAlmostEqual(self.sale.amount_untaxed, 249.99)
         # Apply a single 20% global discount
         self.sale.global_discount_ids = self.global_discount_1
@@ -107,27 +108,23 @@ class TestSaleGlobalDiscount(common.SavepointCase):
         self.assertAlmostEqual(self.sale.amount_untaxed, 199.99)
         self.assertAlmostEqual(
             self.sale.amount_untaxed_before_global_discounts, 249.99)
-        self.assertAlmostEqual(self.sale.amount_total, 235.99)
+        self.assertAlmostEqual(self.sale.amount_total, 239.99)
         self.assertAlmostEqual(
-            self.sale.amount_total_before_global_discounts, 294.99)
-        self.assertAlmostEqual(self.sale.amount_tax, 36)
+            self.sale.amount_total_before_global_discounts, 299.99)
+        self.assertAlmostEqual(self.sale.amount_tax, 40)
         # Apply an additional 30% global discount
         self.sale.global_discount_ids += self.global_discount_2
         self.assertAlmostEqual(self.sale.amount_global_discount, 110)
         self.assertAlmostEqual(self.sale.amount_untaxed, 139.99)
         self.assertAlmostEqual(
             self.sale.amount_untaxed_before_global_discounts, 249.99)
-        self.assertAlmostEqual(self.sale.amount_total, 165.19)
+        self.assertAlmostEqual(self.sale.amount_total, 167.99)
         self.assertAlmostEqual(
-            self.sale.amount_total_before_global_discounts, 294.99)
-        self.assertAlmostEqual(self.sale.amount_tax, 25.2)
+            self.sale.amount_total_before_global_discounts, 299.99)
+        self.assertAlmostEqual(self.sale.amount_tax, 28)
 
     def test_02_global_sale_discounts_from_partner(self):
         """Change the partner and his global discounts go to the invoice"""
-        self.assertAlmostEqual(self.sale.amount_total, 294.99)
-        self.assertAlmostEqual(self.sale.amount_tax, 45)
-        self.assertAlmostEqual(self.sale.amount_untaxed, 249.99)
-        # Change the partner and his globlal discounts are fetched
         # (30% then 50%)
         self.sale.partner_id = self.partner_2
         self.sale.onchange_partner_id()
@@ -135,10 +132,10 @@ class TestSaleGlobalDiscount(common.SavepointCase):
         self.assertAlmostEqual(self.sale.amount_untaxed, 87.5)
         self.assertAlmostEqual(
             self.sale.amount_untaxed_before_global_discounts, 249.99)
-        self.assertAlmostEqual(self.sale.amount_total, 103.26)
+        self.assertAlmostEqual(self.sale.amount_total, 105.01)
         self.assertAlmostEqual(
-            self.sale.amount_total_before_global_discounts, 294.99)
-        self.assertAlmostEqual(self.sale.amount_tax, 15.76)
+            self.sale.amount_total_before_global_discounts, 299.99)
+        self.assertAlmostEqual(self.sale.amount_tax, 17.51)
 
     def test_03_global_sale_discounts_to_invoice(self):
         """All the discounts go to the invoice"""
@@ -153,16 +150,16 @@ class TestSaleGlobalDiscount(common.SavepointCase):
         line_tax_2 = invoice.tax_line_ids.filtered(
             lambda x: x.tax_id == self.tax_2)
         self.assertAlmostEqual(line_tax_1.base, 87.5)
-        self.assertAlmostEqual(line_tax_2.base, 52.5)
+        self.assertAlmostEqual(line_tax_2.base, 87.5)
         self.assertAlmostEqual(line_tax_1.amount, 13.13)
-        self.assertAlmostEqual(line_tax_2.amount, 2.63)
+        self.assertAlmostEqual(line_tax_2.amount, 4.38)
         discount_amount = sum(
             invoice.invoice_global_discount_ids.mapped('discount_amount'))
         self.assertAlmostEqual(discount_amount, 162.49)
         self.assertAlmostEqual(
             invoice.amount_untaxed_before_global_discounts, 249.99)
         self.assertAlmostEqual(invoice.amount_untaxed, 87.5)
-        self.assertAlmostEqual(invoice.amount_total, 103.26)
+        self.assertAlmostEqual(invoice.amount_total, 105.01)
 
     def test_04_report_taxes(self):
         """Taxes by group shown in reports"""
@@ -170,8 +167,20 @@ class TestSaleGlobalDiscount(common.SavepointCase):
         self.sale.onchange_partner_id()
         taxes_groups = self.sale._get_tax_amount_by_group()
         # Taxes
-        self.assertAlmostEqual(taxes_groups[0][1], 2.63)
+        self.assertAlmostEqual(taxes_groups[0][1], 4.38)
         self.assertAlmostEqual(taxes_groups[1][1], 13.13)
         # Bases
-        self.assertAlmostEqual(taxes_groups[0][2], 52.5)
+        self.assertAlmostEqual(taxes_groups[0][2], 87.5)
         self.assertAlmostEqual(taxes_groups[1][2], 87.5)
+
+    def test_05_incompatible_taxes(self):
+        # Line 1 with tax 1 and tax 2
+        # Line 2 with only tax 2
+        self.sale.order_line[1].tax_id = [(6, 0, self.tax_1.ids)]
+        with self.assertRaises(exceptions.UserError):
+            self.sale.global_discount_ids = self.global_discount_1
+
+    def test_06_no_taxes(self):
+        self.sale.order_line[1].tax_id = False
+        with self.assertRaises(exceptions.UserError):
+            self.sale.global_discount_ids = self.global_discount_1
