@@ -2,12 +2,12 @@
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
 
-from odoo.addons.sale_automatic_workflow.tests.test_automatic_workflow_base import (
-    TestAutomaticWorkflowBase,
+from odoo.addons.sale_automatic_workflow.tests.test_automatic_workflow import (
+    TestAutomaticWorkflow,
 )
 
 
-class TestAutomaticWorkflowPaymentMode(TestAutomaticWorkflowBase):
+class TestAutomaticWorkflowPaymentMode(TestAutomaticWorkflow):
     def create_sale_order(self, workflow, override=None):
         new_order = super(TestAutomaticWorkflowPaymentMode, self).create_sale_order(
             workflow, override
@@ -21,7 +21,6 @@ class TestAutomaticWorkflowPaymentMode(TestAutomaticWorkflowBase):
         self.pay_mode = self.env["account.payment.mode"].create(
             {
                 "name": "Julius Caesare payment",
-                "bank_account_link": "fixed",
                 "fixed_journal_id": self.acc_journ.id,
                 "payment_method_id": self.pay_method.id,
                 "workflow_process_id": workflow.id,
