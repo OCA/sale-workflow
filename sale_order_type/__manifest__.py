@@ -4,7 +4,7 @@
 # Copyright 2016 Lorenzo Battistini
 # Copyright 2016 Carlos Dauden <carlos.dauden@tecnativa.com>
 # Copyright 2018 David Vidal <david.vidal@tecnativa.com>
-# License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
+# License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
 
 {
     "name": "Sale Order Type",
@@ -34,6 +34,8 @@
         "views/account_invoice_view.xml",
         "views/res_partner_view.xml",
         "data/default_type.xml",
+        "reports/account_invoice_report_view.xml",
+        "reports/sale_report_view.xml",
     ],
     'installable': True,
 }
