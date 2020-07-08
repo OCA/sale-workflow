@@ -23,7 +23,7 @@ Sale Order Type
     :target: https://runbot.odoo-community.org/runbot/167/13.0
     :alt: Try me on Runbot
 
-|badge1| |badge2| |badge3| |badge4| |badge5| 
+|badge1| |badge2| |badge3| |badge4| |badge5|
 
 This module adds a typology for the sales orders. In each different type, you
 can define, invoicing and refunding journal, a warehouse, a stock route,
@@ -111,7 +111,9 @@ Contributors
 
   * Angel Moya Pardo <angel.moya@pesol.es>
   * Antonio J Rubio Lorente <antonio.rubio@pesol.es>
-
+  
+ Ecosoft
+* Watcharaporn C <watcharapornc@ecosoft.co.th>
 * Rattapong Chokmasermkul <rattapongc@ecosoft.co.th>
 
 * `Druidoo <https://www.druidoo.io>`_
