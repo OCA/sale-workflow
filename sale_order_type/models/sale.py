@@ -1,7 +1,7 @@
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 # Copyright 2020 Tecnativa - Pedro M. Baeza
 
-from odoo import api, fields, models
+from odoo import api, fields, models, exceptions
 
 
 class SaleOrder(models.Model):
@@ -13,6 +13,7 @@ class SaleOrder(models.Model):
         compute="_compute_sale_type_id",
         readonly=False,
         store=True,
+        
     )
 
     @api.depends("partner_id", "company_id")
@@ -72,6 +73,16 @@ class SaleOrder(models.Model):
         if self.type_id:
             res["sale_type_id"] = self.type_id.id
         return res
+
+    @api.constrains('company_id', 'type_id.company_id')
+    def _constrains_company(self):
+        if self.company_id not in self.type_id.company_id:
+            raise exceptions.ValidationError("Error : Company and Type No Matching !!!")
+
+    @api.onchange('company_id', 'type_id.company_id')
+    def check_company(self):
+        if self.company_id:
+            self.type_id = False
 
 
 class SaleOrderLine(models.Model):
