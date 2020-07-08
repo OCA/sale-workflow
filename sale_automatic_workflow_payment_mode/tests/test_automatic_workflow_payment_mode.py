@@ -1,13 +1,16 @@
 # Copyright 2017 Camptocamp SA
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
+from odoo.tests import tagged
 
-from odoo.addons.sale_automatic_workflow.tests.test_automatic_workflow_base import (
-    TestAutomaticWorkflowBase,
+from odoo.addons.sale_automatic_workflow.tests.common import (
+    TestAutomaticWorkflowMixin,
+    TestCommon,
 )
 
 
-class TestAutomaticWorkflowPaymentMode(TestAutomaticWorkflowBase):
+@tagged("post_install", "-at_install")
+class TestAutomaticWorkflowPaymentMode(TestCommon, TestAutomaticWorkflowMixin):
     def setUp(self):
         super().setUp()
         self.env = self.env(
