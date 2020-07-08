@@ -4,6 +4,7 @@
 # License AGPL-3 - See http://www.gnu.org/licenses/agpl-3.0.html
 
 import odoo.tests.common as common
+from odoo.exceptions import ValidationError
 
 
 class TestSaleOrderType(common.TransactionCase):
@@ -114,6 +115,20 @@ class TestSaleOrderType(common.TransactionCase):
         self.assertEqual(order.type_id, self.sale_type)
         order = self.sale_order_model.new({"partner_id": self.partner_child_1.id})
         self.assertEqual(order.type_id, self.sale_type)
+
+    def test_sale_order_change_company(self):
+        order = self.sale_order_model.new({"partner_id": self.partner.id})
+        self.assertEqual(order.type_id, self.sale_type)
+        order._onchange_company()
+        self.assertFalse(order.type_id)
+
+    def test_sale_order_type_company_error(self):
+        order = self.sale_order_model.create({"partner_id": self.partner.id})
+        self.assertEqual(order.type_id, self.sale_type)
+        self.assertEqual(order.company_id, self.sale_type.company_id)
+        company2 = self.env.ref("stock.res_company_1")
+        with self.assertRaises(ValidationError):
+            order.write({"company_id": company2.id})
 
     def test_invoice_onchange_type(self):
         sale_type = self.sale_type

@@ -29,7 +29,10 @@
   * Angel Moya Pardo <angel.moya@pesol.es>
   * Antonio J Rubio Lorente <antonio.rubio@pesol.es>
 
-* Rattapong Chokmasermkul <rattapongc@ecosoft.co.th>
+* `Ecosoft <http://ecosoft.co.th/>`_
+
+  * Rattapong Chokmasermkul <rattapongc@ecosoft.co.th>
+  * Kitti U. <kittiu@ecosoft.co.th>
 
 * `Druidoo <https://www.druidoo.io>`_
 

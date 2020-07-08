@@ -1,7 +1,7 @@
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 # Copyright 2020 Tecnativa - Pedro M. Baeza
-
-from odoo import api, fields, models
+from odoo import _, api, fields, models
+from odoo.exceptions import ValidationError
 
 
 class SaleOrder(models.Model):
@@ -13,13 +13,14 @@ class SaleOrder(models.Model):
         compute="_compute_sale_type_id",
         readonly=False,
         store=True,
+        domain="[('company_id', 'in', [False, company_id])]",
     )
 
     @api.depends("partner_id", "company_id")
     def _compute_sale_type_id(self):
         for record in self:
             if not record.partner_id:
-                record.sale_type_id = self.env["sale.order.type"].search([], limit=1)
+                record.type_id = self.env["sale.order.type"].search([], limit=1)
             else:
                 sale_type = (
                     record.partner_id.with_context(
@@ -72,6 +73,19 @@ class SaleOrder(models.Model):
         if self.type_id:
             res["sale_type_id"] = self.type_id.id
         return res
+
+    @api.constrains("company_id")
+    def _check_so_type_company(self):
+        if self.filtered(
+            lambda r: r.type_id.company_id
+            and r.company_id
+            and r.type_id.company_id != r.company_id
+        ):
+            raise ValidationError(_("Document's company and type's company mismatch"))
+
+    @api.onchange("company_id")
+    def _onchange_company(self):
+        self.type_id = False
 
 
 class SaleOrderLine(models.Model):
