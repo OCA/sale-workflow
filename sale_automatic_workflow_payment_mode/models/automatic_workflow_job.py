@@ -26,7 +26,7 @@ class AutomaticWorkflowJob(models.Model):
 
     @api.model
     def _register_payments(self, payment_filter):
-        invoice_obj = self.env["account.invoice"]
+        invoice_obj = self.env["account.move"]
         invoices = invoice_obj.search(payment_filter)
         _logger.debug("Invoices to Register Payment: %s", invoices.ids)
         for invoice in invoices:
