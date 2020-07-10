@@ -11,8 +11,9 @@ class AccountMove(models.Model):
         comodel_name="sale.order.type",
         string="Sale Type",
         compute="_compute_sale_type_id",
-        readonly=False,
         store=True,
+        readonly=True,
+        states={"draft": [("readonly", False)]},
     )
 
     @api.depends("partner_id", "company_id")
