@@ -11,8 +11,9 @@ class SaleOrder(models.Model):
         comodel_name="sale.order.type",
         string="Type",
         compute="_compute_sale_type_id",
-        readonly=False,
         store=True,
+        readonly=True,
+        states={"draft": [("readonly", False)], "sent": [("readonly", False)]},
     )
 
     @api.depends("partner_id", "company_id")
