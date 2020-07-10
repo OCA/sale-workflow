@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="cashondelivery_view_order_form" model="ir.ui.view">
+        <field name="name">cashondelivery_view_order_form</field>
+        <field name="model">sale.order</field>
+        <field name="inherit_id" ref="sale.view_order_form" />
+        <field name="priority" eval="20"/>                
+        <field name="arch" type="xml">            
+            <xpath expr="//field[@name='partner_shipping_id']" position="after">                            
+                <field name="total_cashondelivery"/>                
+            </xpath>                                                            
+        </field>
+    </record>                
+</odoo>

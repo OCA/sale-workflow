@@ -1,0 +1,55 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+#	* cashondelivery
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 12.0-20200601\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2020-07-10 12:27+0000\n"
+"PO-Revision-Date: 2020-07-10 12:27+0000\n"
+"Last-Translator: <>\n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: cashondelivery
+#: code:addons/cashondelivery/models/sale_order.py:25
+#: code:addonsOdooNodrizaTech/sale/12.0/cashondelivery/models/sale_order.py:25
+#, python-format
+msgid "Cash on delivery cannot be confirmed with a cash on delivery total of less than %s"
+msgstr ""
+
+#. module: cashondelivery
+#: model:ir.model.fields,field_description:cashondelivery.field_account_payment_mode__is_cashondelivery
+msgid "Is cashondelivery?"
+msgstr ""
+
+#. module: cashondelivery
+#: model:ir.model.fields,field_description:cashondelivery.field_account_payment_mode__minimum_amount_cashondelivery
+msgid "Minimum amount cashondelivery"
+msgstr ""
+
+#. module: cashondelivery
+#: model:ir.model,name:cashondelivery.model_account_payment_mode
+msgid "Payment Modes"
+msgstr ""
+
+#. module: cashondelivery
+#: model:ir.model,name:cashondelivery.model_sale_order
+msgid "Sale Order"
+msgstr ""
+
+#. module: cashondelivery
+#: model:ir.model.fields,field_description:cashondelivery.field_sale_order__total_cashondelivery
+#: model:ir.model.fields,field_description:cashondelivery.field_stock_picking__total_cashondelivery
+msgid "Total cashondelivery"
+msgstr ""
+
+#. module: cashondelivery
+#: model:ir.model,name:cashondelivery.model_stock_picking
+msgid "Transfer"
+msgstr ""
+

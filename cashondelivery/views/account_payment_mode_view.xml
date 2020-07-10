@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="cashondelivery_account_payment_mode_form" model="ir.ui.view">
+        <field name="name">cashondelivery_account_payment_mode_form</field>
+        <field name="model">account.payment.mode</field>
+        <field name="inherit_id" ref="account_payment_mode.account_payment_mode_form" />
+        <field name="arch" type="xml">
+            <field name="active" position="after">
+                <field name="is_cashondelivery"/>
+                <field name="minimum_amount_cashondelivery" attrs="{'invisible': [('is_cashondelivery','=',False)]}"/>
+            </field>
+        </field>
+    </record>
+</odoo>
