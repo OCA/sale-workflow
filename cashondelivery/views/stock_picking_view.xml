@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="stock_picking_cashondelivery_form" model="ir.ui.view">
+        <field name="name">stock.picking.cashondelivery.form</field>
+        <field name="model">stock.picking</field>
+        <field name="inherit_id" ref="stock.view_picking_form" />
+        <field name="priority" eval="20"/>
+        <field name="arch" type="xml">
+           <field name="origin" position="after">
+                <field name="total_cashondelivery" readonly="1"/>
+	       </field>
+        </field>
+    </record>
+
+</odoo>
