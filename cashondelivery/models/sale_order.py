@@ -18,7 +18,7 @@ class SaleOrder(models.Model):
         #check
         for item in self:
             if item.amount_total>0:
-                if itempayment_mode_id.id>0:
+                if item.payment_mode_id.id>0:
                     if item.payment_mode_id.is_cashondelivery==True:
                         if item.payment_mode_id.minimum_amount_cashondelivery>item.amount_total:
                             allow_confirm = False
