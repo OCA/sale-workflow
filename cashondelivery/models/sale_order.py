@@ -1,17 +1,17 @@
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
-import logging
-_logger = logging.getLogger(__name__)
 
 from odoo import api, models, fields, _
 from odoo.exceptions import Warning
+from odoo.tools.translate import _
+
 
 class SaleOrder(models.Model):
     _inherit = 'sale.order'
-    
-    total_cashondelivery = fields.Float( 
+
+    total_cashondelivery = fields.Float(
         string='Total cashondelivery'
     )
-    
+
     @api.multi
     def action_confirm(self):
         allow_confirm = True

@@ -1,18 +1,15 @@
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
+
 from odoo import api, models, fields
 
-import logging
-_logger = logging.getLogger(__name__)
-
-from lxml import etree
 
 class StockPicking(models.Model):
     _inherit = 'stock.picking'
-    
-    total_cashondelivery = fields.Float( 
+
+    total_cashondelivery = fields.Float(
         string='Total cashondelivery'
     )
-        
+
     @api.model
     def create(self, values):
         return_object = super(StockPicking, self).create(values)
