@@ -1,0 +1,2 @@
+This module provides some glue between product_packaging_can_be_sold and
+sale_product_by_packaging_only modules.
