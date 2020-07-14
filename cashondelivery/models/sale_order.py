@@ -1,8 +1,7 @@
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
 
 from odoo import api, models, fields, _
-from odoo.exceptions import Warning
-from odoo.tools.translate import _
+from odoo.exceptions import Warning as UserError
 
 
 class SaleOrder(models.Model):
@@ -22,7 +21,7 @@ class SaleOrder(models.Model):
                     if item.payment_mode_id.is_cashondelivery==True:
                         if item.payment_mode_id.minimum_amount_cashondelivery>0 and item.total_cashondelivery<item.payment_mode_id.minimum_amount_cashondelivery:
                             allow_confirm = False
-                            raise Warning(_('Cash on delivery cannot be confirmed with a cash on delivery total of less than %s') % (item.payment_mode_id.minimum_amount_cashondelivery))
+                            raise UserError(_('Cash on delivery cannot be confirmed with a cash on delivery total of less than %s') % (item.payment_mode_id.minimum_amount_cashondelivery))
         #allow_confirm
         if allow_confirm==True:
             return super(SaleOrder, self).action_confirm()

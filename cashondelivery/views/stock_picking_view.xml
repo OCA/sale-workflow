@@ -8,7 +8,7 @@
         <field name="priority" eval="20"/>
         <field name="arch" type="xml">
            <field name="origin" position="after">
-                <field name="total_cashondelivery" readonly="1"/>
+                <field name="total_cashondelivery" readonly="1" />
 	       </field>
         </field>
     </record>
