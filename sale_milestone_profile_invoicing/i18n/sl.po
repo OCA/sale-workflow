@@ -6,7 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 12.0\n"
 "Report-Msgid-Bugs-To: \n"
-"Last-Translator: Automatically generated\n"
+"PO-Revision-Date: 2020-07-14 16:19+0000\n"
+"Last-Translator: Matjaz Mozetic <matjaz@matmoz.si>\n"
 "Language-Team: none\n"
 "Language: sl\n"
 "MIME-Version: 1.0\n"
@@ -14,38 +15,39 @@ msgstr ""
 "Content-Transfer-Encoding: \n"
 "Plural-Forms: nplurals=4; plural=n%100==1 ? 0 : n%100==2 ? 1 : n%100==3 || "
 "n%100==4 ? 2 : 3;\n"
+"X-Generator: Weblate 3.10\n"
 
 #. module: sale_milestone_profile_invoicing
 #: model:ir.model.fields,field_description:sale_milestone_profile_invoicing.field_sale_order_line__company_currency_id
 msgid "Company currency"
-msgstr ""
+msgstr "Valuta družbe"
 
 #. module: sale_milestone_profile_invoicing
 #: model:ir.model.fields,field_description:sale_milestone_profile_invoicing.field_sale_order_line__amount_delivered_from_task
 msgid "Delivered from task"
-msgstr ""
+msgstr "Dobavljeno iz opravila"
 
 #. module: sale_milestone_profile_invoicing
 #: model:ir.model.fields,field_description:sale_milestone_profile_invoicing.field_sale_order_line__amount_delivered_from_task_company_currency
 msgid "Delivered from task (company currency)"
-msgstr ""
+msgstr "Dobavljeno iz opravila (valuta družbe)"
 
 #. module: sale_milestone_profile_invoicing
 #: model:ir.model.fields,field_description:sale_milestone_profile_invoicing.field_sale_order_line__amount_invoiced_from_task
 msgid "Invoiced from task"
-msgstr ""
+msgstr "Zaračunano iz opravila"
 
 #. module: sale_milestone_profile_invoicing
 #: model:ir.model.fields,field_description:sale_milestone_profile_invoicing.field_sale_order_line__amount_invoiced_from_task_company_currency
 msgid "Invoiced from task (company currency)"
-msgstr ""
+msgstr "Zaračunano iz opravila (valuta družbe)"
 
 #. module: sale_milestone_profile_invoicing
 #: model:ir.model.fields,field_description:sale_milestone_profile_invoicing.field_sale_order_line__is_company_currency
 msgid "Is Company Currency"
-msgstr ""
+msgstr "Je valuta družbe"
 
 #. module: sale_milestone_profile_invoicing
 #: model:ir.model,name:sale_milestone_profile_invoicing.model_sale_order_line
 msgid "Sales Order Line"
-msgstr ""
+msgstr "Postavka prodajnega naloga"
