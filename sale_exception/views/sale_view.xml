@@ -50,6 +50,29 @@
             <xpath expr="//field[@name='date_order']/.." position="inside">
                 <field name="ignore_exception" states="sale" />
             </xpath>
+            <xpath expr="//field[@name='order_line']/form/group[1]" position="before">
+                <div
+                    class="alert alert-danger"
+                    role="alert"
+                    style="margin-bottom:0px;"
+                    attrs="{'invisible': [('exceptions_summary', '=', False)]}"
+                >
+                    <p>
+                        <strong
+                        >There are exceptions on this line blocking the confirmation of this quotation:</strong>
+                    </p>
+                    <field name="exceptions_summary" />
+                </div>
+            </xpath>
+            <xpath expr="//field[@name='order_line']/tree" position="inside">
+                <field name="exception_ids" invisible="1" />
+                <field name="ignore_exception" invisible="1" />
+            </xpath>
+            <xpath expr="//field[@name='order_line']/tree" position="attributes">
+                <attribute
+                    name="decoration-danger"
+                >not ignore_exception and exception_ids</attribute>
+            </xpath>
         </field>
     </record>
     <record id="view_order_tree" model="ir.ui.view">
