@@ -1,31 +1,33 @@
-<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8" ?>
 <odoo>
-    <record id ="excep_no_sol" model="exception.rule">
+    <record id="excep_no_sol" model="exception.rule">
         <field name="name">No order lines</field>
-        <field name="description">At least one order line should be present in the sale</field>
+        <field
+            name="description"
+        >At least one order line should be present in the sale</field>
         <field name="sequence">50</field>
         <field name="model">sale.order</field>
         <field name="exception_type">by_domain</field>
         <field name="domain">[('order_line', '=', False)]</field>
-        <field name="active" eval="False"/>
+        <field name="active" eval="False" />
     </record>
-
-    <record id ="excep_no_free" model="exception.rule">
+    <record id="excep_no_free" model="exception.rule">
         <field name="name">No free order</field>
         <field name="description">The total can't be 0</field>
         <field name="sequence">50</field>
         <field name="model">sale.order</field>
         <field name="exception_type">by_domain</field>
         <field name="domain">[('amount_total', '=', 0)]</field>
-        <field name="active" eval="False"/>
+        <field name="active" eval="False" />
     </record>
-    <record id ="excep_no_dumping" model="exception.rule">
+    <record id="excep_no_dumping" model="exception.rule">
         <field name="name">No dumping</field>
         <field name="description">A product is sold cheaper than his cost.</field>
         <field name="sequence">50</field>
         <field name="model">sale.order.line</field>
-        <field name="code">failed = obj.product_id.standard_price != 0 and obj.product_id.standard_price &gt; obj.price_unit</field>
-        <field name="active" eval="False"/>
+        <field
+            name="code"
+        >failed = obj.product_id.standard_price != 0 and obj.product_id.standard_price &gt; obj.price_unit</field>
+        <field name="active" eval="False" />
     </record>
-
 </odoo>
