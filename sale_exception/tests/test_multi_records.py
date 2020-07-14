@@ -90,6 +90,14 @@ class TestSaleExceptionMultiRecord(TestSaleOrder):
 
         self.assertTrue(so3.state == "draft")
         self.assertTrue(exception_no_dumping in so3.exception_ids)
+        self.assertEqual(
+            so3.order_line[0].exceptions_summary,
+            (
+                "<ul>"
+                "<li>No dumping: <i>A product is sold cheaper than his cost.</i></li>"
+                "</ul>"
+            ),
+        )
 
         # test return value of detect_exception()
 
