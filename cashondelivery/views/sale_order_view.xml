@@ -8,7 +8,7 @@
         <field name="priority" eval="20"/>
         <field name="arch" type="xml">
             <xpath expr="//field[@name='partner_shipping_id']" position="after">
-                <field name="total_cashondelivery"/>
+                <field name="total_cashondelivery" attrs="{'readonly': [('state','in', ('sale','done'))]}"/>
             </xpath>
         </field>
     </record>
