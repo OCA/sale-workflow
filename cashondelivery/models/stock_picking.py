@@ -9,5 +9,6 @@ class StockPicking(models.Model):
     total_cashondelivery = fields.Float(
         string='Total cashondelivery',
         related='sale_id.total_cashondelivery',
+        readonly=True,
         store=False
     )
