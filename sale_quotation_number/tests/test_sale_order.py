@@ -1,8 +1,8 @@
-# -*- coding: utf-8 -*-
 # Copyright 2018 Simone Rubino - Agile Business Group
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
 
 from odoo.tests.common import TransactionCase
+from odoo.exceptions import UserError
 
 
 class TestSaleOrder(TransactionCase):
@@ -15,11 +15,11 @@ class TestSaleOrder(TransactionCase):
 
     def test_enumeration(self):
         order1 = self.sale_order_model.create({
-            'partner_id': self.env.ref('base.res_partner_1').id
+            'partner_id': self.env.ref('base.res_partner_1').id,
         })
         quotation1_name = order1.name
         order2 = self.sale_order_model.create({
-            'partner_id': self.env.ref('base.res_partner_1').id
+            'partner_id': self.env.ref('base.res_partner_1').id,
         })
         quotation2_name = order2.name
 
@@ -66,3 +66,25 @@ class TestSaleOrder(TransactionCase):
         order_copy = order1.copy()
 
         self.assertEqual(', '.join([origin, order1.name]), order_copy.origin)
+
+    def test_error_confirmation_sequence(self):
+        order = self.sale_order_model.create({
+            'partner_id': self.env.ref('base.res_partner_1').id,
+            'state': 'done'
+        })
+        # An exception is forced
+        sequence_id = self.env['ir.sequence'].search([
+            ('code', '=', 'sale.order'),
+            ('company_id', 'in', [order.company_id.id, False])
+        ])
+        next_name = sequence_id.get_next_char(sequence_id.number_next_actual)
+        try:
+            order.action_confirm()
+        except UserError:
+            pass
+        order.update({
+            'state': 'draft'
+        })
+        # Now the SQ can be confirmed
+        order.action_confirm()
+        self.assertEqual(next_name, order.name)
