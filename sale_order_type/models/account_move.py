@@ -12,8 +12,8 @@ class AccountMove(models.Model):
         string="Sale Type",
         compute="_compute_sale_type_id",
         store=True,
-        readonly=True,
-        states={"draft": [("readonly", False)]},
+        readonly=False,
+        states={"posted": [("readonly", True)], "cancel": [("readonly", True)]},
     )
 
     @api.depends("partner_id", "company_id")
