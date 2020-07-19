@@ -48,7 +48,8 @@ class TestSaleOrderPreparationTime(SavepointCase):
 
     def test_late_delivery(self):
         self.sale5.action_confirm()
-        self.sale5.confirmation_date -= timedelta(days=3)
+        self.sale5.confirmation_date = (self.sale5.confirmation_date -
+                                        timedelta(days=3))
         self.sale5.picking_ids.move_line_ids.write({'qty_done': 1})
         self.sale5.picking_ids.action_done()
         self.assertNotEquals(self.sale5.on_time_delivery, True)
