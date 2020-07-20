@@ -1,4 +1,5 @@
 # Copyright 2020 Tecnativa - David Vidal
+# Copyright 2020 Tecnativa - Pedro M. Baeza
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
 from odoo import _, api, exceptions, fields, models
 
@@ -26,7 +27,7 @@ class SaleOrder(models.Model):
         readonly=True,
     )
     amount_total_before_global_discounts = fields.Monetary(
-        string='Amount Untaxed Before Discounts',
+        string='Amount Total Before Discounts',
         compute='_amount_all',
         currency_field='currency_id',
         readonly=True,
@@ -117,25 +118,25 @@ class SaleOrder(models.Model):
             })
         return invoice_vals
 
-    @api.multi
     def action_invoice_create(self, grouped=False, final=False):
         res = super().action_invoice_create(grouped=grouped, final=final)
         invoices = self.env['account.invoice'].browse(res)
         invoices._set_global_discounts()
         return res
 
-    def _get_tax_amount_by_group(self):
-        """We can apply discounts directly by tax groups"""
-        tax_groups = super()._get_tax_amount_by_group()
+    def _amount_by_group(self):
+        """We can apply discounts directly by tax groups."""
+        super()._amount_by_group()
         discounts = self.global_discount_ids.mapped('discount')
         if not discounts:
-            return tax_groups
+            return
         round_curr = self.currency_id.round
-        res = []
-        for tax in tax_groups:
-            tax_amount = round_curr(
-                self.get_discounted_global(tax[1], discounts.copy()))
-            tax_base = round_curr(
-                self.get_discounted_global(tax[2], discounts.copy()))
-            res.append((tax[0], tax_amount, tax_base, tax[3]))
-        return res
+        for order in self:
+            res = []
+            for tax in order.amount_by_group:
+                tax_amount = round_curr(
+                    self.get_discounted_global(tax[1], discounts.copy()))
+                tax_base = round_curr(
+                    self.get_discounted_global(tax[2], discounts.copy()))
+                res.append((tax[0], tax_amount, tax_base, tax[3]))
+            order.amount_by_group = res
