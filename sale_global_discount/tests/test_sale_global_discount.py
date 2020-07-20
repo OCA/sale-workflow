@@ -165,8 +165,9 @@ class TestSaleGlobalDiscount(common.SavepointCase):
         """Taxes by group shown in reports"""
         self.sale.partner_id = self.partner_2
         self.sale.onchange_partner_id()
-        taxes_groups = self.sale._get_tax_amount_by_group()
+        self.sale._amount_by_group()
         # Taxes
+        taxes_groups = self.sale.amount_by_group
         self.assertAlmostEqual(taxes_groups[0][1], 4.38)
         self.assertAlmostEqual(taxes_groups[1][1], 13.13)
         # Bases
