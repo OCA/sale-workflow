@@ -7,6 +7,7 @@ from odoo import fields, models
 
 class SaleExceptionConfirm(models.TransientModel):
     _name = "sale.exception.confirm"
+    _description = "Sale Exception Confirm"
     _inherit = ["exception.rule.confirm"]
 
     related_model_id = fields.Many2one("sale.order", "Sale")
