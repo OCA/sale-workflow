@@ -9,6 +9,7 @@ from odoo import api, fields, models
 class TimeCutoffMixin(models.AbstractModel):
 
     _name = "time.cutoff.mixin"
+    _description = "Time Cut-off Mixin"
 
     cutoff_time = fields.Float()
 
