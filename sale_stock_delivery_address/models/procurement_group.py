@@ -34,4 +34,6 @@ class ProcurementGroup(models.Model):
                         procurement.values,
                     )
                 )
+            else:
+                new_procs.append(procurement)
         return super(ProcurementGroup, self).run(new_procs)
