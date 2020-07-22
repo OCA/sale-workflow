@@ -19,6 +19,9 @@ class ProductProduct(models.Model):
         self.ensure_one()
         return self.packaging_ids.filtered(
             lambda pack: pack.can_be_sold
+            and not float_is_zero(
+                pack.qty, precision_rounding=pack.product_uom_id.rounding
+            )
             and float_is_zero(
                 qty % pack.qty, precision_rounding=pack.product_uom_id.rounding
             )
