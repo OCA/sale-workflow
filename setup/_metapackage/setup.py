@@ -11,6 +11,7 @@ setuptools.setup(
         'odoo13-addon-portal_sale_personal_data_only',
         'odoo13-addon-sale_automatic_workflow',
         'odoo13-addon-sale_automatic_workflow_payment',
+        'odoo13-addon-sale_by_packaging',
         'odoo13-addon-sale_commercial_partner',
         'odoo13-addon-sale_discount_display_amount',
         'odoo13-addon-sale_elaboration',
