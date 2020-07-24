@@ -5,9 +5,8 @@ from odoo.tests.common import TransactionCase
 
 
 class TestSaleValidity(TransactionCase):
-
     def test_sale_validity(self):
-        company = self.env.ref('base.main_company')
+        company = self.env.ref("base.main_company")
         company.default_sale_order_validity_days = 0
         so_no_validity = self.create_so()
         self.assertFalse(so_no_validity.validity_date)
@@ -18,11 +17,17 @@ class TestSaleValidity(TransactionCase):
 
     def create_so(self):
         vals = {
-            'partner_id': self.env.ref('base.res_partner_2').id,
-            'order_line': [(0, 0, {
-                'product_id': self.env.ref('product.product_product_7').id,
-                'product_uom_qty': 8,
-            })]
+            "partner_id": self.env.ref("base.res_partner_2").id,
+            "order_line": [
+                (
+                    0,
+                    0,
+                    {
+                        "product_id": self.env.ref("product.product_product_7").id,
+                        "product_uom_qty": 8,
+                    },
+                )
+            ],
         }
-        so = self.env['sale.order'].create(vals)
+        so = self.env["sale.order"].create(vals)
         return so
