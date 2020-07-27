@@ -12,5 +12,5 @@
     "application": False,
     "installable": True,
     "depends": ["sale_cutoff_time_delivery", "sale_partner_delivery_window"],
-    "auto-install": True,
+    "auto_install": True,
 }
