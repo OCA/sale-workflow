@@ -244,7 +244,6 @@ msgstr "Journal des ventes"
 #. module: sale_automatic_workflow
 #: model:ir.model,name:sale_automatic_workflow.model_sale_order
 #, fuzzy
-#| msgid "Validate Order"
 msgid "Sales Order"
 msgstr "Confirmer les commandes"
 
