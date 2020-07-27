@@ -40,3 +40,10 @@ class SaleOrderTypology(models.Model):
     payment_term_id = fields.Many2one('account.payment.term', 'Payment Term')
     pricelist_id = fields.Many2one('product.pricelist', 'Pricelist')
     incoterm_id = fields.Many2one('account.incoterms', 'Incoterm')
+    route_id = fields.Many2one(
+        "stock.location.route",
+        string="Route",
+        domain=[("sale_selectable", "=", True)],
+        ondelete="restrict",
+        check_company=True,
+    )

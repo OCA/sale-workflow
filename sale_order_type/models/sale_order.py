@@ -10,7 +10,12 @@ class SaleOrder(models.Model):
         return self.env['sale.order.type'].search([], limit=1)
 
     type_id = fields.Many2one(
-        comodel_name='sale.order.type', string='Type', default=_get_order_type)
+        comodel_name='sale.order.type',
+        string='Type',
+        default=_get_order_type,
+        readonly=True,
+        states={"draft": [("readonly", False)], "sent": [("readonly", False)]},
+    )
 
     @api.multi
     @api.onchange('partner_id')
@@ -24,17 +29,27 @@ class SaleOrder(models.Model):
     @api.multi
     @api.onchange('type_id')
     def onchange_type_id(self):
+        vals = {}
         for order in self:
-            if order.type_id.warehouse_id:
-                order.warehouse_id = order.type_id.warehouse_id
-            if order.type_id.picking_policy:
-                order.picking_policy = order.type_id.picking_policy
-            if order.type_id.payment_term_id:
-                order.payment_term_id = order.type_id.payment_term_id.id
-            if order.type_id.pricelist_id:
-                order.pricelist_id = order.type_id.pricelist_id.id
-            if order.type_id.incoterm_id:
-                order.incoterm = order.type_id.incoterm_id.id
+            order_type = order.type_id
+            # Order values
+            vals = {}
+            if order_type.warehouse_id:
+                vals.update({"warehouse_id": order_type.warehouse_id})
+            if order_type.picking_policy:
+                vals.update({"picking_policy": order_type.picking_policy})
+            if order_type.payment_term_id:
+                vals.update({"payment_term_id": order_type.payment_term_id})
+            if order_type.pricelist_id:
+                vals.update({"pricelist_id": order_type.pricelist_id})
+            if order_type.incoterm_id:
+                vals.update({"incoterm": order_type.incoterm_id})
+            if vals:
+                order.update(vals)
+            # Order line values
+            line_vals = {}
+            line_vals.update({"route_id": order_type.route_id.id})
+            order.order_line.update(line_vals)
 
     @api.model
     def create(self, vals):

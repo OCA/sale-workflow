@@ -10,4 +10,17 @@
             </field>
         </field>
     </record>
+
+    <record id="view_sales_order_filter" model="ir.ui.view">
+        <field name="name">sale.order.type.order.search</field>
+        <field name="model">sale.order</field>
+        <field name="inherit_id" ref="sale.view_sales_order_filter"/>
+        <field name="arch" type="xml">
+            <filter name="salesperson" position="before">
+                <filter name="sale_order_type_groupby"
+                    string="Sale Order Type"
+                    context="{'group_by': 'type_id'}"/>
+            </filter>
+        </field>
+    </record>
 </odoo>
