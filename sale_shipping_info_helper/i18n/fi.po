@@ -36,7 +36,6 @@ msgstr ""
 #. module: sale_shipping_info_helper
 #: model:ir.model,name:sale_shipping_info_helper.model_sale_order
 #, fuzzy
-#| msgid "Sales Order"
 msgid "Sales Order"
 msgstr "Myyntitilaus"
 
