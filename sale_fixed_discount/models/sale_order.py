@@ -38,7 +38,7 @@ class SaleOrderLine(models.Model):
         help="Fixed amount discount.")
 
     @api.onchange('discount')
-    def _onchange_discount2(self):
+    def _onchange_discount_percent(self):
         if self.discount:
             self.discount_fixed = 0.0
 
