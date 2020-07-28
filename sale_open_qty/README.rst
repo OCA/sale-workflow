@@ -37,7 +37,7 @@ Images
 Contributors
 ------------
 
-* Miquel Raïch <miquel.raich@eficent.com>
+* Miquel Raïch <miquel.raich@forgeflow.com>
 
 Maintainer
 ----------
