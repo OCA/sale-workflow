@@ -17,6 +17,7 @@ setuptools.setup(
         'odoo9-addon-sale_exception',
         'odoo9-addon-sale_fixed_discount',
         'odoo9-addon-sale_force_invoiced',
+        'odoo9-addon-sale_open_qty',
         'odoo9-addon-sale_order_digitized_signature',
         'odoo9-addon-sale_order_line_date',
         'odoo9-addon-sale_order_line_sequence',
