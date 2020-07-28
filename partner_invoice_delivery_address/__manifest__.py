@@ -5,8 +5,7 @@
     "version": "12.0.1.0.0",
     "category": "Sales Management",
     "website": "https://github.com/OCA/sale-workflow",
-    "author": "Xtendoo, "
-              "Odoo Community Association (OCA)",    
+    "author": "Xtendoo, Odoo Community Association (OCA)",
     "license": "AGPL-3",
     "depends": [
         "sale",
