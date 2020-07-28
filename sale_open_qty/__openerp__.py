@@ -7,7 +7,7 @@
     "name": "Sale Open Qty",
     "summary": "Allows to identify the sale orders that have quantities "
                "pending to invoice or to deliver.",
-    "version": "9.0.1.0.0",
+    "version": "9.0.1.0.1",
     "author": "Eficent, "
               "Odoo Community Association (OCA)",
     "website": "https://github.com/OCA/sale-workflow",
