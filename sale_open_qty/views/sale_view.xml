@@ -36,7 +36,7 @@
             <filter name="my_sale_orders_filter" position="after">
                 <filter name="qty_delivered"
                         string="Delivered"
-                        domain="[('qty_to_deliver','=',0.0)]"/>
+                        domain="[('qty_to_deliver','&lt;=',0.0)]"/>
             </filter>
         </field>
     </record>
