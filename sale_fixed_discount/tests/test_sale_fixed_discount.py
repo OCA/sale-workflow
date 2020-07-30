@@ -47,7 +47,7 @@ class TestSaleFixedDiscount(SavepointCase):
         self.sale_line1._onchange_discount_fixed()
         self.sale_line1.discount_fixed = 0.0
         self.sale_line1.discount = 50.0
-        self.sale_line1._onchange_discount()
+        self.sale_line1._onchange_discount_percent()
         self.assertEqual(self.sale.amount_total, 115.00)
 
     def test_02_discounts_multiple_lines(self):
