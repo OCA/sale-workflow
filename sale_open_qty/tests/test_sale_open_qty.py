@@ -2,7 +2,7 @@
 # Copyright 2017 Eficent Business and IT Consulting Services S.L.
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
-from openerp.tests.common import TransactionCase
+from odoo.tests.common import TransactionCase
 
 
 class TestSaleOpenQty(TransactionCase):
@@ -17,7 +17,7 @@ class TestSaleOpenQty(TransactionCase):
 
         pa_dict = {
             'name': 'Partner 1',
-            'supplier': True,
+            'cutomer': True,
         }
         self.partner = partner_model.sudo().create(pa_dict)
         so_dict = {
@@ -53,14 +53,12 @@ class TestSaleOpenQty(TransactionCase):
     def test_compute_qty_to_deliver(self):
         self.assertEqual(self.sale_order_line_1.qty_to_deliver, 5.0,
                          "Expected 5 as qty_to_deliver in the SO line")
-        self.assertEqual(self.sale_order_1.qty_to_invoice, 5.0,
-                         "Expected 5 as qty_to_invoice in the SO")
         self.assertEqual(self.sale_order_1.qty_to_deliver, 5.0,
                          "Expected 5 as qty_to_deliver in the SO")
 
-    def test_search_qty_to_invoice_and_deliver(self):
+    def test_search_qty_to_deliver(self):
         found = self.sale_order_model.search(
-            ['|', ('qty_to_invoice', '>', 0.0), ('qty_to_deliver', '>', 0.0)])
+            [('qty_to_deliver', '>', 0.0)])
         self.assertTrue(
             self.sale_order_1.id in found.ids,
             'Expected SO %s in SOs %s' % (self.sale_order_1.id, found.ids))
