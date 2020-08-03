@@ -82,6 +82,9 @@ class SaleOrderLine(models.Model):
                 vals = line.order_id._prepare_procurement_group_by_line(line)
                 group_id = self.env["procurement.group"].create(vals)
             line.procurement_group_id = group_id
+            # This ensure shipping address is updated
+            if line.order_id.partner_shipping_id:
+                group_id.partner_id = line.order_id.partner_shipping_id
 
             vals = line._prepare_order_line_procurement(
                 group_id=line.procurement_group_id.id)
