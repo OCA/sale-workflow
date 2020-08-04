@@ -4,7 +4,8 @@
 import functools
 
 from odoo import _, models
-from odoo.addons.queue_job.job import job, identity_exact
+
+from odoo.addons.queue_job.job import identity_exact, job
 
 
 # TODO integrate in queue_job
@@ -53,14 +54,11 @@ def job_auto_delay(func=None, default_channel="root", retry_pattern=None):
     """
     if func is None:
         return functools.partial(
-            job_auto_delay,
-            default_channel=default_channel,
-            retry_pattern=retry_pattern
+            job_auto_delay, default_channel=default_channel, retry_pattern=retry_pattern
         )
 
     def auto_delay(self, *args, **kwargs):
-        if (self.env.context.get("job_uuid") or
-                self.env.context.get("_job_force_sync")):
+        if self.env.context.get("job_uuid") or self.env.context.get("_job_force_sync"):
             # we are in the job execution
             return func(self, *args, **kwargs)
         else:
@@ -79,11 +77,7 @@ def job_auto_delay(func=None, default_channel="root", retry_pattern=None):
 
     return functools.update_wrapper(
         auto_delay,
-        job(
-            func,
-            default_channel=default_channel,
-            retry_pattern=retry_pattern
-        ),
+        job(func, default_channel=default_channel, retry_pattern=retry_pattern),
     )
 
 
@@ -102,9 +96,7 @@ class AutomaticWorkflowJob(models.Model):
         return super()._do_validate_sale_order(sale)
 
     def _do_create_invoice_job_options(self, sale):
-        description = _(
-            "Create invoices for sales order {}"
-        ).format(sale.display_name)
+        description = _("Create invoices for sales order {}").format(sale.display_name)
         return {
             "description": description,
             "identity_key": identity_exact,
@@ -137,9 +129,7 @@ class AutomaticWorkflowJob(models.Model):
         return super()._do_validate_picking(picking)
 
     def _do_sale_done_job_options(self, sale):
-        description = _(
-            "Mark sales order {} as done"
-        ).format(sale.display_name)
+        description = _("Mark sales order {} as done").format(sale.display_name)
         return {
             "description": description,
             "identity_key": identity_exact,
