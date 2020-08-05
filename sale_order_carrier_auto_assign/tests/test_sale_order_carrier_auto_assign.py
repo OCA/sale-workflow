@@ -7,7 +7,9 @@ class TestSaleOrderCarrierAutoAssign(SavepointCase):
     @classmethod
     def setUpClass(cls):
         super().setUpClass()
-        cls.env = cls.env(context=dict(cls.env.context, tracking_disable=True))
+        test_context = cls.env.context.copy()
+        test_context["test_carrier_auto_assign"] = True
+        cls.env = cls.env(context=dict(test_context, tracking_disable=True))
         cls.partner = cls.env.ref("base.res_partner_2")
         product = cls.env.ref("product.product_product_9")
         cls.normal_delivery_carrier = cls.env.ref("delivery.normal_delivery_carrier")
