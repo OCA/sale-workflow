@@ -14,7 +14,12 @@ class SaleOrder(models.Model):
         store=True,
         readonly=True,
         states={"draft": [("readonly", False)], "sent": [("readonly", False)]},
+        default=lambda so: so._default_type_id(),
     )
+
+    @api.model
+    def _default_type_id(self):
+        return self.env["sale.order.type"].search([], limit=1)
 
     @api.depends("partner_id", "company_id")
     def _compute_sale_type_id(self):
