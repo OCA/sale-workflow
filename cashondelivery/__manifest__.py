@@ -4,7 +4,7 @@
     "name": "Cashondelivery",
     "version": "12.0.1.0.0",
     "category": "Sales Management",
-    "website": "https://github.com/OCA/sale-workflow",
+    "website": "https://nodrizatech.com/",
     "author": "Odoo Nodriza Tech (ONT), "
               "Odoo Community Association (OCA)",
     "license": "AGPL-3",
@@ -12,7 +12,9 @@
         "base",
         "sale",
         "stock",
-        "payment"
+        "sale_stock",
+        "payment",
+        "account_payment_sale"  # https://github.com/OCA/bank-payment
     ],
     "data": [
         "views/account_payment_mode_view.xml",

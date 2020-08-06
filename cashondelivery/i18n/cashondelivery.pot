@@ -19,7 +19,7 @@ msgstr ""
 #: code:addons/cashondelivery/models/sale_order.py:25
 #: code:addonsOdooNodrizaTech/sale/12.0/cashondelivery/models/sale_order.py:25
 #, python-format
-msgid "Sale order cannot be confirmed with a cash on delivery total of less than %s"
+msgid "Cash on delivery cannot be confirmed with a cash on delivery total of less than %s"
 msgstr ""
 
 #. module: cashondelivery
