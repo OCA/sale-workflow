@@ -14,7 +14,7 @@ class ProductTemplate(models.Model):
         "packaging defined",
     )
 
-    @api.constrains("sell_only_by_packaging", "sale_ok", "packaging_ids")
+    @api.constrains("sell_only_by_packaging", "sale_ok")
     def _check_sell_only_by_packaging_sale_ok(self):
         for product in self:
             if product.sell_only_by_packaging and not product.sale_ok:
