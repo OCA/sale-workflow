@@ -1,5 +1,5 @@
-# -*- coding: utf-8 -*-
 # Copyright 2017 Eficent Business and IT Consulting Services S.L.
+# Copyright 2020 Openindustry.it
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
 from odoo.tests.common import TransactionCase
@@ -13,7 +13,7 @@ class TestSaleOpenQty(TransactionCase):
         partner_model = self.env['res.partner']
         prod_model = self.env['product.product']
         analytic_account_model = self.env['account.analytic.account']
-        self.product_uom_model = self.env['product.uom']
+        self.product_uom_model = self.env['uom.uom']
 
         pa_dict = {
             'name': 'Partner 1',
