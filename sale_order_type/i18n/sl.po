@@ -16,8 +16,8 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
-"Plural-Forms: nplurals=4; plural=n%100==1 ? 0 : n%100==2 ? 1 : n%100==3 || "
-"n%100==4 ? 2 : 3;\n"
+"Plural-Forms: nplurals=4; plural=n%100==1 ? 0 : n%100==2 ? 1 : n%100==3 || n"
+"%100==4 ? 2 : 3;\n"
 "X-Generator: Weblate 3.10\n"
 
 #. module: sale_order_type
@@ -130,6 +130,11 @@ msgid "Pricelist"
 msgstr "Cenik"
 
 #. module: sale_order_type
+#: model:ir.model.fields,field_description:sale_order_type.field_sale_order_type__route_id
+msgid "Route"
+msgstr ""
+
+#. module: sale_order_type
 #: model:ir.model,name:sale_order_type.model_sale_order
 #, fuzzy
 msgid "Sale Order"
@@ -138,6 +143,7 @@ msgstr "Prodajni nalog"
 #. module: sale_order_type
 #: model:ir.model.fields,field_description:sale_order_type.field_res_partner__sale_type
 #: model:ir.model.fields,field_description:sale_order_type.field_res_users__sale_type
+#: model_terms:ir.ui.view,arch_db:sale_order_type.view_sales_order_filter
 msgid "Sale Order Type"
 msgstr "Tip prodajnega naloga"
 
@@ -147,8 +153,10 @@ msgid "Sale Type"
 msgstr "Tip prodaje"
 
 #. module: sale_order_type
-#: model_terms:ir.ui.view,arch_db:sale_order_type.res_partner_sale_type_form_view
-msgid "Sales Order Type"
+#: model:ir.model,name:sale_order_type.model_sale_order_line
+#, fuzzy
+#| msgid "Sales Order Type"
+msgid "Sales Order Line"
 msgstr "Tip prodajnega naloga"
 
 #. module: sale_order_type
@@ -172,7 +180,6 @@ msgstr ""
 #: model:ir.model.fields,field_description:sale_order_type.field_sale_order__type_id
 #: model_terms:ir.ui.view,arch_db:sale_order_type.sot_sale_order_type_form_view
 #: model_terms:ir.ui.view,arch_db:sale_order_type.sot_sale_order_type_search_view
-#: model_terms:ir.ui.view,arch_db:sale_order_type.sot_sale_order_type_tree_view
 msgid "Type"
 msgstr "Tip"
 
