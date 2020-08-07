@@ -8,15 +8,16 @@ msgstr ""
 "Project-Id-Version: sale-workflow (8.0)\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2015-09-09 12:27+0000\n"
-"PO-Revision-Date: 2015-09-03 07:11+0000\n"
-"Last-Translator: <>\n"
+"PO-Revision-Date: 2020-08-07 08:59+0000\n"
+"Last-Translator: Daniel Martinez Vila <daniel.martinez@qubiq.es>\n"
 "Language-Team: Spanish (http://www.transifex.com/oca/OCA-sale-workflow-8-0/"
 "language/es/)\n"
 "Language: es\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
-"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: Weblate 3.10\n"
 
 #. module: sale_validity
 #: model_terms:ir.ui.view,arch_db:sale_validity.res_config_settings_view_form_sale_order_validity
@@ -26,6 +27,10 @@ msgid ""
 "            If the value of this field is 0, the sale orders will not have a "
 "validity date by default."
 msgstr ""
+"Por defecto, la fecha de validez de las órdenes de venta será la fecha de la "
+"orden de venta más el número de días definido en este campo.\n"
+"...............Si el valor de este campo es 0, los pedidos de venta no "
+"tendrán una fecha de validez por defecto."
 
 #. module: sale_validity
 #: model:ir.model.fields,help:sale_validity.field_res_company__default_sale_order_validity_days
@@ -35,32 +40,33 @@ msgid ""
 "order plus the number of days defined in this field. If the value of this "
 "field is 0, the sale orders will not have a validity date by default."
 msgstr ""
+"Por defecto, la fecha de validez de los pedidos de venta será la fecha del "
+"pedido más el número de días definido en este campo. Si el valor de este "
+"campo es 0, los pedidos de venta no tendrán una fecha de validez por defecto."
 
 #. module: sale_validity
 #: model:ir.model,name:sale_validity.model_res_company
 msgid "Companies"
-msgstr ""
+msgstr "Compañías"
 
 #. module: sale_validity
 #: model:ir.model,name:sale_validity.model_res_config_settings
 msgid "Config Settings"
-msgstr ""
+msgstr "Config Ajustes"
 
 #. module: sale_validity
 #: model_terms:ir.ui.view,arch_db:sale_validity.res_config_settings_view_form_sale_order_validity
 msgid "Days"
-msgstr ""
+msgstr "Días"
 
 #. module: sale_validity
 #: model:ir.model.fields,field_description:sale_validity.field_res_company__default_sale_order_validity_days
 #: model:ir.model.fields,field_description:sale_validity.field_res_config_settings__sale_order_default_validity_days
 msgid "Default Validity of Sale Orders"
-msgstr ""
+msgstr "Duración de la validez predeterminada de los pedidos de venta"
 
 #. module: sale_validity
 #: model:ir.model,name:sale_validity.model_sale_order
-#, fuzzy
-#| msgid "Sales Order"
 msgid "Sale Order"
 msgstr "Pedido de venta"
 
@@ -70,11 +76,13 @@ msgid ""
 "The value of the field 'Default Validity Duration of Sale Orders' must be "
 "positive or 0."
 msgstr ""
+"El valor del campo 'Duración de la validez predeterminada de los pedidos de "
+"venta' debe ser positivo o 0."
 
 #. module: sale_validity
 #: model:ir.model.fields,field_description:sale_validity.field_sale_order__validity_date
 msgid "Validity"
-msgstr ""
+msgstr "Validez"
 
 #. module: sale_validity
 #: model:ir.model.fields,help:sale_validity.field_sale_order__validity_date
@@ -82,3 +90,5 @@ msgid ""
 "Validity date of the quotation, after this date, the customer won't be able "
 "to validate the quotation online."
 msgstr ""
+"Fecha de validez del presupuesto, después de esta fecha, el cliente no podrá "
+"validar el presupuesto de forma online."
