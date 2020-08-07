@@ -11,7 +11,11 @@ class AccountInvoice(models.Model):
 
     sale_type_id = fields.Many2one(
         comodel_name='sale.order.type',
-        string='Sale Type', default=_get_order_type)
+        string='Sale Type',
+        default=_get_order_type,
+        readonly=True,
+        states={"draft": [("readonly", False)]},
+    )
 
     @api.onchange('partner_id', 'company_id')
     def _onchange_partner_id(self):
