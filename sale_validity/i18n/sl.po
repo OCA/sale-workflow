@@ -66,29 +66,22 @@ msgid "Default Validity of Sale Orders"
 msgstr ""
 
 #. module: sale_validity
+#: model:ir.model.fields,field_description:sale_validity.field_sale_order__validity_date
+msgid "Expiration"
+msgstr ""
+
+#. module: sale_validity
 #: model:ir.model,name:sale_validity.model_sale_order
 #, fuzzy
 #| msgid "Sales Order"
-msgid "Sale Order"
+msgid "Sales Order"
 msgstr "Prodajni nalog"
 
 #. module: sale_validity
-#: sql_constraint:res.company:0
+#: model:ir.model.constraint,message:sale_validity.constraint_res_company_sale_order_validity_days_positive
 msgid ""
 "The value of the field 'Default Validity Duration of Sale Orders' must be "
 "positive or 0."
 msgstr ""
 "Vrednost polja 'privzeto trajanje veljavnosti prodajnih nalogov' mora biti "
 "pozitivna ali 0."
-
-#. module: sale_validity
-#: model:ir.model.fields,field_description:sale_validity.field_sale_order__validity_date
-msgid "Validity"
-msgstr ""
-
-#. module: sale_validity
-#: model:ir.model.fields,help:sale_validity.field_sale_order__validity_date
-msgid ""
-"Validity date of the quotation, after this date, the customer won't be able "
-"to validate the quotation online."
-msgstr ""
