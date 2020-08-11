@@ -27,20 +27,6 @@ class ProductTemplate(models.Model):
                 )
 
     @api.constrains("sell_only_by_packaging", "packaging_ids")
-    def _check_sell_only_by_packaging_packaging_ids(self):
-        for product in self:
-            if product.sell_only_by_packaging and not product.packaging_ids:
-                raise ValidationError(
-                    _(
-                        "Product %s cannot be defined to be sold only by "
-                        "packaging if it does not have any packaging defined."
-                    )
-                    % product.name
-                )
-
-    @api.constrains(
-        "sell_only_by_packaging", "packaging_ids", "packaging_ids.can_be_sold"
-    )
     def _check_sell_only_by_packaging_can_be_sold_packaging_ids(self):
         for product in self:
             if product.sell_only_by_packaging and not any(
