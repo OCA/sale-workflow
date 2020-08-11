@@ -49,7 +49,6 @@ msgstr "Plantilla de producto"
 #. module: sale_order_invoicing_finished_task
 #: model:ir.model,name:sale_order_invoicing_finished_task.model_sale_order
 #, fuzzy
-#| msgid "Sales Order Line"
 msgid "Sale Order"
 msgstr "Línea de pedido de venta"
 
