@@ -47,14 +47,12 @@ msgstr "Verbuche Zahlung"
 #. module: sale_automatic_workflow_payment_mode
 #: model:ir.model.fields,field_description:sale_automatic_workflow_payment_mode.field_sale_workflow_process__payment_filter_id
 #, fuzzy
-#| msgid "Register Payment"
 msgid "Register Payment Invoice Filter"
 msgstr "Verbuche Zahlung"
 
 #. module: sale_automatic_workflow_payment_mode
 #: model:ir.model,name:sale_automatic_workflow_payment_mode.model_sale_order
 #, fuzzy
-#| msgid "Sales Order"
 msgid "Sale Order"
 msgstr "Verkaufsauftrag"
 
