@@ -35,11 +35,24 @@ msgid "Only sell by packaging"
 msgstr ""
 
 #. module: sale_by_packaging
+#: model:ir.model.fields,field_description:sale_by_packaging.field_product_packaging_type__packaging_ids
+msgid "Packaging"
+msgstr ""
+
+#. module: sale_by_packaging
 #: code:addons/sale_by_packaging/models/sale_order_line.py:0
 #, python-format
 msgid ""
 "Packaging %s on product %s must be set as 'Can be sold' in order to be used "
 "on a sale order."
+msgstr ""
+
+#. module: sale_by_packaging
+#: code:addons/sale_by_packaging/models/product_packaging_type.py:0
+#, python-format
+msgid ""
+"Packaging type \"{}\" must stay with \"Can be sold\", at least one product "
+"configured as \"sell only by packaging\" is using it."
 msgstr ""
 
 #. module: sale_by_packaging
@@ -59,14 +72,6 @@ msgstr ""
 msgid ""
 "Product %s cannot be defined to be sold only by packaging if it cannot be "
 "sold."
-msgstr ""
-
-#. module: sale_by_packaging
-#: code:addons/sale_by_packaging/models/product_template.py:0
-#, python-format
-msgid ""
-"Product %s cannot be defined to be sold only by packaging if it does not "
-"have any packaging defined."
 msgstr ""
 
 #. module: sale_by_packaging
