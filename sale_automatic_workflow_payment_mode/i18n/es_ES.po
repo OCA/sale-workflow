@@ -52,7 +52,6 @@ msgstr ""
 #. module: sale_automatic_workflow_payment_mode
 #: model:ir.model,name:sale_automatic_workflow_payment_mode.model_sale_order
 #, fuzzy
-#| msgid "Sales Order"
 msgid "Sale Order"
 msgstr "Pedido de venta"
 
