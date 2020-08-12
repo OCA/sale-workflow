@@ -42,11 +42,9 @@ class SaleOrderLine(models.Model):
 class SaleOrder(models.Model):
     _inherit = 'sale.order'
 
-
     def _compute_qty_to_deliver(self):
         for so in self:
             so.qty_to_deliver = sum(so.mapped('order_line.qty_to_deliver'))
-
 
     @api.model
     def _search_qty_to_deliver(self, operator, value):
