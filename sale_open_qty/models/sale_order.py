@@ -54,7 +54,7 @@ class SaleOrder(models.Model):
             [('qty_to_deliver', operator, value)])
         order_ids = so_lines.mapped('order_id')
         res.append(('id', 'in', order_ids.ids))
-        return res
+        return [('order_line.qty_to_deliver', operator, value)]
 
     qty_to_deliver = fields.Float(compute='_compute_qty_to_deliver',
                                   search='_search_qty_to_deliver',
