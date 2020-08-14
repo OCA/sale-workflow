@@ -45,7 +45,7 @@ addon | version | summary
 [sale_mrp_link](sale_mrp_link/) | 10.0.1.0.0 | Show manufacturing orders generated from sales order
 [sale_order_action_invoice_create_hook](sale_order_action_invoice_create_hook/) | 10.0.1.0.0 | Sale Order Action Invoice Create Hook
 [sale_order_invoicing_finished_task](sale_order_invoicing_finished_task/) | 10.0.1.0.3 | Control invoice order lines if his task has been finished
-[sale_order_line_confirmation_date](sale_order_line_confirmation_date/) | 10.0.1.0.0 | Adds the confrmation date on order lines
+[sale_order_line_confirmation_date](sale_order_line_confirmation_date/) | 10.0.1.0.1 | Adds the confrmation date on order lines
 [sale_order_line_date](sale_order_line_date/) | 10.0.1.0.0 | Sale Order Line Date
 [sale_order_line_description](sale_order_line_description/) | 10.0.1.0.0 | Sale order line description
 [sale_order_line_sequence](sale_order_line_sequence/) | 10.0.1.0.0 | Propagates SO line sequence to invoices and stock picking.
