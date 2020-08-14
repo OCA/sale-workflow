@@ -38,13 +38,6 @@ msgid "Lot"
 msgstr "Lote"
 
 #. module: sale_order_lot_selection
-#: model:ir.model,name:sale_order_lot_selection.model_sale_order
-#, fuzzy
-#| msgid "Sales Order"
-msgid "Sale Order"
-msgstr "Pedido de Venda"
-
-#. module: sale_order_lot_selection
 #: model:ir.model,name:sale_order_lot_selection.model_sale_order_line
 msgid "Sales Order Line"
 msgstr "Linha Pedido de Venda"
@@ -53,3 +46,8 @@ msgstr "Linha Pedido de Venda"
 #: model:ir.model,name:sale_order_lot_selection.model_stock_move
 msgid "Stock Move"
 msgstr "Movimentação de estoque"
+
+#, fuzzy
+#~| msgid "Sales Order"
+#~ msgid "Sale Order"
+#~ msgstr "Pedido de Venda"

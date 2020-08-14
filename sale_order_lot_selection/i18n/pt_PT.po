@@ -38,11 +38,6 @@ msgid "Lot"
 msgstr ""
 
 #. module: sale_order_lot_selection
-#: model:ir.model,name:sale_order_lot_selection.model_sale_order
-msgid "Sale Order"
-msgstr ""
-
-#. module: sale_order_lot_selection
 #: model:ir.model,name:sale_order_lot_selection.model_sale_order_line
 msgid "Sales Order Line"
 msgstr ""
