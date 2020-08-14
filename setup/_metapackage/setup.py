@@ -34,6 +34,7 @@ setuptools.setup(
         'odoo10-addon-sale_mrp_link',
         'odoo10-addon-sale_order_action_invoice_create_hook',
         'odoo10-addon-sale_order_invoicing_finished_task',
+        'odoo10-addon-sale_order_line_confirmation_date',
         'odoo10-addon-sale_order_line_date',
         'odoo10-addon-sale_order_line_description',
         'odoo10-addon-sale_order_line_sequence',
