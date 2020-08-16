@@ -226,7 +226,6 @@ msgstr ""
 #. module: sale_automatic_workflow
 #: model:ir.model,name:sale_automatic_workflow.model_sale_order
 #, fuzzy
-#| msgid "Sales Team"
 msgid "Sale Order"
 msgstr "Verkoopteam"
 
