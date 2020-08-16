@@ -156,7 +156,6 @@ msgstr "Tipos de pedido de venta"
 #. module: sale_order_type
 #: model:ir.model.fields,field_description:sale_order_type.field_sale_order_type_sequence
 #, fuzzy
-#| msgid "Entry Sequence"
 msgid "Sequence"
 msgstr "Secuencia de entrada"
 
