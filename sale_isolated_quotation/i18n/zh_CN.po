@@ -53,7 +53,6 @@ msgstr ""
 #. module: sale_isolated_quotation
 #: model:ir.model.fields,field_description:sale_isolated_quotation.field_sale_order__order_id
 #, fuzzy
-#| msgid "Sales Order"
 msgid "Order"
 msgstr "销售订单"
 
@@ -75,7 +74,6 @@ msgstr ""
 #. module: sale_isolated_quotation
 #: model:ir.model,name:sale_isolated_quotation.model_sale_order
 #, fuzzy
-#| msgid "Sales Order"
 msgid "Sale Order"
 msgstr "销售订单"
 
