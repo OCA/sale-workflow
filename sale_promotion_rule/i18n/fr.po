@@ -137,7 +137,6 @@ msgstr "type de réduction"
 #. module: sale_promotion_rule
 #: model:ir.model.fields,field_description:sale_promotion_rule.field_sale_promotion_rule_discount_amount_currency_id
 #, fuzzy
-#| msgid "Discount amount"
 msgid "Discount Amount Currency"
 msgstr "Montant de réduction"
 
