@@ -27,7 +27,6 @@ msgstr ""
 #. module: sale_force_invoiced
 #: model:ir.model,name:sale_force_invoiced.model_sale_order
 #, fuzzy
-#| msgid "Sales Order"
 msgid "Sales Order"
 msgstr "Pedido de Venda"
 
