@@ -25,7 +25,6 @@ msgstr ""
 #: model:ir.model.fields,field_description:sale_invoice_policy.field_product_product__default_invoice_policy
 #: model:ir.model.fields,field_description:sale_invoice_policy.field_product_template__default_invoice_policy
 #, fuzzy
-#| msgid "Invoicing Policy"
 msgid "Default Invoicing Policy"
 msgstr "Politique de facturation"
 
@@ -88,10 +87,6 @@ msgstr ""
 #: model:ir.model.fields,help:sale_invoice_policy.field_product_product__invoice_policy
 #: model:ir.model.fields,help:sale_invoice_policy.field_product_template__invoice_policy
 #, fuzzy
-#| msgid ""
-#| "Ordered Quantity: Invoice based on the quantity the customer ordered.\n"
-#| "Delivered Quantity: Invoiced based on the quantity the vendor delivered "
-#| "(time or deliveries)."
 msgid ""
 "Ordered Quantity: Invoice quantities ordered by the customer.\n"
 "Delivered Quantity: Invoice quantities delivered to the customer."
@@ -123,7 +118,6 @@ msgstr "Politique de facturation"
 #. module: sale_invoice_policy
 #: model:ir.model,name:sale_invoice_policy.model_sale_order
 #, fuzzy
-#| msgid "Sales Order"
 msgid "Sale Order"
 msgstr "Commande de vente"
 
