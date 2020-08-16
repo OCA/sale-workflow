@@ -43,7 +43,6 @@ msgstr "Solo vendemos por embalaje"
 #. module: sale_by_packaging
 #: model:ir.model.fields,field_description:sale_by_packaging.field_product_packaging_type__packaging_ids
 #, fuzzy
-#| msgid "Product Packaging"
 msgid "Packaging"
 msgstr "Empaquetado del producto"
 
