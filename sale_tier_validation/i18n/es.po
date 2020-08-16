@@ -38,7 +38,6 @@ msgstr "<i class=\"fa fa-thumbs-up\"/>La operación ha sido <b>validada</b>!"
 #. module: sale_tier_validation
 #: model_terms:ir.ui.view,arch_db:sale_tier_validation.view_sale_order_filter
 #, fuzzy
-#| msgid "My sales to review"
 msgid "My Sales to review"
 msgstr "Mis Compras a revisar"
 
@@ -70,14 +69,12 @@ msgstr "SOs validadas y preparadas para ser confirmadas"
 #. module: sale_tier_validation
 #: model:ir.model,name:sale_tier_validation.model_sale_order
 #, fuzzy
-#| msgid "sale Order"
 msgid "Sale Order"
 msgstr "Orden de Compra"
 
 #. module: sale_tier_validation
 #: model:ir.model,name:sale_tier_validation.model_tier_definition
 #, fuzzy
-#| msgid "tier.definition"
 msgid "Tier Definition"
 msgstr "tier.definition"
 
