@@ -30,7 +30,6 @@ msgstr "Produzione"
 #. module: sale_mrp_link
 #: model:ir.model.fields,field_description:sale_mrp_link.field_sale_order_production_count
 #, fuzzy
-#| msgid "Production count"
 msgid "Production Count"
 msgstr "Numero ordini di produzione"
 
