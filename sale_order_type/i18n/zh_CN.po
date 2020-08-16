@@ -154,7 +154,6 @@ msgstr "销售类型"
 #. module: sale_order_type
 #: model:ir.model,name:sale_order_type.model_sale_order_line
 #, fuzzy
-#| msgid "Sales Order Type"
 msgid "Sales Order Line"
 msgstr "销售订单类型"
 
