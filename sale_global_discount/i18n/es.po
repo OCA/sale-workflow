@@ -30,7 +30,6 @@ msgstr "<strong>Subtl. antes desc.</strong>"
 #. module: sale_global_discount
 #: model:ir.model.fields,field_description:sale_global_discount.field_sale_order__amount_total_before_global_discounts
 #, fuzzy
-#| msgid "Amount Untaxed Before Discounts"
 msgid "Amount Total Before Discounts"
 msgstr "Base Imponible sin Descuentos"
 
