@@ -148,14 +148,12 @@ msgstr "销售类型"
 #. module: sale_order_type
 #: model:ir.model,name:sale_order_type.model_sale_order
 #, fuzzy
-#| msgid "Sale Order"
 msgid "Sales Order"
 msgstr "销售订单"
 
 #. module: sale_order_type
 #: model:ir.model,name:sale_order_type.model_sale_order_line
 #, fuzzy
-#| msgid "Sale Order"
 msgid "Sales Order Line"
 msgstr "销售订单"
 
