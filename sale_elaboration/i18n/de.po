@@ -152,7 +152,6 @@ msgstr "Produktvorlage"
 #. module: sale_elaboration
 #: model:ir.model,name:sale_elaboration.model_product_elaboration
 #, fuzzy
-#| msgid "Product Template"
 msgid "Product elaborations"
 msgstr "Produktvorlage"
 
