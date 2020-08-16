@@ -33,7 +33,6 @@ msgstr ""
 #. module: sale_order_line_date
 #: model:ir.model,name:sale_order_line_date.model_sale_order
 #, fuzzy
-#| msgid "Sale Order"
 msgid "Sales Order"
 msgstr "Pedido de venda"
 
