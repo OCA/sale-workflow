@@ -41,7 +41,6 @@ msgstr "Société"
 #. module: sale_generator
 #: model_terms:ir.ui.view,arch_db:sale_generator.view_sale_generator_form
 #, fuzzy
-#| msgid "Confirm All Sale Generated"
 msgid "Confirm All Generated Sales"
 msgstr "Confirmer toute les commandes"
 
@@ -94,14 +93,12 @@ msgstr "Brouillon"
 #. module: sale_generator
 #: model_terms:ir.ui.view,arch_db:sale_generator.view_sale_generator_form
 #, fuzzy
-#| msgid "Start Generating Sale"
 msgid "Generate Sales"
 msgstr "Commencer la génération de commande"
 
 #. module: sale_generator
 #: model_terms:ir.ui.view,arch_db:sale_generator.view_sale_generator_form
 #, fuzzy
-#| msgid "Generating Order"
 msgid "Generated Sale Orders"
 msgstr "Génération de commande"
 
@@ -121,7 +118,6 @@ msgstr "Générateur"
 #. module: sale_generator
 #: model:ir.ui.menu,name:sale_generator.menuitem_sale_generator
 #, fuzzy
-#| msgid "Generator"
 msgid "Generators"
 msgstr "Générateur"
 
@@ -141,7 +137,6 @@ msgstr "Pour ajouter un client vous avez deux posibilités :"
 #. module: sale_generator
 #: model:ir.model.fields,field_description:sale_generator.field_sale_order__is_template
 #, fuzzy
-#| msgid "Is template"
 msgid "Is a generator template"
 msgstr "Est un modèle"
 
@@ -170,7 +165,6 @@ msgstr ""
 #. module: sale_generator
 #: code:addons/sale_generator/models/partner.py:30
 #, fuzzy, python-format
-#| msgid "Customer"
 msgid "New Customer"
 msgstr "Client"
 
@@ -189,7 +183,6 @@ msgstr "Commande"
 #: model:ir.actions.act_window,name:sale_generator.action_sale_order_template
 #: model:ir.ui.menu,name:sale_generator.menuitem_sale_order_template
 #, fuzzy
-#| msgid "Sale Template"
 msgid "Sale Order Templates"
 msgstr "Modèle de commande"
 
