@@ -48,7 +48,6 @@ msgstr "Predložak proizvoda"
 #. module: sale_order_invoicing_finished_task
 #: model:ir.model,name:sale_order_invoicing_finished_task.model_sale_order
 #, fuzzy
-#| msgid "Sales Order"
 msgid "Sale Order"
 msgstr "Prodajni nalog"
 
