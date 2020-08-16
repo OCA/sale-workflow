@@ -32,9 +32,6 @@ msgstr "Date de début par défaut"
 #. module: sale_start_end_dates
 #: code:addons/sale_start_end_dates/models/sale_order.py:21
 #, fuzzy, python-format
-#| msgid ""
-#| "Default Start Date should be before or be the same as Default End Date "
-#| "for sale order %s"
 msgid ""
 "Default Start Date should be before or be the same as Default End Date for "
 "sale order '%s'."
@@ -85,9 +82,6 @@ msgstr "Nombre de jours"
 #. module: sale_start_end_dates
 #: code:addons/sale_start_end_dates/models/sale_order.py:68
 #, fuzzy, python-format
-#| msgid ""
-#| "On sale order line with Product '%s', the number of days is negative ; "
-#| "this is not allowed."
 msgid ""
 "On sale order line with product '%s', the number of days is negative (%d) ; "
 "this is not allowed. The number of days has been forced to 1."
@@ -98,7 +92,6 @@ msgstr ""
 #. module: sale_start_end_dates
 #: model:ir.model,name:sale_start_end_dates.model_sale_order
 #, fuzzy
-#| msgid "Sales Order"
 msgid "Sale Order"
 msgstr "Bon de commande"
 
@@ -123,7 +116,6 @@ msgstr ""
 #. module: sale_start_end_dates
 #: code:addons/sale_start_end_dates/models/sale_order.py:67
 #, fuzzy, python-format
-#| msgid "Number of Days"
 msgid "Wrong number of days"
 msgstr "Nombre de jours"
 
