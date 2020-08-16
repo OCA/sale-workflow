@@ -38,7 +38,6 @@ msgstr "明细未含税金额"
 #. module: sale_shipping_info_helper
 #: model:ir.model,name:sale_shipping_info_helper.model_sale_order
 #, fuzzy
-#| msgid "Sale Order"
 msgid "Sales Order"
 msgstr "销售订单"
 
