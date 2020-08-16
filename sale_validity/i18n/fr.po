@@ -68,7 +68,6 @@ msgstr "Validité par défaut du bon de commande"
 #. module: sale_validity
 #: model:ir.model,name:sale_validity.model_sale_order
 #, fuzzy
-#| msgid "Sales Order"
 msgid "Sale Order"
 msgstr "Bon de commande"
 
