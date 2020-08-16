@@ -58,14 +58,12 @@ msgstr "Družba"
 #. module: product_margin_classification
 #: model:ir.ui.view,arch_db:product_margin_classification.view_product_margin_classification_form
 #, fuzzy
-#| msgid "Computation"
 msgid "Computation Method"
 msgstr "Obdelava"
 
 #. module: product_margin_classification
 #: model:ir.ui.view,arch_db:product_margin_classification.view_product_margin_classification_form
 #, fuzzy
-#| msgid "Correct Margin"
 msgid "Correct"
 msgstr "Popravek marže"
 
@@ -114,7 +112,6 @@ msgstr ""
 #. module: product_margin_classification
 #: model:ir.ui.view,arch_db:product_margin_classification.view_product_template_search
 #, fuzzy
-#| msgid "Correct Margin"
 msgid "Incorrect Margin"
 msgstr "Popravek marže"
 
@@ -181,7 +178,6 @@ msgstr "Doplačilo k ceni"
 #. module: product_margin_classification
 #: model:ir.model,name:product_margin_classification.model_product_product
 #, fuzzy
-#| msgid "Products"
 msgid "Product"
 msgstr "Proizvodi"
 
@@ -205,17 +201,12 @@ msgstr "Količina proizvodov"
 #. module: product_margin_classification
 #: model:ir.model.fields,field_description:product_margin_classification.field_product_margin_classification_profit_margin
 #, fuzzy
-#| msgid "Correct Margin"
 msgid "Profit Margin"
 msgstr "Popravek marže"
 
 #. module: product_margin_classification
 #: model:ir.model.fields,help:product_margin_classification.field_product_margin_classification_price_round
 #, fuzzy
-#| msgid ""
-#| "Sets the price so that it is a multiple of this value.\n"
-#| "Rounding is applied after the margin and before the surcharge.\n"
-#| "To have prices that end in 9.99, set rounding 10, surcharge -0.01"
 msgid ""
 "Sets the price so that it is a multiple of this value.\n"
 "Rounding is applied after the margin and before the surcharge.\n"
@@ -265,7 +256,6 @@ msgstr "Teoretično stanje cene"
 #: model:ir.ui.view,arch_db:product_margin_classification.view_product_template_search
 #: selection:product.template,margin_state:0
 #, fuzzy
-#| msgid "Cheaper"
 msgid "Too Cheap"
 msgstr "Ceneje"
 
@@ -283,7 +273,6 @@ msgstr "Predrago"
 #. module: product_margin_classification
 #: model:product.template,name:product_margin_classification.too_expensive_product
 #, fuzzy
-#| msgid "Too Expensive"
 msgid "Too Expensive Product"
 msgstr "Predrago"
 
@@ -295,38 +284,30 @@ msgstr ""
 #. module: product_margin_classification
 #: model:ir.model.fields,field_description:product_margin_classification.field_product_margin_classification_template_too_cheap_qty
 #, fuzzy
-#| msgid "Products Cheaper"
 msgid "Total Products Too Cheap"
 msgstr "Cenejši proizvodi"
 
 #. module: product_margin_classification
 #: model:ir.model.fields,field_description:product_margin_classification.field_product_margin_classification_template_too_expensive_qty
 #, fuzzy
-#| msgid "Products Too Expensive"
 msgid "Total Products Too Expensive"
 msgstr "Predragi proizvodi"
 
 #. module: product_margin_classification
 #: model:ir.model.fields,field_description:product_margin_classification.field_product_margin_classification_template_correct_price_qty
 #, fuzzy
-#| msgid "Products With Different Price"
 msgid "Total Products With Correct Price"
 msgstr "Proizvodi z drugačno ceno"
 
 #. module: product_margin_classification
 #: model:ir.model.fields,field_description:product_margin_classification.field_product_margin_classification_template_incorrect_price_qty
 #, fuzzy
-#| msgid "Products With Different Price"
 msgid "Total Products With Incorrect Price"
 msgstr "Proizvodi z drugačno ceno"
 
 #. module: product_margin_classification
 #: code:addons/product_margin_classification/models/product_template.py:54
 #, fuzzy, python-format
-#| msgid ""
-#| "Unimplemented Feature\n"
-#| "The Tax %s is not correctly set for computing prices with coefficients "
-#| "for the product %s"
 msgid ""
 "Unimplemented Feature\n"
 "The sale taxes are not correctly set for computing prices with coefficients "
@@ -352,7 +333,6 @@ msgstr ""
 #. module: product_margin_classification
 #: model:ir.model,name:product_margin_classification.model_product_margin_classification
 #, fuzzy
-#| msgid "Margin Classification"
 msgid "product.margin.classification"
 msgstr "Klasifikacija marž"
 

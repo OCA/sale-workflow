@@ -58,7 +58,6 @@ msgstr "Firma"
 #. module: product_margin_classification
 #: model:ir.ui.view,arch_db:product_margin_classification.view_product_margin_classification_form
 #, fuzzy
-#| msgid "Computation"
 msgid "Computation Method"
 msgstr "Hesaplama"
 
@@ -177,7 +176,6 @@ msgstr "Fazla fiyat"
 #. module: product_margin_classification
 #: model:ir.model,name:product_margin_classification.model_product_product
 #, fuzzy
-#| msgid "Products"
 msgid "Product"
 msgstr "Ürünler"
 
@@ -249,7 +247,6 @@ msgstr "Teorik fiyat durumu"
 #: model:ir.ui.view,arch_db:product_margin_classification.view_product_template_search
 #: selection:product.template,margin_state:0
 #, fuzzy
-#| msgid "Cheaper"
 msgid "Too Cheap"
 msgstr "Ucuz"
 
@@ -267,7 +264,6 @@ msgstr "Fazla pahalı"
 #. module: product_margin_classification
 #: model:product.template,name:product_margin_classification.too_expensive_product
 #, fuzzy
-#| msgid "Too Expensive"
 msgid "Too Expensive Product"
 msgstr "Fazla pahalı"
 
@@ -279,28 +275,24 @@ msgstr ""
 #. module: product_margin_classification
 #: model:ir.model.fields,field_description:product_margin_classification.field_product_margin_classification_template_too_cheap_qty
 #, fuzzy
-#| msgid "Products Cheaper"
 msgid "Total Products Too Cheap"
 msgstr "Ucuz ürünler"
 
 #. module: product_margin_classification
 #: model:ir.model.fields,field_description:product_margin_classification.field_product_margin_classification_template_too_expensive_qty
 #, fuzzy
-#| msgid "Products Too Expensive"
 msgid "Total Products Too Expensive"
 msgstr "Fazla pahalı ürünler"
 
 #. module: product_margin_classification
 #: model:ir.model.fields,field_description:product_margin_classification.field_product_margin_classification_template_correct_price_qty
 #, fuzzy
-#| msgid "Products With Different Price"
 msgid "Total Products With Correct Price"
 msgstr "Farklı fiyatlı ürünler"
 
 #. module: product_margin_classification
 #: model:ir.model.fields,field_description:product_margin_classification.field_product_margin_classification_template_incorrect_price_qty
 #, fuzzy
-#| msgid "Products With Different Price"
 msgid "Total Products With Incorrect Price"
 msgstr "Farklı fiyatlı ürünler"
 

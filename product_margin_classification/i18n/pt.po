@@ -175,7 +175,6 @@ msgstr ""
 #. module: product_margin_classification
 #: model:ir.model,name:product_margin_classification.model_product_product
 #, fuzzy
-#| msgid "Products"
 msgid "Product"
 msgstr "Produtos"
 

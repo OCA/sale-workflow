@@ -21,24 +21,18 @@ msgstr ""
 #. module: product_margin_classification
 #: code:addons/product_margin_classification/models/product_margin_classification.py:96
 #, fuzzy, python-format
-#| msgid "-1 is not a valid Markup."
 msgid "-100 is not a valid Markup."
 msgstr "-1 n'est pas un taux de marge valide."
 
 #. module: product_margin_classification
 #: code:addons/product_margin_classification/models/product_margin_classification.py:106
 #, fuzzy, python-format
-#| msgid "1 is not a valid Profit Margin."
 msgid "100 is not a valid Profit Margin."
 msgstr "1 n'est pas un taux de marque valide."
 
 #. module: product_margin_classification
 #: model:ir.model.fields,help:product_margin_classification.field_product_margin_classification_profit_margin
 #, fuzzy
-#| msgid ""
-#| "Also called 'Net margin' or 'Net Profit Ratio'.\n"
-#| "It is computed with the following formula Profit Margin = (Sale Price - "
-#| "Cost) / Sale Price"
 msgid ""
 "Also called 'Net margin' or 'Net Profit Ratio'.\n"
 "It is computed with the following formula Profit Margin = 100 * (Sale Price "
@@ -71,7 +65,6 @@ msgstr "Méthode de calcul"
 #. module: product_margin_classification
 #: model:ir.ui.view,arch_db:product_margin_classification.view_product_margin_classification_form
 #, fuzzy
-#| msgid "Correct Margin"
 msgid "Correct"
 msgstr "Marge correcte"
 
@@ -115,14 +108,12 @@ msgstr "ID"
 #. module: product_margin_classification
 #: model:ir.ui.view,arch_db:product_margin_classification.view_product_margin_classification_form
 #, fuzzy
-#| msgid "Income Account"
 msgid "Incorrect"
 msgstr "Compte de revenu"
 
 #. module: product_margin_classification
 #: model:ir.ui.view,arch_db:product_margin_classification.view_product_template_search
 #, fuzzy
-#| msgid "Correct Margin"
 msgid "Incorrect Margin"
 msgstr "Marge correcte"
 
@@ -265,7 +256,6 @@ msgstr "Etat de la marge"
 #: model:ir.ui.view,arch_db:product_margin_classification.view_product_template_search
 #: selection:product.template,margin_state:0
 #, fuzzy
-#| msgid "Too Cheap Product"
 msgid "Too Cheap"
 msgstr "Produit pas assez cher"
 
@@ -293,28 +283,24 @@ msgstr ""
 #. module: product_margin_classification
 #: model:ir.model.fields,field_description:product_margin_classification.field_product_margin_classification_template_too_cheap_qty
 #, fuzzy
-#| msgid "Products Cheaper"
 msgid "Total Products Too Cheap"
 msgstr "Produits trop peu chers"
 
 #. module: product_margin_classification
 #: model:ir.model.fields,field_description:product_margin_classification.field_product_margin_classification_template_too_expensive_qty
 #, fuzzy
-#| msgid "Products Too Expensive"
 msgid "Total Products Too Expensive"
 msgstr "Articles trop chers"
 
 #. module: product_margin_classification
 #: model:ir.model.fields,field_description:product_margin_classification.field_product_margin_classification_template_correct_price_qty
 #, fuzzy
-#| msgid "Total Products With Different Price"
 msgid "Total Products With Correct Price"
 msgstr "Total des produits avec un prix différent"
 
 #. module: product_margin_classification
 #: model:ir.model.fields,field_description:product_margin_classification.field_product_margin_classification_template_incorrect_price_qty
 #, fuzzy
-#| msgid "Total Products With Different Price"
 msgid "Total Products With Incorrect Price"
 msgstr "Total des produits avec un prix différent"
 
@@ -338,11 +324,6 @@ msgstr "Augmenter jusqu'au prix théorique"
 #. module: product_margin_classification
 #: model:ir.model.fields,help:product_margin_classification.field_product_margin_classification_markup
 #, fuzzy
-#| msgid ""
-#| "Value that help you to compute the sale price, based on your cost, as "
-#| "defined: Sale Price = (Cost * (1 + Markup))\n"
-#| "It is computed with the following formula Markup = (Sale Price - Cost) / "
-#| "Cost"
 msgid ""
 "Value that help you to compute the sale price, based on your cost, as "
 "defined: Sale Price = (Cost * (100 + Markup)) / 100\n"
@@ -357,7 +338,6 @@ msgstr ""
 #. module: product_margin_classification
 #: model:ir.model,name:product_margin_classification.model_product_margin_classification
 #, fuzzy
-#| msgid "Margin Classification"
 msgid "product.margin.classification"
 msgstr "Catégorie de marge"
 

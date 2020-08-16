@@ -254,7 +254,6 @@ msgstr "Demasiado Barato"
 #. module: product_margin_classification
 #: model:product.template,name:product_margin_classification.too_cheap_product
 #, fuzzy
-#| msgid "Too Cheap"
 msgid "Too Cheap Product"
 msgstr "Demasiado Barato"
 
@@ -267,7 +266,6 @@ msgstr "Demasiado caro"
 #. module: product_margin_classification
 #: model:product.template,name:product_margin_classification.too_expensive_product
 #, fuzzy
-#| msgid "Too Expensive"
 msgid "Too Expensive Product"
 msgstr "Demasiado caro"
 

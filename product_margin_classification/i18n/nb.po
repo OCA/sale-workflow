@@ -57,7 +57,6 @@ msgstr "Firma"
 #. module: product_margin_classification
 #: model:ir.ui.view,arch_db:product_margin_classification.view_product_margin_classification_form
 #, fuzzy
-#| msgid "Computation"
 msgid "Computation Method"
 msgstr "Beregning"
 
