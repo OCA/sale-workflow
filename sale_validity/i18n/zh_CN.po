@@ -70,7 +70,6 @@ msgstr ""
 #. module: sale_validity
 #: model:ir.model,name:sale_validity.model_sale_order
 #, fuzzy
-#| msgid "Sale Order"
 msgid "Sales Order"
 msgstr "销售订单"
 
