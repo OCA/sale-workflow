@@ -36,6 +36,5 @@ msgstr "Verkaufsauftrag"
 #. module: sale_order_general_discount
 #: model:ir.model,name:sale_order_general_discount.model_sale_order_line
 #, fuzzy
-#| msgid "Sale Order"
 msgid "Sales Order Line"
 msgstr "Verkaufsauftrag"
