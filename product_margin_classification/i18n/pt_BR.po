@@ -64,7 +64,6 @@ msgstr "Empresa"
 #. module: product_margin_classification
 #: view:product.margin.classification:product_margin_classification.view_product_margin_classification_form
 #, fuzzy
-#| msgid "Computation"
 msgid "Computation Method"
 msgstr "Calcular"
 
@@ -167,7 +166,6 @@ msgstr ""
 #. module: product_margin_classification
 #: model:ir.model,name:product_margin_classification.model_product_product
 #, fuzzy
-#| msgid "Products"
 msgid "Product"
 msgstr "Produtos"
 
