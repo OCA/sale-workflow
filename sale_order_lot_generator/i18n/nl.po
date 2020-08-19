@@ -19,19 +19,17 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
 #. module: sale_order_lot_generator
-#: model:ir.model.fields,help:sale_order_lot_generator.field_delivery_carrier_auto_generate_prodlot
-#: model:ir.model.fields,help:sale_order_lot_generator.field_product_product_auto_generate_prodlot
-#: model:ir.model.fields,help:sale_order_lot_generator.field_product_template_auto_generate_prodlot
-msgid ""
-"Forces to specifiy a Serial Number for all lines containing this product "
-"since the confirmation of the Sale Order"
+#: model:ir.model.fields,field_description:sale_order_lot_generator.field_product_product__auto_generate_prodlot
+#: model:ir.model.fields,field_description:sale_order_lot_generator.field_product_template__auto_generate_prodlot
+msgid "Auto Generate Lot"
 msgstr ""
 
 #. module: sale_order_lot_generator
-#: model:ir.model.fields,field_description:sale_order_lot_generator.field_delivery_carrier_auto_generate_prodlot
-#: model:ir.model.fields,field_description:sale_order_lot_generator.field_product_product_auto_generate_prodlot
-#: model:ir.model.fields,field_description:sale_order_lot_generator.field_product_template_auto_generate_prodlot
-msgid "Lot Generation Auto"
+#: model:ir.model.fields,help:sale_order_lot_generator.field_product_product__auto_generate_prodlot
+#: model:ir.model.fields,help:sale_order_lot_generator.field_product_template__auto_generate_prodlot
+msgid ""
+"Forces to specifiy a Serial Number for all lines containing this product "
+"since the confirmation of the Sale Order"
 msgstr ""
 
 #. module: sale_order_lot_generator
@@ -41,7 +39,8 @@ msgstr ""
 
 #. module: sale_order_lot_generator
 #: model:ir.model,name:sale_order_lot_generator.model_sale_order
-msgid "Sales Order"
+#, fuzzy
+msgid "Sale Order"
 msgstr "Verkooporder"
 
 #. module: sale_order_lot_generator
