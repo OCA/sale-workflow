@@ -1,0 +1,555 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# * sale_order_type
+#
+# This file contains the translation of the following modules:
+# 	* sale_payment_sheet
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 15.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2022-06-28 20:48+0000\n"
+"PO-Revision-Date: 2022-06-28 20:48+0000\n"
+"Last-Translator: César A. Sánchez\n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: sale_payment_sheet
+#: model:ir.actions.report,print_report_name:sale_payment_sheet.action_report_sale_payment_sheet
+msgid "'Payment sheet %s' % (object.name)"
+msgstr "'Hoja de pagos %s' % (object.name)"
+
+#. module: sale_payment_sheet
+#: model_terms:ir.ui.view,arch_db:sale_payment_sheet.report_sale_payment_sheet
+msgid "<span>Page: </span>"
+msgstr "<span>Página: </span>"
+
+#. module: sale_payment_sheet
+#: model_terms:ir.ui.view,arch_db:sale_payment_sheet.report_sale_payment_sheet
+msgid "<span>Sheet: </span>"
+msgstr "<span> Hoja </span>"
+
+#. module: sale_payment_sheet
+#: model_terms:ir.ui.view,arch_db:sale_payment_sheet.report_sale_payment_sheet
+msgid "<span>Total: </span>"
+msgstr "<span>Total: </span>"
+
+#. module: sale_payment_sheet
+#: model:ir.model.fields,field_description:sale_payment_sheet.field_sale_payment_sheet__message_needaction
+msgid "Action Needed"
+msgstr "Necesaria acción"
+
+#. module: sale_payment_sheet
+#: model:ir.model.fields,field_description:sale_payment_sheet.field_res_users__commercial_journal_ids
+#: model:ir.model.fields,field_description:sale_payment_sheet.field_sale_invoice_payment_wiz__commercial_journal_ids
+#: model:ir.model.fields,field_description:sale_payment_sheet.field_sale_payment_sheet__commercial_journal_ids
+msgid "Allowed journals for commercial"
+msgstr "Diarios permitidos"
+
+#. module: sale_payment_sheet
+#: model:ir.model.fields,field_description:sale_payment_sheet.field_sale_invoice_payment_wiz__amount
+#: model:ir.model.fields,field_description:sale_payment_sheet.field_sale_payment_sheet_line__amount
+#: model_terms:ir.ui.view,arch_db:sale_payment_sheet.report_sale_payment_sheet
+msgid "Amount"
+msgstr "Importe"
+
+#. module: sale_payment_sheet
+#: model_terms:ir.ui.view,arch_db:sale_payment_sheet.view_invoice_tree
+msgid "Amount Due"
+msgstr "Importe adeudado"
+
+#. module: sale_payment_sheet
+#: model:ir.model.fields,field_description:sale_payment_sheet.field_sale_payment_sheet__message_attachment_count
+msgid "Attachment Count"
+msgstr "Conteo de archivos adjuntos"
+
+#. module: sale_payment_sheet
+#: model:ir.model.fields,field_description:sale_payment_sheet.field_sale_payment_sheet__statement_id
+#: model_terms:ir.ui.view,arch_db:sale_payment_sheet.view_sale_payment_sheet_form
+msgid "Bank statement"
+msgstr "Extracto bancario"
+
+#. module: sale_payment_sheet
+#: model_terms:ir.ui.view,arch_db:sale_payment_sheet.sale_invoice_payment_wiz
+msgid "Cancel"
+msgstr "Cancelar"
+
+#. module: sale_payment_sheet
+#: model:ir.model.fields,field_description:sale_payment_sheet.field_sale_payment_sheet__company_id
+#: model:ir.model.fields,field_description:sale_payment_sheet.field_sale_payment_sheet_line__company_id
+msgid "Company"
+msgstr "Compañía"
+
+#. module: sale_payment_sheet
+#: model:ir.model.fields,help:sale_payment_sheet.field_sale_payment_sheet__company_id
+#: model:ir.model.fields,help:sale_payment_sheet.field_sale_payment_sheet_line__company_id
+msgid "Company related to this journal"
+msgstr "Compañía relacionada con este diario"
+
+#. module: sale_payment_sheet
+#: model_terms:ir.ui.view,arch_db:sale_payment_sheet.view_sale_payment_sheet_form
+msgid "Confirm sheet"
+msgstr "Confirmar hoja"
+
+#. module: sale_payment_sheet
+#: model_terms:ir.ui.view,arch_db:sale_payment_sheet.view_sale_payment_sheet_search
+msgid "Confirmed"
+msgstr "Confirmado"
+
+#. module: sale_payment_sheet
+#: model:ir.model.fields,field_description:sale_payment_sheet.field_sale_invoice_payment_wiz__create_uid
+#: model:ir.model.fields,field_description:sale_payment_sheet.field_sale_payment_sheet__create_uid
+#: model:ir.model.fields,field_description:sale_payment_sheet.field_sale_payment_sheet_line__create_uid
+msgid "Created by"
+msgstr "Creado el"
+
+#. module: sale_payment_sheet
+#: model:ir.model.fields,field_description:sale_payment_sheet.field_sale_invoice_payment_wiz__create_date
+#: model:ir.model.fields,field_description:sale_payment_sheet.field_sale_payment_sheet__create_date
+#: model:ir.model.fields,field_description:sale_payment_sheet.field_sale_payment_sheet_line__create_date
+msgid "Created on"
+msgstr "Creado el"
+
+#. module: sale_payment_sheet
+#: model:ir.model.fields,field_description:sale_payment_sheet.field_sale_invoice_payment_wiz__currency_id
+#: model:ir.model.fields,field_description:sale_payment_sheet.field_sale_payment_sheet__currency_id
+msgid "Currency"
+msgstr "Moneda"
+
+#. module: sale_payment_sheet
+#: model:ir.model.fields,field_description:sale_payment_sheet.field_sale_payment_sheet__date
+#: model:ir.model.fields,field_description:sale_payment_sheet.field_sale_payment_sheet_line__date
+#: model_terms:ir.ui.view,arch_db:sale_payment_sheet.report_sale_payment_sheet
+#: model_terms:ir.ui.view,arch_db:sale_payment_sheet.view_sale_payment_sheet_search
+msgid "Date"
+msgstr "Fecha"
+
+#. module: sale_payment_sheet
+#: model_terms:ir.ui.view,arch_db:sale_payment_sheet.report_sale_payment_sheet
+msgid "Description"
+msgstr "Descripción"
+
+#. module: sale_payment_sheet
+#: model:ir.model.fields,field_description:sale_payment_sheet.field_sale_invoice_payment_wiz__display_name
+#: model:ir.model.fields,field_description:sale_payment_sheet.field_sale_payment_sheet__display_name
+#: model:ir.model.fields,field_description:sale_payment_sheet.field_sale_payment_sheet_line__display_name
+msgid "Display Name"
+msgstr "Nombre a mostrar"
+
+#. module: sale_payment_sheet
+#: model_terms:ir.ui.view,arch_db:sale_payment_sheet.view_sale_payment_sheet_search
+msgid "Draft"
+msgstr "Borrador"
+
+#. module: sale_payment_sheet
+#: model:ir.model.fields,field_description:sale_payment_sheet.field_sale_payment_sheet__reference
+msgid "External Reference"
+msgstr "Referencia Externa"
+
+#. module: sale_payment_sheet
+#: model:ir.model.fields,field_description:sale_payment_sheet.field_sale_payment_sheet__message_follower_ids
+msgid "Followers"
+msgstr "Seguidores"
+
+#. module: sale_payment_sheet
+#: model:ir.model.fields,field_description:sale_payment_sheet.field_sale_payment_sheet__message_partner_ids
+msgid "Followers (Partners)"
+msgstr "Seguidores (Empresas)"
+
+#. module: sale_payment_sheet
+#: model:ir.model.fields.selection,name:sale_payment_sheet.selection__sale_payment_sheet_line__transaction_type__full
+msgid "Full payment"
+msgstr "Completo"
+
+#. module: sale_payment_sheet
+#: model:ir.model.fields,help:sale_payment_sheet.field_sale_payment_sheet_line__sequence
+msgid ""
+"Gives the sequence order when displaying a list of payment sheet lines."
+msgstr ""
+"Indica el orden de secuencia cuando se muestra una lista de líneas de la "
+"hoja de pagos."
+
+#. module: sale_payment_sheet
+#: model_terms:ir.ui.view,arch_db:sale_payment_sheet.view_sale_payment_sheet_search
+msgid "Group By"
+msgstr "Agrupado por..."
+
+#. module: sale_payment_sheet
+#: model:ir.model.fields,field_description:sale_payment_sheet.field_sale_payment_sheet__group_lines
+msgid "Group statement lines by"
+msgstr "Agrupar Líneas del extracto bancario por"
+
+#. module: sale_payment_sheet
+#: model:ir.model.fields,field_description:sale_payment_sheet.field_sale_payment_sheet__has_message
+msgid "Has Message"
+msgstr "Tiene mensaje"
+
+#. module: sale_payment_sheet
+#: model:ir.model.fields,field_description:sale_payment_sheet.field_sale_invoice_payment_wiz__id
+#: model:ir.model.fields,field_description:sale_payment_sheet.field_sale_payment_sheet__id
+#: model:ir.model.fields,field_description:sale_payment_sheet.field_sale_payment_sheet_line__id
+msgid "ID"
+msgstr "ID (Identificador)"
+
+#. module: sale_payment_sheet
+#: model:ir.model.fields,help:sale_payment_sheet.field_sale_payment_sheet__message_needaction
+#: model:ir.model.fields,help:sale_payment_sheet.field_sale_payment_sheet__message_unread
+msgid "If checked, new messages require your attention."
+msgstr "Si está marcado, hay nuevos mensajes que requieren su atención."
+
+#. module: sale_payment_sheet
+#: model:ir.model.fields,help:sale_payment_sheet.field_sale_payment_sheet__message_has_error
+#: model:ir.model.fields,help:sale_payment_sheet.field_sale_payment_sheet__message_has_sms_error
+msgid "If checked, some messages have a delivery error."
+msgstr "Si se encuentra marcado, algunos mensajes tienen error de envío."
+
+#. module: sale_payment_sheet
+#: model:ir.model.fields,field_description:sale_payment_sheet.field_sale_payment_sheet_line__invoice_id
+#: model_terms:ir.ui.view,arch_db:sale_payment_sheet.report_sale_payment_sheet
+msgid "Invoice"
+msgstr "Factura"
+
+#. module: sale_payment_sheet
+#: model:ir.actions.act_window,name:sale_payment_sheet.action_invoice_sale_payment_sheet
+#: model:ir.ui.menu,name:sale_payment_sheet.sale_payment_invoice
+msgid "Invoices"
+msgstr "Facturas"
+
+#. module: sale_payment_sheet
+#: model:ir.model.fields,field_description:sale_payment_sheet.field_sale_payment_sheet__message_is_follower
+msgid "Is Follower"
+msgstr "Es seguidor"
+
+#. module: sale_payment_sheet
+#: model:ir.model.fields,field_description:sale_payment_sheet.field_sale_invoice_payment_wiz__journal_id
+#: model:ir.model.fields,field_description:sale_payment_sheet.field_sale_payment_sheet__journal_id
+#: model_terms:ir.ui.view,arch_db:sale_payment_sheet.view_sale_payment_sheet_search
+msgid "Journal"
+msgstr "Diario"
+
+#. module: sale_payment_sheet
+#: model:ir.model.fields,field_description:sale_payment_sheet.field_sale_payment_sheet_line__journal_currency_id
+msgid "Journal's Currency"
+msgstr "Moneda del diario"
+
+#. module: sale_payment_sheet
+#: model:ir.model.fields,field_description:sale_payment_sheet.field_sale_payment_sheet_line__name
+msgid "Label"
+msgstr "Etiqueta"
+
+#. module: sale_payment_sheet
+#: model:ir.model.fields,field_description:sale_payment_sheet.field_sale_invoice_payment_wiz____last_update
+#: model:ir.model.fields,field_description:sale_payment_sheet.field_sale_payment_sheet____last_update
+#: model:ir.model.fields,field_description:sale_payment_sheet.field_sale_payment_sheet_line____last_update
+msgid "Last Modified on"
+msgstr "Última modificación en"
+
+#. module: sale_payment_sheet
+#: model:ir.model.fields,field_description:sale_payment_sheet.field_sale_invoice_payment_wiz__write_uid
+#: model:ir.model.fields,field_description:sale_payment_sheet.field_sale_payment_sheet__write_uid
+#: model:ir.model.fields,field_description:sale_payment_sheet.field_sale_payment_sheet_line__write_uid
+msgid "Last Updated by"
+msgstr "Última actualización de"
+
+#. module: sale_payment_sheet
+#: model:ir.model.fields,field_description:sale_payment_sheet.field_sale_invoice_payment_wiz__write_date
+#: model:ir.model.fields,field_description:sale_payment_sheet.field_sale_payment_sheet__write_date
+#: model:ir.model.fields,field_description:sale_payment_sheet.field_sale_payment_sheet_line__write_date
+msgid "Last Updated on"
+msgstr "Última actualización en"
+
+#. module: sale_payment_sheet
+#: model:ir.model.fields,field_description:sale_payment_sheet.field_sale_payment_sheet__message_main_attachment_id
+msgid "Main Attachment"
+msgstr "Adjuntos principales"
+
+#. module: sale_payment_sheet
+#: model:ir.model.fields,field_description:sale_payment_sheet.field_sale_payment_sheet__message_has_error
+msgid "Message Delivery error"
+msgstr "Error de Envío de Mensaje"
+
+#. module: sale_payment_sheet
+#: model:ir.model.fields,field_description:sale_payment_sheet.field_sale_payment_sheet__message_ids
+msgid "Messages"
+msgstr "Mensajes"
+
+#. module: sale_payment_sheet
+#: model:ir.model.fields.selection,name:sale_payment_sheet.selection__sale_payment_sheet__state__open
+msgid "New"
+msgstr "Nuevo"
+
+#. module: sale_payment_sheet
+#: model:ir.model.fields,field_description:sale_payment_sheet.field_sale_payment_sheet_line__note
+msgid "Notes"
+msgstr "Notas"
+
+#. module: sale_payment_sheet
+#: model:ir.model.fields,field_description:sale_payment_sheet.field_sale_payment_sheet__message_needaction_counter
+msgid "Number of Actions"
+msgstr "Número de acciones"
+
+#. module: sale_payment_sheet
+#: model:ir.model.fields,field_description:sale_payment_sheet.field_sale_payment_sheet__message_has_error_counter
+msgid "Number of errors"
+msgstr "Errores"
+
+#. module: sale_payment_sheet
+#: model:ir.model.fields,help:sale_payment_sheet.field_sale_payment_sheet__message_needaction_counter
+msgid "Number of messages which requires an action"
+msgstr "Número de mensajes que requieren una acción"
+
+#. module: sale_payment_sheet
+#: model:ir.model.fields,help:sale_payment_sheet.field_sale_payment_sheet__message_has_error_counter
+msgid "Number of messages with delivery error"
+msgstr "Número de mensajes con error de envío"
+
+#. module: sale_payment_sheet
+#: model:ir.model.fields,help:sale_payment_sheet.field_sale_payment_sheet__message_unread_counter
+msgid "Number of unread messages"
+msgstr "Número de mensajes no leidos"
+
+#. module: sale_payment_sheet
+#: model:ir.model.fields.selection,name:sale_payment_sheet.selection__sale_payment_sheet_line__transaction_type__partial
+msgid "Partial payment"
+msgstr "Parcial"
+
+#. module: sale_payment_sheet
+#: model:ir.model.fields,field_description:sale_payment_sheet.field_sale_payment_sheet_line__partner_id
+#: model_terms:ir.ui.view,arch_db:sale_payment_sheet.report_sale_payment_sheet
+msgid "Partner"
+msgstr "Empresa"
+
+#. module: sale_payment_sheet
+#: model_terms:ir.ui.view,arch_db:sale_payment_sheet.sale_invoice_payment_wiz
+msgid "Payment"
+msgstr "Pagos"
+
+#. module: sale_payment_sheet
+#: model_terms:ir.ui.view,arch_db:sale_payment_sheet.view_sale_payment_sheet_search
+msgid "Payment sheet"
+msgstr "Hoja de pagos"
+
+#. module: sale_payment_sheet
+#: model:ir.ui.menu,name:sale_payment_sheet.sale_payment_sheet_menu
+msgid "Payments"
+msgstr "Pagos"
+
+#. module: sale_payment_sheet
+#: model:ir.model.fields,field_description:sale_payment_sheet.field_sale_invoice_payment_wiz__ref
+#: model:ir.model.fields,field_description:sale_payment_sheet.field_sale_payment_sheet__name
+#: model:ir.model.fields,field_description:sale_payment_sheet.field_sale_payment_sheet_line__ref
+#: model:ir.model.fields.selection,name:sale_payment_sheet.selection__sale_payment_sheet__group_lines__ref
+msgid "Reference"
+msgstr "Referencia"
+
+#. module: sale_payment_sheet
+#: model_terms:ir.actions.act_window,help:sale_payment_sheet.action_sale_payment_sheet
+msgid "Register a invoice payment (Salesman)"
+msgstr "Registrar pago de factura (Comerciales)"
+
+#. module: sale_payment_sheet
+#: model_terms:ir.ui.view,arch_db:sale_payment_sheet.view_sale_payment_sheet_form
+msgid "Reset to New"
+msgstr "Reestablecer a Nuevo"
+
+#. module: sale_payment_sheet
+#: model:ir.model.fields,field_description:sale_payment_sheet.field_sale_invoice_payment_wiz__user_id
+#: model:ir.model.fields,field_description:sale_payment_sheet.field_sale_payment_sheet__user_id
+msgid "Responsible"
+msgstr "Responsable"
+
+#. module: sale_payment_sheet
+#: model:ir.model.fields,field_description:sale_payment_sheet.field_sale_payment_sheet__message_has_sms_error
+msgid "SMS Delivery error"
+msgstr "Error en la entrega del SMS"
+
+#. module: sale_payment_sheet
+#: model:ir.model,name:sale_payment_sheet.model_sale_payment_sheet
+msgid "Sale Payment Sheet"
+msgstr "Hoja de pagos"
+
+#. module: sale_payment_sheet
+#: model:ir.model,name:sale_payment_sheet.model_sale_payment_sheet_line
+msgid "Sale Payment Sheet Line"
+msgstr "Líneas de la hoja de pagos"
+
+#. module: sale_payment_sheet
+#: model:ir.actions.act_window,name:sale_payment_sheet.action_sale_invoice_payment_wiz
+msgid "Sale invoice payment"
+msgstr "Pago de facturas"
+
+#. module: sale_payment_sheet
+#: model:ir.model,name:sale_payment_sheet.model_sale_invoice_payment_wiz
+#: model_terms:ir.ui.view,arch_db:sale_payment_sheet.sale_invoice_payment_wiz
+msgid "Sale invoice payment wizard"
+msgstr "Asistente de pago de factura"
+
+#. module: sale_payment_sheet
+#: model:ir.actions.act_window,name:sale_payment_sheet.action_sale_payment_sheet
+msgid "Sale payment sheet"
+msgstr "Hoja de pagos"
+
+#. module: sale_payment_sheet
+#: model_terms:ir.ui.view,arch_db:sale_payment_sheet.view_invoice_tree
+msgid "Sales Person"
+msgstr "Comercial"
+
+#. module: sale_payment_sheet
+#: model_terms:ir.ui.view,arch_db:sale_payment_sheet.view_sale_payment_sheet_search
+msgid "Search sale payment sheets"
+msgstr "Búsqueda de pagos de facturas"
+
+#. module: sale_payment_sheet
+#: model:ir.model.fields,field_description:sale_payment_sheet.field_sale_payment_sheet_line__sequence
+msgid "Sequence"
+msgstr "Secuencia"
+
+#. module: sale_payment_sheet
+#: model:ir.model.fields,field_description:sale_payment_sheet.field_sale_payment_sheet_line__sheet_id
+msgid "Sheet"
+msgstr "Hoja"
+
+#. module: sale_payment_sheet
+#: code:addons/sale_payment_sheet/models/sale_payment_sheet.py:0
+#, python-format
+msgid "Sheet %s confirmed, bank statement were created."
+msgstr "Hoja %s confirmada, se crearon los extractos bancarios."
+
+#. module: sale_payment_sheet
+#: model:ir.model.fields,field_description:sale_payment_sheet.field_sale_payment_sheet__line_ids
+msgid "Sheet lines"
+msgstr "Líneas"
+
+#. module: sale_payment_sheet
+#: model:ir.model.fields,field_description:sale_payment_sheet.field_sale_payment_sheet_line__statement_line_id
+msgid "Statement Line"
+msgstr "Línea de extracto"
+
+#. module: sale_payment_sheet
+#: model:ir.model.fields,field_description:sale_payment_sheet.field_sale_payment_sheet__state
+#: model:ir.model.fields,field_description:sale_payment_sheet.field_sale_payment_sheet_line__state
+#: model_terms:ir.ui.view,arch_db:sale_payment_sheet.view_sale_payment_sheet_search
+msgid "Status"
+msgstr "Estado"
+
+#. module: sale_payment_sheet
+#: model_terms:ir.ui.view,arch_db:sale_payment_sheet.view_invoice_tree
+msgid "Tax Excluded"
+msgstr "Impuesto no incluido"
+
+#. module: sale_payment_sheet
+#: code:addons/sale_payment_sheet/models/sale_payment_sheet.py:0
+#, python-format
+msgid "The amount of a cash transaction cannot be 0."
+msgstr "El importe de una transacción en efectivo no puede ser 0."
+
+#. module: sale_payment_sheet
+#: code:addons/sale_payment_sheet/models/sale_payment_sheet.py:0
+#, python-format
+msgid ""
+"This invoice already has been included in other payment sheet or the amount payed is greather than residual invoice amount.\n"
+" Invoice: %(invoice_name)s\n"
+" Amount payed: %(amount_payed)s\n"
+"  Payment sheets: %(payment_lines_name)s"
+msgstr ""
+"Esta factura ya se ha incluido en otra hoja de pagos o el importe pagado es "
+"mayor al importe pendiente de la factura.\n"
+" Factura: %(invoice_name)s\n"
+" Importe pagado: %(amount_payed)s\n"
+"  Hojas de pago: %(payment_lines_name)s"
+#. module: sale_payment_sheet
+#: model:ir.model.fields,field_description:sale_payment_sheet.field_sale_payment_sheet__amount_total
+#: model_terms:ir.ui.view,arch_db:sale_payment_sheet.view_invoice_tree
+#: model_terms:ir.ui.view,arch_db:sale_payment_sheet.view_sale_payment_sheet_form
+msgid "Total"
+msgstr "Total"
+
+#. module: sale_payment_sheet
+#: model_terms:ir.ui.view,arch_db:sale_payment_sheet.view_invoice_tree
+msgid "Total Amount"
+msgstr "Importe total"
+
+#. module: sale_payment_sheet
+#: model:ir.model.fields,field_description:sale_payment_sheet.field_sale_payment_sheet_line__transaction_type
+msgid "Transaction Type"
+msgstr "Tipo de transacción"
+
+#. module: sale_payment_sheet
+#: model_terms:ir.ui.view,arch_db:sale_payment_sheet.view_sale_payment_sheet_form
+msgid "Transactions"
+msgstr "Transacciones"
+
+#. module: sale_payment_sheet
+#: model:ir.model.fields,field_description:sale_payment_sheet.field_sale_payment_sheet__message_unread
+msgid "Unread Messages"
+msgstr "Mensajes sin leer"
+
+#. module: sale_payment_sheet
+#: model:ir.model.fields,field_description:sale_payment_sheet.field_sale_payment_sheet__message_unread_counter
+msgid "Unread Messages Counter"
+msgstr "Contador de mensajes no leidos"
+
+#. module: sale_payment_sheet
+#: model:ir.model,name:sale_payment_sheet.model_res_users
+msgid "Users"
+msgstr "Usuarios"
+
+#. module: sale_payment_sheet
+#: model:ir.model.fields,help:sale_payment_sheet.field_sale_payment_sheet_line__journal_currency_id
+msgid "Utility field to express amount currency"
+msgstr "Campo útil para expresar importe en divisa."
+
+#. module: sale_payment_sheet
+#: model:ir.model.fields.selection,name:sale_payment_sheet.selection__sale_payment_sheet__state__confirm
+msgid "Validated"
+msgstr "Validado"
+
+#. module: sale_payment_sheet
+#: model:ir.model.fields,field_description:sale_payment_sheet.field_sale_payment_sheet__website_message_ids
+msgid "Website Messages"
+msgstr "Mensajes del sitio web"
+
+#. module: sale_payment_sheet
+#: model:ir.model.fields,help:sale_payment_sheet.field_sale_payment_sheet__website_message_ids
+msgid "Website communication history"
+msgstr "Historial de comunicaciones del sitio web"
+
+#. module: sale_payment_sheet
+#: code:addons/sale_payment_sheet/models/sale_payment_sheet.py:0
+#, python-format
+msgid "You can not delete a sheet if has related journal items."
+msgstr ""
+"No puede eliminar una hoja de pagos si tiene un extracto bancario "
+"relacionado."
+
+#. module: sale_payment_sheet
+#: code:addons/sale_payment_sheet/models/sale_payment_sheet.py:0
+#, python-format
+msgid "You can not delete payment lines if have related statement lines."
+msgstr ""
+"No puede eliminar líneas de pago si tienen una línea de extracto relacionada"
+
+#. module: sale_payment_sheet
+#: code:addons/sale_payment_sheet/models/sale_payment_sheet.py:0
+#, python-format
+msgid "You can not reopen a sheet that has any reconciled line."
+msgstr "No puede reabrir una hoja de pagos si tiene alguna línea conciliada."
+
+#. module: sale_payment_sheet
+#: model_terms:ir.ui.view,arch_db:sale_payment_sheet.view_users_form
+msgid "sale payment sheet"
+msgstr "Hoja de pagos"
+
+#. module: sale_payment_sheet
+#: model_terms:ir.ui.view,arch_db:sale_payment_sheet.report_sale_payment_sheet
+msgid "sale payment sheet Summary"
+msgstr "Resumen de pagos de facturas"
+
+#. module: sale_payment_sheet
+#: model:ir.actions.report,name:sale_payment_sheet.action_report_sale_payment_sheet
+msgid "sale payment sheet summary"
+msgstr "Resumen de pagos de facturas"

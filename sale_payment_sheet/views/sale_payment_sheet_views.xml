@@ -1,0 +1,171 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <record id="view_sale_payment_sheet_tree" model="ir.ui.view">
+        <field name="name">sale.payment.sheet.tree</field>
+        <field name="model">sale.payment.sheet</field>
+        <field name="arch" type="xml">
+            <tree decoration-info="state=='open'">
+                <field name="name" />
+                <field name="date" />
+                <field name="journal_id" />
+                <field name="amount_total" />
+                <field name="company_id" groups="base.group_multi_company" />
+                <field name="currency_id" invisible="1" />
+                <field name="state" />
+            </tree>
+        </field>
+    </record>
+    <record id="view_sale_payment_sheet_search" model="ir.ui.view">
+        <field name="name">sale.payment.sheet.search</field>
+        <field name="model">sale.payment.sheet</field>
+        <field name="arch" type="xml">
+            <search string="Search sale payment sheets">
+                <field name="name" string="Payment sheet" />
+                <field name="date" />
+                <filter string="Draft" name="draft" domain="[('state','=','open')]" />
+                <filter
+                    string="Confirmed"
+                    name="confirmed"
+                    domain="[('state','=','confirm')]"
+                />
+                <field name="journal_id" domain="[('type', '=', 'bank')]" />
+                <group expand="0" string="Group By">
+                    <filter
+                        string="Journal"
+                        name="journal"
+                        context="{'group_by': 'journal_id'}"
+                    />
+                    <filter
+                        string="Status"
+                        name="status"
+                        context="{'group_by': 'state'}"
+                    />
+                    <filter string="Date" name="date" context="{'group_by': 'date'}" />
+                </group>
+            </search>
+        </field>
+    </record>
+    <record id="view_sale_payment_sheet_form" model="ir.ui.view">
+        <field name="name">sale.payment.sheet.form</field>
+        <field name="model">sale.payment.sheet</field>
+        <field name="priority">1</field>
+        <field name="arch" type="xml">
+            <form>
+                <header>
+                    <button
+                        name="button_confirm_sheet"
+                        states="open"
+                        string="Confirm sheet"
+                        type="object"
+                    />
+                    <button
+                        name="button_reopen"
+                        states="confirm"
+                        string="Reset to New"
+                        type="object"
+                    />
+                    <field
+                        name="state"
+                        widget="statusbar"
+                        statusbar_visible="open,confirm"
+                    />
+                </header>
+                <sheet>
+                    <div class="oe_button_box" name="button_box">
+                        <button
+                            class="oe_stat_button"
+                            name="button_bank_statement"
+                            string="Bank statement"
+                            type="object"
+                            icon="fa-bars"
+                            groups="account.group_account_user"
+                            states="confirm"
+                        />
+                    </div>
+                    <div class="oe_title oe_inline">
+                        <label for="name" class="oe_edit_only" />
+                        <h1>
+                            <field name="name" />
+                        </h1>
+                    </div>
+                    <group>
+                        <group>
+                            <field name="commercial_journal_ids" invisible="1" />
+                            <field
+                                name="journal_id"
+                                widget="selection"
+                                domain="[('id', 'in', commercial_journal_ids)]"
+                            />
+                            <field
+                                name="date"
+                                options="{'datepicker': {'warn_future': true}}"
+                            />
+                            <field
+                                name='company_id'
+                                options="{'no_create': True}"
+                                groups="base.group_multi_company"
+                            />
+                            <field name="group_lines" />
+                            <field name="currency_id" invisible="1" />
+                            <field name="user_id" invisible="1" />
+                        </group>
+                    </group>
+                    <notebook>
+                        <page string="Transactions" name="payment_lines">
+                            <field name="line_ids" context="{'date':date}">
+                                <tree
+                                    editable="bottom"
+                                    decoration-danger="amount &lt; 0.0"
+                                >
+                                    <field name="sequence" widget="handle" />
+                                    <field name="date" />
+                                    <field name="name" />
+                                    <field
+                                        name="partner_id"
+                                        domain="['|',('parent_id','=',False),('is_company','=',True)]"
+                                    />
+                                    <field
+                                        name="invoice_id"
+                                        domain="[('partner_id','=', partner_id), ('amount_residual', '>', 0.0)]"
+                                        options="{'no_create': True}"
+                                    />
+                                    <field name="ref" groups="base.group_no_one" />
+                                    <field name="transaction_type" optional="show" />
+                                    <field name="note" optional="hidden" />
+                                    <field name="amount" sum="Total" />
+                                    <field name="journal_currency_id" invisible="1" />
+                                    <field name="state" invisible="1" />
+                                </tree>
+                            </field>
+                        </page>
+                    </notebook>
+                </sheet>
+                <div class="o_attachment_preview" />
+                <div class="oe_chatter">
+                    <field name="message_follower_ids" widget="mail_followers" />
+                    <field name="message_ids" widget="mail_thread" />
+                </div>
+            </form>
+        </field>
+    </record>
+    <record id="action_sale_payment_sheet" model="ir.actions.act_window">
+        <field name="name">Sale payment sheet</field>
+        <field name="res_model">sale.payment.sheet</field>
+        <field name="view_mode">tree,form</field>
+        <field name="domain">[]</field>
+        <field name="context">{}</field>
+        <field name="search_view_id" ref="view_sale_payment_sheet_search" />
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">
+                Register a invoice payment (Salesman)
+            </p>
+        </field>
+    </record>
+    <menuitem
+        id="sale_payment_sheet_menu"
+        parent="sale.sale_order_menu"
+        action="action_sale_payment_sheet"
+        name="Payments"
+        sequence="120"
+    />
+</odoo>
