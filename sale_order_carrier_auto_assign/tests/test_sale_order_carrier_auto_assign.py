@@ -13,6 +13,7 @@ class TestSaleOrderCarrierAutoAssign(SavepointCase):
         cls.partner = cls.env.ref("base.res_partner_2")
         product = cls.env.ref("product.product_product_9")
         cls.normal_delivery_carrier = cls.env.ref("delivery.normal_delivery_carrier")
+        cls.normal_delivery_carrier.fixed_price = 10
         sale_order_form = Form(cls.env["sale.order"])
         sale_order_form.partner_id = cls.partner
         with sale_order_form.order_line.new() as line_form:
@@ -27,6 +28,10 @@ class TestSaleOrderCarrierAutoAssign(SavepointCase):
         self.sale_order.action_confirm()
         self.assertEqual(self.sale_order.state, "sale")
         self.assertEqual(self.sale_order.carrier_id, self.normal_delivery_carrier)
+        delivery_line = self.sale_order.order_line.filtered(lambda l: l.is_delivery)
+        self.assertEqual(
+            delivery_line.price_unit, self.normal_delivery_carrier.fixed_price
+        )
 
     def test_sale_order_carrier_auto_assign_no_carrier(self):
         self.partner.property_delivery_carrier_id = False

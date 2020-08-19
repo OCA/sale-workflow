@@ -19,7 +19,7 @@ class SaleOrder(models.Model):
     def _add_delivery_carrier_on_confirmation(self):
         """Automatically add delivery.carrier on sale order confirmation"""
         for order in self:
-            if order.carrier_id or any(line.is_delivery for line in order.order_line):
+            if order.delivery_set:
                 continue
             delivery_wiz_action = order.action_open_delivery_wizard()
             delivery_wiz_context = delivery_wiz_action.get("context", {})
@@ -30,4 +30,5 @@ class SaleOrder(models.Model):
                 .with_context(**delivery_wiz_context)
                 .create({})
             )
+            delivery_wiz._get_shipment_rate()
             delivery_wiz.button_confirm()
