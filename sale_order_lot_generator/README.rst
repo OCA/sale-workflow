@@ -32,6 +32,16 @@ Generate automatically a lot number for each sale lines when you confirm a sale 
 .. contents::
    :local:
 
+Configuration
+=============
+
+Go to product, inventory tab and check 'Auto Generate Lot' field.
+
+Usage
+=====
+
+Create a sale order with a product with 'Auto Generate Lot' field checked.
+
 Bug Tracker
 ===========
 
