@@ -23,6 +23,7 @@ class TestSaleOrderLinePriceHistory(SavepointCase):
             'product_uom_qty': 2,
             'product_uom': cls.product.uom_id.id,
             'price_unit': 10,
+            'discount': 5,
         })
         cls.sale_order_1.action_confirm()
         cls.sale_order_2 = cls.env['sale.order'].create({
@@ -136,12 +137,13 @@ class TestSaleOrderLinePriceHistory(SavepointCase):
         # Set price of the history line shown.
         wizard.line_ids.action_set_price()
         self.assertEqual(self.sale_order_line_3.price_unit, 20)
+        self.assertEqual(self.sale_order_line_3.discount, 0)
         # Create a wizard from self.sale_order_line_3 again.
         wizard = self.launch_wizard(active_id=self.sale_order_line_3.id)
         wizard.partner_id = False
         wizard._onchange_partner_id()
         # Find the history line with price_unit == 10 and set this price
         history_line = wizard.line_ids.filtered(lambda r: r.price_unit == 10)
-        self.assertEqual(self.sale_order_line_3.price_unit, 20)
         history_line.action_set_price()
         self.assertEqual(self.sale_order_line_3.price_unit, 10)
+        self.assertEqual(self.sale_order_line_3.discount, 5)
