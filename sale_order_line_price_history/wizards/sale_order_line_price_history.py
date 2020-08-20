@@ -106,7 +106,17 @@ class SaleOrderLinePriceHistoryline(models.TransientModel):
         related="sale_order_line_id.discount",
     )
 
+    def _prepare_set_price_history_vals(self):
+        """ Hook method to prepare the values to update the
+        sales order line in context.
+
+        This method is invoke by action_set_price method in this model.
+        """
+        self.ensure_one()
+        return {'price_unit': self.price_unit, 'discount': self.discount}
+
     @api.multi
     def action_set_price(self):
         self.ensure_one()
-        self.history_sale_order_line_id.price_unit = self.price_unit
+        self.history_sale_order_line_id.write(
+            self._prepare_set_price_history_vals())
