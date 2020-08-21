@@ -1,5 +1,6 @@
 account-closing
 account-invoicing
+manufacture
 product-attribute
 partner-contact
 server-tools

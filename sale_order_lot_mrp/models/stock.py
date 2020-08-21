@@ -3,23 +3,22 @@
 # @author  Mourad EL HADJ MIMOUNE <mourad.elhadj.mimoune@akretion.com>
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
 
-from odoo import api, fields, models
+from odoo import fields, models
 
 
 class StockMove(models.Model):
     _inherit = "stock.move"
 
-    @api.multi
     def _get_lot_vals(self, old_lot, index):
         self.ensure_one()
         lot_number = "%s-%d" % (old_lot.name, index)
         return {"name": lot_number, "product_id": self.product_id.id}
 
     def action_explode(self):
-        original_lot = self.restrict_lot_id
         processed_moves = super(
             StockMove, self.with_context(subcall=True)
         ).action_explode()
+        original_lot = processed_moves.move_line_ids.mapped('lot_id')
         if (
             not self.env.context.get("subcall", False)
             and processed_moves
@@ -43,9 +42,8 @@ class StockProductionLot(models.Model):
         "mrp.production", "lot_id", string="Production Order"
     )
 
-    @api.multi
     def unlink(self):
         for lot in self:
             for mo in lot.mrp_production_ids:
                 mo.unlink()
-        return super(StockProductionLot, self).unlink()
+        return super().unlink()

@@ -14,4 +14,6 @@ class MrpProductProduct(models.TransientModel):
         prod = self.env["mrp.production"].browse(prod_id)
         return prod.lot_id.id
 
-    lot_id = fields.Many2one("stock.production.lot", "Lot", default=_get_default_lot)
+    lot_id = fields.Many2one(
+        comodel_name="stock.production.lot", string="Lot", default=_get_default_lot
+    )

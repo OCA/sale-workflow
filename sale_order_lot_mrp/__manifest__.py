@@ -12,4 +12,5 @@
     "depends": ["mrp_production_note", "sale_order_lot_generator"],
     "data": ["views/mrp_view.xml"],
     "installable": True,
+    "maintainers": ["florian-dacosta", "mourad-ehm", "bealdav", "sebastienbeau"],
 }

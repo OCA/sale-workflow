@@ -16,12 +16,11 @@ class MrpProduction(models.Model):
 
     lot_id = fields.Many2one("stock.production.lot", "Lot", index=True)
 
-    @api.multi
     def button_plan(self):
         """
-        We passe the production.id in the context so you can easily
+        We pass the production.id in the context so you can easily
         retrieve the production information during the process that generate
-        the line of needed for the production order. For exemple, in
+        the line of needed for the production order. For example, in
         the method explode() of 'mrp.bom', you can read the information
         of the production order to customise the needed.
         """
@@ -30,7 +29,7 @@ class MrpProduction(models.Model):
             super(MrpProduction, production).button_plan()
 
     def _generate_finished_moves(self):
-        move = super(MrpProduction, self)._generate_finished_moves()
+        move = super()._generate_finished_moves()
         move.restrict_lot_id = self.lot_id.id
         return move
 
@@ -45,8 +44,7 @@ class MrpProduction(models.Model):
         :param bom: in case of recursive boms:
          we could create work orders for child BoMs
         """
-        workorders = super(MrpProduction, self)._workorders_create(bom, bom_data)
-        prodlot_obj = self.env["stock.production.lot"]
+        workorders = super()._workorders_create(bom, bom_data)
         idx = 0
         for workorder in workorders:
             if (
@@ -64,6 +62,6 @@ class MrpProduction(models.Model):
                     vals = workorder.final_lot_id.copy_data()[0]
                     vals.update(self._get_custom_lot_vals(vals, idx))
                     vals.update({"product_id": mv_lot.product_id.id})
-                    prodlot = prodlot_obj.create(vals)
+                    prodlot = self.env["stock.production.lot"].create(vals)
                     mv_lot.lot_id = prodlot
         return workorders

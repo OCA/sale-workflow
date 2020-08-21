@@ -8,7 +8,7 @@ from .common import TestMrpLotCommon
 
 class BaseTest(TestMrpLotCommon):
     def setUp(self):
-        super(BaseTest, self).setUp()
+        super().setUp()
         self.product_obj = self.env["product.product"]
         self.sale_order_obj = self.env["sale.order"]
         self.order_line_obj = self.env["sale.order.line"]
@@ -56,7 +56,7 @@ class BaseTest(TestMrpLotCommon):
 
 class TestSuccess(BaseTest):
     def setUp(self):
-        super(TestSuccess, self).setUp()
+        super().setUp()
         self._init_sale_order()
 
     def test_00_mo_create(self):

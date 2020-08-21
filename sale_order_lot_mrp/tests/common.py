@@ -8,7 +8,7 @@ from odoo.addons.stock.tests import common2
 class TestMrpLotCommon(common2.TestStockCommon):
     @classmethod
     def setUpClass(cls):
-        super(TestMrpLotCommon, cls).setUpClass()
+        super().setUpClass()
 
         cls.manufactureroute = cls.env.ref("mrp.route_warehouse0_manufacture")
         cls.mto_route = cls.env.ref("stock.route_warehouse0_mto")
@@ -22,7 +22,7 @@ class TestMrpLotCommon(common2.TestStockCommon):
                 "time_efficiency": 80,
             }
         )
-        cls.routing_1 = cls.env["mrp.routing"].create({"name": "Simple Line",})
+        cls.routing_1 = cls.env["mrp.routing"].create({"name": "Simple Line"})
         cls.operation_1 = cls.env["mrp.routing.workcenter"].create(
             {
                 "name": "Gift Wrap Maching",
@@ -42,7 +42,7 @@ class TestMrpLotCommon(common2.TestStockCommon):
         cls.product_1 = cls.env.ref("product.product_product_3")
         cls.product_2 = cls.env.ref("product.product_product_27")
         kit_vals = {
-            "name": "Kit of manifactured product",
+            "name": "Kit of manufactured product",
             "categ_id": cls.env.ref("product.product_category_5").id,
             "standard_price": 3303,
             "list_price": 4000,
