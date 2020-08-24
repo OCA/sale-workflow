@@ -9,6 +9,7 @@
         <field name="arch" type="xml">
             <field name="rule_date_to" position="after">
                 <field name="is_cumulative" />
+                <field name="first_order_only" />
             </field>
             <xpath
                 expr="//group[@name='reward']/ancestor::group/group[4]"
@@ -38,6 +39,7 @@
         <field name="arch" type="xml">
             <field name="active" position="after">
                 <field name="is_cumulative" />
+                <field name="first_order_only" />
             </field>
         </field>
     </record>

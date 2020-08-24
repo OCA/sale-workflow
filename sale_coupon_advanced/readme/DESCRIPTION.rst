@@ -4,3 +4,4 @@ By default all programs are applied.
 2) Create program to apply pre-defined price lists. This is tricky as applying pricelist
 to sale order may cause not revertible changes on product prices if you edit them manually or set a pricelist
 to customer manually
+3) Promotions applicable only for first sale order of the customer.

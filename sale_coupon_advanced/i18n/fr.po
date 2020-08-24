@@ -1,13 +1,13 @@
 # Translation of Odoo Server.
 # This file contains the translation of the following modules:
-# 	* sale_coupon_non_cumulative_program
+# 	* sale_coupon_advanced
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 13.0+e\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-08-26 10:07+0000\n"
-"PO-Revision-Date: 2020-08-26 10:07+0000\n"
+"POT-Creation-Date: 2020-08-28 12:17+0000\n"
+"PO-Revision-Date: 2020-08-28 12:17+0000\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -16,16 +16,32 @@ msgstr ""
 "Plural-Forms: \n"
 
 #. module: sale_coupon_advanced
-#: model:ir.model.fields,field_description:sale_coupon_non_cumulative_program.field_sale_coupon_program__is_cumulative
-msgid "None-cumulative Promotion"
-msgstr "Promotion non-cumulative"
+#: model:ir.model.fields,field_description:sale_coupon_advanced.field_sale_coupon_program__first_order_only
+msgid "Apply only first"
+msgstr "Appliquer seulement en premier"
 
 #. module: sale_coupon_advanced
-#: model:ir.model,name:sale_coupon_non_cumulative_program.model_sale_coupon_program
+#: model:ir.model.fields,help:sale_coupon_advanced.field_sale_coupon_program__first_order_only
+msgid "Apply only on the first order of each client matching the conditions"
+msgstr "Appliquer uniquement sur la première commande de chaque client correspondant aux conditions"
+
+#. module: sale_coupon_advanced
+#: code:addons/sale_coupon_advanced/models/sale_coupon.py:0
+#, python-format
+msgid "Coupon can be used only for the first sale order!"
+msgstr "Le coupon ne peut être utilisé que pour la première commande!"
+
+#. module: sale_coupon_advanced
+#: model:ir.model.fields,field_description:sale_coupon_advanced.field_sale_coupon_program__is_cumulative
+msgid "None-cumulative Promotion"
+msgstr "Promotion non cumulative"
+
+#. module: sale_coupon_advanced
+#: model:ir.model,name:sale_coupon_advanced.model_sale_coupon_program
 msgid "Sales Coupon Program"
 msgstr "Programme de coupon de vente"
 
 #. module: sale_coupon_advanced
-#: model:ir.model,name:sale_coupon_non_cumulative_program.model_sale_order
+#: model:ir.model,name:sale_coupon_advanced.model_sale_order
 msgid "Sales Order"
 msgstr "Bon de commande"
