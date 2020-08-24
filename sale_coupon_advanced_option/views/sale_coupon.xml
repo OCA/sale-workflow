@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <record id="sale_coupon_program_view_promo_program_form_inherit" model="ir.ui.view">
+        <field name="name">sale.coupon.program.view.promo_program.form</field>
+        <field name="model">sale.coupon.program</field>
+        <field
+            name="inherit_id"
+            ref="sale_coupon.sale_coupon_program_view_promo_program_form"
+        />
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='rule_date_to']" position="after">
+                <field name="first_order_only" />
+            </xpath>
+        </field>
+    </record>
+</odoo>
