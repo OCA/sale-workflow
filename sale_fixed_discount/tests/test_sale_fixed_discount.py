@@ -81,6 +81,10 @@ class TestSaleFixedDiscount(SavepointCase):
 
     def test_03_discounts_rule_fixed(self):
         """ Tests fixed pricelist item discount."""
+        discount_group = self.env.ref('sale.group_discount_per_so_line')
+        self.env.user.write({
+            'groups_id': [(4, discount_group.id, False)]
+        })
         self.sale.pricelist_id = self.pricelist
         self.product.list_price = 200
         self.sale_line1._onchange_discount()

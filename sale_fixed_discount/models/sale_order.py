@@ -97,8 +97,8 @@ class SaleOrderLine(models.Model):
                         new_list_price, self.order_id.pricelist_id.currency_id)
                 discount = new_list_price - price
                 if discount > 0:
-                    self.discount_fixed = discount
                     self.discount = 0.0
+                    self.discount_fixed = discount
         return res
 
     @api.constrains('discount', 'discount_fixed')
