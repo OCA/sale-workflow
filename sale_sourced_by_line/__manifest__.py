@@ -6,7 +6,7 @@
 {
     "name": "Sale Sourced by Line",
     "summary": "Multiple warehouse source locations for Sale order",
-    "version": "12.0.1.0.0",
+    "version": "13.0.1.0.0",
     "author": "Camptocamp,"
     "Eficent,"
     "SerpentCS,"
@@ -15,7 +15,7 @@
     "category": "Warehouse",
     "license": "AGPL-3",
     "website": "https://github.com/OCA/sale-workflow",
-    "depends": ["sale_stock", "sale_procurement_group_by_line",],
+    "depends": ["sale_stock", "sale_procurement_group_by_line"],
     "data": ["view/sale_view.xml"],
     "installable": True,
 }

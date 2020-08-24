@@ -21,7 +21,7 @@ class TestSaleSourcedByLine(TransactionCase):
         self.warehouse0 = self.env.ref("stock.warehouse0")
 
     def test_sales_order_multi_source(self):
-        so = self.sale_order_model.create({"partner_id": self.customer.id,})
+        so = self.sale_order_model.create({"partner_id": self.customer.id})
         self.sale_order_line_model.create(
             {
                 "product_id": self.product_1.id,
@@ -51,29 +51,29 @@ class TestSaleSourcedByLine(TransactionCase):
                 line.order_id.name + "/" + line.warehouse_id.name,
                 "The name of the procurement group is not " "correct.",
             )
-            for procurement in line.procurement_ids:
-                moves = self.stock_move_model.search(
-                    [("procurement_id", "=", procurement.id)]
+            for move in line.move_ids:
+                self.assertEquals(
+                    move.group_id,
+                    line.procurement_group_id,
+                    "The group in the stock move does not "
+                    "match with the procurement group in "
+                    "the sales order line.",
                 )
-                for move in moves:
-                    self.assertEquals(
-                        move.group_id,
-                        line.procurement_group_id,
-                        "The group in the stock move does not "
-                        "match with the procurement group in "
-                        "the sales order line.",
-                    )
-                    self.assertEquals(
-                        move.picking_id.group_id,
-                        line.procurement_group_id,
-                        "The group in the stock picking does "
-                        "not match with the procurement group "
-                        "in the sales order line.",
-                    )
+                self.assertEquals(
+                    move.picking_id.group_id,
+                    line.procurement_group_id,
+                    "The group in the stock picking does "
+                    "not match with the procurement group "
+                    "in the sales order line.",
+                )
 
     def test_sales_order_no_source(self):
         so = self.sale_order_model.create(
-            {"partner_id": self.customer.id, "warehouse_id": self.warehouse_shop0.id,}
+            {
+                "partner_id": self.customer.id,
+                "warehouse_id": self.warehouse_shop0.id,
+                "company_id": self.warehouse_shop0.company_id.id,
+            }
         )
         self.sale_order_line_model.create(
             {"product_id": self.product_1.id, "product_uom_qty": 8, "order_id": so.id}
@@ -90,7 +90,7 @@ class TestSaleSourcedByLine(TransactionCase):
         )
 
     def test_sale_order_source(self):
-        so = self.sale_order_model.create({"partner_id": self.customer.id,})
+        so = self.sale_order_model.create({"partner_id": self.customer.id})
         self.sale_order_line_model.create(
             {
                 "product_id": self.product_1.id,
@@ -110,10 +110,10 @@ class TestSaleSourcedByLine(TransactionCase):
         # confirm quotation
         so.action_confirm()
         for line in so.order_line:
-            for procurement in line.procurement_ids:
+            for stock_move in line.move_ids:
                 self.assertEquals(
-                    procurement.warehouse_id,
+                    stock_move.warehouse_id,
                     line.warehouse_id,
-                    "The warehouse in the procurement does not "
+                    "The warehouse in the stock.move does not "
                     "match with the Sales order line.",
                 )
