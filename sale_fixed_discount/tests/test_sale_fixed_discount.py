@@ -34,6 +34,16 @@ class TestSaleFixedDiscount(SavepointCase):
             'product_id': cls.product.id,
             'tax_id': [(6, 0, [cls.tax.id])],
         })
+        cls.pricelist = cls.env['product.pricelist'].create({
+            'name': 'Test Pricelist',
+            'discount_policy': 'without_discount',
+        })
+        cls.pricelist.item_ids[0].write({
+            'pricelist_id': cls .pricelist.id,
+            'applied_on': '3_global',
+            'compute_price': 'fixed',
+            'fixed_price': 100.00,
+        })
 
     def test_01_discounts(self):
         """ Tests multiple discounts in line with taxes."""
@@ -68,3 +78,12 @@ class TestSaleFixedDiscount(SavepointCase):
         self.assertEqual(self.sale.amount_total, 630.0)
         self.sale_line1.discount = 50.0
         self.assertEqual(self.sale.amount_total, 515.0)
+
+    def test_03_discounts_rule_fixed(self):
+        """ Tests fixed pricelist item discount."""
+        self.sale.pricelist_id = self.pricelist
+        self.product.list_price = 200
+        self.sale_line1._onchange_discount()
+        self.assertEqual(self.sale_line1.discount_fixed, 100.00)
+        self.assertEqual(self.sale_line1.discount, 0.00)
+        self.assertEqual(self.sale.amount_total, 115.00)
