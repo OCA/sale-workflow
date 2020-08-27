@@ -31,6 +31,7 @@ setuptools.setup(
         'odoo13-addon-sale_procurement_group_by_line',
         'odoo13-addon-sale_product_multi_add',
         'odoo13-addon-sale_product_set',
+        'odoo13-addon-sale_product_set_packaging_qty',
         'odoo13-addon-sale_shipping_info_helper',
         'odoo13-addon-sale_stock_delivery_address',
         'odoo13-addon-sale_stock_secondary_unit',
