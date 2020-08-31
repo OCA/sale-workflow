@@ -9,46 +9,47 @@ msgstr ""
 "Project-Id-Version: Odoo Server 10.0\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2017-07-08 00:49+0000\n"
-"PO-Revision-Date: 2017-07-08 00:49+0000\n"
-"Last-Translator: OCA Transbot <transbot@odoo-community.org>, 2017\n"
+"PO-Revision-Date: 2020-08-31 13:59+0000\n"
+"Last-Translator: brendapaniagua <brenda.paniagua@qubiq.es>\n"
 "Language-Team: Catalan (https://www.transifex.com/oca/teams/23907/ca/)\n"
 "Language: ca\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
-"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: Weblate 3.10\n"
 
 #. module: sale_product_set
 #: model:ir.model.fields,field_description:sale_product_set.field_product_set__active
 #: model:ir.model.fields,field_description:sale_product_set.field_product_set_line__active
 msgid "Active"
-msgstr ""
+msgstr "Actiu"
 
 #. module: sale_product_set
 #: model_terms:ir.ui.view,arch_db:sale_product_set.product_set_add_form_view
 #: model_terms:ir.ui.view,arch_db:sale_product_set.view_order_stock_form
 msgid "Add set"
-msgstr ""
+msgstr "Afegeix conjunt"
 
 #. module: sale_product_set
 #: model:ir.actions.act_window,name:sale_product_set.act_open_wizard_product_set_add
 msgid "Add set in sale order"
-msgstr ""
+msgstr "Afegiu un conjunt  en comanda de venda"
 
 #. module: sale_product_set
 #: model_terms:ir.ui.view,arch_db:sale_product_set.product_set_add_form_view
 msgid "Add set in sale order line"
-msgstr ""
+msgstr "Afegir conjunt en línia d'ordre de venda"
 
 #. module: sale_product_set
 #: model_terms:ir.ui.view,arch_db:sale_product_set.product_set_add_form_view
 msgid "Cancel"
-msgstr ""
+msgstr "Cancel·lar"
 
 #. module: sale_product_set
 #: model:ir.model.fields,field_description:sale_product_set.field_product_set__company_id
 msgid "Company"
-msgstr ""
+msgstr "Companyia"
 
 #. module: sale_product_set
 #: model:ir.model.fields,field_description:sale_product_set.field_product_set__create_uid
@@ -67,25 +68,27 @@ msgstr "Creat el"
 #. module: sale_product_set
 #: model:ir.model.fields,field_description:sale_product_set.field_product_set_add__partner_id
 msgid "Customer"
-msgstr ""
+msgstr "Client"
 
 #. module: sale_product_set
 #: model:ir.model.fields,field_description:sale_product_set.field_product_set_line__discount
 msgid "Discount (%)"
-msgstr ""
+msgstr "Descompte (%)"
 
 #. module: sale_product_set
 #: model:ir.model.fields,field_description:sale_product_set.field_product_set__display_name
 #: model:ir.model.fields,field_description:sale_product_set.field_product_set_add__display_name
 #: model:ir.model.fields,field_description:sale_product_set.field_product_set_line__display_name
 msgid "Display Name"
-msgstr ""
+msgstr "Mostrar Nom"
 
 #. module: sale_product_set
 #: model:ir.model.fields,help:sale_product_set.field_product_set_add__skip_existing_products
 msgid ""
 "Enable this to not add new lines for products already included in SO lines."
 msgstr ""
+"Habiliteu aquesta opció per no afegir línies noves per als productes que ja "
+"s'inclouen a les línies SO."
 
 #. module: sale_product_set
 #: model:ir.model.fields,field_description:sale_product_set.field_product_set__id
@@ -97,14 +100,14 @@ msgstr "ID"
 #. module: sale_product_set
 #: model:ir.model.fields,field_description:sale_product_set.field_product_set__ref
 msgid "Internal Reference"
-msgstr ""
+msgstr "Referència interna"
 
 #. module: sale_product_set
 #: model:ir.model.fields,field_description:sale_product_set.field_product_set____last_update
 #: model:ir.model.fields,field_description:sale_product_set.field_product_set_add____last_update
 #: model:ir.model.fields,field_description:sale_product_set.field_product_set_line____last_update
 msgid "Last Modified on"
-msgstr ""
+msgstr "Última modificació el"
 
 #. module: sale_product_set
 #: model:ir.model.fields,field_description:sale_product_set.field_product_set__write_uid
@@ -129,12 +132,12 @@ msgstr "Nom"
 #: model:ir.model.fields,field_description:sale_product_set.field_product_set__partner_id
 #: model_terms:ir.ui.view,arch_db:sale_product_set.view_product_set_search
 msgid "Partner"
-msgstr ""
+msgstr "Soci"
 
 #. module: sale_product_set
 #: model:ir.model.fields,field_description:sale_product_set.field_product_set_line__product_id
 msgid "Product"
-msgstr ""
+msgstr "Producte"
 
 #. module: sale_product_set
 #: model:ir.actions.act_window,name:sale_product_set.act_open_product_set_view
@@ -145,69 +148,70 @@ msgstr ""
 #: model_terms:ir.ui.view,arch_db:sale_product_set.view_product_set_search
 #: model_terms:ir.ui.view,arch_db:sale_product_set.view_product_set_tree
 msgid "Product set"
-msgstr ""
+msgstr "Conjunt de productes"
 
 #. module: sale_product_set
 #: model:ir.model.fields,help:sale_product_set.field_product_set__ref
 msgid "Product set internal reference"
-msgstr ""
+msgstr "Referència interna de conjunt de productes"
 
 #. module: sale_product_set
 #: model:ir.model,name:sale_product_set.model_product_set_line
 msgid "Product set line"
-msgstr ""
+msgstr "Línia de productes"
 
 #. module: sale_product_set
 #: model_terms:ir.ui.view,arch_db:sale_product_set.view_product_set_form
 msgid "Product set lines"
-msgstr ""
+msgstr "Línies de productes"
 
 #. module: sale_product_set
 #: model:ir.model.fields,help:sale_product_set.field_product_set__name
 msgid "Product set name"
-msgstr ""
+msgstr "Nom del conjunt de producte"
 
 #. module: sale_product_set
 #: model:ir.model.fields,field_description:sale_product_set.field_product_set__set_line_ids
 msgid "Products"
-msgstr ""
+msgstr "Productes"
 
 #. module: sale_product_set
 #: model:ir.model.fields,field_description:sale_product_set.field_product_set_add__quantity
 #: model:ir.model.fields,field_description:sale_product_set.field_product_set_line__quantity
 msgid "Quantity"
-msgstr ""
+msgstr "Quantitat"
 
 #. module: sale_product_set
 #: model:ir.model.fields,field_description:sale_product_set.field_product_set_add__order_id
 msgid "Sale Order"
-msgstr ""
+msgstr "Comanda de venda"
 
 #. module: sale_product_set
 #: code:addons/sale_product_set/wizard/product_set_add.py:0
 #, python-format
 msgid "Select a product set assigned to the same partner of the order."
 msgstr ""
+"Seleccioneu un conjunt de productes assignat al mateix soci de la comanda."
 
 #. module: sale_product_set
 #: model:ir.model.fields,field_description:sale_product_set.field_product_set_line__sequence
 msgid "Sequence"
-msgstr ""
+msgstr "Seqüència"
 
 #. module: sale_product_set
 #: model:ir.model.fields,field_description:sale_product_set.field_product_set_line__product_set_id
 msgid "Set"
-msgstr ""
+msgstr "Conjunt"
 
 #. module: sale_product_set
 #: model:ir.model.fields,field_description:sale_product_set.field_product_set_add__skip_existing_products
 msgid "Skip Existing Products"
-msgstr ""
+msgstr "Omet Productes Existents"
 
 #. module: sale_product_set
 #: model:ir.model,name:sale_product_set.model_product_set_add
 msgid "Wizard model to add product set into a quotation"
-msgstr ""
+msgstr "Model d'assistent per afegir el conjunt de productes a una cotització"
 
 #. module: sale_product_set
 #: model:ir.model.fields,help:sale_product_set.field_product_set__partner_id
@@ -215,3 +219,5 @@ msgid ""
 "You can attache the set to a specific partner or no one. If you don't "
 "specify one, it's going to be available for all of them."
 msgstr ""
+"Podeu adjuntar el conjunt a un soci o a ningú. Si no n'especifiqueu cap, "
+"estarà disponible per a tots ells."
