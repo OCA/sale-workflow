@@ -8,7 +8,7 @@
         <field name="model">stock.picking</field>
         <field name="inherit_id" ref="stock.vpicktree"/>
         <field name="arch" type="xml">
-            <field name="min_date" position="attributes">
+            <field name="scheduled_date" position="attributes">
                 <attribute name="invisible">0</attribute>
             </field>
         </field>
