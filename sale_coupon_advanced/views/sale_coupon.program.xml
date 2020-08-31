@@ -10,6 +10,26 @@
             <field name="rule_date_to" position="after">
                 <field name="is_cumulative" />
             </field>
+            <xpath
+                expr="//group[@name='reward']/ancestor::group/group[4]"
+                position="attributes"
+            >
+                <attribute
+                    name="attrs"
+                >{'invisible': [('reward_type', '=', 'use_pricelist')]}</attribute>
+            </xpath>
+            <xpath
+                expr="//group[@name='reward']/ancestor::group/group[4]"
+                position="after"
+            >
+                <group>
+                    <field
+                        name="reward_pricelist_id"
+                        attrs="{'invisible': [('reward_type', 'in', ('discount', 'free_shipping', 'product'))], 'required': [('reward_type', '=', 'pricelist')]}"
+                        placeholder="Select reward pricelist"
+                    />
+                </group>
+            </xpath>
         </field>
     </record>
     <record id="sale_coupon_program_view_tree" model="ir.ui.view">

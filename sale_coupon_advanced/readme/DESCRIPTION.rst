@@ -1,3 +1,6 @@
-This module extends the functionality of sale coupon to allow to create non
-cumulative program. This program will stop further computation of promotions.
+This module extends the functionality of sale coupon to allow
+1) to create non cumulative program. This program will stop further computation of promotions.
 By default all programs are applied.
+2) Create program to apply pre-defined price lists. This is tricky as applying pricelist
+to sale order may cause not revertible changes on product prices if you edit them manually or set a pricelist
+to customer manually
