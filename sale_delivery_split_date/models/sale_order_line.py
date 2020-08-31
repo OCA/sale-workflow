@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 # Copyright 2018 Alex Comba - Agile Business Group
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
@@ -18,7 +17,7 @@ class SaleOrderLine(models.Model):
         key = super(SaleOrderLine, self)._get_procurement_group_key()
         # Check priority
         if key[0] < priority:
-            if self.requested_date:
+            if self.commitment_date:
                 # group by date instead of datetime
-                return (priority, self.requested_date[:10])
+                return (priority, self.commitment_date.date())
         return key
