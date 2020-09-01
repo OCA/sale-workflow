@@ -6,6 +6,32 @@ from odoo import _, models
 class SaleOrder(models.Model):
     _inherit = "sale.order"
 
+    def add_reward_line_values(self, program):
+        """ Add the rewarded product if a reward line has been found for this
+            product
+        """
+        reward_product = program.reward_product_id
+        taxes = reward_product.taxes_id
+        if self.fiscal_position_id:
+            taxes = self.fiscal_position_id.map_tax(taxes)
+        sequence = (max(self.mapped("order_line.sequence"))) + 1
+        sol = self.order_line.create(
+            {
+                "sequence": sequence,
+                "name": reward_product.name,
+                "product_id": reward_product.id,
+                "price_unit": reward_product.lst_price,
+                "is_reward_line": False,
+                "forced_reward_line": True,
+                "product_uom_qty": program.reward_product_quantity,
+                "product_uom": reward_product.uom_id.id,
+                "tax_id": [(4, tax.id, False) for tax in taxes],
+                "order_id": self.id,
+            }
+        )
+        sol.product_id_change()
+        return sol
+
     def _get_applicable_no_code_promo_program(self):
         programs = super()._get_applicable_no_code_promo_program()
         filtered_programs = self._filter_cumulative_programs(programs)

@@ -6,14 +6,19 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 13.0+e\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-08-28 12:17+0000\n"
-"PO-Revision-Date: 2020-08-28 12:17+0000\n"
+"POT-Creation-Date: 2020-09-10 09:34+0000\n"
+"PO-Revision-Date: 2020-09-10 09:34+0000\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
 "Plural-Forms: \n"
+
+#. module: sale_coupon_advanced
+#: model_terms:ir.ui.view,arch_db:sale_coupon_advanced.sale_coupon_program_view_promo_program_form
+msgid "<span>orders of each client matching the conditions</span>"
+msgstr ""
 
 #. module: sale_coupon_advanced
 #: model:ir.model.fields,field_description:sale_coupon_advanced.field_sale_coupon_program__first_order_only
@@ -26,10 +31,50 @@ msgid "Apply only on the first order of each client matching the conditions"
 msgstr "Appliquer uniquement sur la première commande de chaque client correspondant aux conditions"
 
 #. module: sale_coupon_advanced
-#: code:addons/sale_coupon_advanced/models/sale_coupon.py:0
+#: model:ir.model.fields,field_description:sale_coupon_advanced.field_sale_coupon_program__first_n_customer_orders
+msgid "Apply only on the next "
+msgstr ""
+
+#. module: sale_coupon_advanced
+#: code:addons/sale_coupon_advanced/models/sale_coupon_program.py:0
 #, python-format
 msgid "Coupon can be used only for the first sale order!"
 msgstr "Le coupon ne peut être utilisé que pour la première commande!"
+
+#. module: sale_coupon_advanced
+#: code:addons/sale_coupon_advanced/models/sale_coupon_program.py:0
+#, python-format
+msgid "Coupon can be used only for the first {} sale order!"
+msgstr ""
+
+#. module: sale_coupon_advanced
+#: model:ir.model.fields,help:sale_coupon_advanced.field_sale_coupon_program__reward_type
+#: model:ir.model.fields,help:sale_coupon_advanced.field_sale_coupon_reward__reward_type
+msgid ""
+"Discount - Reward will be provided as discount.\n"
+"Free Product - Free product will be provide as reward \n"
+"Free Shipping - Free shipping will be provided as reward (Need delivery module)"
+msgstr ""
+"Remise : la récompense sera appliquée sous forme de remise.\n"
+"Produit gratuit : un produit sera offert à titre de récompense. \n"
+"Livraison gratuite : la livraison sera offerte à titre de récompense (module Livraison nécessaire)."
+
+#. module: sale_coupon_advanced
+#: model:ir.model.fields,field_description:sale_coupon_advanced.field_sale_order_line__forced_reward_line
+msgid "Forced Reward Line"
+msgstr ""
+
+#. module: sale_coupon_advanced
+#: model:ir.model.fields,help:sale_coupon_advanced.field_sale_coupon_program__is_reward_product_forced
+msgid "If checked, the reward product will be added if not ordered."
+msgstr "Si sélectionné, le produit sera ajouté s'il n'a pas été commandé"
+
+#. module: sale_coupon_advanced
+#: model:ir.model.fields,help:sale_coupon_advanced.field_sale_coupon_program__first_n_customer_orders
+msgid ""
+"Maximum number of sales orders of the customer in which reward          can "
+"be provided"
+msgstr ""
 
 #. module: sale_coupon_advanced
 #: model:ir.model.fields,field_description:sale_coupon_advanced.field_sale_coupon_program__is_cumulative
@@ -37,11 +82,81 @@ msgid "None-cumulative Promotion"
 msgstr "Promotion non cumulative"
 
 #. module: sale_coupon_advanced
+#: model:ir.model.fields,field_description:sale_coupon_advanced.field_sale_coupon__reward_pricelist_id
+#: model:ir.model.fields,field_description:sale_coupon_advanced.field_sale_coupon_program__reward_pricelist_id
+#: model:ir.model.fields.selection,name:sale_coupon_advanced.selection__sale_coupon_reward__reward_type__use_pricelist
+msgid "Pricelist"
+msgstr ""
+
+#. module: sale_coupon_advanced
+#: code:addons/sale_coupon_advanced/models/sale_order.py:0
+#, python-format
+msgid "Promotion Pricelist: "
+msgstr ""
+
+#. module: sale_coupon_advanced
+#: model:ir.model.fields,field_description:sale_coupon_advanced.field_sale_coupon_program__reward_type
+#: model:ir.model.fields,field_description:sale_coupon_advanced.field_sale_coupon_reward__reward_type
+msgid "Reward Type"
+msgstr "Type de récompense"
+
+#. module: sale_coupon_advanced
+#: model:ir.model,name:sale_coupon_advanced.model_sale_coupon
+msgid "Sales Coupon"
+msgstr "Coupon de vente"
+
+#. module: sale_coupon_advanced
+#: model:ir.model,name:sale_coupon_advanced.model_sale_coupon_apply_code
+msgid "Sales Coupon Apply Code"
+msgstr "Codice di applicazione coupon di vendita"
+
+#. module: sale_coupon_advanced
 #: model:ir.model,name:sale_coupon_advanced.model_sale_coupon_program
 msgid "Sales Coupon Program"
 msgstr "Programme de coupon de vente"
 
 #. module: sale_coupon_advanced
+#: model:ir.model,name:sale_coupon_advanced.model_sale_coupon_reward
+msgid "Sales Coupon Reward"
+msgstr "Récompense de coupon de vente"
+
+#. module: sale_coupon_advanced
 #: model:ir.model,name:sale_coupon_advanced.model_sale_order
 msgid "Sales Order"
 msgstr "Bon de commande"
+
+#. module: sale_coupon_advanced
+#: model:ir.model,name:sale_coupon_advanced.model_sale_order_line
+msgid "Sales Order Line"
+msgstr "Ligne de bons de commande"
+
+#. module: sale_coupon_advanced
+#: model_terms:ir.ui.view,arch_db:sale_coupon_advanced.sale_coupon_program_view_promo_program_form
+msgid "Select reward pricelist"
+msgstr ""
+
+#. module: sale_coupon_advanced
+#: model:ir.model.fields,help:sale_coupon_advanced.field_sale_order_line__forced_reward_line
+msgid "Tech field to cleanup automatically created lines"
+msgstr ""
+
+#. module: sale_coupon_advanced
+#: code:addons/sale_coupon_advanced/models/sale_coupon_program.py:0
+#, python-format
+msgid ""
+"The reward products should be in the sales order lines to apply the "
+"discount."
+msgstr ""
+"Les produits de récompense doivent figurer dans les lignes de bon de "
+"commande pour appliquer la remise."
+
+#. module: sale_coupon_advanced
+#: model:ir.model.fields,field_description:sale_coupon_advanced.field_sale_coupon_program__is_reward_product_forced
+msgid "Unordered product"
+msgstr "Produit non-commandé"
+
+#. module: sale_coupon_advanced
+#: code:addons/sale_coupon_advanced/models/sale_coupon_program.py:0
+#, python-format
+msgid "`Apply only on the next` should not be a negative value."
+msgstr ""

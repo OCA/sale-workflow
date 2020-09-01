@@ -1,5 +1,6 @@
 # Copyright 2020 Camptocamp SA
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
+
 from odoo import _, api, exceptions, fields, models
 
 
@@ -20,6 +21,61 @@ class SaleCouponProgram(models.Model):
         string="Apply only on the next ",
         default=0,
     )
+    is_reward_product_forced = fields.Boolean(
+        string="Unordered product",
+        default=False,
+        help="If checked, the reward product will be added if not ordered.",
+    )
+
+    def _check_promo_code(self, order, coupon_code):
+
+        order_count = self._get_order_count(order)
+        if self.first_order_only and order_count:
+            return {"error": _("Coupon can be used only for the first sale order!")}
+        max_order_number = self.first_n_customer_orders
+        if max_order_number and order_count >= max_order_number:
+            return {
+                "error": _(
+                    "Coupon can be used only for the first {} sale order!"
+                ).format(max_order_number)
+            }
+
+        # Do not return product unordered error message if
+        # `is_reward_product_forced` is selected
+        message = _(
+            "The reward products should be in the sales order lines to"
+            " apply the discount."
+        )
+        res = super()._check_promo_code(order, coupon_code)
+        if res.get("error") == message and self.is_reward_product_forced:
+            return {}
+        return res
+
+    @api.model
+    def _filter_programs_from_common_rules(self, order, next_order=False):
+
+        initial_programs = self.browse(self.ids)
+        self._force_sale_order_lines(initial_programs, order)
+        programs = super()._filter_programs_from_common_rules(order, next_order)
+        programs = programs._filter_first_order_programs(order)
+        programs = programs._filter_n_first_order_programs(order)
+        return programs
+
+    def _force_sale_order_lines(self, programs, order):
+        """ Return the programs when `is_reward_product_forced` is selected
+         and reward product not already ordered"""
+        for program in programs:
+            if (
+                program.reward_type == "product"
+                and program.is_reward_product_forced
+                and not order._is_reward_in_order_lines(program)
+            ):
+                order.add_reward_line_values(program)
+
+    def _remove_invalid_reward_lines(self):
+        # TODO rollback forced lines which is not used for creation of reward
+        # lines for other programs
+        return super._remove_invalid_reward_lines()
 
     @api.constrains("first_n_customer_orders")
     def _constrains_first_n_orders_positive(self):
@@ -37,19 +93,6 @@ class SaleCouponProgram(models.Model):
                 ("id", "!=", order.id),
             ]
         )
-
-    def _check_promo_code(self, order, coupon_code):
-        order_count = self._get_order_count(order)
-        if self.first_order_only and order_count:
-            return {"error": _("Coupon can be used only for the first sale order!")}
-        max_order_number = self.first_n_customer_orders
-        if max_order_number and order_count >= max_order_number:
-            return {
-                "error": _(
-                    "Coupon can be used only for the first {} sale order!"
-                ).format(max_order_number)
-            }
-        return super()._check_promo_code(order, coupon_code)
 
     def _filter_first_order_programs(self, order):
         """
@@ -75,16 +118,6 @@ class SaleCouponProgram(models.Model):
                 continue
             filtered_programs |= program
         return filtered_programs
-
-    @api.model
-    def _filter_programs_from_common_rules(self, order, next_order=False):
-        """ Return the programs if every conditions is met
-            :param bool next_order: is the reward given from a previous order
-        """
-        programs = super()._filter_programs_from_common_rules(order, next_order)
-        programs = programs._filter_first_order_programs(order)
-        programs = programs._filter_n_first_order_programs(order)
-        return programs
 
 
 class SaleCouponReward(models.Model):

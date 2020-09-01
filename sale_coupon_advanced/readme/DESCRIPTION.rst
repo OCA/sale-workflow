@@ -6,3 +6,4 @@ to sale order may cause not revertible changes on product prices if you edit the
 to customer manually
 3) Promotions applicable only for first sale order of the customer.
 4) Promotions applicable for the first N orders of the customer.
+5) Add the ability to reward a product even if it has not been ordered (free product).
