@@ -14,21 +14,24 @@ class SaleCouponProgram(models.Model):
         help="Apply only on the first order of each client matching the conditions",
     )
 
-    def _get_order_amount(self, order):
+    def _get_order_count(self, order):
         return self.env["sale.order"].search_count(
-            [("partner_id", "=", order.partner_id.id), ("state", "!=", "cancel")]
+            [
+                ("partner_id", "=", order.partner_id.id),
+                ("state", "!=", "cancel"),
+                ("id", "!=", order.id),
+            ]
         )
 
     def _check_promo_code(self, order, coupon_code):
-        if self.first_order_only and self._get_order_amount(order) > 1:
+        if self.first_order_only and self._get_order_count(order):
             return {"error": _("Coupon can be used only for the first sale order!")}
         return super()._check_promo_code(order, coupon_code)
 
     def _filter_programs_by_sale_order_count(self, order):
-        if self._get_order_amount(order) <= 1:
-            return self.filtered(lambda program: program.first_order_only)
-        else:
+        if self._get_order_count(order):
             return self.filtered(lambda program: not program.first_order_only)
+        return self
 
     @api.model
     def _filter_programs_from_common_rules(self, order, next_order=False):

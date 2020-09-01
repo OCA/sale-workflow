@@ -9,7 +9,6 @@ class TestProgramForFirstSaleOrder(TestSaleCouponCommon):
 
         self.env["sale.coupon.program"].search([]).write({"active": False})
         self.env["sale.coupon"].search([]).write({"active": False})
-        self.env["product.product"].search([]).write({"active": False})
 
         self.product_A = self.env["product.product"].create(
             {"name": "Product A", "list_price": 60, "sale_ok": True}
@@ -235,10 +234,10 @@ class TestProgramForFirstSaleOrder(TestSaleCouponCommon):
         order1.recompute_coupon_lines()
 
         discounts = set(order1.order_line.mapped("name")) - {"Product B", "Product A"}
-        self.assertEqual(len(discounts), 1, "Order should contain one discount")
+        self.assertEqual(len(discounts), 2, "First order, should contain two discount")
         self.assertTrue(
             "Discount: PromoFreeProdB-1stSO - On product with following tax: Tax 15.00%"
-            in discounts.pop(),
+            in discounts,
             "Discount should be applied",
         )
 
