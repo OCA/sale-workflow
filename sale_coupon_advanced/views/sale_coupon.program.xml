@@ -10,6 +10,12 @@
             <field name="rule_date_to" position="after">
                 <field name="is_cumulative" />
                 <field name="first_order_only" />
+                <field
+                    name="first_n_customer_orders"
+                    attrs="{'invisible': [('first_order_only', '=', True)]}"
+                    class="oe_inline"
+                />
+                <span>orders of each client matching the conditions</span>
             </field>
             <xpath
                 expr="//group[@name='reward']/ancestor::group/group[4]"

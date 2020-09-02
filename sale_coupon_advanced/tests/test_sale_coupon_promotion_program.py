@@ -199,7 +199,7 @@ class TestProgramForFirstSaleOrder(TestSaleCouponCommon):
         )
         self.assertTrue(
             "Get 30% discount with code" in discounts.pop(),
-            "The discount should be a 50% discount",
+            "The discount should be a 30% discount",
         )
 
     def test_reused_code_promo_sale_order_program(self):
@@ -217,9 +217,7 @@ class TestProgramForFirstSaleOrder(TestSaleCouponCommon):
             len(order2.order_line.ids), 1, "The order should contain 1 line"
         )
         self.assertEqual(
-            len(discounts),
-            0,
-            "the order should contain 1 Product A line and no discounts",
+            len(discounts), 0, "the order shouldn't contain any `Product A` discount."
         )
 
     def test_free_product_promotion(self):
