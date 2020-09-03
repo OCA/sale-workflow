@@ -7,8 +7,8 @@ from odoo.addons.sale.tests import test_sale_common
 
 
 class TestSaleInvoicePlan(test_sale_common.TestCommonSaleNoChart):
-    def test_01_invoice_plan(self):
-        # To create all remaining invoice from SO
+    def test_00_invoice_plan(self):
+        # To create next invoice from SO
         ctx = {
             "active_id": self.so_service.id,
             "active_ids": [self.so_service.id],
@@ -43,9 +43,29 @@ class TestSaleInvoicePlan(test_sale_common.TestCommonSaleNoChart):
         make_wizard = self.env["sale.make.planned.invoice"].create({})
         make_wizard.with_context(ctx).create_invoices_by_plan()
         invoices = self.so_service.invoice_ids
-        self.assertEquals(len(invoices), 1, "Only 1 invoice should be crated")
-        # Create all remaining invoices
-        ctx["all_remain_invoices"] = True
+        self.assertEquals(len(invoices), 1, "Only 1 invoice should be created")
+
+    def test_01_invoice_plan(self):
+        # To create all remaining invoice from SO
+        ctx = {
+            "active_id": self.so_service.id,
+            "active_ids": [self.so_service.id],
+            "advance_payment_method": "delivered",
+            "all_remain_invoices": True,
+        }
+        f = Form(self.env["sale.create.invoice.plan"])
+        # Create Invoice Plan 3 installment
+        num_installment = 3
+        # Test 3 types of interval
+        for interval_type in ["month", "year", "day"]:
+            f.interval_type = interval_type
+            f.num_installment = num_installment
+            plan = f.save()
+            plan.with_context(ctx).sale_create_invoice_plan()
+        # Confirm the SO
+        self.so_service.action_confirm()
+        # Create all invoices
+        make_wizard = self.env["sale.make.planned.invoice"].create({})
         make_wizard.with_context(ctx).create_invoices_by_plan()
         # Valid number of invoices
         invoices = self.so_service.invoice_ids
@@ -137,12 +157,10 @@ class TestSaleInvoicePlan(test_sale_common.TestCommonSaleNoChart):
         wizard = self.env["sale.make.planned.invoice"].create({})
         with self.assertRaises(ValidationError) as e:
             wizard.with_context(ctx).create_invoices_by_plan()
-        error_message = (
-            "Plan quantity: 5.0, exceed invoiceable quantity: 3.0"
-            "\nProduct should be delivered before invoice"
+        self.assertIn(
+            "Plan quantity: 5.0, exceed invoiceable quantity: 3.0", e.exception.name
         )
-        self.assertEqual(e.exception.name, error_message)
-        # Delier all the rest and create invoice plan again
+        # Deliver all the rest and create invoice plan again
         pick = self.so_product.picking_ids.filtered(lambda l: l.state != "done")
         pick.mapped("move_ids_without_package").write({"quantity_done": 7.0})
         pick.action_done()
@@ -161,63 +179,65 @@ class TestSaleInvoicePlan(test_sale_common.TestCommonSaleNoChart):
         group_salemanager = cls.env.ref("sales_team.group_sale_manager")
         group_salesman = cls.env.ref("sales_team.group_sale_salesman")
         group_employee = cls.env.ref("base.group_user")
+        group_stock = cls.env.ref("stock.group_stock_user")
         cls.user_manager.write(
-            {"groups_id": [(6, 0, [group_salemanager.id, group_employee.id])]}
+            {
+                "groups_id": [
+                    (6, 0, [group_salemanager.id, group_employee.id, group_stock.id])
+                ]
+            }
         )
         cls.user_employee.write(
-            {"groups_id": [(6, 0, [group_salesman.id, group_employee.id])]}
+            {
+                "groups_id": [
+                    (6, 0, [group_salesman.id, group_employee.id, group_stock.id])
+                ]
+            }
         )
+        sale_obj = cls.env["sale.order"]
         # Create an SO for Service
-        cls.so_service = (
-            cls.env["sale.order"]
-            .sudo(cls.user_employee)
-            .create(
-                {
-                    "partner_id": cls.partner_customer_usd.id,
-                    "partner_invoice_id": cls.partner_customer_usd.id,
-                    "partner_shipping_id": cls.partner_customer_usd.id,
-                    "use_invoice_plan": True,
-                    "order_line": [
-                        (
-                            0,
-                            0,
-                            {
-                                "name": cls.product_order.name,
-                                "product_id": cls.product_order.id,
-                                "product_uom_qty": 1,
-                                "product_uom": cls.product_order.uom_id.id,
-                                "price_unit": cls.product_order.list_price,
-                            },
-                        )
-                    ],
-                    "pricelist_id": cls.env.ref("product.list0").id,
-                }
-            )
+        cls.so_service = sale_obj.with_user(cls.user_employee).create(
+            {
+                "partner_id": cls.partner_customer_usd.id,
+                "partner_invoice_id": cls.partner_customer_usd.id,
+                "partner_shipping_id": cls.partner_customer_usd.id,
+                "use_invoice_plan": True,
+                "order_line": [
+                    (
+                        0,
+                        0,
+                        {
+                            "name": cls.product_order.name,
+                            "product_id": cls.product_order.id,
+                            "product_uom_qty": 1,
+                            "product_uom": cls.product_order.uom_id.id,
+                            "price_unit": cls.product_order.list_price,
+                        },
+                    )
+                ],
+                "pricelist_id": cls.env.ref("product.list0").id,
+            }
         )
         # Create an SO for product delivery
-        cls.so_product = (
-            cls.env["sale.order"]
-            .sudo(cls.user_employee)
-            .create(
-                {
-                    "partner_id": cls.partner_customer_usd.id,
-                    "partner_invoice_id": cls.partner_customer_usd.id,
-                    "partner_shipping_id": cls.partner_customer_usd.id,
-                    "use_invoice_plan": True,
-                    "order_line": [
-                        (
-                            0,
-                            0,
-                            {
-                                "name": cls.product_deliver.name,
-                                "product_id": cls.product_deliver.id,
-                                "product_uom_qty": 10,
-                                "product_uom": cls.product_deliver.uom_id.id,
-                                "price_unit": cls.product_deliver.list_price,
-                            },
-                        )
-                    ],
-                    "pricelist_id": cls.env.ref("product.list0").id,
-                }
-            )
+        cls.so_product = sale_obj.with_user(cls.user_employee).create(
+            {
+                "partner_id": cls.partner_customer_usd.id,
+                "partner_invoice_id": cls.partner_customer_usd.id,
+                "partner_shipping_id": cls.partner_customer_usd.id,
+                "use_invoice_plan": True,
+                "order_line": [
+                    (
+                        0,
+                        0,
+                        {
+                            "name": cls.product_deliver.name,
+                            "product_id": cls.product_deliver.id,
+                            "product_uom_qty": 10,
+                            "product_uom": cls.product_deliver.uom_id.id,
+                            "price_unit": cls.product_deliver.list_price,
+                        },
+                    )
+                ],
+                "pricelist_id": cls.env.ref("product.list0").id,
+            }
         )
