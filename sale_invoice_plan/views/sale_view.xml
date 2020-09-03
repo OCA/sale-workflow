@@ -30,13 +30,14 @@
                         <field name="invoice_type" />
                         <field name="percent" />
                         <field name="invoiced" />
+                        <field name="invoice_move_ids" widget="many2many_tags" />
                     </group>
                 </group>
                 <separator
                     string="Related Invoices"
-                    attrs="{'invisible': [('invoice_ids', '=', [])]}"
+                    attrs="{'invisible': [('invoice_move_ids', '=', [])]}"
                 />
-                <field name="invoice_ids" widget="many2many_tags" />
+                <field name="invoice_move_ids" widget="many2many_tags" />
             </form>
         </field>
     </record>
@@ -58,7 +59,7 @@
                     string="Create Invoice by Plan"
                     type="action"
                     class="btn-primary"
-                    attrs="{'invisible': ['|', ('ip_invoice_plan', '=', False), ('invoice_status', '!=', 'to invoice')]}"
+                    attrs="{'invisible': [('ip_invoice_plan', '=', False)]}"
                 />
             </xpath>
             <xpath expr="/form/sheet/notebook/page" position="after">

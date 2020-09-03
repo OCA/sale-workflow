@@ -17,7 +17,7 @@ msgstr ""
 "X-Generator: Weblate 3.8\n"
 
 #. module: sale_invoice_plan
-#: selection:sale.invoice.plan,invoice_type:0
+#: model:ir.model.fields.selection,name:sale_invoice_plan.selection__sale_invoice_plan__invoice_type__advance
 msgid "Advance"
 msgstr "预付款"
 
@@ -84,7 +84,7 @@ msgid "Customer"
 msgstr ""
 
 #. module: sale_invoice_plan
-#: selection:sale.create.invoice.plan,interval_type:0
+#: model:ir.model.fields.selection,name:sale_invoice_plan.selection__sale_create_invoice_plan__interval_type__day
 msgid "Day"
 msgstr "天"
 
@@ -129,8 +129,8 @@ msgstr "发票计划"
 
 #. module: sale_invoice_plan
 #: model:ir.model.fields,field_description:sale_invoice_plan.field_sale_invoice_plan__installment
+#: model:ir.model.fields.selection,name:sale_invoice_plan.selection__sale_invoice_plan__invoice_type__installment
 #: model_terms:ir.ui.view,arch_db:sale_invoice_plan.view_sale_invoice_plan_filter
-#: selection:sale.invoice.plan,invoice_type:0
 msgid "Installment"
 msgstr "分期付款"
 
@@ -180,7 +180,7 @@ msgid "Invoice Sales Order"
 msgstr "发票销售订单"
 
 #. module: sale_invoice_plan
-#: model:ir.model.fields,field_description:sale_invoice_plan.field_sale_invoice_plan__invoice_ids
+#: model:ir.model.fields,field_description:sale_invoice_plan.field_sale_invoice_plan__invoice_move_ids
 msgid "Invoices"
 msgstr "发票"
 
@@ -225,7 +225,7 @@ msgid "Last installment will create invoice use remaining amount"
 msgstr "最后一期创建发票将使用剩余金额"
 
 #. module: sale_invoice_plan
-#: selection:sale.create.invoice.plan,interval_type:0
+#: model:ir.model.fields.selection,name:sale_invoice_plan.selection__sale_create_invoice_plan__interval_type__month
 msgid "Month"
 msgstr "月"
 
@@ -235,7 +235,7 @@ msgid "Next Invoice"
 msgstr "下一张发票"
 
 #. module: sale_invoice_plan
-#: code:addons/sale_invoice_plan/wizard/sale_create_invoice_plan.py:43
+#: code:addons/sale_invoice_plan/wizard/sale_create_invoice_plan.py:0
 #, python-format
 msgid "Number Installment must greater than 1"
 msgstr "分期付款必须大于1"
@@ -256,7 +256,7 @@ msgid "Plan Date"
 msgstr "计划日期"
 
 #. module: sale_invoice_plan
-#: code:addons/sale_invoice_plan/models/sale.py:235
+#: code:addons/sale_invoice_plan/models/sale.py:0
 #, python-format
 msgid ""
 "Plan quantity: %s, exceed invoiceable quantity: %s\n"
@@ -266,7 +266,7 @@ msgstr ""
 "产品应在发票前交付"
 
 #. module: sale_invoice_plan
-#: code:addons/sale_invoice_plan/models/sale.py:43
+#: code:addons/sale_invoice_plan/models/sale.py:0
 #, python-format
 msgid "Please fill percentage for all invoice plan lines"
 msgstr "请填写所有发票计划行的百分比"
@@ -282,11 +282,6 @@ msgid "Related Invoices"
 msgstr "相关发票"
 
 #. module: sale_invoice_plan
-#: model:ir.model,name:sale_invoice_plan.model_sale_order
-msgid "Sale Order"
-msgstr "销售订单"
-
-#. module: sale_invoice_plan
 #: model:ir.model,name:sale_invoice_plan.model_sale_advance_payment_inv
 msgid "Sales Advance Payment Invoice"
 msgstr "销售预付款发票"
@@ -300,6 +295,7 @@ msgid "Sales Invoice Plan"
 msgstr "使用发票计划"
 
 #. module: sale_invoice_plan
+#: model:ir.model,name:sale_invoice_plan.model_sale_order
 #: model:ir.model.fields,field_description:sale_invoice_plan.field_sale_invoice_plan__sale_id
 #: model_terms:ir.ui.view,arch_db:sale_invoice_plan.view_sale_invoice_plan_filter
 msgid "Sales Order"
@@ -351,7 +347,7 @@ msgid "Use Invoice Plan"
 msgstr "使用发票计划"
 
 #. module: sale_invoice_plan
-#: code:addons/sale_invoice_plan/models/sale.py:50
+#: code:addons/sale_invoice_plan/models/sale.py:0
 #, python-format
 msgid "Use Invoice Plan selected, but no plan created"
 msgstr "选中“使用发票计划”，但未创建任何计划"
@@ -369,14 +365,9 @@ msgid "Wizard when create invoice by plan"
 msgstr "按计划创建发票时的向导"
 
 #. module: sale_invoice_plan
-#: selection:sale.create.invoice.plan,interval_type:0
+#: model:ir.model.fields.selection,name:sale_invoice_plan.selection__sale_create_invoice_plan__interval_type__year
 msgid "Year"
 msgstr "年"
-
-#. module: sale_invoice_plan
-#: model:ir.model.fields,help:sale_invoice_plan.field_sale_invoice_plan__partner_id
-msgid "You can find a customer by its Name, TIN, Email or Internal Reference."
-msgstr ""
 
 #. module: sale_invoice_plan
 #: model_terms:ir.ui.view,arch_db:sale_invoice_plan.view_order_form_invoice_plan
@@ -387,3 +378,6 @@ msgstr "⇒ 创建发票计划"
 #: model_terms:ir.ui.view,arch_db:sale_invoice_plan.view_order_form_invoice_plan
 msgid "⇒ Remove Invoice Plan"
 msgstr "⇒ 删除发票计划"
+
+#~ msgid "Sale Order"
+#~ msgstr "销售订单"
