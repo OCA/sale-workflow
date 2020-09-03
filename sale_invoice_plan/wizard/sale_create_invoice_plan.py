@@ -23,13 +23,12 @@ class SaleCreateInvoicePlan(models.TransientModel):
         required=True,
     )
 
-    @api.one
     @api.constrains("num_installment")
     def _check_num_installment(self):
-        if self.num_installment <= 1:
-            raise ValidationError(_("Number Installment must greater than 1"))
+        for rec in self:
+            if rec.num_installment <= 1:
+                raise ValidationError(_("Number Installment must greater than 1"))
 
-    @api.multi
     def sale_create_invoice_plan(self):
         sale = self.env["sale.order"].browse(self._context.get("active_id"))
         self.ensure_one()
