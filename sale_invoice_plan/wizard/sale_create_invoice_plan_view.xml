@@ -1,6 +1,5 @@
-<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8" ?>
 <odoo>
-
     <record id="view_sale_create_invoice_plan" model="ir.ui.view">
         <field name="name">Create Invoice Plan</field>
         <field name="model">sale.create.invoice.plan</field>
@@ -11,26 +10,30 @@
                 </p>
                 <group>
                     <group>
-                        <field name="num_installment"/>
-                        <field name="installment_date"/>
+                        <field name="num_installment" />
+                        <field name="installment_date" />
                     </group>
                     <group>
-                        <field name="advance"/>
-                        <label for="interval"/>
+                        <field name="advance" />
+                        <label for="interval" />
                         <div>
-                            <field name="interval" class="oe_inline"/>
-                            <field name="interval_type" class="oe_inline"/>
+                            <field name="interval" class="oe_inline" />
+                            <field name="interval_type" class="oe_inline" />
                         </div>
                     </group>
                 </group>
                 <footer>
-                    <button name="sale_create_invoice_plan" string="Create Invoice Plan" type="object" class="btn-primary"/>
-                    <button string="Cancel" class="btn-default" special="cancel"/>
+                    <button
+                        name="sale_create_invoice_plan"
+                        string="Create Invoice Plan"
+                        type="object"
+                        class="btn-primary"
+                    />
+                    <button string="Cancel" class="btn-default" special="cancel" />
                 </footer>
             </form>
         </field>
     </record>
-
     <record id="action_sale_create_invoice_plan" model="ir.actions.act_window">
         <field name="name">Create Invoice Plan</field>
         <field name="type">ir.actions.act_window</field>
@@ -40,5 +43,4 @@
         <field name="target">new</field>
         <!-- <field name="binding_model_id" ref="sale.model_sale_order" /> -->
     </record>
-
 </odoo>
