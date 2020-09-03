@@ -20,7 +20,7 @@
             <field name="user_signature" eval="True"/>
         </record>
         <record id="mail_template_data_sale_substate_delivery" model="mail.template">
-            <field name="name">In delevery</field>
+            <field name="name">In delivery</field>
             <field name="model_id" ref="sale.model_sale_order"/>
             <field name="subject">Reception of ${object.name}</field>
             <field name="use_default_to" eval="True"/>
