@@ -6,9 +6,11 @@
       <field name="model">sale.order</field>
       <field name="inherit_id" ref="sale.view_order_form" />
       <field name="arch" type="xml">
-          <xpath expr="//header/field[@name='state']" position="before">
-            <field name="substate_id" widget="statusbar" options="{'clickable': '1',}"/>
-        </xpath>
+          <xpath expr="//header" position="after">
+              <header name="substate">
+                  <field name="substate_id" widget="statusbar" options="{'clickable': '1',}"/>
+              </header>
+          </xpath>
       </field>
     </record>
 </odoo>
