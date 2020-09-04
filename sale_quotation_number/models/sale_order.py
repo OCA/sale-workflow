@@ -16,12 +16,11 @@ class SaleOrder(models.Model):
         if company:
             company = self.env["res.company"].browse(company)
         else:
-            company = self.env["res.company"]._company_default_get("sale.order")
+            company = self.env.company
         if not company.keep_name_so:
             vals["name"] = self.env["ir.sequence"].next_by_code("sale.quotation") or "/"
         return super(SaleOrder, self).create(vals)
 
-    @api.multi
     def copy(self, default=None):
         self.ensure_one()
         if default is None:
@@ -33,7 +32,6 @@ class SaleOrder(models.Model):
             default["origin"] = self.name
         return super(SaleOrder, self).copy(default)
 
-    @api.multi
     def action_confirm(self):
         for order in self:
             if order.state in ("draft", "sent") and not order.company_id.keep_name_so:
