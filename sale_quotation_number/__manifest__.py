@@ -18,6 +18,4 @@
     "installable": True,
     "depends": ["sale_management"],
     "data": ["data/data.xml", "views/sales_config.xml"],
-    "demo": [],
-    "test": [],
 }
