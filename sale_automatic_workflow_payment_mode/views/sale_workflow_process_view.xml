@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
-<!-- 
-sale_automatic_workflow_payment_mode for Odoo 
-Copyright (C) 2016 Sodexis <dev@sodexis.com>  
+<!--
+sale_automatic_workflow_payment_mode for Odoo
+Copyright (C) 2016 Sodexis <dev@sodexis.com>
 The licence is in the file __openerp__.py -->
 
 <odoo>
