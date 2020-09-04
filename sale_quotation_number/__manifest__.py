@@ -4,23 +4,20 @@
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl)
 
 {
-    'name': 'Sale Quotation Numeration',
-    'summary': "Different sequence for sale quotations",
-    'version': '12.0.1.0.0',
-    'category': 'Sales Management',
-    'website': 'https://github.com/OCA/sale-workflow/',
-    'author': 'Elico Corp, '
-              'Agile Business Group, '
-              'Qubiq, '
-              'Odoo Community Association (OCA)',
+    "name": "Sale Quotation Numeration",
+    "summary": "Different sequence for sale quotations",
+    "version": "13.0.1.0.0",
+    "category": "Sales Management",
+    "website": "https://github.com/OCA/sale-workflow/",
+    "author": "Elico Corp, "
+    "Agile Business Group, "
+    "Qubiq, "
+    "Odoo Community Association (OCA)",
     "license": "AGPL-3",
     "application": False,
     "installable": True,
-    'depends': ['sale_management'],
-    'data': [
-        'data/data.xml',
-        'views/sales_config.xml'
-    ],
-    'demo': [],
-    'test': [],
+    "depends": ["sale_management"],
+    "data": ["data/data.xml", "views/sales_config.xml"],
+    "demo": [],
+    "test": [],
 }
