@@ -122,6 +122,9 @@ class SaleOrderLine(models.Model):
         ):
             return super().write(vals)
         for line in self:
+            if line.product_packaging:
+                # don't touch it if set already
+                continue
             line_vals = vals.copy()
             line_vals.update(line._write_auto_assign_packaging(line_vals))
             super(SaleOrderLine, line).write(line_vals)
@@ -158,7 +161,8 @@ class SaleOrderLine(models.Model):
     def create(self, vals):
         """Auto assign packaging if needed"""
         # Fill the packaging if they are empty and the quantity is a multiple
-        vals.update(self._create_auto_assign_packaging(vals))
+        if not vals.get("product_packaging"):
+            vals.update(self._create_auto_assign_packaging(vals))
         return super().create(vals)
 
     @api.model
