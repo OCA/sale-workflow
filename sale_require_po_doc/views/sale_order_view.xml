@@ -1,0 +1,15 @@
+<odoo>
+    <record id="sales_po_sale_order_custom" model="ir.ui.view">
+        <field name="name">sale.order.sales.po.custom</field>
+        <field name="model">sale.order</field>
+        <field name="inherit_id" ref="sale.view_order_form"/>
+        <field name="arch" type="xml">
+            <field name="client_order_ref" position="after">
+                <field name="customer_need_po"/>
+                <field name="sale_doc"/>
+                <field attrs="{'invisible':[('sale_doc','=','')]}" name="sale_document_option"/>
+                <field attrs="{'invisible':[('sale_doc','=','')]}" name="sale_document_note"/>
+            </field>
+        </field>
+    </record>
+</odoo>
