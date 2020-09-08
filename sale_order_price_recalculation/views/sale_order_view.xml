@@ -6,20 +6,14 @@
         <field name="model">sale.order</field>
         <field name="inherit_id" ref="sale.view_order_form"/>
         <field name="arch" type="xml">
-            <field name="note" position="after">
-                <group name="sorp">
-                    <div class="btn-group">
-                        <button name="recalculate_prices"
-                                string="Recalculate prices"
-                                attrs="{'invisible': [('state', 'not in', ['draft', 'sent'])]}"
-                                type="object" colspan="4" class="ml-2 btn btn-default"/>
-                        <button name="recalculate_names"
-                                string="Reset descriptions"
-                                attrs="{'invisible': [('state', 'not in', ['draft', 'sent'])]}"
-                                type="object" colspan="4" class="ml-2 btn btn-default"/>
-                    </div>
-                </group>
-            </field>
+            <button name="action_unlock" position="after">
+                <button name="recalculate_prices" class="ml-2 btn btn-default"
+                        string="Recalculate prices" Help="Apply the current pricelist"
+                        type="object" attrs="{'invisible':[('state','not in', ['draft', 'sent'])]}"/>
+                <button name="recalculate_names" class="ml-2 btn btn-default"
+                        string="Reset descriptions" Help="Erase custom descriptions of all lines"
+                        type="object" attrs="{'invisible':[('state','not in', ['draft', 'sent'])]}"/>
+            </button>
         </field>
     </record>
 
