@@ -1,0 +1,13 @@
+<odoo>
+    <record id="sales_po_res_partner_custom" model="ir.ui.view">
+        <field name="name">res.partner.sales.po.custom</field>
+        <field name="model">res.partner</field>
+        <field name="inherit_id" ref="base.view_partner_form"/>
+        <field name="arch" type="xml">
+            <group name="sale" position="inside">
+                <field name="customer_need_po"/>
+                <field name="sale_doc"/>
+            </group>
+        </field>
+    </record>
+</odoo>
