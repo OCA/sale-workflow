@@ -18,6 +18,7 @@ class TestSaleProcurementGroupByLine(TransactionCase):
         self.order_line_model = self.env['sale.order.line']
         # Customer
         self.customer = self.env.ref('base.res_partner_2')
+        self.customer2 = self.env.ref('base.res_partner_3')
         # Warehouse
         self.warehouse_id = self.env.ref('stock.warehouse0')
         # Create product category
@@ -77,3 +78,13 @@ class TestSaleProcurementGroupByLine(TransactionCase):
             search([('group_id', 'in', self.line2.procurement_group_id.ids)])
         self.assertTrue(self.picking_ids,
                         'Procurement Group should have picking')
+
+    def test_shipping_partner(self):
+        self.sale.action_confirm()
+        # After the confirmation, we cancel and change the delivery address
+        self.sale.action_cancel()
+        self.sale.action_draft()
+        self.sale.partner_shipping_id = self.customer2.id
+        self.sale.action_confirm()
+        self.assertEqual(self.sale.picking_ids[0].partner_id, self.customer)
+        self.assertEqual(self.sale.picking_ids[1].partner_id, self.customer2)
