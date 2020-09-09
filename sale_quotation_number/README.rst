@@ -26,10 +26,12 @@ Sale Quotation Numeration
 |badge1| |badge2| |badge3| |badge4| |badge5| 
 
 * Sale Quotation:
-    * Sale process in draft stage just informing prices and element of communication.
+
+  * Sale process in draft stage just informing prices and element of communication.
 
 * Sale Order:
-    * Sale process confirmed, the customer already have a compromise with us in terms of pay an invoice and receive our product or service.
+
+  * Sale process confirmed, the customer already have a compromise with us in terms of pay an invoice and receive our product or service.
 
 Originally Odoo manage only 1 sequence for this 2 documents, then the sales order won and lost manage the same sequence losing
 almost all lost quotations in terms of sequences, making so difficult understand with a quick view if we are good or bad in terms of
@@ -79,21 +81,6 @@ Configuration
 
 To configure this module you need to go to Sales -> Configuration and uncheck 'Use same enumeration for quotations and sale orders'.
 
-Usage
-=====
-
-.. image:: https://odoo-community.org/website/image/ir.attachment/5784_f2813bd/datas
-   :alt: Try me on Runbot
-   :target: https://runbot.odoo-community.org/runbot/167/11.0
-
-Known issues / Roadmap
-======================
-
-Bugs are tracked on `GitHub Issues
-<https://github.com/OCA/sale-workflow/issues>`_. In case of trouble, please
-check there if your issue has already been reported. If you spotted it first,
-help us smash it by providing detailed and welcomed feedback.
-
 Bug Tracker
 ===========
 
@@ -122,8 +109,6 @@ Contributors
 * Valentin Vinagre Urteaga <valentin.vinagre@qubiq.es>
 * Serpent Consulting Services Pvt. Ltd. <support@serpentcs.com>
 * Manuel Regidor <manuel.regidor@sygel.es>
-
-Do not contact contributors directly about support or help with technical issues.
 
 Other credits
 ~~~~~~~~~~~~~
