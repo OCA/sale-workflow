@@ -60,7 +60,7 @@ addon | version | summary
 [sale_owner_stock_sourcing](sale_owner_stock_sourcing/) | 10.0.1.0.0 | Manage stock ownership on sale order lines
 [sale_partner_incoterm](sale_partner_incoterm/) | 10.0.1.0.0 | Set the customer preferred incoterm on each sales order
 [sale_partner_version](sale_partner_version/) | 10.0.1.0.0 | Sale Partner Version
-[sale_procurement_group_by_line](sale_procurement_group_by_line/) | 10.0.1.1.0 | Base module for multiple procurement group by Sale order
+[sale_procurement_group_by_line](sale_procurement_group_by_line/) | 10.0.1.1.1 | Base module for multiple procurement group by Sale order
 [sale_procurement_group_by_requested_date](sale_procurement_group_by_requested_date/) | 10.0.1.0.0 | Groups pickings based on requested date of order line
 [sale_procurement_group_by_requested_date_sale_sourced_by_line](sale_procurement_group_by_requested_date_sale_sourced_by_line/) | 10.0.1.0.0 | Integrates sale_source_by_line and sale procurement group
 [sale_product_multi_add](sale_product_multi_add/) | 10.0.1.0.0 | Sale Product Multi Add
