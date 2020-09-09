@@ -10,9 +10,9 @@ class TestSaleOrderPriceRecalculation(common.TransactionCase):
     def setUp(self):
         super(TestSaleOrderPriceRecalculation, self).setUp()
         # Enable group_discount_per_so_line for admin user
-        group = self.env.ref("sale.group_discount_per_so_line")
+        group = self.env.ref("product.group_discount_per_so_line")
         group.users = [(4, self.env.user.id)]
-        self.partner = self.env["res.partner"].create({"name": "Test partner",})
+        self.partner = self.env["res.partner"].create({"name": "Test partner"})
         uom_id = self.env.ref("uom.product_uom_kgm")
         self.product = self.env["product.product"].create(
             {
@@ -90,6 +90,8 @@ class TestSaleOrderPriceRecalculation(common.TransactionCase):
         # Apply listprice with a discount
         self.sale_order.pricelist_id = self.pricelist_dto
         self.sale_order.recalculate_prices()
+        # Check for ensuring no line addition/removal is performed
+        self.assertEqual(len(self.sale_order.order_line), 1)
         self.assertEqual(self.sale_order_line.discount, 50.0)
 
     def test_name_recalculation(self):
@@ -98,6 +100,6 @@ class TestSaleOrderPriceRecalculation(common.TransactionCase):
         self.assertEqual(self.sale_order_line.name, self.product.name)
         self.sale_order_line.name = "Custom Jacket"
         self.sale_order.recalculate_names()
-        self.assertEqual("Jacket - Color: Black - Size: XL", self.sale_order_line.name)
+        self.assertNotEqual("Custom Jacket", self.sale_order_line.name)
         # Check the price wasn't reset
         self.assertEqual(initial_price, self.sale_order_line.price_unit)
