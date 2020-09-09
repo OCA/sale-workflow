@@ -10,15 +10,15 @@ class SaleOrder(models.Model):
 
     customer_need_po = fields.Boolean(
         related="partner_id.customer_need_po",
-        string='Customer Requires PO',
+        string='Customer Requires PO', readonly=True,
     )
     sale_doc = fields.Text(
         related="partner_id.sale_doc",
-        string='Sales Require Documentation',
+        string='Sales Require Documentation', readonly=True,
     )
     sale_document_option = fields.Selection(
         [('no_need', 'No documentation needed for this Sale'),
-         ('required', 'Documentation required obtained and archived')],
+         ('done', 'Documentation required obtained and archived')],
         string="Sale Documentation")
     sale_document_note = fields.Text(
         string='Sale Documentation Notes',
@@ -26,7 +26,6 @@ class SaleOrder(models.Model):
 
     @api.multi
     def action_confirm(self):
-        res = super(SaleOrder, self).action_confirm()
         for order in self:
             if order.customer_need_po and not order.client_order_ref:
                 raise ValidationError(
@@ -36,4 +35,4 @@ class SaleOrder(models.Model):
                 raise ValidationError(
                     _("You can not confirm sale order without \
                         Sale Documentation."))
-        return res
+        return super(SaleOrder, self).action_confirm()
