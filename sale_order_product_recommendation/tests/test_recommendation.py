@@ -44,6 +44,8 @@ class RecommendationCaseTests(RecommendationCase):
         wizard.line_amount = 1
         wizard._generate_recommendations()
         self.assertEqual(len(wizard.line_ids), 2)
+        # Check regression about ORM fault with related using inverse_name of the o2m
+        self.assertEqual(wizard.line_ids[0].partner_id, self.partner)
 
     def test_recommendations_archived_product(self):
         self.env["sale.order"].create({"partner_id": self.partner.id})
