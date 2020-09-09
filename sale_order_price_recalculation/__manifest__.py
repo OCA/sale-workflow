@@ -12,16 +12,12 @@
     "category": "Sales Management",
     "website": "http://github.com/OCA/sale-workflow",
     "author": "AvanzOSC,"
-              "Grupo Vermon,"
-              "Tecnativa,"
-              "Odoo Community Association (OCA)",
+    "Grupo Vermon,"
+    "Tecnativa,"
+    "Odoo Community Association (OCA)",
     "license": "AGPL-3",
     "application": False,
     "installable": True,
-    "depends": [
-        "sale",
-    ],
-    "data": [
-        "views/sale_order_view.xml",
-    ],
+    "depends": ["sale",],
+    "data": ["views/sale_order_view.xml",],
 }
