@@ -4,7 +4,7 @@
 import functools
 
 from odoo import _, models
-from odoo.addons.queue_job.job import job, identity_exact
+from odoo.addons.queue_job.job import job, identity_exact, related_action
 
 
 # TODO integrate in queue_job
@@ -98,6 +98,7 @@ class AutomaticWorkflowJob(models.Model):
         }
 
     @job_auto_delay(default_channel="root.auto_workflow")
+    @related_action('_related_action_sale_automatic_workflow')
     def _do_validate_sale_order(self, sale):
         return super()._do_validate_sale_order(sale)
 
@@ -111,6 +112,7 @@ class AutomaticWorkflowJob(models.Model):
         }
 
     @job_auto_delay(default_channel="root.auto_workflow")
+    @related_action('_related_action_sale_automatic_workflow')
     def _do_create_invoice(self, sale):
         return super()._do_create_invoice(sale)
 
@@ -122,6 +124,7 @@ class AutomaticWorkflowJob(models.Model):
         }
 
     @job_auto_delay(default_channel="root.auto_workflow")
+    @related_action('_related_action_sale_automatic_workflow')
     def _do_validate_invoice(self, invoice):
         return super()._do_validate_invoice(invoice)
 
@@ -133,6 +136,7 @@ class AutomaticWorkflowJob(models.Model):
         }
 
     @job_auto_delay(default_channel="root.auto_workflow")
+    @related_action('_related_action_sale_automatic_workflow')
     def _do_validate_picking(self, picking):
         return super()._do_validate_picking(picking)
 
@@ -146,5 +150,6 @@ class AutomaticWorkflowJob(models.Model):
         }
 
     @job_auto_delay(default_channel="root.auto_workflow")
+    @related_action('_related_action_sale_automatic_workflow')
     def _do_sale_done(self, sale):
         return super()._do_sale_done(sale)
