@@ -5,7 +5,7 @@ import functools
 
 from odoo import _, models
 
-from odoo.addons.queue_job.job import identity_exact, job
+from odoo.addons.queue_job.job import identity_exact, job, related_action
 
 
 # TODO integrate in queue_job
@@ -92,6 +92,7 @@ class AutomaticWorkflowJob(models.Model):
         }
 
     @job_auto_delay(default_channel="root.auto_workflow")
+    @related_action("_related_action_sale_automatic_workflow")
     def _validate_sale_orders(self, order_filter):
         sales = super()._validate_sale_orders(order_filter)
         self._update_job_name(sales)
@@ -105,6 +106,7 @@ class AutomaticWorkflowJob(models.Model):
         }
 
     @job_auto_delay(default_channel="root.auto_workflow")
+    @related_action("_related_action_sale_automatic_workflow")
     def _create_invoices(self, create_filter):
         sales = super()._create_invoices(create_filter)
         self._update_job_name(sales)
@@ -118,6 +120,7 @@ class AutomaticWorkflowJob(models.Model):
         }
 
     @job_auto_delay(default_channel="root.auto_workflow")
+    @related_action("_related_action_sale_automatic_workflow")
     def _validate_invoices(self, validate_invoice_filter):
         invoices = super()._validate_invoices(validate_invoice_filter)
         self._update_job_name(invoices)
@@ -131,6 +134,7 @@ class AutomaticWorkflowJob(models.Model):
         }
 
     @job_auto_delay(default_channel="root.auto_workflow")
+    @related_action("_related_action_sale_automatic_workflow")
     def _validate_pickings(self, picking_filter):
         pickings = super()._validate_pickings(picking_filter)
         self._update_job_name(pickings)
@@ -144,6 +148,7 @@ class AutomaticWorkflowJob(models.Model):
         }
 
     @job_auto_delay(default_channel="root.auto_workflow")
+    @related_action("_related_action_sale_automatic_workflow")
     def _sale_done(self, sale_done_filter):
         sales = super()._sale_done(sale_done_filter)
         self._update_job_name(sales)
