@@ -125,6 +125,7 @@ class SaleOrderRecommendation(models.TransientModel):
             i += 1
             if i >= self.line_amount:
                 break
+        recommendation_lines.wizard_id = self
         self.line_ids = recommendation_lines
 
     def action_accept(self):
