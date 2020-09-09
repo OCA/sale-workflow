@@ -1,20 +1,28 @@
-<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8" ?>
 <odoo>
-
     <record id="sorp_view_order_form" model="ir.ui.view">
         <field name="name">sale.order.form</field>
         <field name="model">sale.order</field>
-        <field name="inherit_id" ref="sale.view_order_form"/>
+        <field name="inherit_id" ref="sale.view_order_form" />
         <field name="arch" type="xml">
             <button name="action_unlock" position="after">
-                <button name="recalculate_prices" class="ml-2 btn btn-default"
-                        string="Recalculate prices" Help="Apply the current pricelist"
-                        type="object" attrs="{'invisible':[('state','not in', ['draft', 'sent'])]}"/>
-                <button name="recalculate_names" class="ml-2 btn btn-default"
-                        string="Reset descriptions" Help="Erase custom descriptions of all lines"
-                        type="object" attrs="{'invisible':[('state','not in', ['draft', 'sent'])]}"/>
+                <button
+                    name="recalculate_prices"
+                    class="ml-2 btn btn-default"
+                    string="Recalculate prices"
+                    Help="Apply the current pricelist"
+                    type="object"
+                    attrs="{'invisible':[('state','not in', ['draft', 'sent'])]}"
+                />
+                <button
+                    name="recalculate_names"
+                    class="ml-2 btn btn-default"
+                    string="Reset descriptions"
+                    Help="Erase custom descriptions of all lines"
+                    type="object"
+                    attrs="{'invisible':[('state','not in', ['draft', 'sent'])]}"
+                />
             </button>
         </field>
     </record>
-
 </odoo>
