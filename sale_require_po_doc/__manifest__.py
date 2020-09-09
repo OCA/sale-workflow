@@ -8,9 +8,7 @@
     "author": "Open Source Integrators, Odoo Community Association (OCA)",
     "website": "https://github.com/OCA/sale-workflow",
     "category": "Sales",
-    "depends": [
-        "sale_management", "purchase"
-    ],
+    "depends": ["sale_management"],
     "data": [
         "views/res_partner_view.xml",
         "views/sale_order_view.xml",
