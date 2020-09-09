@@ -1,8 +1,10 @@
 * Sale Quotation:
-    * Sale process in draft stage just informing prices and element of communication.
+
+  * Sale process in draft stage just informing prices and element of communication.
 
 * Sale Order:
-    * Sale process confirmed, the customer already have a compromise with us in terms of pay an invoice and receive our product or service.
+
+  * Sale process confirmed, the customer already have a compromise with us in terms of pay an invoice and receive our product or service.
 
 Originally Odoo manage only 1 sequence for this 2 documents, then the sales order won and lost manage the same sequence losing
 almost all lost quotations in terms of sequences, making so difficult understand with a quick view if we are good or bad in terms of
