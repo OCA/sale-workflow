@@ -7,7 +7,7 @@
             <field name="journal_id" position="before">
                 <field
                     name="sale_type_id"
-                    attrs="{'invisible': [('type', 'not in', ['in_invoice', 'in_refund', 'out_invoice', 'out_refund'])]}"
+                    attrs="{'invisible': [('type', 'not in', ['out_invoice', 'out_refund'])]}"
                 />
             </field>
         </field>
