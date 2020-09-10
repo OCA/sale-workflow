@@ -11,7 +11,9 @@ class TestSaleOrderType(common.TransactionCase):
         super(TestSaleOrderType, self).setUp()
         self.sale_type_model = self.env["sale.order.type"]
         self.sale_order_model = self.env["sale.order"]
-        self.invoice_model = self.env["account.move"]
+        self.invoice_model = self.env["account.move"].with_context(
+            default_type="out_invoice"
+        )
         self.partner = self.env.ref("base.res_partner_1")
         self.partner_child_1 = self.env["res.partner"].create(
             {"name": "Test child", "parent_id": self.partner.id, "sale_type": False}
@@ -27,6 +29,7 @@ class TestSaleOrderType(common.TransactionCase):
         self.journal = self.env["account.journal"].search(
             [("type", "=", "sale")], limit=1
         )
+        self.default_sale_type_id = self.env["sale.order.type"].search([], limit=1)
         self.warehouse = self.env["stock.warehouse"].create(
             {"name": "Warehouse Test", "code": "WT"}
         )
@@ -127,6 +130,10 @@ class TestSaleOrderType(common.TransactionCase):
         self.assertEqual(invoice.sale_type_id, self.sale_type)
         invoice = self.invoice_model.new({"partner_id": self.partner_child_1.id})
         self.assertEqual(invoice.sale_type_id, self.sale_type)
+
+    def test_invoice_without_partner(self):
+        invoice = self.invoice_model.new()
+        self.assertEqual(invoice.sale_type_id, self.default_sale_type_id)
 
     def test_sale_order_flow_route(self):
         order = self.sale_order_model.create(self.get_sale_order_vals())
