@@ -38,6 +38,7 @@ setuptools.setup(
         'odoo12-addon-sale_last_price_info',
         'odoo12-addon-sale_merge_draft_invoice',
         'odoo12-addon-sale_milestone_profile_invoicing',
+        'odoo12-addon-sale_mrp_bom',
         'odoo12-addon-sale_mrp_link',
         'odoo12-addon-sale_order_action_invoice_create_hook',
         'odoo12-addon-sale_order_archive',
