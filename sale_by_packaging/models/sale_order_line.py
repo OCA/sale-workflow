@@ -106,12 +106,17 @@ class SaleOrderLine(models.Model):
             qty = uom._compute_quantity(qty, product.uom_id)
         return product.get_first_packaging_with_multiple_qty(qty)
 
+    def _inverse_product_packaging_qty(self):
+        # Force skipping of auto assign
+        # if we are writing the product_uom_qty directly via inverse
+        super(
+            SaleOrderLine, self.with_context(_skip_auto_assign=True)
+        )._inverse_product_packaging_qty()
+
     def write(self, vals):
         """Auto assign packaging if needed"""
-        fields_to_check = ["product_id", "product_uom_qty", "product_uom"]
-        if vals.get("product_packaging") or not any(
-            fname in vals for fname in fields_to_check
-        ):
+        if vals.get("product_packaging") or self.env.context.get("_skip_auto_assign"):
+            # setting the packaging directly, skip auto assign
             return super().write(vals)
         for line in self:
             if line.product_packaging:
