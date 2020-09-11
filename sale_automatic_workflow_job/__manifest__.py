@@ -4,7 +4,7 @@
 {
     "name": "Sale Automatic Workflow Job",
     "summary": "Execute sale automatic workflows in queue jobs",
-    "version": "12.0.1.0.0",
+    "version": "12.0.1.0.1",
     "category": "Sales Management",
     "license": "AGPL-3",
     "author": "Camptocamp, "
