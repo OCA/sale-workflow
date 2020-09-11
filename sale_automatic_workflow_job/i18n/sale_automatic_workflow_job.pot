@@ -15,14 +15,27 @@ msgstr ""
 
 #. module: sale_automatic_workflow_job
 #: code:addons/sale_automatic_workflow_job/models/automatic_workflow_job.py:105
+#: code:addons/sale_automatic_workflow_job/models/automatic_workflow_job.py:106
 #, python-format
 msgid "Create invoices for sales order {}"
 msgstr ""
 
 #. module: sale_automatic_workflow_job
 #: code:addons/sale_automatic_workflow_job/models/automatic_workflow_job.py:140
+#: code:addons/sale_automatic_workflow_job/models/automatic_workflow_job.py:144
 #, python-format
 msgid "Mark sales order {} as done"
+msgstr ""
+
+#. module: sale_automatic_workflow_job
+#: model:ir.model,name:sale_automatic_workflow_job.model_queue_job
+msgid "Queue Job"
+msgstr ""
+
+#. module: sale_automatic_workflow_job
+#: code:addons/sale_automatic_workflow_job/models/queue_job.py:14
+#, python-format
+msgid "Sale Automatic Workflow Job"
 msgstr ""
 
 #. module: sale_automatic_workflow_job
@@ -32,6 +45,7 @@ msgstr ""
 
 #. module: sale_automatic_workflow_job
 #: code:addons/sale_automatic_workflow_job/models/automatic_workflow_job.py:118
+#: code:addons/sale_automatic_workflow_job/models/automatic_workflow_job.py:120
 #, python-format
 msgid "Validate invoice {}"
 msgstr ""
@@ -44,6 +58,7 @@ msgstr ""
 
 #. module: sale_automatic_workflow_job
 #: code:addons/sale_automatic_workflow_job/models/automatic_workflow_job.py:129
+#: code:addons/sale_automatic_workflow_job/models/automatic_workflow_job.py:132
 #, python-format
 msgid "Validate transfer {}"
 msgstr ""
