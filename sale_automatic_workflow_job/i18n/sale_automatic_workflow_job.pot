@@ -14,14 +14,12 @@ msgstr ""
 "Plural-Forms: \n"
 
 #. module: sale_automatic_workflow_job
-#: code:addons/sale_automatic_workflow_job/models/automatic_workflow_job.py:105
 #: code:addons/sale_automatic_workflow_job/models/automatic_workflow_job.py:106
 #, python-format
 msgid "Create invoices for sales order {}"
 msgstr ""
 
 #. module: sale_automatic_workflow_job
-#: code:addons/sale_automatic_workflow_job/models/automatic_workflow_job.py:140
 #: code:addons/sale_automatic_workflow_job/models/automatic_workflow_job.py:144
 #, python-format
 msgid "Mark sales order {} as done"
@@ -44,7 +42,6 @@ msgid "Scheduler that will play automatically the validation of invoices, pickin
 msgstr ""
 
 #. module: sale_automatic_workflow_job
-#: code:addons/sale_automatic_workflow_job/models/automatic_workflow_job.py:118
 #: code:addons/sale_automatic_workflow_job/models/automatic_workflow_job.py:120
 #, python-format
 msgid "Validate invoice {}"
@@ -57,7 +54,6 @@ msgid "Validate sales order {}"
 msgstr ""
 
 #. module: sale_automatic_workflow_job
-#: code:addons/sale_automatic_workflow_job/models/automatic_workflow_job.py:129
 #: code:addons/sale_automatic_workflow_job/models/automatic_workflow_job.py:132
 #, python-format
 msgid "Validate transfer {}"
