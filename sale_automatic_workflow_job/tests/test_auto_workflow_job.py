@@ -5,13 +5,11 @@ from odoo.tests import tagged
 
 from odoo.addons.queue_job.job import identity_exact
 from odoo.addons.queue_job.tests.common import mock_with_delay
-from odoo.addons.sale_automatic_workflow.tests.test_automatic_workflow_base import (  # noqa
-    TestAutomaticWorkflowBase,
-)
+from odoo.addons.sale_automatic_workflow.tests.common import TestAutomaticWorkflowMixin
 
 
 @tagged("post_install", "-at_install")
-class TestAutoWorkflowJob(TestAutomaticWorkflowBase):
+class TestAutoWorkflowJob(TestAutomaticWorkflowMixin):
     def setUp(self):
         super().setUp()
         workflow = self.create_full_automatic()
@@ -36,7 +34,7 @@ class TestAutoWorkflowJob(TestAutomaticWorkflowBase):
         with mock_with_delay() as (delayable_cls, delayable):
             self.progress()  # run automatic workflow cron
             self.assert_job_delayed(
-                delayable_cls, delayable, "_do_validate_sale_order", (self.sale,)
+                delayable_cls, delayable, "_validate_sale_order", (self.sale,)
             )
 
     def test_create_invoice(self):
@@ -46,7 +44,7 @@ class TestAutoWorkflowJob(TestAutomaticWorkflowBase):
         with mock_with_delay() as (delayable_cls, delayable):
             self.progress()  # run automatic workflow cron
             self.assert_job_delayed(
-                delayable_cls, delayable, "_do_create_invoice", (self.sale,)
+                delayable_cls, delayable, "_create_invoice", (self.sale,)
             )
 
     def test_validate_invoice(self):
@@ -58,7 +56,7 @@ class TestAutoWorkflowJob(TestAutomaticWorkflowBase):
         with mock_with_delay() as (delayable_cls, delayable):
             self.progress()  # run automatic workflow cron
             self.assert_job_delayed(
-                delayable_cls, delayable, "_do_validate_invoice", (invoice,)
+                delayable_cls, delayable, "_validate_invoice", (invoice,)
             )
 
     def test_validate_picking(self):
@@ -69,7 +67,7 @@ class TestAutoWorkflowJob(TestAutomaticWorkflowBase):
         with mock_with_delay() as (delayable_cls, delayable):
             self.progress()  # run automatic workflow cron
             self.assert_job_delayed(
-                delayable_cls, delayable, "_do_validate_picking", (picking,)
+                delayable_cls, delayable, "_validate_picking", (picking,)
             )
 
     def test_sale_done(self):
@@ -87,5 +85,5 @@ class TestAutoWorkflowJob(TestAutomaticWorkflowBase):
         with mock_with_delay() as (delayable_cls, delayable):
             self.progress()  # run automatic workflow cron
             self.assert_job_delayed(
-                delayable_cls, delayable, "_do_sale_done", (self.sale,)
+                delayable_cls, delayable, "_sale_done", (self.sale,)
             )

@@ -84,57 +84,80 @@ def job_auto_delay(func=None, default_channel="root", retry_pattern=None):
 class AutomaticWorkflowJob(models.Model):
     _inherit = "automatic.workflow.job"
 
-    def _do_validate_sale_order_job_options(self, sale):
-        description = _("Validate sales order {}").format(sale.display_name)
+    def _validate_sale_orders_job_options(self, order_filter):
+        description = _("Validate sales order:")
         return {
             "description": description,
             "identity_key": identity_exact,
         }
 
     @job_auto_delay(default_channel="root.auto_workflow")
-    def _do_validate_sale_order(self, sale):
-        return super()._do_validate_sale_order(sale)
+    def _validate_sale_orders(self, order_filter):
+        sales = super()._validate_sale_orders(order_filter)
+        self._update_job_name(sales)
+        return self._get_result_dict(sales)
 
-    def _do_create_invoice_job_options(self, sale):
-        description = _("Create invoices for sales order {}").format(sale.display_name)
+    def _create_invoices_job_options(self, create_filter):
+        description = _("Create invoices for sales order:")
         return {
             "description": description,
             "identity_key": identity_exact,
         }
 
     @job_auto_delay(default_channel="root.auto_workflow")
-    def _do_create_invoice(self, sale):
-        return super()._do_create_invoice(sale)
+    def _create_invoices(self, create_filter):
+        sales = super()._create_invoices(create_filter)
+        self._update_job_name(sales)
+        return self._get_result_dict(sales)
 
-    def _do_validate_invoice_job_options(self, invoice):
-        description = _("Validate invoice {}").format(invoice.display_name)
+    def _validate_invoices_job_options(self, validate_invoice_filter):
+        description = _("Validate invoice:")
         return {
             "description": description,
             "identity_key": identity_exact,
         }
 
     @job_auto_delay(default_channel="root.auto_workflow")
-    def _do_validate_invoice(self, invoice):
-        return super()._do_validate_invoice(invoice)
+    def _validate_invoices(self, validate_invoice_filter):
+        invoices = super()._validate_invoices(validate_invoice_filter)
+        self._update_job_name(invoices)
+        return self._get_result_dict(invoices)
 
-    def _do_validate_picking_job_options(self, picking):
-        description = _("Validate transfer {}").format(picking.display_name)
+    def _validate_pickings_job_options(self, picking_filter):
+        description = _("Validate transfer:")
         return {
             "description": description,
             "identity_key": identity_exact,
         }
 
     @job_auto_delay(default_channel="root.auto_workflow")
-    def _do_validate_picking(self, picking):
-        return super()._do_validate_picking(picking)
+    def _validate_pickings(self, picking_filter):
+        pickings = super()._validate_pickings(picking_filter)
+        self._update_job_name(pickings)
+        return self._get_result_dict(pickings)
 
-    def _do_sale_done_job_options(self, sale):
-        description = _("Mark sales order {} as done").format(sale.display_name)
+    def _sale_done_job_options(self, sale_done_filter):
+        description = _("Sale orders mark as done:")
         return {
             "description": description,
             "identity_key": identity_exact,
         }
 
     @job_auto_delay(default_channel="root.auto_workflow")
-    def _do_sale_done(self, sale):
-        return super()._do_sale_done(sale)
+    def _sale_done(self, sale_done_filter):
+        sales = super()._sale_done(sale_done_filter)
+        self._update_job_name(sales)
+        return self._get_result_dict(sales)
+
+    def _get_result_dict(self, obj):
+        result = {"ids": obj.ids, "model": obj._name} if obj else {}
+        return result
+
+    def _update_job_name(self, obj):
+        uuid = self._context.get("job_uuid", False)
+        job = self.env["queue.job"].search([("uuid", "=", uuid)], limit=1)
+        new_name = _("{} {}").format(
+            job.name, ", ".join(obj and obj.mapped("display_name") or [])
+        )
+        job.write({"name": new_name})
+        return job
