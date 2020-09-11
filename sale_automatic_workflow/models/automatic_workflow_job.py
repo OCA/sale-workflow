@@ -53,6 +53,7 @@ class AutomaticWorkflowJob(models.Model):
         for sale in sales:
             with savepoint(self.env.cr), force_company(self.env, sale.company_id):
                 sale.action_confirm()
+        return sales
 
     @api.model
     def _create_invoices(self, create_filter):
@@ -63,6 +64,7 @@ class AutomaticWorkflowJob(models.Model):
             with savepoint(self.env.cr), force_company(self.env, sale.company_id):
                 payment = self.env["sale.advance.payment.inv"].create({})
                 payment.with_context(active_ids=sale.ids).create_invoices()
+        return sales
 
     @api.model
     def _validate_invoices(self, validate_invoice_filter):
@@ -74,6 +76,7 @@ class AutomaticWorkflowJob(models.Model):
                 # FIX Why is this needed or certain invoices
                 # in enterprise in multicompany?
                 invoice.with_context(force_company=invoice.company_id.id).post()
+        return invoices
 
     @api.model
     def _validate_pickings(self, picking_filter):
@@ -83,6 +86,7 @@ class AutomaticWorkflowJob(models.Model):
         for picking in pickings:
             with savepoint(self.env.cr):
                 picking.validate_picking()
+        return pickings
 
     @api.model
     def _sale_done(self, sale_done_filter):
@@ -92,6 +96,7 @@ class AutomaticWorkflowJob(models.Model):
         for sale in sales:
             with savepoint(self.env.cr), force_company(self.env, sale.company_id):
                 sale.action_done()
+        return sales
 
     @api.model
     def run_with_workflow(self, sale_workflow):
