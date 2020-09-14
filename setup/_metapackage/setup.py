@@ -63,6 +63,7 @@ setuptools.setup(
         'odoo12-addon-sale_partner_incoterm',
         'odoo12-addon-sale_procurement_group_by_commitment_date',
         'odoo12-addon-sale_procurement_group_by_line',
+        'odoo12-addon-sale_product_category_menu',
         'odoo12-addon-sale_product_multi_add',
         'odoo12-addon-sale_product_returnable',
         'odoo12-addon-sale_product_set',
