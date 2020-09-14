@@ -3,7 +3,7 @@
 {
     "name": "Sale Product Category Menu",
     "summary": "Shows 'Product Categories' menu item in Sales",
-    "version": "12.0.1.0.1",
+    "version": "12.0.1.0.2",
     "category": "Product",
     "website": "https://github.com/OCA/sale-workflow",
     "author": "Sygel, "
