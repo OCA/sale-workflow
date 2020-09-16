@@ -128,7 +128,7 @@ class SaleOrderRecommendation(models.TransientModel):
         # TODO: Check in v14.0 if it has been fixed (odoo/odoo#55995)
         # For NewId models inverse_name wizard_id on One2many field is not
         # filled, so we need assign it manually.
-        if isinstance(self, models.NewId):
+        if isinstance(self.id, models.NewId):
             recommendation_lines.wizard_id = self
         else:
             self.line_ids = recommendation_lines
