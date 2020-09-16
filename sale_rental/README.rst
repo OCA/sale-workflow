@@ -14,13 +14,13 @@ Sale Rental
     :target: http://www.gnu.org/licenses/agpl-3.0-standalone.html
     :alt: License: AGPL-3
 .. |badge3| image:: https://img.shields.io/badge/github-OCA%2Fsale--workflow-lightgray.png?logo=github
-    :target: https://github.com/OCA/sale-workflow/tree/11.0/sale_rental
+    :target: https://github.com/OCA/sale-workflow/tree/12.0/sale_rental
     :alt: OCA/sale-workflow
 .. |badge4| image:: https://img.shields.io/badge/weblate-Translate%20me-F47D42.png
-    :target: https://translation.odoo-community.org/projects/sale-workflow-11-0/sale-workflow-11-0-sale_rental
+    :target: https://translation.odoo-community.org/projects/sale-workflow-12-0/sale-workflow-12-0-sale_rental
     :alt: Translate me on Weblate
 .. |badge5| image:: https://img.shields.io/badge/runbot-Try%20me-875A7B.png
-    :target: https://runbot.odoo-community.org/runbot/167/11.0
+    :target: https://runbot.odoo-community.org/runbot/167/12.0
     :alt: Try me on Runbot
 
 |badge1| |badge2| |badge3| |badge4| |badge5| 
@@ -39,16 +39,11 @@ With this module, you can rent products with Odoo. This module supports:
 Configuration
 =============
 
-In the menu *Sales > Products > Product Variants*, on the form view of a stockable product or consumable, in the *Rental* tab, there is a button *Create Rental Service* which starts a wizard to generate the corresponding rental service.
+In the menu *Sales > Products > Product Variants*, on the form view of a stockable product or consumable, in the *Sales* tab, there is a button *Create Rental Service* which starts a wizard to generate the corresponding rental service.
 
-In the menu *Warehouse > Configuration > Warehouses*, on the form view of the warehouse, in the *Technical Information* tab, you will see two additional stock locations: *Rental In* (stock of products to rent) and *Rental Out* (products currently rented). In the *Warehouse Configuration* tab, make sure that the option *Rental Allowed* is checked.
+In the menu *Inventory > Configuration > Warehouse Management > Warehouses*, on the form view of the warehouse, in the *Technical Information* tab, you will see two additional stock locations: *Rental In* (stock of products to rent) and *Rental Out* (products currently rented). In the *Warehouse Configuration* tab, make sure that the option *Rental Allowed* is checked.
 
-To use the module, you need to have access to the form view of sale order lines. For that, you must add your user to one of these groups:
-
-* Manage Product Packaging
-* Properties on lines
-
-Upon module installation, all users are automatically added to the group *Manage Product Packaging*.
+To use the module, you need to have access to the form view of sale order lines. For that, users must be part of the group *Manage Product Packaging*. To add all your users to that group, go to the menu *Inventory > Configuration > Settings*: in the *Products* section, enable the option *Product Packagings* and click on *Save* (this is done for you upon module installation).
 
 Usage
 =====
@@ -60,20 +55,13 @@ In a sale order line (form view, not tree view), if you select a rental service,
 
 In a sale order line, if you select a product that has a corresponding rental service, you can decide to sell the rented product that the customer already has. If the sale order is confirmed, the incoming shipment will be cancelled and a new delivery order will be created with a stock move from *Rental Out* to *Customers*.
 
-Please refer to this screencast https://www.youtube.com/watch?v=9o0QrGryBn8 to get a demo of the installation, configuration and use of this module (note that this screencast is for Odoo v7).
-
-.. image:: https://odoo-community.org/website/image/ir.attachment/5784_f2813bd/datas
-   :alt: Try me on Runbot
-   :target: https://runbot.odoo-community.org/runbot/167/11.0
-
 Known issues / Roadmap
 ======================
 
 This module has the following limitations:
 
-* No support for planning/agenda of the rented products
-* The unit of measure of the rental services must be *Day* (the rental per hours / per week / per month is not supported for the moment)
-* In case of selling rented product, the incoming shipment should be created manually
+* No support for planning/agenda of the rented products (i.e. you can't rely on this module to check your capacity to rent a product for the selected dates when you create a quote)
+* The unit of measure of the rental services must be *Day* (the rental per hour / per week / per month is not supported for the moment)
 
 Bug Tracker
 ===========
@@ -81,7 +69,7 @@ Bug Tracker
 Bugs are tracked on `GitHub Issues <https://github.com/OCA/sale-workflow/issues>`_.
 In case of trouble, please check there if your issue has already been reported.
 If you spotted it first, help us smashing it by providing a detailed and welcomed
-`feedback <https://github.com/OCA/sale-workflow/issues/new?body=module:%20sale_rental%0Aversion:%2011.0%0A%0A**Steps%20to%20reproduce**%0A-%20...%0A%0A**Current%20behavior**%0A%0A**Expected%20behavior**>`_.
+`feedback <https://github.com/OCA/sale-workflow/issues/new?body=module:%20sale_rental%0Aversion:%2012.0%0A%0A**Steps%20to%20reproduce**%0A-%20...%0A%0A**Current%20behavior**%0A%0A**Expected%20behavior**>`_.
 
 Do not contact contributors directly about support or help with technical issues.
 
@@ -114,6 +102,6 @@ OCA, or the Odoo Community Association, is a nonprofit organization whose
 mission is to support the collaborative development of Odoo features and
 promote its widespread use.
 
-This module is part of the `OCA/sale-workflow <https://github.com/OCA/sale-workflow/tree/11.0/sale_rental>`_ project on GitHub.
+This module is part of the `OCA/sale-workflow <https://github.com/OCA/sale-workflow/tree/12.0/sale_rental>`_ project on GitHub.
 
 You are welcome to contribute. To learn how please visit https://odoo-community.org/page/Contribute.
