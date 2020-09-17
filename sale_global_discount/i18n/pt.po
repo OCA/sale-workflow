@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 12.0\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2020-09-15 14:00+0000\n"
+"PO-Revision-Date: 2020-09-17 14:00+0000\n"
 "Last-Translator: Pedro Castro Silva <pedrocs@exo.pt>\n"
 "Language-Team: none\n"
 "Language: pt\n"
@@ -24,7 +24,7 @@ msgstr "<strong>Descontos Globais</strong><br/>"
 #. module: sale_global_discount
 #: model_terms:ir.ui.view,arch_db:sale_global_discount.report_saleorder_document
 msgid "<strong>Subtl. before disc.</strong>"
-msgstr "<strong>Subtotal s/ desc.</strong>"
+msgstr "<strong>Subtotal s/ Desc.</strong>"
 
 #. module: sale_global_discount
 #: model:ir.model.fields,field_description:sale_global_discount.field_sale_order__amount_total_before_global_discounts
