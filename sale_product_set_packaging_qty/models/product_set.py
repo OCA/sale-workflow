@@ -14,6 +14,7 @@ class ProductSetLine(models.Model):
     product_packaging_qty = fields.Float(
         compute="_compute_product_packaging_qty",
         inverse="_inverse_product_packaging_qty",
+        digits="Product Unit of Measure",
     )
 
     @api.depends("quantity", "product_packaging_id", "product_packaging_id.qty")
