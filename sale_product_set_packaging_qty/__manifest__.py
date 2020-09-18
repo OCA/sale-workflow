@@ -3,7 +3,7 @@
 {
     "name": "Sale Product Set Packaging Quantity",
     "summary": "Manage packaging and quantities on product set lines",
-    "version": "13.0.1.0.0",
+    "version": "13.0.1.0.1",
     "development_status": "Alpha",
     "category": "Warehouse Management",
     "website": "https://github.com/OCA/sale-workflow",
