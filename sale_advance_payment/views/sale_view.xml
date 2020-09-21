@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <record id="view_order_form" model="ir.ui.view">
+        <field name="name">sale.order.form</field>
+        <field name="model">sale.order</field>
+        <field name="inherit_id" ref="sale.view_order_form" />
+        <field name="arch" type="xml">
+            <button name="action_draft" position="after">
+                <button
+                    name="%(action_view_account_voucher_wizard)d"
+                    string="Pay sale advanced"
+                    type="action"
+                    groups="account.group_account_invoice"
+                    attrs="{'invisible': [('state', 'in', ['done','cancel'])]}"
+                />
+            </button>
+            <notebook position="inside">
+                <page string="Payment advances" groups="account.group_account_invoice">
+                    <field
+                        name="account_payment_ids"
+                        nolabel="1"
+                        colspan="4"
+                        context="{'form_view_ref': 'account.view_account_payment_form','tree_view_ref': 'account.view_account_payment_tree'}"
+                    />
+                </page>
+            </notebook>
+            <field name="tax_totals_json" position="after">
+                <div class="oe_subtotal_footer_separator oe_inline o_td_label">
+                    <label for="amount_residual" />
+                </div>
+                <field
+                    name="amount_residual"
+                    nolabel="1"
+                    class="oe_subtotal_footer_separator"
+                    widget="monetary"
+                    options="{'currency_field': 'currency_id'}"
+                />
+            </field>
+            <field name="tag_ids" position="after">
+                <field name="advance_payment_status" />
+            </field>
+        </field>
+    </record>
+
+    <record id="view_order_tree" model="ir.ui.view">
+        <field name="name">sale.order.tree</field>
+        <field name="model">sale.order</field>
+        <field name="inherit_id" ref="sale.view_order_tree" />
+        <field name="arch" type="xml">
+            <field name="invoice_status" position="before">
+                <field
+                    name="advance_payment_status"
+                    decoration-success="advance_payment_status == 'paid'"
+                    decoration-info="advance_payment_status == 'partial'"
+                    decoration-warning="advance_payment_status == 'not_paid'"
+                    widget="badge"
+                    optional="hide"
+                />
+            </field>
+            <field name="amount_total" position="after">
+                <field
+                    name="amount_residual"
+                    widget="monetary"
+                    decoration-bf="1"
+                    optional="hide"
+                />
+            </field>
+        </field>
+    </record>
+    <record id="view_quotation_tree" model="ir.ui.view">
+        <field name="name">sale.order.tree</field>
+        <field name="model">sale.order</field>
+        <field name="inherit_id" ref="sale.view_quotation_tree" />
+        <field name="arch" type="xml">
+            <field name="invoice_status" position="before">
+                <field
+                    name="advance_payment_status"
+                    decoration-success="advance_payment_status == 'paid'"
+                    decoration-info="advance_payment_status == 'partial'"
+                    decoration-warning="advance_payment_status == 'not_paid'"
+                    widget="badge"
+                    optional="hide"
+                />
+            </field>
+            <field name="amount_total" position="after">
+                <field
+                    name="amount_residual"
+                    widget="monetary"
+                    decoration-bf="1"
+                    optional="hide"
+                />
+            </field>
+        </field>
+    </record>
+</odoo>
