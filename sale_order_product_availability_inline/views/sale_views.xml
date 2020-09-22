@@ -10,34 +10,21 @@
                 expr="//field[@name='order_line']/tree//field[@name='product_id']"
                 position="attributes"
             >
-                <attribute name="context">{
-                        'so_product_stock_inline': True,
-                        'warehouse': parent.warehouse_id,
-                        'partner_id': parent.partner_id,
-                        'quantity': product_uom_qty,
-                        'pricelist': parent.pricelist_id,
-                        'uom':product_uom,
-                        'company_id': parent.company_id,
-                        'default_lst_price': price_unit,
-                        'default_description_sale': name
-                    }
-                </attribute>
+                <attribute
+                    name="context"
+                    operation="python_dict"
+                    key="so_product_stock_inline"
+                >True</attribute>
             </xpath>
             <xpath
                 expr="//field[@name='order_line']/form//field[@name='product_id']"
                 position="attributes"
             >
-                <attribute name="context">
-                    {
-                        'so_product_stock_inline': True,
-                        'warehouse': parent.warehouse_id,
-                        'partner_id':parent.partner_id,
-                        'quantity':product_uom_qty,
-                        'pricelist':parent.pricelist_id,
-                        'uom':product_uom,
-                        'company_id': parent.company_id
-                    }
-                </attribute>
+                <attribute
+                    name="context"
+                    operation="python_dict"
+                    key="so_product_stock_inline"
+                >True</attribute>
             </xpath>
         </field>
     </record>
