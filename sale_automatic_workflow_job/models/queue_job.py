@@ -6,6 +6,7 @@ from odoo import _, models
 
 class QueueJob(models.Model):
     """ Job status and result """
+
     _inherit = "queue.job"
 
     def _related_action_sale_automatic_workflow(self):

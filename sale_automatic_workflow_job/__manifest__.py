@@ -7,11 +7,7 @@
     "version": "12.0.1.0.1",
     "category": "Sales Management",
     "license": "AGPL-3",
-    "author": "Camptocamp, "
-              "Odoo Community Association (OCA)",
+    "author": "Camptocamp, " "Odoo Community Association (OCA)",
     "website": "https://github.com/OCA/sale-workflow",
-    "depends": [
-        "sale_automatic_workflow",
-        "queue_job",
-    ],
+    "depends": ["sale_automatic_workflow", "queue_job",],
 }
