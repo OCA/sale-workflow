@@ -45,6 +45,15 @@ class AutomaticWorkflowJob(models.Model):
         " invoices, pickings..."
     )
 
+    def _do_validate_sale_order(self, sale, domain_filter):
+        """Validate a sales order, filter ensure no duplication"""
+        if not self.env["sale.order"].search_count(
+            [("id", "=", sale.id)] + domain_filter
+        ):
+            return "{} {} job bypassed".format(sale.display_name, sale)
+        sale.action_confirm()
+        return "{} {} confirmed successfully".format(sale.display_name, sale)
+
     @api.model
     def _validate_sale_orders(self, order_filter):
         sale_obj = self.env["sale.order"]
@@ -52,7 +61,17 @@ class AutomaticWorkflowJob(models.Model):
         _logger.debug("Sale Orders to validate: %s", sales.ids)
         for sale in sales:
             with savepoint(self.env.cr), force_company(self.env, sale.company_id):
-                sale.action_confirm()
+                self._do_validate_sale_order(sale, order_filter)
+
+    def _do_create_invoice(self, sale, domain_filter):
+        """Create an invoice for a sales order, filter ensure no duplication"""
+        if not self.env["sale.order"].search_count(
+            [("id", "=", sale.id)] + domain_filter
+        ):
+            return "{} {} job bypassed".format(sale.display_name, sale)
+        payment = self.env["sale.advance.payment.inv"].create({})
+        payment.with_context(active_ids=sale.ids).create_invoices()
+        return "{} {} create invoice successfully".format(sale.display_name, sale)
 
     @api.model
     def _create_invoices(self, create_filter):
@@ -61,8 +80,18 @@ class AutomaticWorkflowJob(models.Model):
         _logger.debug("Sale Orders to create Invoice: %s", sales.ids)
         for sale in sales:
             with savepoint(self.env.cr), force_company(self.env, sale.company_id):
-                payment = self.env["sale.advance.payment.inv"].create({})
-                payment.with_context(active_ids=sale.ids).create_invoices()
+                self._do_create_invoice(sale, create_filter)
+
+    def _do_validate_invoice(self, invoice, domain_filter):
+        """Validate an invoice, filter ensure no duplication"""
+        if not self.env["account.move"].search_count(
+            [("id", "=", invoice.id)] + domain_filter
+        ):
+            return "{} {} job bypassed".format(invoice.display_name, invoice)
+        invoice.with_context(force_company=invoice.company_id.id).post()
+        return "{} {} validate invoice successfully".format(
+            invoice.display_name, invoice
+        )
 
     @api.model
     def _validate_invoices(self, validate_invoice_filter):
@@ -71,9 +100,18 @@ class AutomaticWorkflowJob(models.Model):
         _logger.debug("Invoices to validate: %s", invoices.ids)
         for invoice in invoices:
             with savepoint(self.env.cr), force_company(self.env, invoice.company_id):
-                # FIX Why is this needed or certain invoices
-                # in enterprise in multicompany?
-                invoice.with_context(force_company=invoice.company_id.id).post()
+                self._do_validate_invoice(invoice, validate_invoice_filter)
+
+    def _do_validate_picking(self, picking, domain_filter):
+        """Validate a stock.picking, filter ensure no duplication"""
+        if not self.env["stock.picking"].search_count(
+            [("id", "=", picking.id)] + domain_filter
+        ):
+            return "{} {} job bypassed".format(picking.display_name, picking)
+        picking.validate_picking()
+        return "{} {} validate picking successfully".format(
+            picking.display_name, picking
+        )
 
     @api.model
     def _validate_pickings(self, picking_filter):
@@ -82,7 +120,16 @@ class AutomaticWorkflowJob(models.Model):
         _logger.debug("Pickings to validate: %s", pickings.ids)
         for picking in pickings:
             with savepoint(self.env.cr):
-                picking.validate_picking()
+                self._do_validate_picking(picking, picking_filter)
+
+    def _do_sale_done(self, sale, domain_filter):
+        """Set a sales order to done, filter ensure no duplication"""
+        if not self.env["stock.picking"].search_count(
+            [("id", "=", sale.id)] + domain_filter
+        ):
+            return "{} {} job bypassed".format(sale.display_name, sale)
+        sale.action_done()
+        return "{} {} set done successfully".format(sale.display_name, sale)
 
     @api.model
     def _sale_done(self, sale_done_filter):
@@ -91,7 +138,7 @@ class AutomaticWorkflowJob(models.Model):
         _logger.debug("Sale Orders to done: %s", sales.ids)
         for sale in sales:
             with savepoint(self.env.cr), force_company(self.env, sale.company_id):
-                sale.action_done()
+                self._do_sale_done(sale, sale_done_filter)
 
     @api.model
     def run_with_workflow(self, sale_workflow):
