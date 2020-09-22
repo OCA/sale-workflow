@@ -37,7 +37,7 @@ class SaleOrder(models.Model):
                     record.partner_id.with_context(
                         force_company=record.company_id.id
                     ).sale_type
-                    or self.partner_id.commercial_partner_id.with_context(
+                    or record.partner_id.commercial_partner_id.with_context(
                         force_company=record.company_id.id
                     ).sale_type
                 )
