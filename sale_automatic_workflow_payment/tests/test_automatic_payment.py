@@ -46,7 +46,6 @@ class TestAutomaticPayment(common.TransactionCase):
         self.workflow = workflow_obj.create(
             {
                 "name": "Full Automatic",
-                "picking_policy": "one",
                 "validate_order": True,
                 "validate_picking": True,
                 "create_invoice": True,

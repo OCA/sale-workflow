@@ -1,18 +1,19 @@
 # Copyright 2014 Camptocamp SA (author: Guewen Baconnier)
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
-from datetime import timedelta
-
 import mock
 
-from odoo import fields
 from odoo.tests import tagged
 
-from .common import TestAutomaticWorkflowMixin, TestCommon
+from .common import TestAutomaticWorkflowStockMixin
+
+from odoo.addons.sale_automatic_workflow.tests.common import TestCommon
 
 
 @tagged("post_install", "-at_install")
-class TestAutomaticWorkflow(TestCommon, TestAutomaticWorkflowMixin):
+class TestAutomaticWorkflow(TestCommon, TestAutomaticWorkflowStockMixin):
+    """Test sale automatic workflow with stock."""
+
     def test_01_full_automatic(self):
         workflow = self.create_full_automatic()
         sale = self.create_sale_order(workflow)
@@ -21,32 +22,41 @@ class TestAutomaticWorkflow(TestCommon, TestAutomaticWorkflowMixin):
         self.assertEqual(sale.workflow_process_id, workflow)
         self.run_job()
         self.assertEqual(sale.state, "sale")
+        self.assertTrue(sale.picking_ids)
         self.assertTrue(sale.invoice_ids)
         invoice = sale.invoice_ids
         self.assertEqual(invoice.state, "posted")
-
-    def test_02_date_invoice_from_sale_order(self):
-        workflow = self.create_full_automatic()
-        # date_order on sale.order is date + time
-        # invoice_date on account.move is date only
-        last_week_time = fields.Datetime.now() - timedelta(days=7)
-        override = {"date_order": last_week_time}
-        sale = self.create_sale_order(workflow, override=override)
-        sale._onchange_workflow_process_id()
-        self.assertEqual(sale.date_order, last_week_time)
+        picking = sale.picking_ids
         self.run_job()
-        self.assertTrue(sale.invoice_ids)
-        invoice = sale.invoice_ids
-        self.assertEqual(invoice.invoice_date, last_week_time.date())
-        self.assertEqual(invoice.workflow_process_id, sale.workflow_process_id)
+        self.assertEqual(picking.state, "done")
+
+    def test_02_onchange_workflow_process(self):
+        workflow = self.create_full_automatic()
+        sale = self.create_sale_order(workflow)
+        sale._onchange_workflow_process_id()
+        self.assertEqual(sale.picking_policy, "one")
+        workflow2 = self.create_full_automatic(
+            override={"picking_policy": "direct"})
+        sale.workflow_process_id = workflow2.id
+        sale._onchange_workflow_process_id()
+        self.assertEqual(sale.picking_policy, "direct")
 
     def test_03_create_invoice_from_sale_order(self):
         workflow = self.create_full_automatic()
         sale = self.create_sale_order(workflow)
         sale._onchange_workflow_process_id()
         line = sale.order_line[0]
+        self.assertFalse(workflow.invoice_service_delivery)
+        self.assertEqual(line.qty_delivered_method, "stock_move")
+        self.assertEqual(line.qty_delivered, 0.0)
+        # `_create_invoices` is already tested in `sale` module.
         # Make sure this addon works properly in regards to it.
         mock_path = "odoo.addons.sale.models.sale.SaleOrder._create_invoices"
+        with mock.patch(mock_path) as mocked:
+            sale._create_invoices()
+            mocked.assert_called()
+        self.assertEqual(line.qty_delivered, 0.0)
+
         workflow.invoice_service_delivery = True
         line.qty_delivered_method = "manual"
         with mock.patch(mock_path) as mocked:
@@ -88,32 +98,7 @@ class TestAutomaticWorkflow(TestCommon, TestAutomaticWorkflowMixin):
         sale = self.create_sale_order(workflow, override=override)
         sale._onchange_workflow_process_id()
         self.run_job()
+        self.assertFalse(sale.picking_ids)
         self.assertTrue(sale.invoice_ids)
         invoice = sale.invoice_ids
         self.assertEqual(invoice.workflow_process_id, sale.workflow_process_id)
-
-    def test_05_journal_on_invoice(self):
-        sale_journal = self.env["account.journal"].search(
-            [("type", "=", "sale")], limit=1
-        )
-        new_sale_journal = self.env["account.journal"].create(
-            {"name": "TTSA", "code": "TTSA", "type": "sale"}
-        )
-
-        workflow = self.create_full_automatic()
-        sale = self.create_sale_order(workflow)
-        sale._onchange_workflow_process_id()
-        self.run_job()
-        self.assertTrue(sale.invoice_ids)
-        invoice = sale.invoice_ids
-        self.assertEqual(invoice.journal_id.id, sale_journal.id)
-
-        workflow = self.create_full_automatic(
-            override={"property_journal_id": new_sale_journal.id}
-        )
-        sale = self.create_sale_order(workflow)
-        sale._onchange_workflow_process_id()
-        self.run_job()
-        self.assertTrue(sale.invoice_ids)
-        invoice = sale.invoice_ids
-        self.assertEqual(invoice.journal_id.id, new_sale_journal.id)

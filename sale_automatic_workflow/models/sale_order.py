@@ -55,8 +55,6 @@ class SaleOrder(models.Model):
         if not self.workflow_process_id:
             return
         workflow = self.workflow_process_id
-        if workflow.picking_policy:
-            self.picking_policy = workflow.picking_policy
         if workflow.team_id:
             self.team_id = workflow.team_id.id
         if workflow.warning:

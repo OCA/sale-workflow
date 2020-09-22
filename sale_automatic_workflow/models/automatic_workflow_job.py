@@ -76,15 +76,6 @@ class AutomaticWorkflowJob(models.Model):
                 invoice.with_context(force_company=invoice.company_id.id).post()
 
     @api.model
-    def _validate_pickings(self, picking_filter):
-        picking_obj = self.env["stock.picking"]
-        pickings = picking_obj.search(picking_filter)
-        _logger.debug("Pickings to validate: %s", pickings.ids)
-        for picking in pickings:
-            with savepoint(self.env.cr):
-                picking.validate_picking()
-
-    @api.model
     def _sale_done(self, sale_done_filter):
         sale_obj = self.env["sale.order"]
         sales = sale_obj.search(sale_done_filter)
@@ -99,10 +90,6 @@ class AutomaticWorkflowJob(models.Model):
         if sale_workflow.validate_order:
             self._validate_sale_orders(
                 safe_eval(sale_workflow.order_filter_id.domain) + workflow_domain
-            )
-        if sale_workflow.validate_picking:
-            self._validate_pickings(
-                safe_eval(sale_workflow.picking_filter_id.domain) + workflow_domain
             )
         if sale_workflow.create_invoice:
             self._create_invoices(

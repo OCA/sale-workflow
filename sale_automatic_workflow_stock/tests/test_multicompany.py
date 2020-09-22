@@ -3,12 +3,13 @@
 
 from odoo.tests import tagged
 
-from .common import TestMultiCompanyCommon
+from odoo.addons.sale_automatic_workflow.tests.common import (
+    TestMultiCompanyCommon)
 
 
 @tagged("post_install", "-at_install")
 class TestMultiCompany(TestMultiCompanyCommon):
-    """Class to test sale automated workflow with multi-company."""
+    """Test stock related workflow with multi-company."""
 
     def test_sale_order_multicompany(self):
         self.env.user.company_id = self.env.ref("base.main_company")
@@ -34,6 +35,12 @@ class TestMultiCompany(TestMultiCompanyCommon):
         self.assertEquals(order_fr_daughter.state, "draft")
 
         self.env["automatic.workflow.job"].run()
+        self.assertTrue(order_fr.picking_ids)
+        self.assertTrue(order_ch.picking_ids)
+        self.assertTrue(order_be.picking_ids)
+        self.assertEqual(order_fr.picking_ids.state, "done")
+        self.assertEqual(order_ch.picking_ids.state, "done")
+        self.assertEqual(order_be.picking_ids.state, "done")
         invoice_fr = order_fr.invoice_ids
         invoice_ch = order_ch.invoice_ids
         invoice_be = order_be.invoice_ids
