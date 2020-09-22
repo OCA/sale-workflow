@@ -28,14 +28,6 @@ class SaleWorkflowProcess(models.Model):
         return self.env["ir.filters"].browse()
 
     name = fields.Char(required=True)
-    picking_policy = fields.Selection(
-        selection=[
-            ("direct", "Deliver each product when available"),
-            ("one", "Deliver all products at once"),
-        ],
-        string="Shipping Policy",
-        default="direct",
-    )
     validate_order = fields.Boolean()
     send_order_confirmation_mail = fields.Boolean(
         help="When checked, after order confirmation, a confirmation email will be "
@@ -52,10 +44,6 @@ class SaleWorkflowProcess(models.Model):
     validate_invoice_filter_domain = fields.Text(
         string="Validate Invoice Filter Domain",
         related="validate_invoice_filter_id.domain",
-    )
-    validate_picking = fields.Boolean(string="Confirm and Transfer Picking")
-    picking_filter_domain = fields.Text(
-        string="Picking Filter Domain", related="picking_filter_id.domain"
     )
     invoice_date_is_order_date = fields.Boolean(
         string="Force Invoice Date",
@@ -89,13 +77,6 @@ class SaleWorkflowProcess(models.Model):
         "ir.filters",
         default=lambda self: self._default_filter(
             "sale_automatic_workflow.automatic_workflow_order_filter"
-        ),
-    )
-    picking_filter_id = fields.Many2one(
-        "ir.filters",
-        string="Picking Filter",
-        default=lambda self: self._default_filter(
-            "sale_automatic_workflow.automatic_workflow_picking_filter"
         ),
     )
     create_invoice_filter_id = fields.Many2one(

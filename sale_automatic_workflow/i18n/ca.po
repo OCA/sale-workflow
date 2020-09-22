@@ -35,7 +35,6 @@ msgstr "Flux de treball automàtic"
 
 #. module: sale_automatic_workflow
 #: model:ir.actions.server,name:sale_automatic_workflow.ir_cron_automatic_workflow_job_ir_actions_server
-#: model:ir.cron,cron_name:sale_automatic_workflow.ir_cron_automatic_workflow_job
 msgid "Automatic Workflow Job"
 msgstr "Feina de flux de treball automàtic"
 
@@ -52,11 +51,6 @@ msgid ""
 msgstr ""
 "Aneu amb compte, si deseu la comanda amb aquest paràmetre, es podria "
 "confirmar automàticament, fins i tot si l’editeu."
-
-#. module: sale_automatic_workflow
-#: model:ir.model.fields,field_description:sale_automatic_workflow.field_sale_workflow_process__validate_picking
-msgid "Confirm and Transfer Picking"
-msgstr "Confirmeu i transfereix la selecció"
 
 #. module: sale_automatic_workflow
 #: model:ir.model.fields,field_description:sale_automatic_workflow.field_sale_workflow_process__create_invoice
@@ -84,16 +78,6 @@ msgstr "Creat per"
 #: model:ir.model.fields,field_description:sale_automatic_workflow.field_sale_workflow_process__create_date
 msgid "Created on"
 msgstr "Creat el"
-
-#. module: sale_automatic_workflow
-#: model:ir.model.fields.selection,name:sale_automatic_workflow.selection__sale_workflow_process__picking_policy__one
-msgid "Deliver all products at once"
-msgstr "Entregueu tots els productes alhora"
-
-#. module: sale_automatic_workflow
-#: model:ir.model.fields.selection,name:sale_automatic_workflow.selection__sale_workflow_process__picking_policy__direct
-msgid "Deliver each product when available"
-msgstr "Entregueu cada producte quan estigui disponible"
 
 #. module: sale_automatic_workflow
 #: model:ir.model.fields,field_description:sale_automatic_workflow.field_automatic_workflow_job__display_name
@@ -150,12 +134,6 @@ msgid "Journal Entry"
 msgstr ""
 
 #. module: sale_automatic_workflow
-#: model:ir.model.fields,field_description:sale_automatic_workflow.field_automatic_workflow_job____last_update
-#: model:ir.model.fields,field_description:sale_automatic_workflow.field_sale_workflow_process____last_update
-msgid "Last Modified on"
-msgstr "Darrera modificació el"
-
-#. module: sale_automatic_workflow
 #: model:ir.model.fields,field_description:sale_automatic_workflow.field_automatic_workflow_job__write_uid
 #: model:ir.model.fields,field_description:sale_automatic_workflow.field_sale_workflow_process__write_uid
 msgid "Last Updated by"
@@ -188,16 +166,6 @@ msgid "Order Filter Domain"
 msgstr "Filtre de comandes"
 
 #. module: sale_automatic_workflow
-#: model:ir.model.fields,field_description:sale_automatic_workflow.field_sale_workflow_process__picking_filter_id
-msgid "Picking Filter"
-msgstr "Filtre de recollida"
-
-#. module: sale_automatic_workflow
-#: model:ir.model.fields,field_description:sale_automatic_workflow.field_sale_workflow_process__picking_filter_domain
-msgid "Picking Filter Domain"
-msgstr "Selecció del domini del filtre"
-
-#. module: sale_automatic_workflow
 #: model:ir.model.fields,field_description:sale_automatic_workflow.field_sale_workflow_process__register_payment
 msgid "Register Payment"
 msgstr ""
@@ -227,7 +195,6 @@ msgstr "Venda Fet el domini del filtre"
 #: model:ir.model.fields,field_description:sale_automatic_workflow.field_account_bank_statement_line__workflow_process_id
 #: model:ir.model.fields,field_description:sale_automatic_workflow.field_account_move__workflow_process_id
 #: model:ir.model.fields,field_description:sale_automatic_workflow.field_account_payment__workflow_process_id
-#: model:ir.model.fields,field_description:sale_automatic_workflow.field_stock_picking__workflow_process_id
 msgid "Sale Workflow Process"
 msgstr "Procés de flux de treball de venda"
 
@@ -269,21 +236,6 @@ msgstr "Definiu el diari predeterminat per utilitzar-lo a la factura"
 #: model_terms:ir.ui.view,arch_db:sale_automatic_workflow.sale_workflow_process_view_form
 msgid "Set selection based on a search filter:"
 msgstr "Definiu la selecció en funció d'un filtre de cerca:"
-
-#. module: sale_automatic_workflow
-#: model:ir.model.fields,field_description:sale_automatic_workflow.field_sale_workflow_process__picking_policy
-msgid "Shipping Policy"
-msgstr "Política d’enviament"
-
-#. module: sale_automatic_workflow
-#: model:ir.model,name:sale_automatic_workflow.model_stock_move
-msgid "Stock Move"
-msgstr "Moviment d’estoc"
-
-#. module: sale_automatic_workflow
-#: model:ir.model,name:sale_automatic_workflow.model_stock_picking
-msgid "Transfer"
-msgstr "Transferència"
 
 #. module: sale_automatic_workflow
 #: model:ir.model.fields,field_description:sale_automatic_workflow.field_sale_workflow_process__validate_invoice
@@ -334,6 +286,33 @@ msgstr "Opcions de flux de treball"
 #, python-format
 msgid "Workflow Warning"
 msgstr "Advertiment de flux de treball"
+
+#~ msgid "Confirm and Transfer Picking"
+#~ msgstr "Confirmeu i transfereix la selecció"
+
+#~ msgid "Deliver all products at once"
+#~ msgstr "Entregueu tots els productes alhora"
+
+#~ msgid "Deliver each product when available"
+#~ msgstr "Entregueu cada producte quan estigui disponible"
+
+#~ msgid "Last Modified on"
+#~ msgstr "Darrera modificació el"
+
+#~ msgid "Picking Filter"
+#~ msgstr "Filtre de recollida"
+
+#~ msgid "Picking Filter Domain"
+#~ msgstr "Selecció del domini del filtre"
+
+#~ msgid "Shipping Policy"
+#~ msgstr "Política d’enviament"
+
+#~ msgid "Stock Move"
+#~ msgstr "Moviment d’estoc"
+
+#~ msgid "Transfer"
+#~ msgstr "Transferència"
 
 #~ msgid "Automatic Workflow Create Invoice Filter"
 #~ msgstr "Flux de treball automàtic Crea un filtre de factures"
