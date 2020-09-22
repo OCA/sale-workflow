@@ -8,6 +8,5 @@
 - Dave Lasley \<<dave@laslabs.com>\>
 - Akim Juillerat \<<akim.juillerat@camptocamp.com>\>
 - Thomas Fossoul \<<thomas@niboo.com>\>
-- Phuc Tran Thanh \<<phuc@trobz.com>\>
-- Sander Lienaerts \<<sander.lienaerts@codeforward.nl>\>
-- Tri Doan \<<tridm@trobz.com>\>
+- Silvija Butko \<<silvija@focusate.eu>\>
+- Tri Doan \<\<<tridm@trobz.com>\>\>

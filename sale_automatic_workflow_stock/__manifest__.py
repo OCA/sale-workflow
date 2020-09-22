@@ -4,7 +4,7 @@
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
 {
-    "name": "Sale Automatic Workflow",
+    "name": "Sale Automatic Workflow Stock",
     "version": "17.0.1.0.0",
     "category": "Sales Management",
     "license": "AGPL-3",
@@ -13,12 +13,11 @@
     "Sodexis, "
     "Odoo Community Association (OCA)",
     "website": "https://github.com/OCA/sale-workflow",
-    "depends": ["sale"],
+    "depends": ["sale_automatic_workflow", "sale_stock"],
     "data": [
-        "security/ir.model.access.csv",
         "views/sale_order_views.xml",
         "views/sale_workflow_process_views.xml",
         "data/automatic_workflow_data.xml",
     ],
-    "installable": True,
+    "auto_install": True,
 }

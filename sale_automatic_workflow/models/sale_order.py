@@ -4,6 +4,7 @@
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
 from odoo import _, api, fields, models
+from odoo.tools import float_compare
 
 
 class SaleOrder(models.Model):
@@ -20,10 +21,20 @@ class SaleOrder(models.Model):
         store=True,
     )
 
-    @api.depends("delivery_status")
+    @api.depends("order_line.qty_delivered", "order_line.product_uom_qty")
     def _compute_all_qty_delivered(self):
+        precision = self.env["decimal.precision"].precision_get(
+            "Product Unit of Measure"
+        )
         for order in self:
-            order.all_qty_delivered = order.delivery_status == "full"
+            order.all_qty_delivered = all(
+                line.product_id.type == "service"
+                or float_compare(
+                    line.qty_delivered, line.product_uom_qty, precision_digits=precision
+                )
+                == 0
+                for line in order.order_line
+            )
 
     def _prepare_invoice(self):
         invoice_vals = super()._prepare_invoice()
@@ -41,16 +52,18 @@ class SaleOrder(models.Model):
 
     @api.onchange("workflow_process_id")
     def _onchange_workflow_process_id(self):
-        if not self.workflow_process_id:
-            return
-        workflow = self.workflow_process_id
-        if workflow.picking_policy:
-            self.picking_policy = workflow.picking_policy
-        if workflow.team_id:
-            self.team_id = workflow.team_id.id
-        if workflow.warning:
-            warning = {"title": _("Workflow Warning"), "message": workflow.warning}
+        if self.workflow_process_id.warning:
+            warning = {
+                "title": _("Workflow Warning"),
+                "message": self.workflow_process_id.warning,
+            }
             return {"warning": warning}
+
+    @api.depends("partner_id", "user_id", "workflow_process_id")
+    def _compute_team_id(self):  # pylint: disable=W8110
+        super()._compute_team_id()
+        if self.workflow_process_id.team_id:
+            self.team_id = self.workflow_process_id.team_id.id
 
     def _create_invoices(self, grouped=False, final=False, date=None):
         for order in self:
