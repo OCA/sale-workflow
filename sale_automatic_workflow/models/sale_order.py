@@ -28,7 +28,7 @@ class SaleOrder(models.Model):
         )
         for order in self:
             order.all_qty_delivered = all(
-                line.product_id.type not in ("product", "consu")
+                line.product_id.type == "service"
                 or float_compare(
                     line.qty_delivered, line.product_uom_qty, precision_digits=precision
                 )
@@ -55,8 +55,6 @@ class SaleOrder(models.Model):
         if not self.workflow_process_id:
             return
         workflow = self.workflow_process_id
-        if workflow.picking_policy:
-            self.picking_policy = workflow.picking_policy
         if workflow.team_id:
             self.team_id = workflow.team_id.id
         if workflow.warning:
