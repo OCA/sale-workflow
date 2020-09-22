@@ -80,7 +80,14 @@ class SaleOrder(models.Model):
                 order.warehouse_id = order_type.warehouse_id
         return res
 
-    @api.depends("type_id")
+    def _depends_picking_policy(self):
+        depends = []
+        if hasattr(super(), "_depends_picking_policy"):
+            depends = super()._depends_picking_policy()
+        depends.append("type_id")
+        return depends
+
+    @api.depends(lambda self: self._depends_picking_policy())
     def _compute_picking_policy(self):
         res = None
         if hasattr(super(), "_compute_picking_policy"):
