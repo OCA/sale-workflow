@@ -10,14 +10,6 @@
         <field name="domain">[('state', '=', 'draft')]</field>
         <field name="user_id" ref="base.user_root" />
     </record>
-    <record id="automatic_workflow_picking_filter" model="ir.filters">
-        <field name="name">Automatic Workflow Picking Filter</field>
-        <field name="model_id">stock.picking</field>
-        <field
-            name="domain"
-        >[('state', 'in', ['draft', 'confirmed', 'assigned'])]</field>
-        <field name="user_id" ref="base.user_root" />
-    </record>
     <record id="automatic_workflow_create_invoice_filter" model="ir.filters">
         <field name="name">Automatic Workflow Create Invoice Filter</field>
         <field name="model_id">sale.order</field>
@@ -52,7 +44,6 @@
     </record>
     <record id="automatic_validation" model="sale.workflow.process">
         <field name="name">Automatic</field>
-        <field name="picking_policy">one</field>
         <field name="validate_order" eval="1" />
         <field name="send_order_confirmation_mail" eval="1" />
         <field name="order_filter_id" eval="automatic_workflow_order_filter" />
@@ -67,8 +58,6 @@
             eval="automatic_workflow_validate_invoice_filter"
         />
         <field name="invoice_date_is_order_date" eval="0" />
-        <field name="validate_picking" eval="0" />
-        <field name="picking_filter_id" eval="automatic_workflow_picking_filter" />
         <field name="sale_done" eval="0" />
         <field name="sale_done_filter_id" eval="automatic_workflow_sale_done_filter" />
         <field name="register_payment" eval="0" />
@@ -79,11 +68,9 @@
     </record>
     <record id="manual_validation" model="sale.workflow.process">
         <field name="name">Manual</field>
-        <field name="picking_policy">one</field>
         <field name="validate_order" eval="0" />
         <field name="validate_invoice" eval="0" />
         <field name="invoice_date_is_order_date" eval="0" />
-        <field name="validate_picking" eval="0" />
         <field name="order_filter_id" eval="automatic_workflow_order_filter" />
         <field
             name="create_invoice_filter_id"
@@ -93,7 +80,6 @@
             name="validate_invoice_filter_id"
             eval="automatic_workflow_validate_invoice_filter"
         />
-        <field name="picking_filter_id" eval="automatic_workflow_picking_filter" />
         <field name="sale_done_filter_id" eval="automatic_workflow_sale_done_filter" />
         <field name="register_payment" eval="0" />
         <field name="payment_filter_id" ref="automatic_workflow_payment_filter" />

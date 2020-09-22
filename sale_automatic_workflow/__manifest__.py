@@ -13,11 +13,11 @@
     "Sodexis, "
     "Odoo Community Association (OCA)",
     "website": "https://github.com/OCA/sale-workflow",
-    "depends": ["sale_stock", "sales_team"],
+    "depends": ["sale"],
     "data": [
         "security/ir.model.access.csv",
-        "views/sale_view.xml",
-        "views/sale_workflow_process_view.xml",
+        "views/sale_order_views.xml",
+        "views/sale_workflow_process_views.xml",
         "data/automatic_workflow_data.xml",
     ],
     "installable": True,

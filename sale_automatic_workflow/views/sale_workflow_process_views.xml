@@ -22,17 +22,6 @@
                         </h3>
                         <div class="row">
                             <div class="col-sm-12">
-                                <label
-                                    for="picking_policy"
-                                    class="col-lg-4 o_light_label"
-                                />
-                                <span>
-                                    <field name="picking_policy" />
-                                </span>
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-sm-12">
                                 <label for="team_id" class="col-lg-4 o_light_label" />
                                 <span>
                                     <field name="team_id" />
@@ -93,44 +82,6 @@
                                     name="send_order_confirmation_mail"
                                     nolabel="1"
                                 />
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-sm-4">
-                                <label
-                                    for="validate_picking"
-                                    class="col-lg-7 o_light_label"
-                                />
-                                <field name="validate_picking" nolabel="1" />
-                            </div>
-                            <div class="col-sm-8">
-                                <label
-                                    for="picking_filter_id"
-                                    required="validate_picking"
-                                    invisible="not validate_picking"
-                                />
-                                <div
-                                    required="validate_picking"
-                                    invisible="not validate_picking"
-                                >
-                                    <field
-                                        name="picking_filter_domain"
-                                        widget="domain"
-                                        invisible="not picking_filter_id"
-                                        options="{'model': 'stock.picking'}"
-                                    />
-                                    <div class="oe_edit_only oe_inline">
-                                        Set selection based on a search filter:
-                                        <field
-                                            name="picking_filter_id"
-                                            domain="[('model_id', '=', 'stock.picking')]"
-                                            class="oe_inline"
-                                            context="{'default_model_id': 'stock.picking', 'default_active': False, 'active_test': False}"
-                                            can_create="true"
-                                            can_write="true"
-                                        />
-                                    </div>
-                                </div>
                             </div>
                         </div>
                         <div class="row">
@@ -344,10 +295,8 @@
         <field name="arch" type="xml">
             <tree>
                 <field name="name" />
-                <field name="picking_policy" />
                 <field name="team_id" />
                 <field name="validate_order" />
-                <field name="validate_picking" />
                 <field name="validate_invoice" />
                 <field name="register_payment" />
                 <field name="invoice_date_is_order_date" />

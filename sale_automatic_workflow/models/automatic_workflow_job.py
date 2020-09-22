@@ -112,24 +112,6 @@ class AutomaticWorkflowJob(models.Model):
                     invoice.with_company(invoice.company_id), validate_invoice_filter
                 )
 
-    def _do_validate_picking(self, picking, domain_filter):
-        """Validate a stock.picking, filter ensure no duplication"""
-        if not self.env["stock.picking"].search_count(
-            [("id", "=", picking.id)] + domain_filter
-        ):
-            return f"{picking.display_name} {picking} job bypassed"
-        picking.validate_picking()
-        return f"{picking.display_name} {picking} validate picking successfully"
-
-    @api.model
-    def _validate_pickings(self, picking_filter):
-        picking_obj = self.env["stock.picking"]
-        pickings = picking_obj.search(picking_filter)
-        _logger.debug("Pickings to validate: %s", pickings.ids)
-        for picking in pickings:
-            with savepoint(self.env.cr):
-                self._do_validate_picking(picking, picking_filter)
-
     def _do_sale_done(self, sale, domain_filter):
         """Lock a sales order, filter ensure no duplication"""
         if not self.env["sale.order"].search_count(
@@ -189,6 +171,10 @@ class AutomaticWorkflowJob(models.Model):
             ).reconcile()
 
     @api.model
+    def _handle_pickings(self, sale_workflow):
+        pass
+
+    @api.model
     def run_with_workflow(self, sale_workflow):
         workflow_domain = [("workflow_process_id", "=", sale_workflow.id)]
         if sale_workflow.validate_order:
@@ -197,10 +183,7 @@ class AutomaticWorkflowJob(models.Model):
             )._validate_sale_orders(
                 safe_eval(sale_workflow.order_filter_id.domain) + workflow_domain
             )
-        if sale_workflow.validate_picking:
-            self._validate_pickings(
-                safe_eval(sale_workflow.picking_filter_id.domain) + workflow_domain
-            )
+        self._handle_pickings(sale_workflow)
         if sale_workflow.create_invoice:
             self._create_invoices(
                 safe_eval(sale_workflow.create_invoice_filter_id.domain)
