@@ -202,6 +202,10 @@ class AutomaticWorkflowJob(models.Model):
                 ).reconcile()
 
     @api.model
+    def _handle_pickings(self, sale_workflow):
+        pass
+
+    @api.model
     def run_with_workflow(self, sale_workflow):
         workflow_domain = [("workflow_process_id", "=", sale_workflow.id)]
         if sale_workflow.validate_order:
