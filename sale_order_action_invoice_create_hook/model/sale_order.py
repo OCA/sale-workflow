@@ -21,9 +21,8 @@ class SaleOrder(models.Model):
     def _get_draft_invoices(self, invoices, references):
         return invoices, references
 
-    @api.model_cr
     def _register_hook(self):
-        def new_action_invoice_create(self, grouped=False, final=False):
+        def new_create_invoices(self, grouped=False, final=False):
             """
             Create the invoice associated to the SO.
             :param grouped: if True, invoices are grouped by SO id. If False,
@@ -32,7 +31,7 @@ class SaleOrder(models.Model):
             :returns: list of created invoices
             """
             if not hasattr(self, "_get_invoice_group_key"):
-                return self.action_invoice_create_original(grouped=grouped, final=final)
+                return self._create_invoices(grouped=grouped, final=final)
             invoices = {}
             references = {}
 
@@ -41,7 +40,7 @@ class SaleOrder(models.Model):
             self._get_draft_invoices(invoices, references)
             # END HOOK
 
-            inv_obj = self.env["account.invoice"]
+            inv_obj = self.env["account.move"]
             precision = self.env["decimal.precision"].precision_get(
                 "Product Unit of Measure"
             )
@@ -93,8 +92,8 @@ class SaleOrder(models.Model):
                         invoice = invoices[group_key]
                         # END HOOK
                         vals = {}
-                        if order.name not in invoice.origin.split(", "):
-                            vals["origin"] = invoice.origin + ", " + order.name
+                        if order.name not in invoice.invoice_origin.split(", "):
+                            vals["origin"] = invoice.invoice_origin + ", " + order.name
                         if (
                             order.client_order_ref
                             and order.client_order_ref not in invoice.name.split(", ")
@@ -104,13 +103,19 @@ class SaleOrder(models.Model):
                         invoice.write(vals)
                     if line.qty_to_invoice > 0 or (line.qty_to_invoice < 0 and final):
                         if pending_section:
-                            pending_section.invoice_line_create(
-                                invoices[group_key].id, pending_section.qty_to_invoice
+                            invoice.write(
+                                {
+                                    "invoice_line_ids": [
+                                        (0, 0, pending_section._prepare_invoice_line())
+                                    ]
+                                }
                             )
                             pending_section = None
-                        line.invoice_line_create(
-                            invoices[group_key].id, line.qty_to_invoice
+                        invoice.write(
+                            {"invoice_line_ids": [(0, 0, line._prepare_invoice_line())]}
                         )
+
+                        # pp(line._prepare_invoice_line())
                         # START HOOK
                         # Change to true if new lines are added
                         new_lines = True
@@ -128,7 +133,10 @@ class SaleOrder(models.Model):
             # END HOOK
 
             for invoice in invoices.values():
-                invoice.compute_taxes()
+                [
+                    inv_line._get_computed_taxes()
+                    for inv_line in invoice.invoice_line_ids
+                ]
                 if not invoice.invoice_line_ids:
                     raise UserError(_("There is no invoicable line."))
                 # If invoice is negative, do a refund invoice instead
@@ -137,17 +145,20 @@ class SaleOrder(models.Model):
                     for line in invoice.invoice_line_ids:
                         line.quantity = -line.quantity
                 # Use additional field helper function (for account extensions)
-                for line in invoice.invoice_line_ids:
-                    line._set_additional_fields(invoice)
+                # for line in invoice.invoice_line_ids:
+                #    line._set_additional_fields(invoice)
                 # Necessary to force computation of taxes. In account_invoice,
                 # they are triggered by onchanges, which are not triggered when
                 # doing a create.
-                invoice.compute_taxes()
+                [
+                    inv_line._get_computed_taxes()
+                    for inv_line in invoice.invoice_line_ids
+                ]
                 # Idem for partner
-                so_payment_term_id = invoice.payment_term_id.id
+                so_payment_term_id = invoice.invoice_payment_term_id.id
                 invoice._onchange_partner_id()
                 # To keep the payment terms set on the SO
-                invoice.payment_term_id = so_payment_term_id
+                invoice.invoice_payment_term_id = so_payment_term_id
                 invoice.message_post_with_view(
                     "mail.message_origin_link",
                     values={"self": invoice, "origin": references[invoice]},
@@ -155,9 +166,9 @@ class SaleOrder(models.Model):
                 )
             return [inv.id for inv in invoices.values()]
 
-        self._patch_method("action_invoice_create", new_action_invoice_create)
+        self._patch_method("_create_invoices", new_create_invoices)
 
-        return super(SaleOrder, self)._register_hook()
+        return super()._register_hook()
 
 
 class SaleOrderLine(models.Model):
