@@ -56,7 +56,6 @@ class SaleOrder(models.Model):
 
     def _create_new_no_code_promo_reward_lines(self):
         super()._create_new_no_code_promo_reward_lines()
-
         program = self._get_applicable_no_code_promo_program().filtered(
             lambda p: p.reward_type == "use_pricelist"
         )
@@ -102,6 +101,8 @@ class SaleOrder(models.Model):
                 self.write({"order_line": [(0, False, values)]})
 
     def _remove_invalid_reward_lines(self):
+        # TODO: rollback forced lines which is not used for creation of
+        # reward lines for other programs
         super()._remove_invalid_reward_lines()
         new_sale_order = self.new({"partner_id": self.partner_id})
         new_sale_order.onchange_partner_id()

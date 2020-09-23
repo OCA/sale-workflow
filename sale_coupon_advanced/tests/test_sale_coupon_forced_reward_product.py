@@ -26,8 +26,8 @@ class TestSaleCouponForcedRewardProduct(TestSaleCouponCommon):
                             "product_uom": self.uom_unit.id,
                             "product_uom_qty": 2.0,
                         },
-                    ),
-                ],
+                    )
+                ]
             }
         )
 

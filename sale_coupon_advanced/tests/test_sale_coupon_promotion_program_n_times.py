@@ -4,6 +4,7 @@
 from odoo.addons.sale_coupon.tests.common import TestSaleCouponCommon
 
 
+# TODO: refactor test classes for better reusability
 class TestProgramForNFirstSaleOrder(TestSaleCouponCommon):
     def _create_order(self, product, qty):
         order = self.empty_order
@@ -31,26 +32,33 @@ class TestProgramForNFirstSaleOrder(TestSaleCouponCommon):
             }
         )
 
-    def test_no_n_orders(self):
-        """
-        If `first_n_customer_orders` == 0, program is always appliable.
-        """
-        self.program.write({"first_n_customer_orders": 0})
+    def test_01_no_n_orders(self):
+        """`next_n_customer_orders` == 0, program applied always."""
+        self.program.write({"next_n_customer_orders": 0})
         order = self._create_order(self.product_A, 1)
         order.recompute_coupon_lines()
-        for __ in range(10):
+        for __ in range(3):
             self.assertEqual(order.amount_untaxed, 90)
             order = order.copy()
 
-    def test_max_2_orders(self):
-        """
-        If `first_n_customer_orders` > 0, program is appliable n times.
-        """
+    def test_02_max_2_orders(self):
+        """`next_n_customer_orders` == 2, program applied 2 times."""
         max_orders = 2
-        self.program.write({"first_n_customer_orders": max_orders})
+        partner = self.env["res.partner"].create(
+            {"name": "Test Partner", "is_company": True}
+        )
+        self.program.write({"next_n_customer_orders": max_orders})
         order = self._create_order(self.product_A, 1)
-        order.recompute_coupon_lines()
-        for __ in range(max_orders):
-            self.assertEqual(order.amount_untaxed, 90)
-            order = order.copy()
+        # Create new order without coupon used.
+        order_without_coupon = order.copy()
+        self.assertEqual(order_without_coupon.amount_untaxed, 100)
+        order.recompute_coupon_lines()  # used first time
+        self.assertEqual(order.amount_untaxed, 90)
+        # Create new order with coupon used, but with different partner.
+        order_with_diff_partner = order.copy(default={"partner_id": partner.id})
+        self.assertEqual(order_with_diff_partner.amount_untaxed, 90)
+        self.assertEqual(order.amount_untaxed, 90)
+        order = order.copy()  # used second time
+        self.assertEqual(order.amount_untaxed, 90)
+        order = order.copy()  # tried to use third time.
         self.assertEqual(order.amount_untaxed, 100)

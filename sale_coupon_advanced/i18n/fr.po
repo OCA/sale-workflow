@@ -31,7 +31,7 @@ msgid "Apply only on the first order of each client matching the conditions"
 msgstr "Appliquer uniquement sur la première commande de chaque client correspondant aux conditions"
 
 #. module: sale_coupon_advanced
-#: model:ir.model.fields,field_description:sale_coupon_advanced.field_sale_coupon_program__first_n_customer_orders
+#: model:ir.model.fields,field_description:sale_coupon_advanced.field_sale_coupon_program__next_n_customer_orders
 msgid "Apply only on the next "
 msgstr ""
 
@@ -44,7 +44,7 @@ msgstr "Le coupon ne peut être utilisé que pour la première commande!"
 #. module: sale_coupon_advanced
 #: code:addons/sale_coupon_advanced/models/sale_coupon_program.py:0
 #, python-format
-msgid "Coupon can be used only for the first {} sale order!"
+msgid "Coupon can be used only for the first {} times!"
 msgstr ""
 
 #. module: sale_coupon_advanced
@@ -70,7 +70,7 @@ msgid "If checked, the reward product will be added if not ordered."
 msgstr "Si sélectionné, le produit sera ajouté s'il n'a pas été commandé"
 
 #. module: sale_coupon_advanced
-#: model:ir.model.fields,help:sale_coupon_advanced.field_sale_coupon_program__first_n_customer_orders
+#: model:ir.model.fields,help:sale_coupon_advanced.field_sale_coupon_program__next_n_customer_orders
 msgid ""
 "Maximum number of sales orders of the customer in which reward          can "
 "be provided"

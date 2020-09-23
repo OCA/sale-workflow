@@ -5,6 +5,8 @@
 from odoo.addons.sale_coupon.tests.common import TestSaleCouponCommon
 
 
+# TODO: refactor to use SavepointCase. TransactionCase is bottlenecking
+# tests here.
 class TestSaleCoupon(TestSaleCouponCommon):
     def setUp(self):
         super().setUp()
