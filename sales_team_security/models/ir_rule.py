@@ -1,7 +1,7 @@
 # Copyright 2020 Tecnativa - Pedro M. Baeza
 # License AGPL-3 - See http://www.gnu.org/licenses/agpl-3.0.html
 
-from odoo import SUPERUSER_ID, api, models, tools
+from odoo import api, models, tools
 from odoo.osv import expression
 from odoo.tools import config
 
@@ -13,10 +13,11 @@ class IrRule(models.Model):
     @tools.conditional(
         "xml" not in config["dev_mode"],
         tools.ormcache(
-            "self._uid",
+            "self.env.uid",
+            "self.env.su",
             "model_name",
             "mode",
-            "tuple(self._context.get(k) for k in self._compute_domain_keys())",
+            "tuple(self._compute_domain_context_values())",
         ),
     )
     def _compute_domain(self, model_name, mode="read"):
@@ -28,7 +29,7 @@ class IrRule(models.Model):
         group1 = "sales_team.group_sale_salesman"
         group2 = "sales_team_security.group_sale_team_manager"
         group3 = "sales_team.group_sale_salesman_all_leads"
-        if model_name == "res.partner" and user.id != SUPERUSER_ID:
+        if model_name == "res.partner" and not self.env.su:
             if user.has_group(group1) and not user.has_group(group3):
                 extra_domain = [
                     "|",
