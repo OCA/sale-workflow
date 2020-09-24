@@ -1,0 +1,120 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+#	* sale_order_tag
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 12.0\n"
+"Report-Msgid-Bugs-To: \n"
+"PO-Revision-Date: 2021-03-23 11:47+0000\n"
+"Last-Translator: Daniel Martinez Vila <daniel.martinez@qubiq.es>\n"
+"Language-Team: none\n"
+"Language: es\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: Weblate 4.3.2\n"
+
+#. module: sale_order_tag
+#: model:ir.model.fields,field_description:sale_order_tag.field_sale_order_tag__active
+msgid "Active"
+msgstr "Activo"
+
+#. module: sale_order_tag
+#: model:ir.model.fields,field_description:sale_order_tag.field_sale_order_tag__color
+msgid "Color Index"
+msgstr "Indice de color"
+
+#. module: sale_order_tag
+#: model:ir.model.fields,field_description:sale_order_tag.field_sale_order_tag__company_id
+msgid "Company"
+msgstr "Compañía"
+
+#. module: sale_order_tag
+#: model:ir.model.fields,field_description:sale_order_tag.field_sale_order_tag__create_uid
+msgid "Created by"
+msgstr "Creado por"
+
+#. module: sale_order_tag
+#: model:ir.model.fields,field_description:sale_order_tag.field_sale_order_tag__create_date
+msgid "Created on"
+msgstr "Creado el"
+
+#. module: sale_order_tag
+#: model:ir.model.fields,field_description:sale_order_tag.field_sale_order_tag__description
+msgid "Description"
+msgstr "Descripción"
+
+#. module: sale_order_tag
+#: model:ir.model.fields,field_description:sale_order_tag.field_sale_order_tag__display_name
+msgid "Display Name"
+msgstr "Nombre mostrado"
+
+#. module: sale_order_tag
+#: model:ir.model.fields,field_description:sale_order_tag.field_sale_order_tag__id
+msgid "ID"
+msgstr "ID"
+
+#. module: sale_order_tag
+#: model:ir.model.fields,field_description:sale_order_tag.field_sale_order_tag____last_update
+msgid "Last Modified on"
+msgstr "Última modificación el"
+
+#. module: sale_order_tag
+#: model:ir.model.fields,field_description:sale_order_tag.field_sale_order_tag__write_uid
+msgid "Last Updated by"
+msgstr "Actualizado por última vez por"
+
+#. module: sale_order_tag
+#: model:ir.model.fields,field_description:sale_order_tag.field_sale_order_tag__write_date
+msgid "Last Updated on"
+msgstr "Ultima actualización el"
+
+#. module: sale_order_tag
+#: model:ir.model.fields,field_description:sale_order_tag.field_sale_order_tag__name
+#: model_terms:ir.ui.view,arch_db:sale_order_tag.sale_order_tag_form_view
+msgid "Name"
+msgstr "Nombre"
+
+#. module: sale_order_tag
+#: model:ir.model,name:sale_order_tag.model_sale_order
+msgid "Sale Order"
+msgstr "Pedido de venta"
+
+#. module: sale_order_tag
+#: model:ir.model,name:sale_order_tag.model_sale_order_tag
+msgid "Sale Order Tag"
+msgstr "Etiqueta de pedido de venta"
+
+#. module: sale_order_tag
+#: model:ir.actions.act_window,name:sale_order_tag.sale_order_tag_action
+#: model:ir.model.fields,field_description:sale_order_tag.field_sale_order__so_tag_ids
+#: model_terms:ir.ui.view,arch_db:sale_order_tag.sale_order_tag_form_view
+msgid "Sale Order Tags"
+msgstr "Etiquetas de pedido de venta"
+
+#. module: sale_order_tag
+#: model:ir.model.fields,field_description:sale_order_tag.field_sale_order_tag__team_ids
+msgid "Sales Teams"
+msgstr "Equipos de ventas"
+
+#. module: sale_order_tag
+#: model:ir.model.fields,field_description:sale_order_tag.field_sale_order_tag__sequence
+msgid "Sequence"
+msgstr "Secuencia"
+
+#. module: sale_order_tag
+#: sql_constraint:sale.order.tag:0
+msgid "Tag name already exists!"
+msgstr "¡El nombre de la etiqueta ya existe!"
+
+#. module: sale_order_tag
+#: model:ir.ui.menu,name:sale_order_tag.sale_order_tag_menu
+msgid "Tags"
+msgstr "Etiquetas"
+
+#. module: sale_order_tag
+#: model_terms:ir.ui.view,arch_db:sale_order_tag.sale_order_tag_view_form
+msgid "tag..."
+msgstr "Etiqueta..."
