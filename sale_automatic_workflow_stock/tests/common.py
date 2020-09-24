@@ -2,18 +2,17 @@
 # Copyright 2020 Camptocamp SA (author: Simone Orsi)
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
-from odoo.addons.sale_automatic_workflow.tests.common import (
-    TestAutomaticWorkflowMixin)
+from odoo.addons.sale_automatic_workflow.tests.common import TestAutomaticWorkflowMixin
 
 
 class TestAutomaticWorkflowStockMixin(TestAutomaticWorkflowMixin):
     """Extend to add stock related workflow."""
 
-    def create_sale_order(
-            self, workflow, override=None, product_type='product'):
+    def create_sale_order(self, workflow, override=None, product_type="product"):
         """Override to create stock operations for each product."""
         order = super().create_sale_order(
-            workflow, override=override, product_type=product_type)
+            workflow, override=override, product_type=product_type
+        )
         # Create inventory for add stock qty to lines
         # With this commit https://goo.gl/fRTLM3 the moves that where
         # force-assigned are not transferred in the picking

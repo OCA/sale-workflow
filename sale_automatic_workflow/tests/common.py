@@ -13,15 +13,13 @@ class TestCommon(SavepointCase):
 
 
 class TestAutomaticWorkflowMixin(object):
-
-    def create_sale_order(self, workflow, override=None, product_type='consu'):
+    def create_sale_order(self, workflow, override=None, product_type="consu"):
         sale_obj = self.env["sale.order"]
 
         partner_values = {"name": "Imperator Caius Julius Caesar Divus"}
         partner = self.env["res.partner"].create(partner_values)
 
-        product_values = {
-            "name": "Bread", "list_price": 5, "type": product_type}
+        product_values = {"name": "Bread", "list_price": 5, "type": product_type}
         product = self.env["product.product"].create(product_values)
         self.product_uom_unit = self.env.ref("uom.product_uom_unit")
         values = {

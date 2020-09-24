@@ -8,10 +8,13 @@
     <record id="sale_workflow_process_view_form_inherit" model="ir.ui.view">
         <field name="name">sale.workflow.process.form.stock</field>
         <field name="model">sale.workflow.process</field>
-        <field name="inherit_id" ref="sale_automatic_workflow.sale_workflow_process_view_form"/>
+        <field
+            name="inherit_id"
+            ref="sale_automatic_workflow.sale_workflow_process_view_form"
+        />
         <field name="arch" type="xml">
             <field name="team_id" position="before">
-                <field name="picking_policy"/>
+                <field name="picking_policy" />
             </field>
             <field name="create_invoice" position="before">
                 <field name="validate_picking" />
@@ -47,13 +50,16 @@
     <record id="sale_workflow_process_view_tree_inherit" model="ir.ui.view">
         <field name="name">sale.workflow.process.tree.stock</field>
         <field name="model">sale.workflow.process</field>
-        <field name="inherit_id" ref="sale_automatic_workflow.sale_workflow_process_view_tree"/>
+        <field
+            name="inherit_id"
+            ref="sale_automatic_workflow.sale_workflow_process_view_tree"
+        />
         <field name="arch" type="xml">
             <field name="name" position="after">
-                <field name="picking_policy"/>
+                <field name="picking_policy" />
             </field>
             <field name="validate_order" position="after">
-                <field name="validate_picking"/>
+                <field name="validate_picking" />
             </field>
         </field>
     </record>

@@ -5,9 +5,9 @@ import mock
 
 from odoo.tests import tagged
 
-from .common import TestAutomaticWorkflowStockMixin
-
 from odoo.addons.sale_automatic_workflow.tests.common import TestCommon
+
+from .common import TestAutomaticWorkflowStockMixin
 
 
 @tagged("post_install", "-at_install")
@@ -35,8 +35,7 @@ class TestAutomaticWorkflow(TestCommon, TestAutomaticWorkflowStockMixin):
         sale = self.create_sale_order(workflow)
         sale._onchange_workflow_process_id()
         self.assertEqual(sale.picking_policy, "one")
-        workflow2 = self.create_full_automatic(
-            override={"picking_policy": "direct"})
+        workflow2 = self.create_full_automatic(override={"picking_policy": "direct"})
         sale.workflow_process_id = workflow2.id
         sale._onchange_workflow_process_id()
         self.assertEqual(sale.picking_policy, "direct")

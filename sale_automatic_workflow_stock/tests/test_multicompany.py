@@ -3,8 +3,7 @@
 
 from odoo.tests import tagged
 
-from odoo.addons.sale_automatic_workflow.tests.common import (
-    TestMultiCompanyCommon)
+from odoo.addons.sale_automatic_workflow.tests.common import TestMultiCompanyCommon
 
 
 @tagged("post_install", "-at_install")
