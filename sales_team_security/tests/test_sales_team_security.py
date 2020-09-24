@@ -12,10 +12,10 @@ class TestSalesTeamSecurity(common.SavepointCase):
     @classmethod
     def setUpClass(cls):
         super().setUpClass()
-        cls.team = cls.env["crm.team"].create({"name": "Test channel",})
-        cls.team2 = cls.env["crm.team"].create({"name": "Test channel 2",})
+        cls.team = cls.env["crm.team"].create({"name": "Test channel"})
+        cls.team2 = cls.env["crm.team"].create({"name": "Test channel 2"})
         cls.partner = cls.env["res.partner"].create(
-            {"name": "Test partner", "team_id": cls.team.id,}
+            {"name": "Test partner", "team_id": cls.team.id}
         )
         cls.user = cls.env["res.users"].create(
             {
@@ -36,7 +36,7 @@ class TestSalesTeamSecurity(common.SavepointCase):
 
     def test_onchange_parent_id(self):
         contact = self.env["res.partner"].create(
-            {"name": "Test contact", "parent_id": self.partner.id,}
+            {"name": "Test contact", "parent_id": self.partner.id}
         )
         contact._onchange_parent_id_sales_team_security()
         self.assertEqual(contact.team_id, self.team)
@@ -51,7 +51,7 @@ class TestSalesTeamSecurity(common.SavepointCase):
 
     def test_assign_contacts_team(self):
         contact = self.env["res.partner"].create(
-            {"name": "Test contact", "parent_id": self.partner.id, "team_id": False,}
+            {"name": "Test contact", "parent_id": self.partner.id, "team_id": False}
         )
         post_init_hook(self.env.cr, self.env.registry)
         contact.refresh()
@@ -66,7 +66,7 @@ class TestSalesTeamSecurity(common.SavepointCase):
         self.assertTrue(xml_fields)
         self.assertTrue("default_team_id" in xml_fields[0].get("context", ""))
 
-    def _check_permission(self, salesman, team, expected):
+    def _check_permission(self, salesman, team, expected, subscribe=False):
         self.partner.write(
             {
                 "user_id": salesman.id if salesman else salesman,
@@ -74,7 +74,11 @@ class TestSalesTeamSecurity(common.SavepointCase):
             }
         )
         domain = [("id", "in", self.partner.ids)]
-        Partner = self.env["res.partner"].sudo(self.user)
+        Partner = self.env["res.partner"].with_user(self.user)
+        if subscribe:  # Force unsubscription for not interfering with real test
+            self.partner.message_subscribe(partner_ids=self.user.partner_id.ids)
+        else:
+            self.partner.message_unsubscribe(partner_ids=self.user.partner_id.ids)
         self.assertEqual(bool(Partner.search(domain)), expected)
 
     def test_partner_permissions(self):
@@ -124,3 +128,14 @@ class TestSalesTeamSecurity(common.SavepointCase):
         self._check_permission(self.user, self.team2, True)
         self._check_permission(self.user2, self.team2, True)
         self._check_permission(self.user2, self.team, True)
+
+    def test_partner_permissions_subscription(self):
+        self._check_permission(self.user2, False, True, subscribe=True)
+
+    def test_partner_permissions_own_partner(self):
+        self.user.partner_id.write({"user_id": self.user2.id})
+        domain = [("id", "in", self.user.partner_id.ids)]
+        Partner = self.env["res.partner"].with_user(self.user)
+        # Make sure the acces is not due to the subscription
+        self.partner.message_unsubscribe(partner_ids=self.user.partner_id.ids)
+        self.assertEqual(bool(Partner.search(domain)), True)
