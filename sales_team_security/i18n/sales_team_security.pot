@@ -1,12 +1,12 @@
 # Translation of Odoo Server.
 # This file contains the translation of the following modules:
-#	* sales_team_security
+# 	* sales_team_security
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: Odoo Server 12.0\n"
+"Project-Id-Version: Odoo Server 13.0\n"
 "Report-Msgid-Bugs-To: \n"
-"Last-Translator: <>\n"
+"Last-Translator: \n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -30,6 +30,7 @@ msgstr ""
 
 #. module: sales_team_security
 #: model:res.groups,comment:sales_team_security.group_sale_team_manager
-msgid "the user will have an access to the documents of the sales channel he/she belongs to."
+msgid ""
+"the user will have an access to the documents of the sales channel he/she "
+"belongs to."
 msgstr ""
-
