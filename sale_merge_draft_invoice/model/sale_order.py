@@ -5,19 +5,17 @@ from odoo import api, models
 
 
 class SaleOrder(models.Model):
-    _inherit = 'sale.order'
+    _inherit = "sale.order"
 
     @api.model
     def _get_draft_invoices(self, invoices, references):
-        if self.env.context.get('merge_draft_invoice', False):
+        if self.env.context.get("merge_draft_invoice", False):
             invoices, references = super(SaleOrder, self)._get_draft_invoices(
-                invoices, references)
-            draft_inv = self.env['account.invoice'].search([
-                ('state', '=', 'draft')
-            ])
+                invoices, references
+            )
+            draft_inv = self.env["account.invoice"].search([("state", "=", "draft")])
             for inv in draft_inv:
-                lines = inv.invoice_line_ids.filtered(
-                    lambda l: l.sale_line_ids)
+                lines = inv.invoice_line_ids.filtered(lambda l: l.sale_line_ids)
                 if lines:
                     ref_order = lines[0].sale_line_ids[0].order_id
                     group_inv_key = self._get_invoice_group_key(ref_order)
@@ -25,5 +23,4 @@ class SaleOrder(models.Model):
                     invoices[group_inv_key] = inv
             return invoices, references
         else:
-            return super(SaleOrder, self)._get_draft_invoices(
-                invoices, references)
+            return super(SaleOrder, self)._get_draft_invoices(invoices, references)

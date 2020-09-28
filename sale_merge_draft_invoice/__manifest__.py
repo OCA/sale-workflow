@@ -7,14 +7,12 @@
     "version": "12.0.1.0.1",
     "category": "Sale Workflow",
     "website": "https://github.com/OCA/sale-workflow",
-    "depends": [
-        'sale_order_action_invoice_create_hook',
-    ],
+    "depends": ["sale_order_action_invoice_create_hook",],
     "data": [
-        'security/sale_merge_draft_invoice_security.xml',
-        'wizard/sale_make_invoice_advance_views.xml',
-        'view/res_config_settings_views.xml',
+        "security/sale_merge_draft_invoice_security.xml",
+        "wizard/sale_make_invoice_advance_views.xml",
+        "view/res_config_settings_views.xml",
     ],
-    "license": 'LGPL-3',
-    "installable": True
+    "license": "LGPL-3",
+    "installable": True,
 }
