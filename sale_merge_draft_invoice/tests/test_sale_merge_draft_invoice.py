@@ -60,7 +60,6 @@ class TestSaleMergeDraftInvoice(TransactionCase):
             {
                 "name": name,
                 "email": "example@yourcompany.com",
-                "customer": True,
                 "phone": 123456,
                 "currency_id": self.env.ref("base.EUR"),
             }
@@ -77,11 +76,11 @@ class TestSaleMergeDraftInvoice(TransactionCase):
         return product
 
     def _create_sale_order(self, user):
-        so = self.sale_order_model.sudo(user).create({"partner_id": self.customer.id,})
-        sol1 = self.sale_order_line_model.sudo(user).create(
+        so = self.sale_order_model.with_user(user).create({"partner_id": self.customer.id,})
+        sol1 = self.sale_order_line_model.with_user(user).create(
             {"product_id": self.service_1.id, "product_uom_qty": 1, "order_id": so.id}
         )
-        sol2 = self.sale_order_line_model.sudo(user).create(
+        sol2 = self.sale_order_line_model.with_user(user).create(
             {"product_id": self.service_2.id, "product_uom_qty": 2, "order_id": so.id}
         )
 
@@ -98,15 +97,15 @@ class TestSaleMergeDraftInvoice(TransactionCase):
         data = {"advance_payment_method": "delivered"}
         if force_merge:
             data.update({"merge_draft_invoice": merge_option})
-        payment = self.env["sale.advance.payment.inv"].sudo(user).create(data)
+        payment = self.env["sale.advance.payment.inv"].with_user(user).create(data)
         sale_context = {
             "active_id": sale.id,
             "active_ids": sale.ids,
             "active_model": "sale.order",
             "open_invoices": True,
         }
-        res = payment.with_context(sale_context).sudo(user).create_invoices()
-        invoice_id = self.env["account.invoice"].browse(res["res_id"])
+        res = payment.with_context(sale_context).sudo().create_invoices()
+        invoice_id = self.env["account.move"].browse(res["res_id"])
         return invoice_id
 
     def test_create_invoice_case_1(self):

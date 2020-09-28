@@ -22,7 +22,6 @@ class SaleAdvancePaymentInv(models.TransientModel):
         ),
     )
 
-    @api.multi
     def create_invoices(self):
         rec = (
             self.with_context(merge_draft_invoice=True)

@@ -13,7 +13,7 @@ class SaleOrder(models.Model):
             invoices, references = super(SaleOrder, self)._get_draft_invoices(
                 invoices, references
             )
-            draft_inv = self.env["account.invoice"].search([("state", "=", "draft")])
+            draft_inv = self.env["account.move"].search([("state", "=", "draft")])
             for inv in draft_inv:
                 lines = inv.invoice_line_ids.filtered(lambda l: l.sale_line_ids)
                 if lines:
