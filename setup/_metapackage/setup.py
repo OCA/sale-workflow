@@ -40,6 +40,7 @@ setuptools.setup(
         'odoo13-addon-sale_tier_validation',
         'odoo13-addon-sale_validity',
         'odoo13-addon-sale_wishlist',
+        'odoo13-addon-sales_team_security',
     ],
     classifiers=[
         'Programming Language :: Python',
