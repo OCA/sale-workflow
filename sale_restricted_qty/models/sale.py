@@ -111,13 +111,17 @@ class SaleOrderLine(models.Model):
         if msg:
             raise ValidationError(msg)
 
+    def _get_product_qty_in_product_unit(self):
+        self.ensure_one()
+        return self.product_uom._compute_quantity(
+            self.product_uom_qty, self.product_id.uom_id
+            )
+
     @api.depends("product_uom_qty", "sale_min_qty")
     def _compute_is_qty_less_min_qty(self):
         for line in self:
             rounding = line.product_uom.rounding
-            product_qty = line.product_uom._compute_quantity(
-                line.product_uom_qty, line.product_id.uom_id
-            )
+            product_qty = line._get_product_qty_in_product_unit()
             line.is_qty_less_min_qty = line.sale_min_qty and (
                 float_compare(
                     product_qty, line.sale_min_qty, precision_rounding=rounding
@@ -129,9 +133,7 @@ class SaleOrderLine(models.Model):
     def _compute_is_qty_bigger_max_qty(self):
         for line in self:
             rounding = line.product_uom.rounding
-            product_qty = line.product_uom._compute_quantity(
-                line.product_uom_qty, line.product_id.uom_id
-            )
+            product_qty = line._get_product_qty_in_product_unit()
             line.is_qty_bigger_max_qty = line.sale_max_qty and (
                 float_compare(
                     product_qty, line.sale_max_qty, precision_rounding=rounding
