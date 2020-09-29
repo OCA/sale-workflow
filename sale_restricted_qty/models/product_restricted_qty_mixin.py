@@ -7,6 +7,7 @@ from odoo.addons import decimal_precision as dp
 
 class ProductMinMultipleMixin(models.AbstractModel):
     _name = "product.restricted.qty.mixin"
+    _description = "Product Restrict Qty Mixin"
 
     sale_multiple_qty = fields.Float(
         compute="_compute_sale_restricted_qty",
