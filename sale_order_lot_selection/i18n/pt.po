@@ -38,7 +38,6 @@ msgstr ""
 #. module: sale_order_lot_selection
 #: model:ir.model,name:sale_order_lot_selection.model_sale_order
 #, fuzzy
-#| msgid "Sales Order"
 msgid "Sales Order"
 msgstr "Ordem de Venda"
 

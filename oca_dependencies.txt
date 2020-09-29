@@ -4,3 +4,4 @@ server-tools
 stock-logistics-warehouse
 account-invoicing
 stock-logistics-workflow
+server-tools

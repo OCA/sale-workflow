@@ -79,14 +79,9 @@ class ProductSetAdd(models.TransientModel):
     def prepare_sale_order_line_data(self, set_line, max_sequence=0):
         self.ensure_one()
         sale_line = self.env["sale.order.line"].new(
-            {
-                "order_id": self.order_id.id,
-                "product_id": set_line.product_id.id,
-                "product_uom_qty": set_line.quantity * self.quantity,
-                "product_uom": set_line.product_id.uom_id.id,
-                "sequence": max_sequence + set_line.sequence,
-                "discount": set_line.discount,
-            }
+            set_line.prepare_sale_order_line_values(
+                self.order_id, self.quantity, max_sequence=max_sequence
+            )
         )
         sale_line.product_id_change()
         line_values = sale_line._convert_to_write(sale_line._cache)
