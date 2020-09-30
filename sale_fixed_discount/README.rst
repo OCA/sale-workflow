@@ -23,7 +23,7 @@ Sale Fixed Discount
     :target: https://runbot.odoo-community.org/runbot/167/13.0
     :alt: Try me on Runbot
 
-|badge1| |badge2| |badge3| |badge4| |badge5|
+|badge1| |badge2| |badge3| |badge4| |badge5| 
 
 This module extends the functionality of Sales to allow you to apply fixed
 amount discount at sales order line level.
