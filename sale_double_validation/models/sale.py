@@ -18,7 +18,7 @@ class SaleOrder(models.Model):
         if not exists:
             selection.insert(0, ('to_approve', _('To Approve')))
 
-    @api.multi
+
     def is_amount_to_approve(self):
         self.ensure_one()
         currency = self.company_id.currency_id
@@ -28,7 +28,7 @@ class SaleOrder(models.Model):
             limit_amount, self.amount_total,
             precision_rounding=self.currency_id.rounding) <= 0
 
-    @api.multi
+
     def is_to_approve(self):
         self.ensure_one()
         return (self.company_id.so_double_validation == 'two_step' and
@@ -42,6 +42,6 @@ class SaleOrder(models.Model):
             obj.state = 'to_approve'
         return obj
 
-    @api.multi
+
     def action_approve(self):
         self.write({'state': 'draft'})

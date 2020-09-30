@@ -8,7 +8,7 @@ class TestSaleDoubleValidation(test_sale_common.TestCommonSaleNoChart):
 
     def test_one_step(self):
         self.user_employee.company_id.sudo().so_double_validation = 'one_step'
-        so = self.env['sale.order'].sudo(self.user_employee).create({
+        so = self.env['sale.order'].with_user(self.user_employee).create({
             'partner_id': self.partner_customer_usd.id,
             'partner_invoice_id': self.partner_customer_usd.id,
             'partner_shipping_id': self.partner_customer_usd.id,
@@ -27,7 +27,7 @@ class TestSaleDoubleValidation(test_sale_common.TestCommonSaleNoChart):
 
     def test_two_steps_under_limit(self):
         self.user_employee.company_id.sudo().so_double_validation = 'two_step'
-        so = self.env['sale.order'].sudo(self.user_employee).create({
+        so = self.env['sale.order'].with_user(self.user_employee).create({
             'partner_id': self.partner_customer_usd.id,
             'partner_invoice_id': self.partner_customer_usd.id,
             'partner_shipping_id': self.partner_customer_usd.id,
@@ -47,7 +47,7 @@ class TestSaleDoubleValidation(test_sale_common.TestCommonSaleNoChart):
     def test_two_steps_manager(self):
         self.user_employee.company_id.sudo().so_double_validation = 'two_step'
         self.user_employee.company_id.sudo().so_double_validation_amount = 10
-        so = self.env['sale.order'].sudo(self.user_manager).create({
+        so = self.env['sale.order'].with_user(self.user_manager).create({
             'partner_id': self.partner_customer_usd.id,
             'partner_invoice_id': self.partner_customer_usd.id,
             'partner_shipping_id': self.partner_customer_usd.id,
@@ -68,7 +68,7 @@ class TestSaleDoubleValidation(test_sale_common.TestCommonSaleNoChart):
         self.user_employee.company_id.sudo().so_double_validation = 'two_step'
         self.user_employee.company_id.sudo().so_double_validation_amount = \
             sum([2 * p.list_price for (k, p) in self.product_map.items()])
-        so = self.env['sale.order'].sudo(self.user_employee).create({
+        so = self.env['sale.order'].with_user(self.user_employee).create({
             'partner_id': self.partner_customer_usd.id,
             'partner_invoice_id': self.partner_customer_usd.id,
             'partner_shipping_id': self.partner_customer_usd.id,
@@ -89,7 +89,7 @@ class TestSaleDoubleValidation(test_sale_common.TestCommonSaleNoChart):
         self.user_employee.company_id.sudo().so_double_validation = 'two_step'
         self.user_employee.company_id.sudo().so_double_validation_amount = 10
         # confirm quotation
-        so = self.env['sale.order'].sudo(self.user_employee).create({
+        so = self.env['sale.order'].with_user(self.user_employee).create({
             'partner_id': self.partner_customer_usd.id,
             'partner_invoice_id': self.partner_customer_usd.id,
             'partner_shipping_id': self.partner_customer_usd.id,
@@ -105,7 +105,7 @@ class TestSaleDoubleValidation(test_sale_common.TestCommonSaleNoChart):
         })
         # confirm quotation
         self.assertEquals(so.state, 'to_approve')
-        so.sudo(self.user_manager).action_approve()
+        so.with_user(self.user_manager).action_approve()
         self.assertEquals(so.state, 'draft')
 
     @classmethod
