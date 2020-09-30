@@ -79,8 +79,8 @@ Authors
 Contributors
 ~~~~~~~~~~~~
 
-* Lois Rilo <lois.rilo@eficent.com> (www.eficent.com)
-* Jordi Ballester <jordi.ballester@eficent.com> (www.eficent.com)
+* Lois Rilo <lois.rilo@forgeflow.com> (www.forgeflow.com)
+* Jordi Ballester <jordi.ballester@forgeflow.com> (www.forgeflow.com)
 
 Maintainers
 ~~~~~~~~~~~
