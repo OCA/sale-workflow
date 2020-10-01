@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="product_category_form_view_inherit" model="ir.ui.view">
+        <field name="name">product.category.form</field>
+        <field name="model">product.category</field>
+        <field name="inherit_id" ref="product.product_category_form_view" />
+        <field name="arch" type="xml">
+            <group name="first" position="after">
+                <group name="stock_property" string="Inventory Properties">
+                    <field name="check_stock_on_sale"/>
+                </group>
+            </group>
+        </field>
+    </record>
+</odoo>
