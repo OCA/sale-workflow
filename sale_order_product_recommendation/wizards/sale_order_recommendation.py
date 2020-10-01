@@ -80,6 +80,8 @@ class SaleOrderRecommendation(models.TransientModel):
     @api.onchange("order_id", "months", "line_amount")
     def _generate_recommendations(self):
         """Generate lines according to context sale order."""
+        # Clean lines for newId environment
+        self.line_ids = False
         last_compute = "{}-{}-{}".format(self.id, self.months, self.line_amount)
         # Avoid execute onchange as times as fields in api.onchange
         # ORM must control this?
