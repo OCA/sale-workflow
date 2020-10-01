@@ -17,7 +17,7 @@ msgstr ""
 "X-Generator: Weblate 3.8\n"
 
 #. module: sale_invoice_plan
-#: selection:sale.invoice.plan,invoice_type:0
+#: model:ir.model.fields.selection,name:sale_invoice_plan.selection__sale_invoice_plan__invoice_type__advance
 msgid "Advance"
 msgstr "Vooruit"
 
@@ -85,7 +85,7 @@ msgid "Customer"
 msgstr ""
 
 #. module: sale_invoice_plan
-#: selection:sale.create.invoice.plan,interval_type:0
+#: model:ir.model.fields.selection,name:sale_invoice_plan.selection__sale_create_invoice_plan__interval_type__day
 msgid "Day"
 msgstr "Dag"
 
@@ -130,8 +130,8 @@ msgstr "Facturatie planning"
 
 #. module: sale_invoice_plan
 #: model:ir.model.fields,field_description:sale_invoice_plan.field_sale_invoice_plan__installment
+#: model:ir.model.fields.selection,name:sale_invoice_plan.selection__sale_invoice_plan__invoice_type__installment
 #: model_terms:ir.ui.view,arch_db:sale_invoice_plan.view_sale_invoice_plan_filter
-#: selection:sale.invoice.plan,invoice_type:0
 msgid "Installment"
 msgstr "Termijn"
 
@@ -181,7 +181,7 @@ msgid "Invoice Sales Order"
 msgstr "Factureer verkooporder"
 
 #. module: sale_invoice_plan
-#: model:ir.model.fields,field_description:sale_invoice_plan.field_sale_invoice_plan__invoice_ids
+#: model:ir.model.fields,field_description:sale_invoice_plan.field_sale_invoice_plan__invoice_move_ids
 msgid "Invoices"
 msgstr "Facturen"
 
@@ -227,7 +227,7 @@ msgid "Last installment will create invoice use remaining amount"
 msgstr "Laatste termijn maakt factuur voor resterende hoeveelheid"
 
 #. module: sale_invoice_plan
-#: selection:sale.create.invoice.plan,interval_type:0
+#: model:ir.model.fields.selection,name:sale_invoice_plan.selection__sale_create_invoice_plan__interval_type__month
 msgid "Month"
 msgstr "Maand"
 
@@ -237,7 +237,7 @@ msgid "Next Invoice"
 msgstr "Volgende factuur"
 
 #. module: sale_invoice_plan
-#: code:addons/sale_invoice_plan/wizard/sale_create_invoice_plan.py:43
+#: code:addons/sale_invoice_plan/wizard/sale_create_invoice_plan.py:0
 #, python-format
 msgid "Number Installment must greater than 1"
 msgstr "Aantal termijnen moet groter zijn dan 1"
@@ -258,7 +258,7 @@ msgid "Plan Date"
 msgstr "Plan datum"
 
 #. module: sale_invoice_plan
-#: code:addons/sale_invoice_plan/models/sale.py:235
+#: code:addons/sale_invoice_plan/models/sale.py:0
 #, python-format
 msgid ""
 "Plan quantity: %s, exceed invoiceable quantity: %s\n"
@@ -268,7 +268,7 @@ msgstr ""
 "Product moet geleverd worden voor factuur"
 
 #. module: sale_invoice_plan
-#: code:addons/sale_invoice_plan/models/sale.py:43
+#: code:addons/sale_invoice_plan/models/sale.py:0
 #, python-format
 msgid "Please fill percentage for all invoice plan lines"
 msgstr "Vul een percentage in voor alle facturatie planning regels"
@@ -284,11 +284,6 @@ msgid "Related Invoices"
 msgstr "Gerelateerde facturen"
 
 #. module: sale_invoice_plan
-#: model:ir.model,name:sale_invoice_plan.model_sale_order
-msgid "Sale Order"
-msgstr "Verkooporder"
-
-#. module: sale_invoice_plan
 #: model:ir.model,name:sale_invoice_plan.model_sale_advance_payment_inv
 msgid "Sales Advance Payment Invoice"
 msgstr "Verkoop aanbetalingsfactuur"
@@ -302,6 +297,7 @@ msgid "Sales Invoice Plan"
 msgstr "Gebruik facturatie planning"
 
 #. module: sale_invoice_plan
+#: model:ir.model,name:sale_invoice_plan.model_sale_order
 #: model:ir.model.fields,field_description:sale_invoice_plan.field_sale_invoice_plan__sale_id
 #: model_terms:ir.ui.view,arch_db:sale_invoice_plan.view_sale_invoice_plan_filter
 msgid "Sales Order"
@@ -353,7 +349,7 @@ msgid "Use Invoice Plan"
 msgstr "Gebruik facturatie planning"
 
 #. module: sale_invoice_plan
-#: code:addons/sale_invoice_plan/models/sale.py:50
+#: code:addons/sale_invoice_plan/models/sale.py:0
 #, python-format
 msgid "Use Invoice Plan selected, but no plan created"
 msgstr ""
@@ -372,14 +368,9 @@ msgid "Wizard when create invoice by plan"
 msgstr "Wizard om factureren aan te maken per plan"
 
 #. module: sale_invoice_plan
-#: selection:sale.create.invoice.plan,interval_type:0
+#: model:ir.model.fields.selection,name:sale_invoice_plan.selection__sale_create_invoice_plan__interval_type__year
 msgid "Year"
 msgstr "Jaar"
-
-#. module: sale_invoice_plan
-#: model:ir.model.fields,help:sale_invoice_plan.field_sale_invoice_plan__partner_id
-msgid "You can find a customer by its Name, TIN, Email or Internal Reference."
-msgstr ""
 
 #. module: sale_invoice_plan
 #: model_terms:ir.ui.view,arch_db:sale_invoice_plan.view_order_form_invoice_plan
@@ -390,3 +381,6 @@ msgstr "⇒ Maak facturatie planning"
 #: model_terms:ir.ui.view,arch_db:sale_invoice_plan.view_order_form_invoice_plan
 msgid "⇒ Remove Invoice Plan"
 msgstr "⇒ Verwijder facturatie planning"
+
+#~ msgid "Sale Order"
+#~ msgstr "Verkooporder"
