@@ -1,12 +1,12 @@
 # Translation of Odoo Server.
 # This file contains the translation of the following modules:
-#	* sale_invoice_plan
+# 	* sale_invoice_plan
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: Odoo Server 12.0\n"
+"Project-Id-Version: Odoo Server 13.0\n"
 "Report-Msgid-Bugs-To: \n"
-"Last-Translator: <>\n"
+"Last-Translator: \n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -14,7 +14,7 @@ msgstr ""
 "Plural-Forms: \n"
 
 #. module: sale_invoice_plan
-#: selection:sale.invoice.plan,invoice_type:0
+#: model:ir.model.fields.selection,name:sale_invoice_plan.selection__sale_invoice_plan__invoice_type__advance
 msgid "Advance"
 msgstr ""
 
@@ -81,7 +81,7 @@ msgid "Customer"
 msgstr ""
 
 #. module: sale_invoice_plan
-#: selection:sale.create.invoice.plan,interval_type:0
+#: model:ir.model.fields.selection,name:sale_invoice_plan.selection__sale_create_invoice_plan__interval_type__day
 msgid "Day"
 msgstr ""
 
@@ -126,8 +126,8 @@ msgstr ""
 
 #. module: sale_invoice_plan
 #: model:ir.model.fields,field_description:sale_invoice_plan.field_sale_invoice_plan__installment
+#: model:ir.model.fields.selection,name:sale_invoice_plan.selection__sale_invoice_plan__invoice_type__installment
 #: model_terms:ir.ui.view,arch_db:sale_invoice_plan.view_sale_invoice_plan_filter
-#: selection:sale.invoice.plan,invoice_type:0
 msgid "Installment"
 msgstr ""
 
@@ -177,13 +177,14 @@ msgid "Invoice Sales Order"
 msgstr ""
 
 #. module: sale_invoice_plan
-#: model:ir.model.fields,field_description:sale_invoice_plan.field_sale_invoice_plan__invoice_ids
+#: model:ir.model.fields,field_description:sale_invoice_plan.field_sale_invoice_plan__invoice_move_ids
 msgid "Invoices"
 msgstr ""
 
 #. module: sale_invoice_plan
 #: model_terms:ir.ui.view,arch_db:sale_invoice_plan.view_sale_make_planned_invoice
-msgid "Invoices will be created in draft for this installment\n"
+msgid ""
+"Invoices will be created in draft for this installment\n"
 "                        so that you can review them before validation."
 msgstr ""
 
@@ -219,7 +220,7 @@ msgid "Last installment will create invoice use remaining amount"
 msgstr ""
 
 #. module: sale_invoice_plan
-#: selection:sale.create.invoice.plan,interval_type:0
+#: model:ir.model.fields.selection,name:sale_invoice_plan.selection__sale_create_invoice_plan__interval_type__month
 msgid "Month"
 msgstr ""
 
@@ -229,7 +230,7 @@ msgid "Next Invoice"
 msgstr ""
 
 #. module: sale_invoice_plan
-#: code:addons/sale_invoice_plan/wizard/sale_create_invoice_plan.py:43
+#: code:addons/sale_invoice_plan/wizard/sale_create_invoice_plan.py:0
 #, python-format
 msgid "Number Installment must greater than 1"
 msgstr ""
@@ -250,14 +251,15 @@ msgid "Plan Date"
 msgstr ""
 
 #. module: sale_invoice_plan
-#: code:addons/sale_invoice_plan/models/sale.py:235
+#: code:addons/sale_invoice_plan/models/sale.py:0
 #, python-format
-msgid "Plan quantity: %s, exceed invoiceable quantity: %s\n"
+msgid ""
+"Plan quantity: %s, exceed invoiceable quantity: %s\n"
 "Product should be delivered before invoice"
 msgstr ""
 
 #. module: sale_invoice_plan
-#: code:addons/sale_invoice_plan/models/sale.py:43
+#: code:addons/sale_invoice_plan/models/sale.py:0
 #, python-format
 msgid "Please fill percentage for all invoice plan lines"
 msgstr ""
@@ -273,11 +275,6 @@ msgid "Related Invoices"
 msgstr ""
 
 #. module: sale_invoice_plan
-#: model:ir.model,name:sale_invoice_plan.model_sale_order
-msgid "Sale Order"
-msgstr ""
-
-#. module: sale_invoice_plan
 #: model:ir.model,name:sale_invoice_plan.model_sale_advance_payment_inv
 msgid "Sales Advance Payment Invoice"
 msgstr ""
@@ -289,6 +286,7 @@ msgid "Sales Invoice Plan"
 msgstr ""
 
 #. module: sale_invoice_plan
+#: model:ir.model,name:sale_invoice_plan.model_sale_order
 #: model:ir.model.fields,field_description:sale_invoice_plan.field_sale_invoice_plan__sale_id
 #: model_terms:ir.ui.view,arch_db:sale_invoice_plan.view_sale_invoice_plan_filter
 msgid "Sales Order"
@@ -336,7 +334,7 @@ msgid "Use Invoice Plan"
 msgstr ""
 
 #. module: sale_invoice_plan
-#: code:addons/sale_invoice_plan/models/sale.py:50
+#: code:addons/sale_invoice_plan/models/sale.py:0
 #, python-format
 msgid "Use Invoice Plan selected, but no plan created"
 msgstr ""
@@ -352,13 +350,8 @@ msgid "Wizard when create invoice by plan"
 msgstr ""
 
 #. module: sale_invoice_plan
-#: selection:sale.create.invoice.plan,interval_type:0
+#: model:ir.model.fields.selection,name:sale_invoice_plan.selection__sale_create_invoice_plan__interval_type__year
 msgid "Year"
-msgstr ""
-
-#. module: sale_invoice_plan
-#: model:ir.model.fields,help:sale_invoice_plan.field_sale_invoice_plan__partner_id
-msgid "You can find a customer by its Name, TIN, Email or Internal Reference."
 msgstr ""
 
 #. module: sale_invoice_plan
@@ -370,4 +363,3 @@ msgstr ""
 #: model_terms:ir.ui.view,arch_db:sale_invoice_plan.view_order_form_invoice_plan
 msgid "⇒ Remove Invoice Plan"
 msgstr ""
-
