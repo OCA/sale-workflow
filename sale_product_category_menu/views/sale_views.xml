@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!-- Copyright 2020 Manuel Regidor <manuel.regidor@sygel.es>
+     License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl). -->
+<odoo>
+    <menuitem
+        id="sale_product_category"
+        name="Product Categories"
+        action="product.product_category_action_form"
+        parent="sale.prod_config_main"
+    />
+</odoo>
