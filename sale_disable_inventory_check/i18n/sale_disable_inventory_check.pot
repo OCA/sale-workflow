@@ -14,7 +14,68 @@ msgstr ""
 "Plural-Forms: \n"
 
 #. module: sale_disable_inventory_check
+#: model:ir.model.fields,help:sale_disable_inventory_check.field_product_product_check_stock_on_sale
+#: model:ir.model.fields,help:sale_disable_inventory_check.field_product_template_check_stock_on_sale
+msgid "'Skip the check' will disable warning 'Not enough inventory' when there isn't enough product in stock!\n"
+"'Do not skip the check' won't disable warning 'Not enough inventory' when there isn't enough product in stock!\n"
+"'Defer to the setting on the category' will use the setting from the Internal Category"
+msgstr ""
+
+#. module: sale_disable_inventory_check
+#: model:ir.model.fields,field_description:sale_disable_inventory_check.field_product_category_check_stock_on_sale
+#: model:ir.model.fields,field_description:sale_disable_inventory_check.field_product_product_check_stock_on_sale
+#: model:ir.model.fields,field_description:sale_disable_inventory_check.field_product_template_check_stock_on_sale
+msgid "Check Stock on Sale"
+msgstr ""
+
+#. module: sale_disable_inventory_check
+#: selection:product.template,check_stock_on_sale:0
+msgid "Defer to the setting on the category"
+msgstr ""
+
+#. module: sale_disable_inventory_check
+#: selection:product.template,check_stock_on_sale:0
+msgid "Do not skip the check"
+msgstr ""
+
+#. module: sale_disable_inventory_check
+#: model:ir.ui.view,arch_db:sale_disable_inventory_check.product_category_form_view_inherit
+msgid "Inventory Properties"
+msgstr ""
+
+#. module: sale_disable_inventory_check
+#: model:ir.ui.view,arch_db:sale_disable_inventory_check.view_disable_check_stock_property_form
+msgid "Inventory Property"
+msgstr ""
+
+#. module: sale_disable_inventory_check
+#: code:addons/sale_disable_inventory_check/models/sale_order_line.py:17
+#, python-format
+msgid "Not enough inventory!"
+msgstr ""
+
+#. module: sale_disable_inventory_check
+#: model:ir.model,name:sale_disable_inventory_check.model_product_category
+msgid "Product Category"
+msgstr ""
+
+#. module: sale_disable_inventory_check
+#: model:ir.model,name:sale_disable_inventory_check.model_product_template
+msgid "Product Template"
+msgstr ""
+
+#. module: sale_disable_inventory_check
 #: model:ir.model,name:sale_disable_inventory_check.model_sale_order_line
 msgid "Sales Order Line"
+msgstr ""
+
+#. module: sale_disable_inventory_check
+#: selection:product.template,check_stock_on_sale:0
+msgid "Skip the check"
+msgstr ""
+
+#. module: sale_disable_inventory_check
+#: model:ir.model.fields,help:sale_disable_inventory_check.field_product_category_check_stock_on_sale
+msgid "Uncheck if you want to disable warning 'Not enough inventory' when there isn't enough product in stock"
 msgstr ""
 
