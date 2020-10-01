@@ -22,5 +22,10 @@ msgstr ""
 msgid "Product"
 msgstr "Producto"
 
+#. module: sale_order_product_availability_inline
+#: model:ir.model,name:sale_order_product_availability_inline.model_sale_order_line
+msgid "Sales Order Line"
+msgstr ""
+
 #~ msgid "%s (Free To Use: %s %s)"
 #~ msgstr "%s (Uso Libre: %s %s)"
