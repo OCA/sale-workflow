@@ -4,20 +4,13 @@
 {
     "name": "Sale Order Digitized Signature",
     "summary": "Capture customer signature on the sales order",
-    "version": "12.0.1.0.0",
-    "author": "Tecnativa, "
-              "Odoo Community Association (OCA)",
+    "version": "13.0.1.0.0",
+    "author": "Tecnativa, " "Odoo Community Association (OCA)",
     "website": "https://github.com/OCA/sale-workflow",
     "category": "Sales",
     "license": "AGPL-3",
-    "depends": [
-        "sale",
-        "web_widget_digitized_signature",
-    ],
-    "data": [
-        "report/report_saleorder.xml",
-        "views/sale_views.xml",
-    ],
+    "depends": ["sale", "web_widget_digitized_signature"],
+    "data": ["report/report_saleorder.xml", "views/sale_views.xml"],
     "installable": True,
     "development_status": "Production/Stable",
     "maintainers": ["mgosai"],
