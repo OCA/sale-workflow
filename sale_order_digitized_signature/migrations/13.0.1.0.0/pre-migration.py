@@ -4,12 +4,10 @@
 
 from openupgradelib import openupgrade
 
-column_renames = {
-    'sale.order': [('customer_signature', None)]
-}
+column_renames = {"sale.order": [("customer_signature", None)]}
 
 
 @openupgrade.migrate()
 def migrate(env, version):
-    if openupgrade.column_exists(env.cr, 'sale_order', 'customer_signature'):
+    if openupgrade.column_exists(env.cr, "sale_order", "customer_signature"):
         openupgrade.rename_columns(env.cr, column_renames)
