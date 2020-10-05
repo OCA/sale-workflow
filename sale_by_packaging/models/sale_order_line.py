@@ -72,12 +72,7 @@ class SaleOrderLine(models.Model):
                 )
             )
             if first_packaging:
-                self.update(
-                    {
-                        "product_packaging": first_packaging.id,
-                        "product_uom_qty": first_packaging.qty,
-                    }
-                )
+                self.update({"product_packaging": first_packaging.id})
         return res
 
     def _force_qty_with_package(self):
