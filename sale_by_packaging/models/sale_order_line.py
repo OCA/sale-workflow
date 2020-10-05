@@ -62,12 +62,7 @@ class SaleOrderLine(models.Model):
                 )
             )
             if first_packaging:
-                self.update(
-                    {
-                        "product_packaging": first_packaging.id,
-                        "product_uom_qty": first_packaging.qty,
-                    }
-                )
+                self.update({"product_packaging": first_packaging.id})
         return res
 
     @api.onchange("product_uom_qty")
