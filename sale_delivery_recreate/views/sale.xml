@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="view_order_form" model="ir.ui.view">
+        <field name="model">sale.order</field>
+        <field name="inherit_id" ref="sale.view_order_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//header/button[@name='action_unlock']" position="after">
+                <button name="delivery_recreate"
+                type="object" string="Recreate Delivery"/>
+            </xpath>
+        </field>
+    </record>
+
+</odoo>
