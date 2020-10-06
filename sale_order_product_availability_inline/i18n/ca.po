@@ -6,26 +6,22 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 13.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-09-21 16:17+0000\n"
-"PO-Revision-Date: 2020-10-26 12:08+0000\n"
-"Last-Translator: Daniel Martinez Vila <daniel.martinez@qubiq.es>\n"
-"Language-Team: \n"
-"Language: es\n"
+"PO-Revision-Date: 2020-11-06 13:08+0000\n"
+"Last-Translator: brendapaniagua <brenda.paniagua@qubiq.es>\n"
+"Language-Team: none\n"
+"Language: ca\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
-"Content-Transfer-Encoding: 8bit\n"
+"Content-Transfer-Encoding: \n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
 "X-Generator: Weblate 3.10\n"
 
 #. module: sale_order_product_availability_inline
 #: model:ir.model,name:sale_order_product_availability_inline.model_product_product
 msgid "Product"
-msgstr "Producto"
+msgstr "Producte"
 
 #. module: sale_order_product_availability_inline
 #: model:ir.model,name:sale_order_product_availability_inline.model_sale_order_line
 msgid "Sales Order Line"
-msgstr "Línea Pedido de Venta"
-
-#~ msgid "%s (Free To Use: %s %s)"
-#~ msgstr "%s (Uso Libre: %s %s)"
+msgstr "Línia de comandes de vendes"
