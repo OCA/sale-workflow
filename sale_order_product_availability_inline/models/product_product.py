@@ -10,6 +10,7 @@ class ProductProduct(models.Model):
     def name_get(self):
         if self.env.context.get("so_product_stock_inline"):
             res = super().name_get()
+            self = self.with_context(warehouse=self.env.context.get("warehouse"))
             availability = {r.id: [r.free_qty, r.uom_id.name] for r in self}
             new_res = []
             for _i in res:
