@@ -11,5 +11,7 @@ class SaleOrderLine(models.Model):
     def product_id_change(self):
         so_line = self
         if self.env.context.get("so_product_stock_inline"):
-            so_line = self.with_context(so_product_stock_inline=False)
+            so_line = self.with_context(
+                so_product_stock_inline=False, warehouse=self.warehouse_id.id
+            )
         return super(SaleOrderLine, so_line).product_id_change()
