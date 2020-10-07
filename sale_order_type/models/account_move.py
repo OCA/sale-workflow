@@ -22,7 +22,7 @@ class AccountMove(models.Model):
         for record in self.filtered(
             lambda am: am.type in ["out_invoice", "out_refund"]
         ):
-            if not record.partner_id:
+            if not record.partner_id.sale_type:
                 record.sale_type_id = self.env["sale.order.type"].search([], limit=1)
             else:
                 sale_type = (

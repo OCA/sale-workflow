@@ -118,6 +118,10 @@ Contributors
 
   * Iván Todorovich <ivan.todorovich@druidoo.io>
 
+* Serpent Consulting Services Pvt. Ltd.
+
+  * nikul.chaudhary.serpentcs@gmail.com
+
 Do not contact contributors directly about support or help with technical issues.
 
 Maintainers
