@@ -53,9 +53,9 @@ class TestSaleProductByPackagingOnly(SavepointCase):
                     "WARNING:odoo.tests.common.onchange:"
                     "Product quantity cannot be packed "
                     "For the product Pedal Bin\n"
-                    "The 1.0 is not the multiple"
-                    " of any pack.\n"
-                    "Please add a package",
+                    "The quantity 1.0 is not the multiple"
+                    " of any packaging.\n"
+                    "Please add a packaging.",
                     logs.output,
                 )
 
