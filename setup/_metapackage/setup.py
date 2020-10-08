@@ -21,6 +21,7 @@ setuptools.setup(
         'odoo13-addon-sale_last_price_info',
         'odoo13-addon-sale_order_archive',
         'odoo13-addon-sale_order_carrier_auto_assign',
+        'odoo13-addon-sale_order_general_discount',
         'odoo13-addon-sale_order_line_date',
         'odoo13-addon-sale_order_line_packaging_qty',
         'odoo13-addon-sale_order_lot_selection',
