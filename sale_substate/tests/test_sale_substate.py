@@ -21,16 +21,23 @@ class TestBaseSubstate(TransactionCase):
             'sale_substate.base_substate_valid_docs')
         self.substate_in_delivery = self.env.ref(
             'sale_substate.base_substate_in_delivery')
+        self.product_1 = self.env['product.product'].create({
+            'name': 'Test Product 1',
+            'type': 'service',
+        })
 
     def test_sale_order_substate(self):
         partner = self.env.ref('base.res_partner_1')
         so_test1 = self.substate_test_sale.create({
             'name': 'Test base substate to basic sale',
             'partner_id': partner.id,
-            'line_ids': [(0, 0, {
+            'order_line': [(0, 0, {
+                'product_id': self.product_1.id,
+                'product_uom_qty': 2,
+                'product_uom': self.product_1.uom_id.id,
                 'name': "line test",
-                'amount': 120.0,
-                'qty': 1.5,
+                'price_unit': 120.0,
+                'product_uom_qty': 2,
             })],
         })
         self.assertTrue(so_test1.state == 'draft')
