@@ -17,7 +17,7 @@
             <field name="name">Laptop E5023</field>
             <field name="product_id" ref="product.product_product_25"/>
             <field name="product_uom_qty">3</field>
-            <field name="product_uom" ref="product.product_uom_unit"/>
+            <field name="product_uom" ref="uom.product_uom_unit"/>
             <field name="price_unit">2950.00</field>
         </record>
 
@@ -26,7 +26,7 @@
             <field name="name">Pen drive, 16GB</field>
             <field name="product_id" ref="product.product_delivery_02"/>
             <field name="product_uom_qty">5</field>
-            <field name="product_uom" ref="product.product_uom_unit"/>
+            <field name="product_uom" ref="uom.product_uom_unit"/>
             <field name="price_unit">145.00</field>
         </record>
 
