@@ -70,8 +70,21 @@ class SaleOrderLine(models.Model):
                 )
         return res
 
+    def _force_qty_with_package(self):
+        """
+
+        :return:
+        """
+        self.ensure_one()
+        qty = self.product_id._convert_packaging_qty(
+            self.product_uom_qty, self.product_uom, packaging=self.product_packaging
+        )
+        self.product_uom_qty = qty
+        return True
+
     @api.onchange("product_uom_qty")
     def _onchange_product_uom_qty(self):
+        self._force_qty_with_package()
         res = super()._onchange_product_uom_qty()
         if not res:
             res = self._check_qty_is_pack_multiple()
