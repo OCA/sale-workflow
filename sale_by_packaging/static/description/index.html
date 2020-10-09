@@ -370,6 +370,12 @@ ul.auto-toc {
 <p><a class="reference external" href="https://odoo-community.org/page/development-status"><img alt="Alpha" src="https://img.shields.io/badge/maturity-Alpha-red.png" /></a> <a class="reference external" href="http://www.gnu.org/licenses/agpl-3.0-standalone.html"><img alt="License: AGPL-3" src="https://img.shields.io/badge/licence-AGPL--3-blue.png" /></a> <a class="reference external" href="https://github.com/OCA/sale-workflow/tree/13.0/sale_by_packaging"><img alt="OCA/sale-workflow" src="https://img.shields.io/badge/github-OCA%2Fsale--workflow-lightgray.png?logo=github" /></a> <a class="reference external" href="https://translation.odoo-community.org/projects/sale-workflow-13-0/sale-workflow-13-0-sale_by_packaging"><img alt="Translate me on Weblate" src="https://img.shields.io/badge/weblate-Translate%20me-F47D42.png" /></a> <a class="reference external" href="https://runbot.odoo-community.org/runbot/167/13.0"><img alt="Try me on Runbot" src="https://img.shields.io/badge/runbot-Try%20me-875A7B.png" /></a></p>
 <p>This module provides different configuration option to manage packagings on
 sale orders.</p>
+<p>By default there is a Warning message during the modification/creation of a sale order line
+to notice the user when the quantity to sell doesn’t fit with the factor set on the packaging.</p>
+<p>It’s also possible to force the quantity to sell during creation/modification of the sale order line
+if the “Force sale quantity” is ticked on the packaging.</p>
+<p>For example, if your packaging is set to sell by 5 units and the employee fill
+the quantity with 3, the quantity will be automatically replaced by 5 (it always rounds up).</p>
 <div class="admonition important">
 <p class="first admonition-title">Important</p>
 <p class="last">This is an alpha version, the data model and design can change at any time without warning.
@@ -402,6 +408,8 @@ order line.</li>
 sales of these products if no packaging is selected on the sale order line.
 If no packaging is selected, it will either be auto-assigned if the quantity
 on the sale order line matches a packaging quantity or an error will be raised.</li>
+<li>Force sale quantity (on the packaging): force rounds up the quantity during
+creation/modification of the sale order line with the factor set on the packaging.</li>
 </ul>
 </div>
 <div class="section" id="known-issues-roadmap">
@@ -433,6 +441,7 @@ If you spotted it first, help us smashing it by providing a detailed and welcome
 <ul class="simple">
 <li>Akim Juillerat &lt;<a class="reference external" href="mailto:akim.juillerat&#64;camptocamp.com">akim.juillerat&#64;camptocamp.com</a>&gt;</li>
 <li>Thomas Nowicki &lt;<a class="reference external" href="mailto:thomas.nowicki&#64;camptocamp.com">thomas.nowicki&#64;camptocamp.com</a>&gt;</li>
+<li>François Honoré &lt;<a class="reference external" href="mailto:francois.honore&#64;acsone.eu">francois.honore&#64;acsone.eu</a>&gt;</li>
 </ul>
 </div>
 <div class="section" id="maintainers">
