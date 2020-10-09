@@ -19,13 +19,13 @@ The licence is in the file __openerp__.py -->
                     <field name="payment_filter_domain"
                            widget="domain"
                            attrs="{'invisible': [('payment_filter_id', '=', False)]}"
-                           options="{'model': 'account.invoice'}" />
+                           options="{'model': 'account.move'}" />
                     <div class="oe_edit_only oe_inline">
                         Set selection based on a search filter:
                         <field name="payment_filter_id"
-                            domain="[('model_id', '=', 'account.invoice')]"
+                            domain="[('model_id', '=', 'account.move')]"
                             class="oe_inline"
-                            context="{'default_model_id': 'account.invoice', 'default_active': False, 'active_test': False}"
+                            context="{'default_model_id': 'account.move', 'default_active': False, 'active_test': False}"
                             can_create="true" can_write="true" />
                     </div>
                 </div>
