@@ -24,7 +24,7 @@
         <field name="inherit_id" ref="sale.view_order_tree"/>
         <field name="model">sale.order</field>
         <field name="arch" type="xml">
-            <field name="date_order" position="after">
+            <field name="invoice_status" position="after">
                 <field name="delivery_state"/>
             </field>
         </field>
