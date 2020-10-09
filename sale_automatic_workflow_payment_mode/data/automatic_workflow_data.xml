@@ -8,8 +8,8 @@
 
         <record id="automatic_workflow_payment_filter" model="ir.filters">
             <field name="name">Automatic Workflow Payment Filter</field>
-            <field name="model_id">account.invoice</field>
-            <field name="domain">[('state', '=', 'open')]</field>
+            <field name="model_id">account.move</field>
+            <field name="domain">[('state', '=', 'posted'), ('type', 'in', ['out_invoice', 'out_refund', 'in_refund', 'in_invoice'])]</field>
             <field name="user_id" ref="base.user_root"/>
         </record>
         <record id="sale_automatic_workflow.automatic_validation" model="sale.workflow.process">
