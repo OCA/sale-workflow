@@ -13,4 +13,38 @@
           </xpath>
       </field>
     </record>
+
+    <record id="view_order_tree" model="ir.ui.view">
+        <field name="model">sale.order</field>
+        <field name="inherit_id" ref="sale.view_order_tree"/>
+        <field name="arch" type="xml">
+            <field name="state" position="after">
+                <field name="substate_id"/>
+            </field>
+        </field>
+    </record>
+
+    <record id="view_quotation_tree" model="ir.ui.view">
+        <field name="model">sale.order</field>
+        <field name="inherit_id" ref="sale.view_quotation_tree"/>
+        <field name="arch" type="xml">
+            <field name="state" position="after">
+                <field name="substate_id"/>
+            </field>
+        </field>
+    </record>
+
+    <record id="view_sales_order_filter" model="ir.ui.view">
+        <field name="model">sale.order</field>
+        <field name="inherit_id" ref="sale.view_sales_order_filter"/>
+        <field name="arch" type="xml">
+            <field name="user_id" position="after">
+                <field name="substate_id"/>
+            </field>
+            <filter name="order_month" position="after">
+                <filter name="substate_id" string="Substate" domain="[]" context="{'group_by':'substate_id'}"/>
+            </filter>
+        </field>
+    </record>
+
 </odoo>
