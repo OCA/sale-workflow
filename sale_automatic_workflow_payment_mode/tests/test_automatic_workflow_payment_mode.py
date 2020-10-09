@@ -24,15 +24,11 @@ class TestAutomaticWorkflowPaymentMode(TestCommon, TestAutomaticWorkflowMixin):
         )
 
     def create_sale_order(self, workflow, override=None):
-        new_order = super(
-            TestAutomaticWorkflowPaymentMode, self
-        ).create_sale_order(workflow, override)
+        new_order = super(TestAutomaticWorkflowPaymentMode, self).create_sale_order(
+            workflow, override
+        )
         self.pay_method = self.env["account.payment.method"].create(
-            {
-                "name": "default inbound",
-                "code": "definb",
-                "payment_type": "inbound",
-            }
+            {"name": "default inbound", "code": "definb", "payment_type": "inbound"}
         )
         self.acc_journ = self.env["account.journal"].create(
             {"name": "Bank US", "type": "bank", "code": "BNK68"}
@@ -47,15 +43,13 @@ class TestAutomaticWorkflowPaymentMode(TestCommon, TestAutomaticWorkflowMixin):
             }
         )
         new_order.payment_mode_id = self.pay_mode
-        new_order.payment_mode_id.workflow_process_id = (
-            new_order.workflow_process_id.id
-        )
+        new_order.payment_mode_id.workflow_process_id = new_order.workflow_process_id.id
         return new_order
 
     def create_full_automatic(self, override=None):
-        values = super(
-            TestAutomaticWorkflowPaymentMode, self
-        ).create_full_automatic(override)
+        values = super(TestAutomaticWorkflowPaymentMode, self).create_full_automatic(
+            override
+        )
         reg_pay_dict = {"register_payment": True}
         values.update(reg_pay_dict)
         return values
