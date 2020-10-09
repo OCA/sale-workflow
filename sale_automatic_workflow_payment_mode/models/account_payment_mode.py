@@ -5,9 +5,8 @@ from odoo import fields, models
 
 
 class AccountPaymentMode(models.Model):
-    _inherit = 'account.payment.mode'
+    _inherit = "account.payment.mode"
 
     workflow_process_id = fields.Many2one(
-        comodel_name='sale.workflow.process',
-        string='Automatic Workflow'
+        comodel_name="sale.workflow.process", string="Automatic Workflow"
     )
