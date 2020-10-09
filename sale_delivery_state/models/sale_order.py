@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 # Copyright 2018 Akretion (http://www.akretion.com).
 # @author Pierrick BRUN <pierrick.brun@akretion.com>
 # Copyright 2018 Camptocamp
@@ -37,11 +36,7 @@ class SaleOrder(models.Model):
         """
         self.ensure_one()
         # Skip delivery costs lines
-        sale_lines = self.order_line
-        Carrier = self.env.get('delivery.carrier')
-        if Carrier:
-            sale_lines = sale_lines.filtered(
-                lambda rec: not rec.is_delivery_cost())
+        sale_lines = self.order_line.filtered(lambda rec: not rec._is_delivery())
         precision = self.env['decimal.precision'].precision_get(
             'Product Unit of Measure'
         )
@@ -59,17 +54,13 @@ class SaleOrder(models.Model):
         """
         self.ensure_one()
         # Skip delivery costs lines
-        sale_lines = self.order_line
-        Carrier = self.env.get('delivery.carrier')
-        if Carrier:
-            sale_lines = sale_lines.filtered(
-                lambda rec: not rec.is_delivery_cost())
+        sale_lines = self.order_line.filtered(lambda rec: not rec._is_delivery())
         precision = self.env['decimal.precision'].precision_get(
             'Product Unit of Measure'
         )
         return any(
             not float_is_zero(line.qty_delivered, precision_digits=precision)
-            for line in self.order_line
+            for line in sale_lines
         )
 
     @api.depends('order_line', 'order_line.qty_delivered',
@@ -91,24 +82,3 @@ class SaleOrder(models.Model):
 
     def action_unforce_delivery_state(self):
         self.write({'force_delivery_state': False})
-
-
-class SaleOrderLine(models.Model):
-    _inherit = 'sale.order.line'
-
-    def is_delivery_cost(self):
-        """
-        Returns if a sale line has a delivery products
-        check that a line is a delivery costs
-
-        :returns boolean:
-        """
-        self.ensure_one()
-        Carrier = self.env.get('delivery.carrier')
-        # If you call this without `delivery` module installed
-        # you are probably doing it wrong because it will always
-        # returns False
-        if not Carrier or not self.product_id:
-            return False
-        search_domain = [('product_id', '=', self.product_id.id)]
-        return bool(Carrier.search_count(search_domain))
