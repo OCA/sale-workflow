@@ -9,20 +9,21 @@ class SaleWorkflowProcess(models.Model):
 
     @api.model
     def _default_payment_filter_id(self):
-        xmlid = ('sale_automatic_workflow_payment_mode.'
-                 'automatic_workflow_payment_filter')
+        xmlid = (
+            "sale_automatic_workflow_payment_mode."
+            "automatic_workflow_payment_filter"
+        )
         try:
             return self.env.ref(xmlid)
         except ValueError:
-            return self.env['ir.filters'].browse()
+            return self.env["ir.filters"].browse()
 
     payment_filter_id = fields.Many2one(
-        'ir.filters',
-        string='Register Payment Invoice Filter',
+        comodel_name="ir.filters",
+        string="Register Payment Invoice Filter",
         default=_default_payment_filter_id,
     )
-    register_payment = fields.Boolean(string='Register Payment')
+    register_payment = fields.Boolean(string="Register Payment")
     payment_filter_domain = fields.Text(
-        string='Payment Filter Domain',
-        related='payment_filter_id.domain',
+        string="Payment Filter Domain", related="payment_filter_id.domain",
     )
