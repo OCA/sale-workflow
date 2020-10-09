@@ -1,19 +1,20 @@
-# -*- coding: utf-8 -*-
 # Copyright 2018 Akretion (http://www.akretion.com).
 # @author Benoît GUILLOT <benoit.guillot@akretion.com>
 # Copyright 2018 Camptocamp
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
-from mock import Mock
-from functools import partial
-from odoo.tests.common import TransactionCase
+from odoo.tests import SavepointCase
 
 
-class TestDeliveryState(TransactionCase):
+class TestDeliveryState(SavepointCase):
 
-    def setUp(self):
-        super(TestDeliveryState, self).setUp()
-        self.order = self.env.ref('sale_delivery_state.sale_order_1')
+    @classmethod
+    def setUpClass(cls):
+        super().setUpClass()
+        cls.order = cls.env.ref('sale_delivery_state.sale_order_1')
+        cls.delivery_cost = cls.env["product.product"].create({
+            "name": "delivery",
+            "type": "service"})
 
     def test_no_delivery(self):
         self.assertEqual(self.order.delivery_state, 'no')
@@ -40,40 +41,17 @@ class TestDeliveryState(TransactionCase):
         self.assertEqual(self.order.delivery_state, 'done')
 
     def mock_delivery(self):
-        """
-        Mock `delivery.carrier` model to make tests even if
-        `delivery` module is not installed
-
-        Warning this messes with create, makes sure you
-        don't use create afterwards.
-        """
-        carrier_mock = Mock()
-
-        def search_count(cost_id, domain, *args, **kwargs):
-            """
-            Mock search count for delivery.carrier
-            as we want to make the tests even if `delivery`
-            module is not installed
-            """
-            if domain[0][2] == cost_id:
-                return 1
-            return 0
-
-        cost_id = self.env.ref('product.service_delivery').id
-        carrier_mock._browse.return_value.search_count = partial(
-            search_count, cost_id)
-        self.env.registry['delivery.carrier'] = carrier_mock
+        for line in self.order.order_line:
+            if line.product_id == self.delivery_cost:
+                line._is_delivery = lambda s: True
 
     def add_delivery_cost_line(self):
-        # let's assume for this test that service_delivery is assigned
-        # to a carrier
-        delivery_cost = self.env.ref('product.service_delivery')
         self.env['sale.order.line'].create({
             'order_id': self.order.id,
             'name': 'Delivery cost',
-            'product_id': delivery_cost.id,
+            'product_id': self.delivery_cost.id,
             'product_uom_qty': 1,
-            'product_uom': self.env.ref('product.product_uom_unit').id,
+            'product_uom': self.env.ref('uom.product_uom_unit').id,
             'price_unit': 10.0,
         })
 
@@ -107,9 +85,8 @@ class TestDeliveryState(TransactionCase):
         self.add_delivery_cost_line()
         self.mock_delivery()
         self.order.action_confirm()
-        delivery_cost = self.env.ref('product.service_delivery')
         for line in self.order.order_line:
-            if line.product_id == delivery_cost:
+            if line._is_delivery():
                 continue
             line.qty_delivered = line.product_uom_qty
         self.assertEqual(self.order.delivery_state, 'done')
