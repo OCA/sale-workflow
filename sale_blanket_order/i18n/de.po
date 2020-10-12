@@ -1,6 +1,6 @@
 # Translation of Odoo Server.
 # This file contains the translation of the following modules:
-#	* sale_blanket_order
+# 	* sale_blanket_order
 #
 msgid ""
 msgstr ""
@@ -57,7 +57,7 @@ msgid "Amount"
 msgstr ""
 
 #. module: sale_blanket_order
-#: code:addons/sale_blanket_order/wizard/create_sale_orders.py:135
+#: code:addons/sale_blanket_order/wizard/create_sale_orders.py:134
 #, python-format
 msgid "An order can't be empty"
 msgstr ""
@@ -104,9 +104,10 @@ msgid "Blanket Orders"
 msgstr ""
 
 #. module: sale_blanket_order
-#: code:addons/sale_blanket_order/wizard/create_sale_orders.py:138
+#: code:addons/sale_blanket_order/wizard/create_sale_orders.py:137
 #, python-format
-msgid "Can not create Sale Order from Blanket Order lines with different currencies"
+msgid ""
+"Can not create Sale Order from Blanket Order lines with different currencies"
 msgstr ""
 
 #. module: sale_blanket_order
@@ -118,12 +119,15 @@ msgstr ""
 #. module: sale_blanket_order
 #: code:addons/sale_blanket_order/models/sale_orders.py:28
 #, python-format
-msgid "Cannot confirm order %s as one of the lines refers to a blanket order that has no remaining quantity."
+msgid ""
+"Cannot confirm order %s as one of the lines refers to a blanket order that "
+"has no remaining quantity."
 msgstr ""
 
 #. module: sale_blanket_order
 #: model:ir.actions.act_window,help:sale_blanket_order.act_open_blanket_order_view
-msgid "Click to create a blanket order that can be converted into a sale order."
+msgid ""
+"Click to create a blanket order that can be converted into a sale order."
 msgstr ""
 
 #. module: sale_blanket_order
@@ -463,7 +467,7 @@ msgid "Responsible"
 msgstr ""
 
 #. module: sale_blanket_order
-#: code:addons/sale_blanket_order/wizard/create_sale_orders.py:36
+#: code:addons/sale_blanket_order/wizard/create_sale_orders.py:41
 #, python-format
 msgid "Sale Blanket Order %s is not open"
 msgstr ""
@@ -514,7 +518,7 @@ msgid "Sales Order Line"
 msgstr ""
 
 #. module: sale_blanket_order
-#: code:addons/sale_blanket_order/wizard/create_sale_orders.py:163
+#: code:addons/sale_blanket_order/wizard/create_sale_orders.py:162
 #, python-format
 msgid "Sales Orders"
 msgstr ""
@@ -582,7 +586,8 @@ msgstr ""
 #. module: sale_blanket_order
 #: code:addons/sale_blanket_order/models/sale_orders.py:148
 #, python-format
-msgid "The currency of the blanket order must match with that of the sale order."
+msgid ""
+"The currency of the blanket order must match with that of the sale order."
 msgstr ""
 
 #. module: sale_blanket_order
@@ -598,7 +603,7 @@ msgid "The product in the blanket order and in the sales order must match"
 msgstr ""
 
 #. module: sale_blanket_order
-#: code:addons/sale_blanket_order/wizard/create_sale_orders.py:42
+#: code:addons/sale_blanket_order/wizard/create_sale_orders.py:36
 #, python-format
 msgid "The sale has already been completed."
 msgstr ""
@@ -632,8 +637,10 @@ msgstr ""
 
 #. module: sale_blanket_order
 #: model:ir.actions.act_window,help:sale_blanket_order.act_open_blanket_order_view
-msgid "Use this menu to search within your blanket orders. For each blanket order,\n"
-"                you can track the related discussion with the customer, control\n"
+msgid ""
+"Use this menu to search within your blanket orders. For each blanket order,\n"
+"                you can track the related discussion with the customer, "
+"control\n"
 "                the products delivered and control the vendor bills."
 msgstr ""
 
@@ -672,7 +679,9 @@ msgstr ""
 #. module: sale_blanket_order
 #: code:addons/sale_blanket_order/models/blanket_orders.py:256
 #, python-format
-msgid "You can not delete a blanket order with opened purchase orders! Try to cancel them before."
+msgid ""
+"You can not delete a blanket order with opened purchase orders! Try to "
+"cancel them before."
 msgstr ""
 
 #. module: sale_blanket_order
@@ -688,13 +697,13 @@ msgid "You can't create a sale order from an expired blanket order!"
 msgstr ""
 
 #. module: sale_blanket_order
-#: code:addons/sale_blanket_order/wizard/create_sale_orders.py:102
+#: code:addons/sale_blanket_order/wizard/create_sale_orders.py:101
 #, python-format
 msgid "You can't order more than the remaining quantities"
 msgstr ""
 
 #. module: sale_blanket_order
-#: code:addons/sale_blanket_order/wizard/create_sale_orders.py:48
+#: code:addons/sale_blanket_order/wizard/create_sale_orders.py:47
 #, python-format
 msgid "You have to select lines from the same company."
 msgstr ""
