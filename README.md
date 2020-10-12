@@ -55,6 +55,7 @@ addon | version | summary
 [sale_order_margin_percent](sale_order_margin_percent/) | 10.0.1.0.0 | Show Percent in sale order
 [sale_order_price_recalculation](sale_order_price_recalculation/) | 10.0.1.0.1 | Price recalculation in sales orders
 [sale_order_priority](sale_order_priority/) | 10.0.1.0.0 | Define priority on sale orders
+[sale_order_restrict_cancel_existing_invoice](sale_order_restrict_cancel_existing_invoice/) | 10.0.1.0.0 | Allows to restrict sale order cancelling if an invoice exists
 [sale_order_revision](sale_order_revision/) | 10.0.1.0.1 | Sale order revisions
 [sale_order_type](sale_order_type/) | 10.0.1.1.0 | Sale Order Type
 [sale_owner_stock_sourcing](sale_owner_stock_sourcing/) | 10.0.1.0.0 | Manage stock ownership on sale order lines
