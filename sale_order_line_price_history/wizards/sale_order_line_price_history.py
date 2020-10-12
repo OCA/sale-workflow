@@ -69,7 +69,7 @@ class SaleOrderLinePriceHistory(models.TransientModel):
                     False,
                     {
                         "sale_order_line_id": order_line.id,
-                        "history_sale_order_line_id": self.sale_order_line_id,
+                        "history_sale_order_line_id": self.sale_order_line_id.id,
                     },
                 )
             )
@@ -107,7 +107,6 @@ class SaleOrderLinePriceHistoryline(models.TransientModel):
         self.ensure_one()
         return {"price_unit": self.price_unit, "discount": self.discount}
 
-    @api.multi
     def action_set_price(self):
         self.ensure_one()
         self.history_sale_order_line_id.write(self._prepare_set_price_history_vals())
