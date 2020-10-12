@@ -20,7 +20,7 @@
                 expr="//field[@name='order_line']/tree/field[@name='price_unit']"
                 position="after"
             >
-                <field name="commitment_date" />
+                <field name="commitment_date" optional="show" />
             </xpath>
         </field>
     </record>
@@ -30,7 +30,7 @@
         <field name="inherit_id" ref="sale.view_order_line_tree" />
         <field name="arch" type="xml">
             <field name="name" position="after">
-                <field name="commitment_date" />
+                <field name="commitment_date" optional="show" />
             </field>
         </field>
     </record>
