@@ -29,18 +29,13 @@ msgid "Confirm sale orders in one step"
 msgstr ""
 
 #. module: sale_double_validation
-#: model:ir.model.fields,field_description:sale_double_validation.field_res_company__so_double_validation_amount
-msgid "Double validation amount"
-msgstr ""
-
-#. module: sale_double_validation
 #: selection:res.company,so_double_validation:0
 msgid "Get 2 levels of approvals to confirm a sale order"
 msgstr ""
 
 #. module: sale_double_validation
 #: model:ir.model.fields,field_description:sale_double_validation.field_res_company__so_double_validation
-msgid "Levels of Approvals"
+msgid "Levels of Sale Order Approvals"
 msgstr ""
 
 #. module: sale_double_validation
@@ -56,6 +51,11 @@ msgstr ""
 #. module: sale_double_validation
 #: model:ir.model,name:sale_double_validation.model_sale_order
 msgid "Sale Order"
+msgstr ""
+
+#. module: sale_double_validation
+#: model:ir.model.fields,field_description:sale_double_validation.field_res_company__so_double_validation_amount
+msgid "Sale Order double validation amount"
 msgstr ""
 
 #. module: sale_double_validation
