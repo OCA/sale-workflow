@@ -1,6 +1,6 @@
 # Translation of Odoo Server.
 # This file contains the translation of the following modules:
-#	* sale_double_validation
+# 	* sale_double_validation
 #
 msgid ""
 msgstr ""
@@ -32,19 +32,14 @@ msgid "Confirm sale orders in one step"
 msgstr "Aufträge in 1 Schritt genehmigen"
 
 #. module: sale_double_validation
-#: model:ir.model.fields,field_description:sale_double_validation.field_res_company__so_double_validation_amount
-msgid "Double validation amount"
-msgstr "Genehmigung erforderlich ab"
-
-#. module: sale_double_validation
 #: selection:res.company,so_double_validation:0
 msgid "Get 2 levels of approvals to confirm a sale order"
 msgstr "Aufträge in 2 Schritten genehmigen"
 
 #. module: sale_double_validation
 #: model:ir.model.fields,field_description:sale_double_validation.field_res_company__so_double_validation
-msgid "Levels of Approvals"
-msgstr "Genehmigungsstufen"
+msgid "Levels of Sale Order Approvals"
+msgstr ""
 
 #. module: sale_double_validation
 #: model:ir.model.fields,help:sale_double_validation.field_res_company__so_double_validation_amount
@@ -64,7 +59,18 @@ msgid "Sale Order"
 msgstr "Verkaufsauftrag"
 
 #. module: sale_double_validation
+#: model:ir.model.fields,field_description:sale_double_validation.field_res_company__so_double_validation_amount
+msgid "Sale Order double validation amount"
+msgstr ""
+
+#. module: sale_double_validation
 #: code:addons/sale_double_validation/models/sale.py:19
 #, python-format
 msgid "To Approve"
 msgstr "Genehmigung erforderlich"
+
+#~ msgid "Double validation amount"
+#~ msgstr "Genehmigung erforderlich ab"
+
+#~ msgid "Levels of Approvals"
+#~ msgstr "Genehmigungsstufen"
