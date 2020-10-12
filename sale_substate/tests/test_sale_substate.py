@@ -37,7 +37,6 @@ class TestBaseSubstate(TransactionCase):
                 'product_uom': self.product_1.uom_id.id,
                 'name': "line test",
                 'price_unit': 120.0,
-                'product_uom_qty': 2,
             })],
         })
         self.assertTrue(so_test1.state == 'draft')
