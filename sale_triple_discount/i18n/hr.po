@@ -20,6 +20,16 @@ msgstr ""
 "%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2;\n"
 
 #. module: sale_triple_discount
+#: model_terms:ir.ui.view,arch_db:sale_triple_discount.report_saleorder_document_triple_discount
+msgid "<span>Disc. 2 (%)</span>"
+msgstr ""
+
+#. module: sale_triple_discount
+#: model_terms:ir.ui.view,arch_db:sale_triple_discount.report_saleorder_document_triple_discount
+msgid "<span>Disc. 3 (%)</span>"
+msgstr ""
+
+#. module: sale_triple_discount
 #: selection:sale.order.line,discounting_type:0
 msgid "Additive"
 msgstr ""

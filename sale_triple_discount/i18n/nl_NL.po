@@ -21,6 +21,20 @@ msgstr ""
 "X-Generator: Weblate 3.0.1\n"
 
 #. module: sale_triple_discount
+#: model_terms:ir.ui.view,arch_db:sale_triple_discount.report_saleorder_document_triple_discount
+#, fuzzy
+#| msgid "Disc. 2 (%)"
+msgid "<span>Disc. 2 (%)</span>"
+msgstr "Korting 2 (%)"
+
+#. module: sale_triple_discount
+#: model_terms:ir.ui.view,arch_db:sale_triple_discount.report_saleorder_document_triple_discount
+#, fuzzy
+#| msgid "Disc. 3 (%)"
+msgid "<span>Disc. 3 (%)</span>"
+msgstr "Korting 3 (%)"
+
+#. module: sale_triple_discount
 #: selection:sale.order.line,discounting_type:0
 msgid "Additive"
 msgstr ""
