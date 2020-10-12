@@ -6,7 +6,7 @@
 
 {
     'name': 'Sale Triple Discount',
-    'version': '12.0.1.0.0',
+    'version': '12.0.1.1.0',
     'category': 'Sales',
     'author': 'ADHOC SA, '
               'Agile Business Group, '
