@@ -1,0 +1,36 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+#	* sale_order_restrict_cancel_existing_invoice
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 10.0\n"
+"Report-Msgid-Bugs-To: \n"
+"Last-Translator: <>\n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: sale_order_restrict_cancel_existing_invoice
+#: model:ir.model.fields,field_description:sale_order_restrict_cancel_existing_invoice.field_sale_order_confirmed_invoice_ids
+msgid "Confirmed invoice ids"
+msgstr ""
+
+#. module: sale_order_restrict_cancel_existing_invoice
+#: model:ir.model,name:sale_order_restrict_cancel_existing_invoice.model_sale_order
+msgid "Sales Order"
+msgstr ""
+
+#. module: sale_order_restrict_cancel_existing_invoice
+#: model:ir.model.fields,help:sale_order_restrict_cancel_existing_invoice.field_sale_order_confirmed_invoice_ids
+msgid "Technical field in order to retrieve confirmed invoices"
+msgstr ""
+
+#. module: sale_order_restrict_cancel_existing_invoice
+#: code:addons/sale_order_restrict_cancel_existing_invoice/models/sale_order.py:37
+#, python-format
+msgid "You cannot cancel a Sale Order for which a confirmed invoice exists!"
+msgstr ""
+
