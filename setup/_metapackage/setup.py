@@ -44,6 +44,7 @@ setuptools.setup(
         'odoo10-addon-sale_order_margin_percent',
         'odoo10-addon-sale_order_price_recalculation',
         'odoo10-addon-sale_order_priority',
+        'odoo10-addon-sale_order_restrict_cancel_existing_invoice',
         'odoo10-addon-sale_order_revision',
         'odoo10-addon-sale_order_type',
         'odoo10-addon-sale_owner_stock_sourcing',
