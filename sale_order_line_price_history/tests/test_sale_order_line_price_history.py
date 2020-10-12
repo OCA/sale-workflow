@@ -12,7 +12,7 @@ class TestSaleOrderLinePriceHistory(SavepointCase):
         cls.partner_2 = cls.env.ref("base.res_partner_2")
         cls.product = cls.env.ref("product.product_order_01")
         cls.sale_order_1 = cls.env["sale.order"].create(
-            {"partner_id": cls.partner_1.id,}
+            {"partner_id": cls.partner_1.id}
         )
         # Two sale orders confirmed and with different partners
         cls.sale_order_line_1 = cls.env["sale.order.line"].create(
@@ -28,7 +28,7 @@ class TestSaleOrderLinePriceHistory(SavepointCase):
         )
         cls.sale_order_1.action_confirm()
         cls.sale_order_2 = cls.env["sale.order"].create(
-            {"partner_id": cls.partner_2.id,}
+            {"partner_id": cls.partner_2.id}
         )
         cls.sale_order_line_2 = cls.env["sale.order.line"].create(
             {
@@ -43,7 +43,7 @@ class TestSaleOrderLinePriceHistory(SavepointCase):
         cls.sale_order_2.action_confirm()
         # Another sale orders with the same partner of cls.sale_order_2
         cls.sale_order_3 = cls.env["sale.order"].create(
-            {"partner_id": cls.partner_2.id,}
+            {"partner_id": cls.partner_2.id}
         )
         cls.sale_order_line_3 = cls.env["sale.order.line"].create(
             {
@@ -84,7 +84,7 @@ class TestSaleOrderLinePriceHistory(SavepointCase):
         # Another sale orders with the same partner of cls.sale_order_2
         # and cls.sale_order_3
         self.sale_order_4 = self.env["sale.order"].create(
-            {"partner_id": self.partner_2.id,}
+            {"partner_id": self.partner_2.id}
         )
         self.sale_order_line_4 = self.env["sale.order.line"].create(
             {
@@ -115,7 +115,7 @@ class TestSaleOrderLinePriceHistory(SavepointCase):
     def test_onchange_partner_id_include_commercial_partner(self):
         # Another sale orders with a partner child of cls.sale_order_2
         self.sale_order_4 = self.env["sale.order"].create(
-            {"partner_id": self.ref("base.res_partner_address_31"),}
+            {"partner_id": self.ref("base.res_partner_address_31")}
         )
         self.sale_order_line_4 = self.env["sale.order.line"].create(
             {
