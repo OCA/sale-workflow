@@ -9,6 +9,9 @@
     "author": "Camptocamp, Odoo Community Association (OCA)",
     "license": "AGPL-3",
     "depends": ["sale_coupon"],
-    "data": ["views/sale_coupon.program.xml"],
+    "data": [
+        "views/sale_coupon_program_views.xml",
+        "wizard/sale_coupon_generate_views.xml",
+    ],
     "installable": True,
 }

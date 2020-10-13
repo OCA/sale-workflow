@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 13.0+e\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-09-10 09:34+0000\n"
-"PO-Revision-Date: 2020-09-10 09:34+0000\n"
+"POT-Creation-Date: 2020-10-13 08:16+0000\n"
+"PO-Revision-Date: 2020-10-13 08:16+0000\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -17,7 +17,9 @@ msgstr ""
 
 #. module: sale_coupon_advanced
 #: model_terms:ir.ui.view,arch_db:sale_coupon_advanced.sale_coupon_program_view_promo_program_form
-msgid "<span>orders of each client matching the conditions</span>"
+msgid ""
+"<span attrs=\"{'invisible': [('first_order_only', '=', True)]}\">orders of "
+"each client matching the conditions</span>"
 msgstr ""
 
 #. module: sale_coupon_advanced
@@ -28,11 +30,18 @@ msgstr "Appliquer seulement en premier"
 #. module: sale_coupon_advanced
 #: model:ir.model.fields,help:sale_coupon_advanced.field_sale_coupon_program__first_order_only
 msgid "Apply only on the first order of each client matching the conditions"
-msgstr "Appliquer uniquement sur la première commande de chaque client correspondant aux conditions"
+msgstr ""
+"Appliquer uniquement sur la première commande de chaque client correspondant"
+" aux conditions"
 
 #. module: sale_coupon_advanced
 #: model:ir.model.fields,field_description:sale_coupon_advanced.field_sale_coupon_program__next_n_customer_orders
 msgid "Apply only on the next "
+msgstr ""
+
+#. module: sale_coupon_advanced
+#: model:ir.model.fields,field_description:sale_coupon_advanced.field_sale_coupon__code
+msgid "Code"
 msgstr ""
 
 #. module: sale_coupon_advanced
@@ -46,6 +55,22 @@ msgstr "Le coupon ne peut être utilisé que pour la première commande!"
 #, python-format
 msgid "Coupon can be used only for the first {} times!"
 msgstr ""
+
+#. module: sale_coupon_advanced
+#: model:ir.model.fields,field_description:sale_coupon_advanced.field_sale_coupon_generate__custom_code_generation
+msgid "Custom Code Generation"
+msgstr "Génération d'un code personnalisé"
+
+#. module: sale_coupon_advanced
+#: model:ir.model.fields,field_description:sale_coupon_advanced.field_sale_coupon_generate__custom_code_prefix
+msgid "Custom Code Prefix"
+msgstr "Préfixe du code personnalisé"
+
+#. module: sale_coupon_advanced
+#: code:addons/sale_coupon_advanced/models/sale_coupon.py:0
+#, python-format
+msgid "Custom Code Rule Must have at least one random alphanumeric symbol"
+msgstr "Un code personnalisé doit posséder au moins un symbole alphanumérique"
 
 #. module: sale_coupon_advanced
 #: model:ir.model.fields,help:sale_coupon_advanced.field_sale_coupon_program__reward_type
@@ -65,6 +90,11 @@ msgid "Forced Reward Line"
 msgstr ""
 
 #. module: sale_coupon_advanced
+#: model:ir.model,name:sale_coupon_advanced.model_sale_coupon_generate
+msgid "Generate Sales Coupon"
+msgstr "Générer un coupon de vente"
+
+#. module: sale_coupon_advanced
 #: model:ir.model.fields,help:sale_coupon_advanced.field_sale_coupon_program__is_reward_product_forced
 msgid "If checked, the reward product will be added if not ordered."
 msgstr "Si sélectionné, le produit sera ajouté s'il n'a pas été commandé"
@@ -80,6 +110,11 @@ msgstr ""
 #: model:ir.model.fields,field_description:sale_coupon_advanced.field_sale_coupon_program__is_cumulative
 msgid "None-cumulative Promotion"
 msgstr "Promotion non cumulative"
+
+#. module: sale_coupon_advanced
+#: model:ir.model.fields,field_description:sale_coupon_advanced.field_sale_coupon_generate__custom_code_nbr
+msgid "Number of Alphanumeric symbols"
+msgstr "Nombre de symboles alphanumériques"
 
 #. module: sale_coupon_advanced
 #: model:ir.model.fields,field_description:sale_coupon_advanced.field_sale_coupon__reward_pricelist_id

@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <record id="sale_coupon_generate_view_form" model="ir.ui.view">
+        <field name="name">sale.coupon.generate.form.custom.rule</field>
+        <field name="model">sale.coupon.generate</field>
+        <field name="inherit_id" ref="sale_coupon.sale_coupon_generate_view_form" />
+        <field name="arch" type="xml">
+            <field name="nbr_coupons" position="after">
+                <field name="custom_code_generation" />
+                <field
+                    name="custom_code_prefix"
+                    attrs="{'invisible': [('custom_code_generation', '=', False)]}"
+                />
+                <field
+                    name="custom_code_nbr"
+                    attrs="{'invisible': [('custom_code_generation', '=', False)], 'required': [('custom_code_generation', '=', True)]}"
+                />
+            </field>
+        </field>
+    </record>
+</odoo>
