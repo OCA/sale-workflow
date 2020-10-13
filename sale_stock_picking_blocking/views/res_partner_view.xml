@@ -9,8 +9,9 @@
         <field name="inherit_id" ref="base.view_partner_form"/>
         <field name="arch" type="xml">
             <group name="sale" position="inside">
-                    <field name="default_delivery_block"
-                        attrs="{'invisible': ['|', ('is_company', '=', False), ('parent_id', '!=', False)]}"/>
+                <field name="customer_rank" invisible="1" />
+                <field name="default_delivery_block"
+                    attrs="{'invisible': ['|', ('customer_rank', '&lt;=', 0), ('is_company', '=', False), ('parent_id', '!=', False)]}"/>
             </group>
         </field>
     </record>
