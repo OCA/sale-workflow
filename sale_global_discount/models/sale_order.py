@@ -53,7 +53,7 @@ class SaleOrder(models.Model):
         if not self.global_discount_ids:
             return True
         taxes_keys = {}
-        for line in self.order_line:
+        for line in self.order_line.filtered(lambda l: not l.display_type):
             if not line.tax_id:
                 raise exceptions.UserError(_(
                     "With global discounts, taxes in lines are required."
