@@ -4,16 +4,10 @@
     "name": "Sale order line price history",
     "version": "12.0.1.1.1",
     "category": "Sales Management",
-    "author": "Tecnativa,"
-              "Odoo Community Association (OCA)",
+    "author": "Tecnativa," "Odoo Community Association (OCA)",
     "website": "https://github.com/OCA/sale-workflow/",
     "license": "AGPL-3",
-    "depends": [
-        "sale",
-    ],
-    "data": [
-        "wizards/sale_order_line_price_history.xml",
-        "views/sale_views.xml",
-    ],
+    "depends": ["sale",],
+    "data": ["wizards/sale_order_line_price_history.xml", "views/sale_views.xml",],
     "installable": True,
 }
