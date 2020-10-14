@@ -1,8 +1,7 @@
 # Copyright 2020 Camptocamp SA
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl)
-from odoo import _, api, fields, models
+from odoo import _, api, models
 from odoo.exceptions import ValidationError
-from odoo.tools import float_is_zero
 
 
 class SaleOrderLine(models.Model):
@@ -52,18 +51,7 @@ class SaleOrderLine(models.Model):
 
     @api.onchange("product_id")
     def product_id_change(self):
-        res = super().product_id_change()
-        if self.product_id.sell_only_by_packaging:
-            first_packaging = fields.first(
-                self.product_id.packaging_ids.filtered(
-                    lambda p: not float_is_zero(
-                        p.qty, precision_rounding=p.product_uom_id.rounding
-                    )
-                )
-            )
-            if first_packaging:
-                self.update({"product_packaging": first_packaging.id})
-        return res
+        return super().product_id_change()
 
     @api.onchange("product_uom_qty")
     def _onchange_product_uom_qty(self):
