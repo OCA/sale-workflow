@@ -112,3 +112,49 @@ class SaleOrder(models.Model):
         self.pricelist_id = pricelist
         for line in self.order_line:
             line.product_id_change()
+
+    # FIXME: find simpler solution, so write/unlink would not
+    # be so complicating when handling related discount line removal.
+    def write(self, vals):
+        """Override to clean up order lines.
+
+        If line unlink is triggered via write, same functionality is
+        triggered as via unlink, to mark related discount line for
+        removal. Context `discount_data_removed` is passed to not try
+        removing same lines via sale.order.line unlink.
+        """
+
+        def get_unlink_order_lines(order_lines_data):
+            line_ids = [i[1] for i in order_lines_data if i[0] == 2]
+            return SaleOrderLine.browse(line_ids)
+
+        def clean_lines(lines, order_line_ids):
+            new_lines = []
+            for line_data in lines:
+                new_line_data = line_data
+                code = line_data[0]
+                if code in (1, 3, 4) and line_data[1] in order_line_ids:
+                    new_line_data = (2, line_data[1], 0)
+                elif code == 6:
+                    # NOTE. No need to specify new_line_data here,
+                    # because code 6 will only keep specified IDs
+                    # anyway.
+                    line_ids = line_data[2]
+                    for line_id in order_line_ids:
+                        if line_id in line_ids:
+                            line_ids.remove(line_id)
+                new_lines.append(new_line_data)
+            return new_lines
+
+        if vals.get("order_line"):
+            SaleOrderLine = lines_to_remove = self.env["sale.order.line"]
+            unlink_order_lines = get_unlink_order_lines(vals["order_line"])
+            lines_to_remove = (
+                unlink_order_lines._collect_discount_lines_and_remove_programs()
+            )
+            if lines_to_remove:
+                vals["order_line"] = clean_lines(
+                    vals["order_line"], lines_to_remove.ids
+                )
+                self = self.with_context(discount_data_removed=True)
+        return super(SaleOrder, self).write(vals)
