@@ -50,6 +50,7 @@ setuptools.setup(
         'odoo10-addon-sale_owner_stock_sourcing',
         'odoo10-addon-sale_partner_incoterm',
         'odoo10-addon-sale_partner_version',
+        'odoo10-addon-sale_procurement_amendment',
         'odoo10-addon-sale_procurement_group_by_line',
         'odoo10-addon-sale_procurement_group_by_requested_date',
         'odoo10-addon-sale_procurement_group_by_requested_date_sale_sourced_by_line',
