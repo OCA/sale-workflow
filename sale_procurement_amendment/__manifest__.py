@@ -7,7 +7,7 @@
     'summary': """
         Allow to reflect confirmed sale lines quantity amendments
         to procurements""",
-    'version': '10.0.1.0.0',
+    'version': '10.0.1.0.1',
     'license': 'AGPL-3',
     'category': 'Sales',
     'development_status': 'Beta',
