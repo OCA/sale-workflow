@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  Copyright 2016-2019 Akretion France
+  @author: Alexis de Lattre <alexis.delattre@akretion.com>
+  Copyright 2016-2019 Sodexis
+  License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
+-->
+
+<odoo noupdate="1">
+
+<record id="sale_rental_multi_company_rule" model="ir.rule">
+    <field name="name">Sale rental multi-company</field>
+    <field name="model_id" ref="model_sale_rental"/>
+    <field name="domain_force">['|', ('company_id', '=', False), ('company_id', 'child_of', [user.company_id.id])]</field>
+</record>
+
+<record id="base.user_root" model="res.users">
+    <field name="groups_id" eval="[(4, ref('product.group_product_variant'))]"/>
+</record>
+
+</odoo>

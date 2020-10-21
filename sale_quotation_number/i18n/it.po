@@ -22,9 +22,15 @@ msgid "Companies"
 msgstr "Aziende"
 
 #. module: sale_quotation_number
-#: model:ir.model.fields,help:sale_quotation_number.field_res_company_keep_name_so
-#: model:ir.model.fields,help:sale_quotation_number.field_res_config_settings_keep_name_so
-#: model:ir.ui.view,arch_db:sale_quotation_number.res_config_settings_view_config_quotation_number
+#: model:ir.model,name:sale_quotation_number.model_res_config_settings
+#, fuzzy
+msgid "Config Settings"
+msgstr "sale.config.settings"
+
+#. module: sale_quotation_number
+#: model:ir.model.fields,help:sale_quotation_number.field_res_company__keep_name_so
+#: model:ir.model.fields,help:sale_quotation_number.field_res_config_settings__keep_name_so
+#: model_terms:ir.ui.view,arch_db:sale_quotation_number.res_config_settings_view_config_quotation_number
 msgid ""
 "If this is unchecked, quotations use a different sequence from sale orders"
 msgstr ""
@@ -33,21 +39,14 @@ msgstr ""
 
 #. module: sale_quotation_number
 #: model:ir.model,name:sale_quotation_number.model_sale_order
-msgid "Quotation"
-msgstr ""
+#, fuzzy
+#| msgid "Sales Order"
+msgid "Sale Order"
+msgstr "Ordine di vendita"
 
 #. module: sale_quotation_number
-#: model:ir.model.fields,field_description:sale_quotation_number.field_res_company_keep_name_so
-#: model:ir.model.fields,field_description:sale_quotation_number.field_res_config_settings_keep_name_so
+#: model:ir.model.fields,field_description:sale_quotation_number.field_res_company__keep_name_so
+#: model:ir.model.fields,field_description:sale_quotation_number.field_res_config_settings__keep_name_so
 #, fuzzy
 msgid "Use Same Enumeration"
 msgstr "Utilizza la stessa sequenza"
-
-#. module: sale_quotation_number
-#: model:ir.model,name:sale_quotation_number.model_res_config_settings
-#, fuzzy
-msgid "res.config.settings"
-msgstr "sale.config.settings"
-
-#~ msgid "Sales Order"
-#~ msgstr "Ordine di vendita"
