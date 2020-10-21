@@ -1,0 +1,14 @@
+<?xml version="1.0" ?>
+<odoo>
+    <template
+        id="report_saleorder_document_inherit_sale_stock"
+        inherit_id="sale_stock.report_saleorder_document_inherit_sale_stock"
+    >
+        <xpath expr="//p[@t-field='doc.incoterm.code']" position="replace">
+            <p>
+                <span t-field="doc.incoterm.code"/>
+                <span t-field="doc.incoterm_place"/>
+            </p>
+        </xpath>
+    </template>
+</odoo>
