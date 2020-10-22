@@ -8,7 +8,11 @@ class SaleCouponProgram(models.Model):
     _inherit = "sale.coupon.program"
 
     is_cumulative = fields.Boolean(string="None-cumulative Promotion")
-    reward_pricelist_id = fields.Many2one("product.pricelist", string="Pricelist")
+    reward_pricelist_id = fields.Many2one(
+        "product.pricelist",
+        string="Pricelist",
+        domain=[("is_promotion_pricelist", "=", True)],
+    )
     # Add possibility to use discount only on first order of a customer
     first_order_only = fields.Boolean(
         string="Apply only first",

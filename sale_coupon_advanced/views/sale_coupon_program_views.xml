@@ -39,6 +39,7 @@
                         name="reward_pricelist_id"
                         attrs="{'invisible': [('reward_type', 'in', ('discount', 'free_shipping', 'product'))], 'required': [('reward_type', '=', 'pricelist')]}"
                         placeholder="Select reward pricelist"
+                        context="{'default_is_promotion_pricelist': True}"
                     />
                 </group>
             </xpath>

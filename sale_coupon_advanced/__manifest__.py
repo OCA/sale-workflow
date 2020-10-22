@@ -10,6 +10,7 @@
     "license": "AGPL-3",
     "depends": ["sale_coupon"],
     "data": [
+        "views/product_pricelist_views.xml",
         "views/sale_coupon_program_views.xml",
         "wizard/sale_coupon_generate_views.xml",
     ],
