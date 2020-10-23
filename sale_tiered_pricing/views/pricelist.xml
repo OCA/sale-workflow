@@ -1,0 +1,128 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <record id="product_pricelist_item_form" model="ir.ui.view">
+        <field name="model">product.pricelist.item</field>
+        <field name="inherit_id" ref="product.product_pricelist_item_form_view" />
+        <field name="arch" type="xml">
+            <field name="min_quantity" position="attributes">
+                <attribute name="attrs">
+                    {'invisible': [('compute_price', 'in', ['tier', 'volume'])]}
+                </attribute>
+            </field>
+            <xpath expr="//field[@name='currency_id']" position="after">
+                <div
+                    attrs="{'invisible':[('compute_price', 'not in', ['tier', 'volume'])]}"
+                >
+                    <field name="tiered_pricelist_id" nolabel="1" class="oe_inline" />
+                </div>
+            </xpath>
+            <xpath expr="//field[@name='applied_on']" position="attributes">
+                <attribute name="invisible">
+                    context.get('is_tiered_pricing', False)
+                </attribute>
+            </xpath>
+            <xpath expr="//field[@name='date_start']" position="attributes">
+                <attribute name="invisible">
+                    context.get('is_tiered_pricing', False)
+                </attribute>
+            </xpath>
+            <xpath expr="//field[@name='date_end']" position="attributes">
+                <attribute name="invisible">
+                    context.get('is_tiered_pricing', False)
+                </attribute>
+            </xpath>
+            <xpath expr="//field[@name='base_pricelist_id']" position="attributes">
+                <attribute name="domain">
+                    [("is_tiered_pricing", '!=', True)]
+                </attribute>
+            </xpath>
+        </field>
+    </record>
+    <record id="product_pricelist_view_tree" model="ir.ui.view">
+        <field name="model">product.pricelist</field>
+        <field name="inherit_id" ref="product.product_pricelist_view_tree" />
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='name']" position="after">
+                <field name="display_name" />
+            </xpath>
+        </field>
+    </record>
+    <record id="product_pricelist_view" model="ir.ui.view">
+        <field name="model">product.pricelist</field>
+        <field name="inherit_id" ref="product.product_pricelist_view" />
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='country_group_ids']" position="before">
+                <!-- cannot be modified: depends on context to force subviews -->
+                <field name="is_tiered_pricing" readonly="1" />
+            </xpath>
+            <xpath expr="//field[@name='country_group_ids']" position="attributes">
+                <attribute name="attrs">
+                    {'invisible': [('is_tiered_pricing', '=', True)]}
+                </attribute>
+            </xpath>
+            <xpath expr="//field[@name='item_ids']" position="attributes">
+                <attribute name="context">
+                    {"is_tiered_pricing": context.get('is_tiered_pricing', False)}
+                </attribute>
+            </xpath>
+            <xpath
+                expr="//field[@name='item_ids']//field[@name='name']"
+                position="attributes"
+            >
+                <attribute name="invisible">
+                    context.get('is_tiered_pricing', False)
+                </attribute>
+            </xpath>
+            <xpath
+                expr="//field[@name='item_ids']//field[@name='date_start']"
+                position="attributes"
+            >
+                <attribute name="invisible">
+                    context.get('is_tiered_pricing', False)
+                </attribute>
+            </xpath>
+            <xpath
+                expr="//field[@name='item_ids']//field[@name='date_end']"
+                position="attributes"
+            >
+                <attribute name="invisible">
+                    context.get('is_tiered_pricing', False)
+                </attribute>
+            </xpath>
+        </field>
+    </record>
+    <record id="product.product_pricelist_action2" model="ir.actions.act_window">
+        <field name="domain">[("is_tiered_pricing", "=", False)]</field>
+    </record>
+    <record id="tiered_pricing_action" model="ir.actions.act_window">
+        <field name="name">Tiered Pricings</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">product.pricelist</field>
+        <field name="view_type">form</field>
+        <field name="view_mode">tree,kanban,form</field>
+        <field name="domain">[("is_tiered_pricing", "=", True)]</field>
+        <field name="context">
+                {
+                    "is_tiered_pricing":True,
+                    "default_is_tiered_pricing": True,
+                }
+            </field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">
+                Create a new tiered pricing
+              </p>
+            <p>
+                A tiered pricing is a set of tiers (sold quantities of a product) with a pricing rule for each category.
+                These tiered pricings can afterwards be used in pricelist items to apply to a category, a product, etc.
+            </p>
+        </field>
+    </record>
+    <menuitem
+        id="menu_tiered_pricings_main"
+        name="Tiered Pricings"
+        parent="sale.product_menu_catalog"
+        action="tiered_pricing_action"
+        groups="product.group_sale_pricelist"
+        sequence="12"
+    />
+</odoo>
