@@ -8,15 +8,15 @@ class TestSaleStockPickingNote(common.SavepointCase):
     @classmethod
     def setUpClass(cls):
         super(TestSaleStockPickingNote, cls).setUpClass()
-        cls.partner = cls.env["res.partner"].create({"name": "Mr. Odoo",})
+        cls.partner = cls.env["res.partner"].create({"name": "Mr. Odoo"})
         cls.product = cls.env["product.product"].create(
-            {"name": "Test product", "type": "product",}
+            {"name": "Test product", "type": "product"}
         )
         cls.order = cls.env["sale.order"].create(
             {
                 "partner_id": cls.partner.id,
                 "order_line": [
-                    (0, 0, {"product_id": cls.product.id, "product_uom_qty": 1,})
+                    (0, 0, {"product_id": cls.product.id, "product_uom_qty": 1})
                 ],
             }
         )
