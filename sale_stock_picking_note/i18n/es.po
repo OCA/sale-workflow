@@ -24,7 +24,7 @@ msgstr "Nota albarán"
 
 #. module: sale_stock_picking_note
 #: model:ir.model,name:sale_stock_picking_note.model_sale_order
-msgid "Sale Order"
+msgid "Sales Order"
 msgstr ""
 
 #. module: sale_stock_picking_note
