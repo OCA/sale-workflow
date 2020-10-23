@@ -1,6 +1,6 @@
 # Translation of Odoo Server.
 # This file contains the translation of the following modules:
-#	* sale_stock_picking_note
+# 	* sale_stock_picking_note
 #
 msgid ""
 msgstr ""
@@ -23,7 +23,8 @@ msgstr "Nota de recollida"
 
 #. module: sale_stock_picking_note
 #: model:ir.model,name:sale_stock_picking_note.model_sale_order
-msgid "Sale Order"
+#, fuzzy
+msgid "Sales Order"
 msgstr "Comanda de venda"
 
 #. module: sale_stock_picking_note
