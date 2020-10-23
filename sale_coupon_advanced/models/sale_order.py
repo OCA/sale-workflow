@@ -7,8 +7,8 @@ class SaleOrder(models.Model):
     _inherit = "sale.order"
 
     def add_reward_line_values(self, program):
-        """ Add the rewarded product if a reward line has been found for this
-            product
+        """Add the rewarded product if a reward line has been found for this
+        product
         """
         reward_product = program.reward_product_id
         taxes = reward_product.taxes_id
@@ -158,3 +158,16 @@ class SaleOrder(models.Model):
                 )
                 self = self.with_context(discount_data_removed=True)
         return super(SaleOrder, self).write(vals)
+
+    def first_order(self):
+        self.ensure_one()
+        partner_id = self.partner_id.commercial_partner_id.id
+        return not bool(
+            self.search_count(
+                [
+                    ("id", "!=", self.id),
+                    ("partner_id.commercial_partner_id", "=", partner_id),
+                    ("state", "!=", "cancel"),
+                ]
+            )
+        )

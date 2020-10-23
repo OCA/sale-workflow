@@ -132,8 +132,8 @@ class TestProgramForFirstSaleOrder(TestSaleCouponCommon):
         ).process_coupon()
 
     def test_promo_applied_on_first_so(self):
-
         order1 = self.create_sale_order(self.partner1, {self.product_A: 2.0})
+        self.assertTrue(order1.first_order())
         order1.recompute_coupon_lines()
 
         discounts = set(order1.order_line.mapped("name")) - {"Product A"}
@@ -150,6 +150,7 @@ class TestProgramForFirstSaleOrder(TestSaleCouponCommon):
     def test_promo_first_and_second_so(self):
 
         order1 = self.create_sale_order(self.partner1, {self.product_A: 2.0})
+        self.assertTrue(order1.first_order())
         order1.recompute_coupon_lines()
         discounts = set(order1.order_line.mapped("name")) - {"Product A"}
 
@@ -165,6 +166,7 @@ class TestProgramForFirstSaleOrder(TestSaleCouponCommon):
         self.program2.write({"active": True})
 
         order2 = self.create_sale_order(self.partner1, {self.product_A: 4.0})
+        self.assertFalse(order2.first_order())
         order2.recompute_coupon_lines()
         discounts = set(order2.order_line.mapped("name")) - {"Product A"}
 
@@ -184,13 +186,12 @@ class TestProgramForFirstSaleOrder(TestSaleCouponCommon):
         ).create({"generation_type": "nbr_coupon", "nbr_coupons": 1}).generate_coupon()
 
         order1 = self.create_sale_order(self.partner3, {self.product_A: 2.0})
+        self.assertTrue(order1.first_order())
         self.process_coupon(order1, "30_discount")
 
         discounts = set(order1.order_line.mapped("name")) - {"Product A"}
 
-        self.assertEqual(
-            len(order1.order_line.ids), 2, "The order should contain 2 lines"
-        )
+        self.assertEqual(len(order1.order_line.ids), 2)
         self.assertEqual(
             len(discounts),
             1,
@@ -208,7 +209,7 @@ class TestProgramForFirstSaleOrder(TestSaleCouponCommon):
 
         order2 = self.create_sale_order(self.partner3, {self.product_A: 5.0})
         with self.assertRaises(UserError):
-            self.process_coupon(order1, "30_discount")
+            self.process_coupon(order2, "30_discount")
 
         discounts = set(order2.order_line.mapped("name")) - {"Product A"}
 
@@ -218,6 +219,22 @@ class TestProgramForFirstSaleOrder(TestSaleCouponCommon):
         self.assertEqual(
             len(discounts), 0, "the order shouldn't contain any `Product A` discount."
         )
+
+    def test_first_order_only(self):
+        order1 = self.create_sale_order(self.partner3, {self.product_A: 5.0})
+        order2 = self.create_sale_order(self.partner3, {self.product_A: 5.0})
+        self.assertEqual(order1.state, "draft")
+        self.assertEqual(order1.state, "draft")
+        self.assertEqual(len(order2.order_line.ids), 1)
+
+        with self.assertRaises(UserError):
+            self.process_coupon(order1, "30_discount")
+        with self.assertRaises(UserError):
+            self.process_coupon(order2, "30_discount")
+
+        order1.action_cancel()
+        self.process_coupon(order2, "30_discount")
+        self.assertEqual(len(order2.order_line.ids), 2)
 
     def test_free_product_promotion(self):
         # deactivate other programs

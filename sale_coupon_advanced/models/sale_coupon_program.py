@@ -32,13 +32,15 @@ class SaleCouponProgram(models.Model):
     )
 
     def _check_promo_code(self, order, coupon_code):
-        order_count = self._get_order_count(order)
-        if self.first_order_only and order_count:
+
+        if self.first_order_only and not order.first_order():
             return {"error": _("Coupon can be used only for the first sale order!")}
+
+        order_count = self._get_order_count(order)
         max_order_number = self.next_n_customer_orders
         if max_order_number and order_count >= max_order_number:
             return {
-                "error": _("Coupon can be used only for the first {} times!").format(
+                "error": _("Coupon can be used only for the {} times!").format(
                     max_order_number
                 )
             }
@@ -58,17 +60,15 @@ class SaleCouponProgram(models.Model):
         initial_programs = self.browse(self.ids)
         self._force_sale_order_lines(initial_programs, order)
         programs = super()._filter_programs_from_common_rules(order, next_order)
-        programs = programs._filter_order_programs(
-            order, self._filter_first_order_programs
-        )
+        programs = programs._filter_first_order_programs(order)
         programs = programs._filter_order_programs(
             order, self._filter_n_first_order_programs
         )
         return programs
 
     def _force_sale_order_lines(self, programs, order):
-        """ Return the programs when `is_reward_product_forced` is selected
-         and reward product not already ordered"""
+        """Return the programs when `is_reward_product_forced` is selected
+        and reward product not already ordered"""
         for program in programs:
             if (
                 program.reward_type == "product"
@@ -103,12 +103,16 @@ class SaleCouponProgram(models.Model):
         return sum(m["order_id_count"] for m in data)
 
     @api.model
-    def _filter_first_order_programs(self, program, order):
+    def _filter_first_order_programs(self, order):
         """
         Filter programs where first_order_only is True,
         and the customer have already ordered before.
         """
-        return not (program._get_order_count(order) and program.first_order_only)
+        first_ord = order.first_order()
+        return self.filtered(
+            lambda self: (self.first_order_only and first_ord)
+            or not (self.first_order_only and first_ord)
+        )
 
     @api.model
     def _filter_n_first_order_programs(self, program, order):
