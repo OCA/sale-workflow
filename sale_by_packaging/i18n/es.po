@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 13.0\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2020-07-27 10:19+0000\n"
+"PO-Revision-Date: 2020-10-26 12:08+0000\n"
 "Last-Translator: Daniel Martinez Vila <daniel.martinez@qubiq.es>\n"
 "Language-Team: none\n"
 "Language: es\n"
@@ -42,9 +42,8 @@ msgstr "Solo vendemos por embalaje"
 
 #. module: sale_by_packaging
 #: model:ir.model.fields,field_description:sale_by_packaging.field_product_packaging_type__packaging_ids
-#, fuzzy
 msgid "Packaging"
-msgstr "Empaquetado del producto"
+msgstr "Empaquetado"
 
 #. module: sale_by_packaging
 #: code:addons/sale_by_packaging/models/sale_order_line.py:0
@@ -63,6 +62,9 @@ msgid ""
 "Packaging type \"{}\" must stay with \"Can be sold\", at least one product "
 "configured as \"sell only by packaging\" is using it."
 msgstr ""
+"El tipo de empaquetado \"{}\" debe permanecer con \"Se puede vender\", al "
+"menos un producto configurado como \"vender solo por empaque\" lo está "
+"usando."
 
 #. module: sale_by_packaging
 #: model:ir.model,name:sale_by_packaging.model_product_product
