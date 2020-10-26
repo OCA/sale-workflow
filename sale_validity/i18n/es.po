@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: sale-workflow (8.0)\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2015-09-09 12:27+0000\n"
-"PO-Revision-Date: 2020-08-07 08:59+0000\n"
+"PO-Revision-Date: 2020-10-26 12:08+0000\n"
 "Last-Translator: Daniel Martinez Vila <daniel.martinez@qubiq.es>\n"
 "Language-Team: Spanish (http://www.transifex.com/oca/OCA-sale-workflow-8-0/"
 "language/es/)\n"
@@ -68,11 +68,10 @@ msgstr "Duración de la validez predeterminada de los pedidos de venta"
 #. module: sale_validity
 #: model:ir.model.fields,field_description:sale_validity.field_sale_order__validity_date
 msgid "Expiration"
-msgstr ""
+msgstr "Expiración"
 
 #. module: sale_validity
 #: model:ir.model,name:sale_validity.model_sale_order
-#, fuzzy
 msgid "Sales Order"
 msgstr "Pedido de venta"
 
