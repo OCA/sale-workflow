@@ -1,0 +1,40 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* sale_order_archive
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 12.0\n"
+"Report-Msgid-Bugs-To: \n"
+"PO-Revision-Date: 2019-07-16 10:43+0000\n"
+"Last-Translator: Maria Sparenberg <maria.sparenberg@gmx.net>\n"
+"Language-Team: none\n"
+"Language: de\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: Weblate 3.7.1\n"
+
+#. module: sale_order_archive
+#: model:ir.model.fields,field_description:sale_order_archive.field_sale_order__active
+msgid "Active"
+msgstr "Aktiv"
+
+#. module: sale_order_archive
+#: model_terms:ir.ui.view,arch_db:sale_order_archive.sale_order_archive_search_view
+msgid "Archived"
+msgstr "Archiviert"
+
+#. module: sale_order_archive
+#: code:addons/sale_order_archive/models/sale_order.py:0
+#, python-format
+msgid "Only 'Locked' or 'Canceled' orders can be archived"
+msgstr ""
+
+#. module: sale_order_archive
+#: model:ir.model,name:sale_order_archive.model_sale_order
+#, fuzzy
+#| msgid "Sale Order"
+msgid "Sales Order"
+msgstr "Verkaufsauftrag"
