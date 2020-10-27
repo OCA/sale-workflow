@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!-- Copyright 2020 ACSONE SA/NV
+     License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl). -->
+<odoo>
+    <record model="ir.ui.view" id="sale_order_form_view">
+        <field
+            name="name"
+        >sale.order.form (in sale_stock_picking_validation_blocking)</field>
+        <field name="model">sale.order</field>
+        <field name="inherit_id" ref="sale_stock.view_order_form_inherit_sale_stock" />
+        <field name="arch" type="xml">
+            <button name="action_draft" position="after">
+                <button
+                    name="action_block_picking_validation"
+                    type="object"
+                    string="Block Delivery Validation"
+                    groups="sales_team.group_sale_manager"
+                    attrs="{'invisible': ['|', '|', ('state', 'not in', ('sale', 'done')), ('delivery_count', '=', 0), ('picking_validation_blocked', '=', True)]}"
+                />
+                <button
+                    name="action_unblock_picking_validation"
+                    type="object"
+                    string="Unblock Delivery Validation"
+                    groups="sales_team.group_sale_manager"
+                    attrs="{'invisible': ['|', '|', ('state', 'not in', ('sale', 'done')), ('delivery_count', '=', 0), ('picking_validation_blocked', '!=', True)]}"
+                />
+            </button>
+            <field name="warehouse_id" position="before">
+                <field name="picking_validation_blocked" />
+            </field>
+        </field>
+    </record>
+</odoo>

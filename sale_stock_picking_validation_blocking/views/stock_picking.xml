@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!-- Copyright 2020 ACSONE SA/NV
+     License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl). -->
+<odoo>
+    <record model="ir.ui.view" id="stock_picking_form_view">
+        <field
+            name="name"
+        >stock.picking.form (in sale_stock_picking_validation_blocking)</field>
+        <field name="model">stock.picking</field>
+        <field name="inherit_id" ref="stock.view_picking_form" />
+        <field name="arch" type="xml">
+            <xpath expr="//sheet" position="before">
+                <field name="validation_blocked_by_so" invisible="1" />
+                <div
+                    class="alert alert-danger text-center o_form_header"
+                    role="alert"
+                    attrs="{'invisible': [('validation_blocked_by_so', '=', False)]}"
+                >
+                    <div
+                    >Warning: The validation of this picking is prevented by sale order <field
+                            name="sale_id"
+                        />.</div>
+                </div>
+            </xpath>
+        </field>
+    </record>
+</odoo>
