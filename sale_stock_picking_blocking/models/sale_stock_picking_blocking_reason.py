@@ -6,12 +6,14 @@ from odoo import fields, models
 
 
 class SaleDeliveryBlockReason(models.Model):
-    _name = 'sale.delivery.block.reason'
-    _description = 'Sale Delivery Block Reason'
+    _name = "sale.delivery.block.reason"
+    _description = "Sale Delivery Block Reason"
 
-    name = fields.Char(string='Name', required=True)
-    description = fields.Text(string='Description')
-    sale_order_ids = fields.One2many(comodel_name='sale.order',
-                                     inverse_name='delivery_block_id',
-                                     string='Sale Orders',
-                                     readonly=True)
+    name = fields.Char(string="Name", required=True)
+    description = fields.Text(string="Description")
+    sale_order_ids = fields.One2many(
+        comodel_name="sale.order",
+        inverse_name="delivery_block_id",
+        string="Sale Orders",
+        readonly=True,
+    )
