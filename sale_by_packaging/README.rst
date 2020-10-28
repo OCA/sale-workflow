@@ -28,6 +28,15 @@ Sale By Packaging
 This module provides different configuration option to manage packagings on
 sale orders.
 
+By default there is a Warning message during the modification/creation of a sale order line
+to notice the user when the quantity to sell doesn't fit with the factor set on the packaging.
+
+It's also possible to force the quantity to sell during creation/modification of the sale order line
+if the "Force sale quantity" is ticked on the packaging.
+
+For example, if your packaging is set to sell by 5 units and the employee fill
+the quantity with 3, the quantity will be automatically replaced by 5 (it always rounds up).
+
 .. IMPORTANT::
    This is an alpha version, the data model and design can change at any time without warning.
    Only for development or testing purpose, do not use in production.
@@ -52,6 +61,9 @@ which product can only be sold by packaging.
   sales of these products if no packaging is selected on the sale order line.
   If no packaging is selected, it will either be auto-assigned if the quantity
   on the sale order line matches a packaging quantity or an error will be raised.
+
+* Force sale quantity (on the packaging): force rounds up the quantity during
+  creation/modification of the sale order line with the factor set on the packaging.
 
 Known issues / Roadmap
 ======================
@@ -83,6 +95,7 @@ Contributors
 
 * Akim Juillerat <akim.juillerat@camptocamp.com>
 * Thomas Nowicki <thomas.nowicki@camptocamp.com>
+* François Honoré <francois.honore@acsone.eu>
 
 Maintainers
 ~~~~~~~~~~~
