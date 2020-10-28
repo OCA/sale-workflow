@@ -23,6 +23,17 @@ msgid "Can be sold"
 msgstr "Puede ser vendido"
 
 #. module: sale_by_packaging
+#: model:ir.model.fields,help:sale_by_packaging.field_product_packaging__force_sale_qty
+msgid ""
+"Determine if during the creation of a sale order line, the quantity should "
+"be forced with a multiple of the packaging.\n"
+"Example:\n"
+"You sell a product by packaging of 5 products.\n"
+"When the user will put 3 as quantity, the system can force the quantity to "
+"the superior unit (5 for this example)."
+msgstr ""
+
+#. module: sale_by_packaging
 #: code:addons/sale_by_packaging/models/sale_order_line.py:0
 #, python-format
 msgid ""
@@ -33,6 +44,11 @@ msgstr ""
 "Para el producto {prod}\n"
 "La {qty} no es el múltiplo de ningún paquete.\n"
 "Por favor agregue un paquete"
+
+#. module: sale_by_packaging
+#: model:ir.model.fields,field_description:sale_by_packaging.field_product_packaging__force_sale_qty
+msgid "Force sale quantity"
+msgstr ""
 
 #. module: sale_by_packaging
 #: model:ir.model.fields,field_description:sale_by_packaging.field_product_product__sell_only_by_packaging
