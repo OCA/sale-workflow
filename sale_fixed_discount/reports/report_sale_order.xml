@@ -16,7 +16,7 @@
             <th
                 t-if="display_discount_fixed"
                 class="text-right"
-                groups="sale.group_discount_per_so_line"
+                groups="product.group_discount_per_so_line"
             >
                 <span>Disc. Fixed Amount</span>
                 <t t-set="colspan" t-value="colspan+1" />
@@ -26,7 +26,7 @@
             <td
                 t-if="display_discount_fixed"
                 class="text-right"
-                groups="sale.group_discount_per_so_line"
+                groups="product.group_discount_per_so_line"
             >
                 <span t-field="line.discount_fixed" />
             </td>
