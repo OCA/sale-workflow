@@ -236,6 +236,12 @@ class TestProgramForFirstSaleOrder(TestSaleCouponCommon):
         self.process_coupon(order2, "30_discount")
         self.assertEqual(len(order2.order_line.ids), 2)
 
+    def test_first_order_virtual(self):
+        """Check if first_order can be called on virtual order."""
+        partner_virtual = self.env["res.partner"].new({"name": "dummy"})
+        so_virtual = self.env["sale.order"].new({"partner_id": partner_virtual.id})
+        self.assertTrue(so_virtual.first_order())
+
     def test_free_product_promotion(self):
         # deactivate other programs
         self.program1.write({"active": False})

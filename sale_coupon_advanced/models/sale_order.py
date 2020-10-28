@@ -160,14 +160,20 @@ class SaleOrder(models.Model):
         return super(SaleOrder, self).write(vals)
 
     def first_order(self):
+        """Check if this is first partner order.
+
+        Returns:
+            True if there are no other non-cancelled orders for this
+            commercial partner, False otherwise.
+
+        """
         self.ensure_one()
         partner_id = self.partner_id.commercial_partner_id.id
-        return not bool(
-            self.search_count(
-                [
-                    ("id", "!=", self.id),
-                    ("partner_id.commercial_partner_id", "=", partner_id),
-                    ("state", "!=", "cancel"),
-                ]
-            )
-        )
+        domain = [
+            ("partner_id.commercial_partner_id", "=", partner_id),
+            ("state", "!=", "cancel"),
+        ]
+        # Lets check promotions on virtual sale order.
+        if not isinstance(self.id, models.NewId):
+            domain.append(("id", "!=", self.id))
+        return not self.search_count(domain)
