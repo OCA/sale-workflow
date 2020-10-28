@@ -3,22 +3,39 @@
 # © 2016 Serpent Consulting Services Pvt. Ltd.
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl.html).
 
-from odoo.tests.common import TransactionCase
+from odoo.tests.common import SavepointCase
 
 
-class TestSaleSourcedByLine(TransactionCase):
-    def setUp(self):
-        super(TestSaleSourcedByLine, self).setUp()
-        self.sale_order_model = self.env["sale.order"]
-        self.sale_order_line_model = self.env["sale.order.line"]
-        self.stock_move_model = self.env["stock.move"]
+class TestSaleSourcedByLine(SavepointCase):
+    @classmethod
+    def setUpClass(cls):
+        super(TestSaleSourcedByLine, cls).setUpClass()
+        cls.env(context=dict(cls.env.context, tracking_disable=True))
+        cls.company = cls.env.ref("base.main_company")
+        cls.company_shop = cls.env.ref("stock.res_company_1")
+
+        # Create user for company Chicago
+        cls.user = cls.env["res.users"].create(
+            {
+                "login": "Salesman Chicago Sourced By Line",
+                "email": "test@test.com",
+                "name": "Salesman Chicago Sourced By Line",
+                "groups_id": [(4, cls.env.ref("sales_team.group_sale_salesman").id)],
+                "company_ids": [(6, 0, (cls.company | cls.company_shop).ids)],
+                "company_id": cls.company_shop.id,
+            }
+        )
+
+        cls.sale_order_model = cls.env["sale.order"].with_user(cls.user)
+        cls.sale_order_line_model = cls.env["sale.order.line"].with_user(cls.user)
+        cls.stock_move_model = cls.env["stock.move"]
 
         # Refs
-        self.customer = self.env.ref("base.res_partner_2")
-        self.product_1 = self.env.ref("product.product_product_27")
-        self.product_2 = self.env.ref("product.product_product_24")
-        self.warehouse_shop0 = self.env.ref("stock.stock_warehouse_shop0")
-        self.warehouse0 = self.env.ref("stock.warehouse0")
+        cls.customer = cls.env.ref("base.res_partner_2")
+        cls.product_1 = cls.env.ref("product.product_product_27")
+        cls.product_2 = cls.env.ref("product.product_product_24")
+        cls.warehouse_shop0 = cls.env.ref("stock.stock_warehouse_shop0")
+        cls.warehouse0 = cls.env.ref("stock.warehouse0")
 
     def test_sales_order_multi_source(self):
         so = self.sale_order_model.create({"partner_id": self.customer.id})
