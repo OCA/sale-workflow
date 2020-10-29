@@ -44,6 +44,7 @@ setuptools.setup(
         'odoo12-addon-sale_order_archive',
         'odoo12-addon-sale_order_digitized_signature',
         'odoo12-addon-sale_order_general_discount',
+        'odoo12-addon-sale_order_incoterm_place',
         'odoo12-addon-sale_order_invoicing_finished_task',
         'odoo12-addon-sale_order_line_date',
         'odoo12-addon-sale_order_line_description',
