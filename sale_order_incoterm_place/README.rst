@@ -27,7 +27,7 @@ Sale Order Incoterm Place
 
 This module deos the following:
 
-- Add "Place of Destination" field to sales order as supplementary information of the incoterms, display in sale order and pro-forma printing.
+- Add the "Incoterm Place" field to sales order as supplementary information of the selected incoterm. The input value will show in the printed sales order / pro-forma invoice.
 
 **Table of contents**
 
