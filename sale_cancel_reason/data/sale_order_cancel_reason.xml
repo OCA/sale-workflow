@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8" ?>
 <odoo noupdate="1">
     <record id="cancel_reason_only_quotation" model="sale.order.cancel.reason">
         <field name="name">Just for Quotation</field>
