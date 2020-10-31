@@ -29,7 +29,6 @@
         <field name="name">Reason for the cancellation</field>
         <field name="type">ir.actions.act_window</field>
         <field name="res_model">sale.order.cancel</field>
-        <field name="view_type">form</field>
         <field name="view_mode">form</field>
         <field name="view_id" ref="view_sale_order_cancel" />
         <field name="target">new</field>
