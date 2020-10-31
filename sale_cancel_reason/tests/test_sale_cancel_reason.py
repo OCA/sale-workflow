@@ -33,7 +33,7 @@ class TestSaleCancelReason(TransactionCase):
             {
                 "partner_id": self.partner.id,
                 "order_line": [
-                    (0, 0, {"product_id": self.product.id, "product_uom_qty": 8,})
+                    (0, 0, {"product_id": self.product.id, "product_uom_qty": 8})
                 ],
             }
         )
