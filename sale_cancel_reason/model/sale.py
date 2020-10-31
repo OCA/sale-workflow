@@ -11,6 +11,7 @@ class SaleOrder(models.Model):
         string="Reason for cancellation",
         readonly=True,
         ondelete="restrict",
+        tracking=True,
     )
 
 

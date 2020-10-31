@@ -50,7 +50,6 @@
     <record model="ir.actions.act_window" id="action_sale_order_cancel_reason">
         <field name="name">Sale Order Cancel Reason</field>
         <field name="res_model">sale.order.cancel.reason</field>
-        <field name="view_type">form</field>
         <field name="view_mode">tree,form</field>
     </record>
     <menuitem

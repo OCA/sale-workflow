@@ -1,6 +1,6 @@
 # © 2013 Guewen Baconnier, Camptocamp SA
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
-from odoo import api, fields, models
+from odoo import fields, models
 
 
 class SaleOrderCancel(models.TransientModel):
@@ -14,7 +14,6 @@ class SaleOrderCancel(models.TransientModel):
         "sale.order.cancel.reason", string="Reason", required=True
     )
 
-    @api.multi
     def confirm_cancel(self):
         self.ensure_one()
         act_close = {"type": "ir.actions.act_window_close"}
