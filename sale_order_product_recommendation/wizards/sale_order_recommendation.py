@@ -80,8 +80,7 @@ class SaleOrderRecommendation(models.TransientModel):
     @api.onchange("order_id", "months", "line_amount")
     def _generate_recommendations(self):
         """Generate lines according to context sale order."""
-        # Clean lines for newId environment
-        self.line_ids = False
+        recommendation_lines = [(5,)]
         last_compute = "{}-{}-{}".format(self.id, self.months, self.line_amount)
         # Avoid execute onchange as times as fields in api.onchange
         # ORM must control this?
@@ -101,39 +100,28 @@ class SaleOrderRecommendation(models.TransientModel):
             reverse=True,
         )
         found_dict = {l["product_id"][0]: l for l in found_lines}
-        recommendation_lines = self.env["sale.order.recommendation.line"]
         existing_product_ids = set()
         # Always recommend all products already present in the linked SO
         for line in self.order_id.order_line:
             found_line = found_dict.get(
                 line.product_id.id, {"product_id": (line.product_id.id, False)}
             )
-            new_line = recommendation_lines.new(
-                self._prepare_recommendation_line_vals(found_line, line)
-            )
-            recommendation_lines += new_line
+            line_vals = self._prepare_recommendation_line_vals(found_line, line)
+            recommendation_lines.append((0, 0, line_vals))
             existing_product_ids.add(line.product_id.id)
         # Add recent SO recommendations too
         i = 0
         for line in found_lines:
             if line["product_id"][0] in existing_product_ids:
                 continue
-            new_line = recommendation_lines.new(
-                self._prepare_recommendation_line_vals(line)
-            )
-            recommendation_lines += new_line
+            line_vals = self._prepare_recommendation_line_vals(line)
+            recommendation_lines.append((0, 0, line_vals))
             # limit number of results. It has to be done here, as we need to
             # populate all results first, for being able to select best matches
             i += 1
             if i >= self.line_amount:
                 break
-        # TODO: Check in v14.0 if it has been fixed (odoo/odoo#55995)
-        # For NewId models inverse_name wizard_id on One2many field is not
-        # filled, so we need assign it manually.
-        if isinstance(self.id, models.NewId):
-            recommendation_lines.wizard_id = self
-        else:
-            self.line_ids = recommendation_lines
+        self.line_ids = recommendation_lines
 
     def action_accept(self):
         """Propagate recommendations to sale order."""
