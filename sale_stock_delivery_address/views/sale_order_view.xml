@@ -10,7 +10,6 @@
                     name="dest_address_id"
                     attrs="{'readonly': [('product_updatable', '=', False)]}"
                 />
-                <field name="order_partner_id" invisible="1" />
             </xpath>
             <xpath
                 expr="//field[@name='order_line']/form//field[@name='route_id']"
@@ -20,7 +19,6 @@
                     name="dest_address_id"
                     attrs="{'readonly': [('product_updatable', '=', False)]}"
                 />
-                <field name="order_partner_id" invisible="1" />
             </xpath>
         </field>
     </record>
