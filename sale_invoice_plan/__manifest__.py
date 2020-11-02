@@ -17,6 +17,6 @@
         "views/sale_view.xml",
     ],
     "installable": True,
-    "development_status": "alpha",
+    "development_status": "Alpha",
     "maintainers": ["kittiu"],
 }
