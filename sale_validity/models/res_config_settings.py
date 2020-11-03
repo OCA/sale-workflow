@@ -9,5 +9,6 @@ class ResConfigSettings(models.TransientModel):
     _inherit = "res.config.settings"
 
     sale_order_default_validity_days = fields.Integer(
-        related="company_id.default_sale_order_validity_days", readonly=False,
+        related="company_id.default_sale_order_validity_days",
+        readonly=False,
     )
