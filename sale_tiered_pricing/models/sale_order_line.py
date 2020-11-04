@@ -10,7 +10,6 @@ class SaleOrderLine(models.Model):
        depending on the quantity. So when getting the price, we need to force the
        price field to be recomputed in the right context.
        Check what needs to be done on programmatic creation/update.
-       TODO: Invoicing: split lines? that may get complicated with partial invoicing...
     """
 
     _inherit = "sale.order.line"

@@ -11,5 +11,9 @@
     "author": "ACSONE SA/NV,Odoo Community Association (OCA)",
     "website": "https://acsone.eu",
     "depends": ["sale_management"],  # pricelist settings are there...
-    "data": ["views/pricelist.xml"],
+    "data": [
+        "views/pricelist.xml",
+        "wizard/tiered_pricing_wizard.xml",
+        "views/product.xml",
+    ],
 }

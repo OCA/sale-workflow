@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <odoo>
-    <record id="product_pricelist_item_form" model="ir.ui.view">
+    <record id="product_pricelist_item_form_view" model="ir.ui.view">
         <field name="model">product.pricelist.item</field>
         <field name="inherit_id" ref="product.product_pricelist_item_form_view" />
         <field name="arch" type="xml">
@@ -13,7 +13,12 @@
                 <div
                     attrs="{'invisible':[('compute_price', 'not in', ['tier', 'volume'])]}"
                 >
-                    <field name="tiered_pricelist_id" nolabel="1" class="oe_inline" />
+                    <field
+                        name="tiered_pricelist_id"
+                        nolabel="1"
+                        class="oe_inline"
+                        options='{"no_create":  True}'
+                    />
                 </div>
             </xpath>
             <xpath expr="//field[@name='applied_on']" position="attributes">

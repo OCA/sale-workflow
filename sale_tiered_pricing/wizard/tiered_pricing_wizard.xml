@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <record model="ir.ui.view" id="tiered_pricing_wizard_form_view">
+        <field name="name">Assign Tiered Pricing</field>
+        <field name="model">product.tiered_pricing.wizard</field>
+        <field name="arch" type="xml">
+            <form string="Assign Tiered Pricing">
+                <group>
+                    <field name="product_template_id" />
+                    <field name="only_variants" />
+                    <field
+                        name="variant_ids"
+                        attrs="{'invisible':[('only_variants', '=', False)]}"
+                    >
+                        <tree string="Only Variants">
+                            <field name="display_name" />
+                        </tree>
+                    </field>
+                    <field name="pricelist_ids">
+                        <tree string="Target Pricelists">
+                            <field name="name" />
+                        </tree>
+                    </field>
+                    <field name="tiered_pricing_id" options='{"no_create": True}' />
+                </group>
+                <footer>
+                    <button
+                        name="create_pricelist_items"
+                        class="btn btn-primary"
+                        type="object"
+                        string="Create Items"
+                    />
+                    <button special="cancel" string="Cancel" />
+                </footer>
+            </form>
+        </field>
+    </record>
+    <record model="ir.actions.act_window" id="tiered_pricing_wizard_act_window">
+        <field name="name">Assign Tiered Pricing</field>
+        <field name="res_model">product.tiered_pricing.wizard</field>
+        <field name="view_type">form</field>
+        <field name="view_mode">form</field>
+        <field name="target">new</field>
+        <field name="domain">[]</field>
+        <field name="context">{}</field>
+    </record>
+</odoo>
