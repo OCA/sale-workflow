@@ -172,3 +172,20 @@ class TestSaleProductByPackagingOnly(SavepointCase):
                 self.assertAlmostEqual(
                     so_line.product_uom_qty, 210, places=self.precision
                 )
+
+    def test_packaging_qty_non_zero(self):
+        """ Check product packaging quantity.
+
+        The packaging quantity can not be zero.
+        """
+        self.product.write({"sell_only_by_packaging": True})
+        order_line = self.env["sale.order.line"].create(
+            {
+                "order_id": self.order.id,
+                "product_id": self.product.id,
+                "product_uom": self.product.uom_id.id,
+                "product_uom_qty": 10,  # 2 packs
+            }
+        )
+        with self.assertRaises(ValidationError):
+            order_line.write({"product_uom_qty": 3, "product_packaging_qty": 0})
