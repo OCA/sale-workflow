@@ -36,13 +36,12 @@ class SaleOrderLine(models.Model):
         )
         if self.is_tier_priced:
             tier_rule = self.order_id.pricelist_id.get_tier_rule(product, self)
-            if tier_rule.compute_price == "tier":  # useless for volume
-                qps = tier_rule.tiered_pricelist_id.get_quantities_and_prices(
-                    self.price_unit, self.product_uom, product, self.product_uom_qty
-                )
-                computation = " + ".join("{} x {}".format(q, p) for q, p in qps)
-                tier_description = _("Tiers: {}").format(computation)
-                res = "\n".join([res, tier_description])
+            qps = tier_rule.tiered_pricelist_id.get_quantities_and_prices(
+                self.price_unit, self.product_uom, product, self.product_uom_qty
+            )
+            computation = " + ".join("{} x {}".format(q, p) for q, p in qps)
+            tier_description = _("Tiers: {}").format(computation)
+            res = "\n".join([res, tier_description])
         return res
 
     def _get_contextualized_product(self):

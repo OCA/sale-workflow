@@ -112,20 +112,3 @@ class TestPricing(SavepointCase):
         self.assertEqual(new_line.price_subtotal, 50 * 10)
         self.assertTrue(" 10" in new_line.name)
         self.assertTrue(" 8" not in new_line.name)
-
-    def test_volume_pricing(self):
-        self.tiered_item.compute_price = "volume"
-        new_line = self.env["sale.order.line"].create(
-            {
-                "order_id": self.order.id,
-                "product_id": self.product.id,
-                "product_uom_qty": 250,
-            }
-        )
-        self.assertEqual(new_line.price_subtotal, 250 * 7)
-
-        update_quantity(new_line, 150)
-        self.assertEqual(new_line.price_subtotal, 150 * 8)
-
-        update_quantity(new_line, 50)
-        self.assertEqual(new_line.price_subtotal, 50 * 10)

@@ -152,7 +152,7 @@ class ProductPriceList(models.Model):
         partner = sale_order_line.order_id.partner_id
         price, item_id = self.get_product_price_rule(product, quantity, partner)
         item = no_item.browse(item_id)
-        if item.compute_price in ["tier", "volume"]:
+        if item.compute_price == "tier":
             return item
         elif item.base != "pricelist":
             return no_item
