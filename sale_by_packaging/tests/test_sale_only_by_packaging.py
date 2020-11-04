@@ -189,3 +189,26 @@ class TestSaleProductByPackagingOnly(SavepointCase):
         )
         with self.assertRaises(ValidationError):
             order_line.write({"product_uom_qty": 3, "product_packaging_qty": 0})
+
+    def test_onchange_qty_is_not_pack_multiple(self):
+        """ Check package when qantity is not a multiple of package quantity.
+
+        When the uom quantity is changed for a value not a multpile of a
+        possible package any package and package quantity set should be
+        reseted.
+        """
+        self.product.write({"sell_only_by_packaging": True})
+        order_line = self.env["sale.order.line"].create(
+            {
+                "order_id": self.order.id,
+                "product_id": self.product.id,
+                "product_uom": self.product.uom_id.id,
+                "product_uom_qty": 10,  # 2 packs
+            }
+        )
+        self.assertEqual(order_line.product_packaging, self.packaging)
+        with Form(order_line.order_id) as sale_form:
+            line_form = sale_form.order_line.edit(0)
+            line_form.product_uom_qty = 3
+            self.assertFalse(line_form.product_packaging)
+            self.assertFalse(line_form.product_packaging_qty)

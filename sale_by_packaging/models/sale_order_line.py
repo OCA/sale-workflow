@@ -2,7 +2,7 @@
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl)
 from odoo import _, api, fields, models
 from odoo.exceptions import ValidationError
-from odoo.tools import float_is_zero
+from odoo.tools import float_compare, float_is_zero
 
 
 class SaleOrderLine(models.Model):
@@ -44,7 +44,15 @@ class SaleOrderLine(models.Model):
         for line in self:
             if not line.product_id.sell_only_by_packaging:
                 continue
-            if not line.product_packaging or not line.product_packaging_qty:
+            if (
+                not line.product_packaging
+                or float_compare(
+                    line.product_packaging_qty,
+                    0,
+                    precision_rounding=line.product_id.uom_id.rounding,
+                )
+                <= 0
+            ):
                 raise ValidationError(
                     _(
                         "Product %s can only be sold with a packaging and a "
@@ -88,9 +96,11 @@ class SaleOrderLine(models.Model):
     def _onchange_product_uom_qty(self):
         self._force_qty_with_package()
         res = super()._onchange_product_uom_qty()
-        if not res:
-            res = self._check_qty_is_pack_multiple()
-        return res
+        is_pack_multiple_warning = self._check_qty_is_pack_multiple()
+        if is_pack_multiple_warning:
+            self.product_packaging_qty = False
+            self.product_packaging = False
+        return res if res else is_pack_multiple_warning
 
     def _check_qty_is_pack_multiple(self):
         """ Check only for product with sell_only_by_packaging
