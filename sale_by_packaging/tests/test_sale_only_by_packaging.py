@@ -2,8 +2,10 @@
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl)
 import logging
 
+from odoo import fields
 from odoo.exceptions import ValidationError
 from odoo.tests import Form, SavepointCase
+from odoo.tools import mute_logger
 
 
 class TestSaleProductByPackagingOnly(SavepointCase):
@@ -148,3 +150,105 @@ class TestSaleProductByPackagingOnly(SavepointCase):
                     "product_uom_qty": 2,
                 }
             )
+
+    @mute_logger("odoo.tests.common.onchange")
+    def test_convert_packaging_qty(self):
+        """
+        Test if the function _convert_packaging_qty is correctly applied
+        during SO line create/edit and if qties are corrects.
+        :return:
+        """
+        self.product.sell_only_by_packaging = True
+        packaging = fields.first(self.product.packaging_ids)
+        # For this step, the qty is not forced on the packaging so nothing
+        # should happens if the qty doesn't match with packaging multiple.
+        with Form(self.SaleOrder) as sale_order:
+            sale_order.partner_id = self.partner
+            with sale_order.order_line.new() as so_line:
+                so_line.product_id = self.product
+                so_line.product_packaging = packaging
+                so_line.product_uom_qty = 12
+                self.assertAlmostEqual(
+                    so_line.product_uom_qty, 12, places=self.precision
+                )
+                so_line.product_uom_qty = 10
+                self.assertAlmostEqual(
+                    so_line.product_uom_qty, 10, places=self.precision
+                )
+                so_line.product_uom_qty = 36
+                self.assertAlmostEqual(
+                    so_line.product_uom_qty, 36, places=self.precision
+                )
+                so_line.product_uom_qty = 10
+                so_line.product_packaging = packaging
+        # Now force the qty on the packaging
+        packaging.force_sale_qty = True
+        with Form(self.SaleOrder) as sale_order:
+            sale_order.partner_id = self.partner
+            with sale_order.order_line.new() as so_line:
+                so_line.product_id = self.product
+                so_line.product_packaging = packaging
+                so_line.product_uom_qty = 12
+                self.assertAlmostEqual(
+                    so_line.product_uom_qty, 15, places=self.precision
+                )
+                so_line.product_uom_qty = 10
+                self.assertAlmostEqual(
+                    so_line.product_uom_qty, 10, places=self.precision
+                )
+                so_line.product_uom_qty = 8
+                self.assertAlmostEqual(
+                    so_line.product_uom_qty, 10, places=self.precision
+                )
+                so_line.product_uom_qty = 11
+                self.assertAlmostEqual(
+                    so_line.product_uom_qty, 15, places=self.precision
+                )
+                so_line.product_uom_qty = 208
+                self.assertAlmostEqual(
+                    so_line.product_uom_qty, 210, places=self.precision
+                )
+                so_line.product_uom_qty = 209.98
+                self.assertAlmostEqual(
+                    so_line.product_uom_qty, 210, places=self.precision
+                )
+
+    def test_packaging_qty_non_zero(self):
+        """ Check product packaging quantity.
+
+        The packaging quantity can not be zero.
+        """
+        self.product.write({"sell_only_by_packaging": True})
+        order_line = self.env["sale.order.line"].create(
+            {
+                "order_id": self.order.id,
+                "product_id": self.product.id,
+                "product_uom": self.product.uom_id.id,
+                "product_uom_qty": 10,  # 2 packs
+            }
+        )
+        with self.assertRaises(ValidationError):
+            order_line.write({"product_uom_qty": 3, "product_packaging_qty": 0})
+
+    def test_onchange_qty_is_not_pack_multiple(self):
+        """ Check package when qantity is not a multiple of package quantity.
+
+        When the uom quantity is changed for a value not a multpile of a
+        possible package any package and package quantity set should be
+        reseted.
+        """
+        self.product.write({"sell_only_by_packaging": True})
+        order_line = self.env["sale.order.line"].create(
+            {
+                "order_id": self.order.id,
+                "product_id": self.product.id,
+                "product_uom": self.product.uom_id.id,
+                "product_uom_qty": 10,  # 2 packs
+            }
+        )
+        self.assertEqual(order_line.product_packaging, self.packaging)
+        with Form(order_line.order_id) as sale_form:
+            line_form = sale_form.order_line.edit(0)
+            line_form.product_uom_qty = 3
+            self.assertFalse(line_form.product_packaging)
+            self.assertFalse(line_form.product_packaging_qty)
