@@ -6,15 +6,46 @@ from odoo import _, models
 class SaleOrder(models.Model):
     _inherit = "sale.order"
 
-    def add_reward_line_values(self, program):
-        """Add the rewarded product if a reward line has been found for this
-        product
+    def _get_next_order_line_sequence(self):
+        self.ensure_one()
+        seq = 1
+        # Expecting non empty list.
+        sequences = self.mapped("order_line.sequence")
+        try:
+            return max(sequences) + 1
+        # Will get ValueError, if sequences is empty list.
+        except ValueError:
+            return seq
+
+    def _create_reward_line(self, program):
+        self._filter_force_create_counter_line_for_reward_product(program)
+        super()._create_reward_line(program)
+
+    def _filter_force_create_counter_line_for_reward_product(
+        self, program, predicate=None
+    ):
+        """Create counter line if its needed for program."""
+        # NOTE. Not passing coupon_code, because from this call we dont
+        # have it, but its not needed either (so will just default to
+        # None).
+        if program._check_promo_code_forced(self, predicate=predicate):
+            self._create_counter_line_for_reward_product(program)
+
+    def _create_counter_line_for_reward_product(self, program):
+        """Create force line to counter balance discount line.
+
+        This line must exist before actual discount/reward line is
+        created.
+        Because forced program can skip _check_promo_code, we need to
+        add counter line automatically as standard functionality expects
+        such line (standard functionality expects you to create this
+        line manually only).
         """
         reward_product = program.reward_product_id
         taxes = reward_product.taxes_id
         if self.fiscal_position_id:
             taxes = self.fiscal_position_id.map_tax(taxes)
-        sequence = (max(self.mapped("order_line.sequence"))) + 1
+        sequence = self._get_next_order_line_sequence()
         sol = self.order_line.create(
             {
                 "sequence": sequence,
@@ -101,8 +132,6 @@ class SaleOrder(models.Model):
                 self.write({"order_line": [(0, False, values)]})
 
     def _remove_invalid_reward_lines(self):
-        # TODO: rollback forced lines which is not used for creation of
-        # reward lines for other programs
         super()._remove_invalid_reward_lines()
         new_sale_order = self.new({"partner_id": self.partner_id})
         new_sale_order.onchange_partner_id()

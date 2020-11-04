@@ -4,6 +4,14 @@
 from odoo import _, api, exceptions, fields, models
 
 
+def _predicate_promo_code(program, order, coupon_code):
+    return bool(program.filtered(lambda r: r.promo_code == coupon_code))
+
+
+def _predicate_no_code_needed(program, order, coupon_code):
+    return program.promo_code_usage == "no_code_needed"
+
+
 class SaleCouponProgram(models.Model):
     _inherit = "sale.coupon.program"
 
@@ -31,11 +39,28 @@ class SaleCouponProgram(models.Model):
         help="If checked, the reward product will be added if not ordered.",
     )
 
-    def _check_promo_code(self, order, coupon_code):
+    def _check_promo_code_forced(self, order, coupon_code=None, predicate=None):
+        def default_predicate(program, order, coupon_code):
+            return True
 
+        if not predicate:
+            predicate = default_predicate
+        # Using same check again, to know which error was returned. Can't
+        # use error message, because it is unstable check. Message can
+        # be translated and it would then return different text than
+        # expected.
+        # Can also use extra predicate to further filter program.
+        return (
+            self.is_reward_product_forced
+            and self.promo_applicability == "on_current_order"
+            and self.reward_type == "product"
+            and not order._is_reward_in_order_lines(self)
+            and predicate(self, order, coupon_code)
+        )
+
+    def _check_promo_code(self, order, coupon_code):
         if self.first_order_only and not order.first_order():
             return {"error": _("Coupon can be used only for the first sale order!")}
-
         order_count = self._get_order_count(order)
         max_order_number = self.next_n_customer_orders
         if max_order_number and order_count >= max_order_number:
@@ -44,38 +69,29 @@ class SaleCouponProgram(models.Model):
                     max_order_number
                 )
             }
-        # Do not return product unordered error message if
-        # `is_reward_product_forced` is selected
-        message = _(
-            "The reward products should be in the sales order lines to"
-            " apply the discount."
-        )
         res = super()._check_promo_code(order, coupon_code)
-        if res.get("error") == message and self.is_reward_product_forced:
+        if res.get("error") and self._check_promo_code_forced(
+            order, coupon_code=coupon_code, predicate=_predicate_promo_code
+        ):
             return {}
         return res
 
     @api.model
     def _filter_programs_from_common_rules(self, order, next_order=False):
-        initial_programs = self.browse(self.ids)
-        self._force_sale_order_lines(initial_programs, order)
+        # FIXME: this is not great, because this method responsibility
+        # is to just filter programs, not silently create lines.
+        for program in self:
+            order._filter_force_create_counter_line_for_reward_product(
+                program,
+                # This call is only meant for auto applied promotions.
+                predicate=_predicate_no_code_needed,
+            )
         programs = super()._filter_programs_from_common_rules(order, next_order)
         programs = programs._filter_first_order_programs(order)
         programs = programs._filter_order_programs(
             order, self._filter_n_first_order_programs
         )
         return programs
-
-    def _force_sale_order_lines(self, programs, order):
-        """Return the programs when `is_reward_product_forced` is selected
-        and reward product not already ordered"""
-        for program in programs:
-            if (
-                program.reward_type == "product"
-                and program.is_reward_product_forced
-                and not order._is_reward_in_order_lines(program)
-            ):
-                order.add_reward_line_values(program)
 
     @api.constrains("next_n_customer_orders")
     def _constrains_first_n_orders_positive(self):
