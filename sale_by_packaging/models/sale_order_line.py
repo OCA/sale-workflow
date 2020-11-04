@@ -134,7 +134,7 @@ class SaleOrderLine(models.Model):
             if "product_id" in vals
             else self.product_id
         )
-        if product and product.sell_only_by_packaging:
+        if product:
             quantity = (
                 vals["product_uom_qty"]
                 if "product_uom_qty" in vals
