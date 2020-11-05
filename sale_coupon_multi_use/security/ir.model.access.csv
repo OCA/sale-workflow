@@ -1,0 +1,3 @@
+id,name,model_id/id,group_id/id,perm_read,perm_write,perm_create,perm_unlink
+access_sale_coupon_consumption_line_salesman,sale.coupon.consumption_line salesman,model_sale_coupon_consumption_line,sales_team.group_sale_salesman,1,0,0,0
+access_sale_coupon_consumption_line_manager,sale.coupon.consumption_line manager,model_sale_coupon_consumption_line,sales_team.group_sale_manager,1,1,1,0
