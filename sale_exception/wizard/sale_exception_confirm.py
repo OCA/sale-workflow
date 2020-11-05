@@ -2,7 +2,7 @@
 # Copyright 2018 Akretion
 # Copyright 2019 Camptocamp SA
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
-from odoo import api, fields, models
+from odoo import fields, models
 
 
 class SaleExceptionConfirm(models.TransientModel):
@@ -11,7 +11,6 @@ class SaleExceptionConfirm(models.TransientModel):
 
     related_model_id = fields.Many2one("sale.order", "Sale")
 
-    @api.multi
     def action_confirm(self):
         self.ensure_one()
         if self.ignore:
