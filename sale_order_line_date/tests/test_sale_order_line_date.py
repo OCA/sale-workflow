@@ -13,8 +13,7 @@ from odoo.tests.common import TransactionCase
 
 class TestSaleOrderLineDates(TransactionCase):
     def setUp(self):
-        """Setup a Sale Order with 4 lines.
-        """
+        """Setup a Sale Order with 4 lines."""
         super(TestSaleOrderLineDates, self).setUp()
         customer = self.env.ref("base.res_partner_3")
         price = 100.0
@@ -30,6 +29,9 @@ class TestSaleOrderLineDates(TransactionCase):
         )
         self.sale_line2 = self._create_sale_order_line(
             self.sale1, product_id, qty, price, dt2
+        )
+        self.sale_line3 = self._create_sale_order_line(
+            self.sale1, product_id, qty, price, None
         )
         self.sale_line2.write({"commitment_date": dt2})
         self.sale1.action_confirm()

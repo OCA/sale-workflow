@@ -8,13 +8,13 @@
 
 {
     "name": "Sale Order Line Date",
-    "version": "13.0.1.1.0",
+    "version": "14.0.1.0.0",
     "summary": "Adds a commitment date to each sale order line.",
     "author": "OdooMRP team,"
     "AvanzOSC,"
     "Serv. Tecnol. Avanzados - Pedro M. Baeza,"
     "Odoo Community Association (OCA)",
-    "website": "https://odoo-community.org/",
+    "website": "https://github.com/OCA/sale-workflow",
     "category": "Sale",
     "license": "AGPL-3",
     "depends": ["sale_stock"],
