@@ -12,7 +12,7 @@ class SaleOrder(models.Model):
     _inherit = "sale.order"
 
     validity_date = fields.Date(
-        track_visibility="onchange", default=lambda rec: rec._default_validity_date()
+        tracking=True, default=lambda rec: rec._default_validity_date()
     )
 
     @api.model

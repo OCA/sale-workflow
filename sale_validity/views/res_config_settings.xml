@@ -21,7 +21,10 @@
                         </div>
                         <div class="text-muted mt4 mb4">
                             <field name="sale_order_default_validity_days" />
-                            <label for="" string="Days" style="margin-left: 5px;" />
+                            <span
+                                class="o_form_label"
+                                style="margin-left: 5px;"
+                            >Days</span>
                         </div>
                     </div>
                 </div>
