@@ -14,7 +14,7 @@ class ProductSet(models.Model):
         string="Internal Reference", help="Product set internal reference", copy=False
     )
     set_line_ids = fields.One2many(
-        "product.set.line", "product_set_id", string="Products"
+        "product.set.line", "product_set_id", string="Products", copy=True
     )
     company_id = fields.Many2one(
         "res.company",
