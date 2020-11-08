@@ -7,7 +7,7 @@ from odoo import api, fields, models
 
 
 class SaleWorkflowProcess(models.Model):
-    """A workflow process is the setup of the automation of a sales order.
+    """ A workflow process is the setup of the automation of a sales order.
 
     Each sales order can be linked to a workflow process.
     Then, the options of the workflow will change how the sales order
@@ -38,11 +38,13 @@ class SaleWorkflowProcess(models.Model):
     )
     validate_order = fields.Boolean()
     order_filter_domain = fields.Text(
-        string="Order Filter Domain", related="order_filter_id.domain"
+        string="Order Filter Domain",
+        related="order_filter_id.domain"
     )
     create_invoice = fields.Boolean()
     create_invoice_filter_domain = fields.Text(
-        string="Create Invoice Filter Domain", related="create_invoice_filter_id.domain"
+        string="Create Invoice Filter Domain",
+        related="create_invoice_filter_id.domain"
     )
     validate_invoice = fields.Boolean()
     validate_invoice_filter_domain = fields.Text(
@@ -51,7 +53,8 @@ class SaleWorkflowProcess(models.Model):
     )
     validate_picking = fields.Boolean(string="Confirm and Transfer Picking")
     picking_filter_domain = fields.Text(
-        string="Picking Filter Domain", related="picking_filter_id.domain"
+        string="Picking Filter Domain",
+        related="picking_filter_id.domain"
     )
     invoice_date_is_order_date = fields.Boolean(
         string="Force Invoice Date",

@@ -8,3 +8,4 @@
 * Dave Lasley <dave@laslabs.com>
 * Akim Juillerat <akim.juillerat@camptocamp.com>
 * Thomas Fossoul <thomas@niboo.com>
+* Éder Brito <britoederr@gmail.com>
