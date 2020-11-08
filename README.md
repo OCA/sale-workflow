@@ -21,6 +21,7 @@ addon | version | summary
 --- | --- | ---
 [sale_last_price_info](sale_last_price_info/) | 14.0.1.0.1 | Product Last Price Info - Sale
 [sale_order_archive](sale_order_archive/) | 14.0.1.0.0 | Archive Sale Orders
+[sale_product_category_menu](sale_product_category_menu/) | 14.0.1.0.0 | Shows 'Product Categories' menu item in Sales
 
 [//]: # (end addons)
 
