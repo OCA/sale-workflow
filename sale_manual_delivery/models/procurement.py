@@ -16,8 +16,8 @@ class ProcurementGroup(models.Model):
         location_id,
         name,
         origin,
+        company_id,
         values,
-        group_id,
     ):
         res = super()._get_stock_move_values(
             product_id,
@@ -26,8 +26,8 @@ class ProcurementGroup(models.Model):
             location_id,
             name,
             origin,
+            company_id,
             values,
-            group_id,
         )
         if values.get("carrier_id"):
             res["carrier_id"] = values["carrier_id"]

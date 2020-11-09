@@ -130,9 +130,12 @@ class TestSaleStock(TestSale):
         """
         self.partner = self.env.ref("base.res_partner_1")
         self.product = self.env.ref("product.product_delivery_01")
-        self.env["stock.change.product.qty"].create(
-            {"product_id": self.product.id, "new_quantity": 10,},
-        ).change_product_qty()
+        # self.env['stock.change.product.qty'].create(
+        #     {
+        #         'product_id': self.product.id,
+        #         'new_quantity': 10,
+        #     },
+        # ).change_product_qty()
         so_vals = {
             "partner_id": self.partner.id,
             "partner_invoice_id": self.partner.id,
@@ -387,7 +390,7 @@ class TestSaleStock(TestSale):
         wizard = (
             self.env["manual.delivery"]
             .with_context(
-                {"active_model": "sale.order.line", "active_ids": some_lines.ids,}
+                {"active_model": "sale.order.line", "active_ids": some_lines.ids}
             )
             .create({"date_planned": datetime.now()})
         )
@@ -512,11 +515,7 @@ class TestSaleStock(TestSale):
                 }
             )
             .create(
-                {
-                    "order_id": self.so.id,
-                    "carrier_id": self.so.carrier_id.id,
-                    "date_planned": date_next_week,
-                }
+                {"carrier_id": self.so.carrier_id.id, "date_planned": date_next_week}
             )
         )
         wizard.fill_lines(self.so.order_line)
@@ -546,13 +545,7 @@ class TestSaleStock(TestSale):
                     "active_ids": self.so.order_line[0].ids,
                 }
             )
-            .create(
-                {
-                    "order_id": self.so.id,
-                    "carrier_id": self.so.carrier_id.id,
-                    "date_planned": new_date_now,
-                }
-            )
+            .create({"carrier_id": self.so.carrier_id.id, "date_planned": new_date_now})
         )
         wizard.fill_lines(self.so.order_line)
         for line in wizard.line_ids:

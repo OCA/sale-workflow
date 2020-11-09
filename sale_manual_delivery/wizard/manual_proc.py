@@ -48,7 +48,6 @@ class ManualDelivery(models.TransientModel):
         res["commercial_partner_id"] = partner.commercial_partner_id.id
         return res
 
-    @api.multi
     def fill_lines(self, sale_lines):
         lines = []
 
@@ -68,7 +67,7 @@ class ManualDelivery(models.TransientModel):
                 lines.append((0, 0, vals))
         return lines
 
-    date_planned = fields.Datetime(string="Date Planned")
+    date_planned = fields.Date(string="Date Planned")
     line_ids = fields.One2many(
         "manual.delivery.line", "manual_delivery_id", string="Lines to validate",
     )
@@ -86,48 +85,19 @@ class ManualDelivery(models.TransientModel):
     )
     commercial_partner_id = fields.Many2one("res.partner")
 
-    @api.multi
     def record_picking(self):
-        proc_group_obj = self.env["procurement.group"]
-        proc_group_dict = {}
         for wizard in self:
+            if not wizard.line_ids:
+                continue
             date_planned = wizard.date_planned
-            for line in wizard.mapped("line_ids.order_line_id"):
-                order = line.order_id
+            proc_list_to_run_by_order_id = {}
+            for wizard_line in wizard.line_ids:
+                uom_rounding = wizard_line.product_id.uom_id.rounding
 
-                if not order.procurement_group_id:
-                    vals = line._prepare_procurement_values()
-                    if wizard.date_planned:
-                        vals["date_planned"] = date_planned
-                        vals["sale_id"] = order.id
-                    order_proc_group_to_use = (
-                        order.procurement_group_id
-                    ) = proc_group_obj.create(vals)
-                else:
-                    order_proc_group_to_use = self.env["procurement.group"].search(
-                        [
-                            ("sale_id", "=", order.id),
-                            ("date_planned", "=", date_planned),
-                        ],
-                        limit=1,
-                    )
-                    if not order_proc_group_to_use:
-                        order_proc_group_to_use = order.procurement_group_id.copy(
-                            {"date_planned": date_planned,}
-                        )
-                proc_group_dict[order.id] = order_proc_group_to_use
-
-            for wiz_line in wizard.line_ids:
-                uom_rounding = wiz_line.product_id.uom_id.rounding
-                carrier_id = (
-                    wizard.carrier_id
-                    if wizard.carrier_id
-                    else wiz_line.order_line_id.order_id.carrier_id
-                )
                 if (
                     float_compare(
-                        wiz_line.to_ship_qty,
-                        wiz_line.ordered_qty - wiz_line.existing_qty,
+                        wizard_line.to_ship_qty,
+                        wizard_line.ordered_qty - wizard_line.existing_qty,
                         precision_rounding=uom_rounding,
                     )
                     > 0.0
@@ -139,25 +109,76 @@ class ManualDelivery(models.TransientModel):
                             "so, please edit the sale order first."
                         )
                     )
-                if not float_is_zero(
-                    wiz_line.to_ship_qty, precision_rounding=uom_rounding
-                ):
-                    so_id = wiz_line.order_line_id.order_id
-                    proc_group_to_use = proc_group_dict[so_id.id]
-                    vals = wiz_line.order_line_id._prepare_procurement_values(
-                        group_id=proc_group_to_use
+                orderline = wizard_line.order_line_id
+                order = orderline.order_id
+                group_id = order.procurement_group_id
+                if not group_id:
+                    group_id = orderline._get_procurement_group()
+                    if not group_id:
+                        procurement_group_vals = (
+                            orderline._prepare_procurement_group_vals()
+                        )
+                        if date_planned:
+                            procurement_group_vals["date_planned"] = date_planned
+                            procurement_group_vals["sale_id"] = order.id
+                        group_id = self.env["procurement.group"].create(
+                            procurement_group_vals
+                        )
+                else:
+                    group_id = self.env["procurement.group"].search(
+                        [
+                            ("sale_id", "=", order.id),
+                            ("date_planned", "=", date_planned),
+                        ],
+                        limit=1,
                     )
+                    if not group_id:
+                        group_id = order.procurement_group_id.copy(
+                            {"date_planned": date_planned}
+                        )
+
+                order.procurement_group_id = group_id
+                vals = orderline._prepare_procurement_values(group_id=group_id)
+                if wizard.date_planned:
                     vals["date_planned"] = date_planned
-                    vals["carrier_id"] = carrier_id.id
-                    vals["partner_dest_id"] = wizard.partner_id.id
-                    if wizard.route_id:
-                        vals["route_ids"] = wizard.route_id
-                    proc_group_obj.with_context(vals=vals).run(
-                        wiz_line.order_line_id.product_id,
-                        wiz_line.to_ship_qty,
-                        wiz_line.order_line_id.product_uom,
-                        wizard.partner_id.property_stock_customer,
-                        wiz_line.order_line_id.name,
-                        so_id.name,
+                    vals["sale_id"] = order.id
+                if wizard.route_id:
+                    vals["route_ids"] = wizard.route_id
+                # Prepare this procurements
+                line_uom = orderline.product_uom
+                quant_uom = orderline.product_id.uom_id
+                product_qty, procurement_uom = line_uom._adjust_uom_quantities(
+                    wizard_line.to_ship_qty, quant_uom
+                )
+                if not float_is_zero(
+                    product_qty, precision_rounding=procurement_uom.rounding
+                ):
+                    procurement = self.env["procurement.group"].Procurement(
+                        wizard_line.product_id,
+                        product_qty,
+                        procurement_uom,
+                        order.partner_shipping_id.property_stock_customer,
+                        orderline.name,
+                        order.name,
+                        order.company_id,
                         vals,
                     )
+
+                    if order not in proc_list_to_run_by_order_id:
+                        proc_list_to_run_by_order_id[order] = [procurement]
+                    else:
+                        proc_list_to_run_by_order_id[order].append(procurement)
+
+            for order, procument_list in proc_list_to_run_by_order_id.items():
+                carrier_id = (
+                    wizard.carrier_id if wizard.carrier_id else order.carrier_id
+                )
+                picking_vals = {
+                    "carrier_id": carrier_id.id,
+                }
+                if wizard.partner_id:
+                    picking_vals["partner_id"] = wizard.partner_id.id
+                # Run the procurements
+                self.env["procurement.group"].with_context(
+                    picking_vals=picking_vals
+                ).run(procument_list)

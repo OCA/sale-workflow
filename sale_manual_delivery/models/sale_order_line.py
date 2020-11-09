@@ -10,6 +10,7 @@ class SaleOrderLine(models.Model):
     existing_qty = fields.Float(
         "Existing quantity",
         compute="_compute_get_existing_qty",
+        store=True,
         help="Quantity already planned or shipped (stock movements \
             already created)",
         readonly=True,
@@ -22,13 +23,13 @@ class SaleOrderLine(models.Model):
         string="There is Pending qty to add to a delivery",
     )
 
-    @api.multi
-    def _action_launch_stock_rule(self):
-        for line in self:
-            if line.order_id.manual_delivery and line.product_id.type != "service":
-                return False
-            else:
-                return super()._action_launch_stock_rule()
+    def _action_launch_stock_rule(self, previous_product_uom_qty=False):
+        order = self and self[0].order_id or False
+        if order and order.manual_delivery:
+            return False
+        return super()._action_launch_stock_rule(
+            previous_product_uom_qty=previous_product_uom_qty
+        )
 
     @api.depends(
         "move_ids",
@@ -36,7 +37,6 @@ class SaleOrderLine(models.Model):
         "move_ids.location_id",
         "move_ids.location_dest_id",
     )
-    @api.multi
     def _compute_get_existing_qty(self):
         """Computes the remaining quantity on sale order lines, based on related
         done stock moves.

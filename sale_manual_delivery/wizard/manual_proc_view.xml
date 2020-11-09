@@ -17,10 +17,7 @@
                         <field name='partner_id' />
                     </group>
                     <group name="route">
-                        <field
-                            name='route_id'
-                            groups="sale_stock.group_route_so_lines"
-                        />
+                        <field name='route_id' groups="stock.group_adv_location" />
                     </group>
                     <field name='line_ids'>
                         <tree editable="bottom" create="0">
@@ -49,18 +46,16 @@
     <act_window
         id='action_wizard_manual_delivery'
         name='Create Manual Delivery'
-        src_model='sale.order'
+        binding_model='sale.order'
         res_model='manual.delivery'
         view_mode='form'
-        key2='client_action_multi'
         target='new'
     />
     <act_window
         id='action_wizard_manual_delivery_line'
         name='Create Manual Delivery'
-        src_model='sale.order.line'
+        binding_model='sale.order.line'
         res_model='manual.delivery'
-        key2='client_action_multi'
         view_mode='form'
         target='new'
     />

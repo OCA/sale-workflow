@@ -33,7 +33,6 @@ class ManualDeliveryLine(models.TransientModel):
     )
     to_ship_qty = fields.Float("Quantity to Ship")
 
-    @api.multi
     @api.depends("to_ship_qty")
     def _compute_remaining_qty(self):
         for line in self:

@@ -1,7 +1,7 @@
 # Copyright 2017 Denis Leemann, Camptocamp SA
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
 
-from odoo import api, fields, models
+from odoo import fields, models
 
 
 class StockMove(models.Model):
@@ -11,17 +11,16 @@ class StockMove(models.Model):
 
     def _get_new_picking_values(self):
         res = super(StockMove, self)._get_new_picking_values()
-        if self.env.context.get("vals"):
-            vals = self.env.context.get("vals")
-            if vals.get("carrier_id"):
-                res["carrier_id"] = vals.get("carrier_id")
+        if self.env.context.get("picking_vals"):
+            vals = self.env.context.get("picking_vals")
+            if vals:
+                res.update(vals)
         return res
 
-    @api.multi
     def _assign_picking(self):
         # Redefine method to filter on date_expected (allows to group moves
         # from the same manual delivery in one delivery)
-        if "manual_delivery" not in self.env.context:
+        if not self.env.context.get("manual_delivery"):
             return super(StockMove, self)._assign_picking()
         Picking = self.env["stock.picking"]
         self.recompute()

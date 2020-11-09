@@ -24,7 +24,6 @@ class SaleOrder(models.Model):
             else:
                 so.manual_delivery = False
 
-    @api.multi
     def action_manual_delivery_wizard(self):
         self.ensure_one()
         wizard = self.env["manual.delivery"].create({"carrier_id": self.carrier_id.id})
@@ -34,7 +33,6 @@ class SaleOrder(models.Model):
         action["res_id"] = wizard.id
         return action
 
-    @api.multi
     def toggle_manual(self):
         self.ensure_one()
         if isinstance(self.id, int):  # if already saved
