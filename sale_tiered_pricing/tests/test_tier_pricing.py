@@ -112,3 +112,22 @@ class TestPricing(SavepointCase):
         self.assertEqual(new_line.price_subtotal, 50 * 10)
         self.assertTrue(" 10" in new_line.name)
         self.assertTrue(" 8" not in new_line.name)
+
+    def test_tiered_pricing_boundaries(self):
+        """Set the tiered pricing to have tiers at 0, 1, 2 units to check boundaries.
+           A tier includes its starting point and exclude its end
+           (the next tier min quantity, or 'infinity').
+           So they work similarly as python lists.
+        """
+        for i, item in enumerate(self.tiered_pricing.tier_items):
+            item.min_quantity = i
+        new_line = self.env["sale.order.line"].create(
+            {
+                "order_id": self.order.id,
+                "product_id": self.product.id,
+                "product_uom_qty": 5,
+            }
+        )
+        self.assertEqual(len(self.tiered_pricing.tier_items), 3)
+        # one item per intermediary tier, and the rest for the last one
+        self.assertEqual(new_line.price_subtotal, 1 * 10 + 1 * 8 + 3 * 7)
