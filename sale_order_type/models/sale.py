@@ -15,6 +15,7 @@ class SaleOrder(models.Model):
         readonly=True,
         states={"draft": [("readonly", False)], "sent": [("readonly", False)]},
         default=lambda so: so._default_type_id(),
+        ondelete="restrict",
     )
 
     @api.model
