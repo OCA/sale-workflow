@@ -9,3 +9,4 @@
 * Raphaël Reverdy <raphael.reverdy@akretion.com>
 * Florian da Costa <florian.dacosta@akretion.com>
 * Iván Todorovich <ivan.todorovich@druidoo.io>
+* Jared Kipe <jared@hibou.io>

@@ -1,11 +1,13 @@
 # Copyright 2011 Akretion, Sodexis
 # Copyright 2018 Akretion
 # Copyright 2019 Camptocamp SA
+# Copyright 2020 Hibou Corp.
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl)
 
 from odoo.exceptions import ValidationError
 
 from odoo.addons.sale.tests.test_sale_order import TestSaleOrder
+from odoo.exceptions import AccessError
 
 
 class TestSaleException(TestSaleOrder):
@@ -16,8 +18,17 @@ class TestSaleException(TestSaleOrder):
 
     def test_sale_order_exception(self):
         self.sale_exception_confirm = self.env["sale.exception.confirm"]
+
+        # Need Exception Manager to interact with exceptions
         exception = self.env.ref("sale_exception.excep_no_zip")
+        with self.assertRaises(AccessError):
+            exception.active = True
+
+        # Grant Exception Manager
+        exception_manager_group = self.env.ref("base_exception.group_exception_rule_manager")
+        exception_manager_group.write({'users': [(4, self.env.user.id, 0)]})
         exception.active = True
+
         partner = self.env.ref("base.res_partner_1")
         partner.zip = False
         p = self.env.ref("product.product_product_6")
