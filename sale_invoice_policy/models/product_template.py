@@ -15,7 +15,7 @@ class ProductTemplate(models.Model):
              'ordered.\n'
              'Delivered Quantity: Invoiced based on the quantity the vendor '
              'delivered (time or deliveries).',
-        default='order')
+        default=lambda x: x._default_default_invoice_policy())
 
     invoice_policy = fields.Selection(
         compute="_compute_invoice_policy",
@@ -24,6 +24,9 @@ class ProductTemplate(models.Model):
         search='_search_invoice_policy',
         inverse='_inverse_invoice_policy',
     )
+
+    def _default_default_invoice_policy(self):
+        return self.env['ir.default'].get('product.template', 'invoice_policy')
 
     @api.multi
     def _inverse_invoice_policy(self):
