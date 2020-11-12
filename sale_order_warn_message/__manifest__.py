@@ -8,7 +8,7 @@
     "version": "13.0.1.0.0",
     "license": "AGPL-3",
     "author": "ForgeFlow, Odoo Community Association (OCA)",
-    "website": "www.github.com/OCA/sale-workflow.git",
+    "website": "https://www.github.com/OCA/sale-workflow",
     "depends": ["sale"],
     "data": ["views/sale_order.xml"],
 }
