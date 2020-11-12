@@ -3,18 +3,40 @@ from odoo.exceptions import Warning as OdooWarning
 
 
 class TieredPricingWizard(models.TransientModel):
+    """Allows the user to create tiered items for the current product (or variant).
+       We can get to here from the product template view, variant view, or elsewhere.
+       The idea is to fill the information from variants if we come from variants,
+       and use defaults otherwise.
+    """
+
     _name = "product.tiered_pricing.wizard"
     _description = "Wizard to automatically set tiered pricing on products."
 
     @api.model
+    def _get_record_from_context(self, model):
+        """Returns a record if active_ids is set in context together with active_model.
+        """
+        record = self.env[model]
+        if self.env.context.get("active_model") == model:
+            active_ids = self.env.context.get("active_ids")
+            record_id = active_ids[0] if active_ids else None
+            if record_id:
+                record = record.browse(record_id)
+        return record
+
+    @api.model
     def _default_product_template(self):
-        template_in_context = self.env.context.get("active_model") == "product.template"
-        template_id = self.env.context.get("active_id")
-        if template_in_context and template_id:
-            template = self.env["product.template"].browse(template_id)
-        else:
-            template = self.env["product.template"].search([], limit=1)
-        return template
+        """The template that can be extracted from context, or first one in db."""
+        template = None
+        active_model = self.env.context.get("active_model")
+        if active_model == "product.template":
+            template = self._get_record_from_context("product.template")
+        elif active_model == "product.product":
+            template = self._get_record_from_context("product.product").product_tmpl_id
+        return template or self.env["product.template"].search([], limit=1)
+
+    def _in_variant_context(self):
+        return self.env.context.get("active_model") == "product.product"
 
     @api.model
     def _default_tiered_pricing(self):
@@ -24,12 +46,16 @@ class TieredPricingWizard(models.TransientModel):
     @api.onchange("product_template_id")
     def onchange_product_template_id(self):
         self.variant_ids = self.product_template_id.valid_existing_variant_ids
+        if self._in_variant_context() and self.only_variants:
+            context_variant = self._get_record_from_context("product.product")
+            if self.product_template_id == context_variant.product_tmpl_id:
+                self.variant_ids = context_variant
         return {}
 
     product_template_id = fields.Many2one(
         "product.template", string="Product", default=_default_product_template
     )
-    only_variants = fields.Boolean("Restrict to variants", default=False)
+    only_variants = fields.Boolean("Restrict to variants", default=_in_variant_context)
     variant_ids = fields.Many2many("product.product", string="Variants")
     pricelist_ids = fields.Many2many(
         "product.pricelist",
@@ -47,7 +73,7 @@ class TieredPricingWizard(models.TransientModel):
     def create_pricelist_items(self):
         if not self.pricelist_ids:
             raise OdooWarning(_("You should select at least one target pricelist!"))
-        if not self.product_template_id:
+        if not self.only_variants and not self.product_template_id:
             raise OdooWarning(_("You should select a product!"))
         if self.only_variants and not self.variant_ids:
             raise OdooWarning(_("You should select at least one variant!"))

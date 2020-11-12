@@ -100,7 +100,7 @@ class ProductPriceList(models.Model):
                 "You cannot have recursive tiered pricings. "
                 "Check the following pricelists:"
             )
-            names = ", ".join(n for n in recursive_tiers.mapped("names") if n)
+            names = ", ".join(n for n in recursive_tiers.mapped("name") if n)
             raise ValidationError(_("{}\n{}").format(message, names))  # yeah...
         for price_list in tiered_pricings:
             if not price_list.item_ids:

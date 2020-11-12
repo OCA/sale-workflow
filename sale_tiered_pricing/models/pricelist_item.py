@@ -22,17 +22,18 @@ class ProductPricelistItem(models.Model):
     @api.constrains("compute_price")
     def _constrains_tier_items(self):
         tier_items = self.filtered(lambda i: i.compute_price == "tier")
-        bad_tier_items = tier_items.filtered(
-            lambda i: not i.tiered_pricelist_id.is_tiered_pricing
-        )
-        if bad_tier_items:
+
+        if tier_items.filtered(lambda i: not i.tiered_pricelist_id.is_tiered_pricing):
             message = _("Tiered pricings should be set on all tiered items.")
             raise ValidationError(message)
+
+        if tier_items.filtered(lambda i: i.pricelist_id.is_tiered_pricing):
+            raise ValidationError(_("You cannot create a recursive tiered item."))
 
     def _get_pricelist_item_name_price(self):
         super(ProductPricelistItem, self)._get_pricelist_item_name_price()
         for item in self.filtered(lambda i: i.compute_price == "tier"):
-            item.price = item.tiered_pricelist_id.name
+            item.price = item.tiered_pricelist_id.display_name
 
     def _compute_price(self, price, price_uom, product, quantity=1.0, partner=False):
         if self.compute_price == "tier":
