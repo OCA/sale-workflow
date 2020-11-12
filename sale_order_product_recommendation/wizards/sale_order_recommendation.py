@@ -37,6 +37,11 @@ class SaleOrderRecommendation(models.TransientModel):
         help="The less, the faster they will be found.",
     )
     last_compute = fields.Char()
+    # Get default value from config settings
+    sale_recommendation_price_origin = fields.Selection([
+        ('pricelist', 'Pricelist'),
+        ('last_sale_price', 'Last sale price')
+    ], string="Product price origin", default="pricelist")
 
     @api.model
     def _default_order_id(self):
@@ -197,14 +202,28 @@ class SaleOrderRecommendationLine(models.TransientModel):
     )
     sale_uom_id = fields.Many2one(related="sale_line_id.product_uom")
 
-    @api.depends("partner_id", "product_id", "pricelist_id", "units_included")
+    @api.depends("partner_id", "product_id", "pricelist_id", "units_included",
+                 "wizard_id.sale_recommendation_price_origin")
     def _compute_price_unit(self):
+        """
+        Get product price unit from product list price or from last sale price
+        """
+        price_origin = (
+            fields.first(self).wizard_id.sale_recommendation_price_origin or
+            "pricelist"
+        )
+        if price_origin == "last_sale_price":
+            last_sale_price_dic = self._get_last_sale_price_product()
         for one in self:
-            one.price_unit = one.product_id.with_context(
-                partner=one.partner_id.id,
-                pricelist=one.pricelist_id.id,
-                quantity=one.units_included,
-            ).price
+            if price_origin == "pricelist":
+                one.price_unit = one.product_id.with_context(
+                    partner=one.partner_id.id,
+                    pricelist=one.pricelist_id.id,
+                    quantity=one.units_included,
+                ).price
+            else:
+                one.price_unit = last_sale_price_dic.get(
+                    one.product_id.id, 0.0)
 
     def _prepare_update_so_line(self, line_form):
         """So we can extend SO update"""
@@ -215,3 +234,28 @@ class SaleOrderRecommendationLine(models.TransientModel):
         line_form.product_id = self.product_id
         line_form.sequence = sequence
         line_form.product_uom_qty = self.units_included
+
+    def _get_last_sale_price_product(self):
+        """
+        Make a SQL query to get all records in one execution for performance
+        """
+        sql = """
+            SELECT pp.id as product_id,
+            (SELECT price_unit
+                FROM sale_order_line sol
+                    LEFT JOIN sale_order so ON sol.order_id=so.id
+                WHERE sol.product_id = pp.id
+                    AND so.partner_id = %s
+                    AND so.company_id = %s
+                    AND so.state not in ('draft', 'sent', 'cancel')
+                ORDER BY so.confirmation_date DESC, so.id DESC
+                LIMIT 1
+            ) AS price_unit
+            FROM product_product pp
+            WHERE pp.id in %s
+        """
+        self.env.cr.execute(sql, (
+            fields.first(self).partner_id.id,
+            self.env.user.company_id.id, tuple(self.mapped("product_id").ids))
+        )
+        return dict(self.env.cr.fetchall())
