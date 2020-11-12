@@ -16,6 +16,7 @@
                         <field name="order_id" invisible="1"/>
                         <field name="months" widget="numeric_step"/>
                         <field name="line_amount" widget="numeric_step"/>
+                        <field name="sale_recommendation_price_origin"/>
                     </group>
                     <group>
                         <field name="line_ids" nolabel="1" mode="tree,kanban">
