@@ -96,3 +96,37 @@ class RecommendationCaseTests(RecommendationCase):
         self.assertEqual(2, len(self.new_so.invoice_ids))
         self.assertEqual(2,
                          self.new_so.invoice_ids[:1].invoice_line_ids.quantity)
+
+    def test_recommendations_price_origin(self):
+        # Display product price from pricelist
+        wizard = self.wizard()
+        wizard.sale_recommendation_price_origin = "pricelist"
+        wiz_line_prod1 = wizard.line_ids.filtered(
+            lambda x: x.product_id == self.prod_1)
+        self.assertEqual(wiz_line_prod1.price_unit, 25.00)
+        wiz_line_prod2 = wizard.line_ids.filtered(
+            lambda x: x.product_id == self.prod_2)
+        self.assertEqual(wiz_line_prod2.price_unit, 50.00)
+        wiz_line_prod3 = wizard.line_ids.filtered(
+            lambda x: x.product_id == self.prod_3)
+        self.assertEqual(wiz_line_prod3.price_unit, 75.00)
+
+        # Display product price from last sale order price
+        wizard.sale_recommendation_price_origin = "last_sale_price"
+        wiz_line_prod1 = wizard.line_ids.filtered(
+            lambda x: x.product_id == self.prod_1)
+        self.assertEqual(wiz_line_prod1.price_unit, 24.50)
+        wiz_line_prod2 = wizard.line_ids.filtered(
+            lambda x: x.product_id == self.prod_2)
+        self.assertEqual(wiz_line_prod2.price_unit, 49.50)
+        wiz_line_prod3 = wizard.line_ids.filtered(
+            lambda x: x.product_id == self.prod_3)
+        self.assertEqual(wiz_line_prod3.price_unit, 74.50)
+
+        # Change confirmation date in order2
+        self.order2.confirmation_date = "2020-11-19"
+        wizard.sale_recommendation_price_origin = "pricelist"
+        wizard.sale_recommendation_price_origin = "last_sale_price"
+        wiz_line_prod2 = wizard.line_ids.filtered(
+            lambda x: x.product_id == self.prod_2)
+        self.assertEqual(wiz_line_prod2.price_unit, 89.00)
