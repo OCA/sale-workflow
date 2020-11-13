@@ -2,3 +2,4 @@
 stock-logistics-workflow
 server-ux
 product-attribute
+account-invoicing
