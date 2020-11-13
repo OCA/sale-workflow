@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <record id="product.group_sale_pricelist" model="res.groups">
+        <field
+            name="implied_ids"
+            eval="[(4, ref('product.group_product_pricelist')), (4, ref('product.group_pricelist_item'))]"
+        />
+    </record>
+</odoo>

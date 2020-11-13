@@ -29,6 +29,11 @@ class TestPricingWizard(TestTieredPricing):
         self.assertEqual(item.applied_on, "1_product")
         self.assertEqual(item.product_tmpl_id.id, template_id)
 
+        self.assertEqual(
+            self.product.product_tmpl_id.tiered_pricing_items,
+            item.mapped("tiered_pricelist_id.tier_items"),
+        )
+
     def test_variant_context(self):
         """In variant context, it creates a new pricelist item for the variant."""
         self.pricelist.item_ids = False
@@ -46,6 +51,11 @@ class TestPricingWizard(TestTieredPricing):
         item = self.pricelist.item_ids[0]
         self.assertEqual(item.applied_on, "0_product_variant")
         self.assertEqual(item.product_id.id, product_id)
+
+        self.assertEqual(
+            self.product.tiered_pricing_items,
+            item.mapped("tiered_pricelist_id.tier_items"),
+        )
 
     def test_constraints(self):
         wizard = self.env[WIZARD_MODEL].create({})  # all defaults!

@@ -11,6 +11,99 @@
                     type="action"
                 />
             </xpath>
+            <xpath
+                expr="//field[@name='item_ids']//tree//field[@name='fixed_price']"
+                position="attributes"
+            >
+                <attribute name="invisible">1</attribute>
+            </xpath>
+            <xpath
+                expr="//field[@name='item_ids']//tree//field[@name='fixed_price']"
+                position="after"
+            >
+                <field name="price" />
+            </xpath>
+            <xpath expr="//group[@name='sale']" position="after">
+                <div name="pricelist_item" groups="product.group_product_pricelist">
+                    <separator string="Tiered Pricing Items" />
+                    <field name="tiered_pricing_items" options='{"no_create": True}'>
+                        <tree create="0" string="Tiered Pricing Items">
+                            <field name="min_quantity" />
+                            <field name="price" string="Price" />
+                            <field name="pricelist_id" string="Pricelist" />
+                        </tree>
+                        <form string="Tiered Pricelist Items">
+                            <h1>
+                                <field name="name" />
+                            </h1>
+                            <group>
+                                <field name="min_quantity" />
+                            </group>
+                            <separator string="Price Computation" />
+                            <group>
+                                <group>
+                                    <label for="compute_price" string="Compute Price" />
+                                    <div>
+                                        <field name="compute_price" widget="radio" />
+                                        <field name="currency_id" invisible="1" />
+                                        <div
+                                            attrs="{'invisible':[('compute_price', '!=', 'fixed')]}"
+                                        >
+                                            <field
+                                                name="fixed_price"
+                                                nolabel="1"
+                                                widget='monetary'
+                                                options="{'currency_field': 'currency_id', 'field_digits': True}"
+                                            />
+                                        </div>
+                                        <div
+                                            attrs="{'invisible':[('compute_price', '!=', 'percentage')]}"
+                                        >
+                                    <field
+                                                name="percent_price"
+                                                nolabel="1"
+                                                class="oe_inline"
+                                            />%%
+                                </div>
+                                    </div>
+                                </group>
+                            </group>
+                            <div class="oe_grey" groups="uom.group_uom">
+                                <p
+                                >The computed price is expressed in the default Unit of Measure of the product.</p>
+                            </div>
+                            <group
+                                col="6"
+                                attrs="{'invisible':[('compute_price', '!=', 'formula')]}"
+                            >
+                                <field name="base" colspan="6" />
+                                <label for="" string="New Price =" />
+                                <div>
+                                    <span
+                                        attrs="{'invisible':[('base', '!=', 'list_price')]}"
+                                    >Public Price  -  </span>
+                                    <span
+                                        attrs="{'invisible':[('base', '!=', 'standard_price')]}"
+                                    >Cost  -  </span>
+                                    <span
+                                        attrs="{'invisible':[('base', '!=', 'pricelist')]}"
+                                    >Other Pricelist  -  </span>
+                                </div>
+                                <label for="price_discount" />
+                                <div class="o_row">
+                                    <field name="price_discount" />
+                                    <span>%%</span>
+                                </div>
+                                <label string=" + " for="price_surcharge" />
+                                <field name="price_surcharge" nolabel="1" />
+                                <field name="price_round" string="Rounding Method" />
+                                <field name="price_min_margin" string="Min. Margin" />
+                                <field name="price_max_margin" string="Max. Margin" />
+                            </group>
+                        </form>
+                    </field>
+                </div>
+            </xpath>
         </field>
     </record>
 </odoo>

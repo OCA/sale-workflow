@@ -12,6 +12,7 @@
     "website": "https://acsone.eu",
     "depends": ["sale_management"],  # pricelist settings are there...
     "data": [
+        "security/groups.xml",
         "views/pricelist.xml",
         "wizard/tiered_pricing_wizard.xml",
         "views/product.xml",
