@@ -11,9 +11,9 @@ class TestSale(common.TransactionCase):
         self.product_11 = self.env.ref("product.product_product_11")
 
     def test_import_product(self):
-        """ Create SO
-            Import products
-            Check products are presents
+        """Create SO
+        Import products
+        Check products are presents
         """
 
         so = self.env["sale.order"].create(
