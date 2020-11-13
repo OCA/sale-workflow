@@ -1,31 +1,30 @@
 # Translation of Odoo Server.
 # This file contains the translation of the following modules:
-# 	* sale_order_product_recommendation
+#	* sale_order_product_recommendation
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: Odoo Server 9.0c\n"
+"Project-Id-Version: Odoo Server 12.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-10-09 11:47+0000\n"
-"PO-Revision-Date: 2017-10-09 13:50+0200\n"
-"Last-Translator: Jairo Llopis <yajo.sk8@gmail.com>\n"
-"Language-Team: \n"
-"Language: es_ES\n"
+"PO-Revision-Date: 2020-11-22 01:36+0000\n"
+"Last-Translator: Marcel Savegnago <marcel.savegnago@gmail.com>\n"
+"Language-Team: none\n"
+"Language: pt_BR\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
-"Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Generator: Poedit 2.0.3\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: nplurals=2; plural=n > 1;\n"
+"X-Generator: Weblate 3.10\n"
 
 #. module: sale_order_product_recommendation
 #: model_terms:ir.ui.view,arch_db:sale_order_product_recommendation.sale_order_recommendation_view_form
 msgid "<span>To be included: </span>"
-msgstr ""
+msgstr "<span>Para ser incluído: </span>"
 
 #. module: sale_order_product_recommendation
 #: model_terms:ir.ui.view,arch_db:sale_order_product_recommendation.sale_order_recommendation_view_form
 msgid "Accept"
-msgstr "Aceptar"
+msgstr "Aceitar"
 
 #. module: sale_order_product_recommendation
 #: model_terms:ir.ui.view,arch_db:sale_order_product_recommendation.sale_order_recommendation_view_form
@@ -35,24 +34,24 @@ msgstr "Cancelar"
 #. module: sale_order_product_recommendation
 #: model:ir.model.fields,help:sale_order_product_recommendation.field_sale_order_recommendation__months
 msgid "Consider these months backwards to generate recommendations."
-msgstr "Considerar estos meses atrás para generar las recomendaciones."
+msgstr "Considere esses meses para trás para gerar recomendações."
 
 #. module: sale_order_product_recommendation
 #: model:ir.model.fields,field_description:sale_order_product_recommendation.field_sale_order_recommendation__create_uid
 #: model:ir.model.fields,field_description:sale_order_product_recommendation.field_sale_order_recommendation_line__create_uid
 msgid "Created by"
-msgstr "Creado por"
+msgstr "Criado por"
 
 #. module: sale_order_product_recommendation
 #: model:ir.model.fields,field_description:sale_order_product_recommendation.field_sale_order_recommendation__create_date
 #: model:ir.model.fields,field_description:sale_order_product_recommendation.field_sale_order_recommendation_line__create_date
 msgid "Created on"
-msgstr "Creado el"
+msgstr "Criado em"
 
 #. module: sale_order_product_recommendation
 #: model:ir.model.fields,field_description:sale_order_product_recommendation.field_sale_order_recommendation_line__currency_id
 msgid "Currency"
-msgstr "Moneda"
+msgstr "Moeda"
 
 #. module: sale_order_product_recommendation
 #: model:ir.model.fields,field_description:sale_order_product_recommendation.field_sale_order_recommendation_line__partner_id
@@ -61,15 +60,14 @@ msgstr "Cliente"
 
 #. module: sale_order_product_recommendation
 #: model_terms:ir.ui.view,arch_db:sale_order_product_recommendation.sale_order_recommendation_view_form
-#, fuzzy
 msgid "Delivered:"
-msgstr "Veces entregado"
+msgstr "Entregue:"
 
 #. module: sale_order_product_recommendation
 #: model:ir.model.fields,field_description:sale_order_product_recommendation.field_sale_order_recommendation__display_name
 #: model:ir.model.fields,field_description:sale_order_product_recommendation.field_sale_order_recommendation_line__display_name
 msgid "Display Name"
-msgstr "Nombre a mostrar"
+msgstr "Nome Exibido"
 
 #. module: sale_order_product_recommendation
 #: model:ir.model.fields,field_description:sale_order_product_recommendation.field_sale_order_recommendation__id
@@ -80,25 +78,25 @@ msgstr "ID"
 #. module: sale_order_product_recommendation
 #: model:ir.model.fields,field_description:sale_order_product_recommendation.field_sale_order_recommendation__last_compute
 msgid "Last Compute"
-msgstr ""
+msgstr "Última Computação"
 
 #. module: sale_order_product_recommendation
 #: model:ir.model.fields,field_description:sale_order_product_recommendation.field_sale_order_recommendation____last_update
 #: model:ir.model.fields,field_description:sale_order_product_recommendation.field_sale_order_recommendation_line____last_update
 msgid "Last Modified on"
-msgstr "Última modificación en"
+msgstr "Última modificação em"
 
 #. module: sale_order_product_recommendation
 #: model:ir.model.fields,field_description:sale_order_product_recommendation.field_sale_order_recommendation__write_uid
 #: model:ir.model.fields,field_description:sale_order_product_recommendation.field_sale_order_recommendation_line__write_uid
 msgid "Last Updated by"
-msgstr "Última modificación por"
+msgstr "Última atualização por"
 
 #. module: sale_order_product_recommendation
 #: model:ir.model.fields,field_description:sale_order_product_recommendation.field_sale_order_recommendation__write_date
 #: model:ir.model.fields,field_description:sale_order_product_recommendation.field_sale_order_recommendation_line__write_date
 msgid "Last Updated on"
-msgstr "Última actualización en"
+msgstr "Última atualização em"
 
 #. module: sale_order_product_recommendation
 #: model:ir.model.fields,field_description:sale_order_product_recommendation.field_sale_order_recommendation__months
@@ -108,115 +106,106 @@ msgstr "Meses"
 #. module: sale_order_product_recommendation
 #: model:ir.model.fields,field_description:sale_order_product_recommendation.field_sale_order_recommendation__line_amount
 msgid "Number of recommendations"
-msgstr "Número de recomendaciones"
+msgstr "Número de recomendações"
 
 #. module: sale_order_product_recommendation
 #: model:ir.model.fields,field_description:sale_order_product_recommendation.field_sale_order_recommendation_line__price_unit
-#, fuzzy
 msgid "Price Unit"
-msgstr "Precio unitario"
+msgstr "Preço por Unidade"
 
 #. module: sale_order_product_recommendation
 #: model_terms:ir.ui.view,arch_db:sale_order_product_recommendation.sale_order_recommendation_view_form
-#, fuzzy
 msgid "Price:"
-msgstr "Tarifa"
+msgstr "Preço:"
 
 #. module: sale_order_product_recommendation
 #: model:ir.model.fields,field_description:sale_order_product_recommendation.field_sale_order_recommendation_line__pricelist_id
 msgid "Pricelist"
-msgstr "Tarifa"
+msgstr "Lista de Preço"
 
 #. module: sale_order_product_recommendation
 #: model:ir.model.fields,help:sale_order_product_recommendation.field_sale_order_recommendation_line__pricelist_id
 msgid "Pricelist for current sales order."
-msgstr "Tarifa del pedido de ventas actual."
+msgstr "Lista de preços para o pedido de venda atual."
 
 #. module: sale_order_product_recommendation
 #: model:ir.model.fields,field_description:sale_order_product_recommendation.field_sale_order_recommendation_line__product_id
 #: model_terms:ir.ui.view,arch_db:sale_order_product_recommendation.sale_order_recommendation_view_form
 msgid "Product"
-msgstr "Producto"
+msgstr "Produto"
 
 #. module: sale_order_product_recommendation
 #: model:ir.model.fields,field_description:sale_order_product_recommendation.field_sale_order_recommendation__line_ids
 msgid "Products"
-msgstr "Productos"
+msgstr "Produtos"
 
 #. module: sale_order_product_recommendation
 #: model_terms:ir.ui.view,arch_db:sale_order_product_recommendation.view_order_form
 msgid "Recommended Products"
-msgstr "Productos recomendados"
+msgstr "Produtos Recomendados"
 
 #. module: sale_order_product_recommendation
 #: model:ir.actions.act_window,name:sale_order_product_recommendation.sale_order_recommendation_action
 msgid "Recommended Products for this Customer"
-msgstr "Productos recomendados para este cliente"
+msgstr "Produtos Recomendados para este Cliente"
 
 #. module: sale_order_product_recommendation
 #: model:ir.model,name:sale_order_product_recommendation.model_sale_order_recommendation_line
 msgid "Recommended product for current sale order"
-msgstr "Producto recomendado para el pedido de venta actual"
+msgstr "Produto recomendado para o pedido de venda atual"
 
 #. module: sale_order_product_recommendation
 #: model:ir.model,name:sale_order_product_recommendation.model_sale_order_recommendation
 msgid "Recommended products for current sale order"
-msgstr "Productos recomendados para el pedido de venta actual"
+msgstr "Produtos recomendados para o pedido de venda atual"
 
 #. module: sale_order_product_recommendation
 #: model:ir.model.fields,field_description:sale_order_product_recommendation.field_sale_order_recommendation_line__sale_line_id
-#, fuzzy
 msgid "Sale Line"
-msgstr "Pedido de venta"
+msgstr "Linha de Venda"
 
 #. module: sale_order_product_recommendation
 #: model:ir.model.fields,field_description:sale_order_product_recommendation.field_sale_order_recommendation__order_id
 msgid "Sale Order"
-msgstr "Pedido de venta"
+msgstr "Pedido de Venda"
 
 #. module: sale_order_product_recommendation
 #: model:ir.model.fields,help:sale_order_product_recommendation.field_sale_order_recommendation__line_amount
 msgid "The less, the faster they will be found."
-msgstr "Cuantos menos, más rápido se encontrarán."
+msgstr "Quanto menos, mais rápido eles serão encontrados."
 
 #. module: sale_order_product_recommendation
 #: model:ir.model.fields,field_description:sale_order_product_recommendation.field_sale_order_recommendation_line__times_delivered
-#, fuzzy
 msgid "Times Delivered"
-msgstr "Veces entregado"
+msgstr "Tempos de Entregas"
 
 #. module: sale_order_product_recommendation
 #: model:ir.model.fields,field_description:sale_order_product_recommendation.field_sale_order_recommendation_line__sale_uom_id
 msgid "Unit of Measure"
-msgstr ""
+msgstr "Unidade de Medida"
 
 #. module: sale_order_product_recommendation
 #: model:ir.model.fields,field_description:sale_order_product_recommendation.field_sale_order_recommendation_line__units_delivered
-#, fuzzy
 msgid "Units Delivered"
-msgstr "Unidades entregadas"
+msgstr "Unidades Entregues"
 
 #. module: sale_order_product_recommendation
 #: model:ir.model.fields,field_description:sale_order_product_recommendation.field_sale_order_recommendation_line__units_included
-#, fuzzy
 msgid "Units Included"
-msgstr "Unidades incluidas"
+msgstr "Unidades Incluídas"
 
 #. module: sale_order_product_recommendation
 #: model:ir.model.fields,field_description:sale_order_product_recommendation.field_sale_order_recommendation_line__wizard_id
 msgid "Wizard"
-msgstr "Asistente"
+msgstr "Assistente"
 
 #. module: sale_order_product_recommendation
 #: model:ir.model.fields,help:sale_order_product_recommendation.field_sale_order_recommendation_line__partner_id
 msgid "You can find a customer by its Name, TIN, Email or Internal Reference."
 msgstr ""
+"Você pode encontrar um cliente pelo nome, TIN, E-mail ou Referência Interna."
 
 #. module: sale_order_product_recommendation
 #: model_terms:ir.ui.view,arch_db:sale_order_product_recommendation.sale_order_recommendation_view_form
 msgid "times -"
-msgstr ""
-
-#, fuzzy
-#~ msgid "Is Modified"
-#~ msgstr "Última modificación en"
+msgstr "times -"
