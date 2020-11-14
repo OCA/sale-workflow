@@ -12,7 +12,6 @@ class SaleImportProducts(models.TransientModel):
     items = fields.One2many(
         comodel_name="sale.import.products.items",
         inverse_name="wizard_id",
-        ondelete="cascade",
     )
 
     def create_items(self):
@@ -21,7 +20,7 @@ class SaleImportProducts(models.TransientModel):
                 self.env["sale.import.products.items"].create(
                     {"wizard_id": wizard.id, "product_id": product.id}
                 )
-        view = self.env.ref("sale_product_multi_add." "view_import_product_to_sale2")
+        view = self.env.ref("sale_product_multi_add.view_import_product_to_sale2")
         return {
             "type": "ir.actions.act_window",
             "res_model": self._name,
