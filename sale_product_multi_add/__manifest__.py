@@ -10,5 +10,9 @@
     "version": "14.0.1.0.0",
     "license": "AGPL-3",
     "depends": ["sale"],
-    "data": ["wizards/sale_import_products_view.xml", "views/sale_view.xml"],
+    "data": [
+        "security/ir.model.access.csv",
+        "wizards/sale_import_products_view.xml",
+        "views/sale_view.xml",
+    ],
 }
