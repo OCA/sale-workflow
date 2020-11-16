@@ -78,6 +78,9 @@ class TestPricing(TestTieredPricing):
             self.env["product.pricelist.item"].create(bad_item)
 
     def test_tiered_pricing(self):
+        self.decimal_price.digits = 3  # without this, there would be rounding issues.
+        # However it cannot be put in the setup, because it would get the db precision.
+
         new_line = self.env["sale.order.line"].create(
             {
                 "order_id": self.order.id,
@@ -91,8 +94,8 @@ class TestPricing(TestTieredPricing):
         self.assertTrue(" 8" in new_line.name)
         self.assertTrue(" 7" in new_line.name)
 
-        update_quantity(new_line, 150)  # because of rounding, we lose .5 on subtotal
-        self.assertAlmostEqual(new_line.price_subtotal, 100 * 10 + 50 * 8, 0)
+        update_quantity(new_line, 150)
+        self.assertEqual(new_line.price_subtotal, 100 * 10 + 50 * 8)
         self.assertTrue(" 10" in new_line.name)
         self.assertTrue(" 8" in new_line.name)
         self.assertTrue(" 7" not in new_line.name)

@@ -13,6 +13,7 @@ class TestTieredPricing(SavepointCase):
             {"name": "Test partner", "lang": "en_US"}
         )
         cls.product = cls.env["product.product"].create({"name": "Test product"})
+        cls.decimal_price = cls.env.ref("product.decimal_price")
 
         def make_tier_item(qty, price):
             return {
