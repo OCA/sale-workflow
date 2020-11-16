@@ -29,11 +29,14 @@ class SaleOrderLine(models.Model):
                 line.is_tier_priced = False
 
     def get_sale_order_line_multiline_description_sale(self, product):
-        """Enrich the description with the tier computation."""
+        """Enrich the description with the tier computation.
+           TODO: better description/test that translation works as expected.
+        """
         res = super(SaleOrderLine, self).get_sale_order_line_multiline_description_sale(
             product
         )
         if self.is_tier_priced:
+            context = {"lang": self.order_id.partner_id.lang}  # noqa  # used by _ below
             tier_rule = self.order_id.pricelist_id.get_tier_rule(product, self)
             qps = tier_rule.tiered_pricelist_id.get_quantities_and_prices(
                 self.price_unit, self.product_uom, product, self.product_uom_qty
