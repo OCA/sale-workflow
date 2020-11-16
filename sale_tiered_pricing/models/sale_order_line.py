@@ -21,12 +21,13 @@ class SaleOrderLine(models.Model):
     @api.depends("order_id.pricelist_id", "product_id")
     def _compute_is_tier_priced(self):
         for line in self:
+            is_tier_priced = False
             if line.product_id:
                 product = line._get_contextualized_product()
                 pricelist = line.order_id.pricelist_id
-                line.is_tier_priced = pricelist.is_tier_priced_sale_line(product, line)
-            else:
-                line.is_tier_priced = False
+                if pricelist:
+                    is_tier_priced = pricelist.is_tier_priced_sale_line(product, line)
+            line.is_tier_priced = is_tier_priced
 
     def get_sale_order_line_multiline_description_sale(self, product):
         """Enrich the description with the tier computation.
