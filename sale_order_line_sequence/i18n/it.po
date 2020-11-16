@@ -9,45 +9,47 @@ msgstr ""
 "Project-Id-Version: Odoo Server 10.0\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2017-07-08 00:49+0000\n"
-"PO-Revision-Date: 2017-07-08 00:49+0000\n"
-"Last-Translator: OCA Transbot <transbot@odoo-community.org>, 2017\n"
+"PO-Revision-Date: 2020-11-16 20:36+0000\n"
+"Last-Translator: Mario Riva <mario.riva@agilebg.com>\n"
 "Language-Team: Italian (https://www.transifex.com/oca/teams/23907/it/)\n"
 "Language: it\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
-"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: Weblate 3.10\n"
 
 #. module: sale_order_line_sequence
 #: model_terms:ir.ui.view,arch_db:sale_order_line_sequence.report_saleorder_document_sequence
 msgid "<strong>Sequence</strong>"
-msgstr ""
+msgstr "<strong>Sequenza</strong>"
 
 #. module: sale_order_line_sequence
 #: model:ir.model.fields,help:sale_order_line_sequence.field_sale_order_line__sequence
 msgid "Gives the sequence of this line when displaying the sale order."
 msgstr ""
+"Mostra la sequenza di questa riga quando viene visualizzato l'ordine di "
+"vendita."
 
 #. module: sale_order_line_sequence
 #: model:ir.model.fields,field_description:sale_order_line_sequence.field_sale_order_line__sequence2
 msgid "Line Number"
-msgstr ""
+msgstr "Numero di riga"
 
 #. module: sale_order_line_sequence
 #: model:ir.model.fields,field_description:sale_order_line_sequence.field_sale_order__max_line_sequence
 msgid "Max sequence in lines"
-msgstr ""
+msgstr "Massima sequenza tra le righe"
 
 #. module: sale_order_line_sequence
 #: model:ir.model,name:sale_order_line_sequence.model_sale_order
-#, fuzzy
 msgid "Sale Order"
-msgstr "Ordini vendita"
+msgstr "Ordini di vendita"
 
 #. module: sale_order_line_sequence
 #: model:ir.model,name:sale_order_line_sequence.model_sale_order_line
 msgid "Sales Order Line"
-msgstr "Linea d'ordine di vendita"
+msgstr "Linea di ordine di vendita"
 
 #. module: sale_order_line_sequence
 #: model:ir.model.fields,field_description:sale_order_line_sequence.field_sale_order_line__sequence
@@ -57,4 +59,4 @@ msgstr "Sequenza"
 #. module: sale_order_line_sequence
 #: model:ir.model.fields,help:sale_order_line_sequence.field_sale_order_line__sequence2
 msgid "Shows the sequence of this line in the sale order."
-msgstr ""
+msgstr "Mostra la sequenza di questa riga nell'ordine di vendita."
