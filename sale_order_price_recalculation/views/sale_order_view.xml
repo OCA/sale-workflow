@@ -10,6 +10,9 @@
                 <button name="recalculate_prices" class="ml-2 btn btn-default"
                         string="Recalculate prices" Help="Apply the current pricelist"
                         type="object" attrs="{'invisible':[('state','not in', ['draft', 'sent'])]}"/>
+                <button name="recalculate_taxes" class="ml-2 btn btn-default"
+                        string="Recalculate taxes" Help="Update taxes (ideally after changing tax calculation rounding method)"
+                        type="object" attrs="{'invisible':[('state','not in', ['draft', 'sent'])]}"/>
                 <button name="recalculate_names" class="ml-2 btn btn-default"
                         string="Reset descriptions" Help="Erase custom descriptions of all lines"
                         type="object" attrs="{'invisible':[('state','not in', ['draft', 'sent'])]}"/>

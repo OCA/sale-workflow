@@ -27,6 +27,16 @@ class SaleOrder(models.Model):
         return True
 
     @api.multi
+    def recalculate_taxes(self):
+        # Force updating stored field by calling `_compute_amount`
+        model = self.env['sale.order.line']
+        self.env.add_todo(
+            model._fields['price_tax'],
+            self.mapped('order_line'),
+        )
+        return model.recompute()
+
+    @api.multi
     def recalculate_names(self):
         for line in self.mapped('order_line').filtered('product_id'):
             # we make this to isolate changed values:
