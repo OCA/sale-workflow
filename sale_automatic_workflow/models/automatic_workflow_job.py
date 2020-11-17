@@ -25,16 +25,6 @@ def savepoint(cr):
         _logger.exception("Error during an automatic workflow action.")
 
 
-@contextmanager
-def force_company(env, company_id):
-    user_company = env.user.company_id
-    env.user.update({"company_id": company_id})
-    try:
-        yield
-    finally:
-        env.user.update({"company_id": user_company})
-
-
 class AutomaticWorkflowJob(models.Model):
     """Scheduler that will play automatically the validation of
     invoices, pickings..."""
