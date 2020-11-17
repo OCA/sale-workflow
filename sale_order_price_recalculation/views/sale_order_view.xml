@@ -7,13 +7,16 @@
         <field name="inherit_id" ref="sale.view_order_form"/>
         <field name="arch" type="xml">
             <button name="action_unlock" position="after">
-                <button name="recalculate_prices" class="ml-2 btn btn-default"
+                <button name="recalculate_prices" class="btn btn-default"
+                        confirm="Are you sure you want to recalculate prices?"
                         string="Recalculate prices" Help="Apply the current pricelist"
                         type="object" attrs="{'invisible':[('state','not in', ['draft', 'sent'])]}"/>
-                <button name="recalculate_taxes" class="ml-2 btn btn-default"
+                <button name="recalculate_taxes" class="btn btn-default"
+                        confirm="Are you sure you want to recalculate taxes?"
                         string="Recalculate taxes" Help="Update taxes (ideally after changing tax calculation rounding method)"
                         type="object" attrs="{'invisible':[('state','not in', ['draft', 'sent'])]}"/>
-                <button name="recalculate_names" class="ml-2 btn btn-default"
+                <button name="recalculate_names" class="btn btn-default"
+                        confirm="Are you sure you want to reset descriptions?"
                         string="Reset descriptions" Help="Erase custom descriptions of all lines"
                         type="object" attrs="{'invisible':[('state','not in', ['draft', 'sent'])]}"/>
             </button>
