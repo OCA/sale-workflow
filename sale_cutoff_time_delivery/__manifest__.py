@@ -12,5 +12,9 @@
     "application": False,
     "installable": True,
     "depends": ["sale_stock", "partner_tz"],
-    "data": ["views/res_partner.xml", "views/stock_warehouse.xml"],
+    "data": [
+        "views/res_partner.xml",
+        "views/stock_picking_views.xml",
+        "views/stock_warehouse.xml",
+    ],
 }
