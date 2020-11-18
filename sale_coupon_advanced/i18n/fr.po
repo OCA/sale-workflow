@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 13.0+e\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-10-21 10:44+0000\n"
-"PO-Revision-Date: 2020-10-21 10:44+0000\n"
+"POT-Creation-Date: 2020-11-18 08:06+0000\n"
+"PO-Revision-Date: 2020-11-18 08:06+0000\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -21,6 +21,8 @@ msgid ""
 "<span attrs=\"{'invisible': [('first_order_only', '=', True)]}\">orders of "
 "each client matching the conditions</span>"
 msgstr ""
+"<span attrs=\"{'invisible': [('first_order_only', '=', True)]}\">commandes "
+"de chaque client répondant aux conditions</span>"
 
 #. module: sale_coupon_advanced
 #: model:ir.model.fields,field_description:sale_coupon_advanced.field_sale_coupon_program__first_order_only
@@ -37,7 +39,7 @@ msgstr ""
 #. module: sale_coupon_advanced
 #: model:ir.model.fields,field_description:sale_coupon_advanced.field_sale_coupon_program__next_n_customer_orders
 msgid "Apply only on the next "
-msgstr ""
+msgstr "Appliquer uniquement sur les prochaines "
 
 #. module: sale_coupon_advanced
 #: model:ir.model.fields,field_description:sale_coupon_advanced.field_sale_coupon__code
@@ -47,14 +49,14 @@ msgstr ""
 #. module: sale_coupon_advanced
 #: code:addons/sale_coupon_advanced/models/sale_coupon_program.py:0
 #, python-format
-msgid "Coupon can be used only for the first sale order!"
-msgstr "Le coupon ne peut être utilisé que pour la première commande!"
+msgid "This code can be used only for the first sale order!"
+msgstr "Ce code ne peut être utilisé que pour la première commande !"
 
 #. module: sale_coupon_advanced
 #: code:addons/sale_coupon_advanced/models/sale_coupon_program.py:0
 #, python-format
-msgid "Coupon can be used only for the first {} times!"
-msgstr ""
+msgid "This code can be used only for the {} times!"
+msgstr "Ce code ne peut être utilisé que {} fois !"
 
 #. module: sale_coupon_advanced
 #: model:ir.model.fields,field_description:sale_coupon_advanced.field_sale_coupon_generate__custom_code_generation
@@ -102,9 +104,11 @@ msgstr "Si sélectionné, le produit sera ajouté s'il n'a pas été commandé"
 #. module: sale_coupon_advanced
 #: model:ir.model.fields,help:sale_coupon_advanced.field_sale_coupon_program__next_n_customer_orders
 msgid ""
-"Maximum number of sales orders of the customer in which reward          can "
-"be provided"
+"Maximum number of sales orders of the customer in which reward can be "
+"provided"
 msgstr ""
+"Nombre maximum des prochaines commandes d'un client sur lesquelles "
+"la promotion peut s'appliquer"
 
 #. module: sale_coupon_advanced
 #: model:ir.model.fields,field_description:sale_coupon_advanced.field_sale_coupon_program__is_cumulative
@@ -133,7 +137,7 @@ msgstr "Liste de prix promotion"
 #: code:addons/sale_coupon_advanced/models/sale_order.py:0
 #, python-format
 msgid "Promotion Pricelist: "
-msgstr ""
+msgstr "Liste de prix promotion :"
 
 #. module: sale_coupon_advanced
 #: model:ir.model.fields,field_description:sale_coupon_advanced.field_sale_coupon_program__reward_type
@@ -149,7 +153,7 @@ msgstr "Coupon de vente"
 #. module: sale_coupon_advanced
 #: model:ir.model,name:sale_coupon_advanced.model_sale_coupon_apply_code
 msgid "Sales Coupon Apply Code"
-msgstr "Codice di applicazione coupon di vendita"
+msgstr "Code d'application du bon de réduction"
 
 #. module: sale_coupon_advanced
 #: model:ir.model,name:sale_coupon_advanced.model_sale_coupon_program
@@ -174,22 +178,12 @@ msgstr "Ligne de bons de commande"
 #. module: sale_coupon_advanced
 #: model_terms:ir.ui.view,arch_db:sale_coupon_advanced.sale_coupon_program_view_promo_program_form
 msgid "Select reward pricelist"
-msgstr ""
+msgstr "Sélection de la liste de prix"
 
 #. module: sale_coupon_advanced
 #: model:ir.model.fields,help:sale_coupon_advanced.field_sale_order_line__forced_reward_line
 msgid "Tech field to cleanup automatically created lines"
 msgstr ""
-
-#. module: sale_coupon_advanced
-#: code:addons/sale_coupon_advanced/models/sale_coupon_program.py:0
-#, python-format
-msgid ""
-"The reward products should be in the sales order lines to apply the "
-"discount."
-msgstr ""
-"Les produits de récompense doivent figurer dans les lignes de bon de "
-"commande pour appliquer la remise."
 
 #. module: sale_coupon_advanced
 #: model:ir.model.fields,field_description:sale_coupon_advanced.field_sale_coupon_program__is_reward_product_forced
@@ -200,4 +194,4 @@ msgstr "Produit non-commandé"
 #: code:addons/sale_coupon_advanced/models/sale_coupon_program.py:0
 #, python-format
 msgid "`Apply only on the next` should not be a negative value."
-msgstr ""
+msgstr "`Appliquer uniquement sur les prochaines` ne peut pas être négatif."

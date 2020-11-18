@@ -1,5 +1,6 @@
 # Copyright 2020 Camptocamp SA
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
+from odoo.exceptions import UserError
 from odoo.tests.common import Form
 
 from odoo.addons.sale_coupon.tests.common import TestSaleCouponCommon
@@ -8,7 +9,7 @@ from odoo.addons.sale_coupon.tests.common import TestSaleCouponCommon
 class TestSaleCouponForcedRewardProduct(TestSaleCouponCommon):
     def setUp(self):
         super().setUp()
-
+        self.SaleCouponApplyCode = self.env["sale.coupon.apply.code"]
         self.env["sale.coupon.program"].search([]).write({"active": False})
 
         # create partner for sale order.
@@ -95,6 +96,8 @@ class TestSaleCouponForcedRewardProduct(TestSaleCouponCommon):
         """
         # Case 1.
         order = self.order_forced
+        order.recompute_coupon_lines()
+        # To make sure promotions are not duplicated.
         order.recompute_coupon_lines()
         all_lines = order.order_line
         discount_lines = all_lines.filtered(
@@ -239,3 +242,18 @@ class TestSaleCouponForcedRewardProduct(TestSaleCouponCommon):
         self._test_forced_reward_product_lines_pair(
             self.order_forced, self.program_forced
         )
+
+    def test_05_forced_non_cumulative_reward(self):
+        """Check if only one promotion with code is allowed."""
+        self.program_forced.write(
+            {"promo_code_usage": "code_needed", "promo_code": "FORCEDPRODUCT123"}
+        )
+        program_promotion_percent = self.env.ref("sale_coupon.10_percent_auto_applied")
+        program_promotion_percent.active = True
+        wizard = self.SaleCouponApplyCode.with_context(
+            active_id=self.order_forced.id
+        ).create({"coupon_code": program_promotion_percent.promo_code})
+        wizard.process_coupon()
+        wizard.coupon_code = self.program_forced.promo_code
+        with self.assertRaises(UserError):
+            wizard.process_coupon()
