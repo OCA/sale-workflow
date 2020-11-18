@@ -7,22 +7,41 @@ msgid ""
 msgstr ""
 "Project-Id-Version: sale-workflow (8.0)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-09-09 12:27+0000\n"
-"PO-Revision-Date: 2020-11-05 12:08+0000\n"
-"Last-Translator: Quentin Dupont <perso@quentindupont.fr>\n"
-"Language-Team: French (http://www.transifex.com/oca/OCA-sale-workflow-8-0/"
-"language/fr/)\n"
+"POT-Creation-Date: 2020-11-17 12:24+0000\n"
+"PO-Revision-Date: 2020-11-17 13:26+0100\n"
+"Last-Translator: Yann Papouin <y.papouin@dec-industrie.com>\n"
+"Language-Team: French (http://www.transifex.com/oca/OCA-sale-workflow-8-0/language/fr/)\n"
 "Language: fr\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
-"Content-Transfer-Encoding: \n"
+"Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n > 1;\n"
-"X-Generator: Weblate 3.10\n"
+"X-Generator: Poedit 2.3\n"
+
+#. module: sale_order_price_recalculation
+#: model_terms:ir.ui.view,arch_db:sale_order_price_recalculation.sorp_view_order_form
+msgid "Are you sure you want to recalculate prices?"
+msgstr "Êtes-vous sûr de vouloir mettre à jour les prix ?"
+
+#. module: sale_order_price_recalculation
+#: model_terms:ir.ui.view,arch_db:sale_order_price_recalculation.sorp_view_order_form
+msgid "Are you sure you want to recalculate taxes?"
+msgstr "Êtes-vous sûr de vouloir mettre à jour les taxes ?"
+
+#. module: sale_order_price_recalculation
+#: model_terms:ir.ui.view,arch_db:sale_order_price_recalculation.sorp_view_order_form
+msgid "Are you sure you want to reset descriptions?"
+msgstr "Êtes-vous sûr de vouloir recharger les descriptions par défaut ?"
 
 #. module: sale_order_price_recalculation
 #: model_terms:ir.ui.view,arch_db:sale_order_price_recalculation.sorp_view_order_form
 msgid "Recalculate prices"
 msgstr "Recalculer les prix"
+
+#. module: sale_order_price_recalculation
+#: model_terms:ir.ui.view,arch_db:sale_order_price_recalculation.sorp_view_order_form
+msgid "Recalculate taxes"
+msgstr "Recalculer les taxes"
 
 #. module: sale_order_price_recalculation
 #: model_terms:ir.ui.view,arch_db:sale_order_price_recalculation.sorp_view_order_form

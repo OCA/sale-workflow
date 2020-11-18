@@ -20,6 +20,7 @@
     "installable": True,
     "depends": [
         "sale",
+        'onchange_helper',
     ],
     "data": [
         "views/sale_order_view.xml",

@@ -13,18 +13,8 @@ class SaleOrder(models.Model):
     @api.multi
     def recalculate_prices(self):
         for line in self.mapped('order_line'):
-            dict = line._convert_to_write(line.read()[0])
-            if 'product_tmpl_id' in line._fields:
-                dict['product_tmpl_id'] = line.product_tmpl_id
-            line2 = self.env['sale.order.line'].new(dict)
-            # we make this to isolate changed values:
-            line2.product_uom_change()
-            line2._onchange_discount()
-            line.write({
-                'price_unit': line2.price_unit,
-                'discount': line2.discount,
-            })
-        return True
+            vals = line.play_onchanges({}, ['product_id', 'product_uom_qty'])
+            line.write(vals)
 
     @api.multi
     def recalculate_taxes(self):
@@ -40,9 +30,11 @@ class SaleOrder(models.Model):
     def recalculate_names(self):
         for line in self.mapped('order_line').filtered('product_id'):
             # we make this to isolate changed values:
-            line2 = self.env['sale.order.line'].new({
-                'product_id': line.product_id,
-            })
+            line2 = self.env['sale.order.line'].new(
+                {
+                    'product_id': line.product_id,
+                }
+            )
             line2.product_id_change()
             line.name = line2.name
         return True
