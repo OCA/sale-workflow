@@ -60,10 +60,6 @@ class SaleOrderLine(models.Model):
                     )
                 )
 
-    @api.onchange("product_id")
-    def product_id_change(self):
-        return super().product_id_change()
-
     def _force_qty_with_package(self):
         """
 
