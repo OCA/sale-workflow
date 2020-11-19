@@ -70,9 +70,13 @@ class AutomaticWorkflowJob(models.Model):
     def _do_validate_invoice(self, invoice):
         """Validate an invoice"""
         with savepoint(self.env.cr):
-            invoice.with_context(
-                force_company=invoice.company_id.id
-            ).action_invoice_open()
+            try:
+                invoice.with_context(
+                    force_company=invoice.company_id.id
+                ).action_invoice_open()
+            except Exception:
+                _logger.exception('Error on validating invoice {}'.format(invoice.id))
+                raise
 
     @api.model
     def _validate_invoices(self, validate_invoice_filter):
