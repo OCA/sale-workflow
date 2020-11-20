@@ -36,7 +36,7 @@ class SaleOrderLine(models.Model):
         res = super(SaleOrderLine, self).get_sale_order_line_multiline_description_sale(
             product
         )
-        if self.is_tier_priced:
+        if self.is_tier_priced and self.product_uom_qty:
             context = {"lang": self.order_id.partner_id.lang}  # noqa  # used by _ below
             tier_rule = self.order_id.pricelist_id.get_tier_rule(product, self)
             qps = tier_rule.tiered_pricelist_id.get_quantities_and_prices(
