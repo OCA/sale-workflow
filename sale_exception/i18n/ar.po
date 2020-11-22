@@ -88,14 +88,12 @@ msgstr "اسم العرض"
 #. module: sale_exception
 #: model:ir.model,name:sale_exception.model_exception_rule
 #, fuzzy
-#| msgid "Exception Rules"
 msgid "Exception Rule"
 msgstr "قوانين خلل المبيعات"
 
 #. module: sale_exception
 #: model:ir.model.fields,field_description:sale_exception.field_sale_exception_confirm__exception_ids
 #, fuzzy
-#| msgid "Exception Rules"
 msgid "Exceptions to resolve"
 msgstr "قوانين خلل المبيعات"
 
@@ -109,7 +107,6 @@ msgstr "المعرف"
 #: model:ir.model.fields,field_description:sale_exception.field_sale_order_line__ignore_exception
 #: model_terms:ir.ui.view,arch_db:sale_exception.view_order_form
 #, fuzzy
-#| msgid "Sale Exceptions"
 msgid "Ignore Exceptions"
 msgstr "خلل المبيعات"
 
@@ -189,7 +186,6 @@ msgstr ""
 #. module: sale_exception
 #: model:ir.model.fields,field_description:sale_exception.field_exception_rule__sale_ids
 #, fuzzy
-#| msgid "Sale"
 msgid "Sales"
 msgstr "أمر مبيعات"
 
