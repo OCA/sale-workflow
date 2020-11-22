@@ -24,7 +24,6 @@ msgstr ""
 #: model:ir.model.fields,field_description:sale_order_lot_generator.field_product_product__auto_generate_prodlot
 #: model:ir.model.fields,field_description:sale_order_lot_generator.field_product_template__auto_generate_prodlot
 #, fuzzy
-#| msgid "Lot Generation Auto"
 msgid "Auto Generate Lot"
 msgstr "Génération automatique des Lots"
 
@@ -44,7 +43,6 @@ msgstr "Modèle de produit"
 #. module: sale_order_lot_generator
 #: model:ir.model,name:sale_order_lot_generator.model_sale_order
 #, fuzzy
-#| msgid "Sales Order"
 msgid "Sale Order"
 msgstr "Bon de commande"
 

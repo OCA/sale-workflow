@@ -41,7 +41,6 @@ msgstr ""
 #. module: sale_order_lot_generator
 #: model:ir.model,name:sale_order_lot_generator.model_sale_order
 #, fuzzy
-#| msgid "Sales Order"
 msgid "Sale Order"
 msgstr "Prodajni nalog"
 

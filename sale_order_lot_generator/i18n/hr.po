@@ -24,7 +24,6 @@ msgstr ""
 #: model:ir.model.fields,field_description:sale_order_lot_generator.field_product_product__auto_generate_prodlot
 #: model:ir.model.fields,field_description:sale_order_lot_generator.field_product_template__auto_generate_prodlot
 #, fuzzy
-#| msgid "Lot Generation Auto"
 msgid "Auto Generate Lot"
 msgstr "Automatsko kreiranje lot-a"
 
@@ -46,7 +45,6 @@ msgstr "Predložak proizvoda"
 #. module: sale_order_lot_generator
 #: model:ir.model,name:sale_order_lot_generator.model_sale_order
 #, fuzzy
-#| msgid "Sales Order"
 msgid "Sale Order"
 msgstr "Prodajni nalog"
 
