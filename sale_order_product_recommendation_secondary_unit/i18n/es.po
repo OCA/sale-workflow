@@ -44,14 +44,12 @@ msgstr "Cta. Ud. secundaria"
 #. module: sale_order_product_recommendation_secondary_unit
 #: model:ir.model.fields,field_description:sale_order_product_recommendation_secondary_unit.field_sale_order_recommendation_line__secondary_uom_id
 #, fuzzy
-#| msgid "Secondary Qty"
 msgid "Secondary Uom"
 msgstr "Cta. Ud. secundaria"
 
 #. module: sale_order_product_recommendation_secondary_unit
 #: model:ir.model.fields,help:sale_order_product_recommendation_secondary_unit.field_sale_order_recommendation_line__product_tmpl_id
 #, fuzzy
-#| msgid "Default secondary unit for sales"
 msgid "To filter secondary uom available"
 msgstr "Ud. de venta secundaria por defecto"
 

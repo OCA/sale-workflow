@@ -34,7 +34,6 @@ msgstr "Prodotto consigliato per questo ordine di vendita"
 #. module: sale_order_product_recommendation_secondary_unit
 #: model:ir.model,name:sale_order_product_recommendation_secondary_unit.model_sale_order_recommendation
 #, fuzzy
-#| msgid "Recommended product for current sale order"
 msgid "Recommended products for current sale order"
 msgstr "Prodotto consigliato per questo ordine di vendita"
 
@@ -46,7 +45,6 @@ msgstr "Qty Secondaria"
 #. module: sale_order_product_recommendation_secondary_unit
 #: model:ir.model.fields,field_description:sale_order_product_recommendation_secondary_unit.field_sale_order_recommendation_line__secondary_uom_id
 #, fuzzy
-#| msgid "Secondary Qty"
 msgid "Secondary Uom"
 msgstr "Qty Secondaria"
 
