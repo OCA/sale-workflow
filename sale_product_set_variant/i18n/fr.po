@@ -69,28 +69,24 @@ msgstr "Article"
 #: model:ir.model.fields,field_description:sale_product_set_variant.field_product_set_add_line__product_template_id
 #: model:ir.model.fields,field_description:sale_product_set_variant.field_product_set_line__product_template_id
 #, fuzzy
-#| msgid "Product set line"
 msgid "Product Template"
 msgstr "ligne du Set"
 
 #. module: sale_product_set_variant
 #: code:addons/sale_product_set_variant/wizard/product_set_add.py:80
 #, fuzzy, python-format
-#| msgid "No selected product_template_id in Product Set"
 msgid "Product Template is not selected in Product Set"
 msgstr "Pas de product_template_id sélectionné dans cet ensemble de produits"
 
 #. module: sale_product_set_variant
 #: model:ir.model,name:sale_product_set_variant.model_product_set_add_line
 #, fuzzy
-#| msgid "Product set line"
 msgid "Product add line"
 msgstr "ligne du Set"
 
 #. module: sale_product_set_variant
 #: model:ir.model.fields,field_description:sale_product_set_variant.field_product_set_add__product_set_id
 #, fuzzy
-#| msgid "Products"
 msgid "Product set"
 msgstr "Produits"
 
@@ -124,7 +120,6 @@ msgstr "Set"
 #: model:product.product,name:sale_product_set_variant.product_product_single_variant
 #: model:product.template,name:sale_product_set_variant.product_product_single_variant_product_template
 #, fuzzy
-#| msgid "Variant"
 msgid "Single Variant"
 msgstr "Variante"
 

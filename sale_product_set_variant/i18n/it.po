@@ -68,7 +68,6 @@ msgstr "Prodotto"
 #: model:ir.model.fields,field_description:sale_product_set_variant.field_product_set_add_line__product_template_id
 #: model:ir.model.fields,field_description:sale_product_set_variant.field_product_set_line__product_template_id
 #, fuzzy
-#| msgid "Product"
 msgid "Product Template"
 msgstr "Prodotto"
 
@@ -81,14 +80,12 @@ msgstr ""
 #. module: sale_product_set_variant
 #: model:ir.model,name:sale_product_set_variant.model_product_set_add_line
 #, fuzzy
-#| msgid "Product"
 msgid "Product add line"
 msgstr "Prodotto"
 
 #. module: sale_product_set_variant
 #: model:ir.model.fields,field_description:sale_product_set_variant.field_product_set_add__product_set_id
 #, fuzzy
-#| msgid "Product"
 msgid "Product set"
 msgstr "Prodotto"
 
