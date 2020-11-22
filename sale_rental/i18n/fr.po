@@ -305,7 +305,6 @@ msgstr "Catégorie d'article"
 #. module: sale_rental
 #: model:ir.model.fields,field_description:sale_rental.field_create_rental_product__hw_product_id
 #, fuzzy
-#| msgid "Product Name"
 msgid "Product to Rent"
 msgstr "Nom de l'article"
 
@@ -391,14 +390,12 @@ msgstr "Route de location"
 #. module: sale_rental
 #: model:ir.model.fields,field_description:sale_rental.field_sale_rental__start_order_id
 #, fuzzy
-#| msgid "Rental"
 msgid "Rental SO"
 msgstr "Location"
 
 #. module: sale_rental
 #: model:ir.model.fields,field_description:sale_rental.field_sale_rental__start_order_line_id
 #, fuzzy
-#| msgid "Rental Sale Order Line"
 msgid "Rental SO Line"
 msgstr "Ligne de commande de location"
 
@@ -410,7 +407,6 @@ msgstr ""
 #. module: sale_rental
 #: model:ir.model.fields,field_description:sale_rental.field_create_rental_product__name
 #, fuzzy
-#| msgid "Create Rental Service"
 msgid "Rental Service Name"
 msgstr "Créer le service de location"
 
@@ -418,7 +414,6 @@ msgstr "Créer le service de location"
 #: model:ir.model.fields,field_description:sale_rental.field_product_product__rental_service_ids
 #: model_terms:ir.ui.view,arch_db:sale_rental.product_normal_form_view
 #, fuzzy
-#| msgid "Related Rental Services"
 msgid "Rental Services"
 msgstr "Services de location associés"
 
@@ -443,7 +438,6 @@ msgstr ""
 #: model:product.product,name:sale_rental.rent_product_product_20
 #: model:product.template,name:sale_rental.rent_product_product_20_product_template
 #, fuzzy
-#| msgid "Rental of a %s"
 msgid "Rental of one Flipover"
 msgstr "Location d'un %s"
 
@@ -483,7 +477,6 @@ msgstr "Retour"
 #. module: sale_rental
 #: model:ir.model,name:sale_rental.model_sale_order
 #, fuzzy
-#| msgid "Sales Order"
 msgid "Sale Order"
 msgstr "Bon de commande"
 
@@ -496,7 +489,6 @@ msgstr "Sales Order Line"
 #: model_terms:ir.ui.view,arch_db:sale_rental.sale_rental_form
 #: model_terms:ir.ui.view,arch_db:sale_rental.sale_rental_tree
 #, fuzzy
-#| msgid "Rentals"
 msgid "Sales Rentals"
 msgstr "Locations"
 
@@ -543,7 +535,6 @@ msgstr ""
 #. module: sale_rental
 #: model_terms:ir.ui.view,arch_db:sale_rental.sale_rental_form
 #, fuzzy
-#| msgid "Sales Order Line"
 msgid "Selling Order Line"
 msgstr "Sales Order Line"
 

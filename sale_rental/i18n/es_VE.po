@@ -395,7 +395,6 @@ msgstr ""
 #. module: sale_rental
 #: model:ir.model.fields,field_description:sale_rental.field_sale_rental__start_order_line_id
 #, fuzzy
-#| msgid "Sales Order Line"
 msgid "Rental SO Line"
 msgstr "Línea de pedido de venta"
 
@@ -474,7 +473,6 @@ msgstr ""
 #. module: sale_rental
 #: model:ir.model,name:sale_rental.model_sale_order
 #, fuzzy
-#| msgid "Sales Order"
 msgid "Sale Order"
 msgstr "Pedidos de venta"
 
@@ -532,7 +530,6 @@ msgstr ""
 #. module: sale_rental
 #: model_terms:ir.ui.view,arch_db:sale_rental.sale_rental_form
 #, fuzzy
-#| msgid "Sales Order Line"
 msgid "Selling Order Line"
 msgstr "Línea de pedido de venta"
 

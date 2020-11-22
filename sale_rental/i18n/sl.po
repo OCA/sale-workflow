@@ -316,7 +316,6 @@ msgstr "Kategorija proizvoda"
 #. module: sale_rental
 #: model:ir.model.fields,field_description:sale_rental.field_create_rental_product__hw_product_id
 #, fuzzy
-#| msgid "Product Name"
 msgid "Product to Rent"
 msgstr "Naziv proizvoda"
 
@@ -402,14 +401,12 @@ msgstr "Najemniška proga"
 #. module: sale_rental
 #: model:ir.model.fields,field_description:sale_rental.field_sale_rental__start_order_id
 #, fuzzy
-#| msgid "Rental Out"
 msgid "Rental SO"
 msgstr "Izhodni najem"
 
 #. module: sale_rental
 #: model:ir.model.fields,field_description:sale_rental.field_sale_rental__start_order_line_id
 #, fuzzy
-#| msgid "Rental Sale Order Line"
 msgid "Rental SO Line"
 msgstr "Najemniška postavka prodajnega naloga"
 
@@ -421,7 +418,6 @@ msgstr ""
 #. module: sale_rental
 #: model:ir.model.fields,field_description:sale_rental.field_create_rental_product__name
 #, fuzzy
-#| msgid "Create Rental Service"
 msgid "Rental Service Name"
 msgstr "Ustvari najemniško storitev"
 
@@ -429,7 +425,6 @@ msgstr "Ustvari najemniško storitev"
 #: model:ir.model.fields,field_description:sale_rental.field_product_product__rental_service_ids
 #: model_terms:ir.ui.view,arch_db:sale_rental.product_normal_form_view
 #, fuzzy
-#| msgid "Related Rental Services"
 msgid "Rental Services"
 msgstr "Povezane najemniške storitve"
 
@@ -448,7 +443,6 @@ msgstr "Najem %s"
 #: model:product.product,name:sale_rental.rent_product_product_25
 #: model:product.template,name:sale_rental.rent_product_product_25_product_template
 #, fuzzy
-#| msgid "Rental of one iMac"
 msgid "Rental of one Acoustic Bloc Screens"
 msgstr "Najem enega iMac"
 
@@ -456,7 +450,6 @@ msgstr "Najem enega iMac"
 #: model:product.product,name:sale_rental.rent_product_product_20
 #: model:product.template,name:sale_rental.rent_product_product_20_product_template
 #, fuzzy
-#| msgid "Rental of one iMac"
 msgid "Rental of one Flipover"
 msgstr "Najem enega iMac"
 
@@ -464,7 +457,6 @@ msgstr "Najem enega iMac"
 #: model:product.product,name:sale_rental.rent_consu_delivery_01
 #: model:product.template,name:sale_rental.rent_consu_delivery_01_product_template
 #, fuzzy
-#| msgid "Rental of one iMac"
 msgid "Rental of one Three-Seat Sofa"
 msgstr "Najem enega iMac"
 
@@ -498,7 +490,6 @@ msgstr "Vračilo"
 #. module: sale_rental
 #: model:ir.model,name:sale_rental.model_sale_order
 #, fuzzy
-#| msgid "Sales Order"
 msgid "Sale Order"
 msgstr "Prodajni nalog"
 
@@ -511,7 +502,6 @@ msgstr "Postavka prodajnega naloga"
 #: model_terms:ir.ui.view,arch_db:sale_rental.sale_rental_form
 #: model_terms:ir.ui.view,arch_db:sale_rental.sale_rental_tree
 #, fuzzy
-#| msgid "Rentals"
 msgid "Sales Rentals"
 msgstr "Najemi"
 
@@ -558,7 +548,6 @@ msgstr ""
 #. module: sale_rental
 #: model_terms:ir.ui.view,arch_db:sale_rental.sale_rental_form
 #, fuzzy
-#| msgid "Sales Order Line"
 msgid "Selling Order Line"
 msgstr "Postavka prodajnega naloga"
 
