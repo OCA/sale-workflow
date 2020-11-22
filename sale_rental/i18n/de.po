@@ -160,9 +160,6 @@ msgstr "End-Datum"
 #. module: sale_rental
 #: model:ir.model.fields,help:sale_rental.field_sale_rental__end_date
 #, fuzzy
-#| msgid ""
-#| "End Date of the Rental, taking into account all the extensions sold to "
-#| "the customer."
 msgid ""
 "End Date of the Rental (extensions included),         taking into account "
 "all the extensions sold to the customer."
@@ -317,7 +314,6 @@ msgstr "Produktkategorie"
 #. module: sale_rental
 #: model:ir.model.fields,field_description:sale_rental.field_create_rental_product__hw_product_id
 #, fuzzy
-#| msgid "Product Name"
 msgid "Product to Rent"
 msgstr "Produktname"
 
@@ -403,14 +399,12 @@ msgstr ""
 #. module: sale_rental
 #: model:ir.model.fields,field_description:sale_rental.field_sale_rental__start_order_id
 #, fuzzy
-#| msgid "Rental Service"
 msgid "Rental SO"
 msgstr "Miet-Service"
 
 #. module: sale_rental
 #: model:ir.model.fields,field_description:sale_rental.field_sale_rental__start_order_line_id
 #, fuzzy
-#| msgid "Rental Service"
 msgid "Rental SO Line"
 msgstr "Miet-Service"
 
@@ -422,7 +416,6 @@ msgstr "Miet-Service"
 #. module: sale_rental
 #: model:ir.model.fields,field_description:sale_rental.field_create_rental_product__name
 #, fuzzy
-#| msgid "Rental Service"
 msgid "Rental Service Name"
 msgstr "Miet-Service"
 
@@ -430,7 +423,6 @@ msgstr "Miet-Service"
 #: model:ir.model.fields,field_description:sale_rental.field_product_product__rental_service_ids
 #: model_terms:ir.ui.view,arch_db:sale_rental.product_normal_form_view
 #, fuzzy
-#| msgid "Rental Service"
 msgid "Rental Services"
 msgstr "Miet-Service"
 
@@ -449,7 +441,6 @@ msgstr ""
 #: model:product.product,name:sale_rental.rent_product_product_25
 #: model:product.template,name:sale_rental.rent_product_product_25_product_template
 #, fuzzy
-#| msgid "Rental of one iMac"
 msgid "Rental of one Acoustic Bloc Screens"
 msgstr "iMac (Miete)"
 
@@ -457,7 +448,6 @@ msgstr "iMac (Miete)"
 #: model:product.product,name:sale_rental.rent_product_product_20
 #: model:product.template,name:sale_rental.rent_product_product_20_product_template
 #, fuzzy
-#| msgid "Rental of one iMac"
 msgid "Rental of one Flipover"
 msgstr "iMac (Miete)"
 
@@ -465,7 +455,6 @@ msgstr "iMac (Miete)"
 #: model:product.product,name:sale_rental.rent_consu_delivery_01
 #: model:product.template,name:sale_rental.rent_consu_delivery_01_product_template
 #, fuzzy
-#| msgid "Rental of one iMac"
 msgid "Rental of one Three-Seat Sofa"
 msgstr "iMac (Miete)"
 
@@ -499,7 +488,6 @@ msgstr ""
 #. module: sale_rental
 #: model:ir.model,name:sale_rental.model_sale_order
 #, fuzzy
-#| msgid "Sales Order"
 msgid "Sale Order"
 msgstr "Verkaufsauftrag"
 
@@ -512,7 +500,6 @@ msgstr "Auftragsposition"
 #: model_terms:ir.ui.view,arch_db:sale_rental.sale_rental_form
 #: model_terms:ir.ui.view,arch_db:sale_rental.sale_rental_tree
 #, fuzzy
-#| msgid "New Rental"
 msgid "Sales Rentals"
 msgstr "Neue Vermietung"
 
@@ -559,7 +546,6 @@ msgstr ""
 #. module: sale_rental
 #: model_terms:ir.ui.view,arch_db:sale_rental.sale_rental_form
 #, fuzzy
-#| msgid "Sales Order Line"
 msgid "Selling Order Line"
 msgstr "Auftragsposition"
 
