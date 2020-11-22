@@ -126,7 +126,6 @@ msgstr "Razlog otkazivanja"
 #. module: sale_cancel_reason
 #: model:ir.model,name:sale_cancel_reason.model_sale_order
 #, fuzzy
-#| msgid "Sales Order"
 msgid "Sale Order"
 msgstr "Prodajni nalog"
 
