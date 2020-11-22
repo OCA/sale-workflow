@@ -118,7 +118,6 @@ msgstr ""
 #. module: sale_exception
 #: model:exception.rule,name:sale_exception.excep_no_sol
 #, fuzzy
-#| msgid "Sales Order"
 msgid "No order lines"
 msgstr "Objednávka predaja"
 
@@ -147,7 +146,6 @@ msgstr ""
 #. module: sale_exception
 #: model:ir.model.fields,field_description:sale_exception.field_exception_rule_sale_ids
 #, fuzzy
-#| msgid "Sales Order"
 msgid "Sales"
 msgstr "Objednávka predaja"
 
@@ -159,7 +157,6 @@ msgstr "Objednávka predaja"
 #. module: sale_exception
 #: model:ir.model,name:sale_exception.model_sale_order_line
 #, fuzzy
-#| msgid "Sales Order"
 msgid "Sales Order Line"
 msgstr "Objednávka predaja"
 

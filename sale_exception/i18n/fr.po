@@ -82,7 +82,6 @@ msgstr "ID"
 #. module: sale_exception
 #: model:ir.model.fields,field_description:sale_exception.field_sale_order_line_ignore_exception
 #, fuzzy
-#| msgid "Sale Exceptions"
 msgid "Ignore Exceptions"
 msgstr "Restrictions de vente"
 
@@ -120,7 +119,6 @@ msgstr ""
 #. module: sale_exception
 #: model:exception.rule,name:sale_exception.excep_no_sol
 #, fuzzy
-#| msgid "Sales Order"
 msgid "No order lines"
 msgstr "Bon de commande"
 
@@ -149,7 +147,6 @@ msgstr "Restrictions de vente"
 #. module: sale_exception
 #: model:ir.model.fields,field_description:sale_exception.field_exception_rule_sale_ids
 #, fuzzy
-#| msgid "Sale"
 msgid "Sales"
 msgstr "Ventes"
 
@@ -161,7 +158,6 @@ msgstr "Bon de commande"
 #. module: sale_exception
 #: model:ir.model,name:sale_exception.model_sale_order_line
 #, fuzzy
-#| msgid "Sales Order"
 msgid "Sales Order Line"
 msgstr "Bon de commande"
 
