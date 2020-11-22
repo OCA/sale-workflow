@@ -32,10 +32,6 @@ msgstr "Verkaufsauftrag"
 #. module: sale_force_invoiced
 #: model:ir.model.fields,help:sale_force_invoiced.field_sale_order_force_invoiced
 #, fuzzy
-#| msgid ""
-#| "When you set this field, the sales order will be considered as fully "
-#| "invoiced, even when there may be ordered or delivered quantities pending "
-#| "to invoice."
 msgid ""
 "When you set this field, the sales order will be considered as fully "
 "invoiced, even when there may be ordered or delivered quantities pending to "
