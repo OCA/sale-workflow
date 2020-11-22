@@ -24,7 +24,6 @@ msgstr "<strong>Aceptación del cliente:</strong>"
 #. module: sale_order_digitized_signature
 #: model_terms:ir.ui.view,arch_db:sale_order_digitized_signature.view_order_form_signature
 #, fuzzy
-#| msgid "Customer acceptance"
 msgid "Customer Signature"
 msgstr "Aceptación del cliente"
 
@@ -36,6 +35,5 @@ msgstr "Aceptación del cliente"
 #. module: sale_order_digitized_signature
 #: model:ir.model,name:sale_order_digitized_signature.model_sale_order
 #, fuzzy
-#| msgid "Sales Order"
 msgid "Sale Order"
 msgstr "Pedido"
