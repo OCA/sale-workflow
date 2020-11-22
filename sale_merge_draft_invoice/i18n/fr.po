@@ -45,7 +45,6 @@ msgstr "Sociétés"
 #. module: sale_merge_draft_invoice
 #: model:ir.model,name:sale_merge_draft_invoice.model_res_config_settings
 #, fuzzy
-#| msgid "res.config.settings"
 msgid "Config Settings"
 msgstr "res.config.settings"
 
