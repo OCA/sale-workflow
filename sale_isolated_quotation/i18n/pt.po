@@ -63,7 +63,6 @@ msgstr "Referência da Encomenda"
 #. module: sale_isolated_quotation
 #: model:ir.model,name:sale_isolated_quotation.model_sale_order
 #, fuzzy
-#| msgid "Quotation Reference"
 msgid "Quotation"
 msgstr "Referência do Orçamento"
 
