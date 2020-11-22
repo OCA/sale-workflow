@@ -40,7 +40,6 @@ msgstr ""
 #. module: sale_quotation_number
 #: model:ir.model,name:sale_quotation_number.model_sale_order
 #, fuzzy
-#| msgid "Sales Order"
 msgid "Sale Order"
 msgstr "Ordine di vendita"
 
