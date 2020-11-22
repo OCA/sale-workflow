@@ -290,7 +290,6 @@ msgstr "销售预付款发票"
 #: model:ir.actions.act_window,name:sale_invoice_plan.action_sale_invoice_plan
 #: model:ir.ui.menu,name:sale_invoice_plan.menu_sale_invoice_plan
 #, fuzzy
-#| msgid "Use Invoice Plan"
 msgid "Sales Invoice Plan"
 msgstr "使用发票计划"
 
@@ -304,14 +303,12 @@ msgstr "销售订单"
 #. module: sale_invoice_plan
 #: model_terms:ir.ui.view,arch_db:sale_invoice_plan.view_sale_invoice_plan_filter
 #, fuzzy
-#| msgid "Sales Order"
 msgid "Sales Orders"
 msgstr "销售订单"
 
 #. module: sale_invoice_plan
 #: model_terms:ir.ui.view,arch_db:sale_invoice_plan.view_sale_invoice_plan_filter
 #, fuzzy
-#| msgid "Create Invoice Plan"
 msgid "Search Sales Invoice Plan Lines"
 msgstr "创建发票计划"
 
@@ -355,7 +352,6 @@ msgstr "选中“使用发票计划”，但未创建任何计划"
 #. module: sale_invoice_plan
 #: model_terms:ir.actions.act_window,help:sale_invoice_plan.action_sale_invoice_plan
 #, fuzzy
-#| msgid "Please fill percentage for all invoice plan lines"
 msgid "View sales invoice plan lines"
 msgstr "请填写所有发票计划行的百分比"
 

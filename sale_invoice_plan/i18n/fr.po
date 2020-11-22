@@ -295,7 +295,6 @@ msgstr "Facture de paiement d'avance"
 #: model:ir.actions.act_window,name:sale_invoice_plan.action_sale_invoice_plan
 #: model:ir.ui.menu,name:sale_invoice_plan.menu_sale_invoice_plan
 #, fuzzy
-#| msgid "Use Invoice Plan"
 msgid "Sales Invoice Plan"
 msgstr "Utiliser un plan de facturation"
 
@@ -309,14 +308,12 @@ msgstr "Commandes de vente"
 #. module: sale_invoice_plan
 #: model_terms:ir.ui.view,arch_db:sale_invoice_plan.view_sale_invoice_plan_filter
 #, fuzzy
-#| msgid "Sales Order"
 msgid "Sales Orders"
 msgstr "Commandes de vente"
 
 #. module: sale_invoice_plan
 #: model_terms:ir.ui.view,arch_db:sale_invoice_plan.view_sale_invoice_plan_filter
 #, fuzzy
-#| msgid "Create Invoice Plan"
 msgid "Search Sales Invoice Plan Lines"
 msgstr "Créer le Plan de facturation"
 
@@ -361,7 +358,6 @@ msgstr ""
 #. module: sale_invoice_plan
 #: model_terms:ir.actions.act_window,help:sale_invoice_plan.action_sale_invoice_plan
 #, fuzzy
-#| msgid "Please fill percentage for all invoice plan lines"
 msgid "View sales invoice plan lines"
 msgstr ""
 "Veuillez renseigner le pourcentage pour toutes les lignes du plan de "
