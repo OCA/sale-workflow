@@ -25,7 +25,6 @@ msgstr "Contatto"
 #: model:ir.model.fields,field_description:sale_order_general_discount.field_res_partner__sale_discount
 #: model:ir.model.fields,field_description:sale_order_general_discount.field_res_users__sale_discount
 #, fuzzy
-#| msgid "Discount (%)"
 msgid "Discount"
 msgstr "Sconto (%)"
 
@@ -38,7 +37,6 @@ msgstr "Sconto (%)"
 #. module: sale_order_general_discount
 #: model:ir.model,name:sale_order_general_discount.model_sale_order
 #, fuzzy
-#| msgid "Sale Order"
 msgid "Sales Order"
 msgstr "Ordine di Vendita"
 
