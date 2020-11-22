@@ -32,7 +32,6 @@ msgstr "Dernière version"
 #. module: sale_order_revision
 #: model:ir.model.fields,field_description:sale_order_revision.field_sale_order__has_old_revisions
 #, fuzzy
-#| msgid "Has old revisions"
 msgid "Has Old Revisions"
 msgstr "Possède une version antérieure"
 
@@ -68,7 +67,6 @@ msgstr ""
 #. module: sale_order_revision
 #: model:ir.model.fields,field_description:sale_order_revision.field_sale_order__unrevisioned_name
 #, fuzzy
-#| msgid "Order Reference"
 msgid "Original Order Reference"
 msgstr "Référence commande"
 
@@ -85,7 +83,6 @@ msgstr "Versions"
 #. module: sale_order_revision
 #: model:ir.model,name:sale_order_revision.model_sale_order
 #, fuzzy
-#| msgid "Sales Order"
 msgid "Sale Order"
 msgstr "Bon de commande"
 
