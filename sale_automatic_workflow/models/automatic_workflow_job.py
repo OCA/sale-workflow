@@ -124,7 +124,7 @@ class AutomaticWorkflowJob(models.Model):
 
     def _do_sale_done(self, sale, domain_filter):
         """Set a sales order to done, filter ensure no duplication"""
-        if not self.env["stock.picking"].search_count(
+        if not self.env["sale.order"].search_count(
             [("id", "=", sale.id)] + domain_filter
         ):
             return "{} {} job bypassed".format(sale.display_name, sale)
