@@ -4,7 +4,7 @@
 
 {
     "name": "Sale Validity",
-    "version": "14.0.1.0.0",
+    "version": "14.0.1.0.1",
     "category": "Sales",
     "license": "AGPL-3",
     "summary": "Set a default validity delay on quotations",
