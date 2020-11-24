@@ -13,6 +13,7 @@ setuptools.setup(
         'odoo14-addon-sale_order_archive',
         'odoo14-addon-sale_product_category_menu',
         'odoo14-addon-sale_product_multi_add',
+        'odoo14-addon-sale_validity',
     ],
     classifiers=[
         'Programming Language :: Python',
