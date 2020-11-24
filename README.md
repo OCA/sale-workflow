@@ -24,7 +24,7 @@ addon | version | summary
 [sale_order_archive](sale_order_archive/) | 14.0.1.0.0 | Archive Sale Orders
 [sale_product_category_menu](sale_product_category_menu/) | 14.0.1.0.1 | Shows 'Product Categories' menu item in Sales
 [sale_product_multi_add](sale_product_multi_add/) | 14.0.1.0.1 | Sale Product Multi Add
-[sale_validity](sale_validity/) | 14.0.1.0.0 | Set a default validity delay on quotations
+[sale_validity](sale_validity/) | 14.0.1.0.1 | Set a default validity delay on quotations
 
 [//]: # (end addons)
 
