@@ -27,7 +27,7 @@ class SaleCouponProgram(models.Model):
 
     def _get_multi_use_coupons(self):
         self.ensure_one()
-        return self.coupon_ids.filtered(lambda r: r.multi_use)
+        return self.coupon_ids.filtered("multi_use")
 
     @api.constrains("discount_fixed_amount")
     def _check_discount_fixed_amount(self):
@@ -59,3 +59,35 @@ class SaleCouponProgram(models.Model):
                         "Discount Reward and Fixed Amount as Apply Discount"
                     )
                 )
+
+    def _compute_program_multi_use_amount(
+        self, multi_use_coupon, sale_order, currency_to
+    ):
+        # Only using remaining amount (original implementation
+        # always uses full amount specified on related program).
+        amount_delta = multi_use_coupon.discount_fixed_amount_delta
+        amount = min(amount_delta, sale_order.amount_total)
+        return self.currency_id._convert(
+            amount, currency_to, self.company_id, fields.Date.today()
+        )
+
+    def _compute_program_amount(self, field, currency_to):
+        """Extend to consume correct multi-use coupon amount."""
+        self.ensure_one()
+        coupon_code = self._context.get("coupon_code")
+        sale_order = self._context.get("coupon_sale_order")
+        if coupon_code and sale_order and field == "discount_fixed_amount":
+            multi_use_coupon = self.env["sale.coupon"].search(
+                [
+                    ("multi_use", "=", True),
+                    ("code", "=", coupon_code),
+                    ("state", "=", "new"),
+                ],
+                limit=1,
+            )
+            if multi_use_coupon:
+                return self._compute_program_multi_use_amount(
+                    multi_use_coupon, sale_order, currency_to
+                )
+
+        return super()._compute_program_amount(field, currency_to)

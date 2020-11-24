@@ -1,13 +1,13 @@
 # Translation of Odoo Server.
 # This file contains the translation of the following modules:
-#   * sale_coupon_multi_use
+# 	* sale_coupon_multi_use
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 13.0+e\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-11-06 12:26+0000\n"
-"PO-Revision-Date: 2020-11-06 12:26+0000\n"
+"POT-Creation-Date: 2020-11-10 12:45+0000\n"
+"PO-Revision-Date: 2020-11-10 12:45+0000\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -26,12 +26,15 @@ msgid "Consumption Lines"
 msgstr "Lignes de consommation"
 
 #. module: sale_coupon_multi_use
-#: code:addons/sale_coupon_multi_use/models/sale_coupon.py:0
+#: code:addons/sale_coupon_multi_use/models/sale_coupon_consumption_line.py:0
 #, python-format
 msgid ""
 "Consumption Lines can't be deleted directly. To do that, delete related sale"
 " order line."
-msgstr "Les lignes de consommation ne peuvent pas être modifiées via cette interface. Pour cela, il faut modifier les lignes correspondantes sur les bons de commande."
+msgstr ""
+"Les lignes de consommation ne peuvent pas être modifiées via cette "
+"interface. Pour cela, il faut modifier les lignes correspondantes sur les "
+"bons de commande."
 
 #. module: sale_coupon_multi_use
 #: model:ir.model.fields,field_description:sale_coupon_multi_use.field_sale_coupon_consumption_line__coupon_id
@@ -63,12 +66,14 @@ msgstr "Montant restant"
 #, python-format
 msgid ""
 "Fixed Amount can't be changed when there are Multi Use coupons already."
-msgstr "Le montant restant ne peut pas être modifié quand un bon de réduction a déjà été utilisé plusieurs fois."
+msgstr ""
+"Le montant restant ne peut pas être modifié quand un bon de réduction a déjà"
+" été utilisé plusieurs fois."
 
 #. module: sale_coupon_multi_use
 #: model:ir.model.fields,field_description:sale_coupon_multi_use.field_sale_coupon_consumption_line__id
 msgid "ID"
-msgstr "ID"
+msgstr "Identifiant"
 
 #. module: sale_coupon_multi_use
 #: model:ir.model.fields,field_description:sale_coupon_multi_use.field_sale_coupon_consumption_line____last_update
@@ -101,7 +106,8 @@ msgstr "Bon de réduction sécable"
 msgid ""
 "Multi Use Coupons program must have Coupon Program Type, Discount Reward and"
 " Fixed Amount as Apply Discount"
-msgstr "Les bons de réductions sécables doivent être de type Remise et Montant fixe"
+msgstr ""
+"Les bons de réductions sécables doivent être de type Remise et Montant fixe"
 
 #. module: sale_coupon_multi_use
 #: model:ir.model,name:sale_coupon_multi_use.model_sale_coupon_consumption_line
