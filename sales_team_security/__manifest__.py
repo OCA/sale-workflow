@@ -11,8 +11,9 @@
     "license": "AGPL-3",
     "installable": True,
     "development_status": "Production/Stable",
-    "maintainers": ["pedrobaeza"],
+    "maintainers": ["pedrobaeza", "ivantodorovich"],
     "depends": ["sales_team"],
     "data": ["security/sales_team_security.xml", "views/res_partner_view.xml"],
     "post_init_hook": "post_init_hook",
+    "uninstall_hook": "uninstall_hook",
 }
