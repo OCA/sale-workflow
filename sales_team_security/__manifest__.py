@@ -12,7 +12,7 @@
     "installable": True,
     "development_status": "Production/Stable",
     "maintainers": ["pedrobaeza"],
-    "depends": ["crm", "sale"],
+    "depends": ["sales_team"],
     "data": ["security/sales_team_security.xml", "views/res_partner_view.xml"],
     "post_init_hook": "post_init_hook",
 }
