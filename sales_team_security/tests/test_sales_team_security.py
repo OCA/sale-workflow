@@ -42,10 +42,12 @@ class TestSalesTeamSecurity(common.SavepointCase):
         self.assertEqual(contact.team_id, self.team)
 
     def test_onchange_user_id(self):
-        contact = self.env['res.partner'].create({
-            'name': 'Test contact',
-            'user_id': self.user.id,
-        })
+        contact = self.env["res.partner"].create(
+            {
+                "name": "Test contact",
+                "user_id": self.user.id,
+            }
+        )
         contact._onchange_user_id_sales_team_security()
         self.assertEqual(contact.team_id, self.team)
 
