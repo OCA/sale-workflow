@@ -18,6 +18,7 @@ setuptools.setup(
         'odoo13-addon-sale_fixed_discount',
         'odoo13-addon-sale_force_invoiced',
         'odoo13-addon-sale_invoice_plan',
+        'odoo13-addon-sale_isolated_quotation',
         'odoo13-addon-sale_last_price_info',
         'odoo13-addon-sale_order_archive',
         'odoo13-addon-sale_order_carrier_auto_assign',
