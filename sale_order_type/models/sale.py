@@ -12,8 +12,12 @@ class SaleOrder(models.Model):
         string="Type",
         compute="_compute_sale_type_id",
         store=True,
-        readonly=True,
-        states={"draft": [("readonly", False)], "sent": [("readonly", False)]},
+        readonly=False,
+        states={
+            "sale": [("readonly", True)],
+            "done": [("readonly", True)],
+            "cancel": [("readonly", True)],
+        },
         default=lambda so: so._default_type_id(),
         ondelete="restrict",
         copy=True,
@@ -33,7 +37,7 @@ class SaleOrder(models.Model):
                     record.partner_id.with_context(
                         force_company=record.company_id.id
                     ).sale_type
-                    or self.partner_id.commercial_partner_id.with_context(
+                    or record.partner_id.commercial_partner_id.with_context(
                         force_company=record.company_id.id
                     ).sale_type
                 )
