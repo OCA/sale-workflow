@@ -40,7 +40,7 @@ msgid "For Sales Order, this field references to its Quotation"
 msgstr "Pour les ventes, ce champ référence le devis lié"
 
 #. module: sale_isolated_quotation
-#: code:addons/sale_isolated_quotation/models/sale.py:63
+#: code:addons/sale_isolated_quotation/models/sale.py:0
 #, python-format
 msgid "Only quotation can convert to order"
 msgstr "Seuls les devis peuvent être converti en vente"
@@ -53,14 +53,12 @@ msgstr ""
 #. module: sale_isolated_quotation
 #: model:ir.model.fields,field_description:sale_isolated_quotation.field_sale_order__order_id
 #, fuzzy
-#| msgid "Is Order"
 msgid "Order"
 msgstr "A une séquence  de vente"
 
 #. module: sale_isolated_quotation
 #: model:ir.model.fields,field_description:sale_isolated_quotation.field_sale_order__order_sequence
 #, fuzzy
-#| msgid "Order Reference"
 msgid "Order Sequence"
 msgstr "Référence commande"
 
@@ -72,22 +70,20 @@ msgstr "Devis"
 #. module: sale_isolated_quotation
 #: model:ir.model.fields,field_description:sale_isolated_quotation.field_sale_order__quotation_state
 #, fuzzy
-#| msgid "Quotation"
 msgid "Quotation Status"
 msgstr "Devis"
 
 #. module: sale_isolated_quotation
+#: code:addons/sale_isolated_quotation/models/sale.py:0
 #: model:ir.model,name:sale_isolated_quotation.model_sale_order
-#, fuzzy
-#| msgid "Sales Order"
-msgid "Sale Order"
-msgstr "Bon de commande"
-
-#. module: sale_isolated_quotation
-#: code:addons/sale_isolated_quotation/models/sale.py:73
 #, python-format
 msgid "Sales Order"
 msgstr "Bon de commande"
+
+#, fuzzy
+#~| msgid "Sales Order"
+#~ msgid "Sale Order"
+#~ msgstr "Bon de commande"
 
 #~ msgid "A dummy state used for quotation"
 #~ msgstr "Un statut utilisé pour les devis"
