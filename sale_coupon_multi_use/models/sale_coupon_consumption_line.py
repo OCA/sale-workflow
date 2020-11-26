@@ -16,7 +16,8 @@ class SaleCouponConsumptionLine(models.Model):
     sale_order_line_id = fields.Many2one(
         "sale.order.line", "Sale Order Line", required=True, ondelete="cascade"
     )
-    amount = fields.Float()
+    currency_program_id = fields.Many2one(related="coupon_id.program_id.currency_id")
+    amount = fields.Monetary(currency_field="currency_program_id")
 
     def _get_consumption_lines_to_unlink(self, order_lines):
         return self.filtered(lambda r: r.sale_order_line_id in order_lines)

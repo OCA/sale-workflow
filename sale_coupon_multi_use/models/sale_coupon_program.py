@@ -35,8 +35,8 @@ class SaleCouponProgram(models.Model):
             if rec._get_multi_use_coupons():
                 raise ValidationError(
                     _(
-                        "Fixed Amount can't be changed when there are Multi Use "
-                        "coupons already."
+                        "Fixed Amount can't be changed when there are Multi"
+                        " Use coupons already."
                     )
                 )
 
@@ -66,10 +66,10 @@ class SaleCouponProgram(models.Model):
         # Only using remaining amount (original implementation
         # always uses full amount specified on related program).
         amount_delta = multi_use_coupon.discount_fixed_amount_delta
-        amount = min(amount_delta, sale_order.amount_total)
-        return self.currency_id._convert(
-            amount, currency_to, self.company_id, fields.Date.today()
+        amount_delta = self.currency_id._convert(
+            amount_delta, currency_to, self.company_id, fields.Date.today()
         )
+        return min(amount_delta, sale_order.amount_total)
 
     def _compute_program_amount(self, field, currency_to):
         """Extend to consume correct multi-use coupon amount."""

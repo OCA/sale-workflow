@@ -19,11 +19,14 @@ class SaleCoupon(models.Model):
     # Takes value from related program (coupon_multi_use field), when
     # it is generated.
     multi_use = fields.Boolean(readonly=True)
+    currency_program_id = fields.Many2one(related="program_id.currency_id")
     consumption_line_ids = fields.One2many(
         "sale.coupon.consumption_line", "coupon_id", "Consumption Lines", readonly=True,
     )
-    discount_fixed_amount_delta = fields.Float(
-        "Fixed Amount Delta", compute="_compute_discount_fixed_amount_delta"
+    discount_fixed_amount_delta = fields.Monetary(
+        "Fixed Amount Delta",
+        compute="_compute_discount_fixed_amount_delta",
+        currency_field="currency_program_id",
     )
 
     def _get_discount_fixed_amount_delta(self):
@@ -57,9 +60,22 @@ class SaleCoupon(models.Model):
 
     def _prepare_consumption_line(self, sale_order_line):
         self.ensure_one()
+        program = self.program_id
+        from_currency = sale_order_line.order_id.pricelist_id.currency_id
+        to_currency = program.currency_id
+        amount = from_currency._convert(
+            abs(sale_order_line.price_total),
+            to_currency,
+            # program company is not mandatory, so fallback to user
+            # company.
+            program.company_id or self.env.user.company_id,
+            # Symmetrical -> program discount is also converted to SO
+            # amount using today.
+            fields.Date.today(),
+        )
         return {
             "coupon_id": self.id,
-            "amount": abs(sale_order_line.price_total),
+            "amount": amount,
             "sale_order_line_id": sale_order_line.id,
         }
 
