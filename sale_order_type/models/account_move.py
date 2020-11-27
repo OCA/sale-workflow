@@ -14,6 +14,7 @@ class AccountMove(models.Model):
         store=True,
         readonly=False,
         states={"posted": [("readonly", True)], "cancel": [("readonly", True)]},
+        copy=True,
     )
 
     @api.depends("partner_id", "company_id")
