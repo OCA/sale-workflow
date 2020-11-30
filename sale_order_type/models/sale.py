@@ -31,7 +31,9 @@ class SaleOrder(models.Model):
     def _compute_sale_type_id(self):
         for record in self:
             if not record.partner_id:
-                record.type_id = self.env["sale.order.type"].search([], limit=1)
+                record.type_id = self.env["sale.order.type"].search(
+                    [("company_id", "in", [self.env.company.id, False])], limit=1
+                )
             else:
                 sale_type = (
                     record.partner_id.with_context(
