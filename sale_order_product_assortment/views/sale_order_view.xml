@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <record id="view_order_form" model="ir.ui.view">
+        <field name="name">sale.order.form</field>
+        <field name="model">sale.order</field>
+        <field name="inherit_id" ref="sale.view_order_form" />
+        <field name="arch" type="xml">
+            <field name="partner_id" position="after">
+                <field name="whitelist_product_ids" invisible="1" />
+                <field name="blacklist_product_ids" invisible="1" />
+                <field name="has_whitelist" invisible="1" />
+                <field name="has_blacklist" invisible="1" />
+            </field>
+            <!-- Form -->
+            <xpath
+                expr="//field[@name='order_line']/form//field[@name='product_id']"
+                position="attributes"
+            >
+                <attribute name="attrs">
+                    {'invisible':['|', '|', '&amp;', ('parent.has_whitelist', '=', True), ('parent.has_blacklist', '=', True), '&amp;', ('parent.has_whitelist', '=', True), ('parent.has_blacklist', '=', False), '&amp;',('parent.has_whitelist', '=', False), ('parent.has_blacklist', '=', True)]}
+                </attribute>
+            </xpath>
+            <xpath
+                expr="//field[@name='order_line']/form//field[@name='product_id']"
+                position="after"
+            >
+                <field
+                    name="product_has_both_assortment_id"
+                    string="Product"
+                    attrs="{'invisible':['|', '&amp;', ('parent.has_whitelist', '=', False), ('parent.has_blacklist', '=', True), '&amp;', ('parent.has_whitelist', '=', False), ('parent.has_blacklist', '=', False)]}"
+                    domain="[('id', 'in', parent.whitelist_product_ids), ('id', 'not in', parent.blacklist_product_ids)]"
+                    readonly="0"
+                    required="1"
+                />
+                <field
+                    name="product_has_blacklist_assortment_id"
+                    string="Product"
+                    attrs="{'invisible':['|', '|', '&amp;', ('parent.has_whitelist', '=', True), ('parent.has_blacklist', '=', True), '&amp;', ('parent.has_whitelist', '=', True), ('parent.has_blacklist', '=', False), '&amp;', ('parent.has_whitelist', '=', False), ('parent.has_blacklist', '=', False)]}"
+                    domain="[('id', 'not in', parent.blacklist_product_ids)]"
+                    readonly="0"
+                    required="1"
+                />
+            </xpath>
+            <!-- Tree -->
+            <xpath
+                expr="//field[@name='order_line']/tree/field[@name='product_id']"
+                position="attributes"
+            >
+                <attribute name="attrs">
+                    {'column_invisible':['|', '|', '&amp;', ('parent.has_whitelist', '=', True), ('parent.has_blacklist', '=', True), '&amp;', ('parent.has_whitelist', '=', True), ('parent.has_blacklist', '=', False), '&amp;',('parent.has_whitelist', '=', False), ('parent.has_blacklist', '=', True)]}
+                </attribute>
+            </xpath>
+            <xpath
+                expr="//field[@name='order_line']/tree/field[@name='product_id']"
+                position="after"
+            >
+                <field
+                    name="product_has_both_assortment_id"
+                    string="Product"
+                    attrs="{'column_invisible':['|', '&amp;', ('parent.has_whitelist', '=', False), ('parent.has_blacklist', '=', True), '&amp;', ('parent.has_whitelist', '=', False), ('parent.has_blacklist', '=', False)]}"
+                    domain="[('id', 'in', parent.whitelist_product_ids), ('id', 'not in', parent.blacklist_product_ids)]"
+                    readonly="0"
+                    required="1"
+                />
+                <field
+                    name="product_has_blacklist_assortment_id"
+                    string="Product"
+                    attrs="{'column_invisible':['|', '|', '&amp;', ('parent.has_whitelist', '=', True), ('parent.has_blacklist', '=', True), '&amp;', ('parent.has_whitelist', '=', True), ('parent.has_blacklist', '=', False), '&amp;', ('parent.has_whitelist', '=', False), ('parent.has_blacklist', '=', False)]}"
+                    domain="[('id', 'not in', parent.blacklist_product_ids)]"
+                    readonly="0"
+                    required="1"
+                />
+            </xpath>
+        </field>
+    </record>
+</odoo>
