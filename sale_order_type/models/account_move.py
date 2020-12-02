@@ -19,10 +19,11 @@ class AccountMove(models.Model):
 
     @api.depends("partner_id", "company_id")
     def _compute_sale_type_id(self):
-        self.sale_type_id = self.env["sale.order.type"]
         for record in self.filtered(
-            lambda am: am.type in ["out_invoice", "out_refund"]
+            lambda am: am.type in ["out_invoice", "out_refund"] and
+            not am.sale_type_id
         ):
+            record.sale_type_id = self.env["sale.order.type"]
             if not record.partner_id:
                 record.sale_type_id = self.env["sale.order.type"].search(
                     [("company_id", "in", [self.env.company.id, False])], limit=1
