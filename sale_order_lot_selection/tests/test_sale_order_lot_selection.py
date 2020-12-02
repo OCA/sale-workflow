@@ -27,11 +27,25 @@ class TestSaleOrderLotSelection(test_common.SingleTransactionCase):
         self.product_model = self.env["product.product"]
         self.production_lot_model = self.env["stock.production.lot"]
         self.lot_cable = self.env.ref("sale_order_lot_selection.lot_cable")
+        self.sale = self.env.ref("sale_order_lot_selection.sale1")
 
     def _stock_quantity(self, product, lot, location):
         return product.with_context(
             {"lot_id": lot.id, "location": location.id}
         ).qty_available
+
+    def test_stock_available_wrong_lot(self):
+        # We should not be able to reserve if some stock is available but with another
+        # lot
+        self._inventory_products(self.prd_cable, self.lot_cable, 1)
+        other_lot = self.env['stock.production.lot'].create({
+            'name': 'test2',
+            'product_id': self.prd_cable.id,
+            'company_id': self.env.ref('base.main_company').id,
+        })
+        self._inventory_products(self.prd_cable, other_lot, 1)
+        with self.assertRaisesRegexp(UserError, "Can't reserve products for lot"):
+            self.sale.action_confirm()
 
     def _inventory_products(self, product, lot, qty):
         inventory = self.env["stock.inventory"].create({
@@ -56,8 +70,7 @@ class TestSaleOrderLotSelection(test_common.SingleTransactionCase):
             use cases: price is different or any shipping information
         """
         self._inventory_products(self.prd_cable, self.lot_cable, 10)
-        sale = self.env.ref("sale_order_lot_selection.sale1")
-        sale.action_confirm()
+        self.sale.action_confirm()
 
     def test_sale_order_lot_selection(self):
         # INIT stock of products to 0
