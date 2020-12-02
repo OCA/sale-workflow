@@ -17,8 +17,8 @@ class TestSaleOrderLotSelection(test_common.SingleTransactionCase):
 
         """
         super(TestSaleOrderLotSelection, self).setUp()
-        self.product_57 = self.env.ref("product.product_product_6")
-        self.product_57.tracking = "lot"
+        self.prd_cable = self.env.ref("stock.product_cable_management_box")
+        self.prd_cable.tracking = "lot"
         self.product_46 = self.env.ref("product.product_product_13")
         self.product_12 = self.env.ref("product.product_product_12")
         self.supplier_location = self.env.ref("stock.stock_location_suppliers")
@@ -26,28 +26,44 @@ class TestSaleOrderLotSelection(test_common.SingleTransactionCase):
         self.stock_location = self.env.ref("stock.stock_location_stock")
         self.product_model = self.env["product.product"]
         self.production_lot_model = self.env["stock.production.lot"]
+        self.lot_cable = self.env.ref("sale_order_lot_selection.lot_cable")
 
     def _stock_quantity(self, product, lot, location):
         return product.with_context(
             {"lot_id": lot.id, "location": location.id}
         ).qty_available
 
+    def _inventory_products(self, product, lot, qty):
+        inventory = self.env["stock.inventory"].create({
+            'name': '%s inventory' % product.name,
+            'product_ids': product.ids,
+            'state': 'confirm',
+            'line_ids': [
+                (0, 0, {
+                    'product_id': product.id,
+                    'product_uom_id': product.uom_id.id,
+                    'product_qty': qty,
+                    'location_id': self.stock_location.id,
+                    'prod_lot_id': lot.id
+                }),
+            ],
+        })
+        inventory.action_validate()
+
+    def test_several_lines_with_same_lot(self):
+        """ You may want split your order in several lines
+            even if lot/product are the same
+            use cases: price is different or any shipping information
+        """
+        self._inventory_products(self.prd_cable, self.lot_cable, 10)
+        sale = self.env.ref("sale_order_lot_selection.sale1")
+        sale.action_confirm()
+
     def test_sale_order_lot_selection(self):
         # INIT stock of products to 0
         picking_out = self.env["stock.picking"].create(
             {
                 "picking_type_id": self.env.ref("stock.picking_type_out").id,
-                "location_id": self.stock_location.id,
-                "location_dest_id": self.customer_location.id,
-            }
-        )
-        self.env["stock.move"].create(
-            {
-                "name": self.product_57.name,
-                "product_id": self.product_57.id,
-                "product_uom_qty": self.product_57.qty_available,
-                "product_uom": self.product_57.uom_id.id,
-                "picking_id": picking_out.id,
                 "location_id": self.stock_location.id,
                 "location_dest_id": self.customer_location.id,
             }
@@ -76,9 +92,8 @@ class TestSaleOrderLotSelection(test_common.SingleTransactionCase):
         )
         picking_out.action_confirm()
         picking_out.action_assign()
-        picking_out.action_done()
+        picking_out._action_done()
 
-        self.product_57.write({"tracking": "lot", "type": "product"})
         self.product_46.write({"tracking": "lot", "type": "product"})
         self.product_12.write({"tracking": "lot", "type": "product"})
 
@@ -93,10 +108,10 @@ class TestSaleOrderLotSelection(test_common.SingleTransactionCase):
         )
         self.env["stock.move"].create(
             {
-                "name": self.product_57.name,
-                "product_id": self.product_57.id,
+                "name": self.prd_cable.name,
+                "product_id": self.prd_cable.id,
                 "product_uom_qty": 1,
-                "product_uom": self.product_57.uom_id.id,
+                "product_uom": self.prd_cable.uom_id.id,
                 "picking_id": picking_in.id,
                 "location_id": self.supplier_location.id,
                 "location_dest_id": self.stock_location.id,
@@ -133,11 +148,11 @@ class TestSaleOrderLotSelection(test_common.SingleTransactionCase):
         lot11 = False
         lot12 = False
         for ops in picking_in.move_ids_without_package:
-            if ops.product_id == self.product_57:
+            if ops.product_id == self.prd_cable:
                 lot10 = self.production_lot_model.create(
                     {
                         "name": "0000010",
-                        "product_id": self.product_57.id,
+                        "product_id": self.prd_cable.id,
                         "product_qty": ops.product_qty,
                         "company_id": self.env.company.id,
                     }
@@ -169,11 +184,11 @@ class TestSaleOrderLotSelection(test_common.SingleTransactionCase):
                 ops.move_line_ids.write(
                     {"lot_id": lot12.id, "qty_done": ops.product_qty}
                 )
-        picking_in.action_done()
+        picking_in._action_done()
 
         # check quantities
         lot10_qty_available = self._stock_quantity(
-            self.product_57, lot10, self.stock_location
+            self.prd_cable, lot10, self.stock_location
         )
         self.assertEqual(lot10_qty_available, 1)
         lot11_qty_available = self._stock_quantity(
@@ -194,7 +209,7 @@ class TestSaleOrderLotSelection(test_common.SingleTransactionCase):
                 "name": "sol1",
                 "order_id": self.order1.id,
                 "lot_id": lot10.id,
-                "product_id": self.product_57.id,
+                "product_id": self.prd_cable.id,
                 "product_uom_qty": 1,
             }
         )
@@ -227,7 +242,7 @@ class TestSaleOrderLotSelection(test_common.SingleTransactionCase):
                 "name": "sol_test_1",
                 "order_id": self.order3.id,
                 "lot_id": lot10.id,
-                "product_id": self.product_57.id,
+                "product_id": self.prd_cable.id,
                 "product_uom_qty": 1,
             }
         )
@@ -259,7 +274,9 @@ class TestSaleOrderLotSelection(test_common.SingleTransactionCase):
         self.sol3.lot_id = lot10.id
         # I'll try to confirm it to check lot reservation:
         # lot10 was delivered by order1
-        with self.assertRaises(UserError):
+        lot10_qty_available = self._stock_quantity(
+            self.prd_cable, lot10, self.stock_location)
+        with self.assertRaisesRegexp(UserError, "Can't reserve products for lot"):
             self.order3.action_confirm()
 
         # also test on_change for order2
@@ -276,7 +293,7 @@ class TestSaleOrderLotSelection(test_common.SingleTransactionCase):
 
         # check quantities
         lot10_qty_available = self._stock_quantity(
-            self.product_57, lot10, self.stock_location
+            self.prd_cable, lot10, self.stock_location
         )
         self.assertEqual(lot10_qty_available, 0)
         lot11_qty_available = self._stock_quantity(
@@ -289,5 +306,5 @@ class TestSaleOrderLotSelection(test_common.SingleTransactionCase):
         self.assertEqual(lot12_qty_available, 0)
         # I'll try to confirm it to check lot reservation:
         # lot11 has 1 availability and order4 has quantity 2
-        with self.assertRaises(UserError):
+        with self.assertRaisesRegexp(UserError, "Can't reserve products for lot"):
             self.order4.action_confirm()
