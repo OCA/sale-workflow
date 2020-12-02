@@ -1,4 +1,5 @@
-from odoo import api, fields, models
+from odoo import api, fields, models, _
+from odoo.exceptions import UserError
 
 
 class SaleOrderLine(models.Model):
@@ -29,3 +30,17 @@ class SaleOrderLine(models.Model):
             available_lot_ids = [quant["lot_id"][0] for quant in quants]
         self.lot_id = False
         return {"domain": {"lot_id": [("id", "in", available_lot_ids)]}}
+
+    def assign_move_with_lots(self):
+        if self.env.context.get("skip_check_lot_selection_move", False):
+            return True
+        for move in self.move_ids:
+            if move.state == "confirmed":
+                move._action_assign()
+                move.refresh()
+            if (
+                move.state != "assigned"
+            ):
+                raise UserError(
+                    _("Can't reserve products for lot %s") % self.lot_id.name
+                )
