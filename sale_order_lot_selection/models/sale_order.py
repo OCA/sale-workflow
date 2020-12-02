@@ -6,7 +6,7 @@ class SaleOrder(models.Model):
     _inherit = "sale.order"
 
     def action_confirm(self):
-        res = super(SaleOrder, self.with_context(sol_lot_id=True)).action_confirm()
+        res = super().action_confirm()
         self._check_related_moves()
         return res
 
