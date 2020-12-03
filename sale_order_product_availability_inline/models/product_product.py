@@ -12,10 +12,13 @@ class ProductProduct(models.Model):
             res = super().name_get()
             self = self.with_context(warehouse=self.env.context.get("warehouse"))
             availability = {r.id: [r.free_qty, r.uom_id.name] for r in self}
+            precision = self.env["decimal.precision"].precision_get(
+                "Product Unit of Measure"
+            )
             new_res = []
             for _i in res:
-                name = "{} ({} {})".format(
-                    _i[1], availability[_i[0]][0], availability[_i[0]][1],
+                name = "{} ({:.{}f} {})".format(
+                    _i[1], availability[_i[0]][0], precision, availability[_i[0]][1]
                 )
                 new_res.append((_i[0], name))
             return new_res
