@@ -64,6 +64,7 @@ class TestSaleOrderProductAvailabilityInline(SavepointCase):
         self.assertEqual(
             self.product.with_context(warehouse=self.warehouse1.id).free_qty, 10.0,
         )
+        self.env.ref("product.decimal_product_uom").write({"digits": 3})
         sale_order_form = Form(
             self.env["sale.order"].with_context(
                 warehouse=self.warehouse1.id, so_product_stock_inline=True
@@ -71,5 +72,7 @@ class TestSaleOrderProductAvailabilityInline(SavepointCase):
         )
         with sale_order_form.order_line.new() as line_form:
             line_form.product_id = self.product
-            self.assertTrue(line_form.product_id.display_name.endswith("(10.0 Units)"))
-            self.assertFalse(line_form.name.endswith("(10.0 Units)"))
+            self.assertTrue(
+                line_form.product_id.display_name.endswith("(10.000 Units)")
+            )
+            self.assertFalse(line_form.name.endswith("(10.000 Units)"))
