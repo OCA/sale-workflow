@@ -4,57 +4,22 @@
 from odoo import api, models
 
 
-class SaleOrder(models.Model):
-    _inherit = "sale.order"
-
-    def generate_prodlot(self):
-        for rec in self:
-            index_lot = 1
-            for line in rec.order_line:
-                if (
-                    line.product_id.auto_generate_prodlot
-                    and not line.lot_id
-                    and line.product_id.tracking != "none"
-                ):
-                    lot_id = line.create_prodlot(index_lot)
-                    index_lot += 1
-                    line.lot_id = lot_id
-
-    def action_confirm(self):
-        self.ensure_one()
-        self.generate_prodlot()
-        return super().action_confirm()
-
-    @api.model
-    def _check_move_state(self, line):
-        if not line.product_id.auto_generate_prodlot:
-            return super()._check_move_state(line)
-        else:
-            return True
-
-    def action_cancel(self):
-        res = super().action_cancel()
-        for sale in self:
-            for line in sale.order_line:
-                line.lot_id.unlink()
-        return res
-
-
 class SaleOrderLine(models.Model):
     _inherit = "sale.order.line"
 
-    @api.model
     def _prepare_vals_lot_number(self, index_lot):
-        """Prepare values before creating a lot number"""
+        # Prepare values before creating a lot number
+        self.ensure_one()
         lot_number = "%s-%03d" % (self.order_id.name, index_lot)
         return {
             "name": lot_number,
             "product_id": self.product_id.id,
             "product_qty": self.product_uom_qty,
+            "company_id": self.order_id.company_id.id,
         }
 
-    @api.model
     def create_prodlot(self, index_lot=1):
+        self.ensure_one()
         vals = self._prepare_vals_lot_number(index_lot)
         return self.env["stock.production.lot"].create(vals)
 
