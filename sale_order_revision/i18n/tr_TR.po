@@ -40,13 +40,13 @@ msgid "New Revision of Quotation"
 msgstr ""
 
 #. module: sale_order_revision
-#: code:addons/sale_order_revision/models/sale_order.py:111
+#: code:addons/sale_order_revision/models/sale_order.py:0
 #, python-format
 msgid "New Sales Order Revisions"
 msgstr ""
 
 #. module: sale_order_revision
-#: code:addons/sale_order_revision/models/sale_order.py:103
+#: code:addons/sale_order_revision/models/sale_order.py:0
 #, python-format
 msgid "New revision created: %s"
 msgstr ""
@@ -57,7 +57,7 @@ msgid "Old revisions"
 msgstr ""
 
 #. module: sale_order_revision
-#: sql_constraint:sale.order:0
+#: model:ir.model.constraint,message:sale_order_revision.constraint_sale_order_revision_unique
 msgid "Order Reference and revision must be unique per Company."
 msgstr ""
 
@@ -78,10 +78,8 @@ msgstr ""
 
 #. module: sale_order_revision
 #: model:ir.model,name:sale_order_revision.model_sale_order
-#, fuzzy
-#| msgid "Sales Order"
-msgid "Sale Order"
-msgstr "Satış emri"
+msgid "Sales Order"
+msgstr ""
 
 #. module: sale_order_revision
 #: model_terms:ir.ui.view,arch_db:sale_order_revision.view_order_form
@@ -92,3 +90,8 @@ msgstr ""
 #: model_terms:ir.ui.view,arch_db:sale_order_revision.view_order_form
 msgid "Superseeded on"
 msgstr ""
+
+#, fuzzy
+#~| msgid "Sales Order"
+#~ msgid "Sale Order"
+#~ msgstr "Satış emri"
