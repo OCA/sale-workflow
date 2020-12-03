@@ -117,7 +117,7 @@ class SaleOrderLine(models.Model):
             self.product_uom_qty, self.product_id.uom_id
             )
 
-    @api.depends("product_uom_qty", "sale_min_qty")
+    @api.depends("product_id", "product_uom_qty", "sale_min_qty")
     def _compute_is_qty_less_min_qty(self):
         for line in self:
             rounding = line.product_uom.rounding
@@ -129,7 +129,7 @@ class SaleOrderLine(models.Model):
                 < 0
             ) or False
 
-    @api.depends("product_uom_qty", "sale_max_qty")
+    @api.depends("product_id", "product_uom_qty", "sale_max_qty")
     def _compute_is_qty_bigger_max_qty(self):
         for line in self:
             rounding = line.product_uom.rounding
@@ -141,7 +141,7 @@ class SaleOrderLine(models.Model):
                 > 0
             ) or False
 
-    @api.depends("product_uom_qty", "sale_multiple_qty")
+    @api.depends("product_id", "product_uom_qty", "sale_multiple_qty")
     def _compute_is_qty_not_multiple_qty(self):
         for line in self:
             product_qty = line.product_uom._compute_quantity(
