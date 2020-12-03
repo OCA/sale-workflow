@@ -4,4 +4,4 @@
 - Go to Sales > Orders > Quotations.
 - Create a new quotation and add recently above configured product.
 - Select lot number and confirm it.
-- Verify delivery order. It has reserved with selected lot number from Sale order.
+- Delivery order will reserve the lot when available

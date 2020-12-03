@@ -44,8 +44,13 @@ class TestSaleOrderLotSelection(test_common.SingleTransactionCase):
             'company_id': self.env.ref('base.main_company').id,
         })
         self._inventory_products(self.prd_cable, other_lot, 1)
-        with self.assertRaisesRegexp(UserError, "Can't reserve products for lot"):
-            self.sale.action_confirm()
+        self.sale.action_confirm()
+        self.sale.picking_ids.action_assign()
+        # one of 2 moves should be reserved
+        available_move = self.sale.picking_ids.move_lines.filtered(lambda m: m.state == 'assigned')
+        unavailable_move = self.sale.picking_ids.move_lines.filtered(lambda m: m.state == 'confirmed')
+        self.assertEqual(len(available_move), 1)
+        self.assertEqual(len(unavailable_move), 1)
 
     def _inventory_products(self, product, lot, qty):
         inventory = self.env["stock.inventory"].create({
@@ -282,19 +287,21 @@ class TestSaleOrderLotSelection(test_common.SingleTransactionCase):
         picking.button_validate()
 
         onchange_res = self.sol3._onchange_product_id_set_lot_domain()
-        self.assertEqual(onchange_res["domain"]["lot_id"], [("id", "in", [])])
+        self.assertEqual(onchange_res["domain"]["lot_id"], [("product_id", "=", self.prd_cable.id)])
         # put back the lot because it is removed by onchange
         self.sol3.lot_id = lot10.id
         # I'll try to confirm it to check lot reservation:
         # lot10 was delivered by order1
         lot10_qty_available = self._stock_quantity(
             self.prd_cable, lot10, self.stock_location)
-        with self.assertRaisesRegexp(UserError, "Can't reserve products for lot"):
-            self.order3.action_confirm()
+        self.order3.action_confirm()
+        self.assertEqual(self.order3.state, "sale")
+        # products are not available for reservation (lot unavailable)
+        self.assertEqual(self.order3.picking_ids[0].state, "confirmed")
 
         # also test on_change for order2
         onchange_res = self.sol2a._onchange_product_id_set_lot_domain()
-        self.assertEqual(onchange_res["domain"]["lot_id"], [("id", "in", [lot11.id])])
+        self.assertEqual(onchange_res["domain"]["lot_id"], [("product_id", "=", self.product_46.id)])
         # onchange remove lot_id, we put it back
         self.sol2a.lot_id = lot11.id
         self.order2.action_confirm()
@@ -319,5 +326,7 @@ class TestSaleOrderLotSelection(test_common.SingleTransactionCase):
         self.assertEqual(lot12_qty_available, 0)
         # I'll try to confirm it to check lot reservation:
         # lot11 has 1 availability and order4 has quantity 2
-        with self.assertRaisesRegexp(UserError, "Can't reserve products for lot"):
-            self.order4.action_confirm()
+        self.order4.action_confirm()
+        self.assertEqual(self.order4.state, "sale")
+        # products are reserved
+        self.assertEqual(self.order4.picking_ids[0].state, "assigned")
