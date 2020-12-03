@@ -3,7 +3,7 @@
 {
     "name": "Sale Order Product Availability Inline",
     "summary": "Show product availability in sales order line product " "drop-down.",
-    "version": "13.0.1.1.0",
+    "version": "13.0.1.1.1",
     "development_status": "Beta",
     "category": "Sales Management",
     "website": "https://github.com/OCA/sale-workflow",
