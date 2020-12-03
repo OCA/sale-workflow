@@ -32,7 +32,6 @@ msgstr "Dernière version"
 #. module: sale_order_revision
 #: model:ir.model.fields,field_description:sale_order_revision.field_sale_order__has_old_revisions
 #, fuzzy
-#| msgid "Has old revisions"
 msgid "Has Old Revisions"
 msgstr "Possède une version antérieure"
 
@@ -42,13 +41,13 @@ msgid "New Revision of Quotation"
 msgstr "Nouvelle version du devis"
 
 #. module: sale_order_revision
-#: code:addons/sale_order_revision/models/sale_order.py:111
+#: code:addons/sale_order_revision/models/sale_order.py:0
 #, python-format
 msgid "New Sales Order Revisions"
 msgstr "Nouvelle version du bon de commande"
 
 #. module: sale_order_revision
-#: code:addons/sale_order_revision/models/sale_order.py:103
+#: code:addons/sale_order_revision/models/sale_order.py:0
 #, python-format
 msgid "New revision created: %s"
 msgstr "Nouvelle version créée : %s"
@@ -59,7 +58,7 @@ msgid "Old revisions"
 msgstr "Précédentes versions"
 
 #. module: sale_order_revision
-#: sql_constraint:sale.order:0
+#: model:ir.model.constraint,message:sale_order_revision.constraint_sale_order_revision_unique
 msgid "Order Reference and revision must be unique per Company."
 msgstr ""
 "La référence de l'offre et son numéro de version doivent être uniques au "
@@ -68,7 +67,6 @@ msgstr ""
 #. module: sale_order_revision
 #: model:ir.model.fields,field_description:sale_order_revision.field_sale_order__unrevisioned_name
 #, fuzzy
-#| msgid "Order Reference"
 msgid "Original Order Reference"
 msgstr "Référence commande"
 
@@ -84,10 +82,8 @@ msgstr "Versions"
 
 #. module: sale_order_revision
 #: model:ir.model,name:sale_order_revision.model_sale_order
-#, fuzzy
-#| msgid "Sales Order"
-msgid "Sale Order"
-msgstr "Bon de commande"
+msgid "Sales Order"
+msgstr ""
 
 #. module: sale_order_revision
 #: model_terms:ir.ui.view,arch_db:sale_order_revision.view_order_form
@@ -98,3 +94,8 @@ msgstr "Remplacé par"
 #: model_terms:ir.ui.view,arch_db:sale_order_revision.view_order_form
 msgid "Superseeded on"
 msgstr "Remplacé le"
+
+#, fuzzy
+#~| msgid "Sales Order"
+#~ msgid "Sale Order"
+#~ msgstr "Bon de commande"
