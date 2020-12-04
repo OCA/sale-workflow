@@ -1,0 +1,134 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data noupdate="1">
+
+        <!-- MODEL -->
+
+        <record id="pwa_cache_model_res_partner_all" model="pwa.cache">
+            <field name="name">Partners (All)</field>
+            <field name="cache_type">model</field>
+            <field name="model_id" ref="base.model_res_partner"/>
+            <field name="model_orderby">display_name</field>
+        </record>
+
+        <record id="pwa_cache_model_res_currency_all" model="pwa.cache">
+            <field name="name">Currency (All)</field>
+            <field name="cache_type">model</field>
+            <field name="model_id" ref="base.model_res_currency"/>
+            <field name="model_orderby">active desc, name</field>
+        </record>
+
+        <record id="pwa_cache_model_res_users_all" model="pwa.cache">
+            <field name="name">Users (All)</field>
+            <field name="cache_type">model</field>
+            <field name="model_id" ref="base.model_res_users"/>
+            <field name="model_orderby">name, login</field>
+        </record>
+
+        <record id="pwa_cache_model_crm_team_all" model="pwa.cache">
+            <field name="name">CRM Teams (All)</field>
+            <field name="cache_type">model</field>
+            <field name="model_id" ref="sales_team.model_crm_team"/>
+            <field name="model_orderby">name</field>
+        </record>
+
+        <record id="pwa_cache_model_res_company_all" model="pwa.cache">
+            <field name="name">Companies (All)</field>
+            <field name="cache_type">model</field>
+            <field name="model_id" ref="base.model_res_company"/>
+            <field name="model_orderby">sequence, name</field>
+        </record>
+
+        <record id="pwa_cache_model_uom_uom_all" model="pwa.cache">
+            <field name="name">Units of Measure (All)</field>
+            <field name="cache_type">model</field>
+            <field name="model_id" ref="uom.model_uom_uom"/>
+            <field name="model_orderby">name</field>
+        </record>
+
+        <record id="pwa_cache_model_sale_order_all" model="pwa.cache">
+            <field name="name">Saler Orders (All)</field>
+            <field name="cache_type">model</field>
+            <field name="model_id" ref="sale.model_sale_order"/>
+            <field name="model_orderby">date_order desc, id desc</field>
+        </record>
+
+        <record id="pwa_cache_model_sale_order_lines_all" model="pwa.cache">
+            <field name="name">Sale Order Lines (All)</field>
+            <field name="cache_type">model</field>
+            <field name="model_id" ref="sale.model_sale_order_line"/>
+            <field name="model_orderby">order_id, sequence, id</field>
+        </record>
+
+        <record id="pwa_cache_model_product_product_all" model="pwa.cache">
+            <field name="name">Products (All)</field>
+            <field name="cache_type">model</field>
+            <field name="model_id" ref="product.model_product_product"/>
+            <field name="model_orderby">default_code, name, id</field>
+        </record>
+
+        <record id="pwa_cache_model_product_pricelist_all" model="pwa.cache">
+            <field name="name">Product Pricelists (All)</field>
+            <field name="cache_type">model</field>
+            <field name="model_id" ref="product.model_product_pricelist"/>
+            <field name="model_orderby">sequence asc, id desc</field>
+        </record>
+
+        <record id="pwa_cache_model_product_pricelist_item_all" model="pwa.cache">
+            <field name="name">Product Pricelist Items (All)</field>
+            <field name="cache_type">model</field>
+            <field name="model_id" ref="product.model_product_pricelist_item"/>
+            <field name="model_orderby">applied_on, min_quantity desc, categ_id desc, id desc</field>
+        </record>
+
+        <!-- ONCHANGE -->
+
+        <function model="ir.model.data" name="_update_xmlids">
+            <value model="base" eval="[{
+                'xml_id': 'sale_pwa_cache.sale.order.field.partner_id',
+                'record': obj().env['ir.model.fields'].search([('model_id', '=', obj().env.ref('sale.model_sale_order').id), ('name', '=', 'partner_id')], limit=1),
+                'noupdate': False,
+            },{
+                'xml_id': 'sale_pwa_cache.sale.order.line.field.product_id',
+                'record': obj().env['ir.model.fields'].search([('model_id', '=', obj().env.ref('sale.model_sale_order_line').id), ('name', '=', 'product_id')], limit=1),
+                'noupdate': False,
+            }]"/>
+        </function>
+
+        <record id="pwa_cache_onchange_sale_order_partern_id" model="pwa.cache">
+            <field name="name">Sale Order - Onchange - partner_id</field>
+            <field name="cache_type">onchange</field>
+            <field name="model_id" ref="sale.model_sale_order"/>
+            <field name="onchange_field" ref="sale_pwa_cache.sale.order.field.partner_id"/>
+            <field name="code"><![CDATA[
+params = [{'partner_id': id} for id in env['res.partner'].search([]).ids]
+            ]]></field>
+        </record>
+
+        <record id="pwa_cache_onchange_sale_order_line_product_id" model="pwa.cache">
+            <field name="name">Sale Order Line - Onchange - product_id</field>
+            <field name="cache_type">onchange</field>
+            <field name="model_id" ref="sale.model_sale_order_line"/>
+            <field name="onchange_field" ref="sale_pwa_cache.sale.order.line.field.product_id"/>
+            <field name="onchange_triggers">order_id.partner_id,order_id.pricelist_id</field>
+            <field name="code"><![CDATA[
+product_ids = env['product.product'].search([])
+partner_ids = env['res.partner'].search([])
+params = [
+    {
+        'product_id': product_id.id,
+        'price_unit': None,
+        'uom_category_id': None,
+        'product_uom': None,
+        'currency_id': None,
+        'order_id': {
+            'partner_id': partner_id.id,
+            'currency_id': None,
+            'pricelist_id': partner_id.property_product_pricelist and partner_id.property_product_pricelist.id or False,
+        }
+    } for product_id in product_ids for partner_id in partner_ids]
+            ]]></field>
+        </record>
+
+    </data>
+</odoo>

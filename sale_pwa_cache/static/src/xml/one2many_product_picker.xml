@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<template>
+    <!-- <t t-extend="One2ManyProductPicker.QuickCreateForm">
+        <t t-jquery="field[t-att-name='field_map.product_uom']" t-operation="attributes">
+            <attribute name="t-attf-domain">[['category_id', '=', {{record_search.uom_category_id[0]}}]]</attribute>
+        </t>
+    </t> -->
+</template>

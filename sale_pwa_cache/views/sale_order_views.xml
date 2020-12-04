@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="view_order_form_pwa" model="ir.ui.view">
+        <field name="name">sale.order.form.pwa</field>
+        <field name="model">sale.order</field>
+        <field name="arch" type="xml">
+            <formPWA string="Sales Order" class="o_sale_order">
+                <header>
+                    <button name="action_confirm" id="action_confirm" string="Confirm" class="btn-primary" type="object" attrs="{'invisible': [('state', 'not in', ['sent'])]}" />
+                    <button name="action_confirm" string="Confirm" type="object" attrs="{'invisible': [('state', 'not in', ['draft'])]}" />
+                    <field name="state" widget="statusbar" statusbar_visible="draft,sent,sale" />
+                </header>
+                <field name="warehouse_id" invisible="1" />
+                <field name="pricelist_id" invisible="1" />
+                <field name="currency_id" invisible="1" force_save="1" />
+                <field name="company_id" invisible="1" />
+                <group class="p-0 m-0">
+                    <field name="partner_id" widget="res_partner_many2one" domain="[('customer','=',True)]" context="{'search_default_customer':1, 'show_vat': True}" options='{"always_reload": True}' />
+                </group>
+                <group class="p-0 m-0">
+                    <field
+                        name="order_line"
+                        attrs="{'readonly': [('state', 'in', ('done','cancel'))]}"
+                        nolabel="1"
+                        mode="form"
+                        widget="one2many_product_picker"
+                        options="{'edit_discount': True, 'show_discount': True}"
+                    >
+                        <form>
+                            <field name="state" invisible="1" />
+                            <field name="display_type" invisible="1" />
+                            <field name="currency_id" invisible="1" />
+                            <field name="discount" widget="numeric_step" options="{'max': 100}" invisible="1"/>
+                            <field name="price_unit" widget="numeric_step" invisible="1"/>
+                            <field name="name" invisible="1" />
+                            <field name="product_id" invisible="1" />
+                            <field name="order_id" invisible="1"/>
+                            <field name="uom_category_id" invisible="1"/>
+                            <field name="product_uom_qty" class="mb-1" widget="numeric_step" context="{
+                                'partner_id': parent.partner_id,
+                                'quantity': product_uom_qty,
+                                'pricelist': parent.pricelist_id,
+                                'uom': product_uom,
+                                'company_id': parent.company_id
+                            }" />
+                            <field name="product_uom" force_save="1" attrs="{
+                                'readonly': [('state', 'in', ('sale','done', 'cancel'))],
+                                'required': [('display_type', '=', False)],
+                            }" context="{'company_id': parent.company_id}" class="mb-2" options="{'no_open': True, 'no_create': True, 'no_edit': True}" domain="[['category_id', '=', uom_category_id]]" />
+                        </form>
+                    </field>
+                </group>
+            </formPWA>
+        </field>
+    </record>
+
+    <!-- Necessary to get the model fields definition by the service worker -->
+    <record id="sale_action_order_lines" model="ir.actions.act_window">
+        <field name="name">Sale order lines</field>
+        <field name="res_model">sale.order.line</field>
+    </record>
+
+</odoo>
