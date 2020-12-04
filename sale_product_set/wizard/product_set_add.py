@@ -1,5 +1,6 @@
 # Copyright 2015 Anybox S.A.S
-# Copyright 2016-2018 Camptocamp SA
+# Copyright 2016-2020 Camptocamp SA
+# @author Simone Orsi <simahawk@gmail.com>
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
 from odoo import _, exceptions, fields, models
 
@@ -30,14 +31,29 @@ class ProductSetAdd(models.TransientModel):
     )
 
     def _check_partner(self):
-        if self.product_set_id.partner_id:
-            if self.product_set_id.partner_id != self.order_id.partner_id:
-                raise exceptions.ValidationError(
-                    _(
-                        "Select a product set assigned to "
-                        "the same partner of the order."
-                    )
-                )
+        """Validate order partner against product set's partner if any.
+        """
+        if not self.product_set_id.partner_id or self.env.context.get(
+            "product_set_add_skip_validation"
+        ):
+            return
+
+        allowed_partners = self._allowed_order_partners()
+        if self.order_id.partner_id not in allowed_partners:
+            raise exceptions.ValidationError(
+                _(
+                    "You can use a sale order assigned "
+                    "only to following partner(s): {}"
+                ).format(", ".join(allowed_partners.mapped("name")))
+            )
+
+    def _allowed_order_partners(self):
+        """Product sets' partners allowed for current sale order.
+        """
+        partner_ids = self.env.context.get("allowed_order_partner_ids")
+        if partner_ids:
+            return self.env["res.partner"].browse(partner_ids)
+        return self.product_set_id.partner_id
 
     def add_set(self):
         """ Add product set, multiplied by quantity in sale order line """
