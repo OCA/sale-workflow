@@ -187,13 +187,6 @@ msgid "Sale Order"
 msgstr "Comanda de venda"
 
 #. module: sale_product_set
-#: code:addons/sale_product_set/wizard/product_set_add.py:0
-#, python-format
-msgid "Select a product set assigned to the same partner of the order."
-msgstr ""
-"Seleccioneu un conjunt de productes assignat al mateix soci de la comanda."
-
-#. module: sale_product_set
 #: model:ir.model.fields,field_description:sale_product_set.field_product_set_line__sequence
 msgid "Sequence"
 msgstr "Seqüència"
@@ -221,3 +214,13 @@ msgid ""
 msgstr ""
 "Podeu adjuntar el conjunt a un soci o a ningú. Si no n'especifiqueu cap, "
 "estarà disponible per a tots ells."
+
+#. module: sale_product_set
+#: code:addons/sale_product_set/wizard/product_set_add.py:0
+#, python-format
+msgid "You can use a sale order assigned only to following partner(s): {}"
+msgstr ""
+
+#~ msgid "Select a product set assigned to the same partner of the order."
+#~ msgstr ""
+#~ "Seleccioneu un conjunt de productes assignat al mateix soci de la comanda."
