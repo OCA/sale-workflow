@@ -83,6 +83,27 @@ class TestProductSet(common.SavepointCase):
         with self.assertRaises(exceptions.ValidationError):
             so_set.add_set()
 
+    def test_add_set_non_matching_partner_ctx_bypass(self):
+        so = self.sale_order.create({"partner_id": self.ref("base.res_partner_1")})
+        self.assertEqual(len(so.order_line), 0)
+        product_set = self.env.ref("sale_product_set.product_set_i5_computer")
+        product_set.partner_id = self.ref("base.res_partner_2")
+        so_set = self.product_set_add.with_context(
+            active_id=so.id, product_set_add_skip_validation=True
+        ).create({"product_set_id": product_set.id, "quantity": 2})
+        so_set.add_set()
+        self.assertEqual(len(so.order_line), 3)
+
+    def test_add_set_non_matching_partner_ctx_override(self):
+        so = self.sale_order.create({"partner_id": self.ref("base.res_partner_1")})
+        self.assertEqual(len(so.order_line), 0)
+        product_set = self.env.ref("sale_product_set.product_set_i5_computer")
+        so_set = self.product_set_add.with_context(
+            active_id=so.id, allowed_order_partner_ids=[self.ref("base.res_partner_2")]
+        ).create({"product_set_id": product_set.id, "quantity": 2})
+        so_set.add_set()
+        self.assertEqual(len(so.order_line), 3)
+
     def test_add_set_no_update_existing_products(self):
         so = self.sale_order.create({"partner_id": self.ref("base.res_partner_1")})
         product_set = self.env.ref("sale_product_set.product_set_i5_computer")
