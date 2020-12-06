@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: Odoo Server 11.0\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2018-03-02 10:22+0000\n"
-"PO-Revision-Date: 2020-12-05 05:36+0000\n"
+"PO-Revision-Date: 2020-12-06 05:36+0000\n"
 "Last-Translator: Eder Brito <britoederr@gmail.com>\n"
 "Language-Team: Portuguese (Brazil) (https://www.transifex.com/oca/teams/"
 "23907/pt_BR/)\n"
@@ -37,7 +37,7 @@ msgstr "Fluxo de trabalho automático"
 #. module: sale_automatic_workflow
 #: model:ir.filters,name:sale_automatic_workflow.automatic_workflow_create_invoice_filter
 msgid "Automatic Workflow Create Invoice Filter"
-msgstr "Automática de fluxo de trabalho Criar Filtro Fatura"
+msgstr "Filtro de Workflow para Criar a Fatura"
 
 #. module: sale_automatic_workflow
 #: model:ir.actions.server,name:sale_automatic_workflow.ir_cron_automatic_workflow_job_ir_actions_server
@@ -49,27 +49,27 @@ msgstr "Job de Workflow Automático"
 #. module: sale_automatic_workflow
 #: model:ir.filters,name:sale_automatic_workflow.automatic_workflow_order_filter
 msgid "Automatic Workflow Order Filter"
-msgstr "Automático Fluxo de Trabalho Ordem Filtro"
+msgstr "Filtro de Workflow para Criar Pedido"
 
 #. module: sale_automatic_workflow
 #: model:ir.filters,name:sale_automatic_workflow.automatic_workflow_picking_filter
 msgid "Automatic Workflow Picking Filter"
-msgstr "Fluxo de trabalho automático Escolher Filtro"
+msgstr "Filtro de Workflow para Criar a Fatura"
 
 #. module: sale_automatic_workflow
 #: model:ir.filters,name:sale_automatic_workflow.automatic_workflow_sale_done_filter
 msgid "Automatic Workflow Sale Done Filter"
-msgstr "Fluxo de trabalho automático Venda Feita Filtro"
+msgstr "Filtro de Workflow para Conclusão do Pedido"
 
 #. module: sale_automatic_workflow
 #: model:ir.filters,name:sale_automatic_workflow.automatic_workflow_validate_invoice_filter
 msgid "Automatic Workflow Validate Invoice Filter"
-msgstr "Filtro Automático de fluxo de trabalho Validar fatura"
+msgstr "Filtro de Workflow para Validar a Fatura"
 
 #. module: sale_automatic_workflow
 #: model_terms:ir.ui.view,arch_db:sale_automatic_workflow.sale_order_view_form
 msgid "Automation Information"
-msgstr "Automação informação"
+msgstr "Informação de Automação"
 
 #. module: sale_automatic_workflow
 #: model:sale.workflow.process,warning:sale_automatic_workflow.automatic_validation
@@ -77,8 +77,8 @@ msgid ""
 "Be careful, if you save the order with this setting, it could be auto-"
 "confirmed, even if you are editing it."
 msgstr ""
-"Tenha cuidado, se você salvar a orden com essa configuração, pode ser "
-"confirmada automaticamente, mesmo se você estiver editando."
+"Tenha cuidado, se você salvar o pedido com essa configuração, pode ser "
+"confirmado automaticamente, mesmo se você estiver editando."
 
 #. module: sale_automatic_workflow
 #: model:ir.model.fields,field_description:sale_automatic_workflow.field_sale_workflow_process__validate_picking
@@ -126,7 +126,7 @@ msgstr "Entregar cada produto quando disponível"
 #: model:ir.model.fields,field_description:sale_automatic_workflow.field_automatic_workflow_job__display_name
 #: model:ir.model.fields,field_description:sale_automatic_workflow.field_sale_workflow_process__display_name
 msgid "Display Name"
-msgstr "Nome para Mostrar"
+msgstr "Nome de Exibição"
 
 #. module: sale_automatic_workflow
 #: model:ir.model.fields,field_description:sale_automatic_workflow.field_sale_workflow_process__invoice_date_is_order_date
@@ -153,7 +153,7 @@ msgid ""
 "If this box is checked, when the first invoice is created The service sale "
 "order lines will be included and will be marked as delivered"
 msgstr ""
-"E esta caixa estiver marcada, quando a primeira fatura for criada as linhas "
+"Se esta caixa estiver marcada, quando a primeira fatura for criada as linhas "
 "de pedido de venda de serviço serão incluídas e marcadas como entregues"
 
 #. module: sale_automatic_workflow
