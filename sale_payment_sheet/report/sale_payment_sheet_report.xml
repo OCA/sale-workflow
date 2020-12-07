@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <report
+        string="sale payment sheet summary"
+        id="action_report_sale_payment_sheet"
+        model="sale.payment.sheet"
+        report_type="qweb-pdf"
+        name="sale_payment_sheet.report_sale_payment_sheet"
+        file="sale_payment_sheet.report_sale_payment_sheet"
+        print_report_name="'Payment sheet %s' % (object.name)"
+    />
+</odoo>
