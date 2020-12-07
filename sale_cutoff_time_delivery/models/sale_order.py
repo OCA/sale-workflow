@@ -43,6 +43,32 @@ class SaleOrderLine(models.Model):
     def _prepare_procurement_values(self, group_id=False):
         """Postpone delivery according to cutoff time"""
         res = super()._prepare_procurement_values(group_id=group_id)
+        date_planned = res.get("date_planned")
+        if not date_planned:
+            return res
+        new_date_planned = self._prepare_procurement_values_cutoff_time(
+            fields.Datetime.to_datetime(date_planned),
+            # if we have a commitment date, even if we are too late, respect
+            # the original planned date (but change the time), the transfer
+            # will be considered as "late"
+            keep_same_day=bool(self.order_id.commitment_date),
+        )
+        if new_date_planned:
+            res["date_planned"] = new_date_planned
+        return res
+
+    def _prepare_procurement_values_cutoff_time(
+        self, date_planned, keep_same_day=False
+    ):
+        """Apply the cut-off time on a planned date
+
+        The cut-off configuration is taken on the partner if set, otherwise
+        on the warehouse.
+
+        By default, if the planned date is the same day but after the cut-off,
+        the new planned date is delayed one day later. The argument
+        keep_same_ay force keeping the same day.
+        """
         cutoff = self.order_id.get_cutoff_time()
         partner = self.order_id.partner_shipping_id
         if not cutoff:
@@ -63,14 +89,8 @@ class SaleOrderLine(models.Model):
                     "on line %s."
                     % (self.order_id, partner.order_delivery_cutoff_preference, self)
                 )
-            return res
+            return
         tz = cutoff.get("tz")
-        date_planned = res.get("date_planned")
-        if isinstance(date_planned, str):
-            # when date_planned is set from the commitment_date, it's set as
-            # string...
-            date_planned = fields.Datetime.from_string(date_planned)
-
         if tz and tz != "UTC":
             cutoff_time = time(hour=cutoff.get("hour"), minute=cutoff.get("minute"))
             # Convert here to naive datetime in UTC
@@ -84,10 +104,7 @@ class SaleOrderLine(models.Model):
             utc_cutoff_datetime = date_planned.replace(
                 hour=cutoff.get("hour"), minute=cutoff.get("minute"), second=0
             )
-        # if we have a commitment date, even if we are too late, respect the
-        # original planned date (but change the time), the transfer will be
-        # considered as "late"
-        if date_planned <= utc_cutoff_datetime or self.order_id.commitment_date:
+        if date_planned <= utc_cutoff_datetime or keep_same_day:
             # Postpone delivery for date planned before cutoff to cutoff time
             new_date_planned = date_planned.replace(
                 hour=utc_cutoff_datetime.hour,
@@ -112,8 +129,7 @@ class SaleOrderLine(models.Model):
                 new_date_planned,
             )
         )
-        res["date_planned"] = new_date_planned
-        return res
+        return new_date_planned
 
     def _expected_date(self):
         """Postpone expected_date to next cut-off"""
