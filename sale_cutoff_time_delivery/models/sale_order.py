@@ -5,7 +5,7 @@ from datetime import datetime, time, timedelta
 
 import pytz
 
-from odoo import api, models
+from odoo import api, fields, models
 
 from odoo.addons.partner_tz.tools import tz_utils
 
@@ -43,12 +43,6 @@ class SaleOrderLine(models.Model):
     def _prepare_procurement_values(self, group_id=False):
         """Postpone delivery according to cutoff time"""
         res = super()._prepare_procurement_values(group_id=group_id)
-        if self.order_id.commitment_date:
-            _logger.debug(
-                "Commitment date set on order %s. Cutoff time not applied "
-                "on line." % self.order_id
-            )
-            return res
         cutoff = self.order_id.get_cutoff_time()
         partner = self.order_id.partner_shipping_id
         if not cutoff:
@@ -72,6 +66,11 @@ class SaleOrderLine(models.Model):
             return res
         tz = cutoff.get("tz")
         date_planned = res.get("date_planned")
+        if isinstance(date_planned, str):
+            # when date_planned is set from the commitment_date, it's set as
+            # string...
+            date_planned = fields.Datetime.from_string(date_planned)
+
         if tz and tz != "UTC":
             cutoff_time = time(hour=cutoff.get("hour"), minute=cutoff.get("minute"))
             # Convert here to naive datetime in UTC
@@ -85,7 +84,10 @@ class SaleOrderLine(models.Model):
             utc_cutoff_datetime = date_planned.replace(
                 hour=cutoff.get("hour"), minute=cutoff.get("minute"), second=0
             )
-        if date_planned <= utc_cutoff_datetime:
+        # if we have a commitment date, even if we are too late, respect the
+        # original planned date (but change the time), the transfer will be
+        # considered as "late"
+        if date_planned <= utc_cutoff_datetime or self.order_id.commitment_date:
             # Postpone delivery for date planned before cutoff to cutoff time
             new_date_planned = date_planned.replace(
                 hour=utc_cutoff_datetime.hour,

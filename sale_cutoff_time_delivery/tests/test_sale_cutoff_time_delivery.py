@@ -24,6 +24,11 @@ class TestSaleCutoffTimeDelivery(SavepointCase):
                 "cutoff_time": 9.0,
             }
         )
+
+        company = cls.env.ref("base.main_company")
+        # the global lead time will always plan 1 day before
+        company.write({"security_lead": 1.00})
+
         cls.warehouse = cls.env.ref("stock.warehouse0")
         cls.warehouse.write({"apply_cutoff": True, "cutoff_time": 10.0})
         cls.product = cls.env.ref("product.product_product_9")
@@ -56,6 +61,21 @@ class TestSaleCutoffTimeDelivery(SavepointCase):
         order.action_confirm()
         picking = order.picking_ids
         self.assertEqual(
+            picking.scheduled_date, fields.Datetime.to_datetime("2020-03-24 09:00:00")
+        )
+        order = self._create_order(partner=self.customer_warehouse)
+        order.action_confirm()
+        picking = order.picking_ids
+        self.assertEqual(
+            picking.scheduled_date, fields.Datetime.to_datetime("2020-03-24 10:00:00")
+        )
+
+    @freeze_time("2020-03-25 18:00:00")
+    def test_after_cutoff_time_delivery(self):
+        order = self._create_order(partner=self.customer_partner)
+        order.action_confirm()
+        picking = order.picking_ids
+        self.assertEqual(
             picking.scheduled_date, fields.Datetime.to_datetime("2020-03-25 09:00:00")
         )
         order = self._create_order(partner=self.customer_warehouse)
@@ -65,27 +85,31 @@ class TestSaleCutoffTimeDelivery(SavepointCase):
             picking.scheduled_date, fields.Datetime.to_datetime("2020-03-25 10:00:00")
         )
 
-    @freeze_time("2020-03-25 18:00:00")
-    def test_after_cutoff_time_delivery(self):
-        order = self._create_order(partner=self.customer_partner)
-        order.action_confirm()
-        picking = order.picking_ids
-        self.assertEqual(
-            picking.scheduled_date, fields.Datetime.to_datetime("2020-03-26 09:00:00")
-        )
-        order = self._create_order(partner=self.customer_warehouse)
-        order.action_confirm()
-        picking = order.picking_ids
-        self.assertEqual(
-            picking.scheduled_date, fields.Datetime.to_datetime("2020-03-26 10:00:00")
-        )
-
     @freeze_time("2020-03-25 07:00:00")
     def test_before_cutoff_time_delivery_tz(self):
         self.customer_partner.tz = "Europe/Brussels"
         self.warehouse.tz = "Europe/Brussels"
         # Frozen time is 2020-03-25 07:00:00 UTC, or 2020-03-25 08:00:00 GMT+1
         # what is before cutoff times
+        order = self._create_order(partner=self.customer_partner)
+        order.action_confirm()
+        picking = order.picking_ids
+        self.assertEqual(
+            picking.scheduled_date, fields.Datetime.to_datetime("2020-03-24 08:00:00")
+        )
+        order = self._create_order(partner=self.customer_warehouse)
+        order.action_confirm()
+        picking = order.picking_ids
+        self.assertEqual(
+            picking.scheduled_date, fields.Datetime.to_datetime("2020-03-24 09:00:00")
+        )
+
+    @freeze_time("2020-03-25 18:00:00")
+    def test_after_cutoff_time_delivery_tz(self):
+        self.customer_partner.tz = "Europe/Brussels"
+        self.warehouse.tz = "Europe/Brussels"
+        # Frozen time is 2020-03-25 18:00:00 UTC, or 2020-03-25 19:00:00 GMT+1
+        # what is after cutoff times
         order = self._create_order(partner=self.customer_partner)
         order.action_confirm()
         picking = order.picking_ids
@@ -99,21 +123,26 @@ class TestSaleCutoffTimeDelivery(SavepointCase):
             picking.scheduled_date, fields.Datetime.to_datetime("2020-03-25 09:00:00")
         )
 
-    @freeze_time("2020-03-25 18:00:00")
-    def test_after_cutoff_time_delivery_tz(self):
-        self.customer_partner.tz = "Europe/Brussels"
-        self.warehouse.tz = "Europe/Brussels"
-        # Frozen time is 2020-03-25 18:00:00 UTC, or 2020-03-25 19:00:00 GMT+1
-        # what is after cutoff times
+    @freeze_time("2020-03-25 08:00:00")
+    def test_commitment_date(self):
+        """Order with a commitment date
+
+        The transfer's scheduled date is set by odoo according to the
+        lead time, but the time must be the cut-off's time.
+        """
         order = self._create_order(partner=self.customer_partner)
+        order.commitment_date = fields.Datetime.to_datetime("2020-03-28 15:00:00")
         order.action_confirm()
+
         picking = order.picking_ids
         self.assertEqual(
-            picking.scheduled_date, fields.Datetime.to_datetime("2020-03-26 08:00:00")
+            picking.scheduled_date, fields.Datetime.to_datetime("2020-03-27 09:00:00")
         )
+
         order = self._create_order(partner=self.customer_warehouse)
+        order.commitment_date = fields.Datetime.to_datetime("2020-03-28 15:00:00")
         order.action_confirm()
         picking = order.picking_ids
         self.assertEqual(
-            picking.scheduled_date, fields.Datetime.to_datetime("2020-03-26 09:00:00")
+            picking.scheduled_date, fields.Datetime.to_datetime("2020-03-27 10:00:00")
         )
