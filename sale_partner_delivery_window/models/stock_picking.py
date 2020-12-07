@@ -26,3 +26,4 @@ class StockPicking(models.Model):
                     "the company, the delivery will not match the partner time"
                     "windows preference." % sec_lead_time
                 )
+        return res
