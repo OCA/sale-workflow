@@ -75,6 +75,17 @@ class SaleOrderLine(models.Model):
     def _prepare_procurement_values(self, group_id=False):
         """Consider delivery_schedule in procurement"""
         res = super()._prepare_procurement_values(group_id=group_id)
+        date_planned = res.get("date_planned")
+        if not date_planned:
+            return res
+        new_date_planned = self._prepare_procurement_values_time_windows(
+            fields.Datetime.to_datetime(date_planned)
+        )
+        if new_date_planned:
+            res["date_planned"] = new_date_planned
+        return res
+
+    def _prepare_procurement_values_time_windows(self, date_planned):
         if (
             self.order_id.partner_shipping_id.delivery_time_preference != "time_windows"
             # if a commitment_date is set we don't change the result as lead
@@ -85,10 +96,10 @@ class SaleOrderLine(models.Model):
                 "Commitment date set on order %s. Delivery window not applied "
                 "on line." % self.order_id
             )
-            return res
+            return
         # If no commitment date is set, we must consider next preferred delivery
         #  window to postpone date_planned
-        date_planned = fields.Datetime.to_datetime(res.get("date_planned"))
+
         # Remove security lead time to ensure the delivery date (and not the
         # date planned of the picking) will match delivery windows
         date_planned_without_sec_lead = date_planned + timedelta(
@@ -108,13 +119,13 @@ class SaleOrderLine(models.Model):
                 " rescheduled from %s to %s"
                 % (self.order_id, self, date_planned, next_preferred_date_with_sec_lead)
             )
-            res["date_planned"] = next_preferred_date_with_sec_lead
+            return next_preferred_date_with_sec_lead
         else:
             _logger.debug(
                 "Delivery window not applied for order %s. Date planned for line %s"
                 " already in delivery window" % (self.order_id, self)
             )
-        return res
+        return
 
     @api.depends("order_id.expected_date")
     def _compute_qty_at_date(self):
