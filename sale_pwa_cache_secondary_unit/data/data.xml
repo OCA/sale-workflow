@@ -1,0 +1,194 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data noupdate="1">
+
+        <!-- MODEL -->
+
+        <record id="pwa_cache_model_res_partner_all" model="pwa.cache">
+            <field name="name">Secondary Units of Measure (All)</field>
+            <field name="cache_type">model</field>
+            <field name="model_id" ref="product_secondary_unit.model_product_secondary_unit"/>
+        </record>
+
+        <!-- ONCHANGE -->
+
+        <function model="ir.model.data" name="_update_xmlids">
+            <value model="base" eval="[{
+                'xml_id': 'sale_pwa_cache_secondary_unit.sale.order.line.field.secondary_uom_id',
+                'record': obj().env['ir.model.fields'].search([('model_id', '=', obj().env.ref('sale.model_sale_order_line').id), ('name', '=', 'secondary_uom_id')], limit=1),
+                'noupdate': False,
+            },{
+                'xml_id': 'sale_pwa_cache_secondary_unit.sale.order.line.field.product_uom',
+                'record': obj().env['ir.model.fields'].search([('model_id', '=', obj().env.ref('sale.model_sale_order_line').id), ('name', '=', 'product_uom')], limit=1),
+                'noupdate': False,
+            },{
+                'xml_id': 'sale_pwa_cache_secondary_unit.sale.order.line.field.product_id',
+                'record': obj().env['ir.model.fields'].search([('model_id', '=', obj().env.ref('sale.model_sale_order_line').id), ('name', '=', 'product_id')], limit=1),
+                'noupdate': False,
+            }]"/>
+        </function>
+
+        <record id="pwa_cache_onchange_sale_order_line_secondary_uom_id" model="pwa.cache">
+            <field name="name">Sale Order Line - Onchange - secondary_uom_id [Secodary Unit]</field>
+            <field name="cache_type">onchange</field>
+            <field name="model_id" ref="sale.model_sale_order_line"/>
+            <field name="onchange_field" ref="sale_pwa_cache_secondary_unit.sale.order.line.field.secondary_uom_id"/>
+            <field name="code"><![CDATA[
+params = [
+    {
+        'secondary_uom_id': secondary_unit_id,
+        'secondary_uom_factor': None,
+        'secondary_uom_rounding': None,
+        'secondary_uom_qty': None,
+        'product_uom_factor': None,
+        'product_uom_rounding': None,
+    } for secondary_unit_id in env['product.secondary.unit'].search([]).ids
+]
+            ]]></field>
+        </record>
+
+        <record id="pwa_cache_onchange_sale_order_line_product_uom" model="pwa.cache">
+            <field name="name">Sale Order Line - Onchange - product_uom [Secodary Unit]</field>
+            <field name="cache_type">onchange</field>
+            <field name="model_id" ref="sale.model_sale_order_line"/>
+            <field name="onchange_field" ref="sale_pwa_cache_secondary_unit.sale.order.line.field.product_uom"/>
+            <field name="code"><![CDATA[
+params = [
+    {
+        'product_uom': product_uom,
+        'product_uom_factor': None,
+        'product_uom_rounding': None,
+    } for product_uom in env['uom.uom'].search([]).ids
+]
+            ]]></field>
+        </record>
+
+        <record id="pwa_cache_onchange_sale_order_line_product_id" model="pwa.cache">
+            <field name="name">Sale Order Line - Onchange - product_id [Secodary Unit]</field>
+            <field name="cache_type">onchange</field>
+            <field name="model_id" ref="sale.model_sale_order_line"/>
+            <field name="onchange_field" ref="sale_pwa_cache_secondary_unit.sale.order.line.field.product_id"/>
+            <field name="code"><![CDATA[
+params = [
+    {
+        'product_id': product_id,
+        'product_uom_factor': None,
+        'product_uom_rounding': None,
+        'has_secondary_uom': None,
+        'secondary_uom_id': None,
+        'secondary_uom_qty': None,
+        'secondary_uom_factor': None,
+        'secondary_uom_rounding': None,
+    } for product_id in env['product.product'].search([]).ids
+]
+            ]]></field>
+        </record>
+
+        <!-- ONCHANGE FORMULA -->
+
+        <function model="ir.model.data" name="_update_xmlids">
+            <value model="base" eval="[{
+                'xml_id': 'sale_pwa_cache_secondary_unit.sale.order.line.field.secondary_uom_qty',
+                'record': obj().env['ir.model.fields'].search([('model_id', '=', obj().env.ref('sale.model_sale_order_line').id), ('name', '=', 'secondary_uom_qty')], limit=1),
+                'noupdate': False,
+            },{
+                'xml_id': 'sale_pwa_cache_secondary_unit.sale.order.line.field.product_uom_qty',
+                'record': obj().env['ir.model.fields'].search([('model_id', '=', obj().env.ref('sale.model_sale_order_line').id), ('name', '=', 'product_uom_qty')], limit=1),
+                'noupdate': False,
+            }]"/>
+        </function>
+
+        <record id="pwa_cache_onchange_formula_sale_order_line_secondary_uom_qty" model="pwa.cache">
+            <field name="name">Sale Order Line - Onchange Formula - secondary_uom_qty [Secodary Unit]</field>
+            <field name="cache_type">onchange_formula</field>
+            <field name="model_id" ref="sale.model_sale_order_line"/>
+            <field name="onchange_field" ref="sale_pwa_cache_secondary_unit.sale.order.line.field.secondary_uom_qty"/>
+            <field name="code"><![CDATA[
+                params = [{
+                    'secondary_uom_qty': ['r', 0, 999999999999999999999],
+                }]
+            ]]></field>
+            <field name="code_js"><![CDATA[
+var value = {};
+if (secondary_uom_id > 0) {
+    var factor = secondary_uom_factor * product_uom_factor;
+    var qty = round_precision(secondary_uom_qty * factor, product_uom_rounding);
+    if (product_uom_qty != qty) {
+        value['product_uom_qty'] = qty;
+    }
+}
+return {"value": value}
+            ]]></field>
+        </record>
+
+        <record id="pwa_cache_onchange_formula_sale_order_line_product_uom_qty" model="pwa.cache">
+            <field name="name">Sale Order Line - Onchange Formula - product_uom_qty [Secodary Unit]</field>
+            <field name="cache_type">onchange_formula</field>
+            <field name="model_id" ref="sale.model_sale_order_line"/>
+            <field name="onchange_field" ref="sale_pwa_cache_secondary_unit.sale.order.line.field.product_uom_qty"/>
+            <field name="code"><![CDATA[
+                params = [{
+                    'product_uom_qty': ['r', 0, 999999999999999999999],
+                }]
+            ]]></field>
+            <field name="code_js"><![CDATA[
+var value = {};
+if (secondary_uom_id > 0) {
+    factor = secondary_uom_factor * product_uom_factor;
+    qty = round_precision(product_uom_qty / (factor || 1.0), secondary_uom_rounding);
+    if (secondary_uom_qty != qty) {
+        value['secondary_uom_qty'] = qty;
+    }
+}
+return {"value": value}
+            ]]></field>
+        </record>
+
+        <record id="pwa_cache_onchange_formula_sale_order_line_product_uom" model="pwa.cache">
+            <field name="name">Sale Order Line - Onchange Formula - product_uom [Secodary Unit]</field>
+            <field name="cache_type">onchange_formula</field>
+            <field name="model_id" ref="sale.model_sale_order_line"/>
+            <field name="onchange_field" ref="sale_pwa_cache_secondary_unit.sale.order.line.field.product_uom"/>
+            <field name="code"><![CDATA[
+                params = [{
+                    'product_uom': ['r', 0, 999999999999999999999],
+                }]
+            ]]></field>
+            <field name="code_js"><![CDATA[
+var value = {};
+if (secondary_uom_id > 0) {
+    factor = product_uom_factor * secondary_uom_factor;
+    qty = round_precision(product_uom_qty / (factor || 1.0), product_uom_rounding);
+    if (secondary_uom_qty != qty) {
+        value['secondary_uom_qty'] = qty;
+    }
+}
+return {"value": value}
+            ]]></field>
+        </record>
+
+        <record id="pwa_cache_onchange_formula_sale_order_line_secondary_uom_id" model="pwa.cache">
+            <field name="name">Sale Order Line - Onchange Formula - secondary_uom_id [Secodary Unit]</field>
+            <field name="cache_type">onchange_formula</field>
+            <field name="model_id" ref="sale.model_sale_order_line"/>
+            <field name="onchange_field" ref="sale_pwa_cache_secondary_unit.sale.order.line.field.secondary_uom_id"/>
+            <field name="code"><![CDATA[
+params = [{
+    'secondary_uom_id': ['r', 0, 999999999999999999999],
+}]
+            ]]></field>
+            <field name="code_js"><![CDATA[
+var value = {};
+if (secondary_uom_id > 0) {
+    var factor = secondary_uom_factor * product_uom_factor;
+    var qty = round_precision(secondary_uom_qty * factor, product_uom_rounding);
+    if (product_uom_qty != qty) {
+        value['product_uom_qty'] = qty;
+    }
+}
+return {"value": value}
+            ]]></field>
+        </record>
+
+    </data>
+</odoo>

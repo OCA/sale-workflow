@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="view_order_form_pwa" model="ir.ui.view">
+        <field name="model">sale.order</field>
+        <field name="inherit_id" ref="sale_pwa_cache.view_order_form_pwa" />
+        <field name="arch" type="xml">
+            <xpath expr="//formPWA//field[@name='order_line']//field[@name='order_id']" position="after">
+                <field name="secondary_uom_factor" invisible="1" />
+                <field name="secondary_uom_rounding" invisible="1" />
+                <!-- <field name="secondary_uom_product_variant_ids" /> -->
+                <field name="product_uom_factor" invisible="1" />
+                <field name="product_uom_rounding" invisible="1" />
+            </xpath>
+        </field>
+    </record>
+
+</odoo>
