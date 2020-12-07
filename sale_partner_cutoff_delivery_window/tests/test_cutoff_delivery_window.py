@@ -76,9 +76,7 @@ class TestSaleCutoffDeliveryWindow(SavepointCase):
             }
         )
         cls.warehouse = cls.env.ref("stock.warehouse0")
-        cls.warehouse.write(
-            {"apply_cutoff": True, "cutoff_time": 10.0,}
-        )
+        cls.warehouse.write({"apply_cutoff": True, "cutoff_time": 10.0})
         cls.product = cls.env.ref("product.product_product_9")
 
     def _create_order(self, partner=None):
@@ -146,14 +144,14 @@ class TestSaleCutoffDeliveryWindow(SavepointCase):
         order.action_confirm()
         picking = order.picking_ids
         self.assertEqual(
-            picking.scheduled_date, fields.Datetime.to_datetime("2020-03-30 08:00:00")
+            picking.scheduled_date, fields.Datetime.to_datetime("2020-03-30 09:00:00")
         )
         # After warehouse cutoff
         order = self._create_order(partner=self.customer_warehouse)
         order.action_confirm()
         picking = order.picking_ids
         self.assertEqual(
-            picking.scheduled_date, fields.Datetime.to_datetime("2020-03-30 08:00:00")
+            picking.scheduled_date, fields.Datetime.to_datetime("2020-03-30 10:00:00")
         )
 
     @freeze_time("2020-03-28 08:00:00")  # saturday morning
@@ -163,14 +161,14 @@ class TestSaleCutoffDeliveryWindow(SavepointCase):
         order.action_confirm()
         picking = order.picking_ids
         self.assertEqual(
-            picking.scheduled_date, fields.Datetime.to_datetime("2020-03-30 08:00:00")
+            picking.scheduled_date, fields.Datetime.to_datetime("2020-03-30 09:00:00")
         )
         # Before warehouse cutoff
         order = self._create_order(partner=self.customer_warehouse)
         order.action_confirm()
         picking = order.picking_ids
         self.assertEqual(
-            picking.scheduled_date, fields.Datetime.to_datetime("2020-03-30 08:00:00")
+            picking.scheduled_date, fields.Datetime.to_datetime("2020-03-30 10:00:00")
         )
 
     @freeze_time("2020-03-23 08:00:00")  # monday morning
@@ -219,14 +217,14 @@ class TestSaleCutoffDeliveryWindow(SavepointCase):
         order.action_confirm()
         picking = order.picking_ids
         self.assertEqual(
-            picking.scheduled_date, fields.Datetime.to_datetime("2020-03-30 08:00:00")
+            picking.scheduled_date, fields.Datetime.to_datetime("2020-03-30 09:00:00")
         )
         # Before partner cutoff
         order = self._create_order(partner=self.customer_warehouse)
         order.action_confirm()
         picking = order.picking_ids
         self.assertEqual(
-            picking.scheduled_date, fields.Datetime.to_datetime("2020-03-30 08:00:00")
+            picking.scheduled_date, fields.Datetime.to_datetime("2020-03-30 10:00:00")
         )
 
     @freeze_time("2020-03-24 08:00:00")  # tuesday morning
@@ -237,14 +235,14 @@ class TestSaleCutoffDeliveryWindow(SavepointCase):
         order.action_confirm()
         picking = order.picking_ids
         self.assertEqual(
-            picking.scheduled_date, fields.Datetime.to_datetime("2020-03-30 08:00:00")
+            picking.scheduled_date, fields.Datetime.to_datetime("2020-03-30 09:00:00")
         )
         # Before partner cutoff
         order = self._create_order(partner=self.customer_warehouse)
         order.action_confirm()
         picking = order.picking_ids
         self.assertEqual(
-            picking.scheduled_date, fields.Datetime.to_datetime("2020-03-30 08:00:00")
+            picking.scheduled_date, fields.Datetime.to_datetime("2020-03-30 10:00:00")
         )
 
     @freeze_time("2020-03-24 18:00:00")  # tuesday evening
@@ -255,12 +253,111 @@ class TestSaleCutoffDeliveryWindow(SavepointCase):
         order.action_confirm()
         picking = order.picking_ids
         self.assertEqual(
-            picking.scheduled_date, fields.Datetime.to_datetime("2020-03-30 08:00:00")
+            picking.scheduled_date, fields.Datetime.to_datetime("2020-03-30 09:00:00")
         )
         # Before partner cutoff
         order = self._create_order(partner=self.customer_warehouse)
         order.action_confirm()
         picking = order.picking_ids
         self.assertEqual(
-            picking.scheduled_date, fields.Datetime.to_datetime("2020-03-30 08:00:00")
+            picking.scheduled_date, fields.Datetime.to_datetime("2020-03-30 10:00:00")
+        )
+
+    @freeze_time("2020-03-24 18:00:00")  # tuesday evening
+    def test_partner_time_window_outside_cutoff_no_partner_cutoff(self):
+        """Partner with a delivery time window not within cutoff
+
+        And the partner has no cutoff. The cutoff of the warehouse must be applied.
+        The expected time should not default to the delivery time window but to the
+        warehouse cutoff.
+        """
+        partner = self.env["res.partner"].create(
+            {
+                "name": "Partner cutoff",
+                "order_delivery_cutoff_preference": "partner_cutoff",
+                "cutoff_time": 9.0,
+                "delivery_time_preference": "time_windows",
+                "delivery_time_window_ids": [
+                    (
+                        0,
+                        0,
+                        {
+                            "time_window_start": 14.0,
+                            "time_window_end": 15.00,
+                            "time_window_weekday_ids": [
+                                (
+                                    6,
+                                    0,
+                                    [
+                                        self.env.ref(
+                                            "base_time_window.time_weekday_monday"
+                                        ).id,
+                                        self.env.ref(
+                                            "base_time_window.time_weekday_friday"
+                                        ).id,
+                                    ],
+                                )
+                            ],
+                        },
+                    )
+                ],
+            }
+        )
+
+        self.product.sale_delay = 4
+        # Before partner cutoff
+        order = self._create_order(partner=partner)
+        order.action_confirm()
+        picking = order.picking_ids
+        self.assertEqual(
+            picking.scheduled_date, fields.Datetime.to_datetime("2020-03-30 09:00:00")
+        )
+
+    @freeze_time("2020-03-24 18:00:00")  # tuesday evening
+    def test_partner_time_window_outside_cutoff_commitment_date(self):
+        """Partner with a delivery time window not within cutoff
+
+        And we set a commitment date on the sales order.
+        """
+        partner = self.env["res.partner"].create(
+            {
+                "name": "Partner cutoff",
+                "order_delivery_cutoff_preference": "partner_cutoff",
+                "cutoff_time": 9.0,
+                "delivery_time_preference": "time_windows",
+                "delivery_time_window_ids": [
+                    (
+                        0,
+                        0,
+                        {
+                            "time_window_start": 14.0,
+                            "time_window_end": 15.00,
+                            "time_window_weekday_ids": [
+                                (
+                                    6,
+                                    0,
+                                    [
+                                        self.env.ref(
+                                            "base_time_window.time_weekday_monday"
+                                        ).id,
+                                        self.env.ref(
+                                            "base_time_window.time_weekday_friday"
+                                        ).id,
+                                    ],
+                                )
+                            ],
+                        },
+                    )
+                ],
+            }
+        )
+
+        self.product.sale_delay = 4
+        # Before partner cutoff
+        order = self._create_order(partner=partner)
+        order.commitment_date = fields.Datetime.to_datetime("2020-04-03 15:00:00")
+        order.action_confirm()
+        picking = order.picking_ids
+        self.assertEqual(
+            picking.scheduled_date, fields.Datetime.to_datetime("2020-04-03 09:00:00")
         )
