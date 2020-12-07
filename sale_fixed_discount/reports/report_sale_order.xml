@@ -12,16 +12,15 @@
                 t-value="any([l.discount_fixed for l in doc.order_line])"
             />
         </xpath>
-        <xpath expr="//th[@t-if='display_discount']" position="after">
+        <th name="th_discount" position="after">
             <th
                 t-if="display_discount_fixed"
                 class="text-right"
                 groups="product.group_discount_per_so_line"
             >
                 <span>Disc. Fixed Amount</span>
-                <t t-set="colspan" t-value="colspan+1" />
             </th>
-        </xpath>
+        </th>
         <xpath expr="//td[@t-if='display_discount']" position="after">
             <td
                 t-if="display_discount_fixed"
