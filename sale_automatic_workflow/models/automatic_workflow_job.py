@@ -24,16 +24,6 @@ def savepoint(cr):
         _logger.exception('Error during an automatic workflow action.')
 
 
-@contextmanager
-def force_company(env, company_id):
-    user_company = env.user.company_id
-    env.user.update({'company_id': company_id})
-    try:
-        yield
-    finally:
-        env.user.update({'company_id': user_company})
-
-
 class AutomaticWorkflowJob(models.Model):
     """ Scheduler that will play automatically the validation of
     invoices, pickings...  """
@@ -46,8 +36,10 @@ class AutomaticWorkflowJob(models.Model):
 
     def _do_validate_sale_order(self, sale):
         """Validate a sales order"""
-        with savepoint(self.env.cr), force_company(self.env, sale.company_id):
-            sale.action_confirm()
+        with savepoint(self.env.cr):
+            sale.with_context(
+                force_company=sale.company_id.id
+            ).action_confirm()
 
     @api.model
     def _validate_sale_orders(self, order_filter):
@@ -59,10 +51,13 @@ class AutomaticWorkflowJob(models.Model):
 
     def _do_create_invoice(self, sale):
         """Create an invoice for a sales order"""
-        with savepoint(self.env.cr), force_company(self.env, sale.company_id):
+        with savepoint(self.env.cr):
             payment = self.env['sale.advance.payment.inv'].create(
                 {'advance_payment_method': 'all'})
-            payment.with_context(active_ids=sale.ids).create_invoices()
+            payment.with_context(
+                active_ids=sale.ids,
+                force_company=sale.company_id.id
+            ).create_invoices()
 
     @api.model
     def _create_invoices(self, create_filter):
@@ -74,12 +69,14 @@ class AutomaticWorkflowJob(models.Model):
 
     def _do_validate_invoice(self, invoice):
         """Validate an invoice"""
-        with savepoint(self.env.cr), force_company(self.env,
-                                                   invoice.company_id):
-            # FIX Why is this needed for certain invoices
-            # in enterprise in multicompany?
-            invoice.with_context(
-                force_company=invoice.company_id.id).action_invoice_open()
+        with savepoint(self.env.cr):
+            try:
+                invoice.with_context(
+                    force_company=invoice.company_id.id
+                ).action_invoice_open()
+            except Exception:
+                _logger.exception('Error on validating invoice {}'.format(invoice.id))
+                raise
 
     @api.model
     def _validate_invoices(self, validate_invoice_filter):
@@ -104,8 +101,10 @@ class AutomaticWorkflowJob(models.Model):
 
     def _do_sale_done(self, sale):
         """Set a sales order to done"""
-        with savepoint(self.env.cr), force_company(self.env, sale.company_id):
-            sale.action_done()
+        with savepoint(self.env.cr):
+            sale.with_context(
+                force_company=sale.company_id.id
+            ).action_done()
 
     @api.model
     def _sale_done(self, sale_done_filter):
