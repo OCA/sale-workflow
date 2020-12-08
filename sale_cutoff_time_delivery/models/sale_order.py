@@ -67,7 +67,7 @@ class SaleOrderLine(models.Model):
 
         By default, if the planned date is the same day but after the cut-off,
         the new planned date is delayed one day later. The argument
-        keep_same_ay force keeping the same day.
+        keep_same_day forces keeping the same day.
         """
         cutoff = self.order_id.get_cutoff_time()
         partner = self.order_id.partner_shipping_id
