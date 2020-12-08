@@ -16,5 +16,6 @@
         "views/pricelist.xml",
         "wizard/tiered_pricing_wizard.xml",
         "views/product.xml",
+        "views/partner.xml",
     ],
 }
