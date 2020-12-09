@@ -22,13 +22,19 @@ jobs:
         - LINT_CHECK="1"
     - stage: test
       env:
-        - TESTS="1" ODOO_REPO="OCA/OCB" EXCLUDE="sale_invoice_policy"
+        - TESTS="1" ODOO_REPO="OCA/OCB" EXCLUDE="sale_invoice_policy,sale_delivery_split_date"
+    - stage: test
+      env:
+        - TESTS="1" ODOO_REPO="OCA/OCB" EXCLUDE="sale_invoice_policy,sale_procurement_group_by_commitment_date"
     - stage: test
       env:
         - TESTS="1" ODOO_REPO="OCA/OCB" INCLUDE="sale_invoice_policy"
     - stage: test
       env:
-        - TESTS="1" ODOO_REPO="odoo/odoo" EXCLUDE="sale_invoice_policy" MAKEPOT="1"
+        - TESTS="1" ODOO_REPO="odoo/odoo" EXCLUDE="sale_invoice_policy,sale_delivery_split_date" MAKEPOT="1"
+    - stage: test
+      env:
+        - TESTS="1" ODOO_REPO="odoo/odoo" EXCLUDE="sale_invoice_policy,sale_procurement_group_by_commitment_date" MAKEPOT="1"
     - stage: test
       env:
         - TESTS="1" ODOO_REPO="odoo/odoo" INCLUDE="sale_invoice_policy" MAKEPOT="1"
