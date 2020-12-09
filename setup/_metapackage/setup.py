@@ -22,6 +22,7 @@ setuptools.setup(
         'odoo12-addon-sale_commercial_partner',
         'odoo12-addon-sale_commitment_lead_time',
         'odoo12-addon-sale_contact_type',
+        'odoo12-addon-sale_delivery_split_date',
         'odoo12-addon-sale_disable_inventory_check',
         'odoo12-addon-sale_discount_display_amount',
         'odoo12-addon-sale_double_validation',
