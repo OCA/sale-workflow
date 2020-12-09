@@ -130,3 +130,21 @@ class RecommendationCaseTests(RecommendationCase):
         wiz_line_prod2 = wizard.line_ids.filtered(
             lambda x: x.product_id == self.prod_2)
         self.assertEqual(wiz_line_prod2.price_unit, 89.00)
+
+    def test_recommendations_last_sale_price_to_sale_order(self):
+        # Display product price from last sale order price
+        wizard = self.wizard()
+        wizard.sale_recommendation_price_origin = "last_sale_price"
+        wiz_line_prod1 = wizard.line_ids.filtered(
+            lambda x: x.product_id == self.prod_1)
+        wiz_line_prod1.units_included = 1.0
+        wizard.action_accept()
+        so_line_prod1 = wizard.order_id.order_line.filtered(
+            lambda x: x.product_id == self.prod_1)
+        self.assertEqual(so_line_prod1.price_unit, 24.50)
+        # If I update sale order line price unit this price can not bw updated
+        # by wizard
+        so_line_prod1.price_unit = 60.0
+        wiz_line_prod1.units_included = 3
+        wizard.action_accept()
+        self.assertEqual(so_line_prod1.price_unit, 60.0)
