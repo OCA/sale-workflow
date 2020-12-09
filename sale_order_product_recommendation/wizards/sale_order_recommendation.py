@@ -231,6 +231,9 @@ class SaleOrderRecommendationLine(models.TransientModel):
         line_form.product_id = self.product_id
         line_form.sequence = sequence
         line_form.product_uom_qty = self.units_included
+        if (self.wizard_id.sale_recommendation_price_origin ==
+                "last_sale_price"):
+            line_form.price_unit = self.price_unit
 
     def _get_last_sale_price_product(self):
         """
