@@ -78,8 +78,9 @@ class TestPricing(TestTieredPricing):
             self.env["product.pricelist.item"].create(bad_item)
 
     def test_tiered_pricing(self):
-        self.decimal_price.digits = 3  # without this, there would be rounding issues.
+        self.decimal_price.digits = 4  # without this, there would be rounding issues.
         # However it cannot be put in the setup, because it would get the db precision.
+        p = self.decimal_price.precision_get(self.decimal_price.name)  # noqa
 
         new_line = self.env["sale.order.line"].create(
             {
@@ -136,3 +137,56 @@ class TestPricing(TestTieredPricing):
         )
         self.assertTrue("Tiers" not in new_line.name)
         self.assertEqual(new_line.price_subtotal, 42 * 42)
+
+    def test_translation(self):
+        """Here we activate the baguette language, and make the customer a baguette.
+           Thus when we create a new line, the tier description should be translated
+           in baguette.
+        """
+        Langs = self.env["res.lang"].with_context(active_test=False)
+        lang = Langs.search([("code", "=", "fr_FR")])
+        lang.active = True
+        translations = self.env["ir.translation"]
+        translations.load_module_terms(["sale_tiered_pricing"], [lang.code])
+        self.env["ir.translation"].create(
+            {
+                "name": "addons/sale_tiered_pricing/models/sale_order_line.py",
+                "type": "code",
+                "module": "sale_tiered_pricing",
+                "lang": lang.code,
+                "source": "Tiers: {}",
+                "value": "Tranches: {}",
+                "state": "translated",
+            }
+        )
+        self.partner.lang = lang.code
+
+        new_line = self.env["sale.order.line"].create(
+            {
+                "order_id": self.order.id,
+                "product_id": self.product.id,
+                "product_uom_qty": 250,
+            }
+        )
+        self.assertTrue("Tranches" in new_line.name)
+
+    def test_tiered_pricing_discount(self):
+        """Here we set the tiered pricing to compute each price using a discount rule.
+           We verify first that the price is correctly computed,
+           second that the description matches the computation.
+           This second point is because a naive approach would have the discounts
+           applied twice in the description...
+        """
+        self.product.list_price = 10
+        self.tiered_item.tiered_pricelist_id = self.tiered_pricing_discount
+        new_line = self.env["sale.order.line"].create(
+            {
+                "order_id": self.order.id,
+                "product_id": self.product.id,
+                "product_uom_qty": 250,
+            }
+        )
+        self.assertEqual(new_line.price_subtotal, 100 * 10 + 100 * 8 + 50 * 5)
+        self.assertTrue(" 10" in new_line.name)
+        self.assertTrue(" 8" in new_line.name)
+        self.assertTrue(" 5" in new_line.name)

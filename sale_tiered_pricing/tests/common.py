@@ -37,6 +37,26 @@ class TestTieredPricing(SavepointCase):
             }
         )
 
+        def make_tier_item_discount(qty, discount):
+            return {
+                "min_quantity": qty,
+                "compute_price": "percentage",
+                "percent_price": discount,
+                "applied_on": "3_global",
+            }
+
+        cls.tiered_pricing_discount = cls.env["product.pricelist"].create(
+            {
+                "name": "Tiered pricing discount",
+                "is_tiered_pricing": True,
+                "item_ids": [
+                    (0, 0, make_tier_item_discount(0, 0)),
+                    (0, 0, make_tier_item_discount(100, 20)),
+                    (0, 0, make_tier_item_discount(200, 50)),
+                ],
+            }
+        )
+
         cls.pricelist = cls.env["product.pricelist"].create(
             {"name": "Pricelist using tiered pricing", "is_tiered_pricing": False}
         )

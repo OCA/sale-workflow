@@ -41,6 +41,7 @@ class ProductPricelistItem(models.Model):
             qps = self.tiered_pricelist_id.get_quantities_and_prices(
                 price, price_uom, product, quantity
             )  # the unit price is the weighted average
+            product.tiered_qps = qps
             price = sum(q * p for q, p in qps) / quantity
             return product.uom_id._compute_price(price, price_uom)
 

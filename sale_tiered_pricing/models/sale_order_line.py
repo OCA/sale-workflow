@@ -31,18 +31,15 @@ class SaleOrderLine(models.Model):
 
     def get_sale_order_line_multiline_description_sale(self, product):
         """Enrich the description with the tier computation.
-           TODO: better description/test that translation works as expected.
+           TODO: improve the description, and update test accordingly.
         """
         res = super(SaleOrderLine, self).get_sale_order_line_multiline_description_sale(
             product
         )
         if self.is_tier_priced and self.product_uom_qty:
             context = {"lang": self.order_id.partner_id.lang}  # noqa  # used by _ below
-            tier_rule = self.order_id.pricelist_id.get_tier_rule(product, self)
-            qps = tier_rule.tiered_pricelist_id.get_quantities_and_prices(
-                self.price_unit, self.product_uom, product, self.product_uom_qty
-            )
-            computation = " + ".join("{} x {}".format(q, p) for q, p in qps)
+            qps = product.tiered_qps
+            computation = " + ".join("{:.2f} x {:.2f}".format(q, p) for q, p in qps)
             tier_description = _("Tiers: {}").format(computation)
             res = "\n".join([res, tier_description])
         return res

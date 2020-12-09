@@ -15,6 +15,11 @@ class ProductProduct(models.Model):
         compute="_compute_tiered_pricing_items",
         help="Tiered Pricing items",
     )
+    tiered_qps = fields.Binary(
+        help="Technical field. Temporarily stores the quantities per tiers.",
+        store=False,
+        compute="_compute_tiered_qps",
+    )
 
     def _compute_tiered_pricing_items(self):
         tiered_domain = [
@@ -25,3 +30,8 @@ class ProductProduct(models.Model):
         for product in self:
             ptis = tiered_items.filtered(lambda i, j=product: i.product_id == j)
             product.tiered_pricing_items = ptis.mapped("tiered_pricelist_id.tier_items")
+
+    def _compute_tiered_qps(self):
+        for product in self:
+            price = product.price  # noqa: side-effect from tier rule
+            product.tiered_qps = product.tiered_qps or False
