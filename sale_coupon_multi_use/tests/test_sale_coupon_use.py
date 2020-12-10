@@ -20,6 +20,11 @@ class TestSaleCouponMultiUse(TestSaleCouponMultiUseCommon):
                 pricelist.currency_id = self.eur
         return pricelist.currency_id, company.currency_id
 
+    def _cmp_record_ids(self, rec1, rec2):
+        self.assertEqual(
+            sorted(rec1.ids), sorted(rec2.ids), "{} not equal to {}".format(rec1, rec2)
+        )
+
     def _remove_so_discount_lines(self, order):
         order.order_line.filtered(lambda r: r.price_unit < 0).unlink()
 
@@ -38,6 +43,7 @@ class TestSaleCouponMultiUse(TestSaleCouponMultiUseCommon):
         # Sanity check.
         self.assertEqual(self.sale_1.amount_total, amount_total_expected)
         self.assertFalse(self.coupon_multi_use_1.consumption_line_ids)
+        self.assertFalse(self.sale_1.coupon_multi_use_ids)
 
     def test_02_coupon_multi_use(self):
         """Apply coupon to consume all amount in one use.
@@ -57,6 +63,8 @@ class TestSaleCouponMultiUse(TestSaleCouponMultiUseCommon):
         self.assertEqual(consume_lines[0].amount, DISCOUNT_AMOUNT)
         self.assertEqual(self.coupon_multi_use_1.discount_fixed_amount_delta, 0)
         self.assertEqual(self.coupon_multi_use_1.state, "used")
+        # Check if multi-coupons were applied.
+        self.assertEqual(self.sale_1.coupon_multi_use_ids, self.coupon_multi_use_1)
         # Case 2.
         with self.assertRaises(UserError):
             self.coupon_apply_wiz.with_context(
@@ -93,6 +101,9 @@ class TestSaleCouponMultiUse(TestSaleCouponMultiUseCommon):
             self.coupon_multi_use_1.discount_fixed_amount_delta, remaining_discount
         )
         self.assertEqual(self.coupon_multi_use_1.state, "new")
+        # Check if multi-coupons were applied.
+        self.assertEqual(self.sale_2.coupon_multi_use_ids, self.coupon_multi_use_1)
+        self.assertEqual(self.coupon_multi_use_1.sale_multi_use_ids, self.sale_2)
         # Case 2.
         amount_total_expected = self.sale_1.amount_total - remaining_discount
         self.coupon_apply_wiz.with_context(active_id=self.sale_1.id).process_coupon()
@@ -105,6 +116,12 @@ class TestSaleCouponMultiUse(TestSaleCouponMultiUseCommon):
         self.assertEqual(consume_lines[1].amount, remaining_discount)
         self.assertEqual(self.coupon_multi_use_1.discount_fixed_amount_delta, 0)
         self.assertEqual(self.coupon_multi_use_1.state, "used")
+        # Check if another SO was related with multi use coupon.
+        self.assertEqual(self.sale_2.coupon_multi_use_ids, self.coupon_multi_use_1)
+        self.assertEqual(self.sale_1.coupon_multi_use_ids, self.coupon_multi_use_1)
+        self._cmp_record_ids(
+            self.coupon_multi_use_1.sale_multi_use_ids, self.sale_1 | self.sale_2
+        )
         # Case 3.
         self._remove_so_discount_lines(self.sale_1)
         consume_lines = self.coupon_multi_use_1.consumption_line_ids
@@ -120,6 +137,10 @@ class TestSaleCouponMultiUse(TestSaleCouponMultiUseCommon):
             self.coupon_multi_use_1.discount_fixed_amount_delta, remaining_discount
         )
         self.assertEqual(self.coupon_multi_use_1.state, "new")
+        # Check if coupon was removed following removed SO line.
+        self.assertEqual(self.sale_2.coupon_multi_use_ids, self.coupon_multi_use_1)
+        self.assertFalse(self.sale_1.coupon_multi_use_ids)
+        self.assertEqual(self.coupon_multi_use_1.sale_multi_use_ids, self.sale_2)
         # Case 4.
         self._remove_so_discount_lines(self.sale_2)
         self.assertFalse(self.coupon_multi_use_1.consumption_line_ids)
@@ -127,6 +148,9 @@ class TestSaleCouponMultiUse(TestSaleCouponMultiUseCommon):
             self.coupon_multi_use_1.discount_fixed_amount_delta, DISCOUNT_AMOUNT
         )
         self.assertEqual(self.coupon_multi_use_1.state, "new")
+        # Check if both SO are now unrelated with multi-use coupon.
+        self.assertFalse(self.sale_1.coupon_multi_use_ids)
+        self.assertFalse(self.sale_2.coupon_multi_use_ids)
 
     def test_04_coupon_multi_use(self):
         """Apply multi use coupon on SO with different currency.
@@ -222,13 +246,49 @@ class TestSaleCouponMultiUse(TestSaleCouponMultiUseCommon):
         )
 
     def test_06_coupon_multi_use(self):
-        """Apply multi use coupon on SO and cancel SO."""
+        """Apply multi-use coupons, then cancel/draft/confirm SOs.
+
+        Case 1: cancel sale orders.
+        Case 2: set draft sale orders.
+        """
+        self.coupon_apply_wiz.with_context(active_id=self.sale_2.id).process_coupon()
         self.coupon_apply_wiz.with_context(active_id=self.sale_1.id).process_coupon()
-        # Sanity check.
+        # Case 1.
         self.assertEqual(self.coupon_multi_use_1.state, "used")
+        self.assertEqual(len(self.coupon_multi_use_1.consumption_line_ids), 2)
+        self.sale_2.action_cancel()
+        self.assertFalse(self.sale_2.coupon_multi_use_ids)
+        self.assertEqual(self.coupon_multi_use_1.state, "new")
+        self.assertEqual(len(self.coupon_multi_use_1.consumption_line_ids), 1)
         self.sale_1.action_cancel()
+        self.assertFalse(self.sale_1.coupon_multi_use_ids)
         self.assertFalse(self.coupon_multi_use_1.consumption_line_ids)
         self.assertEqual(self.coupon_multi_use_1.state, "new")
+        # Case 2.
+        self.sale_2.action_draft()
+        self.assertFalse(self.sale_2.coupon_multi_use_ids)
+        self.assertEqual(self.coupon_multi_use_1.state, "new")
+        self.assertFalse(self.coupon_multi_use_1.consumption_line_ids)
+        self.sale_1.action_draft()
+        self.assertFalse(self.sale_1.coupon_multi_use_ids)
+        self.assertEqual(self.coupon_multi_use_1.state, "new")
+        self.assertFalse(self.coupon_multi_use_1.consumption_line_ids)
+        self.assertFalse(self.sale_1.coupon_multi_use_ids)
+
+    def test_07_coupon_multi_use(self):
+        """Try to use different multi-use coupons from same program."""
+        self.coupon_generate_wiz.generate_coupon()
+        coupon_multi_use_2 = self.program_multi_use.coupon_ids[-1]
+        # Apply first coupon
+        self.coupon_apply_wiz.with_context(active_id=self.sale_1.id).process_coupon()
+        # Imitate case when applied_coupon_ids is cleared by other SO.
+        self.sale_2.applied_coupon_ids = [(4, self.coupon_multi_use_1.id)]
+        # Try to apply second coupon from same program.
+        with self.assertRaises(UserError):
+            self.coupon_apply_wiz.coupon_code = coupon_multi_use_2.code
+            self.coupon_apply_wiz.with_context(
+                active_id=self.sale_1.id
+            ).process_coupon()
 
     def _raise_multi_use_constraints(self, program):
         """Expect to raise exceptions when multi use coupons are used.
@@ -271,12 +331,12 @@ class TestSaleCouponMultiUse(TestSaleCouponMultiUseCommon):
                 "coupon_multi_use=False and no multi_use coupons generated."
             )
 
-    def test_07_unlink_consumption_line(self):
+    def test_08_unlink_consumption_line(self):
         """Check if consumption line not allowed to unlink."""
         with self.assertRaises(UserError):
             self.coupon_multi_use_1.consumption_line_ids.unlink()
 
-    def test_08_coupon_program_constraints(self):
+    def test_09_coupon_program_constraints(self):
         """Check coupon constraints when multi use coupon is generated.
 
         Case: multi_use=True
@@ -285,7 +345,7 @@ class TestSaleCouponMultiUse(TestSaleCouponMultiUseCommon):
             self.program_multi_use.discount_fixed_amount = 3000
         self._raise_multi_use_constraints(self.program_multi_use)
 
-    def test_09_coupon_program_constraints(self):
+    def test_10_coupon_program_constraints(self):
         """Check coupon constraints when multi use coupon is generated.
 
         Case: multi_use=False
@@ -295,7 +355,7 @@ class TestSaleCouponMultiUse(TestSaleCouponMultiUseCommon):
             self.program_multi_use.discount_fixed_amount = 3000
         self._raise_multi_use_constraints(self.program_multi_use)
 
-    def test_10_coupon_program_constraints(self):
+    def test_11_coupon_program_constraints(self):
         """Check constraints when multi use coupon is not generated.
 
         Case 1: multi_use=True
@@ -322,7 +382,7 @@ class TestSaleCouponMultiUse(TestSaleCouponMultiUseCommon):
         pass_discount_fixed_amount(program)
         self._not_raise_multi_use_constraints(program)
 
-    def test_11_coupon_program_constraints(self):
+    def test_12_coupon_program_constraints(self):
         """Try to use coupon_multi_use, when other options are incorrect."""
         with self.assertRaises(ValidationError):
             self.program_coupon_percentage.coupon_multi_use = True

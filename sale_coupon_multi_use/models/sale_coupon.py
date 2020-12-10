@@ -2,7 +2,7 @@
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
 import pickle
 
-from odoo import api, fields, models
+from odoo import _, api, fields, models
 
 
 def _pickle_copy(data):
@@ -28,6 +28,15 @@ class SaleCoupon(models.Model):
         compute="_compute_discount_fixed_amount_delta",
         currency_field="currency_program_id",
     )
+    sale_multi_use_ids = fields.Many2many(
+        "sale.order",
+        "sale_order_coupon_multi_rel",
+        "coupon_id",
+        "sale_id",
+        string="Applied on Orders",
+        copy=False,
+        readonly=True,
+    )
 
     def _get_discount_fixed_amount_delta(self):
         self.ensure_one()
@@ -39,6 +48,14 @@ class SaleCoupon(models.Model):
     def _compute_discount_fixed_amount_delta(self):
         for rec in self:
             rec.discount_fixed_amount_delta = rec._get_discount_fixed_amount_delta()
+
+    def _check_coupon_code(self, order):
+        # Same check as is for `applied_coupon_ids` field.
+        if self.program_id in order.mapped("coupon_multi_use_ids.program_id"):
+            return {
+                "error": _("Multi-Use Coupon is already applied for the same reward")
+            }
+        return super()._check_coupon_code(order)
 
     def _filter_multi_use_triggered(self, vals):
         # Indicating for coupon to be consumed
@@ -113,14 +130,14 @@ class SaleCoupon(models.Model):
         """Extend to manage multi_use coupons.
 
         Each coupon record is handled separately, because some might
-        be valid, some not after handling multi use.
+        be valid, some not, after handling multi use.
         """
         coupon_sale_order = self._context.get("coupon_sale_order")
         other_coupons = self  # by default all coupons.
         if coupon_sale_order:
-            multi_use_coupons = self._filter_multi_use_triggered(vals)
-            other_coupons = self - multi_use_coupons
-            for multi_use_coupon in multi_use_coupons:
+            coupon_multi_use = self._filter_multi_use_triggered(vals)
+            other_coupons = self - coupon_multi_use
+            for multi_use_coupon in coupon_multi_use:
                 copied_vals = _pickle_copy(vals)
                 coupon_still_valid = multi_use_coupon._handle_multi_use(
                     coupon_sale_order
@@ -135,3 +152,14 @@ class SaleCoupon(models.Model):
             if vals.get("state") == "new":
                 self._handle_multi_use_reset(coupon_sale_order)
         return super(SaleCoupon, other_coupons).write(vals)
+
+    # NOTE. This is a bit limited. Such methods should be defined on
+    # sale_coupon, because its related with all coupons, not just
+    # multi-use coupons.
+    def consume_coupons(self):
+        """Set coupons state to 'used'."""
+        self.write({"state": "used"})
+
+    def reset_coupons(self):
+        """Set coupons state to 'new'."""
+        self.write({"state": "new"})

@@ -19,6 +19,13 @@
                 <field name="currency_program_id" invisible="1" />
                 <field name="multi_use" />
             </field>
+            <field name="sales_order_id" position="after">
+                <field
+                    name="sale_multi_use_ids"
+                    widget="many2many_tags"
+                    attrs="{'invisible': [('multi_use', '=', False)]}"
+                />
+            </field>
             <xpath expr="/form/sheet/group" position="after">
                 <field
                     name="consumption_line_ids"

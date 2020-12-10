@@ -61,11 +61,11 @@ class SaleCouponProgram(models.Model):
                 )
 
     def _compute_program_multi_use_amount(
-        self, multi_use_coupon, sale_order, currency_to
+        self, coupon_multi_use, sale_order, currency_to
     ):
         # Only using remaining amount (original implementation
         # always uses full amount specified on related program).
-        amount_delta = multi_use_coupon.discount_fixed_amount_delta
+        amount_delta = coupon_multi_use.discount_fixed_amount_delta
         amount_delta = self.currency_id._convert(
             amount_delta, currency_to, self.company_id, fields.Date.today()
         )
@@ -77,7 +77,7 @@ class SaleCouponProgram(models.Model):
         coupon_code = self._context.get("coupon_code")
         sale_order = self._context.get("coupon_sale_order")
         if coupon_code and sale_order and field == "discount_fixed_amount":
-            multi_use_coupon = self.env["sale.coupon"].search(
+            coupon_multi_use = self.env["sale.coupon"].search(
                 [
                     ("multi_use", "=", True),
                     ("code", "=", coupon_code),
@@ -85,9 +85,9 @@ class SaleCouponProgram(models.Model):
                 ],
                 limit=1,
             )
-            if multi_use_coupon:
+            if coupon_multi_use:
                 return self._compute_program_multi_use_amount(
-                    multi_use_coupon, sale_order, currency_to
+                    coupon_multi_use, sale_order, currency_to
                 )
 
         return super()._compute_program_amount(field, currency_to)
