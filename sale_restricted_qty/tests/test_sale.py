@@ -3,10 +3,10 @@
 
 import odoo.tests.common as common
 from odoo.exceptions import ValidationError
+from odoo.tests import tagged
 
 
-@common.at_install(False)
-@common.post_install(True)
+@tagged("-at_install", "post_install")
 class TestSaleOrderLineMinQty(common.TransactionCase):
     def setUp(self):
         super(TestSaleOrderLineMinQty, self).setUp()
@@ -64,6 +64,7 @@ class TestSaleOrderLineMinQty(common.TransactionCase):
             sale_order = self.sale_order_model.new(
                 {"partner_id": self.partner.id, "order_line": [(0, 0, line_values)]}
             )
+            sale_order.onchange_partner_id()
             sale_values = self.refrech_sale_values(sale_order)
             self.sale_order_model.create(sale_values)
         line_values["product_uom_qty"] = 12.0

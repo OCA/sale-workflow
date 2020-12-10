@@ -6,7 +6,7 @@
         <field name="model">product.product</field>
         <field name="inherit_id" ref="product.product_normal_form_view" />
         <field name="arch" type="xml">
-            <group name="pricelists" position="before">
+            <group name="sale" position="before">
                 <group
                     name="sale_restricted_qty"
                     string="Sale restricted qty"
