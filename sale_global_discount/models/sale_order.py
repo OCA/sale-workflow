@@ -16,6 +16,14 @@ class SaleOrder(models.Model):
                "('account_id', '!=', False), '|', "
                "('company_id', '=', company_id), ('company_id', '=', False)]",
     )
+    # HACK: Looks like UI doesn't behave well with Many2many fields and
+    # negative groups when the same field is shown. In this case, we want to
+    # show the readonly version to any not in the global discount group.
+    # TODO: Check if it's fixed in future versions
+    global_discount_ids_readonly = fields.Many2many(
+        related="global_discount_ids",
+        readonly=True,
+    )
     amount_global_discount = fields.Monetary(
         string='Total Global Discounts',
         compute='_amount_all',
