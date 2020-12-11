@@ -27,12 +27,6 @@ class TestDeliveryState(SavepointCase):
         self.order.order_line[0].qty_delivered = 2
         self.assertEqual(self.order.delivery_state, "partially")
 
-    def test_forced_delivery_cost(self):
-        self.order.action_confirm()
-        self.order.order_line[0].qty_delivered = 2
-        self.order.force_delivery_state = True
-        self.assertEqual(self.order.delivery_state, "done")
-
     def test_delivery_done(self):
         self.order.action_confirm()
         for line in self.order.order_line:
@@ -40,9 +34,13 @@ class TestDeliveryState(SavepointCase):
         self.assertEqual(self.order.delivery_state, "done")
 
     def mock_delivery(self):
+        class DeliverySaleOrderLine(self.order.order_line._model_classes[0]):
+            def _is_delivery(self):
+                return True
+
         for line in self.order.order_line:
             if line.product_id == self.delivery_cost:
-                line._is_delivery = lambda s: True
+                line.__class__ = DeliverySaleOrderLine
 
     def add_delivery_cost_line(self):
         self.env["sale.order.line"].create(
