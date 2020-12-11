@@ -38,12 +38,14 @@ msgstr "Total sem Impostos antes de Descontos"
 
 #. module: sale_global_discount
 #: code:addons/sale_global_discount/models/sale_order.py:65
+#: code:addons/sale_global_discount/models/sale_order.py:73
 #, python-format
 msgid "Incompatible taxes found for global discounts."
 msgstr "Foram encontrados impostos incompatíveis para descontos globais."
 
 #. module: sale_global_discount
 #: model:ir.model.fields,field_description:sale_global_discount.field_sale_order__global_discount_ids
+#: model:ir.model.fields,field_description:sale_global_discount.field_sale_order__global_discount_ids_readonly
 msgid "Sale Global Discounts"
 msgstr "Descontos Globais de Venda"
 
@@ -59,6 +61,7 @@ msgstr "Total de Descontos Globais"
 
 #. module: sale_global_discount
 #: code:addons/sale_global_discount/models/sale_order.py:58
+#: code:addons/sale_global_discount/models/sale_order.py:66
 #, python-format
 msgid "With global discounts, taxes in lines are required."
 msgstr "Com descontos globais, é obrigatório ter impostos nas linhas."
