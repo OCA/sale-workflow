@@ -9,7 +9,8 @@
         <field name="inherit_id" ref="sale.view_order_form" />
         <field name="arch" type="xml">
             <field name="pricelist_id" position="after">
-                <field name="global_discount_ids" widget="many2many_tags"/>
+                <field name="global_discount_ids" widget="many2many_tags" groups="base_global_discount.group_global_discount" />
+                <field name="global_discount_ids_readonly" widget="many2many_tags" groups="!base_global_discount.group_global_discount" />
             </field>
             <field name="amount_untaxed" position="before">
                 <field name="amount_untaxed_before_global_discounts"/>
