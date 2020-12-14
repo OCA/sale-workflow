@@ -1,84 +1,72 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
+    <data noupdate="0">
+        <!-- POST -->
+        <record id="pwa_cache_post_sale_order_onboarding_panel" model="pwa.cache">
+            <field name="name">Sale Order - Post - Onboarding Panel</field>
+            <field name="cache_type">post</field>
+            <field name="post_url">sales/sale_quotation_onboarding_panel</field>
+            <field name="internal">1</field>
+        </record>
+
+        <!-- GET -->
+        <record id="pwa_cache_get_sale_order_onboarding_panel_bg" model="pwa.cache">
+            <field name="name">Sale Order - Get - Onboarding Panel Background</field>
+            <field name="cache_type">get</field>
+            <field name="get_urls">sale/static/src/img/sale_quotation_onboarding_bg.jpg</field>
+            <field name="internal">1</field>
+        </record>
+    </data>
+
     <data noupdate="1">
 
         <!-- MODEL -->
-
-        <record id="pwa_cache_model_res_partner_all" model="pwa.cache">
-            <field name="name">Partners (All)</field>
-            <field name="cache_type">model</field>
-            <field name="model_id" ref="base.model_res_partner"/>
-            <field name="model_orderby">display_name</field>
-        </record>
-
-        <record id="pwa_cache_model_res_currency_all" model="pwa.cache">
-            <field name="name">Currency (All)</field>
-            <field name="cache_type">model</field>
-            <field name="model_id" ref="base.model_res_currency"/>
-            <field name="model_orderby">active desc, name</field>
-        </record>
-
-        <record id="pwa_cache_model_res_users_all" model="pwa.cache">
-            <field name="name">Users (All)</field>
-            <field name="cache_type">model</field>
-            <field name="model_id" ref="base.model_res_users"/>
-            <field name="model_orderby">name, login</field>
-        </record>
-
         <record id="pwa_cache_model_crm_team_all" model="pwa.cache">
             <field name="name">CRM Teams (All)</field>
             <field name="cache_type">model</field>
             <field name="model_id" ref="sales_team.model_crm_team"/>
-            <field name="model_orderby">name</field>
-        </record>
-
-        <record id="pwa_cache_model_res_company_all" model="pwa.cache">
-            <field name="name">Companies (All)</field>
-            <field name="cache_type">model</field>
-            <field name="model_id" ref="base.model_res_company"/>
-            <field name="model_orderby">sequence, name</field>
+            <field name="model_domain_raw">[]</field>
         </record>
 
         <record id="pwa_cache_model_uom_uom_all" model="pwa.cache">
             <field name="name">Units of Measure (All)</field>
             <field name="cache_type">model</field>
             <field name="model_id" ref="uom.model_uom_uom"/>
-            <field name="model_orderby">name</field>
         </record>
 
         <record id="pwa_cache_model_sale_order_all" model="pwa.cache">
-            <field name="name">Saler Orders (All)</field>
+            <field name="name">Saler Orders (All - Last year)</field>
             <field name="cache_type">model</field>
             <field name="model_id" ref="sale.model_sale_order"/>
-            <field name="model_orderby">date_order desc, id desc</field>
+            <field name="model_domain_raw">[['date_order', '&gt;', (context_today() - relativedelta(days=365)).strftime('%Y-%m-%d')]]</field>
         </record>
 
         <record id="pwa_cache_model_sale_order_lines_all" model="pwa.cache">
-            <field name="name">Sale Order Lines (All)</field>
+            <field name="name">Sale Order Lines (All - Last year)</field>
             <field name="cache_type">model</field>
             <field name="model_id" ref="sale.model_sale_order_line"/>
-            <field name="model_orderby">order_id, sequence, id</field>
+            <field name="model_domain_raw">[['order_id.date_order', '&gt;', (context_today() - relativedelta(days=365)).strftime('%Y-%m-%d')]]</field>
         </record>
 
-        <record id="pwa_cache_model_product_product_all" model="pwa.cache">
-            <field name="name">Products (All)</field>
+        <record id="pwa_cache_model_account_tax_all" model="pwa.cache">
+            <field name="name">Account Tax (All)</field>
             <field name="cache_type">model</field>
-            <field name="model_id" ref="product.model_product_product"/>
-            <field name="model_orderby">default_code, name, id</field>
+            <field name="model_id" ref="account.model_account_tax"/>
+            <field name="model_domain_raw">[]</field>
         </record>
 
-        <record id="pwa_cache_model_product_pricelist_all" model="pwa.cache">
-            <field name="name">Product Pricelists (All)</field>
+        <record id="pwa_cache_model_account_incoterms_all" model="pwa.cache">
+            <field name="name">Account Incoterms (All)</field>
             <field name="cache_type">model</field>
-            <field name="model_id" ref="product.model_product_pricelist"/>
-            <field name="model_orderby">sequence asc, id desc</field>
+            <field name="model_id" ref="account.model_account_incoterms"/>
+            <field name="model_domain_raw">[]</field>
         </record>
 
-        <record id="pwa_cache_model_product_pricelist_item_all" model="pwa.cache">
-            <field name="name">Product Pricelist Items (All)</field>
+        <record id="pwa_cache_model_account_payment_term_all" model="pwa.cache">
+            <field name="name">Account Payment Term (All)</field>
             <field name="cache_type">model</field>
-            <field name="model_id" ref="product.model_product_pricelist_item"/>
-            <field name="model_orderby">applied_on, min_quantity desc, categ_id desc, id desc</field>
+            <field name="model_id" ref="account.model_account_payment_term"/>
+            <field name="model_domain_raw">[]</field>
         </record>
 
         <!-- ONCHANGE -->
@@ -96,24 +84,29 @@
         </function>
 
         <record id="pwa_cache_onchange_sale_order_partern_id" model="pwa.cache">
-            <field name="name">Sale Order - Onchange - partner_id</field>
+            <field name="name">Sale Order - Onchange - partner_id (All partners modifed the last year)</field>
             <field name="cache_type">onchange</field>
             <field name="model_id" ref="sale.model_sale_order"/>
             <field name="onchange_field" ref="sale_pwa_cache.sale.order.field.partner_id"/>
             <field name="code"><![CDATA[
-params = [{'partner_id': id} for id in env['res.partner'].search([]).ids]
+partner_ids = env['res.partner'].search([['write_date', '>', (context_today() - relativedelta(days=365)).strftime('%Y-%m-%d')]])
+params = [
+    {
+        'partner_id': id,
+        'currency_id': False,
+    } for id in partner_ids.ids]
             ]]></field>
         </record>
 
         <record id="pwa_cache_onchange_sale_order_line_product_id" model="pwa.cache">
-            <field name="name">Sale Order Line - Onchange - product_id</field>
+            <field name="name">Sale Order Line - Onchange - product_id (All products per partners modifed the last year)</field>
             <field name="cache_type">onchange</field>
             <field name="model_id" ref="sale.model_sale_order_line"/>
             <field name="onchange_field" ref="sale_pwa_cache.sale.order.line.field.product_id"/>
             <field name="onchange_triggers">order_id.partner_id,order_id.pricelist_id</field>
             <field name="code"><![CDATA[
 product_ids = env['product.product'].search([])
-partner_ids = env['res.partner'].search([])
+partner_ids = env['res.partner'].search([['write_date', '>', (context_today() - relativedelta(days=365)).strftime('%Y-%m-%d')]])
 params = [
     {
         'product_id': product_id.id,
@@ -129,6 +122,5 @@ params = [
     } for product_id in product_ids for partner_id in partner_ids]
             ]]></field>
         </record>
-
     </data>
 </odoo>
