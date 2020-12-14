@@ -3,8 +3,6 @@
 
 from odoo import api, fields, models
 
-from odoo.addons import decimal_precision as dp
-
 
 class ProductMinMultipleMixin(models.AbstractModel):
     _name = "product.restricted.qty.mixin"
@@ -18,10 +16,10 @@ class ProductMinMultipleMixin(models.AbstractModel):
         " use the value defined in the parent object."
         "Hierarchy is in this order :"
         "Product/product Template/product category/parent categoroies ",
-        digits=dp.get_precision("Product Unit of Measure"),
+        digits="Product Unit of Measure",
     )
     manual_sale_multiple_qty = fields.Float(
-        string="Multiple Sale Qty", digits=dp.get_precision("Product Unit of Measure")
+        string="Multiple Sale Qty", digits="Product Unit of Measure"
     )
     sale_min_qty = fields.Float(
         compute="_compute_sale_restricted_qty",
@@ -31,10 +29,10 @@ class ProductMinMultipleMixin(models.AbstractModel):
         " use the value defined in the parent object."
         "Hierarchy is in this order :"
         "Product/product Template/product category/parent categoroies ",
-        digits=dp.get_precision("Product Unit of Measure"),
+        digits="Product Unit of Measure",
     )
     manual_sale_min_qty = fields.Float(
-        string="Min Sale Qty", digits=dp.get_precision("Product Unit of Measure")
+        string="Min Sale Qty", digits="Product Unit of Measure"
     )
     force_sale_min_qty = fields.Boolean(
         compute="_compute_sale_restricted_qty",
@@ -67,10 +65,10 @@ class ProductMinMultipleMixin(models.AbstractModel):
         " use the value defined in the parent object."
         "Hierarchy is in this order :"
         "Product/product Template/product category/parent categoroies ",
-        digits=dp.get_precision("Product Unit of Measure"),
+        digits="Product Unit of Measure",
     )
     manual_sale_max_qty = fields.Float(
-        string="Max Sale Qty", digits=dp.get_precision("Product Unit of Measure")
+        string="Max Sale Qty", digits="Product Unit of Measure"
     )
     force_sale_max_qty = fields.Boolean(
         compute="_compute_sale_restricted_qty",
