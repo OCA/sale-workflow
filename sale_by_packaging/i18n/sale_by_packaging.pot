@@ -77,7 +77,7 @@ msgstr ""
 #. module: sale_by_packaging
 #: code:addons/sale_by_packaging/models/sale_order_line.py:0
 #, python-format
-msgid "Product %s can only be sold with a packaging."
+msgid "Product %s can only be sold with a packaging and a packaging qantity."
 msgstr ""
 
 #. module: sale_by_packaging
