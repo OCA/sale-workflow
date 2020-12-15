@@ -86,28 +86,7 @@ class SaleOrderLine(models.Model):
     def _onchange_product_uom_qty(self):
         self._force_qty_with_package()
         res = super()._onchange_product_uom_qty()
-        if not res:
-            res = self._check_qty_is_pack_multiple()
         return res
-
-    def _check_qty_is_pack_multiple(self):
-        """ Check only for product with sell_only_by_packaging
-        """
-        # and we dont want to have this warning when we had the product
-        if self.product_id.sell_only_by_packaging:
-            if not self._get_product_packaging_having_multiple_qty(
-                self.product_id, self.product_uom_qty, self.product_uom
-            ):
-                warning_msg = {
-                    "title": _("Product quantity cannot be packed"),
-                    "message": _(
-                        "For the product {prod}\n"
-                        "The {qty} is not the multiple of any pack.\n"
-                        "Please add a package"
-                    ).format(prod=self.product_id.name, qty=self.product_uom_qty),
-                }
-                return {"warning": warning_msg}
-        return {}
 
     def _get_product_packaging_having_multiple_qty(self, product, qty, uom):
         if uom != product.uom_id:
