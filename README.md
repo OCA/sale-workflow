@@ -42,7 +42,7 @@ addon | version | summary
 [sale_fixed_discount](sale_fixed_discount/) | 12.0.1.0.0 | Allows to apply fixed amount discounts in sales orders.
 [sale_force_invoiced](sale_force_invoiced/) | 12.0.1.0.1 | Allows to force the invoice status of the sales order to Invoiced
 [sale_generator](sale_generator/) | 12.0.1.0.1 | Sale Generator
-[sale_global_discount](sale_global_discount/) | 12.0.1.0.2 | Sale Global Discount
+[sale_global_discount](sale_global_discount/) | 12.0.1.1.0 | Sale Global Discount
 [sale_invoice_group_method](sale_invoice_group_method/) | 12.0.1.0.0 | This module allows you to combine severalSales Orders into a single invoice,if they meet the group criteria defined by the 'Invoice Group Method'
 [sale_invoice_plan](sale_invoice_plan/) | 12.0.2.0.0 | Add to sales order, ability to manage future invoice plan
 [sale_invoice_policy](sale_invoice_policy/) | 12.0.1.0.0 | Sales Management: let the user choose the invoice policy on the order
