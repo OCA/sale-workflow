@@ -5,10 +5,10 @@
 
 from odoo.exceptions import ValidationError
 
-from odoo.addons.sale.tests.test_sale_order import TestSaleOrder
+from odoo.addons.sale.tests.test_sale_common import TestCommonSaleNoChart
 
 
-class TestSaleException(TestSaleOrder):
+class TestSaleException(TestCommonSaleNoChart):
     @classmethod
     def setUpClass(cls):
         super().setUpClass()
