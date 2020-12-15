@@ -3,7 +3,7 @@
 * Sébastien BEAU <sebastien.beau@akretion.com>
 * Guewen Baconnier <guewen.baconnier@camptocamp.com>
 * Yannick Vaucher <yannick.vaucher@camptocamp.com>
-* Simone Orsi <simone.orsi@camptocamp.com>
+* Simone Orsi <simahawk@gmail.com>
 * SodexisTeam <dev@sodexis.com>
 * Mourad EL HADJ MIMOUNE <mourad.elhadj.mimoune@akretion.com>
 * Raphaël Reverdy <raphael.reverdy@akretion.com>
