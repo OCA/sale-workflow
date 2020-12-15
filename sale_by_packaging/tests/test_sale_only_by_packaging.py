@@ -20,7 +20,7 @@ class TestSaleProductByPackagingOnly(SavepointCase):
         cls.order = cls.env["sale.order"].create({"partner_id": cls.partner.id})
         cls.precision = cls.env["decimal.precision"].precision_get("Product Price")
 
-    def test_onchange_qty_is_pack_multiple(self):
+    def test_onchange_qty_sell_only_by_packaging(self):
         order_line = self.env["sale.order.line"].create(
             {
                 "order_id": self.order.id,
@@ -29,18 +29,14 @@ class TestSaleProductByPackagingOnly(SavepointCase):
             }
         )
         self.assertFalse(order_line._onchange_product_uom_qty())
+        self.assertFalse(order_line.product_packaging)
+        self.assertEqual(order_line.product_uom_qty, 1.0)
 
+        # This triggers automatic update of packaging and qty
         self.product.write({"sell_only_by_packaging": True})
-        self.assertTrue(order_line._onchange_product_uom_qty())
-
         order_line.product_id_change()
-        self.assertFalse(order_line._onchange_product_uom_qty())
-
-        order_line.write({"product_uom_qty": 3.0})
-        self.assertTrue(order_line._onchange_product_uom_qty())
-
-        order_line.write({"product_uom_qty": self.packaging.qty * 2})
-        self.assertFalse(order_line._onchange_product_uom_qty())
+        self.assertEqual(order_line.product_packaging, self.packaging)
+        self.assertEqual(order_line.product_uom_qty, self.packaging.qty)
 
     def test_write_auto_fill_packaging(self):
         order_line = self.env["sale.order.line"].create(
@@ -71,10 +67,8 @@ class TestSaleProductByPackagingOnly(SavepointCase):
             {"name": "Test packaging 10", "product_id": self.product.id, "qty": 15.0}
         )
         order_line.write({"product_uom_qty": packaging_10.qty * 2})
-        self.assertEqual(order_line.product_packaging.name, "Test packaging 10")
-
-        with self.assertRaises(ValidationError):
-            order_line.write({"product_packaging": False})
+        # No change as the packaging is already set
+        self.assertEqual(order_line.product_packaging.name, "Test packaging")
 
     def test_create_auto_fill_packaging(self):
         # sell_only_by_packaging is default False
