@@ -18,7 +18,7 @@
         <field name="description">No ZIP code on destination</field>
         <field name="sequence">50</field>
         <field name="model">sale.order</field>
-        <field name="code">if not sale.partner_shipping_id.zip: failed=True</field>
+        <field name="code">if not obj.partner_shipping_id.zip: failed=True</field>
         <field name="active" eval="False" />
     </record>
     <record id="excep_no_stock" model="exception.rule">
@@ -28,7 +28,7 @@
         <field name="model">sale.order.line</field>
         <field
             name="code"
-        >if sale_line.product_id and sale_line.product_id.type == 'product' and sale_line.product_id.with_context(warehouse=sale_line.order_id.warehouse_id.id).virtual_available &lt; sale_line.product_uom_qty: failed=True</field>
+        >if obj.product_id and sale_line.product_id.type == 'product' and obj.product_id.with_context(warehouse=obj.order_id.warehouse_id.id).virtual_available &lt; obj.product_uom_qty: failed=True</field>
         <field name="active" eval="False" />
     </record>
 </odoo>
