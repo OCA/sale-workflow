@@ -90,8 +90,8 @@ msgstr "Producto"
 #. module: sale_by_packaging
 #: code:addons/sale_by_packaging/models/sale_order_line.py:0
 #, python-format
-msgid "Product %s can only be sold with a packaging."
-msgstr "El producto %s solo se puede vender con un embalaje."
+msgid "Product %s can only be sold with a packaging and a packaging qantity."
+msgstr ""
 
 #. module: sale_by_packaging
 #: code:addons/sale_by_packaging/models/product_template.py:0
@@ -164,6 +164,9 @@ msgstr "Gestión de tipos para el embalaje del producto"
 #, python-format
 msgid "Warning"
 msgstr "Advertencia"
+
+#~ msgid "Product %s can only be sold with a packaging."
+#~ msgstr "El producto %s solo se puede vender con un embalaje."
 
 #~ msgid ""
 #~ "Product %s cannot be defined to be sold only by packaging if it does not "
