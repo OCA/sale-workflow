@@ -24,12 +24,6 @@ class SaleOrder(models.Model):
     _order = "main_exception_id asc, date_order desc, name desc"
 
     @api.model
-    def _exception_rule_eval_context(self, rec):
-        res = super(SaleOrder, self)._exception_rule_eval_context(rec)
-        res["sale"] = rec
-        return res
-
-    @api.model
     def _reverse_field(self):
         return "sale_ids"
 
