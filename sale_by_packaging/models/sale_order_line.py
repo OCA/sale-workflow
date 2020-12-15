@@ -61,8 +61,9 @@ class SaleOrderLine(models.Model):
                     )
                 )
             )
-            if first_packaging:
-                self.update(
+            if first_packaging and self.product_packaging != first_packaging:
+                # Force packacing and its qty if not set already
+                self.with_context(_force_auto_assign=True).update(
                     {
                         "product_packaging": first_packaging.id,
                         "product_uom_qty": first_packaging.qty,
@@ -106,7 +107,9 @@ class SaleOrderLine(models.Model):
             # setting the packaging directly, skip auto assign
             return super().write(vals)
         for line in self:
-            if line.product_packaging:
+            if line.product_packaging and not self.env.context.get(
+                "_force_auto_assign"
+            ):
                 # don't touch it if set already
                 continue
             line_vals = vals.copy()
