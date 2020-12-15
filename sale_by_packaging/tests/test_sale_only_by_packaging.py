@@ -1,5 +1,7 @@
 # Copyright 2020 Camptocamp SA
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl)
+import logging
+
 from odoo import fields
 from odoo.exceptions import ValidationError
 from odoo.tests import Form, SavepointCase
@@ -28,19 +30,52 @@ class TestSaleProductByPackagingOnly(SavepointCase):
                 "product_uom": self.product.uom_id.id,
             }
         )
-        self.assertFalse(order_line._onchange_product_uom_qty())
+        onchange_logger = logging.getLogger("odoo.tests.common.onchange")
+        self.product.write({"sell_only_by_packaging": False})
+        with Form(order_line.order_id) as sale_form:
+            line_form = sale_form.order_line.edit(0)
+            with self.assertLogs(onchange_logger, level="WARN") as logs:
+                line_form.product_uom_qty = 1
+                # no check
+                self.assertFalse(logs.output)
+                # this is a workaround for the lack of an "assertNoLogs"
+                # method, that should be added at some point:
+                # https://bugs.python.org/issue39385
+                # assertLogs fails if no logs is emitted
+                onchange_logger.warning("no warning in onchange")
 
-        self.product.write({"sell_only_by_packaging": True})
-        self.assertTrue(order_line._onchange_product_uom_qty())
+            self.product.write({"sell_only_by_packaging": True})
 
-        order_line.product_id_change()
-        self.assertFalse(order_line._onchange_product_uom_qty())
+            # form report "warnings" in the "onchange" logger
+            with self.assertLogs(onchange_logger, level="WARN") as logs:
+                line_form.product_uom_qty = 1
+                self.assertIn(
+                    "WARNING:odoo.tests.common.onchange:"
+                    "Product quantity cannot be packed "
+                    "For the product Pedal Bin\n"
+                    "The 1.0 is not the multiple"
+                    " of any pack.\n"
+                    "Please add a package",
+                    logs.output,
+                )
 
-        order_line.write({"product_uom_qty": 3.0})
-        self.assertTrue(order_line._onchange_product_uom_qty())
+            with self.assertLogs(onchange_logger, level="WARN") as logs:
+                line_form.product_id = self.product
+                # should set the packaging, which sets the product_uom_qty
+                self.assertEqual(line_form.product_packaging, self.packaging)
+                self.assertEqual(line_form.product_uom_qty, self.packaging.qty)
+                self.assertFalse(logs.output)
+                # see above why it's there
+                onchange_logger.warning("no warning in onchange")
 
-        order_line.write({"product_uom_qty": self.packaging.qty * 2})
-        self.assertFalse(order_line._onchange_product_uom_qty())
+            with self.assertLogs(onchange_logger, level="WARN") as logs:
+                line_form.product_uom_qty = self.packaging.qty * 2
+                # should set the packaging, which sets the product_uom_qty
+                self.assertEqual(line_form.product_packaging, self.packaging)
+                self.assertEqual(line_form.product_uom_qty, 10.0)
+                self.assertFalse(logs.output)
+                # see above why it's there
+                onchange_logger.warning("no warning in onchange")
 
     def test_write_auto_fill_packaging(self):
         order_line = self.env["sale.order.line"].create(
@@ -141,6 +176,8 @@ class TestSaleProductByPackagingOnly(SavepointCase):
                 self.assertAlmostEqual(
                     so_line.product_uom_qty, 36, places=self.precision
                 )
+                so_line.product_uom_qty = 10
+                so_line.product_packaging = packaging
         # Now force the qty on the packaging
         packaging.force_sale_qty = True
         with Form(self.SaleOrder) as sale_order:
@@ -172,3 +209,43 @@ class TestSaleProductByPackagingOnly(SavepointCase):
                 self.assertAlmostEqual(
                     so_line.product_uom_qty, 210, places=self.precision
                 )
+
+    def test_packaging_qty_non_zero(self):
+        """ Check product packaging quantity.
+
+        The packaging quantity can not be zero.
+        """
+        self.product.write({"sell_only_by_packaging": True})
+        order_line = self.env["sale.order.line"].create(
+            {
+                "order_id": self.order.id,
+                "product_id": self.product.id,
+                "product_uom": self.product.uom_id.id,
+                "product_uom_qty": 10,  # 2 packs
+            }
+        )
+        with self.assertRaises(ValidationError):
+            order_line.write({"product_uom_qty": 3, "product_packaging_qty": 0})
+
+    def test_onchange_qty_is_not_pack_multiple(self):
+        """ Check package when qantity is not a multiple of package quantity.
+
+        When the uom quantity is changed for a value not a multpile of a
+        possible package any package and package quantity set should be
+        reseted.
+        """
+        self.product.write({"sell_only_by_packaging": True})
+        order_line = self.env["sale.order.line"].create(
+            {
+                "order_id": self.order.id,
+                "product_id": self.product.id,
+                "product_uom": self.product.uom_id.id,
+                "product_uom_qty": 10,  # 2 packs
+            }
+        )
+        self.assertEqual(order_line.product_packaging, self.packaging)
+        with Form(order_line.order_id) as sale_form:
+            line_form = sale_form.order_line.edit(0)
+            line_form.product_uom_qty = 3
+            self.assertFalse(line_form.product_packaging)
+            self.assertFalse(line_form.product_packaging_qty)
