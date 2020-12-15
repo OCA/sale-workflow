@@ -22,13 +22,3 @@ class SaleOrderLine(models.Model):
     def _detect_exceptions(self, rule):
         records = super(SaleOrderLine, self)._detect_exceptions(rule)
         return records.mapped("order_id")
-
-    @api.model
-    def _exception_rule_eval_context(self, rec):
-        # We keep this only for backward compatibility, because some existing
-        # rules may use the variable "sale_line". But we should remove this
-        # code during v13 migration. The record is already available in obj and
-        # object variables and it is more than enough.
-        res = super(SaleOrderLine, self)._exception_rule_eval_context(rec)
-        res["sale_line"] = rec
-        return res
