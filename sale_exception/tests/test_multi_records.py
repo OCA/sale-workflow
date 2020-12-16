@@ -1,9 +1,9 @@
 # License AGPL-3 - See http://www.gnu.org/licenses/agpl-3.0.html
 
-from odoo.addons.sale.tests.test_sale_order import TestSaleOrder
+from odoo.addons.sale.tests.test_sale_common import TestCommonSaleNoChart
 
 
-class TestSaleExceptionMultiRecord(TestSaleOrder):
+class TestSaleExceptionMultiRecord(TestCommonSaleNoChart):
     @classmethod
     def setUpClass(cls):
         super().setUpClass()
@@ -90,6 +90,14 @@ class TestSaleExceptionMultiRecord(TestSaleOrder):
 
         self.assertTrue(so3.state == "draft")
         self.assertTrue(exception_no_dumping in so3.exception_ids)
+        self.assertEqual(
+            so3.order_line[0].exceptions_summary,
+            (
+                "<ul>"
+                "<li>No dumping: <i>A product is sold cheaper than his cost.</i></li>"
+                "</ul>"
+            ),
+        )
 
         # test return value of detect_exception()
 
