@@ -1,7 +1,6 @@
 # © 2015 Agile Business Group
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
 import odoo.tests.common as test_common
-from odoo.exceptions import UserError
 
 
 class TestSaleOrderLotSelection(test_common.SingleTransactionCase):
@@ -38,41 +37,53 @@ class TestSaleOrderLotSelection(test_common.SingleTransactionCase):
         # We should not be able to reserve if some stock is available but with another
         # lot
         self._inventory_products(self.prd_cable, self.lot_cable, 1)
-        other_lot = self.env['stock.production.lot'].create({
-            'name': 'test2',
-            'product_id': self.prd_cable.id,
-            'company_id': self.env.ref('base.main_company').id,
-        })
+        other_lot = self.env["stock.production.lot"].create(
+            {
+                "name": "test2",
+                "product_id": self.prd_cable.id,
+                "company_id": self.env.ref("base.main_company").id,
+            }
+        )
         self._inventory_products(self.prd_cable, other_lot, 1)
         self.sale.action_confirm()
         self.sale.picking_ids.action_assign()
         # one of 2 moves should be reserved
-        available_move = self.sale.picking_ids.move_lines.filtered(lambda m: m.state == 'assigned')
-        unavailable_move = self.sale.picking_ids.move_lines.filtered(lambda m: m.state == 'confirmed')
+        available_move = self.sale.picking_ids.move_lines.filtered(
+            lambda m: m.state == "assigned"
+        )
+        unavailable_move = self.sale.picking_ids.move_lines.filtered(
+            lambda m: m.state == "confirmed"
+        )
         self.assertEqual(len(available_move), 1)
         self.assertEqual(len(unavailable_move), 1)
 
     def _inventory_products(self, product, lot, qty):
-        inventory = self.env["stock.inventory"].create({
-            'name': '%s inventory' % product.name,
-            'product_ids': product.ids,
-            'state': 'confirm',
-            'line_ids': [
-                (0, 0, {
-                    'product_id': product.id,
-                    'product_uom_id': product.uom_id.id,
-                    'product_qty': qty,
-                    'location_id': self.stock_location.id,
-                    'prod_lot_id': lot.id
-                }),
-            ],
-        })
+        inventory = self.env["stock.inventory"].create(
+            {
+                "name": "%s inventory" % product.name,
+                "product_ids": product.ids,
+                "state": "confirm",
+                "line_ids": [
+                    (
+                        0,
+                        0,
+                        {
+                            "product_id": product.id,
+                            "product_uom_id": product.uom_id.id,
+                            "product_qty": qty,
+                            "location_id": self.stock_location.id,
+                            "prod_lot_id": lot.id,
+                        },
+                    ),
+                ],
+            }
+        )
         inventory.action_validate()
 
     def test_several_lines_with_same_lot(self):
-        """ You may want split your order in several lines
-            even if lot/product are the same
-            use cases: price is different or any shipping information
+        """You may want split your order in several lines
+        even if lot/product are the same
+        use cases: price is different or any shipping information
         """
         self._inventory_products(self.prd_cable, self.lot_cable, 10)
         self.sale.action_confirm()
@@ -287,13 +298,16 @@ class TestSaleOrderLotSelection(test_common.SingleTransactionCase):
         picking.button_validate()
 
         onchange_res = self.sol3._onchange_product_id_set_lot_domain()
-        self.assertEqual(onchange_res["domain"]["lot_id"], [("product_id", "=", self.prd_cable.id)])
+        self.assertEqual(
+            onchange_res["domain"]["lot_id"], [("product_id", "=", self.prd_cable.id)]
+        )
         # put back the lot because it is removed by onchange
         self.sol3.lot_id = lot10.id
         # I'll try to confirm it to check lot reservation:
         # lot10 was delivered by order1
         lot10_qty_available = self._stock_quantity(
-            self.prd_cable, lot10, self.stock_location)
+            self.prd_cable, lot10, self.stock_location
+        )
         self.order3.action_confirm()
         self.assertEqual(self.order3.state, "sale")
         # products are not available for reservation (lot unavailable)
@@ -301,7 +315,9 @@ class TestSaleOrderLotSelection(test_common.SingleTransactionCase):
 
         # also test on_change for order2
         onchange_res = self.sol2a._onchange_product_id_set_lot_domain()
-        self.assertEqual(onchange_res["domain"]["lot_id"], [("product_id", "=", self.product_46.id)])
+        self.assertEqual(
+            onchange_res["domain"]["lot_id"], [("product_id", "=", self.product_46.id)]
+        )
         # onchange remove lot_id, we put it back
         self.sol2a.lot_id = lot11.id
         self.order2.action_confirm()
