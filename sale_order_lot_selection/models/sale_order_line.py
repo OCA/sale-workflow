@@ -9,7 +9,7 @@ class SaleOrderLine(models.Model):
     def _prepare_procurement_values(self, group_id=False):
         vals = super()._prepare_procurement_values(group_id=group_id)
         if self.lot_id:
-            vals['restrict_lot_id'] = self.lot_id.id
+            vals["restrict_lot_id"] = self.lot_id.id
         return vals
 
     @api.onchange("product_id")
