@@ -1,12 +1,12 @@
 # Translation of Odoo Server.
 # This file contains the translation of the following modules:
-#	* sale_exception
+# 	* sale_exception
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: Odoo Server 12.0\n"
+"Project-Id-Version: Odoo Server 13.0\n"
 "Report-Msgid-Bugs-To: \n"
-"Last-Translator: <>\n"
+"Last-Translator: \n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -15,7 +15,9 @@ msgstr ""
 
 #. module: sale_exception
 #: model_terms:ir.ui.view,arch_db:sale_exception.view_order_form
-msgid "<strong>There are exceptions blocking the confirmation of this Sale Order:</strong>"
+msgid ""
+"<strong>There are exceptions blocking the confirmation of this Sale "
+"Order:</strong>"
 msgstr ""
 
 #. module: sale_exception
@@ -51,7 +53,9 @@ msgstr ""
 
 #. module: sale_exception
 #: model_terms:ir.ui.view,arch_db:sale_exception.view_order_form
-msgid "Click here to be able to confirm this Sale Orders regardless of the exceptions."
+msgid ""
+"Click here to be able to confirm this Sale Orders regardless of the "
+"exceptions."
 msgstr ""
 
 #. module: sale_exception
@@ -155,23 +159,28 @@ msgid "Sale Exceptions"
 msgstr ""
 
 #. module: sale_exception
-#: model:ir.model,name:sale_exception.model_sale_order
-msgid "Sale Order"
+#: model:ir.model,name:sale_exception.model_sale_exception_confirm
+msgid "Sale exception confirm wizard"
 msgstr ""
 
 #. module: sale_exception
-#: selection:exception.rule,model:0
+#: model:ir.model.fields.selection,name:sale_exception.selection__exception_rule__model__sale_order
 msgid "Sale order"
 msgstr ""
 
 #. module: sale_exception
-#: selection:exception.rule,model:0
+#: model:ir.model.fields.selection,name:sale_exception.selection__exception_rule__model__sale_order_line
 msgid "Sale order line"
 msgstr ""
 
 #. module: sale_exception
 #: model:ir.model.fields,field_description:sale_exception.field_exception_rule__sale_ids
 msgid "Sales"
+msgstr ""
+
+#. module: sale_exception
+#: model:ir.model,name:sale_exception.model_sale_order
+msgid "Sales Order"
 msgstr ""
 
 #. module: sale_exception
@@ -190,9 +199,3 @@ msgstr ""
 #: model:exception.rule,description:sale_exception.excep_no_free
 msgid "The total can't be 0"
 msgstr ""
-
-#. module: sale_exception
-#: model:ir.model,name:sale_exception.model_sale_exception_confirm
-msgid "sale.exception.confirm"
-msgstr ""
-
