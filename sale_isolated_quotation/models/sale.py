@@ -25,12 +25,6 @@ class SaleOrder(models.Model):
         help="For Quotation, this field references to its Sales Order",
     )
     quotation_state = fields.Selection(
-        selection=[
-            ("draft", "Draft"),
-            ("sent", "Mail Sent"),
-            ("cancel", "Cancelled"),
-            ("done", "Done"),
-        ],
         string="Quotation Status",
         readonly=True,
         related="state",
