@@ -14,8 +14,18 @@ msgstr ""
 "Plural-Forms: \n"
 
 #. module: sale_cutoff_time_delivery
+#: model_terms:ir.ui.view,arch_db:sale_cutoff_time_delivery.view_picking_cutoff_search
+msgid "After today's cut-off"
+msgstr ""
+
+#. module: sale_cutoff_time_delivery
 #: model:ir.model.fields,field_description:sale_cutoff_time_delivery.field_stock_warehouse__apply_cutoff
 msgid "Apply Cutoff"
+msgstr ""
+
+#. module: sale_cutoff_time_delivery
+#: model_terms:ir.ui.view,arch_db:sale_cutoff_time_delivery.view_picking_cutoff_search
+msgid "Before today's cut-off"
 msgstr ""
 
 #. module: sale_cutoff_time_delivery
@@ -29,6 +39,16 @@ msgstr ""
 #: model:ir.model.fields,field_description:sale_cutoff_time_delivery.field_stock_warehouse__cutoff_time
 #: model:ir.model.fields,field_description:sale_cutoff_time_delivery.field_time_cutoff_mixin__cutoff_time
 msgid "Cutoff Time"
+msgstr ""
+
+#. module: sale_cutoff_time_delivery
+#: model:ir.model.fields,field_description:sale_cutoff_time_delivery.field_stock_picking__cutoff_time_diff
+msgid "Cutoff Time Diff"
+msgstr ""
+
+#. module: sale_cutoff_time_delivery
+#: model:ir.model.fields,field_description:sale_cutoff_time_delivery.field_stock_picking__cutoff_time_hms
+msgid "Cutoff Time Hms"
 msgstr ""
 
 #. module: sale_cutoff_time_delivery
@@ -60,6 +80,11 @@ msgid "ID"
 msgstr ""
 
 #. module: sale_cutoff_time_delivery
+#: model_terms:ir.ui.view,arch_db:sale_cutoff_time_delivery.view_picking_cutoff_search
+msgid "Inside today's cut-off"
+msgstr ""
+
+#. module: sale_cutoff_time_delivery
 #: model:ir.model.fields,field_description:sale_cutoff_time_delivery.field_time_cutoff_mixin____last_update
 msgid "Last Modified on"
 msgstr ""
@@ -82,6 +107,17 @@ msgstr ""
 #. module: sale_cutoff_time_delivery
 #: model:ir.model.fields,field_description:sale_cutoff_time_delivery.field_stock_warehouse__tz
 msgid "Timezone"
+msgstr ""
+
+#. module: sale_cutoff_time_delivery
+#: model:ir.model,name:sale_cutoff_time_delivery.model_stock_picking
+msgid "Transfer"
+msgstr ""
+
+#. module: sale_cutoff_time_delivery
+#: code:addons/sale_cutoff_time_delivery/models/stock_picking.py:0
+#, python-format
+msgid "Unsupported search operator %s"
 msgstr ""
 
 #. module: sale_cutoff_time_delivery
