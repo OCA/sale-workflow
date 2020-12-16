@@ -10,6 +10,7 @@ class TestSaleCutoffTimeDelivery(SavepointCase):
     @classmethod
     def setUpClass(cls):
         super().setUpClass()
+        cls.env = cls.env(context=dict(cls.env.context, tracking_disable=True))
         cls.customer_partner = cls.env["res.partner"].create(
             {
                 "name": "Partner cutoff",
