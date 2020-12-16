@@ -12,8 +12,8 @@ class AccountMove(models.Model):
         string="Sale Type",
         compute="_compute_sale_type_id",
         store=True,
-        readonly=False,
-        states={"posted": [("readonly", True)], "cancel": [("readonly", True)]},
+        readonly=True,
+        states={"draft": [("readonly", False)]},
         copy=True,
     )
 
@@ -21,7 +21,7 @@ class AccountMove(models.Model):
     def _compute_sale_type_id(self):
         self.sale_type_id = self.env["sale.order.type"]
         for record in self.filtered(
-            lambda am: am.type in ["out_invoice", "out_refund"]
+            lambda am: am.move_type in ["out_invoice", "out_refund"]
         ):
             if not record.partner_id:
                 record.sale_type_id = self.env["sale.order.type"].search(
