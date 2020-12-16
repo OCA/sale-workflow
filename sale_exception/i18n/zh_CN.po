@@ -28,6 +28,13 @@ msgid ""
 msgstr "<strong>有一些例外情况会阻止此销售订单的确认：</strong>"
 
 #. module: sale_exception
+#: model_terms:ir.ui.view,arch_db:sale_exception.view_order_form
+msgid ""
+"<strong>There are exceptions on this line blocking the confirmation of this "
+"quotation:</strong>"
+msgstr ""
+
+#. module: sale_exception
 #: model:exception.rule,description:sale_exception.excep_no_dumping
 msgid "A product is sold cheaper than his cost."
 msgstr "产品的销售价格低于他的成本。"
@@ -89,6 +96,16 @@ msgstr "显示名称"
 #: model:ir.model,name:sale_exception.model_exception_rule
 msgid "Exception Rule"
 msgstr "异常规则"
+
+#. module: sale_exception
+#: model:ir.model.fields,field_description:sale_exception.field_sale_order_line__exception_ids
+msgid "Exceptions"
+msgstr ""
+
+#. module: sale_exception
+#: model:ir.model.fields,field_description:sale_exception.field_sale_order_line__exceptions_summary
+msgid "Exceptions Summary"
+msgstr ""
 
 #. module: sale_exception
 #: model:ir.model.fields,field_description:sale_exception.field_sale_exception_confirm__exception_ids
@@ -166,17 +183,17 @@ msgid "Sale Exceptions"
 msgstr "销售异常"
 
 #. module: sale_exception
-#: model:ir.model,name:sale_exception.model_sale_order
-msgid "Sale Order"
-msgstr "销售订单"
+#: model:ir.model,name:sale_exception.model_sale_exception_confirm
+msgid "Sale exception confirm wizard"
+msgstr ""
 
 #. module: sale_exception
-#: selection:exception.rule,model:0
+#: model:ir.model.fields.selection,name:sale_exception.selection__exception_rule__model__sale_order
 msgid "Sale order"
 msgstr "销售订单"
 
 #. module: sale_exception
-#: selection:exception.rule,model:0
+#: model:ir.model.fields.selection,name:sale_exception.selection__exception_rule__model__sale_order_line
 msgid "Sale order line"
 msgstr "销售订单行"
 
@@ -184,6 +201,11 @@ msgstr "销售订单行"
 #: model:ir.model.fields,field_description:sale_exception.field_exception_rule__sale_ids
 msgid "Sales"
 msgstr "销售"
+
+#. module: sale_exception
+#: model:ir.model,name:sale_exception.model_sale_order
+msgid "Sales Order"
+msgstr ""
 
 #. module: sale_exception
 #: model:ir.model,name:sale_exception.model_sale_order_line
@@ -202,10 +224,11 @@ msgstr "测试草稿订单"
 msgid "The total can't be 0"
 msgstr "总数不能为0"
 
-#. module: sale_exception
-#: model:ir.model,name:sale_exception.model_sale_exception_confirm
-msgid "sale.exception.confirm"
-msgstr "sale.exception.confirm"
+#~ msgid "Sale Order"
+#~ msgstr "销售订单"
+
+#~ msgid "sale.exception.confirm"
+#~ msgstr "sale.exception.confirm"
 
 #~ msgid "Error:"
 #~ msgstr "错误："
