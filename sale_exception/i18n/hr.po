@@ -27,6 +27,13 @@ msgid ""
 msgstr ""
 
 #. module: sale_exception
+#: model_terms:ir.ui.view,arch_db:sale_exception.view_order_form
+msgid ""
+"<strong>There are exceptions on this line blocking the confirmation of this "
+"quotation:</strong>"
+msgstr ""
+
+#. module: sale_exception
 #: model:exception.rule,description:sale_exception.excep_no_dumping
 msgid "A product is sold cheaper than his cost."
 msgstr ""
@@ -87,14 +94,22 @@ msgstr "Naziv za prikaz"
 #. module: sale_exception
 #: model:ir.model,name:sale_exception.model_exception_rule
 #, fuzzy
-#| msgid "Exception Rules"
 msgid "Exception Rule"
 msgstr "Pravila izuzetaka"
 
 #. module: sale_exception
+#: model:ir.model.fields,field_description:sale_exception.field_sale_order_line__exception_ids
+msgid "Exceptions"
+msgstr "Izuzeci"
+
+#. module: sale_exception
+#: model:ir.model.fields,field_description:sale_exception.field_sale_order_line__exceptions_summary
+msgid "Exceptions Summary"
+msgstr ""
+
+#. module: sale_exception
 #: model:ir.model.fields,field_description:sale_exception.field_sale_exception_confirm__exception_ids
 #, fuzzy
-#| msgid "Exception Rules"
 msgid "Exceptions to resolve"
 msgstr "Pravila izuzetaka"
 
@@ -108,7 +123,6 @@ msgstr "ID"
 #: model:ir.model.fields,field_description:sale_exception.field_sale_order_line__ignore_exception
 #: model_terms:ir.ui.view,arch_db:sale_exception.view_order_form
 #, fuzzy
-#| msgid "Sale Exceptions"
 msgid "Ignore Exceptions"
 msgstr "Izuzeci u prodaji"
 
@@ -171,26 +185,30 @@ msgid "Sale Exceptions"
 msgstr "Izuzeci u prodaji"
 
 #. module: sale_exception
-#: model:ir.model,name:sale_exception.model_sale_order
-msgid "Sale Order"
+#: model:ir.model,name:sale_exception.model_sale_exception_confirm
+msgid "Sale exception confirm wizard"
 msgstr ""
 
 #. module: sale_exception
-#: selection:exception.rule,model:0
+#: model:ir.model.fields.selection,name:sale_exception.selection__exception_rule__model__sale_order
 msgid "Sale order"
 msgstr ""
 
 #. module: sale_exception
-#: selection:exception.rule,model:0
+#: model:ir.model.fields.selection,name:sale_exception.selection__exception_rule__model__sale_order_line
 msgid "Sale order line"
 msgstr ""
 
 #. module: sale_exception
 #: model:ir.model.fields,field_description:sale_exception.field_exception_rule__sale_ids
 #, fuzzy
-#| msgid "Sale"
 msgid "Sales"
 msgstr "Prodaja"
+
+#. module: sale_exception
+#: model:ir.model,name:sale_exception.model_sale_order
+msgid "Sales Order"
+msgstr ""
 
 #. module: sale_exception
 #: model:ir.model,name:sale_exception.model_sale_order_line
@@ -209,10 +227,8 @@ msgstr ""
 msgid "The total can't be 0"
 msgstr ""
 
-#. module: sale_exception
-#: model:ir.model,name:sale_exception.model_sale_exception_confirm
-msgid "sale.exception.confirm"
-msgstr "sale.exception.confirm"
+#~ msgid "sale.exception.confirm"
+#~ msgstr "sale.exception.confirm"
 
 #~ msgid "Error:"
 #~ msgstr "Greška:"
@@ -225,6 +241,3 @@ msgstr "sale.exception.confirm"
 
 #~ msgid "_Close"
 #~ msgstr "_Zatvori"
-
-#~ msgid "Exceptions"
-#~ msgstr "Izuzeci"
