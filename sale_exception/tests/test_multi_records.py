@@ -1,9 +1,9 @@
 # License AGPL-3 - See http://www.gnu.org/licenses/agpl-3.0.html
 
-from odoo.addons.sale.tests.test_sale_order import TestSaleOrder
+from odoo.addons.sale.tests.test_sale_common import TestCommonSaleNoChart
 
 
-class TestSaleExceptionMultiRecord(TestSaleOrder):
+class TestSaleExceptionMultiRecord(TestCommonSaleNoChart):
     @classmethod
     def setUpClass(cls):
         super().setUpClass()
