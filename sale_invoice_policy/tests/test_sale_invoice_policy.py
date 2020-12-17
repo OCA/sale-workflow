@@ -170,6 +170,7 @@ class TestSaleOrderInvoicePolicy(common.TransactionCase):
         )
         # Shouldn't be impacted by the context because the type is service
         self.assertEqual(product.invoice_policy, invoice_policy)
+
         # This one is not a service so it must be impacted by the context
         self.assertEqual(product2.invoice_policy, new_invoice_policy)
         product = product.with_context(

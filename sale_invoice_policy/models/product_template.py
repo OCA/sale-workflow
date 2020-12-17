@@ -25,12 +25,11 @@ class ProductTemplate(models.Model):
         inverse="_inverse_invoice_policy",
     )
 
-    @api.multi
     def _inverse_invoice_policy(self):
         for template in self.filtered("invoice_policy"):
             template.default_invoice_policy = template.invoice_policy
 
-    @api.multi
+    @api.depends_context("invoice_policy")
     @api.depends("type", "default_invoice_policy")
     def _compute_invoice_policy(self):
         """

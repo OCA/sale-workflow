@@ -10,10 +10,6 @@ class ResConfigSettings(models.TransientModel):
     _inherit = "res.config.settings"
 
     sale_default_invoice_policy = fields.Selection(
-        selection=[
-            ("order", "Ordered quantities"),
-            ("delivery", "Delivered quantities"),
-        ],
         related="default_invoice_policy",
         string="Default Sale Invoice Policy",
         readonly=True,
@@ -32,7 +28,6 @@ class ResConfigSettings(models.TransientModel):
         )
         return res
 
-    @api.multi
     def set_values(self):
         super(ResConfigSettings, self).set_values()
         ir_default_obj = self.env["ir.default"]

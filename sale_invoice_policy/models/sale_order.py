@@ -19,9 +19,6 @@ class SaleOrder(models.Model):
     )
     invoice_policy_required = fields.Boolean(
         compute="_compute_invoice_policy_required",
-        default=lambda self: self.env["ir.default"].get(
-            "res.config.settings", "sale_invoice_policy_required"
-        ),
     )
 
     @api.model
@@ -34,7 +31,6 @@ class SaleOrder(models.Model):
             res.update({"invoice_policy": default_sale_invoice_policy})
         return res
 
-    @api.multi
     @api.depends("partner_id")
     def _compute_invoice_policy_required(self):
         invoice_policy_required = self.env["ir.default"].get(
