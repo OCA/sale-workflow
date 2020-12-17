@@ -11,6 +11,7 @@ setuptools.setup(
         'odoo14-addon-sale_commercial_partner',
         'odoo14-addon-sale_last_price_info',
         'odoo14-addon-sale_order_archive',
+        'odoo14-addon-sale_order_lot_selection',
         'odoo14-addon-sale_product_category_menu',
         'odoo14-addon-sale_product_multi_add',
         'odoo14-addon-sale_validity',
