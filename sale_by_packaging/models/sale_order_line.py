@@ -39,7 +39,9 @@ class SaleOrderLine(models.Model):
             }
         return super()._onchange_product_packaging()
 
-    @api.constrains("product_id", "product_packaging", "product_packaging_qty")
+    @api.constrains(
+        "product_id", "product_packaging", "product_packaging_qty", "product_uom_qty"
+    )
     def _check_product_packaging_sell_only_by_packaging(self):
         for line in self:
             if not line.product_id.sell_only_by_packaging:
@@ -90,15 +92,20 @@ class SaleOrderLine(models.Model):
             SaleOrderLine, self.with_context(_skip_auto_assign=True)
         )._inverse_product_packaging_qty()
 
+    def _inverse_qty_delivered(self):
+        # Force skipping of auto assign
+        super(
+            SaleOrderLine, self.with_context(_skip_auto_assign=True)
+        )._inverse_qty_delivered()
+
     def write(self, vals):
         """Auto assign packaging if needed"""
-        if vals.get("product_packaging") or self.env.context.get("_skip_auto_assign"):
+        if "product_packaging" in vals.keys() or self.env.context.get(
+            "_skip_auto_assign"
+        ):
             # setting the packaging directly, skip auto assign
             return super().write(vals)
         for line in self:
-            if line.product_packaging:
-                # don't touch it if set already
-                continue
             line_vals = vals.copy()
             line_vals.update(line._write_auto_assign_packaging(line_vals))
             super(SaleOrderLine, line).write(line_vals)
