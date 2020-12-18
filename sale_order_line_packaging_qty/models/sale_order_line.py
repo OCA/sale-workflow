@@ -34,7 +34,13 @@ class SaleOrderLine(models.Model):
                 )
             else:
                 product_qty = sol.product_uom_qty
-            sol.product_packaging_qty = product_qty / sol.product_packaging.qty
+            if product_qty % sol.product_packaging.qty:
+                # If qty does not fit in package reset package qty
+                sol.product_packaging_qty = 0
+            else:
+                # Maybe that product_packaging_qty should be an Integer, no ?
+                qty = product_qty // sol.product_packaging.qty
+                sol.product_packaging_qty = qty
 
     def _prepare_product_packaging_qty_values(self):
         return {
