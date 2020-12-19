@@ -19,13 +19,13 @@
                     type="object"
                     string="Unforce delivery done"
                     states="done"
-                    attrs="{'invisible': ['|', '|', ('force_delivery_state', '=', False)]}"
+                    attrs="{'invisible': ['|', ('force_delivery_state', '=', False)]}"
                 />
             </field>
-            <xpath expr="//field[@name='date_order']" position="before">
+            <field name='date_order' position="after">
                 <field name="delivery_state" readonly="True" />
                 <field name="force_delivery_state" invisible="True" />
-            </xpath>
+            </field>
         </field>
     </record>
 
