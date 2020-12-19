@@ -10,6 +10,7 @@ class TestDeliveryState(SavepointCase):
     @classmethod
     def setUpClass(cls):
         super().setUpClass()
+        cls.env = cls.env(context=dict(cls.env.context, tracking_disable=True))
         cls.order = cls.env.ref("sale_delivery_state.sale_order_1")
         cls.delivery_cost = cls.env["product.product"].create(
             {"name": "delivery", "type": "service"}
