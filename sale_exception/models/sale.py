@@ -13,7 +13,11 @@ class ExceptionRule(models.Model):
         selection_add=[
             ("sale.order", "Sale order"),
             ("sale.order.line", "Sale order line"),
-        ]
+        ],
+        ondelete={
+            "sale.order": "cascade",
+            "sale.order.line": "cascade",
+        },
     )
     sale_ids = fields.Many2many("sale.order", string="Sales")
 
