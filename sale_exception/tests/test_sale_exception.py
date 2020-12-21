@@ -4,11 +4,10 @@
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl)
 
 from odoo.exceptions import ValidationError
+from odoo.tests import SavepointCase
 
-from odoo.addons.sale.tests.test_sale_common import TestCommonSaleNoChart
 
-
-class TestSaleException(TestCommonSaleNoChart):
+class TestSaleException(SavepointCase):
     @classmethod
     def setUpClass(cls):
         super().setUpClass()
@@ -16,8 +15,10 @@ class TestSaleException(TestCommonSaleNoChart):
 
     def test_sale_order_exception(self):
         self.sale_exception_confirm = self.env["sale.exception.confirm"]
-        exception = self.env.ref("sale_exception.excep_no_zip")
+
+        exception = self.env.ref("sale_exception.excep_no_zip").sudo()
         exception.active = True
+
         partner = self.env.ref("base.res_partner_1")
         partner.zip = False
         p = self.env.ref("product.product_product_6")
