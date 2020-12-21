@@ -10,8 +10,7 @@ class SaleImportProducts(models.TransientModel):
 
     products = fields.Many2many(comodel_name="product.product")
     items = fields.One2many(
-        comodel_name="sale.import.products.items",
-        inverse_name="wizard_id",
+        comodel_name="sale.import.products.items", inverse_name="wizard_id"
     )
 
     def create_items(self):

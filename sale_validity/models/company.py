@@ -22,5 +22,5 @@ class ResCompany(models.Model):
             "CHECK (default_sale_order_validity_days >= 0)",
             "The value of the field 'Default Validity Duration of Sale Orders' "
             "must be positive or 0.",
-        ),
+        )
     ]

@@ -74,7 +74,7 @@ class TestSaleOrderLotSelection(test_common.SingleTransactionCase):
                             "location_id": self.stock_location.id,
                             "prod_lot_id": lot.id,
                         },
-                    ),
+                    )
                 ],
             }
         )
