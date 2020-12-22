@@ -22,6 +22,7 @@ class SaleOrder(models.Model):
     # TODO: Check if it's fixed in future versions
     global_discount_ids_readonly = fields.Many2many(
         related="global_discount_ids",
+        string="Sale Global Discounts (readonly)",
         readonly=True,
     )
     amount_global_discount = fields.Monetary(
