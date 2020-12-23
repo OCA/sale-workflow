@@ -17,18 +17,19 @@ class SaleOrder(models.Model):
 
     @api.constrains("default_start_date", "default_end_date")
     def _check_default_start_end_dates(self):
-        if (
-            self.default_start_date
-            and self.default_end_date
-            and self.default_start_date > self.default_end_date
-        ):
-            raise ValidationError(
-                _(
-                    "Default Start Date should be before or be the "
-                    "same as Default End Date for sale order '%s'."
+        for order in self:
+            if (
+                order.default_start_date
+                and order.default_end_date
+                and order.default_start_date > order.default_end_date
+            ):
+                raise ValidationError(
+                    _(
+                        "Default Start Date should be before or be the "
+                        "same as Default End Date for sale order '%s'."
+                    )
+                    % order.display_name
                 )
-                % self.display_name
-            )
 
     @api.onchange("default_start_date")
     def default_start_date_change(self):
@@ -99,29 +100,33 @@ class SaleOrderLine(models.Model):
 
     @api.constrains("product_id", "start_date", "end_date")
     def _check_start_end_dates(self):
-        if self.product_id.must_have_dates:
-            if not self.end_date:
-                raise ValidationError(
-                    _("Missing End Date for sale order line with " "Product '%s'.")
-                    % (self.product_id.display_name)
-                )
-            if not self.start_date:
-                raise ValidationError(
-                    _("Missing Start Date for sale order line with " "Product '%s'.")
-                    % (self.product_id.display_name)
-                )
-            if self.start_date > self.end_date:
-                raise ValidationError(
-                    _(
-                        "Start Date should be before or be the same as "
-                        "End Date for sale order line with Product '%s'."
+        for line in self:
+            if line.product_id.must_have_dates:
+                if not line.end_date:
+                    raise ValidationError(
+                        _("Missing End Date for sale order line with " "Product '%s'.")
+                        % (line.product_id.display_name)
                     )
-                    % (self.product_id.display_name)
-                )
+                if not line.start_date:
+                    raise ValidationError(
+                        _(
+                            "Missing Start Date for sale order line with "
+                            "Product '%s'."
+                        )
+                        % (line.product_id.display_name)
+                    )
+                if line.start_date > line.end_date:
+                    raise ValidationError(
+                        _(
+                            "Start Date should be before or be the same as "
+                            "End Date for sale order line with Product '%s'."
+                        )
+                        % (line.product_id.display_name)
+                    )
 
-    def _prepare_invoice_line(self):
+    def _prepare_invoice_line(self, **optional_values):
         self.ensure_one()
-        res = super()._prepare_invoice_line()
+        res = super()._prepare_invoice_line(**optional_values)
         if self.must_have_dates:
             res.update({"start_date": self.start_date, "end_date": self.end_date})
         return res
