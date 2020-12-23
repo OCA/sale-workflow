@@ -36,15 +36,17 @@
                 <field
                     name="start_date"
                     attrs="{'required': [('must_have_dates', '=', True)]}"
+                    optional="show"
                 />
                 <field
                     name="end_date"
                     attrs="{'required': [('must_have_dates', '=', True)]}"
+                    optional="show"
                 />
-                <field name="number_of_days" invisible="1" />
+                <field name="number_of_days" optional="hide" />
                 <field name="must_have_dates" invisible="1" />
             </xpath>
-            <field name="pricelist_id" position="after">
+            <field name="payment_term_id" position="after">
                 <field name="default_start_date" />
                 <field name="default_end_date" />
             </field>
