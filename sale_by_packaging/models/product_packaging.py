@@ -7,7 +7,8 @@ class ProductPackaging(models.Model):
     _inherit = "product.packaging"
 
     can_be_sold = fields.Boolean(
-        related="packaging_type_id.can_be_sold", readonly=True,
+        related="packaging_type_id.can_be_sold",
+        readonly=True,
     )
     force_sale_qty = fields.Boolean(
         string="Force sale quantity",

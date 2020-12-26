@@ -211,7 +211,7 @@ class TestSaleProductByPackagingOnly(SavepointCase):
                 )
 
     def test_packaging_qty_non_zero(self):
-        """ Check product packaging quantity.
+        """Check product packaging quantity.
 
         The packaging quantity can not be zero.
         """
@@ -228,7 +228,7 @@ class TestSaleProductByPackagingOnly(SavepointCase):
             order_line.write({"product_uom_qty": 3, "product_packaging_qty": 0})
 
     def test_onchange_qty_is_not_pack_multiple(self):
-        """ Check package when qantity is not a multiple of package quantity.
+        """Check package when qantity is not a multiple of package quantity.
 
         When the uom quantity is changed for a value not a multpile of a
         possible package any package and package quantity set should be

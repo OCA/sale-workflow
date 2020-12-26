@@ -103,8 +103,7 @@ class SaleOrderLine(models.Model):
         return res if res else is_pack_multiple_warning
 
     def _check_qty_is_pack_multiple(self):
-        """ Check only for product with sell_only_by_packaging
-        """
+        """Check only for product with sell_only_by_packaging"""
         # and we dont want to have this warning when we had the product
         if self.product_id.sell_only_by_packaging:
             if not self._get_product_packaging_having_multiple_qty(
