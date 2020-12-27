@@ -7,7 +7,7 @@ from odoo import api, fields, models
 
 
 class SaleWorkflowProcess(models.Model):
-    """ A workflow process is the setup of the automation of a sales order.
+    """A workflow process is the setup of the automation of a sales order.
 
     Each sales order can be linked to a workflow process.
     Then, the options of the workflow will change how the sales order
