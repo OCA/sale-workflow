@@ -113,11 +113,14 @@ class SaleOrderLine(models.Model):
             )
         # Postpone delivery for order confirmed after cutoff to day after
         else:
-            new_date_planned = date_planned.replace(
-                hour=utc_cutoff_datetime.hour,
-                minute=utc_cutoff_datetime.minute,
-                second=0,
-            ) + timedelta(days=1)
+            new_date_planned = (
+                date_planned.replace(
+                    hour=utc_cutoff_datetime.hour,
+                    minute=utc_cutoff_datetime.minute,
+                    second=0,
+                )
+                + timedelta(days=1)
+            )
         _logger.debug(
             "%s applied on order %s. Date planned for line %s"
             " rescheduled from %s to %s"
