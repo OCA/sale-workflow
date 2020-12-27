@@ -14,7 +14,7 @@ _logger = logging.getLogger(__name__)
 
 @contextmanager
 def savepoint(cr):
-    """ Open a savepoint on the cursor, then yield.
+    """Open a savepoint on the cursor, then yield.
 
     Warning: using this method, the exceptions are logged then discarded.
     """
@@ -36,8 +36,8 @@ def force_company(env, company_id):
 
 
 class AutomaticWorkflowJob(models.Model):
-    """ Scheduler that will play automatically the validation of
-    invoices, pickings...  """
+    """Scheduler that will play automatically the validation of
+    invoices, pickings..."""
 
     _name = "automatic.workflow.job"
     _description = (
