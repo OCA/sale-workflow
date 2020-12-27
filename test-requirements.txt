@@ -1,0 +1,2 @@
+odoo14-addon-product-packaging-type @ git+https://github.com/trobz/product-attribute@14.0-mig-product_packaging_type#subdirectory=setup/product_packaging_type
+odoo14-addon-sale-order-line-packaging-qty @ git+https://github.com/trobz/sale-workflow@14.0-mig-sale_order_line_packaging_qty#subdirectory=setup/sale_order_line_packaging_qty
