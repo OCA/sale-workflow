@@ -25,8 +25,8 @@ addon | version | summary
 [product_supplierinfo_for_customer_sale](product_supplierinfo_for_customer_sale/) | 10.0.1.0.0 | Loads in every sale order line the customer code defined in the product
 [sale_automatic_workflow](sale_automatic_workflow/) | 10.0.1.0.1 | Sale Automatic Workflow
 [sale_automatic_workflow_exception](sale_automatic_workflow_exception/) | 10.0.1.0.0 | Sale Automatic Workflow Exception
-[sale_automatic_workflow_payment_mode](sale_automatic_workflow_payment_mode/) | 10.0.1.0.1 | Sale Automatic Workflow - Payment Mode
-[sale_automatic_workflow_payment_ref](sale_automatic_workflow_payment_ref/) | 10.0.1.0.0 | Propagates your payment reference from your sale order to your payment
+[sale_automatic_workflow_payment_mode](sale_automatic_workflow_payment_mode/) | 10.0.1.0.2 | Sale Automatic Workflow - Payment Mode
+[sale_automatic_workflow_payment_ref](sale_automatic_workflow_payment_ref/) | 10.0.1.0.1 | Propagates your payment reference from your sale order to your payment
 [sale_automatic_workflow_validate_purchase_mto](sale_automatic_workflow_validate_purchase_mto/) | 10.0.1.0.1 | When a sale order generates directly a purchase order, validates it automatically
 [sale_blanket_order](sale_blanket_order/) | 10.0.1.0.0 | Blanket Orders
 [sale_cancel_reason](sale_cancel_reason/) | 10.0.1.0.1 | Sale Cancel Reason
