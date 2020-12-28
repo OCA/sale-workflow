@@ -8,3 +8,4 @@ account-invoicing
 product-attribute
 partner-contact
 web
+bank-statement-reconcile
