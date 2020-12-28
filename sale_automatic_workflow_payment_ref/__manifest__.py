@@ -7,7 +7,7 @@
     'summary': """
         Propagates your payment reference from your sale order to your
         payment""",
-    'version': '10.0.1.0.0',
+    'version': '10.0.1.0.1',
     'license': 'AGPL-3',
     'author': 'ACSONE SA/NV,Odoo Community Association (OCA)',
     'website': 'https://github.com/OCA/sale-workflow',
