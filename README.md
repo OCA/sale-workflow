@@ -32,7 +32,7 @@ addon | version | summary
 [sale_order_digitized_signature](sale_order_digitized_signature/) | 9.0.1.0.0 | Sale Order Digitized Signature
 [sale_order_line_date](sale_order_line_date/) | 9.0.1.0.0 | Sale Order Line Date
 [sale_order_line_sequence](sale_order_line_sequence/) | 9.0.1.0.0 | Propagates SO line sequence to invoices and stock picking.
-[sale_order_lot_selection](sale_order_lot_selection/) | 9.0.1.0.0 | Sale Order Lot Selection
+[sale_order_lot_selection](sale_order_lot_selection/) | 9.0.1.1.0 | Sale Order Lot Selection
 [sale_order_price_recalculation](sale_order_price_recalculation/) | 9.0.1.0.0 | Price recalculation in sales orders
 [sale_order_product_recommendation](sale_order_product_recommendation/) | 9.0.1.0.0 | Recommend products to sell to customer based on history
 [sale_order_type](sale_order_type/) | 9.0.1.2.0 | Sale Order Types
