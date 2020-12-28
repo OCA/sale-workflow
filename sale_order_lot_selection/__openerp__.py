@@ -22,7 +22,7 @@
 
 {
     'name': 'Sale Order Lot Selection',
-    'version': '9.0.1.0.0',
+    'version': '9.0.1.1.0',
     'category': 'Sales Management',
     'author': "Odoo Community Association (OCA), Agile Business Group",
     'website': 'http://www.agilebg.com',
