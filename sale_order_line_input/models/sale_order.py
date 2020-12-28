@@ -11,6 +11,23 @@ class SaleOrderLine(models.Model):
         related='order_id.pricelist_id',
         readonly=True,
     )
+    # HACK: Overwrite field because the related fields do not get the default
+    # value correctly when user adds a new record.
+    company_id = fields.Many2one(
+        comodel_name="res.company",
+        compute="_compute_company_id",
+        inverse=lambda self: self,
+        related=False,
+        readonly=True,
+        store=True,
+    )
+
+    @api.depends("order_id")
+    def _compute_company_id(self):
+        for line in self:
+            line.company_id = (
+                line.order_id.company_id or self.env.user.company_id
+            )
 
     @api.model
     def create(self, vals):
@@ -18,6 +35,7 @@ class SaleOrderLine(models.Model):
             sale_order = self.env['sale.order']
             new_so = sale_order.new({
                 'partner_id': vals.pop('order_partner_id'),
+                'company_id': vals.get("company_id"),
             })
             for onchange_method in new_so._onchange_methods['partner_id']:
                 onchange_method(new_so)

@@ -59,7 +59,7 @@
         <field name="customer_lead" invisible="1"/>
         <field name="currency_id" invisible="1"/>
         <field name="pricelist_id" invisible="1"/>
-        <field name="company_id" invisible="1"/>
+        <field name="company_id" invisible="1" force_save="1"/>
       </tree>
     </field>
   </record>
