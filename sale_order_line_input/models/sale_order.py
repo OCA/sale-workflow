@@ -22,7 +22,7 @@ class SaleOrderLine(models.Model):
         store=True,
     )
 
-    @api.depends("order_id")
+    @api.depends("order_id", "order_id.company_id")
     def _compute_company_id(self):
         for line in self:
             line.company_id = (
@@ -30,17 +30,21 @@ class SaleOrderLine(models.Model):
             )
 
     @api.model
+    def _prepare_order_from_line_input(self, line_vals):
+        sale_order = self.env['sale.order']
+        new_so = sale_order.new({
+            'partner_id': line_vals.pop('order_partner_id'),
+            'company_id': line_vals.get("company_id"),
+        })
+        for onchange_method in new_so._onchange_methods['partner_id']:
+            onchange_method(new_so)
+        return new_so._convert_to_write(new_so._cache)
+
+    @api.model
     def create(self, vals):
         if not vals.get('order_id', False):
-            sale_order = self.env['sale.order']
-            new_so = sale_order.new({
-                'partner_id': vals.pop('order_partner_id'),
-                'company_id': vals.get("company_id"),
-            })
-            for onchange_method in new_so._onchange_methods['partner_id']:
-                onchange_method(new_so)
-            order_data = new_so._convert_to_write(new_so._cache)
-            vals['order_id'] = sale_order.create(order_data).id
+            order_vals = self._prepare_order_from_line_input(vals)
+            vals['order_id'] = self.env['sale.order'].create(order_vals).id
         return super().create(vals)
 
     @api.multi
