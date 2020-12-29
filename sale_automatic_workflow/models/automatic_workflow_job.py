@@ -145,5 +145,8 @@ class AutomaticWorkflowJob(models.Model):
         """ Must be called from ir.cron """
         sale_workflow_process = self.env['sale.workflow.process']
         for sale_workflow in sale_workflow_process.search([]):
-            self.run_with_workflow(sale_workflow)
+            try:
+                self.run_with_workflow(sale_workflow)
+            except:
+                continue
         return True
