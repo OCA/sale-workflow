@@ -144,9 +144,12 @@ class AutomaticWorkflowJob(models.Model):
     def run(self):
         """ Must be called from ir.cron """
         sale_workflow_process = self.env['sale.workflow.process']
+        skip = 0
         for sale_workflow in sale_workflow_process.search([]):
             try:
                 self.run_with_workflow(sale_workflow)
             except:
+                skip += 1
                 continue
+        _logger.info('Automatic workflow ran skipping %s Records' % skip)
         return True
