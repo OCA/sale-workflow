@@ -6,6 +6,7 @@
         <field name="arch" type="xml">
             <form string="Add set in sale order line">
                 <group>
+                    <field name="order_id" invisible="1" />
                     <field name="partner_id" invisible="1" />
                     <field
                         name="product_set_id"
