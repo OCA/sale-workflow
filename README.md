@@ -67,6 +67,7 @@ addon | version | summary
 [sale_order_lot_selection](sale_order_lot_selection/) | 12.0.2.0.0 | Sale Order Lot Selection
 [sale_order_min_qty](sale_order_min_qty/) | 12.0.1.0.0 | Sale order min quantity
 [sale_order_price_recalculation](sale_order_price_recalculation/) | 12.0.1.1.0 | Recalculate prices / Reset descriptions on sale order lines
+[sale_order_product_assortment](sale_order_product_assortment/) | 12.0.1.0.0 | Sale Order Product Assortment
 [sale_order_product_recommendation](sale_order_product_recommendation/) | 12.0.2.0.2 | Recommend products to sell to customer based on history
 [sale_order_product_recommendation_secondary_unit](sale_order_product_recommendation_secondary_unit/) | 12.0.2.0.0 | Add secondary unit to recommend products wizard
 [sale_order_revision](sale_order_revision/) | 12.0.1.0.0 | Keep track of revised quotations
