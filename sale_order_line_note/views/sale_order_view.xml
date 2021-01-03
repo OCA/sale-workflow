@@ -1,0 +1,23 @@
+<odoo>
+    <record id="sale_order_view_form" model="ir.ui.view">
+        <field name="model">sale.order</field>
+        <field name="inherit_id" ref="sale.view_order_form" />
+        <field name="arch" type="xml">
+            <xpath expr="//tree/field[@name='name']" position="after">
+                <field name="note" optional="hide" />
+            </xpath>
+            <xpath expr="//form/field[@name='name']" position="after">
+                <label
+                    for="note"
+                    string="Note"
+                    attrs="{'invisible': [('display_type', '!=', False)]}"
+                />
+                <field
+                    name="note"
+                    optional="hide"
+                    attrs="{'invisible': [('display_type', '!=', False)]}"
+                />
+            </xpath>
+        </field>
+    </record>
+</odoo>
