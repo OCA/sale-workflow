@@ -4,43 +4,49 @@ from odoo import api, fields, models
 
 
 class SaleOrder(models.Model):
-    _inherit = 'sale.order'
+    _inherit = "sale.order"
 
     whitelist_product_ids = fields.Many2many(
-        comodel_name='product.product',
-        string='Whitelisted Products',
-        compute='_compute_product_assortment_ids',
+        comodel_name="product.product",
+        string="Whitelisted Products",
+        compute="_compute_product_assortment_ids",
     )
     blacklist_product_ids = fields.Many2many(
-        comodel_name='product.product',
-        string='Blacklisted Products',
-        compute='_compute_product_assortment_ids',
+        comodel_name="product.product",
+        string="Blacklisted Products",
+        compute="_compute_product_assortment_ids",
     )
-    has_whitelist = fields.Boolean(compute='_compute_product_assortment_ids')
-    has_blacklist = fields.Boolean(compute='_compute_product_assortment_ids')
+    has_whitelist = fields.Boolean(compute="_compute_product_assortment_ids")
+    has_blacklist = fields.Boolean(compute="_compute_product_assortment_ids")
 
-    @api.depends('partner_id')
+    @api.depends("partner_id")
     def _compute_product_assortment_ids(self):
         if self.partner_id:
-            filters = self.env['ir.filters'].search([
-                (
-                    'partner_ids',
-                    'in',
-                    (self.partner_id + self.partner_id.commercial_partner_id).ids
-                ),
-            ])
+            filters = self.env["ir.filters"].search(
+                [
+                    (
+                        "partner_ids",
+                        "in",
+                        (self.partner_id + self.partner_id.commercial_partner_id).ids,
+                    ),
+                ]
+            )
             whitelist_products = set()
             blacklist_products = set()
             for fil in filters:
                 whitelist_products = whitelist_products.union(
-                    fil.whitelist_product_ids.ids)
+                    fil.whitelist_product_ids.ids
+                )
                 blacklist_products = blacklist_products.union(
-                    fil.blacklist_product_ids.ids)
+                    fil.blacklist_product_ids.ids
+                )
             if whitelist_products:
                 self.has_whitelist = True
             if blacklist_products:
                 self.has_blacklist = True
-            self.whitelist_product_ids = self.env[
-                'product.product'].browse(whitelist_products)
-            self.blacklist_product_ids = self.env[
-                'product.product'].browse(blacklist_products)
+            self.whitelist_product_ids = self.env["product.product"].browse(
+                whitelist_products
+            )
+            self.blacklist_product_ids = self.env["product.product"].browse(
+                blacklist_products
+            )
