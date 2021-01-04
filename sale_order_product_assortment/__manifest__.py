@@ -3,8 +3,8 @@
 
 {
     "name": "Sale Order Product Assortment",
-    "summary": "",
-    "version": "12.0.1.0.0",
+    "summary": "Module that allows to use the assortments on sale orders",
+    "version": "13.0.1.0.0",
     "development_status": "Beta",
     "category": "Sales",
     "website": "https://github.com/OCA/sale-workflow",
