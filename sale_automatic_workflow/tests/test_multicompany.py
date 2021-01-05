@@ -60,19 +60,19 @@ class TestMultiCompany(TestCommon):
         cls.env.user.company_ids |= cls.company_fr_daughter
 
         cls.env.user.company_id = cls.company_fr.id
-        coa.try_loading_for_current_company()
+        coa.try_loading(company=cls.env.user.company_id)
         cls.customer_fr = cls.env["res.partner"].create({"name": "Customer FR"})
         cls.product_fr = cls.create_product({"name": "Evian bottle", "list_price": 2.0})
 
         cls.env.user.company_id = cls.company_ch.id
-        coa.try_loading_for_current_company()
+        coa.try_loading(company=cls.env.user.company_id)
         cls.customer_ch = cls.env["res.partner"].create({"name": "Customer CH"})
         cls.product_ch = cls.create_product(
             {"name": "Henniez bottle", "list_price": 3.0}
         )
 
         cls.env.user.company_id = cls.company_be.id
-        coa.try_loading_for_current_company()
+        coa.try_loading(company=cls.env.user.company_id)
         cls.customer_be = cls.env["res.partner"].create({"name": "Customer BE"})
         cls.product_be = (
             cls.env["product.template"]
@@ -88,7 +88,7 @@ class TestMultiCompany(TestCommon):
         )
 
         cls.env.user.company_id = cls.company_fr_daughter.id
-        coa.try_loading_for_current_company()
+        coa.try_loading(company=cls.env.user.company_id)
         cls.customer_fr_daughter = cls.env["res.partner"].create(
             {"name": "Customer FR Daughter"}
         )
@@ -151,10 +151,10 @@ class TestMultiCompany(TestCommon):
             4,
         )
 
-        self.assertEquals(order_fr.state, "draft")
-        self.assertEquals(order_ch.state, "draft")
-        self.assertEquals(order_be.state, "draft")
-        self.assertEquals(order_fr_daughter.state, "draft")
+        self.assertEqual(order_fr.state, "draft")
+        self.assertEqual(order_ch.state, "draft")
+        self.assertEqual(order_be.state, "draft")
+        self.assertEqual(order_fr_daughter.state, "draft")
 
         self.env["automatic.workflow.job"].run()
         self.assertTrue(order_fr.picking_ids)
@@ -167,13 +167,13 @@ class TestMultiCompany(TestCommon):
         invoice_ch = order_ch.invoice_ids
         invoice_be = order_be.invoice_ids
         invoice_fr_daughter = order_fr_daughter.invoice_ids
-        self.assertEquals(invoice_fr.state, "posted")
-        self.assertEquals(invoice_fr.journal_id.company_id, order_fr.company_id)
-        self.assertEquals(invoice_ch.state, "posted")
-        self.assertEquals(invoice_ch.journal_id.company_id, order_ch.company_id)
-        self.assertEquals(invoice_be.state, "posted")
-        self.assertEquals(invoice_be.journal_id.company_id, order_be.company_id)
-        self.assertEquals(invoice_fr_daughter.state, "posted")
-        self.assertEquals(
+        self.assertEqual(invoice_fr.state, "posted")
+        self.assertEqual(invoice_fr.journal_id.company_id, order_fr.company_id)
+        self.assertEqual(invoice_ch.state, "posted")
+        self.assertEqual(invoice_ch.journal_id.company_id, order_ch.company_id)
+        self.assertEqual(invoice_be.state, "posted")
+        self.assertEqual(invoice_be.journal_id.company_id, order_be.company_id)
+        self.assertEqual(invoice_fr_daughter.state, "posted")
+        self.assertEqual(
             invoice_fr_daughter.journal_id.company_id, order_fr_daughter.company_id
         )
