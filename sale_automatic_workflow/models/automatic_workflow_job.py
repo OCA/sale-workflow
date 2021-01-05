@@ -88,7 +88,7 @@ class AutomaticWorkflowJob(models.Model):
             [("id", "=", invoice.id)] + domain_filter
         ):
             return "{} {} job bypassed".format(invoice.display_name, invoice)
-        invoice.with_context(force_company=invoice.company_id.id).post()
+        invoice.with_company(invoice.company_id).action_post()
         return "{} {} validate invoice successfully".format(
             invoice.display_name, invoice
         )
