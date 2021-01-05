@@ -8,3 +8,4 @@
 * Dave Lasley <dave@laslabs.com>
 * Akim Juillerat <akim.juillerat@camptocamp.com>
 * Thomas Fossoul <thomas@niboo.com>
+* Phuc Tran Thanh <phuc@trobz.com>
