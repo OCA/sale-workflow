@@ -74,7 +74,7 @@ class SaleOrderLine(models.Model):
         if self.product_packaging:
             pack_qty = 1
             product_qty = self.product_packaging.qty
-            if self.product_uom_qty > 0:
+            if self.product_uom_qty > 0 and product_qty > 0:
                 if (self.product_uom_qty % self.product_packaging.qty) == 0:
                     pack_qty = self.product_uom_qty / self.product_packaging.qty
                     product_qty = self.product_uom_qty
