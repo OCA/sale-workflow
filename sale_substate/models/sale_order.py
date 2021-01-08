@@ -25,7 +25,7 @@ class SaleOrder(models.Model):
             if order.substate_id and order.state != target_state:
                 raise ValidationError(
                     _(
-                        'The substate "%s" is not define for the state'
+                        'The substate "%s" is not defined for the state'
                         ' "%s" but for "%s" '
                     )
                     % (
