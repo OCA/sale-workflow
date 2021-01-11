@@ -29,9 +29,8 @@ class TestSaleOrderCarrierAutoAssign(SavepointCase):
         self.assertEqual(self.sale_order.state, "sale")
         self.assertEqual(self.sale_order.carrier_id, self.normal_delivery_carrier)
         delivery_line = self.sale_order.order_line.filtered(lambda l: l.is_delivery)
-        self.assertEqual(
-            delivery_line.price_unit, self.normal_delivery_carrier.fixed_price
-        )
+        delivery_rate = self.normal_delivery_carrier.rate_shipment(self.sale_order)
+        self.assertEqual(delivery_line.price_unit, delivery_rate["carrier_price"])
 
     def test_sale_order_carrier_auto_assign_no_carrier(self):
         self.partner.property_delivery_carrier_id = False
