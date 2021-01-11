@@ -40,7 +40,7 @@ addon | version | summary
 [sale_order_carrier_auto_assign](sale_order_carrier_auto_assign/) | 13.0.1.1.0 | Auto assign delivery carrier on sale order confirmation
 [sale_order_general_discount](sale_order_general_discount/) | 13.0.1.0.0 | General discount per sale order
 [sale_order_line_date](sale_order_line_date/) | 13.0.1.1.0 | Adds a commitment date to each sale order line.
-[sale_order_line_packaging_qty](sale_order_line_packaging_qty/) | 13.0.1.2.0 | Define quantities according to product packaging on sale order lines
+[sale_order_line_packaging_qty](sale_order_line_packaging_qty/) | 13.0.1.2.1 | Define quantities according to product packaging on sale order lines
 [sale_order_lot_selection](sale_order_lot_selection/) | 13.0.1.0.0 | Sale Order Lot Selection
 [sale_order_product_assortment](sale_order_product_assortment/) | 13.0.1.0.0 | Module that allows to use the assortments on sale orders
 [sale_order_product_availability_inline](sale_order_product_availability_inline/) | 13.0.1.1.1 | Show product availability in sales order line product drop-down.
