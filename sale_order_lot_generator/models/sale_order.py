@@ -20,7 +20,6 @@ class SaleOrder(models.Model):
                     line.lot_id = lot_id
 
     def action_confirm(self):
-        self.ensure_one()
         self.generate_prodlot()
         return super().action_confirm()
 
