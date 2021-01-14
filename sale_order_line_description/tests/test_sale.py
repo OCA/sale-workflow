@@ -2,10 +2,10 @@
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
 
 import odoo.tests.common as common
+from odoo.tests import tagged
 
 
-@common.at_install(False)
-@common.post_install(True)
+@tagged("post_install", "-at_install")
 class TestSaleOrderLineDescriptionChange(common.TransactionCase):
     def setUp(self):
         super(TestSaleOrderLineDescriptionChange, self).setUp()
