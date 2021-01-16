@@ -1,0 +1,5 @@
+odoo14-addon-partner-tz @ git+https://github.com/trobz/partner-contact@14.0-mig-partner_tz#subdirectory=setup/partner_tz
+odoo14-addon-base-time-window @ git+https://github.com/trobz/server-tools@14.0-mig-base_time_window#subdirectory=setup/base_time_window
+odoo14-addon-stock-partner-delivery-window @ git+https://github.com/trobz/stock-logistics-workflow@14.0-mig-stock_partner_delivery_window#subdirectory=setup/stock_partner_delivery_window
+odoo14-addon-sale-partner-delivery-window @ git+https://github.com/trobz/sale-workflow@14.0-mig-sale_partner_delivery_window#subdirectory=setup/sale_partner_delivery_window
+odoo14-addon-sale-cutoff-time-delivery @ git+https://github.com/trobz/sale-workflow@14.0-mig-sale_cutoff_time_delivery#subdirectory=setup/sale_cutoff_time_delivery
