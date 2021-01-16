@@ -37,6 +37,11 @@ class SaleOrderRecommendation(models.TransientModel):
         help="The less, the faster they will be found.",
     )
     last_compute = fields.Char()
+    # Get default value from config settings
+    sale_recommendation_price_origin = fields.Selection([
+        ('pricelist', 'Pricelist'),
+        ('last_sale_price', 'Last sale price')
+    ], string="Product price origin", default="pricelist")
 
     @api.model
     def _default_order_id(self):
@@ -197,14 +202,25 @@ class SaleOrderRecommendationLine(models.TransientModel):
     )
     sale_uom_id = fields.Many2one(related="sale_line_id.product_uom")
 
-    @api.depends("partner_id", "product_id", "pricelist_id", "units_included")
+    @api.depends("partner_id", "product_id", "pricelist_id", "units_included",
+                 "wizard_id.sale_recommendation_price_origin")
     def _compute_price_unit(self):
+        """
+        Get product price unit from product list price or from last sale price
+        """
+        price_origin = (
+            fields.first(self).wizard_id.sale_recommendation_price_origin or
+            "pricelist"
+        )
         for one in self:
-            one.price_unit = one.product_id.with_context(
-                partner=one.partner_id.id,
-                pricelist=one.pricelist_id.id,
-                quantity=one.units_included,
-            ).price
+            if price_origin == "pricelist":
+                one.price_unit = one.product_id.with_context(
+                    partner=one.partner_id.id,
+                    pricelist=one.pricelist_id.id,
+                    quantity=one.units_included,
+                ).price
+            else:
+                one.price_unit = one._get_last_sale_price_product()
 
     def _prepare_update_so_line(self, line_form):
         """So we can extend SO update"""
@@ -215,3 +231,25 @@ class SaleOrderRecommendationLine(models.TransientModel):
         line_form.product_id = self.product_id
         line_form.sequence = sequence
         line_form.product_uom_qty = self.units_included
+        if (self.wizard_id.sale_recommendation_price_origin ==
+                "last_sale_price"):
+            line_form.price_unit = self.price_unit
+
+    def _get_last_sale_price_product(self):
+        """
+        Get last price from last order.
+        Use sudo to read sale order from other users like as other commercials.
+        """
+        self.ensure_one()
+        so = self.env["sale.order"].sudo().search([
+            ("company_id", "=", self.env.user.company_id.id),
+            ("partner_id", "=", self.partner_id.id),
+            ("confirmation_date", "!=", False),
+            ("state", "not in", ('draft', 'sent', 'cancel')),
+            ("order_line.product_id", "=", self.product_id.id)
+        ], limit=1, order="confirmation_date DESC, id DESC")
+        so_line = self.env["sale.order.line"].sudo().search([
+            ("order_id", "=", so.id),
+            ("product_id", "=", self.product_id.id)
+        ], limit=1, order="id DESC").with_context(prefetch_fields=False)
+        return so_line.price_unit or 0.0
