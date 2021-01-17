@@ -38,4 +38,17 @@
     </field>
 </record>
 
+<!-- Need to get related field invoicing_finished_task when _onchange_stage_id
+     and save invoiceable value in kanban view -->
+<record id="view_task_kanban" model="ir.ui.view">
+    <field name="model">project.task</field>
+    <field name="inherit_id" ref="project.view_task_kanban" />
+    <field name="arch" type="xml">
+        <field name="user_id" position="after">
+            <field name="sale_line_id" />
+            <field name="invoiceable" />
+        </field>
+    </field>
+</record>
+
 </odoo>
