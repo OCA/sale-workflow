@@ -12,8 +12,9 @@
                 <field name="secondary_uom_qty" attrs="{'invisible': [('secondary_uom_id', '=', False)]}" widget="numeric_step"/>
             </xpath>
             <xpath expr="//field[@name='line_ids']/kanban//field[@name='units_included']" position="before">
+                <field name="product_tmpl_id" invisible="1"/>
                 <field name="secondary_uom_qty"/>
-                <field name="secondary_uom_id"/>
+                <field name="secondary_uom_id" domain="[('product_tmpl_id', '=', product_tmpl_id)]"/>
                 <field name="secondary_uom_name"/>
             </xpath>
             <xpath expr="//field[@name='line_ids']/kanban//t[@t-name='kanban-box']//field[@name='units_included']" position="before">
@@ -22,7 +23,8 @@
                 </t>
             </xpath>
             <xpath expr="//field[@name='line_ids']/form//field[@name='units_included']" position="before">
-                <field name="secondary_uom_id" attrs="{'invisible': [('secondary_uom_id', '=', False)]}" />
+                <field name="product_tmpl_id" invisible="1"/>
+                <field name="secondary_uom_id" attrs="{'invisible': [('secondary_uom_id', '=', False)]}"  domain="[('product_tmpl_id', '=', product_tmpl_id)]"/>
                 <field name="secondary_uom_qty" attrs="{'invisible': [('secondary_uom_id', '=', False)]}" widget="numeric_step"/>
             </xpath>
         </field>
