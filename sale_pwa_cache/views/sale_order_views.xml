@@ -25,7 +25,8 @@
                         nolabel="1"
                         mode="form"
                         widget="one2many_product_picker"
-                        options="{'edit_discount': True, 'show_discount': True}"
+                        context="{'sale_order_partner_id': partner_id}"
+                        options="{'edit_discount': True, 'show_discount': True, 'groups': [{'name': 'product_history', 'string': _('Product History'), 'domain': [('sale_order_partner_id_product', '=', True)]}]}"
                     >
                         <form>
                             <field name="state" invisible="1" />
