@@ -57,7 +57,7 @@ addon | version | summary
 [sale_order_digitized_signature](sale_order_digitized_signature/) | 12.0.1.0.0 | Capture customer signature on the sales order
 [sale_order_general_discount](sale_order_general_discount/) | 12.0.1.0.1 | General discount per sale order
 [sale_order_incoterm_place](sale_order_incoterm_place/) | 12.0.1.0.1 | Sale Order Incoterm Place
-[sale_order_invoicing_finished_task](sale_order_invoicing_finished_task/) | 12.0.1.0.0 | Control invoice order lines if their related task has been set to invoiceable
+[sale_order_invoicing_finished_task](sale_order_invoicing_finished_task/) | 12.0.1.1.0 | Control invoice order lines if their related task has been set to invoiceable
 [sale_order_line_date](sale_order_line_date/) | 12.0.1.0.0 | Adds a commitment date to each sale order line.
 [sale_order_line_description](sale_order_line_description/) | 12.0.1.0.0 | Sale order line description
 [sale_order_line_input](sale_order_line_input/) | 12.0.1.0.0 | Search, create or modify directly sale order lines
