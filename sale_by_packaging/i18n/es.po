@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 13.0\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2020-10-26 12:08+0000\n"
+"PO-Revision-Date: 2021-01-20 13:44+0000\n"
 "Last-Translator: Daniel Martinez Vila <daniel.martinez@qubiq.es>\n"
 "Language-Team: none\n"
 "Language: es\n"
@@ -14,7 +14,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 3.10\n"
+"X-Generator: Weblate 4.3.2\n"
 
 #. module: sale_by_packaging
 #: model:ir.model.fields,field_description:sale_by_packaging.field_product_packaging__can_be_sold
@@ -32,6 +32,12 @@ msgid ""
 "When the user will put 3 as quantity, the system can force the quantity to "
 "the superior unit (5 for this example)."
 msgstr ""
+"Determine si durante la creación de una línea de orden de venta, la cantidad "
+"debe forzarse con un múltiplo del empaque.\n"
+"Ejemplo:\n"
+"Vendes un producto por empaque de 5 productos.\n"
+"Cuando el usuario pone 3 como cantidad, el sistema puede forzar la cantidad "
+"a la unidad superior (5 para este ejemplo)."
 
 #. module: sale_by_packaging
 #: code:addons/sale_by_packaging/models/sale_order_line.py:0
@@ -48,7 +54,7 @@ msgstr ""
 #. module: sale_by_packaging
 #: model:ir.model.fields,field_description:sale_by_packaging.field_product_packaging__force_sale_qty
 msgid "Force sale quantity"
-msgstr ""
+msgstr "Cantidad de venta forzada"
 
 #. module: sale_by_packaging
 #: model:ir.model.fields,field_description:sale_by_packaging.field_product_product__sell_only_by_packaging
@@ -92,6 +98,8 @@ msgstr "Producto"
 #, python-format
 msgid "Product %s can only be sold with a packaging and a packaging qantity."
 msgstr ""
+"El producto %s solo se puede vender con un embalaje y una cantidad de "
+"embalaje."
 
 #. module: sale_by_packaging
 #: code:addons/sale_by_packaging/models/product_template.py:0
