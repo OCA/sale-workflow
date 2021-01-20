@@ -21,9 +21,16 @@ class SaleOrder(models.Model):
                                     copy=False,
                                     )
 
+    def _get_force_invoiced_allowed_invoice_status(self):
+        return ('to invoice',)
+
     @api.depends('force_invoiced')
     def _get_invoiced(self):
         super(SaleOrder, self)._get_invoiced()
+        allowed_status = self._get_force_invoiced_allowed_invoice_status()
         for order in self:
-            if order.force_invoiced and order.invoice_status == 'to invoice':
+            if (
+                order.force_invoiced and
+                order.invoice_status in allowed_status
+            ):
                 order.invoice_status = 'invoiced'
