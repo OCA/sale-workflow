@@ -135,3 +135,24 @@ class TestProductSet(common.SavepointCase):
         self.assertEqual(
             product_set.name_get(), [(product_set.id, "[123] Foo @ %s" % partner.name)]
         )
+
+    def test_discount(self):
+        product_test = self.env["product.product"].create(
+            {"name": "Test", "list_price": 100.0}
+        )
+        set_line = self.env["product.set.line"].create(
+            {"product_id": product_test.id, "quantity": 1, "discount": 50}
+        )
+        set = self.env["product.set"].create(
+            {"name": "Test", "set_line_ids": [(4, set_line.id)]}
+        )
+        so = self.env.ref("sale.sale_order_6")
+        so_set = self.product_set_add.with_context(active_id=so.id).create(
+            {"product_set_id": set.id, "quantity": 1}
+        )
+        so_set.add_set()
+        order_line = so.order_line.filtered(
+            lambda x: x.product_id == set.set_line_ids[0].product_id
+        )
+        order_line.ensure_one()
+        self.assertEqual(order_line.discount, set_line.discount)
