@@ -50,7 +50,7 @@ class SaleOrderTypology(models.Model):
     payment_term_id = fields.Many2one(
         comodel_name="account.payment.term", string="Payment Term"
     )
-    pricelist_id = fields.Many2one(comodel_name="product.pricelist", strint="Pricelist")
+    pricelist_id = fields.Many2one(comodel_name="product.pricelist", string="Pricelist")
     incoterm_id = fields.Many2one(comodel_name="account.incoterms", string="Incoterm")
     route_id = fields.Many2one(
         "stock.location.route",
