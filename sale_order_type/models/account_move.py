@@ -12,16 +12,22 @@ class AccountMove(models.Model):
         string="Sale Type",
         compute="_compute_sale_type_id",
         store=True,
-        readonly=False,
-        states={"posted": [("readonly", True)], "cancel": [("readonly", True)]},
+        readonly=True,
+        states={"draft": [("readonly", False)]},
+        ondelete="restrict",
         copy=True,
     )
 
     @api.depends("partner_id", "company_id")
     def _compute_sale_type_id(self):
+        # If create invoice from sale order, sale type will not computed.
+        if not self._context.get("default_move_type", False) or self._context.get(
+            "active_model", False
+        ) in ["sale.order", "sale.advance.payment.inv"]:
+            return
         self.sale_type_id = self.env["sale.order.type"]
         for record in self.filtered(
-            lambda am: am.type in ["out_invoice", "out_refund"]
+            lambda am: am.move_type in ["out_invoice", "out_refund"]
         ):
             if not record.partner_id:
                 record.sale_type_id = self.env["sale.order.type"].search(
@@ -29,11 +35,9 @@ class AccountMove(models.Model):
                 )
             else:
                 sale_type = (
-                    record.partner_id.with_context(
-                        force_company=record.company_id.id
-                    ).sale_type
-                    or record.partner_id.commercial_partner_id.with_context(
-                        force_company=record.company_id.id
+                    record.partner_id.with_company(record.company_id).sale_type
+                    or record.partner_id.commercial_partner_id.with_company(
+                        record.company_id
                     ).sale_type
                 )
                 if sale_type:
