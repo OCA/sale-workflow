@@ -1,8 +1,8 @@
 This module provides different configuration option to manage packagings on
 sale orders.
 
-By default there is a Warning message during the modification/creation of a sale order line
-to notice the user when the quantity to sell doesn't fit with the factor set on the packaging.
+The creation/update of sale order line will be blocked (by constraints) if the data on the
+sale.order.line does not fit with the configuration of the product's packagings.
 
 It's also possible to force the quantity to sell during creation/modification of the sale order line
 if the "Force sale quantity" is ticked on the packaging.
