@@ -35,4 +35,6 @@
 
   * Iván Todorovich <ivan.todorovich@druidoo.io>
 
+* Tharathip Chaweewongphan <tharathipc@ecosoft.co.th>
+
 Do not contact contributors directly about support or help with technical issues.
