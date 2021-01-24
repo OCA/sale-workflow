@@ -1,12 +1,12 @@
 # Translation of Odoo Server.
 # This file contains the translation of the following modules:
-#	* sale_order_line_price_history
+# 	* sale_order_line_price_history
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: Odoo Server 12.0\n"
+"Project-Id-Version: Odoo Server 13.0\n"
 "Report-Msgid-Bugs-To: \n"
-"Last-Translator: <>\n"
+"Last-Translator: \n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -28,6 +28,13 @@ msgstr ""
 #: model:ir.model.fields,field_description:sale_order_line_price_history.field_sale_order_line_price_history__create_date
 #: model:ir.model.fields,field_description:sale_order_line_price_history.field_sale_order_line_price_history_line__create_date
 msgid "Created on"
+msgstr ""
+
+#. module: sale_order_line_price_history
+#: model:ir.model.fields,help:sale_order_line_price_history.field_sale_order_line_price_history_line__sale_order_date_order
+msgid ""
+"Creation date of draft/sent orders,\n"
+"Confirmation date of confirmed orders."
 msgstr ""
 
 #. module: sale_order_line_price_history
@@ -112,11 +119,6 @@ msgid "Order Reference"
 msgstr ""
 
 #. module: sale_order_line_price_history
-#: model:ir.model.fields,field_description:sale_order_line_price_history.field_sale_order_line_price_history_line__product_uom_qty
-msgid "Ordered Quantity"
-msgstr ""
-
-#. module: sale_order_line_price_history
 #: model_terms:ir.ui.view,arch_db:sale_order_line_price_history.view_order_form
 msgid "Price history"
 msgstr ""
@@ -129,6 +131,11 @@ msgstr ""
 #. module: sale_order_line_price_history
 #: model:ir.model.fields,field_description:sale_order_line_price_history.field_sale_order_line_price_history__product_id
 msgid "Product"
+msgstr ""
+
+#. module: sale_order_line_price_history
+#: model:ir.model.fields,field_description:sale_order_line_price_history.field_sale_order_line_price_history_line__product_uom_qty
+msgid "Quantity"
 msgstr ""
 
 #. module: sale_order_line_price_history
@@ -163,12 +170,6 @@ msgid "Unit Price"
 msgstr ""
 
 #. module: sale_order_line_price_history
-#: model:ir.model.fields,help:sale_order_line_price_history.field_sale_order_line_price_history_line__partner_id
-msgid "You can find a customer by its Name, TIN, Email or Internal Reference."
-msgstr ""
-
-#. module: sale_order_line_price_history
 #: model:ir.model.fields,field_description:sale_order_line_price_history.field_sale_order_line_price_history_line__history_sale_order_line_id
 msgid "history sale order line"
 msgstr ""
-
