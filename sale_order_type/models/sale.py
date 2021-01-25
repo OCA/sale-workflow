@@ -36,11 +36,9 @@ class SaleOrder(models.Model):
                 )
             else:
                 sale_type = (
-                    record.partner_id.with_context(
-                        force_company=record.company_id.id
-                    ).sale_type
-                    or record.partner_id.commercial_partner_id.with_context(
-                        force_company=record.company_id.id
+                    record.partner_id.with_company(record.company_id).sale_type
+                    or record.partner_id.commercial_partner_id.with_company(
+                        record.company_id
                     ).sale_type
                 )
                 if sale_type:

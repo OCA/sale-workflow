@@ -35,4 +35,6 @@
 
   * Iván Todorovich <ivan.todorovich@druidoo.io>
 
+* Shivam Soni <s.soni.serpentcs@gmail.com>
+
 Do not contact contributors directly about support or help with technical issues.
