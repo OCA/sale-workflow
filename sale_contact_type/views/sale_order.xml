@@ -8,7 +8,7 @@
             <xpath expr='//field[@name="partner_id"]' position='attributes'>
                 <attribute
                     name="domain"
-                >[('customer', '=', True), '|', ('type', '=', 'ordering'), '&amp;', ('parent_id', '=', False), ('has_ordering_contact_child', '!=', True)]</attribute>
+                >['|', ('type', '=', 'ordering'), '&amp;', ('parent_id', '=', False), ('has_ordering_contact_child', '!=', True)]</attribute>
             </xpath>
         </field>
     </record>

@@ -2,3 +2,4 @@
 
   * Alexadre Díaz
   * Pedro M. Baeza
+  * Carlos Roca
