@@ -28,6 +28,13 @@ msgid "Auto Generate Lot"
 msgstr "Automatsko kreiranje lot-a"
 
 #. module: sale_order_lot_generator
+#: model:ir.model.fields,field_description:sale_order_lot_generator.field_product_template__display_name
+#: model:ir.model.fields,field_description:sale_order_lot_generator.field_sale_order__display_name
+#: model:ir.model.fields,field_description:sale_order_lot_generator.field_sale_order_line__display_name
+msgid "Display Name"
+msgstr ""
+
+#. module: sale_order_lot_generator
 #: model:ir.model.fields,help:sale_order_lot_generator.field_product_product__auto_generate_prodlot
 #: model:ir.model.fields,help:sale_order_lot_generator.field_product_template__auto_generate_prodlot
 msgid ""
@@ -38,17 +45,34 @@ msgstr ""
 "potvrđivanja prodajnog naloga."
 
 #. module: sale_order_lot_generator
+#: model:ir.model.fields,field_description:sale_order_lot_generator.field_product_template__id
+#: model:ir.model.fields,field_description:sale_order_lot_generator.field_sale_order__id
+#: model:ir.model.fields,field_description:sale_order_lot_generator.field_sale_order_line__id
+msgid "ID"
+msgstr ""
+
+#. module: sale_order_lot_generator
+#: model:ir.model.fields,field_description:sale_order_lot_generator.field_product_template____last_update
+#: model:ir.model.fields,field_description:sale_order_lot_generator.field_sale_order____last_update
+#: model:ir.model.fields,field_description:sale_order_lot_generator.field_sale_order_line____last_update
+msgid "Last Modified on"
+msgstr ""
+
+#. module: sale_order_lot_generator
 #: model:ir.model,name:sale_order_lot_generator.model_product_template
 msgid "Product Template"
 msgstr "Predložak proizvoda"
 
 #. module: sale_order_lot_generator
 #: model:ir.model,name:sale_order_lot_generator.model_sale_order
-#, fuzzy
-msgid "Sale Order"
-msgstr "Prodajni nalog"
+msgid "Sales Order"
+msgstr ""
 
 #. module: sale_order_lot_generator
 #: model:ir.model,name:sale_order_lot_generator.model_sale_order_line
 msgid "Sales Order Line"
 msgstr "Stavka ponude"
+
+#, fuzzy
+#~ msgid "Sale Order"
+#~ msgstr "Prodajni nalog"
