@@ -22,7 +22,7 @@ class ResPartner(models.Model):
             groupby=["parent_id"],
         )
         parent_ids = {data["parent_id"][0] for data in datas}
-        with_ordering_c_recs = self.browse(parent_ids, prefetch=self._prefetch)
+        with_ordering_c_recs = self.browse(parent_ids)
         with_ordering_c_recs.update({"has_ordering_contact_child": True})
         without_ordering_c_recs = self - with_ordering_c_recs
         without_ordering_c_recs.update({"has_ordering_contact_child": False})
