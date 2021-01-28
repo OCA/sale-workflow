@@ -27,6 +27,7 @@ addon | version | summary
 [sale_automatic_workflow_payment](sale_automatic_workflow_payment/) | 13.0.1.0.0 | Assign a workflow if a transaction is created for a sale order with an acquirer with a workflow
 [sale_by_packaging](sale_by_packaging/) | 13.0.1.5.0 | Manage sale of packaging
 [sale_commercial_partner](sale_commercial_partner/) | 13.0.1.0.0 | Add stored related field 'Commercial Entity' on sale orders
+[sale_contact_type](sale_contact_type/) | 13.0.1.0.0 | Define ordering contact type
 [sale_cutoff_time_delivery](sale_cutoff_time_delivery/) | 13.0.1.1.0 | Schedule delivery orders according to cutoff preferences
 [sale_discount_display_amount](sale_discount_display_amount/) | 13.0.1.0.1 | This addon intends to display the amount of the discount computed on sale_order_line and sale_order level
 [sale_elaboration](sale_elaboration/) | 13.0.1.0.0 | Set an elaboration for any sale line
