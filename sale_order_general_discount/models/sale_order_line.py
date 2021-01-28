@@ -6,7 +6,11 @@ from odoo import api, fields, models
 class SaleOrderLine(models.Model):
     _inherit = "sale.order.line"
 
-    discount = fields.Float(compute="_compute_discount", store=True, readonly=False,)
+    discount = fields.Float(
+        compute="_compute_discount",
+        store=True,
+        readonly=False,
+    )
 
     @api.model
     def create(self, vals):
