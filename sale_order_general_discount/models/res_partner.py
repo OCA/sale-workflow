@@ -8,5 +8,7 @@ class ResPartner(models.Model):
     _inherit = "res.partner"
 
     sale_discount = fields.Float(
-        string="Discount", digits="Discount", company_dependent=True,
+        string="Discount",
+        digits="Discount",
+        company_dependent=True,
     )
