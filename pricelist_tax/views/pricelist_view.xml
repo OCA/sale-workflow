@@ -8,7 +8,7 @@
             <field name="company_id" position="before">
                 <field
                     name="price_include_taxes"
-                    readonly="[('item_ids', '=', False)]"
+                    attrs="{'readonly': [('item_ids', '=', [])]}"
                 />
             </field>
         </field>
