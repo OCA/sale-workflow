@@ -12,12 +12,14 @@
     Thank you for your order.<br />
         In order to validate your order we need the legal documentation.
        <br /><br />
-    Thank you,
-    <br />
+    Thank you.
+    % if user.signature
+        <br />
+        ${user.signature | safe}
+    % endif
 </div>
         </field>
             <field name="auto_delete" eval="True" />
-            <field name="user_signature" eval="True" />
         </record>
         <record id="mail_template_data_sale_substate_delivery" model="mail.template">
             <field name="name">In delivery</field>
@@ -32,10 +34,12 @@
         You will recive a delivery tracking link to follow your delevery.
     <br /><br />
     Thank you,
-    <br />
+    % if user.signature
+        <br />
+        ${user.signature | safe}
+    % endif
 </div>
         </field>
             <field name="auto_delete" eval="True" />
-            <field name="user_signature" eval="True" />
         </record>
 </odoo>
