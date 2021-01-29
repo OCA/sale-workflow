@@ -19,9 +19,7 @@ class SaleOrder(models.Model):
     def check_substate_id_value(self):
         sale_states = dict(self._fields["state"].selection)
         for order in self:
-            target_state = (
-                order.substate_id.target_state_value_id.target_state_value
-            )
+            target_state = order.substate_id.target_state_value_id.target_state_value
             if order.substate_id and order.state != target_state:
                 raise ValidationError(
                     _(
@@ -40,12 +38,15 @@ class SaleOrder(models.Model):
         res = super(SaleOrder, self)._track_template(tracking)
         first_sale = self[0]
         changes, tracking_value_ids = tracking[first_sale.id]
-        if 'substate_id' in changes and\
-                first_sale.substate_id.mail_template_id:
-            res['substate_id'] = (first_sale.substate_id.mail_template_id, {
-                'auto_delete_message': True,
-                'subtype_id':
-                    self.env['ir.model.data'].xmlid_to_res_id('mail.mt_note'),
-                'notif_layout': 'mail.mail_notification_light'
-            })
+        if "substate_id" in changes and first_sale.substate_id.mail_template_id:
+            res["substate_id"] = (
+                first_sale.substate_id.mail_template_id,
+                {
+                    "auto_delete_message": True,
+                    "subtype_id": self.env["ir.model.data"].xmlid_to_res_id(
+                        "mail.mt_note"
+                    ),
+                    "notif_layout": "mail.mail_notification_light",
+                },
+            )
         return res
