@@ -4,6 +4,8 @@
 # Copyright 2016 Lorenzo Battistini
 # Copyright 2016 Carlos Dauden <carlos.dauden@tecnativa.com>
 # Copyright 2018 David Vidal <david.vidal@tecnativa.com>
+# Copyright 2021 Therp BV <https://therp.nl>.
+# Copyright 2021 Sunflower IT < https://sunflowerweb.nl>.
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
 {
@@ -15,6 +17,8 @@
     "Tecnativa,"
     "Agile Business Group,"
     "Niboo,"
+    "Therp BV,"
+    "Sunflower IT,"
     "Odoo Community Association (OCA)",
     "website": "https://github.com/OCA/sale-workflow",
     "license": "AGPL-3",
