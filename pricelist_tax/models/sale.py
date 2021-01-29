@@ -35,7 +35,6 @@ class SaleOrderLine(models.Model):
             prev_cpny = cpny
         return mtax
 
-    @api.multi
     def _compute_tax_id(self):
         super(SaleOrderLine, self)._compute_tax_id()
         map_tax = self.env["account.tax"]._map_exclude_tax()
@@ -72,7 +71,6 @@ class SaleOrderLine(models.Model):
                 mytaxes.append(tax.id)
         return self.env["account.tax"].browse(mytaxes)
 
-    @api.multi
     @api.onchange("product_id")
     def product_id_change(self):
         self._upd_onchange_ctx()
