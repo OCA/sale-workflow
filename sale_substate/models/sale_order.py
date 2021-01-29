@@ -33,7 +33,6 @@ class SaleOrder(models.Model):
                     )
                 )
 
-    @api.multi
     def _track_template(self, tracking):
         res = super(SaleOrder, self)._track_template(tracking)
         first_sale = self[0]
