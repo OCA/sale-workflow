@@ -4,7 +4,7 @@
     "name": "Pricelist Tax",
     "version": "14.0.1.0.0",
     "category": "Sale",
-    "author": "Akretion",
+    "author": "Akretion, Odoo Community Association (OCA)",
     "depends": [
         "sale",
         "account_invoice_pricelist",
