@@ -19,7 +19,6 @@ class ProductPricelist(models.Model):
         "We can only update this setting if there is no price item.",
     )
 
-    @api.multi
     @api.constrains("price_include_taxes")
     def _constrains_pricelist_price_include(self):
         for rec in self:
@@ -35,7 +34,6 @@ class ProductPricelist(models.Model):
                     )
                 )
 
-    @api.multi
     def name_get(self):
         res = super(ProductPricelist, self).name_get()
         pricelist_ids = [x[0] for x in res]
@@ -52,7 +50,6 @@ class ProductPricelist(models.Model):
 class ProductPricelistItem(models.Model):
     _inherit = "product.pricelist.item"
 
-    @api.multi
     @api.constrains("base")
     def _constrains_price_item_price_include(self):
         for rec in self:
