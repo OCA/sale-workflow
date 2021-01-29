@@ -91,14 +91,12 @@ class SaleOrder(models.Model):
         super()._create_new_no_code_promo_reward_lines()
         program_pricelist = programs.filtered(
             lambda r: r.reward_type == "use_pricelist"
-        )[
-            :1
-        ]  # making sure we limit to 1.
-        if (
-            program_pricelist
-            and self.pricelist_id != program_pricelist.reward_pricelist_id
-        ):
-            self._update_pricelist(program_pricelist.reward_pricelist_id)
+        )
+        if program_pricelist:
+            # making sure we take the last applicable pricelist program
+            program_pricelist = program_pricelist[-1]
+            if self.pricelist_id != program_pricelist.reward_pricelist_id:
+                self._update_pricelist(program_pricelist.reward_pricelist_id)
 
     def _get_reward_line_values(self, program):
         # due to convention reward line should be created, in case of pricelist
