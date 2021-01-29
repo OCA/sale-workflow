@@ -8,7 +8,9 @@ from odoo.exceptions import ValidationError
 class BaseSubstateType(models.Model):
     _inherit = "base.substate.type"
 
-    model = fields.Selection(selection_add=[("sale.order", "Sale order")])
+    model = fields.Selection(
+        selection_add=[("sale.order", "Sale order")], ondelete={"sale.order": "cascade"}
+    )
 
 
 class SaleOrder(models.Model):
@@ -33,19 +35,19 @@ class SaleOrder(models.Model):
                     )
                 )
 
-    def _track_template(self, tracking):
-        res = super(SaleOrder, self)._track_template(tracking)
-        first_sale = self[0]
-        changes, tracking_value_ids = tracking[first_sale.id]
-        if "substate_id" in changes and first_sale.substate_id.mail_template_id:
+    def _track_template(self, changes):
+        res = super(SaleOrder, self)._track_template(changes)
+        track = self[0]
+        if "substate_id" in changes and track.substate_id.mail_template_id:
             res["substate_id"] = (
-                first_sale.substate_id.mail_template_id,
+                track.substate_id.mail_template_id,
                 {
+                    "composition_mode": "comment",
                     "auto_delete_message": True,
                     "subtype_id": self.env["ir.model.data"].xmlid_to_res_id(
                         "mail.mt_note"
                     ),
-                    "notif_layout": "mail.mail_notification_light",
+                    "email_layout_xmlid": "mail.mail_notification_light",
                 },
             )
         return res
