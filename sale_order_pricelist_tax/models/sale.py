@@ -88,3 +88,16 @@ class SaleOrderLine(models.Model):
         self.env.context = ctx
         # with_context() doesn't work here (loosing product_id record),
         # then directly update context
+
+
+class SaleOrder(models.Model):
+    _inherit = "sale.order"
+
+    def update_prices(self):
+        # apply the tax before or after the price recompute depending on the pricelist
+        if self.pricelist_id.price_include_taxes:
+            self.order_line._compute_tax_id()
+        res = super().update_prices()
+        if not self.pricelist_id.price_include_taxes:
+            self.order_line._compute_tax_id()
+        return res
