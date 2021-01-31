@@ -18,11 +18,7 @@ class SaleOrder(models.Model):
 
     @api.onchange("team_id")
     def _onchange_team_id(self):
-        for so in self:
-            if so.team_id:
-                so.manual_delivery = so.team_id.manual_delivery
-            else:
-                so.manual_delivery = False
+        self.manual_delivery = self.team_id and self.team_id.manual_delivery or False
 
     def action_manual_delivery_wizard(self):
         self.ensure_one()
