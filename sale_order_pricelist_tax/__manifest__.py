@@ -7,7 +7,6 @@
     "author": "Akretion, Odoo Community Association (OCA)",
     "depends": [
         "sale",
-        "account_invoice_pricelist",
         "l10n_fr",
         "onchange_helper",
     ],
