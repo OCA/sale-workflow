@@ -1,0 +1,44 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+#	* sale_force_whole_invoiceability
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 12.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2021-02-05 16:06+0000\n"
+"PO-Revision-Date: 2021-02-05 16:06+0000\n"
+"Last-Translator: <>\n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: sale_force_whole_invoiceability
+#: model_terms:ir.ui.view,arch_db:sale_force_whole_invoiceability.view_order_form
+msgid "Force Invoice Policy"
+msgstr "Forzar Política de Facturación"
+
+#. module: sale_force_whole_invoiceability
+#: code:addons/sale_force_whole_invoiceability/models/sale_order.py:13
+#, python-format
+msgid "Only Sales Managers are allowed to force the lines to invoice"
+msgstr "Solo los Responsables de Ventas tienen permiso para forzar las líneas a facturar"
+
+#. module: sale_force_whole_invoiceability
+#: model:ir.model,name:sale_force_whole_invoiceability.model_sale_order
+msgid "Sale Order"
+msgstr "Pedido de venta"
+
+#. module: sale_force_whole_invoiceability
+#: code:addons/sale_force_whole_invoiceability/models/sale_order.py:21
+#, python-format
+msgid "You can't perform this action once the order has been invoiced once already"
+msgstr "No puedes ejecutar esta acción una vez que el pedido ya ha sido facturado una vez"
+
+#. module: sale_force_whole_invoiceability
+#: code:addons/sale_force_whole_invoiceability/models/sale_order.py:17
+#, python-format
+msgid "You can't perform this action over a sale order in this state"
+msgstr "No puedes ejecutar esta acción sobre una venta que está en este estado"
