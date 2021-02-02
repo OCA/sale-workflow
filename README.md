@@ -25,7 +25,7 @@ addon | version | summary
 [portal_sale_personal_data_only](portal_sale_personal_data_only/) | 13.0.1.0.0 | Portal Sale Personal Data Only
 [sale_automatic_workflow](sale_automatic_workflow/) | 13.0.1.1.1 | Sale Automatic Workflow
 [sale_automatic_workflow_payment](sale_automatic_workflow_payment/) | 13.0.1.0.0 | Assign a workflow if a transaction is created for a sale order with an acquirer with a workflow
-[sale_by_packaging](sale_by_packaging/) | 13.0.1.5.0 | Manage sale of packaging
+[sale_by_packaging](sale_by_packaging/) | 13.0.1.5.1 | Manage sale of packaging
 [sale_commercial_partner](sale_commercial_partner/) | 13.0.1.0.0 | Add stored related field 'Commercial Entity' on sale orders
 [sale_contact_type](sale_contact_type/) | 13.0.1.0.0 | Define ordering contact type
 [sale_cutoff_time_delivery](sale_cutoff_time_delivery/) | 13.0.1.1.0 | Schedule delivery orders according to cutoff preferences
@@ -41,7 +41,7 @@ addon | version | summary
 [sale_order_carrier_auto_assign](sale_order_carrier_auto_assign/) | 13.0.1.1.0 | Auto assign delivery carrier on sale order confirmation
 [sale_order_general_discount](sale_order_general_discount/) | 13.0.1.0.0 | General discount per sale order
 [sale_order_line_date](sale_order_line_date/) | 13.0.1.1.0 | Adds a commitment date to each sale order line.
-[sale_order_line_packaging_qty](sale_order_line_packaging_qty/) | 13.0.1.2.1 | Define quantities according to product packaging on sale order lines
+[sale_order_line_packaging_qty](sale_order_line_packaging_qty/) | 13.0.1.2.2 | Define quantities according to product packaging on sale order lines
 [sale_order_line_price_history](sale_order_line_price_history/) | 13.0.1.0.0 | Sale order line price history
 [sale_order_lot_selection](sale_order_lot_selection/) | 13.0.1.0.1 | Sale Order Lot Selection
 [sale_order_product_assortment](sale_order_product_assortment/) | 13.0.1.0.0 | Module that allows to use the assortments on sale orders
