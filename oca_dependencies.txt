@@ -3,3 +3,4 @@ stock-logistics-warehouse
 account-invoicing
 server-tools
 partner-contact
+product-variant https://github.com/Tecnativa/product-variant 13.0-add-product_variant_attribute_tax
