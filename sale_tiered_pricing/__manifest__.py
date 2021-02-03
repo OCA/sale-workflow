@@ -18,5 +18,6 @@
         "views/product.xml",
         "views/partner.xml",
     ],
+    "demo": ["demo/tiered_pricing.xml", "demo/product_template.xml"],
     "pre_init_hook": "pre_init_hook",
 }

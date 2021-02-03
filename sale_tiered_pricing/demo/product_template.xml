@@ -1,0 +1,20 @@
+<odoo>
+    <record id="product_template_tiered_software" model="product.template">
+        <field name="categ_id" ref="product.product_category_4" />
+        <field name="invoice_policy">order</field>
+        <field name="list_price">100.0</field>
+        <field name="name">Tiered Software</field>
+        <field name="type">service</field>
+        <field name="uom_id" ref="uom.product_uom_unit" />
+        <field name="uom_po_id" ref="uom.product_uom_unit" />
+    </record>
+    <record id="product_template_tiered_service" model="product.template">
+        <field name="categ_id" ref="product.product_category_3" />
+        <field name="invoice_policy">order</field>
+        <field name="list_price">10.0</field>
+        <field name="name">Tiered Service</field>
+        <field name="type">service</field>
+        <field name="uom_id" ref="uom.product_uom_unit" />
+        <field name="uom_po_id" ref="uom.product_uom_unit" />
+    </record>
+</odoo>

@@ -1,0 +1,109 @@
+<odoo>
+    <record id="pricelist_tiered_pricing_fixed_example" model="product.pricelist">
+        <field name="currency_id" ref="base.EUR" />
+        <field name="discount_policy">with_discount</field>
+        <field name="is_tiered_pricing" eval="True" />
+        <field name="name">Tiered pricing example</field>
+    </record>
+    <record id="pricelist_item_fixed_tier_4" model="product.pricelist.item">
+        <field name="applied_on">3_global</field>
+        <field name="base">list_price</field>
+        <field name="compute_price">fixed</field>
+        <field name="currency_id" ref="base.EUR" />
+        <field name="fixed_price">5.0</field>
+        <field name="min_quantity">1000</field>
+        <field name="pricelist_id" ref="pricelist_tiered_pricing_fixed_example" />
+    </record>
+    <record id="pricelist_item_fixed_tier_3" model="product.pricelist.item">
+        <field name="applied_on">3_global</field>
+        <field name="base">list_price</field>
+        <field name="compute_price">fixed</field>
+        <field name="currency_id" ref="base.EUR" />
+        <field name="fixed_price">6.0</field>
+        <field name="min_quantity">500</field>
+        <field name="pricelist_id" ref="pricelist_tiered_pricing_fixed_example" />
+    </record>
+    <record id="pricelist_item_fixed_tier_2" model="product.pricelist.item">
+        <field name="applied_on">3_global</field>
+        <field name="base">list_price</field>
+        <field name="compute_price">fixed</field>
+        <field name="currency_id" ref="base.EUR" />
+        <field name="fixed_price">7.0</field>
+        <field name="min_quantity">200</field>
+        <field name="pricelist_id" ref="pricelist_tiered_pricing_fixed_example" />
+    </record>
+    <record id="pricelist_item_fixed_tier_1" model="product.pricelist.item">
+        <field name="applied_on">3_global</field>
+        <field name="base">list_price</field>
+        <field name="compute_price">fixed</field>
+        <field name="currency_id" ref="base.EUR" />
+        <field name="fixed_price">10.0</field>
+        <field name="pricelist_id" ref="pricelist_tiered_pricing_fixed_example" />
+    </record>
+    <record id="pricelist_item_software_tiered_fixed" model="product.pricelist.item">
+        <field name="applied_on">2_product_category</field>
+        <field name="base">list_price</field>
+        <field name="categ_id" ref="product.product_category_4" />
+        <field name="compute_price">tier</field>
+        <field name="currency_id" ref="base.EUR" />
+        <field name="pricelist_id" ref="product.list0" />
+        <field
+            name="tiered_pricelist_id"
+            ref="pricelist_tiered_pricing_fixed_example"
+        />
+    </record>
+    <record id="pricelist_tiered_pricing_discount_example" model="product.pricelist">
+        <field name="currency_id" ref="base.EUR" />
+        <field name="discount_policy">with_discount</field>
+        <field name="is_tiered_pricing" eval="True" />
+        <field name="name">Tiered pricing discount example</field>
+    </record>
+    <record id="pricelist_item_discount_tier_4" model="product.pricelist.item">
+        <field name="applied_on">3_global</field>
+        <field name="base">list_price</field>
+        <field name="compute_price">percentage</field>
+        <field name="currency_id" ref="base.EUR" />
+        <field name="percent_price">30</field>
+        <field name="min_quantity">1000</field>
+        <field name="pricelist_id" ref="pricelist_tiered_pricing_discount_example" />
+    </record>
+    <record id="pricelist_item_discount_tier_3" model="product.pricelist.item">
+        <field name="applied_on">3_global</field>
+        <field name="base">list_price</field>
+        <field name="compute_price">percentage</field>
+        <field name="currency_id" ref="base.EUR" />
+        <field name="percent_price">20</field>
+        <field name="min_quantity">500</field>
+        <field name="pricelist_id" ref="pricelist_tiered_pricing_discount_example" />
+    </record>
+    <record id="pricelist_item_discount_tier_2" model="product.pricelist.item">
+        <field name="applied_on">3_global</field>
+        <field name="base">list_price</field>
+        <field name="compute_price">percentage</field>
+        <field name="currency_id" ref="base.EUR" />
+        <field name="percent_price">10</field>
+        <field name="min_quantity">100</field>
+        <field name="pricelist_id" ref="pricelist_tiered_pricing_discount_example" />
+    </record>
+    <record id="pricelist_item_discount_tier_1" model="product.pricelist.item">
+        <field name="applied_on">3_global</field>
+        <field name="base">list_price</field>
+        <field name="compute_price">percentage</field>
+        <field name="currency_id" ref="base.EUR" />
+        <field name="percent_price">0</field>
+        <field name="min_quantity">0</field>
+        <field name="pricelist_id" ref="pricelist_tiered_pricing_discount_example" />
+    </record>
+    <record id="pricelist_item_service_tiered_discount" model="product.pricelist.item">
+        <field name="applied_on">2_product_category</field>
+        <field name="base">list_price</field>
+        <field name="categ_id" ref="product.product_category_3" />
+        <field name="compute_price">tier</field>
+        <field name="currency_id" ref="base.EUR" />
+        <field name="pricelist_id" ref="product.list0" />
+        <field
+            name="tiered_pricelist_id"
+            ref="pricelist_tiered_pricing_discount_example"
+        />
+    </record>
+</odoo>
