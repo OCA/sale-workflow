@@ -18,4 +18,5 @@
         "views/product.xml",
         "views/partner.xml",
     ],
+    "pre_init_hook": "pre_init_hook",
 }
