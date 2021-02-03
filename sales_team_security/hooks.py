@@ -31,3 +31,16 @@ def uninstall_hook(cr, registry):  # pragma: no cover
                 ],
             }
         )
+    # At installation time, we need to sync followers
+    with api.Environment.manage():
+        env = api.Environment(cr, SUPERUSER_ID, {})
+        partners = env["res.partner"].search(
+            [
+                ("parent_id", "=", False),
+                ("is_company", "=", True),
+                "|",
+                ("user_id", "!=", False),
+                ("child_ids.user_id", "!=", False),
+            ]
+        )
+        partners._add_followers_from_salesmans()
