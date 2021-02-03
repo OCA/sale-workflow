@@ -37,6 +37,13 @@ independently from the assigned salesman):
 It also handles the propagation of the sales team from commercial partners to
 the contacts, which standard doesn't do.
 
+It also handles the sync (auto-creation and remove) of followers in company partners
+and childs of them according to salesmans. Any example about it:
+- Partner company > Salesman: Admin
+- Partner company, Contact 1 > Without salesman
+- Partner company, Contact 2 > Salesman: Demo
+All these partners have these followers: Admin + Demo
+
 And finally, there are rules for partners to be restricted to the own ones for
 the group "User: Own Documents Only" for being coherent with the permission
 scheme. Someone with this permission will see:
@@ -45,6 +52,9 @@ scheme. Someone with this permission will see:
 - Contacts without salesman assigned, but the same team.
 - Contacts with them as salesman, independently from the team.
 - Contacts with them as follower.
+
+For keeping consistent accesses, followers of the main and shipping/invoice
+contacts are synced according the salesman of the children contacts
 
 **Table of contents**
 
@@ -55,7 +65,8 @@ Installation
 ============
 
 At installation time, this module sets in all the contacts that have the sales
-team empty the sales team of the parent. If you have a lot of contacts, this
+team empty the sales team of the parent, and sync followers in parent contacts
+and invoice/shipping addresses. If you have a lot of contacts, this
 operation can take a while.
 
 Configuration
@@ -95,6 +106,7 @@ Contributors
 * `Tecnativa <https://www.tecnativa.com>`__:
 
   * Pedro M. Baeza
+  * Víctor Martínez
 
 * `Guadaltech <https://www.guadaltech.es>`__:
 
