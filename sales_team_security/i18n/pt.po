@@ -6,30 +6,33 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 12.0\n"
 "Report-Msgid-Bugs-To: \n"
-"Last-Translator: Automatically generated\n"
+"PO-Revision-Date: 2021-02-03 13:44+0000\n"
+"Last-Translator: Pedro Castro Silva <pedrocs@exo.pt>\n"
 "Language-Team: none\n"
 "Language: pt\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
 "Plural-Forms: nplurals=2; plural=n > 1;\n"
+"X-Generator: Weblate 4.3.2\n"
 
 #. module: sales_team_security
 #: model:res.groups,name:sales_team_security.group_sale_team_manager
 msgid "Channel Manager"
-msgstr ""
+msgstr "Gestor de Canal"
 
 #. module: sales_team_security
 #: model:ir.model,name:sales_team_security.model_res_partner
 msgid "Contact"
-msgstr ""
+msgstr "Contacto"
 
 #. module: sales_team_security
 #: model:ir.model,name:sales_team_security.model_ir_rule
 msgid "Record Rule"
-msgstr ""
+msgstr "Regra de Registo"
 
 #. module: sales_team_security
 #: model:res.groups,comment:sales_team_security.group_sale_team_manager
 msgid "the user will have an access to the documents of the sales channel he/she belongs to."
 msgstr ""
+"o utilizador terá acesso aos documentos do canal de vendas a que pertence."
