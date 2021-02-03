@@ -72,3 +72,15 @@ class SaleOrderLine(models.Model):
         if self.is_tier_priced:
             product.invalidate_cache(fnames=["price"], ids=product.ids)
         return super(SaleOrderLine, self)._get_display_price(product)
+
+    @api.onchange("product_uom", "product_uom_qty")
+    def product_uom_change(self):
+        """If the price isn't changed, we need to force the description update,
+           as it depends on the sold quantity.
+        """
+        old_price_unit = self.price_unit
+        res = super(SaleOrderLine, self).product_uom_change()
+        if self.price_unit == old_price_unit and self.is_tier_priced:
+            product = self._get_contextualized_product()
+            self.name = self.get_sale_order_line_multiline_description_sale(product)
+        return res
