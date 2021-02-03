@@ -36,7 +36,8 @@ class SaleOrderLine(models.Model):
         res = super(SaleOrderLine, self).get_sale_order_line_multiline_description_sale(
             product
         )
-        if self.is_tier_priced and self.product_uom_qty:
+        skip_tier_description = self.env.context.get("skip_tier_description")
+        if self.is_tier_priced and self.product_uom_qty and not skip_tier_description:
             context = {"lang": self.order_id.partner_id.lang}  # noqa  # used by _ below
             qps = product.tiered_qps
             computation = " + ".join("{:.2f} x {:.2f}".format(q, p) for q, p in qps)
