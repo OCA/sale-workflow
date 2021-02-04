@@ -1,5 +1,6 @@
 # Copyright 2017 Tecnativa - Jairo Llopis
 # Copyright 2020 Tecnativa - Pedro M. Baeza
+# Copyright 2021 Tecnativa - Víctor Martínez
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 from .test_recommendation_common import RecommendationCase
 from odoo.exceptions import UserError
@@ -19,17 +20,21 @@ class RecommendationCaseTests(RecommendationCase):
         # Order came in from context
         self.assertEqual(wizard.order_id, self.new_so)
         self.assertEqual(len(wizard.line_ids), 3)
-        # Product 1 is first recommendation because it's in the SO already
-        self.assertEqual(wizard.line_ids[0].product_id, self.prod_1)
-        self.assertEqual(wizard.line_ids[0].times_delivered, 1)
-        self.assertEqual(wizard.line_ids[0].units_delivered, 25)
-        self.assertEqual(wizard.line_ids[0].units_included, 3)
-        # Product 2 appears second
+        self.assertEqual(wizard.line_ids[0].product_id, self.prod_2)
+        self.assertEqual(wizard.line_ids[1].product_id, self.prod_1)
+        self.assertEqual(wizard.line_ids[2].product_id, self.prod_3)
+        # Product 2 is first
         wiz_line_prod2 = wizard.line_ids.filtered(
             lambda x: x.product_id == self.prod_2)
         self.assertEqual(wiz_line_prod2.times_delivered, 2)
         self.assertEqual(wiz_line_prod2.units_delivered, 100)
         self.assertEqual(wiz_line_prod2.units_included, 0)
+        # Product 1 appears second
+        wiz_line_prod1 = wizard.line_ids.filtered(
+            lambda x: x.product_id == self.prod_1)
+        self.assertEqual(wiz_line_prod1.times_delivered, 1)
+        self.assertEqual(wiz_line_prod1.units_delivered, 25)
+        self.assertEqual(wiz_line_prod1.units_included, 3)
         # Product 3 appears third
         wiz_line_prod3 = wizard.line_ids.filtered(
             lambda x: x.product_id == self.prod_3)
