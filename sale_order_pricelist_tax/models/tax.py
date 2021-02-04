@@ -83,10 +83,10 @@ class AccountTax(models.Model):
         # TODO shortify this code
         if record._name == "sale.order.line":
             cpny = record.order_id.company_id.id or self.company_id.id or 0
-        elif record._name == "account.invoice.line":
-            cpny = record.invoice_id.company_id.id or self.company_id.id or 0
+        elif record._name == "account.move.line":
+            cpny = record.move_id.company_id.id or self.company_id.id or 0
         else:
-            raise ("No other model supported than sale and invoice")
+            raise UserError(_("No other model supported than sale and invoice"))
         # TODO end
         mytaxes = []
         for tax in taxes:
