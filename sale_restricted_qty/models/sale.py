@@ -9,6 +9,45 @@ from odoo.tools import float_compare
 class SaleOrderLine(models.Model):
     _inherit = "sale.order.line"
 
+    display_option_ids_danger = fields.Boolean(compute="_compute_visual_warnings")
+    display_option_ids_warning = fields.Boolean(compute="_compute_visual_warnings")
+    display_warning_message_qty = fields.Text(compute="_compute_visual_warnings")
+
+    def _compute_warning_message_qty(self):
+        message = ""
+        if self.is_qty_less_min_qty:
+            if self.force_sale_min_qty:
+                message = _("Higher quantity recommended!")
+            else:
+                message = _("Higher quantity required!")
+        if self.is_qty_bigger_max_qty:
+            if self.force_sale_max_qty:
+                message = _("Lower quantity recommended!")
+            else:
+                message = _("Lower quantity required!")
+        if self.is_qty_not_multiple_qty:
+            message += _("\nCorrect multiple of quantity required!")
+        self.display_warning_message_qty = message
+
+    @api.depends(
+        "is_qty_less_min_qty",
+        "force_sale_min_qty",
+        "is_qty_not_multiple_qty",
+        "is_qty_bigger_max_qty",
+        "force_sale_max_qty",
+    )
+    def _compute_visual_warnings(self):
+        for rec in self:
+            rec.display_option_ids_danger = (
+                (rec.is_qty_less_min_qty and not rec.force_sale_min_qty)
+                or (rec.is_qty_bigger_max_qty and not rec.force_sale_max_qty)
+                or (rec.is_qty_not_multiple_qty)
+            )
+            rec.display_option_ids_warning = (
+                                                 rec.is_qty_less_min_qty and rec.force_sale_min_qty
+                                             ) or (rec.is_qty_bigger_max_qty and rec.force_sale_max_qty)
+            rec._compute_warning_message_qty()
+
     sale_min_qty = fields.Float(
         string="Min Qty",
         compute="_compute_sale_restricted_qty",
