@@ -1,9 +1,23 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <odoo>
+    <record model="account.tax" id="account_tax_sale_1">
+        <field name="name">Demo Sale Tax 20%</field>
+        <field name="type_tax_use">sale</field>
+        <field name="amount">20</field>
+    </record>
+    <record model="account.tax" id="account_tax_sale_2">
+        <field name="name">Demo Sale Tax 20% included</field>
+        <field name="type_tax_use">sale</field>
+        <field name="price_include" eval="True" />
+        <field name="amount">20</field>
+    </record>
 
     <record id="ak_product" model="product.product">
-        <field name="taxes_id" eval="[(4, ref('l10n_fr.1_tva_normale_ttc'))]" />
         <field name="name">ak product</field>
+        <field
+            name="taxes_id"
+            eval="[(4, ref('sale_order_pricelist_tax.account_tax_sale_2'))]"
+        />
         <field name="type">consu</field>
         <field name="list_price">10</field>
     </record>
@@ -31,5 +45,20 @@
         <field name="product_id" eval="ref('ak_product')" />
         <field name="pricelist_id" eval="ref('ttc_pricelist')" />
     </record>
+
+    <record id="fiscal_position_b2b" model="account.fiscal.position">
+        <field name="sequence">3</field>
+        <field name="name">B2B</field>
+        <field name="auto_apply" eval="True" />
+        <field name="country_group_id" ref="base.europe" />
+        <field name="vat_required" eval="True" />
+    </record>
+    <record id="fiscal_position_import_export" model="account.fiscal.position">
+        <field name="sequence">50</field>
+        <field name="name">Import/Export</field>
+        <field name="auto_apply" eval="True" />
+    </record>
+
+
 
 </odoo>
