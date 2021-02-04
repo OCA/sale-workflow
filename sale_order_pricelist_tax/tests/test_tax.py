@@ -7,11 +7,11 @@ from odoo.tests.common import TransactionCase
 class TaxCase(TransactionCase):
     def setUp(self):
         super(TaxCase, self).setUp()
-        self.ht_plist = self.env.ref("pricelist_tax.ht_pricelist")
-        self.ttc_plist = self.env.ref("pricelist_tax.ttc_pricelist")
-        self.fp_intra = self.env.ref("l10n_fr.1_fiscal_position_template_intraeub2b").id
+        self.ht_plist = self.env.ref("sale_order_pricelist_tax.ht_pricelist")
+        self.ttc_plist = self.env.ref("sale_order_pricelist_tax.ttc_pricelist")
+        self.fp_intra = self.env.ref("sale_order_pricelist_tax.fiscal_position_b2b").id
         self.fp_exp = self.env.ref(
-            "l10n_fr.1_fiscal_position_template_import_export"
+            "sale_order_pricelist_tax.fiscal_position_import_export"
         ).id
         self.solo = self.env["sale.order.line"]
 
@@ -26,7 +26,7 @@ class TaxCase(TransactionCase):
 
     def test_tax_ht(self):
         sale = self._create_sale_order(self.ht_plist)
-        ak_product = self.env.ref("pricelist_tax.ak_product")
+        ak_product = self.env.ref("sale_order_pricelist_tax.ak_product")
         vals = {
             "product_uom_qty": 1,
             "product_id": ak_product.id,
@@ -39,7 +39,7 @@ class TaxCase(TransactionCase):
 
     def test_tax_ttc(self):
         sale = self._create_sale_order(self.ttc_plist)
-        ak_product = self.env.ref("pricelist_tax.ak_product")
+        ak_product = self.env.ref("sale_order_pricelist_tax.ak_product")
         vals = {
             "product_uom_qty": 1,
             "product_id": ak_product.id,

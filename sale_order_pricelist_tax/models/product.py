@@ -2,7 +2,7 @@
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
 
 from odoo import _, api, fields, models
-from odoo.exceptions import UserError
+from odoo.exceptions import ValidationError
 
 HELP = _(
     "Only price items with 'Based on' field set to " "'Public Price' are supported.\n"
@@ -26,7 +26,7 @@ class ProductPricelist(models.Model):
                 [("pricelist_id", "=", rec.id), ("base", "!=", "list_price")]
             )
             if items:
-                raise UserError(
+                raise ValidationError(
                     HELP
                     + _(
                         "\nSome of them are of another type like here '%s'\n"
@@ -55,6 +55,6 @@ class ProductPricelistItem(models.Model):
         for rec in self:
             price_incl_tax = rec.pricelist_id.price_include_taxes
             if rec.base in ("pricelist", "standard") and price_incl_tax:
-                raise UserError(
+                raise ValidationError(
                     HELP + _("You encoded 'Based on' field to %s" % rec.base)
                 )
