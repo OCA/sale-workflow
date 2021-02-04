@@ -130,7 +130,10 @@ class SaleOrderRecommendation(models.TransientModel):
             i += 1
             if i >= self.line_amount:
                 break
-        self.line_ids = recommendation_lines
+        self.line_ids = recommendation_lines.sorted(
+            key=lambda x: x.times_delivered,
+            reverse=True
+        )
 
     def action_accept(self):
         """Propagate recommendations to sale order."""

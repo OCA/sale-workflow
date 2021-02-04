@@ -91,6 +91,7 @@ Contributors
   * David Vidal <david.vidal@tecnativa.com>
   * Pedro M. Baeza
   * Sergio Teruel
+  * Víctor Martínez
 
 Maintainers
 ~~~~~~~~~~~
