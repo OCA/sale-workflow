@@ -13,7 +13,6 @@
     "data": [
         "views/product_category_views.xml",
         "views/product_template_views.xml",
-        "views/product_product_views.xml",
         "views/sale_views.xml",
     ],
     "installable": True,

@@ -37,7 +37,7 @@ class SaleOrderLine(models.Model):
         digits="Product Unit of Measure",
     )
 
-    @api.depend(
+    @api.depends(
         "product_id",
         "product_uom",
         "product_uom_qty",
@@ -70,7 +70,9 @@ class SaleOrderLine(models.Model):
                 else:
                     invalid = True
                     message = _("Lower quantity required!")
-            if line.sale_multiple_qty and not product_qty % line.sale_multiple_qty:
+            if not (
+                line.sale_multiple_qty and not product_qty % line.sale_multiple_qty
+            ):
                 invalid = True
                 message += _("\nCorrect multiple of quantity required!")
             self.qty_invalid = invalid
@@ -82,9 +84,14 @@ class SaleOrderLine(models.Model):
     def check_constraint_restricted_qty(self):
         error_lines = self.filtered("qty_invalid")
         if error_lines:
-            raise ValidationError("\n".join([f"{line.product_id.name} error: {line.qty_warning_message}" for line in error_lines]))
-        if self.qty_invalid:
-            raise ValidationError(self.qty_warning_message)
+            raise ValidationError(
+                "\n".join(
+                    [
+                        f"{line.product_id.name} error: {line.qty_warning_message}"
+                        for line in error_lines
+                    ]
+                )
+            )
 
     def _get_sale_restricted_qty(self):
         """Overridable function to change qty values (ex: form stock)"""

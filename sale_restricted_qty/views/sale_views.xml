@@ -19,11 +19,7 @@
                 position="before"
             >
                 <div style="color:red; font-weight:bold;">
-                    <field
-                        name="display_warning_message_qty"
-                        nolabel="1"
-                        readonly="1"
-                    />
+                    <field name="qty_warning_message" nolabel="1" readonly="1" />
                 </div>
             </xpath>
            <xpath
@@ -32,17 +28,11 @@
             >
                <field name="sale_min_qty" />
                <field name="sale_max_qty" />
-               <field name="display_option_ids_danger" invisible="1" />
-               <field name="display_option_ids_warning" invisible="1" />
+               <field name="qty_invalid" invisible="1" />
            </xpath>
 
             <xpath expr="//field[@name='order_line']/tree" position="attributes">>
-                <attribute
-                    name="decoration-danger"
-                >display_option_ids_danger</attribute>
-                <attribute
-                    name="decoration-warning"
-                >display_option_ids_warning</attribute>
+                <attribute name="decoration-danger">qty_invalid</attribute>
             </xpath>
         </field>
     </record>
