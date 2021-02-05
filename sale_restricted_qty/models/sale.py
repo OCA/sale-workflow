@@ -1,6 +1,8 @@
 # Copyright 2019 Akretion
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
+from math import fmod
+
 from odoo import _, api, fields, models
 from odoo.exceptions import ValidationError
 from odoo.tools import float_compare
@@ -70,18 +72,22 @@ class SaleOrderLine(models.Model):
                 else:
                     invalid = True
                     message = _("Lower quantity required!")
-            if not (
-                line.sale_multiple_qty and not product_qty % line.sale_multiple_qty
-            ):
-                invalid = True
-                message += _("\nCorrect multiple of quantity required!")
-            self.qty_invalid = invalid
+            if line.sale_multiple_qty:
+                rest_raw = fmod(product_qty, line.sale_multiple_qty)
+                rest = float_compare(
+                    rest_raw, 0.00, precision_rounding=line.product_uom.rounding
+                )
+                if rest:
+                    invalid = True
+                    message += _("\nCorrect multiple of quantity required!")
+            line.qty_invalid = invalid
             line.qty_warning_message = message
 
     @api.constrains(
         "product_uom_qty", "sale_min_qty", "sale_max_qty", "sale_multiple_qty"
     )
     def check_constraint_restricted_qty(self):
+        self._compute_qty_validity()
         error_lines = self.filtered("qty_invalid")
         if error_lines:
             raise ValidationError(
