@@ -80,6 +80,9 @@ class SaleOrderLine(models.Model):
         "product_uom_qty", "sale_min_qty", "sale_max_qty", "sale_multiple_qty"
     )
     def check_constraint_restricted_qty(self):
+        error_lines = self.filtered("qty_invalid")
+        if error_lines:
+            raise ValidationError("\n".join([f"{line.product_id.name} error: {line.qty_warning_message}" for line in error_lines]))
         if self.qty_invalid:
             raise ValidationError(self.qty_warning_message)
 
