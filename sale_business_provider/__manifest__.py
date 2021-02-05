@@ -3,7 +3,7 @@
 
 {
     "name": "Sale Business Provider",
-    "summary": "Add stored related field 'Business Provider' on sale orders",
+    "summary": "Add field 'Business Provider' on sale orders",
     "version": "14.0.1.0.1",
     "author": "Akretion,Odoo Community Association (OCA)",
     "website": "https://github.com/OCA/sale-workflow",
