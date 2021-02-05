@@ -1,0 +1,26 @@
+<odoo>
+    <record id="view_order_form" model="ir.ui.view">
+        <field name="name">business.provider.sale.order.form</field>
+        <field name="model">sale.order</field>
+        <field name="inherit_id" ref="sale.view_order_form" />
+        <field name="arch" type="xml">
+            <field name="user_id" position="before">
+                <field name="business_provider_id" />
+            </field>
+        </field>
+    </record>
+    <record id="view_sales_order_filter" model="ir.ui.view">
+        <field name="name">business.provider.sale.order.search</field>
+        <field name="model">sale.order</field>
+        <field name="inherit_id" ref="sale.view_sales_order_filter" />
+        <field name="arch" type="xml">
+            <filter name="customer" position="before">
+                <filter
+                    name="business_provider_groupby"
+                    string="Business Provider"
+                    context="{'group_by': 'business_provider_id'}"
+                />
+            </filter>
+        </field>
+    </record>
+</odoo>
