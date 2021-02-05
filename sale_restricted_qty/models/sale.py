@@ -9,8 +9,8 @@ from odoo.tools import float_compare
 class SaleOrderLine(models.Model):
     _inherit = "sale.order.line"
 
-    qty_warning_message = fields.Char(compute="_compute_qty_warning_message")
-    qty_validity = fields.Char(compute="_compute_qty_validity")
+    qty_warning_message = fields.Char(compute="_compute_qty_validity")
+    qty_validity = fields.Boolean(compute="_compute_qty_validity")
 
     sale_min_qty = fields.Float(
         string="Min Qty",
@@ -43,99 +43,87 @@ class SaleOrderLine(models.Model):
             product_qty = line.product_uom._compute_quantity(
                 line.product_uom_qty, line.product_id.uom_id
             )
-            too_low = (
-                line.sale_min_qty
-                and (
-                    float_compare(
-                        product_qty, line.sale_min_qty, precision_rounding=rounding
-                    )
-                    < 0
+            too_low = line.sale_min_qty and (
+                float_compare(
+                    product_qty, line.sale_min_qty, precision_rounding=rounding
                 )
-                and "too_low"
-            ) or ""
-            too_high = (
-                line.sale_max_qty
-                and (
-                    float_compare(
-                        product_qty, line.sale_max_qty, precision_rounding=rounding
-                    )
-                    > 0
+                < 0
+            )
+            too_high = line.sale_max_qty and (
+                float_compare(
+                    product_qty, line.sale_max_qty, precision_rounding=rounding
                 )
-                and "too_high"
-            ) or ""
+                > 0
+            )
             incorrect_multiple = (
-                line.sale_multiple_qty > 0
-                and product_qty % line.sale_multiple_qty != 0
-                and "incorrect_multiple"
-            ) or ""
-            line.qty_validity = too_low + too_high + incorrect_multiple
+                line.sale_multiple_qty > 0 and product_qty % line.sale_multiple_qty != 0
+            )
+            line.qty_validity = not (too_low or too_high or incorrect_multiple)
+            if not line.qty_validity:
+                message = ""
+                if too_high:
+                    if line.force_sale_min_qty:
+                        message = _("Higher quantity recommended!")
+                    else:
+                        message = _("Higher quantity required!")
+                if too_low:
+                    if self.force_sale_max_qty:
+                        message = _("Lower quantity recommended!")
+                    else:
+                        message = _("Lower quantity required!")
+                if incorrect_multiple:
+                    message += _("\nCorrect multiple of quantity required!")
+                line.qty_warning_message = message
 
-    def _compute_qty_warning_message(self):
-        for line in self:
-            message = ""
-            if "too_high" in line.qty_validity:
-                if self.force_sale_min_qty:
-                    message = _("Higher quantity recommended!")
-                else:
-                    message = _("Higher quantity required!")
-            if "too_low" in line.qty_validity:
-                if self.force_sale_max_qty:
-                    message = _("Lower quantity recommended!")
-                else:
-                    message = _("Lower quantity required!")
-            if "incorrect_multiple" in line.qty_validity:
-                message += _("\nCorrect multiple of quantity required!")
-            line.display_warning_message_qty = message
-
-    @api.constrains(
-        "product_uom_qty", "sale_min_qty", "sale_max_qty", "sale_multiple_qty"
-    )
-    def check_constraint_restricted_qty(self):
-        message = ""
-        too_high = self.filtered(
-            lambda r: "too_high" in r.qty_validity and not r.force_sale_max_qty
-        ).mapped("product_id")
-        too_low = self.filtered(
-            lambda r: "too_low" in r.qty_validity and not r.force_sale_min_qty
-        ).mapped("product_id")
-        incorrect_multiple = self.filtered(
-            lambda r: "incorrect_multiple" in r.qty_validity
-        ).mapped("product_id")
-        if too_low:
-            message += _(
-                "These products have a minimum order quantity: * \n"
-            ) + "\n ".join(
-                [
-                    product.name + ": " + str(product.sale_min_qty)
-                    for product in too_low
-                ]
-            )
-            message += _(
-                "\n* Check 'Force min quantity' if you want to bypass this rule"
-            )
-        if too_high:
-            message += _(
-                "These products have a maximum order quantity: * \n"
-            ) + "\n ".join(
-                [
-                    product.name + ": " + str(product.sale_max_qty)
-                    for product in too_high
-                ]
-            )
-            message += _(
-                "\n* Check 'Force max quantity' if you want to bypass this rule"
-            )
-        if incorrect_multiple:
-            message += _(
-                "These products must have correct quantity multiples: * \n"
-            ) + "\n ".join(
-                [
-                    product.name + ": " + str(product.sale_multiple_qty)
-                    for product in incorrect_multiple
-                ]
-            )
-        if message:
-            raise ValidationError(message)
+    # @api.constrains(
+    #     "product_uom_qty", "sale_min_qty", "sale_max_qty", "sale_multiple_qty"
+    # )
+    # def check_constraint_restricted_qty(self):
+    #     message = ""
+    #     too_high = self.filtered(
+    #         lambda r: "too_high" in r.qty_validity and not r.force_sale_max_qty
+    #     ).mapped("product_id")
+    #     too_low = self.filtered(
+    #         lambda r: "too_low" in r.qty_validity and not r.force_sale_min_qty
+    #     ).mapped("product_id")
+    #     incorrect_multiple = self.filtered(
+    #         lambda r: "incorrect_multiple" in r.qty_validity
+    #     ).mapped("product_id")
+    #     if too_low:
+    #         message += _(
+    #             "These products have a minimum order quantity: * \n"
+    #         ) + "\n ".join(
+    #             [
+    #                 product.name + ": " + str(product.sale_min_qty)
+    #                 for product in too_low
+    #             ]
+    #         )
+    #         message += _(
+    #             "\n* Check 'Force min quantity' if you want to bypass this rule"
+    #         )
+    #     if too_high:
+    #         message += _(
+    #             "These products have a maximum order quantity: * \n"
+    #         ) + "\n ".join(
+    #             [
+    #                 product.name + ": " + str(product.sale_max_qty)
+    #                 for product in too_high
+    #             ]
+    #         )
+    #         message += _(
+    #             "\n* Check 'Force max quantity' if you want to bypass this rule"
+    #         )
+    #     if incorrect_multiple:
+    #         message += _(
+    #             "These products must have correct quantity multiples: * \n"
+    #         ) + "\n ".join(
+    #             [
+    #                 product.name + ": " + str(product.sale_multiple_qty)
+    #                 for product in incorrect_multiple
+    #             ]
+    #         )
+    #     if message:
+    #         raise ValidationError(message)
 
     def _get_sale_restricted_qty(self):
         """Overridable function to change qty values (ex: form stock)"""
