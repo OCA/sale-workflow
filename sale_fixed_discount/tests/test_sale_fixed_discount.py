@@ -41,6 +41,8 @@ class TestSaleFixedDiscount(SavepointCase):
         # Apply a fixed discount
         self.sale_line1.discount_fixed = 10.0
         self.assertEqual(self.sale.amount_total, 218.50)
+        self.assertEqual(self.sale.amount_by_group[0][1], 28.5)  # tax
+        self.assertEqual(self.sale.amount_by_group[0][2], 190.0)  # price tax excl
         # Try to add also a % discount
         with self.assertRaises(ValidationError):
             self.sale_line1.write({"discount": 50.0})
@@ -50,6 +52,8 @@ class TestSaleFixedDiscount(SavepointCase):
         self.sale_line1.discount = 50.0
         self.sale_line1._onchange_discount()
         self.assertEqual(self.sale.amount_total, 115.00)
+        self.assertEqual(self.sale.amount_by_group[0][1], 15.0)  # tax
+        self.assertEqual(self.sale.amount_by_group[0][2], 100.0)  # price tax excl
 
     def test_02_discounts_multiple_lines(self):
         """ Tests multiple lines with mixed taxes and dicount types."""
