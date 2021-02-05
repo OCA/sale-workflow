@@ -10,14 +10,12 @@ class ProductCategory(models.Model):
 
     def _get_sale_restricted_qty(self):
         res = super()._get_sale_restricted_qty()
-        force_sale_min_qty = False
         if self.manual_force_sale_min_qty == "force":
             force_sale_min_qty = True
         elif self.manual_force_sale_min_qty == "not_force":
             force_sale_min_qty = False
         else:
             force_sale_min_qty = self.parent_id.force_sale_min_qty
-        force_sale_max_qty = False
         if self.manual_force_sale_max_qty == "force":
             force_sale_max_qty = True
         elif self.manual_force_sale_max_qty == "not_force":

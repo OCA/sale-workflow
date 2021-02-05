@@ -19,7 +19,11 @@
                 position="before"
             >
                 <div style="color:red; font-weight:bold;">
-                    <field name="display_warning_message_qty" nolabel="1" readonly="1" />
+                    <field
+                        name="display_warning_message_qty"
+                        nolabel="1"
+                        readonly="1"
+                    />
                 </div>
             </xpath>
            <xpath
