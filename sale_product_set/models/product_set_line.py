@@ -28,11 +28,13 @@ class ProductSetLine(models.Model):
 
     def prepare_sale_order_line_values(self, order, quantity, max_sequence=0):
         self.ensure_one()
-        return {
+        values = {
             "order_id": order.id,
             "product_id": self.product_id.id,
             "product_uom_qty": self.quantity * quantity,
             "product_uom": self.product_id.uom_id.id,
             "sequence": max_sequence + self.sequence,
-            "discount": self.discount,
         }
+        if self.discount:
+            values.update({"discount": self.discount})
+        return values

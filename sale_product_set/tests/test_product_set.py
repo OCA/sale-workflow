@@ -166,3 +166,44 @@ class TestProductSet(common.SavepointCase):
         )
         order_line.ensure_one()
         self.assertEqual(order_line.discount, set_line.discount)
+
+    def test_pricelist_discount(self):
+        discount = 10
+        pricelist1 = self.env["product.pricelist"].create(
+            {
+                "name": "Pricelist 1",
+                "discount_policy": "without_discount",
+                "item_ids": [
+                    (
+                        0,
+                        0,
+                        {
+                            "compute_price": "percentage",
+                            "base": "list_price",
+                            "percent_price": discount,
+                            "applied_on": "3_global",
+                            "name": "Discount 1",
+                        },
+                    )
+                ],
+            }
+        )
+        group_discount_id = self.ref("product.group_discount_per_so_line")
+        self.env.user.write({"groups_id": [(4, group_discount_id, 0)]})
+        so = self.so_model.create(
+            {
+                "partner_id": self.ref("base.res_partner_1"),
+                "pricelist_id": pricelist1.id,
+            }
+        )
+        product_set = self.env.ref("sale_product_set.product_set_i5_computer")
+        so_set = self.product_set_add.with_context(active_id=so.id).create(
+            {"product_set_id": product_set.id, "quantity": 2, "order_id": so.id}
+        )
+        so_set.add_set()
+        self.assertEqual(len(so.order_line), 3)
+        for set_line, line in zip(product_set.set_line_ids, so.order_line):
+            if not set_line.discount:
+                self.assertAlmostEqual(line.discount, discount)
+            else:
+                self.assertAlmostEqual(line.discount, set_line.discount)
