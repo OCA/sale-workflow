@@ -27,13 +27,6 @@ class SaleOrderLine(models.Model):
                     break
         return super(SaleOrderLine, self).write(vals)
 
-    @api.model
-    def create(self, vals):
-        res = super(SaleOrderLine, self).create(vals)
-        if res.order_id.commitment_date and not res.commitment_date:
-            res.write({"commitment_date": res.order_id.commitment_date})
-        return res
-
     def _prepare_procurement_values(self, group_id=False):
         vals = super(SaleOrderLine, self)._prepare_procurement_values(group_id)
         # has ensure_one already
