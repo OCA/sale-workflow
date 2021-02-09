@@ -29,12 +29,6 @@
                <field name="sale_min_qty" />
                <field name="sale_max_qty" />
                <field name="qty_warning_message" string=" " />
-               <button
-                    name="button_refresh_restriction_qty"
-                    string="Refresh restrictions"
-                    type="object"
-                    attrs="{'invisible': [('qty_warning_message', '=', '')]}"
-                />
                <field name="qty_invalid" invisible="1" />
            </xpath>
 
@@ -43,6 +37,30 @@
                 <attribute
                     name="decoration-warning"
                 >qty_warning_message and not qty_invalid</attribute>
+            </xpath>
+        </field>
+    </record>
+
+    <record id="view_order_tree" model="ir.ui.view">
+        <field name="model">sale.order</field>
+        <field name="inherit_id" ref="sale.view_order_tree" />
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='state']" position="after">
+                <field name="qty_invalid" invisible="1" />
+            </xpath>
+        </field>
+    </record>
+
+    <record id="view_sales_order_filter" model="ir.ui.view">
+       <field name="model">sale.order</field>
+        <field name="inherit_id" ref="sale.view_sales_order_filter" />
+        <field name="arch" type="xml">
+            <xpath expr="//filter[@name='my_sale_orders_filter']" position="after">
+                <filter
+                    name="filter_invalid_qty_restrictions"
+                    string="Invalid quantities"
+                    domain="[('qty_invalid', '=', True)]"
+                />
             </xpath>
         </field>
     </record>

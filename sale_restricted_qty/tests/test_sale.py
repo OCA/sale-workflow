@@ -119,3 +119,15 @@ class TestSaleOrderLineMinQty(common.TransactionCase):
         self.assertEqual(self.product.sale_min_qty, 25)
         self.assertEqual(self.product.sale_max_qty, 150)
         self.assertEqual(self.product.sale_multiple_qty, 25)
+
+    def test_action_refresh_restricted_qty(self):
+        self.product.manual_sale_min_qty = 30.0
+        self.sale_order.action_refresh_qty_restrictions()
+        self.assertTrue(self.sale_order.qty_invalid)
+
+    def test_search_qty_invalid(self):
+        self.product.manual_sale_min_qty = 30.0
+        self.sale_order.action_refresh_qty_restrictions()
+        self.assertEqual(
+            self.sale_order, self.env["sale.order"].search([("qty_invalid", "=", True)])
+        )

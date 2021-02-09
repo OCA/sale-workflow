@@ -8,33 +8,64 @@ from odoo.exceptions import ValidationError
 from odoo.tools import float_compare
 
 
+class SaleOrder(models.Model):
+    _inherit = "sale.order"
+
+    qty_invalid = fields.Boolean(
+        compute="_compute_qty_invalid", search="_search_qty_invalid"
+    )
+
+    def action_refresh_qty_restrictions(self):
+        self.with_context(skip_constraint_sale_restrict_qty=True).mapped(
+            "order_line"
+        )._compute_qty_restrictions()
+
+    @api.depends("order_line")
+    def _compute_qty_invalid(self):
+        for rec in self:
+            rec.qty_invalid = any(rec.order_line.mapped("qty_invalid"))
+
+    @api.model
+    def _search_qty_invalid(self, operator, value):
+        if operator not in ("=",):
+            raise ValidationError(_("Invalid operator %s" % operator))
+        if value not in (True, False):
+            raise ValidationError(_("Invalid value %s" % operator))
+        sale_orders = (
+            self.env["sale.order.line"]
+            .search([("qty_invalid", "=", value)])
+            .mapped("order_id")
+        )
+        return [("id", "in", sale_orders.ids)]
+
+
 class SaleOrderLine(models.Model):
     _inherit = "sale.order.line"
 
-    qty_warning_message = fields.Char(compute="_compute_qty_validity", store=True)
-    qty_invalid = fields.Boolean(compute="_compute_qty_validity", store=True)
+    qty_warning_message = fields.Char(compute="_compute_qty_restrictions", store=True)
+    qty_invalid = fields.Boolean(compute="_compute_qty_restrictions", store=True)
 
     sale_min_qty = fields.Float(
         string="Min Qty",
-        compute="_compute_sale_restricted_qty",
+        compute="_compute_qty_restrictions",
         store=True,
         digits="Product Unit of Measure",
     )
     force_sale_min_qty = fields.Boolean(
-        compute="_compute_sale_restricted_qty", readonly=True, store=True
+        compute="_compute_qty_restrictions", readonly=True, store=True
     )
     sale_max_qty = fields.Float(
         string="Max Qty",
-        compute="_compute_sale_restricted_qty",
+        compute="_compute_qty_restrictions",
         store=True,
         digits="Product Unit of Measure",
     )
     force_sale_max_qty = fields.Boolean(
-        compute="_compute_sale_restricted_qty", readonly=True, store=True
+        compute="_compute_qty_restrictions", readonly=True, store=True
     )
     sale_multiple_qty = fields.Float(
         string="Multiple Qty",
-        compute="_compute_sale_restricted_qty",
+        compute="_compute_qty_restrictions",
         store=True,
         digits="Product Unit of Measure",
     )
@@ -47,6 +78,10 @@ class SaleOrderLine(models.Model):
         "sale_min_qty",
         "sale_multiple_qty",
     )
+    def _compute_qty_restrictions(self):
+        self._compute_sale_restricted_qty()
+        self._compute_qty_validity()
+
     def _compute_qty_validity(self):
         for line in self:
             product_qty = line.product_uom._compute_quantity(
@@ -83,10 +118,16 @@ class SaleOrderLine(models.Model):
             line.qty_invalid = invalid
             line.qty_warning_message = message
 
+    def _compute_sale_restricted_qty(self):
+        for rec in self:
+            rec.update(rec._get_sale_restricted_qty())
+
     @api.constrains(
         "product_uom_qty", "sale_min_qty", "sale_max_qty", "sale_multiple_qty"
     )
     def check_constraint_restricted_qty(self):
+        if self.env.context.get("skip_constraint_sale_restrict_qty"):
+            return
         self._compute_qty_validity()
         error_lines = self.filtered("qty_invalid")
         if error_lines:
@@ -110,13 +151,3 @@ class SaleOrderLine(models.Model):
             "sale_multiple_qty": self.product_id.sale_multiple_qty,
         }
         return res
-
-    @api.depends("product_id")
-    def _compute_sale_restricted_qty(self):
-        for rec in self:
-            rec.update(rec._get_sale_restricted_qty())
-
-    def button_refresh_restriction_qty(self):
-        lines = self.order_id.order_line
-        lines._compute_sale_restricted_qty()
-        lines._compute_qty_validity()

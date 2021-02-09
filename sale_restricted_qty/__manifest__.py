@@ -14,6 +14,7 @@
         "views/product_category_views.xml",
         "views/product_template_views.xml",
         "views/sale_views.xml",
+        "data/data.xml",
     ],
     "installable": True,
 }
