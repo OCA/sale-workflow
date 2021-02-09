@@ -6,7 +6,7 @@
 # Copyright 2018 Camptocamp SA
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl)
 
-from odoo import git fields, models
+from odoo import fields, models
 
 
 class SaleOrderLine(models.Model):
