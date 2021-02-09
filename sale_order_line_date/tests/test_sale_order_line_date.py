@@ -32,6 +32,11 @@ class TestSaleOrderLineDates(TransactionCase):
         )
         self.sale_line2.write({"commitment_date": dt2})
         self.sale1.action_confirm()
+        self.sale2 = self._create_sale_order(customer, dt2) 
+        self.sale_line2 = self._create_sale_order_line(
+            self.sale2, product_id, qty, price, None
+        )
+
 
     def _create_sale_order(self, customer, date):
         sale = self.env["sale.order"].create(
