@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <template
+        id="sale_order_portal_content_fixed_discount"
+        inherit_id="sale.sale_order_portal_content"
+    >
+        <xpath
+            expr="//section[@id='details']//t[@t-set='display_discount']"
+            position="after"
+        >
+            <t
+                t-set="display_discount_fixed"
+                t-value="True in [line.discount_fixed > 0 for line in sale_order.order_line]"
+            />
+        </xpath>
+        <xpath
+            expr="//section[@id='details']/table/thead//th[@t-if='display_discount']"
+            position="after"
+        >
+            <th
+                t-if="display_discount_fixed"
+                t-attf-class="text-right {{ 'd-none d-sm-table-cell' if report_type == 'html' else '' }}"
+            >
+                <span>Disc. Fixed Amount</span>
+            </th>
+        </xpath>
+        <xpath
+            expr="//section[@id='details']/table/tbody//t[@t-foreach='sale_order.order_line']/tr//t[@t-if='not line.display_type']//td[3]/div"
+            position="replace"
+        >
+            <div
+                t-if="line.discount &gt;= 0 or line.fixed_discount &gt;= 0"
+                t-field="line.price_unit"
+                t-att-style="(line.discount or line.discount_fixed) and 'text-decoration: line-through' or None"
+                t-att-class="((line.discount or line.discount_fixed) and 'text-danger' or '') + ' text-right'"
+            />
+            <div t-if="line.discount_fixed">
+                <t
+                    t-esc="line.price_unit - line.discount_fixed"
+                    t-options='{"widget": "float", "decimal_precision": "Product Price"}'
+                />
+            </div>
+        </xpath>
+        <xpath
+            expr="//section[@id='details']/table/tbody//t[@t-foreach='sale_order.order_line']/tr//t[@t-if='not line.display_type']//td[@t-if='display_discount']"
+            position="after"
+        >
+            <td
+                t-if="display_discount_fixed"
+                t-attf-class="text-right {{ 'd-none d-sm-table-cell' if report_type == 'html' else '' }}"
+            >
+                <strong t-if="line.discount_fixed &gt; 0" class="text-info">
+                    <t t-esc="line.discount_fixed" />
+                </strong>
+            </td>
+        </xpath>
+    </template>
+</odoo>
