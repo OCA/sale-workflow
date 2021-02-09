@@ -14,6 +14,7 @@
     "data": [
         "views/sale_order_views.xml",
         "views/account_invoice_views.xml",
+        "views/sale_portal_templates.xml",
         "reports/report_sale_order.xml",
     ],
 }
