@@ -115,3 +115,8 @@ class SaleOrderLine(models.Model):
     def _compute_sale_restricted_qty(self):
         for rec in self:
             rec.update(rec._get_sale_restricted_qty())
+
+    def button_refresh_restriction_qty(self):
+        lines = self.order_id.order_line
+        lines._compute_sale_restricted_qty()
+        lines._compute_qty_validity()

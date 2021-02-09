@@ -28,8 +28,14 @@
             >
                <field name="sale_min_qty" />
                <field name="sale_max_qty" />
+               <field name="qty_warning_message" string=" " />
+               <button
+                    name="button_refresh_restriction_qty"
+                    string="Refresh restrictions"
+                    type="object"
+                    attrs="{'invisible': [('qty_warning_message', '=', '')]}"
+                />
                <field name="qty_invalid" invisible="1" />
-               <field name="qty_warning_message" invisible="1" />
            </xpath>
 
             <xpath expr="//field[@name='order_line']/tree" position="attributes">
