@@ -3,7 +3,7 @@
 {
     "name": "Sale Fixed Discount",
     "summary": "Allows to apply fixed amount discounts in sales orders.",
-    "version": "13.0.1.1.0",
+    "version": "13.0.1.1.1",
     "category": "Sales",
     "website": "https://github.com/OCA/sale-workflow",
     "author": "ForgeFlow, Odoo Community Association (OCA)",
@@ -14,6 +14,7 @@
     "data": [
         "views/sale_order_views.xml",
         "views/account_invoice_views.xml",
+        "views/sale_portal_templates.xml",
         "reports/report_sale_order.xml",
     ],
 }
