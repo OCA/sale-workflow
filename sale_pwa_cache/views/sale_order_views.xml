@@ -25,7 +25,7 @@
                         nolabel="1"
                         mode="form"
                         widget="one2many_product_picker"
-                        context="{'sale_order_partner_id': partner_id}"
+                        context="{'sale_order_partner_id': partner_id, 'default_product_uom_qty': 0}"
                         options="{'edit_discount': True, 'show_discount': True, 'groups': [{'name': 'product_history', 'string': _('Product History'), 'domain': [('sale_order_partner_id_product', '=', True)]}]}"
                     >
                         <form>
@@ -43,7 +43,7 @@
                                 'quantity': product_uom_qty,
                                 'pricelist': parent.pricelist_id,
                                 'uom': product_uom,
-                                'company_id': parent.company_id
+                                'company_id': parent.company_id,
                             }" />
                             <field name="product_uom" force_save="1" attrs="{
                                 'readonly': [('state', 'in', ('sale','done', 'cancel'))],
