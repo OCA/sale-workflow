@@ -22,10 +22,3 @@ class SaleOrder(models.Model):
     def action_confirm(self):
         self.generate_prodlot()
         return super().action_confirm()
-
-    def action_cancel(self):
-        res = super().action_cancel()
-        for sale in self:
-            for line in sale.order_line:
-                line.lot_id.unlink()
-        return res
