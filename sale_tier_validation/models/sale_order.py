@@ -9,3 +9,5 @@ class SaleOrder(models.Model):
     _inherit = ["sale.order", "tier.validation"]
     _state_from = ["draft", "sent", "to approve"]
     _state_to = ["sale", "approved"]
+
+    _tier_validation_manual_config = False
