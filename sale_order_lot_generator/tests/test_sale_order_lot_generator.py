@@ -1,4 +1,5 @@
 # © 2017 Akretion, Mourad EL HADJ MIMOUNE <mourad.elhadj.mimoune@akretion.com>
+# Copyright 2021 Tecnativa - Víctor Martínez
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
 
 import odoo.tests.common as test_common
@@ -49,4 +50,4 @@ class TestSaleOrderLotGenerator(test_common.SingleTransactionCase):
             if line.product_id.id == self.prd_flipover.id:
                 self.assertEqual(line.lot_id, self.sol1.lot_id)
             if line.product_id.id == self.prd_acoustic.id:
-                self.assertEqual(line.restrict_lot_id, self.sol2.lot_id)
+                self.assertEqual(line.lot_id, self.sol2.lot_id)
