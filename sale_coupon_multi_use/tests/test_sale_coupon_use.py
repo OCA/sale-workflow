@@ -1,6 +1,6 @@
-# Copyright 2020 Camptocamp SA
+# Copyright 2021 Camptocamp SA
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
-from odoo.exceptions import UserError, ValidationError
+from odoo.exceptions import AccessError, UserError, ValidationError
 from odoo.fields import Date
 
 from .common import DISCOUNT_AMOUNT, TestSaleCouponMultiUseCommon
@@ -26,16 +26,19 @@ class TestSaleCouponMultiUse(TestSaleCouponMultiUseCommon):
         )
 
     def _remove_so_discount_lines(self, order):
-        order.order_line.filtered(lambda r: r.price_unit < 0).unlink()
+        order.order_line.filtered("is_reward_line").unlink()
 
     def test_01_coupon_single_use(self):
         """Apply coupon normally without multi_use functionality."""
         # Sanity check.
         self.assertTrue(self.coupon_multi_use_1.multi_use)
+        # Remove coupons because
+        # we can't change coupon_multi_use flag when existing coupons
+        self.program_multi_use.coupon_ids.unlink()
         self.program_multi_use.coupon_multi_use = False
         # Generate second coupon.
         self.coupon_generate_wiz.generate_coupon()
-        coupon_2 = self.program_multi_use.coupon_ids[-1]
+        coupon_2 = self.program_multi_use.coupon_ids
         self.assertFalse(coupon_2.multi_use)
         self.coupon_apply_wiz.coupon_code = coupon_2.code
         amount_total_expected = self.sale_1.amount_total - DISCOUNT_AMOUNT
@@ -333,29 +336,44 @@ class TestSaleCouponMultiUse(TestSaleCouponMultiUseCommon):
 
     def test_08_unlink_consumption_line(self):
         """Check if consumption line not allowed to unlink."""
-        with self.assertRaises(UserError):
-            self.coupon_multi_use_1.consumption_line_ids.unlink()
+        sale = self.sale_2
+        # Apply a coupon to have consumption lines
+        self.coupon_apply_wiz.with_context(active_id=sale.id).process_coupon()
+        self.assertEqual(len(self.coupon_multi_use_1.consumption_line_ids), 1)
+        # Test with not system user => access error
+        with self.assertRaises(AccessError):
+            user_admin = self.env.ref("base.user_admin")
+            self.coupon_multi_use_1.sudo(user_admin).consumption_line_ids.unlink()
+        # Test with remove reward line into sale order
+        self.assertEqual(
+            sale.order_line[2].product_id,
+            self.program_multi_use.discount_line_product_id,
+        )
+        sale.write({"order_line": [(3, sale.order_line[2].id)]})
+        self.assertEqual(len(self.coupon_multi_use_1.consumption_line_ids), 0)
+        # Test with cancel sale order
+        self.coupon_apply_wiz.with_context(active_id=sale.id).process_coupon()
+        self.assertEqual(len(self.coupon_multi_use_1.consumption_line_ids), 1)
+        sale.action_cancel()
+        self.assertEqual(len(self.coupon_multi_use_1.consumption_line_ids), 0)
 
     def test_09_coupon_program_constraints(self):
-        """Check coupon constraints when multi use coupon is generated.
-
-        Case: multi_use=True
-        """
-        with self.assertRaises(ValidationError):
+        """Check coupon constraints when multi use coupon is generated."""
+        with self.assertRaises(ValidationError) as error:
+            self.program_multi_use.coupon_multi_use = False
+        self.assertTrue(
+            "Coupon multi use can't be changed with existing coupons."
+            in error.exception.name
+        )
+        with self.assertRaises(ValidationError) as error:
             self.program_multi_use.discount_fixed_amount = 3000
+        self.assertTrue(
+            "Fixed Amount can't be changed when "
+            "there are Multi Use coupons already." in error.exception.name
+        )
         self._raise_multi_use_constraints(self.program_multi_use)
 
     def test_10_coupon_program_constraints(self):
-        """Check coupon constraints when multi use coupon is generated.
-
-        Case: multi_use=False
-        """
-        self.program_multi_use.coupon_multi_use = False
-        with self.assertRaises(ValidationError):
-            self.program_multi_use.discount_fixed_amount = 3000
-        self._raise_multi_use_constraints(self.program_multi_use)
-
-    def test_11_coupon_program_constraints(self):
         """Check constraints when multi use coupon is not generated.
 
         Case 1: multi_use=True
@@ -382,7 +400,7 @@ class TestSaleCouponMultiUse(TestSaleCouponMultiUseCommon):
         pass_discount_fixed_amount(program)
         self._not_raise_multi_use_constraints(program)
 
-    def test_12_coupon_program_constraints(self):
+    def test_11_coupon_program_constraints(self):
         """Try to use coupon_multi_use, when other options are incorrect."""
         with self.assertRaises(ValidationError):
             self.program_coupon_percentage.coupon_multi_use = True

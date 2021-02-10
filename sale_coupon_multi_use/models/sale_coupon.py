@@ -1,14 +1,7 @@
-# Copyright 2020 Camptocamp SA
+# Copyright 2021 Camptocamp SA
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
-import pickle
-
 from odoo import _, api, fields, models
-
-
-def _pickle_copy(data):
-    """Do deep copy of specified data."""
-    # Seems to work much faster for small data than copy.deepcopy.
-    return pickle.loads(pickle.dumps(data))
+from odoo.tools import float_compare
 
 
 class SaleCoupon(models.Model):
@@ -16,38 +9,38 @@ class SaleCoupon(models.Model):
 
     _inherit = "sale.coupon"
 
-    # Takes value from related program (coupon_multi_use field), when
-    # it is generated.
-    multi_use = fields.Boolean(readonly=True)
+    multi_use = fields.Boolean(related="program_id.coupon_multi_use")
     currency_program_id = fields.Many2one(related="program_id.currency_id")
     consumption_line_ids = fields.One2many(
-        "sale.coupon.consumption_line", "coupon_id", "Consumption Lines", readonly=True,
-    )
-    discount_fixed_amount_delta = fields.Monetary(
-        "Fixed Amount Delta",
-        compute="_compute_discount_fixed_amount_delta",
-        currency_field="currency_program_id",
-    )
-    sale_multi_use_ids = fields.Many2many(
-        "sale.order",
-        "sale_order_coupon_multi_rel",
-        "coupon_id",
-        "sale_id",
-        string="Applied on Orders",
-        copy=False,
+        comodel_name="sale.coupon.consumption_line",
+        inverse_name="coupon_id",
         readonly=True,
     )
-
-    def _get_discount_fixed_amount_delta(self):
-        self.ensure_one()
-        amount_total = self.program_id.discount_fixed_amount
-        amount_consumed = sum(self.consumption_line_ids.mapped("amount"))
-        return amount_total - amount_consumed
+    discount_fixed_amount_delta = fields.Float(
+        compute="_compute_discount_fixed_amount_delta",
+        digits="Product Price",
+        currency_field="currency_program_id",
+        string="Fixed Amount Delta",
+    )
+    sale_multi_use_ids = fields.Many2many(
+        comodel_name="sale.order",
+        compute="_compute_sale_multi_use_ids",
+        string="Applied on Orders",
+    )
 
     @api.depends("program_id.discount_fixed_amount", "consumption_line_ids.amount")
     def _compute_discount_fixed_amount_delta(self):
         for rec in self:
-            rec.discount_fixed_amount_delta = rec._get_discount_fixed_amount_delta()
+            amount_total = rec.program_id.discount_fixed_amount
+            amount_already_consumed = sum(rec.consumption_line_ids.mapped("amount"))
+            rec.discount_fixed_amount_delta = amount_total - amount_already_consumed
+
+    @api.depends("consumption_line_ids")
+    def _compute_sale_multi_use_ids(self):
+        for rec in self:
+            rec.sale_multi_use_ids = rec.mapped(
+                "consumption_line_ids.sale_order_line_id.order_id"
+            )
 
     def _check_coupon_code(self, order):
         # Same check as is for `applied_coupon_ids` field.
@@ -56,16 +49,6 @@ class SaleCoupon(models.Model):
                 "error": _("Multi-Use Coupon is already applied for the same reward")
             }
         return super()._check_coupon_code(order)
-
-    def _filter_multi_use_triggered(self, vals):
-        # Indicating for coupon to be consumed
-        if vals.get("state") == "used":
-            return self.filtered(
-                # Must have amount to split.
-                lambda r: r.multi_use
-                and r.discount_fixed_amount_delta > 0
-            )
-        return self.env[self._name]
 
     def _get_related_sale_order_line(self, sale_order):
         self.ensure_one()
@@ -96,70 +79,30 @@ class SaleCoupon(models.Model):
             "sale_order_line_id": sale_order_line.id,
         }
 
-    def _create_consumption_line(self, sale_order_line):
+    def _create_consumption_line(self, sale_order):
+        sale_order_line = self._get_related_sale_order_line(sale_order)
         vals = self._prepare_consumption_line(sale_order_line)
         return self.env["sale.coupon.consumption_line"].create(vals)
 
-    def _handle_multi_use(self, coupon_sale_order):
+    def move_to_multi_use(self):
         self.ensure_one()
-        related_sol = self._get_related_sale_order_line(coupon_sale_order)
-        if related_sol not in self.consumption_line_ids.mapped("sale_order_line_id"):
-            self._create_consumption_line(related_sol)
-        return self.discount_fixed_amount_delta > 0
+        # Create consumption line from sale order
+        self._create_consumption_line(self.sales_order_id)
+        # Coupon apply code wizard set the sale order on sales_order_id,
+        # but for multi-use coupon, we can't use and don't need this M2O field.
+        self.sales_order_id = False
+        self.check_and_update_coupon_state()
 
-    def _handle_multi_use_reset(self, coupon_sale_order):
-        consumption_lines = self.mapped("consumption_line_ids")
-        consumption_lines._unlink_consumption_lines(
-            coupon_sale_order.mapped("order_line")
-        )
-
-    @api.model_create_multi
-    def create(self, vals_list):
-        """Extend to pick up coupon_multi_use value from program."""
-        for vals in vals_list:
-            multi_use = (
-                self.env["sale.coupon.program"]
-                .browse(vals.get("program_id"))
-                .coupon_multi_use
+    def check_and_update_coupon_state(self):
+        """Set coupons state depending of discount_fixed_amount_delta."""
+        for coupon in self:
+            digits = self.env["decimal.precision"].precision_get(
+                coupon._fields["discount_fixed_amount_delta"]._digits
             )
-            if "multi_use" not in vals:
-                vals["multi_use"] = multi_use
-        return super().create(vals_list)
-
-    def write(self, vals):
-        """Extend to manage multi_use coupons.
-
-        Each coupon record is handled separately, because some might
-        be valid, some not, after handling multi use.
-        """
-        coupon_sale_order = self._context.get("coupon_sale_order")
-        other_coupons = self  # by default all coupons.
-        if coupon_sale_order:
-            coupon_multi_use = self._filter_multi_use_triggered(vals)
-            other_coupons = self - coupon_multi_use
-            for multi_use_coupon in coupon_multi_use:
-                copied_vals = _pickle_copy(vals)
-                coupon_still_valid = multi_use_coupon._handle_multi_use(
-                    coupon_sale_order
-                )
-                if coupon_still_valid:
-                    # Not marking it as consumed.
-                    del copied_vals["state"]
-                if copied_vals:  # could be empty dict, so no point writing
-                    super(SaleCoupon, multi_use_coupon).write(copied_vals)
-            # If coupon is set back to valid, we need to remove
-            # consumption lines that were used on that specific SO.
-            if vals.get("state") == "new":
-                self._handle_multi_use_reset(coupon_sale_order)
-        return super(SaleCoupon, other_coupons).write(vals)
-
-    # NOTE. This is a bit limited. Such methods should be defined on
-    # sale_coupon, because its related with all coupons, not just
-    # multi-use coupons.
-    def consume_coupons(self):
-        """Set coupons state to 'used'."""
-        self.write({"state": "used"})
-
-    def reset_coupons(self):
-        """Set coupons state to 'new'."""
-        self.write({"state": "new"})
+            # Coupon must be consumed only if not remaining delta
+            delta = coupon.discount_fixed_amount_delta
+            remaining_delta = float_compare(delta, 0, precision_digits=digits) > 0
+            if coupon.state == "new" and not remaining_delta:
+                coupon.state = "used"
+            elif coupon.state == "used" and remaining_delta:
+                coupon.state = "new"

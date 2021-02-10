@@ -31,10 +31,16 @@
                     name="consumption_line_ids"
                     attrs="{'invisible': [('multi_use', '=', False)]}"
                 >
-                    <tree>
+                    <!-- Add color on draft sale orders to easily distinguish draft/sent and confirmed orders-->
+                    <tree decoration-info="sale_order_state in ['draft', 'sent']">
                         <field name="currency_program_id" invisible="1" />
                         <field name="sale_order_line_id" />
-                        <field name="amount" />
+                        <field name="sale_order_state" />
+                        <field
+                            name="amount"
+                            widget="monetary"
+                            options="{'currency_field': 'currency_program_id'}"
+                        />
                     </tree>
                 </field>
                 <group
@@ -43,7 +49,11 @@
                     name="multi_use_delta"
                     attrs="{'invisible': [('multi_use', '=', False)]}"
                 >
-                    <field name="discount_fixed_amount_delta" />
+                    <field
+                        name="discount_fixed_amount_delta"
+                        widget="monetary"
+                        options="{'currency_field': 'currency_program_id'}"
+                    />
                 </group>
             </xpath>
         </field>

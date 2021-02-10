@@ -1,7 +1,7 @@
-# Copyright 2020 Camptocamp SA
+# Copyright 2021 Camptocamp SA
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
-from odoo import _, fields, models
-from odoo.exceptions import UserError
+
+from odoo import fields, models
 
 
 class SaleCouponConsumptionLine(models.Model):
@@ -10,30 +10,18 @@ class SaleCouponConsumptionLine(models.Model):
     _name = "sale.coupon.consumption_line"
     _description = "Sale Coupon Consumption Line"
 
-    coupon_id = fields.Many2one("sale.coupon", "Coupon", required=True, index=True)
-    # ondelete takes care of automatically removing consumption line,
-    # when discount line is removed on related sale order.
+    coupon_id = fields.Many2one(comodel_name="sale.coupon", required=True, index=True)
     sale_order_line_id = fields.Many2one(
-        "sale.order.line", "Sale Order Line", required=True, ondelete="cascade"
+        comodel_name="sale.order.line", required=True, ondelete="restrict"
     )
+    sale_order_state = fields.Selection(related="sale_order_line_id.order_id.state")
     currency_program_id = fields.Many2one(related="coupon_id.program_id.currency_id")
-    amount = fields.Monetary(currency_field="currency_program_id")
-
-    def _get_consumption_lines_to_unlink(self, order_lines):
-        return self.filtered(lambda r: r.sale_order_line_id in order_lines)
-
-    def _unlink_consumption_lines(self, order_lines):
-        to_unlink = self._get_consumption_lines_to_unlink(order_lines)
-        if to_unlink:
-            to_unlink.with_context(force_unlink_coupon_consumption_lines=True).unlink()
+    amount = fields.Float(digits="Product Price", currency_field="currency_program_id")
 
     def unlink(self):
-        """Override to prevent direct unlink."""
-        if not self._context.get("force_unlink_coupon_consumption_lines"):
-            raise UserError(
-                _(
-                    "Consumption Lines can't be deleted directly. To do that, "
-                    "delete related sale order line."
-                )
-            )
-        return super().unlink()
+        # Get the coupons before removing line
+        coupons = self.mapped("coupon_id")
+        result = super().unlink()
+        # Update related coupons states if needed
+        coupons.check_and_update_coupon_state()
+        return result

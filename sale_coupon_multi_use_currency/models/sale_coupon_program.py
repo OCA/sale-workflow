@@ -1,4 +1,4 @@
-# Copyright 2020 Camptocamp SA
+# Copyright 2021 Camptocamp SA
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
 
 from odoo import _, api, models
@@ -13,7 +13,7 @@ class SaleCouponProgram(models.Model):
     @api.constrains("currency_custom_id")
     def _check_currency_custom_id(self):
         for rec in self:
-            if rec._get_multi_use_coupons():
+            if rec.coupon_multi_use and rec.coupon_ids:
                 raise ValidationError(
                     _(
                         "Currency can't be changed when there are Multi"
