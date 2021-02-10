@@ -8,29 +8,28 @@ from odoo.exceptions import ValidationError
 
 
 class ProjectTaskType(models.Model):
-    _inherit = 'project.task.type'
+    _inherit = "project.task.type"
 
-    invoiceable = fields.Boolean(
-        string='Invoiceable',
-    )
+    invoiceable = fields.Boolean(string="Invoiceable",)
 
 
 class ProjectTask(models.Model):
-    _inherit = 'project.task'
+    _inherit = "project.task"
 
-    invoiceable = fields.Boolean(
-        string='Invoiceable',
-    )
+    invoiceable = fields.Boolean(string="Invoiceable",)
     invoicing_finished_task = fields.Boolean(
-        related='sale_line_id.product_id.invoicing_finished_task',
-        readonly=True,
+        related="sale_line_id.product_id.invoicing_finished_task", readonly=True,
     )
 
-    @api.onchange('stage_id')
+    @api.onchange("stage_id")
     def _onchange_stage_id(self):
-        tasks = self.filtered(lambda t: (
-            t.invoicing_finished_task and t.stage_id.invoiceable
-            and not t.invoiceable))
+        tasks = self.filtered(
+            lambda t: (
+                t.invoicing_finished_task
+                and t.stage_id.invoiceable
+                and not t.invoiceable
+            )
+        )
         tasks.toggle_invoiceable()
 
     @api.multi
@@ -41,26 +40,31 @@ class ProjectTask(models.Model):
 
     @api.multi
     def write(self, vals):
-        if 'sale_line_id' in vals:
-            self._check_sale_line_state(vals['sale_line_id'])
+        if "sale_line_id" in vals:
+            self._check_sale_line_state(vals["sale_line_id"])
         res = super(ProjectTask, self).write(vals)
-        if 'invoiceable' in vals:
-            self.mapped('sale_line_id')._compute_qty_delivered()
+        if "invoiceable" in vals:
+            self.mapped("sale_line_id")._compute_qty_delivered()
         return res
 
     @api.model
     def create(self, vals):
-        if 'sale_line_id' in vals:
-            self._check_sale_line_state(vals['sale_line_id'])
+        if "sale_line_id" in vals:
+            self._check_sale_line_state(vals["sale_line_id"])
         return super(ProjectTask, self).create(vals)
 
     def _check_sale_line_state(self, sale_line_id=False):
-        sale_lines = self.mapped('sale_line_id')
+        sale_lines = self.mapped("sale_line_id")
         if sale_line_id:
-            sale_lines |= self.env['sale.order.line'].browse(sale_line_id)
+            sale_lines |= self.env["sale.order.line"].browse(sale_line_id)
         for sale_line in sale_lines:
-            if (sale_line.state in ('done', 'cancel')
-                    or sale_line.invoice_status == 'invoiced'):
+            if (
+                sale_line.state in ("done", "cancel")
+                or sale_line.invoice_status == "invoiced"
+            ):
                 raise ValidationError(
-                    _('You cannot create/modify a task related with a '
-                      'invoiced, done or cancel sale order line '))
+                    _(
+                        "You cannot create/modify a task related with a "
+                        "invoiced, done or cancel sale order line "
+                    )
+                )
