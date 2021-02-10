@@ -16,8 +16,6 @@ class SaleOrder(models.Model):
     def _onchange_commitment_date(self):
         """Update order lines with commitment date from sale order"""
         result = super(SaleOrder, self)._onchange_commitment_date() or {}
-        if not self:
-            return result
         if "warning" not in result:
             result["value"] = {
                 "order_line": [
