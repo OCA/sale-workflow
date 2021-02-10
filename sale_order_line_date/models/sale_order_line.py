@@ -6,7 +6,7 @@
 # Copyright 2018 Camptocamp SA
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl)
 
-from odoo import api, fields, models
+from odoo import fields, models
 
 
 class SaleOrderLine(models.Model):
@@ -26,13 +26,6 @@ class SaleOrderLine(models.Model):
                     vals.update({"commitment_date": line.order_id.commitment_date})
                     break
         return super(SaleOrderLine, self).write(vals)
-
-    @api.model
-    def create(self, vals):
-        res = super(SaleOrderLine, self).create(vals)
-        if res.order_id.commitment_date and not res.commitment_date:
-            res.write({"commitment_date": res.order_id.commitment_date})
-        return res
 
     def _prepare_procurement_values(self, group_id=False):
         vals = super(SaleOrderLine, self)._prepare_procurement_values(group_id)
