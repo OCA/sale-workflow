@@ -4,9 +4,9 @@
         <field name="model">sale.order</field>
         <field name="inherit_id" ref="sale.view_order_form" />
         <field name="arch" type="xml">
-            <field name="user_id" position="before">
+            <xpath expr="//field[@name='team_id']" position="after">
                 <field name="business_provider_id" />
-            </field>
+            </xpath>
         </field>
     </record>
     <record id="view_sales_order_filter" model="ir.ui.view">

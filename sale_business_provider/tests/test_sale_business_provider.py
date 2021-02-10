@@ -10,17 +10,11 @@ class TestSaleBusinessProvider(common.TransactionCase):
         self.sale_order_model = self.env["sale.order"]
         self.sale_report_model = self.env["sale.report"]
         self.sale_order = self.env.ref("sale.sale_order_4")
-        self.business_provider = self.env.ref("base.res_partner_5")
+        self.business_provider = self.env.ref("base.res_partner_4")
 
     def test_sale_business_provider(self):
-        self.sale_order.business_provider = self.business_provider
+        self.sale_order.business_provider_id = self.business_provider
         self.assertEqual(
-            self.sale_order.business_provider,
+            self.sale_order.business_provider_id,
             self.business_provider,
         )
-        sale_line_report = self.sale_report_model.search(
-            [
-                ("business_provider_id", "=", self.business_provider.id),
-            ],
-        )
-        self.assertEqual(len(self.sale_order.sale_line), len(sale_line_report))

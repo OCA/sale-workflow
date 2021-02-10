@@ -5,7 +5,7 @@
         <field name="model">sale.report</field>
         <field name="inherit_id" ref="sale.view_order_product_search" />
         <field name="arch" type="xml">
-            <filter name="user_id" position="after">
+            <filter name="User" position="after">
                 <filter
                     string="Business Provider"
                     name="business_provider_id"
