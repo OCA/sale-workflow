@@ -62,7 +62,8 @@ class TestSaleOrderProductAvailabilityInline(SavepointCase):
 
     def test_sale_order_product_rec_name(self):
         self.assertEqual(
-            self.product.with_context(warehouse=self.warehouse1.id).free_qty, 10.0,
+            self.product.with_context(warehouse=self.warehouse1.id).free_qty,
+            10.0,
         )
         self.env.ref("product.decimal_product_uom").write({"digits": 3})
         sale_order_form = Form(
