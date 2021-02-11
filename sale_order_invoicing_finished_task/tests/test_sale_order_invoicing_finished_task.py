@@ -1,4 +1,4 @@
-# Copyright 2017 Sergio Teruel <sergio.teruel@tecnativa.com>
+# Copyright 2017 Tecnativa - Sergio Teruel
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
 
 from odoo.exceptions import ValidationError
@@ -22,10 +22,10 @@ class TestInvoicefinishedTask(common.SavepointCase):
             }
         )
         cls.employee = cls.env["hr.employee"].create(
-            {"name": cls.manager.name, "user_id": cls.manager.id,}
+            {"name": cls.manager.name, "user_id": cls.manager.id}
         )
         cls.partner = cls.env["res.partner"].create(
-            {"name": "Customer - test", "customer": True,}
+            {"name": "Customer - test", "customer_rank": True}
         )
         cls.project = cls.env["project.project"].create({"name": "Some test project"})
         cls.stage_new = cls.env["project.task.type"].create(cls._prepare_stage_vals())
@@ -33,7 +33,6 @@ class TestInvoicefinishedTask(common.SavepointCase):
             cls._prepare_stage_vals(invoiceable_stage=True)
         )
         cls.uom_unit = cls.env.ref("uom.product_uom_unit")
-
         cls.Product = cls.env["product.product"]
         cls.product = cls.Product.create(cls._prepare_product_vals())
         product_delivery_vals = cls._prepare_product_vals()
@@ -41,10 +40,11 @@ class TestInvoicefinishedTask(common.SavepointCase):
             {
                 "name": "Product - Service - Policy delivery - Test",
                 "service_policy": "delivered_timesheet",
+                "invoice_policy": "delivery",
+                "service_type": "timesheet",
             }
         )
         cls.product_policy_delivery = cls.Product.create(product_delivery_vals)
-
         cls.sale_order = cls.env["sale.order"].create(cls._sale_order_vals(cls.product))
         cls.sale_order_policy_delivery = cls.env["sale.order"].create(
             cls._sale_order_vals(cls.product_policy_delivery)
@@ -108,37 +108,28 @@ class TestInvoicefinishedTask(common.SavepointCase):
         self.sale_order.action_confirm()
         self.assertEqual(self.sale_order.invoice_status, "no")
         task = self.sale_order.order_line.task_ids
-
         # Add a timesheet line
         self.env["account.analytic.line"].create(
             self._prepare_timesheet_vals(task, 5.0)
         )
         self.assertEqual(self.sale_order.invoice_status, "no")
-
         # Set task in invoiceable stage
         task.stage_id = self.stage_invoiceable.id
         task._onchange_stage_id()
         self.assertEqual(self.sale_order.invoice_status, "to invoice")
-
         # Click on toggle_invoiceable method
         task.toggle_invoiceable()
         self.assertEqual(self.sale_order.invoice_status, "no")
-
         task.toggle_invoiceable()
         self.assertEqual(self.sale_order.invoice_status, "to invoice")
-
         # Make the invoice
-        self.sale_order.action_invoice_create()
-
+        self.sale_order._create_invoices()
         # Click on toggle_invoiceable method after the so is invoiced
         with self.assertRaises(ValidationError):
             task.toggle_invoiceable()
-
         self.sale_order.action_done()
         with self.assertRaises(ValidationError):
-            task.write(
-                {"sale_line_id": self.sale_order_policy_delivery.order_line.id,}
-            )
+            task.write({"sale_line_id": self.sale_order_policy_delivery.order_line.id})
         # Try to create a task and link it to so line
         with self.assertRaises(ValidationError):
             self.env["project.task"].create(
@@ -167,9 +158,7 @@ class TestInvoicefinishedTask(common.SavepointCase):
         self.env["account.analytic.line"].create(
             self._prepare_timesheet_vals(task_delivery, 10.0)
         )
-        task_delivery.write(
-            {"stage_id": self.stage_invoiceable.id,}
-        )
+        task_delivery.write({"stage_id": self.stage_invoiceable.id})
         task_delivery._onchange_stage_id()
         self.assertEqual(
             self.sale_order_policy_delivery.order_line.qty_to_invoice, 10.0
