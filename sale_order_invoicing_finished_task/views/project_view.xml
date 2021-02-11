@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8" ?>
-<!-- Copyright 2017 Sergio Teruel <sergio.teruel@tecnativa.com>
+<!-- Copyright 2017 Tecnativa - Sergio Teruel
      License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl). -->
 <odoo>
     <record id="task_type_edit" model="ir.ui.view">
@@ -32,25 +32,13 @@
                         widget="boolean_button"
                         options='{"terminology": {
                                     "string_true": "Invoiceable",
-                                    "hover_true": "Not Invoiceable",
                                     "string_false": "Not Invoiceable",
+                                    "hover_true": "Not Invoiceable",
                                     "hover_false": "Invoiceable"
                                 }}'
                     />
                 </button>
             </div>
-        </field>
-    </record>
-    <!-- Need to get related field invoicing_finished_task when _onchange_stage_id
-     and save invoiceable value in kanban view -->
-    <record id="view_task_kanban" model="ir.ui.view">
-        <field name="model">project.task</field>
-        <field name="inherit_id" ref="project.view_task_kanban" />
-        <field name="arch" type="xml">
-            <field name="user_id" position="after">
-                <field name="sale_line_id" />
-                <field name="invoiceable" />
-            </field>
         </field>
     </record>
 </odoo>
