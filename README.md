@@ -40,6 +40,7 @@ addon | version | summary
 [sale_order_archive](sale_order_archive/) | 13.0.1.0.0 | Archive Sale Orders
 [sale_order_carrier_auto_assign](sale_order_carrier_auto_assign/) | 13.0.1.1.0 | Auto assign delivery carrier on sale order confirmation
 [sale_order_general_discount](sale_order_general_discount/) | 13.0.1.0.1 | General discount per sale order
+[sale_order_invoicing_finished_task](sale_order_invoicing_finished_task/) | 13.0.1.0.0 | Control invoice order lines if their related task has been set to invoiceable
 [sale_order_line_date](sale_order_line_date/) | 13.0.1.1.0 | Adds a commitment date to each sale order line.
 [sale_order_line_packaging_qty](sale_order_line_packaging_qty/) | 13.0.1.2.2 | Define quantities according to product packaging on sale order lines
 [sale_order_line_price_history](sale_order_line_price_history/) | 13.0.1.0.0 | Sale order line price history
