@@ -1,4 +1,5 @@
 # © 2015 Agile Business Group
+# Copyright 2021 Tecnativa - Víctor Martínez
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
 
 import odoo.tests.common as test_common
@@ -18,10 +19,16 @@ class TestSaleOrderLotSelection(test_common.SingleTransactionCase):
 
         """
         super(TestSaleOrderLotSelection, self).setUp()
-        self.product_57 = self.env.ref('product.product_product_6')
+        self.product_57 = self.env.ref('product.product_product_6').copy({
+            'type': 'consu'
+        })
         self.product_57.tracking = 'lot'
-        self.product_46 = self.env.ref('product.product_product_13')
-        self.product_12 = self.env.ref('product.product_product_12')
+        self.product_46 = self.env.ref('product.product_product_13').copy({
+            'type': 'consu'
+        })
+        self.product_12 = self.env.ref('product.product_product_12').copy({
+            'type': 'consu'
+        })
         self.prd_cable = self.env.ref("stock.product_cable_management_box")
         self.lot_cable = self.env.ref("sale_order_lot_selection.lot_cable")
         self.supplier_location = self.env.ref(
