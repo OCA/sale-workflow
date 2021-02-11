@@ -1,6 +1,6 @@
 # Copyright 2017 Camptocamp SA
-# Copyright 2017 Sergio Teruel <sergio.teruel@tecnativa.com>
-# Copyright 2017 Carlos Dauden <carlos.dauden@tecnativa.com>
+# Copyright 2017 Tecnativa - Sergio Teruel
+# Copyright 2017 Tecnativa - Carlos Dauden
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
 
 from odoo import _, api, fields, models
@@ -10,7 +10,7 @@ from odoo.exceptions import ValidationError
 class ProjectTaskType(models.Model):
     _inherit = "project.task.type"
 
-    invoiceable = fields.Boolean(string="Invoiceable",)
+    invoiceable = fields.Boolean(string="Invoiceable")
 
 
 class ProjectTask(models.Model):
@@ -32,17 +32,15 @@ class ProjectTask(models.Model):
         )
         tasks.toggle_invoiceable()
 
-    @api.multi
     def toggle_invoiceable(self):
         self._check_sale_line_state()
         for task in self:
             task.invoiceable = not task.invoiceable
 
-    @api.multi
     def write(self, vals):
         if "sale_line_id" in vals:
             self._check_sale_line_state(vals["sale_line_id"])
-        res = super(ProjectTask, self).write(vals)
+        res = super().write(vals)
         if "invoiceable" in vals:
             self.mapped("sale_line_id")._compute_qty_delivered()
         return res
@@ -51,7 +49,7 @@ class ProjectTask(models.Model):
     def create(self, vals):
         if "sale_line_id" in vals:
             self._check_sale_line_state(vals["sale_line_id"])
-        return super(ProjectTask, self).create(vals)
+        return super().create(vals)
 
     def _check_sale_line_state(self, sale_line_id=False):
         sale_lines = self.mapped("sale_line_id")
