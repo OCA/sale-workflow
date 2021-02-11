@@ -70,6 +70,10 @@ Akretion:
 * Mourad EL HADJ MIMOUNE <mourad.elhadj.mimoune@akretion.com>
 * David BEAL <david.beal@akretion.com>
 
+* `Tecnativa <https://www.tecnativa.com>`_:
+
+    * Víctor Martínez
+
 Maintainers
 ~~~~~~~~~~~
 
