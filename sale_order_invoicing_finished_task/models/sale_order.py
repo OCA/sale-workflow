@@ -1,5 +1,5 @@
-# Copyright 2017 Sergio Teruel <sergio.teruel@tecnativa.com>
-# Copyright 2017 Carlos Dauden <carlos.dauden@tecnativa.com>
+# Copyright 2017 Tecnativa - Sergio Teruel
+# Copyright 2017 Tecnativa - Carlos Dauden
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
 
 from odoo import api, fields, models
@@ -12,16 +12,14 @@ class SaleOrder(models.Model):
         "state", "order_line.invoice_status", "order_line.task_ids.invoiceable"
     )
     def _get_invoiced(self):
-        super(SaleOrder, self)._get_invoiced()
+        super()._get_invoiced()
         for order in self.filtered(lambda o: o.invoice_status != "no"):
             if not all(
                 t.invoiceable
                 for t in order.mapped("order_line.task_ids")
                 if t.invoicing_finished_task
             ):
-                order.update(
-                    {"invoice_status": "no",}
-                )
+                order.update({"invoice_status": "no"})
 
 
 class SaleOrderLine(models.Model):
@@ -52,7 +50,6 @@ class SaleOrderLine(models.Model):
             lines.update({"qty_to_invoice": 0.0})
         super(SaleOrderLine, self - lines)._get_to_invoice_qty()
 
-    @api.multi
     def _timesheet_compute_delivered_quantity_domain(self):
         vals = super()._timesheet_compute_delivered_quantity_domain()
         vals = (
