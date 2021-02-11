@@ -63,8 +63,8 @@ addon | version | summary
 [sale_order_line_input](sale_order_line_input/) | 12.0.1.0.0 | Search, create or modify directly sale order lines
 [sale_order_line_price_history](sale_order_line_price_history/) | 12.0.1.1.1 | Sale order line price history
 [sale_order_line_sequence](sale_order_line_sequence/) | 12.0.1.0.0 | Propagates SO line sequence to invoices and stock picking.
-[sale_order_lot_generator](sale_order_lot_generator/) | 12.0.1.0.1 | Sale Order Lot Generator
-[sale_order_lot_selection](sale_order_lot_selection/) | 12.0.2.0.0 | Sale Order Lot Selection
+[sale_order_lot_generator](sale_order_lot_generator/) | 12.0.1.0.2 | Sale Order Lot Generator
+[sale_order_lot_selection](sale_order_lot_selection/) | 12.0.2.0.1 | Sale Order Lot Selection
 [sale_order_min_qty](sale_order_min_qty/) | 12.0.1.0.0 | Sale order min quantity
 [sale_order_price_recalculation](sale_order_price_recalculation/) | 12.0.1.1.0 | Recalculate prices / Reset descriptions on sale order lines
 [sale_order_product_assortment](sale_order_product_assortment/) | 12.0.1.0.0 | Sale Order Product Assortment
