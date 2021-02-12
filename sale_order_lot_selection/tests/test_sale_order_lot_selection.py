@@ -1,4 +1,5 @@
 # © 2015 Agile Business Group
+# Copyright 2021 Tecnativa - Víctor Martínez
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
 import odoo.tests.common as test_common
 from odoo.exceptions import UserError
@@ -17,10 +18,16 @@ class TestSaleOrderLotSelection(test_common.SingleTransactionCase):
 
         """
         super(TestSaleOrderLotSelection, self).setUp()
-        self.product_57 = self.env.ref("product.product_product_6")
+        self.product_57 = self.env.ref("product.product_product_6").copy(
+            {"type": "consu"}
+        )
         self.product_57.tracking = "lot"
-        self.product_46 = self.env.ref("product.product_product_13")
-        self.product_12 = self.env.ref("product.product_product_12")
+        self.product_46 = self.env.ref("product.product_product_13").copy(
+            {"type": "consu"}
+        )
+        self.product_12 = self.env.ref("product.product_product_12").copy(
+            {"type": "consu"}
+        )
         self.supplier_location = self.env.ref("stock.stock_location_suppliers")
         self.customer_location = self.env.ref("stock.stock_location_customers")
         self.stock_location = self.env.ref("stock.stock_location_stock")
