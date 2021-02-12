@@ -44,7 +44,7 @@ addon | version | summary
 [sale_order_line_date](sale_order_line_date/) | 13.0.1.1.0 | Adds a commitment date to each sale order line.
 [sale_order_line_packaging_qty](sale_order_line_packaging_qty/) | 13.0.1.2.2 | Define quantities according to product packaging on sale order lines
 [sale_order_line_price_history](sale_order_line_price_history/) | 13.0.1.0.0 | Sale order line price history
-[sale_order_lot_selection](sale_order_lot_selection/) | 13.0.1.0.1 | Sale Order Lot Selection
+[sale_order_lot_selection](sale_order_lot_selection/) | 13.0.1.0.2 | Sale Order Lot Selection
 [sale_order_product_assortment](sale_order_product_assortment/) | 13.0.1.0.0 | Module that allows to use the assortments on sale orders
 [sale_order_product_availability_inline](sale_order_product_availability_inline/) | 13.0.1.1.1 | Show product availability in sales order line product drop-down.
 [sale_order_product_recommendation](sale_order_product_recommendation/) | 13.0.2.0.5 | Recommend products to sell to customer based on history
