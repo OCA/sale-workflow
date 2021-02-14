@@ -8,7 +8,7 @@
 
 {
     "name": "Sale Order Type",
-    "version": "13.0.1.3.6",
+    "version": "13.0.1.4.0",
     "category": "Sales Management",
     "author": "Grupo Vermon,"
     "AvanzOSC,"
@@ -29,5 +29,6 @@
         "views/res_partner_view.xml",
         "data/default_type.xml",
     ],
+    "post_init_hook": "post_init_hook",
     "installable": True,
 }
