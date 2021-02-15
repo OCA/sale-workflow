@@ -14,6 +14,9 @@
         <field name="model">sale.order</field>
         <field name="inherit_id" ref="sale.view_sales_order_filter" />
         <field name="arch" type="xml">
+            <field name="user_id" position="after">
+                <field name="business_provider_id" />
+            </field>
             <filter name="customer" position="before">
                 <filter
                     name="business_provider_groupby"
@@ -23,4 +26,25 @@
             </filter>
         </field>
     </record>
+    <record id="view_order_tree" model="ir.ui.view">
+        <field name="name">business.provider.sale.order.tree</field>
+        <field name="model">sale.order</field>
+        <field name="inherit_id" ref="sale.view_order_tree" />
+        <field name="arch" type="xml">
+            <field name="user_id" position="after">
+                <field name="business_provider_id" optional="hide" />
+            </field>
+        </field>
+    </record>
+    <record id="view_quotation_tree" model="ir.ui.view">
+        <field name="name">business.provider.sale.order.tree</field>
+        <field name="model">sale.order</field>
+        <field name="inherit_id" ref="sale.view_quotation_tree" />
+        <field name="arch" type="xml">
+            <field name="user_id" position="after">
+                <field name="business_provider_id" optional="hide" />
+            </field>
+        </field>
+    </record>
+
 </odoo>
