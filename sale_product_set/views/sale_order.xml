@@ -9,7 +9,7 @@
                 <button
                     class="btn-primary"
                     type="action"
-                    name="%(act_open_wizard_product_set_add)d"
+                    name="%(act_open_wizard_product_set_add_from_order)d"
                     icon="fa-cubes"
                     attrs="{'invisible': [('state','not in',('draft','sent'))]}"
                     groups="base.group_user"
