@@ -40,7 +40,7 @@ class SaleOrderForceInvoiceability(common.SavepointCase):
         # Only users with sales manager permission can force the lines
         self.sale_order.action_confirm()
         with self.assertRaises(UserError) as cm:
-            self.sale_order.sudo(
+            self.sale_order.with_user(
                 self.user_demo.id
             ).force_lines_to_invoice_policy_order()
         self.assertEqual(
@@ -49,7 +49,9 @@ class SaleOrderForceInvoiceability(common.SavepointCase):
         )
         # Once we grant permission everything goes ok
         self.group_sales_manager.users |= self.user_demo
-        self.sale_order.sudo(self.user_demo.id).force_lines_to_invoice_policy_order()
+        self.sale_order.with_user(
+            self.user_demo.id
+        ).force_lines_to_invoice_policy_order()
 
     def test_03_force_invoiceable_lines(self):
         self.sale_order.action_confirm()
@@ -69,7 +71,7 @@ class SaleOrderForceInvoiceability(common.SavepointCase):
         adv_wiz = (
             self.env["sale.advance.payment.inv"]
             .with_context(active_ids=[self.sale_order.id])
-            .create({"advance_payment_method": "all"})
+            .create({"advance_payment_method": "delivered"})
         )
         adv_wiz.with_context(open_invoices=True).create_invoices()
         self.assertEqual(10, sum(self.sale_order.mapped("order_line.qty_invoiced")))
