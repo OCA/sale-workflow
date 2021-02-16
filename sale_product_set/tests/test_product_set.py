@@ -14,6 +14,28 @@ class TestProductSet(common.SavepointCase):
         cls.sale_order = cls.env["sale.order"]
         cls.product_set_add = cls.env["product.set.add"]
 
+    def test_add_set_lines_init(self):
+        so = self.env.ref("sale.sale_order_6")
+        product_set = self.env.ref("sale_product_set.product_set_i5_computer")
+        wiz_vals = {"product_set_id": product_set.id, "quantity": 2}
+        wiz = self.product_set_add.with_context(active_id=so.id).create(wiz_vals)
+        # Default to all lines from set
+        self.assertEqual(wiz.product_set_line_ids, product_set.set_line_ids)
+        self.assertEqual([x.id for x in wiz._get_lines()], product_set.set_line_ids.ids)
+        # Pass via ctx
+        line_ids = self.env.ref("sale_product_set.product_set_line_computer_1").ids
+        wiz = self.product_set_add.with_context(
+            active_id=so.id, product_set_add__set_line_ids=line_ids
+        ).create(wiz_vals)
+        self.assertEqual(wiz.product_set_line_ids.ids, line_ids)
+        self.assertEqual([x.id for x in wiz._get_lines()], line_ids)
+        # Pass at create
+        line_ids = self.env.ref("sale_product_set.product_set_line_computer_3").ids
+        wiz = self.product_set_add.with_context(active_id=so.id).create(wiz_vals)
+        wiz.product_set_line_ids = line_ids
+        self.assertEqual(wiz.product_set_line_ids.ids, line_ids)
+        self.assertEqual([x.id for x in wiz._get_lines()], line_ids)
+
     def test_add_set(self):
         so = self.env.ref("sale.sale_order_6")
         count_lines = len(so.order_line)
