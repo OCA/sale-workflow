@@ -6,27 +6,29 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 12.0\n"
 "Report-Msgid-Bugs-To: \n"
-"Last-Translator: Automatically generated\n"
+"PO-Revision-Date: 2021-02-17 01:46+0000\n"
+"Last-Translator: Pedro Castro Silva <pedrocs@exo.pt>\n"
 "Language-Team: none\n"
 "Language: pt\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
 "Plural-Forms: nplurals=2; plural=n > 1;\n"
+"X-Generator: Weblate 4.3.2\n"
 
 #. module: partner_prospect
 #: model_terms:ir.ui.view,arch_db:partner_prospect.res_partner_prospect_search_view
 msgid "Actual Customer"
-msgstr ""
+msgstr "Cliente Efetivo"
 
 #. module: partner_prospect
 #: model:ir.model,name:partner_prospect.model_res_partner
 msgid "Contact"
-msgstr ""
+msgstr "Contacto"
 
 #. module: partner_prospect
 #: model:ir.model.fields,field_description:partner_prospect.field_res_partner__prospect
 #: model:ir.model.fields,field_description:partner_prospect.field_res_users__prospect
 #: model_terms:ir.ui.view,arch_db:partner_prospect.res_partner_prospect_search_view
 msgid "Prospect"
-msgstr ""
+msgstr "Cliente Potencial"
