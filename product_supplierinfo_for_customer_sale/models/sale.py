@@ -12,13 +12,10 @@ class SaleOrderLine(models.Model):
         compute='_compute_product_customer_code',
         string='Product Customer Code',
     )
-    partner_is_customer = fields.Boolean(
-        related='order_id.partner_id.customer',
-    )
 
     @api.depends('product_id')
     def _compute_product_customer_code(self):
-        for line in self.filtered(lambda sol: sol.order_partner_id.customer):
+        for line in self:
             supplierinfo = self.get_customer_supplierinfo(line)
             line.product_customer_code = supplierinfo.product_code
 
