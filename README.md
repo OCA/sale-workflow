@@ -34,6 +34,7 @@ addon | version | summary
 [sale_exception](sale_exception/) | 13.0.1.1.0 | Custom exceptions on sale order
 [sale_fixed_discount](sale_fixed_discount/) | 13.0.1.1.1 | Allows to apply fixed amount discounts in sales orders.
 [sale_force_invoiced](sale_force_invoiced/) | 13.0.1.1.0 | Allows to force the invoice status of the sales order to Invoiced
+[sale_force_whole_invoiceability](sale_force_whole_invoiceability/) | 13.0.1.0.0 | Sale Force Whole Invoiceability
 [sale_invoice_plan](sale_invoice_plan/) | 13.0.1.0.2 | Add to sales order, ability to manage future invoice plan
 [sale_isolated_quotation](sale_isolated_quotation/) | 13.0.1.0.0 | Sale Isolated Quotation
 [sale_last_price_info](sale_last_price_info/) | 13.0.1.0.0 | Product Last Price Info - Sale
