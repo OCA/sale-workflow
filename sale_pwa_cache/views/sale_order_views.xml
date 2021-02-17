@@ -51,6 +51,9 @@
                             }" context="{'company_id': parent.company_id}" class="mb-2" options="{'no_open': True, 'no_create': True, 'no_edit': True}" domain="[['category_id', '=', uom_category_id]]" />
                         </form>
                     </field>
+                    <group>
+                        <field name="note" nolabel="1" colspan="4" placeholder="Terms and conditions... (note: you can setup default ones in the Configuration menu)"/>
+                    </group>
                 </group>
             </formPWA>
         </field>
