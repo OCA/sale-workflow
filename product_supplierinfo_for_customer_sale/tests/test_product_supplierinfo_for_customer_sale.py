@@ -43,12 +43,7 @@ class TestProductSupplierinfoForCustomerSale(TransactionCase):
     def _create_customer(self, name):
         """Create a Partner."""
         return self.env["res.partner"].create(
-            {
-                "name": name,
-                "email": "example@yourcompany.com",
-                "customer": True,
-                "phone": 123456,
-            }
+            {"name": name, "email": "example@yourcompany.com", "phone": 123456}
         )
 
     def _create_partnerinfo(

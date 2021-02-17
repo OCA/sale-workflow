@@ -24,8 +24,8 @@ class TestProductNameSearch(TransactionCase):
         self.customerinfo_dict = {
             "product_code": "code_test",
             "product_name": "Name_test",
-            "name": self.customer.id,
             "product_tmpl_id": self.product.product_tmpl_id.id,
+            "name": self.customer.id,
         }
 
     def test_10_find_product_customer_code(self):
@@ -33,7 +33,6 @@ class TestProductNameSearch(TransactionCase):
         using name_search
         """
         self.assertFalse(self.product.customer_ids)
-
         self.customerinfo.create(self.customerinfo_dict)
         self.assertTrue(self.product.customer_ids)
 
@@ -61,12 +60,9 @@ class TestProductNameSearch(TransactionCase):
 
         # Create a product_1 with default_code similar to customer_code of
         # product, then name_search must find two products
-        self.product_1 = (
-            self.env["product.product"]
-            .create({"name": "Name_test_1", "default_code": "code_test_1"})
-            .with_context({"partner_id": self.customer.id})
+        self.product_1 = self.env["product.product"].create(
+            {"name": "Name_test_1", "default_code": "code_test_1"}
         )
-
         self.assertFalse(self.product_1.customer_ids)
 
         # Search by product customer code
