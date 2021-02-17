@@ -31,5 +31,5 @@ class SaleOrderLine(models.Model):
         vals = super(SaleOrderLine, self)._prepare_procurement_values(group_id)
         # has ensure_one already
         if self.commitment_date:
-            vals.update({"date_planned": self.commitment_date})
+            vals.update({"date_deadline": self.commitment_date})
         return vals
