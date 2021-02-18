@@ -6,19 +6,11 @@
     "category": "Stock",
     "website": "https://github.com/OCA/sale-workflow",
     "development_status": "Production/Stable",
-    "author": "Tecnativa, "
-              "Odoo Community Association (OCA)",
-    "maintainers": [
-        "chienandalu",
-    ],
+    "author": "Tecnativa, " "Odoo Community Association (OCA)",
+    "maintainers": ["chienandalu",],
     "license": "AGPL-3",
     "application": False,
     "installable": True,
-    "depends": [
-        "sale_stock",
-        "stock_return_request",
-    ],
-    "data": [
-        'views/sale_return_request_views.xml',
-    ],
+    "depends": ["sale_stock", "stock_return_request",],
+    "data": ["views/sale_return_request_views.xml",],
 }
