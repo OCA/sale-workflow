@@ -13,9 +13,7 @@ class StockReturnRequest(models.Model):
     def _prepare_move_default_values(self, line, qty, move):
         """Extend this method to add values to return move"""
         vals = super()._prepare_move_default_values(line, qty, move)
-        vals.update(
-            {"sale_line_id": move.sale_line_id.id,}
-        )
+        vals.update({"sale_line_id": move.sale_line_id.id})
         return vals
 
     def _action_confirm(self):
@@ -26,7 +24,7 @@ class StockReturnRequest(models.Model):
 
     def action_view_sales(self):
         """Display returned sales"""
-        action = action = self.env.ref("sale.action_orders")
+        action = self.env.ref("sale.action_orders")
         result = action.read()[0]
         result["context"] = {}
         sales = self.mapped("sale_order_ids")
