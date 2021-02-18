@@ -26,7 +26,7 @@
                         mode="form"
                         widget="one2many_product_picker"
                         context="{'sale_order_partner_id': partner_id, 'default_product_uom_qty': 0}"
-                        options="{'edit_discount': True, 'show_discount': True, 'groups': [{'name': 'product_history', 'string': _('Product History'), 'domain': [('sale_order_partner_id_product', '=', True)]}]}"
+                        options="{'edit_discount': True, 'show_discount': True, 'edit_price': False, 'search': [{'name': _('Contains'), 'domain': [('name', 'ilike', '$search')]}, {'name': _('Starts With'), 'domain': [('name', '=ilike', '$search%')]}, {'name': _('Category'), 'domain': [('categ_name', 'ilike', '$search')]}], 'groups': [{'name': 'product_history', 'string': _('Product History'), 'domain': [('sale_order_partner_id_product', '=', True)], 'order': [{'name': 'categ_id'}]}]}"
                     >
                         <form>
                             <field name="state" invisible="1" />

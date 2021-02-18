@@ -11,6 +11,7 @@ class ProductProduct(models.Model):
         search="_search_sale_order_partner_id_product",
         readonly=True,
     )
+    categ_name = fields.Char(related="categ_id.name", store=False, readonly=True)
 
     def _compute_sale_order_partner_id_product(self):
         """Void response as we're just interested in the search part"""
