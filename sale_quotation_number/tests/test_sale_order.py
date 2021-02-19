@@ -22,17 +22,17 @@ class TestSaleOrder(TransactionCase):
         )
         quotation2_name = order2.name
 
-        self.assertRegexpMatches(quotation1_name, "SQ")
-        self.assertRegexpMatches(quotation2_name, "SQ")
+        self.assertRegex(quotation1_name, "SQ")
+        self.assertRegex(quotation2_name, "SQ")
         self.assertLess(int(quotation1_name[2:]), int(quotation2_name[2:]))
 
         order2.action_confirm()
         order1.action_confirm()
 
-        self.assertRegexpMatches(order1.name, "S")
+        self.assertRegex(order1.name, "S")
         self.assertEqual(order1.origin, quotation1_name)
 
-        self.assertRegexpMatches(order2.name, "S")
+        self.assertRegex(order2.name, "S")
         self.assertEqual(order2.origin, quotation2_name)
         self.assertLess(int(order2.name[1:]), int(order1.name[1:]))
 
@@ -44,7 +44,7 @@ class TestSaleOrder(TransactionCase):
         quotation1_name = order1.name
         order1.action_confirm()
 
-        self.assertRegexpMatches(order1.name, "S")
+        self.assertRegex(order1.name, "S")
         self.assertEqual(order1.origin, ", ".join([origin, quotation1_name]))
 
     def test_copy_no_origin(self):
