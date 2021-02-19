@@ -49,4 +49,4 @@ class TestSaleOrderLotGenerator(test_common.SingleTransactionCase):
             if line.product_id.id == self.prd_flipover.id:
                 self.assertEqual(line.lot_id, self.sol1.lot_id)
             if line.product_id.id == self.prd_acoustic.id:
-                self.assertEqual(line.restrict_lot_id, self.sol2.lot_id)
+                self.assertEqual(line.lot_id, self.sol2.lot_id)
