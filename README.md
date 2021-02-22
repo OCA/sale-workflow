@@ -49,6 +49,7 @@ addon | version | summary
 [sale_invoice_policy](sale_invoice_policy/) | 12.0.1.0.0 | Sales Management: let the user choose the invoice policy on the order
 [sale_isolated_quotation](sale_isolated_quotation/) | 12.0.1.1.0 | Sale Isolated Quotation
 [sale_last_price_info](sale_last_price_info/) | 12.0.2.0.0 | Product Last Price Info - Sale
+[sale_manual_delivery](sale_manual_delivery/) | 12.0.2.0.0 | Create manually your deliveries
 [sale_merge_draft_invoice](sale_merge_draft_invoice/) | 12.0.1.0.1 | Sale Merge Draft Invoice
 [sale_milestone_profile_invoicing](sale_milestone_profile_invoicing/) | 12.0.1.0.1 | Inform on delivered and invoiced work by sale order line.
 [sale_mrp_bom](sale_mrp_bom/) | 12.0.1.0.0 | Allows define a BOM in the sales lines.
