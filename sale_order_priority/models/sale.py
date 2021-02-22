@@ -13,7 +13,6 @@ class SaleOrderLine(models.Model):
         stock_move.PROCUREMENT_PRIORITIES, string="Priority", default="1"
     )
 
-    @api.multi
     def _prepare_procurement_values(self, group_id=False):
         self.ensure_one()
         res = super(SaleOrderLine, self)._prepare_procurement_values(group_id=group_id)
@@ -31,23 +30,21 @@ class SaleOrder(models.Model):
         inverse="_inverse_priority",
         store=True,
         index=True,
-        track_visibility="onchange",
+        tracking=True,
         states={"done": [("readonly", True)], "cancel": [("readonly", True)]},
         help="Priority for this sale order. "
         "Setting manually a value here would set it as priority "
         "for all the order lines",
     )
 
-    @api.multi
     @api.depends("order_line.priority")
     def _compute_priority(self):
         for order in self.filtered(lambda x: x.order_line):
             priority = order.mapped("order_line.priority")
             order.priority = max([x for x in priority if x] or "1")
 
-    @api.multi
     def _inverse_priority(self):
         for order in self:
             priority = order.priority
-            for line in order.order_line:
+            for line in order.order_line.filtered(lambda x: x.priority != priority):
                 line.priority = priority
