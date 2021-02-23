@@ -12,5 +12,9 @@
     "application": False,
     "installable": True,
     "depends": ["sale"],
-    "data": ["wizards/sale_order_recommendation_view.xml", "views/sale_order_view.xml"],
+    "data": [
+        "wizards/sale_order_recommendation_view.xml",
+        "views/res_config_settings_views.xml",
+        "views/sale_order_view.xml",
+    ],
 }
