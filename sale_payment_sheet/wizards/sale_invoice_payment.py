@@ -30,7 +30,13 @@ class SaleInvoicePaymentWiz(models.TransientModel):
     def default_get(self, fields_list):
         res = super(SaleInvoicePaymentWiz, self).default_get(fields_list)
         invoices = self.env["account.move"].browse(self.env.context.get("active_ids"))
-        res["amount"] = sum(invoices.mapped("amount_residual"))
+        res["journal_id"] = self.env.user.commercial_journal_ids[:1].id
+        res["amount"] = 0.0
+        for invoice in invoices:
+            if invoice.type == "out_refund":
+                res["amount"] -= invoice.amount_residual
+            else:
+                res["amount"] += invoice.amount_residual
         return res
 
     @api.depends("journal_id")
@@ -67,16 +73,33 @@ class SaleInvoicePaymentWiz(models.TransientModel):
                     "date": fields.Date.today(),
                 }
             )
-        for invoice in invoices:
-            if not self.amount:
-                break
-            sheet_line = sheet.line_ids.filtered(lambda ln: ln.invoice_id == invoice)
+        # First process refund invoices su summarize negative amounts
+        for invoice in invoices.filtered(lambda inv: inv.type == "out_refund"):
+            self._process_invoice(sheet, invoice)
+
+        for invoice in invoices.filtered(lambda inv: inv.type == "out_invoice").sorted(
+            key=lambda x: (x.date, x.id)
+        ):
+            self._process_invoice(sheet, invoice)
+        return sheet.get_formview_action()
+
+    def _process_invoice(self, sheet, invoice):
+        sheet_line = sheet.line_ids.filtered(lambda ln: ln.invoice_id == invoice)
+        invoice_amount_residual = (
+            invoice.amount_residual
+            if invoice.type == "out_invoice"
+            else -invoice.amount_residual
+        )
+        amount_pay = 0.0
+        if self.amount > 0:
             amount_pay = (
-                invoice.amount_residual
-                if self.amount >= invoice.amount_residual
+                invoice_amount_residual
+                if self.amount >= invoice_amount_residual
                 else self.amount
             )
-            # TODO: What to do if a line has been finded
+        elif invoice.type == "out_refund":
+            amount_pay = invoice_amount_residual
+        if amount_pay:
             if sheet_line:
                 sheet_line.amount = amount_pay
             else:
@@ -91,5 +114,4 @@ class SaleInvoicePaymentWiz(models.TransientModel):
                         },
                     )
                 ]
-            self.amount -= amount_pay
-        return sheet
+        self.amount -= amount_pay
