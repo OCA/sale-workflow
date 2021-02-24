@@ -49,14 +49,11 @@ class SaleOrder(models.Model):
                 rec.coupon_promotion_rule_id + rec.promotion_rule_ids
             )
 
-    @api.multi
     def add_coupon(self, coupon_code):
         self.env["sale.promotion.rule"].apply_coupon(self, coupon_code)
 
-    @api.multi
     def apply_promotions(self):
         self.env["sale.promotion.rule"].compute_promotions(self)
 
-    @api.multi
     def clear_promotions(self):
         self.env["sale.promotion.rule"].remove_promotions(self)
