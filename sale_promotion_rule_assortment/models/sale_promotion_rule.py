@@ -37,7 +37,7 @@ class SalePromotionRule(models.Model):
             return order_lines
         promotion_product_ids = self._get_promotion_rule_products()
         order_line_ids = order_lines.filtered(
-            lambda order_line, product_ids=promotion_product_ids: order_line.product_id.id
+            lambda line, product_ids=promotion_product_ids: line.product_id.id
             in product_ids.ids
         )
         return order_line_ids
