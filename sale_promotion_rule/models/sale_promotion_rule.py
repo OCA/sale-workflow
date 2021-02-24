@@ -328,10 +328,13 @@ according to the strategy
             for line in _lines:
                 if line.has_promotion_rules:
                     v = {
-                        "discount": 0.0,
                         "coupon_promotion_rule_id": False,
                         "promotion_rule_ids": [(5,)],
                     }
+                    if "percentage" in line.applied_promotion_rule_ids.mapped(
+                        "discount_type"
+                    ):
+                        v["discount"] = 0.0
                     vals.append((1, line.id, v))
                 elif line.is_promotion_line:
                     vals.append((2, line.id))
