@@ -1,21 +1,20 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="UTF-8" ?>
 <odoo>
     <record id="view_sale_promotion_rule_tree" model="ir.ui.view">
         <field name="model">sale.promotion.rule</field>
         <field name="arch" type="xml">
             <tree>
-                <field name="sequence" widget="handle"/>
-                <field name="name"/>
-                <field name="code"/>
-                <field name="discount_amount"/>
-                <field name="date_from"/>
-                <field name="date_to"/>
-                <field name="is_minimal_amount_tax_incl"/>
-                <field name="minimal_amount"/>
+                <field name="sequence" widget="handle" />
+                <field name="name" />
+                <field name="code" />
+                <field name="discount_amount" />
+                <field name="date_from" />
+                <field name="date_to" />
+                <field name="is_minimal_amount_tax_incl" />
+                <field name="minimal_amount" />
             </tree>
         </field>
     </record>
-
     <record id="view_sale_promotion_rule_form" model="ir.ui.view">
         <field name="model">sale.promotion.rule</field>
         <field name="arch" type="xml">
@@ -24,64 +23,75 @@
                 </header>
                 <sheet>
                     <h1>
-                        <field name="name"/>
+                        <field name="name" />
                     </h1>
                     <group col="2">
                         <group name="type" string="Type">
-                            <field name="rule_type"/>
-                            <field name="code"
-                                   attrs="{'required': [('rule_type', '=', 'coupon')]}"/>
+                            <field name="rule_type" />
+                            <field
+                                name="code"
+                                attrs="{'required': [('rule_type', '=', 'coupon')]}"
+                            />
                         </group>
                         <group name="offer" string="Offer">
-                            <field name="usage_restriction"/>
-                            <field name="promo_type" widget="radio"/>
-                            <field name="discount_type"/>
-                            <field name="discount_amount"/>
-                            <field name="discount_amount_currency_id"
-                                   groups="base.group_multi_currency"
-                                   attrs="{'required':  [('promo_type', '=', 'discount'), ('discount_type', 'in', ('amount_tax_included', 'amount_tax_excluded'))],
+                            <field name="usage_restriction" />
+                            <field name="promo_type" widget="radio" />
+                            <field name="discount_type" />
+                            <field name="discount_amount" />
+                            <field
+                                name="discount_amount_currency_id"
+                                groups="base.group_multi_currency"
+                                attrs="{'required':  [('promo_type', '=', 'discount'), ('discount_type', 'in', ('amount_tax_included', 'amount_tax_excluded'))],
                                            'invisible': ['|', ('promo_type', '!=', 'discount'), ('discount_type', 'not in', ('amount_tax_included', 'amount_tax_excluded'))]}"
                             />
-                            <field name="discount_product_id"
-                                   attrs="{'required':  [('promo_type', '=', 'discount'), ('discount_type', 'in', ('amount_tax_included', 'amount_tax_excluded'))],
+                            <field
+                                name="discount_product_id"
+                                attrs="{'required':  [('promo_type', '=', 'discount'), ('discount_type', 'in', ('amount_tax_included', 'amount_tax_excluded'))],
                                            'invisible': ['|', ('promo_type', '!=', 'discount'), ('discount_type', 'not in', ('amount_tax_included', 'amount_tax_excluded'))]}"
                             />
-                            <field name="multi_rule_strategy"/>
+                            <field name="multi_rule_strategy" />
                         </group>
                         <group name="condition" string="Condition" col="3">
-                            <label for="date_from" string="Date début/fin"/>
-                            <field name="date_from" nolabel="1"/>
-                            <field name="date_to" nolabel="1"/>
-                            <field name="minimal_amount" colspan="3"/>
-                            <field name="is_minimal_amount_tax_incl" colspan="3"/>
-                            <field name="only_newsletter" colspan="3"/>
-                            <field name="restrict_pricelist_ids"
-                                   widget="many2many_tags"
-                                   colspan="3"/>
-                            <label for="restrict_partner_ids" colspan="3"/>
-                            <field name="restrict_partner_ids" nolabel="1" colspan="3"/>
+                            <label for="date_from" string="Date début/fin" />
+                            <field name="date_from" nolabel="1" />
+                            <field name="date_to" nolabel="1" />
+                            <field name="minimal_amount" colspan="3" />
+                            <field name="is_minimal_amount_tax_incl" colspan="3" />
+                            <field name="only_newsletter" colspan="3" />
+                            <field
+                                name="restrict_pricelist_ids"
+                                widget="many2many_tags"
+                                colspan="3"
+                            />
+                            <label for="restrict_partner_ids" colspan="3" />
+                            <field
+                                name="restrict_partner_ids"
+                                nolabel="1"
+                                colspan="3"
+                            />
                         </group>
                     </group>
                 </sheet>
             </form>
         </field>
     </record>
-
     <record id="action_sale_promotion_rule_form" model="ir.actions.act_window">
         <field name="name">Promotion Rule</field>
         <field name="type">ir.actions.act_window</field>
         <field name="res_model">sale.promotion.rule</field>
         <field name="view_type">form</field>
         <field name="view_mode">tree,form</field>
-         <field name="view_ids" eval="[(5, 0, 0),
+        <field
+            name="view_ids"
+            eval="[(5, 0, 0),
                 (0, 0, {'view_mode': 'tree', 'view_id': ref('view_sale_promotion_rule_tree')}),
-                (0, 0, {'view_mode': 'form', 'view_id': ref('view_sale_promotion_rule_form')})]"/>
+                (0, 0, {'view_mode': 'form', 'view_id': ref('view_sale_promotion_rule_form')})]"
+        />
     </record>
-
     <menuitem
-            action="action_sale_promotion_rule_form"
-            id="menu_action_sale_promotion_rule_form"
-            parent="sale.menu_sales_config"
-            sequence="50"/>
-
+        action="action_sale_promotion_rule_form"
+        id="menu_action_sale_promotion_rule_form"
+        parent="sale.menu_sales_config"
+        sequence="50"
+    />
 </odoo>
