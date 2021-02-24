@@ -1,32 +1,28 @@
-# -*- coding: utf-8 -*-
 # Copyright 2018 Acsone SA/Nv
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
 from odoo import api, fields, models
 
-
 line_restriction_amount_mapping = {
-    'amount_total': 'price_total',
-    'amount_untaxed': 'price_subtotal',
+    "amount_total": "price_total",
+    "amount_untaxed": "price_subtotal",
 }
 
 
 class SalePromotionRule(models.Model):
 
-    _inherit = 'sale.promotion.rule'
+    _inherit = "sale.promotion.rule"
 
     filter_id = fields.Many2one(
         "ir.filters",
         "Filter",
         help="Export only products matching with the filter domain",
-        domain=[('is_assortment', '=', True)],
-        context={
-            'product_assortment': True,
-            'default_is_assortment': 1},
+        domain=[("is_assortment", "=", True)],
+        context={"product_assortment": True, "default_is_assortment": 1},
     )
 
     def _get_promotion_rule_products(self):
-        product_obj = self.env['product.product']
+        product_obj = self.env["product.product"]
         if self.filter_id:
             domain = self.filter_id._get_eval_domain()
             return product_obj.search(domain)
@@ -41,14 +37,15 @@ class SalePromotionRule(models.Model):
             return order_lines
         promotion_product_ids = self._get_promotion_rule_products()
         order_line_ids = order_lines.filtered(
-            lambda order_line, product_ids=promotion_product_ids:
-            order_line.product_id.id in product_ids.ids)
+            lambda order_line, product_ids=promotion_product_ids: order_line.product_id.id
+            in product_ids.ids
+        )
         return order_line_ids
 
     @api.model
     def _get_restrictions(self):
         res = super(SalePromotionRule, self)._get_restrictions()
-        res.append('product_assortment')
+        res.append("product_assortment")
         return res
 
     def _check_valid_product_assortment(self, order):
