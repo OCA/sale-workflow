@@ -10,8 +10,6 @@ from odoo import _, api, fields, models
 from odoo.exceptions import UserError, ValidationError
 from odoo.tools import float_compare, float_round
 
-import odoo.addons.decimal_precision as dp
-
 _logger = logging.getLogger(__name__)
 
 
@@ -36,7 +34,7 @@ class SalePromotionRule(models.Model):
         required=True,
         default="discount",
     )
-    discount_amount = fields.Float(digits=dp.get_precision("Discount"), required=True)
+    discount_amount = fields.Float(digits="Discount", required=True)
     discount_amount_currency_id = fields.Many2one(
         "res.currency",
         string="Discount Amount Currency",
@@ -81,7 +79,7 @@ class SalePromotionRule(models.Model):
         default="no_restriction",
         required=True,
     )
-    minimal_amount = fields.Float(digits=dp.get_precision("Discount"))
+    minimal_amount = fields.Float(digits="Discount")
     is_minimal_amount_tax_incl = fields.Boolean(
         "Tax included into minimal amount?", default=True, required=True
     )
@@ -263,7 +261,6 @@ according to the strategy
             return not line.discount
         return True
 
-    @api.multi
     def name_get(self):
         res = []
         for record in self:
@@ -292,7 +289,6 @@ according to the strategy
                 coupon._apply(orders)
             self.apply_auto(orders)
 
-    @api.multi
     def apply_coupon(self, orders, coupon_code):
         """Add a coupon to orders"""
         coupon_rule = self.search(
@@ -342,7 +338,6 @@ according to the strategy
             if vals:
                 order.write({"order_line": vals})
 
-    @api.multi
     def _apply(self, orders):
         for rule in self:
             orders_valid = orders.filtered(lambda o, r=rule: r._is_promotion_valid(o))
@@ -354,7 +349,6 @@ according to the strategy
             else:
                 orders_valid.write({"promotion_rule_ids": [(4, rule.id)]})
 
-    @api.multi
     def _apply_rule_to_order_lines(self, lines):
         self.ensure_one()
         lines = lines.filtered(lambda l, r=self: r._is_promotion_valid_for_line(l))
@@ -378,7 +372,6 @@ according to the strategy
             )
         return percent_by_line
 
-    @api.multi
     def _apply_discount_to_order_lines(self, lines):
         self.ensure_one()
         if not self.promo_type == "discount":
@@ -412,7 +405,6 @@ according to the strategy
             if vals:
                 order.write({"order_line": vals})
 
-    @api.multi
     def _prepare_order_line_discount(self, order, lines):
         self.ensure_one()
         # takes all applied taxes
