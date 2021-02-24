@@ -49,7 +49,8 @@ class TestSaleInvoicePayment(SavepointCase):
             wiz_form.journal_id = self.bank_journal
             wiz_form.amount = 150.00
         wiz = wiz_form.save()
-        sheet = wiz.create_sale_invoice_payment_sheet()
+        action = wiz.create_sale_invoice_payment_sheet()
+        sheet = self.SalePaymentSheet.browse(action["res_id"])
         self.assertEqual(len(sheet.line_ids), 2)
         line_partial_payment = sheet.line_ids.filtered(
             lambda ln: ln.transaction_type == "partial"
