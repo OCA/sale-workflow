@@ -1,10 +1,9 @@
-# -*- coding: utf-8 -*-
 # Copyright 2017 Akretion (http://www.akretion.com).
 # @author Sébastien BEAU <sebastien.beau@akretion.com>
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
-from odoo.tests.common import TransactionCase
 from odoo.exceptions import UserError, ValidationError
+from odoo.tests.common import TransactionCase
 from odoo.tools import float_compare
 
 VALID_COUPON_CODE = "ELDONGHUT"
@@ -12,7 +11,6 @@ FIXED_AMOUNT_CODE = "FIXEDAMOUNT"
 
 
 class AbstractCommonPromotionCase(object):
-
     def _get_promotion_rule_coupon_values(self):
         return {
             "name": "Best Promo",
@@ -23,7 +21,7 @@ class AbstractCommonPromotionCase(object):
             "discount_type": "percentage",
             "minimal_amount": 50.00,
             "is_minimal_amount_tax_incl": False,
-            "multi_rule_strategy": "use_best"
+            "multi_rule_strategy": "use_best",
         }
 
     def _get_promotion_rule_auto_values(self):
@@ -35,7 +33,7 @@ class AbstractCommonPromotionCase(object):
             "discount_type": "percentage",
             "minimal_amount": 50.00,
             "is_minimal_amount_tax_incl": True,
-            "multi_rule_strategy": "use_best"
+            "multi_rule_strategy": "use_best",
         }
 
     def _get_promotion_rule_fixed_amount_values(self):
@@ -47,64 +45,72 @@ class AbstractCommonPromotionCase(object):
             "discount_amount": 20.00,
             "discount_type": "amount_tax_excluded",
             "discount_product_id": self.discount_product_id.id,
-            "discount_amount_currency_id":
-                self.env.user.company_id.currency_id.id,
+            "discount_amount_currency_id": self.env.user.company_id.currency_id.id,
             "minimal_amount": 50.00,
             "restriction_amount_field": "amount_untaxed",
-            "multi_rule_strategy": "use_best"
+            "multi_rule_strategy": "use_best",
         }
 
     def set_up(self, sale_xml_id):
         self.sale = self.env.ref(sale_xml_id)
-        self.price_precision_digits = self.env[
-            'decimal.precision'].precision_get('Product Price')
+        self.price_precision_digits = self.env["decimal.precision"].precision_get(
+            "Product Price"
+        )
         self.sale_promotion_rule = self.env["sale.promotion.rule"]
         self.discount_product_id = self.env.ref("product.membership_0")
         data_coupon = self._get_promotion_rule_coupon_values()
-        self.promotion_rule_coupon = self.sale_promotion_rule.search([
-            ("name", "=", data_coupon["name"])
-        ])
+        self.promotion_rule_coupon = self.sale_promotion_rule.search(
+            [("name", "=", data_coupon["name"])]
+        )
         if not self.promotion_rule_coupon:
-            self.promotion_rule_coupon = self.sale_promotion_rule.create(
-                data_coupon
-            )
+            self.promotion_rule_coupon = self.sale_promotion_rule.create(data_coupon)
         data_auto = self._get_promotion_rule_auto_values()
-        self.promotion_rule_auto = self.sale_promotion_rule.search([
-            ("name", "=", data_auto["name"])
-        ])
+        self.promotion_rule_auto = self.sale_promotion_rule.search(
+            [("name", "=", data_auto["name"])]
+        )
         if not self.promotion_rule_auto:
-            self.promotion_rule_auto = self.sale_promotion_rule.create(
-                data_auto
-            )
+            self.promotion_rule_auto = self.sale_promotion_rule.create(data_auto)
         data_fixed_amount = self._get_promotion_rule_fixed_amount_values()
-        self.promotion_rule_fixed_amount = self.sale_promotion_rule.search([
-            ("name", "=", data_fixed_amount["name"])
-        ])
+        self.promotion_rule_fixed_amount = self.sale_promotion_rule.search(
+            [("name", "=", data_fixed_amount["name"])]
+        )
         if not self.promotion_rule_fixed_amount:
             self.promotion_rule_fixed_amount = self.sale_promotion_rule.create(
                 data_fixed_amount
             )
 
-        self.tax_include_21 = self.env['account.tax'].create(
-            dict(name="Include tax 21",
-                 amount='21.00',
-                 price_include=True,
-                 type_tax_use='sale'))
-        self.tax_include_5 = self.env['account.tax'].create(
-            dict(name="Include tax 5",
-                 amount='5.00',
-                 price_include=True,
-                 type_tax_use='sale'))
-        self.tax_exclude_21 = self.env['account.tax'].create(
-            dict(name="Exclude tax 21",
-                 amount='21.00',
-                 price_include=False,
-                 type_tax_use='sale'))
-        self.tax_exclude_5 = self.env['account.tax'].create(
-            dict(name="Exclude tax 5",
-                 amount='5.00',
-                 price_include=False,
-                 type_tax_use='sale'))
+        self.tax_include_21 = self.env["account.tax"].create(
+            dict(
+                name="Include tax 21",
+                amount="21.00",
+                price_include=True,
+                type_tax_use="sale",
+            )
+        )
+        self.tax_include_5 = self.env["account.tax"].create(
+            dict(
+                name="Include tax 5",
+                amount="5.00",
+                price_include=True,
+                type_tax_use="sale",
+            )
+        )
+        self.tax_exclude_21 = self.env["account.tax"].create(
+            dict(
+                name="Exclude tax 21",
+                amount="21.00",
+                price_include=False,
+                type_tax_use="sale",
+            )
+        )
+        self.tax_exclude_5 = self.env["account.tax"].create(
+            dict(
+                name="Exclude tax 5",
+                amount="5.00",
+                price_include=False,
+                type_tax_use="sale",
+            )
+        )
         # add a tax on our discount product
         self.discount_product_id.taxes_id = [(6, 0, [self.tax_exclude_21.id])]
 
@@ -112,7 +118,7 @@ class AbstractCommonPromotionCase(object):
         self.sale.add_coupon(coupon_code)
 
     def check_discount_rule_set(self, line, promo_rule):
-        if promo_rule.rule_type == 'coupon':
+        if promo_rule.rule_type == "coupon":
             self.assertEqual(line.coupon_promotion_rule_id, promo_rule)
         else:
             self.assertEqual(line.promotion_rule_ids, promo_rule)
@@ -120,14 +126,13 @@ class AbstractCommonPromotionCase(object):
 
 
 class PromotionCase(TransactionCase, AbstractCommonPromotionCase):
-
     def setUp(self, *args, **kwargs):
         super(PromotionCase, self).setUp(*args, **kwargs)
-        self.set_up('sale.sale_order_3')
+        self.set_up("sale.sale_order_3")
 
     def test_name_get(self):
         name = self.promotion_rule_auto.name_get()[0][1]
-        self.assertTrue(name.endswith('(Automatic)'))
+        self.assertTrue(name.endswith("(Automatic)"))
         name = self.promotion_rule_coupon.name_get()[0][1]
         self.assertTrue(name.startswith(self.promotion_rule_coupon.name))
 
@@ -141,8 +146,8 @@ class PromotionCase(TransactionCase, AbstractCommonPromotionCase):
         first_line.discount = 20
         # we configure the list to specify that we want to keep the existing
         # disount if one is already specified
-        self.promotion_rule_coupon.multi_rule_strategy = 'keep_existing'
-        self.promotion_rule_auto.multi_rule_strategy = 'keep_existing'
+        self.promotion_rule_coupon.multi_rule_strategy = "keep_existing"
+        self.promotion_rule_auto.multi_rule_strategy = "keep_existing"
         self.add_coupon_code(VALID_COUPON_CODE)
         self.assertEqual(first_line.discount, 20)
         self.assertEqual(first_line.coupon_promotion_rule_id.id, False)
@@ -152,7 +157,7 @@ class PromotionCase(TransactionCase, AbstractCommonPromotionCase):
 
     def test_add_bad_discount_code(self):
         with self.assertRaises(UserError):
-            self.add_coupon_code('DGRVBYTHT')
+            self.add_coupon_code("DGRVBYTHT")
 
     def test_add_automatic_discount_code(self):
         self.sale.apply_promotions()
@@ -197,9 +202,7 @@ class PromotionCase(TransactionCase, AbstractCommonPromotionCase):
         self.promotion_rule_coupon.sequence = 10
         self.add_coupon_code(VALID_COUPON_CODE)
         self.sale.apply_promotions()
-        self.assertIn(
-            self.promotion_rule_coupon, self.sale.applied_promotion_rule_ids
-        )
+        self.assertIn(self.promotion_rule_coupon, self.sale.applied_promotion_rule_ids)
         # If create a new sale order for the same partner, the same promotion
         # rule can't be used
         new_sale = self.sale.copy()
@@ -213,9 +216,7 @@ class PromotionCase(TransactionCase, AbstractCommonPromotionCase):
         new_sale = self.sale.copy()
         new_sale.add_coupon(VALID_COUPON_CODE)
         new_sale.apply_promotions()
-        self.assertIn(
-            self.promotion_rule_coupon, new_sale.applied_promotion_rule_ids
-        )
+        self.assertIn(self.promotion_rule_coupon, new_sale.applied_promotion_rule_ids)
 
     def test_discount_amount_product_constrains(self):
         with self.assertRaises(ValidationError):
@@ -237,12 +238,8 @@ class PromotionCase(TransactionCase, AbstractCommonPromotionCase):
         new_amount = amount_untaxed - self.sale.amount_untaxed
         self.assertEqual(
             0,
-            float_compare(
-                new_amount,
-                20,
-                precision_digits=self.price_precision_digits
-            ),
-            "%s != 20" % (new_amount)
+            float_compare(new_amount, 20, precision_digits=self.price_precision_digits),
+            "%s != 20" % (new_amount),
         )
 
     def test_discount_amount_untaxed_2(self):
@@ -261,12 +258,8 @@ class PromotionCase(TransactionCase, AbstractCommonPromotionCase):
         new_amount = amount_untaxed - self.sale.amount_untaxed
         self.assertEqual(
             0,
-            float_compare(
-                new_amount,
-                20,
-                precision_digits=self.price_precision_digits
-            ),
-            "%s != 20" % (new_amount)
+            float_compare(new_amount, 20, precision_digits=self.price_precision_digits),
+            "%s != 20" % (new_amount),
         )
 
     def test_discount_amount_taxed(self):
@@ -287,12 +280,8 @@ class PromotionCase(TransactionCase, AbstractCommonPromotionCase):
         new_amount = amount_total - self.sale.amount_total
         self.assertEqual(
             0,
-            float_compare(
-                new_amount,
-                20,
-                precision_digits=self.price_precision_digits
-            ),
-            "%s != 20" % (new_amount)
+            float_compare(new_amount, 20, precision_digits=self.price_precision_digits),
+            "%s != 20" % (new_amount),
         )
 
     def test_discount_amount_taxed_2(self):
@@ -313,12 +302,8 @@ class PromotionCase(TransactionCase, AbstractCommonPromotionCase):
         new_amount = amount_total - self.sale.amount_total
         self.assertEqual(
             0,
-            float_compare(
-                new_amount,
-                20,
-                precision_digits=self.price_precision_digits
-            ),
-            "%s != 20" % (new_amount)
+            float_compare(new_amount, 20, precision_digits=self.price_precision_digits),
+            "%s != 20" % (new_amount),
         )
 
     def test_discount_amount_rounding(self):
@@ -344,35 +329,51 @@ class PromotionCase(TransactionCase, AbstractCommonPromotionCase):
             float_compare(
                 new_amount,
                 discount_amount,
-                precision_digits=self.price_precision_digits
+                precision_digits=self.price_precision_digits,
             ),
-            "%s != %s" % (new_amount, discount_amount)
+            "{} != {}".format(new_amount, discount_amount),
         )
 
     def test_discount_amount_rounding_2(self):
         self.promotion_rule_auto.minimal_amount = 999999999  # disable
         # here we test with a large SO and price with large difference
-        for price in [5.65, 77.68, 51.07, 87.09, 29.31, 61.03, 99.89, 54.32,
-                      44.95]:
+        for price in [5.65, 77.68, 51.07, 87.09, 29.31, 61.03, 99.89, 54.32, 44.95]:
             so_line = self.sale.order_line[1].copy({"order_id": self.sale.id})
             so_line.product_id.taxes_id = [(6, 0, [self.tax_exclude_21.id])]
             so_line.product_id_change()
             so_line.price_unit = price
-        for price in [485.75, 376.83, 221.52, 394.26, 294.47, 261.01, 385.64,
-                      288.74, 150.84]:
+        for price in [
+            485.75,
+            376.83,
+            221.52,
+            394.26,
+            294.47,
+            261.01,
+            385.64,
+            288.74,
+            150.84,
+        ]:
             so_line = self.sale.order_line[1].copy({"order_id": self.sale.id})
             so_line.product_id.taxes_id = [(6, 0, [self.tax_include_21.id])]
             so_line.product_id_change()
             so_line.price_unit = price
-        for price in [798.33, 546.82, 966.38, 760.5, 835.4, 808.44, 586.81,
-                      738.34, 558.55]:
+        for price in [
+            798.33,
+            546.82,
+            966.38,
+            760.5,
+            835.4,
+            808.44,
+            586.81,
+            738.34,
+            558.55,
+        ]:
             so_line = self.sale.order_line[1].copy({"order_id": self.sale.id})
             so_line.product_id.taxes_id = [(6, 0, [self.tax_exclude_5.id])]
             so_line.product_id_change()
             so_line.price_unit = price
         for discount_amount in range(0, 20, 3):
-            self.promotion_rule_fixed_amount.discount_type = \
-                "amount_tax_included"
+            self.promotion_rule_fixed_amount.discount_type = "amount_tax_included"
             self.promotion_rule_fixed_amount.discount_amount = discount_amount
             amount_total = self.sale.amount_total
             # we apply a discount of 8 on amount taxed
@@ -383,9 +384,9 @@ class PromotionCase(TransactionCase, AbstractCommonPromotionCase):
                 float_compare(
                     new_amount,
                     discount_amount,
-                    precision_digits=self.price_precision_digits
+                    precision_digits=self.price_precision_digits,
                 ),
-                "%s != %s" % (new_amount, discount_amount)
+                "{} != {}".format(new_amount, discount_amount),
             )
             self.sale.clear_promotions()
 
@@ -397,12 +398,8 @@ class PromotionCase(TransactionCase, AbstractCommonPromotionCase):
         be check and applied.
         :return:
         """
-        promo_copy = self.promotion_rule_auto.copy({
-            'name': 'Almost free',
-        })
-        self.promotion_rule_auto.write({
-            'minimal_amount': 999999,
-        })
+        promo_copy = self.promotion_rule_auto.copy({"name": "Almost free"})
+        self.promotion_rule_auto.write({"minimal_amount": 999999})
         self.sale.apply_promotions()
         for line in self.sale.order_line:
             self.check_discount_rule_set(line, promo_copy)
@@ -419,20 +416,13 @@ class PromotionCase(TransactionCase, AbstractCommonPromotionCase):
         so_line = self.sale.order_line[0]
         so_line.discount = 20.0
         so_line.price_unit = 80.0
-        self.assertEquals(
-            710.0,
-            self.sale.amount_total
-        )
+        self.assertEquals(710.0, self.sale.amount_total)
         self.add_coupon_code(FIXED_AMOUNT_CODE)
         self.sale.apply_promotions()
         self.assertEquals(
-            20.0,
-            so_line.discount,
+            20.0, so_line.discount,
         )
-        self.assertEquals(
-            690.0,
-            self.sale.amount_total
-        )
+        self.assertEquals(690.0, self.sale.amount_total)
         self.assertFalse(so_line.coupon_promotion_rule_id)
 
     def test_multi_promotion_rules_exclusive_sequence(self):
@@ -441,17 +431,17 @@ class PromotionCase(TransactionCase, AbstractCommonPromotionCase):
         So the first promotion rule > 100 should not be applied
         :return:
         """
-        promo_copy = self.promotion_rule_auto.copy({
-            'name': '> 100',
-            'minimal_amount': 199,
-            'multi_rule_strategy': 'exclusive',
-            'sequence': 10,
-        })
-        self.promotion_rule_auto.write({
-            'minimal_amount': 100,
-            'multi_rule_strategy': 'exclusive',
-            'sequence': 20,
-        })
+        promo_copy = self.promotion_rule_auto.copy(
+            {
+                "name": "> 100",
+                "minimal_amount": 199,
+                "multi_rule_strategy": "exclusive",
+                "sequence": 10,
+            }
+        )
+        self.promotion_rule_auto.write(
+            {"minimal_amount": 100, "multi_rule_strategy": "exclusive", "sequence": 20}
+        )
         self.sale.apply_promotions()
         for line in self.sale.order_line:
             self.check_discount_rule_set(line, promo_copy)
