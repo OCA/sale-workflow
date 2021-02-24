@@ -20,7 +20,11 @@
         <field name="arch" type="xml">
             <group name="sale_total" position="after">
                 <div class="oe_edit_only oe_inline" colspan="2">
-                    <label for="applied_promotion_rule_ids" class="oe_form_label_help" string="Promotions"/>
+                    <label
+                        for="applied_promotion_rule_ids"
+                        class="oe_form_label_help"
+                        string="Promotions"
+                    />
                     <button
                         name="apply_promotions"
                         states="draft,sent"

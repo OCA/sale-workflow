@@ -1,9 +1,7 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="UTF-8" ?>
 <odoo>
-
     <record id="coupon" model="product.product">
         <field name="name">Coupon</field>
         <field name="type">service</field>
     </record>
-
 </odoo>
