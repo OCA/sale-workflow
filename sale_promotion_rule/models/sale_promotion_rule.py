@@ -2,9 +2,9 @@
 # Copyright 2017 Akretion (http://www.akretion.com).
 # @author Benoît GUILLOT <benoit.guillot@akretion.com>
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
+import datetime
 import logging
 from collections import defaultdict
-import datetime
 
 from odoo import _, api, fields, models
 from odoo.exceptions import UserError, ValidationError
@@ -316,9 +316,7 @@ according to the strategy
 
     @api.model
     def remove_promotions(self, orders):
-        orders.write(
-            {"promotion_rule_ids": [(5,)], "coupon_promotion_rule_id": False}
-        )
+        orders.write({"promotion_rule_ids": [(5,)], "coupon_promotion_rule_id": False})
         self._remove_promotions_lines(orders.mapped("order_line"))
 
     @api.model
