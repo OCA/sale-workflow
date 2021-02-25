@@ -26,6 +26,7 @@ addon | version | summary
 [sale_automatic_workflow](sale_automatic_workflow/) | 13.0.1.1.1 | Sale Automatic Workflow
 [sale_automatic_workflow_payment](sale_automatic_workflow_payment/) | 13.0.1.0.0 | Assign a workflow if a transaction is created for a sale order with an acquirer with a workflow
 [sale_by_packaging](sale_by_packaging/) | 13.0.1.5.1 | Manage sale of packaging
+[sale_cancel_reason](sale_cancel_reason/) | 13.0.1.0.0 | Sale Cancel Reason
 [sale_commercial_partner](sale_commercial_partner/) | 13.0.1.0.0 | Add stored related field 'Commercial Entity' on sale orders
 [sale_contact_type](sale_contact_type/) | 13.0.1.0.0 | Define ordering contact type
 [sale_cutoff_time_delivery](sale_cutoff_time_delivery/) | 13.0.1.1.0 | Schedule delivery orders according to cutoff preferences
