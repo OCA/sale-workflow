@@ -12,6 +12,7 @@ setuptools.setup(
         'odoo13-addon-sale_automatic_workflow',
         'odoo13-addon-sale_automatic_workflow_payment',
         'odoo13-addon-sale_by_packaging',
+        'odoo13-addon-sale_cancel_reason',
         'odoo13-addon-sale_commercial_partner',
         'odoo13-addon-sale_contact_type',
         'odoo13-addon-sale_cutoff_time_delivery',
