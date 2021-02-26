@@ -1,12 +1,12 @@
 # Translation of Odoo Server.
 # This file contains the translation of the following modules:
-#	* sale_order_priority
+# 	* sale_order_priority
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 13.0\n"
 "Report-Msgid-Bugs-To: \n"
-"Last-Translator: <>\n"
+"Last-Translator: \n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -14,14 +14,14 @@ msgstr ""
 "Plural-Forms: \n"
 
 #. module: sale_order_priority
-#: selection:sale.order,priority:0
-#: selection:sale.order.line,priority:0
+#: model:ir.model.fields.selection,name:sale_order_priority.selection__sale_order__priority__1
+#: model:ir.model.fields.selection,name:sale_order_priority.selection__sale_order_line__priority__1
 msgid "Normal"
 msgstr ""
 
 #. module: sale_order_priority
-#: selection:sale.order,priority:0
-#: selection:sale.order.line,priority:0
+#: model:ir.model.fields.selection,name:sale_order_priority.selection__sale_order__priority__0
+#: model:ir.model.fields.selection,name:sale_order_priority.selection__sale_order_line__priority__0
 msgid "Not urgent"
 msgstr ""
 
@@ -33,12 +33,14 @@ msgstr ""
 
 #. module: sale_order_priority
 #: model:ir.model.fields,help:sale_order_priority.field_sale_order__priority
-msgid "Priority for this sale order. Setting manually a value here would set it as priority for all the order lines"
+msgid ""
+"Priority for this sale order. Setting manually a value here would set it as "
+"priority for all the order lines"
 msgstr ""
 
 #. module: sale_order_priority
 #: model:ir.model,name:sale_order_priority.model_sale_order
-msgid "Sale Order"
+msgid "Sales Order"
 msgstr ""
 
 #. module: sale_order_priority
@@ -47,14 +49,13 @@ msgid "Sales Order Line"
 msgstr ""
 
 #. module: sale_order_priority
-#: selection:sale.order,priority:0
-#: selection:sale.order.line,priority:0
+#: model:ir.model.fields.selection,name:sale_order_priority.selection__sale_order__priority__2
+#: model:ir.model.fields.selection,name:sale_order_priority.selection__sale_order_line__priority__2
 msgid "Urgent"
 msgstr ""
 
 #. module: sale_order_priority
-#: selection:sale.order,priority:0
-#: selection:sale.order.line,priority:0
+#: model:ir.model.fields.selection,name:sale_order_priority.selection__sale_order__priority__3
+#: model:ir.model.fields.selection,name:sale_order_priority.selection__sale_order_line__priority__3
 msgid "Very Urgent"
 msgstr ""
-
