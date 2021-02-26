@@ -40,6 +40,11 @@ msgid "Cancel"
 msgstr "Cancelar"
 
 #. module: sale_order_product_recommendation
+#: model:ir.model,name:sale_order_product_recommendation.model_res_config_settings
+msgid "Config Settings"
+msgstr ""
+
+#. module: sale_order_product_recommendation
 #: model:ir.model.fields,help:sale_order_product_recommendation.field_sale_order_recommendation__months
 msgid "Consider these months backwards to generate recommendations."
 msgstr "Considerar estos meses atrás para generar las recomendaciones."
