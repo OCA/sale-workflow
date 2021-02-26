@@ -7,8 +7,8 @@
             <field name="client_order_ref" position="after">
                 <field name="customer_need_po"/>
                 <field name="sale_doc"/>
-                <field attrs="{'invisible':['&amp;', ('sale_doc', '=', False), ('sale_document_option', '=', False)]}" name="sale_document_option"/>
-                <field attrs="{'invisible':['&amp;', ('sale_doc', '=', False), ('sale_document_option', '=', False)]}" name="sale_document_note"/>
+                <field attrs="{'invisible':['|', ('sale_doc', '=', False), ('sale_doc', '=', ''), ('sale_document_option', '=', False)]}" name="sale_document_option"/>
+                <field attrs="{'invisible':['|', ('sale_doc', '=', False), ('sale_doc', '=', ''), ('sale_document_option', '=', False)]}" name="sale_document_note"/>
             </field>
         </field>
     </record>
