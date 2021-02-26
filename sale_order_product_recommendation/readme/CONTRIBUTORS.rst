@@ -5,3 +5,4 @@
   * Alexandre Díaz
   * Pedro M. Baeza
   * Víctor Martínez
+  * Sergio Teruel
