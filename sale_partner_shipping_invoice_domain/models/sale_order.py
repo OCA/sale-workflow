@@ -8,12 +8,11 @@ class SaleOrder(models.Model):
     _inherit = "sale.order"
 
     partner_invoice_id = fields.Many2one(
-        domain="['&', '|', "
-        "('company_id', '=', False), ('company_id', '=', company_id),"
+        domain="['&', ('company_id', 'in', [False, company_id]), "
         "('id', 'child_of', commercial_partner_id)]"
     )
     partner_shipping_id = fields.Many2one(
-        domain="['&', '|', "
-        "('company_id', '=', False), ('company_id', '=', company_id),"
+        domain="['&', "
+        "('company_id', 'in', [False, company_id]), "
         "('id', 'child_of', commercial_partner_id)]"
     )
