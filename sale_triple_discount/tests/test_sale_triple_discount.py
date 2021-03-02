@@ -150,3 +150,19 @@ class TestSaleOrder(common.SavepointCase):
         self.assertEqual(self.so_line2.price_subtotal, 300.0)
         self.assertEqual(self.order.amount_untaxed, 375.0)
         self.assertEqual(self.order.amount_tax, 56.25)
+
+    def test_06_discounts(self):
+        """ Tests discounts in edge case """
+        order = self.env['sale.order'].create({
+            'partner_id': self.partner.id,
+            'order_line': [(0, 0, {
+                'name': 'Line 1',
+                'product_id': self.product2.id,
+                'price_unit': 25.0,
+                'product_uom_qty': 65,
+                'discount': 50,
+                'discount2': 13,
+                'discount3': 0,
+            })],
+        })
+        self.assertEqual(order.order_line.price_subtotal, 706.88)
