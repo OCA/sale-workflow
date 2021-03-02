@@ -372,7 +372,8 @@ class BlanketOrderLine(models.Model):
                               digits=dp.get_precision('Product Price'))
     taxes_id = fields.Many2many('account.tax', string='Taxes',
                                 domain=['|', ('active', '=', False),
-                                        ('active', '=', True)])
+                                        ('active', '=', True),
+                                        ('type_tax_use', '=', 'sale')])
     date_schedule = fields.Date(string='Scheduled Date')
     original_uom_qty = fields.Float(
         string='Original quantity', required=True, default=1,
@@ -538,10 +539,10 @@ class BlanketOrderLine(models.Model):
             if self.env.uid == SUPERUSER_ID:
                 company_id = self.env.user.company_id.id
                 self.taxes_id = fpos.map_tax(
-                    self.product_id.supplier_taxes_id.filtered(
+                    self.product_id.taxes_id.filtered(
                         lambda r: r.company_id.id == company_id))
             else:
-                self.taxes_id = fpos.map_tax(self.product_id.supplier_taxes_id)
+                self.taxes_id = fpos.map_tax(self.product_id.taxes_id)
 
     @api.multi
     @api.depends(
