@@ -82,11 +82,15 @@ class SaleOrderLine(models.Model):
         self._compute_sale_restricted_qty()
         self._compute_qty_validity()
 
+    def _get_product_qty_in_product_unit(self):
+        self.ensure_one()
+        return self.product_uom._compute_quantity(
+            self.product_uom_qty, self.product_id.uom_id
+        )
+
     def _compute_qty_validity(self):
         for line in self:
-            product_qty = line.product_uom._compute_quantity(
-                line.product_uom_qty, line.product_id.uom_id
-            )
+            product_qty = line._get_product_qty_in_product_unit()
 
             def compare(qty):
                 return qty and float_compare(
@@ -102,7 +106,7 @@ class SaleOrderLine(models.Model):
                     invalid = True
                     message = _("Higher quantity required!")
             elif compare(line.sale_max_qty) > 0:
-                if self.force_sale_max_qty:
+                if line.force_sale_max_qty:
                     message = _("Lower quantity recommended!")
                 else:
                     invalid = True

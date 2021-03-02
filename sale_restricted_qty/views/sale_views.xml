@@ -10,18 +10,26 @@
                 expr="//field[@name='order_line']/form//field[@name='product_uom_readonly']"
                 position="after"
             >
-                <field name="sale_min_qty" />
-                <field name="sale_multiple_qty" />
-                <field name="sale_max_qty" />
-            </xpath>
-            <xpath
-                expr="//field[@name='order_line']/form//field[@name='product_uom_readonly']"
-                position="before"
-            >
-                <div style="color:red; font-weight:bold;">
-                    <field name="qty_warning_message" nolabel="1" readonly="1" />
-                </div>
-            </xpath>
+                <field
+                    name="sale_min_qty"
+                    attributes="{'invisible': [('sale_min_qty', '=', 0)]}"
+                />
+                <field
+                    name="sale_multiple_qty"
+                    attributes="{'invisible': [('sale_multiple_qty', '=', 0)]}"
+                />
+                <field
+                    name="sale_max_qty"
+                    attributes="{'invisible': [('sale_max_qty', '=', 0)]}"
+                />
+                <field
+                    name="qty_warning_message"
+                    string=""
+                    readonly="1"
+                    style="color:red; font-weight:bold;"
+                    attributes="{'invisible': [('qty_warning_message', '=', False)]}"
+                />
+           </xpath>
            <xpath
                 expr="//field[@name='order_line']/tree/field[@name='product_uom_qty']"
                 position="after"
