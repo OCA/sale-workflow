@@ -6,15 +6,15 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 12.0\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2020-09-03 18:00+0000\n"
-"Last-Translator: Mario Riva <mario.riva@agilebg.com>\n"
+"PO-Revision-Date: 2021-03-03 19:45+0000\n"
+"Last-Translator: Francesco Foresti <francesco.foresti@ooops404.com>\n"
 "Language-Team: none\n"
 "Language: it\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 3.10\n"
+"X-Generator: Weblate 4.3.2\n"
 
 #. module: sale_invoice_plan
 #: selection:sale.invoice.plan,invoice_type:0
@@ -210,7 +210,7 @@ msgstr "Ultima modifica il"
 #: model:ir.model.fields,field_description:sale_invoice_plan.field_sale_invoice_plan__write_uid
 #: model:ir.model.fields,field_description:sale_invoice_plan.field_sale_make_planned_invoice__write_uid
 msgid "Last Updated by"
-msgstr "Ultima aggiornamento di"
+msgstr "Ultimo aggiornamento di"
 
 #. module: sale_invoice_plan
 #: model:ir.model.fields,field_description:sale_invoice_plan.field_sale_create_invoice_plan__write_date
@@ -336,7 +336,7 @@ msgstr ""
 #: model_terms:ir.ui.view,arch_db:sale_invoice_plan.view_sale_create_invoice_plan
 msgid "This wizard help you quickly create invoice plan."
 msgstr ""
-"Questa procedura guidata ti aiuterà a creare velocemente  un piano di "
+"Questa procedura guidata ti aiuterà a creare velocemente un piano di "
 "fatturazione."
 
 #. module: sale_invoice_plan
@@ -374,8 +374,8 @@ msgstr "Anno"
 #: model:ir.model.fields,help:sale_invoice_plan.field_sale_invoice_plan__partner_id
 msgid "You can find a customer by its Name, TIN, Email or Internal Reference."
 msgstr ""
-"Si può trovare un cliente in base al suo nome, PIVA, Email o Riferimento "
-"Interno"
+"Si può trovare un cliente in base al suo nome, P. IVA, Email o Riferimento "
+"Interno."
 
 #. module: sale_invoice_plan
 #: model_terms:ir.ui.view,arch_db:sale_invoice_plan.view_order_form_invoice_plan
