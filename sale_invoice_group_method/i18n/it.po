@@ -9,19 +9,20 @@ msgstr ""
 "Project-Id-Version: Odoo Server 11.0\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2018-03-02 10:22+0000\n"
-"PO-Revision-Date: 2018-03-02 10:22+0000\n"
-"Last-Translator: OCA Transbot <transbot@odoo-community.org>, 2018\n"
+"PO-Revision-Date: 2021-03-03 19:45+0000\n"
+"Last-Translator: Francesco Foresti <francesco.foresti@ooops404.com>\n"
 "Language-Team: Italian (https://www.transifex.com/oca/teams/23907/it/)\n"
 "Language: it\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
-"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: Weblate 4.3.2\n"
 
 #. module: sale_invoice_group_method
 #: model:ir.model,name:sale_invoice_group_method.model_res_partner
 msgid "Contact"
-msgstr ""
+msgstr "Contatto"
 
 #. module: sale_invoice_group_method
 #: model:ir.model.fields,field_description:sale_invoice_group_method.field_sale_invoice_group_method__create_uid
@@ -36,28 +37,28 @@ msgstr "Creato il"
 #. module: sale_invoice_group_method
 #: model:ir.model.fields,field_description:sale_invoice_group_method.field_sale_invoice_group_method__criteria_fields_ids
 msgid "Criteria fields"
-msgstr ""
+msgstr "Campi Criterio"
 
 #. module: sale_invoice_group_method
 #: model:ir.model.fields,field_description:sale_invoice_group_method.field_res_partner__invoice_group_method_id
 #: model:ir.model.fields,field_description:sale_invoice_group_method.field_res_users__invoice_group_method_id
 msgid "Default Invoice Group Method"
-msgstr ""
+msgstr "Metodo Raggruppamento Fatturazione Predefinito"
 
 #. module: sale_invoice_group_method
 #: model:ir.model.fields,field_description:sale_invoice_group_method.field_sale_invoice_group_method__display_name
 msgid "Display Name"
-msgstr "Nome da visualizzare"
+msgstr "Nome Visualizzato"
 
 #. module: sale_invoice_group_method
 #: model:ir.model,name:sale_invoice_group_method.model_ir_model_fields
 msgid "Fields"
-msgstr ""
+msgstr "Campi"
 
 #. module: sale_invoice_group_method
 #: model_terms:ir.ui.view,arch_db:sale_invoice_group_method.sale_invoice_group_method_search_view
 msgid "Group By..."
-msgstr ""
+msgstr "Raggruppa per..."
 
 #. module: sale_invoice_group_method
 #: model:ir.model.fields,field_description:sale_invoice_group_method.field_sale_invoice_group_method__id
@@ -67,18 +68,18 @@ msgstr "ID"
 #. module: sale_invoice_group_method
 #: model:ir.model.fields,field_description:sale_invoice_group_method.field_sale_invoice_group_method__name
 msgid "Invoice Group"
-msgstr ""
+msgstr "Gruppo di Fatturazione"
 
 #. module: sale_invoice_group_method
 #: model:ir.model.fields,field_description:sale_invoice_group_method.field_sale_order__invoice_group_method_id
 #: model:ir.ui.menu,name:sale_invoice_group_method.menu_invoice_group_method
 msgid "Invoice Group Method"
-msgstr ""
+msgstr "Metodo Raggruppamento Fatturazione"
 
 #. module: sale_invoice_group_method
 #: model_terms:ir.ui.view,arch_db:sale_invoice_group_method.sale_invoice_group_method_form_view
 msgid "Invoice Groups"
-msgstr ""
+msgstr "Gruppi di Fatturazione"
 
 #. module: sale_invoice_group_method
 #: model:ir.model.fields,field_description:sale_invoice_group_method.field_sale_invoice_group_method____last_update
@@ -98,7 +99,7 @@ msgstr "Ultimo aggiornamento il"
 #. module: sale_invoice_group_method
 #: model_terms:ir.ui.view,arch_db:sale_invoice_group_method.sale_invoice_group_method_search_view
 msgid "Medical Procedure Request"
-msgstr ""
+msgstr "Richiesta di Procedura Medica"
 
 #. module: sale_invoice_group_method
 #: model_terms:ir.ui.view,arch_db:sale_invoice_group_method.sale_invoice_group_method_search_view
@@ -109,12 +110,12 @@ msgstr "Nome"
 #: model:ir.actions.act_window,name:sale_invoice_group_method.sale_invoice_group_method_action
 #: model:ir.model,name:sale_invoice_group_method.model_sale_invoice_group_method
 msgid "Sale Invoice Group Method"
-msgstr ""
+msgstr "Metodo Raggruppamento Fatturazione Vendite"
 
 #. module: sale_invoice_group_method
 #: model:ir.model,name:sale_invoice_group_method.model_sale_order
 msgid "Sale Order"
-msgstr ""
+msgstr "Ordine di vendita"
 
 #~ msgid "Quotation"
 #~ msgstr "Quotation"
