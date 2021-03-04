@@ -3,6 +3,7 @@
 # © 2016 Serpent Consulting Services Pvt. Ltd.
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
+from odoo.tests import Form
 from odoo.tests.common import TransactionCase
 
 
@@ -76,7 +77,9 @@ class TestSaleProcurementGroupByLine(TransactionCase):
         )
         self.picking_ids.move_lines.write({"quantity_done": 5})
         wiz_act = self.picking_ids.button_validate()
-        wiz = self.env[wiz_act["res_model"]].browse(wiz_act["res_id"])
+        wiz = Form(
+            self.env[wiz_act["res_model"]].with_context(wiz_act["context"])
+        ).save()
         wiz.process()
         self.assertTrue(self.picking_ids, "Procurement Group should have picking")
 
@@ -87,11 +90,11 @@ class TestSaleProcurementGroupByLine(TransactionCase):
         self.line1.procurement_group_id = group_id
         self.line2.procurement_group_id = group_id
         self.sale.action_confirm()
-        self.assertEquals(self.sale.state, "sale")
-        self.assertEquals(len(self.line1.move_ids), 1)
-        self.assertEquals(self.line1.move_ids.name, self.line1.name)
-        self.assertEquals(len(self.line2.move_ids), 1)
-        self.assertEquals(self.line2.move_ids.name, self.line2.name)
+        self.assertEqual(self.sale.state, "sale")
+        self.assertEqual(len(self.line1.move_ids), 1)
+        self.assertEqual(self.line1.move_ids.name, self.line1.name)
+        self.assertEqual(len(self.line2.move_ids), 1)
+        self.assertEqual(self.line2.move_ids.name, self.line2.name)
 
     def test_action_launch_procurement_rule_2(self):
         group_id = self.proc_group_model.create(
@@ -100,7 +103,7 @@ class TestSaleProcurementGroupByLine(TransactionCase):
         self.line1.procurement_group_id = group_id
         self.line2.procurement_group_id = False
         self.sale.action_confirm()
-        self.assertEquals(self.line2.procurement_group_id, group_id)
+        self.assertEqual(self.line2.procurement_group_id, group_id)
 
     def test_action_launch_procurement_rule_3(self):
         group_id = self.proc_group_model.create(
@@ -109,7 +112,7 @@ class TestSaleProcurementGroupByLine(TransactionCase):
         self.line1.procurement_group_id = False
         self.line2.procurement_group_id = False
         self.sale.action_confirm()
-        self.assertNotEquals(self.line1.procurement_group_id, group_id)
-        self.assertEquals(
+        self.assertNotEqual(self.line1.procurement_group_id, group_id)
+        self.assertEqual(
             self.line1.procurement_group_id, self.line2.procurement_group_id
         )
