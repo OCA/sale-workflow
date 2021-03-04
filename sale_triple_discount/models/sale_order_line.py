@@ -43,9 +43,10 @@ class SaleOrderLine(models.Model):
 
     @api.depends('discount2', 'discount3', 'discounting_type')
     def _compute_amount(self):
-        prev_values = self.triple_discount_preprocess()
-        super(SaleOrderLine, self)._compute_amount()
-        self.triple_discount_postprocess(prev_values)
+        for line in self:
+            prev_values = line.triple_discount_preprocess()
+            super(SaleOrderLine, line)._compute_amount()
+            line.triple_discount_postprocess(prev_values)
 
     discount2 = fields.Float(
         'Disc. 2 (%)',
