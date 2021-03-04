@@ -21,7 +21,7 @@ class SaleOrderLine(models.Model):
     _inherit = "sale.order.line"
 
     def _get_procurement_group_key(self):
-        """ Return a key with priority to be used to regroup lines in multiple
+        """Return a key with priority to be used to regroup lines in multiple
         procurement groups
 
         """
