@@ -39,6 +39,7 @@ class SaleOrderLine(models.Model):
         if not previous_product_uom_qty:
             previous_product_uom_qty = {}
         for line in self:
+            line = line.with_company(line.company_id)
             if line.state != "sale" or line.product_id.type not in ("consu", "product"):
                 continue
             qty = line._get_qty_procurement(previous_product_uom_qty)
@@ -87,17 +88,11 @@ class SaleOrderLine(models.Model):
             product_qty = line.product_uom_qty - qty
             product_qty_uom = product_qty
 
-            procurement_uom = line.product_uom
+            line_uom = line.product_uom
             quant_uom = line.product_id.uom_id
-            get_param = self.env["ir.config_parameter"].sudo().get_param
-            if (
-                procurement_uom.id != quant_uom.id
-                and get_param("stock.propagate_uom") != "1"
-            ):
-                product_qty = line.product_uom._compute_quantity(
-                    product_qty, quant_uom, rounding_method="HALF-UP"
-                )
-                procurement_uom = quant_uom
+            product_qty, procurement_uom = line_uom._adjust_uom_quantities(
+                product_qty, quant_uom
+            )
 
             try:
                 procurements = []
@@ -118,7 +113,7 @@ class SaleOrderLine(models.Model):
                 # duplicated procurements, specially for dropshipping and kits.
                 previous_product_uom_qty[line.id] = product_qty_uom
             except UserError as error:
-                errors.append(error.name)
+                errors.append(error.args[0])
         if errors:
             raise UserError("\n".join(errors))
         return super()._action_launch_stock_rule(
