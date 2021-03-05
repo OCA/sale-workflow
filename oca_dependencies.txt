@@ -3,3 +3,4 @@ stock-logistics-warehouse
 account-invoicing
 server-tools
 bank-payment
+partner-contact

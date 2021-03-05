@@ -1,5 +1,6 @@
 # Copyright 2017 Tecnativa - Jairo Llopis
 # Copyright 2020 Tecnativa - Pedro M. Baeza
+# Copyright 2021 Tecnativa - Víctor Martínez
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 from odoo.exceptions import UserError
 
@@ -25,16 +26,19 @@ class RecommendationCaseTests(RecommendationCase):
         # Order came in from context
         self.assertEqual(wizard.order_id, self.new_so)
         self.assertEqual(len(wizard.line_ids), 3)
-        # Product 1 is first recommendation because it's in the SO already
-        self.assertEqual(wizard.line_ids[0].product_id, self.prod_1)
-        self.assertEqual(wizard.line_ids[0].times_delivered, 1)
-        self.assertEqual(wizard.line_ids[0].units_delivered, 25)
-        self.assertEqual(wizard.line_ids[0].units_included, 3)
-        # Product 2 appears second
+        self.assertEqual(wizard.line_ids[0].product_id, self.prod_2)
+        self.assertEqual(wizard.line_ids[1].product_id, self.prod_1)
+        self.assertEqual(wizard.line_ids[2].product_id, self.prod_3)
+        # Product 2 is first
         wiz_line_prod2 = wizard.line_ids.filtered(lambda x: x.product_id == self.prod_2)
         self.assertEqual(wiz_line_prod2.times_delivered, 2)
         self.assertEqual(wiz_line_prod2.units_delivered, 100)
         self.assertEqual(wiz_line_prod2.units_included, 0)
+        # Product 1 appears second
+        wiz_line_prod1 = wizard.line_ids.filtered(lambda x: x.product_id == self.prod_1)
+        self.assertEqual(wiz_line_prod1.times_delivered, 1)
+        self.assertEqual(wiz_line_prod1.units_delivered, 25)
+        self.assertEqual(wiz_line_prod1.units_included, 3)
         # Product 3 appears third
         wiz_line_prod3 = wizard.line_ids.filtered(lambda x: x.product_id == self.prod_3)
         self.assertEqual(wiz_line_prod3.times_delivered, 1)
@@ -92,3 +96,48 @@ class RecommendationCaseTests(RecommendationCase):
         line = self.new_so.order_line.filtered(lambda x: x.product_id == self.prod_1)
         self.assertTrue(line)
         self.assertEqual(line.product_uom_qty, qty)
+
+    def test_recommendations_price_origin(self):
+        # Display product price from pricelist
+        wizard = self.wizard()
+        wizard.sale_recommendation_price_origin = "pricelist"
+        wiz_line_prod1 = wizard.line_ids.filtered(lambda x: x.product_id == self.prod_1)
+        self.assertEqual(wiz_line_prod1.price_unit, 25.00)
+        wiz_line_prod2 = wizard.line_ids.filtered(lambda x: x.product_id == self.prod_2)
+        self.assertEqual(wiz_line_prod2.price_unit, 50.00)
+        wiz_line_prod3 = wizard.line_ids.filtered(lambda x: x.product_id == self.prod_3)
+        self.assertEqual(wiz_line_prod3.price_unit, 75.00)
+
+        # Display product price from last sale order price
+        wizard.sale_recommendation_price_origin = "last_sale_price"
+        wiz_line_prod1 = wizard.line_ids.filtered(lambda x: x.product_id == self.prod_1)
+        self.assertEqual(wiz_line_prod1.price_unit, 24.50)
+        wiz_line_prod2 = wizard.line_ids.filtered(lambda x: x.product_id == self.prod_2)
+        self.assertEqual(wiz_line_prod2.price_unit, 49.50)
+        wiz_line_prod3 = wizard.line_ids.filtered(lambda x: x.product_id == self.prod_3)
+        self.assertEqual(wiz_line_prod3.price_unit, 74.50)
+
+        # Change confirmation date in order2
+        self.order2.date_order = "2020-11-19"
+        wizard.sale_recommendation_price_origin = "pricelist"
+        wizard.sale_recommendation_price_origin = "last_sale_price"
+        wiz_line_prod2 = wizard.line_ids.filtered(lambda x: x.product_id == self.prod_2)
+        self.assertEqual(wiz_line_prod2.price_unit, 89.00)
+
+    def test_recommendations_last_sale_price_to_sale_order(self):
+        # Display product price from last sale order price
+        wizard = self.wizard()
+        wizard.sale_recommendation_price_origin = "last_sale_price"
+        wiz_line_prod1 = wizard.line_ids.filtered(lambda x: x.product_id == self.prod_1)
+        wiz_line_prod1.units_included = 1.0
+        wizard.action_accept()
+        so_line_prod1 = wizard.order_id.order_line.filtered(
+            lambda x: x.product_id == self.prod_1
+        )
+        self.assertEqual(so_line_prod1.price_unit, 24.50)
+        # If I update sale order line price unit this price can not bw updated
+        # by wizard
+        so_line_prod1.price_unit = 60.0
+        wiz_line_prod1.units_included = 3
+        wizard.action_accept()
+        self.assertEqual(so_line_prod1.price_unit, 60.0)

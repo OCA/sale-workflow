@@ -12,9 +12,15 @@ class SaleOrder(models.Model):
         string="Type",
         compute="_compute_sale_type_id",
         store=True,
-        readonly=True,
-        states={"draft": [("readonly", False)], "sent": [("readonly", False)]},
+        readonly=False,
+        states={
+            "sale": [("readonly", True)],
+            "done": [("readonly", True)],
+            "cancel": [("readonly", True)],
+        },
         default=lambda so: so._default_type_id(),
+        ondelete="restrict",
+        copy=True,
     )
 
     @api.model
@@ -25,13 +31,15 @@ class SaleOrder(models.Model):
     def _compute_sale_type_id(self):
         for record in self:
             if not record.partner_id:
-                record.sale_type_id = self.env["sale.order.type"].search([], limit=1)
+                record.type_id = self.env["sale.order.type"].search(
+                    [("company_id", "in", [self.env.company.id, False])], limit=1
+                )
             else:
                 sale_type = (
                     record.partner_id.with_context(
                         force_company=record.company_id.id
                     ).sale_type
-                    or self.partner_id.commercial_partner_id.with_context(
+                    or record.partner_id.commercial_partner_id.with_context(
                         force_company=record.company_id.id
                     ).sale_type
                 )

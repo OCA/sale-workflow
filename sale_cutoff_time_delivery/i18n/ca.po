@@ -1,0 +1,150 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* sale_cutoff_time_delivery
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 13.0\n"
+"Report-Msgid-Bugs-To: \n"
+"PO-Revision-Date: 2021-01-20 13:44+0000\n"
+"Last-Translator: Daniel Martinez Vila <daniel.martinez@qubiq.es>\n"
+"Language-Team: none\n"
+"Language: ca\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: Weblate 4.3.2\n"
+
+#. module: sale_cutoff_time_delivery
+#: model_terms:ir.ui.view,arch_db:sale_cutoff_time_delivery.view_picking_cutoff_search
+msgid "After today's cut-off"
+msgstr "Després del tall d’avui"
+
+#. module: sale_cutoff_time_delivery
+#: model:ir.model.fields,field_description:sale_cutoff_time_delivery.field_stock_warehouse__apply_cutoff
+msgid "Apply Cutoff"
+msgstr "Apliqueu el tall"
+
+#. module: sale_cutoff_time_delivery
+#: model_terms:ir.ui.view,arch_db:sale_cutoff_time_delivery.view_picking_cutoff_search
+msgid "Before today's cut-off"
+msgstr "Abans del tall d’avui"
+
+#. module: sale_cutoff_time_delivery
+#: model:ir.model,name:sale_cutoff_time_delivery.model_res_partner
+msgid "Contact"
+msgstr "Contacte"
+
+#. module: sale_cutoff_time_delivery
+#: model:ir.model.fields,field_description:sale_cutoff_time_delivery.field_res_partner__cutoff_time
+#: model:ir.model.fields,field_description:sale_cutoff_time_delivery.field_res_users__cutoff_time
+#: model:ir.model.fields,field_description:sale_cutoff_time_delivery.field_stock_warehouse__cutoff_time
+#: model:ir.model.fields,field_description:sale_cutoff_time_delivery.field_time_cutoff_mixin__cutoff_time
+msgid "Cutoff Time"
+msgstr "Temps de tall"
+
+#. module: sale_cutoff_time_delivery
+#: model:ir.model.fields,field_description:sale_cutoff_time_delivery.field_stock_picking__cutoff_time_diff
+msgid "Cutoff Time Diff"
+msgstr "Diferència de temps de tall"
+
+#. module: sale_cutoff_time_delivery
+#: model:ir.model.fields,field_description:sale_cutoff_time_delivery.field_stock_picking__cutoff_time_hms
+msgid "Cutoff Time Hms"
+msgstr "Temps de tall Hms"
+
+#. module: sale_cutoff_time_delivery
+#: model:ir.model.fields,help:sale_cutoff_time_delivery.field_res_partner__order_delivery_cutoff_preference
+#: model:ir.model.fields,help:sale_cutoff_time_delivery.field_res_users__order_delivery_cutoff_preference
+msgid ""
+"Define the cutoff time for delivery orders:\n"
+"\n"
+"* Use global (warehouse) cutoff time: Delivery order for sale orders will be postponed to the next warehouse cutoff time\n"
+"* Use partner's cutoff time: Delivery order for sale orders will be postponed to the next partner's cutoff time\n"
+"\n"
+"Example: If cutoff is set to 09:00, any sale order confirmed before 09:00 will have its delivery order postponed to 09:00, and any sale order confirmed after 09:00 will have its delivery order postponed to 09:00 on the following day."
+msgstr ""
+"Definiu el temps de tall per a les comandes de lliurament:\n"
+"\n"
+"* Utilitzeu el temps de tall global (magatzem): l'ordre de lliurament de les "
+"comandes de venda s'ajornarà al següent temps de tall del magatzem\n"
+"* Utilitzeu el temps de tall del soci: l'ordre de lliurament de les comandes "
+"de venda s'ajornarà al temps de tall del soci següent\n"
+"\n"
+"Exemple: si s'estableix un límit a les 09:00, qualsevol comanda de venda "
+"confirmada abans de les 09:00 tindrà l'ordre de lliurament posposada a les "
+"09:00 i qualsevol ordre de venda confirmada després de les 09:00 tindrà "
+"l'ordre de lliurament posposada a les 09:00 el al dia següent."
+
+#. module: sale_cutoff_time_delivery
+#: model:ir.model.fields,field_description:sale_cutoff_time_delivery.field_res_partner__order_delivery_cutoff_preference
+#: model:ir.model.fields,field_description:sale_cutoff_time_delivery.field_res_users__order_delivery_cutoff_preference
+msgid "Delivery orders cutoff preference"
+msgstr "Preferència de tall de comandes de lliurament"
+
+#. module: sale_cutoff_time_delivery
+#: model:ir.model.fields,field_description:sale_cutoff_time_delivery.field_time_cutoff_mixin__display_name
+msgid "Display Name"
+msgstr "Nom visible"
+
+#. module: sale_cutoff_time_delivery
+#: model:ir.model.fields,field_description:sale_cutoff_time_delivery.field_time_cutoff_mixin__id
+msgid "ID"
+msgstr "ID"
+
+#. module: sale_cutoff_time_delivery
+#: model_terms:ir.ui.view,arch_db:sale_cutoff_time_delivery.view_picking_cutoff_search
+msgid "Inside today's cut-off"
+msgstr "Dins del tall d’avui"
+
+#. module: sale_cutoff_time_delivery
+#: model:ir.model.fields,field_description:sale_cutoff_time_delivery.field_time_cutoff_mixin____last_update
+msgid "Last Modified on"
+msgstr "Darrera modificació el"
+
+#. module: sale_cutoff_time_delivery
+#: model:ir.model,name:sale_cutoff_time_delivery.model_sale_order
+msgid "Sales Order"
+msgstr "Comandes de venda"
+
+#. module: sale_cutoff_time_delivery
+#: model:ir.model,name:sale_cutoff_time_delivery.model_sale_order_line
+msgid "Sales Order Line"
+msgstr "Línia de comanda de vendes"
+
+#. module: sale_cutoff_time_delivery
+#: model:ir.model,name:sale_cutoff_time_delivery.model_time_cutoff_mixin
+msgid "Time Cut-off Mixin"
+msgstr "Temps de tall Mixin"
+
+#. module: sale_cutoff_time_delivery
+#: model:ir.model.fields,field_description:sale_cutoff_time_delivery.field_stock_warehouse__tz
+msgid "Timezone"
+msgstr "Fus horari"
+
+#. module: sale_cutoff_time_delivery
+#: model:ir.model,name:sale_cutoff_time_delivery.model_stock_picking
+msgid "Transfer"
+msgstr "Transferència"
+
+#. module: sale_cutoff_time_delivery
+#: code:addons/sale_cutoff_time_delivery/models/stock_picking.py:0
+#, python-format
+msgid "Unsupported search operator %s"
+msgstr "Operador de cerca no admès %s"
+
+#. module: sale_cutoff_time_delivery
+#: model:ir.model.fields.selection,name:sale_cutoff_time_delivery.selection__res_partner__order_delivery_cutoff_preference__warehouse_cutoff
+msgid "Use global (warehouse) cutoff time"
+msgstr "Utilitzeu el temps de tall global (magatzem)"
+
+#. module: sale_cutoff_time_delivery
+#: model:ir.model.fields.selection,name:sale_cutoff_time_delivery.selection__res_partner__order_delivery_cutoff_preference__partner_cutoff
+msgid "Use partner's cutoff time"
+msgstr "Utilitzeu el temps de tall del soci"
+
+#. module: sale_cutoff_time_delivery
+#: model:ir.model,name:sale_cutoff_time_delivery.model_stock_warehouse
+msgid "Warehouse"
+msgstr "Magatzem"

@@ -21,6 +21,6 @@ class SaleOrder(models.Model):
     def _get_invoice_status(self):
         super(SaleOrder, self)._get_invoice_status()
         for order in self.filtered(
-            lambda so: so.force_invoiced and so.invoice_status == "to invoice"
+            lambda so: so.force_invoiced and so.state in ("sale", "done")
         ):
             order.invoice_status = "invoiced"

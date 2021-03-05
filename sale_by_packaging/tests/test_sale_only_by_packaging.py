@@ -20,28 +20,6 @@ class TestSaleProductByPackagingOnly(SavepointCase):
         cls.order = cls.env["sale.order"].create({"partner_id": cls.partner.id})
         cls.precision = cls.env["decimal.precision"].precision_get("Product Price")
 
-    def test_onchange_qty_is_pack_multiple(self):
-        order_line = self.env["sale.order.line"].create(
-            {
-                "order_id": self.order.id,
-                "product_id": self.product.id,
-                "product_uom": self.product.uom_id.id,
-            }
-        )
-        self.assertFalse(order_line._onchange_product_uom_qty())
-
-        self.product.write({"sell_only_by_packaging": True})
-        self.assertTrue(order_line._onchange_product_uom_qty())
-
-        order_line.product_id_change()
-        self.assertFalse(order_line._onchange_product_uom_qty())
-
-        order_line.write({"product_uom_qty": 3.0})
-        self.assertTrue(order_line._onchange_product_uom_qty())
-
-        order_line.write({"product_uom_qty": self.packaging.qty * 2})
-        self.assertFalse(order_line._onchange_product_uom_qty())
-
     def test_write_auto_fill_packaging(self):
         order_line = self.env["sale.order.line"].create(
             {
@@ -77,6 +55,8 @@ class TestSaleProductByPackagingOnly(SavepointCase):
             order_line.write({"product_packaging": False})
 
     def test_create_auto_fill_packaging(self):
+        """Check when the packaging should be set automatically on the line
+        """
         # sell_only_by_packaging is default False
         order_line_1 = self.env["sale.order.line"].create(
             {
@@ -141,6 +121,8 @@ class TestSaleProductByPackagingOnly(SavepointCase):
                 self.assertAlmostEqual(
                     so_line.product_uom_qty, 36, places=self.precision
                 )
+                so_line.product_uom_qty = 10
+                so_line.product_packaging = packaging
         # Now force the qty on the packaging
         packaging.force_sale_qty = True
         with Form(self.SaleOrder) as sale_order:
@@ -172,3 +154,38 @@ class TestSaleProductByPackagingOnly(SavepointCase):
                 self.assertAlmostEqual(
                     so_line.product_uom_qty, 210, places=self.precision
                 )
+
+    def test_packaging_qty_non_zero(self):
+        """ Check product packaging quantity.
+
+        The packaging quantity can not be zero.
+        """
+        self.product.write({"sell_only_by_packaging": True})
+        order_line = self.env["sale.order.line"].create(
+            {
+                "order_id": self.order.id,
+                "product_id": self.product.id,
+                "product_uom": self.product.uom_id.id,
+                "product_uom_qty": 10,  # 2 packs
+            }
+        )
+        with self.assertRaises(ValidationError):
+            order_line.write({"product_uom_qty": 3, "product_packaging_qty": 0})
+
+    def test_onchange_qty_is_not_pack_multiple(self):
+        """ Check package when qantity is not a multiple of package quantity.
+
+        When the uom quantity is changed for a value not a multpile of a
+        possible package an error is raised.
+        """
+        self.product.write({"sell_only_by_packaging": True})
+        order_line = self.env["sale.order.line"].create(
+            {
+                "order_id": self.order.id,
+                "product_id": self.product.id,
+                "product_uom": self.product.uom_id.id,
+                "product_uom_qty": 10,  # 2 packs
+            }
+        )
+        with self.assertRaises(ValidationError):
+            order_line.write({"product_uom_qty": 3})

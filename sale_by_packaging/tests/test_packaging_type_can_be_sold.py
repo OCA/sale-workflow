@@ -38,19 +38,48 @@ class TestPackagingTypeCanBeSold(SavepointCase):
                 "packaging_type_id": cls.packaging_type_cannot_be_sold.id,
             }
         )
-
-    def test_packaging_type_can_be_sold(self):
-        order = self.env["sale.order"].create({"partner_id": self.partner.id})
-        order_line = self.env["sale.order.line"].create(
+        cls.order = cls.env["sale.order"].create({"partner_id": cls.partner.id})
+        cls.order_line = cls.env["sale.order.line"].create(
             {
-                "order_id": order.id,
-                "product_id": self.product.id,
-                "product_uom": self.product.uom_id.id,
+                "order_id": cls.order.id,
+                "product_id": cls.product.id,
+                "product_uom": cls.product.uom_id.id,
                 "product_uom_qty": 3.0,
             }
         )
-        order_line.write({"product_packaging": self.packaging_can_be_sold.id})
+
+    def test_packaging_type_can_be_sold(self):
+        self.order_line.write({"product_packaging": self.packaging_can_be_sold.id})
         with self.assertRaises(ValidationError):
-            order_line.write({"product_packaging": self.packaging_cannot_be_sold.id})
-            onchange_res = order_line._onchange_product_packaging()
+            self.order_line.write(
+                {"product_packaging": self.packaging_cannot_be_sold.id}
+            )
+            onchange_res = self.order_line._onchange_product_packaging()
             self.assertIn("warning", onchange_res)
+
+    def test_product_packaging_can_be_sold(self):
+        """Check that a product.packaging can be independently set as can be sold.
+        """
+        exception_msg = (
+            "Packaging Test packaging cannot be sold on product {} must be set "
+            "as 'Can be sold' in order to be used on a sale order."
+        ).format(self.product.name)
+        with self.assertRaisesRegex(ValidationError, exception_msg):
+            self.order_line.write(
+                {"product_packaging": self.packaging_cannot_be_sold.id}
+            )
+        # Packaging can be sold even if the packaging type does not allows it
+        self.packaging_cannot_be_sold.can_be_sold = True
+        self.order_line.write({"product_packaging": self.packaging_cannot_be_sold.id})
+        # Changing the packaging type on product.packaging updates can_be_sold
+        self.packaging_can_be_sold.unlink()
+        self.packaging_cannot_be_sold.packaging_type_id = (
+            self.packaging_type_can_be_sold
+        )
+        self.packaging_cannot_be_sold.packaging_type_id = (
+            self.packaging_type_cannot_be_sold
+        )
+        self.assertEqual(self.packaging_cannot_be_sold.can_be_sold, False)
+        # Changing the can_be_sold on the packaging_type does not update the packaging
+        self.packaging_type_cannot_be_sold.can_be_sold = True
+        self.assertEqual(self.packaging_cannot_be_sold.can_be_sold, False)

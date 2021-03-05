@@ -1,8 +1,8 @@
 # Copyright 2020 Camptocamp SA
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl)
-from odoo import _, api, fields, models
+from odoo import _, api, models
 from odoo.exceptions import ValidationError
-from odoo.tools import float_is_zero
+from odoo.tools import float_compare
 
 
 class SaleOrderLine(models.Model):
@@ -39,36 +39,28 @@ class SaleOrderLine(models.Model):
             }
         return super()._onchange_product_packaging()
 
-    @api.constrains("product_id", "product_packaging")
+    @api.constrains(
+        "product_id", "product_packaging", "product_packaging_qty", "product_uom_qty"
+    )
     def _check_product_packaging_sell_only_by_packaging(self):
         for line in self:
-            if line.product_id.sell_only_by_packaging and not line.product_packaging:
+            if not line.product_id.sell_only_by_packaging:
+                continue
+            if (
+                not line.product_packaging
+                or float_compare(
+                    line.product_packaging_qty,
+                    0,
+                    precision_rounding=line.product_id.uom_id.rounding,
+                )
+                <= 0
+            ):
                 raise ValidationError(
                     _(
-                        "Product %s can only be sold with a packaging."
-                        % line.product_id.name
+                        "Product %s can only be sold with a packaging and a "
+                        "packaging qantity." % line.product_id.name
                     )
                 )
-
-    @api.onchange("product_id")
-    def product_id_change(self):
-        res = super().product_id_change()
-        if self.product_id.sell_only_by_packaging:
-            first_packaging = fields.first(
-                self.product_id.packaging_ids.filtered(
-                    lambda p: not float_is_zero(
-                        p.qty, precision_rounding=p.product_uom_id.rounding
-                    )
-                )
-            )
-            if first_packaging:
-                self.update(
-                    {
-                        "product_packaging": first_packaging.id,
-                        "product_uom_qty": first_packaging.qty,
-                    }
-                )
-        return res
 
     def _force_qty_with_package(self):
         """
@@ -86,40 +78,32 @@ class SaleOrderLine(models.Model):
     def _onchange_product_uom_qty(self):
         self._force_qty_with_package()
         res = super()._onchange_product_uom_qty()
-        if not res:
-            res = self._check_qty_is_pack_multiple()
         return res
-
-    def _check_qty_is_pack_multiple(self):
-        """ Check only for product with sell_only_by_packaging
-        """
-        # and we dont want to have this warning when we had the product
-        if self.product_id.sell_only_by_packaging:
-            if not self._get_product_packaging_having_multiple_qty(
-                self.product_id, self.product_uom_qty, self.product_uom
-            ):
-                warning_msg = {
-                    "title": _("Product quantity cannot be packed"),
-                    "message": _(
-                        "For the product {prod}\n"
-                        "The {qty} is not the multiple of any pack.\n"
-                        "Please add a package"
-                    ).format(prod=self.product_id.name, qty=self.product_uom_qty),
-                }
-                return {"warning": warning_msg}
-        return {}
 
     def _get_product_packaging_having_multiple_qty(self, product, qty, uom):
         if uom != product.uom_id:
             qty = uom._compute_quantity(qty, product.uom_id)
         return product.get_first_packaging_with_multiple_qty(qty)
 
+    def _inverse_product_packaging_qty(self):
+        # Force skipping of auto assign
+        # if we are writing the product_uom_qty directly via inverse
+        super(
+            SaleOrderLine, self.with_context(_skip_auto_assign=True)
+        )._inverse_product_packaging_qty()
+
+    def _inverse_qty_delivered(self):
+        # Force skipping of auto assign
+        super(
+            SaleOrderLine, self.with_context(_skip_auto_assign=True)
+        )._inverse_qty_delivered()
+
     def write(self, vals):
         """Auto assign packaging if needed"""
-        fields_to_check = ["product_id", "product_uom_qty", "product_uom"]
-        if vals.get("product_packaging") or not any(
-            fname in vals for fname in fields_to_check
+        if "product_packaging" in vals.keys() or self.env.context.get(
+            "_skip_auto_assign"
         ):
+            # setting the packaging directly, skip auto assign
             return super().write(vals)
         for line in self:
             line_vals = vals.copy()
@@ -134,7 +118,7 @@ class SaleOrderLine(models.Model):
             if "product_id" in vals
             else self.product_id
         )
-        if product and product.sell_only_by_packaging:
+        if product:
             quantity = (
                 vals["product_uom_qty"]
                 if "product_uom_qty" in vals
@@ -158,7 +142,8 @@ class SaleOrderLine(models.Model):
     def create(self, vals):
         """Auto assign packaging if needed"""
         # Fill the packaging if they are empty and the quantity is a multiple
-        vals.update(self._create_auto_assign_packaging(vals))
+        if not vals.get("product_packaging"):
+            vals.update(self._create_auto_assign_packaging(vals))
         return super().create(vals)
 
     @api.model
