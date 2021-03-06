@@ -6,16 +6,23 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 9.0c\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-10-09 11:47+0000\n"
-"PO-Revision-Date: 2020-07-27 10:19+0000\n"
-"Last-Translator: Daniel Martinez Vila <daniel.martinez@qubiq.es>\n"
+"POT-Creation-Date: 2021-02-23 22:37+0000\n"
+"PO-Revision-Date: 2021-02-23 23:43+0100\n"
+"Last-Translator: Sergio Teruel <sergio.teruel@tecnativa.com>\n"
 "Language-Team: \n"
 "Language: es\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 3.10\n"
+"X-Generator: Poedit 2.3\n"
+
+#. module: sale_order_product_recommendation
+#: model_terms:ir.ui.view,arch_db:sale_order_product_recommendation.res_config_settings_view_form_sale
+msgid "<span class=\"o_form_label\">Product recommendation price origin</span>"
+msgstr ""
+"<span class=\"o_form_label\">Origen del precio para el recomendador de "
+"productos</span>"
 
 #. module: sale_order_product_recommendation
 #: model_terms:ir.ui.view,arch_db:sale_order_product_recommendation.sale_order_recommendation_view_form
@@ -31,6 +38,11 @@ msgstr "Aceptar"
 #: model_terms:ir.ui.view,arch_db:sale_order_product_recommendation.sale_order_recommendation_view_form
 msgid "Cancel"
 msgstr "Cancelar"
+
+#. module: sale_order_product_recommendation
+#: model:ir.model,name:sale_order_product_recommendation.model_res_config_settings
+msgid "Config Settings"
+msgstr ""
 
 #. module: sale_order_product_recommendation
 #: model:ir.model.fields,help:sale_order_product_recommendation.field_sale_order_recommendation__months
@@ -107,6 +119,12 @@ msgid "Last Updated on"
 msgstr "Última actualización en"
 
 #. module: sale_order_product_recommendation
+#: model:ir.model.fields.selection,name:sale_order_product_recommendation.selection__res_config_settings__default_sale_recommendation_price_origin__last_sale_price
+#: model:ir.model.fields.selection,name:sale_order_product_recommendation.selection__sale_order_recommendation__sale_recommendation_price_origin__last_sale_price
+msgid "Last sale price"
+msgstr "Último precio de venta"
+
+#. module: sale_order_product_recommendation
 #: model:ir.model.fields,field_description:sale_order_product_recommendation.field_sale_order_recommendation__months
 msgid "Months"
 msgstr "Meses"
@@ -122,20 +140,33 @@ msgid "Price Unit"
 msgstr "Precio unitario"
 
 #. module: sale_order_product_recommendation
+#: model:ir.model.fields,field_description:sale_order_product_recommendation.field_res_config_settings__default_sale_recommendation_price_origin
+msgid "Price origin"
+msgstr "Origen del precio"
+
+#. module: sale_order_product_recommendation
 #: model_terms:ir.ui.view,arch_db:sale_order_product_recommendation.sale_order_recommendation_view_form
 msgid "Price:"
 msgstr "Precio:"
 
 #. module: sale_order_product_recommendation
 #: model:ir.model.fields,field_description:sale_order_product_recommendation.field_sale_order_recommendation_line__pricelist_id
+#: model:ir.model.fields.selection,name:sale_order_product_recommendation.selection__res_config_settings__default_sale_recommendation_price_origin__pricelist
+#: model:ir.model.fields.selection,name:sale_order_product_recommendation.selection__sale_order_recommendation__sale_recommendation_price_origin__pricelist
 msgid "Pricelist"
 msgstr "Tarifa"
 
 #. module: sale_order_product_recommendation
+#: model:ir.model.fields,field_description:sale_order_product_recommendation.field_sale_order_line__product_id
 #: model:ir.model.fields,field_description:sale_order_product_recommendation.field_sale_order_recommendation_line__product_id
 #: model_terms:ir.ui.view,arch_db:sale_order_product_recommendation.sale_order_recommendation_view_form
 msgid "Product"
 msgstr "Producto"
+
+#. module: sale_order_product_recommendation
+#: model:ir.model.fields,field_description:sale_order_product_recommendation.field_sale_order_recommendation__sale_recommendation_price_origin
+msgid "Product price origin"
+msgstr "Origen del precio del producto"
 
 #. module: sale_order_product_recommendation
 #: model:ir.model.fields,field_description:sale_order_product_recommendation.field_sale_order_recommendation__line_ids
@@ -173,6 +204,19 @@ msgid "Sale Order"
 msgstr "Pedido de venta"
 
 #. module: sale_order_product_recommendation
+#: model:ir.model,name:sale_order_product_recommendation.model_sale_order_line
+msgid "Sales Order Line"
+msgstr "Líneas de pedidos de venta"
+
+#. module: sale_order_product_recommendation
+#: model_terms:ir.ui.view,arch_db:sale_order_product_recommendation.res_config_settings_view_form_sale
+msgid ""
+"Select the origin for display product price in sale orders recommendation"
+msgstr ""
+"Seleccionar el origen del precio de los productos a mostrar en el "
+"recomendador de productos"
+
+#. module: sale_order_product_recommendation
 #: model:ir.model.fields,help:sale_order_product_recommendation.field_sale_order_recommendation__line_amount
 msgid "The less, the faster they will be found."
 msgstr "Cuantos menos, más rápido se encontrarán."
@@ -206,10 +250,3 @@ msgstr "Asistente"
 #: model_terms:ir.ui.view,arch_db:sale_order_product_recommendation.sale_order_recommendation_view_form
 msgid "times -"
 msgstr "veces -"
-
-#, fuzzy
-#~ msgid "Is Modified"
-#~ msgstr "Última modificación en"
-
-#~ msgid "Pricelist for current sales order."
-#~ msgstr "Tarifa del pedido de ventas actual."
