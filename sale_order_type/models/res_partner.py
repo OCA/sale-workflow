@@ -1,6 +1,6 @@
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
-from odoo import fields, models, api
+from odoo import api, fields, models
 
 
 class ResPartner(models.Model):
@@ -15,7 +15,9 @@ class ResPartner(models.Model):
 
         # Ensure each company has at least one sale.order.type record
         for company in self.env["res.company"].search([]):
-            if not self.env["sale.order.type"].search([("company_id", "=", company.id)]):
+            if not self.env["sale.order.type"].search(
+                [("company_id", "=", company.id)]
+            ):
                 self.env["sale.order.type"].create(
                     {"name": "Normal Order", "company_id": company.id}
                 )
