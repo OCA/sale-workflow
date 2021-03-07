@@ -36,7 +36,7 @@ def migrate(cr, version=None):
         return
     cr.execute(
         'select id, code from exception_rule where model in %s',
-        (tuple('sale.order', 'sale.order.line'),),
+        (('sale.order', 'sale.order.line'),),
     )
     for exception_id, code in cr.fetchall():
         new_code = astunparse.unparse(RewriteNames().visit(ast.parse(code)))
