@@ -10,7 +10,7 @@ class TestSaleOrderLineInput(SavepointCase):
         super().setUpClass()
         cls.partner = cls.env["res.partner"].create({"name": "Test"})
         cls.product = cls.env["product.product"].create(
-            {"name": "test_product", "type": "service",}
+            {"name": "test_product", "type": "service"}
         )
 
     def test_sale_order_create_and_show(self):
