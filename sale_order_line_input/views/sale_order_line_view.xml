@@ -15,6 +15,8 @@
                 editable="top"
                 create="true"
             >
+                <!-- We do not display the type because we don't want the user to be bothered with that information if he has no section or note. -->
+                <field name="display_type" invisible="1" />
                 <field
                     name="order_id"
                     string="Order"
@@ -47,8 +49,25 @@
                     context="{'partner_id':order_partner_id, 'quantity':product_uom_qty, 'pricelist':pricelist_id, 'uom':product_uom, 'company_id': company_id}"
                 />
                 <field
+                    name="product_template_id"
+                    string="Product"
+                    invisible="1"
+                    attrs="{'readonly': [('product_updatable', '=', False)]}"
+                    context="{
+                        'partner_id': parent.partner_id,
+                        'quantity': product_uom_qty,
+                        'pricelist': parent.pricelist_id,
+                        'uom':product_uom,
+                        'company_id': parent.company_id,
+                        'default_list_price': price_unit,
+                        'default_description_sale': name
+                    }"
+                />
+                <field name="product_uom_category_id" invisible="1" />
+                <field
                     name="name"
                     attrs="{'readonly': [('state', 'in', ('done', 'cancel'))]}"
+                    optional="show"
                 />
                 <field
                     name="product_uom_qty"
@@ -56,20 +75,25 @@
                     string="Ordered Qty"
                     context="{'partner_id':order_partner_id, 'quantity':product_uom_qty, 'pricelist':pricelist_id, 'uom':product_uom, 'company_id': company_id}"
                     attrs="{'readonly': [('state', 'in', ('done', 'cancel'))]}"
+                    optional="show"
                 />
                 <field
                     name="qty_delivered"
                     sum="Delivered"
                     attrs="{'readonly': [('qty_delivered_method', '!=', 'manual')]}"
+                    optional="show"
                 />
-                <field name="qty_invoiced" sum="Invoiced" />
-                <field name="qty_to_invoice" sum="To Invoice" />
+                <field name="qty_delivered_manual" invisible="1" />
+                <field name="qty_invoiced" sum="Invoiced" optional="show" />
+                <field name="qty_to_invoice" sum="To Invoice" optional="show" />
                 <field
                     name="product_uom"
+                    string="UoM"
                     attrs="{'readonly': [('state', 'in', ('sale','done', 'cancel'))]}"
                     context="{'company_id': company_id}"
                     groups="uom.group_uom"
                     options='{"no_open": True}'
+                    optional="show"
                 />
                 <field
                     name="analytic_tag_ids"
@@ -77,10 +101,12 @@
                     groups="analytic.group_analytic_accounting"
                     widget="many2many_tags"
                     options="{'color_field': 'color'}"
+                    optional="show"
                 />
                 <field
                     name="price_unit"
                     attrs="{'readonly': ['|', ('qty_invoiced', '&gt;', 0), ('state', 'in', ('done', 'cancel'))]}"
+                    optional="show"
                 />
                 <field
                     name="tax_id"
@@ -89,21 +115,26 @@
                     domain="[('type_tax_use','=','sale'),('company_id','=',company_id)]"
                     invisible="context.get('tax_hide', False)"
                     attrs="{'readonly': ['|', ('qty_invoiced', '&gt;', 0), ('state', 'in', ('done', 'cancel'))]}"
+                    optional="show"
                 />
                 <field
                     name="discount"
+                    string="Disc.%"
                     attrs="{'readonly': [('state', 'in', ('done', 'cancel'))]}"
-                    groups="sale.group_discount_per_so_line"
+                    groups="product.group_discount_per_so_line"
+                    optional="show"
                 />
                 <field
                     name="price_subtotal"
                     widget="monetary"
                     groups="account.group_show_line_subtotals_tax_excluded"
+                    optional="show"
                 />
                 <field
                     name="price_total"
                     widget="monetary"
                     groups="account.group_show_line_subtotals_tax_included"
+                    optional="show"
                 />
                 <field name="product_updatable" invisible="1" />
                 <field name="qty_delivered_method" invisible="1" />
@@ -111,6 +142,7 @@
                 <field name="invoice_status" invisible="1" />
                 <field name="customer_lead" invisible="1" />
                 <field name="currency_id" invisible="1" />
+                <field name="price_tax" invisible="1" />
                 <field name="pricelist_id" invisible="1" />
                 <field name="company_id" invisible="1" />
             </tree>
@@ -164,7 +196,6 @@
         <field name="name">Sales Orders Lines</field>
         <field name="type">ir.actions.act_window</field>
         <field name="res_model">sale.order.line</field>
-        <field name="view_type">form</field>
         <field name="view_mode">tree,form,pivot,graph</field>
         <field name="view_id" ref="view_sales_order_line_input_tree" />
     </record>
