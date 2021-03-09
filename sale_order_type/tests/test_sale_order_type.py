@@ -12,7 +12,7 @@ class TestSaleOrderType(common.TransactionCase):
         self.sale_type_model = self.env["sale.order.type"]
         self.sale_order_model = self.env["sale.order"]
         self.invoice_model = self.env["account.move"].with_context(
-            default_type="out_invoice"
+            default_move_type="out_invoice"
         )
         self.partner = self.env.ref("base.res_partner_1")
         self.partner_child_1 = self.env["res.partner"].create(

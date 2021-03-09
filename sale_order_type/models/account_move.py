@@ -20,17 +20,15 @@ class AccountMove(models.Model):
     def _compute_sale_type_id(self):
         self.sale_type_id = self.env["sale.order.type"]
         for record in self.filtered(
-            lambda am: am.type in ["out_invoice", "out_refund"]
+            lambda am: am.move_type in ["out_invoice", "out_refund"]
         ):
             if not record.partner_id:
                 record.sale_type_id = self.env["sale.order.type"].search([], limit=1)
             else:
                 sale_type = (
-                    record.partner_id.with_context(
-                        force_company=record.company_id.id
-                    ).sale_type
-                    or self.partner_id.commercial_partner_id.with_context(
-                        force_company=record.company_id.id
+                    record.partner_id.with_company(record.company_id.id).sale_type
+                    or self.partner_id.commercial_partner_id.with_company(
+                        record.company_id.id
                     ).sale_type
                 )
                 if sale_type:

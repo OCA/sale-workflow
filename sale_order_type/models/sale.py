@@ -28,11 +28,9 @@ class SaleOrder(models.Model):
                 record.sale_type_id = self.env["sale.order.type"].search([], limit=1)
             else:
                 sale_type = (
-                    record.partner_id.with_context(
-                        force_company=record.company_id.id
-                    ).sale_type
-                    or self.partner_id.commercial_partner_id.with_context(
-                        force_company=record.company_id.id
+                    record.partner_id.with_company(record.company_id.id).sale_type
+                    or self.partner_id.commercial_partner_id.with_company(
+                        record.company_id.id
                     ).sale_type
                 )
                 if sale_type:
