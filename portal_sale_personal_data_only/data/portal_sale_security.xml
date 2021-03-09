@@ -13,7 +13,7 @@
         <field name="model_id" ref="sale.model_sale_order_line" />
         <field
             name="domain_force"
-        >[('order_id.message_partner_ids','child_of', [user.partner_id.id]])]</field>
+        >[('order_id.message_partner_ids','child_of', [user.partner_id.id])]</field>
         <field name="groups" eval="[(4, ref('base.group_portal'))]" />
     </record>
     <record id="portal_account_invoice_user_rule" model="ir.rule">
