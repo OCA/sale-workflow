@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <record id="sale_coupon_view_tree" model="ir.ui.view">
+        <field name="name">sale.coupon.form.multi_use</field>
+        <field name="model">sale.coupon</field>
+        <field name="inherit_id" ref="sale_coupon.sale_coupon_view_tree" />
+        <field name="arch" type="xml">
+            <field name="expiration_date" position="after">
+                <field name="multi_use" />
+            </field>
+        </field>
+    </record>
+    <record id="sale_coupon_view_form_inherit" model="ir.ui.view">
+        <field name="name">sale.coupon.form.multi_use</field>
+        <field name="model">sale.coupon</field>
+        <field name="inherit_id" ref="sale_coupon.sale_coupon_view_form" />
+        <field name="arch" type="xml">
+            <field name="expiration_date" position="after">
+                <field name="currency_program_id" invisible="1" />
+                <field name="multi_use" />
+            </field>
+            <field name="sales_order_id" position="after">
+                <field
+                    name="sale_multi_use_ids"
+                    widget="many2many_tags"
+                    attrs="{'invisible': [('multi_use', '=', False)]}"
+                />
+            </field>
+            <xpath expr="/form/sheet/group" position="after">
+                <field
+                    name="consumption_line_ids"
+                    attrs="{'invisible': [('multi_use', '=', False)]}"
+                >
+                    <!-- Add color on draft sale orders to easily distinguish draft/sent and confirmed orders-->
+                    <tree decoration-info="sale_order_state in ['draft', 'sent']">
+                        <field name="currency_program_id" invisible="1" />
+                        <field name="sale_order_line_id" />
+                        <field name="sale_order_state" />
+                        <field
+                            name="amount"
+                            widget="monetary"
+                            options="{'currency_field': 'currency_program_id'}"
+                        />
+                    </tree>
+                </field>
+                <group
+                    class="oe_subtotal_footer oe_right"
+                    colspan="2"
+                    name="multi_use_delta"
+                    attrs="{'invisible': [('multi_use', '=', False)]}"
+                >
+                    <field
+                        name="discount_fixed_amount_delta"
+                        widget="monetary"
+                        options="{'currency_field': 'currency_program_id'}"
+                    />
+                </group>
+            </xpath>
+        </field>
+    </record>
+</odoo>

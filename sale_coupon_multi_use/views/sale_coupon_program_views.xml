@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <record id="sale_coupon_program_view_form" model="ir.ui.view">
+        <field name="name">sale.coupon.program.form.multi_use</field>
+        <field name="model">sale.coupon.program</field>
+        <field name="inherit_id" ref="sale_coupon.sale_coupon_program_view_form" />
+        <field name="arch" type="xml">
+            <xpath expr="//group[@name='validity']" position="inside">
+                <field name="coupon_multi_use" />
+            </xpath>
+        </field>
+    </record>
+</odoo>
