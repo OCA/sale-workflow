@@ -11,7 +11,7 @@
     <record id="portal_sale_order_line_rule" model="ir.rule">
         <field name="name">Portal Only Personal Sales Orders Line</field>
         <field name="model_id" ref="sale.model_sale_order_line"/>
-        <field name="domain_force">[('order_id.message_partner_ids','child_of', [user.partner_id.id]])]</field>
+        <field name="domain_force">[('order_id.message_partner_ids','child_of', [user.partner_id.id])]</field>
         <field name="groups" eval="[(4, ref('base.group_portal'))]"/>
     </record>
 
