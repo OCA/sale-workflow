@@ -15,6 +15,7 @@ setuptools.setup(
         'odoo13-addon-sale_cancel_reason',
         'odoo13-addon-sale_commercial_partner',
         'odoo13-addon-sale_contact_type',
+        'odoo13-addon-sale_coupon_most_expensive',
         'odoo13-addon-sale_coupon_multi_currency',
         'odoo13-addon-sale_coupon_multi_use',
         'odoo13-addon-sale_coupon_multi_use_currency',
