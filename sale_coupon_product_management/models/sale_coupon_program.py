@@ -20,7 +20,7 @@ class SaleCouponProgram(models.Model):
     )
     discount_line_product_chosen = fields.Boolean()
     discount_line_product_readonly_id = fields.Many2one(
-        related="discount_line_product_id",
+        related="discount_line_product_id", string="Reward Line Product Readonly",
     )
 
     @api.onchange("program_type", "promo_applicability")
