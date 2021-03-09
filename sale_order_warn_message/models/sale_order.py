@@ -16,7 +16,7 @@ class SaleOrder(models.Model):
     def _compute_sale_warn_msg(self):
         for rec in self:
             if rec.state not in ["draft", "sent"]:
-                rec.sale_warn_msg = ""
+                rec.sale_warn_msg = False
                 continue
             p = rec.partner_id.commercial_partner_id
             sale_warn_msg = ""
@@ -26,4 +26,4 @@ class SaleOrder(models.Model):
                 sale_warn_msg += p.sale_warn_msg
             if p != rec.partner_id and rec.partner_id.sale_warn == "warning":
                 sale_warn_msg += separator + rec.partner_id.sale_warn_msg
-            rec.sale_warn_msg = sale_warn_msg
+            rec.sale_warn_msg = False if sale_warn_msg == "" else sale_warn_msg
