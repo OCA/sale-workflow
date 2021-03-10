@@ -7,15 +7,15 @@ msgstr ""
 "Project-Id-Version: Odoo Server 11.0\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2020-04-06 14:38+0000\n"
-"PO-Revision-Date: 2020-04-30 10:19+0000\n"
-"Last-Translator: David Vidal <david.vidal@tecnativa.com>\n"
+"PO-Revision-Date: 2021-03-10 10:45+0000\n"
+"Last-Translator: Daniel Martinez Vila <daniel.martinez@qubiq.es>\n"
 "Language-Team: \n"
 "Language: es\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 3.10\n"
+"X-Generator: Weblate 4.3.2\n"
 
 #. module: sale_global_discount
 #: model_terms:ir.ui.view,arch_db:sale_global_discount.report_saleorder_document
@@ -29,7 +29,6 @@ msgstr "<strong>Subtl. antes desc.</strong>"
 
 #. module: sale_global_discount
 #: model:ir.model.fields,field_description:sale_global_discount.field_sale_order__amount_total_before_global_discounts
-#, fuzzy
 msgid "Amount Total Before Discounts"
 msgstr "Base Imponible sin Descuentos"
 
@@ -42,7 +41,7 @@ msgstr "Base Imponible sin Descuentos"
 #: code:addons/sale_global_discount/models/sale_order.py:74
 #, python-format
 msgid "Incompatible taxes found for global discounts."
-msgstr ""
+msgstr "Se han encontrado impuestos incompatibles para descuentos globales."
 
 #. module: sale_global_discount
 #: model:ir.model.fields,field_description:sale_global_discount.field_sale_order__global_discount_ids
@@ -53,12 +52,12 @@ msgstr "Descuentos de venta globales"
 #. module: sale_global_discount
 #: model:ir.model.fields,field_description:sale_global_discount.field_sale_order__global_discount_ids_readonly
 msgid "Sale Global Discounts (readonly)"
-msgstr ""
+msgstr "Venta Descuentos Globales (solo lectura)"
 
 #. module: sale_global_discount
 #: model:ir.model,name:sale_global_discount.model_sale_order
 msgid "Sale Order"
-msgstr ""
+msgstr "Pedido de venta"
 
 #. module: sale_global_discount
 #: model:ir.model.fields,field_description:sale_global_discount.field_sale_order__amount_global_discount
@@ -69,7 +68,7 @@ msgstr "Total Descuentos Globales"
 #: code:addons/sale_global_discount/models/sale_order.py:67
 #, python-format
 msgid "With global discounts, taxes in lines are required."
-msgstr ""
+msgstr "Con descuentos globales, se requieren impuestos en líneas."
 
 #~ msgid "Quotation"
 #~ msgstr "Presupuesto"
