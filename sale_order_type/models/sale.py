@@ -76,6 +76,15 @@ class SaleOrder(models.Model):
                 vals["name"] = sale_type.sequence_id.next_by_id()
         return super(SaleOrder, self).create(vals)
 
+    def write(self, vals):
+        res = super(SaleOrder, self).write(vals)
+        if vals.get("type_id") and (self.state == "draft" or self.state == "sent"):
+            for order in self:
+                sale_type = self.env["sale.order.type"].browse(vals["type_id"])
+                if sale_type.sequence_id:
+                    order.name = sale_type.sequence_id.next_by_id()
+        return res
+
     def _prepare_invoice(self):
         res = super(SaleOrder, self)._prepare_invoice()
         if self.type_id.journal_id:
