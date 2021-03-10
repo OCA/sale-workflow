@@ -6,65 +6,69 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 12.0\n"
 "Report-Msgid-Bugs-To: \n"
-"Last-Translator: Automatically generated\n"
+"PO-Revision-Date: 2021-03-10 10:45+0000\n"
+"Last-Translator: Daniel Martinez Vila <daniel.martinez@qubiq.es>\n"
 "Language-Team: none\n"
 "Language: ca\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: Weblate 4.3.2\n"
 
 #. module: sale_contact_type
 #: model:ir.model.fields,field_description:sale_contact_type.field_res_partner__type
 #: model:ir.model.fields,field_description:sale_contact_type.field_res_users__type
 msgid "Address Type"
-msgstr ""
+msgstr "Tipus d'adreça"
 
 #. module: sale_contact_type
 #: model:ir.model,name:sale_contact_type.model_res_partner
 #: selection:res.partner,type:0
 msgid "Contact"
-msgstr ""
+msgstr "Contacte"
 
 #. module: sale_contact_type
 #: model:ir.model.fields,field_description:sale_contact_type.field_res_partner__has_ordering_contact_child
 #: model:ir.model.fields,field_description:sale_contact_type.field_res_users__has_ordering_contact_child
 msgid "Has Ordering Contact Child"
-msgstr ""
+msgstr "Té un contacte fill per fer la comanda"
 
 #. module: sale_contact_type
 #: selection:res.partner,type:0
 msgid "Invoice address"
-msgstr ""
+msgstr "Adreça de la factura"
 
 #. module: sale_contact_type
 #: selection:res.partner,type:0
 msgid "Ordering contact"
-msgstr ""
+msgstr "Contacte de comanda"
 
 #. module: sale_contact_type
 #: selection:res.partner,type:0
 msgid "Other address"
-msgstr ""
+msgstr "Una altra adreça"
 
 #. module: sale_contact_type
 #: selection:res.partner,type:0
 msgid "Private Address"
-msgstr ""
+msgstr "Adreça privada"
 
 #. module: sale_contact_type
 #: selection:res.partner,type:0
 msgid "Shipping address"
-msgstr ""
+msgstr "Adreça d'enviament"
 
 #. module: sale_contact_type
 #: model:ir.model.fields,help:sale_contact_type.field_res_partner__has_ordering_contact_child
 #: model:ir.model.fields,help:sale_contact_type.field_res_users__has_ordering_contact_child
 msgid "Technical field for use in views"
-msgstr ""
+msgstr "Camp tècnic per utilitzar en vistes"
 
 #. module: sale_contact_type
 #: model:ir.model.fields,help:sale_contact_type.field_res_partner__type
 #: model:ir.model.fields,help:sale_contact_type.field_res_users__type
 msgid "Used by Sales and Purchase Apps to select the relevant address depending on the context."
 msgstr ""
+"Utilitzat per les aplicacions de vendes i compres per seleccionar l'adreça "
+"pertinent en funció del context."
