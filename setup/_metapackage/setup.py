@@ -58,6 +58,7 @@ setuptools.setup(
         'odoo13-addon-sale_sourced_by_line',
         'odoo13-addon-sale_stock_delivery_address',
         'odoo13-addon-sale_stock_picking_note',
+        'odoo13-addon-sale_stock_return_request',
         'odoo13-addon-sale_stock_secondary_unit',
         'odoo13-addon-sale_tier_validation',
         'odoo13-addon-sale_validity',
