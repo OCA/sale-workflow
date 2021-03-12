@@ -1,6 +1,6 @@
 # Translation of Odoo Server.
 # This file contains the translation of the following modules:
-#	* sale_rental
+# 	* sale_rental
 #
 msgid ""
 msgstr ""
@@ -20,9 +20,13 @@ msgstr ""
 #: model:ir.model.fields,help:sale_rental.field_sale_rental__in_state
 #: model:ir.model.fields,help:sale_rental.field_sale_rental__out_state
 #: model:ir.model.fields,help:sale_rental.field_sale_rental__sell_state
-msgid "* New: When the stock move is created and not yet confirmed.\n"
-"* Waiting Another Move: This state can be seen when a move is waiting for another one, for example in a chained flow.\n"
-"* Waiting Availability: This state is reached when the procurement resolution is not straight forward. It may need the scheduler to run, a component to be manufactured...\n"
+msgid ""
+"* New: When the stock move is created and not yet confirmed.\n"
+"* Waiting Another Move: This state can be seen when a move is waiting for "
+"another one, for example in a chained flow.\n"
+"* Waiting Availability: This state is reached when the procurement "
+"resolution is not straight forward. It may need the scheduler to run, a "
+"component to be manufactured...\n"
 "* Available: When products are reserved, it is set to 'Available'.\n"
 "* Done: When the shipment is processed, the state is 'Done'."
 msgstr ""
@@ -32,8 +36,8 @@ msgstr ""
 "* Disponibilidade de espera: Este estado é alcançado quando a resolução de "
 "compras não é direta. Pode precisar do programador para executar, um "
 "componente a ser fabricado ...\n"
-"* Disponível: Quando os produtos são reservados, ele está definido como \""
-"Disponível\".\n"
+"* Disponível: Quando os produtos são reservados, ele está definido como "
+"\"Disponível\".\n"
 "* Feito: Quando o carregamento é processado, o estado é 'Feito'."
 
 #. module: sale_rental
@@ -58,8 +62,8 @@ msgstr ""
 #, python-format
 msgid "Can't find any generic 'Sell Rented Product' route."
 msgstr ""
-"Não é possível encontrar nenhuma rota genérica para \"Vender Produto "
-"Alugado\"."
+"Não é possível encontrar nenhuma rota genérica para \"Vender Produto Alugado"
+"\"."
 
 #. module: sale_rental
 #: model_terms:ir.ui.view,arch_db:sale_rental.create_rental_product_form
@@ -73,6 +77,7 @@ msgstr "Cancelada"
 
 #. module: sale_rental
 #: code:addons/sale_rental/models/sale_order.py:168
+#: code:addons/sale_rental/models/sale_order.py:172
 #, python-format
 msgid "Cannot sell the rental %s because it has not been delivered"
 msgstr "Não é possível vender o aluguel %s porque ele não foi entregue"
@@ -163,7 +168,9 @@ msgstr "Data Final"
 
 #. module: sale_rental
 #: model:ir.model.fields,help:sale_rental.field_sale_rental__end_date
-msgid "End Date of the Rental (extensions included),         taking into account all the extensions sold to the customer."
+msgid ""
+"End Date of the Rental (extensions included),         taking into account "
+"all the extensions sold to the customer."
 msgstr ""
 "Data de término do Aluguel (extensões incluídas),         levando em conta "
 "todas as extensões vendidas ao cliente."
@@ -221,7 +228,8 @@ msgstr "Última atualização em"
 #. module: sale_rental
 #: code:addons/sale_rental/models/sale_order.py:69
 #, python-format
-msgid "Missing 'Rental to Extend' on the sale order line with rental service %s"
+msgid ""
+"Missing 'Rental to Extend' on the sale order line with rental service %s"
 msgstr ""
 
 #. module: sale_rental
@@ -231,6 +239,7 @@ msgstr "Nova Locação"
 
 #. module: sale_rental
 #: code:addons/sale_rental/models/sale_order.py:221
+#: code:addons/sale_rental/models/sale_order.py:225
 #, python-format
 msgid "Not enough stock !"
 msgstr "Não há estoque suficiente !"
@@ -238,25 +247,35 @@ msgstr "Não há estoque suficiente !"
 #. module: sale_rental
 #: code:addons/sale_rental/models/sale_order.py:85
 #, python-format
-msgid "On the 'new rental' sale order line with product '%s', we should have a rental service product !"
+msgid ""
+"On the 'new rental' sale order line with product '%s', we should have a "
+"rental service product !"
 msgstr ""
 
 #. module: sale_rental
 #: code:addons/sale_rental/models/sale_order.py:102
 #, python-format
-msgid "On the sale order line with product %s you are trying to sell a rented product with a quantity (%s) that is different from the rented quantity (%s). This is not supported."
+msgid ""
+"On the sale order line with product %s you are trying to sell a rented "
+"product with a quantity (%s) that is different from the rented quantity "
+"(%s). This is not supported."
 msgstr ""
 
 #. module: sale_rental
 #: code:addons/sale_rental/models/sale_order.py:91
 #, python-format
-msgid "On the sale order line with product '%s' the Product Quantity (%s) should be the number of days (%s) multiplied by the Rental Quantity (%s)."
+msgid ""
+"On the sale order line with product '%s' the Product Quantity (%s) should be "
+"the number of days (%s) multiplied by the Rental Quantity (%s)."
 msgstr ""
 
 #. module: sale_rental
 #: code:addons/sale_rental/models/sale_order.py:74
 #, python-format
-msgid "On the sale order line with rental service %s, you are trying to extend a rental with a rental quantity (%s) that is different from the quantity of the original rental (%s). This is not supported."
+msgid ""
+"On the sale order line with rental service %s, you are trying to extend a "
+"rental with a rental quantity (%s) that is different from the quantity of "
+"the original rental (%s). This is not supported."
 msgstr ""
 
 #. module: sale_rental
@@ -561,8 +580,11 @@ msgstr "O local de estoque de saída de aluguel não está definido no armazém 
 
 #. module: sale_rental
 #: code:addons/sale_rental/models/sale_order.py:263
+#: code:addons/sale_rental/models/sale_order.py:267
 #, python-format
-msgid "The Rental Service of the Rental Extension you just selected is '%s' and it's not the same as the Product currently selected in this Sale Order Line."
+msgid ""
+"The Rental Service of the Rental Extension you just selected is '%s' and "
+"it's not the same as the Product currently selected in this Sale Order Line."
 msgstr ""
 
 #. module: sale_rental
@@ -574,7 +596,9 @@ msgstr "O produto de aluguel '%s' deve ser do tipo 'Serviço'."
 #. module: sale_rental
 #: code:addons/sale_rental/models/product.py:32
 #, python-format
-msgid "The rental product '%s' must have the option 'Must Have Start and End Dates' checked."
+msgid ""
+"The rental product '%s' must have the option 'Must Have Start and End Dates' "
+"checked."
 msgstr ""
 "O produto de aluguel '%s' deve ter a opção 'Deve ter datas de início e "
 "término' verificada."
@@ -613,8 +637,12 @@ msgstr ""
 
 #. module: sale_rental
 #: code:addons/sale_rental/models/sale_order.py:222
+#: code:addons/sale_rental/models/sale_order.py:226
 #, python-format
-msgid "You want to rent %.2f %s but you only have %.2f %s currently available on the stock location '%s' ! Make sure that you get some units back in the mean time or re-supply the stock location '%s'."
+msgid ""
+"You want to rent %.2f %s but you only have %.2f %s currently available on "
+"the stock location '%s' ! Make sure that you get some units back in the mean "
+"time or re-supply the stock location '%s'."
 msgstr ""
 "Você deseja alugar %.2f %s, mas só tem %.2f %s disponível no local de "
 "estoque '%s'! Certifique-se de obter algumas unidades de volta nesse meio "
