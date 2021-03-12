@@ -80,6 +80,7 @@ msgstr "Geannuleerd"
 
 #. module: sale_rental
 #: code:addons/sale_rental/models/sale_order.py:168
+#: code:addons/sale_rental/models/sale_order.py:172
 #, python-format
 msgid "Cannot sell the rental %s because it has not been delivered"
 msgstr "Kan de verhuur %s niet verkopen omdat deze nog niet geleverd is."
@@ -244,6 +245,7 @@ msgstr "Nieuwe verhuur"
 
 #. module: sale_rental
 #: code:addons/sale_rental/models/sale_order.py:221
+#: code:addons/sale_rental/models/sale_order.py:225
 #, python-format
 msgid "Not enough stock !"
 msgstr "Onvoldoende voorraad !"
@@ -611,6 +613,7 @@ msgstr ""
 
 #. module: sale_rental
 #: code:addons/sale_rental/models/sale_order.py:263
+#: code:addons/sale_rental/models/sale_order.py:267
 #, python-format
 msgid ""
 "The Rental Service of the Rental Extension you just selected is '%s' and "
@@ -669,6 +672,7 @@ msgstr ""
 
 #. module: sale_rental
 #: code:addons/sale_rental/models/sale_order.py:222
+#: code:addons/sale_rental/models/sale_order.py:226
 #, python-format
 msgid ""
 "You want to rent %.2f %s but you only have %.2f %s currently available on "
