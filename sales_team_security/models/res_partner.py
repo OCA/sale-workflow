@@ -45,3 +45,8 @@ class ResPartner(models.Model):
         """
         if self.parent_id and self.parent_id.team_id and not self.team_id:
             self.team_id = self.parent_id.team_id.id
+
+    @api.onchange("user_id")
+    def _onchange_user_id_sales_team_security(self):
+        if self.user_id.sale_team_id:
+            self.team_id = self.user_id.sale_team_id
