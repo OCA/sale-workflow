@@ -14,5 +14,6 @@ class StockMove(models.Model):
         values = super(StockMove, self)._prepare_picking_assign(move)
         if move.procurement_id.sale_line_id:
             sale = move.procurement_id.sale_line_id.order_id
-            values['invoice_state'] = sale.type_id.invoice_state
+            if sale.type_id.invoice_state:
+                values['invoice_state'] = sale.type_id.invoice_state
         return values

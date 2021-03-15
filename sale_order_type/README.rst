@@ -45,6 +45,7 @@ Contributors
 * Daniel Campos <danielcampos@avanzosc.es>
 * Ainara Galdona <ainaragaldona@avanzosc.es>
 * Lorenzo Battistini <lorenzo.battistini@agilebg.com>
+* Vincenzo Terzulli <v.terzulli@elvenstudio.it>
 
 Maintainer
 ----------

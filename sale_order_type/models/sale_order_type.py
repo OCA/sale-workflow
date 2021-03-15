@@ -56,16 +56,16 @@ class SaleOrderTypology(models.Model):
         comodel_name='account.journal', string='Refund Billing Journal',
         domain=[('type', '=', 'sale_refund')])
     warehouse_id = fields.Many2one(
-        comodel_name='stock.warehouse', string='Warehouse', required=True)
+        comodel_name='stock.warehouse', string='Warehouse')
     picking_policy = fields.Selection(
         selection='_get_selection_picking_policy', string='Shipping Policy',
-        required=True, default=default_picking_policy)
+        default=default_picking_policy)
     order_policy = fields.Selection(
         selection='_get_selection_order_policy', string='Create Invoice',
-        required=True, default=default_order_policy)
+        default=default_order_policy)
     invoice_state = fields.Selection(
         selection='_get_selection_invoice_state', string='Invoice Control',
-        required=True, default=default_invoice_state)
+        default=default_invoice_state)
     sequence = fields.Integer(
         string='Sequence',
         default=0)
