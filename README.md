@@ -68,6 +68,7 @@ addon | version | summary
 [sale_product_set](sale_product_set/) | 13.0.1.2.0 | Sale product set
 [sale_product_set_packaging_qty](sale_product_set_packaging_qty/) | 13.0.1.0.1 | Manage packaging and quantities on product set lines
 [sale_quotation_number](sale_quotation_number/) | 13.0.1.0.0 | Different sequence for sale quotations
+[sale_secondary_salesperson](sale_secondary_salesperson/) | 13.0.1.0.0 | Sale Secondary Salesperson
 [sale_shipping_info_helper](sale_shipping_info_helper/) | 13.0.1.0.0 | Add shipping amounts on sale order
 [sale_sourced_by_line](sale_sourced_by_line/) | 13.0.1.0.1 | Multiple warehouse source locations for Sale order
 [sale_stock_delivery_address](sale_stock_delivery_address/) | 13.0.1.0.3 | Sale Stock Delivery Address
