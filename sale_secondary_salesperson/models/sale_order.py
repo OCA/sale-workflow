@@ -5,15 +5,18 @@ from odoo import fields, models
 
 
 class SaleOrder(models.Model):
-    _inherit = 'sale.order'
+    _inherit = "sale.order"
 
     secondary_user_id = fields.Many2one(
-        comodel_name='res.users',
-        string='Secondary Salesperson',
-        track_visibility='onchange')
+        comodel_name="res.users",
+        string="Secondary Salesperson",
+        track_visibility="onchange",
+    )
 
     _sql_constraints = [
-        ('secondary_user_id',
-         'CHECK((secondary_user_id IS NULL) OR (secondary_user_id != user_id))',
-         'The secondary salesperson must be different from the primary salesperson!'),
+        (
+            "secondary_user_id",
+            "CHECK((secondary_user_id IS NULL) OR (secondary_user_id != user_id))",
+            "The secondary salesperson must be different from the primary salesperson!",
+        ),
     ]
