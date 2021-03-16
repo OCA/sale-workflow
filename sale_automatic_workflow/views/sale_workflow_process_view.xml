@@ -16,6 +16,9 @@
                 <group name="sale_order_confirm" string="Order Configuration">
                     <field name="picking_policy" />
                     <field name="team_id" />
+                    <field name="default" />
+                    <field name="auto_commit" />
+                    <field name="search_limit" />
                 </group>
                 <group name="workflow_options" string="Workflow Options" col="4">
                     <field name="validate_order" />
