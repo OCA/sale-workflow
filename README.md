@@ -102,7 +102,7 @@ addon | version | summary
 [sale_triple_discount](sale_triple_discount/) | 12.0.1.1.1 | Manage triple discount on sale order lines
 [sale_validity](sale_validity/) | 12.0.1.0.0 | Set a default validity delay on quotations
 [sale_wishlist](sale_wishlist/) | 12.0.1.0.0 | Handle sale wishlist for partners
-[sales_team_security](sales_team_security/) | 12.0.2.0.0 | New group for seeing only sales channel's documents
+[sales_team_security](sales_team_security/) | 12.0.2.0.1 | New group for seeing only sales channel's documents
 
 [//]: # (end addons)
 
