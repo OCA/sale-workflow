@@ -1,0 +1,86 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* sale_crm_set_won
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 14.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2021-03-18 00:02+0000\n"
+"PO-Revision-Date: 2021-03-18 00:02+0000\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: sale_crm_set_won
+#: model:ir.model.fields.selection,name:sale_crm_set_won.selection__res_config_settings__crm_set_won_option__choose_stage
+msgid "Choose Stage"
+msgstr ""
+
+#. module: sale_crm_set_won
+#: model:ir.model,name:sale_crm_set_won.model_res_config_settings
+msgid "Class for managing global SaaS settings."
+msgstr ""
+
+#. module: sale_crm_set_won
+#: model:ir.model.fields,field_description:sale_crm_set_won.field_res_config_settings__display_name
+#: model:ir.model.fields,field_description:sale_crm_set_won.field_sale_order__display_name
+msgid "Display Name"
+msgstr ""
+
+#. module: sale_crm_set_won
+#: model:ir.model.fields,field_description:sale_crm_set_won.field_res_config_settings__id
+#: model:ir.model.fields,field_description:sale_crm_set_won.field_sale_order__id
+msgid "ID"
+msgstr ""
+
+#. module: sale_crm_set_won
+#: model:ir.model.fields,field_description:sale_crm_set_won.field_res_config_settings____last_update
+#: model:ir.model.fields,field_description:sale_crm_set_won.field_sale_order____last_update
+msgid "Last Modified on"
+msgstr ""
+
+#. module: sale_crm_set_won
+#: model_terms:ir.ui.view,arch_db:sale_crm_set_won.crm_sale_res_config_settings_view_form
+msgid "Opportunities Set Won Automatically"
+msgstr ""
+
+#. module: sale_crm_set_won
+#: model:ir.model,name:sale_crm_set_won.model_sale_order
+msgid "Sales Order"
+msgstr ""
+
+#. module: sale_crm_set_won
+#: model_terms:ir.ui.view,arch_db:sale_crm_set_won.crm_sale_res_config_settings_view_form
+msgid "Set Opportunity as \"WON\" when confirm a Sale Order"
+msgstr ""
+
+#. module: sale_crm_set_won
+#: model:ir.model.fields,field_description:sale_crm_set_won.field_res_config_settings__crm_set_won
+msgid "Set Opportunity as Won"
+msgstr ""
+
+#. module: sale_crm_set_won
+#: model:ir.model.fields.selection,name:sale_crm_set_won.selection__res_config_settings__crm_set_won_option__set_100
+msgid "Set Probability as 100%"
+msgstr ""
+
+#. module: sale_crm_set_won
+#: model:ir.model.fields,field_description:sale_crm_set_won.field_res_config_settings__stage_id
+msgid "Stage"
+msgstr ""
+
+#. module: sale_crm_set_won
+#: model_terms:ir.ui.view,arch_db:sale_crm_set_won.crm_sale_res_config_settings_view_form
+msgid ""
+"The Stage Set here will be apply at the Opportunity when you confirm an "
+"linked Sale Order"
+msgstr ""
+
+#. module: sale_crm_set_won
+#: model:ir.model.fields,field_description:sale_crm_set_won.field_res_config_settings__crm_set_won_option
+msgid "What To Do?"
+msgstr ""
