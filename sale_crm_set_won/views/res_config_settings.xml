@@ -1,34 +1,42 @@
-<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8" ?>
 <!-- Copyright 2021 Pingo Tecnologia
      Author: Eder Brito <britoederr@gmail.com>
      License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl). -->
-
 <odoo>
 
     <record model="ir.ui.view" id="crm_sale_res_config_settings_view_form">
         <field name="name">crm_sale.res.config.settings.view.form.inherit.sale</field>
         <field name="model">res.config.settings</field>
-        <field name="inherit_id" ref="sale.res_config_settings_view_form"/>
+        <field name="inherit_id" ref="sale.res_config_settings_view_form" />
         <field name="arch" type="xml">
             <xpath expr="//div[@name='catalog_setting_container']" position="after">
                 <h2>Opportunities Set Won Automatically</h2>
                 <div class="row mt16 o_settings_container" name="crm_automatically">
                     <div class="col-12 col-lg-6 o_setting_box" id="crm_sale_options">
                         <div class="o_setting_left_pane">
-                            <field name="crm_set_won"/>
+                            <field name="crm_set_won" />
                         </div>
                         <div class="o_setting_right_pane">
-                            <label for="crm_set_won"/>
+                            <label for="crm_set_won" />
                             <div class="text-muted">
                                 Set Opportunity as "WON" when confirm a Sale Order
                             </div>
-                            <div class="content-group" attrs="{'invisible': [('crm_set_won','=',False)]}">
+                            <div
+                                class="content-group"
+                                attrs="{'invisible': [('crm_set_won','=',False)]}"
+                            >
                                 <div class="mt8">
-                                    <label for="crm_set_won_option"/>
-                                    <field name="crm_set_won_option"/>
+                                    <label for="crm_set_won_option" />
+                                    <field name="crm_set_won_option" />
                                 </div>
-                                <div class="mt8" attrs="{'invisible': [('crm_set_won_option','!=','choose_stage')]}">
-                                    <field name="stage_id" attrs="{'required':[('crm_set_won_option','=','choose_stage')]}"/>
+                                <div
+                                    class="mt8"
+                                    attrs="{'invisible': [('crm_set_won_option','!=','choose_stage')]}"
+                                >
+                                    <field
+                                        name="stage_id"
+                                        attrs="{'required':[('crm_set_won_option','=','choose_stage')]}"
+                                    />
                                     <div class="text-muted">
                                         The Stage Set here will be apply at the Opportunity when you confirm an linked Sale Order
                                     </div>

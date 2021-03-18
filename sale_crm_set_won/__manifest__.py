@@ -3,19 +3,18 @@
 # Author: Eder Brito <britoederr@gmail.com>
 
 {
-    'name': 'Sale Crm Set Won',
-    'summary': """
+    "name": "Sale Crm Set Won",
+    "summary": """
         Set Won CRM Opportunity When Done a Sale Order""",
-    'version': '14.0.1.0.0',
-    'license': 'AGPL-3',
-    'author': 'Pingo Tecnologia, Odoo Community Association (OCA)',
-    'website': 'https://github.com/OCA/sale-workflow',
-    'depends': [
-	    'sale_crm',
+    "version": "14.0.1.0.0",
+    "license": "AGPL-3",
+    "author": "Pingo Tecnologia, Odoo Community Association (OCA)",
+    "website": "https://github.com/OCA/sale-workflow",
+    "depends": [
+        "sale_crm",
     ],
-    'data': [
-        'views/res_config_settings.xml',
+    "data": [
+        "views/res_config_settings.xml",
     ],
-    'demo': [
-    ],
+    "demo": [],
 }
