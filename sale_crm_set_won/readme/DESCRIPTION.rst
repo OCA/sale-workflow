@@ -1,0 +1,1 @@
+This module extends the functionality of SALE and CRM to set opportunities as WON when confirm a linked Sale Order.
