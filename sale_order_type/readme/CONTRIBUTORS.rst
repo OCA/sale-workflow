@@ -29,4 +29,9 @@
   * Angel Moya Pardo <angel.moya@pesol.es>
   * Antonio J Rubio Lorente <antonio.rubio@pesol.es>
 
+* `GSLab.it <https://www.gslab.it>`_
+
+  * Giovanni Serra <giovanni@gslab.it>
+
+
 Do not contact contributors directly about support or help with technical issues.
