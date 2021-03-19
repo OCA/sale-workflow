@@ -1,0 +1,274 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+#	* sale_manual_delivery
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 12.0\n"
+"Report-Msgid-Bugs-To: \n"
+"Last-Translator: Automatically generated\n"
+"Language-Team: none\n"
+"Language: es\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+
+#. module: sale_manual_delivery
+#: model_terms:ir.ui.view,arch_db:sale_manual_delivery.manual_delivery_wizard_form
+msgid "Cancel"
+msgstr ""
+
+#. module: sale_manual_delivery
+#: model:ir.model.fields,field_description:sale_manual_delivery.field_manual_delivery__commercial_partner_id
+msgid "Commercial Partner"
+msgstr ""
+
+#. module: sale_manual_delivery
+#: model_terms:ir.ui.view,arch_db:sale_manual_delivery.view_order_form
+msgid "Create Delivery"
+msgstr ""
+
+#. module: sale_manual_delivery
+#: model:ir.actions.act_window,name:sale_manual_delivery.action_wizard_manual_delivery
+#: model:ir.actions.act_window,name:sale_manual_delivery.action_wizard_manual_delivery_line
+msgid "Create Manual Delivery"
+msgstr ""
+
+#. module: sale_manual_delivery
+#: model_terms:ir.ui.view,arch_db:sale_manual_delivery.manual_delivery_wizard_form
+msgid "Create Manually Delivery"
+msgstr ""
+
+#. module: sale_manual_delivery
+#: model_terms:ir.ui.view,arch_db:sale_manual_delivery.manual_delivery_wizard_form
+msgid "Create Picking"
+msgstr ""
+
+#. module: sale_manual_delivery
+#: model:ir.model.fields,field_description:sale_manual_delivery.field_manual_delivery__create_uid
+#: model:ir.model.fields,field_description:sale_manual_delivery.field_manual_delivery_line__create_uid
+msgid "Created by"
+msgstr ""
+
+#. module: sale_manual_delivery
+#: model:ir.model.fields,field_description:sale_manual_delivery.field_manual_delivery__create_date
+#: model:ir.model.fields,field_description:sale_manual_delivery.field_manual_delivery_line__create_date
+msgid "Created on"
+msgstr ""
+
+#. module: sale_manual_delivery
+#: model:ir.model.fields,field_description:sale_manual_delivery.field_manual_delivery__date_planned
+#: model:ir.model.fields,field_description:sale_manual_delivery.field_procurement_group__date_planned
+msgid "Date Planned"
+msgstr ""
+
+#. module: sale_manual_delivery
+#: model:ir.model.fields,field_description:sale_manual_delivery.field_manual_delivery__partner_id
+msgid "Delivery Address"
+msgstr ""
+
+#. module: sale_manual_delivery
+#: model:ir.model.fields,field_description:sale_manual_delivery.field_manual_delivery__carrier_id
+#: model:ir.model.fields,field_description:sale_manual_delivery.field_stock_move__carrier_id
+msgid "Delivery Method"
+msgstr ""
+
+#. module: sale_manual_delivery
+#: model:ir.model.fields,field_description:sale_manual_delivery.field_manual_delivery_line__line_description
+msgid "Description"
+msgstr ""
+
+#. module: sale_manual_delivery
+#: model:ir.model.fields,field_description:sale_manual_delivery.field_manual_delivery__display_name
+#: model:ir.model.fields,field_description:sale_manual_delivery.field_manual_delivery_line__display_name
+msgid "Display Name"
+msgstr ""
+
+#. module: sale_manual_delivery
+#: model:ir.model.fields,field_description:sale_manual_delivery.field_manual_delivery_line__existing_qty
+#: model:ir.model.fields,field_description:sale_manual_delivery.field_sale_order_line__existing_qty
+msgid "Existing quantity"
+msgstr ""
+
+#. module: sale_manual_delivery
+#: model_terms:ir.actions.act_window,help:sale_manual_delivery.action_order_line_delivery_tree
+msgid "Here is a list of each sales order line to be invoiced."
+msgstr ""
+
+#. module: sale_manual_delivery
+#: model:ir.model.fields,field_description:sale_manual_delivery.field_manual_delivery__id
+#: model:ir.model.fields,field_description:sale_manual_delivery.field_manual_delivery_line__id
+msgid "ID"
+msgstr ""
+
+#. module: sale_manual_delivery
+#: model:ir.model.fields,help:sale_manual_delivery.field_crm_team__manual_delivery
+#: model:ir.model.fields,help:sale_manual_delivery.field_sale_order__manual_delivery
+msgid "If Manual, the deliveries are not created at SO confirmation.        You need to use the Create Delivery button in order to reserve and         ship the goods."
+msgstr ""
+
+#. module: sale_manual_delivery
+#: model:ir.model.fields,field_description:sale_manual_delivery.field_manual_delivery____last_update
+#: model:ir.model.fields,field_description:sale_manual_delivery.field_manual_delivery_line____last_update
+msgid "Last Modified on"
+msgstr ""
+
+#. module: sale_manual_delivery
+#: model:ir.model.fields,field_description:sale_manual_delivery.field_manual_delivery__write_uid
+#: model:ir.model.fields,field_description:sale_manual_delivery.field_manual_delivery_line__write_uid
+msgid "Last Updated by"
+msgstr ""
+
+#. module: sale_manual_delivery
+#: model:ir.model.fields,field_description:sale_manual_delivery.field_manual_delivery__write_date
+#: model:ir.model.fields,field_description:sale_manual_delivery.field_manual_delivery_line__write_date
+msgid "Last Updated on"
+msgstr ""
+
+#. module: sale_manual_delivery
+#: model:ir.model.fields,help:sale_manual_delivery.field_manual_delivery__route_id
+msgid "Leave it blank to use the same route that is in the sale line"
+msgstr ""
+
+#. module: sale_manual_delivery
+#: model:ir.model.fields,field_description:sale_manual_delivery.field_manual_delivery__line_ids
+msgid "Lines to validate"
+msgstr ""
+
+#. module: sale_manual_delivery
+#: model:ir.model,name:sale_manual_delivery.model_manual_delivery
+#: model:ir.model.fields,field_description:sale_manual_delivery.field_crm_team__manual_delivery
+#: model:ir.model.fields,field_description:sale_manual_delivery.field_sale_order__manual_delivery
+msgid "Manual Delivery"
+msgstr ""
+
+#. module: sale_manual_delivery
+#: model:ir.model,name:sale_manual_delivery.model_manual_delivery_line
+msgid "Manual Delivery Line"
+msgstr ""
+
+#. module: sale_manual_delivery
+#: model:ir.model.fields,field_description:sale_manual_delivery.field_manual_delivery_line__ordered_qty
+msgid "Ordered quantity"
+msgstr ""
+
+#. module: sale_manual_delivery
+#: model_terms:ir.ui.view,arch_db:sale_manual_delivery.view_sales_order_undelivered_line_filter
+msgid "Pending to deliver"
+msgstr ""
+
+#. module: sale_manual_delivery
+#: code:addons/sale_manual_delivery/wizard/manual_proc.py:38
+#, python-format
+msgid "Please select one partner at a time"
+msgstr ""
+
+#. module: sale_manual_delivery
+#: model:ir.model,name:sale_manual_delivery.model_procurement_group
+msgid "Procurement Group"
+msgstr ""
+
+#. module: sale_manual_delivery
+#: model:ir.model.fields,field_description:sale_manual_delivery.field_manual_delivery_line__product_id
+msgid "Product"
+msgstr ""
+
+#. module: sale_manual_delivery
+#: model:ir.model.fields,help:sale_manual_delivery.field_manual_delivery_line__existing_qty
+#: model:ir.model.fields,help:sale_manual_delivery.field_sale_order_line__existing_qty
+msgid "Quantity already planned or shipped (stock movements             already created)"
+msgstr ""
+
+#. module: sale_manual_delivery
+#: model:ir.model.fields,help:sale_manual_delivery.field_manual_delivery_line__ordered_qty
+msgid "Quantity ordered in the related Sale Order"
+msgstr ""
+
+#. module: sale_manual_delivery
+#: model:ir.model.fields,field_description:sale_manual_delivery.field_manual_delivery_line__to_ship_qty
+msgid "Quantity to Ship"
+msgstr ""
+
+#. module: sale_manual_delivery
+#: model:ir.model.fields,field_description:sale_manual_delivery.field_manual_delivery_line__remaining_qty
+msgid "Remaining quantity"
+msgstr ""
+
+#. module: sale_manual_delivery
+#: model:ir.model.fields,help:sale_manual_delivery.field_manual_delivery_line__remaining_qty
+msgid "Remaining quantity available to deliver"
+msgstr ""
+
+#. module: sale_manual_delivery
+#: model:ir.actions.act_window,name:sale_manual_delivery.action_order_line_delivery_tree
+#: model:ir.ui.menu,name:sale_manual_delivery.menu_delivery_sales_order_lines
+msgid "Sale Lines to Deliver"
+msgstr ""
+
+#. module: sale_manual_delivery
+#: model:ir.model,name:sale_manual_delivery.model_sale_order
+msgid "Sale Order"
+msgstr ""
+
+#. module: sale_manual_delivery
+#: model:ir.model.fields,field_description:sale_manual_delivery.field_manual_delivery_line__order_line_id
+msgid "Sale Order Line"
+msgstr ""
+
+#. module: sale_manual_delivery
+#: model:ir.model,name:sale_manual_delivery.model_crm_team
+msgid "Sales Channels"
+msgstr ""
+
+#. module: sale_manual_delivery
+#: model:ir.model,name:sale_manual_delivery.model_sale_order_line
+msgid "Sales Order Line"
+msgstr ""
+
+#. module: sale_manual_delivery
+#: model_terms:ir.ui.view,arch_db:sale_manual_delivery.view_order_line_form2
+msgid "Sales Order Lines"
+msgstr ""
+
+#. module: sale_manual_delivery
+#: model_terms:ir.ui.view,arch_db:sale_manual_delivery.view_sales_order_undelivered_line_filter
+msgid "Sales Order Lines that are confirmed, done or in exception state and no delivery is created to satisfy them"
+msgstr ""
+
+#. module: sale_manual_delivery
+#: model_terms:ir.ui.view,arch_db:sale_manual_delivery.view_sales_order_undelivered_line_filter
+msgid "Search Undelivered Lines"
+msgstr ""
+
+#. module: sale_manual_delivery
+#: model:ir.model,name:sale_manual_delivery.model_stock_move
+msgid "Stock Move"
+msgstr ""
+
+#. module: sale_manual_delivery
+#: model:ir.model.fields,field_description:sale_manual_delivery.field_sale_order_line__pending_qty_to_deliver
+msgid "There is Pending qty to add to a delivery"
+msgstr ""
+
+#. module: sale_manual_delivery
+#: model:ir.model.fields,field_description:sale_manual_delivery.field_manual_delivery__route_id
+msgid "Use specific Route"
+msgstr ""
+
+#. module: sale_manual_delivery
+#: model:ir.model.fields,field_description:sale_manual_delivery.field_manual_delivery_line__manual_delivery_id
+msgid "Wizard manual procurement"
+msgstr ""
+
+#. module: sale_manual_delivery
+#: code:addons/sale_manual_delivery/wizard/manual_proc.py:120
+#, python-format
+msgid "You can not deliver more than the remaining quantity. If you need to do so, please edit the sale order first."
+msgstr ""
+
+#. module: sale_manual_delivery
+#: code:addons/sale_manual_delivery/models/sale_order.py:45
+#, python-format
+msgid "You can only change to/from manual delivery in a quote, not a confirmed order"
+msgstr ""
