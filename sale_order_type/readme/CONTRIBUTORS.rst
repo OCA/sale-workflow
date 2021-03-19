@@ -35,4 +35,8 @@
 
   * Iván Todorovich <ivan.todorovich@druidoo.io>
 
+* `GSLab.it <https://www.gslab.it>`_
+
+  * Giovanni Serra <giovanni@gslab.it>
+
 Do not contact contributors directly about support or help with technical issues.
