@@ -6,30 +6,32 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 12.0\n"
 "Report-Msgid-Bugs-To: \n"
-"Last-Translator: Automatically generated\n"
+"PO-Revision-Date: 2021-03-19 17:46+0000\n"
+"Last-Translator: Daniel Martinez Vila <daniel.martinez@qubiq.es>\n"
 "Language-Team: none\n"
 "Language: es\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: Weblate 4.3.2\n"
 
 #. module: sale_mrp_bom
 #: model:res.groups,name:sale_mrp_bom.sale_mrp_bom_group
 msgid "Allows to define a BOM on sale order lines"
-msgstr ""
+msgstr "Permite definir una lista de materiales en líneas de órdenes de venta"
 
 #. module: sale_mrp_bom
 #: model:ir.model.fields,field_description:sale_mrp_bom.field_sale_order_line__bom_id
 msgid "BOM"
-msgstr ""
+msgstr "LdM"
 
 #. module: sale_mrp_bom
 #: model:ir.model,name:sale_mrp_bom.model_sale_order_line
 msgid "Sales Order Line"
-msgstr ""
+msgstr "Línea de orden de venta"
 
 #. module: sale_mrp_bom
 #: model:ir.model,name:sale_mrp_bom.model_stock_move
 msgid "Stock Move"
-msgstr ""
+msgstr "Movimiento de stock"
