@@ -9,15 +9,15 @@ msgstr ""
 "Project-Id-Version: Odoo Server 11.0\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2018-04-05 10:53+0200\n"
-"PO-Revision-Date: 2018-04-05 10:55+0200\n"
-"Last-Translator: Carlos Dauden <carlos.dauden@tecnativa.com>\n"
+"PO-Revision-Date: 2021-03-19 17:46+0000\n"
+"Last-Translator: Daniel Martinez Vila <daniel.martinez@qubiq.es>\n"
 "Language-Team: Spanish (https://www.transifex.com/oca/teams/23907/es/)\n"
 "Language: es\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Generator: Poedit 1.8.7.1\n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: Weblate 4.3.2\n"
 
 #. module: sale_order_invoicing_finished_task
 #: model:ir.model.fields,help:sale_order_invoicing_finished_task.field_product_product__invoicing_finished_task
@@ -48,7 +48,6 @@ msgstr "Plantilla de producto"
 
 #. module: sale_order_invoicing_finished_task
 #: model:ir.model,name:sale_order_invoicing_finished_task.model_sale_order
-#, fuzzy
 msgid "Sale Order"
 msgstr "Línea de pedido de venta"
 
@@ -80,7 +79,7 @@ msgid ""
 "order line "
 msgstr ""
 "No puede crear/modificar una tarea relacionada con una línea de pedido "
-"facturada, realizada o cancelada"
+"facturada, realizada o cancelada "
 
 #~ msgid "Quotation"
 #~ msgstr "Presupuesto"
