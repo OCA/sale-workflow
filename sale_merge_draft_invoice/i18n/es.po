@@ -9,14 +9,15 @@ msgstr ""
 "Project-Id-Version: Odoo Server 11.0\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2018-03-02 10:22+0000\n"
-"PO-Revision-Date: 2018-03-02 10:22+0000\n"
-"Last-Translator: OCA Transbot <transbot@odoo-community.org>, 2018\n"
+"PO-Revision-Date: 2021-03-19 17:46+0000\n"
+"Last-Translator: Daniel Martinez Vila <daniel.martinez@qubiq.es>\n"
 "Language-Team: Spanish (https://www.transifex.com/oca/teams/23907/es/)\n"
 "Language: es\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
-"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: Weblate 4.3.2\n"
 
 #. module: sale_merge_draft_invoice
 #: code:addons/sale_merge_draft_invoice/wizard/sale_make_invoice_advance.py:18
@@ -27,47 +28,50 @@ msgid ""
 "draft invoices or deactivate it if you wish a separate invoice for this sale "
 "order."
 msgstr ""
+"Active esta opción para fusionar la factura resultante con los borradores de "
+"facturas existentes o desactívela si desea una factura separada para esta "
+"orden de venta."
 
 #. module: sale_merge_draft_invoice
 #: model:res.groups,name:sale_merge_draft_invoice.group_sale_merge_draft_invoice
 msgid "Change sale to invoice merge proposal"
-msgstr ""
+msgstr "Cambiar venta para facturar propuesta de fusión"
 
 #. module: sale_merge_draft_invoice
 #: model:ir.model,name:sale_merge_draft_invoice.model_res_company
 msgid "Companies"
-msgstr ""
+msgstr "Empresas"
 
 #. module: sale_merge_draft_invoice
 #: model:ir.model,name:sale_merge_draft_invoice.model_res_config_settings
 msgid "Config Settings"
-msgstr ""
+msgstr "Ajustes de configuración"
 
 #. module: sale_merge_draft_invoice
 #: model:ir.model.fields,field_description:sale_merge_draft_invoice.field_res_company__sale_merge_draft_invoice
 #: model:ir.model.fields,field_description:sale_merge_draft_invoice.field_res_config_settings__sale_merge_draft_invoice
 msgid "Invoices"
-msgstr ""
+msgstr "Facturas"
 
 #. module: sale_merge_draft_invoice
 #: model_terms:ir.ui.view,arch_db:sale_merge_draft_invoice.res_config_settings_view_form
 msgid "Merge new invoices with existing draft ones"
-msgstr ""
+msgstr "Fusionar nuevas facturas con borradores existentes"
 
 #. module: sale_merge_draft_invoice
 #: model:ir.model.fields,field_description:sale_merge_draft_invoice.field_sale_advance_payment_inv__merge_draft_invoice
 msgid "Merge with draft invoices"
-msgstr ""
+msgstr "Fusionar con borradores de facturas"
 
 #. module: sale_merge_draft_invoice
 #: model:ir.model,name:sale_merge_draft_invoice.model_sale_order
 msgid "Sale Order"
-msgstr ""
+msgstr "Orden de venta"
 
 #. module: sale_merge_draft_invoice
 #: model:ir.model,name:sale_merge_draft_invoice.model_sale_advance_payment_inv
 msgid "Sales Advance Payment Invoice"
-msgstr ""
+msgstr "Factura de pago por adelantado de ventas"
 
 #~ msgid "Quotation"
 #~ msgstr "Quotation"
