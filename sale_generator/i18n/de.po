@@ -6,100 +6,103 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 12.0\n"
 "Report-Msgid-Bugs-To: \n"
-"Last-Translator: Automatically generated\n"
+"PO-Revision-Date: 2021-03-19 13:46+0000\n"
+"Last-Translator: Maria Sparenberg <maria.sparenberg@gmx.net>\n"
 "Language-Team: none\n"
 "Language: de\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: Weblate 4.3.2\n"
 
 #. module: sale_generator
 #: model:ir.model.fields,field_description:sale_generator.field_sale_order__active
 msgid "Active"
-msgstr ""
+msgstr "Aktiv"
 
 #. module: sale_generator
 #: model:ir.ui.menu,name:sale_generator.menuitem_batch_generation
 msgid "Batch generation"
-msgstr ""
+msgstr "Stapel-Erzeugung"
 
 #. module: sale_generator
 #: code:addons/sale_generator/models/sale_generator.py:65
 #, python-format
 msgid "Can't generate sale order without selecting any customer"
 msgstr ""
+"Es können keine Aufträge erzeugt werden, wenn kein Kunde ausgewählt ist."
 
 #. module: sale_generator
 #: model:ir.model.fields,field_description:sale_generator.field_sale_generator__company_id
 msgid "Company"
-msgstr ""
+msgstr "Unternehmen"
 
 #. module: sale_generator
 #: model_terms:ir.ui.view,arch_db:sale_generator.view_sale_generator_form
 msgid "Confirm All Generated Sales"
-msgstr ""
+msgstr "Alle Aufträge bestätigen"
 
 #. module: sale_generator
 #: model:ir.model,name:sale_generator.model_res_partner
 msgid "Contact"
-msgstr ""
+msgstr "Kontakt"
 
 #. module: sale_generator
 #: model_terms:ir.ui.view,arch_db:sale_generator.view_sale_generator_form
 msgid "Create Customer"
-msgstr ""
+msgstr "Kunde erstellen"
 
 #. module: sale_generator
 #: model:ir.model.fields,field_description:sale_generator.field_sale_generator__create_uid
 msgid "Created by"
-msgstr ""
+msgstr "Erstellt von"
 
 #. module: sale_generator
 #: model:ir.model.fields,field_description:sale_generator.field_sale_generator__create_date
 msgid "Created on"
-msgstr ""
+msgstr "Erstellt am"
 
 #. module: sale_generator
 #: model:ir.actions.act_window,name:sale_generator.action_partner_create_form
 #: model_terms:ir.ui.view,arch_db:sale_generator.view_sale_generator_form
 msgid "Customers"
-msgstr ""
+msgstr "Kunden"
 
 #. module: sale_generator
 #: model:ir.model.fields,field_description:sale_generator.field_sale_generator__date_order
 msgid "Date"
-msgstr ""
+msgstr "Datum"
 
 #. module: sale_generator
 #: model:ir.model.fields,field_description:sale_generator.field_sale_generator__display_name
 msgid "Display Name"
-msgstr ""
+msgstr "Anzeigename"
 
 #. module: sale_generator
 #: selection:sale.generator,state:0
 msgid "Done"
-msgstr ""
+msgstr "Erledigt"
 
 #. module: sale_generator
 #: selection:sale.generator,state:0
 msgid "Draft"
-msgstr ""
+msgstr "Entwurf"
 
 #. module: sale_generator
 #: model_terms:ir.ui.view,arch_db:sale_generator.view_sale_generator_form
 msgid "Generate Sales"
-msgstr ""
+msgstr "Aufträge erzeugen"
 
 #. module: sale_generator
 #: model_terms:ir.ui.view,arch_db:sale_generator.view_sale_generator_form
 msgid "Generated Sale Orders"
-msgstr ""
+msgstr "Erzeugte Aufträge"
 
 #. module: sale_generator
 #: selection:sale.generator,state:0
 msgid "Generating Order"
-msgstr ""
+msgstr "Auftragserstellung"
 
 #. module: sale_generator
 #: model:ir.actions.act_window,name:sale_generator.action_sale_generator
@@ -107,113 +110,115 @@ msgstr ""
 #: model:ir.model.fields,field_description:sale_generator.field_sale_order__generator_id
 #: model_terms:ir.ui.view,arch_db:sale_generator.view_sale_generator_form
 msgid "Generator"
-msgstr ""
+msgstr "Ausschreibung"
 
 #. module: sale_generator
 #: model:ir.ui.menu,name:sale_generator.menuitem_sale_generator
 msgid "Generators"
-msgstr ""
+msgstr "Ausschreibungen"
 
 #. module: sale_generator
 #: model:ir.model.fields,field_description:sale_generator.field_sale_generator__id
 msgid "ID"
-msgstr ""
+msgstr "ID"
 
 #. module: sale_generator
 #: model_terms:ir.ui.view,arch_db:sale_generator.view_sale_generator_form
 msgid "In order to add customers, you have two\n"
 "                    possibilities:"
 msgstr ""
+"Um Kunden hinzuzufügen, \n"
+"gibt es 2 Möglichkeiten:"
 
 #. module: sale_generator
 #: model:ir.model.fields,field_description:sale_generator.field_sale_order__is_template
 msgid "Is a generator template"
-msgstr ""
+msgstr "Ist eine Ausschreibungsvorlage"
 
 #. module: sale_generator
 #: model:ir.model.fields,field_description:sale_generator.field_sale_generator____last_update
 msgid "Last Modified on"
-msgstr ""
+msgstr "Zuletzt geändert am"
 
 #. module: sale_generator
 #: model:ir.model.fields,field_description:sale_generator.field_sale_generator__write_uid
 msgid "Last Updated by"
-msgstr ""
+msgstr "Zuletzt aktualisiert von"
 
 #. module: sale_generator
 #: model:ir.model.fields,field_description:sale_generator.field_sale_generator__write_date
 msgid "Last Updated on"
-msgstr ""
+msgstr "Zuletzt aktualisiert am"
 
 #. module: sale_generator
 #: code:addons/sale_generator/models/sale_order.py:20
 #, python-format
 msgid "New"
-msgstr ""
+msgstr "Neu"
 
 #. module: sale_generator
 #: code:addons/sale_generator/models/partner.py:30
 #, python-format
 msgid "New Customer"
-msgstr ""
+msgstr "Neuer Kunde"
 
 #. module: sale_generator
 #: model:ir.model.fields,field_description:sale_generator.field_sale_generator__partner_ids
 msgid "Partner"
-msgstr ""
+msgstr "Partner"
 
 #. module: sale_generator
 #: model:ir.actions.act_window,name:sale_generator.act_sale_generator_2_sale_order
 #: model:ir.model,name:sale_generator.model_sale_order
 msgid "Sale Order"
-msgstr ""
+msgstr "Verkaufsauftrag"
 
 #. module: sale_generator
 #: model:ir.actions.act_window,name:sale_generator.action_sale_order_template
 #: model:ir.ui.menu,name:sale_generator.menuitem_sale_order_template
 msgid "Sale Order Templates"
-msgstr ""
+msgstr "Angebotsvorlagen"
 
 #. module: sale_generator
 #: model:ir.model.fields,field_description:sale_generator.field_sale_generator__tmpl_sale_id
 msgid "Sale Template"
-msgstr ""
+msgstr "Angebotsvorlage"
 
 #. module: sale_generator
 #: model:ir.model,name:sale_generator.model_sale_generator
 msgid "Sale order generator"
-msgstr ""
+msgstr "Verkaufsausschreibung"
 
 #. module: sale_generator
 #: model:ir.model.fields,field_description:sale_generator.field_sale_generator__sale_ids
 #: model_terms:ir.ui.view,arch_db:sale_generator.view_sale_generator_form
 msgid "Sales"
-msgstr ""
+msgstr "Aufträge"
 
 #. module: sale_generator
 #: model_terms:ir.ui.view,arch_db:sale_generator.view_partner_form
 msgid "Save & finish"
-msgstr ""
+msgstr "Speichern & Beenden"
 
 #. module: sale_generator
 #: model_terms:ir.ui.view,arch_db:sale_generator.view_partner_form
 msgid "Save & next customer"
-msgstr ""
+msgstr "Speichern & Nächster Kunde"
 
 #. module: sale_generator
 #: model:ir.model.fields,field_description:sale_generator.field_sale_generator__state
 msgid "State"
-msgstr ""
+msgstr "Status"
 
 #. module: sale_generator
 #: model:ir.model.fields,help:sale_generator.field_sale_generator__company_id
 msgid "The company is automatically set from your user preferences."
-msgstr ""
+msgstr "Das Unternehmen wird automatisch von den Benutzereinstellungen gezogen."
 
 #. module: sale_generator
 #: model:ir.model.fields,field_description:sale_generator.field_sale_generator__warehouse_id
 msgid "Warehouse"
-msgstr ""
+msgstr "Lager"
 
 #. module: sale_generator
 #: model_terms:ir.ui.view,arch_db:sale_generator.view_sale_generator_form
@@ -221,9 +226,13 @@ msgid "add an existing customer by searching in your\n"
 "                            database, for that you can click on add item at the end\n"
 "                            of the list."
 msgstr ""
+"einen existierenden Kunden hinzufügen, indem am Ende der Liste auf 'Eintrag "
+"hinzufügen' geklickt wird"
 
 #. module: sale_generator
 #: model_terms:ir.ui.view,arch_db:sale_generator.view_sale_generator_form
 msgid "create multiple customers simultaneously by launching the\n"
 "                            following wizard:"
 msgstr ""
+"mehrere Kunden gleichzeitig hinzufügen, indem der folgende Assistent "
+"verwenden wird:"
