@@ -6,36 +6,38 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 12.0\n"
 "Report-Msgid-Bugs-To: \n"
-"Last-Translator: Automatically generated\n"
+"PO-Revision-Date: 2021-03-19 17:46+0000\n"
+"Last-Translator: Daniel Martinez Vila <daniel.martinez@qubiq.es>\n"
 "Language-Team: none\n"
 "Language: ca\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: Weblate 4.3.2\n"
 
 #. module: sale_mrp_link
 #: model:ir.model.fields,field_description:sale_mrp_link.field_sale_order__production_ids
 #: model_terms:ir.ui.view,arch_db:sale_mrp_link.view_order_form
 msgid "Production"
-msgstr ""
+msgstr "Producció"
 
 #. module: sale_mrp_link
 #: model:ir.model.fields,field_description:sale_mrp_link.field_sale_order__production_count
 msgid "Production Count"
-msgstr ""
+msgstr "Recompte de producció"
 
 #. module: sale_mrp_link
 #: model:ir.model,name:sale_mrp_link.model_mrp_production
 msgid "Production Order"
-msgstr ""
+msgstr "Comanda de producció"
 
 #. module: sale_mrp_link
 #: model:ir.model,name:sale_mrp_link.model_sale_order
 msgid "Sale Order"
-msgstr ""
+msgstr "Comanda de venda"
 
 #. module: sale_mrp_link
 #: model:ir.model.fields,field_description:sale_mrp_link.field_mrp_production__sale_order_id
 msgid "Source Sale Order"
-msgstr ""
+msgstr "Comanda de venda d'origen"
