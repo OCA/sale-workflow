@@ -9,14 +9,15 @@ msgstr ""
 "Project-Id-Version: Odoo Server 10.0\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2017-11-23 01:51+0000\n"
-"PO-Revision-Date: 2017-11-23 01:51+0000\n"
-"Last-Translator: OCA Transbot <transbot@odoo-community.org>, 2017\n"
+"PO-Revision-Date: 2021-03-19 17:46+0000\n"
+"Last-Translator: Daniel Martinez Vila <daniel.martinez@qubiq.es>\n"
 "Language-Team: Catalan (https://www.transifex.com/oca/teams/23907/ca/)\n"
 "Language: ca\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
-"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: Weblate 4.3.2\n"
 
 #. module: sale_order_invoicing_finished_task
 #: model:ir.model.fields,help:sale_order_invoicing_finished_task.field_product_product__invoicing_finished_task
@@ -24,28 +25,29 @@ msgstr ""
 #: model:ir.model.fields,help:sale_order_invoicing_finished_task.field_project_task__invoicing_finished_task
 msgid "Invoice the order lines only when the task is set to invoiceable"
 msgstr ""
+"Factureu les línies de comanda només quan la tasca estigui configurada com a "
+"facturable"
 
 #. module: sale_order_invoicing_finished_task
 #: model:ir.model.fields,field_description:sale_order_invoicing_finished_task.field_project_task__invoiceable
 #: model:ir.model.fields,field_description:sale_order_invoicing_finished_task.field_project_task_type__invoiceable
 msgid "Invoiceable"
-msgstr ""
+msgstr "Facturable"
 
 #. module: sale_order_invoicing_finished_task
 #: model:ir.model.fields,field_description:sale_order_invoicing_finished_task.field_product_product__invoicing_finished_task
 #: model:ir.model.fields,field_description:sale_order_invoicing_finished_task.field_product_template__invoicing_finished_task
 #: model:ir.model.fields,field_description:sale_order_invoicing_finished_task.field_project_task__invoicing_finished_task
 msgid "Invoicing control by task"
-msgstr ""
+msgstr "Control de facturació per tasca"
 
 #. module: sale_order_invoicing_finished_task
 #: model:ir.model,name:sale_order_invoicing_finished_task.model_product_template
 msgid "Product Template"
-msgstr ""
+msgstr "Plantilla de producte"
 
 #. module: sale_order_invoicing_finished_task
 #: model:ir.model,name:sale_order_invoicing_finished_task.model_sale_order
-#, fuzzy
 msgid "Sale Order"
 msgstr "Comandes de venda"
 
@@ -57,17 +59,17 @@ msgstr "Línia de comanda de vendes"
 #. module: sale_order_invoicing_finished_task
 #: model:ir.model,name:sale_order_invoicing_finished_task.model_project_task
 msgid "Task"
-msgstr ""
+msgstr "Tasca"
 
 #. module: sale_order_invoicing_finished_task
 #: model:ir.model,name:sale_order_invoicing_finished_task.model_project_task_type
 msgid "Task Stage"
-msgstr ""
+msgstr "Etapa de la tasca"
 
 #. module: sale_order_invoicing_finished_task
 #: model:ir.model.fields,field_description:sale_order_invoicing_finished_task.field_sale_order_line__task_ids
 msgid "Tasks"
-msgstr ""
+msgstr "Tasques"
 
 #. module: sale_order_invoicing_finished_task
 #: code:addons/sale_order_invoicing_finished_task/models/project.py:65
@@ -76,3 +78,5 @@ msgid ""
 "You cannot create/modify a task related with a invoiced, done or cancel sale "
 "order line "
 msgstr ""
+"No podeu crear / modificar una tasca relacionada amb una línia de comanda de "
+"facturació, realitzada o cancel·lada "
