@@ -6,96 +6,98 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 12.0\n"
 "Report-Msgid-Bugs-To: \n"
-"Last-Translator: Automatically generated\n"
+"PO-Revision-Date: 2021-03-19 17:46+0000\n"
+"Last-Translator: Daniel Martinez Vila <daniel.martinez@qubiq.es>\n"
 "Language-Team: none\n"
 "Language: ca\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: Weblate 4.3.2\n"
 
 #. module: sale_order_line_input
 #: model_terms:ir.ui.view,arch_db:sale_order_line_input.view_sales_order_line_input_tree
 msgid "Delivered"
-msgstr ""
+msgstr "Lliurat"
 
 #. module: sale_order_line_input
 #: model_terms:ir.ui.view,arch_db:sale_order_line_input.view_sales_order_line_filter
 msgid "Invoice Related"
-msgstr ""
+msgstr "Relacionat amb la factura"
 
 #. module: sale_order_line_input
 #: model_terms:ir.ui.view,arch_db:sale_order_line_input.view_sales_order_line_filter
 msgid "Invoice Status"
-msgstr ""
+msgstr "Estat de la factura"
 
 #. module: sale_order_line_input
 #: model_terms:ir.ui.view,arch_db:sale_order_line_input.view_sales_order_line_input_tree
 msgid "Invoiced"
-msgstr ""
+msgstr "Facturats"
 
 #. module: sale_order_line_input
 #: model_terms:ir.ui.view,arch_db:sale_order_line_input.view_sales_order_line_input_tree
 msgid "New"
-msgstr ""
+msgstr "Nou"
 
 #. module: sale_order_line_input
 #: model_terms:ir.ui.view,arch_db:sale_order_line_input.view_sales_order_line_filter
 msgid "Not Invoice Related"
-msgstr ""
+msgstr "No relacionat amb la factura"
 
 #. module: sale_order_line_input
 #: model_terms:ir.ui.view,arch_db:sale_order_line_input.view_sales_order_line_input_tree
 msgid "Open Sale Order"
-msgstr ""
+msgstr "Comanda de venda oberta"
 
 #. module: sale_order_line_input
 #: model_terms:ir.ui.view,arch_db:sale_order_line_input.view_sales_order_line_input_tree
 msgid "Order"
-msgstr ""
+msgstr "Comanda"
 
 #. module: sale_order_line_input
 #: model_terms:ir.ui.view,arch_db:sale_order_line_input.view_sales_order_line_filter
 msgid "Order State"
-msgstr ""
+msgstr "Estat de la comanda"
 
 #. module: sale_order_line_input
 #: model_terms:ir.ui.view,arch_db:sale_order_line_input.view_sales_order_line_input_tree
 msgid "Ordered"
-msgstr ""
+msgstr "Ordenat"
 
 #. module: sale_order_line_input
 #: model_terms:ir.ui.view,arch_db:sale_order_line_input.view_sales_order_line_input_tree
 msgid "Ordered Qty"
-msgstr ""
+msgstr "Quantitat ordenada"
 
 #. module: sale_order_line_input
 #: model:ir.model.fields,field_description:sale_order_line_input.field_sale_order_line__pricelist_id
 msgid "Pricelist"
-msgstr ""
+msgstr "Llistat de preus"
 
 #. module: sale_order_line_input
 #: model:ir.model.fields,help:sale_order_line_input.field_sale_order_line__pricelist_id
 msgid "Pricelist for current sales order."
-msgstr ""
+msgstr "Llista de preus per a la comanda de venda actual."
 
 #. module: sale_order_line_input
 #: model:ir.model,name:sale_order_line_input.model_sale_order_line
 msgid "Sales Order Line"
-msgstr ""
+msgstr "Línia de comandes de vendes"
 
 #. module: sale_order_line_input
 #: model:ir.actions.act_window,name:sale_order_line_input.action_sales_order_line_input
 #: model:ir.ui.menu,name:sale_order_line_input.menu_sales_order_line_input
 msgid "Sales Orders Lines"
-msgstr ""
+msgstr "Línies de comandes de venda"
 
 #. module: sale_order_line_input
 #: model_terms:ir.ui.view,arch_db:sale_order_line_input.view_sales_order_line_input_tree
 msgid "To Invoice"
-msgstr ""
+msgstr "A la factura"
 
 #. module: sale_order_line_input
 #: model_terms:ir.ui.view,arch_db:sale_order_line_input.view_sales_order_line_filter
 msgid "UoM"
-msgstr ""
+msgstr "UdM"
