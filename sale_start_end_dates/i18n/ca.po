@@ -9,24 +9,25 @@ msgstr ""
 "Project-Id-Version: Odoo Server 10.0\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2017-05-17 02:40+0000\n"
-"PO-Revision-Date: 2017-05-17 02:40+0000\n"
-"Last-Translator: OCA Transbot <transbot@odoo-community.org>, 2017\n"
+"PO-Revision-Date: 2021-03-22 10:46+0000\n"
+"Last-Translator: Daniel Martinez Vila <daniel.martinez@qubiq.es>\n"
 "Language-Team: Catalan (https://www.transifex.com/oca/teams/23907/ca/)\n"
 "Language: ca\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
-"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: Weblate 4.3.2\n"
 
 #. module: sale_start_end_dates
 #: model:ir.model.fields,field_description:sale_start_end_dates.field_sale_order__default_end_date
 msgid "Default End Date"
-msgstr ""
+msgstr "Data de finalització predeterminada"
 
 #. module: sale_start_end_dates
 #: model:ir.model.fields,field_description:sale_start_end_dates.field_sale_order__default_start_date
 msgid "Default Start Date"
-msgstr ""
+msgstr "Data d'inici per defecte"
 
 #. module: sale_start_end_dates
 #: code:addons/sale_start_end_dates/models/sale_order.py:21
@@ -35,11 +36,13 @@ msgid ""
 "Default Start Date should be before or be the same as Default End Date for "
 "sale order '%s'."
 msgstr ""
+"La data d'inici per defecte ha de ser anterior o igual a la data de "
+"finalització per defecte de la comanda de venda '%s'."
 
 #. module: sale_start_end_dates
 #: model:ir.model.fields,field_description:sale_start_end_dates.field_sale_order_line__end_date
 msgid "End Date"
-msgstr ""
+msgstr "Data de finalització"
 
 #. module: sale_start_end_dates
 #: model:ir.model.fields,help:sale_start_end_dates.field_sale_order_line__must_have_dates
@@ -47,28 +50,34 @@ msgid ""
 "If this option is active, the user will have to enter a Start Date and an "
 "End Date on the invoice lines that have this product."
 msgstr ""
+"Si aquesta opció està activa, l'usuari haurà d'introduir una data d'inici i "
+"una data de finalització a les línies de facturació que tinguin aquest "
+"producte."
 
 #. module: sale_start_end_dates
 #: code:addons/sale_start_end_dates/models/sale_order.py:86
 #, python-format
 msgid "Missing End Date for sale order line with Product '%s'."
 msgstr ""
+"Falta la data de finalització de la línia de comanda de venda amb el "
+"producte '%s'."
 
 #. module: sale_start_end_dates
 #: code:addons/sale_start_end_dates/models/sale_order.py:90
 #, python-format
 msgid "Missing Start Date for sale order line with Product '%s'."
 msgstr ""
+"Falta la data d'inici de la línia de comanda de venda amb el producte '%s'."
 
 #. module: sale_start_end_dates
 #: model:ir.model.fields,field_description:sale_start_end_dates.field_sale_order_line__must_have_dates
 msgid "Must Have Start and End Dates"
-msgstr ""
+msgstr "Ha de tenir dates d’inici i finalització"
 
 #. module: sale_start_end_dates
 #: model:ir.model.fields,field_description:sale_start_end_dates.field_sale_order_line__number_of_days
 msgid "Number of Days"
-msgstr ""
+msgstr "Nombre de dies"
 
 #. module: sale_start_end_dates
 #: code:addons/sale_start_end_dates/models/sale_order.py:68
@@ -77,10 +86,11 @@ msgid ""
 "On sale order line with product '%s', the number of days is negative (%d) ; "
 "this is not allowed. The number of days has been forced to 1."
 msgstr ""
+"A la línia de comandes de venda amb el producte '%s', el nombre de dies és "
+"negatiu (%d); això no està permès. El nombre de dies s'ha forçat a 1."
 
 #. module: sale_start_end_dates
 #: model:ir.model,name:sale_start_end_dates.model_sale_order
-#, fuzzy
 msgid "Sale Order"
 msgstr "Comandes de venda"
 
@@ -92,7 +102,7 @@ msgstr "Línia de comanda de vendes"
 #. module: sale_start_end_dates
 #: model:ir.model.fields,field_description:sale_start_end_dates.field_sale_order_line__start_date
 msgid "Start Date"
-msgstr ""
+msgstr "Data d'inici"
 
 #. module: sale_start_end_dates
 #: code:addons/sale_start_end_dates/models/sale_order.py:94
@@ -101,9 +111,11 @@ msgid ""
 "Start Date should be before or be the same as End Date for sale order line "
 "with Product '%s'."
 msgstr ""
+"La data d'inici ha de ser anterior o igual a la data de finalització de la "
+"línia de comanda de venda amb el producte '%s'."
 
 #. module: sale_start_end_dates
 #: code:addons/sale_start_end_dates/models/sale_order.py:67
 #, python-format
 msgid "Wrong number of days"
-msgstr ""
+msgstr "Nombre de dies incorrecte"
