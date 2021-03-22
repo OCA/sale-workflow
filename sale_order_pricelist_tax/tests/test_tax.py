@@ -9,63 +9,76 @@ class TaxCase(TransactionCase):
         super(TaxCase, self).setUp()
         self.ht_plist = self.env.ref("sale_order_pricelist_tax.ht_pricelist")
         self.ttc_plist = self.env.ref("sale_order_pricelist_tax.ttc_pricelist")
-        self.fp_intra = self.env.ref("sale_order_pricelist_tax.fiscal_position_b2b").id
-        self.fp_exp = self.env.ref(
-            "sale_order_pricelist_tax.fiscal_position_import_export"
-        ).id
-        self.solo = self.env["sale.order.line"]
+        self.fp_exp = self.env.ref("sale_order_pricelist_tax.fiscal_position_exp")
+        self.product = self.env.ref("sale_order_pricelist_tax.ak_product")
 
     def _create_sale_order(self, pricelist):
         # Creating a sale order
-        return self.env["sale.order"].create(
+        sale = self.env["sale.order"].create(
             {
                 "partner_id": self.env.ref("base.res_partner_10").id,
                 "pricelist_id": pricelist.id,
             }
         )
+        vals = {
+            "product_uom_qty": 1,
+            "product_id": self.product.id,
+            "order_id": sale.id,
+        }
+        vals = self.env["sale.order.line"].play_onchanges(vals, vals.keys())
+        sale.write({"order_line": [(0, 0, vals)]})
+        return sale
 
     def test_tax_ht(self):
         sale = self._create_sale_order(self.ht_plist)
-        ak_product = self.env.ref("sale_order_pricelist_tax.ak_product")
-        vals = {
-            "product_uom_qty": 1,
-            "product_id": ak_product.id,
-            "order_id": sale.id,
-        }
-        vals = self.env["sale.order.line"].play_onchanges(vals, vals.keys())
-        sale.write({"order_line": [(0, 0, vals)]})
-        expected_amount = 7.0
-        self._common_checks("ht test:", sale, expected_amount)
+        self.assertEqual(sale.order_line[0].price_unit, 10)
+        self.assertEqual(sale.amount_total, 12)
+        self.assertEqual(sale.amount_untaxed, 10)
+
+    def test_tax_ht_update(self):
+        sale = self._create_sale_order(self.ttc_plist)
+        sale.pricelist_id = self.ht_plist
+        sale.update_prices()
+        self.assertEqual(sale.order_line[0].price_unit, 10)
+        self.assertEqual(sale.amount_total, 12)
+        self.assertEqual(sale.amount_untaxed, 10)
+
+    def test_tax_ht_fp(self):
+        sale = self._create_sale_order(self.ht_plist)
+
+        # Set fiscal position
+        sale.write({"fiscal_position_id": self.fp_exp.id})
+        sale.update_prices()
+        self.assertEqual(sale.order_line[0].price_unit, 10)
+        self.assertEqual(sale.amount_total, 10)
+        self.assertEqual(sale.amount_untaxed, 10)
+
+        # Remove fiscal position
+        sale.write({"fiscal_position_id": False})
+        sale.update_prices()
+        self.assertEqual(sale.order_line[0].price_unit, 10)
+        self.assertEqual(sale.amount_total, 12)
+        self.assertEqual(sale.amount_untaxed, 10)
 
     def test_tax_ttc(self):
         sale = self._create_sale_order(self.ttc_plist)
-        ak_product = self.env.ref("sale_order_pricelist_tax.ak_product")
-        vals = {
-            "product_uom_qty": 1,
-            "product_id": ak_product.id,
-            "order_id": sale.id,
-        }
-        vals = self.env["sale.order.line"].play_onchanges(vals, vals.keys())
-        sale.write({"order_line": [(0, 0, vals)]})
-        expected_amount = 6.67
-        self._common_checks("ttc test:", sale, expected_amount)
+        self.assertEqual(sale.order_line[0].price_unit, 12)
+        self.assertEqual(sale.amount_total, 12)
+        self.assertEqual(sale.amount_untaxed, 10)
 
-    def _common_checks(self, test, sale, amount):
-        used_tax = sale.order_line[0].tax_id
-        self.assertEqual(
-            sale.order_line[0].price_subtotal, amount, "%s Bad price_subtotal" % test
-        )
-        sale.write({"fiscal_position_id": self.fp_intra})
-        self.assertEqual(
-            sale.order_line[0].price_subtotal, amount, "%s Bad price_subtotal" % test
-        )
+    def test_tax_ttc_fp(self):
+        sale = self._create_sale_order(self.ttc_plist)
+
+        # Set fiscal position
+        sale.write({"fiscal_position_id": self.fp_exp.id})
+        sale.update_prices()
+        self.assertEqual(sale.order_line[0].price_unit, 10)
+        self.assertEqual(sale.amount_total, 10)
+        self.assertEqual(sale.amount_untaxed, 10)
+
+        # Remove fiscal position
         sale.write({"fiscal_position_id": False})
-        self.assertEqual(
-            sale.order_line[0].tax_id,
-            used_tax,
-            "%s Tax on sale without fisc. pos. is not the same "
-            "after tried/reverted another fisc. pos. " % test,
-        )
-        self.assertEqual(
-            sale.order_line[0].price_subtotal, amount, "%s Bad price_subtotal" % test
-        )
+        sale.update_prices()
+        self.assertEqual(sale.order_line[0].price_unit, 12)
+        self.assertEqual(sale.amount_total, 12)
+        self.assertEqual(sale.amount_untaxed, 10)
