@@ -1,0 +1,171 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* sale_product_classification
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 12.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2021-04-06 13:21+0000\n"
+"PO-Revision-Date: 2021-04-06 16:39+0200\n"
+"Last-Translator: <>\n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: \n"
+"Language: es\n"
+"X-Generator: Poedit 2.3\n"
+
+#. module: sale_product_classification
+#: model_terms:ir.ui.view,arch_db:sale_product_classification.res_config_settings_view_form_sale
+msgid "<span class=\"o_form_label\">Sales classification days to evaluate</span>"
+msgstr "<span class=\"o_form_label\">Días a evaluar en la clasificación por ventas</span>"
+
+#. module: sale_product_classification
+#: model_terms:ir.ui.view,arch_db:sale_product_classification.res_config_settings_view_form_sale
+msgid "<span class=\"o_form_label\">Sales classification days to ignore</span>"
+msgstr ""
+"<span class=\"o_form_label\">Días a ignorar en la clasificación por ventas\n"
+"</span>"
+
+#. module: sale_product_classification
+#: model_terms:ir.ui.view,arch_db:sale_product_classification.res_config_settings_view_form_sale
+msgid "<span class=\"o_form_label\">Sales classification ranges</span>"
+msgstr "<span class=\"o_form_label\">Rangos de clasificación por ventas</span>"
+
+#. module: sale_product_classification
+#: model:ir.actions.server,name:sale_product_classification.ir_cron_product_classification_ir_actions_server
+#: model:ir.cron,cron_name:sale_product_classification.ir_cron_product_classification
+#: model:ir.cron,name:sale_product_classification.ir_cron_product_classification
+msgid "Classify products by sales"
+msgstr "Clasificar productos por ventas"
+
+#. module: sale_product_classification
+#: model:ir.model,name:sale_product_classification.model_res_company
+msgid "Companies"
+msgstr "Compañías"
+
+#. module: sale_product_classification
+#: model:ir.model,name:sale_product_classification.model_res_config_settings
+msgid "Config Settings"
+msgstr "Opciones de configuración"
+
+#. module: sale_product_classification
+#: model:ir.model.fields,field_description:sale_product_classification.field_res_company__sale_classification_days_to_evaluate
+#: model:ir.model.fields,field_description:sale_product_classification.field_res_config_settings__sale_classification_days_to_evaluate
+msgid "From the date the action is run, evalute these days"
+msgstr "Evaluar estos días desde la fecha en la que se ejecuta la acción"
+
+#. module: sale_product_classification
+#: model_terms:ir.ui.view,arch_db:sale_product_classification.res_config_settings_view_form_sale
+msgid "From the date the action is run, evalute these days."
+msgstr "Evaluar estos días desde la fecha en la que se ejecuta la acción."
+
+#. module: sale_product_classification
+#: selection:product.product,seasonality_classification:0
+#: selection:product.template,seasonality_classification:0
+msgid "High"
+msgstr "Alta"
+
+#. module: sale_product_classification
+#: model:ir.model.fields,help:sale_product_classification.field_product_product__sale_classification
+msgid "How the product performs according to sales"
+msgstr "Rendimiento del producto de acuerdo con sus ventas"
+
+#. module: sale_product_classification
+#: model_terms:ir.ui.view,arch_db:sale_product_classification.res_config_settings_view_form_sale
+msgid ""
+"If set, the products created in these date ranges will be\n"
+"                            ignored in the classification compute."
+msgstr ""
+"Si está establecido, los productos creados en estos rangos de fechas serán\n"
+"                            ignorados en el cálculo de clasificación por ventas."
+
+#. module: sale_product_classification
+#: model:ir.model.fields,help:sale_product_classification.field_res_company__sale_classification_days_to_ignore
+#: model:ir.model.fields,help:sale_product_classification.field_res_config_settings__sale_classification_days_to_ignore
+msgid "If set, the products created in these date ranges will be ignored in the classification compute"
+msgstr "Si está establecido, los productos creados en estos rangos de fechas serán ignorados en el cálculo de clasificación por ventas"
+
+#. module: sale_product_classification
+#: model:ir.model.fields,field_description:sale_product_classification.field_res_company__sale_classification_days_to_ignore
+#: model:ir.model.fields,field_description:sale_product_classification.field_res_config_settings__sale_classification_days_to_ignore
+msgid "Ignore products newer than these days"
+msgstr "Ignorar productos más nuevos que estos días"
+
+#. module: sale_product_classification
+#: selection:product.product,seasonality_classification:0
+#: selection:product.template,seasonality_classification:0
+msgid "Low"
+msgstr "Baja"
+
+#. module: sale_product_classification
+#: selection:product.product,seasonality_classification:0
+#: selection:product.template,seasonality_classification:0
+msgid "Medium"
+msgstr "Media"
+
+#. module: sale_product_classification
+#: model:ir.model,name:sale_product_classification.model_product_product
+msgid "Product"
+msgstr "Producto"
+
+#. module: sale_product_classification
+#: model:ir.model,name:sale_product_classification.model_product_template
+msgid "Product Template"
+msgstr "Plantilla de producto"
+
+#. module: sale_product_classification
+#: model:ir.model.fields,field_description:sale_product_classification.field_product_template__sale_classification
+msgid "Sale Classification"
+msgstr "Clasificación por ventas"
+
+#. module: sale_product_classification
+#: model:ir.model.fields,field_description:sale_product_classification.field_product_product__sale_classification
+msgid "Sales classification"
+msgstr "Clasificación por ventas"
+
+#. module: sale_product_classification
+#: model:ir.model.fields,field_description:sale_product_classification.field_res_company__sale_classification_a
+#: model:ir.model.fields,field_description:sale_product_classification.field_res_config_settings__sale_classification_a
+msgid "Sales equal or above this amount"
+msgstr "Las ventas son iguales o superiores a este importe"
+
+#. module: sale_product_classification
+#: model:ir.model.fields,field_description:sale_product_classification.field_res_company__sale_classification_b
+#: model:ir.model.fields,field_description:sale_product_classification.field_res_config_settings__sale_classification_b
+msgid "Sales equal or above this amount and below A"
+msgstr "Las ventas son iguales o superiores a este importe e inferiores a A"
+
+#. module: sale_product_classification
+#: model:ir.model.fields,field_description:sale_product_classification.field_res_company__sale_classification_c
+#: model:ir.model.fields,field_description:sale_product_classification.field_res_config_settings__sale_classification_c
+msgid "Sales equal or above this amount and below B"
+msgstr "Las ventas son iguales o superiores a este importe e inferiores a B"
+
+#. module: sale_product_classification
+#: model:ir.model.fields,field_description:sale_product_classification.field_product_template__seasonality_classification
+msgid "Seasonality Classification"
+msgstr "Clasificación estacional"
+
+#. module: sale_product_classification
+#: model:ir.model.fields,field_description:sale_product_classification.field_product_product__seasonality_classification
+msgid "Seasonility"
+msgstr "Estacionalidad"
+
+#. module: sale_product_classification
+#: model_terms:ir.ui.view,arch_db:sale_product_classification.res_config_settings_view_form_sale
+msgid "Set the sales amount above which every classification applies."
+msgstr "Establezca el importe de ventas sobre el que aplica cada clasificación."
+
+#. module: sale_product_classification
+#: selection:product.product,seasonality_classification:0
+#: selection:product.template,seasonality_classification:0
+msgid "Very high"
+msgstr "Muy alta"
+
+#. module: sale_product_classification
+#: model:ir.model.fields,help:sale_product_classification.field_product_product__seasonality_classification
+msgid "Whether this product is selled during very short periods of time or steadily across the whole year"
+msgstr "Si este producto se vende durante cortos periodos de tiempo o de forma constante a lo largo del año"
