@@ -2,7 +2,8 @@
 # Copyright 2017 Carlos Dauden <carlos.dauden@tecnativa.com>
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
 
-from odoo import api, fields, models
+from odoo import _, api, fields, models
+from odoo.exceptions import ValidationError
 
 
 class SaleOrder(models.Model):
@@ -18,6 +19,17 @@ class SaleOrder(models.Model):
                 order.update({
                     'invoice_status': 'no',
                 })
+
+    def action_cancel(self):
+        # Avoid cancel SO with invoiced lines to don't have inconsistent lines,
+        # if we want reconfirm _check_sale_line_state restrict raises error
+        lines = self.mapped('order_line').filtered(
+            lambda x: x.task_id and x.invoice_status == 'invoiced')
+        if lines:
+            raise ValidationError(_(
+                'You cannot cancel because these lines have invoiced tasks:'
+                '\n %s') % ('\n'.join(lines.mapped('name'))))
+        return super().action_cancel()
 
 
 class SaleOrderLine(models.Model):
