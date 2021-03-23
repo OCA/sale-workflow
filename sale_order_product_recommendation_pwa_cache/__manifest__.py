@@ -13,6 +13,6 @@
     "application": False,
     "installable": True,
     "auto_install": True,
-    "depends": ["sale_pwa_cache", "sale_order_product_recommendation",],
-    "data": ["views/sale_order_views.xml",],
+    "depends": ["sale_pwa_cache", "sale_order_product_recommendation"],
+    "data": ["views/sale_order_views.xml"],
 }
