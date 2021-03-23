@@ -78,7 +78,8 @@ msgid ""
 "You cannot cancel because these lines have invoiced tasks:\n"
 " %s"
 msgstr ""
-"No puede cancelar porque las siguientes lineas llevan asociadas tareas facturadas:\n"
+"No puede cancelar porque las siguientes lineas llevan asociadas tareas "
+"facturadas:\n"
 " %s"
 
 #. module: sale_order_invoicing_finished_task

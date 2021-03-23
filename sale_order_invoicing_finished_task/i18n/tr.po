@@ -70,6 +70,14 @@ msgid "Tasks"
 msgstr ""
 
 #. module: sale_order_invoicing_finished_task
+#: code:addons/sale_order_invoicing_finished_task/models/sale_order.py:29
+#, python-format
+msgid ""
+"You cannot cancel because these lines have invoiced tasks:\n"
+" %s"
+msgstr ""
+
+#. module: sale_order_invoicing_finished_task
 #: code:addons/sale_order_invoicing_finished_task/models/project.py:65
 #, python-format
 msgid ""
