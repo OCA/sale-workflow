@@ -1,6 +1,5 @@
-<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8" ?>
 <odoo>
-
     <record id="view_order_form_pwa" model="ir.ui.view">
         <field name="model">sale.order</field>
         <field name="inherit_id" ref="sale_pwa_cache.view_order_form_pwa" />
@@ -10,7 +9,8 @@
                     name="%(sale_order_product_recommendation.sale_order_recommendation_action)d"
                     states="draft,sent,sale"
                     string="Recommended Products"
-                    type="action"/>
+                    type="action"
+                />
             </xpath>
         </field>
     </record>

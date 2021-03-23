@@ -3,7 +3,7 @@
 {
     "name": "Sale PWA Cache Product Recommendation",
     "summary": "Glue module to show the product recommendation button",
-    "version": "12.0.1.0.0",
+    "version": "13.0.1.0.0",
     "development_status": "Beta",
     "category": "Sales Management",
     "website": "https://github.com/OCA/sale-workflow",
@@ -13,11 +13,6 @@
     "application": False,
     "installable": True,
     "auto_install": True,
-    "depends": [
-        "sale_pwa_cache",
-        "sale_order_product_recommendation",
-    ],
-    "data": [
-        "views/sale_order_views.xml",
-    ],
+    "depends": ["sale_pwa_cache", "sale_order_product_recommendation",],
+    "data": ["views/sale_order_views.xml",],
 }
