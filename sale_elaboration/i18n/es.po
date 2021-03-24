@@ -7,15 +7,15 @@ msgstr ""
 "Project-Id-Version: Odoo Server 11.0\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2020-01-24 11:28+0000\n"
-"PO-Revision-Date: 2020-01-24 12:31+0100\n"
-"Last-Translator: \n"
+"PO-Revision-Date: 2021-03-24 10:46+0000\n"
+"Last-Translator: Daniel Martinez Vila <daniel.martinez@qubiq.es>\n"
 "Language-Team: \n"
 "Language: es\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Generator: Poedit 2.0.6\n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: Weblate 4.3.2\n"
 
 #. module: sale_elaboration
 #: model:ir.ui.view,arch_db:sale_elaboration.report_delivery_document
@@ -55,12 +55,12 @@ msgstr "Creado el"
 #. module: sale_elaboration
 #: model:ir.model.fields,field_description:sale_elaboration.field_sale_order_line_confirmation_date
 msgid "Date"
-msgstr ""
+msgstr "Fecha"
 
 #. module: sale_elaboration
 #: model:ir.model.fields,help:sale_elaboration.field_sale_order_line_confirmation_date
 msgid "Date on which the sales order is confirmed."
-msgstr ""
+msgstr "Fecha en la que se confirma el pedido de cliente."
 
 #. module: sale_elaboration
 #: model:ir.model.fields,field_description:sale_elaboration.field_product_elaboration_display_name
