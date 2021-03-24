@@ -6,13 +6,15 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 11.0\n"
 "Report-Msgid-Bugs-To: \n"
-"Last-Translator: Automatically generated\n"
+"PO-Revision-Date: 2021-03-24 10:46+0000\n"
+"Last-Translator: Daniel Martinez Vila <daniel.martinez@qubiq.es>\n"
 "Language-Team: none\n"
 "Language: ca\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: Weblate 4.3.2\n"
 
 #. module: sale_disable_inventory_check
 #: model:ir.model.fields,help:sale_disable_inventory_check.field_product_product_check_stock_on_sale
@@ -21,61 +23,69 @@ msgid "'Skip the check' will disable warning 'Not enough inventory' when there i
 "'Do not skip the check' won't disable warning 'Not enough inventory' when there isn't enough product in stock!\n"
 "'Defer to the setting on the category' will use the setting from the Internal Category"
 msgstr ""
+"\"Omet el xec\" desactivarà l'advertiment \"No hi ha prou inventari\" quan "
+"no hi hagi prou producte en estoc.\n"
+"\"No ometeu la comprovació\" no desactivarà l'advertiment \"No hi ha prou "
+"inventari\" quan no hi ha prou producte en estoc.\n"
+"\"Diferiu el paràmetre de la categoria\" utilitzarà el paràmetre de la "
+"categoria interna"
 
 #. module: sale_disable_inventory_check
 #: model:ir.model.fields,field_description:sale_disable_inventory_check.field_product_category_check_stock_on_sale
 #: model:ir.model.fields,field_description:sale_disable_inventory_check.field_product_product_check_stock_on_sale
 #: model:ir.model.fields,field_description:sale_disable_inventory_check.field_product_template_check_stock_on_sale
 msgid "Check Stock on Sale"
-msgstr ""
+msgstr "Consulteu existències a la venda"
 
 #. module: sale_disable_inventory_check
 #: selection:product.template,check_stock_on_sale:0
 msgid "Defer to the setting on the category"
-msgstr ""
+msgstr "Diferiu la configuració de la categoria"
 
 #. module: sale_disable_inventory_check
 #: selection:product.template,check_stock_on_sale:0
 msgid "Do not skip the check"
-msgstr ""
+msgstr "No us ometeu la comprovació"
 
 #. module: sale_disable_inventory_check
 #: model:ir.ui.view,arch_db:sale_disable_inventory_check.product_category_form_view_inherit
 msgid "Inventory Properties"
-msgstr ""
+msgstr "Propietats de l'inventari"
 
 #. module: sale_disable_inventory_check
 #: model:ir.ui.view,arch_db:sale_disable_inventory_check.view_disable_check_stock_property_form
 msgid "Inventory Property"
-msgstr ""
+msgstr "Propietat d’inventari"
 
 #. module: sale_disable_inventory_check
 #: code:addons/sale_disable_inventory_check/models/sale_order_line.py:17
 #, python-format
 msgid "Not enough inventory!"
-msgstr ""
+msgstr "No hi ha prou inventari!"
 
 #. module: sale_disable_inventory_check
 #: model:ir.model,name:sale_disable_inventory_check.model_product_category
 msgid "Product Category"
-msgstr ""
+msgstr "Categoria del Producte"
 
 #. module: sale_disable_inventory_check
 #: model:ir.model,name:sale_disable_inventory_check.model_product_template
 msgid "Product Template"
-msgstr ""
+msgstr "Plantilla de producte"
 
 #. module: sale_disable_inventory_check
 #: model:ir.model,name:sale_disable_inventory_check.model_sale_order_line
 msgid "Sales Order Line"
-msgstr ""
+msgstr "Línia de comandes de vendes"
 
 #. module: sale_disable_inventory_check
 #: selection:product.template,check_stock_on_sale:0
 msgid "Skip the check"
-msgstr ""
+msgstr "Omet el xec"
 
 #. module: sale_disable_inventory_check
 #: model:ir.model.fields,help:sale_disable_inventory_check.field_product_category_check_stock_on_sale
 msgid "Uncheck if you want to disable warning 'Not enough inventory' when there isn't enough product in stock"
 msgstr ""
+"Desmarqueu si voleu desactivar l'advertiment \"No hi ha prou inventari\" "
+"quan no hi ha prou producte en estoc"
