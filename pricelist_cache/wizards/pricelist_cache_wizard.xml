@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!-- Copyright 2021 Camptocamp SA
+     License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl). -->
+<odoo>
+
+    <record id="product_pricelist_cache_wizard_view_form" model="ir.ui.view">
+      <field name="name">product.pricelist.cache.wizard.form</field>
+      <field name="model">product.pricelist.cache.wizard</field>
+      <field name="arch" type="xml">
+        <form string="Pricelist Cache">
+          <sheet>
+            <group>
+                <field name="partner_id" />
+                <field name="pricelist_id" />
+                <field name="product_id" />
+                <field name="display_cache_line_ids" mode="tree">
+                    <tree limit="80">
+                        <field name="product_id" />
+                        <field name="price" />
+                    </tree>
+                </field>
+            </group>
+          </sheet>
+          <footer>
+            <button
+                        name="open_in_tree_view"
+                        type="object"
+                        string="Open"
+                        class="btn-primary"
+                        attrs="{'invisible': [('display_cache_line_ids', '=', False)]}"
+                    />
+            <button special="cancel" string="Cancel" class="btn-default" />
+          </footer>
+        </form>
+      </field>
+    </record>
+
+    <record id="product_pricelist_cache_wizard_action" model="ir.actions.act_window">
+      <field name="name">Pricelist Cache</field>
+      <field name="type">ir.actions.act_window</field>
+      <field name="res_model">product.pricelist.cache.wizard</field>
+      <field name="view_mode">form</field>
+      <field name="target">new</field>
+      <field name="view_id" ref="product_pricelist_cache_wizard_view_form" />
+      <field name="context">{"withControlPanel": False, "no_breadcrumbs": True}</field>
+    </record>
+
+    <menuitem
+        action="product_pricelist_cache_wizard_action"
+        id="menuitem_pricelist_cache_wizard"
+        parent="sale.prod_config_main"
+        sequence="20"
+    />
+</odoo>
