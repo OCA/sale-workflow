@@ -9,29 +9,30 @@ msgstr ""
 "Project-Id-Version: Odoo Server 10.0\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2017-07-08 00:49+0000\n"
-"PO-Revision-Date: 2017-07-08 00:49+0000\n"
-"Last-Translator: OCA Transbot <transbot@odoo-community.org>, 2017\n"
+"PO-Revision-Date: 2021-03-25 16:46+0000\n"
+"Last-Translator: Daniel Martinez Vila <daniel.martinez@qubiq.es>\n"
 "Language-Team: Catalan (https://www.transifex.com/oca/teams/23907/ca/)\n"
 "Language: ca\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
-"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: Weblate 4.3.2\n"
 
 #. module: sale_order_line_sequence
 #: model:ir.ui.view,arch_db:sale_order_line_sequence.report_saleorder_document_sequence
 msgid "<strong>Sequence</strong>"
-msgstr ""
+msgstr "<strong> Seqüència </strong>"
 
 #. module: sale_order_line_sequence
 #: model:ir.model.fields,field_description:sale_order_line_sequence.field_sale_order_max_line_sequence
 msgid "Max sequence in lines"
-msgstr ""
+msgstr "Seqüència màxima en línies"
 
 #. module: sale_order_line_sequence
 #: model:ir.model,name:sale_order_line_sequence.model_sale_order
 msgid "Quotation"
-msgstr ""
+msgstr "Pressupost"
 
 #. module: sale_order_line_sequence
 #: model:ir.model,name:sale_order_line_sequence.model_sale_order_line
@@ -41,12 +42,12 @@ msgstr "Línia de comanda de vendes"
 #. module: sale_order_line_sequence
 #: model:ir.model.fields,field_description:sale_order_line_sequence.field_sale_order_line_sequence2
 msgid "Sequence"
-msgstr ""
+msgstr "Seqüència"
 
 #. module: sale_order_line_sequence
 #: model:ir.model.fields,help:sale_order_line_sequence.field_sale_order_line_sequence2
 msgid "Shows the sequence of this line in the sale order."
-msgstr ""
+msgstr "Mostra la seqüència d'aquesta línia a la comanda de venda."
 
 #~ msgid "Sales Order"
 #~ msgstr "Comandes de venda"
