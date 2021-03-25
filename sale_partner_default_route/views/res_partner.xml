@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Copyright 2015 Opener B.V. (<https://opener.am>)
+     License LGPL-3.0 or later (http://www.gnu.org/licenses/agpl). -->
+
+<odoo>
+    <record id="view_partner_picking_type_form" model="ir.ui.view">
+        <field name="name">Add default sales incoterm to partner form</field>
+        <field name="model">res.partner</field>
+        <field name="inherit_id" ref="base.view_partner_form"/>
+        <field name="arch" type="xml">
+            <field name="property_payment_term_id" position="after">
+                <field name="default_route" string="Default Route"/>
+            </field>
+            <xpath expr="//page[@name='sales_purchases']//field[@name='property_payment_term_id']" position="after"/>
+        </field>
+    </record>
+</odoo>
