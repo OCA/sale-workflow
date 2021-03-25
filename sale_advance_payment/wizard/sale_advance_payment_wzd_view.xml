@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+
+    <record id="view_account_voucher_wizard" model="ir.ui.view">
+        <field name="name">Advance Payment</field>
+        <field name="model">account.voucher.wizard</field>
+        <field name="type">form</field>
+        <field name="arch" type="xml">
+            <form string="Advance Payment">
+                <group>
+                    <group colspan="4" col="4">
+                        <field name="journal_id"
+                                domain="[('type','in',['bank', 'cash'])]"
+                                widget="selection" select="1"
+                                string="Payment Method"/>
+                        <field name="payment_ref"/>
+                        <field name="date"/>
+                        <field name="amount_total"/>
+                    </group>
+                    <separator string="Operation" colspan="4"/>
+                    <group colspan="4" col="4">
+                        <field name="amount_advance"/>
+                        <field name="currency_id"/>
+                    </group>
+                    <field name="exchange_rate"/>
+                    <field name="currency_amount"/>
+                </group>
+                <footer>
+                    <button name="make_advance_payment" string="Make advance payment" type="object" class="btn-primary"/>
+                    <button special="cancel" string="Cancel" class="btn-default"/>
+                </footer>
+            </form>
+        </field>
+    </record>
+
+    <record id="action_view_account_voucher_wizard" model="ir.actions.act_window">
+        <field name="name">Advance Payment</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">account.voucher.wizard</field>
+        <field name="view_type">form</field>
+        <field name="view_mode">form</field>
+        <field name="target">new</field>
+    </record>
+
+</odoo>
