@@ -3,15 +3,17 @@
 
 {
     "name": "Sale Advance Payment",
-    "version": "11.0.1.0.0",
-    "author": "Comunitea",
-    'website': 'www.comunitea.com',
+    "version": "14.0.1.0.0",
+    "author": "Comunitea, Odoo Community Association (OCA)",
+    "website": "https://github.com/OCA/sale-workflow",
     "category": "Sales",
-    "description": """Allow to add advance payments on sales and then use its
- on invoices""",
-    "depends": ["sale", "account"],
-    "data": ["wizard/sale_advance_payment_wzd_view.xml",
-             "views/sale_view.xml",
-             "security/ir.model.access.csv"],
+    "license": "AGPL-3",  # TODO: check
+    "summary": "Allow to add advance payments on sales and then use them on invoices",
+    "depends": ["sale"],
+    "data": [
+        "wizard/sale_advance_payment_wzd_view.xml",
+        "views/sale_view.xml",
+        "security/ir.model.access.csv",
+    ],
     "installable": True,
 }
