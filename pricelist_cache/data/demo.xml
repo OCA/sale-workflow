@@ -1,0 +1,140 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+
+    <!--root pricelist 0-->
+
+    <record id="list0" model="product.pricelist">
+        <field name="name">Pricelist 0</field>
+    </record>
+
+    <record id="item2" model="product.pricelist.item">
+        <field name="base">list_price</field>
+        <field name="applied_on">0_product_variant</field>
+        <field name="pricelist_id" ref="list0" />
+        <field name="product_id" ref="product.product_product_6" />
+        <field name="fixed_price">100.0</field>
+    </record>
+
+    <record id="item3" model="product.pricelist.item">
+        <field name="base">list_price</field>
+        <field name="applied_on">0_product_variant</field>
+        <field name="pricelist_id" ref="list0" />
+        <field name="product_id" ref="product.product_product_8" />
+        <field name="fixed_price">100.0</field>
+    </record>
+
+
+    <!--child pricelist 1, based on pricelist 0-->
+    <record id="list1" model="product.pricelist">
+        <field name="name">Pricelist 1</field>
+        <field name="sequence">2</field>
+    </record>
+
+    <record id="item4" model="product.pricelist.item">
+        <field name="pricelist_id" ref="list1" />
+        <field name="applied_on">3_global</field>
+        <field name="compute_price">formula</field>
+        <field name="base">pricelist</field>
+        <field name="base_pricelist_id" ref="list0" />
+    </record>
+
+    <record id="item5" model="product.pricelist.item">
+        <field name="pricelist_id" ref="list1" />
+        <field name="applied_on">0_product_variant</field>
+        <field name="base">list_price</field>
+        <field name="product_id" ref="product.product_product_6" />
+        <field name="fixed_price">75.0</field>
+    </record>
+
+    <!--child pricelist 2, based on pricelist 1-->
+    <record id="list2" model="product.pricelist">
+        <field name="name">Pricelist 2</field>
+        <field name="sequence">3</field>
+    </record>
+
+    <record id="item6" model="product.pricelist.item">
+        <field name="pricelist_id" ref="list2" />
+        <field name="applied_on">3_global</field>
+        <field name="compute_price">formula</field>
+        <field name="base">pricelist</field>
+        <field name="base_pricelist_id" ref="list1" />
+    </record>
+
+    <record id="item7" model="product.pricelist.item">
+        <field name="base">list_price</field>
+        <field name="applied_on">0_product_variant</field>
+        <field name="pricelist_id" ref="list2" />
+        <field name="product_id" ref="product.product_product_6" />
+        <field name="fixed_price">50.0</field>
+        <field name="date_start">2021-03-01</field>
+        <field name="date_end">2021-04-01</field>
+    </record>
+
+    <!--child pricelist 3, based on pricelist 2-->
+    <record id="list3" model="product.pricelist">
+        <field name="name">Pricelist 3</field>
+        <field name="sequence">4</field>
+    </record>
+
+    <record id="item8" model="product.pricelist.item">
+        <field name="pricelist_id" ref="list3" />
+        <field name="applied_on">3_global</field>
+        <field name="compute_price">formula</field>
+        <field name="base">pricelist</field>
+        <field name="base_pricelist_id" ref="list2" />
+    </record>
+
+    <record id="item9" model="product.pricelist.item">
+        <field name="base">list_price</field>
+        <field name="applied_on">0_product_variant</field>
+        <field name="pricelist_id" ref="list3" />
+        <field name="product_id" ref="product.product_product_6" />
+        <field name="fixed_price">25.0</field>
+    </record>
+
+    <!--root pricelist 4, based on list0-->
+    <record id="list4" model="product.pricelist">
+        <field name="name">Pricelist 4</field>
+        <field name="sequence">5</field>
+    </record>
+
+    <record id="item10" model="product.pricelist.item">
+        <field name="pricelist_id" ref="list4" />
+        <field name="applied_on">3_global</field>
+        <field name="compute_price">formula</field>
+        <field name="base">pricelist</field>
+        <field name="base_pricelist_id" ref="list0" />
+    </record>
+
+    <record id="item11" model="product.pricelist.item">
+        <field name="base">list_price</field>
+        <field name="applied_on">0_product_variant</field>
+        <field name="pricelist_id" ref="list4" />
+        <field name="product_id" ref="product.product_product_6" />
+        <field name="fixed_price">15.0</field>
+    </record>
+
+    <record id="item12" model="product.pricelist.item">
+        <field name="base">list_price</field>
+        <field name="applied_on">0_product_variant</field>
+        <field name="pricelist_id" ref="list4" />
+        <field name="product_id" ref="product.product_product_7" />
+        <field name="fixed_price">50</field>
+    </record>
+
+    <!-- factor pricelist 5, based on pricelist 3-->
+    <record id="list5" model="product.pricelist">
+        <field name="name">Pricelist 5</field>
+        <field name="sequence">6</field>
+    </record>
+
+    <record id="item13" model="product.pricelist.item">
+        <field name="pricelist_id" ref="list5" />
+        <field name="applied_on">3_global</field>
+        <field name="compute_price">formula</field>
+        <field name="base">pricelist</field>
+        <field name="base_pricelist_id" ref="list3" />
+        <field name="price_surcharge">20</field>
+    </record>
+
+</odoo>
