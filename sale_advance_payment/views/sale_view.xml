@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+
+    <record id="view_order_form_change_button" model="ir.ui.view">
+        <field name="name">sale.order.form.change_button</field>
+        <field name="model">sale.order</field>
+        <field name="inherit_id" ref="sale.view_order_form"/>
+        <field name="arch" type="xml">
+            <button name="action_done" position="after">
+                <button name="%(action_view_account_voucher_wizard)d" string="Pay sale advanced"
+                    type="action" groups="account.group_account_invoice" attrs="{'invisible': ['|',('state', 'in', ['done','cancel']),('invoice_status', 'in', ['invoiced'])]}"/>
+            </button>
+            <notebook position="inside">
+                <page string="Payment advances" groups="account.group_account_invoice">
+                    <field name="account_payment_ids" nolabel="1" colspan="4" context="{'form_view_ref': 'account.view_account_payment_form','tree_view_ref': 'account.view_account_payment_tree'}"/>
+                </page>
+            </notebook>
+            <field name="amount_total" position="after">
+                <div class="oe_subtotal_footer_separator oe_inline o_td_label">
+                    <label for="amount_residual"/>
+                </div>
+                <field name="amount_residual" nolabel="1" class="oe_subtotal_footer_separator" widget="monetary" options="{'currency_field': 'currency_id'}"/>
+            </field>
+        </field>
+    </record>
+
+</odoo>
