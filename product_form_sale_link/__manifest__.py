@@ -5,12 +5,12 @@
     "name": "Product Form Sale Link",
     "summary": """
         Adds a button on product forms to access Sale Lines""",
-    "version": "12.0.1.0.0",
+    "version": "13.0.1.0.1",
     "license": "AGPL-3",
     "category": "Sales",
     "author": "ACSONE SA/NV,Odoo Community Association (OCA)",
     "website": "https://github.com/OCA/sale-workflow",
-    "depends": ["sale",],
+    "depends": ["sale"],
     "data": [
         "views/sale_order_line.xml",
         "views/product_product.xml",
