@@ -9,60 +9,62 @@ msgstr ""
 "Project-Id-Version: Odoo Server 10.0\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2017-05-13 01:19+0000\n"
-"PO-Revision-Date: 2017-05-13 01:19+0000\n"
-"Last-Translator: OCA Transbot <transbot@odoo-community.org>, 2017\n"
+"PO-Revision-Date: 2021-03-26 10:46+0000\n"
+"Last-Translator: Daniel Martinez Vila <daniel.martinez@qubiq.es>\n"
 "Language-Team: Catalan (https://www.transifex.com/oca/teams/23907/ca/)\n"
 "Language: ca\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
-"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: Weblate 4.3.2\n"
 
 #. module: sale_isolated_quotation
 #: model:ir.model.fields,help:sale_isolated_quotation.field_sale_order_state2
 msgid "A dummy state used for quotation"
-msgstr ""
+msgstr "Un estat fictici que s’utilitza per presupostos"
 
 #. module: sale_isolated_quotation
 #: model:ir.ui.view,arch_db:sale_isolated_quotation.view_order_form
 msgid "Cancel"
-msgstr ""
+msgstr "Cancel·lar"
 
 #. module: sale_isolated_quotation
 #: model:ir.ui.view,arch_db:sale_isolated_quotation.view_order_form
 msgid "Convert to Order"
-msgstr ""
+msgstr "Converteix a comanda"
 
 #. module: sale_isolated_quotation
 #: model:ir.model.fields,help:sale_isolated_quotation.field_sale_order_order_id
 msgid "For Quotation, this field references to its Sales Order"
 msgstr ""
+"Per a pressupostos, aquest camp fa referència a la seva comanda de vendes"
 
 #. module: sale_isolated_quotation
 #: model:ir.model.fields,help:sale_isolated_quotation.field_sale_order_quote_id
 msgid "For Sales Order, this field references to its Quotation"
-msgstr ""
+msgstr "Per a la comanda de vendes, aquest camp fa referència a la seva oferta"
 
 #. module: sale_isolated_quotation
 #: model:ir.model.fields,field_description:sale_isolated_quotation.field_sale_order_is_order
 msgid "Is Order"
-msgstr ""
+msgstr "És Ordre"
 
 #. module: sale_isolated_quotation
 #: code:addons/sale_isolated_quotation/models/sale.py:58
 #, python-format
 msgid "Only quotation can convert to order"
-msgstr ""
+msgstr "Només les cotitzacions es poden convertir a la comanda"
 
 #. module: sale_isolated_quotation
 #: model:ir.model.fields,field_description:sale_isolated_quotation.field_sale_order_order_id
 msgid "Order Reference"
-msgstr ""
+msgstr "Ordre de referència"
 
 #. module: sale_isolated_quotation
 #: model:ir.model.fields,field_description:sale_isolated_quotation.field_sale_order_quote_id
 msgid "Quotation Reference"
-msgstr ""
+msgstr "Referència de pressupost"
 
 #. module: sale_isolated_quotation
 #: code:addons/sale_isolated_quotation/models/sale.py:74
@@ -74,4 +76,4 @@ msgstr "Comandes de venda"
 #. module: sale_isolated_quotation
 #: model:ir.model.fields,field_description:sale_isolated_quotation.field_sale_order_state2
 msgid "Status"
-msgstr ""
+msgstr "Estat"
