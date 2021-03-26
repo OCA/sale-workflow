@@ -9,14 +9,15 @@ msgstr ""
 "Project-Id-Version: Odoo Server 10.0\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2018-01-27 03:52+0000\n"
-"PO-Revision-Date: 2018-01-27 03:52+0000\n"
-"Last-Translator: OCA Transbot <transbot@odoo-community.org>, 2018\n"
+"PO-Revision-Date: 2021-03-26 10:46+0000\n"
+"Last-Translator: Daniel Martinez Vila <daniel.martinez@qubiq.es>\n"
 "Language-Team: Catalan (https://www.transifex.com/oca/teams/23907/ca/)\n"
 "Language: ca\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
-"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: Weblate 4.3.2\n"
 
 #. module: product_price_category
 #: model:ir.model.fields,field_description:product_price_category.field_product_price_category_create_uid
@@ -31,7 +32,7 @@ msgstr "Creat el"
 #. module: product_price_category
 #: model:ir.model.fields,field_description:product_price_category.field_product_price_category_display_name
 msgid "Display Name"
-msgstr ""
+msgstr "Nom visible"
 
 #. module: product_price_category
 #: model:ir.model.fields,field_description:product_price_category.field_product_price_category_id
@@ -41,7 +42,7 @@ msgstr "ID"
 #. module: product_price_category
 #: model:ir.model.fields,field_description:product_price_category.field_product_price_category___last_update
 msgid "Last Modified on"
-msgstr ""
+msgstr "Darrera modificació el"
 
 #. module: product_price_category
 #: model:ir.model.fields,field_description:product_price_category.field_product_price_category_write_uid
@@ -64,28 +65,28 @@ msgstr "Nom"
 #: model:ir.model.fields,field_description:product_price_category.field_product_product_price_category_id
 #: model:ir.model.fields,field_description:product_price_category.field_product_template_price_category_id
 msgid "Price Category"
-msgstr ""
+msgstr "Categoria de preus"
 
 #. module: product_price_category
 #: code:addons/product_price_category/models/product_pricelist.py:249
 #, python-format
 msgid "Price Category: %s"
-msgstr ""
+msgstr "Categoria de preus: %s"
 
 #. module: product_price_category
 #: model:ir.model,name:product_price_category.model_product_pricelist
 msgid "Pricelist"
-msgstr ""
+msgstr "Tarifes de preus"
 
 #. module: product_price_category
 #: model:ir.model,name:product_price_category.model_product_pricelist_item
 msgid "Pricelist item"
-msgstr ""
+msgstr "Article de la llista de preus"
 
 #. module: product_price_category
 #: model:ir.model,name:product_price_category.model_product_template
 msgid "Product Template"
-msgstr ""
+msgstr "Plantilla de producte"
 
 #. module: product_price_category
 #: model:ir.model.fields,help:product_price_category.field_product_pricelist_item_price_category_id
@@ -93,8 +94,10 @@ msgid ""
 "Specify a product price category if this rule only applies to one price "
 "category. Keep empty otherwise."
 msgstr ""
+"Especifiqueu una categoria de preu del producte si aquesta regla només "
+"s'aplica a una categoria de preus. Mantingueu-lo buit en cas contrari."
 
 #. module: product_price_category
 #: model:ir.model,name:product_price_category.model_product_price_category
 msgid "product.price.category"
-msgstr ""
+msgstr "product.price.category"
