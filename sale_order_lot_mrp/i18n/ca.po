@@ -9,44 +9,45 @@ msgstr ""
 "Project-Id-Version: Odoo Server 10.0\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2017-11-23 01:51+0000\n"
-"PO-Revision-Date: 2017-11-23 01:51+0000\n"
-"Last-Translator: OCA Transbot <transbot@odoo-community.org>, 2017\n"
+"PO-Revision-Date: 2021-03-26 10:46+0000\n"
+"Last-Translator: Daniel Martinez Vila <daniel.martinez@qubiq.es>\n"
 "Language-Team: Catalan (https://www.transifex.com/oca/teams/23907/ca/)\n"
 "Language: ca\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
-"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: Weblate 4.3.2\n"
 
 #. module: sale_order_lot_mrp
 #: model:ir.model.fields,field_description:sale_order_lot_mrp.field_mrp_production_lot_id
 msgid "Lot"
-msgstr ""
+msgstr "Lot"
 
 #. module: sale_order_lot_mrp
 #: model:ir.model,name:sale_order_lot_mrp.model_stock_production_lot
 msgid "Lot/Serial"
-msgstr ""
+msgstr "Lot / sèrie"
 
 #. module: sale_order_lot_mrp
 #: model:ir.model,name:sale_order_lot_mrp.model_mrp_production
 msgid "Manufacturing Order"
-msgstr ""
+msgstr "Comanda de fabricació"
 
 #. module: sale_order_lot_mrp
 #: model:ir.model,name:sale_order_lot_mrp.model_procurement_order
 msgid "Procurement"
-msgstr ""
+msgstr "Contractació"
 
 #. module: sale_order_lot_mrp
 #: model:ir.model.fields,field_description:sale_order_lot_mrp.field_stock_production_lot_mrp_production_ids
 msgid "Production Order"
-msgstr ""
+msgstr "Comanda de producció"
 
 #. module: sale_order_lot_mrp
 #: model:ir.model,name:sale_order_lot_mrp.model_mrp_product_produce
 msgid "Record Production"
-msgstr ""
+msgstr "Producció discogràfica"
 
 #. module: sale_order_lot_mrp
 #: model:ir.model,name:sale_order_lot_mrp.model_stock_move
