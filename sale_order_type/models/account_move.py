@@ -26,9 +26,12 @@ class AccountMove(models.Model):
         ) in ["sale.order", "sale.advance.payment.inv"]:
             return
         self.sale_type_id = self.env["sale.order.type"]
-        for record in self.filtered(
-            lambda am: am.move_type in ["out_invoice", "out_refund"]
-        ):
+        for record in self:
+            if record.move_type not in ["out_invoice", "out_refund"]:
+                record.sale_type_id = self.env["sale.order.type"]
+                continue
+            else:
+                record.sale_type_id = record.sale_type_id
             if not record.partner_id:
                 record.sale_type_id = self.env["sale.order.type"].search(
                     [("company_id", "in", [self.env.company.id, False])], limit=1
