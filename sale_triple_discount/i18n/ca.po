@@ -9,66 +9,66 @@ msgstr ""
 "Project-Id-Version: Odoo Server 10.0\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2017-11-23 01:52+0000\n"
-"PO-Revision-Date: 2017-11-23 01:52+0000\n"
-"Last-Translator: OCA Transbot <transbot@odoo-community.org>, 2017\n"
+"PO-Revision-Date: 2021-03-26 13:46+0000\n"
+"Last-Translator: Daniel Martinez Vila <daniel.martinez@qubiq.es>\n"
 "Language-Team: Catalan (https://www.transifex.com/oca/teams/23907/ca/)\n"
 "Language: ca\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
-"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: Weblate 4.3.2\n"
 
 #. module: sale_triple_discount
 #: selection:sale.order.line,discounting_type:0
 msgid "Additive"
-msgstr ""
+msgstr "Additiu"
 
 #. module: sale_triple_discount
 #: model:ir.model.fields,field_description:sale_triple_discount.field_sale_order_line_discount2
 msgid "Disc. 2 (%)"
-msgstr ""
+msgstr "Desc. 2 (%)"
 
 #. module: sale_triple_discount
 #: model:ir.model.fields,field_description:sale_triple_discount.field_sale_order_line_discount3
 msgid "Disc. 3 (%)"
-msgstr ""
+msgstr "Desc. 3 (%)"
 
 #. module: sale_triple_discount
 #: sql_constraint:sale.order.line:0
 msgid "Discount 2 must be lower than 100%."
-msgstr ""
+msgstr "El descompte 2 ha de ser inferior al 100%."
 
 #. module: sale_triple_discount
 #: sql_constraint:sale.order.line:0
 msgid "Discount 3 must be lower than 100%."
-msgstr ""
+msgstr "El descompte 3 ha de ser inferior al 100%."
 
 #. module: sale_triple_discount
 #: model:ir.model.fields,field_description:sale_triple_discount.field_sale_order_line_discounting_type
 msgid "Discounting type"
-msgstr ""
+msgstr "Tipus de descompte"
 
 #. module: sale_triple_discount
 #: selection:sale.order.line,discounting_type:0
 msgid "Multiplicative"
-msgstr ""
+msgstr "Multiplicatiu"
 
 #. module: sale_triple_discount
 #: code:addons/sale_triple_discount/models/sale_order_line.py:23
 #, python-format
 msgid "Sale order line %s has unknown discounting type %s"
-msgstr ""
+msgstr "La línia de comanda de venda %s té un tipus de descompte desconegut %s"
 
 #. module: sale_triple_discount
 #: model:ir.model,name:sale_triple_discount.model_sale_order
-#, fuzzy
 msgid "Sales Order"
-msgstr "Línia de comanda de vendes"
+msgstr "Comanda de vendes"
 
 #. module: sale_triple_discount
 #: model:ir.model,name:sale_triple_discount.model_sale_order_line
 msgid "Sales Order Line"
-msgstr "Línia de comanda de vendes"
+msgstr "Línies de comanda de vendes"
 
 #. module: sale_triple_discount
 #: model:ir.model.fields,help:sale_triple_discount.field_sale_order_line_discounting_type
@@ -78,3 +78,7 @@ msgid ""
 "Multiplicative discounts are applied sequentially.\n"
 "Multiplicative discounts are default"
 msgstr ""
+"Especifica si els descomptes han de ser additius o multiplicatius.\n"
+"Primer es resumeixen els descomptes additius i després s’apliquen.\n"
+"Els descomptes multiplicatius s’apliquen de manera seqüencial.\n"
+"Els descomptes multiplicatius són per defecte"
