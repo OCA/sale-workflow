@@ -6,51 +6,53 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 10.0\n"
 "Report-Msgid-Bugs-To: \n"
-"Last-Translator: Automatically generated\n"
+"PO-Revision-Date: 2021-03-26 10:46+0000\n"
+"Last-Translator: Daniel Martinez Vila <daniel.martinez@qubiq.es>\n"
 "Language-Team: none\n"
 "Language: ca\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: Weblate 4.3.2\n"
 
 #. module: sale_invoice_policy
 #: model:ir.model.fields,field_description:sale_invoice_policy.field_sale_config_settings_sale_default_invoice_policy
 msgid "Default Invoicing"
-msgstr ""
+msgstr "Facturació predeterminada"
 
 #. module: sale_invoice_policy
 #: model:ir.ui.view,arch_db:sale_invoice_policy.view_sales_config
 msgid "Default Sale Order Invoice Policy"
-msgstr ""
+msgstr "Política de factura de la comanda de venda predeterminada"
 
 #. module: sale_invoice_policy
 #: selection:product.template,default_invoice_policy:0
 #: selection:sale.order,invoice_policy:0
 msgid "Delivered quantities"
-msgstr ""
+msgstr "Quantitats lliurades"
 
 #. module: sale_invoice_policy
 #: model:ir.ui.view,arch_db:sale_invoice_policy.view_sales_config
 msgid "Invoice Policy required in Sale Orders"
-msgstr ""
+msgstr "Es requereix la política de factures a les comandes de venda"
 
 #. module: sale_invoice_policy
 #: model:ir.model.fields,field_description:sale_invoice_policy.field_sale_order_invoice_policy
 msgid "Invoice policy"
-msgstr ""
+msgstr "Política de factures"
 
 #. module: sale_invoice_policy
 #: model:ir.model.fields,field_description:sale_invoice_policy.field_sale_order_invoice_policy_required
 msgid "Invoice policy required"
-msgstr ""
+msgstr "Es requereix una política de factures"
 
 #. module: sale_invoice_policy
 #: model:ir.model.fields,field_description:sale_invoice_policy.field_delivery_carrier_default_invoice_policy
 #: model:ir.model.fields,field_description:sale_invoice_policy.field_product_product_default_invoice_policy
 #: model:ir.model.fields,field_description:sale_invoice_policy.field_product_template_default_invoice_policy
 msgid "Invoicing Policy"
-msgstr ""
+msgstr "Política de facturació"
 
 #. module: sale_invoice_policy
 #: model:ir.model.fields,help:sale_invoice_policy.field_delivery_carrier_default_invoice_policy
@@ -60,39 +62,44 @@ msgstr ""
 msgid "Ordered Quantity: Invoice based on the quantity the customer ordered.\n"
 "Delivered Quantity: Invoiced based on the quantity the vendor delivered (time or deliveries)."
 msgstr ""
+"Quantitat sol·licitada: factura basada en la quantitat que el client va "
+"demanar.\n"
+"Quantitat lliurada: facturada en funció de la quantitat lliurada pel venedor "
+"(temps o lliuraments)."
 
 #. module: sale_invoice_policy
 #: selection:product.template,default_invoice_policy:0
 #: selection:sale.order,invoice_policy:0
 msgid "Ordered quantities"
-msgstr ""
+msgstr "Quantitats ordenades"
 
 #. module: sale_invoice_policy
 #: model:ir.model,name:sale_invoice_policy.model_product_template
 msgid "Product Template"
-msgstr ""
+msgstr "Plantilla de producte"
 
 #. module: sale_invoice_policy
 #: model:ir.model.fields,field_description:sale_invoice_policy.field_sale_config_settings_sale_invoice_policy_required
 msgid "Sale invoice policy required"
-msgstr ""
+msgstr "Es requereix la política de factures de venda"
 
 #. module: sale_invoice_policy
 #: model:ir.model,name:sale_invoice_policy.model_sale_order
 msgid "Sales Order"
-msgstr ""
+msgstr "Comanda de venda"
 
 #. module: sale_invoice_policy
 #: model:ir.model,name:sale_invoice_policy.model_sale_order_line
 msgid "Sales Order Line"
-msgstr ""
+msgstr "Línia de comandes de vendes"
 
 #. module: sale_invoice_policy
 #: model:ir.model.fields,help:sale_invoice_policy.field_sale_config_settings_sale_invoice_policy_required
 msgid "This makes Invoice Policy required on Sale Orders"
 msgstr ""
+"Això fa que la política de factures sigui necessària a les comandes de venda"
 
 #. module: sale_invoice_policy
 #: model:ir.model,name:sale_invoice_policy.model_sale_config_settings
 msgid "sale.config.settings"
-msgstr ""
+msgstr "sale.config.settings"
