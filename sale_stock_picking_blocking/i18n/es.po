@@ -10,14 +10,15 @@ msgstr ""
 "Project-Id-Version: Odoo Server 9.0c\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2017-05-31 04:21+0000\n"
-"PO-Revision-Date: 2017-05-31 04:21+0000\n"
-"Last-Translator: Pedro M. Baeza <pedro.baeza@gmail.com>, 2017\n"
+"PO-Revision-Date: 2021-03-26 16:46+0000\n"
+"Last-Translator: Daniel Martinez Vila <daniel.martinez@qubiq.es>\n"
 "Language-Team: Spanish (https://www.transifex.com/oca/teams/23907/es/)\n"
 "Language: es\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
-"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: Weblate 4.3.2\n"
 
 #. module: sale_stock_picking_blocking
 #: model:res.groups,comment:sale_stock_picking_blocking.group_sale_delivery_block
@@ -28,11 +29,15 @@ msgid ""
 "            in a sale order.\n"
 "        "
 msgstr ""
+"\n"
+"            El usuario podrá liberar entregas que hayan sido bloqueadas\n"
+"             en una orden de venta.\n"
+"        "
 
 #. module: sale_stock_picking_blocking
 #: model:ir.ui.view,arch_db:sale_stock_picking_blocking.sale_stock_picking_blocking_reason_form_view
 msgid "Applied to"
-msgstr ""
+msgstr "Aplicado a"
 
 #. module: sale_stock_picking_blocking
 #: model:ir.model.fields,field_description:sale_stock_picking_blocking.field_sale_delivery_block_reason_create_uid
@@ -48,18 +53,18 @@ msgstr "Creado en"
 #: model:ir.model.fields,field_description:sale_stock_picking_blocking.field_res_partner_default_delivery_block
 #: model:ir.model.fields,field_description:sale_stock_picking_blocking.field_res_users_default_delivery_block
 msgid "Default Delivery Block Reason"
-msgstr ""
+msgstr "Motivo del bloqueo de entrega predeterminado"
 
 #. module: sale_stock_picking_blocking
 #: model:ir.model.fields,field_description:sale_stock_picking_blocking.field_sale_order_delivery_block_id
 #: model:ir.ui.menu,name:sale_stock_picking_blocking.menu_sale_stock_picking_blocking_reason
 msgid "Delivery Block Reason"
-msgstr ""
+msgstr "Motivo del bloqueo de entrega"
 
 #. module: sale_stock_picking_blocking
 #: model:ir.ui.view,arch_db:sale_stock_picking_blocking.view_sales_order_filter
 msgid "Delivery Blocked Sales"
-msgstr ""
+msgstr "Entrega de ventas bloqueadas"
 
 #. module: sale_stock_picking_blocking
 #: model:ir.model.fields,field_description:sale_stock_picking_blocking.field_sale_delivery_block_reason_description
@@ -104,22 +109,22 @@ msgstr "Empresa"
 #. module: sale_stock_picking_blocking
 #: model:ir.ui.view,arch_db:sale_stock_picking_blocking.view_order_form
 msgid "Release Delivery Block"
-msgstr ""
+msgstr "Liberar bloque de entrega"
 
 #. module: sale_stock_picking_blocking
 #: model:res.groups,name:sale_stock_picking_blocking.group_sale_delivery_block
 msgid "Release Delivery Block in Sales Orders"
-msgstr ""
+msgstr "Liberar bloque de entrega en pedidos de cliente"
 
 #. module: sale_stock_picking_blocking
 #: model:ir.actions.act_window,name:sale_stock_picking_blocking.action_sale_stock_picking_blocking_reason
 msgid "Sale Delivery Block Reason"
-msgstr ""
+msgstr "Razón del bloque de entrega de venta"
 
 #. module: sale_stock_picking_blocking
 #: model:ir.ui.view,arch_db:sale_stock_picking_blocking.sale_stock_picking_blocking_reason_tree_view
 msgid "Sale Order Delivery Block Reason"
-msgstr ""
+msgstr "Motivo del bloque de entrega del pedido de venta"
 
 #. module: sale_stock_picking_blocking
 #: model:ir.model.fields,field_description:sale_stock_picking_blocking.field_sale_delivery_block_reason_sale_order_ids
@@ -143,14 +148,16 @@ msgid ""
 "Set a reason to block by default the deliveries in this customer sales "
 "orders."
 msgstr ""
+"Establezca un motivo para bloquear de forma predeterminada las entregas en "
+"los pedidos de cliente de este cliente."
 
 #. module: sale_stock_picking_blocking
 #: code:addons/sale_stock_picking_blocking/models/sale_order.py:20
 #, python-format
 msgid "You cannot block a sale order with \"auto_done_setting\" active."
-msgstr ""
+msgstr "No puede bloquear una orden de venta con \"auto_done_setting\" activo."
 
 #. module: sale_stock_picking_blocking
 #: model:ir.model,name:sale_stock_picking_blocking.model_sale_delivery_block_reason
 msgid "sale.delivery.block.reason"
-msgstr ""
+msgstr "sale.delivery.block.reason"
