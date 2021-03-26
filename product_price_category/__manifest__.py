@@ -13,7 +13,7 @@
     'depends': [
         'sale_stock',
     ],
-    'website': 'http://www.camptocamp.com',
+    'website': 'https://github.com/OCA/sale-workflow',
     'data': [
         'security/ir.model.access.csv',
         'views/product_pricelist.xml',
