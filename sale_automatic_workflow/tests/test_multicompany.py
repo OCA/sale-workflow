@@ -74,7 +74,11 @@ class TestMultiCompany(TestCommon):
 
         cls.env.user.company_id = cls.company_fr.id
         coa.try_loading(company=cls.env.user.company_id)
-        cls.customer_fr = cls.env["res.partner"].create({"name": "Customer FR"})
+        cls.customer_fr = (
+            cls.env["res.partner"]
+            .with_context(default_company_id=cls.company_fr.id)
+            .create({"name": "Customer FR"})
+        )
         cls.product_fr = cls.create_product({"name": "Evian bottle", "list_price": 2.0})
 
         cls.env.user.company_id = cls.company_ch.id
@@ -114,6 +118,10 @@ class TestMultiCompany(TestCommon):
         cls.env.user.company_id = cls.env.ref("base.main_company")
 
     def create_auto_wkf_order(self, company, customer, product, qty):
+        # We need to change to the proper company
+        # to pick up correct company dependent fields
+        current_company = self.env.user.company_id
+        self.env.user.company_id = company
         SaleOrder = self.env["sale.order"]
         warehouse = self.env["stock.warehouse"].search(
             [("company_id", "=", company.id)], limit=1
@@ -143,6 +151,7 @@ class TestMultiCompany(TestCommon):
             }
         )
         order._onchange_workflow_process_id()
+        self.env.user.company_id = current_company
         return order
 
     def test_sale_order_multicompany(self):
