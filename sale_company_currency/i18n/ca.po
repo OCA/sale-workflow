@@ -9,24 +9,25 @@ msgstr ""
 "Project-Id-Version: Odoo Server 10.0\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2017-11-23 01:51+0000\n"
-"PO-Revision-Date: 2017-11-23 01:51+0000\n"
-"Last-Translator: OCA Transbot <transbot@odoo-community.org>, 2017\n"
+"PO-Revision-Date: 2021-03-26 10:46+0000\n"
+"Last-Translator: Daniel Martinez Vila <daniel.martinez@qubiq.es>\n"
 "Language-Team: Catalan (https://www.transifex.com/oca/teams/23907/ca/)\n"
 "Language: ca\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
-"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: Weblate 4.3.2\n"
 
 #. module: sale_company_currency
 #: model:ir.model.fields,field_description:sale_company_currency.field_sale_order_company_currency_id
 msgid "Company Currency"
-msgstr ""
+msgstr "Moneda de l'empresa"
 
 #. module: sale_company_currency
 #: model:ir.model.fields,help:sale_company_currency.field_sale_order_amount_total_curr
 msgid "Sale Order Amount in the company Currency"
-msgstr ""
+msgstr "Import de la comanda de venda a la moneda de l’empresa"
 
 #. module: sale_company_currency
 #: model:ir.model,name:sale_company_currency.model_sale_order
@@ -38,16 +39,16 @@ msgstr "Comandes de venda"
 #: model:ir.ui.view,arch_db:sale_company_currency.view_order_tree
 #: model:ir.ui.view,arch_db:sale_company_currency.view_quotation_tree
 msgid "Total"
-msgstr ""
+msgstr "Total"
 
 #. module: sale_company_currency
 #: model:ir.ui.view,arch_db:sale_company_currency.view_order_form
 #: model:ir.ui.view,arch_db:sale_company_currency.view_order_tree
 #: model:ir.ui.view,arch_db:sale_company_currency.view_quotation_tree
 msgid "Total (Company Currency)"
-msgstr ""
+msgstr "Total (moneda de l'empresa)"
 
 #. module: sale_company_currency
 #: model:ir.model.fields,field_description:sale_company_currency.field_sale_order_amount_total_curr
 msgid "Total Amount"
-msgstr ""
+msgstr "Suma total"
