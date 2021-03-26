@@ -6,8 +6,8 @@
     >
         <xpath expr="//p[@t-field='doc.incoterm.code']" position="replace">
             <p>
-                <span t-field="doc.incoterm.code"/>
-                <span t-field="doc.incoterm_place"/>
+                <span t-field="doc.incoterm.code" />
+                <span t-field="doc.incoterm_place" />
             </p>
         </xpath>
     </template>

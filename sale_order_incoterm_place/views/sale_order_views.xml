@@ -6,7 +6,10 @@
         <field name="inherit_id" ref="sale_stock.view_order_form_inherit_sale_stock" />
         <field name="arch" type="xml">
             <field name="incoterm" position="after">
-                <field name="incoterm_place" groups="sale_stock.group_display_incoterm"/>
+                <field
+                    name="incoterm_place"
+                    groups="sale_stock.group_display_incoterm"
+                />
             </field>
         </field>
     </record>
