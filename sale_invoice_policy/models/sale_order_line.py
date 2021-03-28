@@ -23,7 +23,7 @@ class SaleOrderLine(models.Model):
             so_lines = (
                 self.with_context(invoice_policy=invoice_policy)
                 .filtered(lambda x, p=invoice_policy: x.order_id.invoice_policy == p)
-                .with_prefetch(self._prefetch)
+                .with_prefetch()
             )
             done_lines |= so_lines
             so_lines.mapped("product_id")
@@ -54,7 +54,7 @@ class SaleOrderLine(models.Model):
             so_lines = (
                 self.with_context(invoice_policy=invoice_policy)
                 .filtered(lambda x, p=invoice_policy: x.order_id.invoice_policy == p)
-                .with_prefetch(self._prefetch)
+                .with_prefetch()
             )
             done_lines |= so_lines
             if so_lines:
