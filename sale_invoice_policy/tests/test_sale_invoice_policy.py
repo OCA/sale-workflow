@@ -16,7 +16,7 @@ class TestSaleOrderInvoicePolicy(common.TransactionCase):
             {"name": "Test 2", "type": "consu", "list_price": 45.0}
         )
         self.product3 = self.product_obj.create(
-            {"name": "Test 3 (service)", "type": "service", "list_price": 850.5,}
+            {"name": "Test 3 (service)", "type": "service", "list_price": 850.5}
         )
 
     def test_sale_order_invoice_order(self):
@@ -101,9 +101,7 @@ class TestSaleOrderInvoicePolicy(common.TransactionCase):
         """
         product = self.product3
         invoice_policy = "delivery"
-        product.write(
-            {"default_invoice_policy": invoice_policy,}
-        )
+        product.write({"default_invoice_policy": invoice_policy})
         self.assertEqual(product.invoice_policy, invoice_policy)
         product = product.with_context(invoice_policy="order",)
         # Shouldn't be impacted by the context because the type is service
@@ -121,9 +119,7 @@ class TestSaleOrderInvoicePolicy(common.TransactionCase):
         """
         product = self.product3
         invoice_policy = "order"
-        product.write(
-            {"default_invoice_policy": invoice_policy,}
-        )
+        product.write({"default_invoice_policy": invoice_policy})
         self.assertEqual(product.invoice_policy, invoice_policy)
         product = product.with_context(invoice_policy="delivery",)
         # Shouldn't be impacted by the context because the type is service
@@ -144,9 +140,7 @@ class TestSaleOrderInvoicePolicy(common.TransactionCase):
         products = product
         products |= product2
         invoice_policy = "order"
-        products.write(
-            {"default_invoice_policy": invoice_policy,}
-        )
+        products.write({"default_invoice_policy": invoice_policy})
         self.assertEqual(product.invoice_policy, invoice_policy)
         self.assertEqual(product2.invoice_policy, invoice_policy)
         new_invoice_policy = "delivery"
@@ -176,7 +170,7 @@ class TestSaleOrderInvoicePolicy(common.TransactionCase):
         settings.sale_invoice_policy_required = True
         settings.execute()
         so = self.env["sale.order"].create(
-            {"partner_id": self.env.ref("base.res_partner_2").id,}
+            {"partner_id": self.env.ref("base.res_partner_2").id}
         )
         self.assertEqual(so.invoice_policy, "delivery")
         self.assertTrue(so.invoice_policy_required)
