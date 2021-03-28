@@ -34,7 +34,6 @@ class SaleOrder(models.Model):
             res.update({"invoice_policy": default_sale_invoice_policy})
         return res
 
-    @api.multi
     @api.depends("partner_id")
     def _compute_invoice_policy_required(self):
         invoice_policy_required = self.env["ir.default"].get(
