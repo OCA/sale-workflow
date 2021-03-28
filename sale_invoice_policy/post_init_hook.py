@@ -1,21 +1,15 @@
 # Copyright 2017 ACSONE SA/NV (<http://acsone.eu>)
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
-from odoo import SUPERUSER_ID, api
 
 
-def post_init_hook(cr, pool):
+def post_init_hook(cr, registry):
     """
     As we change the invoice policy to computed field, we must initialize
     the default policy with original values
-    :param cr:
-    :return:
     """
 
-    env = api.Environment(cr, SUPERUSER_ID, {})
-    query = (
-        """UPDATE %s
+    query = """
+     UPDATE product_template
      SET default_invoice_policy = invoice_policy
      WHERE invoice_policy IS NOT NULL"""
-        % env["product.template"]._table
-    )
     cr.execute(query)
