@@ -6,21 +6,27 @@ from odoo import api, models
 
 class SaleOrderLine(models.Model):
 
-    _inherit = 'sale.order.line'
+    _inherit = "sale.order.line"
 
-    @api.depends('qty_invoiced', 'qty_delivered', 'product_uom_qty',
-                 'order_id.state', 'order_id.invoice_policy')
+    @api.depends(
+        "qty_invoiced",
+        "qty_delivered",
+        "product_uom_qty",
+        "order_id.state",
+        "order_id.invoice_policy",
+    )
     def _get_to_invoice_qty(self):
-        invoice_policies = set(self.mapped('order_id.invoice_policy'))
+        invoice_policies = set(self.mapped("order_id.invoice_policy"))
         line_by_id = {l.id: l for l in self}
-        done_lines = self.env['sale.order.line'].browse()
+        done_lines = self.env["sale.order.line"].browse()
         for invoice_policy in invoice_policies:
-            so_lines = self.with_context(
-                invoice_policy=invoice_policy).filtered(
-                    lambda x, p=invoice_policy: x.order_id.invoice_policy ==
-                    p).with_prefetch(self._prefetch)
+            so_lines = (
+                self.with_context(invoice_policy=invoice_policy)
+                .filtered(lambda x, p=invoice_policy: x.order_id.invoice_policy == p)
+                .with_prefetch(self._prefetch)
+            )
             done_lines |= so_lines
-            so_lines.mapped('product_id')
+            so_lines.mapped("product_id")
             if so_lines:
                 super(SaleOrderLine, so_lines)._get_to_invoice_qty()
                 for line in so_lines:
@@ -32,17 +38,24 @@ class SaleOrderLine(models.Model):
         super(SaleOrderLine, self - done_lines)._get_to_invoice_qty()
         return True
 
-    @api.depends('state', 'product_uom_qty', 'qty_delivered', 'qty_to_invoice',
-                 'qty_invoiced', 'order_id.invoice_policy')
+    @api.depends(
+        "state",
+        "product_uom_qty",
+        "qty_delivered",
+        "qty_to_invoice",
+        "qty_invoiced",
+        "order_id.invoice_policy",
+    )
     def _compute_invoice_status(self):
-        invoice_policies = set(self.mapped('order_id.invoice_policy'))
+        invoice_policies = set(self.mapped("order_id.invoice_policy"))
         line_by_id = {l.id: l for l in self}
-        done_lines = self.env['sale.order.line'].browse()
+        done_lines = self.env["sale.order.line"].browse()
         for invoice_policy in invoice_policies:
-            so_lines = self.with_context(
-                invoice_policy=invoice_policy).filtered(
-                    lambda x, p=invoice_policy: x.order_id.invoice_policy ==
-                    p).with_prefetch(self._prefetch)
+            so_lines = (
+                self.with_context(invoice_policy=invoice_policy)
+                .filtered(lambda x, p=invoice_policy: x.order_id.invoice_policy == p)
+                .with_prefetch(self._prefetch)
+            )
             done_lines |= so_lines
             if so_lines:
                 super(SaleOrderLine, so_lines)._compute_invoice_status()
