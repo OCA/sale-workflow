@@ -1,5 +1,6 @@
 account-closing
 account-invoicing
+calendar
 product-attribute
 partner-contact
 server-tools
