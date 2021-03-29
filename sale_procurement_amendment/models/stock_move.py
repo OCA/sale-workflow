@@ -11,8 +11,7 @@ class StockMove(models.Model):
 
     can_be_amended = fields.Boolean(compute="_compute_can_be_amended",)
 
-    @api.multi
-    @api.depends("state", "linked_move_operation_ids.operation_id.qty_done")
+    @api.depends("state", "move_line_ids.qty_done")
     def _compute_can_be_amended(self):
         """
         Look into operations in progress
@@ -24,11 +23,13 @@ class StockMove(models.Model):
         precision = self.env["decimal.precision"].precision_get(
             "Product Unit of Measure"
         )
-        for move in self.filtered(
-            lambda m: m.state in ("draft", "waiting", "confirmed", "assigned", "done")
+        move_can_be_amended = self.filtered(
+            lambda m: m.state
+            in ("waiting", "confirmed", "partially_available", "assigned")
             and all(
                 float_is_zero(op.qty_done, precision_digits=precision)
-                for op in m.linked_move_operation_ids.mapped("operation_id")
+                for op in m.move_line_ids
             )
-        ):
-            move.can_be_amended = True
+        )
+        move_can_be_amended.update({"can_be_amended": True})
+        (self - move_can_be_amended).update({"can_be_amended": False})
