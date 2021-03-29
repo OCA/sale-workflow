@@ -10,7 +10,6 @@ class StockPicking(models.Model):
 
     can_be_amended = fields.Boolean(compute="_compute_can_be_amended",)
 
-    @api.multi
     @api.depends("move_lines.can_be_amended")
     def _compute_can_be_amended(self):
         """
