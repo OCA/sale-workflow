@@ -30,7 +30,7 @@ addon | version | summary
 [sale_product_category_menu](sale_product_category_menu/) | 14.0.1.0.1 | Shows 'Product Categories' menu item in Sales
 [sale_product_multi_add](sale_product_multi_add/) | 14.0.1.0.1 | Sale Product Multi Add
 [sale_product_set](sale_product_set/) | 14.0.1.1.1 | Sale product set
-[sale_quotation_number](sale_quotation_number/) | 14.0.1.0.1 | Different sequence for sale quotations
+[sale_quotation_number](sale_quotation_number/) | 14.0.1.0.2 | Different sequence for sale quotations
 [sale_validity](sale_validity/) | 14.0.1.0.1 | Set a default validity delay on quotations
 
 [//]: # (end addons)
