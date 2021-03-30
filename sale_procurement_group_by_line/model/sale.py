@@ -116,7 +116,7 @@ class SaleOrderLine(models.Model):
                 self.env["procurement.group"].run(procurements)
                 # We store the procured quantity in the UoM of the line to avoid
                 # duplicated procurements, specially for dropshipping and kits.
-                previous_product_uom_qty = {line.id: product_qty_uom}
+                previous_product_uom_qty[line.id] = product_qty_uom
             except UserError as error:
                 errors.append(error.name)
         if errors:
