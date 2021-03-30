@@ -2,6 +2,7 @@
 # Copyright 2016-2018 Camptocamp SA
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
 from odoo import api, fields, models
+from odoo.osv import expression
 
 
 class ProductSet(models.Model):
@@ -15,6 +16,7 @@ class ProductSet(models.Model):
         help='Product set internal reference',
         copy=False,
     )
+    barcode = fields.Char('Barcode', copy=False)
     set_line_ids = fields.One2many(
         'product.set.line', 'product_set_id', string="Products"
     )
@@ -34,6 +36,11 @@ class ProductSet(models.Model):
              "it's going to be available for all of them."
     )
 
+    _sql_constraints = [
+        ('barcode_uniq', 'unique(barcode)',
+         "A barcode can only be assigned to one product set!"),
+    ]
+
     @api.multi
     def name_get(self):
         return [(rec.id, rec._name_get()) for rec in self]
@@ -46,3 +53,16 @@ class ProductSet(models.Model):
         if self.partner_id:
             parts.append('@ %s' % self.partner_id.name)
         return ' '.join(parts)
+
+    @api.model
+    def name_search(self, name, args=None, operator='ilike', limit=100):
+        args = args or []
+        recs = self.browse()
+        if name:
+            if operator not in expression.NEGATIVE_TERM_OPERATORS:
+                recs = self.search([('ref', '=', name)] + args, limit=limit)
+                if not recs:
+                    recs = self.search([('barcode', '=', name)] + args, limit=limit)
+        if not recs:
+            recs = self.search([('name', operator, name)] + args, limit=limit)
+        return recs.name_get()

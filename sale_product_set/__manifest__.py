@@ -10,14 +10,18 @@
     'website': 'https://github.com/OCA/sale-workflow',
     'summary': "Sale product set",
     'depends': [
+        'barcodes',
         'sale',
     ],
     'data': [
         'security/ir.model.access.csv',
         'security/rule_product_set.xml',
+        'data/default_barcode_pattern.xml',
         'views/product_set.xml',
         'wizard/product_set_add.xml',
         'views/sale_order.xml',
+        'report/reports.xml',
+        'report/templates.xml',
     ],
     'demo': [
         'demo/product_set.xml',

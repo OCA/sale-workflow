@@ -8,6 +8,7 @@
         <field name="arch" type="xml">
         <tree string="Product set">
             <field name="ref"/>
+            <field name="barcode"/>
             <field name="name"/>
             <field name="partner_id"/>
             <field name="company_id" groups="base.group_multi_company"/>
@@ -34,6 +35,7 @@
                     <group name="name">
                         <field name="name" select="1"/>
                         <field name="ref"/>
+                        <field name="barcode"/>
                     </group>
                     <group name="partner">
                         <field name="partner_id"/>
@@ -63,6 +65,7 @@
             <search string="Product set">
                 <field name="name" select="True"/>
                 <field name="ref" select="True"/>
+                <field name="barcode" select="True"/>
                 <field name="partner_id"/>
                 <filter name="group_by_partner_id" string="Partner" domain="[]" context="{'group_by':'partner_id'}"/>
             </search>
