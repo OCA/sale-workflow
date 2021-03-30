@@ -107,6 +107,11 @@ msgid "Sale Import Products Items"
 msgstr "Venda d'articles de productes d'importació"
 
 #. module: sale_product_multi_add
+#: model_terms:ir.ui.view,arch_db:sale_product_multi_add.view_import_product_to_sale
+msgid "Sales Price"
+msgstr ""
+
+#. module: sale_product_multi_add
 #: model_terms:ir.ui.view,arch_db:sale_product_multi_add.view_import_product_to_sale2
 msgid "Select"
 msgstr "Seleccioneu"
