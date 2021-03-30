@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!-- Copyright 2020 ACSONE SA/NV
+     License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl). -->
+<odoo>
+    <record model="ir.ui.view" id="sale_order_form_view">
+        <field name="name">sale.order.form (in abi_sale_stock_update_route)</field>
+        <field name="model">sale.order</field>
+        <field name="inherit_id" ref="sale.view_order_form" />
+        <field name="arch" type="xml">
+            <button name="action_draft" position="after">
+                <button
+                    name="%(sale_order_line_amend_route_act_window)d"
+                    string="Update routes"
+                    type="action"
+                    class="btn-primary"
+                    attrs="{'invisible': [('state', '!=', 'sale')]}"
+                    groups="sale_route_amendment.group_sale_route_amendment"
+                />
+            </button>
+        </field>
+    </record>
+</odoo>

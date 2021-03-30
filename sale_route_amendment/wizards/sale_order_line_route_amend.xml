@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!-- Copyright 2020 ACSONE SA/NV
+     License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl). -->
+<odoo>
+    <record model="ir.ui.view" id="sale_order_line_update_route_form_view">
+        <field
+            name="name"
+        >sale.order.line.route.amend.form (in sale_route_amendment)</field>
+        <field name="model">sale.order.line.route.amend</field>
+        <field name="arch" type="xml">
+            <form string="Routing update">
+                <group>
+                    <field name="order_id" readonly="1" />
+                    <field name="route_id" options='{"no_create": True}' />
+                    <field name="is_updatable" invisible="1" />
+                </group>
+                <group attrs="{'invisible': [('is_updatable','=', False)]}">
+                    <field name="order_line_ids" nolabel="1">
+                        <tree create="0">
+                            <field name="product_id" readonly="1" />
+                            <field name="product_uom_qty" readonly="1" />
+                            <field
+                                name="product_uom"
+                                groups="uom.group_uom"
+                                readonly="1"
+                            />
+                            <field name="route_id" readonly="1" />
+                        </tree>
+                    </field>
+                </group>
+                <group attrs="{'invisible': [('is_updatable','=', True)]}">
+                    <field name="warning" readonly="1" nolabel="1" />
+                </group>
+                <footer>
+                    <button
+                        name="update_route"
+                        string="Update"
+                        class="btn-primary"
+                        type="object"
+                        attrs="{'invisible': [('is_updatable','=', False)]}"
+                    />
+                    <button string="Cancel" class="btn-default" special="cancel" />
+                </footer>
+            </form>
+        </field>
+    </record>
+    <record model="ir.actions.act_window" id="sale_order_line_amend_route_act_window">
+        <field name="name">Amend route on order lines</field>
+        <field name="res_model">sale.order.line.route.amend</field>
+        <field name="view_mode">form</field>
+        <field name="context">{}</field>
+        <field name="target">new</field>
+    </record>
+</odoo>

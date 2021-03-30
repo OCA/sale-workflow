@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <record model="res.groups" id="group_sale_route_amendment">
+        <field name="name">Allows to update route on confirmed sales</field>
+    </record>
+</odoo>
