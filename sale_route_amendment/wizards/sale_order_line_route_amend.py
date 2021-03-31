@@ -24,17 +24,13 @@ class SaleOrderLineRouteAmend(models.TransientModel):
     is_updatable = fields.Boolean()
     warning = fields.Text()
 
-    def _filter_order_lines(self, sale_order):
-        return sale_order.order_line.filtered(
-            lambda x: not x.pickings_in_progress and x.product_id.type != "service"
-        )
-
     @api.model
     def default_get(self, fields_list):
         res = super().default_get(fields_list)
         order_id = self.env.context.get("active_id", [])
         order = self.env["sale.order"].browse(order_id)
-        sale_line_ids = self._filter_order_lines(order)
+        # See sale_procurement_amendment
+        sale_line_ids = order.order_line.filtered("can_amend_and_reprocure")
         res["order_id"] = order_id
         res["order_line_ids"] = sale_line_ids.ids
         res["is_updatable"] = bool(sale_line_ids)
@@ -48,9 +44,5 @@ class SaleOrderLineRouteAmend(models.TransientModel):
 
     def update_route(self):
         for wizard in self:
-            wizard.order_line_ids.mapped("move_ids")._action_cancel()
-            wizard.order_line_ids.write({"route_id": wizard.route_id.id})
-            wizard.order_line_ids.filtered(
-                lambda line: line.state == "sale" and line.to_be_procured
-            )._action_launch_stock_rule()
+            wizard.order_line_ids._amend_and_reprocure()
         return True
