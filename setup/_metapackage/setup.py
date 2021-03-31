@@ -12,6 +12,7 @@ setuptools.setup(
         'odoo14-addon-sale_discount_display_amount',
         'odoo14-addon-sale_last_price_info',
         'odoo14-addon-sale_order_archive',
+        'odoo14-addon-sale_order_line_date',
         'odoo14-addon-sale_order_line_note',
         'odoo14-addon-sale_order_lot_generator',
         'odoo14-addon-sale_order_lot_selection',
