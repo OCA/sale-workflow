@@ -74,9 +74,12 @@ class SaleOrderLine(models.Model):
         if "product_uom_qty" in values:
             # Quantities has changed
             # Check if procurement has to be created
-            lines_lower.filtered(lambda line: not line.pickings_in_progress).mapped(
-                "move_ids"
-            )._action_cancel()
+            lines_to_update = lines_lower.filtered(
+                lambda line: not line.pickings_in_progress
+            )
+            moves_to_cancel = lines_to_update.mapped("move_ids")
+            moves_to_cancel |= moves_to_cancel.mapped("move_orig_ids")
+            moves_to_cancel._action_cancel()
             self.filtered(
                 lambda line: line.state == "sale" and line.to_be_procured
             )._action_launch_stock_rule()

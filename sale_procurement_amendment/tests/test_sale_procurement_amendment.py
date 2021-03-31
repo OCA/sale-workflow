@@ -8,6 +8,7 @@ class TestSaleProcurementAmendment(common.SavepointCase):
     @classmethod
     def setUpClass(cls):
         super().setUpClass()
+        cls.warehouse = cls.env.ref("stock.warehouse0")
         cls.sale_obj = cls.env["sale.order"]
         cls.sale_order_line_obj = cls.env["sale.order.line"]
         cls.product1 = cls.env.ref("product.product_product_12")
@@ -325,3 +326,37 @@ class TestSaleProcurementAmendment(common.SavepointCase):
         )
         self.assertFalse(self.sale_line.pickings_in_progress,)
         self.assertFalse(self.sale_line_2.pickings_in_progress,)
+
+    def test_07_two_steps(self):
+        """
+            Change operating warehouse to manage delivery steps with Pick/Ship
+            Create a sale order and confirm it
+            Change quantity to 9.0
+            Check original moves are cancelled and a new flow is created for
+            the new quantity
+            Repeat the operation decreasing quantity to 8.0
+        """
+        self.warehouse.delivery_steps = "pick_ship"
+        self._create_sale_order()
+        self.order.action_confirm()
+
+        original_moves = self.sale_line.move_ids | self.sale_line.move_ids.mapped(
+            "move_orig_ids"
+        )
+
+        self.sale_line.write({"product_uom_qty": 9.0})
+
+        self.assertEqual(["cancel"], list(set(original_moves.mapped("state"))))
+        new_moves = self.sale_line.move_ids.filtered(lambda m: m.state != "cancel")
+        quantities = (new_moves | new_moves.mapped("move_orig_ids")).mapped(
+            "product_uom_qty"
+        )
+        self.assertEqual([9.0], list(set(quantities)))
+
+        self.sale_line.write({"product_uom_qty": 8.0})
+
+        new_moves = self.sale_line.move_ids.filtered(lambda m: m.state != "cancel")
+        quantities = (new_moves | new_moves.mapped("move_orig_ids")).mapped(
+            "product_uom_qty"
+        )
+        self.assertEqual([8.0], list(set(quantities)))
