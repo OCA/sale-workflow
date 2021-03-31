@@ -1,7 +1,7 @@
 # Copyright 2021 Camptocamp SA
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
 
-from odoo import fields, models
+from odoo import SUPERUSER_ID, fields, models
 
 
 class SaleOrderLine(models.Model):
@@ -19,6 +19,6 @@ class SaleOrderLine(models.Model):
         consumption_lines = self.mapped("coupon_consumption_line_ids")
         if consumption_lines:
             # Remove related consumption lines
-            # Using sudo because no user can remove consumption lines
-            consumption_lines.sudo().unlink()
+            # Using super user because no user can remove consumption lines
+            consumption_lines.with_user(SUPERUSER_ID).unlink()
         return super().unlink()

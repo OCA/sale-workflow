@@ -343,7 +343,7 @@ class TestSaleCouponMultiUse(TestSaleCouponMultiUseCommon):
         # Test with not system user => access error
         with self.assertRaises(AccessError):
             user_admin = self.env.ref("base.user_admin")
-            self.coupon_multi_use_1.sudo(user_admin).consumption_line_ids.unlink()
+            self.coupon_multi_use_1.with_user(user_admin).consumption_line_ids.unlink()
         # Test with remove reward line into sale order
         self.assertEqual(
             sale.order_line[2].product_id,
