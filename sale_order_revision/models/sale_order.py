@@ -65,7 +65,7 @@ class SaleOrder(models.Model):
     def copy_revision_with_context(self):
         default_data = self.default_get([])
         new_rev_number = self.revision_number + 1
-        default_data .update({
+        default_data.update({
             'revision_number': new_rev_number,
             'unrevisioned_name': self.unrevisioned_name,
             'name': '%s-%02d' % (self.unrevisioned_name, new_rev_number),
