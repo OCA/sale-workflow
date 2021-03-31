@@ -17,6 +17,25 @@ class SaleOrderLine(models.Model):
     )
     pickings_in_progress = fields.Boolean(compute="_compute_pickings_in_progress")
 
+    can_amend_and_reprocure = fields.Boolean(
+        compute="_compute_can_amend_and_reprocure",
+    )
+
+    @api.depends("pickings_in_progress", "product_id.type")
+    def _compute_can_amend_and_reprocure(self):
+        """
+            Filter here the lines that can be reprocured
+
+        :return: [description]
+        :rtype: [type]
+        """
+        lines_can_reprocure = self.filtered(
+            lambda line: not line.pickings_in_progress
+            and line.product_id.type != "service"
+        )
+        lines_can_reprocure.update({"can_amend_and_reprocure": True})
+        (self - lines_can_reprocure).update({"can_amend_and_reprocure": False})
+
     @api.depends("order_id.picking_ids.can_be_amended")
     def _compute_pickings_in_progress(self):
         """
@@ -55,6 +74,19 @@ class SaleOrderLine(models.Model):
             else:
                 line.to_be_procured = False
 
+    def _amend_and_reprocure(self):
+        """
+            Filter lines that can reprocure
+            Cancel related moves
+            Relaunch stock rules
+        """
+        lines = self.filtered("can_amend_and_reprocure")
+        moves = lines.mapped("move_ids") | lines.mapped("move_ids.move_orig_ids")
+        moves._action_cancel()
+        lines.filtered(
+            lambda line: line.state == "sale" and line.to_be_procured
+        )._action_launch_stock_rule()
+
     def write(self, values):
         precision = self.env["decimal.precision"].precision_get(
             "Product Unit of Measure"
@@ -74,13 +106,5 @@ class SaleOrderLine(models.Model):
         if "product_uom_qty" in values:
             # Quantities has changed
             # Check if procurement has to be created
-            lines_to_update = lines_lower.filtered(
-                lambda line: not line.pickings_in_progress
-            )
-            moves_to_cancel = lines_to_update.mapped("move_ids")
-            moves_to_cancel |= moves_to_cancel.mapped("move_orig_ids")
-            moves_to_cancel._action_cancel()
-            self.filtered(
-                lambda line: line.state == "sale" and line.to_be_procured
-            )._action_launch_stock_rule()
+            lines_lower._amend_and_reprocure()
         return res
