@@ -73,7 +73,7 @@ addon | version | summary
 [sale_order_product_assortment](sale_order_product_assortment/) | 12.0.1.0.0 | Sale Order Product Assortment
 [sale_order_product_recommendation](sale_order_product_recommendation/) | 12.0.3.0.1 | Recommend products to sell to customer based on history
 [sale_order_product_recommendation_secondary_unit](sale_order_product_recommendation_secondary_unit/) | 12.0.2.1.0 | Add secondary unit to recommend products wizard
-[sale_order_revision](sale_order_revision/) | 12.0.1.0.0 | Keep track of revised quotations
+[sale_order_revision](sale_order_revision/) | 12.0.1.0.1 | Keep track of revised quotations
 [sale_order_secondary_unit](sale_order_secondary_unit/) | 12.0.1.1.0 | Sale product in a secondary unit
 [sale_order_tag](sale_order_tag/) | 12.0.1.0.0 | Adds Tags to Sales Orders.
 [sale_order_transmit_method](sale_order_transmit_method/) | 12.0.1.0.0 | Set transmit method (email, post, portal, ...) in sale order and propagate it to invoices
