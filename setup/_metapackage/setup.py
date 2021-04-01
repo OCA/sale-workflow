@@ -21,6 +21,7 @@ setuptools.setup(
         'odoo14-addon-sale_product_multi_add',
         'odoo14-addon-sale_product_set',
         'odoo14-addon-sale_quotation_number',
+        'odoo14-addon-sale_tier_validation',
         'odoo14-addon-sale_validity',
     ],
     classifiers=[
