@@ -106,6 +106,7 @@ products in secondary unit of distinct category.
 .. contents::
    :local:
 
+<<<<<<< HEAD
 Configuration
 =============
 
@@ -114,6 +115,17 @@ To configure this module, you need to:
 1. Go to *Sales > Configuration > Products > Secondary Units of Measure*
    to manage all the 'Secondary Units of Measure' in the system.
 
+||||||| parent of 84b253d8c ([IMP] sale_order_secondary_unit: Add menu for secondary UoM)
+=======
+Configuration
+=============
+
+To configure this module, you need to:
+
+#. Go to *Sales > Configuration > Products > Secondary Units of Measure*
+   to manage all the 'Secondary Units of Measure' in the system.
+
+>>>>>>> 84b253d8c ([IMP] sale_order_secondary_unit: Add menu for secondary UoM)
 Usage
 =====
 
@@ -174,6 +186,7 @@ Contributors
 ------------
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 - Tony Gu <tony@openerp.cn>
 - Alexei Rivera <arivera@archeti.com>
 - Kevin Roche <kevin.roche@akretion.com>
@@ -190,6 +203,11 @@ Contributors
 =======
 * Carlos Dauden <carlos.dauden@tecnativa.com>
 * Sergio Teruel <sergio.teruel@tecnativa.com>
+||||||| parent of 84b253d8c ([IMP] sale_order_secondary_unit: Add menu for secondary UoM)
+* Carlos Dauden <carlos.dauden@tecnativa.com>
+* Sergio Teruel <sergio.teruel@tecnativa.com>
+=======
+>>>>>>> 84b253d8c ([IMP] sale_order_secondary_unit: Add menu for secondary UoM)
 * Tony Gu <tony@openerp.cn>
 <<<<<<< HEAD
 >>>>>>> b0bae09dd ([MIG] sale_order_secondary_unit: Migration to 12.0)
@@ -201,7 +219,17 @@ Contributors
 ||||||| parent of 4dd71ce9b ([FIX] sale_order_secondary_unit: Fix variant grid matrix usage)
 =======
 * Kevin Roche <kevin.roche@akretion.com>
+<<<<<<< HEAD
 >>>>>>> 4dd71ce9b ([FIX] sale_order_secondary_unit: Fix variant grid matrix usage)
+||||||| parent of 84b253d8c ([IMP] sale_order_secondary_unit: Add menu for secondary UoM)
+=======
+* `Tecnativa <https://www.tecnativa.com>`_:
+
+  * Carlos Dauden
+  * Sergio Teruel
+  * Ernesto Tejeda
+  * Pedro M. Baeza
+>>>>>>> 84b253d8c ([IMP] sale_order_secondary_unit: Add menu for secondary UoM)
 
 Maintainers
 -----------
