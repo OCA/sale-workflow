@@ -33,6 +33,14 @@ secondary unit of distinct category.
 .. contents::
    :local:
 
+Configuration
+=============
+
+To configure this module, you need to:
+
+#. Go to *Sales > Configuration > Products > Secondary Units of Measure*
+   to manage all the 'Secondary Units of Measure' in the system.
+
 Usage
 =====
 
@@ -65,9 +73,13 @@ Authors
 Contributors
 ~~~~~~~~~~~~
 
-* Carlos Dauden <carlos.dauden@tecnativa.com>
-* Sergio Teruel <sergio.teruel@tecnativa.com>
 * Tony Gu <tony@openerp.cn>
+* `Tecnativa <https://www.tecnativa.com>`_:
+
+  * Carlos Dauden
+  * Sergio Teruel
+  * Ernesto Tejeda
+  * Pedro M. Baeza
 
 Maintainers
 ~~~~~~~~~~~
