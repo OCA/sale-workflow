@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <record id="product_secondary_unit_view_search" model="ir.ui.view">
+        <field name="name">product.secondary.unit.view.search</field>
+        <field name="model">product.secondary.unit</field>
+        <field name="arch" type="xml">
+            <search>
+                <field name="product_tmpl_id" />
+                <field name="code" />
+                <field name="name" />
+                <group expand="1" string="Group By">
+                    <filter
+                        string="Product Template"
+                        name="product_tmpl_id"
+                        context="{'group_by':'product_tmpl_id'}"
+                    />
+                    <filter
+                        string="Product Variant"
+                        name="product_id"
+                        context="{'group_by':'product_tmpl_id'}"
+                    />
+                    <filter
+                        string="UoM"
+                        name="uom_id"
+                        context="{'group_by':'uom_id'}"
+                    />
+                </group>
+            </search>
+        </field>
+    </record>
+
+    <record id="product_secondary_unit_view_tree" model="ir.ui.view">
+        <field name="name">product.secondary.unit.sale.view.tree</field>
+        <field name="model">product.secondary.unit</field>
+        <field name="arch" type="xml">
+            <tree editable="top" multi_edit="1">
+                <field name="product_tmpl_id" />
+                <field name="product_id" />
+                <field name="code" />
+                <field name="name" />
+                <field name="uom_id" />
+                <field name="factor" />
+            </tree>
+        </field>
+    </record>
+    <record id="product_secondary_unit_action" model="ir.actions.act_window">
+        <field name="name">Secondary Unit</field>
+        <field name="res_model">product.secondary.unit</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+    <menuitem
+        id="product_secondary_unit_menu"
+        name="Secondary Units of Measure"
+        action="product_secondary_unit_action"
+        parent="sale.next_id_16"
+        groups="uom.group_uom"
+    />
+</odoo>
