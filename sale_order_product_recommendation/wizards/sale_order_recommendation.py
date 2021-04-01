@@ -107,7 +107,7 @@ class SaleOrderRecommendation(models.TransientModel):
             key=lambda res: (res["product_id_count"], res["qty_delivered"]),
             reverse=True,
         )
-        found_dict = {l["product_id"][0]: l for l in found_lines}
+        found_dict = {L["product_id"][0]: L for L in found_lines}
         recommendation_lines = self.env["sale.order.recommendation.line"]
         existing_product_ids = set()
         # Always recommend all products already present in the linked SO
@@ -195,8 +195,7 @@ class SaleOrderRecommendationLine(models.TransientModel):
         "wizard_id.sale_recommendation_price_origin",
     )
     def _compute_price_unit(self):
-        """Get product price unit from product list price or from last sale price
-        """
+        """Get product price unit from product list price or from last sale price"""
         price_origin = (
             fields.first(self).wizard_id.sale_recommendation_price_origin or "pricelist"
         )

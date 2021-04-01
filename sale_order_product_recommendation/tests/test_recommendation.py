@@ -86,7 +86,7 @@ class RecommendationCaseTests(RecommendationCase):
             .create({"advance_payment_method": "delivered"})
         )
         adv_wiz.with_context(open_invoices=True).create_invoices()
-        self.new_so.invoice_ids.post()
+        self.new_so.invoice_ids.action_post()
         # Open the wizard and add more product qty
         wizard = self.wizard()
         wiz_line = wizard.line_ids.filtered(lambda x: x.product_id == self.prod_1)

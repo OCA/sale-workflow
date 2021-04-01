@@ -6,3 +6,7 @@
   * Pedro M. Baeza
   * Víctor Martínez
   * Sergio Teruel
+
+* `Serpent Consultancy Services Pvt. Ltd. <https://www.serpentcs.com>`_:
+
+  * Shivam Soni

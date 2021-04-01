@@ -1,0 +1,3 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_sale_order_recommendation,access_sale_order_recommendation,model_sale_order_recommendation,base.group_user,1,1,1,1
+access_sale_order_recommendation_line,access_sale_order_recommendation_line,model_sale_order_recommendation_line,base.group_user,1,1,1,1
