@@ -19,9 +19,9 @@ Sale Order Secondary Unit
 .. |badge4| image:: https://img.shields.io/badge/weblate-Translate%20me-F47D42.png
     :target: https://translation.odoo-community.org/projects/sale-workflow-15-0/sale-workflow-15-0-sale_order_secondary_unit
     :alt: Translate me on Weblate
-.. |badge5| image:: https://img.shields.io/badge/runbot-Try%20me-875A7B.png
-    :target: https://runbot.odoo-community.org/runbot/167/15.0
-    :alt: Try me on Runbot
+.. |badge5| image:: https://img.shields.io/badge/runboat-Try%20me-875A7B.png
+    :target: https://runboat.odoo-community.org/webui/builds.html?repo=OCA/sale-workflow&target_branch=15.0
+    :alt: Try me on Runboat
 
 |badge1| |badge2| |badge3| |badge4| |badge5| 
 
@@ -32,6 +32,14 @@ secondary unit of distinct category.
 
 .. contents::
    :local:
+
+Configuration
+=============
+
+To configure this module, you need to:
+
+#. Go to *Sales > Configuration > Products > Secondary Units of Measure*
+   to manage all the 'Secondary Units of Measure' in the system.
 
 Usage
 =====
@@ -65,11 +73,15 @@ Authors
 Contributors
 ~~~~~~~~~~~~
 
-* Carlos Dauden <carlos.dauden@tecnativa.com>
-* Sergio Teruel <sergio.teruel@tecnativa.com>
 * Tony Gu <tony@openerp.cn>
 * Alexei Rivera <arivera@archeti.com>
 * Kevin Roche <kevin.roche@akretion.com>
+* `Tecnativa <https://www.tecnativa.com>`_:
+
+  * Carlos Dauden
+  * Sergio Teruel
+  * Ernesto Tejeda
+  * Pedro M. Baeza
 
 Maintainers
 ~~~~~~~~~~~
