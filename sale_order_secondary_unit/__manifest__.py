@@ -14,6 +14,7 @@
     "auto_install": True,
     "depends": ["sale", "product_secondary_unit"],
     "data": [
+        "views/product_secondary_unit_views.xml",
         "views/product_views.xml",
         "views/sale_order_views.xml",
         "report/sale_report_templates.xml",
