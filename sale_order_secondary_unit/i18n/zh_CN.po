@@ -16,15 +16,59 @@ msgstr ""
 "Plural-Forms: \n"
 
 #. module: sale_order_secondary_unit
+#: model:ir.model.fields,field_description:sale_order_secondary_unit.field_sale_order_line__secondary_uom_qty
+msgid "2nd Qty"
+msgstr ""
+
+#. module: sale_order_secondary_unit
+#: model:ir.model.fields,field_description:sale_order_secondary_unit.field_sale_order_line__secondary_uom_unit_price
+msgid "2nd unit price"
+msgstr ""
+
+#. module: sale_order_secondary_unit
+#: model:ir.model.fields,field_description:sale_order_secondary_unit.field_sale_order_line__secondary_uom_id
+msgid "2nd uom"
+msgstr ""
+
+#. module: sale_order_secondary_unit
+#: model_terms:ir.ui.view,arch_db:sale_order_secondary_unit.report_saleorder_document
+msgid "<span>Second. Qty</span>"
+msgstr ""
+
+#. module: sale_order_secondary_unit
 #: model:ir.model.fields,field_description:sale_order_secondary_unit.field_product_product__sale_secondary_uom_id
 #: model:ir.model.fields,field_description:sale_order_secondary_unit.field_product_template__sale_secondary_uom_id
 msgid "Default secondary unit for sales"
 msgstr "默认销售辅助计量单位"
 
 #. module: sale_order_secondary_unit
+#: model_terms:ir.ui.view,arch_db:sale_order_secondary_unit.product_secondary_unit_view_search
+msgid "Group By"
+msgstr ""
+
+#. module: sale_order_secondary_unit
+#: model:ir.model.fields,help:sale_order_secondary_unit.field_product_product__sale_secondary_uom_id
+#: model:ir.model.fields,help:sale_order_secondary_unit.field_product_template__sale_secondary_uom_id
+msgid ""
+"In order to set a value, please first add at least one record in 'Secondary "
+"Unit of Measure'"
+msgstr ""
+
+#. module: sale_order_secondary_unit
 #: model:ir.model,name:sale_order_secondary_unit.model_product_template
+#: model_terms:ir.ui.view,arch_db:sale_order_secondary_unit.product_secondary_unit_view_search
 msgid "Product Template"
 msgstr "产品模版"
+
+#. module: sale_order_secondary_unit
+#: model_terms:ir.ui.view,arch_db:sale_order_secondary_unit.product_secondary_unit_view_search
+msgid "Product Variant"
+msgstr ""
+
+#. module: sale_order_secondary_unit
+#: model:ir.model.fields,field_description:sale_order_secondary_unit.field_sale_order_line__product_uom_qty
+msgid "Quantity"
+msgstr ""
 
 #. module: sale_order_secondary_unit
 #: model:ir.model,name:sale_order_secondary_unit.model_sale_order_line
@@ -32,16 +76,25 @@ msgid "Sales Order Line"
 msgstr "销售订单明细"
 
 #. module: sale_order_secondary_unit
-#: model_terms:ir.ui.view,arch_db:sale_order_secondary_unit.report_saleorder_document
-msgid "Second. Qty"
-msgstr "辅助单位数量"
+#: model:ir.actions.act_window,name:sale_order_secondary_unit.product_secondary_unit_action
+msgid "Secondary Unit"
+msgstr ""
 
 #. module: sale_order_secondary_unit
-#: model:ir.model.fields,field_description:sale_order_secondary_unit.field_sale_order_line__secondary_uom_qty
-msgid "Secondary Qty"
-msgstr "辅助单位数量"
+#: model:ir.ui.menu,name:sale_order_secondary_unit.product_secondary_unit_menu
+msgid "Secondary Units of Measure"
+msgstr ""
 
 #. module: sale_order_secondary_unit
-#: model:ir.model.fields,field_description:sale_order_secondary_unit.field_sale_order_line__secondary_uom_id
-msgid "Secondary uom"
-msgstr "辅助计量单位"
+#: model_terms:ir.ui.view,arch_db:sale_order_secondary_unit.product_secondary_unit_view_search
+msgid "UoM"
+msgstr ""
+
+#~ msgid "Second. Qty"
+#~ msgstr "辅助单位数量"
+
+#~ msgid "Secondary Qty"
+#~ msgstr "辅助单位数量"
+
+#~ msgid "Secondary uom"
+#~ msgstr "辅助计量单位"
