@@ -43,6 +43,13 @@ class SaleOrderLineRouteAmend(models.TransientModel):
         return res
 
     def update_route(self):
+        """We update the route on selected sale order lines and launch the
+           re-procurement
+
+        :return: [description]
+        :rtype: [type]
+        """
         for wizard in self:
+            wizard.order_line_ids.write({"route_id": wizard.route_id.id})
             wizard.order_line_ids._amend_and_reprocure()
         return True
