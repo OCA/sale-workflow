@@ -82,6 +82,7 @@ class TestSaleOrderLineUpdateRoute(SavepointCase):
         domain = [
             ("group_id", "=", so.procurement_group_id.id),
             ("location_id", "=", self.loc_supplier.id),
+            ("state", "!=", "cancel"),
         ]
         move = self.move_obj.search(domain, limit=1)
         self.assertTrue(move)
