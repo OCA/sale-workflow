@@ -58,7 +58,7 @@ addon | version | summary
 [sale_order_product_recommendation](sale_order_product_recommendation/) | 13.0.2.1.0 | Recommend products to sell to customer based on history
 [sale_order_product_recommendation_secondary_unit](sale_order_product_recommendation_secondary_unit/) | 13.0.2.1.0 | Add secondary unit to recommend products wizard
 [sale_order_revision](sale_order_revision/) | 13.0.1.0.0 | Keep track of revised quotations
-[sale_order_secondary_unit](sale_order_secondary_unit/) | 13.0.1.0.0 | Sale product in a secondary unit
+[sale_order_secondary_unit](sale_order_secondary_unit/) | 13.0.1.1.0 | Sale product in a secondary unit
 [sale_order_type](sale_order_type/) | 13.0.1.3.7 | Sale Order Type
 [sale_order_warn_message](sale_order_warn_message/) | 13.0.1.0.0 | Add a popup warning on sale to ensure warning is populated
 [sale_partner_incoterm](sale_partner_incoterm/) | 13.0.1.0.1 | Set the customer preferred incoterm on each sales order
