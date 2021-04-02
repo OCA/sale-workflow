@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <record id="product_secondary_unit_view_search" model="ir.ui.view">
+        <field name="name">product.secondary.unit.view.search</field>
+        <field name="model">product.secondary.unit</field>
+        <field name="arch" type="xml">
+            <search>
+                <field name="product_tmpl_id" />
+                <field name="code" />
+                <field name="name" />
+                <group expand="1" string="Group By">
+                    <filter
+                        string="Product"
+                        name="product_tmpl_id"
+                        context="{'group_by':'product_tmpl_id'}"
+                    />
+                    <filter
+                        string="UoM"
+                        name="uom_id"
+                        context="{'group_by':'uom_id'}"
+                    />
+                </group>
+            </search>
+        </field>
+    </record>
+    <record id="product_secondary_unit_view_tree" model="ir.ui.view">
+        <field name="name">product.secondary.unit.sale.view.tree</field>
+        <field name="model">product.secondary.unit</field>
+        <field name="mode">primary</field>
+        <field name="priority" eval="9999" />
+        <field
+            name="inherit_id"
+            ref="product_secondary_unit.product_secondary_unit_view_tree"
+        />
+        <field name="arch" type="xml">
+            <tree position="attributes">
+                <attribute name="multi_edit">1</attribute>
+            </tree>
+            <field name="code" position="before">
+                <field name="product_tmpl_id" />
+            </field>
+        </field>
+    </record>
+    <record id="product_secondary_unit_action" model="ir.actions.act_window">
+        <field name="name">Secondary Unit</field>
+        <field name="res_model">product.secondary.unit</field>
+        <field name="view_mode">tree</field>
+    </record>
+    <record id="product_secondary_unit_action_view" model="ir.actions.act_window.view">
+        <field name="view_mode">tree</field>
+        <field name="view_id" ref="product_secondary_unit_view_tree" />
+        <field name="act_window_id" ref="product_secondary_unit_action" />
+    </record>
+    <menuitem
+        id="product_secondary_unit_menu"
+        name="Secondary Units of Measure"
+        action="product_secondary_unit_action"
+        parent="sale.prod_config_main"
+        groups="uom.group_uom"
+    />
+</odoo>
