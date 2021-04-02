@@ -23,33 +23,28 @@ class SaleOrder(models.Model):
     def _onchange_commitment_date(self):
         """Warns if commitment date is not a preferred window for delivery"""
         res = super()._onchange_commitment_date()
-        if res:
+        if "warning" in res:
             return res
-        if (
-            self.commitment_date
-            and self.partner_shipping_id.delivery_time_preference == "time_windows"
-        ):
-            ps = self.partner_shipping_id
+        ps = self.partner_shipping_id
+        if self.commitment_date and ps.delivery_time_preference == "time_windows":
             if not ps.is_in_delivery_window(self.commitment_date):
-                return {
-                    "warning": {
-                        "title": _(
-                            "Commitment date does not match shipping "
-                            "partner's Delivery time schedule preference."
-                        ),
-                        "message": _(
-                            "The delivery date is %s, but the shipping "
-                            "partner is set to prefer deliveries on following "
-                            "time windows:\n%s"
-                        )
-                        % (
-                            format_datetime(self.env, self.commitment_date),
-                            "\n".join(
-                                [
-                                    "  * %s" % w.display_name
-                                    for w in ps.get_delivery_windows().get(ps.id)
-                                ]
-                            ),
-                        ),
-                    }
-                }
+                return {"warning": self._commitment_date_no_delivery_window_match_msg()}
+
+    def _commitment_date_no_delivery_window_match_msg(self):
+        ps = self.partner_shipping_id
+        windows = ps.get_delivery_windows().get(ps.id)
+        return {
+            "title": _(
+                "Commitment date does not match shipping "
+                "partner's Delivery time schedule preference."
+            ),
+            "message": _(
+                "The delivery date is %s, but the shipping "
+                "partner is set to prefer deliveries on following "
+                "time windows:\n%s"
+            )
+            % (
+                format_datetime(self.env, self.commitment_date),
+                "\n".join(["  * %s" % w.display_name for w in windows]),
+            ),
+        }

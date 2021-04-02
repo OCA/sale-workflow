@@ -102,7 +102,10 @@ class TestSaleDeliveryWindow(SavepointCase):
         # Set to friday
         order.commitment_date = "2020-03-27 08:00:00"
         onchange_res = order._onchange_commitment_date()
-        self.assertTrue("warning" in onchange_res.keys())
+        self.assertEqual(
+            onchange_res["warning"],
+            order._commitment_date_no_delivery_window_match_msg(),
+        )
         # Set to saturday (preferred)
         order.commitment_date = "2020-03-28 08:00:00"
         onchange_res = order._onchange_commitment_date()
@@ -113,7 +116,10 @@ class TestSaleDeliveryWindow(SavepointCase):
         # Set to friday
         picking.scheduled_date = "2020-03-27 08:00:00"
         onchange_res = picking._onchange_scheduled_date()
-        self.assertTrue("warning" in onchange_res.keys())
+        self.assertEqual(
+            onchange_res["warning"],
+            picking._scheduled_date_no_delivery_window_match_msg(),
+        )
         # Set to saturday (preferred)
         picking.scheduled_date = "2020-03-28 08:00:00"
         onchange_res = picking._onchange_scheduled_date()
