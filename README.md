@@ -28,6 +28,7 @@ addon | version | summary
 [sale_order_line_note](sale_order_line_note/) | 14.0.1.0.0 | Note on sale order line
 [sale_order_lot_generator](sale_order_lot_generator/) | 14.0.1.0.1 | Sale Order Lot Generator
 [sale_order_lot_selection](sale_order_lot_selection/) | 14.0.1.0.0 | Sale Order Lot Selection
+[sale_order_revision](sale_order_revision/) | 14.0.1.0.0 | Keep track of revised quotations
 [sale_partner_incoterm](sale_partner_incoterm/) | 14.0.1.0.0 | Set the customer preferred incoterm on each sales order
 [sale_product_category_menu](sale_product_category_menu/) | 14.0.1.0.1 | Shows 'Product Categories' menu item in Sales
 [sale_product_multi_add](sale_product_multi_add/) | 14.0.1.0.1 | Sale Product Multi Add
