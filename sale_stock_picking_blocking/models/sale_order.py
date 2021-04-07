@@ -11,9 +11,7 @@ class SaleOrder(models.Model):
 
     @api.constrains("delivery_block_id")
     def _check_not_auto_done(self):
-        auto_done = self.env["ir.default"].get(
-            "res.config.settings", "group_auto_done_setting"
-        )
+        auto_done = self.user_has_groups("sale.group_auto_done_setting")
         if auto_done and any(so.delivery_block_id for so in self):
             raise ValidationError(
                 _('You cannot block a sale order with "auto_done_setting" ' "active.")
@@ -21,7 +19,7 @@ class SaleOrder(models.Model):
 
     delivery_block_id = fields.Many2one(
         comodel_name="sale.delivery.block.reason",
-        track_visibility="always",
+        tracking=True,
         string="Delivery Block Reason",
         readonly=True,
         states={"draft": [("readonly", False)], "sent": [("readonly", False)]},
@@ -30,7 +28,7 @@ class SaleOrder(models.Model):
     @api.onchange("partner_id")
     def onchange_partner_id(self):
         """Add the 'Default Delivery Block Reason' if set in the partner."""
-        res = super(SaleOrder, self).onchange_partner_id()
+        res = super().onchange_partner_id()
         for so in self:
             so.delivery_block_id = so.partner_id.default_delivery_block or False
         return res
@@ -46,7 +44,7 @@ class SaleOrder(models.Model):
 
     @api.returns("self", lambda value: value.id)
     def copy(self, default=None):
-        new_so = super(SaleOrder, self).copy(default=default)
+        new_so = super().copy(default=default)
         for so in new_so:
             if so.partner_id.default_delivery_block and not so.delivery_block_id:
                 so.delivery_block_id = so.partner_id.default_delivery_block
