@@ -7,7 +7,7 @@ from odoo.tests import common
 
 class TestSaleDeliveryBlock(common.TransactionCase):
     def setUp(self):
-        super(TestSaleDeliveryBlock, self).setUp()
+        super().setUp()
         self.so_model = self.env["sale.order"]
         self.sol_model = self.env["sale.order.line"]
         self.usr_model = self.env["res.users"]
@@ -46,7 +46,10 @@ class TestSaleDeliveryBlock(common.TransactionCase):
 
     def test_check_auto_done(self):
         # Set active auto done configuration
-        self.env["ir.default"].set("res.config.settings", "group_auto_done_setting", 1)
+        config = self.env["res.config.settings"].create(
+            {"group_auto_done_setting": True}
+        )
+        config.execute()
         block_reason = self.block_model.with_user(self.user_test).create(
             {"name": "Test Block."}
         )

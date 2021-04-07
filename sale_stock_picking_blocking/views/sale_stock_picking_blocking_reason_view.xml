@@ -36,12 +36,15 @@
             </form>
         </field>
     </record>
-    <act_window
+    <record
         id="action_sale_stock_picking_blocking_reason"
-        name="Sale Delivery Block Reason"
-        res_model="sale.delivery.block.reason"
-        view_mode="tree,form"
-    />
+        model="ir.actions.act_window"
+    >
+        <field name="name">Sale Delivery Block Reason</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">sale.delivery.block.reason</field>
+        <field name="view_mode">tree,form</field>
+    </record>
     <menuitem
         id="menu_sale_stock_picking_blocking_reason"
         name="Delivery Block Reason"
