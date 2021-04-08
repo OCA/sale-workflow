@@ -25,6 +25,7 @@ setuptools.setup(
         'odoo14-addon-sale_quotation_number',
         'odoo14-addon-sale_tier_validation',
         'odoo14-addon-sale_validity',
+        'odoo14-addon-sale_wishlist',
     ],
     classifiers=[
         'Programming Language :: Python',
