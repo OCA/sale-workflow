@@ -33,6 +33,7 @@ setuptools.setup(
         'odoo13-addon-sale_order_archive',
         'odoo13-addon-sale_order_carrier_auto_assign',
         'odoo13-addon-sale_order_general_discount',
+        'odoo13-addon-sale_order_incoterm_place',
         'odoo13-addon-sale_order_invoicing_finished_task',
         'odoo13-addon-sale_order_line_date',
         'odoo13-addon-sale_order_line_packaging_qty',
