@@ -2,7 +2,7 @@
 # License LGPL-3.0 or later (http://www.gnu.org/licenses/lgpl).
 {
     "name": "Sale Order Incoterm Place",
-    "version": "13.0.1.0.0",
+    "version": "13.0.1.0.1",
     "website": "https://github.com/OCA/sale-workflow",
     "author": "Quartile Limited, " "Odoo Community Association (OCA)",
     "category": "Sale",
