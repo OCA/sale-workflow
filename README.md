@@ -36,6 +36,7 @@ addon | version | summary
 [sale_quotation_number](sale_quotation_number/) | 14.0.1.0.2 | Different sequence for sale quotations
 [sale_tier_validation](sale_tier_validation/) | 14.0.1.0.0 | Extends the functionality of Sale Orders to support a tier validation process.
 [sale_validity](sale_validity/) | 14.0.1.0.1 | Set a default validity delay on quotations
+[sale_wishlist](sale_wishlist/) | 14.0.1.0.0 | Handle sale wishlist for partners
 
 [//]: # (end addons)
 
