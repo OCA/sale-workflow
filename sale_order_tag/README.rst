@@ -17,7 +17,7 @@ Sale Order Tags
     :target: https://github.com/OCA/sale-workflow/tree/13.0/sale_order_tag
     :alt: OCA/sale-workflow
 .. |badge4| image:: https://img.shields.io/badge/weblate-Translate%20me-F47D42.png
-    :target: https://translation.odoo-community.org/projects/sale-workflow-12-0/sale-workflow-12-0-sale_order_tag
+    :target: https://translation.odoo-community.org/projects/sale-workflow-13-0/sale-workflow-13-0-sale_order_tag
     :alt: Translate me on Weblate
 .. |badge5| image:: https://img.shields.io/badge/runbot-Try%20me-875A7B.png
     :target: https://runbot.odoo-community.org/runbot/167/13.0
