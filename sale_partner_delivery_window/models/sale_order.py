@@ -23,7 +23,7 @@ class SaleOrder(models.Model):
     def _onchange_commitment_date(self):
         """Warns if commitment date is not a preferred window for delivery"""
         res = super()._onchange_commitment_date()
-        if "warning" in res:
+        if res and "warning" in res:
             return res
         ps = self.partner_shipping_id
         if self.commitment_date and ps.delivery_time_preference == "time_windows":
