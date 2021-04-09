@@ -21,6 +21,7 @@
                 <field
                     name="secondary_uom_qty"
                     attrs="{'invisible': [('secondary_uom_id', '=', False)]}"
+                    widget="numeric_step"
                 />
             </xpath>
             <xpath
