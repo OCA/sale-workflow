@@ -6,24 +6,26 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 14.0\n"
 "Report-Msgid-Bugs-To: \n"
-"Last-Translator: Automatically generated\n"
+"PO-Revision-Date: 2021-04-11 17:46+0000\n"
+"Last-Translator: Yves Le Doeuff <yld@alliasys.fr>\n"
 "Language-Team: none\n"
 "Language: fr_FR\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
 "Plural-Forms: nplurals=2; plural=n > 1;\n"
+"X-Generator: Weblate 4.3.2\n"
 
 #. module: sale_wishlist
 #: model:ir.model.fields,field_description:sale_wishlist.field_res_partner__wishlists_count
 #: model:ir.model.fields,field_description:sale_wishlist.field_res_users__wishlists_count
 msgid "# Wishlists"
-msgstr ""
+msgstr "# Liste de souhaits"
 
 #. module: sale_wishlist
 #: model_terms:ir.ui.view,arch_db:sale_wishlist.res_partner_view_form
 msgid "<span class=\"o_stat_text\">Wishlists</span>"
-msgstr ""
+msgstr "<span class=\"o_stat_text\">Listes de souhaits</span>"
 
 #. module: sale_wishlist
 #: model:ir.model,name:sale_wishlist.model_res_partner
@@ -56,7 +58,7 @@ msgstr ""
 #. module: sale_wishlist
 #: model:ir.model,name:sale_wishlist.model_product_set
 msgid "Product set"
-msgstr ""
+msgstr "Set d'articles"
 
 #. module: sale_wishlist
 #: model:ir.model.fields,field_description:sale_wishlist.field_product_set__typology
@@ -67,10 +69,10 @@ msgstr ""
 #. module: sale_wishlist
 #: model:ir.model.fields.selection,name:sale_wishlist.selection__product_set__typology__wishlist
 msgid "Wishlist"
-msgstr ""
+msgstr "Liste de souhait"
 
 #. module: sale_wishlist
 #: code:addons/sale_wishlist/models/res_partner.py:0
 #, python-format
 msgid "Wishlists"
-msgstr ""
+msgstr "Listes de souhait"
