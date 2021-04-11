@@ -1,18 +1,15 @@
 # Translation of Odoo Server.
 # This file contains the translation of the following modules:
-# * sale_product_set
+# 	* sale_product_set
 #
-# Translators:
-# OCA Transbot <transbot@odoo-community.org>, 2018
 msgid ""
 msgstr ""
-"Project-Id-Version: Odoo Server 11.0\n"
+"Project-Id-Version: Odoo Server 14.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-11-26 11:44+0000\n"
-"PO-Revision-Date: 2021-05-14 18:47+0000\n"
+"PO-Revision-Date: 2021-04-11 17:46+0000\n"
 "Last-Translator: Yves Le Doeuff <yld@alliasys.fr>\n"
-"Language-Team: French (https://www.transifex.com/oca/teams/23907/fr/)\n"
-"Language: fr\n"
+"Language-Team: none\n"
+"Language: fr_FR\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
@@ -80,7 +77,7 @@ msgstr "Remise (%)"
 #: model:ir.model.fields,field_description:sale_product_set.field_product_set_add__display_name
 #: model:ir.model.fields,field_description:sale_product_set.field_product_set_line__display_name
 msgid "Display Name"
-msgstr "Afficher le nom"
+msgstr "Nom affiché"
 
 #. module: sale_product_set
 #: model:ir.model.fields,help:sale_product_set.field_product_set_add__skip_existing_products
@@ -88,7 +85,7 @@ msgid ""
 "Enable this to not add new lines for products already included in SO lines."
 msgstr ""
 "Activez cette option pour ne pas ajouter de nouvelles lignes pour les "
-"produits déjà inclus dans les lignes de commande."
+"produits déjà inclus dans des lignes de commandes."
 
 #. module: sale_product_set
 #: model:ir.model.fields,field_description:sale_product_set.field_product_set__id
@@ -153,12 +150,12 @@ msgstr "Set de produit"
 #. module: sale_product_set
 #: model:ir.model.fields,help:sale_product_set.field_product_set__ref
 msgid "Product set internal reference"
-msgstr "Référence interne du set de produits"
+msgstr "Référence interne du set"
 
 #. module: sale_product_set
 #: model:ir.model,name:sale_product_set.model_product_set_line
 msgid "Product set line"
-msgstr "ligne du Set"
+msgstr "Ligne du Set"
 
 #. module: sale_product_set
 #: model_terms:ir.ui.view,arch_db:sale_product_set.view_product_set_form
