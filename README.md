@@ -77,7 +77,7 @@ addon | version | summary
 [sale_order_secondary_unit](sale_order_secondary_unit/) | 12.0.1.1.0 | Sale product in a secondary unit
 [sale_order_tag](sale_order_tag/) | 12.0.1.0.0 | Adds Tags to Sales Orders.
 [sale_order_transmit_method](sale_order_transmit_method/) | 12.0.1.0.0 | Set transmit method (email, post, portal, ...) in sale order and propagate it to invoices
-[sale_order_type](sale_order_type/) | 12.0.1.2.1 | Sale Order Type
+[sale_order_type](sale_order_type/) | 12.0.1.2.2 | Sale Order Type
 [sale_partner_incoterm](sale_partner_incoterm/) | 12.0.1.0.0 | Set the customer preferred incoterm on each sales order
 [sale_procurement_group_by_commitment_date](sale_procurement_group_by_commitment_date/) | 12.0.1.0.0 | Groups pickings based on commitment date of order line
 [sale_procurement_group_by_line](sale_procurement_group_by_line/) | 12.0.1.0.0 | Base module for multiple procurement group by Sale order
