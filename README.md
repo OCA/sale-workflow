@@ -75,6 +75,7 @@ addon | version | summary
 [sale_shipping_info_helper](sale_shipping_info_helper/) | 13.0.1.0.0 | Add shipping amounts on sale order
 [sale_sourced_by_line](sale_sourced_by_line/) | 13.0.1.0.1 | Multiple warehouse source locations for Sale order
 [sale_stock_delivery_address](sale_stock_delivery_address/) | 13.0.1.0.3 | Sale Stock Delivery Address
+[sale_stock_picking_blocking](sale_stock_picking_blocking/) | 13.0.1.0.1 | Allow you to block the creation of deliveries from a sale order.
 [sale_stock_picking_note](sale_stock_picking_note/) | 13.0.1.0.0 | Add picking note in sale and purchase order
 [sale_stock_return_request](sale_stock_return_request/) | 13.0.1.0.0 | Sale Stock Return Request
 [sale_stock_secondary_unit](sale_stock_secondary_unit/) | 13.0.1.0.0 | Get product quantities in a secondary unit
