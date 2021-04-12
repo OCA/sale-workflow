@@ -77,21 +77,23 @@ class SaleOrder(models.Model):
         return super(SaleOrder, self).create(vals)
 
     def write(self, vals):
+        """A sale type could have a different order sequence, so we could
+        need to change it accordingly"""
         if vals.get("type_id"):
             sale_type = self.env["sale.order.type"].browse(vals["type_id"])
             if sale_type.sequence_id:
                 for record in self:
                     if (
                         record.state in {"draft", "sent"}
-                        and record.type_id != sale_type
+                        and record.type_id.sequence_id != sale_type.sequence_id
                     ):
                         new_vals = vals.copy()
                         new_vals["name"] = sale_type.sequence_id.next_by_id()
                         super(SaleOrder, record).write(new_vals)
                     else:
                         super(SaleOrder, record).write(vals)
-            return True
-        return super(SaleOrder, self).write(vals)
+                return True
+        return super().write(vals)
 
     def _prepare_invoice(self):
         res = super(SaleOrder, self)._prepare_invoice()
