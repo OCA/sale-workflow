@@ -26,6 +26,7 @@ class AccountVoucherWizard(models.TransientModel):
     _name = "account.voucher.wizard"
     _description = "Account Voucher Wizard"
 
+    order_id = fields.Many2one("sale.order", required=True)
     journal_id = fields.Many2one(
         "account.journal",
         "Journal",
@@ -35,18 +36,18 @@ class AccountVoucherWizard(models.TransientModel):
     journal_currency_id = fields.Many2one(
         "res.currency",
         "Journal Currency",
-        readonly=True,
+        store=True,
+        readonly=False,
         compute="_compute_get_journal_currency",
     )
     currency_id = fields.Many2one("res.currency", "Currency", readonly=True)
     amount_total = fields.Monetary("Amount total", readonly=True)
-    amount_advance = fields.Monetary("Amount advanced", required=True)
-    date = fields.Date("Date", required=True, default=fields.Date.context_today)
-    exchange_rate = fields.Float(
-        "Exchange rate", digits=(16, 6), default=1.0, readonly=True
+    amount_advance = fields.Monetary(
+        "Amount advanced", required=True, currency_field="journal_currency_id"
     )
+    date = fields.Date("Date", required=True, default=fields.Date.context_today)
     currency_amount = fields.Monetary(
-        "Curr. amount", readonly=True, currency_field="journal_currency_id"
+        "Curr. amount", readonly=True, currency_field="currency_id"
     )
     payment_ref = fields.Char("Ref.")
 
@@ -62,8 +63,7 @@ class AccountVoucherWizard(models.TransientModel):
         if self.amount_advance <= 0:
             raise exceptions.ValidationError(_("Amount of advance must be positive."))
         if self.env.context.get("active_id", False):
-            order = self.env["sale.order"].browse(self.env.context["active_id"])
-            if self.amount_advance > order.amount_residual:
+            if self.amount_advance > self.order_id.amount_residual:
                 raise exceptions.ValidationError(
                     _("Amount of advance is greater than residual amount on sale")
                 )
@@ -76,10 +76,10 @@ class AccountVoucherWizard(models.TransientModel):
             return res
         sale_id = fields.first(sale_ids)
         sale = self.env["sale.order"].browse(sale_id)
-
         if "amount_total" in fields_list:
             res.update(
                 {
+                    "order_id": sale.id,
                     "amount_total": sale.amount_residual,
                     "currency_id": sale.pricelist_id.currency_id.id,
                 }
@@ -89,25 +89,16 @@ class AccountVoucherWizard(models.TransientModel):
 
     @api.onchange("journal_id", "date", "amount_advance")
     def onchange_date(self):
-
-        sale_ids = self.env.context.get("active_ids", [])
-        sale_obj = self.env["sale.order"]
-        if sale_ids:
-            sale_id = fields.first(sale_ids)
-            sale = sale_obj.browse(sale_id)
-            if self.currency_id:
-                self.exchange_rate = 1.0 / (
-                    self.env["res.currency"]._get_conversion_rate(
-                        sale.company_id.currency_id,
-                        self.currency_id,
-                        sale.company_id,
-                        self.date,
-                    )
-                    or 1.0
-                )
-            else:
-                self.exchange_rate = 1.0
-            self.currency_amount = self.amount_advance * (1.0 / self.exchange_rate)
+        if self.journal_currency_id != self.currency_id:
+            amount_advance = self.journal_currency_id._convert(
+                self.amount_advance,
+                self.currency_id,
+                self.order_id.company_id,
+                self.date or fields.Date.today(),
+            )
+        else:
+            amount_advance = self.amount_advance
+        self.currency_amount = amount_advance
 
     def make_advance_payment(self):
         """Create customer paylines and validates the payment"""
