@@ -34,18 +34,7 @@ class SaleOrderLine(models.Model):
             and not line.lot_id
             and line.product_id.tracking != "none"
         ):
-            # when a new line is added to confirmed sale order
-            # get the max index_lot from the other lines
-            index_lot = 0
-            lot_ids = line.order_id.order_line.filtered(lambda l: l.lot_id).mapped(
-                "lot_id"
-            )
-            for lot in lot_ids:
-                lot_name = lot.name
-                index_str = lot_name.replace(line.order_id.name + "-", "")
-                last_index = int(index_str) if index_str.isdigit() else 0
-                index_lot = max(index_lot, last_index)
-            index_lot += 1
+            index_lot = line.order_id._get_max_lot_index() + 1
             lot_id = line.create_prodlot(index_lot)
             values["lot_id"] = lot_id.id
         line = super().create(values)
