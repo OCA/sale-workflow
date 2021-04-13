@@ -119,7 +119,7 @@ class AccountVoucherWizard(models.TransientModel):
                 "partner_type": "customer",
                 "ref": self.payment_ref or sale.name,
                 "journal_id": self.journal_id.id,
-                "currency_id": sale.pricelist_id.currency_id.id,
+                "currency_id": self.journal_currency_id.id,
                 "partner_id": partner_id,
                 "payment_method_id": self.env.ref(
                     "account.account_payment_method_manual_in"
