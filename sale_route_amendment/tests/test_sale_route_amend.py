@@ -12,6 +12,7 @@ class TestSaleOrderLineUpdateRoute(SavepointCase):
         cls.move_obj = cls.env["stock.move"]
         cls.warehouse = cls.env.ref("stock.warehouse0")
         cls.product = cls.env.ref("product.product_product_4")
+        cls.product_2 = cls.env.ref("product.product_product_5")
         cls.product_service = cls.env.ref("product.product_product_1")
         cls.partner = cls.env.ref("base.res_partner_2")
         cls.loc_customer = cls.env.ref("stock.stock_location_customers")
@@ -48,6 +49,14 @@ class TestSaleOrderLineUpdateRoute(SavepointCase):
             ],
         }
         cls.route_drop = cls.env["stock.location.route"].create(vals)
+        qty_wizard = cls.env["stock.change.product.qty"].create(
+            {
+                "product_id": cls.product_2.id,
+                "product_tmpl_id": cls.product_2.product_tmpl_id.id,
+                "new_quantity": 1.0,
+            }
+        )
+        qty_wizard.change_product_qty()
 
     def test_amend_route(self):
         """
@@ -80,6 +89,56 @@ class TestSaleOrderLineUpdateRoute(SavepointCase):
         wizard = wizard_form.save()
         wizard.update_route()
         domain = [
+            ("group_id", "=", so.procurement_group_id.id),
+            ("location_id", "=", self.loc_supplier.id),
+            ("state", "!=", "cancel"),
+        ]
+        move = self.move_obj.search(domain, limit=1)
+        self.assertTrue(move)
+
+    def test_amend_route_multi_product(self):
+        """
+            Create and confirm a sale order with several product lines
+            The created move will use the default route Stock > Customers
+
+            Launch the wizard to update the route and select the drop shipping
+            route.
+
+            A new move is created from Vendors > Customers
+        """
+        so = self.env["sale.order"].create(
+            {
+                "partner_id": self.partner.id,
+                "warehouse_id": self.warehouse.id,
+                "order_line": [
+                    (0, 0, {"product_id": self.product.id, "product_uom_qty": 1.0}),
+                    (0, 0, {"product_id": self.product_2.id, "product_uom_qty": 1.0}),
+                ],
+            }
+        )
+        so.action_confirm()
+
+        picking = so.picking_ids.filtered(lambda p: p.location_id == self.loc_stock)
+        moves = picking.move_lines
+        self.assertTrue(moves)
+
+        # Confirm a move quantity
+        move_to_confirm = moves.filtered(lambda m: m.product_id == self.product_2)
+
+        move_to_confirm.move_line_ids.qty_done = 1.0
+        picking.action_done()
+
+        self.assertEquals(
+            "done", picking.state,
+        )
+
+        wiz_obj = self.env["sale.order.line.route.amend"].with_context(active_id=so.id)
+        wizard_form = Form(wiz_obj)
+        wizard_form.route_id = self.route_drop
+        wizard = wizard_form.save()
+        wizard.update_route()
+        domain = [
+            ("product_id", "=", self.product.id),
             ("group_id", "=", so.procurement_group_id.id),
             ("location_id", "=", self.loc_supplier.id),
             ("state", "!=", "cancel"),
