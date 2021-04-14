@@ -33,6 +33,10 @@ class SaleOrderLine(models.Model):
             lambda line: not line.pickings_in_progress
             and line.product_id.type != "service"
         )
+        # filter lines that has moves with 'done' state
+        lines_can_reprocure = lines_can_reprocure.filtered(
+            lambda line: not any(move for move in line.move_ids if move.state == "done")
+        )
         lines_can_reprocure.update({"can_amend_and_reprocure": True})
         (self - lines_can_reprocure).update({"can_amend_and_reprocure": False})
 
