@@ -28,13 +28,28 @@ class ResPartner(models.Model):
             return from_date
         if timedelta_days is None:
             timedelta_days = 7
-        datetime_windows = self.get_next_windows_start_datetime(
-            from_date, from_date + timedelta(days=timedelta_days)
-        )
+        if self.delivery_time_preference == "workdays":
+            datetime_windows = self.get_next_workdays_datetime(
+                from_date, from_date + timedelta(days=timedelta_days)
+            )
+        else:
+            datetime_windows = self.get_next_windows_start_datetime(
+                from_date, from_date + timedelta(days=timedelta_days)
+            )
         for dwin_start in datetime_windows:
             if dwin_start >= from_date:
                 return dwin_start
         raise UserError(_("Something went wrong trying to find next delivery window"))
+
+    def get_next_workdays_datetime(self, from_datetime, to_datetime):
+        """Returns all the delivery windows in the provided date range.
+
+        :param from_datetime: Datetime object
+        :param to_datetime: Datetime object
+        :return: List of Datetime objects
+        """
+        dates = date_range(from_datetime, to_datetime, timedelta(days=1))
+        return [date for date in dates if date.weekday() < 5]
 
     def get_next_windows_start_datetime(self, from_datetime, to_datetime):
         """Get all delivery windows start time.

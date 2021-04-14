@@ -26,25 +26,32 @@ class SaleOrder(models.Model):
         if res and "warning" in res:
             return res
         ps = self.partner_shipping_id
-        if self.commitment_date and ps.delivery_time_preference == "time_windows":
+        if self.commitment_date and ps.delivery_time_preference != "anytime":
             if not ps.is_in_delivery_window(self.commitment_date):
                 return {"warning": self._commitment_date_no_delivery_window_match_msg()}
 
     def _commitment_date_no_delivery_window_match_msg(self):
         ps = self.partner_shipping_id
-        windows = ps.get_delivery_windows().get(ps.id)
+        commitment_date = self.commitment_date
+        if ps.delivery_time_preference == "workdays":
+            message = _(
+                "The delivery date is {} ({}), but the partner is "
+                "set to prefer deliveries on working days."
+            ).format(commitment_date, commitment_date.strftime("%A"))
+        else:
+            windows = ps.get_delivery_windows().get(ps.id)
+            message = _(
+                "The delivery date is %s, but the shipping "
+                "partner is set to prefer deliveries on following "
+                "time windows:\n%s"
+            ) % (
+                format_datetime(self.env, self.commitment_date),
+                "\n".join(["  * %s" % w.display_name for w in windows]),
+            )
         return {
             "title": _(
                 "Commitment date does not match shipping "
                 "partner's Delivery time schedule preference."
             ),
-            "message": _(
-                "The delivery date is %s, but the shipping "
-                "partner is set to prefer deliveries on following "
-                "time windows:\n%s"
-            )
-            % (
-                format_datetime(self.env, self.commitment_date),
-                "\n".join(["  * %s" % w.display_name for w in windows]),
-            ),
+            "message": message,
         }
