@@ -5,12 +5,12 @@ from odoo import fields, models
 
 
 class SaleOrderLine(models.Model):
-    _inherit = 'sale.order.line'
+    _inherit = "sale.order.line"
 
     bom_id = fields.Many2one(
-        comodel_name='mrp.bom',
-        string='BOM',
+        comodel_name="mrp.bom",
+        string="BOM",
         domain="[('product_tmpl_id.product_variant_ids', '=', product_id),"
-               "'|', ('product_id', '=', product_id), "
-               "('product_id', '=', False)]",
+        "'|', ('product_id', '=', product_id), "
+        "('product_id', '=', False)]",
     )
