@@ -20,6 +20,35 @@ class TestSaleMrpLink(TransactionCase):
         self.component_a = self._create_product("Component A", route_ids=[])
         self.component_b = self._create_product("Component B", route_ids=[])
 
+    def _prepare_bom_lines(self):
+        # Create BOMs
+        bom_a_v1 = self._create_bom(self.product_a.product_tmpl_id)
+        self._create_bom_line(bom_a_v1, self.component_a, 1)
+        bom_a_v2 = self._create_bom(self.product_a.product_tmpl_id)
+        self._create_bom_line(bom_a_v2, self.component_a, 2)
+
+        bom_b_v1 = self._create_bom(self.product_b.product_tmpl_id)
+        self._create_bom_line(bom_b_v1, self.component_b, 1)
+        bom_b_v2 = self._create_bom(self.product_b.product_tmpl_id)
+        self._create_bom_line(bom_b_v2, self.component_b, 2)
+
+        bom_a, bom_b = bom_a_v2, bom_b_v2
+        self.boms = {
+            self.product_a.id: bom_a,
+            self.product_b.id: bom_b,
+        }
+        return bom_a, bom_b
+
+    def _prepare_so(self):
+        bom_a_v2, bom_b_v2 = self._prepare_bom_lines()
+
+        # Create Sale Order
+        so = self._create_sale_order(self.partner, "SO1")
+        self._create_sale_order_line(so, self.product_a, 1, 10.0, bom_a_v2)
+        self._create_sale_order_line(so, self.product_b, 1, 10.0, bom_b_v2)
+        so.action_confirm()
+        return so, bom_a_v2, bom_b_v2
+
     def _create_bom(self, template):
         return self.env["mrp.bom"].create(
             {"product_tmpl_id": template.id, "type": "normal"}
@@ -53,29 +82,17 @@ class TestSaleMrpLink(TransactionCase):
 
     def test_define_bom_in_sale_line(self):
         """Check manufactured order is created with BOM definied in Sale."""
-        # Create BOMs
-        bom_a_v1 = self._create_bom(self.product_a.product_tmpl_id)
-        self._create_bom_line(bom_a_v1, self.component_a, 1)
-        bom_a_v2 = self._create_bom(self.product_a.product_tmpl_id)
-        self._create_bom_line(bom_a_v2, self.component_a, 2)
-
-        bom_b_v1 = self._create_bom(self.product_b.product_tmpl_id)
-        self._create_bom_line(bom_b_v1, self.component_b, 1)
-        bom_b_v2 = self._create_bom(self.product_b.product_tmpl_id)
-        self._create_bom_line(bom_b_v2, self.component_b, 2)
-
-        boms = {
-            self.product_a.id: bom_a_v2,
-            self.product_b.id: bom_b_v2,
-        }
-
-        # Create Sale Order
-        so = self._create_sale_order(self.partner, "SO1")
-        self._create_sale_order_line(so, self.product_a, 1, 10.0, bom_a_v2)
-        self._create_sale_order_line(so, self.product_b, 1, 10.0, bom_b_v2)
-        so.action_confirm()
+        so, bom_a, bom_b = self._prepare_so()
 
         # Check manufacture order
         mos = self.env["mrp.production"].search([("origin", "=", so.name)])
         for mo in mos:
-            self.assertEqual(mo.bom_id, boms.get(mo.product_id.id))
+            self.assertEqual(mo.bom_id, self.boms.get(mo.product_id.id))
+
+    def test_pick_a_pack_confirm(self):
+        so, bom_a, bom_b = self._prepare_so()
+        picking, boms = so.picking_ids[0], (bom_a, bom_b)
+
+        for i, line in enumerate(picking.move_lines):
+            values = line._prepare_procurement_values()
+            self.assertEqual(values["bom_id"], boms[i])
