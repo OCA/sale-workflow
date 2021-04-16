@@ -5,12 +5,6 @@
         <field name="model">res.partner</field>
         <field name="inherit_id" ref="base.view_partner_form" />
         <field name="arch" type="xml">
-            <xpath
-                expr="//page[@name='sales_purchases']//field[@name='user_id']"
-                position="after"
-            >
-                <field name="team_id" />
-            </xpath>
             <xpath expr="//field[@name='child_ids']/form" position="inside">
                 <field name="user_id" invisible="1" />
                 <field name="team_id" invisible="1" />
