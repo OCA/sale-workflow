@@ -1,22 +1,28 @@
-<?xml version="1.0"?>
+<?xml version="1.0" ?>
 <!-- Copyright 2020 Tecnativa - David Vidal
      License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl). -->
-
 <odoo>
-
     <record id="view_order_form" model="ir.ui.view">
         <field name="model">sale.order</field>
         <field name="inherit_id" ref="sale.view_order_form" />
         <field name="arch" type="xml">
             <field name="pricelist_id" position="after">
-                <field name="global_discount_ids" widget="many2many_tags" groups="base_global_discount.group_global_discount" />
-                <field name="global_discount_ids_readonly" string="Sale Global Discounts" widget="many2many_tags" groups="!base_global_discount.group_global_discount" />
+                <field
+                    name="global_discount_ids"
+                    widget="many2many_tags"
+                    groups="base_global_discount.group_global_discount"
+                />
+                <field
+                    name="global_discount_ids_readonly"
+                    string="Sale Global Discounts"
+                    widget="many2many_tags"
+                    groups="!base_global_discount.group_global_discount"
+                />
             </field>
             <field name="amount_untaxed" position="before">
-                <field name="amount_untaxed_before_global_discounts"/>
-                <field name="amount_global_discount"/>
+                <field name="amount_untaxed_before_global_discounts" />
+                <field name="amount_global_discount" />
             </field>
         </field>
     </record>
-
 </odoo>
