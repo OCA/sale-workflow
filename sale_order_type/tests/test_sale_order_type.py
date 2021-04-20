@@ -40,7 +40,7 @@ class TestSaleOrderType(common.TransactionCase):
         )
         self.default_sale_type_id = self.env["sale.order.type"].search([], limit=1)
         self.warehouse = self.env["stock.warehouse"].create(
-            {"name": "Warehouse Test", "code": "WT"}
+            {"name": "Warehouse Test", "code": "WT", "company_id": self.env.company.id}
         )
         self.product = self.env["product.product"].create(
             {"type": "service", "invoice_policy": "order", "name": "Test product"}
@@ -155,6 +155,12 @@ class TestSaleOrderType(common.TransactionCase):
         invoice.onchange_sale_type_id()
         self.assertEqual(invoice.invoice_payment_term_id, sale_type.payment_term_id)
         self.assertEqual(invoice.journal_id, sale_type.journal_id)
+
+    def test_sale_onchange_company_id(self):
+        order = self.create_sale_order()
+        order.company_id = self.env.company.id
+        order._onchange_company_id()
+        self.assertEqual(order.company_id, self.sale_type.company_id)
 
     def test_invoice_change_partner(self):
         invoice = self.create_invoice()

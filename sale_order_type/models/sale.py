@@ -71,6 +71,15 @@ class SaleOrder(models.Model):
             line_vals.update({"route_id": order_type.route_id.id})
             order.order_line.update(line_vals)
 
+    @api.onchange("company_id")
+    def _onchange_company_id(self):
+        super(SaleOrder, self)._onchange_company_id()
+        if (
+            self.type_id.warehouse_id
+            and self.type_id.warehouse_id.company_id == self.company_id
+        ):
+            self.warehouse_id = self.type_id.warehouse_id
+
     @api.model
     def create(self, vals):
         if vals.get("name", "/") == "/" and vals.get("type_id"):
