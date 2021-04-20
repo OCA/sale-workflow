@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <record id='manual_delivery_wizard_form' model='ir.ui.view'>
+        <field name="name">manual.delivery.wizard.form</field>
+        <field name="model">manual.delivery</field>
+        <field name='arch' type='xml'>
+            <form string="Create Manually Delivery" name="manual_procurment_form">
+                <sheet>
+                    <group>
+                        <group>
+                            <field
+                                name="commercial_partner_id"
+                                invisible="1"
+                                force_save="1"
+                            />
+                            <field name="partner_id" />
+                            <field name="date_planned" />
+                        </group>
+                        <group>
+                            <field name="carrier_id" />
+                            <field name="route_id" groups="stock.group_adv_location" />
+                        </group>
+                    </group>
+                    <field name='line_ids'>
+                        <tree editable="bottom" create="0">
+                            <field name="order_line_id" invisible="1" force_save="1" />
+                            <field name="product_id" />
+                            <field name="name" />
+                            <field name="qty_ordered" string="Ordered" />
+                            <field name="qty_procured" string="Procured" />
+                            <field name="quantity" />
+                        </tree>
+                    </field>
+                </sheet>
+                <footer>
+                    <button
+                        type="object"
+                        name="confirm"
+                        string="Confirm"
+                        class="btn-primary"
+                    />
+                    <button string="Cancel" class="btn-default" special="cancel" />
+                </footer>
+            </form>
+        </field>
+    </record>
+    <act_window
+        id='action_wizard_manual_delivery'
+        name='Create Manual Delivery'
+        binding_model='sale.order'
+        res_model='manual.delivery'
+        view_mode='form'
+        target='new'
+    />
+    <act_window
+        id='action_wizard_manual_delivery_line'
+        name='Create Manual Delivery'
+        binding_model='sale.order.line'
+        res_model='manual.delivery'
+        view_mode='form'
+        target='new'
+    />
+</odoo>
