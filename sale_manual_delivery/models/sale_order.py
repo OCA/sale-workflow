@@ -1,6 +1,6 @@
 # Copyright 2017 Denis Leemann, Camptocamp SA
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
-from odoo import fields, models, api
+from odoo import api, fields, models
 from odoo.exceptions import UserError
 from odoo.tools.translate import _
 
@@ -27,9 +27,7 @@ class SaleOrder(models.Model):
     @api.multi
     def action_manual_delivery_wizard(self):
         self.ensure_one()
-        wizard = self.env["manual.delivery"].create(
-            {"carrier_id": self.carrier_id.id}
-        )
+        wizard = self.env["manual.delivery"].create({"carrier_id": self.carrier_id.id})
         action = self.env.ref(
             "sale_manual_delivery.action_wizard_manual_delivery"
         ).read()[0]
