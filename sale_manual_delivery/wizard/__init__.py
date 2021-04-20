@@ -1,4 +1,2 @@
-# License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
-
-from . import manual_proc
-from . import line
+from . import manual_delivery
+from . import manual_delivery_line
