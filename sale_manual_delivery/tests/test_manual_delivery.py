@@ -1,18 +1,20 @@
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
-from odoo.addons.sale.tests.test_sale_common import TestSale
 from datetime import datetime
+
 from dateutil.relativedelta import relativedelta
+
+from odoo.addons.sale.tests.test_sale_common import TestSale
 
 
 class TestSaleStock(TestSale):
-
     def setUp(self):
         super().setUp()
-        self.partner = self.env.ref('base.res_partner_1')
-        self.product = self.env.ref('product.product_delivery_01')
-        self.stock_location = self.env.ref('stock.stock_location_stock')
-        self.env['stock.quant']._update_available_quantity(
-            self.product, self.stock_location, 100)
+        self.partner = self.env.ref("base.res_partner_1")
+        self.product = self.env.ref("product.product_delivery_01")
+        self.stock_location = self.env.ref("stock.stock_location_stock")
+        self.env["stock.quant"]._update_available_quantity(
+            self.product, self.stock_location, 100
+        )
 
     def test_00_sale_manual_delivery(self):
         """
@@ -128,11 +130,8 @@ class TestSaleStock(TestSale):
         """
         self.partner = self.env.ref("base.res_partner_1")
         self.product = self.env.ref("product.product_delivery_01")
-        self.env['stock.change.product.qty'].create(
-            {
-                'product_id': self.product.id,
-                'new_quantity': 10,
-            },
+        self.env["stock.change.product.qty"].create(
+            {"product_id": self.product.id, "new_quantity": 10},
         ).change_product_qty()
         so_vals = {
             "partner_id": self.partner.id,
@@ -223,7 +222,7 @@ class TestSaleStock(TestSale):
                     "active_ids": self.so.order_line.ids,
                 }
             )
-            .create({'date_planned': datetime.now()})
+            .create({"date_planned": datetime.now()})
         )
         wizard.fill_lines(self.so.order_line)
         wiz_act = self.env.ref(
@@ -266,8 +265,9 @@ class TestSaleStock(TestSale):
                     "active_ids": self.so.order_line.ids,
                 }
             )
-            .create({"carrier_id": self.so.carrier_id.id,
-                     "date_planned": datetime.now()})
+            .create(
+                {"carrier_id": self.so.carrier_id.id, "date_planned": datetime.now()}
+            )
         )
         wizard.fill_lines(self.so.order_line)
         wiz_act = self.env.ref(
@@ -382,19 +382,14 @@ class TestSaleStock(TestSale):
         self.so2.action_confirm()
         self.so3.action_confirm()
         some_lines = self.so1.order_line + self.so3.order_line
-        all_lines = (
-            self.so1.order_line + self.so2.order_line + self.so3.order_line
-        )
+        all_lines = self.so1.order_line + self.so2.order_line + self.so3.order_line
         # create a manual delivery for part of ordered quantity
         wizard = (
             self.env["manual.delivery"]
             .with_context(
-                {
-                    "active_model": "sale.order.line",
-                    "active_ids": some_lines.ids,
-                }
+                {"active_model": "sale.order.line", "active_ids": some_lines.ids}
             )
-            .create({'date_planned': datetime.now()})
+            .create({"date_planned": datetime.now()})
         )
         wizard.fill_lines(some_lines)
         wiz_act = self.env.ref(
@@ -411,8 +406,9 @@ class TestSaleStock(TestSale):
             should be created after "manual delivery" wizard call',
         )
         self.assertEqual(
-            len(self.so3.picking_ids.move_lines), 1,
-            'Different sales orders should still create different pickings'
+            len(self.so3.picking_ids.move_lines),
+            1,
+            "Different sales orders should still create different pickings",
         )
         self.assertFalse(
             self.so2.picking_ids,
@@ -423,53 +419,60 @@ class TestSaleStock(TestSale):
         # self.env['sale.order.line'].search([])._compute_existing_qty()
         undelivered = (
             self.env["sale.order.line"]
-            .search(
-                [("pending_qty_to_deliver", "=", True), ("state", "=", "sale")]
-            )
+            .search([("pending_qty_to_deliver", "=", True), ("state", "=", "sale")])
             .filtered(lambda s: s.id in all_lines.ids)
         )
         self.assertEqual(
-            undelivered,
-            self.so2.order_line,
-            "Bad pending qty to deliver filter",
+            undelivered, self.so2.order_line, "Bad pending qty to deliver filter",
         )
 
     def test_03_sale_multi_delivery(self):
-        self.product_2 = self.env.ref('product.product_delivery_02')
-        self.env['stock.quant']._update_available_quantity(
-            self.product_2, self.stock_location, 100)
+        self.product_2 = self.env.ref("product.product_delivery_02")
+        self.env["stock.quant"]._update_available_quantity(
+            self.product_2, self.stock_location, 100
+        )
         so_vals = {
-            'partner_id': self.partner.id,
-            'partner_invoice_id': self.partner.id,
-            'partner_shipping_id': self.partner.id,
-            'order_line': [
-                (0, 0, {
-                    'name': self.product.name,
-                    'product_id': self.product.id,
-                    'product_uom_qty': 10.0,
-                    'product_uom': self.product.uom_id.id,
-                    'price_unit': self.product.list_price
-                }), (0, 0, {
-                    'name': self.product_2.name,
-                    'product_id': self.product_2.id,
-                    'product_uom_qty': 10.0,
-                    'product_uom': self.product_2.uom_id.id,
-                    'price_unit': self.product_2.list_price
-                })
+            "partner_id": self.partner.id,
+            "partner_invoice_id": self.partner.id,
+            "partner_shipping_id": self.partner.id,
+            "order_line": [
+                (
+                    0,
+                    0,
+                    {
+                        "name": self.product.name,
+                        "product_id": self.product.id,
+                        "product_uom_qty": 10.0,
+                        "product_uom": self.product.uom_id.id,
+                        "price_unit": self.product.list_price,
+                    },
+                ),
+                (
+                    0,
+                    0,
+                    {
+                        "name": self.product_2.name,
+                        "product_id": self.product_2.id,
+                        "product_uom_qty": 10.0,
+                        "product_uom": self.product_2.uom_id.id,
+                        "price_unit": self.product_2.list_price,
+                    },
+                ),
             ],
-            'pricelist_id': self.env.ref('product.list0').id,
-            'manual_delivery': True,
+            "pricelist_id": self.env.ref("product.list0").id,
+            "manual_delivery": True,
         }
-        self.so = self.env['sale.order'].create(so_vals)
+        self.so = self.env["sale.order"].create(so_vals)
 
         # confirm our standard so, check the picking
         self.so.action_confirm()
-        self.assertFalse(self.so.picking_ids, 'Sale Manual Delivery: no \
-            picking should be created for "manual delivery" orders')
-        # create a manual delivery for part of ordered quantity
-        date_now = datetime.now().replace(
-            hour=0, minute=0, second=0, microsecond=0
+        self.assertFalse(
+            self.so.picking_ids,
+            'Sale Manual Delivery: no \
+            picking should be created for "manual delivery" orders',
         )
+        # create a manual delivery for part of ordered quantity
+        date_now = datetime.now().replace(hour=0, minute=0, second=0, microsecond=0)
         wizard = (
             self.env["manual.delivery"]
             .with_context(
@@ -478,9 +481,7 @@ class TestSaleStock(TestSale):
                     "active_ids": self.so.order_line[0].ids,
                 }
             )
-            .create(
-                {"carrier_id": self.so.carrier_id.id, "date_planned": date_now}
-            )
+            .create({"carrier_id": self.so.carrier_id.id, "date_planned": date_now})
         )
         wizard.fill_lines(self.so.order_line)
         for line in wizard.line_ids:
@@ -563,9 +564,7 @@ class TestSaleStock(TestSale):
             "Sale Manual Delivery: new moves should be merged in first picking"
             ' after "manual delivery" wizard call with same date',
         )
-        self.assertEqual(
-            sum(first_picking.mapped("move_lines.product_uom_qty")), 7
-        )
+        self.assertEqual(sum(first_picking.mapped("move_lines.product_uom_qty")), 7)
 
     def test_04_sale_single_picking(self):
         """
@@ -617,7 +616,7 @@ class TestSaleStock(TestSale):
                     "active_ids": self.so1.order_line.ids,
                 }
             )
-            .create({'date_planned': datetime.now()})
+            .create({"date_planned": datetime.now()})
         )
         wizard.fill_lines(self.so1.order_line)
         wiz_act = self.env.ref(
