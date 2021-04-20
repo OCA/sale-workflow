@@ -1,7 +1,7 @@
 # Copyright 2017 Denis Leemann, Camptocamp SA
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
 
-from odoo import models, fields, api
+from odoo import api, fields, models
 
 
 class StockMove(models.Model):
@@ -11,10 +11,10 @@ class StockMove(models.Model):
 
     def _get_new_picking_values(self):
         res = super(StockMove, self)._get_new_picking_values()
-        if self.env.context.get('vals'):
-            vals = self.env.context.get('vals')
-            if vals.get('carrier_id'):
-                res["carrier_id"] = vals.get('carrier_id')
+        if self.env.context.get("vals"):
+            vals = self.env.context.get("vals")
+            if vals.get("carrier_id"):
+                res["carrier_id"] = vals.get("carrier_id")
         return res
 
     @api.multi
