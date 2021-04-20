@@ -1,7 +1,7 @@
 # Copyright 2020 Tecnativa - David Vidal
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 from odoo import exceptions
-from odoo.tests import common
+from odoo.tests import Form, common
 
 
 class TestSaleGlobalDiscount(common.SavepointCase):
@@ -9,12 +9,12 @@ class TestSaleGlobalDiscount(common.SavepointCase):
     def setUpClass(cls):
         super().setUpClass()
         cls.account_type = cls.env["account.account.type"].create(
-            {"name": "Test", "type": "receivable"}
+            {"name": "Test", "type": "other", "internal_group": "asset"}
         )
         cls.account = cls.env["account.account"].create(
             {
-                "name": "Test account",
-                "code": "TEST",
+                "name": "Test account Global Discount",
+                "code": "TEST99999",
                 "user_type_id": cls.account_type.id,
                 "reconcile": True,
             }
@@ -55,7 +55,9 @@ class TestSaleGlobalDiscount(common.SavepointCase):
         cls.product_1 = cls.env["product.product"].create(
             {"name": "Test Product 1", "type": "service"}
         )
-        cls.product_2 = cls.product_1.copy({"name": "Test Product 2"})
+        cls.product_2 = cls.env["product.product"].create(
+            {"name": "Test Product 2", "type": "service"}
+        )
         cls.tax_group_5pc = cls.env["account.tax.group"].create(
             {"name": "Test Tax Group 5%", "sequence": 1}
         )
@@ -80,35 +82,23 @@ class TestSaleGlobalDiscount(common.SavepointCase):
                 "amount": 5.0,
             }
         )
-        cls.sale = cls.env["sale.order"].create(
-            {
-                "partner_id": cls.partner_1.id,
-                "order_line": [
-                    (
-                        0,
-                        0,
-                        {
-                            "product_id": cls.product_1.id,
-                            "product_uom_qty": 2,
-                            "price_unit": 75.00,
-                            # Test compound taxes as they tend to provoke corner cases
-                            "tax_id": [(6, 0, [cls.tax_1.id, cls.tax_2.id])],
-                        },
-                    ),
-                    (
-                        0,
-                        0,
-                        {
-                            "name": "On Site Assistance",
-                            "product_id": cls.product_2.id,
-                            "product_uom_qty": 3,
-                            "price_unit": 33.33,
-                            "tax_id": [(6, 0, [cls.tax_1.id, cls.tax_2.id])],
-                        },
-                    ),
-                ],
-            }
-        )
+        sale_form = Form(cls.env["sale.order"])
+        sale_form.partner_id = cls.partner_1
+        with sale_form.order_line.new() as order_line:
+            order_line.product_id = cls.product_1
+            order_line.tax_id.clear()
+            order_line.tax_id.add(cls.tax_1)
+            order_line.tax_id.add(cls.tax_2)
+            order_line.product_uom_qty = 2
+            order_line.price_unit = 75
+        with sale_form.order_line.new() as order_line:
+            order_line.product_id = cls.product_2
+            order_line.tax_id.clear()
+            order_line.tax_id.add(cls.tax_1)
+            order_line.tax_id.add(cls.tax_2)
+            order_line.product_uom_qty = 3
+            order_line.price_unit = 33.33
+        cls.sale = sale_form.save()
 
     def test_01_global_sale_succesive_discounts(self):
         """Add global discounts to the sale order"""
@@ -133,6 +123,17 @@ class TestSaleGlobalDiscount(common.SavepointCase):
         self.assertAlmostEqual(self.sale.amount_total, 167.99)
         self.assertAlmostEqual(self.sale.amount_total_before_global_discounts, 299.99)
         self.assertAlmostEqual(self.sale.amount_tax, 28)
+        # The account move should look like this
+        #   credit    debit  name
+        # ========  =======  ===============================================
+        #      150        0  Test Product 1
+        #    99.99        0  Test Product 2
+        #    13.13        0  Test TAX 15%
+        #     4.38        0  TAX 5%
+        #        0   105.01
+        #        0       75  Test Discount 2 (30.00%) - Test TAX 15%, TAX 5%
+        #        0    87.49  Test Discount 3 (50.00%) - Test TAX 15%, TAX 5%
+        # ========  =======  ===============================================
 
     def test_02_global_sale_discounts_from_partner(self):
         """Change the partner and his global discounts go to the invoice"""
@@ -151,22 +152,38 @@ class TestSaleGlobalDiscount(common.SavepointCase):
         self.sale.partner_id = self.partner_2
         self.sale.onchange_partner_id()
         self.sale.action_confirm()
-        self.sale.action_invoice_create()
-        invoice = self.sale.invoice_ids
-        self.assertEqual(len(invoice.invoice_global_discount_ids), 2)
-        line_tax_1 = invoice.tax_line_ids.filtered(lambda x: x.tax_id == self.tax_1)
-        line_tax_2 = invoice.tax_line_ids.filtered(lambda x: x.tax_id == self.tax_2)
-        self.assertAlmostEqual(line_tax_1.base, 87.5)
-        self.assertAlmostEqual(line_tax_2.base, 87.5)
-        self.assertAlmostEqual(line_tax_1.amount, 13.13)
-        self.assertAlmostEqual(line_tax_2.amount, 4.38)
+        move = self.sale._create_invoices()
+        # Check the invoice relevant fields
+        self.assertEqual(len(move.invoice_global_discount_ids), 2)
         discount_amount = sum(
-            invoice.invoice_global_discount_ids.mapped("discount_amount")
+            move.invoice_global_discount_ids.mapped("discount_amount")
         )
         self.assertAlmostEqual(discount_amount, 162.49)
-        self.assertAlmostEqual(invoice.amount_untaxed_before_global_discounts, 249.99)
-        self.assertAlmostEqual(invoice.amount_untaxed, 87.5)
-        self.assertAlmostEqual(invoice.amount_total, 105.01)
+        self.assertAlmostEqual(move.amount_untaxed_before_global_discounts, 249.99)
+        self.assertAlmostEqual(move.amount_untaxed, 87.5)
+        self.assertAlmostEqual(move.amount_total, 105.01)
+        # Expected Journal Entry
+        # credit    debit    account
+        # ========  =======  =========
+        #      150        0  400000 (line 1)
+        #    99.99        0  400000 (line 2)
+        #    13.13        0  400000 (line_tax_1)
+        #     4.38        0  400000 (line_tax_2)
+        #        0   105.01  121000 (Base)
+        #        0       75  TEST99999 (Global discount 1)
+        #        0    87.49  TEST99999 (Global discount 2)
+        #   267.50   267.50  <- Balance
+        line_tax_1 = move.line_ids.filtered(lambda x: x.tax_line_id == self.tax_1)
+        line_tax_2 = move.line_ids.filtered(lambda x: x.tax_line_id == self.tax_2)
+        self.assertAlmostEqual(line_tax_1.credit, 13.13)
+        self.assertAlmostEqual(line_tax_2.credit, 4.38)
+        term_line = move.line_ids.filtered(
+            lambda x: x.account_id.user_type_id.type == "receivable"
+        )
+        self.assertAlmostEqual(term_line.debit, 105.01)
+        discount_lines = move.line_ids.filtered("global_discount_item")
+        self.assertEqual(len(discount_lines), 2)
+        self.assertAlmostEqual(sum(discount_lines.mapped("debit")), 162.49)
 
     def test_04_report_taxes(self):
         """Taxes by group shown in reports"""
