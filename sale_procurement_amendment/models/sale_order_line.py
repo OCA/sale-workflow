@@ -33,14 +33,13 @@ class SaleOrderLine(models.Model):
             lambda line: not line.pickings_in_progress
             and line.product_id.type != "service"
         )
-        # filter lines that has moves with 'done' state
-        lines_can_reprocure = lines_can_reprocure.filtered(
-            lambda line: not any(move for move in line.move_ids if move.state == "done")
-        )
         lines_can_reprocure.update({"can_amend_and_reprocure": True})
         (self - lines_can_reprocure).update({"can_amend_and_reprocure": False})
 
-    @api.depends("order_id.picking_ids.can_be_amended")
+    @api.depends(
+        "order_id.picking_ids.can_be_amended",
+        "chained_move_ids.picking_id.can_be_amended",
+    )
     def _compute_pickings_in_progress(self):
         """
         Compute the picking in progress. That depends on picking
@@ -51,7 +50,7 @@ class SaleOrderLine(models.Model):
         line_in_progres = self.filtered(
             lambda l: any(
                 picking.state != "cancel" and not picking.can_be_amended
-                for picking in l.order_id.picking_ids
+                for picking in (l.chained_move_ids | l.move_ids).mapped("picking_id")
             )
         )
         line_in_progres.update({"pickings_in_progress": True})
