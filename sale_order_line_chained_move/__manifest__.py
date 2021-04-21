@@ -11,4 +11,5 @@
     "maintainers": ["rousseldenis"],
     "website": "https://github.com/OCA/sale-workflow",
     "depends": ["sale_stock"],
+    "post_init_hook": "post_init_hook",
 }
