@@ -122,7 +122,12 @@ class TestSaleProcurementAmendment(common.SavepointCase):
             {"pick_ids": [(6, 0, self.order.picking_ids.ids)]}
         )
         wizard.process()
-        # self.order.picking_ids.do_transfer()
+
+        # The first sale line cannot be amended
+        self.assertFalse(self.sale_line.can_amend_and_reprocure)
+        # The second line can be amended
+        self.assertTrue(self.sale_line_2.can_amend_and_reprocure)
+
         self.assertItemsEqual(
             [True, True, False],
             self.order.picking_ids.mapped("move_lines.can_be_amended"),
@@ -360,3 +365,31 @@ class TestSaleProcurementAmendment(common.SavepointCase):
             "product_uom_qty"
         )
         self.assertEqual([8.0], list(set(quantities)))
+
+    def test_08_three_steps(self):
+        """
+            Change operating warehouse to manage delivery steps with Pick/Pack/Ship
+            Create a sale order and confirm it
+            Transfer a product quantity of 1 on first product on picking side
+            The first sale line cannot be amended
+            The second line can
+        """
+        self.warehouse.delivery_steps = "pick_pack_ship"
+        self._create_sale_order()
+        self.order.action_confirm()
+        picking = self.order.picking_ids.filtered(
+            lambda p: p.location_id == self.env.ref("stock.stock_location_stock")
+        )
+        move_line = picking.move_line_ids.filtered(
+            lambda m: m.product_id == self.product1
+        )
+        move_line.qty_done = 1.0
+        wizard = self.env["stock.backorder.confirmation"].create(
+            {"pick_ids": [(6, 0, picking.ids)]}
+        )
+        wizard.process()
+
+        self.assertTrue(self.sale_line.pickings_in_progress)
+        self.assertFalse(self.sale_line_2.pickings_in_progress)
+        self.assertFalse(self.sale_line.can_amend_and_reprocure)
+        self.assertTrue(self.sale_line_2.can_amend_and_reprocure)

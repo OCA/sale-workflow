@@ -13,5 +13,5 @@
     "maintainers": ["rousseldenis"],
     "author": "ACSONE SA/NV,Odoo Community Association (OCA)",
     "website": "https://github.com/OCA/sale-workflow",
-    "depends": ["sale", "sale_stock"],
+    "depends": ["sale", "sale_stock", "sale_order_line_chained_move"],
 }
