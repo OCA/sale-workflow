@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!-- Copyright 2021 ACSONE SA/NV
+     License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl). -->
+<odoo>
+    <record id="rating_rating_view_form" model="ir.ui.view">
+        <field name="inherit_id" ref="rating.rating_rating_view_form" />
+        <field name="model">rating.rating</field>
+        <field name="priority">100</field>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='is_internal']" position="after">
+                <field name="res_model" invisible="1" />
+                <field
+                    name="purchase_verified"
+                    readonly="True"
+                    attrs="{'invisible': [('res_model', '!=', 'product.product')]}"
+                />
+            </xpath>
+        </field>
+    </record>
+</odoo>
