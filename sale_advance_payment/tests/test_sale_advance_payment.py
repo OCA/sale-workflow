@@ -1,12 +1,13 @@
 # Copyright (C) 2021 ForgeFlow S.L.
-# License LGPL-3.0 or later (https://www.gnu.org/licenses/lgpl.html)
+# License AGPL-3.0 or later (https://www.gnu.org/licenses/lgpl.html)
 
 import json
 
+from odoo.exceptions import ValidationError
 from odoo.tests import common
 
 
-class TestRepairStockMove(common.SavepointCase):
+class TestSaleAdvancePayment(common.SavepointCase):
     @classmethod
     def setUpClass(cls):
         super().setUpClass()
@@ -27,21 +28,6 @@ class TestRepairStockMove(common.SavepointCase):
         )
         cls.product_3 = cls.env["product.product"].create(
             {"name": "Repair Services", "type": "service", "invoice_policy": "order"}
-        )
-
-        # Location
-        cls.stock_warehouse = cls.env["stock.warehouse"].search(
-            [("company_id", "=", cls.env.company.id)], limit=1
-        )
-        cls.stock_location_14 = cls.env["stock.location"].create(
-            {"name": "Shelf 2", "location_id": cls.stock_warehouse.lot_stock_id.id}
-        )
-        # Replenish products
-        cls.env["stock.quant"]._update_available_quantity(
-            cls.product_1, cls.stock_location_14, 10
-        )
-        cls.env["stock.quant"]._update_available_quantity(
-            cls.product_2, cls.stock_location_14, 10
         )
 
         cls.tax = cls.env["account.tax"].create(
@@ -146,6 +132,22 @@ class TestRepairStockMove(common.SavepointCase):
             "active_ids": [self.sale_order_1.id],
             "active_id": self.sale_order_1.id,
         }
+
+        # Check residual > advance payment and the comparison takes
+        # into account the currency. 3001*1.2 > 3600
+        with self.assertRaises(ValidationError):
+            advance_payment_0 = (
+                self.env["account.voucher.wizard"]
+                .with_context(context_payment)
+                .create(
+                    {
+                        "journal_id": self.journal_eur_bank.id,
+                        "amount_advance": 3001,
+                        "order_id": self.sale_order_1.id,
+                    }
+                )
+            )
+            advance_payment_0.make_advance_payment()
 
         # Create Advance Payment 1 - EUR - bank
         advance_payment_1 = (

@@ -7,7 +7,7 @@
     "author": "Comunitea, Odoo Community Association (OCA)",
     "website": "https://github.com/OCA/sale-workflow",
     "category": "Sales",
-    "license": "AGPL-3",  # TODO: check
+    "license": "AGPL-3",
     "summary": "Allow to add advance payments on sales and then use them on invoices",
     "depends": ["sale"],
     "data": [
