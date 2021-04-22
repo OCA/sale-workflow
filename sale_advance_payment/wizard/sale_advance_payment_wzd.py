@@ -1,24 +1,8 @@
-##############################################################################
-#
-#    Copyright (C) 2015 Comunitea Servicios Tecnológicos All Rights Reserved
-#    $Omar Castiñeira Saaevdra <omar@comunitea.com>$
-#
-#    This program is free software: you can redistribute it and/or modify
-#    it under the terms of the GNU Affero General Public License as published
-#    by the Free Software Foundation, either version 3 of the License, or
-#    (at your option) any later version.
-#
-#    This program is distributed in the hope that it will be useful,
-#    but WITHOUT ANY WARRANTY; without even the implied warranty of
-#    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-#    GNU Affero General Public License for more details.
-#
-#    You should have received a copy of the GNU Affero General Public License
-#    along with this program.  If not, see <http://www.gnu.org/licenses/>.
-#
-##############################################################################
+# Copyright 2017 Omar Castiñeira, Comunitea Servicios Tecnológicos S.L.
+# License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
 from odoo import _, api, exceptions, fields, models
+from odoo.tools import float_compare
 
 
 class AccountVoucherWizard(models.TransientModel):
@@ -63,7 +47,15 @@ class AccountVoucherWizard(models.TransientModel):
         if self.amount_advance <= 0:
             raise exceptions.ValidationError(_("Amount of advance must be positive."))
         if self.env.context.get("active_id", False):
-            if self.amount_advance > self.order_id.amount_residual:
+            self.onchange_date()
+            if (
+                float_compare(
+                    self.currency_amount,
+                    self.order_id.amount_residual,
+                    precision_digits=2,
+                )
+                > 0
+            ):
                 raise exceptions.ValidationError(
                     _("Amount of advance is greater than residual amount on sale")
                 )
@@ -100,6 +92,22 @@ class AccountVoucherWizard(models.TransientModel):
             amount_advance = self.amount_advance
         self.currency_amount = amount_advance
 
+    def _prepare_payment_vals(self, sale):
+        partner_id = sale.partner_invoice_id.commercial_partner_id.id
+        return {
+            "date": self.date,
+            "amount": self.amount_advance,
+            "payment_type": "inbound",
+            "partner_type": "customer",
+            "ref": self.payment_ref or sale.name,
+            "journal_id": self.journal_id.id,
+            "currency_id": self.journal_currency_id.id,
+            "partner_id": partner_id,
+            "payment_method_id": self.env.ref(
+                "account.account_payment_method_manual_in"
+            ).id,
+        }
+
     def make_advance_payment(self):
         """Create customer paylines and validates the payment"""
         self.ensure_one()
@@ -110,22 +118,8 @@ class AccountVoucherWizard(models.TransientModel):
         if sale_ids:
             sale_id = fields.first(sale_ids)
             sale = sale_obj.browse(sale_id)
-
-            partner_id = sale.partner_invoice_id.commercial_partner_id.id
-            payment_res = {
-                "date": self.date,
-                "amount": self.amount_advance,
-                "payment_type": "inbound",
-                "partner_type": "customer",
-                "ref": self.payment_ref or sale.name,
-                "journal_id": self.journal_id.id,
-                "currency_id": self.journal_currency_id.id,
-                "partner_id": partner_id,
-                "payment_method_id": self.env.ref(
-                    "account.account_payment_method_manual_in"
-                ).id,
-            }
-            payment = payment_obj.create(payment_res)
+            payment_vals = self._prepare_payment_vals(sale)
+            payment = payment_obj.create(payment_vals)
             sale.account_payment_ids |= payment
             payment.action_post()
 
