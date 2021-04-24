@@ -44,6 +44,7 @@ addon | version | summary
 [sale_invoice_plan](sale_invoice_plan/) | 13.0.1.0.2 | Add to sales order, ability to manage future invoice plan
 [sale_isolated_quotation](sale_isolated_quotation/) | 13.0.1.0.0 | Sale Isolated Quotation
 [sale_last_price_info](sale_last_price_info/) | 13.0.1.0.0 | Product Last Price Info - Sale
+[sale_manual_delivery](sale_manual_delivery/) | 13.0.1.0.0 | Create manually your deliveries
 [sale_order_archive](sale_order_archive/) | 13.0.1.0.0 | Archive Sale Orders
 [sale_order_carrier_auto_assign](sale_order_carrier_auto_assign/) | 13.0.1.1.0 | Auto assign delivery carrier on sale order confirmation
 [sale_order_general_discount](sale_order_general_discount/) | 13.0.1.0.1 | General discount per sale order
