@@ -30,6 +30,7 @@ setuptools.setup(
         'odoo13-addon-sale_invoice_plan',
         'odoo13-addon-sale_isolated_quotation',
         'odoo13-addon-sale_last_price_info',
+        'odoo13-addon-sale_manual_delivery',
         'odoo13-addon-sale_order_archive',
         'odoo13-addon-sale_order_carrier_auto_assign',
         'odoo13-addon-sale_order_general_discount',
