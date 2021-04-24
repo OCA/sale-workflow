@@ -34,6 +34,7 @@ addon | version | summary
 [sale_commitment_lead_time](sale_commitment_lead_time/) | 12.0.1.0.0 | Check preparation time of sale order
 [sale_contact_type](sale_contact_type/) | 12.0.1.0.0 | Define ordering contact type
 [sale_delivery_split_date](sale_delivery_split_date/) | 12.0.1.0.1 | Sale Deliveries split by date
+[sale_delivery_state](sale_delivery_state/) | 12.0.1.0.0 | Show the delivery state on the sale order
 [sale_disable_inventory_check](sale_disable_inventory_check/) | 12.0.1.0.0 | Disable warning 'Not enough inventory' when there isn't enough product stock
 [sale_discount_display_amount](sale_discount_display_amount/) | 12.0.1.0.0 | This addon intends to display the amount of the discount computed on sale_order_line and sale_order level
 [sale_double_validation](sale_double_validation/) | 12.0.1.0.1 | Double validation for Sales
