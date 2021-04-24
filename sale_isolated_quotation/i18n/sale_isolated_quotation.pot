@@ -4,7 +4,7 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: Odoo Server 13.0\n"
+"Project-Id-Version: Odoo Server 14.0\n"
 "Report-Msgid-Bugs-To: \n"
 "Last-Translator: \n"
 "Language-Team: \n"
@@ -24,6 +24,11 @@ msgid "Convert to Order"
 msgstr ""
 
 #. module: sale_isolated_quotation
+#: model:ir.model.fields,field_description:sale_isolated_quotation.field_sale_order__display_name
+msgid "Display Name"
+msgstr ""
+
+#. module: sale_isolated_quotation
 #: model:ir.model.fields,help:sale_isolated_quotation.field_sale_order__order_id
 msgid "For Quotation, this field references to its Sales Order"
 msgstr ""
@@ -31,6 +36,16 @@ msgstr ""
 #. module: sale_isolated_quotation
 #: model:ir.model.fields,help:sale_isolated_quotation.field_sale_order__quote_id
 msgid "For Sales Order, this field references to its Quotation"
+msgstr ""
+
+#. module: sale_isolated_quotation
+#: model:ir.model.fields,field_description:sale_isolated_quotation.field_sale_order__id
+msgid "ID"
+msgstr ""
+
+#. module: sale_isolated_quotation
+#: model:ir.model.fields,field_description:sale_isolated_quotation.field_sale_order____last_update
+msgid "Last Modified on"
 msgstr ""
 
 #. module: sale_isolated_quotation
