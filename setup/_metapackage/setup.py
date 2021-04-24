@@ -37,6 +37,7 @@ setuptools.setup(
         'odoo13-addon-sale_order_incoterm_place',
         'odoo13-addon-sale_order_invoicing_finished_task',
         'odoo13-addon-sale_order_line_date',
+        'odoo13-addon-sale_order_line_description',
         'odoo13-addon-sale_order_line_packaging_qty',
         'odoo13-addon-sale_order_line_price_history',
         'odoo13-addon-sale_order_lot_selection',
