@@ -1,12 +1,12 @@
 # Translation of Odoo Server.
 # This file contains the translation of the following modules:
-#	* sale_manual_delivery
+# 	* sale_manual_delivery
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: Odoo Server 12.0\n"
+"Project-Id-Version: Odoo Server 13.0\n"
 "Report-Msgid-Bugs-To: \n"
-"Last-Translator: <>\n"
+"Last-Translator: \n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -24,6 +24,11 @@ msgid "Commercial Partner"
 msgstr ""
 
 #. module: sale_manual_delivery
+#: model_terms:ir.ui.view,arch_db:sale_manual_delivery.manual_delivery_wizard_form
+msgid "Confirm"
+msgstr ""
+
+#. module: sale_manual_delivery
 #: model_terms:ir.ui.view,arch_db:sale_manual_delivery.view_order_form
 msgid "Create Delivery"
 msgstr ""
@@ -37,11 +42,6 @@ msgstr ""
 #. module: sale_manual_delivery
 #: model_terms:ir.ui.view,arch_db:sale_manual_delivery.manual_delivery_wizard_form
 msgid "Create Manually Delivery"
-msgstr ""
-
-#. module: sale_manual_delivery
-#: model_terms:ir.ui.view,arch_db:sale_manual_delivery.manual_delivery_wizard_form
-msgid "Create Picking"
 msgstr ""
 
 #. module: sale_manual_delivery
@@ -69,12 +69,11 @@ msgstr ""
 
 #. module: sale_manual_delivery
 #: model:ir.model.fields,field_description:sale_manual_delivery.field_manual_delivery__carrier_id
-#: model:ir.model.fields,field_description:sale_manual_delivery.field_stock_move__carrier_id
 msgid "Delivery Method"
 msgstr ""
 
 #. module: sale_manual_delivery
-#: model:ir.model.fields,field_description:sale_manual_delivery.field_manual_delivery_line__line_description
+#: model:ir.model.fields,field_description:sale_manual_delivery.field_manual_delivery_line__name
 msgid "Description"
 msgstr ""
 
@@ -82,12 +81,6 @@ msgstr ""
 #: model:ir.model.fields,field_description:sale_manual_delivery.field_manual_delivery__display_name
 #: model:ir.model.fields,field_description:sale_manual_delivery.field_manual_delivery_line__display_name
 msgid "Display Name"
-msgstr ""
-
-#. module: sale_manual_delivery
-#: model:ir.model.fields,field_description:sale_manual_delivery.field_manual_delivery_line__existing_qty
-#: model:ir.model.fields,field_description:sale_manual_delivery.field_sale_order_line__existing_qty
-msgid "Existing quantity"
 msgstr ""
 
 #. module: sale_manual_delivery
@@ -104,7 +97,9 @@ msgstr ""
 #. module: sale_manual_delivery
 #: model:ir.model.fields,help:sale_manual_delivery.field_crm_team__manual_delivery
 #: model:ir.model.fields,help:sale_manual_delivery.field_sale_order__manual_delivery
-msgid "If Manual, the deliveries are not created at SO confirmation.        You need to use the Create Delivery button in order to reserve and         ship the goods."
+msgid ""
+"If enabled, the deliveries are not created at SO confirmation. You need to "
+"use the Create Delivery button in order to reserve and ship the goods."
 msgstr ""
 
 #. module: sale_manual_delivery
@@ -148,19 +143,20 @@ msgid "Manual Delivery Line"
 msgstr ""
 
 #. module: sale_manual_delivery
-#: model:ir.model.fields,field_description:sale_manual_delivery.field_manual_delivery_line__ordered_qty
-msgid "Ordered quantity"
+#: model:ir.model.fields,field_description:sale_manual_delivery.field_manual_delivery_line__qty_ordered
+#: model_terms:ir.ui.view,arch_db:sale_manual_delivery.manual_delivery_wizard_form
+msgid "Ordered"
 msgstr ""
 
 #. module: sale_manual_delivery
-#: model_terms:ir.ui.view,arch_db:sale_manual_delivery.view_sales_order_undelivered_line_filter
-msgid "Pending to deliver"
-msgstr ""
-
-#. module: sale_manual_delivery
-#: code:addons/sale_manual_delivery/wizard/manual_proc.py:38
+#: code:addons/sale_manual_delivery/wizard/manual_delivery.py:0
 #, python-format
 msgid "Please select one partner at a time"
+msgstr ""
+
+#. module: sale_manual_delivery
+#: model_terms:ir.ui.view,arch_db:sale_manual_delivery.manual_delivery_wizard_form
+msgid "Procured"
 msgstr ""
 
 #. module: sale_manual_delivery
@@ -174,29 +170,30 @@ msgid "Product"
 msgstr ""
 
 #. module: sale_manual_delivery
-#: model:ir.model.fields,help:sale_manual_delivery.field_manual_delivery_line__existing_qty
-#: model:ir.model.fields,help:sale_manual_delivery.field_sale_order_line__existing_qty
-msgid "Quantity already planned or shipped (stock movements             already created)"
+#: model:ir.model.fields,field_description:sale_manual_delivery.field_manual_delivery_line__quantity
+msgid "Quantity"
 msgstr ""
 
 #. module: sale_manual_delivery
-#: model:ir.model.fields,help:sale_manual_delivery.field_manual_delivery_line__ordered_qty
+#: model:ir.model.fields,field_description:sale_manual_delivery.field_manual_delivery_line__qty_procured
+#: model:ir.model.fields,field_description:sale_manual_delivery.field_sale_order_line__qty_procured
+msgid "Quantity Procured"
+msgstr ""
+
+#. module: sale_manual_delivery
+#: model:ir.model.fields,help:sale_manual_delivery.field_manual_delivery_line__qty_procured
+#: model:ir.model.fields,help:sale_manual_delivery.field_sale_order_line__qty_procured
+msgid "Quantity already planned or shipped (stock movements already created)"
+msgstr ""
+
+#. module: sale_manual_delivery
+#: model:ir.model.fields,help:sale_manual_delivery.field_manual_delivery_line__qty_ordered
 msgid "Quantity ordered in the related Sale Order"
 msgstr ""
 
 #. module: sale_manual_delivery
-#: model:ir.model.fields,field_description:sale_manual_delivery.field_manual_delivery_line__to_ship_qty
-msgid "Quantity to Ship"
-msgstr ""
-
-#. module: sale_manual_delivery
-#: model:ir.model.fields,field_description:sale_manual_delivery.field_manual_delivery_line__remaining_qty
-msgid "Remaining quantity"
-msgstr ""
-
-#. module: sale_manual_delivery
-#: model:ir.model.fields,help:sale_manual_delivery.field_manual_delivery_line__remaining_qty
-msgid "Remaining quantity available to deliver"
+#: model:ir.model.fields,field_description:sale_manual_delivery.field_sale_order_line__qty_to_procure
+msgid "Quantity to Procure"
 msgstr ""
 
 #. module: sale_manual_delivery
@@ -206,18 +203,13 @@ msgid "Sale Lines to Deliver"
 msgstr ""
 
 #. module: sale_manual_delivery
-#: model:ir.model,name:sale_manual_delivery.model_sale_order
-msgid "Sale Order"
-msgstr ""
-
-#. module: sale_manual_delivery
 #: model:ir.model.fields,field_description:sale_manual_delivery.field_manual_delivery_line__order_line_id
 msgid "Sale Order Line"
 msgstr ""
 
 #. module: sale_manual_delivery
-#: model:ir.model,name:sale_manual_delivery.model_crm_team
-msgid "Sales Channels"
+#: model:ir.model,name:sale_manual_delivery.model_sale_order
+msgid "Sales Order"
 msgstr ""
 
 #. module: sale_manual_delivery
@@ -226,13 +218,15 @@ msgid "Sales Order Line"
 msgstr ""
 
 #. module: sale_manual_delivery
-#: model_terms:ir.ui.view,arch_db:sale_manual_delivery.view_order_line_form2
-msgid "Sales Order Lines"
+#: model_terms:ir.ui.view,arch_db:sale_manual_delivery.view_sales_order_undelivered_line_filter
+msgid ""
+"Sales Order Lines that are confirmed, done or in exception state and no "
+"delivery is created to satisfy them"
 msgstr ""
 
 #. module: sale_manual_delivery
-#: model_terms:ir.ui.view,arch_db:sale_manual_delivery.view_sales_order_undelivered_line_filter
-msgid "Sales Order Lines that are confirmed, done or in exception state and no delivery is created to satisfy them"
+#: model:ir.model,name:sale_manual_delivery.model_crm_team
+msgid "Sales Team"
 msgstr ""
 
 #. module: sale_manual_delivery
@@ -246,8 +240,13 @@ msgid "Stock Move"
 msgstr ""
 
 #. module: sale_manual_delivery
-#: model:ir.model.fields,field_description:sale_manual_delivery.field_sale_order_line__pending_qty_to_deliver
+#: model:ir.model.fields,help:sale_manual_delivery.field_sale_order_line__qty_to_procure
 msgid "There is Pending qty to add to a delivery"
+msgstr ""
+
+#. module: sale_manual_delivery
+#: model_terms:ir.ui.view,arch_db:sale_manual_delivery.view_sales_order_undelivered_line_filter
+msgid "Unplanned delivery"
 msgstr ""
 
 #. module: sale_manual_delivery
@@ -257,18 +256,21 @@ msgstr ""
 
 #. module: sale_manual_delivery
 #: model:ir.model.fields,field_description:sale_manual_delivery.field_manual_delivery_line__manual_delivery_id
-msgid "Wizard manual procurement"
+msgid "Wizard"
 msgstr ""
 
 #. module: sale_manual_delivery
-#: code:addons/sale_manual_delivery/wizard/manual_proc.py:120
+#: code:addons/sale_manual_delivery/wizard/manual_delivery_line.py:0
 #, python-format
-msgid "You can not deliver more than the remaining quantity. If you need to do so, please edit the sale order first."
+msgid ""
+"You can not deliver more than the remaining quantity. If you need to do so, "
+"please edit the sale order first."
 msgstr ""
 
 #. module: sale_manual_delivery
-#: code:addons/sale_manual_delivery/models/sale_order.py:45
+#: code:addons/sale_manual_delivery/models/sale_order.py:0
 #, python-format
-msgid "You can only change to/from manual delivery in a quote, not a confirmed order"
+msgid ""
+"You can only change to/from manual delivery in a quote, not a confirmed "
+"order"
 msgstr ""
-
