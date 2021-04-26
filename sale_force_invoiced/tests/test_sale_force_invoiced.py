@@ -66,12 +66,12 @@ class TestSaleForceInvoiced(TransactionCase):
         sol1.qty_delivered = 1
         sol2.qty_delivered = 2
 
-        self.assertEquals(
+        self.assertEqual(
             so.invoice_status, "to invoice", "The invoice status should be To Invoice"
         )
 
         self._create_invoice_from_sale(so)
-        self.assertEquals(
+        self.assertEqual(
             so.invoice_status, "invoiced", "The invoice status should be Invoiced"
         )
 
@@ -79,17 +79,17 @@ class TestSaleForceInvoiced(TransactionCase):
         for line in sol2.invoice_lines.with_context(check_move_validity=False):
             line.quantity = 1
 
-        self.assertEquals(
+        self.assertEqual(
             so.invoice_status, "to invoice", "The invoice status should be To Invoice"
         )
 
         so.action_done()
         so.force_invoiced = True
-        self.assertEquals(
+        self.assertEqual(
             so.invoice_status, "invoiced", "The invoice status should be Invoiced"
         )
 
         so.force_invoiced = False
-        self.assertEquals(
+        self.assertEqual(
             so.invoice_status, "to invoice", "The invoice status should be To Invoice"
         )
