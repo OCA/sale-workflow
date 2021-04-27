@@ -62,6 +62,7 @@ class TestSaleInvoicePayment(SavepointCase):
         )
         self.assertTrue(line_full_payment)
         self.assertEqual(line_full_payment.invoice_id, self.invoice1)
+        self.assertEqual(sheet.amount_total, 150.00)
 
     def _create_payment_sheet(self):
         with Form(self.SalePaymentSheet) as sheet_form:

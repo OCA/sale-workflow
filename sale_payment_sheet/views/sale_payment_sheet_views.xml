@@ -8,6 +8,7 @@
                 <field name="name" />
                 <field name="date" />
                 <field name="journal_id" />
+                <field name="amount_total" />
                 <field name="company_id" groups="base.group_multi_company" />
                 <field name="currency_id" invisible="1" />
                 <field name="state" />
