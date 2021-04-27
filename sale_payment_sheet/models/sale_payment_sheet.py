@@ -78,6 +78,17 @@ class SalePaymentSheet(models.Model):
     statement_id = fields.Many2one(
         comodel_name="account.bank.statement", string="Bank statement"
     )
+    amount_total = fields.Monetary(
+        string="Total", store=True, readonly=True, compute="_compute_amount_total"
+    )
+
+    @api.depends("line_ids.amount")
+    def _compute_amount_total(self):
+        """ Summarize total amount lines, this field already is signed
+        depending on invoice type.
+        """
+        for sheet in self:
+            sheet.amount_total = sum(sheet.line_ids.mapped("amount"))
 
     @api.model
     def _default_journal(self):
@@ -171,7 +182,9 @@ class SalePaymentSheetLine(models.Model):
     )
     date = fields.Date(
         required=True,
-        default=lambda self: self._context.get("date", fields.Date.context_today(self)),
+        default=lambda self: self.env.context.get(
+            "date", fields.Date.context_today(self)
+        ),
     )
     sheet_id = fields.Many2one(
         "sale.payment.sheet",
