@@ -13,7 +13,7 @@ class SaleOrder(models.Model):
         "fully invoiced, even when there may be ordered or delivered "
         "quantities pending to invoice.",
         readonly=True,
-        states={"done": [("readonly", False)]},
+        states={"done": [("readonly", False)], "sale": [("readonly", False)]},
         copy=False,
     )
 
