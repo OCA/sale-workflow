@@ -19,7 +19,7 @@ class SaleCoupon(models.Model):
         A decimal serialisation is longer than a hexadecimal one *but* it
         generates a more compact barcode (Code128C rather than Code128A).
 
-        Generate 8 bytes (64 bits) barcodes as 16 bytes barcodes are not 
+        Generate 8 bytes (64 bits) barcodes as 16 bytes barcodes are not
         compatible with all scanners.
          """
         return str(random.getrandbits(64))
@@ -46,7 +46,6 @@ class SaleCoupon(models.Model):
     ]
 
     def _compute_expiration_date(self):
-        self.expiration_date = 0
         for coupon in self.filtered(lambda x: x.program_id.validity_duration > 0):
             coupon.expiration_date = (coupon.create_date + relativedelta(days=coupon.program_id.validity_duration)).date()
 

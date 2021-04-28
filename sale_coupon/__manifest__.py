@@ -1,11 +1,9 @@
-# -*- coding: utf-8 -*-
-# Part of Odoo. See LICENSE file for full copyright and licensing details.
+
 {
     'name': "Sale Coupon",
     'summary': "Use discount coupons in sales orders",
-    'description': """Integrate coupon mechanism in sales orders.""",
-    'category': 'Sales/Sales',
-    'version': '1.0',
+    'category': 'Sales',
+    'version': '12.0.1.0.0',
     'depends': ['sale_management'],
     'data': [
         'security/ir.model.access.csv',

@@ -12,7 +12,7 @@ class TestSaleCouponMultiCompany(TestSaleCouponCommon):
     def setUp(self):
         super(TestSaleCouponMultiCompany, self).setUp()
 
-        self.company_a = self.env.company
+        self.company_a = self.env.user.company_id
         self.company_b = self.env['res.company'].create(dict(name="TEST"))
 
         self.immediate_promotion_program_c2 = self.env['sale.coupon.program'].create({

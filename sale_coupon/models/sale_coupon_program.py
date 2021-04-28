@@ -47,7 +47,7 @@ class SaleCouponProgram(models.Model):
     coupon_ids = fields.One2many('sale.coupon', 'program_id', string="Generated Coupons", copy=False)
     coupon_count = fields.Integer(compute='_compute_coupon_count')
     order_count = fields.Integer(compute='_compute_order_count')
-    company_id = fields.Many2one('res.company', string="Company", default=lambda self: self.env.company)
+    company_id = fields.Many2one('res.company', string="Company", default=lambda self: self.env.user.company_id)
     currency_id = fields.Many2one(string="Currency", related='company_id.currency_id', readonly=True)
     validity_duration = fields.Integer(default=1,
         help="Validity duration for a coupon after its generation")
@@ -136,7 +136,7 @@ class SaleCouponProgram(models.Model):
             'view_mode': 'tree,form',
             'res_model': 'sale.order',
             'type': 'ir.actions.act_window',
-            'domain': [('id', 'in', orders.ids), ('state', 'not in', ('draft', 'sent', 'cancel'))],
+            'domain': [('id', 'in', orders.ids)],
             'context': dict(self._context, create=False)
         }
 
@@ -328,6 +328,7 @@ class SaleCouponProgram(models.Model):
 
     def _get_valid_products(self, products):
         if self.rule_products_domain:
-            domain = safe_eval(self.rule_products_domain)
-            return products.filtered_domain(domain)
+            domain = safe_eval(self.rule_products_domain)\
+                     + [('id', 'in', products.ids)]
+            return self.env["product.product"].search(domain)
         return products
