@@ -28,6 +28,9 @@ class SaleCouponProgram(models.Model):
                               "defined on same condition(For minimum amount)")
     maximum_use_number = fields.Integer(
         help="Maximum number of sales orders in which reward can be provided")
+    maximum_use_number_per_customer = fields.Integer(
+        help="Maximum number of sales orders in which reward can be provided, "
+             "per customer")
     program_type = fields.Selection([
         ('promotion_program', 'Promotional Program'),
         ('coupon_program', 'Coupon Program'),
@@ -182,9 +185,30 @@ class SaleCouponProgram(models.Model):
         # remove least interesting programs
         return self - (programs - most_interesting_program)
 
+    def _allowed_use_per_customer(self, order):
+        if self.maximum_use_number_per_customer == 0:
+            return True
+        if order.partner_id.id == self.env.ref('base.public_partner').id:
+            # Not applicable to not registered users, we cannot identify them
+            return False
+        so_lines = self.env["sale.order.line"].search([
+            ("product_id", "=", self.discount_line_product_id.id)])
+        customer_lines = so_lines.filtered(
+            lambda x: x.order_id.partner_id.id == order.partner_id.id)
+        if len(customer_lines) >= self.maximum_use_number_per_customer:
+            return False
+        else:
+            return True
+
     def _check_promo_code(self, order, coupon_code):
         message = {}
-        if self.maximum_use_number != 0 and self.order_count >= self.maximum_use_number:
+        if (
+            self.maximum_use_number != 0 and
+            self.order_count >= self.maximum_use_number
+        ) or not self._allowed_use_per_customer(order):
+            message = {'error': _(
+                'Promo code %s has been expired.') % (coupon_code)}
+        elif not self._allowed_use_per_customer(order):
             message = {'error': _(
                 'Promo code %s has been expired.') % (coupon_code)}
         elif not self._filter_on_mimimum_amount(order):

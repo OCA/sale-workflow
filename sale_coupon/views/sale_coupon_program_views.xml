@@ -227,6 +227,12 @@
                     <span> Orders</span>
                     <span class="oe_grey"> if 0, infinite use</span>
                 </div>
+                <label string="Max use per customer" for="maximum_use_number_per_customer" class="oe_inline"/>
+                <div>
+                    <field name="maximum_use_number_per_customer" class="oe_inline"/>
+                    <span> Orders</span>
+                    <span class="oe_grey"> if 0, infinite use</span>
+                </div>
                 <field name="rule_date_from" class="oe_inline"/>
                 <field name="rule_date_to" class="oe_inline"/>
             </xpath>
