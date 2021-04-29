@@ -8,17 +8,19 @@ class SaleCouponGenerate(models.TransientModel):
     _name = 'sale.coupon.generate'
     _description = 'Generate Sales Coupon'
 
-    nbr_coupons = fields.Integer(string="Number of Coupons", help="Number of coupons", default=1)
+    nbr_coupons = fields.Integer(
+        string="Number of Coupons", help="Number of coupons", default=1)
     generation_type = fields.Selection([
         ('nbr_coupon', 'Number of Coupons'),
         ('nbr_customer', 'Number of Selected Customers')
-        ], default='nbr_coupon')
+    ], default='nbr_coupon')
     partners_domain = fields.Char(string="Customer", default='[]')
 
     def generate_coupon(self):
         """Generates the number of coupons entered in wizard field nbr_coupons
         """
-        program = self.env['sale.coupon.program'].browse(self.env.context.get('active_id'))
+        program = self.env['sale.coupon.program'].browse(
+            self.env.context.get('active_id'))
 
         vals = {'program_id': program.id}
 
@@ -31,8 +33,11 @@ class SaleCouponGenerate(models.TransientModel):
                 vals.update({'partner_id': partner.id})
                 coupon = self.env['sale.coupon'].create(vals)
                 context = dict(lang=partner.lang)
-                subject = _('%s, a coupon has been generated for you') % (partner.name)
+                subject = _('%s, a coupon has been generated for you') % (
+                    partner.name)
                 del context
-                template = self.env.ref('sale_coupon.mail_template_sale_coupon', raise_if_not_found=False)
+                template = self.env.ref(
+                    'sale_coupon.mail_template_sale_coupon', raise_if_not_found=False)
                 if template:
-                    template.send_mail(coupon.id, email_values={'email_to': partner.email, 'email_from': self.env.user.email or '', 'subject': subject,})
+                    template.send_mail(coupon.id, email_values={
+                                       'email_to': partner.email, 'email_from': self.env.user.email or '', 'subject': subject, })

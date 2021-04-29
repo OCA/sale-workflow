@@ -50,8 +50,10 @@ class TestSaleCouponMultiCompany(TestSaleCouponCommon):
             # can be later removed and replaced in master.
             return order.code_promo_program_id + order.no_code_promo_program_ids + order.applied_coupon_ids.mapped('program_id')
 
-        self.assertNotIn(self.immediate_promotion_program_c2, order._get_applicable_programs())
-        self.assertNotIn(self.immediate_promotion_program_c2, _get_applied_programs(order))
+        self.assertNotIn(self.immediate_promotion_program_c2,
+                         order._get_applicable_programs())
+        self.assertNotIn(self.immediate_promotion_program_c2,
+                         _get_applied_programs(order))
 
         order_b = self.env["sale.order"].create({
             'company_id': self.company_b.id,
@@ -71,8 +73,11 @@ class TestSaleCouponMultiCompany(TestSaleCouponCommon):
                 'product_uom_qty': 1.0,
             })
         ]})
-        self.assertNotIn(self.immediate_promotion_program, order_b._get_applicable_programs())
+        self.assertNotIn(self.immediate_promotion_program,
+                         order_b._get_applicable_programs())
 
         order_b.recompute_coupon_lines()
-        self.assertIn(self.immediate_promotion_program_c2, _get_applied_programs(order_b))
-        self.assertNotIn(self.immediate_promotion_program, _get_applied_programs(order_b))
+        self.assertIn(self.immediate_promotion_program_c2,
+                      _get_applied_programs(order_b))
+        self.assertNotIn(self.immediate_promotion_program,
+                         _get_applied_programs(order_b))

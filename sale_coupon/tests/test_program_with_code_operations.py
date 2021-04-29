@@ -21,7 +21,8 @@ class TestProgramWithCodeOperations(TestSaleCouponCommon):
         self.env['sale.coupon.generate'].with_context(active_id=self.code_promotion_program.id).create({
             'generation_type': 'nbr_customer',
         }).generate_coupon()
-        self.assertEqual(len(self.code_promotion_program.coupon_ids), len(self.env['res.partner'].search([])), "It should have generated a coupon for every partner")
+        self.assertEqual(len(self.code_promotion_program.coupon_ids), len(
+            self.env['res.partner'].search([])), "It should have generated a coupon for every partner")
 
     def test_program_basic_operation_coupon_code(self):
         # Test case: Generate a coupon for my customer, and add a reward then remove it automatically
@@ -162,7 +163,8 @@ class TestProgramWithCodeOperations(TestSaleCouponCommon):
         order.recompute_coupon_lines()
         self.assertEqual(len(order.order_line.ids), 2)
         self.assertEqual(coupon.state, 'used')
-        self.assertEqual(order.amount_total, 81, "SO total should be 81: (10% of 100 with pricelist) + 10% of 90 with coupon code")
+        self.assertEqual(order.amount_total, 81,
+                         "SO total should be 81: (10% of 100 with pricelist) + 10% of 90 with coupon code")
 
     def test_on_next_order_reward_promotion_program(self):
         # The flow:
@@ -210,7 +212,8 @@ class TestProgramWithCodeOperations(TestSaleCouponCommon):
             })
         ]})
         order.recompute_coupon_lines()
-        self.assertEqual(len(self.p1.coupon_ids.ids), 1, "You should get a coupon for you next order that will offer 10% discount")
+        self.assertEqual(len(self.p1.coupon_ids.ids), 1,
+                         "You should get a coupon for you next order that will offer 10% discount")
         # 4.
         with self.assertRaises(UserError):
             self.env['sale.coupon.apply.code'].with_context(active_id=order.id).create({
@@ -229,7 +232,8 @@ class TestProgramWithCodeOperations(TestSaleCouponCommon):
             'coupon_code': 'free_B_on_next_order'
         }).process_coupon()
         # 6.
-        self.assertEqual(len(order.generated_coupon_ids), 2, "You should get a second coupon for your next order that will offer a free Product B")
+        self.assertEqual(len(order.generated_coupon_ids), 2,
+                         "You should get a second coupon for your next order that will offer a free Product B")
         order.action_confirm()
         # 7.
         order_bis = self.empty_order
@@ -250,13 +254,16 @@ class TestProgramWithCodeOperations(TestSaleCouponCommon):
         self.env['sale.coupon.apply.code'].with_context(active_id=order_bis.id).create({
             'coupon_code': order.generated_coupon_ids[1].code
         }).process_coupon()
-        self.assertEqual(len(order_bis.order_line), 2, "You should get a free Product B")
+        self.assertEqual(len(order_bis.order_line), 2,
+                         "You should get a free Product B")
         # 10.
         self.env['sale.coupon.apply.code'].with_context(active_id=order_bis.id).create({
             'coupon_code': order.generated_coupon_ids[0].code
         }).process_coupon()
-        self.assertEqual(len(order_bis.order_line), 3, "You should get a 10% discount line")
-        self.assertEqual(order_bis.amount_total, 0, "SO total should be null: (Paid product - Free product = 0) + 10% of nothing")
+        self.assertEqual(len(order_bis.order_line), 3,
+                         "You should get a 10% discount line")
+        self.assertEqual(order_bis.amount_total, 0,
+                         "SO total should be null: (Paid product - Free product = 0) + 10% of nothing")
 
     def test_on_next_order_reward_promotion_program_with_requirements(self):
         self.immediate_promotion_program.write({
@@ -279,7 +286,8 @@ class TestProgramWithCodeOperations(TestSaleCouponCommon):
         self.env['sale.coupon.apply.code'].with_context(active_id=order.id).create({
             'coupon_code': 'free_B_on_next_order'
         }).process_coupon()
-        self.assertEqual(len(self.immediate_promotion_program.coupon_ids.ids), 1, "You should get a coupon for you next order that will offer a free product B")
+        self.assertEqual(len(self.immediate_promotion_program.coupon_ids.ids), 1,
+                         "You should get a coupon for you next order that will offer a free product B")
         order_bis = self.empty_order
         order_bis.write({'order_line': [
             (0, False, {
@@ -299,9 +307,12 @@ class TestProgramWithCodeOperations(TestSaleCouponCommon):
         self.env['sale.coupon.apply.code'].with_context(active_id=order_bis.id).create({
             'coupon_code': order.generated_coupon_ids[0].code
         }).process_coupon()
-        self.assertEqual(len(order_bis.order_line), 2, "You should get 1 regular product_B and 1 free product_B")
+        self.assertEqual(len(order_bis.order_line), 2,
+                         "You should get 1 regular product_B and 1 free product_B")
         order_bis.recompute_coupon_lines()
-        self.assertEqual(len(order_bis.order_line), 2, "Free product from a coupon generated from a promotion program on next order should not dissapear")
+        self.assertEqual(len(order_bis.order_line), 2,
+                         "Free product from a coupon generated from a promotion program on next order should not dissapear")
+
 
 def test_on_next_order_reward_promo_program(self):
     # TODO: remove me in master, this was never executed due to bad indentation (the method is not indented under the class)

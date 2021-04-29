@@ -44,7 +44,7 @@ class TestSaleCouponCommon(TestSaleProductAttributeValueSetup):
             'price_include': True,
         })
 
-        #products
+        # products
         self.product_A = self.env['product.product'].create({
             'name': 'Product A',
             'list_price': 100,

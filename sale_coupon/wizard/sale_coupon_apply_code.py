@@ -15,7 +15,8 @@ class SaleCouponApplyCode(models.TransientModel):
         """
         Apply the entered coupon code if valid, raise an UserError otherwise.
         """
-        sales_order = self.env['sale.order'].browse(self.env.context.get('active_id'))
+        sales_order = self.env['sale.order'].browse(
+            self.env.context.get('active_id'))
         error_status = self.apply_coupon(sales_order, self.coupon_code)
         if error_status.get('error', False):
             raise UserError(error_status.get('error', False))
@@ -24,7 +25,8 @@ class SaleCouponApplyCode(models.TransientModel):
 
     def apply_coupon(self, order, coupon_code):
         error_status = {}
-        program = self.env['sale.coupon.program'].search([('promo_code', '=', coupon_code)])
+        program = self.env['sale.coupon.program'].search(
+            [('promo_code', '=', coupon_code)])
         if program:
             error_status = program._check_promo_code(order, coupon_code)
             if not error_status:
@@ -42,7 +44,8 @@ class SaleCouponApplyCode(models.TransientModel):
                     order._create_reward_line(program)
                     order.code_promo_program_id = program
         else:
-            coupon = self.env['sale.coupon'].search([('code', '=', coupon_code)], limit=1)
+            coupon = self.env['sale.coupon'].search(
+                [('code', '=', coupon_code)], limit=1)
             if coupon:
                 error_status = coupon._check_coupon_code(order)
                 if not error_status:
@@ -50,5 +53,6 @@ class SaleCouponApplyCode(models.TransientModel):
                     order.applied_coupon_ids += coupon
                     coupon.write({'state': 'used'})
             else:
-                error_status = {'not_found': _('The code %s is invalid') % (coupon_code)}
+                error_status = {'not_found': _(
+                    'The code %s is invalid') % (coupon_code)}
         return error_status
