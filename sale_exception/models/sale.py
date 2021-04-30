@@ -32,7 +32,7 @@ class SaleOrder(models.Model):
         return "sale_ids"
 
     def detect_exceptions(self):
-        all_exceptions = super(SaleOrder, self).detect_exceptions()
+        all_exceptions = super().detect_exceptions()
         lines = self.mapped("order_line")
         all_exceptions += lines.detect_exceptions()
         return all_exceptions
@@ -46,23 +46,22 @@ class SaleOrder(models.Model):
     def _fields_trigger_check_exception(self):
         return ["ignore_exception", "order_line", "state"]
 
-    @api.model
-    def create(self, vals):
-        record = super(SaleOrder, self).create(vals)
-        check_exceptions = any(
-            field in vals for field in self._fields_trigger_check_exception()
-        )
-        if check_exceptions:
-            record.sale_check_exception()
-        return record
-
-    def write(self, vals):
-        result = super(SaleOrder, self).write(vals)
+    def _check_sale_check_exception(self, vals):
         check_exceptions = any(
             field in vals for field in self._fields_trigger_check_exception()
         )
         if check_exceptions:
             self.sale_check_exception()
+
+    @api.model
+    def create(self, vals):
+        record = super().create(vals)
+        record._check_sale_check_exception(vals)
+        return record
+
+    def write(self, vals):
+        result = super().write(vals)
+        self._check_sale_check_exception(vals)
         return result
 
     def sale_check_exception(self):
@@ -82,7 +81,7 @@ class SaleOrder(models.Model):
 
     def action_draft(self):
         res = super().action_draft()
-        orders = self.filtered(lambda s: s.ignore_exception)
+        orders = self.filtered("ignore_exception")
         orders.write({"ignore_exception": False})
         return res
 

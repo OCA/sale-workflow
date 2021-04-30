@@ -28,7 +28,7 @@
         <field name="model">sale.order.line</field>
         <field
             name="code"
-        >if obj.product_id and sale_line.product_id.type == 'product' and obj.product_id.with_context(warehouse=obj.order_id.warehouse_id.id).virtual_available &lt; obj.product_uom_qty: failed=True</field>
+        >if self.product_id and self.product_id.type == 'product' and self.virtual_available_at_date &lt; self.product_uom_qty: failed=True</field>
         <field name="active" eval="False" />
     </record>
 </odoo>
