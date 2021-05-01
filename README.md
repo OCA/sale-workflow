@@ -36,6 +36,7 @@ addon | version | summary
 [sale_product_multi_add](sale_product_multi_add/) | 14.0.1.0.1 | Sale Product Multi Add
 [sale_product_set](sale_product_set/) | 14.0.1.1.1 | Sale product set
 [sale_quotation_number](sale_quotation_number/) | 14.0.1.0.2 | Different sequence for sale quotations
+[sale_shipping_info_helper](sale_shipping_info_helper/) | 14.0.1.0.0 | Add shipping amounts on sale order
 [sale_stock_picking_blocking](sale_stock_picking_blocking/) | 14.0.1.0.0 | Allow you to block the creation of deliveries from a sale order.
 [sale_tier_validation](sale_tier_validation/) | 14.0.1.0.0 | Extends the functionality of Sale Orders to support a tier validation process.
 [sale_validity](sale_validity/) | 14.0.1.0.1 | Set a default validity delay on quotations
