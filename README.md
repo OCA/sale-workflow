@@ -68,7 +68,6 @@ addon | version | summary
 [sale_order_line_sequence](sale_order_line_sequence/) | 12.0.1.0.0 | Propagates SO line sequence to invoices and stock picking.
 [sale_order_lot_generator](sale_order_lot_generator/) | 12.0.1.0.2 | Sale Order Lot Generator
 [sale_order_lot_selection](sale_order_lot_selection/) | 12.0.2.0.1 | Sale Order Lot Selection
-[sale_order_min_qty](sale_order_min_qty/) | 12.0.1.0.0 | Sale order min quantity
 [sale_order_price_recalculation](sale_order_price_recalculation/) | 12.0.1.1.0 | Recalculate prices / Reset descriptions on sale order lines
 [sale_order_priority](sale_order_priority/) | 12.0.1.0.1 | Define priority on sale orders
 [sale_order_product_assortment](sale_order_product_assortment/) | 12.0.1.0.0 | Sale Order Product Assortment
@@ -90,6 +89,7 @@ addon | version | summary
 [sale_quotation_number](sale_quotation_number/) | 12.0.1.0.0 | Different sequence for sale quotations
 [sale_rental](sale_rental/) | 12.0.1.1.0 | Manage Rental of Products
 [sale_require_po_doc](sale_require_po_doc/) | 12.0.1.0.0 | Sale Orders Require PO or Sales Documentation
+[sale_restricted_qty](sale_restricted_qty/) | 12.0.1.0.0 | Sale order min quantity
 [sale_secondary_salesperson](sale_secondary_salesperson/) | 12.0.1.0.0 | Sale Secondary Salesperson
 [sale_shipping_info_helper](sale_shipping_info_helper/) | 12.0.1.0.0 | Add shipping amounts on sale order
 [sale_start_end_dates](sale_start_end_dates/) | 12.0.1.0.0 | Adds start date and end date on sale order lines
