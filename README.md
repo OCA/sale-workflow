@@ -89,7 +89,7 @@ addon | version | summary
 [sale_quotation_number](sale_quotation_number/) | 12.0.1.0.0 | Different sequence for sale quotations
 [sale_rental](sale_rental/) | 12.0.1.1.0 | Manage Rental of Products
 [sale_require_po_doc](sale_require_po_doc/) | 12.0.1.0.0 | Sale Orders Require PO or Sales Documentation
-[sale_restricted_qty](sale_restricted_qty/) | 12.0.1.0.0 | Sale order min quantity
+[sale_restricted_qty](sale_restricted_qty/) | 12.0.2.0.0 | Sale order min quantity
 [sale_secondary_salesperson](sale_secondary_salesperson/) | 12.0.1.0.0 | Sale Secondary Salesperson
 [sale_shipping_info_helper](sale_shipping_info_helper/) | 12.0.1.0.0 | Add shipping amounts on sale order
 [sale_start_end_dates](sale_start_end_dates/) | 12.0.1.0.0 | Adds start date and end date on sale order lines
