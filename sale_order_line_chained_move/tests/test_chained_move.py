@@ -39,16 +39,17 @@ class TestSaleChainedMove(common.SavepointCase):
 
     def test_chained_move(self):
         """
-            Change operating warehouse to manage delivery steps with Pick/Pack/Ship
-            Create a sale order and confirm it
-            The related moves should be 4 (2 (pack) + 2 (pick))
+        Change operating warehouse to manage delivery steps with Pick/Pack/Ship
+        Create a sale order and confirm it
+        The related moves should be 4 (2 (pack) + 2 (pick))
         """
         self.warehouse.delivery_steps = "pick_pack_ship"
         self._create_sale_order()
         self.order.action_confirm()
 
         self.assertEquals(
-            4, len(self.order.mapped("order_line.chained_move_ids")),
+            4,
+            len(self.order.mapped("order_line.chained_move_ids")),
         )
         self.assertNotIn(
             self.order.mapped("order_line.move_ids").ids,
