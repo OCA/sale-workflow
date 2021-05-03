@@ -19,14 +19,14 @@ class StockRule(models.Model):
         values,
     ):
         res = super()._get_stock_move_values(
-            product_id=product_id,
-            product_qty=product_qty,
-            product_uom=product_uom,
-            location_id=location_id,
-            name=name,
-            origin=origin,
-            company_id=company_id,
-            values=values,
+            product_id,
+            product_qty,
+            product_uom,
+            location_id,
+            name,
+            origin,
+            company_id,
+            values,
         )
         res.update({"related_sale_line_id": values.get("related_sale_line_id")})
         return res
