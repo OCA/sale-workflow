@@ -3,11 +3,20 @@
 from odoo import SUPERUSER_ID, api
 
 
+def __find_origin_moves(moves):
+    all_moves = moves
+    for move in moves:
+        if move.move_orig_ids:
+            all_moves |= __find_origin_moves(move.move_orig_ids)
+    return all_moves
+
+
 def __fill_related(moves, line_id):
     for move in moves:
-        move.related_sale_line_id = line_id
+        moves_to_write = move
         if move.move_orig_ids:
-            __fill_related(move.move_orig_ids, line_id)
+            moves_to_write |= __find_origin_moves(move.move_orig_ids)
+        moves_to_write.write({"related_sale_line_id": line_id.id})
 
 
 def _fill_in_related_sale_line(env):
