@@ -11,8 +11,7 @@ def __fill_related(moves, line_id):
 
 
 def _fill_in_related_sale_line(env):
-    """ Update related_sale_line_id on recursive moves
-    """
+    """Update related_sale_line_id on recursive moves"""
     moves = env["stock.move"].search([("sale_line_id", "!=", False)])
     for move in moves:
         __fill_related(move.move_orig_ids, move.sale_line_id)
