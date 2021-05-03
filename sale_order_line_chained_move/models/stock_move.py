@@ -8,7 +8,10 @@ class StockMove(models.Model):
 
     _inherit = "stock.move"
 
-    related_sale_line_id = fields.Many2one(comodel_name="sale.order.line", index=True,)
+    related_sale_line_id = fields.Many2one(
+        comodel_name="sale.order.line",
+        index=True,
+    )
 
     def _prepare_procurement_values(self):
         res = super()._prepare_procurement_values()
