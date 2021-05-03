@@ -47,7 +47,7 @@ class TestSaleChainedMove(common.SavepointCase):
         self._create_sale_order()
         self.order.action_confirm()
 
-        self.assertEquals(
+        self.assertEqual(
             4,
             len(self.order.mapped("order_line.chained_move_ids")),
         )
