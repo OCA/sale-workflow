@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 13.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-04-27 17:57+0000\n"
-"PO-Revision-Date: 2021-04-27 19:57+0200\n"
+"POT-Creation-Date: 2021-05-05 13:54+0000\n"
+"PO-Revision-Date: 2021-05-05 15:58+0200\n"
 "Last-Translator: Sergio Teruel <sergio.teruel@tecnativa.com>\n"
 "Language-Team: \n"
 "Language: es\n"
@@ -187,6 +187,11 @@ msgid "Group By"
 msgstr "Agrupado por..."
 
 #. module: sale_payment_sheet
+#: model:ir.model.fields,field_description:sale_payment_sheet.field_sale_payment_sheet__group_lines
+msgid "Group statement lines by"
+msgstr "Agrupar Líneas del extracto bancario por"
+
+#. module: sale_payment_sheet
 #: model:ir.model.fields,field_description:sale_payment_sheet.field_sale_invoice_payment_wiz__id
 #: model:ir.model.fields,field_description:sale_payment_sheet.field_sale_payment_sheet__id
 #: model:ir.model.fields,field_description:sale_payment_sheet.field_sale_payment_sheet_line__id
@@ -347,8 +352,10 @@ msgid "Payments"
 msgstr "Pagos"
 
 #. module: sale_payment_sheet
+#: model:ir.model.fields,field_description:sale_payment_sheet.field_sale_invoice_payment_wiz__ref
 #: model:ir.model.fields,field_description:sale_payment_sheet.field_sale_payment_sheet__name
 #: model:ir.model.fields,field_description:sale_payment_sheet.field_sale_payment_sheet_line__ref
+#: model:ir.model.fields.selection,name:sale_payment_sheet.selection__sale_payment_sheet__group_lines__ref
 msgid "Reference"
 msgstr "Referencia"
 
@@ -547,6 +554,3 @@ msgstr "Resumen de pagos de facturas"
 #: model:ir.actions.report,name:sale_payment_sheet.action_report_sale_payment_sheet
 msgid "sale payment sheet summary"
 msgstr "Resumen de pagos de facturas"
-
-#~ msgid "Journal Entries"
-#~ msgstr "Asientos contables"

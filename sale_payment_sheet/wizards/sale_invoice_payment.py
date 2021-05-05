@@ -25,6 +25,7 @@ class SaleInvoicePaymentWiz(models.TransientModel):
     amount = fields.Monetary(
         currency_field="currency_id", string="Amount", required=True,
     )
+    ref = fields.Char(string="Reference")
 
     @api.model
     def default_get(self, fields_list):
@@ -84,12 +85,15 @@ class SaleInvoicePaymentWiz(models.TransientModel):
         return sheet.get_formview_action()
 
     def _process_invoice(self, sheet, invoice):
-        sheet_line = sheet.line_ids.filtered(lambda ln: ln.invoice_id == invoice)
+        all_sheet_lines = sheet.line_ids.filtered(lambda ln: ln.invoice_id == invoice)
+        sheet_line = all_sheet_lines.filtered(lambda ln: ln.ref == self.ref)
+        other_lines = all_sheet_lines - sheet_line
         invoice_amount_residual = (
             invoice.amount_residual
             if invoice.type == "out_invoice"
             else -invoice.amount_residual
         )
+        invoice_amount_residual -= sum(other_lines.mapped("amount"))
         amount_pay = 0.0
         if self.amount > 0:
             amount_pay = (
@@ -111,6 +115,7 @@ class SaleInvoicePaymentWiz(models.TransientModel):
                             "amount": amount_pay,
                             "partner_id": invoice.partner_id.id,
                             "invoice_id": invoice.id,
+                            "ref": self.ref,
                         },
                     )
                 ]
