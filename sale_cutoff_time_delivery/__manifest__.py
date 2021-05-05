@@ -3,7 +3,7 @@
 {
     "name": "Sale Cutoff Time Delivery",
     "summary": "Schedule delivery orders according to cutoff preferences",
-    "version": "13.0.1.1.0",
+    "version": "13.0.1.2.0",
     "development_status": "Alpha",
     "category": "Warehouse Management",
     "website": "https://github.com/OCA/sale-workflow",
