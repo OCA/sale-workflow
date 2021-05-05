@@ -21,7 +21,11 @@ class SaleOrderLine(models.Model):
         compute="_compute_can_amend_and_reprocure",
     )
 
-    @api.depends("pickings_in_progress", "product_id.type")
+    @api.model
+    def _get_can_amend_and_reprocure_depends(self):
+        return ["pickings_in_progress", "product_id.type"]
+
+    @api.depends(lambda self: self._get_can_amend_and_reprocure_depends())
     def _compute_can_amend_and_reprocure(self):
         """
             Filter here the lines that can be reprocured

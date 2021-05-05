@@ -69,7 +69,7 @@ class TestSaleProcurementAmendment(common.SavepointCase):
         """
         self._create_sale_order()
         self.order.action_confirm()
-        self.assertEquals(
+        self.assertEqual(
             1,
             len(self.order.picking_ids),
         )
@@ -127,8 +127,10 @@ class TestSaleProcurementAmendment(common.SavepointCase):
         self.order.picking_ids.move_line_ids.filtered(
             lambda m: m.product_id == self.product1
         ).qty_done = 1.0
-        wizard = self.env["stock.backorder.confirmation"].create(
-            {"pick_ids": [(6, 0, self.order.picking_ids.ids)]}
+        wizard = (
+            self.env["stock.backorder.confirmation"]
+            .with_context(button_validate_picking_ids=self.order.picking_ids.ids)
+            .create({"pick_ids": [(6, 0, self.order.picking_ids.ids)]})
         )
         wizard.process()
 
@@ -156,10 +158,10 @@ class TestSaleProcurementAmendment(common.SavepointCase):
             lambda m: m.picking_id.location_dest_id.usage == "customer"
             and m.product_id == self.product1
         )
-        self.assertEquals(10.0, move_out.product_uom_qty)
+        self.assertEqual(10.0, move_out.product_uom_qty)
         # Decrease qty
         self.sale_line.write({"product_uom_qty": 9.0})
-        self.assertEquals(
+        self.assertEqual(
             "cancel",
             move_out.state,
         )
@@ -169,7 +171,7 @@ class TestSaleProcurementAmendment(common.SavepointCase):
             and m.picking_id.location_dest_id.usage == "customer"
             and m.product_id == self.product1
         )
-        self.assertEquals(
+        self.assertEqual(
             9.0,
             move_out.product_uom_qty,
         )
@@ -183,18 +185,16 @@ class TestSaleProcurementAmendment(common.SavepointCase):
         self._create_sale_order()
         self.order.action_confirm()
 
-        move_mto = self.env["stock.move"].search(
-            [
-                ("group_id", "=", self.order.procurement_group_id.id),
-                ("location_id", "=", self.env.ref("stock.stock_location_stock").id),
-                ("product_id", "=", self.product1.id),
-            ]
+        move_mto = self.order.picking_ids.move_lines.filtered(
+            lambda line: line.location_id == self.env.ref("stock.stock_location_stock")
+            and line.product_id == self.product1
         )
-        self.assertEquals(
+
+        self.assertEqual(
             1,
             len(move_mto),
         )
-        self.assertEquals(
+        self.assertEqual(
             10.0,
             move_mto.product_qty,
         )
@@ -202,23 +202,21 @@ class TestSaleProcurementAmendment(common.SavepointCase):
         # Decrease qty
         self.sale_line.write({"product_uom_qty": 9.0})
 
-        self.assertEquals(
+        self.assertEqual(
             "cancel",
             move_mto.state,
         )
-        move_mto = self.env["stock.move"].search(
-            [
-                ("state", "!=", "cancel"),
-                ("group_id", "=", self.order.procurement_group_id.id),
-                ("location_id", "=", self.env.ref("stock.stock_location_stock").id),
-                ("product_id", "=", self.product1.id),
-            ]
+        move_mto = self.order.picking_ids.move_lines.filtered(
+            lambda line: line.location_id == self.env.ref("stock.stock_location_stock")
+            and line.product_id == self.product1
+            and line.state != "cancel"
         )
-        self.assertEquals(
+
+        self.assertEqual(
             1,
             len(move_mto),
         )
-        self.assertEquals(
+        self.assertEqual(
             9.0,
             move_mto.product_qty,
         )
@@ -226,24 +224,21 @@ class TestSaleProcurementAmendment(common.SavepointCase):
         # Decrease qty
         self.sale_line.write({"product_uom_qty": 8.0})
 
-        self.assertEquals(
+        self.assertEqual(
             "cancel",
             move_mto.state,
         )
-        move_mto = self.env["stock.move"].search(
-            [
-                ("state", "!=", "cancel"),
-                ("group_id", "=", self.order.procurement_group_id.id),
-                ("location_id", "=", self.env.ref("stock.stock_location_stock").id),
-                ("product_id", "=", self.product1.id),
-            ]
+        move_mto = self.order.picking_ids.move_lines.filtered(
+            lambda line: line.location_id == self.env.ref("stock.stock_location_stock")
+            and line.product_id == self.product1
+            and line.state != "cancel"
         )
-        self.assertEquals(
+        self.assertEqual(
             1,
             len(move_mto),
         )
         # Check procurement qty
-        self.assertEquals(
+        self.assertEqual(
             8.0,
             move_mto.product_qty,
         )
@@ -254,23 +249,20 @@ class TestSaleProcurementAmendment(common.SavepointCase):
             and m.product_id == self.product1
         )
 
-        self.assertEquals(
+        self.assertEqual(
             8.0,
             move_out.product_uom_qty,
         )
 
         # Increase qty
         self.sale_line.write({"product_uom_qty": 11.0})
-        move_mto = self.env["stock.move"].search(
-            [
-                ("state", "!=", "cancel"),
-                ("group_id", "=", self.order.procurement_group_id.id),
-                ("location_id", "=", self.env.ref("stock.stock_location_stock").id),
-                ("product_id", "=", self.product1.id),
-            ]
+        move_mto = self.order.picking_ids.move_lines.filtered(
+            lambda line: line.location_id == self.env.ref("stock.stock_location_stock")
+            and line.product_id == self.product1
+            and line.state != "cancel"
         )
-        # Check procurement qty
-        self.assertEquals(2, len(move_mto))
+        # Check move qty - new has been added to existing one
+        self.assertEqual(1, len(move_mto))
         self.assertEqual(11, sum(move_mto.mapped("product_qty")))
         # Check move out qty
         moves_out = self.order.picking_ids.mapped("move_lines").filtered(
@@ -281,7 +273,7 @@ class TestSaleProcurementAmendment(common.SavepointCase):
         qty = 0.0
         for move in moves_out:
             qty += move.product_uom_qty
-        self.assertEquals(
+        self.assertEqual(
             11.0,
             qty,
         )
@@ -300,17 +292,17 @@ class TestSaleProcurementAmendment(common.SavepointCase):
         )
         move_product_1 = move_out.filtered(lambda m: m.product_id == self.product1)
         move_product_2 = move_out.filtered(lambda m: m.product_id == self.product2)
-        self.assertEquals(10.0, move_product_1.product_uom_qty)
-        self.assertEquals(20.0, move_product_2.product_uom_qty)
+        self.assertEqual(10.0, move_product_1.product_uom_qty)
+        self.assertEqual(20.0, move_product_2.product_uom_qty)
 
         # Decrease qty for both lines at the same time
         self.order.order_line.write({"product_uom_qty": 9.0})
 
-        self.assertEquals(
+        self.assertEqual(
             "cancel",
             move_product_1.state,
         )
-        self.assertEquals(
+        self.assertEqual(
             "cancel",
             move_product_2.state,
         )
@@ -321,11 +313,11 @@ class TestSaleProcurementAmendment(common.SavepointCase):
         )
         move_product_1 = move_out.filtered(lambda m: m.product_id == self.product1)
         move_product_2 = move_out.filtered(lambda m: m.product_id == self.product2)
-        self.assertEquals(
+        self.assertEqual(
             9.0,
             move_product_1.product_uom_qty,
         )
-        self.assertEquals(
+        self.assertEqual(
             9.0,
             move_product_2.product_uom_qty,
         )
@@ -337,7 +329,7 @@ class TestSaleProcurementAmendment(common.SavepointCase):
         """
         self._create_sale_order()
         self.order.action_confirm()
-        self.assertEquals(
+        self.assertEqual(
             1,
             len(self.order.picking_ids),
         )
@@ -354,7 +346,7 @@ class TestSaleProcurementAmendment(common.SavepointCase):
             self.sale_line_2.pickings_in_progress,
         )
 
-        self.order.picking_ids.with_context(cancel_backorder=True).action_done()
+        self.order.picking_ids.with_context(cancel_backorder=True)._action_done()
         self.assertFalse(
             all(
                 value
@@ -420,8 +412,10 @@ class TestSaleProcurementAmendment(common.SavepointCase):
             lambda m: m.product_id == self.product1
         )
         move_line.qty_done = 1.0
-        wizard = self.env["stock.backorder.confirmation"].create(
-            {"pick_ids": [(6, 0, picking.ids)]}
+        wizard = (
+            self.env["stock.backorder.confirmation"]
+            .with_context(button_validate_picking_ids=picking.ids)
+            .create({"pick_ids": [(6, 0, picking.ids)]})
         )
         wizard.process()
 
