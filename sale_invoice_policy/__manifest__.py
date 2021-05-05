@@ -8,7 +8,7 @@
     "author": "ACSONE SA/NV, Odoo Community Association (OCA)",
     "website": "https://github.com/OCA/sale-workflow",
     "category": "Sales Management",
-    "version": "13.0.1.0.0",
+    "version": "13.0.1.0.1",
     "license": "AGPL-3",
     "depends": ["sale", "sale_stock"],
     "data": [
