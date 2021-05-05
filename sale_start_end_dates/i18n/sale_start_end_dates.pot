@@ -41,12 +41,14 @@ msgstr ""
 
 #. module: sale_start_end_dates
 #: code:addons/sale_start_end_dates/models/sale_order.py:86
+#: code:addons/sale_start_end_dates/models/sale_order.py:87
 #, python-format
 msgid "Missing End Date for sale order line with Product '%s'."
 msgstr ""
 
 #. module: sale_start_end_dates
 #: code:addons/sale_start_end_dates/models/sale_order.py:90
+#: code:addons/sale_start_end_dates/models/sale_order.py:91
 #, python-format
 msgid "Missing Start Date for sale order line with Product '%s'."
 msgstr ""
@@ -84,6 +86,7 @@ msgstr ""
 
 #. module: sale_start_end_dates
 #: code:addons/sale_start_end_dates/models/sale_order.py:94
+#: code:addons/sale_start_end_dates/models/sale_order.py:95
 #, python-format
 msgid "Start Date should be before or be the same as End Date for sale order line with Product '%s'."
 msgstr ""
