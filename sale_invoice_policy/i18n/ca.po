@@ -1,0 +1,119 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+#	* sale_invoice_policy
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 12.0\n"
+"Report-Msgid-Bugs-To: \n"
+"PO-Revision-Date: 2020-02-26 18:13+0000\n"
+"Last-Translator: georginaf <georgina.fornes@qubiq.es>\n"
+"Language-Team: none\n"
+"Language: ca\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: Weblate 3.10\n"
+
+#. module: sale_invoice_policy
+#: model:ir.model,name:sale_invoice_policy.model_res_config_settings
+msgid "Config Settings"
+msgstr "Configuració"
+
+#. module: sale_invoice_policy
+#: model:ir.model.fields,field_description:sale_invoice_policy.field_product_product__default_invoice_policy
+#: model:ir.model.fields,field_description:sale_invoice_policy.field_product_template__default_invoice_policy
+msgid "Default Invoicing Policy"
+msgstr "Política de Facturació"
+
+#. module: sale_invoice_policy
+#: model:ir.model.fields,field_description:sale_invoice_policy.field_res_config_settings__sale_default_invoice_policy
+msgid "Default Sale Invoice Policy"
+msgstr "Política de Facturació"
+
+#. module: sale_invoice_policy
+#: model_terms:ir.ui.view,arch_db:sale_invoice_policy.view_sales_config
+msgid "Default Sale Order Invoice Policy"
+msgstr "Política de Facturació"
+
+#. module: sale_invoice_policy
+#: selection:product.template,default_invoice_policy:0
+#: selection:product.template,invoice_policy:0
+#: selection:sale.order,invoice_policy:0
+msgid "Delivered quantities"
+msgstr "Quantitats entregades"
+
+#. module: sale_invoice_policy
+#: model:ir.model.fields,field_description:sale_invoice_policy.field_sale_order__invoice_policy
+msgid "Invoice Policy"
+msgstr "Política de Facturació"
+
+#. module: sale_invoice_policy
+#: model:ir.model.fields,field_description:sale_invoice_policy.field_sale_order__invoice_policy_required
+msgid "Invoice Policy Required"
+msgstr "Política de Facturació"
+
+#. module: sale_invoice_policy
+#: model_terms:ir.ui.view,arch_db:sale_invoice_policy.view_sales_config
+msgid "Invoice Policy required in Sale Orders"
+msgstr "Política de Facturació"
+
+#. module: sale_invoice_policy
+#: model:ir.model.fields,field_description:sale_invoice_policy.field_product_product__invoice_policy
+#: model:ir.model.fields,field_description:sale_invoice_policy.field_product_template__invoice_policy
+msgid "Invoicing Policy"
+msgstr "Política de Facturació"
+
+#. module: sale_invoice_policy
+#: model:ir.model.fields,help:sale_invoice_policy.field_product_product__default_invoice_policy
+#: model:ir.model.fields,help:sale_invoice_policy.field_product_template__default_invoice_policy
+#: model:ir.model.fields,help:sale_invoice_policy.field_sale_order__invoice_policy
+msgid "Ordered Quantity: Invoice based on the quantity the customer ordered.\n"
+"Delivered Quantity: Invoiced based on the quantity the vendor delivered (time or deliveries)."
+msgstr ""
+"Quantitat demanada: Factura basada en la quantitat demanada pel client.\n"
+"Quantitat entregada: Factura basada en funció de la quantitat entregada pel "
+"proveïdor ( temps o entregues)."
+
+#. module: sale_invoice_policy
+#: model:ir.model.fields,help:sale_invoice_policy.field_product_product__invoice_policy
+#: model:ir.model.fields,help:sale_invoice_policy.field_product_template__invoice_policy
+msgid "Ordered Quantity: Invoice quantities ordered by the customer.\n"
+"Delivered Quantity: Invoice quantities delivered to the customer."
+msgstr ""
+"Quantitat demanada: Factura basada en la quantitat demanada pel client.\n"
+"Quantitat entregada: Facturada en funció de la quantitat entregada pel "
+"proveïdor ( temps o entregues)."
+
+#. module: sale_invoice_policy
+#: selection:product.template,default_invoice_policy:0
+#: selection:product.template,invoice_policy:0
+#: selection:sale.order,invoice_policy:0
+msgid "Ordered quantities"
+msgstr "Quantitats Demanades"
+
+#. module: sale_invoice_policy
+#: model:ir.model,name:sale_invoice_policy.model_product_template
+msgid "Product Template"
+msgstr "Plantilla del Producte"
+
+#. module: sale_invoice_policy
+#: model:ir.model.fields,field_description:sale_invoice_policy.field_res_config_settings__sale_invoice_policy_required
+msgid "Sale Invoice Policy Required"
+msgstr "Política de Facturació"
+
+#. module: sale_invoice_policy
+#: model:ir.model,name:sale_invoice_policy.model_sale_order
+msgid "Sale Order"
+msgstr "Comanda de Venda"
+
+#. module: sale_invoice_policy
+#: model:ir.model,name:sale_invoice_policy.model_sale_order_line
+msgid "Sales Order Line"
+msgstr "Línia de comanda de venda"
+
+#. module: sale_invoice_policy
+#: model:ir.model.fields,help:sale_invoice_policy.field_res_config_settings__sale_invoice_policy_required
+msgid "This makes Invoice Policy required on Sale Orders"
+msgstr "La política de facturació és necessària a les comandes de venda"
