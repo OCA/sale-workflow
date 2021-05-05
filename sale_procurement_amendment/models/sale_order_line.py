@@ -57,7 +57,10 @@ class SaleOrderLine(models.Model):
         (self - line_in_progres).update({"pickings_in_progress": False})
 
     @api.depends(
-        "move_ids", "move_ids.state", "move_ids.product_qty", "product_uom_qty",
+        "move_ids",
+        "move_ids.state",
+        "move_ids.product_qty",
+        "product_uom_qty",
     )
     def _compute_to_be_procured(self):
         """
@@ -79,9 +82,9 @@ class SaleOrderLine(models.Model):
 
     def _amend_and_reprocure(self):
         """
-            Filter lines that can reprocure
-            Cancel related moves
-            Relaunch stock rules
+        Filter lines that can reprocure
+        Cancel related moves
+        Relaunch stock rules
         """
         lines = self.filtered("can_amend_and_reprocure")
         moves = lines.mapped("move_ids") | lines.mapped("move_ids.move_orig_ids")
