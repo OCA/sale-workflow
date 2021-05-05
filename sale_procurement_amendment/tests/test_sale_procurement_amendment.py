@@ -70,7 +70,8 @@ class TestSaleProcurementAmendment(common.SavepointCase):
         self._create_sale_order()
         self.order.action_confirm()
         self.assertEquals(
-            1, len(self.order.picking_ids),
+            1,
+            len(self.order.picking_ids),
         )
         self.assertTrue(
             all(
@@ -78,8 +79,12 @@ class TestSaleProcurementAmendment(common.SavepointCase):
                 for value in self.order.picking_ids.move_lines.mapped("can_be_amended")
             )
         )
-        self.assertFalse(self.sale_line.pickings_in_progress,)
-        self.assertFalse(self.sale_line_2.pickings_in_progress,)
+        self.assertFalse(
+            self.sale_line.pickings_in_progress,
+        )
+        self.assertFalse(
+            self.sale_line_2.pickings_in_progress,
+        )
 
     def test_01_pickings_in_progress_op(self):
         """
@@ -103,8 +108,12 @@ class TestSaleProcurementAmendment(common.SavepointCase):
                 ]
             )
         )
-        self.assertTrue(self.sale_line.pickings_in_progress,)
-        self.assertTrue(self.sale_line_2.pickings_in_progress,)
+        self.assertTrue(
+            self.sale_line.pickings_in_progress,
+        )
+        self.assertTrue(
+            self.sale_line_2.pickings_in_progress,
+        )
 
     def test_02_pickings_in_progress_backorder(self):
         """
@@ -132,7 +141,9 @@ class TestSaleProcurementAmendment(common.SavepointCase):
             [True, True, False],
             self.order.picking_ids.mapped("move_lines.can_be_amended"),
         )
-        self.assertTrue(self.sale_line.pickings_in_progress,)
+        self.assertTrue(
+            self.sale_line.pickings_in_progress,
+        )
 
     def test_03_decrease_sale_line(self):
         """
@@ -149,7 +160,8 @@ class TestSaleProcurementAmendment(common.SavepointCase):
         # Decrease qty
         self.sale_line.write({"product_uom_qty": 9.0})
         self.assertEquals(
-            "cancel", move_out.state,
+            "cancel",
+            move_out.state,
         )
 
         move_out = self.order.picking_ids.mapped("move_lines").filtered(
@@ -158,7 +170,8 @@ class TestSaleProcurementAmendment(common.SavepointCase):
             and m.product_id == self.product1
         )
         self.assertEquals(
-            9.0, move_out.product_uom_qty,
+            9.0,
+            move_out.product_uom_qty,
         )
 
     def test_04_mto_rule(self):
@@ -178,17 +191,20 @@ class TestSaleProcurementAmendment(common.SavepointCase):
             ]
         )
         self.assertEquals(
-            1, len(move_mto),
+            1,
+            len(move_mto),
         )
         self.assertEquals(
-            10.0, move_mto.product_qty,
+            10.0,
+            move_mto.product_qty,
         )
 
         # Decrease qty
         self.sale_line.write({"product_uom_qty": 9.0})
 
         self.assertEquals(
-            "cancel", move_mto.state,
+            "cancel",
+            move_mto.state,
         )
         move_mto = self.env["stock.move"].search(
             [
@@ -199,17 +215,20 @@ class TestSaleProcurementAmendment(common.SavepointCase):
             ]
         )
         self.assertEquals(
-            1, len(move_mto),
+            1,
+            len(move_mto),
         )
         self.assertEquals(
-            9.0, move_mto.product_qty,
+            9.0,
+            move_mto.product_qty,
         )
 
         # Decrease qty
         self.sale_line.write({"product_uom_qty": 8.0})
 
         self.assertEquals(
-            "cancel", move_mto.state,
+            "cancel",
+            move_mto.state,
         )
         move_mto = self.env["stock.move"].search(
             [
@@ -220,11 +239,13 @@ class TestSaleProcurementAmendment(common.SavepointCase):
             ]
         )
         self.assertEquals(
-            1, len(move_mto),
+            1,
+            len(move_mto),
         )
         # Check procurement qty
         self.assertEquals(
-            8.0, move_mto.product_qty,
+            8.0,
+            move_mto.product_qty,
         )
         # Check move out qty
         move_out = self.order.picking_ids.mapped("move_lines").filtered(
@@ -234,7 +255,8 @@ class TestSaleProcurementAmendment(common.SavepointCase):
         )
 
         self.assertEquals(
-            8.0, move_out.product_uom_qty,
+            8.0,
+            move_out.product_uom_qty,
         )
 
         # Increase qty
@@ -260,7 +282,8 @@ class TestSaleProcurementAmendment(common.SavepointCase):
         for move in moves_out:
             qty += move.product_uom_qty
         self.assertEquals(
-            11.0, qty,
+            11.0,
+            qty,
         )
 
     def test_05_decrease_multi_sale_line(self):
@@ -284,10 +307,12 @@ class TestSaleProcurementAmendment(common.SavepointCase):
         self.order.order_line.write({"product_uom_qty": 9.0})
 
         self.assertEquals(
-            "cancel", move_product_1.state,
+            "cancel",
+            move_product_1.state,
         )
         self.assertEquals(
-            "cancel", move_product_2.state,
+            "cancel",
+            move_product_2.state,
         )
 
         move_out = self.order.picking_ids.mapped("move_lines").filtered(
@@ -297,10 +322,12 @@ class TestSaleProcurementAmendment(common.SavepointCase):
         move_product_1 = move_out.filtered(lambda m: m.product_id == self.product1)
         move_product_2 = move_out.filtered(lambda m: m.product_id == self.product2)
         self.assertEquals(
-            9.0, move_product_1.product_uom_qty,
+            9.0,
+            move_product_1.product_uom_qty,
         )
         self.assertEquals(
-            9.0, move_product_2.product_uom_qty,
+            9.0,
+            move_product_2.product_uom_qty,
         )
 
     def test_06_pickings_done(self):
@@ -311,7 +338,8 @@ class TestSaleProcurementAmendment(common.SavepointCase):
         self._create_sale_order()
         self.order.action_confirm()
         self.assertEquals(
-            1, len(self.order.picking_ids),
+            1,
+            len(self.order.picking_ids),
         )
         self.assertTrue(
             all(
@@ -319,8 +347,12 @@ class TestSaleProcurementAmendment(common.SavepointCase):
                 for value in self.order.picking_ids.move_lines.mapped("can_be_amended")
             )
         )
-        self.assertFalse(self.sale_line.pickings_in_progress,)
-        self.assertFalse(self.sale_line_2.pickings_in_progress,)
+        self.assertFalse(
+            self.sale_line.pickings_in_progress,
+        )
+        self.assertFalse(
+            self.sale_line_2.pickings_in_progress,
+        )
 
         self.order.picking_ids.with_context(cancel_backorder=True).action_done()
         self.assertFalse(
@@ -329,17 +361,21 @@ class TestSaleProcurementAmendment(common.SavepointCase):
                 for value in self.order.picking_ids.move_lines.mapped("can_be_amended")
             )
         )
-        self.assertFalse(self.sale_line.pickings_in_progress,)
-        self.assertFalse(self.sale_line_2.pickings_in_progress,)
+        self.assertFalse(
+            self.sale_line.pickings_in_progress,
+        )
+        self.assertFalse(
+            self.sale_line_2.pickings_in_progress,
+        )
 
     def test_07_two_steps(self):
         """
-            Change operating warehouse to manage delivery steps with Pick/Ship
-            Create a sale order and confirm it
-            Change quantity to 9.0
-            Check original moves are cancelled and a new flow is created for
-            the new quantity
-            Repeat the operation decreasing quantity to 8.0
+        Change operating warehouse to manage delivery steps with Pick/Ship
+        Create a sale order and confirm it
+        Change quantity to 9.0
+        Check original moves are cancelled and a new flow is created for
+        the new quantity
+        Repeat the operation decreasing quantity to 8.0
         """
         self.warehouse.delivery_steps = "pick_ship"
         self._create_sale_order()
@@ -368,11 +404,11 @@ class TestSaleProcurementAmendment(common.SavepointCase):
 
     def test_08_three_steps(self):
         """
-            Change operating warehouse to manage delivery steps with Pick/Pack/Ship
-            Create a sale order and confirm it
-            Transfer a product quantity of 1 on first product on picking side
-            The first sale line cannot be amended
-            The second line can
+        Change operating warehouse to manage delivery steps with Pick/Pack/Ship
+        Create a sale order and confirm it
+        Transfer a product quantity of 1 on first product on picking side
+        The first sale line cannot be amended
+        The second line can
         """
         self.warehouse.delivery_steps = "pick_pack_ship"
         self._create_sale_order()
