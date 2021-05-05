@@ -8,7 +8,9 @@ class StockPicking(models.Model):
 
     _inherit = "stock.picking"
 
-    can_be_amended = fields.Boolean(compute="_compute_can_be_amended",)
+    can_be_amended = fields.Boolean(
+        compute="_compute_can_be_amended",
+    )
 
     @api.depends("move_lines.can_be_amended")
     def _compute_can_be_amended(self):

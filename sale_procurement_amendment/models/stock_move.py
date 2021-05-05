@@ -9,7 +9,9 @@ class StockMove(models.Model):
 
     _inherit = "stock.move"
 
-    can_be_amended = fields.Boolean(compute="_compute_can_be_amended",)
+    can_be_amended = fields.Boolean(
+        compute="_compute_can_be_amended",
+    )
 
     @api.depends("state", "move_line_ids.qty_done")
     def _compute_can_be_amended(self):
