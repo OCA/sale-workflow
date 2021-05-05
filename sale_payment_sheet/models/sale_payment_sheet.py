@@ -81,6 +81,9 @@ class SalePaymentSheet(models.Model):
     amount_total = fields.Monetary(
         string="Total", store=True, readonly=True, compute="_compute_amount_total"
     )
+    group_lines = fields.Selection(
+        selection=[("ref", "Reference")], string="Group statement lines by"
+    )
 
     @api.depends("line_ids.amount")
     def _compute_amount_total(self):
@@ -118,6 +121,13 @@ class SalePaymentSheet(models.Model):
                 )
         return super().unlink()
 
+    @api.model
+    def _statement_line_key(self, line):
+        if self.group_lines == "ref":
+            return (line.partner_id.id, line.ref)
+        else:
+            return (line.id,)
+
     def button_confirm_sheet(self):
         sheets = self.filtered(lambda r: r.state == "open")
         BankStatement = self.env["account.bank.statement"].sudo()
@@ -131,23 +141,37 @@ class SalePaymentSheet(models.Model):
                     "user_id": sheet.user_id.id,
                 }
             )
+            vals_dic = {}
             for line in sheet.line_ids:
-                vals = {
-                    "name": line.name,
-                    "date": line.date,
-                    "amount": line.amount,
-                    "partner_id": line.partner_id.id,
-                    "ref": line.ref,
-                    "note": line.note,
-                    "sequence": line.sequence,
-                    "statement_id": statement.id,
-                }
+                key = self._statement_line_key(line)
+
                 if line.invoice_id.type == "out_refund" and line.amount > 0.0:
                     # convert to negative amounts if user pays a refund out
                     # invoice with a positive amount.
-                    vals["amount"] = -line.amount
+                    amount_line = -line.amount
+                else:
+                    amount_line = line.amount
+
+                if key not in vals_dic:
+                    vals_dic[key] = {
+                        "name": line.name,
+                        "date": line.date,
+                        "amount": amount_line,
+                        "partner_id": line.partner_id.id,
+                        "ref": line.ref,
+                        "note": line.note,
+                        "sequence": line.sequence,
+                        "statement_id": statement.id,
+                        "payment_sheet_line_ids": line,
+                    }
+                else:
+                    vals_dic[key]["amount"] += amount_line
+                    vals_dic[key]["name"] += " {}".format(line.invoice_id.name)
+                    vals_dic[key]["payment_sheet_line_ids"] += line
+            for vals in vals_dic.values():
+                payment_sheet_line_ids = vals.pop("payment_sheet_line_ids", None)
                 statement_line = BankStatementLine.create(vals)
-                line.statement_line_id = statement_line
+                payment_sheet_line_ids.statement_line_id = statement_line
             sheet.message_post(
                 body=_("Sheet %s confirmed, bank statement were created.")
                 % (statement.name,)
