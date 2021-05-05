@@ -49,14 +49,12 @@ msgid ""
 msgstr ""
 
 #. module: sale_start_end_dates
-#: code:addons/sale_start_end_dates/models/sale_order.py:86
 #: code:addons/sale_start_end_dates/models/sale_order.py:87
 #, python-format
 msgid "Missing End Date for sale order line with Product '%s'."
 msgstr "Fehlendes Enddatum in Auftragsposition des Produkts '%s'."
 
 #. module: sale_start_end_dates
-#: code:addons/sale_start_end_dates/models/sale_order.py:90
 #: code:addons/sale_start_end_dates/models/sale_order.py:91
 #, python-format
 msgid "Missing Start Date for sale order line with Product '%s'."
@@ -99,7 +97,6 @@ msgid "Start Date"
 msgstr "Anfangsdatum"
 
 #. module: sale_start_end_dates
-#: code:addons/sale_start_end_dates/models/sale_order.py:94
 #: code:addons/sale_start_end_dates/models/sale_order.py:95
 #, python-format
 msgid ""
