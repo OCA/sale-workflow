@@ -81,20 +81,21 @@ class SaleOrderLine(models.Model):
 
     @api.constrains('start_date', 'end_date')
     def _check_start_end_dates(self):
-        if self.must_have_dates:
-            if not self.end_date:
-                raise ValidationError(_(
-                    "Missing End Date for sale order line with "
-                    "Product '%s'.") % (self.product_id.name))
-            if not self.start_date:
-                raise ValidationError(_(
-                    "Missing Start Date for sale order line with "
-                    "Product '%s'.") % (self.product_id.name))
-            if self.start_date > self.end_date:
-                raise ValidationError(_(
-                    "Start Date should be before or be the same as "
-                    "End Date for sale order line with Product '%s'.")
-                    % (self.product_id.name))
+        for line in self:
+            if line.must_have_dates:
+                if not line.end_date:
+                    raise ValidationError(_(
+                        "Missing End Date for sale order line with "
+                        "Product '%s'.") % (line.product_id.name))
+                if not line.start_date:
+                    raise ValidationError(_(
+                        "Missing Start Date for sale order line with "
+                        "Product '%s'.") % (line.product_id.name))
+                if line.start_date > line.end_date:
+                    raise ValidationError(_(
+                        "Start Date should be before or be the same as "
+                        "End Date for sale order line with Product '%s'.")
+                        % (line.product_id.name))
 
     def _prepare_invoice_line(self, qty):
         self.ensure_one()
