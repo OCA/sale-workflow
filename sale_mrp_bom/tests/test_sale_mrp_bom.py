@@ -1,6 +1,7 @@
 # Copyright 2020 Akretion Renato Lima <renato.lima@akretion.com.br>
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
 
+from odoo.exceptions import ValidationError
 from odoo.tests.common import TransactionCase
 
 
@@ -96,3 +97,10 @@ class TestSaleMrpLink(TransactionCase):
         for i, line in enumerate(picking.move_lines):
             values = line._prepare_procurement_values()
             self.assertEqual(values["bom_id"], boms[i])
+
+    def test_mismatch_product_variant_ids(self):
+        so, bom_a, bom_b = self._prepare_so()
+        line_a = so.order_line[0]
+        self.assertEqual(line_a.bom_id, bom_a)
+        with self.assertRaises(ValidationError):
+            line_a.write({"bom_id": bom_b})
