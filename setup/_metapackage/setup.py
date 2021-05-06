@@ -21,6 +21,7 @@ setuptools.setup(
         'odoo14-addon-sale_order_lot_selection',
         'odoo14-addon-sale_order_revision',
         'odoo14-addon-sale_partner_incoterm',
+        'odoo14-addon-sale_pricelist_from_commitment_date',
         'odoo14-addon-sale_product_category_menu',
         'odoo14-addon-sale_product_multi_add',
         'odoo14-addon-sale_product_set',
