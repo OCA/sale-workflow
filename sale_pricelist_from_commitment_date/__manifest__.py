@@ -3,7 +3,7 @@
 {
     "name": "Sale Pricelist From Commitment Date",
     "summary": "Use sale order commitment date to compute line price from pricelist",
-    "version": "14.0.1.0.0",
+    "version": "14.0.1.0.1",
     "category": "Sale",
     "website": "https://github.com/OCA/sale-workflow",
     "author": "Camptocamp, Odoo Community Association (OCA)",
