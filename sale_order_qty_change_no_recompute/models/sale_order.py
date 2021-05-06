@@ -1,17 +1,24 @@
 # Copyright 2021 Tecnativa - Víctor Martínez
+# Copyright 2021 Tecnativa - Pedro M. Baeza
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
 
-from odoo import api, models
+from odoo import models
 
 
 class SaleOrderLine(models.Model):
     _inherit = "sale.order.line"
 
-    @api.onchange("product_uom", "product_uom_qty")
-    def product_uom_change(self):
-        if self._origin and (
-            self.product_uom_qty != self._origin.product_uom_qty
-            and self.product_uom == self._origin.product_uom
-        ):
-            return
-        return super().product_uom_change()
+    def _onchange_eval(self, field_name, onchange, result):
+        """Remove the trigger for the undesired onchange method with this field.
+
+        We have to act at this place, as `_onchange_methods` is defined as a
+        property, and thus it can't be inherited due to the conflict of
+        inheritance between Python and Odoo ORM, so we can consider this as a HACK.
+        """
+        if field_name == "product_uom_qty":
+            cls = type(self)
+            for method in self._onchange_methods.get(field_name, ()):
+                if method == cls.product_uom_change:
+                    self._onchange_methods[field_name].remove(method)
+                    break
+        return super()._onchange_eval(field_name, onchange, result)
