@@ -27,7 +27,7 @@ class TestSaleInvoiceAutoDeliver(common.TransactionCase):
             {"advance_payment_method": "all_auto"}
         )
         adv_wizard.with_context(active_ids=[so.id]).create_invoices()
-        self.assertEquals(so.picking_ids.state, "done")
+        self.assertEqual(so.picking_ids.state, "done")
 
     def test_sale_invoice_auto_deliver_no_availability(self):
         """Create SO on product without stock
@@ -35,12 +35,16 @@ class TestSaleInvoiceAutoDeliver(common.TransactionCase):
         Validate invoice + Auto Deliver
         Check exception raises
         """
-        product_id = self.env.ref("product.product_product_11")
+        product_id = self.env["product.product"].create(
+            {
+                "name": "product_test",
+                "type": "product",
+            }
+        )
         location_id = self.env["stock.location"].search([("name", "=", "Shelf 1")])
         inventory = self.env["stock.inventory"].create(
             {
                 "name": "Inventory For Product C",
-                "filter": "partial",
                 "line_ids": [
                     (
                         0,
@@ -55,7 +59,8 @@ class TestSaleInvoiceAutoDeliver(common.TransactionCase):
                 ],
             }
         )
-        inventory.action_done()
+        inventory.action_start()
+        inventory.action_validate()
         so = self.env["sale.order"].create(
             {"partner_id": self.env.ref("base.res_partner_2").id}
         )
@@ -66,11 +71,11 @@ class TestSaleInvoiceAutoDeliver(common.TransactionCase):
         adv_wizard = self.env["sale.advance.payment.inv"].create(
             {"advance_payment_method": "all_auto"}
         )
-        with self.assertRaises(exceptions.Warning):
+        with self.assertRaises(exceptions.UserError):
             adv_wizard.with_context(active_ids=[so.id]).create_invoices()
-        self.assertEquals(so.picking_ids.state, "confirmed")
+        self.assertEqual(so.picking_ids.state, "confirmed")
         for pick in so.picking_ids:
-            pack_ops = pick.pack_operation_pack_ids
+            pack_ops = pick.move_line_ids
             self.assertTrue(
                 all(pack_op.qty_done == pack_op.qty for pack_op in pack_ops)
             )

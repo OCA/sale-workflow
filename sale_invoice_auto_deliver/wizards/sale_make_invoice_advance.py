@@ -1,7 +1,8 @@
 # © 2016  Laetitia Gangloff, Acsone SA/NV (http://www.acsone.eu)
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
 
-from openerp import _, api, exceptions, fields, models
+from odoo import _, api, fields, models
+from odoo.exceptions import UserError
 
 
 class SaleAdvancePaymentInv(models.TransientModel):
@@ -9,8 +10,12 @@ class SaleAdvancePaymentInv(models.TransientModel):
 
     advance_payment_method = fields.Selection(
         selection_add=[
-            ("all_auto", _("Invoice the whole sales order + Automatic Deliver"))
-        ]
+            (
+                "all_auto",
+                _("Invoice the whole sales order + Automatic Deliver"),
+            )
+        ],
+        ondelete={"all_auto": "cascade"},
     )
 
     @api.model
@@ -20,7 +25,6 @@ class SaleAdvancePaymentInv(models.TransientModel):
             res += so.picking_ids
         return res
 
-    @api.multi
     def create_invoices(self):
         self.ensure_one()
         if self.advance_payment_method == "all_auto":
@@ -37,21 +41,41 @@ class SaleAdvancePaymentInv(models.TransientModel):
                 if to_assign:
                     to_assign.action_assign()
                 if all([pick.state == "assigned" for pick in pickings]):
+                    # create table for immediate_transfer_line_ids
+                    immediate_transfer_lids = []
                     for pick in pickings:
-                        wiz = self.env["stock.immediate.transfer"].create(
-                            {"pick_id": pick.id}
+                        immediate_transfer_lids.append(
+                            (
+                                0,
+                                0,
+                                {
+                                    "picking_id": pick.id,
+                                    "to_immediate": True,
+                                },
+                            )
                         )
-                        wiz.process()
+
+                    wiz = (
+                        self.env["stock.immediate.transfer"]
+                        .with_context(button_validate_picking_ids=pickings.ids)
+                        .create(
+                            {
+                                "immediate_transfer_line_ids": immediate_transfer_lids,
+                                "pick_ids": [(6, 0, pickings.ids)],
+                            }
+                        )
+                    )
+                    wiz.process()
                     picking_not_done = pickings.filtered(lambda x: x.state != "done")
                 else:
                     picking_not_done = True
             if picking_not_done:
-                raise exceptions.Warning(
+                raise UserError(
                     _(
                         "You cannot automatic deliver this order, "
                         "some products are not available"
                     )
                 )
             else:
-                self.advance_payment_method = "all"
+                self.advance_payment_method = "delivered"
         return super(SaleAdvancePaymentInv, self).create_invoices()

@@ -3,7 +3,7 @@
 
 {
     "name": "Sale Invoice Automatic Deliver",
-    "version": "10.0.1.0.0",
+    "version": "14.0.1.0.0",
     "author": "ACSONE SA/NV,Odoo Community Association (OCA)",
     "category": "Sales Management",
     "website": "https://github.com/OCA/sale-workflow",
