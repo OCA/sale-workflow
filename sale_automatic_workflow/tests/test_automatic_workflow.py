@@ -1,11 +1,11 @@
 # Copyright 2014 Camptocamp SA (author: Guewen Baconnier)
+# Copyright 2021 Tecnativa - Víctor Martínez
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
 from datetime import timedelta
 
-import mock
-
 from odoo import fields
+from odoo.exceptions import UserError
 from odoo.tests import tagged
 
 from .common import TestAutomaticWorkflowMixin, TestCommon
@@ -62,19 +62,13 @@ class TestAutomaticWorkflow(TestCommon, TestAutomaticWorkflowMixin):
         self.assertFalse(workflow.invoice_service_delivery)
         self.assertEqual(line.qty_delivered_method, "stock_move")
         self.assertEqual(line.qty_delivered, 0.0)
-        # `_create_invoices` is already tested in `sale` module.
-        # Make sure this addon works properly in regards to it.
-        mock_path = "odoo.addons.sale.models.sale.SaleOrder._create_invoices"
-        with mock.patch(mock_path) as mocked:
+        with self.assertRaises(UserError):
             sale._create_invoices()
-            mocked.assert_called()
         self.assertEqual(line.qty_delivered, 0.0)
-
         workflow.invoice_service_delivery = True
+        sale.state = "done"
         line.qty_delivered_method = "manual"
-        with mock.patch(mock_path) as mocked:
-            sale._create_invoices()
-            mocked.assert_called()
+        sale._create_invoices()
         self.assertEqual(line.qty_delivered, 1.0)
 
     def test_invoice_from_picking_with_service_product(self):
