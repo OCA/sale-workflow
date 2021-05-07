@@ -26,6 +26,7 @@ addon | version | summary
 [portal_sale_personal_data_only](portal_sale_personal_data_only/) | 13.0.1.1.0 | Portal Sale Personal Data Only
 [sale_automatic_workflow](sale_automatic_workflow/) | 13.0.1.2.2 | Sale Automatic Workflow
 [sale_automatic_workflow_payment](sale_automatic_workflow_payment/) | 13.0.1.0.0 | Assign a workflow if a transaction is created for a sale order with an acquirer with a workflow
+[sale_blanket_order](sale_blanket_order/) | 13.0.1.0.1 | Blanket Orders
 [sale_by_packaging](sale_by_packaging/) | 13.0.1.5.1 | Manage sale of packaging
 [sale_cancel_reason](sale_cancel_reason/) | 13.0.1.0.0 | Sale Cancel Reason
 [sale_commercial_partner](sale_commercial_partner/) | 13.0.1.0.0 | Add stored related field 'Commercial Entity' on sale orders
