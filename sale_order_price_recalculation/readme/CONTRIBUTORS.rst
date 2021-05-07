@@ -7,3 +7,4 @@
 * Duc, Dao Dong <duc.dd@komit-consulting.com> (https://komit-consulting.com)
 * Raf Ven <raf.ven@dynapps.be>
 * Denis Roussel <denis.roussel@acsone.eu>
+* Xavier Bouquiaux <xavier.bouquiaux@acsone.eu>

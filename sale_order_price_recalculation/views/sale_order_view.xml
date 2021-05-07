@@ -5,7 +5,11 @@
         <field name="model">sale.order</field>
         <field name="inherit_id" ref="sale.view_order_form" />
         <field name="arch" type="xml">
-            <field name="note" position="after">
+            <xpath
+                expr="//page[@name='order_lines']/group[@name='note_group']/group/field[@name='note']"
+                position="after"
+            >
+            <!--<field name="note" position="after">-->
                 <group name="sorp">
                     <div class="btn-group">
                         <button
@@ -14,7 +18,7 @@
                             attrs="{'invisible': [('state', 'not in', ['draft', 'sent'])]}"
                             type="object"
                             colspan="4"
-                            class="ml-2 btn btn-default"
+                            class="ml-2 btn btn-primary"
                         />
                         <button
                             name="recalculate_names"
@@ -22,11 +26,11 @@
                             attrs="{'invisible': [('state', 'not in', ['draft', 'sent'])]}"
                             type="object"
                             colspan="4"
-                            class="ml-2 btn btn-default"
+                            class="ml-2 btn btn-primary"
                         />
                     </div>
                 </group>
-            </field>
+            </xpath>
         </field>
     </record>
 </odoo>
