@@ -12,6 +12,7 @@ setuptools.setup(
         'odoo12-addon-partner_prospect',
         'odoo12-addon-partner_sale_pivot',
         'odoo12-addon-portal_sale_personal_data_only',
+        'odoo12-addon-pricelist_by_category_qty',
         'odoo12-addon-product_form_sale_link',
         'odoo12-addon-product_supplierinfo_for_customer_sale',
         'odoo12-addon-sale_automatic_workflow',
