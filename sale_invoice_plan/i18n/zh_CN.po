@@ -257,6 +257,7 @@ msgstr "计划日期"
 
 #. module: sale_invoice_plan
 #: code:addons/sale_invoice_plan/models/sale.py:235
+#: code:addons/sale_invoice_plan/models/sale.py:242
 #, python-format
 msgid ""
 "Plan quantity: %s, exceed invoiceable quantity: %s\n"
@@ -267,6 +268,7 @@ msgstr ""
 
 #. module: sale_invoice_plan
 #: code:addons/sale_invoice_plan/models/sale.py:43
+#: code:addons/sale_invoice_plan/models/sale.py:50
 #, python-format
 msgid "Please fill percentage for all invoice plan lines"
 msgstr "请填写所有发票计划行的百分比"
@@ -349,6 +351,7 @@ msgstr "使用发票计划"
 
 #. module: sale_invoice_plan
 #: code:addons/sale_invoice_plan/models/sale.py:50
+#: code:addons/sale_invoice_plan/models/sale.py:57
 #, python-format
 msgid "Use Invoice Plan selected, but no plan created"
 msgstr "选中“使用发票计划”，但未创建任何计划"
