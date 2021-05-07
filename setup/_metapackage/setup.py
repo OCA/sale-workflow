@@ -22,6 +22,7 @@ setuptools.setup(
         'odoo13-addon-sale_coupon_multi_currency',
         'odoo13-addon-sale_coupon_multi_use',
         'odoo13-addon-sale_coupon_multi_use_currency',
+        'odoo13-addon-sale_coupon_product_management',
         'odoo13-addon-sale_cutoff_time_delivery',
         'odoo13-addon-sale_discount_display_amount',
         'odoo13-addon-sale_elaboration',
