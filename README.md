@@ -19,6 +19,7 @@ Available addons
 ----------------
 addon | version | summary
 --- | --- | ---
+[sale_automatic_workflow](sale_automatic_workflow/) | 14.0.1.1.1 | Sale Automatic Workflow
 [sale_commercial_partner](sale_commercial_partner/) | 14.0.1.0.1 | Add stored related field 'Commercial Entity' on sale orders
 [sale_discount_display_amount](sale_discount_display_amount/) | 14.0.1.0.1 | This addon intends to display the amount of the discount computed on sale_order_line and sale_order level
 [sale_force_invoiced](sale_force_invoiced/) | 14.0.1.1.1 | Allows to force the invoice status of the sales order to Invoiced
