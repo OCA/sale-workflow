@@ -45,6 +45,7 @@ class SaleOrderRecommendation(models.TransientModel):
         string="Product price origin",
         default="pricelist",
     )
+    use_delivery_address = fields.Boolean(string="Use delivery address")
 
     @api.model
     def _default_order_id(self):
@@ -54,12 +55,20 @@ class SaleOrderRecommendation(models.TransientModel):
         """Domain to find recent SO lines."""
         start = datetime.now() - timedelta(days=self.months * 30)
         start = fields.Datetime.to_string(start)
+        partner = (
+            self.order_id.partner_shipping_id
+            if self.use_delivery_address
+            else self.order_id.partner_id.commercial_partner_id
+        )
+        sale_order_partner_field = (
+            "partner_shipping_id" if self.use_delivery_address else "partner_id"
+        )
         other_sales = self.env["sale.order"].search(
             [
                 (
-                    "partner_id",
+                    sale_order_partner_field,
                     "child_of",
-                    self.order_id.partner_id.commercial_partner_id.id,
+                    partner.commercial_partner_id.id,
                 ),
                 ("date_order", ">=", start),
             ]
@@ -86,10 +95,12 @@ class SaleOrderRecommendation(models.TransientModel):
             vals["sale_line_id"] = so_line.id
         return vals
 
-    @api.onchange("order_id", "months", "line_amount")
+    @api.onchange("order_id", "months", "line_amount", "use_delivery_address")
     def _generate_recommendations(self):
         """Generate lines according to context sale order."""
-        last_compute = "{}-{}-{}".format(self.id, self.months, self.line_amount)
+        last_compute = "{}-{}-{}-{}".format(
+            self.id, self.months, self.line_amount, self.use_delivery_address
+        )
         # Avoid execute onchange as times as fields in api.onchange
         # ORM must control this?
         if self.last_compute == last_compute:
