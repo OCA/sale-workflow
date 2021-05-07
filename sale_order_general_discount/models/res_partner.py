@@ -12,4 +12,5 @@ class ResPartner(models.Model):
         digits=dp.get_precision('Discount'),
         string='Discount (%)',
         company_dependent=True,
+        track_visibility="onchange",
     )
