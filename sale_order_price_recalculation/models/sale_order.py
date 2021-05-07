@@ -26,13 +26,21 @@ class SaleOrder(models.Model):
             })
         return True
 
+    def _get_contextualized_product(self, line, lang=None, force_no_lang=False):
+        line.ensure_one()
+        product_lang = lang if lang or force_no_lang else line.order_partner_id.lang
+        return line.product_id.with_context(
+            lang=product_lang,
+            partner=self.partner_id,
+            quantity=line.product_uom_qty,
+            date=self.date_order,
+            pricelist=self.pricelist_id.id,
+            uom=line.product_uom.id,
+        )
+
     @api.multi
-    def recalculate_names(self):
-        for line in self.mapped('order_line').filtered('product_id'):
-            # we make this to isolate changed values:
-            line2 = self.env['sale.order.line'].new({
-                'product_id': line.product_id,
-            })
-            line2.product_id_change()
-            line.name = line2.name
+    def recalculate_names(self, lang=None, force_no_lang=False):
+        for line in self.mapped("order_line").filtered("product_id"):
+            product = self._get_contextualized_product(line, lang, force_no_lang)
+            line.name = line.get_sale_order_line_multiline_description_sale(product)
         return True
