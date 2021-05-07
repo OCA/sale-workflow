@@ -56,7 +56,7 @@
                 <field name="ip_invoice_plan" invisible="1"/>
                 <button name="%(action_view_sale_make_planned_invoice)d"
                     string="Create Invoice by Plan" type="action" class="btn-primary"
-                    attrs="{'invisible': ['|', ('ip_invoice_plan', '=', False), ('invoice_status', '!=', 'to invoice')]}"/>
+                    attrs="{'invisible': [('ip_invoice_plan', '=', False)]}"/>
             </xpath>
             <xpath expr="/form/sheet/notebook/page" position="after">
                 <page string="Invoice Plan" attrs="{'invisible': [('use_invoice_plan', '=', False)]}">

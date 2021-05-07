@@ -30,9 +30,16 @@ class SaleOder(models.Model):
     @api.multi
     def _compute_ip_invoice_plan(self):
         for rec in self:
-            rec.ip_invoice_plan = rec.use_invoice_plan and \
-                rec.invoice_plan_ids and \
-                len(rec.invoice_plan_ids.filtered(lambda l: not l.invoiced))
+            has_invoice_plan = rec.use_invoice_plan and rec.invoice_plan_ids
+            to_invoice = rec.invoice_plan_ids.filtered(lambda l: not l.invoiced)
+            if rec.state == "sale" and has_invoice_plan and to_invoice:
+                if rec.invoice_status == "to invoice" or (
+                    rec.invoice_status == "no"
+                    and "advance" in to_invoice.mapped("invoice_type")
+                ):
+                    rec.ip_invoice_plan = True
+                    continue
+            rec.ip_invoice_plan = False
 
     @api.constrains('state')
     def _check_invoice_plan(self):
