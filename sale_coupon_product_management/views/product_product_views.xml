@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <record id="product_normal_form_view" model="ir.ui.view">
+        <field name="name">product.product.form.program.option</field>
+        <field name="model">product.product</field>
+        <field name="inherit_id" ref="product.product_normal_form_view" />
+        <field name="arch" type="xml">
+            <field name="lst_price" position="before">
+                <field name="program_product_sale_ok" invisible="1" />
+                <field name="program_product_discount_fixed_amount" invisible="1" />
+            </field>
+            <field name="sale_ok" position="attributes">
+                <attribute name="attrs">
+                    {'readonly': [('program_product_discount_fixed_amount', '=', True)]}
+                </attribute>
+            </field>
+            <field name="lst_price" position="attributes">
+                <attribute name="attrs">
+                    {'readonly': ['|', ('product_variant_count', '&gt;', 1), ('program_product_discount_fixed_amount', '=', True)]}
+                </attribute>
+            </field>
+        </field>
+    </record>
+</odoo>
