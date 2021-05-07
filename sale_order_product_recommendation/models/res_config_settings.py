@@ -13,3 +13,7 @@ class ResConfigSettings(models.TransientModel):
         default_model="sale.order.recommendation",
         required=True,
     )
+
+    default_use_delivery_address = fields.Boolean(
+        string="Use delivery address", default_model="sale.order.recommendation"
+    )
