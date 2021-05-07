@@ -134,7 +134,7 @@ class RecommendationCaseTests(RecommendationCase):
         self.assertEqual(wiz_line_prod3.price_unit, 74.50)
 
         # Change confirmation date in order2
-        self.order2.date_order = "2020-11-19"
+        self.order2.date_order = "2021-05-07"
         wizard.sale_recommendation_price_origin = "pricelist"
         wizard.sale_recommendation_price_origin = "last_sale_price"
         wiz_line_prod2 = wizard.line_ids.filtered(lambda x: x.product_id == self.prod_2)
@@ -157,3 +157,11 @@ class RecommendationCaseTests(RecommendationCase):
         wiz_line_prod1.units_included = 3
         wizard.action_accept()
         self.assertEqual(so_line_prod1.price_unit, 60.0)
+
+    def test_recommendation_delivery_address(self):
+        self.new_so.partner_shipping_id = self.partner_delivery
+        wizard = self.wizard()
+        wizard.use_delivery_address = True
+        wizard._generate_recommendations()
+        self.assertEqual(len(wizard.line_ids), 1)
+        self.assertEqual(wizard.line_ids[0].product_id, self.prod_2)
