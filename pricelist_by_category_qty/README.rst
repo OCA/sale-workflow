@@ -7,20 +7,20 @@ Discount by quantities of product category
    !! changes will be overwritten.                   !!
    !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 
-.. |badge1| image:: https://img.shields.io/badge/maturity-Beta-yellow.png
+.. |badge1| image:: https://img.shields.io/badge/maturity-Alpha-red.png
     :target: https://odoo-community.org/page/development-status
-    :alt: Beta
+    :alt: Alpha
 .. |badge2| image:: https://img.shields.io/badge/licence-AGPL--3-blue.png
     :target: http://www.gnu.org/licenses/agpl-3.0-standalone.html
     :alt: License: AGPL-3
 .. |badge3| image:: https://img.shields.io/badge/github-OCA%2Fsale--workflow-lightgray.png?logo=github
-    :target: https://github.com/OCA/sale-workflow/tree/12.0-add-pricelist_by_category_qty/pricelist_by_category_qty
+    :target: https://github.com/OCA/sale-workflow/tree/12.0/pricelist_by_category_qty
     :alt: OCA/sale-workflow
 .. |badge4| image:: https://img.shields.io/badge/weblate-Translate%20me-F47D42.png
-    :target: https://translation.odoo-community.org/projects/sale-workflow-12-0-add-pricelist_by_category_qty/sale-workflow-12-0-add-pricelist_by_category_qty-pricelist_by_category_qty
+    :target: https://translation.odoo-community.org/projects/sale-workflow-12-0/sale-workflow-12-0-pricelist_by_category_qty
     :alt: Translate me on Weblate
 .. |badge5| image:: https://img.shields.io/badge/runbot-Try%20me-875A7B.png
-    :target: https://runbot.odoo-community.org/runbot/167/12.0-add-pricelist_by_category_qty
+    :target: https://runbot.odoo-community.org/runbot/167/12.0
     :alt: Try me on Runbot
 
 |badge1| |badge2| |badge3| |badge4| |badge5| 
@@ -34,10 +34,20 @@ The unit price will be updated as you've sold 50+50 = 100 pieces of the same cat
 
 This module was originally developed in v7.0 by the company Julius : https://github.com/julius-network-solutions/julius-openobject-addons/tree/master/pricelist_by_category_qty
 
+.. IMPORTANT::
+   This is an alpha version, the data model and design can change at any time without warning.
+   Only for development or testing purpose, do not use in production.
+   `More details on development status <https://odoo-community.org/page/development-status>`_
+
 **Table of contents**
 
 .. contents::
    :local:
+
+Known issues / Roadmap
+======================
+
+That module work as it but should be benefit of refactoring to work with good performance in '_get_quantity_to_compute()' with a real multi implementation
 
 Bug Tracker
 ===========
@@ -45,7 +55,7 @@ Bug Tracker
 Bugs are tracked on `GitHub Issues <https://github.com/OCA/sale-workflow/issues>`_.
 In case of trouble, please check there if your issue has already been reported.
 If you spotted it first, help us smashing it by providing a detailed and welcomed
-`feedback <https://github.com/OCA/sale-workflow/issues/new?body=module:%20pricelist_by_category_qty%0Aversion:%2012.0-add-pricelist_by_category_qty%0A%0A**Steps%20to%20reproduce**%0A-%20...%0A%0A**Current%20behavior**%0A%0A**Expected%20behavior**>`_.
+`feedback <https://github.com/OCA/sale-workflow/issues/new?body=module:%20pricelist_by_category_qty%0Aversion:%2012.0%0A%0A**Steps%20to%20reproduce**%0A-%20...%0A%0A**Current%20behavior**%0A%0A**Expected%20behavior**>`_.
 
 Do not contact contributors directly about support or help with technical issues.
 
@@ -56,6 +66,13 @@ Authors
 ~~~~~~~
 
 * Julius Network Solutions
+
+Contributors
+~~~~~~~~~~~~
+
+* `AgiPME <https://agipme.fr>`_:
+
+  * Philippe Mayjonade
 
 Maintainers
 ~~~~~~~~~~~
@@ -70,6 +87,6 @@ OCA, or the Odoo Community Association, is a nonprofit organization whose
 mission is to support the collaborative development of Odoo features and
 promote its widespread use.
 
-This module is part of the `OCA/sale-workflow <https://github.com/OCA/sale-workflow/tree/12.0-add-pricelist_by_category_qty/pricelist_by_category_qty>`_ project on GitHub.
+This module is part of the `OCA/sale-workflow <https://github.com/OCA/sale-workflow/tree/12.0/pricelist_by_category_qty>`_ project on GitHub.
 
 You are welcome to contribute. To learn how please visit https://odoo-community.org/page/Contribute.
