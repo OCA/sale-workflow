@@ -258,7 +258,6 @@ msgid "Plan Date"
 msgstr "Plan datum"
 
 #. module: sale_invoice_plan
-#: code:addons/sale_invoice_plan/models/sale.py:235
 #: code:addons/sale_invoice_plan/models/sale.py:242
 #, python-format
 msgid ""
@@ -269,7 +268,6 @@ msgstr ""
 "Product moet geleverd worden voor factuur"
 
 #. module: sale_invoice_plan
-#: code:addons/sale_invoice_plan/models/sale.py:43
 #: code:addons/sale_invoice_plan/models/sale.py:50
 #, python-format
 msgid "Please fill percentage for all invoice plan lines"
@@ -352,7 +350,6 @@ msgid "Use Invoice Plan"
 msgstr "Gebruik facturatie planning"
 
 #. module: sale_invoice_plan
-#: code:addons/sale_invoice_plan/models/sale.py:50
 #: code:addons/sale_invoice_plan/models/sale.py:57
 #, python-format
 msgid "Use Invoice Plan selected, but no plan created"
