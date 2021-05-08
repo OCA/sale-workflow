@@ -10,6 +10,7 @@ setuptools.setup(
     install_requires=[
         'odoo14-addon-sale_automatic_workflow',
         'odoo14-addon-sale_commercial_partner',
+        'odoo14-addon-sale_commitment_date_mandatory',
         'odoo14-addon-sale_discount_display_amount',
         'odoo14-addon-sale_force_invoiced',
         'odoo14-addon-sale_isolated_quotation',
