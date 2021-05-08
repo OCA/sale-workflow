@@ -27,6 +27,7 @@ addon | version | summary
 [sale_last_price_info](sale_last_price_info/) | 14.0.1.0.1 | Product Last Price Info - Sale
 [sale_order_archive](sale_order_archive/) | 14.0.1.0.0 | Archive Sale Orders
 [sale_order_line_date](sale_order_line_date/) | 14.0.1.0.1 | Adds a commitment date to each sale order line.
+[sale_order_line_description](sale_order_line_description/) | 14.0.1.0.0 | Sale order line description
 [sale_order_line_menu](sale_order_line_menu/) | 14.0.1.0.0 | Adds a Sale Order Lines Menu
 [sale_order_line_note](sale_order_line_note/) | 14.0.1.0.0 | Note on sale order line
 [sale_order_lot_generator](sale_order_lot_generator/) | 14.0.1.0.1 | Sale Order Lot Generator
