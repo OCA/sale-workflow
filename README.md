@@ -40,7 +40,7 @@ addon | version | summary
 [sale_cutoff_time_delivery](sale_cutoff_time_delivery/) | 13.0.1.2.0 | Schedule delivery orders according to cutoff preferences
 [sale_discount_display_amount](sale_discount_display_amount/) | 13.0.1.0.1 | This addon intends to display the amount of the discount computed on sale_order_line and sale_order level
 [sale_elaboration](sale_elaboration/) | 13.0.1.0.0 | Set an elaboration for any sale line
-[sale_exception](sale_exception/) | 13.0.1.1.0 | Custom exceptions on sale order
+[sale_exception](sale_exception/) | 13.0.1.1.1 | Custom exceptions on sale order
 [sale_fixed_discount](sale_fixed_discount/) | 13.0.1.1.1 | Allows to apply fixed amount discounts in sales orders.
 [sale_force_invoiced](sale_force_invoiced/) | 13.0.1.1.0 | Allows to force the invoice status of the sales order to Invoiced
 [sale_force_whole_invoiceability](sale_force_whole_invoiceability/) | 13.0.1.0.0 | Sale Force Whole Invoiceability
