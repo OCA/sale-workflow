@@ -223,8 +223,7 @@ class PromotionCase(TransactionCase, AbstractCommonPromotionCase):
             self.promotion_rule_fixed_amount.discount_product_id = False
 
     def test_discount_amount_untaxed(self):
-        """Test with line where the tax is excluded from the price
-        """
+        """Test with line where the tax is excluded from the price"""
         self.promotion_rule_auto.minimal_amount = 999999999  # disable
         self.promotion_rule_fixed_amount.discount_type = "amount_tax_excluded"
         # we force a tax on a line to be sure that we have a tax applied on
@@ -243,8 +242,7 @@ class PromotionCase(TransactionCase, AbstractCommonPromotionCase):
         )
 
     def test_discount_amount_untaxed_2(self):
-        """Test with line where the tax is included into the price
-        """
+        """Test with line where the tax is included into the price"""
         self.promotion_rule_auto.minimal_amount = 999999999  # disable
         self.promotion_rule_fixed_amount.discount_type = "amount_tax_excluded"
         # we force a tax on a line to be sure that we have a tax applied on
@@ -263,8 +261,7 @@ class PromotionCase(TransactionCase, AbstractCommonPromotionCase):
         )
 
     def test_discount_amount_taxed(self):
-        """Test with line where the tax is excluded from the price
-        """
+        """Test with line where the tax is excluded from the price"""
         self.promotion_rule_auto.minimal_amount = 999999999  # disable
         # add a tax in the prodduct
         so_line = self.sale.order_line[0]
@@ -285,8 +282,7 @@ class PromotionCase(TransactionCase, AbstractCommonPromotionCase):
         )
 
     def test_discount_amount_taxed_2(self):
-        """Test with line where the tax is included into the price
-        """
+        """Test with line where the tax is included into the price"""
         self.promotion_rule_auto.minimal_amount = 999999999  # disable
         # add a tax in the prodduct
         so_line = self.sale.order_line[0]
@@ -420,7 +416,8 @@ class PromotionCase(TransactionCase, AbstractCommonPromotionCase):
         self.add_coupon_code(FIXED_AMOUNT_CODE)
         self.sale.apply_promotions()
         self.assertEquals(
-            20.0, so_line.discount,
+            20.0,
+            so_line.discount,
         )
         self.assertEquals(690.0, self.sale.amount_total)
         self.assertFalse(so_line.coupon_promotion_rule_id)
