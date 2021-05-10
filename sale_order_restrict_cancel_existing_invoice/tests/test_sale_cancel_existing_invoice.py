@@ -42,7 +42,7 @@ class TestSaleOrderCancelExistingInvoice(TransactionCase):
         self._create_invoice_advance()
 
         self.advance.with_context(active_ids=[self.sale.id]).create_invoices()
-        self.sale.invoice_ids.action_invoice_open()
+        self.sale.invoice_ids.action_post()
 
         with self.assertRaises(UserError):
             self.sale.action_cancel()
