@@ -130,7 +130,7 @@ class AbstractCommonPromotionCase(object):
 class PromotionCase(TransactionCase, AbstractCommonPromotionCase):
     def setUp(self, *args, **kwargs):
         super(PromotionCase, self).setUp(*args, **kwargs)
-        self.set_up("sale.sale_order_3")
+        self.set_up("sale_promotion_rule.sale_order_promotion")
 
     def test_name_get(self):
         name = self.promotion_rule_auto.name_get()[0][1]
