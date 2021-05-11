@@ -6,7 +6,7 @@
     "summary": """
         This addon allows to reduce the appliance of a promotion rule to a
         set of products""",
-    "version": "13.0.1.0.0",
+    "version": "14.0.1.0.0",
     "development_status": "Beta",
     "license": "AGPL-3",
     "author": "ACSONE SA/NV,Odoo Community Association (OCA)",
