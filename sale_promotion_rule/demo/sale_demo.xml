@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <record id="sale_order_promotion" model="sale.order">
+        <field name="partner_id" ref="base.res_partner_4" />
+        <field name="partner_invoice_id" ref="base.res_partner_4" />
+        <field name="partner_shipping_id" ref="base.res_partner_4" />
+        <field name="user_id" ref="base.user_admin" />
+        <field name="pricelist_id" ref="product.list0" />
+        <field name="team_id" ref="sales_team.team_sales_department" />
+        <field name="campaign_id" ref="utm.utm_campaign_email_campaign_products" />
+        <field name="medium_id" ref="utm.utm_medium_email" />
+        <field name="source_id" ref="sale.utm_source_sale_order_0" />
+    </record>
+    <record id="sale_order_promotion_line_1" model="sale.order.line">
+        <field name="order_id" ref="sale_order_promotion" />
+        <field
+            name="name"
+            model="sale.order.line"
+            eval="obj().env.ref('product.product_product_1').get_product_multiline_description_sale()"
+        />
+        <field name="product_id" ref="product.product_product_1" />
+        <field name="product_uom_qty">10</field>
+        <field name="product_uom" ref="uom.product_uom_hour" />
+        <field name="price_unit">30.75</field>
+    </record>
+    <record id="sale_order_promotion_line_2" model="sale.order.line">
+        <field name="order_id" ref="sale_order_promotion" />
+        <field
+            name="name"
+            model="sale.order.line"
+            eval="obj().env.ref('product.product_delivery_01').get_product_multiline_description_sale()"
+        />
+        <field name="product_id" ref="product.product_delivery_01" />
+        <field name="product_uom_qty">1</field>
+        <field name="product_uom" ref="uom.product_uom_unit" />
+        <field name="price_unit">70.00</field>
+    </record>
+</odoo>
