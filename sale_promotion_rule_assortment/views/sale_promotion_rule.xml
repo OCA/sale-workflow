@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8" ?>
-<!-- Copyright 2018 Acsone SA/Nv
+<!-- Copyright 2018-2021 Acsone SA/Nv
      License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl). -->
 <odoo>
     <record model="ir.ui.view" id="sale_promotion_rule_form_view">

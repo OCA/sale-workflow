@@ -1,4 +1,4 @@
-# Copyright 2018 Acsone Sa/NV
+# Copyright 2018-2021 Acsone Sa/NV
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
 from odoo.tests.common import TransactionCase
@@ -10,7 +10,7 @@ from odoo.addons.sale_promotion_rule.tests.test_promotion import (
 
 class TestPromotionRuleAssortment(TransactionCase, AbstractCommonPromotionCase):
     def setUp(self):
-        super(TestPromotionRuleAssortment, self).setUp()
+        super().setUp()
         self.set_up("sale_promotion_rule_assortment.sale_order_promo")
         self.line_service = self.env.ref(
             "sale_promotion_rule_assortment.sale_order_line_1"

@@ -1,4 +1,4 @@
-# Copyright 2018 Acsone SA/Nv
+# Copyright 2018-2021 Acsone SA/Nv
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
 from odoo import api, fields, models
@@ -33,18 +33,21 @@ class SalePromotionRule(models.Model):
             order_lines = order.order_line
         elif line:
             order_lines = line
-        if not self.filter_id:
-            return order_lines
-        promotion_product_ids = self._get_promotion_rule_products()
-        order_line_ids = order_lines.filtered(
-            lambda line, product_ids=promotion_product_ids: line.product_id.id
-            in product_ids.ids
-        )
-        return order_line_ids
+        if order_lines:
+            if not self.filter_id:
+                return order_lines
+            promotion_product_ids = self._get_promotion_rule_products()
+            order_line_ids = order_lines.filtered(
+                lambda line, product_ids=promotion_product_ids: line.product_id.id
+                in product_ids.ids
+            )
+            return order_line_ids
+        else:
+            return False
 
     @api.model
     def _get_restrictions(self):
-        res = super(SalePromotionRule, self)._get_restrictions()
+        res = super()._get_restrictions()
         res.append("product_assortment")
         return res
 
@@ -57,7 +60,7 @@ class SalePromotionRule(models.Model):
         return True
 
     def _is_promotion_valid_for_line(self, line):
-        res = super(SalePromotionRule, self)._is_promotion_valid_for_line(line)
+        res = super()._is_promotion_valid_for_line(line)
         if self.filter_id:
             order_lines = self._get_promotions_valid_order_lines(line=line)
             if not order_lines:
