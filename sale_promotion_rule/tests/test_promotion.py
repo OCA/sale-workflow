@@ -2,6 +2,9 @@
 # @author Sébastien BEAU <sebastien.beau@akretion.com>
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
+import datetime
+
+from odoo import fields
 from odoo.exceptions import UserError, ValidationError
 from odoo.tests.common import TransactionCase
 from odoo.tools import float_compare
@@ -237,7 +240,13 @@ class PromotionCase(TransactionCase, AbstractCommonPromotionCase):
         new_amount = amount_untaxed - self.sale.amount_untaxed
         self.assertEqual(
             0,
-            float_compare(new_amount, 20, precision_digits=self.price_precision_digits),
+            float_compare(
+                new_amount,
+                self.env.user.company_id.currency_id._convert(
+                    20, self.sale.currency_id, self.sale.company_id, fields.Date.today()
+                ),
+                precision_digits=self.price_precision_digits,
+            ),
             "%s != 20" % (new_amount),
         )
 
@@ -256,7 +265,13 @@ class PromotionCase(TransactionCase, AbstractCommonPromotionCase):
         new_amount = amount_untaxed - self.sale.amount_untaxed
         self.assertEqual(
             0,
-            float_compare(new_amount, 20, precision_digits=self.price_precision_digits),
+            float_compare(
+                new_amount,
+                self.env.user.company_id.currency_id._convert(
+                    20, self.sale.currency_id, self.sale.company_id, fields.Date.today()
+                ),
+                precision_digits=self.price_precision_digits,
+            ),
             "%s != 20" % (new_amount),
         )
 
@@ -277,7 +292,13 @@ class PromotionCase(TransactionCase, AbstractCommonPromotionCase):
         new_amount = amount_total - self.sale.amount_total
         self.assertEqual(
             0,
-            float_compare(new_amount, 20, precision_digits=self.price_precision_digits),
+            float_compare(
+                new_amount,
+                self.env.user.company_id.currency_id._convert(
+                    20, self.sale.currency_id, self.sale.company_id, fields.Date.today()
+                ),
+                precision_digits=self.price_precision_digits,
+            ),
             "%s != 20" % (new_amount),
         )
 
@@ -298,7 +319,13 @@ class PromotionCase(TransactionCase, AbstractCommonPromotionCase):
         new_amount = amount_total - self.sale.amount_total
         self.assertEqual(
             0,
-            float_compare(new_amount, 20, precision_digits=self.price_precision_digits),
+            float_compare(
+                new_amount,
+                self.env.user.company_id.currency_id._convert(
+                    20, self.sale.currency_id, self.sale.company_id, fields.Date.today()
+                ),
+                precision_digits=self.price_precision_digits,
+            ),
             "%s != 20" % (new_amount),
         )
 
@@ -324,7 +351,12 @@ class PromotionCase(TransactionCase, AbstractCommonPromotionCase):
             0,
             float_compare(
                 new_amount,
-                discount_amount,
+                self.env.user.company_id.currency_id._convert(
+                    discount_amount,
+                    self.sale.currency_id,
+                    self.sale.company_id,
+                    fields.Date.today(),
+                ),
                 precision_digits=self.price_precision_digits,
             ),
             "{} != {}".format(new_amount, discount_amount),
@@ -372,17 +404,23 @@ class PromotionCase(TransactionCase, AbstractCommonPromotionCase):
             self.promotion_rule_fixed_amount.discount_type = "amount_tax_included"
             self.promotion_rule_fixed_amount.discount_amount = discount_amount
             amount_total = self.sale.amount_total
-            # we apply a discount of 8 on amount taxed
             self.add_coupon_code(FIXED_AMOUNT_CODE)
             new_amount = amount_total - self.sale.amount_total
+            price = self.env.user.company_id.currency_id._convert(
+                from_amount=discount_amount,
+                to_currency=self.sale.currency_id,
+                company=self.sale.company_id,
+                date=datetime.date.today(),
+            )
+
             self.assertEqual(
                 0,
                 float_compare(
                     new_amount,
-                    discount_amount,
+                    price,
                     precision_digits=self.price_precision_digits,
                 ),
-                "{} != {}".format(new_amount, discount_amount),
+                "{} != {}".format(new_amount, price),
             )
             self.sale.clear_promotions()
 
@@ -412,14 +450,31 @@ class PromotionCase(TransactionCase, AbstractCommonPromotionCase):
         so_line = self.sale.order_line[0]
         so_line.discount = 20.0
         so_line.price_unit = 80.0
-        self.assertEquals(710.0, self.sale.amount_total)
+        amount = self.sale.amount_total
+        # self.sale.amount_total = 710
+        self.assertEqual(710, self.sale.amount_total)
         self.add_coupon_code(FIXED_AMOUNT_CODE)
         self.sale.apply_promotions()
-        self.assertEquals(
-            20.0,
+        self.assertEqual(
+            20,
             so_line.discount,
         )
-        self.assertEquals(690.0, self.sale.amount_total)
+        amount_discount = amount - self.sale.amount_total
+        # self.sale.amount_total = 694
+        self.assertEqual(
+            0,
+            float_compare(
+                amount_discount,
+                self.env.user.company_id.currency_id._convert(
+                    so_line.discount,
+                    self.sale.currency_id,
+                    self.sale.company_id,
+                    fields.Date.today(),
+                ),
+                precision_digits=self.price_precision_digits,
+            ),
+            "{} != {}".format(amount_discount, so_line.discount),
+        )
         self.assertFalse(so_line.coupon_promotion_rule_id)
 
     def test_multi_promotion_rules_exclusive_sequence(self):
