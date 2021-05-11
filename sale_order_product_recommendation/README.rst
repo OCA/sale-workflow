@@ -49,6 +49,14 @@ the next steps
 #. Assign the desired value to *Product recommendation price origin* field.
 #. Press *Save* button to store the change.
 
+In sale order product recommendation you can compute the recommendations using the
+Delivery Address instead of the Customer. To set this option by default follow
+the next steps
+
+#. Go to *Sales > Configuration > Settings > Quotations & Orders*.
+#. Assign the desired value to *Use delivery address* field.
+#. Press *Save* button to store the change.
+
 Usage
 =====
 
@@ -89,6 +97,7 @@ Contributors
   * Pedro M. Baeza
   * Víctor Martínez
   * Sergio Teruel
+  * Carlos Roca
 
 Maintainers
 ~~~~~~~~~~~
