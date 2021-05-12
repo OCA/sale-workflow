@@ -15,7 +15,14 @@ _logger = logging.getLogger(__name__)
 
 class SalePromotionRule(models.Model):
     _name = "sale.promotion.rule"
-    _description = "Sale Promotion Rule"
+    _description = """
+    Sale Promotion Rule
+    It's possible to apply multiple promotions to a sale order. In such a case
+the rules will be applied in the sequence order.
+If the first applicable rule is 'exclusice' the process will only apply
+this rule. Otherwise the process will loop over each rule and apply it
+according to the strategy
+"""
     _order = "sequence, id"
 
     sequence = fields.Integer(default=10)
@@ -91,13 +98,6 @@ class SalePromotionRule(models.Model):
             ("keep_existing", "Keep existing discount"),
         ],
         default="use_best",
-        description="""
-It's possible to apply multiple promotions to a sale order. In such a case
-the rules will be applied in the sequence order.
-If the first applicable rule is 'exclusice' the process will only apply
-this rule. Otherwise the process will loop over each rule and apply it
-according to the strategy
-""",
     )
 
     _sql_constraints = [
