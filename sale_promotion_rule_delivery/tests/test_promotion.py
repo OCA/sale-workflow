@@ -2,7 +2,7 @@
 # @author Sébastien BEAU <sebastien.beau@akretion.com>
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
-from odoo.tests.common import TransactionCase
+from odoo.tests.common import Form, TransactionCase
 
 from odoo.addons.sale_promotion_rule.tests.test_promotion import (
     AbstractCommonPromotionCase,
@@ -15,6 +15,17 @@ class PromotionCase(TransactionCase, AbstractCommonPromotionCase):
         self.normal_delivery = self.env.ref("delivery.normal_delivery_carrier")
         self.set_up("sale_promotion_rule.sale_order_promotion")
         self.sale.carrier_id = self.normal_delivery.id
+        delivery_wizard = Form(
+            self.env["choose.delivery.carrier"].with_context(
+                {
+                    "default_order_id": self.sale.id,
+                    "default_carrier_id": self.sale.carrier_id,
+                }
+            )
+        )
+        choose_delivery_carrier = delivery_wizard.save()
+        choose_delivery_carrier.update_price()
+        choose_delivery_carrier.button_confirm()
         # self.sale.delivery_set()
         self.delivery_lines = self.sale.order_line.filtered(lambda l: l.is_delivery)
 
