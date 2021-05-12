@@ -6,5 +6,6 @@ server-tools
 server-ux
 web
 bank-payment
+server-tools
 stock-logistics-warehouse
 queue
