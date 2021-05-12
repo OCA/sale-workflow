@@ -100,6 +100,7 @@ addon | version | summary
 [sale_stock_return_request](sale_stock_return_request/) | 12.0.1.0.0 | Sale Stock Return Request
 [sale_stock_secondary_unit](sale_stock_secondary_unit/) | 12.0.1.0.0 | Get product quantities in a secondary unit
 [sale_stock_sourcing_address](sale_stock_sourcing_address/) | 12.0.1.0.0 | Sale Stock Sourcing Address
+[sale_substate](sale_substate/) | 12.0.1.0.0 | Sale Sub State
 [sale_tier_validation](sale_tier_validation/) | 12.0.1.0.0 | Extends the functionality of Sale Orders to support a tier validation process.
 [sale_triple_discount](sale_triple_discount/) | 12.0.1.1.1 | Manage triple discount on sale order lines
 [sale_validity](sale_validity/) | 12.0.1.0.0 | Set a default validity delay on quotations
