@@ -9,9 +9,7 @@ class SalePromotionRule(models.Model):
     _inherit = "sale.promotion.rule"
 
     def _get_lines_excluded_from_total_amount(self, order):
-        lines = super(SalePromotionRule, self)._get_lines_excluded_from_total_amount(
-            order
-        )
+        lines = super()._get_lines_excluded_from_total_amount(order)
         lines |= order.order_line.filtered("is_delivery")
         return lines
 
@@ -19,4 +17,4 @@ class SalePromotionRule(models.Model):
         self.ensure_one()
         if line.is_delivery:
             return False
-        return super(SalePromotionRule, self)._is_promotion_valid_for_line(line)
+        return super()._is_promotion_valid_for_line(line)
