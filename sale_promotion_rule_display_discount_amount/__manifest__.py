@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 # Copyright 2019 ACSONE SA/NV
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
@@ -11,7 +10,7 @@
     "development_status": "Beta",
     "license": "AGPL-3",
     "author": "ACSONE SA/NV,Odoo Community Association (OCA)",
-    "website": "https://github.com/OCA/sale-workflow/",
+    "website": "https://github.com/OCA/sale-workflow",
     "depends": ["sale_promotion_rule", "sale_discount_display_amount"],
     "auto_install": "True",
 }
