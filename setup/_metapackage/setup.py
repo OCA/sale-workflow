@@ -89,6 +89,7 @@ setuptools.setup(
         'odoo12-addon-sale_stock_return_request',
         'odoo12-addon-sale_stock_secondary_unit',
         'odoo12-addon-sale_stock_sourcing_address',
+        'odoo12-addon-sale_substate',
         'odoo12-addon-sale_tier_validation',
         'odoo12-addon-sale_triple_discount',
         'odoo12-addon-sale_validity',
