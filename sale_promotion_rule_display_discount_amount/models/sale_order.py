@@ -1,4 +1,4 @@
-# Copyright 2019 ACSONE SA/NV
+# Copyright 2019-2021 ACSONE SA/NV
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
 from odoo import api, models
@@ -14,8 +14,8 @@ class SaleOrder(models.Model):
         "order_line.discount_total",
         "order_line.is_promotion_line",
     )
-    def _compute_discount(self):
-        super(SaleOrder, self)._compute_discount()
+    def _compute_discount_total(self):
+        super(SaleOrder, self)._compute_discount_total()
         for order in self:
             discount_total = order.discount_total
             price_total_no_discount = order.price_total_no_discount

@@ -2,6 +2,7 @@
 # @author Sébastien BEAU <sebastien.beau@akretion.com>
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
+from odoo import fields
 from odoo.tests.common import TransactionCase
 from odoo.tools import float_compare
 
@@ -14,7 +15,7 @@ from odoo.addons.sale_promotion_rule.tests.test_promotion import (
 class TestSaleOrder(TransactionCase, AbstractCommonPromotionCase):
     def setUp(self, *args, **kwargs):
         super(TestSaleOrder, self).setUp(*args, **kwargs)
-        self.set_up("sale.sale_order_3")
+        self.set_up("sale_promotion_rule.sale_order_promotion")
 
     def test_discount_amount(self):
         self.assertTrue(self.promotion_rule_fixed_amount.discount_amount > 0)
@@ -30,7 +31,12 @@ class TestSaleOrder(TransactionCase, AbstractCommonPromotionCase):
             0,
             float_compare(
                 self.sale.discount_total,
-                self.promotion_rule_fixed_amount.discount_amount,
+                self.env.user.company_id.currency_id._convert(
+                    self.promotion_rule_fixed_amount.discount_amount,
+                    self.sale.currency_id,
+                    self.sale.company_id,
+                    fields.Date.today(),
+                ),
                 precision_digits=self.price_precision_digits,
             ),
             "%s != %s"
