@@ -12,12 +12,19 @@ class SaleOrderLinePriceHistory(models.TransientModel):
         line_id = self.env.context.get("active_id")
         return self.env["sale.order.line"].browse(line_id).order_partner_id.id
 
+    @api.model
+    def _default_product_id(self):
+        line_id = self.env.context.get("active_id")
+        return self.env["sale.order.line"].browse(line_id).product_id.id
+
     sale_order_line_id = fields.Many2one(
         comodel_name="sale.order.line",
         string="Sale order line",
         default=lambda self: self.env.context.get("active_id"),
     )
-    product_id = fields.Many2one(related="sale_order_line_id.product_id",)
+    product_id = fields.Many2one(
+        comodel_name="product.product", string="Product", default=_default_product_id,
+    )
     partner_id = fields.Many2one(
         comodel_name="res.partner", string="Customer", default=_default_partner_id,
     )
