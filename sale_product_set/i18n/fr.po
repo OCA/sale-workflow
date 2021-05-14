@@ -9,20 +9,21 @@ msgstr ""
 "Project-Id-Version: Odoo Server 11.0\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2018-11-26 11:44+0000\n"
-"PO-Revision-Date: 2018-01-16 03:41+0000\n"
-"Last-Translator: OCA Transbot <transbot@odoo-community.org>, 2018\n"
+"PO-Revision-Date: 2021-05-14 18:47+0000\n"
+"Last-Translator: Yves Le Doeuff <yld@alliasys.fr>\n"
 "Language-Team: French (https://www.transifex.com/oca/teams/23907/fr/)\n"
 "Language: fr\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
-"Plural-Forms: nplurals=2; plural=(n > 1);\n"
+"Plural-Forms: nplurals=2; plural=n > 1;\n"
+"X-Generator: Weblate 4.3.2\n"
 
 #. module: sale_product_set
 #: model:ir.model.fields,field_description:sale_product_set.field_product_set__active
 #: model:ir.model.fields,field_description:sale_product_set.field_product_set_line__active
 msgid "Active"
-msgstr ""
+msgstr "Actif"
 
 #. module: sale_product_set
 #: model_terms:ir.ui.view,arch_db:sale_product_set.product_set_add_form_view
@@ -48,7 +49,7 @@ msgstr "Annuler"
 #. module: sale_product_set
 #: model:ir.model.fields,field_description:sale_product_set.field_product_set__company_id
 msgid "Company"
-msgstr ""
+msgstr "Société"
 
 #. module: sale_product_set
 #: model:ir.model.fields,field_description:sale_product_set.field_product_set__create_uid
@@ -67,12 +68,12 @@ msgstr "Créé le"
 #. module: sale_product_set
 #: model:ir.model.fields,field_description:sale_product_set.field_product_set_add__partner_id
 msgid "Customer"
-msgstr ""
+msgstr "Client"
 
 #. module: sale_product_set
 #: model:ir.model.fields,field_description:sale_product_set.field_product_set_line__discount
 msgid "Discount (%)"
-msgstr ""
+msgstr "Remise (%)"
 
 #. module: sale_product_set
 #: model:ir.model.fields,field_description:sale_product_set.field_product_set__display_name
@@ -86,6 +87,8 @@ msgstr "Afficher le nom"
 msgid ""
 "Enable this to not add new lines for products already included in SO lines."
 msgstr ""
+"Activez cette option pour ne pas ajouter de nouvelles lignes pour les "
+"produits déjà inclus dans les lignes de commande."
 
 #. module: sale_product_set
 #: model:ir.model.fields,field_description:sale_product_set.field_product_set__id
@@ -97,7 +100,7 @@ msgstr "ID"
 #. module: sale_product_set
 #: model:ir.model.fields,field_description:sale_product_set.field_product_set__ref
 msgid "Internal Reference"
-msgstr ""
+msgstr "Référence interne"
 
 #. module: sale_product_set
 #: model:ir.model.fields,field_description:sale_product_set.field_product_set____last_update
@@ -129,7 +132,7 @@ msgstr "Nom"
 #: model:ir.model.fields,field_description:sale_product_set.field_product_set__partner_id
 #: model_terms:ir.ui.view,arch_db:sale_product_set.view_product_set_search
 msgid "Partner"
-msgstr ""
+msgstr "Partenaire"
 
 #. module: sale_product_set
 #: model:ir.model.fields,field_description:sale_product_set.field_product_set_line__product_id
@@ -149,9 +152,8 @@ msgstr "Set de produit"
 
 #. module: sale_product_set
 #: model:ir.model.fields,help:sale_product_set.field_product_set__ref
-#, fuzzy
 msgid "Product set internal reference"
-msgstr "ligne du Set"
+msgstr "Référence interne du set de produits"
 
 #. module: sale_product_set
 #: model:ir.model,name:sale_product_set.model_product_set_line
@@ -182,7 +184,7 @@ msgstr "Quantité"
 #. module: sale_product_set
 #: model:ir.model.fields,field_description:sale_product_set.field_product_set_add__order_id
 msgid "Sale Order"
-msgstr ""
+msgstr "Commande"
 
 #. module: sale_product_set
 #: model:ir.model.fields,field_description:sale_product_set.field_product_set_line__sequence
@@ -197,7 +199,7 @@ msgstr "Set"
 #. module: sale_product_set
 #: model:ir.model.fields,field_description:sale_product_set.field_product_set_add__skip_existing_products
 msgid "Skip Existing Products"
-msgstr ""
+msgstr "Sauter les produits existants"
 
 #. module: sale_product_set
 #: model:ir.model,name:sale_product_set.model_product_set_add
@@ -210,9 +212,13 @@ msgid ""
 "You can attache the set to a specific partner or no one. If you don't "
 "specify one, it's going to be available for all of them."
 msgstr ""
+"Vous pouvez attacher le set à un partenaire spécifique ou à personne. Si "
+"vous n'en précisez pas un, il sera disponible pour tous."
 
 #. module: sale_product_set
 #: code:addons/sale_product_set/wizard/product_set_add.py:0
 #, python-format
 msgid "You can use a sale order assigned only to following partner(s): {}"
 msgstr ""
+"Vous pouvez utiliser un ordre de vente affecté uniquement au(x) partenaire(s)"
+" suivant(s) : {}"
