@@ -32,7 +32,7 @@ msgid "Add set"
 msgstr "Afegeix conjunt"
 
 #. module: sale_product_set
-#: model:ir.actions.act_window,name:sale_product_set.act_open_wizard_product_set_add
+#: model:ir.actions.act_window,name:sale_product_set.act_open_wizard_product_set_add_from_order
 msgid "Add set in sale order"
 msgstr "Afegeix el conjunt a la comanda de venda"
 
@@ -40,6 +40,11 @@ msgstr "Afegeix el conjunt a la comanda de venda"
 #: model_terms:ir.ui.view,arch_db:sale_product_set.product_set_add_form_view
 msgid "Add set in sale order line"
 msgstr "Afegir conjunt en línia d'ordre de venda"
+
+#. module: sale_product_set
+#: model:ir.actions.act_window,name:sale_product_set.act_open_wizard_product_set_add_from_set
+msgid "Add set to sale order"
+msgstr ""
 
 #. module: sale_product_set
 #: model_terms:ir.ui.view,arch_db:sale_product_set.product_set_add_form_view
@@ -140,6 +145,11 @@ msgid "Product"
 msgstr "Producte"
 
 #. module: sale_product_set
+#: model:ir.model.fields,field_description:sale_product_set.field_product_set_add__product_set_line_ids
+msgid "Product Set Line"
+msgstr ""
+
+#. module: sale_product_set
 #: model:ir.actions.act_window,name:sale_product_set.act_open_product_set_view
 #: model:ir.model,name:sale_product_set.model_product_set
 #: model:ir.model.fields,field_description:sale_product_set.field_product_set_add__product_set_id
@@ -161,6 +171,7 @@ msgid "Product set line"
 msgstr "Línia de productes"
 
 #. module: sale_product_set
+#: model_terms:ir.ui.view,arch_db:sale_product_set.product_set_add_form_view
 #: model_terms:ir.ui.view,arch_db:sale_product_set.view_product_set_form
 msgid "Product set lines"
 msgstr "Línies de productes"
