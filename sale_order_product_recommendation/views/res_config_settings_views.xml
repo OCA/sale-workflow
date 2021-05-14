@@ -30,7 +30,7 @@
                     <div class="o_setting_right_pane">
                         <span class="o_form_label">Use delivery address</span>
                         <div class="text-muted">
-                            If this is selected, we will take care by default on
+                            If this is selected, it will take care by default on
                             Delivery Address instead of customer on sale orders
                             recommendation
                         </div>
