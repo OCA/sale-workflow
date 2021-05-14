@@ -92,7 +92,7 @@ msgstr ""
 #. module: sale_order_product_recommendation
 #: model_terms:ir.ui.view,arch_db:sale_order_product_recommendation.res_config_settings_view_form_sale
 msgid ""
-"If this is selected, we will take care by default on\n"
+"If this is selected, it will take care by default on\n"
 "                            Delivery Address instead of customer on sale orders\n"
 "                            recommendation"
 msgstr ""

@@ -65,11 +65,7 @@ class SaleOrderRecommendation(models.TransientModel):
         )
         other_sales = self.env["sale.order"].search(
             [
-                (
-                    sale_order_partner_field,
-                    "child_of",
-                    partner.commercial_partner_id.id,
-                ),
+                (sale_order_partner_field, "child_of", partner.id),
                 ("date_order", ">=", start),
             ]
         )
