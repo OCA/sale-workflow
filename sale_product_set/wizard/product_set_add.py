@@ -121,11 +121,9 @@ class ProductSetAdd(models.TransientModel):
 
     def prepare_sale_order_line_data(self, set_line, max_sequence=0):
         self.ensure_one()
-        sale_line = self.env["sale.order.line"].new(
-            set_line.prepare_sale_order_line_values(
-                self.order_id, self.quantity, max_sequence=max_sequence
-            )
+        line_values = set_line.prepare_sale_order_line_values(
+            self.order_id, self.quantity, max_sequence=max_sequence
         )
-        sale_line.product_id_change()
-        line_values = sale_line._convert_to_write(sale_line._cache)
+        sol_model = self.env["sale.order.line"]
+        line_values.update(sol_model.play_onchanges(line_values, line_values.keys()))
         return line_values
