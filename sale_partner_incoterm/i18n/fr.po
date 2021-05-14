@@ -8,15 +8,16 @@ msgstr ""
 "Project-Id-Version: sale-workflow (8.0)\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2015-10-23 08:14+0000\n"
-"PO-Revision-Date: 2015-10-23 08:15+0000\n"
-"Last-Translator: <>\n"
+"PO-Revision-Date: 2021-05-14 18:47+0000\n"
+"Last-Translator: Yves Le Doeuff <yld@alliasys.fr>\n"
 "Language-Team: French (http://www.transifex.com/oca/OCA-sale-workflow-8-0/"
 "language/fr/)\n"
 "Language: fr\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
-"Plural-Forms: nplurals=2; plural=(n > 1);\n"
+"Plural-Forms: nplurals=2; plural=n > 1;\n"
+"X-Generator: Weblate 4.3.2\n"
 
 #. module: sale_partner_incoterm
 #: model:ir.model,name:sale_partner_incoterm.model_res_partner
@@ -28,19 +29,19 @@ msgstr ""
 #: model:ir.model.fields,field_description:sale_partner_incoterm.field_res_users__sale_incoterm_id
 #: model_terms:ir.ui.view,arch_db:sale_partner_incoterm.view_partner_property_form
 msgid "Default Sales Incoterm"
-msgstr ""
+msgstr "Incoterm par défaut"
 
 #. module: sale_partner_incoterm
 #: model:ir.model,name:sale_partner_incoterm.model_sale_order
-#, fuzzy
 msgid "Sales Order"
-msgstr "Bon de commande"
+msgstr "Bons de commande"
 
 #. module: sale_partner_incoterm
 #: model:ir.model.fields,help:sale_partner_incoterm.field_res_partner__sale_incoterm_id
 #: model:ir.model.fields,help:sale_partner_incoterm.field_res_users__sale_incoterm_id
 msgid "The default incoterm for new sales orders for this customer."
 msgstr ""
+"L'incoterm par défaut pour les nouvelles commandes de vente de ce client."
 
 #~ msgid "Partner"
 #~ msgstr "Partenaire"
