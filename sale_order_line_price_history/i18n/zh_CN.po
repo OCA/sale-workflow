@@ -34,6 +34,14 @@ msgid "Created on"
 msgstr "创建时间"
 
 #. module: sale_order_line_price_history
+#: model:ir.model.fields,help:sale_order_line_price_history.field_sale_order_line_price_history_line__sale_order_date_order
+msgid ""
+"Creation date of draft/sent orders,\n"
+"Confirmation date of confirmed orders."
+msgstr ""
+
+#. module: sale_order_line_price_history
+#: model:ir.model.fields,field_description:sale_order_line_price_history.field_sale_order_line__order_partner_id
 #: model:ir.model.fields,field_description:sale_order_line_price_history.field_sale_order_line_price_history__partner_id
 #: model:ir.model.fields,field_description:sale_order_line_price_history.field_sale_order_line_price_history_line__partner_id
 msgid "Customer"
@@ -115,16 +123,6 @@ msgid "Order Reference"
 msgstr "订单参考"
 
 #. module: sale_order_line_price_history
-#: model:ir.model.fields,field_description:sale_order_line_price_history.field_sale_order_line_price_history_line__product_uom_qty
-msgid "Ordered Quantity"
-msgstr "订购数量"
-
-#. module: sale_order_line_price_history
-#: model_terms:ir.ui.view,arch_db:sale_order_line_price_history.view_order_form
-msgid "Price history"
-msgstr "价格历史"
-
-#. module: sale_order_line_price_history
 #: model:ir.actions.act_window,name:sale_order_line_price_history.sale_order_line_price_history_action
 msgid "Price history per customer"
 msgstr "每位客户的价格历史"
@@ -133,6 +131,11 @@ msgstr "每位客户的价格历史"
 #: model:ir.model.fields,field_description:sale_order_line_price_history.field_sale_order_line_price_history__product_id
 msgid "Product"
 msgstr "产品"
+
+#. module: sale_order_line_price_history
+#: model:ir.model.fields,field_description:sale_order_line_price_history.field_sale_order_line_price_history_line__product_uom_qty
+msgid "Quantity"
+msgstr ""
 
 #. module: sale_order_line_price_history
 #: model_terms:ir.ui.view,arch_db:sale_order_line_price_history.sale_order_line_price_history_view_form
@@ -156,6 +159,11 @@ msgid "Sale order line price history line"
 msgstr "销售订单行价格历史记录行"
 
 #. module: sale_order_line_price_history
+#: model:ir.model,name:sale_order_line_price_history.model_sale_order_line
+msgid "Sales Order Line"
+msgstr ""
+
+#. module: sale_order_line_price_history
 #: model_terms:ir.ui.view,arch_db:sale_order_line_price_history.sale_order_line_price_history_view_form
 msgid "Set price"
 msgstr "设定价格"
@@ -166,11 +174,16 @@ msgid "Unit Price"
 msgstr "单价"
 
 #. module: sale_order_line_price_history
-#: model:ir.model.fields,help:sale_order_line_price_history.field_sale_order_line_price_history_line__partner_id
-msgid "You can find a customer by its Name, TIN, Email or Internal Reference."
-msgstr "您可以通过名称，TIN，Email 或内部参考找到客户。"
-
-#. module: sale_order_line_price_history
 #: model:ir.model.fields,field_description:sale_order_line_price_history.field_sale_order_line_price_history_line__history_sale_order_line_id
 msgid "history sale order line"
 msgstr "历史销售订单行"
+
+#~ msgid "Ordered Quantity"
+#~ msgstr "订购数量"
+
+#~ msgid "Price history"
+#~ msgstr "价格历史"
+
+#~ msgid ""
+#~ "You can find a customer by its Name, TIN, Email or Internal Reference."
+#~ msgstr "您可以通过名称，TIN，Email 或内部参考找到客户。"
