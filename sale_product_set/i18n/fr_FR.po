@@ -29,7 +29,7 @@ msgid "Add set"
 msgstr "Ajout d'un Set"
 
 #. module: sale_product_set
-#: model:ir.actions.act_window,name:sale_product_set.act_open_wizard_product_set_add
+#: model:ir.actions.act_window,name:sale_product_set.act_open_wizard_product_set_add_from_order
 msgid "Add set in sale order"
 msgstr "Ajouter un Set"
 
@@ -37,6 +37,11 @@ msgstr "Ajouter un Set"
 #: model_terms:ir.ui.view,arch_db:sale_product_set.product_set_add_form_view
 msgid "Add set in sale order line"
 msgstr "Ajout d'un Set au devis"
+
+#. module: sale_product_set
+#: model:ir.actions.act_window,name:sale_product_set.act_open_wizard_product_set_add_from_set
+msgid "Add set to sale order"
+msgstr ""
 
 #. module: sale_product_set
 #: model_terms:ir.ui.view,arch_db:sale_product_set.product_set_add_form_view
@@ -137,6 +142,11 @@ msgid "Product"
 msgstr "Article"
 
 #. module: sale_product_set
+#: model:ir.model.fields,field_description:sale_product_set.field_product_set_add__product_set_line_ids
+msgid "Product Set Line"
+msgstr ""
+
+#. module: sale_product_set
 #: model:ir.actions.act_window,name:sale_product_set.act_open_product_set_view
 #: model:ir.model,name:sale_product_set.model_product_set
 #: model:ir.model.fields,field_description:sale_product_set.field_product_set_add__product_set_id
@@ -158,6 +168,7 @@ msgid "Product set line"
 msgstr "Ligne du Set"
 
 #. module: sale_product_set
+#: model_terms:ir.ui.view,arch_db:sale_product_set.product_set_add_form_view
 #: model_terms:ir.ui.view,arch_db:sale_product_set.view_product_set_form
 msgid "Product set lines"
 msgstr "Lignes du Set"
@@ -217,5 +228,5 @@ msgstr ""
 #, python-format
 msgid "You can use a sale order assigned only to following partner(s): {}"
 msgstr ""
-"Vous pouvez utiliser un ordre de vente affecté uniquement au(x) partenaire(s)"
-" suivant(s) : {}"
+"Vous pouvez utiliser un ordre de vente affecté uniquement au(x) "
+"partenaire(s) suivant(s) : {}"
