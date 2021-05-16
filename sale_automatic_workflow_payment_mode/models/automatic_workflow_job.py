@@ -29,9 +29,14 @@ class AutomaticWorkflowJob(models.Model):
         invoice_obj = self.env["account.move"]
         invoices = invoice_obj.search(payment_filter)
         _logger.debug("Invoices to Register Payment: %s", invoices.ids)
+
+        domain = [
+            ("account_internal_type", "in", ("receivable", "payable")),
+            ("reconciled", "=", False),
+        ]
         for invoice in invoices:
             partner_type = (
-                invoice.type in ("out_invoice", "out_refund")
+                invoice.move_type in ("out_invoice", "out_refund")
                 and "customer"
                 or "supplier"
             )
@@ -44,15 +49,14 @@ class AutomaticWorkflowJob(models.Model):
                     invoice.id,
                     payment_mode.id,
                 )
-                return
+                continue
 
             with savepoint(self.env.cr):
                 payment = self.env["account.payment"].create(
                     {
-                        "invoice_ids": [(6, 0, invoice.ids)],
                         "amount": invoice.amount_residual,
-                        "payment_date": fields.Date.context_today(self),
-                        "communication": invoice.invoice_payment_ref or invoice.name,
+                        "date": fields.Date.context_today(self),
+                        "payment_reference": invoice.payment_reference or invoice.name,
                         "partner_id": invoice.partner_id.id,
                         "partner_type": partner_type,
                         "payment_type": payment_mode.payment_type,
@@ -60,5 +64,15 @@ class AutomaticWorkflowJob(models.Model):
                         "journal_id": payment_mode.fixed_journal_id.id,
                     }
                 )
-                payment.post()
+                payment.action_post()
+
+            if payment.state != "posted":
+                continue
+
+            payment_lines = payment.line_ids.filtered_domain(domain)
+            lines = invoice.line_ids
+            for account in payment_lines.account_id:
+                (payment_lines + lines).filtered_domain(
+                    [("account_id", "=", account.id), ("reconciled", "=", False)]
+                ).reconcile()
         return
