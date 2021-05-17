@@ -8,6 +8,7 @@ setuptools.setup(
     description="Meta package for oca-sale-workflow Odoo addons",
     version=version,
     install_requires=[
+        'odoo14-addon-sale_advance_payment',
         'odoo14-addon-sale_automatic_workflow',
         'odoo14-addon-sale_commercial_partner',
         'odoo14-addon-sale_commitment_date_mandatory',
