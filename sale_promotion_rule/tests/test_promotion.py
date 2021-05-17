@@ -498,3 +498,76 @@ class PromotionCase(TransactionCase, AbstractCommonPromotionCase):
         for line in self.sale.order_line:
             self.check_discount_rule_set(line, promo_copy)
         return
+
+
+class CurrencyPromotionCase(TransactionCase, AbstractCommonPromotionCase):
+    def setUp(self, *args, **kwargs):
+        super(CurrencyPromotionCase, self).setUp(*args, **kwargs)
+        self.set_up("sale.sale_order_3")
+
+    def test_discount_amount_rounding_currency(self):
+        """
+        Test a sale order in different currency
+        Remove all taxes - no sense in that case
+        """
+        self.promotion_rule_auto.minimal_amount = 999999999  # disable
+        self.discount_product_id.taxes_id = False
+        # here we test with a large SO and price with large difference
+        for price in [5.65, 77.68, 51.07, 87.09, 29.31, 61.03, 99.89, 54.32, 44.95]:
+            so_line = self.sale.order_line[1].copy({"order_id": self.sale.id})
+            so_line.product_id.taxes_id = False
+            so_line.product_id_change()
+            so_line.price_unit = price
+        for price in [
+            485.75,
+            376.83,
+            221.52,
+            394.26,
+            294.47,
+            261.01,
+            385.64,
+            288.74,
+            150.84,
+        ]:
+            so_line = self.sale.order_line[1].copy({"order_id": self.sale.id})
+            so_line.product_id.taxes_id = False
+            so_line.product_id_change()
+            so_line.price_unit = price
+        for price in [
+            798.33,
+            546.82,
+            966.38,
+            760.5,
+            835.4,
+            808.44,
+            586.81,
+            738.34,
+            558.55,
+        ]:
+            so_line = self.sale.order_line[1].copy({"order_id": self.sale.id})
+            so_line.product_id.taxes_id = False
+            so_line.product_id_change()
+            so_line.price_unit = price
+        for discount_amount in range(0, 20, 3):
+            self.promotion_rule_fixed_amount.discount_type = "amount_tax_included"
+            self.promotion_rule_fixed_amount.discount_amount = discount_amount
+            amount_total = self.sale.amount_total
+            self.add_coupon_code(FIXED_AMOUNT_CODE)
+            new_amount = amount_total - self.sale.amount_total
+            price = self.env.user.company_id.currency_id._convert(
+                from_amount=discount_amount,
+                to_currency=self.sale.currency_id,
+                company=self.sale.company_id,
+                date=datetime.date.today(),
+            )
+
+            self.assertEqual(
+                0,
+                float_compare(
+                    new_amount,
+                    price,
+                    precision_digits=self.price_precision_digits,
+                ),
+                "{} != {}".format(new_amount, price),
+            )
+            self.sale.clear_promotions()
