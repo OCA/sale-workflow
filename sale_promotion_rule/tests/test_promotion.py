@@ -54,6 +54,7 @@ class AbstractCommonPromotionCase(object):
         }
 
     def set_up(self, sale_xml_id):
+        self.wizard_obj = self.env["sale.order.add.coupon"]
         self.sale = self.env.ref(sale_xml_id)
         self.price_precision_digits = self.env["decimal.precision"].precision_get(
             "Product Price"
@@ -117,7 +118,12 @@ class AbstractCommonPromotionCase(object):
         self.discount_product_id.taxes_id = [(6, 0, [self.tax_exclude_21.id])]
 
     def add_coupon_code(self, coupon_code):
-        self.sale.add_coupon(coupon_code)
+        wizard = self.wizard_obj.with_context(active_id=self.sale.id).create(
+            {
+                "name": coupon_code,
+            }
+        )
+        wizard.doit()
 
     def check_discount_rule_set(self, line, promo_rule):
         if promo_rule.rule_type == "coupon":
