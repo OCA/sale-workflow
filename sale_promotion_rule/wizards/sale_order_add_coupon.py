@@ -9,7 +9,7 @@ class SaleOrderAddCoupon(models.TransientModel):
     _name = "sale.order.add.coupon"
     _description = "Sale Order Add Coupon"
 
-    name = fields.Char(required=True)
+    name = fields.Char(string="Coupon Name", required=True)
 
     def doit(self):
         so = self.env["sale.order"].browse(self.env.context["active_id"])
