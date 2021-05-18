@@ -131,6 +131,7 @@ class AbstractCommonPromotionCase(object):
         else:
             self.assertEqual(line.promotion_rule_ids, promo_rule)
         self.assertEqual(line.discount, promo_rule.discount_amount)
+        self.assertTrue(line.order_id.has_promotion_rules)
 
 
 class PromotionCase(TransactionCase, AbstractCommonPromotionCase):
