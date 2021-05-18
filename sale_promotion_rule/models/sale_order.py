@@ -24,7 +24,10 @@ class SaleOrder(models.Model):
         readonly=True,
     )
     coupon_code = fields.Char(
-        related="coupon_promotion_rule_id.code", readonly=True, store=True
+        related="coupon_promotion_rule_id.code",
+        readonly=True,
+        store=True,
+        string="Coupont Promotion Code",
     )
 
     applied_promotion_rule_ids = fields.Many2many(
