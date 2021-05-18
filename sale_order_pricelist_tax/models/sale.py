@@ -58,19 +58,6 @@ class SaleOrderLine(models.Model):
                 else taxes
             )
 
-    def _get_substitute_taxes(self, taxes, map_tax):
-        cpny = self.order_id.company_id.id or self.company_id.id or 0
-        mytaxes = []
-        for tax in taxes:
-            if map_tax[cpny].get(tax.amount):
-                if map_tax[cpny][tax.amount].get("exclude"):
-                    mytaxes.append(map_tax[cpny][tax.amount]["exclude"])
-                else:
-                    mytaxes.append(tax.id)
-            else:
-                mytaxes.append(tax.id)
-        return self.env["account.tax"].browse(mytaxes)
-
     @api.onchange("product_id")
     def product_id_change(self):
         self._upd_onchange_ctx()

@@ -20,7 +20,6 @@ class AccountTax(models.Model):
           instead of recomputed price
         - some checks/raises on unmanaged cases
         """
-        self._check_unsupported_case(prod_taxes=prod_taxes)
         original = super(AccountTax, self)._fix_tax_included_price(
             price, prod_taxes, line_taxes
         )
@@ -28,33 +27,36 @@ class AccountTax(models.Model):
         computed_price = False
         # Check if pricelist contains adhoc price
         if pricelist_id:
+            self._check_product_sale_tax_include(prod_taxes)
             pricelist = self.env["product.pricelist"].browse(pricelist_id)
             if not pricelist.price_include_taxes:
                 computed_price = True
-                self._check_unsupported_case(line_taxes=line_taxes, pricelist=pricelist)
+                self._check_sale_line_tax_exclude(line_taxes, pricelist)
         if computed_price:
             return price
         return original
 
-    def _check_unsupported_case(self, prod_taxes=None, line_taxes=None, pricelist=None):
-        if prod_taxes:
-            prod_taxes_exclude = [x for x in prod_taxes if not x.price_include]
-            if prod_taxes_exclude:
-                raise UserError(
-                    _(
-                        "Tax product '%s' is price exclude. "
-                        "You must switch to include ones." % prod_taxes_exclude[0].name
-                    )
+    def _check_product_sale_tax_include(self, prod_taxes):
+        prod_taxes_exclude = prod_taxes.filtered(
+            lambda t: t.type_tax_use == "sale" and not t.price_include
+        )
+        if prod_taxes_exclude:
+            raise UserError(
+                _(
+                    "Tax product '%s' is price exclude. "
+                    "You must switch to include ones." % prod_taxes_exclude[0].name
                 )
-        if line_taxes:
-            line_taxes_include = [x for x in line_taxes if x.price_include]
-            if line_taxes_include:
-                raise UserError(
-                    _(
-                        "Tax with include price with pricelist b2b '%s' "
-                        "is not supported" % pricelist.name
-                    )
+            )
+
+    def _check_sale_line_tax_exclude(self, line_taxes, pricelist):
+        line_taxes_include = line_taxes.filtered(lambda t: t.price_include)
+        if line_taxes_include:
+            raise UserError(
+                _(
+                    "Tax with include price with pricelist b2b '%s' "
+                    "is not supported" % pricelist.name
                 )
+            )
 
     def _map_exclude_tax(self):
         """return a dict
