@@ -51,6 +51,7 @@ setuptools.setup(
         'odoo13-addon-sale_order_product_availability_inline',
         'odoo13-addon-sale_order_product_recommendation',
         'odoo13-addon-sale_order_product_recommendation_secondary_unit',
+        'odoo13-addon-sale_order_qty_change_no_recompute',
         'odoo13-addon-sale_order_revision',
         'odoo13-addon-sale_order_secondary_unit',
         'odoo13-addon-sale_order_tag',
