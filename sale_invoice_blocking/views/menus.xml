@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+
+    <menuitem
+        id="menu_invoice_blocking_reason"
+        parent="sale.menu_sales_config"
+        action="invoice_blocking_reason_action"
+    />
+
+</odoo>
