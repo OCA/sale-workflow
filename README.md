@@ -24,7 +24,7 @@ addon | version | summary
 [sale_commercial_partner](sale_commercial_partner/) | 14.0.1.0.1 | Add stored related field 'Commercial Entity' on sale orders
 [sale_commitment_date_mandatory](sale_commitment_date_mandatory/) | 14.0.1.0.0 | Set commitment data mandatory and don't allowto add lines unless this field is filled
 [sale_discount_display_amount](sale_discount_display_amount/) | 14.0.1.0.1 | This addon intends to display the amount of the discount computed on sale_order_line and sale_order level
-[sale_exception](sale_exception/) | 14.0.1.0.0 | Custom exceptions on sale order
+[sale_exception](sale_exception/) | 14.0.1.0.1 | Custom exceptions on sale order
 [sale_force_invoiced](sale_force_invoiced/) | 14.0.1.1.1 | Allows to force the invoice status of the sales order to Invoiced
 [sale_isolated_quotation](sale_isolated_quotation/) | 14.0.1.0.0 | Sale Isolated Quotation
 [sale_last_price_info](sale_last_price_info/) | 14.0.1.0.1 | Product Last Price Info - Sale
