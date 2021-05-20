@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+
+    <record id="invoice_blocking_reason_search_view" model="ir.ui.view">
+        <field name="name">invoice.blocking.reason.search</field>
+        <field name="model">invoice.blocking.reason</field>
+        <field name="arch" type="xml">
+            <search>
+                <field name="name" />
+            </search>
+        </field>
+    </record>
+    <record id="invoice_blocking_reason_form_view" model="ir.ui.view">
+        <field name="name">invoice.blocking.reason.form</field>
+        <field name="model">invoice.blocking.reason</field>
+        <field name="arch" type="xml">
+            <form class="oe_form_configuration">
+                <sheet>
+                    <group name="first">
+                        <field name="name" />
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+    <record id="invoice_blocking_reason_list_view" model="ir.ui.view">
+        <field name="name">invoice.blocking.reason.list</field>
+        <field name="model">invoice.blocking.reason</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="name" />
+            </tree>
+        </field>
+    </record>
+    <record id="invoice_blocking_reason_action" model="ir.actions.act_window">
+        <field name="name">Invoicing block reasons</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">invoice.blocking.reason</field>
+        <field name="search_view_id" ref="invoice_blocking_reason_search_view" />
+        <field name="view_id" ref="invoice_blocking_reason_list_view" />
+        <field name="view_mode">tree,form</field>
+    </record>
+
+</odoo>
