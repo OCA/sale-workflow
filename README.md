@@ -36,6 +36,7 @@ addon | version | summary
 [sale_order_lot_generator](sale_order_lot_generator/) | 14.0.1.0.1 | Sale Order Lot Generator
 [sale_order_lot_selection](sale_order_lot_selection/) | 14.0.1.0.0 | Sale Order Lot Selection
 [sale_order_note_template](sale_order_note_template/) | 14.0.1.0.0 | Add sale orders terms and conditions template that can be used to quickly fullfill sale order terms and conditions
+[sale_order_qty_change_no_recompute](sale_order_qty_change_no_recompute/) | 14.0.1.0.0 | Prevent recompute if only quantity has changed in sale order line
 [sale_order_revision](sale_order_revision/) | 14.0.1.0.0 | Keep track of revised quotations
 [sale_partner_incoterm](sale_partner_incoterm/) | 14.0.1.0.0 | Set the customer preferred incoterm on each sales order
 [sale_pricelist_from_commitment_date](sale_pricelist_from_commitment_date/) | 14.0.1.0.1 | Use sale order commitment date to compute line price from pricelist
