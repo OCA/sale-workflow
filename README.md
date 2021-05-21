@@ -65,7 +65,7 @@ addon | version | summary
 [sale_order_product_availability_inline](sale_order_product_availability_inline/) | 13.0.1.1.1 | Show product availability in sales order line product drop-down.
 [sale_order_product_recommendation](sale_order_product_recommendation/) | 13.0.3.0.1 | Recommend products to sell to customer based on history
 [sale_order_product_recommendation_secondary_unit](sale_order_product_recommendation_secondary_unit/) | 13.0.2.2.0 | Add secondary unit to recommend products wizard
-[sale_order_qty_change_no_recompute](sale_order_qty_change_no_recompute/) | 13.0.1.0.0 | Prevent recompute if only quantity has changed in sale order line
+[sale_order_qty_change_no_recompute](sale_order_qty_change_no_recompute/) | 13.0.1.0.1 | Prevent recompute if only quantity has changed in sale order line
 [sale_order_revision](sale_order_revision/) | 13.0.1.0.0 | Keep track of revised quotations
 [sale_order_secondary_unit](sale_order_secondary_unit/) | 13.0.1.1.0 | Sale product in a secondary unit
 [sale_order_tag](sale_order_tag/) | 13.0.1.0.1 | Adds Tags to Sales Orders.
