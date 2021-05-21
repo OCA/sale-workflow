@@ -4,7 +4,7 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: Odoo Server 13.0\n"
+"Project-Id-Version: Odoo Server 14.0\n"
 "Report-Msgid-Bugs-To: \n"
 "Last-Translator: \n"
 "Language-Team: \n"
@@ -12,6 +12,21 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
 "Plural-Forms: \n"
+
+#. module: sale_order_qty_change_no_recompute
+#: model:ir.model.fields,field_description:sale_order_qty_change_no_recompute.field_sale_order_line__display_name
+msgid "Display Name"
+msgstr ""
+
+#. module: sale_order_qty_change_no_recompute
+#: model:ir.model.fields,field_description:sale_order_qty_change_no_recompute.field_sale_order_line__id
+msgid "ID"
+msgstr ""
+
+#. module: sale_order_qty_change_no_recompute
+#: model:ir.model.fields,field_description:sale_order_qty_change_no_recompute.field_sale_order_line____last_update
+msgid "Last Modified on"
+msgstr ""
 
 #. module: sale_order_qty_change_no_recompute
 #: model:ir.model,name:sale_order_qty_change_no_recompute.model_sale_order_line
