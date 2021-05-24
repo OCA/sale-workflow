@@ -9,7 +9,7 @@
     "version": "13.0.1.2.0",
     "website": "https://github.com/OCA/sale-workflow",
     "summary": "Sale product set",
-    "depends": ["sale"],
+    "depends": ["sale", "onchange_helper"],
     "data": [
         "security/ir.model.access.csv",
         "security/rule_product_set.xml",
