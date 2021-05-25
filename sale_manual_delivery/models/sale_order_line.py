@@ -38,7 +38,9 @@ class SaleOrderLine(models.Model):
         """
         for line in self:
             if line.qty_delivered_method == "stock_move":
-                line.qty_procured = line._get_qty_procurement()
+                line.qty_procured = line._get_qty_procurement(
+                    previous_product_uom_qty=False
+                )
 
     @api.depends("product_uom_qty", "qty_procured")
     def _compute_qty_to_procure(self):
