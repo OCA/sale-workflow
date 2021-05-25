@@ -1,0 +1,36 @@
+<?xml version="1.0" ?>
+<odoo>
+  <record model="ir.ui.view" id="sale_order_change_analytic_wizard_form">
+    <field name="model">sale.order.change.analytic</field>
+    <field name="arch" type="xml">
+      <form>
+        <group>
+          <group>
+            <field name="sale_id" />
+            <field name="current_analytic_account_id" />
+            <field name="new_analytic_account_id" />
+          </group>
+          <group />
+        </group>
+        <footer>
+          <button
+                        string="Update"
+                        name="action_update"
+                        type="object"
+                        class="oe_highlight"
+                        confirm="Are you sure?"
+                    />
+          or
+          <button string="Cancel" class="oe_link" special="cancel" />
+        </footer>
+      </form>
+    </field>
+  </record>
+  <record id="sale_order_change_analytic_wizard_action" model="ir.actions.act_window">
+    <field name="name">Update Analytic Account</field>
+    <field name="type">ir.actions.act_window</field>
+    <field name="res_model">sale.order.change.analytic</field>
+    <field name="target">new</field>
+    <field name="view_id" ref="sale_order_change_analytic_wizard_form" />
+  </record>
+</odoo>
