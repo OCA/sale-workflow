@@ -4,17 +4,17 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: Odoo Server 14.0+e\n"
+"Project-Id-Version: Odoo Server 14.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-05-25 07:02+0000\n"
-"PO-Revision-Date: 2021-05-25 07:02+0000\n"
-"Last-Translator: \n"
-"Language-Team: \n"
-"Language: \n"
+"PO-Revision-Date: 2021-11-22 10:36+0000\n"
+"Last-Translator: jabelchi <jabelchi@gmail.com>\n"
+"Language-Team: none\n"
+"Language: es\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
-"Plural-Forms: \n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: Weblate 4.3.2\n"
 
 #. module: sale_invoice_blocking
 #: code:addons/sale_invoice_blocking/models/sale_order.py:0
@@ -25,76 +25,74 @@ msgid ""
 "        "
 msgstr ""
 "\n"
-"- Vous avez un motif de blocage de la facturation sur le bon de commande\n"
+"- Debe tener un motivo de bloqueo en el pedido de venta\n"
 "        "
 
 #. module: sale_invoice_blocking
 #: model:ir.model.fields,field_description:sale_invoice_blocking.field_sale_order__invoice_blocking_reason_id
 msgid "Blocking for invoicing"
-msgstr "Blocage pour facturation"
+msgstr "Bloqueo de facturación"
 
 #. module: sale_invoice_blocking
 #: model:ir.model.fields,field_description:sale_invoice_blocking.field_invoice_blocking_reason__create_uid
 msgid "Created by"
-msgstr "Créé par"
+msgstr "Creado por"
 
 #. module: sale_invoice_blocking
 #: model:ir.model.fields,field_description:sale_invoice_blocking.field_invoice_blocking_reason__create_date
 msgid "Created on"
-msgstr "Créé le"
+msgstr "Creado el"
 
 #. module: sale_invoice_blocking
 #: model:ir.model.fields,field_description:sale_invoice_blocking.field_invoice_blocking_reason__display_name
 #: model:ir.model.fields,field_description:sale_invoice_blocking.field_sale_order__display_name
 msgid "Display Name"
-msgstr "Nom affiché"
+msgstr "Nombre a mostrar"
 
 #. module: sale_invoice_blocking
 #: model:ir.model.fields,field_description:sale_invoice_blocking.field_invoice_blocking_reason__id
 #: model:ir.model.fields,field_description:sale_invoice_blocking.field_sale_order__id
 msgid "ID"
-msgstr ""
+msgstr "ID"
 
 #. module: sale_invoice_blocking
 #: model:ir.actions.act_window,name:sale_invoice_blocking.invoice_blocking_reason_action
 #: model:ir.ui.menu,name:sale_invoice_blocking.menu_invoice_blocking_reason
 msgid "Invoicing block reasons"
-msgstr "Motifs de blocage de la facturation"
+msgstr "Motivos de bloqueo de facturación"
 
 #. module: sale_invoice_blocking
 #: model:ir.model.fields,field_description:sale_invoice_blocking.field_invoice_blocking_reason____last_update
 #: model:ir.model.fields,field_description:sale_invoice_blocking.field_sale_order____last_update
 msgid "Last Modified on"
-msgstr "Dernière modification le"
+msgstr "Última modificación el"
 
 #. module: sale_invoice_blocking
 #: model:ir.model.fields,field_description:sale_invoice_blocking.field_invoice_blocking_reason__write_uid
 msgid "Last Updated by"
-msgstr "Dernière modification par"
+msgstr "Última actualización por"
 
 #. module: sale_invoice_blocking
 #: model:ir.model.fields,field_description:sale_invoice_blocking.field_invoice_blocking_reason__write_date
 msgid "Last Updated on"
-msgstr "Dernière modification le"
+msgstr "Última actualización el"
 
 #. module: sale_invoice_blocking
 #: model:ir.model.fields,field_description:sale_invoice_blocking.field_invoice_blocking_reason__name
 msgid "Reason"
-msgstr "Motif"
+msgstr "Motivo"
 
 #. module: sale_invoice_blocking
 #: model:ir.model,name:sale_invoice_blocking.model_invoice_blocking_reason
 msgid "Sale invoice blocking reason"
-msgstr "Motif de blocage de la facturation"
+msgstr "Motivo de bloqueo de facturación"
 
 #. module: sale_invoice_blocking
 #: model:ir.model,name:sale_invoice_blocking.model_sale_order
 msgid "Sales Order"
-msgstr "Bon de commande"
+msgstr "Pedido de venta"
 
 #. module: sale_invoice_blocking
 #: model:ir.model.constraint,message:sale_invoice_blocking.constraint_invoice_blocking_reason_name_uniq
 msgid "You cannot have two invoice blocking reasons with the same name."
-msgstr ""
-"Vous ne pouvez pas avoir deux motifs de blocage de facturation avec le même "
-"nom."
+msgstr "No puede tener dos motivos de bloqueo con el mismo nombre."
