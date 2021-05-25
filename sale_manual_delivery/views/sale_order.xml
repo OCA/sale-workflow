@@ -41,7 +41,7 @@
                 <filter
                     string="Unplanned delivery"
                     name="filter_unplanned"
-                    domain="[('qty_to_procured', '!=', 0), ('state', '=', 'sale')]"
+                    domain="[('qty_to_procure', '!=', 0), ('state', '=', 'sale')]"
                     help="Sales Order Lines that are confirmed, done or in exception state and no delivery is created to satisfy them"
                 />
             </search>
