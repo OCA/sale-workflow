@@ -33,6 +33,7 @@ setuptools.setup(
         'odoo14-addon-sale_pricelist_from_commitment_date',
         'odoo14-addon-sale_product_category_menu',
         'odoo14-addon-sale_product_multi_add',
+        'odoo14-addon-sale_product_seasonality',
         'odoo14-addon-sale_product_set',
         'odoo14-addon-sale_product_set_packaging_qty',
         'odoo14-addon-sale_quotation_number',
