@@ -46,7 +46,6 @@ class TestProductSupplierinfoForCustomerSale(TransactionCase):
             {
                 "name": name,
                 "email": "example@yourcompany.com",
-                "customer": True,
                 "phone": 123456,
             }
         )
