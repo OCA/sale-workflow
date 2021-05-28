@@ -13,39 +13,44 @@ class SaleOrder(models.Model):
         "order_line.discount_total",
         "order_line.discount_total",
         "order_line.is_promotion_line",
+        "order_line.currency_id",
+        "currency_id",
     )
     def _compute_discount_total(self):
         super(SaleOrder, self)._compute_discount_total()
         for order in self:
             discount_total = order.discount_total
             price_total_no_discount = order.price_total_no_discount
-            for line in order.order_line:
-                if not line.is_promotion_line:
-                    continue
-                price_total = line.price_total
+            if not order.order_line:
+                return True
+            else:
+                for line in order.order_line:
+                    if not line.is_promotion_line:
+                        continue
+                    price_total = line.price_total
+                    if (
+                        float_compare(
+                            line.price_total,
+                            0.0,
+                            precision_rounding=line.currency_id.rounding,
+                        )
+                        < 1
+                    ):
+                        price_total = -price_total
+                    discount_total += price_total
+                    price_total_no_discount += price_total
+
                 if (
                     float_compare(
-                        line.price_total,
-                        0.0,
-                        precision_rounding=line.currency_id.rounding,
+                        discount_total,
+                        order.discount_total,
+                        precision_rounding=order.currency_id.rounding,
                     )
-                    < 1
+                    != 0
                 ):
-                    price_total = -price_total
-                discount_total += price_total
-                price_total_no_discount += price_total
-
-            if (
-                float_compare(
-                    discount_total,
-                    order.discount_total,
-                    precision_rounding=order.currency_id.rounding,
-                )
-                != 0
-            ):
-                order.update(
-                    {
-                        "discount_total": discount_total,
-                        "price_total_no_discount": price_total_no_discount,
-                    }
-                )
+                    order.update(
+                        {
+                            "discount_total": discount_total,
+                            "price_total_no_discount": price_total_no_discount,
+                        }
+                    )
