@@ -10,6 +10,9 @@
     "license": "AGPL-3",
     "development_status": "Production/Stable",
     "summary": "Add shipping amounts on sale order",
+    'description': """
+This module contains the common features of adding shipping amount in sale order
+    """,
     "depends": ["sale", "delivery"],
     "author": "Akretion, Odoo Community Association (OCA)",
     "website": "https://github.com/OCA/sale-workflow",
