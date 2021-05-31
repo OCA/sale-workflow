@@ -42,25 +42,18 @@ class TestSaleOrderType(common.TransactionCase):
         )
         self.default_sale_type_id = self.env["sale.order.type"].search([], limit=1)
         self.default_sale_type_id.sequence_id = False
-        self.warehouse = self.env["stock.warehouse"].create(
-            {"name": "Warehouse Test", "code": "WT"}
-        )
         self.product = self.env["product.product"].create(
             {"type": "service", "invoice_policy": "order", "name": "Test product"}
         )
         self.immediate_payment = self.env.ref("account.account_payment_term_immediate")
         self.sale_pricelist = self.env.ref("product.list0")
-        self.free_carrier = self.env.ref("account.incoterm_FCA")
         self.sale_type = self.sale_type_model.create(
             {
                 "name": "Test Sale Order Type",
                 "sequence_id": self.sequence.id,
                 "journal_id": self.journal.id,
-                "warehouse_id": self.warehouse.id,
-                "picking_policy": "one",
                 "payment_term_id": self.immediate_payment.id,
                 "pricelist_id": self.sale_pricelist.id,
-                "incoterm_id": self.free_carrier.id,
                 "quotation_validity_days": 10,
             }
         )
@@ -69,11 +62,8 @@ class TestSaleOrderType(common.TransactionCase):
                 "name": "Test Quotation Type",
                 "sequence_id": self.sequence_quot.id,
                 "journal_id": self.journal.id,
-                "warehouse_id": self.warehouse.id,
-                "picking_policy": "one",
                 "payment_term_id": self.immediate_payment.id,
                 "pricelist_id": self.sale_pricelist.id,
-                "incoterm_id": self.free_carrier.id,
             }
         )
         self.sale_type_sequence_default = self.sale_type_quot.copy(
@@ -86,41 +76,6 @@ class TestSaleOrderType(common.TransactionCase):
             }
         )
         self.partner.sale_type = self.sale_type
-        self.sale_route = self.env["stock.location.route"].create(
-            {
-                "name": "SO -> Customer",
-                "product_selectable": True,
-                "sale_selectable": True,
-                "rule_ids": [
-                    (
-                        0,
-                        0,
-                        {
-                            "name": "SO -> Customer",
-                            "action": "pull",
-                            "picking_type_id": self.ref("stock.picking_type_in"),
-                            "location_src_id": self.ref(
-                                "stock.stock_location_components"
-                            ),
-                            "location_id": self.ref("stock.stock_location_customers"),
-                        },
-                    )
-                ],
-            }
-        )
-        self.sale_type_route = self.sale_type_model.create(
-            {
-                "name": "Test Sale Order Type-1",
-                "sequence_id": self.sequence.id,
-                "journal_id": self.journal.id,
-                "warehouse_id": self.warehouse.id,
-                "picking_policy": "one",
-                "payment_term_id": self.immediate_payment.id,
-                "pricelist_id": self.sale_pricelist.id,
-                "incoterm_id": self.free_carrier.id,
-                "route_id": self.sale_route.id,
-            }
-        )
 
     def create_sale_order(self, partner=False):
         sale_form = Form(self.env["sale.order"])
@@ -146,11 +101,8 @@ class TestSaleOrderType(common.TransactionCase):
         order = self.create_sale_order()
         self.assertEqual(order.type_id, sale_type)
         order.onchange_type_id()
-        self.assertEqual(order.warehouse_id, sale_type.warehouse_id)
-        self.assertEqual(order.picking_policy, sale_type.picking_policy)
         self.assertEqual(order.payment_term_id, sale_type.payment_term_id)
         self.assertEqual(order.pricelist_id, sale_type.pricelist_id)
-        self.assertEqual(order.incoterm, sale_type.incoterm_id)
         order.action_confirm()
         invoice = order._create_invoices()
         self.assertEqual(invoice.sale_type_id, sale_type)
@@ -178,21 +130,6 @@ class TestSaleOrderType(common.TransactionCase):
     def test_invoice_without_partner(self):
         invoice = self.invoice_model.new()
         self.assertEqual(invoice.sale_type_id, self.default_sale_type_id)
-
-    def test_sale_order_flow_route(self):
-        order = self.create_sale_order()
-        order.type_id = self.sale_type_route.id
-        order.onchange_type_id()
-        self.assertEqual(order.type_id.route_id, order.order_line[0].route_id)
-        sale_line_dict = {
-            "product_id": self.product.id,
-            "name": self.product.name,
-            "product_uom_qty": 2.0,
-            "price_unit": self.product.lst_price,
-        }
-        order.write({"order_line": [(0, 0, sale_line_dict)]})
-        order.onchange_type_id()
-        self.assertEqual(order.type_id.route_id, order.order_line[1].route_id)
 
     def test_sale_order_in_draft_state_update_name(self):
         order = self.create_sale_order()
@@ -260,11 +197,8 @@ class TestSaleOrderType(common.TransactionCase):
                 "name": "Test Sale Order Type Copy",
                 "sequence_id": sequence.id,
                 "journal_id": self.journal.id,
-                "warehouse_id": self.warehouse.id,
-                "picking_policy": "one",
                 "payment_term_id": self.immediate_payment.id,
                 "pricelist_id": self.sale_pricelist.id,
-                "incoterm_id": self.free_carrier.id,
             }
         )
         # Change sale type for copied order
@@ -284,11 +218,8 @@ class TestSaleOrderType(common.TransactionCase):
             {
                 "name": "Test Sale Order Type No Sequence",
                 "journal_id": self.journal.id,
-                "warehouse_id": self.warehouse.id,
-                "picking_policy": "one",
                 "payment_term_id": self.immediate_payment.id,
                 "pricelist_id": self.sale_pricelist.id,
-                "incoterm_id": self.free_carrier.id,
             }
         )
         # Write again, and see that name remains the same

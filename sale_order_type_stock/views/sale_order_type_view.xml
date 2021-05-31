@@ -1,0 +1,94 @@
+<odoo>
+    <record id="view_sale_order_type_form" model="ir.ui.view">
+        <field name="model">sale.order.type</field>
+        <field name="inherit_id" ref="sale_order_type.sot_sale_order_type_form_view" />
+        <field name="arch" type="xml">
+            <field name="company_id" position="before">
+                <field
+                    name="warehouse_id"
+                    groups="stock.group_stock_multi_warehouses"
+                />
+            </field>
+            <field name="company_id" position="after">
+                <field
+                    name="route_id"
+                    attrs="{'invisible': [('warehouse_id', '=', False)]}"
+                    groups="stock.group_adv_location"
+                />
+            </field>
+            <field name="journal_id" position="after">
+                <field name="picking_policy" />
+            </field>
+            <field name="journal_id" position="after">
+                <field name="incoterm_id" groups="sale_stock.group_display_incoterm" />
+            </field>
+        </field>
+    </record>
+    <record id="view_sale_order_type_tree" model="ir.ui.view">
+        <field name="model">sale.order.type</field>
+        <field name="inherit_id" ref="sale_order_type.sot_sale_order_type_tree_view" />
+        <field name="arch" type="xml">
+            <field name="name" position="after">
+                <field
+                    name="warehouse_id"
+                    groups="stock.group_stock_multi_warehouses"
+                />
+                <field name="route_id" groups="stock.group_adv_location" />
+            </field>
+            <field name="journal_id" position="after">
+                <field name="picking_policy" />
+            </field>
+            <field name="pricelist_id" position="after">
+                <field name="incoterm_id" groups="sale_stock.group_display_incoterm" />
+            </field>
+        </field>
+    </record>
+    <record id="view_sale_order_type_search" model="ir.ui.view">
+        <field name="model">sale.order.type</field>
+        <field
+            name="inherit_id"
+            ref="sale_order_type.sot_sale_order_type_search_view"
+        />
+        <field name="arch" type="xml">
+            <field name="name" position="after">
+                <field
+                    name="warehouse_id"
+                    groups="stock.group_stock_multi_warehouses"
+                />
+                <field name="route_id" groups="stock.group_adv_location" />
+            </field>
+            <field name="journal_id" position="after">
+                <field name="picking_policy" />
+            </field>
+            <field name="pricelist_id" position="after">
+                <field name="incoterm_id" groups="sale_stock.group_display_incoterm" />
+            </field>
+            <filter name="entry_sequence" position="before">
+                <filter
+                    name="warehouse"
+                    string="Warehouse"
+                    domain="[]"
+                    context="{'group_by':'warehouse_id'}"
+                    groups="stock.group_stock_multi_warehouses"
+                />
+            </filter>
+            <filter name="billing_journal" position="after">
+                <filter
+                    name="shipping_policy"
+                    string="Shipping Policy"
+                    domain="[]"
+                    context="{'group_by':'picking_policy'}"
+                />
+            </filter>
+            <filter name="price_list" position="after">
+                <filter
+                    name="incoterm"
+                    string="Incoterm"
+                    domain="[]"
+                    context="{'group_by':'incoterm_id'}"
+                    groups="sale_stock.group_display_incoterm"
+                />
+            </filter>
+        </field>
+    </record>
+</odoo>

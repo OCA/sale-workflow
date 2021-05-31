@@ -77,18 +77,6 @@ class SaleOrder(models.Model):
             order_type = order.type_id
             # Order values
             vals = {}
-            if order_type.warehouse_id:
-                vals.update({"warehouse_id": order_type.warehouse_id})
-            if order_type.picking_policy:
-                vals.update({"picking_policy": order_type.picking_policy})
-            if order_type.payment_term_id:
-                vals.update({"payment_term_id": order_type.payment_term_id})
-            if order_type.pricelist_id:
-                vals.update({"pricelist_id": order_type.pricelist_id})
-            if order_type.incoterm_id:
-                vals.update({"incoterm": order_type.incoterm_id})
-            if order_type.analytic_account_id:
-                vals.update({"analytic_account_id": order_type.analytic_account_id})
             if order_type.quotation_validity_days:
                 vals.update(
                     {
@@ -98,12 +86,14 @@ class SaleOrder(models.Model):
                         )
                     }
                 )
+            for field_name, field in order_type._fields.items():
+                if not getattr(field, "sale_order_field", False):
+                    continue
+                sale_order_field_name = field.sale_order_field
+                if order_type[field_name]:
+                    vals[sale_order_field_name] = order_type[field_name]
             if vals:
                 order.update(vals)
-            # Order line values
-            line_vals = {}
-            line_vals.update({"route_id": order_type.route_id.id})
-            order.order_line.update(line_vals)
 
     @api.model
     def create(self, vals):
@@ -159,14 +149,3 @@ class SaleOrder(models.Model):
                 sequence_date=vals.get("date_order")
             )
         return sequence
-
-
-class SaleOrderLine(models.Model):
-    _inherit = "sale.order.line"
-
-    @api.onchange("product_id")
-    def product_id_change(self):
-        res = super(SaleOrderLine, self).product_id_change()
-        if self.order_id.type_id.route_id:
-            self.update({"route_id": self.order_id.type_id.route_id})
-        return res
