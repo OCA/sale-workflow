@@ -63,8 +63,8 @@ class SaleOrder(models.Model):
                     if line.display_type == 'line_section':
                         pending_section = line
                         continue
-                    if float_is_zero(line.qty_to_invoice,
-                                     precision_digits=precision):
+                    if line.display_type != 'line_note' and float_is_zero(
+                            line.qty_to_invoice, precision_digits=precision):
                         continue
                     # START HOOK
                     # Allow to check if a line should not be invoiced
@@ -107,7 +107,8 @@ class SaleOrder(models.Model):
                                 order.client_order_ref
                         invoice.write(vals)
                     if line.qty_to_invoice > 0 or \
-                            (line.qty_to_invoice < 0 and final):
+                            (line.qty_to_invoice < 0 and final) or \
+                            line.display_type == 'line_note':
                         if pending_section:
                             pending_section.invoice_line_create(
                                 invoices[group_key].id,
