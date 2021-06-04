@@ -32,7 +32,9 @@ msgstr "销售订单行"
 
 #. module: sale_order_action_invoice_create_hook
 #: code:addons/sale_order_action_invoice_create_hook/model/sale_order.py:133
+#: code:addons/sale_order_action_invoice_create_hook/model/sale_order.py:134
 #: code:addons/sale_order_action_invoice_create_hook/model/sale_order.py:139
+#: code:addons/sale_order_action_invoice_create_hook/model/sale_order.py:140
 #, python-format
 msgid "There is no invoicable line."
 msgstr "没有发票行。"
