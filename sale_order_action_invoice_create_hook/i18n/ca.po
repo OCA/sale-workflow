@@ -1,6 +1,6 @@
 # Translation of Odoo Server.
 # This file contains the translation of the following modules:
-#	* sale_order_action_invoice_create_hook
+# 	* sale_order_action_invoice_create_hook
 #
 msgid ""
 msgstr ""
@@ -28,7 +28,9 @@ msgstr "Línia de comandes de vendes"
 
 #. module: sale_order_action_invoice_create_hook
 #: code:addons/sale_order_action_invoice_create_hook/model/sale_order.py:133
+#: code:addons/sale_order_action_invoice_create_hook/model/sale_order.py:134
 #: code:addons/sale_order_action_invoice_create_hook/model/sale_order.py:139
+#: code:addons/sale_order_action_invoice_create_hook/model/sale_order.py:140
 #, python-format
 msgid "There is no invoicable line."
 msgstr "No hi ha cap línia facturable."
