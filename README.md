@@ -56,7 +56,7 @@ addon | version | summary
 [sale_milestone_profile_invoicing](sale_milestone_profile_invoicing/) | 12.0.1.0.1 | Inform on delivered and invoiced work by sale order line.
 [sale_mrp_bom](sale_mrp_bom/) | 12.0.1.0.0 | Allows define a BOM in the sales lines.
 [sale_mrp_link](sale_mrp_link/) | 12.0.1.0.1 | Show manufacturing orders generated from sales order
-[sale_order_action_invoice_create_hook](sale_order_action_invoice_create_hook/) | 12.0.1.0.0 | Add more flexibility in the grouping parameters for the creation of invoices
+[sale_order_action_invoice_create_hook](sale_order_action_invoice_create_hook/) | 12.0.1.0.1 | Add more flexibility in the grouping parameters for the creation of invoices
 [sale_order_archive](sale_order_archive/) | 12.0.1.0.0 | Archive Sale Orders
 [sale_order_digitized_signature](sale_order_digitized_signature/) | 12.0.1.0.0 | Capture customer signature on the sales order
 [sale_order_general_discount](sale_order_general_discount/) | 12.0.1.1.0 | General discount per sale order
