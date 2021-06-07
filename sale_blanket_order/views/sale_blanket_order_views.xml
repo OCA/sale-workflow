@@ -299,6 +299,25 @@
             </tree>
         </field>
     </record>
+    <record id="sale_blanket_order_line_calendar" model="ir.ui.view">
+        <field name="name">sale.blanket.order.line.calendar</field>
+        <field name="model">sale.blanket.order.line</field>
+        <field name="arch" type="xml">
+            <calendar
+                string="Planning"
+                date_start="date_schedule"
+                color="partner_id"
+                hide_time="true"
+                event_limit="5"
+                mode="month"
+            >
+                <field name="product_id" />
+                <field name="order_id" filters="1" />
+                <field name="partner_id" filters="1" />
+                <field name="remaining_uom_qty" />
+            </calendar>
+        </field>
+    </record>
     <record id="sale_blanket_order_line_form" model="ir.ui.view">
         <field name="name">sale.blanket.order.line.form</field>
         <field name="model">sale.blanket.order.line</field>
@@ -409,8 +428,35 @@
         <field name="model">sale.blanket.order.line</field>
         <field name="arch" type="xml">
             <search string="Search Sale Blanket Order Line">
+                <filter
+                    string="Remaining Qty"
+                    name="remaining_uom_qty"
+                    domain="[('order_id.state', '!=', 'draft'),('remaining_uom_qty', '!=', 0)]"
+                />
+                <separator />
                 <field name="product_id" />
+                <field name="partner_id" />
                 <field name="date_schedule" />
+                <group expand="0" string="Group By">
+                    <filter
+                        string="Partner"
+                        name="partner"
+                        domain="[]"
+                        context="{'group_by':'partner_id'}"
+                    />
+                    <filter
+                        string="Product"
+                        name="product"
+                        domain="[]"
+                        context="{'group_by':'partner_id'}"
+                    />
+                    <filter
+                        string="Schedule"
+                        name="schedule"
+                        domain="[]"
+                        context="{'group_by':'date_schedule'}"
+                    />
+                </group>
             </search>
         </field>
     </record>
@@ -421,7 +467,8 @@
         <field name="name">Blanket Order Lines</field>
         <field name="type">ir.actions.act_window</field>
         <field name="res_model">sale.blanket.order.line</field>
-        <field name="view_mode">tree,form</field>
+        <field name="view_mode">tree,form,calendar</field>
+        <field name="context">{'search_default_remaining_uom_qty': 1}</field>
         <field name="search_view_id" ref="sale_blanket_order_line_search" />
     </record>
     <menuitem

@@ -279,9 +279,7 @@ class BlanketOrder(models.Model):
         for order in self:
             sequence_obj = self.env["ir.sequence"]
             if order.company_id:
-                sequence_obj = sequence_obj.with_company(
-                    order.company_id.id
-                )
+                sequence_obj = sequence_obj.with_company(order.company_id.id)
             name = sequence_obj.next_by_code("sale.blanket.order")
             order.write({"confirmed": True, "name": name})
         return True
@@ -630,19 +628,28 @@ class BlanketOrderLine(models.Model):
         for line in self:
             sale_lines = line.sale_lines
             line.ordered_uom_qty = sum(
-                l.product_uom._compute_quantity(l.product_uom_qty, line.product_uom)
-                for l in sale_lines
-                if l.order_id.state != "cancel" and l.product_id == line.product_id
+                so_line.product_uom._compute_quantity(
+                    so_line.product_uom_qty, line.product_uom
+                )
+                for so_line in sale_lines
+                if so_line.order_id.state != "cancel"
+                and so_line.product_id == line.product_id
             )
             line.invoiced_uom_qty = sum(
-                l.product_uom._compute_quantity(l.qty_invoiced, line.product_uom)
-                for l in sale_lines
-                if l.order_id.state != "cancel" and l.product_id == line.product_id
+                so_line.product_uom._compute_quantity(
+                    so_line.qty_invoiced, line.product_uom
+                )
+                for so_line in sale_lines
+                if so_line.order_id.state != "cancel"
+                and so_line.product_id == line.product_id
             )
             line.delivered_uom_qty = sum(
-                l.product_uom._compute_quantity(l.qty_delivered, line.product_uom)
-                for l in sale_lines
-                if l.order_id.state != "cancel" and l.product_id == line.product_id
+                so_line.product_uom._compute_quantity(
+                    so_line.qty_delivered, line.product_uom
+                )
+                for so_line in sale_lines
+                if so_line.order_id.state != "cancel"
+                and so_line.product_id == line.product_id
             )
             line.remaining_uom_qty = line.original_uom_qty - line.ordered_uom_qty
             line.remaining_qty = line.product_uom._compute_quantity(
