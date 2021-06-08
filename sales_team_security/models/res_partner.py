@@ -80,7 +80,6 @@ class ResPartner(models.Model):
             )
             (childrens + record).message_subscribe(partner_ids=followers.ids)
 
-    @api.multi
     def write(self, vals):
         """If the salesman is changed, first remove the old salesman as follower
         of the key contacts (commercial + delivery/invoice), and then sync for
