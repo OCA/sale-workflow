@@ -42,12 +42,12 @@ class TestSalesTeamSecurity(common.SavepointCase):
             }
         )
         cls.user2_partner = cls.user2.partner_id
-
-    def _is_module_installed(self, name):
-        return bool(
-            self.env["ir.module.module"].search(
-                [("name", "=", name), ("state", "=", "installed")]
-            )
+        cls.sale_order = cls.env["sale.order"].create(
+            {
+                "partner_id": cls.partner.id,
+                "user_id": cls.user.id,
+                "team_id": cls.team.id,
+            }
         )
 
     def test_onchange_parent_id(self):
@@ -107,76 +107,70 @@ class TestSalesTeamSecurity(common.SavepointCase):
         self.assertTrue(xml_fields)
         self.assertTrue("default_team_id" in xml_fields[0].get("context", ""))
 
-    def _check_permission(self, salesman, team, expected, subscribe=False):
-        self.partner.write(
+    def _check_permission(self, record, salesman, team, expected):
+        record.write(
             {
                 "user_id": salesman.id if salesman else salesman,
                 "team_id": team.id if team else team,
             }
         )
-        domain = [("id", "in", self.partner.ids)]
-        Partner = self.env["res.partner"].with_user(self.user)
-        if subscribe:  # Force unsubscription for not interfering with real test
-            self.partner.message_subscribe(partner_ids=self.user.partner_id.ids)
-        else:
-            self.partner.message_unsubscribe(partner_ids=self.user.partner_id.ids)
-        self.assertEqual(bool(Partner.search(domain)), expected)
+        domain = [("id", "=", record.id)]
+        obj = self.env[record._name].with_user(self.user)
+        self.assertEqual(bool(obj.search(domain)), expected)
 
-    def test_partner_permissions(self):
-        self._check_permission(False, False, True)
-        self._check_permission(self.user, False, True)
-        self._check_permission(self.user2, False, False)
-        self._check_permission(False, self.team, True)
-        self._check_permission(False, self.team2, False)
-        self._check_permission(self.user, self.team, True)
-        self._check_permission(self.user, self.team2, True)
-        self._check_permission(self.user2, self.team2, False)
-        self._check_permission(self.user2, self.team, False)
+    def _check_whole_permission_set(self, record, extra_checks=True):
+        self._check_permission(record, False, False, True)
+        self._check_permission(record, self.user, False, True)
+        self._check_permission(record, self.user2, False, False)
+        self._check_permission(record, False, self.team, True)
+        if extra_checks:
+            self._check_permission(record, False, self.team2, False)
+        self._check_permission(record, self.user, self.team, True)
+        self._check_permission(record, self.user, self.team2, True)
+        self._check_permission(record, self.user2, self.team2, False)
+        self._check_permission(record, self.user2, self.team, False)
         # Add to group "Team manager"
         self.user.groups_id = [
             (4, self.env.ref("sales_team_security.group_sale_team_manager").id)
         ]
-        self._check_permission(False, False, True)
-        self._check_permission(self.user, False, True)
-        self._check_permission(self.user2, False, True)
-        self._check_permission(False, self.team, True)
-        self._check_permission(False, self.team2, False)
-        self._check_permission(self.user, self.team, True)
-        self._check_permission(self.user, self.team2, True)
-        self._check_permission(self.user2, self.team2, False)
-        self._check_permission(self.user2, self.team, True)
+        self._check_permission(record, False, False, True)
+        self._check_permission(record, self.user, False, True)
+        self._check_permission(record, self.user2, False, True)
+        self._check_permission(record, False, self.team, True)
+        if extra_checks:
+            self._check_permission(record, False, self.team2, False)
+        self._check_permission(record, self.user, self.team, True)
+        self._check_permission(record, self.user, self.team2, True)
+        self._check_permission(record, self.user2, self.team2, False)
+        self._check_permission(record, self.user2, self.team, True)
         # Add to group "See all leads"
         self.user.groups_id = [
             (4, self.env.ref("sales_team.group_sale_salesman_all_leads").id)
         ]
-        self._check_permission(False, False, True)
-        self._check_permission(self.user, False, True)
-        self._check_permission(self.user2, False, True)
-        self._check_permission(False, self.team, True)
-        self._check_permission(False, self.team2, True)
-        self._check_permission(self.user, self.team, True)
-        self._check_permission(self.user, self.team2, True)
-        self._check_permission(self.user2, self.team2, True)
-        self._check_permission(self.user2, self.team, True)
+        self._check_permission(record, False, False, True)
+        self._check_permission(record, self.user, False, True)
+        self._check_permission(record, self.user2, False, True)
+        self._check_permission(record, False, self.team, True)
+        self._check_permission(record, False, self.team2, True)
+        self._check_permission(record, self.user, self.team, True)
+        self._check_permission(record, self.user, self.team2, True)
+        self._check_permission(record, self.user2, self.team2, True)
+        self._check_permission(record, self.user2, self.team, True)
         # Regular internal user
-        self.user.groups_id = [(6, 0, [self.env.ref("base.group_user").id])]
-        self._check_permission(False, False, True)
-        self._check_permission(self.user, False, True)
-        self._check_permission(self.user2, False, True)
-        self._check_permission(False, self.team, True)
-        self._check_permission(False, self.team2, True)
-        self._check_permission(self.user, self.team, True)
-        self._check_permission(self.user, self.team2, True)
-        self._check_permission(self.user2, self.team2, True)
-        self._check_permission(self.user2, self.team, True)
+        if extra_checks:
+            self.user.groups_id = [(6, 0, [self.env.ref("base.group_user").id])]
+            self._check_permission(record, False, False, True)
+            self._check_permission(record, self.user, False, True)
+            self._check_permission(record, self.user2, False, True)
+            self._check_permission(record, False, self.team, True)
+            self._check_permission(record, False, self.team2, True)
+            self._check_permission(record, self.user, self.team, True)
+            self._check_permission(record, self.user, self.team2, True)
+            self._check_permission(record, self.user2, self.team2, True)
+            self._check_permission(record, self.user2, self.team, True)
 
-    def test_partner_permissions_subscription(self):
-        self._check_permission(self.user2, False, True, subscribe=True)
+    def test_partner_permissions(self):
+        self._check_whole_permission_set(self.partner)
 
-    def test_partner_permissions_own_partner(self):
-        self.user.partner_id.write({"user_id": self.user2.id})
-        domain = [("id", "in", self.user.partner_id.ids)]
-        Partner = self.env["res.partner"].with_user(self.user)
-        # Make sure the acces is not due to the subscription
-        self.partner.message_unsubscribe(partner_ids=self.user.partner_id.ids)
-        self.assertEqual(bool(Partner.search(domain)), True)
+    def test_sale_order_permissions(self):
+        self._check_whole_permission_set(self.sale_order, extra_checks=False)
