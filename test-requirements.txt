@@ -1,0 +1,1 @@
+odoo14-addon-web_action_conditionable @ git+https://github.com/OCA/web@refs/pull/1947/head#subdirectory=setup/web_action_conditionable
