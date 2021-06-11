@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Copyright 2021 KMEE
+     License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl). -->
+
+<odoo>
+
+    <record model="ir.ui.view" id="res_partner_industry_form_view">
+        <field name="name">res.partner.industry.form (in partner_industry_pricelist)</field>
+        <field name="model">res.partner.industry</field>
+        <field name="inherit_id" ref="base.res_partner_industry_view_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//form" position="inside">
+                <group name="sales" groups="sales_team.group_sale_manager">
+                    <field name="pricelist_id"/>
+                </group>
+            </xpath>
+        </field>
+    </record>
+
+</odoo>
