@@ -35,6 +35,7 @@ addon | version | summary
 [sale_order_line_description](sale_order_line_description/) | 14.0.1.0.0 | Sale order line description
 [sale_order_line_menu](sale_order_line_menu/) | 14.0.1.0.0 | Adds a Sale Order Lines Menu
 [sale_order_line_note](sale_order_line_note/) | 14.0.1.0.0 | Note on sale order line
+[sale_order_line_packaging_qty](sale_order_line_packaging_qty/) | 14.0.1.0.0 | Define quantities according to product packaging on sale order lines
 [sale_order_lot_generator](sale_order_lot_generator/) | 14.0.1.0.1 | Sale Order Lot Generator
 [sale_order_lot_selection](sale_order_lot_selection/) | 14.0.1.0.0 | Sale Order Lot Selection
 [sale_order_note_template](sale_order_note_template/) | 14.0.1.0.0 | Add sale orders terms and conditions template that can be used to quickly fullfill sale order terms and conditions
