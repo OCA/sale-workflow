@@ -30,16 +30,13 @@
                      style="margin-bottom:0px;">
                     <p><i class="fa fa-info-circle"/>This SO needs to be
                         validated.
-                        <field name="can_review" invisible="1"/>
                         <button name="validate_tier"
                                 string="Validate"
-                                attrs="{'invisible': [('can_review', '=', False)]}"
                                 type="object"
                                 class="oe_inline oe_button btn-success"
                                 icon="fa-thumbs-up"/>
                         <button name="reject_tier"
                                 string="Reject"
-                                attrs="{'invisible': [('can_review', '=', False)]}"
                                 type="object"
                                 class="btn-icon btn-danger"
                                 icon="fa-thumbs-down"/>
