@@ -36,6 +36,7 @@ class SaleOrderLine(models.Model):
         "stock.warehouse",
         "Source Warehouse",
         readonly=True,
+        related="",
         states={"draft": [("readonly", False)], "sent": [("readonly", False)]},
         help="If a source warehouse is selected, "
         "it will be used to define the route. "
@@ -43,7 +44,6 @@ class SaleOrderLine(models.Model):
         "the sale order",
     )
 
-    @api.multi
     def _prepare_procurement_values(self, group_id=False):
         """Prepare specific key for moves or other components
         that will be created from a stock rule
@@ -57,7 +57,6 @@ class SaleOrderLine(models.Model):
             values["warehouse_id"] = self.warehouse_id
         return values
 
-    @api.multi
     def _get_procurement_group_key(self):
         """Return a key with priority to be used to regroup lines in multiple
         procurement groups
