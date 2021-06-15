@@ -28,6 +28,15 @@
                 >[('id', 'in', season_allowed_product_ids)]</attribute>
                 <attribute name="options">{"no_create": True}</attribute>
             </xpath>
+            <xpath
+                expr="//field[@name='order_line']//tree//field[@name='product_template_id']"
+                position="attributes"
+            >
+                <attribute
+                    name="domain"
+                >[('product_variant_ids.id', 'in', season_allowed_product_ids)]</attribute>
+                <attribute name="options">{"no_create": True}</attribute>
+            </xpath>
             <xpath expr="//notebook" position="inside">
                 <page
                     name="season_allowed_products"
