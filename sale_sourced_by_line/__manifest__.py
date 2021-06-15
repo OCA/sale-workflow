@@ -16,7 +16,6 @@
     "license": "AGPL-3",
     "website": "https://github.com/OCA/sale-workflow",
     "depends": [
-        "sale_stock",
         "sale_procurement_group_by_line",
     ],
     "data": ["view/sale_view.xml"],
