@@ -150,3 +150,32 @@ class TestSaleOrder(common.SavepointCase):
         self.assertEqual(self.so_line2.price_subtotal, 300.0)
         self.assertEqual(self.order.amount_untaxed, 375.0)
         self.assertEqual(self.order.amount_tax, 56.25)
+
+    def test_increased_precision(self):
+        """
+        Check that final discount is computed correctly
+        when final discount's precision exceeds
+        discount field's allowed precision.
+        """
+        so_line = self.so_line1
+        discount_field = so_line._fields['discount']
+        self.assertEqual(discount_field.digits[1], 2)
+        so_line.discount = 45.0
+        so_line.discount2 = 10.0
+        so_line.discount3 = 5.0
+
+        self.assertAlmostEqual(
+            so_line._get_final_discount(),
+            52.975,
+            places=3,
+        )
+        so_line.triple_discount_preprocess()
+
+        # Check that the line's discount still has all the 3 digits
+        self.assertAlmostEqual(
+            so_line.discount,
+            52.975,
+            places=3,
+        )
+        # Check that field's precision is not changed
+        self.assertEqual(discount_field.digits[1], 2)
