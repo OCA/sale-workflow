@@ -1,7 +1,7 @@
 /* Copyright 2021 Tecnativa - David Vidal
  * License LGPL-3.0 or later (https://www.gnu.org/licenses/lgpl.html).
  */
-odoo.define("sale_order_line_price_history.price_history_widget", function(require) {
+odoo.define("sale_order_line_price_history.price_history_widget", function (require) {
     "use strict";
 
     var Widget = require("web.Widget");
@@ -13,12 +13,12 @@ odoo.define("sale_order_line_price_history.price_history_widget", function(requi
             "click .price_history": "_onClickButton",
         }),
 
-        init: function(parent, params) {
+        init: function (parent, params) {
             this.data = params.data;
             this._super(parent);
         },
 
-        updateState: function(state) {
+        updateState: function (state) {
             var candidate = state.data[this.getParent().currentRow];
             if (candidate) {
                 this.data = candidate.data;
@@ -26,7 +26,7 @@ odoo.define("sale_order_line_price_history.price_history_widget", function(requi
             }
         },
 
-        _onClickButton: function() {
+        _onClickButton: function () {
             // When it's a new line, we can't rely on a line id for the wizard, but
             // we can provide the proper element to find the historic lines.
             this.$el.find(".price_history").prop("special_click", true);
