@@ -23,10 +23,14 @@ class SaleOrderLinePriceHistory(models.TransientModel):
         default=lambda self: self.env.context.get("active_id"),
     )
     product_id = fields.Many2one(
-        comodel_name="product.product", string="Product", default=_default_product_id,
+        comodel_name="product.product",
+        string="Product",
+        default=_default_product_id,
     )
     partner_id = fields.Many2one(
-        comodel_name="res.partner", string="Customer", default=_default_partner_id,
+        comodel_name="res.partner",
+        string="Customer",
+        default=_default_partner_id,
     )
     line_ids = fields.One2many(
         comodel_name="sale.order.line.price.history.line",
@@ -88,25 +92,38 @@ class SaleOrderLinePriceHistoryline(models.TransientModel):
     _description = "Sale order line price history line"
 
     history_id = fields.Many2one(
-        comodel_name="sale.order.line.price.history", string="History",
+        comodel_name="sale.order.line.price.history",
+        string="History",
     )
     history_sale_order_line_id = fields.Many2one(
-        comodel_name="sale.order.line", string="history sale order line",
+        comodel_name="sale.order.line",
+        string="history sale order line",
     )
     sale_order_line_id = fields.Many2one(
-        comodel_name="sale.order.line", string="Sale order line",
+        comodel_name="sale.order.line",
+        string="Sale order line",
     )
-    order_id = fields.Many2one(related="sale_order_line_id.order_id",)
-    partner_id = fields.Many2one(related="sale_order_line_id.order_partner_id",)
+    order_id = fields.Many2one(
+        related="sale_order_line_id.order_id",
+    )
+    partner_id = fields.Many2one(
+        related="sale_order_line_id.order_partner_id",
+    )
     sale_order_date_order = fields.Datetime(
         related="sale_order_line_id.order_id.date_order",
     )
-    product_uom_qty = fields.Float(related="sale_order_line_id.product_uom_qty",)
-    price_unit = fields.Float(related="sale_order_line_id.price_unit",)
-    discount = fields.Float(related="sale_order_line_id.discount",)
+    product_uom_qty = fields.Float(
+        related="sale_order_line_id.product_uom_qty",
+    )
+    price_unit = fields.Float(
+        related="sale_order_line_id.price_unit",
+    )
+    discount = fields.Float(
+        related="sale_order_line_id.discount",
+    )
 
     def _prepare_set_price_history_vals(self):
-        """ Hook method to prepare the values to update the
+        """Hook method to prepare the values to update the
         sales order line in context.
 
         This method is invoke by action_set_price method in this model.
