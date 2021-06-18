@@ -87,7 +87,7 @@ addon | version | summary
 [sale_product_returnable](sale_product_returnable/) | 12.0.1.0.2 | Get returnable products from your customers
 [sale_product_set](sale_product_set/) | 12.0.1.3.1 | Sale product set
 [sale_product_set_variant](sale_product_set_variant/) | 12.0.1.1.0 | Add variant management to sale product set.
-[sale_promotion_rule](sale_promotion_rule/) | 12.0.1.0.0 | Module to manage promotion rule on sale order
+[sale_promotion_rule](sale_promotion_rule/) | 12.0.1.0.1 | Module to manage promotion rule on sale order
 [sale_quotation_number](sale_quotation_number/) | 12.0.1.0.0 | Different sequence for sale quotations
 [sale_rental](sale_rental/) | 12.0.1.1.0 | Manage Rental of Products
 [sale_require_po_doc](sale_require_po_doc/) | 12.0.1.0.0 | Sale Orders Require PO or Sales Documentation
