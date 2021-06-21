@@ -34,7 +34,10 @@ class ResPartner(models.Model):
         for dwin_start in datetime_windows:
             if dwin_start >= from_date:
                 return dwin_start
-        raise UserError(_("Something went wrong trying to find next delivery window"))
+        raise UserError(
+            _("Something went wrong trying to find next delivery window. Date: %s")
+            % str(from_date)
+        )
 
     def get_next_windows_start_datetime(self, from_datetime, to_datetime):
         """Get all delivery windows start time.
