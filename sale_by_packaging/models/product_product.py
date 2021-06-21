@@ -1,12 +1,38 @@
 # Copyright 2020 Camptocamp SA
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
 
-from odoo import fields, models
+from odoo import api, fields, models
 from odoo.tools import float_compare, float_is_zero, float_round
 
 
 class ProductProduct(models.Model):
     _inherit = "product.product"
+
+    min_sellable_qty = fields.Float(
+        compute="_compute_variant_min_sellable_qty",
+        readonly=True,
+        help=(
+            "Minimum sellable quantity, according to the available packagings, "
+            "if Only Sell by Packaging is set."
+        ),
+    )
+
+    @api.depends(
+        "sell_only_by_packaging",
+        "uom_id.factor",
+        "packaging_ids.qty",
+        "packaging_ids.can_be_sold",
+    )
+    def _compute_variant_min_sellable_qty(self):
+        for record in self:
+            record.min_sellable_qty = 0.0
+            if record.sell_only_by_packaging and record.packaging_ids:
+                sellable_pkgs = record.packaging_ids.filtered(lambda p: p.can_be_sold)
+                record.min_sellable_qty = fields.first(
+                    sellable_pkgs.sorted(lambda p: p.qty)
+                ).qty
+            elif not record.sell_only_by_packaging:
+                record.min_sellable_qty = record.uom_id.factor
 
     def _convert_packaging_qty(self, qty, uom, packaging):
         """

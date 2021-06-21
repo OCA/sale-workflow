@@ -16,6 +16,7 @@
         "views/product_packaging.xml",
         "views/product_packaging_type.xml",
         "views/product_template.xml",
+        "views/product_product.xml",
         "views/sale_order_line.xml",
     ],
 }
