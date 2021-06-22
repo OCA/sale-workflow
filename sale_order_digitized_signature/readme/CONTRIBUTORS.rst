@@ -7,5 +7,6 @@
 
   * Mayank Gosai <mgosai@opensourceintegrators.com>
   * Maxime Chambreuil <mchambreuil@opensourceintegrators.com>
+  * Freni Patel <fpatel@opensourceintegrators.com>
 
 * nikulchaudhary2112@gmail.com
