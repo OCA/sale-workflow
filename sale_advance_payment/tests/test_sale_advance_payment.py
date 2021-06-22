@@ -3,7 +3,6 @@
 
 import json
 
-from odoo.exceptions import ValidationError
 from odoo.tests import common
 
 
@@ -21,10 +20,10 @@ class TestSaleAdvancePayment(common.SavepointCase):
 
         # Products
         cls.product_1 = cls.env["product.product"].create(
-            {"name": "Desk Combination", "type": "product", "invoice_policy": "order"}
+            {"name": "Desk Combination", "invoice_policy": "order"}
         )
         cls.product_2 = cls.env["product.product"].create(
-            {"name": "Conference Chair", "type": "product", "invoice_policy": "order"}
+            {"name": "Conference Chair", "invoice_policy": "order"}
         )
         cls.product_3 = cls.env["product.product"].create(
             {"name": "Repair Services", "type": "service", "invoice_policy": "order"}
@@ -132,22 +131,6 @@ class TestSaleAdvancePayment(common.SavepointCase):
             "active_ids": [self.sale_order_1.id],
             "active_id": self.sale_order_1.id,
         }
-
-        # Check residual > advance payment and the comparison takes
-        # into account the currency. 3001*1.2 > 3600
-        with self.assertRaises(ValidationError):
-            advance_payment_0 = (
-                self.env["account.voucher.wizard"]
-                .with_context(context_payment)
-                .create(
-                    {
-                        "journal_id": self.journal_eur_bank.id,
-                        "amount_advance": 3001,
-                        "order_id": self.sale_order_1.id,
-                    }
-                )
-            )
-            advance_payment_0.make_advance_payment()
 
         # Create Advance Payment 1 - EUR - bank
         advance_payment_1 = (

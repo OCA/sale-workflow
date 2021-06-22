@@ -21,7 +21,27 @@
                         nolabel="1"
                         colspan="4"
                         context="{'form_view_ref': 'account.view_account_payment_form','tree_view_ref': 'account.view_account_payment_tree'}"
-                    />
+                    >
+                        <tree
+                            decoration-info="state == 'draft'"
+                            decoration-muted="state in ['reconciled', 'cancelled']"
+                            edit="false"
+                        >
+                            <field name="name" />
+                            <field name="journal_id" />
+                            <field name="payment_method_id" />
+                            <field name="partner_id" string="Customer" />
+                            <field name="amount" sum="Amount" />
+                            <field name="payment_type" />
+                            <field name="state" />
+                            <field
+                                name="company_id"
+                                groups="base.group_multi_company"
+                            />
+                            <field name="currency_id" invisible="1" />
+                            <field name="partner_type" invisible="1" />
+                        </tree>
+                    </field>
                 </page>
             </notebook>
             <field name="amount_total" position="after">
