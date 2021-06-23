@@ -109,7 +109,7 @@ class SaleOrderLine(models.Model):
                         line.order_id.partner_shipping_id.property_stock_customer,
                         line.name,
                         line.order_id.name,
-                        self.env.company,
+                        line.order_id.company_id,
                         values,
                     )
                 )
