@@ -120,7 +120,7 @@ class TestSaleOrderCase(CommonCase):
         #     "friday": True,
         #     "saturday": True,
         #     "sunday": True,
-        #     "product_id": cls.prod2.id,
+        #     "product_template_id": cls.prod2.product_tmpl_id.id,
         # },
         form.commitment_date = "2021-05-09"
         # no product available before

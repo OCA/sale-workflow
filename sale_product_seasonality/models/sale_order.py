@@ -28,23 +28,29 @@ class SaleOrder(models.Model):
     def _default_seasonal_config_id(self):
         return self.env.user.company_id.default_seasonal_config_id
 
-    def _get_allowed_products(self, date):
+    def _get_allowed_product_ids(self, date):
         self.ensure_one()
-        products = self.env["product.product"]
+        product_ids = []
         if date:
-            config_lines = self.mapped("seasonal_config_id.line_ids")
-            products = config_lines.filtered(lambda l: l.is_sale_ok(date)).mapped(
-                "product_id"
+            config_lines = self.mapped("seasonal_config_id.line_ids").filtered(
+                lambda l: l.is_sale_ok(date)
             )
-        return products
+            for config_line in config_lines:
+                if config_line.product_id:
+                    product_ids.append(config_line.product_id.id)
+                else:
+                    product_ids.extend(
+                        config_line.product_template_id.product_variant_ids.ids
+                    )
+        return product_ids
 
     @api.depends("commitment_date", "seasonal_config_id.line_ids")
     def _compute_season_allowed_product_ids(self):
         for sale in self:
             value = [(5, 0)]
             if sale.commitment_date:
-                products = sale._get_allowed_products(sale.commitment_date)
-                value = [(6, 0, products.ids)]
+                product_ids = sale._get_allowed_product_ids(sale.commitment_date)
+                value = [(6, 0, product_ids)]
             sale.season_allowed_product_ids = value
 
     def _round_dates(self):
