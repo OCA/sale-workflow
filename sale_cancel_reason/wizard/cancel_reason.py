@@ -10,14 +10,12 @@ class SaleOrderCancel(models.TransientModel):
     _name = "sale.order.cancel"
     _description = __doc__
 
-    reason_id = fields.Many2one(
-        "sale.order.cancel.reason", string="Reason", required=True
-    )
+    reason_id = fields.Many2one(comodel_name="sale.order.cancel.reason", required=True)
 
     def confirm_cancel(self):
         self.ensure_one()
         act_close = {"type": "ir.actions.act_window_close"}
-        sale_ids = self._context.get("active_ids")
+        sale_ids = self.env.context.get("active_ids")
         if sale_ids is None:
             return act_close
         assert len(sale_ids) == 1, "Only 1 sale ID expected"

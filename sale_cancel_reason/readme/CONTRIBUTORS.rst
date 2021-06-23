@@ -3,3 +3,4 @@
 * Victor M.M Torres <victor.martin@tecnativa.com>
 * Bhavesh Odedra <bodedra@opensourceintegrators.com>
 * Alan Ramos <alan.ramos@jarsa.com.mx>
+* Ugnė Sinkevičienė <ugne@versada.eu>
