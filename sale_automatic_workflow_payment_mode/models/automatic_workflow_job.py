@@ -44,7 +44,7 @@ class AutomaticWorkflowJob(models.Model):
                     invoice.id,
                     payment_mode.id,
                 )
-                return
+                continue
 
             with savepoint(self.env.cr):
                 payment = self.env["account.payment"].create(
