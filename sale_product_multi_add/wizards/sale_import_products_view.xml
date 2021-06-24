@@ -5,7 +5,38 @@
         <field name="model">sale.import.products</field>
         <field name="arch" type="xml">
             <form string="Products">
-                <field name="products" />
+                <field name="products">
+                    <!-- Force create="1" because if the user doesn't have access right to create new products, -->
+                    <!-- he won't be able to select some products. -->
+                    <tree create="1">
+                        <field name="default_code" optional="show" readonly="1" />
+                        <field name="barcode" optional="hide" readonly="1" />
+                        <field name="name" readonly="1" />
+                        <field
+                            name="company_id"
+                            groups="base.group_multi_company"
+                            optional="hide"
+                            readonly="1"
+                        />
+                        <field name="lst_price" optional="show" string="Sales Price" />
+                        <field name="standard_price" optional="show" readonly="1" />
+                        <field name="categ_id" optional="hide" />
+                        <field name="type" optional="hide" readonly="1" />
+                        <field
+                            name="price"
+                            invisible="not context.get('pricelist',False)"
+                        />
+                        <field
+                            name="uom_id"
+                            options="{'no_open': True, 'no_create': True}"
+                            groups="uom.group_uom"
+                            optional="show"
+                            readonly="1"
+                        />
+                        <field name="product_tmpl_id" invisible="1" readonly="1" />
+                        <field name="active" invisible="1" />
+                    </tree>
+                </field>
                 <footer>
                     <button
                         name="create_items"

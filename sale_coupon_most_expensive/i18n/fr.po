@@ -1,0 +1,61 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* sale_coupon_most_expensive
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 13.0+e\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2020-11-18 14:57+0000\n"
+"PO-Revision-Date: 2020-11-18 14:57+0000\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: sale_coupon_most_expensive
+#: code:addons/sale_coupon_most_expensive/models/sale_coupon_reward.py:0
+#, python-format
+msgid "%s%% discount on most expensive product"
+msgstr "Réduction de %s%% sur l'article le plus cher"
+
+#. module: sale_coupon_most_expensive
+#: model:ir.model.fields,field_description:sale_coupon_most_expensive.field_sale_coupon_program__discount_apply_on
+#: model:ir.model.fields,field_description:sale_coupon_most_expensive.field_sale_coupon_reward__discount_apply_on
+msgid "Discount Apply On"
+msgstr "Réduction appliquée sur"
+
+#. module: sale_coupon_most_expensive
+#: model:ir.model.fields.selection,name:sale_coupon_most_expensive.selection__sale_coupon_reward__discount_apply_on__most_expensive_product
+msgid "On Most Expensive Product"
+msgstr "Sur l'article le plus cher"
+
+#. module: sale_coupon_most_expensive
+#: model:ir.model.fields,help:sale_coupon_most_expensive.field_sale_coupon_program__discount_apply_on
+#: model:ir.model.fields,help:sale_coupon_most_expensive.field_sale_coupon_reward__discount_apply_on
+msgid ""
+"On Order - Discount on whole order\n"
+"Cheapest product - Discount on cheapest product of the order\n"
+"Most Expensive product - Discount on most expensive product of the order\n"
+"Specific products - Discount on selected specific products"
+msgstr ""
+"Sur la commande : appliquer la remise sur la commande entière.\n"
+"Article le moins cher : appliquer la remise sur l'article le moins cher de "
+"la commande.\n"
+"Article le plus cher: appliquer la remise sur l'article le plus cher de la "
+"commande.\n"
+"Articles spécifiques : appliquer la remise sur des articles spécifiques au "
+"choix."
+
+#. module: sale_coupon_most_expensive
+#: model:ir.model,name:sale_coupon_most_expensive.model_sale_coupon_reward
+msgid "Sales Coupon Reward"
+msgstr "Récompense de coupon de vente"
+
+#. module: sale_coupon_most_expensive
+#: model:ir.model,name:sale_coupon_most_expensive.model_sale_order
+msgid "Sales Order"
+msgstr "Bon de commande"

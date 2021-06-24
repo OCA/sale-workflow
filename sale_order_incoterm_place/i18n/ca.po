@@ -1,0 +1,27 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+#	* sale_order_incoterm_place
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 12.0\n"
+"Report-Msgid-Bugs-To: \n"
+"PO-Revision-Date: 2021-03-19 17:46+0000\n"
+"Last-Translator: Daniel Martinez Vila <daniel.martinez@qubiq.es>\n"
+"Language-Team: none\n"
+"Language: ca\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: Weblate 4.3.2\n"
+
+#. module: sale_order_incoterm_place
+#: model:ir.model.fields,field_description:sale_order_incoterm_place.field_sale_order__incoterm_place
+msgid "Incoterm Place"
+msgstr "Lloc Incoterm"
+
+#. module: sale_order_incoterm_place
+#: model:ir.model,name:sale_order_incoterm_place.model_sale_order
+msgid "Sale Order"
+msgstr "Comanda de venda"

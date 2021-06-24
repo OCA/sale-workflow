@@ -34,6 +34,14 @@ msgid "Created on"
 msgstr "Erstellt am"
 
 #. module: sale_order_line_price_history
+#: model:ir.model.fields,help:sale_order_line_price_history.field_sale_order_line_price_history_line__sale_order_date_order
+msgid ""
+"Creation date of draft/sent orders,\n"
+"Confirmation date of confirmed orders."
+msgstr ""
+
+#. module: sale_order_line_price_history
+#: model:ir.model.fields,field_description:sale_order_line_price_history.field_sale_order_line__order_partner_id
 #: model:ir.model.fields,field_description:sale_order_line_price_history.field_sale_order_line_price_history__partner_id
 #: model:ir.model.fields,field_description:sale_order_line_price_history.field_sale_order_line_price_history_line__partner_id
 msgid "Customer"
@@ -117,16 +125,6 @@ msgid "Order Reference"
 msgstr "Auftragsnummer"
 
 #. module: sale_order_line_price_history
-#: model:ir.model.fields,field_description:sale_order_line_price_history.field_sale_order_line_price_history_line__product_uom_qty
-msgid "Ordered Quantity"
-msgstr "Auftragsmenge"
-
-#. module: sale_order_line_price_history
-#: model_terms:ir.ui.view,arch_db:sale_order_line_price_history.view_order_form
-msgid "Price history"
-msgstr "Preishistorie"
-
-#. module: sale_order_line_price_history
 #: model:ir.actions.act_window,name:sale_order_line_price_history.sale_order_line_price_history_action
 msgid "Price history per customer"
 msgstr "Preishistorie pro Kunde"
@@ -135,6 +133,11 @@ msgstr "Preishistorie pro Kunde"
 #: model:ir.model.fields,field_description:sale_order_line_price_history.field_sale_order_line_price_history__product_id
 msgid "Product"
 msgstr "Produkt"
+
+#. module: sale_order_line_price_history
+#: model:ir.model.fields,field_description:sale_order_line_price_history.field_sale_order_line_price_history_line__product_uom_qty
+msgid "Quantity"
+msgstr ""
 
 #. module: sale_order_line_price_history
 #: model_terms:ir.ui.view,arch_db:sale_order_line_price_history.sale_order_line_price_history_view_form
@@ -158,6 +161,11 @@ msgid "Sale order line price history line"
 msgstr "Preishistorienzeile der Auftragszeile"
 
 #. module: sale_order_line_price_history
+#: model:ir.model,name:sale_order_line_price_history.model_sale_order_line
+msgid "Sales Order Line"
+msgstr ""
+
+#. module: sale_order_line_price_history
 #: model_terms:ir.ui.view,arch_db:sale_order_line_price_history.sale_order_line_price_history_view_form
 msgid "Set price"
 msgstr "Preis verwenden"
@@ -168,13 +176,18 @@ msgid "Unit Price"
 msgstr "Preis pro ME"
 
 #. module: sale_order_line_price_history
-#: model:ir.model.fields,help:sale_order_line_price_history.field_sale_order_line_price_history_line__partner_id
-msgid "You can find a customer by its Name, TIN, Email or Internal Reference."
-msgstr ""
-"Ein Kunde kann anhand seines Namens, seiner Steuer-ID, Emailadresse oder "
-"internen Referenz gefunden werden."
-
-#. module: sale_order_line_price_history
 #: model:ir.model.fields,field_description:sale_order_line_price_history.field_sale_order_line_price_history_line__history_sale_order_line_id
 msgid "history sale order line"
 msgstr "Historie der Auftragszeile"
+
+#~ msgid "Ordered Quantity"
+#~ msgstr "Auftragsmenge"
+
+#~ msgid "Price history"
+#~ msgstr "Preishistorie"
+
+#~ msgid ""
+#~ "You can find a customer by its Name, TIN, Email or Internal Reference."
+#~ msgstr ""
+#~ "Ein Kunde kann anhand seines Namens, seiner Steuer-ID, Emailadresse oder "
+#~ "internen Referenz gefunden werden."

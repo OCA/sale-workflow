@@ -1,0 +1,108 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* sale_coupon_product_management
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 13.0\n"
+"Report-Msgid-Bugs-To: \n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: sale_coupon_product_management
+#: model:ir.model.fields,field_description:sale_coupon_product_management.field_product_category__default_promotion_next_order_category
+msgid "Default Promotion Next Order Category"
+msgstr ""
+
+#. module: sale_coupon_product_management
+#: model:ir.model.fields,field_description:sale_coupon_product_management.field_sale_coupon_program__discount_line_product_chosen
+msgid "Discount Line Product Chosen"
+msgstr ""
+
+#. module: sale_coupon_product_management
+#: model:ir.model.fields,field_description:sale_coupon_product_management.field_sale_coupon_program__force_product_categ_id
+msgid "Force Product Categ"
+msgstr ""
+
+#. module: sale_coupon_product_management
+#: model:ir.model.fields,field_description:sale_coupon_product_management.field_sale_coupon_program__force_product_default_code
+msgid "Force Product Default Code"
+msgstr ""
+
+#. module: sale_coupon_product_management
+#: code:addons/sale_coupon_product_management/models/product_product.py:0
+#, python-format
+msgid "Invalid 'Can be sold' value corresponding to program category options."
+msgstr ""
+
+#. module: sale_coupon_product_management
+#: model:ir.model.fields,field_description:sale_coupon_product_management.field_product_category__is_program_category
+msgid "Is Program Category"
+msgstr ""
+
+#. module: sale_coupon_product_management
+#: model:ir.model,name:sale_coupon_product_management.model_product_product
+msgid "Product"
+msgstr ""
+
+#. module: sale_coupon_product_management
+#: model:ir.model,name:sale_coupon_product_management.model_product_category
+msgid "Product Category"
+msgstr ""
+
+#. module: sale_coupon_product_management
+#: model_terms:ir.ui.view,arch_db:sale_coupon_product_management.sale_coupon_program_view_form_common
+msgid "Product Data"
+msgstr ""
+
+#. module: sale_coupon_product_management
+#: model:ir.model.fields,help:sale_coupon_product_management.field_sale_coupon_program__discount_line_product_readonly_id
+msgid ""
+"Product used in the sales order to apply the discount. Each coupon program "
+"has its own reward product for reporting purpose"
+msgstr ""
+
+#. module: sale_coupon_product_management
+#: model:ir.model.fields,field_description:sale_coupon_product_management.field_product_category__program_product_discount_fixed_amount
+#: model:ir.model.fields,field_description:sale_coupon_product_management.field_product_product__program_product_discount_fixed_amount
+msgid "Program Product Discount Fixed Amount"
+msgstr ""
+
+#. module: sale_coupon_product_management
+#: model:ir.model.fields,field_description:sale_coupon_product_management.field_product_category__program_product_sale_ok
+#: model:ir.model.fields,field_description:sale_coupon_product_management.field_product_product__program_product_sale_ok
+msgid "Program Product Sale Ok"
+msgstr ""
+
+#. module: sale_coupon_product_management
+#: model_terms:ir.ui.view,arch_db:sale_coupon_product_management.sale_coupon_program_view_form_common
+msgid "Reward Line Product"
+msgstr ""
+
+#. module: sale_coupon_product_management
+#: model:ir.model.fields,field_description:sale_coupon_product_management.field_sale_coupon_program__discount_line_product_readonly_id
+msgid "Reward Line Product Readonly"
+msgstr ""
+
+#. module: sale_coupon_product_management
+#: model:ir.model,name:sale_coupon_product_management.model_sale_coupon_program
+msgid "Sales Coupon Program"
+msgstr ""
+
+#. module: sale_coupon_product_management
+#: code:addons/sale_coupon_product_management/models/sale_coupon_program.py:0
+#, python-format
+msgid "This reward line product is already used into another program."
+msgstr ""
+
+#. module: sale_coupon_product_management
+#: code:addons/sale_coupon_product_management/models/sale_coupon_program.py:0
+#, python-format
+msgid ""
+"With 'program_product_discount_fixed_amount' category, the reward type must "
+"be 'discount' and the discount type must be 'Fixed Amount'."
+msgstr ""

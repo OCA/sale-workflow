@@ -1,0 +1,159 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* sale_coupon_multi_use
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 13.0\n"
+"Report-Msgid-Bugs-To: \n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: sale_coupon_multi_use
+#: model:ir.model.fields,field_description:sale_coupon_multi_use.field_sale_coupon_consumption_line__amount
+msgid "Amount"
+msgstr ""
+
+#. module: sale_coupon_multi_use
+#: model:ir.model.fields,field_description:sale_coupon_multi_use.field_sale_coupon__sale_multi_use_ids
+msgid "Applied on Orders"
+msgstr ""
+
+#. module: sale_coupon_multi_use
+#: model:ir.model.fields,field_description:sale_coupon_multi_use.field_sale_coupon__consumption_line_ids
+msgid "Consumption Line"
+msgstr ""
+
+#. module: sale_coupon_multi_use
+#: model:ir.model.fields,field_description:sale_coupon_multi_use.field_sale_coupon_consumption_line__coupon_id
+msgid "Coupon"
+msgstr ""
+
+#. module: sale_coupon_multi_use
+#: model:ir.model.fields,field_description:sale_coupon_multi_use.field_sale_order_line__coupon_consumption_line_ids
+msgid "Coupon Consumption Line"
+msgstr ""
+
+#. module: sale_coupon_multi_use
+#: code:addons/sale_coupon_multi_use/models/sale_coupon_program.py:0
+#, python-format
+msgid "Coupon multi use can't be changed with existing coupons."
+msgstr ""
+
+#. module: sale_coupon_multi_use
+#: model:ir.model.fields,field_description:sale_coupon_multi_use.field_sale_coupon_consumption_line__create_uid
+msgid "Created by"
+msgstr ""
+
+#. module: sale_coupon_multi_use
+#: model:ir.model.fields,field_description:sale_coupon_multi_use.field_sale_coupon_consumption_line__create_date
+msgid "Created on"
+msgstr ""
+
+#. module: sale_coupon_multi_use
+#: model:ir.model.fields,field_description:sale_coupon_multi_use.field_sale_coupon__currency_program_id
+#: model:ir.model.fields,field_description:sale_coupon_multi_use.field_sale_coupon_consumption_line__currency_program_id
+msgid "Currency"
+msgstr ""
+
+#. module: sale_coupon_multi_use
+#: model:ir.model.fields,field_description:sale_coupon_multi_use.field_sale_coupon_consumption_line__display_name
+msgid "Display Name"
+msgstr ""
+
+#. module: sale_coupon_multi_use
+#: model:ir.model.fields,field_description:sale_coupon_multi_use.field_sale_coupon__discount_fixed_amount_delta
+msgid "Fixed Amount Delta"
+msgstr ""
+
+#. module: sale_coupon_multi_use
+#: code:addons/sale_coupon_multi_use/models/sale_coupon_program.py:0
+#, python-format
+msgid ""
+"Fixed Amount can't be changed when there are Multi Use coupons already."
+msgstr ""
+
+#. module: sale_coupon_multi_use
+#: model:ir.model.fields,field_description:sale_coupon_multi_use.field_sale_coupon_consumption_line__id
+msgid "ID"
+msgstr ""
+
+#. module: sale_coupon_multi_use
+#: model:ir.model.fields,field_description:sale_coupon_multi_use.field_sale_coupon_consumption_line____last_update
+msgid "Last Modified on"
+msgstr ""
+
+#. module: sale_coupon_multi_use
+#: model:ir.model.fields,field_description:sale_coupon_multi_use.field_sale_coupon_consumption_line__write_uid
+msgid "Last Updated by"
+msgstr ""
+
+#. module: sale_coupon_multi_use
+#: model:ir.model.fields,field_description:sale_coupon_multi_use.field_sale_coupon_consumption_line__write_date
+msgid "Last Updated on"
+msgstr ""
+
+#. module: sale_coupon_multi_use
+#: model:ir.model.fields,field_description:sale_coupon_multi_use.field_sale_coupon__multi_use
+#: model:ir.model.fields,field_description:sale_coupon_multi_use.field_sale_coupon_program__coupon_multi_use
+#: model:ir.model.fields,field_description:sale_coupon_multi_use.field_sale_order__coupon_multi_use_ids
+msgid "Multi Use Coupons"
+msgstr ""
+
+#. module: sale_coupon_multi_use
+#: code:addons/sale_coupon_multi_use/models/sale_coupon_program.py:0
+#, python-format
+msgid ""
+"Multi Use Coupons program must have Coupon Program Type, Discount Reward and"
+" Fixed Amount as Apply Discount"
+msgstr ""
+
+#. module: sale_coupon_multi_use
+#: code:addons/sale_coupon_multi_use/models/sale_coupon.py:0
+#, python-format
+msgid "Multi-Use Coupon is already applied for the same reward"
+msgstr ""
+
+#. module: sale_coupon_multi_use
+#: model:ir.model,name:sale_coupon_multi_use.model_sale_coupon_consumption_line
+msgid "Sale Coupon Consumption Line"
+msgstr ""
+
+#. module: sale_coupon_multi_use
+#: model:ir.model.fields,field_description:sale_coupon_multi_use.field_sale_coupon_consumption_line__sale_order_line_id
+msgid "Sale Order Line"
+msgstr ""
+
+#. module: sale_coupon_multi_use
+#: model:ir.model,name:sale_coupon_multi_use.model_sale_coupon
+msgid "Sales Coupon"
+msgstr ""
+
+#. module: sale_coupon_multi_use
+#: model:ir.model,name:sale_coupon_multi_use.model_sale_coupon_apply_code
+msgid "Sales Coupon Apply Code"
+msgstr ""
+
+#. module: sale_coupon_multi_use
+#: model:ir.model,name:sale_coupon_multi_use.model_sale_coupon_program
+msgid "Sales Coupon Program"
+msgstr ""
+
+#. module: sale_coupon_multi_use
+#: model:ir.model,name:sale_coupon_multi_use.model_sale_order
+msgid "Sales Order"
+msgstr ""
+
+#. module: sale_coupon_multi_use
+#: model:ir.model,name:sale_coupon_multi_use.model_sale_order_line
+msgid "Sales Order Line"
+msgstr ""
+
+#. module: sale_coupon_multi_use
+#: model:ir.model.fields,field_description:sale_coupon_multi_use.field_sale_coupon_consumption_line__sale_order_state
+msgid "Status"
+msgstr ""

@@ -45,6 +45,7 @@ class SaleOrderRecommendation(models.TransientModel):
         string="Product price origin",
         default="pricelist",
     )
+    use_delivery_address = fields.Boolean(string="Use delivery address")
 
     @api.model
     def _default_order_id(self):
@@ -54,15 +55,25 @@ class SaleOrderRecommendation(models.TransientModel):
         """Domain to find recent SO lines."""
         start = datetime.now() - timedelta(days=self.months * 30)
         start = fields.Datetime.to_string(start)
-        other_sales = self.env["sale.order"].search(
-            [
-                (
-                    "partner_id",
-                    "child_of",
-                    self.order_id.partner_id.commercial_partner_id.id,
-                ),
-                ("date_order", ">=", start),
-            ]
+        partner = (
+            self.order_id.partner_shipping_id
+            if self.use_delivery_address
+            else self.order_id.partner_id.commercial_partner_id
+        )
+        sale_order_partner_field = (
+            "partner_shipping_id" if self.use_delivery_address else "partner_id"
+        )
+        # Search with sudo for get sale order from other commercials users
+        other_sales = (
+            self.env["sale.order"]
+            .sudo()
+            .search(
+                [
+                    ("company_id", "=", self.order_id.company_id.id),
+                    (sale_order_partner_field, "child_of", partner.id),
+                    ("date_order", ">=", start),
+                ]
+            )
         )
         return [
             ("order_id", "in", (other_sales - self.order_id).ids),
@@ -86,20 +97,27 @@ class SaleOrderRecommendation(models.TransientModel):
             vals["sale_line_id"] = so_line.id
         return vals
 
-    @api.onchange("order_id", "months", "line_amount")
+    @api.onchange("order_id", "months", "line_amount", "use_delivery_address")
     def _generate_recommendations(self):
         """Generate lines according to context sale order."""
-        last_compute = "{}-{}-{}".format(self.id, self.months, self.line_amount)
+        last_compute = "{}-{}-{}-{}".format(
+            self.id, self.months, self.line_amount, self.use_delivery_address
+        )
         # Avoid execute onchange as times as fields in api.onchange
         # ORM must control this?
         if self.last_compute == last_compute:
             return
         self.last_compute = last_compute
         # Search delivered products in previous months
-        found_lines = self.env["sale.order.line"].read_group(
-            self._recomendable_sale_order_lines_domain(),
-            ["product_id", "qty_delivered"],
-            ["product_id"],
+        # Search with sudo for get sale order from other commercials users
+        found_lines = (
+            self.env["sale.order.line"]
+            .sudo()
+            .read_group(
+                self._recomendable_sale_order_lines_domain(),
+                ["product_id", "qty_delivered"],
+                ["product_id"],
+            )
         )
         # Manual ordering that circumvents ORM limitations
         found_lines = sorted(
@@ -233,7 +251,7 @@ class SaleOrderRecommendationLine(models.TransientModel):
             .sudo()
             .search(
                 [
-                    ("company_id", "=", self.env.user.company_id.id),
+                    ("company_id", "=", self.wizard_id.order_id.company_id.id),
                     ("partner_id", "=", self.partner_id.id),
                     ("date_order", "!=", False),
                     ("state", "not in", ("draft", "sent", "cancel")),

@@ -90,34 +90,9 @@ class SaleOrderLine(models.Model):
                     % (self.order_id, partner.order_delivery_cutoff_preference, self)
                 )
             return
-        tz = cutoff.get("tz")
-        if tz and tz != "UTC":
-            cutoff_time = time(hour=cutoff.get("hour"), minute=cutoff.get("minute"))
-            # Convert here to naive datetime in UTC
-            tz_loc = pytz.timezone(tz)
-            tz_date_planned = date_planned.astimezone(tz_loc)
-            tz_cutoff_datetime = datetime.combine(tz_date_planned, cutoff_time)
-            utc_cutoff_datetime = tz_utils.tz_to_utc_naive_datetime(
-                tz_loc, tz_cutoff_datetime
-            )
-        else:
-            utc_cutoff_datetime = date_planned.replace(
-                hour=cutoff.get("hour"), minute=cutoff.get("minute"), second=0
-            )
-        if date_planned <= utc_cutoff_datetime or keep_same_day:
-            # Postpone delivery for date planned before cutoff to cutoff time
-            new_date_planned = date_planned.replace(
-                hour=utc_cutoff_datetime.hour,
-                minute=utc_cutoff_datetime.minute,
-                second=0,
-            )
-        # Postpone delivery for order confirmed after cutoff to day after
-        else:
-            new_date_planned = date_planned.replace(
-                hour=utc_cutoff_datetime.hour,
-                minute=utc_cutoff_datetime.minute,
-                second=0,
-            ) + timedelta(days=1)
+        new_date_planned = self._get_utc_cutoff_datetime(
+            cutoff, date_planned, keep_same_day
+        )
         _logger.debug(
             "%s applied on order %s. Date planned for line %s"
             " rescheduled from %s to %s"
@@ -137,16 +112,31 @@ class SaleOrderLine(models.Model):
         cutoff = self.order_id.get_cutoff_time()
         if not cutoff:
             return expected_date
-        cutoff_tz = cutoff.get("tz")
-        cutoff_time = time(hour=cutoff.get("hour"), minute=cutoff.get("minute"))
-        if cutoff_tz:
-            utc_cutoff_time = tz_utils.tz_to_utc_time(
-                cutoff_tz, cutoff_time, base_date=expected_date
+        return self._get_utc_cutoff_datetime(cutoff, expected_date)
+
+    def _get_utc_cutoff_datetime(self, cutoff, date, keep_same_day=False):
+        tz = cutoff.get("tz")
+        if tz:
+            cutoff_time = time(hour=cutoff.get("hour"), minute=cutoff.get("minute"))
+            # Convert here to naive datetime in UTC
+            tz_loc = pytz.timezone(tz)
+            tz_date = date.astimezone(tz_loc)
+            tz_cutoff_datetime = datetime.combine(tz_date, cutoff_time)
+            utc_cutoff_datetime = tz_utils.tz_to_utc_naive_datetime(
+                tz_loc, tz_cutoff_datetime
             )
         else:
-            utc_cutoff_time = cutoff_time
-        # FIXME: consider warehouse TZ
-        # See https://github.com/OCA/sale-workflow/pull/1104#discussion_r406156787
-        if expected_date.time() <= utc_cutoff_time:
-            return expected_date
-        return expected_date + timedelta(days=1)
+            utc_cutoff_datetime = date.replace(
+                hour=cutoff.get("hour"), minute=cutoff.get("minute"), second=0
+            )
+        if date <= utc_cutoff_datetime or keep_same_day:
+            # Postpone delivery for date planned before cutoff to cutoff time
+            return date.replace(
+                hour=utc_cutoff_datetime.hour,
+                minute=utc_cutoff_datetime.minute,
+                second=0,
+            )
+        # Postpone delivery for order confirmed after cutoff to day after
+        return date.replace(
+            hour=utc_cutoff_datetime.hour, minute=utc_cutoff_datetime.minute, second=0,
+        ) + timedelta(days=1)

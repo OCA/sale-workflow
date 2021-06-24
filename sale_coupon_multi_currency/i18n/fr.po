@@ -1,0 +1,32 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* sale_coupon_multi_currency
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 13.0+e\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2020-11-25 14:45+0000\n"
+"PO-Revision-Date: 2020-11-25 14:45+0000\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: sale_coupon_multi_currency
+#: model:ir.model.fields,field_description:sale_coupon_multi_currency.field_sale_coupon_program__currency_id
+msgid "Currency"
+msgstr "Devise"
+
+#. module: sale_coupon_multi_currency
+#: model:ir.model.fields,field_description:sale_coupon_multi_currency.field_sale_coupon_program__currency_custom_id
+msgid "Custom Currency"
+msgstr "Devise personnalisée"
+
+#. module: sale_coupon_multi_currency
+#: model:ir.model,name:sale_coupon_multi_currency.model_sale_coupon_program
+msgid "Sales Coupon Program"
+msgstr "Campagne de bons de réduction"

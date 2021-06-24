@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <record id="sale_coupon_program_view_form_common" model="ir.ui.view">
+        <field name="name">sale.coupon.program.common.form.product</field>
+        <field name="model">sale.coupon.program</field>
+        <field
+            name="inherit_id"
+            ref="sale_coupon.sale_coupon_program_view_form_common"
+        />
+        <field name="arch" type="xml">
+            <xpath expr="//group[@name='validity']" position="after">
+                <group string="Product Data" name="product_data">
+                    <field name="discount_line_product_chosen" />
+                    <field
+                        name="force_product_categ_id"
+                        context="{'default_is_program_category': True}"
+                        required="1"
+                    />
+                    <field
+                        name="force_product_default_code"
+                        attrs="{'invisible': [('discount_line_product_chosen', '=', True)]}"
+                    />
+                </group>
+            </xpath>
+            <field name="discount_line_product_id" position="attributes">
+                <attribute name="attrs">
+                    {'invisible': [('discount_line_product_chosen', '=', False)], 'required': [('discount_line_product_chosen', '=', True)]}
+                </attribute>
+                <attribute name="domain">
+                    [('categ_id', '=', force_product_categ_id)]
+                </attribute>
+                <attribute name="context">
+                    {'default_categ_id': force_product_categ_id}
+                </attribute>
+                <attribute name="readonly">False</attribute>
+            </field>
+            <field name="discount_line_product_id" position="after">
+                <!-- discount_line_product_readonly_id is used to allow to see the generated product on the program when not chose product -->
+                <field
+                    name="discount_line_product_readonly_id"
+                    attrs="{'invisible': [('discount_line_product_chosen', '=', True)]}"
+                    string="Reward Line Product"
+                />
+            </field>
+        </field>
+    </record>
+</odoo>

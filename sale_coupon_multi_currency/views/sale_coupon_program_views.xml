@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <record id="sale_coupon_program_view_form_common" model="ir.ui.view">
+        <field name="name">sale.coupon.program.form.currency</field>
+        <field name="model">sale.coupon.program</field>
+        <field
+            name="inherit_id"
+            ref="sale_coupon.sale_coupon_program_view_form_common"
+        />
+        <field name="arch" type="xml">
+            <field name="company_id" position="before">
+                <field
+                    name="currency_id"
+                    readonly="False"
+                    required="True"
+                    groups="base.group_multi_currency"
+                />
+            </field>
+        </field>
+    </record>
+</odoo>

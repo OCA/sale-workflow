@@ -1,0 +1,166 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* sale_coupon_multi_use
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 13.0+e\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2021-02-11 07:07+0000\n"
+"PO-Revision-Date: 2021-02-11 07:07+0000\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: sale_coupon_multi_use
+#: model:ir.model.fields,field_description:sale_coupon_multi_use.field_sale_coupon_consumption_line__amount
+msgid "Amount"
+msgstr "Montant"
+
+#. module: sale_coupon_multi_use
+#: model:ir.model.fields,field_description:sale_coupon_multi_use.field_sale_coupon__sale_multi_use_ids
+msgid "Applied on Orders"
+msgstr "Appliqué sur les bons de commandes"
+
+#. module: sale_coupon_multi_use
+#: model:ir.model.fields,field_description:sale_coupon_multi_use.field_sale_coupon__consumption_line_ids
+msgid "Consumption Line"
+msgstr "Ligne de consommation"
+
+#. module: sale_coupon_multi_use
+#: model:ir.model.fields,field_description:sale_coupon_multi_use.field_sale_coupon_consumption_line__coupon_id
+msgid "Coupon"
+msgstr "Bon de réduction"
+
+#. module: sale_coupon_multi_use
+#: model:ir.model.fields,field_description:sale_coupon_multi_use.field_sale_order_line__coupon_consumption_line_ids
+msgid "Coupon Consumption Line"
+msgstr "Lignes de consommation des bons de réduction"
+
+#. module: sale_coupon_multi_use
+#: code:addons/sale_coupon_multi_use/models/sale_coupon_program.py:0
+#, python-format
+msgid "Coupon multi use can't be changed with existing coupons."
+msgstr ""
+"Le bon de réduction sécable ne peut pas être modifié avec des bons de "
+"réduction existants."
+
+#. module: sale_coupon_multi_use
+#: model:ir.model.fields,field_description:sale_coupon_multi_use.field_sale_coupon_consumption_line__create_uid
+msgid "Created by"
+msgstr "Créé par"
+
+#. module: sale_coupon_multi_use
+#: model:ir.model.fields,field_description:sale_coupon_multi_use.field_sale_coupon_consumption_line__create_date
+msgid "Created on"
+msgstr "Créé le"
+
+#. module: sale_coupon_multi_use
+#: model:ir.model.fields,field_description:sale_coupon_multi_use.field_sale_coupon__currency_program_id
+#: model:ir.model.fields,field_description:sale_coupon_multi_use.field_sale_coupon_consumption_line__currency_program_id
+msgid "Currency"
+msgstr "Devise"
+
+#. module: sale_coupon_multi_use
+#: model:ir.model.fields,field_description:sale_coupon_multi_use.field_sale_coupon_consumption_line__display_name
+msgid "Display Name"
+msgstr "Nom"
+
+#. module: sale_coupon_multi_use
+#: model:ir.model.fields,field_description:sale_coupon_multi_use.field_sale_coupon__discount_fixed_amount_delta
+msgid "Fixed Amount Delta"
+msgstr "Montant restant"
+
+#. module: sale_coupon_multi_use
+#: code:addons/sale_coupon_multi_use/models/sale_coupon_program.py:0
+#, python-format
+msgid "Fixed Amount can't be changed when there are Multi Use coupons already."
+msgstr ""
+"Le montant restant ne peut pas être modifié quand un bon de réduction a déjà "
+"été utilisé plusieurs fois."
+
+#. module: sale_coupon_multi_use
+#: model:ir.model.fields,field_description:sale_coupon_multi_use.field_sale_coupon_consumption_line__id
+msgid "ID"
+msgstr "Identifiant"
+
+#. module: sale_coupon_multi_use
+#: model:ir.model.fields,field_description:sale_coupon_multi_use.field_sale_coupon_consumption_line____last_update
+msgid "Last Modified on"
+msgstr "Dernière modification le"
+
+#. module: sale_coupon_multi_use
+#: model:ir.model.fields,field_description:sale_coupon_multi_use.field_sale_coupon_consumption_line__write_uid
+msgid "Last Updated by"
+msgstr "Dernière mise à jour par"
+
+#. module: sale_coupon_multi_use
+#: model:ir.model.fields,field_description:sale_coupon_multi_use.field_sale_coupon_consumption_line__write_date
+msgid "Last Updated on"
+msgstr "Dernière mise à jour le"
+
+#. module: sale_coupon_multi_use
+#: model:ir.model.fields,field_description:sale_coupon_multi_use.field_sale_coupon__multi_use
+#: model:ir.model.fields,field_description:sale_coupon_multi_use.field_sale_coupon_program__coupon_multi_use
+#: model:ir.model.fields,field_description:sale_coupon_multi_use.field_sale_order__coupon_multi_use_ids
+msgid "Multi Use Coupons"
+msgstr "Bon de réduction sécable"
+
+#. module: sale_coupon_multi_use
+#: code:addons/sale_coupon_multi_use/models/sale_coupon_program.py:0
+#, python-format
+msgid ""
+"Multi Use Coupons program must have Coupon Program Type, Discount Reward and "
+"Fixed Amount as Apply Discount"
+msgstr ""
+"Les bons de réductions sécables doivent être de type Remise et Montant fixe"
+
+#. module: sale_coupon_multi_use
+#: code:addons/sale_coupon_multi_use/models/sale_coupon.py:0
+#, python-format
+msgid "Multi-Use Coupon is already applied for the same reward"
+msgstr "Le coupon a déjà été appliqué sur la même récompense"
+
+#. module: sale_coupon_multi_use
+#: model:ir.model,name:sale_coupon_multi_use.model_sale_coupon_consumption_line
+msgid "Sale Coupon Consumption Line"
+msgstr "Lignes de consommation du bon de réduction"
+
+#. module: sale_coupon_multi_use
+#: model:ir.model.fields,field_description:sale_coupon_multi_use.field_sale_coupon_consumption_line__sale_order_line_id
+msgid "Sale Order Line"
+msgstr "Ligne de bon de commande"
+
+#. module: sale_coupon_multi_use
+#: model:ir.model,name:sale_coupon_multi_use.model_sale_coupon
+msgid "Sales Coupon"
+msgstr "Bons de réduction"
+
+#. module: sale_coupon_multi_use
+#: model:ir.model,name:sale_coupon_multi_use.model_sale_coupon_apply_code
+msgid "Sales Coupon Apply Code"
+msgstr "Code du bon de réduction"
+
+#. module: sale_coupon_multi_use
+#: model:ir.model,name:sale_coupon_multi_use.model_sale_coupon_program
+msgid "Sales Coupon Program"
+msgstr "Campagne de bons de réduction"
+
+#. module: sale_coupon_multi_use
+#: model:ir.model,name:sale_coupon_multi_use.model_sale_order
+msgid "Sales Order"
+msgstr "Bon de commande"
+
+#. module: sale_coupon_multi_use
+#: model:ir.model,name:sale_coupon_multi_use.model_sale_order_line
+msgid "Sales Order Line"
+msgstr "Ligne de bons de commande"
+
+#. module: sale_coupon_multi_use
+#: model:ir.model.fields,field_description:sale_coupon_multi_use.field_sale_coupon_consumption_line__sale_order_state
+msgid "Status"
+msgstr "Statut"

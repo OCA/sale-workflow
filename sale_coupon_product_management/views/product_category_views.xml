@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <record id="product_category_form_view" model="ir.ui.view">
+        <field name="name">product.category.form.program.option</field>
+        <field name="model">product.category</field>
+        <field name="inherit_id" ref="product.product_category_form_view" />
+        <field name="arch" type="xml">
+            <field name="parent_id" position="after">
+                <field name="is_program_category" />
+                <field
+                    name="default_promotion_next_order_category"
+                    attrs="{'invisible': [('is_program_category', '=', False)]}"
+                />
+                <field
+                    name="program_product_sale_ok"
+                    attrs="{'invisible': [('is_program_category', '=', False)]}"
+                />
+                <field
+                    name="program_product_discount_fixed_amount"
+                    attrs="{'invisible': [('is_program_category', '=', False)]}"
+                />
+            </field>
+        </field>
+    </record>
+</odoo>

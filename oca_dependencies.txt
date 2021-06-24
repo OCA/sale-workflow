@@ -4,3 +4,4 @@ account-invoicing
 server-tools
 bank-payment
 partner-contact
+stock-logistics-workflow
