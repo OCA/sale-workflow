@@ -37,6 +37,7 @@ setuptools.setup(
         'odoo13-addon-sale_manual_delivery',
         'odoo13-addon-sale_order_archive',
         'odoo13-addon-sale_order_carrier_auto_assign',
+        'odoo13-addon-sale_order_disable_user_autosubscribe',
         'odoo13-addon-sale_order_general_discount',
         'odoo13-addon-sale_order_incoterm_place',
         'odoo13-addon-sale_order_invoice_amount',
