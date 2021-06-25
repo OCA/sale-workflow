@@ -95,6 +95,7 @@ class TestSaleOrderSecondaryUnit(SavepointCase):
         cls.secondary_unit = cls.env["product.secondary.unit"].search(
             [("product_tmpl_id", "=", cls.product.product_tmpl_id.id)]
         )
+<<<<<<< HEAD
 >>>>>>> 331900273 ([MIG] migrate sale_order_secondary_unit from 12.0 to 13.0)
         cls.product.sale_secondary_uom_id = cls.secondary_unit.id
 <<<<<<< HEAD
@@ -138,6 +139,11 @@ class TestSaleOrderSecondaryUnit(SavepointCase):
             'pricelist_id': cls.env.ref('product.list0').id,
         })
 =======
+||||||| parent of d16be0e27 ([FIX] code refactor)
+        cls.product.sale_secondary_uom_id = cls.secondary_unit.id
+=======
+        cls.product.secondary_uom_ids = cls.secondary_unit.id
+>>>>>>> d16be0e27 ([FIX] code refactor)
         cls.partner = cls.env["res.partner"].create({"name": "test - partner"})
         so = cls.env["sale.order"].new(
             {
