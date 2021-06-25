@@ -32,7 +32,7 @@ class TestSaleOrderSecondaryUnit(SavepointCase):
         cls.secondary_unit = cls.env["product.secondary.unit"].search(
             [("product_tmpl_id", "=", cls.product.product_tmpl_id.id)]
         )
-        cls.product.sale_secondary_uom_id = cls.secondary_unit.id
+        cls.product.secondary_uom_ids = cls.secondary_unit.id
         cls.partner = cls.env["res.partner"].create({"name": "test - partner"})
         so = cls.env["sale.order"].new(
             {
