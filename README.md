@@ -51,6 +51,7 @@ addon | version | summary
 [sale_manual_delivery](sale_manual_delivery/) | 13.0.1.0.1 | Create manually your deliveries
 [sale_order_archive](sale_order_archive/) | 13.0.1.0.0 | Archive Sale Orders
 [sale_order_carrier_auto_assign](sale_order_carrier_auto_assign/) | 13.0.1.1.0 | Auto assign delivery carrier on sale order confirmation
+[sale_order_disable_user_autosubscribe](sale_order_disable_user_autosubscribe/) | 13.0.1.0.0 | Remove the salesperson from autosubscribed sale followers
 [sale_order_general_discount](sale_order_general_discount/) | 13.0.1.0.1 | General discount per sale order
 [sale_order_incoterm_place](sale_order_incoterm_place/) | 13.0.1.0.1 | Sale Order Incoterm Place
 [sale_order_invoice_amount](sale_order_invoice_amount/) | 13.0.1.0.1 | Display the invoiced and uninvoiced total in the sale order
