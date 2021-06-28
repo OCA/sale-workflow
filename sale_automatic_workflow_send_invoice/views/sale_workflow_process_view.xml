@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!--
+  Copyright (C) 2021 Manuel Calero <manuelcalero@xtendoo.es>
+  License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
+-->
+<odoo>
+    <record id="sale_workflow_process_view_form" model="ir.ui.view">
+        <field name="name">sale.order.form.automatic.inherit</field>
+        <field name="model">sale.workflow.process</field>
+        <field
+            name="inherit_id"
+            ref="sale_automatic_workflow.sale_workflow_process_view_form"
+        />
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='sale_done']" position="before">
+                <field name="send_invoice" />
+                <label
+                    for="send_invoice_filter_id"
+                    attrs="{'required':[('send_invoice','=',True)], 'invisible':[('send_invoice','!=',True)]}"
+                />
+                <div
+                    attrs="{'required':[('send_invoice','=',True)], 'invisible':[('send_invoice','!=',True)]}"
+                >
+                    <field
+                        name="send_invoice_filter_domain"
+                        widget="domain"
+                        attrs="{'invisible': [('send_invoice_filter_id', '=', False)]}"
+                        options="{'model': 'account.move'}"
+                    />
+                    <div class="oe_edit_only oe_inline">
+                        Set selection based on a search filter:
+
+                        <field
+                            name="send_invoice_filter_id"
+                            domain="[('model_id', '=', 'account.move')]"
+                            class="oe_inline"
+                            context="{'default_model_id': 'account.move', 'default_active': False, 'active_test': False}"
+                            can_create="true"
+                            can_write="true"
+                        />
+                    </div>
+                </div>
+            </xpath>
+        </field>
+    </record>
+</odoo>
