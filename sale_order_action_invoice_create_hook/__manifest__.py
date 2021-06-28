@@ -6,7 +6,7 @@
     "summary": "Add more flexibility in the grouping parameters "
                "for the creation of invoices",
     "author": "Eficent, Odoo Community Association (OCA)",
-    "version": "12.0.1.0.1",
+    "version": "12.0.1.0.2",
     "category": "Sale Workflow",
     "website": "https://github.com/OCA/sale-workflow",
     "license": 'LGPL-3',
