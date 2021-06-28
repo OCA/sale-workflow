@@ -21,6 +21,10 @@ class SaleOrder(models.Model):
     def _get_draft_invoices(self, invoices, references):
         return invoices, references
 
+    @api.model
+    def _modify_invoices(self, invoices):
+        return invoices
+
     @api.model_cr
     def _register_hook(self):
 
@@ -133,6 +137,7 @@ class SaleOrder(models.Model):
                     not self.env.context.get('no_check_lines', False):
                 raise UserError(_('There is no invoicable line.'))
             # END HOOK
+            self._modify_invoices(invoices)
 
             for invoice in invoices.values():
                 invoice.compute_taxes()
