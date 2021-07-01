@@ -47,7 +47,7 @@ msgstr ""
 #. module: sale_partner_delivery_window
 #: code:addons/sale_partner_delivery_window/models/res_partner.py:0
 #, python-format
-msgid "Something went wrong trying to find next delivery window"
+msgid "Something went wrong trying to find next delivery window. Date: %s"
 msgstr ""
 
 #. module: sale_partner_delivery_window
