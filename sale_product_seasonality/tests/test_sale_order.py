@@ -120,13 +120,16 @@ class TestSaleOrderCase(CommonCase):
         #     "friday": True,
         #     "saturday": True,
         #     "sunday": True,
-        #     "product_id": cls.prod2.id,
+        #     "product_template_id": cls.prod2.product_tmpl_id.id,
         # },
         form.commitment_date = "2021-05-09"
         # no product available before
         self.assertFalse(form.season_allowed_product_ids)
         form.commitment_date = "2021-05-13"  # thu
-        self.assertEqual(form.season_allowed_product_ids._get_ids(), self.prod2.ids)
+        self.assertEqual(
+            sorted(form.season_allowed_product_ids._get_ids()),
+            sorted(self.prod2.product_tmpl_id.product_variant_ids.ids),
+        )
         form.commitment_date = "2021-05-10"  # mon
         self.assertEqual(form.season_allowed_product_ids._get_ids(), self.prod1.ids)
         # enable Thu on line 1 and find them all
@@ -134,5 +137,6 @@ class TestSaleOrderCase(CommonCase):
         line.thursday = True
         form.commitment_date = "2021-05-13"  # mon
         self.assertEqual(
-            form.season_allowed_product_ids._get_ids(), (self.prod1 + self.prod2).ids
+            sorted(form.season_allowed_product_ids._get_ids()),
+            sorted((self.prod1 + self.prod2.product_tmpl_id.product_variant_ids).ids),
         )
