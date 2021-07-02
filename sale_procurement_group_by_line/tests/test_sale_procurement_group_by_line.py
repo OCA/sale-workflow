@@ -26,7 +26,6 @@ class TestSaleProcurementGroupByLine(TransactionCase):
         # Create Products
         self.new_product1 = self._create_product('test_product1')
         self.new_product2 = self._create_product('test_product2')
-        self._create_sale_order()
 
     def _create_product_category(self):
         product_ctg = self.product_ctg_model.create({
@@ -63,7 +62,8 @@ class TestSaleProcurementGroupByLine(TransactionCase):
         })
         return self.sale
 
-    def test_procurement_group_by_line(self):
+    def test_01_procurement_group_by_line(self):
+        self._create_sale_order()
         self.sale.action_confirm()
         self.assertEqual(self.line2.procurement_group_id,
                          self.line1.procurement_group_id,
@@ -79,12 +79,37 @@ class TestSaleProcurementGroupByLine(TransactionCase):
         self.assertTrue(self.picking_ids,
                         'Procurement Group should have picking')
 
-    def test_shipping_partner(self):
+    def test_02_shipping_partner(self):
+        self._create_sale_order()
         self.sale.action_confirm()
+        first_picking = self.sale.picking_ids
+        self.assertEqual(first_picking.partner_id, self.customer)
         # After the confirmation, we cancel and change the delivery address
         self.sale.action_cancel()
         self.sale.action_draft()
         self.sale.partner_shipping_id = self.customer2.id
         self.sale.action_confirm()
-        self.assertEqual(self.sale.picking_ids[0].partner_id, self.customer)
-        self.assertEqual(self.sale.picking_ids[1].partner_id, self.customer2)
+        self.assertEqual(self.sale.picking_ids.filtered(
+            lambda p: p.id != first_picking.id).partner_id, self.customer2)
+
+    def test_03_new_procurement_groups_upon_cancel_and_draft(self):
+        """Test new groups are created upon cancellation so the new picking
+            policy is respected
+        """
+        self._create_sale_order()
+        self.sale.picking_policy = 'direct'
+        self.sale.action_confirm()
+        first_group = self.line1.procurement_group_id
+        self.assertEqual(self.line2.procurement_group_id,
+                         self.line1.procurement_group_id,
+                         """Both Sale Order line should belong
+                         to Procurement Group""")
+        self.sale.action_cancel()
+        self.sale.action_draft()
+        self.assertFalse(self.line1.procurement_group_id)
+        self.sale.picking_policy = 'one'
+        self.sale.action_confirm()
+        new_group = self.line1.procurement_group_id
+        self.assertNotEqual(first_group, new_group)
+        self.assertEqual(first_group.move_type, 'direct')
+        self.assertEqual(new_group.move_type, 'one')
