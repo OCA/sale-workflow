@@ -1,0 +1,67 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* sale_product_brand_exception
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 14.0\n"
+"Report-Msgid-Bugs-To: \n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: sale_product_brand_exception
+#: model:ir.model.fields,field_description:sale_product_brand_exception.field_product_brand__display_name
+#: model:ir.model.fields,field_description:sale_product_brand_exception.field_sale_order__display_name
+msgid "Display Name"
+msgstr ""
+
+#. module: sale_product_brand_exception
+#: model:ir.model.fields,field_description:sale_product_brand_exception.field_product_brand__id
+#: model:ir.model.fields,field_description:sale_product_brand_exception.field_sale_order__id
+msgid "ID"
+msgstr ""
+
+#. module: sale_product_brand_exception
+#: model:ir.model.fields,field_description:sale_product_brand_exception.field_product_brand____last_update
+#: model:ir.model.fields,field_description:sale_product_brand_exception.field_sale_order____last_update
+msgid "Last Modified on"
+msgstr ""
+
+#. module: sale_product_brand_exception
+#: model:ir.model,name:sale_product_brand_exception.model_product_brand
+msgid "Product Brand"
+msgstr ""
+
+#. module: sale_product_brand_exception
+#: model:exception.rule,name:sale_product_brand_exception.exception_product_brand_mixed
+msgid "Product brands mixed"
+msgstr ""
+
+#. module: sale_product_brand_exception
+#: model:exception.rule,description:sale_product_brand_exception.exception_product_brand_mixed
+msgid "Products by different brands cannot be mixed in one order"
+msgstr ""
+
+#. module: sale_product_brand_exception
+#: model_terms:ir.ui.view,arch_db:sale_product_brand_exception.view_product_brand_form
+msgid "Sale"
+msgstr ""
+
+#. module: sale_product_brand_exception
+#: model:ir.model.fields,field_description:sale_product_brand_exception.field_product_brand__sale_order_mixed
+msgid "Sale Order Mixed"
+msgstr ""
+
+#. module: sale_product_brand_exception
+#: model:ir.model,name:sale_product_brand_exception.model_sale_order
+msgid "Sales Order"
+msgstr ""
+
+#. module: sale_product_brand_exception
+#: model:ir.model.fields,help:sale_product_brand_exception.field_product_brand__sale_order_mixed
+msgid "Whether a sale order can contain products from different brands"
+msgstr ""
