@@ -14,25 +14,25 @@ Sales documents permissions by channels (teams)
     :target: http://www.gnu.org/licenses/agpl-3.0-standalone.html
     :alt: License: AGPL-3
 .. |badge3| image:: https://img.shields.io/badge/github-OCA%2Fsale--workflow-lightgray.png?logo=github
-    :target: https://github.com/OCA/sale-workflow/tree/13.0/sales_team_security
+    :target: https://github.com/OCA/sale-workflow/tree/14.0/sales_team_security
     :alt: OCA/sale-workflow
 .. |badge4| image:: https://img.shields.io/badge/weblate-Translate%20me-F47D42.png
-    :target: https://translation.odoo-community.org/projects/sale-workflow-13-0/sale-workflow-13-0-sales_team_security
+    :target: https://translation.odoo-community.org/projects/sale-workflow-14-0/sale-workflow-14-0-sales_team_security
     :alt: Translate me on Weblate
 .. |badge5| image:: https://img.shields.io/badge/runbot-Try%20me-875A7B.png
-    :target: https://runbot.odoo-community.org/runbot/167/13.0
+    :target: https://runbot.odoo-community.org/runbot/167/14.0
     :alt: Try me on Runbot
 
 |badge1| |badge2| |badge3| |badge4| |badge5| 
 
-This module adds a new group called "Channel manager", that includes
-the proper permissions for showing only the information related to that
-channel (having assigned that channel/team or no channel at all, independently
-from the assigned salesman):
+This module adds a new "Sale" group called "User: Team documents", that
+includes the proper permissions for showing only the information related to
+that user sale team (having assigned that team/channel or no team at all,
+independently from the assigned salesman):
 
-* Leads/Opportunities
 * Contacts.
-* Quotations/Sales Orders
+* Quotations/Sales Orders (implemented in sales_team_security_sale)
+* Leads/Opportunities (implemented in sales_team_security_crm)
 
 It also handles the propagation of the sales team from commercial partners to
 the contacts, which standard doesn't do.
@@ -41,9 +41,9 @@ And finally, there are rules for partners to be restricted to the own ones for
 the group "User: Own Documents Only" for being coherent with the permission
 scheme. Someone with this permission will see:
 
-- Contacts without salesman nor channel assigned.
-- Contacts without salesman assigned, but the same channel.
-- Contacts with them as salesman, independently from the channel.
+- Contacts without salesman nor team assigned.
+- Contacts without salesman assigned, but the same team.
+- Contacts with them as salesman, independently from the team.
 - Contacts with them as follower.
 
 **Table of contents**
@@ -63,15 +63,13 @@ Configuration
 
 #. Go to *Configuration > Users & Companies > Users*.
 #. Open or create a user.
-#. On the section "Application Accesses", select "Channel Manager" option in
-   "Sales" part.
+#. On the section "Sale", select "User: Team documents".
 
 Known issues / Roadmap
 ======================
 
 * This module modifies sales security groups hierarchy, so any other module
   doing something similar might conflict with this one.
-* Split the module in 2 as now `crm` is independent.
 
 Bug Tracker
 ===========
@@ -79,7 +77,7 @@ Bug Tracker
 Bugs are tracked on `GitHub Issues <https://github.com/OCA/sale-workflow/issues>`_.
 In case of trouble, please check there if your issue has already been reported.
 If you spotted it first, help us smashing it by providing a detailed and welcomed
-`feedback <https://github.com/OCA/sale-workflow/issues/new?body=module:%20sales_team_security%0Aversion:%2013.0%0A%0A**Steps%20to%20reproduce**%0A-%20...%0A%0A**Current%20behavior**%0A%0A**Expected%20behavior**>`_.
+`feedback <https://github.com/OCA/sale-workflow/issues/new?body=module:%20sales_team_security%0Aversion:%2014.0%0A%0A**Steps%20to%20reproduce**%0A-%20...%0A%0A**Current%20behavior**%0A%0A**Expected%20behavior**>`_.
 
 Do not contact contributors directly about support or help with technical issues.
 
@@ -102,6 +100,8 @@ Contributors
 
   * Ramón Bajona
 
+* Iván Todorovich <ivan.todorovich@gmail.com>
+
 Maintainers
 ~~~~~~~~~~~
 
@@ -118,11 +118,14 @@ promote its widespread use.
 .. |maintainer-pedrobaeza| image:: https://github.com/pedrobaeza.png?size=40px
     :target: https://github.com/pedrobaeza
     :alt: pedrobaeza
+.. |maintainer-ivantodorovich| image:: https://github.com/ivantodorovich.png?size=40px
+    :target: https://github.com/ivantodorovich
+    :alt: ivantodorovich
 
-Current `maintainer <https://odoo-community.org/page/maintainer-role>`__:
+Current `maintainers <https://odoo-community.org/page/maintainer-role>`__:
 
-|maintainer-pedrobaeza| 
+|maintainer-pedrobaeza| |maintainer-ivantodorovich| 
 
-This module is part of the `OCA/sale-workflow <https://github.com/OCA/sale-workflow/tree/13.0/sales_team_security>`_ project on GitHub.
+This module is part of the `OCA/sale-workflow <https://github.com/OCA/sale-workflow/tree/14.0/sales_team_security>`_ project on GitHub.
 
 You are welcome to contribute. To learn how please visit https://odoo-community.org/page/Contribute.
