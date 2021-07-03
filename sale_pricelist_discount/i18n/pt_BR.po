@@ -1,0 +1,39 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# * sale_pricelist_discount
+#
+# Translators:
+msgid ""
+msgstr ""
+"Project-Id-Version: sale-workflow (8.0)\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2017-06-22 12:41+0000\n"
+"PO-Revision-Date: 2015-11-06 11:39+0000\n"
+"Last-Translator: <>\n"
+"Language-Team: Portuguese (Brazil) (http://www.transifex.com/oca/OCA-sale-"
+"workflow-8-0/language/pt_BR/)\n"
+"Language: pt_BR\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: nplurals=2; plural=(n > 1);\n"
+
+#. module: sale_pricelist_discount
+#: help:product.pricelist.item,discount:0
+msgid "Default discount applied on a sale order line."
+msgstr ""
+
+#. module: sale_pricelist_discount
+#: field:product.pricelist.item,discount:0
+msgid "Discount (%)"
+msgstr ""
+
+#. module: sale_pricelist_discount
+#: model:ir.model,name:sale_pricelist_discount.model_product_pricelist_item
+msgid "Pricelist item"
+msgstr ""
+
+#. module: sale_pricelist_discount
+#: model:ir.model,name:sale_pricelist_discount.model_sale_order_line
+msgid "Sales Order Line"
+msgstr "Linha pedido de venda"
