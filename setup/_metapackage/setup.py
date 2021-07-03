@@ -44,6 +44,9 @@ setuptools.setup(
         'odoo14-addon-sale_tier_validation',
         'odoo14-addon-sale_validity',
         'odoo14-addon-sale_wishlist',
+        'odoo14-addon-sales_team_security',
+        'odoo14-addon-sales_team_security_crm',
+        'odoo14-addon-sales_team_security_sale',
     ],
     classifiers=[
         'Programming Language :: Python',
