@@ -6,14 +6,10 @@
     "category": "Sales",
     "website": "https://github.com/OCA/sale-workflow",
     "author": "AvanzOSC, "
-              "Serv. Tecnol. Avanzados - Pedro M. Baeza,"
-              "Odoo Community Association (OCA)",
+    "Serv. Tecnol. Avanzados - Pedro M. Baeza,"
+    "Odoo Community Association (OCA)",
     "license": "AGPL-3",
-    "depends": [
-        "sale",
-    ],
-    "data": [
-        "views/res_partner_view.xml",
-    ],
+    "depends": ["sale"],
+    "data": ["views/res_partner_view.xml"],
     "installable": True,
 }
