@@ -4,7 +4,7 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: Odoo Server 13.0\n"
+"Project-Id-Version: Odoo Server 14.0\n"
 "Report-Msgid-Bugs-To: \n"
 "Last-Translator: \n"
 "Language-Team: \n"
@@ -14,13 +14,26 @@ msgstr ""
 "Plural-Forms: \n"
 
 #. module: sales_team_security
-#: model:res.groups,name:sales_team_security.group_sale_team_manager
-msgid "Channel Manager"
+#: model:ir.model,name:sales_team_security.model_res_partner
+msgid "Contact"
 msgstr ""
 
 #. module: sales_team_security
-#: model:ir.model,name:sales_team_security.model_res_partner
-msgid "Contact"
+#: model:ir.model.fields,field_description:sales_team_security.field_ir_rule__display_name
+#: model:ir.model.fields,field_description:sales_team_security.field_res_partner__display_name
+msgid "Display Name"
+msgstr ""
+
+#. module: sales_team_security
+#: model:ir.model.fields,field_description:sales_team_security.field_ir_rule__id
+#: model:ir.model.fields,field_description:sales_team_security.field_res_partner__id
+msgid "ID"
+msgstr ""
+
+#. module: sales_team_security
+#: model:ir.model.fields,field_description:sales_team_security.field_ir_rule____last_update
+#: model:ir.model.fields,field_description:sales_team_security.field_res_partner____last_update
+msgid "Last Modified on"
 msgstr ""
 
 #. module: sales_team_security
@@ -31,6 +44,11 @@ msgstr ""
 #. module: sales_team_security
 #: model:res.groups,comment:sales_team_security.group_sale_team_manager
 msgid ""
-"the user will have an access to the documents of the sales channel he/she "
+"The user will have an access to the documents of the sales teams he/she "
 "belongs to."
+msgstr ""
+
+#. module: sales_team_security
+#: model:res.groups,name:sales_team_security.group_sale_team_manager
+msgid "User: Team Documents Only"
 msgstr ""
