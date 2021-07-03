@@ -55,6 +55,9 @@ addon | version | summary
 [sale_tier_validation](sale_tier_validation/) | 14.0.1.0.0 | Extends the functionality of Sale Orders to support a tier validation process.
 [sale_validity](sale_validity/) | 14.0.1.0.2 | Set a default validity delay on quotations
 [sale_wishlist](sale_wishlist/) | 14.0.1.0.1 | Handle sale wishlist for partners
+[sales_team_security](sales_team_security/) | 14.0.1.0.0 | New group for seeing only sales channel's documents
+[sales_team_security_crm](sales_team_security_crm/) | 14.0.1.0.0 | Integrates sales_team_security with crm
+[sales_team_security_sale](sales_team_security_sale/) | 14.0.1.0.0 | Integrates sales_team_security with sale
 
 [//]: # (end addons)
 
