@@ -9,15 +9,6 @@ import odoo.addons.decimal_precision as dp
 class ProductPricelistItem(models.Model):
     _inherit = 'product.pricelist.item'
 
-    """
-    total_discount = fields.Float(
-        'Total Discount',
-        digits=dp.get_precision('Discount'),
-        default=0.0,
-        compute='_compute_discount'
-    )
-    """
-
     discount2 = fields.Float(
         'Discount 2 (%)',
         digits=dp.get_precision('Discount'),
@@ -31,3 +22,19 @@ class ProductPricelistItem(models.Model):
         help="Third discount applied on a sale order line.",
         default=0.0
     )
+
+    def _compute_price(self, price, price_uom, product, quantity=1.0,
+                       partner=False):
+        """Compute the unit price of a product in the context of a pricelist
+           application. The unused parameters are there to make the full
+           context available for overrides.
+        """
+        price = super(ProductPricelistItem, self)._compute_price(
+            price, price_uom, product, quantity, partner)
+
+        self.ensure_one()
+        if self.pricelist_id.discount_policy == 'with_discount' and \
+                self.compute_price == 'formula':
+            price = (price - (price * (self.discount2 / 100))) or 0.0
+            price = (price - (price * (self.discount3 / 100))) or 0.0
+        return price

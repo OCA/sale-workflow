@@ -11,7 +11,8 @@
               'Agile Business Group, '
               'Odoo Community Association (OCA)',
     'website': 'https://github.com/OCA/sale-workflow',
-    'summary': "This module allows the user to specify all three discounts in the pricelist.",
+    'summary': "This module allows the user to specify "
+               "all three discounts in the pricelist.",
     'license': 'AGPL-3',
     'depends': [
         'sale_triple_discount',
