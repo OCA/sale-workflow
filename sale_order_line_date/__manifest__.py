@@ -18,7 +18,7 @@
     "category": "Sale",
     "license": "AGPL-3",
     "depends": [
-        "sale_stock",
+        "sale",
     ],
     "data": [
         "views/sale_order_view.xml",
