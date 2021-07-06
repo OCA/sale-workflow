@@ -21,6 +21,7 @@ addon | version | summary
 --- | --- | ---
 [sale_advance_payment](sale_advance_payment/) | 14.0.1.0.0 | Allow to add advance payments on sales and then use them on invoices
 [sale_automatic_workflow](sale_automatic_workflow/) | 14.0.1.1.2 | Sale Automatic Workflow
+[sale_automatic_workflow_payment_mode](sale_automatic_workflow_payment_mode/) | 14.0.1.0.0 | Sale Automatic Workflow - Payment Mode
 [sale_commercial_partner](sale_commercial_partner/) | 14.0.1.0.1 | Add stored related field 'Commercial Entity' on sale orders
 [sale_commitment_date_mandatory](sale_commitment_date_mandatory/) | 14.0.1.0.0 | Set commitment data mandatory and don't allowto add lines unless this field is filled
 [sale_discount_display_amount](sale_discount_display_amount/) | 14.0.1.0.1 | This addon intends to display the amount of the discount computed on sale_order_line and sale_order level
