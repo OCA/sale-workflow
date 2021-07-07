@@ -28,36 +28,24 @@ class TestProductAssortment(TransactionCase):
         )
         sale_order_1 = self.sale_order_obj.create({"partner_id": self.partner_1.id})
         self.assertEquals(
-            sale_order_1.whitelist_product_ids,
+            sale_order_1.allowed_product_ids,
             assortment_with_whitelist.whitelist_product_ids,
         )
-        self.assertTrue(sale_order_1.has_whitelist)
-        self.assertFalse(sale_order_1.has_blacklist)
-        assortment_with_blacklist = self.filter_obj.create(
+        self.assertTrue(sale_order_1.has_allowed_products)
+        self.filter_obj.create(
             {
                 "name": "Test Assortment 2",
                 "model_id": "product.product",
                 "domain": [],
                 "is_assortment": True,
-                "partner_ids": [(4, self.partner_1.id), (4, self.partner_2.id)],
+                "partner_ids": [(4, self.partner_1.id)],
                 "blacklist_product_ids": [(4, product_2.id)],
+                "partner_domain": "[('id', '=', %s)]" % self.partner_2.id,
             }
         )
         sale_order_2 = self.sale_order_obj.create({"partner_id": self.partner_1.id})
-        self.assertEquals(
-            sale_order_2.whitelist_product_ids,
-            assortment_with_whitelist.whitelist_product_ids,
-        )
-        self.assertEquals(
-            sale_order_2.blacklist_product_ids,
-            assortment_with_blacklist.blacklist_product_ids,
-        )
-        self.assertTrue(sale_order_2.has_whitelist)
-        self.assertTrue(sale_order_2.has_blacklist)
+        self.assertNotIn(product_2, sale_order_2.allowed_product_ids)
+        self.assertTrue(sale_order_2.has_allowed_products)
         sale_order_3 = self.sale_order_obj.create({"partner_id": self.partner_2.id})
-        self.assertEquals(
-            sale_order_3.blacklist_product_ids,
-            assortment_with_blacklist.blacklist_product_ids,
-        )
-        self.assertFalse(sale_order_3.has_whitelist)
-        self.assertTrue(sale_order_3.has_blacklist)
+        self.assertTrue(sale_order_3.has_allowed_products)
+        self.assertNotIn(product_2, sale_order_3.allowed_product_ids)

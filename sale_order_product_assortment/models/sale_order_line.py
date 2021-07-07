@@ -8,18 +8,11 @@ from odoo import api, fields, models
 class SaleOrderLine(models.Model):
     _inherit = "sale.order.line"
 
-    product_has_both_assortment_id = fields.Many2one(
-        related="product_id", string="Product with whitelist and blacklist"
-    )
-    product_has_blacklist_assortment_id = fields.Many2one(
-        related="product_id", string="Product with blacklist"
+    product_allowed_id = fields.Many2one(
+        related="product_id", string="Product with allowed list"
     )
 
-    @api.onchange(
-        "product_has_both_assortment_id", "product_has_blacklist_assortment_id"
-    )
+    @api.onchange("product_allowed_id")
     def _onchange_product_secondary_fields(self):
-        if self.product_has_both_assortment_id:
-            self.product_id = self.product_has_both_assortment_id
-        if self.product_has_blacklist_assortment_id:
-            self.product_id = self.product_has_blacklist_assortment_id
+        if self.product_allowed_id:
+            self.product_id = self.product_allowed_id
