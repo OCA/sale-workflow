@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <odoo>
     <data noupdate="1">
-
         <record id="sale_order_1" model="sale.order">
             <field name="partner_id" ref="base.res_partner_2" />
             <field name="partner_invoice_id" ref="base.res_partner_2" />
@@ -14,7 +13,6 @@
                 eval="(DateTime.today() - relativedelta(months=1)).strftime('%Y-%m-%d %H:%M')"
             />
         </record>
-
         <record id="sale_order_line_1" model="sale.order.line">
             <field name="order_id" ref="sale_order_1" />
             <field name="name">Laptop E5023</field>
@@ -23,7 +21,6 @@
             <field name="product_uom" ref="uom.product_uom_unit" />
             <field name="price_unit">2950.00</field>
         </record>
-
         <record id="sale_order_line_2" model="sale.order.line">
             <field name="order_id" ref="sale_order_1" />
             <field name="name">Pen drive, 16GB</field>
@@ -32,6 +29,5 @@
             <field name="product_uom" ref="uom.product_uom_unit" />
             <field name="price_unit">145.00</field>
         </record>
-
     </data>
 </odoo>
