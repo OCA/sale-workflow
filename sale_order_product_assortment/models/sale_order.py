@@ -6,52 +6,34 @@ from odoo import api, fields, models
 class SaleOrder(models.Model):
     _inherit = "sale.order"
 
-    whitelist_product_ids = fields.Many2many(
+    allowed_product_ids = fields.Many2many(
         comodel_name="product.product",
-        string="Whitelisted Products",
+        string="Allowed Products",
         compute="_compute_product_assortment_ids",
     )
-    blacklist_product_ids = fields.Many2many(
-        comodel_name="product.product",
-        string="Blacklisted Products",
-        compute="_compute_product_assortment_ids",
-    )
-    has_whitelist = fields.Boolean(compute="_compute_product_assortment_ids")
-    has_blacklist = fields.Boolean(compute="_compute_product_assortment_ids")
+    has_allowed_products = fields.Boolean(compute="_compute_product_assortment_ids")
 
-    @api.depends("partner_id")
+    @api.depends("partner_id", "partner_shipping_id", "partner_invoice_id")
     def _compute_product_assortment_ids(self):
         # If we don't initialize the fields we get an error with NewId
-        self.whitelist_product_ids = self.env["product.product"]
-        self.blacklist_product_ids = self.env["product.product"]
-        self.has_whitelist = False
-        self.has_blacklist = False
-        if self.partner_id:
-            filters = self.env["ir.filters"].search(
-                [
-                    (
-                        "partner_ids",
-                        "in",
-                        (self.partner_id + self.partner_id.commercial_partner_id).ids,
-                    ),
-                ]
+        IrFilters = self.env["ir.filters"]
+        self.allowed_product_ids = self.env["product.product"]
+        self.has_allowed_products = False
+        partner_field = (
+            self.env["ir.config_parameter"]
+            .sudo()
+            .get_param("sale_order_product_assortment.partner_field", "partner_id")
+        )
+        if self[partner_field]:
+            filters = IrFilters.browse()
+            filters_partner_domain = self.env["ir.filters"].search(
+                [("is_assortment", "=", True)]
             )
-            whitelist_products = set()
-            blacklist_products = set()
-            for fil in filters:
-                whitelist_products = whitelist_products.union(
-                    fil.whitelist_product_ids.ids
-                )
-                blacklist_products = blacklist_products.union(
-                    fil.blacklist_product_ids.ids
-                )
-            if whitelist_products:
-                self.has_whitelist = True
-            if blacklist_products:
-                self.has_blacklist = True
-            self.whitelist_product_ids = self.whitelist_product_ids.browse(
-                whitelist_products
-            )
-            self.blacklist_product_ids = self.blacklist_product_ids.browse(
-                blacklist_products
-            )
+            for ir_filter in filters_partner_domain:
+                if self[partner_field] & ir_filter.all_partner_ids:
+                    filters |= ir_filter
+                    self.allowed_product_ids += self.env["product.product"].search(
+                        ir_filter._get_eval_domain()
+                    )
+            if self.allowed_product_ids:
+                self.has_allowed_products = True
