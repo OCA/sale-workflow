@@ -7,10 +7,7 @@
         inherit_id="sale.report_saleorder_document"
     >
         <xpath expr="//p[@t-field='doc.validity_date']/.." position="after">
-            <div
-                t-if="doc.commitment_date or doc.expected_date"
-                class="col-auto mw-100 mb-2"
-            >
+            <div t-if="doc.display_expected_date_ok" class="col-auto mw-100 mb-2">
                 <strong>Expected delivery date:</strong>
                 <p
                     t-if="doc.commitment_date"
