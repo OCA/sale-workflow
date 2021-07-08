@@ -2,15 +2,19 @@
 # Copyright 2020 Tecnativa - Sergio Teruel
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
 
-from odoo import fields
-from odoo.exceptions import UserError
+from freezegun import freeze_time
+
+from odoo.exceptions import UserError, ValidationError
 from odoo.tests import Form, SavepointCase
 
 
+@freeze_time("2021-01-01 09:30:00")
 class TestSaleInvoicePayment(SavepointCase):
     @classmethod
     def setUpClass(cls):
         super().setUpClass()
+        # Remove time zone from user to avoid to time local representation
+        cls.env.user.partner_id.tz = False
         cls.wizard_obj = cls.env["sale.invoice.payment.wiz"]
         cls.SalePaymentSheet = cls.env["sale.payment.sheet"]
         cls.partner = cls.env["res.partner"].create({"name": "Test partner"})
@@ -101,9 +105,7 @@ class TestSaleInvoicePayment(SavepointCase):
         self.assertEqual(
             line_partial_payment.name,
             "[{}] - {} - {} - ({})".format(
-                fields.Datetime.context_timestamp(
-                    line_partial_payment, line_partial_payment.create_date
-                ).strftime("%H:%M"),
+                "09:30",
                 line_partial_payment.sheet_id.user_id.name,
                 line_partial_payment.invoice_id.name,
                 dict(
@@ -137,3 +139,13 @@ class TestSaleInvoicePayment(SavepointCase):
         sheet.button_confirm_sheet()
         with self.assertRaises(UserError):
             sheet.line_ids.unlink()
+
+    def test_payment_sheet_invoice_constraint(self):
+        # You can not add full invoice payed more than one time.
+        sheet = self._create_payment_sheet()
+        with self.assertRaises(ValidationError):
+            with Form(sheet) as sheet_form:
+                with sheet_form.line_ids.new() as line_sheet:
+                    line_sheet.partner_id = self.partner
+                    line_sheet.invoice_id = self.invoice1
+            sheet_form.save()
