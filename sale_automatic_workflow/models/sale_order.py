@@ -21,6 +21,8 @@ class SaleOrder(models.Model):
         store=True,
     )
 
+    # TODO: v15 -> make this module dependent on sale_delivery_state and
+    # use the code in sale_automatic_workflow_delivery_state to replace this function
     @api.depends("order_line.qty_delivered", "order_line.product_uom_qty")
     def _compute_all_qty_delivered(self):
         precision = self.env["decimal.precision"].precision_get(
