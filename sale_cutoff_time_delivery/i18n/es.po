@@ -17,6 +17,12 @@ msgstr ""
 "X-Generator: Weblate 4.3.2\n"
 
 #. module: sale_cutoff_time_delivery
+#: model_terms:ir.ui.view,arch_db:sale_cutoff_time_delivery.report_delivery_document
+#: model_terms:ir.ui.view,arch_db:sale_cutoff_time_delivery.report_saleorder_document
+msgid "<strong>Expected delivery date:</strong>"
+msgstr ""
+
+#. module: sale_cutoff_time_delivery
 #: model_terms:ir.ui.view,arch_db:sale_cutoff_time_delivery.view_picking_cutoff_search
 msgid "After today's cut-off"
 msgstr "Después del corte de hoy"
@@ -60,10 +66,15 @@ msgstr "Hora de corte Hms"
 msgid ""
 "Define the cutoff time for delivery orders:\n"
 "\n"
-"* Use global (warehouse) cutoff time: Delivery order for sale orders will be postponed to the next warehouse cutoff time\n"
-"* Use partner's cutoff time: Delivery order for sale orders will be postponed to the next partner's cutoff time\n"
+"* Use global (warehouse) cutoff time: Delivery order for sale orders will be "
+"postponed to the next warehouse cutoff time\n"
+"* Use partner's cutoff time: Delivery order for sale orders will be "
+"postponed to the next partner's cutoff time\n"
 "\n"
-"Example: If cutoff is set to 09:00, any sale order confirmed before 09:00 will have its delivery order postponed to 09:00, and any sale order confirmed after 09:00 will have its delivery order postponed to 09:00 on the following day."
+"Example: If cutoff is set to 09:00, any sale order confirmed before 09:00 "
+"will have its delivery order postponed to 09:00, and any sale order "
+"confirmed after 09:00 will have its delivery order postponed to 09:00 on the "
+"following day."
 msgstr ""
 "Defina la hora límite para los pedidos de entrega:\n"
 "\n"
@@ -73,8 +84,8 @@ msgstr ""
 "venta se pospondrá hasta la hora límite del próximo socio\n"
 "\n"
 "Ejemplo: si el corte se establece en las 09:00, cualquier orden de venta "
-"confirmada antes de las 09:00 tendrá su orden de entrega pospuesta a las 09:"
-"00, y cualquier orden de venta confirmada después de las 09:00 tendrá su "
+"confirmada antes de las 09:00 tendrá su orden de entrega pospuesta a las "
+"09:00, y cualquier orden de venta confirmada después de las 09:00 tendrá su "
 "orden de entrega pospuesta a las 09:00 el al día siguiente."
 
 #. module: sale_cutoff_time_delivery
@@ -82,6 +93,11 @@ msgstr ""
 #: model:ir.model.fields,field_description:sale_cutoff_time_delivery.field_res_users__order_delivery_cutoff_preference
 msgid "Delivery orders cutoff preference"
 msgstr "Preferencia de corte de órdenes de entrega"
+
+#. module: sale_cutoff_time_delivery
+#: model:ir.model.fields,field_description:sale_cutoff_time_delivery.field_sale_order__display_expected_date_ok
+msgid "Display Expected Date Ok"
+msgstr ""
 
 #. module: sale_cutoff_time_delivery
 #: model:ir.model.fields,field_description:sale_cutoff_time_delivery.field_time_cutoff_mixin__display_name
