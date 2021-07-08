@@ -15,6 +15,21 @@ _logger = logging.getLogger(__name__)
 class SaleOrder(models.Model):
     _inherit = "sale.order"
 
+    display_expected_date_ok = fields.Boolean(
+        string="Display Expected Date Ok", compute="_compute_display_expected_date_ok",
+    )
+
+    @api.depends("commitment_date", "expected_date")
+    def _compute_display_expected_date_ok(self):
+        for record in self:
+            record.display_expected_date_ok = record._get_display_expected_date_ok()
+
+    def _get_display_expected_date_ok(self):
+        """Conditions to display the expected date on the so report."""
+        # display_expected_date_ok is True date is set
+        self.ensure_one()
+        return bool(self.commitment_date or self.expected_date)
+
     def get_cutoff_time(self):
         self.ensure_one()
         partner = self.partner_shipping_id

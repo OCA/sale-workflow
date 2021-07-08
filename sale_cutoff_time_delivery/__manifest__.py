@@ -16,5 +16,7 @@
         "views/res_partner.xml",
         "views/stock_picking_views.xml",
         "views/stock_warehouse.xml",
+        "reports/sale_order.xml",
+        "reports/stock_picking.xml",
     ],
 }
