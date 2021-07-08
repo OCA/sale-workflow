@@ -14,6 +14,12 @@ msgstr ""
 "Plural-Forms: \n"
 
 #. module: sale_cutoff_time_delivery
+#: model_terms:ir.ui.view,arch_db:sale_cutoff_time_delivery.report_delivery_document
+#: model_terms:ir.ui.view,arch_db:sale_cutoff_time_delivery.report_saleorder_document
+msgid "<strong>Expected delivery date:</strong>"
+msgstr ""
+
+#. module: sale_cutoff_time_delivery
 #: model_terms:ir.ui.view,arch_db:sale_cutoff_time_delivery.view_picking_cutoff_search
 msgid "After today's cut-off"
 msgstr ""
@@ -67,6 +73,11 @@ msgstr ""
 #: model:ir.model.fields,field_description:sale_cutoff_time_delivery.field_res_partner__order_delivery_cutoff_preference
 #: model:ir.model.fields,field_description:sale_cutoff_time_delivery.field_res_users__order_delivery_cutoff_preference
 msgid "Delivery orders cutoff preference"
+msgstr ""
+
+#. module: sale_cutoff_time_delivery
+#: model:ir.model.fields,field_description:sale_cutoff_time_delivery.field_sale_order__display_expected_date_ok
+msgid "Display Expected Date Ok"
 msgstr ""
 
 #. module: sale_cutoff_time_delivery
