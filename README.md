@@ -38,7 +38,7 @@ addon | version | summary
 [sale_coupon_multi_use](sale_coupon_multi_use/) | 13.0.1.0.1 | Allow to use same coupon multiple times
 [sale_coupon_multi_use_currency](sale_coupon_multi_use_currency/) | 13.0.1.0.1 | Prevents in changing currency if multi coupon is in use
 [sale_coupon_product_management](sale_coupon_product_management/) | 13.0.1.0.0 | Improves related product management via sale coupons
-[sale_cutoff_time_delivery](sale_cutoff_time_delivery/) | 13.0.1.2.0 | Schedule delivery orders according to cutoff preferences
+[sale_cutoff_time_delivery](sale_cutoff_time_delivery/) | 13.0.1.3.0 | Schedule delivery orders according to cutoff preferences
 [sale_discount_display_amount](sale_discount_display_amount/) | 13.0.1.0.1 | This addon intends to display the amount of the discount computed on sale_order_line and sale_order level
 [sale_elaboration](sale_elaboration/) | 13.0.1.0.0 | Set an elaboration for any sale line
 [sale_exception](sale_exception/) | 13.0.1.1.1 | Custom exceptions on sale order
