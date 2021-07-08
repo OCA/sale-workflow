@@ -250,7 +250,9 @@ class SalePaymentSheetLine(models.Model):
         readonly=True,
     )
     state = fields.Selection(related="sheet_id.state", string="Status", readonly=True)
-    invoice_id = fields.Many2one(comodel_name="account.move", string="Invoice")
+    invoice_id = fields.Many2one(
+        comodel_name="account.move", string="Invoice", index=True
+    )
     transaction_type = fields.Selection(
         [("partial", "Partial payment"), ("full", "Full payment")],
         compute="_compute_transaction_type",
@@ -299,13 +301,32 @@ class SalePaymentSheetLine(models.Model):
             if line.invoice_id.type == "out_refund" and line.amount > 0.0:
                 line.amount = -line.amount
 
-    @api.constrains("amount")
-    def _check_amount(self):
+    @api.constrains("invoice_id", "amount")
+    def _check_invoice(self):
         for line in self:
             # Allow to enter sheet line with an amount of 0,
             if line.journal_currency_id.is_zero(line.amount):
                 raise ValidationError(
                     _("The amount of a cash transaction cannot be 0.")
+                )
+            # Do not allow to enter a invoice totally payed more than one time
+            payment_lines = self.search([("invoice_id", "=", line.invoice_id.id)])
+            amount_payed = sum(payment_lines.mapped("amount"))
+            if (
+                float_compare(
+                    amount_payed,
+                    line.invoice_id.amount_total,
+                    precision_rounding=line.invoice_id.currency_id.rounding,
+                )
+                == 1
+            ):
+                raise ValidationError(
+                    _(
+                        "This invoice already has been included in other payment sheet"
+                        " or the amount payed is greather than residual invoice amount."
+                        "\n Invoice: %s Amount payed: %s"
+                        % (line.invoice_id.name, amount_payed)
+                    )
                 )
 
     def unlink(self):
