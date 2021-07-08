@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 13.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-05-05 13:54+0000\n"
-"PO-Revision-Date: 2021-05-05 15:58+0200\n"
+"POT-Creation-Date: 2021-07-15 23:38+0000\n"
+"PO-Revision-Date: 2021-07-16 01:40+0200\n"
 "Last-Translator: Sergio Teruel <sergio.teruel@tecnativa.com>\n"
 "Language-Team: \n"
 "Language: es\n"
@@ -461,6 +461,18 @@ msgstr "Impuesto no incluido"
 #, python-format
 msgid "The amount of a cash transaction cannot be 0."
 msgstr "El importe de una transacción en efectivo no puede ser 0."
+
+#. module: sale_payment_sheet
+#: code:addons/sale_payment_sheet/models/sale_payment_sheet.py:0
+#, python-format
+msgid ""
+"This invoice already has been included in other payment sheet or the amount "
+"payed is greather than residual invoice amount.\n"
+" Invoice: %s Amount payed: %s"
+msgstr ""
+"Esta factura ya se ha incluido en otra hoja de pagos o el importe pagado es "
+"mayor al importe pendiente de la factura.\n"
+" Factura: %s Importe pagado: %s"
 
 #. module: sale_payment_sheet
 #: model:ir.model.fields,field_description:sale_payment_sheet.field_sale_payment_sheet__amount_total
