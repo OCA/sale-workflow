@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: Odoo Server 10.0\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2018-01-27 03:53+0000\n"
-"PO-Revision-Date: 2019-07-17 11:43+0000\n"
+"PO-Revision-Date: 2021-07-09 15:48+0000\n"
 "Last-Translator: Maria Sparenberg <maria.sparenberg@gmx.net>\n"
 "Language-Team: German (https://www.transifex.com/oca/teams/23907/de/)\n"
 "Language: de\n"
@@ -17,21 +17,20 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 3.7.1\n"
+"X-Generator: Weblate 4.3.2\n"
 
 #. module: sale_order_line_date
 #: model_terms:ir.ui.view,arch_db:sale_order_line_date.report_saleorder_document
 msgid "Commitment Date"
-msgstr ""
+msgstr "Bestätigtes Datum"
 
 #. module: sale_order_line_date
 #: model:ir.model.fields,field_description:sale_order_line_date.field_sale_order_line__commitment_date
 msgid "Delivery Date"
-msgstr ""
+msgstr "Lieferdatum"
 
 #. module: sale_order_line_date
 #: model:ir.model,name:sale_order_line_date.model_sale_order
-#, fuzzy
 msgid "Sales Order"
 msgstr "Verkaufsauftrag"
 
