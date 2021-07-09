@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: Odoo Server 10.0\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2017-11-23 01:51+0000\n"
-"PO-Revision-Date: 2019-07-16 10:43+0000\n"
+"PO-Revision-Date: 2021-07-09 15:48+0000\n"
 "Last-Translator: Maria Sparenberg <maria.sparenberg@gmx.net>\n"
 "Language-Team: German (https://www.transifex.com/oca/teams/23907/de/)\n"
 "Language: de\n"
@@ -17,13 +17,13 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 3.7.1\n"
+"X-Generator: Weblate 4.3.2\n"
 
 #. module: sale_product_set
 #: model:ir.model.fields,field_description:sale_product_set.field_product_set__active
 #: model:ir.model.fields,field_description:sale_product_set.field_product_set_line__active
 msgid "Active"
-msgstr ""
+msgstr "Aktiv"
 
 #. module: sale_product_set
 #: model_terms:ir.ui.view,arch_db:sale_product_set.product_set_add_form_view
@@ -44,7 +44,7 @@ msgstr "Produktset als Auftragszeilen hinzufügen"
 #. module: sale_product_set
 #: model:ir.actions.act_window,name:sale_product_set.act_open_wizard_product_set_add_from_set
 msgid "Add set to sale order"
-msgstr ""
+msgstr "Produktset zum Verkaufsauftrag hinzufügen"
 
 #. module: sale_product_set
 #: model_terms:ir.ui.view,arch_db:sale_product_set.product_set_add_form_view
@@ -73,12 +73,12 @@ msgstr "Erstellt am"
 #. module: sale_product_set
 #: model:ir.model.fields,field_description:sale_product_set.field_product_set_add__partner_id
 msgid "Customer"
-msgstr ""
+msgstr "Kunde"
 
 #. module: sale_product_set
 #: model:ir.model.fields,field_description:sale_product_set.field_product_set_line__discount
 msgid "Discount (%)"
-msgstr ""
+msgstr "Rabatt (%)"
 
 #. module: sale_product_set
 #: model:ir.model.fields,field_description:sale_product_set.field_product_set__display_name
@@ -92,6 +92,8 @@ msgstr "Anzeigename"
 msgid ""
 "Enable this to not add new lines for products already included in SO lines."
 msgstr ""
+"Wenn das Häkchen gesetzt ist, werden die Produkte, die bereits im Auftrag "
+"enthalten sind, nicht neu hinzugefügt."
 
 #. module: sale_product_set
 #: model:ir.model.fields,field_description:sale_product_set.field_product_set__id
@@ -135,7 +137,7 @@ msgstr "Bezeichnung"
 #: model:ir.model.fields,field_description:sale_product_set.field_product_set__partner_id
 #: model_terms:ir.ui.view,arch_db:sale_product_set.view_product_set_search
 msgid "Partner"
-msgstr ""
+msgstr "Partner"
 
 #. module: sale_product_set
 #: model:ir.model.fields,field_description:sale_product_set.field_product_set_line__product_id
@@ -145,7 +147,7 @@ msgstr "Produkt"
 #. module: sale_product_set
 #: model:ir.model.fields,field_description:sale_product_set.field_product_set_add__product_set_line_ids
 msgid "Product Set Line"
-msgstr ""
+msgstr "Produktset-Position"
 
 #. module: sale_product_set
 #: model:ir.actions.act_window,name:sale_product_set.act_open_product_set_view
@@ -194,7 +196,7 @@ msgstr "Menge"
 #. module: sale_product_set
 #: model:ir.model.fields,field_description:sale_product_set.field_product_set_add__order_id
 msgid "Sale Order"
-msgstr ""
+msgstr "Verkaufsauftrag"
 
 #. module: sale_product_set
 #: model:ir.model.fields,field_description:sale_product_set.field_product_set_line__sequence
@@ -209,7 +211,7 @@ msgstr "Produktset"
 #. module: sale_product_set
 #: model:ir.model.fields,field_description:sale_product_set.field_product_set_add__skip_existing_products
 msgid "Skip Existing Products"
-msgstr ""
+msgstr "Existierende Produkte überspringen"
 
 #. module: sale_product_set
 #: model:ir.model,name:sale_product_set.model_product_set_add
@@ -222,9 +224,13 @@ msgid ""
 "You can attache the set to a specific partner or no one. If you don't "
 "specify one, it's going to be available for all of them."
 msgstr ""
+"Das Produktset kann einem Partner oder niemandem zugeordnet werden. Wenn "
+"kein Partner definiert wird, ist das Produktset für alle verwendbar."
 
 #. module: sale_product_set
 #: code:addons/sale_product_set/wizard/product_set_add.py:0
 #, python-format
 msgid "You can use a sale order assigned only to following partner(s): {}"
 msgstr ""
+"Es kann nur ein Verkaufsauftrag verwendet werden, der den/m folgenden "
+"Partner(n) zugeordnet ist: {}"
