@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: Odoo Server 8.0\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2015-10-15 13:53+0000\n"
-"PO-Revision-Date: 2019-07-16 10:43+0000\n"
+"PO-Revision-Date: 2021-07-09 15:48+0000\n"
 "Last-Translator: Maria Sparenberg <maria.sparenberg@gmx.net>\n"
 "Language-Team: \n"
 "Language: de\n"
@@ -15,7 +15,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 3.7.1\n"
+"X-Generator: Weblate 4.3.2\n"
 
 #. module: sale_partner_incoterm
 #: model:ir.model,name:sale_partner_incoterm.model_res_partner
@@ -31,7 +31,6 @@ msgstr "Standard-Lieferbedingung"
 
 #. module: sale_partner_incoterm
 #: model:ir.model,name:sale_partner_incoterm.model_sale_order
-#, fuzzy
 msgid "Sales Order"
 msgstr "Verkaufsauftrag"
 
