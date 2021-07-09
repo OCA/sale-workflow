@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 11.0\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2019-07-17 11:43+0000\n"
+"PO-Revision-Date: 2021-07-09 15:48+0000\n"
 "Last-Translator: Maria Sparenberg <maria.sparenberg@gmx.net>\n"
 "Language-Team: none\n"
 "Language: de\n"
@@ -14,18 +14,18 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 3.7.1\n"
+"X-Generator: Weblate 4.3.2\n"
 
 #. module: sale_product_multi_add
 #: model_terms:ir.ui.view,arch_db:sale_product_multi_add.sale_order_mass_import_form
 msgid "Add multiple products"
-msgstr ""
+msgstr "Mehrere Produkte hinzufügen"
 
 #. module: sale_product_multi_add
 #: model_terms:ir.ui.view,arch_db:sale_product_multi_add.view_import_product_to_sale
 #: model_terms:ir.ui.view,arch_db:sale_product_multi_add.view_import_product_to_sale2
 msgid "Cancel"
-msgstr ""
+msgstr "Abbrechen"
 
 #. module: sale_product_multi_add
 #: model:ir.model.fields,field_description:sale_product_multi_add.field_sale_import_products__create_uid
@@ -54,7 +54,7 @@ msgstr "ID"
 #. module: sale_product_multi_add
 #: model:ir.actions.act_window,name:sale_product_multi_add.action_import_product_to_sale
 msgid "Import Products"
-msgstr ""
+msgstr "Produkte importieren"
 
 #. module: sale_product_multi_add
 #: model:ir.model.fields,field_description:sale_product_multi_add.field_sale_import_products__items
@@ -109,7 +109,7 @@ msgstr ""
 #. module: sale_product_multi_add
 #: model_terms:ir.ui.view,arch_db:sale_product_multi_add.view_import_product_to_sale2
 msgid "Select"
-msgstr ""
+msgstr "Auswählen"
 
 #. module: sale_product_multi_add
 #: model_terms:ir.ui.view,arch_db:sale_product_multi_add.view_import_product_to_sale
@@ -119,10 +119,10 @@ msgstr ""
 #. module: sale_product_multi_add
 #: model:ir.model.fields,field_description:sale_product_multi_add.field_sale_import_products_items__wizard_id
 msgid "Wizard"
-msgstr ""
+msgstr "Assistent"
 
 #. module: sale_product_multi_add
 #: model_terms:ir.ui.view,arch_db:sale_product_multi_add.view_import_product_to_sale
 #: model_terms:ir.ui.view,arch_db:sale_product_multi_add.view_import_product_to_sale2
 msgid "or"
-msgstr ""
+msgstr "oder"
