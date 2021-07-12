@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 13.0\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2021-07-12 19:11+0000\n"
+"PO-Revision-Date: 2021-07-12 21:48+0000\n"
 "Last-Translator: Ediz Duman <neps1192@gmail.com>\n"
 "Language-Team: none\n"
 "Language: tr\n"
@@ -24,97 +24,97 @@ msgstr "Aktif"
 #. module: sale_order_tag
 #: model:ir.model.fields,field_description:sale_order_tag.field_sale_order_tag__color
 msgid "Color Index"
-msgstr ""
+msgstr "Renk İndeksi"
 
 #. module: sale_order_tag
 #: model:ir.model.fields,field_description:sale_order_tag.field_sale_order_tag__company_id
 msgid "Company"
-msgstr ""
+msgstr "Firma"
 
 #. module: sale_order_tag
 #: model:ir.model.fields,field_description:sale_order_tag.field_sale_order_tag__create_uid
 msgid "Created by"
-msgstr ""
+msgstr "Oluşturan"
 
 #. module: sale_order_tag
 #: model:ir.model.fields,field_description:sale_order_tag.field_sale_order_tag__create_date
 msgid "Created on"
-msgstr ""
+msgstr "Oluşturulma"
 
 #. module: sale_order_tag
 #: model:ir.model.fields,field_description:sale_order_tag.field_sale_order_tag__description
 msgid "Description"
-msgstr ""
+msgstr "Açıklama"
 
 #. module: sale_order_tag
 #: model:ir.model.fields,field_description:sale_order_tag.field_sale_order_tag__display_name
 msgid "Display Name"
-msgstr ""
+msgstr "Görünüm Adı"
 
 #. module: sale_order_tag
 #: model:ir.model.fields,field_description:sale_order_tag.field_sale_order_tag__id
 msgid "ID"
-msgstr ""
+msgstr "ID"
 
 #. module: sale_order_tag
 #: model:ir.model.fields,field_description:sale_order_tag.field_sale_order_tag____last_update
 msgid "Last Modified on"
-msgstr ""
+msgstr "Son Düzenlenme"
 
 #. module: sale_order_tag
 #: model:ir.model.fields,field_description:sale_order_tag.field_sale_order_tag__write_uid
 msgid "Last Updated by"
-msgstr ""
+msgstr "Son Güncelleyen"
 
 #. module: sale_order_tag
 #: model:ir.model.fields,field_description:sale_order_tag.field_sale_order_tag__write_date
 msgid "Last Updated on"
-msgstr ""
+msgstr "Son Güncellenme"
 
 #. module: sale_order_tag
 #: model:ir.model.fields,field_description:sale_order_tag.field_sale_order_tag__name
 #: model_terms:ir.ui.view,arch_db:sale_order_tag.sale_order_tag_form_view
 msgid "Name"
-msgstr ""
+msgstr "Adı"
 
 #. module: sale_order_tag
 #: model:ir.model,name:sale_order_tag.model_sale_order_tag
 msgid "Sale Order Tag"
-msgstr ""
+msgstr "Satış Siparişi Etiketi"
 
 #. module: sale_order_tag
 #: model:ir.actions.act_window,name:sale_order_tag.sale_order_tag_action
 #: model:ir.model.fields,field_description:sale_order_tag.field_sale_order__so_tag_ids
 #: model_terms:ir.ui.view,arch_db:sale_order_tag.sale_order_tag_form_view
 msgid "Sale Order Tags"
-msgstr ""
+msgstr "Satış Siparişi Etiketleri"
 
 #. module: sale_order_tag
 #: model:ir.model,name:sale_order_tag.model_sale_order
 msgid "Sales Order"
-msgstr ""
+msgstr "Satış Siparişi"
 
 #. module: sale_order_tag
 #: model:ir.model.fields,field_description:sale_order_tag.field_sale_order_tag__team_ids
 msgid "Sales Teams"
-msgstr ""
+msgstr "Satış Ekipleri"
 
 #. module: sale_order_tag
 #: model:ir.model.fields,field_description:sale_order_tag.field_sale_order_tag__sequence
 msgid "Sequence"
-msgstr ""
+msgstr "Sıra"
 
 #. module: sale_order_tag
 #: model:ir.model.constraint,message:sale_order_tag.constraint_sale_order_tag_name_uniq
 msgid "Tag name already exists!"
-msgstr ""
+msgstr "Etiket adı zaten var!"
 
 #. module: sale_order_tag
 #: model:ir.ui.menu,name:sale_order_tag.sale_order_tag_menu
 msgid "Tags"
-msgstr ""
+msgstr "Etiketler"
 
 #. module: sale_order_tag
 #: model_terms:ir.ui.view,arch_db:sale_order_tag.sale_order_tag_view_form
 msgid "tag..."
-msgstr ""
+msgstr "etiket..."
