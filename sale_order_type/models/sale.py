@@ -108,7 +108,9 @@ class SaleOrder(models.Model):
         if vals.get("name", "/") == "/" and vals.get("type_id"):
             sale_type = self.env["sale.order.type"].browse(vals["type_id"])
             if sale_type.sequence_id:
-                vals["name"] = sale_type.sequence_id.next_by_id()
+                vals["name"] = sale_type.sequence_id.next_by_id(
+                    sequence_date=vals["date_order"]
+                )
         return super(SaleOrder, self).create(vals)
 
     def write(self, vals):
@@ -132,7 +134,9 @@ class SaleOrder(models.Model):
                         and not ignore_default_sequence
                     ):
                         new_vals = vals.copy()
-                        new_vals["name"] = sale_type.sequence_id.next_by_id()
+                        new_vals["name"] = sale_type.sequence_id.next_by_id(
+                            sequence_date=vals.get("date_order")
+                        )
                         super(SaleOrder, record).write(new_vals)
                     else:
                         super(SaleOrder, record).write(vals)
