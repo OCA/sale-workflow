@@ -32,6 +32,7 @@ setuptools.setup(
         'odoo14-addon-sale_order_note_template',
         'odoo14-addon-sale_order_qty_change_no_recompute',
         'odoo14-addon-sale_order_revision',
+        'odoo14-addon-sale_order_type',
         'odoo14-addon-sale_partner_incoterm',
         'odoo14-addon-sale_pricelist_from_commitment_date',
         'odoo14-addon-sale_product_brand_exception',
