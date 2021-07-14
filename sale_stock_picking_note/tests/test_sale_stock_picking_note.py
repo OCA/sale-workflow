@@ -7,7 +7,7 @@ from odoo.tests import common
 class TestSaleStockPickingNote(common.SavepointCase):
     @classmethod
     def setUpClass(cls):
-        super(TestSaleStockPickingNote, cls).setUpClass()
+        super().setUpClass()
         cls.partner = cls.env["res.partner"].create({"name": "Mr. Odoo"})
         cls.product = cls.env["product.product"].create(
             {"name": "Test product", "type": "product"}

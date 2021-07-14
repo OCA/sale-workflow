@@ -10,14 +10,3 @@ class SaleOrder(models.Model):
     picking_note = fields.Text(
         string="Picking Note",
     )
-
-
-class StockMove(models.Model):
-    _inherit = "stock.move"
-
-    def _get_new_picking_values(self):
-        vals = super()._get_new_picking_values()
-        sale_note = self.sale_line_id.order_id.picking_note
-        if sale_note:
-            vals["note"] = sale_note
-        return vals
