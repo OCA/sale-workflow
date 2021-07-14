@@ -4,33 +4,23 @@ import logging
 
 from odoo import SUPERUSER_ID
 from odoo.api import Environment
+from odoo.tools.sql import column_exists, create_column
 
 _logger = logging.getLogger(__name__)
 
+COLUMNS = (
+    ("sale_order", "price_total_no_discount"),
+    ("sale_order", "discount_total"),
+    ("sale_order_line", "price_total_no_discount"),
+    ("sale_order_line", "discount_total"),
+)
+
 
 def pre_init_hook(cr):
-    _logger.info("Create discount columns in database")
-    cr.execute(
-        """
-        ALTER TABLE sale_order ADD COLUMN price_total_no_discount numeric;
-    """
-    )
-    cr.execute(
-        """
-        ALTER TABLE sale_order ADD COLUMN discount_total numeric;
-    """
-    )
-    cr.execute(
-        """
-        ALTER TABLE sale_order_line ADD COLUMN price_total_no_discount
-        numeric;
-    """
-    )
-    cr.execute(
-        """
-        ALTER TABLE sale_order_line ADD COLUMN discount_total numeric;
-    """
-    )
+    for table, column in COLUMNS:
+        if not column_exists(cr, table, column):
+            _logger.info("Create discount column %s in database", column)
+            create_column(cr, table, column, "numeric")
 
 
 def post_init_hook(cr, registry):
