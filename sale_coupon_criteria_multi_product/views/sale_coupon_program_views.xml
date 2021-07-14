@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <record id="sale_coupon_program_view_form_common" model="ir.ui.view">
+        <field
+            name="inherit_id"
+            ref="sale_coupon.sale_coupon_program_view_form_common"
+        />
+        <field name="model">sale.coupon.program</field>
+        <field name="arch" type="xml">
+            <field name="rule_products_domain" position="before">
+                <field name="sale_coupon_criteria" widget="radio" />
+                <field
+                    name="sale_coupon_criteria_ids"
+                    attrs="{'invisible': [('sale_coupon_criteria', '!=', 'multi_product')]}"
+                >
+                    <tree editable="top">
+                        <field name="rule_min_quantity" string="Qty" />
+                        <field name="product_ids" widget="many2many_tags" />
+                        <field name="repeat_product" />
+                    </tree>
+                </field>
+            </field>
+            <field name="rule_products_domain" position="attributes">
+                <attribute
+                    name="attrs"
+                >{'invisible': [('sale_coupon_criteria', '!=', 'domain')]}</attribute>
+            </field>
+        </field>
+    </record>
+</odoo>
