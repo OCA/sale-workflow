@@ -55,8 +55,7 @@ class TestSaleProductByPackagingOnly(SavepointCase):
             order_line.write({"product_packaging": False})
 
     def test_create_auto_fill_packaging(self):
-        """Check when the packaging should be set automatically on the line
-        """
+        """Check when the packaging should be set automatically on the line"""
         # sell_only_by_packaging is default False
         order_line_1 = self.env["sale.order.line"].create(
             {
@@ -156,7 +155,7 @@ class TestSaleProductByPackagingOnly(SavepointCase):
                 )
 
     def test_packaging_qty_non_zero(self):
-        """ Check product packaging quantity.
+        """Check product packaging quantity.
 
         The packaging quantity can not be zero.
         """
@@ -173,7 +172,7 @@ class TestSaleProductByPackagingOnly(SavepointCase):
             order_line.write({"product_uom_qty": 3, "product_packaging_qty": 0})
 
     def test_onchange_qty_is_not_pack_multiple(self):
-        """ Check package when qantity is not a multiple of package quantity.
+        """Check package when qantity is not a multiple of package quantity.
 
         When the uom quantity is changed for a value not a multpile of a
         possible package an error is raised.

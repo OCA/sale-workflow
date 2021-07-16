@@ -58,8 +58,7 @@ class TestPackagingTypeCanBeSold(SavepointCase):
             self.assertIn("warning", onchange_res)
 
     def test_product_packaging_can_be_sold(self):
-        """Check that a product.packaging can be independently set as can be sold.
-        """
+        """Check that a product.packaging can be independently set as can be sold."""
         exception_msg = (
             "Packaging Test packaging cannot be sold on product {} must be set "
             "as 'Can be sold' in order to be used on a sale order."
