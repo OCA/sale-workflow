@@ -147,6 +147,7 @@ class TestSaleGlobalDiscount(common.SavepointCase):
         self.assertAlmostEqual(self.sale.amount_total_before_global_discounts, 299.99)
         self.assertAlmostEqual(self.sale.amount_tax, 17.51)
 
+    # FIXME ?
     def test_03_global_sale_discounts_to_invoice(self):
         """All the discounts go to the invoice"""
         self.sale.partner_id = self.partner_2
