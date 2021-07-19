@@ -329,8 +329,12 @@ class SalePaymentSheetLine(models.Model):
                     _(
                         "This invoice already has been included in other payment sheet"
                         " or the amount payed is greather than residual invoice amount."
-                        "\n Invoice: %s Amount payed: %s"
-                        % (line.invoice_id.name, amount_payed)
+                        "\n Invoice: %s\n Amount payed: %s\n Payment sheets: %s"
+                        % (
+                            line.invoice_id.name,
+                            amount_payed,
+                            payment_lines.mapped("sheet_id.name"),
+                        )
                     )
                 )
 
