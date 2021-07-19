@@ -141,12 +141,6 @@ class SaleOrder(models.Model):
             )
         return invoice_vals
 
-    def action_invoice_create(self, grouped=False, final=False):
-        res = super().action_invoice_create(grouped=grouped, final=final)
-        invoices = self.env["account.invoice"].browse(res)
-        invoices._set_global_discounts()
-        return res
-
     def _amount_by_group(self):
         """We can apply discounts directly by tax groups."""
         super()._amount_by_group()
