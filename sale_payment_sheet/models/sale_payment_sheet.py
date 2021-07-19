@@ -310,12 +310,17 @@ class SalePaymentSheetLine(models.Model):
                     _("The amount of a cash transaction cannot be 0.")
                 )
             # Do not allow to enter a invoice totally payed more than one time
-            payment_lines = self.search([("invoice_id", "=", line.invoice_id.id)])
+            payment_lines = self.search(
+                [
+                    ("invoice_id", "=", line.invoice_id.id),
+                    ("sheet_id.state", "=", "open"),
+                ]
+            )
             amount_payed = sum(payment_lines.mapped("amount"))
             if (
                 float_compare(
                     amount_payed,
-                    line.invoice_id.amount_total,
+                    line.invoice_id.amount_residual,
                     precision_rounding=line.invoice_id.currency_id.rounding,
                 )
                 == 1
