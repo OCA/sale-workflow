@@ -34,7 +34,7 @@ class SaleOrder(models.Model):
                 or float_compare(
                     line.qty_delivered, line.product_uom_qty, precision_digits=precision
                 )
-                == 0
+                >= 0
                 for line in order.order_line
             )
 
