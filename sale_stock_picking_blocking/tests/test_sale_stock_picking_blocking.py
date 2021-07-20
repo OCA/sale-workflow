@@ -32,17 +32,24 @@ class TestSaleDeliveryBlock(common.TransactionCase):
         product = (
             self.env["product.product"].with_user(self.user_test).create(prod_dict)
         )
-        # Create Sales order and lines:
+        # Create Sale order:
+        # TODO/TMP:
+        # - we explicitely add a name to avoid
+        #   a weird issue occuring randomly during tests
+        # - seems related to sale_order_revision,
+        #   further investigations ongoing
         so_dict = {
             "partner_id": self.env.ref("base.res_partner_1").id,
+            "name": "Test Sale Delivery Block",
         }
         self.sale_order = self.so_model.with_user(self.user_test).create(so_dict)
+        # Create Sale order lines:
         sol_dict = {
             "order_id": self.sale_order.id,
             "product_id": product.id,
             "product_uom_qty": 1.0,
         }
-        self.sale_order_line = self.sol_model.create(sol_dict)
+        self.sale_order_line = self.sol_model.with_user(self.user_test).create(sol_dict)
 
     def test_check_auto_done(self):
         # Set active auto done configuration
