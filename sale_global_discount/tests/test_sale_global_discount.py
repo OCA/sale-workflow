@@ -8,6 +8,7 @@ class TestSaleGlobalDiscount(common.SavepointCase):
     @classmethod
     def setUpClass(cls):
         super().setUpClass()
+        cls.main_company = cls.env.ref("base.main_company")
         cls.account_type = cls.env["account.account.type"].create(
             {"name": "Test", "type": "other", "internal_group": "asset"}
         )
@@ -47,8 +48,19 @@ class TestSaleGlobalDiscount(common.SavepointCase):
                 "account_id": cls.account.id,
             }
         )
-        cls.partner_1 = cls.env["res.partner"].create({"name": "Mr. Odoo"})
-        cls.partner_2 = cls.env["res.partner"].create({"name": "Mrs. Odoo"})
+        cls.pricelist = cls.env["product.pricelist"].create(
+            {
+                "name": "Test",
+                "currency_id": cls.main_company.currency_id.id,
+                "company_id": cls.main_company.id,
+            }
+        )
+        cls.partner_1 = cls.env["res.partner"].create(
+            {"name": "Mr. Odoo", "property_product_pricelist": cls.pricelist.id}
+        )
+        cls.partner_2 = cls.env["res.partner"].create(
+            {"name": "Mrs. Odoo", "property_product_pricelist": cls.pricelist.id}
+        )
         cls.partner_2.customer_global_discount_ids = (
             cls.global_discount_2 + cls.global_discount_3
         )
