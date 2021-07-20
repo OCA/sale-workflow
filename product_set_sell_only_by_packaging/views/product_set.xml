@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <record id="view_product_set_line_tree" model="ir.ui.view">
+        <field name="model">product.set.line</field>
+        <field
+            name="inherit_id"
+            ref="sale_product_set_packaging_qty.view_product_set_line_tree"
+        />
+        <field name="arch" type="xml">
+            <field name="product_packaging_id" position="before">
+                <field name="sell_only_by_packaging" invisible="1" />
+            </field>
+            <field name="product_packaging_id" position="attributes">
+                <attribute
+                    name="attrs"
+                >{'required': [('sell_only_by_packaging', '=', True)]}</attribute>
+            </field>
+        </field>
+    </record>
+</odoo>
