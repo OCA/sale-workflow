@@ -32,7 +32,7 @@ class TestSaleOrderSecondaryUnit(SavepointCase):
         cls.secondary_unit = cls.env["product.secondary.unit"].search(
             [("product_tmpl_id", "=", cls.product.product_tmpl_id.id)]
         )
-        cls.product.secondary_uom_ids = cls.secondary_unit.id
+        cls.product.sale_secondary_uom_id = cls.secondary_unit.id
         cls.partner = cls.env["res.partner"].create({"name": "test - partner"})
         so = cls.env["sale.order"].new(
             {
@@ -60,14 +60,13 @@ class TestSaleOrderSecondaryUnit(SavepointCase):
         self.order.order_line.write(
             {"secondary_uom_id": self.secondary_unit.id, "secondary_uom_qty": 5}
         )
-        self.order.order_line.onchange_secondary_uom()
+        self.order.order_line._compute_product_uom_qty()
         self.assertEqual(self.order.order_line.product_uom_qty, 3.5)
 
     def test_onchange_secondary_unit_product_uom_qty(self):
         self.order.order_line.update(
             {"secondary_uom_id": self.secondary_unit.id, "product_uom_qty": 3.5}
         )
-        self.order.order_line.onchange_secondary_unit_product_uom_qty()
         self.assertEqual(self.order.order_line.secondary_uom_qty, 5.0)
 
     def test_default_secondary_unit(self):
@@ -82,5 +81,17 @@ class TestSaleOrderSecondaryUnit(SavepointCase):
                 "product_uom_qty": 3500.00,
             }
         )
-        self.order.order_line.onchange_product_uom_for_secondary()
         self.assertEqual(self.order.order_line.secondary_uom_qty, 5.0)
+
+    def test_independent_type(self):
+        # dependent type is already tested as dependency_type by default
+        self.order.order_line.secondary_uom_id = self.secondary_unit.id
+        self.order.order_line.secondary_uom_id.write({"dependency_type": "independent"})
+
+        self.order.order_line.write({"secondary_uom_qty": 2})
+        self.assertEqual(self.order.order_line.product_uom_qty, 1)
+        self.assertEqual(self.order.order_line.secondary_uom_qty, 2)
+
+        self.order.order_line.write({"product_uom_qty": 17})
+        self.assertEqual(self.order.order_line.secondary_uom_qty, 2)
+        self.assertEqual(self.order.order_line.product_uom_qty, 17)
