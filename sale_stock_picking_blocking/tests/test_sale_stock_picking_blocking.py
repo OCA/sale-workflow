@@ -33,14 +33,8 @@ class TestSaleDeliveryBlock(common.TransactionCase):
             self.env["product.product"].with_user(self.user_test).create(prod_dict)
         )
         # Create Sale order:
-        # TODO/TMP:
-        # - we explicitely add a name to avoid
-        #   a weird issue occuring randomly during tests
-        # - seems related to sale_order_revision,
-        #   further investigations ongoing
         so_dict = {
             "partner_id": self.env.ref("base.res_partner_1").id,
-            "name": "Test Sale Delivery Block",
         }
         self.sale_order = self.so_model.with_user(self.user_test).create(so_dict)
         # Create Sale order lines:
