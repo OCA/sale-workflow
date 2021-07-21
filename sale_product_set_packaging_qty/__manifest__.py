@@ -9,8 +9,7 @@
     "website": "https://github.com/OCA/sale-workflow",
     "author": "Camptocamp, Odoo Community Association (OCA)",
     "license": "AGPL-3",
-    "application": False,
     "installable": True,
     "depends": ["sale_product_set"],
-    "data": ["views/product_set.xml"],
+    "data": ["views/product_set.xml", "views/product_set_line.xml"],
 }
