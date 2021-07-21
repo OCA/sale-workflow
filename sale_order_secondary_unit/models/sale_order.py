@@ -3,6 +3,7 @@
 from odoo import api, fields, models
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 ||||||| parent of 331900273 ([MIG] migrate sale_order_secondary_unit from 12.0 to 13.0)
 from odoo.addons import decimal_precision as dp
 from odoo.tools.float_utils import float_compare, float_round
@@ -14,6 +15,10 @@ from odoo.tools.float_utils import float_compare, float_round
 =======
 from odoo.tools.float_utils import float_round
 >>>>>>> d16be0e27 ([FIX] code refactor)
+||||||| parent of e596a34a8 (code refactor update)
+from odoo.tools.float_utils import float_round
+=======
+>>>>>>> e596a34a8 (code refactor update)
 
 
 class SaleOrderLine(models.Model):
@@ -41,6 +46,7 @@ class SaleOrderLine(models.Model):
     }
 >>>>>>> d16be0e27 ([FIX] code refactor)
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
     secondary_uom_unit_price = fields.Float(
@@ -76,7 +82,19 @@ class SaleOrderLine(models.Model):
         ondelete="restrict",
     )
 =======
+||||||| parent of e596a34a8 (code refactor update)
+=======
+    secondary_uom_qty = fields.Float(
+        string="Secondary Qty", digits="Product Unit of Measure"
+    )
+    secondary_uom_id = fields.Many2one(
+        comodel_name="product.secondary.unit",
+        string="Secondary uom",
+        ondelete="restrict",
+    )
+>>>>>>> e596a34a8 (code refactor update)
 
+<<<<<<< HEAD
     def _get_factor_line(self):
         res = 1.0
         if not self.secondary_uom_id and self.product_id.secondary_uom_ids:
@@ -84,7 +102,20 @@ class SaleOrderLine(models.Model):
         res = super()._get_factor_line()
         return res
 >>>>>>> d16be0e27 ([FIX] code refactor)
+||||||| parent of e596a34a8 (code refactor update)
+    def _get_factor_line(self):
+        res = 1.0
+        if not self.secondary_uom_id and self.product_id.secondary_uom_ids:
+            res = self.product_id.secondary_uom_ids.uom_id.factor or 1.0
+        res = super()._get_factor_line()
+        return res
+=======
+    product_uom_qty = fields.Float(
+        store=True, readonly=False, compute="_compute_product_uom_qty", copy=True
+    )
+>>>>>>> e596a34a8 (code refactor update)
 
+<<<<<<< HEAD
 <<<<<<< HEAD
     product_uom_qty = fields.Float(copy=True)
 ||||||| parent of 331900273 ([MIG] migrate sale_order_secondary_unit from 12.0 to 13.0)
@@ -201,6 +232,26 @@ class SaleOrderLine(models.Model):
             self.secondary_uom_qty = qty
 =======
 >>>>>>> d16be0e27 ([FIX] code refactor)
+||||||| parent of e596a34a8 (code refactor update)
+    @api.onchange("secondary_uom_id", "secondary_uom_qty")
+    def onchange_secondary_uom(self):
+        self._onchange_helper_product_uom_for_secondary()
+
+    @api.onchange("product_uom_qty")
+    def onchange_secondary_unit_product_uom_qty(self):
+        if not self.secondary_uom_id:
+            self.product_uom_qty = self.product_uom_qty or 1.0
+            return
+        factor = self.secondary_uom_id.factor * self.product_uom.factor
+        qty = float_round(
+            self.product_uom_qty / (factor or 1.0),
+            precision_rounding=self.secondary_uom_id.uom_id.rounding,
+        )
+=======
+    @api.depends("secondary_uom_qty", "secondary_uom_id", "product_uom_qty")
+    def _compute_product_uom_qty(self):
+        self._compute_helper_target_field_qty()
+>>>>>>> e596a34a8 (code refactor update)
 
 <<<<<<< HEAD
     @api.depends("product_id")
@@ -308,9 +359,9 @@ class SaleOrderLine(models.Model):
         purpose.
         """
         res = super().product_id_change()
-        self.secondary_uom_id = self.product_id.product_tmpl_id._get_default_secondary_uom()
+        self.secondary_uom_id = self.product_id.sale_secondary_uom_id
         if self.secondary_uom_id:
             self.secondary_uom_qty = 1.0
-            self.onchange_secondary_uom()
+            self.onchange_product_uom_for_secondary()
         return res
 >>>>>>> 90d059d1c ([11.0][IMP] sale_secondary_unit: Set secondary uom quantity as 1.0 by default)
