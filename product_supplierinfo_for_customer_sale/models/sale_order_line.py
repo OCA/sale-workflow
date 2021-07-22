@@ -1,5 +1,6 @@
 # Copyright 2013-2017 Agile Business Group sagl
 #     (<http://www.agilebg.com>)
+# Copyright 2021 ForgeFlow S.L. (https://www.forgeflow.com)
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
 
 from odoo import api, fields, models
@@ -11,16 +12,19 @@ class SaleOrderLine(models.Model):
     product_customer_code = fields.Char(
         compute="_compute_product_customer_code", string="Product Customer Code",
     )
-    partner_is_customer = fields.Boolean(related="order_id.partner_id.customer",)
 
-    @api.multi
     @api.depends("product_id")
     def _compute_product_customer_code(self):
-        for line in self.filtered(lambda sol: sol.order_partner_id.customer):
-            supplierinfo = self.get_customer_supplierinfo(line)
-            line.product_customer_code = supplierinfo.product_code
+        for line in self:
+            if line.product_id:
+                supplierinfo = line.product_id._select_customerinfo(
+                    partner=line.order_partner_id
+                )
+                code = supplierinfo.product_code
+            else:
+                code = ""
+            line.product_customer_code = code
 
-    @api.multi
     @api.onchange("product_id")
     def product_id_change(self):
         result = super(SaleOrderLine, self).product_id_change()
@@ -50,26 +54,9 @@ class SaleOrderLine(models.Model):
                 ]
             )
             if items:
-                supplierinfo = self.get_customer_supplierinfo(line)
+                supplierinfo = line.product_id._select_customerinfo(
+                    partner=line.order_partner_id
+                )
                 if supplierinfo and supplierinfo.min_qty:
                     line.product_uom_qty = supplierinfo.min_qty
         return result
-
-    def get_customer_supplierinfo(self, line):
-        """
-        Search customerinfo for variant first, if it has not been found then
-        search by product template
-        """
-        customerinfo = self.env["product.customerinfo"].search(
-            [("name", "=", line.order_partner_id.id)]
-            + [
-                "|",
-                ("product_id", "=", line.product_id.id),
-                "&",
-                ("product_tmpl_id", "=", line.product_id.product_tmpl_id.id),
-                ("product_id", "=", False),
-            ],
-            limit=1,
-            order="product_id, sequence, min_qty desc, price",
-        )
-        return customerinfo
