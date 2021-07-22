@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8" ?>
 <!--
   product customer code for OpenERP
   Copyright (C) 2013 Agile Business Group sagl (<http://www.agilebg.com>).
@@ -7,28 +7,32 @@
   The licence is in the file __manifest__.py
 -->
 <odoo>
-
     <record id="view_order_form" model="ir.ui.view">
         <field name="name">sale.order.product.code.view.form</field>
         <field name="model">sale.order</field>
-        <field name="inherit_id" ref="sale.view_order_form"/>
+        <field name="inherit_id" ref="sale.view_order_form" />
         <field name="priority" eval="16" />
         <field name="arch" type="xml">
             <xpath expr="//form//tree//field[@name='product_id']" position="after">
-                <field name="partner_is_customer" invisible="1"/>
-                <field name="product_customer_code" attrs="{'invisible': [('partner_is_customer', '!=', True)]}"/>
+                <field name="partner_is_customer" invisible="1" />
+                <field
+                    name="product_customer_code"
+                    attrs="{'invisible': [('partner_is_customer', '!=', True)]}"
+                />
             </xpath>
             <xpath expr="//form//form//field[@name='product_id']" position="after">
-                <field name="partner_is_customer" invisible="1"/>
-                <field name="product_customer_code" attrs="{'invisible': [('partner_is_customer', '!=', True)]}"/>
+                <field name="partner_is_customer" invisible="1" />
+                <field
+                    name="product_customer_code"
+                    attrs="{'invisible': [('partner_is_customer', '!=', True)]}"
+                />
             </xpath>
         </field>
     </record>
-
     <record id="product_supplierinfo_search_view" model="ir.ui.view">
         <field name="name">product.supplierinfo.search.view</field>
         <field name="model">product.supplierinfo</field>
-        <field name="inherit_id" ref="product.product_supplierinfo_search_view"/>
+        <field name="inherit_id" ref="product.product_supplierinfo_search_view" />
         <field name="arch" type="xml">
             <xpath expr="//search" position="attributes">
                 <attribute name="string">Supplierinfo</attribute>
@@ -37,11 +41,13 @@
                 <attribute name="name">group_by</attribute>
             </xpath>
             <xpath expr="//search/group" position="inside">
-                    <filter string="Product Template" domain="[]"
-                            name="gb_product_template"
-                            context="{'group_by':'product_tmpl_id'}"/>
+                <filter
+                    string="Product Template"
+                    domain="[]"
+                    name="gb_product_template"
+                    context="{'group_by':'product_tmpl_id'}"
+                />
             </xpath>
         </field>
     </record>
-
 </odoo>
