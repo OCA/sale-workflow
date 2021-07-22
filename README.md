@@ -23,6 +23,7 @@ addon | version | summary
 [sale_automatic_workflow](sale_automatic_workflow/) | 14.0.1.1.2 | Sale Automatic Workflow
 [sale_automatic_workflow_delivery_state](sale_automatic_workflow_delivery_state/) | 14.0.1.0.0 | Glue module for sale_automatic_workflow and sale_delivery_state
 [sale_automatic_workflow_payment_mode](sale_automatic_workflow_payment_mode/) | 14.0.1.0.0 | Sale Automatic Workflow - Payment Mode
+[sale_by_packaging](sale_by_packaging/) | 14.0.1.0.0 | Manage sale of packaging
 [sale_cancel_confirm](sale_cancel_confirm/) | 14.0.1.0.0 | Sales Cancel Confirm
 [sale_commercial_partner](sale_commercial_partner/) | 14.0.1.0.1 | Add stored related field 'Commercial Entity' on sale orders
 [sale_commitment_date_mandatory](sale_commitment_date_mandatory/) | 14.0.1.0.0 | Set commitment data mandatory and don't allowto add lines unless this field is filled
