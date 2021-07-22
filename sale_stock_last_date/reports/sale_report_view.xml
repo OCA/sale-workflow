@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="view_order_product_search" model="ir.ui.view">
+        <field name="inherit_id" ref="sale.view_order_product_search"/>
+        <field name="model">sale.report</field>
+        <field name="arch" type="xml">
+            <filter name="Sales" position="after">
+                <filter
+                    name="last_delivery_date_yesterday"
+                    string="Sent yesterday"
+                    domain="[('last_delivery_date','&gt;=', ((context_today()-datetime.timedelta(days=1)).strftime('%Y-%m-%d 00:00:00'))),
+                             ('last_delivery_date','&lt;=', ((context_today()+datetime.timedelta(days=0)).strftime('%Y-%m-%d 00:00:00')))]"/>
+            </filter>
+            <filter name="confirm_month" position="after">
+                <filter name="last_delivery_date" string="Last delivery date"
+                        context="{'group_by':'last_delivery_date:month'}"/>
+            </filter>
+        </field>
+    </record>
+
+</odoo>
