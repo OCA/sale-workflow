@@ -12,6 +12,7 @@ setuptools.setup(
         'odoo14-addon-sale_automatic_workflow',
         'odoo14-addon-sale_automatic_workflow_delivery_state',
         'odoo14-addon-sale_automatic_workflow_payment_mode',
+        'odoo14-addon-sale_by_packaging',
         'odoo14-addon-sale_cancel_confirm',
         'odoo14-addon-sale_commercial_partner',
         'odoo14-addon-sale_commitment_date_mandatory',
