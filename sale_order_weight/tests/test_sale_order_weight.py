@@ -47,3 +47,11 @@ class TestSaleOrderWeight(common.TransactionCase):
         picking_1.mapped('move_lines').write({'quantity_done': 1})
         picking_1.action_done()
         self.assertEqual(self.sale_order.total_delivered_weight, 9.0)
+
+    def test_sale_order_recalculate_weight(self):
+        self.sale_order.action_confirm()
+        self.sale_order_line_1._onchange_weight()
+        self.sale_order_line_2._onchange_weight()
+        self.product_1.weight = 10.0  # * 2 = 20 kg
+        self.sale_order.recalculate_weight()
+        self.assertEqual(self.sale_order.total_ordered_weight, 32.0)

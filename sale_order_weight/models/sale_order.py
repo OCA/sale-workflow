@@ -31,3 +31,7 @@ class SaleOrder(models.Model):
             order.total_delivered_weight = sum(
                 order.mapped('order_line.total_delivered_weight')
             )
+
+    @api.multi
+    def recalculate_weight(self):
+        self.mapped('order_line')._onchange_weight()
