@@ -41,14 +41,8 @@ class TestProductSupplierinfoForCustomerSale(TransactionCase):
         )
 
     def _create_customer(self, name):
-        """Create a Partner."""
         return self.env["res.partner"].create(
-            {
-                "name": name,
-                "email": "example@yourcompany.com",
-                "customer": True,
-                "phone": 123456,
-            }
+            {"name": name, "email": "example@yourcompany.com", "phone": 123456}
         )
 
     def _create_partnerinfo(
@@ -69,7 +63,7 @@ class TestProductSupplierinfoForCustomerSale(TransactionCase):
 
     def _create_pricelist(self, name, product):
         return self.pricelist_model.create(
-            {"name": name, "currency_id": self.env.ref("base.USD").id,}
+            {"name": name, "currency_id": self.env.ref("base.USD").id}
         )
 
     def _create_pricelist_item(self, name, pricelist, product):
@@ -86,10 +80,10 @@ class TestProductSupplierinfoForCustomerSale(TransactionCase):
 
     def test_product_supplierinfo_for_customer_sale(self):
         so = self.env["sale.order"].create(
-            {"partner_id": self.customer.id, "pricelist_id": self.pricelist.id,}
+            {"partner_id": self.customer.id, "pricelist_id": self.pricelist.id}
         )
         line = self.env["sale.order.line"].create(
-            {"product_id": self.product.id, "order_id": so.id,}
+            {"product_id": self.product.id, "order_id": so.id}
         )
         line.product_id_change()
         self.assertEqual(
@@ -105,10 +99,10 @@ class TestProductSupplierinfoForCustomerSale(TransactionCase):
 
     def test_product_supplierinfo_for_customer_sale_variant(self):
         so = self.env["sale.order"].create(
-            {"partner_id": self.customer.id, "pricelist_id": self.pricelist.id,}
+            {"partner_id": self.customer.id, "pricelist_id": self.pricelist.id}
         )
         line = self.env["sale.order.line"].create(
-            {"product_id": self.product_variant_1.id, "order_id": so.id,}
+            {"product_id": self.product_variant_1.id, "order_id": so.id}
         )
         line.product_id_change()
         self.assertEqual(
@@ -122,10 +116,10 @@ class TestProductSupplierinfoForCustomerSale(TransactionCase):
             "customer", self.customer, self.product_variant_2
         )
         so = self.env["sale.order"].create(
-            {"partner_id": self.customer.id, "pricelist_id": self.pricelist.id,}
+            {"partner_id": self.customer.id, "pricelist_id": self.pricelist.id}
         )
         line = self.env["sale.order.line"].create(
-            {"product_id": self.product_variant_2.id, "order_id": so.id,}
+            {"product_id": self.product_variant_2.id, "order_id": so.id}
         )
         line.product_id_change()
         self.assertEqual(
@@ -158,10 +152,10 @@ class TestProductSupplierinfoForCustomerSale(TransactionCase):
             "customer", self.customer, self.product_variant_2, empty_variant=True
         )
         so = self.env["sale.order"].create(
-            {"partner_id": self.customer.id, "pricelist_id": self.pricelist.id,}
+            {"partner_id": self.customer.id, "pricelist_id": self.pricelist.id}
         )
         line = self.env["sale.order.line"].create(
-            {"product_id": self.product_variant_2.id, "order_id": so.id,}
+            {"product_id": self.product_variant_2.id, "order_id": so.id}
         )
         line.product_id_change()
         self.assertEqual(

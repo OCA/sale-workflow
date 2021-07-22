@@ -4,6 +4,7 @@
   Copyright (C) 2013 Agile Business Group sagl (<http://www.agilebg.com>).
     Authors, Nicola Malcontenti, nicola.malcontenti@agilebg.com
   Copyright (C) 2017 Vauxoo (https://www.vauxoo.com) info@vauxoo.com
+  Copyright 2021 ForgeFlow S.L. (https://www.forgeflow.com)
   The licence is in the file __manifest__.py
 -->
 <odoo>
@@ -14,39 +15,10 @@
         <field name="priority" eval="16" />
         <field name="arch" type="xml">
             <xpath expr="//form//tree//field[@name='product_id']" position="after">
-                <field name="partner_is_customer" invisible="1" />
-                <field
-                    name="product_customer_code"
-                    attrs="{'invisible': [('partner_is_customer', '!=', True)]}"
-                />
+                <field name="product_customer_code" optional="show" />
             </xpath>
             <xpath expr="//form//form//field[@name='product_id']" position="after">
-                <field name="partner_is_customer" invisible="1" />
-                <field
-                    name="product_customer_code"
-                    attrs="{'invisible': [('partner_is_customer', '!=', True)]}"
-                />
-            </xpath>
-        </field>
-    </record>
-    <record id="product_supplierinfo_search_view" model="ir.ui.view">
-        <field name="name">product.supplierinfo.search.view</field>
-        <field name="model">product.supplierinfo</field>
-        <field name="inherit_id" ref="product.product_supplierinfo_search_view" />
-        <field name="arch" type="xml">
-            <xpath expr="//search" position="attributes">
-                <attribute name="string">Supplierinfo</attribute>
-            </xpath>
-            <xpath expr="//search/group" position="attributes">
-                <attribute name="name">group_by</attribute>
-            </xpath>
-            <xpath expr="//search/group" position="inside">
-                <filter
-                    string="Product Template"
-                    domain="[]"
-                    name="gb_product_template"
-                    context="{'group_by':'product_tmpl_id'}"
-                />
+                <field name="product_customer_code" />
             </xpath>
         </field>
     </record>
