@@ -7,6 +7,7 @@
     "category": "Sales",
     "website": "https://github.com/OCA/sale-workflow",
     "depends": ["sale_management"],
+    "excludes": ["sale_quotation_number"],
     "license": "AGPL-3",
     "images": [],
     "data": ["data/ir_sequence_data.xml", "views/sale_views.xml"],
