@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <record id="view_order_product_search" model="ir.ui.view">
+        <field name="inherit_id" ref="sale.view_order_product_search" />
+        <field name="model">sale.report</field>
+        <field name="arch" type="xml">
+            <field name="user_id" position="before">
+                <field name="coupon_program_id" />
+                <separator />
+                <filter
+                    name="promotion"
+                    string="Promotion Lines"
+                    domain="[('coupon_program_id','!=', False)]"
+                />
+            </field>
+            <xpath expr="//filter[@name='status']" position="after">
+                <filter
+                    string="Coupon Program"
+                    name="promotion_group"
+                    context="{'group_by': 'coupon_program_id'}"
+                />
+            </xpath>
+        </field>
+    </record>
+</odoo>
