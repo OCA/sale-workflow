@@ -1,0 +1,18 @@
+<odoo>
+
+    <record id="sale_order_serials_partner_inherit_view_form" model="ir.ui.view">
+        <field name="name">sale.order.serials.res.partner.inherit.form</field>
+        <field name="model">res.partner</field>
+        <field name="inherit_id" ref="base.view_partner_form" />
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='property_payment_term_id']" position="after">
+                <field
+                    name="serial_sequence_id"
+                    domain="[('product_serial_ok', '=', True)]"
+                    context="{'default_product_serial_ok': True}"
+                />
+            </xpath>
+        </field>
+    </record>
+
+</odoo>

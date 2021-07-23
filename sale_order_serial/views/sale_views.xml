@@ -1,0 +1,80 @@
+<odoo>
+
+    <record id="view_order_form_inherit" model="ir.ui.view">
+        <field name="name">sale.order.form.inherit</field>
+        <field name="model">sale.order</field>
+        <field name="inherit_id" ref="sale.view_order_form" />
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='order_line']" position="before">
+                <button
+                    name="action_fill_serials"
+                    type="object"
+                    string="Generate Serial Numbers"
+                />
+            </xpath>
+            <xpath
+                expr="//field[@name='order_line']/form/group/group/field[@name='sequence']"
+                position="after"
+            >
+                <field
+                    name="serial_sequence_id"
+                    domain="[('product_serial_ok', '=', True)]"
+                    context="{'default_product_serial_ok': True}"
+                />
+                <field name="serial_list" />
+            </xpath>
+            <xpath
+                expr="//field[@name='order_line']/tree/field[@name='name']"
+                position="after"
+            >
+                <field
+                    name="serial_sequence_id"
+                    domain="[('product_serial_ok', '=', True)]"
+                    context="{'default_product_serial_ok': True}"
+                />
+                <field name="serial_list" />
+            </xpath>
+        </field>
+    </record>
+
+    <record id="view_sales_order_filter_inherit" model="ir.ui.view">
+        <field name="name">sale.order.list.select.inherit</field>
+        <field name="model">sale.order</field>
+        <field name="inherit_id" ref="sale.view_sales_order_filter" />
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='name']" position="after">
+                <field name="line_serial_list" string="Serial Numbers on Lines" />
+            </xpath>
+        </field>
+    </record>
+
+    <!-- Quotation / Sale Order PDF -->
+    <template
+        id="report_saleorder_document_inherit"
+        inherit_id="sale.report_saleorder_document"
+    >
+        <xpath expr="//table/thead/tr/th[1]" position="after">
+            <th class="text-left">Serials</th>
+        </xpath>
+        <xpath expr="//table/tbody/t/tr/t/td[1]" position="after">
+            <td><span t-field="line.serial_list" /></td>
+        </xpath>
+    </template>
+
+    <!-- Portal -->
+    <template
+        id="sale_order_portal_content_inherit"
+        inherit_id="sale.sale_order_portal_content"
+    >
+        <xpath expr="//section[@id='details']/table/thead/tr/th[1]" position="after">
+            <th class="text-left">Serials</th>
+        </xpath>
+        <xpath
+            expr="//section[@id='details']/table/tbody/t/tr/t/td[1]"
+            position="after"
+        >
+            <td><span t-field="line.serial_list" /></td>
+        </xpath>
+    </template>
+
+</odoo>
