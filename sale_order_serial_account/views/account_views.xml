@@ -1,0 +1,59 @@
+<odoo>
+
+    <record id="invoice_form_inherit" model="ir.ui.view">
+        <field name="name">account.move.form.inherit</field>
+        <field name="model">account.move</field>
+        <field name="inherit_id" ref="account.view_move_form" />
+        <field name="arch" type="xml">
+            <xpath
+                expr="//field[@name='invoice_line_ids']/tree/field[@name='name']"
+                position="after"
+            >
+                <field
+                    name="serial_list"
+                    attrs="{'column_invisible': [('parent.move_type', '!=', 'out_invoice')]}"
+                />
+            </xpath>
+        </field>
+    </record>
+
+    <record id="view_account_invoice_filter_inherit" model="ir.ui.view">
+        <field name="name">account.move.select.inherit</field>
+        <field name="model">account.move</field>
+        <field name="inherit_id" ref="account.view_account_invoice_filter" />
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='name']" position="after">
+                <field name="line_serial_list" />
+            </xpath>
+        </field>
+    </record>
+
+    <!-- Invoice PDF -->
+    <template
+        id="report_invoice_document_inherit"
+        inherit_id="account.report_invoice_document"
+    >
+        <xpath expr="//div[@id='informations']" position="before">
+            <div class="row mt32 mb32">
+                <div class="col-auto mw-100 mb-2" t-if="o.name" name="description">
+                    <strong>Description:</strong>
+                    <p class="m-0" t-field="o.name" />
+                </div>
+            </div>
+        </xpath>
+
+        <xpath
+            expr="//table[@name='invoice_line_table']/thead/tr/th[1]"
+            position="after"
+        >
+            <th class="text-left"><span>Serials</span></th>
+        </xpath>
+        <xpath
+            expr="//table[@name='invoice_line_table']//td[@name='account_invoice_line_name']"
+            position="after"
+        >
+            <td><span t-field="line.serial_list" /></td>
+        </xpath>
+    </template>
+
+</odoo>
