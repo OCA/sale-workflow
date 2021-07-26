@@ -7,8 +7,7 @@ class TestSaleOrderSerialAccount(common.TransactionCase):
     def test_sale_order_serial_account(self):
         partner_1 = self.env["res.partner"].create({"name": "Test partner1"})
         product1 = self.env["product.product"].create(
-            {"name": "TestProduct", "tracking": "serial",
-             "invoice_policy": "order"}
+            {"name": "TestProduct", "tracking": "serial", "invoice_policy": "order"}
         )
 
         sale_order = self.env["sale.order"].create(
