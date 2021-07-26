@@ -11,12 +11,10 @@ class TestSaleCancelReason(TransactionCase):
         - Then the sale order should be canceled and the reason stored
         """
         SaleOrderCancel = self.env["sale.order.cancel"]
-        context = {
-            "active_model": "sale.order",
-            "active_ids": [self.sale_order.id],
-        }
-        wizard = SaleOrderCancel.create({"reason_id": self.reason.id})
-        wizard.with_context(context).confirm_cancel()
+        wizard = SaleOrderCancel.with_context(
+            default_order_id=self.sale_order.id,
+        ).create({"reason_id": self.reason.id})
+        wizard.action_cancel()
         self.assertEqual(
             self.sale_order.state, "cancel", "the sale order should be canceled"
         )
