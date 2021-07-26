@@ -8,7 +8,7 @@
     "depends": ["sale_order_serial"],
     "author": "Open Source Integrators," "Odoo Community Association (OCA)",
     "license": "AGPL-3",
-    "description": "Adds serial numbers from sales order to invoices.",
+    "summary": "Adds serial numbers from sales order to invoices.",
     "website": "https://github.com/OCA/sale-workflow",
     "data": ["views/account_views.xml"],
     "installable": True,

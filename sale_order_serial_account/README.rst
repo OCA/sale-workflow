@@ -23,7 +23,7 @@ Sale Order Serial Account
     :target: https://runbot.odoo-community.org/runbot/167/14.0
     :alt: Try me on Runbot
 
-|badge1| |badge2| |badge3| |badge4| |badge5| 
+|badge1| |badge2| |badge3| |badge4| |badge5|
 
 Adds serial created from sales orders onto invoices.
 
@@ -46,6 +46,11 @@ If you spotted it first, help us smashing it by providing a detailed and welcome
 `feedback <https://github.com/OCA/sale-workflow/issues/new?body=module:%20sale_order_serial_account%0Aversion:%2014.0%0A%0A**Steps%20to%20reproduce**%0A-%20...%0A%0A**Current%20behavior**%0A%0A**Expected%20behavior**>`_.
 
 Do not contact contributors directly about support or help with technical issues.
+
+Usage
+=====
+
+* Adds serial created from sales orders onto invoices.
 
 Credits
 =======
