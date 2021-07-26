@@ -8,7 +8,7 @@
     "depends": ["sale_stock"],
     "author": "Open Source Integrators," "Odoo Community Association (OCA)",
     "license": "AGPL-3",
-    "description": "Adds mechanism for creating serial numbers on sales order lines.",
+    "summary": "Adds mechanism for creating serial numbers on sales order lines.",
     "website": "https://github.com/OCA/sale-workflow",
     "data": [
         "security/ir.model.access.csv",

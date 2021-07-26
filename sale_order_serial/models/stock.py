@@ -8,5 +8,5 @@ class StockProductionLot(models.Model):
     _inherit = "stock.production.lot"
 
     _sql_constraints = [
-        ("name_ref_uniq", "unique (name)", "Serial Numbers must be Globally Unique!"),
+        ("name_ref_uniq", "unique (name)", "Serial Numbers must be Globally Unique!")
     ]

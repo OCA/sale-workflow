@@ -1,6 +1,9 @@
 <odoo>
 
-    <record id="sale_order_serials_product_attribute_view_form_inherit" model="ir.ui.view">
+    <record
+        id="sale_order_serials_product_attribute_view_form_inherit"
+        model="ir.ui.view"
+    >
         <field name="name">sale.order.serials.product.attribute.form.inherit</field>
         <field name="model">product.attribute</field>
         <field name="inherit_id" ref="product.product_attribute_view_form" />
@@ -18,8 +21,13 @@
         </field>
     </record>
 
-    <record id="sale_order_serials_product_template_only_form_view_inherit" model="ir.ui.view">
-        <field name="name">sale.order.serials.product.template.product.form.inherit</field>
+    <record
+        id="sale_order_serials_product_template_only_form_view_inherit"
+        model="ir.ui.view"
+    >
+        <field
+            name="name"
+        >sale.order.serials.product.template.product.form.inherit</field>
         <field name="model">product.template</field>
         <field name="inherit_id" ref="product.product_template_only_form_view" />
         <field name="arch" type="xml">

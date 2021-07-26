@@ -23,7 +23,7 @@ Sale Order Serial
     :target: https://runbot.odoo-community.org/runbot/167/14.0
     :alt: Try me on Runbot
 
-|badge1| |badge2| |badge3| |badge4| |badge5| 
+|badge1| |badge2| |badge3| |badge4| |badge5|
 
 Adds serial numbers to sales order lines.
 
@@ -46,6 +46,15 @@ If you spotted it first, help us smashing it by providing a detailed and welcome
 `feedback <https://github.com/OCA/sale-workflow/issues/new?body=module:%20sale_order_serial%0Aversion:%2014.0%0A%0A**Steps%20to%20reproduce**%0A-%20...%0A%0A**Current%20behavior**%0A%0A**Expected%20behavior**>`_.
 
 Do not contact contributors directly about support or help with technical issues.
+
+Usage
+=====
+
+* Create a sale order and add a line with product which is tracked by serial number.
+* Select the serial sequence on the line.
+* When clicked on 'Generate Serial Numbers', it will generate the serial sequence and add it to the serial list.
+* On clicking 'Add from stock', user can add the products with particular serial numbers to the sale order line.
+
 
 Credits
 =======

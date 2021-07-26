@@ -42,7 +42,7 @@ class SaleOrderLineFromStock(models.TransientModel):
 
     def add(self):
         self.ensure_one()
-        route_from_stock = self.env.ref("def_product_file.route_from_stock")
+        route_from_stock = self.env.ref("sale_order_serial.route_from_stock")
         self = self.with_context(
             skip_existing_serials_check=1, skip_existing_soline_check=1
         )
@@ -60,7 +60,7 @@ class SaleOrderLineFromStock(models.TransientModel):
                         },
                     )
                     for q in self.quant_ids
-                ],
+                ]
             }
         )
         return True

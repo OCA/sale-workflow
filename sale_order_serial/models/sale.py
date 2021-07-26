@@ -1,7 +1,7 @@
 # Copyright (C) 2021 - TODAY, Open Source Integrators
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
-from odoo import api, fields, models
+from odoo import _, api, fields, models
 from odoo.exceptions import ValidationError
 
 
@@ -33,14 +33,14 @@ class SaleOrderLine(models.Model):
         sol_model = self.env["sale.order.line"].sudo()
         for line in self.filtered("serial_list"):
             serial_list = line.serial_list.strip("\n").split("\n")
-            if not serial_list:
-                continue
             if not skip_existing_serials_check:
                 existing_serials = serial_model.search([("name", "in", serial_list)])
                 if existing_serials:
                     raise ValidationError(
-                        "Duplicate existing serial number ids: "
-                        + str(existing_serials.ids)
+                        _(
+                            "Duplicate existing serial number ids: "
+                            + str(existing_serials.ids)
+                        )
                     )
             if not skip_existing_soline_check:
                 for serial in serial_list:
@@ -51,8 +51,10 @@ class SaleOrderLine(models.Model):
                         potential_serial_list = pl.serial_list.split("\n")
                         if serial in potential_serial_list:
                             raise ValidationError(
-                                "Sale Line ({}) has serial number: {}".format(
-                                    pl.id, serial
+                                _(
+                                    "Sale Line ({}) has serial number: {}".format(
+                                        pl.id, serial
+                                    )
                                 )
                             )
         return True
@@ -89,7 +91,7 @@ class SaleOrderLine(models.Model):
                 serial_qty = len(serial_list)
                 if ordered_qty < serial_qty:
                     raise ValidationError(
-                        "Ordered QTY is less than Serials.  Please resolve."
+                        _("Ordered QTY is less than Serials.  Please resolve.")
                     )
                 if ordered_qty > serial_qty and line.serial_sequence_id:
                     serial_list += [
