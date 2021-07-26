@@ -96,6 +96,7 @@ addon | version | summary
 [sale_shipping_info_helper](sale_shipping_info_helper/) | 12.0.1.0.0 | Add shipping amounts on sale order
 [sale_start_end_dates](sale_start_end_dates/) | 12.0.1.0.1 | Adds start date and end date on sale order lines
 [sale_stock_delivery_address](sale_stock_delivery_address/) | 12.0.1.0.1 | Sale Stock Delivery Address
+[sale_stock_last_date](sale_stock_last_date/) | 12.0.1.0.0 | Displays last delivery date in sale order lines
 [sale_stock_picking_blocking](sale_stock_picking_blocking/) | 12.0.1.0.1 | Allow you to block the creation of deliveries from a sale order.
 [sale_stock_picking_note](sale_stock_picking_note/) | 12.0.1.0.0 | Add picking note in sale and purchase order
 [sale_stock_return_request](sale_stock_return_request/) | 12.0.1.0.0 | Sale Stock Return Request
