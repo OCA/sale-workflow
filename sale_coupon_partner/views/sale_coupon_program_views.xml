@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <record model="ir.ui.view" id="sale_coupon_program_view_form_common">
+        <field name="model">sale.coupon.program</field>
+        <field
+            name="inherit_id"
+            ref="sale_coupon.sale_coupon_program_view_form_common"
+        />
+        <field name="arch" type="xml">
+            <xpath expr="//group[@name='conditions']" position="inside">
+                <field name="partner_id" />
+            </xpath>
+        </field>
+    </record>
+</odoo>
