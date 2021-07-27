@@ -49,6 +49,7 @@ class SaleOrderLine(models.Model):
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
     secondary_uom_unit_price = fields.Float(
         string="2nd unit price",
         digits="Product Price",
@@ -76,9 +77,16 @@ class SaleOrderLine(models.Model):
     secondary_uom_qty = fields.Float(
         string="Secondary Qty", digits="Product Unit of Measure"
     )
+||||||| parent of ba4f2a6c3 (add secondary price unit)
+    secondary_uom_qty = fields.Float(
+        string="Secondary Qty", digits="Product Unit of Measure"
+    )
+=======
+    secondary_uom_qty = fields.Float(string="2nd Qty", digits="Product Unit of Measure")
+>>>>>>> ba4f2a6c3 (add secondary price unit)
     secondary_uom_id = fields.Many2one(
         comodel_name="product.secondary.unit",
-        string="Secondary uom",
+        string="2nd uom",
         ondelete="restrict",
     )
 =======
@@ -95,6 +103,7 @@ class SaleOrderLine(models.Model):
 >>>>>>> e596a34a8 (code refactor update)
 
 <<<<<<< HEAD
+<<<<<<< HEAD
     def _get_factor_line(self):
         res = 1.0
         if not self.secondary_uom_id and self.product_id.secondary_uom_ids:
@@ -110,6 +119,17 @@ class SaleOrderLine(models.Model):
         res = super()._get_factor_line()
         return res
 =======
+||||||| parent of ba4f2a6c3 (add secondary price unit)
+=======
+    secondary_uom_unit_price = fields.Float(
+        string="2nd unit price",
+        digits="Product Unit of Measure",
+        store=False,
+        readonly=True,
+        compute="_compute_secondary_uom_unit_price",
+    )
+
+>>>>>>> ba4f2a6c3 (add secondary price unit)
     product_uom_qty = fields.Float(
         store=True, readonly=False, compute="_compute_product_uom_qty", copy=True
     )
@@ -364,4 +384,18 @@ class SaleOrderLine(models.Model):
             self.secondary_uom_qty = 1.0
             self.onchange_product_uom_for_secondary()
         return res
+<<<<<<< HEAD
 >>>>>>> 90d059d1c ([11.0][IMP] sale_secondary_unit: Set secondary uom quantity as 1.0 by default)
+||||||| parent of ba4f2a6c3 (add secondary price unit)
+=======
+
+    @api.depends("secondary_uom_qty", "product_uom_qty", "price_unit")
+    def _compute_secondary_uom_unit_price(self):
+        for line in self:
+            if line.secondary_uom_id:
+                line.secondary_uom_unit_price = (
+                    line.price_subtotal / line.secondary_uom_qty
+                )
+            else:
+                line.secondary_uom_unit_price = 0
+>>>>>>> ba4f2a6c3 (add secondary price unit)

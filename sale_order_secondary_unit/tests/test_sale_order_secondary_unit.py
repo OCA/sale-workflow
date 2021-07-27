@@ -84,9 +84,9 @@ class TestSaleOrderSecondaryUnit(SavepointCase):
                         0,
                         0,
                         {
-                            "name": "unit-700",
+                            "name": "unit-500",
                             "uom_id": cls.product_uom_unit.id,
-                            "factor": 0.7,
+                            "factor": 0.5,
                         },
                     )
                 ],
@@ -198,8 +198,14 @@ class TestSaleOrderSecondaryUnit(SavepointCase):
         self.order.order_line.onchange_secondary_uom()
 =======
         self.order.order_line._compute_product_uom_qty()
+<<<<<<< HEAD
 >>>>>>> e596a34a8 (code refactor update)
         self.assertEqual(self.order.order_line.product_uom_qty, 3.5)
+||||||| parent of ba4f2a6c3 (add secondary price unit)
+        self.assertEqual(self.order.order_line.product_uom_qty, 3.5)
+=======
+        self.assertEqual(self.order.order_line.product_uom_qty, 2.5)
+>>>>>>> ba4f2a6c3 (add secondary price unit)
 
     def test_onchange_secondary_unit_product_uom_qty(self):
 <<<<<<< HEAD
@@ -219,6 +225,7 @@ class TestSaleOrderSecondaryUnit(SavepointCase):
             {"secondary_uom_id": self.secondary_unit.id, "product_uom_qty": 3.5}
         )
 <<<<<<< HEAD
+<<<<<<< HEAD
 >>>>>>> 331900273 ([MIG] migrate sale_order_secondary_unit from 12.0 to 13.0)
         self.order.order_line.onchange_secondary_unit_product_uom_qty()
 ||||||| parent of e596a34a8 (code refactor update)
@@ -226,6 +233,11 @@ class TestSaleOrderSecondaryUnit(SavepointCase):
 =======
 >>>>>>> e596a34a8 (code refactor update)
         self.assertEqual(self.order.order_line.secondary_uom_qty, 5.0)
+||||||| parent of ba4f2a6c3 (add secondary price unit)
+        self.assertEqual(self.order.order_line.secondary_uom_qty, 5.0)
+=======
+        self.assertEqual(self.order.order_line.secondary_uom_qty, 7.0)
+>>>>>>> ba4f2a6c3 (add secondary price unit)
 
     def test_default_secondary_unit(self):
         self.order.order_line.onchange_secondary_unit_product_id()
@@ -241,7 +253,7 @@ class TestSaleOrderSecondaryUnit(SavepointCase):
                 "product_uom_qty": 3500.00,
             }
         )
-        self.assertEqual(self.order.order_line.secondary_uom_qty, 5.0)
+        self.assertEqual(self.order.order_line.secondary_uom_qty, 7.0)
 
     def test_independent_type(self):
         # dependent type is already tested as dependency_type by default
@@ -255,3 +267,17 @@ class TestSaleOrderSecondaryUnit(SavepointCase):
         self.order.order_line.write({"product_uom_qty": 17})
         self.assertEqual(self.order.order_line.secondary_uom_qty, 2)
         self.assertEqual(self.order.order_line.product_uom_qty, 17)
+
+    def test_secondary_uom_unit_price(self):
+        self.assertEqual(self.order.order_line.secondary_uom_unit_price, 0)
+        self.order.order_line.update(
+            {"secondary_uom_id": self.secondary_unit.id, "product_uom_qty": 2}
+        )
+
+        self.assertEqual(self.order.order_line.secondary_uom_qty, 4)
+        self.assertEqual(self.order.order_line.secondary_uom_unit_price, 500)
+
+        self.order.order_line.write({"product_uom_qty": 8})
+        self.assertEqual(self.order.order_line.secondary_uom_qty, 16)
+        self.assertEqual(self.order.order_line.secondary_uom_unit_price, 500)
+        self.assertEqual(self.order.order_line.price_subtotal, 8000)
