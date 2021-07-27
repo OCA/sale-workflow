@@ -14,7 +14,10 @@ class StockMove(models.Model):
         owner_id=None,
         strict=True,
     ):
-        if self._context.get("sol_lot_id"):
+        if (
+            self.sale_line_id.lot_id
+            and available_quantity >= self.sale_line_id.product_uom_qty
+        ):
             lot_id = self.sale_line_id.lot_id
         return super()._update_reserved_quantity(
             need,
@@ -30,6 +33,12 @@ class StockMove(models.Model):
         vals = super()._prepare_move_line_vals(
             quantity=quantity, reserved_quant=reserved_quant
         )
-        if reserved_quant and self.sale_line_id.lot_id:
-            vals["lot_id"] = self.sale_line_id.lot_id.id
+        lot = self.sale_line_id.lot_id
+        if (
+            reserved_quant
+            and reserved_quant.lot_id
+            and lot
+            and reserved_quant.lot_id == lot
+        ):
+            vals["lot_id"] = lot.id
         return vals
