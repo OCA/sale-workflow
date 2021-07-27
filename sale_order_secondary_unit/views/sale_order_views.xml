@@ -16,13 +16,16 @@
                     name="secondary_uom_qty"
                     class="oe_inline oe_no_button"
                     attrs="{'readonly': [('state', 'in', ('done', 'cancel'))]}"
+                    optional="show"
                 />
                 <field
                     name="secondary_uom_id"
                     class="oe_inline"
                     domain="[('product_tmpl_id.product_variant_ids', 'in', [product_id])]"
                     attrs="{'readonly': [('state', 'in', ('done', 'cancel'))]}"
+                    optional="show"
                 />
+                <field name="secondary_uom_unit_price" readonly="1" optional="show" />
             </xpath>
             <xpath
                 expr="//field[@name='order_line']/tree//field[@name='product_uom_qty']"

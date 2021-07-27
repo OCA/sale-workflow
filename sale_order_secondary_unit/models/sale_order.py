@@ -11,13 +11,19 @@ class SaleOrderLine(models.Model):
         "uom_field": "product_uom",
     }
 
-    secondary_uom_qty = fields.Float(
-        string="Secondary Qty", digits="Product Unit of Measure"
-    )
+    secondary_uom_qty = fields.Float(string="2nd Qty", digits="Product Unit of Measure")
     secondary_uom_id = fields.Many2one(
         comodel_name="product.secondary.unit",
-        string="Secondary uom",
+        string="2nd uom",
         ondelete="restrict",
+    )
+
+    secondary_uom_unit_price = fields.Float(
+        string="2nd unit price",
+        digits="Product Unit of Measure",
+        store=False,
+        readonly=True,
+        compute="_compute_secondary_uom_unit_price",
     )
 
     product_uom_qty = fields.Float(
@@ -46,3 +52,13 @@ class SaleOrderLine(models.Model):
             self.secondary_uom_qty = 1.0
             self.onchange_product_uom_for_secondary()
         return res
+
+    @api.depends("secondary_uom_qty", "product_uom_qty", "price_unit")
+    def _compute_secondary_uom_unit_price(self):
+        for line in self:
+            if line.secondary_uom_id:
+                line.secondary_uom_unit_price = (
+                    line.price_subtotal / line.secondary_uom_qty
+                )
+            else:
+                line.secondary_uom_unit_price = 0
