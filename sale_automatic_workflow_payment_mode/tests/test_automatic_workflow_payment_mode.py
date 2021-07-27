@@ -2,12 +2,10 @@
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
 
-from odoo.addons.sale_automatic_workflow.tests.test_automatic_workflow_base import (
-    TestAutomaticWorkflowBase,
-)
+from odoo.addons.sale_automatic_workflow.tests.common import TestAutomaticWorkflowMixin
 
 
-class TestAutomaticWorkflowPaymentMode(TestAutomaticWorkflowBase):
+class TestAutomaticWorkflowPaymentMode(TestAutomaticWorkflowMixin):
     def setUp(self):
         super().setUp()
         self.env = self.env(

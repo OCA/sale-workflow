@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <record id="automatic_workflow_payment_filter" model="ir.filters">
+        <field name="model_id">account.move</field>
+        <field
+            name="domain"
+        >[('state', '=', 'posted'), ('type', '=', 'out_invoice'), ('invoice_payment_state','!=','paid')]</field>
+    </record>
+</odoo>

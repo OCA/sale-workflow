@@ -18,9 +18,9 @@ class SaleWorkflowProcess(models.Model):
             return self.env["ir.filters"].browse()
 
     payment_filter_id = fields.Many2one(
-        "ir.filters",
+        comodel_name="ir.filters",
         string="Register Payment Invoice Filter",
-        default=_default_payment_filter_id,
+        default=lambda x: x._default_payment_filter_id(),
     )
     register_payment = fields.Boolean(string="Register Payment")
     payment_filter_domain = fields.Text(
