@@ -21,9 +21,9 @@ class TestSaleOrderSecondaryUnit(SavepointCase):
                         0,
                         0,
                         {
-                            "name": "unit-700",
+                            "name": "unit-500",
                             "uom_id": cls.product_uom_unit.id,
-                            "factor": 0.7,
+                            "factor": 0.5,
                         },
                     )
                 ],
@@ -61,13 +61,13 @@ class TestSaleOrderSecondaryUnit(SavepointCase):
             {"secondary_uom_id": self.secondary_unit.id, "secondary_uom_qty": 5}
         )
         self.order.order_line._compute_product_uom_qty()
-        self.assertEqual(self.order.order_line.product_uom_qty, 3.5)
+        self.assertEqual(self.order.order_line.product_uom_qty, 2.5)
 
     def test_onchange_secondary_unit_product_uom_qty(self):
         self.order.order_line.update(
             {"secondary_uom_id": self.secondary_unit.id, "product_uom_qty": 3.5}
         )
-        self.assertEqual(self.order.order_line.secondary_uom_qty, 5.0)
+        self.assertEqual(self.order.order_line.secondary_uom_qty, 7.0)
 
     def test_default_secondary_unit(self):
         self.order.order_line.product_id_change()
@@ -81,7 +81,7 @@ class TestSaleOrderSecondaryUnit(SavepointCase):
                 "product_uom_qty": 3500.00,
             }
         )
-        self.assertEqual(self.order.order_line.secondary_uom_qty, 5.0)
+        self.assertEqual(self.order.order_line.secondary_uom_qty, 7.0)
 
     def test_independent_type(self):
         # dependent type is already tested as dependency_type by default
@@ -95,3 +95,17 @@ class TestSaleOrderSecondaryUnit(SavepointCase):
         self.order.order_line.write({"product_uom_qty": 17})
         self.assertEqual(self.order.order_line.secondary_uom_qty, 2)
         self.assertEqual(self.order.order_line.product_uom_qty, 17)
+
+    def test_secondary_uom_unit_price(self):
+        self.assertEqual(self.order.order_line.secondary_uom_unit_price, 0)
+        self.order.order_line.update(
+            {"secondary_uom_id": self.secondary_unit.id, "product_uom_qty": 2}
+        )
+
+        self.assertEqual(self.order.order_line.secondary_uom_qty, 4)
+        self.assertEqual(self.order.order_line.secondary_uom_unit_price, 500)
+
+        self.order.order_line.write({"product_uom_qty": 8})
+        self.assertEqual(self.order.order_line.secondary_uom_qty, 16)
+        self.assertEqual(self.order.order_line.secondary_uom_unit_price, 500)
+        self.assertEqual(self.order.order_line.price_subtotal, 8000)
