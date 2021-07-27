@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="sale_order_weight_view_form" model="ir.ui.view">
+        <field name="name">sale.order.weight.form.inherit</field>
+        <field name="model">sale.order</field>
+        <field name="inherit_id" ref="sale.view_order_tree"/>
+        <field name="type">form</field>
+        <field name="arch" type="xml">
+            <field name="amount_total" position="after">
+                <field name="total_ordered_weight" sum="Total Ordered Weight"/>
+                <field name="total_delivered_weight" sum="Total Delivered Weight"/>
+            </field>
+        </field>
+    </record>
+
+    <record id="quotation_weight_view_form" model="ir.ui.view">
+        <field name="name">sale.order.weight.form.inherit</field>
+        <field name="model">sale.order</field>
+        <field name="inherit_id" ref="sale.view_quotation_tree"/>
+        <field name="type">form</field>
+        <field name="arch" type="xml">
+            <field name="amount_total" position="after">
+                <field name="total_ordered_weight" sum="Total Ordered Weight"/>
+                <field name="total_delivered_weight" sum="Total Delivered Weight"/>
+            </field>
+        </field>
+    </record>
+
+    <record id="view_order_form_inherit" model="ir.ui.view">
+        <field name="name">	sale.order.weight.form.inherit</field>
+        <field name="model">sale.order</field>
+        <field name="inherit_id" ref="sale.view_order_form"/>
+        <field name="arch" type="xml">
+
+            <button name="action_unlock" position="after">
+                <button name="recalculate_weight"
+                        class="ml-2 btn btn-default"
+                        string="Recalculate weight"
+                        Help="Recalculate sale order weight"
+                        type="object" />
+            </button>
+
+            <field name="amount_total" position="after">
+                <field name="total_ordered_weight"/>
+            </field>
+
+            <xpath expr="//field[@name='order_line']/tree//field[@name='price_unit']" position="after">
+                <field name="unit_weight" invisible="1"/>
+                <field name="total_ordered_weight"/>
+            </xpath>
+
+        </field>
+    </record>
+
+</odoo>
