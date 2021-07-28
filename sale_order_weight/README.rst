@@ -48,7 +48,7 @@ Credits
 Authors
 ~~~~~~~
 
-* Manuel Calero
+* Xtendoo
 
 Contributors
 ~~~~~~~~~~~~
