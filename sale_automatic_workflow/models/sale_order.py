@@ -30,7 +30,7 @@ class SaleOrder(models.Model):
             order.all_qty_delivered = all(
                 l.product_id.type not in ('product', 'consu') or
                 float_compare(l.qty_delivered, l.product_uom_qty,
-                              precision_digits=precision) == 0
+                              precision_digits=precision) >= 0
                 for l in order.order_line
             )
 
