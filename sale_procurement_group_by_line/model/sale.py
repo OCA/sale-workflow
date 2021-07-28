@@ -35,6 +35,13 @@ class SaleOrder(models.Model):
                 [('group_id', 'in', list(group_ids))])
             sale.delivery_count = len(sale.picking_ids)
 
+    @api.multi
+    def action_draft(self):
+        res = super(SaleOrder, self).action_draft()
+        for line in self.order_line:
+            line.write({'procurement_group_id': False})
+        return res
+
 
 class SaleOrderLine(models.Model):
     _inherit = 'sale.order.line'
