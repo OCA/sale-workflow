@@ -43,6 +43,7 @@ setuptools.setup(
         'odoo14-addon-sale_product_brand_exception',
         'odoo14-addon-sale_product_category_menu',
         'odoo14-addon-sale_product_multi_add',
+        'odoo14-addon-sale_product_rating_verified',
         'odoo14-addon-sale_product_seasonality',
         'odoo14-addon-sale_product_set',
         'odoo14-addon-sale_product_set_packaging_qty',
