@@ -26,7 +26,7 @@ addon | version | summary
 [pricelist_by_category_qty](pricelist_by_category_qty/) | 12.0.1.0.0 | Discount by quantities of product category
 [product_form_sale_link](product_form_sale_link/) | 12.0.1.1.0 | Adds a button on product forms to access Sale Lines
 [product_supplierinfo_for_customer_sale](product_supplierinfo_for_customer_sale/) | 12.0.1.1.0 | Loads in every sale order line the customer code defined in the product
-[sale_automatic_workflow](sale_automatic_workflow/) | 12.0.1.1.0 | Sale Automatic Workflow
+[sale_automatic_workflow](sale_automatic_workflow/) | 12.0.1.1.1 | Sale Automatic Workflow
 [sale_automatic_workflow_job](sale_automatic_workflow_job/) | 12.0.1.0.1 | Execute sale automatic workflows in queue jobs
 [sale_automatic_workflow_payment_mode](sale_automatic_workflow_payment_mode/) | 12.0.1.0.0 | Sale Automatic Workflow - Payment Mode
 [sale_blanket_order](sale_blanket_order/) | 12.0.1.0.1 | Blanket Orders
