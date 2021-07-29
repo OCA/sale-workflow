@@ -1,0 +1,153 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <record id="view_order_form_pwa" model="ir.ui.view">
+        <field name="name">sale.order.form.pwa</field>
+        <field name="model">sale.order</field>
+        <field name="arch" type="xml">
+            <formPWA string="Sales Order" class="o_sale_order">
+                <header>
+                    <button
+                        name="action_confirm"
+                        id="action_confirm"
+                        string="Confirm"
+                        class="btn-primary oe_pwa_online_only"
+                        type="object"
+                        attrs="{'invisible': [('state', 'not in', ['sent'])]}"
+                    />
+                    <button
+                        name="action_confirm"
+                        string="Confirm"
+                        class="oe_pwa_online_only"
+                        type="object"
+                        attrs="{'invisible': [('state', 'not in', ['draft'])]}"
+                    />
+                    <button
+                        name="action_cancel"
+                        states="draft,sent,sale"
+                        type="object"
+                        string="Cancel"
+                        class="oe_pwa_online_only"
+                    />
+                    <button
+                        name="action_draft"
+                        states="cancel"
+                        type="object"
+                        string="Set to Quotation"
+                        class="oe_pwa_online_only"
+                    />
+                    <field
+                        name="state"
+                        widget="statusbar"
+                        statusbar_visible="draft,sent,sale"
+                    />
+                </header>
+                <field name="user_id" invisible="1" />
+                <field name="pricelist_id" invisible="1" />
+                <field name="currency_id" invisible="1" force_save="1" />
+                <field name="company_id" invisible="1" />
+                <field name="payment_term_id" invisible="1" />
+                <field name="fiscal_position_id" invisible="1" />
+                <group class="p-0 m-0">
+                    <field
+                        name="partner_id"
+                        widget="res_partner_many2one"
+                        context="{'res_partner_search_mode': 'customer', 'show_address': 1, 'show_vat': True}"
+                        options='{"always_reload": True}'
+                    />
+                    <field
+                        name="partner_invoice_id"
+                        groups="sale.group_delivery_invoice_address"
+                        context="{'default_type':'invoice'}"
+                        options='{"always_reload": True}'
+                    />
+                    <field
+                        name="partner_shipping_id"
+                        groups="sale.group_delivery_invoice_address"
+                        context="{'default_type':'delivery'}"
+                        options='{"always_reload": True}'
+                    />
+                </group>
+                <group class="p-0 m-0">
+                    <field
+                        name="order_line"
+                        attrs="{'readonly': [('state', 'in', ('done','cancel'))], 'invisible': [('partner_id', '=', False)]}"
+                        nolabel="1"
+                        mode="form"
+                        widget="one2many_product_picker"
+                        context="{'product_picker': True, 'sale_order_partner_id': partner_id, 'sale_order_partner_shipping_id': partner_shipping_id, 'default_product_uom_qty': 0}"
+                        options="{
+                            'edit_discount': True,
+                            'show_discount': True,
+                            'edit_price': False,
+                            'all_domain': [['sale_ok', '=', True]],
+                            'search': [
+                                {'name': _('Contains'), 'name_search_value': '$search' },
+                                {'name': _('Starts With'), 'operator': '=ilike', 'name_search_value': '$search%'},
+                                {'name': _('Category'), 'domain': [('categ_name', 'ilike', '$search')]}
+                            ],
+                            'groups': [
+                                {'name': 'product_history', 'string': _('History'), 'domain': [('sale_order_partner_id_product', '=', True)], 'order': [{'name': 'categ_id'}], 'records_per_page': 25},
+                                {'name': 'product_history_shipping', 'string': _('History (Shipping)'), 'domain': [('sale_order_partner_id_product', '=', True)], 'order': [{'name': 'categ_id'}], 'records_per_page': 25}
+                            ]
+                        }"
+                    >
+                        <form>
+                            <field name="state" invisible="1" />
+                            <field name="display_type" invisible="1" />
+                            <field name="currency_id" invisible="1" />
+                            <field name="company_id" invisible="1" />
+                            <field
+                                name="discount"
+                                widget="numeric_step"
+                                options="{'max': 100, 'auto_select': 1}"
+                                invisible="1"
+                            />
+                            <field
+                                name="price_unit"
+                                widget="numeric_step"
+                                options="{'auto_select': 1}"
+                                invisible="1"
+                            />
+                            <field name="name" invisible="1" />
+                            <field name="product_id" invisible="1" />
+                            <field name="order_id" invisible="1" />
+                            <field name="product_uom_category_id" invisible="1" />
+                            <field
+                                name="product_uom_qty"
+                                class="mb-1"
+                                widget="numeric_step"
+                                context="{
+                                'partner_id': parent.partner_id,
+                                'quantity': product_uom_qty,
+                                'pricelist': parent.pricelist_id,
+                                'uom': product_uom,
+                                'company_id': parent.company_id,
+                            }"
+                            />
+                            <field
+                                name="product_uom"
+                                force_save="1"
+                                attrs="{
+                                'readonly': [('state', 'in', ('sale','done', 'cancel'))],
+                                'required': [('display_type', '=', False)],
+                            }"
+                                context="{'company_id': parent.company_id}"
+                                class="mb-2"
+                                groups="uom.group_uom"
+                                options="{'no_open': True, 'no_create': True, 'no_edit': True}"
+                            />
+                        </form>
+                    </field>
+                    <group>
+                        <field
+                            name="note"
+                            nolabel="1"
+                            colspan="4"
+                            placeholder="Terms and conditions... (note: you can setup default ones in the Configuration menu)"
+                        />
+                    </group>
+                </group>
+            </formPWA>
+        </field>
+    </record>
+</odoo>
