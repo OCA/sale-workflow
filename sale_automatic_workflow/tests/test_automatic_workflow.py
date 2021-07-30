@@ -160,3 +160,23 @@ class TestAutomaticWorkflow(TestCommon, TestAutomaticWorkflowMixin):
         self.assertTrue(sale.invoice_ids)
         invoice = sale.invoice_ids
         self.assertEqual(invoice.journal_id.id, new_sale_journal.id)
+
+    def test_automatic_sale_order_confirmation_mail(self):
+        workflow = self.create_full_automatic()
+        workflow.send_order_confirmation_mail = True
+        sale = self.create_sale_order(workflow)
+        sale._onchange_workflow_process_id()
+        previous_message_ids = sale.message_ids
+        self.run_job()
+        self.assertEqual(sale.state, "sale")
+        new_messages = self.env["mail.message"].search(
+            [
+                ("id", "in", sale.message_ids.ids),
+                ("id", "not in", previous_message_ids.ids),
+            ]
+        )
+        self.assertTrue(
+            new_messages.filtered(
+                lambda x: x.subtype_id == self.env.ref("mail.mt_comment")
+            )
+        )
