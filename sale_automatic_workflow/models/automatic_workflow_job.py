@@ -44,16 +44,30 @@ class AutomaticWorkflowJob(models.Model):
         sale.action_confirm()
         return "{} {} confirmed successfully".format(sale.display_name, sale)
 
+    def _do_send_order_confirmation_mail(self, sale):
+        """Send order confirmation mail, while filtering to make sure the order is
+        confirmed with _do_validate_sale_order() function"""
+        if not self.env["sale.order"].search_count(
+            [("id", "=", sale.id), ("state", "=", "sale")]
+        ):
+            return "{} {} job bypassed".format(sale.display_name, sale)
+        if sale.user_id:
+            sale = sale.with_user(sale.user_id)
+        sale._send_order_confirmation_mail()
+        return "{} {} send order confirmation mail successfully".format(
+            sale.display_name, sale
+        )
+
     @api.model
     def _validate_sale_orders(self, order_filter):
         sale_obj = self.env["sale.order"]
         sales = sale_obj.search(order_filter)
         _logger.debug("Sale Orders to validate: %s", sales.ids)
         for sale in sales:
-            with savepoint(self.env.cr):
-                self._do_validate_sale_order(
-                    sale.with_company(sale.company_id), order_filter
-                )
+            with savepoint(self.env.cr), force_company(self.env, sale.company_id):
+                self._do_validate_sale_order(sale, order_filter)
+                if self.env.context.get("send_order_confirmation_mail"):
+                    self._do_send_order_confirmation_mail(sale)
 
     def _do_create_invoice(self, sale, domain_filter):
         """Create an invoice for a sales order, filter ensure no duplication"""
@@ -174,7 +188,9 @@ class AutomaticWorkflowJob(models.Model):
     def run_with_workflow(self, sale_workflow):
         workflow_domain = [("workflow_process_id", "=", sale_workflow.id)]
         if sale_workflow.validate_order:
-            self._validate_sale_orders(
+            self.with_context(
+                send_order_confirmation_mail=sale_workflow.send_order_confirmation_mail
+            )._validate_sale_orders(
                 safe_eval(sale_workflow.order_filter_id.domain) + workflow_domain
             )
         if sale_workflow.validate_picking:

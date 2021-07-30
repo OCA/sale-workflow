@@ -46,6 +46,7 @@
         <field name="name">Automatic</field>
         <field name="picking_policy">one</field>
         <field name="validate_order" eval="1" />
+        <field name="send_order_confirmation_mail" eval="1" />
         <field name="order_filter_id" eval="automatic_workflow_order_filter" />
         <field name="create_invoice" eval="1" />
         <field
