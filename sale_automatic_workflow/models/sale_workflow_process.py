@@ -41,6 +41,11 @@ class SaleWorkflowProcess(models.Model):
         default="direct",
     )
     validate_order = fields.Boolean()
+    send_order_confirmation_mail = fields.Boolean(
+        string="Send order confirmation mail",
+        help="When checked, after order confirmation, a confirmation email will be "
+        "sent (if not already sent).",
+    )
     order_filter_domain = fields.Text(
         string="Order Filter Domain", related="order_filter_id.domain"
     )
