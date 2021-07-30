@@ -8,16 +8,16 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 11.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-03-02 10:22+0000\n"
-"PO-Revision-Date: 2020-07-27 10:19+0000\n"
+"POT-Creation-Date: 2021-07-30 07:06+0000\n"
+"PO-Revision-Date: 2021-07-30 09:08+0200\n"
 "Last-Translator: Daniel Martinez Vila <daniel.martinez@qubiq.es>\n"
 "Language-Team: Spanish (https://www.transifex.com/oca/teams/23907/es/)\n"
 "Language: es\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
-"Content-Transfer-Encoding: \n"
+"Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 3.10\n"
+"X-Generator: Poedit 2.3\n"
 
 #. module: sale_automatic_workflow
 #: model:ir.model.fields,field_description:sale_automatic_workflow.field_sale_order__all_qty_delivered
@@ -276,6 +276,11 @@ msgstr ""
 "pickings..."
 
 #. module: sale_automatic_workflow
+#: model:ir.model.fields,field_description:sale_automatic_workflow.field_sale_workflow_process__send_order_confirmation_mail
+msgid "Send order confirmation mail"
+msgstr "Enviar email de confirmación del pedido"
+
+#. module: sale_automatic_workflow
 #: model:ir.model.fields,help:sale_automatic_workflow.field_sale_workflow_process__property_journal_id
 msgid "Set default journal to use on invoice"
 msgstr "Establezca el diario por defecto a usar en las facturas"
@@ -326,6 +331,15 @@ msgid "Warning Message"
 msgstr "Mensaje de advertencia"
 
 #. module: sale_automatic_workflow
+#: model:ir.model.fields,help:sale_automatic_workflow.field_sale_workflow_process__send_order_confirmation_mail
+msgid ""
+"When checked, after order confirmation, a confirmation email will be sent "
+"(if not already sent)."
+msgstr ""
+"Cuando está marcado, después de confirmar el pedido, un email de "
+"confirmación será enviado (si no se ha enviado previamente)."
+
+#. module: sale_automatic_workflow
 #: model:ir.model.fields,help:sale_automatic_workflow.field_sale_workflow_process__invoice_date_is_order_date
 msgid "When checked, the invoice date will be the same than the order's date"
 msgstr ""
@@ -342,12 +356,3 @@ msgstr "Opciones del flujo"
 #, python-format
 msgid "Workflow Warning"
 msgstr "Aviso del flujo"
-
-#~ msgid "Invoice"
-#~ msgstr "Factura"
-
-#~ msgid "Quotation"
-#~ msgstr "Quotation"
-
-#~ msgid "automatic.workflow.job"
-#~ msgstr "automatic.workflow.job"
