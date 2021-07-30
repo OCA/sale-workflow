@@ -14,6 +14,7 @@ A workflow can:
 - Apply automatic actions:
 
   * Validate the order (only if paid, always, never)
+  * Send order confirmation mail (only when order confirmed)
   * Create an invoice
   * Validate the invoice
   * Confirm the picking
