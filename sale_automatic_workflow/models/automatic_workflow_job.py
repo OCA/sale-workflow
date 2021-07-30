@@ -56,6 +56,20 @@ class AutomaticWorkflowJob(models.Model):
         sale._send_order_confirmation_mail()
         return f"{sale.display_name} {sale} send order confirmation mail successfully"
 
+    def _do_send_order_confirmation_mail(self, sale):
+        """Send order confirmation mail, while filtering to make sure the order is
+        confirmed with _do_validate_sale_order() function"""
+        if not self.env["sale.order"].search_count(
+            [("id", "=", sale.id), ("state", "=", "sale")]
+        ):
+            return "{} {} job bypassed".format(sale.display_name, sale)
+        if sale.user_id:
+            sale = sale.with_user(sale.user_id)
+        sale._send_order_confirmation_mail()
+        return "{} {} send order confirmation mail successfully".format(
+            sale.display_name, sale
+        )
+
     @api.model
     def _validate_sale_orders(self, order_filter):
         sale_obj = self.env["sale.order"]
