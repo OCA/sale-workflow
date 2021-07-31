@@ -1,11 +1,10 @@
-<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8" ?>
 <!--
   Copyright 2014-2021 Akretion (http://www.akretion.com/)
   @author Alexis de Lattre <alexis.delattre@akretion.com>
   Copyright 2016-2021 Sodexis
   License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 -->
-
 <odoo>
 
 
@@ -15,7 +14,11 @@
     <field name="arch" type="xml">
         <form string="Sales Rentals" create="false" edit="false">
             <header>
-                <field name="state" widget="statusbar" statusbar_visible="ordered,out,in"/>
+                <field
+                        name="state"
+                        widget="statusbar"
+                        statusbar_visible="ordered,out,in"
+                    />
             </header>
             <sheet>
                 <group name="main">
@@ -24,7 +27,7 @@
                         <field name="partner_id" />
                         <field name="rented_product_id" />
                         <field name="rental_product_id" />
-                        <field name="rental_qty"/>
+                        <field name="rental_qty" />
                     </group>
                     <group name="main-right">
                         <field name="start_date" />
@@ -36,7 +39,7 @@
                 <group name="transfer">
                     <group name="stock_out" string="Delivery">
                         <field name="out_picking_id" />
-                        <field name="out_move_id"/>
+                        <field name="out_move_id" />
                         <field name="out_state" />
                     </group>
                     <group name="stock_in" string="Return">
@@ -49,26 +52,30 @@
                     <page name="extensions" string="Rental Extensions">
                         <field name="extension_order_line_ids" nolabel="1">
                             <tree>
-                                <field name="order_id"/>
-                                <field name="order_partner_id"/>
-                                <field name="name"/>
-                                <field name="start_date"/>
-                                <field name="end_date"/>
-                                <field name="product_uom_qty"/>
-                                <field name="product_uom" string="Unit of Measure" groups="uom.group_uom"/>
-                                <field name="price_subtotal" sum="Total"/>
-                                <field name="state"/>
+                                <field name="order_id" />
+                                <field name="order_partner_id" />
+                                <field name="name" />
+                                <field name="start_date" />
+                                <field name="end_date" />
+                                <field name="product_uom_qty" />
+                                <field
+                                        name="product_uom"
+                                        string="Unit of Measure"
+                                        groups="uom.group_uom"
+                                    />
+                                <field name="price_subtotal" sum="Total" />
+                                <field name="state" />
                             </tree>
                         </field>
                     </page>
                     <page name="sell" string="Sell Rented Product">
                         <group name="sell_move_out">
-                            <field name="sell_move_id"/>
-                            <field name="sell_state"/>
-                            <field name="sell_picking_id"/>
+                            <field name="sell_move_id" />
+                            <field name="sell_state" />
+                            <field name="sell_picking_id" />
                         </group>
-                        <separator string="Selling Order Line"/>
-                        <field name="sell_order_line_ids" nolabel="1" colspan="2"/>
+                        <separator string="Selling Order Line" />
+                        <field name="sell_order_line_ids" nolabel="1" colspan="2" />
                     </page>
                 </notebook>
             </sheet>
@@ -81,17 +88,29 @@
     <field name="model">sale.rental</field>
     <field name="arch" type="xml">
         <tree string="Sales Rentals" create="false" edit="false">
-            <field name="start_order_id" optional="show"/>
-            <field name="partner_id"/>
-            <field name="rented_product_id"/>
-            <field name="rental_qty"/>
-            <field name="start_date"/>
-            <field name="out_state" string="Delivery"/>
-            <field name="end_date" string="End Date"/>
-            <field name="in_state" string="Return"/>
-            <field name="sell_state" optional="hide"/>
-            <field name="company_id" groups="base.group_multi_company" optional="hide"/>
-            <field name="state" widget="badge" decoration-success="state == 'in'" decoration-info="state == 'ordered'" decoration-warning="state == 'out'" decoration-muted="state == 'cancel'" decoration-danger="state == 'sold'"/>
+            <field name="start_order_id" optional="show" />
+            <field name="partner_id" />
+            <field name="rented_product_id" />
+            <field name="rental_qty" />
+            <field name="start_date" />
+            <field name="out_state" string="Delivery" />
+            <field name="end_date" string="End Date" />
+            <field name="in_state" string="Return" />
+            <field name="sell_state" optional="hide" />
+            <field
+                    name="company_id"
+                    groups="base.group_multi_company"
+                    optional="hide"
+                />
+            <field
+                    name="state"
+                    widget="badge"
+                    decoration-success="state == 'in'"
+                    decoration-info="state == 'ordered'"
+                    decoration-warning="state == 'out'"
+                    decoration-muted="state == 'cancel'"
+                    decoration-danger="state == 'sold'"
+                />
         </tree>
     </field>
 </record>
@@ -101,25 +120,43 @@
     <field name="model">sale.rental</field>
     <field name="arch" type="xml">
         <search string="Search Rentals">
-            <field name="start_order_id"/>
-            <field name="partner_id"/>
-            <field name="rented_product_id"/>
-            <filter name="ordered" string="Ordered"
-                domain="[('state', '=', 'ordered')]"/>
-            <filter name="out" string="Out" domain="[('state', '=', 'out')]"/>
-            <filter name="sell_progress" string="Sell in progress"
-                domain="[('state', '=', 'sell_progress')]"/>
-            <filter name="sold" string="Sold" domain="[('state', '=', 'sold')]"/>
-            <filter name="in" string="Back In" domain="[('state', '=', 'in')]"/>
+            <field name="start_order_id" />
+            <field name="partner_id" />
+            <field name="rented_product_id" />
+            <filter
+                    name="ordered"
+                    string="Ordered"
+                    domain="[('state', '=', 'ordered')]"
+                />
+            <filter name="out" string="Out" domain="[('state', '=', 'out')]" />
+            <filter
+                    name="sell_progress"
+                    string="Sell in progress"
+                    domain="[('state', '=', 'sell_progress')]"
+                />
+            <filter name="sold" string="Sold" domain="[('state', '=', 'sold')]" />
+            <filter name="in" string="Back In" domain="[('state', '=', 'in')]" />
             <group string="Group By" name="groupby">
-                <filter name="partner_groupby" string="Customer"
-                    context="{'group_by': 'partner_id'}"/>
-                <filter name="state_groupby" string="State"
-                    context="{'group_by': 'state'}"/>
-                <filter name="start_date_groupby" string="Start Date"
-                    context="{'group_by': 'start_date'}"/>
-                <filter name="end_date_groupby" string="End Date"
-                    context="{'group_by': 'end_date'}"/>
+                <filter
+                        name="partner_groupby"
+                        string="Customer"
+                        context="{'group_by': 'partner_id'}"
+                    />
+                <filter
+                        name="state_groupby"
+                        string="State"
+                        context="{'group_by': 'state'}"
+                    />
+                <filter
+                        name="start_date_groupby"
+                        string="Start Date"
+                        context="{'group_by': 'start_date'}"
+                    />
+                <filter
+                        name="end_date_groupby"
+                        string="End Date"
+                        context="{'group_by': 'end_date'}"
+                    />
             </group>
         </search>
     </field>
@@ -130,9 +167,9 @@
     <field name="model">sale.rental</field>
     <field name="arch" type="xml">
         <pivot>
-            <field name="rented_product_id" type="row"/>
-            <field name="start_date" interval="month" type="col"/>
-            <field name="rental_qty" type="measure"/>
+            <field name="rented_product_id" type="row" />
+            <field name="start_date" interval="month" type="col" />
+            <field name="rental_qty" type="measure" />
         </pivot>
     </field>
 </record>
@@ -146,7 +183,11 @@
     <field name="view_mode">tree,form,pivot</field>
 </record>
 
-<menuitem id="sale_rental_menu" parent="sale.sale_order_menu"
-    action="sale_rental_action" sequence="2"/>
+<menuitem
+        id="sale_rental_menu"
+        parent="sale.sale_order_menu"
+        action="sale_rental_action"
+        sequence="2"
+    />
 
 </odoo>
