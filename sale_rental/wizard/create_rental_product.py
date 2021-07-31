@@ -1,10 +1,10 @@
-# Copyright 2014-2019 Akretion France (http://www.akretion.com)
+# Copyright 2014-2021 Akretion France (http://www.akretion.com)
 # @author Alexis de Lattre <alexis.delattre@akretion.com>
-# Copyright 2016-2019 Sodexis (http://sodexis.com)
+# Copyright 2016-2021 Sodexis (http://sodexis.com)
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
 from odoo import api, fields, models, _
-import odoo.addons.decimal_precision as dp
+from odoo.exceptions import UserError
 
 
 class CreateRentalProduct(models.TransientModel):
@@ -13,14 +13,21 @@ class CreateRentalProduct(models.TransientModel):
 
     @api.model
     def default_get(self, fields_list):
-        res = super(CreateRentalProduct, self).default_get(fields_list)
-        assert self.env.context.get('active_model') == 'product.product',\
-            'Wrong underlying model, should be product.product'
-        hw_product = self.env['product.product'].browse(
-            self.env.context['active_id'])
+        res = super().default_get(fields_list)
+        if self.env.context.get('active_model') == 'product.product':
+            hw_product = self.env['product.product'].browse(
+                self.env.context['active_id'])
+        elif self.env.context.get('active_model') == 'product.template':
+            hw_product_tmpl = self.env['product.template'].browse(
+                self.env.context['active_id'])
+            assert len(hw_product_tmpl.product_variant_ids) == 1
+            hw_product = hw_product_tmpl.product_variant_ids
+        else:
+            raise UserError(_("Wrong active_model. Should never happen."))
+        hw_product = hw_product.with_context(display_default_code=False)
         res.update({
             'hw_product_id': hw_product.id,
-            'name': _('Rental of a %s') % hw_product.name,
+            'name': _('Rental of a %s') % hw_product.display_name,
             })
         if hw_product.default_code:
             res['default_code'] = _('RENT-%s') % hw_product.default_code
@@ -29,11 +36,11 @@ class CreateRentalProduct(models.TransientModel):
     hw_product_id = fields.Many2one(
         'product.product', string='Product to Rent',
         readonly=True, required=True)
-    name = fields.Char(string='Rental Service Name', size=64, required=True)
-    default_code = fields.Char(string='Default Code', size=16)
+    name = fields.Char(string='Rental Service Name', required=True)
+    default_code = fields.Char(string='Default Code')
     sale_price_per_day = fields.Float(
         string='Rental Price per Day', required=True,
-        digits=dp.get_precision('Product Price'), default=1.0)
+        digits='Product Price', default=1.0)
     categ_id = fields.Many2one(
         'product.category', string='Product Category', required=True)
     copy_image = fields.Boolean(string='Copy Product Image')
@@ -56,7 +63,7 @@ class CreateRentalProduct(models.TransientModel):
             'invoice_policy': 'order',
         }
         if self.copy_image:
-            vals['image'] = self.hw_product_id.image
+            vals['image_1920'] = self.hw_product_id.image_1920
         return vals
 
     def create_rental_product(self):

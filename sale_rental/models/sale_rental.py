@@ -1,6 +1,6 @@
-# Copyright 2014-2019 Akretion France (http://www.akretion.com)
+# Copyright 2014-2021 Akretion France (http://www.akretion.com)
 # @author Alexis de Lattre <alexis.delattre@akretion.com>
-# Copyright 2016-2019 Sodexis (http://sodexis.com)
+# Copyright 2016-2021 Sodexis (http://sodexis.com)
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
 from odoo import models, fields, api
@@ -21,8 +21,8 @@ class SaleRental(models.Model):
         res = []
         for rental in self:
             name = '[%s] %s - %s > %s (%s)' % (
-                rental.partner_id.name,
-                rental.rented_product_id.name,
+                rental.partner_id.display_name,
+                rental.rented_product_id.display_name,
                 rental.start_date,
                 rental.end_date,
                 rental._fields['state'].convert_to_export(rental.state, rental)
@@ -43,7 +43,7 @@ class SaleRental(models.Model):
             state = False
             if rental.start_order_line_id:
                 for move in rental.start_order_line_id.move_ids:
-                    if move.state != 'cancel':
+                    if move.state != 'cancel' and move.picking_code == 'outgoing':
                         out_move = move
                     if move.move_dest_ids:
                         out_move = move
@@ -111,7 +111,7 @@ class SaleRental(models.Model):
         string='Rental SO', readonly=True, store=True)
     company_id = fields.Many2one(
         'res.company', related='start_order_line_id.company_id',
-        string='Company', readonly=True)
+        string='Company', readonly=True, store=True)
     partner_id = fields.Many2one(
         'res.partner', related='start_order_line_id.order_id.partner_id',
         string='Customer', readonly=True, store=True)
