@@ -1,4 +1,4 @@
-In a sale order line (form view, not tree view), if you select a rental service, you can :
+In a sale order line (form view, not tree view), if you select a rental service, you can:
 
 * create a new rental with a start date and an end date: when the sale order is confirmed, it will generate a delivery order and an incoming shipment.
 * extend an existing rental: the incoming shipment will be postponed to the end date of the extension.
