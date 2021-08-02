@@ -118,7 +118,7 @@ class SaleOrderLine(models.Model):
             'group_id': group,
             'sale_line_id': self.id,
             'date_planned': self.start_date,
-            'route_ids': self.order_id.warehouse_id.rental_route_id,
+            'route_ids': self.route_id or self.order_id.warehouse_id.rental_route_id,
             'warehouse_id': self.order_id.warehouse_id or False,
             'partner_id': self.order_id.partner_shipping_id.id,
             }
