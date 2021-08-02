@@ -2,3 +2,4 @@
 * François Honoré <francois.honore@acsone.eu>
 * Denis Roussel <denis.roussel@acsone.eu>
 * Alexei Rivera <arivera@archeti.com>
+* Carmen Rondon Regalado <crondon@archeti.com>
