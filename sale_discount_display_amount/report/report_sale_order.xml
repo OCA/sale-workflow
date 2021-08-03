@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <template id="report_saleorder_document_inherit" inherit_id="sale.report_saleorder_document">
+        <xpath expr="//div[@id='total']//td[@name='td_amount_total_label']/.." position="before">
+            <tr class="o_total" t-if="doc.price_total_no_discount != doc.amount_total">
+                <td name="td_price_total_no_discount_label">
+                    <strong>Subtotal Without Discount</strong>
+                </td>
+                <td name="td_price_total_no_discount" class="text-right">
+                    <span t-field="doc.price_total_no_discount"/>
+                </td>
+            </tr>
+            <tr class="o_total" t-if="doc.discount_total">
+                <td name="td_discount_total_label">
+                    <strong>Discount Subtotal</strong>
+                </td>
+                <td name="td_price_total_no_discount" class="text-right">
+                    <span t-field="doc.discount_total"/>
+                </td>
+            </tr>
+        </xpath>
+    </template>
+</odoo>

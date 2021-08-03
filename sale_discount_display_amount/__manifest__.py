@@ -14,8 +14,10 @@
         'sale_management'
     ],
     'data': [
+        'report/report_sale_order.xml',
         'views/sale_view.xml'
     ],
+    'maintainers': ['GSLabIt'],
     'pre_init_hook': 'pre_init_hook',
     'post_init_hook': 'post_init_hook',
 }
