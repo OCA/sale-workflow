@@ -6,8 +6,8 @@ from odoo.tests.common import TransactionCase
 
 class TestProductNameSearch(TransactionCase):
     """Test for:
-        - Assign a configuration customer for product.
-        - Test product name_search
+    - Assign a configuration customer for product.
+    - Test product name_search
     """
 
     def setUp(self):
