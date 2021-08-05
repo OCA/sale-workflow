@@ -6,14 +6,16 @@ from odoo import api, fields, models
 
 class StockPicking(models.Model):
 
-    _inherit = 'stock.picking'
+    _inherit = "stock.picking"
 
     min_dt = fields.Date(
-        string='Scheduled Date (for filter purpose only)',
-        compute='_compute_min_dt', store=True)
+        string="Scheduled Date (for filter purpose only)",
+        compute="_compute_min_dt",
+        store=True,
+    )
 
     @api.multi
-    @api.depends('scheduled_date')
+    @api.depends("scheduled_date")
     def _compute_min_dt(self):
         for picking in self:
             min_dt = fields.Date.from_string(picking.scheduled_date)
