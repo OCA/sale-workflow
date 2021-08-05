@@ -5,4 +5,3 @@ To configure this module, you need to:
 * Enable "Levels of Approvals"
 * Set the value at which you want to ask for validation in "Double validation amount"
   (0.0 means always)
-
