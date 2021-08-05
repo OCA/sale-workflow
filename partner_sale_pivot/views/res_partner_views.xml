@@ -4,6 +4,7 @@
         <field name="name">res.partner.form.sales_by_product</field>
         <field name="model">res.partner</field>
         <field name="inherit_id" ref="base.view_partner_form" />
+        <field name="groups_id" eval="[(4, ref('sales_team.group_sale_salesman'))]" />
         <field name="arch" type="xml">
             <xpath expr="//field[@name='sale_order_count']/.." position="before">
                 <field name="customer_rank" invisible="1" />
