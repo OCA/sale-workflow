@@ -10,3 +10,6 @@ class SaleMissingTrackingException(models.Model):
     _name = "sale.missing.tracking.exception"
     _state_from = ["request"]
     _state_to = ["approved"]
+
+    def action_request(self):
+        self.request_validation()
