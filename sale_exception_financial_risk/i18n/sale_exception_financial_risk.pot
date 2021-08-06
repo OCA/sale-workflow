@@ -1,0 +1,42 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* sale_exception_financial_risk
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 13.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2021-08-06 08:38+0000\n"
+"PO-Revision-Date: 2021-08-06 08:38+0000\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: sale_exception_financial_risk
+#: model:ir.model.fields,field_description:sale_exception_financial_risk.field_sale_order__risk_amount
+msgid "Risk amount"
+msgstr ""
+
+#. module: sale_exception_financial_risk
+#: model:ir.model,name:sale_exception_financial_risk.model_sale_order
+msgid "Sales Order"
+msgstr ""
+
+#. module: sale_exception_financial_risk
+#: model:exception.rule,description:sale_exception_financial_risk.sale_financial_risk_exceeds_credit_limit
+msgid "This order exceeds the credit limit"
+msgstr ""
+
+#. module: sale_exception_financial_risk
+#: model:exception.rule,name:sale_exception_financial_risk.sale_financial_risk_exceeds_credit_limit
+msgid "This sale order exceeds the credit limit"
+msgstr ""
+
+#. module: sale_exception_financial_risk
+#: model:exception.rule,description:sale_exception_financial_risk.sale_financial_risk_exceeds_sale_order_risk
+#: model:exception.rule,name:sale_exception_financial_risk.sale_financial_risk_exceeds_sale_order_risk
+msgid "This sale order exceeds the sales orders risk"
+msgstr ""
