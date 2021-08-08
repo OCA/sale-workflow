@@ -28,6 +28,8 @@
         "views/account_move_views.xml",
         "views/res_partner_view.xml",
         "data/default_type.xml",
+        "reports/account_invoice_report_view.xml",
+        "reports/sale_report_view.xml",
     ],
     "installable": True,
 }
