@@ -1,6 +1,6 @@
 # Translation of Odoo Server.
 # This file contains the translation of the following modules:
-#	* sale_discount_display_amount
+# 	* sale_discount_display_amount
 #
 msgid ""
 msgstr ""
@@ -15,6 +15,16 @@ msgstr ""
 "Content-Transfer-Encoding: \n"
 "Plural-Forms: nplurals=1; plural=0;\n"
 "X-Generator: Weblate 3.8\n"
+
+#. module: sale_discount_display_amount
+#: model_terms:ir.ui.view,arch_db:sale_discount_display_amount.report_saleorder_document_inherit
+msgid "<strong>Discount Subtotal</strong>"
+msgstr ""
+
+#. module: sale_discount_display_amount
+#: model_terms:ir.ui.view,arch_db:sale_discount_display_amount.report_saleorder_document_inherit
+msgid "<strong>Subtotal Without Discount</strong>"
+msgstr ""
 
 #. module: sale_discount_display_amount
 #: model:ir.model.fields,field_description:sale_discount_display_amount.field_sale_order__discount_total
