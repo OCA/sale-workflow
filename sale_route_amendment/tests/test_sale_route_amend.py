@@ -60,13 +60,13 @@ class TestSaleOrderLineUpdateRoute(SavepointCase):
 
     def test_amend_route(self):
         """
-            Create and confirm a sale order
-            The created move will use the default route Stock > Customers
+        Create and confirm a sale order
+        The created move will use the default route Stock > Customers
 
-            Launch the wizard to update the route and select the drop shipping
-            route.
+        Launch the wizard to update the route and select the drop shipping
+        route.
 
-            A new move is created from Vendors > Customers
+        A new move is created from Vendors > Customers
         """
         so = self.env["sale.order"].create(
             {
@@ -98,13 +98,13 @@ class TestSaleOrderLineUpdateRoute(SavepointCase):
 
     def test_amend_route_multi_product(self):
         """
-            Create and confirm a sale order with several product lines
-            The created move will use the default route Stock > Customers
+        Create and confirm a sale order with several product lines
+        The created move will use the default route Stock > Customers
 
-            Launch the wizard to update the route and select the drop shipping
-            route.
+        Launch the wizard to update the route and select the drop shipping
+        route.
 
-            A new move is created from Vendors > Customers
+        A new move is created from Vendors > Customers
         """
         so = self.env["sale.order"].create(
             {
@@ -129,7 +129,8 @@ class TestSaleOrderLineUpdateRoute(SavepointCase):
         picking.action_done()
 
         self.assertEquals(
-            "done", picking.state,
+            "done",
+            picking.state,
         )
 
         wiz_obj = self.env["sale.order.line.route.amend"].with_context(active_id=so.id)
@@ -148,15 +149,15 @@ class TestSaleOrderLineUpdateRoute(SavepointCase):
 
     def test_amend_route_warning(self):
         """
-            Create and confirm a sale order
-            The created move will use the default route Stock > Customers
+        Create and confirm a sale order
+        The created move will use the default route Stock > Customers
 
-            Update the qty_done on move
+        Update the qty_done on move
 
-            Launch the wizard to update the route and select the drop shipping
-            route.
+        Launch the wizard to update the route and select the drop shipping
+        route.
 
-            A new move is created from Vendors > Customers
+        A new move is created from Vendors > Customers
         """
         so = self.env["sale.order"].create(
             {
@@ -174,10 +175,12 @@ class TestSaleOrderLineUpdateRoute(SavepointCase):
         self.assertTrue(move)
         move.picking_id.action_assign()
         self.assertEqual(
-            "assigned", move.state,
+            "assigned",
+            move.state,
         )
         self.assertEqual(
-            1, len(move.move_line_ids),
+            1,
+            len(move.move_line_ids),
         )
         wiz_obj = self.env["sale.order.line.route.amend"].with_context(active_id=so.id)
         wizard_form = Form(wiz_obj)
@@ -195,13 +198,13 @@ class TestSaleOrderLineUpdateRoute(SavepointCase):
 
     def test_amend_route_service(self):
         """
-            Create and confirm a sale order with a service product
-            The created move will use the default route Stock > Customers
+        Create and confirm a sale order with a service product
+        The created move will use the default route Stock > Customers
 
-            Launch the wizard to update the route and select the drop shipping
-            route.
+        Launch the wizard to update the route and select the drop shipping
+        route.
 
-            Check if only one sale line is selected in wizard
+        Check if only one sale line is selected in wizard
         """
         so = self.env["sale.order"].create(
             {
@@ -224,10 +227,12 @@ class TestSaleOrderLineUpdateRoute(SavepointCase):
         self.assertTrue(move)
         move.picking_id.action_assign()
         self.assertEqual(
-            "assigned", move.state,
+            "assigned",
+            move.state,
         )
         self.assertEqual(
-            1, len(move.move_line_ids),
+            1,
+            len(move.move_line_ids),
         )
 
         wiz_obj = self.env["sale.order.line.route.amend"].with_context(active_id=so.id)
@@ -235,6 +240,7 @@ class TestSaleOrderLineUpdateRoute(SavepointCase):
         wizard_form.route_id = self.route_drop
         wizard = wizard_form.save()
         self.assertEqual(
-            1, len(wizard.order_line_ids),
+            1,
+            len(wizard.order_line_ids),
         )
         self.assertFalse(wizard.warning)

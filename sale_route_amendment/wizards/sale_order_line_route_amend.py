@@ -10,7 +10,10 @@ class SaleOrderLineRouteAmend(models.TransientModel):
     _description = "Sale Order Line Route Amendment"
 
     order_id = fields.Many2one(
-        comodel_name="sale.order", string="Order", required=True, ondelete="cascade",
+        comodel_name="sale.order",
+        string="Order",
+        required=True,
+        ondelete="cascade",
     )
     order_line_ids = fields.Many2many(
         string="Sale Order Lines", comodel_name="sale.order.line", required=True
