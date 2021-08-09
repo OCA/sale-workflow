@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!-- Copyright 2016 FactorLibre - Javier Iniesta
+     License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html). -->
+<odoo noupdate="1">
+    <record model="exception.rule" id="exception_partner_sale_warning">
+        <field name="name">Customer sale warning</field>
+        <field name="description">The customer has a sale warning in his form</field>
+        <field name="active" eval="True" />
+        <field name="sequence" eval="40" />
+        <field name="model">sale.order</field>
+        <field name="code">if obj.partner_id.sale_warn == "warning": failed=True</field>
+    </record>
+    <record model="exception.rule" id="exception_product_sale_warning">
+        <field name="name">Product warning</field>
+        <field name="description">The product has a warning in his form</field>
+        <field name="active" eval="True" />
+        <field name="sequence" eval="40" />
+        <field name="model">sale.order.line</field>
+        <field
+            name="code"
+        >if obj.product_id.sale_line_warn == "warning": failed=True</field>
+    </record>
+</odoo>
