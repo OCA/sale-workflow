@@ -37,7 +37,7 @@ addon | version | summary
 [sale_delivery_split_date](sale_delivery_split_date/) | 12.0.1.0.1 | Sale Deliveries split by date
 [sale_delivery_state](sale_delivery_state/) | 12.0.1.0.0 | Show the delivery state on the sale order
 [sale_disable_inventory_check](sale_disable_inventory_check/) | 12.0.1.0.0 | Disable warning 'Not enough inventory' when there isn't enough product stock
-[sale_discount_display_amount](sale_discount_display_amount/) | 12.0.1.0.0 | This addon intends to display the amount of the discount computed on sale_order_line and sale_order level
+[sale_discount_display_amount](sale_discount_display_amount/) | 12.0.1.1.0 | This addon intends to display the amount of the discount computed on sale_order_line and sale_order level
 [sale_double_validation](sale_double_validation/) | 12.0.1.0.1 | Double validation for Sales
 [sale_elaboration](sale_elaboration/) | 12.0.1.0.1 | Set an elaboration for any sale line
 [sale_exception](sale_exception/) | 12.0.1.1.1 | Custom exceptions on sale order
