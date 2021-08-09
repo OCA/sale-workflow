@@ -81,6 +81,11 @@ msgid "Created on"
 msgstr ""
 
 #. module: sale_exception
+#: model:exception.rule,name:sale_exception.exception_partner_sale_warning
+msgid "Customer sale warning"
+msgstr ""
+
+#. module: sale_exception
 #: model:ir.model.fields,field_description:sale_exception.field_exception_rule__display_name
 #: model:ir.model.fields,field_description:sale_exception.field_sale_exception_confirm__display_name
 #: model:ir.model.fields,field_description:sale_exception.field_sale_order__display_name
@@ -177,6 +182,11 @@ msgid "Not Enough Virtual Stock"
 msgstr ""
 
 #. module: sale_exception
+#: model:exception.rule,name:sale_exception.exception_product_sale_warning
+msgid "Product warning"
+msgstr ""
+
+#. module: sale_exception
 #: model:ir.model.fields,field_description:sale_exception.field_sale_exception_confirm__related_model_id
 msgid "Sale"
 msgstr ""
@@ -227,6 +237,16 @@ msgstr ""
 #: model:ir.cron,cron_name:sale_exception.ir_cron_test_orders
 #: model:ir.cron,name:sale_exception.ir_cron_test_orders
 msgid "Test Draft Orders"
+msgstr ""
+
+#. module: sale_exception
+#: model:exception.rule,description:sale_exception.exception_partner_sale_warning
+msgid "The customer has a sale warning in his form"
+msgstr ""
+
+#. module: sale_exception
+#: model:exception.rule,description:sale_exception.exception_product_sale_warning
+msgid "The product has a warning in his form"
 msgstr ""
 
 #. module: sale_exception
