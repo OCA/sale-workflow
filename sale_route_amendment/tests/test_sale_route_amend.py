@@ -9,6 +9,7 @@ class TestSaleOrderLineUpdateRoute(SavepointCase):
     @classmethod
     def setUpClass(cls):
         super().setUpClass()
+        cls.wizard_obj = cls.env["sale.order.line.route.amend"]
         cls.move_obj = cls.env["stock.move"]
         cls.warehouse = cls.env.ref("stock.warehouse0")
         cls.product = cls.env.ref("product.product_product_4")
@@ -58,6 +59,20 @@ class TestSaleOrderLineUpdateRoute(SavepointCase):
         )
         qty_wizard.change_product_qty()
 
+    def _create_amend_wizard(self, values=None):
+        if values is None:
+            values = {}
+        if "route_id" not in values:
+            values.update(
+                {
+                    "route_id": self.route_drop.id,
+                }
+            )
+        self.wizard = self.wizard_obj.with_context(active_id=self.sale_order.id).create(
+            values
+        )
+        return True
+
     def test_amend_route(self):
         """
         Create and confirm a sale order
@@ -68,7 +83,7 @@ class TestSaleOrderLineUpdateRoute(SavepointCase):
 
         A new move is created from Vendors > Customers
         """
-        so = self.env["sale.order"].create(
+        self.sale_order = self.env["sale.order"].create(
             {
                 "partner_id": self.partner.id,
                 "warehouse_id": self.warehouse.id,
@@ -77,27 +92,21 @@ class TestSaleOrderLineUpdateRoute(SavepointCase):
                 ],
             }
         )
-        so.action_confirm()
+        self.sale_order.action_confirm()
 
-        picking = so.picking_ids.filtered(lambda p: p.location_id == self.loc_stock)
+        picking = self.sale_order.picking_ids.filtered(
+            lambda p: p.location_id == self.loc_stock
+        )
         move = picking.move_lines
         self.assertTrue(move)
 
-        wiz_obj = (
-            self.env["sale.order.line.route.amend"]
-            .with_context(active_id=so.id)
-            .create(
-                {
-                    "route_id": self.route_drop.id,
-                }
-            )
-        )
-        wizard_form = Form(wiz_obj)
+        self._create_amend_wizard()
+        wizard_form = Form(self.wizard)
         wizard_form.route_id = self.route_drop
         wizard = wizard_form.save()
         wizard.update_route()
         domain = [
-            ("group_id", "=", so.procurement_group_id.id),
+            ("group_id", "=", self.sale_order.procurement_group_id.id),
             ("location_id", "=", self.loc_supplier.id),
             ("state", "!=", "cancel"),
         ]
@@ -114,7 +123,7 @@ class TestSaleOrderLineUpdateRoute(SavepointCase):
 
         A new move is created from Vendors > Customers
         """
-        so = self.env["sale.order"].create(
+        self.sale_order = self.env["sale.order"].create(
             {
                 "partner_id": self.partner.id,
                 "warehouse_id": self.warehouse.id,
@@ -124,9 +133,11 @@ class TestSaleOrderLineUpdateRoute(SavepointCase):
                 ],
             }
         )
-        so.action_confirm()
+        self.sale_order.action_confirm()
 
-        picking = so.picking_ids.filtered(lambda p: p.location_id == self.loc_stock)
+        picking = self.sale_order.picking_ids.filtered(
+            lambda p: p.location_id == self.loc_stock
+        )
         moves = picking.move_lines
         self.assertTrue(moves)
 
@@ -141,17 +152,13 @@ class TestSaleOrderLineUpdateRoute(SavepointCase):
             picking.state,
         )
 
-        wiz_obj = (
-            self.env["sale.order.line.route.amend"]
-            .with_context(active_id=so.id)
-            .create({"route_id": self.route_drop.id})
-        )
-        wizard_form = Form(wiz_obj)
+        self._create_amend_wizard()
+        wizard_form = Form(self.wizard)
         wizard = wizard_form.save()
         wizard.update_route()
         domain = [
             ("product_id", "=", self.product.id),
-            ("group_id", "=", so.procurement_group_id.id),
+            ("group_id", "=", self.sale_order.procurement_group_id.id),
             ("location_id", "=", self.loc_supplier.id),
             ("state", "!=", "cancel"),
         ]
@@ -170,7 +177,7 @@ class TestSaleOrderLineUpdateRoute(SavepointCase):
 
         A new move is created from Vendors > Customers
         """
-        so = self.env["sale.order"].create(
+        self.sale_order = self.env["sale.order"].create(
             {
                 "partner_id": self.partner.id,
                 "warehouse_id": self.warehouse.id,
@@ -179,8 +186,10 @@ class TestSaleOrderLineUpdateRoute(SavepointCase):
                 ],
             }
         )
-        so.action_confirm()
-        picking = so.picking_ids.filtered(lambda p: p.location_id == self.loc_stock)
+        self.sale_order.action_confirm()
+        picking = self.sale_order.picking_ids.filtered(
+            lambda p: p.location_id == self.loc_stock
+        )
         move = picking.move_lines
 
         self.assertTrue(move)
@@ -193,31 +202,15 @@ class TestSaleOrderLineUpdateRoute(SavepointCase):
             1,
             len(move.move_line_ids),
         )
-        wiz_obj = (
-            self.env["sale.order.line.route.amend"]
-            .with_context(active_id=so.id)
-            .create(
-                {
-                    "route_id": self.route_drop.id,
-                }
-            )
-        )
-        wizard_form = Form(wiz_obj)
+        self._create_amend_wizard()
+        wizard_form = Form(self.wizard)
         wizard = wizard_form.save()
         self.assertFalse(wizard.warning)
 
         move.move_line_ids.qty_done = 1.0
 
-        wiz_obj = (
-            self.env["sale.order.line.route.amend"]
-            .with_context(active_id=so.id)
-            .create(
-                {
-                    "route_id": self.route_drop.id,
-                }
-            )
-        )
-        wizard_form = Form(wiz_obj)
+        self._create_amend_wizard()
+        wizard_form = Form(self.wizard)
         wizard = wizard_form.save()
         self.assertTrue(wizard.warning)
 
@@ -231,7 +224,7 @@ class TestSaleOrderLineUpdateRoute(SavepointCase):
 
         Check if only one sale line is selected in wizard
         """
-        so = self.env["sale.order"].create(
+        self.sale_order = self.env["sale.order"].create(
             {
                 "partner_id": self.partner.id,
                 "warehouse_id": self.warehouse.id,
@@ -245,9 +238,11 @@ class TestSaleOrderLineUpdateRoute(SavepointCase):
                 ],
             }
         )
-        so.action_confirm()
+        self.sale_order.action_confirm()
 
-        picking = so.picking_ids.filtered(lambda p: p.location_id == self.loc_stock)
+        picking = self.sale_order.picking_ids.filtered(
+            lambda p: p.location_id == self.loc_stock
+        )
         move = picking.move_lines
         self.assertTrue(move)
         move.picking_id.action_assign()
@@ -260,16 +255,8 @@ class TestSaleOrderLineUpdateRoute(SavepointCase):
             len(move.move_line_ids),
         )
 
-        wiz_obj = (
-            self.env["sale.order.line.route.amend"]
-            .with_context(active_id=so.id)
-            .create(
-                {
-                    "route_id": self.route_drop.id,
-                }
-            )
-        )
-        wizard_form = Form(wiz_obj)
+        self._create_amend_wizard()
+        wizard_form = Form(self.wizard)
         wizard = wizard_form.save()
         self.assertEqual(
             1,
