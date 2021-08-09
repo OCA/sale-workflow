@@ -75,6 +75,7 @@ Contributors
 
 * Cédric Pigeon <cedric.pigeon@acsone.eu>
 * Abraham Anes <abrahamanes@gmail.com>
+* Giovanni Serra <giovanni@gslab.it>
 
 Maintainers
 ~~~~~~~~~~~
@@ -88,6 +89,14 @@ This module is maintained by the OCA.
 OCA, or the Odoo Community Association, is a nonprofit organization whose
 mission is to support the collaborative development of Odoo features and
 promote its widespread use.
+
+.. |maintainer-GSLabIt| image:: https://github.com/GSLabIt.png?size=40px
+    :target: https://github.com/GSLabIt
+    :alt: GSLabIt
+
+Current `maintainer <https://odoo-community.org/page/maintainer-role>`__:
+
+|maintainer-GSLabIt| 
 
 This module is part of the `OCA/sale-workflow <https://github.com/OCA/sale-workflow/tree/12.0/sale_discount_display_amount>`_ project on GitHub.
 
