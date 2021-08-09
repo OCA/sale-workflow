@@ -83,7 +83,15 @@ class TestSaleOrderLineUpdateRoute(SavepointCase):
         move = picking.move_lines
         self.assertTrue(move)
 
-        wiz_obj = self.env["sale.order.line.route.amend"].with_context(active_id=so.id)
+        wiz_obj = (
+            self.env["sale.order.line.route.amend"]
+            .with_context(active_id=so.id)
+            .create(
+                {
+                    "route_id": self.route_drop.id,
+                }
+            )
+        )
         wizard_form = Form(wiz_obj)
         wizard_form.route_id = self.route_drop
         wizard = wizard_form.save()
@@ -126,16 +134,19 @@ class TestSaleOrderLineUpdateRoute(SavepointCase):
         move_to_confirm = moves.filtered(lambda m: m.product_id == self.product_2)
 
         move_to_confirm.move_line_ids.qty_done = 1.0
-        picking.action_done()
+        picking._action_done()
 
-        self.assertEquals(
+        self.assertEqual(
             "done",
             picking.state,
         )
 
-        wiz_obj = self.env["sale.order.line.route.amend"].with_context(active_id=so.id)
+        wiz_obj = (
+            self.env["sale.order.line.route.amend"]
+            .with_context(active_id=so.id)
+            .create({"route_id": self.route_drop.id})
+        )
         wizard_form = Form(wiz_obj)
-        wizard_form.route_id = self.route_drop
         wizard = wizard_form.save()
         wizard.update_route()
         domain = [
@@ -182,17 +193,31 @@ class TestSaleOrderLineUpdateRoute(SavepointCase):
             1,
             len(move.move_line_ids),
         )
-        wiz_obj = self.env["sale.order.line.route.amend"].with_context(active_id=so.id)
+        wiz_obj = (
+            self.env["sale.order.line.route.amend"]
+            .with_context(active_id=so.id)
+            .create(
+                {
+                    "route_id": self.route_drop.id,
+                }
+            )
+        )
         wizard_form = Form(wiz_obj)
-        wizard_form.route_id = self.route_drop
         wizard = wizard_form.save()
         self.assertFalse(wizard.warning)
 
         move.move_line_ids.qty_done = 1.0
 
-        wiz_obj = self.env["sale.order.line.route.amend"].with_context(active_id=so.id)
+        wiz_obj = (
+            self.env["sale.order.line.route.amend"]
+            .with_context(active_id=so.id)
+            .create(
+                {
+                    "route_id": self.route_drop.id,
+                }
+            )
+        )
         wizard_form = Form(wiz_obj)
-        wizard_form.route_id = self.route_drop
         wizard = wizard_form.save()
         self.assertTrue(wizard.warning)
 
@@ -235,9 +260,16 @@ class TestSaleOrderLineUpdateRoute(SavepointCase):
             len(move.move_line_ids),
         )
 
-        wiz_obj = self.env["sale.order.line.route.amend"].with_context(active_id=so.id)
+        wiz_obj = (
+            self.env["sale.order.line.route.amend"]
+            .with_context(active_id=so.id)
+            .create(
+                {
+                    "route_id": self.route_drop.id,
+                }
+            )
+        )
         wizard_form = Form(wiz_obj)
-        wizard_form.route_id = self.route_drop
         wizard = wizard_form.save()
         self.assertEqual(
             1,

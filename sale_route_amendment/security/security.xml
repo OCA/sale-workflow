@@ -3,4 +3,17 @@
     <record model="res.groups" id="group_sale_route_amendment">
         <field name="name">Allows to update route on confirmed sales</field>
     </record>
+
+    <record model="ir.model.access" id="sale_route_amendement_manager">
+        <field name="name">Sale Route Amendment Manager</field>
+        <field
+            name="model_id"
+            ref="sale_route_amendment.model_sale_order_line_route_amend"
+        />
+        <field name="group_id" ref="sales_team.group_sale_salesman" />
+        <field name="perm_read" eval="1" />
+        <field name="perm_create" eval="1" />
+        <field name="perm_write" eval="1" />
+        <field name="perm_unlink" eval="1" />
+    </record>
 </odoo>
