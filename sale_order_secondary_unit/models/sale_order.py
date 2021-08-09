@@ -57,8 +57,11 @@ class SaleOrderLine(models.Model):
     def _compute_secondary_uom_unit_price(self):
         for line in self:
             if line.secondary_uom_id:
-                line.secondary_uom_unit_price = (
-                    line.price_subtotal / line.secondary_uom_qty
-                )
+                try:
+                    line.secondary_uom_unit_price = (
+                        line.price_subtotal / line.secondary_uom_qty
+                    )
+                except ZeroDivisionError:
+                    line.secondary_uom_unit_price = 0
             else:
                 line.secondary_uom_unit_price = 0
