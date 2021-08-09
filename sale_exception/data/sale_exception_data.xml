@@ -18,7 +18,7 @@
         <field name="description">No ZIP code on destination</field>
         <field name="sequence">50</field>
         <field name="model">sale.order</field>
-        <field name="code">if not obj.partner_shipping_id.zip: failed=True</field>
+        <field name="code">failed=not self.partner_shipping_id.zip</field>
         <field name="active" eval="False" />
     </record>
     <record id="excep_no_stock" model="exception.rule">
@@ -26,9 +26,24 @@
         <field name="description">Not Enough Virtual Stock</field>
         <field name="sequence">50</field>
         <field name="model">sale.order.line</field>
-        <field
-            name="code"
-        >if self.product_id and self.product_id.type == 'product' and self.virtual_available_at_date &lt; self.product_uom_qty: failed=True</field>
+        <field name="code">failed=self.product_id and self.product_id.type == 'product'
+            and self.virtual_available_at_date &lt; self.product_uom_qty</field>
+        <field name="active" eval="False" />
+    </record>
+    <record id="exception_partner_sale_warning" model="exception.rule">
+        <field name="name">Customer sale warning</field>
+        <field name="description">The customer has a sale warning in his form</field>
+        <field name="sequence">40</field>
+        <field name="model">sale.order</field>
+        <field name="code">failed=self.partner_id.sale_warn == "warning"</field>
+        <field name="active" eval="False" />
+    </record>
+    <record id="exception_product_sale_warning" model="exception.rule">
+        <field name="name">Product warning</field>
+        <field name="description">The product has a warning in his form</field>
+        <field name="sequence">40</field>
+        <field name="model">sale.order.line</field>
+        <field name="code">failed=self.product_id.sale_line_warn == "warning"</field>
         <field name="active" eval="False" />
     </record>
 </odoo>
