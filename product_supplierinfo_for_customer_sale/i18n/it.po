@@ -1,0 +1,51 @@
+# Translation of OpenERP Server.
+# This file contains the translation of the following modules:
+# 	* product_customer_code_sale
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: OpenERP Server 7.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2014-01-15 14:31+0000\n"
+"PO-Revision-Date: 2014-04-25 13:45+0000\n"
+"Last-Translator: Nicola Malcontenti - Agile BG <nicola.malcontenti@agilebg."
+"com>\n"
+"Language-Team: \n"
+"Language: it\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Launchpad-Export-Date: 2014-05-28 05:52+0000\n"
+"X-Generator: Launchpad (build 17017)\n"
+
+#. module: product_supplierinfo_for_customer_sale
+#: model:ir.model.fields,help:product_supplierinfo_for_customer_sale.field_sale_order_line__partner_is_customer
+msgid ""
+"Check this box if this contact is a customer. It can be selected in sales "
+"orders."
+msgstr ""
+
+#. module: product_supplierinfo_for_customer_sale
+#: model:ir.model.fields,field_description:product_supplierinfo_for_customer_sale.field_sale_order_line__partner_is_customer
+msgid "Is a Customer"
+msgstr ""
+
+#. module: product_supplierinfo_for_customer_sale
+#: model:ir.model.fields,field_description:product_supplierinfo_for_customer_sale.field_sale_order_line__product_customer_code
+msgid "Product Customer Code"
+msgstr "Codice Prodotto Cliente"
+
+#. module: product_supplierinfo_for_customer_sale
+#: model_terms:ir.ui.view,arch_db:product_supplierinfo_for_customer_sale.product_supplierinfo_search_view
+msgid "Product Template"
+msgstr ""
+
+#. module: product_supplierinfo_for_customer_sale
+#: model:ir.model,name:product_supplierinfo_for_customer_sale.model_sale_order_line
+msgid "Sales Order Line"
+msgstr "Linea d'ordine di vendita"
+
+#. module: product_supplierinfo_for_customer_sale
+#: model_terms:ir.ui.view,arch_db:product_supplierinfo_for_customer_sale.product_supplierinfo_search_view
+msgid "Supplierinfo"
+msgstr ""
