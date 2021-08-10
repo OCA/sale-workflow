@@ -126,7 +126,7 @@ class AbstractCommonPromotionCase(object):
 
 class PromotionCase(TransactionCase, AbstractCommonPromotionCase):
     def setUp(self, *args, **kwargs):
-        super(PromotionCase, self).setUp(*args, **kwargs)
+        super().setUp(*args, **kwargs)
         self.set_up("sale_promotion_rule.sale_order_promotion")
 
     def test_name_get(self):
@@ -412,14 +412,14 @@ class PromotionCase(TransactionCase, AbstractCommonPromotionCase):
         so_line = self.sale.order_line[0]
         so_line.discount = 20.0
         so_line.price_unit = 80.0
-        self.assertEquals(710.0, self.sale.amount_total)
+        self.assertEqual(710.0, self.sale.amount_total)
         self.add_coupon_code(FIXED_AMOUNT_CODE)
         self.sale.apply_promotions()
-        self.assertEquals(
+        self.assertEqual(
             20.0,
             so_line.discount,
         )
-        self.assertEquals(690.0, self.sale.amount_total)
+        self.assertEqual(690.0, self.sale.amount_total)
         self.assertFalse(so_line.coupon_promotion_rule_id)
 
     def test_multi_promotion_rules_exclusive_sequence(self):

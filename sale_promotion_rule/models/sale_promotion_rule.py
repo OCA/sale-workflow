@@ -91,7 +91,7 @@ class SalePromotionRule(models.Model):
             ("keep_existing", "Keep existing discount"),
         ],
         default="use_best",
-        description="""
+        help="""
 It's possible to apply multiple promotions to a sale order. In such a case
 the rules will be applied in the sequence order.
 If the first applicable rule is 'exclusice' the process will only apply
