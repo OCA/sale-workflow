@@ -43,7 +43,7 @@ addon | version | summary
 [sale_coupon_product_management](sale_coupon_product_management/) | 13.0.1.0.0 | Improves related product management via sale coupons
 [sale_cutoff_time_delivery](sale_cutoff_time_delivery/) | 13.0.1.3.0 | Schedule delivery orders according to cutoff preferences
 [sale_delivery_state](sale_delivery_state/) | 13.0.1.0.0 | Show the delivery state on the sale order
-[sale_discount_display_amount](sale_discount_display_amount/) | 13.0.1.0.1 | This addon intends to display the amount of the discount computed on sale_order_line and sale_order level
+[sale_discount_display_amount](sale_discount_display_amount/) | 13.0.1.0.2 | This addon intends to display the amount of the discount computed on sale_order_line and sale_order level
 [sale_elaboration](sale_elaboration/) | 13.0.1.0.0 | Set an elaboration for any sale line
 [sale_exception](sale_exception/) | 13.0.1.1.1 | Custom exceptions on sale order
 [sale_fixed_discount](sale_fixed_discount/) | 13.0.1.1.1 | Allows to apply fixed amount discounts in sales orders.
