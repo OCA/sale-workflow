@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!-- Copyright 2021 ACSONE SA/NV
+     License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl). -->
+<odoo noupdate="1">
+    <record id="transaction_sale_6" model="payment.transaction">
+        <field name="acquirer_id" ref="payment.payment_acquirer_odoo_by_adyen" />
+        <field name="amount">750.0</field>
+        <field name="partner_id" ref="base.res_partner_18" />
+        <field name="state">draft</field>
+        <field name="sale_order_ids" eval="[(6, 0, [ref('sale.sale_order_6')])]" />
+        <field
+            name="currency_id"
+            eval="obj().env.ref('sale.sale_order_6').currency_id"
+            model="sale.order"
+        />
+    </record>
+</odoo>

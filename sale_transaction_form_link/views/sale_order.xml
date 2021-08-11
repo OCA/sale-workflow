@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!-- Copyright 2019 ACSONE SA/NV
+     License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl). -->
+<odoo>
+
+    <record model="ir.ui.view" id="sale_order_form_view">
+        <field name="name">sale.order.form (in sale_transaction_form_link)</field>
+        <field name="model">sale.order</field>
+        <field name="inherit_id" ref="sale.view_order_form" />
+        <field name="arch" type="xml">
+            <xpath expr="//div[@name='button_box']" position="inside">
+                <button
+                    name="action_view_transaction"
+                    type="object"
+                    class="oe_stat_button"
+                    icon="fa-money"
+                    attrs="{'invisible': [('payment_transaction_count', '=', 0)]}"
+                >
+                    <field
+                        name="payment_transaction_count"
+                        widget="statinfo"
+                        string="Transactions"
+                    />
+                </button>
+            </xpath>
+        </field>
+    </record>
+
+</odoo>
