@@ -27,10 +27,17 @@ jobs:
       after_success:
     - stage: test
       env:
-        - TESTS="1" ODOO_REPO="odoo/odoo" MAKEPOT="1"
+        - TESTS="1" ODOO_REPO="odoo/odoo" MAKEPOT="1" EXCLUDE="sale_warehouse_calendar"
     - stage: test
       env:
-        - TESTS="1" ODOO_REPO="OCA/OCB"
+        - TESTS="1" ODOO_REPO="OCA/OCB" EXCLUDE="sale_warehouse_calendar"
+    - stage: test
+      env:
+        - TESTS="1" ODOO_REPO="odoo/odoo" MAKEPOT="1"
+        - EXCLUDE="sale_partner_delivery_window"
+    - stage: test
+      env:
+        - TESTS="1" ODOO_REPO="OCA/OCB" EXCLUDE="sale_partner_delivery_window"
 
 env:
   global:
@@ -47,3 +54,7 @@ script:
 
 after_success:
   - travis_after_tests_success
+
+branches:
+  except:
+    - /^merge-branch-.*$/
