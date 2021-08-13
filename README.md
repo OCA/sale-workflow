@@ -35,6 +35,7 @@ addon | version | summary
 [sale_invoice_blocking](sale_invoice_blocking/) | 14.0.1.0.0 | Allow you to block the creation of invoices from a sale order.
 [sale_isolated_quotation](sale_isolated_quotation/) | 14.0.1.0.0 | Sale Isolated Quotation
 [sale_last_price_info](sale_last_price_info/) | 14.0.1.0.1 | Product Last Price Info - Sale
+[sale_mail_autosubscribe](sale_mail_autosubscribe/) | 14.0.1.0.0 | Automatically subscribe partners to their company's sale orders
 [sale_mrp_bom](sale_mrp_bom/) | 14.0.1.0.0 | Allows define a BOM in the sales lines.
 [sale_order_archive](sale_order_archive/) | 14.0.1.0.0 | Archive Sale Orders
 [sale_order_carrier_auto_assign](sale_order_carrier_auto_assign/) | 14.0.1.0.1 | Auto assign delivery carrier on sale order confirmation
