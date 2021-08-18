@@ -25,8 +25,8 @@ Sale Stock Picking Note
 
 |badge1| |badge2| |badge3| |badge4| |badge5| 
 
-This module extend sale order to include a note that will be set as the picking
-note.
+This module extends sales order to include both a external (customer) and internal picking note
+that will be transferred to the picking.
 
 **Table of contents**
 
@@ -37,9 +37,10 @@ Usage
 =====
 
 #. Place a new sale order with stockable products.
-#. Go to *Other information* tab and set the **Picking Note** you want to.
+#. Go to *Other information* tab.
+#. Set the **Picking Internal Note** and **Picking Customer Comments** you want to.
 #. Confirm the Sale Order and go to the created picking.
-#. The note is available in the "Note" tab.
+#. On the "Comments" tab, you will see both the internal note and customer comments.
 
 Bug Tracker
 ===========
@@ -67,6 +68,7 @@ Contributors
   * Carlos Dauden
   * David Vidal
   * João Marques
+  * Víctor Martínez
 
 * Sudhir Arya <sudhir@erpharbor.com>
 
