@@ -1,0 +1,14 @@
+<odoo>
+    <template
+        id="report_delivery_document_customer_note"
+        inherit_id="stock.report_delivery_document"
+    >
+        <xpath expr="//table[@name='stock_move_line_table']" position="after">
+            <p t-if="o.customer_note">
+                <strong>Customer Comments:</strong>
+                <br />
+                <span t-field="o.customer_note" />
+            </p>
+        </xpath>
+    </template>
+</odoo>
