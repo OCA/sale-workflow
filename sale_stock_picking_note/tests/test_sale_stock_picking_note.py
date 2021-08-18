@@ -24,5 +24,12 @@ class TestSaleStockPickingNote(common.SavepointCase):
     def test_01_sale_to_picking_note(self):
         """ Pass note to picking from SO """
         self.order.picking_note = "This note goes to the picking..."
+        self.order.picking_customer_note = "Picking comment"
         self.order.action_confirm()
         self.assertEqual(self.order.picking_ids[:1].note, self.order.picking_note)
+        self.assertEqual(
+            self.order.picking_ids[:1].customer_note, self.order.picking_customer_note
+        )
+        report = self.env.ref("stock.action_report_delivery")
+        res = str(report.render_qweb_html(self.order.picking_ids.ids)[0])
+        self.assertRegexpMatches(res, "Picking comment")
