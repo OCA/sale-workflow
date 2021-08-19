@@ -7,7 +7,11 @@ class SaleOrder(models.Model):
     _inherit = "sale.order"
 
     def action_view_picking(self):
-        pick_ids = self.mapped("picking_ids").sorted("id")
+        pick_ids = (
+            self.mapped("picking_ids")
+            .filtered(lambda x: x.state not in ("done", "cancel"))
+            .sorted("id")
+        )
         action = self.env.ref("stock.action_picking_tree_all")
         result = action.read()[0]
         # override the context to get id of the default filtering on operation type
