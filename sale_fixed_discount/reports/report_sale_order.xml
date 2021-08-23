@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!-- Copyright 2017-20 ForgeFlow S.L.
+     License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl). -->
+<odoo>
+    <template
+        id="report_saleorder_document"
+        inherit_id="sale.report_saleorder_document"
+    >
+        <xpath expr="//t[@t-set='display_discount']" position="after">
+            <t
+                t-set="display_discount_fixed"
+                t-value="any([l.discount_fixed for l in doc.order_line])"
+            />
+        </xpath>
+        <th name="th_discount" position="after">
+            <th
+                t-if="display_discount_fixed"
+                class="text-right"
+                groups="product.group_discount_per_so_line"
+            >
+                <span>Disc. Fixed Amount</span>
+            </th>
+        </th>
+        <xpath expr="//td[@t-if='display_discount']" position="after">
+            <td
+                t-if="display_discount_fixed"
+                class="text-right"
+                groups="product.group_discount_per_so_line"
+            >
+                <span t-field="line.discount_fixed" />
+            </td>
+        </xpath>
+    </template>
+</odoo>
