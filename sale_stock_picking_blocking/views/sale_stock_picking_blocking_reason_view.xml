@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!--Copyright 2019 Eficent Business and IT Consulting Services S.L.-->
+<!--(http://www.eficent.com)-->
+<!--License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl.html).-->
+<odoo>
+    <record id="sale_stock_picking_blocking_reason_tree_view" model="ir.ui.view">
+        <field name="name">sale.delivery.block.reason.tree</field>
+        <field name="model">sale.delivery.block.reason</field>
+        <field name="arch" type="xml">
+            <tree string="Sale Order Delivery Block Reason">
+                <field name="name" />
+                <field name="description" />
+            </tree>
+        </field>
+    </record>
+    <record id="sale_stock_picking_blocking_reason_form_view" model="ir.ui.view">
+        <field name="name">sale.delivery.block.reason.form</field>
+        <field name="model">sale.delivery.block.reason</field>
+        <field name="arch" type="xml">
+            <form>
+                <sheet>
+                    <group name="top">
+                        <group>
+                            <field name="name" />
+                        </group>
+                        <group name="specific rule fields">
+                            <field name="description" />
+                        </group>
+                    </group>
+                    <notebook>
+                        <page string="Applied to">
+                            <field name="sale_order_ids" />
+                        </page>
+                    </notebook>
+                </sheet>
+            </form>
+        </field>
+    </record>
+    <record
+        id="action_sale_stock_picking_blocking_reason"
+        model="ir.actions.act_window"
+    >
+        <field name="name">Sale Delivery Block Reason</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">sale.delivery.block.reason</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+    <menuitem
+        id="menu_sale_stock_picking_blocking_reason"
+        name="Delivery Block Reason"
+        parent="sale.menu_sales_config"
+        action="action_sale_stock_picking_blocking_reason"
+    />
+</odoo>

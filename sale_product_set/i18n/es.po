@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: Odoo Server 10.0\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2017-05-13 01:19+0000\n"
-"PO-Revision-Date: 2020-07-27 10:19+0000\n"
+"PO-Revision-Date: 2021-02-23 17:45+0000\n"
 "Last-Translator: Daniel Martinez Vila <daniel.martinez@qubiq.es>\n"
 "Language-Team: Spanish (https://www.transifex.com/oca/teams/23907/es/)\n"
 "Language: es\n"
@@ -17,7 +17,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 3.10\n"
+"X-Generator: Weblate 4.3.2\n"
 
 #. module: sale_product_set
 #: model:ir.model.fields,field_description:sale_product_set.field_product_set__active
@@ -32,7 +32,7 @@ msgid "Add set"
 msgstr "Añadir conjunto"
 
 #. module: sale_product_set
-#: model:ir.actions.act_window,name:sale_product_set.act_open_wizard_product_set_add
+#: model:ir.actions.act_window,name:sale_product_set.act_open_wizard_product_set_add_from_order
 msgid "Add set in sale order"
 msgstr "Añadir conjunto en el pedido de ventas"
 
@@ -40,6 +40,11 @@ msgstr "Añadir conjunto en el pedido de ventas"
 #: model_terms:ir.ui.view,arch_db:sale_product_set.product_set_add_form_view
 msgid "Add set in sale order line"
 msgstr "Añadir conjunto en la línea de pedido de ventas"
+
+#. module: sale_product_set
+#: model:ir.actions.act_window,name:sale_product_set.act_open_wizard_product_set_add_from_set
+msgid "Add set to sale order"
+msgstr ""
 
 #. module: sale_product_set
 #: model_terms:ir.ui.view,arch_db:sale_product_set.product_set_add_form_view
@@ -140,6 +145,11 @@ msgid "Product"
 msgstr "Producto"
 
 #. module: sale_product_set
+#: model:ir.model.fields,field_description:sale_product_set.field_product_set_add__product_set_line_ids
+msgid "Product Set Line"
+msgstr ""
+
+#. module: sale_product_set
 #: model:ir.actions.act_window,name:sale_product_set.act_open_product_set_view
 #: model:ir.model,name:sale_product_set.model_product_set
 #: model:ir.model.fields,field_description:sale_product_set.field_product_set_add__product_set_id
@@ -161,6 +171,7 @@ msgid "Product set line"
 msgstr "Línea de conjunto de productos"
 
 #. module: sale_product_set
+#: model_terms:ir.ui.view,arch_db:sale_product_set.product_set_add_form_view
 #: model_terms:ir.ui.view,arch_db:sale_product_set.view_product_set_form
 msgid "Product set lines"
 msgstr "Líneas de conjunto de productos"
@@ -220,6 +231,7 @@ msgstr ""
 #, python-format
 msgid "You can use a sale order assigned only to following partner(s): {}"
 msgstr ""
+"Puede utilizar una orden de venta asignada solo a los siguientes socios: {}"
 
 #~ msgid "Select a product set assigned to the same partner of the order."
 #~ msgstr ""

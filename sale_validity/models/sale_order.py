@@ -18,8 +18,7 @@ class SaleOrder(models.Model):
     @api.model
     def _default_validity_date(self):
         validity_date_str = False
-        company_pool = self.env["res.company"]
-        company = company_pool._company_default_get("sale.order")
+        company = self.env.company
         if company.default_sale_order_validity_days:
             today_str = fields.Date.context_today(self)
             today = fields.Date.to_date(today_str)
@@ -31,9 +30,8 @@ class SaleOrder(models.Model):
 
     @api.onchange("date_order")
     def _onchange_date_order(self):
-        company_pool = self.env["res.company"]
         if self.date_order:
-            company = self.company_id or company_pool._company_default_get("sale.order")
+            company = self.company_id or self.env.company
             if company.default_sale_order_validity_days:
                 date_order = fields.Datetime.to_datetime(self.date_order)
                 validity_date = date_order + relativedelta(
