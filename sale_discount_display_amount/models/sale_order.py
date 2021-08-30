@@ -21,7 +21,11 @@ class SaleOrder(models.Model):
         store=True,
     )
 
-    @api.depends("order_line.discount_total", "order_line.price_total_no_discount")
+    @api.model
+    def _get_compute_discount_total_depends(self):
+        return ["order_line.discount_total", "order_line.price_total_no_discount"]
+
+    @api.depends(lambda self: self._get_compute_discount_total_depends())
     def _compute_discount_total(self):
         for order in self:
             discount_total = sum(order.order_line.mapped("discount_total"))
