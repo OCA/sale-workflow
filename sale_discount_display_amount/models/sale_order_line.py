@@ -41,8 +41,12 @@ class SaleOrderLine(models.Model):
                 }
             )
 
-    @api.depends("product_uom_qty", "discount", "price_unit", "tax_id")
+    @api.model
+    def _get_compute_amount_depends(self):
+        return ["product_uom_qty", "discount", "price_unit", "tax_id"]
+
+    @api.depends(lambda self: self._get_compute_amount_depends())
     def _compute_amount(self):
-        res = super(SaleOrderLine, self)._compute_amount()
+        res = super()._compute_amount()
         self._update_discount_display_fields()
         return res
