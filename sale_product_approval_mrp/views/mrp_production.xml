@@ -1,0 +1,85 @@
+<odoo>
+    <record id="mrp_production_form_inherit_approval" model="ir.ui.view">
+        <field name="name">mrp.production.approval.inherit</field>
+        <field name="model">mrp.production</field>
+        <field name="inherit_id" ref="mrp.mrp_production_form_view" />
+        <field name="priority">99</field>
+        <field name="arch" type="xml">
+            <xpath
+                expr="//sheet/group/group/field[@name='product_id']"
+                position="replace"
+            >
+                <label
+                    for="product_id"
+                    attrs="{'readonly': [('state', '!=', 'draft')]}"
+                />
+                <div>
+                    <field
+                        name="product_id"
+                        context="{'default_type': 'product'}"
+                        attrs="{'readonly': [('state', '!=', 'draft')]}"
+                        class="oe_inline"
+                    />
+                    <button
+                        style="margin-left: 25px;"
+                        class="fa fa-exclamation-triangle"
+                        attrs="{'invisible':['|',('mo_exceptions','=',True),('state','in',('done','cancel'))]}"
+                        title="A product on this Manufacturing Order has been marked as not allowed."
+                    />
+
+                </div>
+                <field invisible="1" name="mo_exceptions" />
+                <field invisible="1" name="mo_line_exceptions" />
+            </xpath>
+            <xpath
+                expr="//notebook/page/field/tree/field[@name='product_id']"
+                position="after"
+            >
+                <button
+                    attrs="{'invisible':['|', ('approved_mrp_component_ok','=',True), ('product_id','=',False)]}"
+                    class="fa fa-exclamation-triangle"
+                    title="A product on this Manufacturing Order has been marked as not allowed."
+                />
+                <field invisible="1" name="approved_mrp_component_ok" />
+            </xpath>
+            <div name="button_box" position="after">
+                <div
+                    attrs="{'invisible':['|',('state','in',('done','cancel')),'&amp;',('mo_line_exceptions','=',False),
+                    '&amp;',('mo_exceptions','=',True),('bom_mo_exception','=',False)]}"
+                    class="alert alert-warning text-center"
+                    role="alert"
+                >Exception: A product on this Order is in a status which needs to be fixed before moving forward.</div>
+            </div>
+            <xpath expr="//sheet/group/group/field[@name='bom_id']" position="replace">
+                <label for="bom_id" attrs="{'readonly': [('state', '!=', 'draft')]}" />
+                <div>
+                    <field
+                        name="bom_id"
+                        context="{'default_product_tmpl_id': product_tmpl_id}"
+                        attrs="{'readonly': [('state', '!=', 'draft')]}"
+                    />
+                    <field name="bom_mo_exception" invisible="1" />
+                    <button
+                        style="margin-left: 25px;"
+                        class="fa fa-exclamation-triangle"
+                        attrs="{'invisible':['|',('bom_mo_exception','=',False),('state','in',('done','cancel'))]}"
+                        title="A product on this BoM has been marked as not allowed."
+                    />
+
+                </div>
+            </xpath>
+            <xpath
+                expr="//notebook/page[@name='miscellaneous']/group/group/field[@name='picking_type_id']"
+                position="after"
+            >
+                <field
+                    name="override_exception"
+                    groups="sales_team.group_sale_manager"
+                />
+            </xpath>
+            <!-- <field name="picking_type_id" position="after">
+                <field name="override_exception" groups="sales_team.group_sale_manager"/>
+            </field> -->
+        </field>
+    </record>
+</odoo>

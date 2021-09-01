@@ -1,0 +1,32 @@
+<odoo>
+    <data>
+        <template id="exception_on_mrp_production">
+            <div>Exception(s) occurred on the Manufacturing Order(s):
+
+                <a
+                    data-oe-model="mrp.production"
+                    href="#"
+                    t-att-data-oe-id="mrp_order_ref.id"
+                >
+                    <t t-esc="mrp_order_ref.name" /></a>.
+                Manual actions may be needed.
+
+                <div class="mt16">
+                    <p>Exception(s):</p>
+                    <ul t-as="product" t-foreach="product_ref">
+                        <li>
+                            <a
+                                data-oe-model="mrp.production"
+                                href="#"
+                                t-att-data-oe-id="mrp_order_ref.id"
+                            >
+                                <t t-esc="mrp_order_ref.name" /></a>:
+
+                            <t t-esc="product.name" />
+                            and that it has been marked as not saleable.</li>
+                    </ul>
+                </div>
+            </div>
+        </template>
+    </data>
+</odoo>
