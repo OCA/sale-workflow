@@ -8,14 +8,25 @@ class SaleCreateInvoicePlan(models.TransientModel):
     _name = "sale.create.invoice.plan"
     _description = "Fillig invoice planning criteria"
 
-    advance = fields.Boolean(string="Advance on 1st Invoice", default=False,)
+    advance = fields.Boolean(
+        string="Advance on 1st Invoice",
+        default=False,
+    )
     num_installment = fields.Integer(
-        string="Number of Installment", default=0, required=True,
+        string="Number of Installment",
+        default=0,
+        required=True,
     )
     installment_date = fields.Date(
-        string="Installment Date", default=fields.Date.context_today, required=True,
+        string="Installment Date",
+        default=fields.Date.context_today,
+        required=True,
     )
-    interval = fields.Integer(string="Interval", default=1, required=True,)
+    interval = fields.Integer(
+        string="Interval",
+        default=1,
+        required=True,
+    )
     interval_type = fields.Selection(
         [("day", "Day"), ("month", "Month"), ("year", "Year")],
         string="Interval Type",
