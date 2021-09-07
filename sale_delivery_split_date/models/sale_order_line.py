@@ -6,7 +6,7 @@ from odoo import api, models
 
 class SaleOrderLine(models.Model):
 
-    _inherit = 'sale.order.line'
+    _inherit = "sale.order.line"
 
     @api.multi
     def _get_procurement_group_key(self):
