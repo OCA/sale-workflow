@@ -14,7 +14,9 @@ class TestSaleOrderQtyChange(SavepointCase):
             {"name": "Test Product 2", "list_price": 30.00, "taxes_id": False}
         )
         pricelist = cls.env["product.pricelist"].create({"name": "Test pricelist"})
-        sale_form = Form(cls.env["sale.order"])
+        sale_form = Form(
+            cls.env["sale.order"].with_context(prevent_onchange_quantity=True)
+        )
         sale_form.partner_id = cls.env.ref("base.res_partner_12")
         sale_form.pricelist_id = pricelist
         with sale_form.order_line.new() as cls.line_form:
