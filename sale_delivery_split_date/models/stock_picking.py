@@ -14,7 +14,6 @@ class StockPicking(models.Model):
         store=True,
     )
 
-    @api.multi
     @api.depends("scheduled_date")
     def _compute_min_dt(self):
         for picking in self:
