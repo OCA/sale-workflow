@@ -3,6 +3,7 @@
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
 
 from odoo import models
+from odoo.tools import config
 
 
 class SaleOrderLine(models.Model):
@@ -15,7 +16,11 @@ class SaleOrderLine(models.Model):
         property, and thus it can't be inherited due to the conflict of
         inheritance between Python and Odoo ORM, so we can consider this as a HACK.
         """
-        if field_name == "product_uom_qty":
+        ctx = self.env.context
+        if field_name == "product_uom_qty" and (
+            not config["test_enable"]
+            or (config["test_enable"] and ctx.get("prevent_onchange_quantity", False))
+        ):
             cls = type(self)
             for method in self._onchange_methods.get(field_name, ()):
                 if method == cls.product_uom_change:
