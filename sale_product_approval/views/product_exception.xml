@@ -1,0 +1,32 @@
+<odoo>
+    <data>
+        <template id="exception_on_product">
+            <div>Exception(s) occurred on the sale order(s):
+
+                <a
+                    data-oe-model="sale.order"
+                    href="#"
+                    t-att-data-oe-id="sale_order_ref.id"
+                >
+                    <t t-esc="sale_order_ref.name" /></a>.
+                Manual actions may be needed.
+
+                <div class="mt16">
+                    <p>Exception(s):</p>
+                    <ul t-as="product" t-foreach="product_ref">
+                        <li>
+                            <a
+                                data-oe-model="sale.order"
+                                href="#"
+                                t-att-data-oe-id="sale_order_ref.id"
+                            >
+                                <t t-esc="sale_order_ref.name" /></a>:
+
+                            <t t-esc="product.name" />
+                            and that it has been marked as not saleable.</li>
+                    </ul>
+                </div>
+            </div>
+        </template>
+    </data>
+</odoo>
