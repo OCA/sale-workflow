@@ -58,6 +58,9 @@ class SaleOrderLine(models.Model):
     def _prepare_procurement_values(self, group_id=False):
         """Postpone delivery according to cutoff time"""
         res = super()._prepare_procurement_values(group_id=group_id)
+        return self._sale_cutoff_time_delivery_prepare_procurement_values(res)
+
+    def _sale_cutoff_time_delivery_prepare_procurement_values(self, res):
         date_planned = res.get("date_planned")
         if not date_planned:
             return res
@@ -124,6 +127,9 @@ class SaleOrderLine(models.Model):
     def _expected_date(self):
         """Postpone expected_date to next cut-off"""
         expected_date = super()._expected_date()
+        return self._sale_cutoff_time_delivery_expected_date(expected_date)
+
+    def _sale_cutoff_time_delivery_expected_date(self, expected_date):
         cutoff = self.order_id.get_cutoff_time()
         if not cutoff:
             return expected_date
