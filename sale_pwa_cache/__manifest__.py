@@ -22,6 +22,7 @@
     "data": [
         "wizard/massive_confirm_sale_order_wizard_view.xml",
         "templates/assets.xml",
+        "views/res_config_settings_views.xml",
         "views/sale_order_views.xml",
         "data/data.xml",
     ],
