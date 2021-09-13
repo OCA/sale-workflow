@@ -1,0 +1,243 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* sale_pwa_cache
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 13.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2021-09-13 18:18+0000\n"
+"PO-Revision-Date: 2021-09-13 20:45+0200\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"Language: es\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: \n"
+"X-Generator: Poedit 3.0\n"
+
+#. module: sale_pwa_cache
+#: model:pwa.cache,name:sale_pwa_cache.pwa_cache_model_account_incoterms_all
+msgid "Account Incoterms (All)"
+msgstr "Account Incoterms (Todos)"
+
+#. module: sale_pwa_cache
+#: model:pwa.cache,name:sale_pwa_cache.pwa_cache_model_account_payment_term_all
+msgid "Account Payment Term (All)"
+msgstr "Account Payment Term (Todos)"
+
+#. module: sale_pwa_cache
+#: model:pwa.cache,name:sale_pwa_cache.pwa_cache_model_account_tax_all
+msgid "Account Tax (All)"
+msgstr "Account Tax (Todos)"
+
+#. module: sale_pwa_cache
+#: model:ir.model.fields,field_description:sale_pwa_cache.field_massive_confirm_sale_order_wizard__order_ids
+msgid "Affected Orders"
+msgstr "Ordenes afectadas"
+
+#. module: sale_pwa_cache
+#: model:pwa.cache,name:sale_pwa_cache.pwa_cache_model_crm_team_all
+msgid "CRM Teams (All)"
+msgstr "CRM Teams (Todos)"
+
+#. module: sale_pwa_cache
+#: model_terms:ir.ui.view,arch_db:sale_pwa_cache.massive_confirm_sale_order_wizard
+#: model_terms:ir.ui.view,arch_db:sale_pwa_cache.view_order_form_pwa
+msgid "Cancel"
+msgstr "Cancelar"
+
+#. module: sale_pwa_cache
+#: model:ir.model.fields,field_description:sale_pwa_cache.field_product_product__uom_category_id
+msgid "Category"
+msgstr "Categoría"
+
+#. module: sale_pwa_cache
+#: model_terms:ir.ui.view,arch_db:sale_pwa_cache.view_order_form_pwa
+msgid "Confirm"
+msgstr "Confirmar"
+
+#. module: sale_pwa_cache
+#: model_terms:ir.ui.view,arch_db:sale_pwa_cache.massive_confirm_sale_order_wizard
+msgid "Confirm Orders"
+msgstr "Confirmar órdenes"
+
+#. module: sale_pwa_cache
+#: model:ir.model.fields,help:sale_pwa_cache.field_product_product__uom_category_id
+msgid ""
+"Conversion between Units of Measure can only occur if they belong to the "
+"same category. The conversion will be made based on the ratios."
+msgstr ""
+"La conversión entre unidades de medida solo puede ocurrir si pertenecen a "
+"la misma categoría. La conversión se realizará en base a las proporciones."
+
+#. module: sale_pwa_cache
+#: model:ir.model.fields,field_description:sale_pwa_cache.field_massive_confirm_sale_order_wizard__display_name
+msgid "Display Name"
+msgstr "Nombre para mostrar"
+
+#. module: sale_pwa_cache
+#: model:ir.model.fields,help:sale_pwa_cache.field_res_config_settings__pwa_sale_auto_confirm
+msgid "Enables auto-confirm when offline records are syncronized"
+msgstr ""
+"Activar la auto-confirmación cuando los registros sin conexión se "
+"sincronizan"
+
+#. module: sale_pwa_cache
+#: model:ir.model.fields,help:sale_pwa_cache.field_sale_order_line__uom_factor
+msgid ""
+"How much bigger or smaller this unit is compared to the reference Unit of "
+"Measure for this category: 1 * (reference unit) = ratio * (this unit)"
+msgstr ""
+"Cuánto más grande o más pequeña es comparada esta unidad con la unidad de "
+"medida de referencia para esta categoría: 1 * (unidad de referencia) = "
+"relación * (esta unidad)"
+
+#. module: sale_pwa_cache
+#: model:ir.model.fields,field_description:sale_pwa_cache.field_massive_confirm_sale_order_wizard__id
+msgid "ID"
+msgstr ""
+
+#. module: sale_pwa_cache
+#: model:ir.model.fields,field_description:sale_pwa_cache.field_massive_confirm_sale_order_wizard____last_update
+msgid "Last Modified on"
+msgstr "Última modificación el"
+
+#. module: sale_pwa_cache
+#: model:ir.model,name:sale_pwa_cache.model_massive_confirm_sale_order_wizard
+msgid "Massive Confirm Sale Order Wizard"
+msgstr ""
+
+#. module: sale_pwa_cache
+#: model:ir.actions.act_window,name:sale_pwa_cache.action_massive_confirm_sale_order_wizard
+msgid "Massive Confirm Sale Orders"
+msgstr ""
+
+#. module: sale_pwa_cache
+#: model:ir.ui.menu,name:sale_pwa_cache.menu_server_action_confirm_sale_order
+msgid "Massive confirm"
+msgstr ""
+
+#. module: sale_pwa_cache
+#: model:ir.model.fields,field_description:sale_pwa_cache.field_product_product__categ_name
+msgid "Name"
+msgstr "Nombre"
+
+#. module: sale_pwa_cache
+#: model:ir.model.fields,field_description:sale_pwa_cache.field_res_config_settings__pwa_sale_auto_confirm
+msgid "PWA Sale Auto-Confirm"
+msgstr "PWA auto-confirmar ventas"
+
+#. module: sale_pwa_cache
+#: model:ir.model.fields,field_description:sale_pwa_cache.field_product_product__categ_parent_path
+msgid "Parent Path"
+msgstr "Ruta padre"
+
+#. module: sale_pwa_cache
+#: model:ir.model,name:sale_pwa_cache.model_res_config_settings
+msgid "Procurement purchase grouping settings"
+msgstr "Configuración de agrupación de obtención de compras"
+
+#. module: sale_pwa_cache
+#: model:ir.model,name:sale_pwa_cache.model_product_product
+msgid "Product"
+msgstr "Producto"
+
+#. module: sale_pwa_cache
+#: model:ir.model.fields,field_description:sale_pwa_cache.field_sale_order_line__uom_factor
+msgid "Ratio"
+msgstr ""
+
+#. module: sale_pwa_cache
+#: model:ir.model.fields,field_description:sale_pwa_cache.field_sale_order_line__uom_rounding
+msgid "Rounding Precision"
+msgstr "Precisión redondeo"
+
+#. module: sale_pwa_cache
+#: model:pwa.cache,name:sale_pwa_cache.pwa_cache_get_sale_order_onboarding_panel_bg
+msgid "Sale Order - Get - Onboarding Panel Background"
+msgstr ""
+
+#. module: sale_pwa_cache
+#: model:pwa.cache,name:sale_pwa_cache.pwa_cache_onchange_sale_order_partern_id
+msgid "Sale Order - Onchange - partner_id"
+msgstr ""
+
+#. module: sale_pwa_cache
+#: model:pwa.cache,name:sale_pwa_cache.pwa_cache_post_sale_order_onboarding_panel
+msgid "Sale Order - Post - Onboarding Panel"
+msgstr ""
+
+#. module: sale_pwa_cache
+#: model:pwa.cache,name:sale_pwa_cache.pwa_cache_onchange_sale_order_line_product_id
+msgid "Sale Order Line - Onchange - product_id"
+msgstr ""
+
+#. module: sale_pwa_cache
+#: model:pwa.cache,name:sale_pwa_cache.pwa_cache_model_sale_order_lines_all
+msgid "Sale Order Lines (All - Last year)"
+msgstr "Sale Order Lines (Todos - Último año)"
+
+#. module: sale_pwa_cache
+#: model:ir.model.fields,field_description:sale_pwa_cache.field_product_product__sale_order_partner_id_product
+msgid "Sale Order Partner Id Product"
+msgstr ""
+
+#. module: sale_pwa_cache
+#: model_terms:ir.ui.view,arch_db:sale_pwa_cache.res_config_settings_view_form
+msgid "Sale orders will be confirmed after synchronization"
+msgstr "Los pedidos de venta se confirmarán después de la sincronización"
+
+#. module: sale_pwa_cache
+#: model:pwa.cache,name:sale_pwa_cache.pwa_cache_model_sale_order_all
+msgid "Saler Orders (All - Last year)"
+msgstr "Saler Orders (Todos - Último año)"
+
+#. module: sale_pwa_cache
+#: model_terms:ir.ui.view,arch_db:sale_pwa_cache.view_order_form_pwa
+msgid "Sales Order"
+msgstr "Pedidos de venta"
+
+#. module: sale_pwa_cache
+#: model:ir.model,name:sale_pwa_cache.model_sale_order_line
+msgid "Sales Order Line"
+msgstr "Línea de pedido de venta"
+
+#. module: sale_pwa_cache
+#: model:ir.model,name:sale_pwa_cache.model_crm_team
+msgid "Sales Team"
+msgstr "Equipo de ventas"
+
+#. module: sale_pwa_cache
+#: model_terms:ir.ui.view,arch_db:sale_pwa_cache.view_order_form_pwa
+msgid "Set to Quotation"
+msgstr "Cambiar a presupuesto"
+
+#. module: sale_pwa_cache
+#: model_terms:ir.ui.view,arch_db:sale_pwa_cache.view_order_form_pwa
+msgid ""
+"Terms and conditions... (note: you can setup default ones in the "
+"Configuration menu)"
+msgstr ""
+"Términos y condiciones ... (nota: puede configurar los predeterminados en "
+"el menú Configuración)"
+
+#. module: sale_pwa_cache
+#: model:ir.model.fields,help:sale_pwa_cache.field_sale_order_line__uom_rounding
+msgid ""
+"The computed quantity will be a multiple of this value. Use 1.0 for a Unit "
+"of Measure that cannot be further split, such as a piece."
+msgstr ""
+"La cantidad calculada será un múltiplo de este valor. Utilice 1.0 para una "
+"unidad de medida que no se pueda dividir más, como una pieza."
+
+#. module: sale_pwa_cache
+#: model:pwa.cache,name:sale_pwa_cache.pwa_cache_model_uom_uom_all
+msgid "Units of Measure (All)"
+msgstr "Units of Measure (Todos)"
+
+#. module: sale_pwa_cache
+#: model_terms:ir.ui.view,arch_db:sale_pwa_cache.massive_confirm_sale_order_wizard
+msgid "or"
+msgstr "ó"
