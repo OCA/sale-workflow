@@ -1,7 +1,7 @@
 # © 2016 Camptocamp SA, Sodexis
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html)
 
-from odoo import api, fields, models
+from odoo import api, models
 
 
 class SaleWorkflowProcess(models.Model):
@@ -15,14 +15,4 @@ class SaleWorkflowProcess(models.Model):
         try:
             return self.env.ref(xmlid)
         except ValueError:
-            return self.env["ir.filters"].browse()
-
-    payment_filter_id = fields.Many2one(
-        comodel_name="ir.filters",
-        string="Register Payment Invoice Filter",
-        default=lambda x: x._default_payment_filter_id(),
-    )
-    register_payment = fields.Boolean(string="Register Payment")
-    payment_filter_domain = fields.Text(
-        string="Payment Filter Domain", related="payment_filter_id.domain",
-    )
+            return self._default_payment_filter_id()
