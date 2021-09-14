@@ -197,6 +197,11 @@ msgid "Order Filter Domain"
 msgstr ""
 
 #. module: sale_automatic_workflow
+#: model:ir.model.fields,field_description:sale_automatic_workflow.field_sale_workflow_process__payment_filter_domain
+msgid "Payment Filter Domain"
+msgstr ""
+
+#. module: sale_automatic_workflow
 #: model:ir.model.fields,field_description:sale_automatic_workflow.field_sale_workflow_process__picking_filter_id
 msgid "Picking Filter"
 msgstr ""
@@ -204,6 +209,16 @@ msgstr ""
 #. module: sale_automatic_workflow
 #: model:ir.model.fields,field_description:sale_automatic_workflow.field_sale_workflow_process__picking_filter_domain
 msgid "Picking Filter Domain"
+msgstr ""
+
+#. module: sale_automatic_workflow
+#: model:ir.model.fields,field_description:sale_automatic_workflow.field_sale_workflow_process__register_payment
+msgid "Register Payment"
+msgstr ""
+
+#. module: sale_automatic_workflow
+#: model:ir.model.fields,field_description:sale_automatic_workflow.field_sale_workflow_process__payment_filter_id
+msgid "Register Payment Invoice Filter"
 msgstr ""
 
 #. module: sale_automatic_workflow

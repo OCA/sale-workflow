@@ -11,8 +11,8 @@ msgstr ""
 "POT-Creation-Date: 2018-03-02 10:22+0000\n"
 "PO-Revision-Date: 2020-12-06 05:36+0000\n"
 "Last-Translator: Eder Brito <britoederr@gmail.com>\n"
-"Language-Team: Portuguese (Brazil) (https://www.transifex.com/oca/teams/"
-"23907/pt_BR/)\n"
+"Language-Team: Portuguese (Brazil) (https://www.transifex.com/oca/"
+"teams/23907/pt_BR/)\n"
 "Language: pt_BR\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -205,6 +205,11 @@ msgid "Order Filter Domain"
 msgstr "Domínio do Filtro do Pedido"
 
 #. module: sale_automatic_workflow
+#: model:ir.model.fields,field_description:sale_automatic_workflow.field_sale_workflow_process__payment_filter_domain
+msgid "Payment Filter Domain"
+msgstr ""
+
+#. module: sale_automatic_workflow
 #: model:ir.model.fields,field_description:sale_automatic_workflow.field_sale_workflow_process__picking_filter_id
 msgid "Picking Filter"
 msgstr "Filtro de Separação"
@@ -213,6 +218,16 @@ msgstr "Filtro de Separação"
 #: model:ir.model.fields,field_description:sale_automatic_workflow.field_sale_workflow_process__picking_filter_domain
 msgid "Picking Filter Domain"
 msgstr "Domínio do Filtro de Separação"
+
+#. module: sale_automatic_workflow
+#: model:ir.model.fields,field_description:sale_automatic_workflow.field_sale_workflow_process__register_payment
+msgid "Register Payment"
+msgstr ""
+
+#. module: sale_automatic_workflow
+#: model:ir.model.fields,field_description:sale_automatic_workflow.field_sale_workflow_process__payment_filter_id
+msgid "Register Payment Invoice Filter"
+msgstr ""
 
 #. module: sale_automatic_workflow
 #: model:ir.model.fields,field_description:sale_automatic_workflow.field_sale_workflow_process__sale_done
