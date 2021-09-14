@@ -6,7 +6,7 @@
 import logging
 from contextlib import contextmanager
 
-from odoo import api, models
+from odoo import api, fields, models
 from odoo.tools.safe_eval import safe_eval
 
 _logger = logging.getLogger(__name__)
@@ -138,6 +138,36 @@ class AutomaticWorkflowJob(models.Model):
             with savepoint(self.env.cr):
                 self._do_sale_done(sale.with_company(sale.company_id), sale_done_filter)
 
+    def _prepare_dict_account_payment(self, invoice):
+        partner_type = (
+            invoice.move_type in ("out_invoice", "out_refund")
+            and "customer"
+            or "supplier"
+        )
+        return {
+            "reconciled_invoice_ids": [(6, 0, invoice.ids)],
+            "amount": invoice.residual,
+            "partner_id": invoice.partner_id.id,
+            "partner_type": partner_type,
+            "date": fields.Date.context_today(self),
+        }
+
+    @api.model
+    def _register_payments(self, payment_filter):
+        invoice_obj = self.env["account.move"]
+        invoices = invoice_obj.search(payment_filter)
+        _logger.debug("Invoices to Register Payment: %s", invoices.ids)
+        for invoice in invoices:
+            self._register_payment_invoice(invoice)
+        return
+
+    def _register_payment_invoice(self, invoice):
+        with savepoint(self.env.cr):
+            payment = self.env["account.payment"].create(
+                self._prepare_dict_account_payment(invoice)
+            )
+            payment.action_post()
+
     @api.model
     def run_with_workflow(self, sale_workflow):
         workflow_domain = [("workflow_process_id", "=", sale_workflow.id)]
@@ -162,6 +192,11 @@ class AutomaticWorkflowJob(models.Model):
         if sale_workflow.sale_done:
             self._sale_done(
                 safe_eval(sale_workflow.sale_done_filter_id.domain) + workflow_domain
+            )
+
+        if sale_workflow.register_payment:
+            self._register_payments(
+                safe_eval(sale_workflow.payment_filter_id.domain) + workflow_domain
             )
 
     @api.model
