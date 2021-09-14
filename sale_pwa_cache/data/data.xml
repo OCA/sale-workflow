@@ -26,7 +26,7 @@
         >
             <field
                 name="model_field_included_ids"
-                eval="[(4, ref('web_pwa_cache.field_product_product__sale_order_partner_id_product'), 0), (4, ref('sale_pwa_cache.field_product_product__uom_category_id'), 0)]"
+                eval="[(4, ref('field_product_product__sale_order_partner_id_product'), 0), (4, ref('field_product_product__uom_category_id'), 0)]"
             />
         </record>
         <record id="pwa_cache_model_crm_team_all" model="pwa.cache">
@@ -39,26 +39,27 @@
             <field name="name">Units of Measure (All)</field>
             <field name="cache_type">model</field>
             <field name="model_id" ref="uom.model_uom_uom" />
+            <field name="model_domain_raw">[]</field>
         </record>
         <record id="pwa_cache_model_sale_order_all" model="pwa.cache">
-            <field name="name">Sale Orders (All - Last year)</field>
+            <field name="name">Sale Orders (All - Last Month)</field>
             <field name="cache_type">model</field>
             <field name="model_id" ref="sale.model_sale_order" />
             <field
                 name="model_domain_raw"
-            >[['date_order', '&gt;', (context_today() - relativedelta(days=31)).strftime('%Y-%m-%d')]]</field>
+            >[['date_order', '&gt;', (context_today() - relativedelta(days=90)).strftime('%Y-%m-%d')]]</field>
             <field
                 name="model_field_included_ids"
                 eval="[(6, 0, [ref('sale.field_sale_order__order_line')])]"
             />
         </record>
         <record id="pwa_cache_model_sale_order_lines_all" model="pwa.cache">
-            <field name="name">Sale Order Lines (All - Last year)</field>
+            <field name="name">Sale Order Lines (All - Last Month)</field>
             <field name="cache_type">model</field>
             <field name="model_id" ref="sale.model_sale_order_line" />
             <field
                 name="model_domain_raw"
-            >[['order_id.date_order', '&gt;', (context_today() - relativedelta(days=31)).strftime('%Y-%m-%d')]]</field>
+            >[['order_id.date_order', '&gt;', (context_today() - relativedelta(days=90)).strftime('%Y-%m-%d')]]</field>
         </record>
         <record id="pwa_cache_model_account_tax_all" model="pwa.cache">
             <field name="name">Account Tax (All)</field>
@@ -82,92 +83,183 @@
         <record id="pwa_cache_onchange_sale_order_partern_id" model="pwa.cache">
             <field name="name">Sale Order - Onchange - partner_id</field>
             <field name="cache_type">onchange</field>
-            <field name="model_id" ref="sale.model_sale_order" />
-            <field name="onchange_field_id" ref="sale.field_sale_order__partner_id" />
             <field
-                name="onchange_selector_ids"
-                eval="[(5,0,0),
-                (0,0,{
-                    'field_name': 'partner_id',
-                    'expression': &quot;env['res.partner'].search([('customer_rank', '>', 0)])&quot;,
-                }),
-            ]"
+                name="group_ids"
+                eval="[(4, ref('sales_team.group_sale_salesman'), 0)]"
             />
             <field
-                name="onchange_trigger_ids"
-                eval="[(5,0,0),
-                (0,0,{
-                    'field_name': 'partner_id',
-                    'trigger_type': 'complete',
-                    'model': 'res.partner',
-                    'selector_expression': 'result=self',
-                    'vals_discriminant': 'active,property_product_pricelist,parent_id,child_ids,type',
-                }),
-            ]"
+                name="differentiation_group_id"
+                ref="sales_team.group_sale_salesman_all_leads"
+            />
+            <field name="model_id" ref="sale.model_sale_order" />
+            <field name="onchange_field_id" ref="sale.field_sale_order__partner_id" />
+        </record>
+        <record
+            id="pwa_cache_onchange_sale_order_onchange_partern_id"
+            model="pwa.cache.onchange"
+        >
+            <field name="pwa_cache_id" ref="pwa_cache_onchange_sale_order_partern_id" />
+            <field name="field_name">partner_id</field>
+            <field name="expression">env['res.partner'].search([])</field>
+        </record>
+        <record
+            id="pwa_cache_onchange_sale_order_onchange_trigger_res_partner_partern_id"
+            model="pwa.cache.onchange.trigger"
+        >
+            <field name="pwa_cache_id" ref="pwa_cache_onchange_sale_order_partern_id" />
+            <field name="field_name">partner_id</field>
+            <field name="trigger_type">complete</field>
+            <field name="model">res.partner</field>
+            <field
+                name="selector_expression"
+            ><![CDATA[
+# Recompute on direct onchange data or create/unlink
+result = self
+            ]]></field>
+            <field
+                name="vals_discriminant"
+            >active,property_product_pricelist,parent_id,child_ids,type</field>
+        </record>
+        <record id="pwa_cache_onchange_sale_order_partern_id" model="pwa.cache">
+            <field
+                name="onchange_discriminator_selector_id"
+                ref="pwa_cache_onchange_sale_order_onchange_partern_id"
             />
         </record>
         <record id="pwa_cache_onchange_sale_order_line_product_id" model="pwa.cache">
             <field name="name">Sale Order Line - Onchange - product_id</field>
             <field name="cache_type">onchange</field>
+            <field
+                name="group_ids"
+                eval="[(4, ref('sales_team.group_sale_salesman'), 0)]"
+            />
+            <field
+                name="differentiation_group_id"
+                ref="sales_team.group_sale_salesman_all_leads"
+            />
             <field name="model_id" ref="sale.model_sale_order_line" />
             <field
                 name="onchange_field_id"
                 ref="sale.field_sale_order_line__product_id"
             />
+        </record>
+        <record
+            id="pwa_cache_onchange_sale_order_line_onchange_product_id"
+            model="pwa.cache.onchange"
+        >
             <field
-                name="onchange_selector_ids"
-                eval="[(5,0,0),
-                (0,0,{
-                    'field_name': 'product_id',
-                    'expression': &quot;env['product.product'].search([('sale_ok', '=', True)])&quot;,
-                },{
-                    'field_name': 'order_id.pricelist_id',
-                    'expression': &quot;functools.reduce(lambda a, b: a | b, [x.property_product_pricelist for x in env['res.partner'].search([('customer_rank', '>', 0)])])&quot;,
-                    'required': True,
-                },{
-                    'field_name': 'order_id.partner_id',
-                    'expression': &quot;env['res.partner'].search([], limit=1)&quot;,
-                    'disposable': True,
-                }),
-            ]"
+                name="pwa_cache_id"
+                ref="pwa_cache_onchange_sale_order_line_product_id"
             />
+            <field name="field_name">product_id</field>
             <field
-                name="onchange_trigger_ids"
-                eval="[(5,0,0),
-                (0,0,{
-                    'field_name': 'product_id',
-                    'trigger_type': 'complete',
-                    'model': 'product.product',
-                    'selector_expression': 'result=self',
-                    'vals_discriminant': 'name,list_price,default_code,uom_id,sale_ok',
-                },{
-                    'field_name': 'product_id',
-                    'trigger_type': 'update',
-                    'model': 'product.template',
-                    'selector_expression': &quot;result = self.mapped('product_variant_ids')&quot;,
-                    'vals_discriminant': 'name,list_price,default_code,uom_id,sale_ok',
-                },{
-                    'field_name': 'product_id',
-                    'trigger_type': 'complete',
-                    'model': 'product.pricelist.item',
-                    'selector_expression': &quot;&quot;&quot;
-                        # Recompute products affected by the change
-                        result = env['product.product']
-                        for record in self:
-                            if record.applied_on == '0_product_variant':
-                                if record.product_id.sale_ok:
-                                    result |= record.product_id
-                            elif record.applied_on == '1_product':
-                                if record.product_tmpl_id.sale_ok:
-                                    result |= record.product_tmp_id.product_variant_ids
-                            elif record.applied_on == '2_product_category':
-                                result |= env['product.product'].search([('sale_ok', '=', True), ('categ_id', 'child_of', record.categ_id)])
-                            elif record.applied_on == '3_global':
-                                result |= env['product.product'].search([('sale_ok', '=', True)])
-                    &quot;&quot;&quot;,
-                    'vals_discriminant': 'fixed_price,percent_price,base,price_discount,price_surcharge,price_round,price_min_margin,price_max_margin',
-                }),
-            ]"
+                name="expression"
+            >env['product.product'].search([('sale_ok', '=', True)])</field>
+        </record>
+        <record
+            id="pwa_cache_onchange_sale_order_line_onchange_order_id_pricelist_id"
+            model="pwa.cache.onchange"
+        >
+            <field
+                name="pwa_cache_id"
+                ref="pwa_cache_onchange_sale_order_line_product_id"
+            />
+            <field name="field_name">order_id.pricelist_id</field>
+            <field
+                name="expression"
+            >functools.reduce(lambda a, b: a | b, [x.property_product_pricelist for x in env['res.partner'].search([])])</field>
+            <field name="required" eval="True" />
+        </record>
+        <record
+            id="pwa_cache_onchange_sale_order_line_onchange_order_id_partner_id"
+            model="pwa.cache.onchange"
+        >
+            <field
+                name="pwa_cache_id"
+                ref="pwa_cache_onchange_sale_order_line_product_id"
+            />
+            <field name="field_name">order_id.partner_id</field>
+            <field name="expression">env['res.partner'].search([], limit=1)</field>
+            <field name="disposable" eval="True" />
+        </record>
+        <record
+            id="pwa_cache_onchange_sale_order_line_onchange_trigger_product_product_product_id"
+            model="pwa.cache.onchange.trigger"
+        >
+            <field
+                name="pwa_cache_id"
+                ref="pwa_cache_onchange_sale_order_line_product_id"
+            />
+            <field name="field_name">product_id</field>
+            <field name="trigger_type">complete</field>
+            <field name="model">product.product</field>
+            <field
+                name="selector_expression"
+            ><![CDATA[
+# Direct modification of onchange data or creation/unlink
+result = self
+            ]]></field>
+            <field
+                name="vals_discriminant"
+            >name,list_price,default_code,uom_id,sale_ok</field>
+        </record>
+        <record
+            id="pwa_cache_onchange_sale_order_line_onchange_trigger_product_template_product_id"
+            model="pwa.cache.onchange.trigger"
+        >
+            <field
+                name="pwa_cache_id"
+                ref="pwa_cache_onchange_sale_order_line_product_id"
+            />
+            <field name="field_name">product_id</field>
+            <field name="trigger_type">update</field>
+            <field name="model">product.template</field>
+            <field
+                name="selector_expression"
+            ><![CDATA[
+# Modification of template values of onchange data
+result = self.mapped('product_variant_ids')
+            ]]></field>
+            <field
+                name="vals_discriminant"
+            >name,list_price,default_code,uom_id,sale_ok</field>
+        </record>
+        <record
+            id="pwa_cache_onchange_sale_order_line_onchange_trigger_product_pricelist_item_product_id"
+            model="pwa.cache.onchange.trigger"
+        >
+            <field
+                name="pwa_cache_id"
+                ref="pwa_cache_onchange_sale_order_line_product_id"
+            />
+            <field name="field_name">product_id</field>
+            <field name="trigger_type">complete</field>
+            <field name="model">product.pricelist.item</field>
+            <field
+                name="selector_expression"
+            ><![CDATA[
+# Recompute products affected by the change
+result = env['product.product']
+for record in self:
+    if record.applied_on == '0_product_variant':
+        if record.product_id.sale_ok:
+            result |= record.product_id
+    elif record.applied_on == '1_product':
+        if record.product_tmpl_id.sale_ok:
+            result |= record.product_tmp_id.product_variant_ids
+    elif record.applied_on == '2_product_category':
+        result |= env['product.product'].search([('sale_ok', '=', True), ('categ_id', 'child_of', record.categ_id)])
+    elif record.applied_on == '3_global':
+        result |= env['product.product'].search([('sale_ok', '=', True)])
+        ]]></field>
+            <field
+                name="vals_discriminant"
+            >fixed_price,percent_price,base,price_discount,price_surcharge,price_round,price_min_margin,price_max_margin</field>
+        </record>
+        <record id="pwa_cache_onchange_sale_order_line_product_id" model="pwa.cache">
+            <field
+                name="onchange_discriminator_selector_id"
+                ref="pwa_cache_onchange_sale_order_line_onchange_order_id_pricelist_id"
             />
         </record>
     </data>
