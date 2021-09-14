@@ -3,10 +3,7 @@
 
 import logging
 
-from odoo import api, fields, models
-from odoo.tools.safe_eval import safe_eval
-
-from odoo.addons.sale_automatic_workflow.models.automatic_workflow_job import savepoint
+from odoo import models
 
 _logger = logging.getLogger(__name__)
 
