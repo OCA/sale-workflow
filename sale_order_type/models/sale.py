@@ -1,7 +1,7 @@
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 # Copyright 2020 Tecnativa - Pedro M. Baeza
 
-from odoo import api, fields, models
+from odoo import _, api, fields, models
 
 
 class SaleOrder(models.Model):
@@ -70,7 +70,7 @@ class SaleOrder(models.Model):
 
     @api.model
     def create(self, vals):
-        if vals.get("name", "/") == "/" and vals.get("type_id"):
+        if vals.get("name", _("New")) == _("New") and vals.get("type_id"):
             sale_type = self.env["sale.order.type"].browse(vals["type_id"])
             if sale_type.sequence_id:
                 vals["name"] = sale_type.sequence_id.next_by_id(
