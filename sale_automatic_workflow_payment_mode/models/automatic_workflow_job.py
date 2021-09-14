@@ -12,27 +12,20 @@ class AutomaticWorkflowJob(models.Model):
     _inherit = "automatic.workflow.job"
 
     def _prepare_dict_account_payment(self, invoice):
-        values = super()._prepare_dict_account_payment(invoice)
-        payment_mode = invoice.payment_mode_id
-        values.update(
-            {
-                "payment_reference": invoice.payment_reference or invoice.name,
-                "payment_method_id": payment_mode.payment_method_id.id,
-                "journal_id": payment_mode.fixed_journal_id.id,
-            }
-        )
-        return values
+        vals = self._prepare_dict_account_payment(invoice)
+        if invoice.payment_mode_id:
+            payment_mode = invoice.payment_mode_id
+            vals["payment_type"] = payment_mode.payment_type
+            vals["payment_method_id"] = payment_mode.payment_method_id.id
+            vals["journal_id"] = payment_mode.fixed_journal_id.id
+        return vals
 
     def _register_payment_invoice(self, invoice):
-        payment_mode = invoice.payment_mode_id
-
-        if not payment_mode.fixed_journal_id:
+        if not invoice.payment_mode_id.fixed_journal_id:
             _logger.debug(
                 "Unable to Register Payment for invoice %s: "
                 "Payment mode %s must have fixed journal",
                 invoice.id,
-                payment_mode.id,
+                invoice.payment_mode_id.id,
             )
-            return
-
         return super()._register_payment_invoice(invoice)
