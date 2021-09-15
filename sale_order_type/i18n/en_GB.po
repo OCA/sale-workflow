@@ -134,6 +134,12 @@ msgid "Name"
 msgstr "Name"
 
 #. module: sale_order_type
+#: code:addons/sale_order_type/models/sale.py:0
+#, python-format
+msgid "New"
+msgstr ""
+
+#. module: sale_order_type
 #: model:sale.order.type,name:sale_order_type.normal_sale_type
 msgid "Normal Order"
 msgstr ""
