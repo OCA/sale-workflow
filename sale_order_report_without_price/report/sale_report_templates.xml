@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <template
+        id="report_saleorder_document_without_price"
+        inherit_id="sale.report_saleorder_document"
+        primary="True"
+    >
+        <xpath expr="//th[@name='th_priceunit']" position="replace" />
+        <xpath expr="//th[@name='th_discount']" position="replace" />
+        <xpath expr="//th[@name='th_taxes']" position="replace" />
+        <xpath expr="//th[@name='th_subtotal']" position="replace" />
+
+        <xpath expr="//td[@name='td_priceunit']" position="replace" />
+        <xpath expr="//td[count(@name) = 0]" position="replace" />
+        <xpath expr="//td[@name='td_taxes']" position="replace" />
+        <xpath expr="//td[@name='td_subtotal']" position="replace" />
+
+        <xpath expr="//tr[hasclass('is-subtotal')]" position="replace" />
+        <xpath expr="//div[@id='total']" position="replace" />
+    </template>
+
+    <template id="report_saleorder_without_price">
+        <t t-call="web.html_container">
+            <t t-foreach="docs" t-as="doc">
+                <t
+                    t-call="sale_order_report_without_price.report_saleorder_document_without_price"
+                    t-lang="doc.partner_id.lang"
+                />
+            </t>
+        </t>
+    </template>
+</odoo>
