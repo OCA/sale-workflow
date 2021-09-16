@@ -28,7 +28,7 @@ addon | version | maintainers | summary
 [product_form_sale_link](product_form_sale_link/) | 13.0.1.0.1 |  | Adds a button on product forms to access Sale Lines
 [product_supplierinfo_for_customer_sale](product_supplierinfo_for_customer_sale/) | 13.0.1.0.0 |  | Loads in every sale order line the customer code defined in the product
 [sale_automatic_workflow](sale_automatic_workflow/) | 13.0.1.3.0 |  | Sale Automatic Workflow
-[sale_automatic_workflow_delivery_state](sale_automatic_workflow_delivery_state/) | 13.0.1.0.0 |  | Glue module for sale_automatic_workflow and sale_delivery_state
+[sale_automatic_workflow_delivery_state](sale_automatic_workflow_delivery_state/) | 13.0.1.0.1 |  | Glue module for sale_automatic_workflow and sale_delivery_state
 [sale_automatic_workflow_payment](sale_automatic_workflow_payment/) | 13.0.1.0.0 | [![rousseldenis](https://github.com/rousseldenis.png?size=30px)](https://github.com/rousseldenis) | Assign a workflow if a transaction is created for a sale order with an acquirer with a workflow
 [sale_automatic_workflow_payment_mode](sale_automatic_workflow_payment_mode/) | 13.0.1.1.0 |  | Sale Automatic Workflow - Payment Mode
 [sale_blanket_order](sale_blanket_order/) | 13.0.1.0.1 |  | Blanket Orders
