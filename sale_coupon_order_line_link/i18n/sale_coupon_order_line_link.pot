@@ -21,8 +21,28 @@ msgid "Coupon Program"
 msgstr ""
 
 #. module: sale_coupon_order_line_link
+#: model:ir.model.fields,help:sale_coupon_order_line_link.field_sale_order_line__reward_line_ids
+msgid "Link on the reward lines applied from this one"
+msgstr ""
+
+#. module: sale_coupon_order_line_link
+#: model:ir.model.fields,help:sale_coupon_order_line_link.field_sale_order_line__reward_generated_line_ids
+msgid "Link on the reward lines generated meeting this line as criteria"
+msgstr ""
+
+#. module: sale_coupon_order_line_link
 #: model_terms:ir.ui.view,arch_db:sale_coupon_order_line_link.view_order_product_search
 msgid "Promotion Lines"
+msgstr ""
+
+#. module: sale_coupon_order_line_link
+#: model:ir.model.fields,field_description:sale_coupon_order_line_link.field_sale_order_line__reward_generated_line_ids
+msgid "Reward Generated lines"
+msgstr ""
+
+#. module: sale_coupon_order_line_link
+#: model:ir.model.fields,field_description:sale_coupon_order_line_link.field_sale_order_line__reward_line_ids
+msgid "Reward lines"
 msgstr ""
 
 #. module: sale_coupon_order_line_link
