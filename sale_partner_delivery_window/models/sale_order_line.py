@@ -15,6 +15,9 @@ class SaleOrderLine(models.Model):
     def _expected_date(self):
         """Postpone expected_date to next preferred delivery window"""
         expected_date = super()._expected_date()
+        return self._sale_partner_delivery_window_expected_date(expected_date)
+
+    def _sale_partner_delivery_window_expected_date(self, expected_date):
         partner = self.order_id.partner_shipping_id
         if not partner or partner.delivery_time_preference == "anytime":
             return expected_date
@@ -23,6 +26,9 @@ class SaleOrderLine(models.Model):
     def _prepare_procurement_values(self, group_id=False):
         """Consider delivery_schedule in procurement"""
         res = super()._prepare_procurement_values(group_id=group_id)
+        return self._sale_partner_delivery_window_prepare_procurement_values(res)
+
+    def _sale_partner_delivery_window_prepare_procurement_values(self, res):
         date_planned = res.get("date_planned")
         if not date_planned:
             return res
