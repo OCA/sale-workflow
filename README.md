@@ -42,7 +42,7 @@ addon | version | maintainers | summary
 [sale_coupon_multi_use](sale_coupon_multi_use/) | 13.0.1.0.1 |  | Allow to use same coupon multiple times
 [sale_coupon_multi_use_currency](sale_coupon_multi_use_currency/) | 13.0.1.0.1 |  | Prevents in changing currency if multi coupon is in use
 [sale_coupon_product_management](sale_coupon_product_management/) | 13.0.1.0.0 |  | Improves related product management via sale coupons
-[sale_cutoff_time_delivery](sale_cutoff_time_delivery/) | 13.0.1.3.0 |  | Schedule delivery orders according to cutoff preferences
+[sale_cutoff_time_delivery](sale_cutoff_time_delivery/) | 13.0.1.4.0 |  | Schedule delivery orders according to cutoff preferences
 [sale_delivery_state](sale_delivery_state/) | 13.0.1.0.1 |  | Show the delivery state on the sale order
 [sale_discount_display_amount](sale_discount_display_amount/) | 13.0.1.0.2 |  | This addon intends to display the amount of the discount computed on sale_order_line and sale_order level
 [sale_elaboration](sale_elaboration/) | 13.0.1.0.0 |  | Set an elaboration for any sale line
@@ -80,7 +80,7 @@ addon | version | maintainers | summary
 [sale_order_tag](sale_order_tag/) | 13.0.1.0.1 | [![patrickrwilson](https://github.com/patrickrwilson.png?size=30px)](https://github.com/patrickrwilson) | Adds Tags to Sales Orders.
 [sale_order_type](sale_order_type/) | 13.0.1.4.0 |  | Sale Order Type
 [sale_order_warn_message](sale_order_warn_message/) | 13.0.1.1.0 |  | Add a popup warning on sale to ensure warning is populated
-[sale_partner_delivery_window](sale_partner_delivery_window/) | 13.0.1.2.0 |  | Schedule delivery orders according to delivery window preferences
+[sale_partner_delivery_window](sale_partner_delivery_window/) | 13.0.1.3.0 |  | Schedule delivery orders according to delivery window preferences
 [sale_partner_incoterm](sale_partner_incoterm/) | 13.0.1.0.1 |  | Set the customer preferred incoterm on each sales order
 [sale_procurement_group_by_line](sale_procurement_group_by_line/) | 13.0.1.0.4 |  | Base module for multiple procurement group by Sale order
 [sale_product_category_menu](sale_product_category_menu/) | 13.0.1.0.1 |  | Shows 'Product Categories' menu item in Sales
