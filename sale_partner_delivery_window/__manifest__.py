@@ -3,7 +3,7 @@
 {
     "name": "Sale Partner Delivery Window",
     "summary": "Schedule delivery orders according to delivery window preferences",
-    "version": "13.0.1.2.0",
+    "version": "13.0.1.3.0",
     "development_status": "Alpha",
     "category": "Warehouse Management",
     "website": "https://github.com/OCA/sale-workflow",
