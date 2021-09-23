@@ -60,8 +60,10 @@ class AutomaticWorkflowJob(models.Model):
         sales = sale_obj.search(order_filter)
         _logger.debug("Sale Orders to validate: %s", sales.ids)
         for sale in sales:
-            with savepoint(self.env.cr), force_company(self.env, sale.company_id):
-                self._do_validate_sale_order(sale, order_filter)
+            with savepoint(self.env.cr):
+                self._do_validate_sale_order(
+                    sale.with_company(sale.company_id), order_filter
+                )
 
     def _do_create_invoice(self, sale, domain_filter):
         """Create an invoice for a sales order, filter ensure no duplication"""
@@ -79,8 +81,10 @@ class AutomaticWorkflowJob(models.Model):
         sales = sale_obj.search(create_filter)
         _logger.debug("Sale Orders to create Invoice: %s", sales.ids)
         for sale in sales:
-            with savepoint(self.env.cr), force_company(self.env, sale.company_id):
-                self._do_create_invoice(sale, create_filter)
+            with savepoint(self.env.cr):
+                self._do_create_invoice(
+                    sale.with_company(sale.company_id), create_filter
+                )
 
     def _do_validate_invoice(self, invoice, domain_filter):
         """Validate an invoice, filter ensure no duplication"""
@@ -99,8 +103,10 @@ class AutomaticWorkflowJob(models.Model):
         invoices = move_obj.search(validate_invoice_filter)
         _logger.debug("Invoices to validate: %s", invoices.ids)
         for invoice in invoices:
-            with savepoint(self.env.cr), force_company(self.env, invoice.company_id):
-                self._do_validate_invoice(invoice, validate_invoice_filter)
+            with savepoint(self.env.cr):
+                self._do_validate_invoice(
+                    invoice.with_company(invoice.company_id), validate_invoice_filter
+                )
 
     def _do_validate_picking(self, picking, domain_filter):
         """Validate a stock.picking, filter ensure no duplication"""
@@ -137,8 +143,8 @@ class AutomaticWorkflowJob(models.Model):
         sales = sale_obj.search(sale_done_filter)
         _logger.debug("Sale Orders to done: %s", sales.ids)
         for sale in sales:
-            with savepoint(self.env.cr), force_company(self.env, sale.company_id):
-                self._do_sale_done(sale, sale_done_filter)
+            with savepoint(self.env.cr):
+                self._do_sale_done(sale.with_company(sale.company_id), sale_done_filter)
 
     @api.model
     def run_with_workflow(self, sale_workflow):
