@@ -68,9 +68,9 @@ class TestSaleOrderLineUpdateRoute(SavepointCase):
                     "route_id": self.route_drop.id,
                 }
             )
-        self.wizard = self.wizard_obj.with_context(active_id=self.sale_order.id).create(
-            values
-        )
+        self.wizard = self.wizard_obj.with_context(
+            active_model="sale.order", active_id=self.sale_order.id
+        ).create(values)
         return True
 
     def test_amend_route(self):

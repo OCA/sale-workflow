@@ -31,11 +31,13 @@ class SaleOrderLineRouteAmend(models.TransientModel):
     def default_get(self, fields_list):
         res = super().default_get(fields_list)
         order_id = self.env.context.get("active_id", [])
+        if not order_id or not self.env.context.get("active_model") == "sale.order":
+            return res
         order = self.env["sale.order"].browse(order_id)
         # See sale_procurement_amendment
         sale_line_ids = order.order_line.filtered("can_amend_and_reprocure")
         res["order_id"] = order_id
-        res["order_line_ids"] = sale_line_ids.ids
+        res["order_line_ids"] = [(6, 0, sale_line_ids.ids)]
         res["is_updatable"] = bool(sale_line_ids)
         if not bool(sale_line_ids):
             res["warning"] = _(
