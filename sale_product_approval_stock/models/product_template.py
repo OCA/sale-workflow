@@ -22,15 +22,24 @@ class ProductTemplate(models.Model):
                 product.ship_ok = (
                     product.candidate_ship and product.product_state_id.approved_ship
                 )
-                if not product.ship_ok:
-                    pick_ids = self.env["stock.picking"].search(
-                        [
-                            ("product_id", "in", product.product_variant_ids.ids),
-                            (
-                                "state",
-                                "in",
-                                ["draft", "confirmed", "waiting", "assigned"],
-                            ),
-                        ]
-                    )
-                    pick_ids._log_exception_activity_stock(product)
+
+
+class ProductProduct(models.Model):
+    _inherit = "product.product"
+
+    def write(self, vals):
+        res = super().write(vals)
+        for product in self:
+            if not product.ship_ok:
+                pick_ids = self.env["stock.picking"].search(
+                    [
+                        ("product_id", "=", product.id),
+                        (
+                            "state",
+                            "in",
+                            ["draft", "confirmed", "waiting", "assigned"],
+                        ),
+                    ]
+                )
+                pick_ids._log_exception_activity_stock(product)
+        return res

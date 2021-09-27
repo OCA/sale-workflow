@@ -23,7 +23,7 @@
                                 <t t-esc="delivery_order_ref.name" /></a>:
 
                             <t t-esc="product.name" />
-                            and that it has been marked as not saleable.</li>
+                            and that it has been marked as not deliverable.</li>
                     </ul>
                 </div>
             </div>
