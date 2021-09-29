@@ -45,6 +45,7 @@
                             />
                         </div>
                     </div>
+                    <field name="send_order_confirmation_mail" colspan="4" />
                     <field name="validate_picking" />
                     <label
                         for="picking_filter_id"
