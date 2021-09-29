@@ -91,8 +91,8 @@ class SaleOrderLine(models.Model):
             discount_factor *= (100.0 - discount) / 100.0
         return 100.0 - (discount_factor * 100.0)
 
-    def _prepare_invoice_line(self):
-        res = super()._prepare_invoice_line()
+    def _prepare_invoice_line(self, **kwargs):
+        res = super()._prepare_invoice_line(**kwargs)
         res.update({"discount2": self.discount2, "discount3": self.discount3})
         return res
 
@@ -133,7 +133,7 @@ class SaleOrderLine(models.Model):
         Updating the cache provides consistency through recomputations."""
         self.invalidate_cache(
             fnames=["discount", "discount2", "discount3"],
-            ids=[l.id for l in list(prev_values.keys())],
+            ids=[line.id for line in list(prev_values.keys())],
         )
         for line, prev_vals_dict in list(prev_values.items()):
             line._cache.update(prev_vals_dict)
