@@ -110,8 +110,8 @@ class TestSaleOrder(common.SavepointCase):
         self.assertAlmostEqual(self.order.amount_tax, 47.25)
 
     def test_04_sale_order_triple_discount_invoicing(self):
-        """ When a confirmed order is invoiced, the resultant invoice
-            should inherit the discounts """
+        """When a confirmed order is invoiced, the resultant invoice
+        should inherit the discounts"""
         self.so_line1.discount = 50.0
         self.so_line1.discount2 = 50.0
         self.so_line1.discount3 = 50.0
