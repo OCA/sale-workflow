@@ -1,4 +1,4 @@
-To use this module, if *Contacts Directory* module is installed:
+To use this module, if *Contacts* module is installed:
 
 #. Go to *Contacts -> Contacts* and create a new contact with Company radio
    button checked and a Salesperson selected in *Sales & Purchases* tab
