@@ -8,7 +8,7 @@ from odoo.tests.common import TransactionCase
 
 class TestPartnerContactSaleInfoPropagation(TransactionCase):
     def setUp(self):
-        super(TestPartnerContactSaleInfoPropagation, self).setUp()
+        super().setUp()
         self.partner_model = self.env["res.partner"]
         self.parent_company = self.partner_model.create(
             {
@@ -25,13 +25,13 @@ class TestPartnerContactSaleInfoPropagation(TransactionCase):
 
     def test_create_partner_child(self):
         partner_child = self.partner_model.create(
-            {"name": "Parent child", "parent_id": self.parent_company.id,}
+            {"name": "Parent child", "parent_id": self.parent_company.id}
         )
         self.check_same_user_id_team_id(self.parent_company, partner_child)
 
     def test_write_parent_company(self):
         partner_child = self.partner_model.create(
-            {"name": "Parent child", "parent_id": self.parent_company.id,}
+            {"name": "Parent child", "parent_id": self.parent_company.id}
         )
         self.parent_company.write(
             {
@@ -62,7 +62,6 @@ class TestPartnerContactSaleInfoPropagation(TransactionCase):
         )
 
     def test_fields_view_get(self):
-        # self.partner_model.fields_view_get(view_id=self.env.ref('test_new_api.discussion_form'))
         partner_xml = etree.XML(self.partner_model.fields_view_get()["arch"])
         partner_field = partner_xml.xpath("//field[@name='child_ids']")[0]
         context = partner_field.attrib.get("context", "{}")
