@@ -3,13 +3,13 @@
 {
     "name": "Partner contact sale info propagation",
     "summary": "Propagate Salesperson and Sales Channel " "from Company to Contacts",
-    "version": "12.0.1.0.0",
+    "version": "13.0.1.0.0",
     "category": "Sales Management",
     "website": "https://github.com/OCA/sale-workflow",
     "author": "Tecnativa, Odoo Community Association (OCA)",
     "license": "AGPL-3",
     "application": False,
     "installable": True,
-    "depends": ["sales_team",],
-    "data": ["views/res_partner_view.xml",],
+    "depends": ["sales_team"],
+    "data": ["views/res_partner_view.xml"],
 }

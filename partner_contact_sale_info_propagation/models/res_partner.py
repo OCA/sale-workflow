@@ -9,7 +9,6 @@ from odoo import api, models
 class ResPartner(models.Model):
     _inherit = "res.partner"
 
-    @api.multi
     def write(self, vals):
         """Propagate Salesperson and Sales Channel change in the partner to the
         child contacts."""
@@ -26,22 +25,23 @@ class ResPartner(models.Model):
                 )
                 if childs:
                     childs.write({"team_id": vals["team_id"]})
-        return super(ResPartner, self).write(vals)
+        return super().write(vals)
 
-    @api.model
-    def create(self, vals):
-        if "parent_id" in vals:
-            if "user_id" not in vals:
-                vals.update(user_id=self.browse(vals["parent_id"]).user_id.id)
-            if "team_id" not in vals:
-                vals.update(team_id=self.browse(vals["parent_id"]).team_id.id)
-        return super(ResPartner, self).create(vals)
+    @api.model_create_multi
+    def create(self, vals_list):
+        for vals in vals_list:
+            if "parent_id" in vals:
+                if "user_id" not in vals:
+                    vals.update(user_id=self.browse(vals["parent_id"]).user_id.id)
+                if "team_id" not in vals:
+                    vals.update(team_id=self.browse(vals["parent_id"]).team_id.id)
+        return super().create(vals_list)
 
     @api.onchange("parent_id")
     def onchange_parent_id(self):
         """Change Salesperson or Sales Channel if the parent company changes
         and there's no Salesperson or Sales Channel defined yet"""
-        res = super(ResPartner, self).onchange_parent_id()
+        res = super().onchange_parent_id()
         if self.parent_id and self.parent_id != self:
             parent = self.parent_id
             if not self.user_id:
