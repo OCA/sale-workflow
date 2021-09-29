@@ -10,8 +10,12 @@ class TestSaleOrder(common.SavepointCase):
     def setUpClass(cls):
         super(TestSaleOrder, cls).setUpClass()
         cls.partner = cls.env["res.partner"].create({"name": "Mr. Odoo"})
-        cls.product1 = cls.env["product.product"].create({"name": "Test Product 1"})
-        cls.product2 = cls.env["product.product"].create({"name": "Test Product 2"})
+        cls.product1 = cls.env["product.product"].create(
+            {"name": "Test Product 1", "type": "service", "invoice_policy": "order"}
+        )
+        cls.product2 = cls.env["product.product"].create(
+            {"name": "Test Product 2", "type": "service", "invoice_policy": "order"}
+        )
         cls.tax = cls.env["account.tax"].create(
             {
                 "name": "TAX 15%",
