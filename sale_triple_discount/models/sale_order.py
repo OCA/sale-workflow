@@ -36,5 +36,5 @@ class SaleOrder(models.Model):
                     if t["id"] == tax.id or t["id"] in tax.children_tax_ids.ids:
                         res[group] += t["amount"]
         res = sorted(list(res.items()), key=lambda l: l[0].sequence)
-        res = [(l[0].name, l[1]) for l in res]
+        res = [(line[0].name, line[1]) for line in res]
         return res
