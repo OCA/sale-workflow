@@ -10,8 +10,12 @@ class TestSaleOrder(common.SavepointCase):
     def setUpClass(cls):
         super(TestSaleOrder, cls).setUpClass()
         cls.partner = cls.env["res.partner"].create({"name": "Mr. Odoo"})
-        cls.product1 = cls.env["product.product"].create({"name": "Test Product 1"})
-        cls.product2 = cls.env["product.product"].create({"name": "Test Product 2"})
+        cls.product1 = cls.env["product.product"].create(
+            {"name": "Test Product 1", "type": "service", "invoice_policy": "order"}
+        )
+        cls.product2 = cls.env["product.product"].create(
+            {"name": "Test Product 2", "type": "service", "invoice_policy": "order"}
+        )
         cls.tax = cls.env["account.tax"].create(
             {
                 "name": "TAX 15%",
@@ -44,7 +48,7 @@ class TestSaleOrder(common.SavepointCase):
         )
 
     def test_01_sale_order_classic_discount(self):
-        """ Tests with single discount """
+        """Tests with single discount"""
         self.so_line1.discount = 50.0
         self.so_line2.discount = 75.0
         self.assertAlmostEqual(self.so_line1.price_subtotal, 300.0)
@@ -56,7 +60,7 @@ class TestSaleOrder(common.SavepointCase):
         self.assertAlmostEqual(self.order.amount_tax, 22.5)
 
     def test_02_sale_order_simple_triple_discount(self):
-        """ Tests on a single line """
+        """Tests on a single line"""
         self.so_line2.unlink()
         # Divide by two on every discount:
         self.so_line1.discount = 50.0
@@ -92,7 +96,7 @@ class TestSaleOrder(common.SavepointCase):
         self.assertAlmostEqual(self.order.amount_tax, 0.0)
 
     def test_03_sale_order_complex_triple_discount(self):
-        """ Tests on multiple lines """
+        """Tests on multiple lines"""
         self.so_line1.discount = 50.0
         self.so_line1.discount2 = 50.0
         self.so_line1.discount3 = 50.0
@@ -140,7 +144,7 @@ class TestSaleOrder(common.SavepointCase):
         self.assertAlmostEqual(self.order.amount_total, invoice.amount_total)
 
     def test_05_round_globally(self):
-        """ Tests on multiple lines when 'round_globally' is active"""
+        """Tests on multiple lines when 'round_globally' is active"""
         self.env.user.company_id.tax_calculation_rounding_method = "round_globally"
         self.so_line1.discount = 50.0
         self.so_line1.discount2 = 50.0
