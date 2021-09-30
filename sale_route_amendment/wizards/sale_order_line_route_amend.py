@@ -21,8 +21,9 @@ class SaleOrderLineRouteAmend(models.TransientModel):
     route_id = fields.Many2one(
         comodel_name="stock.location.route",
         domain=[("sale_selectable", "=", True)],
-        required=True,
         string="New Route",
+        help="Set the route you want to use on the selected order lines. If no"
+        "route is set, the default process will be used to update it.",
     )
     is_updatable = fields.Boolean()
     warning = fields.Text()
