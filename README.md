@@ -21,7 +21,7 @@ addon | version | maintainers | summary
 --- | --- | --- | ---
 [product_supplierinfo_for_customer_sale](product_supplierinfo_for_customer_sale/) | 14.0.1.0.1 |  | Loads in every sale order line the customer code defined in the product
 [sale_advance_payment](sale_advance_payment/) | 14.0.1.0.0 |  | Allow to add advance payments on sales and then use them on invoices
-[sale_automatic_workflow](sale_automatic_workflow/) | 14.0.1.1.3 |  | Sale Automatic Workflow
+[sale_automatic_workflow](sale_automatic_workflow/) | 14.0.1.1.4 |  | Sale Automatic Workflow
 [sale_automatic_workflow_delivery_state](sale_automatic_workflow_delivery_state/) | 14.0.1.0.0 |  | Glue module for sale_automatic_workflow and sale_delivery_state
 [sale_automatic_workflow_payment_mode](sale_automatic_workflow_payment_mode/) | 14.0.1.0.0 |  | Sale Automatic Workflow - Payment Mode
 [sale_by_packaging](sale_by_packaging/) | 14.0.1.0.0 |  | Manage sale of packaging
