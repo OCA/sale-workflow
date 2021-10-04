@@ -1,0 +1,4 @@
+
+odoo14-addon-sale-procurement-amendment @ git+https://github.com/OCA/sale-workflow.git@refs/pull/1574/head#subdirectory=setup/sale_procurement_amendment
+odoo14-addon-sale-order-line-chained-move @ git+https://github.com/OCA/sale-workflow.git@refs/pull/1572/head#subdirectory=setup/sale_order_line_chained_move
+odoo14-addon-sale-order-line-chained-move-purchase @ git+https://github.com/OCA/sale-workflow.git@refs/pull/1729/head#subdirectory=setup/sale_order_line_chained_move_purchase
