@@ -81,6 +81,7 @@ setuptools.setup(
         'odoo12-addon-sale_quotation_number',
         'odoo12-addon-sale_rental',
         'odoo12-addon-sale_require_po_doc',
+        'odoo12-addon-sale_resource_booking',
         'odoo12-addon-sale_restricted_qty',
         'odoo12-addon-sale_secondary_salesperson',
         'odoo12-addon-sale_shipping_info_helper',
