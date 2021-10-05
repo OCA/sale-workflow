@@ -1,5 +1,6 @@
 * Create a sale order with some storable products
-* Confirm the sale order
+* Confirm the sale order (you cannot change directly the route on form
+  after that).
 * If you have to change the route on some lines, click on the button
   'Update routes'.
 * That launches a wizard that allow you to select the order lines concerned
