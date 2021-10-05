@@ -139,6 +139,7 @@ msgstr ""
 
 #. module: sale_product_set
 #: model:ir.model.fields,field_description:sale_product_set.field_product_set_line__product_id
+#: model_terms:ir.ui.view,arch_db:sale_product_set.view_product_set_line_search
 msgid "Product"
 msgstr "Proizvod"
 
@@ -153,6 +154,7 @@ msgstr ""
 #: model:ir.model.fields,field_description:sale_product_set.field_product_set_add__product_set_id
 #: model:ir.ui.menu,name:sale_product_set.menu_product_set_config
 #: model_terms:ir.ui.view,arch_db:sale_product_set.view_product_set_form
+#: model_terms:ir.ui.view,arch_db:sale_product_set.view_product_set_line_search
 #: model_terms:ir.ui.view,arch_db:sale_product_set.view_product_set_search
 #: model_terms:ir.ui.view,arch_db:sale_product_set.view_product_set_tree
 msgid "Product set"
@@ -165,7 +167,11 @@ msgid "Product set internal reference"
 msgstr "Stavka seta proizvoda"
 
 #. module: sale_product_set
+#: model:ir.actions.act_window,name:sale_product_set.act_open_product_set_line_view
 #: model:ir.model,name:sale_product_set.model_product_set_line
+#: model:ir.ui.menu,name:sale_product_set.menu_product_set_line_config
+#: model_terms:ir.ui.view,arch_db:sale_product_set.view_product_set_line_search
+#: model_terms:ir.ui.view,arch_db:sale_product_set.view_product_set_line_tree
 msgid "Product set line"
 msgstr "Stavka seta proizvoda"
 
