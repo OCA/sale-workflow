@@ -92,6 +92,7 @@ addon | version | maintainers | summary
 [sale_quotation_number](sale_quotation_number/) | 12.0.1.0.0 |  | Different sequence for sale quotations
 [sale_rental](sale_rental/) | 12.0.1.1.1 |  | Manage Rental of Products
 [sale_require_po_doc](sale_require_po_doc/) | 12.0.1.0.0 |  | Sale Orders Require PO or Sales Documentation
+[sale_resource_booking](sale_resource_booking/) | 12.0.1.0.0 | [![Yajo](https://github.com/Yajo.png?size=30px)](https://github.com/Yajo) | Link resource bookings with sales
 [sale_restricted_qty](sale_restricted_qty/) | 12.0.2.0.0 |  | Sale order min quantity
 [sale_secondary_salesperson](sale_secondary_salesperson/) | 12.0.1.0.0 | [![victoralmau](https://github.com/victoralmau.png?size=30px)](https://github.com/victoralmau) | Sale Secondary Salesperson
 [sale_shipping_info_helper](sale_shipping_info_helper/) | 12.0.1.0.0 |  | Add shipping amounts on sale order
