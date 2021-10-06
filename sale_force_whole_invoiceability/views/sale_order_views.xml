@@ -8,7 +8,7 @@
         <field name="groups_id" eval="[(4,ref('sales_team.group_sale_manager'))]"/>
         <field name="arch" type="xml">
             <button name="action_quotation_send" position="before">
-                <button name="force_lines_to_invoice_policy_order" string="Force Invoice Policy" type="object" attrs="{'invisible': [('state', 'not in', ['sale']), ('invoice_count', '>', 0)]}"/>
+                <button name="force_lines_to_invoice_policy_order" string="Force Invoice Policy" type="object" attrs="{'invisible': ['|', ('state', 'not in', ['sale', 'done']), ('invoice_count', '>', 0)]}"/>
             </button>
         </field>
     </record>
