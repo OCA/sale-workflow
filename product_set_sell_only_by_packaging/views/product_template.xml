@@ -16,6 +16,8 @@
                     There are product set lines associated to this product
                     which do not have a packaging associated.
                     It would be better to check them all.
+                    If you don't take any action,
+                    a cron will assign such lines to the first available packaging.
                     <button
                         class="oe_link"
                         type="object"
