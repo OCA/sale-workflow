@@ -13,7 +13,7 @@ class SaleOrder(models.Model):
             raise UserError(_(
                 "Only Sales Managers are allowed to force the lines to invoice"
             ))
-        if self.state != "sale":
+        if self.state not in ("sale", "done"):
             raise UserError(_(
                 "You can't perform this action over a sale order in this state"
             ))
