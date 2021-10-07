@@ -15,6 +15,9 @@ class TestProductSetPackaging(common.SavepointCase):
         cls.packaging = cls.env["product.packaging"].create(
             {"name": "Box", "product_id": cls.line.product_id.id, "qty": 10}
         )
+        cls.packaging2 = cls.env["product.packaging"].create(
+            {"name": "Box 2", "product_id": cls.line.product_id.id, "qty": 20}
+        )
         cls.line.product_packaging_id = cls.packaging
         cls.tmpl = cls.line.product_id.product_tmpl_id
 
@@ -54,3 +57,17 @@ class TestProductSetPackaging(common.SavepointCase):
         self.assertEqual(
             action["domain"], [("product_id", "in", [self.line.product_id.id])]
         )
+
+    def test_cron_check_can_be_sold(self):
+        self.assertTrue(self.packaging.can_be_sold)
+        self.assertTrue(self.packaging2.can_be_sold)
+        self.assertEqual(self.line.product_packaging_id, self.packaging)
+        self.packaging.can_be_sold = False
+        self.env["product.set.line"].cron_check_packaging()
+        self.assertEqual(self.line.product_packaging_id, self.packaging2)
+
+    def test_cron_check_sell_only_by_packaging(self):
+        self.line.product_packaging_id = False
+        self.line.product_id.sell_only_by_packaging = True
+        self.env["product.set.line"].cron_check_packaging()
+        self.assertEqual(self.line.product_packaging_id, self.packaging)
