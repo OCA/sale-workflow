@@ -15,5 +15,5 @@
     "installable": True,
     "auto_install": True,
     "depends": ["sale_by_packaging", "sale_product_set_packaging_qty"],
-    "data": ["views/product_set.xml", "views/product_template.xml"],
+    "data": ["data/ir_cron.xml", "views/product_set.xml", "views/product_template.xml"],
 }
