@@ -43,7 +43,7 @@ addon | version | maintainers | summary
 [sale_exception](sale_exception/) | 12.0.1.1.1 |  | Custom exceptions on sale order
 [sale_fixed_discount](sale_fixed_discount/) | 12.0.1.0.0 |  | Allows to apply fixed amount discounts in sales orders.
 [sale_force_invoiced](sale_force_invoiced/) | 12.0.1.0.1 |  | Allows to force the invoice status of the sales order to Invoiced
-[sale_force_whole_invoiceability](sale_force_whole_invoiceability/) | 12.0.1.0.0 |  | Sale Force Whole Invoiceability
+[sale_force_whole_invoiceability](sale_force_whole_invoiceability/) | 12.0.1.1.0 |  | Sale Force Whole Invoiceability
 [sale_generator](sale_generator/) | 12.0.1.0.1 | [![sebastienbeau](https://github.com/sebastienbeau.png?size=30px)](https://github.com/sebastienbeau) [![kevinkhao](https://github.com/kevinkhao.png?size=30px)](https://github.com/kevinkhao) | Sale Generator
 [sale_global_discount](sale_global_discount/) | 12.0.1.2.0 |  | Sale Global Discount
 [sale_invoice_group_method](sale_invoice_group_method/) | 12.0.1.0.0 |  | This module allows you to combine severalSales Orders into a single invoice,if they meet the group criteria defined by the 'Invoice Group Method'
