@@ -9,8 +9,8 @@ msgstr ""
 "Project-Id-Version: Odoo Server 10.0\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2017-11-23 01:51+0000\n"
-"PO-Revision-Date: 2017-11-23 01:51+0000\n"
-"Last-Translator: Bole <bole@dajmi5.com>, 2017\n"
+"PO-Revision-Date: 2021-10-08 11:34+0000\n"
+"Last-Translator: Matija Krolo <matija.krolo@ecodica.eu>\n"
 "Language-Team: Croatian (https://www.transifex.com/oca/teams/23907/hr/)\n"
 "Language: hr\n"
 "MIME-Version: 1.0\n"
@@ -18,32 +18,34 @@ msgstr ""
 "Content-Transfer-Encoding: \n"
 "Plural-Forms: nplurals=3; plural=n%10==1 && n%100!=11 ? 0 : n%10>=2 && n"
 "%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2;\n"
+"X-Generator: Weblate 4.3.2\n"
 
 #. module: sale_order_line_description
 #: model:ir.model.fields,field_description:sale_order_line_description.field_sale_config_settings_group_use_product_description_per_so_line
 msgid "Allow using only the product sale description on the sales order lines"
-msgstr ""
+msgstr "Dozvoli korištenje opisa prodaje proizvoda na stavkama prodajnog naloga"
 
 #. module: sale_order_line_description
 #: model:ir.model.fields,help:sale_order_line_description.field_sale_config_settings_group_use_product_description_per_so_line
 msgid ""
 "Allows you to use only product sale description on the sales order line."
 msgstr ""
+"Dozvoljava korištenje opisa prodaje proizvoda na stavkama prodajnog naloga."
 
 #. module: sale_order_line_description
 #: model:ir.ui.view,arch_db:sale_order_line_description.view_sales_config
 msgid "Product sale description"
-msgstr ""
+msgstr "Opis prodaje proizvoda"
 
 #. module: sale_order_line_description
 #: model:ir.model,name:sale_order_line_description.model_sale_order_line
 msgid "Sales Order Line"
-msgstr "Stavka ponude"
+msgstr "Stavka prodajnog naloga"
 
 #. module: sale_order_line_description
 #: model:res.groups,name:sale_order_line_description.group_use_product_description_per_so_line
 msgid "Use only product sale description on order lines"
-msgstr ""
+msgstr "Koristi samo opis prodaje proizvoda na stavkama naloga"
 
 #. module: sale_order_line_description
 #: model:ir.model,name:sale_order_line_description.model_sale_config_settings
