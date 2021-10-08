@@ -51,6 +51,7 @@ setuptools.setup(
         'odoo13-addon-sale_order_invoice_amount',
         'odoo13-addon-sale_order_invoicing_finished_task',
         'odoo13-addon-sale_order_line_date',
+        'odoo13-addon-sale_order_line_delivery_state',
         'odoo13-addon-sale_order_line_description',
         'odoo13-addon-sale_order_line_input',
         'odoo13-addon-sale_order_line_packaging_qty',
