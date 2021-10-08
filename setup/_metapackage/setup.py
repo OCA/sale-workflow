@@ -50,8 +50,12 @@ setuptools.setup(
         'odoo13-addon-sale_order_incoterm_place',
         'odoo13-addon-sale_order_invoice_amount',
         'odoo13-addon-sale_order_invoicing_finished_task',
+<<<<<<< HEAD
         'odoo13-addon-sale_order_line_date',
         'odoo13-addon-sale_order_line_delivery_state',
+=======
+        'odoo13-addon-sale_order_line_discount_view',
+>>>>>>> b39fb110f741f2412cb7ab4c55dddc5799a16ef4
         'odoo13-addon-sale_order_line_description',
         'odoo13-addon-sale_order_line_input',
         'odoo13-addon-sale_order_line_packaging_qty',
