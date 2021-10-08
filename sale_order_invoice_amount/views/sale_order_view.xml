@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <record id="view_order_tree_invoiced_amount" model="ir.ui.view">
+        <field name="name">sale.order.tree.invoiced_amount</field>
+        <field name="model">sale.order</field>
+        <field name="inherit_id" ref="sale.view_order_tree" />
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='amount_tax']" position="after">
+                <field name="invoiced_amount" sum="Invoiced Total" optional="hide" />
+                <field
+                    name="uninvoiced_amount"
+                    sum="Uninvoiced Total"
+                    optional="hide"
+                />
+            </xpath>
+        </field>
+    </record>
+</odoo>
