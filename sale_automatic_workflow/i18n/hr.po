@@ -10,8 +10,8 @@ msgstr ""
 "Project-Id-Version: Odoo Server 10.0\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2018-02-28 01:48+0000\n"
-"PO-Revision-Date: 2018-02-28 01:48+0000\n"
-"Last-Translator: Bole <bole@dajmi5.com>, 2017\n"
+"PO-Revision-Date: 2021-10-08 11:34+0000\n"
+"Last-Translator: Matija Krolo <matija.krolo@ecodica.eu>\n"
 "Language-Team: Croatian (https://www.transifex.com/oca/teams/23907/hr/)\n"
 "Language: hr\n"
 "MIME-Version: 1.0\n"
@@ -19,6 +19,7 @@ msgstr ""
 "Content-Transfer-Encoding: \n"
 "Plural-Forms: nplurals=3; plural=n%10==1 && n%100!=11 ? 0 : n%10>=2 && n"
 "%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2;\n"
+"X-Generator: Weblate 4.3.2\n"
 
 #. module: sale_automatic_workflow
 #: model:ir.model.fields,field_description:sale_automatic_workflow.field_sale_order_all_qty_delivered
@@ -107,7 +108,7 @@ msgstr "Datum kreiranja"
 #. module: sale_automatic_workflow
 #: selection:sale.workflow.process,picking_policy:0
 msgid "Deliver all products at once"
-msgstr "Isporuči sve proizvode dojednom"
+msgstr "Isporuči sve proizvode odjednom"
 
 #. module: sale_automatic_workflow
 #: selection:sale.workflow.process,picking_policy:0
@@ -180,17 +181,17 @@ msgstr "Naziv"
 #. module: sale_automatic_workflow
 #: model:ir.ui.view,arch_db:sale_automatic_workflow.sale_workflow_process_view_form
 msgid "Order Configuration"
-msgstr ""
+msgstr "Postavke naloga"
 
 #. module: sale_automatic_workflow
 #: model:ir.model.fields,field_description:sale_automatic_workflow.field_sale_workflow_process_order_filter_id
 msgid "Order Filter"
-msgstr ""
+msgstr "Filter naloga"
 
 #. module: sale_automatic_workflow
 #: model:ir.model.fields,field_description:sale_automatic_workflow.field_sale_workflow_process_order_filter_domain
 msgid "Order Filter Domain"
-msgstr ""
+msgstr "Domena filtera naloga"
 
 #. module: sale_automatic_workflow
 #: model:ir.model.fields,field_description:sale_automatic_workflow.field_sale_workflow_process_picking_filter_id
@@ -247,7 +248,7 @@ msgstr ""
 #. module: sale_automatic_workflow
 #: model:ir.ui.view,arch_db:sale_automatic_workflow.sale_workflow_process_view_form
 msgid "Set selection based on a search filter:"
-msgstr ""
+msgstr "Postavi odabir temeljen na filteru pretraživanja:"
 
 #. module: sale_automatic_workflow
 #: model:ir.model.fields,field_description:sale_automatic_workflow.field_sale_workflow_process_picking_policy
@@ -262,7 +263,7 @@ msgstr "Skladišni prenos"
 #. module: sale_automatic_workflow
 #: model:ir.model,name:sale_automatic_workflow.model_stock_picking
 msgid "Transfer"
-msgstr ""
+msgstr "Prijenos"
 
 #. module: sale_automatic_workflow
 #: model:ir.model.fields,field_description:sale_automatic_workflow.field_sale_workflow_process_validate_invoice
@@ -272,12 +273,12 @@ msgstr "Ovjeri račun"
 #. module: sale_automatic_workflow
 #: model:ir.model.fields,field_description:sale_automatic_workflow.field_sale_workflow_process_validate_invoice_filter_id
 msgid "Validate Invoice Filter"
-msgstr ""
+msgstr "Ovjeri filter računa"
 
 #. module: sale_automatic_workflow
 #: model:ir.model.fields,field_description:sale_automatic_workflow.field_sale_workflow_process_validate_invoice_filter_domain
 msgid "Validate Invoice Filter Domain"
-msgstr ""
+msgstr "Ovjeri domenu filtera računa"
 
 #. module: sale_automatic_workflow
 #: model:ir.model.fields,field_description:sale_automatic_workflow.field_sale_workflow_process_validate_order
@@ -297,13 +298,13 @@ msgstr ""
 #. module: sale_automatic_workflow
 #: model:ir.ui.view,arch_db:sale_automatic_workflow.sale_workflow_process_view_form
 msgid "Workflow Options"
-msgstr ""
+msgstr "Opcije radnog toka"
 
 #. module: sale_automatic_workflow
 #: code:addons/sale_automatic_workflow/models/sale_order.py:60
 #, python-format
 msgid "Workflow Warning"
-msgstr ""
+msgstr "Upozorenje radnog toka"
 
 #. module: sale_automatic_workflow
 #: model:ir.model,name:sale_automatic_workflow.model_automatic_workflow_job
