@@ -24,8 +24,7 @@ class ProductTemplate(models.Model):
             rec.sell_only_by_packaging_prod_set_tocheck = value
 
     def _product_ids_to_check(self):
-        """Retrieves product.product IDS to check on product sets.
-        """
+        """Retrieves product.product IDS to check on product sets."""
         ids_to_check = self.filtered("sell_only_by_packaging").product_variant_ids.ids
         if not ids_to_check:
             return []
