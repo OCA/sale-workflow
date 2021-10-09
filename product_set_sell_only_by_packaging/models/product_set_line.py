@@ -16,7 +16,9 @@ class ProductSetLine(models.Model):
     # Just for UI purpose
     sell_only_by_packaging = fields.Boolean(related="product_id.sell_only_by_packaging")
 
-    @api.constrains("product_id.sell_only_by_packaging", "product_packaging_id")
+    # The warning is because field "sell_only_by_packaging" is related,
+    # non-store, non-inherit so not writeable
+    @api.constrains("sell_only_by_packaging", "product_packaging_id")
     def _check_sell_only_by_packaging(self):
         errored = self.filtered(
             lambda x: x.product_id.sell_only_by_packaging and not x.product_packaging_id
