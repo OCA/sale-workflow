@@ -63,7 +63,6 @@ msgstr ""
 
 #. module: sale_product_set_sale_by_packaging
 #: code:addons/sale_product_set_sale_by_packaging/models/product_set_line.py:0
-#: code:addons/sale_product_set_sale_by_packaging/models/product_set_line.py:0
 #, python-format
 msgid ""
 "The following product(s) can be sold only by packaging: \n"
