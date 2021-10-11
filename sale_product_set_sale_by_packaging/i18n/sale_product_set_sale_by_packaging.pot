@@ -14,6 +14,13 @@ msgstr ""
 "Plural-Forms: \n"
 
 #. module: sale_product_set_sale_by_packaging
+#: model:ir.actions.server,name:sale_product_set_sale_by_packaging.cron_check_packaging_ir_actions_server
+#: model:ir.cron,cron_name:sale_product_set_sale_by_packaging.cron_check_packaging
+#: model:ir.cron,name:sale_product_set_sale_by_packaging.cron_check_packaging
+msgid "Check sale by packaging on wishlist lines"
+msgstr ""
+
+#. module: sale_product_set_sale_by_packaging
 #: model:ir.model.fields,help:sale_product_set_sale_by_packaging.field_product_product__sell_only_by_packaging_prod_set_tocheck
 #: model:ir.model.fields,help:sale_product_set_sale_by_packaging.field_product_template__sell_only_by_packaging_prod_set_tocheck
 msgid ""
@@ -56,6 +63,7 @@ msgstr ""
 
 #. module: sale_product_set_sale_by_packaging
 #: code:addons/sale_product_set_sale_by_packaging/models/product_set_line.py:0
+#: code:addons/sale_product_set_sale_by_packaging/models/product_set_line.py:0
 #, python-format
 msgid ""
 "The following product(s) can be sold only by packaging: \n"
@@ -67,7 +75,9 @@ msgstr ""
 msgid ""
 "There are product set lines associated to this product\n"
 "                    which do not have a packaging associated.\n"
-"                    It would be better to check them all."
+"                    It would be better to check them all.\n"
+"                    If you don't take any action,\n"
+"                    a cron will assign such lines to the first available packaging."
 msgstr ""
 
 #. module: sale_product_set_sale_by_packaging
