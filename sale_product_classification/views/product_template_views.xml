@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record model="ir.ui.view" id="product_template_only_form_view">
+        <field name="model">product.template</field>
+        <field name="inherit_id" ref="product.product_template_only_form_view"/>
+        <field name="arch" type="xml">
+            <field name="categ_id" position="after">
+                <field name="sale_classification" groups="sales_team.group_sale_manager" attrs="{'invisible': [('product_variant_count', '&gt;', 1)]}" />
+                <field name="sale_classification" readonly="1" groups="!sales_team.group_sale_manager" attrs="{'invisible': [('product_variant_count', '&gt;', 1)]}" />
+                <field name="seasonality_classification" groups="sales_team.group_sale_manager" attrs="{'invisible': [('product_variant_count', '&gt;', 1)]}" />
+                <field name="seasonality_classification" readonly="1" groups="!sales_team.group_sale_manager" attrs="{'invisible': [('product_variant_count', '&gt;', 1)]}" />
+            </field>
+        </field>
+    </record>
+    <record id="product_template_search_view" model="ir.ui.view">
+        <field name="model">product.template</field>
+        <field name="inherit_id" ref="product.product_template_search_view"/>
+        <field name="arch" type="xml">
+            <xpath expr="//filter[@name='filter_to_purchase']" position="after">
+                <separator/>
+                <filter name="filter_sales_classification_a" string="Sales Classification A" domain="[('sale_classification', '=', 'a')]"/>
+                <filter name="filter_sales_classification_b" string="Sales Classification B" domain="[('sale_classification', '=', 'b')]"/>
+                <filter name="filter_sales_classification_c" string="Sales Classification C" domain="[('sale_classification', '=', 'c')]"/>
+                <filter name="filter_sales_classification_d" string="Sales Classification D" domain="[('sale_classification', '=', 'd')]"/>
+            </xpath>
+        </field>
+    </record>
+    <record id="product_normal_form_view" model="ir.ui.view">
+        <field name="model">product.product</field>
+        <field name="inherit_id" ref="product.product_normal_form_view"/>
+        <field name="arch" type="xml">
+            <field name="categ_id" position="after">
+                <field name="sale_classification" groups="sales_team.group_sale_manager"/>
+                <field name="sale_classification" readonly="1" groups="!sales_team.group_sale_manager"/>
+                <field name="seasonality_classification" groups="sales_team.group_sale_manager"/>
+                <field name="seasonality_classification" readonly="1" groups="!sales_team.group_sale_manager"/>
+            </field>
+        </field>
+    </record>
+
+</odoo>
