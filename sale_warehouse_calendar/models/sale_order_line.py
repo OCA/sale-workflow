@@ -26,7 +26,7 @@ class SaleOrderLine(models.Model):
         return self._sale_warehouse_calendar_expected_date(expected_date)
 
     def _sale_warehouse_calendar_expected_date(self, expected_date):
-        calendar = self.order_id.warehouse_id.calendar_id
+        calendar = self.order_id.warehouse_id.calendar2_id
         if calendar:
             customer_lead, security_lead, workload = self._get_delays()
             td_customer_lead = timedelta(days=customer_lead)
@@ -49,7 +49,7 @@ class SaleOrderLine(models.Model):
 
     def _sale_warehouse_calendar_prepare_procurement_values(self, res):
         date_planned = res.get("date_planned")
-        calendar = self.order_id.warehouse_id.calendar_id
+        calendar = self.order_id.warehouse_id.calendar2_id
         if date_planned and calendar:
             customer_lead, security_lead, workload = self._get_delays()
             # plan_days() expect a number of days instead of a delay

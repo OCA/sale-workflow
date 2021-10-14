@@ -73,7 +73,7 @@ class TestSaleOrderDates(SavepointCase):
             {
                 "cutoff_time": CUTOFF_TIME,
                 "apply_cutoff": True,
-                "calendar_id": cls.calendar,
+                "calendar2_id": cls.calendar,
             }
         )
 

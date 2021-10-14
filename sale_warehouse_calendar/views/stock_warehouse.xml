@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!-- Copyright 2021 Camptocamp SA
+     License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl). -->
+<odoo>
+    <record id="view_warehouse" model="ir.ui.view">
+        <field name="name">stock.warehouse</field>
+        <field name="model">stock.warehouse</field>
+        <field name="inherit_id" ref="stock.view_warehouse" />
+        <field name="arch" type="xml">
+            <field name="calendar_id" position="attributes">
+                <attribute name="invisible">1</attribute>
+            </field>
+            <field name="calendar_id" position="after">
+                <field name="calendar2_id" options="{'no_create': True}" />
+            </field>
+        </field>
+    </record>
+</odoo>

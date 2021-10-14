@@ -15,4 +15,5 @@
     "license": "AGPL-3",
     "installable": True,
     "depends": ["sale_cutoff_time_delivery", "stock_warehouse_calendar"],
+    "data": ["views/stock_warehouse.xml"],
 }
