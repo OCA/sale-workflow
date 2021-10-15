@@ -110,8 +110,8 @@
                                 {'name': _('Category'), 'domain': [('categ_name', 'ilike', '$search')]}
                             ],
                             'groups': [
-                                {'name': 'product_history', 'string': _('History'), 'domain': [('sale_order_partner_id_product', '=', True)], 'order': [{'name': 'categ_id'}], 'records_per_page': 25},
-                                {'name': 'product_history_shipping', 'string': _('History (Shipping)'), 'domain': [('sale_order_partner_id_product', '=', True)], 'order': [{'name': 'categ_id'}], 'records_per_page': 25}
+                                {'name': 'product_history', 'string': _('History'), 'domain': [('sale_order_partner_id_product', '=', True), ('sale_ok', '=', True)], 'order': [{'name': 'categ_id'}], 'records_per_page': 25},
+                                {'name': 'product_history_shipping', 'string': _('History (Shipping)'), 'domain': [('sale_order_partner_id_product', '=', True), ('sale_ok', '=', True)], 'order': [{'name': 'categ_id'}], 'records_per_page': 25}
                             ]
                         }"
                     >
