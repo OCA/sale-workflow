@@ -17,8 +17,6 @@
             >sale/static/src/img/sale_quotation_onboarding_bg.jpg</field>
             <field name="internal">1</field>
         </record>
-    </data>
-    <data noupdate="1">
         <!-- MODEL -->
         <record
             id="product_pwa_cache.pwa_cache_product_product_no_big_images"
