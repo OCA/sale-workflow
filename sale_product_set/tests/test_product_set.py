@@ -11,6 +11,7 @@ class TestProductSet(common.SavepointCase):
     @classmethod
     def setUpClass(cls):
         super().setUpClass()
+        cls.env = cls.env(context=dict(cls.env.context, tracking_disable=True))
         cls.so_model = cls.env["sale.order"]
         cls.so = cls.env.ref("sale.sale_order_6")
         cls.product_set_add = cls.env["product.set.add"]
@@ -73,6 +74,30 @@ class TestProductSet(common.SavepointCase):
         )
         seq_line3 = sequence.pop(
             self.env.ref("sale_product_set.product_set_line_computer_3").product_id.id
+        )
+        self.assertTrue(
+            max([v for k, v in sequence.items()]) < seq_line1 < seq_line2 < seq_line3
+        )
+
+    def test_add_set_sequence(self):
+        so = self.so
+        count_lines = len(so.order_line)
+        # Start from -1 to have mixed negative, null and positive (-1, 0, 1)
+        for seq, line in enumerate(self.product_set.set_line_ids, start=-1):
+            line.write({"sequence": seq})
+        wiz = self._get_wiz()
+        wiz.add_set()
+        sequence = {line.product_id: line.sequence for line in so.order_line}
+        self.assertEqual(len(so.order_line), count_lines + 3)
+        # make sure sale order line sequence keep sequence set on set
+        seq_line1 = sequence.pop(
+            self.env.ref("sale_product_set.product_set_line_computer_4").product_id
+        )
+        seq_line2 = sequence.pop(
+            self.env.ref("sale_product_set.product_set_line_computer_1").product_id
+        )
+        seq_line3 = sequence.pop(
+            self.env.ref("sale_product_set.product_set_line_computer_3").product_id
         )
         self.assertTrue(
             max([v for k, v in sequence.items()]) < seq_line1 < seq_line2 < seq_line3
