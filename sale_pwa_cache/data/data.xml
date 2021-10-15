@@ -250,6 +250,26 @@ for record in self:
                 name="vals_discriminant"
             >applied_on,fixed_price,percent_price,base,price_discount,price_surcharge,price_round,price_min_margin,price_max_margin</field>
         </record>
+        <record
+            id="pwa_cache_onchange_sale_order_line_onchange_trigger_product_pricelist_item_pricelist_id"
+            model="pwa.cache.onchange.trigger"
+        >
+            <field
+                name="pwa_cache_id"
+                ref="pwa_cache_onchange_sale_order_line_product_id"
+            />
+            <field name="field_name">order_id.pricelist_id</field>
+            <field name="trigger_type">complete</field>
+            <field name="model">product.pricelist.item</field>
+            <field
+                name="selector_expression"
+            ><![CDATA[
+result = self.pricelist_id
+        ]]></field>
+            <field
+                name="vals_discriminant"
+            >applied_on,fixed_price,percent_price,base,price_discount,price_surcharge,price_round,price_min_margin,price_max_margin</field>
+        </record>
         <record id="pwa_cache_onchange_sale_order_line_product_id" model="pwa.cache">
             <field
                 name="onchange_discriminator_selector_id"
