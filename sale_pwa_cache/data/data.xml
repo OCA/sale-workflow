@@ -248,7 +248,7 @@ for record in self:
         ]]></field>
             <field
                 name="vals_discriminant"
-            >fixed_price,percent_price,base,price_discount,price_surcharge,price_round,price_min_margin,price_max_margin</field>
+            >applied_on,fixed_price,percent_price,base,price_discount,price_surcharge,price_round,price_min_margin,price_max_margin</field>
         </record>
         <record id="pwa_cache_onchange_sale_order_line_product_id" model="pwa.cache">
             <field
