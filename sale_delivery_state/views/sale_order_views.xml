@@ -29,13 +29,37 @@
         </field>
     </record>
 
+    <record id="view_quotation_tree_inherit_delivery_state" model="ir.ui.view">
+        <field name="inherit_id" ref="sale.view_quotation_tree" />
+        <field name="model">sale.order</field>
+        <field name="arch" type="xml">
+            <field name="invoice_status" position="after">
+                <field
+                    name="delivery_state"
+                    widget="badge"
+                    optional="hide"
+                    decoration-info="delivery_state == 'unprocessed'"
+                    decoration-warning="delivery_state == 'partially'"
+                    decoration-success="delivery_state == 'done'"
+                />
+            </field>
+        </field>
+    </record>
+
     <record id="view_order_tree_inherit_delivery_state" model="ir.ui.view">
         <field name="name">sale.order.tree</field>
         <field name="inherit_id" ref="sale.view_order_tree" />
         <field name="model">sale.order</field>
         <field name="arch" type="xml">
             <field name="invoice_status" position="after">
-                <field name="delivery_state" />
+                <field
+                    name="delivery_state"
+                    widget="badge"
+                    optional="hide"
+                    decoration-info="delivery_state == 'unprocessed'"
+                    decoration-warning="delivery_state == 'partially'"
+                    decoration-success="delivery_state == 'done'"
+                />
             </field>
         </field>
     </record>
