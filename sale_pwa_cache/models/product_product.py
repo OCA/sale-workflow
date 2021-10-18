@@ -16,7 +16,9 @@ class ProductProduct(models.Model):
         search="_search_sale_order_partner_id_product",
         readonly=True,
     )
-    categ_name = fields.Char(related="categ_id.name", store=False, readonly=True)
+    categ_name = fields.Char(
+        related="categ_id.name", string="Category name", store=False, readonly=True
+    )
     categ_parent_path = fields.Char(
         related="categ_id.parent_path", store=False, readonly=True
     )

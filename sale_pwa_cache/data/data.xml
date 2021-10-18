@@ -78,7 +78,7 @@
             <field name="model_domain_raw">[]</field>
         </record>
         <!-- ONCHANGE -->
-        <record id="pwa_cache_onchange_sale_order_partern_id" model="pwa.cache">
+        <record id="pwa_cache_onchange_sale_order_partner_id" model="pwa.cache">
             <field name="name">Sale Order - Onchange - partner_id</field>
             <field name="cache_type">onchange</field>
             <field
@@ -93,18 +93,18 @@
             <field name="onchange_field_id" ref="sale.field_sale_order__partner_id" />
         </record>
         <record
-            id="pwa_cache_onchange_sale_order_onchange_partern_id"
+            id="pwa_cache_onchange_sale_order_onchange_partner_id"
             model="pwa.cache.onchange"
         >
-            <field name="pwa_cache_id" ref="pwa_cache_onchange_sale_order_partern_id" />
+            <field name="pwa_cache_id" ref="pwa_cache_onchange_sale_order_partner_id" />
             <field name="field_name">partner_id</field>
             <field name="expression">env['res.partner'].search([])</field>
         </record>
         <record
-            id="pwa_cache_onchange_sale_order_onchange_trigger_res_partner_partern_id"
+            id="pwa_cache_onchange_sale_order_onchange_trigger_res_partner_partner_id"
             model="pwa.cache.onchange.trigger"
         >
-            <field name="pwa_cache_id" ref="pwa_cache_onchange_sale_order_partern_id" />
+            <field name="pwa_cache_id" ref="pwa_cache_onchange_sale_order_partner_id" />
             <field name="field_name">partner_id</field>
             <field name="trigger_type">complete</field>
             <field name="model">res.partner</field>
@@ -118,10 +118,10 @@ result = self
                 name="vals_discriminant"
             >active,property_product_pricelist,parent_id,child_ids,type</field>
         </record>
-        <record id="pwa_cache_onchange_sale_order_partern_id" model="pwa.cache">
+        <record id="pwa_cache_onchange_sale_order_partner_id" model="pwa.cache">
             <field
                 name="onchange_discriminator_selector_id"
-                ref="pwa_cache_onchange_sale_order_onchange_partern_id"
+                ref="pwa_cache_onchange_sale_order_onchange_partner_id"
             />
         </record>
         <record id="pwa_cache_onchange_sale_order_line_product_id" model="pwa.cache">
@@ -240,7 +240,7 @@ for record in self:
             result |= record.product_id
     elif record.applied_on == '1_product':
         if record.product_tmpl_id.sale_ok:
-            result |= record.product_tmp_id.product_variant_ids
+            result |= record.product_tmpl_id.product_variant_ids
     elif record.applied_on == '2_product_category':
         result |= env['product.product'].search([('sale_ok', '=', True), ('categ_id', 'child_of', record.categ_id)])
     elif record.applied_on == '3_global':
@@ -305,7 +305,7 @@ result = self.pricelist_id
             <field name="expression">env['uom.uom'].search([])</field>
         </record>
         <record
-            id="pwa_cache_onchange_sale_order_line_onchange_trigger_uom_uom_product_uom"
+            id="pwa_cache_onchange_sale_order_line_onchange_trigger_product_uom"
             model="pwa.cache.onchange.trigger"
         >
             <field
@@ -328,7 +328,7 @@ result = self
         <record id="pwa_cache_onchange_sale_order_line_product_uom" model="pwa.cache">
             <field
                 name="onchange_discriminator_selector_id"
-                ref="pwa_cache_onchange_sale_order_line_onchange_trigger_uom_uom_product_uom"
+                ref="pwa_cache_onchange_sale_order_line_onchange_product_uom"
             />
         </record>
         <record id="pwa_cache_default_formula_sale_order" model="pwa.cache">
