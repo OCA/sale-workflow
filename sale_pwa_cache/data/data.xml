@@ -242,7 +242,7 @@ for record in self:
         if record.product_tmpl_id.sale_ok:
             result |= record.product_tmpl_id.product_variant_ids
     elif record.applied_on == '2_product_category':
-        result |= env['product.product'].search([('sale_ok', '=', True), ('categ_id', 'child_of', record.categ_id)])
+        result |= env['product.product'].search([('sale_ok', '=', True), ('categ_id', 'child_of', record.categ_id.id)])
     elif record.applied_on == '3_global':
         result |= env['product.product'].search([('sale_ok', '=', True)])
         ]]></field>
