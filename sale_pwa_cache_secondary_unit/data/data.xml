@@ -1,0 +1,308 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <data noupdate="0">
+
+        <!-- MODEL -->
+        <record
+            id="sale_pwa_cache.pwa_cache_model_sale_order_lines_all"
+            model="pwa.cache"
+        >
+            <field
+                name="model_field_included_ids"
+                eval="[(4, ref('sale_pwa_cache.field_sale_order_line__uom_factor'), 0), (4, ref('sale_pwa_cache.field_sale_order_line__uom_rounding'), 0), (4, ref('field_sale_order_line__secondary_uom_factor'), 0), (4, ref('field_sale_order_line__secondary_uom_rounding'), 0), (4, ref('field_sale_order_line__secondary_uom_product_variant_ids'), 0)]"
+            />
+        </record>
+        <record
+            id="product_pwa_cache.pwa_cache_product_product_no_big_images"
+            model="pwa.cache"
+        >
+            <field
+                name="model_field_included_ids"
+                eval="[(4, ref('product_secondary_unit.field_product_product__secondary_uom_ids'), 0)]"
+            />
+        </record>
+        <record id="pwa_cache_model_res_secondary_unit_all" model="pwa.cache">
+            <field name="name">Secondary Units of Measure (All)</field>
+            <field name="cache_type">model</field>
+            <field
+                name="model_id"
+                ref="product_secondary_unit.model_product_secondary_unit"
+            />
+            <field name="model_domain_raw">[]</field>
+            <field
+                name="model_field_included_ids"
+                eval="[(6, 0, [ref('field_product_secondary_unit__product_variant_ids')])]"
+            />
+        </record>
+
+        <!-- ONCHANGE -->
+        <record
+            id="pwa_cache_onchange_sale_order_line_secondary_uom_id"
+            model="pwa.cache"
+        >
+            <field
+                name="name"
+            >Sale Order Line - Onchange - secondary_uom_id [Secondary Unit]</field>
+            <field name="cache_type">onchange</field>
+            <field
+                name="group_ids"
+                eval="[(4, ref('sales_team.group_sale_salesman'), 0)]"
+            />
+            <field
+                name="differentiation_group_id"
+                ref="sales_team.group_sale_salesman_all_leads"
+            />
+            <field name="model_id" ref="sale.model_sale_order_line" />
+            <field
+                name="onchange_field_id"
+                ref="sale_order_secondary_unit.field_sale_order_line__secondary_uom_id"
+            />
+            <field name="internal" eval="True" />
+        </record>
+        <record
+            id="pwa_cache_onchange_sale_order_line_onchange_secondary_uom_id"
+            model="pwa.cache.onchange"
+        >
+            <field
+                name="pwa_cache_id"
+                ref="pwa_cache_onchange_sale_order_line_secondary_uom_id"
+            />
+            <field name="field_name">secondary_uom_id</field>
+            <field name="expression">env['product.secondary.unit'].search([])</field>
+        </record>
+        <record
+            id="pwa_cache_onchange_sale_order_line_onchange_trigger_product_secondary_unit_secondary_uom_id"
+            model="pwa.cache.onchange.trigger"
+        >
+            <field
+                name="pwa_cache_id"
+                ref="pwa_cache_onchange_sale_order_line_secondary_uom_id"
+            />
+            <field name="field_name">secondary_uom_id</field>
+            <field name="trigger_type">complete</field>
+            <field name="model">product.secondary.unit</field>
+            <field
+                name="selector_expression"
+            ><![CDATA[
+# Recompute on direct onchange data or create/unlink
+result = self
+            ]]></field>
+            <field
+                name="vals_discriminant"
+            >active,code,product_tmpl_id,uom_id,factor</field>
+        </record>
+        <record
+            id="pwa_cache_onchange_sale_order_line_secondary_uom_id"
+            model="pwa.cache"
+        >
+            <field
+                name="onchange_discriminator_selector_id"
+                ref="pwa_cache_onchange_sale_order_line_onchange_secondary_uom_id"
+            />
+        </record>
+
+
+        <!-- ONCHANGE FORMULA -->
+        <record
+            id="pwa_cache_onchange_formula_sale_order_line_secondary_uom_qty"
+            model="pwa.cache"
+        >
+            <field
+                name="name"
+            >Sale Order Line - Onchange Formula - secondary_uom_qty [Secondary Unit]</field>
+            <field name="cache_type">onchange_formula</field>
+            <field name="model_id" ref="sale.model_sale_order_line" />
+            <field
+                name="onchange_field_id"
+                ref="sale_order_secondary_unit.field_sale_order_line__secondary_uom_qty"
+            />
+            <field
+                name="code_js"
+            ><![CDATA[
+return new Promise(async (resolve, reject) => {
+    try {
+        const value = {};
+        if (obj.secondary_uom_id > 0) {
+            const secondary_uom_id = await db.browse("product.secondary.unit", obj.secondary_uom_id, ["factor"]);
+            const uom_id = await db.browse("uom.uom", obj.product_uom, ["factor", "rounding"]);
+            value.secondary_uom_factor = secondary_uom_id.factor;
+            value.uom_factor = uom_id.factor;
+            value.uom_rounding = uom_id.rounding;
+            const factor = secondary_uom_id.factor * uom_id.factor;
+            const qty = round_precision(obj.secondary_uom_qty * factor, uom_id.rounding);
+            if (obj.product_uom_qty != qty) {
+                value.product_uom_qty = qty;
+            }
+        }
+        return resolve({value: value});
+    } catch (err) {
+        return reject(err);
+    }
+});
+            ]]></field>
+            <field name="internal" eval="True" />
+        </record>
+
+        <record
+            id="pwa_cache_onchange_formula_sale_order_line_product_uom_qty"
+            model="pwa.cache"
+        >
+            <field
+                name="name"
+            >Sale Order Line - Onchange Formula - product_uom_qty [Secondary Unit]</field>
+            <field name="cache_type">onchange_formula</field>
+            <field name="model_id" ref="sale.model_sale_order_line" />
+            <field
+                name="onchange_field_id"
+                ref="sale.field_sale_order_line__product_uom_qty"
+            />
+            <field
+                name="code_js"
+            ><![CDATA[
+return new Promise(async (resolve, reject) => {
+    try {
+        const value = {};
+        if (obj.secondary_uom_id > 0) {
+            const secondary_uom_id = await db.browse("product.secondary.unit", obj.secondary_uom_id, ["factor", "uom_id"]);
+            const secondary_uom_uom_id = await db.browse("product.secondary.unit", secondary_uom_id[0], ["rounding"]);
+            const uom_id = await db.browse("uom.uom", obj.product_uom, ["factor", "rounding"]);
+            value.secondary_uom_factor = secondary_uom_id.factor;
+            value.secondary_uom_rounding = secondary_uom_id.rounding;
+            value.uom_factor = uom_id.factor;
+            value.uom_rounding = uom_id.rounding;
+            const factor = secondary_uom_id.factor * uom_id.factor;
+            const qty = round_precision(obj.product_uom_qty / (factor || 1.0), secondary_uom_uom_id.rounding);
+            if (obj.secondary_uom_qty != qty) {
+                value.secondary_uom_qty = qty;
+            }
+        }
+        return resolve({value: value});
+    } catch (err) {
+        return reject(err);
+    }
+});
+            ]]></field>
+            <field name="internal" eval="True" />
+        </record>
+
+        <record
+            id="pwa_cache_onchange_formula_sale_order_line_product_uom"
+            model="pwa.cache"
+        >
+            <field
+                name="name"
+            >Sale Order Line - Onchange Formula - product_uom [Secondary Unit]</field>
+            <field name="cache_type">onchange_formula</field>
+            <field name="model_id" ref="sale.model_sale_order_line" />
+            <field
+                name="onchange_field_id"
+                ref="sale.field_sale_order_line__product_uom"
+            />
+            <field
+                name="code_js"
+            ><![CDATA[
+return new Promise(async (resolve, reject) => {
+    try {
+        const value = {};
+        if (obj.secondary_uom_id > 0) {
+            const secondary_uom_id = await db.browse("product.secondary.unit", obj.secondary_uom_id, ["factor"]);
+            const uom_id = await db.browse("uom.uom", obj.product_uom, ["factor", "rounding"]);
+            value.secondary_uom_factor = secondary_uom_id.factor;
+            value.uom_factor = uom_id.factor;
+            value.uom_rounding = uom_id.rounding;
+            const factor = uom_id.factor * secondary_uom_id.factor;
+            const qty = round_precision(obj.product_uom_qty / (factor || 1.0), uom_id.rounding);
+            if (obj.secondary_uom_qty != qty) {
+                value.secondary_uom_qty = qty;
+            }
+        }
+        return resolve({value: value});
+    } catch (err) {
+        return reject(err);
+    }
+});
+            ]]></field>
+            <field name="internal" eval="True" />
+        </record>
+
+        secondary_uom_factor = fields.Float(related="secondary_uom_id.factor", store=False, readonly=True)
+    secondary_uom_rounding = fields.Float(related="secondary_uom_id.uom_id.rounding", store=False, readonly=True)
+    secondary_uom_product_variant_ids = fields.One2many(related="secondary_uom_id.product_tmpl_id.product_variant_ids", store=False, readonly=True)
+
+
+        <record
+            id="pwa_cache_onchange_formula_sale_order_line_secondary_uom_id"
+            model="pwa.cache"
+        >
+            <field
+                name="name"
+            >Sale Order Line - Onchange Formula - secondary_uom_id [Secondary Unit]</field>
+            <field name="cache_type">onchange_formula</field>
+            <field name="model_id" ref="sale.model_sale_order_line" />
+            <field
+                name="onchange_field_id"
+                ref="sale_order_secondary_unit.field_sale_order_line__secondary_uom_id"
+            />
+            <field
+                name="code_js"
+            ><![CDATA[
+return new Promise(async (resolve, reject) => {
+    try {
+        const value = {};
+        if (obj.secondary_uom_id > 0) {
+            const secondary_uom_id = await db.browse("product.secondary.unit", obj.secondary_uom_id, ["factor"]);
+            const uom_id = await db.browse("uom.uom", obj.product_uom, ["factor", "rounding"]);
+            value.secondary_uom_factor = secondary_uom_id.factor;
+            value.uom_factor = uom_id.factor;
+            value.uom_rounding = uom_id.rounding;
+            const factor = secondary_uom_id.factor * uom_id.factor;
+            const qty = round_precision(obj.secondary_uom_qty * factor, uom_id.rounding);
+            if (obj.product_uom_qty != qty) {
+                value.product_uom_qty = qty;
+            }
+        }
+        return resolve({value: value});
+    } catch (err) {
+        return reject(err);
+    }
+});
+            ]]></field>
+            <field name="internal" eval="True" />
+        </record>
+
+        <record
+            id="pwa_cache_onchange_formula_sale_order_line_product_id_secondary_unit"
+            model="pwa.cache"
+        >
+            <field
+                name="name"
+            >Sale Order Line - Onchange Formula - product_id [Secondary Unit]</field>
+            <field name="cache_type">onchange_formula</field>
+            <field name="sequence">17</field>
+            <field name="model_id" ref="sale.model_sale_order_line" />
+            <field
+                name="onchange_field_id"
+                ref="sale.field_sale_order_line__product_id"
+            />
+            <field
+                name="code_js"
+            ><![CDATA[
+return new Promise(async (resolve, reject) => {
+    try {
+        const product_id = await db.browse("product.product", obj.product_id, ["secondary_uom_ids"]);
+        if (_.isEmpty(product_id)) {
+            return reject("Product ID not found!");
+        }
+        return resolve({
+            value: {
+                product_id_secondary_uom_ids: product_id.secondary_uom_ids
+            }
+        });
+    } catch (err) {
+        return reject(err);
+    }
+});
+            ]]></field>
+        </record>
+    </data>
+</odoo>
