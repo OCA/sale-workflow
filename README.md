@@ -65,6 +65,7 @@ addon | version | maintainers | summary
 [sale_product_seasonality](sale_product_seasonality/) | 14.0.1.1.0 |  | Integrates rules for products' seasonal availability with sales
 [sale_product_set](sale_product_set/) | 14.0.1.2.0 |  | Sale product set
 [sale_product_set_packaging_qty](sale_product_set_packaging_qty/) | 14.0.1.0.0 |  | Manage packaging and quantities on product set lines
+[sale_product_set_sale_by_packaging](sale_product_set_sale_by_packaging/) | 14.0.1.0.0 |  | Glue module between `sale_by_packaging` and `sale_product_set_packaging_qty`.
 [sale_quotation_number](sale_quotation_number/) | 14.0.1.0.2 |  | Different sequence for sale quotations
 [sale_shipping_info_helper](sale_shipping_info_helper/) | 14.0.1.0.0 |  | Add shipping amounts on sale order
 [sale_start_end_dates](sale_start_end_dates/) | 14.0.1.0.0 | [![alexis-via](https://github.com/alexis-via.png?size=30px)](https://github.com/alexis-via) | Adds start date and end date on sale order lines
