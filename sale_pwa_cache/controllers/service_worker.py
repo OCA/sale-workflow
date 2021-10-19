@@ -23,7 +23,11 @@ class ServiceWorker(ServiceWorker):
     def _get_pwa_params(self):
         res = super()._get_pwa_params()
         config_parameter_obj_sudo = request.env["ir.config_parameter"].sudo()
-        res["is_sale_auto_confirm"] = config_parameter_obj_sudo.get_param(
-            "pwa.sale.auto.confirm", default="True"
+        res["is_sale_auto_confirm"] = (
+            1
+            if config_parameter_obj_sudo.get_param(
+                "pwa.sale.auto.confirm", default="True"
+            )
+            else 0
         )
         return res
