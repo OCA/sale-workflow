@@ -55,7 +55,7 @@ class SaleCoupon(models.Model):
         discount_product = self.program_id.discount_line_product_id
         # Supposed to be only one such line.
         return sale_order.order_line.filtered(
-            lambda r: r.product_id == discount_product
+            lambda r: r.is_reward_line and r.product_id == discount_product
         )[0]
 
     def _prepare_consumption_line(self, sale_order_line):
