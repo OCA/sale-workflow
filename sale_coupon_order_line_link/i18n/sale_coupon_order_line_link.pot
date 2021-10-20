@@ -31,6 +31,17 @@ msgid "Link on the reward lines generated meeting this line as criteria"
 msgstr ""
 
 #. module: sale_coupon_order_line_link
+#: model:ir.model.fields,help:sale_coupon_order_line_link.field_sale_order_line__reward_origin_generated_line_ids
+msgid ""
+"Origin Link on the reward lines generated meeting this line as criteria"
+msgstr ""
+
+#. module: sale_coupon_order_line_link
+#: model:ir.model.fields,field_description:sale_coupon_order_line_link.field_sale_order_line__reward_origin_generated_line_ids
+msgid "Origin Reward Generated lines"
+msgstr ""
+
+#. module: sale_coupon_order_line_link
 #: model_terms:ir.ui.view,arch_db:sale_coupon_order_line_link.view_order_product_search
 msgid "Promotion Lines"
 msgstr ""
