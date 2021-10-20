@@ -139,6 +139,14 @@ class SaleOrderLine(models.Model):
         string="Reward Generated lines",
         help="Link on the reward lines generated meeting this line as criteria",
     )
+    reward_origin_generated_line_ids = fields.Many2many(
+        comodel_name="sale.order.line",
+        relation="sale_line_reward_generated_line_rel",
+        column1="reward_generated_line_id",
+        column2="sale_line_id",
+        string="Origin Reward Generated lines",
+        help="Origin Link on the reward lines generated meeting this line as criteria",
+    )
 
     def write(self, vals):
         """When the reward line is update we should refresh the line links as well"""
