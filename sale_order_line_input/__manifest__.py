@@ -3,7 +3,7 @@
 {
     "name": "Sale Order Line Input",
     "summary": "Search, create or modify directly sale order lines",
-    "version": "13.0.1.0.3",
+    "version": "13.0.1.1.0",
     "category": "Sales",
     "website": "https://github.com/OCA/sale-workflow",
     "author": "Tecnativa, Odoo Community Association (OCA)",
