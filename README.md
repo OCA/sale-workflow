@@ -67,7 +67,7 @@ addon | version | maintainers | summary
 [sale_order_line_date](sale_order_line_date/) | 13.0.1.1.0 |  | Adds a commitment date to each sale order line.
 [sale_order_line_delivery_state](sale_order_line_delivery_state/) | 13.0.1.0.0 |  | Show the delivery state on the sale order line
 [sale_order_line_description](sale_order_line_description/) | 13.0.1.0.0 |  | Sale order line description
-[sale_order_line_input](sale_order_line_input/) | 13.0.1.0.3 |  | Search, create or modify directly sale order lines
+[sale_order_line_input](sale_order_line_input/) | 13.0.1.1.0 |  | Search, create or modify directly sale order lines
 [sale_order_line_packaging_qty](sale_order_line_packaging_qty/) | 13.0.1.2.2 |  | Define quantities according to product packaging on sale order lines
 [sale_order_line_price_history](sale_order_line_price_history/) | 13.0.1.1.0 |  | Sale order line price history
 [sale_order_lot_selection](sale_order_lot_selection/) | 13.0.2.0.0 | [![bodedra](https://github.com/bodedra.png?size=30px)](https://github.com/bodedra) | Sale Order Lot Selection
