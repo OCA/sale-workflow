@@ -7,14 +7,15 @@
             <form string="Add from Stock">
                 <group>
                      <group colspan="4">
-                         <field name="sale_id" invisible="1" />
-                         <field name="product_tmpl_id" />
-                         <field name="value_ids" widget="many2many_tags" />
-                         <field name="serial_list" />
-                         <field name="list_limit" />
+                        <field name="sale_id" invisible="1" />
+                        <field name="product_template_attribute_value_ids" invisible="1" />
+                        <field name="product_tmpl_id" />
+                        <field name="value_ids" widget="many2many_tags" domain="[('id', 'in', product_template_attribute_value_ids)]" />
+                        <field name="serial_list" />
+                        <field name="list_limit" />
                      </group>
                      <group colspan="4">
-                         <field
+                        <field
                             name="quant_ids"
                             widget="2many_list"
                             nolabel="1"

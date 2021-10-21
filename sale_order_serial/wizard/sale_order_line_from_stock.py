@@ -16,6 +16,17 @@ class SaleOrderLineFromStock(models.TransientModel):
     serial_list = fields.Text(string="Serial List")
     quant_ids = fields.Many2many("stock.quant", string="Quants", readonly=False)
     list_limit = fields.Integer(string="Search Limit", default=10)
+    product_template_attribute_value_ids = fields.Many2many(
+        "product.attribute.value",
+        string="Product Template Attribute Values",
+        compute="_compute_values",
+    )
+
+    @api.depends("product_tmpl_id")
+    def _compute_values(self):
+        for wiz in self:
+            value_ids = wiz.product_tmpl_id.attribute_line_ids.mapped("value_ids")
+            wiz.product_template_attribute_value_ids = value_ids
 
     @api.onchange("product_tmpl_id", "serial_list", "value_ids", "list_limit")
     def onchange_quant_ids(self):
@@ -32,7 +43,11 @@ class SaleOrderLineFromStock(models.TransientModel):
             ]
             for value in self.value_ids:
                 domain.append(
-                    ("product_id.product_template_attribute_value_ids", "in", value.ids)
+                    (
+                        "product_id.product_template_attribute_value_ids.product_attribute_value_id",
+                        "in",
+                        value.ids,
+                    )
                 )
             if self.serial_list:
                 domain.append(("lot_id.name", "in", self.serial_list.split("\n")))
