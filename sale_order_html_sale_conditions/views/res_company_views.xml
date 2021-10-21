@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+
+    <record id="view_company_form_inherit" model="ir.ui.view">
+        <field name="model">res.company</field>
+        <field name="inherit_id" ref="base.view_company_form" />
+        <field name="arch" type="xml">
+
+            <notebook position="inside">
+                <page name="sale_conditions" string="Sale Conditions">
+                    <field name="default_sale_conditions" nolabel="1" />
+                </page>
+            </notebook>
+
+        </field>
+    </record>
+
+</odoo>

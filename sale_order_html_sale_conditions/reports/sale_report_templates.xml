@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <template
+        id="report_saleorder_document"
+        inherit_id="sale.report_saleorder_document"
+    >
+
+        <p id="fiscal_position_remark" position="after">
+            <div t-if="doc.sale_conditions" style="page-break-before:always;">
+                <p><span t-raw="doc.sale_conditions" /></p>
+            </div>
+        </p>
+
+    </template>
+</odoo>
