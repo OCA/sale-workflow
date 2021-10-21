@@ -36,8 +36,7 @@
                 />
                 <field
                     name="order_partner_id"
-                    domain="[('customer','=',True)]"
-                    context="{'search_default_customer':1, 'show_address': 1}"
+                    context="{'res_partner_search_mode': 'customer', 'default_is_company': True, 'default_customer_rank': 1}"
                     options='{"always_reload": True}'
                     required="1"
                     attrs="{'readonly': [('order_partner_id', '!=', False), ('order_id', '!=', False)]}"
