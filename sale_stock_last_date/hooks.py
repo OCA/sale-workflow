@@ -3,5 +3,7 @@
 
 
 def pre_init_hook(cr):
-    cr.execute("""
-    ALTER TABLE sale_order_line ADD COLUMN last_delivery_date TIMESTAMP;""")
+    cr.execute(
+        """
+    ALTER TABLE sale_order_line ADD COLUMN last_delivery_date TIMESTAMP;"""
+    )

@@ -7,19 +7,19 @@ class SaleOrderLine(models.Model):
     _inherit = "sale.order.line"
 
     last_delivery_date = fields.Datetime(
-        string="Last delivery date",
-        compute="_compute_last_delivery_date",
-        store=True
+        string="Last delivery date", compute="_compute_last_delivery_date", store=True
     )
 
     @api.depends("move_ids.state", "move_ids.date")
     def _compute_last_delivery_date(self):
         for line in self:
-            stock_moves = line.move_ids.filtered(lambda m: (
-                m.picking_code == "outgoing" and
-                m.state == "done" and
-                not m.scrapped
-            ))
+            stock_moves = line.move_ids.filtered(
+                lambda m: (
+                    m.picking_code == "outgoing"
+                    and m.state == "done"
+                    and not m.scrapped
+                )
+            )
             last_stock_move = stock_moves.sorted("date", reverse=True)
             line.last_delivery_date = (
                 last_stock_move and last_stock_move[0].date or False
