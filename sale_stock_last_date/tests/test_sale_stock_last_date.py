@@ -31,11 +31,14 @@ class TestSaleStockLastDate(SavepointCase):
     def _return_whole_picking(self, picking, to_refund=True):
         """Helper method to create a return of the original picking. It could
         be refundable or not"""
-        return_wiz = (
-            self.env["stock.return.picking"]
-            .with_context(active_ids=picking.ids, active_id=picking.ids[0])
-            .create({})
+        return_wiz_form = Form(
+            self.env["stock.return.picking"].with_context(
+                active_ids=picking.ids,
+                active_id=picking.ids[0],
+                active_model="stock.picking",
+            )
         )
+        return_wiz = return_wiz_form.save()
         return_wiz.product_return_moves.quantity = picking.move_lines.quantity_done
         return_wiz.product_return_moves.to_refund = to_refund
         res = return_wiz.create_returns()
