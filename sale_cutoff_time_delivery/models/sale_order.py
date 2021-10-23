@@ -151,13 +151,9 @@ class SaleOrderLine(models.Model):
                 hour=cutoff.get("hour"), minute=cutoff.get("minute"), second=0
             )
         if date <= utc_cutoff_datetime or keep_same_day:
-            # Postpone delivery for date planned before cutoff to cutoff time
-            return date.replace(
-                hour=utc_cutoff_datetime.hour,
-                minute=utc_cutoff_datetime.minute,
-                second=0,
-            )
-        # Postpone delivery for order confirmed after cutoff to day after
-        return date.replace(
-            hour=utc_cutoff_datetime.hour, minute=utc_cutoff_datetime.minute, second=0,
-        ) + timedelta(days=1)
+            # Postpone delivery to today's cutoff
+            new_date = utc_cutoff_datetime
+        else:
+            # Postpone delivery to the next cutoff
+            new_date = utc_cutoff_datetime + timedelta(days=1)
+        return new_date
