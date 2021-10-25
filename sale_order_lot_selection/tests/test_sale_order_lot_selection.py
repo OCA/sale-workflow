@@ -29,9 +29,7 @@ class TestSaleOrderLotSelection(test_common.SingleTransactionCase):
         self.sale = self.env.ref("sale_order_lot_selection.sale1")
 
     def _stock_quantity(self, product, lot, location):
-        return product.with_context(
-            {"lot_id": lot.id, "location": location.id}
-        ).qty_available
+        return product.with_context(lot_id=lot.id, location=location.id).qty_available
 
     def test_stock_available_wrong_lot(self):
         # We should not be able to reserve if some stock is available but with another
