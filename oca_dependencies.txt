@@ -1,0 +1,1 @@
+stock-logistics-workflow https://github.com/bizzappdev/stock-logistics-workflow 15.0-stock-restrict-lot-bad-rus
