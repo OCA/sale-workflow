@@ -82,6 +82,7 @@ setuptools.setup(
         'odoo13-addon-sale_shipping_info_helper',
         'odoo13-addon-sale_sourced_by_line',
         'odoo13-addon-sale_stock_delivery_address',
+        'odoo13-addon-sale_stock_last_date',
         'odoo13-addon-sale_stock_picking_blocking',
         'odoo13-addon-sale_stock_picking_note',
         'odoo13-addon-sale_stock_return_request',
