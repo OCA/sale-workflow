@@ -36,7 +36,10 @@ and accounting.
 Configuration
 =============
 
-To configure this module, you need to:
+To be able to handle global discounts, you need first to give to your user the 
+"Manage Global Discounts" permission.
+
+Then, you need to:
 
 #. Go to *Settings > Technical > Parameters > Global Discounts*
 #. Add a new discount.
