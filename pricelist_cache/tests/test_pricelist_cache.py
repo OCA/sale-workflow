@@ -107,96 +107,101 @@ class TestPricelistCache(TestPricelistCacheCommon):
         self.assertTrue(p8_list0_cache)
         self.assertEqual(p8_list0_cache.price, 100.0)
 
-    @check_duplicates
-    def test_update_pricelist_item(self):
-        cache_model = self.cache_model
-        # case 1, product price is not set on a parent pricelist
-        p7_list4_item = self.env.ref("pricelist_cache.item12")
-        p7_list4_item.fixed_price = 42.0
-        p7_cache = cache_model.search(
-            [
-                ("product_id", "=", self.p7.id),
-                ("pricelist_id", "=", self.list4.id),
-            ]
-        )
-        self.assertEqual(p7_cache.price, 42.0)
-        # case 2, product price is set on the parent pricelist
-        p6_list4_item = self.env.ref("pricelist_cache.item11")
-        p6_list4_item.fixed_price = 52.0
-        p6_cache = cache_model.search(
-            [
-                ("product_id", "=", self.p6.id),
-                ("pricelist_id", "=", self.list4.id),
-            ]
-        )
-        self.assertEqual(p6_cache.price, 52.0)
-        # case 3, dates are set on the item, price unchanged
-        p6_list2_item = self.env.ref("pricelist_cache.item7")
-        p6_list2_item.fixed_price = 62.0
-        p6_cache = cache_model.search(
-            [
-                ("product_id", "=", self.p6.id),
-                ("pricelist_id", "=", self.list2.id),
-            ]
-        )
-        self.assertEqual(p6_cache.price, 50.0)
-        # case 4, dates are set on the parent's pricelist item: price unchanged
-        p6_list3_item = self.env.ref("pricelist_cache.item9")
-        p6_list3_item.fixed_price = 72.0
-        p6_cache = cache_model.search(
-            [
-                ("product_id", "=", self.p6.id),
-                ("pricelist_id", "=", self.list3.id),
-            ]
-        )
-        self.assertEqual(p6_cache.price, 25.0)
+    # Since we do not handle pricelist item updates anymore,
+    # these three tests will be adapted and re-enabled afterwards.
+    # test_update_pricelist_item, test_update_product_price,
+    # and test_retrieve_skipped_cache
 
-    @check_duplicates
-    def test_update_product_price(self):
-        self.p7.write({"list_price": 42})
-        # p6 should be updated only for list0 and list5
-        p7_l0_cache = self.cache_model.search(
-            [
-                ("product_id", "=", self.p7.id),
-                ("pricelist_id", "=", self.list0.id),
-            ]
-        )
-        self.assertEqual(p7_l0_cache.price, 42)
-        p7_l1_cache = self.cache_model.search(
-            [
-                ("product_id", "=", self.p7.id),
-                ("pricelist_id", "=", self.list1.id),
-            ]
-        )
-        self.assertFalse(p7_l1_cache)
-        p7_l2_cache = self.cache_model.search(
-            [
-                ("product_id", "=", self.p7.id),
-                ("pricelist_id", "=", self.list2.id),
-            ]
-        )
-        self.assertFalse(p7_l2_cache)
-        p7_l3_cache = self.cache_model.search(
-            [
-                ("product_id", "=", self.p7.id),
-                ("pricelist_id", "=", self.list3.id),
-            ]
-        )
-        self.assertFalse(p7_l3_cache)
-        p7_l4_cache = self.cache_model.search(
-            [
-                ("product_id", "=", self.p7.id),
-                ("pricelist_id", "=", self.list4.id),
-            ]
-        )
-        self.assertEqual(p7_l4_cache.price, 50)
-        p7_l5_cache = self.cache_model.search(
-            [
-                ("product_id", "=", self.p7.id),
-                ("pricelist_id", "=", self.list5.id),
-            ]
-        )
-        self.assertEqual(p7_l5_cache.price, 62)
+    # @check_duplicates
+    # def test_update_pricelist_item(self):
+    #     cache_model = self.cache_model
+    #     # case 1, product price is not set on a parent pricelist
+    #     p7_list4_item = self.env.ref("pricelist_cache.item12")
+    #     p7_list4_item.fixed_price = 42.0
+    #     p7_cache = cache_model.search(
+    #         [
+    #             ("product_id", "=", self.p7.id),
+    #             ("pricelist_id", "=", self.list4.id),
+    #         ]
+    #     )
+    #     self.assertEqual(p7_cache.price, 42.0)
+    #     # case 2, product price is set on the parent pricelist
+    #     p6_list4_item = self.env.ref("pricelist_cache.item11")
+    #     p6_list4_item.fixed_price = 52.0
+    #     p6_cache = cache_model.search(
+    #         [
+    #             ("product_id", "=", self.p6.id),
+    #             ("pricelist_id", "=", self.list4.id),
+    #         ]
+    #     )
+    #     self.assertEqual(p6_cache.price, 52.0)
+    #     # case 3, dates are set on the item, price unchanged
+    #     p6_list2_item = self.env.ref("pricelist_cache.item7")
+    #     p6_list2_item.fixed_price = 62.0
+    #     p6_cache = cache_model.search(
+    #         [
+    #             ("product_id", "=", self.p6.id),
+    #             ("pricelist_id", "=", self.list2.id),
+    #         ]
+    #     )
+    #     self.assertEqual(p6_cache.price, 50.0)
+    #     # case 4, dates are set on the parent's pricelist item: price unchanged
+    #     p6_list3_item = self.env.ref("pricelist_cache.item9")
+    #     p6_list3_item.fixed_price = 72.0
+    #     p6_cache = cache_model.search(
+    #         [
+    #             ("product_id", "=", self.p6.id),
+    #             ("pricelist_id", "=", self.list3.id),
+    #         ]
+    #     )
+    #     self.assertEqual(p6_cache.price, 25.0)
+
+    # @check_duplicates
+    # def test_update_product_price(self):
+    #     self.p7.write({"list_price": 42})
+    #     # p6 should be updated only for list0 and list5
+    #     p7_l0_cache = self.cache_model.search(
+    #         [
+    #             ("product_id", "=", self.p7.id),
+    #             ("pricelist_id", "=", self.list0.id),
+    #         ]
+    #     )
+    #     self.assertEqual(p7_l0_cache.price, 42)
+    #     p7_l1_cache = self.cache_model.search(
+    #         [
+    #             ("product_id", "=", self.p7.id),
+    #             ("pricelist_id", "=", self.list1.id),
+    #         ]
+    #     )
+    #     self.assertFalse(p7_l1_cache)
+    #     p7_l2_cache = self.cache_model.search(
+    #         [
+    #             ("product_id", "=", self.p7.id),
+    #             ("pricelist_id", "=", self.list2.id),
+    #         ]
+    #     )
+    #     self.assertFalse(p7_l2_cache)
+    #     p7_l3_cache = self.cache_model.search(
+    #         [
+    #             ("product_id", "=", self.p7.id),
+    #             ("pricelist_id", "=", self.list3.id),
+    #         ]
+    #     )
+    #     self.assertFalse(p7_l3_cache)
+    #     p7_l4_cache = self.cache_model.search(
+    #         [
+    #             ("product_id", "=", self.p7.id),
+    #             ("pricelist_id", "=", self.list4.id),
+    #         ]
+    #     )
+    #     self.assertEqual(p7_l4_cache.price, 50)
+    #     p7_l5_cache = self.cache_model.search(
+    #         [
+    #             ("product_id", "=", self.p7.id),
+    #             ("pricelist_id", "=", self.list5.id),
+    #         ]
+    #     )
+    #     self.assertEqual(p7_l5_cache.price, 62)
 
     @check_duplicates
     def test_retrieve_price_list(self):
@@ -244,33 +249,33 @@ class TestPricelistCache(TestPricelistCacheCommon):
         l4_p8_cache = l4_cache.filtered(lambda c: c.product_id == self.p8)
         self.assertEqual(l0_p8_cache, l4_p8_cache)
 
-    @check_duplicates
-    @freeze_time("2021-04-15")
-    def test_retrieve_skipped_cache(self):
-        # When a pricelist item is updated, if it's based on dates, then the
-        # cache update is skipped until the next cron cache update.
-        # If one of those prices have to be retrieved, then the price would
-        # be wrong in the cache. This tests ensures that calling
-        # `get_cached_prices_for_pricelist` updates cache prices that
-        # have been skipped
-        item9 = self.env.ref("pricelist_cache.item9")
-        item9.fixed_price = 32.0
-        self.assertTrue(item9.pricelist_cache_update_skipped)
-        item9_cache = self.env["product.pricelist.cache"].search(
-            [
-                ("product_id", "=", item9.product_id.id),
-                ("pricelist_id", "=", item9.pricelist_id.id),
-            ]
-        )
-        # item has been skipped, since parent item (item7) is based on dates
-        self.assertEqual(item9_cache.price, 25.0)
-        item9_cache2 = self.cache_model.get_cached_prices_for_pricelist(
-            item9.pricelist_id, item9.product_id
-        )
-        # Since cache update was previously skipped, get_cache_prices_for_pricelist
-        # should have updated it "on the fly"
-        self.assertEqual(item9_cache2.price, 32.0)
-        self.assertFalse(item9.pricelist_cache_update_skipped)
+    # @check_duplicates
+    # @freeze_time("2021-04-15")
+    # def test_retrieve_skipped_cache(self):
+    #     # When a pricelist item is updated, if it's based on dates, then the
+    #     # cache update is skipped until the next cron cache update.
+    #     # If one of those prices have to be retrieved, then the price would
+    #     # be wrong in the cache. This tests ensures that calling
+    #     # `get_cached_prices_for_pricelist` updates cache prices that
+    #     # have been skipped
+    #     item9 = self.env.ref("pricelist_cache.item9")
+    #     item9.fixed_price = 32.0
+    #     self.assertTrue(item9.pricelist_cache_update_skipped)
+    #     item9_cache = self.env["product.pricelist.cache"].search(
+    #         [
+    #             ("product_id", "=", item9.product_id.id),
+    #             ("pricelist_id", "=", item9.pricelist_id.id),
+    #         ]
+    #     )
+    #     # item has been skipped, since parent item (item7) is based on dates
+    #     self.assertEqual(item9_cache.price, 25.0)
+    #     item9_cache2 = self.cache_model.get_cached_prices_for_pricelist(
+    #         item9.pricelist_id, item9.product_id
+    #     )
+    #     # Since cache update was previously skipped, get_cache_prices_for_pricelist
+    #     # should have updated it "on the fly"
+    #     self.assertEqual(item9_cache2.price, 32.0)
+    #     self.assertFalse(item9.pricelist_cache_update_skipped)
 
     @check_duplicates
     def test_pricelist_methods(self):
@@ -279,8 +284,15 @@ class TestPricelistCache(TestPricelistCacheCommon):
         expected_root_pricelist_ids = [
             self.list0.id,
             self.env.ref("product.list0").id,
-        ].sort()
-        root_pricelist_ids = pricelist_model._get_root_pricelist_ids().sort()
+        ]
+        # This pricelist is created when stock module is installed. No other
+        # way is found yet to identify it.
+        pl = pricelist_model.search([("name", "=", "Default USD pricelist")])
+        if pl:
+            expected_root_pricelist_ids.append(pl.id)
+        expected_root_pricelist_ids.sort()
+        root_pricelist_ids = pricelist_model._get_root_pricelist_ids()
+        root_pricelist_ids.sort()
         self.assertEqual(root_pricelist_ids, expected_root_pricelist_ids)
         # test _get_factor_pricelist_ids
         expected_factor_pricelist_ids = self.list5.ids
@@ -303,6 +315,7 @@ class TestPricelistCache(TestPricelistCacheCommon):
         factor_pricelist = pricelist_model.browse(factor_pricelist_ids)
         self.assertTrue(factor_pricelist._is_factor_pricelist())
         root_pricelists = pricelist_model.browse(root_pricelist_ids)
+        self.assertEqual(len(root_pricelists), len(expected_root_pricelist_ids))
         for pricelist in root_pricelists:
             self.assertFalse(pricelist._is_factor_pricelist())
         # test _recursive_get_items
@@ -311,9 +324,12 @@ class TestPricelistCache(TestPricelistCacheCommon):
             self.env.ref("pricelist_cache.item5").id,
             self.env.ref("pricelist_cache.item7").id,
             self.env.ref("pricelist_cache.item9").id,
-        ].sort()
+        ]
+        expected_item_ids.sort()
         items = self.list3._recursive_get_items(self.p6)
-        self.assertEqual(items.ids.sort(), expected_item_ids)
+        item_ids = items.ids
+        item_ids.sort()
+        self.assertEqual(item_ids, expected_item_ids)
         # test _has_date_range
         self.assertTrue(items._has_date_range())
         items -= self.env.ref("pricelist_cache.item7")
@@ -336,48 +352,38 @@ class TestPricelistCache(TestPricelistCacheCommon):
     def test_cache_at_product_create(self):
         """Ensures that cache prices are created at product creation on each global
         pricelist."""
-        # TODO/FIXME : As all modules are installed by travis, some fields
-        # that does not exists in `product` are required.
-        # Add the required dependencies in a future release
-        # # Stock is a dependency for the creation of this product
-        # new_product = self.env["product.product"].create(
-        # {"name": "Dehydrated Water", "list_price": 42}
-        # )
-        # # global pricelist, cache created, regular price
-        # list0_cache = self.cache_model.search(
-        # [
-        # ("product_id", "=", new_product.id),
-        # ("pricelist_id", "=", self.list0.id),
-        # ]
-        # )
-        # self.assertTrue(list0_cache)
-        # self.assertEqual(list0_cache.price, 42)
-        # # Not a global pricelist, not defined
-        # not_global_lists_cache = self.cache_model.search(
-        # [
-        # ("product_id", "=", new_product.id),
-        # (
-        # "pricelist_id",
-        # "in",
-        # [
-        # self.list1.id,
-        # self.list2.id,
-        # self.list3.id,
-        # self.list4.id,
-        # ],
-        # ),
-        # ]
-        # )
-        # self.assertFalse(not_global_lists_cache)
-        # # Factor pricelist, defined, price +20
-        # list5_cache = self.cache_model.search(
-        # [
-        # ("product_id", "=", new_product.id),
-        # ("pricelist_id", "=", self.list5.id),
-        # ]
-        # )
-        # self.assertTrue(list5_cache)
-        # self.assertEqual(list5_cache.price, 62)
+        # TODO: Add the required dependencies in a future release
+        # Stock is a dependency for the creation of this product
+        new_product = self.env["product.product"].create(
+            {"name": "Dehydrated Water", "list_price": 42}
+        )
+        # global pricelist, cache created, regular price
+        list0_cache = self.cache_model.search(
+            [
+                ("product_id", "=", new_product.id),
+                ("pricelist_id", "=", self.list0.id),
+            ]
+        )
+        self.assertTrue(list0_cache)
+        self.assertEqual(list0_cache.price, 42)
+        # Not a global pricelist, not defined
+        global_ids = [self.list1.id, self.list2.id, self.list3.id, self.list4.id]
+        not_global_lists_cache = self.cache_model.search(
+            [
+                ("product_id", "=", new_product.id),
+                ("pricelist_id", "in", global_ids),
+            ]
+        )
+        self.assertFalse(not_global_lists_cache)
+        # Factor pricelist, defined, price +20
+        list5_cache = self.cache_model.search(
+            [
+                ("product_id", "=", new_product.id),
+                ("pricelist_id", "=", self.list5.id),
+            ]
+        )
+        self.assertTrue(list5_cache)
+        self.assertEqual(list5_cache.price, 62)
 
     @check_duplicates
     @freeze_time("2021-04-15")
