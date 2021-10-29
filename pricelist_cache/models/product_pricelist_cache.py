@@ -1,6 +1,8 @@
 # Copyright 2021 Camptocamp SA
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl)
 
+from psycopg2 import sql
+
 from odoo import fields, models, tools
 
 
@@ -16,7 +18,7 @@ class PricelistCache(models.Model):
           -> entrypoint "product_pricelist.py::create"
     There's also a daily cron task that updates cache prices
     that have been skipped during the day:
-     - see "cron_update_cache_skipped_items" for the cron method
+     - see "cron_reset_pricelist_cache" for the cron method
      - see "product_pricelist_item.py::update_product_pricelist_cache"
        for skip conditions
     Every call to PricelistCache.update_product_pricelist_cache
@@ -47,25 +49,24 @@ class PricelistCache(models.Model):
             - product_prices : The new prices to apply
         """
         # Write everything in single transaction
-        values = ",".join(
-            [
-                "({}, {})".format(record.id, product_prices[record.product_id.id])
-                for record in self
-            ]
-        )
-        # pylint: disable=sql-injection
-        query = """
+        values = [
+            sql.SQL(", ").join(
+                map(sql.Literal, (record.id, product_prices[record.product_id.id]))
+            )
+            for record in self
+        ]
+        query = sql.SQL(
+            """
             UPDATE
                 product_pricelist_cache AS pricelist_cache
             SET
                 price = c.price
-            FROM (VALUES {})
+            FROM (VALUES ({}))
                 AS c(id, price)
             WHERE
                 c.id = pricelist_cache.id;
-        """.format(
-            values
-        )
+        """
+        ).format(sql.SQL("), (").join(values))
         self.flush()
         self.env.cr.execute(query)
         self.invalidate_cache(["price"])
@@ -81,22 +82,23 @@ class PricelistCache(models.Model):
             - product_prices : A dict containing the prices for each product
         """
         values = [
-            "({}, {}, {})".format(product_id, pricelist_id, product_prices[product_id])
-            for product_id in product_ids
+            sql.SQL(", ").join(
+                map(sql.Literal, (p_id, pricelist_id, product_prices[p_id]))
+            )
+            for p_id in product_ids
         ]
         if values:
             # create_everything from a single transaction
-            # pylint: disable=sql-injection
-            query = """
+            query = sql.SQL(
+                """
                 INSERT INTO product_pricelist_cache (product_id, pricelist_id, price)
-                VALUES {};
-            """.format(
-                ",".join(values)
-            )
+                VALUES ({});
+            """
+            ).format(sql.SQL("), (").join(values))
             self.flush()
             self.env.cr.execute(query)
 
-    def _update_cache(self, pricelist_id, product_prices):
+    def _update_pricelist_cache(self, pricelist_id, product_prices):
         """Updates the cache, for a given pricelist, and product prices.
 
         Args:
@@ -174,7 +176,7 @@ class PricelistCache(models.Model):
                 pricelist, product_ids
             )
             product_prices = pricelist._get_product_prices(product_ids_to_update)
-            self._update_cache(pricelist.id, product_prices)
+            self._update_pricelist_cache(pricelist.id, product_prices)
 
     def _update_pricelist_items_cache(self, pricelist_items):
         """Updates cache for a given recordset of pricelist items, then update
