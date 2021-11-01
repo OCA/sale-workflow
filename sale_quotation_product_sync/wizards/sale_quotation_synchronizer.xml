@@ -34,21 +34,17 @@
         </field>
     </record>
 
-    <act_window
-        id="sale_quotation_synchronizer_action"
-        name="Quotations synchronization"
-        target="new"
-        res_model="sale.quotation.synchronizer"
-        view_type="form"
-        view_mode="form"
-        view_id="sale_quotation_synchronizer_form_view"
-    />
+    <record id="sale_quotation_synchronizer_action" model="ir.actions.act_window">
+        <field name="name">Quotations synchronization</field>
+        <field name="res_model">sale.quotation.synchronizer</field>
+        <field name="view_mode">form</field>
+        <field name="view_id" ref="sale_quotation_synchronizer_form_view" />
+    </record>
 
     <menuitem
         id="sale_quotation_synchronizer_menu"
         action="sale_quotation_synchronizer_action"
         parent="sale.menu_sales_config"
         name="Quotations synchronization"
-        groups="sales_team.group_sale_salesman,sales_team.group_sale_manager"
     />
 </odoo>
