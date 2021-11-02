@@ -51,7 +51,7 @@ addon | version | maintainers | summary
 [sale_fixed_discount](sale_fixed_discount/) | 13.0.1.1.1 |  | Allows to apply fixed amount discounts in sales orders.
 [sale_force_invoiced](sale_force_invoiced/) | 13.0.1.1.0 |  | Allows to force the invoice status of the sales order to Invoiced
 [sale_force_whole_invoiceability](sale_force_whole_invoiceability/) | 13.0.1.0.0 |  | Sale Force Whole Invoiceability
-[sale_global_discount](sale_global_discount/) | 13.0.1.0.2 |  | Sale Global Discount
+[sale_global_discount](sale_global_discount/) | 13.0.1.0.3 |  | Sale Global Discount
 [sale_invoice_plan](sale_invoice_plan/) | 13.0.1.0.2 | [![kittiu](https://github.com/kittiu.png?size=30px)](https://github.com/kittiu) | Add to sales order, ability to manage future invoice plan
 [sale_invoice_policy](sale_invoice_policy/) | 13.0.1.0.1 |  | Sales Management: let the user choose the invoice policy on the order
 [sale_isolated_quotation](sale_isolated_quotation/) | 13.0.1.0.0 |  | Sale Isolated Quotation
@@ -75,7 +75,7 @@ addon | version | maintainers | summary
 [sale_order_priority](sale_order_priority/) | 13.0.1.0.0 |  | Define priority on sale orders
 [sale_order_product_assortment](sale_order_product_assortment/) | 13.0.1.0.0 | [![CarlosRoca13](https://github.com/CarlosRoca13.png?size=30px)](https://github.com/CarlosRoca13) | Module that allows to use the assortments on sale orders
 [sale_order_product_availability_inline](sale_order_product_availability_inline/) | 13.0.1.1.1 | [![ernestotejeda](https://github.com/ernestotejeda.png?size=30px)](https://github.com/ernestotejeda) | Show product availability in sales order line product drop-down.
-[sale_order_product_recommendation](sale_order_product_recommendation/) | 13.0.3.0.1 |  | Recommend products to sell to customer based on history
+[sale_order_product_recommendation](sale_order_product_recommendation/) | 13.0.3.0.2 |  | Recommend products to sell to customer based on history
 [sale_order_product_recommendation_secondary_unit](sale_order_product_recommendation_secondary_unit/) | 13.0.2.2.0 |  | Add secondary unit to recommend products wizard
 [sale_order_qty_change_no_recompute](sale_order_qty_change_no_recompute/) | 13.0.1.0.2 | [![victoralmau](https://github.com/victoralmau.png?size=30px)](https://github.com/victoralmau) | Prevent recompute if only quantity has changed in sale order line
 [sale_order_revision](sale_order_revision/) | 13.0.1.0.0 |  | Keep track of revised quotations
