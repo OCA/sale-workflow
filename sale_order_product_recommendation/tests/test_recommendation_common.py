@@ -1,8 +1,10 @@
 # Copyright 2017 Tecnativa - Jairo Llopis
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 from odoo.tests.common import TransactionCase
+from freezegun import freeze_time
 
 
+@freeze_time("2021-10-02 15:30:00")
 class RecommendationCase(TransactionCase):
     @classmethod
     def setUpClass(cls):
