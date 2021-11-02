@@ -2,11 +2,15 @@
 # Copyright 2020 Tecnativa - Pedro M. Baeza
 # Copyright 2021 Tecnativa - Víctor Martínez
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
+
+from freezegun import freeze_time
+
 from odoo.exceptions import UserError
 
 from .test_recommendation_common import RecommendationCase
 
 
+@freeze_time("2021-10-02 15:30:00")
 class RecommendationCaseTests(RecommendationCase):
     def test_recommendations(self):
         """Recommendations are OK."""
