@@ -1,8 +1,12 @@
 # Copyright 2017 Tecnativa - Jairo Llopis
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
+
+from freezegun import freeze_time
+
 from odoo.tests.common import SavepointCase
 
 
+@freeze_time("2021-10-02 15:30:00")
 class RecommendationCase(SavepointCase):
     @classmethod
     def setUpClass(cls):
