@@ -1,5 +1,7 @@
 # Copyright 2020 Camptocamp SA
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl)
+from datetime import timedelta
+
 from freezegun import freeze_time
 
 from odoo import fields
@@ -55,6 +57,75 @@ class TestSaleCutoffTimeDelivery(SavepointCase):
             }
         )
         return order
+
+    def test_delivery_date_as_commitment_date(self):
+        """Commitment date should be used as expected_delivery_date if
+        set and not in the past"""
+        with freeze_time("2021-10-15"):
+            order = self._create_order(partner=self.customer_partner)
+            order.commitment_date = "2021-10-20 09:00:00"
+            order.action_confirm()
+            picking = order.picking_ids
+            self.assertEqual(picking.expected_delivery_date, order.commitment_date)
+
+    def test_delivery_date_as_expected_date(self):
+        """Expected date should be used if commitment_date isn't set and
+        expected date is set but is not in the past.
+        """
+        with freeze_time("2021-10-15"):
+            order = self._create_order(partner=self.customer_partner)
+            order.action_confirm()
+            picking = order.picking_ids
+            self.assertEqual(picking.expected_delivery_date, order.expected_date)
+
+    def test_delivery_date_as_late_confirm_expected_date(self):
+        """If so has been confirmed late and there's no commitment_date,
+        then expected_date is still valid, since it's updated when the
+        so is confirmed.
+        """
+        with freeze_time("2021-10-15"):
+            order = self._create_order(partner=self.customer_partner)
+        with freeze_time("2021-10-25"):
+            order.action_confirm()
+            picking = order.picking_ids
+            self.assertEqual(str(order.expected_date.date()), "2021-10-25")
+            self.assertEqual(str(picking.scheduled_date.date()), "2021-10-24")
+            self.assertEqual(picking.expected_delivery_date, order.expected_date)
+
+    def test_delivery_date_as_late_scheduled_date(self):
+        """Scheduled date should be used if both commitment_date and
+        expected date are in the past, and if the picking is not done.
+        """
+        with freeze_time("2021-10-15"):
+            order = self._create_order(partner=self.customer_partner)
+            order.action_confirm()
+        picking = order.picking_ids
+        self.assertEqual(str(picking.scheduled_date.date()), "2021-10-14")
+        with freeze_time("2021-10-25"):
+            # picking is handled late, order.commitment_date and
+            # order.expected_date are outdated.
+            # expected_delivery_date is scheduled_date + security_lead
+            td_security_lead = timedelta(days=picking.company_id.security_lead)
+            expected_datetime = picking.scheduled_date + td_security_lead
+            self.assertEqual(picking.expected_delivery_date, expected_datetime)
+
+    def test_delivery_date_as_date_done(self):
+        """Date done should be used if both commitment_date and
+        expected date are in the past, and if the picking is done.
+        """
+        with freeze_time("2021-10-15"):
+            order = self._create_order(partner=self.customer_partner)
+            order.action_confirm()
+            picking = order.picking_ids
+        # Once picking has been set to done, the expected_delivery_date
+        # is the picking's date done + security_lead and should never change
+        td_security_lead = timedelta(days=picking.company_id.security_lead)
+        with freeze_time("2021-10-20"):
+            picking.action_done()
+            expected_datetime = picking.date_done + td_security_lead
+            self.assertEqual(picking.expected_delivery_date, expected_datetime)
+        with freeze_time("2021-10-30"):
+            self.assertEqual(picking.expected_delivery_date, expected_datetime)
 
     @freeze_time("2020-03-25 08:00:00")
     def test_before_cutoff_time_delivery(self):

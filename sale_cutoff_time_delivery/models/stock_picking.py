@@ -17,6 +17,38 @@ class StockPicking(models.Model):
         search="_search_cutoff_time_diff",
         store=False,
     )
+    expected_delivery_date = fields.Datetime(compute="_compute_expected_delivery_date")
+
+    def _compute_expected_delivery_date(self):
+        """Computes the expected delivery date.
+
+        In some cases, the order expected_date and commitment_date
+        can be in the past.
+        e.g. when thecurrent picking is a backorder.
+        Also, we can have pickings that should be considered as backorders
+        but where backorder_id is not set.
+        e.g. If lines are added to a SO after it has been validated.
+        In such case, we do not want to display those dates that are
+        not valid for the current picking, and set the delivery_date
+        as date_done + company.security_lead.
+        We still try to keep this priority:
+            commitment_date > expected_date > date_done > scheduled_date
+        """
+        for record in self:
+            today = fields.Date.today()
+            delivery_date = False
+            commitment_date = record.sale_id.commitment_date
+            if commitment_date and commitment_date.date() >= today:
+                delivery_date = commitment_date
+            if not delivery_date:
+                expected_date = record.sale_id.expected_date
+                if expected_date and expected_date.date() >= today:
+                    delivery_date = expected_date
+            if not delivery_date:
+                date_done = record.date_done or record.scheduled_date
+                security_lead = record.company_id.security_lead
+                delivery_date = fields.Datetime.add(date_done, days=security_lead)
+            record.expected_delivery_date = delivery_date
 
     @api.depends("location_id")
     def _compute_cutoff_time_diff(self):
