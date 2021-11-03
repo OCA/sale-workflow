@@ -44,9 +44,7 @@ class TestSaleException(SavepointCase):
         )
 
     def test_commercial_partner_not_valid(self):
-        self.sale.partner_id.commercial_partner_id = self.env.ref(
-            "base.res_partner_2"
-        )
+        self.sale.partner_id.commercial_partner_id = self.env.ref("base.res_partner_2")
         self.sale.action_confirm()
         self.assertEqual(self.sale.state, "draft")
         self.assertEqual(len(self.sale.exception_ids), 1)
@@ -69,9 +67,7 @@ class TestSaleException(SavepointCase):
 
     def test_product_without_limits_partner_with_commercial_entity(self):
         self.product.product_tmpl_id.manufactured_for_partner_ids = False
-        self.sale.partner_id.commercial_partner_id = (
-            self.partner_manufactured_for
-        )
+        self.sale.partner_id.commercial_partner_id = self.partner_manufactured_for
         self.sale.action_confirm()
         self.assertEqual(self.sale.state, "sale")
         self.assertFalse(self.sale.exception_ids)

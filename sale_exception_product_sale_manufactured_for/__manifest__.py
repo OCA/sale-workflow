@@ -3,12 +3,12 @@
 {
     "name": "Sale Exception Product Manufactured for Customer",
     "summary": "The partner set in the sales order can order only if he/she "
-               "has a commercial entity that is listed as one of the partners "
-               "for which the products can be manufactured for.",
-    "version": "13.0.1.0.0",
+    "has a commercial entity that is listed as one of the partners "
+    "for which the products can be manufactured for.",
+    "version": "14.0.1.0.1",
     "category": "Sales",
-    "website": "https://www.camptocamp.com",
-    "author": "Camptocamp",
+    "website": "https://github.com/OCA/sale-workflow",
+    "author": "Camptocamp, Odoo Community Association (OCA)",
     "license": "AGPL-3",
     "application": False,
     "installable": True,
