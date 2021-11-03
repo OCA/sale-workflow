@@ -6,7 +6,7 @@ from odoo import models
 class SaleOrder(models.Model):
     _inherit = "sale.order"
 
-    def exception_partner_can_order(self):
+    def exception_partner_can_order_manufactured_for(self):
         """Return whether the partner can order all the items in the sale
 
         Used in a sales exception. Returns true only if the partner set in

@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="UTF-8" ?>
 <odoo>
     <record id="exception_partner_can_order" model="exception.rule">
         <field name="name">Partner can order all the items in the sale</field>
@@ -7,7 +7,9 @@
             for which the products can be manufactured for.</field>
         <field name="sequence">50</field>
         <field name="model">sale.order</field>
-        <field name="code">failed = not obj.exception_partner_can_order()</field>
+        <field
+            name="code"
+        >failed = not obj.exception_partner_can_order_manufactured_for()</field>
         <field name="is_blocking">True</field>
     </record>
 </odoo>
