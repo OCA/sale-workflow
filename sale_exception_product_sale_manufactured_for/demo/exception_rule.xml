@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <record id="exception_partner_can_order" model="exception.rule">
+        <field name="active" eval="False" />
+    </record>
+</odoo>
