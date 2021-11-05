@@ -5,7 +5,7 @@ import odoo.tests.common as common
 
 class TestSaleOrderInvoicePolicy(common.TransactionCase):
     def setUp(self):
-        super(TestSaleOrderInvoicePolicy, self).setUp()
+        super().setUp()
         self.product_obj = self.env["product.product"]
         self.sale_obj = self.env["sale.order"]
         self.partner = self.env.ref("base.res_partner_2")
