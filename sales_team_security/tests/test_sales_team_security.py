@@ -17,7 +17,7 @@ class TestSalesTeamSecurity(common.SavepointCase):
         cls.team2 = cls.env['crm.team'].create({
             'name': 'Test channel 2',
         })
-        cls.partner = cls.env['res.partner'].create({
+        cls.partner = cls.env["res.partner"].create({
             'name': 'Test partner',
             'team_id': cls.team.id,
         })
@@ -51,14 +51,6 @@ class TestSalesTeamSecurity(common.SavepointCase):
             "user_id": cls.user.id,
             "team_id": cls.team.id,
         })
-
-    def _is_module_installed(self, name):
-        return bool(
-            self.env['ir.module.module'].search([
-                ('name', '=', name),
-                ('state', '=', 'installed')
-            ])
-        )
 
     def test_onchange_parent_id(self):
         contact = self.env['res.partner'].create({

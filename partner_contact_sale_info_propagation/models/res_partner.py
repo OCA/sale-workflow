@@ -1,17 +1,27 @@
 # Copyright 2019 Tecnativa - Ernesto Tejeda
+# Copyright 2021 Tecnativa - Víctor Martínez
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
 
 from odoo import api, models
 from lxml import etree
+from odoo.tools import config
 
 
 class ResPartner(models.Model):
     _inherit = "res.partner"
 
+    def _check_propagation_allowed(self):
+        return bool(
+            not config["test_enable"]
+            or (config["test_enable"] and self.env.context.get("test_propagation"))
+        )
+
     @api.multi
     def write(self, vals):
         """Propagate Salesperson and Sales Channel change in the partner to the
         child contacts."""
+        if not self._check_propagation_allowed():
+            return super().write(vals)
         for record in self:
             if 'user_id' in vals:
                 childs = record.mapped('child_ids').filtered(
@@ -23,22 +33,24 @@ class ResPartner(models.Model):
                     lambda r: not r.team_id or r.team_id == record.team_id)
                 if childs:
                     childs.write({'team_id': vals['team_id']})
-        return super(ResPartner, self).write(vals)
+        return super().write(vals)
 
     @api.model
     def create(self, vals):
+        if not self._check_propagation_allowed():
+            return super().create(vals)
         if 'parent_id' in vals:
             if 'user_id' not in vals:
                 vals.update(user_id=self.browse(vals['parent_id']).user_id.id)
             if 'team_id' not in vals:
                 vals.update(team_id=self.browse(vals['parent_id']).team_id.id)
-        return super(ResPartner, self).create(vals)
+        return super().create(vals)
 
     @api.onchange('parent_id')
     def onchange_parent_id(self):
         """Change Salesperson or Sales Channel if the parent company changes
         and there's no Salesperson or Sales Channel defined yet"""
-        res = super(ResPartner, self).onchange_parent_id()
+        res = super().onchange_parent_id()
         if self.parent_id and self.parent_id != self:
             parent = self.parent_id
             if not self.user_id:
