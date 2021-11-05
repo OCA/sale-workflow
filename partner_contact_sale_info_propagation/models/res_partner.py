@@ -1,17 +1,27 @@
 # Copyright 2019 Tecnativa - Ernesto Tejeda
+# Copyright 2021 Tecnativa - Víctor Martínez
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
 
 from lxml import etree
 
 from odoo import api, models
+from odoo.tools import config
 
 
 class ResPartner(models.Model):
     _inherit = "res.partner"
 
+    def _check_propagation_allowed(self):
+        return bool(
+            not config["test_enable"]
+            or (config["test_enable"] and self.env.context.get("test_propagation"))
+        )
+
     def write(self, vals):
         """Propagate Salesperson and Sales Channel change in the partner to the
         child contacts."""
+        if not self._check_propagation_allowed():
+            return super().write(vals)
         for record in self:
             if "user_id" in vals:
                 childs = record.mapped("child_ids").filtered(
@@ -29,6 +39,8 @@ class ResPartner(models.Model):
 
     @api.model_create_multi
     def create(self, vals_list):
+        if not self._check_propagation_allowed():
+            return super().create(vals_list)
         for vals in vals_list:
             if "parent_id" in vals:
                 if "user_id" not in vals:
