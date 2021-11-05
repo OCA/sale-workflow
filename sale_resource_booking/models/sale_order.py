@@ -26,6 +26,7 @@ class SaleOrder(models.Model):
             self.mapped("order_line")._sync_resource_bookings()
         return result
 
+    @api.depends("order_line.resource_booking_ids")
     def _compute_resource_bookings(self):
         for one in self:
             bookings = one.mapped("order_line.resource_booking_ids")
