@@ -15,10 +15,10 @@ class SaleResourceBookingsCase(SavepointCase):
         super().setUpClass()
         create_test_data(cls)
         cls.product = cls.env["product.product"].create(
-            {"name": "test booking product", "resource_booking_type_id": cls.rbt.id,}
+            {"name": "test booking product", "resource_booking_type_id": cls.rbt.id}
         )
         cls.product_normal = cls.env["product.product"].create(
-            {"name": "test non-booking product",}
+            {"name": "test non-booking product"}
         )
 
     def _run_action(self, action):
@@ -78,8 +78,15 @@ class SaleResourceBookingsCase(SavepointCase):
             self.assertFalse(booking.start)
             self.assertFalse(booking.stop)
             self.assertFalse(booking.meeting_id)
-        self.assertEqual(bookings[0].partner_id, order.partner_id)
-        self.assertEqual(bookings[1].partner_id, partner2)
+        self.assertEqual(bookings.partner_id, order.partner_id | partner2)
+        if self.product.resource_booking_type_combination_rel_id:
+            self.assertEqual(bookings.mapped("combination_auto_assign"), [False] * 2)
+            self.assertEqual(
+                bookings.combination_id,
+                self.product.resource_booking_type_combination_rel_id.combination_id,
+            )
+        else:
+            self.assertEqual(bookings.mapped("combination_auto_assign"), [True] * 2)
         # Cancel SO, bookings canceled
         order.action_cancel()
         self.assertEqual(bookings.mapped("state"), ["canceled"] * 2)
