@@ -30,7 +30,6 @@
     <record id="resource_booking_sale_action" model="ir.actions.act_window">
         <field name="name">Generate Quotation</field>
         <field name="res_model">resource.booking.sale</field>
-        <field name="view_type">form</field>
         <field name="view_mode">form</field>
         <field name="target">new</field>
     </record>
