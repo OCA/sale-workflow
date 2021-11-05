@@ -12,6 +12,7 @@
     "license": "AGPL-3",
     "depends": ["sale", "sale_stock"],
     "data": [
+        "data/config_parameter.xml",
         "wizards/res_config_view.xml",
         "views/product_template_view.xml",
         "views/sale_view.xml",

@@ -9,12 +9,6 @@ class ResConfigSettings(models.TransientModel):
     _name = "res.config.settings"
     _inherit = "res.config.settings"
 
-    sale_default_invoice_policy = fields.Selection(
-        related="default_invoice_policy",
-        default_model="product.template",
-        string="Default Sale Invoice Policy",
-        readonly=True,
-    )
     sale_invoice_policy_required = fields.Boolean(
         help="This makes Invoice Policy required on Sale Orders"
     )
@@ -38,9 +32,4 @@ class ResConfigSettings(models.TransientModel):
                 "res.config.settings",
                 "sale_invoice_policy_required",
                 self.sale_invoice_policy_required,
-            )
-            ir_default_obj.set(
-                "res.config.settings",
-                "sale_default_invoice_policy",
-                self.sale_default_invoice_policy,
             )

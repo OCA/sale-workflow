@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+     <record id="sale_invoice_policy" model="ir.config_parameter">
+        <field name="key">sale_invoice_policy</field>
+        <field name="value">order</field>
+    </record>
+</odoo>
