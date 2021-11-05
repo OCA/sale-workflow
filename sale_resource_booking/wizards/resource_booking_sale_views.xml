@@ -1,9 +1,7 @@
-<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8" ?>
 <!-- Copyright 2021 Tecnativa - Jairo Llopis
      License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl). -->
-
 <data>
-
     <record id="resource_booking_sale_view_form" model="ir.ui.view">
         <field name="name">resource.booking.sale.view.form</field>
         <field name="model">resource.booking.sale</field>
@@ -18,13 +16,17 @@
                     </group>
                 </sheet>
                 <footer>
-                    <button name="action_generate" type="object" string="Generate quotation" class="oe_highlight" />
+                    <button
+                        name="action_generate"
+                        type="object"
+                        string="Generate quotation"
+                        class="oe_highlight"
+                    />
                     <button special="cancel" string="Cancel" />
                 </footer>
             </form>
         </field>
     </record>
-
     <record id="resource_booking_sale_action" model="ir.actions.act_window">
         <field name="name">Generate Quotation</field>
         <field name="res_model">resource.booking.sale</field>
@@ -32,5 +34,4 @@
         <field name="view_mode">form</field>
         <field name="target">new</field>
     </record>
-
 </data>
