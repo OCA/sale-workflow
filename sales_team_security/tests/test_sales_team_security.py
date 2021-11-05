@@ -50,13 +50,6 @@ class TestSalesTeamSecurity(common.SavepointCase):
             }
         )
 
-    def _is_module_installed(self, name):
-        return bool(
-            self.env["ir.module.module"].search(
-                [("name", "=", name), ("state", "=", "installed")]
-            )
-        )
-
     def test_onchange_parent_id(self):
         contact = self.env["res.partner"].create(
             {"name": "Test contact", "parent_id": self.partner.id}
