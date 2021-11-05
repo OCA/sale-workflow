@@ -1,12 +1,12 @@
 # Translation of Odoo Server.
 # This file contains the translation of the following modules:
-#	* sale_resource_booking
+# 	* sale_resource_booking
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: Odoo Server 12.0\n"
+"Project-Id-Version: Odoo Server 13.0\n"
 "Report-Msgid-Bugs-To: \n"
-"Last-Translator: <>\n"
+"Last-Translator: \n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -15,7 +15,11 @@ msgstr ""
 
 #. module: sale_resource_booking
 #: model_terms:ir.ui.view,arch_db:sale_resource_booking.view_order_form
-msgid "(Re)sync resource bookings. The sync will be done automatically when confirming the quotation, but you can do it beforehand if needed with this button. It will create missing resource bookings in pending state, or cancel the spare ones."
+msgid ""
+"(Re)sync resource bookings. The sync will be done automatically when "
+"confirming the quotation, but you can do it beforehand if needed with this "
+"button. It will create missing resource bookings in pending state, or cancel"
+" the spare ones."
 msgstr ""
 
 #. module: sale_resource_booking
@@ -26,7 +30,7 @@ msgid "Booking type"
 msgstr ""
 
 #. module: sale_resource_booking
-#: code:addons/sale_resource_booking/models/sale_order.py:39
+#: code:addons/sale_resource_booking/models/sale_order.py:0
 #: model_terms:ir.ui.view,arch_db:sale_resource_booking.view_order_form
 #, python-format
 msgid "Bookings"
@@ -106,12 +110,17 @@ msgstr ""
 #. module: sale_resource_booking
 #: model:ir.model.fields,help:sale_resource_booking.field_product_product__resource_booking_type_combination_rel_id
 #: model:ir.model.fields,help:sale_resource_booking.field_product_template__resource_booking_type_combination_rel_id
-msgid "If set, the booking will be created with this resource combination. Otherwise, the combination will be assigned automatically later, when the requester schedules the booking."
+msgid ""
+"If set, the booking will be created with this resource combination. "
+"Otherwise, the combination will be assigned automatically later, when the "
+"requester schedules the booking."
 msgstr ""
 
 #. module: sale_resource_booking
 #: model:ir.model.fields,help:sale_resource_booking.field_resource_booking__sale_order_state
-msgid "If there is a related quotation and it is not confirmed, the booking will not be able to become confirmed."
+msgid ""
+"If there is a related quotation and it is not confirmed, the booking will "
+"not be able to become confirmed."
 msgstr ""
 
 #. module: sale_resource_booking
@@ -197,11 +206,6 @@ msgid "Resource combination"
 msgstr ""
 
 #. module: sale_resource_booking
-#: model:ir.model,name:sale_resource_booking.model_sale_order
-msgid "Sale Order"
-msgstr ""
-
-#. module: sale_resource_booking
 #: model:ir.model,name:sale_resource_booking.model_resource_booking_sale
 msgid "Sale order generator for resource booking types"
 msgstr ""
@@ -227,6 +231,11 @@ msgid "Sales"
 msgstr ""
 
 #. module: sale_resource_booking
+#: model:ir.model,name:sale_resource_booking.model_sale_order
+msgid "Sales Order"
+msgstr ""
+
+#. module: sale_resource_booking
 #: model:ir.model,name:sale_resource_booking.model_sale_order_line
 msgid "Sales Order Line"
 msgstr ""
@@ -240,4 +249,3 @@ msgstr ""
 #: model_terms:ir.ui.view,arch_db:sale_resource_booking.view_order_form
 msgid "Sync bookings"
 msgstr ""
-

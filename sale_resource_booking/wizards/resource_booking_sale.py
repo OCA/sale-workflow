@@ -1,7 +1,7 @@
 # Copyright 2021 Tecnativa - Jairo Llopis
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
 
-from odoo import api, fields, models
+from odoo import fields, models
 from odoo.tests.common import Form
 
 
@@ -30,7 +30,6 @@ class ResourceBookingSale(models.TransientModel):
     )
     product_uom_qty = fields.Integer(string="Quantity", required=True, default=1)
 
-    @api.multi
     def action_generate(self):
         so_form = Form(self.env["sale.order"])
         so_form.partner_id = self.partner_id
