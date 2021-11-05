@@ -1,11 +1,12 @@
 # Copyright 2021 Tecnativa - Jairo Llopis
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
 
-from datetime import datetime
 from contextlib import suppress
+from datetime import datetime
+
+from odoo.tests.common import Form, SavepointCase
 
 from odoo.addons.resource_booking.tests.common import create_test_data
-from odoo.tests.common import SavepointCase, Form
 
 
 class SaleResourceBookingsCase(SavepointCase):
@@ -14,15 +15,10 @@ class SaleResourceBookingsCase(SavepointCase):
         super().setUpClass()
         create_test_data(cls)
         cls.product = cls.env["product.product"].create(
-            {
-                "name": "test booking product",
-                "resource_booking_type_id": cls.rbt.id,
-            }
+            {"name": "test booking product", "resource_booking_type_id": cls.rbt.id,}
         )
         cls.product_normal = cls.env["product.product"].create(
-            {
-                "name": "test non-booking product",
-            }
+            {"name": "test non-booking product",}
         )
 
     def _run_action(self, action):
