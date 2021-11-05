@@ -13,7 +13,7 @@ class ResourceBooking(models.Model):
         copy=False,
         index=True,
         ondelete="cascade",
-        track_visibility="onchange",
+        tracking=True,
     )
     sale_order_id = fields.Many2one(
         related="sale_order_line_id.order_id",
