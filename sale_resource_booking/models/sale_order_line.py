@@ -74,9 +74,7 @@ class SaleOrderLine(models.Model):
             }
             context = {
                 "default_partner_id": line.order_id.partner_id.id,
-                "default_combination_id":
-                    line.product_id.resource_booking_type_combination_rel_id
-                    .combination_id.id,
+                "default_combination_id": line.product_id.resource_booking_type_combination_rel_id.combination_id.id,
             }
             line.with_context(**context)._add_or_cancel_bookings(
                 bookings, int(line.product_uom_qty), values
