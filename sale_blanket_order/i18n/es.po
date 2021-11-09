@@ -10,11 +10,11 @@ msgstr ""
 "PO-Revision-Date: 2021-02-13 13:41+0100\n"
 "Last-Translator: \n"
 "Language-Team: \n"
+"Language: es\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: \n"
-"Language: es\n"
 "X-Generator: Poedit 2.4.2\n"
 
 #. module: sale_blanket_order
@@ -88,6 +88,16 @@ msgid "An order can't be empty"
 msgstr "Un pedido no puede estar vacío"
 
 #. module: sale_blanket_order
+#: model:ir.model.fields,field_description:sale_blanket_order.field_sale_blanket_order__analytic_account_id
+msgid "Analytic Account"
+msgstr ""
+
+#. module: sale_blanket_order
+#: model:ir.model.fields,field_description:sale_blanket_order.field_sale_blanket_order_line__analytic_tag_ids
+msgid "Analytic Tags"
+msgstr ""
+
+#. module: sale_blanket_order
 #: model:ir.model.fields,field_description:sale_blanket_order.field_sale_blanket_order__message_attachment_count
 #: model:ir.model.fields,field_description:sale_blanket_order.field_sale_blanket_order_line__message_attachment_count
 msgid "Attachment Count"
@@ -144,8 +154,7 @@ msgstr "Línea asistente de pedido programado"
 #, python-format
 msgid ""
 "Can not create Sale Order from Blanket Order lines with different currencies"
-msgstr ""
-"No puede crear un pedido desde una programación con monedas diferentes"
+msgstr "No puede crear un pedido desde una programación con monedas diferentes"
 
 #. module: sale_blanket_order
 #: model_terms:ir.ui.view,arch_db:sale_blanket_order.view_blanket_order_form
@@ -168,8 +177,8 @@ msgstr ""
 msgid ""
 "Click to create a blanket order that can be converted into a sale order."
 msgstr ""
-"Click para crear una pedido programado que puede ser convertido en un "
-"pedido de venta."
+"Click para crear una pedido programado que puede ser convertido en un pedido "
+"de venta."
 
 #. module: sale_blanket_order
 #: model:ir.model.fields,field_description:sale_blanket_order.field_sale_blanket_order__company_id
@@ -369,6 +378,11 @@ msgstr "Ctdad facturada"
 #: model:ir.model.fields,field_description:sale_blanket_order.field_sale_blanket_order_line__invoiced_uom_qty
 msgid "Invoiced quantity"
 msgstr "Cantidad facturada"
+
+#. module: sale_blanket_order
+#: model_terms:ir.ui.view,arch_db:sale_blanket_order.view_blanket_order_form
+msgid "Invoicing"
+msgstr ""
 
 #. module: sale_blanket_order
 #: model:ir.model.fields,field_description:sale_blanket_order.field_sale_blanket_order__message_is_follower
@@ -851,8 +865,7 @@ msgstr "Base imponible"
 #. module: sale_blanket_order
 #: model_terms:ir.actions.act_window,help:sale_blanket_order.act_open_blanket_order_view
 msgid ""
-"Use this menu to search within your blanket orders. For each blanket "
-"order,\n"
+"Use this menu to search within your blanket orders. For each blanket order,\n"
 "                you can track the related discussion with the customer, "
 "control\n"
 "                the products delivered and control the vendor bills."
@@ -921,8 +934,8 @@ msgstr ""
 #: code:addons/sale_blanket_order/models/blanket_orders.py:0
 #, python-format
 msgid ""
-"You can not delete an open blanket or with active sale orders! Try to "
-"cancel it before."
+"You can not delete an open blanket or with active sale orders! Try to cancel "
+"it before."
 msgstr ""
 "¡No se puede eliminar una programación de venta abierta o con órdenes de "
 "venta activas! Intente cancelarlas antes."

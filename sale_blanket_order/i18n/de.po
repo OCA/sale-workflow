@@ -64,6 +64,12 @@ msgid "Activities"
 msgstr "Aktivitäten"
 
 #. module: sale_blanket_order
+#: model:ir.model.fields,field_description:sale_blanket_order.field_sale_blanket_order__activity_exception_decoration
+#: model:ir.model.fields,field_description:sale_blanket_order.field_sale_blanket_order_line__activity_exception_decoration
+msgid "Activity Exception Decoration"
+msgstr ""
+
+#. module: sale_blanket_order
 #: model:ir.model.fields,field_description:sale_blanket_order.field_sale_blanket_order__activity_state
 #: model:ir.model.fields,field_description:sale_blanket_order.field_sale_blanket_order_line__activity_state
 msgid "Activity State"
@@ -75,10 +81,20 @@ msgid "Amount"
 msgstr "Summe"
 
 #. module: sale_blanket_order
-#: code:addons/sale_blanket_order/wizard/create_sale_orders.py:129
+#: code:addons/sale_blanket_order/wizard/create_sale_orders.py:0
 #, python-format
 msgid "An order can't be empty"
 msgstr "Ein Auftrag kann nicht leer sein"
+
+#. module: sale_blanket_order
+#: model:ir.model.fields,field_description:sale_blanket_order.field_sale_blanket_order__analytic_account_id
+msgid "Analytic Account"
+msgstr ""
+
+#. module: sale_blanket_order
+#: model:ir.model.fields,field_description:sale_blanket_order.field_sale_blanket_order_line__analytic_tag_ids
+msgid "Analytic Tags"
+msgstr ""
 
 #. module: sale_blanket_order
 #: model:ir.model.fields,field_description:sale_blanket_order.field_sale_blanket_order__message_attachment_count
@@ -133,7 +149,7 @@ msgid "Blanket order wizard line"
 msgstr "Rahmenauftragszeile Assistent"
 
 #. module: sale_blanket_order
-#: code:addons/sale_blanket_order/wizard/create_sale_orders.py:132
+#: code:addons/sale_blanket_order/wizard/create_sale_orders.py:0
 #, python-format
 msgid ""
 "Can not create Sale Order from Blanket Order lines with different currencies"
@@ -148,7 +164,7 @@ msgid "Cancel"
 msgstr "Abbrechen"
 
 #. module: sale_blanket_order
-#: code:addons/sale_blanket_order/models/sale_orders.py:27
+#: code:addons/sale_blanket_order/models/sale_orders.py:0
 #, python-format
 msgid ""
 "Cannot confirm order %s as one of the lines refers to a blanket order that "
@@ -232,7 +248,7 @@ msgid "Customer Reference"
 msgstr "Kunden-Referenz"
 
 #. module: sale_blanket_order
-#: code:addons/sale_blanket_order/models/blanket_orders.py:428
+#: code:addons/sale_blanket_order/models/blanket_orders.py:0
 #, python-format
 msgid "Date Scheduled"
 msgstr "Geplantes Datum"
@@ -274,12 +290,12 @@ msgid "Display Name"
 msgstr "Anzeigename"
 
 #. module: sale_blanket_order
-#: selection:sale.blanket.order,state:0
+#: model:ir.model.fields.selection,name:sale_blanket_order.selection__sale_blanket_order__state__done
 msgid "Done"
 msgstr "Erledigt"
 
 #. module: sale_blanket_order
-#: selection:sale.blanket.order,state:0
+#: model:ir.model.fields.selection,name:sale_blanket_order.selection__sale_blanket_order__state__draft
 msgid "Draft"
 msgstr "Entwurf"
 
@@ -291,7 +307,7 @@ msgid "Expire Blanket Orders"
 msgstr "Auslaufende Rahmenaufträge"
 
 #. module: sale_blanket_order
-#: selection:sale.blanket.order,state:0
+#: model:ir.model.fields.selection,name:sale_blanket_order.selection__sale_blanket_order__state__expired
 msgid "Expired"
 msgstr "Abgelaufen"
 
@@ -327,22 +343,30 @@ msgid "ID"
 msgstr "ID"
 
 #. module: sale_blanket_order
-#: model:ir.model.fields,help:sale_blanket_order.field_sale_blanket_order__message_unread
-#: model:ir.model.fields,help:sale_blanket_order.field_sale_blanket_order_line__message_unread
-msgid "If checked new messages require your attention."
+#: model:ir.model.fields,field_description:sale_blanket_order.field_sale_blanket_order__activity_exception_icon
+#: model:ir.model.fields,field_description:sale_blanket_order.field_sale_blanket_order_line__activity_exception_icon
+msgid "Icon"
 msgstr ""
-"Wenn dieses Feld aktiviert ist, erfordern neue Nachrichten deine "
-"Aufmerksamtkeit."
+
+#. module: sale_blanket_order
+#: model:ir.model.fields,help:sale_blanket_order.field_sale_blanket_order__activity_exception_icon
+#: model:ir.model.fields,help:sale_blanket_order.field_sale_blanket_order_line__activity_exception_icon
+msgid "Icon to indicate an exception activity."
+msgstr ""
 
 #. module: sale_blanket_order
 #: model:ir.model.fields,help:sale_blanket_order.field_sale_blanket_order__message_needaction
+#: model:ir.model.fields,help:sale_blanket_order.field_sale_blanket_order__message_unread
 #: model:ir.model.fields,help:sale_blanket_order.field_sale_blanket_order_line__message_needaction
+#: model:ir.model.fields,help:sale_blanket_order.field_sale_blanket_order_line__message_unread
 msgid "If checked, new messages require your attention."
 msgstr "Falls markiert, erfordern neue Nachrichten Ihre Aufmerksamkeit."
 
 #. module: sale_blanket_order
 #: model:ir.model.fields,help:sale_blanket_order.field_sale_blanket_order__message_has_error
+#: model:ir.model.fields,help:sale_blanket_order.field_sale_blanket_order__message_has_sms_error
 #: model:ir.model.fields,help:sale_blanket_order.field_sale_blanket_order_line__message_has_error
+#: model:ir.model.fields,help:sale_blanket_order.field_sale_blanket_order_line__message_has_sms_error
 msgid "If checked, some messages have a delivery error."
 msgstr ""
 "Wenn diese Option aktiviert ist, weisen einige Nachrichten einen "
@@ -358,6 +382,11 @@ msgstr "Fakturierte Menge"
 #: model:ir.model.fields,field_description:sale_blanket_order.field_sale_blanket_order_line__invoiced_uom_qty
 msgid "Invoiced quantity"
 msgstr "Fakturierte Menge"
+
+#. module: sale_blanket_order
+#: model_terms:ir.ui.view,arch_db:sale_blanket_order.view_blanket_order_form
+msgid "Invoicing"
+msgstr ""
 
 #. module: sale_blanket_order
 #: model:ir.model.fields,field_description:sale_blanket_order.field_sale_blanket_order__message_is_follower
@@ -414,7 +443,7 @@ msgid "Messages"
 msgstr "Mitteilungen"
 
 #. module: sale_blanket_order
-#: code:addons/sale_blanket_order/models/blanket_orders.py:222
+#: code:addons/sale_blanket_order/models/blanket_orders.py:0
 #, python-format
 msgid "Must have some lines"
 msgstr "Muss einige Zeilen haben"
@@ -456,8 +485,8 @@ msgstr "Anzahl Aktionen"
 #. module: sale_blanket_order
 #: model:ir.model.fields,field_description:sale_blanket_order.field_sale_blanket_order__message_has_error_counter
 #: model:ir.model.fields,field_description:sale_blanket_order.field_sale_blanket_order_line__message_has_error_counter
-msgid "Number of error"
-msgstr "Anzahl der Fehler"
+msgid "Number of errors"
+msgstr ""
 
 #. module: sale_blanket_order
 #: model:ir.model.fields,help:sale_blanket_order.field_sale_blanket_order__message_needaction_counter
@@ -478,8 +507,8 @@ msgid "Number of unread messages"
 msgstr "Anzahl ungelesener Nachrichten"
 
 #. module: sale_blanket_order
+#: model:ir.model.fields.selection,name:sale_blanket_order.selection__sale_blanket_order__state__open
 #: model_terms:ir.ui.view,arch_db:sale_blanket_order.view_blanket_order_search
-#: selection:sale.blanket.order,state:0
 msgid "Open"
 msgstr "Offen"
 
@@ -534,18 +563,12 @@ msgid "Other Information"
 msgstr "Weitere Informationen"
 
 #. module: sale_blanket_order
-#: selection:sale.blanket.order,activity_state:0
-#: selection:sale.blanket.order.line,activity_state:0
-msgid "Overdue"
-msgstr "Überfällig"
-
-#. module: sale_blanket_order
 #: model:ir.model.fields,field_description:sale_blanket_order.field_sale_blanket_order__partner_id
 msgid "Partner"
 msgstr "Partner"
 
 #. module: sale_blanket_order
-#: code:addons/sale_blanket_order/models/blanket_orders.py:221
+#: code:addons/sale_blanket_order/models/blanket_orders.py:0
 #, python-format
 msgid "Partner is mandatory"
 msgstr "Partner ist obligatorisch"
@@ -557,19 +580,13 @@ msgid "Payment Terms"
 msgstr "Zahlungsbedingungen"
 
 #. module: sale_blanket_order
-#: selection:sale.blanket.order,activity_state:0
-#: selection:sale.blanket.order.line,activity_state:0
-msgid "Planned"
-msgstr "Geplant"
-
-#. module: sale_blanket_order
 #: model:ir.model.fields,field_description:sale_blanket_order.field_sale_blanket_order_line__price_unit
 #: model:ir.model.fields,field_description:sale_blanket_order.field_sale_blanket_order_wizard_line__price_unit
 msgid "Price"
 msgstr "Preis"
 
 #. module: sale_blanket_order
-#: code:addons/sale_blanket_order/models/blanket_orders.py:585
+#: code:addons/sale_blanket_order/models/blanket_orders.py:0
 #, python-format
 msgid "Price must be greater than zero"
 msgstr "Der Preis muss größer als 0 sein"
@@ -594,7 +611,7 @@ msgid "Purchase Order"
 msgstr "Beschaffungsauftrag"
 
 #. module: sale_blanket_order
-#: code:addons/sale_blanket_order/models/blanket_orders.py:587
+#: code:addons/sale_blanket_order/models/blanket_orders.py:0
 #, python-format
 msgid "Quantity must be greater than zero"
 msgstr "Die Menge muss größer als 0 sein"
@@ -633,7 +650,13 @@ msgid "Responsible User"
 msgstr "Verantwortlicher Benutzer"
 
 #. module: sale_blanket_order
-#: code:addons/sale_blanket_order/wizard/create_sale_orders.py:41
+#: model:ir.model.fields,field_description:sale_blanket_order.field_sale_blanket_order__message_has_sms_error
+#: model:ir.model.fields,field_description:sale_blanket_order.field_sale_blanket_order_line__message_has_sms_error
+msgid "SMS Delivery error"
+msgstr ""
+
+#. module: sale_blanket_order
+#: code:addons/sale_blanket_order/wizard/create_sale_orders.py:0
 #, python-format
 msgid "Sale Blanket Order %s is not open"
 msgstr "Rahmen-Verkaufsauftrag %s ist nicht offen"
@@ -659,11 +682,6 @@ msgid "Sale Count"
 msgstr "Anzahl der Verkäufe"
 
 #. module: sale_blanket_order
-#: model:ir.model,name:sale_blanket_order.model_sale_order
-msgid "Sale Order"
-msgstr "Verkaufsauftrag"
-
-#. module: sale_blanket_order
 #: model_terms:ir.ui.view,arch_db:sale_blanket_order.sale_blanket_order_line_form
 msgid "Sale Order Lines"
 msgstr "Auftragspositionen"
@@ -684,12 +702,17 @@ msgid "Sales Information"
 msgstr "Informationen Verkauf"
 
 #. module: sale_blanket_order
+#: model:ir.model,name:sale_blanket_order.model_sale_order
+msgid "Sales Order"
+msgstr ""
+
+#. module: sale_blanket_order
 #: model:ir.model,name:sale_blanket_order.model_sale_order_line
 msgid "Sales Order Line"
 msgstr "Auftragsposition"
 
 #. module: sale_blanket_order
-#: code:addons/sale_blanket_order/wizard/create_sale_orders.py:150
+#: code:addons/sale_blanket_order/wizard/create_sale_orders.py:0
 #, python-format
 msgid "Sales Orders"
 msgstr "Aufträge"
@@ -724,7 +747,8 @@ msgstr "Sequenz"
 #. module: sale_blanket_order
 #: model_terms:ir.ui.view,arch_db:sale_blanket_order.view_blanket_order_form
 msgid "Setup default terms and conditions in your company settings."
-msgstr "Richten Sie in Ihren Unternehmenseinstellungen Standardbedingungen ein."
+msgstr ""
+"Richten Sie in Ihren Unternehmenseinstellungen Standardbedingungen ein."
 
 #. module: sale_blanket_order
 #: model:ir.model.fields,field_description:sale_blanket_order.field_sale_blanket_order__state
@@ -769,7 +793,7 @@ msgid "Terms and Conditions"
 msgstr "Geschäftsbedingungen"
 
 #. module: sale_blanket_order
-#: code:addons/sale_blanket_order/models/sale_orders.py:148
+#: code:addons/sale_blanket_order/models/sale_orders.py:0
 #, python-format
 msgid ""
 "The currency of the blanket order must match with that of the sale order."
@@ -778,19 +802,19 @@ msgstr ""
 "übereinstimmen."
 
 #. module: sale_blanket_order
-#: code:addons/sale_blanket_order/models/sale_orders.py:38
+#: code:addons/sale_blanket_order/models/sale_orders.py:0
 #, python-format
 msgid "The customer must be equal to the blanket order lines customer"
 msgstr "Der Kunde muss dem Kunden der Blanko-Auftragszeilen entsprechen"
 
 #. module: sale_blanket_order
-#: code:addons/sale_blanket_order/models/sale_orders.py:138
+#: code:addons/sale_blanket_order/models/sale_orders.py:0
 #, python-format
 msgid "The product in the blanket order and in the sales order must match"
 msgstr "Das Produkt im Rahmenauftrag und im Kundenauftrag muss übereinstimmen"
 
 #. module: sale_blanket_order
-#: code:addons/sale_blanket_order/wizard/create_sale_orders.py:36
+#: code:addons/sale_blanket_order/wizard/create_sale_orders.py:0
 #, python-format
 msgid "The sale has already been completed."
 msgstr "Der Verkauf ist bereits abgeschlossen."
@@ -801,16 +825,16 @@ msgid "To Draft"
 msgstr "Entwurf"
 
 #. module: sale_blanket_order
-#: selection:sale.blanket.order,activity_state:0
-#: selection:sale.blanket.order.line,activity_state:0
-msgid "Today"
-msgstr "Heute"
-
-#. module: sale_blanket_order
 #: model:ir.model.fields,field_description:sale_blanket_order.field_sale_blanket_order__amount_total
 #: model:ir.model.fields,field_description:sale_blanket_order.field_sale_blanket_order_line__price_total
 msgid "Total"
 msgstr "Gesamt"
+
+#. module: sale_blanket_order
+#: model:ir.model.fields,help:sale_blanket_order.field_sale_blanket_order__activity_exception_decoration
+#: model:ir.model.fields,help:sale_blanket_order.field_sale_blanket_order_line__activity_exception_decoration
+msgid "Type of the exception activity on record."
+msgstr ""
 
 #. module: sale_blanket_order
 #: model_terms:ir.ui.view,arch_db:sale_blanket_order.report_blanketorder_document
@@ -866,13 +890,13 @@ msgid "Validity Date"
 msgstr "Gültigkeitsdatum"
 
 #. module: sale_blanket_order
-#: code:addons/sale_blanket_order/models/blanket_orders.py:218
+#: code:addons/sale_blanket_order/models/blanket_orders.py:0
 #, python-format
 msgid "Validity date is mandatory"
 msgstr "Gültigkeitsdatum ist obligatorisch"
 
 #. module: sale_blanket_order
-#: code:addons/sale_blanket_order/models/blanket_orders.py:220
+#: code:addons/sale_blanket_order/models/blanket_orders.py:0
 #, python-format
 msgid "Validity date must be in the future"
 msgstr "Das Gültigkeitsdatum muss in der Zukunft liegen"
@@ -900,25 +924,23 @@ msgid "Wizard"
 msgstr "Assistent"
 
 #. module: sale_blanket_order
-#: code:addons/sale_blanket_order/models/blanket_orders.py:251
+#: code:addons/sale_blanket_order/models/blanket_orders.py:0
 #, python-format
 msgid ""
-"You can not delete a blanket order with opened purchase orders! Try to "
-"cancel them before."
+"You can not delete a blanket order with opened sale orders! Try to cancel "
+"them before."
 msgstr ""
-"Sie können eine Rahmenbestellung mit offenen Bestellungen nicht löschen! "
-"Versuchen Sie, sie vorher zu stornieren."
 
 #. module: sale_blanket_order
-#: code:addons/sale_blanket_order/models/blanket_orders.py:208
+#: code:addons/sale_blanket_order/models/blanket_orders.py:0
 #, python-format
-msgid "You can not delete an open blanket order! Try to cancel it before."
+msgid ""
+"You can not delete an open blanket or with active sale orders! Try to cancel "
+"it before."
 msgstr ""
-"Sie können eine offene Rahmenbestellung nicht löschen! Versuchen Sie, sie "
-"vorher zu stornieren."
 
 #. module: sale_blanket_order
-#: code:addons/sale_blanket_order/wizard/create_sale_orders.py:22
+#: code:addons/sale_blanket_order/wizard/create_sale_orders.py:0
 #, python-format
 msgid "You can't create a sale order from an expired blanket order!"
 msgstr ""
@@ -926,22 +948,54 @@ msgstr ""
 "erstellen!"
 
 #. module: sale_blanket_order
-#: code:addons/sale_blanket_order/wizard/create_sale_orders.py:97
+#: code:addons/sale_blanket_order/wizard/create_sale_orders.py:0
 #, python-format
 msgid "You can't order more than the remaining quantities"
 msgstr "Sie können nicht mehr als die offene Menge beauftragen"
 
 #. module: sale_blanket_order
-#: code:addons/sale_blanket_order/wizard/create_sale_orders.py:47
+#: code:addons/sale_blanket_order/wizard/create_sale_orders.py:0
 #, python-format
 msgid "You have to select lines from the same company."
 msgstr "Sie müssen Zeilen desselben Unternehmens auswählen."
 
 #. module: sale_blanket_order
-#: code:addons/sale_blanket_order/models/blanket_orders.py:429
+#: code:addons/sale_blanket_order/models/blanket_orders.py:0
 #, python-format
 msgid "remaining"
 msgstr "verbleibend"
+
+#~ msgid "If checked new messages require your attention."
+#~ msgstr ""
+#~ "Wenn dieses Feld aktiviert ist, erfordern neue Nachrichten deine "
+#~ "Aufmerksamtkeit."
+
+#~ msgid "Number of error"
+#~ msgstr "Anzahl der Fehler"
+
+#~ msgid "Overdue"
+#~ msgstr "Überfällig"
+
+#~ msgid "Planned"
+#~ msgstr "Geplant"
+
+#~ msgid "Sale Order"
+#~ msgstr "Verkaufsauftrag"
+
+#~ msgid "Today"
+#~ msgstr "Heute"
+
+#~ msgid ""
+#~ "You can not delete a blanket order with opened purchase orders! Try to "
+#~ "cancel them before."
+#~ msgstr ""
+#~ "Sie können eine Rahmenbestellung mit offenen Bestellungen nicht löschen! "
+#~ "Versuchen Sie, sie vorher zu stornieren."
+
+#~ msgid "You can not delete an open blanket order! Try to cancel it before."
+#~ msgstr ""
+#~ "Sie können eine offene Rahmenbestellung nicht löschen! Versuchen Sie, sie "
+#~ "vorher zu stornieren."
 
 #~ msgid "Quotation"
 #~ msgstr "Angebot"
