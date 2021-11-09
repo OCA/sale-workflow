@@ -82,7 +82,11 @@ class BlanketOrderWizard(models.TransientModel):
         ]
         return lines
 
-    blanket_order_id = fields.Many2one("sale.blanket.order", readonly=True)
+    blanket_order_id = fields.Many2one(
+        comodel_name="sale.blanket.order",
+        readonly=True,
+        default=lambda self: self._default_order(),
+    )
     sale_order_id = fields.Many2one(
         "sale.order", string="Purchase Order", domain=[("state", "=", "draft")]
     )
@@ -93,6 +97,19 @@ class BlanketOrderWizard(models.TransientModel):
         default=_default_lines,
     )
 
+    def _prepare_so_line_vals(self, line):
+        return {
+            "product_id": line.product_id.id,
+            "name": line.product_id.name,
+            "product_uom": line.product_uom.id,
+            "sequence": line.blanket_line_id.sequence,
+            "price_unit": line.blanket_line_id.price_unit,
+            "blanket_order_line": line.blanket_line_id.id,
+            "product_uom_qty": line.qty,
+            "tax_id": [(6, 0, line.taxes_id.ids)],
+            "analytic_tag_ids": [(6, 0, line.blanket_line_id.analytic_tag_ids.ids)],
+        }
+
     def create_sale_order(self):
         order_lines_by_customer = defaultdict(list)
         currency_id = 0
@@ -102,16 +119,7 @@ class BlanketOrderWizard(models.TransientModel):
         for line in self.line_ids.filtered(lambda l: l.qty != 0.0):
             if line.qty > line.remaining_uom_qty:
                 raise UserError(_("You can't order more than the remaining quantities"))
-            vals = {
-                "product_id": line.product_id.id,
-                "name": line.product_id.name,
-                "product_uom": line.product_uom.id,
-                "sequence": line.blanket_line_id.sequence,
-                "price_unit": line.blanket_line_id.price_unit,
-                "blanket_order_line": line.blanket_line_id.id,
-                "product_uom_qty": line.qty,
-                "tax_id": [(6, 0, line.taxes_id.ids)],
-            }
+            vals = self._prepare_so_line_vals(line)
             order_lines_by_customer[line.partner_id.id].append((0, 0, vals))
 
             if currency_id == 0:
@@ -155,6 +163,7 @@ class BlanketOrderWizard(models.TransientModel):
                 "pricelist_id": pricelist_id,
                 "payment_term_id": payment_term_id,
                 "order_line": order_lines_by_customer[customer],
+                "analytic_account_id": self.blanket_order_id.analytic_account_id.id,
             }
             sale_order = self.env["sale.order"].create(order_vals)
             res.append(sale_order.id)
@@ -181,7 +190,7 @@ class BlanketOrderWizardLine(models.TransientModel):
     product_uom = fields.Many2one(
         "uom.uom", related="blanket_line_id.product_uom", string="Unit of Measure"
     )
-    date_schedule = fields.Date(related="blanket_line_id.date_schedule")
+    date_schedule = fields.Date(string="Scheduled Date")
     remaining_uom_qty = fields.Float(related="blanket_line_id.remaining_uom_qty")
     qty = fields.Float(string="Quantity to Order", required=True)
     price_unit = fields.Float(related="blanket_line_id.price_unit")
