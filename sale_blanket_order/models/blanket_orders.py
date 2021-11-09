@@ -75,6 +75,15 @@ class BlanketOrder(models.Model):
         states={"draft": [("readonly", False)]},
     )
     currency_id = fields.Many2one("res.currency", related="pricelist_id.currency_id")
+    analytic_account_id = fields.Many2one(
+        comodel_name="account.analytic.account",
+        string="Analytic Account",
+        readonly=True,
+        copy=False,
+        check_company=True,
+        states={"draft": [("readonly", False)]},
+        domain="['|', ('company_id', '=', False), ('company_id', '=', company_id)]",
+    )
     payment_term_id = fields.Many2one(
         "account.payment.term",
         string="Payment Terms",
@@ -484,6 +493,11 @@ class BlanketOrderLine(models.Model):
     )
     price_total = fields.Monetary(compute="_compute_amount", string="Total", store=True)
     price_tax = fields.Float(compute="_compute_amount", string="Tax", store=True)
+    analytic_tag_ids = fields.Many2many(
+        comodel_name="account.analytic.tag",
+        string="Analytic Tags",
+        domain="['|', ('company_id', '=', False), ('company_id', '=', company_id)]",
+    )
 
     def name_get(self):
         result = []
