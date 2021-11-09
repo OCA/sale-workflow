@@ -9,7 +9,9 @@ class TestPartnerContactSaleInfoPropagation(TransactionCase):
 
     def setUp(self):
         super(TestPartnerContactSaleInfoPropagation, self).setUp()
-        self.partner_model = self.env['res.partner']
+        self.partner_model = self.env['res.partner'].with_context(
+            test_propagation=True
+        )
         self.parent_company = self.partner_model.create({
             'name': 'Parent company',
             'company_type': 'company',
