@@ -1,6 +1,6 @@
 # Translation of Odoo Server.
 # This file contains the translation of the following modules:
-#	* sales_team_security
+# 	* sales_team_security
 #
 msgid ""
 msgstr ""
@@ -27,12 +27,40 @@ msgid "Contact"
 msgstr "Contacto"
 
 #. module: sales_team_security
+#: model:ir.model.fields,help:sales_team_security.field_res_partner__team_id
+#: model:ir.model.fields,help:sales_team_security.field_res_users__team_id
+msgid ""
+"If set, this Sales Team will be used for sales and assignations related to "
+"this partner"
+msgstr ""
+
+#. module: sales_team_security
 #: model:ir.model,name:sales_team_security.model_ir_rule
 msgid "Record Rule"
 msgstr "Regra de Registo"
 
 #. module: sales_team_security
+#: model:ir.model.fields,field_description:sales_team_security.field_res_partner__team_id
+#: model:ir.model.fields,field_description:sales_team_security.field_res_users__team_id
+msgid "Sales Team"
+msgstr ""
+
+#. module: sales_team_security
+#: model:ir.model.fields,field_description:sales_team_security.field_res_partner__user_id
+#: model:ir.model.fields,field_description:sales_team_security.field_res_users__user_id
+msgid "Salesperson"
+msgstr ""
+
+#. module: sales_team_security
+#: model:ir.model.fields,help:sales_team_security.field_res_partner__user_id
+#: model:ir.model.fields,help:sales_team_security.field_res_users__user_id
+msgid "The internal user in charge of this contact."
+msgstr ""
+
+#. module: sales_team_security
 #: model:res.groups,comment:sales_team_security.group_sale_team_manager
-msgid "the user will have an access to the documents of the sales channel he/she belongs to."
+msgid ""
+"the user will have an access to the documents of the sales channel he/she "
+"belongs to."
 msgstr ""
 "o utilizador terá acesso aos documentos do canal de vendas a que pertence."
