@@ -114,7 +114,7 @@
                         </group>
                     </group>
                     <notebook>
-                        <page string="Order Lines">
+                        <page string="Order Lines" name="order_lines">
                             <field
                                 name="line_ids"
                                 attrs="{'readonly': [('state', 'in', ('open','expired'))]}"
@@ -125,6 +125,14 @@
                                     <field
                                         name="product_id"
                                         context="{'partner_id':parent.partner_id, 'quantity':original_uom_qty, 'company_id': parent.company_id}"
+                                    />
+                                    <field
+                                        name="analytic_tag_ids"
+                                        optional="hide"
+                                        groups="analytic.group_analytic_tags"
+                                        widget="many2many_tags"
+                                        options="{'color_field': 'color'}"
+                                        domain="['|', ('company_id', '=', False), ('company_id', '=', parent.company_id)]"
                                     />
                                     <field
                                         name="original_uom_qty"
@@ -178,7 +186,7 @@
                             />
                             <div class="oe_clear" />
                         </page>
-                        <page string="Other Information">
+                        <page string="Other Information" name="other_information">
                             <group>
                                 <group string="Sales Information" name="sales_person">
                                     <field
@@ -195,6 +203,14 @@
                                         name="company_id"
                                         options="{'no_create': True}"
                                         groups="base.group_multi_company"
+                                    />
+                                </group>
+                                <group name="invoicing" string="Invoicing">
+                                    <field
+                                        name="analytic_account_id"
+                                        attrs="{'readonly': [('sale_count','!=',0),('state','!=','draft')]}"
+                                        groups="analytic.group_analytic_accounting"
+                                        force_save="1"
                                     />
                                 </group>
                             </group>
