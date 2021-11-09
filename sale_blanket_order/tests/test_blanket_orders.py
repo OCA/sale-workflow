@@ -13,6 +13,7 @@ class TestSaleBlanketOrders(common.TransactionCase):
         self.blanket_order_obj = self.env["sale.blanket.order"]
         self.blanket_order_line_obj = self.env["sale.blanket.order.line"]
         self.blanket_order_wiz_obj = self.env["sale.blanket.order.wizard"]
+        self.so_obj = self.env["sale.order"]
 
         self.payment_term = self.env.ref("account.account_payment_term_immediate")
         self.sale_pricelist = self.env["product.pricelist"].create(
@@ -151,6 +152,10 @@ class TestSaleBlanketOrders(common.TransactionCase):
         domain_ids = view_action["domain"][0][2]
         self.assertEqual(len(domain_ids), 2)
 
+        sos = self.so_obj.browse(domain_ids)
+        for so in sos:
+            self.assertEqual(so.origin, blanket_order.name)
+
     def test_03_create_sale_orders_from_blanket_order_line(self):
         """ We create a blanket order and create two sale orders
             from the blanket order lines """
@@ -240,7 +245,7 @@ class TestSaleBlanketOrders(common.TransactionCase):
 
         bo_lines = blanket_order.line_ids
 
-        sale_order = self.env["sale.order"].create(
+        sale_order = self.so_obj.create(
             {
                 "partner_id": self.partner.id,
                 "payment_term_id": self.payment_term.id,
@@ -299,7 +304,7 @@ class TestSaleBlanketOrders(common.TransactionCase):
         blanket_order.sudo().onchange_partner_id()
         blanket_order.sudo().action_confirm()
 
-        sale_order = self.env["sale.order"].create(
+        sale_order = self.so_obj.create(
             {
                 "partner_id": self.partner.id,
                 "payment_term_id": self.payment_term.id,
