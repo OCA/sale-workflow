@@ -14,8 +14,9 @@ class SaleOrderLine(models.Model):
 
     @api.onchange("product_id")
     def product_id_change(self):
-        super().product_id_change()
+        res = super().product_id_change()
         self.lot_id = False
+        return res
 
     @api.onchange("product_id")
     def _onchange_product_id_set_lot_domain(self):
