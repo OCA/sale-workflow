@@ -24,6 +24,16 @@ class BlanketOrder(models.Model):
     def _default_company(self):
         return self.env.company
 
+    @api.model
+    def _default_note(self):
+        return (
+            self.env["ir.config_parameter"]
+            .sudo()
+            .get_param("account.use_invoice_terms")
+            and self.env.company.invoice_terms
+            or ""
+        )
+
     @api.depends("line_ids.price_total")
     def _compute_amount_all(self):
         for order in self.filtered("currency_id"):
@@ -65,6 +75,15 @@ class BlanketOrder(models.Model):
         states={"draft": [("readonly", False)]},
     )
     currency_id = fields.Many2one("res.currency", related="pricelist_id.currency_id")
+    analytic_account_id = fields.Many2one(
+        comodel_name="account.analytic.account",
+        string="Analytic Account",
+        readonly=True,
+        copy=False,
+        check_company=True,
+        states={"draft": [("readonly", False)]},
+        domain="['|', ('company_id', '=', False), ('company_id', '=', company_id)]",
+    )
     payment_term_id = fields.Many2one(
         "account.payment.term",
         string="Payment Terms",
@@ -90,7 +109,9 @@ class BlanketOrder(models.Model):
         readonly=True,
         states={"draft": [("readonly", False)]},
     )
-    note = fields.Text(readonly=True, states={"draft": [("readonly", False)]})
+    note = fields.Text(
+        readonly=True, default=_default_note, states={"draft": [("readonly", False)]}
+    )
     user_id = fields.Many2one(
         "res.users",
         string="Salesperson",
@@ -472,6 +493,11 @@ class BlanketOrderLine(models.Model):
     )
     price_total = fields.Monetary(compute="_compute_amount", string="Total", store=True)
     price_tax = fields.Float(compute="_compute_amount", string="Tax", store=True)
+    analytic_tag_ids = fields.Many2many(
+        comodel_name="account.analytic.tag",
+        string="Analytic Tags",
+        domain="['|', ('company_id', '=', False), ('company_id', '=', company_id)]",
+    )
 
     def name_get(self):
         result = []
