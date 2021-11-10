@@ -17,7 +17,7 @@ class SaleOrderLine(models.Model):
         inheritance between Python and Odoo ORM, so we can consider this as a HACK.
         """
         ctx = self.env.context
-        if field_name == "product_uom_qty" and (
+        if field_name in {"product_uom_qty", "product_uom"} and (
             not config["test_enable"]
             or (config["test_enable"] and ctx.get("prevent_onchange_quantity", False))
         ):
