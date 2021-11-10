@@ -79,7 +79,6 @@ msgstr ""
 
 #. module: sale_blanket_order
 #: code:addons/sale_blanket_order/wizard/create_sale_orders.py:0
-#: code:addons/sale_blanket_order/wizard/create_sale_orders.py:0
 #, python-format
 msgid "An order can't be empty"
 msgstr ""
@@ -147,7 +146,6 @@ msgid "Blanket order wizard line"
 msgstr ""
 
 #. module: sale_blanket_order
-#: code:addons/sale_blanket_order/wizard/create_sale_orders.py:0
 #: code:addons/sale_blanket_order/wizard/create_sale_orders.py:0
 #, python-format
 msgid ""
@@ -241,7 +239,6 @@ msgid "Customer Reference"
 msgstr ""
 
 #. module: sale_blanket_order
-#: code:addons/sale_blanket_order/models/blanket_orders.py:0
 #: code:addons/sale_blanket_order/models/blanket_orders.py:0
 #, python-format
 msgid "Date Scheduled"
@@ -435,7 +432,6 @@ msgstr ""
 
 #. module: sale_blanket_order
 #: code:addons/sale_blanket_order/models/blanket_orders.py:0
-#: code:addons/sale_blanket_order/models/blanket_orders.py:0
 #, python-format
 msgid "Must have some lines"
 msgstr ""
@@ -561,7 +557,6 @@ msgstr ""
 
 #. module: sale_blanket_order
 #: code:addons/sale_blanket_order/models/blanket_orders.py:0
-#: code:addons/sale_blanket_order/models/blanket_orders.py:0
 #, python-format
 msgid "Partner is mandatory"
 msgstr ""
@@ -579,7 +574,6 @@ msgid "Price"
 msgstr ""
 
 #. module: sale_blanket_order
-#: code:addons/sale_blanket_order/models/blanket_orders.py:0
 #: code:addons/sale_blanket_order/models/blanket_orders.py:0
 #, python-format
 msgid "Price must be greater than zero"
@@ -605,7 +599,6 @@ msgid "Purchase Order"
 msgstr ""
 
 #. module: sale_blanket_order
-#: code:addons/sale_blanket_order/models/blanket_orders.py:0
 #: code:addons/sale_blanket_order/models/blanket_orders.py:0
 #, python-format
 msgid "Quantity must be greater than zero"
@@ -707,7 +700,6 @@ msgid "Sales Order Line"
 msgstr ""
 
 #. module: sale_blanket_order
-#: code:addons/sale_blanket_order/wizard/create_sale_orders.py:0
 #: code:addons/sale_blanket_order/wizard/create_sale_orders.py:0
 #, python-format
 msgid "Sales Orders"
@@ -873,13 +865,11 @@ msgstr ""
 
 #. module: sale_blanket_order
 #: code:addons/sale_blanket_order/models/blanket_orders.py:0
-#: code:addons/sale_blanket_order/models/blanket_orders.py:0
 #, python-format
 msgid "Validity date is mandatory"
 msgstr ""
 
 #. module: sale_blanket_order
-#: code:addons/sale_blanket_order/models/blanket_orders.py:0
 #: code:addons/sale_blanket_order/models/blanket_orders.py:0
 #, python-format
 msgid "Validity date must be in the future"
@@ -909,7 +899,6 @@ msgstr ""
 
 #. module: sale_blanket_order
 #: code:addons/sale_blanket_order/models/blanket_orders.py:0
-#: code:addons/sale_blanket_order/models/blanket_orders.py:0
 #, python-format
 msgid ""
 "You can not delete a blanket order with opened sale orders! Try to cancel "
@@ -917,7 +906,6 @@ msgid ""
 msgstr ""
 
 #. module: sale_blanket_order
-#: code:addons/sale_blanket_order/models/blanket_orders.py:0
 #: code:addons/sale_blanket_order/models/blanket_orders.py:0
 #, python-format
 msgid ""
@@ -933,7 +921,6 @@ msgstr ""
 
 #. module: sale_blanket_order
 #: code:addons/sale_blanket_order/wizard/create_sale_orders.py:0
-#: code:addons/sale_blanket_order/wizard/create_sale_orders.py:0
 #, python-format
 msgid "You can't order more than the remaining quantities"
 msgstr ""
@@ -945,7 +932,6 @@ msgid "You have to select lines from the same company."
 msgstr ""
 
 #. module: sale_blanket_order
-#: code:addons/sale_blanket_order/models/blanket_orders.py:0
 #: code:addons/sale_blanket_order/models/blanket_orders.py:0
 #, python-format
 msgid "remaining"
