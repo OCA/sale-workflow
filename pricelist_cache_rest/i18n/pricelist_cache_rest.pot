@@ -1,0 +1,70 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* pricelist_cache_rest
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 14.0\n"
+"Report-Msgid-Bugs-To: \n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: pricelist_cache_rest
+#: model_terms:ir.ui.view,arch_db:pricelist_cache_rest.res_config_settings_view_form_pricelist_cache_rest_inherit
+msgid "<b modifiers=\"{}\">Authorized Pricelist Cache API keys</b>"
+msgstr ""
+
+#. module: pricelist_cache_rest
+#: model:ir.model.fields,help:pricelist_cache_rest.field_res_company__pricelist_cache_auhorize_apikey_ids
+#: model:ir.model.fields,help:pricelist_cache_rest.field_res_config_settings__pricelist_cache_auhorize_apikey_ids
+msgid "API keys that can retrieve pricelist data via REST endpoints."
+msgstr ""
+
+#. module: pricelist_cache_rest
+#: model:ir.model,name:pricelist_cache_rest.model_res_company
+msgid "Companies"
+msgstr ""
+
+#. module: pricelist_cache_rest
+#: model:ir.model,name:pricelist_cache_rest.model_res_config_settings
+msgid "Config Settings"
+msgstr ""
+
+#. module: pricelist_cache_rest
+#: model_terms:ir.ui.view,arch_db:pricelist_cache_rest.res_config_settings_view_form_pricelist_cache_rest_inherit
+msgid ""
+"Defines the list of api keys authorized to retrieve prices from the api"
+msgstr ""
+
+#. module: pricelist_cache_rest
+#: model:ir.model.fields,field_description:pricelist_cache_rest.field_res_company__display_name
+#: model:ir.model.fields,field_description:pricelist_cache_rest.field_res_config_settings__display_name
+msgid "Display Name"
+msgstr ""
+
+#. module: pricelist_cache_rest
+#: model:ir.model.fields,field_description:pricelist_cache_rest.field_res_company__id
+#: model:ir.model.fields,field_description:pricelist_cache_rest.field_res_config_settings__id
+msgid "ID"
+msgstr ""
+
+#. module: pricelist_cache_rest
+#: model:ir.model.fields,field_description:pricelist_cache_rest.field_res_company____last_update
+#: model:ir.model.fields,field_description:pricelist_cache_rest.field_res_config_settings____last_update
+msgid "Last Modified on"
+msgstr ""
+
+#. module: pricelist_cache_rest
+#: model_terms:ir.ui.view,arch_db:pricelist_cache_rest.res_config_settings_view_form_pricelist_cache_rest_inherit
+msgid "Pricelist Cache API keys"
+msgstr ""
+
+#. module: pricelist_cache_rest
+#: model:ir.model.fields,field_description:pricelist_cache_rest.field_res_company__pricelist_cache_auhorize_apikey_ids
+#: model:ir.model.fields,field_description:pricelist_cache_rest.field_res_config_settings__pricelist_cache_auhorize_apikey_ids
+msgid "Pricelist Cache Auhorize Apikey"
+msgstr ""
