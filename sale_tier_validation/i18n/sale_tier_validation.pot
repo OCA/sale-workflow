@@ -57,6 +57,11 @@ msgid "Needs my Review"
 msgstr ""
 
 #. module: sale_tier_validation
+#: model:ir.model.fields,field_description:sale_tier_validation.field_sale_order__next_review
+msgid "Next Review"
+msgstr ""
+
+#. module: sale_tier_validation
 #: model:ir.model.fields,field_description:sale_tier_validation.field_sale_order__rejected
 msgid "Rejected"
 msgstr ""
