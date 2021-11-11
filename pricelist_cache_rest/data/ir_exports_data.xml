@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+
+    <record id="ir_exp_cache_item" model="ir.exports">
+        <field name="name">Pricelist Cache Parser</field>
+        <field name="resource">pricelist.cache</field>
+    </record>
+
+    <record id="ir_exp_cache_item_product_id" model="ir.exports.line">
+        <field name="name">product_id</field>
+        <field name="target">product_id:id</field>
+        <field name="instance_method_name">_jsonify_m2o_to_id</field>
+        <field name="export_id" ref="ir_exp_cache_item" />
+    </record>
+
+    <record id="ir_exp_cache_item_product_price" model="ir.exports.line">
+        <field name="name">price</field>
+        <field name="export_id" ref="ir_exp_cache_item" />
+    </record>
+
+</odoo>
