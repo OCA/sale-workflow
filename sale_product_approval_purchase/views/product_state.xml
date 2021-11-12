@@ -1,0 +1,15 @@
+<odoo>
+    <record id="product_state_form_view_inherit_purchase" model="ir.ui.view">
+        <field name="name">product_state_form_view_inherit_purchase</field>
+        <field name="model">product.state</field>
+        <field name="inherit_id" ref="product_state.view_product_state_form" />
+        <field name="arch" type="xml">
+            <div name="options" position="inside">
+                <div>
+                    <field name="approved_purchase" />
+                    <label for="approved_purchase" />
+                </div>
+            </div>
+        </field>
+    </record>
+</odoo>
