@@ -98,7 +98,7 @@
                         nolabel="1"
                         mode="form"
                         widget="one2many_product_picker"
-                        context="{'product_picker': True, 'sale_order_partner_id': partner_id, 'sale_order_partner_shipping_id': partner_shipping_id, 'default_product_uom_qty': 0}"
+                        context="{'product_picker': True, 'sale_order_partner_id': partner_id, 'sale_order_partner_shipping_id': partner_shipping_id, 'default_product_uom_qty': 0, 'pwa_force_online': True}"
                         options="{
                             'edit_discount': True,
                             'show_discount': True,
