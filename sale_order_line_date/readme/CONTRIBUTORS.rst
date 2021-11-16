@@ -9,3 +9,4 @@
 * Mykhailo Panarin <m.panarin@mobilunity.com>
 * Open-Net Sàrl <jae@open-net.ch>
 * Miquel Raïch <miquel.raich@forgeflow.com>
+* Moaad Bourhim <moaad.bourhim@gmail.com>
