@@ -9,7 +9,7 @@
                 position="after"
             >
                 <button
-                    attrs="{'invisible':[('approved_purchase','=',True)]}"
+                    attrs="{'invisible':['|',('approved_purchase','=',True),('state','in',('purchase','done','cancel'))]}"
                     class="fa fa-exclamation-triangle"
                     title="Product has been marked as not purchasable."
                 />
@@ -18,11 +18,17 @@
             <div name="button_box" position="after">
                 <field invisible="1" name="exceptions_purchase_approval" />
                 <div
-                    attrs="{'invisible':[('exceptions_purchase_approval','=',False)]}"
+                    attrs="{'invisible':['|',('exceptions_purchase_approval','=',False),('state','in',('purchase','done','cancel'))]}"
                     class="alert alert-warning text-center"
                     role="alert"
                 >Exception: A product on this purchase order has been marked as not purchasable.</div>
             </div>
+            <field name="user_id" position="after">
+                <field
+                    name="override_exception"
+                    groups="sales_team.group_sale_manager"
+                />
+            </field>
         </field>
     </record>
 </odoo>

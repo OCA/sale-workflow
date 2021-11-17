@@ -24,6 +24,7 @@ class PurchaseOrder(models.Model):
     exceptions_purchase_approval = fields.Boolean(
         compute="_compute_exceptions", string="Exception", default=False
     )
+    override_exception = fields.Boolean("Override Exception", default=False)
 
     @api.depends("order_line.approved_purchase")
     def _compute_exceptions(self):
@@ -50,7 +51,11 @@ class PurchaseOrder(models.Model):
     def button_confirm(self):
         res = super(PurchaseOrder, self).button_confirm()
         for purchase in self:
-            if purchase.exceptions_purchase_approval:
+            if (
+                purchase.exceptions_purchase_approval
+                and not purchase.override_exception
+                and not self._context.get("override_ex")
+            ):
                 raise UserError(
                     _(
                         "You can not confirm this purchase order "
