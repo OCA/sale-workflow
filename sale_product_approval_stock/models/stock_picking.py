@@ -13,6 +13,7 @@ class StockPicking(models.Model):
     do_exceptions = fields.Boolean(
         compute="_compute_stock_exception", string="Stock Exception"
     )
+    override_exception = fields.Boolean("Override Exception", default=False)
 
     @api.depends("move_ids_without_package.do_line_exceptions")
     def _compute_stock_exception(self):
@@ -49,7 +50,11 @@ class StockPicking(models.Model):
 
     def check_do_exception(self):
         for do in self:
-            if do.do_exceptions:
+            if (
+                do.do_exceptions
+                and not do.override_exception
+                and not self._context.get("override_ex")
+            ):
                 raise UserError(
                     _(
                         "You can not do Validate/Mark as Done because some products are not "
@@ -63,3 +68,4 @@ class StockMove(models.Model):
     _inherit = "stock.move"
 
     do_line_exceptions = fields.Boolean(related="product_id.ship_ok")
+    pick_state = fields.Selection(related="picking_id.state", string="Picking State")
