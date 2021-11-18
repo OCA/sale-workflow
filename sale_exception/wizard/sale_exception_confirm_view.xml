@@ -14,13 +14,11 @@
                         </tree>
                     </field>
                     <newline />
-                    <field name="ignore" groups='sales_team.group_sale_manager' />
                 </group>
                 <footer>
                     <button
-                        name="action_confirm"
-                        string="Confirm"
-                        colspan="1"
+                        name="action_confirm_ignore_exc"
+                        string="Ignore exceptions and confirm"
                         type="object"
                     />
                     <button class="oe_link" special="cancel" string="Cancel" />

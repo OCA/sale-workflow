@@ -128,9 +128,9 @@ class TestSaleException(SavepointCase):
         self.assertTrue(not so1.ignore_exception)
 
         # Simulation the opening of the wizard sale_exception_confirm and
-        # set ignore_exception to True
+        # using the confirm ignoring exception button
         so_except_confirm = self.sale_exception_confirm.with_context(
             {"active_id": so1.id, "active_ids": [so1.id], "active_model": so1._name}
-        ).create({"ignore": True})
-        so_except_confirm.action_confirm()
+        ).create({})
+        so_except_confirm.action_confirm_ignore_exc()
         self.assertTrue(so1.ignore_exception)

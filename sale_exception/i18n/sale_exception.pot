@@ -6,6 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 14.0\n"
 "Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2021-11-18 13:43+0000\n"
+"PO-Revision-Date: 2021-11-18 13:43+0000\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -66,11 +68,6 @@ msgid ""
 msgstr ""
 
 #. module: sale_exception
-#: model_terms:ir.ui.view,arch_db:sale_exception.view_sale_exception_confirm
-msgid "Confirm"
-msgstr ""
-
-#. module: sale_exception
 #: model:ir.model.fields,field_description:sale_exception.field_sale_exception_confirm__create_uid
 msgid "Created by"
 msgstr ""
@@ -124,6 +121,11 @@ msgstr ""
 #: model:ir.model.fields,field_description:sale_exception.field_sale_order_line__ignore_exception
 #: model_terms:ir.ui.view,arch_db:sale_exception.view_order_form
 msgid "Ignore Exceptions"
+msgstr ""
+
+#. module: sale_exception
+#: model_terms:ir.ui.view,arch_db:sale_exception.view_sale_exception_confirm
+msgid "Ignore exceptions and confirm"
 msgstr ""
 
 #. module: sale_exception
