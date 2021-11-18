@@ -5,7 +5,7 @@
     "summary": "Define priority on sale orders",
     "version": "13.0.1.0.0",
     "category": "Sale Workflow",
-    "website": "https://github.com/OCA/sale-workflow/",
+    "website": "https://github.com/OCA/sale-workflow",
     "author": "Agile Business Group, Odoo Community Association (OCA)",
     "license": "AGPL-3",
     "application": False,
