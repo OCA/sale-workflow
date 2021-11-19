@@ -1,0 +1,2 @@
+odoo14-addon-sale_order_secondary_unit @git+https://github.com/OCA/sale-workflow@refs/pull/1671/head#subdirectory=setup/sale_order_secondary_unit
+odoo14-addon-sale_order_product_recommendation @git+https://github.com/OCA/sale-workflow@refs/pull/1540/head#subdirectory=setup/sale_order_product_recommendation
