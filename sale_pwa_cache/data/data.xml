@@ -296,12 +296,12 @@ return {
         </record>
         <!-- ONCHANGE FORMULA -->
         <record
-            id="pwa_cache_onchange_formula_sale_order_line_product_id_product_uom_category_id"
+            id="pwa_cache_onchange_formula_sale_order_line_product_id_product_uom_category_id_product_type"
             model="pwa.cache"
         >
             <field
                 name="name"
-            >Sale Order Line - Onchange Formula - product_id [product_uom_category_id]</field>
+            >Sale Order Line - Onchange Formula - product_id [product_uom_category_id + product_type]</field>
             <field name="cache_type">onchange_formula</field>
             <field name="sequence">17</field>
             <field name="model_id" ref="sale.model_sale_order_line" />
@@ -314,7 +314,7 @@ return {
             ><![CDATA[
 return new Promise(async (resolve, reject) => {
     try {
-        const product_id = await db.browse("product.product", obj.product_id, ["uom_id"]);
+        const product_id = await db.browse("product.product", obj.product_id, ["uom_id", "type"]);
         if (_.isEmpty(product_id)) {
             return reject("Product ID not found!");
         }
@@ -324,7 +324,8 @@ return new Promise(async (resolve, reject) => {
         }
         return resolve({
             value: {
-                product_uom_category_id: uom_id.category_id[0]
+                product_uom_category_id: uom_id.category_id[0],
+                product_type: product_id.type,
             }
         });
     } catch (err) {
