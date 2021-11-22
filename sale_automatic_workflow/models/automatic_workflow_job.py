@@ -161,7 +161,7 @@ class AutomaticWorkflowJob(models.Model):
         )
         return {
             "invoice_ids": [(6, 0, invoice.ids)],
-            "amount": invoice.residual,
+            "amount": invoice.amount_residual,
             "payment_date": fields.Date.context_today(self),
             "communication": communication,
             "partner_id": invoice.partner_id.id,
