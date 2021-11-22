@@ -12,7 +12,7 @@ class AutomaticWorkflowJob(models.Model):
     _inherit = "automatic.workflow.job"
 
     def _prepare_dict_account_payment(self, invoice):
-        vals = self._prepare_dict_account_payment(invoice)
+        vals = super()._prepare_dict_account_payment(invoice)
         if invoice.payment_mode_id:
             payment_mode = invoice.payment_mode_id
             vals["payment_type"] = payment_mode.payment_type
