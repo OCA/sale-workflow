@@ -3,7 +3,7 @@
 
 {
     "name": "Sale Automatic Workflow - Payment Mode",
-    "version": "13.0.1.1.0",
+    "version": "13.0.1.1.1",
     "author": "Camptocamp,Sodexis,Odoo Community Association (OCA)",
     "license": "AGPL-3",
     "category": "Sales Management",
