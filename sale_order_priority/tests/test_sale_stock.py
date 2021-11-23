@@ -1,11 +1,31 @@
 # Copyright 2018 Simone Rubino - Agile Business Group
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
-from odoo.addons.sale.tests.test_sale_common import TestSale
+from odoo.addons.sale.tests.common import TestSaleCommonBase
 
 
-class TestSaleStock(TestSale):
+class TestSaleStock(TestSaleCommonBase):
+    @classmethod
+    def setUpClass(cls):
+        super().setUpClass()
+
+        cls.company = cls.env["res.company"].create(
+            {
+                "name": "Test Company",
+                "currency_id": cls.env.ref("base.EUR").id,
+            }
+        )
+
+        cls.company_data = cls.setup_sale_configuration_for_company(cls.company)
+
+        cls.partner = cls.env["res.partner"].create(
+            {
+                "name": "partner1",
+                "company_id": False,
+            }
+        )
+
     def test_sale_order_priority(self):
-        sale_order_priority = "3"
+        sale_order_priority = "1"
         self.sale_order = self.env["sale.order"].create(
             {
                 "partner_id": self.partner.id,
@@ -15,18 +35,22 @@ class TestSaleStock(TestSale):
                         0,
                         0,
                         {
-                            "name": p.name,
-                            "product_id": p.id,
+                            "name": self.company_data["product_order_cost"].name,
+                            "product_id": self.company_data["product_order_cost"].id,
                             "product_uom_qty": 2,
-                            "product_uom": p.uom_id.id,
-                            "price_unit": p.list_price,
+                            "qty_delivered": 1,
+                            "product_uom": self.company_data[
+                                "product_order_cost"
+                            ].uom_id.id,
+                            "price_unit": self.company_data[
+                                "product_order_cost"
+                            ].list_price,
                         },
-                    )
-                    for (_, p) in self.products.items()
+                    ),
                 ],
             }
         )
-        sale_order_line_priority = "2"
+        sale_order_line_priority = "0"
         for sol in self.sale_order.order_line:
             # Test that the order's priority has been
             # correctly assigned to the order lines
