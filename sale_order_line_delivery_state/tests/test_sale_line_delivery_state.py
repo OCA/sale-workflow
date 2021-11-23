@@ -1,7 +1,7 @@
 # Copyright 2021 ForgeFlow S.L. (https://www.forgeflow.com)
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
-import mock
+from unittest import mock
 
 from odoo.tests import SavepointCase
 
@@ -98,15 +98,6 @@ class TestSaleLineDeliveryState(SavepointCase):
             self.assertEqual(self.order.order_line[0].delivery_state, "partially")
             self.assertEqual(self.order.order_line[1].delivery_state, "no")
 
-    def test_forced_delivery_cost(self):
-        self._add_delivery_cost_line()
-        with self._mock_delivery():
-            self.order.action_confirm()
-            self.order.order_line[0].qty_delivered = 2
-            self.order.order_line[0].force_delivery_state = True
-            self.assertEqual(self.order.order_line[0].delivery_state, "done")
-            self.assertEqual(self.order.order_line[1].delivery_state, "no")
-
     def test_delivery_done_delivery_cost(self):
         self._add_delivery_cost_line()
         with self._mock_delivery():
@@ -114,3 +105,44 @@ class TestSaleLineDeliveryState(SavepointCase):
             self.order.order_line[0].qty_delivered = 3
             self.assertEqual(self.order.order_line[0].delivery_state, "done")
             self.assertEqual(self.order.order_line[1].delivery_state, "no")
+
+    def test_unprocessed_force_unforce_done(self):
+        self._add_delivery_cost_line()
+        with self._mock_delivery():
+            self.order.action_confirm()
+            self.assertEqual(self.order.order_line[0].delivery_state, "unprocessed")
+            self.order.order_line[0].force_delivery_state = True
+            self.assertEqual(self.order.order_line[0].delivery_state, "done")
+            self.order.order_line[0].force_delivery_state = False
+            self.assertEqual(self.order.order_line[0].delivery_state, "unprocessed")
+
+    def test_partially_force_unforce_done(self):
+        self._add_delivery_cost_line()
+        with self._mock_delivery():
+            self.order.action_confirm()
+            self.order.order_line[0].qty_delivered = 2
+            self.assertEqual(self.order.order_line[0].delivery_state, "partially")
+            self.order.order_line[0].force_delivery_state = True
+            self.assertEqual(self.order.order_line[0].delivery_state, "done")
+            self.order.order_line[0].force_delivery_state = False
+            self.assertEqual(self.order.order_line[0].delivery_state, "partially")
+
+    def test_done_force_unforce_done(self):
+        self._add_delivery_cost_line()
+        with self._mock_delivery():
+            self.order.action_confirm()
+            self.order.order_line[0].qty_delivered = 3
+            self.assertEqual(self.order.order_line[0].delivery_state, "done")
+            self.order.order_line[0].force_delivery_state = True
+            self.assertEqual(self.order.order_line[0].delivery_state, "done")
+            self.order.order_line[0].force_delivery_state = False
+            self.assertEqual(self.order.order_line[0].delivery_state, "done")
+
+    def test_no_delivery_force_unforce_done(self):
+        self._add_delivery_cost_line()
+        with self._mock_delivery():
+            self.assertEqual(self.order.order_line[0].delivery_state, "no")
+            self.order.order_line[0].force_delivery_state = True
+            self.assertEqual(self.order.order_line[0].delivery_state, "no")
+            self.order.order_line[0].force_delivery_state = False
+            self.assertEqual(self.order.order_line[0].delivery_state, "no")
