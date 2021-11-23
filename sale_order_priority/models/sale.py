@@ -10,14 +10,8 @@ class SaleOrderLine(models.Model):
     _inherit = "sale.order.line"
 
     priority = fields.Selection(
-        stock_move.PROCUREMENT_PRIORITIES, string="Priority", default="1"
+        stock_move.PROCUREMENT_PRIORITIES, string="Priority", default="0"
     )
-
-    def _prepare_procurement_values(self, group_id=False):
-        self.ensure_one()
-        res = super(SaleOrderLine, self)._prepare_procurement_values(group_id=group_id)
-        res["priority"] = self.priority or self.default_get(["priority"])["priority"]
-        return res
 
 
 class SaleOrder(models.Model):
@@ -41,10 +35,15 @@ class SaleOrder(models.Model):
     def _compute_priority(self):
         for order in self.filtered(lambda x: x.order_line):
             priority = order.mapped("order_line.priority")
-            order.priority = max([x for x in priority if x] or "1")
+            order.priority = max([x for x in priority if x] or "0")
 
     def _inverse_priority(self):
         for order in self:
             priority = order.priority
             for line in order.order_line.filtered(lambda x: x.priority != priority):
                 line.priority = priority
+
+    def action_confirm(self):
+        return super(
+            SaleOrder, self.with_context(sale_priority=self.priority)
+        ).action_confirm()
