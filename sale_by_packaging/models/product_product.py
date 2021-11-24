@@ -19,7 +19,6 @@ class ProductProduct(models.Model):
 
     @api.depends(
         "sell_only_by_packaging",
-        "uom_id.factor",
         "packaging_ids.qty",
         "packaging_ids.can_be_sold",
     )
@@ -31,8 +30,6 @@ class ProductProduct(models.Model):
                 record.min_sellable_qty = fields.first(
                     sellable_pkgs.sorted(lambda p: p.qty)
                 ).qty
-            elif not record.sell_only_by_packaging:
-                record.min_sellable_qty = record.uom_id.factor
 
     def _convert_packaging_qty(self, qty, uom, packaging):
         """
