@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!-- Copyright 2018 Tecnativa - Carlos Dauden
+     License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl). -->
+<odoo>
+    <record id="view_order_form_inherit_sale_stock" model="ir.ui.view">
+        <field name="model">sale.order</field>
+        <field name="inherit_id" ref="sale_stock.view_order_form_inherit_sale_stock" />
+        <field name="arch" type="xml">
+            <group name="sale_shipping" position="inside">
+                <field
+                    name="picking_note"
+                    attrs="{'readonly': [('state', 'not in', ('draft', 'sent'))]}"
+                />
+                <field
+                    name="picking_customer_note"
+                    attrs="{'readonly': [('state', 'not in', ('draft', 'sent'))]}"
+                />
+            </group>
+        </field>
+    </record>
+</odoo>
