@@ -22,7 +22,7 @@ class TestSaleStockPickingNote(common.SavepointCase):
         )
 
     def test_01_sale_to_picking_note(self):
-        """ Pass note to picking from SO """
+        """Pass note to picking from SO"""
         self.order.picking_note = "This note goes to the picking..."
         self.order.picking_customer_note = "Picking comment"
         self.order.action_confirm()
