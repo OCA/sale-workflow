@@ -56,7 +56,25 @@ class BlanketOrder(models.Model):
         readonly=True,
         states={"draft": [("readonly", False)]},
     )
-    tag_ids = fields.Many2many('crm.tag', 'sale_blanket_order_tag_rel', 'order_id', 'tag_id', string='Tags')
+    partner_invoice_id = fields.Many2one(
+        "res.partner",
+        string="Invoice Address",
+        readonly=True,
+        required=True,
+        states={"draft": [("readonly", False)]},
+        domain="['|', ('company_id', '=', False), ('company_id', '=', company_id)]",
+    )
+    partner_shipping_id = fields.Many2one(
+        "res.partner",
+        string="Delivery Address",
+        readonly=True,
+        required=True,
+        states={"draft": [("readonly", False)]},
+        domain="['|', ('company_id', '=', False), ('company_id', '=', company_id)]",
+    )
+    tag_ids = fields.Many2many(
+        "crm.tag", "sale_blanket_order_tag_rel", "order_id", "tag_id", string="Tags"
+    )
     line_ids = fields.One2many(
         "sale.blanket.order.line", "order_id", string="Order lines", copy=True
     )
@@ -237,12 +255,17 @@ class BlanketOrder(models.Model):
         - Pricelist
         - Payment term
         - Fiscal position
+        - Invoice address
+        - Delivery address
         """
         if not self.partner_id:
             self.payment_term_id = False
             self.fiscal_position_id = False
+            self.partner_invoice_id = False
+            self.partner_shipping_id = False
             return
 
+        addr = self.partner_id.address_get(["delivery", "invoice"])
         values = {
             "pricelist_id": (
                 self.partner_id.property_product_pricelist
@@ -257,6 +280,8 @@ class BlanketOrder(models.Model):
             "fiscal_position_id": self.env["account.fiscal.position"]
             .with_context(company_id=self.company_id.id)
             .get_fiscal_position(self.partner_id.id),
+            "partner_invoice_id": addr["invoice"],
+            "partner_shipping_id": addr["delivery"],
         }
 
         if self.partner_id.user_id:

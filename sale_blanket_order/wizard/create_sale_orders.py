@@ -157,6 +157,8 @@ class BlanketOrderWizard(models.TransientModel):
         for customer in order_lines_by_customer:
             order_vals = {
                 "partner_id": customer,
+                "partner_invoice_id": self.blanket_order_id.partner_invoice_id.id,
+                "partner_shipping_id": self.blanket_order_id.partner_shipping_id.id,
                 "origin": self.blanket_order_id.name,
                 "user_id": user_id,
                 "currency_id": currency_id,
