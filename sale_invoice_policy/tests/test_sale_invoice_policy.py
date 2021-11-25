@@ -5,7 +5,7 @@ import odoo.tests.common as common
 
 class TestSaleOrderInvoicePolicy(common.TransactionCase):
     def setUp(self):
-        super(TestSaleOrderInvoicePolicy, self).setUp()
+        super().setUp()
         self.product_obj = self.env["product.product"]
         self.sale_obj = self.env["sale.order"]
         self.partner = self.env.ref("base.res_partner_2")
@@ -170,9 +170,9 @@ class TestSaleOrderInvoicePolicy(common.TransactionCase):
 
     def test_inverse_invoice_policy(self):
         self.product.default_invoice_policy = "order"
-        self.assertEquals("order", self.product.default_invoice_policy)
+        self.assertEqual("order", self.product.default_invoice_policy)
         self.product.invoice_policy = "delivery"
-        self.assertEquals("delivery", self.product.default_invoice_policy)
+        self.assertEqual("delivery", self.product.default_invoice_policy)
 
     def test_settings(self):
         settings = self.env["res.config.settings"].create({})
