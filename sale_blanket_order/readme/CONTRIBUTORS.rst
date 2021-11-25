@@ -2,3 +2,4 @@
 * Adrià Gil Sorribes <adria.gil@eficent.com> (https://www.eficent.com/)
 * Jordi Ballester Alomar <jordi.ballester@eficent.com>
 * Alex Comba <alex.comba@agilebg.com> (https://www.agilebg.com/)
+* Janik von Rotz <janik.vonrotz@mint-system.ch> (https://www.mint-system.ch)

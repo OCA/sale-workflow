@@ -183,7 +183,7 @@ class BlanketOrderWizardLine(models.TransientModel):
     _description = "Blanket order wizard line"
 
     wizard_id = fields.Many2one("sale.blanket.order.wizard")
-    blanket_line_id = fields.Many2one("sale.blanket.order.line")
+    blanket_line_id = fields.Many2one("sale.blanket.order.line", store="True")
     product_id = fields.Many2one(
         "product.product", related="blanket_line_id.product_id", string="Product"
     )
