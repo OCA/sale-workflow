@@ -56,6 +56,7 @@ class BlanketOrder(models.Model):
         readonly=True,
         states={"draft": [("readonly", False)]},
     )
+    tag_ids = fields.Many2many('crm.tag', 'sale_blanket_order_tag_rel', 'order_id', 'tag_id', string='Tags')
     line_ids = fields.One2many(
         "sale.blanket.order.line", "order_id", string="Order lines", copy=True
     )

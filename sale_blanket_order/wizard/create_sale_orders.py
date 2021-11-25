@@ -164,6 +164,7 @@ class BlanketOrderWizard(models.TransientModel):
                 "payment_term_id": payment_term_id,
                 "order_line": order_lines_by_customer[customer],
                 "analytic_account_id": self.blanket_order_id.analytic_account_id.id,
+                "tag_ids": self.blanket_order_id.tag_ids,
             }
             sale_order = self.env["sale.order"].create(order_vals)
             res.append(sale_order.id)
