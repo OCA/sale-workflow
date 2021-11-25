@@ -31,7 +31,7 @@
                     />
                     <button
                         name="set_to_draft"
-                        states="expired,done"
+                        states="expired,done,cancel"
                         string="To Draft"
                         class="btn-secondary"
                         type="object"

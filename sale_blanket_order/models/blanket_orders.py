@@ -118,6 +118,7 @@ class BlanketOrder(models.Model):
             ("open", "Open"),
             ("done", "Done"),
             ("expired", "Expired"),
+            ("cancel", "Cancelled"),
         ],
         compute="_compute_state",
         store=True,
@@ -343,12 +344,12 @@ class BlanketOrder(models.Model):
             if order._check_active_orders():
                 raise UserError(
                     _(
-                        "You can not delete a blanket order with opened "
+                        "You can not cancel a blanket order with opened "
                         "sale orders! "
                         "Try to cancel them before."
                     )
                 )
-            order.write({"state": "expired"})
+            order.write({"state": "cancel"})
         return True
 
     def action_view_sale_orders(self):
