@@ -120,6 +120,10 @@
                                 groups="base.group_multi_company"
                             />
                             <field
+                                name="date_confirmed"
+                                attrs="{'invisible': [('state', '=', 'draft')]}"
+                            />
+                            <field
                                 name="validity_date"
                                 attrs="{'required': [('state', '=', 'draft')]}"
                             />

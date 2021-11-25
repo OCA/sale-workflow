@@ -112,6 +112,13 @@ class BlanketOrder(models.Model):
         states={"draft": [("readonly", False)]},
     )
     confirmed = fields.Boolean(copy=False)
+    date_confirmed = fields.Date(
+        string="Confirmation Date",
+        readonly=True,
+        index=True,
+        copy=False,
+        help="Confirmation date of blanket orders.",
+    )
     state = fields.Selection(
         selection=[
             ("draft", "Draft"),
@@ -329,7 +336,13 @@ class BlanketOrder(models.Model):
             if order.company_id:
                 sequence_obj = sequence_obj.with_company(order.company_id.id)
             name = sequence_obj.next_by_code("sale.blanket.order")
-            order.write({"confirmed": True, "name": name})
+            order.write(
+                {
+                    "confirmed": True,
+                    "name": name,
+                    "date_confirmed": fields.Datetime.now(),
+                }
+            )
         return True
 
     def _check_active_orders(self):
