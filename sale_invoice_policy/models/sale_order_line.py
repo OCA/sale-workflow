@@ -17,7 +17,7 @@ class SaleOrderLine(models.Model):
     )
     def _get_to_invoice_qty(self):
         invoice_policies = set(self.mapped("order_id.invoice_policy"))
-        line_by_id = {l.id: l for l in self}
+        line_by_id = {sol.id: sol for sol in self}
         done_lines = self.env["sale.order.line"].browse()
         for invoice_policy in invoice_policies:
             so_lines = (
@@ -48,7 +48,7 @@ class SaleOrderLine(models.Model):
     )
     def _compute_invoice_status(self):
         invoice_policies = set(self.mapped("order_id.invoice_policy"))
-        line_by_id = {l.id: l for l in self}
+        line_by_id = {sol.id: sol for sol in self}
         done_lines = self.env["sale.order.line"].browse()
         for invoice_policy in invoice_policies:
             so_lines = (

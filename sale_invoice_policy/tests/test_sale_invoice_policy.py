@@ -20,8 +20,7 @@ class TestSaleOrderInvoicePolicy(common.TransactionCase):
         )
 
     def test_sale_order_invoice_order(self):
-        """ Test invoicing based on ordered quantities
-        """
+        """Test invoicing based on ordered quantities"""
         so = self.env["sale.order"].create(
             {
                 "partner_id": self.env.ref("base.res_partner_2").id,
@@ -48,8 +47,7 @@ class TestSaleOrderInvoicePolicy(common.TransactionCase):
         self.assertEqual(so_line.invoice_status, "to invoice")
 
     def test_sale_order_invoice_deliver(self):
-        """ Test invoicing based on delivered quantities
-        """
+        """Test invoicing based on delivered quantities"""
         so = self.env["sale.order"].create(
             {
                 "partner_id": self.env.ref("base.res_partner_2").id,
@@ -103,7 +101,9 @@ class TestSaleOrderInvoicePolicy(common.TransactionCase):
         invoice_policy = "delivery"
         product.write({"default_invoice_policy": invoice_policy})
         self.assertEqual(product.invoice_policy, invoice_policy)
-        product = product.with_context(invoice_policy="order",)
+        product = product.with_context(
+            invoice_policy="order",
+        )
         # Shouldn't be impacted by the context because the type is service
         self.assertEqual(product.invoice_policy, invoice_policy)
         return True
@@ -121,7 +121,9 @@ class TestSaleOrderInvoicePolicy(common.TransactionCase):
         invoice_policy = "order"
         product.write({"default_invoice_policy": invoice_policy})
         self.assertEqual(product.invoice_policy, invoice_policy)
-        product = product.with_context(invoice_policy="delivery",)
+        product = product.with_context(
+            invoice_policy="delivery",
+        )
         # Shouldn't be impacted by the context because the type is service
         self.assertEqual(product.invoice_policy, invoice_policy)
         return True
@@ -144,14 +146,22 @@ class TestSaleOrderInvoicePolicy(common.TransactionCase):
         self.assertEqual(product.invoice_policy, invoice_policy)
         self.assertEqual(product2.invoice_policy, invoice_policy)
         new_invoice_policy = "delivery"
-        product = product.with_context(invoice_policy=new_invoice_policy,)
-        product2 = product2.with_context(invoice_policy=new_invoice_policy,)
+        product = product.with_context(
+            invoice_policy=new_invoice_policy,
+        )
+        product2 = product2.with_context(
+            invoice_policy=new_invoice_policy,
+        )
         # Shouldn't be impacted by the context because the type is service
         self.assertEqual(product.invoice_policy, invoice_policy)
         # This one is not a service so it must be impacted by the context
         self.assertEqual(product2.invoice_policy, new_invoice_policy)
-        product = product.with_context(invoice_policy=invoice_policy,)
-        product2 = product2.with_context(invoice_policy=invoice_policy,)
+        product = product.with_context(
+            invoice_policy=invoice_policy,
+        )
+        product2 = product2.with_context(
+            invoice_policy=invoice_policy,
+        )
         # Shouldn't be impacted by the context because the type is service
         self.assertEqual(product.invoice_policy, invoice_policy)
         # This one is not a service so it must be impacted by the context
