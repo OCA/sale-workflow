@@ -22,7 +22,7 @@ Available addons
 ----------------
 addon | version | maintainers | summary
 --- | --- | --- | ---
-[partner_contact_sale_info_propagation](partner_contact_sale_info_propagation/) | 13.0.1.0.0 |  | Propagate Salesperson and Sales Channel from Company to Contacts
+[partner_contact_sale_info_propagation](partner_contact_sale_info_propagation/) | 13.0.1.0.1 |  | Propagate Salesperson and Sales Channel from Company to Contacts
 [partner_prospect](partner_prospect/) | 13.0.1.0.0 |  | Partner Prospect
 [partner_sale_pivot](partner_sale_pivot/) | 13.0.1.1.0 | [![ernestotejeda](https://github.com/ernestotejeda.png?size=30px)](https://github.com/ernestotejeda) | Sales analysis from customer form view
 [portal_sale_personal_data_only](portal_sale_personal_data_only/) | 13.0.1.1.0 |  | Portal Sale Personal Data Only
@@ -105,7 +105,7 @@ addon | version | maintainers | summary
 [sale_tier_validation](sale_tier_validation/) | 13.0.1.0.0 |  | Extends the functionality of Sale Orders to support a tier validation process.
 [sale_validity](sale_validity/) | 13.0.1.0.1 |  | Set a default validity delay on quotations
 [sale_wishlist](sale_wishlist/) | 13.0.1.0.0 |  | Handle sale wishlist for partners
-[sales_team_security](sales_team_security/) | 13.0.2.0.0 | [![pedrobaeza](https://github.com/pedrobaeza.png?size=30px)](https://github.com/pedrobaeza) | New group for seeing only sales channel's documents
+[sales_team_security](sales_team_security/) | 13.0.2.0.1 | [![pedrobaeza](https://github.com/pedrobaeza.png?size=30px)](https://github.com/pedrobaeza) | New group for seeing only sales channel's documents
 
 [//]: # (end addons)
 
