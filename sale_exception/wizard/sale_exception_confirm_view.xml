@@ -20,6 +20,7 @@
                         name="action_confirm_ignore_exc"
                         string="Ignore exceptions and confirm"
                         type="object"
+                        groups="sales_team.group_sale_manager"
                     />
                     <button class="oe_link" special="cancel" string="Cancel" />
                 </footer>
