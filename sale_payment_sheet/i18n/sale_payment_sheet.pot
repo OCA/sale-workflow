@@ -6,8 +6,6 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 13.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-07-15 23:38+0000\n"
-"PO-Revision-Date: 2021-07-15 23:38+0000\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -148,11 +146,6 @@ msgid "External Reference"
 msgstr ""
 
 #. module: sale_payment_sheet
-#: model:ir.model.fields,field_description:sale_payment_sheet.field_sale_payment_sheet__failed_message_ids
-msgid "Failed Messages"
-msgstr ""
-
-#. module: sale_payment_sheet
 #: model:ir.model.fields,field_description:sale_payment_sheet.field_sale_payment_sheet__message_follower_ids
 msgid "Followers"
 msgstr ""
@@ -203,6 +196,7 @@ msgstr ""
 
 #. module: sale_payment_sheet
 #: model:ir.model.fields,help:sale_payment_sheet.field_sale_payment_sheet__message_has_error
+#: model:ir.model.fields,help:sale_payment_sheet.field_sale_payment_sheet__message_has_sms_error
 msgid "If checked, some messages have a delivery error."
 msgstr ""
 
@@ -268,18 +262,8 @@ msgid "Main Attachment"
 msgstr ""
 
 #. module: sale_payment_sheet
-#: model:ir.model.fields,field_description:sale_payment_sheet.field_sale_payment_sheet__message_content
-msgid "Message Content"
-msgstr ""
-
-#. module: sale_payment_sheet
 #: model:ir.model.fields,field_description:sale_payment_sheet.field_sale_payment_sheet__message_has_error
 msgid "Message Delivery error"
-msgstr ""
-
-#. module: sale_payment_sheet
-#: model:ir.model.fields,help:sale_payment_sheet.field_sale_payment_sheet__message_content
-msgid "Message content, to be used only in searches"
 msgstr ""
 
 #. module: sale_payment_sheet
@@ -370,6 +354,11 @@ msgstr ""
 #: model:ir.model.fields,field_description:sale_payment_sheet.field_sale_invoice_payment_wiz__user_id
 #: model:ir.model.fields,field_description:sale_payment_sheet.field_sale_payment_sheet__user_id
 msgid "Responsible"
+msgstr ""
+
+#. module: sale_payment_sheet
+#: model:ir.model.fields,field_description:sale_payment_sheet.field_sale_payment_sheet__message_has_sms_error
+msgid "SMS Delivery error"
 msgstr ""
 
 #. module: sale_payment_sheet
@@ -464,7 +453,9 @@ msgstr ""
 #, python-format
 msgid ""
 "This invoice already has been included in other payment sheet or the amount payed is greather than residual invoice amount.\n"
-" Invoice: %s Amount payed: %s"
+" Invoice: %s\n"
+" Amount payed: %s\n"
+" Payment sheets: %s"
 msgstr ""
 
 #. module: sale_payment_sheet
