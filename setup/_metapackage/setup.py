@@ -13,6 +13,7 @@ setuptools.setup(
         'odoo14-addon-pricelist_cache_rest',
         'odoo14-addon-product_supplierinfo_for_customer_sale',
         'odoo14-addon-sale_advance_payment',
+        'odoo14-addon-sale_amount_payment_link',
         'odoo14-addon-sale_automatic_workflow',
         'odoo14-addon-sale_automatic_workflow_delivery_state',
         'odoo14-addon-sale_automatic_workflow_payment_mode',
