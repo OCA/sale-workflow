@@ -11,13 +11,14 @@ class ProductTemplate(models.Model):
         return self.env["ir.default"].get("product.template", "invoice_policy")
 
     default_invoice_policy = fields.Selection(
-        [("order", "Ordered quantities"), ("delivery", "Delivered quantities")],
+        [
+            ("order", "Invoice what is ordered"),
+            ("delivery", "Invoice what is delivered"),
+        ],
         string="Default Invoicing Policy",
-        help="Ordered Quantity: Invoice based on the quantity the customer "
-        "ordered.\n"
-        "Delivered Quantity: Invoiced based on the quantity the vendor "
-        "delivered (time or deliveries).",
-        default=lambda x: x._default_default_invoice_policy(),
+        help="Ordered Quantity: Invoice quantities ordered by the customer.\n"
+        "Delivered Quantity: Invoice quantities delivered to the customer.",
+        default=_default_default_invoice_policy,
     )
 
     invoice_policy = fields.Selection(
@@ -39,7 +40,7 @@ class ProductTemplate(models.Model):
         Apply the invoice_policy given by context (if exist) otherwise use the
         default invoice policy given by the field with this same name.
         If the product is type = 'service', we don't have to apply the invoice
-        policy given by the context.
+        policy given by the context. Ex: shipping costs.
         :return:
         """
         invoice_policy = self.env.context.get("invoice_policy")

@@ -173,14 +173,3 @@ class TestSaleOrderInvoicePolicy(common.TransactionCase):
         self.assertEqual("order", self.product.default_invoice_policy)
         self.product.invoice_policy = "delivery"
         self.assertEqual("delivery", self.product.default_invoice_policy)
-
-    def test_settings(self):
-        settings = self.env["res.config.settings"].create({})
-        settings.sale_default_invoice_policy = "delivery"
-        settings.sale_invoice_policy_required = True
-        settings.execute()
-        so = self.env["sale.order"].create(
-            {"partner_id": self.env.ref("base.res_partner_2").id}
-        )
-        self.assertEqual(so.invoice_policy, "delivery")
-        self.assertTrue(so.invoice_policy_required)
