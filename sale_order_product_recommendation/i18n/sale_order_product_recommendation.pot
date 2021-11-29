@@ -6,6 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 13.0+e\n"
 "Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2021-11-29 17:05+0000\n"
+"PO-Revision-Date: 2021-11-29 17:05+0000\n"
 "POT-Creation-Date: 2021-05-07 09:04+0000\n"
 "PO-Revision-Date: 2021-05-07 09:04+0000\n"
 "Last-Translator: \n"
@@ -14,6 +16,18 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
 "Plural-Forms: \n"
+
+#. module: sale_order_product_recommendation
+#: model_terms:ir.ui.view,arch_db:sale_order_product_recommendation.res_config_settings_view_form_sale
+msgid "<span class=\"o_form_label\">Default Number of recommendations</span>"
+msgstr ""
+
+#. module: sale_order_product_recommendation
+#: model_terms:ir.ui.view,arch_db:sale_order_product_recommendation.res_config_settings_view_form_sale
+msgid ""
+"<span class=\"o_form_label\">Default months backwards to generate "
+"recommendations</span>"
+msgstr ""
 
 #. module: sale_order_product_recommendation
 #: model_terms:ir.ui.view,arch_db:sale_order_product_recommendation.res_config_settings_view_form_sale
@@ -70,6 +84,16 @@ msgstr ""
 #. module: sale_order_product_recommendation
 #: model:ir.model.fields,field_description:sale_order_product_recommendation.field_sale_order_recommendation_line__partner_id
 msgid "Customer"
+msgstr ""
+
+#. module: sale_order_product_recommendation
+#: model:ir.model.fields,field_description:sale_order_product_recommendation.field_res_config_settings__default_line_amount
+msgid "Default sale number of recommendations"
+msgstr ""
+
+#. module: sale_order_product_recommendation
+#: model:ir.model.fields,field_description:sale_order_product_recommendation.field_res_config_settings__default_months
+msgid "Default sale recommendation months"
 msgstr ""
 
 #. module: sale_order_product_recommendation
@@ -208,6 +232,11 @@ msgstr ""
 #. module: sale_order_product_recommendation
 #: model:ir.model.fields,field_description:sale_order_product_recommendation.field_sale_order_recommendation__order_id
 msgid "Sale Order"
+msgstr ""
+
+#. module: sale_order_product_recommendation
+#: model_terms:ir.ui.view,arch_db:sale_order_product_recommendation.res_config_settings_view_form_sale
+msgid "Sale order recommendations"
 msgstr ""
 
 #. module: sale_order_product_recommendation
