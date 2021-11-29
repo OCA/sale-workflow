@@ -21,7 +21,7 @@ def post_init_hook(cr, registry):
 
 
 def uninstall_hook(cr, registry):  # pragma: no cover
-    """ At uninstall, revert changes made to record rules """
+    """At uninstall, revert changes made to record rules"""
     with api.Environment.manage():
         env = api.Environment(cr, SUPERUSER_ID, {})
         env.ref("sales_team.group_sale_salesman_all_leads").write(
