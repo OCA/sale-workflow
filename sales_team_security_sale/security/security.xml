@@ -7,7 +7,7 @@
             <field name="model_id" ref="sale.model_sale_order" />
             <field
                 name="domain_force"
-            >['|', ('team_id', '=', user.sale_team_id.id), ('team_id', '=', False)]</field>
+            >['|', '|', ('user_id', '=', user.id), ('user_id', '=', False), '|', ('team_id', '=', user.sale_team_id.id), ('team_id', '=', False)]</field>
             <field
                 name="groups"
                 eval="[(4, ref('sales_team_security.group_sale_team_manager'))]"
@@ -19,7 +19,7 @@
             <field name="model_id" ref="sale.model_sale_report" />
             <field
                 name="domain_force"
-            >['|', ('team_id', '=', user.sale_team_id.id), ('team_id', '=', False)]</field>
+            >['|', '|', ('user_id', '=', user.id), ('user_id', '=', False), '|', ('team_id', '=', user.sale_team_id.id), ('team_id', '=', False)]</field>
             <field
                 name="groups"
                 eval="[(4, ref('sales_team_security.group_sale_team_manager'))]"
@@ -31,7 +31,7 @@
             <field name="model_id" ref="sale.model_sale_order_line" />
             <field
                 name="domain_force"
-            >['|', ('order_id.team_id', '=', user.sale_team_id.id), ('order_id.team_id', '=', False)]</field>
+            >['|', '|', ('salesman_id', '=', user.id), ('salesman_id', '=', False), '|', ('order_id.team_id', '=', user.sale_team_id.id), ('order_id.team_id', '=', False)]</field>
             <field
                 name="groups"
                 eval="[(4, ref('sales_team_security.group_sale_team_manager'))]"
