@@ -31,6 +31,14 @@ msgid "ID"
 msgstr ""
 
 #. module: sales_team_security
+#: model:ir.model.fields,help:sales_team_security.field_res_partner__team_id
+#: model:ir.model.fields,help:sales_team_security.field_res_users__team_id
+msgid ""
+"If set, this Sales Team will be used for sales and assignments related to "
+"this partner"
+msgstr ""
+
+#. module: sales_team_security
 #: model:ir.model.fields,field_description:sales_team_security.field_ir_rule____last_update
 #: model:ir.model.fields,field_description:sales_team_security.field_res_partner____last_update
 msgid "Last Modified on"
@@ -39,6 +47,24 @@ msgstr ""
 #. module: sales_team_security
 #: model:ir.model,name:sales_team_security.model_ir_rule
 msgid "Record Rule"
+msgstr ""
+
+#. module: sales_team_security
+#: model:ir.model.fields,field_description:sales_team_security.field_res_partner__team_id
+#: model:ir.model.fields,field_description:sales_team_security.field_res_users__team_id
+msgid "Sales Team"
+msgstr ""
+
+#. module: sales_team_security
+#: model:ir.model.fields,field_description:sales_team_security.field_res_partner__user_id
+#: model:ir.model.fields,field_description:sales_team_security.field_res_users__user_id
+msgid "Salesperson"
+msgstr ""
+
+#. module: sales_team_security
+#: model:ir.model.fields,help:sales_team_security.field_res_partner__user_id
+#: model:ir.model.fields,help:sales_team_security.field_res_users__user_id
+msgid "The internal user in charge of this contact."
 msgstr ""
 
 #. module: sales_team_security
