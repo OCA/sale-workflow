@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 9.0c\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-02-23 22:37+0000\n"
-"PO-Revision-Date: 2021-02-23 23:43+0100\n"
+"POT-Creation-Date: 2021-11-29 17:05+0000\n"
+"PO-Revision-Date: 2021-11-29 18:10+0100\n"
 "Last-Translator: Sergio Teruel <sergio.teruel@tecnativa.com>\n"
 "Language-Team: \n"
 "Language: es\n"
@@ -16,6 +16,21 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
 "X-Generator: Poedit 2.3\n"
+
+#. module: sale_order_product_recommendation
+#: model_terms:ir.ui.view,arch_db:sale_order_product_recommendation.res_config_settings_view_form_sale
+msgid "<span class=\"o_form_label\">Default Number of recommendations</span>"
+msgstr ""
+"<span class=\"o_form_label\">Número de recomendaciones por defecto</span>"
+
+#. module: sale_order_product_recommendation
+#: model_terms:ir.ui.view,arch_db:sale_order_product_recommendation.res_config_settings_view_form_sale
+msgid ""
+"<span class=\"o_form_label\">Default months backwards to generate "
+"recommendations</span>"
+msgstr ""
+"<span class=\"o_form_label\">Meses atrás por defecto para generar las "
+"recomendaciones</span>"
 
 #. module: sale_order_product_recommendation
 #: model_terms:ir.ui.view,arch_db:sale_order_product_recommendation.res_config_settings_view_form_sale
@@ -77,6 +92,16 @@ msgid "Customer"
 msgstr "Cliente"
 
 #. module: sale_order_product_recommendation
+#: model:ir.model.fields,field_description:sale_order_product_recommendation.field_res_config_settings__default_line_amount
+msgid "Default sale number of recommendations"
+msgstr "Número por defecto de recomendaciones"
+
+#. module: sale_order_product_recommendation
+#: model:ir.model.fields,field_description:sale_order_product_recommendation.field_res_config_settings__default_months
+msgid "Default sale recommendation months"
+msgstr "Número de meses por defecto para las recomendaciones"
+
+#. module: sale_order_product_recommendation
 #: model_terms:ir.ui.view,arch_db:sale_order_product_recommendation.sale_order_recommendation_view_form
 msgid "Delivered:"
 msgstr "Veces entregado"
@@ -97,9 +122,9 @@ msgstr "ID"
 #: model_terms:ir.ui.view,arch_db:sale_order_product_recommendation.res_config_settings_view_form_sale
 msgid ""
 "If this is selected, it will take care by default on\n"
-"                            Delivery Address instead of customer on sale "
+"                                Delivery Address instead of customer on sale "
 "orders\n"
-"                            recommendation"
+"                                recommendation"
 msgstr ""
 "Si se selecciona, se va a tener en cuenta por defecto la\n"
 "                            Direccion de entrega en lugar del cliente en el\n"

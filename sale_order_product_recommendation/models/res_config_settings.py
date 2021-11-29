@@ -17,3 +17,13 @@ class ResConfigSettings(models.TransientModel):
     default_use_delivery_address = fields.Boolean(
         string="Use delivery address", default_model="sale.order.recommendation"
     )
+    default_months = fields.Float(
+        string="Default sale recommendation months",
+        default_model="sale.order.recommendation",
+        default=6,
+    )
+    default_line_amount = fields.Integer(
+        string="Default sale number of recommendations",
+        default_model="sale.order.recommendation",
+        default=15,
+    )
