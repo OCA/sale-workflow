@@ -35,6 +35,7 @@ setuptools.setup(
         'odoo14-addon-sale_order_carrier_auto_assign',
         'odoo14-addon-sale_order_disable_user_autosubscribe',
         'odoo14-addon-sale_order_general_discount',
+        'odoo14-addon-sale_order_line_chained_move',
         'odoo14-addon-sale_order_line_date',
         'odoo14-addon-sale_order_line_description',
         'odoo14-addon-sale_order_line_menu',
