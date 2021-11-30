@@ -77,11 +77,9 @@ class SaleOrder(models.Model):
 
     @api.model
     def create(self, values):
-        # hcbayram correction for isolated rfq start
         order_sequence = values.get("order_sequence") or self.env.context.get("order_sequence") or False
         if not order_sequence and "unrevisioned_name" not in values:
             values["name"] = self.env["ir.sequence"].next_by_code("sale.quotation") or "/"
-        # hcbayram correction for isolated rfq end
 
         if "unrevisioned_name" not in values:
             if values.get("name", "/") == "/":
