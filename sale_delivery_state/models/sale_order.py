@@ -67,7 +67,7 @@ class SaleOrder(models.Model):
                  'state', 'force_delivery_state')
     def _compute_delivery_state(self):
         for order in self:
-            if order.state in ('draft', 'cancel'):
+            if order.state in ('draft', 'sent', 'cancel'):
                 order.delivery_state = 'no'
             elif (order.force_delivery_state or
                   order._all_qty_delivered()):
