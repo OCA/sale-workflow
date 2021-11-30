@@ -162,7 +162,7 @@ class AutomaticWorkflowJob(models.Model):
         )
         return {
             "reconciled_invoice_ids": [(6, 0, invoice.ids)],
-            "amount": invoice.residual,
+            "amount": invoice.amount_residual,
             "partner_id": invoice.partner_id.id,
             "partner_type": partner_type,
             "date": fields.Date.context_today(self),
