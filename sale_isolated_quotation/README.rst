@@ -41,6 +41,11 @@ Quotation will have only 2 state, Draft and Done. Sales Order work as normal.
 .. contents::
    :local:
 
+Installation
+============
+
+NOTE: `sale_isolated_quotation` is incompatible with `sale_quotation_number`: they can't be installed together.
+
 Usage
 =====
 
