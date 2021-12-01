@@ -28,4 +28,5 @@ class AutomaticWorkflowJob(models.Model):
                 invoice.id,
                 invoice.payment_mode_id.id,
             )
+            return
         return super()._register_payment_invoice(invoice)
