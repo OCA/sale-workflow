@@ -76,6 +76,11 @@ sequence.  When you confirm a quotation, its orginal number is saved in the
 .. contents::
    :local:
 
+Installation
+============
+
+NOTE: `sale_quotation_number` is incompatible with `sale_isolated_quotation`: they can't be installed together.
+
 Configuration
 =============
 
