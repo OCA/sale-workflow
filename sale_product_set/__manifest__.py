@@ -14,6 +14,7 @@
         "security/ir.model.access.csv",
         "security/rule_product_set.xml",
         "views/product_set.xml",
+        "views/product_set_line.xml",
         "wizard/product_set_add.xml",
         "views/sale_order.xml",
     ],
