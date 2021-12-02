@@ -7,9 +7,7 @@
         <field name="inherit_id" ref="sale.view_order_form" />
         <field name="arch" type="xml">
             <field name="partner_id" position="attributes">
-                <attribute
-                    name="domain"
-                >[('selectable_in_sales_orders', '=', True)]</attribute>
+                <attribute name="domain">[('sale_selectable', '=', True)]</attribute>
             </field>
         </field>
     </record>
