@@ -5,6 +5,14 @@ from odoo import _, api, models
 from odoo.tools import float_compare
 
 
+class SaleOrder(models.Model):
+    _inherit = "sale.order"
+
+    def _log_decrease_ordered_quantity(self, documents, cancel=False):
+        # no log message as we support the feature
+        pass
+
+
 class SaleOrderLine(models.Model):
     _inherit = "sale.order.line"
 

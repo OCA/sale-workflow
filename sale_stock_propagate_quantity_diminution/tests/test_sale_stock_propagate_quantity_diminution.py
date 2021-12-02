@@ -111,3 +111,16 @@ class TestSaleStockPropagateQuantityDiminution(SavepointCase):
         )
         self.assertEqual(stock_move_pack2.product_uom_qty, 2)
         self.assertEqual(stock_move_out2.product_uom_qty, 4)
+
+    def test_empty_pick(self):
+        # We process 1 qty in the first move and all qty on the other move
+        for move in self.pick1.move_lines:
+            if move != self.stock_move_pick1:
+                move.write({"quantity_done": move.product_qty})
+        self.partial_delivery(self.pick1, self.stock_move_pick1, 1)
+        stock_move_pick2 = self.stock_move_pack1.move_orig_ids.filtered(
+            lambda r: r.state not in ["cancel", "done"]
+        )
+        self.assertEqual(stock_move_pick2.product_uom_qty, 2)
+        self.line.write({"product_uom_qty": 1})
+        self.assertEqual(stock_move_pick2.state, "cancel")

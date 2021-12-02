@@ -16,6 +16,7 @@ class StockMove(models.Model):
             if quantity < 0:
                 quantity = 0
                 break
-        self.filtered(lambda m: m.state not in ("cancel", "done")).write(
-            {"product_uom_qty": quantity}
-        )
+        moves = self.filtered(lambda m: m.state not in ("cancel", "done"))
+        moves.write({"product_uom_qty": quantity})
+        if quantity == 0:
+            moves._action_cancel()
