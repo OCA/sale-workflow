@@ -87,7 +87,15 @@ msgid "Created on"
 msgstr "Criado em"
 
 #. module: sale_exception
+#: model:exception.rule,name:sale_exception.exception_partner_sale_warning
+msgid "Customer sale warning"
+msgstr ""
+
+#. module: sale_exception
+#: model:ir.model.fields,field_description:sale_exception.field_exception_rule__display_name
 #: model:ir.model.fields,field_description:sale_exception.field_sale_exception_confirm__display_name
+#: model:ir.model.fields,field_description:sale_exception.field_sale_order__display_name
+#: model:ir.model.fields,field_description:sale_exception.field_sale_order_line__display_name
 msgid "Display Name"
 msgstr "Nome para Mostrar"
 
@@ -97,11 +105,13 @@ msgid "Exception Rule"
 msgstr ""
 
 #. module: sale_exception
+#: model:ir.model.fields,field_description:sale_exception.field_sale_order__exception_ids
 #: model:ir.model.fields,field_description:sale_exception.field_sale_order_line__exception_ids
 msgid "Exceptions"
 msgstr ""
 
 #. module: sale_exception
+#: model:ir.model.fields,field_description:sale_exception.field_sale_order__exceptions_summary
 #: model:ir.model.fields,field_description:sale_exception.field_sale_order_line__exceptions_summary
 msgid "Exceptions Summary"
 msgstr ""
@@ -112,19 +122,26 @@ msgid "Exceptions to resolve"
 msgstr ""
 
 #. module: sale_exception
+#: model:ir.model.fields,field_description:sale_exception.field_exception_rule__id
 #: model:ir.model.fields,field_description:sale_exception.field_sale_exception_confirm__id
+#: model:ir.model.fields,field_description:sale_exception.field_sale_order__id
+#: model:ir.model.fields,field_description:sale_exception.field_sale_order_line__id
 msgid "ID"
 msgstr "Identificação"
 
 #. module: sale_exception
 #: model:ir.model.fields,field_description:sale_exception.field_sale_exception_confirm__ignore
+#: model:ir.model.fields,field_description:sale_exception.field_sale_order__ignore_exception
 #: model:ir.model.fields,field_description:sale_exception.field_sale_order_line__ignore_exception
 #: model_terms:ir.ui.view,arch_db:sale_exception.view_order_form
 msgid "Ignore Exceptions"
 msgstr ""
 
 #. module: sale_exception
+#: model:ir.model.fields,field_description:sale_exception.field_exception_rule____last_update
 #: model:ir.model.fields,field_description:sale_exception.field_sale_exception_confirm____last_update
+#: model:ir.model.fields,field_description:sale_exception.field_sale_order____last_update
+#: model:ir.model.fields,field_description:sale_exception.field_sale_order_line____last_update
 msgid "Last Modified on"
 msgstr "Última atualização em"
 
@@ -137,6 +154,11 @@ msgstr "Última atualização por"
 #: model:ir.model.fields,field_description:sale_exception.field_sale_exception_confirm__write_date
 msgid "Last Updated on"
 msgstr "Última atualização em"
+
+#. module: sale_exception
+#: model:ir.model.fields,field_description:sale_exception.field_sale_order__main_exception_id
+msgid "Main Exception"
+msgstr ""
 
 #. module: sale_exception
 #: model:exception.rule,description:sale_exception.excep_no_zip
@@ -163,6 +185,11 @@ msgstr ""
 #: model:exception.rule,description:sale_exception.excep_no_stock
 #: model:exception.rule,name:sale_exception.excep_no_stock
 msgid "Not Enough Virtual Stock"
+msgstr ""
+
+#. module: sale_exception
+#: model:exception.rule,name:sale_exception.exception_product_sale_warning
+msgid "Product warning"
 msgstr ""
 
 #. module: sale_exception
@@ -216,6 +243,16 @@ msgstr ""
 #: model:ir.cron,cron_name:sale_exception.ir_cron_test_orders
 #: model:ir.cron,name:sale_exception.ir_cron_test_orders
 msgid "Test Draft Orders"
+msgstr ""
+
+#. module: sale_exception
+#: model:exception.rule,description:sale_exception.exception_partner_sale_warning
+msgid "The customer has a sale warning in his form"
+msgstr ""
+
+#. module: sale_exception
+#: model:exception.rule,description:sale_exception.exception_product_sale_warning
+msgid "The product has a warning in his form"
 msgstr ""
 
 #. module: sale_exception
