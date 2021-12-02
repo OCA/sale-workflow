@@ -19,7 +19,12 @@ msgid "Contact"
 msgstr ""
 
 #. module: sale_partner_selectable_option
-#: model:ir.model.fields,field_description:sale_partner_selectable_option.field_res_partner__selectable_in_sales_orders
-#: model:ir.model.fields,field_description:sale_partner_selectable_option.field_res_users__selectable_in_sales_orders
-msgid "Selectable in sales orders"
+#: model_terms:ir.ui.view,arch_db:sale_partner_selectable_option.view_partner_form
+msgid "Selectable in orders"
+msgstr ""
+
+#. module: sale_partner_selectable_option
+#: model:ir.model.fields,field_description:sale_partner_selectable_option.field_res_partner__sale_selectable
+#: model:ir.model.fields,field_description:sale_partner_selectable_option.field_res_users__sale_selectable
+msgid "Selectable in sale orders"
 msgstr ""
