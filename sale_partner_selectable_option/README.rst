@@ -25,7 +25,7 @@ Sale Partner Selectable Option
 
 |badge1| |badge2| |badge3| |badge4| |badge5| 
 
-This module limits the partners to be selected in the sales orders according to the "Selectable in sale orders" field.
+This module limits the partners to be selected in the sales orders according to the "Selectable in orders" field.
 
 **Table of contents**
 
@@ -38,7 +38,7 @@ Usage
 To use this module, you need to:
 
 #. Go to **Contacts > Contacts**
-#. Create a record and uncheck the "Selectable in sales orders" box on the Sales tab.
+#. Create a record and uncheck the "Selectable in orders" box on the Sales part of the "Sales & Purchases" tab.
 #. Go to **Sales > Orders > Quotations**
 #. Create a record and the previously created partner will not appear in the Customer field.
 
