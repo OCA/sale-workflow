@@ -111,8 +111,8 @@ class SaleOrder(models.Model):
         next_date = fields.Date.to_string(next_date)
         return next_date
 
-    def _create_invoices(self, grouped=False, final=False):
-        moves = super()._create_invoices(grouped=grouped, final=final)
+    def _create_invoices(self, grouped=False, final=False, date=None):
+        moves = super()._create_invoices(grouped=grouped, final=final, date=date)
         invoice_plan_id = self._context.get("invoice_plan_id")
         if invoice_plan_id:
             plan = self.env["sale.invoice.plan"].browse(invoice_plan_id)
