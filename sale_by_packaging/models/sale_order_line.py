@@ -129,11 +129,17 @@ class SaleOrderLine(models.Model):
                 if "product_uom" in vals
                 else self.product_uom
             )
-            packaging = self._get_product_packaging_having_multiple_qty(
-                product, quantity, uom
-            )
-            if packaging:
-                return {"product_packaging": packaging.id}
+            # Here, we ensure that no package is already set on the line.
+            # If so, it could lead to errors, since product_packaging_qty
+            # isn't updated after product_packaging has been modified.
+            # The simple way to handle that is to not modify product_packaging
+            # if one is already set.
+            if not self.product_packaging:
+                packaging = self._get_product_packaging_having_multiple_qty(
+                    product, quantity, uom
+                )
+                if packaging:
+                    return {"product_packaging": packaging.id}
             # No need to raise an error here if no packaging has been found
             #  since the error on _check_product_packaging will be raised
         return {}
