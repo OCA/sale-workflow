@@ -71,4 +71,17 @@
         >{'default_order_sequence': True, 'order_sequence': True}</field>
         <field name="domain">[('order_sequence', '=', True)]</field>
     </record>
+    <record id="res_config_settings_view_form_quotation_number" model="ir.ui.view">
+        <field name="name">Quotation number configuration</field>
+        <field name="model">res.config.settings</field>
+        <field
+            name="inherit_id"
+            ref="sale_quotation_number.res_config_settings_view_form_quotation_number"
+        />
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='keep_name_so']/../.." position="attributes">
+                <attribute name="invisible">1</attribute>
+            </xpath>
+        </field>
+    </record>
 </odoo>
