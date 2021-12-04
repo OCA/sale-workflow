@@ -67,6 +67,7 @@ addon | version | maintainers | summary
 [sale_order_line_input](sale_order_line_input/) | 12.0.1.0.0 |  | Search, create or modify directly sale order lines
 [sale_order_line_price_history](sale_order_line_price_history/) | 12.0.1.1.1 |  | Sale order line price history
 [sale_order_line_sequence](sale_order_line_sequence/) | 12.0.1.0.0 |  | Propagates SO line sequence to invoices and stock picking.
+[sale_order_line_serial_unique](sale_order_line_serial_unique/) | 12.0.1.0.0 | [![rousseldenis](https://github.com/rousseldenis.png?size=30px)](https://github.com/rousseldenis) | Restrict the usage of unique quantity of product per line if product tracking is serial
 [sale_order_lot_generator](sale_order_lot_generator/) | 12.0.1.0.2 | [![florian-dacosta](https://github.com/florian-dacosta.png?size=30px)](https://github.com/florian-dacosta) [![mourad-ehm](https://github.com/mourad-ehm.png?size=30px)](https://github.com/mourad-ehm) [![bealdav](https://github.com/bealdav.png?size=30px)](https://github.com/bealdav) | Sale Order Lot Generator
 [sale_order_lot_selection](sale_order_lot_selection/) | 12.0.2.0.1 |  | Sale Order Lot Selection
 [sale_order_price_recalculation](sale_order_price_recalculation/) | 12.0.1.1.0 |  | Recalculate prices / Reset descriptions on sale order lines
