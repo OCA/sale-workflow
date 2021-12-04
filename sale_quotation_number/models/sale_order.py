@@ -12,20 +12,24 @@ class SaleOrder(models.Model):
 
     @api.model
     def create(self, vals):
+        if self.is_using_quotation_number(vals):
+            sequence = self.env["ir.sequence"].next_by_code("sale.quotation")
+            vals["name"] = sequence or "/"
+        return super(SaleOrder, self).create(vals)
+
+    @api.model
+    def is_using_quotation_number(self, vals):
         company = False
         if "company_id" in vals:
             company = self.env["res.company"].browse(vals.get("company_id"))
         else:
             company = self.env.company
-        if not company.keep_name_so:
-            vals["name"] = self.env["ir.sequence"].next_by_code("sale.quotation") or "/"
-        return super(SaleOrder, self).create(vals)
+        return not company.keep_name_so
 
     def copy(self, default=None):
         self.ensure_one()
         if default is None:
             default = {}
-        default["name"] = "/"
         if self.origin and self.origin != "":
             default["origin"] = self.origin + ", " + self.name
         else:
@@ -34,15 +38,14 @@ class SaleOrder(models.Model):
 
     def action_confirm(self):
         for order in self:
-            if order.state in ("draft", "sent") and not order.company_id.keep_name_so:
-                if order.origin and order.origin != "":
-                    quo = order.origin + ", " + order.name
-                else:
-                    quo = order.name
-                order.write(
-                    {
-                        "origin": quo,
-                        "name": self.env["ir.sequence"].next_by_code("sale.order"),
-                    }
-                )
+            if self.name[:2] != "SQ":
+                continue
+            if order.state not in ("draft", "sent") or order.company_id.keep_name_so:
+                continue
+            if order.origin and order.origin != "":
+                quo = order.origin + ", " + order.name
+            else:
+                quo = order.name
+            sequence = self.env["ir.sequence"].next_by_code("sale.order")
+            order.write({"origin": quo, "name": sequence})
         return super().action_confirm()
