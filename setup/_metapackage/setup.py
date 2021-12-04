@@ -56,6 +56,7 @@ setuptools.setup(
         'odoo12-addon-sale_order_line_input',
         'odoo12-addon-sale_order_line_price_history',
         'odoo12-addon-sale_order_line_sequence',
+        'odoo12-addon-sale_order_line_serial_unique',
         'odoo12-addon-sale_order_lot_generator',
         'odoo12-addon-sale_order_lot_selection',
         'odoo12-addon-sale_order_price_recalculation',
