@@ -17,6 +17,5 @@
     "application": False,
     "installable": True,
     "depends": ["sale_management"],
-    "excludes": ["sale_isolated_quotation"],
-    "data": ["data/data.xml", "views/sales_config.xml"],
+    "data": ["data/ir_sequence_data.xml", "views/sales_config.xml"],
 }
