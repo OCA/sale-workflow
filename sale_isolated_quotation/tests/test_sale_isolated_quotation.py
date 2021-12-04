@@ -19,12 +19,17 @@ class TestSaleIsolatedQuotation(TransactionCase):
         self.quotation.action_convert_to_order()
         self.assertEqual(self.quotation.state, "done")
         self.sale_order = self.quotation.order_id
+        self.assertNotEqual(self.sale_order.name, "/")
         self.assertTrue(self.sale_order.order_sequence)
         self.assertEqual(self.sale_order.state, "draft")
         self.assertEqual(self.sale_order.partner_id, self.partner)
         self.assertEqual(self.sale_order.quote_id, self.quotation)
         with self.assertRaises(UserError):
             self.sale_order.action_convert_to_order()
+        # Make sure name of sale order is not changed
+        so_name = self.sale_order.name
+        self.sale_order.action_confirm()
+        self.assertEqual(self.sale_order.name, so_name)
 
     def test_uninstall_hook(self):
         """"Test uninstall_hook"""

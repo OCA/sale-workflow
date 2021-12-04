@@ -11,12 +11,20 @@ ACTIONS = (
 
 
 def post_init_hook(cr, registry):
-    """ Set value for order_sequence on old records """
+    """Set value for order_sequence on old records, stop updating sale
+    order name."""
     cr.execute(
         """
         update sale_order
         set order_sequence = true
         where state not in ('draft', 'cancel')
+    """
+    )
+    cr.execute(
+        """
+        update res_company
+        set keep_name_so = true
+        where keep_name_so = false
     """
     )
 
