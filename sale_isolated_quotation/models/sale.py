@@ -1,5 +1,6 @@
 # © 2017 Ecosoft (ecosoft.co.th).
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
+
 from odoo import _, api, fields, models
 from odoo.exceptions import UserError
 
@@ -32,13 +33,11 @@ class SaleOrder(models.Model):
     )
 
     @api.model
-    def create(self, vals):
-        order_sequence = vals.get("order_sequence") or self.env.context.get(
-            "order_sequence"
-        )
-        if not order_sequence and vals.get("name", "/") == "/":
-            vals["name"] = self.env["ir.sequence"].next_by_code("sale.quotation") or "/"
-        return super().create(vals)
+    def is_using_quotation_number(self, vals):
+        # By pass keep_name_so setting totally to keep it simple
+        order_sequence = vals.get("order_sequence")
+        order_sequence = order_sequence or self.env.context.get("order_sequence")
+        return not order_sequence
 
     def _prepare_order_from_quotation(self):
         return {
