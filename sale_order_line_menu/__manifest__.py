@@ -10,9 +10,7 @@
     "license": "AGPL-3",
     "depends": ["sale"],
     "category": "Sales/Sales",
-    "data": [
-        "views/sale_order_line_views.xml",
-    ],
+    "data": ["views/sale_order_line_views.xml"],
     "installable": True,
     "maintainer": "dreispt",
     "development_status": "Beta",
