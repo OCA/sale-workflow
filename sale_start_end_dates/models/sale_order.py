@@ -1,19 +1,20 @@
-# Copyright 2014-2020 Akretion (http://www.akretion.com)
+# Copyright 2014-2021 Akretion (http://www.akretion.com)
 # @author Alexis de Lattre <alexis.delattre@akretion.com>
-# Copyright 2016-2020 Sodexis (http://sodexis.com)
+# Copyright 2016-2021 Sodexis (http://sodexis.com)
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
 from dateutil.relativedelta import relativedelta
 
 from odoo import _, api, fields, models
 from odoo.exceptions import ValidationError
+from odoo.tools.misc import format_date
 
 
 class SaleOrder(models.Model):
     _inherit = "sale.order"
 
-    default_start_date = fields.Date(string="Default Start Date")
-    default_end_date = fields.Date(string="Default End Date")
+    default_start_date = fields.Date()
+    default_end_date = fields.Date()
 
     @api.constrains("default_start_date", "default_end_date")
     def _check_default_start_end_dates(self):
@@ -25,10 +26,13 @@ class SaleOrder(models.Model):
             ):
                 raise ValidationError(
                     _(
-                        "Default Start Date should be before or be the "
-                        "same as Default End Date for sale order '%s'."
+                        "Default Start Date ({start_date}) should be before or be the "
+                        "same as Default End Date ({end_date}) for sale order '{name}'."
+                    ).format(
+                        start_date=format_date(self.env, order.default_start_date),
+                        end_date=format_date(self.env, order.default_end_date),
+                        name=order.display_name,
                     )
-                    % order.display_name
                 )
 
     @api.onchange("default_start_date")
@@ -54,15 +58,16 @@ class SaleOrderLine(models.Model):
     _inherit = "sale.order.line"
 
     start_date = fields.Date(
-        string="Start Date", readonly=True, states={"draft": [("readonly", False)]}
+        readonly=True,
+        states={"draft": [("readonly", False)], "sent": [("readonly", False)]},
     )
     end_date = fields.Date(
-        string="End Date", readonly=True, states={"draft": [("readonly", False)]}
+        readonly=True,
+        states={"draft": [("readonly", False)], "sent": [("readonly", False)]},
     )
     number_of_days = fields.Integer(
         compute="_compute_number_of_days",
         inverse="_inverse_number_of_days",
-        string="Number of Days",
         readonly=False,
         store=True,
     )
@@ -83,10 +88,13 @@ class SaleOrderLine(models.Model):
             if line.number_of_days < 0:
                 res["warning"]["title"] = _("Wrong number of days")
                 res["warning"]["message"] = _(
-                    "On sale order line with product '%s', the "
-                    "number of days is negative (%d) ; this is not "
+                    "On sale order line with product '{product_name}', the "
+                    "number of days is negative ({number_of_days}) ; this is not "
                     "allowed. The number of days has been forced to 1."
-                ) % (line.product_id.display_name, line.number_of_days)
+                ).format(
+                    product_name=line.product_id.display_name,
+                    number_of_days=line.number_of_days,
+                )
                 line.number_of_days = 1
             if line.start_date:
                 line.end_date = line.start_date + relativedelta(
@@ -118,16 +126,20 @@ class SaleOrderLine(models.Model):
                 if line.start_date > line.end_date:
                     raise ValidationError(
                         _(
-                            "Start Date should be before or be the same as "
-                            "End Date for sale order line with Product '%s'."
+                            "Start Date ({start_date}) should be before or "
+                            "be the same as End Date ({end_date}) for sale order line "
+                            "with Product '{product_name}'."
+                        ).format(
+                            start_date=format_date(self.env, line.start_date),
+                            end_date=format_date(self.env, line.end_date),
+                            product_name=line.product_id.display_name,
                         )
-                        % (line.product_id.display_name)
                     )
 
     def _prepare_invoice_line(self, **optional_values):
         self.ensure_one()
         res = super()._prepare_invoice_line(**optional_values)
-        if self.must_have_dates:
+        if not self.display_type and self.must_have_dates:
             res.update({"start_date": self.start_date, "end_date": self.end_date})
         return res
 
