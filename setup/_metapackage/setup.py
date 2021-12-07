@@ -63,6 +63,7 @@ setuptools.setup(
         'odoo14-addon-sale_product_set_packaging_qty',
         'odoo14-addon-sale_product_set_sale_by_packaging',
         'odoo14-addon-sale_quotation_number',
+        'odoo14-addon-sale_rental',
         'odoo14-addon-sale_shipping_info_helper',
         'odoo14-addon-sale_start_end_dates',
         'odoo14-addon-sale_stock_picking_blocking',
