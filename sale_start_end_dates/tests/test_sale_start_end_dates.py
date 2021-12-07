@@ -9,7 +9,7 @@ from odoo.tests.common import TransactionCase
 
 class TestSaleStartEndDates(TransactionCase):
     def setUp(self):
-        super(TestSaleStartEndDates, self).setUp()
+        super().setUp()
         self.partner = self.env.ref("base.res_partner_3")
         self.product_id = self.env.ref("product.product_product_7")
         self.product_id.must_have_dates = True
