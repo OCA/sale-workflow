@@ -83,19 +83,6 @@ msgid "Number of Days"
 msgstr "Nombre de jours"
 
 #. module: sale_start_end_dates
-#: code:addons/sale_start_end_dates/models/sale_order.py:68
-#, fuzzy, python-format
-#| msgid ""
-#| "On sale order line with Product '%s', the number of days is negative ; "
-#| "this is not allowed."
-msgid ""
-"On sale order line with product '%s', the number of days is negative (%d) ; "
-"this is not allowed. The number of days has been forced to 1."
-msgstr ""
-"Bon de commande avec ligne article saisie '%s', le nombre de jours est "
-"négatif; Ceci n'est pas autorisé."
-
-#. module: sale_start_end_dates
 #: model:ir.model,name:sale_start_end_dates.model_sale_order
 #, fuzzy
 #| msgid "Sales Order"
