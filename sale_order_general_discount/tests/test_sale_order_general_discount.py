@@ -15,6 +15,13 @@ class TestSaleOrderLineInput(SavepointCase):
         cls.product = cls.env["product.product"].create(
             {"name": "test_product", "type": "service"}
         )
+        cls.product2 = cls.env["product.product"].create(
+            {
+                "name": "test product without general discount",
+                "type": "service",
+                "general_discount_apply": False,
+            }
+        )
         cls.order = cls.env["sale.order"].create(
             {
                 "partner_id": cls.partner.id,
@@ -29,7 +36,18 @@ class TestSaleOrderLineInput(SavepointCase):
                             "product_uom": cls.product.uom_id.id,
                             "price_unit": 1000.00,
                         },
-                    )
+                    ),
+                    (
+                        0,
+                        0,
+                        {
+                            "name": cls.product2.name,
+                            "product_id": cls.product2.id,
+                            "product_uom_qty": 1,
+                            "product_uom": cls.product2.uom_id.id,
+                            "price_unit": 1000.00,
+                        },
+                    ),
                 ],
                 "pricelist_id": cls.env.ref("product.list0").id,
             }
@@ -41,7 +59,8 @@ class TestSaleOrderLineInput(SavepointCase):
 
     def test_sale_order_values(self):
         self.order.general_discount = 10
-        self.assertEqual(self.order.order_line.price_reduce, 900.00)
+        self.assertEqual(self.order.order_line[0].price_reduce, 900.00)
+        self.assertEqual(self.order.order_line[1].price_reduce, 1000.00)
 
     def _get_ctx_from_view(self, res):
         order_xml = etree.XML(res["arch"])
@@ -94,3 +113,27 @@ class TestSaleOrderLineInput(SavepointCase):
         order_line2 = self.env["sale.order.line"].create(vals)
         self.assertEqual(order_line2.price_subtotal, 800.00)
         self.assertEqual(order_line2.discount, 20)
+
+    def test_onchange_product_id(self):
+        self.order.general_discount = 10
+        self.assertEqual(self.order.order_line[0].discount, 10)
+        self.assertEqual(self.order.order_line[1].discount, 0)
+        self.order.order_line[0].discount = 1
+        self.order.order_line[1].discount = 2
+        self.order.order_line._onchange_product_id()
+        self.assertEqual(self.order.order_line[0].discount, 10)
+        self.assertEqual(self.order.order_line[1].discount, 0)
+
+    def test_product_template(self):
+        self.assertTrue(self.product.product_tmpl_id.general_discount_apply)
+        self.assertFalse(self.product2.product_tmpl_id.general_discount_apply)
+        self.product2.product_tmpl_id.general_discount_apply = True
+        self.assertTrue(self.product2.general_discount_apply)
+
+    def test_search_product_template_per_general_discount_apply(self):
+        self.assertEqual(
+            self.env["product.template"]
+            .search([("general_discount_apply", "=", 0)])
+            .id,
+            self.product2.product_tmpl_id.id,
+        )
