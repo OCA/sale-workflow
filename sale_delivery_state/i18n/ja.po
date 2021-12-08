@@ -6,60 +6,62 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 12.0\n"
 "Report-Msgid-Bugs-To: \n"
-"Last-Translator: Automatically generated\n"
+"PO-Revision-Date: 2021-12-08 09:39+0000\n"
+"Last-Translator: Tack Yabe <yabe@quartile.co>\n"
 "Language-Team: none\n"
 "Language: ja\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
 "Plural-Forms: nplurals=1; plural=0;\n"
+"X-Generator: Weblate 4.3.2\n"
 
 #. module: sale_delivery_state
 #: model:ir.model.fields,help:sale_delivery_state.field_sale_order__force_delivery_state
 msgid "Allow to enforce done state of delivery, for instance if some quantities were cancelled"
-msgstr ""
+msgstr "指定することで配送ステータスを強制的に完了に変更することを許可します。一例として数量の一部がキャンセルされたときに指定します"
 
 #. module: sale_delivery_state
 #: model:ir.model.fields,field_description:sale_delivery_state.field_sale_order__delivery_state
 msgid "Delivery state"
-msgstr ""
+msgstr "配送ステータス"
 
 #. module: sale_delivery_state
 #: selection:sale.order,delivery_state:0
 msgid "Done"
-msgstr ""
+msgstr "完了"
 
 #. module: sale_delivery_state
 #: model_terms:ir.ui.view,arch_db:sale_delivery_state.view_order_form_inherit_delivery_state
 msgid "Force delivery done"
-msgstr ""
+msgstr "配送を完了とする"
 
 #. module: sale_delivery_state
 #: model:ir.model.fields,field_description:sale_delivery_state.field_sale_order__force_delivery_state
 msgid "Force delivery state"
-msgstr ""
+msgstr "完了に強制変更"
 
 #. module: sale_delivery_state
 #: selection:sale.order,delivery_state:0
 msgid "No delivery"
-msgstr ""
+msgstr "配送不可"
 
 #. module: sale_delivery_state
 #: selection:sale.order,delivery_state:0
 msgid "Partially processed"
-msgstr ""
+msgstr "未配送あり"
 
 #. module: sale_delivery_state
 #: model:ir.model,name:sale_delivery_state.model_sale_order
 msgid "Sale Order"
-msgstr ""
+msgstr "販売オーダー"
 
 #. module: sale_delivery_state
 #: model_terms:ir.ui.view,arch_db:sale_delivery_state.view_order_form_inherit_delivery_state
 msgid "Unforce delivery done"
-msgstr ""
+msgstr "配送の完了を戻す"
 
 #. module: sale_delivery_state
 #: selection:sale.order,delivery_state:0
 msgid "Unprocessed"
-msgstr ""
+msgstr "配送可"
