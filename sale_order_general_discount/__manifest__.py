@@ -3,7 +3,7 @@
 {
     "name": "Sale Order General Discount",
     "summary": "General discount per sale order",
-    "version": "16.0.1.0.0",
+    "version": "16.0.1.1.0",
     "development_status": "Production/Stable",
     "category": "Sales",
     "website": "https://github.com/OCA/sale-workflow",
@@ -12,5 +12,9 @@
     "application": False,
     "installable": True,
     "depends": ["sale"],
-    "data": ["views/sale_order_view.xml", "views/res_partner_view.xml"],
+    "data": [
+        "views/product_view.xml",
+        "views/sale_order_view.xml",
+        "views/res_partner_view.xml",
+    ],
 }

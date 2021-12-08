@@ -21,7 +21,9 @@ class SaleOrderLine(models.Model):
             if "discount" not in vals and "order_id" in vals:
                 sale_order = self.env["sale.order"].browse(vals["order_id"])
                 if sale_order.general_discount:
-                    vals["discount"] = sale_order.general_discount
+                    product = self.env["product.product"].browse(vals["product_id"])
+                    if product.general_discount_apply:
+                        vals["discount"] = sale_order.general_discount
         return super().create(vals_list)
 
     @api.depends("order_id", "order_id.general_discount")
@@ -29,5 +31,14 @@ class SaleOrderLine(models.Model):
         if hasattr(super(), "_compute_discount"):
             super()._compute_discount()
         for line in self:
-            line.discount = line.order_id.general_discount
-        return
+            if line.product_id.general_discount_apply:
+                line.discount = line.order_id.general_discount
+
+    @api.onchange("product_id")
+    def _onchange_product_id(self):
+        if hasattr(super(), "_onchange_product_id"):
+            super()._onchange_product_id()
+        for line in self:
+            line.discount = 0
+            if line.product_id.general_discount_apply:
+                line.discount = line.order_id.general_discount
