@@ -17,24 +17,24 @@ msgstr ""
 #: model:ir.model.fields,field_description:sale_order_general_discount.field_product_product__general_discount_apply
 #: model:ir.model.fields,field_description:sale_order_general_discount.field_product_template__general_discount_apply
 msgid "Apply general discount"
-msgstr ""
+msgstr "Appliquer la remise générale"
 
 #. module: sale_order_general_discount
 #: model:ir.model,name:sale_order_general_discount.model_res_partner
 msgid "Contact"
-msgstr ""
+msgstr "Contact"
 
 #. module: sale_order_general_discount
 #: model:ir.model.fields,field_description:sale_order_general_discount.field_res_partner__sale_discount
 #: model:ir.model.fields,field_description:sale_order_general_discount.field_res_users__sale_discount
 msgid "Discount"
-msgstr ""
+msgstr "Remise"
 
 #. module: sale_order_general_discount
 #: model:ir.model.fields,field_description:sale_order_general_discount.field_sale_order__general_discount
 #: model:ir.model.fields,field_description:sale_order_general_discount.field_sale_order_line__discount
 msgid "Discount (%)"
-msgstr ""
+msgstr "Remise (%)"
 
 #. module: sale_order_general_discount
 #: model:ir.model.fields,field_description:sale_order_general_discount.field_product_product__display_name
@@ -43,7 +43,7 @@ msgstr ""
 #: model:ir.model.fields,field_description:sale_order_general_discount.field_sale_order__display_name
 #: model:ir.model.fields,field_description:sale_order_general_discount.field_sale_order_line__display_name
 msgid "Display Name"
-msgstr ""
+msgstr "Nom affiché"
 
 #. module: sale_order_general_discount
 #: model:ir.model.fields,field_description:sale_order_general_discount.field_product_product__id
@@ -61,6 +61,9 @@ msgid ""
 "If this checkbox is ticked, it means changing general discount on sale order"
 " will impact sale order lines with this related product."
 msgstr ""
+"Si coché, lorsque vous modifié la remise générale sur le bon de commande"
+" la modification sera prise en compte sur les lignes de bon de commandes"
+" liées à cet article."
 
 #. module: sale_order_general_discount
 #: model:ir.model.fields,field_description:sale_order_general_discount.field_product_product____last_update
@@ -69,24 +72,24 @@ msgstr ""
 #: model:ir.model.fields,field_description:sale_order_general_discount.field_sale_order____last_update
 #: model:ir.model.fields,field_description:sale_order_general_discount.field_sale_order_line____last_update
 msgid "Last Modified on"
-msgstr ""
+msgstr "Dernière modification le"
 
 #. module: sale_order_general_discount
 #: model:ir.model,name:sale_order_general_discount.model_product_product
 msgid "Product"
-msgstr ""
+msgstr "Article"
 
 #. module: sale_order_general_discount
 #: model:ir.model,name:sale_order_general_discount.model_product_template
 msgid "Product Template"
-msgstr ""
+msgstr "Modèle d'article"
 
 #. module: sale_order_general_discount
 #: model:ir.model,name:sale_order_general_discount.model_sale_order
 msgid "Sales Order"
-msgstr ""
+msgstr "Bons de commande"
 
 #. module: sale_order_general_discount
 #: model:ir.model,name:sale_order_general_discount.model_sale_order_line
 msgid "Sales Order Line"
-msgstr ""
+msgstr "Ligne de bons de commande"
