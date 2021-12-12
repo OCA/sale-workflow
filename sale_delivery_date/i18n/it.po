@@ -4,8 +4,10 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: Odoo Server 14.0\n"
+"Project-Id-Version: Odoo Server 14.0+e\n"
 "Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2021-12-12 20:45+0000\n"
+"PO-Revision-Date: 2021-12-12 20:45+0000\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -25,7 +27,7 @@ msgstr ""
 #: model_terms:ir.ui.view,arch_db:sale_delivery_date.report_delivery_document
 #: model_terms:ir.ui.view,arch_db:sale_delivery_date.report_saleorder_document
 msgid "<strong>Expected delivery date:</strong>"
-msgstr ""
+msgstr "<strong>Data di consegna prevista:</strong>"
 
 #. module: sale_delivery_date
 #: model_terms:ir.ui.view,arch_db:sale_delivery_date.view_picking_cutoff_search
@@ -53,7 +55,7 @@ msgstr ""
 #. module: sale_delivery_date
 #: model:ir.model,name:sale_delivery_date.model_res_partner
 msgid "Contact"
-msgstr ""
+msgstr "Contatto"
 
 #. module: sale_delivery_date
 #: model:ir.model.fields,field_description:sale_delivery_date.field_res_partner__cutoff_time
@@ -104,7 +106,7 @@ msgstr ""
 #: model:ir.model.fields,field_description:sale_delivery_date.field_stock_warehouse__display_name
 #: model:ir.model.fields,field_description:sale_delivery_date.field_time_cutoff_mixin__display_name
 msgid "Display Name"
-msgstr ""
+msgstr "Nome da visualizzare"
 
 #. module: sale_delivery_date
 #: model:ir.model.fields,field_description:sale_delivery_date.field_res_partner__id
@@ -129,17 +131,17 @@ msgstr ""
 #: model:ir.model.fields,field_description:sale_delivery_date.field_stock_warehouse____last_update
 #: model:ir.model.fields,field_description:sale_delivery_date.field_time_cutoff_mixin____last_update
 msgid "Last Modified on"
-msgstr ""
+msgstr "Ultima modifica il"
 
 #. module: sale_delivery_date
 #: model:ir.model,name:sale_delivery_date.model_sale_order
 msgid "Sales Order"
-msgstr ""
+msgstr "Ordine di vendita"
 
 #. module: sale_delivery_date
 #: model:ir.model,name:sale_delivery_date.model_sale_order_line
 msgid "Sales Order Line"
-msgstr ""
+msgstr "Riga ordine di vendita"
 
 #. module: sale_delivery_date
 #: code:addons/sale_delivery_date/models/res_partner.py:0
@@ -174,12 +176,12 @@ msgstr ""
 #: model:ir.model.fields,field_description:sale_delivery_date.field_stock_warehouse__tz
 #: model:ir.model.fields,field_description:sale_delivery_date.field_time_cutoff_mixin__tz
 msgid "Timezone"
-msgstr ""
+msgstr "Fuso orario"
 
 #. module: sale_delivery_date
 #: model:ir.model,name:sale_delivery_date.model_stock_picking
 msgid "Transfer"
-msgstr ""
+msgstr "Trasferisci"
 
 #. module: sale_delivery_date
 #: code:addons/sale_delivery_date/models/stock_picking.py:0
@@ -200,7 +202,7 @@ msgstr ""
 #. module: sale_delivery_date
 #: model:ir.model,name:sale_delivery_date.model_stock_warehouse
 msgid "Warehouse"
-msgstr ""
+msgstr "Magazzino"
 
 #. module: sale_delivery_date
 #: model:ir.model.fields,help:sale_delivery_date.field_res_partner__tz
@@ -210,3 +212,6 @@ msgid ""
 "If the timezone is not set, UTC (Coordinated Universal Time) is used.\n"
 "Anywhere else, time values are computed according to the time offset of your web client."
 msgstr ""
+"Quando si stampano i documenti e si esportano/importano dati, gli orari sono calcolati in base a questo fuso orario.\n"
+"Se questo non è impostato, viene usato il GMT (Ora Media Di Greenwich).\n"
+"In qualunque altra parte, l'orario è calcolato in base regolazione dell'ora del client web."
