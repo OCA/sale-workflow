@@ -17,4 +17,4 @@ class TestSalePartnerSelectableOption(common.SavepointCase):
         doc = etree.XML(result["arch"])
         field = doc.xpath("//field[@name='partner_id']")
         domain = field[0].get("domain")
-        self.assertTrue("[('sale_selectable', '=', True)]" in domain)
+        self.assertTrue("('sale_selectable', '=', True)" in domain)

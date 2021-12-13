@@ -23,6 +23,11 @@ msgid "Contact"
 msgstr "Contacto"
 
 #. module: sale_partner_selectable_option
+#: model:ir.model,name:sale_partner_selectable_option.model_sale_order
+msgid "Sales Order"
+msgstr ""
+
+#. module: sale_partner_selectable_option
 #: model_terms:ir.ui.view,arch_db:sale_partner_selectable_option.view_partner_form
 msgid "Selectable in orders"
 msgstr "Seleccionable en pedidos"
