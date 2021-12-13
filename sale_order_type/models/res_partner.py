@@ -9,3 +9,11 @@ class ResPartner(models.Model):
     sale_type = fields.Many2one(
         comodel_name="sale.order.type", string="Sale Order Type", company_dependent=True
     )
+
+    def copy_data(self, default=None):
+        result = super().copy_data(default=default)
+        for idx, partner in enumerate(self):
+            values = result[idx]
+            if partner.sale_type and not values.get("sale_type"):
+                values["sale_type"] = partner.sale_type
+        return result
