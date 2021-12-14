@@ -82,7 +82,9 @@ class TestSaleOrderInvoiceAmount(common.SavepointCase):
     def test_sale_order_invoiced_amount(self):
 
         self.assertEqual(
-            self.sale_order_1.invoiced_amount, 0.0, "Invoiced Amount should be 0.0",
+            self.sale_order_1.invoiced_amount,
+            0.0,
+            "Invoiced Amount should be 0.0",
         )
         context_payment = {
             "active_ids": [self.sale_order_1.id],
@@ -96,7 +98,9 @@ class TestSaleOrderInvoiceAmount(common.SavepointCase):
 
         payment.create_invoices()
         self.assertEqual(
-            self.sale_order_1.invoiced_amount, 100.0, "Invoiced Amount should be 100",
+            self.sale_order_1.invoiced_amount,
+            100.0,
+            "Invoiced Amount should be 100",
         )
         self.assertEqual(
             self.sale_order_1.uninvoiced_amount,
