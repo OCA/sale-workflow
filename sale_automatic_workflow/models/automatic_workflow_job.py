@@ -190,6 +190,17 @@ class AutomaticWorkflowJob(models.Model):
     def _handle_pickings(self, sale_workflow):
         pass
 
+            domain = [
+                ("account_internal_type", "in", ("receivable", "payable")),
+                ("reconciled", "=", False),
+            ]
+            payment_lines = payment.line_ids.filtered_domain(domain)
+            lines = invoice.line_ids
+            for account in payment_lines.account_id:
+                (payment_lines + lines).filtered_domain(
+                    [("account_id", "=", account.id), ("reconciled", "=", False)]
+                ).reconcile()
+
     @api.model
     def run_with_workflow(self, sale_workflow):
         workflow_domain = [("workflow_process_id", "=", sale_workflow.id)]
