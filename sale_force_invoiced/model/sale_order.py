@@ -8,7 +8,6 @@ class SaleOrder(models.Model):
     _inherit = "sale.order"
 
     force_invoiced = fields.Boolean(
-        string="Force invoiced",
         help="When you set this field, the sales order will be considered as "
         "fully invoiced, even when there may be ordered or delivered "
         "quantities pending to invoice.",
@@ -19,8 +18,9 @@ class SaleOrder(models.Model):
 
     @api.depends("force_invoiced")
     def _get_invoice_status(self):
-        super(SaleOrder, self)._get_invoice_status()
+        res = super(SaleOrder, self)._get_invoice_status()
         for order in self.filtered(
             lambda so: so.force_invoiced and so.state in ("sale", "done")
         ):
             order.invoice_status = "invoiced"
+        return res
