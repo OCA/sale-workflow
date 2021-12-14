@@ -9,11 +9,15 @@ class SaleOrder(models.Model):
     _inherit = "sale.order"
 
     invoiced_amount = fields.Monetary(
-        string="Invoiced Amount", compute="_compute_invoice_amount", store=True,
+        string="Invoiced Amount",
+        compute="_compute_invoice_amount",
+        store=True,
     )
 
     uninvoiced_amount = fields.Monetary(
-        string="Uninvoiced Amount", compute="_compute_invoice_amount", store=True,
+        string="Uninvoiced Amount",
+        compute="_compute_invoice_amount",
+        store=True,
     )
 
     @api.depends(
