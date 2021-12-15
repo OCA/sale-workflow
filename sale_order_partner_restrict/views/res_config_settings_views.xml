@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <record id="res_config_settings_view_form" model="ir.ui.view">
+        <field name="name">res.config.settings.view.form.inherit.sale</field>
+        <field name="model">res.config.settings</field>
+        <field name="inherit_id" ref="sale.res_config_settings_view_form" />
+        <field name="arch" type="xml">
+            <xpath expr="//div[@id='confirmation_email_setting']" position="after">
+                <div
+                    class="col-12 col-lg-6 o_setting_box"
+                    id="sale_order_partner_restrict"
+                >
+                    <div class="o_setting_right_pane">
+                        <label for="sale_order_partner_restrict" />
+                        <div class="text-muted">
+                            Choose Partner Restrictions on Sale Orders
+                        </div>
+                        <div class="mt8">
+                            <field
+                                name="sale_order_partner_restrict"
+                                class="o_light_label"
+                                widget="radio"
+                                required="True"
+                            />
+                        </div>
+                    </div>
+                </div>
+            </xpath>
+        </field>
+    </record>
+</odoo>
