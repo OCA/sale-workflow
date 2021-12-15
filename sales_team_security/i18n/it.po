@@ -17,14 +17,35 @@ msgstr ""
 "X-Generator: Weblate 3.10\n"
 
 #. module: sales_team_security
-#: model:res.groups,name:sales_team_security.group_sale_team_manager
-msgid "Channel Manager"
-msgstr "Team Manager"
-
-#. module: sales_team_security
 #: model:ir.model,name:sales_team_security.model_res_partner
 msgid "Contact"
 msgstr "Contatto"
+
+#. module: sales_team_security
+#: model:ir.model.fields,field_description:sales_team_security.field_ir_rule__display_name
+#: model:ir.model.fields,field_description:sales_team_security.field_res_partner__display_name
+msgid "Display Name"
+msgstr ""
+
+#. module: sales_team_security
+#: model:ir.model.fields,field_description:sales_team_security.field_ir_rule__id
+#: model:ir.model.fields,field_description:sales_team_security.field_res_partner__id
+msgid "ID"
+msgstr ""
+
+#. module: sales_team_security
+#: model:ir.model.fields,help:sales_team_security.field_res_partner__team_id
+#: model:ir.model.fields,help:sales_team_security.field_res_users__team_id
+msgid ""
+"If set, this Sales Team will be used for sales and assignments related to "
+"this partner"
+msgstr ""
+
+#. module: sales_team_security
+#: model:ir.model.fields,field_description:sales_team_security.field_ir_rule____last_update
+#: model:ir.model.fields,field_description:sales_team_security.field_res_partner____last_update
+msgid "Last Modified on"
+msgstr ""
 
 #. module: sales_team_security
 #: model:ir.model,name:sales_team_security.model_ir_rule
@@ -32,9 +53,40 @@ msgid "Record Rule"
 msgstr "Regola Record"
 
 #. module: sales_team_security
+#: model:ir.model.fields,field_description:sales_team_security.field_res_partner__team_id
+#: model:ir.model.fields,field_description:sales_team_security.field_res_users__team_id
+msgid "Sales Team"
+msgstr ""
+
+#. module: sales_team_security
+#: model:ir.model.fields,field_description:sales_team_security.field_res_partner__user_id
+#: model:ir.model.fields,field_description:sales_team_security.field_res_users__user_id
+msgid "Salesperson"
+msgstr ""
+
+#. module: sales_team_security
+#: model:ir.model.fields,help:sales_team_security.field_res_partner__user_id
+#: model:ir.model.fields,help:sales_team_security.field_res_users__user_id
+msgid "The internal user in charge of this contact."
+msgstr ""
+
+#. module: sales_team_security
 #: model:res.groups,comment:sales_team_security.group_sale_team_manager
 msgid ""
-"the user will have an access to the documents of the sales channel he/she "
+"The user will have an access to the documents of the sales teams he/she "
 "belongs to."
 msgstr ""
-"l'utente avrà accesso ai documenti del team di vendita a cui appartiene."
+
+#. module: sales_team_security
+#: model:res.groups,name:sales_team_security.group_sale_team_manager
+msgid "User: Team Documents Only"
+msgstr ""
+
+#~ msgid "Channel Manager"
+#~ msgstr "Team Manager"
+
+#~ msgid ""
+#~ "the user will have an access to the documents of the sales channel he/she "
+#~ "belongs to."
+#~ msgstr ""
+#~ "l'utente avrà accesso ai documenti del team di vendita a cui appartiene."
