@@ -1,8 +1,7 @@
 # Copyright 2017 Omar Castiñeira, Comunitea Servicios Tecnológicos S.L.
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
-from odoo import _, api, exceptions, fields, models
-from odoo.tools import float_compare
+from odoo import api, fields, models
 
 
 class AccountVoucherWizard(models.TransientModel):
@@ -42,24 +41,6 @@ class AccountVoucherWizard(models.TransientModel):
                 wzd.journal_id.currency_id.id or self.env.user.company_id.currency_id.id
             )
 
-    @api.constrains("amount_advance")
-    def check_amount(self):
-        if self.amount_advance <= 0:
-            raise exceptions.ValidationError(_("Amount of advance must be positive."))
-        if self.env.context.get("active_id", False):
-            self.onchange_date()
-            if (
-                float_compare(
-                    self.currency_amount,
-                    self.order_id.amount_residual,
-                    precision_digits=2,
-                )
-                > 0
-            ):
-                raise exceptions.ValidationError(
-                    _("Amount of advance is greater than residual amount on sale")
-                )
-
     @api.model
     def default_get(self, fields_list):
         res = super().default_get(fields_list)
@@ -94,12 +75,13 @@ class AccountVoucherWizard(models.TransientModel):
 
     def _prepare_payment_vals(self, sale):
         partner_id = sale.partner_invoice_id.commercial_partner_id.id
+        payment_type = self.amount_advance > 0 and "inbound" or "outbound"
         return {
-            "date": self.date,
-            "amount": self.amount_advance,
-            "payment_type": "inbound",
+            "payment_date": self.date,
+            "amount": abs(self.amount_advance),
+            "payment_type": payment_type,
             "partner_type": "customer",
-            "ref": self.payment_ref or sale.name,
+            "communication": self.payment_ref or sale.name,
             "journal_id": self.journal_id.id,
             "currency_id": self.journal_currency_id.id,
             "partner_id": partner_id,
@@ -121,7 +103,7 @@ class AccountVoucherWizard(models.TransientModel):
             payment_vals = self._prepare_payment_vals(sale)
             payment = payment_obj.create(payment_vals)
             sale.account_payment_ids |= payment
-            payment.action_post()
+            payment.post()
 
         return {
             "type": "ir.actions.act_window_close",
