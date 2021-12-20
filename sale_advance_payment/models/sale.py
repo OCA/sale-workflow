@@ -44,17 +44,16 @@ class SaleOrder(models.Model):
         "amount_total",
         "account_payment_ids",
         "account_payment_ids.state",
-        "account_payment_ids.move_id",
-        "account_payment_ids.move_id.line_ids",
-        "account_payment_ids.move_id.line_ids.date",
-        "account_payment_ids.move_id.line_ids.debit",
-        "account_payment_ids.move_id.line_ids.credit",
-        "account_payment_ids.move_id.line_ids.currency_id",
-        "account_payment_ids.move_id.line_ids.amount_currency",
+        "account_payment_ids.move_line_ids",
+        "account_payment_ids.move_line_ids.date",
+        "account_payment_ids.move_line_ids.debit",
+        "account_payment_ids.move_line_ids.credit",
+        "account_payment_ids.move_line_ids.currency_id",
+        "account_payment_ids.move_line_ids.amount_currency",
     )
     def _compute_advance_payment(self):
         for order in self:
-            mls = order.account_payment_ids.mapped("move_id.line_ids").filtered(
+            mls = order.account_payment_ids.mapped("move_line_ids").filtered(
                 lambda x: x.account_id.internal_type == "receivable"
                 and x.parent_state == "posted"
             )
