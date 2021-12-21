@@ -130,9 +130,10 @@ class SaleOrder(models.Model):
     @api.onchange("partner_id")
     def onchange_partner_id(self):
         res = super().onchange_partner_id()
-        self.global_discount_ids = (
-            self.partner_id.customer_global_discount_ids
-            or self.partner_id.commercial_partner_id.customer_global_discount_ids
+        self.global_discount_ids = self.partner_id.customer_global_discount_ids.filtered(
+            lambda d: d.company_id == self.company_id
+        ) or self.partner_id.commercial_partner_id.customer_global_discount_ids.filtered(
+            lambda d: d.company_id == self.company_id
         )
         return res
 
