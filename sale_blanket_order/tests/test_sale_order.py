@@ -48,6 +48,8 @@ class TestSaleOrder(common.TransactionCase):
         blanket_order = self.blanket_order_obj.create(
             {
                 "partner_id": self.partner.id,
+                "partner_invoice_id": self.partner.id,
+                "partner_shipping_id": self.partner.id,
                 "validity_date": fields.Date.to_string(self.validity),
                 "payment_term_id": self.payment_term.id,
                 "pricelist_id": self.sale_pricelist.id,
@@ -88,6 +90,8 @@ class TestSaleOrder(common.TransactionCase):
         blanket_order = self.blanket_order_obj.create(
             {
                 "partner_id": self.partner.id,
+                "partner_invoice_id": self.partner.id,
+                "partner_shipping_id": self.partner.id,
                 "validity_date": fields.Date.to_string(self.validity),
                 "payment_term_id": self.payment_term.id,
                 "pricelist_id": self.sale_pricelist.id,
@@ -129,6 +133,8 @@ class TestSaleOrder(common.TransactionCase):
         so = self.sale_order_obj.create(
             {
                 "partner_id": self.partner.id,
+                "partner_invoice_id": self.partner.id,
+                "partner_shipping_id": self.partner.id,
                 "order_line": [
                     (
                         0,
@@ -164,6 +170,8 @@ class TestSaleOrder(common.TransactionCase):
         so = self.sale_order_obj.create(
             {
                 "partner_id": self.partner.id,
+                "partner_invoice_id": self.partner.id,
+                "partner_shipping_id": self.partner.id,
                 "order_line": [
                     (
                         0,

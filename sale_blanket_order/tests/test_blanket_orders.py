@@ -68,6 +68,8 @@ class TestSaleBlanketOrders(common.TransactionCase):
         blanket_order = self.blanket_order_obj.create(
             {
                 "partner_id": self.partner.id,
+                "partner_invoice_id": self.partner.id,
+                "partner_shipping_id": self.partner.id,
                 "validity_date": fields.Date.to_string(self.yesterday),
                 "payment_term_id": self.payment_term.id,
                 "pricelist_id": self.sale_pricelist.id,
@@ -100,7 +102,7 @@ class TestSaleBlanketOrders(common.TransactionCase):
         self.assertEqual(blanket_order.state, "open")
 
         blanket_order.sudo().action_cancel()
-        self.assertEqual(blanket_order.state, "expired")
+        self.assertEqual(blanket_order.state, "cancel")
 
         blanket_order.sudo().set_to_draft()
         self.assertEqual(blanket_order.state, "draft")
@@ -112,6 +114,8 @@ class TestSaleBlanketOrders(common.TransactionCase):
         blanket_order = self.blanket_order_obj.create(
             {
                 "partner_id": self.partner.id,
+                "partner_invoice_id": self.partner.id,
+                "partner_shipping_id": self.partner.id,
                 "validity_date": fields.Date.to_string(self.tomorrow),
                 "payment_term_id": self.payment_term.id,
                 "pricelist_id": self.sale_pricelist.id,
@@ -162,6 +166,8 @@ class TestSaleBlanketOrders(common.TransactionCase):
         blanket_order = self.blanket_order_obj.create(
             {
                 "partner_id": self.partner.id,
+                "partner_invoice_id": self.partner.id,
+                "partner_shipping_id": self.partner.id,
                 "validity_date": fields.Date.to_string(self.tomorrow),
                 "payment_term_id": self.payment_term.id,
                 "pricelist_id": self.sale_pricelist.id,
@@ -195,7 +201,7 @@ class TestSaleBlanketOrders(common.TransactionCase):
         self.assertEqual(len(bo_lines), 2)
 
         wizard1 = self.blanket_order_wiz_obj.with_context(
-            active_ids=[bo_lines[0].id, bo_lines[1].id]
+            active_ids=[bo_lines[0].id, bo_lines[1].id], active_id=blanket_order.id, active_model="sale.blanket.order"
         ).create({})
         self.assertEqual(len(wizard1.line_ids), 2)
         wizard1.line_ids[0].write({"qty": 10.0})
@@ -212,6 +218,8 @@ class TestSaleBlanketOrders(common.TransactionCase):
         blanket_order = self.blanket_order_obj.create(
             {
                 "partner_id": self.partner.id,
+                "partner_invoice_id": self.partner.id,
+                "partner_shipping_id": self.partner.id,
                 "validity_date": fields.Date.to_string(self.tomorrow),
                 "payment_term_id": self.payment_term.id,
                 "pricelist_id": self.sale_pricelist.id,
@@ -248,6 +256,8 @@ class TestSaleBlanketOrders(common.TransactionCase):
         sale_order = self.so_obj.create(
             {
                 "partner_id": self.partner.id,
+                "partner_invoice_id": self.partner.id,
+                "partner_shipping_id": self.partner.id,
                 "payment_term_id": self.payment_term.id,
                 "pricelist_id": self.sale_pricelist.id,
                 "order_line": [
@@ -284,6 +294,8 @@ class TestSaleBlanketOrders(common.TransactionCase):
         blanket_order = self.blanket_order_obj.create(
             {
                 "partner_id": self.partner.id,
+                "partner_invoice_id": self.partner.id,
+                "partner_shipping_id": self.partner.id,
                 "validity_date": fields.Date.to_string(self.tomorrow),
                 "payment_term_id": self.payment_term.id,
                 "pricelist_id": self.sale_pricelist.id,
@@ -307,6 +319,8 @@ class TestSaleBlanketOrders(common.TransactionCase):
         sale_order = self.so_obj.create(
             {
                 "partner_id": self.partner.id,
+                "partner_invoice_id": self.partner.id,
+                "partner_shipping_id": self.partner.id,
                 "payment_term_id": self.payment_term.id,
                 "pricelist_id": self.sale_pricelist.id,
                 "order_line": [
@@ -335,6 +349,8 @@ class TestSaleBlanketOrders(common.TransactionCase):
         blanket_order = self.blanket_order_obj.create(
             {
                 "partner_id": self.partner.id,
+                "partner_invoice_id": self.partner.id,
+                "partner_shipping_id": self.partner.id,
                 "validity_date": fields.Date.to_string(self.tomorrow),
                 "payment_term_id": self.payment_term.id,
                 "pricelist_id": self.sale_pricelist.id,
