@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <record id="nou_sale_order_form" model="ir.ui.view">
+        <field name="name">nou.sale.order.form</field>
+        <field name="model">sale.order</field>
+        <field name="inherit_id" ref="sale.view_order_form" />
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='partner_shipping_id']" position="attributes">
+                <attribute
+                    name="domain"
+                >['|', ('parent_id', '=', partner_id), ('id', '=', partner_id)]</attribute>
+            </xpath>
+            <xpath expr="//field[@name='partner_invoice_id']" position="attributes">
+                <attribute
+                    name="domain"
+                >['|', ('parent_id', '=', partner_id), ('id', '=', partner_id)]</attribute>
+            </xpath>
+        </field>
+    </record>
+</odoo>
