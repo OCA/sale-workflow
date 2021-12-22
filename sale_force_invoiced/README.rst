@@ -23,7 +23,7 @@ Sale Force Invoiced
     :target: https://runbot.odoo-community.org/runbot/167/14.0
     :alt: Try me on Runbot
 
-|badge1| |badge2| |badge3| |badge4| |badge5| 
+|badge1| |badge2| |badge3| |badge4| |badge5|
 
 This module adds the possibility for users to force the invoice status of the
 sales orders to 'Invoiced', even when not all the quantities ordered or
@@ -51,7 +51,6 @@ Usage
 #. Deliver the products/services.
 #. Create an invoice and reduce the invoiced quantity. The sales order
    invoicing status is 'To Invoice'.
-#. Lock the Sale Order, to change the status of it to 'Done'.
 #. Check the field 'Force Invoiced'
 
 Bug Tracker
