@@ -13,13 +13,15 @@ class SaleOrderLine(models.Model):
 
     def _compute_already_sold(self):
         for line in self:
-            domain = [
-                ("product_id", "=", line.product_id.id),
-                ("state", "in", ["sale", "done"]),
-                ("order_partner_id", "child_of", line.order_id.partner_id.commercial_partner_id.ids),
-            ]
-            order_lines = line.env["sale.order.line"].search(domain, limit=1)
-
+            order_lines = line.env["sale.order.line"].read_group(
+                [
+                    ("product_id", "=", line.product_id.id),
+                    ("state", "in", ["sale", "done"]),
+                    ("order_partner_id", "child_of", line.order_id.partner_id.commercial_partner_id.ids),
+                ],
+                ["product_id", "state", "order_partner_id"],
+                ["product_id"],
+            )
             if order_lines:
                 line.already_sold = True
             else:
