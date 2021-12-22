@@ -5,7 +5,7 @@ from odoo.tests import common, tagged
 
 
 @tagged("-at_install", "post_install")
-class TestSaleTierValidation(common.SavepointCase):
+class TestSaleTierValidation(common.TransactionCase):
     @classmethod
     def setUpClass(cls):
         super().setUpClass()
@@ -65,6 +65,7 @@ class TestSaleTierValidation(common.SavepointCase):
         )
         with self.assertRaises(ValidationError):
             so.action_confirm()
+        so.order_line.price_unit = 45
         so.request_validation()
         so.with_user(self.test_user_1).validate_tier()
         so.action_confirm()
