@@ -4,7 +4,7 @@
 from odoo.tests import common
 
 
-class TestSaleOrderInvoiceAmount(common.SavepointCase):
+class TestSaleOrderInvoiceAmount(common.TransactionCase):
     @classmethod
     def setUpClass(cls):
         super().setUpClass()
@@ -80,7 +80,6 @@ class TestSaleOrderInvoiceAmount(common.SavepointCase):
         )
 
     def test_sale_order_invoiced_amount(self):
-
         self.assertEqual(
             self.sale_order_1.invoiced_amount,
             0.0,
@@ -92,7 +91,7 @@ class TestSaleOrderInvoiceAmount(common.SavepointCase):
         }
         payment = (
             self.env["sale.advance.payment.inv"]
-            .with_context(context_payment)
+            .with_context(**context_payment)
             .create({"advance_payment_method": "fixed", "fixed_amount": 100})
         )
 
