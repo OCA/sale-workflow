@@ -1,4 +1,4 @@
-# Copyright 2020 ForgeFlow S.L.
+# Copyright 2020-22 ForgeFlow S.L.
 # License LGPL-3.0 or later (https://www.gnu.org/licenses/lgpl.html).
 
 from odoo import api, models
@@ -8,7 +8,7 @@ class ProcurementGroup(models.Model):
     _inherit = "procurement.group"
 
     @api.model
-    def run(self, procurements):
+    def run(self, procurements, raise_user_error=True):
         new_procs = []
         Proc = self.env["procurement.group"].Procurement
         for procurement in procurements:
@@ -36,4 +36,4 @@ class ProcurementGroup(models.Model):
                 )
             else:
                 new_procs.append(procurement)
-        return super(ProcurementGroup, self).run(new_procs)
+        return super(ProcurementGroup, self).run(new_procs, raise_user_error)
