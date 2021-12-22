@@ -4,7 +4,7 @@
     "name": "Sale order line price history",
     "version": "14.0.1.0.0",
     "category": "Sales Management",
-    "author": "Tecnativa," "Odoo Community Association (OCA)",
+    "author": "Tecnativa," "Adgensee," "Odoo Community Association (OCA)",
     "website": "https://github.com/OCA/sale-workflow",
     "license": "AGPL-3",
     "depends": ["sale"],
