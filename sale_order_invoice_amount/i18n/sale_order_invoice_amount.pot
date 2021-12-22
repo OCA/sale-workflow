@@ -4,7 +4,7 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: Odoo Server 13.0\n"
+"Project-Id-Version: Odoo Server 15.0\n"
 "Report-Msgid-Bugs-To: \n"
 "Last-Translator: \n"
 "Language-Team: \n"
@@ -14,7 +14,10 @@ msgstr ""
 "Plural-Forms: \n"
 
 #. module: sale_order_invoice_amount
+#. openerp-web
+#: code:addons/sale_order_invoice_amount/static/src/xml/tax_totals.xml:0
 #: model:ir.model.fields,field_description:sale_order_invoice_amount.field_sale_order__invoiced_amount
+#, python-format
 msgid "Invoiced Amount"
 msgstr ""
 
@@ -29,7 +32,10 @@ msgid "Sales Order"
 msgstr ""
 
 #. module: sale_order_invoice_amount
+#. openerp-web
+#: code:addons/sale_order_invoice_amount/static/src/xml/tax_totals.xml:0
 #: model:ir.model.fields,field_description:sale_order_invoice_amount.field_sale_order__uninvoiced_amount
+#, python-format
 msgid "Uninvoiced Amount"
 msgstr ""
 
