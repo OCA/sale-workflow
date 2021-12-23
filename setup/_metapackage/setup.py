@@ -64,6 +64,7 @@ setuptools.setup(
         'odoo12-addon-sale_order_product_assortment',
         'odoo12-addon-sale_order_product_recommendation',
         'odoo12-addon-sale_order_product_recommendation_secondary_unit',
+        'odoo12-addon-sale_order_rename',
         'odoo12-addon-sale_order_revision',
         'odoo12-addon-sale_order_secondary_unit',
         'odoo12-addon-sale_order_tag',
