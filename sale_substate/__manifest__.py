@@ -3,7 +3,7 @@
 
 {
     "name": "Sale Sub State",
-    "version": "14.0.1.0.0",
+    "version": "15.0.1.0.0",
     "category": "Tools",
     "author": "Akretion, " "Odoo Community Association (OCA)",
     "website": "https://github.com/OCA/sale-workflow",
