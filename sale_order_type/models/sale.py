@@ -64,6 +64,8 @@ class SaleOrder(models.Model):
                 vals.update({"pricelist_id": order_type.pricelist_id})
             if order_type.incoterm_id:
                 vals.update({"incoterm": order_type.incoterm_id})
+            if order_type.analytic_account_id:
+                vals.update({"analytic_account_id": order_type.analytic_account_id})
             if vals:
                 order.update(vals)
             # Order line values
