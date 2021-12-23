@@ -4,42 +4,60 @@
         <record id="mail_template_data_sale_substate_wait_docs" model="mail.template">
             <field name="name">Waiting for legal documents</field>
             <field name="model_id" ref="sale.model_sale_order" />
-            <field name="subject">Reception of ${object.name}</field>
+            <field name="subject">Reception of {{object.name}}</field>
             <field name="use_default_to" eval="True" />
             <field name="body_html" type="html">
-<div>
-    Dear ${object.partner_id.name or 'customer'},<br />
-    Thank you for your order.<br />
-        In order to validate your order we need the legal documentation.
-       <br /><br />
-    Thank you.
-    % if user.signature
+<div style="margin: 0px; padding: 0px;">
+    <p style="margin: 0px; padding: 0px; font-size: 13px;">
+        Dear
+        <t t-out="object.partner_id.name or 'customer'">customer</t>
         <br />
-        ${user.signature | safe}
-    % endif
+        <br />
+        Thank you for your order.
+        <br />
+        In order to validate your order we need the legal documentation.
+        <br />
+        <br />
+        Thank you,
+        <br />
+        <t t-if="user.signature">
+            <br />
+            <t t-out="user.signature or ''" />
+        </t>
+    </p>
 </div>
-        </field>
+            </field>
+            <field name="lang">{{ object.partner_id.lang }}</field>
             <field name="auto_delete" eval="True" />
         </record>
         <record id="mail_template_data_sale_substate_delivery" model="mail.template">
             <field name="name">In delivery</field>
             <field name="model_id" ref="sale.model_sale_order" />
-            <field name="subject">Reception of ${object.name}</field>
+            <field name="subject">Reception of {{object.name}}</field>
             <field name="use_default_to" eval="True" />
             <field name="body_html" type="html">
-<div>
-    Dear ${object.partner_id.name or 'customer'},<br />
-    Thank you for your order.<br />
-        You order is being prepared for delivery.
-        You will recive a delivery tracking link to follow your delevery.
-    <br /><br />
-    Thank you,
-    % if user.signature
+<div style="margin: 0px; padding: 0px;">
+    <p style="margin: 0px; padding: 0px; font-size: 13px;">
+        Dear
+        <t t-out="object.partner_id.name or 'customer'">customer</t>
         <br />
-        ${user.signature | safe}
-    % endif
+        Thank you for your order.
+        <br />
+        You order is being prepared for delivery.
+        You will receive a delivery tracking link to follow it.
+        <br />
+        <br />
+
+        Thank you,
+        <br />
+        <t t-if="user.signature">
+            <br />
+            <t t-out="user.signature or ''" />
+        </t>
+    </p>
 </div>
-        </field>
+            </field>
+            <field name="lang">{{ object.partner_id.lang }}</field>
             <field name="auto_delete" eval="True" />
         </record>
 </odoo>
