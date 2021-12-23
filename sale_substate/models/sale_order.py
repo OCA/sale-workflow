@@ -25,14 +25,14 @@ class SaleOrder(models.Model):
             if order.substate_id and order.state != target_state:
                 raise ValidationError(
                     _(
-                        'The substate "%s" is not defined for the state'
-                        ' "%s" but for "%s" '
+                        "The substate %(name)s is not defined for the state"
+                        " %(state)s but for %(target_state)s "
                     )
-                    % (
-                        order.substate_id.name,
-                        _(sale_states[order.state]),
-                        _(sale_states[target_state]),
-                    )
+                    % {
+                        "name": order.substate_id.name,
+                        "state": _(sale_states[order.state]),
+                        "target_state": _(sale_states[target_state]),
+                    }
                 )
 
     def _track_template(self, changes):
@@ -44,7 +44,7 @@ class SaleOrder(models.Model):
                 {
                     "composition_mode": "comment",
                     "auto_delete_message": True,
-                    "subtype_id": self.env["ir.model.data"].xmlid_to_res_id(
+                    "subtype_id": self.env["ir.model.data"]._xmlid_to_res_id(
                         "mail.mt_note"
                     ),
                     "email_layout_xmlid": "mail.mail_notification_light",
