@@ -1,9 +1,14 @@
-# -*- coding: utf-8 -*-
-from odoo import models, fields
+from odoo import fields, models
 
 
 class ProductSet(models.Model):
-    _inherit = 'product.set'
+    _inherit = "product.set.line"
 
-    # field name on sale order line: ``sale_layout_cat_id``
-    section_id = fields.Many2one('sale.layout_category', string="Section",)
+    product_id = fields.Many2one(required=False)
+    display_type = fields.Selection(
+        [
+            ("line_section", "Section"),
+            ("line_note", "Note"),
+        ]
+    )
+    name = fields.Char()
