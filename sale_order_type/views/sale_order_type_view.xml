@@ -5,6 +5,14 @@
         <field name="arch" type="xml">
             <form string="Type">
                 <sheet>
+                    <div class="oe_button_box" name="button_box" />
+                    <field name="active" invisible="1" />
+                    <widget
+                        name="web_ribbon"
+                        title="Archived"
+                        bg_color="bg-danger"
+                        attrs="{'invisible': [('active', '=', True)]}"
+                    />
                     <group>
                         <div class="oe_title">
                             <label for="name" class="oe_edit_only" />
@@ -30,6 +38,10 @@
                                 groups="stock.group_adv_location"
                             />
                             <field name="sequence_id" />
+                            <field
+                                name="analytic_account_id"
+                                groups="analytic.group_analytic_accounting"
+                            />
                         </group>
                         <group>
                             <field name="journal_id" />
