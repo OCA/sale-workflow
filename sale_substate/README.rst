@@ -14,23 +14,22 @@ Sale Sub State
     :target: http://www.gnu.org/licenses/agpl-3.0-standalone.html
     :alt: License: AGPL-3
 .. |badge3| image:: https://img.shields.io/badge/github-OCA%2Fsale--workflow-lightgray.png?logo=github
-    :target: https://github.com/OCA/sale-workflow/tree/12.0/sale_substate
+    :target: https://github.com/OCA/sale-workflow/tree/15.0/sale_substate
     :alt: OCA/sale-workflow
 .. |badge4| image:: https://img.shields.io/badge/weblate-Translate%20me-F47D42.png
-    :target: https://translation.odoo-community.org/projects/sale-workflow-12-0/sale-workflow-12-0-sale_substate
+    :target: https://translation.odoo-community.org/projects/sale-workflow-15-0/sale-workflow-15-0-sale_substate
     :alt: Translate me on Weblate
 .. |badge5| image:: https://img.shields.io/badge/runbot-Try%20me-875A7B.png
-    :target: https://runbot.odoo-community.org/runbot/167/12.0
+    :target: https://runbot.odoo-community.org/runbot/167/15.0
     :alt: Try me on Runbot
 
 |badge1| |badge2| |badge3| |badge4| |badge5| 
 
 This module allows to add a substate to sale order.
 For each sale order state you can define a substate.
-We this module you can define substate which allow you extendiding sale workflow.
-For example, you can add substate "waiting for legal documents" if 
-the order can not be validated without this document (sale a car for exemple).    
-
+With this module substates can be defined allowing to extend the sales workflow.
+For example, you can add substate "waiting for legal documents" if
+the order cannot be validated without this document (sell a car for example).
 
 **Table of contents**
 
@@ -40,11 +39,11 @@ the order can not be validated without this document (sale a car for exemple).
 Usage
 =====
 
-#. Go to ** Settings > Technical > Database Structure ** and Add  "Base substate".
-    If necessery you can add "target State values" (ex define a substate for "cancel"
+#. Go to ** Settings > Technical > Sub State Configuration ** and Add  "Base Substate".
+    If necessary you can add "Target State values" (ex define a substate for "cancel"
     state).
     Substate sequence is very important.
-#. Create a sale order and check if the substate are displyed on the header of 
+#. Create a sale order and check if the substate are displayed on the header of
    form view. Check if you can't set substate defined for sale if sate is a quotation.
 
 Bug Tracker
@@ -53,7 +52,7 @@ Bug Tracker
 Bugs are tracked on `GitHub Issues <https://github.com/OCA/sale-workflow/issues>`_.
 In case of trouble, please check there if your issue has already been reported.
 If you spotted it first, help us smashing it by providing a detailed and welcomed
-`feedback <https://github.com/OCA/sale-workflow/issues/new?body=module:%20sale_substate%0Aversion:%2012.0%0A%0A**Steps%20to%20reproduce**%0A-%20...%0A%0A**Current%20behavior**%0A%0A**Expected%20behavior**>`_.
+`feedback <https://github.com/OCA/sale-workflow/issues/new?body=module:%20sale_substate%0Aversion:%2015.0%0A%0A**Steps%20to%20reproduce**%0A-%20...%0A%0A**Current%20behavior**%0A%0A**Expected%20behavior**>`_.
 
 Do not contact contributors directly about support or help with technical issues.
 
@@ -69,6 +68,7 @@ Contributors
 ~~~~~~~~~~~~
 
 * Mourad EL HADJ MIMOUNE <mourad.elhadj.mimoune@akretion.com>
+* Alexei Rivera <arivera@archeti.com> (migration to 15.0)
 
 Maintainers
 ~~~~~~~~~~~
@@ -83,6 +83,6 @@ OCA, or the Odoo Community Association, is a nonprofit organization whose
 mission is to support the collaborative development of Odoo features and
 promote its widespread use.
 
-This module is part of the `OCA/sale-workflow <https://github.com/OCA/sale-workflow/tree/12.0/sale_substate>`_ project on GitHub.
+This module is part of the `OCA/sale-workflow <https://github.com/OCA/sale-workflow/tree/15.0/sale_substate>`_ project on GitHub.
 
 You are welcome to contribute. To learn how please visit https://odoo-community.org/page/Contribute.
