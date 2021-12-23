@@ -8,7 +8,7 @@
         <field name="priority" eval="20" />
         <field name="arch" type="xml">
             <field name="partner_id" position="after">
-                <field name="available_partners" invisible="1" />
+                <field name="sale_order_partner_restrict" invisible="1" />
             </field>
         </field>
     </record>
