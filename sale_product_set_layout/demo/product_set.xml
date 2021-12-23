@@ -1,7 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<odoo>
-    <record id="sale_product_set.product_set_services"
-            model="product.set">
-        <field name="section_id" ref="sale.sale_layout_cat_1"/>
-    </record>
-</odoo>
