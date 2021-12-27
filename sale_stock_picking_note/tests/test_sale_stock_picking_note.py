@@ -30,3 +30,10 @@ class TestSaleStockPickingNote(common.SavepointCase):
         self.order.action_confirm()
         self.assertEqual(self.order.picking_ids[:1].note,
                          self.order.picking_note)
+
+    def test_02_sale_to_picking_note_update(self):
+        """ Update picking note from SO """
+        self.order.action_confirm()
+        self.order.picking_note = "The note is now different."
+        self.assertEqual(self.order.picking_ids[:1].note,
+                         self.order.picking_note)
