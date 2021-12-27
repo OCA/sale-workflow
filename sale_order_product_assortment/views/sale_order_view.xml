@@ -46,7 +46,7 @@
                 <field
                     name="product_allowed_id"
                     string="Product"
-                    attrs="{'invisible':[('parent.has_allowed_products', '=', False)], 'required': [('display_type', '=', False)]}"
+                    attrs="{'column_invisible':[('parent.has_allowed_products', '=', False)], 'required': [('display_type', '=', False)]}"
                     domain="[('id', 'in', parent.allowed_product_ids)]"
                     readonly="0"
                 />
