@@ -1,10 +1,10 @@
 # Copyright 2018-2020 Tecnativa - Carlos Dauden
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
-from odoo.tests import SavepointCase, tagged
+from odoo.tests import TransactionCase, tagged
 
 
 @tagged("post_install", "-at_install")
-class TestSaleOrderSecondaryUnit(SavepointCase):
+class TestSaleOrderSecondaryUnit(TransactionCase):
     @classmethod
     def setUpClass(cls):
         super().setUpClass()
