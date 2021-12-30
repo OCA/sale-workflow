@@ -16,6 +16,7 @@
                             select="1"
                             string="Payment Method"
                         />
+                        <field name="payment_type" />
                         <field name="journal_currency_id" string="Currency" />
                         <field name="payment_ref" />
                         <field name="date" />
