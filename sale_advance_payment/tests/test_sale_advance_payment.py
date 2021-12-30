@@ -131,6 +131,7 @@ class TestSaleAdvancePayment(common.SavepointCase):
             .create(
                 {
                     "journal_id": self.journal_eur_bank.id,
+                    "payment_type": "inbound",
                     "amount_advance": 100,
                     "order_id": self.sale_order_1.id,
                 }
@@ -147,6 +148,7 @@ class TestSaleAdvancePayment(common.SavepointCase):
             .create(
                 {
                     "journal_id": self.journal_usd_cash.id,
+                    "payment_type": "inbound",
                     "amount_advance": 200,
                     "order_id": self.sale_order_1.id,
                 }
@@ -166,6 +168,7 @@ class TestSaleAdvancePayment(common.SavepointCase):
             .create(
                 {
                     "journal_id": self.journal_eur_cash.id,
+                    "payment_type": "inbound",
                     "amount_advance": 250,
                     "order_id": self.sale_order_1.id,
                 }
@@ -181,6 +184,7 @@ class TestSaleAdvancePayment(common.SavepointCase):
             .create(
                 {
                     "journal_id": self.journal_usd_bank.id,
+                    "payment_type": "inbound",
                     "amount_advance": 400,
                     "order_id": self.sale_order_1.id,
                 }
@@ -202,3 +206,42 @@ class TestSaleAdvancePayment(common.SavepointCase):
         payments = json.loads(invoice.invoice_outstanding_credits_debits_widget)
         result = [d["amount"] for d in payments["content"]]
         self.assertEqual(set(payment_list), set(result))
+
+    def test_sale_advance_payment_outgoing(self):
+        self.assertEqual(
+            self.sale_order_1.amount_residual, 3600,
+        )
+        context_payment = {
+            "active_ids": [self.sale_order_1.id],
+            "active_id": self.sale_order_1.id,
+        }
+        # Create an inbound payment of 200 USD
+        advance_payment_2 = (
+            self.env["account.voucher.wizard"]
+            .with_context(context_payment)
+            .create(
+                {
+                    "journal_id": self.journal_usd_cash.id,
+                    "payment_type": "inbound",
+                    "amount_advance": 200,
+                    "order_id": self.sale_order_1.id,
+                }
+            )
+        )
+        advance_payment_2.make_advance_payment()
+        self.assertEqual(self.sale_order_1.amount_residual, 3400)
+        # Create an outbound payment of 200 USD
+        advance_payment_2 = (
+            self.env["account.voucher.wizard"]
+            .with_context(context_payment)
+            .create(
+                {
+                    "journal_id": self.journal_usd_cash.id,
+                    "payment_type": "outbound",
+                    "amount_advance": 200,
+                    "order_id": self.sale_order_1.id,
+                }
+            )
+        )
+        advance_payment_2.make_advance_payment()
+        self.assertEqual(self.sale_order_1.amount_residual, 3600)
