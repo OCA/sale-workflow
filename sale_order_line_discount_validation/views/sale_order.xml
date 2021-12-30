@@ -17,6 +17,7 @@
                 position="attributes"
             >
                 <attribute name="readonly">1</attribute>
+                <attribute name="force_save">1</attribute>
             </xpath>
             <xpath
                 expr="//page[@name='order_lines']/field[@name='order_line']/tree/field[@name='discount']"
