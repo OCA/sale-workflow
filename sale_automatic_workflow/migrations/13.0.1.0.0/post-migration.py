@@ -17,3 +17,8 @@ def migrate(env, version):
         FROM account_invoice ai
         WHERE ai.id = am.old_invoice_id""",
     )
+    # Switch model of the invoice filters for processes - May not be enough
+    processes = env["sale.workflow.process"].search([])
+    for field in ["validate_invoice_filter_id", "payment_filter_id"]:
+        filters = processes.mapped(field)
+        filters.write({"model_id": "account.move"})
