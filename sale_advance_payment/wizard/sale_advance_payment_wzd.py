@@ -1,7 +1,9 @@
 # Copyright 2017 Omar Castiñeira, Comunitea Servicios Tecnológicos S.L.
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
+
 from odoo import _, api, exceptions, fields, models
+from odoo.exceptions import UserError
 from odoo.tools import float_compare
 
 
@@ -34,12 +36,18 @@ class AccountVoucherWizard(models.TransientModel):
         "Curr. amount", readonly=True, currency_field="currency_id"
     )
     payment_ref = fields.Char("Ref.")
+    payment_type = fields.Selection(
+        [("inbound", "Inbound"), ("outbound", "Outbound")],
+        default="inbound",
+        required=True,
+    )
 
     @api.depends("journal_id")
     def _compute_get_journal_currency(self):
         for wzd in self:
             wzd.journal_currency_id = (
-                wzd.journal_id.currency_id.id or self.env.user.company_id.currency_id.id
+                wzd.journal_id.currency_id.id
+                or wzd.journal_id.company_id.currency_id.id
             )
 
     @api.constrains("amount_advance")
@@ -94,10 +102,19 @@ class AccountVoucherWizard(models.TransientModel):
 
     def _prepare_payment_vals(self, sale):
         partner_id = sale.partner_invoice_id.commercial_partner_id.id
+        if self.amount_advance < 0.0:
+            raise UserError(
+                _(
+                    "The amount to advance must always be positive. "
+                    "Please use the payment type to indicate if this "
+                    "is an inbound or an outbound payment."
+                )
+            )
+
         return {
             "date": self.date,
             "amount": self.amount_advance,
-            "payment_type": "inbound",
+            "payment_type": self.payment_type,
             "partner_type": "customer",
             "ref": self.payment_ref or sale.name,
             "journal_id": self.journal_id.id,
@@ -113,7 +130,6 @@ class AccountVoucherWizard(models.TransientModel):
         self.ensure_one()
         payment_obj = self.env["account.payment"]
         sale_obj = self.env["sale.order"]
-
         sale_ids = self.env.context.get("active_ids", [])
         if sale_ids:
             sale_id = fields.first(sale_ids)
