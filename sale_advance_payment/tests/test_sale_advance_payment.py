@@ -21,13 +21,13 @@ class TestSaleAdvancePayment(common.SavepointCase):
 
         # Products
         cls.product_1 = cls.env["product.product"].create(
-            {"name": "Desk Combination", "type": "product", "invoice_policy": "order"}
+            {"name": "Desk Combination", "invoice_policy": "order"}
         )
         cls.product_2 = cls.env["product.product"].create(
-            {"name": "Conference Chair", "type": "product", "invoice_policy": "order"}
+            {"name": "Conference Chair", "invoice_policy": "order"}
         )
         cls.product_3 = cls.env["product.product"].create(
-            {"name": "Repair Services", "type": "service", "invoice_policy": "order"}
+            {"name": "Repair Services", "invoice_policy": "order"}
         )
 
         cls.tax = cls.env["account.tax"].create(
