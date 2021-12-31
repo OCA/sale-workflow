@@ -106,6 +106,11 @@ msgid "ID"
 msgstr ""
 
 #. module: sale_advance_payment
+#: model:ir.model.fields.selection,name:sale_advance_payment.selection__account_voucher_wizard__payment_type__inbound
+msgid "Inbound"
+msgstr ""
+
+#. module: sale_advance_payment
 #: model:ir.model.fields,field_description:sale_advance_payment.field_account_voucher_wizard__journal_id
 msgid "Journal"
 msgstr ""
@@ -163,6 +168,11 @@ msgid "Order Due Amount"
 msgstr "Montant dû de la Commande"
 
 #. module: sale_advance_payment
+#: model:ir.model.fields.selection,name:sale_advance_payment.selection__account_voucher_wizard__payment_type__outbound
+msgid "Outbound"
+msgstr ""
+
+#. module: sale_advance_payment
 #: model:ir.model.fields.selection,name:sale_advance_payment.selection__sale_order__advance_payment_status__paid
 msgid "Paid"
 msgstr "Payé"
@@ -182,6 +192,11 @@ msgstr "Enregistrer un paiement d'avance"
 #: model_terms:ir.ui.view,arch_db:sale_advance_payment.view_account_voucher_wizard
 msgid "Payment Method"
 msgstr "Méthode de paiement"
+
+#. module: sale_advance_payment
+#: model:ir.model.fields,field_description:sale_advance_payment.field_account_voucher_wizard__payment_type
+msgid "Payment Type"
+msgstr ""
 
 #. module: sale_advance_payment
 #: model_terms:ir.ui.view,arch_db:sale_advance_payment.view_order_form
@@ -217,3 +232,11 @@ msgstr "Vente"
 #: model:ir.model,name:sale_advance_payment.model_sale_order
 msgid "Sales Order"
 msgstr "Commandes"
+
+#. module: sale_advance_payment
+#: code:addons/sale_advance_payment/wizard/sale_advance_payment_wzd.py:0
+#, python-format
+msgid ""
+"The amount to advance must always be positive. Please use the payment type "
+"to indicate if this is an inbound or an outbound payment."
+msgstr ""
