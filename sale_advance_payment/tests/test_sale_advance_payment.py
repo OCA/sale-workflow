@@ -21,13 +21,13 @@ class TestSaleAdvancePayment(common.SavepointCase):
 
         # Products
         cls.product_1 = cls.env["product.product"].create(
-            {"name": "Desk Combination", "type": "product", "invoice_policy": "order"}
+            {"name": "Desk Combination", "invoice_policy": "order"}
         )
         cls.product_2 = cls.env["product.product"].create(
-            {"name": "Conference Chair", "type": "product", "invoice_policy": "order"}
+            {"name": "Conference Chair", "invoice_policy": "order"}
         )
         cls.product_3 = cls.env["product.product"].create(
-            {"name": "Repair Services", "type": "service", "invoice_policy": "order"}
+            {"name": "Repair Services", "invoice_policy": "order"}
         )
 
         cls.tax = cls.env["account.tax"].create(
@@ -156,6 +156,7 @@ class TestSaleAdvancePayment(common.SavepointCase):
             .create(
                 {
                     "journal_id": self.journal_eur_bank.id,
+                    "payment_type": "inbound",
                     "amount_advance": 100,
                     "order_id": self.sale_order_1.id,
                 }
@@ -172,6 +173,7 @@ class TestSaleAdvancePayment(common.SavepointCase):
             .create(
                 {
                     "journal_id": self.journal_usd_cash.id,
+                    "payment_type": "inbound",
                     "amount_advance": 200,
                     "order_id": self.sale_order_1.id,
                 }
@@ -191,6 +193,7 @@ class TestSaleAdvancePayment(common.SavepointCase):
             .create(
                 {
                     "journal_id": self.journal_eur_cash.id,
+                    "payment_type": "inbound",
                     "amount_advance": 250,
                     "order_id": self.sale_order_1.id,
                 }
@@ -206,6 +209,7 @@ class TestSaleAdvancePayment(common.SavepointCase):
             .create(
                 {
                     "journal_id": self.journal_usd_bank.id,
+                    "payment_type": "inbound",
                     "amount_advance": 400,
                     "order_id": self.sale_order_1.id,
                 }
@@ -227,3 +231,43 @@ class TestSaleAdvancePayment(common.SavepointCase):
         payments = json.loads(invoice.invoice_outstanding_credits_debits_widget)
         result = [d["amount"] for d in payments["content"]]
         self.assertEqual(set(payment_list), set(result))
+
+    def test_sale_advance_payment_outgoing(self):
+        self.assertEqual(
+            self.sale_order_1.amount_residual,
+            3600,
+        )
+        context_payment = {
+            "active_ids": [self.sale_order_1.id],
+            "active_id": self.sale_order_1.id,
+        }
+        # Create an inbound payment of 200 USD
+        advance_payment_2 = (
+            self.env["account.voucher.wizard"]
+            .with_context(context_payment)
+            .create(
+                {
+                    "journal_id": self.journal_usd_cash.id,
+                    "payment_type": "inbound",
+                    "amount_advance": 200,
+                    "order_id": self.sale_order_1.id,
+                }
+            )
+        )
+        advance_payment_2.make_advance_payment()
+        self.assertEqual(self.sale_order_1.amount_residual, 3400)
+        # Create an outbound payment of 200 USD
+        advance_payment_2 = (
+            self.env["account.voucher.wizard"]
+            .with_context(context_payment)
+            .create(
+                {
+                    "journal_id": self.journal_usd_cash.id,
+                    "payment_type": "outbound",
+                    "amount_advance": 200,
+                    "order_id": self.sale_order_1.id,
+                }
+            )
+        )
+        advance_payment_2.make_advance_payment()
+        self.assertEqual(self.sale_order_1.amount_residual, 3600)
