@@ -16,7 +16,7 @@ class TestSaleOrderLineDescriptionChange(common.TransactionCase):
         self.partner_model = self.env["res.partner"]
         self.product_model = self.env["product.product"]
         self.user_model = self.env["res.users"].with_context(
-            {"no_reset_password": True, "mail_create_nosubscribe": True}
+            no_reset_password=True, mail_create_nosubscribe=True
         )
 
         # Create two different users
