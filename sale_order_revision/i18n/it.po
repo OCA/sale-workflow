@@ -9,14 +9,15 @@ msgstr ""
 "Project-Id-Version: Odoo Server 10.0\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2017-06-01 02:53+0000\n"
-"PO-Revision-Date: 2017-06-01 02:53+0000\n"
-"Last-Translator: OCA Transbot <transbot@odoo-community.org>, 2017\n"
+"PO-Revision-Date: 2022-01-04 19:39+0000\n"
+"Last-Translator: Mario Riva <mario.riva@agilebg.com>\n"
 "Language-Team: Italian (https://www.transifex.com/oca/teams/23907/it/)\n"
 "Language: it\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
-"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: Weblate 4.3.2\n"
 
 #. module: sale_order_revision
 #: model:ir.model.fields,field_description:sale_order_revision.field_sale_order__active
@@ -26,67 +27,66 @@ msgstr "Attivo"
 #. module: sale_order_revision
 #: model:ir.model.fields,field_description:sale_order_revision.field_sale_order__current_revision_id
 msgid "Current revision"
-msgstr ""
+msgstr "Versione Corrente"
 
 #. module: sale_order_revision
 #: model:ir.model.fields,field_description:sale_order_revision.field_sale_order__has_old_revisions
 msgid "Has Old Revisions"
-msgstr ""
+msgstr "Ha versioni precedenti"
 
 #. module: sale_order_revision
 #: model_terms:ir.ui.view,arch_db:sale_order_revision.view_order_form
 msgid "New Revision of Quotation"
-msgstr ""
+msgstr "Nuova versione di preventivo"
 
 #. module: sale_order_revision
 #: code:addons/sale_order_revision/models/sale_order.py:111
 #, python-format
 msgid "New Sales Order Revisions"
-msgstr ""
+msgstr "Nuove revisioni di Conferma d'ordine"
 
 #. module: sale_order_revision
 #: code:addons/sale_order_revision/models/sale_order.py:103
 #, python-format
 msgid "New revision created: %s"
-msgstr ""
+msgstr "Nuova revisione creata: %s"
 
 #. module: sale_order_revision
 #: model:ir.model.fields,field_description:sale_order_revision.field_sale_order__old_revision_ids
 msgid "Old revisions"
-msgstr ""
+msgstr "Precedenti revisioni"
 
 #. module: sale_order_revision
 #: sql_constraint:sale.order:0
 msgid "Order Reference and revision must be unique per Company."
-msgstr ""
+msgstr "Riferimento d'ordine e revisione devono essere unici per l'Azienda."
 
 #. module: sale_order_revision
 #: model:ir.model.fields,field_description:sale_order_revision.field_sale_order__unrevisioned_name
 msgid "Original Order Reference"
-msgstr ""
+msgstr "Riferimento d'ordine originale"
 
 #. module: sale_order_revision
 #: model:ir.model.fields,field_description:sale_order_revision.field_sale_order__revision_number
 msgid "Revision"
-msgstr ""
+msgstr "Revisione"
 
 #. module: sale_order_revision
 #: model_terms:ir.ui.view,arch_db:sale_order_revision.view_order_form
 msgid "Revisions"
-msgstr ""
+msgstr "Revisioni"
 
 #. module: sale_order_revision
 #: model:ir.model,name:sale_order_revision.model_sale_order
-#, fuzzy
 msgid "Sale Order"
-msgstr "Ordini vendita"
+msgstr "Conferma d'ordine"
 
 #. module: sale_order_revision
 #: model_terms:ir.ui.view,arch_db:sale_order_revision.view_order_form
 msgid "Superseeded by"
-msgstr ""
+msgstr "Sostituito da"
 
 #. module: sale_order_revision
 #: model_terms:ir.ui.view,arch_db:sale_order_revision.view_order_form
 msgid "Superseeded on"
-msgstr ""
+msgstr "Sostituito il"
