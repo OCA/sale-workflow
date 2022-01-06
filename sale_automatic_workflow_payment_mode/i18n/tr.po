@@ -9,14 +9,15 @@ msgstr ""
 "Project-Id-Version: Odoo Server 9.0c\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2016-08-24 02:46+0000\n"
-"PO-Revision-Date: 2016-08-24 02:46+0000\n"
-"Last-Translator: OCA Transbot <transbot@odoo-community.org>, 2016\n"
+"PO-Revision-Date: 2022-01-06 10:39+0000\n"
+"Last-Translator: Yavuz Avci <yavuzavci@gmail.com>\n"
 "Language-Team: Turkish (https://www.transifex.com/oca/teams/23907/tr/)\n"
 "Language: tr\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
+"X-Generator: Weblate 4.3.2\n"
 
 #. module: sale_automatic_workflow_payment_mode
 #: model:ir.model.fields,field_description:sale_automatic_workflow_payment_mode.field_account_payment_mode__workflow_process_id
@@ -26,27 +27,28 @@ msgstr "Otomatik İş akışı"
 #. module: sale_automatic_workflow_payment_mode
 #: model:ir.filters,name:sale_automatic_workflow_payment_mode.automatic_workflow_payment_filter
 msgid "Automatic Workflow Payment Filter"
-msgstr ""
+msgstr "Otomatik İş Akışı Ödeme Filtresi"
 
 #. module: sale_automatic_workflow_payment_mode
 #: model:ir.model.fields,field_description:sale_automatic_workflow_payment_mode.field_sale_workflow_process__payment_filter_domain
+#, fuzzy
 msgid "Payment Filter Domain"
-msgstr ""
+msgstr "Ödeme Filtresi Domaini"
 
 #. module: sale_automatic_workflow_payment_mode
 #: model:ir.model,name:sale_automatic_workflow_payment_mode.model_account_payment_mode
 msgid "Payment Modes"
-msgstr ""
+msgstr "Ödeme Şekilleri"
 
 #. module: sale_automatic_workflow_payment_mode
 #: model:ir.model.fields,field_description:sale_automatic_workflow_payment_mode.field_sale_workflow_process__register_payment
 msgid "Register Payment"
-msgstr ""
+msgstr "Ödeme Kaydet"
 
 #. module: sale_automatic_workflow_payment_mode
 #: model:ir.model.fields,field_description:sale_automatic_workflow_payment_mode.field_sale_workflow_process__payment_filter_id
 msgid "Register Payment Invoice Filter"
-msgstr ""
+msgstr "Ödeme Kaydetme Fatura Filtresi"
 
 #. module: sale_automatic_workflow_payment_mode
 #: model:ir.model,name:sale_automatic_workflow_payment_mode.model_sale_order
@@ -69,4 +71,4 @@ msgstr ""
 #. module: sale_automatic_workflow_payment_mode
 #: model_terms:ir.ui.view,arch_db:sale_automatic_workflow_payment_mode.sale_workflow_process_view_form
 msgid "Set selection based on a search filter:"
-msgstr ""
+msgstr "Seçimi bir arama filtresine göre ayarlayın:"
