@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!--
+    # Copyright 2022 Camptocamp SA
+    # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
+-->
+<odoo>
+
+    <record id="sale_workflow_process_view_form" model="ir.ui.view">
+        <field name="model">sale.workflow.process</field>
+        <field
+            name="inherit_id"
+            ref="sale_automatic_workflow.sale_workflow_process_view_form"
+        />
+        <field name="arch" type="xml">
+
+            <field name="validate_invoice" position="before">
+                <div attrs="{'invisible':[('create_invoice','!=',True)]}" colspan="4">
+                    <label for="create_invoice_default_value_ids" />
+                    <field name="create_invoice_default_value_ids" nolabel="True">
+                        <tree editable="bottom">
+                            <field
+                                name="invoice_field_id"
+                                options="{'no_create': True, 'no_create_edit': True}"
+                            />
+                            <field name="value_type" />
+                            <field
+                                name="default_char_value"
+                                attrs="{'required':[('value_type', '=', 'default_char_value')], 'readonly':[('value_type', '!=', 'default_char_value')]}"
+                            />
+                            <field
+                                name="sale_order_field_id"
+                                attrs="{'required':[('value_type', '=', 'from_sale_order')], 'readonly':[('value_type', '!=', 'from_sale_order')]}"
+                                options="{'no_create': True, 'no_create_edit': True}"
+                            />
+                        </tree>
+                    </field>
+                </div>
+            </field>
+
+        </field>
+    </record>
+
+</odoo>
