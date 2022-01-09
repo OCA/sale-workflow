@@ -1,0 +1,6 @@
+<odoo noupdate="1">
+    <record model="queue.job.channel" id="channel_sale_automatic_workflow">
+        <field name="name">Sale automatic workflow</field>
+        <field name="parent_id" ref="queue_job.channel_root" />
+    </record>
+</odoo>
