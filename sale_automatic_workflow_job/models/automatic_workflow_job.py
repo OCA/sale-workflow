@@ -10,7 +10,7 @@ from odoo.addons.queue_job.job import identity_exact
 class AutomaticWorkflowJob(models.Model):
     _inherit = "automatic.workflow.job"
 
-    def _do_validate_sale_order_job_options(self, sale):
+    def _do_validate_sale_order_job_options(self, sale, domain_filter):
         description = _("Validate sales order {}").format(sale.display_name)
         return {
             "description": description,
@@ -55,7 +55,7 @@ class AutomaticWorkflowJob(models.Model):
             AutomaticWorkflowJob, self.with_context(auto_delay_ddmrp_cron_actions=True)
         )._validate_sale_orders(sale)
 
-    def _do_create_invoice_job_options(self, sale):
+    def _do_create_invoice_job_options(self, sale, domain_filter):
         description = _("Create invoices for sales order {}").format(sale.display_name)
         return {
             "description": description,
@@ -67,7 +67,7 @@ class AutomaticWorkflowJob(models.Model):
             AutomaticWorkflowJob, self.with_context(auto_delay_create_invoices=True)
         )._create_invoices(sale)
 
-    def _do_validate_invoice_job_options(self, invoice):
+    def _do_validate_invoice_job_options(self, invoice, domain_filter):
         description = _("Validate invoice {}").format(invoice.display_name)
         return {
             "description": description,
@@ -79,7 +79,7 @@ class AutomaticWorkflowJob(models.Model):
             AutomaticWorkflowJob, self.with_context(auto_delay_validate_invoices=True)
         )._validate_invoices(invoice)
 
-    def _do_validate_picking_job_options(self, picking):
+    def _do_validate_picking_job_options(self, picking, domain_filter):
         description = _("Validate transfer {}").format(picking.display_name)
         return {
             "description": description,
@@ -91,7 +91,7 @@ class AutomaticWorkflowJob(models.Model):
             AutomaticWorkflowJob, self.with_context(auto_delay_validate_pickings=True)
         )._validate_pickings(picking)
 
-    def _do_sale_done_job_options(self, sale):
+    def _do_sale_done_job_options(self, sale, domain_filter):
         description = _("Mark sales order {} as done").format(sale.display_name)
         return {
             "description": description,
