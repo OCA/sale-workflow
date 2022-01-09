@@ -5,13 +5,14 @@ from odoo.tests import tagged
 
 from odoo.addons.queue_job.job import identity_exact
 from odoo.addons.queue_job.tests.common import mock_with_delay
-from odoo.addons.sale_automatic_workflow.tests.test_automatic_workflow_base import (  # noqa
-    TestAutomaticWorkflowBase,
+from odoo.addons.sale_automatic_workflow.tests.common import (  # noqa
+    TestAutomaticWorkflowMixin,
+    TestCommon,
 )
 
 
 @tagged("post_install", "-at_install")
-class TestAutoWorkflowJob(TestAutomaticWorkflowBase):
+class TestAutoWorkflowJob(TestAutomaticWorkflowMixin, TestCommon):
     def setUp(self):
         super().setUp()
         workflow = self.create_full_automatic()
