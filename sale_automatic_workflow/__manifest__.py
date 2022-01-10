@@ -20,4 +20,5 @@
         "views/sale_workflow_process_view.xml",
         "data/automatic_workflow_data.xml",
     ],
+    "installable": False,
 }
