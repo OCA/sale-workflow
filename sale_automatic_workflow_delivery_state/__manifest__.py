@@ -11,4 +11,5 @@
         "sale_delivery_state",
     ],
     "auto_install": True,
+    "installable": False,
 }
