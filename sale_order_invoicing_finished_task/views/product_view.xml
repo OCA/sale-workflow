@@ -9,7 +9,7 @@
             <field name="project_id" position="before">
                 <field
                     name="invoicing_finished_task"
-                    attrs="{'invisible':['|', ('type','!=','service'), ('service_tracking', 'not in', ['task_global_project', 'task_new_project'])]}"
+                    attrs="{'invisible':['|', ('type','!=','service'), ('service_tracking', 'not in', ['task_global_project', 'task_in_project'])]}"
                 />
             </field>
         </field>
