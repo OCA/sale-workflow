@@ -42,7 +42,7 @@ class SaleOrderLine(models.Model):
                 x.product_id.type == "service"
                 and x.product_id.invoicing_finished_task
                 and x.product_id.service_tracking
-                in ["task_global_project", "task_new_project"]
+                in ["task_global_project", "task_in_project"]
                 and not all(x.task_ids.mapped("invoiceable"))
             )
         )
