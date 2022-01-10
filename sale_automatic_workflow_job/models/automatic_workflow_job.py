@@ -52,7 +52,8 @@ class AutomaticWorkflowJob(models.Model):
 
     def _validate_sale_orders(self, sale):
         return super(
-            AutomaticWorkflowJob, self.with_context(auto_delay_ddmrp_cron_actions=True)
+            AutomaticWorkflowJob,
+            self.with_context(auto_delay_validate_sale_orders=True),
         )._validate_sale_orders(sale)
 
     def _do_create_invoice_job_options(self, sale, domain_filter):
