@@ -1,6 +1,8 @@
 # Copyright 2020 Camptocamp (https://www.camptocamp.com)
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
+import mock
+
 from odoo.tests import tagged
 
 from odoo.addons.queue_job.job import identity_exact
@@ -35,7 +37,7 @@ class TestAutoWorkflowJob(TestAutomaticWorkflowMixin, TestCommon):
 
     def test_validate_sale_order(self):
         with mock_with_delay() as (delayable_cls, delayable):
-            self.progress()  # run automatic workflow cron
+            self.run_job()  # run automatic workflow cron
             self.assert_job_delayed(
                 delayable_cls, delayable, "_do_validate_sale_order", (self.sale,)
             )
@@ -45,7 +47,7 @@ class TestAutoWorkflowJob(TestAutomaticWorkflowMixin, TestCommon):
         # don't care about transfers in this test
         self.sale.picking_ids.state = "done"
         with mock_with_delay() as (delayable_cls, delayable):
-            self.progress()  # run automatic workflow cron
+            self.run_job()  # run automatic workflow cron
             self.assert_job_delayed(
                 delayable_cls, delayable, "_do_create_invoice", (self.sale,)
             )
@@ -54,10 +56,13 @@ class TestAutoWorkflowJob(TestAutomaticWorkflowMixin, TestCommon):
         self.sale.action_confirm()
         # don't care about transfers in this test
         self.sale.picking_ids.state = "done"
-        self.sale.action_invoice_create()
+        mock_path = "odoo.addons.sale.models.sale.SaleOrder._create_invoices"
+        with mock.patch(mock_path) as mocked:
+            self.sale._create_invoices()
+            mocked.assert_called()
         invoice = self.sale.invoice_ids
         with mock_with_delay() as (delayable_cls, delayable):
-            self.progress()  # run automatic workflow cron
+            self.run_job()  # run automatic workflow cron
             self.assert_job_delayed(
                 delayable_cls, delayable, "_do_validate_invoice", (invoice,)
             )
@@ -68,7 +73,7 @@ class TestAutoWorkflowJob(TestAutomaticWorkflowMixin, TestCommon):
         # disable invoice creation in this test
         self.sale.workflow_process_id.create_invoice = False
         with mock_with_delay() as (delayable_cls, delayable):
-            self.progress()  # run automatic workflow cron
+            self.run_job()  # run automatic workflow cron
             self.assert_job_delayed(
                 delayable_cls, delayable, "_do_validate_picking", (picking,)
             )
@@ -77,7 +82,10 @@ class TestAutoWorkflowJob(TestAutomaticWorkflowMixin, TestCommon):
         self.sale.action_confirm()
         # don't care about transfers in this test
         self.sale.picking_ids.state = "done"
-        self.sale.action_invoice_create()
+        mock_path = "odoo.addons.sale.models.sale.SaleOrder._create_invoices"
+        with mock.patch(mock_path) as mocked:
+            self.sale._create_invoices()
+            mocked.assert_called()
 
         # disable invoice validation for we don't care
         # in this test
@@ -86,7 +94,7 @@ class TestAutoWorkflowJob(TestAutomaticWorkflowMixin, TestCommon):
         self.sale.workflow_process_id.sale_done = True
 
         with mock_with_delay() as (delayable_cls, delayable):
-            self.progress()  # run automatic workflow cron
+            self.run_job()  # run automatic workflow cron
             self.assert_job_delayed(
                 delayable_cls, delayable, "_do_sale_done", (self.sale,)
             )
