@@ -23,6 +23,13 @@ addon | version | maintainers | summary
 [sale_force_invoiced](sale_force_invoiced/) | 15.0.1.0.0 |  | Allows to force the invoice status of the sales order to Invoiced
 [sale_order_line_date](sale_order_line_date/) | 15.0.1.0.1 |  | Adds a commitment date to each sale order line.
 
+
+Unported addons
+---------------
+addon | version | maintainers | summary
+--- | --- | --- | ---
+[sale_automatic_workflow](sale_automatic_workflow/) | 14.0.1.1.4 (unported) |  | Sale Automatic Workflow
+
 [//]: # (end addons)
 
 <!-- prettier-ignore-end -->
