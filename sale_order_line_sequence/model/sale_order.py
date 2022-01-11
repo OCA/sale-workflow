@@ -49,7 +49,6 @@ class SaleOrderLine(models.Model):
     sequence = fields.Integer(
         help="Gives the sequence of this line when displaying the sale order.",
         default=9999,
-        string="Sequence",
     )
 
     # displays sequence on the order line
