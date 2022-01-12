@@ -6,3 +6,5 @@ access_sale_blanket_order_line_manager,sale.order.line.manager,model_sale_blanke
 access_sale_blanket_order_accountant,sale.order.accountant,model_sale_blanket_order,account.group_account_user,1,1,0,0
 access_sale_blanket_order_line_accountant,sale.order.line accountant,model_sale_blanket_order_line,account.group_account_user,1,1,0,0
 access_sale_blanket_order_line_user,sale.order.line user,model_sale_blanket_order_line,base.group_user,1,0,0,0
+access_sale_blanket_order_wizard_user,sale.blanket.order.wizard user,model_sale_blanket_order_wizard,base.group_user,1,1,1,1
+access_sale_blanket_order_wizard_line_user,sale.blanket.order.wizard.line user,model_sale_blanket_order_wizard_line,base.group_user,1,1,1,1
