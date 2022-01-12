@@ -18,13 +18,13 @@ class TestSaleOrderInvoiceAmount(common.SavepointCase):
 
         # Products
         cls.product_1 = cls.env["product.product"].create(
-            {"name": "Desk Combination", "type": "product"}
+            {"name": "Desk Combination", "type": "product", "invoice_policy": "order"}
         )
         cls.product_2 = cls.env["product.product"].create(
-            {"name": "Conference Chair", "type": "product"}
+            {"name": "Conference Chair", "type": "product", "invoice_policy": "order"}
         )
         cls.product_3 = cls.env["product.product"].create(
-            {"name": "Repair Services", "type": "service"}
+            {"name": "Repair Services", "type": "service", "invoice_policy": "order"}
         )
 
         # Location
