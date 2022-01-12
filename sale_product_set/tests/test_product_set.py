@@ -166,3 +166,12 @@ class TestProductSet(common.SavepointCase):
         )
         order_line.ensure_one()
         self.assertEqual(order_line.discount, set_line.discount)
+
+    def test_product_set_delete_in_wizard(self):
+        products = self.so.order_line.product_id
+        wizard = self._get_wiz()
+        wizard.write({"product_set_line_ids": [(3, wizard.product_set_line_ids[0].id)]})
+        products |= wizard.product_set_line_ids.product_id
+        wizard.add_set()
+        self.assertEqual(products, self.so.order_line.product_id)
+        self.assertEqual(len(self.so.order_line), 3)
