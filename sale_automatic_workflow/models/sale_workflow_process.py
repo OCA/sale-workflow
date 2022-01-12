@@ -27,6 +27,10 @@ class SaleWorkflowProcess(models.Model):
             return record
         return self.env["ir.filters"].browse()
 
+    @api.model
+    def _default_payment_filter_id(self):
+        return self.env["ir.filters"].browse()
+
     name = fields.Char()
     picking_policy = fields.Selection(
         selection=[
@@ -37,6 +41,11 @@ class SaleWorkflowProcess(models.Model):
         default="direct",
     )
     validate_order = fields.Boolean()
+    send_order_confirmation_mail = fields.Boolean(
+        string="Send order confirmation mail",
+        help="When checked, after order confirmation, a confirmation email will be "
+        "sent (if not already sent).",
+    )
     order_filter_domain = fields.Text(
         string="Order Filter Domain", related="order_filter_id.domain"
     )
@@ -114,4 +123,14 @@ class SaleWorkflowProcess(models.Model):
         default=lambda self: self._default_filter(
             "sale_automatic_workflow.automatic_workflow_sale_done_filter"
         ),
+    )
+    payment_filter_id = fields.Many2one(
+        comodel_name="ir.filters",
+        string="Register Payment Invoice Filter",
+        default=lambda x: x._default_payment_filter_id(),
+    )
+    register_payment = fields.Boolean(string="Register Payment")
+    payment_filter_domain = fields.Text(
+        string="Payment Filter Domain",
+        related="payment_filter_id.domain",
     )
