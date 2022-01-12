@@ -157,8 +157,8 @@ class TestSaleBlanketOrders(common.TransactionCase):
             self.assertEqual(so.origin, blanket_order.name)
 
     def test_03_create_sale_orders_from_blanket_order_line(self):
-        """ We create a blanket order and create two sale orders
-            from the blanket order lines """
+        """We create a blanket order and create two sale orders
+        from the blanket order lines"""
         blanket_order = self.blanket_order_obj.create(
             {
                 "partner_id": self.partner.id,
@@ -206,9 +206,9 @@ class TestSaleBlanketOrders(common.TransactionCase):
         self.assertEqual(bo_lines[1].remaining_uom_qty, 30.0)
 
     def test_04_create_sale_order_add_blanket_order_line(self):
-        """ We create a blanket order and the separately we create
-         a sale order and see if blanket order lines have been
-         correctly assigned """
+        """We create a blanket order and the separately we create
+        a sale order and see if blanket order lines have been
+        correctly assigned"""
         blanket_order = self.blanket_order_obj.create(
             {
                 "partner_id": self.partner.id,
@@ -278,9 +278,9 @@ class TestSaleBlanketOrders(common.TransactionCase):
         self.assertEqual(bo_lines[0].remaining_uom_qty, 10.0)
 
     def test_05_create_sale_order_blanket_order_with_different_uom(self):
-        """ We create a blanket order and the separately we create
-         a sale order with different uom and see if blanket order
-         lines have been correctly assigned """
+        """We create a blanket order and the separately we create
+        a sale order with different uom and see if blanket order
+        lines have been correctly assigned"""
         blanket_order = self.blanket_order_obj.create(
             {
                 "partner_id": self.partner.id,
@@ -329,8 +329,8 @@ class TestSaleBlanketOrders(common.TransactionCase):
         self.assertEqual(sale_order.order_line[0].price_unit, 20.0)
 
     def test_06_create_sale_orders_from_blanket_order(self):
-        """ We create a blanket order and create three sale orders
-            where the first two consume the first blanket order line
+        """We create a blanket order and create three sale orders
+        where the first two consume the first blanket order line
         """
         blanket_order = self.blanket_order_obj.create(
             {

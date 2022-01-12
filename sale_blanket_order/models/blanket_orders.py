@@ -65,7 +65,9 @@ class BlanketOrder(models.Model):
         readonly=True,
     )
     product_id = fields.Many2one(
-        "product.product", related="line_ids.product_id", string="Product",
+        "product.product",
+        related="line_ids.product_id",
+        string="Product",
     )
     pricelist_id = fields.Many2one(
         "product.pricelist",
@@ -197,7 +199,9 @@ class BlanketOrder(models.Model):
             blanket_order.sale_count = len(blanket_order._get_sale_orders())
 
     @api.depends(
-        "line_ids.remaining_uom_qty", "validity_date", "confirmed",
+        "line_ids.remaining_uom_qty",
+        "validity_date",
+        "confirmed",
     )
     def _compute_state(self):
         today = fields.Date.today()
@@ -508,7 +512,9 @@ class BlanketOrderLine(models.Model):
                     formatted_date = format_date(record.env, record.date_schedule)
                     res += " - {}: {}".format(_("Date Scheduled"), formatted_date)
                 res += " ({}: {} {})".format(
-                    _("remaining"), record.remaining_uom_qty, record.product_uom.name,
+                    _("remaining"),
+                    record.remaining_uom_qty,
+                    record.product_uom.name,
                 )
                 result.append((record.id, res))
             return result
@@ -516,12 +522,12 @@ class BlanketOrderLine(models.Model):
 
     def _get_real_price_currency(self, product, rule_id, qty, uom, pricelist_id):
         """Retrieve the price before applying the pricelist
-            :param obj product: object of current product record
-            :param float qty: total quentity of product
-            :param tuple price_and_rule: tuple(price, suitable_rule) coming
-                   from pricelist computation
-            :param obj uom: unit of measure of current order line
-            :param integer pricelist_id: pricelist id of sale order"""
+        :param obj product: object of current product record
+        :param float qty: total quentity of product
+        :param tuple price_and_rule: tuple(price, suitable_rule) coming
+               from pricelist computation
+        :param obj uom: unit of measure of current order line
+        :param integer pricelist_id: pricelist id of sale order"""
         # Copied and adapted from the sale module
         PricelistItem = self.env["product.pricelist.item"]
         field_name = "lst_price"
