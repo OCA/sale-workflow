@@ -25,8 +25,9 @@ class ProductSetAdd(models.TransientModel):
     )
     product_set_line_ids = fields.Many2many(
         "product.set.line",
-        "Product set lines",
+        string="Product set lines",
         required=True,
+        store=True,
         ondelete="cascade",
         compute="_compute_product_set_line_ids",
         readonly=False,
