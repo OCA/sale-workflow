@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+
+    <!-- Inherit to customize according to your own needs -->
+    <record id="product_tree_view4sale" model="ir.ui.view">
+        <field name="model">product.product</field>
+        <field name="priority" eval="20" />
+        <field name="arch" type="xml">
+            <tree string="Products for sale" create="0" editable="top">
+                <field name="display_name" readonly="1" />
+                <field name="qty_to_process" />
+                <field name="quick_uom_category_id" invisible="1" />
+                <field
+                    name="quick_uom_id"
+                    options="{'no_open': True, 'no_create': True}"
+                    string="UoM"
+                    groups="uom.group_uom"
+                />
+                <field name="qty_available" />
+                <button name="button_quick_open_product" string="Open" type="object" />
+            </tree>
+       </field>
+    </record>
+
+</odoo>
