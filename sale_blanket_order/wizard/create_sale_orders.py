@@ -68,17 +68,17 @@ class BlanketOrderWizard(models.TransientModel):
                 0,
                 0,
                 {
-                    "blanket_line_id": l.id,
-                    "product_id": l.product_id.id,
-                    "date_schedule": l.date_schedule,
-                    "remaining_uom_qty": l.remaining_uom_qty,
-                    "price_unit": l.price_unit,
-                    "product_uom": l.product_uom,
-                    "qty": l.remaining_uom_qty,
-                    "partner_id": l.partner_id,
+                    "blanket_line_id": bol.id,
+                    "product_id": bol.product_id.id,
+                    "date_schedule": bol.date_schedule,
+                    "remaining_uom_qty": bol.remaining_uom_qty,
+                    "price_unit": bol.price_unit,
+                    "product_uom": bol.product_uom,
+                    "qty": bol.remaining_uom_qty,
+                    "partner_id": bol.partner_id,
                 },
             )
-            for l in bo_lines.filtered(lambda l: l.remaining_uom_qty != 0.0)
+            for bol in bo_lines.filtered(lambda l: l.remaining_uom_qty != 0.0)
         ]
         return lines
 
