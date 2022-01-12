@@ -122,8 +122,12 @@ msgid "Deliver each product when available"
 msgstr "Entregueu cada producte quan estigui disponible"
 
 #. module: sale_automatic_workflow
+#: model:ir.model.fields,field_description:sale_automatic_workflow.field_account_move__display_name
 #: model:ir.model.fields,field_description:sale_automatic_workflow.field_automatic_workflow_job__display_name
+#: model:ir.model.fields,field_description:sale_automatic_workflow.field_sale_order__display_name
 #: model:ir.model.fields,field_description:sale_automatic_workflow.field_sale_workflow_process__display_name
+#: model:ir.model.fields,field_description:sale_automatic_workflow.field_stock_move__display_name
+#: model:ir.model.fields,field_description:sale_automatic_workflow.field_stock_picking__display_name
 msgid "Display Name"
 msgstr "Mostrar Nom"
 
@@ -133,8 +137,12 @@ msgid "Force Invoice Date"
 msgstr "Data de la factura forçada"
 
 #. module: sale_automatic_workflow
+#: model:ir.model.fields,field_description:sale_automatic_workflow.field_account_move__id
 #: model:ir.model.fields,field_description:sale_automatic_workflow.field_automatic_workflow_job__id
+#: model:ir.model.fields,field_description:sale_automatic_workflow.field_sale_order__id
 #: model:ir.model.fields,field_description:sale_automatic_workflow.field_sale_workflow_process__id
+#: model:ir.model.fields,field_description:sale_automatic_workflow.field_stock_move__id
+#: model:ir.model.fields,field_description:sale_automatic_workflow.field_stock_picking__id
 msgid "ID"
 msgstr "ID"
 
@@ -162,12 +170,16 @@ msgstr "Servei de facturació al lliurament"
 
 #. module: sale_automatic_workflow
 #: model:ir.model,name:sale_automatic_workflow.model_account_move
-msgid "Journal Entries"
-msgstr "Entrades de diari"
+msgid "Journal Entry"
+msgstr ""
 
 #. module: sale_automatic_workflow
+#: model:ir.model.fields,field_description:sale_automatic_workflow.field_account_move____last_update
 #: model:ir.model.fields,field_description:sale_automatic_workflow.field_automatic_workflow_job____last_update
+#: model:ir.model.fields,field_description:sale_automatic_workflow.field_sale_order____last_update
 #: model:ir.model.fields,field_description:sale_automatic_workflow.field_sale_workflow_process____last_update
+#: model:ir.model.fields,field_description:sale_automatic_workflow.field_stock_move____last_update
+#: model:ir.model.fields,field_description:sale_automatic_workflow.field_stock_picking____last_update
 msgid "Last Modified on"
 msgstr "Darrera modificació el"
 
@@ -204,6 +216,11 @@ msgid "Order Filter Domain"
 msgstr "Filtre de comandes"
 
 #. module: sale_automatic_workflow
+#: model:ir.model.fields,field_description:sale_automatic_workflow.field_sale_workflow_process__payment_filter_domain
+msgid "Payment Filter Domain"
+msgstr ""
+
+#. module: sale_automatic_workflow
 #: model:ir.model.fields,field_description:sale_automatic_workflow.field_sale_workflow_process__picking_filter_id
 msgid "Picking Filter"
 msgstr "Filtre de recollida"
@@ -212,6 +229,16 @@ msgstr "Filtre de recollida"
 #: model:ir.model.fields,field_description:sale_automatic_workflow.field_sale_workflow_process__picking_filter_domain
 msgid "Picking Filter Domain"
 msgstr "Selecció del domini del filtre"
+
+#. module: sale_automatic_workflow
+#: model:ir.model.fields,field_description:sale_automatic_workflow.field_sale_workflow_process__register_payment
+msgid "Register Payment"
+msgstr ""
+
+#. module: sale_automatic_workflow
+#: model:ir.model.fields,field_description:sale_automatic_workflow.field_sale_workflow_process__payment_filter_id
+msgid "Register Payment Invoice Filter"
+msgstr ""
 
 #. module: sale_automatic_workflow
 #: model:ir.model.fields,field_description:sale_automatic_workflow.field_sale_workflow_process__sale_done
@@ -230,7 +257,9 @@ msgstr "Venda Fet el domini del filtre"
 
 #. module: sale_automatic_workflow
 #: model:ir.model,name:sale_automatic_workflow.model_sale_workflow_process
+#: model:ir.model.fields,field_description:sale_automatic_workflow.field_account_bank_statement_line__workflow_process_id
 #: model:ir.model.fields,field_description:sale_automatic_workflow.field_account_move__workflow_process_id
+#: model:ir.model.fields,field_description:sale_automatic_workflow.field_account_payment__workflow_process_id
 #: model:ir.model.fields,field_description:sale_automatic_workflow.field_stock_picking__workflow_process_id
 msgid "Sale Workflow Process"
 msgstr "Procés de flux de treball de venda"
@@ -256,8 +285,13 @@ msgid ""
 "Scheduler that will play automatically the validation of invoices, "
 "pickings..."
 msgstr ""
-"Programador que reproduirà automàticament la validació de factures, pickings "
-"..."
+"Programador que reproduirà automàticament la validació de factures, "
+"pickings ..."
+
+#. module: sale_automatic_workflow
+#: model:ir.model.fields,field_description:sale_automatic_workflow.field_sale_workflow_process__send_order_confirmation_mail
+msgid "Send order confirmation mail"
+msgstr ""
 
 #. module: sale_automatic_workflow
 #: model:ir.model.fields,help:sale_automatic_workflow.field_sale_workflow_process__property_journal_id
@@ -310,6 +344,13 @@ msgid "Warning Message"
 msgstr "Missatge d'advertència"
 
 #. module: sale_automatic_workflow
+#: model:ir.model.fields,help:sale_automatic_workflow.field_sale_workflow_process__send_order_confirmation_mail
+msgid ""
+"When checked, after order confirmation, a confirmation email will be sent "
+"(if not already sent)."
+msgstr ""
+
+#. module: sale_automatic_workflow
 #: model:ir.model.fields,help:sale_automatic_workflow.field_sale_workflow_process__invoice_date_is_order_date
 msgid "When checked, the invoice date will be the same than the order's date"
 msgstr ""
@@ -325,6 +366,9 @@ msgstr "Opcions de flux de treball"
 #, python-format
 msgid "Workflow Warning"
 msgstr "Advertiment de flux de treball"
+
+#~ msgid "Journal Entries"
+#~ msgstr "Entrades de diari"
 
 #~ msgid "Invoice"
 #~ msgstr "Factura"
