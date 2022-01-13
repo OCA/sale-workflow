@@ -5,17 +5,18 @@ from odoo.tests import tagged
 
 from odoo.addons.queue_job.job import identity_exact
 from odoo.addons.queue_job.tests.common import mock_with_delay
-from odoo.addons.sale_automatic_workflow.tests.test_automatic_workflow_base import (  # noqa
-    TestAutomaticWorkflowBase,
+from odoo.addons.sale_automatic_workflow.tests.common import (
+    TestAutomaticWorkflowMixin,
+    TestCommon,
 )
 
 
 @tagged("post_install", "-at_install")
-class TestAutoWorkflowJob(TestAutomaticWorkflowBase):
-    def setUp(self):
-        super().setUp()
-        workflow = self.create_full_automatic()
-        self.sale = self.create_sale_order(workflow)
+class TestAutoWorkflowJob(TestCommon, TestAutomaticWorkflowMixin):
+    def create_sale_order(self, workflow, override=None):
+        order = super().create_sale_order(workflow, override)
+        order.order_line.product_id.invoice_policy = "order"
+        return order
 
     def assert_job_delayed(self, delayable_cls, delayable, method_name, args):
         # .with_delay() has been called once
@@ -33,50 +34,90 @@ class TestAutoWorkflowJob(TestAutomaticWorkflowBase):
         self.assertDictEqual(delay_kwargs, {})
 
     def test_validate_sale_order(self):
+        workflow = self.create_full_automatic()
+        self.sale = self.create_sale_order(workflow)
         with mock_with_delay() as (delayable_cls, delayable):
-            self.progress()  # run automatic workflow cron
+            self.run_job()  # run automatic workflow cron
+            args = (
+                self.sale,
+                [
+                    ("state", "=", "draft"),
+                    ("workflow_process_id", "=", self.sale.workflow_process_id.id),
+                ],
+            )
             self.assert_job_delayed(
-                delayable_cls, delayable, "_do_validate_sale_order", (self.sale,)
+                delayable_cls, delayable, "_do_validate_sale_order", args
             )
 
     def test_create_invoice(self):
+        workflow = self.create_full_automatic()
+        self.sale = self.create_sale_order(workflow)
         self.sale.action_confirm()
         # don't care about transfers in this test
         self.sale.picking_ids.state = "done"
         with mock_with_delay() as (delayable_cls, delayable):
-            self.progress()  # run automatic workflow cron
+            self.run_job()  # run automatic workflow cron
+            args = (
+                self.sale,
+                [
+                    ("state", "in", ["sale", "done"]),
+                    ("invoice_status", "=", "to invoice"),
+                    ("workflow_process_id", "=", self.sale.workflow_process_id.id),
+                ],
+            )
             self.assert_job_delayed(
-                delayable_cls, delayable, "_do_create_invoice", (self.sale,)
+                delayable_cls, delayable, "_do_create_invoice", args
             )
 
     def test_validate_invoice(self):
+        workflow = self.create_full_automatic()
+        self.sale = self.create_sale_order(workflow)
         self.sale.action_confirm()
         # don't care about transfers in this test
         self.sale.picking_ids.state = "done"
-        self.sale.action_invoice_create()
+        self.sale._create_invoices()
         invoice = self.sale.invoice_ids
         with mock_with_delay() as (delayable_cls, delayable):
-            self.progress()  # run automatic workflow cron
+            self.run_job()  # run automatic workflow cron
+            args = (
+                invoice,
+                [
+                    ("state", "=", "draft"),
+                    ("posted_before", "=", False),
+                    ("workflow_process_id", "=", self.sale.workflow_process_id.id),
+                ],
+            )
             self.assert_job_delayed(
-                delayable_cls, delayable, "_do_validate_invoice", (invoice,)
+                delayable_cls, delayable, "_do_validate_invoice", args
             )
 
     def test_validate_picking(self):
+        workflow = self.create_full_automatic()
+        self.sale = self.create_sale_order(workflow)
         self.sale.action_confirm()
         picking = self.sale.picking_ids
         # disable invoice creation in this test
         self.sale.workflow_process_id.create_invoice = False
         with mock_with_delay() as (delayable_cls, delayable):
-            self.progress()  # run automatic workflow cron
+            self.run_job()  # run automatic workflow cron
+            args = (
+                picking,
+                [
+                    ("state", "in", ["draft", "confirmed", "assigned"]),
+                    ("workflow_process_id", "=", self.sale.workflow_process_id.id),
+                ],
+            )
             self.assert_job_delayed(
-                delayable_cls, delayable, "_do_validate_picking", (picking,)
+                delayable_cls, delayable, "_do_validate_picking", args
             )
 
     def test_sale_done(self):
+        workflow = self.create_full_automatic()
+        self.sale = self.create_sale_order(workflow)
         self.sale.action_confirm()
         # don't care about transfers in this test
         self.sale.picking_ids.state = "done"
-        self.sale.action_invoice_create()
+        self.sale._create_invoices()
 
         # disable invoice validation for we don't care
         # in this test
@@ -85,7 +126,13 @@ class TestAutoWorkflowJob(TestAutomaticWorkflowBase):
         self.sale.workflow_process_id.sale_done = True
 
         with mock_with_delay() as (delayable_cls, delayable):
-            self.progress()  # run automatic workflow cron
-            self.assert_job_delayed(
-                delayable_cls, delayable, "_do_sale_done", (self.sale,)
+            self.run_job()  # run automatic workflow cron
+            args = (
+                self.sale,
+                [
+                    ("state", "=", "sale"),
+                    ("invoice_status", "=", "invoiced"),
+                    ("workflow_process_id", "=", self.sale.workflow_process_id.id),
+                ],
             )
+            self.assert_job_delayed(delayable_cls, delayable, "_do_sale_done", args)
