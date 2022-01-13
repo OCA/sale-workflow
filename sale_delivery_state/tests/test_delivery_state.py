@@ -5,10 +5,10 @@
 
 import mock
 
-from odoo.tests import SavepointCase
+from odoo.tests import TransactionCase
 
 
-class TestDeliveryState(SavepointCase):
+class TestDeliveryState(TransactionCase):
     @classmethod
     def setUpClass(cls):
         super().setUpClass()
