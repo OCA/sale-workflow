@@ -9,6 +9,7 @@ setuptools.setup(
     version=version,
     install_requires=[
         'odoo-addon-sale_commercial_partner>=15.0dev,<15.1dev',
+        'odoo-addon-sale_delivery_state>=15.0dev,<15.1dev',
         'odoo-addon-sale_force_invoiced>=15.0dev,<15.1dev',
         'odoo-addon-sale_order_line_date>=15.0dev,<15.1dev',
     ],
