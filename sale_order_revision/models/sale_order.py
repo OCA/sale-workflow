@@ -87,7 +87,11 @@ class SaleOrder(models.Model):
         if 'unrevisioned_name' not in values:
             if values.get('name', '/') == '/':
                 seq = self.env['ir.sequence']
-                values['name'] = seq.next_by_code('sale.order') or '/'
+                date_order = values.get('date_order', fields.Date.today())
+                values['name'] = seq.with_context(
+                    ir_sequence_date=date_order,
+                    ir_sequence_date_range=date_order,
+                ).next_by_code('sale.order') or '/'
             values['unrevisioned_name'] = values['name']
         return super(SaleOrder, self).create(values)
 
