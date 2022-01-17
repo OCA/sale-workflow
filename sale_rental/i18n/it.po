@@ -69,9 +69,9 @@ msgstr ""
 #. module: sale_rental
 #: code:addons/sale_rental/models/sale_order.py:172
 #, python-format
-msgid "Cannot sell the rental %s because it has not been delivered"
+msgid "Cannot sell the rental {} because it has not been delivered"
 msgstr ""
-"Impossibile vendere il prodotto noleggiato %s perché non ancora consegnato"
+"Impossibile vendere il prodotto noleggiato {} perché non ancora consegnato"
 
 #. module: sale_rental
 #: model:ir.model.fields,field_description:sale_rental.field_sale_rental__company_id
@@ -218,7 +218,7 @@ msgstr "Ultimo aggiornamento il"
 #: code:addons/sale_rental/models/sale_order.py:69
 #, python-format
 msgid ""
-"Missing 'Rental to Extend' on the sale order line with rental service %s"
+"Missing 'Rental to Extend' on the sale order line with rental service {}"
 msgstr ""
 
 #. module: sale_rental
@@ -236,45 +236,45 @@ msgstr "Non abbastanza stock"
 #: code:addons/sale_rental/models/sale_order.py:85
 #, python-format
 msgid ""
-"On the 'new rental' sale order line with product '%s', we should have a "
+"On the 'new rental' sale order line with product '{}', we should have a "
 "rental service product !"
 msgstr ""
-"Nella nuova riga dell'ordine di vendita per il prodotto %s, e' necessario "
+"Nella nuova riga dell'ordine di vendita per il prodotto {}, e' necessario "
 "avere un prodotto di tipo \"servizio noleggio\" "
 
 #. module: sale_rental
 #: code:addons/sale_rental/models/sale_order.py:102
 #, python-format
 msgid ""
-"On the sale order line with product %s you are trying to sell a rented "
-"product with a quantity (%s) that is different from the rented quantity "
-"(%s). This is not supported."
+"On the sale order line with product {} you are trying to sell a rented "
+"product with a quantity ({}) that is different from the rented quantity "
+"({}). This is not supported."
 msgstr ""
-"Nell'ordine di vendita per il prodotto %s si sta tentando di noleggiare la "
-"quantità (%s) che e' diversa da quella noleggiata (%s). Questo non e' "
+"Nell'ordine di vendita per il prodotto {} si sta tentando di noleggiare la "
+"quantità ({}) che e' diversa da quella noleggiata ({}). Questo non e' "
 "previsto"
 
 #. module: sale_rental
 #: code:addons/sale_rental/models/sale_order.py:91
 #, python-format
 msgid ""
-"On the sale order line with product '%s' the Product Quantity (%s) should be "
-"the number of days (%s) multiplied by the Rental Quantity (%s)."
+"On the sale order line with product '{}' the Product Quantity ({}) should be "
+"the number of days ({}) multiplied by the Rental Quantity ({})."
 msgstr ""
-"Nell'ordine di vendita con il prodotto '%s' la quantità (%s) sarà il numero "
-"di giorni (%s) moltiplicata per la quantità noleggiata (%s)."
+"Nell'ordine di vendita con il prodotto '{}' la quantità ({}) sarà il numero "
+"di giorni ({}) moltiplicata per la quantità noleggiata ({})."
 
 #. module: sale_rental
 #: code:addons/sale_rental/models/sale_order.py:74
 #, python-format
 msgid ""
-"On the sale order line with rental service %s, you are trying to extend a "
-"rental with a rental quantity (%s) that is different from the quantity of "
-"the original rental (%s). This is not supported."
+"On the sale order line with rental service {}, you are trying to extend a "
+"rental with a rental quantity ({}) that is different from the quantity of "
+"the original rental ({}). This is not supported."
 msgstr ""
-"Nell'ordine di vendita con il prodotto %s, si sta cercando di estendere un "
-"noleggio con un quantità (%s) che e' diversa dalla quantità prevista in "
-"origine (%s). Questo non e' previsto."
+"Nell'ordine di vendita con il prodotto {}, si sta cercando di estendere un "
+"noleggio con un quantità ({}) che e' diversa dalla quantità prevista in "
+"origine ({}). Questo non e' previsto."
 
 #. module: sale_rental
 #: model_terms:ir.ui.view,arch_db:sale_rental.sale_rental_search
@@ -322,8 +322,8 @@ msgstr "Nome Prodotto"
 #. module: sale_rental
 #: code:addons/sale_rental/wizard/create_rental_product.py:26
 #, python-format
-msgid "RENT-%s"
-msgstr "NOLEGGIO - %s"
+msgid "RENT-{}"
+msgstr "NOLEGGIO - {}"
 
 #. module: sale_rental
 #: model:ir.model.fields,field_description:sale_rental.field_sale_rental__in_picking_id
@@ -436,8 +436,8 @@ msgstr "Tipo di noleggio"
 #. module: sale_rental
 #: code:addons/sale_rental/wizard/create_rental_product.py:23
 #, python-format
-msgid "Rental of a %s"
-msgstr "Noleggio di %s"
+msgid "Rental of a {}"
+msgstr "Noleggio di {}"
 
 #. module: sale_rental
 #: model:product.product,name:sale_rental.rent_product_product_25
@@ -577,39 +577,39 @@ msgstr ""
 #. module: sale_rental
 #: code:addons/sale_rental/models/stock.py:60
 #, python-format
-msgid "The Rental Input stock location is not set on the warehouse %s"
-msgstr "La locazione \"Noleggio In\" non fa parte del magazzino %s"
+msgid "The Rental Input stock location is not set on the warehouse {}"
+msgstr "La locazione \"Noleggio In\" non fa parte del magazzino {}"
 
 #. module: sale_rental
 #: code:addons/sale_rental/models/stock.py:64
 #, python-format
-msgid "The Rental Output stock location is not set on the warehouse %s"
-msgstr "La locazione \"Noleggio Out\" non fa parte del magazzino %s"
+msgid "The Rental Output stock location is not set on the warehouse {}"
+msgstr "La locazione \"Noleggio Out\" non fa parte del magazzino {}"
 
 #. module: sale_rental
 #: code:addons/sale_rental/models/sale_order.py:267
 #, python-format
 msgid ""
-"The Rental Service of the Rental Extension you just selected is '%s' and "
+"The Rental Service of the Rental Extension you just selected is '{}' and "
 "it's not the same as the Product currently selected in this Sale Order Line."
 msgstr ""
-"L'estensione del servizio di noleggio che e' stato selezionato per '%s' non "
+"L'estensione del servizio di noleggio che e' stato selezionato per '{}' non "
 "e' lo stesso prodotto di quella nell'ordine di vendita"
 
 #. module: sale_rental
 #: code:addons/sale_rental/models/product.py:28
 #, python-format
-msgid "The rental product '%s' must be of type 'Service'."
-msgstr "Il prodotto di noleggio '%s' deve essere di tipo 'Servizio'"
+msgid "The rental product '{}' must be of type 'Service'."
+msgstr "Il prodotto di noleggio '{}' deve essere di tipo 'Servizio'"
 
 #. module: sale_rental
 #: code:addons/sale_rental/models/product.py:32
 #, python-format
 msgid ""
-"The rental product '%s' must have the option 'Must Have Start and End Dates' "
+"The rental product '{}' must have the option 'Must Have Start and End Dates' "
 "checked."
 msgstr ""
-"Il prodotto noleggiabile '%s' deve avere il flag su \"Deve avere una data di "
+"Il prodotto noleggiabile '{}' deve avere il flag su \"Deve avere una data di "
 "inizio e di fine\""
 
 #. module: sale_rental
@@ -620,8 +620,8 @@ msgstr ""
 #. module: sale_rental
 #: code:addons/sale_rental/models/product.py:39
 #, python-format
-msgid "The unit of measure of the rental product '%s' must be 'Day'."
-msgstr "L'unità di misura per il prodotto '%s' deve essere \"Giorno\""
+msgid "The unit of measure of the rental product '{}' must be 'Day'."
+msgstr "L'unità di misura per il prodotto '{}' deve essere \"Giorno\""
 
 #. module: sale_rental
 #: model_terms:ir.ui.view,arch_db:sale_rental.sale_rental_form
@@ -647,13 +647,13 @@ msgstr ""
 #: code:addons/sale_rental/models/sale_order.py:226
 #, python-format
 msgid ""
-"You want to rent %.2f %s but you only have %.2f %s currently available on "
-"the stock location '%s' ! Make sure that you get some units back in the mean "
-"time or re-supply the stock location '%s'."
+"You want to rent %.2f {} but you only have %.2f {} currently available on "
+"the stock location '{}' ! Make sure that you get some units back in the mean "
+"time or re-supply the stock location '{}'."
 msgstr ""
-"Si vuole noleggiare %.2f %s  ma sono solo disponibili %.2f %s nella "
-"locazione '%s'. Assicurarsi prima il rientro o procedere alla riallocazione "
-"di '%s'"
+"Si vuole noleggiare %.2f {}  ma sono solo disponibili %.2f {} nella "
+"locazione '{}'. Assicurarsi prima il rientro o procedere alla riallocazione "
+"di '{}'"
 
 #. module: sale_rental
 #: model:product.product,weight_uom_name:sale_rental.rent_consu_delivery_01

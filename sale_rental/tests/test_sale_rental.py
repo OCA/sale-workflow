@@ -1,16 +1,13 @@
-
-from odoo.tests.common import TransactionCase
-from odoo.tests import Form
 from odoo.exceptions import UserError
+from odoo.tests import Form
+from odoo.tests.common import TransactionCase
 
 
 class TestSaleRental(TransactionCase):
-
     @classmethod
     def setUpClass(cls):
         super().setUpClass()
-        cls.test_rental_prod = cls.env.ref(
-            "sale_rental.rent_product_product_25")
+        cls.test_rental_prod = cls.env.ref("sale_rental.rent_product_product_25")
         cls.test_partner = cls.env["res.partner"].create({"name": "Foo"})
         cls.rental_in_loc = cls.env.ref("stock.warehouse0").rental_in_location_id
         cls.rental_out_loc = cls.env.ref("stock.warehouse0").rental_out_location_id
@@ -30,17 +27,16 @@ class TestSaleRental(TransactionCase):
         so.action_confirm()
         self.assertEqual(len(so.picking_ids), 2)
         rental_out_pick = so.picking_ids.filtered(
-            lambda p:
-            p.location_id == self.rental_in_loc
-            and p.location_dest_id == self.rental_out_loc)
+            lambda p: p.location_id == self.rental_in_loc
+            and p.location_dest_id == self.rental_out_loc
+        )
         self.assertTrue(rental_out_pick)
         rental_in_pick = so.picking_ids.filtered(
-            lambda p:
-            p.location_id == self.rental_out_loc
-            and p.location_dest_id == self.rental_in_loc)
+            lambda p: p.location_id == self.rental_out_loc
+            and p.location_dest_id == self.rental_in_loc
+        )
         self.assertTrue(rental_in_pick)
-        rental = self.env["sale.rental"].search([
-            ("start_order_line_id", "=", sol.id)])
+        rental = self.env["sale.rental"].search([("start_order_line_id", "=", sol.id)])
         self.assertTrue(rental)
 
         # Sell the same product/rental

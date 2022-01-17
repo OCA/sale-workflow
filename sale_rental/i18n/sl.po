@@ -70,8 +70,8 @@ msgstr ""
 #. module: sale_rental
 #: code:addons/sale_rental/models/sale_order.py:172
 #, python-format
-msgid "Cannot sell the rental %s because it has not been delivered"
-msgstr "Ni mogoče prodati najemniškega proizvoda %s, ker ni bil dostavljen"
+msgid "Cannot sell the rental {} because it has not been delivered"
+msgstr "Ni mogoče prodati najemniškega proizvoda {}, ker ni bil dostavljen"
 
 #. module: sale_rental
 #: model:ir.model.fields,field_description:sale_rental.field_sale_rental__company_id
@@ -218,7 +218,7 @@ msgstr "Zadnjič posodobljeno"
 #: code:addons/sale_rental/models/sale_order.py:69
 #, python-format
 msgid ""
-"Missing 'Rental to Extend' on the sale order line with rental service %s"
+"Missing 'Rental to Extend' on the sale order line with rental service {}"
 msgstr ""
 
 #. module: sale_rental
@@ -236,45 +236,45 @@ msgstr "Ni dovolj zaloge!"
 #: code:addons/sale_rental/models/sale_order.py:85
 #, python-format
 msgid ""
-"On the 'new rental' sale order line with product '%s', we should have a "
+"On the 'new rental' sale order line with product '{}', we should have a "
 "rental service product !"
 msgstr ""
-"Na novi najemniški postavki prodajnega naloga s proizvodom '%s' morate imeti "
+"Na novi najemniški postavki prodajnega naloga s proizvodom '{}' morate imeti "
 "proizvod najemniške storitve!"
 
 #. module: sale_rental
 #: code:addons/sale_rental/models/sale_order.py:102
 #, python-format
 msgid ""
-"On the sale order line with product %s you are trying to sell a rented "
-"product with a quantity (%s) that is different from the rented quantity "
-"(%s). This is not supported."
+"On the sale order line with product {} you are trying to sell a rented "
+"product with a quantity ({}) that is different from the rented quantity "
+"({}). This is not supported."
 msgstr ""
-"Na postavki prodajnega naloga s proizvodom %s poskušate prodati najemniški "
-"proizvod s količino (%s), ki je drugačen od najemniške količine (%s). To ni "
+"Na postavki prodajnega naloga s proizvodom {} poskušate prodati najemniški "
+"proizvod s količino ({}), ki je drugačen od najemniške količine ({}). To ni "
 "podprto."
 
 #. module: sale_rental
 #: code:addons/sale_rental/models/sale_order.py:91
 #, python-format
 msgid ""
-"On the sale order line with product '%s' the Product Quantity (%s) should be "
-"the number of days (%s) multiplied by the Rental Quantity (%s)."
+"On the sale order line with product '{}' the Product Quantity ({}) should be "
+"the number of days ({}) multiplied by the Rental Quantity ({})."
 msgstr ""
-"Na postavki prodajnega naloga s proizvodom %s mora biti količina proizvodov "
-"(%s) v številu dni (%s) pomnoženim z najemniško količino (%s)."
+"Na postavki prodajnega naloga s proizvodom {} mora biti količina proizvodov "
+"({}) v številu dni ({}) pomnoženim z najemniško količino ({})."
 
 #. module: sale_rental
 #: code:addons/sale_rental/models/sale_order.py:74
 #, python-format
 msgid ""
-"On the sale order line with rental service %s, you are trying to extend a "
-"rental with a rental quantity (%s) that is different from the quantity of "
-"the original rental (%s). This is not supported."
+"On the sale order line with rental service {}, you are trying to extend a "
+"rental with a rental quantity ({}) that is different from the quantity of "
+"the original rental ({}). This is not supported."
 msgstr ""
-"Na postavki prodajnega naloga s proizvodom %s poskušate podaljšati "
-"najemništvo s količino (%s), ki je drugačna od količine izvornega najema "
-"(%s). To ni podprto."
+"Na postavki prodajnega naloga s proizvodom {} poskušate podaljšati "
+"najemništvo s količino ({}), ki je drugačna od količine izvornega najema "
+"({}). To ni podprto."
 
 #. module: sale_rental
 #: model_terms:ir.ui.view,arch_db:sale_rental.sale_rental_search
@@ -322,8 +322,8 @@ msgstr "Naziv proizvoda"
 #. module: sale_rental
 #: code:addons/sale_rental/wizard/create_rental_product.py:26
 #, python-format
-msgid "RENT-%s"
-msgstr "NAJEM-%s"
+msgid "RENT-{}"
+msgstr "NAJEM-{}"
 
 #. module: sale_rental
 #: model:ir.model.fields,field_description:sale_rental.field_sale_rental__in_picking_id
@@ -436,8 +436,8 @@ msgstr "Tip najemništva"
 #. module: sale_rental
 #: code:addons/sale_rental/wizard/create_rental_product.py:23
 #, python-format
-msgid "Rental of a %s"
-msgstr "Najem %s"
+msgid "Rental of a {}"
+msgstr "Najem {}"
 
 #. module: sale_rental
 #: model:product.product,name:sale_rental.rent_product_product_25
@@ -577,39 +577,39 @@ msgstr ""
 #. module: sale_rental
 #: code:addons/sale_rental/models/stock.py:60
 #, python-format
-msgid "The Rental Input stock location is not set on the warehouse %s"
-msgstr "Lokacija vhodne najemne zaloge v skladišču %s ni nastavljena"
+msgid "The Rental Input stock location is not set on the warehouse {}"
+msgstr "Lokacija vhodne najemne zaloge v skladišču {} ni nastavljena"
 
 #. module: sale_rental
 #: code:addons/sale_rental/models/stock.py:64
 #, python-format
-msgid "The Rental Output stock location is not set on the warehouse %s"
-msgstr "Lokacija izhodne najemne zaloge v skladišču %s ni nastavljena"
+msgid "The Rental Output stock location is not set on the warehouse {}"
+msgstr "Lokacija izhodne najemne zaloge v skladišču {} ni nastavljena"
 
 #. module: sale_rental
 #: code:addons/sale_rental/models/sale_order.py:267
 #, python-format
 msgid ""
-"The Rental Service of the Rental Extension you just selected is '%s' and "
+"The Rental Service of the Rental Extension you just selected is '{}' and "
 "it's not the same as the Product currently selected in this Sale Order Line."
 msgstr ""
-"Najemniška storitev podaljšanja najema, ki ste jo ravnokar izbrali je '%s' "
+"Najemniška storitev podaljšanja najema, ki ste jo ravnokar izbrali je '{}' "
 "in ne ustreza trenutno izbranemu proizvodu v tej postavki prodajnega naloga."
 
 #. module: sale_rental
 #: code:addons/sale_rental/models/product.py:28
 #, python-format
-msgid "The rental product '%s' must be of type 'Service'."
-msgstr "Najemniški proizvod '%s' mora biti tipa 'storitev'."
+msgid "The rental product '{}' must be of type 'Service'."
+msgstr "Najemniški proizvod '{}' mora biti tipa 'storitev'."
 
 #. module: sale_rental
 #: code:addons/sale_rental/models/product.py:32
 #, python-format
 msgid ""
-"The rental product '%s' must have the option 'Must Have Start and End Dates' "
+"The rental product '{}' must have the option 'Must Have Start and End Dates' "
 "checked."
 msgstr ""
-"Najemniški proizvod '%s' mora imeti označeno opcijo 'zahteva se začetni in "
+"Najemniški proizvod '{}' mora imeti označeno opcijo 'zahteva se začetni in "
 "končni datum'."
 
 #. module: sale_rental
@@ -620,8 +620,8 @@ msgstr ""
 #. module: sale_rental
 #: code:addons/sale_rental/models/product.py:39
 #, python-format
-msgid "The unit of measure of the rental product '%s' must be 'Day'."
-msgstr "Enota mere najemniškega proizvoda '%s' mora biti 'dni'"
+msgid "The unit of measure of the rental product '{}' must be 'Day'."
+msgstr "Enota mere najemniškega proizvoda '{}' mora biti 'dni'"
 
 #. module: sale_rental
 #: model_terms:ir.ui.view,arch_db:sale_rental.sale_rental_form
@@ -647,13 +647,13 @@ msgstr ""
 #: code:addons/sale_rental/models/sale_order.py:226
 #, python-format
 msgid ""
-"You want to rent %.2f %s but you only have %.2f %s currently available on "
-"the stock location '%s' ! Make sure that you get some units back in the mean "
-"time or re-supply the stock location '%s'."
+"You want to rent %.2f {} but you only have %.2f {} currently available on "
+"the stock location '{}' ! Make sure that you get some units back in the mean "
+"time or re-supply the stock location '{}'."
 msgstr ""
-"Poskušate posoditi %.2f %s a imate le %.2f %s trenutno razpoložljive zaloge "
-"na lokaciji '%s' ! Prepričajte se, da dobite nekaj enot nazaj ali pa "
-"povečajte zalogo na lokaciji '%s'."
+"Poskušate posoditi %.2f {} a imate le %.2f {} trenutno razpoložljive zaloge "
+"na lokaciji '{}' ! Prepričajte se, da dobite nekaj enot nazaj ali pa "
+"povečajte zalogo na lokaciji '{}'."
 
 #. module: sale_rental
 #: model:product.product,weight_uom_name:sale_rental.rent_consu_delivery_01

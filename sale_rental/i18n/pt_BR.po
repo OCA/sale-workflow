@@ -78,8 +78,8 @@ msgstr "Cancelada"
 #. module: sale_rental
 #: code:addons/sale_rental/models/sale_order.py:172
 #, python-format
-msgid "Cannot sell the rental %s because it has not been delivered"
-msgstr "Não é possível vender o aluguel %s porque ele não foi entregue"
+msgid "Cannot sell the rental {} because it has not been delivered"
+msgstr "Não é possível vender o aluguel {} porque ele não foi entregue"
 
 #. module: sale_rental
 #: model:ir.model.fields,field_description:sale_rental.field_sale_rental__company_id
@@ -228,7 +228,7 @@ msgstr "Última atualização em"
 #: code:addons/sale_rental/models/sale_order.py:69
 #, python-format
 msgid ""
-"Missing 'Rental to Extend' on the sale order line with rental service %s"
+"Missing 'Rental to Extend' on the sale order line with rental service {}"
 msgstr ""
 
 #. module: sale_rental
@@ -246,7 +246,7 @@ msgstr "Não há estoque suficiente !"
 #: code:addons/sale_rental/models/sale_order.py:85
 #, python-format
 msgid ""
-"On the 'new rental' sale order line with product '%s', we should have a "
+"On the 'new rental' sale order line with product '{}', we should have a "
 "rental service product !"
 msgstr ""
 
@@ -254,26 +254,26 @@ msgstr ""
 #: code:addons/sale_rental/models/sale_order.py:102
 #, python-format
 msgid ""
-"On the sale order line with product %s you are trying to sell a rented "
-"product with a quantity (%s) that is different from the rented quantity "
-"(%s). This is not supported."
+"On the sale order line with product {} you are trying to sell a rented "
+"product with a quantity ({}) that is different from the rented quantity "
+"({}). This is not supported."
 msgstr ""
 
 #. module: sale_rental
 #: code:addons/sale_rental/models/sale_order.py:91
 #, python-format
 msgid ""
-"On the sale order line with product '%s' the Product Quantity (%s) should be "
-"the number of days (%s) multiplied by the Rental Quantity (%s)."
+"On the sale order line with product '{}' the Product Quantity ({}) should be "
+"the number of days ({}) multiplied by the Rental Quantity ({})."
 msgstr ""
 
 #. module: sale_rental
 #: code:addons/sale_rental/models/sale_order.py:74
 #, python-format
 msgid ""
-"On the sale order line with rental service %s, you are trying to extend a "
-"rental with a rental quantity (%s) that is different from the quantity of "
-"the original rental (%s). This is not supported."
+"On the sale order line with rental service {}, you are trying to extend a "
+"rental with a rental quantity ({}) that is different from the quantity of "
+"the original rental ({}). This is not supported."
 msgstr ""
 
 #. module: sale_rental
@@ -321,8 +321,8 @@ msgstr "Produto para Alugar"
 #. module: sale_rental
 #: code:addons/sale_rental/wizard/create_rental_product.py:26
 #, python-format
-msgid "RENT-%s"
-msgstr "RENT-%s"
+msgid "RENT-{}"
+msgstr "RENT-{}"
 
 #. module: sale_rental
 #: model:ir.model.fields,field_description:sale_rental.field_sale_rental__in_picking_id
@@ -431,8 +431,8 @@ msgstr "Tipo de Aluguel"
 #. module: sale_rental
 #: code:addons/sale_rental/wizard/create_rental_product.py:23
 #, python-format
-msgid "Rental of a %s"
-msgstr "Aluguel de a %s"
+msgid "Rental of a {}"
+msgstr "Aluguel de a {}"
 
 #. module: sale_rental
 #: model:product.product,name:sale_rental.rent_product_product_25
@@ -566,38 +566,38 @@ msgstr "Regras de Estoque"
 #. module: sale_rental
 #: code:addons/sale_rental/models/stock.py:60
 #, python-format
-msgid "The Rental Input stock location is not set on the warehouse %s"
+msgid "The Rental Input stock location is not set on the warehouse {}"
 msgstr ""
-"O local de estoque de entrada de aluguel não está definido no armazém %s"
+"O local de estoque de entrada de aluguel não está definido no armazém {}"
 
 #. module: sale_rental
 #: code:addons/sale_rental/models/stock.py:64
 #, python-format
-msgid "The Rental Output stock location is not set on the warehouse %s"
-msgstr "O local de estoque de saída de aluguel não está definido no armazém %s"
+msgid "The Rental Output stock location is not set on the warehouse {}"
+msgstr "O local de estoque de saída de aluguel não está definido no armazém {}"
 
 #. module: sale_rental
 #: code:addons/sale_rental/models/sale_order.py:267
 #, python-format
 msgid ""
-"The Rental Service of the Rental Extension you just selected is '%s' and "
+"The Rental Service of the Rental Extension you just selected is '{}' and "
 "it's not the same as the Product currently selected in this Sale Order Line."
 msgstr ""
 
 #. module: sale_rental
 #: code:addons/sale_rental/models/product.py:28
 #, python-format
-msgid "The rental product '%s' must be of type 'Service'."
-msgstr "O produto de aluguel '%s' deve ser do tipo 'Serviço'."
+msgid "The rental product '{}' must be of type 'Service'."
+msgstr "O produto de aluguel '{}' deve ser do tipo 'Serviço'."
 
 #. module: sale_rental
 #: code:addons/sale_rental/models/product.py:32
 #, python-format
 msgid ""
-"The rental product '%s' must have the option 'Must Have Start and End Dates' "
+"The rental product '{}' must have the option 'Must Have Start and End Dates' "
 "checked."
 msgstr ""
-"O produto de aluguel '%s' deve ter a opção 'Deve ter datas de início e "
+"O produto de aluguel '{}' deve ter a opção 'Deve ter datas de início e "
 "término' verificada."
 
 #. module: sale_rental
@@ -608,8 +608,8 @@ msgstr "A quantidade de aluguel deve ser positiva ou nula."
 #. module: sale_rental
 #: code:addons/sale_rental/models/product.py:39
 #, python-format
-msgid "The unit of measure of the rental product '%s' must be 'Day'."
-msgstr "A unidade de medida do produto de aluguel '%s' deve ser 'Dia'."
+msgid "The unit of measure of the rental product '{}' must be 'Day'."
+msgstr "A unidade de medida do produto de aluguel '{}' deve ser 'Dia'."
 
 #. module: sale_rental
 #: model_terms:ir.ui.view,arch_db:sale_rental.sale_rental_form
@@ -636,13 +636,13 @@ msgstr ""
 #: code:addons/sale_rental/models/sale_order.py:226
 #, python-format
 msgid ""
-"You want to rent %.2f %s but you only have %.2f %s currently available on "
-"the stock location '%s' ! Make sure that you get some units back in the mean "
-"time or re-supply the stock location '%s'."
+"You want to rent %.2f {} but you only have %.2f {} currently available on "
+"the stock location '{}' ! Make sure that you get some units back in the mean "
+"time or re-supply the stock location '{}'."
 msgstr ""
-"Você deseja alugar %.2f %s, mas só tem %.2f %s disponível no local de "
-"estoque '%s'! Certifique-se de obter algumas unidades de volta nesse meio "
-"tempo ou reabasteça o local de estoque '%s'."
+"Você deseja alugar %.2f {}, mas só tem %.2f {} disponível no local de "
+"estoque '{}'! Certifique-se de obter algumas unidades de volta nesse meio "
+"tempo ou reabasteça o local de estoque '{}'."
 
 #. module: sale_rental
 #: model:product.product,weight_uom_name:sale_rental.rent_consu_delivery_01
