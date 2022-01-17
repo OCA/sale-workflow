@@ -52,17 +52,7 @@
 </record>
 
 <!-- Create inventory on Rental In for these products -->
-<record id="rental_inventory" model="stock.inventory">
-    <field name="name">Inventory for rented products</field>
-</record>
-
-<function model="stock.inventory" name="create_demo_and_validate">
-    <function
-            eval="[[('id', '=', ref('rental_inventory'))]]"
-            model="stock.inventory"
-            name="search"
-        />
-</function>
+<function model="stock.quant" name="create_demo_and_validate"/>
 
 
 </odoo>
