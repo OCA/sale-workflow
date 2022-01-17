@@ -52,7 +52,7 @@
 </record>
 
 <!-- Create inventory on Rental In for these products -->
-<function model="stock.quant" name="create_demo_and_validate"/>
+<function model="stock.quant" name="create_demo_and_validate" />
 
 
 </odoo>

@@ -30,18 +30,18 @@ class CreateRentalProduct(models.TransientModel):
         res.update(
             {
                 "hw_product_id": hw_product.id,
-                "name": _("Rental of a %s") % hw_product.display_name,
+                "name": _("Rental of a {}").format(hw_product.display_name),
             }
         )
         if hw_product.default_code:
-            res["default_code"] = _("RENT-%s") % hw_product.default_code
+            res["default_code"] = _("RENT-{}").format(hw_product.default_code)
         return res
 
     hw_product_id = fields.Many2one(
         "product.product", string="Product to Rent", readonly=True, required=True
     )
     name = fields.Char(string="Rental Service Name", required=True)
-    default_code = fields.Char(string="Default Code")
+    default_code = fields.Char()
     sale_price_per_day = fields.Float(
         string="Rental Price per Day",
         required=True,
