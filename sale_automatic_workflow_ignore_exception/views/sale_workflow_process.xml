@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!--
+    # Copyright 2022 Camptocamp SA
+    # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
+-->
+<odoo>
+
+    <record id="sale_workflow_process_view_form" model="ir.ui.view">
+        <field name="model">sale.workflow.process</field>
+        <field
+            name="inherit_id"
+            ref="sale_automatic_workflow.sale_workflow_process_view_form"
+        />
+        <field name="arch" type="xml">
+
+            <field name="send_order_confirmation_mail" position="before">
+                <div attrs="{'invisible':[('validate_order','!=',True)]}" colspan="4">
+                    <label for="ignore_exception_when_confirm" />
+                    <field name="ignore_exception_when_confirm" nolabel="True" />
+                </div>
+            </field>
+
+        </field>
+    </record>
+
+</odoo>
