@@ -42,6 +42,14 @@
         >[('state', '=', 'sale'),('invoice_status','=','invoiced')]</field>
         <field name="user_id" ref="base.user_root" />
     </record>
+    <record id="automatic_workflow_payment_filter" model="ir.filters">
+        <field name="name">Automatic Workflow Payment Filter</field>
+        <field name="model_id">account.move</field>
+        <field
+            name="domain"
+        >[('state', '=', 'posted'), ('move_type', '=', 'out_invoice'), ('payment_state','!=','paid')]</field>
+        <field name="user_id" ref="base.user_root" />
+    </record>
     <record id="automatic_validation" model="sale.workflow.process">
         <field name="name">Automatic</field>
         <field name="picking_policy">one</field>
@@ -63,6 +71,8 @@
         <field name="picking_filter_id" eval="automatic_workflow_picking_filter" />
         <field name="sale_done" eval="0" />
         <field name="sale_done_filter_id" eval="automatic_workflow_sale_done_filter" />
+        <field name="register_payment" eval="0" />
+        <field name="payment_filter_id" ref="automatic_workflow_payment_filter" />
         <field
             name="warning"
         >Be careful, if you save the order with this setting, it could be auto-confirmed, even if you are editing it.</field>
@@ -85,6 +95,8 @@
         />
         <field name="picking_filter_id" eval="automatic_workflow_picking_filter" />
         <field name="sale_done_filter_id" eval="automatic_workflow_sale_done_filter" />
+        <field name="register_payment" eval="0" />
+        <field name="payment_filter_id" ref="automatic_workflow_payment_filter" />
     </record>
     <record forcecreate="True" id="ir_cron_automatic_workflow_job" model="ir.cron">
         <field name="name">Automatic Workflow Job</field>
