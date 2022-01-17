@@ -17,7 +17,10 @@ class SaleOrder(models.Model):
             company = self.env['res.company'].browse(company)
         else:
             company = self.env['res.company']._company_default_get('sale.order')
-        if not company.keep_name_so:
+        if (
+            not company.keep_name_so and
+            not self.env.context.get("skip_overwriting_order_name")
+        ):
             vals['name'] = self.env['ir.sequence'].next_by_code(
                 'sale.quotation') or '/'
         return super(SaleOrder, self).create(vals)
@@ -27,7 +30,8 @@ class SaleOrder(models.Model):
         self.ensure_one()
         if default is None:
             default = {}
-        default['name'] = '/'
+        if not self.env.context.get("skip_overwriting_order_name"):
+            default['name'] = '/'
         if self.origin and self.origin != '':
             default['origin'] = self.origin + ', ' + self.name
         else:

@@ -71,7 +71,9 @@ class SaleOrder(models.Model):
             'name': '%s-%02d' % (self.unrevisioned_name, new_rev_number),
             'old_revision_ids': [(4, self.id, False)],
         })
-        new_revision = self.copy(default_data)
+        new_revision = self.with_context(
+            skip_overwriting_order_name=True
+        ).copy(default_data)
         self.old_revision_ids.write({
             'current_revision_id': new_revision.id,
         })
