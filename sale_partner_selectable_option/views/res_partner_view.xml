@@ -11,4 +11,19 @@
             </group>
         </field>
     </record>
+    <record id="res_partner_view_buttons" model="ir.ui.view">
+        <field name="name">res.partner.view.buttons</field>
+        <field name="model">res.partner</field>
+        <field name="inherit_id" ref="sale.res_partner_view_buttons" />
+        <field name="arch" type="xml">
+            <xpath
+                expr="//button[@name='%(sale.act_res_partner_2_sale_order)d']"
+                position="attributes"
+            >
+                <attribute
+                    name="attrs"
+                >{'invisible': [('sale_selectable', '=', False)]}</attribute>
+            </xpath>
+        </field>
+    </record>
 </odoo>
