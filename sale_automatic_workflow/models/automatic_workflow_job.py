@@ -174,26 +174,26 @@ class AutomaticWorkflowJob(models.Model):
         invoices = invoice_obj.search(payment_filter)
         _logger.debug("Invoices to Register Payment: %s", invoices.ids)
         for invoice in invoices:
-            self._register_payment_invoice(invoice)
+            with savepoint(self.env.cr):
+                self._register_payment_invoice(invoice)
         return
 
     def _register_payment_invoice(self, invoice):
-        with savepoint(self.env.cr):
-            payment = self.env["account.payment"].create(
-                self._prepare_dict_account_payment(invoice)
-            )
-            payment.action_post()
+        payment = self.env["account.payment"].create(
+            self._prepare_dict_account_payment(invoice)
+        )
+        payment.action_post()
 
-            domain = [
-                ("account_internal_type", "in", ("receivable", "payable")),
-                ("reconciled", "=", False),
-            ]
-            payment_lines = payment.line_ids.filtered_domain(domain)
-            lines = invoice.line_ids
-            for account in payment_lines.account_id:
-                (payment_lines + lines).filtered_domain(
-                    [("account_id", "=", account.id), ("reconciled", "=", False)]
-                ).reconcile()
+        domain = [
+            ("account_internal_type", "in", ("receivable", "payable")),
+            ("reconciled", "=", False),
+        ]
+        payment_lines = payment.line_ids.filtered_domain(domain)
+        lines = invoice.line_ids
+        for account in payment_lines.account_id:
+            (payment_lines + lines).filtered_domain(
+                [("account_id", "=", account.id), ("reconciled", "=", False)]
+            ).reconcile()
 
     @api.model
     def run_with_workflow(self, sale_workflow):
