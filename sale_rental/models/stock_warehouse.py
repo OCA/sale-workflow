@@ -32,7 +32,7 @@ class StockWarehouse(models.Model):
         check_company=True,
         domain="[('usage', '=', 'internal'), ('company_id', '=', company_id)]",
     )
-    rental_allowed = fields.Boolean("Rental Allowed")
+    rental_allowed = fields.Boolean()
     rental_route_id = fields.Many2one("stock.location.route", string="Rental Route")
     sell_rented_product_route_id = fields.Many2one(
         "stock.location.route", string="Sell Rented Product Route"
@@ -72,13 +72,15 @@ class StockWarehouse(models.Model):
             raise UserError(_("Can't find any generic 'Sell Rented Product' route."))
         if not self.rental_in_location_id:
             raise UserError(
-                _("The Rental Input stock location is not set on the " "warehouse %s")
-                % self.name
+                _(
+                    "The Rental Input stock location is not set on the " "warehouse {}"
+                ).format(self.name)
             )
         if not self.rental_out_location_id:
             raise UserError(
-                _("The Rental Output stock location is not set on the " "warehouse %s")
-                % self.name
+                _(
+                    "The Rental Output stock location is not set on the " "warehouse {}"
+                ).format(self.name)
             )
         rental_pull_rule = {
             "name": self._format_rulename(

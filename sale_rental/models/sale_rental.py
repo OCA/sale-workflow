@@ -24,7 +24,7 @@ class SaleRental(models.Model):
     def name_get(self):
         res = []
         for rental in self:
-            name = "[%s] %s - %s > %s (%s)" % (
+            name = "[{}] {} - {} > {} ({})".format(
                 rental.partner_id.display_name,
                 rental.rented_product_id.display_name,
                 rental.start_date,
@@ -205,7 +205,6 @@ class SaleRental(models.Model):
     )
     end_date = fields.Date(
         compute="_compute_end_date",
-        string="End Date",
         store=True,
         help="End Date of the Rental (extensions included), \
         taking into account all the extensions sold to the customer.",
@@ -219,7 +218,6 @@ class SaleRental(models.Model):
             ("in", "Back In"),
             ("cancel", "Cancelled"),
         ],
-        string="State",
         compute="_compute_move_and_state",
         readonly=True,
         store=True,
