@@ -27,10 +27,6 @@ class SaleWorkflowProcess(models.Model):
             return record
         return self.env["ir.filters"].browse()
 
-    @api.model
-    def _default_payment_filter_id(self):
-        return self.env["ir.filters"].browse()
-
     name = fields.Char()
     picking_policy = fields.Selection(
         selection=[
@@ -126,7 +122,9 @@ class SaleWorkflowProcess(models.Model):
     payment_filter_id = fields.Many2one(
         comodel_name="ir.filters",
         string="Register Payment Invoice Filter",
-        default=lambda x: x._default_payment_filter_id(),
+        default=lambda self: self._default_filter(
+            "sale_automatic_workflow.automatic_workflow_payment_filter"
+        ),
     )
     register_payment = fields.Boolean()
     payment_filter_domain = fields.Text(
