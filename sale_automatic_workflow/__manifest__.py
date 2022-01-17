@@ -5,7 +5,7 @@
 
 {
     "name": "Sale Automatic Workflow",
-    "version": "14.0.1.2.0",
+    "version": "14.0.1.3.0",
     "category": "Sales Management",
     "license": "AGPL-3",
     "author": "Akretion, "
@@ -14,6 +14,7 @@
     "Odoo Community Association (OCA)",
     "website": "https://github.com/OCA/sale-workflow",
     "depends": ["sale_stock", "sales_team"],
+    "external_dependencies": {"python": ["openupgradelib"]},
     "data": [
         "security/ir.model.access.csv",
         "views/sale_view.xml",
