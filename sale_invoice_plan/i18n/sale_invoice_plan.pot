@@ -4,7 +4,7 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: Odoo Server 14.0\n"
+"Project-Id-Version: Odoo Server 15.0\n"
 "Report-Msgid-Bugs-To: \n"
 "Last-Translator: \n"
 "Language-Team: \n"
@@ -86,11 +86,9 @@ msgid "Day"
 msgstr ""
 
 #. module: sale_invoice_plan
-#: model:ir.model.fields,field_description:sale_invoice_plan.field_sale_advance_payment_inv__display_name
 #: model:ir.model.fields,field_description:sale_invoice_plan.field_sale_create_invoice_plan__display_name
 #: model:ir.model.fields,field_description:sale_invoice_plan.field_sale_invoice_plan__display_name
 #: model:ir.model.fields,field_description:sale_invoice_plan.field_sale_make_planned_invoice__display_name
-#: model:ir.model.fields,field_description:sale_invoice_plan.field_sale_order__display_name
 msgid "Display Name"
 msgstr ""
 
@@ -105,11 +103,9 @@ msgid "Group By"
 msgstr ""
 
 #. module: sale_invoice_plan
-#: model:ir.model.fields,field_description:sale_invoice_plan.field_sale_advance_payment_inv__id
 #: model:ir.model.fields,field_description:sale_invoice_plan.field_sale_create_invoice_plan__id
 #: model:ir.model.fields,field_description:sale_invoice_plan.field_sale_invoice_plan__id
 #: model:ir.model.fields,field_description:sale_invoice_plan.field_sale_make_planned_invoice__id
-#: model:ir.model.fields,field_description:sale_invoice_plan.field_sale_order__id
 msgid "ID"
 msgstr ""
 
@@ -198,11 +194,9 @@ msgid "Last Installment"
 msgstr ""
 
 #. module: sale_invoice_plan
-#: model:ir.model.fields,field_description:sale_invoice_plan.field_sale_advance_payment_inv____last_update
 #: model:ir.model.fields,field_description:sale_invoice_plan.field_sale_create_invoice_plan____last_update
 #: model:ir.model.fields,field_description:sale_invoice_plan.field_sale_invoice_plan____last_update
 #: model:ir.model.fields,field_description:sale_invoice_plan.field_sale_make_planned_invoice____last_update
-#: model:ir.model.fields,field_description:sale_invoice_plan.field_sale_order____last_update
 msgid "Last Modified on"
 msgstr ""
 
@@ -236,6 +230,12 @@ msgid "Next Invoice"
 msgstr ""
 
 #. module: sale_invoice_plan
+#: code:addons/sale_invoice_plan/tests/test_sale_invoice_plan.py:0
+#, python-format
+msgid "No installment raises following error : %s"
+msgstr ""
+
+#. module: sale_invoice_plan
 #: code:addons/sale_invoice_plan/models/sale_invoice_plan.py:0
 #, python-format
 msgid "No matched order line for invoice line"
@@ -266,7 +266,7 @@ msgstr ""
 #: code:addons/sale_invoice_plan/models/sale_invoice_plan.py:0
 #, python-format
 msgid ""
-"Plan quantity: %s, exceed invoiceable quantity: %s\n"
+"Plan quantity: %(plan_qty)s, exceed invoiceable quantity: %(invoiceable_qty)s\n"
 "Product should be delivered before invoice"
 msgstr ""
 
