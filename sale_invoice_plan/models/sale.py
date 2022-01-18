@@ -17,7 +17,6 @@ class SaleOrder(models.Model):
         copy=False,
     )
     use_invoice_plan = fields.Boolean(
-        string="Use Invoice Plan",
         default=False,
         copy=False,
     )

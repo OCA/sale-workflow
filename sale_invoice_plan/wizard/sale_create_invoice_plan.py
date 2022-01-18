@@ -18,18 +18,15 @@ class SaleCreateInvoicePlan(models.TransientModel):
         required=True,
     )
     installment_date = fields.Date(
-        string="Installment Date",
         default=fields.Date.context_today,
         required=True,
     )
     interval = fields.Integer(
-        string="Interval",
         default=1,
         required=True,
     )
     interval_type = fields.Selection(
         [("day", "Day"), ("month", "Month"), ("year", "Year")],
-        string="Interval Type",
         default="month",
         required=True,
     )

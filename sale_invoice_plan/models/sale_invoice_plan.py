@@ -28,8 +28,8 @@ class SaleInvoicePlan(models.Model):
         store=True,
         index=True,
     )
-    installment = fields.Integer(string="Installment")
-    plan_date = fields.Date(string="Plan Date", required=True)
+    installment = fields.Integer()
+    plan_date = fields.Date(required=True)
     invoice_type = fields.Selection(
         [("advance", "Advance"), ("installment", "Installment")],
         string="Type",
@@ -42,7 +42,6 @@ class SaleInvoicePlan(models.Model):
         help="Last installment will create invoice use remaining amount",
     )
     percent = fields.Float(
-        string="Percent",
         digits="Product Unit of Measure",
         help="This percent will be used to calculate new quantity",
     )
@@ -102,7 +101,7 @@ class SaleInvoicePlan(models.Model):
         if self.last:  # For last install, let the system do the calc.
             return
         percent = self.percent
-        move = invoice_move.with_context({"check_move_validity": False})
+        move = invoice_move.with_context(**{"check_move_validity": False})
         for line in move.invoice_line_ids:
             if not len(line.sale_line_ids) >= 0:
                 raise UserError(_("No matched order line for invoice line"))
@@ -115,10 +114,11 @@ class SaleInvoicePlan(models.Model):
                 if float_compare(plan_qty, line.quantity, prec) == 1:
                     raise ValidationError(
                         _(
-                            "Plan quantity: %s, exceed invoiceable quantity: %s"
+                            "Plan quantity: %(plan_qty)s, exceed invoiceable quantity: "
+                            "%(invoiceable_qty)s"
                             "\nProduct should be delivered before invoice"
                         )
-                        % (plan_qty, line.quantity)
+                        % {"plan_qty": plan_qty, "invoiceable_qty": line.quantity}
                     )
                 line.write({"quantity": plan_qty})
         # Call this method to recompute dr/cr lines
