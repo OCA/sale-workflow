@@ -1,11 +1,15 @@
 # Copyright 2019 Ecosoft Co., Ltd (http://ecosoft.co.th/)
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl)
+import logging
 from collections import OrderedDict
 
+from odoo import _
 from odoo.exceptions import UserError, ValidationError
 from odoo.tests import Form
 
 from odoo.addons.sale.tests import common
+
+_logger = logging.getLogger(__name__)
 
 
 class TestSaleInvoicePlan(common.TestSaleCommon):
@@ -38,7 +42,7 @@ class TestSaleInvoicePlan(common.TestSaleCommon):
             }
         )
 
-        Partner = cls.env["res.partner"].with_context(context_no_mail)
+        Partner = cls.env["res.partner"].with_context(**context_no_mail)
         cls.partner_customer_usd = Partner.create(
             {
                 "name": "Customer from the North",
@@ -215,8 +219,8 @@ class TestSaleInvoicePlan(common.TestSaleCommon):
         f = Form(self.env["sale.create.invoice.plan"])
         try:  # UserError if no installment
             plan = f.save()
-        except ValidationError:
-            pass
+        except ValidationError as e:
+            _logger.info(_("No installment raises following error : %s"), e.name)
         # Create Invoice Plan 3 installment
         num_installment = 3
         f.num_installment = num_installment
@@ -229,7 +233,7 @@ class TestSaleInvoicePlan(common.TestSaleCommon):
                 with self.assertRaises(UserError):
                     self.so_service.action_confirm()
             # Create Invocie Plan Installment
-            plan.with_context(ctx).sale_create_invoice_plan()
+            plan.with_context(**ctx).sale_create_invoice_plan()
             self.assertEqual(
                 len(self.so_service.invoice_plan_ids),
                 num_installment,
@@ -239,7 +243,7 @@ class TestSaleInvoicePlan(common.TestSaleCommon):
         self.so_service.action_confirm()
         # Create one invoice
         make_wizard = self.env["sale.make.planned.invoice"].create({})
-        make_wizard.with_context(ctx).create_invoices_by_plan()
+        make_wizard.with_context(**ctx).create_invoices_by_plan()
         invoices = self.so_service.invoice_ids
         self.assertEqual(len(invoices), 1, "Only 1 invoice should be created")
 
@@ -259,12 +263,12 @@ class TestSaleInvoicePlan(common.TestSaleCommon):
             f.interval_type = interval_type
             f.num_installment = num_installment
             plan = f.save()
-            plan.with_context(ctx).sale_create_invoice_plan()
+            plan.with_context(**ctx).sale_create_invoice_plan()
         # Confirm the SO
         self.so_service.action_confirm()
         # Create all invoices
         make_wizard = self.env["sale.make.planned.invoice"].create({})
-        make_wizard.with_context(ctx).create_invoices_by_plan()
+        make_wizard.with_context(**ctx).create_invoices_by_plan()
         # Valid number of invoices
         invoices = self.so_service.invoice_ids
         self.assertEqual(
@@ -287,7 +291,7 @@ class TestSaleInvoicePlan(common.TestSaleCommon):
         f.num_installment = num_installment
         f.advance = True  # Advance
         plan = f.save()
-        plan.with_context(ctx).sale_create_invoice_plan()
+        plan.with_context(**ctx).sale_create_invoice_plan()
         self.assertEqual(
             len(self.so_service.invoice_plan_ids),
             num_installment + 1,
@@ -306,7 +310,7 @@ class TestSaleInvoicePlan(common.TestSaleCommon):
         self.so_service.action_confirm()
         # Create all invoice plan
         wizard = self.env["sale.make.planned.invoice"].create({})
-        wizard.with_context(ctx).create_invoices_by_plan()
+        wizard.with_context(**ctx).create_invoices_by_plan()
         # Valid number of invoices, including advance
         invoices = self.so_service.invoice_ids
         self.assertEqual(
@@ -327,7 +331,7 @@ class TestSaleInvoicePlan(common.TestSaleCommon):
         num_installment = 3
         f.num_installment = num_installment
         plan = f.save()
-        plan.with_context(ctx).sale_create_invoice_plan()
+        plan.with_context(**ctx).sale_create_invoice_plan()
         # Remove it
         self.so_service.remove_invoice_plan()
         self.assertFalse(self.so_service.invoice_plan_ids)
@@ -344,7 +348,7 @@ class TestSaleInvoicePlan(common.TestSaleCommon):
         f = Form(self.env["sale.create.invoice.plan"])
         f.num_installment = num_installment
         plan = f.save()
-        plan.with_context(ctx).sale_create_invoice_plan()
+        plan.with_context(**ctx).sale_create_invoice_plan()
         self.so_product.action_confirm()
         # Delivery product 3 qty out of 10
         self.assertEqual(len(self.so_product.picking_ids), 1)
@@ -354,7 +358,7 @@ class TestSaleInvoicePlan(common.TestSaleCommon):
         # Create invoice by plan
         wizard = self.env["sale.make.planned.invoice"].create({})
         with self.assertRaises(ValidationError) as e:
-            wizard.with_context(ctx).create_invoices_by_plan()
+            wizard.with_context(**ctx).create_invoices_by_plan()
         self.assertIn(
             "Plan quantity: 5.0, exceed invoiceable quantity: 3.0", e.exception.name
         )
@@ -363,7 +367,7 @@ class TestSaleInvoicePlan(common.TestSaleCommon):
         pick.mapped("move_ids_without_package").write({"quantity_done": 7.0})
         pick._action_done()
         wizard = self.env["sale.make.planned.invoice"].create({})
-        wizard.with_context(ctx).create_invoices_by_plan()
+        wizard.with_context(**ctx).create_invoices_by_plan()
         # Valid total quantity of invoice = 10 units
         invoices = self.so_product.invoice_ids
         quantity = sum(invoices.mapped("invoice_line_ids").mapped("quantity"))
