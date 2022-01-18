@@ -2,14 +2,15 @@
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
 
 from odoo.exceptions import UserError
-from odoo.tests.common import TransactionCase
+from odoo.tests.common import SavepointCase
 
 
-class TestSaleOrder(TransactionCase):
-    def setUp(self, *args, **kwargs):
-        super(TestSaleOrder, self).setUp()
-        self.sale_order_model = self.env["sale.order"]
-        company = self.env.company
+class TestSaleOrder(SavepointCase):
+    @classmethod
+    def setUpClass(cls):
+        super().setUpClass()
+        cls.sale_order_model = cls.env["sale.order"]
+        company = cls.env.company
         company.keep_name_so = False
 
     def test_enumeration(self):
