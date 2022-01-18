@@ -1,14 +1,12 @@
 # Copyright 2018 Alex Comba - Agile Business Group
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
-from odoo import api, models
+from odoo import models
 
 
 class SaleOrderLine(models.Model):
-
     _inherit = "sale.order.line"
 
-    @api.multi
     def _get_procurement_group_key(self):
         """Return a key with priority to be used to regroup lines in multiple
         procurement groups
@@ -21,3 +19,9 @@ class SaleOrderLine(models.Model):
                 # group by date instead of datetime
                 return (priority, self.commitment_date.date())
         return key
+
+    def _prepare_procurement_values(self, group_id=False):
+        vals = super(SaleOrderLine, self)._prepare_procurement_values(group_id=group_id)
+        if self.commitment_date:
+            vals.update({"date_planned": self.commitment_date})
+        return vals
