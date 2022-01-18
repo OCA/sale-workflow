@@ -118,5 +118,6 @@ class SaleOrder(models.Model):
             moves.ensure_one()  # Expect 1 invoice for 1 invoice plan
             plan._compute_new_invoice_quantity(moves[0])
             moves.invoice_date = plan.plan_date
+            moves._onchange_invoice_date()
             plan.invoice_move_ids += moves
         return moves
