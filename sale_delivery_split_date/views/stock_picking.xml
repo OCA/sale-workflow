@@ -19,8 +19,8 @@
         <field name="model">stock.picking</field>
         <field name="inherit_id" ref="stock.view_picking_internal_search" />
         <field name="arch" type="xml">
-            <field name="group_id" position="after">
-                <field name="min_dt" string="Scheduled Date" />
+            <field name="picking_type_id" position="after">
+                <field name="scheduled_date" string="Scheduled Date" />
             </field>
         </field>
     </record>
