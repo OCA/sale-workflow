@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!-- Copyright 2021 ACSONE SA/NV
+     License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl). -->
+<odoo>
+    <template
+        id="report_saleorder_document"
+        inherit_id="sale.report_saleorder_document"
+    >
+        <xpath expr="//thead/tr/th[3]" position="before">
+            <th class="text-right">Unit Price Without Taxes</th>
+        </xpath>
+        <xpath expr="//td[span[@t-field='line.price_unit']]" position="before">
+            <td class="text-right">
+                <span t-field='line.price_unit_no_taxes' />
+            </td>
+        </xpath>
+    </template>
+</odoo>
