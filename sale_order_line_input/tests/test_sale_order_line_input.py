@@ -1,7 +1,7 @@
 # Copyright 2018 Tecnativa - Carlos Dauden
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
-from odoo.tests import SavepointCase
+from odoo.tests import Form, SavepointCase
 
 
 class TestSaleOrderLineInput(SavepointCase):
@@ -14,16 +14,17 @@ class TestSaleOrderLineInput(SavepointCase):
         )
 
     def test_sale_order_create_and_show(self):
-        line = self.env["sale.order.line"].create(
-            {
-                "order_partner_id": self.partner.id,
-                "product_id": self.product.id,
-                "price_unit": 190.50,
-                "product_uom": self.ref("product.decimal_product_uom"),
-                "product_uom_qty": 8.0,
-                "name": "Test line description",
-            }
+        line_form = Form(
+            self.env["sale.order.line"],
+            view="sale_order_line_input.view_sales_order_line_input_tree",
         )
+        line_form.order_partner_id = self.partner
+        line_form.product_id = self.product
+        line_form.price_unit = 190.50
+        line_form.product_uom = self.env.ref("uom.product_uom_unit")
+        line_form.product_uom_qty = 8.0
+        line_form.name = "Test line description"
+        line = line_form.save()
         self.assertTrue(line.order_id)
         action_dict = line.action_sale_order_form()
         self.assertEquals(action_dict["res_id"], line.order_id.id)
