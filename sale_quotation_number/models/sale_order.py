@@ -4,7 +4,7 @@
 # © 2020 Manuel Regidor  <manuel.regidor@sygel.es>
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl)
 
-from odoo import api, models
+from odoo import _, api, models
 
 
 class SaleOrder(models.Model):
@@ -25,7 +25,7 @@ class SaleOrder(models.Model):
         self.ensure_one()
         if default is None:
             default = {}
-        default["name"] = "/"
+        default["name"] = _("New")
         if self.origin and self.origin != "":
             default["origin"] = self.origin + ", " + self.name
         else:
