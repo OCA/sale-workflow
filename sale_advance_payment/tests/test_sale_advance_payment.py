@@ -7,7 +7,7 @@ from odoo.exceptions import ValidationError
 from odoo.tests import common
 
 
-class TestSaleAdvancePayment(common.SavepointCase):
+class TestSaleAdvancePayment(common.TransactionCase):
     @classmethod
     def setUpClass(cls):
         super().setUpClass()
@@ -73,7 +73,16 @@ class TestSaleAdvancePayment(common.SavepointCase):
             }
         )
 
-        cls.currency_euro = cls.env["res.currency"].search([("name", "=", "EUR")])
+        cls.active_euro = False
+        cls.currency_euro = (
+            cls.env["res.currency"]
+            .with_context(active_test=False)
+            .search([("name", "=", "EUR")])
+        )
+        # active euro currency if inactive for test
+        if not cls.currency_euro.active:
+            cls.currency_euro.active = True
+            cls.active_euro = True
         cls.currency_usd = cls.env["res.currency"].search([("name", "=", "USD")])
         cls.currency_rate = cls.env["res.currency.rate"].create(
             {
@@ -138,7 +147,7 @@ class TestSaleAdvancePayment(common.SavepointCase):
         with self.assertRaises(ValidationError):
             advance_payment_0 = (
                 self.env["account.voucher.wizard"]
-                .with_context(context_payment)
+                .with_context(**context_payment)
                 .create(
                     {
                         "journal_id": self.journal_eur_bank.id,
@@ -152,7 +161,7 @@ class TestSaleAdvancePayment(common.SavepointCase):
         # Create Advance Payment 1 - EUR - bank
         advance_payment_1 = (
             self.env["account.voucher.wizard"]
-            .with_context(context_payment)
+            .with_context(**context_payment)
             .create(
                 {
                     "journal_id": self.journal_eur_bank.id,
@@ -169,7 +178,7 @@ class TestSaleAdvancePayment(common.SavepointCase):
         # Create Advance Payment 2 - USD - cash
         advance_payment_2 = (
             self.env["account.voucher.wizard"]
-            .with_context(context_payment)
+            .with_context(**context_payment)
             .create(
                 {
                     "journal_id": self.journal_usd_cash.id,
@@ -189,7 +198,7 @@ class TestSaleAdvancePayment(common.SavepointCase):
         # Create Advance Payment 3 - EUR - cash
         advance_payment_3 = (
             self.env["account.voucher.wizard"]
-            .with_context(context_payment)
+            .with_context(**context_payment)
             .create(
                 {
                     "journal_id": self.journal_eur_cash.id,
@@ -205,7 +214,7 @@ class TestSaleAdvancePayment(common.SavepointCase):
         # Create Advance Payment 4 - USD - bank
         advance_payment_4 = (
             self.env["account.voucher.wizard"]
-            .with_context(context_payment)
+            .with_context(**context_payment)
             .create(
                 {
                     "journal_id": self.journal_usd_bank.id,
@@ -244,7 +253,7 @@ class TestSaleAdvancePayment(common.SavepointCase):
         # Create an inbound payment of 200 USD
         advance_payment_2 = (
             self.env["account.voucher.wizard"]
-            .with_context(context_payment)
+            .with_context(**context_payment)
             .create(
                 {
                     "journal_id": self.journal_usd_cash.id,
@@ -259,7 +268,7 @@ class TestSaleAdvancePayment(common.SavepointCase):
         # Create an outbound payment of 200 USD
         advance_payment_2 = (
             self.env["account.voucher.wizard"]
-            .with_context(context_payment)
+            .with_context(**context_payment)
             .create(
                 {
                     "journal_id": self.journal_usd_cash.id,
