@@ -24,7 +24,7 @@
                     />
                 </page>
             </notebook>
-            <field name="amount_total" position="after">
+            <field name="tax_totals_json" position="after">
                 <div class="oe_subtotal_footer_separator oe_inline o_td_label">
                     <label for="amount_residual" />
                 </div>
