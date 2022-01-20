@@ -18,11 +18,17 @@
                 <!-- We do not display the type because we don't want the user to be bothered with that information if he has no section or note. -->
                 <field name="display_type" invisible="1" />
                 <field
+                    name="force_company_id"
+                    optional="hide"
+                    attrs="{'readonly': [('order_id', '!=', False)]}"
+                    options="{'no_create': True}"
+                />
+                <field
                     name="order_id"
                     string="Order"
                     required="0"
                     placeholder="New"
-                    domain="[('state', 'not in', ('done', 'cancel'))]"
+                    domain="[('state', 'not in', ('done', 'cancel')), ('company_id', '=', company_id)]"
                     attrs="{'readonly': [('order_id', '!=', False)]}"
                     force_save="1"
                     options='{"no_open": True, "no_create": True}'
@@ -57,7 +63,7 @@
                         'quantity': product_uom_qty,
                         'pricelist': parent.pricelist_id,
                         'uom':product_uom,
-                        'company_id': parent.company_id,
+                        'company_id': company_id,
                         'default_list_price': price_unit,
                         'default_description_sale': name
                     }"
