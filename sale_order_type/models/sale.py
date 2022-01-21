@@ -20,6 +20,7 @@ class SaleOrder(models.Model):
         default=lambda so: so._default_type_id(),
         ondelete="restrict",
         copy=True,
+        check_company=True,
     )
 
     @api.model
