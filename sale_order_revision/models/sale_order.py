@@ -47,9 +47,9 @@ class SaleOrder(models.Model):
     def copy(self, default=None):
         if default is None:
             default = {}
-        if default.get("name", "/") == "/":
+        if default.get("name", _("New")) == _("New"):
             seq = self.env["ir.sequence"]
-            default["name"] = seq.next_by_code("sale.order") or "/"
+            default["name"] = seq.next_by_code("sale.order") or _("New")
             default["revision_number"] = 0
             default["unrevisioned_name"] = default["name"]
         return super(SaleOrder, self).copy(default=default)
@@ -75,9 +75,9 @@ class SaleOrder(models.Model):
     @api.model
     def create(self, values):
         if "unrevisioned_name" not in values:
-            if values.get("name", "/") == "/":
+            if values.get("name", _("New")) == _("New"):
                 seq = self.env["ir.sequence"]
-                values["name"] = seq.next_by_code("sale.order") or "/"
+                values["name"] = seq.next_by_code("sale.order") or _("New")
             values["unrevisioned_name"] = values["name"]
         return super(SaleOrder, self).create(values)
 
