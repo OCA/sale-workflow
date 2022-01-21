@@ -17,11 +17,11 @@
                         <group>
                             <field
                                 name="warehouse_id"
+                                options="{'no_create': True}"
                                 groups="stock.group_stock_multi_warehouses"
                             />
                             <field
                                 name="company_id"
-                                attrs="{'invisible': [('warehouse_id', '=', False)]}"
                                 groups="base.group_multi_company"
                             />
                             <field
