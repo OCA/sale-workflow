@@ -123,7 +123,7 @@ class TestSaleOrderType(common.TransactionCase):
 
     def create_invoice(self, partner=False, sale_type=False):
         inv_form = Form(
-            self.env["account.move"].with_context({"default_move_type": "out_invoice"})
+            self.env["account.move"].with_context(default_move_type="out_invoice")
         )
         inv_form.partner_id = partner or self.partner
         inv_form.sale_type_id = sale_type or self.sale_type
@@ -217,14 +217,11 @@ class TestSaleOrderType(common.TransactionCase):
 
     def test_sale_order_create_invoice_down_payment(self):
         order = self.create_sale_order()
-        context = {
-            "active_model": "sale.order",
-            "active_id": order.id,
-            "active_ids": order.ids,
-        }
         wizard = (
             self.env["sale.advance.payment.inv"]
-            .with_context(context)
+            .with_context(
+                active_model="sale.order", active_id=order.id, active_ids=order.ids
+            )
             .create(
                 {
                     "advance_payment_method": "percentage",
