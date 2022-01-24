@@ -15,5 +15,9 @@
     "depends": [
         "sale",
     ],
-    "data": ["views/sale_order.xml", "report/report_sale_order.xml"],
+    "data": [
+        "views/sale_order.xml",
+        "report/report_sale_order.xml",
+        "views/sale_portal.xml",
+    ],
 }
