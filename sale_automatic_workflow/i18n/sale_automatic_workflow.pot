@@ -114,12 +114,8 @@ msgid "Deliver each product when available"
 msgstr ""
 
 #. module: sale_automatic_workflow
-#: model:ir.model.fields,field_description:sale_automatic_workflow.field_account_move__display_name
 #: model:ir.model.fields,field_description:sale_automatic_workflow.field_automatic_workflow_job__display_name
-#: model:ir.model.fields,field_description:sale_automatic_workflow.field_sale_order__display_name
 #: model:ir.model.fields,field_description:sale_automatic_workflow.field_sale_workflow_process__display_name
-#: model:ir.model.fields,field_description:sale_automatic_workflow.field_stock_move__display_name
-#: model:ir.model.fields,field_description:sale_automatic_workflow.field_stock_picking__display_name
 msgid "Display Name"
 msgstr ""
 
@@ -129,12 +125,8 @@ msgid "Force Invoice Date"
 msgstr ""
 
 #. module: sale_automatic_workflow
-#: model:ir.model.fields,field_description:sale_automatic_workflow.field_account_move__id
 #: model:ir.model.fields,field_description:sale_automatic_workflow.field_automatic_workflow_job__id
-#: model:ir.model.fields,field_description:sale_automatic_workflow.field_sale_order__id
 #: model:ir.model.fields,field_description:sale_automatic_workflow.field_sale_workflow_process__id
-#: model:ir.model.fields,field_description:sale_automatic_workflow.field_stock_move__id
-#: model:ir.model.fields,field_description:sale_automatic_workflow.field_stock_picking__id
 msgid "ID"
 msgstr ""
 
@@ -162,12 +154,8 @@ msgid "Journal Entry"
 msgstr ""
 
 #. module: sale_automatic_workflow
-#: model:ir.model.fields,field_description:sale_automatic_workflow.field_account_move____last_update
 #: model:ir.model.fields,field_description:sale_automatic_workflow.field_automatic_workflow_job____last_update
-#: model:ir.model.fields,field_description:sale_automatic_workflow.field_sale_order____last_update
 #: model:ir.model.fields,field_description:sale_automatic_workflow.field_sale_workflow_process____last_update
-#: model:ir.model.fields,field_description:sale_automatic_workflow.field_stock_move____last_update
-#: model:ir.model.fields,field_description:sale_automatic_workflow.field_stock_picking____last_update
 msgid "Last Modified on"
 msgstr ""
 
