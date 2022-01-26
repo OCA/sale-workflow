@@ -6,15 +6,16 @@ from odoo.tests import common
 
 
 class TestSaleDeliveryBlock(common.TransactionCase):
-    def setUp(self):
-        super().setUp()
-        self.so_model = self.env["sale.order"]
-        self.sol_model = self.env["sale.order.line"]
-        self.usr_model = self.env["res.users"]
-        self.block_model = self.env["sale.delivery.block.reason"]
+    @classmethod
+    def setUpClass(cls):
+        super().setUpClass()
+        cls.so_model = cls.env["sale.order"]
+        cls.sol_model = cls.env["sale.order.line"]
+        cls.usr_model = cls.env["res.users"]
+        cls.block_model = cls.env["sale.delivery.block.reason"]
         group_ids = [
-            self.env.ref("sale_stock_picking_blocking.group_sale_delivery_block").id,
-            self.env.ref("sales_team.group_sale_manager").id,
+            cls.env.ref("sale_stock_picking_blocking.group_sale_delivery_block").id,
+            cls.env.ref("sales_team.group_sale_manager").id,
         ]
         user_dict = {
             "name": "User test",
@@ -23,15 +24,13 @@ class TestSaleDeliveryBlock(common.TransactionCase):
             "email": "armande.hruser@example.com",
             "groups_id": [(6, 0, group_ids)],
         }
-        self.user_test = self.usr_model.create(user_dict)
+        cls.user_test = cls.usr_model.create(user_dict)
         # Create product:
         prod_dict = {
             "name": "test product",
             "type": "product",
         }
-        product = (
-            self.env["product.product"].with_user(self.user_test).create(prod_dict)
-        )
+        product = cls.env["product.product"].with_user(cls.user_test).create(prod_dict)
         # Create Sale order:
         # TODO/TMP:
         # - we explicitely add a name to avoid
@@ -39,17 +38,17 @@ class TestSaleDeliveryBlock(common.TransactionCase):
         # - seems related to sale_order_revision,
         #   further investigations ongoing
         so_dict = {
-            "partner_id": self.env.ref("base.res_partner_1").id,
+            "partner_id": cls.env.ref("base.res_partner_1").id,
             "name": "Test Sale Delivery Block",
         }
-        self.sale_order = self.so_model.with_user(self.user_test).create(so_dict)
+        cls.sale_order = cls.so_model.with_user(cls.user_test).create(so_dict)
         # Create Sale order lines:
         sol_dict = {
-            "order_id": self.sale_order.id,
+            "order_id": cls.sale_order.id,
             "product_id": product.id,
             "product_uom_qty": 1.0,
         }
-        self.sale_order_line = self.sol_model.with_user(self.user_test).create(sol_dict)
+        cls.sale_order_line = cls.sol_model.with_user(cls.user_test).create(sol_dict)
 
     def test_check_auto_done(self):
         # Set active auto done configuration
