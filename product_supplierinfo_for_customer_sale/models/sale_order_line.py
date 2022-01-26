@@ -28,6 +28,12 @@ class SaleOrderLine(models.Model):
 
     @api.onchange("product_id")
     def product_id_change(self):
+        # partner_id required when using product configurator.
+        # need to provide partner_id to name_get
+        # to get SOL name = partner product name
+        new_context = dict(self._context)
+        new_context["partner_id"] = self.order_id.partner_id.id
+        super(SaleOrderLine, self.with_context(new_context)).product_id_change()
         result = super(SaleOrderLine, self).product_id_change()
         for line in self.filtered(
             lambda sol: sol.product_id.product_tmpl_id.customer_ids
