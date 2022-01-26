@@ -9,8 +9,8 @@ class SaleDeliveryBlockReason(models.Model):
     _name = "sale.delivery.block.reason"
     _description = "Sale Delivery Block Reason"
 
-    name = fields.Char(string="Name", required=True)
-    description = fields.Text(string="Description")
+    name = fields.Char(required=True)
+    description = fields.Text()
     sale_order_ids = fields.One2many(
         comodel_name="sale.order",
         inverse_name="delivery_block_id",
