@@ -6,7 +6,7 @@
     "name": "Sale Stock Picking Blocking Procurement Group By Line",
     "summary": "Module that allows module sale_stock_picking_blocking to work "
                "with sale_procurement_group_by_line",
-    "version": "11.0.1.0.0",
+    "version": "11.0.1.0.1",
     "license": "AGPL-3",
     "author": "Eficent, "
               "Odoo Community Association (OCA)",
