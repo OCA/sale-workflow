@@ -50,6 +50,7 @@ setuptools.setup(
         'odoo11-addon-sale_start_end_dates',
         'odoo11-addon-sale_stock_delivery_address',
         'odoo11-addon-sale_stock_picking_blocking',
+        'odoo11-addon-sale_stock_picking_blocking_proc_group_by_line',
         'odoo11-addon-sale_stock_picking_note',
         'odoo11-addon-sale_stock_return_request',
         'odoo11-addon-sale_stock_secondary_unit',
