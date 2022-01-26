@@ -9,14 +9,6 @@ from odoo.exceptions import ValidationError
 class SaleOrder(models.Model):
     _inherit = "sale.order"
 
-    @api.constrains("delivery_block_id")
-    def _check_not_auto_done(self):
-        auto_done = self.user_has_groups("sale.group_auto_done_setting")
-        if auto_done and any(so.delivery_block_id for so in self):
-            raise ValidationError(
-                _('You cannot block a sale order with "auto_done_setting" ' "active.")
-            )
-
     delivery_block_id = fields.Many2one(
         comodel_name="sale.delivery.block.reason",
         tracking=True,
@@ -24,6 +16,14 @@ class SaleOrder(models.Model):
         readonly=True,
         states={"draft": [("readonly", False)], "sent": [("readonly", False)]},
     )
+
+    @api.constrains("delivery_block_id")
+    def _check_not_auto_done(self):
+        auto_done = self.user_has_groups("sale.group_auto_done_setting")
+        if auto_done and any(so.delivery_block_id for so in self):
+            raise ValidationError(
+                _('You cannot block a sale order with "auto_done_setting" ' "active.")
+            )
 
     @api.onchange("partner_id")
     def onchange_partner_id(self):
