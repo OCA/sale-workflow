@@ -17,8 +17,10 @@ env:
 
   matrix:
   - LINT_CHECK="1"
-  - TESTS="1" ODOO_REPO="OCA/OCB" LINT_CHECK="0"
-  - TESTS="1" ODOO_REPO="odoo/odoo" LINT_CHECK="0" MAKEPOT="1"
+  - TESTS="1" ODOO_REPO="OCA/OCB" LINT_CHECK="0" EXCLUDE=sale_stock_picking_blocking_proc_group_by_line,sale_procurement_group_by_line
+  - TESTS="1" ODOO_REPO="odoo/odoo" LINT_CHECK="0" MAKEPOT="1" EXCLUDE=sale_stock_picking_blocking_proc_group_by_line,sale_procurement_group_by_line
+  - TESTS="1" ODOO_REPO="OCA/OCB" LINT_CHECK="0" INCLUDE=sale_stock_picking_blocking_proc_group_by_line,sale_procurement_group_by_line
+  - TESTS="1" ODOO_REPO="odoo/odoo" LINT_CHECK="0" MAKEPOT="1" INCLUDE=sale_stock_picking_blocking_proc_group_by_line,sale_procurement_group_by_line
 
 
 install:
