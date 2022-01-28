@@ -35,7 +35,7 @@ class TestSaleAdvancePayment(common.SavepointCase):
 
         # Sale Order
         cls.sale_order_1 = cls.env["sale.order"].create(
-            {"partner_id": cls.res_partner_1.id}
+            {"name": "/", "partner_id": cls.res_partner_1.id}
         )
         cls.order_line_1 = cls.env["sale.order.line"].create(
             {
