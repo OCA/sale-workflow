@@ -6,25 +6,36 @@
 # Copyright 2018 Camptocamp SA
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl)
 
-from odoo import api, models
+from odoo import api, fields, models
 
 
 class SaleOrder(models.Model):
     _inherit = "sale.order"
 
+    @api.onchange("expected_date")
+    def _onchange_expected_date(self):
+        """
+        Every time a sale order line Delivery Date is changed,
+        this method is called.
+        """
+        res = super(SaleOrder, self)._onchange_expected_date()
+        dates_list = []
+        for line in self.order_line.filtered(
+            lambda x: x.state != "cancel"
+            and not x._is_delivery()
+            and not x.display_type
+        ):
+            if line.commitment_date:
+                dt = line.commitment_date
+                dates_list.append(dt)
+        if dates_list:
+            commitment_date = (
+                min(dates_list) if self.picking_policy == "direct" else max(dates_list)
+            )
+            self.commitment_date = fields.Datetime.to_string(commitment_date)
+        else:
+            return res
+
     @api.onchange("commitment_date")
     def _onchange_commitment_date(self):
-        """Update order lines with commitment date from sale order"""
-        result = super(SaleOrder, self)._onchange_commitment_date() or {}
-        if "warning" not in result:
-            result["value"] = {
-                "order_line": [
-                    (1, line.id, {"commitment_date": self.commitment_date})
-                    for line in self.order_line
-                    if not line.commitment_date
-                    or (
-                        self.expected_date and line.commitment_date < self.expected_date
-                    )
-                ]
-            }
-        return result
+        self._onchange_expected_date()
