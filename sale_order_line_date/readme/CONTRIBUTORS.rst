@@ -10,3 +10,4 @@
 * Open-Net Sàrl <jae@open-net.ch>
 * Miquel Raïch <miquel.raich@forgeflow.com>
 * Moaad Bourhim <moaad.bourhim@gmail.com>
+* Bernat Puig <bernat.puig@forgeflow.com>
