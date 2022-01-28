@@ -27,8 +27,8 @@ Sale Order Line Date
 
 This module adds a commitment date to each sale order line and propagate it to
 stock moves and pickings.
-When the commitment date of the whole sale order is modified, the commitment date
-of the lines change to match if necessary.
+The commitment date of the whole sale order is computed based on each sale order
+line date and the sale order shipping policy. It can't be modified.
 
 **Table of contents**
 
@@ -76,6 +76,7 @@ Contributors
 * Open-Net Sàrl <jae@open-net.ch>
 * Miquel Raïch <miquel.raich@forgeflow.com>
 * Moaad Bourhim <moaad.bourhim@gmail.com>
+* Bernat Puig <bernat.puig@forgeflow.com>
 
 Maintainers
 ~~~~~~~~~~~
