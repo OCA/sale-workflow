@@ -169,11 +169,6 @@ msgid "Shipping Policy"
 msgstr ""
 
 #. module: sale_order_type
-#: model:ir.model.fields,help:sale_order_type.field_sale_order_type__company_id
-msgid "The company is automatically set from your user preferences."
-msgstr ""
-
-#. module: sale_order_type
 #: model:ir.model.fields,field_description:sale_order_type.field_sale_order__type_id
 #: model_terms:ir.ui.view,arch_db:sale_order_type.sot_sale_order_type_form_view
 #: model_terms:ir.ui.view,arch_db:sale_order_type.sot_sale_order_type_search_view
