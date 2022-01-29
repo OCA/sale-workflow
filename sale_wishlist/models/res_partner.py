@@ -28,9 +28,9 @@ class ResPartner(models.Model):
 
     def action_view_wishlists(self):
         self.ensure_one()
-        action = self.env.ref("sale_product_set.act_open_product_set_view")
-        res = action.read()[0]
-        res.update(
+        xmlid = "sale_product_set.act_open_product_set_view"
+        action = self.env["ir.actions.act_window"]._for_xml_id(xmlid)
+        action.update(
             {
                 "name": _("Wishlists"),
                 "domain": self._wishlist_domain(),
@@ -40,4 +40,4 @@ class ResPartner(models.Model):
                 },
             }
         )
-        return res
+        return action
