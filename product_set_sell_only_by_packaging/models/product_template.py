@@ -37,9 +37,7 @@ class ProductTemplate(models.Model):
 
     def action_view_product_set_lines_to_check(self):
         ids_to_check = self._product_ids_to_check()
-        action = self.env.ref(
-            "sale_product_set_sale_by_packaging.act_open_product_set_line_view"
-        )
-        action_data = action.read()[0]
-        action_data["domain"] = [("product_id", "in", ids_to_check)]
-        return action_data
+        xmlid = "sale_product_set_sale_by_packaging.act_open_product_set_line_view"
+        action = self.env["ir.actions.act_window"]._for_xml_id(xmlid)
+        action["domain"] = [("product_id", "in", ids_to_check)]
+        return action
