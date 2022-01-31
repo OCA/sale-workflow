@@ -5,6 +5,12 @@
         <field name="model">stock.warehouse</field>
         <field name="inherit_id" ref="stock.view_warehouse" />
         <field name="arch" type="xml">
+            <field name="calendar_id" position="after">
+                <field name="calendar2_id" options="{'no_create': True}" />
+            </field>
+            <field name="calendar_id" position="attributes">
+                <attribute name="invisible">1</attribute>
+            </field>
             <field name="partner_id" position="after">
                 <field name="apply_cutoff" />
                 <field

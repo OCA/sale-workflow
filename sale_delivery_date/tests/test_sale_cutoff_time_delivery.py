@@ -32,7 +32,7 @@ class TestSaleCutoffTimeDelivery(Common):
     def setUpClassWarehouse(cls):
         super().setUpClassWarehouse()
         cls.apply_cutoff = False
-        cls.warehouse.calendar_id = False
+        cls.warehouse.calendar2_id = False
 
     @classmethod
     def setUpClassProduct(cls):
