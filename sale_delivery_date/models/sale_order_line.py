@@ -87,7 +87,7 @@ class SaleOrderLine(models.Model):
         )
         partner = self.order_id.partner_shipping_id
         warehouse = self.order_id.warehouse_id
-        calendar = warehouse.calendar_id
+        calendar = warehouse.calendar2_id
         date_planned = self._apply_cutoff(date_planned, partner, warehouse)
         date_planned = self._apply_workload(date_planned, workload_days, calendar)
         date_deadline = self._apply_delivery_window(
@@ -113,7 +113,7 @@ class SaleOrderLine(models.Model):
         # If there's a calendar, remove 1 day until we get to a working day.
         # The reason for that is the parcel cannot be given to the carrier
         # on a non-working day.
-        calendar = warehouse.calendar_id
+        calendar = warehouse.calendar2_id
         date_planned = date_deadline - timedelta(days=security_lead)
         if calendar:
             next_working_day = self._next_working_day(date_planned, calendar)
@@ -135,7 +135,7 @@ class SaleOrderLine(models.Model):
         )
         if date_planned > date_planned_w_cutoff:
             date_planned = self._apply_workload(
-                date_planned, -days, warehouse.calendar_id
+                date_planned, -days, warehouse.calendar2_id
             )
             # the correct day has already been computed, only change the cut-off time
             return self._apply_cutoff(
@@ -222,7 +222,7 @@ class SaleOrderLine(models.Model):
         )
         partner = self.order_id.partner_shipping_id
         warehouse = self.order_id.warehouse_id
-        calendar = warehouse.calendar_id
+        calendar = warehouse.calendar2_id
         workload_days = self._delay_to_days(workload)
         date_planned = self._apply_cutoff(date_planned, partner, warehouse)
         date_planned = self._apply_workload(date_planned, workload_days, calendar)

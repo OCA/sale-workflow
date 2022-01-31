@@ -23,7 +23,7 @@ class StockMove(models.Model):
             from_date = fields.Datetime.now()
         partner = self.picking_id.partner_id
         warehouse = self.picking_id.picking_type_id.warehouse_id
-        calendar = warehouse.calendar_id
+        calendar = warehouse.calendar2_id
         customer_lead, security_lead, workload = self._get_delays()
         sale_line_model = self.env["sale.order.line"]
         workload_days = sale_line_model._delay_to_days(workload)
