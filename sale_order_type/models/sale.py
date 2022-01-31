@@ -24,7 +24,9 @@ class SaleOrder(models.Model):
 
     @api.model
     def _default_type_id(self):
-        return self.env["sale.order.type"].search([], limit=1)
+        return self.env["sale.order.type"].search(
+            [("company_id", "in", [self.env.company.id, False])], limit=1
+        )
 
     @api.depends("partner_id", "company_id")
     def _compute_sale_type_id(self):
