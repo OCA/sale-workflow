@@ -20,7 +20,7 @@ Available addons
 addon | version | maintainers | summary
 --- | --- | --- | ---
 [portal_sale_personal_data_only](portal_sale_personal_data_only/) | 14.0.1.0.0 |  | Portal Sale Personal Data Only
-[pricelist_cache](pricelist_cache/) | 14.0.1.0.0 |  | Provide a new model to cache price lists and update it, to make it easier to retrieve them.
+[pricelist_cache](pricelist_cache/) | 14.0.1.0.1 |  | Provide a new model to cache price lists and update it, to make it easier to retrieve them.
 [pricelist_cache_rest](pricelist_cache_rest/) | 14.0.1.0.0 |  | Provides an endpoint to get product prices for a given customer
 [product_supplierinfo_for_customer_sale](product_supplierinfo_for_customer_sale/) | 14.0.1.0.1 |  | Loads in every sale order line the customer code defined in the product
 [sale_advance_payment](sale_advance_payment/) | 14.0.1.1.0 |  | Allow to add advance payments on sales and then use them on invoices
@@ -73,7 +73,7 @@ addon | version | maintainers | summary
 [sale_product_seasonality](sale_product_seasonality/) | 14.0.1.1.0 |  | Integrates rules for products' seasonal availability with sales
 [sale_product_set](sale_product_set/) | 14.0.1.3.0 |  | Sale product set
 [sale_product_set_packaging_qty](sale_product_set_packaging_qty/) | 14.0.1.1.0 |  | Manage packaging and quantities on product set lines
-[sale_product_set_sale_by_packaging](sale_product_set_sale_by_packaging/) | 14.0.1.0.0 |  | Glue module between `sale_by_packaging` and `sale_product_set_packaging_qty`.
+[sale_product_set_sale_by_packaging](sale_product_set_sale_by_packaging/) | 14.0.1.0.1 |  | Glue module between `sale_by_packaging` and `sale_product_set_packaging_qty`.
 [sale_quotation_number](sale_quotation_number/) | 14.0.2.0.0 |  | Different sequence for sale quotations
 [sale_rental](sale_rental/) | 14.0.1.0.0 | [![alexis-via](https://github.com/alexis-via.png?size=30px)](https://github.com/alexis-via) | Manage Rental of Products
 [sale_shipping_info_helper](sale_shipping_info_helper/) | 14.0.1.0.0 |  | Add shipping amounts on sale order
@@ -83,7 +83,7 @@ addon | version | maintainers | summary
 [sale_tier_validation](sale_tier_validation/) | 14.0.1.0.0 |  | Extends the functionality of Sale Orders to support a tier validation process.
 [sale_transaction_form_link](sale_transaction_form_link/) | 14.0.1.0.0 | [![rousseldenis](https://github.com/rousseldenis.png?size=30px)](https://github.com/rousseldenis) | Allows to display a link to payment transactions on Sale Order form view.
 [sale_validity](sale_validity/) | 14.0.1.0.2 |  | Set a default validity delay on quotations
-[sale_wishlist](sale_wishlist/) | 14.0.1.0.1 |  | Handle sale wishlist for partners
+[sale_wishlist](sale_wishlist/) | 14.0.1.0.2 |  | Handle sale wishlist for partners
 [sales_team_security](sales_team_security/) | 14.0.2.0.0 | [![pedrobaeza](https://github.com/pedrobaeza.png?size=30px)](https://github.com/pedrobaeza) [![ivantodorovich](https://github.com/ivantodorovich.png?size=30px)](https://github.com/ivantodorovich) | New group for seeing only sales channel's documents
 [sales_team_security_crm](sales_team_security_crm/) | 14.0.3.0.0 | [![ivantodorovich](https://github.com/ivantodorovich.png?size=30px)](https://github.com/ivantodorovich) | Integrates sales_team_security with crm
 [sales_team_security_sale](sales_team_security_sale/) | 14.0.3.0.0 | [![ivantodorovich](https://github.com/ivantodorovich.png?size=30px)](https://github.com/ivantodorovich) | Integrates sales_team_security with sale
