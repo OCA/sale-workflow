@@ -5,7 +5,7 @@
     "name": "Sale Wishlist",
     "summary": """
         Handle sale wishlist for partners""",
-    "version": "14.0.1.0.1",
+    "version": "14.0.1.0.2",
     "license": "AGPL-3",
     "author": "Camptocamp SA,Odoo Community Association (OCA)",
     "website": "https://github.com/OCA/sale-workflow",
