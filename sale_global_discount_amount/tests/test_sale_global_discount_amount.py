@@ -102,3 +102,19 @@ class TestSaleGlobalDiscountAmount(CommonGlobalDiscount, CommonCaseGlobalDiscoun
         invoices = self._invoice_sale(sale)
         invoice_2 = invoices - invoice
         self.assertEqual(invoice_2.global_discount_amount, 2.5)
+
+    def test_create_confirm_and_remove_product(self):
+        lines = [
+            # price, qty, vat, discount
+            (10, 3, self.vat20, 0),
+            (10, 1, self.vat10, 0),
+        ]
+        sale = self._create_record(lines, 10)
+        sale.action_confirm()
+        sale.order_line[1].product_uom_qty = 0
+        self._check_discount_line(
+            sale,
+            [
+                (self.vat20, -10),
+            ],
+        )

@@ -37,6 +37,10 @@ class SaleOrder(models.Model):
 class SaleOrderLine(models.Model):
     _inherit = ["sale.order.line", "discount.line.mixin"]
     _name = "sale.order.line"
+    _gd_parent_field = "order_id"
+
+    def _check_line_unlink(self):
+        return super()._check_line_unlink().filtered(lambda s: not s.is_discount_line)
 
     def _prepare_invoice_line(self, **optional_values):
         self.ensure_one()
