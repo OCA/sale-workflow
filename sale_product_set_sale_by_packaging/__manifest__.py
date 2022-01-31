@@ -6,7 +6,7 @@
     "summary": """
     Glue module between `sale_by_packaging` and `sale_product_set_packaging_qty`.
     """,
-    "version": "14.0.1.0.0",
+    "version": "14.0.1.0.1",
     "development_status": "Alpha",
     "category": "Warehouse Management",
     "website": "https://github.com/OCA/sale-workflow",
