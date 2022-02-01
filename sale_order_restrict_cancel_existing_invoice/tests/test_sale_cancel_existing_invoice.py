@@ -37,7 +37,7 @@ class TestSaleOrderCancelExistingInvoice(TransactionCase):
         }
         self.advance = self.advance_obj.create(vals)
 
-    def test_cancel(self):
+    def test_cancel_refused(self):
         self._create_sale()
         self._create_invoice_advance()
 
@@ -46,3 +46,64 @@ class TestSaleOrderCancelExistingInvoice(TransactionCase):
 
         with self.assertRaises(UserError):
             self.sale.action_cancel()
+
+    def test_cancel_invoice_reversed(self):
+        self._create_sale()
+        self._create_invoice_advance()
+
+        self.advance.with_context(active_ids=[self.sale.id]).create_invoices()
+        invoice_id = self.sale.invoice_ids
+        invoice_id.action_post()
+
+        ctx = {
+            "active_model": invoice_id._name,
+            "active_ids": invoice_id.ids,
+            "active_id": invoice_id.id,
+        }
+        wizard_obj = self.env["account.move.reversal"].with_context(**ctx)
+        wizard = wizard_obj.create(
+            {
+                "refund_method": "cancel",
+                "reason": "reason test create",
+            }
+        )
+        wizard.reverse_moves()
+        self.assertEqual(invoice_id.payment_state, "reversed")
+        self.sale.action_cancel()
+        self.assertEqual(self.sale.state, "cancel")
+
+    def test_cancel_invoice_paid(self):
+        journal_id = self.env["account.journal"].create(
+            {
+                "name": "Bank",
+                "type": "bank",
+                "code": "BNK67",
+            }
+        )
+        self._create_sale()
+        self._create_invoice_advance()
+
+        self.advance.with_context(active_ids=[self.sale.id]).create_invoices()
+        invoice_id = self.sale.invoice_ids
+        invoice_id.action_post()
+
+        ctx = {
+            "active_model": invoice_id._name,
+            "active_ids": invoice_id.ids,
+            "active_id": invoice_id.id,
+        }
+        wizard_obj = self.env["account.payment.register"].with_context(**ctx)
+        wizard = wizard_obj.create(
+            {
+                "amount": invoice_id.amount_total,
+                "journal_id": journal_id.id,
+                "payment_method_id": self.env.ref(
+                    "account.account_payment_method_manual_in"
+                ).id,
+            }
+        )
+        wizard._create_payments()
+
+        self.assertEqual(invoice_id.payment_state, "paid")
+        self.sale.action_cancel()
+        self.assertEqual(self.sale.state, "cancel")
