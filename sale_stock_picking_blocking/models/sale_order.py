@@ -31,7 +31,7 @@ class SaleOrder(models.Model):
         res = super().onchange_partner_id()
         for so in self:
             so.delivery_block_id = (
-                so.commercial_partner_id.default_delivery_block or False
+                so.partner_id.commercial_partner_id.default_delivery_block or False
             )
         return res
 
@@ -49,10 +49,12 @@ class SaleOrder(models.Model):
         new_so = super().copy(default=default)
         for so in new_so:
             if (
-                so.commercial_partner_id.default_delivery_block
+                so.partner_id.commercial_partner_id.default_delivery_block
                 and not so.delivery_block_id
             ):
-                so.delivery_block_id = so.commercial_partner_id.default_delivery_block
+                so.delivery_block_id = (
+                    so.partner_id.commercial_partner_id.default_delivery_block
+                )
         return new_so
 
 
