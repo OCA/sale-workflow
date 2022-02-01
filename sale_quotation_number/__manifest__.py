@@ -6,7 +6,7 @@
 {
     "name": "Sale Quotation Numeration",
     "summary": "Different sequence for sale quotations",
-    "version": "14.0.1.0.3",
+    "version": "14.0.2.0.0",
     "category": "Sales Management",
     "website": "https://github.com/OCA/sale-workflow",
     "author": "Elico Corp, "
@@ -17,6 +17,5 @@
     "application": False,
     "installable": True,
     "depends": ["sale_management"],
-    "excludes": ["sale_isolated_quotation"],
-    "data": ["data/data.xml", "views/sales_config.xml"],
+    "data": ["data/ir_sequence_data.xml", "views/sales_config.xml"],
 }

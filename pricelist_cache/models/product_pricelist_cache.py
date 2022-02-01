@@ -241,9 +241,8 @@ class PricelistCache(models.Model):
         return cached_prices
 
     def _get_tree_view(self, domain=None):
-        action = self.env.ref("pricelist_cache.product_pricelist_cache_action").read()[
-            0
-        ]
+        xmlid = "pricelist_cache.product_pricelist_cache_action"
+        action = self.env["ir.actions.act_window"]._for_xml_id(xmlid)
         if domain is not None:
             action["domain"] = domain
         return action
