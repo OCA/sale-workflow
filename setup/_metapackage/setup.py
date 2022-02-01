@@ -81,6 +81,7 @@ setuptools.setup(
         'odoo13-addon-sale_product_set_packaging_qty',
         'odoo13-addon-sale_product_set_sale_by_packaging',
         'odoo13-addon-sale_quotation_number',
+        'odoo13-addon-sale_resource_booking',
         'odoo13-addon-sale_secondary_salesperson',
         'odoo13-addon-sale_shipping_info_helper',
         'odoo13-addon-sale_sourced_by_line',
