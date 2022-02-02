@@ -12,9 +12,7 @@
     "summary": """
     Allows to easy mass operations on sale orders.
 """,
-    "depends": [
-        "sale",
-    ],
+    "depends": ["sale", "web_notify"],
     "data": [
         "security/security.xml",
         "wizards/sale_order_mass_action_view.xml",
