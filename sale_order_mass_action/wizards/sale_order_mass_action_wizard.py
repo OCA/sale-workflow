@@ -3,7 +3,7 @@
 # Copyright 2022 ACSONE SA/NV
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
-from odoo import fields, models
+from odoo import api, fields, models
 
 
 class SaleOrderMassActionWizard(models.TransientModel):
@@ -21,6 +21,12 @@ class SaleOrderMassActionWizard(models.TransientModel):
             ("state", "in", ("draft", "sent")),
         ]
 
+    @api.model
+    def _notify_success(self, sale_orders):
+        order_names = "\n".join(sale_orders.mapped("name"))
+        message = "The following orders has been updated : %s" % order_names
+        self.env.user.notify_success(message=message)
+
     def apply_button(self):
         sale_order_obj = self.env["sale.order"]
         if self.env.context.get("active_model") != "sale.order":
@@ -28,4 +34,5 @@ class SaleOrderMassActionWizard(models.TransientModel):
         for wizard in self.filtered("confirm"):
             sale_orders = sale_order_obj.search(wizard._get_sale_order_confirm_domain())
             sale_orders.action_confirm()
+            self._notify_success(sale_orders)
         return True
