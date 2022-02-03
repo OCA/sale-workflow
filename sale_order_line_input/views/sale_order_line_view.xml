@@ -35,7 +35,7 @@
                 />
                 <button
                     name="action_sale_order_form"
-                    string="Open Sale Order"
+                    string="Open Order"
                     type="object"
                     icon="fa-external-link"
                     class="oe_stat_button"
@@ -78,6 +78,8 @@
                     name="product_uom_qty"
                     sum="Ordered"
                     string="Ordered Qty"
+                    decoration-info="(not display_type and invoice_status == 'to invoice')"
+                    decoration-bf="(not display_type and invoice_status == 'to invoice')"
                     context="{'partner_id':order_partner_id, 'quantity':product_uom_qty, 'pricelist':pricelist_id, 'uom':product_uom, 'company_id': company_id}"
                     attrs="{'readonly': [('state', 'in', ('done', 'cancel'))]}"
                     optional="show"
@@ -85,11 +87,19 @@
                 <field
                     name="qty_delivered"
                     sum="Delivered"
+                    decoration-info="(not display_type and invoice_status == 'to invoice')"
+                    decoration-bf="(not display_type and invoice_status == 'to invoice')"
                     attrs="{'readonly': [('qty_delivered_method', '!=', 'manual')]}"
                     optional="show"
                 />
                 <field name="qty_delivered_manual" invisible="1" />
-                <field name="qty_invoiced" sum="Invoiced" optional="show" />
+                <field
+                    name="qty_invoiced"
+                    sum="Invoiced"
+                    optional="show"
+                    decoration-info="(not display_type and invoice_status == 'to invoice')"
+                    decoration-bf="(not display_type and invoice_status == 'to invoice')"
+                />
                 <field name="qty_to_invoice" sum="To Invoice" optional="show" />
                 <field
                     name="product_uom"
@@ -103,23 +113,24 @@
                 <field
                     name="analytic_tag_ids"
                     attrs="{'readonly': [('state', 'in', ('done', 'cancel'))]}"
+                    domain="['|', ('company_id', '=', False), ('company_id', '=', parent.company_id)]"
                     groups="analytic.group_analytic_accounting"
                     widget="many2many_tags"
                     options="{'color_field': 'color'}"
-                    optional="show"
+                    optional="hide"
                 />
                 <field
                     name="price_unit"
-                    attrs="{'readonly': ['|', ('qty_invoiced', '&gt;', 0), ('state', 'in', ('done', 'cancel'))]}"
+                    attrs="{'readonly': [('qty_invoiced', '&gt;', 0)]}"
                     optional="show"
                 />
                 <field
                     name="tax_id"
                     widget="many2many_tags"
                     options="{'no_create': True}"
-                    domain="[('type_tax_use','=','sale'),('company_id','=',company_id)]"
+                    domain="[('type_tax_use','=','sale'),('company_id','=',parent.company_id)]"
                     invisible="context.get('tax_hide', False)"
-                    attrs="{'readonly': ['|', ('qty_invoiced', '&gt;', 0), ('state', 'in', ('done', 'cancel'))]}"
+                    attrs="{'readonly': [('qty_invoiced', '&gt;', 0)]}"
                     optional="show"
                 />
                 <field
@@ -141,15 +152,20 @@
                     groups="account.group_show_line_subtotals_tax_included"
                     optional="show"
                 />
+                <field
+                    name="customer_lead"
+                    optional="show"
+                    attrs="{'readonly': [('state', 'not in', ['draft', 'sent', 'sale'])]}"
+                />
                 <field name="product_updatable" invisible="1" />
                 <field name="qty_delivered_method" invisible="1" />
                 <field name="state" invisible="1" />
                 <field name="invoice_status" invisible="1" />
-                <field name="customer_lead" invisible="1" />
                 <field name="currency_id" invisible="1" />
                 <field name="price_tax" invisible="1" />
                 <field name="pricelist_id" invisible="1" />
                 <field name="company_id" invisible="1" />
+                <field name="product_uom_readonly" invisible="1" />
             </tree>
         </field>
     </record>
