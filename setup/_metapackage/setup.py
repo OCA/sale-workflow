@@ -13,6 +13,7 @@ setuptools.setup(
         'odoo-addon-sale_delivery_state>=15.0dev,<15.1dev',
         'odoo-addon-sale_force_invoiced>=15.0dev,<15.1dev',
         'odoo-addon-sale_order_line_date>=15.0dev,<15.1dev',
+        'odoo-addon-sale_order_type>=15.0dev,<15.1dev',
     ],
     classifiers=[
         'Programming Language :: Python',
