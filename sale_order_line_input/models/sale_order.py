@@ -7,7 +7,10 @@ from odoo import api, fields, models
 class SaleOrderLine(models.Model):
     _inherit = "sale.order.line"
 
-    pricelist_id = fields.Many2one(related="order_id.pricelist_id", readonly=True,)
+    pricelist_id = fields.Many2one(
+        related="order_id.pricelist_id",
+        readonly=True,
+    )
     force_company_id = fields.Many2one(
         comodel_name="res.company",
         string="Forced company",
@@ -30,8 +33,8 @@ class SaleOrderLine(models.Model):
 
     @api.onchange("force_company_id")
     def _onchange_force_company_id(self):
-        """ Assign company_id because is used in domains as partner,
-            product, taxes... """
+        """Assign company_id because is used in domains as partner,
+        product, taxes..."""
         for line in self:
             line.company_id = line.force_company_id
 
