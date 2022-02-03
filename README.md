@@ -24,6 +24,7 @@ addon | version | maintainers | summary
 [sale_delivery_state](sale_delivery_state/) | 15.0.1.0.0 |  | Show the delivery state on the sale order
 [sale_force_invoiced](sale_force_invoiced/) | 15.0.1.0.0 |  | Allows to force the invoice status of the sales order to Invoiced
 [sale_order_line_date](sale_order_line_date/) | 15.0.1.0.1 |  | Adds a commitment date to each sale order line.
+[sale_order_type](sale_order_type/) | 15.0.1.0.0 |  | Sale Order Type
 
 [//]: # (end addons)
 
