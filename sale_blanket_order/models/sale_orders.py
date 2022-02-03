@@ -133,7 +133,8 @@ class SaleOrderLine(models.Model):
             if bol.taxes_id:
                 self.tax_id = bol.taxes_id
         else:
-            self._compute_tax_id()
+            if not self.tax_id:
+                self._compute_tax_id()
             self.with_context(skip_blanket_find=True).product_uom_change()
 
     @api.constrains("product_id")
