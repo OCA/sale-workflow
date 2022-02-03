@@ -27,5 +27,5 @@ class TestSaleOrderLineInput(SavepointCase):
         line = line_form.save()
         self.assertTrue(line.order_id)
         action_dict = line.action_sale_order_form()
-        self.assertEquals(action_dict["res_id"], line.order_id.id)
-        self.assertEquals(action_dict["res_model"], "sale.order")
+        self.assertEqual(action_dict["res_id"], line.order_id.id)
+        self.assertEqual(action_dict["res_model"], "sale.order")
