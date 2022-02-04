@@ -4,7 +4,7 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: Odoo Server 13.0\n"
+"Project-Id-Version: Odoo Server 14.0\n"
 "Report-Msgid-Bugs-To: \n"
 "Last-Translator: \n"
 "Language-Team: \n"
@@ -21,6 +21,21 @@ msgstr ""
 #. module: sale_order_line_input
 #: model_terms:ir.ui.view,arch_db:sale_order_line_input.view_sales_order_line_input_tree
 msgid "Disc.%"
+msgstr ""
+
+#. module: sale_order_line_input
+#: model:ir.model.fields,field_description:sale_order_line_input.field_sale_order_line__display_name
+msgid "Display Name"
+msgstr ""
+
+#. module: sale_order_line_input
+#: model:ir.model.fields,field_description:sale_order_line_input.field_sale_order_line__force_company_id
+msgid "Forced company"
+msgstr ""
+
+#. module: sale_order_line_input
+#: model:ir.model.fields,field_description:sale_order_line_input.field_sale_order_line__id
+msgid "ID"
 msgstr ""
 
 #. module: sale_order_line_input
@@ -44,6 +59,11 @@ msgid "Invoiced"
 msgstr ""
 
 #. module: sale_order_line_input
+#: model:ir.model.fields,field_description:sale_order_line_input.field_sale_order_line____last_update
+msgid "Last Modified on"
+msgstr ""
+
+#. module: sale_order_line_input
 #: model_terms:ir.ui.view,arch_db:sale_order_line_input.view_sales_order_line_input_tree
 msgid "New"
 msgstr ""
@@ -55,7 +75,7 @@ msgstr ""
 
 #. module: sale_order_line_input
 #: model_terms:ir.ui.view,arch_db:sale_order_line_input.view_sales_order_line_input_tree
-msgid "Open Sale Order"
+msgid "Open Order"
 msgstr ""
 
 #. module: sale_order_line_input
@@ -97,6 +117,13 @@ msgstr ""
 #: model:ir.actions.act_window,name:sale_order_line_input.action_sales_order_line_input
 #: model:ir.ui.menu,name:sale_order_line_input.menu_sales_order_line_input
 msgid "Sales Orders Lines"
+msgstr ""
+
+#. module: sale_order_line_input
+#: model:ir.model.fields,help:sale_order_line_input.field_sale_order_line__force_company_id
+msgid ""
+"Technical field to force company or get it from env user if order don't "
+"exist."
 msgstr ""
 
 #. module: sale_order_line_input
