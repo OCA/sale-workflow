@@ -6,118 +6,122 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 14.0\n"
 "Report-Msgid-Bugs-To: \n"
-"Last-Translator: \n"
-"Language-Team: \n"
+"PO-Revision-Date: 2022-08-31 16:07+0000\n"
+"Last-Translator: Samuele Mariani <samuele@ooops404.com>\n"
+"Language-Team: none\n"
+"Language: it\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
-"Plural-Forms: \n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: Weblate 4.3.2\n"
 
 #. module: sale_order_line_input
 #: model_terms:ir.ui.view,arch_db:sale_order_line_input.view_sales_order_line_input_tree
 msgid "Delivered"
-msgstr ""
+msgstr "Consegnato"
 
 #. module: sale_order_line_input
 #: model_terms:ir.ui.view,arch_db:sale_order_line_input.view_sales_order_line_input_tree
 msgid "Disc.%"
-msgstr ""
+msgstr "Sconto (%)"
 
 #. module: sale_order_line_input
 #: model:ir.model.fields,field_description:sale_order_line_input.field_sale_order_line__display_name
 msgid "Display Name"
-msgstr ""
+msgstr "Nome visualizzato"
 
 #. module: sale_order_line_input
 #: model:ir.model.fields,field_description:sale_order_line_input.field_sale_order_line__force_company_id
 msgid "Forced company"
-msgstr ""
+msgstr "Azienda forzata"
 
 #. module: sale_order_line_input
 #: model:ir.model.fields,field_description:sale_order_line_input.field_sale_order_line__id
 msgid "ID"
-msgstr ""
+msgstr "ID"
 
 #. module: sale_order_line_input
 #: model:ir.model.fields,help:sale_order_line_input.field_sale_order_line__pricelist_id
 msgid "If you change the pricelist, only newly added lines will be affected."
 msgstr ""
+"Se cambi il listino prezzi, verrà applicato solo alle nuove righe aggiunte."
 
 #. module: sale_order_line_input
 #: model_terms:ir.ui.view,arch_db:sale_order_line_input.view_sales_order_line_filter
 msgid "Invoice Related"
-msgstr ""
+msgstr "Collegato a Fattura"
 
 #. module: sale_order_line_input
 #: model_terms:ir.ui.view,arch_db:sale_order_line_input.view_sales_order_line_filter
 msgid "Invoice Status"
-msgstr ""
+msgstr "Stato Fattura"
 
 #. module: sale_order_line_input
 #: model_terms:ir.ui.view,arch_db:sale_order_line_input.view_sales_order_line_input_tree
 msgid "Invoiced"
-msgstr ""
+msgstr "Fatturato"
 
 #. module: sale_order_line_input
 #: model:ir.model.fields,field_description:sale_order_line_input.field_sale_order_line____last_update
 msgid "Last Modified on"
-msgstr ""
+msgstr "Ultima modifica il"
 
 #. module: sale_order_line_input
 #: model_terms:ir.ui.view,arch_db:sale_order_line_input.view_sales_order_line_input_tree
 msgid "New"
-msgstr ""
+msgstr "Nuovo"
 
 #. module: sale_order_line_input
 #: model_terms:ir.ui.view,arch_db:sale_order_line_input.view_sales_order_line_filter
 msgid "Not Invoice Related"
-msgstr ""
+msgstr "Non Collegato a Fattura"
 
 #. module: sale_order_line_input
 #: model_terms:ir.ui.view,arch_db:sale_order_line_input.view_sales_order_line_input_tree
 msgid "Open Order"
-msgstr ""
+msgstr "Apri ordine"
 
 #. module: sale_order_line_input
 #: model_terms:ir.ui.view,arch_db:sale_order_line_input.view_sales_order_line_input_tree
 msgid "Order"
-msgstr ""
+msgstr "Ordine"
 
 #. module: sale_order_line_input
 #: model_terms:ir.ui.view,arch_db:sale_order_line_input.view_sales_order_line_filter
 msgid "Order State"
-msgstr ""
+msgstr "Stato Ordine"
 
 #. module: sale_order_line_input
 #: model_terms:ir.ui.view,arch_db:sale_order_line_input.view_sales_order_line_input_tree
 msgid "Ordered"
-msgstr ""
+msgstr "Ordinato"
 
 #. module: sale_order_line_input
 #: model_terms:ir.ui.view,arch_db:sale_order_line_input.view_sales_order_line_input_tree
 msgid "Ordered Qty"
-msgstr ""
+msgstr "Qtà Ordinata"
 
 #. module: sale_order_line_input
 #: model:ir.model.fields,field_description:sale_order_line_input.field_sale_order_line__pricelist_id
 msgid "Pricelist"
-msgstr ""
+msgstr "Listino prezzi"
 
 #. module: sale_order_line_input
 #: model_terms:ir.ui.view,arch_db:sale_order_line_input.view_sales_order_line_input_tree
 msgid "Product"
-msgstr ""
+msgstr "Prodotto"
 
 #. module: sale_order_line_input
 #: model:ir.model,name:sale_order_line_input.model_sale_order_line
 msgid "Sales Order Line"
-msgstr ""
+msgstr "Riga Ordine di Vendita"
 
 #. module: sale_order_line_input
 #: model:ir.actions.act_window,name:sale_order_line_input.action_sales_order_line_input
 #: model:ir.ui.menu,name:sale_order_line_input.menu_sales_order_line_input
 msgid "Sales Orders Lines"
-msgstr ""
+msgstr "Righe Ordini di Vendita"
 
 #. module: sale_order_line_input
 #: model:ir.model.fields,help:sale_order_line_input.field_sale_order_line__force_company_id
@@ -125,14 +129,16 @@ msgid ""
 "Technical field to force company or get it from env user if order don't "
 "exist."
 msgstr ""
+"Campo tecnico per forzare l'azienda o per ricavarla dall'ambiente utente se "
+"l'ordine non esiste."
 
 #. module: sale_order_line_input
 #: model_terms:ir.ui.view,arch_db:sale_order_line_input.view_sales_order_line_input_tree
 msgid "To Invoice"
-msgstr ""
+msgstr "Da Fatturare"
 
 #. module: sale_order_line_input
 #: model_terms:ir.ui.view,arch_db:sale_order_line_input.view_sales_order_line_filter
 #: model_terms:ir.ui.view,arch_db:sale_order_line_input.view_sales_order_line_input_tree
 msgid "UoM"
-msgstr ""
+msgstr "UdM"
