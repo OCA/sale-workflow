@@ -22,7 +22,7 @@ class SaleOrderLine(models.Model):
 
     @api.depends("order_id")
     def _compute_force_company_id(self):
-        """ Related company is not computed already when we click create new line """
+        """Related company is not computed already when we click create new line"""
         for line in self:
             line.force_company_id = (
                 line.order_id.company_id
@@ -40,7 +40,7 @@ class SaleOrderLine(models.Model):
 
     @api.onchange("order_partner_id")
     def _onchange_order_partner_id(self):
-        """ Create order to correct compute of taxes """
+        """Create order to correct compute of taxes"""
         if not self.order_partner_id or self.order_id:
             return
         SaleOrder = self.env["sale.order"]
