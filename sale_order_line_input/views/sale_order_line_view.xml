@@ -47,6 +47,7 @@
                     required="1"
                     attrs="{'readonly': [('order_partner_id', '!=', False), ('order_id', '!=', False)]}"
                 />
+                <field name="write_date" widget="date" optional="hide" />
                 <field
                     name="product_id"
                     attrs="{'readonly': [('product_updatable', '=', False)]}"
