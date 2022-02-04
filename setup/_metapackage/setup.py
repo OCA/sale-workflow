@@ -13,6 +13,7 @@ setuptools.setup(
         'odoo9-addon-sale_cancel_reason',
         'odoo9-addon-sale_delivery_block',
         'odoo9-addon-sale_delivery_block_proc_group_by_line',
+        'odoo9-addon-sale_discount_display_amount',
         'odoo9-addon-sale_double_validation',
         'odoo9-addon-sale_exception',
         'odoo9-addon-sale_fixed_discount',
