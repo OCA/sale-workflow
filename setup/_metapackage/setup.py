@@ -33,6 +33,7 @@ setuptools.setup(
         'odoo9-addon-sale_product_set',
         'odoo9-addon-sale_rental',
         'odoo9-addon-sale_revert_done',
+        'odoo9-addon-sale_shipping_info_helper',
         'odoo9-addon-sale_sourced_by_line',
         'odoo9-addon-sale_start_end_dates',
         'odoo9-addon-sale_validity',
