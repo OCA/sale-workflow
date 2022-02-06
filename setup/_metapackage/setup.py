@@ -40,6 +40,7 @@ setuptools.setup(
         'odoo14-addon-sale_order_general_discount',
         'odoo14-addon-sale_order_line_chained_move',
         'odoo14-addon-sale_order_line_date',
+        'odoo14-addon-sale_order_line_delivery_state',
         'odoo14-addon-sale_order_line_description',
         'odoo14-addon-sale_order_line_input',
         'odoo14-addon-sale_order_line_menu',
