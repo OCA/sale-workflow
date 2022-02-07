@@ -107,10 +107,10 @@ class AutomaticWorkflowJob(models.Model):
             [('state', 'in', ['draft', 'confirmed', 'assigned']),
              ('workflow_process_id.validate_picking', '=', True)],
         )
-        _logger.debug('Pickings to validate: %s', pickings)
-        if pickings:
+        _logger.debug("Pickings to validate: %s", pickings)
+        for picking in pickings:
             with commit(self.env.cr):
-                pickings.validate_picking()
+                picking.validate_picking()
 
     @api.model
     def run(self):

@@ -46,7 +46,8 @@ class StockPicking(models.Model):
         if only_available:
             only_available.action_assign()
             only_available.do_prepare_partial()
-            only_available.do_transfer()
+            if only_available.state in ["partially_available", "assigned"]:
+                only_available.do_transfer()
         if to_force:
             to_force.force_assign()
             to_force.do_transfer()
