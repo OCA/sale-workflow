@@ -17,14 +17,9 @@ class SaleOrder(models.Model):
         """Update order lines with commitment date from sale order"""
         result = super(SaleOrder, self)._onchange_commitment_date() or {}
         if "warning" not in result:
-            result["value"] = {
-                "order_line": [
-                    (1, line.id, {"commitment_date": self.commitment_date})
-                    for line in self.order_line
-                    if not line.commitment_date
-                    or (
-                        self.expected_date and line.commitment_date < self.expected_date
-                    )
-                ]
-            }
+            for line in self.order_line:
+                if not line.commitment_date or (
+                    self.expected_date and line.commitment_date < self.expected_date
+                ):
+                    line.commitment_date = self.commitment_date
         return result
