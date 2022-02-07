@@ -1,0 +1,35 @@
+<odoo>
+
+    <record id="view_order_form" model="ir.ui.view">
+        <field name="model">sale.order</field>
+        <field name="inherit_id" ref="sale.view_order_form" />
+        <field name="priority" eval="100" />
+        <field name="arch" type="xml">
+            <div name="button_box" position="inside">
+                <button
+                    class="oe_stat_button"
+                    type="action"
+                    name="%(sale_order_line_input.action_sales_order_line_input)d"
+                    icon="fa-product-hunt"
+                    context="{'partner_id': commercial_partner_id}"
+                >
+                    <div class="o_stat_info">
+                        <span class="o_stat_text">Sale Lines</span>
+                    </div>
+                </button>
+            </div>
+        </field>
+    </record>
+
+    <record
+        model="ir.actions.act_window"
+        id="sale_order_line_input.action_sales_order_line_input"
+    >
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">sale.order.line</field>
+        <field
+            name="domain"
+        >[('order_partner_id', 'child_of', context.get('partner_id'))]</field>
+    </record>
+
+</odoo>
