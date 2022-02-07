@@ -3,6 +3,7 @@
 
 import json
 
+from odoo import fields
 from odoo.exceptions import ValidationError
 from odoo.tests import common
 
@@ -126,7 +127,7 @@ class TestSaleAdvancePayment(common.TransactionCase):
             }
         )
 
-    def test_sale_advance_payment(self):
+    def test_01_sale_advance_payment(self):
         self.assertEqual(
             self.sale_order_1.amount_residual,
             3600,
@@ -151,6 +152,7 @@ class TestSaleAdvancePayment(common.TransactionCase):
                 .create(
                     {
                         "journal_id": self.journal_eur_bank.id,
+                        "payment_type": "inbound",
                         "amount_advance": 3001,
                         "order_id": self.sale_order_1.id,
                     }
@@ -241,16 +243,21 @@ class TestSaleAdvancePayment(common.TransactionCase):
         result = [d["amount"] for d in payments["content"]]
         self.assertEqual(set(payment_list), set(result))
 
-    def test_sale_advance_payment_outgoing(self):
+    def test_02_residual_amount_with_invoice(self):
         self.assertEqual(
             self.sale_order_1.amount_residual,
             3600,
         )
+        self.assertEqual(
+            self.sale_order_1.amount_residual,
+            self.sale_order_1.amount_total,
+        )
+        # Create Advance Payment 1 - EUR - bank
         context_payment = {
             "active_ids": [self.sale_order_1.id],
             "active_id": self.sale_order_1.id,
         }
-        # Create an inbound payment of 200 USD
+        # Create Advance Payment 2 - USD - cash
         advance_payment_2 = (
             self.env["account.voucher.wizard"]
             .with_context(**context_payment)
@@ -264,19 +271,122 @@ class TestSaleAdvancePayment(common.TransactionCase):
             )
         )
         advance_payment_2.make_advance_payment()
+        pre_payment = self.sale_order_1.account_payment_ids
+        self.assertEqual(len(pre_payment), 1)
         self.assertEqual(self.sale_order_1.amount_residual, 3400)
-        # Create an outbound payment of 200 USD
+        # generate invoice, pay invoice, check amount residual.
+        self.sale_order_1.action_confirm()
+        self.assertEqual(self.sale_order_1.invoice_status, "to invoice")
+        self.sale_order_1._create_invoices()
+        self.assertEqual(self.sale_order_1.invoice_status, "invoiced")
+        self.assertEqual(self.sale_order_1.amount_residual, 3400)
+        invoice = self.sale_order_1.invoice_ids
+        invoice.invoice_date = fields.Date.today()
+        invoice.action_post()
+        active_ids = invoice.ids
+        self.env["account.payment.register"].with_context(
+            active_model="account.move", active_ids=active_ids
+        ).create(
+            {
+                "amount": 1200.0,
+                "group_payment": True,
+                "payment_difference_handling": "open",
+            }
+        )._create_payments()
+        self.assertEqual(self.sale_order_1.amount_residual, 2200)
+
+        # Reconciling the pre-payment should not affect amount_residual in SO.
+        (
+            liquidity_lines,
+            counterpart_lines,
+            writeoff_lines,
+        ) = pre_payment._seek_for_lines()
+        (
+            counterpart_lines
+            + invoice.line_ids.filtered(
+                lambda line: line.account_internal_type == "receivable"
+            )
+        ).reconcile()
+        self.sale_order_1.invalidate_cache()
+        self.assertEqual(self.sale_order_1.amount_residual, 2200)
+
+    def test_03_residual_amount_big_pre_payment(self):
+        self.assertEqual(
+            self.sale_order_1.amount_residual,
+            3600,
+        )
+        self.assertEqual(
+            self.sale_order_1.amount_residual,
+            self.sale_order_1.amount_total,
+        )
+        # Create Advance Payment 1 - EUR - bank
+        context_payment = {
+            "active_ids": [self.sale_order_1.id],
+            "active_id": self.sale_order_1.id,
+        }
+        # Create Advance Payment 2 - USD - cash
         advance_payment_2 = (
             self.env["account.voucher.wizard"]
             .with_context(**context_payment)
             .create(
                 {
                     "journal_id": self.journal_usd_cash.id,
-                    "payment_type": "outbound",
-                    "amount_advance": 200,
+                    "payment_type": "inbound",
+                    "amount_advance": 2000,
                     "order_id": self.sale_order_1.id,
                 }
             )
         )
         advance_payment_2.make_advance_payment()
-        self.assertEqual(self.sale_order_1.amount_residual, 3600)
+        pre_payment = self.sale_order_1.account_payment_ids
+        self.assertEqual(len(pre_payment), 1)
+        self.assertEqual(self.sale_order_1.amount_residual, 1600)
+        # generate a partial invoice, reconcile with pre payment, check amount residual.
+        self.sale_order_1.action_confirm()
+        self.assertEqual(self.sale_order_1.invoice_status, "to invoice")
+        # Adjust invoice_policy method to then do a partial invoice with a total amount
+        # smaller than the pre-payment.
+        self.product_1.invoice_policy = "delivery"
+        self.order_line_1.qty_delivered = 10.0
+        self.assertEqual(self.order_line_1.qty_to_invoice, 10.0)
+        self.product_2.invoice_policy = "delivery"
+        self.order_line_2.qty_delivered = 0.0
+        self.assertEqual(self.order_line_2.qty_to_invoice, 0.0)
+        self.product_3.invoice_policy = "delivery"
+        self.order_line_3.qty_delivered = 0.0
+        self.assertEqual(self.order_line_3.qty_to_invoice, 0.0)
+        self.sale_order_1._create_invoices()
+        self.assertEqual(self.sale_order_1.invoice_status, "no")
+        self.assertEqual(self.sale_order_1.amount_residual, 1600)
+        invoice = self.sale_order_1.invoice_ids
+        invoice.invoice_date = fields.Date.today()
+        invoice.action_post()
+        self.assertEqual(invoice.amount_residual, 1200)
+        active_ids = invoice.ids
+        self.env["account.payment.register"].with_context(
+            active_model="account.move", active_ids=active_ids
+        ).create(
+            {
+                "amount": 300.0,
+                "group_payment": True,
+                "payment_difference_handling": "open",
+            }
+        )._create_payments()
+        self.assertEqual(invoice.amount_residual, 900)
+        self.assertEqual(self.sale_order_1.amount_residual, 1300)
+
+        # Partially reconciling the pre-payment should not affect amount_residual in SO.
+        (
+            liquidity_lines,
+            counterpart_lines,
+            writeoff_lines,
+        ) = pre_payment._seek_for_lines()
+        (
+            counterpart_lines
+            + invoice.line_ids.filtered(
+                lambda line: line.account_internal_type == "receivable"
+            )
+        ).reconcile()
+        self.sale_order_1.invalidate_cache()
+        self.assertEqual(self.sale_order_1.amount_residual, 1300)
+        self.assertEqual(invoice.amount_residual, 0)
