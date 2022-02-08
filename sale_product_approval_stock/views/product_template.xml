@@ -13,7 +13,10 @@
             <group name="candidate_fields" position="inside">
                 <group>
                     <separator string="Stock" />
-                    <field name="candidate_ship" />
+                    <field
+                        name="candidate_ship"
+                        attrs="{'readonly': [('can_edit_candidate', '=', False)]}"
+                    />
                 </group>
             </group>
         </field>
