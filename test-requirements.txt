@@ -1,0 +1,1 @@
+odoo12-addon-mail_activity_validation @ git+https://github.com/OCA/social@refs/pull/843/head#subdirectory=setup/mail_activity_validation
