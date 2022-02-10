@@ -29,10 +29,10 @@ class TestSalePartnerVersion(TransactionCase):
         self.assertNotEqual(self.sale.partner_shipping_id.parent_id, partner)
         self.sale.action_confirm()
         partner.write({'city': 'city update'})
-        self.assertNotEqual(self.sale.partner_invoice_id, partner)
-        self.assertEqual(self.sale.partner_invoice_id.parent_id, partner)
-        self.assertNotEqual(self.sale.partner_shipping_id, partner)
-        self.assertEqual(self.sale.partner_shipping_id.parent_id, partner)
+        self.assertEqual(self.sale.partner_invoice_id, partner)
+        self.assertNotEqual(self.sale.partner_invoice_id.parent_id, partner)
+        self.assertEqual(self.sale.partner_shipping_id, partner)
+        self.assertNotEqual(self.sale.partner_shipping_id.parent_id, partner)
 
     def test_sale_version_shipping(self):
         self.sale.partner_shipping_id = self.partner
@@ -43,8 +43,8 @@ class TestSalePartnerVersion(TransactionCase):
         self.sale.action_confirm()
         self.partner.write({'city': 'city update'})
         self.assertNotEqual(self.sale.partner_invoice_id, self.partner)
-        self.assertNotEqual(self.sale.partner_shipping_id, self.partner)
-        self.assertEqual(self.sale.partner_shipping_id.parent_id, self.partner)
+        self.assertEqual(self.sale.partner_shipping_id, self.partner)
+        self.assertNotEqual(self.sale.partner_shipping_id.parent_id, self.partner)
 
     def test_sale_version_invoice(self):
         self.sale.partner_invoice_id = self.partner
@@ -55,9 +55,9 @@ class TestSalePartnerVersion(TransactionCase):
                             self.partner)
         self.sale.action_confirm()
         self.partner.write({'city': 'city update'})
-        self.assertNotEqual(self.sale.partner_invoice_id, self.partner)
+        self.assertEqual(self.sale.partner_invoice_id, self.partner)
         self.assertNotEqual(self.sale.partner_shipping_id, self.partner)
-        self.assertEqual(self.sale.partner_invoice_id.parent_id, self.partner)
+        self.assertNotEqual(self.sale.partner_invoice_id.parent_id, self.partner)
 
     def test_sale_version_confirmed_invoice(self):
         self.sale.partner_invoice_id = self.partner
