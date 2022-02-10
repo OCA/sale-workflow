@@ -31,7 +31,7 @@ addon | version | maintainers | summary
 [sale_force_invoiced](sale_force_invoiced/) | 9.0.1.0.0 |  | Allows to force the invoice status of the sales order to Invoiced
 [sale_open_qty](sale_open_qty/) | 9.0.1.0.1 |  | Allows to identify the sale orders that have quantities pending to invoice or to deliver.
 [sale_order_digitized_signature](sale_order_digitized_signature/) | 9.0.1.0.0 |  | Sale Order Digitized Signature
-[sale_order_general_discount](sale_order_general_discount/) | 9.0.1.0.0 |  | General discount per sale order
+[sale_order_general_discount](sale_order_general_discount/) | 9.0.1.0.1 |  | General discount per sale order
 [sale_order_line_date](sale_order_line_date/) | 9.0.1.0.0 |  | Sale Order Line Date
 [sale_order_line_sequence](sale_order_line_sequence/) | 9.0.1.0.0 |  | Propagates SO line sequence to invoices and stock picking.
 [sale_order_lot_selection](sale_order_lot_selection/) | 9.0.1.1.0 |  | Sale Order Lot Selection
