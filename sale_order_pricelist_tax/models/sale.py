@@ -82,12 +82,7 @@ class SaleOrder(models.Model):
 
     def update_prices(self):
         for record in self:
-            # apply the tax before or after the price recompute
-            # depending on the pricelist
-            if record.pricelist_id.price_include_taxes:
-                record.order_line._compute_tax_id()
+            record.order_line._compute_tax_id()
             super(
                 SaleOrder, record.with_context(pricelist=record.pricelist_id.id)
             ).update_prices()
-            if not record.pricelist_id.price_include_taxes:
-                record.order_line._compute_tax_id()
