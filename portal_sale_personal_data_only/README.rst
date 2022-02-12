@@ -23,7 +23,7 @@ Portal Sale Personal Data Only
     :target: https://runbot.odoo-community.org/runbot/167/14.0
     :alt: Try me on Runbot
 
-|badge1| |badge2| |badge3| |badge4| |badge5| 
+|badge1| |badge2| |badge3| |badge4| |badge5|
 
 By default, portal users are allowed to see all the orders and invoices in
 which a member of their organization are followers. That could cause a leaking
