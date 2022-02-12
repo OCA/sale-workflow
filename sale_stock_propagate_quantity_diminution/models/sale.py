@@ -34,8 +34,12 @@ class SaleOrderLine(models.Model):
             )
         res = super().write(values)
         if lines:
-            lines.mapped("move_ids")._update_qty_recursively(values["product_uom_qty"])
+            lines._propagate_qty_change()
         return res
+
+    def _propagate_qty_change(self):
+        for line in self:
+            line.move_ids._update_qty_recursively(line.product_uom_qty)
 
     @api.onchange("product_uom_qty")
     def _onchange_product_uom_qty(self):
