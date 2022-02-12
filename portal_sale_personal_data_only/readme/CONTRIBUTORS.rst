@@ -4,3 +4,5 @@
 
   * David Vidal
   * Víctor Martínez
+
+* Moaad Bourhim <moaad.bourhim@gmail.com>
