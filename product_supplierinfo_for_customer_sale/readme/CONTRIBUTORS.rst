@@ -6,3 +6,4 @@
 * Julio Serna Hernández <julio@vauxoo.com>
 * Sergio Teruel <sergio.teruel@tecnativa.com>
 * Lois Rilo <lois.rilo@forgeflow.com>
+* Ruchir Shukla <ruchir@bizzappdev.com>
