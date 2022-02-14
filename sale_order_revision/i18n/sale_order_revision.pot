@@ -64,26 +64,21 @@ msgid "Original Reference"
 msgstr ""
 
 #. module: sale_order_revision
+#: model_terms:ir.ui.view,arch_db:sale_order_revision.view_order_form
+msgid "Prev. revisions"
+msgstr ""
+
+#. module: sale_order_revision
+#: model:ir.model.fields,field_description:sale_order_revision.field_sale_order__revision_count
+msgid "Previous versions count"
+msgstr ""
+
+#. module: sale_order_revision
 #: model:ir.model.fields,field_description:sale_order_revision.field_sale_order__revision_number
 msgid "Revision"
 msgstr ""
 
 #. module: sale_order_revision
-#: model_terms:ir.ui.view,arch_db:sale_order_revision.view_order_form
-msgid "Revisions"
-msgstr ""
-
-#. module: sale_order_revision
 #: model:ir.model,name:sale_order_revision.model_sale_order
 msgid "Sales Order"
-msgstr ""
-
-#. module: sale_order_revision
-#: model_terms:ir.ui.view,arch_db:sale_order_revision.view_order_form
-msgid "Superseeded by"
-msgstr ""
-
-#. module: sale_order_revision
-#: model_terms:ir.ui.view,arch_db:sale_order_revision.view_order_form
-msgid "Superseeded on"
 msgstr ""
