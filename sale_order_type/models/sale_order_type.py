@@ -72,3 +72,4 @@ class SaleOrderTypology(models.Model):
         check_company=True,
     )
     active = fields.Boolean(default=True)
+    quotation_validity_days = fields.Integer(string="Quotation Validity (Days)")
