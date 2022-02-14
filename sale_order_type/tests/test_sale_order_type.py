@@ -2,8 +2,10 @@
 # Copyright 2017 Pierre Faniel - Niboo SPRL (<https://www.niboo.be/>)
 # Copyright 2020 Tecnativa - Pedro M. Baeza
 # License AGPL-3 - See http://www.gnu.org/licenses/agpl-3.0.html
+from freezegun import freeze_time
 
 import odoo.tests.common as common
+from odoo import fields
 from odoo.tests import Form
 
 
@@ -11,6 +13,7 @@ class TestSaleOrderType(common.TransactionCase):
     def setUp(self):
         super(TestSaleOrderType, self).setUp()
         self.sale_type_model = self.env["sale.order.type"]
+        self.sale_order_model = self.env["sale.order"]
         self.invoice_model = self.env["account.move"].with_context(
             default_move_type="out_invoice"
         )
@@ -62,6 +65,7 @@ class TestSaleOrderType(common.TransactionCase):
                 "payment_term_id": self.immediate_payment.id,
                 "pricelist_id": self.sale_pricelist.id,
                 "incoterm_id": self.free_carrier.id,
+                "quotation_validity_days": 10,
             }
         )
         self.sale_type_quot = self.sale_type_model.create(
@@ -214,6 +218,12 @@ class TestSaleOrderType(common.TransactionCase):
         order.onchange_type_id()
         self.assertEqual(order.type_id, self.sale_type_quot)
         self.assertTrue(order.name.startswith("TQU"))
+
+    @freeze_time("2022-01-01")
+    def test_sale_order_quotation_validity(self):
+        order = self.create_sale_order()
+        order.onchange_type_id()
+        self.assertEqual(fields.Date.to_string(order.validity_date), "2022-01-11")
 
     def test_sale_order_create_invoice_down_payment(self):
         order = self.create_sale_order()
