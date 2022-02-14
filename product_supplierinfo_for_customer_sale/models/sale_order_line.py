@@ -9,10 +9,7 @@ from odoo import api, fields, models
 class SaleOrderLine(models.Model):
     _inherit = "sale.order.line"
 
-    product_customer_code = fields.Char(
-        compute="_compute_product_customer_code",
-        string="Product Customer Code",
-    )
+    product_customer_code = fields.Char(compute="_compute_product_customer_code")
 
     @api.depends("product_id")
     def _compute_product_customer_code(self):
