@@ -106,6 +106,7 @@ Contributors
   * Pedro M. Baeza
   * David Vidal
   * Carlos Dauden
+  * Sergio Teruel
 
 * `Pesol <https://www.pesol.es>`_
 

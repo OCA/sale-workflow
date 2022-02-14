@@ -1,6 +1,8 @@
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 # Copyright 2020 Tecnativa - Pedro M. Baeza
 
+from datetime import datetime, timedelta
+
 from odoo import _, api, fields, models
 
 
@@ -12,10 +14,11 @@ class SaleOrder(models.Model):
         string="Type",
         compute="_compute_sale_type_id",
         store=True,
-        readonly=True,
+        readonly=False,
         states={
-            "draft": [("readonly", False)],
-            "sent": [("readonly", False)],
+            "sale": [("readonly", True)],
+            "done": [("readonly", True)],
+            "cancel": [("readonly", True)],
         },
         default=lambda so: so._default_type_id(),
         ondelete="restrict",
@@ -66,6 +69,15 @@ class SaleOrder(models.Model):
                 vals.update({"incoterm": order_type.incoterm_id})
             if order_type.analytic_account_id:
                 vals.update({"analytic_account_id": order_type.analytic_account_id})
+            if order_type.quotation_validity_days:
+                vals.update(
+                    {
+                        "validity_date": fields.Date.to_string(
+                            datetime.now()
+                            + timedelta(order_type.quotation_validity_days)
+                        )
+                    }
+                )
             if vals:
                 order.update(vals)
             # Order line values
