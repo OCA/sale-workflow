@@ -1,8 +1,9 @@
 # Copyright 2014 Camptocamp SA (author: Guewen Baconnier)
 # Copyright 2021 Tecnativa - Víctor Martínez
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
-
 from datetime import timedelta
+
+from freezegun import freeze_time
 
 from odoo import fields
 from odoo.exceptions import UserError
@@ -11,6 +12,7 @@ from odoo.tests import tagged
 from .common import TestAutomaticWorkflowMixin, TestCommon
 
 
+@freeze_time("2022-01-01 12:00:00")
 @tagged("post_install", "-at_install")
 class TestAutomaticWorkflow(TestCommon, TestAutomaticWorkflowMixin):
     def test_full_automatic(self):
