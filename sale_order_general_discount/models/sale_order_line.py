@@ -25,6 +25,7 @@ class SaleOrderLine(models.Model):
 
     @api.depends("order_id", "order_id.general_discount")
     def _compute_discount(self):
+        # pylint: disable=missing-return
         if hasattr(super(), "_compute_discount"):
             super()._compute_discount()
         for line in self:
