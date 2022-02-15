@@ -19,9 +19,9 @@ class ProductTemplate(models.Model):
         if partner_ids:
             supplier_info = (
                 self.env["product.supplierinfo"]
-                    .sudo()
-                    .with_context(customerinfo=True)
-                    .search(
+                .sudo()
+                .with_context(customerinfo=True)
+                .search(
                     [
                         ("product_tmpl_id", "in", self.ids),
                         ("name", "in", partner_ids),
@@ -59,9 +59,9 @@ class ProductTemplate(models.Model):
                     ]
             if sellers:
                 for s in sellers:
-                    seller_name = '%s%s' % (
-                        s.product_code and '[%s] ' % s.product_code or '',
-                        s.product_name
+                    seller_name = "%s%s" % (
+                        s.product_code and "[%s] " % s.product_code or "",
+                        s.product_name,
                     )
                     seller_pt = (product_template.id, seller_name)
                     if seller_pt not in result:
