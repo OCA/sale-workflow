@@ -26,7 +26,9 @@ class SaleOrderLine(models.Model):
     _inherit = "sale.order.line"
 
     task_ids = fields.One2many(
-        comodel_name="project.task", inverse_name="sale_line_id", string="Tasks",
+        comodel_name="project.task",
+        inverse_name="sale_line_id",
+        string="Tasks",
     )
 
     @api.depends(
