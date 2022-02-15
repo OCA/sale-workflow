@@ -1,6 +1,8 @@
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 # Copyright 2020 Tecnativa - Pedro M. Baeza
 
+from datetime import datetime, timedelta
+
 from odoo import api, fields, models
 
 
@@ -69,6 +71,15 @@ class SaleOrder(models.Model):
                 vals.update({"incoterm": order_type.incoterm_id})
             if order_type.analytic_account_id:
                 vals.update({"analytic_account_id": order_type.analytic_account_id})
+            if order_type.quotation_validity_days:
+                vals.update(
+                    {
+                        "validity_date": fields.Date.to_string(
+                            datetime.now()
+                            + timedelta(order_type.quotation_validity_days)
+                        )
+                    }
+                )
             if vals:
                 order.update(vals)
             # Order line values

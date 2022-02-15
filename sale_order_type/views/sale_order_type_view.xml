@@ -46,6 +46,7 @@
                         <group>
                             <field name="journal_id" />
                             <field name="picking_policy" />
+                            <field name="quotation_validity_days" />
                             <field name="payment_term_id" />
                             <field
                                 name="pricelist_id"
