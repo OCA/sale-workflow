@@ -28,21 +28,6 @@ msgid "Archived"
 msgstr "Arxivat"
 
 #. module: sale_order_archive
-#: model:ir.model.fields,field_description:sale_order_archive.field_sale_order__display_name
-msgid "Display Name"
-msgstr "Nom visible"
-
-#. module: sale_order_archive
-#: model:ir.model.fields,field_description:sale_order_archive.field_sale_order__id
-msgid "ID"
-msgstr "ID"
-
-#. module: sale_order_archive
-#: model:ir.model.fields,field_description:sale_order_archive.field_sale_order____last_update
-msgid "Last Modified on"
-msgstr "Darrera modificació el"
-
-#. module: sale_order_archive
 #: code:addons/sale_order_archive/models/sale_order.py:0
 #, python-format
 msgid "Only 'Locked' or 'Canceled' orders can be archived"
@@ -52,3 +37,12 @@ msgstr "Només es poden arxivar les comandes \"bloquejades\" o \"cancel·lades\"
 #: model:ir.model,name:sale_order_archive.model_sale_order
 msgid "Sales Order"
 msgstr "Comandes de Venda"
+
+#~ msgid "Display Name"
+#~ msgstr "Nom visible"
+
+#~ msgid "ID"
+#~ msgstr "ID"
+
+#~ msgid "Last Modified on"
+#~ msgstr "Darrera modificació el"
