@@ -16,9 +16,12 @@ class ProjectTaskType(models.Model):
 class ProjectTask(models.Model):
     _inherit = "project.task"
 
-    invoiceable = fields.Boolean(string="Invoiceable",)
+    invoiceable = fields.Boolean(
+        string="Invoiceable",
+    )
     invoicing_finished_task = fields.Boolean(
-        related="sale_line_id.product_id.invoicing_finished_task", readonly=True,
+        related="sale_line_id.product_id.invoicing_finished_task",
+        readonly=True,
     )
 
     @api.onchange("stage_id")
