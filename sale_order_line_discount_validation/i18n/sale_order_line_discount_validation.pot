@@ -34,11 +34,6 @@ msgid "Approved On"
 msgstr ""
 
 #. module: sale_order_line_discount_validation
-#: model:ir.model.fields.selection,name:sale_order_line_discount_validation.selection__sale_order__state__cancel
-msgid "Cancelled"
-msgstr ""
-
-#. module: sale_order_line_discount_validation
 #: model:ir.model,name:sale_order_line_discount_validation.model_res_company
 msgid "Companies"
 msgstr ""
@@ -80,21 +75,6 @@ msgid "Last Modified on"
 msgstr ""
 
 #. module: sale_order_line_discount_validation
-#: model:ir.model.fields.selection,name:sale_order_line_discount_validation.selection__sale_order__state__done
-msgid "Locked"
-msgstr ""
-
-#. module: sale_order_line_discount_validation
-#: model:ir.model.fields.selection,name:sale_order_line_discount_validation.selection__sale_order__state__draft
-msgid "Quotation"
-msgstr ""
-
-#. module: sale_order_line_discount_validation
-#: model:ir.model.fields.selection,name:sale_order_line_discount_validation.selection__sale_order__state__sent
-msgid "Quotation Sent"
-msgstr ""
-
-#. module: sale_order_line_discount_validation
 #: model_terms:ir.ui.view,arch_db:sale_order_line_discount_validation.sale_order_view_form_inherit_sale_order_line_discount_validation
 msgid "Refuse"
 msgstr ""
@@ -106,7 +86,6 @@ msgstr ""
 
 #. module: sale_order_line_discount_validation
 #: model:ir.model,name:sale_order_line_discount_validation.model_sale_order
-#: model:ir.model.fields.selection,name:sale_order_line_discount_validation.selection__sale_order__state__sale
 msgid "Sales Order"
 msgstr ""
 
