@@ -11,21 +11,10 @@ class SaleOrder(models.Model):
     )
     approve_date = fields.Date(string="Approved On", tracking=1)
     state = fields.Selection(
-        [
-            ("draft", "Quotation"),
+        selection_add=[
             ("waiting_approval", "Waiting Approval"),
             ("approved", "Approved"),
-            ("sent", "Quotation Sent"),
-            ("sale", "Sales Order"),
-            ("done", "Locked"),
-            ("cancel", "Cancelled"),
-        ],
-        string="Status",
-        readonly=True,
-        copy=False,
-        index=True,
-        tracking=3,
-        default="draft",
+        ]
     )
 
     def _get_message_body(self, is_confirm=None, is_refuse=None, is_approve=None):

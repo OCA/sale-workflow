@@ -66,3 +66,10 @@ class SaleOrderTypology(models.Model):
         ondelete="restrict",
         check_company=True,
     )
+    analytic_account_id = fields.Many2one(
+        comodel_name="account.analytic.account",
+        string="Analytic account",
+        check_company=True,
+    )
+    active = fields.Boolean(default=True)
+    quotation_validity_days = fields.Integer(string="Quotation Validity (Days)")
