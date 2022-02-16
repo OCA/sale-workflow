@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 10.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-01-27 03:53+0000\n"
+"POT-Creation-Date: 2022-01-20 22:37+0000\n"
 "PO-Revision-Date: 2018-01-27 03:53+0000\n"
 "Last-Translator: OCA Transbot <transbot@odoo-community.org>, 2017\n"
 "Language-Team: Chinese (Taiwan) (https://www.transifex.com/oca/teams/23907/"
@@ -18,6 +18,21 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
 "Plural-Forms: nplurals=1; plural=0;\n"
+
+#. module: sale_order_type
+#: model:ir.model.fields,field_description:sale_order_type.field_sale_order_type__active
+msgid "Active"
+msgstr ""
+
+#. module: sale_order_type
+#: model:ir.model.fields,field_description:sale_order_type.field_sale_order_type__analytic_account_id
+msgid "Analytic account"
+msgstr ""
+
+#. module: sale_order_type
+#: model_terms:ir.ui.view,arch_db:sale_order_type.sot_sale_order_type_form_view
+msgid "Archived"
+msgstr ""
 
 #. module: sale_order_type
 #: model:ir.model.fields,field_description:sale_order_type.field_sale_order_type__journal_id
@@ -56,14 +71,7 @@ msgid "Description"
 msgstr "說明"
 
 #. module: sale_order_type
-#: model:ir.model.fields,field_description:sale_order_type.field_account_invoice_report__display_name
-#: model:ir.model.fields,field_description:sale_order_type.field_account_move__display_name
-#: model:ir.model.fields,field_description:sale_order_type.field_res_partner__display_name
-#: model:ir.model.fields,field_description:sale_order_type.field_sale_advance_payment_inv__display_name
-#: model:ir.model.fields,field_description:sale_order_type.field_sale_order__display_name
-#: model:ir.model.fields,field_description:sale_order_type.field_sale_order_line__display_name
 #: model:ir.model.fields,field_description:sale_order_type.field_sale_order_type__display_name
-#: model:ir.model.fields,field_description:sale_order_type.field_sale_report__display_name
 msgid "Display Name"
 msgstr "顯示名稱"
 
@@ -79,14 +87,7 @@ msgid "Group By"
 msgstr "分組方式"
 
 #. module: sale_order_type
-#: model:ir.model.fields,field_description:sale_order_type.field_account_invoice_report__id
-#: model:ir.model.fields,field_description:sale_order_type.field_account_move__id
-#: model:ir.model.fields,field_description:sale_order_type.field_res_partner__id
-#: model:ir.model.fields,field_description:sale_order_type.field_sale_advance_payment_inv__id
-#: model:ir.model.fields,field_description:sale_order_type.field_sale_order__id
-#: model:ir.model.fields,field_description:sale_order_type.field_sale_order_line__id
 #: model:ir.model.fields,field_description:sale_order_type.field_sale_order_type__id
-#: model:ir.model.fields,field_description:sale_order_type.field_sale_report__id
 msgid "ID"
 msgstr "編號"
 
@@ -107,14 +108,7 @@ msgid "Journal Entry"
 msgstr ""
 
 #. module: sale_order_type
-#: model:ir.model.fields,field_description:sale_order_type.field_account_invoice_report____last_update
-#: model:ir.model.fields,field_description:sale_order_type.field_account_move____last_update
-#: model:ir.model.fields,field_description:sale_order_type.field_res_partner____last_update
-#: model:ir.model.fields,field_description:sale_order_type.field_sale_advance_payment_inv____last_update
-#: model:ir.model.fields,field_description:sale_order_type.field_sale_order____last_update
-#: model:ir.model.fields,field_description:sale_order_type.field_sale_order_line____last_update
 #: model:ir.model.fields,field_description:sale_order_type.field_sale_order_type____last_update
-#: model:ir.model.fields,field_description:sale_order_type.field_sale_report____last_update
 msgid "Last Modified on"
 msgstr "最後修改:"
 
@@ -211,11 +205,6 @@ msgstr ""
 #: model:ir.model.fields,field_description:sale_order_type.field_sale_order_type__picking_policy
 #: model_terms:ir.ui.view,arch_db:sale_order_type.sot_sale_order_type_search_view
 msgid "Shipping Policy"
-msgstr ""
-
-#. module: sale_order_type
-#: model:ir.model.fields,help:sale_order_type.field_sale_order_type__company_id
-msgid "The company is automatically set from your user preferences."
 msgstr ""
 
 #. module: sale_order_type
