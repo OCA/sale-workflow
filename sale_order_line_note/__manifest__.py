@@ -6,7 +6,7 @@
 {
     "name": "sale_order_line_note",
     "summary": "Note on sale order line",
-    "version": "14.0.1.0.0",
+    "version": "15.0.1.0.0",
     "category": "Sale",
     "website": "https://github.com/OCA/sale-workflow",
     "author": "Akretion,Odoo Community Association (OCA)",
