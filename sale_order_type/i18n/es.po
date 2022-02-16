@@ -71,14 +71,7 @@ msgid "Description"
 msgstr "Descripción"
 
 #. module: sale_order_type
-#: model:ir.model.fields,field_description:sale_order_type.field_account_invoice_report__display_name
-#: model:ir.model.fields,field_description:sale_order_type.field_account_move__display_name
-#: model:ir.model.fields,field_description:sale_order_type.field_res_partner__display_name
-#: model:ir.model.fields,field_description:sale_order_type.field_sale_advance_payment_inv__display_name
-#: model:ir.model.fields,field_description:sale_order_type.field_sale_order__display_name
-#: model:ir.model.fields,field_description:sale_order_type.field_sale_order_line__display_name
 #: model:ir.model.fields,field_description:sale_order_type.field_sale_order_type__display_name
-#: model:ir.model.fields,field_description:sale_order_type.field_sale_report__display_name
 msgid "Display Name"
 msgstr "Nombre mostrado"
 
@@ -94,14 +87,7 @@ msgid "Group By"
 msgstr "Agrupar por"
 
 #. module: sale_order_type
-#: model:ir.model.fields,field_description:sale_order_type.field_account_invoice_report__id
-#: model:ir.model.fields,field_description:sale_order_type.field_account_move__id
-#: model:ir.model.fields,field_description:sale_order_type.field_res_partner__id
-#: model:ir.model.fields,field_description:sale_order_type.field_sale_advance_payment_inv__id
-#: model:ir.model.fields,field_description:sale_order_type.field_sale_order__id
-#: model:ir.model.fields,field_description:sale_order_type.field_sale_order_line__id
 #: model:ir.model.fields,field_description:sale_order_type.field_sale_order_type__id
-#: model:ir.model.fields,field_description:sale_order_type.field_sale_report__id
 msgid "ID"
 msgstr "ID"
 
@@ -122,14 +108,7 @@ msgid "Journal Entry"
 msgstr ""
 
 #. module: sale_order_type
-#: model:ir.model.fields,field_description:sale_order_type.field_account_invoice_report____last_update
-#: model:ir.model.fields,field_description:sale_order_type.field_account_move____last_update
-#: model:ir.model.fields,field_description:sale_order_type.field_res_partner____last_update
-#: model:ir.model.fields,field_description:sale_order_type.field_sale_advance_payment_inv____last_update
-#: model:ir.model.fields,field_description:sale_order_type.field_sale_order____last_update
-#: model:ir.model.fields,field_description:sale_order_type.field_sale_order_line____last_update
 #: model:ir.model.fields,field_description:sale_order_type.field_sale_order_type____last_update
-#: model:ir.model.fields,field_description:sale_order_type.field_sale_report____last_update
 msgid "Last Modified on"
 msgstr "Última modificación en"
 
@@ -229,12 +208,6 @@ msgid "Shipping Policy"
 msgstr "Política de envío"
 
 #. module: sale_order_type
-#: model:ir.model.fields,help:sale_order_type.field_sale_order_type__company_id
-msgid "The company is automatically set from your user preferences."
-msgstr ""
-"La compañía se configura automáticamente desde sus preferencias de usuario."
-
-#. module: sale_order_type
 #: model:ir.model.fields,field_description:sale_order_type.field_sale_order__type_id
 #: model:ir.model.fields,field_description:sale_order_type.field_sale_report__type_id
 #: model_terms:ir.ui.view,arch_db:sale_order_type.sot_sale_order_type_form_view
@@ -252,6 +225,11 @@ msgstr "Tipo de pedido de venta"
 #: model_terms:ir.ui.view,arch_db:sale_order_type.sot_sale_order_type_search_view
 msgid "Warehouse"
 msgstr "Almacén"
+
+#~ msgid "The company is automatically set from your user preferences."
+#~ msgstr ""
+#~ "La compañía se configura automáticamente desde sus preferencias de "
+#~ "usuario."
 
 #~ msgid "Journal Entries"
 #~ msgstr "Entradas de diario"
