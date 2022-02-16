@@ -154,6 +154,11 @@ msgid "Pricelist"
 msgstr "Preisliste"
 
 #. module: sale_order_type
+#: model:ir.model.fields,field_description:sale_order_type.field_sale_order_type__quotation_validity_days
+msgid "Quotation Validity (Days)"
+msgstr ""
+
+#. module: sale_order_type
 #: model:ir.model.fields,field_description:sale_order_type.field_sale_order_type__route_id
 msgid "Route"
 msgstr ""
