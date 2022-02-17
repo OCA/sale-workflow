@@ -53,6 +53,7 @@ setuptools.setup(
         'odoo14-addon-sale_order_lot_generator',
         'odoo14-addon-sale_order_lot_selection',
         'odoo14-addon-sale_order_note_template',
+        'odoo14-addon-sale_order_priority',
         'odoo14-addon-sale_order_qty_change_no_recompute',
         'odoo14-addon-sale_order_report_without_price',
         'odoo14-addon-sale_order_revision',
