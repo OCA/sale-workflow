@@ -27,7 +27,12 @@ class TestInvoicefinishedTask(common.SavepointCase):
         cls.partner = cls.env["res.partner"].create(
             {"name": "Customer - test", "customer_rank": True}
         )
-        cls.project = cls.env["project.project"].create({"name": "Some test project"})
+        cls.project = cls.env["project.project"].create(
+            {
+                "name": "Some test project",
+                "allow_billable": True,
+            }
+        )
         cls.stage_new = cls.env["project.task.type"].create(cls._prepare_stage_vals())
         cls.stage_invoiceable = cls.env["project.task.type"].create(
             cls._prepare_stage_vals(invoiceable_stage=True)
@@ -86,6 +91,7 @@ class TestInvoicefinishedTask(common.SavepointCase):
             "type": "service",
             "list_price": 100.00,
             "standard_price": 50.00,
+            "invoice_policy": "order",
             "service_policy": "ordered_timesheet",
             "service_tracking": "task_global_project",
             "invoicing_finished_task": True,
