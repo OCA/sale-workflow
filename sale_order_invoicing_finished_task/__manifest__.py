@@ -8,10 +8,10 @@
     "name": "Sale Order Invoicing Finished Task",
     "summary": "Control invoice order lines if their related task has been "
     "set to invoiceable",
-    "version": "13.0.1.0.1",
+    "version": "14.0.1.0.0",
     "category": "Sales",
     "website": "https://github.com/OCA/sale-workflow",
-    "author": "Tecnativa, " "Camptocamp, " "Odoo Community Association (OCA)",
+    "author": "Tecnativa, Camptocamp, Odoo Community Association (OCA)",
     "license": "AGPL-3",
     "installable": True,
     "depends": ["sale_timesheet"],
