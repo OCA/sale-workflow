@@ -19,6 +19,7 @@ Available addons
 ----------------
 addon | version | maintainers | summary
 --- | --- | --- | ---
+[sale_advance_payment](sale_advance_payment/) | 15.0.1.0.0 |  | Allow to add advance payments on sales and then use them on invoices
 [sale_automatic_workflow](sale_automatic_workflow/) | 15.0.1.0.0 |  | Sale Automatic Workflow
 [sale_commercial_partner](sale_commercial_partner/) | 15.0.1.0.1 |  | Add stored related field 'Commercial Entity' on sale orders
 [sale_delivery_state](sale_delivery_state/) | 15.0.1.0.0 |  | Show the delivery state on the sale order
