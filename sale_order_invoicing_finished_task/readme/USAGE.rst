@@ -3,6 +3,7 @@ To use this module, you need to:
 1. Go to **Sales -> Product** and create a **service** product
 
 2. In the product go to **Sales tab > Invoicing section** and:
+
    * Select a *Service Invoicing Policy*
    * *Service Tracking* must be "Create a task in an existing project". You will need to select in which project the task will be created.
    * Set *Invoicing control by task* checkbox and save
