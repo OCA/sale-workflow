@@ -61,6 +61,20 @@ msgid "Last Modified on"
 msgstr ""
 
 #. module: sale_by_packaging
+#: model:ir.model.fields,field_description:sale_by_packaging.field_product_product__min_sellable_qty
+#: model:ir.model.fields,field_description:sale_by_packaging.field_product_template__min_sellable_qty
+msgid "Min Sellable Qty"
+msgstr ""
+
+#. module: sale_by_packaging
+#: model:ir.model.fields,help:sale_by_packaging.field_product_product__min_sellable_qty
+#: model:ir.model.fields,help:sale_by_packaging.field_product_template__min_sellable_qty
+msgid ""
+"Minimum sellable quantity, according to the available packagings, if Only "
+"Sell by Packaging is set."
+msgstr ""
+
+#. module: sale_by_packaging
 #: model:ir.model.fields,field_description:sale_by_packaging.field_product_product__sell_only_by_packaging
 #: model:ir.model.fields,field_description:sale_by_packaging.field_product_template__sell_only_by_packaging
 msgid "Only sell by packaging"
