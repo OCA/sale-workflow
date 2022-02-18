@@ -33,7 +33,7 @@ addon | version | maintainers | summary
 [sale_automatic_workflow_payment](sale_automatic_workflow_payment/) | 13.0.1.0.0 | [![rousseldenis](https://github.com/rousseldenis.png?size=30px)](https://github.com/rousseldenis) | Assign a workflow if a transaction is created for a sale order with an acquirer with a workflow
 [sale_automatic_workflow_payment_mode](sale_automatic_workflow_payment_mode/) | 13.0.1.1.1 |  | Sale Automatic Workflow - Payment Mode
 [sale_blanket_order](sale_blanket_order/) | 13.0.1.1.0 |  | Blanket Orders
-[sale_by_packaging](sale_by_packaging/) | 13.0.1.5.2 |  | Manage sale of packaging
+[sale_by_packaging](sale_by_packaging/) | 13.0.1.6.0 |  | Manage sale of packaging
 [sale_cancel_reason](sale_cancel_reason/) | 13.0.1.0.0 |  | Sale Cancel Reason
 [sale_commercial_partner](sale_commercial_partner/) | 13.0.1.0.0 |  | Add stored related field 'Commercial Entity' on sale orders
 [sale_contact_type](sale_contact_type/) | 13.0.1.0.0 |  | Define ordering contact type
@@ -69,7 +69,7 @@ addon | version | maintainers | summary
 [sale_order_line_delivery_state](sale_order_line_delivery_state/) | 13.0.1.0.0 |  | Show the delivery state on the sale order line
 [sale_order_line_description](sale_order_line_description/) | 13.0.1.0.0 |  | Sale order line description
 [sale_order_line_input](sale_order_line_input/) | 13.0.1.1.1 |  | Search, create or modify directly sale order lines
-[sale_order_line_packaging_qty](sale_order_line_packaging_qty/) | 13.0.1.2.2 |  | Define quantities according to product packaging on sale order lines
+[sale_order_line_packaging_qty](sale_order_line_packaging_qty/) | 13.0.1.3.0 |  | Define quantities according to product packaging on sale order lines
 [sale_order_line_price_history](sale_order_line_price_history/) | 13.0.1.1.0 |  | Sale order line price history
 [sale_order_lot_selection](sale_order_lot_selection/) | 13.0.2.1.0 | [![bodedra](https://github.com/bodedra.png?size=30px)](https://github.com/bodedra) | Sale Order Lot Selection
 [sale_order_partner_restrict](sale_order_partner_restrict/) | 13.0.1.0.0 | [![OriolVForgeFlow](https://github.com/OriolVForgeFlow.png?size=30px)](https://github.com/OriolVForgeFlow) | Apply restrictions when selecting from the list of customers on SO.
