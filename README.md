@@ -28,6 +28,7 @@ addon | version | maintainers | summary
 [sale_order_invoice_amount](sale_order_invoice_amount/) | 15.0.1.0.0 |  | Display the invoiced and uninvoiced total in the sale order
 [sale_order_line_date](sale_order_line_date/) | 15.0.1.0.1 |  | Adds a commitment date to each sale order line.
 [sale_order_type](sale_order_type/) | 15.0.2.0.0 |  | Sale Order Type
+[sale_product_category_menu](sale_product_category_menu/) | 15.0.1.0.0 |  | Shows 'Product Categories' menu item in Sales
 [sale_tier_validation](sale_tier_validation/) | 15.0.1.0.0 |  | Extends the functionality of Sale Orders to support a tier validation process.
 
 [//]: # (end addons)
