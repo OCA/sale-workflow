@@ -1,7 +1,7 @@
 # Copyright 2019 Tecnativa - Ernesto Tejeda
 # Copyright 2022 Xtendoo - Daniel Domínguez
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
-from odoo import api, fields, models
+from odoo import api, models
 
 
 class SaleOrderLinePriceHistory(models.TransientModel):
@@ -18,7 +18,9 @@ class SaleOrderLinePriceHistory(models.TransientModel):
             ("state", "in", states),
         ]
         vals = []
-        order_lines = self.env["sale.order.line"].search(domain,order='create_date desc', limit=20)
+        order_lines = self.env["sale.order.line"].search(
+            domain, order="create_date desc", limit=20
+        )
         order_lines -= self.sale_order_line_id
         for order_line in order_lines:
             vals.append(

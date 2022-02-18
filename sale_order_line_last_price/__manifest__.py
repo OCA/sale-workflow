@@ -9,7 +9,7 @@
     "license": "AGPL-3",
     "depends": ["sale_order_line_price_history"],
     "data": [
-                "wizards/sale_order_line_last_price.xml",
+        "wizards/sale_order_line_last_price.xml",
     ],
     "installable": True,
 }
