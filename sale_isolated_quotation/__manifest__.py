@@ -2,7 +2,7 @@
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
 {
     "name": "Sale Isolated Quotation",
-    "version": "14.0.2.0.0",
+    "version": "14.0.2.1.0",
     "author": "Ecosoft, Odoo Community Association (OCA)",
     "category": "Sales",
     "website": "https://github.com/OCA/sale-workflow",
