@@ -18,6 +18,7 @@ setuptools.setup(
         'odoo-addon-sale_order_line_date>=15.0dev,<15.1dev',
         'odoo-addon-sale_order_type>=15.0dev,<15.1dev',
         'odoo-addon-sale_product_category_menu>=15.0dev,<15.1dev',
+        'odoo-addon-sale_product_multi_add>=15.0dev,<15.1dev',
         'odoo-addon-sale_tier_validation>=15.0dev,<15.1dev',
     ],
     classifiers=[
