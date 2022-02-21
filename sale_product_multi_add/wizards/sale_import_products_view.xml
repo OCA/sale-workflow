@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <record id="view_import_product_to_sale" model="ir.ui.view">
+        <field name="name">import.products.to.sale.form</field>
+        <field name="model">sale.import.products</field>
+        <field name="arch" type="xml">
+            <form string="Products">
+                <field name="products" />
+                <footer>
+                    <button
+                        name="create_items"
+                        string="Set quantities"
+                        type="object"
+                        class="oe_highlight"
+                    />
+                    or
+                    <button string="Cancel" class="oe_link" special="cancel" />
+                </footer>
+            </form>
+        </field>
+    </record>
+    <record id="view_import_product_to_sale2" model="ir.ui.view">
+        <field name="name">import.products.to.sale.form2</field>
+        <field name="model">sale.import.products</field>
+        <field name="arch" type="xml">
+            <form string="Products">
+                <field name="items">
+                    <tree create="0" editable="bottom">
+                        <field name="product_id" readonly="1" />
+                        <field name="quantity" />
+                    </tree>
+                </field>
+                <footer>
+                <button
+                        name="select_products"
+                        string="Select"
+                        type="object"
+                        class="oe_highlight"
+                    />
+                or
+                <button string="Cancel" class="oe_link" special="cancel" />
+            </footer>
+            </form>
+        </field>
+    </record>
+    <record id="action_import_product_to_sale" model="ir.actions.act_window">
+        <field name="name">Import Products</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">sale.import.products</field>
+        <field name="view_mode">form</field>
+        <field name="view_id" ref="view_import_product_to_sale" />
+        <field name="target">new</field>
+    </record>
+</odoo>
