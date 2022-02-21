@@ -72,7 +72,9 @@ class AutomaticWorkflowJob(models.Model):
         ):
             return "{} {} job bypassed".format(sale.display_name, sale)
         payment = self.env["sale.advance.payment.inv"].create({})
-        payment.with_context(active_ids=sale.ids).create_invoices()
+        payment.with_context(
+            active_ids=sale.ids, active_model="sale.order"
+        ).create_invoices()
         return "{} {} create invoice successfully".format(sale.display_name, sale)
 
     @api.model
