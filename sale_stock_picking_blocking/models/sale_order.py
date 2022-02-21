@@ -30,7 +30,9 @@ class SaleOrder(models.Model):
         """Add the 'Default Delivery Block Reason' if set in the partner."""
         res = super().onchange_partner_id()
         for so in self:
-            so.delivery_block_id = so.partner_id.default_delivery_block or False
+            so.delivery_block_id = (
+                so.partner_id.commercial_partner_id.default_delivery_block or False
+            )
         return res
 
     def action_remove_delivery_block(self):
@@ -46,8 +48,13 @@ class SaleOrder(models.Model):
     def copy(self, default=None):
         new_so = super().copy(default=default)
         for so in new_so:
-            if so.partner_id.default_delivery_block and not so.delivery_block_id:
-                so.delivery_block_id = so.partner_id.default_delivery_block
+            if (
+                so.partner_id.commercial_partner_id.default_delivery_block
+                and not so.delivery_block_id
+            ):
+                so.delivery_block_id = (
+                    so.partner_id.commercial_partner_id.default_delivery_block
+                )
         return new_so
 
 
