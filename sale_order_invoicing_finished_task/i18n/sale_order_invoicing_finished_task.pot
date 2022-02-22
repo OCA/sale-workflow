@@ -14,6 +14,13 @@ msgstr ""
 "Plural-Forms: \n"
 
 #. module: sale_order_invoicing_finished_task
+#: model_terms:ir.ui.view,arch_db:sale_order_invoicing_finished_task.edit_project_task_track
+msgid ""
+"<span attrs=\"{'invisible': [('invoiceable', '=', False)]}\">Invoiceable</span>\n"
+"                    <span class=\"text-danger\" attrs=\"{'invisible': [('invoiceable', '!=', False)]}\">Not Invoiceable</span>"
+msgstr ""
+
+#. module: sale_order_invoicing_finished_task
 #: model:ir.model.fields,help:sale_order_invoicing_finished_task.field_product_product__invoicing_finished_task
 #: model:ir.model.fields,help:sale_order_invoicing_finished_task.field_product_template__invoicing_finished_task
 #: model:ir.model.fields,help:sale_order_invoicing_finished_task.field_project_task__invoicing_finished_task
