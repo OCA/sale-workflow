@@ -107,6 +107,11 @@ msgid "Display Name"
 msgstr ""
 
 #. module: sale_delivery_date
+#: model:ir.model.fields,field_description:sale_delivery_date.field_stock_picking__expected_delivery_date
+msgid "Expected Delivery Date"
+msgstr ""
+
+#. module: sale_delivery_date
 #: model:ir.model.fields,field_description:sale_delivery_date.field_res_partner__id
 #: model:ir.model.fields,field_description:sale_delivery_date.field_sale_order__id
 #: model:ir.model.fields,field_description:sale_delivery_date.field_sale_order_line__id
