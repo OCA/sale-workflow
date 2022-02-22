@@ -94,6 +94,13 @@ class TestSaleGlobalDiscount(common.SavepointCase):
                 "amount": 5.0,
             }
         )
+        cls.sale_journal0 = cls.env["account.journal"].create(
+            {
+                "name": "Sale Journal",
+                "type": "sale",
+                "code": "SJT0",
+            }
+        )
         sale_form = Form(cls.env["sale.order"])
         sale_form.partner_id = cls.partner_1
         with sale_form.order_line.new() as order_line:
@@ -163,6 +170,7 @@ class TestSaleGlobalDiscount(common.SavepointCase):
         """All the discounts go to the invoice"""
         self.sale.partner_id = self.partner_2
         self.sale.onchange_partner_id()
+        self.sale.order_line.mapped("product_id").write({"invoice_policy": "order"})
         self.sale.action_confirm()
         move = self.sale._create_invoices()
         # Check the invoice relevant fields
@@ -216,8 +224,10 @@ class TestSaleGlobalDiscount(common.SavepointCase):
         self.sale.order_line[1].tax_id = [(6, 0, self.tax_1.ids)]
         with self.assertRaises(exceptions.UserError):
             self.sale.global_discount_ids = self.global_discount_1
+            self.sale._amount_all()
 
     def test_06_no_taxes(self):
         self.sale.order_line[1].tax_id = False
         with self.assertRaises(exceptions.UserError):
             self.sale.global_discount_ids = self.global_discount_1
+            self.sale._amount_all()
