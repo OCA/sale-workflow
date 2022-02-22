@@ -21,7 +21,8 @@ msgstr ""
 #, python-format
 msgid ""
 "\n"
-"Considering the security lead time of %s days defined on the company, the delivery will not match the partner timewindows preference."
+"Considering the security lead time of %s days defined on the company, the "
+"delivery will not match the partner timewindows preference."
 msgstr ""
 
 #. module: sale_delivery_date
@@ -82,10 +83,15 @@ msgstr ""
 msgid ""
 "Define the cutoff time for delivery orders:\n"
 "\n"
-"* Use global (warehouse) cutoff time: Delivery order for sale orders will be postponed to the next warehouse cutoff time\n"
-"* Use partner's cutoff time: Delivery order for sale orders will be postponed to the next partner's cutoff time\n"
+"* Use global (warehouse) cutoff time: Delivery order for sale orders will be "
+"postponed to the next warehouse cutoff time\n"
+"* Use partner's cutoff time: Delivery order for sale orders will be "
+"postponed to the next partner's cutoff time\n"
 "\n"
-"Example: If cutoff is set to 09:00, any sale order confirmed before 09:00 will have its delivery order postponed to 09:00, and any sale order confirmed after 09:00 will have its delivery order postponed to 09:00 on the following day."
+"Example: If cutoff is set to 09:00, any sale order confirmed before 09:00 "
+"will have its delivery order postponed to 09:00, and any sale order "
+"confirmed after 09:00 will have its delivery order postponed to 09:00 on the "
+"following day."
 msgstr ""
 
 #. module: sale_delivery_date
@@ -108,6 +114,11 @@ msgstr ""
 #: model:ir.model.fields,field_description:sale_delivery_date.field_time_cutoff_mixin__display_name
 msgid "Display Name"
 msgstr "Anzeigename"
+
+#. module: sale_delivery_date
+#: model:ir.model.fields,field_description:sale_delivery_date.field_stock_picking__expected_delivery_date
+msgid "Expected Delivery Date"
+msgstr ""
 
 #. module: sale_delivery_date
 #: model:ir.model.fields,field_description:sale_delivery_date.field_res_partner__id
@@ -154,7 +165,8 @@ msgstr ""
 #: code:addons/sale_delivery_date/models/sale_order.py:0
 #, python-format
 msgid ""
-"The delivery date is %s, but the shipping partner is set to prefer deliveries on following time windows:\n"
+"The delivery date is %s, but the shipping partner is set to prefer "
+"deliveries on following time windows:\n"
 "%s"
 msgstr ""
 
@@ -162,8 +174,8 @@ msgstr ""
 #: code:addons/sale_delivery_date/models/sale_order.py:0
 #, python-format
 msgid ""
-"The delivery date is {} ({}), but the partner is set to prefer deliveries on"
-" working days."
+"The delivery date is {} ({}), but the partner is set to prefer deliveries on "
+"working days."
 msgstr ""
 
 #. module: sale_delivery_date
@@ -209,9 +221,11 @@ msgstr "Lager"
 #: model:ir.model.fields,help:sale_delivery_date.field_res_partner__tz
 #: model:ir.model.fields,help:sale_delivery_date.field_res_users__tz
 msgid ""
-"When printing documents and exporting/importing data, time values are computed according to this timezone.\n"
+"When printing documents and exporting/importing data, time values are "
+"computed according to this timezone.\n"
 "If the timezone is not set, UTC (Coordinated Universal Time) is used.\n"
-"Anywhere else, time values are computed according to the time offset of your web client."
+"Anywhere else, time values are computed according to the time offset of your "
+"web client."
 msgstr ""
 "Beim Drucken von Dokumenten und beim Exportieren/Importieren von Daten "
 "werden die Zeitwerte entsprechend dieser Zeitzone berechnet.\n"
