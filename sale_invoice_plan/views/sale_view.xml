@@ -1,0 +1,183 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <record model="ir.ui.view" id="view_sale_invoice_plan_tree">
+        <field name="name">view.sale.invoice.plan.tree</field>
+        <field name="model">sale.invoice.plan</field>
+        <field name="arch" type="xml">
+            <tree editable="bottom">
+                <field name="installment" />
+                <field name="plan_date" />
+                <field name="invoice_type" />
+                <field name="percent" />
+                <field name="to_invoice" />
+                <field name="invoiced" />
+                <field name="last" invisible="1" />
+            </tree>
+        </field>
+    </record>
+    <record model="ir.ui.view" id="view_sale_invoice_plan_form">
+        <field name="name">view.sale.invoice.plan.form</field>
+        <field name="model">sale.invoice.plan</field>
+        <field name="arch" type="xml">
+            <form>
+                <group>
+                    <group>
+                        <field name="installment" />
+                        <field name="plan_date" />
+                        <field name="to_invoice" />
+                    </group>
+                    <group>
+                        <field name="invoice_type" />
+                        <field name="percent" />
+                        <field name="invoiced" />
+                        <field name="invoice_move_ids" widget="many2many_tags" />
+                    </group>
+                </group>
+                <separator
+                    string="Related Invoices"
+                    attrs="{'invisible': [('invoice_move_ids', '=', [])]}"
+                />
+                <field name="invoice_move_ids" widget="many2many_tags" />
+            </form>
+        </field>
+    </record>
+    <record id="view_order_form_invoice_plan" model="ir.ui.view">
+        <field name="name">view.order.form.invoice.plan</field>
+        <field name="model">sale.order</field>
+        <field name="inherit_id" ref="sale.view_order_form" />
+        <field name="arch" type="xml">
+            <xpath expr='/form/sheet/notebook' position="before">
+                <div attrs="{'readonly': [('invoice_count', '>', 0)]}">
+                    <field name="use_invoice_plan" />
+                    <label for="use_invoice_plan" />
+                </div>
+            </xpath>
+            <xpath expr="//button[@name='payment_action_capture']" position="before">
+                <field name="ip_invoice_plan" invisible="1" />
+                <button
+                    name="%(action_view_sale_make_planned_invoice)d"
+                    string="Create Invoice by Plan"
+                    type="action"
+                    class="btn-primary"
+                    attrs="{'invisible': [('ip_invoice_plan', '=', False)]}"
+                />
+            </xpath>
+            <xpath expr="/form/sheet/notebook/page" position="after">
+                <page
+                    string="Invoice Plan"
+                    attrs="{'invisible': [('use_invoice_plan', '=', False)]}"
+                >
+                    <button
+                        name="%(action_sale_create_invoice_plan)d"
+                        string="⇒ Create Invoice Plan"
+                        type="action"
+                        class="oe_link"
+                        attrs="{'invisible': ['|', ('invoice_plan_ids', '!=', []), ('invoice_count', '>', 0)]}"
+                    />
+                    <button
+                        name="remove_invoice_plan"
+                        string="⇒ Remove Invoice Plan"
+                        type="object"
+                        class="oe_link"
+                        attrs="{'invisible': ['|', ('invoice_plan_ids', '=', []), ('invoice_count', '>', 0)]}"
+                        confirm="Are you sure to remove this invoice plan?"
+                    />
+                    <field
+                        name="invoice_plan_ids"
+                        context="{'tree_view_ref': 'view_sale_invoice_plan_tree'}"
+                        attrs="{'invisible': [('invoice_plan_ids', '=', [])], 'readonly': [('invoice_count', '>', 0)]}"
+                    />
+                </page>
+            </xpath>
+        </field>
+    </record>
+    <!-- Invoice Plan Lines -->
+    <record id="view_sale_invoice_plan_filter" model="ir.ui.view">
+        <field name="name">view.sale.invoice.plan.filter</field>
+        <field name="model">sale.invoice.plan</field>
+        <field name="arch" type="xml">
+            <search string="Search Sales Invoice Plan Lines">
+                <field name="partner_id" />
+                <field name="sale_id" />
+                <field name="installment" />
+                <separator />
+                <filter
+                    string="Quotations"
+                    name="draft"
+                    domain="[('state', 'in', ('draft', 'sent'))]"
+                />
+                <filter
+                    string="Sales Orders"
+                    name="sales"
+                    domain="[('state', 'in', ('sale','done'))]"
+                />
+                <group expand="0" string="Group By">
+                    <filter
+                        string="Customer"
+                        name="customer"
+                        domain="[]"
+                        context="{'group_by':'partner_id'}"
+                    />
+                    <filter
+                        string="Sales Order"
+                        name="sale"
+                        domain="[]"
+                        context="{'group_by':'sale_id'}"
+                    />
+                    <filter
+                        string="Installment"
+                        name="install"
+                        domain="[]"
+                        context="{'group_by':'installment'}"
+                    />
+                    <filter
+                        string="Status"
+                        name="state"
+                        domain="[]"
+                        context="{'group_by':'state'}"
+                    />
+                </group>
+            </search>
+        </field>
+    </record>
+    <record id="view_sale_invoice_plan_tree_readonly" model="ir.ui.view">
+        <field name="name">view.sale.invoice.plan.tree</field>
+        <field name="model">sale.invoice.plan</field>
+        <field name="arch" type="xml">
+            <tree edit="0" create="0" delete="0">
+                <field name="sale_id" />
+                <field name="installment" />
+                <field name="plan_date" />
+                <field name="invoice_type" />
+                <field name="percent" />
+                <field name="to_invoice" />
+                <field name="invoiced" />
+            </tree>
+        </field>
+    </record>
+    <record id="action_sale_invoice_plan" model="ir.actions.act_window">
+        <field name="name">Sales Invoice Plan</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">sale.invoice.plan</field>
+        <field name="view_mode">tree</field>
+        <field name="view_id" ref="view_sale_invoice_plan_tree_readonly" />
+        <field name="search_view_id" ref="view_sale_invoice_plan_filter" />
+        <field
+            name="context"
+        >{'search_default_draft': 1, 'search_default_sale': 1}</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">
+            View sales invoice plan lines
+          </p>
+            <p>
+            This view show all available invoice plan line for reporting purposes
+          </p>
+        </field>
+    </record>
+    <menuitem
+        action="action_sale_invoice_plan"
+        id="menu_sale_invoice_plan"
+        parent="sale.sale_order_menu"
+        sequence="2"
+    />
+</odoo>
