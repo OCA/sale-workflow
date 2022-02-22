@@ -78,7 +78,7 @@ class TestSaleProcurementGroupByLine(TransactionCase):
         self.picking_ids.move_lines.write({"quantity_done": 5})
         wiz_act = self.picking_ids.button_validate()
         wiz = Form(
-            self.env[wiz_act["res_model"]].with_context(wiz_act["context"])
+            self.env[wiz_act["res_model"]].with_context(**wiz_act["context"])
         ).save()
         wiz.process()
         self.assertTrue(self.picking_ids, "Procurement Group should have picking")
