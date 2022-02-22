@@ -48,6 +48,11 @@ Confirmation
 * Check 'Confirm' and click on 'Apply' button.
 * Only 'Draft' and 'Sent' orders will be impacted.
 
+Known issues / Roadmap
+======================
+
+* add other mass action like : mass cancel, etc...
+
 Bug Tracker
 ===========
 
@@ -69,6 +74,7 @@ Authors
 Contributors
 ~~~~~~~~~~~~
 
+* Sylvain LE GAL (https://twitter.com/legalsylvain)
 * Denis Roussel <denis.roussel@acsone.eu>
 
 Maintainers
