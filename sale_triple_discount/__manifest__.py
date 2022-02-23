@@ -14,6 +14,6 @@
     "license": "AGPL-3",
     "summary": "Manage triple discount on sale order lines",
     "depends": ["sale_management", "account_invoice_triple_discount"],
-    "data": ["views/sale_order_view.xml"],
+    "data": ["views/sale_order_report.xml", "views/sale_order_view.xml"],
     "installable": True,
 }
