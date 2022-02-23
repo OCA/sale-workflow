@@ -15,10 +15,10 @@
     ],
     "assets": {
         "web.assets_backend": [
-            "sale_order_line_price_history/static/src/js/**/*",
+            "sale_order_line_price_history/static/src/js/sale_line_price_history_widget.js",
         ],
         "web.assets_qweb": [
-            "sale_order_line_price_history/static/src/xml/**/*",
+            "sale_order_line_price_history/static/src/xml/sale_line_price_history_widget.xml",
         ],
     },
     "installable": True,
