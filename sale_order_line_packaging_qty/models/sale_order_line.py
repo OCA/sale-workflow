@@ -2,6 +2,7 @@
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl)
 from odoo import _, api, fields, models
 from odoo.exceptions import UserError
+from odoo.tools import float_is_zero, float_round
 
 
 class SaleOrderLine(models.Model):
@@ -34,12 +35,22 @@ class SaleOrderLine(models.Model):
                 )
             else:
                 product_qty = sol.product_uom_qty
-            if product_qty % sol.product_packaging.qty:
+            qty_mod = float_round(
+                product_qty % sol.product_packaging.qty,
+                precision_rounding=sol.product_packaging.product_uom_id.rounding,
+            )
+            # After the rounding, the value could be equals to sol.product_packaging.qty
+            # So just re-apply the '%'
+            qty_mod = qty_mod % sol.product_packaging.qty
+            if not float_is_zero(
+                qty_mod,
+                precision_digits=sol.product_packaging.product_uom_id.rounding,
+            ):
                 # If qty does not fit in package reset package qty
                 sol.product_packaging_qty = 0
             else:
                 # Maybe that product_packaging_qty should be an Integer, no ?
-                qty = product_qty // sol.product_packaging.qty
+                qty = product_qty / sol.product_packaging.qty
                 sol.product_packaging_qty = qty
 
     def _prepare_product_packaging_qty_values(self):
