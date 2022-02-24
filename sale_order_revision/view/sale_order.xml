@@ -1,5 +1,15 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <odoo>
+    <record id="view_sales_order_filter" model="ir.ui.view">
+        <field name="name">sale.order.list.select</field>
+        <field name="model">sale.order</field>
+        <field name="inherit_id" ref="sale.view_sales_order_filter" />
+        <field name="arch" type="xml">
+            <field name="partner_id" position="after">
+                <field name="current_revision_id" invisible="1" />
+            </field>
+        </field>
+    </record>
     <record id="view_order_form" model="ir.ui.view">
         <field name="name">sale.order.form</field>
         <field name="model">sale.order</field>
@@ -14,30 +24,28 @@
                     type="object"
                 />
             </xpath>
-            <notebook position="inside">
-                <page
-                    string="Revisions"
-                    attrs="{'invisible': ['&amp;',('has_old_revisions', '=', False), ('current_revision_id', '=', False)]}"
+            <xpath expr="//button[@name='action_view_invoice']" position="after">
+                <button
+                    name="action_view_revisions"
+                    type="object"
+                    class="oe_stat_button"
+                    icon="fa-file-archive-o"
+                    attrs="{'invisible': ['|', ('has_old_revisions', '=', False),('revision_count', '=', 0)]}"
                 >
                     <field
-                        name="old_revision_ids"
-                        domain="['|', ('active', '=', False), ('active', '=', True)]"
-                        context="{'active_test': 0}"
-                        attrs="{'invisible': [('has_old_revisions', '=', False)]}"
-                    >
-                        <tree>
-                            <field name="name" />
-                            <field name="create_date" string="Superseeded on" />
-                            <field name="create_uid" string="Superseeded by" />
-                            <field name="state" invisible="1" />
-                        </tree>
-                    </field>
-                    <group attrs="{'invisible': [('current_revision_id', '=', False)]}">
-                        <field name="current_revision_id" />
-                        <field name="has_old_revisions" invisible="1" />
-                    </group>
-                </page>
-            </notebook>
+                        name="revision_count"
+                        widget="statinfo"
+                        string="Prev. revisions"
+                    />
+                </button>
+            </xpath>
+            <field name="client_order_ref" position="after">
+                <field
+                    name="current_revision_id"
+                    attrs="{'invisible': [('current_revision_id', '=', False)]}"
+                />
+                <field name="has_old_revisions" invisible="1" />
+            </field>
         </field>
     </record>
 </odoo>
