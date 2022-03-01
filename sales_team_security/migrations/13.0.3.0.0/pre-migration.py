@@ -8,6 +8,12 @@ def migrate(cr, version):
     if not version:
         return
     env = api.Environment(cr, SUPERUSER_ID, {})
+    record = env.ref("sales_team_security.sale_order_team_rule", False)
+    if record:
+        record.domain_force = (
+            "['|', '|', ('user_id','=',user.id), ('user_id','=',False), '|', "
+            "('team_id', '=', user.sale_team_id.id), ('team_id', '=', False)]"
+        )
     record = env.ref("sales_team_security.sale_order_report_team_rule", False)
     if record:
         record.domain_force = (
