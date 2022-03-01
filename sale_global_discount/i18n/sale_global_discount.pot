@@ -4,7 +4,7 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: Odoo Server 13.0\n"
+"Project-Id-Version: Odoo Server 14.0\n"
 "Report-Msgid-Bugs-To: \n"
 "Last-Translator: \n"
 "Language-Team: \n"
@@ -36,9 +36,24 @@ msgid "Amount Untaxed Before Discounts"
 msgstr ""
 
 #. module: sale_global_discount
+#: model:ir.model.fields,field_description:sale_global_discount.field_sale_order__display_name
+msgid "Display Name"
+msgstr ""
+
+#. module: sale_global_discount
+#: model:ir.model.fields,field_description:sale_global_discount.field_sale_order__id
+msgid "ID"
+msgstr ""
+
+#. module: sale_global_discount
 #: code:addons/sale_global_discount/models/sale_order.py:0
 #, python-format
 msgid "Incompatible taxes found for global discounts."
+msgstr ""
+
+#. module: sale_global_discount
+#: model:ir.model.fields,field_description:sale_global_discount.field_sale_order____last_update
+msgid "Last Modified on"
 msgstr ""
 
 #. module: sale_global_discount
