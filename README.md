@@ -89,7 +89,7 @@ addon | version | maintainers | summary
 [sale_product_classification](sale_product_classification/) | 12.0.1.0.0 |  | Classify products regarding their sales performance
 [sale_product_multi_add](sale_product_multi_add/) | 12.0.1.1.0 |  | Sale Product Multi Add
 [sale_product_returnable](sale_product_returnable/) | 12.0.1.0.2 | [![max3903](https://github.com/max3903.png?size=30px)](https://github.com/max3903) | Get returnable products from your customers
-[sale_product_set](sale_product_set/) | 12.0.1.3.1 |  | Sale product set
+[sale_product_set](sale_product_set/) | 12.0.1.3.2 |  | Sale product set
 [sale_product_set_variant](sale_product_set_variant/) | 12.0.1.1.0 |  | Add variant management to sale product set.
 [sale_promotion_rule](sale_promotion_rule/) | 12.0.1.0.1 |  | Module to manage promotion rule on sale order
 [sale_quotation_number](sale_quotation_number/) | 12.0.1.0.0 |  | Different sequence for sale quotations
