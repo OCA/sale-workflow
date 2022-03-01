@@ -1,12 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <odoo>
-  
+
   <record id="product_set_add_form_view" model="ir.ui.view">
       <field name="name">product.set.add.form.view</field>
       <field name="model">product.set.add</field>
       <field name="arch" type="xml">
           <form string="Add set in sale order line">
               <group>
+                  <field name="order_id" invisible="1" />
                   <field name="partner_id" invisible="1" />
                   <field name="product_set_id" domain="['|',('partner_id', '=', False),('partner_id', '=', partner_id)]"/>
                   <field name="quantity"/>
