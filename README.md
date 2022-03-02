@@ -34,6 +34,7 @@ addon | version | maintainers | summary
 [sale_cancel_confirm](sale_cancel_confirm/) | 14.0.1.0.0 | [![kittiu](https://github.com/kittiu.png?size=30px)](https://github.com/kittiu) | Sales Cancel Confirm
 [sale_commercial_partner](sale_commercial_partner/) | 14.0.1.0.1 |  | Add stored related field 'Commercial Entity' on sale orders
 [sale_commitment_date_mandatory](sale_commitment_date_mandatory/) | 14.0.1.0.0 |  | Set commitment data mandatory and don't allowto add lines unless this field is filled
+[sale_default_uom](sale_default_uom/) | 14.0.1.1.0 | [![ashishhirapara](https://github.com/ashishhirapara.png?size=30px)](https://github.com/ashishhirapara) | Set default Unit of Measure value of a product in sales order lines.
 [sale_delivery_date](sale_delivery_date/) | 14.0.1.0.1 | [![mmequignon](https://github.com/mmequignon.png?size=30px)](https://github.com/mmequignon) | Postpones delivery dates based on customer preferences, and/or warehouse configuration.
 [sale_delivery_split_date](sale_delivery_split_date/) | 14.0.1.0.0 |  | Sale Deliveries split by date
 [sale_delivery_state](sale_delivery_state/) | 14.0.1.1.0 |  | Show the delivery state on the sale order
