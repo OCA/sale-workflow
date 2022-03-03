@@ -26,15 +26,25 @@ class TestSaleOrderLineDates(TransactionCase):
         self.dt1 = self.today + datetime.timedelta(days=9)
         self.dt2 = self.today + datetime.timedelta(days=10)
         self.dt3 = self.today + datetime.timedelta(days=3)
-        self.sale1 = self._create_sale_order(customer, None)
+        self.sale1 = self._create_sale_order(customer, self.dt2)
         self.sale_line1 = self._create_sale_order_line(
-            self.sale1, product_id, qty, price, None
+            self.sale1, product_id, qty, price, self.dt1
         )
         self.sale_line2 = self._create_sale_order_line(
-            self.sale1, product_id, qty, price, None
+            self.sale1, product_id, qty, price, self.dt2
         )
         self.sale_line3 = self._create_sale_order_line(
             self.sale1, product_id, qty, price, None
+        )
+        self.sale2 = self._create_sale_order(customer, self.dt2)
+        self.sale_line4 = self._create_sale_order_line(
+            self.sale2, product_id, qty, price, self.dt3
+        )
+        self.sale_line5 = self._create_sale_order_line(
+            self.sale2, product_id, qty, price, self.dt2
+        )
+        self.sale_line6 = self._create_sale_order_line(
+            self.sale2, product_id, qty, price, self.dt1
         )
 
     def _create_sale_order(self, customer, date):
@@ -62,42 +72,6 @@ class TestSaleOrderLineDates(TransactionCase):
         )
         return sale_line
 
-    def test_01_so_quotation_commitment_date(self):
-        """Test if commitment date is correct in SO quotation"""
-        self.assertEqual(self.sale1.commitment_date, False)
-        self.sale_line1.write({"commitment_date": self.dt3})
-        self.sale1._onchange_expected_date()
-        self.assertEqual(self.sale1.commitment_date, self.dt3)
-        self.sale_line2.write({"commitment_date": self.dt2})
-        self.sale1._onchange_expected_date()
-        self.assertEqual(self.sale1.commitment_date, self.dt3)
-        self.sale1.picking_policy = "one"
-        self.assertEqual(self.sale1.commitment_date, self.dt3)
-
-    def test_02_so_commitment_date(self):
-        """Test if commitment date is correct in SO quotation"""
-        self.sale1.action_confirm()
-        self.assertEqual(self.sale1.commitment_date, False)
-        self.sale_line1.write({"commitment_date": self.dt3})
-        self.sale1._onchange_expected_date()
-        self.assertEqual(self.sale1.commitment_date, self.dt3)
-        self.sale_line2.write({"commitment_date": self.dt2})
-        self.sale1._onchange_expected_date()
-        self.assertEqual(self.sale1.commitment_date, self.dt3)
-        self.sale1.picking_policy = "one"
-        self.assertEqual(self.sale1.commitment_date, self.dt3)
-
-    def test_03_on_change_so_commitment_date(self):
-        """Test if changing Delivery Date has repercussion in SO lines"""
-        self.sale_line1.write({"commitment_date": self.dt1})
-        self.sale_line2.write({"commitment_date": self.dt2})
-        self.sale_line3.write({"commitment_date": self.dt3})
-        self.sale1.action_confirm()
-        self.sale1.write({"commitment_date": self.dt3})
-        self.assertEqual(self.sale_line1.commitment_date, self.dt1)
-        self.assertEqual(self.sale_line2.commitment_date, self.dt2)
-        self.assertEqual(self.sale_line3.commitment_date, self.dt3)
-
     def _assert_equal_dates(self, date1, date2):
         if isinstance(date1, datetime.datetime):
             date1 = date1.date()
@@ -105,23 +79,27 @@ class TestSaleOrderLineDates(TransactionCase):
             date2 = date2.date()
         self.assertEqual(date1, date2)
 
-    def test_on_change_commitment_date(self):
-        """True when the commitment date in the sale_order_line was empty
-        and after matches with the commitment date in the sale order"""
+    def test_01_so_commitment_dates(self):
+        """Test if commitment date in sale_order_line fills
+        with SO commitment_date only when is empty"""
         self.assertEqual(self.sale_line3.commitment_date, False)
+        self.assertEqual(self.sale1.commitment_date, self.dt2)
+        self.sale1.write({"commitment_date": self.dt3})
         self.sale1._onchange_commitment_date()
-        self._assert_equal_dates(self.sale_line3.commitment_date, self.dt2)
+        self.assertEqual(self.sale_line1.commitment_date, self.dt1)
+        self.assertEqual(self.sale_line2.commitment_date, self.dt2)
+        self.assertEqual(self.sale_line3.commitment_date, self.dt3)
 
-    def test_shipping_policies(self):
+    def test_02_shipping_policies(self):
         """Test if dates are propagated correctly taking into
         account Shipping Policy"""
-        self.assertEqual(self.sale2.picking_policy, "direct")
         self.sale1.action_confirm()
         picking = self.sale1.picking_ids
         self.assertEqual(len(picking), 1)
         # it should be the earliest (3 line commitment_date is not set) -> dt1
         self.assertEqual(picking.scheduled_date, self.dt1 - datetime.timedelta(days=1))
         self.assertEqual(picking.date_deadline, self.dt1)
+        self.assertEqual(self.sale2.picking_policy, "direct")
         self.sale2.picking_policy = "one"
         self.sale2.action_confirm()
         picking = self.sale2.picking_ids
@@ -152,7 +130,7 @@ class TestSaleOrderLineDates(TransactionCase):
             self.sale_line6.commitment_date, self.sale_line6.move_ids.date_deadline
         )
 
-    def test_line_commitment_date_picking_propagation(self):
+    def test_03_line_commitment_date_picking_propagation(self):
         """Test if dates are propagated correctly in stock moves"""
         self.sale1.write({"commitment_date": self.dt1})
         self.sale1._onchange_commitment_date()

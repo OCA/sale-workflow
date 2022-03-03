@@ -23,18 +23,8 @@ class SaleOrderLine(models.Model):
             vals.update(
                 {
                     "date_planned": self.commitment_date
-                    - timedelta(days=self.order_id.company_id.security_lead)
+                    - timedelta(days=self.order_id.company_id.security_lead),
+                    "date_deadline": self.commitment_date,
                 }
             )
-            vals.update({"date_deadline": self.commitment_date})
         return vals
-
-    def _expected_date(self):
-        """
-        The only intention of this method is to call
-        _onchange_expected_date() when a sale order line
-        Delivery Date is changed and SO was already confirmed.
-        """
-        res = super(SaleOrderLine, self)._expected_date()
-        self.order_id._onchange_expected_date()
-        return res
