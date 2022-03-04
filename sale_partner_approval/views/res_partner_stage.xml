@@ -1,0 +1,13 @@
+<odoo>
+    <record id="view_partner_stage_form" model="ir.ui.view">
+        <field name="model">res.partner.stage</field>
+        <field name="inherit_id" ref="partner_stage.view_partner_stage_form" />
+        <field name="arch" type="xml">
+
+            <field name="code" position="after">
+                <field name="approved_sale" />
+            </field>
+
+        </field>
+    </record>
+</odoo>
