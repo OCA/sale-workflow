@@ -91,7 +91,7 @@ addon | version | maintainers | summary
 [sale_procurement_group_by_line](sale_procurement_group_by_line/) | 13.0.1.0.4 |  | Base module for multiple procurement group by Sale order
 [sale_product_category_menu](sale_product_category_menu/) | 13.0.1.0.1 |  | Shows 'Product Categories' menu item in Sales
 [sale_product_multi_add](sale_product_multi_add/) | 13.0.1.0.1 |  | Sale Product Multi Add
-[sale_product_set](sale_product_set/) | 13.0.1.2.1 |  | Sale product set
+[sale_product_set](sale_product_set/) | 13.0.1.2.2 |  | Sale product set
 [sale_product_set_packaging_qty](sale_product_set_packaging_qty/) | 13.0.1.0.1 |  | Manage packaging and quantities on product set lines
 [sale_product_set_sale_by_packaging](sale_product_set_sale_by_packaging/) | 13.0.1.1.0 |  | Glue module between `sale_by_packaging` and `sale_product_set_packaging_qty`.
 [sale_quotation_number](sale_quotation_number/) | 13.0.1.0.0 |  | Different sequence for sale quotations
