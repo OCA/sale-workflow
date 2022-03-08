@@ -91,3 +91,7 @@ class ResPartner(models.Model):
         if "user_id" in vals or vals.get("type") in {"invoice", "delivery"}:
             self._add_followers_from_salesmans()
         return result
+
+    @api.model
+    def _commercial_fields(self):
+        return super()._commercial_fields() + ["user_id", "team_id"]
