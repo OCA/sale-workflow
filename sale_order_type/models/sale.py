@@ -50,6 +50,8 @@ class SaleOrder(models.Model):
                 )
                 if sale_type:
                     record.type_id = sale_type
+                else:  # HACK: Avoid CacheMiss when no sale_type is set
+                    record.type_id = record.type_id
 
     @api.onchange("type_id")
     def onchange_type_id(self):
