@@ -100,7 +100,7 @@ class BlanketOrderWizard(models.TransientModel):
     def _prepare_so_line_vals(self, line):
         return {
             "product_id": line.product_id.id,
-            "name": line.product_id.name,
+            "name": line.product_id.display_name,
             "product_uom": line.product_uom.id,
             "sequence": line.blanket_line_id.sequence,
             "price_unit": line.blanket_line_id.price_unit,
