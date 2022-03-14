@@ -2,8 +2,8 @@ from odoo import fields
 from odoo.tests.common import TransactionCase
 
 
-class TestSaleOrderLineDiscountValidation(TransactionCase):
-    def setUp(self):
+class TestSaleOrderLineDiscountValidation(SavepointCase):
+    def setUpClass(self):
         super(TestSaleOrderLineDiscountValidation, self).setUp()
         self.sale_order_model = self.env["sale.order"]
         self.partner_model = self.env["res.partner"]
