@@ -59,6 +59,7 @@ setuptools.setup(
         'odoo13-addon-sale_order_line_price_history',
         'odoo13-addon-sale_order_lot_selection',
         'odoo13-addon-sale_order_partner_restrict',
+        'odoo13-addon-sale_order_price_recalculation',
         'odoo13-addon-sale_order_priority',
         'odoo13-addon-sale_order_product_assortment',
         'odoo13-addon-sale_order_product_availability_inline',
