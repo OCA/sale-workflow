@@ -1,0 +1,36 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# * sale_order_price_recalculation
+#
+# Translators:
+msgid ""
+msgstr ""
+"Project-Id-Version: sale-workflow (8.0)\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2015-10-02 17:59+0000\n"
+"PO-Revision-Date: 2015-09-28 12:51+0000\n"
+"Last-Translator: OCA Transbot <transbot@odoo-community.org>\n"
+"Language-Team: English (http://www.transifex.com/oca/OCA-sale-workflow-8-0/"
+"language/en/)\n"
+"Language: en\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+#. module: sale_order_price_recalculation
+#: model_terms:ir.ui.view,arch_db:sale_order_price_recalculation.sorp_view_order_form
+msgid "Recalculate prices"
+msgstr "Recalculate prices"
+
+#. module: sale_order_price_recalculation
+#: model_terms:ir.ui.view,arch_db:sale_order_price_recalculation.sorp_view_order_form
+msgid "Reset descriptions"
+msgstr "Reset descriptions"
+
+#. module: sale_order_price_recalculation
+#: model:ir.model,name:sale_order_price_recalculation.model_sale_order
+#, fuzzy
+#| msgid "Sales Order"
+msgid "Sale Order"
+msgstr "Sales Order"

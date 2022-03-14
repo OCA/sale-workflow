@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <record id="view_sales_order_auto_done_setting" model="ir.ui.view">
+        <field name="model">sale.order</field>
+        <field name="inherit_id" ref="sale.view_sales_order_auto_done_setting" />
+        <field name="arch" type="xml">
+            <button name="action_unlock" position="after">
+                <button
+                    name="recalculate_prices"
+                    class="ml-2 btn btn-default"
+                    string="Recalculate prices"
+                    Help="Apply the current pricelist"
+                    type="object"
+                    attrs="{'invisible':[('state','not in', ['draft', 'sent'])]}"
+                />
+                <button
+                    name="recalculate_names"
+                    class="ml-2 btn btn-default"
+                    string="Reset descriptions"
+                    Help="Erase custom descriptions of all lines"
+                    type="object"
+                    attrs="{'invisible':[('state','not in', ['draft', 'sent'])]}"
+                />
+            </button>
+        </field>
+    </record>
+</odoo>
