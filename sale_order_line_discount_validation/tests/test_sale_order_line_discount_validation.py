@@ -3,23 +3,22 @@ from odoo.tests import SavepointCase
 
 
 class TestSaleOrderLineDiscountValidation(SavepointCase):
-
     @classmethod
     def setUpClass(cls):
         super(TestSaleOrderLineDiscountValidation, cls).setUpClass()
-        self.sale_order_model = self.env["sale.order"]
-        self.partner_model = self.env["res.partner"]
+        cls.sale_order_model = cls.env["sale.order"]
+        cls.partner_model = cls.env["res.partner"]
 
-        self.partner = self.partner_model.create({"name": "Test partner"})
-        self.sale_order = self.sale_order_model.create(
+        cls.partner = cls.partner_model.create({"name": "Test partner"})
+        cls.sale_order = cls.sale_order_model.create(
             {
-                "partner_id": self.partner.id,
+                "partner_id": cls.partner.id,
             }
         )
 
-        sales_team_var = self.env.ref("sales_team.group_sale_manager")
+        sales_team_var = cls.env.ref("sales_team.group_sale_manager")
         # sales_team_var.write({'users': [(4, self.env.uid)]})
-        sales_team_var.write({"users": [(4, self.env.user.id)]})
+        sales_team_var.write({"users": [(4, cls.env.user.id)]})
 
     def test_get_message_body(self):
 
