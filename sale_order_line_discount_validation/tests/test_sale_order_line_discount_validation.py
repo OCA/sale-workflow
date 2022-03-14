@@ -3,8 +3,10 @@ from odoo.tests import SavepointCase
 
 
 class TestSaleOrderLineDiscountValidation(SavepointCase):
-    def setUpClass(self):
-        super(TestSaleOrderLineDiscountValidation, self).setUp()
+
+    @classmethod
+    def setUpClass(cls):
+        super(TestSaleOrderLineDiscountValidation, cls).setUpClass()
         self.sale_order_model = self.env["sale.order"]
         self.partner_model = self.env["res.partner"]
 
