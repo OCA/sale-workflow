@@ -35,4 +35,5 @@ class ProductSetLine(models.Model):
             "product_uom": self.product_id.uom_id.id,
             "sequence": max_sequence + self.sequence,
             "discount": self.discount,
+            "company_id": order.company_id.id,
         }
