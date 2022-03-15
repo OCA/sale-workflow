@@ -23,12 +23,16 @@ class SaleOrder(models.Model):
         self._apply_pricelist_from_commitment_date()
 
     def create(self, vals):
+        if self._context.get("import_file"):
+            return super().create(vals)
         sale = super().create(vals)
         if sale.commitment_date:
             sale._apply_pricelist_from_commitment_date()
         return sale
 
     def write(self, vals):
+        if self._context.get("import_file"):
+            return super().write(vals)
         if "commitment_date" not in vals and "pricelist_id" not in vals:
             return super().write(vals)
         for sale in self:
