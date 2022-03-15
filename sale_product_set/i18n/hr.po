@@ -47,6 +47,12 @@ msgid "Add set to sale order"
 msgstr ""
 
 #. module: sale_product_set
+#: model_terms:ir.ui.view,arch_db:sale_product_set.view_product_set_form
+#: model_terms:ir.ui.view,arch_db:sale_product_set.view_product_set_search
+msgid "Archived"
+msgstr ""
+
+#. module: sale_product_set
 #: model_terms:ir.ui.view,arch_db:sale_product_set.product_set_add_form_view
 msgid "Cancel"
 msgstr "Otkaži"
