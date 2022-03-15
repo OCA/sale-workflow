@@ -105,6 +105,7 @@ addon | version | maintainers | summary
 [sale_stock_last_date](sale_stock_last_date/) | 13.0.1.0.0 |  | Displays last delivery date in sale order lines
 [sale_stock_picking_blocking](sale_stock_picking_blocking/) | 13.0.1.0.1 |  | Allow you to block the creation of deliveries from a sale order.
 [sale_stock_picking_note](sale_stock_picking_note/) | 13.0.2.0.0 |  | Add picking note in sale and purchase order
+[sale_stock_picking_validation_blocking](sale_stock_picking_validation_blocking/) | 13.0.1.0.0 |  | This module adds the opportunity to prevent the validation of delivery order from the SO.
 [sale_stock_return_request](sale_stock_return_request/) | 13.0.1.0.0 | [![chienandalu](https://github.com/chienandalu.png?size=30px)](https://github.com/chienandalu) | Sale Stock Return Request
 [sale_stock_secondary_unit](sale_stock_secondary_unit/) | 13.0.1.0.0 |  | Get product quantities in a secondary unit
 [sale_tier_validation](sale_tier_validation/) | 13.0.1.0.0 |  | Extends the functionality of Sale Orders to support a tier validation process.
