@@ -76,10 +76,8 @@ class TestSaleOrder(TransactionCase):
             ]
         )
         next_name = sequence_id.get_next_char(sequence_id.number_next_actual)
-        try:
+        with self.assertRaises(UserError):
             order.action_confirm()
-        except UserError:
-            pass
         order.update({"state": "draft"})
         # Now the SQ can be confirmed
         order.action_confirm()
