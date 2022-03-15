@@ -6,7 +6,7 @@
 Sale Sourced by Line
 ====================
 
-This module adds the possibility to source a line of sale order from a specific
+This module adds the possibility to source a line meof sale order from a specific
 warehouse instead of using the warehouse of the sale order.
 
 This will create one procurement group per warehouse set in sale
