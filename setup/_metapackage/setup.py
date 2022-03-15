@@ -91,6 +91,7 @@ setuptools.setup(
         'odoo13-addon-sale_stock_last_date',
         'odoo13-addon-sale_stock_picking_blocking',
         'odoo13-addon-sale_stock_picking_note',
+        'odoo13-addon-sale_stock_picking_validation_blocking',
         'odoo13-addon-sale_stock_return_request',
         'odoo13-addon-sale_stock_secondary_unit',
         'odoo13-addon-sale_tier_validation',
