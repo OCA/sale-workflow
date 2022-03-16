@@ -3,7 +3,7 @@
 
 {
     "name": "Sale commitment date mandatory",
-    "version": "14.0.1.0.0",
+    "version": "14.0.1.0.1",
     "category": "Sales",
     "license": "AGPL-3",
     "summary": "Set commitment data mandatory and don't allow"
