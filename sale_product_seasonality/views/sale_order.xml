@@ -4,8 +4,6 @@
     <record id="view_order_form" model="ir.ui.view">
         <field name="model">sale.order</field>
         <field name="inherit_id" ref="sale.view_order_form" />
-        <!-- to pass after the sale_commitment_date_mandatory -->
-        <field name="priority" eval="110" />
         <field name="arch" type="xml">
             <xpath expr="//field[@name='commitment_date']/.." position="after">
                 <field name="commitment_date_end" />
