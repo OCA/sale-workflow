@@ -26,7 +26,7 @@ addon | version | maintainers | summary
 [sale_force_invoiced](sale_force_invoiced/) | 15.0.1.0.0 |  | Allows to force the invoice status of the sales order to Invoiced
 [sale_invoice_plan](sale_invoice_plan/) | 15.0.1.0.0 | [![kittiu](https://github.com/kittiu.png?size=30px)](https://github.com/kittiu) | Add to sales order, ability to manage future invoice plan
 [sale_order_invoice_amount](sale_order_invoice_amount/) | 15.0.1.0.0 |  | Display the invoiced and uninvoiced total in the sale order
-[sale_order_line_date](sale_order_line_date/) | 15.0.1.0.1 |  | Adds a commitment date to each sale order line.
+[sale_order_line_date](sale_order_line_date/) | 15.0.1.1.0 |  | Adds a commitment date to each sale order line.
 [sale_order_type](sale_order_type/) | 15.0.2.0.0 |  | Sale Order Type
 [sale_procurement_group_by_line](sale_procurement_group_by_line/) | 15.0.1.0.0 |  | Base module for multiple procurement group by Sale order
 [sale_product_category_menu](sale_product_category_menu/) | 15.0.1.0.0 |  | Shows 'Product Categories' menu item in Sales
