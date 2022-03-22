@@ -3,15 +3,15 @@
      License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl). -->
 <odoo>
     <template
-        id="report_saleorder_document"
-        inherit_id="sale.report_saleorder_document"
+        id="sale_order_portal_content"
+        inherit_id="sale.sale_order_portal_content"
     >
         <xpath expr="//thead/tr/th[3]" position="before">
             <th class="text-right">Unit Price Without Taxes</th>
         </xpath>
-        <xpath expr="//td[span[@t-field='line.price_unit']]" position="before">
+        <xpath expr="//td[div[@t-field='line.price_unit']]" position="before">
             <td class="text-right">
-                <span t-field='line.price_unit_no_taxes' />
+                <span t-field='line.price_unit_untaxed' />
             </td>
         </xpath>
     </template>

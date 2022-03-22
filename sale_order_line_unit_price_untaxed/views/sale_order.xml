@@ -4,7 +4,9 @@
 <odoo>
 
     <record id="view_order_form_sale" model="ir.ui.view">
-        <field name="name">view.order.form(in sale_order_line_unit_price_no_tax)</field>
+        <field
+            name="name"
+        >view.order.form(in sale_order_line_unit_price_untaxed)</field>
         <field name="model">sale.order</field>
         <field name="inherit_id" ref="sale.view_order_form" />
         <field name="arch" type="xml">
@@ -12,13 +14,13 @@
                 expr="//field[@name='order_line']/form/group/group/field[@name='price_unit']"
                 position="before"
             >
-            <field name="price_unit_no_taxes" readonly="1" />
+            <field name="price_unit_untaxed" readonly="1" />
           </xpath>
           <xpath
                 expr="//field[@name='order_line']/tree/field[@name='price_unit']"
                 position="before"
             >
-            <field name="price_unit_no_taxes" readonly="1" />
+            <field name="price_unit_untaxed" readonly="1" />
           </xpath>
         </field>
       </record>
