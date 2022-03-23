@@ -5,10 +5,10 @@
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl)
 
 from odoo.exceptions import ValidationError
-from odoo.tests import Form, SavepointCase
+from odoo.tests import Form, TransactionCase
 
 
-class TestSaleException(SavepointCase):
+class TestSaleException(TransactionCase):
     @classmethod
     def setUpClass(cls):
         super().setUpClass()
@@ -135,7 +135,7 @@ class TestSaleException(SavepointCase):
         # Simulation the opening of the wizard sale_exception_confirm and
         # set ignore_exception to True
         so_except_confirm = self.sale_exception_confirm.with_context(
-            {"active_id": so1.id, "active_ids": [so1.id], "active_model": so1._name}
+            **{"active_id": so1.id, "active_ids": [so1.id], "active_model": so1._name}
         ).create({"ignore": True})
         so_except_confirm.action_confirm()
         self.assertTrue(so1.ignore_exception)

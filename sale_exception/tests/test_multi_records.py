@@ -2,10 +2,10 @@
 
 import mock
 
-from odoo.tests import SavepointCase
+from odoo.tests import TransactionCase
 
 
-class TestSaleExceptionMultiRecord(SavepointCase):
+class TestSaleExceptionMultiRecord(TransactionCase):
     @classmethod
     def setUpClass(cls):
         super().setUpClass()
