@@ -19,18 +19,21 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
 #. module: sale_order_price_recalculation
-#: model_terms:ir.ui.view,arch_db:sale_order_price_recalculation.sorp_view_order_form
+#: model_terms:ir.ui.view,arch_db:sale_order_price_recalculation.view_sales_order_auto_done_setting
 msgid "Recalculate prices"
 msgstr ""
 
 #. module: sale_order_price_recalculation
-#: model_terms:ir.ui.view,arch_db:sale_order_price_recalculation.sorp_view_order_form
+#: model_terms:ir.ui.view,arch_db:sale_order_price_recalculation.view_sales_order_auto_done_setting
 msgid "Reset descriptions"
 msgstr ""
 
 #. module: sale_order_price_recalculation
 #: model:ir.model,name:sale_order_price_recalculation.model_sale_order
+msgid "Sales Order"
+msgstr ""
+
 #, fuzzy
-#| msgid "Sales Order"
-msgid "Sale Order"
-msgstr "Comandes de venda"
+#~| msgid "Sales Order"
+#~ msgid "Sale Order"
+#~ msgstr "Comandes de venda"
