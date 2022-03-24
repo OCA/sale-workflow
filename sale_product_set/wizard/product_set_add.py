@@ -83,7 +83,7 @@ class ProductSetAdd(models.TransientModel):
         return self.product_set_id.partner_id
 
     def add_set(self):
-        """ Add product set, multiplied by quantity in sale order line """
+        """Add product set, multiplied by quantity in sale order line"""
         self._check_partner()
         order_lines = self._prepare_order_lines()
         if order_lines:
