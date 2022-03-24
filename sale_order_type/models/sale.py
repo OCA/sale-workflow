@@ -28,8 +28,9 @@ class SaleOrder(models.Model):
 
     @api.model
     def _default_type_id(self):
+        company_id = self.env.context.get("force_company", self.env.company.id)
         return self.env["sale.order.type"].search(
-            [("company_id", "in", [self.env.company.id, False])], limit=1
+            [("company_id", "in", [company_id, False])], limit=1
         )
 
     @api.depends("partner_id", "company_id")
@@ -37,7 +38,7 @@ class SaleOrder(models.Model):
         for record in self:
             if not record.partner_id:
                 record.type_id = self.env["sale.order.type"].search(
-                    [("company_id", "in", [self.env.company.id, False])], limit=1
+                    [("company_id", "in", [record.company_id.id, False])], limit=1
                 )
             else:
                 sale_type = (
