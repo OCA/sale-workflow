@@ -2,7 +2,7 @@
 # Copyright 2018 Simone Rubino - Agile Business Group
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
-from .common import TestSaleCommon
+from odoo.addons.sale.tests.common import TestSaleCommon
 import logging
 
 _logger = logging.getLogger(__name__)
@@ -13,32 +13,6 @@ class TestSaleOrder(TestSaleCommon):
     def setUpClass(cls):
         super(TestSaleOrder, cls).setUpClass()
         cls.partner = cls.env["res.partner"].create({"name": "Mr. Odoo"})
-        cls.product1 = cls.env["product.product"].create(
-            {
-                "name": "Product A",
-                "type": "product",
-                "default_code": "prda",
-                "categ_id": cls.env.ref("product.product_category_all").id,
-                "taxes_id": [(5, 0, 0)],
-                "supplier_taxes_id": [(5, 0, 0)],
-                "lst_price": 100.0,
-                "standard_price": 10.0,
-                "invoice_policy": "order"
-            }
-        )
-        cls.product2 = cls.env["product.product"].create(
-            {
-                "name": "Product B",
-                "type": "product",
-                "default_code": "prda",
-                "categ_id": cls.env.ref("product.product_category_all").id,
-                "taxes_id": [(5, 0, 0)],
-                "supplier_taxes_id": [(5, 0, 0)],
-                "lst_price": 100.0,
-                "standard_price": 10.0,
-                "invoice_policy": "order"
-            }
-        )
         cls.tax = cls.env["account.tax"].create(
             {
                 "name": "TAX 15%",
@@ -57,20 +31,20 @@ class TestSaleOrder(TestSaleCommon):
         cls.so_line1 = so_line.create(
             {
                 "order_id": cls.order.id,
-                "product_id": cls.product1.id,
+                'product_id': cls.company_data['product_order_no'].id,
                 "name": "Line 1",
                 "product_uom_qty": 1.0,
-                "tax_id": [(6, 0, [cls.tax.id])],
+                "tax_id": False,
                 "price_unit": 600.0,
             }
         )
         cls.so_line2 = so_line.create(
             {
                 "order_id": cls.order.id,
-                "product_id": cls.product2.id,
+                'product_id': cls.company_data['product_order_no'].id,
                 "name": "Line 2",
                 "product_uom_qty": 10.0,
-                "tax_id": [(6, 0, [cls.tax.id])],
+                "tax_id": False,
                 "price_unit": 60.0,
             }
         )
