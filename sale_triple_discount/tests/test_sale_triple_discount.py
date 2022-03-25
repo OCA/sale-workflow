@@ -14,10 +14,30 @@ class TestSaleOrder(common.SavepointCase):
         super(TestSaleOrder, cls).setUpClass()
         cls.partner = cls.env["res.partner"].create({"name": "Mr. Odoo"})
         cls.product1 = cls.env["product.product"].create(
-            {"name": "Test Product 1", "type": "service", "invoice_policy": "order"}
+            {
+                "name": "Product A",
+                "type": "product",
+                "default_code": "prda",
+                "categ_id": cls.env.ref("product.product_category_all").id,
+                "taxes_id": [(5, 0, 0)],
+                "supplier_taxes_id": [(5, 0, 0)],
+                "lst_price": 100.0,
+                "standard_price": 10.0,
+                "invoice_policy": "order"
+            }
         )
         cls.product2 = cls.env["product.product"].create(
-            {"name": "Test Product 2", "type": "service", "invoice_policy": "order"}
+            {
+                "name": "Product B",
+                "type": "product",
+                "default_code": "prda",
+                "categ_id": cls.env.ref("product.product_category_all").id,
+                "taxes_id": [(5, 0, 0)],
+                "supplier_taxes_id": [(5, 0, 0)],
+                "lst_price": 100.0,
+                "standard_price": 10.0,
+                "invoice_policy": "order"
+            }
         )
         cls.tax = cls.env["account.tax"].create(
             {
@@ -125,8 +145,6 @@ class TestSaleOrder(common.SavepointCase):
         self.so_line2.discount3 = 50.0
         self.order.action_confirm()
         dump(self.order)
-        dump(self.order.mapped('order_line'))
-        dump(self.order.mapped('order_line').mapped('product_id'))
         self.order._create_invoices()
         invoice = self.order.invoice_ids[0]
         self.assertAlmostEqual(
