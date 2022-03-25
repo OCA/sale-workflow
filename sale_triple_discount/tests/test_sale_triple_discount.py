@@ -3,6 +3,9 @@
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
 from odoo.tests import common
+import logging
+
+_logger = logging.getLogger(__name__)
 
 
 class TestSaleOrder(common.SavepointCase):
@@ -121,6 +124,7 @@ class TestSaleOrder(common.SavepointCase):
         self.so_line1.discount3 = 50.0
         self.so_line2.discount3 = 50.0
         self.order.action_confirm()
+        _logger.info(self.order.mapped('order_line').mapped('product_id').mapped('invoice_policy'))
         self.order._create_invoices()
         invoice = self.order.invoice_ids[0]
         self.assertAlmostEqual(
