@@ -2,6 +2,7 @@
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
 from odoo import api, fields, models
+
 from odoo.addons import decimal_precision as dp
 
 
@@ -45,11 +46,12 @@ class ProductMinMultipleMixin(models.AbstractModel):
         "Hierarchy is in this order :"
         "Product/product Template/product category/parent categoroies ",
     )
-    manual_force_sale_min_qty = fields.Selection([
-        ('use_parent', 'Use Parent Setting'),
-        ('force', 'Yes'),
-        ('not_force', 'No'),
-    ],
+    manual_force_sale_min_qty = fields.Selection(
+        [
+            ("use_parent", "Use Parent Setting"),
+            ("force", "Yes"),
+            ("not_force", "No"),
+        ],
         string="Manual Force Min Qty",
         required=True,
         default="use_parent",
@@ -80,11 +82,12 @@ class ProductMinMultipleMixin(models.AbstractModel):
         "Hierarchy is in this order :"
         "Product/product Template/product category/parent categoroies ",
     )
-    manual_force_sale_max_qty = fields.Selection([
-        ('use_parent', 'Use Parent Setting'),
-        ('force', 'Yes'),
-        ('not_force', 'No'),
-    ],
+    manual_force_sale_max_qty = fields.Selection(
+        [
+            ("use_parent", "Use Parent Setting"),
+            ("force", "Yes"),
+            ("not_force", "No"),
+        ],
         required=True,
         default="use_parent",
         string="Manual Force Max Qty",
@@ -97,16 +100,20 @@ class ProductMinMultipleMixin(models.AbstractModel):
         self.ensure_one()
         res = {
             "sale_min_qty": self.manual_sale_min_qty,
-            "force_sale_min_qty": self.manual_force_sale_min_qty == 'force',
+            "force_sale_min_qty": self.manual_force_sale_min_qty == "force",
             "sale_max_qty": self.manual_sale_max_qty,
-            "force_sale_max_qty": self.manual_force_sale_max_qty == 'force',
+            "force_sale_max_qty": self.manual_force_sale_max_qty == "force",
             "sale_multiple_qty": self.manual_sale_multiple_qty,
         }
         return res
 
-    @api.depends("manual_force_sale_min_qty", "manual_sale_min_qty",
-                 "manual_force_sale_max_qty", "manual_sale_max_qty",
-                 "manual_sale_multiple_qty")
+    @api.depends(
+        "manual_force_sale_min_qty",
+        "manual_sale_min_qty",
+        "manual_force_sale_max_qty",
+        "manual_sale_max_qty",
+        "manual_sale_multiple_qty",
+    )
     def _compute_sale_restricted_qty(self):
         for rec in self:
             rec.update(rec._get_sale_restricted_qty())
