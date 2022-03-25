@@ -2,9 +2,10 @@
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
 from odoo import _, api, fields, models
-from odoo.addons import decimal_precision as dp
 from odoo.exceptions import ValidationError
 from odoo.tools import float_compare
+
+from odoo.addons import decimal_precision as dp
 
 
 class SaleOrderLine(models.Model):
@@ -17,8 +18,7 @@ class SaleOrderLine(models.Model):
         digits=dp.get_precision("Product Unit of Measure"),
     )
     force_sale_min_qty = fields.Boolean(
-        compute="_compute_sale_restricted_qty",
-        readonly=True, store=True
+        compute="_compute_sale_restricted_qty", readonly=True, store=True
     )
     is_qty_less_min_qty = fields.Boolean(
         string="Qty < Min Qty", compute="_compute_is_qty_less_min_qty"
@@ -31,8 +31,7 @@ class SaleOrderLine(models.Model):
         digits=dp.get_precision("Product Unit of Measure"),
     )
     force_sale_max_qty = fields.Boolean(
-        compute="_compute_sale_restricted_qty",
-        readonly=True, store=True
+        compute="_compute_sale_restricted_qty", readonly=True, store=True
     )
     is_qty_bigger_max_qty = fields.Boolean(
         string="Qty > max Qty", compute="_compute_is_qty_bigger_max_qty"
@@ -48,14 +47,14 @@ class SaleOrderLine(models.Model):
     )
 
     @api.constrains(
-        "product_uom_qty", "sale_min_qty", "sale_max_qty", "sale_multiple_qty")
+        "product_uom_qty", "sale_min_qty", "sale_max_qty", "sale_multiple_qty"
+    )
     def check_constraint_restricted_qty(self):
 
         msg = ""
         invaild_min_lines = []
         line_to_test = self.filtered(
-            lambda sl: not sl.product_id.force_sale_min_qty and
-            sl.is_qty_less_min_qty
+            lambda sl: not sl.product_id.force_sale_min_qty and sl.is_qty_less_min_qty
         )
         for line in line_to_test:
             invaild_min_lines.append(
@@ -73,8 +72,7 @@ class SaleOrderLine(models.Model):
             )
         invaild_max_lines = []
         line_to_test = self.filtered(
-            lambda sl: not sl.product_id.force_sale_max_qty and
-            sl.is_qty_bigger_max_qty
+            lambda sl: not sl.product_id.force_sale_max_qty and sl.is_qty_bigger_max_qty
         )
         for line in line_to_test:
             invaild_max_lines.append(
@@ -115,31 +113,39 @@ class SaleOrderLine(models.Model):
         self.ensure_one()
         return self.product_uom._compute_quantity(
             self.product_uom_qty, self.product_id.uom_id
-            )
+        )
 
     @api.depends("product_id", "product_uom_qty", "sale_min_qty")
     def _compute_is_qty_less_min_qty(self):
         for line in self:
             rounding = line.product_uom.rounding
             product_qty = line._get_product_qty_in_product_unit()
-            line.is_qty_less_min_qty = line.sale_min_qty and (
-                float_compare(
-                    product_qty, line.sale_min_qty, precision_rounding=rounding
+            line.is_qty_less_min_qty = (
+                line.sale_min_qty
+                and (
+                    float_compare(
+                        product_qty, line.sale_min_qty, precision_rounding=rounding
+                    )
+                    < 0
                 )
-                < 0
-            ) or False
+                or False
+            )
 
     @api.depends("product_id", "product_uom_qty", "sale_max_qty")
     def _compute_is_qty_bigger_max_qty(self):
         for line in self:
             rounding = line.product_uom.rounding
             product_qty = line._get_product_qty_in_product_unit()
-            line.is_qty_bigger_max_qty = line.sale_max_qty and (
-                float_compare(
-                    product_qty, line.sale_max_qty, precision_rounding=rounding
+            line.is_qty_bigger_max_qty = (
+                line.sale_max_qty
+                and (
+                    float_compare(
+                        product_qty, line.sale_max_qty, precision_rounding=rounding
+                    )
+                    > 0
                 )
-                > 0
-            ) or False
+                or False
+            )
 
     @api.depends("product_id", "product_uom_qty", "sale_multiple_qty")
     def _compute_is_qty_not_multiple_qty(self):
@@ -148,24 +154,24 @@ class SaleOrderLine(models.Model):
                 line.product_uom_qty, line.product_id.uom_id
             )
             line.is_qty_not_multiple_qty = (
-                line.sale_multiple_qty > 0
-                and product_qty % line.sale_multiple_qty != 0
+                line.sale_multiple_qty > 0 and product_qty % line.sale_multiple_qty != 0
             )
 
     def _get_sale_restricted_qty(self):
         """Overridable function to change qty values (ex: form stock)"""
         self.ensure_one()
         res = {
-            "sale_min_qty": (self.product_id and
-                             self.product_id.sale_min_qty or 0),
-            "force_sale_min_qty": (self.product_id and
-                                   self.product_id.force_sale_min_qty or False),
-            "sale_max_qty": (self.product_id and
-                             self.product_id.sale_max_qty or 0),
-            "force_sale_max_qty": (self.product_id and
-                                   self.product_id.force_sale_max_qty or False),
-            "sale_multiple_qty": (self.product_id and
-                                  self.product_id.sale_multiple_qty or 0),
+            "sale_min_qty": (self.product_id and self.product_id.sale_min_qty or 0),
+            "force_sale_min_qty": (
+                self.product_id and self.product_id.force_sale_min_qty or False
+            ),
+            "sale_max_qty": (self.product_id and self.product_id.sale_max_qty or 0),
+            "force_sale_max_qty": (
+                self.product_id and self.product_id.force_sale_max_qty or False
+            ),
+            "sale_multiple_qty": (
+                self.product_id and self.product_id.sale_multiple_qty or 0
+            ),
         }
         return res
 
