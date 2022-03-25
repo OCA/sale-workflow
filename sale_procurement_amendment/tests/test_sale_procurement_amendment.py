@@ -170,12 +170,9 @@ class TestSaleProcurementAmendment(common.SavepointCase):
         self._create_sale_order()
         self.order.action_confirm()
 
-        move_mto = self.env["stock.move"].search(
-            [
-                ("group_id", "=", self.order.procurement_group_id.id),
-                ("location_id", "=", self.env.ref("stock.stock_location_stock").id),
-                ("product_id", "=", self.product1.id),
-            ]
+        move_mto = self.order.picking_ids.move_lines.filtered(
+            lambda line: line.location_id == self.env.ref("stock.stock_location_stock")
+            and line.product_id == self.product1
         )
         self.assertEquals(
             1, len(move_mto),
@@ -190,13 +187,10 @@ class TestSaleProcurementAmendment(common.SavepointCase):
         self.assertEquals(
             "cancel", move_mto.state,
         )
-        move_mto = self.env["stock.move"].search(
-            [
-                ("state", "!=", "cancel"),
-                ("group_id", "=", self.order.procurement_group_id.id),
-                ("location_id", "=", self.env.ref("stock.stock_location_stock").id),
-                ("product_id", "=", self.product1.id),
-            ]
+        move_mto = self.order.picking_ids.move_lines.filtered(
+            lambda line: line.location_id == self.env.ref("stock.stock_location_stock")
+            and line.product_id == self.product1
+            and line.state != "cancel"
         )
         self.assertEquals(
             1, len(move_mto),
@@ -211,13 +205,10 @@ class TestSaleProcurementAmendment(common.SavepointCase):
         self.assertEquals(
             "cancel", move_mto.state,
         )
-        move_mto = self.env["stock.move"].search(
-            [
-                ("state", "!=", "cancel"),
-                ("group_id", "=", self.order.procurement_group_id.id),
-                ("location_id", "=", self.env.ref("stock.stock_location_stock").id),
-                ("product_id", "=", self.product1.id),
-            ]
+        move_mto = self.order.picking_ids.move_lines.filtered(
+            lambda line: line.location_id == self.env.ref("stock.stock_location_stock")
+            and line.product_id == self.product1
+            and line.state != "cancel"
         )
         self.assertEquals(
             1, len(move_mto),
@@ -239,13 +230,10 @@ class TestSaleProcurementAmendment(common.SavepointCase):
 
         # Increase qty
         self.sale_line.write({"product_uom_qty": 11.0})
-        move_mto = self.env["stock.move"].search(
-            [
-                ("state", "!=", "cancel"),
-                ("group_id", "=", self.order.procurement_group_id.id),
-                ("location_id", "=", self.env.ref("stock.stock_location_stock").id),
-                ("product_id", "=", self.product1.id),
-            ]
+        move_mto = self.order.picking_ids.move_lines.filtered(
+            lambda line: line.location_id == self.env.ref("stock.stock_location_stock")
+            and line.product_id == self.product1
+            and line.state != "cancel"
         )
         # Check procurement qty
         self.assertEquals(2, len(move_mto))
