@@ -34,7 +34,7 @@ class TestSaleOrder(TestSaleCommon):
                 'product_id': cls.company_data['product_order_no'].id,
                 "name": "Line 1",
                 "product_uom_qty": 1.0,
-                "tax_id": False,
+                "tax_id": [(6, 0, [cls.tax.id])],
                 "price_unit": 600.0,
             }
         )
@@ -44,7 +44,7 @@ class TestSaleOrder(TestSaleCommon):
                 'product_id': cls.company_data['product_order_no'].id,
                 "name": "Line 2",
                 "product_uom_qty": 10.0,
-                "tax_id": False,
+                "tax_id": [(6, 0, [cls.tax.id])],
                 "price_unit": 60.0,
             }
         )
@@ -122,6 +122,9 @@ class TestSaleOrder(TestSaleCommon):
         self.so_line1.discount2 = 50.0
         self.so_line1.discount3 = 50.0
         self.so_line2.discount3 = 50.0
+        for line in self.order.order_line:
+            line.product_id_change()
+            line._onchange_discount()
         self.order.action_confirm()
         self.order._create_invoices()
         invoice = self.order.invoice_ids[0]
