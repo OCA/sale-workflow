@@ -124,7 +124,9 @@ class TestSaleOrder(common.SavepointCase):
         self.so_line1.discount3 = 50.0
         self.so_line2.discount3 = 50.0
         self.order.action_confirm()
-        _logger.info(self.order.mapped('order_line').mapped('product_id').mapped('invoice_policy'))
+        dump(self.order)
+        dump(self.order.mapped('order_line'))
+        dump(self.order.mapped('order_line').mapped('product_id'))
         self.order._create_invoices()
         invoice = self.order.invoice_ids[0]
         self.assertAlmostEqual(
@@ -160,3 +162,11 @@ class TestSaleOrder(common.SavepointCase):
         self.assertEqual(self.so_line2.price_subtotal, 300.0)
         self.assertEqual(self.order.amount_untaxed, 375.0)
         self.assertEqual(self.order.amount_tax, 56.25)
+
+
+def dump(obj):
+    for attr in dir(obj):
+        try:
+            _logger.info("obj.%s = %s" % (attr, getattr(obj, attr)))
+        except Exception as e:
+            pass
