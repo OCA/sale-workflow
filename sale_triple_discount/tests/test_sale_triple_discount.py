@@ -35,7 +35,7 @@ class TestSaleOrder(TestSaleCommon):
                 "name": "Line 1",
                 "product_uom_qty": 1.0,
                 "tax_id": [(6, 0, [cls.tax.id])],
-                "price_unit": 600.0,
+                "price_unit": 600000.0,
             }
         )
         cls.so_line2 = so_line.create(
@@ -45,7 +45,7 @@ class TestSaleOrder(TestSaleCommon):
                 "name": "Line 2",
                 "product_uom_qty": 10.0,
                 "tax_id": [(6, 0, [cls.tax.id])],
-                "price_unit": 60.0,
+                "price_unit": 600000.0,
             }
         )
 
