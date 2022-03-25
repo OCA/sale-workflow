@@ -18,6 +18,7 @@
     ],
     "data": [
         "data/exception_rule.xml",
+        "data/init_sale_ok.xml",
         "views/res_partner_stage.xml",
         "views/res_partner.xml",
     ],
