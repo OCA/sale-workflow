@@ -2,13 +2,13 @@
 # Copyright 2018 Simone Rubino - Agile Business Group
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
-from odoo.tests import common
+from .common import TestSaleCommon
 import logging
 
 _logger = logging.getLogger(__name__)
 
 
-class TestSaleOrder(common.SavepointCase):
+class TestSaleOrder(TestSaleCommon):
     @classmethod
     def setUpClass(cls):
         super(TestSaleOrder, cls).setUpClass()
@@ -47,7 +47,12 @@ class TestSaleOrder(common.SavepointCase):
                 "amount": 15.0,
             }
         )
-        cls.order = cls.env["sale.order"].create({"partner_id": cls.partner.id})
+        cls.order = cls.env["sale.order"].create({
+            'partner_id': cls.partner.id,
+            'partner_invoice_id': cls.partner.id,
+            'partner_shipping_id': cls.partner.id,
+            'pricelist_id': cls.company_data['default_pricelist'].id,
+        })
         so_line = cls.env["sale.order.line"]
         cls.so_line1 = so_line.create(
             {
@@ -144,7 +149,6 @@ class TestSaleOrder(common.SavepointCase):
         self.so_line1.discount3 = 50.0
         self.so_line2.discount3 = 50.0
         self.order.action_confirm()
-        dump(self.order)
         self.order._create_invoices()
         invoice = self.order.invoice_ids[0]
         self.assertAlmostEqual(
@@ -180,11 +184,3 @@ class TestSaleOrder(common.SavepointCase):
         self.assertEqual(self.so_line2.price_subtotal, 300.0)
         self.assertEqual(self.order.amount_untaxed, 375.0)
         self.assertEqual(self.order.amount_tax, 56.25)
-
-
-def dump(obj):
-    for attr in dir(obj):
-        try:
-            _logger.info("obj.%s = %s" % (attr, getattr(obj, attr)))
-        except Exception as e:
-            pass
