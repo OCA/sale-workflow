@@ -8,6 +8,7 @@
         <field name="arch" type="xml">
             <tree string="Sale Order Lines" create="false">
                 <field name="order_id" />
+                <field name="date_order" />
                 <field name="name" />
                 <field name="partner_id" />
                 <field name="product_id" />
@@ -19,7 +20,6 @@
             </tree>
         </field>
     </record>
-
     <record id="action_product_template_sale_list" model="ir.actions.act_window">
         <field name="name">Sale Order Lines</field>
         <field name="res_model">sale.order.line</field>
