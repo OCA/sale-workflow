@@ -2,6 +2,24 @@
 <!-- Copyright 2019 ACSONE SA/NV
      License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl). -->
 <odoo>
+    <record id="sale_order_line_tree" model="ir.ui.view">
+        <field name="name">sale.order.line.tree</field>
+        <field name="model">sale.order.line</field>
+        <field name="arch" type="xml">
+            <tree string="Sale Order Lines" create="false">
+                <field name="order_id" />
+                <field name="date_order" />
+                <field name="name" />
+                <field name="partner_id" />
+                <field name="product_id" />
+                <field name="product_uom_qty" />
+                <field name="product_uom" groups="uom.group_uom" />
+                <field name="price_unit" widget="monetary" />
+                <field name="discount" />
+                <field name="price_subtotal" widget="monetary" />
+            </tree>
+        </field>
+    </record>
     <record id="action_product_template_sale_list" model="ir.actions.act_window">
         <field name="name">Sale Order Lines</field>
         <field name="res_model">sale.order.line</field>
@@ -9,6 +27,7 @@
         <field
             name="domain"
         >[('state', 'in', ['sale', 'done']), ('product_id.product_tmpl_id', 'in', active_ids)]</field>
+        <field name="view_id" ref="product_form_sale_link.sale_order_line_tree" />
     </record>
     <record id="action_product_product_sale_list" model="ir.actions.act_window">
         <field name="name">Sale Order Lines</field>
@@ -17,5 +36,6 @@
         <field
             name="domain"
         >[('state', 'in', ['sale', 'done']), ('product_id', 'in', active_ids)]</field>
+        <field name="view_id" ref="product_form_sale_link.sale_order_line_tree" />
     </record>
 </odoo>
