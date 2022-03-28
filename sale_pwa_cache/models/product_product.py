@@ -41,16 +41,28 @@ class ProductProduct(models.Model):
             partner = partner.commercial_partner_id
         if not partner or operator not in ["=", "!="]:
             return []
-        orders = self.env["sale.order"].search(
-            [
-                ("partner_id", "child_of", partner.id),
-                ("date_order", ">=", fields.Datetime.now() - relativedelta(months=13)),
-            ]
+        orders = (
+            self.env["sale.order"]
+            .sudo()
+            .search(
+                [
+                    ("partner_id", "child_of", partner.id),
+                    (
+                        "date_order",
+                        ">=",
+                        fields.Datetime.now() - relativedelta(months=13),
+                    ),
+                ]
+            )
         )
-        lines = self.env["sale.order.line"].search_read(
-            [("order_id", "in", orders.ids), ("state", "in", ["sale", "done"])],
-            ["product_id"],
-            order="id DESC, sequence DESC",
+        lines = (
+            self.env["sale.order.line"]
+            .sudo()
+            .search_read(
+                [("order_id", "in", orders.ids), ("state", "in", ["sale", "done"])],
+                ["product_id"],
+                order="id DESC, sequence DESC",
+            )
         )
         products_domain = [x["product_id"][0] for x in lines if x["product_id"]] or [0]
         operator = "in" if operator == "=" else "not in"
