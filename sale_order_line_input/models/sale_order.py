@@ -40,9 +40,14 @@ class SaleOrderLine(models.Model):
         """ Create order to correct compute of taxes """
         if not self.order_partner_id or self.order_id:
             return
-        SaleOrder = self.env["sale.order"]
+        SaleOrder = self.with_context(force_company=self.force_company_id.id).env[
+            "sale.order"
+        ]
         new_so = SaleOrder.new(
-            {"partner_id": self.order_partner_id, "company_id": self.force_company_id}
+            {
+                "partner_id": self.order_partner_id.id,
+                "company_id": self.force_company_id.id,
+            }
         )
         for onchange_method in new_so._onchange_methods["partner_id"]:
             onchange_method(new_so)
