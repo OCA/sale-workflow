@@ -4,7 +4,7 @@
     "name": "Sale Order Line Initial Quantity",
     "summary": "Allows to display the initial quantity when the quantity "
     "has been modified on the command line.",
-    "version": "14.0.1.0.0",
+    "version": "14.0.1.0.1",
     "category": "Sales/Sales",
     "author": "Akretion, Odoo Community Association (OCA)",
     "website": "https://github.com/OCA/sale-workflow",
