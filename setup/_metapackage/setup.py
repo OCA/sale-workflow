@@ -47,6 +47,7 @@ setuptools.setup(
         'odoo14-addon-sale_order_line_delivery_state',
         'odoo14-addon-sale_order_line_description',
         'odoo14-addon-sale_order_line_discount_validation',
+        'odoo14-addon-sale_order_line_initial_quantity',
         'odoo14-addon-sale_order_line_input',
         'odoo14-addon-sale_order_line_menu',
         'odoo14-addon-sale_order_line_note',
