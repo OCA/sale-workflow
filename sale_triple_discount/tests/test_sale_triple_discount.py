@@ -121,6 +121,10 @@ class TestSaleOrder(common.SavepointCase):
         self.so_line1.discount3 = 50.0
         self.so_line2.discount3 = 50.0
         self.order.action_confirm()
+        if self.order.state == "waiting_approval":
+            self.order.action_approve()
+            self.assertAlmostEqual(self.order.state, "approved")
+            self.order.action_confirm()
         self.order._create_invoices()
         invoice = self.order.invoice_ids[0]
         self.assertAlmostEqual(
