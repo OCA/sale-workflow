@@ -288,7 +288,7 @@ class BlanketOrder(models.Model):
                 assert len(order.line_ids) > 0, _("Must have some lines")
                 order.line_ids._validate()
         except AssertionError as e:
-            raise UserError(e)
+            raise UserError(e) from e
 
     def set_to_draft(self):
         for order in self:
@@ -594,7 +594,7 @@ class BlanketOrderLine(models.Model):
             self.env.context, partner_id=partner.id, date=fields.Date.today()
         )
         base_price, currency_id = self.with_context(
-            context_partner
+            **context_partner
         )._get_real_price_currency(
             self.product_id,
             rule_id,
@@ -604,7 +604,7 @@ class BlanketOrderLine(models.Model):
         )
         if currency_id != pricelist.currency_id.id:
             currency = self.env["res.currency"].browse(currency_id)
-            base_price = currency.with_context(context_partner).compute(
+            base_price = currency.with_context(**context_partner).compute(
                 base_price, pricelist.currency_id
             )
         # negative discounts (= surcharge) are included in the display price
@@ -681,4 +681,4 @@ class BlanketOrderLine(models.Model):
                     "Quantity must be greater than zero"
                 )
         except AssertionError as e:
-            raise UserError(e)
+            raise UserError(e) from e
