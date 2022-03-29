@@ -64,7 +64,7 @@ class TestSaleBlanketOrders(common.TransactionCase):
         self.tomorrow = date.today() + timedelta(days=1)
 
     def test_01_create_blanket_order(self):
-        """ We create a blanket order and check constrains to confirm BO """
+        """We create a blanket order and check constrains to confirm BO"""
         blanket_order = self.blanket_order_obj.create(
             {
                 "partner_id": self.partner.id,
@@ -108,7 +108,7 @@ class TestSaleBlanketOrders(common.TransactionCase):
         blanket_order.sudo().action_confirm()
 
     def test_02_create_sale_orders_from_blanket_order(self):
-        """ We create a blanket order and create two sale orders """
+        """We create a blanket order and create two sale orders"""
         blanket_order = self.blanket_order_obj.create(
             {
                 "partner_id": self.partner.id,
