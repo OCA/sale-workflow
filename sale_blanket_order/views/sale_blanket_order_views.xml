@@ -292,7 +292,7 @@
         <field name="name">sale.blanket.order.line.tree</field>
         <field name="model">sale.blanket.order.line</field>
         <field name="arch" type="xml">
-            <tree string="Sale Blanket Order Lines" create="false">
+            <tree create="false">
                 <field name="sequence" widget="handle" />
                 <field name="name" invisible="1" />
                 <field name="order_id" />
