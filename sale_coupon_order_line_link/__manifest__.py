@@ -12,5 +12,5 @@
     "maintainers": ["chienandalu"],
     "license": "AGPL-3",
     "depends": ["sale_coupon"],
-    "data": ["reports/sale_report_views.xml"],
+    "data": ["reports/sale_report_views.xml", "views/sale_order_views.xml"],
 }

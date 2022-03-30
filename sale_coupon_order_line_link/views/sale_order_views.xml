@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <record id="view_order_form" model="ir.ui.view">
+        <field name="model">sale.order</field>
+        <field name="inherit_id" ref="sale.view_order_form" />
+        <field name="arch" type="xml">
+            <xpath expr="//page[@name='other_information']" position="inside">
+                <group
+                    attrs="{'invisible': [('no_code_promo_program_ids', '=', []), ('code_promo_program_id', '=', False), ('applied_coupon_ids', '=', []), ('generated_coupon_ids', '=', [])]}"
+                >
+                    <group name="promo_info" string="Promotions">
+                        <field
+                            name="no_code_promo_program_ids"
+                            readonly="True"
+                            attrs="{'invisible': [('no_code_promo_program_ids', '=', [])]}"
+                            widget="many2many_tags"
+                        />
+                        <field
+                            name="code_promo_program_id"
+                            readonly="True"
+                            attrs="{'invisible': [('code_promo_program_id', '=', False)]}"
+                        />
+                        <field
+                            name="promo_code"
+                            readonly="True"
+                            attrs="{'invisible': [('promo_code', '=', False)]}"
+                        />
+                        <field
+                            name="applied_coupon_ids"
+                            readonly="True"
+                            attrs="{'invisible': [('applied_coupon_ids', '=', [])]}"
+                            widget="many2many_tags"
+                        />
+                        <field
+                            name="generated_coupon_ids"
+                            readonly="True"
+                            attrs="{'invisible': [('generated_coupon_ids', '=', [])]}"
+                            widget="many2many_tags"
+                        />
+                    </group>
+                </group>
+            </xpath>
+            <xpath
+                expr="//field[@name='order_line']/form//field[@name='tax_id']"
+                position="after"
+            >
+                <field name="coupon_program_id" readonly="True" />
+                <field name="reward_line_ids" readonly="True" widget="many2many_tags" />
+                <field
+                    name="reward_generated_line_ids"
+                    readonly="True"
+                    widget="many2many_tags"
+                />
+                <field
+                    name="reward_origin_generated_line_ids"
+                    readonly="True"
+                    widget="many2many_tags"
+                />
+            </xpath>
+            <xpath
+                expr="//field[@name='order_line']/tree/field[@name='price_unit']"
+                position="after"
+            >
+                <field name="coupon_program_id" readonly="True" optional="hide" />
+                <field
+                    name="reward_line_ids"
+                    readonly="True"
+                    optional="hide"
+                    widget="many2many_tags"
+                />
+                <field
+                    name="reward_generated_line_ids"
+                    readonly="True"
+                    optional="hide"
+                    widget="many2many_tags"
+                />
+                <field
+                    name="reward_origin_generated_line_ids"
+                    readonly="True"
+                    optional="hide"
+                    widget="many2many_tags"
+                />
+            </xpath>
+        </field>
+    </record>
+    <record id="view_order_line_tree" model="ir.ui.view">
+        <field name="model">sale.order.line</field>
+        <field name="inherit_id" ref="sale.view_order_line_tree" />
+        <field name="arch" type="xml">
+            <field name="name" position="after">
+                <field name="coupon_program_id" readonly="True" optional="hide" />
+                <field
+                    name="reward_line_ids"
+                    readonly="True"
+                    optional="hide"
+                    widget="many2many_tags"
+                />
+                <field
+                    name="reward_generated_line_ids"
+                    readonly="True"
+                    optional="hide"
+                    widget="many2many_tags"
+                />
+                <field
+                    name="reward_origin_generated_line_ids"
+                    readonly="True"
+                    optional="hide"
+                    widget="many2many_tags"
+                />
+            </field>
+        </field>
+    </record>
+</odoo>
