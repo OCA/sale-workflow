@@ -25,6 +25,8 @@
         "stock_partner_delivery_window",
         # OCA/stock-logistics-warehouse
         "stock_warehouse_calendar",
+        # OCA/sale-workflow
+        "sale_order_line_date",
     ],
     "data": [
         # reports
