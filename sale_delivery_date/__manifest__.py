@@ -20,6 +20,8 @@
         "sale_stock",
         "stock_partner_delivery_window",
         "stock_warehouse_calendar",
+        # OCA/sale-workflow
+        "sale_order_line_date",
     ],
     "data": [
         # reports
