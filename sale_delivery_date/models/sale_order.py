@@ -26,7 +26,7 @@ class SaleOrder(models.Model):
         """Add dependencies to consider fixed delivery windows"""
         return super()._compute_expected_date()
 
-    @api.onchange("commitment_date")
+    @api.onchange("expected_date", "commitment_date")
     def _onchange_commitment_date(self):
         """Warns if commitment date is not a preferred window for delivery"""
         res = super()._onchange_commitment_date()
