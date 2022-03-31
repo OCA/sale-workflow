@@ -30,7 +30,7 @@ def post_init_hook(cr, registry):
 
 
 def uninstall_hook(cr, registry):
-    """ Restore sale.order action, remove context value """
+    """Restore sale.order action, remove context value"""
     with api.Environment.manage():
         env = api.Environment(cr, SUPERUSER_ID, {})
         for action_id in ACTIONS:
