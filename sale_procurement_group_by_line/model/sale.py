@@ -13,7 +13,7 @@ class SaleOrder(models.Model):
 
     @api.model
     def _prepare_procurement_group_by_line(self, line):
-        """ Hook to be able to use line data on procurement group """
+        """Hook to be able to use line data on procurement group"""
         return {"name": line.order_id.name}
 
 
