@@ -32,7 +32,7 @@ class TestSaleIsolatedQuotation(TransactionCase):
         self.assertEqual(self.sale_order.name, so_name)
 
     def test_uninstall_hook(self):
-        """"Test uninstall_hook"""
+        """ "Test uninstall_hook"""
         actions = [
             "sale.action_quotations_with_onboarding",
             "sale.action_orders",
