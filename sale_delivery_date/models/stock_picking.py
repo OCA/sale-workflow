@@ -58,7 +58,7 @@ class StockPicking(models.Model):
         """Compute the stock.picking status in relation to warehouse cut-off time.
 
         Possible values are:
-        -1 schedulled_date is in the past of yesterday's cutoff time
+        -1 scheduled_date is in the past of yesterday's cutoff time
          0 scheduled_date is between yesterday and today's cuttoff
          1 scheduled_date is in the future of today's cutoff time
 

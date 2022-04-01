@@ -6,6 +6,8 @@ from odoo import _, fields, models
 from odoo.exceptions import UserError
 from odoo.tools.date_utils import date_range
 
+from odoo.addons.partner_tz.tools import tz_utils
+
 
 class ResPartner(models.Model):
     _name = "res.partner"
@@ -99,5 +101,12 @@ class ResPartner(models.Model):
                 this_weekday_start_datetime = datetime.combine(
                     this_datetime, win.get_time_window_start_time()
                 )
+                if self.tz:
+                    start_time = tz_utils.tz_to_utc_time(
+                        self.tz, this_weekday_start_datetime.time()
+                    )
+                    this_weekday_start_datetime = datetime.combine(
+                        this_weekday_start_datetime, start_time
+                    )
                 res.append(this_weekday_start_datetime)
         return res

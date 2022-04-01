@@ -131,6 +131,7 @@ class TestSaleCutoffTimeDelivery(Common):
 
     @freeze_time(MONDAY_BEFORE_CUTOFF_TZ)
     def test_commitment_date_partner_cutoff(self):
+        # FIXME: computation of date_planned based on commitment_date not implemented
         order = self.order_partner_cutoff
         order.commitment_date = fields.Datetime.to_datetime(f"{THURSDAY} 16:00:00")
         order.action_confirm()
