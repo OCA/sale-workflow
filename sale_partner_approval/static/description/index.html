@@ -369,6 +369,10 @@ ul.auto-toc {
 !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! -->
 <p><a class="reference external" href="https://odoo-community.org/page/development-status"><img alt="Alpha" src="https://img.shields.io/badge/maturity-Alpha-red.png" /></a> <a class="reference external" href="http://www.gnu.org/licenses/agpl-3.0-standalone.html"><img alt="License: AGPL-3" src="https://img.shields.io/badge/licence-AGPL--3-blue.png" /></a> <a class="reference external" href="https://github.com/OCA/sale-workflow/tree/14.0/sale_partner_approval"><img alt="OCA/sale-workflow" src="https://img.shields.io/badge/github-OCA%2Fsale--workflow-lightgray.png?logo=github" /></a> <a class="reference external" href="https://translation.odoo-community.org/projects/sale-workflow-14-0/sale-workflow-14-0-sale_partner_approval"><img alt="Translate me on Weblate" src="https://img.shields.io/badge/weblate-Translate%20me-F47D42.png" /></a> <a class="reference external" href="https://runbot.odoo-community.org/runbot/167/14.0"><img alt="Try me on Runbot" src="https://img.shields.io/badge/runbot-Try%20me-875A7B.png" /></a></p>
 <p>Require partners to be approved before thay can be used on Sales Orders.</p>
+<p>This does not require, but was designed to be used with
+Partner Tier Validation (partner_tier_validation module).</p>
+<p>Using that module, rules can be configured on who must approve,
+before the Partner Stage can be changed to an apptoved one.</p>
 <div class="admonition important">
 <p class="first admonition-title">Important</p>
 <p class="last">This is an alpha version, the data model and design can change at any time without warning.
@@ -414,6 +418,10 @@ appropriately. For example:</p>
 If this is the case, the Partner will automatically have enabled the “Can Sell To” checkbox.
 found next to the “Candidate to Sell” checkbox.</li>
 </ul>
+<p>The “Candidate to Sell” checkbox is only available in a draft/to approve Stage.
+The “Can Sell To” will only be set when moving to a Stage that is not draft/to approve.
+Moving from an approved Stage to a draft one will not automatically reset the “Can Sell To”.
+This means that removing from Can Sale state also needs to go through an approval.</p>
 <p>On a Sales Order:</p>
 <ul class="simple">
 <li>The “Customer” and “Invoice Address” selection lists
