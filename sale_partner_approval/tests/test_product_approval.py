@@ -14,6 +14,8 @@ class TestSaleOrderLineDates(TransactionCase):
         self.stage_draft = self.env.ref("partner_stage.partner_stage_draft")
         self.stage_draft.is_default = True
         self.stage_draft.approved_sale = False
+        # Enable demo rule
+        self.env.ref("sale_partner_approval.excep_partner_approved").active = True
 
     def test_flow_sale_order_approved(self):
         # New Customer is not approved for sales
@@ -40,5 +42,5 @@ class TestSaleOrderLineDates(TransactionCase):
             order.request_validation()
             order.invalidate_cache()  # Needed to refresh review_ids field
             order.review_ids.write({"status": "approved"})
-        order.action_confirm()
+        res = order.action_confirm()
         self.assertIn(order.state, ["sale", "done"])

@@ -9,7 +9,8 @@
                 expr="//group[@name='sale']/field[@name='user_id']"
                 position="before"
             >
-                <field name="candidate_sale" />
+                <field name="state" invisible="1" />
+                <field name="candidate_sale" states="draft" />
                 <field name="sale_ok" />
             </xpath>
 
