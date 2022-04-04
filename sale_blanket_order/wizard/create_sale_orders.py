@@ -110,6 +110,26 @@ class BlanketOrderWizard(models.TransientModel):
             "analytic_tag_ids": [(6, 0, line.blanket_line_id.analytic_tag_ids.ids)],
         }
 
+    def _prepare_so_vals(
+        self,
+        customer,
+        user_id,
+        currency_id,
+        pricelist_id,
+        payment_term_id,
+        order_lines_by_customer,
+    ):
+        return {
+            "partner_id": customer,
+            "origin": self.blanket_order_id.name,
+            "user_id": user_id,
+            "currency_id": currency_id,
+            "pricelist_id": pricelist_id,
+            "payment_term_id": payment_term_id,
+            "order_line": order_lines_by_customer[customer],
+            "analytic_account_id": self.blanket_order_id.analytic_account_id.id,
+        }
+
     def create_sale_order(self):
         order_lines_by_customer = defaultdict(list)
         currency_id = 0
@@ -155,16 +175,14 @@ class BlanketOrderWizard(models.TransientModel):
 
         res = []
         for customer in order_lines_by_customer:
-            order_vals = {
-                "partner_id": customer,
-                "origin": self.blanket_order_id.name,
-                "user_id": user_id,
-                "currency_id": currency_id,
-                "pricelist_id": pricelist_id,
-                "payment_term_id": payment_term_id,
-                "order_line": order_lines_by_customer[customer],
-                "analytic_account_id": self.blanket_order_id.analytic_account_id.id,
-            }
+            order_vals = self._prepare_so_vals(
+                customer,
+                user_id,
+                currency_id,
+                pricelist_id,
+                payment_term_id,
+                order_lines_by_customer,
+            )
             sale_order = self.env["sale.order"].create(order_vals)
             res.append(sale_order.id)
         return {
