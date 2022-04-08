@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: OpenERP Server 7.0\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-01-15 14:31+0000\n"
-"PO-Revision-Date: 2022-02-17 18:30+0000\n"
+"PO-Revision-Date: 2022-04-08 17:05+0000\n"
 "Last-Translator: Francesco Foresti <francesco.foresti@ooops404.com>\n"
 "Language-Team: \n"
 "Language: it\n"
@@ -45,7 +45,7 @@ msgstr "Modello Prodotto"
 #. module: product_supplierinfo_for_customer_sale
 #: model:ir.model,name:product_supplierinfo_for_customer_sale.model_sale_order_line
 msgid "Sales Order Line"
-msgstr "Linea d'ordine di vendita"
+msgstr "Riga ordine di vendita"
 
 #. module: product_supplierinfo_for_customer_sale
 #: model_terms:ir.ui.view,arch_db:product_supplierinfo_for_customer_sale.product_supplierinfo_search_view
