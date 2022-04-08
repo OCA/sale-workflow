@@ -8,18 +8,26 @@ class ProductTemplate(models.Model):
     _inherit = "product.template"
 
     purchase_ok = fields.Boolean(
-        compute="_compute_purchase_ok_product",
         string="Can be Purchased",
-        default=False,
-        store=True,
+        copy=False,
+        readonly=True,
     )
-    candidate_purchase = fields.Boolean(
-        string="Candidate to be Purchased",
-        default=True,
-    )
+    candidate_purchase = fields.Boolean(string="Candidate to be Purchased")
 
-    @api.depends("candidate_purchase", "product_state_id.approved_purchase")
-    def _compute_purchase_ok_product(self):
+    @api.model
+    def create(self, vals):
+        new = super().create(vals)
+        new._set_purchase_ok()
+        return new
+
+    def write(self, vals):
+        res = super().write(vals)
+        if "product_state_id" in vals:
+            to_state = self.product_state_id.code
+            to_state != "draft" and self._set_purchase_ok()
+        return res
+
+    def _set_purchase_ok(self):
         for product in self:
             if product.product_state_id:
                 product.purchase_ok = (
