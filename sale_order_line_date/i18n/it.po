@@ -10,7 +10,7 @@ msgstr ""
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2018-01-27 03:53+0000\n"
 "PO-Revision-Date: 2022-04-08 17:05+0000\n"
-"Last-Translator: Davide Corio <enlightx@gmail.com>\n"
+"Last-Translator: Francesco Foresti <francesco.foresti@ooops404.com>\n"
 "Language-Team: Italian (https://www.transifex.com/oca/teams/23907/it/)\n"
 "Language: it\n"
 "MIME-Version: 1.0\n"
@@ -26,7 +26,6 @@ msgstr "Data promessa"
 
 #. module: sale_order_line_date
 #: model:ir.model.fields,field_description:sale_order_line_date.field_sale_order_line__commitment_date
-#, fuzzy
 msgid "Delivery Date"
 msgstr "Data di consegna"
 
@@ -38,4 +37,4 @@ msgstr "Ordine di vendita"
 #. module: sale_order_line_date
 #: model:ir.model,name:sale_order_line_date.model_sale_order_line
 msgid "Sales Order Line"
-msgstr "Linea d'ordine di vendita"
+msgstr "Riga ordine di vendita"
