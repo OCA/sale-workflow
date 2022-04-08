@@ -6,7 +6,7 @@ from datetime import datetime, time, timedelta
 
 import pytz
 
-from odoo import _, api, exceptions, models
+from odoo import _, api, exceptions, fields, models
 
 from odoo.addons.partner_tz.tools import tz_utils
 
@@ -157,6 +157,7 @@ class SaleOrderLine(models.Model):
         date_transfer_done = date_planned + timedelta(
             days=self.order_id.company_id.security_lead
         )
+        date_transfer_done = self._next_working_day(date_transfer_done)
         if self.order_id.partner_shipping_id.delivery_time_preference != "time_windows":
             return date_transfer_done
         # Find the first working day matching the customer's delivery time window
@@ -242,50 +243,24 @@ class SaleOrderLine(models.Model):
         return customer_lead, security_lead, workload
 
     def _expected_date(self):
-        # Computes the expected date with respect to:
+        # Overwritten to compute the expected date with respect to:
         #   - the warehouse or partner cutoff time
         #   - the warehouse calendar
         #   - the delivery time window of the customer
-        expected_date = super()._expected_date()
-        expected_date = self._cutoff_time_delivery_expected_date(expected_date)
-        expected_date = self._warehouse_calendar_expected_date(expected_date)
-        expected_date = self._delivery_window_expected_date(expected_date)
+        date_planned = (
+            (self.order_id.date_order or fields.Datetime.now())
+            + timedelta(days=self.customer_lead or 0.0)
+            - timedelta(days=self.order_id.company_id.security_lead)
+        )
+        date_planned = self._get_date_planned_with_cutoff_time(date_planned)
+        date_planned = self._get_date_planned_with_warehouse_calendar(date_planned)
+        expected_date = self._get_date_deadline_with_delivery_window(date_planned)
         return expected_date
-
-    def _warehouse_calendar_expected_date(self, expected_date):
-        calendar = self.order_id.warehouse_id.calendar_id
-        if calendar:
-            customer_lead, security_lead, workload = self._get_delays()
-            td_customer_lead = timedelta(days=customer_lead)
-            td_security_lead = timedelta(days=security_lead)
-            # plan_days() expect a number of days instead of a delay
-            workload_days = self._delay_to_days(workload)
-            # Remove customer_lead added to order_date in sale_stock
-            expected_date -= td_customer_lead
-            # Add the workload, with respect to the wh calendar
-            expected_date = calendar.plan_days(
-                workload_days, expected_date, compute_leaves=True
-            )
-            # add back the security lead
-            expected_date += td_security_lead
-        return expected_date
-
-    def _delivery_window_expected_date(self, expected_date):
-        partner = self.order_id.partner_shipping_id
-        if not partner or partner.delivery_time_preference == "anytime":
-            return expected_date
-        return partner.next_delivery_window_start_datetime(from_date=expected_date)
 
     @api.depends("order_id.expected_date")
     def _compute_qty_at_date(self):
         """Trigger computation of qty_at_date when expected_date is updated"""
         return super()._compute_qty_at_date()
-
-    def _cutoff_time_delivery_expected_date(self, expected_date):
-        cutoff = self.order_id.get_cutoff_time()
-        if not cutoff:
-            return expected_date
-        return self._get_utc_cutoff_datetime(cutoff, expected_date)
 
     def _get_utc_cutoff_datetime(self, cutoff, date, keep_same_day=False):
         tz = cutoff.get("tz")

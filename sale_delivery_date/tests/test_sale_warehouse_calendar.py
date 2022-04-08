@@ -144,6 +144,7 @@ class TestSaleOrderDates(SavepointCase):
     def test_confirm_before_cutoff_weekend_3_days_preparation(self):
         order = self._create_order(customer_lead=3)
         order.action_confirm()
+        self.assertEqual(str(order.picking_ids.date_deadline.date()), NEXT_THURSDAY)
         self.assertEqual(str(order.expected_date.date()), NEXT_THURSDAY)
         picking = order.picking_ids
         self.assertEqual(str(picking.scheduled_date.date()), NEXT_WEDNESDAY)
