@@ -6,7 +6,7 @@ from datetime import datetime, time, timedelta
 
 import pytz
 
-from odoo import api, models
+from odoo import _, api, exceptions, models
 
 from odoo.addons.partner_tz.tools import tz_utils
 
@@ -159,10 +159,26 @@ class SaleOrderLine(models.Model):
         )
         if self.order_id.partner_shipping_id.delivery_time_preference != "time_windows":
             return date_transfer_done
+        # Find the first working day matching the customer's delivery time window
         ops = self.order_id.partner_shipping_id
         next_preferred_date = ops.next_delivery_window_start_datetime(
             from_date=date_transfer_done
         )
+        next_working_day = self._next_working_day(next_preferred_date)
+        count = 0
+        while next_working_day.date() != next_preferred_date.date():
+            if count > 10:  # To avoid infinite loop, could be increased
+                raise exceptions.UserError(
+                    _(
+                        "Unable to find a working day matching "
+                        "customer's delivery time window."
+                    )
+                )
+            next_preferred_date = ops.next_delivery_window_start_datetime(
+                from_date=next_working_day
+            )
+            next_working_day = self._next_working_day(next_preferred_date)
+            count += 1
         if date_transfer_done != next_preferred_date:
             _logger.debug(
                 "Delivery window applied for order %s. Date planned for line %s"
@@ -181,6 +197,13 @@ class SaleOrderLine(models.Model):
                 self.name,
             )
         return next_preferred_date
+
+    def _next_working_day(self, date_):
+        """Return the next working day starting from `date_`."""
+        calendar = self.order_id.warehouse_id.calendar_id
+        if calendar:
+            return calendar.plan_hours(0, date_, compute_leaves=True)
+        return date_
 
     def _get_date_planned_from_date_deadline(self, date_deadline):
         """Return the 'date_planned' from the 'date_deadline'.
