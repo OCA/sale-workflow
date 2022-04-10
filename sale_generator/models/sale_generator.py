@@ -2,7 +2,7 @@
 #  @author Abdessamad HILALI <abdessamad.hilali@akretion.com>
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
 
-from odoo import api, fields, models, _
+from odoo import _, api, fields, models
 from odoo.exceptions import UserError
 
 
@@ -11,14 +11,14 @@ class SaleGenerator(models.Model):
     _description = "Sale order generator"
 
     name = fields.Char(string="Generator", default="/")
-    partner_ids = fields.Many2many(
-        comodel_name="res.partner", string="Partner"
-    )
+    partner_ids = fields.Many2many(comodel_name="res.partner", string="Partner")
     sale_ids = fields.One2many(
         comodel_name="sale.order", inverse_name="generator_id", string="Sales"
     )
     tmpl_sale_id = fields.Many2one(
-        comodel_name="sale.order", string="Sale Template", required=True,
+        comodel_name="sale.order",
+        string="Sale Template",
+        required=True,
     )
     date_order = fields.Datetime(string="Date", default=fields.Datetime.now())
     warehouse_id = fields.Many2one(
@@ -62,10 +62,7 @@ class SaleGenerator(models.Model):
         for res in self:
             if not res.partner_ids:
                 raise UserError(
-                    _(
-                        "Can't generate sale order without selecting any "
-                        "customer"
-                    )
+                    _("Can't generate sale order without selecting any " "customer")
                 )
             else:
                 res.write({"state": "generating"})
@@ -101,7 +98,7 @@ class SaleGenerator(models.Model):
         return {
             "type": "ir.actions.act_window",
             "res_model": "res.partner",
-            "name": u"New Customer",
+            "name": "New Customer",
             "view_mode": "form",
             "target": "new",
         }
@@ -110,7 +107,6 @@ class SaleGenerator(models.Model):
     def create(self, vals):
         if vals.get("name", "/") == "/":
             vals["name"] = (
-                self.env["ir.sequence"].next_by_code("sale.order.generator")
-                or "/"
+                self.env["ir.sequence"].next_by_code("sale.order.generator") or "/"
             )
         return super().create(vals)

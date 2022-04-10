@@ -3,7 +3,7 @@
 
     <record id="view_sale_order_tmpl_hide_sale_order_template_id" model="ir.ui.view">
         <field name="model">sale.order</field>
-        <field name="inherit_id" ref="sale_management.sale_order_form_quote"/>
+        <field name="inherit_id" ref="sale_management.sale_order_form_quote" />
         <field name="arch" type="xml">
             <xpath expr="//field[@name='sale_order_template_id']" position="attributes">
                 <attribute name="invisible">1</attribute>
@@ -13,10 +13,10 @@
 
     <record id="view_sale_order_tmpl_form" model="ir.ui.view">
         <field name="model">sale.order</field>
-        <field name="inherit_id" ref="sale_stock.view_order_form_inherit_sale_stock"/>
+        <field name="inherit_id" ref="sale_stock.view_order_form_inherit_sale_stock" />
         <field name="arch" type="xml">
             <field name="partner_id" position="after">
-                <field name="is_template" invisible="1"/>
+                <field name="is_template" invisible="1" />
             </field>
             <!--Hide irrelevant sections-->
             <header position="attributes">
@@ -58,14 +58,21 @@
         <field name="res_model">sale.order</field>
         <field name="view_type">form</field>
         <field name="view_mode">tree,form</field>
-        <field name="context" eval="{'default_active': False, 'default_is_template': True,
-            'tmpl_mode': True, 'default_partner_id': ref('sale_generator.dummy_so_generator_partner')}"/>
-        <field name="domain">[('is_template', '=', True), ('active', '=', False)]</field>
+        <field
+            name="context"
+            eval="{'default_active': False, 'default_is_template': True,
+            'tmpl_mode': True, 'default_partner_id': ref('sale_generator.dummy_so_generator_partner')}"
+        />
+        <field
+            name="domain"
+        >[('is_template', '=', True), ('active', '=', False)]</field>
     </record>
 
-    <menuitem name="Sale Order Templates"
-              id="menuitem_sale_order_template"
-              parent="sale_generator.menuitem_batch_generation"
-              action="action_sale_order_template"/>
+    <menuitem
+        name="Sale Order Templates"
+        id="menuitem_sale_order_template"
+        parent="sale_generator.menuitem_batch_generation"
+        action="action_sale_order_template"
+    />
 
 </odoo>
