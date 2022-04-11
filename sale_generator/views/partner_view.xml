@@ -2,7 +2,6 @@
 <odoo>
     <record id="action_partner_create_form" model="ir.actions.act_window">
         <field name="name">Customers</field>
-        <field name="type">ir.actions.act_window</field>
         <field name="res_model">res.partner</field>
         <field name="view_mode">form</field>
         <field name="target">new</field>
@@ -18,7 +17,7 @@
                         name="add_new_generated_partner"
                         string="Save &amp; next customer"
                         type="object"
-                        context="context.get('from_generator_id')"
+                        context="{'from_generator_id': context.get('from_generator_id')}"
                         class="oe_highlight"
                         invisible="not context.get('from_generator_id')"
                     />
