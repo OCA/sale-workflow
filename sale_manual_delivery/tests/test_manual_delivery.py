@@ -27,7 +27,10 @@ class TestSaleStock(TestSale):
             vals = {}
         return (
             self.env["manual.delivery"]
-            .with_context(active_model=records._name, active_ids=records.ids,)
+            .with_context(
+                active_model=records._name,
+                active_ids=records.ids,
+            )
             .create(vals)
         )
 
@@ -181,7 +184,9 @@ class TestSaleStock(TestSale):
         wizard.line_ids.write({"quantity": 0.0})
         wizard.confirm()
         self.assertEqual(
-            len(order.picking_ids), 1.0, "No picking should've been created",
+            len(order.picking_ids),
+            1.0,
+            "No picking should've been created",
         )
         # try to create a manual delivery with more quantity than the ordered
         wizard = self._manual_delivery_wizard(order)
@@ -193,7 +198,9 @@ class TestSaleStock(TestSale):
         wizard.line_ids.write({"quantity": 3.0})
         wizard.confirm()
         self.assertEqual(
-            len(order.picking_ids), 2.0, "Picking number doesn't match",
+            len(order.picking_ids),
+            2.0,
+            "Picking number doesn't match",
         )
 
     def test_03_sale_selected_lines(self):
@@ -299,7 +306,9 @@ class TestSaleStock(TestSale):
             ]
         )
         self.assertEqual(
-            undelivered, order2.order_line, "Bad pending qty to deliver filter",
+            undelivered,
+            order2.order_line,
+            "Bad pending qty to deliver filter",
         )
 
     def test_03_sale_multi_delivery(self):
@@ -403,7 +412,8 @@ class TestSaleStock(TestSale):
             ' after "manual delivery" wizard call with same date',
         )
         self.assertEqual(
-            sum(first_picking.mapped("move_lines.product_uom_qty")), 7,
+            sum(first_picking.mapped("move_lines.product_uom_qty")),
+            7,
         )
 
     def test_04_sale_single_picking(self):
@@ -514,5 +524,7 @@ class TestSaleStock(TestSale):
         wizard.line_ids.write({"quantity": 2.0})
         wizard.confirm()
         self.assertEqual(
-            len(order.picking_ids), 2, "The first picking should be re-used",
+            len(order.picking_ids),
+            2,
+            "The first picking should be re-used",
         )
