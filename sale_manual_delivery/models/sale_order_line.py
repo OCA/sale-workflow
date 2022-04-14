@@ -44,7 +44,7 @@ class SaleOrderLine(models.Model):
 
     @api.depends("product_uom_qty", "qty_procured")
     def _compute_qty_to_procure(self):
-        """ Computes the remaining quantity to plan on sale order lines """
+        """Computes the remaining quantity to plan on sale order lines"""
         for line in self:
             line.qty_to_procure = line.product_uom_qty - line.qty_procured
 
