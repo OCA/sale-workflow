@@ -74,15 +74,14 @@ class SaleOrder(models.Model):
         self.ensure_one()
         return bool(self.commitment_date or self.expected_date)
 
-    def get_cutoff_time(self):
-        self.ensure_one()
-        partner = self.partner_shipping_id
+    @api.model
+    def get_cutoff_time(self, partner, warehouse):
         if (
             partner.order_delivery_cutoff_preference == "warehouse_cutoff"
-            and self.warehouse_id.apply_cutoff
+            and warehouse.apply_cutoff
         ):
-            return self.warehouse_id.get_cutoff_time()
+            return warehouse.get_cutoff_time()
         elif partner.order_delivery_cutoff_preference == "partner_cutoff":
-            return self.partner_shipping_id.get_cutoff_time()
+            return partner.get_cutoff_time()
         else:
             return {}
