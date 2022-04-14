@@ -50,7 +50,10 @@ class ManualDelivery(models.TransientModel):
         return res
 
     commercial_partner_id = fields.Many2one(
-        "res.partner", required=True, readonly=True, ondelete="cascade",
+        "res.partner",
+        required=True,
+        readonly=True,
+        ondelete="cascade",
     )
     partner_id = fields.Many2one(
         "res.partner",
@@ -65,7 +68,9 @@ class ManualDelivery(models.TransientModel):
         ondelete="cascade",
     )
     carrier_id = fields.Many2one(
-        "delivery.carrier", string="Delivery Method", ondelete="cascade",
+        "delivery.carrier",
+        string="Delivery Method",
+        ondelete="cascade",
     )
     route_id = fields.Many2one(
         "stock.location.route",
@@ -75,12 +80,14 @@ class ManualDelivery(models.TransientModel):
         help="Leave it blank to use the same route that is in the sale line",
     )
     line_ids = fields.One2many(
-        "manual.delivery.line", "manual_delivery_id", string="Lines to validate",
+        "manual.delivery.line",
+        "manual_delivery_id",
+        string="Lines to validate",
     )
     date_planned = fields.Datetime(string="Date Planned")
 
     def confirm(self):
-        """ Creates the manual procurements """
+        """Creates the manual procurements"""
         self.ensure_one()
         sale_order_lines = self.line_ids.mapped("order_line_id")
         sale_order_lines.with_context(
