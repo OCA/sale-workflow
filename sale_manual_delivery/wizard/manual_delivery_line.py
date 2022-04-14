@@ -38,7 +38,7 @@ class ManualDeliveryLine(models.TransientModel):
 
     @api.constrains("quantity")
     def _check_quantity(self):
-        """ Prevent delivering more than the ordered quantity """
+        """Prevent delivering more than the ordered quantity"""
         if any(
             float_compare(
                 line.quantity,
