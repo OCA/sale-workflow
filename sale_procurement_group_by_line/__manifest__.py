@@ -13,6 +13,7 @@
     "Odoo Community Association (OCA)",
     "category": "Warehouse",
     "license": "AGPL-3",
+    "development_status": "Production/Stable",
     "website": "https://github.com/OCA/sale-workflow",
     "depends": ["sale_stock"],
     "installable": True,
