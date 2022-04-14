@@ -5,10 +5,10 @@ from dateutil.relativedelta import relativedelta
 
 from odoo.exceptions import UserError
 
-from odoo.addons.sale.tests.test_sale_common import TestSale
+from odoo.addons.sale.tests.common import TestSaleCommonBase
 
 
-class TestSaleStock(TestSale):
+class TestSaleStock(TestSaleCommonBase):
     def setUp(self):
         super().setUp()
         self.partner = self.env.ref("base.res_partner_1")
