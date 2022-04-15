@@ -22,6 +22,18 @@ class StockPicking(models.Model):
     )
     expected_delivery_date = fields.Datetime(compute="_compute_expected_delivery_date")
 
+    def _create_backorder(self):
+        res = super()._create_backorder()
+        now = fields.Datetime.now()
+        for picking in res:
+            # If the scheduled_date is before the current datetime, then date_deadline
+            # cannot be satisfied. Therefore, we need to recompute move's dates
+            if picking.scheduled_date < now:
+                for line in picking.move_lines:
+                    dates = line._get_delivery_dates(from_date=now)
+                    line.write(dates)
+        return res
+
     def _compute_expected_delivery_date(self):
         """Computes the expected delivery date.
 
@@ -40,9 +52,9 @@ class StockPicking(models.Model):
         today = fields.Date.today()
         for record in self:
             delivery_date = False
-            commitment_date = record.sale_id.commitment_date
-            if commitment_date and commitment_date.date() >= today:
-                delivery_date = commitment_date
+            date_deadline = record.date_deadline
+            if date_deadline and date_deadline.date() >= today:
+                delivery_date = date_deadline
             if not delivery_date:
                 expected_date = record.sale_id.expected_date
                 if expected_date and expected_date.date() >= today:
