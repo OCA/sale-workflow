@@ -3,6 +3,8 @@
 
 from freezegun import freeze_time
 
+from odoo.tests.common import Form
+
 from .common import Common
 
 MONDAY = "2022-04-11"
@@ -57,6 +59,12 @@ class TestBackorderDate(Common):
         cls.picking._action_done()
         return cls.order.picking_ids - cls.picking
 
+    @classmethod
+    def _increase_so_line_qty(cls, qty):
+        with Form(cls.order) as so:
+            with so.order_line.edit(0) as line:
+                line.product_uom_qty += qty
+
     def test_backorder_before_scheduled_date(self):
         # If we want the backorder to be delivered this week, then it has to be
         # created before monday's cutoff.
@@ -77,4 +85,31 @@ class TestBackorderDate(Common):
         self.assertEqual(str(backorder.scheduled_date), f"{NEXT_THURSDAY} {CUTOFF_UTC}")
         self.assertEqual(
             str(backorder.date_deadline), f"{NEXT_FRIDAY} {TIME_WINDOW_START_UTC}"
+        )
+
+    def test_increased_qty_before_scheduled_date(self):
+        # If we increase a qty of a confirmed SO before the related picking's
+        # scheduled_date, nothing should be updated
+        with freeze_time(f"{THURSDAY} {BEFORE_CUTOFF_UTC}"):
+            self._increase_so_line_qty(5)
+        # Just ensure that the qty is updated on the stock move
+        self.assertEqual(sum(self.picking.move_lines.mapped("product_uom_qty")), 15)
+        self.assertEqual(str(self.picking.scheduled_date), f"{THURSDAY} {CUTOFF_UTC}")
+        self.assertEqual(
+            str(self.picking.date_deadline), f"{FRIDAY} {TIME_WINDOW_START_UTC}"
+        )
+
+    def test_increased_qty_after_scheduled_date(self):
+        # If we increase a qty of a confirmed SO after the related picking's
+        # scheduled_date, then the dates should be updated accordingly
+        with freeze_time(f"{THURSDAY} {AFTER_CUTOFF_UTC}"):
+            self._increase_so_line_qty(5)
+        # Just ensure that the qty is updated on the stock move
+        self.assertEqual(sum(self.picking.move_lines.mapped("product_uom_qty")), 15)
+        # Dates should have been postponed to next week
+        self.assertEqual(
+            str(self.picking.scheduled_date), f"{NEXT_THURSDAY} {CUTOFF_UTC}"
+        )
+        self.assertEqual(
+            str(self.picking.date_deadline), f"{NEXT_FRIDAY} {TIME_WINDOW_START_UTC}"
         )

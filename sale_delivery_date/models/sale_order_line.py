@@ -18,6 +18,15 @@ FIND_WORKING_DAY_COUNT = 10  # To avoid infinite loops, could be increased
 class SaleOrderLine(models.Model):
     _inherit = "sale.order.line"
 
+    def _action_launch_stock_rule(self, previous_product_uom_qty=False):
+        # Add a context key, so we know in `_prepare_procurement_values` that we
+        # might have to update the date based on today instead of the order date
+        if previous_product_uom_qty:
+            self = self.with_context(updated_line_qty=True)
+        return super(SaleOrderLine, self)._action_launch_stock_rule(
+            previous_product_uom_qty
+        )
+
     def _prepare_procurement_values(self, group_id=False):
         # Update 'date_planned' and 'date_deadline' with respect to:
         #   - the warehouse or partner cutoff time
@@ -34,6 +43,12 @@ class SaleOrderLine(models.Model):
             res = self._prepare_procurement_values_commitment_date(res)
         else:
             res = self._prepare_procurement_values_no_commitment_date(res)
+        # If `updated_line_qty` context key is set, and now is after the computed
+        # date planned, then we're late, and should postpone the delivery dates
+        now = datetime.now()
+        late = res["date_planned"] <= now
+        if self.env.context.get("updated_line_qty") and late:
+            res = self._prepare_procurement_values_no_commitment_date(res, now)
         return res
 
     def _prepare_procurement_values_commitment_date(self, res):
@@ -55,12 +70,18 @@ class SaleOrderLine(models.Model):
         )
         return res
 
-    def _prepare_procurement_values_no_commitment_date(self, res):
-        """Set 'date_planned' and 'date_deadline' if no 'commitment_date'."""
+    def _prepare_procurement_values_no_commitment_date(self, res, date_from=None):
+        """Set 'date_planned' and 'date_deadline' if no 'commitment_date'.
+
+        If date_from is set, use it as the starting date to compute delivery dates,
+        otherwise, use order's date_order.
+        """
         customer_lead, security_lead, workload = self._get_delays()
         workload_days = self._delay_to_days(workload)
+        if not date_from:
+            date_from = self.order_id.date_order
         date_planned = (
-            self.order_id.date_order
+            date_from
             + timedelta(days=customer_lead or 0.0)
             - timedelta(days=security_lead)
         )
