@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <record id="coupon_program_view_form_common" model="ir.ui.view">
+        <field name="name">coupon.program.view.form</field>
+        <field name="model">coupon.program</field>
+        <field name="inherit_id" ref="coupon.coupon_program_view_form_common" />
+        <field name="arch" type="xml">
+            <field name="reward_product_id" position="attributes">
+                <attribute name="attrs">
+                    {"invisible": [("reward_type", "in", ("discount", "free_shipping",
+                    "discount_line"))], "required": [("reward_type", "=", "product")]}
+                </attribute>
+            </field>
+            <xpath expr="//field[@name='discount_type']/.." position="attributes">
+                <attribute name="attrs">
+                    {"invisible": [("reward_type", "in", ("product", "free_shipping",
+                    "discount_line"))]}
+                </attribute>
+            </xpath>
+            <xpath expr="//label[@for='discount_type']" position="attributes">
+                <attribute name="attrs">
+                    {"invisible": [("reward_type", "in", ("product", "free_shipping",
+                    "discount_line"))]}
+                </attribute>
+            </xpath>
+            <xpath expr="//label[@for='discount_type']" position="before">
+                <label
+                    string="Discount"
+                    for="discount_type"
+                    attrs="{'invisible': [('reward_type', '!=', 'discount_line')]}"
+                />
+                <div attrs="{'invisible': [('reward_type', '!=', 'discount_line')]}">
+                    <field
+                        name="discount_percentage"
+                        attrs="{'required': [('reward_type', '=', 'discount_line')]}"
+                        class="oe_inline"
+                    />
+                    <span
+                        attrs="{'required': [('reward_type', '=', 'discount_line')]}"
+                        class="oe_inline"
+                    >
+                        %
+                    </span>
+                </div>
+            </xpath>
+            <xpath expr="//label[@for='discount_max_amount']" position="attributes">
+                <attribute name="attrs">
+                    {'invisible': ['|', ('reward_type', 'in', ('product',
+                    'free_shipping', "discount_line")), ('discount_type', '!=',
+                    'percentage')]}
+                </attribute>
+            </xpath>
+            <xpath expr="//field[@name='discount_max_amount']/.." position="attributes">
+                <attribute name="attrs">
+                    {'invisible': ['|', ('reward_type', 'in', ('product',
+                    'free_shipping', "discount_line")), ('discount_type', '!=',
+                    'percentage')]}
+                </attribute>
+            </xpath>
+        </field>
+    </record>
+</odoo>
