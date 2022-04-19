@@ -4,7 +4,7 @@
     "name": "Sale Stock Secondary Unit",
     "summary": "Get product quantities in a secondary unit",
     "version": "13.0.1.0.0",
-    "development_status": "Beta",
+    "development_status": "Production/Stable",
     "category": "stock",
     "website": "https://github.com/OCA/sale-workflow",
     "author": "Tecnativa, Odoo Community Association (OCA)",
