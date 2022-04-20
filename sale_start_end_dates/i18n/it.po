@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: Odoo Server 10.0\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2017-05-17 02:40+0000\n"
-"PO-Revision-Date: 2022-04-08 17:05+0000\n"
+"PO-Revision-Date: 2022-04-20 19:05+0000\n"
 "Last-Translator: Francesco Foresti <francesco.foresti@ooops404.com>\n"
 "Language-Team: Italian (https://www.transifex.com/oca/teams/23907/it/)\n"
 "Language: it\n"
@@ -58,13 +58,13 @@ msgstr ""
 #: code:addons/sale_start_end_dates/models/sale_order.py:86
 #, python-format
 msgid "Missing End Date for sale order line with Product '%s'."
-msgstr "Manca la data di fine nell'ordine di vendita per il prodotto '%s'"
+msgstr "Manca la data di fine nell'ordine di vendita per il prodotto '%s'."
 
 #. module: sale_start_end_dates
 #: code:addons/sale_start_end_dates/models/sale_order.py:90
 #, python-format
 msgid "Missing Start Date for sale order line with Product '%s'."
-msgstr "Manca la data di Inizio per il prodotto '%s'"
+msgstr "Manca la data di Inizio per il prodotto '%s'."
 
 #. module: sale_start_end_dates
 #: model:ir.model.fields,field_description:sale_start_end_dates.field_sale_order_line__must_have_dates
@@ -78,16 +78,14 @@ msgstr "Numero di giorni"
 
 #. module: sale_start_end_dates
 #: code:addons/sale_start_end_dates/models/sale_order.py:68
-#, fuzzy, python-format
-#| msgid ""
-#| "On sale order line with Product '%s', the number of days is negative ; "
-#| "this is not allowed."
+#, python-format
 msgid ""
 "On sale order line with product '%s', the number of days is negative (%d) ; "
 "this is not allowed. The number of days has been forced to 1."
 msgstr ""
-"L'ordine di vendita per il prodotto '%s' ha un numero di giorni negativo : "
-"questo no e' permesso."
+"Nella riga ordine contentene il prodotto '%s', il numero di giorni è "
+"negativo (%d) ; questo non e' permesso. Il numero di giorni è stato "
+"impostato a 1."
 
 #. module: sale_start_end_dates
 #: model:ir.model,name:sale_start_end_dates.model_sale_order
