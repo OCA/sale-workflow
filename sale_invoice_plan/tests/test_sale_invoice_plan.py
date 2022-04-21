@@ -3,11 +3,12 @@
 from collections import OrderedDict
 
 from odoo.exceptions import UserError, ValidationError
-from odoo.tests import Form
+from odoo.tests import Form, tagged
 
 from odoo.addons.sale.tests import common
 
 
+@tagged("post_install")
 class TestSaleInvoicePlan(common.TestSaleCommon):
     @classmethod
     def setUpClass(cls):
