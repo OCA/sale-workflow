@@ -1,0 +1,3 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_st_add_products,access_st_add_products,model_sale_template_add_products,sales_team.group_sale_salesman,1,1,1,1
+access_st_add_products_items,access_st_add_products_items,model_sale_template_add_products_item,sales_team.group_sale_salesman,1,1,1,1
