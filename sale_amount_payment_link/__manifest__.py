@@ -6,7 +6,7 @@
     "summary": "Reduce Amount to be paid "
     "while Payment Link is generated "
     "on Sale Order, depending on done Transactions.",
-    "version": "14.0.1.0.0",
+    "version": "14.0.1.0.1",
     "author": "Camptocamp, Odoo Community Association (OCA)",
     "license": "AGPL-3",
     "category": "Sale",
