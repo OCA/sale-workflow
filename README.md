@@ -25,7 +25,7 @@ addon | version | maintainers | summary
 [pricelist_cache_rest](pricelist_cache_rest/) | 14.0.1.0.0 |  | Provides an endpoint to get product prices for a given customer
 [product_supplierinfo_for_customer_sale](product_supplierinfo_for_customer_sale/) | 14.0.1.0.1 |  | Loads in every sale order line the customer code defined in the product
 [sale_advance_payment](sale_advance_payment/) | 14.0.1.1.1 |  | Allow to add advance payments on sales and then use them on invoices
-[sale_amount_payment_link](sale_amount_payment_link/) | 14.0.1.0.0 |  | Reduce Amount to be paid while Payment Link is generated on Sale Order, depending on done Transactions.
+[sale_amount_payment_link](sale_amount_payment_link/) | 14.0.1.0.1 |  | Reduce Amount to be paid while Payment Link is generated on Sale Order, depending on done Transactions.
 [sale_automatic_workflow](sale_automatic_workflow/) | 14.0.1.3.1 |  | Sale Automatic Workflow
 [sale_automatic_workflow_delivery_state](sale_automatic_workflow_delivery_state/) | 14.0.1.0.0 |  | Glue module for sale_automatic_workflow and sale_delivery_state
 [sale_automatic_workflow_job](sale_automatic_workflow_job/) | 14.0.1.0.0 |  | Execute sale automatic workflows in queue jobs
@@ -44,7 +44,7 @@ addon | version | maintainers | summary
 [sale_force_invoiced](sale_force_invoiced/) | 14.0.1.1.1 |  | Allows to force the invoice status of the sales order to Invoiced
 [sale_global_discount](sale_global_discount/) | 14.0.1.0.0 |  | Sale Global Discount
 [sale_invoice_blocking](sale_invoice_blocking/) | 14.0.1.0.0 |  | Allow you to block the creation of invoices from a sale order.
-[sale_invoice_plan](sale_invoice_plan/) | 14.0.1.0.1 | [![kittiu](https://github.com/kittiu.png?size=30px)](https://github.com/kittiu) | Add to sales order, ability to manage future invoice plan
+[sale_invoice_plan](sale_invoice_plan/) | 14.0.1.0.2 | [![kittiu](https://github.com/kittiu.png?size=30px)](https://github.com/kittiu) | Add to sales order, ability to manage future invoice plan
 [sale_isolated_quotation](sale_isolated_quotation/) | 14.0.2.1.0 | [![bealdav](https://github.com/bealdav.png?size=30px)](https://github.com/bealdav) [![kittiu](https://github.com/kittiu.png?size=30px)](https://github.com/kittiu) | Sale Isolated Quotation
 [sale_last_price_info](sale_last_price_info/) | 14.0.1.0.1 |  | Product Last Price Info - Sale
 [sale_mail_autosubscribe](sale_mail_autosubscribe/) | 14.0.1.0.0 | [![ivantodorovich](https://github.com/ivantodorovich.png?size=30px)](https://github.com/ivantodorovich) | Automatically subscribe partners to their company's sale orders
