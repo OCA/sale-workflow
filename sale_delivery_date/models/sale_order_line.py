@@ -160,7 +160,10 @@ class SaleOrderLine(models.Model):
     def _apply_delivery_window(
         self, date_planned, partner, security_lead, calendar=None
     ):
-        date_done = date_planned + timedelta(days=security_lead)
+        datetime_done = date_planned + timedelta(days=security_lead)
+        # Only the date here is relevant, both to find out if this is a working day
+        # and to apply the delivery window on top of it.
+        date_done = datetime_done.replace(hour=0, minute=0, second=0, microsecond=0)
         date_done = self._next_working_day(date_done, calendar)
         if partner.delivery_time_preference != "time_windows":
             return date_done
