@@ -10,6 +10,7 @@
     "summary": "Create manually your deliveries",
     "depends": ["delivery", "sale_stock", "sales_team"],
     "data": [
+        "security/ir.model.access.csv",
         "views/crm_team.xml",
         "views/sale_order.xml",
         "wizard/manual_delivery.xml",
