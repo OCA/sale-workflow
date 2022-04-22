@@ -2,7 +2,7 @@
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 {
     "name": "Sale Product seasonality",
-    "summary": "Integrates rules for products' seasonal availability with sales",
+    "summary": "Integrates rules for products' date availability with sales",
     "version": "14.0.1.1.0",
     "author": "Camptocamp, Odoo Community Association (OCA)",
     "license": "AGPL-3",
@@ -19,6 +19,6 @@
         "views/sale_order.xml",
         "views/menu.xml",
     ],
-    "installable": True,
+    "installable": False,
     "auto_install": True,
 }

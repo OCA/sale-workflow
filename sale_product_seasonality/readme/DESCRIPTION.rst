@@ -1,1 +1,1 @@
-Integrates rules for products' seasonal availability with sales.
+Integrates rules for products' allowed availability with sales.
