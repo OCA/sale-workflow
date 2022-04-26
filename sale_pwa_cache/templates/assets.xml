@@ -8,6 +8,10 @@
         <xpath expr="." position="inside">
             <script
                 type="text/javascript"
+                src="/sale_pwa_cache/static/src/js/widgets/translation_terms.js"
+            />
+            <script
+                type="text/javascript"
                 src="/sale_pwa_cache/static/src/js/widgets/field_one2many_product_picker.js"
             />
         </xpath>

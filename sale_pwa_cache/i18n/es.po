@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 13.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-09-13 18:18+0000\n"
-"PO-Revision-Date: 2021-09-13 20:45+0200\n"
+"POT-Creation-Date: 2022-04-26 01:09+0000\n"
+"PO-Revision-Date: 2022-04-26 03:16+0200\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: es\n"
@@ -15,7 +15,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: \n"
-"X-Generator: Poedit 3.0\n"
+"X-Generator: Poedit 3.0.1\n"
 
 #. module: sale_pwa_cache
 #: model:pwa.cache,name:sale_pwa_cache.pwa_cache_model_account_incoterms_all
@@ -49,9 +49,17 @@ msgid "Cancel"
 msgstr "Cancelar"
 
 #. module: sale_pwa_cache
+#. openerp-web
+#: code:addons/sale_pwa_cache/static/src/js/widgets/translation_terms.js:0
 #: model:ir.model.fields,field_description:sale_pwa_cache.field_product_product__uom_category_id
+#, python-format
 msgid "Category"
 msgstr "Categoría"
+
+#. module: sale_pwa_cache
+#: model:ir.model.fields,field_description:sale_pwa_cache.field_product_product__categ_name
+msgid "Category name"
+msgstr "Nombre de la categoría"
 
 #. module: sale_pwa_cache
 #: model_terms:ir.ui.view,arch_db:sale_pwa_cache.view_order_form_pwa
@@ -64,13 +72,20 @@ msgid "Confirm Orders"
 msgstr "Confirmar órdenes"
 
 #. module: sale_pwa_cache
+#. openerp-web
+#: code:addons/sale_pwa_cache/static/src/js/widgets/translation_terms.js:0
+#, python-format
+msgid "Contains"
+msgstr "Contiene"
+
+#. module: sale_pwa_cache
 #: model:ir.model.fields,help:sale_pwa_cache.field_product_product__uom_category_id
 msgid ""
 "Conversion between Units of Measure can only occur if they belong to the "
 "same category. The conversion will be made based on the ratios."
 msgstr ""
-"La conversión entre unidades de medida solo puede ocurrir si pertenecen a "
-"la misma categoría. La conversión se realizará en base a las proporciones."
+"La conversión entre unidades de medida solo puede ocurrir si pertenecen a la "
+"misma categoría. La conversión se realizará en base a las proporciones."
 
 #. module: sale_pwa_cache
 #: model:ir.model.fields,field_description:sale_pwa_cache.field_massive_confirm_sale_order_wizard__display_name
@@ -81,8 +96,21 @@ msgstr "Nombre para mostrar"
 #: model:ir.model.fields,help:sale_pwa_cache.field_res_config_settings__pwa_sale_auto_confirm
 msgid "Enables auto-confirm when offline records are syncronized"
 msgstr ""
-"Activar la auto-confirmación cuando los registros sin conexión se "
-"sincronizan"
+"Activar la auto-confirmación cuando los registros sin conexión se sincronizan"
+
+#. module: sale_pwa_cache
+#. openerp-web
+#: code:addons/sale_pwa_cache/static/src/js/widgets/translation_terms.js:0
+#, python-format
+msgid "History"
+msgstr "Historial"
+
+#. module: sale_pwa_cache
+#. openerp-web
+#: code:addons/sale_pwa_cache/static/src/js/widgets/translation_terms.js:0
+#, python-format
+msgid "History (Shipping)"
+msgstr "Historial (PdE)"
 
 #. module: sale_pwa_cache
 #: model:ir.model.fields,help:sale_pwa_cache.field_sale_order_line__uom_factor
@@ -107,22 +135,22 @@ msgstr "Última modificación el"
 #. module: sale_pwa_cache
 #: model:ir.model,name:sale_pwa_cache.model_massive_confirm_sale_order_wizard
 msgid "Massive Confirm Sale Order Wizard"
-msgstr ""
+msgstr "Asistente de confirmación masiva de pedidos de venta"
 
 #. module: sale_pwa_cache
 #: model:ir.actions.act_window,name:sale_pwa_cache.action_massive_confirm_sale_order_wizard
 msgid "Massive Confirm Sale Orders"
-msgstr ""
+msgstr "Confirmación masiva de pedidos de venta"
 
 #. module: sale_pwa_cache
 #: model:ir.ui.menu,name:sale_pwa_cache.menu_server_action_confirm_sale_order
 msgid "Massive confirm"
-msgstr ""
+msgstr "Confirmación masiva"
 
 #. module: sale_pwa_cache
-#: model:ir.model.fields,field_description:sale_pwa_cache.field_product_product__categ_name
-msgid "Name"
-msgstr "Nombre"
+#: model_terms:ir.ui.view,arch_db:sale_pwa_cache.view_order_form_pwa
+msgid "Order Date"
+msgstr "Fecha pedido"
 
 #. module: sale_pwa_cache
 #: model:ir.model.fields,field_description:sale_pwa_cache.field_res_config_settings__pwa_sale_auto_confirm
@@ -145,6 +173,11 @@ msgid "Product"
 msgstr "Producto"
 
 #. module: sale_pwa_cache
+#: model_terms:ir.ui.view,arch_db:sale_pwa_cache.view_order_form_pwa
+msgid "Quotation Date"
+msgstr "Fecha presupuesto"
+
+#. module: sale_pwa_cache
 #: model:ir.model.fields,field_description:sale_pwa_cache.field_sale_order_line__uom_factor
 msgid "Ratio"
 msgstr ""
@@ -155,12 +188,17 @@ msgid "Rounding Precision"
 msgstr "Precisión redondeo"
 
 #. module: sale_pwa_cache
+#: model:pwa.cache,name:sale_pwa_cache.pwa_cache_default_formula_sale_order
+msgid "Sale Order - Default Formula"
+msgstr ""
+
+#. module: sale_pwa_cache
 #: model:pwa.cache,name:sale_pwa_cache.pwa_cache_get_sale_order_onboarding_panel_bg
 msgid "Sale Order - Get - Onboarding Panel Background"
 msgstr ""
 
 #. module: sale_pwa_cache
-#: model:pwa.cache,name:sale_pwa_cache.pwa_cache_onchange_sale_order_partern_id
+#: model:pwa.cache,name:sale_pwa_cache.pwa_cache_onchange_sale_order_partner_id
 msgid "Sale Order - Onchange - partner_id"
 msgstr ""
 
@@ -175,9 +213,16 @@ msgid "Sale Order Line - Onchange - product_id"
 msgstr ""
 
 #. module: sale_pwa_cache
+#: model:pwa.cache,name:sale_pwa_cache.pwa_cache_onchange_formula_sale_order_line_product_id_product_uom_category_id_product_type
+msgid ""
+"Sale Order Line - Onchange Formula - product_id [product_uom_category_id + "
+"product_type]"
+msgstr ""
+
+#. module: sale_pwa_cache
 #: model:pwa.cache,name:sale_pwa_cache.pwa_cache_model_sale_order_lines_all
-msgid "Sale Order Lines (All - Last year)"
-msgstr "Sale Order Lines (Todos - Último año)"
+msgid "Sale Order Lines (All - 90 Days)"
+msgstr "Líneas de pedidos de venta (Todos - 90 días)"
 
 #. module: sale_pwa_cache
 #: model:ir.model.fields,field_description:sale_pwa_cache.field_product_product__sale_order_partner_id_product
@@ -185,14 +230,14 @@ msgid "Sale Order Partner Id Product"
 msgstr ""
 
 #. module: sale_pwa_cache
+#: model:pwa.cache,name:sale_pwa_cache.pwa_cache_model_sale_order_all
+msgid "Sale Orders (All - 90 Days)"
+msgstr "Pedidos de venta (Todos - 90 días)"
+
+#. module: sale_pwa_cache
 #: model_terms:ir.ui.view,arch_db:sale_pwa_cache.res_config_settings_view_form
 msgid "Sale orders will be confirmed after synchronization"
 msgstr "Los pedidos de venta se confirmarán después de la sincronización"
-
-#. module: sale_pwa_cache
-#: model:pwa.cache,name:sale_pwa_cache.pwa_cache_model_sale_order_all
-msgid "Saler Orders (All - Last year)"
-msgstr "Saler Orders (Todos - Último año)"
 
 #. module: sale_pwa_cache
 #: model_terms:ir.ui.view,arch_db:sale_pwa_cache.view_order_form_pwa
@@ -215,13 +260,20 @@ msgid "Set to Quotation"
 msgstr "Cambiar a presupuesto"
 
 #. module: sale_pwa_cache
+#. openerp-web
+#: code:addons/sale_pwa_cache/static/src/js/widgets/translation_terms.js:0
+#, python-format
+msgid "Starts With"
+msgstr "Comienza por"
+
+#. module: sale_pwa_cache
 #: model_terms:ir.ui.view,arch_db:sale_pwa_cache.view_order_form_pwa
 msgid ""
 "Terms and conditions... (note: you can setup default ones in the "
 "Configuration menu)"
 msgstr ""
-"Términos y condiciones ... (nota: puede configurar los predeterminados en "
-"el menú Configuración)"
+"Términos y condiciones ... (nota: puede configurar los predeterminados en el "
+"menú Configuración)"
 
 #. module: sale_pwa_cache
 #: model:ir.model.fields,help:sale_pwa_cache.field_sale_order_line__uom_rounding
@@ -235,7 +287,7 @@ msgstr ""
 #. module: sale_pwa_cache
 #: model:pwa.cache,name:sale_pwa_cache.pwa_cache_model_uom_uom_all
 msgid "Units of Measure (All)"
-msgstr "Units of Measure (Todos)"
+msgstr "Unidades de medida (Todas)"
 
 #. module: sale_pwa_cache
 #: model_terms:ir.ui.view,arch_db:sale_pwa_cache.massive_confirm_sale_order_wizard
