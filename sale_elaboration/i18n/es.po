@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 11.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-01-24 12:06+0000\n"
-"PO-Revision-Date: 2020-01-24 13:08+0100\n"
+"POT-Creation-Date: 2022-04-27 10:18+0000\n"
+"PO-Revision-Date: 2022-04-27 12:18+0200\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: es\n"
@@ -15,7 +15,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Generator: Poedit 2.0.6\n"
+"X-Generator: Poedit 2.3\n"
 
 #. module: sale_elaboration
 #: model_terms:ir.ui.view,arch_db:sale_elaboration.report_delivery_document
@@ -105,8 +105,7 @@ msgstr "ID (identificación)"
 msgid ""
 "If unchecked, it will allow you to hide the product elaborations without "
 "removing it."
-msgstr ""
-"Si no está marcado, permitirá ocultar la elaboración sin eliminarla."
+msgstr "Si no está marcado, permitirá ocultar la elaboración sin eliminarla."
 
 #. module: sale_elaboration
 #: model:ir.model.fields,field_description:sale_elaboration.field_sale_order_line__is_elaboration
@@ -169,6 +168,7 @@ msgstr "Elaboraciones de venta"
 #. module: sale_elaboration
 #: model:ir.actions.act_window,name:sale_elaboration.sale_elaboration_report_action
 #: model:ir.ui.menu,name:sale_elaboration.menu_sale_elaboration_report
+#: model:ir.ui.menu,name:sale_elaboration.menu_stock_sale_elaboration_report
 msgid "Sale Elaboration Report"
 msgstr "Informe de elaboraciones"
 
