@@ -64,4 +64,11 @@
         parent="sale.menu_sale_report"
         sequence="60"
     />
+    <!--  Allow inventory users to access to elaboration report  -->
+    <menuitem
+        id="menu_stock_sale_elaboration_report"
+        action="sale_elaboration_report_action"
+        parent="stock.menu_warehouse_report"
+        sequence="160"
+    />
 </odoo>
