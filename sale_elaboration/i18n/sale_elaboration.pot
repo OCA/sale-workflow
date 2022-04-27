@@ -162,6 +162,7 @@ msgstr ""
 #. module: sale_elaboration
 #: model:ir.actions.act_window,name:sale_elaboration.sale_elaboration_report_action
 #: model:ir.ui.menu,name:sale_elaboration.menu_sale_elaboration_report
+#: model:ir.ui.menu,name:sale_elaboration.menu_stock_sale_elaboration_report
 msgid "Sale Elaboration Report"
 msgstr ""
 
