@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!-- Copyright 2021 Tecnativa - Jairo Llopis
+     License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl). -->
+<data>
+    <record id="product_template_form_view" model="ir.ui.view">
+        <field name="name">Display resource booking info in form</field>
+        <field name="model">product.template</field>
+        <field name="inherit_id" ref="product.product_template_form_view" />
+        <field name="groups_id" eval="[(4, ref('resource_booking.group_user'), 0)]" />
+        <field name="arch" type="xml">
+            <group name='sale' position='inside'>
+                <group name="booking" string="Resource Bookings">
+                    <field name="resource_booking_type_id" />
+                    <field
+                        name="resource_booking_type_combination_rel_id"
+                        attrs="{'invisible': [('resource_booking_type_id', '=', False)]}"
+                    />
+                </group>
+            </group>
+        </field>
+    </record>
+</data>

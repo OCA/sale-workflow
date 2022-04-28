@@ -16,6 +16,7 @@ class SaleCouponProgram(models.Model):
         related=None,
         compute="_compute_currency_id",
         inverse="_inverse_currency_id",
+        store=True,
     )
     currency_custom_id = fields.Many2one("res.currency", "Custom Currency")
 

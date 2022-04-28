@@ -1,3 +1,4 @@
+calendar
 product-attribute
 stock-logistics-warehouse
 account-invoicing

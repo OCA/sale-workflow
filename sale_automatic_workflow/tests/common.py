@@ -1,6 +1,7 @@
 # Copyright 2014 Camptocamp SA (author: Guewen Baconnier)
 # Copyright 2020 Camptocamp SA (author: Simone Orsi)
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
+from freezegun import freeze_time
 
 from odoo.tests.common import SavepointCase
 
@@ -12,6 +13,7 @@ class TestCommon(SavepointCase):
         cls.env = cls.env(context=dict(cls.env.context, tracking_disable=True))
 
 
+@freeze_time("2022-01-01 12:00")
 class TestAutomaticWorkflowMixin(object):
     def create_sale_order(self, workflow, override=None):
         sale_obj = self.env["sale.order"]

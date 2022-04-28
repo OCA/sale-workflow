@@ -1,6 +1,8 @@
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 # Copyright 2020 Tecnativa - Pedro M. Baeza
 
+from datetime import datetime, timedelta
+
 from odoo import api, fields, models
 
 
@@ -21,18 +23,22 @@ class SaleOrder(models.Model):
         default=lambda so: so._default_type_id(),
         ondelete="restrict",
         copy=True,
+        check_company=True,
     )
 
     @api.model
     def _default_type_id(self):
-        return self.env["sale.order.type"].search([], limit=1)
+        company_id = self.env.context.get("force_company", self.env.company.id)
+        return self.env["sale.order.type"].search(
+            [("company_id", "in", [company_id, False])], limit=1
+        )
 
     @api.depends("partner_id", "company_id")
     def _compute_sale_type_id(self):
         for record in self:
             if not record.partner_id:
                 record.type_id = self.env["sale.order.type"].search(
-                    [("company_id", "in", [self.env.company.id, False])], limit=1
+                    [("company_id", "in", [record.company_id.id, False])], limit=1
                 )
             else:
                 sale_type = (
@@ -45,6 +51,8 @@ class SaleOrder(models.Model):
                 )
                 if sale_type:
                     record.type_id = sale_type
+                else:  # HACK: Avoid CacheMiss when no sale_type is set
+                    record.type_id = record.type_id
 
     @api.onchange("type_id")
     def onchange_type_id(self):
@@ -64,6 +72,17 @@ class SaleOrder(models.Model):
                 vals.update({"pricelist_id": order_type.pricelist_id})
             if order_type.incoterm_id:
                 vals.update({"incoterm": order_type.incoterm_id})
+            if order_type.analytic_account_id:
+                vals.update({"analytic_account_id": order_type.analytic_account_id})
+            if order_type.quotation_validity_days:
+                vals.update(
+                    {
+                        "validity_date": fields.Date.to_string(
+                            datetime.now()
+                            + timedelta(order_type.quotation_validity_days)
+                        )
+                    }
+                )
             if vals:
                 order.update(vals)
             # Order line values
