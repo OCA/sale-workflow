@@ -23,10 +23,10 @@ Sale Quotation Template Product Multi Add
     :target: https://runbot.odoo-community.org/runbot/167/14.0
     :alt: Try me on Runbot
 
-|badge1| |badge2| |badge3| |badge4| |badge5|
+|badge1| |badge2| |badge3| |badge4| |badge5| 
 
-This module extends the functionality of sale module
-and allow you to import multiple products into your current sale order.
+This module extends the functionality of Quotation Template
+and allow you to add multiple products into it at once.
 
 **Table of contents**
 
@@ -36,11 +36,8 @@ and allow you to import multiple products into your current sale order.
 Usage
 =====
 
-This module add a button on sale order to import several products on your current sale order.
-A wizard opens and allows the user to search and select products.
-
-.. image:: https://raw.githubusercontent.com/sale_quotation_template_product_multi_add/static/src/description/icon.png
-    :alt: Sale Product Multi Add
+This module adds a button on Quotation Template form to add multiple products into it.
+A wizard form is opened and user can search and select products.
 
 Bug Tracker
 ===========
@@ -48,7 +45,7 @@ Bug Tracker
 Bugs are tracked on `GitHub Issues <https://github.com/OCA/sale-workflow/issues>`_.
 In case of trouble, please check there if your issue has already been reported.
 If you spotted it first, help us smashing it by providing a detailed and welcomed
-`feedback <https://github.com/OCA/sale-workflow/issues/new?body=module:%sale_quotation_template_product_multi_add%0Aversion:%2014.0%0A%0A**Steps%20to%20reproduce**%0A-%20...%0A%0A**Current%20behavior**%0A%0A**Expected%20behavior**>`_.
+`feedback <https://github.com/OCA/sale-workflow/issues/new?body=module:%20sale_quotation_template_product_multi_add%0Aversion:%2014.0%0A%0A**Steps%20to%20reproduce**%0A-%20...%0A%0A**Current%20behavior**%0A%0A**Expected%20behavior**>`_.
 
 Do not contact contributors directly about support or help with technical issues.
 
@@ -59,10 +56,13 @@ Authors
 ~~~~~~~
 
 * Ilyas
+* Ooops404
 
 Contributors
 ~~~~~~~~~~~~
 
+* Ooops404 <https://www.ooops404.com>
+* Ilyas <irazor147@gmail.com>
 
 Maintainers
 ~~~~~~~~~~~
