@@ -5,8 +5,6 @@
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 from odoo import api, fields, models
 
-from ..utils import roundTime
-
 
 class SaleOrder(models.Model):
     _inherit = "sale.order"
@@ -38,41 +36,9 @@ class SaleOrder(models.Model):
                 value = [(6, 0, product_ids)]
             sale.allowed_product_ids = value
 
-    def _round_dates(self):
-        """Round dates to have a meaningful comparison time frame."""
-        # TODO: make rounding factor configurable (see ROADMAP)
-        if self.commitment_date:
-            commitment_date = roundTime(dt=self.commitment_date, minutes=5)
-            if self.commitment_date != commitment_date:
-                self.commitment_date = commitment_date
-        if self.commitment_date_end:
-            commitment_date_end = roundTime(dt=self.commitment_date_end, minutes=5)
-            if self.commitment_date_end != commitment_date_end:
-                self.commitment_date_end = commitment_date_end
-
-    @api.model
-    def create(self, vals):
-        sale = super().create(vals)
-        if sale.commitment_date:
-            sale._round_dates()
-        return sale
-
-    def write(self, vals):
-        result = super().write(vals)
-        if "commitment_date" in vals or "commitment_date_end" in vals:
-            for sale in self:
-                sale._round_dates()
-        return result
-
     @api.onchange("commitment_date")
     def _onchange_commitment_date(self):
         res = super()._onchange_commitment_date()
         if self.commitment_date:
-            self._round_dates()
             self.commitment_date_end = self.commitment_date
         return res
-
-    @api.onchange("commitment_date_end")
-    def _onchange_commitment_date_end(self):
-        if self.commitment_date_end:
-            self._round_dates()

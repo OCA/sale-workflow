@@ -2,7 +2,6 @@
 # Simone Orsi <simone.orsi@camptocamp.com>
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
 
-from odoo import fields
 from odoo.tests.common import Form
 
 from .common import CommonCase
@@ -29,54 +28,8 @@ class TestSaleOrderCase(CommonCase):
                     "product_allowed_config_ids": (
                         self.order.company_id.default_product_allowed_config_id.ids
                     ),
-                    # Dates get rounded
-                    "commitment_date": fields.Datetime.to_datetime(
-                        "2021-05-20 11:05:00"
-                    ),
-                    "commitment_date_end": fields.Datetime.to_datetime(
-                        "2021-05-21 11:20:00"
-                    ),
                 }
             ],
-        )
-
-    def test_write(self):
-        self.order.write(
-            {
-                "commitment_date": "2021-05-30 10:13:20",
-                "commitment_date_end": "2021-06-05 14:24:05",
-            }
-        )
-        self.assertRecordValues(
-            self.order,
-            [
-                {
-                    # Dates get rounded
-                    "commitment_date": fields.Datetime.to_datetime(
-                        "2021-05-30 10:15:00"
-                    ),
-                    "commitment_date_end": fields.Datetime.to_datetime(
-                        "2021-06-05 14:25:00"
-                    ),
-                }
-            ],
-        )
-
-    def test_onchange_dates(self):
-        form = Form(self.order)
-        form.commitment_date = "2021-05-30 10:13:20"
-        # rounded
-        self.assertEqual(
-            form.commitment_date, fields.Datetime.to_datetime("2021-05-30 10:15:00")
-        )
-        # commitment_date_end default
-        self.assertEqual(
-            form.commitment_date_end, fields.Datetime.to_datetime("2021-05-30 10:15:00")
-        )
-        # commitment_date_end change rounding
-        form.commitment_date_end = "2021-06-05 14:24:05"
-        self.assertEqual(
-            form.commitment_date_end, fields.Datetime.to_datetime("2021-06-05 14:25:00")
         )
 
     def test_allowed_products(self):
