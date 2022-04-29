@@ -86,7 +86,6 @@ class SaleOrderLine(models.Model):
 
             values = line._prepare_procurement_values(group_id=group_id)
             product_qty = line.product_uom_qty - qty
-            product_qty_uom = product_qty
 
             line_uom = line.product_uom
             quant_uom = line.product_id.uom_id
@@ -111,7 +110,7 @@ class SaleOrderLine(models.Model):
                 self.env["procurement.group"].run(procurements)
                 # We store the procured quantity in the UoM of the line to avoid
                 # duplicated procurements, specially for dropshipping and kits.
-                previous_product_uom_qty[line.id] = product_qty_uom
+                previous_product_uom_qty[line.id] = line.product_uom_qty
             except UserError as error:
                 errors.append(error.args[0])
         if errors:
