@@ -2,10 +2,12 @@
 # Simone Orsi <simone.orsi@camptocamp.com>
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
 
-from odoo.addons.product_seasonality.tests.common import CommonCaseWithLines
+from odoo.addons.product_allowed_list_date.tests.common import (
+    CommonCaseWithSeasonalLines,
+)
 
 
-class CommonCase(CommonCaseWithLines):
+class CommonCase(CommonCaseWithSeasonalLines):
     @classmethod
     def setUpClass(cls):
         super().setUpClass()

@@ -6,6 +6,4 @@ from odoo import fields, models
 class SaleOrderLine(models.Model):
     _inherit = "sale.order.line"
 
-    season_allowed_product_ids = fields.Many2many(
-        related="order_id.season_allowed_product_ids"
-    )
+    allowed_product_ids = fields.Many2many(related="order_id.allowed_product_ids")

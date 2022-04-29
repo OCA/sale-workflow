@@ -26,7 +26,7 @@ class TestSaleOrderCase(CommonCase):
             [
                 {
                     # Default config
-                    "seasonal_config_id": self.order.company_id.default_seasonal_config_id.id,
+                    "product_allowed_config_ids": self.order.company_id.default_product_allowed_config_id.ids,
                     # Dates get rounded
                     "commitment_date": fields.Datetime.to_datetime(
                         "2021-05-20 11:05:00"
@@ -77,25 +77,9 @@ class TestSaleOrderCase(CommonCase):
             form.commitment_date_end, fields.Datetime.to_datetime("2021-06-05 14:25:00")
         )
 
-    def test_onchange_partner(self):
-        form = Form(self.order.browse())
-        new_partner = self.partner.copy(
-            {
-                "name": "New Partner w/ New Conf",
-                "seasonal_config_id": self.seasonal_conf.copy().id,
-            }
-        )
-        form.partner_id = self.partner
-        # initial partner had no specific conf
-        self.assertEqual(
-            form.seasonal_config_id, self.env.company.default_seasonal_config_id
-        )
-        form.partner_id = new_partner
-        self.assertEqual(form.seasonal_config_id, new_partner.seasonal_config_id)
-
     def test_allowed_products(self):
         form = Form(self.order)
-        self.partner.seasonal_config_id = self.seasonal_conf
+        self.partner.product_allowed_list_ids = self.product_list.ids
         form.partner_id = self.partner
         # Reminder for configuration from product_seasonality.tests.common:
         # {
@@ -108,6 +92,7 @@ class TestSaleOrderCase(CommonCase):
         #     "friday": False,
         #     "saturday": False,
         #     "sunday": False,
+        #     "product_template_id": cls.prod1.product_tmpl_id.id,
         #     "product_id": cls.prod1.id,
         # },
         # {
@@ -124,19 +109,19 @@ class TestSaleOrderCase(CommonCase):
         # },
         form.commitment_date = "2021-05-09"
         # no product available before
-        self.assertFalse(form.season_allowed_product_ids)
+        self.assertFalse(form.allowed_product_ids)
         form.commitment_date = "2021-05-13"  # thu
         self.assertEqual(
-            sorted(form.season_allowed_product_ids._get_ids()),
+            sorted(form.allowed_product_ids._get_ids()),
             sorted(self.prod2.product_tmpl_id.product_variant_ids.ids),
         )
         form.commitment_date = "2021-05-10"  # mon
-        self.assertEqual(form.season_allowed_product_ids._get_ids(), self.prod1.ids)
+        self.assertEqual(form.allowed_product_ids._get_ids(), self.prod1.ids)
         # enable Thu on line 1 and find them all
-        line = self.seasonal_conf.config_for_product(self.prod1)
+        line = self.product_list.config_for_product(self.prod1)
         line.thursday = True
         form.commitment_date = "2021-05-13"  # mon
         self.assertEqual(
-            sorted(form.season_allowed_product_ids._get_ids()),
+            sorted(form.allowed_product_ids._get_ids()),
             sorted((self.prod1 + self.prod2.product_tmpl_id.product_variant_ids).ids),
         )
