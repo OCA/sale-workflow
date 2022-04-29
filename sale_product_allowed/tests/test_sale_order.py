@@ -23,7 +23,9 @@ class TestSaleOrderCase(CommonCase):
             [
                 {
                     # Default configs
-                    "product_allowed_config_ids": self.order.company_id.default_product_allowed_config_id.ids,
+                    "product_allowed_config_ids": (
+                        self.order.company_id.default_product_allowed_config_id.ids
+                    ),
                 }
             ],
         )

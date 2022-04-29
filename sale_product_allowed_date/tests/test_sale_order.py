@@ -26,7 +26,9 @@ class TestSaleOrderCase(CommonCase):
             [
                 {
                     # Default config
-                    "product_allowed_config_ids": self.order.company_id.default_product_allowed_config_id.ids,
+                    "product_allowed_config_ids": (
+                        self.order.company_id.default_product_allowed_config_id.ids
+                    ),
                     # Dates get rounded
                     "commitment_date": fields.Datetime.to_datetime(
                         "2021-05-20 11:05:00"
