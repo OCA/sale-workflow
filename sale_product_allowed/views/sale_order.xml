@@ -8,7 +8,7 @@
         <field name="priority" eval="110" />
         <field name="arch" type="xml">
             <field name="payment_term_id" position="before">
-                <field name="product_allowed_config_ids" />
+                <field name="product_allowed_config_ids" widget="many2many_tags" />
             </field>
             <xpath
                 expr="//field[@name='order_line']//tree//field[@name='product_id']"
