@@ -9,7 +9,7 @@
     "version": "13.0.1.0.1",
     "license": "AGPL-3",
     "category": "Sales",
-    "development_status": "Production/Stable",
+    "development_status": "Beta",
     "maintainers": ["rousseldenis"],
     "author": "ACSONE SA/NV,Odoo Community Association (OCA)",
     "website": "https://github.com/OCA/sale-workflow",
