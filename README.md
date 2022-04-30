@@ -60,7 +60,7 @@ addon | version | maintainers | summary
 [sale_global_discount](sale_global_discount/) | 13.0.1.0.3 |  | Sale Global Discount
 [sale_invoice_plan](sale_invoice_plan/) | 13.0.1.0.2 | [![kittiu](https://github.com/kittiu.png?size=30px)](https://github.com/kittiu) | Add to sales order, ability to manage future invoice plan
 [sale_invoice_policy](sale_invoice_policy/) | 13.0.1.0.1 |  | Sales Management: let the user choose the invoice policy on the order
-[sale_isolated_quotation](sale_isolated_quotation/) | 13.0.1.0.0 |  | Sale Isolated Quotation
+[sale_isolated_quotation](sale_isolated_quotation/) | 13.0.1.1.0 |  | Sale Isolated Quotation
 [sale_last_price_info](sale_last_price_info/) | 13.0.1.0.0 |  | Product Last Price Info - Sale
 [sale_manual_delivery](sale_manual_delivery/) | 13.0.1.0.2 |  | Create manually your deliveries
 [sale_order_archive](sale_order_archive/) | 13.0.1.0.0 |  | Archive Sale Orders
