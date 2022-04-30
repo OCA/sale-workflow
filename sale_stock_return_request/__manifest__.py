@@ -5,7 +5,7 @@
     "version": "12.0.1.0.0",
     "category": "Stock",
     "website": "https://github.com/OCA/sale-workflow",
-    "development_status": "Production/Stable",
+    "development_status": "Beta",
     "author": "Tecnativa, "
               "Odoo Community Association (OCA)",
     "maintainers": [
