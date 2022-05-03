@@ -14,6 +14,11 @@ msgstr ""
 "Plural-Forms: \n"
 
 #. module: sale_order_secondary_unit
+#: model_terms:ir.ui.view,arch_db:sale_order_secondary_unit.report_saleorder_document
+msgid "<span>Second. Qty</span>"
+msgstr ""
+
+#. module: sale_order_secondary_unit
 #: model:ir.model.fields,field_description:sale_order_secondary_unit.field_product_product__sale_secondary_uom_id
 #: model:ir.model.fields,field_description:sale_order_secondary_unit.field_product_template__sale_secondary_uom_id
 msgid "Default secondary unit for sales"
@@ -37,11 +42,6 @@ msgstr ""
 #. module: sale_order_secondary_unit
 #: model:ir.model,name:sale_order_secondary_unit.model_sale_order_line
 msgid "Sales Order Line"
-msgstr ""
-
-#. module: sale_order_secondary_unit
-#: model_terms:ir.ui.view,arch_db:sale_order_secondary_unit.report_saleorder_document
-msgid "Second. Qty"
 msgstr ""
 
 #. module: sale_order_secondary_unit
