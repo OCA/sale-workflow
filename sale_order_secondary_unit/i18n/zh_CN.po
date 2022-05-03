@@ -16,6 +16,11 @@ msgstr ""
 "Plural-Forms: \n"
 
 #. module: sale_order_secondary_unit
+#: model_terms:ir.ui.view,arch_db:sale_order_secondary_unit.report_saleorder_document
+msgid "<span>Second. Qty</span>"
+msgstr ""
+
+#. module: sale_order_secondary_unit
 #: model:ir.model.fields,field_description:sale_order_secondary_unit.field_product_product__sale_secondary_uom_id
 #: model:ir.model.fields,field_description:sale_order_secondary_unit.field_product_template__sale_secondary_uom_id
 msgid "Default secondary unit for sales"
@@ -42,11 +47,6 @@ msgid "Sales Order Line"
 msgstr "销售订单明细"
 
 #. module: sale_order_secondary_unit
-#: model_terms:ir.ui.view,arch_db:sale_order_secondary_unit.report_saleorder_document
-msgid "Second. Qty"
-msgstr "辅助单位数量"
-
-#. module: sale_order_secondary_unit
 #: model:ir.model.fields,field_description:sale_order_secondary_unit.field_sale_order_line__secondary_uom_qty
 msgid "Secondary Qty"
 msgstr "辅助单位数量"
@@ -70,3 +70,6 @@ msgstr "辅助计量单位"
 #: model_terms:ir.ui.view,arch_db:sale_order_secondary_unit.product_secondary_unit_view_search
 msgid "UoM"
 msgstr ""
+
+#~ msgid "Second. Qty"
+#~ msgstr "辅助单位数量"
