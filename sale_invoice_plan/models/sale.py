@@ -189,7 +189,7 @@ class SaleInvoicePlan(models.Model):
         compute="_compute_invoiced",
         help="If this line already invoiced",
     )
-    _sql_constraint = [
+    _sql_constraints = [
         (
             "unique_instalment",
             "UNIQUE (sale_id, installment)",
