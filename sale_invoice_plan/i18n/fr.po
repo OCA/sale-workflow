@@ -141,6 +141,11 @@ msgid "Installment Date"
 msgstr "Date de début"
 
 #. module: sale_invoice_plan
+#: model:ir.model.constraint,message:sale_invoice_plan.constraint_sale_invoice_plan_unique_instalment
+msgid "Installment must be unique on invoice plan"
+msgstr ""
+
+#. module: sale_invoice_plan
 #: model:ir.model.fields,field_description:sale_invoice_plan.field_sale_create_invoice_plan__interval
 msgid "Interval"
 msgstr "Intervalle"
