@@ -1,8 +1,10 @@
 # Copyright 2020 Tecnativa - David Vidal
 # Copyright 2020 Tecnativa - Pedro M. Baeza
+# Copyright 2022 Simone Rubino - TAKOBI
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
 from functools import partial
 from odoo import _, api, exceptions, fields, models
+from odoo.fields import first
 from odoo.tools.misc import formatLang
 
 
@@ -15,6 +17,14 @@ class SaleOrder(models.Model):
         domain="[('discount_scope', '=', 'sale'), "
                "('account_id', '!=', False), '|', "
                "('company_id', '=', company_id), ('company_id', '=', False)]",
+    )
+    global_discount_base = fields.Selection(
+        selection=[
+            ('subtotal', 'Subtotal'),
+            ('total', 'Total'),
+        ],
+        string='Discount Base',
+        compute='_compute_global_discount_base',
     )
     # HACK: Looks like UI doesn't behave well with Many2many fields and
     # negative groups when the same field is shown. In this case, we want to
@@ -37,12 +47,27 @@ class SaleOrder(models.Model):
         currency_field='currency_id',
         readonly=True,
     )
+    amount_tax_before_global_discounts = fields.Monetary(
+        string='Amount Tax Before Discounts',
+        compute='_amount_all',
+        currency_field='currency_id',
+        readonly=True,
+    )
     amount_total_before_global_discounts = fields.Monetary(
         string='Amount Total Before Discounts',
         compute='_amount_all',
         currency_field='currency_id',
         readonly=True,
     )
+
+    @api.multi
+    @api.depends('global_discount_ids')
+    def _compute_global_discount_base(self):
+        for order in self:
+            # Only check first because sanity checks
+            # assure all global discounts in same order have same base
+            first_global_discount = first(order.global_discount_ids)
+            order.global_discount_base = first_global_discount.discount_base
 
     @api.model
     def get_discounted_global(self, price=0, discounts=None):
@@ -61,6 +86,11 @@ class SaleOrder(models.Model):
         self.ensure_one()
         if not self.global_discount_ids:
             return True
+        discount_base = set(self.global_discount_ids.mapped('discount_base'))
+        if len(discount_base) > 1:
+            raise exceptions.UserError(
+                _("All global discount must have the same base")
+            )
         taxes_keys = {}
         for line in self.order_line.filtered(lambda l: not l.display_type):
             if not line.tax_id:
@@ -81,35 +111,63 @@ class SaleOrder(models.Model):
     def _amount_all(self):
         res = super()._amount_all()
         for order in self:
+            global_discounts = order.global_discount_ids
+            if not global_discounts:
+                continue
             order._check_global_discounts_sanity()
-            amount_untaxed_before_global_discounts = order.amount_untaxed
-            amount_total_before_global_discounts = order.amount_total
-            discounts = order.global_discount_ids.mapped('discount')
-            amount_discounted_untaxed = amount_discounted_tax = 0
-            for line in order.order_line:
-                discounted_subtotal = self.get_discounted_global(
-                    line.price_subtotal, discounts.copy())
-                amount_discounted_untaxed += discounted_subtotal
-                discounted_tax = line.tax_id.compute_all(
-                    discounted_subtotal, line.order_id.currency_id,
-                    1.0, product=line.product_id,
-                    partner=line.order_id.partner_shipping_id)
-                amount_discounted_tax += sum(
-                    t.get('amount', 0.0)
-                    for t in discounted_tax.get('taxes', []))
+
+            # Save previous amounts
             order.update({
-                'amount_untaxed_before_global_discounts': (
-                    amount_untaxed_before_global_discounts),
-                'amount_total_before_global_discounts': (
-                    amount_total_before_global_discounts),
-                'amount_global_discount': (
-                    amount_untaxed_before_global_discounts -
-                    amount_discounted_untaxed),
-                'amount_untaxed': amount_discounted_untaxed,
-                'amount_tax': amount_discounted_tax,
-                'amount_total': (
-                    amount_discounted_untaxed + amount_discounted_tax),
+                'amount_untaxed_before_global_discounts': order.amount_untaxed,
+                'amount_tax_before_global_discounts': order.amount_tax,
+                'amount_total_before_global_discounts': order.amount_total,
             })
+
+            # Compute new amounts
+            discounts = global_discounts.mapped('discount')
+            discount_base = order.global_discount_base
+            if discount_base == 'subtotal':
+                # In subtotal mode, we discount each line's subtotal
+                # and recompute the taxes based on the discounted amount
+                amount_discounted_untaxed = amount_discounted_tax = 0
+                for line in order.order_line:
+                    discounted_subtotal = self.get_discounted_global(
+                        line.price_subtotal, discounts.copy())
+                    amount_discounted_untaxed += discounted_subtotal
+
+                    discounted_tax = line.tax_id.compute_all(
+                        discounted_subtotal, line.order_id.currency_id,
+                        1.0, product=line.product_id,
+                        partner=line.order_id.partner_shipping_id)
+                    amount_discounted_tax += sum(
+                        t.get('amount', 0.0)
+                        for t in discounted_tax.get('taxes', []))
+                order.update({
+                    'amount_global_discount': (
+                        order.amount_untaxed_before_global_discounts -
+                        amount_discounted_untaxed),
+                    'amount_untaxed': amount_discounted_untaxed,
+                    'amount_tax': amount_discounted_tax,
+                    'amount_total': (
+                        amount_discounted_untaxed + amount_discounted_tax),
+                })
+            elif discount_base == 'total':
+                # In total mode, we only discount the order's total
+                discounted_total = self.get_discounted_global(
+                    order.amount_total_before_global_discounts,
+                    discounts.copy(),
+                )
+
+                order.amount_global_discount = \
+                    order.amount_total_before_global_discounts \
+                    - discounted_total
+                order.amount_untaxed = \
+                    order.amount_untaxed_before_global_discounts
+                order.amount_tax = \
+                    order.amount_tax_before_global_discounts
+                order.amount_total = \
+                    order.amount_total_before_global_discounts \
+                    - order.amount_global_discount
         return res
 
     @api.onchange('partner_id')
@@ -141,6 +199,10 @@ class SaleOrder(models.Model):
         discounts = self.global_discount_ids.mapped('discount')
         if not discounts:
             return
+        discount_base = self.global_discount_base
+        if discount_base == 'total':
+            return
+
         for order in self:
             round_curr = order.currency_id.round
             fmt = partial(
