@@ -1,7 +1,8 @@
 # Copyright 2017 Camptocamp SA
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
+from unittest.mock import patch
 
-
+from odoo.addons.account.models.account_payment_method import AccountPaymentMethod
 from odoo.addons.sale_automatic_workflow.tests.common import (
     TestAutomaticWorkflowMixin,
     TestCommon,
@@ -23,6 +24,26 @@ class TestAutomaticWorkflowPaymentMode(TestCommon, TestAutomaticWorkflowMixin):
             )
         )
 
+    def setUp(self):
+        super(TestAutomaticWorkflowPaymentMode, self).setUp()
+        Method_get_payment_method_information = (
+            AccountPaymentMethod._get_payment_method_information
+        )
+
+        def _get_payment_method_information(self):
+            res = Method_get_payment_method_information(self)
+            res["definb"] = {"mode": "multi", "domain": [("type", "=", "bank")]}
+            return res
+
+        with patch.object(
+            AccountPaymentMethod,
+            "_get_payment_method_information",
+            _get_payment_method_information,
+        ):
+            self.pay_method = self.env["account.payment.method"].create(
+                {"name": "default inbound", "code": "definb", "payment_type": "inbound"}
+            )
+
     def create_sale_order(self, workflow, override=None):
         new_order = super().create_sale_order(workflow, override)
         return new_order
@@ -32,9 +53,6 @@ class TestAutomaticWorkflowPaymentMode(TestCommon, TestAutomaticWorkflowMixin):
         reg_pay_dict = {"register_payment": True}
         workflow.update(reg_pay_dict)
 
-        self.pay_method = self.env["account.payment.method"].create(
-            {"name": "default inbound", "code": "definb", "payment_type": "inbound"}
-        )
         self.acc_journ = self.env["account.journal"].create(
             {"name": "Bank US", "type": "bank", "code": "BNK68"}
         )
