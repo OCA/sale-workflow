@@ -34,7 +34,7 @@ class SaleOrder(models.Model):
         ]
         if not reward_lines:
             return res
-        programs = self.env["sale.coupon.program"].browse(
+        programs = self.env["coupon.program"].browse(
             list({x.get("coupon_program_id") for x in reward_lines})
         )
         for order in self:
@@ -119,7 +119,7 @@ class SaleOrderLine(models.Model):
     _inherit = "sale.order.line"
 
     coupon_program_id = fields.Many2one(
-        comodel_name="sale.coupon.program",
+        comodel_name="coupon.program",
         ondelete="restrict",
         string="Coupon Program",
     )
@@ -152,9 +152,7 @@ class SaleOrderLine(models.Model):
         """When the reward line is update we should refresh the line links as well"""
         res = super().write(vals)
         if vals.get("is_reward_line") and vals.get("coupon_program_id"):
-            program = self.env["sale.coupon.program"].browse(
-                vals.get("coupon_program_id")
-            )
+            program = self.env["coupon.program"].browse(vals.get("coupon_program_id"))
             for order in self.mapped("order_id"):
                 order._link_reward_lines(program)
         return res

@@ -37,7 +37,7 @@ class TestSaleCouponCriteriaMultiProduct(common.SavepointCase):
             {"name": "Tax 4", "type_tax_use": "sale", "amount": 4}
         )
         coupon_program_form = Form(
-            cls.env["sale.coupon.program"],
+            cls.env["coupon.program"],
             view="sale_coupon.sale_coupon_program_view_promo_program_form",
         )
         coupon_program_form.name = "Test Coupon Line Link Program"

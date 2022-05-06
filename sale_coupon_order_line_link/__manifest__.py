@@ -4,7 +4,7 @@
     "name": "Link coupons to order lines",
     "summary": "Adds a link between coupons and their generated order lines for easing "
     "tracking",
-    "version": "13.0.1.2.0",
+    "version": "14.0.1.0.0",
     "development_status": "Production/Stable",
     "category": "Sale",
     "website": "https://github.com/OCA/sale-promotion",

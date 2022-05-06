@@ -8,7 +8,7 @@ class SaleReport(models.Model):
     _inherit = "sale.report"
 
     coupon_program_id = fields.Many2one(
-        comodel_name="sale.coupon.program",
+        comodel_name="coupon.program",
         string="Coupon Program",
     )
 
