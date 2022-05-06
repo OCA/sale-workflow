@@ -8,7 +8,8 @@ class SaleReport(models.Model):
     _inherit = "sale.report"
 
     coupon_program_id = fields.Many2one(
-        comodel_name="sale.coupon.program", string="Coupon Program",
+        comodel_name="sale.coupon.program",
+        string="Coupon Program",
     )
 
     def _query(self, with_clause="", fields=None, groupby="", from_clause=""):
