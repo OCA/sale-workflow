@@ -47,6 +47,11 @@ msgid "Promotion Lines"
 msgstr ""
 
 #. module: sale_coupon_order_line_link
+#: model_terms:ir.ui.view,arch_db:sale_coupon_order_line_link.view_order_form
+msgid "Promotions"
+msgstr ""
+
+#. module: sale_coupon_order_line_link
 #: model:ir.model.fields,field_description:sale_coupon_order_line_link.field_sale_order_line__reward_generated_line_ids
 msgid "Reward Generated lines"
 msgstr ""
