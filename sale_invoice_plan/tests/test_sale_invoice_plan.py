@@ -5,13 +5,14 @@ from collections import OrderedDict
 
 from odoo import _
 from odoo.exceptions import UserError, ValidationError
-from odoo.tests import Form
+from odoo.tests import Form, tagged
 
 from odoo.addons.sale.tests import common
 
 _logger = logging.getLogger(__name__)
 
 
+@tagged("post_install", "-at_install")
 class TestSaleInvoicePlan(common.TestSaleCommon):
     @classmethod
     def setUpClass(cls):
