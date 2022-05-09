@@ -49,6 +49,11 @@ msgid "Rejected"
 msgstr ""
 
 #. module: sale_tier_validation
+#: model:ir.model.fields,field_description:sale_tier_validation.field_sale_order__rejected_message
+msgid "Rejected Message"
+msgstr ""
+
+#. module: sale_tier_validation
 #: model:ir.model.fields,field_description:sale_tier_validation.field_sale_order__reviewer_ids
 msgid "Reviewers"
 msgstr ""
@@ -69,9 +74,19 @@ msgid "Tier Definition"
 msgstr ""
 
 #. module: sale_tier_validation
+#: model:ir.model.fields,field_description:sale_tier_validation.field_sale_order__to_validate_message
+msgid "To Validate Message"
+msgstr ""
+
+#. module: sale_tier_validation
 #: model:ir.model.fields,field_description:sale_tier_validation.field_sale_order__validated
 #: model_terms:ir.ui.view,arch_db:sale_tier_validation.view_sale_order_filter
 msgid "Validated"
+msgstr ""
+
+#. module: sale_tier_validation
+#: model:ir.model.fields,field_description:sale_tier_validation.field_sale_order__validated_message
+msgid "Validated Message"
 msgstr ""
 
 #. module: sale_tier_validation
