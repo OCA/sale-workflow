@@ -22,27 +22,9 @@ msgid "Can Review"
 msgstr "Kan granska"
 
 #. module: sale_tier_validation
-#: model:ir.model.fields,field_description:sale_tier_validation.field_sale_order__display_name
-#: model:ir.model.fields,field_description:sale_tier_validation.field_tier_definition__display_name
-msgid "Display Name"
-msgstr "Visningsnamn"
-
-#. module: sale_tier_validation
 #: model:ir.model.fields,field_description:sale_tier_validation.field_sale_order__has_comment
 msgid "Has Comment"
 msgstr "Har kommentar"
-
-#. module: sale_tier_validation
-#: model:ir.model.fields,field_description:sale_tier_validation.field_sale_order__id
-#: model:ir.model.fields,field_description:sale_tier_validation.field_tier_definition__id
-msgid "ID"
-msgstr "ID"
-
-#. module: sale_tier_validation
-#: model:ir.model.fields,field_description:sale_tier_validation.field_sale_order____last_update
-#: model:ir.model.fields,field_description:sale_tier_validation.field_tier_definition____last_update
-msgid "Last Modified on"
-msgstr "Senast ändrad den"
 
 #. module: sale_tier_validation
 #: model_terms:ir.ui.view,arch_db:sale_tier_validation.view_sale_order_filter
@@ -70,6 +52,11 @@ msgid "Rejected"
 msgstr "Nekad"
 
 #. module: sale_tier_validation
+#: model:ir.model.fields,field_description:sale_tier_validation.field_sale_order__rejected_message
+msgid "Rejected Message"
+msgstr ""
+
+#. module: sale_tier_validation
 #: model:ir.model.fields,field_description:sale_tier_validation.field_sale_order__reviewer_ids
 msgid "Reviewers"
 msgstr "Granskare"
@@ -90,12 +77,31 @@ msgid "Tier Definition"
 msgstr "Attestdefinition"
 
 #. module: sale_tier_validation
+#: model:ir.model.fields,field_description:sale_tier_validation.field_sale_order__to_validate_message
+msgid "To Validate Message"
+msgstr ""
+
+#. module: sale_tier_validation
 #: model:ir.model.fields,field_description:sale_tier_validation.field_sale_order__validated
 #: model_terms:ir.ui.view,arch_db:sale_tier_validation.view_sale_order_filter
 msgid "Validated"
 msgstr "Validerad"
 
 #. module: sale_tier_validation
+#: model:ir.model.fields,field_description:sale_tier_validation.field_sale_order__validated_message
+msgid "Validated Message"
+msgstr ""
+
+#. module: sale_tier_validation
 #: model:ir.model.fields,field_description:sale_tier_validation.field_sale_order__review_ids
 msgid "Validations"
 msgstr "Valideringar"
+
+#~ msgid "Display Name"
+#~ msgstr "Visningsnamn"
+
+#~ msgid "ID"
+#~ msgstr "ID"
+
+#~ msgid "Last Modified on"
+#~ msgstr "Senast ändrad den"
