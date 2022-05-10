@@ -9,7 +9,7 @@
     "license": "AGPL-3",
     "website": "https://github.com/OCA/sale-workflow",
     "category": "Sales",
-    "depends": ["account", "sale_management", "sale_stock"],
+    "depends": ["account", "sale_management"],
     "data": [
         "security/ir.model.access.csv",
         "wizard/sale_create_invoice_plan_view.xml",
