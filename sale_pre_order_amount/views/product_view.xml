@@ -1,0 +1,29 @@
+<?xml version="1.0" ?>
+<odoo>
+
+    <record id="view_pre_order_product_form" model="ir.ui.view">
+        <field name="name">view.pre.order.product.form</field>
+        <field name="model">product.template</field>
+        <field
+            name="inherit_id"
+            ref="sale_stock.product_template_view_form_inherit_stock"
+        />
+        <field name="arch" type="xml">
+            <button name="action_view_orderpoints" position="before">
+                <button
+                    class="oe_stat_button"
+                    name="action_view_pre_order_moves"
+                    type="object"
+                    icon="fa-shopping-cart"
+                >
+                    <field
+                        name="pre_order_count"
+                        widget="statinfo"
+                        string="Pre-Orders"
+                    />
+                </button>
+            </button>
+        </field>
+    </record>
+
+</odoo>
