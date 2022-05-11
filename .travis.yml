@@ -44,7 +44,7 @@ env:
   - VERSION="12.0" TESTS="0" LINT_CHECK="0" MAKEPOT="0" WKHTMLTOPDF_VERSION="0.12.4"
 
 install:
-  - git clone --depth=1 https://github.com/OCA/maintainer-quality-tools.git ${HOME}/maintainer-quality-tools
+  - git clone --depth=1 https://github.com/vauxoo-dev/maintainer-quality-tools.git -b oca-fix-pylint-comp2-moy ${HOME}/maintainer-quality-tools
   - export PATH=${HOME}/maintainer-quality-tools/travis:${PATH}
   - travis_install_nightly
 
