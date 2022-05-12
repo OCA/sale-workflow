@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 12.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-05-12 14:48+0000\n"
-"PO-Revision-Date: 2022-05-12 14:48+0000\n"
+"POT-Creation-Date: 2023-02-07 16:38+0000\n"
+"PO-Revision-Date: 2023-02-07 16:38+0000\n"
 "Last-Translator: <>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -17,7 +17,7 @@ msgstr ""
 
 #. module: sale_pricelist_technical
 #: model:ir.model.fields,help:sale_pricelist_technical.field_product_pricelist__is_technical
-msgid "Check this box if you want to prevent user to use this pricelist on the orders, or in the customer form. This is usefull for pricelist created only to compute other pricelists."
+msgid "Check this box if you want to prevent users from using this pricelist on orders or in customer forms. This is useful for pricelists that are created only to compute other pricelists."
 msgstr "Cocher cette case si vous souhaitez empêcher les utilisateurs d'utiliser cette liste de prix dans les devis, ou sur le formulaire client. Ceci est utile pour les liste de prix créée uniquement pour le calcul d'autres liste de prix."
 
 #. module: sale_pricelist_technical
@@ -52,10 +52,3 @@ msgstr "Bon de commande"
 #: model:product.pricelist,name:sale_pricelist_technical.technical_pricelist
 msgid "Technical Pricelist"
 msgstr "Liste de prix technique"
-
-#. module: sale_pricelist_technical
-#: model:ir.model.fields,help:sale_pricelist_technical.field_res_partner__property_product_pricelist
-#: model:ir.model.fields,help:sale_pricelist_technical.field_res_users__property_product_pricelist
-msgid "This pricelist will be used, instead of the default one, for sales to the current partner"
-msgstr "Cette liste de prix sera utilisée, à la place de la liste par défaut, pour les ventes faites au partenaire actuel."
-
