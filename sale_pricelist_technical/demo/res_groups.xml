@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+Copyright (C) 2022 - Today: GRAP (http://www.grap.coop)
+@author: Sylvain LE GAL (https://twitter.com/legalsylvain)
+License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
+-->
+<odoo>
+
+    <record id="product.group_sale_pricelist" model="res.groups">
+        <field name="users" eval="[(4, ref('base.user_admin'))]"/>
+    </record>
+
+    <record id="product.group_product_pricelist" model="res.groups">
+        <field name="users" eval="[(4, ref('base.user_admin'))]"/>
+    </record>
+
+    <record id="product.group_pricelist_item" model="res.groups">
+        <field name="users" eval="[(4, ref('base.user_admin'))]"/>
+    </record>
+
+</odoo>
