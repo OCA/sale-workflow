@@ -9,6 +9,7 @@ License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
     <record id="technical_pricelist" model="product.pricelist">
         <field name="name">Technical Pricelist</field>
         <field name="is_technical" eval="True"/>
+        <field name="currency_id" model="res.currency" eval="obj().env.ref('product.list0').currency_id.id"/>
     </record>
 
     <record id="technical_pricelist_item" model="product.pricelist.item">
