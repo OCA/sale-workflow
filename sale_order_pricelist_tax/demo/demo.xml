@@ -11,6 +11,19 @@
         <field name="price_include" eval="True" />
         <field name="amount">20</field>
     </record>
+    <record model="account.tax" id="account_tax_sale_inc_papeete_1">
+        <field name="name">Papeete Sale Tax 16% included</field>
+        <field name="type_tax_use">sale</field>
+        <field name="price_include" eval="True" />
+        <field name="amount">16</field>
+    </record>
+    <record model="account.tax" id="account_tax_sale_inc_papeete_2">
+        <field name="name">Papeete Sale Tax 1% included</field>
+        <field name="type_tax_use">sale</field>
+        <field name="price_include" eval="True" />
+        <field name="amount">1</field>
+    </record>
+
     <record model="account.tax" id="account_tax_sale_exp">
         <field name="name">Demo Export 0%</field>
         <field name="type_tax_use">sale</field>
@@ -67,6 +80,24 @@
         <field name="position_id" ref="fiscal_position_exp" />
         <field name="tax_src_id" ref="account_tax_sale_2" />
         <field name="tax_dest_id" ref="account_tax_sale_exp" />
+    </record>
+
+    <record id="fiscal_position_papeete" model="account.fiscal.position">
+        <field name="sequence">50</field>
+        <field name="name">Papeete</field>
+        <field name="auto_apply" eval="True" />
+    </record>
+
+    <record id="fiscal_position_papeete_map_1" model="account.fiscal.position.tax">
+        <field name="position_id" ref="fiscal_position_papeete" />
+        <field name="tax_src_id" ref="account_tax_sale_2" />
+        <field name="tax_dest_id" ref="account_tax_sale_inc_papeete_1" />
+    </record>
+
+    <record id="fiscal_position_papeete_map_2" model="account.fiscal.position.tax">
+        <field name="position_id" ref="fiscal_position_papeete" />
+        <field name="tax_src_id" ref="account_tax_sale_2" />
+        <field name="tax_dest_id" ref="account_tax_sale_inc_papeete_2" />
     </record>
 
 </odoo>

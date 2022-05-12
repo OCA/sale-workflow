@@ -12,6 +12,7 @@ class TaxCase(SavepointCase):
         cls.ht_plist = cls.env.ref("sale_order_pricelist_tax.ht_pricelist")
         cls.ttc_plist = cls.env.ref("sale_order_pricelist_tax.ttc_pricelist")
         cls.fp_exp = cls.env.ref("sale_order_pricelist_tax.fiscal_position_exp")
+        cls.fp_papeete = cls.env.ref("sale_order_pricelist_tax.fiscal_position_papeete")
         cls.product = cls.env.ref("sale_order_pricelist_tax.ak_product")
         cls.tax_exc = cls.env.ref("sale_order_pricelist_tax.account_tax_sale_1")
         cls.tax_inc = cls.env.ref("sale_order_pricelist_tax.account_tax_sale_2")
@@ -121,3 +122,18 @@ class TaxCase(SavepointCase):
             "Tax product 'Demo Sale Tax 20%' is price exclude. You must "
             "switch to include ones.",
         )
+
+    def test_papeete_case(self):
+        """Papeete case is a special French case.
+        We have to replace the 20% tax inc by two taxes 16% tax inc and 1% tax inc
+        When we replace a tax inc by an other tax inc we except to keep the same
+        total tax inc amount.
+        """
+        sale = self._create_sale_order(self.ttc_plist)
+
+        # Set fiscal position
+        sale.write({"fiscal_position_id": self.fp_papeete.id})
+        sale.update_prices()
+        self.assertEqual(sale.order_line[0].price_unit, 12)
+        self.assertEqual(sale.amount_total, 12)
+        self.assertEqual(sale.amount_untaxed, 10.26)
