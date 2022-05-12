@@ -45,7 +45,7 @@ class SaleOrderLine(models.Model):
         return super(SaleOrderLine, self).product_uom_change()
 
     def _upd_onchange_ctx(self):
-        """ Only to add 'pricelist' context """
+        """Only to add 'pricelist' context"""
         ctx = self.env.context.copy()
         ctx.update(dict(pricelist=self.order_id.pricelist_id.id))
         self.env.context = ctx

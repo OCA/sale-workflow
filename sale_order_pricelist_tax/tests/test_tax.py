@@ -1,16 +1,20 @@
 # © 2018  Akretion
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
 
-from odoo.tests.common import TransactionCase
+from odoo.exceptions import UserError
+from odoo.tests.common import SavepointCase
 
 
-class TaxCase(TransactionCase):
-    def setUp(self):
-        super(TaxCase, self).setUp()
-        self.ht_plist = self.env.ref("sale_order_pricelist_tax.ht_pricelist")
-        self.ttc_plist = self.env.ref("sale_order_pricelist_tax.ttc_pricelist")
-        self.fp_exp = self.env.ref("sale_order_pricelist_tax.fiscal_position_exp")
-        self.product = self.env.ref("sale_order_pricelist_tax.ak_product")
+class TaxCase(SavepointCase):
+    @classmethod
+    def setUpClass(cls):
+        super().setUpClass()
+        cls.ht_plist = cls.env.ref("sale_order_pricelist_tax.ht_pricelist")
+        cls.ttc_plist = cls.env.ref("sale_order_pricelist_tax.ttc_pricelist")
+        cls.fp_exp = cls.env.ref("sale_order_pricelist_tax.fiscal_position_exp")
+        cls.product = cls.env.ref("sale_order_pricelist_tax.ak_product")
+        cls.tax_exc = cls.env.ref("sale_order_pricelist_tax.account_tax_sale_1")
+        cls.tax_inc = cls.env.ref("sale_order_pricelist_tax.account_tax_sale_2")
 
     def _create_sale_order(self, pricelist):
         # Creating a sale order
@@ -82,3 +86,38 @@ class TaxCase(TransactionCase):
         self.assertEqual(sale.order_line[0].price_unit, 12)
         self.assertEqual(sale.amount_total, 12)
         self.assertEqual(sale.amount_untaxed, 10)
+
+    def test_not_compatible_tax_inc_line_with_tax_exc_pricelist(self):
+        sale = self._create_sale_order(self.ht_plist)
+        fp = self.env["account.fiscal.position"].create(
+            {
+                "name": "Wrong FP Convert Tax exc to Tax inc",
+                "tax_ids": [
+                    (
+                        0,
+                        0,
+                        {
+                            "tax_src_id": self.tax_exc.id,
+                            "tax_dest_id": self.tax_inc.id,
+                        },
+                    )
+                ],
+            }
+        )
+        sale.fiscal_position_id = fp
+        with self.assertRaises(UserError) as m:
+            sale.update_prices()
+        self.assertEqual(
+            m.exception.name,
+            "Tax with include price with pricelist b2b 'Prix HT' is not supported",
+        )
+
+    def test_not_compatible_product_tax_exc(self):
+        self.product.taxes_id = self.tax_exc
+        with self.assertRaises(UserError) as m:
+            self._create_sale_order(self.ttc_plist)
+        self.assertEqual(
+            m.exception.name,
+            "Tax product 'Demo Sale Tax 20%' is price exclude. You must "
+            "switch to include ones.",
+        )
