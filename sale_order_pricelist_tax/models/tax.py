@@ -20,21 +20,27 @@ class AccountTax(models.Model):
           instead of recomputed price
         - some checks/raises on unmanaged cases
         """
-        original = super(AccountTax, self)._fix_tax_included_price(
+        fixed_price = super(AccountTax, self)._fix_tax_included_price(
             price, prod_taxes, line_taxes
         )
         pricelist_id = self.env.context.get("pricelist")
-        computed_price = False
+        skip_fixing_price = False
         # Check if pricelist contains adhoc price
         if pricelist_id:
             self._check_product_sale_tax_include(prod_taxes)
             pricelist = self.env["product.pricelist"].browse(pricelist_id)
             if not pricelist.price_include_taxes:
-                computed_price = True
                 self._check_sale_line_tax_exclude(line_taxes, pricelist)
-        if computed_price:
+                # we skip odoo logic as the pricelist is tax excluded
+                # with tax excluded on line so we do not have anything to remove
+                skip_fixing_price = True
+            elif all(line_taxes.mapped("price_include")):
+                # we skip odoo logic as the pricelist is tax included
+                # and the taxe line are tax included
+                skip_fixing_price = True
+        if skip_fixing_price:
             return price
-        return original
+        return fixed_price
 
     def _check_product_sale_tax_include(self, prod_taxes):
         prod_taxes_exclude = prod_taxes.filtered(
