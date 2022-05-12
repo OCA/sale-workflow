@@ -12,11 +12,12 @@
                     class="btn btn-primary"
                     string="Create Delivery"
                     context="{'active_model': 'sale.order', 'active_id': id, 'active_ids': [id]}"
-                    attrs="{'invisible': ['|',('manual_delivery', '=', False), ('state', '!=', 'sale')]}"
+                    attrs="{'invisible': ['|', '|', ('has_pending_delivery', '=', False), ('manual_delivery', '=', False), ('state', '!=', 'sale')]}"
                 />
             </button>
             <group name="sale_shipping" position="inside">
                 <field name="manual_delivery" widget="boolean_toggle" />
+                <field name="has_pending_delivery" invisible="0" />
             </group>
         </field>
     </record>
