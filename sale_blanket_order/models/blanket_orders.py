@@ -1,6 +1,8 @@
 # Copyright 2018 ACSONE SA/NV
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
+from datetime import date
+
 from odoo import SUPERUSER_ID, _, api, fields, models
 from odoo.exceptions import UserError
 from odoo.tools import float_is_zero
@@ -53,8 +55,6 @@ class BlanketOrder(models.Model):
     partner_id = fields.Many2one(
         "res.partner",
         string="Partner",
-        readonly=True,
-        states={"draft": [("readonly", False)]},
     )
     line_ids = fields.One2many(
         "sale.blanket.order.line", "order_id", string="Order lines", copy=True
@@ -64,17 +64,10 @@ class BlanketOrder(models.Model):
         compute="_compute_line_count",
         readonly=True,
     )
-    product_id = fields.Many2one(
-        "product.product",
-        related="line_ids.product_id",
-        string="Product",
-    )
     pricelist_id = fields.Many2one(
         "product.pricelist",
         string="Pricelist",
         required=True,
-        readonly=True,
-        states={"draft": [("readonly", False)]},
     )
     currency_id = fields.Many2one("res.currency", related="pricelist_id.currency_id")
     analytic_account_id = fields.Many2one(
@@ -89,10 +82,10 @@ class BlanketOrder(models.Model):
     payment_term_id = fields.Many2one(
         "account.payment.term",
         string="Payment Terms",
-        readonly=True,
-        states={"draft": [("readonly", False)]},
+        tracking=True,
     )
     confirmed = fields.Boolean(copy=False)
+    editable = fields.Boolean(compute="_compute_editable")
     state = fields.Selection(
         selection=[
             ("draft", "Draft"),
@@ -104,29 +97,21 @@ class BlanketOrder(models.Model):
         store=True,
         copy=False,
     )
-    validity_date = fields.Date(readonly=True, states={"draft": [("readonly", False)]})
+    validity_date = fields.Date()
     client_order_ref = fields.Char(
         string="Customer Reference",
         copy=False,
-        readonly=True,
-        states={"draft": [("readonly", False)]},
     )
-    note = fields.Text(
-        readonly=True, default=_default_note, states={"draft": [("readonly", False)]}
-    )
+    note = fields.Text(default=_default_note)
     user_id = fields.Many2one(
         "res.users",
         string="Salesperson",
-        readonly=True,
-        states={"draft": [("readonly", False)]},
     )
     team_id = fields.Many2one(
         "crm.team",
         string="Sales Team",
         change_default=True,
         default=_get_default_team,
-        readonly=True,
-        states={"draft": [("readonly", False)]},
     )
     company_id = fields.Many2one(
         "res.company",
@@ -228,6 +213,15 @@ class BlanketOrder(models.Model):
             bo.invoiced_uom_qty = sum(bo.mapped("order_id.invoiced_uom_qty"))
             bo.delivered_uom_qty = sum(bo.mapped("order_id.delivered_uom_qty"))
             bo.remaining_uom_qty = sum(bo.mapped("order_id.remaining_uom_qty"))
+
+    def _compute_editable(self):
+        for bo in self:
+            bo.editable = self.env.company.open_blanket_orders_editable
+
+    @api.onchange("validity_date")
+    def onchange_validity_date(self):
+        if self.validity_date and self.validity_date < date.today():
+            raise UserError(_("Validity Date can't be before today."))
 
     @api.onchange("partner_id")
     def onchange_partner_id(self):
@@ -440,20 +434,25 @@ class BlanketOrderLine(models.Model):
         string="Product",
         required=True,
         domain=[("sale_ok", "=", True)],
+        tracking=True,
     )
     product_uom = fields.Many2one("uom.uom", string="Unit of Measure", required=True)
-    price_unit = fields.Float(string="Price", required=True, digits="Product Price")
+    price_unit = fields.Float(
+        string="Price", required=True, digits="Product Price", tracking=True
+    )
     taxes_id = fields.Many2many(
         "account.tax",
         string="Taxes",
         domain=["|", ("active", "=", False), ("active", "=", True)],
+        tracking=True,
     )
-    date_schedule = fields.Date(string="Scheduled Date")
+    date_schedule = fields.Date(string="Scheduled Date", tracking=True)
     original_uom_qty = fields.Float(
         string="Original quantity",
         required=True,
         default=1,
         digits="Product Unit of Measure",
+        tracking=True,
     )
     ordered_uom_qty = fields.Float(
         string="Ordered quantity", compute="_compute_quantities", store=True
@@ -500,6 +499,8 @@ class BlanketOrderLine(models.Model):
         string="Analytic Tags",
         domain="['|', ('company_id', '=', False), ('company_id', '=', company_id)]",
     )
+    state = fields.Selection(related="order_id.state")
+    editable = fields.Boolean(related="order_id.editable")
 
     def name_get(self):
         result = []
@@ -639,6 +640,11 @@ class BlanketOrderLine(models.Model):
                 )
             else:
                 self.taxes_id = fpos.map_tax(self.product_id.taxes_id)
+
+    @api.onchange("original_uom_qty")
+    def onchange_original_uom_qty(self):
+        if self.original_uom_qty < self.ordered_uom_qty:
+            raise UserError(_("Original Qty must be greater than Ordered Qty."))
 
     @api.depends(
         "sale_lines.order_id.state",

@@ -90,10 +90,13 @@
                             <field
                                 name="partner_id"
                                 context="{'res_partner_search_mode': 'customer', 'show_address': 1}"
-                                attrs="{'required': [('state', '=', 'draft')]}"
+                                attrs="{'required': [('state', '=', 'draft')], 'readonly': ['|', ('state', 'in', ['open', 'expired', 'done']), '&amp;', ('editable', '=', False), ('state', '!=', 'draft')]}"
                                 options="{&quot;always_reload&quot;: True}"
                             />
-                            <field name="payment_term_id" />
+                            <field
+                                name="payment_term_id"
+                                attrs="{'readonly': ['|', ('state', 'in', ['expired', 'done']), '&amp;', ('editable', '=', False), ('state', '!=', 'draft')]}"
+                            />
                         </group>
                         <group name="group_right">
                             <field
@@ -101,7 +104,10 @@
                                 groups="base.group_multi_currency"
                                 options="{'no_create': True}"
                             />
-                            <field name="user_id" />
+                            <field
+                                name="user_id"
+                                attrs="{'readonly': ['|', ('state', 'in', ['expired', 'done']), '&amp;', ('editable', '=', False), ('state', '!=', 'draft')]}"
+                            />
                             <field
                                 name="company_id"
                                 options="{'no_create': True}"
@@ -109,19 +115,21 @@
                             />
                             <field
                                 name="validity_date"
-                                attrs="{'required': [('state', '=', 'draft')]}"
+                                attrs="{'required': [('state', '=', 'draft')], 'readonly': ['|', ('state', 'in', ['done']), '&amp;', ('editable', '=', False), ('state', '!=', 'draft')]}"
                             />
                         </group>
                     </group>
                     <notebook>
                         <page string="Order Lines" name="order_lines">
+                            <field name="editable" invisible="1" />
                             <field
                                 name="line_ids"
-                                attrs="{'readonly': [('state', 'in', ('open','expired'))]}"
+                                attrs="{'readonly': ['|', ('state', 'in', ['expired', 'done']), '&amp;', ('editable', '=', False), ('state', '!=', 'draft')]}"
                             >
                                 <tree editable="bottom">
                                     <field name="sequence" widget="handle" />
                                     <field name="name" invisible="1" />
+                                    <field name="state" invisible="1" />
                                     <field
                                         name="product_id"
                                         context="{'partner_id':parent.partner_id, 'quantity':original_uom_qty, 'company_id': parent.company_id}"
@@ -142,10 +150,22 @@
                                     <field name="product_uom" groups="uom.group_uom" />
                                     <field name="price_unit" />
                                     <field name="date_schedule" />
-                                    <field name="ordered_uom_qty" />
-                                    <field name="invoiced_uom_qty" />
-                                    <field name="delivered_uom_qty" />
-                                    <field name="remaining_uom_qty" />
+                                    <field
+                                        name="ordered_uom_qty"
+                                        attrs="{'readonly': [('state', '=', 'open')]}"
+                                    />
+                                    <field
+                                        name="invoiced_uom_qty"
+                                        attrs="{'readonly': [('state', '=', 'open')]}"
+                                    />
+                                    <field
+                                        name="delivered_uom_qty"
+                                        attrs="{'readonly': [('state', '=', 'open')]}"
+                                    />
+                                    <field
+                                        name="remaining_uom_qty"
+                                        attrs="{'readonly': [('state', '=', 'open')]}"
+                                    />
                                     <field
                                         name="taxes_id"
                                         widget="many2many_tags"
@@ -153,7 +173,11 @@
                                         context="{'default_type_tax_use': 'sale'}"
                                         options="{'no_create': True}"
                                     />
-                                    <field name="price_subtotal" widget="monetary" />
+                                    <field
+                                        name="price_subtotal"
+                                        widget="monetary"
+                                        attrs="{'readonly': [('state', '=', 'open')]}"
+                                    />
                                 </tree>
                             </field>
                             <group class="oe_subtotal_footer oe_right">
@@ -191,14 +215,17 @@
                                 <group string="Sales Information" name="sales_person">
                                     <field
                                         name="pricelist_id"
-                                        attrs="{'required': [('state', '=', 'draft')]}"
+                                        attrs="{'required': [('state', '=', 'draft')], 'readonly': ['|', ('state', 'in', ['expired', 'done']), '&amp;', ('editable', '=', False), ('state', '!=', 'draft')]}"
                                     />
-                                    <field name="user_id" />
                                     <field
                                         name="team_id"
                                         options="{'no_create': True}"
+                                        attrs="{'readonly': ['|', ('state', 'in', ['expired', 'done']), '&amp;', ('editable', '=', False), ('state', '!=', 'draft')]}"
                                     />
-                                    <field name="client_order_ref" />
+                                    <field
+                                        name="client_order_ref"
+                                        attrs="{'readonly': ['|', ('state', 'in', ['expired', 'done']), '&amp;', ('editable', '=', False), ('state', '!=', 'draft')]}"
+                                    />
                                     <field
                                         name="company_id"
                                         options="{'no_create': True}"
@@ -208,7 +235,7 @@
                                 <group name="invoicing" string="Invoicing">
                                     <field
                                         name="analytic_account_id"
-                                        attrs="{'readonly': [('sale_count','!=',0),('state','!=','draft')]}"
+                                        attrs="{'readonly': ['|', ('state', 'in', ['expired', 'done']), '&amp;', '&amp;', ('editable', '=', False), ('state', '!=', 'draft'), ('sale_count','!=',0)]}"
                                         groups="analytic.group_analytic_accounting"
                                         force_save="1"
                                     />
@@ -263,7 +290,6 @@
                 <group>
                     <field name="name" />
                     <field name="partner_id" />
-                    <field name="product_id" />
                     <field name="state" />
                 </group>
             </search>
