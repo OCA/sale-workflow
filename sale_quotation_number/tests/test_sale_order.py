@@ -1,8 +1,10 @@
 # Copyright 2018 Simone Rubino - Agile Business Group
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
+import logging
 
-from odoo.exceptions import UserError
 from odoo.tests.common import TransactionCase
+
+_logger = logging.getLogger(__name__)
 
 
 class TestSaleOrder(TransactionCase):
@@ -78,8 +80,8 @@ class TestSaleOrder(TransactionCase):
         next_name = sequence_id.get_next_char(sequence_id.number_next_actual)
         try:
             order.action_confirm()
-        except UserError:
-            pass
+        except Exception as e:
+            _logger.error(e)
         order.update({"state": "draft"})
         # Now the SQ can be confirmed
         order.action_confirm()
