@@ -67,7 +67,7 @@
     <record id="fiscal_position_exp" model="account.fiscal.position">
         <field name="sequence">50</field>
         <field name="name">Import/Export</field>
-        <field name="auto_apply" eval="True" />
+        <field name="auto_apply" eval="False" />
     </record>
 
     <record id="fiscal_position_exp_map_1" model="account.fiscal.position.tax">
@@ -85,7 +85,7 @@
     <record id="fiscal_position_papeete" model="account.fiscal.position">
         <field name="sequence">50</field>
         <field name="name">Papeete</field>
-        <field name="auto_apply" eval="True" />
+        <field name="auto_apply" eval="False" />
     </record>
 
     <record id="fiscal_position_papeete_map_1" model="account.fiscal.position.tax">
