@@ -116,6 +116,16 @@ class TaxCase(SavepointCase):
     def test_not_compatible_product_tax_exc(self):
         self.product.taxes_id = self.tax_exc
         with self.assertRaises(UserError) as m:
+            self._create_sale_order(self.ht_plist)
+        self.assertEqual(
+            m.exception.name,
+            "Tax product 'Demo Sale Tax 20%' is price exclude. You must "
+            "switch to include ones.",
+        )
+
+    def test_not_compatible_product_tax_exc_case_2(self):
+        self.product.taxes_id = self.tax_exc
+        with self.assertRaises(UserError) as m:
             self._create_sale_order(self.ttc_plist)
         self.assertEqual(
             m.exception.name,
@@ -126,7 +136,7 @@ class TaxCase(SavepointCase):
     def test_papeete_case(self):
         """Papeete case is a special French case.
         We have to replace the 20% tax inc by two taxes 16% tax inc and 1% tax inc
-        When we replace a tax inc by an other tax inc we except to keep the same
+        When we replace a tax inc by an other tax inc we expect to keep the same
         total tax inc amount.
         """
         sale = self._create_sale_order(self.ttc_plist)
@@ -137,3 +147,13 @@ class TaxCase(SavepointCase):
         self.assertEqual(sale.order_line[0].price_unit, 12)
         self.assertEqual(sale.amount_total, 12)
         self.assertEqual(sale.amount_untaxed, 10.26)
+
+    def test_missing_tax(self):
+        self.tax_inc.get_equivalent_tax_exc()
+        self.tax_exc.write({"amount": 30})
+        with self.assertRaises(UserError) as m:
+            self._create_sale_order(self.ht_plist)
+        self.assertEqual(
+            m.exception.name,
+            "Equivalent price exclude tax for 'Demo Sale Tax 20% included' is missing",
+        )
