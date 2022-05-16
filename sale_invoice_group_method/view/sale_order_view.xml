@@ -10,10 +10,7 @@
         <field name="model">sale.order</field>
         <field name="inherit_id" ref="sale.view_order_form" />
         <field name="arch" type="xml">
-            <xpath
-                expr="//notebook/page//group[@name='sale_pay']//field[@name='invoice_status']"
-                position="after"
-            >
+            <xpath expr="//field[@name='payment_term_id']" position="after">
                 <field name="invoice_group_method_id" />
             </xpath>
         </field>

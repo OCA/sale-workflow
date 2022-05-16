@@ -16,7 +16,7 @@ class TestSaleInvoiceGroupMethod(TransactionCase):
         self.partner_model = self.env["res.partner"]
         self.product_category_model = self.env["product.category"]
         self.product_model = self.env["product.product"]
-        self.invoice_model = self.env["account.invoice"]
+        self.invoice_model = self.env["account.move"]
 
         # company
         self.company1 = self.env.ref("base.main_company")
@@ -47,7 +47,7 @@ class TestSaleInvoiceGroupMethod(TransactionCase):
             {
                 "name": name,
                 "email": "example@yourcompany.com",
-                "customer": True,
+                "customer_rank": 1,
                 "phone": 123456,
                 "currency_id": self.env.ref("base.EUR"),
             }
@@ -126,11 +126,10 @@ class TestSaleInvoiceGroupMethod(TransactionCase):
         return so
 
     def _create_sale_order_lines(self, so):
-        product_uom_hour = self.env.ref("uom.product_uom_hour")
         sol1 = self.sale_order_line_model.create(
             {
                 "product_id": self.service_1.id,
-                "product_uom": product_uom_hour.id,
+                "product_uom": self.service_1.uom_id.id,
                 "product_uom_qty": 1,
                 "order_id": so.id,
             }
@@ -138,7 +137,7 @@ class TestSaleInvoiceGroupMethod(TransactionCase):
         sol2 = self.sale_order_line_model.create(
             {
                 "product_id": self.service_2.id,
-                "product_uom": product_uom_hour.id,
+                "product_uom": self.service_2.uom_id.id,
                 "product_uom_qty": 2,
                 "order_id": so.id,
             }
@@ -151,24 +150,7 @@ class TestSaleInvoiceGroupMethod(TransactionCase):
         return so
 
     def _create_invoice_from_sale(self, sale, multi):
-        data = {"advance_payment_method": "delivered"}
-        payment = self.sale_advance_payment_inv.create(data)
-        if multi:
-            sale_context = {
-                "active_ids": sale.ids,
-                "active_model": "sale.order",
-                "open_invoices": True,
-            }
-        else:
-            sale_context = {
-                "active_id": sale.id,
-                "active_ids": sale.ids,
-                "active_model": "sale.order",
-                "open_invoices": True,
-            }
-        res = payment.with_context(sale_context).create_invoices()
-        invoice_id = self.invoice_model.browse(res["res_id"])
-        return invoice_id
+        return sale._create_invoices()
 
     def test_create_invoice_case_1(self):
         """A user that creates two sales orders and adds to the first one the
@@ -196,8 +178,8 @@ class TestSaleInvoiceGroupMethod(TransactionCase):
         orders = self.sale_order_model.browse([so1.id, so2.id])
         invoices = self._create_invoice_from_sale(orders, True)
         # The result is one invoice with all the lines
-        self.assertEquals(len(invoices), 1, "There should be only one invoice.")
-        self.assertEquals(
+        self.assertEqual(len(invoices), 1, "There should be only one invoice.")
+        self.assertEqual(
             len(invoices.invoice_line_ids),
             4,
             "The invoice should have 4 lines (2 from each sale " "order.",
@@ -234,7 +216,7 @@ class TestSaleInvoiceGroupMethod(TransactionCase):
         )
         so1 = self.sale_order_model.create(data1)
         so1.onchange_partner_id()
-        self.assertEquals(
+        self.assertEqual(
             so1.invoice_group_method_id,
             self.sale_invoice_group_method,
             "The invoice group method should be" "'sale_invoice_group_method'",
@@ -245,7 +227,7 @@ class TestSaleInvoiceGroupMethod(TransactionCase):
         so2 = self.sale_order_model.create(data2)
         so2.onchange_partner_id()
         so2.invoice_group_method_id = False
-        self.assertEquals(
+        self.assertEqual(
             so2.invoice_group_method_id,
             self.env["sale.invoice.group.method"],
             "There should be no invoice group method",
@@ -269,7 +251,7 @@ class TestSaleInvoiceGroupMethod(TransactionCase):
         )
         so1 = self.sale_order_model.create(data1)
         so1.onchange_partner_id()
-        self.assertEquals(
+        self.assertEqual(
             so1.invoice_group_method_id,
             self.sale_invoice_group_method,
             "The invoice group method should be" "'sale_invoice_group_method'",
@@ -283,7 +265,7 @@ class TestSaleInvoiceGroupMethod(TransactionCase):
         )
         so2 = self.sale_order_model.create(data2)
         so2.onchange_partner_id()
-        self.assertEquals(
+        self.assertEqual(
             so2.invoice_group_method_id,
             self.sale_invoice_group_method,
             "The invoice group method should be" "'sale_invoice_group_method'",
@@ -292,8 +274,8 @@ class TestSaleInvoiceGroupMethod(TransactionCase):
         orders = self.sale_order_model.browse([so1.id, so2.id])
         invoices = self._create_invoice_from_sale(orders, True)
         # The result is one invoice with all the lines
-        self.assertEquals(len(invoices), 1, "There should be only one invoice.")
-        self.assertEquals(
+        self.assertEqual(len(invoices), 1, "There should be only one invoice.")
+        self.assertEqual(
             len(invoices.invoice_line_ids),
             4,
             "The invoice should have 4 lines (2 from each sale " "order.",
@@ -314,7 +296,7 @@ class TestSaleInvoiceGroupMethod(TransactionCase):
         )
         so1 = self.sale_order_model.create(data1)
         so1.onchange_partner_id()
-        self.assertEquals(
+        self.assertEqual(
             so1.invoice_group_method_id,
             self.sale_invoice_group_method,
             "The invoice group method should be" "'sale_invoice_group_method'",
@@ -328,7 +310,7 @@ class TestSaleInvoiceGroupMethod(TransactionCase):
         )
         so2 = self.sale_order_model.create(data2)
         so2.onchange_partner_id()
-        self.assertEquals(
+        self.assertEqual(
             so2.invoice_group_method_id,
             self.sale_invoice_group_method,
             "The invoice group method should be" "'sale_invoice_group_method'",
@@ -338,3 +320,19 @@ class TestSaleInvoiceGroupMethod(TransactionCase):
         inv2 = self._create_invoice_from_sale(so2, False)
         # The result is two different invoices (one for each sale order)
         self.assertNotEqual(inv1, inv2)
+
+    def test_onchange_partner_without_default_invoice_group_method(self):
+        so = self.sale_order_model.create(self.values_sale_order())
+        so.onchange_partner_id()
+        self.assertFalse(so.invoice_group_method_id)
+
+    def test_ir_model_fields_name_get(self):
+        field = self.fields_model.search(
+            [("name", "=", "payment_term_id"), ("model_id", "=", "sale.order")],
+            limit=1,
+        )
+        self.assertEqual(field.name_get()[0][0], field.id)
+        self.assertEqual(
+            field.with_context(sale_invoice_group_method=True).name_get(),
+            [(field.id, field.field_description)],
+        )

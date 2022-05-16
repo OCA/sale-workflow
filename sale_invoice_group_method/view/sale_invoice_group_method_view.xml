@@ -53,7 +53,6 @@
         <field name="name">Sale Invoice Group Method</field>
         <field name="type">ir.actions.act_window</field>
         <field name="res_model">sale.invoice.group.method</field>
-        <field name="view_type">form</field>
         <field name="view_mode">tree,form</field>
         <field name="context">{'sale_invoice_group_method':1}</field>
     </record>

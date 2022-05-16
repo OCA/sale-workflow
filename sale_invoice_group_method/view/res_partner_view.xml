@@ -8,12 +8,9 @@
     <record id="view_partner_form_inherit" model="ir.ui.view">
         <field name="name">res.partner.invoice.group.method.form</field>
         <field name="model">res.partner</field>
-        <field name="inherit_id" ref="base.view_partner_form" />
+        <field name="inherit_id" ref="account.view_partner_property_form" />
         <field name="arch" type="xml">
-            <xpath
-                expr="//notebook/page[@name='sales_purchases']//group[@name='sale']//field[@name='message_bounce']"
-                position="after"
-            >
+            <xpath expr="//field[@name='property_payment_term_id']" position="after">
                 <field name="invoice_group_method_id" />
             </xpath>
         </field>
