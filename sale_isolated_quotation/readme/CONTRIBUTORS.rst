@@ -2,3 +2,4 @@
 * Robert J Sullivan <robertjonsullivan@gmail.com>
 * David Béal <david.beal@akretion.com>
 * Tharathip Chaweewongphan <tharathipc@ecosoft.co.th>
+* Freni Patel <fpatel@opensourceintegrators.com>

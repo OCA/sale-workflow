@@ -52,13 +52,13 @@ class TestSaleIsolatedQuotation(TransactionCase):
             action = self.env.ref(action_id)
             ctx = ast.literal_eval(action.context)
             dom = ast.literal_eval(action.domain or "{}")
-            self.assertTrue("order_sequence" not in ctx)
-            self.assertTrue("default_order_sequence" not in ctx)
-            self.assertTrue("order_sequence" not in map(lambda l: l[0], dom))
             if action_id == "sale.action_orders":
-                self.assertTrue("state" in map(lambda l: l[0], dom))
+                self.assertTrue(ctx.get("order_sequence"))
             else:
                 self.assertTrue("search_default_my_quotation" in ctx)
+                self.assertTrue(("order_sequence", "=", False) in dom)
+                self.assertTrue(not ctx.get("order_sequence"))
+                self.assertTrue(not ctx.get("default_order_sequence"))
 
     def setUp(self):
         super().setUp()
