@@ -27,9 +27,13 @@ Sale Orders Mass Action
 
 This module allows to do mass operations on Sale Orders.
 
-Supported operations:
+Supported state operations:
 
 * Confirmation
+* Quotation sent
+* Cancel
+* Done
+* Draft
 
 **Table of contents**
 
@@ -45,13 +49,8 @@ Confirmation
 * Go to Sale > Quotations
 * Check several quotations and click on Action menu.
 * Select Mass Action
-* Check 'Confirm' and click on 'Apply' button.
-* Only 'Draft' and 'Sent' orders will be impacted.
-
-Known issues / Roadmap
-======================
-
-* add other mass action like : mass cancel, etc...
+* Choose the desired target state and click on 'Apply' button.
+* A notification is displayed with the impacted sale orders.
 
 Bug Tracker
 ===========

@@ -31,20 +31,70 @@ class TestSaleOrderMassAction(SavepointCase):
             active_model="sale.order", active_ids=[self.sale.id]
         ).create({})
         with Form(self.wizard) as wizard_form:
-            wizard_form.confirm = True
+            wizard_form.action = "confirm"
         self.wizard.apply_button()
         self.assertEqual("sale", self.sale.state)
 
     def test_sale_confirm_cancelled(self):
         # Cancel the Sale Order
         # Launch the wizard on Sale Order
-        # Set Confirm
+        # Choose confirm action
         # Check if the sale order is still cancelled
         self.sale.write({"state": "cancel"})
         self.wizard = self.wizard_obj.with_context(
             active_model="sale.order", active_ids=[self.sale.id]
         ).create({})
         with Form(self.wizard) as wizard_form:
-            wizard_form.confirm = True
+            wizard_form.action = "confirm"
         self.wizard.apply_button()
         self.assertEqual("cancel", self.sale.state)
+
+    def test_sale_quotation_sent(self):
+        # Launch the wizard on Sale Order
+        # Choose quotation sent action
+        # Check if the sale order is confirmed
+        self.wizard = self.wizard_obj.with_context(
+            active_model="sale.order", active_ids=[self.sale.id]
+        ).create({})
+        with Form(self.wizard) as wizard_form:
+            wizard_form.action = "quotation_sent"
+        self.wizard.apply_button()
+        self.assertEqual("sent", self.sale.state)
+
+    def test_sale_done(self):
+        # Launch the wizard on Sale Order
+        # Choose done action
+        # Check if the sale order is confirmed
+        self.sale.action_confirm()
+        self.wizard = self.wizard_obj.with_context(
+            active_model="sale.order", active_ids=[self.sale.id]
+        ).create({})
+        with Form(self.wizard) as wizard_form:
+            wizard_form.action = "done"
+        self.wizard.apply_button()
+        self.assertEqual("done", self.sale.state)
+
+    def test_sale_cancel(self):
+        # Launch the wizard on Sale Order
+        # Choose cancel action
+        # Check if the sale order is confirmed
+        self.wizard = self.wizard_obj.with_context(
+            active_model="sale.order", active_ids=[self.sale.id]
+        ).create({})
+        with Form(self.wizard) as wizard_form:
+            wizard_form.action = "cancel"
+        self.wizard.apply_button()
+        self.assertEqual("cancel", self.sale.state)
+
+    def test_sale_draft(self):
+        # Launch the wizard on Sale Order
+        # Choose draft action
+        # Check if the sale order is confirmed
+        self.sale.action_quotation_sent()
+        self.wizard = self.wizard_obj.with_context(
+            active_model="sale.order", active_ids=[self.sale.id]
+        ).create({})
+        with Form(self.wizard) as wizard_form:
+            wizard_form.action = "draft"
+        self.wizard.apply_button()
+        self.assertEqual("draft", self.sale.state)
