@@ -7,7 +7,6 @@ from odoo import api, models
 class IrModelFields(models.Model):
     _inherit = "ir.model.fields"
 
-    @api.multi
     def name_get(self):
         res = []
         context = self._context

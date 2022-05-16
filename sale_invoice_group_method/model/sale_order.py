@@ -11,7 +11,6 @@ class SaleOrder(models.Model):
         string="Invoice Group Method", comodel_name="sale.invoice.group.method"
     )
 
-    @api.multi
     @api.onchange("partner_id")
     def onchange_partner_id(self):
         super(SaleOrder, self).onchange_partner_id()
