@@ -62,7 +62,7 @@
     <record id="sale.action_quotations_with_onboarding" model="ir.actions.act_window">
         <field
             name="context"
-        >{'default_order_sequence': False, 'order_sequence': False}</field>
+        >{'default_order_sequence': False, 'order_sequence': False, 'search_default_my_quotation': 1}</field>
         <field name="domain">[('order_sequence', '=', False)]</field>
     </record>
     <record id="sale.action_orders" model="ir.actions.act_window">
