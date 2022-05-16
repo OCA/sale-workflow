@@ -3,7 +3,8 @@
 
 import logging
 
-from odoo import api, models
+from odoo import _, api, models
+from odoo.exceptions import UserError
 
 _logger = logging.getLogger(__name__)
 
@@ -16,6 +17,16 @@ class SaleOrderLine(models.Model):
             if not line.order_id.pricelist_id.price_include_taxes:
                 line = line.with_context(use_equivalent_tax_exc=True)
             super(SaleOrderLine, line)._compute_tax_id()
+            pricelist = line.order_id.pricelist_id
+            if not pricelist.price_include_taxes and any(
+                line.tax_id.mapped("price_include")
+            ):
+                raise UserError(
+                    _(
+                        "Tax with include price with pricelist b2b '%s' "
+                        "is not supported" % pricelist.name
+                    )
+                )
 
     @api.onchange("product_id")
     def product_id_change(self):

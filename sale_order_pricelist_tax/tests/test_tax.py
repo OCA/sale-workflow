@@ -118,7 +118,7 @@ class TaxCase(SavepointCase):
         with self.assertRaises(UserError) as m:
             self._create_sale_order(self.ht_plist)
         self.assertEqual(
-            m.exception.name,
+            m.exception.args[0],
             "Tax product 'Demo Sale Tax 20%' is price exclude. You must "
             "switch to include ones.",
         )
@@ -128,7 +128,7 @@ class TaxCase(SavepointCase):
         with self.assertRaises(UserError) as m:
             self._create_sale_order(self.ttc_plist)
         self.assertEqual(
-            m.exception.name,
+            m.exception.args[0],
             "Tax product 'Demo Sale Tax 20%' is price exclude. You must "
             "switch to include ones.",
         )
