@@ -5,15 +5,15 @@ from odoo import fields, models
 
 
 class SaleInvoiceGroupMethod(models.Model):
-    _name = 'sale.invoice.group.method'
-    _description = 'Sale Invoice Group Method'
+    _name = "sale.invoice.group.method"
+    _description = "Sale Invoice Group Method"
 
     name = fields.Char(
-        string='Invoice Group',
+        string="Invoice Group",
         required=True,
     )
     criteria_fields_ids = fields.Many2many(
-        string='Criteria fields',
-        comodel_name='ir.model.fields',
+        string="Criteria fields",
+        comodel_name="ir.model.fields",
         domain="[('model', '=', 'sale.order')]",
     )
