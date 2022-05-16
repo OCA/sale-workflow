@@ -12,28 +12,6 @@ _logger = logging.getLogger(__name__)
 class AccountTax(models.Model):
     _inherit = "account.tax"
 
-    @api.model
-    def _fix_tax_included_price(self, price, prod_taxes, line_taxes):
-        """Override Odoo method to:
-        - use raw price from pricelist (if price exclude)
-          instead of recomputed price
-        - some checks/raises on unmanaged cases
-        """
-        pricelist_id = self.env.context.get("pricelist")
-        if pricelist_id:
-            prod_taxes._ensure_price_include()
-            pricelist = self.env["product.pricelist"].browse(pricelist_id)
-            if not pricelist.price_include_taxes:
-                line_taxes._ensure_price_exclude(pricelist)
-                # we skip odoo logic as the pricelist is tax excluded
-                # with tax excluded on line so we do not have anything to remove
-                return price
-            elif all(line_taxes.mapped("price_include")):
-                # we skip odoo logic as the pricelist is tax included
-                # and the taxe line are tax included
-                return price
-        return super()._fix_tax_included_price(price, prod_taxes, line_taxes)
-
     def _ensure_price_include(self):
         taxes_exclude = self.filtered(lambda s: not s.price_include)
         if taxes_exclude:
@@ -41,15 +19,6 @@ class AccountTax(models.Model):
                 _(
                     "Tax product '%s' is price exclude. "
                     "You must switch to include ones." % taxes_exclude[0].name
-                )
-            )
-
-    def _ensure_price_exclude(self, pricelist):
-        if any(self.mapped("price_include")):
-            raise UserError(
-                _(
-                    "Tax with include price with pricelist b2b '%s' "
-                    "is not supported" % pricelist.name
                 )
             )
 
