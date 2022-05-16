@@ -1,10 +1,8 @@
-<?xml version="1.0" encoding="UTF-8"?>
-
+<?xml version="1.0" encoding="UTF-8" ?>
 <!--
     Copyright 2017 Eficent Business and IT Consulting Services, S.L.
     License LGPL-3.0 or later (https://www.gnu.org/licenses/lgpl.html).
 -->
-
 <odoo>
 
     <record id="sale_invoice_group_method_form_view" model="ir.ui.view">
@@ -14,8 +12,8 @@
             <form string="Invoice Groups">
                 <sheet>
                     <group>
-                        <field name="name"/>
-                        <field name="criteria_fields_ids" widget="many2many_tags"/>
+                        <field name="name" />
+                        <field name="criteria_fields_ids" widget="many2many_tags" />
                     </group>
                 </sheet>
             </form>
@@ -27,8 +25,8 @@
         <field name="model">sale.invoice.group.method</field>
         <field name="arch" type="xml">
             <tree>
-                <field name="name"/>
-                <field name="criteria_fields_ids"/>
+                <field name="name" />
+                <field name="criteria_fields_ids" />
             </tree>
         </field>
     </record>
@@ -38,11 +36,14 @@
         <field name="model">sale.invoice.group.method</field>
         <field name="arch" type="xml">
             <search string="Medical Procedure Request">
-                <field name="name"/>
-                <newline/>
+                <field name="name" />
+                <newline />
                 <group expand="0" name="group_by" string="Group By...">
-                    <filter string="Name" name="group_by_name"
-                            context="{'group_by':'name'}"/>
+                    <filter
+                        string="Name"
+                        name="group_by_name"
+                        context="{'group_by':'name'}"
+                    />
                 </group>
             </search>
         </field>

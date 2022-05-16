@@ -5,9 +5,8 @@ from odoo import fields, models
 
 
 class ResPartner(models.Model):
-    _inherit = 'res.partner'
+    _inherit = "res.partner"
 
     invoice_group_method_id = fields.Many2one(
-        string='Default Invoice Group Method',
-        comodel_name='sale.invoice.group.method'
+        string="Default Invoice Group Method", comodel_name="sale.invoice.group.method"
     )
