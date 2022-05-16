@@ -4,7 +4,7 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: Odoo Server 14.0\n"
+"Project-Id-Version: Odoo Server 15.0\n"
 "Report-Msgid-Bugs-To: \n"
 "Last-Translator: \n"
 "Language-Team: \n"
@@ -27,14 +27,8 @@ msgstr ""
 #: code:addons/sale_start_end_dates/models/sale_order.py:0
 #, python-format
 msgid ""
-"Default Start Date should be before or be the same as Default End Date for "
-"sale order '%s'."
-msgstr ""
-
-#. module: sale_start_end_dates
-#: model:ir.model.fields,field_description:sale_start_end_dates.field_sale_order__display_name
-#: model:ir.model.fields,field_description:sale_start_end_dates.field_sale_order_line__display_name
-msgid "Display Name"
+"Default Start Date ({start_date}) should be before or be the same as Default"
+" End Date ({end_date}) for sale order '{name}'."
 msgstr ""
 
 #. module: sale_start_end_dates
@@ -43,22 +37,10 @@ msgid "End Date"
 msgstr ""
 
 #. module: sale_start_end_dates
-#: model:ir.model.fields,field_description:sale_start_end_dates.field_sale_order__id
-#: model:ir.model.fields,field_description:sale_start_end_dates.field_sale_order_line__id
-msgid "ID"
-msgstr ""
-
-#. module: sale_start_end_dates
 #: model:ir.model.fields,help:sale_start_end_dates.field_sale_order_line__must_have_dates
 msgid ""
 "If this option is active, the user will have to enter a Start Date and an "
 "End Date on the invoice/move lines that have this product."
-msgstr ""
-
-#. module: sale_start_end_dates
-#: model:ir.model.fields,field_description:sale_start_end_dates.field_sale_order____last_update
-#: model:ir.model.fields,field_description:sale_start_end_dates.field_sale_order_line____last_update
-msgid "Last Modified on"
 msgstr ""
 
 #. module: sale_start_end_dates
@@ -80,15 +62,16 @@ msgstr ""
 
 #. module: sale_start_end_dates
 #: model:ir.model.fields,field_description:sale_start_end_dates.field_sale_order_line__number_of_days
-msgid "Number of Days"
+msgid "Number Of Days"
 msgstr ""
 
 #. module: sale_start_end_dates
 #: code:addons/sale_start_end_dates/models/sale_order.py:0
 #, python-format
 msgid ""
-"On sale order line with product '%s', the number of days is negative (%d) ; "
-"this is not allowed. The number of days has been forced to 1."
+"On sale order line with product '{product_name}', the number of days is "
+"negative ({number_of_days}) ; this is not allowed. The number of days has "
+"been forced to 1."
 msgstr ""
 
 #. module: sale_start_end_dates
@@ -110,8 +93,8 @@ msgstr ""
 #: code:addons/sale_start_end_dates/models/sale_order.py:0
 #, python-format
 msgid ""
-"Start Date should be before or be the same as End Date for sale order line "
-"with Product '%s'."
+"Start Date ({start_date}) should be before or be the same as End Date "
+"({end_date}) for sale order line with Product '{product_name}'."
 msgstr ""
 
 #. module: sale_start_end_dates
