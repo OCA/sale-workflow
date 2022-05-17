@@ -26,7 +26,7 @@ class SaleOrder(models.Model):
 
     @api.model
     def default_get(self, fields_list):
-        res = super(SaleOrder, self).default_get(fields_list)
+        res = super().default_get(fields_list)
         default_sale_invoice_policy = self.env["ir.default"].get(
             "res.config.settings", "sale_default_invoice_policy"
         )

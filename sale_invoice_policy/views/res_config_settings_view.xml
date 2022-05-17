@@ -18,12 +18,22 @@
                         invisible="1"
                     />
                 </div>
-                <label
-                    for="sale_invoice_policy_required"
-                    string="Invoice Policy required in Sale Orders"
-                />
-                <div>
-                    <field name="sale_invoice_policy_required" class="oe_inline" />
+                <div
+                    class="col-12 col-lg-6 o_setting_box"
+                    id="sale_invoice_policy_setting"
+                >
+                    <div class="o_setting_left_pane">
+                        <field name="sale_invoice_policy_required" />
+                    </div>
+                    <div class="o_setting_right_pane">
+                        <label
+                            string="Sale Invoice Policy"
+                            for="sale_invoice_policy_required"
+                        />
+                        <div class="text-muted" id="sale_invoice_policy_required">
+                            Invoice Policy required in Sale Orders
+                        </div>
+                    </div>
                 </div>
             </xpath>
         </field>

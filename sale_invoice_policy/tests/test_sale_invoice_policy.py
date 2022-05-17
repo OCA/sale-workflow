@@ -4,18 +4,19 @@ import odoo.tests.common as common
 
 
 class TestSaleOrderInvoicePolicy(common.TransactionCase):
-    def setUp(self):
-        super(TestSaleOrderInvoicePolicy, self).setUp()
-        self.product_obj = self.env["product.product"]
-        self.sale_obj = self.env["sale.order"]
-        self.partner = self.env.ref("base.res_partner_2")
-        self.product = self.product_obj.create(
+    @classmethod
+    def setUpClass(cls):
+        super().setUpClass()
+        cls.product_obj = cls.env["product.product"]
+        cls.sale_obj = cls.env["sale.order"]
+        cls.partner = cls.env.ref("base.res_partner_2")
+        cls.product = cls.product_obj.create(
             {"name": "Test", "type": "consu", "list_price": 20.0}
         )
-        self.product2 = self.product_obj.create(
+        cls.product2 = cls.product_obj.create(
             {"name": "Test 2", "type": "consu", "list_price": 45.0}
         )
-        self.product3 = self.product_obj.create(
+        cls.product3 = cls.product_obj.create(
             {"name": "Test 3 (service)", "type": "service", "list_price": 850.5}
         )
 
