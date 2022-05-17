@@ -24,7 +24,7 @@ class ResConfigSettings(models.TransientModel):
 
     @api.model
     def get_values(self):
-        res = super(ResConfigSettings, self).get_values()
+        res = super().get_values()
         res.update(
             sale_invoice_policy_required=self.env["ir.default"].get(
                 "res.config.settings", "sale_invoice_policy_required"
@@ -33,7 +33,7 @@ class ResConfigSettings(models.TransientModel):
         return res
 
     def set_values(self):
-        super(ResConfigSettings, self).set_values()
+        super().set_values()
         ir_default_obj = self.env["ir.default"]
         if self.env["res.users"].has_group("base.group_erp_manager"):
             ir_default_obj = ir_default_obj.sudo()
