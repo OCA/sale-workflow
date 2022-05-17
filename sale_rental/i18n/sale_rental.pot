@@ -4,7 +4,7 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: Odoo Server 14.0\n"
+"Project-Id-Version: Odoo Server 15.0\n"
 "Report-Msgid-Bugs-To: \n"
 "Last-Translator: \n"
 "Language-Team: \n"
@@ -138,14 +138,7 @@ msgstr ""
 
 #. module: sale_rental
 #: model:ir.model.fields,field_description:sale_rental.field_create_rental_product__display_name
-#: model:ir.model.fields,field_description:sale_rental.field_product_product__display_name
-#: model:ir.model.fields,field_description:sale_rental.field_product_template__display_name
-#: model:ir.model.fields,field_description:sale_rental.field_sale_order__display_name
-#: model:ir.model.fields,field_description:sale_rental.field_sale_order_line__display_name
 #: model:ir.model.fields,field_description:sale_rental.field_sale_rental__display_name
-#: model:ir.model.fields,field_description:sale_rental.field_stock_inventory__display_name
-#: model:ir.model.fields,field_description:sale_rental.field_stock_rule__display_name
-#: model:ir.model.fields,field_description:sale_rental.field_stock_warehouse__display_name
 msgid "Display Name"
 msgstr ""
 
@@ -170,14 +163,7 @@ msgstr ""
 
 #. module: sale_rental
 #: model:ir.model.fields,field_description:sale_rental.field_create_rental_product__id
-#: model:ir.model.fields,field_description:sale_rental.field_product_product__id
-#: model:ir.model.fields,field_description:sale_rental.field_product_template__id
-#: model:ir.model.fields,field_description:sale_rental.field_sale_order__id
-#: model:ir.model.fields,field_description:sale_rental.field_sale_order_line__id
 #: model:ir.model.fields,field_description:sale_rental.field_sale_rental__id
-#: model:ir.model.fields,field_description:sale_rental.field_stock_inventory__id
-#: model:ir.model.fields,field_description:sale_rental.field_stock_rule__id
-#: model:ir.model.fields,field_description:sale_rental.field_stock_warehouse__id
 msgid "ID"
 msgstr ""
 
@@ -198,20 +184,8 @@ msgid "Indicate the number of items that will be rented."
 msgstr ""
 
 #. module: sale_rental
-#: model:ir.model,name:sale_rental.model_stock_inventory
-msgid "Inventory"
-msgstr ""
-
-#. module: sale_rental
 #: model:ir.model.fields,field_description:sale_rental.field_create_rental_product____last_update
-#: model:ir.model.fields,field_description:sale_rental.field_product_product____last_update
-#: model:ir.model.fields,field_description:sale_rental.field_product_template____last_update
-#: model:ir.model.fields,field_description:sale_rental.field_sale_order____last_update
-#: model:ir.model.fields,field_description:sale_rental.field_sale_order_line____last_update
 #: model:ir.model.fields,field_description:sale_rental.field_sale_rental____last_update
-#: model:ir.model.fields,field_description:sale_rental.field_stock_inventory____last_update
-#: model:ir.model.fields,field_description:sale_rental.field_stock_rule____last_update
-#: model:ir.model.fields,field_description:sale_rental.field_stock_warehouse____last_update
 msgid "Last Modified on"
 msgstr ""
 
@@ -257,6 +231,14 @@ msgstr ""
 #: code:addons/sale_rental/models/sale_order.py:0
 #, python-format
 msgid ""
+"On the sale order line with product '{}' the Product Quantity ({}) should be"
+" the number of days ({}) multiplied by the Rental Quantity ({})."
+msgstr ""
+
+#. module: sale_rental
+#: code:addons/sale_rental/models/sale_order.py:0
+#, python-format
+msgid ""
 "On the sale order line with product {} you are trying to sell a rented "
 "product with a quantity ({}) that is different from the rented quantity "
 "({}). This is not supported."
@@ -266,17 +248,9 @@ msgstr ""
 #: code:addons/sale_rental/models/sale_order.py:0
 #, python-format
 msgid ""
-"On the sale order line with product '{}' the Product Quantity ({}) should be"
-" the number of days ({}) multiplied by the Rental Quantity ({})."
-msgstr ""
-
-#. module: sale_rental
-#: code:addons/sale_rental/models/sale_order.py:0
-#, python-format
-msgid ""
 "On the sale order line with rental service {}, you are trying to extend a "
-"rental with a rental quantity ({}) that is different from the quantity of "
-"the original rental ({}). This is not supported."
+"rental with a rental quantity {} that is different from the quantity of the "
+"original rental {}. This is not supported."
 msgstr ""
 
 #. module: sale_rental
@@ -324,6 +298,11 @@ msgstr ""
 #. module: sale_rental
 #: model:ir.model.fields,field_description:sale_rental.field_create_rental_product__hw_product_id
 msgid "Product to Rent"
+msgstr ""
+
+#. module: sale_rental
+#: model:ir.model,name:sale_rental.model_stock_quant
+msgid "Quants"
 msgstr ""
 
 #. module: sale_rental
@@ -509,7 +488,6 @@ msgstr ""
 
 #. module: sale_rental
 #: model_terms:ir.ui.view,arch_db:sale_rental.sale_rental_form
-#: model_terms:ir.ui.view,arch_db:sale_rental.sale_rental_tree
 msgid "Sales Rentals"
 msgstr ""
 
@@ -651,7 +629,7 @@ msgstr ""
 #: code:addons/sale_rental/models/sale_order.py:0
 #, python-format
 msgid ""
-"You want to rent %.2f {} but you only have %.2f {} currently available on "
-"the stock location '{}' ! Make sure that you get some units back in the mean"
-" time or re-supply the stock location '{}'."
+"You want to rent {:.2f} {} but you only have {:.2f} {} currently available "
+"on the stock location '{}' ! Make sure that you get some units back in the "
+"mean time or re-supply the stock location '{}'."
 msgstr ""
