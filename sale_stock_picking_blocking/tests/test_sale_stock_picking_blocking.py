@@ -2,7 +2,7 @@
 #   (http://www.eficent.com)
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl.html).
 from odoo.exceptions import ValidationError
-from odoo.tests import common
+from odoo.tests import Form, common
 
 
 class TestSaleDeliveryBlock(common.TransactionCase):
@@ -91,3 +91,19 @@ class TestSaleDeliveryBlock(common.TransactionCase):
         so.action_remove_delivery_block()
         pick = self._picking_comp(so)
         self.assertNotEqual(pick, 0, "A delivery should have been made")
+
+    def test_default_delivery_block(self):
+        block_reason = self.block_model.with_user(self.user_test).create(
+            {"name": "Test Block."}
+        )
+        partner_block = self.env["res.partner"].create(
+            {
+                "name": "Foo",
+                "default_delivery_block": block_reason.id,
+            }
+        )
+        so_form = Form(self.env["sale.order"])
+        so_form.partner_id = partner_block
+        so = so_form.save()
+        self.assertEqual(so.delivery_block_id, block_reason)
+        self.assertEqual(so.copy_data()[0]["delivery_block_id"], block_reason.id)
