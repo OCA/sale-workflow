@@ -7,9 +7,6 @@ from odoo import api, fields, models
 class ProductTemplate(models.Model):
     _inherit = "product.template"
 
-    def _default_default_invoice_policy(self):
-        return self.env["ir.default"].get("product.template", "invoice_policy")
-
     default_invoice_policy = fields.Selection(
         [("order", "Ordered quantities"), ("delivery", "Delivered quantities")],
         string="Default Invoicing Policy",
@@ -17,7 +14,9 @@ class ProductTemplate(models.Model):
         "ordered.\n"
         "Delivered Quantity: Invoiced based on the quantity the vendor "
         "delivered (time or deliveries).",
-        default=lambda x: x._default_default_invoice_policy(),
+        default=lambda self: self.env["ir.default"].get(
+            "res.config.settings", "default_invoice_policy"
+        ),
     )
 
     invoice_policy = fields.Selection(
