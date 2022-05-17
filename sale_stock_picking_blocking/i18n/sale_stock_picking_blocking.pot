@@ -4,7 +4,7 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: Odoo Server 14.0\n"
+"Project-Id-Version: Odoo Server 15.0\n"
 "Report-Msgid-Bugs-To: \n"
 "Last-Translator: \n"
 "Language-Team: \n"
@@ -65,26 +65,17 @@ msgid "Description"
 msgstr ""
 
 #. module: sale_stock_picking_blocking
-#: model:ir.model.fields,field_description:sale_stock_picking_blocking.field_res_partner__display_name
 #: model:ir.model.fields,field_description:sale_stock_picking_blocking.field_sale_delivery_block_reason__display_name
-#: model:ir.model.fields,field_description:sale_stock_picking_blocking.field_sale_order__display_name
-#: model:ir.model.fields,field_description:sale_stock_picking_blocking.field_sale_order_line__display_name
 msgid "Display Name"
 msgstr ""
 
 #. module: sale_stock_picking_blocking
-#: model:ir.model.fields,field_description:sale_stock_picking_blocking.field_res_partner__id
 #: model:ir.model.fields,field_description:sale_stock_picking_blocking.field_sale_delivery_block_reason__id
-#: model:ir.model.fields,field_description:sale_stock_picking_blocking.field_sale_order__id
-#: model:ir.model.fields,field_description:sale_stock_picking_blocking.field_sale_order_line__id
 msgid "ID"
 msgstr ""
 
 #. module: sale_stock_picking_blocking
-#: model:ir.model.fields,field_description:sale_stock_picking_blocking.field_res_partner____last_update
 #: model:ir.model.fields,field_description:sale_stock_picking_blocking.field_sale_delivery_block_reason____last_update
-#: model:ir.model.fields,field_description:sale_stock_picking_blocking.field_sale_order____last_update
-#: model:ir.model.fields,field_description:sale_stock_picking_blocking.field_sale_order_line____last_update
 msgid "Last Modified on"
 msgstr ""
 
@@ -117,11 +108,6 @@ msgstr ""
 #: model:ir.actions.act_window,name:sale_stock_picking_blocking.action_sale_stock_picking_blocking_reason
 #: model:ir.model,name:sale_stock_picking_blocking.model_sale_delivery_block_reason
 msgid "Sale Delivery Block Reason"
-msgstr ""
-
-#. module: sale_stock_picking_blocking
-#: model_terms:ir.ui.view,arch_db:sale_stock_picking_blocking.sale_stock_picking_blocking_reason_tree_view
-msgid "Sale Order Delivery Block Reason"
 msgstr ""
 
 #. module: sale_stock_picking_blocking
