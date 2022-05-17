@@ -47,3 +47,4 @@ class ResConfigSettings(models.TransientModel):
                 "sale_default_invoice_policy",
                 self.sale_default_invoice_policy,
             )
+        return True
