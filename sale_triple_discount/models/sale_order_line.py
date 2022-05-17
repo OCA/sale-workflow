@@ -49,16 +49,8 @@ class SaleOrderLine(models.Model):
         super()._compute_amount()
         self.triple_discount_postprocess(prev_values)
 
-    discount2 = fields.Float(
-        string="Disc. 2 (%)",
-        digits="Discount",
-        default=0.0,
-    )
-    discount3 = fields.Float(
-        string="Disc. 3 (%)",
-        digits="Discount",
-        default=0.0,
-    )
+    discount2 = fields.Float(string="Disc. 2 (%)", digits="Discount", default=0.0,)
+    discount3 = fields.Float(string="Disc. 3 (%)", digits="Discount", default=0.0,)
     discounting_type = fields.Selection(
         string="Discounting type",
         selection=[("additive", "Additive"), ("multiplicative", "Multiplicative")],
