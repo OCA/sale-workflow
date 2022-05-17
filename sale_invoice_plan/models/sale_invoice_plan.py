@@ -122,4 +122,5 @@ class SaleInvoicePlan(models.Model):
                     )
                 line.write({"quantity": plan_qty})
         # Call this method to recompute dr/cr lines
+        move.line_ids.filtered("exclude_from_invoice_tab").unlink()
         move._move_autocomplete_invoice_lines_values()
