@@ -9,7 +9,7 @@ from odoo.tests.common import TransactionCase
 
 
 class TestSaleMultiPickingByCommitmentDate(TransactionCase):
-    """Check the _get_shipped method of Sale Order. """
+    """Check the _get_shipped method of Sale Order."""
 
     def setUp(self):
         """Setup a Sale Order with 4 lines.
