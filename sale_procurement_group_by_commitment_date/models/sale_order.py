@@ -34,7 +34,7 @@ class SaleOrderLine(models.Model):
         return values
 
     def _get_procurement_group_key(self):
-        """ Return a key with priority to be used to regroup lines in multiple
+        """Return a key with priority to be used to regroup lines in multiple
         procurement groups. The higher the priority number is the more
         preference the criteria has.
         """
