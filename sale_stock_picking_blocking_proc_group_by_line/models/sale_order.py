@@ -10,6 +10,7 @@ class SaleOrderLine(models.Model):
 
     @api.multi
     def _action_launch_procurement_rule(self):
-        return super(SaleOrderLine, self.filtered(
-            lambda line: not line.order_id.delivery_block_id)). \
-            _action_launch_procurement_rule()
+        return super(
+            SaleOrderLine,
+            self.filtered(lambda line: not line.order_id.delivery_block_id),
+        )._action_launch_procurement_rule()
