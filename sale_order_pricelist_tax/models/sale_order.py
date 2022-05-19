@@ -9,6 +9,17 @@ from odoo.exceptions import UserError
 _logger = logging.getLogger(__name__)
 
 
+class SaleOrder(models.Model):
+    _inherit = "sale.order"
+
+    def update_prices(self):
+        for record in self:
+            record.order_line._compute_tax_id()
+            super(
+                SaleOrder, record.with_context(pricelist=record.pricelist_id.id)
+            ).update_prices()
+
+
 class SaleOrderLine(models.Model):
     _inherit = "sale.order.line"
 
@@ -37,14 +48,3 @@ class SaleOrderLine(models.Model):
     def product_uom_change(self):
         self = self.with_context(pricelist=self.order_id.pricelist_id.id)
         return super().product_uom_change()
-
-
-class SaleOrder(models.Model):
-    _inherit = "sale.order"
-
-    def update_prices(self):
-        for record in self:
-            record.order_line._compute_tax_id()
-            super(
-                SaleOrder, record.with_context(pricelist=record.pricelist_id.id)
-            ).update_prices()

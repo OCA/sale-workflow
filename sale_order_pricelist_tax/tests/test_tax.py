@@ -2,6 +2,7 @@
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
 
 from odoo.exceptions import UserError
+from odoo.tests import Form
 from odoo.tests.common import SavepointCase
 
 
@@ -18,21 +19,13 @@ class TaxCase(SavepointCase):
         cls.tax_inc = cls.env.ref("sale_order_pricelist_tax.account_tax_sale_2")
 
     def _create_sale_order(self, pricelist):
-        # Creating a sale order
-        sale = self.env["sale.order"].create(
-            {
-                "partner_id": self.env.ref("base.res_partner_10").id,
-                "pricelist_id": pricelist.id,
-            }
-        )
-        vals = {
-            "product_uom_qty": 1,
-            "product_id": self.product.id,
-            "order_id": sale.id,
-        }
-        vals = self.env["sale.order.line"].play_onchanges(vals, vals.keys())
-        sale.write({"order_line": [(0, 0, vals)]})
-        return sale
+        order_form = Form(self.env["sale.order"].with_context(tracking_disable=True))
+        order_form.partner_id = self.env.ref("base.res_partner_10")
+        order_form.pricelist_id = pricelist
+        with order_form.order_line.new() as line:
+            line.product_id = self.product
+            line.product_uom_qty = 1.0
+        return order_form.save()
 
     def test_tax_ht(self):
         sale = self._create_sale_order(self.ht_plist)
