@@ -1,2 +1,2 @@
-Adds a new type for contacts called 'Ordering contact'.
-Changes the customer domain in sale orders to show partners that are 'Ordering contact' or main partners (partners without parent) that haven't childs or without childs of type 'Ordering contact'.
+Adds a new contact's type which allows a company to mark (designate) at least one of its own contacts as the main 'ordering contact'.
+This action will help in finding out who to address when dealing with sales orders.
