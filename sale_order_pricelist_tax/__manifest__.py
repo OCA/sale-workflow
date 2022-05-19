@@ -7,7 +7,6 @@
     "author": "Akretion, Odoo Community Association (OCA)",
     "depends": [
         "sale",
-        "onchange_helper",
     ],
     "website": "https://github.com/OCA/sale-workflow",
     "data": [
