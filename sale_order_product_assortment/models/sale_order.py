@@ -18,7 +18,10 @@ class SaleOrder(models.Model):
         # If we don't initialize the fields we get an error with NewId
         IrFilters = self.env["ir.filters"]
         self.allowed_product_ids = self.env["product.product"]
+        allowed_products = self.env["product.product"]
+        not_allowed_products = self.env["product.product"]
         self.has_allowed_products = False
+        partner_has_filter = False
         partner_field = (
             self.env["ir.config_parameter"]
             .sudo()
@@ -32,8 +35,14 @@ class SaleOrder(models.Model):
             for ir_filter in filters_partner_domain:
                 if self[partner_field] & ir_filter.all_partner_ids:
                     filters |= ir_filter
-                    self.allowed_product_ids += self.env["product.product"].search(
+                    allowed_products += self.env["product.product"].search(
                         ir_filter._get_eval_domain()
                     )
-            if self.allowed_product_ids:
+                    if ir_filter.apply_black_list_product_domain:
+                        not_allowed_products += self.env["product.product"].search(
+                            ir_filter._get_eval_black_list_domain()
+                        )
+                    partner_has_filter = True
+            self.allowed_product_ids = allowed_products - not_allowed_products
+            if self.allowed_product_ids or partner_has_filter:
                 self.has_allowed_products = True
