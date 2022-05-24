@@ -81,7 +81,7 @@ addon | version | maintainers | summary
 [sale_partner_version](sale_partner_version/) | 14.0.2.0.0 |  | Sale Partner Version
 [sale_pricelist_from_commitment_date](sale_pricelist_from_commitment_date/) | 14.0.1.0.2 |  | Use sale order commitment date to compute line price from pricelist
 [sale_procurement_amendment](sale_procurement_amendment/) | 14.0.1.0.0 | [![rousseldenis](https://github.com/rousseldenis.png?size=30px)](https://github.com/rousseldenis) | Allow to reflect confirmed sale lines quantity amendments to procurements
-[sale_procurement_group_by_line](sale_procurement_group_by_line/) | 14.0.1.0.0 |  | Base module for multiple procurement group by Sale order
+[sale_procurement_group_by_line](sale_procurement_group_by_line/) | 14.0.1.0.1 |  | Base module for multiple procurement group by Sale order
 [sale_product_brand_exception](sale_product_brand_exception/) | 14.0.1.0.0 |  | Define rules for sale order and brands
 [sale_product_category_menu](sale_product_category_menu/) | 14.0.1.0.1 |  | Shows 'Product Categories' menu item in Sales
 [sale_product_multi_add](sale_product_multi_add/) | 14.0.1.0.1 |  | Sale Product Multi Add
