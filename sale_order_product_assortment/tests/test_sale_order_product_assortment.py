@@ -16,6 +16,7 @@ class TestProductAssortment(TransactionCase):
     def test_sale_order_product_assortment(self):
         product_1 = self.product_obj.create({"name": "Test product 1"})
         product_2 = self.product_obj.create({"name": "Test product 2"})
+        product_3 = self.product_obj.create({"name": "Test product 3"})
         assortment_with_whitelist = self.filter_obj.create(
             {
                 "name": "Test Assortment 1",
@@ -41,6 +42,8 @@ class TestProductAssortment(TransactionCase):
                 "partner_ids": [(4, self.partner_1.id)],
                 "blacklist_product_ids": [(4, product_2.id)],
                 "partner_domain": "[('id', '=', %s)]" % self.partner_2.id,
+                "apply_black_list_product_domain": True,
+                "black_list_product_domain": [("id", "=", product_3.id)],
             }
         )
         sale_order_2 = self.sale_order_obj.create({"partner_id": self.partner_1.id})
@@ -49,3 +52,4 @@ class TestProductAssortment(TransactionCase):
         sale_order_3 = self.sale_order_obj.create({"partner_id": self.partner_2.id})
         self.assertTrue(sale_order_3.has_allowed_products)
         self.assertNotIn(product_2, sale_order_3.allowed_product_ids)
+        self.assertNotIn(product_3, sale_order_3.allowed_product_ids)
