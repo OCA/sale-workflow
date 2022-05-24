@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 14.0\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2021-09-20 12:19+0000\n"
+"PO-Revision-Date: 2022-05-24 13:05+0000\n"
 "Last-Translator: Rémi <remi@le-filament.com>\n"
 "Language-Team: none\n"
 "Language: fr\n"
@@ -108,7 +108,7 @@ msgstr ""
 #. module: sale_advance_payment
 #: model:ir.model.fields.selection,name:sale_advance_payment.selection__account_voucher_wizard__payment_type__inbound
 msgid "Inbound"
-msgstr ""
+msgstr "Entrant"
 
 #. module: sale_advance_payment
 #: model:ir.model.fields,field_description:sale_advance_payment.field_account_voucher_wizard__journal_id
@@ -170,7 +170,7 @@ msgstr "Montant dû de la Commande"
 #. module: sale_advance_payment
 #: model:ir.model.fields.selection,name:sale_advance_payment.selection__account_voucher_wizard__payment_type__outbound
 msgid "Outbound"
-msgstr ""
+msgstr "Sortant"
 
 #. module: sale_advance_payment
 #: model:ir.model.fields.selection,name:sale_advance_payment.selection__sale_order__advance_payment_status__paid
@@ -196,7 +196,7 @@ msgstr "Méthode de paiement"
 #. module: sale_advance_payment
 #: model:ir.model.fields,field_description:sale_advance_payment.field_account_voucher_wizard__payment_type
 msgid "Payment Type"
-msgstr ""
+msgstr "Type de Paiement"
 
 #. module: sale_advance_payment
 #: model_terms:ir.ui.view,arch_db:sale_advance_payment.view_order_form
@@ -240,3 +240,5 @@ msgid ""
 "The amount to advance must always be positive. Please use the payment type "
 "to indicate if this is an inbound or an outbound payment."
 msgstr ""
+"Le montant avancé doit toujours être positif. Merci de modifier le type de "
+"paiement pour définir s'il s'agit d'un paiement entrant ou sortant."
