@@ -6,65 +6,68 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 14.0\n"
 "Report-Msgid-Bugs-To: \n"
-"Last-Translator: Automatically generated\n"
+"PO-Revision-Date: 2022-05-24 13:05+0000\n"
+"Last-Translator: yterrettaz <yael.terrettaz@camptocamp.com>\n"
 "Language-Team: none\n"
 "Language: fr_FR\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
 "Plural-Forms: nplurals=2; plural=n > 1;\n"
+"X-Generator: Weblate 4.3.2\n"
 
 #. module: sale_blanket_order
 #: model:ir.actions.report,print_report_name:sale_blanket_order.report_blanket_order
 msgid "'Blanket Order - %s' % object.name"
-msgstr ""
+msgstr "'Soumission - %s' % object.name"
 
 #. module: sale_blanket_order
 #: model_terms:ir.ui.view,arch_db:sale_blanket_order.report_blanketorder_document
 msgid "<span>Blanket Order # </span>"
-msgstr ""
+msgstr "<span>Soumission # </span>"
 
 #. module: sale_blanket_order
 #: model_terms:ir.ui.view,arch_db:sale_blanket_order.report_blanketorder_document
 msgid "<strong>Currency:</strong>"
-msgstr ""
+msgstr "<strong>Devise:</strong>"
 
 #. module: sale_blanket_order
 #: model_terms:ir.ui.view,arch_db:sale_blanket_order.report_blanketorder_document
 msgid "<strong>Salesperson:</strong>"
-msgstr ""
+msgstr "<strong>Vendeur:</strong>"
 
 #. module: sale_blanket_order
 #: model_terms:ir.ui.view,arch_db:sale_blanket_order.report_blanketorder_document
 msgid "<strong>Subtotal</strong>"
-msgstr ""
+msgstr "<strong>Sous-total</strong>"
 
 #. module: sale_blanket_order
 #: model_terms:ir.ui.view,arch_db:sale_blanket_order.report_blanketorder_document
+#, fuzzy
 msgid "<strong>Total</strong>"
-msgstr ""
+msgstr "<strong>Total</strong>"
 
 #. module: sale_blanket_order
 #: model_terms:ir.ui.view,arch_db:sale_blanket_order.report_blanketorder_document
 msgid "<strong>Validity Date:</strong>"
-msgstr ""
+msgstr "<strong>Date de validité :</strong>"
 
 #. module: sale_blanket_order
 #: model_terms:ir.ui.view,arch_db:sale_blanket_order.report_blanketorder_document
 msgid "<strong>Your Reference:</strong>"
-msgstr ""
+msgstr "<strong>Votre référence:</strong>"
 
 #. module: sale_blanket_order
 #: model:ir.model.fields,field_description:sale_blanket_order.field_sale_blanket_order__message_needaction
 #: model:ir.model.fields,field_description:sale_blanket_order.field_sale_blanket_order_line__message_needaction
 msgid "Action Needed"
-msgstr ""
+msgstr "Action nécessaire"
 
 #. module: sale_blanket_order
 #: model:ir.model.fields,field_description:sale_blanket_order.field_sale_blanket_order__activity_ids
 #: model:ir.model.fields,field_description:sale_blanket_order.field_sale_blanket_order_line__activity_ids
 msgid "Activities"
-msgstr ""
+msgstr "Activités"
 
 #. module: sale_blanket_order
 #: model:ir.model.fields,field_description:sale_blanket_order.field_sale_blanket_order__activity_exception_decoration
@@ -76,45 +79,45 @@ msgstr ""
 #: model:ir.model.fields,field_description:sale_blanket_order.field_sale_blanket_order__activity_state
 #: model:ir.model.fields,field_description:sale_blanket_order.field_sale_blanket_order_line__activity_state
 msgid "Activity State"
-msgstr ""
+msgstr "Etat de l'activité"
 
 #. module: sale_blanket_order
 #: model:ir.model.fields,field_description:sale_blanket_order.field_sale_blanket_order__activity_type_icon
 #: model:ir.model.fields,field_description:sale_blanket_order.field_sale_blanket_order_line__activity_type_icon
 msgid "Activity Type Icon"
-msgstr ""
+msgstr "Type d'icone de l'activité"
 
 #. module: sale_blanket_order
 #: model_terms:ir.ui.view,arch_db:sale_blanket_order.report_blanketorder_document
 msgid "Amount"
-msgstr ""
+msgstr "Montant"
 
 #. module: sale_blanket_order
 #: code:addons/sale_blanket_order/wizard/create_sale_orders.py:0
 #, python-format
 msgid "An order can't be empty"
-msgstr ""
+msgstr "Un ordre ne peut pas être vide"
 
 #. module: sale_blanket_order
 #: model:ir.model.fields,field_description:sale_blanket_order.field_sale_blanket_order__analytic_account_id
 msgid "Analytic Account"
-msgstr ""
+msgstr "Compte analytique"
 
 #. module: sale_blanket_order
 #: model:ir.model.fields,field_description:sale_blanket_order.field_sale_blanket_order_line__analytic_tag_ids
 msgid "Analytic Tags"
-msgstr ""
+msgstr "Étiquettes analytique"
 
 #. module: sale_blanket_order
 #: model:ir.model.fields,field_description:sale_blanket_order.field_sale_blanket_order__message_attachment_count
 #: model:ir.model.fields,field_description:sale_blanket_order.field_sale_blanket_order_line__message_attachment_count
 msgid "Attachment Count"
-msgstr ""
+msgstr "Nombre de pièce jointe"
 
 #. module: sale_blanket_order
 #: model:ir.model.fields,field_description:sale_blanket_order.field_sale_blanket_order_wizard_line__blanket_line_id
 msgid "Blanket Line"
-msgstr ""
+msgstr "Ligne de soumission"
 
 #. module: sale_blanket_order
 #: model:ir.actions.report,name:sale_blanket_order.report_blanket_order
@@ -122,40 +125,40 @@ msgstr ""
 #: model:ir.model.fields,field_description:sale_blanket_order.field_sale_blanket_order_wizard__blanket_order_id
 #: model_terms:ir.ui.view,arch_db:sale_blanket_order.view_blanket_order_form
 msgid "Blanket Order"
-msgstr ""
+msgstr "Soumission"
 
 #. module: sale_blanket_order
 #: model:ir.model,name:sale_blanket_order.model_sale_blanket_order_line
 msgid "Blanket Order Line"
-msgstr ""
+msgstr "Ligne de soumission"
 
 #. module: sale_blanket_order
 #: model:ir.actions.act_window,name:sale_blanket_order.act_open_sale_blanket_order_lines_view_tree
 #: model:ir.ui.menu,name:sale_blanket_order.menu_sale_blanket_order_line
 msgid "Blanket Order Lines"
-msgstr ""
+msgstr "Lignes de soumission"
 
 #. module: sale_blanket_order
 #: model:ir.model.fields,field_description:sale_blanket_order.field_sale_order_line__blanket_order_line
 msgid "Blanket Order line"
-msgstr ""
+msgstr "Ligne de soumission"
 
 #. module: sale_blanket_order
 #: model:ir.actions.act_window,name:sale_blanket_order.act_open_blanket_order_view
 #: model:ir.ui.menu,name:sale_blanket_order.menu_blanket_order_config
 #: model_terms:ir.ui.view,arch_db:sale_blanket_order.sale_config_settings_form_view
 msgid "Blanket Orders"
-msgstr ""
+msgstr "Soumissions"
 
 #. module: sale_blanket_order
 #: model:ir.model,name:sale_blanket_order.model_sale_blanket_order_wizard
 msgid "Blanket order wizard"
-msgstr ""
+msgstr "Assistant de soumission"
 
 #. module: sale_blanket_order
 #: model:ir.model,name:sale_blanket_order.model_sale_blanket_order_wizard_line
 msgid "Blanket order wizard line"
-msgstr ""
+msgstr "Assistant de ligne de soumission"
 
 #. module: sale_blanket_order
 #: code:addons/sale_blanket_order/wizard/create_sale_orders.py:0
@@ -163,12 +166,14 @@ msgstr ""
 msgid ""
 "Can not create Sale Order from Blanket Order lines with different currencies"
 msgstr ""
+"Vous ne pouvez pas créer une commande depuis une soumission avec des devises "
+"différentes"
 
 #. module: sale_blanket_order
 #: model_terms:ir.ui.view,arch_db:sale_blanket_order.view_blanket_order_form
 #: model_terms:ir.ui.view,arch_db:sale_blanket_order.view_create_sale_order
 msgid "Cancel"
-msgstr ""
+msgstr "Annulé"
 
 #. module: sale_blanket_order
 #: code:addons/sale_blanket_order/models/sale_orders.py:0
