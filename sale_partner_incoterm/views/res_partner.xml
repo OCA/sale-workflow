@@ -8,11 +8,9 @@
         <field name="inherit_id" ref="stock.view_partner_stock_form" />
         <field name="arch" type="xml">
             <field name="property_payment_term_id" position="after">
-                <field name="customer_rank" invisible="1" />
                 <field
                     name="sale_incoterm_id"
                     string="Default Sales Incoterm"
-                    attrs="{'invisible': [('customer_rank', '=', 0)]}"
                     widget="selection"
                     groups="sale_stock.group_display_incoterm"
                 />
