@@ -1,10 +1,11 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <odoo>
-    <record id="view_sales_order_auto_done_setting" model="ir.ui.view">
+    <record id="view_order_form" model="ir.ui.view">
+        <field name="name">sale.order.form - Add recompute buttons</field>
         <field name="model">sale.order</field>
-        <field name="inherit_id" ref="sale.view_sales_order_auto_done_setting" />
+        <field name="inherit_id" ref="sale.view_order_form" />
         <field name="arch" type="xml">
-            <button name="action_unlock" position="after">
+            <field name="state" position="before">
                 <button
                     name="recalculate_prices"
                     class="ml-2 btn btn-default"
@@ -21,7 +22,7 @@
                     type="object"
                     attrs="{'invisible':[('state','not in', ['draft', 'sent'])]}"
                 />
-            </button>
+            </field>
         </field>
     </record>
 </odoo>
