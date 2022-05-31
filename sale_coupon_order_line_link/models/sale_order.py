@@ -42,6 +42,22 @@ class SaleOrder(models.Model):
             order._link_reward_generated_lines(programs)
         return res
 
+    def _get_discounted_lines(self, program):
+        """Hook method that allows to link lines from extra discount reward options"""
+        # TODO: Should we add the lines that meet the criteria even if they aren't
+        # on the filtered lines?
+        if program.discount_apply_on == "on_order":
+            return self.order_line.filtered(lambda x: not x.is_reward_line)
+        elif program.discount_apply_on == "cheapest_product":
+            return self._get_cheapest_line()
+        elif program.discount_apply_on == "specific_products":
+            return self.order_line.filtered(
+                lambda x: x.product_id in program.discount_specific_product_ids
+            )
+        # An extra discount scope could not depend no this module. For integration
+        # purposes, allways return at least an empty object
+        return self.env["sale.order.line"]
+
     def _link_reward_discount_lines(self, program):
         """Assign reward lines depending on the discount scope of the promotion:
         - A discount on order, will apply to every line.
@@ -53,16 +69,7 @@ class SaleOrder(models.Model):
         reward_lines = self.order_line.filtered(
             lambda x: x.coupon_program_id == program
         )
-        # TODO: Should we add the lines that meet the criteria even if they aren't
-        # on the filtered lines?
-        if program.discount_apply_on == "on_order":
-            lines = self.order_line.filtered(lambda x: not x.is_reward_line)
-        elif program.discount_apply_on == "cheapest_product":
-            lines = self._get_cheapest_line()
-        elif program.discount_apply_on == "specific_products":
-            lines = self.order_line.filtered(
-                lambda x: x.product_id in program.discount_specific_product_ids
-            )
+        lines = self._get_discounted_lines(program)
         # Distribute different tax reward lines with their correspondant order lines.
         # We use a dictionary so we can compare taxes even if they are composed.
         tax_reward_map = {}
