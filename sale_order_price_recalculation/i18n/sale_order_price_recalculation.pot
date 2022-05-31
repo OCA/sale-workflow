@@ -14,12 +14,12 @@ msgstr ""
 "Plural-Forms: \n"
 
 #. module: sale_order_price_recalculation
-#: model_terms:ir.ui.view,arch_db:sale_order_price_recalculation.view_sales_order_auto_done_setting
+#: model_terms:ir.ui.view,arch_db:sale_order_price_recalculation.view_order_form
 msgid "Recalculate prices"
 msgstr ""
 
 #. module: sale_order_price_recalculation
-#: model_terms:ir.ui.view,arch_db:sale_order_price_recalculation.view_sales_order_auto_done_setting
+#: model_terms:ir.ui.view,arch_db:sale_order_price_recalculation.view_order_form
 msgid "Reset descriptions"
 msgstr ""
 
