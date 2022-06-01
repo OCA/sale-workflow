@@ -17,13 +17,13 @@ class ProductSetLine(models.Model):
         required=True,
     )
     quantity = fields.Float(
-        string="Quantity", digits="Product Unit of Measure", required=True, default=1.0
+        digits="Product Unit of Measure", required=True, default=1.0
     )
     product_set_id = fields.Many2one("product.set", string="Set", ondelete="cascade")
     active = fields.Boolean(
         string="Active", related="product_set_id.active", store=True, readonly=True
     )
-    sequence = fields.Integer(string="Sequence", required=True, default=0)
+    sequence = fields.Integer(required=True, default=0)
     discount = fields.Float(string="Discount (%)", digits="Discount", default=0.0)
 
     def prepare_sale_order_line_values(self, order, quantity, max_sequence=0):

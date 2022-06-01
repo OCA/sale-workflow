@@ -107,7 +107,7 @@ class ProductSetAdd(models.TransientModel):
     def _get_max_sequence(self):
         max_sequence = 0
         if self.order_id.order_line:
-            max_sequence = max([line.sequence for line in self.order_id.order_line])
+            max_sequence = max(line.sequence for line in self.order_id.order_line)
         return max_sequence
 
     def _get_lines(self):

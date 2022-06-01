@@ -9,7 +9,7 @@ class ProductSet(models.Model):
     _description = "Product set"
 
     name = fields.Char(help="Product set name", required=True)
-    active = fields.Boolean(string="Active", default=True)
+    active = fields.Boolean(default=True)
     ref = fields.Char(
         string="Internal Reference", help="Product set internal reference", copy=False
     )
