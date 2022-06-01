@@ -21,18 +21,21 @@ msgstr ""
 "Plural-Forms: nplurals=1; plural=0;\n"
 
 #. module: sale_order_price_recalculation
-#: model_terms:ir.ui.view,arch_db:sale_order_price_recalculation.sorp_view_order_form
+#: model_terms:ir.ui.view,arch_db:sale_order_price_recalculation.view_order_form
 msgid "Recalculate prices"
 msgstr "Fiyatları yeniden hesapla"
 
 #. module: sale_order_price_recalculation
-#: model_terms:ir.ui.view,arch_db:sale_order_price_recalculation.sorp_view_order_form
+#: model_terms:ir.ui.view,arch_db:sale_order_price_recalculation.view_order_form
 msgid "Reset descriptions"
 msgstr "Açıklamaları yeniden ayarla"
 
 #. module: sale_order_price_recalculation
 #: model:ir.model,name:sale_order_price_recalculation.model_sale_order
+msgid "Sales Order"
+msgstr ""
+
 #, fuzzy
-#| msgid "Sales Order"
-msgid "Sale Order"
-msgstr "Satış emri"
+#~| msgid "Sales Order"
+#~ msgid "Sale Order"
+#~ msgstr "Satış emri"
