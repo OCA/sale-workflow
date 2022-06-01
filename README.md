@@ -88,7 +88,7 @@ addon | version | maintainers | summary
 [sale_product_multi_add](sale_product_multi_add/) | 14.0.1.0.1 |  | Sale Product Multi Add
 [sale_product_rating_verified](sale_product_rating_verified/) | 14.0.1.0.1 |  | Verify if a user has previously bought a product
 [sale_product_seasonality](sale_product_seasonality/) | 14.0.1.1.0 |  | Integrates rules for products' seasonal availability with sales
-[sale_product_set](sale_product_set/) | 14.0.1.5.3 |  | Sale product set
+[sale_product_set](sale_product_set/) | 14.0.1.5.4 |  | Sale product set
 [sale_product_set_packaging_qty](sale_product_set_packaging_qty/) | 14.0.1.1.0 |  | Manage packaging and quantities on product set lines
 [sale_product_set_sale_by_packaging](sale_product_set_sale_by_packaging/) | 14.0.1.0.1 |  | Glue module between `sale_by_packaging` and `sale_product_set_packaging_qty`.
 [sale_quotation_number](sale_quotation_number/) | 14.0.2.0.0 |  | Different sequence for sale quotations
