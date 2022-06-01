@@ -5,7 +5,7 @@ from odoo import exceptions
 from odoo.tests import common
 
 
-class TestProductSet(common.SavepointCase):
+class TestProductSet(common.TransactionCase):
     """Test Product set"""
 
     @classmethod
@@ -76,7 +76,7 @@ class TestProductSet(common.SavepointCase):
             self.env.ref("sale_product_set.product_set_line_computer_3").product_id.id
         )
         self.assertTrue(
-            max([v for k, v in sequence.items()]) < seq_line1 < seq_line2 < seq_line3
+            max(v for k, v in sequence.items()) < seq_line1 < seq_line2 < seq_line3
         )
 
     def test_add_set_sequence(self):
@@ -100,7 +100,7 @@ class TestProductSet(common.SavepointCase):
             self.env.ref("sale_product_set.product_set_line_computer_3").product_id
         )
         self.assertTrue(
-            max([v for k, v in sequence.items()]) < seq_line1 < seq_line2 < seq_line3
+            max(v for k, v in sequence.items()) < seq_line1 < seq_line2 < seq_line3
         )
 
     def test_delete_set(self):
