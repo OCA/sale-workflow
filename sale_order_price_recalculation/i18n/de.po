@@ -20,16 +20,19 @@ msgstr ""
 "X-Generator: Weblate 3.7.1\n"
 
 #. module: sale_order_price_recalculation
-#: model_terms:ir.ui.view,arch_db:sale_order_price_recalculation.sorp_view_order_form
+#: model_terms:ir.ui.view,arch_db:sale_order_price_recalculation.view_order_form
 msgid "Recalculate prices"
 msgstr "Preise neu berechnen"
 
 #. module: sale_order_price_recalculation
-#: model_terms:ir.ui.view,arch_db:sale_order_price_recalculation.sorp_view_order_form
+#: model_terms:ir.ui.view,arch_db:sale_order_price_recalculation.view_order_form
 msgid "Reset descriptions"
 msgstr "Beschreibung zurücksetzen"
 
 #. module: sale_order_price_recalculation
 #: model:ir.model,name:sale_order_price_recalculation.model_sale_order
-msgid "Sale Order"
-msgstr "Verkaufsauftrag"
+msgid "Sales Order"
+msgstr ""
+
+#~ msgid "Sale Order"
+#~ msgstr "Verkaufsauftrag"
