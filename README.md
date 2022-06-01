@@ -79,7 +79,7 @@ addon | version | maintainers | summary
 [sale_order_line_price_history](sale_order_line_price_history/) | 13.0.1.1.0 |  | Sale order line price history
 [sale_order_lot_selection](sale_order_lot_selection/) | 13.0.2.1.0 | [![bodedra](https://github.com/bodedra.png?size=30px)](https://github.com/bodedra) | Sale Order Lot Selection
 [sale_order_partner_restrict](sale_order_partner_restrict/) | 13.0.1.0.0 | [![OriolVForgeFlow](https://github.com/OriolVForgeFlow.png?size=30px)](https://github.com/OriolVForgeFlow) | Apply restrictions when selecting from the list of customers on SO.
-[sale_order_price_recalculation](sale_order_price_recalculation/) | 13.0.1.0.0 |  | Recalculate prices / Reset descriptions on sale order lines
+[sale_order_price_recalculation](sale_order_price_recalculation/) | 13.0.1.1.0 |  | Recalculate prices / Reset descriptions on sale order lines
 [sale_order_pricelist_tracking](sale_order_pricelist_tracking/) | 13.0.1.0.0 |  | Track sale order pricelist changes
 [sale_order_priority](sale_order_priority/) | 13.0.1.0.0 |  | Define priority on sale orders
 [sale_order_product_assortment](sale_order_product_assortment/) | 13.0.1.2.0 | [![CarlosRoca13](https://github.com/CarlosRoca13.png?size=30px)](https://github.com/CarlosRoca13) | Module that allows to use the assortments on sale orders
