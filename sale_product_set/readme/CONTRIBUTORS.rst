@@ -5,3 +5,4 @@
 * Souheil Bejaoui <souheil.bejaoui@acsone.eu>
 * Adria Gil Sorribes <adria.gil@forgeflow.com>
 * Phuc (Tran Thanh) <phuc@trobz.com>
+* Manuel Regidor <manuel.regidor@sygel.es>
