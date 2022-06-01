@@ -6,7 +6,7 @@
         <field name="type">tree</field>
         <field name="priority" eval="8" />
         <field name="arch" type="xml">
-            <tree string="Product set">
+            <tree>
                 <field name="ref" />
                 <field name="name" />
                 <field name="partner_id" />
@@ -44,7 +44,7 @@
                         </group>
                         <label for="set_line_ids" />
                         <field name="set_line_ids" nolabel="1">
-                            <tree string="Product set lines" editable="top">
+                            <tree editable="top">
                                 <field name="sequence" widget="handle" />
                                 <field name="product_id" />
                                 <field name="quantity" />
