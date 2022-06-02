@@ -2,6 +2,7 @@
 
   * Pedro M. Baeza
   * Víctor Martínez
+  * César A. Sánchez
 
 * `Guadaltech <https://www.guadaltech.es>`__:
 
