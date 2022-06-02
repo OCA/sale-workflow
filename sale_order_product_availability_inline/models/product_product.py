@@ -11,7 +11,7 @@ class ProductProduct(models.Model):
         if self.env.context.get("so_product_stock_inline"):
             res = super().name_get()
             self = self.with_context(warehouse=self.env.context.get("warehouse"))
-            availability = {r.id: [r.free_qty, r.uom_id.name] for r in self}
+            availability = {r.id: [r.free_qty, r.uom_id.name_get()[0][1]] for r in self}
             precision = self.env["decimal.precision"].precision_get(
                 "Product Unit of Measure"
             )
