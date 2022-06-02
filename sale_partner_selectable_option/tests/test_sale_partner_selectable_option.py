@@ -12,7 +12,8 @@ class TestSalePartnerSelectableOption(common.SavepointCase):
 
     def test_sale_order(self):
         result = self.env["sale.order"].fields_view_get(
-            view_id=self.env.ref("sale.view_order_form").id, view_type="form",
+            view_id=self.env.ref("sale.view_order_form").id,
+            view_type="form",
         )
         doc = etree.XML(result["arch"])
         field = doc.xpath("//field[@name='partner_id']")
