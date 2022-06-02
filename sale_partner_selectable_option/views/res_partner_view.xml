@@ -17,12 +17,11 @@
         <field name="inherit_id" ref="sale.res_partner_view_buttons" />
         <field name="arch" type="xml">
             <xpath
-                expr="//button[@name='%(sale.act_res_partner_2_sale_order)d']"
+                expr="//button[@name='action_view_sale_order']"
                 position="attributes"
             >
-                <attribute
-                    name="attrs"
-                >{'invisible': [('sale_selectable', '=', False)]}</attribute>
+                <attribute name="attrs">{'invisible': [('sale_selectable', '=', False)]}
+                </attribute>
             </xpath>
         </field>
     </record>
