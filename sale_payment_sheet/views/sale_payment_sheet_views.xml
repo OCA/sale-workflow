@@ -5,13 +5,13 @@
         <field name="model">sale.payment.sheet</field>
         <field name="arch" type="xml">
             <tree decoration-info="state=='open'" string="Sale invoice payments">
-                <field name="name" />
-                <field name="date" />
-                <field name="journal_id" />
-                <field name="amount_total" />
-                <field name="company_id" groups="base.group_multi_company" />
-                <field name="currency_id" invisible="1" />
-                <field name="state" />
+                <field name="name"/>
+                <field name="date"/>
+                <field name="journal_id"/>
+                <field name="amount_total"/>
+                <field name="company_id" groups="base.group_multi_company"/>
+                <field name="currency_id" invisible="1"/>
+                <field name="state"/>
             </tree>
         </field>
     </record>
@@ -20,15 +20,15 @@
         <field name="model">sale.payment.sheet</field>
         <field name="arch" type="xml">
             <search string="Search sale payment sheets">
-                <field name="name" string="Payment sheet" />
-                <field name="date" />
-                <filter string="Draft" name="draft" domain="[('state','=','open')]" />
+                <field name="name" string="Payment sheet"/>
+                <field name="date"/>
+                <filter string="Draft" name="draft" domain="[('state','=','open')]"/>
                 <filter
                     string="Confirmed"
                     name="confirmed"
                     domain="[('state','=','confirm')]"
                 />
-                <field name="journal_id" domain="[('type', '=', 'bank')]" />
+                <field name="journal_id" domain="[('type', '=', 'bank')]"/>
                 <group expand="0" string="Group By">
                     <filter
                         string="Journal"
@@ -40,7 +40,7 @@
                         name="status"
                         context="{'group_by': 'state'}"
                     />
-                    <filter string="Date" name="date" context="{'group_by': 'date'}" />
+                    <filter string="Date" name="date" context="{'group_by': 'date'}"/>
                 </group>
             </search>
         </field>
@@ -83,14 +83,14 @@
                         />
                     </div>
                     <div class="oe_title oe_inline">
-                        <label for="name" class="oe_edit_only" />
+                        <label for="name" class="oe_edit_only"/>
                         <h1>
-                            <field name="name" />
+                            <field name="name"/>
                         </h1>
                     </div>
                     <group>
                         <group>
-                            <field name="commercial_journal_ids" invisible="1" />
+                            <field name="commercial_journal_ids" invisible="1"/>
                             <field
                                 name="journal_id"
                                 widget="selection"
@@ -105,9 +105,9 @@
                                 options="{'no_create': True}"
                                 groups="base.group_multi_company"
                             />
-                            <field name="group_lines" />
-                            <field name="currency_id" invisible="1" />
-                            <field name="user_id" invisible="1" />
+                            <field name="group_lines"/>
+                            <field name="currency_id" invisible="1"/>
+                            <field name="user_id" invisible="1"/>
                         </group>
                     </group>
                     <notebook>
@@ -118,9 +118,9 @@
                                     string="Sheet lines"
                                     decoration-danger="amount &lt; 0.0"
                                 >
-                                    <field name="sequence" widget="handle" />
-                                    <field name="date" />
-                                    <field name="name" />
+                                    <field name="sequence" widget="handle"/>
+                                    <field name="date"/>
+                                    <field name="name"/>
                                     <field
                                         name="partner_id"
                                         domain="['|',('parent_id','=',False),('is_company','=',True)]"
@@ -130,21 +130,21 @@
                                         domain="[('partner_id','=', partner_id), ('amount_residual', '>', 0.0)]"
                                         options="{'no_create': True}"
                                     />
-                                    <field name="ref" groups="base.group_no_one" />
-                                    <field name="transaction_type" optional="show" />
-                                    <field name="note" optional="hidden" />
-                                    <field name="amount" sum="Total" />
-                                    <field name="journal_currency_id" invisible="1" />
-                                    <field name="state" invisible="1" />
+                                    <field name="ref" groups="base.group_no_one"/>
+                                    <field name="transaction_type" optional="show"/>
+                                    <field name="note" optional="hidden"/>
+                                    <field name="amount" sum="Total"/>
+                                    <field name="journal_currency_id" invisible="1"/>
+                                    <field name="state" invisible="1"/>
                                 </tree>
                             </field>
                         </page>
                     </notebook>
                 </sheet>
-                <div class="o_attachment_preview" />
+                <div class="o_attachment_preview"/>
                 <div class="oe_chatter">
-                    <field name="message_follower_ids" widget="mail_followers" />
-                    <field name="message_ids" widget="mail_thread" />
+                    <field name="message_follower_ids" widget="mail_followers"/>
+                    <field name="message_ids" widget="mail_thread"/>
                 </div>
             </form>
         </field>
@@ -155,7 +155,7 @@
         <field name="view_mode">tree,form</field>
         <field name="domain">[]</field>
         <field name="context">{}</field>
-        <field name="search_view_id" ref="view_sale_payment_sheet_search" />
+        <field name="search_view_id" ref="view_sale_payment_sheet_search"/>
         <field name="help" type="html">
             <p class="o_view_nocontent_smiling_face">
                 Register a invoice payment (Salesman)

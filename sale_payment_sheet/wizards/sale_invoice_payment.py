@@ -20,10 +20,14 @@ class SaleInvoicePaymentWiz(models.TransientModel):
         "res.currency", compute="_compute_currency", string="Currency"
     )
     journal_id = fields.Many2one(
-        comodel_name="account.journal", string="Journal", required=True,
+        comodel_name="account.journal",
+        string="Journal",
+        required=True,
     )
     amount = fields.Monetary(
-        currency_field="currency_id", string="Amount", required=True,
+        currency_field="currency_id",
+        string="Amount",
+        required=True,
     )
     ref = fields.Char(string="Reference")
 
@@ -34,7 +38,7 @@ class SaleInvoicePaymentWiz(models.TransientModel):
         res["journal_id"] = self.env.user.commercial_journal_ids[:1].id
         res["amount"] = 0.0
         for invoice in invoices:
-            if invoice.type == "out_refund":
+            if invoice.move_type == "out_refund":
                 res["amount"] -= invoice.amount_residual
             else:
                 res["amount"] += invoice.amount_residual
@@ -75,10 +79,10 @@ class SaleInvoicePaymentWiz(models.TransientModel):
                 }
             )
         # First process refund invoices su summarize negative amounts
-        for invoice in invoices.filtered(lambda inv: inv.type == "out_refund"):
+        for invoice in invoices.filtered(lambda inv: inv.move_type == "out_refund"):
             self._process_invoice(sheet, invoice)
 
-        for invoice in invoices.filtered(lambda inv: inv.type == "out_invoice").sorted(
+        for invoice in invoices.filtered(lambda inv: inv.move_type == "out_invoice").sorted(
             key=lambda x: (x.date, x.id)
         ):
             self._process_invoice(sheet, invoice)
@@ -90,7 +94,7 @@ class SaleInvoicePaymentWiz(models.TransientModel):
         other_lines = all_sheet_lines - sheet_line
         invoice_amount_residual = (
             invoice.amount_residual
-            if invoice.type == "out_invoice"
+            if invoice.move_type == "out_invoice"
             else -invoice.amount_residual
         )
         invoice_amount_residual -= sum(other_lines.mapped("amount"))
@@ -101,7 +105,7 @@ class SaleInvoicePaymentWiz(models.TransientModel):
                 if self.amount >= invoice_amount_residual
                 else self.amount
             )
-        elif invoice.type == "out_refund":
+        elif invoice.move_type == "out_refund":
             amount_pay = invoice_amount_residual
         if amount_pay:
             if sheet_line:

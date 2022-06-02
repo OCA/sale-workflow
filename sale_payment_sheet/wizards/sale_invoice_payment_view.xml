@@ -6,34 +6,42 @@
         <field name="arch" type="xml">
             <form string="Sale invoice payment wizard">
                 <group>
-                    <field name="user_id" invisible="1" />
-                    <field name="commercial_journal_ids" invisible="1" />
+                    <field name="user_id" invisible="1"/>
+                    <field name="commercial_journal_ids" invisible="1"/>
                     <field
-                        name="journal_id"
-                        widget="selection"
-                        domain="[('id', 'in', commercial_journal_ids)]"
+                            name="journal_id"
+                            widget="selection"
+                            domain="[('id', 'in', commercial_journal_ids)]"
                     />
-                    <field name="amount" />
-                    <field name="ref" />
+                    <field name="amount"/>
+                    <field name="ref"/>
                 </group>
                 <footer>
                     <button
-                        name="create_sale_invoice_payment_sheet"
-                        string="Payment"
-                        type="object"
-                        class="btn-primary"
+                            name="create_sale_invoice_payment_sheet"
+                            string="Payment"
+                            type="object"
+                            class="btn-primary"
                     />
-                    <button string="Cancel" class="btn-secondary" special="cancel" />
+                    <button string="Cancel" class="btn-secondary" special="cancel"/>
                 </footer>
             </form>
         </field>
     </record>
-    <act_window
-        id="action_sale_invoice_payment_wiz"
-        name="Sale invoice payment"
-        binding_model="account.move"
-        res_model="sale.invoice.payment.wiz"
-        view_mode="form"
-        target="new"
-    />
+
+    <record id="action_sale_invoice_payment_wiz" model="ir.actions.act_window">
+        <field name="name">Sale invoice payment</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">sale.invoice.payment.wiz</field>
+        <field name="view_mode">form</field>
+        <field name="view_id" ref="sale_invoice_payment_wiz"/>
+        <field name="context">{}</field>
+        <field name="target">new</field>
+        <field name="help">This wizard will pay invoices directly.
+        </field>
+        <field name="groups_id" eval="[(4, ref('account.group_account_invoice'))]"/>
+        <field name="binding_model_id" ref="account.model_account_move"/>
+        <field name="binding_view_types">list</field>
+    </record>
+
 </odoo>

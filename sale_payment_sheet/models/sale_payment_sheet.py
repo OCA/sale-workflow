@@ -87,7 +87,7 @@ class SalePaymentSheet(models.Model):
 
     @api.depends("line_ids.amount")
     def _compute_amount_total(self):
-        """ Summarize total amount lines, this field already is signed
+        """Summarize total amount lines, this field already is signed
         depending on invoice type.
         """
         for sheet in self:
@@ -145,7 +145,7 @@ class SalePaymentSheet(models.Model):
             for line in sheet.line_ids:
                 key = self._statement_line_key(line)
 
-                if line.invoice_id.type == "out_refund" and line.amount > 0.0:
+                if line.invoice_id.move_type == "out_refund" and line.amount > 0.0:
                     # convert to negative amounts if user pays a refund out
                     # invoice with a positive amount.
                     amount_line = -line.amount
@@ -174,7 +174,7 @@ class SalePaymentSheet(models.Model):
                 payment_sheet_line_ids.statement_line_id = statement_line
             sheet.message_post(
                 body=_("Sheet %s confirmed, bank statement were created.")
-                % (statement.name,)
+                     % (statement.name,)
             )
             sheet.write({"state": "confirm", "statement_id": statement.id})
 
@@ -263,7 +263,7 @@ class SalePaymentSheetLine(models.Model):
     def _compute_transaction_type(self):
         for line in self:
             amount = (
-                line.amount if line.invoice_id.type == "out_invoice" else -line.amount
+                line.amount if line.invoice_id.move_type == "out_invoice" else -line.amount
             )
             if float_compare(
                 amount,
@@ -294,11 +294,11 @@ class SalePaymentSheetLine(models.Model):
     def _compute_amount(self):
         for line in self:
             amount = line.invoice_id.amount_residual
-            line.amount = amount if line.invoice_id.type == "out_invoice" else -amount
+            line.amount = amount if line.invoice_id.move_type == "out_invoice" else -amount
 
     def _inverse_amount(self):
         for line in self:
-            if line.invoice_id.type == "out_refund" and line.amount > 0.0:
+            if line.invoice_id.move_type == "out_refund" and line.amount > 0.0:
                 line.amount = -line.amount
 
     @api.constrains("invoice_id", "amount")

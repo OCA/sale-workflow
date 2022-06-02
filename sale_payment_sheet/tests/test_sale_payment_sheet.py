@@ -35,7 +35,7 @@ class TestSaleInvoicePayment(SavepointCase):
 
     def _create_invoice(self):
         with Form(
-            self.env["account.move"].with_context(default_type="out_invoice")
+            self.env["account.move"].with_context(default_move_type="out_invoice")
         ) as invoice_form:
             invoice_form.partner_id = self.partner
             with invoice_form.invoice_line_ids.new() as line_form:
@@ -47,7 +47,8 @@ class TestSaleInvoicePayment(SavepointCase):
 
     def test_payment_wizard(self):
         PaymentWiz = self.env["sale.invoice.payment.wiz"].with_context(
-            active_model="account.move", active_ids=(self.invoice1 + self.invoice2).ids,
+            active_model="account.move",
+            active_ids=(self.invoice1 + self.invoice2).ids,
         )
         with Form(PaymentWiz) as wiz_form:
             wiz_form.journal_id = self.bank_journal

@@ -13,32 +13,32 @@
                 decoration-info="state == 'draft'"
                 decoration-muted="state == 'cancel'"
             >
-                <field name="date" />
-                <field name="name" />
-                <field name="partner_id" optional="show" />
-                <field name="ref" optional="hide" />
-                <field name="invoice_user_id" optional="hide" string="Sales Person" />
-                <field name="invoice_date_due" optional="show" />
+                <field name="date"/>
+                <field name="name"/>
+                <field name="partner_id" optional="show"/>
+                <field name="ref" optional="hide"/>
+                <field name="invoice_user_id" optional="hide" string="Sales Person"/>
+                <field name="invoice_date_due" optional="show"/>
                 <field
                     name="amount_untaxed_signed"
                     string="Tax Excluded"
                     sum="Total"
                     optional="hide"
                 />
-                <field name="amount_total_signed" sum="Total Amount" string="Total" />
+                <field name="amount_total_signed" sum="Total Amount" string="Total"/>
                 <field
                     name="amount_residual_signed"
                     string="Amount Due"
                     sum="Amount Due"
                     optional="show"
                 />
-                <field name="state" optional="hide" />
+                <field name="state" optional="hide"/>
                 <field
                     name="company_id"
                     groups="base.group_multi_company"
                     optional="show"
                 />
-                <field name="currency_id" invisible="1" />
+                <field name="currency_id" invisible="1"/>
             </tree>
         </field>
     </record>
@@ -46,19 +46,20 @@
         <field name="name">Invoices</field>
         <field name="res_model">account.move</field>
         <field name="view_mode">tree,form</field>
-        <field name="view_id" ref="sale_payment_sheet.view_invoice_tree" />
+        <field name="view_id" ref="sale_payment_sheet.view_invoice_tree"/>
         <field name="domain">[
             ('state', '=', 'posted'),
-            ('type', 'in', ['out_invoice', 'out_refund'])]</field>
+            ('move_type', 'in', ['out_invoice', 'out_refund'])]
+        </field>
         <field name="context">{
-                'default_type':'out_invoice',
-                'type':'out_invoice',
-                'journal_type': 'sale',
-                'search_default_in_payment': True,
-                'search_default_unpaid': True,
+            'default_move_type':'out_invoice',
+            'move_type':'out_invoice',
+            'journal_type': 'sale',
+            'search_default_in_payment': True,
+            'search_default_unpaid': True,
             }
         </field>
-        <field name="search_view_id" ref="account.view_account_invoice_filter" />
+        <field name="search_view_id" ref="account.view_account_invoice_filter"/>
     </record>
     <menuitem
         id="sale_payment_invoice"
