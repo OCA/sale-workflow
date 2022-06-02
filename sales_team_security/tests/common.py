@@ -9,8 +9,21 @@ class TestCommon(common.SavepointCase):
     @classmethod
     def setUpClass(cls):
         super().setUpClass()
-        cls.team = cls.env.ref("sales_team.team_sales_department")
-        cls.team2 = cls.env.ref("sales_team.crm_team_1")
+        cls.team = cls.env["crm.team"].create({"name": "Test channel"})
+        cls.team2 = cls.env["crm.team"].create({"name": "Test channel 2"})
+        cls.user = cls.env["res.users"].create(
+            {
+                "login": "sales_team_security",
+                "name": "Test sales_team_security user",
+                "groups_id": [(4, cls.env.ref("sales_team.group_sale_salesman").id)],
+            }
+        )
+        cls.crm_team_member = cls.env["crm.team.member"].create(
+            {
+                "user_id": cls.user.id,
+                "crm_team_id": cls.team.id,
+            }
+        )
         cls.partner = cls.env["res.partner"].create(
             {"name": "Test partner", "team_id": cls.team.id}
         )
@@ -20,20 +33,17 @@ class TestCommon(common.SavepointCase):
         cls.partner_child_2 = cls.env["res.partner"].create(
             {"name": "Child 2", "parent_id": cls.partner.id, "type": "invoice"}
         )
-        cls.user = cls.env["res.users"].create(
-            {
-                "login": "sales_team_security",
-                "name": "Test sales_team_security user",
-                "groups_id": [(4, cls.env.ref("sales_team.group_sale_salesman").id)],
-                "sale_team_id": cls.team.id,
-            }
-        )
         cls.user2 = cls.env["res.users"].create(
             {
                 "login": "sales_team_security2",
                 "name": "Test sales_team_security user 2",
                 "groups_id": [(4, cls.env.ref("sales_team.group_sale_salesman").id)],
-                "sale_team_id": cls.team.id,
+            }
+        )
+        cls.crm_team_member2 = cls.env["crm.team.member"].create(
+            {
+                "user_id": cls.user2.id,
+                "crm_team_id": cls.team.id,
             }
         )
         cls.check_permission_subscribe = False
