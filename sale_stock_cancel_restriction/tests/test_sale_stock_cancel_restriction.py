@@ -22,8 +22,21 @@ class TestSaleStockCancelRestriction(SavepointCase):
         cls.sale_order.action_confirm()
         cls.picking = cls.sale_order.picking_ids
         cls.picking.move_lines.quantity_done = 2
-        cls.picking.button_validate()
 
-    def test_cancel_sale_order(self):
+    def test_cancel_sale_order_restrict(self):
+        """Validates the picking and do the assertRaises cancelling the
+        order for checking that it's forbidden
+        """
+        self.picking.button_validate()
         with self.assertRaises(UserError):
             self.sale_order.action_cancel()
+
+    def test_cancel_sale_order_ok(self):
+        """Don't validate the picking and cancel the order, being completed."""
+        # check the status of invoices after cancelling the order
+        self.sale_order.action_cancel()
+        self.assertEqual(
+            self.sale_order.picking_ids.state,
+            "cancel",
+            "After cancelling a picking, the state should be cancelled",
+        )
