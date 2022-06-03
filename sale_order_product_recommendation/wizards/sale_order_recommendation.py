@@ -75,12 +75,18 @@ class SaleOrderRecommendation(models.TransientModel):
                 ]
             )
         )
-        return [
+        domain = [
             ("order_id", "in", (other_sales - self.order_id).ids),
             ("product_id.active", "=", True),
             ("product_id.sale_ok", "=", True),
             ("qty_delivered", "!=", 0.0),
         ]
+        # Exclude delivery products
+        # We can not use the method _is_delivery() from sale module because we are
+        # doing a domain for a readgroup query
+        if "is_delivery" in self.env["sale.order.line"]._fields:
+            domain.append(("is_delivery", "=", False))
+        return domain
 
     def _prepare_recommendation_line_vals(self, group_line, so_line=False):
         """Return the vals dictionary for creating a new recommendation line.
@@ -128,8 +134,9 @@ class SaleOrderRecommendation(models.TransientModel):
         found_dict = {l["product_id"][0]: l for l in found_lines}
         recommendation_lines = self.env["sale.order.recommendation.line"]
         existing_product_ids = set()
-        # Always recommend all products already present in the linked SO
-        for line in self.order_id.order_line:
+        # Always recommend all products already present in the linked SO except delivery
+        # carrier products
+        for line in self.order_id.order_line.filtered(lambda ln: not ln._is_delivery()):
             found_line = found_dict.get(
                 line.product_id.id, {"product_id": (line.product_id.id, False)}
             )
