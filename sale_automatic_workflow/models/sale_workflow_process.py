@@ -42,7 +42,6 @@ class SaleWorkflowProcess(models.Model):
     )
     validate_order = fields.Boolean()
     send_order_confirmation_mail = fields.Boolean(
-        string="Send order confirmation mail",
         help="When checked, after order confirmation, a confirmation email will be "
         "sent (if not already sent).",
     )
@@ -129,8 +128,7 @@ class SaleWorkflowProcess(models.Model):
         string="Register Payment Invoice Filter",
         default=lambda x: x._default_payment_filter_id(),
     )
-    register_payment = fields.Boolean(string="Register Payment")
+    register_payment = fields.Boolean()
     payment_filter_domain = fields.Text(
-        string="Payment Filter Domain",
         related="payment_filter_id.domain",
     )
