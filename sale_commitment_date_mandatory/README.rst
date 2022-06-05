@@ -25,7 +25,8 @@ Sale commitment date mandatory
 
 |badge1| |badge2| |badge3| |badge4| |badge5| 
 
-With this module, commitment_date is now mandatory and you cannot create sale order lines unless commitment_date is filled.
+With this module, the delivery commitment date on order can be configured to be
+mandatory and you cannot create sale order lines unless commitment_date is filled.
 
 Be careful, we have an issue on this module:
 https://github.com/OCA/sale-workflow/issues/1901
@@ -34,6 +35,13 @@ https://github.com/OCA/sale-workflow/issues/1901
 
 .. contents::
    :local:
+
+Usage
+=====
+
+To make Delivery commitment date mandatory on sale order forms, you have to
+enable the option `Delivery commitment date mandatory` in the `Shipping` section
+of the `Sale / Configuration / Settings` panel.
 
 Bug Tracker
 ===========
