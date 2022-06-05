@@ -7,9 +7,9 @@
         <!-- to pass after the sale_commitment_date_mandatory -->
         <field name="priority" eval="110" />
         <field name="arch" type="xml">
-            <xpath expr="//field[@name='commitment_date']/.." position="after">
+            <group name="sale_shipping" position="after">
                 <field name="commitment_date_end" />
-            </xpath>
+            </group>
             <field name="payment_term_id" position="before">
                 <field name="seasonal_config_id" />
             </field>
