@@ -23,10 +23,13 @@ Sale payment sheet
     :target: https://runbot.odoo-community.org/runbot/167/13.0
     :alt: Try me on Runbot
 
-|badge1| |badge2| |badge3| |badge4| |badge5| 
+|badge1| |badge2| |badge3| |badge4| |badge5|
 
-This module allows to commercial users register payments in a payment sheet.
-This payment sheet will generate a bank statement when is confirmed.
+This module allows salesmen to register payments in a new document called payment sheet, accessible only with the sales permission.
+
+This sheet includes the paid amount, and an optional reference to which invoice(s) is(are) being paid.
+
+This payment sheet will generate a bank statement when confirmed.
 
 **Table of contents**
 
@@ -112,7 +115,7 @@ promote its widespread use.
 
 Current `maintainer <https://odoo-community.org/page/maintainer-role>`__:
 
-|maintainer-sergio-teruel| 
+|maintainer-sergio-teruel|
 
 This module is part of the `OCA/sale-workflow <https://github.com/OCA/sale-workflow/tree/13.0/sale_payment_sheet>`_ project on GitHub.
 

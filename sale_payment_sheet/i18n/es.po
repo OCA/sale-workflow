@@ -1,21 +1,22 @@
 # Translation of Odoo Server.
 # This file contains the translation of the following modules:
+# * sale_order_type
+#
+# This file contains the translation of the following modules:
 # 	* sale_payment_sheet
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: Odoo Server 13.0\n"
+"Project-Id-Version: Odoo Server 15.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-07-15 23:38+0000\n"
-"PO-Revision-Date: 2021-07-16 01:40+0200\n"
-"Last-Translator: Sergio Teruel <sergio.teruel@tecnativa.com>\n"
+"POT-Creation-Date: 2022-06-28 20:48+0000\n"
+"PO-Revision-Date: 2022-06-28 20:48+0000\n"
+"Last-Translator: César A. Sánchez\n"
 "Language-Team: \n"
-"Language: es\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
-"Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Generator: Poedit 2.3\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
 
 #. module: sale_payment_sheet
 #: model:ir.actions.report,print_report_name:sale_payment_sheet.action_report_sale_payment_sheet
@@ -150,19 +151,9 @@ msgid "External Reference"
 msgstr "Referencia Externa"
 
 #. module: sale_payment_sheet
-#: model:ir.model.fields,field_description:sale_payment_sheet.field_sale_payment_sheet__failed_message_ids
-msgid "Failed Messages"
-msgstr "Mensajes Fallidos"
-
-#. module: sale_payment_sheet
 #: model:ir.model.fields,field_description:sale_payment_sheet.field_sale_payment_sheet__message_follower_ids
 msgid "Followers"
 msgstr "Seguidores"
-
-#. module: sale_payment_sheet
-#: model:ir.model.fields,field_description:sale_payment_sheet.field_sale_payment_sheet__message_channel_ids
-msgid "Followers (Channels)"
-msgstr "Seguidores (Canales)"
 
 #. module: sale_payment_sheet
 #: model:ir.model.fields,field_description:sale_payment_sheet.field_sale_payment_sheet__message_partner_ids
@@ -176,7 +167,8 @@ msgstr "Completo"
 
 #. module: sale_payment_sheet
 #: model:ir.model.fields,help:sale_payment_sheet.field_sale_payment_sheet_line__sequence
-msgid "Gives the sequence order when displaying a list of payment sheet lines."
+msgid ""
+"Gives the sequence order when displaying a list of payment sheet lines."
 msgstr ""
 "Indica el orden de secuencia cuando se muestra una lista de líneas de la "
 "hoja de pagos."
@@ -190,6 +182,11 @@ msgstr "Agrupado por..."
 #: model:ir.model.fields,field_description:sale_payment_sheet.field_sale_payment_sheet__group_lines
 msgid "Group statement lines by"
 msgstr "Agrupar Líneas del extracto bancario por"
+
+#. module: sale_payment_sheet
+#: model:ir.model.fields,field_description:sale_payment_sheet.field_sale_payment_sheet__has_message
+msgid "Has Message"
+msgstr "Tiene mensaje"
 
 #. module: sale_payment_sheet
 #: model:ir.model.fields,field_description:sale_payment_sheet.field_sale_invoice_payment_wiz__id
@@ -206,6 +203,7 @@ msgstr "Si está marcado, hay nuevos mensajes que requieren su atención."
 
 #. module: sale_payment_sheet
 #: model:ir.model.fields,help:sale_payment_sheet.field_sale_payment_sheet__message_has_error
+#: model:ir.model.fields,help:sale_payment_sheet.field_sale_payment_sheet__message_has_sms_error
 msgid "If checked, some messages have a delivery error."
 msgstr "Si se encuentra marcado, algunos mensajes tienen error de envío."
 
@@ -218,7 +216,6 @@ msgstr "Factura"
 #. module: sale_payment_sheet
 #: model:ir.actions.act_window,name:sale_payment_sheet.action_invoice_sale_payment_sheet
 #: model:ir.ui.menu,name:sale_payment_sheet.sale_payment_invoice
-#: model_terms:ir.ui.view,arch_db:sale_payment_sheet.view_invoice_tree
 msgid "Invoices"
 msgstr "Facturas"
 
@@ -271,24 +268,14 @@ msgid "Main Attachment"
 msgstr "Adjuntos principales"
 
 #. module: sale_payment_sheet
-#: model:ir.model.fields,field_description:sale_payment_sheet.field_sale_payment_sheet__message_content
-msgid "Message Content"
-msgstr "Contenido del mensaje"
-
-#. module: sale_payment_sheet
 #: model:ir.model.fields,field_description:sale_payment_sheet.field_sale_payment_sheet__message_has_error
 msgid "Message Delivery error"
 msgstr "Error de Envío de Mensaje"
 
 #. module: sale_payment_sheet
-#: model:ir.model.fields,help:sale_payment_sheet.field_sale_payment_sheet__message_content
-msgid "Message content, to be used only in searches"
-msgstr "Contenido del mensaje, para usarse en búsquedas"
-
-#. module: sale_payment_sheet
 #: model:ir.model.fields,field_description:sale_payment_sheet.field_sale_payment_sheet__message_ids
 msgid "Messages"
-msgstr "Messages"
+msgstr "Mensajes"
 
 #. module: sale_payment_sheet
 #: model:ir.model.fields.selection,name:sale_payment_sheet.selection__sale_payment_sheet__state__open
@@ -376,6 +363,11 @@ msgid "Responsible"
 msgstr "Responsable"
 
 #. module: sale_payment_sheet
+#: model:ir.model.fields,field_description:sale_payment_sheet.field_sale_payment_sheet__message_has_sms_error
+msgid "SMS Delivery error"
+msgstr "Error en la entrega del SMS"
+
+#. module: sale_payment_sheet
 #: model:ir.model,name:sale_payment_sheet.model_sale_payment_sheet
 msgid "Sale Payment Sheet"
 msgstr "Hoja de pagos"
@@ -397,13 +389,7 @@ msgid "Sale invoice payment wizard"
 msgstr "Asistente de pago de factura"
 
 #. module: sale_payment_sheet
-#: model_terms:ir.ui.view,arch_db:sale_payment_sheet.view_sale_payment_sheet_tree
-msgid "Sale invoice payments"
-msgstr "Pagos de facturas"
-
-#. module: sale_payment_sheet
 #: model:ir.actions.act_window,name:sale_payment_sheet.action_sale_payment_sheet
-#: model_terms:ir.ui.view,arch_db:sale_payment_sheet.view_sale_payment_sheet_form
 msgid "Sale payment sheet"
 msgstr "Hoja de pagos"
 
@@ -435,7 +421,6 @@ msgstr "Hoja %s confirmada, se crearon los extractos bancarios."
 
 #. module: sale_payment_sheet
 #: model:ir.model.fields,field_description:sale_payment_sheet.field_sale_payment_sheet__line_ids
-#: model_terms:ir.ui.view,arch_db:sale_payment_sheet.view_sale_payment_sheet_form
 msgid "Sheet lines"
 msgstr "Líneas"
 
@@ -466,14 +451,16 @@ msgstr "El importe de una transacción en efectivo no puede ser 0."
 #: code:addons/sale_payment_sheet/models/sale_payment_sheet.py:0
 #, python-format
 msgid ""
-"This invoice already has been included in other payment sheet or the amount "
-"payed is greather than residual invoice amount.\n"
-" Invoice: %s Amount payed: %s"
+"This invoice already has been included in other payment sheet or the amount payed is greather than residual invoice amount.\n"
+" Invoice: %(invoice_name)s\n"
+" Amount payed: %(amount_payed)s\n"
+"  Payment sheets: %(payment_lines_name)s"
 msgstr ""
 "Esta factura ya se ha incluido en otra hoja de pagos o el importe pagado es "
 "mayor al importe pendiente de la factura.\n"
-" Factura: %s Importe pagado: %s"
-
+" Factura: %(invoice_name)s\n"
+" Importe pagado: %(amount_payed)s\n"
+"  Hojas de pago: %(payment_lines_name)s"
 #. module: sale_payment_sheet
 #: model:ir.model.fields,field_description:sale_payment_sheet.field_sale_payment_sheet__amount_total
 #: model_terms:ir.ui.view,arch_db:sale_payment_sheet.view_invoice_tree
@@ -488,7 +475,7 @@ msgstr "Importe total"
 
 #. module: sale_payment_sheet
 #: model:ir.model.fields,field_description:sale_payment_sheet.field_sale_payment_sheet_line__transaction_type
-msgid "Transaction type"
+msgid "Transaction Type"
 msgstr "Tipo de transacción"
 
 #. module: sale_payment_sheet
