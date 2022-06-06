@@ -9,5 +9,6 @@ class ResUsers(models.Model):
     _inherit = "res.users"
 
     commercial_journal_ids = fields.Many2many(
-        comodel_name="account.journal", string="Allowed journals for commercial",
+        comodel_name="account.journal",
+        string="Allowed journals for commercial",
     )
