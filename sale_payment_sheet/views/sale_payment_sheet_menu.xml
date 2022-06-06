@@ -9,7 +9,6 @@
         <field name="model">account.move</field>
         <field name="arch" type="xml">
             <tree
-                string="Invoices"
                 decoration-info="state == 'draft'"
                 decoration-muted="state == 'cancel'"
             >

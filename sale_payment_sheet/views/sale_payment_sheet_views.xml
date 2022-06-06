@@ -4,7 +4,7 @@
         <field name="name">sale.payment.sheet.tree</field>
         <field name="model">sale.payment.sheet</field>
         <field name="arch" type="xml">
-            <tree decoration-info="state=='open'" string="Sale invoice payments">
+            <tree decoration-info="state=='open'">
                 <field name="name" />
                 <field name="date" />
                 <field name="journal_id" />
@@ -50,7 +50,7 @@
         <field name="model">sale.payment.sheet</field>
         <field name="priority">1</field>
         <field name="arch" type="xml">
-            <form string="Sale payment sheet">
+            <form>
                 <header>
                     <button
                         name="button_confirm_sheet"
@@ -115,7 +115,6 @@
                             <field name="line_ids" context="{'date':date}">
                                 <tree
                                     editable="bottom"
-                                    string="Sheet lines"
                                     decoration-danger="amount &lt; 0.0"
                                 >
                                     <field name="sequence" widget="handle" />
