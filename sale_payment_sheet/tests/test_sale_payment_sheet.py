@@ -35,7 +35,7 @@ class TestSaleInvoicePayment(SavepointCase):
 
     def _create_invoice(self):
         with Form(
-            self.env["account.move"].with_context(default_type="out_invoice")
+            self.env["account.move"].with_context(default_move_type="out_invoice")
         ) as invoice_form:
             invoice_form.partner_id = self.partner
             with invoice_form.invoice_line_ids.new() as line_form:
@@ -76,6 +76,7 @@ class TestSaleInvoicePayment(SavepointCase):
                 with sheet_form.line_ids.new() as line_sheet:
                     line_sheet.partner_id = self.partner
                     line_sheet.invoice_id = invoice
+                    line_sheet.ref = "REF{}".format(line_sheet.id)
                     # Only write for partial amount payed, by default the
                     # amount line is total amount residual
                     if index > 0:
@@ -140,6 +141,10 @@ class TestSaleInvoicePayment(SavepointCase):
         sheet.button_confirm_sheet()
         with self.assertRaises(UserError):
             sheet.line_ids.unlink()
+
+    def test_button_bank_statement(self):
+        sheet = self._create_payment_sheet()
+        sheet.button_bank_statement()
 
     def test_payment_sheet_invoice_constraint(self):
         # You can not add full invoice payed more than one time.
