@@ -145,7 +145,7 @@ class SalePaymentSheet(models.Model):
             for line in sheet.line_ids:
                 key = self._statement_line_key(line)
 
-                if line.invoice_id.type == "out_refund" and line.amount > 0.0:
+                if line.invoice_id.move_type == "out_refund" and line.amount > 0.0:
                     # convert to negative amounts if user pays a refund out
                     # invoice with a positive amount.
                     amount_line = -line.amount
@@ -158,8 +158,7 @@ class SalePaymentSheet(models.Model):
                         "date": line.date,
                         "amount": amount_line,
                         "partner_id": line.partner_id.id,
-                        "ref": line.ref,
-                        "note": line.note,
+                        "payment_ref": line.ref,
                         "sequence": line.sequence,
                         "statement_id": statement.id,
                         "payment_sheet_line_ids": line,
@@ -181,10 +180,11 @@ class SalePaymentSheet(models.Model):
     def button_reopen(self):
         self.ensure_one()
         self_sudo = self.sudo()
-        if self_sudo.statement_id.line_ids.filtered("journal_entry_ids"):
+        if self_sudo.statement_id.line_ids.filtered("is_reconciled"):
             raise UserError(
                 _("You can not reopen a sheet that has any reconciled line.")
             )
+        self_sudo.statement_id.button_reopen()
         self_sudo.statement_id.unlink()
         self.state = "open"
 
@@ -256,14 +256,15 @@ class SalePaymentSheetLine(models.Model):
     transaction_type = fields.Selection(
         [("partial", "Partial payment"), ("full", "Full payment")],
         compute="_compute_transaction_type",
-        string="Transaction type",
     )
 
     @api.depends("amount", "invoice_id")
     def _compute_transaction_type(self):
         for line in self:
             amount = (
-                line.amount if line.invoice_id.type == "out_invoice" else -line.amount
+                line.amount
+                if line.invoice_id.move_type == "out_invoice"
+                else -line.amount
             )
             if float_compare(
                 amount,
@@ -294,11 +295,13 @@ class SalePaymentSheetLine(models.Model):
     def _compute_amount(self):
         for line in self:
             amount = line.invoice_id.amount_residual
-            line.amount = amount if line.invoice_id.type == "out_invoice" else -amount
+            line.amount = (
+                amount if line.invoice_id.move_type == "out_invoice" else -amount
+            )
 
     def _inverse_amount(self):
         for line in self:
-            if line.invoice_id.type == "out_refund" and line.amount > 0.0:
+            if line.invoice_id.move_type == "out_refund" and line.amount > 0.0:
                 line.amount = -line.amount
 
     @api.constrains("invoice_id", "amount")
@@ -329,13 +332,15 @@ class SalePaymentSheetLine(models.Model):
                     _(
                         "This invoice already has been included in other payment sheet"
                         " or the amount payed is greather than residual invoice amount."
-                        "\n Invoice: %s\n Amount payed: %s\n Payment sheets: %s"
-                        % (
-                            line.invoice_id.name,
-                            amount_payed,
-                            payment_lines.mapped("sheet_id.name"),
-                        )
+                        "\n Invoice: %(invoice_name)s\n Amount payed: "
+                        "%(amount_payed)s\n  Payment sheets:"
+                        " %(payment_lines_name)s"
                     )
+                    % {
+                        "invoice_name": line.invoice_id.name,
+                        "amount_payed": amount_payed,
+                        "payment_lines_name": payment_lines.mapped("sheet_id.name"),
+                    }
                 )
 
     def unlink(self):
