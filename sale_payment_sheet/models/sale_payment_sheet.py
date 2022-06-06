@@ -87,7 +87,7 @@ class SalePaymentSheet(models.Model):
 
     @api.depends("line_ids.amount")
     def _compute_amount_total(self):
-        """ Summarize total amount lines, this field already is signed
+        """Summarize total amount lines, this field already is signed
         depending on invoice type.
         """
         for sheet in self:

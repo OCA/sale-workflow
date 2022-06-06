@@ -20,10 +20,14 @@ class SaleInvoicePaymentWiz(models.TransientModel):
         "res.currency", compute="_compute_currency", string="Currency"
     )
     journal_id = fields.Many2one(
-        comodel_name="account.journal", string="Journal", required=True,
+        comodel_name="account.journal",
+        string="Journal",
+        required=True,
     )
     amount = fields.Monetary(
-        currency_field="currency_id", string="Amount", required=True,
+        currency_field="currency_id",
+        string="Amount",
+        required=True,
     )
     ref = fields.Char(string="Reference")
 
