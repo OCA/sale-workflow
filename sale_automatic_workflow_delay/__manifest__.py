@@ -5,8 +5,8 @@
     "name": "Sale Automatic Workflow Delay",
     "version": "14.0.1.0.0",
     "category": "Hidden",
-    "author": "initOS GmbH",
-    "website": "https://www.initos.com",
+    "author": "initOS GmbH, Odoo Community Association (OCA)",
+    "website": "https://github.com/OCA/sale-workflow",
     "license": "AGPL-3",
     "summary": "",
     "depends": [
