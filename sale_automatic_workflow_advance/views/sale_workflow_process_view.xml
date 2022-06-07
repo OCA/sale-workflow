@@ -1,0 +1,43 @@
+<odoo>
+
+    <record id="sale_workflow_process_view_form_inherit" model="ir.ui.view">
+        <field name="name">sale.order.form.automatic.inherit</field>
+        <field name="model">sale.workflow.process</field>
+        <field
+            name="inherit_id"
+            ref="sale_automatic_workflow.sale_workflow_process_view_form"
+        />
+        <field name="arch" type="xml">
+            <field name="validate_picking" position="before">
+                <field name="automated_advance_payment_create" />
+                    <label
+                    for="advance_payment_filter_id"
+                    attrs="{'required':[('automated_advance_payment_create','=',True)], 'invisible':[('automated_advance_payment_create','!=',True)]}"
+                />
+                    <div
+                    attrs="{'required':[('automated_advance_payment_create','=',True)], 'invisible':[('automated_advance_payment_create','!=',True)]}"
+                >
+                        <field
+                        name="advance_payment_filter_domain"
+                        widget="domain"
+                        attrs="{'invisible': [('advance_payment_filter_id', '=', False)]}"
+                        options="{'model': 'sale.order'}"
+                    />
+                        <div class="oe_edit_only oe_inline">
+                            Set selection based on a search filter:
+
+                            <field
+                            name="advance_payment_filter_id"
+                            domain="[('model_id', '=', 'sale.order')]"
+                            class="oe_inline"
+                            context="{'default_model_id': 'sale.order', 'default_active': False, 'active_test': False}"
+                            can_create="true"
+                            can_write="true"
+                        />
+                        </div>
+                    </div>
+            </field>
+        </field>
+    </record>
+
+</odoo>
