@@ -2,8 +2,8 @@
 {
     "name": "Sale Order Report Without Price",
     "summary": "Allow you to generate quotation and order reports without price.",
-    "version": "14.0.1.0.0",
-    "author": "Akretion, Odoo Community Association (OCA)",
+    "version": "15.0.1.0.0",
+    "author": "Akretion, Open Source Integrators, Odoo Community Association (OCA)",
     "website": "https://github.com/OCA/sale-workflow",
     "category": "Sales",
     "depends": ["sale"],
