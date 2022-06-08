@@ -4,6 +4,7 @@
         id="report_saleorder_document_without_price"
         inherit_id="sale.report_saleorder_document"
         primary="True"
+        priority="99"
     >
         <xpath expr="//th[@name='th_priceunit']" position="replace" />
         <xpath expr="//th[@name='th_discount']" position="replace" />
