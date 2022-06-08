@@ -1,21 +1,19 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <odoo>
-  <data>
     <record id="action_report_saleorder_without_price" model="ir.actions.report">
-      <field name="name">Quotation / Order Without Price</field>
-      <field name="model">sale.order</field>
-      <field name="report_type">qweb-pdf</field>
-      <field
-                name="report_name"
-            >sale_order_report_without_price.report_saleorder_without_price</field>
-      <field
-                name="report_file"
-            >sale_order_report_without_price.report_saleorder_without_price</field>
-      <field
-                name="print_report_name"
-            >(object.state in ('draft', 'sent') and 'Quotation - %s without price' % (object.name)) or 'Order - %s without price' % (object.name)</field>
-      <field name="binding_model_id" ref="sale.model_sale_order" />
-      <field name="binding_type">report</field>
+        <field name="name">Quotation / Order Without Price</field>
+        <field name="model">sale.order</field>
+        <field name="report_type">qweb-pdf</field>
+        <field
+            name="report_name"
+        >sale_order_report_without_price.report_saleorder_without_price</field>
+        <field
+            name="report_file"
+        >sale_order_report_without_price.report_saleorder_without_price</field>
+        <field
+            name="print_report_name"
+        >(object.state in ('draft', 'sent') and 'Quotation - %s without price' % (object.name)) or 'Order - %s without price' % (object.name)</field>
+        <field name="binding_model_id" ref="sale.model_sale_order" />
+        <field name="binding_type">report</field>
     </record>
-  </data>
 </odoo>
