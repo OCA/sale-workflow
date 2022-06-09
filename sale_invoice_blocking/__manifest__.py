@@ -4,7 +4,7 @@
 {
     "name": "Sale Invoice Blocking",
     "summary": "Allow you to block the creation of invoices from a sale order.",
-    "version": "14.0.1.0.0",
+    "version": "15.0.1.0.0",
     "author": "Camptocamp, " "Odoo Community Association (OCA)",
     "website": "https://github.com/OCA/sale-workflow",
     "category": "Sales",
