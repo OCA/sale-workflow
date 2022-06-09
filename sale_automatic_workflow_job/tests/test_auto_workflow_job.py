@@ -11,7 +11,7 @@ from odoo.addons.sale_automatic_workflow.tests.common import (
 )
 
 
-@tagged("post_install", "-at_install")
+@tagged("post_install", "-at_install", "sale_automatic_workflow")
 class TestAutoWorkflowJob(TestCommon, TestAutomaticWorkflowMixin):
     def create_sale_order(self, workflow, override=None):
         order = super().create_sale_order(workflow, override)
@@ -83,7 +83,7 @@ class TestAutoWorkflowJob(TestCommon, TestAutomaticWorkflowMixin):
                 invoice,
                 [
                     ("state", "=", "draft"),
-                    ("posted_before", "=", False),
+                    ("name", "=", "/"),
                     ("workflow_process_id", "=", self.sale.workflow_process_id.id),
                 ],
             )

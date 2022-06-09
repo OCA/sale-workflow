@@ -4,13 +4,11 @@
 {
     "name": "Sale Automatic Workflow Job",
     "summary": "Execute sale automatic workflows in queue jobs",
-    "version": "15.0.1.0.0",
+    "version": "13.0.1.0.0",
     "category": "Sales Management",
     "license": "AGPL-3",
     "author": "Camptocamp, " "Odoo Community Association (OCA)",
     "website": "https://github.com/OCA/sale-workflow",
     "depends": ["sale_automatic_workflow", "queue_job"],
-    "data": [
-        "data/queue_job_data.xml",
-    ],
+    "data": ["data/queue_job_data.xml"],
 }
