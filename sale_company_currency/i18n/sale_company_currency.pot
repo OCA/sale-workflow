@@ -1,12 +1,12 @@
 # Translation of Odoo Server.
 # This file contains the translation of the following modules:
-#	* sale_company_currency
+# 	* sale_company_currency
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: Odoo Server 10.0\n"
+"Project-Id-Version: Odoo Server 14.0\n"
 "Report-Msgid-Bugs-To: \n"
-"Last-Translator: <>\n"
+"Last-Translator: \n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -14,12 +14,27 @@ msgstr ""
 "Plural-Forms: \n"
 
 #. module: sale_company_currency
-#: model:ir.model.fields,field_description:sale_company_currency.field_sale_order_company_currency_id
+#: model:ir.model.fields,field_description:sale_company_currency.field_sale_order__company_currency_id
 msgid "Company Currency"
 msgstr ""
 
 #. module: sale_company_currency
-#: model:ir.model.fields,help:sale_company_currency.field_sale_order_amount_total_curr
+#: model:ir.model.fields,field_description:sale_company_currency.field_sale_order__display_name
+msgid "Display Name"
+msgstr ""
+
+#. module: sale_company_currency
+#: model:ir.model.fields,field_description:sale_company_currency.field_sale_order__id
+msgid "ID"
+msgstr ""
+
+#. module: sale_company_currency
+#: model:ir.model.fields,field_description:sale_company_currency.field_sale_order____last_update
+msgid "Last Modified on"
+msgstr ""
+
+#. module: sale_company_currency
+#: model:ir.model.fields,help:sale_company_currency.field_sale_order__amount_total_curr
 msgid "Sale Order Amount in the company Currency"
 msgstr ""
 
@@ -29,21 +44,19 @@ msgid "Sales Order"
 msgstr ""
 
 #. module: sale_company_currency
-#: model:ir.ui.view,arch_db:sale_company_currency.view_order_form
-#: model:ir.ui.view,arch_db:sale_company_currency.view_order_tree
-#: model:ir.ui.view,arch_db:sale_company_currency.view_quotation_tree
+#: model_terms:ir.ui.view,arch_db:sale_company_currency.view_order_tree
+#: model_terms:ir.ui.view,arch_db:sale_company_currency.view_quotation_tree
 msgid "Total"
 msgstr ""
 
 #. module: sale_company_currency
-#: model:ir.ui.view,arch_db:sale_company_currency.view_order_form
-#: model:ir.ui.view,arch_db:sale_company_currency.view_order_tree
-#: model:ir.ui.view,arch_db:sale_company_currency.view_quotation_tree
+#: model_terms:ir.ui.view,arch_db:sale_company_currency.view_order_form
+#: model_terms:ir.ui.view,arch_db:sale_company_currency.view_order_tree
+#: model_terms:ir.ui.view,arch_db:sale_company_currency.view_quotation_tree
 msgid "Total (Company Currency)"
 msgstr ""
 
 #. module: sale_company_currency
-#: model:ir.model.fields,field_description:sale_company_currency.field_sale_order_amount_total_curr
+#: model:ir.model.fields,field_description:sale_company_currency.field_sale_order__amount_total_curr
 msgid "Total Amount"
 msgstr ""
-
