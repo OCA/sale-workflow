@@ -41,6 +41,7 @@ addon | version | maintainers | summary
 [sale_rental](sale_rental/) | 15.0.1.0.1 | [![alexis-via](https://github.com/alexis-via.png?size=30px)](https://github.com/alexis-via) | Manage Rental of Products
 [sale_sourced_by_line](sale_sourced_by_line/) | 15.0.1.0.1 |  | Multiple warehouse source locations for Sale order
 [sale_start_end_dates](sale_start_end_dates/) | 15.0.1.0.1 | [![alexis-via](https://github.com/alexis-via.png?size=30px)](https://github.com/alexis-via) | Adds start date and end date on sale order lines
+[sale_stock_picking_blocking](sale_stock_picking_blocking/) | 15.0.1.0.0 |  | Allow you to block the creation of deliveries from a sale order.
 [sale_tier_validation](sale_tier_validation/) | 15.0.1.0.0 |  | Extends the functionality of Sale Orders to support a tier validation process.
 
 [//]: # (end addons)
