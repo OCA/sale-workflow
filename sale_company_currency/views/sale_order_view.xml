@@ -1,26 +1,26 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="UTF-8" ?>
 <odoo>
     <!-- SO -->
     <record id="view_order_tree" model="ir.ui.view">
       <field name="name">sale.order.tree</field>
       <field name="model">sale.order</field>
-      <field name="inherit_id" ref="sale.view_order_tree"/>
+      <field name="inherit_id" ref="sale.view_order_tree" />
       <field name="arch" type="xml">
 
         <!-- Remove multicurrencies sums (makes no sense)-->
         <field name='amount_total' position="attributes">
-          <attribute name="sum"/>
+          <attribute name="sum" />
         </field>
         <!-- Add sum in company currency -->
         <field name="amount_total" position="after">
-          <field name='company_currency_id' invisible="True"/>
+          <field name='company_currency_id' invisible="True" />
           <field
-            name="amount_total_curr"
-            sum="Total"
-            string="Total (Company Currency)"
-            widget="monetary"
-            options="{'currency_field': 'company_currency_id'}"
-          />
+                    name="amount_total_curr"
+                    sum="Total"
+                    string="Total (Company Currency)"
+                    widget="monetary"
+                    options="{'currency_field': 'company_currency_id'}"
+                />
         </field>
 
       </field>
@@ -28,18 +28,18 @@
     <record id="view_order_form" model="ir.ui.view">
       <field name="name">sale.order.form</field>
       <field name="model">sale.order</field>
-      <field name="inherit_id" ref="sale.view_order_form"/>
+      <field name="inherit_id" ref="sale.view_order_form" />
       <field name="arch" type="xml">
         <!-- Add sum in company currency -->
         <field name="amount_total" position="after">
-          <field name='company_currency_id' invisible="True"/>
+          <field name='company_currency_id' invisible="True" />
           <field
-            name="amount_total_curr"
-            sum="Total"
-            string="Total (Company Currency)"
-            widget="monetary"
-            options="{'currency_field': 'company_currency_id'}"
-          />
+                    name="amount_total_curr"
+                    sum="Total"
+                    string="Total (Company Currency)"
+                    widget="monetary"
+                    options="{'currency_field': 'company_currency_id'}"
+                />
         </field>
 
       </field>
@@ -49,23 +49,23 @@
     <record id="view_quotation_tree" model="ir.ui.view">
       <field name="name">sale.quotation.tree</field>
       <field name="model">sale.order</field>
-      <field name="inherit_id" ref="sale.view_quotation_tree"/>
+      <field name="inherit_id" ref="sale.view_quotation_tree" />
       <field name="arch" type="xml">
 
         <!-- Remove multicurrencies sums (makes no sense)-->
         <field name='amount_total' position="attributes">
-          <attribute name="sum"/>
+          <attribute name="sum" />
         </field>
         <!-- Add sum in company currency -->
         <field name="amount_total" position="after">
-          <field name='company_currency_id' invisible="True"/>
+          <field name='company_currency_id' invisible="True" />
           <field
-            name="amount_total_curr"
-            sum="Total"
-            string="Total (Company Currency)"
-            widget="monetary"
-            options="{'currency_field': 'company_currency_id'}"
-          />
+                    name="amount_total_curr"
+                    sum="Total"
+                    string="Total (Company Currency)"
+                    widget="monetary"
+                    options="{'currency_field': 'company_currency_id'}"
+                />
         </field>
 
       </field>
