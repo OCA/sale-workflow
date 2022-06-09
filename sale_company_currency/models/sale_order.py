@@ -12,23 +12,22 @@ class SaleOrder(models.Model):
         related="company_id.currency_id",
         string="Company Currency",
         readonly=True,
+        store=True,
     )
     amount_total_curr = fields.Monetary(
         string="Total Amount",
         readonly=True,
         help="Sale Order Amount in the company Currency",
         compute="_compute_amount_company",
-        currency_id="company_currency_id",
+        currency_field="company_currency_id",
+        store=True,
     )
 
-    @api.multi
-    @api.depends("amount_total")
+    @api.depends("amount_total", "currency_rate")
     def _compute_amount_company(self):
-        for so in self:
-            if so.state in ("sale", "done"):
-                so_date = so.confirmation_date
+        for order in self:
+            if order.currency_id.id == order.company_id.currency_id.id:
+                to_amount = order.amount_total
             else:
-                so_date = so.date_order
-            so.amount_total_curr = so.currency_id.with_context(date=so_date).compute(
-                so.amount_total, so.company_id.currency_id
-            )
+                to_amount = order.amount_total / order.currency_rate
+            order.amount_total_curr = to_amount
