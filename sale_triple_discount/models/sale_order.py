@@ -14,8 +14,9 @@ class SaleOrder(models.Model):
         prev_values = dict()
         for order in self:
             prev_values.update(order.order_line.triple_discount_preprocess())
-        super()._amount_all()
+        res = super()._amount_all()
         self.env["sale.order.line"].triple_discount_postprocess(prev_values)
+        return res
 
     def _get_tax_amount_by_group(self):
         # Copy/paste from standard method in sale

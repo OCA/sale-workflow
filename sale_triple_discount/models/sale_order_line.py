@@ -46,8 +46,9 @@ class SaleOrderLine(models.Model):
     @api.depends("discount2", "discount3", "discounting_type")
     def _compute_amount(self):
         prev_values = self.triple_discount_preprocess()
-        super()._compute_amount()
+        res = super()._compute_amount()
         self.triple_discount_postprocess(prev_values)
+        return res
 
     discount2 = fields.Float(
         string="Disc. 2 (%)",
@@ -60,7 +61,6 @@ class SaleOrderLine(models.Model):
         default=0.0,
     )
     discounting_type = fields.Selection(
-        string="Discounting type",
         selection=[("additive", "Additive"), ("multiplicative", "Multiplicative")],
         default="multiplicative",
         required=True,
@@ -99,8 +99,9 @@ class SaleOrderLine(models.Model):
     @api.depends("discount2", "discount3")
     def _get_price_reduce(self):
         prev_values = self.triple_discount_preprocess()
-        super()._get_price_reduce()
+        res = super()._get_price_reduce()
         self.triple_discount_postprocess(prev_values)
+        return res
 
     def triple_discount_preprocess(self):
         """Save the values of the discounts in a dictionary,
