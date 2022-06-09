@@ -14,12 +14,13 @@ class SaleOrder(models.Model):
 
     @api.depends("invoice_blocking_reason_id", "state", "order_line.invoice_status")
     def _get_invoice_status(self):
-        super()._get_invoice_status()
+        res = super()._get_invoice_status()
         for order in self.filtered(
             lambda order: order.invoice_blocking_reason_id
             and order.state in ("sale", "done")
         ):
             order.invoice_status = "no"
+        return res
 
     def _get_invoiceable_lines(self, final=False):
         """Return the invoiceable lines for order `self`."""
