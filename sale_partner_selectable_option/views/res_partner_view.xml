@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!-- License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl). -->
+<odoo>
+    <record id="view_partner_form" model="ir.ui.view">
+        <field name="name">Add sale_selectable to partner form</field>
+        <field name="model">res.partner</field>
+        <field name="inherit_id" ref="base.view_partner_form" />
+        <field name="arch" type="xml">
+            <group name="sale" position="inside">
+                <field name="sale_selectable" string="Selectable in orders" />
+            </group>
+        </field>
+    </record>
+    <record id="res_partner_view_buttons" model="ir.ui.view">
+        <field name="name">res.partner.view.buttons</field>
+        <field name="model">res.partner</field>
+        <field name="inherit_id" ref="sale.res_partner_view_buttons" />
+        <field name="arch" type="xml">
+            <xpath
+                expr="//button[@name='action_view_sale_order']"
+                position="attributes"
+            >
+                <attribute name="attrs">{'invisible': [('sale_selectable', '=', False)]}
+                </attribute>
+            </xpath>
+        </field>
+    </record>
+</odoo>

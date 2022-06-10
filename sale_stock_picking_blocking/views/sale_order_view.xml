@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!--Copyright 2019 Eficent Business and IT Consulting Services S.L.-->
+<!--(http://www.eficent.com)-->
+<!--License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl.html).-->
+<odoo>
+    <record id="view_order_form" model="ir.ui.view">
+        <field
+            name="name"
+        >sale.order.form - sale_stock_picking_blocking extension</field>
+        <field name="model">sale.order</field>
+        <field name="inherit_id" ref="sale.view_order_form" />
+        <field name="arch" type="xml">
+            <field name="payment_term_id" position="after">
+                <field name="delivery_block_id" />
+            </field>
+            <xpath
+                expr="//header/button[@name='action_quotation_send']"
+                position="before"
+            >
+                <button
+                    name="action_remove_delivery_block"
+                    string="Release Delivery Block"
+                    type="object"
+                    class="btn-primary"
+                    groups="sale_stock_picking_blocking.group_sale_delivery_block"
+                    attrs="{'invisible': ['|',('delivery_block_id', '=', False),('state', '!=', 'sale')]}"
+                />
+            </xpath>
+        </field>
+    </record>
+    <record id="view_sales_order_filter" model="ir.ui.view">
+        <field name="name">sale.order.list.select</field>
+        <field name="model">sale.order</field>
+        <field name="inherit_id" ref="sale.view_sales_order_filter" />
+        <field name="arch" type="xml">
+            <field name="analytic_account_id" position="after">
+                <field name="delivery_block_id" />
+            </field>
+            <filter name="my_sale_orders_filter" position="after">
+                <filter
+                    string="Delivery Blocked Sales"
+                    name="blocked_sales"
+                    domain="[('delivery_block_id', '!=', False)]"
+                />
+            </filter>
+        </field>
+    </record>
+</odoo>
