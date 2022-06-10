@@ -26,6 +26,7 @@
                                 <field name="times_delivered" />
                                 <field name="units_delivered" />
                                 <field name="units_included" widget="numeric_step" />
+                                <field name="sale_uom_id" optional="show" />
                             </tree>
                             <kanban
                                 class="o_kanban_mobile"
