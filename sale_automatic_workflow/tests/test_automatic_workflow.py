@@ -149,6 +149,22 @@ class TestAutomaticWorkflow(TestCommon, TestAutomaticWorkflowMixin):
         invoice = sale.invoice_ids
         self.assertEqual(invoice.journal_id.id, new_sale_journal.id)
 
+    def test_no_copy(self):
+        workflow = self.create_full_automatic()
+        sale = self.create_sale_order(workflow)
+        self.run_job()
+        invoice = sale.invoice_ids
+        self.assertTrue(sale.workflow_process_id)
+        self.assertTrue(invoice.workflow_process_id)
+        sale2 = sale.copy()
+        invoice2 = invoice.copy()
+        self.assertFalse(sale2.workflow_process_id)
+        self.assertFalse(invoice2.workflow_process_id)
+        picking = sale.picking_ids
+        self.assertTrue(picking.workflow_process_id)
+        picking2 = picking.copy()
+        self.assertFalse(picking2.workflow_process_id)
+
     def test_automatic_sale_order_confirmation_mail(self):
         workflow = self.create_full_automatic()
         workflow.send_order_confirmation_mail = True
