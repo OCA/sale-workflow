@@ -3,7 +3,7 @@
 
 {
     "name": "Company Currency in Sale Orders",
-    "version": "14.0.1.0.0",
+    "version": "14.0.1.0.1",
     "author": "Camptocamp, " "Odoo Community Association (OCA) ",
     "website": "https://github.com/OCA/sale-workflow",
     "category": "Sale",
