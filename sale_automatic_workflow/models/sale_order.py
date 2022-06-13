@@ -14,6 +14,7 @@ class SaleOrder(models.Model):
         comodel_name="sale.workflow.process",
         string="Automatic Workflow",
         ondelete="restrict",
+        copy=False,
     )
     all_qty_delivered = fields.Boolean(
         compute="_compute_all_qty_delivered",
