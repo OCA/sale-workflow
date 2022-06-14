@@ -11,7 +11,10 @@
     "author": "ACSONE SA/NV,Odoo Community Association (OCA)",
     "website": "https://github.com/OCA/sale-workflow",
     "depends": ["sale_management"],
-    "data": ["views/sale_view.xml"],
+    "data": [
+        "views/sale_view.xml",
+        "report/sale_report_template.xml",
+    ],
     "pre_init_hook": "pre_init_hook",
     "post_init_hook": "post_init_hook",
 }
