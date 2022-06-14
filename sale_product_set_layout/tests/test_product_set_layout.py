@@ -2,7 +2,7 @@ from odoo.tests import common
 
 
 class TestProductSetLayout(common.TransactionCase):
-    """ Test Product set"""
+    """Test Product set"""
 
     def setUp(self):
         super(TestProductSetLayout, self).setUp()
@@ -24,11 +24,11 @@ class TestProductSetLayout(common.TransactionCase):
         )
         so_set.add_set()
         # checking our sale order
-        self.assertEquals(len(so.order_line), count_lines + 5)
+        self.assertEqual(len(so.order_line), count_lines + 5)
         for line in so.order_line:
             for set_line in product_set_with_section.set_line_ids:
                 if line.product_id.id == set_line.product_id.id:
-                    self.assertEquals(
+                    self.assertEqual(
                         line.layout_category_id.id,
                         self.env.ref("sale.sale_layout_cat_1").id,
                     )
