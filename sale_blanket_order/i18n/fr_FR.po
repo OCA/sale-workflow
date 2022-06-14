@@ -6,28 +6,30 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 15.0\n"
 "Report-Msgid-Bugs-To: \n"
-"Last-Translator: Automatically generated\n"
+"PO-Revision-Date: 2022-06-14 12:05+0000\n"
+"Last-Translator: yterrettaz <yael.terrettaz@camptocamp.com>\n"
 "Language-Team: none\n"
 "Language: fr_FR\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
 "Plural-Forms: nplurals=2; plural=n > 1;\n"
+"X-Generator: Weblate 4.3.2\n"
 
 #. module: sale_blanket_order
 #: model:ir.actions.report,print_report_name:sale_blanket_order.report_blanket_order
 msgid "'Blanket Order - %s' % object.name"
-msgstr ""
+msgstr "'Soumission - %s' % object.name"
 
 #. module: sale_blanket_order
 #: model_terms:ir.ui.view,arch_db:sale_blanket_order.report_blanketorder_document
 msgid "<span>Blanket Order # </span>"
-msgstr ""
+msgstr "<span>Soumission # </span>"
 
 #. module: sale_blanket_order
 #: model_terms:ir.ui.view,arch_db:sale_blanket_order.report_blanketorder_document
 msgid "<strong>Currency:</strong>"
-msgstr ""
+msgstr "<strong>Devise :</strong>"
 
 #. module: sale_blanket_order
 #: model_terms:ir.ui.view,arch_db:sale_blanket_order.report_blanketorder_document
@@ -37,7 +39,7 @@ msgstr ""
 #. module: sale_blanket_order
 #: model_terms:ir.ui.view,arch_db:sale_blanket_order.report_blanketorder_document
 msgid "<strong>Subtotal</strong>"
-msgstr ""
+msgstr "<strong>Sous total</strong>"
 
 #. module: sale_blanket_order
 #: model_terms:ir.ui.view,arch_db:sale_blanket_order.report_blanketorder_document
@@ -58,13 +60,13 @@ msgstr ""
 #: model:ir.model.fields,field_description:sale_blanket_order.field_sale_blanket_order__message_needaction
 #: model:ir.model.fields,field_description:sale_blanket_order.field_sale_blanket_order_line__message_needaction
 msgid "Action Needed"
-msgstr ""
+msgstr "Action requise"
 
 #. module: sale_blanket_order
 #: model:ir.model.fields,field_description:sale_blanket_order.field_sale_blanket_order__activity_ids
 #: model:ir.model.fields,field_description:sale_blanket_order.field_sale_blanket_order_line__activity_ids
 msgid "Activities"
-msgstr ""
+msgstr "Activités"
 
 #. module: sale_blanket_order
 #: model:ir.model.fields,field_description:sale_blanket_order.field_sale_blanket_order__activity_exception_decoration
