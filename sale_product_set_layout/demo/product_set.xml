@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <record id="product_set_line_services_3" model="product.set.line">
+        <field name="product_set_id" ref="sale_product_set.product_set_services" />
+        <field name="display_type">line_section</field>
+        <field name="name">Section</field>
+    </record>
+</odoo>

@@ -1,7 +1,7 @@
 from odoo import fields, models
 
 
-class ProductSet(models.Model):
+class ProductSetLine(models.Model):
     _inherit = "product.set.line"
 
     product_id = fields.Many2one(required=False)
