@@ -27,7 +27,7 @@
                         context="{'default_display_type': 'line_note'}"
                     />
                 </control>
-                <field name="display_type" />
+                <field name="display_type" invisible="1" />
                 <field name="name" widget="section_and_note_text" />
             </xpath>
             <xpath expr="//field[@name='set_line_ids']" position="attributes">
