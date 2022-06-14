@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <template
+        id="sale_discount_display_amount_document"
+        inherit_id="sale.report_saleorder_document"
+    >
+        <xpath expr="//tr[hasclass('o_total')]" position="before">
+            <tr class="border-black" groups="product.group_discount_per_so_line">
+                <td name="td_discount_total_label"><strong>Discount</strong></td>
+                <td name="td_discount_total" class="text-right">
+                    <span t-field="doc.discount_total" />
+                </td>
+            </tr>
+        </xpath>
+    </template>
+</odoo>
