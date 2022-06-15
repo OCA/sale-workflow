@@ -39,7 +39,7 @@ addon | version | maintainers | summary
 [sale_product_category_menu](sale_product_category_menu/) | 15.0.1.0.0 |  | Shows 'Product Categories' menu item in Sales
 [sale_product_multi_add](sale_product_multi_add/) | 15.0.1.0.0 |  | Sale Product Multi Add
 [sale_product_set](sale_product_set/) | 15.0.1.0.1 |  | Sale product set
-[sale_product_set_layout](sale_product_set_layout/) | 15.0.1.0.0 |  | This module allows to add sections with product sets
+[sale_product_set_layout](sale_product_set_layout/) | 15.0.1.0.1 |  | This module allows to add sections with product sets
 [sale_rental](sale_rental/) | 15.0.1.0.1 | [![alexis-via](https://github.com/alexis-via.png?size=30px)](https://github.com/alexis-via) | Manage Rental of Products
 [sale_sourced_by_line](sale_sourced_by_line/) | 15.0.1.0.1 |  | Multiple warehouse source locations for Sale order
 [sale_start_end_dates](sale_start_end_dates/) | 15.0.1.0.1 | [![alexis-via](https://github.com/alexis-via.png?size=30px)](https://github.com/alexis-via) | Adds start date and end date on sale order lines
