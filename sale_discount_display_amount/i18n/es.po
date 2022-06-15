@@ -17,10 +17,33 @@ msgstr ""
 "X-Generator: Weblate 3.10\n"
 
 #. module: sale_discount_display_amount
+#: model_terms:ir.ui.view,arch_db:sale_discount_display_amount.sale_discount_display_amount_document
+msgid "<strong>Discount</strong>"
+msgstr ""
+
+#. module: sale_discount_display_amount
 #: model:ir.model.fields,field_description:sale_discount_display_amount.field_sale_order__discount_total
 #: model:ir.model.fields,field_description:sale_discount_display_amount.field_sale_order_line__discount_total
 msgid "Discount Subtotal"
 msgstr "Descuento total"
+
+#. module: sale_discount_display_amount
+#: model:ir.model.fields,field_description:sale_discount_display_amount.field_sale_order__display_name
+#: model:ir.model.fields,field_description:sale_discount_display_amount.field_sale_order_line__display_name
+msgid "Display Name"
+msgstr ""
+
+#. module: sale_discount_display_amount
+#: model:ir.model.fields,field_description:sale_discount_display_amount.field_sale_order__id
+#: model:ir.model.fields,field_description:sale_discount_display_amount.field_sale_order_line__id
+msgid "ID"
+msgstr ""
+
+#. module: sale_discount_display_amount
+#: model:ir.model.fields,field_description:sale_discount_display_amount.field_sale_order____last_update
+#: model:ir.model.fields,field_description:sale_discount_display_amount.field_sale_order_line____last_update
+msgid "Last Modified on"
+msgstr ""
 
 #. module: sale_discount_display_amount
 #: model:ir.model,name:sale_discount_display_amount.model_sale_order
