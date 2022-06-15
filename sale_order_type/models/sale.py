@@ -28,6 +28,15 @@ class SaleOrder(models.Model):
 
     @api.model
     def _default_type_id(self):
+        ctx_partner_id = self.env.context.get("default_partner_id", False)
+        if ctx_partner_id:
+            partner = self.env["res.partner"].browse(ctx_partner_id)
+            sale_type = (
+                partner.with_company(self.company_id).sale_type
+                or partner.commercial_partner_id.with_company(self.company_id).sale_type
+            )
+            if sale_type:
+                return sale_type
         return self.env["sale.order.type"].search(
             [("company_id", "in", [self.env.company.id, False])], limit=1
         )
