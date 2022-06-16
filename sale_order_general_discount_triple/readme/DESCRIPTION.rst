@@ -1,0 +1,1 @@
+A bridge between Sale Order General Discount(https://github.com/OCA/sale-workflow/tree/14.0/sale_order_general_discoun) and Sale Triple Discount(https://github.com/OCA/sale-workflow/tree/14.0/sale_triple_discount) module to set the general discount on any of the 3 discount field on sale order lines.
