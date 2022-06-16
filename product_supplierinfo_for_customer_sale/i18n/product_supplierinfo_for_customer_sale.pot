@@ -6,12 +6,20 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 13.0\n"
 "Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2022-06-16 13:31+0000\n"
+"PO-Revision-Date: 2022-06-16 13:31+0000\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
 "Plural-Forms: \n"
+
+#. module: product_supplierinfo_for_customer_sale
+#: model:ir.actions.act_window,name:product_supplierinfo_for_customer_sale.action_open_product_customerinfo
+#: model:ir.ui.menu,name:product_supplierinfo_for_customer_sale.menu_product_customerinfo
+msgid "Prices for customers"
+msgstr ""
 
 #. module: product_supplierinfo_for_customer_sale
 #: model:ir.model.fields,field_description:product_supplierinfo_for_customer_sale.field_sale_order_line__product_customer_code
