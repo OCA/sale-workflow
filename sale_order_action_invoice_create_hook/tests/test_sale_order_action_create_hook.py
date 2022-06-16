@@ -75,7 +75,7 @@ class TestSaleOrderActionCreateHook(TransactionCase):
             "open_invoices": True,
         }
         res = payment.with_context(sale_context).create_invoices()
-        invoice_id = self.env["account.invoice"].browse(res["res_id"])
+        invoice_id = self.env["account.move"].browse(res["res_id"])
         return invoice_id
 
     def test_create_invoice_case_1(self):
