@@ -42,20 +42,12 @@ class AutomaticWorkflowJob(models.Model):
                 "default_amount_total": sale.amount_residual,
                 "default_currency_id": sale.pricelist_id.currency_id.id,
             }
-            bank_journal = (
-                self.env["account.journal"]
-                .search(
-                    [
-                        ("type", "=", "bank"),
-                        ("company_id", "=", self.env.company.id),
-                    ],
-                    limit=1,
-                )
-                .id,
+            journal = (
+                sale.workflow_process_id and sale.workflow_process_id.bank_journal_id
             )
             self.env["account.voucher.wizard"].with_context(**ctx).create(
                 {
-                    "journal_id": bank_journal,
+                    "journal_id": journal.id,
                     "amount_advance": sale.amount_residual,
                 }
             ).make_advance_payment()
