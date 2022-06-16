@@ -36,6 +36,12 @@
                         />
                         </div>
                     </div>
+                <field
+                    name="bank_journal_id"
+                    options="{'no_open': True, 'no_create': True}"
+                    attrs="{'required':[('automated_advance_payment_create','=',True)], 'invisible':[('automated_advance_payment_create','!=',True)]}"
+                />
+                <newline />
             </field>
         </field>
     </record>
