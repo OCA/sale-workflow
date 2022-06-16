@@ -25,7 +25,6 @@ class SaleOrder(models.Model):
     def _modify_invoices(self, invoices):
         return invoices
 
-    @api.model_cr
     def _register_hook(self):
         def new_action_invoice_create(self, grouped=False, final=False):
             """
@@ -45,7 +44,7 @@ class SaleOrder(models.Model):
             self._get_draft_invoices(invoices, references)
             # END HOOK
 
-            inv_obj = self.env["account.invoice"]
+            inv_obj = self.env["account.move"]
             precision = self.env["decimal.precision"].precision_get(
                 "Product Unit of Measure"
             )
@@ -166,7 +165,7 @@ class SaleOrder(models.Model):
                 )
             return [inv.id for inv in invoices.values()]
 
-        self._patch_method("action_invoice_create", new_action_invoice_create)
+        self._patch_method("_create_invoices", new_action_invoice_create)
 
         return super(SaleOrder, self)._register_hook()
 
