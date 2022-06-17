@@ -12,6 +12,7 @@
     "depends": ["account", "sale_management"],
     "data": [
         "security/ir.model.access.csv",
+        "data/sale_data.xml",
         "wizard/sale_create_invoice_plan_view.xml",
         "wizard/sale_make_planned_invoice_view.xml",
         "views/sale_view.xml",

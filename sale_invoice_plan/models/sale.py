@@ -20,13 +20,28 @@ class SaleOrder(models.Model):
         default=False,
         copy=False,
     )
-    ip_invoice_plan = fields.Boolean(
+    invoice_plan_process = fields.Boolean(
         string="Invoice Plan In Process",
-        compute="_compute_ip_invoice_plan",
+        compute="_compute_invoice_plan_process",
         help="At least one invoice plan line pending to create invoice",
     )
+    invoice_plan_total_percent = fields.Float(
+        compute="_compute_invoice_plan_total",
+        string="Percent",
+    )
+    invoice_plan_total_amount = fields.Monetary(
+        compute="_compute_invoice_plan_total",
+        string="Total Amount",
+    )
 
-    def _compute_ip_invoice_plan(self):
+    @api.depends("invoice_plan_ids")
+    def _compute_invoice_plan_total(self):
+        for rec in self:
+            installments = rec.invoice_plan_ids.filtered("installment")
+            rec.invoice_plan_total_percent = sum(installments.mapped("percent"))
+            rec.invoice_plan_total_amount = sum(installments.mapped("amount"))
+
+    def _compute_invoice_plan_process(self):
         for rec in self:
             has_invoice_plan = rec.use_invoice_plan and rec.invoice_plan_ids
             to_invoice = rec.invoice_plan_ids.filtered(lambda l: not l.invoiced)
@@ -35,9 +50,17 @@ class SaleOrder(models.Model):
                     rec.invoice_status == "no"
                     and "advance" in to_invoice.mapped("invoice_type")
                 ):
-                    rec.ip_invoice_plan = True
+                    rec.invoice_plan_process = True
                     continue
-            rec.ip_invoice_plan = False
+            rec.invoice_plan_process = False
+
+    @api.constrains("invoice_plan_ids")
+    def _check_invoice_plan_total_percent(self):
+        for rec in self:
+            installments = rec.invoice_plan_ids.filtered("installment")
+            invoice_plan_total_percent = sum(installments.mapped("percent"))
+            if float_round(invoice_plan_total_percent, 0) > 100:
+                raise UserError(_("Invoice plan total percentage must not exceed 100%"))
 
     @api.constrains("state")
     def _check_invoice_plan(self):
@@ -60,7 +83,7 @@ class SaleOrder(models.Model):
         self.invoice_plan_ids.unlink()
         invoice_plans = []
         Decimal = self.env["decimal.precision"]
-        prec = Decimal.precision_get("Product Unit of Measure")
+        prec = Decimal.precision_get("Sales Invoice Plan Percent")
         percent = float_round(1.0 / num_installment * 100, prec)
         percent_last = 100 - (percent * (num_installment - 1))
         # Advance

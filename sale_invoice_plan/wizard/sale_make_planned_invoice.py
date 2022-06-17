@@ -22,5 +22,5 @@ class SaleAdvancePaymentInv(models.TransientModel):
                 makeinv_wizard["advance_payment_method"] = "percentage"
                 makeinv_wizard["amount"] = plan.percent
             makeinvoice = MakeInvoice.create(makeinv_wizard)
-            makeinvoice.with_context(invoice_plan_id=plan.id).create_invoices()
+            makeinvoice.sudo().with_context(invoice_plan_id=plan.id).create_invoices()
         return {"type": "ir.actions.act_window_close"}
