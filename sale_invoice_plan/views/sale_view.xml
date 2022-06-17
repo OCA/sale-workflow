@@ -5,12 +5,38 @@
         <field name="model">sale.invoice.plan</field>
         <field name="arch" type="xml">
             <tree editable="bottom">
-                <field name="installment" />
-                <field name="plan_date" />
-                <field name="invoice_type" />
-                <field name="percent" />
+                <field name="no_edit" invisible="1" />
+                <field name="analytic_account_id" />
+                <field
+                    name="installment"
+                    attrs="{'readonly': [('no_edit', '=', True)]}"
+                />
+                <field
+                    name="plan_date"
+                    attrs="{'readonly': [('no_edit', '=', True)]}"
+                />
+                <field
+                    name="invoice_type"
+                    attrs="{'readonly': [('no_edit', '=', True)]}"
+                />
+                <field
+                    name="percent"
+                    optional="show"
+                    attrs="{'readonly': [('no_edit', '=', True)]}"
+                />
+                <field
+                    name="amount"
+                    optional="show"
+                    attrs="{'readonly': [('no_edit', '=', True)]}"
+                />
+                <field name="amount_invoiced" optional="hide" sum="Amount" />
                 <field name="to_invoice" />
                 <field name="invoiced" />
+                <field
+                    name="invoice_move_ids"
+                    optional="hide"
+                    widget="many2many_tags"
+                />
                 <field name="last" invisible="1" />
             </tree>
         </field>
@@ -29,6 +55,7 @@
                     <group>
                         <field name="invoice_type" />
                         <field name="percent" />
+                        <field name="amount" />
                         <field name="invoiced" />
                         <field name="invoice_move_ids" widget="many2many_tags" />
                     </group>
@@ -53,13 +80,13 @@
                 </div>
             </xpath>
             <xpath expr="//button[@name='payment_action_capture']" position="before">
-                <field name="ip_invoice_plan" invisible="1" />
+                <field name="invoice_plan_process" invisible="1" />
                 <button
                     name="%(action_view_sale_make_planned_invoice)d"
                     string="Create Invoice by Plan"
                     type="action"
                     class="btn-primary"
-                    attrs="{'invisible': [('ip_invoice_plan', '=', False)]}"
+                    attrs="{'invisible': [('invoice_plan_process', '=', False)]}"
                 />
             </xpath>
             <xpath expr="/form/sheet/notebook/page" position="after">
@@ -85,8 +112,12 @@
                     <field
                         name="invoice_plan_ids"
                         context="{'tree_view_ref': 'sale_invoice_plan.view_sale_invoice_plan_tree'}"
-                        attrs="{'invisible': [('invoice_plan_ids', '=', [])], 'readonly': [('invoice_count', '>', 0)]}"
+                        attrs="{'invisible': [('invoice_plan_ids', '=', [])]}"
                     />
+                    <group class="oe_subtotal_footer oe_right">
+                        <field name="invoice_plan_total_percent" />
+                        <field name="invoice_plan_total_amount" />
+                    </group>
                 </page>
             </xpath>
         </field>
@@ -99,6 +130,7 @@
             <search string="Search Sales Invoice Plan Lines">
                 <field name="partner_id" />
                 <field name="sale_id" />
+                <field name="analytic_account_id" />
                 <field name="installment" />
                 <separator />
                 <filter
@@ -125,6 +157,12 @@
                         context="{'group_by':'sale_id'}"
                     />
                     <filter
+                        string="Analytic Account"
+                        name="analytic_account_id"
+                        domain="[]"
+                        context="{'group_by':'analytic_account_id'}"
+                    />
+                    <filter
                         string="Installment"
                         name="install"
                         domain="[]"
@@ -146,12 +184,16 @@
         <field name="arch" type="xml">
             <tree edit="0" create="0" delete="0">
                 <field name="sale_id" />
+                <field name="analytic_account_id" />
                 <field name="installment" />
                 <field name="plan_date" />
                 <field name="invoice_type" />
-                <field name="percent" />
+                <field name="percent" optional="show" sum="Percent" />
+                <field name="amount" optional="show" sum="Amount" />
+                <field name="amount_invoiced" optional="show" sum="Amount" />
                 <field name="to_invoice" />
                 <field name="invoiced" />
+                <field name="invoice_move_ids" widget="many2many_tags" />
             </tree>
         </field>
     </record>
