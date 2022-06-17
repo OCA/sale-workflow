@@ -6,6 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 12.0\n"
 "Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2022-06-21 07:27+0000\n"
 "PO-Revision-Date: 2019-09-01 10:10+0000\n"
 "Last-Translator: 黎伟杰 <674416404@qq.com>\n"
 "Language-Team: none\n"
@@ -27,12 +28,25 @@ msgid "Advance on 1st Invoice"
 msgstr "第一张发票预付款"
 
 #. module: sale_invoice_plan
+#: model:ir.model.fields,field_description:sale_invoice_plan.field_sale_invoice_plan__amount
+#: model_terms:ir.ui.view,arch_db:sale_invoice_plan.view_sale_invoice_plan_tree
+#: model_terms:ir.ui.view,arch_db:sale_invoice_plan.view_sale_invoice_plan_tree_readonly
+msgid "Amount"
+msgstr ""
+
+#. module: sale_invoice_plan
+#: model:ir.model.fields,field_description:sale_invoice_plan.field_sale_invoice_plan__amount_invoiced
+#, fuzzy
+msgid "Amount Invoiced"
+msgstr "下一张发票"
+
+#. module: sale_invoice_plan
 #: model_terms:ir.ui.view,arch_db:sale_invoice_plan.view_order_form_invoice_plan
 msgid "Are you sure to remove this invoice plan?"
 msgstr "您确定要删除此发票计划吗？"
 
 #. module: sale_invoice_plan
-#: model:ir.model.fields,help:sale_invoice_plan.field_sale_order__ip_invoice_plan
+#: model:ir.model.fields,help:sale_invoice_plan.field_sale_order__invoice_plan_process
 msgid "At least one invoice plan line pending to create invoice"
 msgstr "至少有一个待创建发票的发票计划行"
 
@@ -135,6 +149,14 @@ msgid "Installment"
 msgstr "分期付款"
 
 #. module: sale_invoice_plan
+#: code:addons/sale_invoice_plan/models/sale_invoice_plan.py:0
+#, python-format
+msgid ""
+"Installment %s: already used and not allowed to delete.\n"
+"Please discard changes."
+msgstr ""
+
+#. module: sale_invoice_plan
 #: model:ir.model.fields,field_description:sale_invoice_plan.field_sale_create_invoice_plan__installment_date
 msgid "Installment Date"
 msgstr "分期付款日期"
@@ -165,7 +187,7 @@ msgid "Invoice Plan"
 msgstr "发票计划"
 
 #. module: sale_invoice_plan
-#: model:ir.model.fields,field_description:sale_invoice_plan.field_sale_order__ip_invoice_plan
+#: model:ir.model.fields,field_description:sale_invoice_plan.field_sale_order__invoice_plan_process
 msgid "Invoice Plan In Process"
 msgstr "发票计划正在处理中"
 
@@ -178,6 +200,12 @@ msgstr "发票计划明细"
 #: model_terms:ir.ui.view,arch_db:sale_invoice_plan.view_sale_make_planned_invoice
 msgid "Invoice Sales Order"
 msgstr "发票销售订单"
+
+#. module: sale_invoice_plan
+#: code:addons/sale_invoice_plan/models/sale.py:0
+#, python-format
+msgid "Invoice plan total percentage must not exceed 100%"
+msgstr ""
 
 #. module: sale_invoice_plan
 #: model:ir.model.fields,field_description:sale_invoice_plan.field_sale_invoice_plan__invoice_move_ids
@@ -235,6 +263,23 @@ msgid "Next Invoice"
 msgstr "下一张发票"
 
 #. module: sale_invoice_plan
+#: model:ir.model.fields,field_description:sale_invoice_plan.field_sale_invoice_plan__no_edit
+msgid "No Edit"
+msgstr ""
+
+#. module: sale_invoice_plan
+#: code:addons/sale_invoice_plan/tests/test_sale_invoice_plan.py:0
+#, python-format
+msgid "No installment raises following error : %s"
+msgstr ""
+
+#. module: sale_invoice_plan
+#: code:addons/sale_invoice_plan/models/sale_invoice_plan.py:0
+#, python-format
+msgid "No matched order line for invoice line"
+msgstr ""
+
+#. module: sale_invoice_plan
 #: code:addons/sale_invoice_plan/wizard/sale_create_invoice_plan.py:0
 #, python-format
 msgid "Number Installment must greater than 1"
@@ -247,6 +292,8 @@ msgstr "分期付款"
 
 #. module: sale_invoice_plan
 #: model:ir.model.fields,field_description:sale_invoice_plan.field_sale_invoice_plan__percent
+#: model:ir.model.fields,field_description:sale_invoice_plan.field_sale_order__invoice_plan_total_percent
+#: model_terms:ir.ui.view,arch_db:sale_invoice_plan.view_sale_invoice_plan_tree_readonly
 msgid "Percent"
 msgstr "百分比"
 
@@ -256,13 +303,14 @@ msgid "Plan Date"
 msgstr "计划日期"
 
 #. module: sale_invoice_plan
-#: code:addons/sale_invoice_plan/models/sale.py:0
-#, python-format
+#: code:addons/sale_invoice_plan/models/sale_invoice_plan.py:0
+#, fuzzy, python-format
 msgid ""
-"Plan quantity: %s, exceed invoiceable quantity: %s\n"
+"Plan quantity: %(plan_qty)s, exceed invoiceable quantity: "
+"%(invoiceable_qty)s\n"
 "Product should be delivered before invoice"
 msgstr ""
-"计划数量：%s，超过可发票数量：%s\n"
+"计划数量：%(plan_qty)s，超过可发票数量：%(invoiceable_qty)s\n"
 "产品应在发票前交付"
 
 #. module: sale_invoice_plan
@@ -319,6 +367,12 @@ msgid "Status"
 msgstr ""
 
 #. module: sale_invoice_plan
+#: model:ir.model.fields,help:sale_invoice_plan.field_sale_invoice_plan__amount
+#, fuzzy
+msgid "This amount will be used to calculate the percent"
+msgstr "该百分比将用于计算新数量"
+
+#. module: sale_invoice_plan
 #: model:ir.model.fields,help:sale_invoice_plan.field_sale_invoice_plan__percent
 msgid "This percent will be used to calculate new quantity"
 msgstr "该百分比将用于计算新数量"
@@ -332,6 +386,11 @@ msgstr ""
 #: model_terms:ir.ui.view,arch_db:sale_invoice_plan.view_sale_create_invoice_plan
 msgid "This wizard help you quickly create invoice plan."
 msgstr "该向导可帮助您快速创建发票计划。"
+
+#. module: sale_invoice_plan
+#: model:ir.model.fields,field_description:sale_invoice_plan.field_sale_order__invoice_plan_total_amount
+msgid "Total Amount"
+msgstr ""
 
 #. module: sale_invoice_plan
 #: model:ir.model.fields,field_description:sale_invoice_plan.field_sale_invoice_plan__invoice_type
