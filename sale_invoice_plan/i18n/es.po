@@ -6,6 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 13.0\n"
 "Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2022-06-21 07:27+0000\n"
 "PO-Revision-Date: 2020-10-26 12:08+0000\n"
 "Last-Translator: Daniel Martinez Vila <daniel.martinez@qubiq.es>\n"
 "Language-Team: none\n"
@@ -27,12 +28,25 @@ msgid "Advance on 1st Invoice"
 msgstr "Anticipo de la 1ª factura"
 
 #. module: sale_invoice_plan
+#: model:ir.model.fields,field_description:sale_invoice_plan.field_sale_invoice_plan__amount
+#: model_terms:ir.ui.view,arch_db:sale_invoice_plan.view_sale_invoice_plan_tree
+#: model_terms:ir.ui.view,arch_db:sale_invoice_plan.view_sale_invoice_plan_tree_readonly
+msgid "Amount"
+msgstr ""
+
+#. module: sale_invoice_plan
+#: model:ir.model.fields,field_description:sale_invoice_plan.field_sale_invoice_plan__amount_invoiced
+#, fuzzy
+msgid "Amount Invoiced"
+msgstr "Próxima factura"
+
+#. module: sale_invoice_plan
 #: model_terms:ir.ui.view,arch_db:sale_invoice_plan.view_order_form_invoice_plan
 msgid "Are you sure to remove this invoice plan?"
 msgstr "¿Estás seguro de eliminar este plan de facturas?"
 
 #. module: sale_invoice_plan
-#: model:ir.model.fields,help:sale_invoice_plan.field_sale_order__ip_invoice_plan
+#: model:ir.model.fields,help:sale_invoice_plan.field_sale_order__invoice_plan_process
 msgid "At least one invoice plan line pending to create invoice"
 msgstr "Al menos una línea del plan de factura pendiente para crear la factura"
 
@@ -135,6 +149,14 @@ msgid "Installment"
 msgstr "Entrega"
 
 #. module: sale_invoice_plan
+#: code:addons/sale_invoice_plan/models/sale_invoice_plan.py:0
+#, python-format
+msgid ""
+"Installment %s: already used and not allowed to delete.\n"
+"Please discard changes."
+msgstr ""
+
+#. module: sale_invoice_plan
 #: model:ir.model.fields,field_description:sale_invoice_plan.field_sale_create_invoice_plan__installment_date
 msgid "Installment Date"
 msgstr "Fecha de pago"
@@ -165,7 +187,7 @@ msgid "Invoice Plan"
 msgstr "Plan de factura"
 
 #. module: sale_invoice_plan
-#: model:ir.model.fields,field_description:sale_invoice_plan.field_sale_order__ip_invoice_plan
+#: model:ir.model.fields,field_description:sale_invoice_plan.field_sale_order__invoice_plan_process
 msgid "Invoice Plan In Process"
 msgstr "Plan de factura en proceso"
 
@@ -178,6 +200,12 @@ msgstr "Detalle de planificación de facturas"
 #: model_terms:ir.ui.view,arch_db:sale_invoice_plan.view_sale_make_planned_invoice
 msgid "Invoice Sales Order"
 msgstr "Orden de venta de factura"
+
+#. module: sale_invoice_plan
+#: code:addons/sale_invoice_plan/models/sale.py:0
+#, python-format
+msgid "Invoice plan total percentage must not exceed 100%"
+msgstr ""
 
 #. module: sale_invoice_plan
 #: model:ir.model.fields,field_description:sale_invoice_plan.field_sale_invoice_plan__invoice_move_ids
@@ -235,6 +263,23 @@ msgid "Next Invoice"
 msgstr "Próxima factura"
 
 #. module: sale_invoice_plan
+#: model:ir.model.fields,field_description:sale_invoice_plan.field_sale_invoice_plan__no_edit
+msgid "No Edit"
+msgstr ""
+
+#. module: sale_invoice_plan
+#: code:addons/sale_invoice_plan/tests/test_sale_invoice_plan.py:0
+#, python-format
+msgid "No installment raises following error : %s"
+msgstr ""
+
+#. module: sale_invoice_plan
+#: code:addons/sale_invoice_plan/models/sale_invoice_plan.py:0
+#, python-format
+msgid "No matched order line for invoice line"
+msgstr ""
+
+#. module: sale_invoice_plan
 #: code:addons/sale_invoice_plan/wizard/sale_create_invoice_plan.py:0
 #, python-format
 msgid "Number Installment must greater than 1"
@@ -247,6 +292,8 @@ msgstr "Número de cuotas"
 
 #. module: sale_invoice_plan
 #: model:ir.model.fields,field_description:sale_invoice_plan.field_sale_invoice_plan__percent
+#: model:ir.model.fields,field_description:sale_invoice_plan.field_sale_order__invoice_plan_total_percent
+#: model_terms:ir.ui.view,arch_db:sale_invoice_plan.view_sale_invoice_plan_tree_readonly
 msgid "Percent"
 msgstr "Porcentage"
 
@@ -256,13 +303,14 @@ msgid "Plan Date"
 msgstr "Fecha del plan"
 
 #. module: sale_invoice_plan
-#: code:addons/sale_invoice_plan/models/sale.py:0
-#, python-format
+#: code:addons/sale_invoice_plan/models/sale_invoice_plan.py:0
+#, fuzzy, python-format
 msgid ""
-"Plan quantity: %s, exceed invoiceable quantity: %s\n"
+"Plan quantity: %(plan_qty)s, exceed invoiceable quantity: "
+"%(invoiceable_qty)s\n"
 "Product should be delivered before invoice"
 msgstr ""
-"Cantidad planificada: %s, excede la cantidad facturable: %s\n"
+"Cantidad planificada: %(plan_qty)s, excede la cantidad facturable: %(invoiceable_qty)s\n"
 "El producto debe entregarse antes de la factura."
 
 #. module: sale_invoice_plan
@@ -316,6 +364,12 @@ msgid "Status"
 msgstr "Estado"
 
 #. module: sale_invoice_plan
+#: model:ir.model.fields,help:sale_invoice_plan.field_sale_invoice_plan__amount
+#, fuzzy
+msgid "This amount will be used to calculate the percent"
+msgstr "Este porcentaje se utilizará para calcular la nueva cantidad"
+
+#. module: sale_invoice_plan
 #: model:ir.model.fields,help:sale_invoice_plan.field_sale_invoice_plan__percent
 msgid "This percent will be used to calculate new quantity"
 msgstr "Este porcentaje se utilizará para calcular la nueva cantidad"
@@ -331,6 +385,11 @@ msgstr ""
 #: model_terms:ir.ui.view,arch_db:sale_invoice_plan.view_sale_create_invoice_plan
 msgid "This wizard help you quickly create invoice plan."
 msgstr "Este asistente le ayuda a crear rápidamente un plan de facturación."
+
+#. module: sale_invoice_plan
+#: model:ir.model.fields,field_description:sale_invoice_plan.field_sale_order__invoice_plan_total_amount
+msgid "Total Amount"
+msgstr ""
 
 #. module: sale_invoice_plan
 #: model:ir.model.fields,field_description:sale_invoice_plan.field_sale_invoice_plan__invoice_type
