@@ -1,14 +1,15 @@
 
 [![Runboat](https://img.shields.io/badge/runboat-Try%20me-875A7B.png)](https://runboat.odoo-community.org/builds?repo=OCA/sale-workflow&target_branch=14.0)
-[![Build Status](https://travis-ci.com/OCA/sale-workflow.svg?branch=14.0)](https://travis-ci.com/OCA/sale-workflow)
+[![Pre-commit Status](https://github.com/OCA/sale-workflow/actions/workflows/pre-commit.yml/badge.svg?branch=14.0)](https://github.com/OCA/sale-workflow/actions/workflows/pre-commit.yml?query=branch%3A14.0)
+[![Build Status](https://github.com/OCA/sale-workflow/actions/workflows/test.yml/badge.svg?branch=14.0)](https://github.com/OCA/sale-workflow/actions/workflows/test.yml?query=branch%3A14.0)
 [![codecov](https://codecov.io/gh/OCA/sale-workflow/branch/14.0/graph/badge.svg)](https://codecov.io/gh/OCA/sale-workflow)
 [![Translation Status](https://translation.odoo-community.org/widgets/sale-workflow-14-0/-/svg-badge.svg)](https://translation.odoo-community.org/engage/sale-workflow-14-0/?utm_source=widget)
 
 <!-- /!\ do not modify above this line -->
 
-# sale-workflow
+# Odoo Sales, Workflow and Organization
 
-TODO: add repo description.
+This project aim to deal with modules related to manage sale and their related workflow.
 
 <!-- /!\ do not modify below this line -->
 
