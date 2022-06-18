@@ -8,7 +8,7 @@
     "website": "https://github.com/OCA/sale-workflow",
     "category": "Sales Management",
     "license": "AGPL-3",
-    "development_status": "Production/Stable",
+    "development_status": "Beta",
     "depends": ["sale_stock", "sale_procurement_group_by_line"],
     "data": ["views/sale_order_view.xml", "views/res_partner_view.xml"],
     "installable": True,
