@@ -10,6 +10,7 @@
     "author": "ACSONE SA/NV,Odoo Community Association (OCA)",
     "maintainers": ["rousseldenis"],
     "website": "https://github.com/OCA/sale-workflow",
+    "development_status": "Production/Stable",
     "depends": ["sale_stock"],
     "demo": ["demo/sale_order.xml"],
     "post_init_hook": "post_init_hook",

@@ -34,4 +34,5 @@
         "python": ["openupgradelib"],
     },
     "pre_init_hook": "pre_init_hook",
+    "development_status": "Alpha",
 }
