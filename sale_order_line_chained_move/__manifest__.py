@@ -5,7 +5,7 @@
     "name": "Sale Order Line Chained Move",
     "summary": """
         This module adds a field on sale order line to get all related move lines""",
-    "version": "14.0.1.0.0",
+    "version": "14.0.1.0.1",
     "license": "AGPL-3",
     "author": "ACSONE SA/NV,Odoo Community Association (OCA)",
     "maintainers": ["rousseldenis"],
