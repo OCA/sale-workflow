@@ -40,7 +40,7 @@ addon | version | maintainers | summary
 [sale_company_currency](sale_company_currency/) | 14.0.1.0.1 |  | Company Currency in Sale Orders
 [sale_contact_type](sale_contact_type/) | 14.0.1.0.0 |  | Define ordering contact type
 [sale_default_uom](sale_default_uom/) | 14.0.1.1.0 | [![ashishhirapara](https://github.com/ashishhirapara.png?size=30px)](https://github.com/ashishhirapara) | Set default Unit of Measure value of a product in sales order lines.
-[sale_delivery_date](sale_delivery_date/) | 14.0.1.0.1 | [![mmequignon](https://github.com/mmequignon.png?size=30px)](https://github.com/mmequignon) | Postpones delivery dates based on customer preferences, and/or warehouse configuration.
+[sale_delivery_date](sale_delivery_date/) | 14.0.1.0.2 | [![mmequignon](https://github.com/mmequignon.png?size=30px)](https://github.com/mmequignon) | Postpones delivery dates based on customer preferences, and/or warehouse configuration.
 [sale_delivery_split_date](sale_delivery_split_date/) | 14.0.1.0.0 |  | Sale Deliveries split by date
 [sale_delivery_state](sale_delivery_state/) | 14.0.1.1.0 |  | Show the delivery state on the sale order
 [sale_discount_display_amount](sale_discount_display_amount/) | 14.0.1.1.0 |  | This addon intends to display the amount of the discount computed on sale_order_line and sale_order level
@@ -58,7 +58,7 @@ addon | version | maintainers | summary
 [sale_order_disable_user_autosubscribe](sale_order_disable_user_autosubscribe/) | 14.0.1.0.0 |  | Remove the salesperson from autosubscribed sale followers
 [sale_order_general_discount](sale_order_general_discount/) | 14.0.1.0.1 |  | General discount per sale order
 [sale_order_invoice_amount](sale_order_invoice_amount/) | 14.0.1.0.0 |  | Display the invoiced and uninvoiced total in the sale order
-[sale_order_line_chained_move](sale_order_line_chained_move/) | 14.0.1.0.0 | [![rousseldenis](https://github.com/rousseldenis.png?size=30px)](https://github.com/rousseldenis) | This module adds a field on sale order line to get all related move lines
+[sale_order_line_chained_move](sale_order_line_chained_move/) | 14.0.1.0.1 | [![rousseldenis](https://github.com/rousseldenis.png?size=30px)](https://github.com/rousseldenis) | This module adds a field on sale order line to get all related move lines
 [sale_order_line_date](sale_order_line_date/) | 14.0.1.1.0 |  | Adds a commitment date to each sale order line.
 [sale_order_line_delivery_state](sale_order_line_delivery_state/) | 14.0.1.0.0 |  | Show the delivery state on the sale order line
 [sale_order_line_description](sale_order_line_description/) | 14.0.1.0.0 |  | Sale order line description
@@ -100,7 +100,7 @@ addon | version | maintainers | summary
 [sale_restricted_qty](sale_restricted_qty/) | 14.0.1.0.1 | [![ashishhirapara](https://github.com/ashishhirapara.png?size=30px)](https://github.com/ashishhirapara) | Sale order min quantity
 [sale_shipping_info_helper](sale_shipping_info_helper/) | 14.0.1.0.0 |  | Add shipping amounts on sale order
 [sale_start_end_dates](sale_start_end_dates/) | 14.0.1.0.0 | [![alexis-via](https://github.com/alexis-via.png?size=30px)](https://github.com/alexis-via) | Adds start date and end date on sale order lines
-[sale_stock_delivery_address](sale_stock_delivery_address/) | 14.0.1.0.1 |  | Sale Stock Delivery Address
+[sale_stock_delivery_address](sale_stock_delivery_address/) | 14.0.1.0.2 |  | Sale Stock Delivery Address
 [sale_stock_picking_blocking](sale_stock_picking_blocking/) | 14.0.1.1.0 |  | Allow you to block the creation of deliveries from a sale order.
 [sale_stock_picking_note](sale_stock_picking_note/) | 14.0.1.0.0 |  | Add picking note in sale and purchase order
 [sale_tier_validation](sale_tier_validation/) | 14.0.1.0.0 |  | Extends the functionality of Sale Orders to support a tier validation process.
