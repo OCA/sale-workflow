@@ -17,7 +17,7 @@ class TestProductNameSearch(TransactionCase):
         self.product = (
             self.env["product.product"]
             .create({"name": "Name_product", "default_code": "code_product"})
-            .with_context({"partner_id": self.customer.id})
+            .with_context(**{"partner_id": self.customer.id})
         )
         self.supplierinfo = self.env["product.supplierinfo"]
         self.customerinfo = self.env["product.customerinfo"]
@@ -64,7 +64,7 @@ class TestProductNameSearch(TransactionCase):
         self.product_1 = (
             self.env["product.product"]
             .create({"name": "Name_test_1", "default_code": "code_test_1"})
-            .with_context({"partner_id": self.customer.id})
+            .with_context(**{"partner_id": self.customer.id})
         )
 
         self.assertFalse(self.product_1.customer_ids)
