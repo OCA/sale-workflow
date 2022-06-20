@@ -13,7 +13,10 @@ class TestSaleTierValidation(common.SavepointCase):
         cls.so_model = cls.env.ref("sale.model_sale_order")
 
         # Create users
-        group_ids = cls.env.ref("base.group_system").ids
+        group_ids = (
+            cls.env.ref("base.group_system")
+            + cls.env.ref("sales_team.group_sale_salesman_all_leads")
+        ).ids
         cls.test_user_1 = cls.env["res.users"].create(
             {
                 "name": "John",
