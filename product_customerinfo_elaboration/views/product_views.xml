@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!-- Copyright 2022 Tecnativa - Carlos Roca
+     License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl). -->
+<odoo>
+    <record id="product_customerinfo_form_view" model="ir.ui.view">
+        <field name="model">product.customerinfo</field>
+        <field
+            name="inherit_id"
+            ref="product_supplierinfo_for_customer.product_customerinfo_form_view"
+        />
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='product_tmpl_id']/.." position="after">
+                <group string="Elaborations">
+                    <field name="elaboration_id" />
+                    <field name="elaboration_note" />
+                </group>
+            </xpath>
+        </field>
+    </record>
+    <record id="product_customerinfo_tree_view" model="ir.ui.view">
+        <field name="model">product.customerinfo</field>
+        <field
+            name="inherit_id"
+            ref="product_supplierinfo_for_customer.product_customerinfo_tree_view"
+        />
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='price']" position="after">
+                <field name="elaboration_id" optional="show" />
+                <field name="elaboration_note" optional="show" />
+            </xpath>
+        </field>
+    </record>
+</odoo>
