@@ -1,12 +1,12 @@
-# Copyright 2019 Eficent Business and IT Consulting Services S.L.
-#   (http://www.eficent.com)
+# Copyright 2019 ForgeFlow S.L.
+#   (http://www.forgeflow.com)
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl.html).
 
 {
     "name": "Sale Stock Picking Blocking",
     "summary": "Allow you to block the creation of deliveries " "from a sale order.",
     "version": "13.0.1.0.1",
-    "author": "Eficent, " "Odoo Community Association (OCA)",
+    "author": "ForgeFlow, Odoo Community Association (OCA)",
     "website": "https://github.com/OCA/sale-workflow",
     "category": "Sales",
     "depends": ["sale_stock"],
