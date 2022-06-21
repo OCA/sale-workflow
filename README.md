@@ -116,7 +116,7 @@ addon | version | maintainers | summary
 [sale_stock_picking_validation_blocking](sale_stock_picking_validation_blocking/) | 13.0.1.0.1 |  | This module adds the opportunity to prevent the validation of delivery order from the SO.
 [sale_stock_return_request](sale_stock_return_request/) | 13.0.1.0.1 | [![chienandalu](https://github.com/chienandalu.png?size=30px)](https://github.com/chienandalu) | Sale Stock Return Request
 [sale_stock_secondary_unit](sale_stock_secondary_unit/) | 13.0.1.0.1 |  | Get product quantities in a secondary unit
-[sale_tier_validation](sale_tier_validation/) | 13.0.1.0.0 |  | Extends the functionality of Sale Orders to support a tier validation process.
+[sale_tier_validation](sale_tier_validation/) | 13.0.1.0.1 |  | Extends the functionality of Sale Orders to support a tier validation process.
 [sale_validity](sale_validity/) | 13.0.1.0.1 |  | Set a default validity delay on quotations
 [sale_wishlist](sale_wishlist/) | 13.0.1.0.0 |  | Handle sale wishlist for partners
 [sales_team_security](sales_team_security/) | 13.0.3.0.0 | [![pedrobaeza](https://github.com/pedrobaeza.png?size=30px)](https://github.com/pedrobaeza) | New group for seeing only sales channel's documents
