@@ -6,7 +6,7 @@
 {
     "name": "Sale Sourced by Line",
     "summary": "Multiple warehouse source locations for Sale order",
-    "version": "13.0.1.0.1",
+    "version": "13.0.1.1.0",
     "author": "Camptocamp,"
     "ForgeFlow,"
     "SerpentCS,"
