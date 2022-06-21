@@ -1,0 +1,52 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* product_supplierinfo_for_customer_sale
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 15.0\n"
+"Report-Msgid-Bugs-To: \n"
+"PO-Revision-Date: 2019-07-17 11:43+0000\n"
+"Last-Translator: Maria Sparenberg <maria.sparenberg@gmx.net>\n"
+"Language-Team: none\n"
+"Language: de\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: Weblate 3.7.1\n"
+
+#. module: product_supplierinfo_for_customer_sale
+#: model:ir.model.fields,help:product_supplierinfo_for_customer_sale.field_sale_order_line__partner_is_customer
+msgid ""
+"Check this box if this contact is a customer. It can be selected in sales "
+"orders."
+msgstr ""
+
+#. module: product_supplierinfo_for_customer_sale
+#: model:ir.model.fields,field_description:product_supplierinfo_for_customer_sale.field_sale_order_line__partner_is_customer
+msgid "Is a Customer"
+msgstr ""
+
+#. module: product_supplierinfo_for_customer_sale
+#: model:ir.model.fields,field_description:product_supplierinfo_for_customer_sale.field_sale_order_line__product_customer_code
+msgid "Product Customer Code"
+msgstr ""
+
+#. module: product_supplierinfo_for_customer_sale
+#: model_terms:ir.ui.view,arch_db:product_supplierinfo_for_customer_sale.product_supplierinfo_search_view
+msgid "Product Template"
+msgstr ""
+
+#. module: product_supplierinfo_for_customer_sale
+#: model:ir.model,name:product_supplierinfo_for_customer_sale.model_sale_order_line
+msgid "Sales Order Line"
+msgstr ""
+
+#. module: product_supplierinfo_for_customer_sale
+#: model_terms:ir.ui.view,arch_db:product_supplierinfo_for_customer_sale.product_supplierinfo_search_view
+msgid "Supplierinfo"
+msgstr ""
+
+#~ msgid "Product"
+#~ msgstr "Produkt"

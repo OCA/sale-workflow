@@ -1,0 +1,67 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# * sale_automatic_workflow_payment_mode
+#
+# Translators:
+# OCA Transbot <transbot@odoo-community.org>, 2017
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 15.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2017-05-26 14:21+0000\n"
+"PO-Revision-Date: 2017-05-26 14:21+0000\n"
+"Last-Translator: OCA Transbot <transbot@odoo-community.org>, 2017\n"
+"Language-Team: Greek (Greece) (https://www.transifex.com/oca/teams/23907/"
+"el_GR/)\n"
+"Language: el_GR\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+#. module: sale_automatic_workflow_payment_mode
+#: model:ir.model.fields,field_description:sale_automatic_workflow_payment_mode.field_account_payment_mode__workflow_process_id
+msgid "Automatic Workflow"
+msgstr ""
+
+#. module: sale_automatic_workflow_payment_mode
+#: model:ir.model.fields,field_description:sale_automatic_workflow_payment_mode.field_account_payment_mode__display_name
+#: model:ir.model.fields,field_description:sale_automatic_workflow_payment_mode.field_automatic_workflow_job__display_name
+#: model:ir.model.fields,field_description:sale_automatic_workflow_payment_mode.field_sale_order__display_name
+msgid "Display Name"
+msgstr ""
+
+#. module: sale_automatic_workflow_payment_mode
+#: model:ir.model.fields,field_description:sale_automatic_workflow_payment_mode.field_account_payment_mode__id
+#: model:ir.model.fields,field_description:sale_automatic_workflow_payment_mode.field_automatic_workflow_job__id
+#: model:ir.model.fields,field_description:sale_automatic_workflow_payment_mode.field_sale_order__id
+msgid "ID"
+msgstr ""
+
+#. module: sale_automatic_workflow_payment_mode
+#: model:ir.model.fields,field_description:sale_automatic_workflow_payment_mode.field_account_payment_mode____last_update
+#: model:ir.model.fields,field_description:sale_automatic_workflow_payment_mode.field_automatic_workflow_job____last_update
+#: model:ir.model.fields,field_description:sale_automatic_workflow_payment_mode.field_sale_order____last_update
+msgid "Last Modified on"
+msgstr ""
+
+#. module: sale_automatic_workflow_payment_mode
+#: model:ir.model,name:sale_automatic_workflow_payment_mode.model_account_payment_mode
+msgid "Payment Modes"
+msgstr ""
+
+#. module: sale_automatic_workflow_payment_mode
+#: model:ir.model,name:sale_automatic_workflow_payment_mode.model_sale_order
+msgid "Sales Order"
+msgstr ""
+
+#. module: sale_automatic_workflow_payment_mode
+#: model:ir.model,name:sale_automatic_workflow_payment_mode.model_automatic_workflow_job
+msgid ""
+"Scheduler that will play automatically the validation of invoices, "
+"pickings..."
+msgstr ""
+
+#, fuzzy
+#~ msgid "Sale Order"
+#~ msgstr "Εντολή Πώλησης"

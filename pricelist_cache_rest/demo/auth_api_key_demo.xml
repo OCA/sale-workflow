@@ -1,0 +1,12 @@
+<odoo noupdate="1">
+    <record id="api_key_demo" model="auth.api.key">
+        <field name="name">Pricelist Cache demo key</field>
+        <field name="user_id" ref="base.user_demo" />
+        <field name="key">8E57rAPnZY6iS20w4XUQ</field>
+    </record>
+    <record id="api_key_demo_2" model="auth.api.key">
+        <field name="name">Pricelist Cache demo key 2</field>
+        <field name="user_id" ref="base.user_demo" />
+        <field name="key">8E57rAPnZY6iS20w4XUQ-2</field>
+    </record>
+</odoo>

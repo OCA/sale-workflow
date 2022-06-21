@@ -1,0 +1,65 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2022-03-02 18:31+0000\n"
+"PO-Revision-Date: 2022-03-02 18:31+0000\n"
+"Last-Translator: Francesco Foresti <francesco.foresti@ooops404.com>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: it\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: Weblate 4.3.2\n"
+
+#. module: sale_default_uom
+#: model:ir.model.fields,help:sale_default_uom.field_product_product__uom_category_id
+#: model:ir.model.fields,help:sale_default_uom.field_product_template__uom_category_id
+msgid ""
+"Conversion between Units of Measure can only occur if they belong to the "
+"same category. The conversion will be made based on the ratios."
+msgstr ""
+"Le conversioni tra unità di misura possono avvenire solo se appartengono "
+"alla stessa categoria. La conversione verrà effettuata in base alle "
+"proporzioni."
+
+#. module: sale_default_uom
+#: model:ir.model.fields,field_description:sale_default_uom.field_product_product__sale_uom_id
+#: model:ir.model.fields,field_description:sale_default_uom.field_product_template__sale_uom_id
+msgid "Default Sale UoM"
+msgstr "UdM predefinita per la vendita"
+
+#. module: sale_default_uom
+#: model:ir.model.fields,field_description:sale_default_uom.field_product_template__display_name
+#: model:ir.model.fields,field_description:sale_default_uom.field_sale_order_line__display_name
+msgid "Display Name"
+msgstr "Nome da visualizzare"
+
+#. module: sale_default_uom
+#: model:ir.model.fields,field_description:sale_default_uom.field_product_template__id
+#: model:ir.model.fields,field_description:sale_default_uom.field_sale_order_line__id
+msgid "ID"
+msgstr "ID"
+
+#. module: sale_default_uom
+#: model:ir.model.fields,field_description:sale_default_uom.field_product_template____last_update
+#: model:ir.model.fields,field_description:sale_default_uom.field_sale_order_line____last_update
+msgid "Last Modified on"
+msgstr "Ultima modifica il"
+
+#. module: sale_default_uom
+#: model:ir.model,name:sale_default_uom.model_product_template
+msgid "Product Template"
+msgstr "Modello Prodotto"
+
+#. module: sale_default_uom
+#: model:ir.model,name:sale_default_uom.model_sale_order_line
+msgid "Sales Order Line"
+msgstr "Riga ordine di vendita"
+
+#. module: sale_default_uom
+#: model:ir.model.fields,field_description:sale_default_uom.field_product_product__uom_category_id
+#: model:ir.model.fields,field_description:sale_default_uom.field_product_template__uom_category_id
+msgid "UOM Category"
+msgstr "Categoria UdM"

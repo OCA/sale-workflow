@@ -1,0 +1,209 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* pricelist_cache
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 15.0\n"
+"Report-Msgid-Bugs-To: \n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: pricelist_cache
+#: model:ir.model.fields,field_description:pricelist_cache.field_product_pricelist_cache_wizard__display_cache_line_ids
+msgid "Cached prices"
+msgstr ""
+
+#. module: pricelist_cache
+#: model_terms:ir.ui.view,arch_db:pricelist_cache.product_pricelist_cache_wizard_view_form
+msgid "Cancel"
+msgstr ""
+
+#. module: pricelist_cache
+#: model:ir.model,name:pricelist_cache.model_res_partner
+msgid "Contact"
+msgstr ""
+
+#. module: pricelist_cache
+#: model:ir.model.fields,field_description:pricelist_cache.field_product_pricelist_cache__create_uid
+#: model:ir.model.fields,field_description:pricelist_cache.field_product_pricelist_cache_wizard__create_uid
+msgid "Created by"
+msgstr ""
+
+#. module: pricelist_cache
+#: model:ir.model.fields,field_description:pricelist_cache.field_product_pricelist_cache__create_date
+#: model:ir.model.fields,field_description:pricelist_cache.field_product_pricelist_cache_wizard__create_date
+msgid "Created on"
+msgstr ""
+
+#. module: pricelist_cache
+#: model_terms:ir.ui.view,arch_db:pricelist_cache.view_partner_property_form
+msgid "Display Customer Prices"
+msgstr ""
+
+#. module: pricelist_cache
+#: model:ir.model.fields,field_description:pricelist_cache.field_product_pricelist__display_name
+#: model:ir.model.fields,field_description:pricelist_cache.field_product_pricelist_cache__display_name
+#: model:ir.model.fields,field_description:pricelist_cache.field_product_pricelist_cache_wizard__display_name
+#: model:ir.model.fields,field_description:pricelist_cache.field_product_pricelist_item__display_name
+#: model:ir.model.fields,field_description:pricelist_cache.field_product_product__display_name
+#: model:ir.model.fields,field_description:pricelist_cache.field_res_partner__display_name
+msgid "Display Name"
+msgstr ""
+
+#. module: pricelist_cache
+#: model_terms:ir.ui.view,arch_db:pricelist_cache.product_pricelist_view
+msgid "Display Pricelist Prices"
+msgstr ""
+
+#. module: pricelist_cache
+#: model:ir.model.fields,field_description:pricelist_cache.field_product_pricelist__id
+#: model:ir.model.fields,field_description:pricelist_cache.field_product_pricelist_cache__id
+#: model:ir.model.fields,field_description:pricelist_cache.field_product_pricelist_cache_wizard__id
+#: model:ir.model.fields,field_description:pricelist_cache.field_product_pricelist_item__id
+#: model:ir.model.fields,field_description:pricelist_cache.field_product_product__id
+#: model:ir.model.fields,field_description:pricelist_cache.field_res_partner__id
+msgid "ID"
+msgstr ""
+
+#. module: pricelist_cache
+#: model:ir.model.fields,field_description:pricelist_cache.field_product_pricelist____last_update
+#: model:ir.model.fields,field_description:pricelist_cache.field_product_pricelist_cache____last_update
+#: model:ir.model.fields,field_description:pricelist_cache.field_product_pricelist_cache_wizard____last_update
+#: model:ir.model.fields,field_description:pricelist_cache.field_product_pricelist_item____last_update
+#: model:ir.model.fields,field_description:pricelist_cache.field_product_product____last_update
+#: model:ir.model.fields,field_description:pricelist_cache.field_res_partner____last_update
+msgid "Last Modified on"
+msgstr ""
+
+#. module: pricelist_cache
+#: model:ir.model.fields,field_description:pricelist_cache.field_product_pricelist_cache__write_uid
+#: model:ir.model.fields,field_description:pricelist_cache.field_product_pricelist_cache_wizard__write_uid
+msgid "Last Updated by"
+msgstr ""
+
+#. module: pricelist_cache
+#: model:ir.model.fields,field_description:pricelist_cache.field_product_pricelist_cache__write_date
+#: model:ir.model.fields,field_description:pricelist_cache.field_product_pricelist_cache_wizard__write_date
+msgid "Last Updated on"
+msgstr ""
+
+#. module: pricelist_cache
+#: model_terms:ir.ui.view,arch_db:pricelist_cache.product_pricelist_cache_wizard_view_form
+msgid "Open"
+msgstr ""
+
+#. module: pricelist_cache
+#: model:ir.model.fields,field_description:pricelist_cache.field_product_pricelist_cache_wizard__partner_id
+msgid "Partner"
+msgstr ""
+
+#. module: pricelist_cache
+#: model:ir.model.fields,field_description:pricelist_cache.field_product_pricelist_cache__price
+msgid "Price"
+msgstr ""
+
+#. module: pricelist_cache
+#: model_terms:ir.ui.view,arch_db:pricelist_cache.product_pricelist_cache_view_tree
+msgid "Price List"
+msgstr ""
+
+#. module: pricelist_cache
+#: model:ir.model,name:pricelist_cache.model_product_pricelist
+#: model:ir.model.fields,field_description:pricelist_cache.field_product_pricelist_cache__pricelist_id
+#: model:ir.model.fields,field_description:pricelist_cache.field_product_pricelist_cache_wizard__pricelist_id
+msgid "Pricelist"
+msgstr ""
+
+#. module: pricelist_cache
+#: model:product.pricelist,name:pricelist_cache.list0
+msgid "Pricelist 0"
+msgstr ""
+
+#. module: pricelist_cache
+#: model:product.pricelist,name:pricelist_cache.list1
+msgid "Pricelist 1"
+msgstr ""
+
+#. module: pricelist_cache
+#: model:product.pricelist,name:pricelist_cache.list2
+msgid "Pricelist 2"
+msgstr ""
+
+#. module: pricelist_cache
+#: model:product.pricelist,name:pricelist_cache.list3
+msgid "Pricelist 3"
+msgstr ""
+
+#. module: pricelist_cache
+#: model:product.pricelist,name:pricelist_cache.list4
+msgid "Pricelist 4"
+msgstr ""
+
+#. module: pricelist_cache
+#: model:product.pricelist,name:pricelist_cache.list5
+msgid "Pricelist 5"
+msgstr ""
+
+#. module: pricelist_cache
+#: model:ir.actions.act_window,name:pricelist_cache.product_pricelist_cache_action
+#: model:ir.actions.act_window,name:pricelist_cache.product_pricelist_cache_wizard_action
+#: model:ir.model,name:pricelist_cache.model_product_pricelist_cache
+#: model:ir.ui.menu,name:pricelist_cache.menuitem_pricelist_cache_wizard
+#: model_terms:ir.ui.view,arch_db:pricelist_cache.product_pricelist_cache_wizard_view_form
+msgid "Pricelist Cache"
+msgstr ""
+
+#. module: pricelist_cache
+#: model:ir.model.fields,field_description:pricelist_cache.field_res_partner__pricelist_cache_product_filter_id
+#: model:ir.model.fields,field_description:pricelist_cache.field_res_users__pricelist_cache_product_filter_id
+msgid "Pricelist Cache Product Filter"
+msgstr ""
+
+#. module: pricelist_cache
+#: model:ir.model.fields,field_description:pricelist_cache.field_product_pricelist_item__pricelist_cache_update_skipped
+msgid "Pricelist Cache Update Skipped"
+msgstr ""
+
+#. module: pricelist_cache
+#: model:ir.model,name:pricelist_cache.model_product_pricelist_item
+msgid "Pricelist Rule"
+msgstr ""
+
+#. module: pricelist_cache
+#: model:ir.filters,name:pricelist_cache.product_filter_default
+msgid "Pricelist cache default product filter for partner"
+msgstr ""
+
+#. module: pricelist_cache
+#: model:ir.model,name:pricelist_cache.model_product_product
+#: model:ir.model.fields,field_description:pricelist_cache.field_product_pricelist_cache_wizard__product_id
+msgid "Product"
+msgstr ""
+
+#. module: pricelist_cache
+#: model:ir.model.fields,field_description:pricelist_cache.field_product_pricelist_cache__product_id
+msgid "Product Variant"
+msgstr ""
+
+#. module: pricelist_cache
+#: model:ir.actions.server,name:pricelist_cache.cron_reset_pricelist_cache_ir_actions_server
+#: model:ir.cron,cron_name:pricelist_cache.cron_reset_pricelist_cache
+#: model:ir.cron,name:pricelist_cache.cron_reset_pricelist_cache
+msgid "Reset pricelist cache"
+msgstr ""
+
+#. module: pricelist_cache
+#: model:base.automation,name:pricelist_cache.automation_update_product_pricelist_cache
+#: model:ir.actions.server,name:pricelist_cache.automation_update_product_pricelist_cache_ir_actions_server
+msgid "Update Product Pricelist Cache"
+msgstr ""
+
+#. module: pricelist_cache
+#: model:ir.model,name:pricelist_cache.model_product_pricelist_cache_wizard
+msgid "Wizard for pricelist cache"
+msgstr ""

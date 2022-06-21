@@ -1,0 +1,91 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* sale_contact_type
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 15.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2019-12-13 22:52+0000\n"
+"PO-Revision-Date: 2019-12-13 23:54+0100\n"
+"Last-Translator: <>\n"
+"Language-Team: \n"
+"Language: es\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: \n"
+"X-Generator: Poedit 2.2.4\n"
+
+#. module: sale_contact_type
+#: model:ir.model.fields,field_description:sale_contact_type.field_res_partner__type
+#: model:ir.model.fields,field_description:sale_contact_type.field_res_users__type
+msgid "Address Type"
+msgstr "Tipo de Dirección"
+
+#. module: sale_contact_type
+#: model:ir.model,name:sale_contact_type.model_res_partner
+msgid "Contact"
+msgstr "Contacto"
+
+#. module: sale_contact_type
+#: model:ir.model.fields,field_description:sale_contact_type.field_res_partner__display_name
+msgid "Display Name"
+msgstr ""
+
+#. module: sale_contact_type
+#: model:ir.model.fields,field_description:sale_contact_type.field_res_partner__has_ordering_contact_child
+#: model:ir.model.fields,field_description:sale_contact_type.field_res_users__has_ordering_contact_child
+msgid "Has Ordering Contact Child"
+msgstr "Tiene hijos de tipo 'Contacto de Pedido'"
+
+#. module: sale_contact_type
+#: model:ir.model.fields,field_description:sale_contact_type.field_res_partner__id
+msgid "ID"
+msgstr ""
+
+#. module: sale_contact_type
+#: model:ir.model.fields,help:sale_contact_type.field_res_partner__type
+#: model:ir.model.fields,help:sale_contact_type.field_res_users__type
+msgid ""
+"Invoice & Delivery addresses are used in sales orders. Private addresses are "
+"only visible by authorized users."
+msgstr ""
+
+#. module: sale_contact_type
+#: model:ir.model.fields,field_description:sale_contact_type.field_res_partner____last_update
+msgid "Last Modified on"
+msgstr ""
+
+#. module: sale_contact_type
+#: model:ir.model.fields.selection,name:sale_contact_type.selection__res_partner__type__ordering
+msgid "Ordering contact"
+msgstr "Contacto de Pedido"
+
+#. module: sale_contact_type
+#: model:ir.model.fields,help:sale_contact_type.field_res_partner__has_ordering_contact_child
+#: model:ir.model.fields,help:sale_contact_type.field_res_users__has_ordering_contact_child
+msgid "Technical field for use in views"
+msgstr "Campo técnico para ser usado en vistas"
+
+#~ msgid "Invoice address"
+#~ msgstr "Dirección de facturación"
+
+#~ msgid "Other address"
+#~ msgstr "Otra dirección"
+
+#~ msgid "Private Address"
+#~ msgstr "Dirección Privada"
+
+#~ msgid "Shipping address"
+#~ msgstr "Dirección de envío"
+
+#~ msgid ""
+#~ "Used by Sales and Purchase Apps to select the relevant address depending "
+#~ "on the context."
+#~ msgstr ""
+#~ "Usado por la aplicaciones de Ventas y Compras para seleccionar la "
+#~ "dirección más idónea dependiendo del contexto."
+
+#~ msgid "Ordering address"
+#~ msgstr "Dirección de pedido"

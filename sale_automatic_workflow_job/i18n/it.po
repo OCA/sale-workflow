@@ -1,0 +1,85 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* sale_automatic_workflow_job
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 15.0\n"
+"Report-Msgid-Bugs-To: \n"
+"PO-Revision-Date: 2022-06-01 14:06+0000\n"
+"Last-Translator: Samuele Mariani <samuele@ooops404.com>\n"
+"Language-Team: none\n"
+"Language: it\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: Weblate 4.3.2\n"
+
+#. module: sale_automatic_workflow_job
+#: code:addons/sale_automatic_workflow_job/models/automatic_workflow_job.py:0
+#, python-format
+msgid "Create invoices for sales order {}"
+msgstr "Crea fattura per ordine di vendita {}"
+
+#. module: sale_automatic_workflow_job
+#: model:ir.model.fields,field_description:sale_automatic_workflow_job.field_automatic_workflow_job__display_name
+#: model:ir.model.fields,field_description:sale_automatic_workflow_job.field_queue_job__display_name
+msgid "Display Name"
+msgstr "Nome visualizzato"
+
+#. module: sale_automatic_workflow_job
+#: model:ir.model.fields,field_description:sale_automatic_workflow_job.field_automatic_workflow_job__id
+#: model:ir.model.fields,field_description:sale_automatic_workflow_job.field_queue_job__id
+msgid "ID"
+msgstr "ID"
+
+#. module: sale_automatic_workflow_job
+#: model:ir.model.fields,field_description:sale_automatic_workflow_job.field_automatic_workflow_job____last_update
+#: model:ir.model.fields,field_description:sale_automatic_workflow_job.field_queue_job____last_update
+msgid "Last Modified on"
+msgstr "Ultima modifica il"
+
+#. module: sale_automatic_workflow_job
+#: code:addons/sale_automatic_workflow_job/models/automatic_workflow_job.py:0
+#, python-format
+msgid "Mark sales order {} as done"
+msgstr "Segna l'ordine di vendita {} come fatto"
+
+#. module: sale_automatic_workflow_job
+#: model:ir.model,name:sale_automatic_workflow_job.model_queue_job
+msgid "Queue Job"
+msgstr "Job Queue"
+
+#. module: sale_automatic_workflow_job
+#: code:addons/sale_automatic_workflow_job/models/queue_job.py:0
+#, python-format
+msgid "Sale Automatic Workflow Job"
+msgstr "Vendita Automatica Job Workflow"
+
+#. module: sale_automatic_workflow_job
+#: model:ir.model,name:sale_automatic_workflow_job.model_automatic_workflow_job
+msgid ""
+"Scheduler that will play automatically the validation of invoices, "
+"pickings..."
+msgstr ""
+"Pianificatore che riprodurrà in automatico la validazione delle fatture, "
+"picking..."
+
+#. module: sale_automatic_workflow_job
+#: code:addons/sale_automatic_workflow_job/models/automatic_workflow_job.py:0
+#, python-format
+msgid "Validate invoice {}"
+msgstr "Valida fattura {}"
+
+#. module: sale_automatic_workflow_job
+#: code:addons/sale_automatic_workflow_job/models/automatic_workflow_job.py:0
+#, python-format
+msgid "Validate sales order {}"
+msgstr "Valida ordine di vendita {}"
+
+#. module: sale_automatic_workflow_job
+#: code:addons/sale_automatic_workflow_job/models/automatic_workflow_job.py:0
+#, python-format
+msgid "Validate transfer {}"
+msgstr "Valida trasferimento {}"

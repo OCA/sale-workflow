@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!-- Copyright 2020 Camptocamp License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl). -->
+<odoo>
+    <record id="view_product_packaging_type_form" model="ir.ui.view">
+        <field name="model">product.packaging.type</field>
+        <field
+            name="inherit_id"
+            ref="product_packaging_type.view_product_packaging_type_form"
+        />
+        <field name="arch" type="xml">
+            <field name="code" position="after">
+                <field name="can_be_sold" />
+            </field>
+        </field>
+    </record>
+</odoo>
