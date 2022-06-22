@@ -1,0 +1,28 @@
+<odoo>
+
+    <record
+        id="res_config_settings_view_form_inherit_sale_order_line_discount_validation"
+        model="ir.ui.view"
+    >
+        <field name="name">res.config.settings.view.form.inherit.sale</field>
+        <field name="model">res.config.settings</field>
+        <field name="priority" eval="10" />
+        <field name="inherit_id" ref="sale.res_config_settings_view_form" />
+        <field name="arch" type="xml">
+            <xpath
+                expr="//div[@id='discount_sale_order_lines']/div[hasclass('o_setting_right_pane')]/div[hasclass('text-muted')]"
+                position="after"
+            >
+                <div class="row mt16">
+                    <label
+                        for="sale_discount_limit"
+                        string="Discount Limit"
+                        class="col-lg-4 o_light_label"
+                    />
+                    <field name="sale_discount_limit" class="oe_inline" />
+                </div>
+            </xpath>
+        </field>
+    </record>
+
+</odoo>
